@@ -1,9 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { expect } from 'chai'
+import React from 'react'
+import { shallow } from 'enzyme'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+import App from './App'
+
+describe('<App />', () => {
+  it('renders without crashing', () => {
+    const wrapper = shallow(<App />)
+  })
+
+  it('should match its reference snapshot', () => {
+    const wrapper = shallow(<App />)
+  
+    expect(wrapper).to.matchSnapshot()
+  })
+
+  it('should render correctly in "debug" mode', () => {
+    const component = shallow(<App debug />);
+  
+    expect(component).to.matchSnapshot();
+  });
+})
