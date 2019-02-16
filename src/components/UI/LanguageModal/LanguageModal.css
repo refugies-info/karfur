@@ -1,0 +1,11 @@
+.Modal .btn {
+    margin: 1em auto;
+    padding: 1em 2em;
+    outline: none;
+    font-size: 16;
+    font-weight: 600;
+    background: #C94E50;
+    color: #FFFFFF;
+    border: none;
+    width: 100%;
+}

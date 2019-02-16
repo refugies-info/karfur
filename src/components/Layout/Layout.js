@@ -10,11 +10,11 @@ import './Layout.css';
 import i18n from '../../i18n';
 import { withNamespaces } from 'react-i18next';
 
+import routes from '../../routes';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import { Container } from 'reactstrap';
 import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
 
-const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-}
 class Layout extends Component {
     state = {
         showSideDrawer: false
@@ -39,14 +39,24 @@ class Layout extends Component {
                         open={this.state.showSideDrawer}
                         closed={this.sideDrawerClosedHandler} />
                     <main className="Content">
-                        <div>
-                            <button onClick={() => changeLanguage('fr')}>fr</button>
-                            <button onClick={() => changeLanguage('en')}>en</button>
-                            <button onClick={() => changeLanguage('ar')}>ar</button>
-                            <h1>{this.props.t('Bienvenue')}</h1>
-                        </div>
-                        <div>Toolbar, SideDrawer and Backdrop</div>
                         {this.props.children}
+                        <Container fluid>
+                            <Switch>
+                                {routes.map((route, idx) => {
+                                    return route.component ? (
+                                    <Route
+                                        key={idx}
+                                        path={route.path}
+                                        exact={route.exact}
+                                        name={route.name}
+                                        render={props => (
+                                        <route.component {...props} />
+                                        )} />
+                                    ) : (null);
+                                })}
+                                <Redirect from="/" to="/homepage" />
+                            </Switch>
+                        </Container>
                     </main>
                     <Footer />
                 </Aux>

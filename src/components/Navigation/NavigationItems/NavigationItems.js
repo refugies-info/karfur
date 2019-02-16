@@ -2,11 +2,15 @@ import React from 'react';
 
 import './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
+import routes from '../../../routes'
 
 const navigationItems = () => (
     <ul className="NavigationItems">
-        <NavigationItem link="/" active>Page d'accueil</NavigationItem>
-        <NavigationItem link="/">Un formulaire</NavigationItem>
+        {routes.map((route, idx) => {
+            return (
+                idx>0 && <NavigationItem link={route.path} active={idx===1}>{route.name}</NavigationItem>
+            )
+        })}
     </ul>
 );
 
