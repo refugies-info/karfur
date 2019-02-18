@@ -1,34 +1,11 @@
-import React, { useState, useRef } from 'react';
-import { useTransition, useSpring, useChain, config } from 'react-spring'
-import { Global, Container, Item } from './styles'
+import React from 'react';
 import data from './data'
+import SpringButton from '../../../components/UI/SpringButton/SpringButton'
 
 import './WelcomeParcours.css';
 import demoScreen from '../../../assets/Virtual-Assistant-single.png';
 
 export default function WelcomeParcours() {
-  const [open, set] = useState(false)
-
-  const springRef = useRef()
-  const { size, opacity, ...rest } = useSpring({
-    ref: springRef,
-    config: config.stiff,
-    from: { size: '20%', background: 'hotpink' },
-    to: { size: open ? '100%' : '20%', background: open ? 'white' : 'hotpink' }
-  })
-
-  const transRef = useRef()
-  const transitions = useTransition(open ? data : [], item => item.name, {
-    ref: transRef,
-    unique: true,
-    trail: 400 / data.length,
-    from: { opacity: 0, transform: 'scale(0)' },
-    enter: { opacity: 1, transform: 'scale(1)' },
-    leave: { opacity: 0, transform: 'scale(0)' }
-  })
-
-  // This will orchestrate the two animations above, comment the last arg and it creates a sequence
-  useChain(open ? [springRef, transRef] : [transRef, springRef], [0, open ? 0.1 : 0.6])
 
   return (
     <div className="animated fadeIn welcome_parcours">
@@ -39,8 +16,10 @@ export default function WelcomeParcours() {
               <div className="header-content mx-auto">
                 <h1 className="mb-5">Bienvenue dans votre parcours personnalisé d'intégration</h1>
                 <a href="#download" className="btn btn-outline btn-xl js-scroll-trigger">
-                  Commencer maintenant gratuitement!
+                  Commencer maintenant
                 </a>
+                <hr />
+                <p>C'est gratuit !</p>
               </div>
             </div>
             <div className="col-lg-5 my-auto">
@@ -57,15 +36,10 @@ export default function WelcomeParcours() {
               <h2 className="section-heading">Quelle est votre situation actuelle ?</h2>
               <p>Nous accompagnons les réfugiés depuis leur arrivée en France jusqu'à leur intégration</p>
               <div className="choice-buttons">
-                <a className="btn btn-outline btn-xl">
-                  Je suis réfugié
-                </a>
-                <a className="btn btn-outline btn-xl">
-                  Je suis une association
-                </a>
-                <a className="btn btn-outline btn-xl">
-                  Je me gratte les couilles
-                </a>
+                {data.map((mon_element) => {return (
+                  <SpringButton element={mon_element} />
+                  )}
+                )}
               </div>
             </div>
           </div>
