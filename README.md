@@ -44,7 +44,7 @@ $ npm run build
 
 ## Contributing
 
-Please read through our [contributing guidelines](https://github.com/Tony4469/karfur/blob/master/CONTRIBUTING). Included are directions for opening issues, coding standards, and notes on development.
+Please read through our [contributing guidelines](https://github.com/Tony4469/karfur/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
 
 Editor preferences are available in the [editor config](https://github.com/Tony4469/karfur/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
 
@@ -74,7 +74,7 @@ Get updates on Karfu'R's development and chat with the project maintainers and c
 
 ## License
 
-Copyright 2019 DIAIR. Code released under [the MIT license](https://github.com/Tony4469/karfur/blob/master/LICENSE).
+Copyright 2019 DIAIR. Code released under [the MIT license](https://github.com/Tony4469/karfur/blob/master/LICENSE.md).
 
 ## Support Karfu'R Development
 
