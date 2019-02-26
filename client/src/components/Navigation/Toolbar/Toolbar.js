@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+import {withRouter} from 'react-router-dom';
 
 import './Toolbar.css';
 import Logo from '../../Logo/Logo';
@@ -18,9 +19,16 @@ export class Toolbar extends React.Component {
     }
 
     render() {
+        const path = this.props.location.pathname;
+        let afficher_burger=false;
+        if(path.includes("/admin")){
+            afficher_burger=true;
+        }
         return(
             <header className="Toolbar">
-                <DrawerToggle clicked={this.props.drawerToggleClicked} />
+                <DrawerToggle 
+                    forceShow={afficher_burger}
+                    clicked={this.props.drawerToggleClicked} />
                 <div className="Logo">
                     <Logo />
                 </div>
@@ -42,4 +50,4 @@ export class Toolbar extends React.Component {
     }
 };
 
-export default Toolbar;
+export default withRouter(Toolbar);

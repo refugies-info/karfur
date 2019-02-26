@@ -1,4 +1,10 @@
 import axios from 'axios';
+import openSocket from 'socket.io-client';
+
+const  socket = openSocket('http://localhost:8001');
+socket.emit('subscribeToChat');
+export { socket };
+
 const headers = {
     'Content-Type': 'application/json'
 }

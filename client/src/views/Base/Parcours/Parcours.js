@@ -7,7 +7,7 @@ import './Parcours.css';
 class Parcours extends Component {
   render() {  
     return (
-      <div className="animated fadeIn">
+      <div className="parcours animated fadeIn">
         <section className="intro">
           <div className="container">
             <h1>Mon parcours d'intégration &darr;</h1>

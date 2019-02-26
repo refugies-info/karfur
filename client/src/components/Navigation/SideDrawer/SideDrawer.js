@@ -2,14 +2,20 @@ import React from 'react';
 
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
+import BackendNavigationItems from '../BackendNavigationItems/BackendNavigationItems';
 import './SideDrawer.css';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Aux from '../../../hoc/Aux';
+import {withRouter} from 'react-router-dom';
 
 const sideDrawer = ( props ) => {
-    let attachedClasses = ["SideDrawer", "Close"];
+    let attachedClasses = ["SideDrawer", "Close", "HideSideDrawer"];
     if (props.open) {
-        attachedClasses = ["SideDrawer", "Open"];
+        attachedClasses = ["SideDrawer", "Open", "HideSideDrawer"];
+    }
+    const path = props.location.pathname;
+    if(path.includes("/admin")){
+        attachedClasses.splice(2);
     }
     return (
         <Aux>
@@ -19,11 +25,12 @@ const sideDrawer = ( props ) => {
                     <Logo />
                 </div>
                 <nav>
-                    <NavigationItems />
+                    {!path.includes("/admin") && <NavigationItems />}
+                    {path.includes("/admin") && <BackendNavigationItems />}
                 </nav>
             </div>
         </Aux>
     );
 };
 
-export default sideDrawer;
+export default withRouter(sideDrawer);

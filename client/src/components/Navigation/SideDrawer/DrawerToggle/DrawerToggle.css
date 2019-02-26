@@ -17,7 +17,7 @@
 }
 
 @media (min-width: 500px) {
-    .DrawerToggle {
+    .HideOnDesktop{
         display: none;
     }
 }

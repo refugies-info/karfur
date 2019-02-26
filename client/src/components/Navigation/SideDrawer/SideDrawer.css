@@ -14,7 +14,7 @@
 }
 
 @media (min-width: 500px) {
-    .SideDrawer {
+    .HideSideDrawer {
         display: none;
     }
 }
