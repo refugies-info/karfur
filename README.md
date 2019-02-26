@@ -1,5 +1,4 @@
 # karfur
-=========================
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -15,7 +14,7 @@ The goal is to offer a personnalized navigation to the user, to emphasize on the
 * [Versioning](#versioning)
 * [Creators](#creators)
 * [Community](#community)
-* [Copyright and license](#license)
+* [License](#license)
 * [Support Karfu'R Development](#support-karfur-development)
 
 ## Installation
@@ -73,7 +72,7 @@ Get updates on Karfu'R's development and chat with the project maintainers and c
 
 - Join us and subscribe to our [Mighty Network](https://agi-r.mn.co).
 
-## Copyright and license
+## License
 
 Copyright 2019 DIAIR. Code released under [the MIT license](https://github.com/Tony4469/karfur/blob/master/LICENSE).
 
