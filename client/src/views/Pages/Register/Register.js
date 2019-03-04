@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import track from 'react-tracking';
 import { Button, Card, CardBody, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import API from '../../../utils/API';
 
@@ -106,4 +107,6 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default track({
+  page: 'Register',
+}, { dispatchOnMount: true })(Register);

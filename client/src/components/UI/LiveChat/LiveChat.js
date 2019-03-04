@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Launcher} from 'react-chat-window';
+import track from 'react-tracking';
 
 import messageHistory from './messageHistory';
 import './LiveChat.css';
@@ -56,6 +57,8 @@ class LiveChat extends Component {
     this.setState({
       isOpen: !this.state.isOpen,
       newMessagesCount: 0
+    },()=>{
+      this.props.tracking.trackEvent({ action: 'click', label: 'isOpen', value : this.state.isOpen });
     })
   }
 
@@ -81,4 +84,6 @@ class LiveChat extends Component {
   }
 }
 
-export default LiveChat;
+export default track({
+  component: 'LiveChat',
+}, { dispatchOnMount: true })(LiveChat);

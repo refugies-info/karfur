@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import track from 'react-tracking';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import API from '../../../utils/API';
 
@@ -100,4 +101,6 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default track({
+  page: 'Login',
+}, { dispatchOnMount: true })(Login);

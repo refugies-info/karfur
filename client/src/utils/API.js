@@ -11,7 +11,7 @@ const headers = {
 const burl = "http://localhost:8000"
 
 export default {
-    login : function(email,password) {
+    login : (email,password) => {
       return axios.post(burl + '/user/login',{
         'email' : email,
         'password' : password
@@ -19,14 +19,20 @@ export default {
         headers: headers
       })
     },
-    signup : function(send){
-      return axios.post(burl + '/user/signup',send,{headers: headers})
+    signup : (send) => {
+      return axios.post(burl + '/user/signup', send,{headers: headers})
+    },
+    log_event : (event) => {
+      return axios.post(burl + '/events/log', event, {headers: headers})
+    },
+    get_event : (query, sort) => {
+      return axios.post(burl + '/events/get', {query: query, sort: sort}, {headers: headers})
     },
     
-    isAuth : function() {
+    isAuth : () => {
       return (localStorage.getItem('token') !== null);
     },
-    logout : function() {
+    logout : () => {
       localStorage.clear();
     }
 }

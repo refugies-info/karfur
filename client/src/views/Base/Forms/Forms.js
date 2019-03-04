@@ -24,6 +24,7 @@ import {
   Label,
   Row,
 } from 'reactstrap';
+import track from 'react-tracking';
 
 class Forms extends Component {
   constructor(props) {
@@ -1162,4 +1163,6 @@ class Forms extends Component {
   }
 }
 
-export default Forms;
+export default track({
+  page: 'Forms',
+}, { dispatchOnMount: true })(Forms);
