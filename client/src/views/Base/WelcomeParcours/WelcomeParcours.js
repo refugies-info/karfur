@@ -1,12 +1,13 @@
 import React from 'react';
+import track from 'react-tracking';
+
 import data from './data';
 import SpringButton from '../../../components/UI/SpringButton/SpringButton'
 
 import './WelcomeParcours.css';
 import demoScreen from '../../../assets/Virtual-Assistant-single.png';
 
-export default function WelcomeParcours() {
-
+function WelcomeParcours() {
   return (
     <div className="animated fadeIn welcome_parcours">
       <header className="masthead">
@@ -162,3 +163,6 @@ export default function WelcomeParcours() {
   );
 }
 
+export default track({
+  page: 'WelcomeParcours',
+}, { dispatchOnMount: true })(WelcomeParcours);

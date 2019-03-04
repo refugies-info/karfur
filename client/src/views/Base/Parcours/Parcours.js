@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import VisibilitySensor from "react-visibility-sensor";
+import track from 'react-tracking';
 import liste_parcours from './data';
 
 import './Parcours.css';
@@ -36,4 +37,6 @@ class Parcours extends Component {
   }
 }
 
-export default Parcours;
+export default track({
+  page: 'Parcours',
+}, { dispatchOnMount: true })(Parcours);

@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
+import track from 'react-tracking';
 
 import Store from './Store/configureStore';
 import { PrivateRoute } from './components/PrivateRoute';
 import LiveChat from './components/UI/LiveChat/LiveChat';
 import { socket } from './utils/API';
+import {dispatch} from './tracking/dispatch';
 
 import 'react-notifications/src/notifications.scss';
 import './App.scss';
@@ -80,4 +82,8 @@ class App extends Component {
   }
 }
 
-export default App;
+export default track({
+  app: 'App',
+}, { dispatch: dispatch, dispatchOnMount: true, process: (ownTrackingData) => ownTrackingData.page ? true : null })(
+  App
+)

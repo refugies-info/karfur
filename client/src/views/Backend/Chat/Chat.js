@@ -1,4 +1,5 @@
 import React from 'react';
+import track from 'react-tracking';
 import { socket } from '../../../utils/API';
 
 import users from './users';
@@ -238,4 +239,6 @@ export class Chat extends React.Component {
   }
 };
 
-export default Chat;
+export default track({
+  page: 'Chat',
+}, { dispatchOnMount: true })(Chat);

@@ -1,47 +1,23 @@
 import React, { Component } from 'react';
 import i18n from '../../i18n';
 import { withNamespaces } from 'react-i18next';
+import track from 'react-tracking';
 ////////A enlever si pas utilisé/////////////:
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import Notifications from '../../components/UI/Notifications/Notifications';
 
 import LanguageModal from '../../components/UI/LanguageModal/LanguageModal'
 import './HomePage.css';
-
-
-const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-}
 
 class HomePage extends Component {
     state = {
         showModal: true
     }
+
     changeLanguage = (lng) => {
+        this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
         i18n.changeLanguage(lng);
         this.setState({showModal:false})
     }
-    createNotification = (type) => {
-        return () => {
-          switch (type) {
-            case 'info':
-              NotificationManager.info('Info message');
-              break;
-            case 'success':
-              NotificationManager.success('Success message', 'Title here');
-              break;
-            case 'warning':
-              NotificationManager.warning('Warning message', 'Close after 3000ms', 3000);
-              break;
-            case 'error':
-              NotificationManager.error('Error message', 'Click me!', 5000, () => {
-                alert('callback');
-              });
-              break;
-            default:
-              break;
-          }
-        };
-    };
 
     render(){
         const {t} = this.props;
@@ -87,32 +63,14 @@ class HomePage extends Component {
 
 
                 <div>
-                    <button onClick={() => changeLanguage('fr')}>fr</button>
-                    <button onClick={() => changeLanguage('en')}>en</button>
-                    <button onClick={() => changeLanguage('ar')}>ar</button>
+                    <button onClick={() => this.changeLanguage('fr')}>fr</button>
+                    <button onClick={() => this.changeLanguage('en')}>en</button>
+                    <button onClick={() => this.changeLanguage('ar')}>ar</button>
                     <h1>{this.props.t('Bienvenue')}</h1>
                 </div>
                 <div>Toolbar, SideDrawer and Backdrop</div>
                 
-                <div className="page-transition-animation">
-                    <button className='btn btn-info'
-                    onClick={this.createNotification('info')}>Info
-                    </button>
-                    <hr/>
-                    <button className='btn btn-success'
-                    onClick={this.createNotification('success')}>Success
-                    </button>
-                    <hr/>
-                    <button className='btn btn-warning'
-                    onClick={this.createNotification('warning')}>Warning
-                    </button>
-                    <hr/>
-                    <button className='btn btn-danger'
-                    onClick={this.createNotification('error')}>Error
-                    </button>
-            
-                    <NotificationContainer/>
-                </div>
+                <Notifications/>
 
                 <div>{t('Elément principal')}</div>
                 <div>{t('Elément secondaire')}</div>
@@ -123,4 +81,8 @@ class HomePage extends Component {
     }
 }
 
-export default withNamespaces()(HomePage);
+export default track({
+    page: 'HomePage',
+  })(
+    withNamespaces()(HomePage)
+  );
