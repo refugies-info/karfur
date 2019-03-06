@@ -26,41 +26,39 @@ class Article extends Component {
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 post-title-block">
                   <h1 className="text-center">
-                    <Trans i18nKey='test.ici'>
-                    ça donne quoi?
-                    </Trans>
+                    {t('contenu.article.1.titre')}
                   </h1>
                   <ul className="list-inline text-center">
-                      <li>Auteur : Disney</li>
-                      <li>Catégorie : Contes pour enfants</li>
-                      <li>Date : 1933</li>
+                      <li>{t('Auteur')} : {t('test.ici',{defaultValue: "hello"})}</li>
+                      <li>{t('global.article.categorie')} : {t('contenu.article.1.categorie')}</li>
+                      <li>{t('global.article.date')} : 1933</li>
                   </ul>
               </div>
             </div>
             <Row>
               <Col lg="8">
                 <h1 className="mt-4">
-                  {t("article.1.titre")}
+                  {t("contenu.article.1.sous-titre")}
                 </h1>
                 <p className="lead">
-                  par Disney, adapté par Souf
+                  {t('global.article.par')} Disney, {t('global.article.adapte_par')} Souf
                 </p>
 
                 <hr />
-                <p>Posté le 05/03/2018</p>
+                <p>{t('global.article.poste_le')} le 05/03/2018</p>
                 <hr />
 
                 <InitialText />
                 
                 <hr />
                 <div className="card my-4">
-                  <h5 className="card-header">Laissez un commentaire :</h5>
+                  <h5 className="card-header">{t('global.article.laisser_commentaire')} :</h5>
                   <div className="card-body">
                     <form>
                       <div className="form-group">
                         <textarea className="form-control" rows="3"></textarea>
                       </div>
-                      <button type="submit" className="btn btn-primary">Soumettre</button>
+                      <button type="submit" className="btn btn-primary">{t('global.article.soumettre')}</button>
                     </form>
                   </div>
                 </div>

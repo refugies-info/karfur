@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
@@ -62,25 +62,23 @@ class App extends Component {
 
   render() {
     return (
-      <Suspense fallback={loading}>
-        <Provider store={Store}>
-          <BrowserRouter>
-              <Switch>
-                <Route exact path="/login" name="Login Page" component={Login} />
-                <Route exact path="/register" name="Register Page" component={Register} />
-                <Route exact path="/404" name="Page 404" component={Page404} />
-                <Route exact path="/500" name="Page 500" component={Page500} />
-                <PrivateRoute 
-                    path='/' 
-                    component={Layout} 
-                    socket = { socket } 
-                    socketFn = { this.socketFn }/>
-              </Switch>
-          </BrowserRouter>
-          <LiveChat socket = { socket } 
-                    socketFn = { this.socketFn } /> 
-        </Provider>
-      </Suspense>
+      <Provider store={Store}>
+        <BrowserRouter>
+            <Switch>
+              <Route exact path="/login" name="Login Page" component={Login} />
+              <Route exact path="/register" name="Register Page" component={Register} />
+              <Route exact path="/404" name="Page 404" component={Page404} />
+              <Route exact path="/500" name="Page 500" component={Page500} />
+              <PrivateRoute 
+                  path='/' 
+                  component={Layout} 
+                  socket = { socket } 
+                  socketFn = { this.socketFn }/>
+            </Switch>
+        </BrowserRouter>
+        <LiveChat socket = { socket } 
+                  socketFn = { this.socketFn } /> 
+      </Provider>
     );
   }
 }
