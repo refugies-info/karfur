@@ -33,3 +33,11 @@
         display: none;
     }
 }
+
+.Toolbar .dropdown-toggle.btn.btn-transparent:after{
+  color : white;
+}
+
+.Toolbar .dropdown-toggle.btn.btn-transparent:hover{
+  background-color : gray;
+}

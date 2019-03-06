@@ -38,7 +38,11 @@ app.use(function (req, res, next) {
 //Définition du routeur
 var router = express.Router();
 app.use('/user', router);
+app.use('/events', router);
+app.use('/translate', router);
 require(__dirname + '/controllers/userController')(router);
+require(__dirname + '/controllers/eventsController')(router);
+require(__dirname + '/controllers/translateController')(router);
 
 //Partie dédiée à la messagerie instantanée
 io.on('connection', function(socket){

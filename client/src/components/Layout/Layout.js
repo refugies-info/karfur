@@ -1,6 +1,6 @@
 import React, { Component }  from 'react';
 import i18n from '../../i18n';
-import { withNamespaces } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
 import track from 'react-tracking';
@@ -69,5 +69,5 @@ class Layout extends Component {
 export default track({
         layout: 'Layout',
     }, { dispatchOnMount: true })(
-      withNamespaces()(Layout)
+      withTranslation()(Layout)
     );
