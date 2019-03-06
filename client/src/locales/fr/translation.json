@@ -2,6 +2,20 @@
 	"Bienvenue": "Bienvenue dans le projet Karfu'R",
 	"Elément principal": "Elément principal",
 	"Elément secondaire": "Elément secondaire",
-	"Quatrième élément": "Quatrième élément",
-	"Troisième élément": "Troisième élément"
+  "Troisième élément": "Troisième élément",
+  "simple":"une ligne simple",
+	"test": {
+    "ici": "Troisième élément"
+  },
+  "article":{
+    "1":{
+      "titre":"Comment une histoire pour enfants devient une leçon d'humilité"
+    },
+    "contes":{
+      "Les 3 petits cochons":{
+        "titre":"Les 3 petits cochons",
+        "p":[]
+      }
+    }
+  }
 }

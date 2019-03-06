@@ -21,6 +21,13 @@
     transition: all 0.3s ease-in-out 0s;
 }
 
+.NavigationItem a.active{
+  color:red;
+}
+
+.NavigationItem a:hover{
+  color:red;
+}
 
 @media (min-width: 500px) {
     .NavigationItem {

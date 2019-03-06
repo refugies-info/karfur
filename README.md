@@ -82,3 +82,6 @@ Karfu'R is an MIT licensed open source project and completely free to use. Howev
 * translation services
 * design services (UX/UI)
 * contacts of associations working with refugees / or contact of refugees direc tly with their agreement
+
+## Extras
+If you liked this project, please give it a ⭐ in [**GitHub**](https://github.com/Tony4469/karfur).
