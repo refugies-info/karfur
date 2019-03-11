@@ -22,6 +22,15 @@ class Translation extends Component {
 
   componentDidMount () {
     //Je rend chaque noeud unique:
+    var element = document.getElementById('body_texte_initial');
+    //  This gives you a string representing that element and its content
+    var html = element.outerHTML;       
+    //  This gives you a JSON object that you can send with jQuery.ajax's `data`
+    // option, you can rename the property to whatever you want.
+    var data = { html: html }; 
+    var json = JSON.stringify(data);
+    console.log(json)
+    
     this.make_nodes_unique(document.getElementById('body_texte_initial'))
     this.translate(this.initial_text.innerHTML, 'en')
     this.setState({texte_a_traduire:this.initial_text.innerText})
