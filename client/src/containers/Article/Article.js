@@ -1,15 +1,112 @@
 import React, { Component } from 'react';
-import { withTranslation, Trans } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Card } from 'reactstrap';
+import { Col, Row, Card, Tooltip } from 'reactstrap';
+import draftToHtml from 'draftjs-to-html';
+import ReactHtmlParser from 'react-html-parser';
 
-import {InitialText} from '../Translation/data'
 import BigPhoto from '../../assets/big-photo-buildings.jpeg'
+import API from '../../utils/API';
+import TranslationModal from '../../components/Modals/TranslationModal/TranslationModal'
 
-import './Article.css';
+import './Article.scss';
 import 'bootstrap/dist/css/bootstrap.css';
 
+let newId=0;
 class Article extends Component {
+  state={
+    title:'',
+    body: [],
+    itemId:'',
+    tooltipOpen: [],
+    id_array:[],
+    showModal:false,
+    initial_string:'',
+    translated_string:'',
+    currentId:''
+  }
+
+  componentDidMount (){
+    let itemId=this.props.match.params.id;
+    if(itemId){
+      API.get_article({_id: itemId}).then(data_res => {
+        console.log(data_res)
+        let article=data_res.data.data[0];
+        this.setState({
+          title: article.title,
+          body: draftToHtml(article.body),
+          itemId: article._id,
+        },()=>{
+          this.make_tag_editable(document.getElementById('rendered-article'))
+          this.all_tooltips();
+        })
+      },function(error){
+        console.log(error);
+        return;
+      })
+    }
+  }
+
+  make_tag_editable= (html) => {
+    if(html && html.children){
+      [].forEach.call(html.children, (el, i) => { 
+        if(el.hasChildNodes() && el.children.length>1){
+          this.make_tag_editable(el)
+        }else if(el.innerText!=='' && el.innerText!==' '){
+          newId+=1;
+          var newEl = document.createElement('i');
+          newEl.className="cui-pencil icons font-xl display-on-hover"
+          newEl.id="edit-pencil-"+newId
+          newEl.onclick=()=>this.openEditModal(newEl.id)
+          el.appendChild(newEl);
+          el.id=(el.id?' ':'') + 'tag-id-'+newId
+        }
+      });
+    }
+  }
+  toggle=(i) =>{
+    const newArray = this.state.tooltipOpen.map((element, index) => {
+      return (index === i ? !element : false);
+    });
+    this.setState({
+      tooltipOpen: newArray,
+    });
+  }
+
+  all_tooltips=()=>{
+    this.setState({
+      id_array: Array.from({length: newId}, (v, k) => k+1),
+      tooltipOpen: Array.from({length: newId}, (v, k) => false),
+    })
+  }
+
+  openEditModal = id => {
+    this.setState({
+      initial_string : document.getElementById(id.replace("edit-pencil-", 'tag-id-')).innerText,
+      translated_string : document.getElementById(id.replace("edit-pencil-", 'tag-id-')).innerText,
+      showModal:true,
+      currentId:id
+    })
+  }
+
+  suggestTranslation = () => {
+    if(this.state.currentId){
+      document.getElementById(this.state.currentId.replace("edit-pencil-", 'tag-id-')).innerText=this.state.translated_string
+      this.setState({
+        initial_string : '',
+        translated_string : '',
+        showModal:false,
+        currentId:''
+      })
+    }
+  }
+
+  handleTranslationChange = event => {
+    this.setState({
+      translated_string: event.target.value
+    });
+  }
+
   render(){
     var divStyle = {
       backgroundImage: 'url(' + BigPhoto + ')'
@@ -17,6 +114,13 @@ class Article extends Component {
     const {t} = this.props;
     return(
       <div className="animated fadeIn article">
+        <TranslationModal 
+          show={this.state.showModal}
+          initial_string={this.state.initial_string}
+          translated_string={this.state.translated_string}
+          clicked={this.suggestTranslation}
+          handleTranslationChange={this.handleTranslationChange}
+          />
         <section 
           className="banner-section"
           style={divStyle} />
@@ -26,7 +130,8 @@ class Article extends Component {
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 post-title-block">
                   <h1 className="text-center">
-                    {t('contenu.article.1.titre')}
+                    {/* {t('contenu.article.1.titre')} */}
+                    {this.state.title}
                   </h1>
                   <ul className="list-inline text-center">
                       <li>{t('Auteur')} : {t('test.ici',{defaultValue: "hello"})}</li>
@@ -47,9 +152,24 @@ class Article extends Component {
                 <hr />
                 <p>{t('global.article.poste_le')} le 05/03/2018</p>
                 <hr />
-
-                <InitialText />
                 
+                <div id="rendered-article">
+                  {ReactHtmlParser(this.state.body)}
+
+                  {this.state.id_array.map((element,key) => {
+                    return (
+                      <Tooltip 
+                        placement="top" 
+                        isOpen={this.state.tooltipOpen[element]} 
+                        target={"edit-pencil-" + element}
+                        toggle={()=>this.toggle(element)}
+                        key={element}>
+                        Corriger la traduction de cet élément
+                      </Tooltip>
+                    );
+                  })}
+                </div>
+
                 <hr />
                 <div className="card my-4">
                   <h5 className="card-header">{t('global.article.laisser_commentaire')} :</h5>
@@ -107,26 +227,26 @@ class Article extends Component {
                       <Col lg="6">
                         <ul className="list-unstyled mb-0">
                           <li>
-                            <a href="#">Contes</a>
+                            <a href="/articles">Contes</a>
                           </li>
                           <li>
-                            <a href="#">Enfants</a>
+                            <a href="/articles">Enfants</a>
                           </li>
                           <li>
-                            <a href="#">Histoires</a>
+                            <a href="/articles">Histoires</a>
                           </li>
                         </ul>
                       </Col>
                       <Col lg="6">
                         <ul className="list-unstyled mb-0">
                           <li>
-                            <a href="#">Loup</a>
+                            <a href="/articles">Loup</a>
                           </li>
                           <li>
-                            <a href="#">Cochons</a>
+                            <a href="/articles">Cochons</a>
                           </li>
                           <li>
-                            <a href="#">Briques</a>
+                            <a href="/articles">Briques</a>
                           </li>
                         </ul>
                       </Col>

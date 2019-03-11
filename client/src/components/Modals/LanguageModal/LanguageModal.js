@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
 import './LanguageModal.css';
-import Modal from '../Modal/Modal'
+import Modal from '../Modal'
 
 class LanguageModal extends Component {
     render () {
         let self=this;
         return (
-            <Modal show={this.props.show}>
+            <Modal show={this.props.show} classe="language-modal">
                 {this.props.languages.map(function(language){
                     return (
                         <div key={language.key}>

@@ -14,56 +14,57 @@ import './Layout.css';
 import routes from '../../routes';
 
 class Layout extends Component {
-    state = {
-        showSideDrawer: false
-    }
-    
-    sideDrawerClosedHandler = () => {
-        this.setState( { showSideDrawer: false } );
-    }
+  state = {
+      showSideDrawer: false
+  }
+  
+  sideDrawerClosedHandler = () => {
+      this.setState( { showSideDrawer: false } );
+  }
 
-    sideDrawerToggleHandler = () => {
-        this.setState( ( prevState ) => {
-            return { showSideDrawer: !prevState.showSideDrawer };
-        } );
-    }
-    
-    render() {
-        return (
-            <DirectionProvider direction={i18n.language==="ar" ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
-                <Aux>
-                    <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
-                    <SideDrawer
-                        open={this.state.showSideDrawer}
-                        closed={this.sideDrawerClosedHandler} />
-                        <main className="Content">
-                            {this.props.children}
-                            <> 
-                                <Switch>
-                                    {routes.map((route, idx) => {
-                                        return route.component ? (
-                                        <Route
-                                            key={idx}
-                                            path={route.path}
-                                            exact={route.exact}
-                                            name={route.name}
-                                            render={props => (
-                                            <route.component 
-                                                socket = { this.props.socket } 
-                                                socketFn = { this.props.socketFn }
-                                                {...props} />
-                                            )} />
-                                        ) : (null);
-                                    })}
-                                    <Redirect from="/" to="/homepage" />
-                                </Switch>
-                            </>
-                        </main>
-                    <Footer />
-                </Aux>
-            </DirectionProvider>
-        )
-    }
+  sideDrawerToggleHandler = () => {
+      this.setState( ( prevState ) => {
+          return { showSideDrawer: !prevState.showSideDrawer };
+      } );
+  }
+  
+  render() {
+    return (
+      <DirectionProvider 
+        direction={i18n.language==="ar" ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+        <Aux>
+          <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
+          <SideDrawer
+              open={this.state.showSideDrawer}
+              closed={this.sideDrawerClosedHandler} />
+              <main className="Content">
+                  {this.props.children}
+                  <> 
+                      <Switch>
+                          {routes.map((route, idx) => {
+                              return route.component ? (
+                              <Route
+                                  key={idx}
+                                  path={route.path}
+                                  exact={route.exact}
+                                  name={route.name}
+                                  render={props => (
+                                  <route.component 
+                                      socket = { this.props.socket } 
+                                      socketFn = { this.props.socketFn }
+                                      {...props} />
+                                  )} />
+                              ) : (null);
+                          })}
+                          <Redirect from="/" to="/homepage" />
+                      </Switch>
+                  </>
+              </main>
+          <Footer />
+        </Aux>
+      </DirectionProvider>
+    )
+  }
 }
 
 export default track({

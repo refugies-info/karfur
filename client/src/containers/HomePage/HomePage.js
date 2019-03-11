@@ -4,17 +4,17 @@ import { withTranslation } from 'react-i18next';
 ////////A enlever si pas utilisé/////////////:
 import Notifications from '../../components/UI/Notifications/Notifications';
 
-import LanguageModal from '../../components/UI/LanguageModal/LanguageModal'
+import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
 import './HomePage.css';
 
 class HomePage extends Component {
   state = {
-      showModal: true
+    showModal: false
   }
 
   changeLanguage = (lng) => {
       this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
-      //i18n.changeLanguage(lng);
+      this.props.i18n.changeLanguage(lng);
       this.setState({showModal:false})
   }
 
@@ -36,7 +36,7 @@ class HomePage extends Component {
     ]
     return(
       <>
-          {false && <LanguageModal show={this.state.showModal} changeFn={this.changeLanguage} languages={languages}/>}
+          <LanguageModal show={this.state.showModal} changeFn={this.changeLanguage} languages={languages}/>
           <section id="hero">
               <div className="hero-container">
               <h1>Bienvenue dans le projet Karfu'R</h1>

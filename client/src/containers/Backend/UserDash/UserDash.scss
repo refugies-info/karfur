@@ -1,0 +1,42 @@
+.user-dash{
+  padding: 30px;
+  
+  .profile-header-container{
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .profile-header-img {
+    padding: 54px;
+  }
+
+  .profile-header-img > img.img-circle {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #51D2B7;
+  }
+
+  .profile-header {
+    margin-top: 43px;
+  }
+
+  .rank-label-container {
+    margin-top: -19px;
+    text-align: center;
+  }
+
+  .label.label-default.rank-label {
+    background-color: rgb(81, 210, 183);
+    padding: 5px 10px 5px 10px;
+    border-radius: 27px;
+  }
+
+  .etale-boutons{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .third-height{
+    height:33%;
+  }
+}

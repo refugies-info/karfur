@@ -1,6 +1,6 @@
-import translationFR from './fr/translation.json';
-import translationEN from './en/translation.json';
-import translationAR from './ar/translation.json';
+import translationFR from './fr/translation';
+import translationEN from './en/translation';
+import translationAR from './ar/translation';
 
 export const available_languages = {
   fr: {
