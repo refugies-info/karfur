@@ -1,0 +1,14 @@
+
+.avancement{
+  padding: 25px;
+  background-image: linear-gradient(135deg,#705ca8,#4392c7);
+  width: 100%;
+
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: black;
+  }
+
+  .carousel-control-prev, .carousel-control-next {
+    width: 5%;
+  }
+}
