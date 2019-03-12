@@ -13,7 +13,7 @@ class SuccessModal extends Component {
       renderer: 'svg',
       loop: false,
       autoplay: true,
-      path: './lottie-success-animation.json'
+      path: './lottie/lottie-success-animation.json'
     });
   }
 

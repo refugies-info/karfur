@@ -6,16 +6,19 @@ import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/Directi
 import track from 'react-tracking';
 
 import Aux from '../../hoc/Aux';
-import Toolbar from '../Navigation/Toolbar/Toolbar';
-import Footer from '../Navigation/Footer/Footer';
-import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import Footer from '../../components/Navigation/Footer/Footer';
+import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
+import OnBoardingTraducteurModal from '../../components/Modals/OnBoardingTradModal/OnBoardingTraducteurModal'
 
 import './Layout.css';
 import routes from '../../routes';
 
 class Layout extends Component {
   state = {
-      showSideDrawer: false
+    showSideDrawer: false,
+    traducteur:false,
+    showOnBoardingTraducteurModal:false
   }
   
   sideDrawerClosedHandler = () => {
@@ -26,6 +29,14 @@ class Layout extends Component {
       this.setState( ( prevState ) => {
           return { showSideDrawer: !prevState.showSideDrawer };
       } );
+  }
+
+  devenirTraducteur = () => {
+    this.setState({showOnBoardingTraducteurModal:true})
+  }
+
+  closeOnBoardingTraducteurModal = () => {
+    this.setState({showOnBoardingTraducteurModal:false})
   }
   
   render() {
@@ -60,7 +71,11 @@ class Layout extends Component {
                       </Switch>
                   </>
               </main>
-          <Footer />
+          <Footer devenirTraducteur={this.devenirTraducteur} />
+          <OnBoardingTraducteurModal 
+            show={this.state.showOnBoardingTraducteurModal}
+            closeOnBoardingTraducteurModal={this.closeOnBoardingTraducteurModal}
+            />
         </Aux>
       </DirectionProvider>
     )

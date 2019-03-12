@@ -2,12 +2,7 @@
   padding: 30px;
   
   .profile-header-container{
-    margin: 0 auto;
     text-align: center;
-  }
-
-  .profile-header-img {
-    padding: 54px;
   }
 
   .profile-header-img > img.img-circle {
@@ -38,5 +33,21 @@
 
   .third-height{
     height:33%;
+  }
+
+  .profile-img {
+    height: 30px;
+    width: 30px;
+  }
+
+  .profile-col{
+    max-width:120px;
+  }
+
+  .space-it{
+    margin-left: 1em;
+  }
+  .without-margin{
+    margin-left: 0;
   }
 }

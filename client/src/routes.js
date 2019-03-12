@@ -1,4 +1,4 @@
-import DefaultLayout from './components/Layout/Layout';
+import DefaultLayout from './containers/Layout/Layout';
 
 import HomePage from './containers/HomePage/HomePage';
 import Forms from './views/Base/Forms';
@@ -6,7 +6,7 @@ import WelcomeParcours from './views/Base/WelcomeParcours';
 import Parcours from './views/Base/Parcours';
 import Dashboard from './containers/Backend/Dashboard/Dashboard';
 import UserDash from './containers/Backend/UserDash/UserDash';
-import Chat from './views/Backend/Chat/Chat';
+import Chat from './containers/Backend/Chat/Chat';
 import Articles from './containers/Articles/Articles';
 import Article from './containers/Article/Article';
 import Editeur from './containers/Editeur/Editeur';

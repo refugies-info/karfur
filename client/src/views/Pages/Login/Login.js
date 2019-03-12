@@ -14,6 +14,11 @@ class Login extends Component {
     this.handleChange.bind(this);
     this.send.bind(this);
   }
+
+  componentDidMount(){
+    console.log(this.props.location.state)
+  }
+
   send = event => {
     if(this.state.email.length === 0){
         return;
