@@ -4,12 +4,12 @@ import track from 'react-tracking';
 import data from './data';
 import SpringButton from '../../../components/UI/SpringButton/SpringButton'
 
-import './WelcomeParcours.css';
+import './WelcomeParcours.scss';
 import demoScreen from '../../../assets/Virtual-Assistant-single.png';
 
 function WelcomeParcours() {
   return (
-    <div className="animated fadeIn welcome_parcours">
+    <div className="animated fadeIn welcome-parcours">
       <header className="masthead">
         <div className="container h-100">
           <div className="row h-100">

@@ -8,7 +8,8 @@ const navigationItems = () => (
     <ul className="NavigationItems">
         {routes.map((route, idx) => {
             return (
-                !route.exact && <NavigationItem key={idx} link={route.path} active={idx===1}>{route.name}</NavigationItem>
+                (!route.exact || route.forceShow) && (route.path.match(new RegExp("/", "g")) || []).length <=1 && 
+                  <NavigationItem key={idx} link={route.path} active={idx===1}>{route.name}</NavigationItem>
                 //!route.restriction && 
             )
         })}

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const languages = [
   {
     name: 'Anglais',
@@ -51,7 +53,7 @@ export const past_translation = [
 
 export const steps = [
   {
-    content: 'Commençons ensemble la visite !',
+    content: <div><h3>Bienvenue dans votre espace !</h3><p>Commençons ensemble la visite...</p></div>,
     placement: 'center',
     locale: { 
       skip: 'Passer',

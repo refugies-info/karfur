@@ -9,7 +9,7 @@ function log(req, res) {
     } else {
         var event = req.body
         var _u = new Event(event);
-        _u.save(function (err, event) {
+        _u.save(function (err, event,ptet) {
             if (err) {
                 res.status(500).json({
                     "text": "Erreur interne"

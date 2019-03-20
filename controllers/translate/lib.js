@@ -8,7 +8,6 @@ const translate = new Translate({
 //A mettre en place d'abord:
 //export GOOGLE_APPLICATION_CREDENTIALS="/Users/tonyparker/Documents/github/karfur/config/Traduction-1edb23e00f9a-serviceAccount.json" 
 function get_translation(req, res) {
-  console.log(req.body);
   if (!req.body || !req.body.q) {
     res.status(400).json({
         "text": "Requête invalide"
@@ -16,15 +15,11 @@ function get_translation(req, res) {
   } else {
     var q = req.body.q;
     var target = req.body.target;
-    console.log(q);
 
     translate
     .translate(q, target)
     .then(results => {
       const translation = results[0];
-
-      console.log(`Text: ${q}`);
-      console.log(`Translation: ${translation}`);
       res.send(translation);
     })
     .catch(err => {

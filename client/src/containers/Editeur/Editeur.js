@@ -33,12 +33,10 @@ class Editeur extends Component {
   }
 
   valider_article = () =>{
-    console.log(JSON.stringify(this.state.contentState))
     let article={
       title : this.state.title,
       body: this.state.contentState
     }
-    console.log(article)
     API.add_article(article).then(data_res => {
       console.log(data_res.data.article._id);
       this.setState({

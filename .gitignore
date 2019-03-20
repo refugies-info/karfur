@@ -24,6 +24,8 @@ yarn-error.log*
 
 #Ajouts:
 /config
+/private
+.env
 /client/node_modules
 /client//.pnp
 /client/.pnp.js

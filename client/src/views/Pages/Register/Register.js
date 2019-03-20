@@ -2,38 +2,55 @@ import React, { Component } from 'react';
 import track from 'react-tracking';
 import { Button, Card, CardBody, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import API from '../../../utils/API';
+import setAuthToken from '../../../utils/setAuthToken'
 
 class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        email : "",
-        password: "",
-        cpassword: ""
+      username : "",
+      password: "",
+      cpassword: "",
+      traducteur: false
     }
     this.handleChange.bind(this);
     this.send.bind(this);
   }
+
+  componentDidMount(){
+    if(this.props.location.state && this.props.location.state.traducteur){
+      console.log('traducteur')
+      this.setState({traducteur: true});
+    }
+  }
+
   send = event => {
-    if(this.state.email.length === 0){
+    if(this.state.username.length === 0){
         return;
     }
     if(this.state.password.length === 0 || this.state.password !== this.state.cpassword){
         return;
     }
     var _send = {
-        email: this.state.email,
-        password: this.state.password
+      username: this.state.username,
+      password: this.state.password,
+      traducteur : this.state.traducteur
     }
-    API.signup(_send).then(function(data){
+    API.signup(_send).then(data => {
         localStorage.setItem('token', data.data.token);
+        setAuthToken(data.data.token);
         console.log('succes', data.data.token)
-        window.location = "/homepage"
-    },function(error){
+        if(this.state.traducteur){
+          this.props.history.push("/backend/user-dashboard")
+        }else{
+          this.props.history.push("/homepage")
+        }
+    },error => {
         console.log(error);
         return;
     })
   }    
+
   handleChange = event => {
     this.setState({
         [event.target.id]: event.target.value
@@ -63,9 +80,9 @@ class Register extends Component {
                       <InputGroupAddon addonType="prepend">
                         <InputGroupText>@</InputGroupText>
                       </InputGroupAddon>
-                      <Input autoFocus id="email" type="email" placeholder="Email" 
-                          value={this.state.email} onChange={this.handleChange} 
-                          autoComplete="email" />
+                      <Input autoFocus id="username" type="username" placeholder="Nom d'utilisateur" 
+                          value={this.state.username} onChange={this.handleChange} 
+                          autoComplete="username" />
                     </InputGroup>
                     <InputGroup className="mb-3">
                       <InputGroupAddon addonType="prepend">
@@ -74,7 +91,7 @@ class Register extends Component {
                         </InputGroupText>
                       </InputGroupAddon>
                       <Input type="password" id="password" value={this.state.password} onChange={this.handleChange} 
-                          placeholder="Mot de passe" autoComplete="new-password" />
+                          placeholder="Mot de passe" autoComplete="password" />
                     </InputGroup>
                     <InputGroup className="mb-4">
                       <InputGroupAddon addonType="prepend">

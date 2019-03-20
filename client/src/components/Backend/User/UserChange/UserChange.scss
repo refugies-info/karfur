@@ -1,0 +1,48 @@
+.user-change{
+  
+  .profile-header-container{
+    width: 120px;
+  }
+
+  .profile-header-img > img.img-circle {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #51D2B7;
+  }
+
+  .profile-header {
+    margin-top: 43px;
+  }
+
+  .rank-label-container {
+    margin-top: -19px;
+    text-align: center;
+    min-height:120px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .label.label-default.rank-label {
+    background-color: rgb(81, 210, 183);
+    padding: 5px 10px 5px 10px;
+    border-radius: 27px;
+  }
+
+  .rank-label-container [type=file] {
+    cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+  }
+
+  .rank-label-container [type=file] {
+    cursor: pointer;
+  }
+}

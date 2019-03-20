@@ -1,0 +1,26 @@
+const User = require('../../schema/schemaUser.js');
+const jwt = require('jwt-simple');
+const config = require('../../config/config');
+
+check = (req, res, next) => {
+  let token = req.headers['authorization'] || req.headers['x-access-token'];
+  
+  if(!token)
+    return res.status(403).send({ auth: false, message: "No token found."})
+  
+  let decoded=jwt.decode(token, config.secret);
+
+  if(!decoded)
+    return res.status(404).send({ auth: false, message: "No user found."});
+
+  User.findById(decoded._id)
+    .populate('roles')
+    .exec(function (err, user) {
+      if (err) return res.status(500).send({ auth: false, message: "There was a problem finding the user."});
+      if (!user) return res.status(404).send({ auth: false, message: "No user found."});
+      req.user=user;
+      next();
+    });
+}
+
+exports.check = check;
