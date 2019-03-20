@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const passwordHash = require('password-hash');
 
 var eventSchema = mongoose.Schema({
   app: {

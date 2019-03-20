@@ -1,6 +1,6 @@
 // Store/configureStore.js
 
 import { createStore } from 'redux';
-import toggleFavorite from './Reducers/favoriteReducer'
+import toggleLangue from './Reducers/langueReducer'
 
-export default createStore(toggleFavorite)
+export default createStore(toggleLangue)

@@ -14,7 +14,7 @@ const sideDrawer = ( props ) => {
         attachedClasses = ["SideDrawer", "Open", "HideSideDrawer"];
     }
     const path = props.location.pathname;
-    if(path.includes("/admin")){
+    if(path.includes("/backend")){
         attachedClasses.splice(2);
     }
     return (
@@ -25,8 +25,8 @@ const sideDrawer = ( props ) => {
                     <Logo />
                 </div>
                 <nav>
-                    {!path.includes("/admin") && <NavigationItems />}
-                    {path.includes("/admin") && <BackendNavigationItems />}
+                    {!path.includes("/backend") && <NavigationItems />}
+                    {path.includes("/backend") && <BackendNavigationItems />}
                 </nav>
             </div>
         </Aux>

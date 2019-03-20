@@ -3,23 +3,37 @@ import {withRouter} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
 import { Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './Toolbar.css';
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../../utils/API';
-import {available_languages} from '../../../locales/available_languages';
 
 export class Toolbar extends React.Component {
 
   state = {
     dropdownOpen: false,
+    available_languages:[]
   };
 
-  disconnect = event => {
-      API.logout();
-      window.location = "/";
+  componentDidMount (){
+    API.get_langues({}).then(data_res => {
+      console.log(data_res.data.data)
+      this.setState({
+        available_languages:data_res.data.data, 
+      })
+    },function(error){
+      console.log(error);
+      return;
+    })
+  }
+
+  disconnect = () => {
+    API.logout();
+    this.props.history.push('/homepage')
   }
 
   toggle = () => {
@@ -30,69 +44,92 @@ export class Toolbar extends React.Component {
 
   changeLanguage = (lng) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
+    const action = { type: "TOGGLE_LANGUE", value: lng }
+    this.props.dispatch(action)
     this.props.i18n.changeLanguage(lng);
-    this.setState({showModal:false})
   }
 
   render() {
     const path = this.props.location.pathname;
     const { i18n } = this.props;
     let afficher_burger=false;
-    if(path.includes("/admin")){
+    if(path.includes("/backend")){
         afficher_burger=true;
     }
+
+    let CurrentLanguageIcon = () => {
+      let current = this.state.available_languages.find(x => x.i18nCode === i18n.language)
+      if (this.state.available_languages.length > 0 && current){
+        return(
+          <i className={'flag-icon flag-icon-' + current.langueCode} title={current.langueCode} id={current.langueCode}></i>
+        )
+      }else{
+        return <i className={'flag-icon flag-icon-fr'} title="fr" id="fr"></i>
+      }
+    }
+    console.log(this.props)
     return(
         <header className="Toolbar">
+          <div className="left_buttons">
             <DrawerToggle 
                 forceShow={afficher_burger}
                 clicked={this.props.drawerToggleClicked} />
             <div className="Logo">
-                <Logo />
+              <Logo />
             </div>
-            <nav className="DesktopOnly">
-                <NavigationItems />
-            </nav>
+          </div>
+          <nav className="DesktopOnly">
+            <NavigationItems />
+          </nav>
 
-            <div className="right_buttons">
-              <ButtonDropdown className="mr-1" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <DropdownToggle caret color="transparent">
-                  <i className={'flag-icon flag-icon-' + available_languages[i18n.language].code} title={available_languages[i18n.language].code} id={available_languages[i18n.language].code}></i>
-                </DropdownToggle>
-                <DropdownMenu>
-                  {Object.keys(available_languages).map((element,key) => {
-                    return (
-                      <div key={element}>
-                        <DropdownItem onClick={() => this.changeLanguage(element)}>
-                          <i className={'flag-icon flag-icon-' + available_languages[element].code} title={available_languages[element].code} id={available_languages[element].code}></i>
-                          <span>{available_languages[element].name}</span>
-                        </DropdownItem>
-                        {element==="fr" && <DropdownItem divider />}
-                      </div>
-                    );
-                  })}
-                </DropdownMenu>
-              </ButtonDropdown>
+          <div className="right_buttons">
+            <ButtonDropdown className="mr-1" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+              <DropdownToggle caret color="transparent">
+                <CurrentLanguageIcon />
+              </DropdownToggle>
+              <DropdownMenu>
+                {Object.keys(this.state.available_languages).map((element) => {
+                  return (
+                    <div key={this.state.available_languages[element]._id}>
+                      <DropdownItem onClick={() => this.changeLanguage(this.state.available_languages[element].i18nCode)} key={element._id}>
+                        <i className={'flag-icon flag-icon-' + this.state.available_languages[element].langueCode} title={this.state.available_languages[element].langueCode} id={this.state.available_languages[element].langueCode}></i>
+                        <span>{this.state.available_languages[element].langueLoc}</span>
+                      </DropdownItem>
+                      {this.state.available_languages[element].i18nCode==="fr" && <DropdownItem divider />}
+                    </div>
+                  );
+                })}
+              </DropdownMenu>
+            </ButtonDropdown>
 
-              {API.isAuth() ? 
-                  <Button onClick={this.disconnect}
-                          type="submit">
-                      Se déconnecter
-                  </Button>
-                  :
-                  <a 
-                      href="/login"
-                      className="makeItRed">Se connecter</a>
-              }
-            </div>
+            {API.isAuth() ? 
+                <Button onClick={this.disconnect}
+                        type="submit">
+                    Se déconnecter
+                </Button>
+                :
+                <NavLink 
+                    to="/login"
+                    className="makeItRed">Se connecter</NavLink>
+            }
+          </div>
         </header>
     )
   }
 };
 
+const mapStateToProps = (state) => {
+  return {
+    languei18nCode: state.languei18nCode
+  }
+}
+
 export default track({
   component: 'Toolbar',
 })(
   withRouter(
-    withTranslation()(Toolbar)
+    connect(mapStateToProps)(
+      withTranslation()(Toolbar)
+    )
   )
 );

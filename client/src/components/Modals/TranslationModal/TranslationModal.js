@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Row, Col, Button, FormGroup, FormFeedback, Input, Label } from 'reactstrap';
+import ReactHtmlParser from 'react-html-parser';
 
 import './TranslationModal.css';
 import Modal from '../Modal'
@@ -9,6 +10,7 @@ class TranslationModal extends Component {
     return (
       <Modal 
         show={this.props.show} 
+        modalClosed={this.props.modalClosed}
         classe="translation-modal text-center">
 
         <FormGroup>
@@ -17,7 +19,7 @@ class TranslationModal extends Component {
             type="text" 
             className="form-control form-control-success" 
             id="initialText">
-            {this.props.initial_string}
+            {ReactHtmlParser(this.props.initial_string)}
           </div>
         </FormGroup>
         <FormGroup>
@@ -42,6 +44,13 @@ class TranslationModal extends Component {
               className="btn-pill"
               onClick={this.props.clicked}>
               Suggérer cette traduction
+            </Button>
+          </Col>
+          <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+            <Button block outline color="danger" 
+              className="btn-pill"
+              onClick={this.props.modalClosed}>
+              Annuler
             </Button>
           </Col>
         </Row>

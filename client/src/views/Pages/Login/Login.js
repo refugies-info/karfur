@@ -3,41 +3,56 @@ import { Link } from 'react-router-dom';
 import track from 'react-tracking';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import API from '../../../utils/API';
+import setAuthToken from '../../../utils/setAuthToken'
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        email : "",
-        password: ""
+      username : "",
+      password: "",
+      traducteur : false
     }
     this.handleChange.bind(this);
     this.send.bind(this);
   }
 
   componentDidMount(){
-    console.log(this.props.location.state)
+    if(this.props.location.state && this.props.location.state.traducteur){
+      console.log('traducteur')
+      this.setState({traducteur: true});
+    }
   }
 
   send = event => {
-    if(this.state.email.length === 0){
-        return;
+    if(this.state.username.length === 0){
+      return;
     }
     if(this.state.password.length === 0){
-        return;
+      return;
     }
-    API.login(this.state.email, this.state.password).then(function(data){
-        localStorage.setItem('token', data.data.token);
-        console.log('succes', data.data.token)
-        window.location = "/homepage";
-    },function(error){
-        console.log(error);
-        return;
+    let user = {
+      'username' : this.state.username,
+      'password' : this.state.password,
+      'traducteur' : this.state.traducteur,
+    }
+    API.login(user).then(data => {
+      localStorage.setItem('token', data.data.token);
+      setAuthToken(data.data.token);
+      console.log(data.data.token)
+      if(this.state.traducteur){
+        this.props.history.push("/backend/user-dashboard")
+      }else{
+        this.props.history.push("/homepage")
+      }
+    },error => {
+      console.log(error);
+      return;
     })
   }    
   handleChange = event => {
     this.setState({
-        [event.target.id]: event.target.value
+      [event.target.id]: event.target.value
     });
   }
   render() {
@@ -58,9 +73,9 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input autoFocus id="email" type="email" placeholder="Email" 
-                          value={this.state.email} onChange={this.handleChange} 
-                          autoComplete="email" />
+                        <Input autoFocus id="username" type="username" placeholder="Nom d'utilisateur" 
+                          value={this.state.username} onChange={this.handleChange} 
+                          autoComplete="username" />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -69,7 +84,7 @@ class Login extends Component {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input type="password" id="password" value={this.state.password} onChange={this.handleChange} 
-                          placeholder="Mot de passe" autoComplete="current-password" />
+                          placeholder="Mot de passe" autoComplete="password" />
                       </InputGroup>
                       <Row>
                         <Col xs="6">
@@ -91,7 +106,10 @@ class Login extends Component {
                     <div>
                       <h2>Créer un compte</h2>
                       <p>Vous n'êtes pas encore enregistré sur notre site ? Cliquez sur le bouton ci-dessous pour créer votre compte</p>
-                      <Link to="/register">
+                      <Link to={{ 
+                            pathname: "/register", 
+                            state: {traducteur: this.state.traducteur}
+                          }} >
                         <Button color="primary" className="mt-3" active tabIndex={-1}>Créer un compte</Button>
                       </Link>
                     </div>

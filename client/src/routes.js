@@ -5,7 +5,11 @@ import Forms from './views/Base/Forms';
 import WelcomeParcours from './views/Base/WelcomeParcours';
 import Parcours from './views/Base/Parcours';
 import Dashboard from './containers/Backend/Dashboard/Dashboard';
+import Admin from './containers/Backend/Admin/Admin';
 import UserDash from './containers/Backend/UserDash/UserDash';
+import UserForm from './containers/Backend/UserDash/UserForm/UserForm';
+import AdminLangues from './containers/Backend/AdminLangues/AdminLangues';
+
 import Chat from './containers/Backend/Chat/Chat';
 import Articles from './containers/Articles/Articles';
 import Article from './containers/Article/Article';
@@ -14,23 +18,27 @@ import Avancement from './containers/Translation/Avancement/Avancement';
 import Translation from './containers/Translation/Translation';
 
 const routes = [
-  { path: '/', exact: true, name: 'home', component: DefaultLayout, restriction:null },
-  { path: '/homepage', name: 'Page d\'accueil', component: HomePage, restriction:null },
-  { path: '/base/forms', name: 'Formulaire', component: Forms, restriction:null },
-  { path: '/base/welcome_parcours', name: 'Parcours d\'accueil', component: WelcomeParcours, restriction:null },
-  { path: '/base/parcours', name: 'Parcours détaillé', component: Parcours, restriction:null },
+  { path: '/', exact: true, name: 'home', component: DefaultLayout, restriction:[] },
+  { path: '/homepage', name: 'Page d\'accueil', component: HomePage, restriction:[] },
+  { path: '/forms', name: 'Formulaire', component: Forms, restriction:[] },
+  { path: '/welcome_parcours', name: 'Parcours d\'accueil', component: WelcomeParcours, restriction:[] },
+  { path: '/parcours', name: 'Parcours détaillé', component: Parcours, restriction:[] },
 
-  { path: '/articles', name: 'Articles', component: Articles, restriction:null },
-  { path: '/article/:id', exact: true, name: 'Article', component: Article, restriction:null },
+  { path: '/articles', name: 'Articles', component: Articles, restriction:[] },
+  { path: '/article/:id', exact: true, name: 'Article', component: Article, restriction:[] },
 
-  { path: '/editeur', name: 'Editeur', component: Editeur, restriction:null },
-  { path: '/avancement', name: 'Avancement', component: Avancement, restriction:null },
-  { path: '/traduction', name: 'Traduction', component: Translation, restriction:null },
+  { path: '/editeur', name: 'Editeur', component: Editeur, restriction:[] },
+  { path: '/avancement', name: 'Avancement', component: Avancement, restriction:[] },
+  { path: '/traduction', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/traduction/:id', name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
 
-  { path: '/backend', exact: true, name: 'Administration', component: Dashboard, restriction:'admin' },
-  { path: '/backend/dashboard', name: 'Dashboard', component: Dashboard, restriction:'admin' },
-  { path: '/backend/chat', name: 'Chat', component: Chat, restriction:'admin' },
-  { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:'translator' },
+  { path: '/backend', exact:true, forceShow:true, name: 'Administration', component: Dashboard, restriction:['Admin'] },
+  { path: '/backend/dashboard', name: 'Dashboard', component: Dashboard, restriction:['Admin'] },
+  { path: '/backend/admin', name: 'Admin', component: Admin, restriction:['Admin'] },
+  { path: '/backend/chat', name: 'Chat', component: Chat, restriction:['Admin'] },
+  { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/backend/user-form', name: 'UserForm', component: UserForm, restriction:['Trad','ExpertTrad','Admin']},
+  { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
 ];
 
 export default routes;

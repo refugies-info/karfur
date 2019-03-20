@@ -11,7 +11,7 @@ const colorAvancement= avancement => {
 }
 
 const colorStatut= avancement => {
-  if(avancement === "Annulé" || avancement === "Annulée"){
+  if(avancement === "Annulé" || avancement === "Annulée" || avancement === "Exclu" || avancement === "Supprimé"){
       return 'danger'
   }else if(avancement === "Inactif" || avancement === "Inactive"){
       return 'secondary'

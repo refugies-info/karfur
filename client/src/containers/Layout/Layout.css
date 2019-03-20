@@ -3,5 +3,10 @@
   margin-bottom: 56px;
   margin-left:0px;
   margin-right:0px;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
+}
+
+.text-center{
+  text-align:center;
 }

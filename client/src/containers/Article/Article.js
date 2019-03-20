@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Card, Tooltip } from 'reactstrap';
-import draftToHtml from 'draftjs-to-html';
+import { Col, Row, Card, Tooltip, Spinner } from 'reactstrap';
 import ReactHtmlParser from 'react-html-parser';
+import {stringify} from 'himalaya';
+import { connect } from 'react-redux';
 
+import i18n from '../../i18n';
 import BigPhoto from '../../assets/big-photo-buildings.jpeg'
 import API from '../../utils/API';
 import TranslationModal from '../../components/Modals/TranslationModal/TranslationModal'
@@ -15,6 +17,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 let newId=0;
 class Article extends Component {
   state={
+    loading:true,
+    francais:{
+      title:'',
+      body: [],
+    },
     title:'',
     body: [],
     itemId:'',
@@ -23,47 +30,77 @@ class Article extends Component {
     showModal:false,
     initial_string:'',
     translated_string:'',
-    currentId:''
+    currentId:'',
+    loadingModalData:false
   }
 
   componentDidMount (){
+    this._loadArticle();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({loading:true});
+    this._loadArticle(nextProps.languei18nCode);
+  }
+
+  _loadArticle=(i18nCode = this.props.languei18nCode, update=true) => {
     let itemId=this.props.match.params.id;
     if(itemId){
-      API.get_article({_id: itemId}).then(data_res => {
-        console.log(data_res)
-        let article=data_res.data.data[0];
-        this.setState({
-          title: article.title,
-          body: draftToHtml(article.body),
-          itemId: article._id,
-        },()=>{
-          this.make_tag_editable(document.getElementById('rendered-article'))
-          this.all_tooltips();
-        })
-      },function(error){
-        console.log(error);
-        return;
-      })
+      API.get_article({_id: itemId},i18nCode).then(data_res => {
+        if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
+          let article=data_res.data.data[0];
+          if(update){
+            this.setState({
+              title: article.title,
+              body: stringify(article.body),
+              itemId: article._id,
+              loading:false,
+              francais: i18nCode === 'fr' ? 
+                {
+                  title: article.title,
+                  body: article.body,
+                } : this.state.francais
+            },()=>{
+              this.make_tag_editable(document.getElementById('rendered-article'))
+              //this.all_tooltips(); //A réactiver après, là ça me saoûle
+            })
+          }else if(i18nCode === 'fr'){
+            this.setState({
+              francais: {
+                title: article.title,
+                body: article.body,
+              }
+            },()=>{
+              this._updateStateForModal(this.state.currentId);
+            })
+          }
+        }
+      },(error) => {console.log(error);return;})
     }
   }
 
   make_tag_editable= (html) => {
     if(html && html.children){
-      [].forEach.call(html.children, (el, i) => { 
-        if(el.hasChildNodes() && el.children.length>1){
-          this.make_tag_editable(el)
-        }else if(el.innerText!=='' && el.innerText!==' '){
-          newId+=1;
-          var newEl = document.createElement('i');
-          newEl.className="cui-pencil icons font-xl display-on-hover"
-          newEl.id="edit-pencil-"+newId
-          newEl.onclick=()=>this.openEditModal(newEl.id)
-          el.appendChild(newEl);
-          el.id=(el.id?' ':'') + 'tag-id-'+newId
-        }
-      });
+      try{
+        [].forEach.call(html.children, (el, i) => { 
+          if(el.hasChildNodes() && el.children.length>1){
+            this.make_tag_editable(el)
+          }else if(el.innerText!=='' && el.innerText!==' '){
+            newId+=1;
+            var newEl = document.createElement('i');
+            newEl.className="cui-pencil icons font-xl display-on-hover"
+            newEl.id="edit-pencil-"+newId
+            newEl.onclick=()=>this.openEditModal(newEl.id)
+            el.appendChild(newEl);
+            el.id=el.id + (el.id?' ':'') + 'tag-id-' + newId
+          }
+        });
+      }catch(e){
+        console.log(e)
+      }
     }
   }
+
   toggle=(i) =>{
     const newArray = this.state.tooltipOpen.map((element, index) => {
       return (index === i ? !element : false);
@@ -74,31 +111,77 @@ class Article extends Component {
   }
 
   all_tooltips=()=>{
-    this.setState({
-      id_array: Array.from({length: newId}, (v, k) => k+1),
-      tooltipOpen: Array.from({length: newId}, (v, k) => false),
-    })
+    try{
+      this.setState({
+        id_array: Array.from({length: newId}, (v, k) => k+1),
+        tooltipOpen: Array.from({length: newId}, (v, k) => false),
+      })
+    }catch(e){
+      console.log(e)
+    }
   }
 
   openEditModal = id => {
-    this.setState({
-      initial_string : document.getElementById(id.replace("edit-pencil-", 'tag-id-')).innerText,
-      translated_string : document.getElementById(id.replace("edit-pencil-", 'tag-id-')).innerText,
-      showModal:true,
-      currentId:id
-    })
+    console.log(document.querySelector('[id*=' + id.replace("edit-pencil-", 'tag-id-') + ']').id.replace(' tag-id-'+id.replace("edit-pencil-", ''),''))
+    console.log(' tag-id-'+id)
+    let rightId=id.replace("edit-pencil-", '')
+    //this.setState({currentId:rightId, loadingModalData:true})
+    if(this.state.francais.body){
+      this._updateStateForModal(rightId);
+    }else{
+      this._loadArticle('fr',false);
+    }
+  }
+
+  _updateStateForModal=(id)=>{
+    let right_node=this._findId(this.state.francais.body, document.querySelector('[id*=tag-id-' + id + ']').id.replace(' tag-id-'+id,''));
+    if(right_node){
+      this.setState({
+        initial_string : stringify([right_node]),
+        translated_string : document.querySelector('[id*=tag-id-' + id + ']').innerText,
+        showModal:true
+      })
+    }
+  }
+  
+
+  _findId = (body, idToFind) => {
+    let children=(body.children || body || []);
+    let right_node=null;
+    for(var i=0; i < children.length;i++){
+      let node=children[i];
+      if(node.content){
+        let attributes=(body.attributes || []);
+        for(var j=0; j < attributes.length;j++){
+          if(attributes[j].key === 'id'){
+            if(attributes[j].value === idToFind){
+              right_node=body;
+              break;
+            }
+          }
+        }
+      }
+      if(!right_node && (node.children || []).length > 0){
+        right_node=this._findId(node, idToFind)
+      }
+    }
+    return right_node;
   }
 
   suggestTranslation = () => {
     if(this.state.currentId){
       document.getElementById(this.state.currentId.replace("edit-pencil-", 'tag-id-')).innerText=this.state.translated_string
-      this.setState({
-        initial_string : '',
-        translated_string : '',
-        showModal:false,
-        currentId:''
-      })
+      this.modalClosed();
     }
+  }
+
+  modalClosed=()=>{
+    this.setState({
+      initial_string : '',
+      translated_string : '',
+      showModal:false,
+      currentId:''
+    })
   }
 
   handleTranslationChange = event => {
@@ -112,14 +195,64 @@ class Article extends Component {
       backgroundImage: 'url(' + BigPhoto + ')'
     }
     const {t} = this.props;
+
+    const Contenu = () => {
+      if (this.state.loading) {
+        return(
+          <div className="text-center">
+            <Spinner color="success" className="fadeIn fadeOut" />
+          </div>
+        )
+      }else{
+        return (
+          <div id="rendered-article">
+            {ReactHtmlParser(this.state.body)}
+
+            {/* <Tooltips /> */}
+          </div>
+        )
+      }
+    }
+
+    const Tooltips = () => {
+      if(this.state.id_array.length>0){
+        try{
+          console.log(document.getElementById("edit-pencil-" + this.state.id_array[0]))
+          if(document.getElementById("edit-pencil-" + this.state.id_array[0]).id && document.getElementById("edit-pencil-" + this.state.id_array[this.state.id_array.length - 1]).id){
+            console.log('dedans')
+            return (
+              this.state.id_array.map((element) => {
+                return (
+                  <Tooltip 
+                    placement="top" 
+                    isOpen={this.state.tooltipOpen[element]} 
+                    target={"edit-pencil-" + element}
+                    toggle={()=>this.toggle(element)}
+                    key={element}>
+                    Corriger la traduction de cet élément
+                  </Tooltip>
+                );
+              })
+            );
+          }else{console.log('ici');return (<div>Test</div>)}
+        }catch(e){
+          console.log(e)
+          return (<div>Test</div>)
+        }
+      }else{console.log('la');
+        return (<div>Test</div>)
+      }
+    }
+
     return(
       <div className="animated fadeIn article">
         <TranslationModal 
           show={this.state.showModal}
           initial_string={this.state.initial_string}
           translated_string={this.state.translated_string}
-          clicked={this.suggestTranslation}
           handleTranslationChange={this.handleTranslationChange}
+          clicked={this.suggestTranslation}
+          modalClosed={this.modalClosed}
           />
         <section 
           className="banner-section"
@@ -130,8 +263,7 @@ class Article extends Component {
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 post-title-block">
                   <h1 className="text-center">
-                    {/* {t('contenu.article.1.titre')} */}
-                    {this.state.title}
+                    {this.state.title || <Spinner color="success" className="fadeIn fadeOut" />}
                   </h1>
                   <ul className="list-inline text-center">
                       <li>{t('Auteur')} : {t('test.ici',{defaultValue: "hello"})}</li>
@@ -143,7 +275,7 @@ class Article extends Component {
             <Row>
               <Col lg="8">
                 <h1 className="mt-4">
-                  {t("contenu.article.1.sous-titre")}
+                  test ici :{t("contenu.article.1.sous-titre")}
                 </h1>
                 <p className="lead">
                   {t('global.article.par')} Disney, {t('global.article.adapte_par')} Souf
@@ -153,22 +285,7 @@ class Article extends Component {
                 <p>{t('global.article.poste_le')} le 05/03/2018</p>
                 <hr />
                 
-                <div id="rendered-article">
-                  {ReactHtmlParser(this.state.body)}
-
-                  {this.state.id_array.map((element,key) => {
-                    return (
-                      <Tooltip 
-                        placement="top" 
-                        isOpen={this.state.tooltipOpen[element]} 
-                        target={"edit-pencil-" + element}
-                        toggle={()=>this.toggle(element)}
-                        key={element}>
-                        Corriger la traduction de cet élément
-                      </Tooltip>
-                    );
-                  })}
-                </div>
+                <Contenu />
 
                 <hr />
                 <div className="card my-4">
@@ -273,8 +390,16 @@ class Article extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    languei18nCode: state.languei18nCode
+  }
+}
+
 export default track({
     page: 'Article',
   })(
-    withTranslation()(Article)
+    connect(mapStateToProps)(
+      withTranslation()(Article)
+    )
   );

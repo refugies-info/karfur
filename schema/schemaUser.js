@@ -4,9 +4,8 @@ const jwt = require('jwt-simple');
 const config = require('../config/config');
 
 var userSchema = mongoose.Schema({
-	email: {
+	username: {
 		type: String,
-		lowercase: true,
 		trim: true,
 		unique: true,
 		required: true
@@ -14,6 +13,41 @@ var userSchema = mongoose.Schema({
 	password: {
     type: String,
     required: true
+  },
+	email: {
+		type: String,
+		lowercase: true,
+		trim: true,
+		unique: true,
+		required: false
+	},
+	description: {
+    type: String,
+    required: false
+  },
+	objectifTemps: {
+    type: Number,
+    required: false
+  },
+	objectifMots: {
+    type: Number,
+    required: false
+  },
+  picture: { 
+    type: Object,
+    required: false
+  },
+  roles: { 
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'Role' }],
+    required: false
+  },
+  selectedLanguages: { 
+    type: Array,
+    required: false
+  },
+  status: { 
+    type: String,
+    required: false
   }
 },{ timestamps: { createdAt: 'created_at' }})
 
