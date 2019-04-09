@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match its reference snapshot 1`] = `
+<UserDash
+  tracking={
+    Object {
+      "getTrackingData": [Function],
+      "trackEvent": [Function],
+    }
+  }
+/>
+`;

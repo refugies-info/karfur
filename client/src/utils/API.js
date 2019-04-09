@@ -9,7 +9,7 @@ export { socket };
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token' : localStorage.getItem("token")
+  'x-access-token' : localStorage.getItem("token") || undefined
 }
 const burl = "http://localhost:8000"
 
@@ -28,6 +28,9 @@ export default {
     },
     get_users : (query, sort) => {
       return axios.post(burl + '/user/get_users',  {query: query, sort: sort}, {headers: headers})
+    },
+    get_user_info : (query) => {
+      return axios.post(burl + '/user/get_user_info',  query, {headers: headers})
     },
 
     log_event : (event) => {
@@ -48,6 +51,29 @@ export default {
     },
     get_traduction : (query, sort, populate) => {
       return axios.post(burl + '/article/get_traduction',  {query: query, sort: sort, populate: populate}, {headers: headers})
+    },
+    remove_traduction : query => {
+      return axios.post(burl + '/article/remove_traduction', query, {headers: headers})
+    },
+
+    add_dispositif : query => {
+      return axios.post(burl + '/dispositifs/add_dispositif', query, {headers: headers})
+    },
+    get_dispositif : (query, locale) => {
+      return axios.post(burl + '/dispositifs/get_dispositif', {query: query, locale: locale}, {headers: headers})
+    },
+
+    add_tradForReview : query => {
+      return axios.post(burl + '/traduction/add_tradForReview', query, {headers: headers})
+    },
+    get_tradForReview : (query, sort, populate) => {
+      return axios.post(burl + '/traduction/get_tradForReview',  {query: query, sort: sort, populate: populate}, {headers: headers})
+    },
+    validate_tradForReview : query => {
+      return axios.post(burl + '/traduction/validate_tradForReview', query, {headers: headers})
+    },
+    get_progression : query => {
+      return axios.post(burl + '/traduction/get_progression', query, {headers: headers})
     },
 
     create_langue : query => {

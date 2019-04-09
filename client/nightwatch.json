@@ -1,0 +1,50 @@
+{
+  "src_folders" : ["nw/tests"],
+  "output_folder" : "nw/reports",
+  "globals_path" : "nightwatch.globals.js",
+  "test_workers": {
+    "enabled": true,
+    "workers": "auto"
+  },
+  "selenium" : {
+    "start_process" : true,
+    "server_path" : "./node_modules/selenium-server-standalone-jar/jar/selenium-server-standalone-3.141.5.jar",
+    "log_path" : "nw/logs",
+    "host" : "127.0.0.1",
+    "port" : 4444,
+    "cli_args" : {
+      "webdriver.chrome.driver" : "./node_modules/chromedriver/bin/chromedriver",
+      "webdriver.gecko.driver" : "./node_modules/geckodriver/bin/geckodriver",
+      "webdriver.ie.driver" : ""
+    }
+  },
+  "test_settings" : {
+    "default" : {
+      "launch_url" : "http://localhost:3000",
+      "selenium_port"  : 4444,
+      "selenium_host"  : "localhost",
+      "silent": true,
+      "screenshots" : {
+        "enabled" : false,
+        "on_failure" : true,
+        "on_error" : true,
+        "path" : "nw/screens"
+      },
+      "desiredCapabilities": {
+        "browserName": "firefox",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      }
+    },
+    "chrome" : {
+      "desiredCapabilities": {
+        "browserName": "chrome"
+      }
+    },
+    "safari" : {
+      "desiredCapabilities": {
+        "browserName": "safari"
+      }
+    }
+  }
+}

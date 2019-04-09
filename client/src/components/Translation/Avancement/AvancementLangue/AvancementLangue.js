@@ -16,12 +16,12 @@ export default function AvancementLangue(props) {
       {props.data.map((element,key) => {
         return (
           <tr 
-            key={key} 
+            key={element._id} 
             onClick={()=> props.switchView(props.mainView, element)}>
-            <td className="align-middle">{element.name}</td>
+            <td className="align-middle">{element.langueFr}</td>
             <td className="align-middle">
               {props.mainView ?
-                <i className={'flag-icon flag-icon-' + element.code + ' h1'} title={element.code} id={element.code}></i>
+                <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.code} id={element.code}></i>
                 :
                 element.nombreMots
               }
@@ -36,7 +36,7 @@ export default function AvancementLangue(props) {
               <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
             </td>
             <td className="align-middle">
-              <Badge color={colorStatut(element.statut)}>{element.statut}</Badge>
+              <Badge color={colorStatut(element.status)}>{element.status}</Badge>
             </td>
           </tr>
         );

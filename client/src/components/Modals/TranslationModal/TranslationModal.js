@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Row, Col, Button, FormGroup, FormFeedback, Input, Label } from 'reactstrap';
-import ReactHtmlParser from 'react-html-parser';
+import { Row, Col, Button } from 'reactstrap';
+import DiptyqueTraduction from '../../Translation/DiptyqueTraduction/DiptyqueTraduction'
 
 import './TranslationModal.css';
 import Modal from '../Modal'
@@ -13,28 +13,7 @@ class TranslationModal extends Component {
         modalClosed={this.props.modalClosed}
         classe="translation-modal text-center">
 
-        <FormGroup>
-          <Label htmlFor="initialText">Texte initial en français</Label>
-          <div
-            type="text" 
-            className="form-control form-control-success" 
-            id="initialText">
-            {ReactHtmlParser(this.props.initial_string)}
-          </div>
-        </FormGroup>
-        <FormGroup>
-          <Label htmlFor="translationInput">Traduction</Label>
-          <Input 
-            type="textarea" 
-            rows="2"
-            invalid = {this.props.translated_string ===''}
-            valid = {this.props.translated_string !==''}
-            id="translationInput"
-            placeholder="Nouvelle traduction..."
-            value={this.props.translated_string} 
-            onChange={this.props.handleTranslationChange} />
-          <FormFeedback className="help-block">Merci de fournir une traduction</FormFeedback>
-        </FormGroup>
+        <DiptyqueTraduction {...this.props} />
 
         <span className="change">Cliquez sur le bouton ci-dessous pour le voir en contexte</span>
 

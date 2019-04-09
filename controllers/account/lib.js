@@ -30,9 +30,15 @@ function signup(req, res) {
     })
 
     find.then(function () {
+      if(user.traducteur){
+        user.roles=[req.roles.find(x=>x.nom==='Trad')._id]
+        delete user.traducteur;
+      }
+      user.status='Actif';
       var _u = new User(user);
       _u.save(function (err, user) {
         if (err) {
+          console.log(err)
           res.status(500).json({
             "text": "Erreur interne"
           })
@@ -49,6 +55,7 @@ function signup(req, res) {
         }
       })
     }, function (error) {
+      console.log(error)
       switch (error) {
         case 500:
           res.status(500).json({
@@ -96,11 +103,11 @@ function login(req, res) {
                 "text": "Authentification réussi"
             })
             //On change les infos de l'utilisateur
-            // if(req.body.traducteur){
-            //   console.log('je change le statut utilisateur à traducteur')
-            //   user.traducteur=true
-            //   user.save();
-            // }
+            if(req.body.traducteur){
+              console.log('je change le statut utilisateur à traducteur')
+              user.roles=[req.roles.find(x=>x.nom==='Trad')];
+              user.save();
+            }
           }
           else{
               res.status(401).json({
@@ -123,6 +130,19 @@ function set_user_info(req, res) {
       delete user.password;
     }
 
+    console.log('bien')
+    //Si l'utilisateur n'est pas admin je vérifie qu'il ne se modifie que lui-même
+    let isAdmin = req.user.roles.find(x => x.nom==='Admin')
+
+    if(!isAdmin){
+      if(user._id != req.user._id){
+        res.status(204).json({
+          "text": "Token invalide"
+        })
+        return false;
+      }
+    }
+
     User.findByIdAndUpdate({
       _id: user._id
     },user,{new: true},function(error,result){
@@ -135,9 +155,10 @@ function set_user_info(req, res) {
       }else{
         //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
         //Je le fais en non bloquant, il faut pas que ça renvoie une erreur à l'enregistrement
-        console.log('jappelle la fn')
+        
+        console.log('ici')
         populateLanguages(user);
-
+        console.log(result)
         res.status(200).json({
           "data": result,
           "text": "Mise à jour réussie"
@@ -196,6 +217,14 @@ function get_users(req, res) {
   })
 }
 
+
+function get_user_info(req, res) {
+  res.status(200).json({
+    "text": "Succès",
+    "data": req.user
+  })
+}
+
 const populateLanguages = (user) => {
   if(user.selectedLanguages && user.selectedLanguages.constructor === Array && user.selectedLanguages.length>0){
     user.selectedLanguages.forEach((langue) => {
@@ -233,3 +262,4 @@ exports.login = login;
 exports.signup = signup;
 exports.set_user_info=set_user_info;
 exports.get_users=get_users;
+exports.get_user_info=get_user_info;

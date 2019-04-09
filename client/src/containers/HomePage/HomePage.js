@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next';
 import Notifications from '../../components/UI/Notifications/Notifications';
 
 import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
-import './HomePage.css';
+import './HomePage.scss';
 
 class HomePage extends Component {
   state = {
@@ -19,6 +19,7 @@ class HomePage extends Component {
   }
 
   render(){
+    console.log(process.env)
     const { t } = this.props;
     const languages=[
         {
@@ -35,7 +36,7 @@ class HomePage extends Component {
         }
     ]
     return(
-      <>
+      <div className="animated fadeIn homepage">
           <LanguageModal show={this.state.showModal} changeFn={this.changeLanguage} languages={languages}/>
           <section id="hero">
               <div className="hero-container">
@@ -77,7 +78,7 @@ class HomePage extends Component {
           <div>{t('Quatrième élément')}</div>
           <div>{t('accueil.Cinquième élément')}</div>
           <div>{t('accueil.Six')}</div>
-      </>
+      </div>
     );
   }
 }

@@ -16,13 +16,14 @@ i18n
     resources,
     
     debug: true,
+    saveMissing:false,
 
     lng: "fr",
-    fallbackLng: "fr", // use en if detected lng is not available
+    fallbackLng: ['fr', 'en'], // use en if detected lng is not available
 
     interpolation: {
       escapeValue: true // react already safes from xss
-    }
+    },
   });
 
 export default i18n;
