@@ -12,3 +12,8 @@
 
 // ie fixes
 @import "ie-fix";
+
+// custom fonts
+html, body, #root{
+  font-family: CircularStd, "Helvetica Neue", "Noto Sans";
+}

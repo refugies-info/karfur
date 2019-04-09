@@ -28,67 +28,117 @@ const reduced_languages=languages.reduce((acc, curr, i) => {
 
 class UserForm extends Component {
   state={
-    username:'Soufiane',
-    languages: reduced_languages,
-    selectedLanguages: languages.filter(item => item.isChecked).map(function (item) { return item.name; }),
-    objectifTemps : 20,
-    objectifMots : 600,
-    email:'',
-    description:''
+    orderedLangues : [],
+    uploading:false,
+    user:{},
+    langues:[]
+  }
+  initial_state = {...this.state};
+  shadowSelectedLanguages=[];
+
+  componentDidMount(){
+    if(this.props.location.state && this.props.location.state.user){
+      this.initial_state = {...this.initial_state,user:this.props.location.state.user};
+      this.setState({user:this.initial_state.user})
+    }else{
+      API.get_user_info().then(data_res => {
+        this.initial_state = {...this.initial_state,user:data_res.data.data};
+        this.setState({user:this.initial_state.user})
+      },(error) => {console.log(error);return;})
+    }
+
+    API.get_langues({}).then(data_res => {
+      this.initial_state = {...this.initial_state,langues:data_res.data.data.filter(el => el.langueFr !=='Français').map((el) => {return { ...el, isChecked:false}})};
+      this.setState({
+        langues:this.initial_state.langues,
+      })
+    },(error) => {console.log(error);return;})
   }
   
-  handleCheck = (event) => {
-    let languages = this.state.languages
-    let selectedLanguages = this.state.selectedLanguages
-    languages.forEach(colonne => {
-      colonne.forEach(langue => {
-        if (langue.name === event.target.value){
-          if(false && event.target.checked){
-            //A réactiver une fois le bud d'animation résolu
-            selectedLanguages.push(langue.name)
-          }else if(!event.target.checked){
-            selectedLanguages=selectedLanguages.filter(item => item !== langue.name)
-          }
-          langue.isChecked =  event.target.checked
-        }
-      })
-    })
-    this.setState({
-      languages: languages,
-      selectedLanguages: selectedLanguages
-    })
-  }
-
-  handleObjectifTempsChange = (value) => {
-    this.setState({objectifTemps: value})
-  }
-
-  handleObjectifMotsChange = (value) => {
-    this.setState({objectifMots: value})
-  }
-
   handleChange = event => {
     this.setState({
-      [event.target.id]: event.target.value
+      [event.target.name]:{
+        ...this.state[event.target.name],
+        [event.target.id]: event.target.value
+      }
     });
   }
 
-  validateForm = () => {
-    let user={
-      token: localStorage.getItem('token'),
-      email:this.state.email,
-      description:this.state.description,
-      objectifTemps:this.state.objectifTemps,
-      objectifMots:this.state.objectifMots,
-    }
-    console.log(user)
-    API.set_user_info(user).then(data => {
-      console.log('succes', data.data)
-    },error => {
-      console.log(error);
-      return;
+  handleFileInputChange = event => {
+    this.setState({uploading:true})
+    const formData = new FormData()
+    formData.append(0, event.target.files[0])
+
+    API.set_image(formData).then(data_res => {
+      let imgData=data_res.data.data;
+      this.setState({
+        user:{
+          ...this.state.user,
+          picture: imgData
+        },
+        uploading:false,
+      });
+    },(error) => {console.log(error);this.setState({uploading:false});return;})
+  }
+
+  handleCheck = (event) => {
+    let languesCopy=[...this.state.langues];
+    let changedLangue=languesCopy[this.state.langues.findIndex((obj => obj._id === event.target.id))]
+    changedLangue.isChecked=event.target.checked;
+    let oldSelectedLanguages=[...this.state.user.selectedLanguages]
+    this.setState({
+      langues: languesCopy,
+      user:{
+        ...this.state.user,
+        selectedLanguages: event.target.checked ? 
+            [...oldSelectedLanguages, changedLangue] : 
+            oldSelectedLanguages.filter(obj => obj._id !== event.target.id),
+      }
+    });
+    this.shadowSelectedLanguages=event.target.checked ? 
+      [...this.shadowSelectedLanguages, changedLangue] : 
+      this.shadowSelectedLanguages.filter(obj => obj._id !== event.target.id)
+  }
+
+  handleSliderChange = (value, name) => {
+    this.setState({
+      user:{
+        ...this.state.user,
+        [name]: value
+      }
     })
   }
+  
+  handleDraggableListChange = (value) =>{
+    let newOrder=[];
+    value.forEach((item) => {
+      newOrder.push({...this.state.user.selectedLanguages[item]})
+    });
+    this.shadowSelectedLanguages=newOrder;
+  }
+
+  validateUser = () => {
+    let user={...this.state.user}
+    if(this.shadowSelectedLanguages.length > 0){user.selectedLanguages = [...this.shadowSelectedLanguages]}
+    if(user.username.length === 0){return;}
+    if(user.selectedLanguages.length>0){user.selectedLanguages=[...user.selectedLanguages.map(el =>{return { _id: el._id, i18nCode: el.i18nCode, langueCode: el.langueCode, langueFr: el.langueFr, langueLoc: el.langueLoc}})]}
+    API.set_user_info(user).then(data => {
+      let newUser=data.data.data;
+      if(!newUser){return}
+      console.log(newUser);
+      this.props.history.push({
+        pathname: '/backend/user-dashboard',
+        state: { user: newUser}
+      })
+    },error => {console.log(error);return;})
+  }
+
+  onCancel = (tab) => {
+    this.setState({
+      ...this.initial_state
+    });
+  }
+
   render() {
     return (
       <div className="animated fadeIn user-form">
@@ -98,20 +148,20 @@ class UserForm extends Component {
           </CardHeader>
           <CardBody>
             <UserChange 
+              handleChange = {this.handleChange}
               handleCheck={this.handleCheck}
-              handleObjectifTempsChange={this.handleObjectifTempsChange}
-              handleObjectifMotsChange={this.handleObjectifMotsChange}
-              handleChange={this.handleChange}
-              {...this.state}
-            />
+              handleSliderChange={this.handleSliderChange}
+              handleDraggableListChange={this.handleDraggableListChange}
+              handleFileInputChange={this.handleFileInputChange}
+              {...this.state}  />
           </CardBody>
           <CardFooter>
             <Row>
               <Col>
-                <Button color="success" size="lg" block onClick={this.validateForm}>Valider</Button>
+                <Button color="success" size="lg" block onClick={this.validateUser}>Valider</Button>
               </Col>
               <Col>
-                <Button color="danger" size="lg" block>Annuler</Button>
+                <Button color="danger" size="lg" block onClick={this.onCancel}>Annuler</Button>
               </Col>
             </Row>
           </CardFooter>

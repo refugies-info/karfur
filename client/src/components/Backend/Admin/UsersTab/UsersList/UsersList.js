@@ -8,6 +8,7 @@ import {
   Col,
   Row} from 'reactstrap';
 
+import marioProfile from '../../../../../assets/mario-profile.jpg'
 import {colorStatut} from '../../../../Functions/ColorFunctions'
 import './UsersList.scss'
 
@@ -36,7 +37,10 @@ const usersList = (props) => {
             {props.users.map((user) =>
               <tr key={user._id.toString()} onClick={() => props.onSelect({user: user})}>
                 <th scope="row">
-                  <img className="img-circle small-picture" src={user.picture.secure_url} alt="profile"/>
+                  <img 
+                    className="img-circle small-picture" 
+                    src={user.picture ? user.picture.secure_url : marioProfile} 
+                    alt="profile"/>
                 </th>
                 <td>{user.username}</td>
                 <td>

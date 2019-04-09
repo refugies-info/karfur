@@ -1,5 +1,8 @@
 import React from 'react';
-import {Button, Badge, Card, CardBody, CardHeader, Collapse } from 'reactstrap';
+import {Badge, Card, CardBody, CardHeader, Collapse, Row, Col, Button, FormGroup, Label } from 'reactstrap';
+import ReactHtmlParser from 'react-html-parser';
+
+import DiptyqueTraduction from '../../../Translation/DiptyqueTraduction/DiptyqueTraduction';
 
 import './CustomAccordion.css'
 
@@ -28,11 +31,44 @@ const customAccordion = (props) => {
                 </CardHeader>
                 <Collapse isOpen={props.accordion[index]} data-parent="#accordion" id="collapseOne" aria-labelledby="headingOne">
                   <CardBody>
-                    1. Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non
-                    cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
-                    on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                    nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft
-                    beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    {props.traduction ?
+                      <>
+                        <DiptyqueTraduction 
+                          initial_string={props.traduction.initialText}
+                          translated_string={props.traduction.translatedText}
+                          editable={false}
+                          {...props} /> 
+                        
+                        <FormGroup className="diptyque-traduction">
+                          <Label htmlFor="translationInput">Traduction</Label>
+                          <div
+                            type="text" 
+                            className="form-control form-control-success" 
+                            id="initialText" >
+                            {ReactHtmlParser(props.traduction.initialTranslatedText)}
+                          </div>
+                        </FormGroup>
+
+                        <Row className="align-items-center">
+                          <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+                            <Button block outline color="success" 
+                              className="btn-pill"
+                              onClick={props.onValidate}>
+                              Valider cette traduction
+                            </Button>
+                          </Col>
+                          <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+                            <Button block outline color="danger" 
+                              className="btn-pill"
+                              onClick={props.onPass}>
+                              Passer
+                            </Button>
+                          </Col>
+                        </Row>
+                      </>
+                        :
+                      <div>Aucune donnée</div>
+                    }
                   </CardBody>
                 </Collapse>
               </Card>

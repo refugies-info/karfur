@@ -23,7 +23,7 @@ function get_translation(req, res) {
       res.send(translation);
     })
     .catch(err => {
-      console.error('ERROR:', err);
+      console.error('erreur de traduction');
       res.status(500).json({"text": "Erreur interne","err": err})
     });
   }
