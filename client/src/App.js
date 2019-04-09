@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
 import track from 'react-tracking';
+import './scss/fonts/circular-std/css/circular-std.css'
 
 import Store from './Store/configureStore';
 import { PrivateRoute } from './components/PrivateRoute';

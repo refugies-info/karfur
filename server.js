@@ -7,7 +7,13 @@ const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const cloudinary = require('cloudinary')
 const formData = require('express-form-data')
-const startup = require('./startup/startup');
+const path = require("path");
+
+let startup = null
+if(process.env.NODE_ENV === 'dev') {
+  console.log('dev environment')
+  startup = require('./startup/startup');
+} 
 
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
@@ -23,9 +29,11 @@ var io = require('socket.io')(http);
 
 //Connexion à la base de donnée
 mongoose.set('debug', false);
-mongoose.connect('mongodb://localhost/db').then(() => {
-    console.log('Connected to mongoDB')
-    startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/db', { useNewUrlParser: true }).then(() => {
+    console.log('Connected to mongoDB');
+    if(process.env.NODE_ENV === 'dev') {
+      startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
+    } 
 }).catch(e => {
     console.log('Error while DB connecting');
     console.log(e);
@@ -37,7 +45,8 @@ var urlencodedParser = bodyParser.urlencoded({
 });
 app.use(urlencodedParser);
 app.use(bodyParser.json());
-app.use(formData.parse())
+app.use(formData.parse());
+app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(cors());
 
 //Définition des CORS
@@ -60,7 +69,8 @@ app.use('/langues', router);
 app.use('/roles', router);
 app.use('/images', router);
 app.use('/themes', router);
-// app.use('/locales', router);
+app.use('/traduction', router);
+app.use('/dispositifs', router);
 require(__dirname + '/controllers/userController')(router);
 require(__dirname + '/controllers/eventsController')(router);
 require(__dirname + '/controllers/translateController')(router);
@@ -69,7 +79,8 @@ require(__dirname + '/controllers/languesController')(router);
 require(__dirname + '/controllers/roleController')(router);
 require(__dirname + '/controllers/imageController')(router);
 require(__dirname + '/controllers/themesController')(router);
-// require(__dirname + '/controllers/localesController')(router);
+require(__dirname + '/controllers/traductionController')(router);
+require(__dirname + '/controllers/dispositifController')(router);
 
 
 //Partie dédiée à la messagerie instantanée
@@ -96,7 +107,10 @@ io.on('connection', function(socket){
 });
 
 //Définition et mise en place du port d'écoute
-var ioport = 8001;
+var ioport = process.env.PORTIO;
 io.listen(ioport, () => console.log(`Listening on port ${port}`));
-var port = 8000;
+var port = process.env.PORT;
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 app.listen(port, () => console.log(`Listening on port ${port}`));

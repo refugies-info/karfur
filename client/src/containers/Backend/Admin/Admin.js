@@ -139,24 +139,24 @@ class Admin extends Component {
           ...this.state.user,
           selectedLanguages: event.target.checked ? 
               [...oldSelectedLanguages, changedLangue] : 
-              oldSelectedLanguages.filter(obj => obj._id !== event.target.id),
+              oldSelectedLanguages.filter(obj => obj._id != event.target.id),
         }
       });
       this.shadowSelectedLanguages=event.target.checked ? 
         [...this.shadowSelectedLanguages, changedLangue] : 
-        this.shadowSelectedLanguages.filter(obj => obj._id !== event.target.id)
+        this.shadowSelectedLanguages.filter(obj => obj._id != event.target.id)
     }else{
       let roleCopy=[...this.state.roles];
       let changedRole=roleCopy[this.state.roles.findIndex((obj => obj._id === event.target.id))]
       changedRole.isChecked=event.target.checked;
-      let oldRoles=[...this.state.user.roles]
+      let oldRoles=[...this.state.user.roles];
       this.setState({
         roles: roleCopy,
         user:{
           ...this.state.user,
           roles: event.target.checked ? 
               [...oldRoles, event.target.id] : 
-              oldRoles.filter(obj => obj._id !== event.target.id),
+              oldRoles.filter(obj => obj != event.target.id),
         }
       });
     }
@@ -192,8 +192,10 @@ class Admin extends Component {
         this.setState({users: [...this.state.users, newUser], user: this.initial_state.user});
       },error => {console.log(error);return;})
     }else{
+      console.log(user)
       API.set_user_info(user).then(data => {
         let newUser=data.data.data;
+        console.log(newUser)
         if(!newUser){return}
         newUser.password='Hidden';
         let usersCopy=[...this.state.users];
@@ -292,6 +294,7 @@ class Admin extends Component {
                 validateUser={this.validateUser}
                 onValidate={this.onValidate}
                 onCancel={this.onCancel}
+                isAdmin={true}
                 {...this.state}  />
             </TabContent>
           </Col>

@@ -1,0 +1,7 @@
+.app-body .aside-menu {
+  flex: 0 0 250px;
+  margin-top: 56px;
+  margin-bottom: 56px;
+  height: calc(100vh - 2 * 56px);
+  overflow:scroll;
+}

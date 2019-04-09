@@ -6,7 +6,6 @@ import ReactHtmlParser from 'react-html-parser';
 import {stringify} from 'himalaya';
 import { connect } from 'react-redux';
 
-import i18n from '../../i18n';
 import BigPhoto from '../../assets/big-photo-buildings.jpeg'
 import API from '../../utils/API';
 import TranslationModal from '../../components/Modals/TranslationModal/TranslationModal'
@@ -20,10 +19,12 @@ class Article extends Component {
     loading:true,
     francais:{
       title:'',
-      body: [],
+      body: '',
     },
-    title:'',
-    body: [],
+    translated: {
+      body:'',
+      title:'',
+    },
     itemId:'',
     tooltipOpen: [],
     id_array:[],
@@ -31,7 +32,9 @@ class Article extends Component {
     initial_string:'',
     translated_string:'',
     currentId:'',
-    loadingModalData:false
+    loadingModalData:false,
+    right_node:[],
+    chemin:[]
   }
 
   componentDidMount (){
@@ -40,29 +43,42 @@ class Article extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({loading:true});
-    this._loadArticle(nextProps.languei18nCode);
+    this._loadArticle(nextProps.languei18nCode,true,nextProps);
   }
 
-  _loadArticle=(i18nCode = this.props.languei18nCode, update=true) => {
-    let itemId=this.props.match.params.id;
+  _loadArticle=(i18nCode = this.props.languei18nCode, update=true,props={}) => {
+    let itemId=this.props.match && this.props.match.params && this.props.match.params.id;
+    newId=0;
     if(itemId){
       API.get_article({_id: itemId},i18nCode).then(data_res => {
         if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
-          let article=data_res.data.data[0];
+          let article={...data_res.data.data[0]};
           if(update){
+            let editedBody= JSON.parse(JSON.stringify(article.body)); //deep copy
+            if(i18nCode !=='fr'){
+              editedBody= [...this._make_body_editable({children: [...editedBody]})];
+            }
             this.setState({
-              title: article.title,
-              body: stringify(article.body),
+              bodyInitial: [...editedBody],
+              translated:{
+                title: article.title,
+                body: stringify([...editedBody]),
+              },
               itemId: article._id,
               loading:false,
               francais: i18nCode === 'fr' ? 
                 {
                   title: article.title,
-                  body: article.body,
+                  body: [...article.body],
                 } : this.state.francais
             },()=>{
-              this.make_tag_editable(document.getElementById('rendered-article'))
-              //this.all_tooltips(); //A réactiver après, là ça me saoûle
+              if(i18nCode !=='fr'){
+                var pens = document.querySelectorAll('[id*=edit-pencil-]')
+                for (var i=0;i<pens.length;i++){
+                  pens[i].onclick=(e)=>this.openEditModal(e)
+                }
+                //this.all_tooltips(); //A réactiver après, là ça me saoûle
+              }
             })
           }else if(i18nCode === 'fr'){
             this.setState({
@@ -76,6 +92,13 @@ class Article extends Component {
           }
         }
       },(error) => {console.log(error);return;})
+    }else if(props.id){
+      this.setState({
+        translated:props.translated,
+        itemId: props.id,
+        loading:false,
+        francais: props.francais
+      })
     }
   }
 
@@ -101,6 +124,38 @@ class Article extends Component {
     }
   }
 
+  _make_body_editable = (body) => {
+    let children=(body.children || []);
+    for(var i=0; i < children.length;i++){
+      let node=children[i];
+      if(node.content && node.content.replace(/\s/g, '').length){
+        let attributes=(body.attributes || []);
+        let idNode=attributes.find(x => x.key === 'id' && x)
+        newId++;
+        children[i]={
+          type:'element',
+          tagName:'span',
+          attributes:[{key:'id', value:'tag-id-' + newId + (idNode?(' '+idNode.value):'')}],
+          children:[
+            {...node},
+            {
+              type:'element',
+              tagName:'i',
+              attributes:[
+                {key:'class', value:'cui-pencil icons font-xl display-on-hover'},
+                {key:'id', value:'edit-pencil-' + newId}
+              ],
+              children:[]
+            }
+          ]
+        }
+      } else if((node.children || []).length > 0){
+        node = this._make_body_editable(node)
+      }
+    }
+    return children
+  }
+
   toggle=(i) =>{
     const newArray = this.state.tooltipOpen.map((element, index) => {
       return (index === i ? !element : false);
@@ -121,32 +176,64 @@ class Article extends Component {
     }
   }
 
-  openEditModal = id => {
-    console.log(document.querySelector('[id*=' + id.replace("edit-pencil-", 'tag-id-') + ']').id.replace(' tag-id-'+id.replace("edit-pencil-", ''),''))
-    console.log(' tag-id-'+id)
-    let rightId=id.replace("edit-pencil-", '')
-    //this.setState({currentId:rightId, loadingModalData:true})
-    if(this.state.francais.body){
-      this._updateStateForModal(rightId);
-    }else{
-      this._loadArticle('fr',false);
+  openEditModal = e => {
+    if(e.target.id.includes('edit-pencil-')){
+      let path=e.path || (e.composedPath && e.composedPath());
+      if(!path || path.length<2){return;}
+      e.preventDefault();
+      try{
+        var pathId=0;
+        while (path[pathId].id.substring(0,8)!=='initial_' && pathId < path.length) {
+          pathId++;
+        }
+      }catch(err){
+        pathId=2;
+      }
+      let rightId=path[pathId].id
+      this.setState({currentId:rightId, loadingModalData:true, chemin:path.map(x => {return {id:x.id,tagName: x.tagName}})})
+      
+      if(this.state.francais.body){
+        this._updateStateForModal(rightId);
+      }else{
+        this._loadArticle('fr',false);
+      }
     }
+    return true;
   }
 
   _updateStateForModal=(id)=>{
-    let right_node=this._findId(this.state.francais.body, document.querySelector('[id*=tag-id-' + id + ']').id.replace(' tag-id-'+id,''));
+    let right_node=this._findId({children: this.state.francais.body}, id);
     if(right_node){
+      let domNode=document.querySelector('[id*=' + id + ']').cloneNode(true);
+      this.removePencil(domNode)
+      console.log('ici')
       this.setState({
         initial_string : stringify([right_node]),
-        translated_string : document.querySelector('[id*=tag-id-' + id + ']').innerText,
-        showModal:true
+        translated_string : domNode.outerHTML,
+        showModal:true,
+        right_node:[right_node]
       })
     }
   }
   
+  removePencil = (html) => {
+    if(html && html.children){
+      try{
+        [].forEach.call(html.children, (el) => { 
+          if(el.hasChildNodes()){
+            this.removePencil(el)
+          }else if(el.tagName==='I' && el.id.includes('edit-pencil-')){
+            el.parentNode.removeChild(el);
+          }
+        });
+      }catch(e){
+        console.log(e)
+      }
+    }
+  }
 
   _findId = (body, idToFind) => {
-    let children=(body.children || body || []);
+    let children=(body.children || []);
     let right_node=null;
     for(var i=0; i < children.length;i++){
       let node=children[i];
@@ -169,10 +256,21 @@ class Article extends Component {
   }
 
   suggestTranslation = () => {
-    if(this.state.currentId){
-      document.getElementById(this.state.currentId.replace("edit-pencil-", 'tag-id-')).innerText=this.state.translated_string
-      this.modalClosed();
+    //Je vais récupérer la traduction d'origine en premier :
+    let right_node=this._findId({children: this.state.bodyInitial}, this.state.currentId);
+    let traduction={
+      langueCible: this.props.languei18nCode,
+      articleId:this.props.match.params.id,
+      initialText: this.state.right_node,
+      translatedText: this.state.translated_string,
+      initialTranslatedText:right_node,
+      rightId:this.state.currentId,
+      chemin:this.state.chemin,
     }
+    API.add_tradForReview(traduction).then(data_res => {
+      console.log(data_res.data.data)
+      this.modalClosed();
+    },(error) => {console.log(error);return;})
   }
 
   modalClosed=()=>{
@@ -205,42 +303,23 @@ class Article extends Component {
         )
       }else{
         return (
-          <div id="rendered-article">
-            {ReactHtmlParser(this.state.body)}
+          <div id="rendered-article" onClick={(e)=>this.openEditModal(e)}>
+            {ReactHtmlParser(this.state.translated.body)}
 
-            {/* <Tooltips /> */}
+            {/* {this.state.id_array.map((element) => {
+              return (
+                <Tooltip 
+                  placement="top" 
+                  isOpen={this.state.tooltipOpen[element]} 
+                  target={"edit-pencil-" + element}
+                  toggle={()=>this.toggle(element)}
+                  key={element}>
+                  Corriger la traduction de cet élément
+                </Tooltip>
+              );
+            })} */}
           </div>
         )
-      }
-    }
-
-    const Tooltips = () => {
-      if(this.state.id_array.length>0){
-        try{
-          console.log(document.getElementById("edit-pencil-" + this.state.id_array[0]))
-          if(document.getElementById("edit-pencil-" + this.state.id_array[0]).id && document.getElementById("edit-pencil-" + this.state.id_array[this.state.id_array.length - 1]).id){
-            console.log('dedans')
-            return (
-              this.state.id_array.map((element) => {
-                return (
-                  <Tooltip 
-                    placement="top" 
-                    isOpen={this.state.tooltipOpen[element]} 
-                    target={"edit-pencil-" + element}
-                    toggle={()=>this.toggle(element)}
-                    key={element}>
-                    Corriger la traduction de cet élément
-                  </Tooltip>
-                );
-              })
-            );
-          }else{console.log('ici');return (<div>Test</div>)}
-        }catch(e){
-          console.log(e)
-          return (<div>Test</div>)
-        }
-      }else{console.log('la');
-        return (<div>Test</div>)
       }
     }
 
@@ -253,6 +332,7 @@ class Article extends Component {
           handleTranslationChange={this.handleTranslationChange}
           clicked={this.suggestTranslation}
           modalClosed={this.modalClosed}
+          editable={true}
           />
         <section 
           className="banner-section"
@@ -263,19 +343,14 @@ class Article extends Component {
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 post-title-block">
                   <h1 className="text-center">
-                    {this.state.title || <Spinner color="success" className="fadeIn fadeOut" />}
+                    {this.state.translated.title || <Spinner color="success" className="fadeIn fadeOut" />}
                   </h1>
-                  <ul className="list-inline text-center">
-                      <li>{t('Auteur')} : {t('test.ici',{defaultValue: "hello"})}</li>
-                      <li>{t('global.article.categorie')} : {t('contenu.article.1.categorie')}</li>
-                      <li>{t('global.article.date')} : 1933</li>
-                  </ul>
               </div>
             </div>
             <Row>
               <Col lg="8">
                 <h1 className="mt-4">
-                  test ici :{t("contenu.article.1.sous-titre")}
+                  {t("contenu.article.1.sous-titre")}
                 </h1>
                 <p className="lead">
                   {t('global.article.par')} Disney, {t('global.article.adapte_par')} Souf
@@ -332,13 +407,13 @@ class Article extends Component {
               </Col>
               <Col md="4">
                 <Card my="4">
-                  <h5 className="card-header">Explication en 30 secondes</h5>
+                  <h5 className="card-header">{t('article.Explication en 30 secondes')}</h5>
                   <div className="card-body">
                     3 petits cochons construisent un abri pour se protéger du loup. Le premier le construit en paille, le second en bois et le troisième en briques. Quand le loup arrive, il détruit les deux premières et seule la maison en brique tient.
                   </div>
                 </Card>
                 <Card my="4">
-                  <h5 className="card-header">Catégories</h5>
+                  <h5 className="card-header">{t('article.Catégories')}</h5>
                   <div className="card-body">
                     <div className="row">
                       <Col lg="6">
@@ -371,12 +446,12 @@ class Article extends Component {
                   </div>
                 </Card>
                 <Card my="4">
-                  <h5 className="card-header">Chercher</h5>
+                  <h5 className="card-header">{t('article.Chercher')}</h5>
                   <div className="card-body">
                     <div className="input-group">
                       <input type="text" className="form-control" placeholder="Chercher..." />
                       <span className="input-group-btn">
-                        <button className="btn btn-secondary" type="button">Aller</button>
+                        <button className="btn btn-secondary" type="button">{t('article.Aller')}</button>
                       </span>
                     </div>
                   </div>
