@@ -1,7 +1,10 @@
 const User = require('../../schema/schemaUser.js');
 const Role = require('../../schema/schemaRole.js');
 const jwt = require('jwt-simple');
-const config = require('../../config/config');
+let config = {};
+if(process.env.NODE_ENV === 'dev') {
+  config = require('../../config/config');
+} 
 
 check = (req, res, next) => {
   let token = req.headers['authorization'] || req.headers['x-access-token'];

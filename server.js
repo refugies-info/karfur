@@ -7,8 +7,13 @@ const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const cloudinary = require('cloudinary')
 const formData = require('express-form-data')
-const startup = require('./startup/startup');
 const path = require("path");
+
+let startup = null
+if(process.env.NODE_ENV === 'dev') {
+  console.log('dev environment')
+  startup = require('./startup/startup');
+} 
 
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
@@ -25,8 +30,10 @@ var io = require('socket.io')(http);
 //Connexion à la base de donnée
 mongoose.set('debug', false);
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/db', { useNewUrlParser: true }).then(() => {
-    console.log('Connected to mongoDB')
-    startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
+    console.log('Connected to mongoDB');
+    if(process.env.NODE_ENV === 'dev') {
+      startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
+    } 
 }).catch(e => {
     console.log('Error while DB connecting');
     console.log(e);
@@ -100,7 +107,7 @@ io.on('connection', function(socket){
 });
 
 //Définition et mise en place du port d'écoute
-var ioport = process.env.IO_PORT;
+var ioport = process.env.PORTIO;
 io.listen(ioport, () => console.log(`Listening on port ${port}`));
 var port = process.env.PORT;
 app.get("*", (req, res) => {
