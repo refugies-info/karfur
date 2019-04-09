@@ -20,7 +20,7 @@ class Articles extends Component {
   }
 
   componentDidMount (){
-    API.get_article({}).then(data_res => {
+    API.get_article({isStructure: {$ne: true}}).then(data_res => {
       let articles=data_res.data.data
       console.log(articles);
       this.setState({

@@ -1,0 +1,30 @@
+{
+  "name": "circular-std",
+  "version": "0.2.1",
+  "main": [
+    "css/circular-std.css",
+    "fonts/*.*"
+  ],
+  "authors": [ "Sajera: Serhii P <allsajera@gmail.com>" ],
+  "description": "Dosis Font Family Bower-ready (LESS-ready, and plain CSS-ready)",
+  "keywords": [
+    "circular",
+    "font",
+    "fontface",
+    "css",
+    "less",
+    "web",
+    "design"
+  ],
+  "license": [
+    "MIT",
+    "OFL"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

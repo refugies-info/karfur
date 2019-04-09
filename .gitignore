@@ -27,6 +27,9 @@ yarn-error.log*
 /private
 .env
 /client/node_modules
+/client/nw/screens
+/client/nw/reports
+/client/nw/logs
 /client//.pnp
 /client/.pnp.js
 /client//coverage

@@ -13,6 +13,8 @@ import AdminLangues from './containers/Backend/AdminLangues/AdminLangues';
 import Chat from './containers/Backend/Chat/Chat';
 import Articles from './containers/Articles/Articles';
 import Article from './containers/Article/Article';
+import Dispositifs from './containers/Dispositifs/Dispositifs';
+import Dispositif from './containers/Dispositif/Dispositif';
 import Editeur from './containers/Editeur/Editeur';
 import Avancement from './containers/Translation/Avancement/Avancement';
 import Translation from './containers/Translation/Translation';
@@ -27,10 +29,17 @@ const routes = [
   { path: '/articles', name: 'Articles', component: Articles, restriction:[] },
   { path: '/article/:id', exact: true, name: 'Article', component: Article, restriction:[] },
 
+  { path: '/dispositifs', name: 'Dispositifs', component: Dispositifs, restriction:[] },
+  { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
+  { path: '/dispositif', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
+
   { path: '/editeur', name: 'Editeur', component: Editeur, restriction:[] },
-  { path: '/avancement', name: 'Avancement', component: Avancement, restriction:[] },
+  { path: '/avancement/traductions/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['ExpertTrad','Admin'] },
+  { path: '/avancement/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/avancement', name: 'Avancement', component: Avancement, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/traduction', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
-  { path: '/traduction/:id', name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/traduction/validation/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/traduction/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
 
   { path: '/backend', exact:true, forceShow:true, name: 'Administration', component: Dashboard, restriction:['Admin'] },
   { path: '/backend/dashboard', name: 'Dashboard', component: Dashboard, restriction:['Admin'] },

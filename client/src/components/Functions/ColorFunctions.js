@@ -22,4 +22,10 @@ const colorStatut= avancement => {
   }
 }
 
-export {colorAvancement, colorStatut}
+const randomColor = () => {
+  let colorArr = ["primary", "secondary", "success", "warning", "danger", "info", "light", "dark"]
+  let nb=Math.floor(Math.random() * Math.floor(colorArr.length - 1));
+  return colorArr[nb];
+}
+
+export {colorAvancement, colorStatut, randomColor}

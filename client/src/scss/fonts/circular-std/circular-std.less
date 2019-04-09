@@ -1,0 +1,38 @@
+/* CircularStd @font-face kit */
+@hash: 'bcc26993292869431e54c666aafa8fcd';
+@path: '../fonts';
+@FontName: 'CircularStd';
+
+@sufix-list: '-Black', '-BlackItalic', '-Bold', '-BoldItalic', '-Medium', '-MediumItalic', '-Book', '-BookItalic';
+@weight-list:  800,        800,          600,       600,         500,        500,             400,        400;
+@style-list:  normal,     italic,       normal,     italic,     normal,     italic,         normal,     italic;
+
+
+.generator(@index: 1) when ( @index =< length(@sufix-list) ) {
+    // get item name
+    @suf: extract(@sufix-list, @index);
+    // name of font file
+    @name: "@{FontName}@{suf}";
+    // get font weight for this prefix (file and font-family)
+    @weight: extract(@weight-list, @index);
+    // get font style for this prefix (file and font-family)
+    @style: extract(@style-list, @index);
+
+    @font-face {
+        // font-family: e(`'@{name}'.toLowerCase()`);
+        // font-family: @name;
+        font-family: @FontName;
+        src: url('@{path}/@{name}.eot');
+        src:
+            url('@{path}/@{name}.eot?#iefix') format('embedded-opentype'),
+            url('@{path}/@{name}.woff') format('woff'),
+            url('@{path}/@{name}.ttf') format('truetype'),
+            url('@{path}/@{name}.svg#@{hash}') format('svg');
+        font-weight: @weight;
+        font-style: @style;
+    }
+
+    // next iteration
+    .generator(@index + 1);
+}
+.generator();

@@ -5,6 +5,12 @@ import sinon from 'sinon'
 
 import Layout from './Layout'
 
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<Layout />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+
 describe('<Layout/>', () => {
   it('should trigger its `onClick` prop when clicked', () => {
     const onClick = sinon.spy()
