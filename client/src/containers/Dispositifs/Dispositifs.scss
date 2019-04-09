@@ -55,7 +55,7 @@ $theme-color: #8DC63F;
   
     h1 {
       font-size: 64px;
-      line-height: normal;
+      line-height: 64px;
       text-align: center;
       width: 516px;
       margin:auto;
@@ -65,14 +65,14 @@ $theme-color: #8DC63F;
     @media (max-width: 768px) {
       h1 {
         font-size: 28px;
-        line-height: 36px;
+        line-height: 28px;
       }
     }
   
     h2 {
       color: #E5E5E5;
-      margin-top: 9px;
-      margin-bottom: 23px;
+      margin-top: 30px;
+      margin-bottom: 40px;
       font-size: 32px;
       line-height: normal;
       text-align: center;
@@ -93,7 +93,7 @@ $theme-color: #8DC63F;
       
       input{
         background: #FFFFFF;
-        border: 1px solid #3C3636;
+        border: 1px solid #d6d6d6;
         box-sizing: border-box;
         box-shadow: 0px 0px 20px #E5E5E5;
         border-radius: 36px;
@@ -101,7 +101,7 @@ $theme-color: #8DC63F;
         padding-left: 15px;
         font-size: 24px;
         font-weight: 600;
-        height: 45px;
+        height: 50px;
 
         &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
           color: #E5E5E5;
@@ -121,8 +121,10 @@ $theme-color: #8DC63F;
         position: absolute;
         padding: 10px;
         pointer-events: none;
-        right: 0px;
+        right: 5px;
         font-size: 24px;
+        transform: matrix(-1, 0, 0, 1, 0, 0);
+        color: #d6d6d6;
       }
     }
   }
@@ -133,9 +135,12 @@ $theme-color: #8DC63F;
 
     .themes{
       height:5em;
-      margin-bottom: 30px;
       margin-top: 30px;
+      margin-bottom: 25px;
 
+      div.col-xl:not(:first-child){
+        padding-left: 0;
+      }
       .btn{
         border-radius: 12px;
         font-weight: 600;
@@ -147,12 +152,12 @@ $theme-color: #8DC63F;
       box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
       cursor : pointer;
       border-radius: 12px;
-      height:340px;
+      height:300px;
 
       h3{
         font-size: 28px;
-        font-weight: 600;
-        line-height: normal;
+        font-weight: 600;    
+        line-height: 28px;
         color: #3D3D3D;
         margin-bottom: 1rem;
       }

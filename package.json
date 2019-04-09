@@ -1,36 +1,40 @@
 {
-    "name": "karfur",
-    "version": "0.1.0",
-    "description": "Plateforme dédiée aux réfugiés",
-    "author": "Soufiane Lamrissi",
-    "homepage": "https://accueil-integration-refugies.fr",
-    "copyright": "Copyright 2019 DiAiR",
-    "license": "MIT",
-    "main": "server.js",
-    "scripts": {
-        "start": "node server.js"
-    },
-    "dependencies": {
-        "@google-cloud/translate": "^2.1.3",
-        "body-parser": "^1.18.3",
-        "chalk": "^2.4.2",
-        "cloudinary": "^1.13.2",
-        "cors": "^2.8.5",
-        "dotenv": "^7.0.0",
-        "draftjs-to-html": "^0.8.4",
-        "express": "^4.16.4",
-        "express-form-data": "^2.0.8",
-        "himalaya": "^1.1.0",
-        "html2plaintext": "^2.1.2",
-        "jwt-simple": "^0.5.5",
-        "mongoose": "^5.4.13",
-        "password-hash": "^1.2.2",
-        "request": "^2.88.0",
-        "sanitize-html": "^1.20.0",
-        "socket.io": "^2.2.0",
-        "uniqid": "^5.0.3"
-    },
-    "devDependencies": {
-        "i18next-scanner": "^2.9.2"
-    }
+  "name": "karfur",
+  "version": "0.1.0",
+  "description": "Plateforme dédiée aux réfugiés",
+  "author": "Soufiane Lamrissi",
+  "homepage": "https://accueil-integration-refugies.fr",
+  "copyright": "Copyright 2019 DiAiR",
+  "license": "MIT",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "dependencies": {
+    "@google-cloud/translate": "^2.1.3",
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.2",
+    "cloudinary": "^1.13.2",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "draftjs-to-html": "^0.8.4",
+    "express": "^4.16.4",
+    "express-form-data": "^2.0.8",
+    "himalaya": "^1.1.0",
+    "html2plaintext": "^2.1.2",
+    "jwt-simple": "^0.5.5",
+    "mongoose": "^5.4.13",
+    "password-hash": "^1.2.2",
+    "request": "^2.88.0",
+    "sanitize-html": "^1.20.0",
+    "socket.io": "^2.2.0",
+    "uniqid": "^5.0.3"
+  },
+  "devDependencies": {
+    "i18next-scanner": "^2.9.2"
+  },
+  "engines": {
+    "node": "8.12.0"
+  }
 }
