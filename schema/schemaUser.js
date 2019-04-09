@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const passwordHash = require('password-hash');
 const jwt = require('jwt-simple');
-const config = require('../config/config');
+let config = {};
+if(process.env.NODE_ENV === 'dev') {
+  config = require('../config/config');
+} 
 
 var userSchema = mongoose.Schema({
 	username: {

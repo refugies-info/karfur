@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"db.events"},{"v":2,"key":{"page":1},"name":"page_1","ns":"db.events","background":true},{"v":2,"key":{"layout":1},"name":"layout_1","ns":"db.events","background":true},{"v":2,"key":{"app":1},"name":"app_1","ns":"db.events","background":true}],"uuid":"fb07280d3dbc4ae68096e0a5475084e4"}
