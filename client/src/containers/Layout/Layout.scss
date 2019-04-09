@@ -1,0 +1,33 @@
+.text-center{
+  text-align:center;
+}
+
+@media (min-width: 992px){
+  .header-fixed .app-body {
+    margin-top: 55px;
+  }
+}
+
+@media (min-width: 992px){
+  .aside-menu-lg-show.aside-menu-fixed .Content{
+    margin-right: 250px;
+  }
+}
+
+.app-body {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  overflow: initial;
+
+  .Content {
+    margin-top: 56px;
+    margin-bottom: 56px;
+    margin-left:0px;
+    margin-right:0px;
+    min-height: 100vh;
+    height: 100%;
+    flex: 1;
+    min-width: 0;
+  }
+}

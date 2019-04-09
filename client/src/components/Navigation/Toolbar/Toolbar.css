@@ -4,13 +4,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgba(52, 59, 64, 0.9);
+    background-color: #F2F2F2;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
     z-index: 90;
+    color:#3D3D3D;
 }
 
 .Toolbar nav {
@@ -22,8 +23,17 @@
   display: flex;
 }
 
+.Toolbar .center_buttons{
+  margin-left:auto;
+}
+
+.Toolbar .right_buttons{
+  margin-left:auto;
+}
+
 .Toolbar .Logo {
-  height: 80%;
+  font-weight: 800;
+  font-size: 22px;
   margin: auto;
 }
 
@@ -41,6 +51,10 @@
 }
 
 .Toolbar .dropdown-toggle.btn.btn-transparent:after{
+  color : #6c757d;
+}
+
+.Toolbar .dropdown-toggle.btn.btn-transparent:hover:after{
   color : white;
 }
 

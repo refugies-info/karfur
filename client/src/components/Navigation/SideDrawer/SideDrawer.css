@@ -14,20 +14,20 @@
 }
 
 @media (min-width: 500px) {
-    .HideSideDrawer {
-        display: none;
-    }
+  .HideSideDrawer {
+    display: none;
+  }
 }
 
 .Open {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 .Close {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .SideDrawer .Logo {
-    height: 11%;
-    margin-bottom: 32px;
+  height: 11%;
+  margin-bottom: 32px;
 }

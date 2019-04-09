@@ -1,0 +1,40 @@
+.modal-reagir{
+  box-shadow: 0px 0px 40px #3c3434;
+  border: 1px solid #F2F2F2;
+  box-sizing: border-box;
+  border-radius: 8px;
+  background: #FBFBFB;
+
+  .narrow-padding{
+    &:not(:last-child){
+      padding-right: 0;
+    }
+    
+    .comment-modal{
+      margin-bottom:0;
+      background: #3D3D3D;
+      height: 221px;
+      color: #FFFFFF;
+
+      .card-body{
+        padding:0;
+      }
+
+      .icone{
+        padding-top:36px;
+        padding-bottom:25px;
+        display: flex;
+        img, svg{
+          margin: 0 auto;
+        }
+      }
+
+      .texte{
+        padding-left:25px;
+        padding-right:16px;
+        font-size: 14px;
+        line-height: normal;
+      }
+    }
+  }
+}

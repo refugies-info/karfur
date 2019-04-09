@@ -1,12 +1,16 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import './BackendNavigationItem.css';
 
 const backendNavigationItem = ( props ) => (
     <li className="BackendNavigationItem">
-        <a 
-            href={props.link} 
-            className={props.active ? "active" : null}>{props.children}</a>
+      <NavLink
+        to={props.link} 
+        onClick={props.closed}
+        exact>
+        {props.children}
+      </NavLink>
     </li>
 );
 

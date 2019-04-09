@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const passwordHash = require('password-hash');
 const jwt = require('jwt-simple');
-const config = require('../config/config');
+let config = {};
+if(process.env.NODE_ENV === 'dev') {
+  config = require('../config/config');
+} 
 
 var userSchema = mongoose.Schema({
 	username: {
@@ -18,7 +21,7 @@ var userSchema = mongoose.Schema({
 		type: String,
 		lowercase: true,
 		trim: true,
-		unique: true,
+		unique: false,
 		required: false
 	},
 	description: {
@@ -45,6 +48,14 @@ var userSchema = mongoose.Schema({
     type: Array,
     required: false
   },
+  traductionsFaites: { 
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'Traduction' }],
+    required: false
+  },
+  noteTraduction: { 
+    type: Number,
+    required: false
+  },
   status: { 
     type: String,
     required: false
@@ -57,7 +68,7 @@ userSchema.methods = {
 		return passwordHash.verify(password, this.password);
 	},
 	getToken: function () {
-		return jwt.encode(this, config.secret);
+		return jwt.encode(this, process.env.SECRET || config.secret);
 	}
 }
 
