@@ -27,6 +27,7 @@
     "himalaya": "^1.1.0",
     "html2plaintext": "^2.1.2",
     "ip-regex": "^4.0.0",
+    "is-stream": "^1.1.0",
     "jwt-simple": "^0.5.5",
     "mkdirp": "^0.5.1",
     "mongoose": "^5.4.13",
