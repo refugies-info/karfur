@@ -39,3 +39,6 @@ yarn-error.log*
 /client/.env.development.local
 /client/.env.test.local
 /client/.env.production.local
+*.orig
+.idea/
+.vscode/
