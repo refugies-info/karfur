@@ -32,6 +32,7 @@
     "mkdirp": "^0.5.1",
     "mongoose": "^5.4.13",
     "password-hash": "^1.2.2",
+    "prepend-http": "^2.0.0",
     "request": "^2.88.0",
     "sanitize-html": "^1.20.0",
     "socket.io": "^2.2.0",
