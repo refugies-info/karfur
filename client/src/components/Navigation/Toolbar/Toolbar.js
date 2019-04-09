@@ -8,7 +8,6 @@ import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './Toolbar.css';
-import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../../utils/API';
@@ -74,7 +73,7 @@ export class Toolbar extends React.Component {
             forceShow={afficher_burger}
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <div className="Logo">
-            <Logo />
+            Agir
           </div>
         </div>
         <nav className="DesktopOnly center_buttons">

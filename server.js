@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const cloudinary = require('cloudinary')
 const formData = require('express-form-data')
 const startup = require('./startup/startup');
+const path = require("path");
 
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
@@ -23,7 +24,7 @@ var io = require('socket.io')(http);
 
 //Connexion à la base de donnée
 mongoose.set('debug', false);
-mongoose.connect('mongodb://localhost/db', { useNewUrlParser: true }).then(() => {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/db', { useNewUrlParser: true }).then(() => {
     console.log('Connected to mongoDB')
     startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
 }).catch(e => {
@@ -37,7 +38,8 @@ var urlencodedParser = bodyParser.urlencoded({
 });
 app.use(urlencodedParser);
 app.use(bodyParser.json());
-app.use(formData.parse())
+app.use(formData.parse());
+app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(cors());
 
 //Définition des CORS
@@ -98,7 +100,10 @@ io.on('connection', function(socket){
 });
 
 //Définition et mise en place du port d'écoute
-var ioport = 8001;
+var ioport = process.env.IO_PORT;
 io.listen(ioport, () => console.log(`Listening on port ${port}`));
-var port = 8000;
+var port = process.env.PORT;
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+});
 app.listen(port, () => console.log(`Listening on port ${port}`));

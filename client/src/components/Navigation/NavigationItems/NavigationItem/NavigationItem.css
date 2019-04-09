@@ -39,7 +39,7 @@
     }
     
     .NavigationItem a {
-        color: white;
+        color: inherit;
         height: 100%;
         padding: 16px 10px;
         border-bottom: 4px solid transparent;
