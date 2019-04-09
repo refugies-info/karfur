@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="4"
+            failures="1"
+            tests="1">
+
+  <testsuite name="traduction.test"
+    errors="4" failures="1" hostname="" id="" package="traduction.test" skipped="0"
+    tests="1" time="6.773" timestamp="">
+  
+    <testcase name="traduction" classname="traduction.test" time="6.773" assertions="14">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Testing if element &lt;//div[@class=&#39;container&#39;]//div[contains(@class,&#39;post-title-block&#39;)]//h1&gt; contains text: &#34;Test dans le titre&#34; in 1000 ms. - expected [0;32m&#34;Test dans le titre&#34;[0m but got: [0;31m&#34;ADA د وتلو لاملونه&#34;[0m">    at Object.traduction (/Users/tonyparker/Documents/github/karfur/client/nw/tests/traduction.test.js:48:15)
+    at &lt;anonymous&gt;
+    at process._tickCallback (internal/process/next_tick.js:189:7)</failure>
+
+    <failure message="    at Object.traduction (/Users/tonyparker/Documents/github/karfur/client/nw/tests/traduction.test.js:48:15)">    at &lt;anonymous&gt;
+    at process._tickCallback (internal/process/next_tick.js:189:7)</failure>
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

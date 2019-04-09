@@ -1,0 +1,39 @@
+14:59:35.730 INFO [GridLauncherV3.parse] - Selenium server version: 3.141.5, revision: d54ebd709a
+14:59:35.844 INFO [GridLauncherV3.lambda$buildLaunchers$3] - Launching a standalone Selenium Server on port 4444
+2019-04-01 14:59:35.926:INFO::main: Logging initialized @577ms to org.seleniumhq.jetty9.util.log.StdErrLog
+14:59:36.224 INFO [WebDriverServlet.<init>] - Initialising WebDriverServlet
+14:59:36.343 INFO [SeleniumServer.boot] - Selenium Server is up and running on port 4444
+14:59:36.770 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "firefox",
+  "javascriptEnabled": true,
+  "name": "Editeur Test"
+}
+14:59:36.770 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "firefox",
+  "javascriptEnabled": true,
+  "name": "Article Test"
+}
+14:59:36.770 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "firefox",
+  "javascriptEnabled": true,
+  "name": "Traduction Test"
+}
+14:59:36.771 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.firefox.GeckoDriverService)
+14:59:36.771 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.firefox.GeckoDriverService)
+14:59:36.771 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.grid.session.remote.ServicedSession$Factory (provider: org.openqa.selenium.firefox.GeckoDriverService)
+11555544112233557777333388		mmoozzrruunnnneerr::::rruunnnneerr		IINNFFOO		RRuunnnniinng command:g "/ Acpopmlmiacnadt:i o"n/sA/pFirefox.app/Contents/MpaclOiSc/aftiiroenfso/xF-ibrienf"o x".-ampapr/iCoonnettetnet"s /"M-afcoOrSe/gfrioruenfdo"x -"b-inno"- r"e-mmote" "-profile" "/1va5a5rr4/ifoo1l2d35ers/ds7/73333q8h	ymxo4zdr3u7n3n5e2rn:s:br7ubn2n0e_rp	nIhN0F0O0	0Rgunn/nTi/nrgu scto_mmmozand:n ette"" /"A-pfpolriecgartoiuonnds"/ F"i-rneof-orxep.marpoofpi/lCoe.tbI6eWn"txe8 nE"t-LpXruomfsill/e""
+M "/vaarc/OfSo/lfdierefox-bin" "-marionette" "-foreground" "-no-remote" "-prorfisl/ed"s /"3/3vqahr/yfxo4ldd3e7r3s5/2dnss/b373bq2hyx40d_3p7n3h5020n0s0bg7nb/20T_/prnuhs0t0_0m0ogznp/rTo/friulset._smWoazCpWrPoGfQihlDeX.oF"J
+EbyB4PHUH6"
+2019-04-01 14:59:38.155 firefox-bin[21715:7854078] NSInvalidArgu20mentException: launch path not 1a9c-c0e4s-s0i1b l1e4
+:59:38.155 firefox-bin[21717:7854079] NSInvalidArgumentException: launch path not accessible
+1554123578634	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: resource://pdf.js/
+1554123578635	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid host permission: about:reader*
+Can't find symbol 'GetGraphicsResetStatus'.
+1554123580912	Marionette	INFO	Listening on port 60305
+14:59:41.119 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+14:59:41.172 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 52ed93c6-570b-6842-a0a7-e23c602a1f51 (org.openqa.selenium.firefox.GeckoDriverService)
+1554123588587	Marionette	INFO	Stopped listening on port 60305
+14:59:49.153 INFO [ActiveSessions$1.onStop] - Removing session 52ed93c6-570b-6842-a0a7-e23c602a1f51 (org.openqa.selenium.firefox.GeckoDriverService)
