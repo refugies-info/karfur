@@ -1,9 +1,17 @@
 import React from 'react';
-import HomePage from './HomePage';
+import Editeur from './Editeur';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
-it('should match its reference snapshot', () => {
-  const wrapper = shallow(<HomePage />)
-  expect(wrapper).to.matchSnapshot()
-});
+describe('<Editeur />', () => {
+  it('mounts without crashing', () => {
+    const wrapper = shallow(<Editeur />);
+    //wrapper.unmount()
+  });
+
+  // it('should match its reference snapshot', () => {
+  //   const wrapper = shallow(<Editeur />)
+  
+  //   expect(wrapper).to.matchSnapshot()
+  // })
+})

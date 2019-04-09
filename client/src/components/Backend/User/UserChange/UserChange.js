@@ -25,8 +25,8 @@ const localeFormatter = (v) => {
 
 const userChange = (props) => {
   let statuts = ['Actif', 'En attente', 'Inactif', 'Exclu']
-  let langues_list=props.user.selectedLanguages.map(function (item) { return item.langueFr; });
-  let imgSrc = props.user.picture.secure_url || marioProfile
+  let langues_list=(props.user.selectedLanguages || []).map(function (item) { return item.langueFr; });
+  let imgSrc = (props.user.picture || []).secure_url || marioProfile
   
   const ProfilePic = () => {
     if(props.uploading){
@@ -68,12 +68,13 @@ const userChange = (props) => {
             id="username" 
             name="user" 
             placeholder="Nom d'utilisateur"
-            value={props.user.username}
+            value={props.user.username || ''}
             onChange = {props.handleChange} />
           <FormText color="muted">Par exemple : Soufiane</FormText>
         </Col>
       </FormGroup>
 
+      {props.isAdmin &&
       <FormGroup row>
         <Col md="3">
           <Label htmlFor="password">Mot de passe</Label>
@@ -89,14 +90,14 @@ const userChange = (props) => {
             disabled={props.user.password === 'Hidden'} />
           <FormText color="muted">Par exemple : motdepasse</FormText>
         </Col>
-      </FormGroup>
+      </FormGroup>}
 
       <FormGroup row>
         <Col md="3"><Label>Langues de travail</Label></Col>
 
         <Col xs="12" md="9">
           <Row>
-            {props.langues.map((langue, key) => {
+            {(props.langues || []).map((langue, key) => {
               return (
                 <Col md="3" key={key}>
                     <FormGroup check className="checkbox">
@@ -106,7 +107,7 @@ const userChange = (props) => {
                         name="user" 
                         id={langue._id} 
                         value={langue._id}
-                        checked={langue.isChecked}
+                        checked={(props.user.selectedLanguages || []).find(x => x._id === langue._id) ? true : false}
                         onChange={props.handleCheck} />
                       <Label check className="form-check-label" htmlFor={langue._id}>{langue.langueFr}</Label>
                     </FormGroup>
@@ -146,7 +147,7 @@ const userChange = (props) => {
               <FormText color="muted">Définissez ici le temps que vous souhaitez accorder à la traduction quotidiennement</FormText>
             </Col>
             <Col>
-              {props.user.objectifTemps} minutes
+              {props.user.objectifTemps || 0} minutes
             </Col>
           </Row>
         </Col>
@@ -163,7 +164,6 @@ const userChange = (props) => {
                 min={0}
                 max={2000}
                 step={200}
-                defaultValue={600}
                 tipFormatter={localeFormatter}
                 trackStyle={{ background: 'linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)', height: 10 }}
                 handleStyle={{
@@ -181,7 +181,7 @@ const userChange = (props) => {
               <FormText color="muted">Définissez ici le nombre de mots que vous souhaiteriez traduire chaque jour</FormText>
             </Col>
             <Col>
-              {props.user.objectifMots} mots
+              {props.user.objectifMots || 0} mots
             </Col>
           </Row>
         </Col>
@@ -214,7 +214,7 @@ const userChange = (props) => {
             placeholder="Adresse mail" 
             autoComplete="email"
             onChange={props.handleChange}
-            value={props.user.email} />
+            value={props.user.email || ''} />
           <FormText className="help-block">Restez informé des dernières informations concernant la traduction</FormText>
         </Col>
       </FormGroup>
@@ -231,60 +231,64 @@ const userChange = (props) => {
             rows="6"
             placeholder="Renseignez une courte description que les autres utilisateurs pourront voir"
             onChange={props.handleChange}
-            value={props.user.description} />
+            value={props.user.description || ''} />
         </Col>
       </FormGroup>
 
 
-      <FormGroup row>
-        <Col md="3">
-          <Label htmlFor="select">Rôle sur notre site</Label>
-        </Col>
+      {props.isAdmin && 
+        <>
+          <FormGroup row>
+            <Col md="3">
+              <Label htmlFor="select">Rôle sur notre site</Label>
+            </Col>
 
-        <Col xs="12" md="9">
-          <Row>
-            {props.roles.map((role, key) => {
-              return (
-                <Col xs="9" md="6" key={key}>
-                    <FormGroup check className="checkbox">
-                      <Input 
-                        className="form-check-input role" 
-                        type="checkbox" 
-                        name="user" 
-                        id={role._id} 
-                        value={role._id}
-                        checked={role.isChecked}
-                        onChange={props.handleCheck} />
-                      <Label check className="form-check-label" htmlFor={role._id}>{role.nomPublique}</Label>
-                    </FormGroup>
-                </Col>
-              )}
-            )}
-          </Row>
-        </Col>
-      </FormGroup>
+            <Col xs="12" md="9">
+              <Row>
+                {(props.roles || []).map((role, key) => {
+                  return (
+                    <Col xs="9" md="6" key={key}>
+                        <FormGroup check className="checkbox">
+                          <Input 
+                            className="form-check-input role" 
+                            type="checkbox" 
+                            name="user" 
+                            id={role._id} 
+                            value={role._id}
+                            checked={role.isChecked}
+                            onChange={props.handleCheck} />
+                          <Label check className="form-check-label" htmlFor={role._id}>{role.nomPublique}</Label>
+                        </FormGroup>
+                    </Col>
+                  )}
+                )}
+              </Row>
+            </Col>
+          </FormGroup>
 
-      <FormGroup row>
-        <Col md="3">
-          <Label htmlFor="status">Statut</Label>
-        </Col>
-        <Col xs="12" md="9">
-          <Input 
-            type="select" 
-            id="status" 
-            name="user" 
-            value={props.user.status}
-            onChange = {props.handleChange}  >
-            {statuts.map((statut) =>
-              <option 
-                value={statut}
-                key={statut}>
-                {statut}
-              </option>
-            )}
-          </Input>
-        </Col>
-      </FormGroup>
+          <FormGroup row>
+            <Col md="3">
+              <Label htmlFor="status">Statut</Label>
+            </Col>
+            <Col xs="12" md="9">
+              <Input 
+                type="select" 
+                id="status" 
+                name="user" 
+                value={props.user.status}
+                onChange = {props.handleChange}  >
+                {statuts.map((statut) =>
+                  <option 
+                    value={statut}
+                    key={statut}>
+                    {statut}
+                  </option>
+                )}
+              </Input>
+            </Col>
+          </FormGroup>
+        </>
+      }
     </Form>
   )
 }

@@ -34,9 +34,11 @@
     "lottie-web": "^5.4.4",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
+    "pretty-ms": "^4.0.0",
     "prop-types": "^15.6.2",
     "rc-slider": "^8.6.7",
     "react": "^16.8.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-addons-update": "^15.6.2",
     "react-chartjs-2": "^2.7.4",
     "react-chat-window": "^1.1.1",
@@ -52,6 +54,7 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.5",
+    "react-scrollspy": "^3.4.0",
     "react-spring": "^8.0.7",
     "react-tracking": "^5.6.0",
     "react-visibility-sensor": "^5.0.2",
@@ -68,7 +71,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage"
+    "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
+    "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json"
   },
   "bugs": {
     "url": "https://github.com/Tony4469/karfur/issues"
@@ -87,12 +91,16 @@
     "chai-enzyme": "^1.0.0-beta.0",
     "chai-jest-diff": "^1.0.2",
     "chai-jest-snapshot": "^2.0.0",
+    "chromedriver": "^2.46.0",
     "codecov": "^3.1.0",
     "dirty-chai": "^2.0.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.0",
     "enzyme-to-json": "^3.3.5",
+    "geckodriver": "^1.16.0",
+    "nightwatch": "^1.0.19",
     "react-test-renderer": "^16.7.0",
+    "selenium-server-standalone-jar": "^3.141.5",
     "sinon": "^7.2.3",
     "sinon-chai": "^3.3.0"
   }

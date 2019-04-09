@@ -1,0 +1,248 @@
+.dispositif{
+  font-family: CircularStd;
+
+  .banniere-dispo{
+    background-size:cover; 
+    background: #F6B93B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    min-height: 300px; 
+    background-position:0;
+    position: relative;
+
+    .post-title-block{
+      padding: 114px 0 49px 0;
+      display: flex;
+
+      .bloc-titre{
+        margin:auto;
+      }
+      .bloc-subtitle{
+        display: inline-flex;
+      }
+    }
+    .post-title-block h1 {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 64px;
+      line-height: normal;
+      color: #3D3D3D;
+      text-transform: initial;
+    }
+    .post-title-block h2 {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 32px;
+      line-height: normal;
+      color: #3D3D3D;
+    }
+
+    .align-right{
+      text-align: right;
+    }
+    .date-maj{
+      color: green;
+    }
+    .fiabilite{
+      color: red;
+    }
+    .header-row{
+      position: absolute;
+      width: 100%;
+      margin-top:18px;
+
+      .top-left{
+        display: flex;
+        margin: 0 19px;
+        i{
+          padding-right:7px;
+          padding-top: 0.3rem;
+        }
+      }
+      .top-right{
+        text-align: right;
+        margin: 0 23px;
+        p{
+          margin-bottom: 0;
+        }
+      }
+    }
+    .header-footer{
+      padding-bottom: 20px;
+    }
+    .contrustion-wrapper{
+      background: linear-gradient(111.54deg, #F6B93B -10.82%, #E55039 151.79%);
+      border-radius: 12px;
+      position: absolute;
+      bottom: 23px;
+      right: 23px;
+      padding: 7px;
+    }
+  }
+  .row.give-it-space{
+    margin: 0 10px;
+  }
+
+  .subtitle-container{
+    display: inline-block;
+    width: 100%;
+
+    h1{
+      float: left;
+    }    
+    .profile-header-container{
+      text-align: center;
+      float:right;
+    }
+
+    .profile-header-img > img.img-circle {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #51D2B7;
+    }
+
+    .profile-header {
+      margin-top: 43px;
+    }
+
+    .rank-label-container {
+      margin-top: -19px;
+      text-align: center;
+    }
+
+    .label.label-default.rank-label {
+      background-color: rgb(81, 210, 183);
+      padding: 5px 10px 5px 10px;
+      border-radius: 27px;
+    }
+  }
+
+  .list-group.list-group-flush .list-group {
+    padding-left: 30px;
+  }
+  
+  .sticky-affix{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 56px;
+  }
+
+  .list-item-wrapper.active > .list-group-item{
+    z-index: 2;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  a.anchor {
+    display: block;
+    position: relative;
+    top: -56px;
+    visibility: hidden;
+  }
+
+  .editor-editeur{
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 5px;
+  }
+
+  .edition-card{
+    width: 110%;
+    margin-left: -5%;
+    z-index: 999;
+    top: -100px;
+  }
+
+  ul.a {
+    list-style-type: disc;
+    padding:1.25rem;
+  }
+
+  .float-right{
+    float: right;
+  }
+
+  h3{
+    font-family: Circular Std;
+    font-size: 40px;
+    line-height: normal;
+
+    color: #F6B93B;
+  }
+
+  .contenu-wrapper{
+    position:relative;
+
+    .relative-position{
+      position:relative;
+    }
+    .toolbar-col{
+      position: absolute;
+      left: 100%;
+      height: 100%;
+    }
+  }
+
+  .tags-row{
+    padding : 15px 28px;
+    background: #F2F2F2;
+    height: 70px;
+    margin-bottom: 2em;
+
+    .en-bref{
+      line-height: 41px;
+    }
+
+    .tag-wrapper{
+      border: 0.5px solid #3D3D3D;
+      box-sizing: border-box;
+      border-radius: 12px;
+      font-size: 18px;
+      line-height: normal;
+      color: #3D3D3D;
+      height: 41px;
+      margin-left: 12px;
+      
+      .tag-item{
+        padding: 8px 15px;
+        svg{
+          padding-right: 9px;
+        }
+      }
+    }
+  }
+
+  #accordion-header{
+    background: #F6B93B;
+    border-radius: 34.5px;
+    padding-left: 6px;
+    padding-right: 6px;
+
+    h5{
+      display: flex;
+      margin: auto;
+    }
+
+    .accordion-text{
+      margin: auto 16px auto 23px;
+    }
+    .accordion-number, .accordion-expand{
+      width: 50px;
+      height: 50px;
+
+      border-radius: 1.25em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .accordion-number {
+      background: #FFFFFF;
+      color:black;
+    }
+
+    .accordion-expand{
+      border: 2px solid #FFFFFF;
+      box-sizing: border-box;
+    }
+  }
+}

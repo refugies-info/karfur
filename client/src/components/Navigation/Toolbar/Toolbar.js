@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
 import { Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { AppAsideToggler } from '@coreui/react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -21,7 +22,6 @@ export class Toolbar extends React.Component {
 
   componentDidMount (){
     API.get_langues({}).then(data_res => {
-      console.log(data_res.data.data)
       this.setState({
         available_languages:data_res.data.data, 
       })
@@ -46,16 +46,16 @@ export class Toolbar extends React.Component {
     this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
     const action = { type: "TOGGLE_LANGUE", value: lng }
     this.props.dispatch(action)
-    this.props.i18n.changeLanguage(lng);
+    if(this.props.i18n.getResourceBundle(lng,"translation")){
+      this.props.i18n.changeLanguage(lng);
+    }else{console.log('Resource not found in i18next.')}
   }
 
   render() {
     const path = this.props.location.pathname;
     const { i18n } = this.props;
-    let afficher_burger=false;
-    if(path.includes("/backend")){
-        afficher_burger=true;
-    }
+    let afficher_burger=path.includes("/backend");
+    let afficher_burger_droite=path.includes("/traduction");
 
     let CurrentLanguageIcon = () => {
       let current = this.state.available_languages.find(x => x.i18nCode === i18n.language)
@@ -67,53 +67,57 @@ export class Toolbar extends React.Component {
         return <i className={'flag-icon flag-icon-fr'} title="fr" id="fr"></i>
       }
     }
-    console.log(this.props)
     return(
-        <header className="Toolbar">
-          <div className="left_buttons">
-            <DrawerToggle 
-                forceShow={afficher_burger}
-                clicked={this.props.drawerToggleClicked} />
-            <div className="Logo">
-              <Logo />
-            </div>
+      <header className="Toolbar">
+        <div className="left_buttons">
+          <DrawerToggle 
+            forceShow={afficher_burger}
+            clicked={()=>this.props.drawerToggleClicked('left')} />
+          <div className="Logo">
+            <Logo />
           </div>
-          <nav className="DesktopOnly">
-            <NavigationItems />
-          </nav>
+        </div>
+        <nav className="DesktopOnly center_buttons">
+          <NavigationItems />
+        </nav>
 
-          <div className="right_buttons">
-            <ButtonDropdown className="mr-1" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-              <DropdownToggle caret color="transparent">
-                <CurrentLanguageIcon />
-              </DropdownToggle>
-              <DropdownMenu>
-                {Object.keys(this.state.available_languages).map((element) => {
-                  return (
-                    <div key={this.state.available_languages[element]._id}>
-                      <DropdownItem onClick={() => this.changeLanguage(this.state.available_languages[element].i18nCode)} key={element._id}>
-                        <i className={'flag-icon flag-icon-' + this.state.available_languages[element].langueCode} title={this.state.available_languages[element].langueCode} id={this.state.available_languages[element].langueCode}></i>
-                        <span>{this.state.available_languages[element].langueLoc}</span>
-                      </DropdownItem>
-                      {this.state.available_languages[element].i18nCode==="fr" && <DropdownItem divider />}
-                    </div>
-                  );
-                })}
-              </DropdownMenu>
-            </ButtonDropdown>
+        <div className="right_buttons">
+          <ButtonDropdown className="mr-1" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <DropdownToggle caret color="transparent">
+              <CurrentLanguageIcon />
+            </DropdownToggle>
+            <DropdownMenu>
+              {Object.keys(this.state.available_languages).map((element) => {
+                return (
+                  <div key={this.state.available_languages[element]._id}>
+                    <DropdownItem onClick={() => this.changeLanguage(this.state.available_languages[element].i18nCode)} key={element._id}>
+                      <i className={'flag-icon flag-icon-' + this.state.available_languages[element].langueCode} title={this.state.available_languages[element].langueCode} id={this.state.available_languages[element].langueCode}></i>
+                      <span>{this.state.available_languages[element].langueLoc}</span>
+                    </DropdownItem>
+                    {this.state.available_languages[element].i18nCode==="fr" && <DropdownItem divider />}
+                  </div>
+                );
+              })}
+            </DropdownMenu>
+          </ButtonDropdown>
 
-            {API.isAuth() ? 
-                <Button onClick={this.disconnect}
-                        type="submit">
-                    Se déconnecter
-                </Button>
-                :
-                <NavLink 
-                    to="/login"
-                    className="makeItRed">Se connecter</NavLink>
-            }
-          </div>
-        </header>
+          {API.isAuth() ? 
+              <Button onClick={this.disconnect}
+                      type="submit">
+                  Se déconnecter
+              </Button>
+              :
+              <NavLink 
+                  to="/login"
+                  className="makeItRed">Se connecter</NavLink>
+          }
+        </div>
+        
+        <AppAsideToggler className="d-md-down-none" />
+        <DrawerToggle 
+          forceShow={afficher_burger_droite}
+          clicked={()=>this.props.drawerToggleClicked('right')} />
+      </header>
     )
   }
 };

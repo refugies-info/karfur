@@ -23,7 +23,7 @@ var io = require('socket.io')(http);
 
 //Connexion à la base de donnée
 mongoose.set('debug', false);
-mongoose.connect('mongodb://localhost/db').then(() => {
+mongoose.connect('mongodb://localhost/db', { useNewUrlParser: true }).then(() => {
     console.log('Connected to mongoDB')
     startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
 }).catch(e => {
@@ -60,7 +60,8 @@ app.use('/langues', router);
 app.use('/roles', router);
 app.use('/images', router);
 app.use('/themes', router);
-// app.use('/locales', router);
+app.use('/traduction', router);
+app.use('/dispositifs', router);
 require(__dirname + '/controllers/userController')(router);
 require(__dirname + '/controllers/eventsController')(router);
 require(__dirname + '/controllers/translateController')(router);
@@ -69,7 +70,8 @@ require(__dirname + '/controllers/languesController')(router);
 require(__dirname + '/controllers/roleController')(router);
 require(__dirname + '/controllers/imageController')(router);
 require(__dirname + '/controllers/themesController')(router);
-// require(__dirname + '/controllers/localesController')(router);
+require(__dirname + '/controllers/traductionController')(router);
+require(__dirname + '/controllers/dispositifController')(router);
 
 
 //Partie dédiée à la messagerie instantanée

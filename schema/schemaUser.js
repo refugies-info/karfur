@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
 		type: String,
 		lowercase: true,
 		trim: true,
-		unique: true,
+		unique: false,
 		required: false
 	},
 	description: {
@@ -43,6 +43,14 @@ var userSchema = mongoose.Schema({
   },
   selectedLanguages: { 
     type: Array,
+    required: false
+  },
+  traductionsFaites: { 
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'Traduction' }],
+    required: false
+  },
+  noteTraduction: { 
+    type: Number,
     required: false
   },
   status: { 

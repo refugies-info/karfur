@@ -22,6 +22,14 @@
   display: flex;
 }
 
+.Toolbar .center_buttons{
+  margin-left:auto;
+}
+
+.Toolbar .right_buttons{
+  margin-left:auto;
+}
+
 .Toolbar .Logo {
   height: 80%;
   margin: auto;

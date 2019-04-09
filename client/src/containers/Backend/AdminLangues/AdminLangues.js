@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
 import { Col, Row, Button, Progress} from 'reactstrap';
+import {stringify} from 'himalaya';
 
 import API from '../../../utils/API';
+import marioProfile from '../../../assets/mario-profile.jpg'
 import {colorAvancement} from '../../../components/Functions/ColorFunctions'
 import CustomAccordion from '../../../components/Backend/AdminLangues/CustomAccordion/CustomAccordion'
 import Leaderboard from '../../../components/Backend/AdminLangues/Leaderboard/Leaderboard'
@@ -34,10 +36,13 @@ class AdminLangues extends Component {
   state={
     langues:[],
     themes:[],
+    traductions:[],
+    currentTraduction:{},
     accordion: {
       Tickets : [false, false, false],
       Reviews : [false, false, false],
-    }
+    },
+    reviews_data:reviews_data
   };
 
   componentDidMount (){
@@ -52,6 +57,22 @@ class AdminLangues extends Component {
         themes:data_res.data.data,
       })
     },(error) => {console.log(error);return;})
+
+    API.get_tradForReview({ rightId: { $ne: null }, status: 'En attente' },{'langueCible':1},{path: 'userId',select: '-password'}).then(data_res => {
+      if(data_res.data.data.length>0){
+        console.log(data_res.data.data)
+        let traductions=data_res.data.data.map(x=>{return {...x,initialText:stringify(x.initialText),translatedText:stringify(x.translatedText)}})
+        this.setState({
+          traductions:traductions,
+          currentTraduction:traductions[0],
+          reviews_data:{
+            ...this.state.reviews_data,
+            badge:traductions.length,
+            headers:[...this.state.reviews_data.headers.map(x => {return {...x,badge:traductions.length}})]
+          },
+        })
+      }
+    },(error) => {console.log(error);return;})
   }
 
 
@@ -63,6 +84,28 @@ class AdminLangues extends Component {
         [item]: state
       }
     });
+  }
+
+  onValidate = () => {
+    API.validate_tradForReview(this.state.currentTraduction).then(data_res => {
+      this.onPass()
+    },(error) => {console.log(error);return;})
+  }
+
+  onPass = () => {
+    let lastIndex=this.state.traductions.findIndex(k => k._id===this.state.currentTraduction._id);
+    if(lastIndex > -1){
+      this.setState({
+        currentTraduction:lastIndex > this.state.traductions.length - 1 ? this.state.traductions[this.state.reviews_data+1] : this.state.traductions[0],
+        reviews_data:{
+          ...this.state.reviews_data,
+          badge:this.state.reviews_data.badge-1,
+          headers:[...this.state.reviews_data.headers.map(x => {return {...x,badge:x.badge-1}})]
+        },
+      })
+    }else{
+      console.log('no index')
+    }
   }
 
   render() {
@@ -92,11 +135,11 @@ class AdminLangues extends Component {
                   <td className="align-middle limit-width-340">
                     <Row className="limit-width-340">
                       <Col md="12" >
-                        {langue.participants.map((participant) => {
+                        {langue.participants.map((participant, key) => {
                           return ( 
                             <img
-                              key={participant.picture.imgId} 
-                              src={participant.picture.secure_url}
+                              key={(participant.picture || {}).imgId || key} 
+                              src={(participant.picture || {}).secure_url || marioProfile}
                               className="profile-img img-circle"
                               alt="random profiles" />
                           )}
@@ -129,9 +172,12 @@ class AdminLangues extends Component {
           </Col>
           <Col xl="6">
             <CustomAccordion 
-              data={reviews_data}
+              data={this.state.reviews_data}
               accordion={this.state.accordion.Reviews}
-              toggleAccordion={this.toggleAccordion} />
+              toggleAccordion={this.toggleAccordion}
+              traduction = {this.state.currentTraduction}
+              onValidate={this.onValidate} 
+              onPass={this.onPass} />
           </Col>
         </Row>
 

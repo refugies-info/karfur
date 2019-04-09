@@ -57,11 +57,12 @@ class Editeur extends Component {
   render() {  
     return (
       <div className="animated fadeIn editeur">
-        <SuccessModal 
-          show={this.state.showModal}
-          clicked={this.navigate_to_article}
-          article_id={this.state.itemId}
-          />
+        {this.state.showModal &&
+          <SuccessModal 
+            show={this.state.showModal}
+            clicked={this.navigate_to_article}
+            article_id={this.state.itemId}
+            />}
         <Card className="full-page">
           <CardHeader>
             <FormGroup>
