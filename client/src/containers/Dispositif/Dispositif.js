@@ -60,8 +60,8 @@ class Dispositif extends Component {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
         this.setState({
-          // menu:dispositif.contenu, 
-          //content:{titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract}, 
+          menu:dispositif.contenu, 
+          content:{titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract}, 
         })
       },function(error){
         console.log(error);
