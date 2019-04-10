@@ -1,6 +1,9 @@
 // Store/configureStore.js
 
-import { createStore } from 'redux';
-import toggleLangue from './Reducers/langueReducer'
+import { createStore, combineReducers } from 'redux';
+import toggleLangue from './Reducers/langueReducer';
+import chatReducer from './Reducers/chatReducer';
 
-export default createStore(toggleLangue)
+const rootReducer = combineReducers({langue: toggleLangue, chat: chatReducer})
+
+export default createStore(rootReducer)

@@ -49,10 +49,11 @@
     color:white !important;
     height: 60px !important;
     overflow-y: auto;
+    resize: none;
   }
-    .type_msg:focus{
-      box-shadow:none !important;
-        outline:0px !important;
+  .type_msg:focus{
+    box-shadow:none !important;
+    outline:0px !important;
   }
   .attach_btn{
     border-radius: 15px 0 0 15px !important;

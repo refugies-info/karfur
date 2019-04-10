@@ -226,7 +226,7 @@ export class Chat extends React.Component {
                       </textarea>
                       <div className="input-group-append">
                         <span className="input-group-text send_btn" onClick={this._onMessageWasSent}>
-                          <i className="fa fa-location-arrow"></i>
+                          <i className="fa fa-send"></i>
                         </span>
                       </div>
                     </div>

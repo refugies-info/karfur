@@ -90,6 +90,13 @@ export default {
       return axios.post(burl + '/themes/get_themes',  {query: query, sort: sort, populate: populate}, {headers: headers})
     },
 
+    add_channel : query => {
+      return axios.post(burl + '/channels/add_channel', query, {headers: headers})
+    },
+    get_channel : (query, sort, populate) => {
+      return axios.post(burl + '/channels/get_channel',  {query: query, sort: sort, populate: populate}, {headers: headers})
+    },
+
     get_roles : (query, sort) => {
       return axios.post(burl + '/roles/get_role',  {query: query, sort: sort}, {headers: headers})
     },
