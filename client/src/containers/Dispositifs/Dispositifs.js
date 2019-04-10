@@ -88,8 +88,8 @@ class Dispositifs extends Component {
                 <Button block outline color="dark">Accès à la nationalité</Button>
               </Col>
               <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                <span className="toggler active" data-toggle="grid"><span className="entypo-layout" /></span>
-                <span className="toggler" data-toggle="list"><span className="entypo-list" /></span>
+                <span className="toggler active" data-toggle="grid"><span className="fa fa-th-large" /></span>
+                <span className="toggler" data-toggle="list"><span className="fa fa-th-list" /></span>{/*  or use entypo library from weloveicons */}
               </Col>
             </Row>
             <Row>
