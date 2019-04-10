@@ -116,8 +116,9 @@ $theme-color: #8DC63F;
         pointer-events: none;
         right: 5px;
         font-size: 24px;
-        transform: matrix(-1, 0, 0, 1, 0, 0);
+        transform: matrix(-1, 0, 0, 1, 0, 0) translateY(-50%);
         color: #d6d6d6;
+        top: 50%;
       }
     }
   }
@@ -147,6 +148,10 @@ $theme-color: #8DC63F;
       border-radius: 12px;
       height:300px;
 
+      .card-body{
+        height: 309px;
+        overflow: scroll;
+      }
       h3{
         font-size: 28px;
         font-weight: 600;    
@@ -164,6 +169,32 @@ $theme-color: #8DC63F;
       .card-footer{
         border-bottom-right-radius: 12px;
         border-bottom-left-radius: 12px;
+      }
+
+      &.add-card{
+        background-color: rgba(0,0,0,0.05);
+        &:hover{
+          background-color: rgba(0,0,0,0.1);
+          .add-sign{
+            opacity:1;
+            font-size:90px;
+            -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
+            -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
+            -o-transition: opacity 0.4s ease, font-size 0.4s ease;
+            transition: opacity 0.4s ease, font-size 0.4s ease;
+          }
+        }
+        .add-sign{
+          font-size:60px;
+          font-weight:bold;
+          opacity: .5;
+        }
+        .card-body{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: hsl(0,0%,20%);
+        }
       }
     }
 

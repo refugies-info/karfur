@@ -71,6 +71,7 @@ app.use('/images', router);
 app.use('/themes', router);
 app.use('/traduction', router);
 app.use('/dispositifs', router);
+app.use('/channels', router);
 require(__dirname + '/controllers/userController')(router);
 require(__dirname + '/controllers/eventsController')(router);
 require(__dirname + '/controllers/translateController')(router);
@@ -81,6 +82,7 @@ require(__dirname + '/controllers/imageController')(router);
 require(__dirname + '/controllers/themesController')(router);
 require(__dirname + '/controllers/traductionController')(router);
 require(__dirname + '/controllers/dispositifController')(router);
+require(__dirname + '/controllers/channelController')(router);
 
 
 //Partie dédiée à la messagerie instantanée

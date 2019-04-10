@@ -7,7 +7,9 @@ import { AppAsideToggler } from '@coreui/react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import './Toolbar.css';
+import * as actions from '../../../Store/actions'
+
+import './Toolbar.scss';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../../utils/API';
@@ -43,7 +45,7 @@ export class Toolbar extends React.Component {
 
   changeLanguage = (lng) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
-    const action = { type: "TOGGLE_LANGUE", value: lng }
+    const action = { type: actions.TOGGLE_LANGUE, value: lng }
     this.props.dispatch(action)
     if(this.props.i18n.getResourceBundle(lng,"translation")){
       this.props.i18n.changeLanguage(lng);
@@ -112,10 +114,10 @@ export class Toolbar extends React.Component {
           }
         </div>
         
-        <AppAsideToggler className="d-md-down-none" />
-        <DrawerToggle 
-          forceShow={afficher_burger_droite}
-          clicked={()=>this.props.drawerToggleClicked('right')} />
+        {afficher_burger_droite &&
+          <AppAsideToggler
+            className="d-md-down-none" />
+        }
       </header>
     )
   }

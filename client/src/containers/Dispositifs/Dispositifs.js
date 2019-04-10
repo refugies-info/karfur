@@ -31,9 +31,13 @@ class Dispositifs extends Component {
     this.setState({showModal:show, dispositif:dispositif})
   }
 
-  goToDispositif = () =>(
-    this.props.history.push('/dispositif/'+this.state.dispositif._id)
-  ) 
+  goToDispositif = () =>{
+    if(this.state.dispositif._id){
+      this.props.history.push('/dispositif/'+this.state.dispositif._id)
+    }else{
+      this.props.history.push('/dispositif')
+    }
+  }
 
   render() {
       return (
@@ -106,6 +110,14 @@ class Dispositifs extends Component {
                   </Col>
                 )}
               )}
+              <Col xs="9" sm="4" md="3">
+                <Card className="custom-card add-card" onClick={this.goToDispositif}>
+                  <CardBody>
+                    <span className="add-sign">+</span>
+                  </CardBody>
+                  <CardFooter className={"align-right bg-secondary"}>Créer un nouveau dispositif</CardFooter>
+                </Card>
+              </Col>
             </Row>
           </section>
 

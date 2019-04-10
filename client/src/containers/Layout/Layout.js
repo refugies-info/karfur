@@ -20,7 +20,7 @@ class Layout extends Component {
   state = {
     showSideDrawer: {left:false,right:false},
     traducteur:false,
-    showOnBoardingTraducteurModal:false
+    showOnBoardingTraducteurModal:false,
   }
   
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
