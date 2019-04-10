@@ -43,7 +43,7 @@ const editableParagraph = (props) => {
         subkey={props.subkey}
         className="animated fadeIn"
         html={props.content}  // innerHTML of the editable div
-        disabled={false}       // use true to disable editing
+        disabled={props.disableEdit}       // use true to disable editing
         onChange={props.handleMenuChange} // handle innerHTML change
       />
     )

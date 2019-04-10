@@ -55,7 +55,6 @@ class Translation extends Component {
       this.setState({
         time: Date.now() - this.mountTime
       })}, 1000);
-    
     let itemId=null, locale=null;
     try{itemId=this.props.match.params.id}catch(e){console.log(e)}
     try{locale=this.props.location.state.langue.i18nCode}catch(e){console.log(e)}
@@ -90,6 +89,7 @@ class Translation extends Component {
         locale: locale
       })
     }
+    window.scrollTo(0, 0);
   }
 
   componentWillUnmount (){
@@ -282,7 +282,7 @@ class Translation extends Component {
       <div className="animated fadeIn traduction">
         <div className="animated fadeIn traduction-container">
           {feedbackModal}
-          <Row>
+          <Row id="translation-container">
             <Col>
               <Card id="card_widgets">
                 <CardBody>

@@ -8,7 +8,6 @@ import RightSideDrawer from './RightSideDrawer/RightSideDrawer'
 import './SideDrawer.css';
 
 const sideDrawer = ( props ) => {
-  console.log(props.side)
   const drawer = (
     props.side ==='left' ? <LeftSideDrawer {...props}/> : <RightSideDrawer {...props}/>
   )

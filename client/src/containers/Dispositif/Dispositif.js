@@ -50,6 +50,7 @@ class Dispositif extends Component {
       show:false,
     },
     accordion: new Array(1).fill(false),
+    disableEdit:true,
   }
   _initialState=this.state;
 
@@ -67,6 +68,8 @@ class Dispositif extends Component {
         console.log(error);
         return;
       })
+    }else{
+      this.setState({disableEdit:false})
     }
   }
 
@@ -201,7 +204,7 @@ class Dispositif extends Component {
                 <ContentEditable
                   id='titreInformatif'
                   html={this.state.content.titreInformatif}  // innerHTML of the editable div
-                  disabled={false}       // use true to disable editing
+                  disabled={this.state.disableEdit}       // use true to disable editing
                   onChange={this._handleChange} // handle innerHTML change
                 />
               </h1>
@@ -210,7 +213,7 @@ class Dispositif extends Component {
                 <ContentEditable
                   id='titreMarque'
                   html={this.state.content.titreMarque}  // innerHTML of the editable div
-                  disabled={false}       // use true to disable editing
+                  disabled={this.state.disableEdit}
                   onChange={this._handleChange} // handle innerHTML change
                 />
               </h2>
@@ -293,7 +296,7 @@ class Dispositif extends Component {
                   <ContentEditable
                     id='abstract'
                     html={this.state.content.abstract}  // innerHTML of the editable div
-                    disabled={false}       // use true to disable editing
+                    disabled={this.state.disableEdit}       // use true to disable editing
                     onChange={this._handleChange} // handle innerHTML change
                   />
                 </div>
@@ -325,11 +328,13 @@ class Dispositif extends Component {
                         handleMenuChange={this.handleMenuChange}
                         onEditorStateChange={this.onEditorStateChange}
                         handleContentClick={this.handleContentClick}
+                        disableEdit={this.state.disableEdit}
                         {...item}/>
                     </Col>
                     <Col className='toolbar-col'>
                       <QuickToolbar 
                         show={this.state.hovers[key].isHover}
+                        disableEdit={this.state.disableEdit}
                         toggleModal={this.toggleModal} />
                     </Col>
                   </Row>
@@ -341,7 +346,15 @@ class Dispositif extends Component {
                           <Button id="accordion-header" color="warning" className="text-left" onClick={() => this.toggleAccordion(0)} aria-expanded={this.state.accordion[0]} aria-controls="collapseOne">
                             <h5>
                               <div className="accordion-number">{subkey+1}</div>
-                              <span className="accordion-text">{subitem.title}</span>
+                              <span className="accordion-text">
+                                <ContentEditable
+                                  id='title'
+                                  subkey={subkey}
+                                  html={subitem.title}  // innerHTML of the editable div
+                                  disabled={this.state.disableEdit}       // use true to disable editing
+                                  onChange={this.handleMenuChange} // handle innerHTML change
+                                />
+                              </span>
                               <div className="accordion-expand">+</div>
                             </h5>
                           </Button>
@@ -352,6 +365,7 @@ class Dispositif extends Component {
                               handleMenuChange={this.handleMenuChange}
                               onEditorStateChange={this.onEditorStateChange}
                               handleContentClick={this.handleContentClick}
+                              disableEdit={this.state.disableEdit}
                               {...subitem} />
                           </Collapse>
                         </div>
@@ -363,7 +377,10 @@ class Dispositif extends Component {
                             <Col lg="12">
                               <h4>
                                 {subitem.title}
-                                <i onClick={()=>this.handleContentClick(key,true, subkey)} className="cui-pencil icons font-xl float-right"></i>
+                                {!this.state.disableEdit 
+                                  &&
+                                  <i onClick={()=>this.handleContentClick(key,true, subkey)} className="cui-pencil icons font-xl float-right"></i>
+                                }
                               </h4>
                               <EditableParagraph 
                                 idx={key} 
@@ -371,6 +388,7 @@ class Dispositif extends Component {
                                 handleMenuChange={this.handleMenuChange}
                                 onEditorStateChange={this.onEditorStateChange}
                                 handleContentClick={this.handleContentClick}
+                                disableEdit={this.state.disableEdit}
                                 {...subitem} />
                               <br />
                             </Col>

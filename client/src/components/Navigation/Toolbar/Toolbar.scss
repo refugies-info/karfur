@@ -1,21 +1,29 @@
 .Toolbar {
-    height: 56px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #F2F2F2;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    box-sizing: border-box;
-    z-index: 90;
-    color:#3D3D3D;
-}
+  height: 56px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #F2F2F2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  z-index: 90;
+  color:#3D3D3D;
 
-.Toolbar nav {
+  nav {
     height: 100%;
+  }
+  
+  .navbar-toggler{
+    &:focus {outline:0;}
+    .navbar-toggler-icon {
+      height: 23px;
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%232f353a' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+  }
 }
 
 .Toolbar .left_buttons{
