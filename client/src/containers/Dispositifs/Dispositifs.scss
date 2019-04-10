@@ -3,13 +3,6 @@ $primary-text-color: #000;
 $secondary-text-color: #A1A1A4;
 $theme-color: #8DC63F; 
 
-@import url(http://weloveiconfonts.com/api/?family=entypo);
-
-/* entypo */
-[class*="entypo-"]:before {
-  font-family: 'entypo', sans-serif;
-}
-
 .dispositifs{
   font-family: CircularStd;
   
