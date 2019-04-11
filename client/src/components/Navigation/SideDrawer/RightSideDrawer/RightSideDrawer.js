@@ -4,6 +4,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import {withRouter, matchPath} from 'react-router-dom';
 
+import { socket } from '../../../../utils/API';
 import * as actions from '../../../../Store/actions'
 import defaultAvatar from '../../../../assets/avatar_bg_colored.svg';
 import API from '../../../../utils/API';
@@ -26,45 +27,70 @@ class RightSideDrawer extends React.Component {
   };
   
   componentDidMount (){
+    let urlId, locale;
     let pathData=matchPath(this.props.location.pathname, {
       path: "/traduction/:id"
     });
-    if(pathData && pathData.params && pathData.params.id){
-      this.setState({urlId: pathData.params.id, path:this.props.location.pathname});
-    }
     try{
-      let locale=this.props.location.state.langue.i18nCode
+      locale=this.props.location.state.langue.i18nCode
       this.setState({locale: locale});
-    }catch(e){console.log(e)}
+    }catch(e){console.log(e)};
+    if(pathData && pathData.params && pathData.params.id){
+      urlId = pathData.params.id;
+      this.setState({urlId: urlId, path:this.props.location.pathname});
+      
+      console.log(urlId,locale)
+      API.get_channel({ itemId: urlId, itemName: 'traduction', filter: locale || {"$exists": false}}).then(data_res => {
+        console.log(data_res.data.data[0])
+        let channel=data_res.data.data[0];
+        if(channel){
+          this.setState({
+            messages: channel.messages
+          })
+          this.scrollToBottom();
+        }
+      });
+      socket.on('MessageSent', msg => {
+        console.log(msg)
+        if(msg.type==='sidechat'){
+          this.setState({
+            messages: msg.messages
+          })
+        }
+      });
+    }
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   handleChange = (e) => {
     this.setState({message: e.target.value})
   }
 
+  sendMessage = (message,side) => {
+    socket.emit(side + ':sendMessage', message)
+  }
+
   submitChat = () => {
     if(!this.state.message){return;}
-    let message={
-      text: this.state.message, 
-      from : {username: 'Soufiane'},
-      created_at: new Date(),
-
-    };
-    this.setState({
-      messages : [...this.state.messages, message],
-      message:''
-    })
     let channel={
       message: this.state.message,
       itemId: this.state.urlId,
       itemName: 'traduction',
       filter: this.state.locale,
       path: this.state.path,
+      type:'sidechat'
     }
-    console.log(channel)
     API.add_channel(channel).then(data_res => {
-      console.log(data_res)
+      this.sendMessage(data_res.data.data, 'client');
+      this.setState({ message:'' })
     });
+  }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   }
 
   render() {
@@ -91,7 +117,10 @@ class RightSideDrawer extends React.Component {
                 </li>
               )}
             )}
-          </ul>      
+            <li style={{ float:"left", clear: "both" }}
+                ref={(el) => { this.messagesEnd = el; }}>
+            </li>    
+          </ul>  
         </Row>
 
         <Row className="chat-footer">
