@@ -37,6 +37,7 @@ getId = (req, res, next) => {
   if(token !== null && token !== undefined && token !== 'undefined'){
     let decoded=jwt.decode(token, process.env.SECRET || config.secret);
     if(decoded){
+      req.user=decoded;
       req.userId=decoded._id;
     }
   }

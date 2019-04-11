@@ -28,6 +28,11 @@ var channelSchema = mongoose.Schema({
 		unique: false,
 		required: false
   },
+  type:{ 
+		type: String,
+		unique: false,
+		required: false
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
 channelSchema.options.autoIndex = false

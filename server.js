@@ -82,30 +82,30 @@ require(__dirname + '/controllers/imageController')(router);
 require(__dirname + '/controllers/themesController')(router);
 require(__dirname + '/controllers/traductionController')(router);
 require(__dirname + '/controllers/dispositifController')(router);
-require(__dirname + '/controllers/channelController')(router);
+require(__dirname + '/controllers/channelController')(router, io);
 
 
 //Partie dédiée à la messagerie instantanée
 io.on('connection', function(socket){
-    console.log('user connected');
-    socket.on('subscribeToChat', function(){
-        console.log('user subscribed')
-    });
-    socket.on('client:sendMessage', function(msg){
-        if(msg && msg.data && msg.data.text){
-            console.log('message utilisateur : ' + msg.data.text);
-        }
-        io.emit('MessageSent', msg);
-    });
-    socket.on('agent:sendMessage', function(msg){
-        if(msg && msg.data && msg.data.text){
-            console.log('message agent : ' + msg.data.text);
-        }
-        io.emit('MessageSent', msg);
-    });
-    socket.on('disconnect', function(){
-      console.log('user disconnected');
-    });
+  console.log('user connected');
+  socket.on('subscribeToChat', function(){
+    console.log('user subscribed')
+  });
+  socket.on('client:sendMessage', function(msg){
+    if(msg && msg.data && msg.data.text){
+      console.log('message utilisateur : ' + msg.data.text);
+    }
+    io.emit('MessageSent', msg);
+  });
+  socket.on('agent:sendMessage', function(msg){
+    if(msg && msg.data && msg.data.text){
+        console.log('message agent : ' + msg.data.text);
+    }
+    io.emit('MessageSent', msg);
+  });
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
 });
 
 //Définition et mise en place du port d'écoute
