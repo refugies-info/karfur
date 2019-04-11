@@ -14,15 +14,18 @@ class LiveChat extends Component {
 
   componentDidMount() {    
     this.props.socket.on('MessageSent', msg => {
-      this.setState({
-        messageList: [...this.state.messageList, msg],
-        newMessagesCount : this.state.newMessagesCount +1
-      });
+      if(msg.type==='livechat'){
+        this.setState({
+          messageList: [...this.state.messageList, msg],
+          newMessagesCount : this.state.newMessagesCount +1
+        });
+      }
     });
   }
 
   _onMessageWasSent(message) {
     message.author='them';
+    message.type='livechat';
     this.props.socketFn.sendMessage(message, 'client');
   }
 
