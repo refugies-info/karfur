@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Card, CardBody, CardHeader, Col, Jumbotron, Row, Button, Spinner, CardFooter } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Jumbotron, Row, Button, Spinner, CardFooter, FormGroup, FormText, Label, Input } from 'reactstrap';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import axios from 'axios';
 import ContentEditable from 'react-contenteditable';
 import ReactHtmlParser from 'react-html-parser';
@@ -17,6 +19,18 @@ import './Translation.scss';
 let last_target=null;
 let letter_pressed=null;
 
+const SliderWithTooltip = createSliderWithTooltip(Slider);
+
+var option = {
+  style: 'percent',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0
+};
+
+const localeFormatter = (v) => {
+  return new Intl.NumberFormat('fr-FR', option).format(v)
+}
+
 class Translation extends Component {
   state = {
     value: '',
@@ -30,6 +44,8 @@ class Translation extends Component {
     },
     texte_traduit:'',
     texte_a_traduire:'',
+    avancement:0.495,
+    isComplete:false,
 
     itemId: '',
     isExpert:false,
@@ -256,6 +272,10 @@ class Translation extends Component {
     this.setState({feedbackModal:{...this.state.feedbackModal,show:false}})
   }
   
+  handleSliderChange = (value) => {
+    this.setState({ avancement: value })
+  }
+  
   render(){
     const ConditionalSpinner = (props) => {
       if(props.show){
@@ -412,6 +432,41 @@ class Translation extends Component {
                   </Jumbotron>
                 </CardBody>
                 <CardFooter>
+                  <Row>
+                    <Col md="9">
+                      <FormGroup check className="checkbox">
+                        <Input className="form-check-input" type="checkbox" id="checkbox1" name="checkbox1" value="option1" />
+                        <Label check className="form-check-label" htmlFor="checkbox1">Cette traduction est complète à 100%</Label>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="9">
+                      <SliderWithTooltip 
+                        min={0}
+                        max={1}
+                        step={0.05}
+                        tipFormatter={localeFormatter}
+                        trackStyle={{ background: 'linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)', height: 10 }}
+                        handleStyle={{
+                          borderColor: 'blue',
+                          height: 20,
+                          width: 20,
+                          marginLeft: -14,
+                          marginTop: -5,
+                          backgroundColor: 'blue',
+                        }}
+                        railStyle={{ backgroundColor: 'red', height: 10 }}
+                        name="user" 
+                        onChange={this.handleSliderChange}
+                        value={this.state.avancement}
+                      /> 
+                      <FormText color="muted">Définissez ici le pourcentage d'avancement estimé de votre traduction</FormText>
+                    </Col>
+                    <Col>
+                      {Math.round((this.state.avancement || 0) * 100, 0)}% d'avancement
+                    </Col>
+                  </Row>
                   <Row>
                     <Col>
                       <Button onClick={this.valider} color="success" size="lg" block>
