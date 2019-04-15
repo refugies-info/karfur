@@ -3,6 +3,7 @@ import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
 ////////A enlever si pas utilisé/////////////:
 import Notifications from '../../components/UI/Notifications/Notifications';
+import {NavLink} from 'react-router-dom';
 
 import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
 import './HomePage.scss';
@@ -56,7 +57,7 @@ class HomePage extends Component {
               <p>ou</p>
               <hr />
 
-              <a href="/base/welcome_parcours" className="btn-get-started">Créer un parcours personnalisé</a>
+              <NavLink to="/parcours-on-board" className="btn-get-started">Créer un parcours personnalisé</NavLink>
               </div>
           </section>
 

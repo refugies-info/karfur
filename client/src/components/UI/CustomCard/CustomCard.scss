@@ -1,0 +1,57 @@
+
+.custom-card{
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+  cursor : pointer;
+  border-radius: 12px;
+  height:300px;
+
+  .card-body{
+    height: 309px;
+    overflow: scroll;
+  }
+  
+  h3{
+    font-size: 28px;
+    font-weight: 600;    
+    line-height: 28px;
+    color: #3D3D3D;
+    margin-bottom: 1rem;
+  }
+
+  p{
+    font-size: 16px;
+    line-height: normal;
+    color: #3D3D3D;
+  }
+
+  .card-footer{
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+  }
+
+  &.add-card{
+    background-color: rgba(0,0,0,0.05);
+    &:hover{
+      background-color: rgba(0,0,0,0.1);
+      .add-sign{
+        opacity:1;
+        font-size:90px;
+        -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
+        -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
+        -o-transition: opacity 0.4s ease, font-size 0.4s ease;
+        transition: opacity 0.4s ease, font-size 0.4s ease;
+      }
+    }
+    .add-sign{
+      font-size:60px;
+      font-weight:bold;
+      opacity: .5;
+    }
+    .card-body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: hsl(0,0%,20%);
+    }
+  }
+}
