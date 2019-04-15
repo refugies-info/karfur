@@ -31,11 +31,11 @@ class RightSideDrawer extends React.Component {
     let pathData=matchPath(this.props.location.pathname, {
       path: "/traduction/:id"
     });
-    try{
-      locale=this.props.location.state.langue.i18nCode
-      this.setState({locale: locale});
-    }catch(e){console.log(e)};
     if(pathData && pathData.params && pathData.params.id){
+      try{
+        locale=this.props.location.state.langue.i18nCode
+        this.setState({locale: locale});
+      }catch(e){console.log(e)};
       urlId = pathData.params.id;
       this.setState({urlId: urlId, path:this.props.location.pathname});
       
