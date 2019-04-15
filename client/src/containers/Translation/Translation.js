@@ -231,7 +231,8 @@ class Translation extends Component {
       timeSpent : this.state.time,
       isStructure: this.state.isStructure,
       path: this.state.path,
-      id: this.state.id
+      id: this.state.id,
+      avancement:this.state.avancement
     }
     if(this.state.isExpert){
       traduction={
@@ -239,7 +240,6 @@ class Translation extends Component {
         translationId:this.state.translationId
       }
     }
-    console.log(traduction)
     API.add_traduction(traduction).then(() => {
       this.setState({
         feedbackModal:{
@@ -272,8 +272,18 @@ class Translation extends Component {
     this.setState({feedbackModal:{...this.state.feedbackModal,show:false}})
   }
   
+  handleCheckboxChange = event => {
+    this.setState({
+      isComplete: event.target.checked,
+      avancement: event.target.checked ? 1 : 0.495
+    }); 
+  }
+
   handleSliderChange = (value) => {
     this.setState({ avancement: value })
+    if(value === 1 || this.state.isComplete){
+      this.setState({ isComplete: value === 1 });
+    }
   }
   
   render(){
@@ -432,11 +442,12 @@ class Translation extends Component {
                   </Jumbotron>
                 </CardBody>
                 <CardFooter>
+                  <Label>Estimez le niveau d'avancement de la traduction :</Label>
                   <Row>
                     <Col md="9">
                       <FormGroup check className="checkbox">
-                        <Input className="form-check-input" type="checkbox" id="checkbox1" name="checkbox1" value="option1" />
-                        <Label check className="form-check-label" htmlFor="checkbox1">Cette traduction est complète à 100%</Label>
+                        <Input className="form-check-input" type="checkbox" id="isComplete" checked={this.state.isComplete} onChange={this.handleCheckboxChange}/>
+                        <Label check className="form-check-label" htmlFor="isComplete">Cette traduction est complète à 100%</Label>
                       </FormGroup>
                     </Col>
                   </Row>

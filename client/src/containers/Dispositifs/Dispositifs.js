@@ -8,6 +8,7 @@ import {randomColor} from '../../components/Functions/ColorFunctions'
 import API from '../../utils/API';
 import femmeDispo from '../../assets/figma/femmeDispo.svg'
 import hommeDispo from '../../assets/figma/hommeDispo.svg'
+import CustomCard from '../../components/UI/CustomCard/CustomCard';
 
 import './Dispositifs.scss';
 
@@ -100,23 +101,23 @@ class Dispositifs extends Component {
               {this.state.dispositifs.map((dispositif) => {
                 return (
                   <Col xs="9" sm="4" md="3" key={dispositif._id}>
-                    <Card className="custom-card" onClick={()=>this._toggleModal(true,dispositif)}>
+                    <CustomCard onClick={()=>this._toggleModal(true,dispositif)}>
                       <CardBody>
                         <h3>{dispositif.titreInformatif}</h3>
                         <p>{dispositif.abstract}</p>
                       </CardBody>
                       <CardFooter className={"align-right bg-"+randomColor()}>{dispositif.titreMarque}</CardFooter>
-                    </Card>
+                    </CustomCard>
                   </Col>
                 )}
               )}
               <Col xs="9" sm="4" md="3">
-                <Card className="custom-card add-card" onClick={this.goToDispositif}>
+                <CustomCard addCard onClick={this.goToDispositif}>
                   <CardBody>
                     <span className="add-sign">+</span>
                   </CardBody>
                   <CardFooter className={"align-right bg-secondary"}>Créer un nouveau dispositif</CardFooter>
-                </Card>
+                </CustomCard>
               </Col>
             </Row>
           </section>
