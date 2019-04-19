@@ -2,6 +2,7 @@ if(process.env.NODE_ENV === 'dev') {
   const langues = require('../private/langues.json');
   const roles = require('../private/roles.json');
   const users = require('../private/users.json');
+  const dispositif = require('../private/dispositif.json');
   const Article = require('../schema/schemaArticle.js');
   const fs = require('fs');
   var path = require('path');
@@ -22,6 +23,22 @@ if(process.env.NODE_ENV === 'dev') {
       nb_documents=await db.collection('users').countDocuments()
       if(nb_documents < users.length){
         console.log(await db.collection('users').insertMany(users).insertedIds);
+      }
+
+      nb_documents=await db.collection('dispositifs').countDocuments()
+      if(nb_documents < 10){
+        let dispositifs = new Array(100).fill(dispositif).map((x, key) => {return {
+          ...x,
+          titreInformatif: x.titreInformatif + key,
+          titreMarque: x.titreMarque + key,
+          abstract: x.abstract + key,
+          audience: x.audience.filter(()=> Math.random() <= 0.5),
+          audienceAge: x.audienceAge.filter(()=> Math.random() <= 0.5),
+          tags: x.tags.filter((y)=> Math.random() <= 0.5),
+          localisation: ['Paris', 'Aubervilliers', 'Seine Saint-Denis', 'Calais', 'Lyon'][Math.floor(Math.random() * 4,99)],
+          "niveauFrancais":["pas", "peu", "moyennement", "bien", "parfaitement"][Math.floor(Math.random() * 4,99)],
+        }})
+        console.log(await db.collection('dispositifs').insertMany(dispositifs).insertedIds);
       }
 
       // let isLocaleSuccess=_insertI18nLocales()

@@ -3,11 +3,10 @@
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
   cursor : pointer;
   border-radius: 12px;
-  height:300px;
-
-  .card-body{
-    height: 309px;
-    overflow: scroll;
+  
+  .align-right{
+    text-align:right;
+    font-style: italic;
   }
   
   h3{

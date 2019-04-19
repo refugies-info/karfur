@@ -15,7 +15,8 @@ import Articles from './containers/Articles/Articles';
 import Article from './containers/Article/Article';
 import Dispositifs from './containers/Dispositifs/Dispositifs';
 import Dispositif from './containers/Dispositif/Dispositif';
-import ParkourOnBoard from './containers/ParkourOnBoard/ParkourOnBoard'
+import ParkourOnBoard from './containers/ParkourOnBoard/ParkourOnBoard';
+import ParkourPerso from './containers/ParkourPerso/ParkourPerso';
 import Editeur from './containers/Editeur/Editeur';
 import Avancement from './containers/Translation/Avancement/Avancement';
 import Translation from './containers/Translation/Translation';
@@ -34,7 +35,8 @@ const routes = [
   { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
   { path: '/dispositif', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
 
-  { path: '/parcours-on-board', name: 'ParkourOnBoard', component: ParkourOnBoard, restriction:[] },
+  { path: '/parcours-on-board', name: 'Parcours On Board', component: ParkourOnBoard, restriction:[] },
+  { path: '/parcours-perso', name: 'Parcours perso', component: ParkourPerso, restriction:[] },
 
   { path: '/editeur', name: 'Editeur', component: Editeur, restriction:[] },
   { path: '/avancement/traductions/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['ExpertTrad','Admin'] },

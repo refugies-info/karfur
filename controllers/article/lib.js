@@ -57,6 +57,9 @@ function get_article(req, res) {
   } else {
     var query = req.body.query;
     var locale=req.body.locale || 'fr';
+    var sort = req.body.sort;
+    var populate = req.body.populate;
+    var limit = req.body.limit;
     
     let isStructure=false;let structId=null;
     if(query._id && query._id.includes('struct_')){
@@ -64,7 +67,7 @@ function get_article(req, res) {
       query={isStructure:true};
     }
     var find= new Promise(function (resolve, reject) {
-      Article.find(query).exec(function (err, result) {
+      Article.find(query).sort(sort).populate(populate).limit(limit).exec(function (err, result) {
         if (err) {
           reject(500);
         } else {

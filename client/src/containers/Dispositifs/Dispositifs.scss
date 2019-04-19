@@ -155,11 +155,6 @@ $theme-color: #8DC63F;
     }
   }
 
-  .align-right{
-    text-align:right;
-    font-style: italic;
-  }
-
   .modal-dispo{
     width: 60vw;
     margin:auto;
@@ -181,4 +176,12 @@ $theme-color: #8DC63F;
       padding: 20px;
     }
   }
+
+  .custom-card{
+    height:300px;
+    .card-body{
+      height: 309px;
+      overflow: scroll;
+    }
+  } 
 }
