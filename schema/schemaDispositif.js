@@ -18,62 +18,29 @@ var traductionDispositif = mongoose.Schema({
   },
   contenu: {
     type: Object,
+		unique: false,
     required: false
   },
-  // description: {
-  //   type: String,
-	// 	unique: false,
-	// 	required: false
-  // },
-  // logo: {
-  //   type: Object,
-  //   required: false
-  // },
-  // lienRenvoi: {
-  //   type: String,
-	// 	unique: false,
-	// 	required: false
-  // },
-  // beneficiaires: {
-  //   type: Object,
-	// 	unique: false,
-	// 	required: false
-  // },
-  // detail: {
-  //   type: Object,
-	// 	unique: false,
-	// 	required: false
-  // },
-  // monInteret: {
-  //   type: Object,
-	// 	unique: false,
-	// 	required: false
-  // },
-  // proceduresAcces: {
-  //   type: Object,
-	// 	unique: false,
-	// 	required: false
-  // },
-  // interlocuteursAcces: {
-  //   type: Object,
-	// 	unique: false,
-	// 	required: false
-  // },
-  // territoiresAcces: {
-  //   type: Object,
-	// 	unique: false,
-	// 	required: false
-  // },
-  // dispositifsSimilaires: {
-  //   type: [{ type: mongoose.Schema.ObjectId, ref: 'Dispositif' }],
-	// 	unique: false,
-	// 	required: false
-  // },
-  // dispositifsComplementaires: {
-  //   type: [{ type: mongoose.Schema.ObjectId, ref: 'Dispositif' }],
-	// 	unique: false,
-	// 	required: false
-  // },
+  audience: {
+    type: Object,
+		unique: false,
+    required: false
+  },
+  audienceAge: {
+    type: Object,
+		unique: false,
+    required: false
+  },
+  tags: {
+    type: Object,
+		unique: false,
+    required: false
+  },
+  localisation: {
+    type: Object,
+		unique: false,
+    required: false
+  },
   creatorId:{ type: mongoose.Schema.ObjectId, ref: 'User' },
   status: {
 		type: String,

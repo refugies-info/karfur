@@ -5,7 +5,7 @@ import './CustomCard.scss';
 
 const customCard = (props) => {
   return(
-    <Card className={"custom-card" + (props.addCard ? ' add-card':'')} {...props}>
+    <Card className={"custom-card" + (props.addcard ? ' add-card':'')} {...props}>
       {props.children}
     </Card>
   )
