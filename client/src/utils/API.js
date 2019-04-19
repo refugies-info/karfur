@@ -43,8 +43,8 @@ export default {
     add_article : query => {
       return axios.post(burl + '/article/add_article', query, {headers: headers})
     },
-    get_article : (query, locale) => {
-      return axios.post(burl + '/article/get_article', {query: query, locale: locale}, {headers: headers})
+    get_article : (query, locale, sort={}, populate='', limit=null) => {
+      return axios.post(burl + '/article/get_article', {query: query, locale: locale, sort: sort, populate: populate, limit: limit}, {headers: headers})
     },
     add_traduction : query => {
       return axios.post(burl + '/article/add_traduction', query, {headers: headers})
@@ -59,8 +59,8 @@ export default {
     add_dispositif : query => {
       return axios.post(burl + '/dispositifs/add_dispositif', query, {headers: headers})
     },
-    get_dispositif : (query, locale) => {
-      return axios.post(burl + '/dispositifs/get_dispositif', {query: query, locale: locale}, {headers: headers})
+    get_dispositif : (query={}, sort={}, populate='', limit=null) => {
+      return axios.post(burl + '/dispositifs/get_dispositif', {query: query, sort: sort, populate: populate, limit: limit}, {headers: headers})
     },
 
     add_tradForReview : query => {

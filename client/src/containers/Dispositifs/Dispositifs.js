@@ -12,6 +12,9 @@ import CustomCard from '../../components/UI/CustomCard/CustomCard';
 
 import './Dispositifs.scss';
 
+//Voir comment filtrer les résultats pour limiter à 8
+// Arranger le Css de l'animation
+
 class Dispositifs extends Component {
   state = {
     dispositifs:[],
@@ -20,7 +23,7 @@ class Dispositifs extends Component {
   }
 
   componentDidMount (){
-    API.get_dispositif({}).then(data_res => {
+    API.get_dispositif({status:'Actif'}).then(data_res => {
       let dispositifs=data_res.data.data
       this.setState({
         dispositifs:dispositifs, 
@@ -101,7 +104,7 @@ class Dispositifs extends Component {
               {this.state.dispositifs.map((dispositif) => {
                 return (
                   <Col xs="9" sm="4" md="3" key={dispositif._id}>
-                    <CustomCard onClick={()=>this._toggleModal(true,dispositif)}>
+                    <CustomCard onClick={()=>this._toggaleModal(true,dispositif)}>
                       <CardBody>
                         <h3>{dispositif.titreInformatif}</h3>
                         <p>{dispositif.abstract}</p>
@@ -112,7 +115,7 @@ class Dispositifs extends Component {
                 )}
               )}
               <Col xs="9" sm="4" md="3">
-                <CustomCard addCard onClick={this.goToDispositif}>
+                <CustomCard addcard="true" onClick={this.goToDispositif}>
                   <CardBody>
                     <span className="add-sign">+</span>
                   </CardBody>
