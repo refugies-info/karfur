@@ -3,6 +3,7 @@ import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
 import { Col, Row, Button, Card, CardBody, CardFooter, Collapse } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 import API from '../../utils/API';
 import data from './data'
@@ -12,16 +13,19 @@ import SpringButtonParkour from '../../components/UI/SpringButton/SpringButtonPa
 
 import './ParkourOnBoard.scss';
 
+let user={_id:null, cookies:{}};
 class ParkourOnBoard extends Component {
   state = {
     dispositifs: [],
     open:new Array(data.length+1).fill(false),
-    data:data,
+    data: data,
     isToggleOpen:false,
+    pinned:[],
   }
-
+  
   componentDidMount (){
     this.getDispositifs(this.state.data);
+    this.retrieveCookies();
   }
 
   getDispositifs = (data) => {
@@ -30,7 +34,25 @@ class ParkourOnBoard extends Component {
     API.get_dispositif(filter).then(data_res => {
       let dispositifs=data_res.data.data;
       this.setState({
-        dispositifs:dispositifs, 
+        dispositifs:dispositifs.filter(x => !this.state.pinned.find( y => y._id === x._id)), 
+      })
+    },function(error){console.log(error);return;})
+  }
+
+  retrieveCookies = () => {
+    // let dataC=Cookies.getJSON('data');
+    // if(dataC){ this.setState({data:data.map((x,key)=> {return {...x, value:dataC[key] || x.value}})})}
+    // let pinnedC=Cookies.getJSON('pinnedC');
+    // if(pinnedC){ this.setState({pinned:pinnedC})}
+    // console.log(Cookies.get())
+    API.get_user_info().then(data_res => {
+      let u=data_res.data.data;
+      user={_id:u._id, cookies:u.cookies || {}}
+      this.setState({
+        pinned:user.cookies.parkourPinned || [],
+        dispositifs:[...this.state.dispositifs].filter(x => !((user.cookies.parkourPinned || []).find( y=> y._id === x._id))),
+        ...(user.cookies.parkourData && user.cookies.parkourData.length>0 && 
+          {data:this.state.data.map((x,key)=> {return {...x, value:user.cookies.parkourData[key] || x.value}})})
       })
     },function(error){console.log(error);return;})
   }
@@ -48,10 +70,28 @@ class ParkourOnBoard extends Component {
     this.setState({data:state});
     this.getDispositifs(state);
     this.toggleButtons(id);
+    user.cookies.parkourData=state.map(x=>{return x.value});
+    API.set_user_info(user);
+    Cookies.set('data',state.map(x=>{return x.value}), {path:this.props.location.pathname})
   }
 
   toggle = () => {
     this.setState({isToggleOpen:!this.state.isToggleOpen},()=>this.getDispositifs(this.state.data))
+  }
+
+  pin = (e,dispositif) => {
+    e.preventDefault();
+    dispositif.pinned=!dispositif.pinned;
+    let prevState=[...this.state.dispositifs];
+    this.setState({
+      dispositifs: prevState.map(x => {return x._id === dispositif._id ? {...x, hidden : dispositif.pinned, pinned: false} : x}),
+      pinned: dispositif.pinned ? 
+        [...this.state.pinned,dispositif] :
+        this.state.pinned.filter(x=> x._id !== dispositif._id)
+    },()=>{
+      user.cookies.parkourPinned=this.state.pinned;
+      API.set_user_info(user);
+    })
   }
 
   render() {
@@ -104,20 +144,25 @@ class ParkourOnBoard extends Component {
           </Col>
           <Col lg="6" className="right-panel">
             <Row>
-              {this.state.dispositifs.map((dispositif) => {
-                return (
-                  <Col xs="12" sm="6" md="4" className="card-col" key={dispositif._id}>
-                    <NavLink to={'/dispositif/'+dispositif._id}>
-                      <CustomCard>
-                        <CardBody>
-                          <h3>{dispositif.titreInformatif}</h3>
-                          <p>{dispositif.abstract}</p>
-                        </CardBody>
-                        <CardFooter className={"align-right bg-"+randomColor()}>{dispositif.titreMarque}</CardFooter>
-                      </CustomCard>
-                    </NavLink>
-                  </Col>
-                )}
+              {[...this.state.pinned,...this.state.dispositifs].slice(0,8).map((dispositif) => {
+                if(!dispositif.hidden){
+                  return (
+                    <Col xs="12" sm="6" md="4" className="card-col puff-in-center" key={dispositif._id}>
+                      <NavLink to={'/dispositif/'+dispositif._id}>
+                        <CustomCard>
+                          <CardBody>
+                            <i onClick={(e)=>this.pin(e,dispositif)} className={"fa fa-map-pin pin-icon" + (dispositif.pinned ? " active" : "")}></i>
+                            <h3>{dispositif.titreInformatif}</h3>
+                            <p>{dispositif.abstract}</p>
+                          </CardBody>
+                          <CardFooter className={"align-right bg-"+randomColor()}>{dispositif.titreMarque}</CardFooter>
+                        </CustomCard>
+                      </NavLink>
+                    </Col>
+                  )
+                }else{
+                  return false
+                }}
               )}
               <Col xs="12" sm="6" md="4" className="card-col">
                 <NavLink to={'/dispositif'}>

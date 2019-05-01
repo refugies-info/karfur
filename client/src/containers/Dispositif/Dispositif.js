@@ -18,6 +18,10 @@ import EditableParagraph from '../../components/Frontend/Dispositif/EditablePara
 import QuickToolbar from './QuickToolbar/QuickToolbar';
 import ReagirModal from '../../components/Modals/ReagirModal/ReagirModal';
 import SVGIcon from '../../components/UI/SVGIcon/SVGIcon';
+import femmeCurly from '../../assets/figma/femmeCurly.svg';
+import manLab from '../../assets/figma/manLab.svg';
+import AudioBtn from '../UI/AudioBtn/AudioBtn';
+import bookmark from '../../assets/figma/bookmark.svg';
 
 import {contenu, lorems} from './data'
 
@@ -39,7 +43,7 @@ const spyableMenu = menu.reduce((r, e, i) => {
   return r
 }, []);
 
-const tags=[{name: "people", text: "18-25 ans"}, {name: "horloge", text: "6-12 mois"},{name: "papiers", text: "Réfugiés & BPI"},{name: "carte", text: "Sur tout le territoire"},{name: "frBubble", text: "Équivalent A1"}]
+const tags=[{name: "papiers", text: "Réfugiés"},{name: "people", text: "18 à 25 ans"}, {name: "horloge", text: "6 à 12 mois"},{name: "frBubble", text: "Débutant (A1)"}]
 
 class Dispositif extends Component {
   state={
@@ -169,13 +173,16 @@ class Dispositif extends Component {
     this.setState({modal:{...this.state.modal,show:show}})
   }
 
+  goBack = () => {
+    console.log('going-back')
+    this.props.history.goBack();
+  }
+
   valider_dispositif = () => {
     let dispositif = {
       ...this.state.content,
       contenu : [...this.state.menu.map(x=> {return {title: x.title, content : x.content, ...( x.children && {children : x.children.map(y => {return {title: y.title, content : y.content}})})}})]
     }
-    console.log(this.state)
-    console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       console.log(data.data)
     },(error)=>{
@@ -189,15 +196,18 @@ class Dispositif extends Component {
       <div className="animated fadeIn dispositif">
         <section className="banniere-dispo">
           <Row className="header-row">
-            <Col className="top-left">
+            <Col className="top-left" onClick={this.goBack}>
               <i className="cui-arrow-left icons"></i> 
               <span>Retour à la recherche</span>
             </Col>
             <Col className="top-right">
-              <p># Insertion professionnelle</p>
-              <p># Apprendre le français</p>
+              <AudioBtn />
+              <div className={"bookmark-icon-wrapper" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
+                <img className="bookmark-icon" src={bookmark} alt="bouton bookmark"/>
+              </div>
             </Col>
           </Row>
+          <img className="femme-icon" src={femmeCurly} alt="femme"/>
           <Col lg="12" md="12" sm="12" className="post-title-block">
             <div className="bloc-titre">
               <h1>
@@ -209,7 +219,7 @@ class Dispositif extends Component {
                 />
               </h1>
               <h2 className="bloc-subtitle">
-                avec le programme&nbsp;
+                <span>avec le programme&nbsp;</span>
                 <ContentEditable
                   id='titreMarque'
                   html={this.state.content.titreMarque}  // innerHTML of the editable div
@@ -219,12 +229,16 @@ class Dispositif extends Component {
               </h2>
             </div>
           </Col>
+          <img className="homme-icon" src={manLab} alt="homme"/>
           <Row className="header-footer">
             <Col className="align-right">
               Dernière mise à jour : <span className="date-maj">3 avril 2019</span>
             </Col>
             <Col>
               Fiabilité de l'information : <span className="fiabilite">Faible</span>
+              <span className="question-bloc">
+                ?
+              </span>
             </Col>
           </Row>
           <div className="contrustion-wrapper">
@@ -453,51 +467,9 @@ class Dispositif extends Component {
               </div>
             </div>
           </Col>
-          <Col md="3">
-            <Card my="4">
-              <h5 className="card-header">{t('article.Catégories')}</h5>
-              <div className="card-body">
-                <div className="row">
-                  <Col lg="6">
-                    <ul className="list-unstyled mb-0">
-                      <li>
-                        <a href="/articles">Contes</a>
-                      </li>
-                      <li>
-                        <a href="/articles">Enfants</a>
-                      </li>
-                      <li>
-                        <a href="/articles">Histoires</a>
-                      </li>
-                    </ul>
-                  </Col>
-                  <Col lg="6">
-                    <ul className="list-unstyled mb-0">
-                      <li>
-                        <a href="/articles">Loup</a>
-                      </li>
-                      <li>
-                        <a href="/articles">Cochons</a>
-                      </li>
-                      <li>
-                        <a href="/articles">Briques</a>
-                      </li>
-                    </ul>
-                  </Col>
-                </div>
-              </div>
-            </Card>
-            <Card my="4">
-              <h5 className="card-header">{t('article.Chercher')}</h5>
-              <div className="card-body">
-                <div className="input-group">
-                  <input type="text" className="form-control" placeholder="Chercher..." />
-                  <span className="input-group-btn">
-                    <button className="btn btn-secondary" type="button">{t('article.Aller')}</button>
-                  </span>
-                </div>
-              </div>
-            </Card>
+          <Col md="3" className="aside-tags">
+            <span className="first-item"># Insertion professionnelle</span>
+            <p className="second-item"># Apprendre le français</p>
           </Col>
         </Row>
         

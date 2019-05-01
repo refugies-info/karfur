@@ -108,6 +108,10 @@ export default {
       return axios.post(burl + '/images/get_image',  {query: query, sort: sort}, {headers: headers})
     },
 
+    get_audio : (query) => {
+      return axios.post(burl + '/tts/get_audio',  query, {headers: headers})
+    },
+
     isAuth : () => {
       return (localStorage.getItem('token') !== null);
     },
