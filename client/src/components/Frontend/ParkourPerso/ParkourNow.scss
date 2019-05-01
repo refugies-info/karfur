@@ -1,3 +1,9 @@
+$ribbon-bg: #bb3a34;
+$ribbon-w: 20px;
+$ribbon-h: 50px;
+$ribbon-tail: 10px;
+$transition-time: 0.5s;
+
 .parkour-now{
   .card-col{
     max-height: 33%;
@@ -95,6 +101,51 @@
 
     &:hover{
       color:black;
+    }
+  }
+
+  .ribbon {
+    padding:0 0 $ribbon-tail 0;
+    position:absolute;
+    right:0.5em;
+    top:-0.25em;
+    width:$ribbon-w;
+    height:$ribbon-h;
+    -webkit-transition: height $transition-time; /* For Safari 3.1 to 6.0 */
+    transition: height $transition-time;
+
+    &:after {
+      border-left: $ribbon-w/2 solid #ccc;
+      border-right: $ribbon-w/2 solid #ccc;
+      border-bottom: $ribbon-tail solid transparent;
+      bottom:0;
+      content:'';
+      height: 0;
+      left:0;
+      position:absolute;
+      width: 0;
+      height:$ribbon-h;
+
+      -webkit-transition: border-left $transition-time, border-right $transition-time, height $transition-time; /* For Safari 3.1 to 6.0 */
+      transition: border-left $transition-time, border-right $transition-time, height $transition-time;
+    }
+
+    &:hover{
+      &:after {
+        border-left: $ribbon-w/2 solid #29131357;
+        border-right: $ribbon-w/2 solid #29131357;
+        height:60px;
+      }
+    }
+
+    &.active{
+      height:60px;
+    
+      &:after {
+        border-left: $ribbon-w/2 solid $ribbon-bg;
+        border-right: $ribbon-w/2 solid $ribbon-bg;
+        height:60px;
+      }
     }
   }
 }

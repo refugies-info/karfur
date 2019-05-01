@@ -1,4 +1,4 @@
 export const TOGGLE_LANGUE = 'TOGGLE_LANGUE';
 
-export const PUSH_MSG = 'PUSH_MSG';
-export const GET_MSGS = 'GET_MSGS';
+export const TOGGLE_TTS = 'TOGGLE_TTS';
+

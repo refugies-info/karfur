@@ -23,7 +23,7 @@ check = (req, res, next) => {
       if (err) return res.status(500).send({ auth: false, message: "There was a problem finding the user."});
       if (!user) return res.status(404).send({ auth: false, message: "No user found."});
       let userCopy={...user.toObject()};
-      delete userCopy.password
+      delete userCopy.password;
       req.userId=userCopy._id;
       req.user=userCopy;
       next();
