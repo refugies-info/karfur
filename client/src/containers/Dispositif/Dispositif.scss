@@ -49,10 +49,12 @@
       position: absolute;
       width: 100%;
       margin-top:18px;
+      z-index:2;
 
       .top-left{
         display: flex;
         margin: 0 19px;
+        cursor: pointer;
         i{
           padding-right:7px;
           padding-top: 0.3rem;
@@ -61,6 +63,9 @@
       .top-right{
         text-align: right;
         margin: 0 23px;
+        display: flex;
+        justify-content: end;
+
         p{
           margin-bottom: 0;
         }
@@ -68,6 +73,20 @@
     }
     .header-footer{
       padding-bottom: 20px;
+      color: white;
+      .question-bloc{
+        width: 21px;
+        height: 21px;
+        background-color: white;
+        line-height: 18px;
+        font-size: 15px;
+        display: inline-flex;
+        align-items: center;
+        color: #F6B93B;
+        border-radius:50%;
+        justify-content: center;
+        margin-left: 8px;
+      }
     }
     .contrustion-wrapper{
       background: linear-gradient(111.54deg, #F6B93B -10.82%, #E55039 151.79%);
@@ -243,6 +262,58 @@
     .accordion-expand{
       border: 2px solid #FFFFFF;
       box-sizing: border-box;
+    }
+  }
+
+  .femme-icon{
+    position: absolute;
+    left: 4.44%;
+    bottom: 0;
+  }
+
+  .homme-icon{
+    position: absolute;
+    right: 164px;
+    bottom: 0;
+  }
+
+  .bookmark-icon-wrapper{
+    position: relative;
+    width: 50px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+
+    .bookmark-icon{
+      position: absolute;
+      left: 30%;
+      right: 30%;
+      top: 30%;
+      bottom: 30%;
+    }
+  }
+
+  .aside-tags{
+    text-decoration: underline;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: right;
+    .first-item{
+      display: flex;
+      align-items: center;
+      color: #F6B93B;
+    }
+    .second-item{
+      font-size: 16px;
+      line-height: 20px;
+      display: flex;
+      align-items: center;
+      color: #4A69BD;
     }
   }
 }

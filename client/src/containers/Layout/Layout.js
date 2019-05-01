@@ -5,8 +5,9 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
 import track from 'react-tracking';
 import { AppAside, AppFooter } from '@coreui/react';
+import { connect } from 'react-redux';
 
-import Aux from '../../hoc/Aux';
+import API from '../../utils/API';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import Footer from '../../components/Navigation/Footer/Footer';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
@@ -16,6 +17,7 @@ import RightSideDrawer from '../../components/Navigation/SideDrawer/RightSideDra
 import './Layout.scss';
 import routes from '../../routes';
 
+let audio = new Audio();
 class Layout extends Component {
   state = {
     showSideDrawer: {left:false,right:false},
@@ -43,11 +45,55 @@ class Layout extends Component {
     this.setState({showOnBoardingTraducteurModal:false})
   }
   
+  readAudio = (text, locale='fr-fr') => {
+    API.get_audio({text:text, locale:locale}).then(data_res => {
+
+      audio.pause();
+      
+      try{
+        var len = data_res.data.length;
+        var buf = new ArrayBuffer(len);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i < len+10; i++) {
+          view[i] = data_res.data.charCodeAt(i) & 0xff;
+        }
+        var blob = new Blob([view], {type: "audio/wav"});
+        var url = window.URL.createObjectURL(blob)
+        audio.src = url;
+        audio.load();
+        audio.play();
+      }catch(e){
+        console.log(e)
+        console.log(data_res.data)
+        console.log(url)
+      }
+
+      // try{
+      //   var wave = new Audio('data:audio/wav;base64,' + btoa(unescape(data_res.data)));
+      //   wave.controls = true;
+      //   wave.play()
+      // }catch(e){
+      //   console.log(e)
+      //   console.log(data_res.data)
+      //   console.log(text)
+      // }
+    },function(error){console.log(error);return;})
+  }
+
+  toggleHover = (e) => {
+    if(this.props.ttsActive){
+      if(e.target && e.target.firstChild && e.target.firstChild.nodeValue){
+        console.log(e.target.firstChild.nodeValue)
+        this.readAudio(e.target.firstChild.nodeValue)
+      }
+    }
+  }
+
   render() {
     return (
       <DirectionProvider 
         direction={i18n.language==="ar" ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
-        <Aux>
+        <div onMouseOver={this.toggleHover}>
           <Suspense  fallback={this.loading()}>
             <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
           </Suspense>
@@ -95,14 +141,22 @@ class Layout extends Component {
           <OnBoardingTraducteurModal 
             show={this.state.showOnBoardingTraducteurModal}
             closeOnBoardingTraducteurModal={this.closeOnBoardingTraducteurModal} />
-        </Aux>
+        </div>
       </DirectionProvider>
     )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    ttsActive: state.tts.ttsActive
   }
 }
 
 export default track({
         layout: 'Layout',
     }, { dispatchOnMount: true })(
-      withTranslation()(Layout)
+      connect(mapStateToProps)(
+        withTranslation()(Layout)
+      )
     );

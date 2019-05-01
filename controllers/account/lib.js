@@ -122,6 +122,7 @@ function login(req, res) {
 function set_user_info(req, res) {
   let user=req.body;
   if (!user || !user._id) {
+    console.log(user,user._id)
     res.status(400).json({
       "text": "Requête invalide"
     })
@@ -130,7 +131,6 @@ function set_user_info(req, res) {
       delete user.password;
     }
 
-    console.log('bien')
     //Si l'utilisateur n'est pas admin je vérifie qu'il ne se modifie que lui-même
     let isAdmin = req.user.roles.find(x => x.nom==='Admin')
 
@@ -155,10 +155,7 @@ function set_user_info(req, res) {
       }else{
         //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
         //Je le fais en non bloquant, il faut pas que ça renvoie une erreur à l'enregistrement
-        
-        console.log('ici')
         populateLanguages(user);
-        console.log(result)
         res.status(200).json({
           "data": result,
           "text": "Mise à jour réussie"

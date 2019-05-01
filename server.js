@@ -9,10 +9,11 @@ const cloudinary = require('cloudinary')
 const formData = require('express-form-data')
 const path = require("path");
 
-let startup = null
+let startup, scraper;
 if(process.env.NODE_ENV === 'dev') {
   console.log('dev environment')
   startup = require('./startup/startup');
+  //scraper = require('./scraper/puppeter');
 } 
 
 cloudinary.config({ 
@@ -72,6 +73,7 @@ app.use('/themes', router);
 app.use('/traduction', router);
 app.use('/dispositifs', router);
 app.use('/channels', router);
+app.use('/tts', router);
 require(__dirname + '/controllers/userController')(router);
 require(__dirname + '/controllers/eventsController')(router);
 require(__dirname + '/controllers/translateController')(router);
@@ -83,6 +85,7 @@ require(__dirname + '/controllers/themesController')(router);
 require(__dirname + '/controllers/traductionController')(router);
 require(__dirname + '/controllers/dispositifController')(router);
 require(__dirname + '/controllers/channelController')(router, io);
+require(__dirname + '/controllers/audioController')(router);
 
 
 //Partie dédiée à la messagerie instantanée

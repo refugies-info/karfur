@@ -16,12 +16,11 @@ const parkourNow = (props) => {
           return (
             <Col xs="12" sm="4" md="3" className="card-col" key={key}>
               <CustomCard>
-                <NavLink to={'/'}>
-                  <CardBody>
-                    <h3>{demarche.title}</h3>
-                    <p>Duis amet in irure dolore ut.</p>
-                  </CardBody>
-                </NavLink>
+                <CardBody>
+                  <div className={"ribbon" + (demarche.bookmarked?' active':'')} onClick={()=>props.setBookmark(key, 'demarche', props.etape)} />
+                  <h3>{demarche.title}</h3>
+                  <p>Duis amet in irure dolore ut.</p>
+                </CardBody>
                 <CardFooter className={"align-right bg-"+randomColor()}>
                   {demarche.title.substr(0,35) + (demarche.title.length>35 ? '...' : '')}
                   <FormGroup check className="container">
