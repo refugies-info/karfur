@@ -39,9 +39,7 @@ class RightSideDrawer extends React.Component {
       urlId = pathData.params.id;
       this.setState({urlId: urlId, path:this.props.location.pathname});
       
-      console.log(urlId,locale)
       API.get_channel({ itemId: urlId, itemName: 'traduction', filter: locale || {"$exists": false}}).then(data_res => {
-        console.log(data_res.data.data[0])
         let channel=data_res.data.data[0];
         if(channel){
           this.setState({

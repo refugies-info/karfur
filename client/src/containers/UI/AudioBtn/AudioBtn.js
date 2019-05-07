@@ -14,7 +14,6 @@ class AudioBtn extends Component {
   }
 
   render() {
-    console.log(this.props.ttsActive)
     return (
       <div className={"audio-icon-wrapper" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
         <img className="audio-icon" src={audioBtn} alt="bouton audio"/>

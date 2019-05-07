@@ -119,7 +119,7 @@ class Dispositifs extends Component {
                 <CardBody>
                   <span className="add-sign">+</span>
                 </CardBody>
-                <CardFooter className={"align-right bg-secondary"}>Créer un nouveau dispositif</CardFooter>
+                <CardFooter className="align-right bg-secondary">Créer un nouveau dispositif</CardFooter>
               </CustomCard>
             </Col>
           </Row>

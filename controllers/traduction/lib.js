@@ -1,5 +1,6 @@
 const Traduction = require('../../schema/schemaTraduction.js');
 const Article = require('../../schema/schemaArticle.js');
+const User = require('../../schema/schemaUser.js');
 const article = require('../article/lib');
 var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
@@ -45,15 +46,17 @@ function add_tradForReview(req, res) {
     traduction.nbMots=nbMotsBody+nbMotsTitres;
 
     var _u = new Traduction(traduction);
-    _u.save((err, saved) => {
+    _u.save((err, data) => {
       if (err) {
         console.log(err);
         res.status(501).json({"text": "Erreur interne"})
       } else {
         console.log('succes')
+        //J'ajoute en même temps cette traduction dans celles effectuées par l'utilisateur :
+        if(req.userId){ User.findByIdAndUpdate({ _id: req.userId },{ "$push": { "traductionsFaites": data._id } },{new: true},(e) => {if(e){console.log(e);}}); }
         res.status(200).json({
           "text": "Succès",
-          "data": saved
+          "data": data
         })
       }
     })

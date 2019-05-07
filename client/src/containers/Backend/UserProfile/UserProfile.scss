@@ -1,0 +1,234 @@
+.user-profile{
+  background: linear-gradient(146.74deg, #F2F2F2 3.42%, rgba(196, 196, 196, 0) 87.84%);
+  min-height:100%;
+
+  .profile-header{
+    height: 60px;
+    width:100%;
+    background: #FBFBFB;
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    a{
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 23px;
+      color: #000000;
+      padding:25px;
+    }
+  }
+
+  .profile-content{
+    margin: 23px 64px;
+
+    .profile-info{
+      background: #FFFFFF;
+      border-radius: 12px;  
+
+      .profile-left{
+        padding:25px 15px 32px 25px;
+
+        .user-picture{
+          margin-bottom: 10px;
+        }
+        .name{
+          font-weight: bold;
+          font-size: 40px;
+          line-height: 51px;
+          color: #3D3D3D;
+        }
+        .status{
+          font-weight: bold;
+          font-size: 24px;
+          line-height: 30px;
+          color: #4A69BD;
+        }
+      }
+
+      .feedbacks-col{
+        align-items: center;
+        justify-content: center;
+        display: flex;
+      }
+      .feedbacks-card{
+        background: #FBFBFB;
+        border: 1px solid #F6B93B;
+        box-sizing: border-box;
+        border-radius: 12px;
+        width: 230px;
+        height: 230px;
+        font-weight: bold;
+        color: #F6B93B;
+
+        .card-body{
+          padding:0;
+        }
+
+        svg{
+          top: 14px;
+          right: 24px;
+          position: absolute;
+        }
+        .user-feedbacks{
+          left: 21px;
+          bottom: 16px;
+          position: absolute;
+          width: 120px;
+          h4{
+            font-size: 40px;
+            line-height: 40px;
+            margin:0;
+          }
+          span{
+            font-size: 15px;
+            line-height: 19px;
+          }
+        }
+      }
+
+      .user-data{
+        padding-top:36px;
+        padding-left:5px;
+
+        .data-row{
+          margin-bottom:15px;
+        }
+        .margin-12{
+          margin-right: 12px;
+        }
+        .margin-20{
+          margin-right: 20px;
+        }
+
+        .user-stats{
+          font-style: normal;
+          font-weight: bold;
+          color: #3D3D3D;
+          h4{
+            font-size: 40px;
+            line-height: 51px;
+            display: inline;
+            &.make-it-gray{
+              color: #CDCDCD;
+            }
+          }
+          span{
+            font-size: 15px;
+            line-height: 19px;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .tableau-wrapper{
+    margin-top:39px;
+    &:nth-child(2){
+      margin-top:10px;
+    }
+
+    h1{
+      font-size: 64px;
+      line-height: 81px;
+      color: #3D3D3D;
+      display: inline;
+    }
+
+    .tableau{
+      background: #FBFBFB;
+      border-radius: 12px;
+
+      .tableau-header{
+        width:100%;
+        padding:22px 12px 45px 40px;
+        font-style: normal;
+        font-weight: bold;
+
+
+        .left-element, .middle-element{
+          font-style: normal;
+          font-weight: bold;
+          color: #3D3D3D;
+          h4{
+            font-size: 64px;
+            line-height: 81px;
+            display: inline;
+            &.make-it-green{
+              color: #78E08F;
+            }
+          }
+          span{
+            font-size: 24px;
+            line-height: 30px;
+            display: block;
+          }
+        }
+
+        .middle-element{
+          margin-left:75px;
+        }
+
+        .right-element{
+          color: #F6B93B;
+          display: flex;
+          margin-left: auto;
+          h4{
+            font-size: 64px;
+            line-height: 81px;
+            margin: auto 23px;
+          }
+          span{
+            font-size: 24px;
+            line-height: 30px;
+            max-width:260px;
+            margin:auto;
+          }
+        }
+      }
+    }
+  }
+
+  .update-profile{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #828282;
+  }
+}
+
+.modal.show .modal-dialog.modal-plus{
+  overflow: scroll;
+  max-height: 100vh;
+  max-width: 60vw;
+
+  .modal-content{
+    padding:20px;
+  }
+}
+
+.avancement-user-table.table{
+  border-style : hidden;
+  thead{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #828282;
+  }
+  td {
+    border-style : hidden;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 23px;
+    color: #3D3D3D;
+  }
+  .voir-plus{
+    text-align: center;
+    cursor: pointer;
+  }
+}

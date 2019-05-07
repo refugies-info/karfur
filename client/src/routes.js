@@ -8,6 +8,7 @@ import Dashboard from './containers/Backend/Dashboard/Dashboard';
 import Admin from './containers/Backend/Admin/Admin';
 import UserDash from './containers/Backend/UserDash/UserDash';
 import UserForm from './containers/Backend/UserDash/UserForm/UserForm';
+import UserProfile from './containers/Backend/UserProfile/UserProfile';
 import AdminLangues from './containers/Backend/AdminLangues/AdminLangues';
 
 import Chat from './containers/Backend/Chat/Chat';
@@ -52,6 +53,7 @@ const routes = [
   { path: '/backend/chat', name: 'Chat', component: Chat, restriction:['Admin'] },
   { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/backend/user-form', name: 'UserForm', component: UserForm, restriction:['Trad','ExpertTrad','Admin']},
+  { path: '/backend/user-profile', name: 'UserProfile', component: UserProfile, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
 ];
 
