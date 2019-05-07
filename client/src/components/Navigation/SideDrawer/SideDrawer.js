@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Backdrop from '../../UI/Backdrop/Backdrop';
-import Aux from '../../../hoc/Aux';
 import LeftSideDrawer from './LeftSideDrawer/LeftSideDrawer'
 import RightSideDrawer from './RightSideDrawer/RightSideDrawer'
 
@@ -12,10 +11,10 @@ const sideDrawer = ( props ) => {
     props.side ==='left' ? <LeftSideDrawer {...props}/> : <RightSideDrawer {...props}/>
   )
   return (
-    <Aux>
+    <>
       <Backdrop show={props.open} clicked={props.closed}/>
       {drawer}
-    </Aux>
+    </>
   );
 };
 

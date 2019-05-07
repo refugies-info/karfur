@@ -3,11 +3,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
 import track from 'react-tracking'; 
+import { Spinner } from 'reactstrap';
 import './scss/fonts/circular-std/css/circular-std.css'
 
 import Store from './Store/configureStore';
 import { PrivateRoute } from './components/PrivateRoute';
-import LiveChat from './components/UI/LiveChat/LiveChat';
 import { socket } from './utils/API';
 import {dispatch} from './tracking/dispatch';
 import './i18n';
@@ -15,7 +15,8 @@ import './i18n';
 import 'react-notifications/src/notifications.scss';
 import './App.scss';
 
-const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
+const loading = () => <Spinner color="success" />;
+const chargement = () => <div>Chargement</div>
 
 // Containers
 const Layout = Loadable({
@@ -43,6 +44,11 @@ const Page404 = Loadable({
 const Page500 = Loadable({
   loader: () => import('./views/Pages/Page500'),
   loading
+});
+
+const LiveChat = Loadable({
+  loader: () => import('./components/UI/LiveChat/LiveChat'),
+  loading : chargement
 });
 
 class App extends Component {
