@@ -21,6 +21,11 @@ var traductionDispositif = mongoose.Schema({
 		unique: false,
     required: false
   },
+  sponsors: {
+    type: Object,
+		unique: false,
+    required: false
+  },
   audience: {
     type: Object,
 		unique: false,
