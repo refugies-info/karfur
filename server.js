@@ -192,6 +192,24 @@ const messageToJSON = (recipientId, messagePayload) => {
   };
 };
 
+const typingOn = (recipientId) => {
+  return {
+    recipient: {
+      id: recipientId,
+    },
+    sender_action: 'typing_on', // eslint-disable-line camelcase
+  };
+};
+
+const typingOff = (recipientId) => {
+  return {
+    recipient: {
+      id: recipientId,
+    },
+    sender_action: 'typing_off', // eslint-disable-line camelcase
+  };
+};
+
 const sendMessage = (recipientId, messagePayloads) => {
   console.log(4)
   const messagePayloadArray = castArray(messagePayloads)
