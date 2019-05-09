@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Card, CardBody, CardHeader, Button, ListGroup, ListGroupItem, Collapse } from 'reactstrap';
-import ReactHtmlParser from 'react-html-parser';
-import {stringify} from 'himalaya';
+import { Col, Row, Card, Button, ListGroup, ListGroupItem, Collapse, Tooltip } from 'reactstrap';
 import { connect } from 'react-redux';
 import Scrollspy from 'react-scrollspy';
 import ContentEditable from 'react-contenteditable';
@@ -11,22 +9,39 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import htmlToDraft from 'html-to-draftjs';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import { savePDF } from '@progress/kendo-react-pdf';
+import Icon from 'react-eva-icons';
+import ReactToPrint from 'react-to-print';
+import moment from 'moment/min/moment-with-locales'
 
-import marioProfile from '../../assets/mario-profile.jpg'
+import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
+import Modal from '../../components/Modals/Modal'
+import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
 import API from '../../utils/API';
-import EditableParagraph from '../../components/Frontend/Dispositif/EditableParagraph/EditableParagraph'
-import QuickToolbar from './QuickToolbar/QuickToolbar';
 import ReagirModal from '../../components/Modals/ReagirModal/ReagirModal';
 import SVGIcon from '../../components/UI/SVGIcon/SVGIcon';
+import AudioBtn from '../UI/AudioBtn/AudioBtn';
+import Commentaires from '../../components/Frontend/Dispositif/Commentaires/Commentaires';
+import Tags from './Tags/Tags'
+
+import {juliette, hugo, bookmark, femmeCurly, manLab, concordia, ligueEnseignement, minInt, serviceCivique, solidariteJeunesse} from '../../assets/figma/index';
 
 import {contenu, lorems} from './data'
 
 import './Dispositif.scss';
 
+moment.locale('fr');
+
 const menu=[
   {title:'C\'est quoi ?'},
-  {title:'C\'est pour qui ?'},
-  {title:'À quoi ça me sert ?', children:[{title:'Travailler dans une association ou une organisation publique',accordion:true,content: lorems.sousParagraphe}]},
+  {title:'C\'est pour qui ?', type:'cards', children:[
+    {type:'card',title:'Audience',titleIcon:'papiers',contentTitle: 'Réfugié', contentBody: 'ou bénéficiaire de la protection subsidiaire', footer:'Pièces demandées',footerIcon:'file-text-outline'},
+    {type:'card',title:'Tranche d\'âge',titleIcon:'calendar',contentTitle: '18 à 25 ans', contentBody: '30 ans pour les personnes en situations de handicap', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'},
+    {type:'card',title:'Durée',titleIcon:'horloge',contentTitle: '6 à 12 mois', contentBody: 'en fonction de ce qui est convenu sur votre contrat', footer:'En savoir plus',footerIcon:'plus-circle-outline'},
+    {type:'card',title:'Niveau de français',titleIcon:'frBubble',contentTitle: 'Débutant (A1)', contentBody: 'Je peux poser et répondre à des questions simples', footer:'Pièces demandées',footerIcon:'file-text-outline'},
+    {type:'card',title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody: 'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'},
+  ]},
+  {title:'À quoi ça me sert ?', children:[{title:'Travailler dans une association ou une organisation publique',type:'accordion',content: lorems.sousParagraphe}]},
   {title:'Pourquoi ça m\'intéresse', children:[{title:'Vous êtes plutôt...',content: lorems.sousParagraphe}, {title:'Vous n\'êtes pas du tout',content: lorems.sousParagraphe}]},
   {title:'Comment y accéder', children:[{title:'Procédures',content: lorems.sousParagraphe}, {title:'Interlocuteurs experts',content: lorems.sousParagraphe}, {title:'Interlocuteurs concernés',content: lorems.sousParagraphe}]},
   {title:'Dispositifs connexes', children:[{title:'Dispositifs similaires',content: lorems.sousParagraphe}, {title:'Dispositifs complémentaires',content: lorems.sousParagraphe}]},
@@ -39,20 +54,38 @@ const spyableMenu = menu.reduce((r, e, i) => {
   return r
 }, []);
 
-const tags=[{name: "people", text: "18-25 ans"}, {name: "horloge", text: "6-12 mois"},{name: "papiers", text: "Réfugiés & BPI"},{name: "carte", text: "Sur tout le territoire"},{name: "frBubble", text: "Équivalent A1"}]
+const sponsorsData = [
+  {src:minInt,alt:"ministère de l'intérieur"},
+  {src:serviceCivique,alt:"service civique"},
+  {src:ligueEnseignement,alt:"ligue de l'enseignement"},
+  {src:concordia,alt:"concordia"},
+  {src:solidariteJeunesse,alt:"solidarite jeunesse"},
+]
+
+const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
 
 class Dispositif extends Component {
   state={
-    menu: menu.map((x) => {return {...x, accordion:false, content: lorems.paragraphe, editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(lorems.paragraphe).contentBlocks))}}),
+    menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', content: (x.type ? null : lorems.paragraphe), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(lorems.paragraphe).contentBlocks))}}),
     content:contenu,
+    sponsors:sponsorsData,
+    tags:['Insertion professionnelle', 'Apprendre le français'],
+    dateMaj:new Date(),
+    
     hovers: menu.map((x) => {return {isHover:false, ...( x.children && {children: new Array(x.children.length).fill({isHover:false})})}}),
-    modal:{
-      show:false,
+    showModals:{
+      reaction:false,
+      fiabilite:false
     },
     accordion: new Array(1).fill(false),
+    dropdown: new Array(5).fill(false),
     disableEdit:true,
+    tooltipOpen:false,
+    uiArray:new Array(menu.length).fill(uiElement),
+    sponsorLoading:false
   }
   _initialState=this.state;
+  newRef=React.createRef();
 
   componentDidMount (){
     let itemId=this.props.match && this.props.match.params && this.props.match.params.id;
@@ -61,24 +94,20 @@ class Dispositif extends Component {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
         this.setState({
-          menu:dispositif.contenu, 
-          content:{titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract}, 
+          menu: dispositif.contenu, 
+          content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact}, 
+          sponsors:dispositif.sponsors,
+          tags:dispositif.tags,
+          uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
+          disableEdit: true
         })
-      },function(error){
-        console.log(error);
-        return;
-      })
+      },function(error){ console.log(error); return; })
     }else{
-      this.setState({disableEdit:false})
+      this.setState({
+        disableEdit:false,
+        uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
+      })
     }
-  }
-
-  toggleAccordion = (tab) => {
-    const prevState = this.state.accordion;
-    const state = prevState.map((x, index) => tab === index ? !x : false);
-    this.setState({
-      accordion: state,
-    });
   }
 
   onMenuNavigate = (tab) => {
@@ -107,17 +136,19 @@ class Dispositif extends Component {
   };
 
   handleMenuChange = (ev) => {
-    let state=[...this.state.menu];
-    if(ev.currentTarget && state.length > ev.currentTarget.id){
-      if(ev.currentTarget.getAttribute('subkey') !== null && ev.currentTarget.getAttribute('subkey') !== undefined && state[ev.currentTarget.id].children.length > ev.currentTarget.getAttribute('subkey')){
-        state[ev.currentTarget.id].children[ev.currentTarget.getAttribute('subkey')].content = ev.target.value;
-      }else{
-        state[ev.currentTarget.id].content = ev.target.value;
-      }
-      this.setState({
-        menu: state,
-      });
+    let node=ev.currentTarget;
+    let state = JSON.parse(JSON.stringify(this.state.menu));
+    state[node.id]={
+      ...state[node.id],
+      ...(!node.dataset.subkey && {content : ev.target.value}), 
+      ...(node.dataset.subkey && state[node.id].children && state[node.id].children.length > node.dataset.subkey && {children : state[node.id].children.map((y,subidx) => { return {
+            ...y,
+            ...(subidx==node.dataset.subkey && {[node.dataset.target || 'content'] : ev.target.value})
+          }
+        })
+      })
     }
+    this.setState({ menu: state });
   };
 
   handleContentClick = (key, editable, subkey=null) => {
@@ -151,53 +182,153 @@ class Dispositif extends Component {
     }
   };
 
-  _hoverOn=(key, subkey=null)=>{
-    let state=JSON.parse(JSON.stringify(this._initialState.hovers));
-    if(state.length > key){
-      if(subkey!==null && state[key].children.length > subkey){
-        state[key].children[subkey].isHover = true;
-      }else{
-        state[key].isHover = true;
-      }
-      this.setState({
-        hovers: state,
-      });
-    }
+  updateUIArray=(key, subkey=null, node='isHover', value=true)=>{
+    let uiArray = JSON.parse(JSON.stringify(this.state.uiArray));
+    uiArray = uiArray.map((x,idx) => {return {
+      ...x,
+      ...((subkey==null && idx==key && {[node] : value}) || {[node] : false}), 
+      ...(x.children && {children : x.children.map((y,subidx) => { return {
+            ...y,
+            ...((subidx==subkey && idx==key && {[node] : value}) || {[node] : false})
+          }
+        })
+      })
+    }});
+    this.setState({ uiArray: uiArray });
   }
 
-  toggleModal = (show) => {
-    this.setState({modal:{...this.state.modal,show:show}})
+  addItem=(key, type='paragraphe', subkey=null)=>{
+    let prevState = [...this.state.menu];
+    let uiArray = [...this.state.uiArray];
+    if(prevState[key].children && prevState[key].children.length > 0){
+      let newChild={...prevState[key].children[prevState[key].children.length - 1]};
+      if(type==='card' && newChild.type!=='card'){
+        prevState[key].type='cards';
+        newChild={type:'card',title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody:'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'};
+      }
+      newChild.type=type;
+      if(subkey == null || subkey==undefined){
+        prevState[key].children.push(newChild)
+      }else{
+        prevState[key].children.splice(subkey+1,0,newChild)
+      }
+    }else{
+      prevState[key].children=[{title:'Nouveau sous-paragraphe',[type]:true,content: lorems.sousParagraphe}];
+    }
+    uiArray[key].children= [...(uiArray[key].children || []), uiElement];
+    this.setState({ menu: prevState, uiArray: uiArray });
+  }
+
+  removeItem=(key, subkey=null)=>{
+    let prevState = [...this.state.menu];
+    let uiArray = [...this.state.uiArray];
+    if(prevState[key].children && prevState[key].children.length > 0){
+      if(subkey == null || subkey == undefined){
+        prevState[key].children.pop();
+        uiArray[key].children.pop();
+      }else if(prevState[key].children.length > subkey){
+        prevState[key].children.splice(subkey,1);
+        uiArray[key].children.splice(subkey,1);
+      }
+    }
+    this.setState({ menu: prevState });
+  }
+
+  deleteCard=(key,subkey)=>{
+    const prevState = [...this.state.menu];
+    prevState[key].children = prevState[key].children.filter((x, index) => index !== subkey);
+    this.setState({
+      menu: prevState,
+    });
+  }
+
+  toggleModal = (show, name) => {
+    this.setState({showModals:{...this.state.showModals,[name]:show}})
+  }
+
+
+  toggleTooltip = () => {
+    this.setState({ tooltipOpen: !this.state.tooltipOpen});
+  }
+
+  changeCardTitle = (key, subkey, node, value) => {
+    const prevState = [...this.state.menu];
+    prevState[key].children[subkey][node]=value;
+    this.setState({ menu: prevState });
+  }
+
+  changeTag = (key, value) => this.setState({ tags: this.state.tags.map((x,i)=> i===key ? value : x) });
+  addTag = () => this.setState({ tags: [...this.state.tags, 'Autre'] });
+
+  handleFileInputChange = event => {
+    this.setState({sponsorLoading:true})
+    const formData = new FormData()
+    formData.append(0, event.target.files[0])
+
+    API.set_image(formData).then(data_res => {
+      let imgData=data_res.data.data;
+      this.setState({sponsors: [...this.state.sponsors, {src: imgData.secure_url, alt:"sponsor " + imgData.public_id}], sponsorLoading:false})
+    },(error) => {console.log(error);return;})
+  }
+
+  deleteSponsor = key => {
+    this.setState({
+      sponsors: [...this.state.sponsors].filter( (_,i) => i !== key),
+    });
+  }
+
+  goBack = () => {
+    this.props.history.goBack();
+  }
+
+  createPdf = () => {
+    this.setState({accordion: this.state.accordion.map(x => true)}, ()=>{
+      console.log(this.newRef)
+      setTimeout(()=>{
+        savePDF(this.newRef.current, { 
+          fileName: 'dispositif.pdf',
+          scale:.5
+        })
+        //this.setState({accordion: this.state.accordion.map(_ => false)})
+      }, 3000);
+    })
   }
 
   valider_dispositif = () => {
     let dispositif = {
       ...this.state.content,
-      contenu : [...this.state.menu.map(x=> {return {title: x.title, content : x.content, ...( x.children && {children : x.children.map(y => {return {title: y.title, content : y.content}})})}})]
+      contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, ...( x.children && {children : x.children.map(y => {return {title: y.title, content : y.content}})})}}),
+      sponsors:this.state.sponsors,
+      tags:this.state.tags,
     }
-    console.log(this.state)
+    let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
+    dispositif.audience=[cardElement.find(x=> x.title==='Audience').contentTitle];
+    dispositif.audienceAge=[cardElement.find(x=> x.title==='Tranche d\'âge').contentTitle.replace(' à ', '-').replace(' ans', '')];
+    dispositif.niveauFrancais=cardElement.find(x=> x.title==='Niveau de français').contentTitle;
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       console.log(data.data)
-    },(error)=>{
-      console.log(error);return;})
+    },(error)=>{console.log(error);return;})
   }
 
   render(){
     const {t} = this.props;
-
     return(
-      <div className="animated fadeIn dispositif">
+      <div className="animated fadeIn dispositif" ref={this.newRef}>
         <section className="banniere-dispo">
           <Row className="header-row">
-            <Col className="top-left">
+            <Col className="top-left" onClick={this.goBack}>
               <i className="cui-arrow-left icons"></i> 
               <span>Retour à la recherche</span>
             </Col>
             <Col className="top-right">
-              <p># Insertion professionnelle</p>
-              <p># Apprendre le français</p>
+              <AudioBtn />
+              <div className={"bookmark-icon-wrapper" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
+                <img className="bookmark-icon" src={bookmark} alt="bouton bookmark"/>
+              </div>
             </Col>
           </Row>
+          <img className="femme-icon" src={femmeCurly} alt="femme"/>
           <Col lg="12" md="12" sm="12" className="post-title-block">
             <div className="bloc-titre">
               <h1>
@@ -209,7 +340,7 @@ class Dispositif extends Component {
                 />
               </h1>
               <h2 className="bloc-subtitle">
-                avec le programme&nbsp;
+                <span>avec le programme&nbsp;</span>
                 <ContentEditable
                   id='titreMarque'
                   html={this.state.content.titreMarque}  // innerHTML of the editable div
@@ -219,12 +350,20 @@ class Dispositif extends Component {
               </h2>
             </div>
           </Col>
+          <img className="homme-icon" src={manLab} alt="homme"/>
           <Row className="header-footer">
             <Col className="align-right">
-              Dernière mise à jour : <span className="date-maj">3 avril 2019</span>
+              Dernière mise à jour : <span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
             </Col>
             <Col>
               Fiabilité de l'information : <span className="fiabilite">Faible</span>
+              <span className="question-bloc" id="question-bloc" onClick={()=>this.toggleModal(true, 'fiabilite')}>
+                ?
+              </span>
+              <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
+                Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant.
+                Cliquez sur le '?' pour en savoir plus
+              </Tooltip>
             </Col>
           </Row>
           <div className="contrustion-wrapper">
@@ -234,62 +373,58 @@ class Dispositif extends Component {
         </section>
         <Row className="tags-row">
           <b className="en-bref">En bref : </b>
-          {tags.map((icon, key) => {
-            return (
-              <div className="tag-wrapper" key={key}>
-                <div className="tag-item">
-                  <SVGIcon name={icon.name} />
-                  <span>{icon.text}</span>
+          {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
+            if(card.type==='card'){
+              return (
+                <div className="tag-wrapper" key={key}>
+                  <div className="tag-item">
+                    <SVGIcon name={card.titleIcon} />
+                    <span>{card.contentTitle}</span>
+                  </div>
                 </div>
-              </div>
-            )}
-            )}
+              )
+            }else{return false}
+          })}
         </Row>
         <Row className="give-it-space">
           <Col md="3">
             <div className="sticky-affix">
-              <Card my="4">
-                <CardHeader>Menu</CardHeader>
-                <CardBody>
-                  <ListGroup className="list-group-flush">
-
-                    <Scrollspy 
-                      items={ this.state.menu.map((_,key) => 'item-'+key) }
-                      currentClassName="active"
-                      onUpdate={this._handleScrollSpy}>
-                      {this.state.menu.map((item, key) => {
-                        return ( 
-                          <div key={key} className="list-item-wrapper">
-                            <ListGroupItem tag="a" data-toggle="list" action
-                              href={'#item-head-' + key} 
-                              onClick={() => this.onMenuNavigate(key)} >
-                              {item.title}
-                            </ListGroupItem>
-                            {item.children &&
-                              <Collapse isOpen={this.state.menu[key].accordion} data-parent="#accordion" id="collapseOne" aria-labelledby="headingOne">
-                                <ListGroup>
-                                  {item.children.map((subitem, subkey) => {
-                                    return ( 
-                                      <div key={subkey}>
-                                        <ListGroupItem 
-                                          tag="a" 
-                                          action 
-                                          href={'#item-head-' + key + '-sub-' + subkey} >
-                                          {subitem.title}
-                                        </ListGroupItem>
-                                      </div>
-                                    )}
-                                  )}
-                                </ListGroup>
-                              </Collapse>
-                            }
-                          </div>
-                        )}
-                      )}
-                    </Scrollspy>
-                  </ListGroup>
-                </CardBody>
-              </Card>
+              <ListGroup className="list-group-flush">
+                <Scrollspy 
+                  items={ this.state.menu.map((_,key) => 'item-'+key) }
+                  currentClassName="active"
+                  onUpdate={this._handleScrollSpy}>
+                  {this.state.menu.map((item, key) => {
+                    return ( 
+                      <div key={key} className="list-item-wrapper">
+                        <ListGroupItem tag="a" data-toggle="list" action
+                          href={'#item-head-' + key} 
+                          onClick={() => this.onMenuNavigate(key)} >
+                          {item.title}
+                        </ListGroupItem>
+                        {item.children &&
+                          <Collapse isOpen={this.state.menu[key].accordion} data-parent="#accordion" id="collapseOne" aria-labelledby="headingOne">
+                            <ListGroup>
+                              {item.children.map((subitem, subkey) => {
+                                return ( 
+                                  <div key={subkey}>
+                                    <ListGroupItem 
+                                      tag="a" 
+                                      action 
+                                      href={'#item-head-' + key + '-sub-' + subkey} >
+                                      {subitem.title}
+                                    </ListGroupItem>
+                                  </div>
+                                )}
+                              )}
+                            </ListGroup>
+                          </Collapse>
+                        }
+                      </div>
+                    )}
+                  )}
+                </Scrollspy>
+              </ListGroup>
               <Card my="4">
                 <h5 className="card-header">{t('article.Explication en 30 secondes')}</h5>
                 <div className="card-body">
@@ -304,207 +439,128 @@ class Dispositif extends Component {
             </div>
           </Col>
           <Col lg="6">
-            <div className="subtitle-container">
-              <div className="profile-header-container">   
-                <img className="img-circle" src={marioProfile} alt="profile"/>
-                <div className="rank-label-container">
-                    <span className="label label-default rank-label" onClick={this.editProfile}>Changer</span>
-                </div>
-              </div> 
-            </div>
-
-            {this.state.menu.map((item, key) => {
-              return ( 
-                <div key={key} className='contenu-wrapper'>
-                  <Row className="relative-position" onMouseEnter={()=>this._hoverOn(key)}>
-                    <Col lg="12">
-                      <a className="anchor" id={'item-head-'+key}></a>
-                      <h3>
-                        {item.title}
-                        <i onClick={()=>this.handleContentClick(key,true)} className="cui-pencil icons font-xl float-right"></i>
-                      </h3>
-                      <EditableParagraph 
-                        idx={key} 
-                        handleMenuChange={this.handleMenuChange}
-                        onEditorStateChange={this.onEditorStateChange}
-                        handleContentClick={this.handleContentClick}
-                        disableEdit={this.state.disableEdit}
-                        {...item}/>
-                    </Col>
-                    <Col className='toolbar-col'>
-                      <QuickToolbar 
-                        show={this.state.hovers[key].isHover}
-                        disableEdit={this.state.disableEdit}
-                        toggleModal={this.toggleModal} />
-                    </Col>
-                  </Row>
-                  <br />
-                  {item.children && item.children.map((subitem, subkey) => {
-                    if(subitem.accordion){
-                      return ( 
-                        <div key={subkey}>
-                          <Button id="accordion-header" color="warning" className="text-left" onClick={() => this.toggleAccordion(0)} aria-expanded={this.state.accordion[0]} aria-controls="collapseOne">
-                            <h5>
-                              <div className="accordion-number">{subkey+1}</div>
-                              <span className="accordion-text">
-                                <ContentEditable
-                                  id='title'
-                                  subkey={subkey}
-                                  html={subitem.title}  // innerHTML of the editable div
-                                  disabled={this.state.disableEdit}       // use true to disable editing
-                                  onChange={this.handleMenuChange} // handle innerHTML change
-                                />
-                              </span>
-                              <div className="accordion-expand">+</div>
-                            </h5>
-                          </Button>
-                          <Collapse isOpen={this.state.accordion[0]} data-parent="#accordion" id="collapseOne" aria-labelledby="headingOne">
-                            <EditableParagraph 
-                              idx={key} 
-                              subkey={subkey} 
-                              handleMenuChange={this.handleMenuChange}
-                              onEditorStateChange={this.onEditorStateChange}
-                              handleContentClick={this.handleContentClick}
-                              disableEdit={this.state.disableEdit}
-                              {...subitem} />
-                          </Collapse>
-                        </div>
-                      )
-                    }else{
-                      return ( 
-                        <div key={subkey}>
-                          <Row className="relative-position">
-                            <Col lg="12">
-                              <h4>
-                                {subitem.title}
-                                {!this.state.disableEdit 
-                                  &&
-                                  <i onClick={()=>this.handleContentClick(key,true, subkey)} className="cui-pencil icons font-xl float-right"></i>
-                                }
-                              </h4>
-                              <EditableParagraph 
-                                idx={key} 
-                                subkey={subkey} 
-                                handleMenuChange={this.handleMenuChange}
-                                onEditorStateChange={this.onEditorStateChange}
-                                handleContentClick={this.handleContentClick}
-                                disableEdit={this.state.disableEdit}
-                                {...subitem} />
-                              <br />
-                            </Col>
-                            <Col className='toolbar-col'>
-                              <QuickToolbar />
-                            </Col>
-                          </Row>
-                        </div>
-                      )
-                    }}
-                  )}
-                  <a className="anchor" id={'item-' + key}></a>
-                </div>
-              )}
-            )}
+            <ContenuDispositif 
+              updateUIArray={this.updateUIArray}
+              handleContentClick={this.handleContentClick}
+              handleMenuChange={this.handleMenuChange}
+              onEditorStateChange={this.onEditorStateChange}
+              toggleModal={this.toggleModal}
+              deleteCard={this.deleteCard}
+              addItem={this.addItem}
+              removeItem={this.removeItem}
+              changeTitle={this.changeCardTitle}
+              {...this.state}
+            />
             
-
             <Button onClick={this.valider_dispositif} color="success" size="lg" block>
               Valider ce dispositif
             </Button>
-
-            <hr />
-            <div className="card my-4">
-              <h5 className="card-header">{t('global.article.laisser_commentaire')} :</h5>
-              <div className="card-body">
-                <form>
-                  <div className="form-group">
-                    <textarea className="form-control" rows="3"></textarea>
-                  </div>
-                  <button type="submit" className="btn btn-primary">{t('global.article.soumettre')}</button>
-                </form>
-              </div>
-            </div>
-            <div className="media mb-4">
-              <img className="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="" />
-              <div className="media-body">
-                <h5 className="mt-0">Alfred</h5>
-                J'aime beaucoup ce conte.
-              </div>
-            </div>
-            <div className="media mb-4">
-              <img className="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="" />
-              <div className="media-body">
-                <h5 className="mt-0">Sarah</h5>
-                This is an amazing story. I hope I can read more of these. Thanks a lot for the sharing.
-
-                <div className="media mt-4">
-                  <img className="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="" />
-                  <div className="media-body">
-                    <h5 className="mt-0">Ahmed</h5>
-                    Ma fhemt 7ta 7aja fhad lnoukta. Chkoun l7ellouf ou chkoun ldi2ab. 
-                  </div>
-                </div>
-
-                <div className="media mt-4">
-                  <img className="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="" />
-                  <div className="media-body">
-                    <h5 className="mt-0">Soufiane</h5>
-                    Merci pour vos commentaires. J'essaierai d'adapter une nouvelle histoire rapidement
-                  </div>
-                </div>
-              </div>
-            </div>
+            
+            {false && <Commentaires />}
           </Col>
-          <Col md="3">
-            <Card my="4">
-              <h5 className="card-header">{t('article.Catégories')}</h5>
-              <div className="card-body">
-                <div className="row">
-                  <Col lg="6">
-                    <ul className="list-unstyled mb-0">
-                      <li>
-                        <a href="/articles">Contes</a>
-                      </li>
-                      <li>
-                        <a href="/articles">Enfants</a>
-                      </li>
-                      <li>
-                        <a href="/articles">Histoires</a>
-                      </li>
-                    </ul>
-                  </Col>
-                  <Col lg="6">
-                    <ul className="list-unstyled mb-0">
-                      <li>
-                        <a href="/articles">Loup</a>
-                      </li>
-                      <li>
-                        <a href="/articles">Cochons</a>
-                      </li>
-                      <li>
-                        <a href="/articles">Briques</a>
-                      </li>
-                    </ul>
-                  </Col>
-                </div>
-              </div>
-            </Card>
-            <Card my="4">
-              <h5 className="card-header">{t('article.Chercher')}</h5>
-              <div className="card-body">
-                <div className="input-group">
-                  <input type="text" className="form-control" placeholder="Chercher..." />
-                  <span className="input-group-btn">
-                    <button className="btn btn-secondary" type="button">{t('article.Aller')}</button>
-                  </span>
-                </div>
-              </div>
-            </Card>
+          <Col md="3" className="aside-right">
+            <Tags tags={this.state.tags} changeTag={this.changeTag} addTag={this.addTag} />
+
+            <div className="print-buttons">
+              <Button className="print-button" onClick={this.createPdf}>
+                <Icon name="download-outline" fill="#3D3D3D" />
+                <span>Télécharger en PDF</span>
+              </Button>
+              <Button className="print-button" onClick={this.createPdf}>
+                <Icon name="paper-plane-outline" fill="#3D3D3D" />
+                <span>Envoyer par mail</span>
+              </Button>
+              <ReactToPrint
+                trigger={() => 
+                  <Button className="print-button" onClick={this.createPdf}>
+                    <Icon name="printer-outline" fill="#3D3D3D" />
+                    <span>Imprimer</span>
+                  </Button>}
+                content={() => this.newRef.current}
+                onBeforePrint={()=>this.setState({accordion: this.state.accordion.map(x => true)})}
+              />
+            </div>
           </Col>
         </Row>
         
+
+        <div className="contact-footer">
+          Des questions ? Contactez-nous par email à&nbsp;
+          <u>
+            <ContentEditable
+              id='contact'
+              html={this.state.content.contact}  // innerHTML of the editable div
+              disabled={this.state.disableEdit}       // use true to disable editing
+              onChange={this._handleChange} // handle innerHTML change
+            />
+          </u>
+        </div>
+        <div className="people-footer">
+          <Row>
+            <Col lg="6" className="people-col">
+              <div className="people-title">Contributeurs</div>
+              <div className="people-card">
+                <img className="people-img" src={juliette} alt="juliette"/>
+                <div className="right-side">
+                  <h6>Juliette Ducoulombier</h6>
+                  <span>Chargée de mission pour la Diair</span>
+                </div>
+              </div>
+            </Col>
+            <Col lg="6" className="people-col">
+              <div className="people-title">Traducteurs</div>
+              <div className="people-card">
+                <img className="people-img" src={hugo} alt="hugo"/>
+                <div className="right-side">
+                  <h6>Hugo Stéphan</h6>
+                  <span>Designer pour la Diair</span>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </div>
+
+        <Sponsors 
+          handleFileInputChange={this.handleFileInputChange} 
+          deleteSponsor={this.deleteSponsor} 
+          sponsors={this.state.sponsors} 
+          loading={this.state.sponsorLoading} />
+        
         <ReagirModal 
-          modal={this.state.modal}
+          show={this.state.showModals.reaction}
           toggleModal={this.toggleModal}
+          name='reaction'
         />
+
+        <Modal show={this.state.showModals.fiabilite} modalClosed={()=>this.toggleModal(false, 'fiabilite')} classe='modal-fiabilite'>
+          <h1>Fiabilité de l’information</h1>
+          <div className="liste-fiabilite">
+            <Row>
+              <Col lg="4" className="make-it-red">
+                Faible
+              </Col>
+              <Col lg="8">
+                L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
+              </Col>
+            </Row>
+            <Row>
+              <Col lg="4" className="make-it-orange">
+                Moyenne
+              </Col>
+              <Col lg="8">
+                L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
+              </Col>
+            </Row>
+            <Row>
+              <Col lg="4" className="make-it-green">
+                Forte
+              </Col>
+              <Col lg="8">
+                L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
+              </Col>
+            </Row>
+          </div>
+        </Modal>
       </div>
     );
   }

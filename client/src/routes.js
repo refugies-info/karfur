@@ -8,6 +8,7 @@ import Dashboard from './containers/Backend/Dashboard/Dashboard';
 import Admin from './containers/Backend/Admin/Admin';
 import UserDash from './containers/Backend/UserDash/UserDash';
 import UserForm from './containers/Backend/UserDash/UserForm/UserForm';
+import UserProfile from './containers/Backend/UserProfile/UserProfile';
 import AdminLangues from './containers/Backend/AdminLangues/AdminLangues';
 
 import Chat from './containers/Backend/Chat/Chat';
@@ -15,6 +16,8 @@ import Articles from './containers/Articles/Articles';
 import Article from './containers/Article/Article';
 import Dispositifs from './containers/Dispositifs/Dispositifs';
 import Dispositif from './containers/Dispositif/Dispositif';
+import ParkourOnBoard from './containers/ParkourOnBoard/ParkourOnBoard';
+import ParkourPerso from './containers/ParkourPerso/ParkourPerso';
 import Editeur from './containers/Editeur/Editeur';
 import Avancement from './containers/Translation/Avancement/Avancement';
 import Translation from './containers/Translation/Translation';
@@ -33,6 +36,9 @@ const routes = [
   { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
   { path: '/dispositif', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
 
+  { path: '/parcours-on-board', name: 'Parcours On Board', component: ParkourOnBoard, restriction:[] },
+  { path: '/parcours-perso', name: 'Parcours perso', component: ParkourPerso, restriction:[] },
+
   { path: '/editeur', name: 'Editeur', component: Editeur, restriction:[] },
   { path: '/avancement/traductions/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['ExpertTrad','Admin'] },
   { path: '/avancement/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['Trad','ExpertTrad','Admin'] },
@@ -47,6 +53,7 @@ const routes = [
   { path: '/backend/chat', name: 'Chat', component: Chat, restriction:['Admin'] },
   { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/backend/user-form', name: 'UserForm', component: UserForm, restriction:['Trad','ExpertTrad','Admin']},
+  { path: '/backend/user-profile', name: 'UserProfile', component: UserProfile, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
 ];
 

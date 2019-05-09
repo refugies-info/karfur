@@ -7,12 +7,13 @@ import { AppAsideToggler } from '@coreui/react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import * as actions from '../../../Store/actions'
-
-import './Toolbar.scss';
+import * as actions from '../../../Store/actions';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../../utils/API';
+import AudioBtn from '../../../containers/UI/AudioBtn/AudioBtn'
+
+import './Toolbar.scss';
 
 export class Toolbar extends React.Component {
 
@@ -77,6 +78,7 @@ export class Toolbar extends React.Component {
           <div className="Logo">
             Agir
           </div>
+          <AudioBtn />
         </div>
         <nav className="DesktopOnly center_buttons">
           <NavigationItems />
@@ -125,7 +127,7 @@ export class Toolbar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    languei18nCode: state.languei18nCode
+    languei18nCode: state.langue.languei18nCode
   }
 }
 

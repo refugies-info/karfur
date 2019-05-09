@@ -3,6 +3,7 @@ const projectId = 'traduction-1551702821050';
 
 const translate = new Translate({
   projectId: projectId,
+  keyFilename: "/Users/tonyparker/Documents/github/karfur/config/Traduction-1edb23e00f9a-serviceAccount.json"
 });
 
 //A mettre en place d'abord:
@@ -23,7 +24,7 @@ function get_translation(req, res) {
       res.send(translation);
     })
     .catch(err => {
-      console.error('erreur de traduction');
+      console.error('erreur de traduction : ' + err);
       res.status(500).json({"text": "Erreur interne","err": err})
     });
   }

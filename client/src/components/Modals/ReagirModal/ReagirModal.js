@@ -10,7 +10,7 @@ import './ReagirModal.scss'
 
 const reagirModal = (props) => {
   return(
-    <Modal show={props.modal.show} modalClosed={()=>props.toggleModal(false)} classe='modal-reagir'>
+    <Modal show={props.show} modalClosed={()=>props.toggleModal(false, props.name)} classe='modal-reagir'>
       <Row>
         <Col lg="1">
           <SVGIcon 

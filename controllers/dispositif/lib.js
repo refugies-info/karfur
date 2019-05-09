@@ -40,9 +40,12 @@ function get_dispositif(req, res) {
     })
   } else {
     var query = req.body.query;
-    
+    var sort = req.body.sort;
+    var populate = req.body.populate;
+    var limit = req.body.limit;
+
     var find= new Promise(function (resolve, reject) {
-      Dispositif.find(query).exec(function (err, result) {
+      Dispositif.find(query).sort(sort).populate(populate).limit(limit).exec(function (err, result) {
         if (err) {
           reject(500);
         } else {
@@ -64,6 +67,7 @@ function get_dispositif(req, res) {
           "data": result
       })
     }, function (error) {
+      console.log(error)
       switch (error) {
         case 500:
             res.status(500).json({
