@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const cloudinary = require('cloudinary')
 const formData = require('express-form-data')
 const path = require("path");
+var castArray = require('lodash.castarray');
 
 let startup = null
 if(process.env.NODE_ENV === 'dev') {
