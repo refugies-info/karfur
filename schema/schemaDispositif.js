@@ -16,6 +16,11 @@ var traductionDispositif = mongoose.Schema({
 		unique: false,
 		required: false
   },
+  contact: {
+    type: String,
+		unique: false,
+		required: false
+  },
   contenu: {
     type: Object,
 		unique: false,

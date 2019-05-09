@@ -40,7 +40,7 @@ const editableParagraph = (props) => {
     return(
       <ContentEditable
         id={props.idx}
-        subkey={props.subkey}
+        data-subkey={props.subkey}
         className="animated fadeIn"
         html={props.content}  // innerHTML of the editable div
         disabled={props.disableEdit}       // use true to disable editing

@@ -33,6 +33,7 @@
     "is-plain-obj": "^1.1.0",
     "is-stream": "^1.1.0",
     "jwt-simple": "^0.5.5",
+    "messaging-api-messenger": "^0.7.16",
     "mkdirp": "^0.5.1",
     "mongoose": "^5.4.13",
     "password-hash": "^1.2.2",

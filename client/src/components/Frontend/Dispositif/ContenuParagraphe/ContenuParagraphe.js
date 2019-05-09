@@ -8,6 +8,9 @@ import CardParagraphe, {PlusCard} from '../../../../containers/Dispositif/CardPa
 
 const contenuParagraphe = (props) => {
   let item=props.item;
+
+  const safeUiArray = (key, subkey, node) => props.uiArray[key] && props.uiArray[key].children && props.uiArray[key].children.length>subkey && props.uiArray[key].children[subkey] && props.uiArray[key].children[subkey][node]
+
   return(
     <div className={item.type==='cards' ? 'row cards' : 'sous-paragraphe'}>
       {item.children && item.children.map((subitem, subkey) => {
@@ -21,26 +24,26 @@ const contenuParagraphe = (props) => {
           )
         }else if(subitem.type==='accordion'){
           return ( 
-            <div key={subkey} onMouseEnter={()=>props.hoverOn(props.keyValue, subkey)}>
+            <div key={subkey} onMouseEnter={()=>props.updateUIArray(props.keyValue, subkey, 'isHover')}>
               <Row className="relative-position">
                 <Col lg="12">
-                  <Button id="accordion-header" color="warning" className="text-left" onClick={(e) => props.toggleAccordion(0,e)} aria-expanded={props.accordion[0]} aria-controls="collapseOne">
+                  <Button id="accordion-header" color="warning" className="text-left" onClick={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} aria-controls={"collapse" + props.keyValue + "-" + subkey}>
                     <h5>
                       <div className="accordion-number">{subkey+1}</div>
                       <span className="accordion-text">
                         <ContentEditable
-                          id='title'
-                          subkey={subkey}
+                          id={props.keyValue}
+                          data-subkey={subkey}
+                          data-target='title'
                           html={subitem.title}  // innerHTML of the editable div
                           disabled={props.disableEdit}       // use true to disable editing
                           onChange={props.handleMenuChange} // handle innerHTML change
-                          onClick={e=>e.preventDefault()} // handle innerHTML change
-                        />
+                          onClick={e=>e.stopPropagation()} />
                       </span>
                       <div className="accordion-expand">+</div>
                     </h5>
                   </Button>
-                  <Collapse isOpen={props.accordion[0]} data-parent="#accordion" id="collapseOne" aria-labelledby="headingOne">
+                  <Collapse isOpen={safeUiArray(props.keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + props.keyValue + "-" + subkey} aria-labelledby={"heading" + props.keyValue + "-" + subkey}>
                     <EditableParagraph 
                       idx={props.keyValue} 
                       subkey={subkey} 
@@ -53,7 +56,7 @@ const contenuParagraphe = (props) => {
                 </Col>
                 <Col className='toolbar-col'>
                   <QuickToolbar
-                    show={props.uiArray[props.keyValue] && props.uiArray[props.keyValue].children && props.uiArray[props.keyValue].children.length>subkey && props.uiArray[props.keyValue].children[subkey] && props.uiArray[props.keyValue].children[subkey].isHover}
+                    show={safeUiArray(props.keyValue, subkey, 'isHover')}
                     keyValue={props.keyValue}
                     subkey={subkey}
                     {...props} />
@@ -63,10 +66,19 @@ const contenuParagraphe = (props) => {
           )
         }else{
           return ( 
-            <div key={subkey} onMouseEnter={()=>props.hoverOn(props.keyValue, subkey)}>
+            <div key={subkey} onMouseEnter={()=>props.updateUIArray(props.keyValue, subkey, 'isHover')}>
               <Row className="relative-position">
                 <Col lg="12">
-                  <h4>{subitem.title}</h4>
+                  <h4>
+                    <ContentEditable
+                      id={props.keyValue}
+                      data-subkey={subkey}
+                      data-target='title'
+                      html={subitem.title}  // innerHTML of the editable div
+                      disabled={props.disableEdit}       // use true to disable editing
+                      onChange={props.handleMenuChange} // handle innerHTML change
+                    />
+                  </h4>
                   <EditableParagraph 
                     idx={props.keyValue} 
                     subkey={subkey} 
