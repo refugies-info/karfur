@@ -7,6 +7,24 @@
   transform: translateY(-50%);
   border-radius: 8px;
   border: 1px solid #F2F2F2;
-  background: #FBFBFB;
+  background: #fbfbfb;
   z-index: 2;
+
+  .custom-eva-size{
+    .hovered svg{
+      fill:#828282;
+    }
+    .clicked svg{
+      fill:#3D3D3D;
+    }
+    svg{
+      width: 50px;
+      height: 50px;
+    }
+    .dropdown .btn{
+      padding:0;
+      background:none;
+      border:none;
+    }
+  } 
 }

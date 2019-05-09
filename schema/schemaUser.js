@@ -59,6 +59,10 @@ var userSchema = mongoose.Schema({
   status: { 
     type: String,
     required: false
+  },
+  cookies: { 
+    type: Object,
+    required: false
   }
 },{ timestamps: { createdAt: 'created_at' }})
 

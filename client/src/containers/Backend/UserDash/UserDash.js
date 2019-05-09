@@ -183,8 +183,7 @@ class UserDash extends Component {
             >
             {this.state.langues.map((element,key) => {
               return (
-                <tr 
-                  key={element._id} >
+                <tr key={element._id} >
                   <td className="align-middle">
                     <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.langueCode} id={element.langueCode}></i>
                   </td>

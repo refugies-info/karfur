@@ -1,0 +1,42 @@
+.audio-icon-wrapper{
+  position: relative;
+  width: 50px;
+  height: 50px;
+  background: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 50%;
+  margin: auto 10px;
+  cursor: pointer;
+  box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  transition: all 0.2s ease;
+
+  &:hover{
+    background: #eeeeeec2;
+    border-color: #eeeeeec2;
+    box-shadow: 0px 4px #435100;
+  }
+  
+  &:active{
+    // background: black;
+    // border-color: rgb(48, 92, 8) ;
+    // box-shadow: 0px 0px #717a33;
+    box-shadow: 1px 1px 10px rgb(48, 92, 8) inset, 
+                 0 1px 0 rgba(16, 114, 24, 0.4);
+  }
+
+  &.pressed{
+    border-color: rgb(48, 92, 8) ;
+    box-shadow: 1px 1px 10px rgb(48, 92, 8) inset, 
+                 0 1px 0 rgba(16, 114, 24, 0.4);
+  }
+
+  .audio-icon{
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    top: 30%;
+    bottom: 30%;
+  }
+}
