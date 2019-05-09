@@ -107,6 +107,7 @@ app.use('/traduction', router);
 app.use('/dispositifs', router);
 app.use('/channels', router);
 app.use('/tts', router);
+app.use('/webhook', router);
 require(__dirname + '/controllers/userController')(router);
 require(__dirname + '/controllers/eventsController')(router);
 require(__dirname + '/controllers/translateController')(router);
@@ -119,6 +120,7 @@ require(__dirname + '/controllers/traductionController')(router);
 require(__dirname + '/controllers/dispositifController')(router);
 require(__dirname + '/controllers/channelController')(router, io);
 require(__dirname + '/controllers/audioController')(router);
+require(__dirname + '/messenger/controller')(router);
 
 
 //Partie dédiée à la messagerie instantanée
