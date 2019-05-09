@@ -125,6 +125,10 @@ app.post('/webhook', (req, res) => {
         if (messagingEvent.message) {
           console.log(1)
           handleReceiveMessage(messagingEvent);
+        } else if (messagingEvent.postback) {
+          console.log('receiving postback')
+        } else if (messagingEvent.referral) {
+          console.log('receiving referral')
         } else {
           console.log(
             'Webhook received unknown messagingEvent: ',
