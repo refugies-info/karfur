@@ -159,7 +159,26 @@ const handleReceiveMessage = (event) => {
 
 const sendHelloRewardMessage = (recipientId) => {
   console.log(3)
-  sendMessage(recipientId, messages.helloRewardMessage);
+  sendMessage(recipientId, helloRewardMessage);
+};
+
+const helloRewardMessage = {
+  attachment: {
+    type: 'template',
+    payload: {
+      template_type: 'button',
+      text: 'Thanks for joining our reward program! We’d love to send you a free birthday gift.',
+      buttons: [setPreferencesButton],
+    },
+  },
+};
+
+const setPreferencesButton = {
+  type: 'web_url',
+  title: 'Set Gift Preferences',
+  url: `$https://agir-dev.herokuapp.com/`,
+  webview_height_ratio: 'tall',
+  messenger_extensions: true,
 };
 
 const sendMessage = (recipientId, messagePayloads) => {
