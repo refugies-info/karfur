@@ -57,6 +57,9 @@ function get_article(req, res) {
   } else {
     var query = req.body.query;
     var locale=req.body.locale || 'fr';
+    var sort = req.body.sort;
+    var populate = req.body.populate;
+    var limit = req.body.limit;
     
     let isStructure=false;let structId=null;
     if(query._id && query._id.includes('struct_')){
@@ -64,7 +67,7 @@ function get_article(req, res) {
       query={isStructure:true};
     }
     var find= new Promise(function (resolve, reject) {
-      Article.find(query).exec(function (err, result) {
+      Article.find(query).sort(sort).populate(populate).limit(limit).exec(function (err, result) {
         if (err) {
           reject(500);
         } else {
@@ -135,39 +138,39 @@ function add_traduction(req, res) {
     let locale=req.body.langueCible; //TODO :S'assurer que ce locale est autorisé 
     
     //On l'insère en prod seulement si l'utilisateur a les droits admin ou expert en traduction
-    if(req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad')){
-      let traduction=req.body;
+    if(req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null)){
+      let traductionItem=req.body;
       //On transforme le html en JSON après l'avoir nettoyé
-      let html=traduction.translatedText.body;
+      let html=traductionItem.translatedText.body;
       let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
       let jsonBody=null;
-      if(!traduction.isStructure){
+      if(!traductionItem.isStructure){
         jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false }) //Réactiver les positions si ça devient utile, mais je ne pense pas
       }else{
-        traduction={
-          ...traduction,
-          jsonId : traduction.articleId,
-          articleId : traduction.id,
+        traductionItem={
+          ...traductionItem,
+          jsonId : traductionItem.articleId,
+          articleId : traductionItem.id,
         }
-        delete traduction.id
+        delete traductionItem.id
       }
   
-      Article.findOne({_id:traduction.articleId}).exec((err, result) => {
+      Article.findOne({_id:traductionItem.articleId}).exec((err, result) => {
         if (!err && result) {
           let succes=true;avancement={value:1};
           if(result.title && result.title.constructor === Object && result.title.fr){
             result.title[locale]= h2p(req.body.translatedText.title); 
             result.markModified("title");
-          }else if(!traduction.isStructure){succes=false;}
-          if(result.body && (result.body.constructor === Array || traduction.isStructure && result.body.constructor === Object)){
+          }else if(!traductionItem.isStructure){succes=false;}
+          if(result.body && (result.body.constructor === Array || traductionItem.isStructure && result.body.constructor === Object)){
             let errArr=[];
-            if(!traduction.isStructure){
+            if(!traductionItem.isStructure){
               if((addTranslationRestructure(result,jsonBody,locale,errArr)) || (errArr.length>0 && _dealWithErrors(result,jsonBody,locale,errArr))){
                 result.markModified("body");
               }else{succes=false;}
             }else{
               avancement={value : result.avancement[locale] * result.nombreMots};
-              if(_insertStructTranslation(result.body,traduction.translatedText.body,locale,traduction.jsonId, avancement)){
+              if(_insertStructTranslation(result.body,traductionItem.translatedText.body,locale,traductionItem.jsonId, avancement)){
                 result.markModified("body");
                 if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;};
               }else{succes=false;}

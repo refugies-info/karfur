@@ -1,0 +1,124 @@
+$active-bg: #bb3a34;
+$hover-bg :#29131357;
+$ribbon-w: 20px;
+$ribbon-h: 50px;
+$ribbon-tail: 10px;
+$transition-time: 0.5s;
+
+.parkour-on-board{
+  height: 100%;
+
+  .full-width{
+    width:100%;
+  }
+
+  .card-col{
+    max-height: 33%;
+    margin-bottom: 1.5rem;
+
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+    .custom-card{
+      overflow: scroll;
+      height:215px;
+      .card-body{
+        overflow: scroll;
+        height:124px;
+      }
+    }
+  }
+
+  .left-panel{
+    padding-left: 5em;
+    > h1{
+      margin: 50px 0;
+    }
+
+    .buttons-wrapper{
+      height:fit-content;
+    }
+    .questionnaire-main .question-line{
+      font-size: 1.75rem;
+      margin: 20px 0;
+      .btn{
+        font-size: 1.75rem;
+        &.m-0{
+          font-size: initial;
+        }
+      }
+    }
+    .left-footer{
+      margin-top:5em;
+      a{
+        text-decoration: none;
+        color: inherit;
+      }
+    }
+  }
+
+  .right-panel{
+    margin-top: 2em;
+  }
+
+  .continue-btn{
+    float:right;
+  }
+
+  .pin-icon{
+    position:absolute;
+    right:0.5em;
+    top:0.25em;
+    transform: rotate(45deg);
+    color: #ccc;
+    -webkit-transition: color $transition-time; /* For Safari 3.1 to 6.0 */
+    transition: color $transition-time;
+
+    &:hover{
+      color: $hover-bg;
+    }
+
+    &.active{
+      color: $active-bg;
+    }
+  }
+}
+
+.puff-in-center {
+	-webkit-animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+	        animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
+}
+
+ @-webkit-keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    -webkit-filter: blur(2px);
+            filter: blur(2px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+    -webkit-filter: blur(2px);
+            filter: blur(2px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}

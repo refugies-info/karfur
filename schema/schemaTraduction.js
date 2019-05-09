@@ -53,6 +53,11 @@ var traductionSchema = mongoose.Schema({
 		type: String,
 		unique: false,
 		required: false
+	},
+  avancement:{
+		type: Number,
+		unique: false,
+		required: false
 	}
 },{ timestamps: { createdAt: 'created_at' }})
 

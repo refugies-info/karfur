@@ -1,0 +1,181 @@
+$ribbon-bg: #bb3a34;
+$ribbon-w: 20px;
+$ribbon-h: 50px;
+$ribbon-tail: 10px;
+$transition-time: 0.5s;
+
+.parkour-now{
+  .card-col{
+    max-height: 33%;
+    margin-bottom: 1.5rem;
+
+    a{
+      text-decoration: none;
+      color: inherit;
+    }
+    .custom-card{
+      overflow: scroll;
+      height:215px;
+      a{
+        height: 100%;
+      }
+      .card-body{
+        overflow: scroll;
+        height:124px;
+      }
+    }
+  }
+
+  .row{
+    .container {
+      display: inline;
+      position: relative;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      margin-left: 1rem;
+    }
+    
+    /* Hide the browser's default checkbox */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    /* Create a custom checkbox */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 2.25rem;
+      width: 2.25rem;
+      background-color: #ccc;
+      border-radius: 25px;
+    }
+    
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark {
+      background-color: white;
+    }
+    
+    /* When the checkbox is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+      background-color: white;
+    }
+    
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    
+    /* Show the checkmark when checked */
+    .container input:checked ~ .checkmark:after {
+      display: block;
+    }
+    
+    /* Style the checkmark/indicator */
+    .container .checkmark:after {
+      content: '\2713\0020';
+      position: absolute;
+      top: .15em; left: .22em;
+      font-size: 1.3em;
+      line-height: 0.8;
+      color: #09ad7e;
+      transition: all .2s;
+      font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+    }
+  }
+
+  .more-icon{
+    font-size: 239px;
+    color: gray;
+    cursor: pointer;
+
+    &:hover{
+      color:black;
+    }
+  }
+
+  .ribbon {
+    padding:0 0 $ribbon-tail 0;
+    position:absolute;
+    right:0.5em;
+    top:-0.25em;
+    width:$ribbon-w;
+    height:$ribbon-h;
+    -webkit-transition: height $transition-time; /* For Safari 3.1 to 6.0 */
+    transition: height $transition-time;
+
+    &:after {
+      border-left: $ribbon-w/2 solid #ccc;
+      border-right: $ribbon-w/2 solid #ccc;
+      border-bottom: $ribbon-tail solid transparent;
+      bottom:0;
+      content:'';
+      height: 0;
+      left:0;
+      position:absolute;
+      width: 0;
+      height:$ribbon-h;
+
+      -webkit-transition: border-left $transition-time, border-right $transition-time, height $transition-time; /* For Safari 3.1 to 6.0 */
+      transition: border-left $transition-time, border-right $transition-time, height $transition-time;
+    }
+
+    &:hover{
+      &:after {
+        border-left: $ribbon-w/2 solid #29131357;
+        border-right: $ribbon-w/2 solid #29131357;
+        height:60px;
+      }
+    }
+
+    &.active{
+      height:60px;
+    
+      &:after {
+        border-left: $ribbon-w/2 solid $ribbon-bg;
+        border-right: $ribbon-w/2 solid $ribbon-bg;
+        height:60px;
+      }
+    }
+  }
+}
+
+.slide-in-bottom {
+	-webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+ @-webkit-keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+            transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-bottom {
+  0% {
+    -webkit-transform: translateY(1000px);
+            transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    opacity: 1;
+  }
+}
