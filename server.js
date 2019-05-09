@@ -140,7 +140,7 @@ app.post('/webhook', (req, res) => {
       // sendHelloRewardMessage(senderId);
       // sendMessage(senderId, messages.helloRewardMessage);
 
-      console.log(webhook_event);
+      // console.log(webhook_event);
     });
 
     // Returns a '200 OK' response to all requests
