@@ -157,7 +157,7 @@ const sendHelloRewardMessage = (recipientId) => {
 
 const setPreferencesButton = {
   type: 'web_url',
-  title: 'Set Gift Preferences',
+  title: 'Karfu\'R, un projet de la DIAIR',
   url: `https://agir-dev.herokuapp.com/`,
   webview_height_ratio: 'tall',
   messenger_extensions: true,
