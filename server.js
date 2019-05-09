@@ -116,11 +116,26 @@ app.post('/webhook', (req, res) => {
   if (body.object === 'page') {
 
     // Iterates over each entry - there may be multiple if batched
-    body.entry.forEach(function(entry) {
+    body.entry.forEach(function(pageEntry) {
+      pageEntry.messaging.forEach((messagingEvent) => {
+        console.log({messagingEvent});
+        if (messagingEvent.message) {
+          handleReceiveMessage(messagingEvent);
+        } else {
+          console.log(
+            'Webhook received unknown messagingEvent: ',
+            messagingEvent
+          );
+        }
+      });
 
-      // Gets the message. entry.messaging is an array, but 
-      // will only ever contain one message, so we get index 0
-      let webhook_event = entry.messaging[0];
+      // // Gets the message. entry.messaging is an array, but 
+      // // will only ever contain one message, so we get index 0
+      // let webhook_event = entry.messaging[0];
+
+      // sendHelloRewardMessage(senderId);
+      // sendMessage(senderId, messages.helloRewardMessage);
+
       console.log(webhook_event);
     });
 
@@ -132,6 +147,96 @@ app.post('/webhook', (req, res) => {
   }
 
 });
+
+const handleReceiveMessage = (event) => {
+  const message = event.message;
+  const senderId = event.sender.id;
+
+  // It's good practice to send the user a read receipt so they know
+  // the bot has seen the message. This can prevent a user
+  // spamming the bot if the requests take some time to return.
+  sendApi.sendReadReceipt(senderId);
+
+  if (message.text) { sendApi.sendHelloRewardMessage(senderId); }
+};
+
+const sendHelloRewardMessage = (recipientId) => {
+  sendMessage(recipientId, messages.helloRewardMessage);
+};
+
+const sendMessage = (recipientId, messagePayloads) => {
+  const messagePayloadArray = castArray(messagePayloads)
+    .map((messagePayload) => messageToJSON(recipientId, messagePayload));
+
+  api.callMessagesAPI([
+    typingOn(recipientId),
+    ...messagePayloadArray,
+    typingOff(recipientId),
+  ]);
+};
+
+const callMessagesAPI = (messageDataArray, queryParams = {}) => {
+  return callAPI('messages', messageDataArray, queryParams);
+};
+
+const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 5) => {
+  // Error if developer forgot to specify an endpoint to send our request to
+  if (!endPoint) {
+    console.error('callAPI requires you specify an endpoint.');
+    return;
+  }
+
+  // Error if we've run out of retries.
+  if (retries < 0) {
+    console.error(
+      'No more retries left.',
+      {endPoint, messageDataArray, queryParams}
+    );
+
+    return;
+  }
+
+  // ensure query parameters have a PAGE_ACCESS_TOKEN value
+  /* eslint-disable camelcase */
+  const query = Object.assign({access_token: PAGE_ACCESS_TOKEN}, queryParams);
+  /* eslint-enable camelcase */
+
+  // ready the first message in the array for send.
+  const [messageToSend, ...queue] = castArray(messageDataArray);
+  request({
+    uri: `https://graph.facebook.com/v3.2/me/${endPoint}`,
+    qs: query,
+    method: 'POST',
+    json: messageToSend,
+
+  }, (error, response, body) => {
+    if (!error && response.statusCode === 200) {
+      // Message has been successfully received by Facebook.
+      console.log(
+        `Successfully sent message to ${endPoint} endpoint: `,
+        JSON.stringify(body)
+      );
+
+      // Continue sending payloads until queue empty.
+      if (!isEmpty(queue)) {
+        callAPI(endPoint, queue, queryParams);
+      }
+    } else {
+      // Message has not been successfully received by Facebook.
+      console.error(
+        `Failed calling Messenger API endpoint ${endPoint}`,
+        response.statusCode,
+        response.statusMessage,
+        body.error,
+        queryParams
+      );
+
+      // Retry the request
+      console.error(`Retrying Request: ${retries} left`);
+      callAPI(endPoint, messageDataArray, queryParams, retries - 1);
+    }
+  });
+};
 
 app.get('/webhook', (req, res) => {
 
