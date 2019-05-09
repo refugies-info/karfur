@@ -182,6 +182,16 @@ const helloRewardMessage = {
   },
 };
 
+const messageToJSON = (recipientId, messagePayload) => {
+  console.log(3.5)
+  return {
+    recipient: {
+      id: recipientId,
+    },
+    message: messagePayload,
+  };
+};
+
 const sendMessage = (recipientId, messagePayloads) => {
   console.log(4)
   const messagePayloadArray = castArray(messagePayloads)
