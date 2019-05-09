@@ -121,11 +121,18 @@ app.post('/webhook', (req, res) => {
 
     // Iterates over each entry - there may be multiple if batched
     body.entry.forEach(function(pageEntry) {
+      if (!pageEntry.messaging) {
+        return;
+      }
       pageEntry.messaging.forEach((messagingEvent) => {
         console.log({messagingEvent});
         if (messagingEvent.message) {
           console.log(1)
           handleReceiveMessage(messagingEvent);
+        } else if (messagingEvent.delivery) {
+          console.log('receiving delivery')
+        } else if (messagingEvent.read) {
+          console.log('receiving read')
         } else if (messagingEvent.postback) {
           console.log('receiving postback')
         } else if (messagingEvent.referral) {
