@@ -120,6 +120,7 @@ app.post('/webhook', (req, res) => {
       pageEntry.messaging.forEach((messagingEvent) => {
         console.log({messagingEvent});
         if (messagingEvent.message) {
+          console.log(1)
           handleReceiveMessage(messagingEvent);
         } else {
           console.log(
@@ -149,26 +150,24 @@ app.post('/webhook', (req, res) => {
 });
 
 const handleReceiveMessage = (event) => {
+  console.log(2)
   const message = event.message;
   const senderId = event.sender.id;
 
-  // It's good practice to send the user a read receipt so they know
-  // the bot has seen the message. This can prevent a user
-  // spamming the bot if the requests take some time to return.
-  sendApi.sendReadReceipt(senderId);
-
-  if (message.text) { sendApi.sendHelloRewardMessage(senderId); }
+  if (message.text) { sendHelloRewardMessage(senderId); }
 };
 
 const sendHelloRewardMessage = (recipientId) => {
+  console.log(3)
   sendMessage(recipientId, messages.helloRewardMessage);
 };
 
 const sendMessage = (recipientId, messagePayloads) => {
+  console.log(4)
   const messagePayloadArray = castArray(messagePayloads)
     .map((messagePayload) => messageToJSON(recipientId, messagePayload));
 
-  api.callMessagesAPI([
+  callMessagesAPI([
     typingOn(recipientId),
     ...messagePayloadArray,
     typingOff(recipientId),
@@ -176,10 +175,12 @@ const sendMessage = (recipientId, messagePayloads) => {
 };
 
 const callMessagesAPI = (messageDataArray, queryParams = {}) => {
+  console.log(5)
   return callAPI('messages', messageDataArray, queryParams);
 };
 
 const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 5) => {
+  console.log(6)
   // Error if developer forgot to specify an endpoint to send our request to
   if (!endPoint) {
     console.error('callAPI requires you specify an endpoint.');
