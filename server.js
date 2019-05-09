@@ -162,6 +162,14 @@ const sendHelloRewardMessage = (recipientId) => {
   sendMessage(recipientId, helloRewardMessage);
 };
 
+const setPreferencesButton = {
+  type: 'web_url',
+  title: 'Set Gift Preferences',
+  url: `$https://agir-dev.herokuapp.com/`,
+  webview_height_ratio: 'tall',
+  messenger_extensions: true,
+};
+
 const helloRewardMessage = {
   attachment: {
     type: 'template',
@@ -171,14 +179,6 @@ const helloRewardMessage = {
       buttons: [setPreferencesButton],
     },
   },
-};
-
-const setPreferencesButton = {
-  type: 'web_url',
-  title: 'Set Gift Preferences',
-  url: `$https://agir-dev.herokuapp.com/`,
-  webview_height_ratio: 'tall',
-  messenger_extensions: true,
 };
 
 const sendMessage = (recipientId, messagePayloads) => {
