@@ -1,0 +1,37 @@
+.tags{
+  font-size: 16px;
+  line-height: 20px;
+  text-align: right;
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  .tag-item{
+    display: flex;
+    align-items: center;
+    color: #F6B93B;
+    &:nth-child(2n){
+      color: #4A69BD;
+    }
+  }
+
+  .tags-dropdown{
+    .dropdown-toggle.btn{
+      color: inherit;
+      background-color: inherit;
+      border-color: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      border:none;
+      padding:0;
+    }
+  }
+
+  .plus-button{
+    cursor: pointer;
+    color: #6c757d;
+    &:hover{
+      font-size: 3.5rem;
+      color:black;
+    }
+  }
+}
