@@ -168,7 +168,7 @@ const sendHelloRewardMessage = (recipientId) => {
 const setPreferencesButton = {
   type: 'web_url',
   title: 'Set Gift Preferences',
-  url: `$https://agir-dev.herokuapp.com/`,
+  url: `https://agir-dev.herokuapp.com/`,
   webview_height_ratio: 'tall',
   messenger_extensions: true,
 };
