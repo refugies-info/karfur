@@ -33,6 +33,7 @@
     "is-stream": "^1.1.0",
     "jwt-simple": "^0.5.5",
     "lodash.castarray": "^4.4.0",
+    "lodash.isempty": "^4.4.0",
     "mkdirp": "^0.5.1",
     "mongoose": "^5.4.13",
     "password-hash": "^1.2.2",
