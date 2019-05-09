@@ -178,7 +178,7 @@ const helloRewardMessage = {
     type: 'template',
     payload: {
       template_type: 'button',
-      text: 'Thanks for joining our reward program! We’d love to send you a free birthday gift.',
+      text: 'Bonjour et bienvenue dans le projet Karfu\'R. Cliquez sur le bouton ci-dessous pour accéder à notre site',
       buttons: [setPreferencesButton],
     },
   },
