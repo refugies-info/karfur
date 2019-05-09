@@ -113,6 +113,7 @@ io.on('connection', function(socket){
 
 app.post('/webhook', (req, res) => {  
   console.log(0)
+  res.sendStatus(200);
   let body = req.body;
 
   // Checks this is an event from a page subscription
@@ -136,23 +137,8 @@ app.post('/webhook', (req, res) => {
           );
         }
       });
-
-      // // Gets the message. entry.messaging is an array, but 
-      // // will only ever contain one message, so we get index 0
-      // let webhook_event = entry.messaging[0];
-
-      // sendHelloRewardMessage(senderId);
-      // sendMessage(senderId, messages.helloRewardMessage);
-
-      // console.log(webhook_event);
     });
-
-    // Returns a '200 OK' response to all requests
-    res.status(200).send('EVENT_RECEIVED');
-  } else {
-    // Returns a '404 Not Found' if event is not from a page subscription
-    res.sendStatus(404);
-  }
+  } 
 
 });
 
