@@ -394,29 +394,6 @@
     }
   }
 
-  .aside-right{
-    font-size: 16px;
-    line-height: 20px;
-    .tags{
-      text-align: right;
-      align-items: flex-end;
-      display: flex;
-      flex-direction: column;
-      .first-item{
-        display: flex;
-        align-items: center;
-        color: #F6B93B;
-      }
-      .second-item{
-        font-size: 16px;
-        line-height: 20px;
-        display: flex;
-        align-items: center;
-        color: #4A69BD;
-      }
-    }
-  }
-
   .contact-footer{
     height: 155px;
     background: #3D3D3D;

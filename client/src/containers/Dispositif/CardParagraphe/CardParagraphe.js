@@ -6,11 +6,13 @@ import ContentEditable from 'react-contenteditable';
 import Modal from '../../../components/Modals/Modal'
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 
+import './CardParagraphe.scss';
+
 const cardTitles=[
-  {title:'Statut demandé',titleIcon:'papiers'},
-  {title:'Tranche d\'âge',titleIcon:'calendar'},
+  {title:'Audience',titleIcon:'papiers', options:['associations','travailleurs sociaux','institutions d\'état','réfugiés','citoyens']},
+  {title:'Tranche d\'âge',titleIcon:'calendar', options: ["0 à 18 ans","18 à 25 ans","25 à 56 ans","56 à 120 ans"]}, //["0-18","18-25","25-56","56-120"]
   {title:'Durée',titleIcon:'horloge'},
-  {title:'Niveau de français',titleIcon:'frBubble'},
+  {title:'Niveau de français',titleIcon:'frBubble', options: ["Débutant (A1)","Débutant + (A2)","Intermédiaire (B1)","Intermédiaire + (B2)","Avancé (C1)","Avancé + (C2)"]},
   {title:'Important !',titleIcon:'warning'},
 ]
 
@@ -18,6 +20,7 @@ class CardParagraphe extends Component {
   state= {
     showModal:false,
     isDropdownOpen: false,
+    isOptionsOpen: false,
   }
 
   editCard = () => this.toggleModal(true,'pieces')
@@ -26,17 +29,58 @@ class CardParagraphe extends Component {
 
   toggleDropdown = (e) => {
     if(this.state.isDropdownOpen && e.currentTarget.id){
-      this.props.changeTitle(this.props.keyValue, this.props.subkey, e.target.innerText)
+      this.props.changeTitle(this.props.keyValue, this.props.subkey, 'title', e.target.innerText);
+      this.props.changeTitle(this.props.keyValue, this.props.subkey, 'titleIcon', e.currentTarget.dataset.titleicon);
     }
     this.setState({ isDropdownOpen: !this.state.isDropdownOpen })
+  };
+
+  toggleOptions = (e) => {
+    if(this.state.isOptionsOpen && e.currentTarget.id){
+      this.props.changeTitle(this.props.keyValue, this.props.subkey, 'contentTitle', e.target.innerText)
+    }
+    this.setState({ isOptionsOpen: !this.state.isOptionsOpen })
   };
 
   render(){
     let subitem=this.props.subitem;
     let subkey=this.props.subkey;
+
+    let contentTitle = (subitem) => {
+      let cardTitle = cardTitles.find(x=>x.title==subitem.title);
+      if(cardTitle && cardTitle.options){
+        return(
+          <ButtonDropdown isOpen={this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title">
+            <DropdownToggle caret>
+              {subitem.contentTitle}
+            </DropdownToggle>
+            <DropdownMenu>
+              {cardTitle.options.map((option, key) => {
+                return (
+                  <DropdownItem key={key} id={key}>
+                    {option}
+                  </DropdownItem>
+                )}
+              )}
+            </DropdownMenu>
+          </ButtonDropdown>
+        )
+      }else{
+        return(
+          <ContentEditable
+            id={this.props.keyValue}
+            data-subkey={subkey}
+            data-target='contentTitle'
+            html={subitem.contentTitle}  // innerHTML of the editable div
+            disabled={this.props.disableEdit}       // use true to disable editing
+            onChange={this.props.handleMenuChange} // handle innerHTML change
+          />
+        )
+      }
+    }
     return(
       <>
-        <Col lg="4" className="card-col" onMouseEnter={()=>this.props.hoverOn(this.props.keyValue, this.props.subkey)}>
+        <Col lg="4" className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
           <Card className={subitem.title==='Important !' ? 'make-it-red':'regular'}>
             <CardHeader>
               <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
@@ -47,7 +91,7 @@ class CardParagraphe extends Component {
                 <DropdownMenu>
                   {cardTitles.map((cardTitle, key) => {
                     return (
-                      <DropdownItem key={key} id={key}>
+                      <DropdownItem key={key} id={key} data-titleicon={cardTitle.titleIcon}>
                         <SVGIcon name={cardTitle.titleIcon} /> 
                         <span className="header-content">{cardTitle.title}</span>
                       </DropdownItem>
@@ -58,14 +102,7 @@ class CardParagraphe extends Component {
             </CardHeader>
             <CardBody>
               <h6>
-                <ContentEditable
-                  id={this.props.keyValue}
-                  data-subkey={subkey}
-                  data-target='contentTitle'
-                  html={subitem.contentTitle}  // innerHTML of the editable div
-                  disabled={this.props.disableEdit}       // use true to disable editing
-                  onChange={this.props.handleMenuChange} // handle innerHTML change
-                />
+                {contentTitle(subitem)} 
               </h6>
               <span>
                 <ContentEditable

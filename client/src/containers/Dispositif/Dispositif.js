@@ -12,6 +12,7 @@ import draftToHtml from 'draftjs-to-html';
 import { savePDF } from '@progress/kendo-react-pdf';
 import Icon from 'react-eva-icons';
 import ReactToPrint from 'react-to-print';
+import moment from 'moment/min/moment-with-locales'
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import Modal from '../../components/Modals/Modal'
@@ -21,6 +22,7 @@ import ReagirModal from '../../components/Modals/ReagirModal/ReagirModal';
 import SVGIcon from '../../components/UI/SVGIcon/SVGIcon';
 import AudioBtn from '../UI/AudioBtn/AudioBtn';
 import Commentaires from '../../components/Frontend/Dispositif/Commentaires/Commentaires';
+import Tags from './Tags/Tags'
 
 import {juliette, hugo, bookmark, femmeCurly, manLab, concordia, ligueEnseignement, minInt, serviceCivique, solidariteJeunesse} from '../../assets/figma/index';
 
@@ -28,10 +30,12 @@ import {contenu, lorems} from './data'
 
 import './Dispositif.scss';
 
+moment.locale('fr');
+
 const menu=[
   {title:'C\'est quoi ?'},
   {title:'C\'est pour qui ?', type:'cards', children:[
-    {type:'card',title:'Statut demandé',titleIcon:'papiers',contentTitle: 'Réfugié', contentBody: 'ou bénéficiaire de la protection subsidiaire', footer:'Pièces demandées',footerIcon:'file-text-outline'},
+    {type:'card',title:'Audience',titleIcon:'papiers',contentTitle: 'Réfugié', contentBody: 'ou bénéficiaire de la protection subsidiaire', footer:'Pièces demandées',footerIcon:'file-text-outline'},
     {type:'card',title:'Tranche d\'âge',titleIcon:'calendar',contentTitle: '18 à 25 ans', contentBody: '30 ans pour les personnes en situations de handicap', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'},
     {type:'card',title:'Durée',titleIcon:'horloge',contentTitle: '6 à 12 mois', contentBody: 'en fonction de ce qui est convenu sur votre contrat', footer:'En savoir plus',footerIcon:'plus-circle-outline'},
     {type:'card',title:'Niveau de français',titleIcon:'frBubble',contentTitle: 'Débutant (A1)', contentBody: 'Je peux poser et répondre à des questions simples', footer:'Pièces demandées',footerIcon:'file-text-outline'},
@@ -50,8 +54,6 @@ const spyableMenu = menu.reduce((r, e, i) => {
   return r
 }, []);
 
-const tags=[{name: "papiers", text: "Réfugiés"},{name: "calendar", text: "18 à 25 ans"}, {name: "horloge", text: "6 à 12 mois"},{name: "frBubble", text: "Débutant (A1)"}]
-
 const sponsorsData = [
   {src:minInt,alt:"ministère de l'intérieur"},
   {src:serviceCivique,alt:"service civique"},
@@ -60,11 +62,16 @@ const sponsorsData = [
   {src:solidariteJeunesse,alt:"solidarite jeunesse"},
 ]
 
+const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
+
 class Dispositif extends Component {
   state={
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', content: (x.type ? null : lorems.paragraphe), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(lorems.paragraphe).contentBlocks))}}),
     content:contenu,
     sponsors:sponsorsData,
+    tags:['Insertion professionnelle', 'Apprendre le français'],
+    dateMaj:new Date(),
+    
     hovers: menu.map((x) => {return {isHover:false, ...( x.children && {children: new Array(x.children.length).fill({isHover:false})})}}),
     showModals:{
       reaction:false,
@@ -74,7 +81,7 @@ class Dispositif extends Component {
     dropdown: new Array(5).fill(false),
     disableEdit:true,
     tooltipOpen:false,
-    uiArray:new Array(menu.length).fill({isHover:false, accordion:false, cardDropdown: false, addDropdown:false}),
+    uiArray:new Array(menu.length).fill(uiElement),
     sponsorLoading:false
   }
   _initialState=this.state;
@@ -88,27 +95,18 @@ class Dispositif extends Component {
         console.log(dispositif);
         this.setState({
           menu: dispositif.contenu, 
-          content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract}, 
+          content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact}, 
           sponsors:dispositif.sponsors,
-          uiArray: dispositif.contenu.map((x) => {return {isHover:false, accordion:false, cardDropdown: false, addDropdown:false, ...( x.children && {children: new Array(x.children.length).fill({isHover:false, accordion:false, cardDropdown: false, addDropdown:false})})}}),
+          tags:dispositif.tags,
+          uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
           disableEdit: true
         })
       },function(error){ console.log(error); return; })
     }else{
       this.setState({
         disableEdit:false,
-        uiArray: menu.map((x) => {return {isHover:false, accordion:false, cardDropdown: false, addDropdown:false, ...( x.children && {children: new Array(x.children.length).fill({isHover:false, accordion:false, cardDropdown: false, addDropdown:false})})}}),
+        uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
       })
-    }
-  }
-
-  toggleAccordion = (tab,e={}) => {
-    if(!e.target || e.target.id !== 'title'){
-      const prevState = this.state.accordion;
-      const state = prevState.map((x, index) => tab === index ? !x : false);
-      this.setState({
-        accordion: state,
-      });
     }
   }
 
@@ -151,19 +149,6 @@ class Dispositif extends Component {
       })
     }
     this.setState({ menu: state });
-
-    // let state=[...this.state.menu];
-    // console.log(ev.currentTarget.dataset.target, ev.currentTarget.dataset.subkey, ev.currentTarget)
-    // if(ev.currentTarget && state.length > ev.currentTarget.id){
-    //   if(ev.currentTarget.getAttribute('subkey') !== null && ev.currentTarget.getAttribute('subkey') !== undefined && state[ev.currentTarget.id].children.length > ev.currentTarget.getAttribute('subkey')){
-    //     state[ev.currentTarget.id].children[ev.currentTarget.getAttribute('subkey')].content = ev.target.value;
-    //   }else{
-    //     state[ev.currentTarget.id].content = ev.target.value;
-    //   }
-    //   this.setState({
-    //     menu: state,
-    //   });
-    // }
   };
 
   handleContentClick = (key, editable, subkey=null) => {
@@ -197,14 +182,14 @@ class Dispositif extends Component {
     }
   };
 
-  hoverOn=(key, subkey=null)=>{
+  updateUIArray=(key, subkey=null, node='isHover', value=true)=>{
     let uiArray = JSON.parse(JSON.stringify(this.state.uiArray));
     uiArray = uiArray.map((x,idx) => {return {
       ...x,
-      ...((subkey==null && idx==key && {isHover : true}) || {isHover : false}), 
+      ...((subkey==null && idx==key && {[node] : value}) || {[node] : false}), 
       ...(x.children && {children : x.children.map((y,subidx) => { return {
             ...y,
-            ...((subidx==subkey && idx==key && {isHover : true}) || {isHover : false})
+            ...((subidx==subkey && idx==key && {[node] : value}) || {[node] : false})
           }
         })
       })
@@ -213,7 +198,8 @@ class Dispositif extends Component {
   }
 
   addItem=(key, type='paragraphe', subkey=null)=>{
-    const prevState = [...this.state.menu];
+    let prevState = [...this.state.menu];
+    let uiArray = [...this.state.uiArray];
     if(prevState[key].children && prevState[key].children.length > 0){
       let newChild={...prevState[key].children[prevState[key].children.length - 1]};
       if(type==='card' && newChild.type!=='card'){
@@ -229,16 +215,20 @@ class Dispositif extends Component {
     }else{
       prevState[key].children=[{title:'Nouveau sous-paragraphe',[type]:true,content: lorems.sousParagraphe}];
     }
-    this.setState({ menu: prevState });
+    uiArray[key].children= [...(uiArray[key].children || []), uiElement];
+    this.setState({ menu: prevState, uiArray: uiArray });
   }
 
   removeItem=(key, subkey=null)=>{
-    const prevState = [...this.state.menu];
+    let prevState = [...this.state.menu];
+    let uiArray = [...this.state.uiArray];
     if(prevState[key].children && prevState[key].children.length > 0){
       if(subkey == null || subkey == undefined){
-        prevState[key].children.pop()
+        prevState[key].children.pop();
+        uiArray[key].children.pop();
       }else if(prevState[key].children.length > subkey){
-        prevState[key].children.splice(subkey,1)
+        prevState[key].children.splice(subkey,1);
+        uiArray[key].children.splice(subkey,1);
       }
     }
     this.setState({ menu: prevState });
@@ -261,12 +251,14 @@ class Dispositif extends Component {
     this.setState({ tooltipOpen: !this.state.tooltipOpen});
   }
 
-  changeCardTitle = (key, subkey, title='', titleIcon='') => {
+  changeCardTitle = (key, subkey, node, value) => {
     const prevState = [...this.state.menu];
-    prevState[key].children[subkey].title=title;
-    prevState[key].children[subkey].titleIcon=titleIcon;
+    prevState[key].children[subkey][node]=value;
     this.setState({ menu: prevState });
   }
+
+  changeTag = (key, value) => this.setState({ tags: this.state.tags.map((x,i)=> i===key ? value : x) });
+  addTag = () => this.setState({ tags: [...this.state.tags, 'Autre'] });
 
   handleFileInputChange = event => {
     this.setState({sponsorLoading:true})
@@ -289,18 +281,6 @@ class Dispositif extends Component {
     this.props.history.goBack();
   }
 
-  valider_dispositif = () => {
-    let dispositif = {
-      ...this.state.content,
-      contenu : [...this.state.menu.map(x=> {return {title: x.title, content : x.content, ...( x.children && {children : x.children.map(y => {return {title: y.title, content : y.content}})})}})],
-      sponsors:this.state.sponsors
-    }
-    API.add_dispositif(dispositif).then((data) => {
-      console.log(data.data)
-    },(error)=>{
-      console.log(error);return;})
-  }
-
   createPdf = () => {
     this.setState({accordion: this.state.accordion.map(x => true)}, ()=>{
       console.log(this.newRef)
@@ -314,9 +294,25 @@ class Dispositif extends Component {
     })
   }
 
+  valider_dispositif = () => {
+    let dispositif = {
+      ...this.state.content,
+      contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, ...( x.children && {children : x.children.map(y => {return {title: y.title, content : y.content}})})}}),
+      sponsors:this.state.sponsors,
+      tags:this.state.tags,
+    }
+    let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
+    dispositif.audience=[cardElement.find(x=> x.title==='Audience').contentTitle];
+    dispositif.audienceAge=[cardElement.find(x=> x.title==='Tranche d\'âge').contentTitle.replace(' à ', '-').replace(' ans', '')];
+    dispositif.niveauFrancais=cardElement.find(x=> x.title==='Niveau de français').contentTitle;
+    console.log(dispositif)
+    API.add_dispositif(dispositif).then((data) => {
+      console.log(data.data)
+    },(error)=>{console.log(error);return;})
+  }
+
   render(){
     const {t} = this.props;
-
     return(
       <div className="animated fadeIn dispositif" ref={this.newRef}>
         <section className="banniere-dispo">
@@ -357,7 +353,7 @@ class Dispositif extends Component {
           <img className="homme-icon" src={manLab} alt="homme"/>
           <Row className="header-footer">
             <Col className="align-right">
-              Dernière mise à jour : <span className="date-maj">3 avril 2019</span>
+              Dernière mise à jour : <span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
             </Col>
             <Col>
               Fiabilité de l'information : <span className="fiabilite">Faible</span>
@@ -444,12 +440,11 @@ class Dispositif extends Component {
           </Col>
           <Col lg="6">
             <ContenuDispositif 
-              hoverOn={this.hoverOn}
+              updateUIArray={this.updateUIArray}
               handleContentClick={this.handleContentClick}
               handleMenuChange={this.handleMenuChange}
               onEditorStateChange={this.onEditorStateChange}
               toggleModal={this.toggleModal}
-              toggleAccordion={this.toggleAccordion}
               deleteCard={this.deleteCard}
               addItem={this.addItem}
               removeItem={this.removeItem}
@@ -464,10 +459,7 @@ class Dispositif extends Component {
             {false && <Commentaires />}
           </Col>
           <Col md="3" className="aside-right">
-            <div className="tags">
-              <span className="first-item">#&nbsp;<u>Insertion professionnelle</u></span>
-              <span className="second-item">#&nbsp;<u>Apprendre le français</u></span>
-            </div>
+            <Tags tags={this.state.tags} changeTag={this.changeTag} addTag={this.addTag} />
 
             <div className="print-buttons">
               <Button className="print-button" onClick={this.createPdf}>
@@ -484,7 +476,7 @@ class Dispositif extends Component {
                     <Icon name="printer-outline" fill="#3D3D3D" />
                     <span>Imprimer</span>
                   </Button>}
-                content={() => this.bodyRef}
+                content={() => this.newRef.current}
                 onBeforePrint={()=>this.setState({accordion: this.state.accordion.map(x => true)})}
               />
             </div>
@@ -493,7 +485,15 @@ class Dispositif extends Component {
         
 
         <div className="contact-footer">
-          Des questions ? Contactez-nous par email à&nbsp;<u>contact@volont-r.fr</u>
+          Des questions ? Contactez-nous par email à&nbsp;
+          <u>
+            <ContentEditable
+              id='contact'
+              html={this.state.content.contact}  // innerHTML of the editable div
+              disabled={this.state.disableEdit}       // use true to disable editing
+              onChange={this._handleChange} // handle innerHTML change
+            />
+          </u>
         </div>
         <div className="people-footer">
           <Row>
