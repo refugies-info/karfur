@@ -109,7 +109,7 @@ io.on('connection', function(socket){
 });
 
 app.post('/webhook', (req, res) => {  
- 
+  console.log(0)
   let body = req.body;
 
   // Checks this is an event from a page subscription
@@ -240,7 +240,7 @@ const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 5) => {
 };
 
 app.get('/webhook', (req, res) => {
-
+  console.log('oust')
   // Your verify token. Should be a random string.
   let VERIFY_TOKEN = "trucmuchebidule"
     
