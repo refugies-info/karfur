@@ -245,6 +245,7 @@ const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 5) => {
     return;
   }
 
+  const PAGE_ACCESS_TOKEN = 'EAAERWNWISMwBAHlNu34wEpDh70UkpQwwufMsr8RV8qMAhKxRCPZBuKKIZBvrZBoJVpZC42dB3e8sD2L2h3tZBDmIxZC3rjX3iAb5qYt3BM1JwDG26C9PEe8orW0ZAraessVGxVPTzMaBWJWrGlTZBHDu3YZAA7KXfg7clNZBi2ZC6NEOwZDZD'
   // ensure query parameters have a PAGE_ACCESS_TOKEN value
   /* eslint-disable camelcase */
   const query = Object.assign({access_token: PAGE_ACCESS_TOKEN}, queryParams);
