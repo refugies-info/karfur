@@ -206,7 +206,6 @@ class Article extends Component {
     if(right_node){
       let domNode=document.querySelector('[id*=' + id + ']').cloneNode(true);
       this.removePencil(domNode)
-      console.log('ici')
       this.setState({
         initial_string : stringify([right_node]),
         translated_string : domNode.outerHTML,

@@ -188,11 +188,11 @@
     float: right;
   }
 
-  h3{
+  h3.contenu-title{
     font-family: Circular Std;
     font-size: 40px;
     line-height: normal;
-
+    margin-top:20px;
     color: #F6B93B;
   }
 
@@ -331,6 +331,7 @@
     border-radius: 34.5px;
     padding-left: 6px;
     padding-right: 6px;
+    margin-top:20px;
 
     h5{
       display: flex;
@@ -541,5 +542,9 @@
         }
       }
     }
+  }
+
+  .btn-validate{
+    margin-top:50px;
   }
 }

@@ -43,6 +43,11 @@ function get_dispositif(req, res) {
     var sort = req.body.sort;
     var populate = req.body.populate;
     var limit = req.body.limit;
+    if(populate && populate.constructor === Object){
+      populate.select = '-password';
+    }else if(populate){
+      populate={path:populate, select : '-password'};
+    }else{populate='';}
 
     var find= new Promise(function (resolve, reject) {
       Dispositif.find(query).sort(sort).populate(populate).limit(limit).exec(function (err, result) {
@@ -88,6 +93,13 @@ function get_dispositif(req, res) {
   }
 }
 
+function count_dispositifs(req, res) {
+  Dispositif.count({}, (err, count) => {
+    if (err){res.status(204).json({ "text": "Pas de résultat" })}
+    else{res.status(200).json(count)}
+  });
+}
+
 
 const _turnHTMLtoJSON = (contenu, nbMots=null) => {
   for(var i=0; i < contenu.length;i++){
@@ -117,3 +129,4 @@ const _turnJSONtoHTML = (contenu) => {
 //On exporte notre fonction
 exports.add_dispositif = add_dispositif;
 exports.get_dispositif = get_dispositif;
+exports.count_dispositifs=count_dispositifs;
