@@ -22,7 +22,7 @@ function post(req, res) {
           handleReceiveMessage(messagingEvent);
         } else if (messagingEvent.optin) {
           console.log(1.5)
-          handleReceiveMessage(messagingEvent);
+          pushMessage(messagingEvent);
         } else if (messagingEvent.delivery) {
           console.log('receiving delivery')
         } else if (messagingEvent.read) {
@@ -40,6 +40,13 @@ function post(req, res) {
       });
     });
   } 
+};
+
+const pushMessage = (event) => {
+  console.log(1.6)
+  const message = event.message;
+  const senderId = event.sender.id;
+  sendHelloRewardMessage(senderId);
 };
 
 const handleReceiveMessage = (event) => {
