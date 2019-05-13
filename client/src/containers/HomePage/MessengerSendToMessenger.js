@@ -64,6 +64,7 @@ export default class MessengerSendToMessenger extends Component {
 
   setFbAsyncInit() {
     const { appId, autoLogAppEvents, xfbml, version } = this.props;
+    console.log('ici')
     window.fbAsyncInit = () => {
       window.FB.init({
         appId,
@@ -125,6 +126,12 @@ export default class MessengerSendToMessenger extends Component {
   }
 
   render() {
+    if(window.FB && window.FB.Event){
+      console.log('subscribing mafak')
+      window.FB.Event.subscribe('send_to_messenger', function(e) {
+        console.log(e)
+      });
+    }
     return <div dangerouslySetInnerHTML={this.createMarkup()} />;
   }
 }

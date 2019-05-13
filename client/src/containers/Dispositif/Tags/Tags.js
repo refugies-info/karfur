@@ -25,7 +25,7 @@ class Tags extends Component {
   render(){
     return(
       <div className="tags">
-        {this.props.tags.map((tag, key) => {
+        {(this.props.tags || []).map((tag, key) => {
           return (
             <span className="tag-item" key={key}>
               #&nbsp;
