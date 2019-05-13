@@ -90,7 +90,7 @@ class Dispositif extends Component {
   componentDidMount (){
     let itemId=this.props.match && this.props.match.params && this.props.match.params.id;
     if(itemId){
-      API.get_dispositif({_id: itemId}).then(data_res => {
+      API.get_dispositif({_id: itemId},{},'creatorId').then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
         this.setState({
@@ -98,6 +98,7 @@ class Dispositif extends Component {
           content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact}, 
           sponsors:dispositif.sponsors,
           tags:dispositif.tags,
+          creator:dispositif.creatorId,
           uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
           disableEdit: true
         })
@@ -313,6 +314,8 @@ class Dispositif extends Component {
 
   render(){
     const {t} = this.props;
+    const creator=this.state.creator || {};
+    const creatorImg= (creator.picture || {}).secure_url || hugo;
     return(
       <div className="animated fadeIn dispositif" ref={this.newRef}>
         <section className="banniere-dispo">
@@ -452,14 +455,14 @@ class Dispositif extends Component {
               {...this.state}
             />
             
-            <Button onClick={this.valider_dispositif} color="success" size="lg" block>
+            <Button onClick={this.valider_dispositif} color="success" size="lg" className="btn-validate" block>
               Valider ce dispositif
             </Button>
             
             {false && <Commentaires />}
           </Col>
           <Col md="3" className="aside-right">
-            <Tags tags={this.state.tags} changeTag={this.changeTag} addTag={this.addTag} />
+            <Tags tags={this.state.tags} editable={this.state.editable} changeTag={this.changeTag} addTag={this.addTag} />
 
             <div className="print-buttons">
               <Button className="print-button" onClick={this.createPdf}>
@@ -487,12 +490,13 @@ class Dispositif extends Component {
         <div className="contact-footer">
           Des questions ? Contactez-nous par email à&nbsp;
           <u>
-            <ContentEditable
-              id='contact'
-              html={this.state.content.contact}  // innerHTML of the editable div
-              disabled={this.state.disableEdit}       // use true to disable editing
-              onChange={this._handleChange} // handle innerHTML change
-            />
+            {this.state.content.contact && 
+              <ContentEditable
+                id='contact'
+                html={this.state.content.contact}  // innerHTML of the editable div
+                disabled={this.state.disableEdit}       // use true to disable editing
+                onChange={this._handleChange} // handle innerHTML change
+              />}
           </u>
         </div>
         <div className="people-footer">
@@ -500,10 +504,10 @@ class Dispositif extends Component {
             <Col lg="6" className="people-col">
               <div className="people-title">Contributeurs</div>
               <div className="people-card">
-                <img className="people-img" src={juliette} alt="juliette"/>
+                <img className="people-img" src={creatorImg} alt="juliette"/>
                 <div className="right-side">
-                  <h6>Juliette Ducoulombier</h6>
-                  <span>Chargée de mission pour la Diair</span>
+                  <h6>{creator.username}</h6>
+                  <span>{creator.description}</span>
                 </div>
               </div>
             </Col>

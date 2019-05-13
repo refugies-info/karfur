@@ -184,4 +184,10 @@ $theme-color: #8DC63F;
       overflow: scroll;
     }
   } 
+
+  #advanced_search{
+    .btn-toggle-search{
+      width:100%;
+    }
+  }
 }

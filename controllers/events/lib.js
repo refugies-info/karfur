@@ -1,27 +1,27 @@
 const Event = require('../../schema/schemaEvent.js');
 
 function log(req, res) {
-    if (!req.body || !req.body.app) {
-        //Le cas où la page ne serait pas soumise ou nul
-        res.status(400).json({
-            "text": "Requête invalide"
+  if (!req.body || !req.body.app) {
+    //Le cas où la page ne serait pas soumise ou nul
+    res.status(400).json({
+        "text": "Requête invalide"
+    })
+  } else {
+    var event = req.body
+    var _u = new Event(event);
+    _u.save(function (err, event,ptet) {
+      if (err) {
+        res.status(500).json({
+          "text": "Erreur interne"
         })
-    } else {
-        var event = req.body
-        var _u = new Event(event);
-        _u.save(function (err, event,ptet) {
-            if (err) {
-                res.status(500).json({
-                    "text": "Erreur interne"
-                })
-            } else {
-                res.status(200).json({
-                    "text": "Succès",
-                    "event": event
-                })
-            }
+      } else {
+        res.status(200).json({
+          "text": "Succès",
+          "event": event
         })
-    }
+      }
+    })
+  }
 }
 
 function get(req, res) {

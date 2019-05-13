@@ -7,6 +7,8 @@ $transition-time: 0.5s;
 
 .parkour-on-board{
   height: 100%;
+  color: #3D3D3D;
+  padding: 40px;
 
   .full-width{
     width:100%;
@@ -31,39 +33,91 @@ $transition-time: 0.5s;
   }
 
   .left-panel{
-    padding-left: 5em;
-    > h1{
-      margin: 50px 0;
-    }
+    padding-left: 6px;
 
-    .buttons-wrapper{
-      height:fit-content;
-    }
-    .questionnaire-main .question-line{
-      font-size: 1.75rem;
-      margin: 20px 0;
-      .btn{
-        font-size: 1.75rem;
-        &.m-0{
-          font-size: initial;
+    .card{
+      background: #FBFBFB;
+      box-shadow: 0px 0px 20px rgba(205, 205, 205, 0.8);
+      border-radius: 12px;
+      height:100%;
+
+      .card-header{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 32px;
+        line-height: 40px;
+        background-color:inherit;
+        border:none;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .buttons-wrapper div[style*="transform"]{
+        background: #FBFBFB;
+        border: 1px solid #828282;
+        box-sizing: border-box;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 23px;
+
+        min-height:130px;
+        min-width:130px;
+        &:hover{
+          background: linear-gradient(137.67deg, #979797 -12.31%, #3D3D3D 95.23%);
+          color: #FFFFFF;
         }
       }
-    }
-    .left-footer{
-      margin-top:5em;
-      a{
-        text-decoration: none;
-        color: inherit;
+      .questionnaire-main .question-line{
+        font-size: 1.75rem;
+        margin: 20px 0;
+        .btn{
+          font-size: 1.75rem;
+          &.m-0{
+            font-size: initial;
+          }
+        }
+      }
+      .card-footer{
+        margin-top:5em;
+        background-color:inherit;
+        border:none;
+        border-radius: 0 0 12px 12px;
+        display: flex;
+        justify-content: flex-end;
+
+        a{
+          text-decoration: none;
+          color: inherit;
+        }
+        .parcours-button{
+          background: linear-gradient(130.6deg, #F6B93B 12.52%, #E55039 79.83%);
+          box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+          border-radius: 12px;
+          border:none;
+          margin-left:16px;
+        }
+        .bookmark-button{
+          border: 1px solid #3D3D3D;
+          box-sizing: border-box;
+          border-radius:50%;
+          &:hover{
+            background-color:lightgray;
+          }
+        }
       }
     }
   }
 
   .right-panel{
-    margin-top: 2em;
+    margin-top: 22px;
   }
 
   .continue-btn{
     float:right;
+    margin-top:20px;
   }
 
   .pin-icon{
@@ -81,6 +135,63 @@ $transition-time: 0.5s;
 
     &.active{
       color: $active-bg;
+    }
+  }
+
+  .header{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #3D3D3D;
+    height:75px;
+
+    .audio-icon-wrapper{
+      position: absolute;
+      top:0;
+      right:0;
+    }
+  }
+}
+
+.bookmark-modal{
+  .modal-content{
+    background: #3D3D3D;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-size: 18px;
+    line-height: 23px;
+
+    .modal-header{
+      border:none;
+
+      .modal-title{
+        font-size: 40px;
+        line-height: 51px;
+        background:inherit;
+    
+        .bookmark-icon svg{
+          position: absolute;
+          top: 18px;
+          right: 18px;
+        }
+      }
+    }
+    .modal-footer{
+      border:none;
+      padding:0;
+
+      .btn-block{
+        min-height:50px;
+        margin: 0;
+        border-radius: 0 0 12px 0;
+
+        &.btn-go{
+          background: #F2F2F2;
+          color: #3D3D3D;
+          border-radius: 0 0 0 12px;
+        }
+      }
     }
   }
 }

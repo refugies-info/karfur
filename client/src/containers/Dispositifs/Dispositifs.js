@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Button, Card, CardBody, CardFooter } from 'reactstrap';
+import { Col, Row, Button, Collapse, CardBody, CardFooter } from 'reactstrap';
+import Icon from 'react-eva-icons';
 
 import Modal from '../../components/Modals/Modal'
 import {randomColor} from '../../components/Functions/ColorFunctions'
@@ -12,14 +13,16 @@ import CustomCard from '../../components/UI/CustomCard/CustomCard';
 
 import './Dispositifs.scss';
 
-//Voir comment filtrer les résultats pour limiter à 8
-// Arranger le Css de l'animation
+const loading = () => <div className="animated fadeIn pt-1 text-center">Chargement...</div>
+
+const ParkourOnBoard = React.lazy(() => import('../ParkourOnBoard/ParkourOnBoard'));
 
 class Dispositifs extends Component {
   state = {
     dispositifs:[],
     dispositif:{},
-    showModal:false
+    showModal:false,
+    showSearch:false,
   }
 
   componentDidMount (){
@@ -33,6 +36,10 @@ class Dispositifs extends Component {
 
   _toggleModal = (show, dispositif = {}) => {
     this.setState({showModal:show, dispositif:dispositif})
+  }
+
+  _toggleSearch = () => { 
+    this.setState(prevState=>{return {showSearch:!prevState.showSearch}})
   }
 
   goToDispositif = () =>{
@@ -59,11 +66,6 @@ class Dispositifs extends Component {
                 <div className="input-group md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
                   <input className="form-control my-0 py-1 amber-border" type="text" placeholder="Chercher" aria-label="logement + accompagnement social" />
                   <i className="fa fa-search text-grey search-btn" aria-hidden="true"></i>
-                  {/* <div className="input-group-append">
-                    <span className="input-group-text amber lighten-3" id="basic-text1">
-                      <i className="fa fa-search text-grey" aria-hidden="true"></i>
-                    </span>
-                  </div> */}
                 </div>
               </Col>
               <Col lg="3">
@@ -72,6 +74,21 @@ class Dispositifs extends Component {
             </Row>
           </div>
         </section>
+
+        <section id="advanced_search">
+          <Collapse isOpen={this.state.showSearch}>
+            <Suspense fallback={loading()}>
+              <ParkourOnBoard />
+            </Suspense>
+          </Collapse>
+          <Button className="btn-toggle-search" color="secondary" onClick={this._toggleSearch} style={{ marginBottom: '1rem' }}>
+            <h3>
+              {this.state.showSearch ? "Masquer la recherche avancée" : "Afficher la recherche avancée"} &nbsp;&nbsp;
+              <i className={"fa fa-chevron-" + (this.state.showSearch ? "up" : "down") + " fa-lg mt-4"}></i>
+            </h3>
+          </Button>
+        </section>
+
         <section id="menu_dispo">
           <Row className="align-items-center themes">
             <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
