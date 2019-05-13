@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Button, Card, CardBody, CardFooter, Collapse } from 'reactstrap';
+import { Col, Row, Button, Card, CardHeader, CardBody, CardFooter, Collapse, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 import Cookies from 'js-cookie';
+import Icon from 'react-eva-icons';
 
 import API from '../../utils/API';
 import data from './data'
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import {randomColor} from '../../components/Functions/ColorFunctions';
 import SpringButtonParkour from '../../components/UI/SpringButton/SpringButtonParkour';
+import AudioBtn from '../UI/AudioBtn/AudioBtn'
 
 import './ParkourOnBoard.scss';
 
@@ -17,15 +19,20 @@ let user={_id:null, cookies:{}};
 class ParkourOnBoard extends Component {
   state = {
     dispositifs: [],
+    count_dispositifs:0,
     open:new Array(data.length+1).fill(false),
     data: data,
     isToggleOpen:false,
     pinned:[],
+    showBookmarkModal:false
   }
   
   componentDidMount (){
     this.getDispositifs(this.state.data);
     this.retrieveCookies();
+    API.count_dispositifs().then(data => {
+      this.setState({ count_dispositifs:data.data })
+    },function(error){console.log(error);return;})
   }
 
   getDispositifs = (data) => {
@@ -94,55 +101,78 @@ class ParkourOnBoard extends Component {
     })
   }
 
+  _toggleBookmarkModal = () => {
+    this.setState(prevState=>({showBookmarkModal:!prevState.showBookmarkModal}))
+  }
+
   render() {
     let QuestionItem = (props) => {
       return(
         <div className="question-line">
           {props.item.title}&nbsp;
-          {this.state.open[props.id] ?
-            <div className="buttons-wrapper" >
-              <SpringButtonParkour 
-                element={props.item}
-                setValue={(key,item)=>this.setValue(key,item,props.id)}
-                toggleButtons={()=>this.toggleButtons(props.id)} />
-            </div>
-            :
-            <Button color={props.item.color} onClick={()=>this.toggleButtons(props.id)}>{props.item.value}</Button>
-          }
+          <Button color={props.item.color} onClick={()=>this.toggleButtons(props.id)}>{props.item.value}</Button>
           &nbsp;{props.item.title2}
         </div>
       )
     }
+
+    let SpringItem = (props) => {
+      if(this.state.open[props.id]){
+        return(
+          <div className="buttons-wrapper" >
+            <SpringButtonParkour 
+              element={props.item}
+              setValue={(key,item)=>this.setValue(key,item,props.id)}
+              toggleButtons={()=>this.toggleButtons(props.id)} />
+          </div>
+        )
+      }else{return false;}
+    }
+
     return (
       <div className="animated fadeIn parkour-on-board">
         <Row className="full-width">
           <Col lg="6" className="left-panel">
-            <h1>
-              Découvrez les initiatives qui vous concernent : 
-            </h1>
-            <div className="questionnaire-main">
-              {this.state.data.slice(0,3).map((item, id) =>  <QuestionItem key={id} item={item} id={id} />)}
-              {!this.state.isToggleOpen && 
-                <Button className="m-0 p-0 animated fadeIn continue-btn" color="info" onClick={this.toggle} aria-expanded={this.state.isToggleOpen} aria-controls="accordion">
-                  <i className="fa fa-chevron-down"></i> Continuer le questionnaire
+            <Card>
+              <CardHeader>
+                Découvrez les initiatives qui vous concernent : 
+              </CardHeader>
+              <CardBody className="questionnaire-main">
+                {this.state.data.slice(0,3).map((item, id) =>  <QuestionItem key={id} item={item} id={id} />)}
+                {this.state.data.slice(0,3).map((item, id) => <SpringItem key={id} item={item} id={id} />)}
+                
+                {!this.state.isToggleOpen && 
+                  <Button className="animated fadeIn continue-btn" color="secondary" onClick={this.toggle} aria-expanded={this.state.isToggleOpen} aria-controls="accordion">
+                    <i className="fa fa-chevron-down"></i> Continuer le questionnaire
+                  </Button>
+                }
+                <Collapse isOpen={this.state.isToggleOpen} data-parent="accordion" id="accordion">
+                  {this.state.data.slice(3,this.state.data.length).map((item, id) =>  <QuestionItem key={id+3} item={item} id={id+3} />)}
+                  {this.state.data.slice(3,this.state.data.length).map((item, id) => <SpringItem key={id+3} item={item} id={id+3} />)}
+                
+                  <Button className="m-0 p-0 animated fadeIn continue-btn" color="info" onClick={this.toggle} aria-expanded={this.state.isToggleOpen} aria-controls="accordion">
+                    <i className="fa fa-chevron-up"></i> Réduire le questionnaire
+                  </Button>
+                </Collapse>
+              </CardBody>
+              <CardFooter>
+                <Button color="white" className="btn-pill bookmark-button" onClick={this._toggleBookmarkModal}>
+                  <Icon name="bookmark-outline" fill="#3D3D3D"/>
                 </Button>
-              }
-              <Collapse isOpen={this.state.isToggleOpen} data-parent="accordion" id="accordion">
-                {this.state.data.slice(3,this.state.data.length).map((item, id) =>  <QuestionItem key={id+3} item={item} id={id+3} />)}
-                <Button className="m-0 p-0 animated fadeIn continue-btn" color="info" onClick={this.toggle} aria-expanded={this.state.isToggleOpen} aria-controls="accordion">
-                  <i className="fa fa-chevron-up"></i> Réduire le questionnaire
-                </Button>
-              </Collapse>
-            </div>
-            <footer className="left-footer">
-              <NavLink to="/parcours-perso">
-                <Button color="danger" size="lg" block className="parcours-button">
-                  <i className="cui-sort-ascending icons"></i> Voir mon parcours
-                </Button>
-              </NavLink>
-            </footer>
+                <NavLink to="/parcours-perso">
+                  <Button size="lg" className="parcours-button">
+                    <Icon name="options-2-outline" fill="#FFFFFF"/> &nbsp;
+                    Voir mon parcours
+                  </Button>
+                </NavLink>
+              </CardFooter>
+            </Card>
           </Col>
           <Col lg="6" className="right-panel">
+            <div className="header">
+              {this.state.dispositifs.length} résultat{this.state.dispositifs.length>1 && "s"} sur {this.state.count_dispositifs}
+              <AudioBtn />
+            </div>
             <Row>
               {[...this.state.pinned,...this.state.dispositifs].slice(0,8).map((dispositif) => {
                 if(!dispositif.hidden){
@@ -177,6 +207,25 @@ class ParkourOnBoard extends Component {
             </Row>
           </Col>
         </Row>
+        <Modal isOpen={this.state.showBookmarkModal} toggle={this._toggleBookmarkModal} className="bookmark-modal">
+          <ModalHeader>
+            <span>Recherche sauvegardée</span>
+            <i className="bookmark-icon">
+              <Icon name="bookmark" fill="#F6B93B" size="xlarge" />
+            </i>
+          </ModalHeader>
+          <ModalBody>
+            Votre recherche est désormais disponible dans votre profil dans la rubrique&nbsp;
+            <NavLink to="/"><b>Mes recherches</b></NavLink>
+          </ModalBody>
+          <ModalFooter>
+            <Button block color="secondary" onClick={this._toggleBookmarkModal} className="btn-go">
+              <Icon name="arrow-forward-outline" fill="#3D3D3D" size="large" />
+              Aller voir
+            </Button>
+            <Button block color="success" onClick={this._toggleBookmarkModal}>Ok merci</Button>
+          </ModalFooter>
+        </Modal>
       </div>
     )
   }

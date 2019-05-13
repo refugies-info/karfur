@@ -4,41 +4,101 @@ import { withTranslation } from 'react-i18next';
 ////////A enlever si pas utilisé/////////////:
 import Notifications from '../../components/UI/Notifications/Notifications';
 import {NavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
+// import SendToMessenger from './SendToMessenger';
+import MessengerSendToMessenger from './MessengerSendToMessenger';
 
+import * as actions from '../../Store/actions';
 import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
+import API from '../../utils/API';
+
 import './HomePage.scss';
 
 class HomePage extends Component {
   state = {
-    showModal: false
+    showModal: false,
+    available_languages:[]
+  }
+  bodyRef=React.createRef();
+
+  componentDidMount (){
+    API.get_langues({},{avancement:-1}).then(data_res => {
+      this.setState({ available_languages: data_res.data.data })
+    },function(error){ console.log(error); return; })
+
+
+    // const script = document.createElement("script");
+
+    // script.src = "https://connect.facebook.net/en_US/sdk.js";
+    // script.async = true;
+
+    // document.body.appendChild(script);
+
+    // const s = document.createElement('script');
+    // s.type = 'text/javascript';
+    // s.async = true;
+    // s.innerHTML = "window.fbAsyncInit = function() {"+
+    //   "FB.init({"+
+    //     "appId            : '300548213983436',"+
+    //     "autoLogAppEvents : true,"+
+    //     "xfbml            : true,"+
+    //     "version          : 'v3.3'"+
+    //   "})"+
+    // "}";
+    // document.body.appendChild(s);
   }
 
   changeLanguage = (lng) => {
-      this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
+    this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
+    const action = { type: actions.TOGGLE_LANGUE, value: lng }
+    this.props.dispatch(action)
+    if(this.props.i18n.getResourceBundle(lng,"translation")){
       this.props.i18n.changeLanguage(lng);
-      this.setState({showModal:false})
+    }else{console.log('Resource not found in i18next.')}
+    this.toggleLanguageModal();
   }
 
+  toggleLanguageModal = () => {
+    this.setState(prevState => {return {showModal: !prevState.showModal}})
+  }
+
+  handleResponse = (data) => {
+    console.log(data);
+  }
+
+  handleError = (error) => {
+    console.log( error );
+  }
+  
   render(){
-    console.log(process.env)
-    const { t } = this.props;
+    const { t, i18n } = this.props;
     const languages=[
-        {
-            name: 'Français',
-            key: 'fr'
-        },
-        {
-            name: 'English',
-            key: 'en'
-        },
-        {
-            name: 'العربية',
-            key: 'ar'
-        }
+      {
+          name: 'Français',
+          key: 'fr'
+      },
+      {
+          name: 'English',
+          key: 'en'
+      },
+      {
+          name: 'العربية',
+          key: 'ar'
+      }
     ]
+    //console.log(window.FB)
+    // window.FB.Event.subscribe('send_to_messenger', function(e) {
+    //   console.log(e)
+    // });
     return(
       <div className="animated fadeIn homepage">
-          <LanguageModal show={this.state.showModal} changeFn={this.changeLanguage} languages={languages}/>
+          <LanguageModal 
+            show={this.state.showModal} 
+            current_language={i18n.language}
+            toggle={this.toggleLanguageModal} 
+            changeLanguage={this.changeLanguage} 
+            languages={this.state.available_languages}/>
+            
           <section id="hero">
               <div className="hero-container">
               <h1>Bienvenue dans le projet Karfu'R</h1>
@@ -70,7 +130,12 @@ class HomePage extends Component {
               <h1>{this.props.t('Bienvenue')}</h1>
           </div>
           <div>Toolbar, SideDrawer and Backdrop</div>
-          
+
+          {/* <SendToMessenger messengerAppId="300548213983436" pageId="423112408432299" /> */}
+
+          <MessengerSendToMessenger pageId="423112408432299" appId="300548213983436"
+            ctaText="SEND_ME_MESSAGES" />
+
           <Notifications/>
 
           <div>{t('Elément principal')}</div>
@@ -84,8 +149,16 @@ class HomePage extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    languei18nCode: state.langue.languei18nCode
+  }
+}
+
 export default track({
     page: 'HomePage',
   })(
-    withTranslation()(HomePage)
+    connect(mapStateToProps)(
+      withTranslation()(HomePage)
+    )
   );
