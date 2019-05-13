@@ -25,7 +25,7 @@ class Tags extends Component {
   render(){
     return(
       <div className="tags">
-        {this.props.tags.map((tag, key) => {
+        {(this.props.tags || []).map((tag, key) => {
           return (
             <span className="tag-item" key={key}>
               #&nbsp;
@@ -48,7 +48,8 @@ class Tags extends Component {
             </span>
           )}
         )}
-        <h1 className="p-1 plus-button" onClick={this.addTag}>+</h1>
+        {this.state.editable && 
+          <h1 className="p-1 plus-button" onClick={this.addTag}>+</h1>}
       </div>
     )
   }

@@ -20,6 +20,9 @@ function post(req, res) {
         if (messagingEvent.message) {
           console.log(1)
           handleReceiveMessage(messagingEvent);
+        } else if (messagingEvent.optin) {
+          console.log(1.5)
+          handleReceiveMessage(messagingEvent);
         } else if (messagingEvent.delivery) {
           console.log('receiving delivery')
         } else if (messagingEvent.read) {

@@ -8,39 +8,6 @@ const bodyParser = require('body-parser');
 const cloudinary = require('cloudinary')
 const formData = require('express-form-data')
 const path = require("path");
-// const { MessengerClient } = require('messaging-api-messenger');
-
-// const accessToken ='EAAERWNWISMwBAN1kKuQ5AO7YHZA0YmCimpGOUdZAd2fuiNGvs5YUSB13ZA5jcZCnZAVTZBX93osPZAOQ7fJ6HIZC0Sme8IJPQryAeEXh9OHtqeBgMKvAlk27XZC2lzwv5ZAaohVjtAmXBycypm69Cf8KJJtcAZBA1MK3KTupx5AYJ7gzZAvnahye7sedhowR7mJixJxHNf2tpppz9QZDZD'
-// // get accessToken from facebook developers website
-// const client = MessengerClient.connect(accessToken);
-
-// // client.getUserProfile('102526574219997').then(user => {
-// //   console.log(user);
-// // });
-
-// // client.getMessengerProfile(['get_started', 'persistent_menu']).then(profile => {
-// //   console.log(profile);
-// // });
-
-// client.sendRawBody({
-//   recipient: {
-//     id: '2199299830183850',
-//   },
-//   message: {
-//     text: 'Hello!',
-//   },
-// }).catch(error => {
-//   console.log(error); // formatted error message
-//   // console.log(error.stack); // error stack trace
-//   // console.log(error.config); // axios request config
-//   // console.log(error.request); // HTTP request
-//   // console.log(error.response); // HTTP response
-// });
-
-// client.sendText("2199299830183850", 'Hello!');
-
-//souf : "2199299830183850"
-//nat: "102526574219997"
 
 let startup, scraper;
 if(process.env.NODE_ENV === 'dev') {
