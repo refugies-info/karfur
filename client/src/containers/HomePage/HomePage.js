@@ -6,7 +6,7 @@ import Notifications from '../../components/UI/Notifications/Notifications';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 // import SendToMessenger from './SendToMessenger';
-import MessengerSendToMessenger from './MessengerSendToMessenger';
+import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
 
 import * as actions from '../../Store/actions';
 import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
@@ -25,27 +25,6 @@ class HomePage extends Component {
     API.get_langues({},{avancement:-1}).then(data_res => {
       this.setState({ available_languages: data_res.data.data })
     },function(error){ console.log(error); return; })
-
-
-    // const script = document.createElement("script");
-
-    // script.src = "https://connect.facebook.net/en_US/sdk.js";
-    // script.async = true;
-
-    // document.body.appendChild(script);
-
-    // const s = document.createElement('script');
-    // s.type = 'text/javascript';
-    // s.async = true;
-    // s.innerHTML = "window.fbAsyncInit = function() {"+
-    //   "FB.init({"+
-    //     "appId            : '300548213983436',"+
-    //     "autoLogAppEvents : true,"+
-    //     "xfbml            : true,"+
-    //     "version          : 'v3.3'"+
-    //   "})"+
-    // "}";
-    // document.body.appendChild(s);
   }
 
   changeLanguage = (lng) => {
@@ -136,7 +115,10 @@ class HomePage extends Component {
           <MessengerSendToMessenger 
             pageId="423112408432299" 
             appId="300548213983436" 
-            ctaText="SUBSCRIBE_IN_MESSENGER" />
+            ctaText="SEND_THIS_TO_ME"
+            autoLogAppEvents="true"
+            language= 'fr_FR'
+            dataRef="/dispositif/5cd43ce8b472e46bd90e8f58" />
 
           <Notifications/>
 
