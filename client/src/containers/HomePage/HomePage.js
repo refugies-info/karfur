@@ -133,8 +133,10 @@ class HomePage extends Component {
 
           {/* <SendToMessenger messengerAppId="300548213983436" pageId="423112408432299" /> */}
 
-          <MessengerSendToMessenger pageId="423112408432299" appId="300548213983436"
-            ctaText="SEND_ME_MESSAGES" />
+          <MessengerSendToMessenger 
+            pageId="423112408432299" 
+            appId="300548213983436" 
+            ctaText="SUBSCRIBE_IN_MESSENGER" />
 
           <Notifications/>
 
