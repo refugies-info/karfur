@@ -13,8 +13,8 @@ const contenuDispositif = (props) => {
           <Row className="relative-position" onMouseEnter={()=>props.updateUIArray(key, null, 'isHover')}>
             <Col lg="12">
               <a className="anchor" id={'item-head-'+key}></a>
-              <h3>{item.title}</h3>
-              {item.content && <EditableParagraph 
+              <h3 className="contenu-title">{item.title}</h3>
+              {item.content && item.content!=='null' && <EditableParagraph 
                 idx={key} 
                 handleMenuChange={props.handleMenuChange}
                 onEditorStateChange={props.onEditorStateChange}
