@@ -13,6 +13,8 @@ const headers = {
 }
 const burl = "http://localhost:8000"
 
+axios.withCredentials = true;
+
 export default {
     login : (user) => {
       return axios.post(burl + '/user/login',user,
@@ -61,6 +63,9 @@ export default {
     },
     get_dispositif : (query={}, sort={}, populate='', limit=null) => {
       return axios.post(burl + '/dispositifs/get_dispositif', {query: query, sort: sort, populate: populate, limit: limit}, {headers: headers})
+    },
+    count_dispositifs : () => {
+      return axios.post(burl + '/dispositifs/count_dispositifs', {}, {headers: headers})
     },
 
     add_tradForReview : query => {

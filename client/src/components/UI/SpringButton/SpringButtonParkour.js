@@ -22,7 +22,7 @@ export default function SpringButtonParkour(props) {
     trail: 400 / props.element.children.length,
     from: { opacity: 0, transform: 'scale(0)' },
     enter: { opacity: 1, transform: 'scale(1)' },
-    leave: { opacity: 0, transform: 'scale(0)' }
+    leave: { opacity: 0, transform: 'scale(0)' },
   })
 
   // This will orchestrate the two animations above, comment the last arg and it creates a sequence
@@ -40,7 +40,7 @@ export default function SpringButtonParkour(props) {
           <Item 
             key={item.name} 
             onClick={() => _toggleButtons(key, item)}
-            style={{ ...props, background: (item || {}).css, color: 'white', display: 'flex', 'flexDirection': 'column', 'justifyContent': 'center' }} >
+            style={{ ...props }} >
             <span>{(item || {}).name}</span>
           </Item>
         ))}

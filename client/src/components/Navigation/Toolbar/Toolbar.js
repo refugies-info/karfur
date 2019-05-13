@@ -24,13 +24,8 @@ export class Toolbar extends React.Component {
 
   componentDidMount (){
     API.get_langues({}).then(data_res => {
-      this.setState({
-        available_languages:data_res.data.data, 
-      })
-    },function(error){
-      console.log(error);
-      return;
-    })
+      this.setState({ available_languages:data_res.data.data })
+    },function(error){ console.log(error); return; })
   }
 
   disconnect = () => {
