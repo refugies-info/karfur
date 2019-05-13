@@ -44,9 +44,31 @@ function post(req, res) {
 
 const pushMessage = (event) => {
   console.log(1.6)
-  const message = event.message;
+  const url = (event.optin || {}).ref;
   const senderId = event.sender.id;
-  sendHelloRewardMessage(senderId);
+
+  if (url) { 
+    const setRedirectButton = {
+      type: 'web_url',
+      title: 'Karfu\'R, un projet de la DIAIR',
+      url: `https://agir-dev.herokuapp.com` + url,
+      webview_height_ratio: 'tall',
+      messenger_extensions: true,
+    };
+  
+    const pushMessage = {
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'button',
+          text: 'Bonjour et bienvenue dans le projet Karfu\'R. Cliquez sur le bouton ci-dessous pour accéder au lien demandé',
+          buttons: [setRedirectButton],
+        },
+      },
+    };
+
+    sendMessage(senderId, pushMessage) 
+  }
 };
 
 const handleReceiveMessage = (event) => {
