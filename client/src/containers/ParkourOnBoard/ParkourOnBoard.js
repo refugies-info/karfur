@@ -5,6 +5,7 @@ import { Col, Row, Button, Card, CardHeader, CardBody, CardFooter, Collapse, Mod
 import {NavLink} from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Icon from 'react-eva-icons';
+import {withRouter} from 'react-router-dom';
 
 import API from '../../utils/API';
 import data from './data'
@@ -235,6 +236,8 @@ class ParkourOnBoard extends Component {
 export default track({
     page: 'ParkourOnBoard',
   })(
-    withTranslation()(ParkourOnBoard)
+    withTranslation()(
+      withRouter(ParkourOnBoard)
+    )
   );
 
