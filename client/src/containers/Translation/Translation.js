@@ -127,18 +127,28 @@ class Translation extends Component {
           path: article.path,
           id: article.articleId,
           jsonBody:article.body,
+          ...(article.avancement && article.avancement[locale] && {avancement : article.avancement[locale]})
         },()=>{
           if(!isExpert){
-            //Je rend chaque noeud unique:
-            this.translate(this.initial_text.innerHTML, locale, 'body')
-            if(!this.state.isStructure){this.translate(this.initial_title.innerHTML, locale, 'title')}
-            this.setState({texte_a_traduire:this.initial_text.innerText})
+            //Je vérifie d'abord s'il n'y a pas eu une première traduction effectuée par un utilisateur :
+            API.get_tradForReview({'articleId':itemId}, '-avancement').then(data => {
+              if(data.data.data.length > 0){
+                let traductionFaite = data.data.data[0];
+                this.setState({ translated: {
+                  title: traductionFaite.translatedText.title,
+                  body: article.isStructure? traductionFaite.translatedText.body : stringify(traductionFaite.translatedText.body),
+                 }
+                });
+              }else{
+                //Je rend chaque noeud unique:
+                this.translate(this.initial_text.innerHTML, locale, 'body')
+                if(!this.state.isStructure){this.translate(this.initial_title.innerHTML, locale, 'title')}
+              }
+              this.setState({texte_a_traduire:this.initial_text.innerText})
+            })
           }
         })
       }
-    },function(error){
-      console.log(error);
-      return;
     })
   }
 

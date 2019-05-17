@@ -9,17 +9,6 @@ import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
 const tradTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
   
-  const langueItem = i18nCode => {
-    let langue = props.langues.find(x => x.i18nCode === i18nCode);
-    if(langue && langue.langueCode && langue.langueFr){
-      return (
-        <>
-          <i className={'flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
-          <span>{langue.langueFr}</span>
-        </>
-      )
-    }else{return false}
-  }
   let table = (
     <Table responsive striped className="avancement-user-table">
       <thead>
@@ -36,7 +25,7 @@ const tradTable = (props) => {
           return (
             <tr key={key} >
               <td className="align-middle">
-                {(element.initialText || {}).title}
+                {element.titreMarque + ' - ' + element.titreInformatif} 
               </td>
               <td className={"align-middle text-"+colorStatut(element.status)}>{element.status}</td>
               <td className="align-middle">
@@ -50,7 +39,8 @@ const tradTable = (props) => {
                 </Row>
               </td>
               <td className="align-middle langue-item">
-                {langueItem(element.langueCible)}
+                <Icon name={element.creatorId===props.user._id ? "shield-outline" : "people-outline" } fill="#3D3D3D" size="large"/>&nbsp;
+                {element.creatorId===props.user._id ? "Propriétaire" : "Contributeur" }
               </td>
               <td className="align-middle">
                 {element.participants && element.participants.map((participant) => {
@@ -75,7 +65,7 @@ const tradTable = (props) => {
         })}
         {props.limit && 
           <tr >
-            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('traducteur')}>
+            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('contributeur')}>
               <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
               Voir plus
             </td>
@@ -116,7 +106,7 @@ const tradTable = (props) => {
           <Button>
             <NavLink to="/backend/user-dashboard" className="no-decoration" >
               <Icon name="options-2-outline" fill="#FFFFFF" />
-              <span>Gérer mes traductions</span>
+              <span>Gérer mes articles</span>
             </NavLink>
           </Button>
         </div>

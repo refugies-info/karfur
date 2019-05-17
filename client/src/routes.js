@@ -21,6 +21,7 @@ import ParkourPerso from './containers/ParkourPerso/ParkourPerso';
 import Editeur from './containers/Editeur/Editeur';
 import Avancement from './containers/Translation/Avancement/Avancement';
 import Translation from './containers/Translation/Translation';
+import RecordAudio from './containers/RecordAudio/RecordAudio';
 
 const routes = [
   { path: '/', exact: true, name: 'home', component: DefaultLayout, restriction:[] },
@@ -32,7 +33,7 @@ const routes = [
   { path: '/articles', name: 'Articles', component: Articles, restriction:[] },
   { path: '/article/:id', exact: true, name: 'Article', component: Article, restriction:[] },
 
-  { path: '/dispositifs', name: 'Dispositifs', component: Dispositifs, restriction:[] },
+  { path: '/dispositifs', name: 'Rechercher un dispositif', component: Dispositifs, restriction:[] },
   { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
   { path: '/dispositif', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
 
@@ -46,6 +47,8 @@ const routes = [
   { path: '/traduction', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/traduction/validation/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/traduction/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+
+  { path: '/record-audio', exact: true, name: 'Enregistrement audio', component: RecordAudio, restriction:[] },
 
   { path: '/backend', exact:true, forceShow:true, name: 'Administration', component: Dashboard, restriction:['Admin'] },
   { path: '/backend/dashboard', name: 'Dashboard', component: Dashboard, restriction:['Admin'] },

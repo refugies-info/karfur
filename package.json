@@ -38,6 +38,7 @@
     "messaging-api-messenger": "^0.7.16",
     "mkdirp": "^0.5.1",
     "mongoose": "^5.4.13",
+    "mongoose-gridstore": "^0.1.25",
     "password-hash": "^1.2.2",
     "prepend-http": "^2.0.0",
     "puppeteer": "^1.14.0",

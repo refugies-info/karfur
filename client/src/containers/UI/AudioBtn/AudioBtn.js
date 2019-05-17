@@ -1,9 +1,10 @@
 import React, { Component }  from 'react';
 import track from 'react-tracking';
 import { connect } from 'react-redux';
+import Icon from 'react-eva-icons';
 
 import * as actions from '../../../Store/actions';
-import audioBtn from '../../../assets/figma/audioBtn.svg';
+
 import './AudioBtn.scss';
 
 class AudioBtn extends Component {
@@ -16,7 +17,7 @@ class AudioBtn extends Component {
   render() {
     return (
       <div className={"audio-icon-wrapper" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
-        <img className="audio-icon" src={audioBtn} alt="bouton audio"/>
+        <Icon name="volume-up-outline" size="large" fill="#3D3D3D" />
       </div>
     )
   }

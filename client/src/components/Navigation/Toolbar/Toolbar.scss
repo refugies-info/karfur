@@ -1,3 +1,6 @@
+$btnHeight:40px;
+$btnWidth:40px;
+
 .Toolbar {
   height: 56px;
   width: 100%;
@@ -24,32 +27,113 @@
       background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%232f353a' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
     }
   }
-}
 
-.Toolbar .left_buttons{
-  height : 100%;
-  display: flex;
-}
+  .flag-btn{
+    background: #FFFFFF;
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+    height: $btnHeight;
+    width: $btnWidth;
+    cursor: pointer;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin: auto 4px;
+    padding: 0;
+    &:hover{
+      background: #eeeeeec2;
+      border-color: #eeeeeec2;
+      box-shadow: 0px 4px #435100;
+    }
+    i{
+      border: 0.5px solid #F5F5F5;
+      box-sizing: border-box;
+      border-radius: 2px;
+    }
+  }
 
-.Toolbar .center_buttons{
-  margin-left:auto;
-}
+  .Logo {
+    font-weight: 800;
+    font-size: 22px;
+    margin: auto;
+    text-decoration: none;
+    color:inherit;
+  
+    .beta-tag{
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 26px;
+      color: #B71540;
+    }
+  }
 
-.Toolbar .right_buttons{
-  margin-left:auto;
-}
+  .left_buttons{
+    height : 100%;
+    display: flex;
+  }
 
-.Toolbar .Logo {
-  font-weight: 800;
-  font-size: 22px;
-  margin: auto;
-}
+  .center_buttons{
+    margin-left:auto;
+  }
 
-.Toolbar .makeItRed{
-    color:white;
-    background-color: red;
-    padding:10px;
-    border-radius: 10px;
+  // .right_buttons{
+  //   margin-left:auto;
+  // }
+
+  .traduire-btn{
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+    background: #3D3D3D;
+    border-radius: 12px;
+    margin-left:13px;
+    margin-right:13px;
+    a{
+      text-decoration: none;
+      color:inherit;
+    }
+    &:hover{
+      background-color: #6c757d;
+    }
+  }
+
+  .connect-btn{
+    border: 0.5px solid #000000;
+    box-sizing: border-box;
+    border-radius: 12px;
+    color: #3D3D3D;
+    a{
+      text-decoration: none;
+      color:inherit;
+    }
+    &:hover{
+      background-color: #6c757d;
+    }
+  }
+
+  .user-dropdown{
+    .btn{
+      padding:0;
+      border-radius:50% !important;
+      &:focus{outline: none !important;}
+      .user-picture{
+        height:40px;
+        width:40px;
+        border-radius:50%;
+      }
+      .user-badge{
+        background: #B71540;
+        position: absolute;
+        width:11px;
+        height:11px;
+        right: 0;
+        top: 0;
+        border-radius: 50%;
+      }
+    }
+    .dropdown-item a{
+      text-decoration: none;
+    }
+  }
 }
 
 @media (max-width: 499px) {

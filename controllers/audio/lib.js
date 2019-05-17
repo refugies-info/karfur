@@ -1,17 +1,21 @@
-const Role = require('../../schema/schemaRole.js');
+const Audio = require('../../schema/schemaAudio.js');
 
-function set_role(req, res) {
-  if (!req.body || !req.body.nom) {
+const recordSampleRate = 44100;
+
+function set_audio(req, res) {
+  if (!req.body) {
     res.status(400).json({
       "text": "Requête invalide"
     })
   } else {
-    var role = req.body
-    var _u = new Role(role);
-    _u.save(function (err, data) {
+    let audio=req.body;
+    var _u = new Audio(audio);
+
+    _u.save( (err, data) => {
       if (err) {
         res.status(500).json({
-          "text": "Erreur interne"
+          "text": "Erreur interne",
+          "error": err
         })
       } else {
         res.status(200).json({
@@ -23,24 +27,23 @@ function set_role(req, res) {
   }
 }
 
-function get_role(req, res) {
-  var query = req.body.query;
-  var sort = req.body.sort;
-  var findRole = new Promise(function (resolve, reject) {
-      Role.find(query).sort(sort).exec(function (err, result) {
-        if (err) {
-          reject(500);
+function get_audio(req, res) {
+  var query = req.body;
+  var find = new Promise(function (resolve, reject) {
+    Audio.find(query).exec(function (err, result) {
+      if (err) {
+        reject(500);
+      } else {
+        if (result) {
+          resolve(result)
         } else {
-          if (result) {
-            resolve(result)
-          } else {
-            reject(404)
-          }
+          reject(204)
         }
-      })
+      }
+    })
   })
 
-  findRole.then(function (result) {
+  find.then(function (result) {
     res.status(200).json({
         "text": "Succès",
         "data": result
@@ -52,7 +55,7 @@ function get_role(req, res) {
             "text": "Erreur interne"
         })
         break;
-      case 404:
+      case 204:
         res.status(404).json({
             "text": "Erreur sur le résultat"
         })
@@ -66,5 +69,5 @@ function get_role(req, res) {
 }
 
 //On exporte notre fonction
-exports.set_role = set_role;
-exports.get_role = get_role;
+exports.set_audio = set_audio;
+exports.get_audio = get_audio;

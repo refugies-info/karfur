@@ -1,5 +1,6 @@
-const tts = require('./tts/lib.js');
+const audio = require('./audio/lib.js');
 
 module.exports = function (app) {
-  app.post('/get_audio',tts.get_audio);
+  app.post('/set_audio', audio.set_audio);
+  app.post('/get_audio', audio.get_audio);
 }

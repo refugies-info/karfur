@@ -61,7 +61,12 @@ var traductionDispositif = mongoose.Schema({
 		type: Number,
 		unique: false,
 		required: false
-	},
+  },
+  avancement:{
+    type:Number,
+    required:false,
+    unique:false
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
 traductionDispositif.options.autoIndex = false

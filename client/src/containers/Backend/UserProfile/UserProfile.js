@@ -9,23 +9,29 @@ import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import {colorAvancement} from '../../../components/Functions/ColorFunctions';
 //import Modal from '../../../components/Modals/Modal';
 import API from '../../../utils/API';
-import TradTable from '../../../components/Backend/UserProfile/TradTable/TradTable';
+import {TradTable, ContribTable} from '../../../components/Backend/UserProfile/index';
 
 import {data} from './data'
 
 import './UserProfile.scss';
 
-const avancement_data={
-  title: 'Mes contributions',
-  headers: ['Titre', 'Statut', 'Progression', 'Mon rôle', 'Ils rédigent avec moi','Voir en détail'],
-  data: data
+const avancement_langue={
+  title: 'Mes traductions',
+  headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi','']
+}
+
+const avancement_contrib={
+  title: 'Mes articles',
+  headers: ['Titre', 'Statut', 'Progression', 'Mon rôle', 'Ils rédigent avec moi','']
 }
 
 class UserProfile extends Component {
   state={
-    showModal:false,
+    showModal:{traducteur: false,contributeur: false}, 
     user: {},
     traductions:[],
+    contributions:[],
+    langues:[],
   }
 
   componentDidMount() {
@@ -34,13 +40,21 @@ class UserProfile extends Component {
       API.get_tradForReview({'userId': user._id}).then(data => {
         console.log(data.data.data)
         this.setState({traductions: data.data.data})
-      },(error) => {console.log(error);return;})
+      })
+      API.get_dispositif({'creatorId': user._id}).then(data => {
+        console.log(data.data.data)
+        this.setState({contributions: data.data.data})
+      })
       console.log(user)
       this.setState({user:user})
-    },(error) => {console.log(error);return;})
+    })
+    API.get_langues({}).then(data => this.setState({ langues: data.data.data }))
   }
 
-  toggleModal = () => this.setState({showModal : !this.state.showModal})
+  toggleModal = (modal) => {
+    this.props.tracking.trackEvent({ action: 'toggleModal', label: modal, value : !this.state.showModal[modal] });
+    this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}})
+  }
 
   render() {
     return (
@@ -61,23 +75,23 @@ class UserProfile extends Component {
         </div>
         <div className="profile-content">
           <Row className="profile-info">
-            <Col lg="4" className="profile-left">
+            <div className="profile-left">
               <img className="img-circle user-picture" src={marioProfile} alt="profile"/>
               <h2 className="name">Hugo Stéphan</h2>
               <h3 className="status">Contributeur ponctuel</h3>
-            </Col>
-            <Col lg="2" className="feedbacks-col">
+            </div>
+            <div className="feedbacks-col">
               <Card className="feedbacks-card">
                 <CardBody>
-                  <SVGIcon name="clapping" />
+                  <SVGIcon name="clapping" fill="#FFFFFF" />
                   <div className="user-feedbacks">
                     <h4>43</h4>
                     <span>utilisateurs vous remercient</span>
                   </div>
                 </CardBody>
               </Card>
-            </Col>
-            <Col lg="6">
+            </div>
+            <Col className="user-col">
               <div className="float-right update-profile">
                 <Icon name="edit-outline" fill="#828282" className="edit-icon" size="large"/>
                 <u>Modifier mon profil</u>
@@ -129,108 +143,37 @@ class UserProfile extends Component {
             </Col>
           </Row>
 
-          <div className="tableau-wrapper" id="contributions">
-            <h1>Mes contributions</h1>
-            <div className="float-right update-profile">
-              <Icon name="edit-outline" fill="#828282" className="edit-icon" size="large"/>
-              <u>Changer mes objectifs</u>
-            </div>
-
-            <div className="tableau">
-              <div className="d-flex tableau-header">
-                <div className="left-element">
-                  <h4 className="make-it-green">345</h4><h4>/ 500</h4>
-                  <span>mots rédigés</span>
-                </div>
-                <div className="middle-element">
-                  <h4>34</h4>
-                  <span>minutes passées</span>
-                </div>
-                <div className="right-element">
-                  <h4>22</h4>
-                  <span>personnes ont profité de votre contribution</span>
-                </div>
-              </div>
-
-              <Table responsive striped className="avancement-user-table">
-                <thead>
-                  <tr>
-                    {avancement_data.headers.map((element,key) => {
-                      return (
-                        <th key={key}>{element}</th>
-                      )}
-                    )}
-                  </tr>
-                </thead>
-                <tbody>
-                  {avancement_data.data.map((element,key) => {
-                    return (
-                      <tr key={key} >
-                        <td className="align-middle">
-                          Faire son service civique en France
-                        </td>
-                        <td className="align-middle">Publié</td>
-                        <td className="align-middle">
-                          <Row>
-                            <Col>
-                              <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
-                            </Col>
-                            <Col className={'text-'+colorAvancement(element.avancement)}>
-                              {Math.round(element.avancement * 100)} %
-                            </Col>
-                          </Row>
-                        </td>
-                        <td className="align-middle">
-                          <Icon name={element.role==='Contributeur' ? "people-outline" : "shield-outline"} fill="#3D3D3D" size="large"/>&nbsp;
-                          {element.role}
-                        </td>
-                        <td className="align-middle">
-                          {element.participants && element.participants.map((participant) => {
-                            return ( 
-                                <img
-                                  key={participant._id} 
-                                  src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                                  className="profile-img img-circle"
-                                  alt="random profiles"
-                                />
-                            );
-                          })}
-                        </td>
-                        <td className="align-middle">
-                          <Icon name="eye-outline" fill="#3D3D3D" size="large"/>&nbsp;
-                          <u>Voir</u>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                  <tr >
-                    <td colSpan="6" className="align-middle voir-plus" onClick={this.toggleModal}>
-                      <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
-                      Voir plus
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
-          </div>
-
-
-
-          <TradTable 
-            traductions={this.state.traductions}
+          <ContribTable 
+            dataArray={this.state.contributions}
             user={this.state.user}
             toggleModal={this.toggleModal}
             limit={5}
-            {...avancement_data} />
+            {...avancement_contrib} />
+
+          <TradTable 
+            dataArray={this.state.traductions}
+            user={this.state.user}
+            langues={this.state.langues}
+            toggleModal={this.toggleModal}
+            limit={5}
+            {...avancement_langue} />
         </div>
 
+        <Modal isOpen={this.state.showModal.contributeur} toggle={()=>this.toggleModal('contributeur')} className='modal-plus'>
+          <ContribTable 
+            dataArray={this.state.contributions}
+            user={this.state.user}
+            toggleModal={this.toggleModal}
+            {...avancement_contrib} />
+        </Modal>
 
-        <Modal isOpen={this.state.showModal} toggle={this.toggleModal} className='modal-plus'>
+        <Modal isOpen={this.state.showModal.traducteur} toggle={()=>this.toggleModal('traducteur')} className='modal-plus'>
           <TradTable 
-              traductions={this.state.traductions}
-              user={this.state.user}
-              toggleModal={this.toggleModal}
-              {...avancement_data} />
+            dataArray={this.state.traductions}
+            user={this.state.user}
+            langues={this.state.langues}
+            toggleModal={this.toggleModal}
+            {...avancement_langue} />
         </Modal>
       </div>
     );

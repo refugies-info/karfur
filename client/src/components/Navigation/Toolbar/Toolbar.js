@@ -11,7 +11,8 @@ import * as actions from '../../../Store/actions';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../../utils/API';
-import AudioBtn from '../../../containers/UI/AudioBtn/AudioBtn'
+import AudioBtn from '../../../containers/UI/AudioBtn/AudioBtn';
+import marioProfile from '../../../assets/mario-profile.jpg'
 
 import './Toolbar.scss';
 
@@ -19,13 +20,19 @@ export class Toolbar extends React.Component {
 
   state = {
     dropdownOpen: false,
-    available_languages:[]
+    available_languages:[],
+    user:{}
   };
 
   componentDidMount (){
     API.get_langues({}).then(data_res => {
       this.setState({ available_languages:data_res.data.data })
     },function(error){ console.log(error); return; })
+    API.get_user_info().then(data_res => {
+      let user=data_res.data.data;
+      console.log(user)
+      this.setState({user:user})
+    },(error) => {console.log(error);return;})
   }
 
   disconnect = () => {
@@ -48,6 +55,8 @@ export class Toolbar extends React.Component {
     }else{console.log('Resource not found in i18next.')}
   }
 
+  navigateTo = route => this.props.history.push(route)
+
   render() {
     const path = this.props.location.pathname;
     const { i18n } = this.props;
@@ -64,50 +73,48 @@ export class Toolbar extends React.Component {
         return <i className={'flag-icon flag-icon-fr'} title="fr" id="fr"></i>
       }
     }
+    let userImg = (this.state.user.picture || {}).secure_url || marioProfile;
     return(
       <header className="Toolbar">
         <div className="left_buttons">
           <DrawerToggle 
             forceShow={afficher_burger}
             clicked={()=>this.props.drawerToggleClicked('left')} />
-          <div className="Logo">
+          <NavLink to="/" className="Logo">
             Agir
-          </div>
+            <sup className="beta-tag">beta</sup>
+          </NavLink>
           <AudioBtn />
+          <Button className="flag-btn" onClick={this.props.toggleLangModal}>
+            <CurrentLanguageIcon />
+          </Button>
         </div>
+
         <nav className="DesktopOnly center_buttons">
           <NavigationItems />
         </nav>
 
         <div className="right_buttons">
-          <ButtonDropdown className="mr-1" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-            <DropdownToggle caret color="transparent">
-              <CurrentLanguageIcon />
-            </DropdownToggle>
-            <DropdownMenu>
-              {Object.keys(this.state.available_languages).map((element) => {
-                return (
-                  <div key={this.state.available_languages[element]._id}>
-                    <DropdownItem onClick={() => this.changeLanguage(this.state.available_languages[element].i18nCode)} key={element._id}>
-                      <i className={'flag-icon flag-icon-' + this.state.available_languages[element].langueCode} title={this.state.available_languages[element].langueCode} id={this.state.available_languages[element].langueCode}></i>
-                      <span>{this.state.available_languages[element].langueLoc}</span>
-                    </DropdownItem>
-                    {this.state.available_languages[element].i18nCode==="fr" && <DropdownItem divider />}
-                  </div>
-                );
-              })}
-            </DropdownMenu>
-          </ButtonDropdown>
+          <Button className="traduire-btn">
+            <NavLink to="/login">Traduire</NavLink>
+          </Button>
 
           {API.isAuth() ? 
-              <Button onClick={this.disconnect}
-                      type="submit">
-                  Se déconnecter
-              </Button>
-              :
-              <NavLink 
-                  to="/login"
-                  className="makeItRed">Se connecter</NavLink>
+            <ButtonDropdown className="user-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+              <DropdownToggle color="transparent">
+                <img src={userImg} className="user-picture" />
+                <div className="user-badge" />
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={()=>this.navigateTo("/backend/user-profile")}>Mon profil</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem onClick={this.disconnect} className="text-danger">Se déconnecter</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+            :
+            <Button color="white" className="connect-btn">
+              <NavLink to="/login">Connexion</NavLink>
+            </Button>
           }
         </div>
         
@@ -122,7 +129,14 @@ export class Toolbar extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    languei18nCode: state.langue.languei18nCode
+    languei18nCode: state.langue.languei18nCode,
+    showLangModal: state.langue.showLangModal,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleLangModal: () => dispatch({type: actions.TOGGLE_LANG_MODAL}),
   }
 }
 
@@ -130,7 +144,7 @@ export default track({
   component: 'Toolbar',
 })(
   withRouter(
-    connect(mapStateToProps)(
+    connect(mapStateToProps, mapDispatchToProps)(
       withTranslation()(Toolbar)
     )
   )

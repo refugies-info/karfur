@@ -13,6 +13,8 @@ import Footer from '../../components/Navigation/Footer/Footer';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import OnBoardingTraducteurModal from '../../components/Modals/OnBoardingTradModal/OnBoardingTraducteurModal'
 import RightSideDrawer from '../../components/Navigation/SideDrawer/RightSideDrawer/RightSideDrawer'
+import * as actions from '../../Store/actions';
+import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
 
 import './Layout.scss';
 import routes from '../../routes';
@@ -23,8 +25,15 @@ class Layout extends Component {
     showSideDrawer: {left:false,right:false},
     traducteur:false,
     showOnBoardingTraducteurModal:false,
+    available_languages:[],
   }
   
+  componentDidMount (){
+    API.get_langues({},{avancement:-1}).then(data_res => {
+      this.setState({ available_languages: data_res.data.data })
+    },function(error){ console.log(error); return; })
+  }
+
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   sideDrawerClosedHandler = (dir) => {
@@ -45,8 +54,17 @@ class Layout extends Component {
     this.setState({showOnBoardingTraducteurModal:false})
   }
   
+  changeLanguage = (lng) => {
+    this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
+    this.props.toggleLangue(lng)
+    if(this.props.i18n.getResourceBundle(lng,"translation")){
+      this.props.i18n.changeLanguage(lng);
+    }else{console.log('Resource not found in i18next.')}
+    this.props.toggleLangModal();
+  }
+
   readAudio = (text, locale='fr-fr') => {
-    API.get_audio({text:text, locale:locale}).then(data_res => {
+    API.get_tts({text:text, locale:locale}).then(data_res => {
 
       audio.pause();
       
@@ -138,9 +156,17 @@ class Layout extends Component {
               <Footer devenirTraducteur={this.devenirTraducteur} />
             </Suspense>
           </AppFooter>
+
           <OnBoardingTraducteurModal 
             show={this.state.showOnBoardingTraducteurModal}
             closeOnBoardingTraducteurModal={this.closeOnBoardingTraducteurModal} />
+
+          <LanguageModal 
+            show={this.props.showLangModal} 
+            current_language={i18n.language}
+            toggle={this.props.toggleLangModal} 
+            changeLanguage={this.changeLanguage} 
+            languages={this.state.available_languages}/>
         </div>
       </DirectionProvider>
     )
@@ -149,14 +175,23 @@ class Layout extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ttsActive: state.tts.ttsActive
+    ttsActive: state.tts.ttsActive,
+    languei18nCode: state.langue.languei18nCode,
+    showLangModal: state.langue.showLangModal,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleLangModal: () => dispatch({type: actions.TOGGLE_LANG_MODAL}),
+    toggleLangue: (lng) => dispatch({ type: actions.TOGGLE_LANGUE, value: lng })
   }
 }
 
 export default track({
         layout: 'Layout',
     }, { dispatchOnMount: true })(
-      connect(mapStateToProps)(
+      connect(mapStateToProps, mapDispatchToProps)(
         withTranslation()(Layout)
       )
     );

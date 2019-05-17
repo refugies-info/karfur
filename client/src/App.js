@@ -4,6 +4,7 @@ import Loadable from 'react-loadable';
 import { Provider } from 'react-redux';
 import track from 'react-tracking'; 
 import { Spinner } from 'reactstrap';
+import IdleTimer from 'react-idle-timer'
 import './scss/fonts/circular-std/css/circular-std.css'
 
 import Store from './Store/configureStore';
@@ -53,13 +54,28 @@ const LiveChat = Loadable({
 
 class App extends Component {
   state = { data: {} }
+  idleTimer = null;
 
   componentDidMount() {    
     socket.on('server:event', data => {
       console.log('évènement',data)
       this.setState({ data })
     })
+    window.onbeforeunload = function() {
+      this.props.tracking.trackEvent({ action: 'unmount', label: 'App' });
+      return undefined;
+    }.bind(this);
   }
+
+  // _onAction = (e) => {
+  //   // console.log('user did something', e)
+  //   return;
+  // }
+
+  _onActive = () => this.props.tracking.trackEvent({ action: 'active', label: 'App', value: this.idleTimer.getRemainingTime() });
+
+  _onIdle = () => this.props.tracking.trackEvent({ action: 'idle', label: 'App', value: this.idleTimer.getLastActiveTime() });
+
   sendMessage = (message,side) => {
     socket.emit(side + ':sendMessage', message)
   }
@@ -70,6 +86,14 @@ class App extends Component {
   render() {
     return (
       <Provider store={Store}>
+        <IdleTimer
+          ref={ref => { this.idleTimer = ref }}
+          element={document}
+		      onActive={this._onActive}
+          onIdle={this._onIdle}
+          // onAction={this._onAction}
+		      // debounce={250}
+          timeout={1000 * 60 * 5} />
         <BrowserRouter>
             <Switch>
               <Route exact path="/login" name="Login Page" component={Login} />

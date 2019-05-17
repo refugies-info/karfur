@@ -89,7 +89,7 @@ function get_channel(req, res) {
         if (result) {
           resolve(result)
         } else {
-          reject(204)
+          reject(404)
         }
       }
     })
@@ -113,8 +113,8 @@ const _errorHandler = (error, res) => {
           "text": "Erreur interne"
       })
       break;
-    case 204:
-      res.status(204).json({
+    case 404:
+      res.status(404).json({
           "text": "Pas de résultats"
       })
       break;
