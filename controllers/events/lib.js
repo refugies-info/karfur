@@ -1,6 +1,6 @@
 const Event = require('../../schema/schemaEvent.js');
 
-function log(req, res) {
+function log_event(req, res) {
   if (!req.body || !req.body.app) {
     //Le cas où la page ne serait pas soumise ou nul
     res.status(400).json({
@@ -8,6 +8,8 @@ function log(req, res) {
     })
   } else {
     var event = req.body
+    event.userId=req.userId;
+    if(event.action){console.log(event)}
     var _u = new Event(event);
     _u.save(function (err, event,ptet) {
       if (err) {
@@ -41,7 +43,7 @@ function get(req, res) {
             if (result) {
               resolve(result)
             } else {
-              reject(204)
+              reject(404)
             }
           }
         })
@@ -59,8 +61,8 @@ function get(req, res) {
                     "text": "Erreur interne"
                 })
                 break;
-            case 204:
-                res.status(204).json({
+            case 404:
+                res.status(404).json({
                     "text": "L'adresse email existe déjà"
                 })
                 break;
@@ -73,6 +75,21 @@ function get(req, res) {
   }
 }
 
+function distinct_count_event(req, res) {
+  var body = req.body;
+  Event.find(body.query).distinct(body.distinct).exec(function (err, data) {
+    if (err) { res.status(500).json({ "text": "Erreur interne" }) }
+    else if(!data) {res.status(404).json({ "text": "Data not found" }) }
+    else {
+      res.status(200).json({
+        "text": "Succès",
+        "data": data.length
+      })
+    } 
+  })
+}
+
 //On exporte notre fonction
-exports.log = log;
+exports.log_event = log_event;
 exports.get = get;
+exports.distinct_count_event = distinct_count_event;

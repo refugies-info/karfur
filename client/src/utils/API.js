@@ -2,6 +2,7 @@ import axios from 'axios';
 import openSocket from 'socket.io-client';
 
 import setAuthToken from './setAuthToken'
+import Swal from 'sweetalert2';
 
 const  socket = openSocket('http://localhost:8001');
 socket.emit('subscribeToChat');
@@ -14,6 +15,34 @@ const headers = {
 const burl = "http://localhost:8000"
 
 axios.withCredentials = true;
+
+axios.interceptors.request.use(request => {
+  return request;
+}, error => {
+  Swal.fire({
+    type: 'error',
+    title: 'Oops...',
+    text: ((error.response.data || {}).text || ''),
+    footer: '<i>'+ error.message + '</i>'
+  })
+  console.log(error.response.data, error.response.status, error.message)
+  return Promise.reject(error)
+})
+
+axios.interceptors.response.use(response => {
+  // console.log(response)
+  return response;
+}, error => {
+  if(error.response && error.response.status < 500){
+    Swal.fire({
+      type: 'error',
+      title: 'Oops...',
+      text: ((error.response.data || {}).text || ''),
+      footer: '<i>'+ error.message + '</i>'
+    })
+  }else{ console.log((error.response || {}).data, (error.response || {}).status, error.message) }
+  return Promise.reject(error)
+})
 
 export default {
     login : (user) => {
@@ -36,10 +65,13 @@ export default {
     },
 
     log_event : (event) => {
-      return axios.post(burl + '/events/log', event, {headers: headers})
+      return axios.post(burl + '/events/log_event', event, {headers: headers})
     },
     get_event : (query, sort) => {
       return axios.post(burl + '/events/get', {query: query, sort: sort}, {headers: headers})
+    },
+    distinct_count_event : (query) => {
+      return axios.post(burl + '/events/distinct_count_event', query, {headers: headers})
     },
     
     add_article : query => {
@@ -113,8 +145,15 @@ export default {
       return axios.post(burl + '/images/get_image',  {query: query, sort: sort}, {headers: headers})
     },
 
+    get_tts : (query) => {
+      return axios.post(burl + '/tts/get_tts',  query, {headers: headers})
+    },
+
+    set_audio : (query) => {
+      return axios.post(burl + '/audio/set_audio',  query, {headers: headers})
+    },
     get_audio : (query) => {
-      return axios.post(burl + '/tts/get_audio',  query, {headers: headers})
+      return axios.post(burl + '/audio/get_audio',  query, {headers: headers})
     },
 
     isAuth : () => {

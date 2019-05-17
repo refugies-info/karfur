@@ -59,17 +59,17 @@ function signup(req, res) {
       switch (error) {
         case 500:
           res.status(500).json({
-              "text": "Erreur interne"
+            "text": "Erreur interne"
           })
           break;
         case 204:
-          res.status(204).json({
-              "text": "Le nom d'utilisateur existe déjà"
+          res.status(404).json({
+            "text": "Le nom d'utilisateur existe déjà"
           })
           break;
         default:
           res.status(500).json({
-              "text": "Erreur interne"
+            "text": "Erreur interne"
           })
         }
     })
@@ -136,7 +136,7 @@ function set_user_info(req, res) {
 
     if(!isAdmin){
       if(user._id != req.user._id){
-        res.status(204).json({
+        res.status(401).json({
           "text": "Token invalide"
         })
         return false;
@@ -177,7 +177,7 @@ function get_users(req, res) {
         if (result) {
           resolve(result)
         } else {
-          reject(204)
+          reject(404)
         }
       }
     })
@@ -201,8 +201,8 @@ function get_users(req, res) {
               "text": "Erreur interne"
           })
           break;
-      case 204:
-          res.status(204).json({
+      case 404:
+          res.status(404).json({
               "text": "Pas de résultats"
           })
           break;

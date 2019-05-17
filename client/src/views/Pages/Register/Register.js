@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
 import { Button, Card, CardBody, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import Swal from 'sweetalert2';
+
 import API from '../../../utils/API';
 import setAuthToken from '../../../utils/setAuthToken'
 
@@ -14,7 +16,6 @@ class Register extends Component {
       traducteur: false
     }
     this.handleChange.bind(this);
-    this.send.bind(this);
   }
 
   componentDidMount(){
@@ -24,12 +25,12 @@ class Register extends Component {
     }
   }
 
-  send = event => {
+  send = () => {
     if(this.state.username.length === 0){
-        return;
+      Swal.fire( 'Oops...', 'Aucun nom d\'utilisateur renseigné', 'error');return;
     }
     if(this.state.password.length === 0 || this.state.password !== this.state.cpassword){
-        return;
+      Swal.fire( 'Oops...', 'Les mots de passes ne correspondent pas !', 'error');return;
     }
     var _send = {
       username: this.state.username,
@@ -37,17 +38,15 @@ class Register extends Component {
       traducteur : this.state.traducteur
     }
     API.signup(_send).then(data => {
-        localStorage.setItem('token', data.data.token);
-        setAuthToken(data.data.token);
-        console.log('succes', data.data.token)
-        if(this.state.traducteur){
-          this.props.history.push("/backend/user-dashboard")
-        }else{
-          this.props.history.push("/homepage")
-        }
-    },error => {
-        console.log(error);
-        return;
+      Swal.fire( 'Yay...', 'Authentification réussie !', 'success');
+      localStorage.setItem('token', data.data.token);
+      setAuthToken(data.data.token);
+      console.log('succes', data.data.token)
+      if(this.state.traducteur){
+        this.props.history.push("/backend/user-dashboard")
+      }else{
+        this.props.history.push("/homepage")
+      }
     })
   }    
 

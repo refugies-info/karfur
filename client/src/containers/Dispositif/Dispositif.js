@@ -12,7 +12,10 @@ import draftToHtml from 'draftjs-to-html';
 import { savePDF } from '@progress/kendo-react-pdf';
 import Icon from 'react-eva-icons';
 import ReactToPrint from 'react-to-print';
-import moment from 'moment/min/moment-with-locales'
+import moment from 'moment/min/moment-with-locales';
+import Swal from 'sweetalert2';
+import { compose, withProps } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import Modal from '../../components/Modals/Modal'
@@ -24,7 +27,7 @@ import AudioBtn from '../UI/AudioBtn/AudioBtn';
 import Commentaires from '../../components/Frontend/Dispositif/Commentaires/Commentaires';
 import Tags from './Tags/Tags'
 
-import {juliette, hugo, bookmark, femmeCurly, manLab, concordia, ligueEnseignement, minInt, serviceCivique, solidariteJeunesse} from '../../assets/figma/index';
+import {hugo, bookmark, femmeCurly, manLab, concordia, ligueEnseignement, minInt, serviceCivique, solidariteJeunesse} from '../../assets/figma/index';
 
 import {contenu, lorems} from './data'
 
@@ -64,6 +67,24 @@ const sponsorsData = [
 
 const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
 
+const MyMapComponent = compose(
+  withProps({
+    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
+    loadingElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{ height: `400px` }} />,
+    mapElement: <div style={{ height: `100%` }} />,
+  }),
+  withScriptjs,
+  withGoogleMap
+)((props) =>
+  <GoogleMap
+    defaultZoom={8}
+    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+  >
+    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} onClick={props.onMarkerClick} />}
+  </GoogleMap>
+)
+
 class Dispositif extends Component {
   state={
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', content: (x.type ? null : lorems.paragraphe), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(lorems.paragraphe).contentBlocks))}}),
@@ -82,7 +103,8 @@ class Dispositif extends Component {
     disableEdit:true,
     tooltipOpen:false,
     uiArray:new Array(menu.length).fill(uiElement),
-    sponsorLoading:false
+    sponsorLoading:false,
+    isMarkerShown: false,
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -109,6 +131,7 @@ class Dispositif extends Component {
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
       })
     }
+    this.delayedShowMarker();
   }
 
   onMenuNavigate = (tab) => {
@@ -244,11 +267,13 @@ class Dispositif extends Component {
   }
 
   toggleModal = (show, name) => {
+    this.props.tracking.trackEvent({ action: 'toggleModal', label: name, value : show });
     this.setState({showModals:{...this.state.showModals,[name]:show}})
   }
 
 
   toggleTooltip = () => {
+    this.props.tracking.trackEvent({ action: 'toggleTooltip', label: 'tooltipOpen', value : !this.state.tooltipOpen });
     this.setState({ tooltipOpen: !this.state.tooltipOpen});
   }
 
@@ -279,10 +304,23 @@ class Dispositif extends Component {
   }
 
   goBack = () => {
+    this.props.tracking.trackEvent({ action: 'click', label: 'goBack' });
     this.props.history.goBack();
   }
 
+  delayedShowMarker = () => {
+    setTimeout(() => {
+      this.setState({ isMarkerShown: true })
+    }, 3000)
+  }
+
+  handleMarkerClick = () => {
+    this.setState({ isMarkerShown: false })
+    this.delayedShowMarker()
+  }
+
   createPdf = () => {
+    this.props.tracking.trackEvent({ action: 'click', label: 'createPdf' });
     this.setState({accordion: this.state.accordion.map(x => true)}, ()=>{
       console.log(this.newRef)
       setTimeout(()=>{
@@ -301,6 +339,7 @@ class Dispositif extends Component {
       contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, ...( x.children && {children : x.children.map(y => {return {title: y.title, content : y.content}})})}}),
       sponsors:this.state.sponsors,
       tags:this.state.tags,
+      avancement:1,
     }
     let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
     dispositif.audience=[cardElement.find(x=> x.title==='Audience').contentTitle];
@@ -308,14 +347,15 @@ class Dispositif extends Component {
     dispositif.niveauFrancais=cardElement.find(x=> x.title==='Niveau de français').contentTitle;
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
-      console.log(data.data)
-    },(error)=>{console.log(error);return;})
+      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success');
+    },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
   }
 
   render(){
     const {t} = this.props;
     const creator=this.state.creator || {};
-    const creatorImg= (creator.picture || {}).secure_url || hugo;
+    const creatorImg= (creator.picture || {}).secure_url || hugo;    
+
     return(
       <div className="animated fadeIn dispositif" ref={this.newRef}>
         <section className="banniere-dispo">
@@ -442,6 +482,14 @@ class Dispositif extends Component {
             </div>
           </Col>
           <Col lg="6">
+            {/* <MyMapComponent
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7nm1Ka7na_hDvoa7nFxNXZIPqsrfvEhQ&v=3.exp&libraries=geometry,drawing,places"
+              isMarkerShown={this.state.isMarkerShown}
+              onMarkerClick={this.handleMarkerClick}
+              loadingElement={<div style={{ height: `100%` }} />}
+              containerElement={<div style={{ height: `400px` }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+            /> */}
             <ContenuDispositif 
               updateUIArray={this.updateUIArray}
               handleContentClick={this.handleContentClick}

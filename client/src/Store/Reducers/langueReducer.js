@@ -2,7 +2,10 @@
 import * as actions from '../actions'
 
 //A changer, c'est juste pour l'exemple
-const initialState = { languei18nCode: 'fr' }
+const initialState = { 
+  languei18nCode: 'fr',
+  showLanguageModal: false
+}
 
 function toggleLangue(state = initialState, action) {
   let nextState
@@ -11,6 +14,12 @@ function toggleLangue(state = initialState, action) {
       nextState = {
         ...state,
         languei18nCode: action.value
+      }
+      return nextState || state
+    case actions.TOGGLE_LANG_MODAL:
+      nextState = {
+        ...state,
+        showLangModal: !state.showLangModal
       }
       return nextState || state
   default:

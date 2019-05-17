@@ -2,7 +2,9 @@ import React, { Component, Suspense } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
 import { Col, Row, Button, Collapse, CardBody, CardFooter } from 'reactstrap';
-import Icon from 'react-eva-icons';
+import Autosuggest from 'react-autosuggest';
+import AutosuggestHighlightMatch from 'autosuggest-highlight/match'
+import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
 
 import Modal from '../../components/Modals/Modal'
 import {randomColor} from '../../components/Functions/ColorFunctions'
@@ -17,21 +19,24 @@ const loading = () => <div className="animated fadeIn pt-1 text-center">Chargeme
 
 const ParkourOnBoard = React.lazy(() => import('../ParkourOnBoard/ParkourOnBoard'));
 
+const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const getSuggestionValue = suggestion => suggestion.titreMarque + " - " + suggestion.titreInformatif;
+
 class Dispositifs extends Component {
   state = {
     dispositifs:[],
     dispositif:{},
     showModal:false,
-    showSearch:false,
+    showSearch:true,
+    value: '',
+    suggestions: [],
   }
 
   componentDidMount (){
     API.get_dispositif({status:'Actif'}).then(data_res => {
       let dispositifs=data_res.data.data
-      this.setState({
-        dispositifs:dispositifs, 
-      })
-    },function(error){console.log(error);return;})
+      this.setState({ dispositifs:dispositifs })
+    })
   }
 
   _toggleModal = (show, dispositif = {}) => {
@@ -42,15 +47,51 @@ class Dispositifs extends Component {
     this.setState(prevState=>{return {showSearch:!prevState.showSearch}})
   }
 
-  goToDispositif = () =>{
-    if(this.state.dispositif._id){
-      this.props.history.push('/dispositif/'+this.state.dispositif._id)
-    }else{
-      this.props.history.push('/dispositif')
-    }
+  onChange = (_, { newValue }) => this.setState({ value: newValue });
+
+  onSuggestionsFetchRequested = ({ value }) => this.setState({ suggestions: this.getSuggestions(value) });
+
+  onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
+
+  getSuggestions = (value) => {
+    const escapedValue = escapeRegexCharacters(value.trim());
+    
+    if (escapedValue === '') { return [];}
+  
+    const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
+    
+    return this.state.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif));
+  }
+
+  goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
+    this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
+    this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
   }
 
   render() {
+    const renderSuggestion = (suggestion, { query }) => {
+      const suggestionText = `${suggestion.titreMarque} - ${suggestion.titreInformatif}`;
+      const matches = AutosuggestHighlightMatch(suggestionText, query + ' ' + query);
+      const parts = AutosuggestHighlightParse(suggestionText, matches);
+      return (
+        <span className={'suggestion-content'} onClick={() => this.goToDispositif(suggestion, true)}>
+          <span className="name">
+            {
+              parts.map((part, index) => {
+                const className = part.highlight ? 'highlight' : null;
+    
+                return (
+                  <span className={className} key={index}>{part.text}</span>
+                );
+              })
+            }
+          </span>
+        </span>
+      );
+    }
+
+    const inputProps = { placeholder: 'Chercher', value: this.state.value, onChange: this.onChange };
+    
     return (
       <div className="animated fadeIn dispositifs">
         <section id="hero">
@@ -64,7 +105,13 @@ class Dispositifs extends Component {
                 <h2>Trouver le dispositif qui vous correspond</h2>
                 
                 <div className="input-group md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
-                  <input className="form-control my-0 py-1 amber-border" type="text" placeholder="Chercher" aria-label="logement + accompagnement social" />
+                  <Autosuggest 
+                    suggestions={this.state.suggestions}
+                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                    getSuggestionValue={getSuggestionValue}
+                    renderSuggestion={renderSuggestion}
+                    inputProps={inputProps} />
                   <i className="fa fa-search text-grey search-btn" aria-hidden="true"></i>
                 </div>
               </Col>
@@ -121,7 +168,7 @@ class Dispositifs extends Component {
             {this.state.dispositifs.map((dispositif) => {
               return (
                 <Col xs="9" sm="4" md="3" key={dispositif._id}>
-                  <CustomCard onClick={()=>this._toggleModal(true,dispositif)}>
+                  <CustomCard onClick={(dispositif) => this.goToDispositif(dispositif)}>
                     <CardBody>
                       <h3>{dispositif.titreInformatif}</h3>
                       <p>{dispositif.abstract}</p>
@@ -142,7 +189,7 @@ class Dispositifs extends Component {
           </Row>
         </section>
 
-        <Modal show={this.state.showModal} modalClosed={()=>this._toggleModal(false)} classe='modal-dispo'>
+        {/* <Modal show={this.state.showModal} modalClosed={()=>this._toggleModal(false)} classe='modal-dispo'>
           <div className="left-text">
             <h3>Faire son service civique</h3>
             <p>Avec le programme <i>Volont'r</i></p>
@@ -151,7 +198,7 @@ class Dispositifs extends Component {
           <footer className='modal-footer'>
             <Button outline color="success" size="lg" block onClick={this.goToDispositif}>Y accéder</Button>
           </footer>
-        </Modal>
+        </Modal> */}
       </div>
     )
   }

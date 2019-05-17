@@ -26,9 +26,6 @@ class Articles extends Component {
       this.setState({
         articles:articles, 
       })
-    },function(error){
-      console.log(error);
-      return;
     })
   }
 

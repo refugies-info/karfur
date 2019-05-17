@@ -7,7 +7,7 @@ function create_langues(req, res) {
         "text": "Requête invalide"
     })
   } else if (!req.user || !req.user.isAdmin) {
-    res.status(204).json({
+    res.status(403).json({
       "text": "L'utilisateur n'a pas les droits pour effectuer cette modification"
     })
   } else {
@@ -51,7 +51,7 @@ function get_langues(req, res) {
         if (result) {
           resolve(result)
         } else {
-          reject(204)
+          reject(404)
         }
       }
     })
@@ -70,8 +70,8 @@ function get_langues(req, res) {
             "text": "Erreur interne"
         })
         break;
-      case 204:
-        res.status(204).json({
+      case 404:
+        res.status(404).json({
             "text": "Pas de résultats"
         })
         break;
