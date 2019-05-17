@@ -44,6 +44,7 @@
     "react": "^16.8.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-addons-update": "^15.6.2",
+    "react-app-env": "^1.2.3",
     "react-autosuggest": "^9.4.3",
     "react-chartjs-2": "^2.7.4",
     "react-chat-window": "^1.1.1",
@@ -81,9 +82,9 @@
     "sweetalert2": "^8.10.7"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-env start",
+    "build": "react-app-env build",
+    "test": "react-app-env test",
     "eject": "react-scripts eject",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json"

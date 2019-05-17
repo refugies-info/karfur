@@ -14,8 +14,6 @@ import Icon from 'react-eva-icons';
 import ReactToPrint from 'react-to-print';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
-import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import Modal from '../../components/Modals/Modal'
@@ -25,7 +23,7 @@ import ReagirModal from '../../components/Modals/ReagirModal/ReagirModal';
 import SVGIcon from '../../components/UI/SVGIcon/SVGIcon';
 import AudioBtn from '../UI/AudioBtn/AudioBtn';
 import Commentaires from '../../components/Frontend/Dispositif/Commentaires/Commentaires';
-import Tags from './Tags/Tags'
+import Tags from './Tags/Tags';
 
 import {hugo, bookmark, femmeCurly, manLab, concordia, ligueEnseignement, minInt, serviceCivique, solidariteJeunesse} from '../../assets/figma/index';
 
@@ -44,11 +42,18 @@ const menu=[
     {type:'card',title:'Niveau de français',titleIcon:'frBubble',contentTitle: 'Débutant (A1)', contentBody: 'Je peux poser et répondre à des questions simples', footer:'Pièces demandées',footerIcon:'file-text-outline'},
     {type:'card',title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody: 'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'},
   ]},
-  {title:'À quoi ça me sert ?', children:[{title:'Travailler dans une association ou une organisation publique',type:'accordion',content: lorems.sousParagraphe}]},
-  {title:'Pourquoi ça m\'intéresse', children:[{title:'Vous êtes plutôt...',content: lorems.sousParagraphe}, {title:'Vous n\'êtes pas du tout',content: lorems.sousParagraphe}]},
-  {title:'Comment y accéder', children:[{title:'Procédures',content: lorems.sousParagraphe}, {title:'Interlocuteurs experts',content: lorems.sousParagraphe}, {title:'Interlocuteurs concernés',content: lorems.sousParagraphe}]},
-  {title:'Dispositifs connexes', children:[{title:'Dispositifs similaires',content: lorems.sousParagraphe}, {title:'Dispositifs complémentaires',content: lorems.sousParagraphe}]},
-  {title:'Retours d\'expérience', children:[{title:'Questions réponses',content: lorems.sousParagraphe}, {title:'Avis',content: lorems.sousParagraphe}]},
+  {title:'Pourquoi c\'est intéressant ?', children:[{title:'Travailler dans une association ou une organisation publique',type:'accordion',content: lorems.sousParagraphe}]},
+  {title:'Comment je m\'engage ?', children:[
+    {type:'accordion', title:'Contacter l’association partenaire la plus proche de chez vous',content: lorems.sousParagraphe}, 
+    {type:'map', markers: [{ lat: 48.856614, lng: 2.3522219 }]},
+    {title:'Vous n\'êtes pas du tout',content: lorems.sousParagraphe}
+  ]},
+
+  // {title:'À quoi ça me sert ?', children:[{title:'Travailler dans une association ou une organisation publique',type:'accordion',content: lorems.sousParagraphe}]},
+  // {title:'Pourquoi ça m\'intéresse', children:[{title:'Vous êtes plutôt...',content: lorems.sousParagraphe}, {title:'Vous n\'êtes pas du tout',content: lorems.sousParagraphe}]},
+  // {title:'Comment y accéder', children:[{title:'Procédures',content: lorems.sousParagraphe}, {title:'Interlocuteurs experts',content: lorems.sousParagraphe}, {title:'Interlocuteurs concernés',content: lorems.sousParagraphe}]},
+  // {title:'Dispositifs connexes', children:[{title:'Dispositifs similaires',content: lorems.sousParagraphe}, {title:'Dispositifs complémentaires',content: lorems.sousParagraphe}]},
+  // {title:'Retours d\'expérience', children:[{title:'Questions réponses',content: lorems.sousParagraphe}, {title:'Avis',content: lorems.sousParagraphe}]},
 ]
 
 const spyableMenu = menu.reduce((r, e, i) => {
@@ -66,24 +71,6 @@ const sponsorsData = [
 ]
 
 const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
-
-const MyMapComponent = compose(
-  withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: `100%` }} />,
-  }),
-  withScriptjs,
-  withGoogleMap
-)((props) =>
-  <GoogleMap
-    defaultZoom={8}
-    defaultCenter={{ lat: -34.397, lng: 150.644 }}
-  >
-    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} onClick={props.onMarkerClick} />}
-  </GoogleMap>
-)
 
 class Dispositif extends Component {
   state={
@@ -104,7 +91,6 @@ class Dispositif extends Component {
     tooltipOpen:false,
     uiArray:new Array(menu.length).fill(uiElement),
     sponsorLoading:false,
-    isMarkerShown: false,
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -131,7 +117,6 @@ class Dispositif extends Component {
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
       })
     }
-    this.delayedShowMarker();
   }
 
   onMenuNavigate = (tab) => {
@@ -308,17 +293,6 @@ class Dispositif extends Component {
     this.props.history.goBack();
   }
 
-  delayedShowMarker = () => {
-    setTimeout(() => {
-      this.setState({ isMarkerShown: true })
-    }, 3000)
-  }
-
-  handleMarkerClick = () => {
-    this.setState({ isMarkerShown: false })
-    this.delayedShowMarker()
-  }
-
   createPdf = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'createPdf' });
     this.setState({accordion: this.state.accordion.map(x => true)}, ()=>{
@@ -482,14 +456,6 @@ class Dispositif extends Component {
             </div>
           </Col>
           <Col lg="6">
-            {/* <MyMapComponent
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7nm1Ka7na_hDvoa7nFxNXZIPqsrfvEhQ&v=3.exp&libraries=geometry,drawing,places"
-              isMarkerShown={this.state.isMarkerShown}
-              onMarkerClick={this.handleMarkerClick}
-              loadingElement={<div style={{ height: `100%` }} />}
-              containerElement={<div style={{ height: `400px` }} />}
-              mapElement={<div style={{ height: `100%` }} />}
-            /> */}
             <ContenuDispositif 
               updateUIArray={this.updateUIArray}
               handleContentClick={this.handleContentClick}
