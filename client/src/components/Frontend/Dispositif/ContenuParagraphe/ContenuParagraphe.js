@@ -5,6 +5,7 @@ import ContentEditable from 'react-contenteditable';
 import EditableParagraph from '../EditableParagraph/EditableParagraph'
 import QuickToolbar from '../../../../containers/Dispositif/QuickToolbar/QuickToolbar';
 import CardParagraphe, {PlusCard} from '../../../../containers/Dispositif/CardParagraphe/CardParagraphe';
+import MapParagraphe from '../../../../containers/Dispositif/MapParagraphe/MapParagraphe';
 
 const contenuParagraphe = (props) => {
   let item=props.item;
@@ -17,6 +18,14 @@ const contenuParagraphe = (props) => {
         if(subitem.type==='card'){
           return ( 
             <CardParagraphe 
+              key={subkey}
+              subkey={subkey}
+              subitem={subitem}
+              {...props} />
+          )
+        }else if(subitem.type==='map'){
+          return ( 
+            <MapParagraphe 
               key={subkey}
               subkey={subkey}
               subitem={subitem}
