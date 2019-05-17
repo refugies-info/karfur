@@ -74,7 +74,7 @@ function get_article(req, res) {
           if (result) {
             resolve(result)
           } else {
-            reject(204)
+            reject(404)
           }
         }
       })
@@ -89,7 +89,7 @@ function get_article(req, res) {
           result.splice(i, 1);
         }else{
           returnLocalizedContent(article.body, locale)
-          article.title=article.title[locale] || article.title.fr
+          article.title=article.title[locale] || article.title.fr;
           article.avancement=article.avancement[locale] || article.avancement.fr
         }
       });
@@ -104,8 +104,8 @@ function get_article(req, res) {
                 "text": "Erreur interne"
             })
             break;
-        case 204:
-          res.status(204).json({
+        case 404:
+          res.status(404).json({
             "text": "Pas de résultat"
           })
           break;
@@ -229,7 +229,7 @@ function remove_traduction(req, res) {
           if (result) {
             resolve(result)
           } else {
-            reject(204)
+            reject(404)
           }
         }
       })
@@ -258,8 +258,8 @@ function remove_traduction(req, res) {
                 "text": "Erreur interne"
             })
             break;
-        case 204:
-          res.status(204).json({
+        case 404:
+          res.status(404).json({
             "text": "Pas de résultat"
           })
           break;

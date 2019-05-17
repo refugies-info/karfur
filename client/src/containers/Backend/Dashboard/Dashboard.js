@@ -42,6 +42,8 @@ import {
 } from './data'
 import DateOffset from '../../../components/Functions/DateOffset'
 import {get_filtered_events} from '../../../components/Functions/APIFunctions'
+import API from '../../../utils/API';
+import marioProfile from '../../../assets/mario-profile.jpg'
 
 import './Dashboard.css';
 
@@ -101,6 +103,20 @@ class Dashboard extends Component {
       created_at : {"$gte": week_lag}
     }
     this.execute_search(query, sort, numElements, 3);
+
+    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), -1)}}}).then((data) => {
+      this.setState({uniqueUsersDaily:data.data.data})
+    })
+    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), -31)}}}).then((data) => {
+      this.setState({uniqueUsersMonthly:data.data.data})
+    })
+    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), -365)}}}).then((data) => {
+      this.setState({uniqueUsersYearly:data.data.data})
+    })
+
+    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), 0, -1/60)}}}).then((data) => {
+      this.setState({onlineUsers:data.data.data})
+    })
   }
 
   execute_search = (query, sort, numElements, dataset) =>{
@@ -185,8 +201,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </ButtonDropdown>
                 </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">{this.state.uniqueUsersDaily}</div>
+                <div>visiteurs uniques aujourd'hui</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Line data={cardChartData2} options={cardChartOpts2} height={70} />
@@ -209,8 +225,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </Dropdown>
                 </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">{this.state.uniqueUsersMonthly}</div>
+                <div>visiteurs uniques ce mois</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Line data={cardChartData1} options={cardChartOpts1} height={70} />
@@ -233,8 +249,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </Dropdown>
                 </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">{this.state.uniqueUsersYearly}</div>
+                <div>visiteurs uniques cette année</div>
               </CardBody>
               <div className="chart-wrapper" style={{ height: '70px' }}>
                 <Line data={cardChartData3} options={cardChartOpts3} height={70} />
@@ -257,8 +273,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </ButtonDropdown>
                 </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">{this.state.onlineUsers}</div>
+                <div>utilisateurs en ligne</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
@@ -592,7 +608,7 @@ class Dashboard extends Component {
                   <tr>
                     <td className="text-center">
                       <div className="avatar">
-                        <img src={'assets/img/avatars/1.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <img src={marioProfile} className="img-avatar" alt="admin@bootstrapmaster.com" />
                         <span className="avatar-status badge-success"></span>
                       </div>
                     </td>
@@ -627,7 +643,7 @@ class Dashboard extends Component {
                   <tr>
                     <td className="text-center">
                       <div className="avatar">
-                        <img src={'assets/img/avatars/2.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <img src={marioProfile} className="img-avatar" alt="admin@bootstrapmaster.com" />
                         <span className="avatar-status badge-danger"></span>
                       </div>
                     </td>
@@ -663,7 +679,7 @@ class Dashboard extends Component {
                   <tr>
                     <td className="text-center">
                       <div className="avatar">
-                        <img src={'assets/img/avatars/3.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <img src={marioProfile} className="img-avatar" alt="admin@bootstrapmaster.com" />
                         <span className="avatar-status badge-warning"></span>
                       </div>
                     </td>
@@ -698,7 +714,7 @@ class Dashboard extends Component {
                   <tr>
                     <td className="text-center">
                       <div className="avatar">
-                        <img src={'assets/img/avatars/4.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <img src={marioProfile} className="img-avatar" alt="admin@bootstrapmaster.com" />
                         <span className="avatar-status badge-secondary"></span>
                       </div>
                     </td>
@@ -733,7 +749,7 @@ class Dashboard extends Component {
                   <tr>
                     <td className="text-center">
                       <div className="avatar">
-                        <img src={'assets/img/avatars/5.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <img src={marioProfile} className="img-avatar" alt="admin@bootstrapmaster.com" />
                         <span className="avatar-status badge-success"></span>
                       </div>
                     </td>
@@ -768,7 +784,7 @@ class Dashboard extends Component {
                   <tr>
                     <td className="text-center">
                       <div className="avatar">
-                        <img src={'assets/img/avatars/6.jpg'} className="img-avatar" alt="admin@bootstrapmaster.com" />
+                        <img src={marioProfile} className="img-avatar" alt="admin@bootstrapmaster.com" />
                         <span className="avatar-status badge-danger"></span>
                       </div>
                     </td>

@@ -47,11 +47,12 @@ class ParkourOnBoard extends Component {
   }
 
   retrieveCookies = () => {
-    // let dataC=Cookies.getJSON('data');
+    Cookies.set('data', 'ici un test');
+    let dataC=Cookies.getJSON('data');
     // if(dataC){ this.setState({data:data.map((x,key)=> {return {...x, value:dataC[key] || x.value}})})}
-    // let pinnedC=Cookies.getJSON('pinnedC');
+    let pinnedC=Cookies.getJSON('pinnedC');
     // if(pinnedC){ this.setState({pinned:pinnedC})}
-    // console.log(Cookies.get())
+    console.log(Cookies.get(), dataC, pinnedC)
     API.get_user_info().then(data_res => {
       let u=data_res.data.data;
       user={_id:u._id, cookies:u.cookies || {}}

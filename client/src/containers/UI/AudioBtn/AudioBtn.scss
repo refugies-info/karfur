@@ -1,7 +1,7 @@
 .audio-icon-wrapper{
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background: #FFFFFF;
   border: 2px solid #FFFFFF;
   box-sizing: border-box;
@@ -11,6 +11,7 @@
   box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
   user-select: none;
   transition: all 0.2s ease;
+  display: flex;
 
   &:hover{
     background: #eeeeeec2;
@@ -32,11 +33,7 @@
                  0 1px 0 rgba(16, 114, 24, 0.4);
   }
 
-  .audio-icon{
-    position: absolute;
-    left: 30%;
-    right: 30%;
-    top: 30%;
-    bottom: 30%;
+  i.eva-hover{
+    margin:auto;
   }
 }

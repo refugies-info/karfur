@@ -1,95 +1,98 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
-////////A enlever si pas utilisé/////////////:
-import Notifications from '../../components/UI/Notifications/Notifications';
+import Autosuggest from 'react-autosuggest';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
+
+////////A enlever si pas utilisé/////////////:
+import Notifications from '../../components/UI/Notifications/Notifications';
 // import SendToMessenger from './SendToMessenger';
 import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
-
-import * as actions from '../../Store/actions';
-import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
 import API from '../../utils/API';
 
 import './HomePage.scss';
 
+const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const getSuggestionValue = suggestion => suggestion.titreInformatif ? (suggestion.titreMarque + " - " + suggestion.titreInformatif) : suggestion.title;
+const renderSectionTitle = section => <strong>{section.title}</strong>
+const getSectionSuggestions = section => section.children;
+
 class HomePage extends Component {
   state = {
-    showModal: false,
-    available_languages:[]
+    search:[{type:'Dispositifs', children:[]}, {type:'Articles', children:[]}, {type:'Démarches', children:[]}],
+    value: '',
+    suggestions: [],
   }
-  bodyRef=React.createRef();
 
   componentDidMount (){
-    API.get_langues({},{avancement:-1}).then(data_res => {
-      this.setState({ available_languages: data_res.data.data })
-    },function(error){ console.log(error); return; })
+    API.get_dispositif({status:'Actif'}).then(data => {
+      let dispositifs=data.data.data
+      this.setState({ search:this.state.search.map(x => x.type==='Dispositifs' ? {...x, children:dispositifs} : x) })
+    })
+    API.get_article({isStructure: {$ne: true}}).then(data => {
+      let articles=data.data.data;
+      this.setState({ search:this.state.search.map(x => x.type==='Articles' ? {...x, children: articles} : x) })
+    })
   }
 
-  changeLanguage = (lng) => {
-    this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
-    const action = { type: actions.TOGGLE_LANGUE, value: lng }
-    this.props.dispatch(action)
-    if(this.props.i18n.getResourceBundle(lng,"translation")){
-      this.props.i18n.changeLanguage(lng);
-    }else{console.log('Resource not found in i18next.')}
-    this.toggleLanguageModal();
-  }
+  onChange = (_, { newValue }) => this.setState({ value: newValue });
 
-  toggleLanguageModal = () => {
-    this.setState(prevState => {return {showModal: !prevState.showModal}})
-  }
+  onSuggestionsFetchRequested = ({ value }) => this.setState({ suggestions: this.getSuggestions(value) });
 
-  handleResponse = (data) => {
-    console.log(data);
-  }
+  onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
 
-  handleError = (error) => {
-    console.log( error );
-  }
+  getSuggestions = (value) => {
+    const escapedValue = escapeRegexCharacters(value.trim());
+    
+    if (escapedValue === '') { return [];}
   
+    const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
+    
+    return this.state.search
+      .map(section => {
+        return {
+          title: section.type,
+          children: section.children.filter(child => regex.test(child.titreMarque || child.title))
+        };
+      })
+      .filter(section => section.children.length > 0);
+  }
+
+  validate = (suggestion) => {
+    this.props.history.push((suggestion.titreMarque ? '/dispositif/' : '/article/') + suggestion._id)
+  }
+
   render(){
-    const { t, i18n } = this.props;
-    const languages=[
-      {
-          name: 'Français',
-          key: 'fr'
-      },
-      {
-          name: 'English',
-          key: 'en'
-      },
-      {
-          name: 'العربية',
-          key: 'ar'
-      }
-    ]
-    //console.log(window.FB)
-    // window.FB.Event.subscribe('send_to_messenger', function(e) {
-    //   console.log(e)
-    // });
+    const { t } = this.props;
+    
+    const renderSuggestion = suggestion => <span onClick={()=>this.validate(suggestion)}>{suggestion.titreInformatif ? (suggestion.titreMarque + " - " + suggestion.titreInformatif) : suggestion.title}</span>
+    const inputProps = { placeholder: 'Chercher', value:this.state.value, onChange: this.onChange };
     return(
-      <div className="animated fadeIn homepage">
-          <LanguageModal 
-            show={this.state.showModal} 
-            current_language={i18n.language}
-            toggle={this.toggleLanguageModal} 
-            changeLanguage={this.changeLanguage} 
-            languages={this.state.available_languages}/>
-            
+      <div className="animated fadeIn homepage">            
           <section id="hero">
               <div className="hero-container">
               <h1>Bienvenue dans le projet Karfu'R</h1>
               <h2>Vous pouvez naviguer sur le site ou créer un parcours personnalisé d'intégration</h2>
-              
+
               <div className="input-group md-form form-sm form-2 pl-0">
-                  <input className="form-control my-0 py-1 amber-border" type="text" placeholder="Chercher" aria-label="Chercher" />
-                  <div className="input-group-append">
-                      <span className="input-group-text amber lighten-3" id="basic-text1">
-                      <i className="fa fa-search text-grey"
-                          aria-hidden="true"></i></span>
-                  </div>
+                <Autosuggest 
+                    multiSection={true}
+                    suggestions={this.state.suggestions}
+                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                    getSuggestionValue={getSuggestionValue}
+                    renderSuggestion={renderSuggestion}
+                    renderSectionTitle={renderSectionTitle}
+                    getSectionSuggestions={getSectionSuggestions}
+                    inputProps={inputProps} />
+{/* 
+                <input className="form-control my-0 py-1 amber-border" type="text" placeholder="Chercher" aria-label="Chercher" /> */}
+                <div className="input-group-append">
+                    <span className="input-group-text amber lighten-3" id="basic-text1">
+                    <i className="fa fa-search text-grey"
+                        aria-hidden="true"></i></span>
+                </div>
               </div>
 
               <hr />
@@ -116,8 +119,8 @@ class HomePage extends Component {
             pageId="423112408432299" 
             appId="300548213983436" 
             ctaText="SEND_THIS_TO_ME"
-            autoLogAppEvents="true"
             language= 'fr_FR'
+            size="xlarge"
             dataRef="/dispositif/5cd43ce8b472e46bd90e8f58" />
 
           <Notifications/>
@@ -135,7 +138,7 @@ class HomePage extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    languei18nCode: state.langue.languei18nCode
+    languei18nCode: state.langue.languei18nCode,
   }
 }
 

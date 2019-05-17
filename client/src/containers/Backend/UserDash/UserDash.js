@@ -69,6 +69,7 @@ class UserDash extends Component {
   }
 
   openTraductions = (langue) => {
+    this.props.tracking.trackEvent({ action: 'click', label: 'openTraductions', value : langue._id });
     this.props.history.push({
       pathname: '/avancement/traductions/'+langue._id,
       state: { langue: langue}
@@ -80,6 +81,7 @@ class UserDash extends Component {
   }
 
   editProfile = () => {
+    this.props.tracking.trackEvent({ action: 'click', label: 'editProfile' });
     this.props.history.push('/backend/user-form')
   }
 

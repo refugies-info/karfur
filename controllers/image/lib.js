@@ -86,7 +86,7 @@ function get_image(req, res) {
   //       })
   //       break;
   //     case 204:
-  //       res.status(204).json({
+  //       res.status(404).json({
   //           "text": "Erreur sur le résultat"
   //       })
   //       break;

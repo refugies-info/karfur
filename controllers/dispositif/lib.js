@@ -57,7 +57,7 @@ function get_dispositif(req, res) {
           if (result) {
             resolve(result)
           } else {
-            reject(204)
+            reject(404)
           }
         }
       })
@@ -79,8 +79,8 @@ function get_dispositif(req, res) {
                 "text": "Erreur interne"
             })
             break;
-        case 204:
-          res.status(204).json({
+        case 404:
+          res.status(404).json({
             "text": "Pas de résultat"
           })
           break;
@@ -95,7 +95,7 @@ function get_dispositif(req, res) {
 
 function count_dispositifs(req, res) {
   Dispositif.count({}, (err, count) => {
-    if (err){res.status(204).json({ "text": "Pas de résultat" })}
+    if (err){res.status(404).json({ "text": "Pas de résultat" })}
     else{res.status(200).json(count)}
   });
 }
@@ -104,7 +104,7 @@ function count_dispositifs(req, res) {
 const _turnHTMLtoJSON = (contenu, nbMots=null) => {
   for(var i=0; i < contenu.length;i++){
     let html= contenu[i].content;
-    nbMots+=html.trim().split(/\s+/).length;
+    nbMots+=(html || '').trim().split(/\s+/).length;
     let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
     let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
     contenu[i].content=jsonBody;

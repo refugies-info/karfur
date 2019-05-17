@@ -61,7 +61,7 @@ function textToSpeech(accessToken, text, locale='fr-fr') {
 }
 
 var ll=0;
-async function get_audio(req, res) {
+async function get_tts(req, res) {
   console.log(req.body)
   if (!req.body || !req.body.text) {
     res.status(400).json({
@@ -103,4 +103,4 @@ async function get_audio(req, res) {
 }
 
 //On exporte notre fonction
-exports.get_audio = get_audio;
+exports.get_tts = get_tts;

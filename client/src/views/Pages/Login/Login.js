@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import track from 'react-tracking';
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import Swal from 'sweetalert2';
+
 import API from '../../../utils/API';
 import setAuthToken from '../../../utils/setAuthToken'
 
@@ -26,10 +28,10 @@ class Login extends Component {
 
   send = event => {
     if(this.state.username.length === 0){
-      return;
+      Swal.fire( 'Oops...', 'Aucun nom d\'utilisateur n\'est renseigné !', 'error');return;
     }
     if(this.state.password.length === 0){
-      return;
+      Swal.fire( 'Oops...', 'Aucun mot de passe n\'est renseigné !', 'error');return;
     }
     let user = {
       'username' : this.state.username,
@@ -37,6 +39,7 @@ class Login extends Component {
       'traducteur' : this.state.traducteur,
     }
     API.login(user).then(data => {
+      Swal.fire( 'Yay...', 'Authentification réussie !', 'success');
       localStorage.setItem('token', data.data.token);
       setAuthToken(data.data.token);
       console.log(data.data.token)

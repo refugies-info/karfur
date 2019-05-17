@@ -1,19 +1,23 @@
 import React from 'react';
 
-import './NavigationItems.css';
 import NavigationItem from './NavigationItem/NavigationItem';
-import routes from '../../../routes'
+import routes from '../../../routes';
 
-const navigationItems = (props) => (
+import './NavigationItems.css';
+
+const navigationItems = () => {
+  let dispRoutes=routes.filter(x => x.path === '/dispositifs');
+  return (
     <ul className="NavigationItems">
-        {routes.map((route, idx) => {
-            return (
-                (!route.exact || route.forceShow) && (route.path.match(new RegExp("/", "g")) || []).length <=1 && 
-                  <NavigationItem key={idx} link={route.path} active={idx===1} {...props}>{route.name}</NavigationItem>
-                //!route.restriction && 
-            )
-        })}
+      {dispRoutes.map((route, idx) => {
+        return (
+          <NavigationItem key={idx} link={route.path} active={idx===1}>{route.name}</NavigationItem>
+          // (!route.exact || route.forceShow) && (route.path.match(new RegExp("/", "g")) || []).length <=1 &&
+        )
+      })}
     </ul>
-);
+  );
+}
+
 
 export default navigationItems;

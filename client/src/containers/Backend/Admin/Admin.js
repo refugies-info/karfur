@@ -76,7 +76,7 @@ class Admin extends Component {
       this.setState({
         langues:data_res.data.data.filter(el => el.langueFr !=='Français').map((el) => {return { ...el, isChecked:false}}),
       })
-    },(error) => {console.log(error);return;})
+    })
 
     API.get_themes({}).then(data_res => {
       this.setState({themes:data_res.data.data})

@@ -31,7 +31,12 @@ var eventSchema = mongoose.Schema({
 	value: {
 		type: String,
 		required: false
-	}
+  },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  cookie: {
+		type: String,
+		required: false
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
 module.exports = mongoose.model('Event', eventSchema);

@@ -42,10 +42,11 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/db', { useNewUr
 
 //Body Parser
 var urlencodedParser = bodyParser.urlencoded({
-    extended: true
+    extended: true,
+    limit: '50mb'
 });
 app.use(urlencodedParser);
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(formData.parse());
 app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(cors());
@@ -74,6 +75,7 @@ app.use('/traduction', router);
 app.use('/dispositifs', router);
 app.use('/channels', router);
 app.use('/tts', router);
+app.use('/audio', router);
 app.use('/webhook', router);
 require(__dirname + '/controllers/userController')(router);
 require(__dirname + '/controllers/eventsController')(router);
@@ -86,8 +88,9 @@ require(__dirname + '/controllers/themesController')(router);
 require(__dirname + '/controllers/traductionController')(router);
 require(__dirname + '/controllers/dispositifController')(router);
 require(__dirname + '/controllers/channelController')(router, io);
-require(__dirname + '/controllers/audioController')(router);
+require(__dirname + '/controllers/ttsController')(router);
 require(__dirname + '/messenger/controller')(router);
+require(__dirname + '/controllers/audioController')(router);
 
 
 //Partie dédiée à la messagerie instantanée
