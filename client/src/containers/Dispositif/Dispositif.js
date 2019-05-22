@@ -51,7 +51,7 @@ const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropd
 
 class Dispositif extends Component {
   state={
-    menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', content: (x.type ? null : lorems.paragraphe), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(lorems.paragraphe).contentBlocks))}}),
+    menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, content: (x.type ? null : x.tutoriel.contenu), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(lorems.paragraphe).contentBlocks))}}),
     content:contenu,
     sponsors:sponsorsData,
     tags:['Insertion professionnelle', 'Apprendre le français'],
@@ -163,7 +163,7 @@ class Dispositif extends Component {
       if(subkey !==null && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
       if(editable && right_node.content){
-        right_node.editorState=EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.content).contentBlocks));
+        right_node.editorState=EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? 'Test' : right_node.content).contentBlocks));
       }else if(!editable){
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
@@ -201,6 +201,17 @@ class Dispositif extends Component {
     }});
     this.setState({ uiArray: uiArray, tKeyValue: key, tSubkey: subkey });
   }
+
+  // handleContentClick=(key, subkey=null)=>{
+  //   this.handleMenuChange({
+  //     currentTarget:{
+  //       id:key,
+  //       dataset:{subkey : subkey}
+  //     },
+  //     target: {value: 'Texte '}
+  //   })
+  //   this.updateUIArray(key, subkey, 'isFakeContent', true)
+  // }
 
   addItem=(key, type='paragraphe', subkey=null)=>{
     let prevState = [...this.state.menu];
