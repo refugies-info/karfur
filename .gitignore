@@ -26,6 +26,7 @@ yarn-error.log*
 /config
 /private
 .env
+/db-backup
 /client/node_modules
 /client/nw/screens
 /client/nw/reports

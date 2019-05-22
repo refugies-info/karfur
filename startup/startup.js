@@ -26,7 +26,7 @@ if(process.env.NODE_ENV === 'dev') {
       }
 
       nb_documents=await db.collection('dispositifs').countDocuments()
-      if(nb_documents < 10){
+      if(nb_documents < 10 && false){
         let dispositifs = new Array(100).fill(dispositif).map((x, key) => {return {
           ...x,
           titreInformatif: x.titreInformatif + key,
