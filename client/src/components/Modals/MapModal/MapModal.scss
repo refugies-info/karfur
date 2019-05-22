@@ -1,0 +1,67 @@
+.map-modal{
+  min-width:600px;
+  font-family: CircularStd;
+
+ .modal-content{
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(123.26deg, #3D3D3D 6.51%, #000000 96.1%);
+    border: 1px solid #3D3D3D;
+    box-sizing: border-box;
+    border-radius: 8px;
+    color: #FFFFFF;
+
+    .modal-header{
+      border:none;
+      h5.modal-title{
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 51px;
+      }
+      .close{
+        color: #FFFFFF;
+        background: #3D3D3D;
+        border-radius:50%;
+        width:40px;
+        height:40px;
+        padding:0;
+        position:flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 0 0 auto;
+        span{
+          height:fit-content;
+        }
+        &:hover{
+          background: #FFFFFF;
+          color:#E55039;
+        }
+      }
+    }
+    .modal-body{
+      h6{
+        font-size: 24px;
+        line-height: 30px;
+      }
+      .btn-download{ 
+        margin-bottom: 30px;
+        box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+        background-color: #FBFBFB;
+        border-radius: 12px;
+        color: #3D3D3D;
+        a{
+          text-decoration: none;
+          color:inherit;
+        }
+      }
+    }
+    .modal-footer{
+      border:none;
+      .send-btn{
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        background: #FBFBFB;
+        border-radius: 12px;
+        color:#3D3D3D;
+      }
+    }
+  }
+}

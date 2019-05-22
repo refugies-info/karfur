@@ -52,6 +52,10 @@ var userSchema = mongoose.Schema({
     type: [{ type: mongoose.Schema.ObjectId, ref: 'Traduction' }],
     required: false
   },
+  contributions: { 
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'Dispositif' }],
+    required: false
+  },
   noteTraduction: { 
     type: Number,
     required: false

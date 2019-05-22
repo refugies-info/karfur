@@ -1,36 +1,51 @@
 .tags{
-  font-size: 16px;
-  line-height: 20px;
-  text-align: right;
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  .tag-item{
-    display: flex;
-    align-items: center;
-    color: #F6B93B;
-    &:nth-child(2n){
-      color: #4A69BD;
-    }
-  }
 
   .tags-dropdown{
-    .dropdown-toggle.btn{
-      color: inherit;
-      background-color: inherit;
-      border-color: inherit;
-      font-weight: inherit;
-      font-size: inherit;
+    margin-right:10px;
+    background: transparent;
+    border: 1px solid #4A69BD;
+    box-sizing: border-box;
+    border-radius: 12px;
+    color: #4A69BD;
+    
+    .btn{
+      background: transparent;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 20px;
       border:none;
-      padding:0;
+      color:inherit;
+      padding:10px;
+    }
+    &:hover{
+      background: #4A69BD;
+      color: #FFFFFF;
+    }
+    &:nth-child(2n){
+      border: 1px solid #E55039;
+      color: #E55039;
+      &:hover{
+        background: #E55039;
+        color: #FFFFFF;
+      }
     }
   }
 
   .plus-button{
-    cursor: pointer;
-    color: #6c757d;
+    background: #F2F2F2;
+    border-radius: 12px;
+    font-style: italic;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color: #CDCDCD;
+    border:none;
+    padding:10px;
+
+    i{
+      margin-right:10px;
+    }
     &:hover{
-      font-size: 3.5rem;
       color:black;
     }
   }

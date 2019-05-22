@@ -1,0 +1,29 @@
+.map-paragraphe{
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .where-header{
+    margin-bottom: 21px;
+
+    .dropdown-menu.show{
+      width:100%;
+    }
+    .dropdown-btn{
+      margin-left:12px;
+      border-bottom: 1px solid #000000;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 23px;
+      color: #CDCDCD;
+      min-width:313px;
+      text-align: left;
+      margin-right: 50px;
+      &:after{
+        position: absolute;
+        right:-33px;
+        top:50%;
+        font-size:33px;
+      }
+    }
+  }
+}

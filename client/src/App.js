@@ -27,13 +27,13 @@ const Layout = Loadable({
 
 // Pages
 const Login = Loadable({
-  loader: () => import('./views/Pages/Login'),
+  loader: () => import('./containers/Login/Login'),
   loading
 });
 
 
 const Register = Loadable({
-  loader: () => import('./views/Pages/Register'),
+  loader: () => import('./containers/Register/Register'),
   loading
 });
 

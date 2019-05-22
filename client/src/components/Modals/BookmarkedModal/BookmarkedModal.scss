@@ -1,0 +1,44 @@
+
+.bookmark-modal{
+  font-family: CircularStd;
+  .modal-content{
+    background: #3D3D3D;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-size: 18px;
+    line-height: 23px;
+
+    .modal-header{
+      border:none;
+
+      .modal-title{
+        font-size: 40px;
+        line-height: 51px;
+        background:inherit;
+    
+        .bookmark-icon svg{
+          position: absolute;
+          top: 18px;
+          right: 18px;
+        }
+      }
+    }
+    .modal-footer{
+      border:none;
+      padding:0;
+
+      .btn-block{
+        min-height:50px;
+        margin: 0;
+        border-radius: 0 0 12px 0;
+
+        &.btn-go{
+          background: #F2F2F2;
+          color: #3D3D3D;
+          border-radius: 0 0 0 12px;
+        }
+      }
+    }
+  }
+}

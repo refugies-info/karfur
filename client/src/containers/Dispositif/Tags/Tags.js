@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
+import Icon from 'react-eva-icons';
 
 import './Tags.scss';
 
@@ -27,29 +28,27 @@ class Tags extends Component {
       <div className="tags">
         {(this.props.tags || []).map((tag, key) => {
           return (
-            <span className="tag-item" key={key}>
-              #&nbsp;
-              <u>
-                <ButtonDropdown isOpen={this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key)} className="tags-dropdown">
-                  <DropdownToggle caret>
-                    {tag}
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    {tags.map((e, i) => {
-                      return (
-                        <DropdownItem key={i} id={i}>
-                          {e}
-                        </DropdownItem>
-                      )} 
-                    )}
-                  </DropdownMenu>
-                </ButtonDropdown>
-              </u>
-            </span>
+            <ButtonDropdown isOpen={this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key)} className="tags-dropdown" key={key}>
+              <DropdownToggle caret={!this.props.disableEdit}>
+                {tag}
+              </DropdownToggle>
+              <DropdownMenu>
+                {tags.map((e, i) => {
+                  return (
+                    <DropdownItem key={i} id={i}>
+                      {e}
+                    </DropdownItem>
+                  )} 
+                )}
+              </DropdownMenu>
+            </ButtonDropdown>
           )}
         )}
-        {this.state.editable && 
-          <h1 className="p-1 plus-button" onClick={this.addTag}>+</h1>}
+        {!this.props.disableEdit && 
+          <Button className="plus-button" onClick={this.addTag}>
+            <Icon name="plus-circle-outline" fill="#CDCDCD" />
+            Ajouter un tag
+          </Button>}
       </div>
     )
   }
