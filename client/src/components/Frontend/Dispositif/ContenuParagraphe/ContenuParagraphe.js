@@ -35,10 +35,16 @@ const contenuParagraphe = (props) => {
           )
         }else if(subitem.type==='accordion'){
           return ( 
-            <div key={subkey} onMouseEnter={()=>props.updateUIArray(props.keyValue, subkey, 'isHover')}>
+            <div key={subkey} onMouseEnter={(e)=>props.updateUIArray(props.keyValue, subkey, 'isHover', true, e)}>
               <Row className="relative-position">
                 <Col lg="12" className="accordeon-col">
-                  <Button id="accordion-header" color="warning" className={"text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} onClick={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} aria-controls={"collapse" + props.keyValue + "-" + subkey}>
+                  <Button 
+                    id="accordion-header" 
+                    color="warning" 
+                    className={"text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} 
+                    onMouseUp={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
+                    aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} 
+                    aria-controls={"collapse" + props.keyValue + "-" + subkey}>
                     <h5>
                       <div className="accordion-number">{subkey+1}</div>
                       <span className="accordion-text">
@@ -49,7 +55,7 @@ const contenuParagraphe = (props) => {
                           html={subitem.title}  // innerHTML of the editable div
                           disabled={props.disableEdit}       // use true to disable editing
                           onChange={props.handleMenuChange} // handle innerHTML change
-                          onClick={e=>e.stopPropagation()} />
+                          onMouseUp={e=>e.stopPropagation()} />
                       </span>
                       <div className="accordion-expand">+</div>
                     </h5>
