@@ -21,10 +21,10 @@ const topRightHeader = (props) => {
       <Col className="top-right">
         <Card>
           <CardBody>
-            <div className="switch-wrapper">
+            {/* <div className="switch-wrapper">
               <AppSwitch className='mx-1' variant='pill' color='dark' checked={props.withHelp} onClick={props.toggleHelp} />
               Aide activée
-            </div>
+            </div> */}
             <Button className="save-btn text-dark" onClick={()=>props.valider_dispositif('Brouillon')}>Sauvegarder</Button>
             <Button className="publish-btn" onClick={props.toggleDispositifValidateModal}>Publier</Button>
           </CardBody>

@@ -104,13 +104,13 @@ class Dispositif extends Component {
           disableEdit: true
         })
       },function(error){ console.log(error); return; })
-    }else{
+    }else if(API.isAuth()){
       this.setState({
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
         showDispositifCreateModal:false, //A modifier avant la mise en prod
       })
-    }
+    }else{ this.props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
   }
 
   onMenuNavigate = (tab) => {
@@ -221,6 +221,8 @@ class Dispositif extends Component {
       if(type==='card' && newChild.type!=='card'){
         prevState[key].type='cards';
         newChild={type:'card',title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody:'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'};
+      }else if(type==='accordion' && !newChild.content){
+        newChild={type:'accordion', isFakeContent: true, title:'Un exemple d\'accordéon',content: lorems.sousParagraphe};
       }else if(type==='map'){
         newChild={type:'map', markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]};
       }
@@ -454,7 +456,7 @@ class Dispositif extends Component {
               openAllAccordions={this.openAllAccordions}
             />
           </Col>
-          <Col lg="6">
+          <Col lg="7">
             <ContenuDispositif 
               updateUIArray={this.updateUIArray}
               handleContentClick={this.handleContentClick}
@@ -470,7 +472,7 @@ class Dispositif extends Component {
             
             {false && <Commentaires />}
           </Col>
-          <Col md="3" className="aside-right">
+          <Col md="2" className="aside-right">
           </Col>
         </Row>
         

@@ -26,7 +26,7 @@ $transition-time: 0.5s;
       overflow: scroll;
       height:215px;
       .card-body{
-        overflow: scroll;
+        overflow: hidden;
         height:124px;
       }
     }
