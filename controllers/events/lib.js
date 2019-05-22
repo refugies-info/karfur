@@ -18,6 +18,7 @@ function log_event(req, res) {
           "text": "Erreur interne"
         })
       } else {
+        console.log('ici')
         res.status(200).json({
           "text": "Succès",
           "event": event
