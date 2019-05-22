@@ -105,7 +105,7 @@ class HomePage extends Component {
 
 
 
-          <div>
+          {/* <div>
               <button onClick={() => this.changeLanguage('fr')}>fr</button>
               <button onClick={() => this.changeLanguage('en')}>en</button>
               <button onClick={() => this.changeLanguage('ar')}>ar</button>
@@ -113,7 +113,7 @@ class HomePage extends Component {
           </div>
           <div>Toolbar, SideDrawer and Backdrop</div>
 
-          {/* <SendToMessenger messengerAppId="300548213983436" pageId="423112408432299" /> */}
+          <SendToMessenger messengerAppId="300548213983436" pageId="423112408432299" />
 
           <MessengerSendToMessenger 
             pageId="423112408432299" 
@@ -130,7 +130,7 @@ class HomePage extends Component {
           <div>{t('Troisième élément')}</div>
           <div>{t('Quatrième élément')}</div>
           <div>{t('accueil.Cinquième élément')}</div>
-          <div>{t('accueil.Six')}</div>
+          <div>{t('accueil.Six')}</div> */}
       </div>
     );
   }
