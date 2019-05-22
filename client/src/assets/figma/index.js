@@ -6,6 +6,8 @@ import femmeDispo from './femmeDispo.svg';
 import hommeDispo from './hommeDispo.svg';
 import puzzle from './puzzle.svg';
 import smiley from './smiley.svg';
+import hommeRouge from './hommeRouge.svg';
+import femmeRouge from './femmeRouge.svg';
 
 import juliette from './juliette.png';
 import hugo from './hugo.png';
@@ -24,6 +26,8 @@ export {
   hommeDispo,
   puzzle,
   smiley,
+  hommeRouge,
+  femmeRouge,
 
   juliette,
   hugo,

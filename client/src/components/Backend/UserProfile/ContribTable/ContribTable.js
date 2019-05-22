@@ -34,7 +34,7 @@ const tradTable = (props) => {
                     <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
                   </Col>
                   <Col className={'text-'+colorAvancement(element.avancement)}>
-                    {Math.round(element.avancement * 100)} %
+                    {Math.round((element.avancement || 0) * 100)} %
                   </Col>
                 </Row>
               </td>
@@ -110,6 +110,21 @@ const tradTable = (props) => {
             </NavLink>
           </Button>
         </div>
+
+        {!props.contributeur &&
+          <div className="ecran-protection no-contrib">
+            <div className="close-box text-white">
+              <Icon name="eye-off-2-outline" fill="#FFFFFF" />
+              <u>Masquer</u>
+            </div>
+            <div className="content-wrapper">
+              <h1>Ici, vous pourrez accéder à vos contributions</h1>
+              <NavLink to="/dispositif" className="no-decoration" >
+                <Button>Proposer un nouveau contenu</Button>
+              </NavLink>
+            </div>
+          </div>
+        }
       </div>
     )
   }else{

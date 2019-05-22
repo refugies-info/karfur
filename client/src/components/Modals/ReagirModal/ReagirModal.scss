@@ -1,23 +1,65 @@
-.modal-reagir{
+.modal-reagir .modal-content{
+  font-family: CircularStd;
   box-shadow: 0px 0px 40px #3c3434;
   border: 1px solid #F2F2F2;
   box-sizing: border-box;
   border-radius: 8px;
   background: #FBFBFB;
 
+  .modal-header{
+    border:none;
+    .modal-title{
+      display:flex;    
+      align-items: center;
+      svg{
+        margin-right:10px;
+      }
+    }
+  }
+  
   .narrow-padding{
     &:not(:last-child){
       padding-right: 0;
     }
     
     .comment-modal{
+      background: #F2F2F2;
+      border: 1px solid #F2F2F2;
+      box-sizing: border-box;
+      border-radius: 8px;
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
       margin-bottom:0;
-      background: #3D3D3D;
-      height: 221px;
-      color: #FFFFFF;
+      height: 220px;
 
+      &.pointy-end{
+        cursor: pointer;
+      }
+      
       .card-body{
-        padding:0;
+        padding:10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .feedback-buttons{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .btn{
+            font-size: 18px;
+            line-height: 23px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border:none;
+            background: #3D3D3D;
+            border-radius: 12px;
+            font-weight: 600;
+
+            &:first-child{
+              margin-bottom: 10px;
+            }
+          }
+        }
       }
 
       .icone{
@@ -30,10 +72,8 @@
       }
 
       .texte{
-        padding-left:25px;
-        padding-right:16px;
-        font-size: 14px;
-        line-height: normal;
+        font-size: 18px;
+        line-height: 23px;
       }
     }
   }

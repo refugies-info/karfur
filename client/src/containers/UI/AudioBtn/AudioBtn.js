@@ -1,7 +1,8 @@
 import React, { Component }  from 'react';
 import track from 'react-tracking';
 import { connect } from 'react-redux';
-import Icon from 'react-eva-icons';
+
+import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
 import * as actions from '../../../Store/actions';
 
@@ -10,14 +11,13 @@ import './AudioBtn.scss';
 class AudioBtn extends Component {
   toggleAudio = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'toggleAudio', value : this.props.ttsActive });
-    const action = { type: actions.TOGGLE_TTS }
-    this.props.dispatch(action);
+    this.props.toggleAudio();
   }
 
   render() {
     return (
       <div className={"audio-icon-wrapper" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
-        <Icon name="volume-up-outline" size="large" fill="#3D3D3D" />
+        <EVAIcon name={"volume-up" + (this.props.ttsActive ? "" : "-outline")} fill={(this.props.ttsActive ? "#FFFFFF" : "#3D3D3D")} id="audioBtn" />
       </div>
     )
   }
@@ -29,8 +29,14 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleAudio: () => dispatch({type: actions.TOGGLE_TTS}),
+  }
+}
+
 export default track({
         layout: 'AudioBtn',
     }, { dispatchOnMount: true })(
-      connect(mapStateToProps)(AudioBtn)
+      connect(mapStateToProps, mapDispatchToProps)(AudioBtn)
     );

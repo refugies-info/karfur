@@ -27,6 +27,7 @@
     "error-ex": "^1.3.2",
     "express": "^4.16.4",
     "express-form-data": "^2.0.8",
+    "file-saver": "^2.0.2",
     "himalaya": "^1.1.0",
     "html2plaintext": "^2.1.2",
     "ip-regex": "^4.0.0",

@@ -34,6 +34,13 @@ class Layout extends Component {
     },function(error){ console.log(error); return; })
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.ttsActive !== this.props.ttsActive && !this.props.ttsActive) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  }
+
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   sideDrawerClosedHandler = (dir) => {

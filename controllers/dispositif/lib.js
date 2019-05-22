@@ -1,4 +1,6 @@
 const Dispositif = require('../../schema/schemaDispositif.js');
+const Role = require('../../schema/schemaRole.js');
+const User = require('../../schema/schemaUser.js');
 var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
 
@@ -10,12 +12,10 @@ function add_dispositif(req, res) {
     })
   } else {
     let dispositif = req.body;
-    console.log(dispositif)
     let nbMots=_turnHTMLtoJSON(dispositif.contenu)
-    console.log(dispositif)
     
     dispositif.creatorId = req.userId;
-    dispositif.status = 'Actif';
+    dispositif.status = dispositif.status || 'Actif';
     dispositif.nbMots = nbMots;
     //On l'insère
     var _u = new Dispositif(dispositif);
@@ -24,6 +24,12 @@ function add_dispositif(req, res) {
         console.log(err);
         res.status(500).json({"text": "Erreur interne"})
       } else {
+        //Je rajoute le statut de contributeur à l'utilisateur
+        Role.findOne({'nom':'Contrib'}).exec((err, result) => {
+          if(!err && result && req.userId){ 
+            User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "roles": result._id, "contributions": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+          }
+        })
         res.status(200).json({
           "text": "Succès",
           "data": data
@@ -93,6 +99,24 @@ function get_dispositif(req, res) {
   }
 }
 
+function update_dispositif(req, res) {
+  if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
+    res.status(400).json({ "text": "Requête invalide" })
+  } else {
+    let {dispositifId, fieldName, ...dispositif} = req.body;
+    let update = { "$push": { [fieldName]: {...(req.userId && {userId:req.userId}), ...dispositif, createdAt: new Date()} } }
+    Dispositif.findByIdAndUpdate({ _id: dispositifId },update,{new: true},(err, data) => {
+      if (err){res.status(404).json({ "text": "Pas de résultat" })}
+      else{
+        res.status(200).json({
+          "text": "Succès",
+          "data": data
+        })
+      }
+    }); 
+  }
+}
+
 function count_dispositifs(req, res) {
   Dispositif.count({}, (err, count) => {
     if (err){res.status(404).json({ "text": "Pas de résultat" })}
@@ -130,3 +154,4 @@ const _turnJSONtoHTML = (contenu) => {
 exports.add_dispositif = add_dispositif;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs=count_dispositifs;
+exports.update_dispositif = update_dispositif;

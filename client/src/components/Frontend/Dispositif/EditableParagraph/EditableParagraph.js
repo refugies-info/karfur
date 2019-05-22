@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardBody, CardHeader, CardFooter } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import { Editor } from 'react-draft-wysiwyg';
+import Icon from 'react-eva-icons';
 
 import Backdrop from '../../../UI/Backdrop/Backdrop';
 
@@ -12,27 +13,31 @@ const editableParagraph = (props) => {
         <Backdrop show={true} clicked={()=>props.handleContentClick(props.idx,false, props.subkey)} />
         <Card className="edition-card">
           <CardHeader>
-            Modification
+            <div className="tutoriel-card">
+              <div className="tutoriel-title">
+                <Icon name="alert-circle" fill="#F6B93B" />
+                <h3>{(props.tutoriel || {}).titre}</h3>
+              </div>
+              <p>
+                {(props.tutoriel || {}).contenu}
+              </p>
+            </div>
           </CardHeader>
-          <CardBody>
-            <p>Consignes :</p>
-            <ul className="a">
-              <li>Il faut que le texte soit bien écrit et dans un français compréhensible</li>
-              <li>Pas plus de 500 caractères</li>
-              <li>Une majuscule par phrase</li>
-            </ul>
-            <Editor
-              toolbarClassName="toolbar-editeur"
-              wrapperClassName="wrapper-editeur"
-              editorClassName="editor-editeur"
-              placeholder="Ecrivez ici votre article..."
-              onEditorStateChange={(editorState)=>props.onEditorStateChange(editorState, props.idx, props.subkey)}
-              editorState={props.editorState}
-            />
-          </CardBody>
-          <CardFooter>
-            Valider
-          </CardFooter>
+          <div className="card-bottom">
+            <CardBody>
+              <Editor
+                toolbarClassName="toolbar-editeur"
+                wrapperClassName="wrapper-editeur"
+                editorClassName="editor-editeur"
+                placeholder="Ecrivez ici votre article..."
+                onEditorStateChange={(editorState)=>props.onEditorStateChange(editorState, props.idx, props.subkey)}
+                editorState={props.editorState}
+              />
+            </CardBody>
+            <CardFooter onClick={()=>props.handleContentClick(props.idx,false, props.subkey)}>
+              Valider
+            </CardFooter>
+          </div>
         </Card>
       </div>
     )

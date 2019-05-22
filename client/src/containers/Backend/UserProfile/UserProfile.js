@@ -1,37 +1,31 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Card, CardBody, Progress, Table, Modal } from 'reactstrap';
+import { Col, Row, Card, CardBody, Modal } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import {NavLink} from 'react-router-dom';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
+import {hommeRouge, femmeRouge} from '../../../assets/figma/index';
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
-import {colorAvancement} from '../../../components/Functions/ColorFunctions';
-//import Modal from '../../../components/Modals/Modal';
 import API from '../../../utils/API';
-import {TradTable, ContribTable} from '../../../components/Backend/UserProfile/index';
+import {ActionTable, TradTable, ContribTable, FavoriTable} from '../../../components/Backend/UserProfile/index';
 
-import {data} from './data'
+import {fakeTraduction, fakeContribution, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris} from './data'
 
 import './UserProfile.scss';
-
-const avancement_langue={
-  title: 'Mes traductions',
-  headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi','']
-}
-
-const avancement_contrib={
-  title: 'Mes articles',
-  headers: ['Titre', 'Statut', 'Progression', 'Mon rôle', 'Ils rédigent avec moi','']
-}
+import ThanksModal from '../../../components/Modals/ThanksModal/ThanksModal';
 
 class UserProfile extends Component {
   state={
-    showModal:{traducteur: false,contributeur: false}, 
+    showModal:{traducteur: false,contributeur: false, thanks:false}, 
     user: {},
     traductions:[],
     contributions:[],
+    actions:[],
+    favoris:[],
     langues:[],
+    traducteur:false,
+    contributeur:false,
   }
 
   componentDidMount() {
@@ -43,12 +37,31 @@ class UserProfile extends Component {
       })
       API.get_dispositif({'creatorId': user._id}).then(data => {
         console.log(data.data.data)
-        this.setState({contributions: data.data.data})
+        this.setState({contributions: data.data.data, actions: this.parseActions(data.data.data)})
       })
       console.log(user)
-      this.setState({user:user})
+      this.setState({user:user, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib")})
     })
     API.get_langues({}).then(data => this.setState({ langues: data.data.data }))
+  }
+
+  parseActions = dispositifs => {
+    let actions = [];
+    dispositifs.forEach(dispo => {
+      ['suggestions', 'questions', 'signalements'].map(item => {
+        if(dispo[item] && dispo[item].length > 0){
+          actions= [...actions, ...dispo[item].map(x => ({
+            action : item,
+            titre: dispo.titreInformatif,
+            owner: true,
+            depuis : x.createdAt,
+            texte : x.suggestion,
+            read : x.read,
+          }))];
+        }
+      })
+    });
+    return actions
   }
 
   toggleModal = (modal) => {
@@ -57,6 +70,40 @@ class UserProfile extends Component {
   }
 
   render() {
+    let {traducteur, contributeur, traductions, contributions, actions, favoris}=this.state;
+    if(!traducteur){traductions= new Array(5).fill(fakeTraduction)}
+    if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
+
+    const FeedbackCard=(props) => {
+      if(props.contributeur){
+        return (
+          <Card className="feedbacks-card contributeur" onClick={()=>this.toggleModal('thanks')}>
+            <CardBody>
+              <SVGIcon name="clapping" fill="#FFFFFF" />
+              <div className="user-feedbacks">
+                <h4>43</h4>
+                <span>utilisateurs vous remercient</span>
+              </div>
+            </CardBody>
+          </Card>
+        )
+      }else{
+        return (
+          <NavLink to="/dispositif" className="no-decoration">
+            <Card className="feedbacks-card no-contrib">
+              <CardBody>
+                <div className="icones-rouges">
+                  <img src={hommeRouge} alt="homme" className="homme" />
+                  <img src={femmeRouge} alt="femme" className="femme" />
+                </div>
+                <h4>Devenir contributeur</h4>
+                <span>Contribuer à la plateforme en rédigant de nouveaux contenus ou en traduisant des contenus.</span>
+              </CardBody>
+            </Card>
+          </NavLink>
+        )
+      }
+    }
     return (
       <div className="animated fadeIn user-profile">
         <div className="profile-header">
@@ -81,14 +128,8 @@ class UserProfile extends Component {
               <h3 className="status">Contributeur ponctuel</h3>
             </div>
             <div className="feedbacks-col">
-              <Card className="feedbacks-card">
-                <CardBody>
-                  <SVGIcon name="clapping" fill="#FFFFFF" />
-                  <div className="user-feedbacks">
-                    <h4>43</h4>
-                    <span>utilisateurs vous remercient</span>
-                  </div>
-                </CardBody>
+              <Card className={"feedbacks-card" + (contributeur ? " contributeur" : " no-contrib")} onClick={()=>this.toggleModal('thanks')}>
+                <FeedbackCard traducteur={traducteur} contributeur={contributeur} />
               </Card>
             </div>
             <Col className="user-col">
@@ -143,25 +184,41 @@ class UserProfile extends Component {
             </Col>
           </Row>
 
-          <ContribTable 
-            dataArray={this.state.contributions}
+          <ActionTable 
+            dataArray={actions}
             user={this.state.user}
+            toggleModal={this.toggleModal}
+            limit={5}
+            {...avancement_actions} />
+
+          <ContribTable 
+            dataArray={contributions}
+            user={this.state.user}
+            contributeur={contributeur}
             toggleModal={this.toggleModal}
             limit={5}
             {...avancement_contrib} />
 
           <TradTable 
-            dataArray={this.state.traductions}
+            dataArray={traductions}
+            traducteur={traducteur}
             user={this.state.user}
             langues={this.state.langues}
             toggleModal={this.toggleModal}
             limit={5}
             {...avancement_langue} />
+
+          <FavoriTable 
+            dataArray={favoris}
+            user={this.state.user}
+            toggleModal={this.toggleModal}
+            limit={5}
+            {...avancement_favoris} />
         </div>
 
         <Modal isOpen={this.state.showModal.contributeur} toggle={()=>this.toggleModal('contributeur')} className='modal-plus'>
           <ContribTable 
-            dataArray={this.state.contributions}
+            dataArray={contributions}
             user={this.state.user}
             toggleModal={this.toggleModal}
             {...avancement_contrib} />
@@ -169,12 +226,14 @@ class UserProfile extends Component {
 
         <Modal isOpen={this.state.showModal.traducteur} toggle={()=>this.toggleModal('traducteur')} className='modal-plus'>
           <TradTable 
-            dataArray={this.state.traductions}
+            dataArray={traductions}
             user={this.state.user}
             langues={this.state.langues}
             toggleModal={this.toggleModal}
             {...avancement_langue} />
         </Modal>
+
+        <ThanksModal show={this.state.showModal.thanks} toggle={()=>this.toggleModal('thanks')} />
       </div>
     );
   }

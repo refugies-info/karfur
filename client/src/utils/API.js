@@ -3,6 +3,7 @@ import openSocket from 'socket.io-client';
 
 import setAuthToken from './setAuthToken'
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 
 const  socket = openSocket('http://localhost:8001');
 socket.emit('subscribeToChat');
@@ -10,7 +11,8 @@ export { socket };
 
 const headers = {
   'Content-Type': 'application/json',
-  'x-access-token' : localStorage.getItem("token") || undefined
+  'x-access-token' : localStorage.getItem("token") || undefined,
+  'cookie-id' : Cookies.get("_ga")
 }
 const burl = "http://localhost:8000"
 
@@ -99,6 +101,9 @@ export default {
     count_dispositifs : () => {
       return axios.post(burl + '/dispositifs/count_dispositifs', {}, {headers: headers})
     },
+    update_dispositif : query => {
+      return axios.post(burl + '/dispositifs/update_dispositif', query, {headers: headers})
+    },
 
     add_tradForReview : query => {
       return axios.post(burl + '/traduction/add_tradForReview', query, {headers: headers})
@@ -162,5 +167,6 @@ export default {
     logout : () => {
       setAuthToken(false);
       localStorage.removeItem("token");
+      delete headers['x-access-token'];
     }
 }

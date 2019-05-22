@@ -45,7 +45,7 @@ const tradTable = (props) => {
                     <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
                   </Col>
                   <Col className={'text-'+colorAvancement(element.avancement)}>
-                    {Math.round(element.avancement * 100)} %
+                    {Math.round((element.avancement || 0) * 100)} %
                   </Col>
                 </Row>
               </td>
@@ -120,6 +120,21 @@ const tradTable = (props) => {
             </NavLink>
           </Button>
         </div>
+
+        {!props.traducteur &&
+          <div className="ecran-protection no-trad">
+            <div className="close-box text-white">
+              <Icon name="eye-off-2-outline" fill="#FFFFFF" />
+              <u>Masquer</u>
+            </div>
+            <div className="content-wrapper">
+              <h1>Ici, vous pourrez accéder à vos traductions</h1>
+              <NavLink to="/backend/user-dashboard" className="no-decoration" >
+                <Button>Commencer à traduire</Button>
+              </NavLink>
+            </div>
+          </div>
+        }
       </div>
     )
   }else{

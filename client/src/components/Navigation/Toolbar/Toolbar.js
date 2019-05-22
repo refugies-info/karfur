@@ -28,11 +28,12 @@ export class Toolbar extends React.Component {
     API.get_langues({}).then(data_res => {
       this.setState({ available_languages:data_res.data.data })
     },function(error){ console.log(error); return; })
-    API.get_user_info().then(data_res => {
-      let user=data_res.data.data;
-      console.log(user)
-      this.setState({user:user})
-    },(error) => {console.log(error);return;})
+    if(API.isAuth()){
+      API.get_user_info().then(data_res => {
+        let user=data_res.data.data;
+        this.setState({user:user})
+      },(error) => {console.log(error);return;})
+    }
   }
 
   disconnect = () => {
@@ -96,7 +97,7 @@ export class Toolbar extends React.Component {
 
         <div className="right_buttons">
           <Button className="traduire-btn">
-            <NavLink to="/login">Traduire</NavLink>
+            <NavLink to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }}>Traduire</NavLink>
           </Button>
 
           {API.isAuth() ? 
@@ -112,9 +113,11 @@ export class Toolbar extends React.Component {
               </DropdownMenu>
             </ButtonDropdown>
             :
-            <Button color="white" className="connect-btn">
-              <NavLink to="/login">Connexion</NavLink>
-            </Button>
+            <NavLink to={{ pathname:'/login', state: { redirectTo: "/backend/user-profile" } }}>
+              <Button color="white" className="connect-btn">
+                Connexion
+              </Button>
+            </NavLink>
           }
         </div>
         

@@ -1,6 +1,6 @@
 import React from 'react';
 import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 
 const map = compose(
   withProps({
@@ -13,13 +13,32 @@ const map = compose(
   withGoogleMap
 )((props) =>
   <GoogleMap
-    defaultZoom={6}
+    zoom={props.zoom}
+    center={props.center}
+    defaultZoom={5}
     defaultCenter={{ lat: 48.856614, lng: 2.3522219 }}
-  >
-    {props.isMarkerShown && props.markers && props.markers.length > 0 &&
-      props.markers.map( (marker, key) =>  (
-        <Marker position={marker} onClick={props.onMarkerClick} key={key} />
-      ))
+    onClick={props.onClose} >
+    {props.markers && props.markers.length > 0 &&
+      props.markers.map( (marker, key) =>  {
+        if(props.isMarkerShown[key]){
+          return (
+            <React.Fragment key={key}>
+              <Marker 
+                position={{lat: parseFloat(marker.latitude), lng: parseFloat(marker.longitude)}} 
+                onClick={(e) => props.onMarkerClick(e, marker, key)} >
+                {props.showingInfoWindow[key] && 
+                  <InfoWindow onClose={props.onClose} >
+                    <div>
+                      <h4>{marker.nom}</h4>
+                      <span>{marker.description}</span>
+                    </div>
+                  </InfoWindow>
+                }
+              </Marker>
+            </React.Fragment>
+          )
+        }else{return false}
+      })
     }
   </GoogleMap>
 )

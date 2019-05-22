@@ -11,7 +11,7 @@ function set_image(req, res) {
     const values = Object.values(req.files)
     
     const originalFilename= values[0] ? values[0].originalFilename : null;
-    const promises = values.map(image => cloudinary.uploader.upload(image.path, {"folder" : "/picture"}))
+    const promises = values.map(image => cloudinary.uploader.upload(image.path, '', {"folder" : "/pictures"}))
     
     Promise
       .all(promises)

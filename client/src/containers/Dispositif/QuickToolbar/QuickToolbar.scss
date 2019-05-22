@@ -10,21 +10,64 @@
   background: #fbfbfb;
   z-index: 2;
 
+  .card-body{
+    height:40px;
+    padding-top:0;
+    padding-bottom:0;
+    display: flex;
+    align-items: center;
+
+    div[class^="col-lg"]{
+      padding: 0 4px 0 4px;
+    }
+  }
   .custom-eva-size{
-    .hovered svg{
-      fill:#828282;
-    }
-    .clicked svg{
-      fill:#3D3D3D;
-    }
-    svg{
-      width: 50px;
-      height: 50px;
-    }
-    .dropdown .btn{
-      padding:0;
-      background:none;
-      border:none;
+    .dropdown{ 
+      .btn{
+        padding:0;
+        background:none;
+        border:none;
+
+        .icon-toolbar{
+          margin-top: -8px;
+        }
+      }
+      .dropdown-menu{
+        background: #3D3D3D;
+        border-radius: 8px;
+
+        .dropdown-item{
+          font-size: 14px;
+          color: #FFFFFF;
+          display:flex;
+          padding-right: 15px;
+          padding-left: 15px;
+          &:hover{
+            background-color:#E5E5E5;
+            color:#3D3D3D;
+          }
+          i{
+            margin-left:0;
+          }
+          svg{
+            margin-right:10px;
+          }
+        }
+      }
     }
   } 
+}
+
+.tooltip.show{
+
+  .tooltip-inner{
+    background: #3D3D3D;
+    border-radius: 8px;
+    font-family: CircularStd;
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .arrow::before{
+    border-top-color: #3D3D3D;
+  }
 }
