@@ -15,7 +15,7 @@ const headers = {
   'x-access-token' : localStorage.getItem("token") || undefined,
   'cookie-id' : Cookies.get("_ga")
 }
-const burl = "http://localhost:8000"
+const burl = "https://localhost:8000"
 
 axios.withCredentials = true;
 
@@ -68,6 +68,7 @@ export default {
     },
 
     log_event : (event) => {
+      console.log(burl)
       return axios.post(burl + '/events/log_event', event, {headers: headers})
     },
     get_event : (query, sort) => {
