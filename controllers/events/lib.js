@@ -1,6 +1,7 @@
 const Event = require('../../schema/schemaEvent.js');
 
 function log_event(req, res) {
+  console.log('logging event')
   if (!req.body || !req.body.app) {
     //Le cas où la page ne serait pas soumise ou nul
     res.status(400).json({
