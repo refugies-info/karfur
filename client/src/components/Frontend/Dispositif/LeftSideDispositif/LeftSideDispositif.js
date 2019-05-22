@@ -4,7 +4,6 @@ import Scrollspy from 'react-scrollspy';
 import Icon from 'react-eva-icons';
 import ReactToPrint from 'react-to-print';
 
-
 const leftSideDispositif = (props) => {
   return(
     <div className="sticky-affix">
@@ -12,7 +11,8 @@ const leftSideDispositif = (props) => {
         <Scrollspy 
           items={props.menu.map((_,key) => 'item-'+key) }
           currentClassName="active"
-          onUpdate={props.handleScrollSpy}>
+          onUpdate={props.handleScrollSpy}
+          offset={-60}>
           {props.menu.map((item, key) => {
             return ( 
               <div key={key} className="list-item-wrapper">

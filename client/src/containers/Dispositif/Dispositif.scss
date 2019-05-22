@@ -12,6 +12,7 @@
     .post-title-block{
       padding: 114px 0 49px 0;
       display: flex;
+      z-index: 2;
 
       .bloc-titre{
         margin:auto;
@@ -408,6 +409,7 @@
 
     .contenu-accordeon{
       margin-top:20px;
+      margin-left:50px;
     }
   }
   

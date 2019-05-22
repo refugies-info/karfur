@@ -21,17 +21,8 @@ class QuickToolbar extends Component {
   _hoverOn=(key)=> this.setState(prevState=>({fill: prevState.fill.map((_,i) => key===i)}));
   _hoverOff=()=> this.setState(prevState=>({fill: prevState.fill.map(() => false)}));
   toggleTooltip=(key,e)=> {this.setState(prevState=>({tooltipOpen: prevState.tooltipOpen.map((x,i) => key===i ? !x : false )}));}
-
-  toggle=(e)=>{
-    if(this.state.isDropdownOpen && e.target.id){
-      this.props.addItem(this.props.keyValue, e.target.id, this.props.subkey)
-    }
-    this.setState({isDropdownOpen:!this.state.isDropdownOpen})
-  }
-
-  toggleColor = (key, hover) => {
-    this.setState(prevState=>({dropdownColor:prevState.dropdownColor.map((x,i)=> (i===key ? (hover ? "#3D3D3D" : "#FFFFFF") : "#FFFFFF"))}))
-  }
+  toggle = () => this.setState({isDropdownOpen:!this.state.isDropdownOpen})
+  toggleColor = (key, hover) => this.setState(prevState=>({dropdownColor:prevState.dropdownColor.map((x,i)=> (i===key ? (hover ? "#3D3D3D" : "#FFFFFF") : "#FFFFFF"))}))
 
   _onClick=(id)=>{
     this.props.tracking.trackEvent({ action: 'click', label: 'btn click', value : this.props.disableEdit + "-" + id });
@@ -98,19 +89,19 @@ class QuickToolbar extends Component {
                       <EVAIcon name={"plus-circle" + (this.state.fill[1] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(1)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(1)} className='icon-toolbar'/>
                     </DropdownToggle>
                     <DropdownMenu>
-                      <DropdownItem id='paragraph' onMouseEnter={()=>this.toggleColor(0, true)} onMouseLeave={()=>this.toggleColor(0, false)}>
+                      <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "paragraph", this.props.subkey)} id='paragraph' onMouseEnter={()=>this.toggleColor(0, true)} onMouseLeave={()=>this.toggleColor(0, false)}>
                         <SVGIcon name="paragraph" fill={this.state.dropdownColor[0]} id="0" />
                         Paragraphe
                       </DropdownItem>
-                      <DropdownItem id='card' onMouseEnter={()=>this.toggleColor(1, true)} onMouseLeave={()=>this.toggleColor(1, false)}>
+                      <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "card", this.props.subkey)} id='card' onMouseEnter={()=>this.toggleColor(1, true)} onMouseLeave={()=>this.toggleColor(1, false)}>
                         <EVAIcon name="grid-outline" fill={this.state.dropdownColor[1]} id="1"  />
                         Info Box
                       </DropdownItem>
-                      <DropdownItem id='map' onMouseEnter={()=>this.toggleColor(2, true)} onMouseLeave={()=>this.toggleColor(2, false)}>
+                      <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "map", this.props.subkey)} id='map' onMouseEnter={()=>this.toggleColor(2, true)} onMouseLeave={()=>this.toggleColor(2, false)}>
                         <EVAIcon name="pin-outline" fill={this.state.dropdownColor[2]} id="2"  />
                         Carte
                       </DropdownItem>
-                      <DropdownItem id='accordion' onMouseEnter={()=>this.toggleColor(3, true)} onMouseLeave={()=>this.toggleColor(3, false)}>
+                      <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "accordion", this.props.subkey)} id='accordion' onMouseEnter={()=>this.toggleColor(3, true)} onMouseLeave={()=>this.toggleColor(3, false)}>
                         <EVAIcon name="list-outline" fill={this.state.dropdownColor[3]} id="3"  />
                         Accordéon
                       </DropdownItem>

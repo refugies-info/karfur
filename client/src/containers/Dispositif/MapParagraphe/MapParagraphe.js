@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 
 import MapComponent from '../../../components/Frontend/Dispositif/Map/Map';
@@ -6,7 +6,7 @@ import MapComponent from '../../../components/Frontend/Dispositif/Map/Map';
 import './MapParagraphe.scss';
 import MapModal from '../../../components/Modals/MapModal/MapModal';
 
-class MapParagraphe extends Component {
+class MapParagraphe extends PureComponent {
   state= {
     isMarkerShown: new Array(this.props.subitem.markers.length).fill(true),
     showingInfoWindow: new Array(this.props.subitem.markers.length).fill(false), 
@@ -15,12 +15,14 @@ class MapParagraphe extends Component {
     zoom: 5,
     center:{ lat: 48.856614, lng: 2.3522219 },
     markers:this.props.subitem.markers,
-    showModal:false
+    showModal:false,
+    isModalShown:false,
   }
 
   componentDidMount (){
-    if(!this.props.disableEdit){
-      this.setState({showModal:true})
+    console.log(this.state)
+    if(!this.props.disableEdit && !this.state.isModalShown){
+      this.setState({showModal:true, isModalShown: true},()=>(console.log(this.state)))
     }
   }
 
