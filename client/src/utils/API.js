@@ -15,7 +15,7 @@ const headers = {
   'x-access-token' : localStorage.getItem("token") || undefined,
   'cookie-id' : Cookies.get("_ga")
 }
-const burl = "https://localhost:8000"
+const burl = ""
 
 axios.withCredentials = true;
 
