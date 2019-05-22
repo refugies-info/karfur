@@ -61,19 +61,25 @@ class CardParagraphe extends Component {
     let subitem=this.props.subitem;
     let subkey=this.props.subkey;
 
+    const jsUcfirst = (string, title) => {
+      if(title === 'Public visé' && string && string.length > 1){
+        return string.charAt(0).toUpperCase() + string.slice(1)
+      }else{ return string }
+    }
+
     let contentTitle = (subitem) => {
       let cardTitle = cardTitles.find(x=>x.title==subitem.title);
       if(cardTitle && cardTitle.options && !this.props.disableEdit){
         return(
           <ButtonDropdown isOpen={this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title">
             <DropdownToggle caret>
-              {subitem.contentTitle}
+              {jsUcfirst(subitem.contentTitle, cardTitle.title)}
             </DropdownToggle>
             <DropdownMenu>
               {cardTitle.options.map((option, key) => {
                 return (
                   <DropdownItem key={key} id={key}>
-                    {option}
+                    {jsUcfirst(option, cardTitle.title)}
                   </DropdownItem>
                 )}
               )}
