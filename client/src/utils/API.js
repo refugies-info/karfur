@@ -5,8 +5,9 @@ import setAuthToken from './setAuthToken'
 import Swal from 'sweetalert2';
 import Cookies from 'js-cookie';
 
-const  socket = openSocket('http://localhost:8001');
-socket.emit('subscribeToChat');
+const  socket = null;
+// const  socket = openSocket('http://localhost:8001');
+// socket.emit('subscribeToChat');
 export { socket };
 
 const headers = {
