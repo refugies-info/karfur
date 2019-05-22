@@ -158,11 +158,11 @@ class Layout extends Component {
               </Suspense>
             </AppAside>
           </div>
-          <AppFooter>
+          {/* <AppFooter>
             <Suspense fallback={this.loading()}>
               <Footer devenirTraducteur={this.devenirTraducteur} />
             </Suspense>
-          </AppFooter>
+          </AppFooter> */}
 
           <OnBoardingTraducteurModal 
             show={this.state.showOnBoardingTraducteurModal}

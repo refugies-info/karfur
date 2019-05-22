@@ -57,10 +57,10 @@ class App extends Component {
   idleTimer = null;
 
   componentDidMount() {    
-    socket.on('server:event', data => {
-      console.log('évènement',data)
-      this.setState({ data })
-    })
+    // socket.on('server:event', data => {
+    //   console.log('évènement',data)
+    //   this.setState({ data })
+    // })
     window.onbeforeunload = function() {
       this.props.tracking.trackEvent({ action: 'unmount', label: 'App' });
       return undefined;
@@ -76,9 +76,9 @@ class App extends Component {
 
   _onIdle = () => this.props.tracking.trackEvent({ action: 'idle', label: 'App', value: this.idleTimer.getLastActiveTime() });
 
-  sendMessage = (message,side) => {
-    socket.emit(side + ':sendMessage', message)
-  }
+  // sendMessage = (message,side) => {
+  //   socket.emit(side + ':sendMessage', message)
+  // }
   socketFn={
     sendMessage: this.sendMessage
   }
@@ -107,8 +107,8 @@ class App extends Component {
                   socketFn = { this.socketFn }/>
             </Switch>
         </BrowserRouter>
-        <LiveChat socket = { socket } 
-                  socketFn = { this.socketFn } /> 
+        {/* <LiveChat socket = { socket } 
+                  socketFn = { this.socketFn } />  */}
       </Provider>
     );
   }
