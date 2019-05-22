@@ -30,7 +30,7 @@ var io = require('socket.io')(http);
 
 //Connexion à la base de donnée
 mongoose.set('debug', false);
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://admin:Batman2019+@ds259806.mlab.com:59806/heroku_ctgsgvkb', { useNewUrlParser: true }).then(() => {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/db', { useNewUrlParser: true }).then(() => {
     console.log('Connected to mongoDB');
     if(process.env.NODE_ENV === 'dev') {
       startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données

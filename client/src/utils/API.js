@@ -68,7 +68,6 @@ export default {
     },
 
     log_event : (event) => {
-      console.log(burl)
       return axios.post(burl + '/events/log_event', event, {headers: headers})
     },
     get_event : (query, sort) => {
