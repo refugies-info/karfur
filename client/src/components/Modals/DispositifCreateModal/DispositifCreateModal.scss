@@ -1,0 +1,47 @@
+
+.dispositif-create-modal{
+  min-width:650px;
+  font-family: CircularStd;
+  .modal-content{
+    background: linear-gradient(113.12deg, #3D3D3D 6.51%, #000000 96.1%);
+    mix-blend-mode: normal;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    color: #FFFFFF;
+    padding:32px;
+
+    .modal-header{
+      border:none;
+      h5{
+        font-size: 40px;
+        line-height: 51px;
+      }
+    }
+    .modal-body{
+      p{
+        font-size: 18px;
+        line-height: 23px;
+      }
+      h6{
+        font-size: 24px;
+        line-height: 30px;
+      }
+    }
+    .modal-footer{
+      border:none;
+      padding:0;
+
+      .btn{
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
+        background: #FBFBFB;
+        border-radius: 12px;
+        color:#3D3D3D;
+        font-size: 18px;
+        line-height: 23px;
+        i{
+          margin-right:10px;
+        }
+      }
+    }
+  }
+}

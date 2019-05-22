@@ -21,6 +21,7 @@ const contenuParagraphe = (props) => {
               key={subkey}
               subkey={subkey}
               subitem={subitem}
+              tutoriel={item.tutoriel}
               {...props} />
           )
         }else if(subitem.type==='map'){
@@ -29,14 +30,15 @@ const contenuParagraphe = (props) => {
               key={subkey}
               subkey={subkey}
               subitem={subitem}
+              tutoriel={item.tutoriel}
               {...props} />
           )
         }else if(subitem.type==='accordion'){
           return ( 
             <div key={subkey} onMouseEnter={()=>props.updateUIArray(props.keyValue, subkey, 'isHover')}>
               <Row className="relative-position">
-                <Col lg="12">
-                  <Button id="accordion-header" color="warning" className="text-left" onClick={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} aria-controls={"collapse" + props.keyValue + "-" + subkey}>
+                <Col lg="12" className="accordeon-col">
+                  <Button id="accordion-header" color="warning" className={"text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} onClick={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} aria-controls={"collapse" + props.keyValue + "-" + subkey}>
                     <h5>
                       <div className="accordion-number">{subkey+1}</div>
                       <span className="accordion-text">
@@ -52,7 +54,7 @@ const contenuParagraphe = (props) => {
                       <div className="accordion-expand">+</div>
                     </h5>
                   </Button>
-                  <Collapse isOpen={safeUiArray(props.keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + props.keyValue + "-" + subkey} aria-labelledby={"heading" + props.keyValue + "-" + subkey}>
+                  <Collapse className="contenu-accordeon" isOpen={safeUiArray(props.keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + props.keyValue + "-" + subkey} aria-labelledby={"heading" + props.keyValue + "-" + subkey}>
                     <EditableParagraph 
                       idx={props.keyValue} 
                       subkey={subkey} 
@@ -60,6 +62,7 @@ const contenuParagraphe = (props) => {
                       onEditorStateChange={props.onEditorStateChange}
                       handleContentClick={props.handleContentClick}
                       disableEdit={props.disableEdit}
+                      tutoriel={item.tutoriel}
                       {...subitem} />
                   </Collapse>
                 </Col>
@@ -95,6 +98,7 @@ const contenuParagraphe = (props) => {
                     onEditorStateChange={props.onEditorStateChange}
                     handleContentClick={props.handleContentClick}
                     disableEdit={props.disableEdit}
+                    tutoriel={item.tutoriel}
                     {...subitem} />
                   <br />
                 </Col>
@@ -110,7 +114,7 @@ const contenuParagraphe = (props) => {
           )
         }}
       )}
-      {item.type==='cards' && item.children && item.children.length>0 && item.children[0].type === 'card' && 
+      {!props.disableEdit && item.type==='cards' && item.children && item.children.length>0 && item.children[0].type === 'card' && 
         <PlusCard {...props} />}
     </div>
 )

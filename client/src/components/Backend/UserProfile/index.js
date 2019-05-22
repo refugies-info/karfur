@@ -1,4 +1,6 @@
-import TradTable from './TradTable/TradTable';
+import ActionTable from './ActionTable/ActionTable';
 import ContribTable from './ContribTable/ContribTable';
+import TradTable from './TradTable/TradTable';
+import FavoriTable from './FavoriTable/FavoriTable';
 
-export {TradTable, ContribTable}
+export {ActionTable, ContribTable, TradTable, FavoriTable}

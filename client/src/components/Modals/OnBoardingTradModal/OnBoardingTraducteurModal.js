@@ -28,7 +28,7 @@ class OnBoardingTraducteurModal extends Component {
   startOnBoarding = () => {
     this.props.history.push({ 
       pathname: '/login',
-      state: {traducteur: true}
+      state: {traducteur: true, redirectTo:"/backend/user-dashboard"}
     }); 
   }
 

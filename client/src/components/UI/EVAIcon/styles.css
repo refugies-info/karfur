@@ -1,0 +1,7 @@
+.icon-wrapper {
+  background-color: aqua;
+}
+
+.icon-wrapper svg {
+    fill: #ff0000 !important;
+}

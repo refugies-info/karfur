@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-var traductionDispositif = mongoose.Schema({
+var dispositifSchema = mongoose.Schema({
   titreMarque: {
     type: Object,
 		unique: false,
@@ -67,8 +67,28 @@ var traductionDispositif = mongoose.Schema({
     required:false,
     unique:false
   },
+  merci:{
+    type:Object,
+    required:false,
+  },
+  bravo:{
+    type:Object,
+    required:false,
+  },
+  suggestions:{
+    type:Object,
+    required:false,
+  },
+  questions:{
+    type:Object,
+    required:false,
+  },
+  signalements:{
+    type:Object,
+    required:false,
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
-traductionDispositif.options.autoIndex = false
+dispositifSchema.options.autoIndex = false
 
-module.exports = mongoose.model('Dispositif', traductionDispositif);
+module.exports = mongoose.model('Dispositif', dispositifSchema);

@@ -168,7 +168,7 @@ class Dispositifs extends Component {
             {this.state.dispositifs.map((dispositif) => {
               return (
                 <Col xs="9" sm="4" md="3" key={dispositif._id}>
-                  <CustomCard onClick={(dispositif) => this.goToDispositif(dispositif)}>
+                  <CustomCard onClick={() => this.goToDispositif(dispositif)}>
                     <CardBody>
                       <h3>{dispositif.titreInformatif}</h3>
                       <p>{dispositif.abstract}</p>

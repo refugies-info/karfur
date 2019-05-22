@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Button, Card, CardHeader, CardBody, CardFooter, Collapse, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Col, Row, Button, Card, CardHeader, CardBody, CardFooter, Collapse } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Icon from 'react-eva-icons';
@@ -12,7 +12,8 @@ import data from './data'
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import {randomColor} from '../../components/Functions/ColorFunctions';
 import SpringButtonParkour from '../../components/UI/SpringButton/SpringButtonParkour';
-import AudioBtn from '../UI/AudioBtn/AudioBtn'
+import AudioBtn from '../UI/AudioBtn/AudioBtn';
+import BookmarkedModal from '../../components/Modals/BookmarkedModal/BookmarkedModal';
 
 import './ParkourOnBoard.scss';
 
@@ -54,16 +55,18 @@ class ParkourOnBoard extends Component {
     let pinnedC=Cookies.getJSON('pinnedC');
     // if(pinnedC){ this.setState({pinned:pinnedC})}
     console.log(Cookies.get(), dataC, pinnedC)
-    API.get_user_info().then(data_res => {
-      let u=data_res.data.data;
-      user={_id:u._id, cookies:u.cookies || {}}
-      this.setState({
-        pinned:user.cookies.parkourPinned || [],
-        dispositifs:[...this.state.dispositifs].filter(x => !((user.cookies.parkourPinned || []).find( y=> y._id === x._id))),
-        ...(user.cookies.parkourData && user.cookies.parkourData.length>0 && 
-          {data:this.state.data.map((x,key)=> {return {...x, value:user.cookies.parkourData[key] || x.value}})})
-      })
-    },function(error){console.log(error);return;})
+    if(API.isAuth()){
+      API.get_user_info().then(data_res => {
+        let u=data_res.data.data;
+        user={_id:u._id, cookies:u.cookies || {}}
+        this.setState({
+          pinned:user.cookies.parkourPinned || [],
+          dispositifs:[...this.state.dispositifs].filter(x => !((user.cookies.parkourPinned || []).find( y=> y._id === x._id))),
+          ...(user.cookies.parkourData && user.cookies.parkourData.length>0 && 
+            {data:this.state.data.map((x,key)=> {return {...x, value:user.cookies.parkourData[key] || x.value}})})
+        })
+      },function(error){console.log(error);return;})
+    }
   }
 
   toggleButtons = (id) => {
@@ -103,9 +106,7 @@ class ParkourOnBoard extends Component {
     })
   }
 
-  _toggleBookmarkModal = () => {
-    this.setState(prevState=>({showBookmarkModal:!prevState.showBookmarkModal}))
-  }
+  toggleBookmarkModal = () => this.setState(prevState=>({showBookmarkModal:!prevState.showBookmarkModal}))
 
   render() {
     let QuestionItem = (props) => {
@@ -158,7 +159,7 @@ class ParkourOnBoard extends Component {
                 </Collapse>
               </CardBody>
               <CardFooter>
-                <Button color="white" className="btn-pill bookmark-button" onClick={this._toggleBookmarkModal}>
+                <Button color="white" className="btn-pill bookmark-button" onClick={this.toggleBookmarkModal}>
                   <Icon name="bookmark-outline" fill="#3D3D3D"/>
                 </Button>
                 <NavLink to="/parcours-perso">
@@ -209,25 +210,10 @@ class ParkourOnBoard extends Component {
             </Row>
           </Col>
         </Row>
-        <Modal isOpen={this.state.showBookmarkModal} toggle={this._toggleBookmarkModal} className="bookmark-modal">
-          <ModalHeader>
-            <span>Recherche sauvegardée</span>
-            <i className="bookmark-icon">
-              <Icon name="bookmark" fill="#F6B93B" size="xlarge" />
-            </i>
-          </ModalHeader>
-          <ModalBody>
-            Votre recherche est désormais disponible dans votre profil dans la rubrique&nbsp;
-            <NavLink to="/"><b>Mes recherches</b></NavLink>
-          </ModalBody>
-          <ModalFooter>
-            <Button block color="secondary" onClick={this._toggleBookmarkModal} className="btn-go">
-              <Icon name="arrow-forward-outline" fill="#3D3D3D" size="large" />
-              Aller voir
-            </Button>
-            <Button block color="success" onClick={this._toggleBookmarkModal}>Ok merci</Button>
-          </ModalFooter>
-        </Modal>
+        <BookmarkedModal 
+          showBookmarkModal={this.state.showBookmarkModal}
+          toggleBookmarkModal={this.toggleBookmarkModal}
+        />
       </div>
     )
   }

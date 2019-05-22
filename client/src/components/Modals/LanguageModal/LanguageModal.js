@@ -13,7 +13,7 @@ const languageModal = (props) => {
       <Modal isOpen={props.show} toggle={props.toggle} className="language-modal">
         <ModalHeader toggle={props.toggle}>
           <span className="title">Choisir une langue</span>
-          <NavLink to={{ pathname: '/login', state: {traducteur: true} }} className="subtitle">
+          <NavLink to={{ pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} className="subtitle">
             Aider à traduire
           </NavLink>
         </ModalHeader>

@@ -1,69 +1,71 @@
 import React from 'react';
-import { Col, Row, Card, CardBody } from 'reactstrap';
+import { Col, Row, Card, CardBody, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import Icon from 'react-eva-icons';
 
-import Modal from '../Modal';
 import SVGIcon from '../../UI/SVGIcon/SVGIcon';
-import smiley from '../../../assets/figma/smiley.svg';
-import puzzle from '../../../assets/figma/puzzle.svg';
 
 import './ReagirModal.scss'
 
 const reagirModal = (props) => {
+  const goTo=(newModalName)=>{
+    props.toggleModal(true, newModalName);
+    props.toggleModal(false, props.name);
+  }
   return(
-    <Modal show={props.show} modalClosed={()=>props.toggleModal(false, props.name)} classe='modal-reagir'>
-      <Row>
-        <Col lg="1">
-          <SVGIcon 
-            name="bubble" 
-            fill='#3D3D3D'
-            className='icon-toolbar'/>
-        </Col>
-        <Col lg="11">
-          Réagir
-        </Col>
-      </Row>
-      <br />
-      <Row>
-        <Col className="narrow-padding">
-          <Card className="comment-modal">
-            <CardBody>
-              <div className="icone">
-                <img src={smiley} alt="smiley"/>
-              </div>
-              <div className="texte">
-                Vous remercier ou râler
-              </div>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col className="narrow-padding">
-          <Card className="comment-modal">
-            <CardBody>
-              <div className="icone">
-                <SVGIcon
-                  name="handwriting" 
-                  fill='white'
-                  alt="handwriting" />
-              </div>
-              <div className="texte">
-                Vous proposer une meilleure formulation
-              </div>
-            </CardBody>
-          </Card>
-        </Col>
-        <Col className="narrow-padding">
-          <Card className="comment-modal">
-            <CardBody>
-              <div className="icone">
-                <img src={puzzle} alt="puzzle"/>
-              </div>
-              <div className="texte">
-                Signaler un manque ou proposer un ajout
-              </div>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
+    <Modal isOpen={props.show} toggle={()=>props.toggleModal(false, props.name)} className='modal-reagir'>
+      <ModalHeader>
+        <Icon name="message-circle" fill="#3D3D3D" />
+        Réagir
+      </ModalHeader>
+      <ModalBody>
+        <Row>
+          <Col className="narrow-padding">
+            <Card className="comment-modal">
+              <CardBody>
+                <div className="texte">
+                  Je veux juste vous dire...
+                </div>
+                <div className="feedback-buttons">
+                  <Button color="dark" onClick={()=>props.onValidate(props.name, 'merci')}>
+                    Merci ! 🙏 
+                  </Button>
+                  <Button color="dark" onClick={()=>props.onValidate(props.name, 'bravo')}>
+                    Bravo ! 😊
+                  </Button>
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col className="narrow-padding">
+            <Card className="comment-modal pointy-end" onClick={()=>goTo('suggerer')}>
+              <CardBody>
+                <div className="texte">
+                  J'ai une suggestion !
+                </div>
+                <div className="icone">
+                  <SVGIcon
+                    name="idea" 
+                    alt="idea" />
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col className="narrow-padding">
+            <Card className="comment-modal pointy-end" onClick={()=>goTo('question')}>
+              <CardBody>
+                <div className="texte">
+                  J'ai une question
+                </div>
+                <div className="icone">
+                  <SVGIcon
+                    name="question" 
+                    alt="question" />
+                </div>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </ModalBody>
     </Modal>
   )
 }

@@ -1,60 +1,37 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Card, Button, ListGroup, ListGroupItem, Collapse, Tooltip } from 'reactstrap';
+import { Col, Row, Card, CardBody, Button, ListGroup, ListGroupItem, Collapse, Tooltip } from 'reactstrap';
 import { connect } from 'react-redux';
-import Scrollspy from 'react-scrollspy';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import htmlToDraft from 'html-to-draftjs';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { savePDF } from '@progress/kendo-react-pdf';
-import Icon from 'react-eva-icons';
-import ReactToPrint from 'react-to-print';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
+import Icon from 'react-eva-icons';
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import Modal from '../../components/Modals/Modal'
 import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
 import API from '../../utils/API';
-import ReagirModal from '../../components/Modals/ReagirModal/ReagirModal';
+import {ReagirModal, BookmarkedModal, DispositifCreateModal, DispositifValidateModal, SuggererModal, MerciModal, EnConstructionModal} from '../../components/Modals/index';
 import SVGIcon from '../../components/UI/SVGIcon/SVGIcon';
-import AudioBtn from '../UI/AudioBtn/AudioBtn';
 import Commentaires from '../../components/Frontend/Dispositif/Commentaires/Commentaires';
 import Tags from './Tags/Tags';
+import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
+import LeftSideDispositif from '../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif';
+import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader';
 
-import {hugo, bookmark, femmeCurly, manLab, concordia, ligueEnseignement, minInt, serviceCivique, solidariteJeunesse} from '../../assets/figma/index';
+import {hugo, femmeCurly, manLab, concordia, ligueEnseignement, minInt, serviceCivique, solidariteJeunesse} from '../../assets/figma/index';
 
-import {contenu, lorems} from './data'
+import {contenu, lorems, menu} from './data'
 
 import './Dispositif.scss';
 
 moment.locale('fr');
-
-const menu=[
-  {title:'C\'est quoi ?'},
-  {title:'C\'est pour qui ?', type:'cards', children:[
-    {type:'card',title:'Audience',titleIcon:'papiers',contentTitle: 'Réfugié', contentBody: 'ou bénéficiaire de la protection subsidiaire', footer:'Pièces demandées',footerIcon:'file-text-outline'},
-    {type:'card',title:'Tranche d\'âge',titleIcon:'calendar',contentTitle: '18 à 25 ans', contentBody: '30 ans pour les personnes en situations de handicap', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'},
-    {type:'card',title:'Durée',titleIcon:'horloge',contentTitle: '6 à 12 mois', contentBody: 'en fonction de ce qui est convenu sur votre contrat', footer:'En savoir plus',footerIcon:'plus-circle-outline'},
-    {type:'card',title:'Niveau de français',titleIcon:'frBubble',contentTitle: 'Débutant (A1)', contentBody: 'Je peux poser et répondre à des questions simples', footer:'Pièces demandées',footerIcon:'file-text-outline'},
-    {type:'card',title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody: 'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'},
-  ]},
-  {title:'Pourquoi c\'est intéressant ?', children:[{title:'Travailler dans une association ou une organisation publique',type:'accordion',content: lorems.sousParagraphe}]},
-  {title:'Comment je m\'engage ?', children:[
-    {type:'accordion', title:'Contacter l’association partenaire la plus proche de chez vous',content: lorems.sousParagraphe}, 
-    {type:'map', markers: [{ lat: 48.856614, lng: 2.3522219 }]},
-    {title:'Vous n\'êtes pas du tout',content: lorems.sousParagraphe}
-  ]},
-
-  // {title:'À quoi ça me sert ?', children:[{title:'Travailler dans une association ou une organisation publique',type:'accordion',content: lorems.sousParagraphe}]},
-  // {title:'Pourquoi ça m\'intéresse', children:[{title:'Vous êtes plutôt...',content: lorems.sousParagraphe}, {title:'Vous n\'êtes pas du tout',content: lorems.sousParagraphe}]},
-  // {title:'Comment y accéder', children:[{title:'Procédures',content: lorems.sousParagraphe}, {title:'Interlocuteurs experts',content: lorems.sousParagraphe}, {title:'Interlocuteurs concernés',content: lorems.sousParagraphe}]},
-  // {title:'Dispositifs connexes', children:[{title:'Dispositifs similaires',content: lorems.sousParagraphe}, {title:'Dispositifs complémentaires',content: lorems.sousParagraphe}]},
-  // {title:'Retours d\'expérience', children:[{title:'Questions réponses',content: lorems.sousParagraphe}, {title:'Avis',content: lorems.sousParagraphe}]},
-]
 
 const spyableMenu = menu.reduce((r, e, i) => {
   r.push('item-'+i);
@@ -83,7 +60,13 @@ class Dispositif extends Component {
     hovers: menu.map((x) => {return {isHover:false, ...( x.children && {children: new Array(x.children.length).fill({isHover:false})})}}),
     showModals:{
       reaction:false,
-      fiabilite:false
+      fiabilite:false,
+      suggerer:false,
+      question:false, //correspond au modal suggerer, mais permet de différencier comment on est arrivés là
+      signaler:false, //correspond au modal suggerer, mais permet de différencier comment on est arrivés là
+      merci:false,
+      allGood:false,
+      construction:false,
     },
     accordion: new Array(1).fill(false),
     dropdown: new Array(5).fill(false),
@@ -91,6 +74,15 @@ class Dispositif extends Component {
     tooltipOpen:false,
     uiArray:new Array(menu.length).fill(uiElement),
     sponsorLoading:false,
+    showBookmarkModal:false,
+    showDispositifCreateModal:false,
+    showDispositifValidateModal:false,
+    withHelp:true,
+    showSpinnerPrint:false,
+    suggestion:'',
+    mail: '',
+    tKeyValue: -1, 
+    tSubkey: -1,
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -102,6 +94,7 @@ class Dispositif extends Component {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
         this.setState({
+          _id:itemId,
           menu: dispositif.contenu, 
           content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact}, 
           sponsors:dispositif.sponsors,
@@ -115,6 +108,7 @@ class Dispositif extends Component {
       this.setState({
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
+        showDispositifCreateModal:false, //A modifier avant la mise en prod
       })
     }
   }
@@ -127,7 +121,7 @@ class Dispositif extends Component {
     });
   }
 
-  _handleScrollSpy = el => {
+  handleScrollSpy = el => {
     if(el && el.id && el.id.includes('item-')){
       let num=parseInt(el.id.replace( /^\D+/g, ''),10);
       if(this.state.menu.length>num && this.state.menu[num].children && this.state.menu[num].children.length>0){
@@ -143,6 +137,8 @@ class Dispositif extends Component {
      }
     });
   };
+
+  handleModalChange = (ev) => this.setState({ [ev.currentTarget.id]: ev.target.value });
 
   handleMenuChange = (ev) => {
     let node=ev.currentTarget;
@@ -166,9 +162,9 @@ class Dispositif extends Component {
       let right_node=state[key];
       if(subkey !==null && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
-      if(editable){
+      if(editable && right_node.content){
         right_node.editorState=EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.content).contentBlocks));
-      }else{
+      }else if(!editable){
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
       this.setState({
@@ -203,7 +199,7 @@ class Dispositif extends Component {
         })
       })
     }});
-    this.setState({ uiArray: uiArray });
+    this.setState({ uiArray: uiArray, tKeyValue: key, tSubkey: subkey });
   }
 
   addItem=(key, type='paragraphe', subkey=null)=>{
@@ -214,6 +210,8 @@ class Dispositif extends Component {
       if(type==='card' && newChild.type!=='card'){
         prevState[key].type='cards';
         newChild={type:'card',title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody:'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'};
+      }else if(type==='map'){
+        newChild={type:'map', markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]};
       }
       newChild.type=type;
       if(subkey == null || subkey==undefined){
@@ -253,14 +251,21 @@ class Dispositif extends Component {
 
   toggleModal = (show, name) => {
     this.props.tracking.trackEvent({ action: 'toggleModal', label: name, value : show });
-    this.setState({showModals:{...this.state.showModals,[name]:show}})
+    this.setState(prevState=>({showModals:{...prevState.showModals,[name]:show}, suggestion:''}))
   }
-
 
   toggleTooltip = () => {
     this.props.tracking.trackEvent({ action: 'toggleTooltip', label: 'tooltipOpen', value : !this.state.tooltipOpen });
     this.setState({ tooltipOpen: !this.state.tooltipOpen});
   }
+
+  toggleBookmarkModal = () => this.setState(prevState=>({showBookmarkModal:!prevState.showBookmarkModal}))
+  toggleDispositifCreateModal = () => this.setState(prevState=>({showDispositifCreateModal:!prevState.showDispositifCreateModal}))
+  toggleDispositifValidateModal = () => this.setState(prevState=>({showDispositifValidateModal:!prevState.showDispositifValidateModal}))
+
+  toggleHelp = () => this.setState(prevState=>({withHelp:!prevState.withHelp}))
+
+  openAllAccordions = () =>this.setState({accordion: this.state.accordion.map(x => true)})
 
   changeCardTitle = (key, subkey, node, value) => {
     const prevState = [...this.state.menu];
@@ -290,30 +295,50 @@ class Dispositif extends Component {
 
   goBack = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goBack' });
-    this.props.history.goBack();
+    this.props.history.push("/dispositifs");
   }
 
   createPdf = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'createPdf' });
-    this.setState({accordion: this.state.accordion.map(x => true)}, ()=>{
-      console.log(this.newRef)
+    this.setState({accordion: this.state.accordion.map(x => true), showSpinnerPrint:true}, ()=>{
       setTimeout(()=>{
         savePDF(this.newRef.current, { 
           fileName: 'dispositif.pdf',
           scale:.5
         })
-        //this.setState({accordion: this.state.accordion.map(_ => false)})
+        this.setState({showSpinnerPrint: false})
       }, 3000);
     })
   }
 
-  valider_dispositif = () => {
+  pushReaction = (modalName, fieldName) => {
+    this.toggleModal(false, modalName);
+    console.log(this.state.tKeyValue, this.state.tSubkey)
+    let dispositif = {
+      dispositifId: this.state._id,
+      keyValue: this.state.tKeyValue, 
+      subkey: this.state.tSubkey,
+      fieldName: fieldName,
+      ...(this.state.suggestion && {suggestion: this.state.suggestion})
+    }
+    API.update_dispositif(dispositif).then(data => {
+      console.log(data.data.data)
+      if(modalName === 'reaction'){
+        Swal.fire( 'Yay...', 'Votre réaction a bien été enregistrée, merci', 'success')
+      }else{
+        this.toggleModal(true, 'merci');
+      }
+    })
+  }
+
+  valider_dispositif = (status='Actif') => {
     let dispositif = {
       ...this.state.content,
-      contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, ...( x.children && {children : x.children.map(y => {return {title: y.title, content : y.content}})})}}),
+      contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, children : x.children}}),
       sponsors:this.state.sponsors,
       tags:this.state.tags,
       avancement:1,
+      status:status
     }
     let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
     dispositif.audience=[cardElement.find(x=> x.title==='Audience').contentTitle];
@@ -329,7 +354,7 @@ class Dispositif extends Component {
     const {t} = this.props;
     const creator=this.state.creator || {};
     const creatorImg= (creator.picture || {}).secure_url || hugo;    
-
+    const {showModals} = this.state;
     return(
       <div className="animated fadeIn dispositif" ref={this.newRef}>
         <section className="banniere-dispo">
@@ -338,12 +363,14 @@ class Dispositif extends Component {
               <i className="cui-arrow-left icons"></i> 
               <span>Retour à la recherche</span>
             </Col>
-            <Col className="top-right">
-              <AudioBtn />
-              <div className={"bookmark-icon-wrapper" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
-                <img className="bookmark-icon" src={bookmark} alt="bouton bookmark"/>
-              </div>
-            </Col>
+            <TopRightHeader 
+              disableEdit={this.state.disableEdit} 
+              withHelp={this.state.withHelp}
+              toggleBookmarkModal={this.toggleBookmarkModal}
+              toggleHelp={this.toggleHelp}
+              toggleDispositifValidateModal={this.toggleDispositifValidateModal}
+              valider_dispositif={this.valider_dispositif} />
+              
           </Row>
           <img className="femme-icon" src={femmeCurly} alt="femme"/>
           <Col lg="12" md="12" sm="12" className="post-title-block">
@@ -365,28 +392,12 @@ class Dispositif extends Component {
                   onChange={this._handleChange} // handle innerHTML change
                 />
               </h2>
+              <div className="header-footer">
+                <Tags tags={this.state.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} />
+              </div>
             </div>
           </Col>
           <img className="homme-icon" src={manLab} alt="homme"/>
-          <Row className="header-footer">
-            <Col className="align-right">
-              Dernière mise à jour : <span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
-            </Col>
-            <Col>
-              Fiabilité de l'information : <span className="fiabilite">Faible</span>
-              <span className="question-bloc" id="question-bloc" onClick={()=>this.toggleModal(true, 'fiabilite')}>
-                ?
-              </span>
-              <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
-                Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant.
-                Cliquez sur le '?' pour en savoir plus
-              </Tooltip>
-            </Col>
-          </Row>
-          <div className="contrustion-wrapper">
-            <SVGIcon name="construction" />
-            <b>En construction</b>
-          </div>
         </section>
         <Row className="tags-row">
           <b className="en-bref">En bref : </b>
@@ -395,65 +406,42 @@ class Dispositif extends Component {
               return (
                 <div className="tag-wrapper" key={key}>
                   <div className="tag-item">
-                    <SVGIcon name={card.titleIcon} />
-                    <span>{card.contentTitle}</span>
+                    <a href={'#item-head-1'} className="no-decoration">
+                      <SVGIcon name={card.titleIcon} />
+                      <span>{card.contentTitle}</span>
+                    </a>
                   </div>
                 </div>
               )
             }else{return false}
           })}
+          <Row className="right-side-row">
+            <Col className="align-right">
+              Dernière mise à jour :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
+            </Col>
+            <Col>
+              Fiabilité de l'information :&nbsp;<span className="fiabilite">Faible</span>
+              <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#828282"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
+              
+              <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
+                Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant.
+                Cliquez sur le '?' pour en savoir plus
+              </Tooltip>
+            </Col>
+          </Row>
         </Row>
         <Row className="give-it-space">
           <Col md="3">
-            <div className="sticky-affix">
-              <ListGroup className="list-group-flush">
-                <Scrollspy 
-                  items={ this.state.menu.map((_,key) => 'item-'+key) }
-                  currentClassName="active"
-                  onUpdate={this._handleScrollSpy}>
-                  {this.state.menu.map((item, key) => {
-                    return ( 
-                      <div key={key} className="list-item-wrapper">
-                        <ListGroupItem tag="a" data-toggle="list" action
-                          href={'#item-head-' + key} 
-                          onClick={() => this.onMenuNavigate(key)} >
-                          {item.title}
-                        </ListGroupItem>
-                        {item.children &&
-                          <Collapse isOpen={this.state.menu[key].accordion} data-parent="#accordion" id="collapseOne" aria-labelledby="headingOne">
-                            <ListGroup>
-                              {item.children.map((subitem, subkey) => {
-                                return ( 
-                                  <div key={subkey}>
-                                    <ListGroupItem 
-                                      tag="a" 
-                                      action 
-                                      href={'#item-head-' + key + '-sub-' + subkey} >
-                                      {subitem.title}
-                                    </ListGroupItem>
-                                  </div>
-                                )}
-                              )}
-                            </ListGroup>
-                          </Collapse>
-                        }
-                      </div>
-                    )}
-                  )}
-                </Scrollspy>
-              </ListGroup>
-              <Card my="4">
-                <h5 className="card-header">{t('article.Explication en 30 secondes')}</h5>
-                <div className="card-body">
-                  <ContentEditable
-                    id='abstract'
-                    html={this.state.content.abstract}  // innerHTML of the editable div
-                    disabled={this.state.disableEdit}       // use true to disable editing
-                    onChange={this._handleChange} // handle innerHTML change
-                  />
-                </div>
-              </Card>
-            </div>
+            <LeftSideDispositif
+              menu={this.state.menu}
+              accordion={this.state.accordion}
+              showSpinner={this.state.showSpinnerPrint}
+              handleScrollSpy={this.handleScrollSpy}
+              onMenuNavigate={this.onMenuNavigate}
+              createPdf={this.createPdf}
+              newRef={this.newRef}
+              openAllAccordions={this.openAllAccordions}
+            />
           </Col>
           <Col lg="6">
             <ContenuDispositif 
@@ -469,34 +457,9 @@ class Dispositif extends Component {
               {...this.state}
             />
             
-            <Button onClick={this.valider_dispositif} color="success" size="lg" className="btn-validate" block>
-              Valider ce dispositif
-            </Button>
-            
             {false && <Commentaires />}
           </Col>
           <Col md="3" className="aside-right">
-            <Tags tags={this.state.tags} editable={this.state.editable} changeTag={this.changeTag} addTag={this.addTag} />
-
-            <div className="print-buttons">
-              <Button className="print-button" onClick={this.createPdf}>
-                <Icon name="download-outline" fill="#3D3D3D" />
-                <span>Télécharger en PDF</span>
-              </Button>
-              <Button className="print-button" onClick={this.createPdf}>
-                <Icon name="paper-plane-outline" fill="#3D3D3D" />
-                <span>Envoyer par mail</span>
-              </Button>
-              <ReactToPrint
-                trigger={() => 
-                  <Button className="print-button" onClick={this.createPdf}>
-                    <Icon name="printer-outline" fill="#3D3D3D" />
-                    <span>Imprimer</span>
-                  </Button>}
-                content={() => this.newRef.current}
-                onBeforePrint={()=>this.setState({accordion: this.state.accordion.map(x => true)})}
-              />
-            </div>
           </Col>
         </Row>
         
@@ -513,42 +476,53 @@ class Dispositif extends Component {
               />}
           </u>
         </div>
-        <div className="people-footer">
-          <Row>
-            <Col lg="6" className="people-col">
-              <div className="people-title">Contributeurs</div>
-              <div className="people-card">
-                <img className="people-img" src={creatorImg} alt="juliette"/>
-                <div className="right-side">
-                  <h6>{creator.username}</h6>
-                  <span>{creator.description}</span>
+        <div className="bottom-wrapper">
+          <div className="people-footer">
+            <Row>
+              <Col lg="6" className="people-col">
+                <div className="people-title">Contributeurs</div>
+                <div className="people-card">
+                  <img className="people-img" src={creatorImg} alt="juliette"/>
+                  <div className="right-side">
+                    <h6>{creator.username}</h6>
+                    <span>{creator.description}</span>
+                  </div>
+                </div>
+              </Col>
+              <Col lg="6" className="people-col">
+                <div className="people-title">Traducteurs</div>
+                <div className="people-card">
+                  <img className="people-img" src={hugo} alt="hugo"/>
+                  <div className="right-side">
+                    <h6>Hugo Stéphan</h6>
+                    <span>Designer pour la Diair</span>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </div>
+
+          {!this.state.disableEdit &&
+              <div className="ecran-protection">
+                <div className="content-wrapper">
+                  <Icon name="alert-triangle-outline" fill="#FFFFFF" />
+                  <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
                 </div>
               </div>
-            </Col>
-            <Col lg="6" className="people-col">
-              <div className="people-title">Traducteurs</div>
-              <div className="people-card">
-                <img className="people-img" src={hugo} alt="hugo"/>
-                <div className="right-side">
-                  <h6>Hugo Stéphan</h6>
-                  <span>Designer pour la Diair</span>
-                </div>
-              </div>
-            </Col>
-          </Row>
+            }
         </div>
 
         <Sponsors 
-          handleFileInputChange={this.handleFileInputChange} 
-          deleteSponsor={this.deleteSponsor} 
           sponsors={this.state.sponsors} 
-          loading={this.state.sponsorLoading} />
+          loading={this.state.sponsorLoading}
+          disableEdit={this.state.disableEdit}
+          handleFileInputChange={this.handleFileInputChange} 
+          deleteSponsor={this.deleteSponsor}  />
         
-        <ReagirModal 
-          show={this.state.showModals.reaction}
-          toggleModal={this.toggleModal}
-          name='reaction'
-        />
+        <ReagirModal name='reaction' show={showModals.reaction} toggleModal={this.toggleModal} onValidate={this.pushReaction} />
+        <SuggererModal showModals={showModals} toggleModal={this.toggleModal} onChange={this.handleModalChange} suggestion={this.state.suggestion} onValidate={this.pushReaction} />
+        <MerciModal name='merci' show={showModals.merci} toggleModal={this.toggleModal} onChange={this.handleModalChange} mail={this.state.mail} />
+        <EnConstructionModal name='construction' show={showModals.construction} toggleModal={this.toggleModal} />
 
         <Modal show={this.state.showModals.fiabilite} modalClosed={()=>this.toggleModal(false, 'fiabilite')} classe='modal-fiabilite'>
           <h1>Fiabilité de l’information</h1>
@@ -579,6 +553,22 @@ class Dispositif extends Component {
             </Row>
           </div>
         </Modal>
+
+        <BookmarkedModal 
+          showBookmarkModal={this.state.showBookmarkModal}
+          toggleBookmarkModal={this.toggleBookmarkModal}
+        />
+        <DispositifCreateModal 
+          show={this.state.showDispositifCreateModal}
+          toggle={this.toggleDispositifCreateModal}
+        />
+        <DispositifValidateModal
+          show={this.state.showDispositifValidateModal}
+          toggle={this.toggleDispositifValidateModal} 
+          abstract={this.state.content.abstract} 
+          onChange={this._handleChange}
+          validate={this.valider_dispositif}
+        />
       </div>
     );
   }

@@ -1,13 +1,140 @@
-.card-col{
-  .content-title{
-    .dropdown-toggle.btn{
-      color: inherit;
-      background-color: inherit;
-      border-color: inherit;
-      font-weight: inherit;
-      font-size: inherit;
+.cards.row .card-col .card{
+  min-height: 230px;
+  background: #FBFBFB;
+  border-radius: 12px;
+  &.make-it-red{
+    background: rgba(229, 80, 57, 0.1);
+    .card-header{
+      background: #E55039;
+    }
+    .card-body, .card-footer{
+      background-color:rgba(229, 80, 57, 0.1);
+    }
+  }
+  .card-header{
+    background-color: #3D3D3D;
+    border: none;
+    border-radius: 12px 12px 0 0;
+    font-size: 16px;
+    line-height: 20px;
+    color: #FFFFFF;
+
+    .header-content{
+      margin-left: 8px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+    .form-control{
+      background-color:inherit;
+    }
+    .btn-group{
+      width: 100%;
+      .header-value{
+        background-color: inherit;
+        color: inherit;
+        border: none;
+        width: 100%;
+        text-align: initial;
+        padding:0;
+      }
+    }
+  }
+  .card-body{
+    padding-bottom: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #828282;
+    h6{
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 30px;
+      color: #3D3D3D;
+    }
+
+    .content-title{
+      .dropdown-toggle.btn{
+        color: inherit;
+        background-color: inherit;
+        border-color: inherit;
+        font-weight: inherit;
+        font-size: inherit;
+        border:none;
+        padding:0;
+      }
+    }
+  }
+  .card-footer{
+    background: inherit;
+    border-radius: 0 0 12px 12px;
+    border:none;
+
+    .btn{
+      background: #F2F2F2;
+      border-radius: 12px;
+      color: #828282;
+      font-size: 16px;
       border:none;
-      padding:0;
+      width:100%;
+
+      &:hover{
+        background: #F2F2F2;
+        border: 1px solid #CDCDCD;
+      }
+    }
+    .footer-content{
+      margin-left: 8px;
+    }
+  }
+
+  &.add-card{
+    background-color: rgba(0,0,0,0.05);
+    text-align: center;
+    &:hover{
+      background-color: rgba(0,0,0,0.1);
+      .add-sign{
+        opacity:1;
+        font-size:90px;
+        -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
+        -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
+        -o-transition: opacity 0.4s ease, font-size 0.4s ease;
+        transition: opacity 0.4s ease, font-size 0.4s ease;
+      }
+    }
+    .add-sign{
+      font-size:60px;
+      font-weight:bold;
+      opacity: .5;
+    }
+    .card-body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: hsl(0,0%,20%);
+    }
+  }
+  .card-icons{
+    position: absolute;
+    top: -15px;
+    right: -5px;
+    display:none;
+  }
+  &:hover .card-icons{
+    display: inherit;
+  }
+}
+
+.modal-pieces{
+  .papiers-toggle-btn{
+    width:100%;
+    text-align: left;
+    padding: 0;
+    background: inherit;
+    border: none;
+    &::after{
+      position: absolute;
+      right: 0;
+      top: 8px;
     }
   }
 }
