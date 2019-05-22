@@ -145,10 +145,10 @@ class Dispositif extends Component {
     let state = JSON.parse(JSON.stringify(this.state.menu));
     state[node.id]={
       ...state[node.id],
-      ...(!node.dataset.subkey && {content : ev.target.value}), 
+      ...(!node.dataset.subkey && {content : ev.target.value, isFakeContent:false}), 
       ...(node.dataset.subkey && state[node.id].children && state[node.id].children.length > node.dataset.subkey && {children : state[node.id].children.map((y,subidx) => { return {
             ...y,
-            ...(subidx==node.dataset.subkey && {[node.dataset.target || 'content'] : ev.target.value})
+            ...(subidx==node.dataset.subkey && {[node.dataset.target || 'content'] : ev.target.value, isFakeContent:false})
           }
         })
       })
@@ -163,7 +163,7 @@ class Dispositif extends Component {
       if(subkey !==null && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
       if(editable && right_node.content){
-        right_node.editorState=EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? 'Test' : right_node.content).contentBlocks));
+        right_node.editorState=EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks));
       }else if(!editable){
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
@@ -352,9 +352,9 @@ class Dispositif extends Component {
       status:status
     }
     let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
-    dispositif.audience=[cardElement.find(x=> x.title==='Audience').contentTitle];
-    dispositif.audienceAge=[cardElement.find(x=> x.title==='Tranche d\'âge').contentTitle.replace(' à ', '-').replace(' ans', '')];
-    dispositif.niveauFrancais=cardElement.find(x=> x.title==='Niveau de français').contentTitle;
+    dispositif.audience=[(cardElement.find(x=> x.title==='Public visé') || []).contentTitle];
+    dispositif.audienceAge=[((cardElement.find(x=> x.title==='Tranche d\'âge') || []).contentTitle || '').replace(' à ', '-').replace(' ans', '')];
+    dispositif.niveauFrancais=(cardElement.find(x=> x.title==='Niveau de français') || []).contentTitle;
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success');
