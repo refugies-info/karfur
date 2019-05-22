@@ -30,6 +30,7 @@ var io = require('socket.io')(http);
 
 //Connexion à la base de donnée
 mongoose.set('debug', false);
+console.log(process.env.MONGODB_URI)
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/db', { useNewUrlParser: true }).then(() => {
     console.log('Connected to mongoDB');
     if(process.env.NODE_ENV === 'dev') {
