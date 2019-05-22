@@ -34,7 +34,7 @@ class QuickToolbar extends Component {
   }
 
   _onClick=(id)=>{
-    this.props.tracking.trackEvent({ action: 'click', label: 'toggleAudio', value : this.props.ttsActive });
+    this.props.tracking.trackEvent({ action: 'click', label: 'btn click', value : this.props.disableEdit + "-" + id });
     if(this.props.disableEdit){
       if(id===0){ this.props.toggleModal(true, 'reaction'); }
       else if(id===1){ this.props.toggleModal(true, 'signaler'); }
