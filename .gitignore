@@ -35,7 +35,6 @@ yarn-error.log*
 /client//coverage
 /client//build
 /client/.DS_Store
-/client/development.env
 /client/production.env
 /client/.env.local
 /client/.env.development.local
