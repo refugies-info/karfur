@@ -12,6 +12,7 @@ import {colorAvancement, colorStatut} from '../../../components/Functions/ColorF
 import AvancementTable from '../../../components/Translation/Avancement/AvancementTable';
 import API from '../../../utils/API'
 import './UserDash.scss';
+import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
 
 const avancement_data={
   title: 'Avancement par langue',
@@ -21,16 +22,18 @@ const avancement_data={
 
 const past_translation_data={
   title: 'Traductions récemment effectuées',
-  headers: ['Drapeau', 'Langue', 'Texte traduit','Statut'],
+  headers: ['Langue', 'Texte traduit','Statut', 'Depuis'],
   data: past_translation
 }
 
 class UserDash extends Component {
   state={
+    showModal:{objectifs:false}, 
     images:[],
-    runJoyRide:true, //penser à le réactiver !!
+    runJoyRide:false, //penser à le réactiver !!
     user:{},
     langues:[],
+    traductionsFaites:[],
     progression:{
       timeSpent:0,
       nbMots:0
@@ -50,16 +53,24 @@ class UserDash extends Component {
       API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
         console.log(data_langues.data.data)
         this.setState({langues: data_langues.data.data})
-      },(error) => {console.log(error);return;})
+      })
       API.get_progression().then(data_progr => {
         if(data_progr.data.data && data_progr.data.data.length>0)
           this.setState({progression: data_progr.data.data[0]})
-      },(error) => {console.log(error);return;})
-      
+      })
+      API.get_tradForReview({'_id': { $in: user.traductionsFaites}},{},'participants').then(data => {
+        console.log(data.data.data)
+        this.setState({traductionsFaites: data.data.data})
+      })
       this.setState({user:user})
-    },(error) => {console.log(error);return;})
+    })
   }
 
+  toggleModal = (modal) => {
+    this.props.tracking.trackEvent({ action: 'toggleModal', label: modal, value : !this.state.showModal[modal] });
+    this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}})
+  }
+  
   openThemes = (langue) => {
     console.log(langue)
     this.props.history.push({
@@ -86,6 +97,8 @@ class UserDash extends Component {
   }
 
   render() {
+    let {langues, traductionsFaites} = this.state;
+
     const ConditionalRedirect = () => {
       if (this.state.user.selectedLanguages && this.state.user.selectedLanguages.length===0) {
         return (<Redirect to={{ pathname: '/backend/user-form', state: {user: this.state.user}}} />)
@@ -117,65 +130,44 @@ class UserDash extends Component {
           showProgress
           showSkipButton
         />
+
+        <DashHeader 
+          title="Mes traductions"
+          motsRediges={this.state.progression.nbMots}
+          minutesPassees={Math.floor(this.state.progression.timeSpent / 60)}
+          motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt
+          minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 60))} //idem
+        />
+        
         <Row>
-          <Col>
-            <Row>
-              <Col className="profile-col">
-                <div className="profile-header-container">   
-                  <img className="img-circle" src={imgSrc} alt="profile"/>
-                  <div className="rank-label-container">
-                      <span className="label label-default rank-label" onClick={this.editProfile}>Changer</span>
-                  </div>
-                </div> 
-              </Col>
-              <Col>
-                <Row className="without-margin">
-                  <span>{this.state.user.username} </span>
-                  {(this.state.user.roles || []).map((role) => {
-                    return (
-                      <Badge 
-                        key={role._id} 
-                        className="space-it" 
-                        pill color="success">
-                        {role.nomPublique}
-                      </Badge>
-                    )}
-                  )}
-                </Row>
-                <br />
-                <Row>
-                  <Col xs="24" sm="12" lg="6">
-                    <Widget 
-                      color="success" 
-                      header={this.state.progression.nbMots + " mots traduits"}
-                      mainText={"Encore " + Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots) + " mots pour atteindre votre objectif quotidien"}
-                      value={"" +this.state.progression.nbMots/(this.state.user.objectifMots || 1)*100}
-                      smallText="Merci pour vos efforts !"
-                      className="my-target-widget" />
-                  </Col>
-                  <Col xs="24" sm="12" lg="6">
-                    <Widget 
-                      color="warning" 
-                      header={Math.floor(this.state.progression.timeSpent / 60) + " minutes de traduction"}
-                      mainText={"Encore " + Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 60)) + " minutes pour atteindre votre objectif quotidien"}
-                      value={"" +this.state.progression.timeSpent / (60 * this.state.user.objectifTemps)*100}
-                      smallText="Merci pour vos efforts !" />
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Col>
-          <Col xs="1" className="etale-boutons">
-            <Row className="align-items-center third-height">
-              {callToAction1}
-            </Row>
-            <Row className="align-items-center third-height">
-              <Button block color="success" className="btn-pill">Call to action</Button>
-            </Row>
-            <Row className="align-items-center third-height">
-              <Button block color="warning" className="btn-pill">Call to action</Button>
-            </Row>
-          </Col>
+          <AvancementTable 
+            headers={past_translation_data.headers}
+            title={past_translation_data.title}
+            data={past_translation_data.data}
+            >
+            {traductionsFaites.map( element => {
+              console.log(element)
+              let langElem=langues.find(x=>x._id===element._id) || {};
+              console.log(langElem)
+              return (
+                <tr 
+                  key={element._id} 
+                  onClick={this.navigateToDashLang}>
+                  <td className="align-middle">
+                    <i className={'flag-icon flag-icon-' +  langElem.langueCode + ' h1'} title={element.code} id={element.code}></i>
+                    <b>{langElem.langueFr}</b>
+                  </td>
+                  <td className="align-middle">{element.titre}</td>
+                  <td className="align-middle">
+                    {element.titre}
+                  </td>
+                  <td className="align-middle">
+                    <Badge color={colorStatut(element.statut)}>{element.statut}</Badge>
+                  </td>
+                </tr>
+              );
+            })}
+          </AvancementTable>
         </Row>
 
         <Row>
@@ -183,11 +175,11 @@ class UserDash extends Component {
             headers={avancement_data.headers}
             title={avancement_data.title}
             >
-            {this.state.langues.map((element,key) => {
+            {langues.map((element,key) => {
               return (
                 <tr key={element._id} >
                   <td className="align-middle">
-                    <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.langueCode} id={element.langueCode}></i>
+                    <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'}></i>
                   </td>
                   <td className="align-middle">{element.langueFr}</td>
                   <td className="align-middle">
@@ -226,32 +218,6 @@ class UserDash extends Component {
 
 
         <Row>
-          <Col>
-            <AvancementTable 
-              headers={past_translation_data.headers}
-              title={past_translation_data.title}
-              data={past_translation_data.data}
-              >
-              {past_translation_data.data.map((element,key) => {
-                return (
-                  <tr 
-                    key={key} 
-                    onClick={this.navigateToDashLang}>
-                    <td className="align-middle">
-                      <i className={'flag-icon flag-icon-' + element.code + ' h1'} title={element.code} id={element.code}></i>
-                    </td>
-                    <td className="align-middle">{element.name}</td>
-                    <td className="align-middle">
-                      {element.titre}
-                    </td>
-                    <td className="align-middle">
-                      <Badge color={colorStatut(element.statut)}>{element.statut}</Badge>
-                    </td>
-                  </tr>
-                );
-              })}
-            </AvancementTable>
-          </Col>
           <Col>
             <Card>
               <CardHeader>

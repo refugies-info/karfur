@@ -1,0 +1,38 @@
+.dash-header{
+
+  .header-indicateurs{
+
+    .col-lg-4{
+      border-radius: 12px;
+      display:flex;
+      padding:0;
+      flex: 0 0 calc(33% - 10px);
+      margin-left:10px;
+      &:first-child{
+        margin-left:0;
+      }
+
+      .right-side{
+        font-weight: bold;
+        font-size: 64px;
+        line-height: 81px;
+        padding: 20px;
+      }
+      .left-side{
+        padding: 10px 20px;
+        margin:auto;
+      }
+      &.first-indicator{
+        background: #60A3BC;
+        color: #FFFFFF;
+      }
+      &.second-indicator{
+        background: rgba(185, 236, 255, 0.3);
+        color: #60A3BC;
+      }
+      &.third-indicator{
+        border: 1px solid #3D3D3D;
+      }
+    }
+  }
+}

@@ -16,13 +16,15 @@ const bookmarkedModal = (props) => {
       </ModalHeader>
       <ModalBody>
         Votre recherche est désormais disponible dans votre profil dans la rubrique&nbsp;
-        <NavLink to="/"><b>Mes recherches</b></NavLink>
+        <NavLink to="/backend/user-profile"><b>Mes favoris</b></NavLink>
       </ModalBody>
       <ModalFooter>
-        <Button block color="secondary" onClick={props.toggleBookmarkModal} className="btn-go">
-          <Icon name="arrow-forward-outline" fill="#3D3D3D" size="large" />
-          Aller voir
-        </Button>
+        <NavLink to="/backend/user-profile" className="no-decoration btn-block btn-go">
+          <Button block color="secondary" onClick={props.toggleBookmarkModal} className="btn-go">
+            <Icon name="arrow-forward-outline" fill="#3D3D3D" size="large" />
+            Aller voir
+          </Button>
+        </NavLink>
         <Button block color="success" onClick={props.toggleBookmarkModal}>Ok merci</Button>
       </ModalFooter>
     </Modal>

@@ -104,7 +104,12 @@ function update_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let {dispositifId, fieldName, ...dispositif} = req.body;
-    let update = { "$push": { [fieldName]: {...(req.userId && {userId:req.userId}), ...dispositif, createdAt: new Date()} } }
+    let update = { "$push": { [fieldName]: {
+      ...(req.userId && {userId:req.userId}), 
+      ...(req.user && {username:req.user.username, picture: req.user.picture}), 
+      ...dispositif, 
+      createdAt: new Date()
+    } } }
     Dispositif.findByIdAndUpdate({ _id: dispositifId },update,{new: true},(err, data) => {
       if (err){res.status(404).json({ "text": "Pas de résultat" })}
       else{

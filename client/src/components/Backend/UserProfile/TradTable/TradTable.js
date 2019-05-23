@@ -94,11 +94,11 @@ const tradTable = (props) => {
           </Col>
           <Col className="d-flex tableau-header">
             <div className="d-flex left-element">
-              <h4>345</h4>
+              <h4>{props.motsRediges}</h4>
               <span>mots rédigés</span>
             </div>
             <div className="d-flex middle-element">
-              <h4>34</h4>
+              <h4>{props.minutesPassees}</h4>
               <span>minutes passées</span>
             </div>
             <div className="d-flex right-element">

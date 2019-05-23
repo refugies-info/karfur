@@ -122,7 +122,6 @@ function login(req, res) {
 function set_user_info(req, res) {
   let user=req.body;
   if (!user || !user._id) {
-    console.log(user,user._id)
     res.status(400).json({
       "text": "Requête invalide"
     })

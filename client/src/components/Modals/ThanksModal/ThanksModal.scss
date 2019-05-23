@@ -1,8 +1,9 @@
+$couleurFond: #60A3BC;;
 .modal-thanks{ 
   min-width:900px;
   font-family: CircularStd;
   .modal-content{
-    background: #F6B93B;
+    background: $couleurFond;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
     color: #FFFFFF;
@@ -22,7 +23,7 @@
       }
       
       .comment-modal{
-        background: #F6B93B;
+        background: $couleurFond;
         border: 1px solid #F2F2F2;
         box-sizing: border-box;
         border-radius: 8px;
