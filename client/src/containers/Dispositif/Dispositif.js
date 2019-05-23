@@ -67,6 +67,7 @@ class Dispositif extends Component {
       merci:false,
       allGood:false,
       construction:false,
+      map:false
     },
     accordion: new Array(1).fill(false),
     dropdown: new Array(5).fill(false),
