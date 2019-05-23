@@ -13,14 +13,10 @@ import AvancementTable from '../../../components/Translation/Avancement/Avanceme
 import API from '../../../utils/API'
 import './UserDash.scss';
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
+import Icon from 'react-eva-icons/dist/Icon';
+import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 
 moment.locale('fr');
-
-const avancement_data={
-  title: 'Avancement par langue',
-  headers: ['Drapeau', 'Langue', 'Avancement', 'Traducteurs actifs', 'Traduction rapide','Voir en détail'],
-  data: languages
-}
 
 const past_translation_data={
   title: 'Traductions récemment effectuées',
@@ -28,9 +24,15 @@ const past_translation_data={
   data: past_translation
 }
 
+const avancement_data={
+  title: 'Progression de la traduction par langue',
+  headers: ['Langue', 'Progression', 'Traducteurs mobilisés', '',''],
+  data: languages
+}
+
 class UserDash extends Component {
   state={
-    showModal:{objectifs:false, traductionsFaites: false}, 
+    showModal:{objectifs:false, traductionsFaites: false, progression:false}, 
     images:[],
     runJoyRide:false, //penser à le réactiver !!
     user:{},
@@ -106,20 +108,15 @@ class UserDash extends Component {
         return (<Redirect to={{ pathname: '/backend/user-form', state: {user: this.state.user}}} />)
       }else{return false}
     }  
-    let imgSrc = (this.state.user.picture || []).secure_url || marioProfile
-    const callToAction1 = (
-      (this.state.user.roles || []).find(x => x.nom==='ExpertTrad') ?
-        <Button block color="primary" 
-          className="btn-pill"
-          onClick={() => this.openTraductions((this.state.langues || [{}])[0])}>Valider des traductions</Button>
-        :
-        <Button block color="primary" className="btn-pill">Call to action</Button>
-    )
+    
     const buttonTraductions = element => (
       (this.state.user.roles || []).find(x => x.nom==='ExpertTrad') ?
         <Button block color="info" onClick={() => this.openTraductions(element)}>Valider les traductions</Button>
         :
-        <Button block color="info" onClick={() => this.openThemes(element)}>Voir les thèmes</Button>
+        <Button block color="primary" className="traduire-btn" onClick={() => this.openThemes(element)}>
+          <SVGIcon name="translate" fill="#FFFFFF"/>
+          <span>Commencer à traduire</span>
+        </Button>
     )
 
     const TraductionsRecentes = (props) => {
@@ -128,7 +125,6 @@ class UserDash extends Component {
         <AvancementTable 
           headers={past_translation_data.headers}
           title={past_translation_data.title}
-          data={past_translation_data.data}
           toggleModal={()=>this.toggleModal('traductionsFaites')}
           {...props}
           >
@@ -148,6 +144,60 @@ class UserDash extends Component {
                 </td>
                 <td className="align-middle since-col">
                   {moment(element.updatedAt).fromNow()}
+                </td>
+              </tr>
+            );
+          })}
+        </AvancementTable>
+      )
+    }
+
+    const ProgressionTraduction = (props) => {
+      let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
+      return (
+        <AvancementTable 
+          headers={avancement_data.headers}
+          title={avancement_data.title}
+          toggleModal={()=>this.toggleModal('progression')} 
+          {...props}
+          >
+          {data.map( element => {
+            return (
+              <tr key={element._id} >
+                <td className="align-middle">
+                  <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.code} id={element.code}></i>
+                  {element.langueFr}
+                </td>
+                <td className="align-middle">
+                  <div>
+                    {Math.round((element.avancement || 0) * 100)} %
+                  </div>
+                  <Progress color={colorAvancement(element.avancement)} value={(element.avancement || 0)*100} className="mb-3" />
+                </td>
+                <td className="align-middle">
+                  {element.participants.map((participant) => {
+                    return ( 
+                        <img
+                          key={participant._id} 
+                          src={participant.picture ? participant.picture.secure_url : marioProfile} 
+                          className="profile-img img-circle"
+                          alt="random profiles"
+                        />
+                    );
+                  })}
+                </td>
+                <td className="align-middle">
+                  <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+                    <Button block color="warning" className="quick-btn" onClick={() => this.quickAccess(element)}>
+                      <Icon name="flash-outline" fill="#3D3D3D" />
+                      <span>Aléatoire</span>
+                    </Button>
+                  </Col>
+                </td>
+                <td className="align-middle">
+                  <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+                    {buttonTraductions(element)}
+                  </Col>
                 </td>
               </tr>
             );
@@ -176,61 +226,25 @@ class UserDash extends Component {
           minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 60))} //idem
         />
         
-        <Row>
+        <Row className="recent-row">
           <TraductionsRecentes
             dataArray={traductionsFaites}
             limit={5} />
         </Row>
 
         <Row>
-          <AvancementTable 
-            headers={avancement_data.headers}
-            title={avancement_data.title}
-            >
-            {langues.map((element,key) => {
-              return (
-                <tr key={element._id} >
-                  <td className="align-middle">
-                    <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.code} id={element.code}></i>
-                  </td>
-                  <td className="align-middle">{element.langueFr}</td>
-                  <td className="align-middle">
-                    <div>
-                      {Math.round(element.avancement * 100)} %
-                    </div>
-                    <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
-                  </td>
-                  <td className="align-middle">
-                    {element.participants.map((participant) => {
-                      return ( 
-                          <img
-                            key={participant._id} 
-                            src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                            className="profile-img img-circle"
-                            alt="random profiles"
-                          />
-                      );
-                    })}
-                  </td>
-                  <td className="align-middle">
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                      <Button block color="success" onClick={() => this.quickAccess(element)}>Accès rapide</Button>
-                    </Col>
-                  </td>
-                  <td className="align-middle">
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                      {buttonTraductions(element)}
-                    </Col>
-                  </td>
-                </tr>
-              );
-            })}
-          </AvancementTable>
+          <ProgressionTraduction
+            dataArray={langues}
+            limit={5} />
         </Row>
 
         <Modal isOpen={this.state.showModal.traductionsFaites} toggle={()=>this.toggleModal('traductionsFaites')} className='modal-plus'>
           <TraductionsRecentes dataArray={traductionsFaites} />
         </Modal>
+        <Modal isOpen={this.state.showModal.progression} toggle={()=>this.toggleModal('progression')} className='modal-plus'>
+          <TraductionsRecentes dataArray={langues} />
+        </Modal>
+
       </div>
     );
   }
