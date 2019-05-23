@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col, Row, Table, Button } from 'reactstrap';
 import Icon from 'react-eva-icons';
-import {NavLink} from 'react-router-dom';
 import moment from 'moment/min/moment-with-locales';
 
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';

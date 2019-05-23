@@ -13,4 +13,9 @@
 body,head{
   font-family: CircularStd;
   color: #3D3D3D;
+
+  [contenteditable] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
 }
