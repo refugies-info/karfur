@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
 import { Col, Row, Button, Progress, Badge, ListGroup, ListGroupItem, 
-  Card, CardHeader, CardBody, ListGroupItemHeading, ListGroupItemText } from 'reactstrap';
+  Card, CardHeader, CardBody, ListGroupItemHeading, ListGroupItemText, Modal } from 'reactstrap';
 import ReactJoyride from 'react-joyride';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+import moment from 'moment/min/moment-with-locales';
 
-import Widget from './Widget'
 import marioProfile from '../../../assets/mario-profile.jpg'
 import {languages, past_translation, steps} from './data'
 import {colorAvancement, colorStatut} from '../../../components/Functions/ColorFunctions'
@@ -13,6 +13,8 @@ import AvancementTable from '../../../components/Translation/Avancement/Avanceme
 import API from '../../../utils/API'
 import './UserDash.scss';
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
+
+moment.locale('fr');
 
 const avancement_data={
   title: 'Avancement par langue',
@@ -28,7 +30,7 @@ const past_translation_data={
 
 class UserDash extends Component {
   state={
-    showModal:{objectifs:false}, 
+    showModal:{objectifs:false, traductionsFaites: false}, 
     images:[],
     runJoyRide:false, //penser à le réactiver !!
     user:{},
@@ -58,7 +60,7 @@ class UserDash extends Component {
         if(data_progr.data.data && data_progr.data.data.length>0)
           this.setState({progression: data_progr.data.data[0]})
       })
-      API.get_tradForReview({'_id': { $in: user.traductionsFaites}},{},'participants').then(data => {
+      API.get_tradForReview({'_id': { $in: user.traductionsFaites}},{updatedAt: -1}).then(data => {
         console.log(data.data.data)
         this.setState({traductionsFaites: data.data.data})
       })
@@ -68,7 +70,7 @@ class UserDash extends Component {
 
   toggleModal = (modal) => {
     this.props.tracking.trackEvent({ action: 'toggleModal', label: modal, value : !this.state.showModal[modal] });
-    this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}})
+    this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}}, ()=>(console.log(this.state)))
   }
   
   openThemes = (langue) => {
@@ -119,6 +121,41 @@ class UserDash extends Component {
         :
         <Button block color="info" onClick={() => this.openThemes(element)}>Voir les thèmes</Button>
     )
+
+    const TraductionsRecentes = (props) => {
+      let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
+      return (
+        <AvancementTable 
+          headers={past_translation_data.headers}
+          title={past_translation_data.title}
+          data={past_translation_data.data}
+          toggleModal={()=>this.toggleModal('traductionsFaites')}
+          {...props}
+          >
+          {data.map( element => {
+            let langElem=langues.find(x=>x.i18nCode===element.langueCible) || {};
+            return (
+              <tr 
+                key={element._id} 
+                onClick={this.navigateToDashLang}>
+                <td className="align-middle">
+                  <i className={'flag-icon flag-icon-' +  langElem.langueCode} title={element.code} id={element.code}></i>
+                  <b>{langElem.langueFr}</b>
+                </td>
+                <td className="align-middle text-grey">{(element.initialText || {}).title}</td>
+                <td className="align-middle">
+                  <Badge color={colorStatut(element.status)}>{element.status}</Badge>
+                </td>
+                <td className="align-middle since-col">
+                  {moment(element.updatedAt).fromNow()}
+                </td>
+              </tr>
+            );
+          })}
+        </AvancementTable>
+      )
+    }
+
     return (
       <div className="animated fadeIn user-dash">
         <ConditionalRedirect />
@@ -140,34 +177,9 @@ class UserDash extends Component {
         />
         
         <Row>
-          <AvancementTable 
-            headers={past_translation_data.headers}
-            title={past_translation_data.title}
-            data={past_translation_data.data}
-            >
-            {traductionsFaites.map( element => {
-              console.log(element)
-              let langElem=langues.find(x=>x._id===element._id) || {};
-              console.log(langElem)
-              return (
-                <tr 
-                  key={element._id} 
-                  onClick={this.navigateToDashLang}>
-                  <td className="align-middle">
-                    <i className={'flag-icon flag-icon-' +  langElem.langueCode + ' h1'} title={element.code} id={element.code}></i>
-                    <b>{langElem.langueFr}</b>
-                  </td>
-                  <td className="align-middle">{element.titre}</td>
-                  <td className="align-middle">
-                    {element.titre}
-                  </td>
-                  <td className="align-middle">
-                    <Badge color={colorStatut(element.statut)}>{element.statut}</Badge>
-                  </td>
-                </tr>
-              );
-            })}
-          </AvancementTable>
+          <TraductionsRecentes
+            dataArray={traductionsFaites}
+            limit={5} />
         </Row>
 
         <Row>
@@ -179,7 +191,7 @@ class UserDash extends Component {
               return (
                 <tr key={element._id} >
                   <td className="align-middle">
-                    <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'}></i>
+                    <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.code} id={element.code}></i>
                   </td>
                   <td className="align-middle">{element.langueFr}</td>
                   <td className="align-middle">
@@ -216,41 +228,9 @@ class UserDash extends Component {
           </AvancementTable>
         </Row>
 
-
-        <Row>
-          <Col>
-            <Card>
-              <CardHeader>
-                <i className="fa fa-align-justify"></i><strong>Conversation en cours</strong>
-              </CardHeader>
-              <CardBody>
-                <ListGroup>
-                  <ListGroupItem active action className="justify-content-between">
-                    <ListGroupItemHeading>Les 3 petits cochons</ListGroupItemHeading>
-                    <ListGroupItemText>
-                      Comment traduire 'maison de briques' en anglais?
-                    </ListGroupItemText>
-                    <Badge className="float-right" pill color="success">14</Badge>
-                  </ListGroupItem>
-                  <ListGroupItem action className="justify-content-between">
-                    <ListGroupItemHeading>Blanche neige et les 7 nains</ListGroupItemHeading>
-                    <ListGroupItemText>
-                      On s'accorde sur une traduction commune du nain en espagnol ?
-                    </ListGroupItemText>
-                    <Badge className="float-right" pill color="info">2</Badge>
-                  </ListGroupItem>
-                  <ListGroupItem action className="justify-content-between">
-                    <ListGroupItemHeading>Les chiens aboient quand la caravane passe</ListGroupItemHeading>
-                    <ListGroupItemText>
-                      Ca ressemble à un proverbe non?
-                    </ListGroupItemText>
-                    <Badge className="float-right" pill color="warning">1</Badge>
-                  </ListGroupItem>
-                </ListGroup>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+        <Modal isOpen={this.state.showModal.traductionsFaites} toggle={()=>this.toggleModal('traductionsFaites')} className='modal-plus'>
+          <TraductionsRecentes dataArray={traductionsFaites} />
+        </Modal>
       </div>
     );
   }

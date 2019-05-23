@@ -24,12 +24,13 @@ export default function AvancementTable(props) {
           <tbody>
             {props.children}
 
-            <tr >
-              <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('traducteur')}>
-                <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
-                Voir plus
-              </td>
-            </tr>
+            {props.limit && 
+              <tr >
+                <td colSpan="6" className="align-middle voir-plus" onClick={props.toggleModal}>
+                  <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
+                  Voir plus
+                </td>
+              </tr>}
           </tbody>
         </Table>
       </CardBody>
