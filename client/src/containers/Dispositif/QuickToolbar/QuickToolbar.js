@@ -30,7 +30,7 @@ class QuickToolbar extends Component {
       if(id===0){ this.props.toggleModal(true, 'reaction'); }
       else if(id===1){ this.props.toggleModal(true, 'signaler'); }
       else if(id===2){ this.props.toggleAudio(); }
-      else if(id===3){ Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')}
+      else if(id===3){ this.props.toggleModal(true, 'construction');}
     }else{
       if(id===0){ this.props.handleContentClick(this.props.keyValue,true, this.props.subkey) }
       else if(id===2){ this.props.removeItem(this.props.keyValue, this.props.subkey) }

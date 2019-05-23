@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Card, CardBody, Modal } from 'reactstrap';
-import Icon from 'react-eva-icons';
+import { Col, Row, Card, CardBody, CardHeader, CardFooter, Modal, Spinner, Input, Button } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Icon from 'react-eva-icons';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
-import {hommeRouge, femmeRouge} from '../../../assets/figma/index';
-import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import API from '../../../utils/API';
 import {ActionTable, TradTable, ContribTable, FavoriTable} from '../../../components/Backend/UserProfile/index';
+import {ThanksModal, SuggestionModal, ObjectifsModal} from '../../../components/Modals/index';
+import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
+import ModifyProfile from '../../../components/Backend/UserProfile/ModifyProfile/ModifyProfile';
 
-import {fakeTraduction, fakeContribution, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris} from './data'
+import {fakeTraduction, fakeContribution, fakeFavori, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris} from './data'
 
 import './UserProfile.scss';
-import ThanksModal from '../../../components/Modals/ThanksModal/ThanksModal';
 
 class UserProfile extends Component {
   state={
-    showModal:{traducteur: false,contributeur: false, thanks:false}, 
+    showModal:{action:false, traducteur: false,contributeur: false, thanks:false, favori:false, suggestion: false, objectifs:false}, 
     user: {},
     traductions:[],
     contributions:[],
@@ -26,6 +27,21 @@ class UserProfile extends Component {
     langues:[],
     traducteur:false,
     contributeur:false,
+    editing: false,
+    isDropdownOpen:[],
+    uploading: false,
+    suggestion:{},
+    notifyCheck:false,
+    objectifs: [
+      {objectifTemps:30, mots: 300, objectifMots:50, status:'Contributeur ponctuel', selected:false},
+      {objectifTemps:60, mots: 600, objectifMots:100, status:'Contributeur ponctuel', selected:false},
+      {objectifTemps:120, mots: 1200, objectifMots:500, status:'Contributeur ponctuel', selected:false},
+      {objectifTemps:300, mots: 2000, objectifMots:2000, status:'Contributeur ponctuel', selected:false}
+    ],
+    progression:{
+      timeSpent:0,
+      nbMots:0
+    }
   }
 
   componentDidMount() {
@@ -40,9 +56,13 @@ class UserProfile extends Component {
         this.setState({contributions: data.data.data, actions: this.parseActions(data.data.data)})
       })
       console.log(user)
-      this.setState({user:user, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib")})
+      this.setState({user:user, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
     })
     API.get_langues({}).then(data => this.setState({ langues: data.data.data }))
+    API.get_progression().then(data_progr => {
+      if(data_progr.data.data && data_progr.data.data.length>0)
+        this.setState({progression: data_progr.data.data[0]})
+    })
   }
 
   parseActions = dispositifs => {
@@ -57,6 +77,8 @@ class UserProfile extends Component {
             depuis : x.createdAt,
             texte : x.suggestion,
             read : x.read,
+            username : x.username,
+            picture : x.picture,
           }))];
         }
       })
@@ -69,41 +91,110 @@ class UserProfile extends Component {
     this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}})
   }
 
+  toggleEditing = () => this.setState({editing : !this.state.editing})
+  toggleActive = key => {console.log(key); this.setState({objectifs : this.state.objectifs.map((x,i) => i===key ? {...x, selected:true} : {...x, selected:false})})}
+
+  toggleDropdown = (e, key) => {
+    if(this.state.isDropdownOpen[key] && e.currentTarget.id){
+      this.setState({
+        user : {...this.state.user, selectedLanguages:[...this.state.user.selectedLanguages].map((x,i)=> i==key ? this.state.langues[e.currentTarget.id] : x)},
+      })
+    }
+    this.setState({ isDropdownOpen: this.state.isDropdownOpen.map((x,i)=> i===key ? !x : false)})
+  };
+
+  showSuggestion = (suggestion) => {
+    this.setState({suggestion});
+    this.toggleModal('suggestion');
+  }
+
+  addLangue = () => {
+    this.setState({
+      user : {...this.state.user, selectedLanguages:[...(this.state.user.selectedLanguages || []), (this.state.langues.length > 0 ? this.state.langues[0] : {})]},
+      isDropdownOpen: new Array(this.state.isDropdownOpen.length + 1).fill(false)
+    })
+  }
+
+  handleChange = (ev) => this.setState({ user: { ...this.state.user, [ev.currentTarget.id]:ev.target.value } });
+  handleCheckChange = (ev) => this.setState({ notifyCheck: ev.target.checked });
+
+  handleFileInputChange = event => {
+    this.setState({uploading:true})
+    const formData = new FormData()
+    formData.append(0, event.target.files[0])
+
+    API.set_image(formData).then(data_res => {
+      let imgData=data_res.data.data;
+      this.setState({
+        user:{
+          ...this.state.user,
+          picture: imgData
+        },
+        uploading:false,
+      });
+    },() => {this.setState({uploading:false});return;})
+  }
+
+  removeBookmark = (key) => {
+    let user={...this.state.user};
+    user.cookies.dispositifsPinned = key==='all' ? [] : user.cookies.dispositifsPinned.filter(x => x._id !== key);
+    API.set_user_info(user).then((data) => {
+      this.setState({ user: data.data.data })
+    })
+  }
+
+  validateObjectifs = () => {
+    let user = {...this.state.user};
+    let objectif=this.state.objectifs.find(x=>x.selected);
+    let newUser={
+      _id:user._id,
+      objectifTemps: objectif.objectifTemps, 
+      objectifMotsContrib: objectif.mots, 
+      objectifMots: objectif.objectifMots, 
+      notifyObjectifs: this.state.notifyCheck
+    }
+    API.set_user_info(newUser).then((data) => {
+      Swal.fire( 'Yay...', 'Vos objectifs ont bien été enregistrés', 'success')
+      this.setState({user:data.data.data})
+      this.toggleModal('objectifs')
+    })
+  }
+
+  validateProfile = () => {
+    let user = {...this.state.user};
+    let newUser={
+      _id:user._id,
+      username:user.username,
+      selectedLanguages:user.selectedLanguages,
+      email:user.email,
+      description:user.description,
+      picture: user.picture
+    }
+    API.set_user_info(newUser).then((data) => {
+      Swal.fire( 'Yay...', 'Votre profil a bien été enregistré', 'success')
+      this.setState({ editing:false })
+    })
+  }
+
   render() {
-    let {traducteur, contributeur, traductions, contributions, actions, favoris}=this.state;
+    let {traducteur, contributeur, traductions, contributions, actions, langues, user}=this.state;
     if(!traducteur){traductions= new Array(5).fill(fakeTraduction)}
     if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
 
-    const FeedbackCard=(props) => {
-      if(props.contributeur){
-        return (
-          <Card className="feedbacks-card contributeur" onClick={()=>this.toggleModal('thanks')}>
-            <CardBody>
-              <SVGIcon name="clapping" fill="#FFFFFF" />
-              <div className="user-feedbacks">
-                <h4>43</h4>
-                <span>utilisateurs vous remercient</span>
-              </div>
-            </CardBody>
-          </Card>
-        )
+    let favoris = ((user.cookies || {}).dispositifsPinned || []),hasFavori=true;
+    if(favoris.length === 0){favoris= new Array(5).fill(fakeFavori); hasFavori=false;}
+
+    let imgSrc = (this.state.user.picture || []).secure_url || marioProfile
+
+    const ProfilePic = () => {
+      if(this.state.uploading){
+        return <Spinner color="dark" className="fadeIn fadeOut" />
       }else{
-        return (
-          <NavLink to="/dispositif" className="no-decoration">
-            <Card className="feedbacks-card no-contrib">
-              <CardBody>
-                <div className="icones-rouges">
-                  <img src={hommeRouge} alt="homme" className="homme" />
-                  <img src={femmeRouge} alt="femme" className="femme" />
-                </div>
-                <h4>Devenir contributeur</h4>
-                <span>Contribuer à la plateforme en rédigant de nouveaux contenus ou en traduisant des contenus.</span>
-              </CardBody>
-            </Card>
-          </NavLink>
-        )
+        return <img className="img-circle user-picture" src={imgSrc} alt="profile"/>
       }
     }
+
+    let nbReactions = contributions.map(dispo => ((dispo.merci || []).length + (dispo.bravo || []).length)).reduce((a,b) => a + b, 0);
     return (
       <div className="animated fadeIn user-profile">
         <div className="profile-header">
@@ -122,74 +213,99 @@ class UserProfile extends Component {
         </div>
         <div className="profile-content">
           <Row className="profile-info">
-            <div className="profile-left">
-              <img className="img-circle user-picture" src={marioProfile} alt="profile"/>
-              <h2 className="name">Hugo Stéphan</h2>
-              <h3 className="status">Contributeur ponctuel</h3>
-            </div>
-            <div className="feedbacks-col">
-              <Card className={"feedbacks-card" + (contributeur ? " contributeur" : " no-contrib")} onClick={()=>this.toggleModal('thanks')}>
-                <FeedbackCard traducteur={traducteur} contributeur={contributeur} />
-              </Card>
-            </div>
+            <Card className="profile-left">
+              <CardBody>
+                <div className="profile-header-container">   
+                  <div className="rank-label-container">
+                    <ProfilePic />
+                    {this.state.editing && <>
+                      <Input 
+                        className="file-input"
+                        type="file"
+                        id="picture" 
+                        name="user" 
+                        accept="image/*"
+                        onChange = {this.handleFileInputChange} />
+                      <span className="label label-default rank-label">Changer</span> </>}
+                  </div>
+                </div> 
+              </CardBody>
+              <CardFooter>
+                <h2 className="name">{user.username}</h2>
+                <span className="status">{traducteur ? "Traducteur" : (contributeur ? "Contributeur" : "Utilisateur")}</span>
+              </CardFooter>
+            </Card>
+            <Col className="modify-col">
+              <ModifyProfile
+                handleChange={this.handleChange}
+                toggleDropdown={this.toggleDropdown}
+                addLangue={this.addLangue}
+                toggleEditing={this.toggleEditing}
+                validateProfile = {this.validateProfile}
+                {...this.state} />
+            </Col>
+
             <Col className="user-col">
-              <div className="float-right update-profile">
-                <Icon name="edit-outline" fill="#828282" className="edit-icon" size="large"/>
-                <u>Modifier mon profil</u>
-              </div>
-              <div className="user-data">
-                <div className="d-flex data-row">
-                  <div className="margin-20">
-                    <Icon name="globe" fill="#3D3D3D"/>
+              <Card className="profile-right">
+                <CardHeader>
+                  Vos objectifs de contribution hebdomadaire
+                  <EVAIcon name="settings-2-outline" className="align-right pointer" onClick={()=>this.toggleModal('objectifs')} />
+                </CardHeader>
+                <CardBody>
+                  <Row>
+                    <Col className="obj-first">
+                      <h1 className="title">37/{user.objectifTemps || "60"}</h1>
+                      <h6 className="subtitle">minutes contribuées</h6>
+                      <span className="content">37 minutes passées à informer les personnes réfugiées. Merci !</span>
+                    </Col>
+                    <Col className="obj-second">
+                      <h1 className="title">234/{user.objectifMotsContrib || "600"}</h1>
+                      <h6 className="subtitle">mots écrits</h6>
+                      <span className="content">pour les personnes réfugiées. Merci !</span>
+                    </Col>
+                    <Col className="obj-third">
+                      <h1 className="title">37/{user.objectifMots || "60"}</h1>
+                      <h6 className="subtitle">mots traduits</h6>
+                      <span className="content">pour les personnes réfugiées. Merci !</span>
+                    </Col>
+                  </Row>
+                </CardBody>
+                <CardFooter>
+                  <div className="user-feedbacks pointer d-flex align-items-center" onClick={()=>this.toggleModal('thanks')}>
+                    <EVAIcon name="heart" fill="#60A3BC" className="margin-right-8 d-inline-flex" />
+                    {nbReactions>0 ?
+                      <span>Vous avez participé à l’information de <u>{nbReactions} personne{nbReactions > 1 ? "s" : ""}</u>. Merci.</span> :
+                      <span>Ici, nous vous dirons combien de personnes vous allez aider."</span>}
                   </div>
-                  <div>
-                    <i className="flag-icon flag-icon-fr margin-12" title="fr" id="fr"></i>
-                    <span className="margin-20">français</span>
-                  </div>
-                  <div>
-                    <i className="flag-icon flag-icon-gb margin-12" title="gb" id="gb"></i>
-                    <span className="margin-20">anglais</span>
-                  </div>
-                </div>
-
-                <div className="d-flex data-row">
-                  <div className="margin-20">
-                    <Icon name="email" fill="#3D3D3D"/>
-                  </div>
-                  <span>hugo.stephan@interieur.gouv.fr</span>
-                </div>
-
-                <div className="d-flex data-row">
-                  <div className="margin-20">
-                    <Icon name="arrowhead-right" fill="#3D3D3D"/>
-                  </div>
-                  <span>Je suis un contributeur bénévole au sein de la DIAIR</span>
-                </div>
-                
-                <Row className="user-stats">
-                  <Col>
-                    <h4>37</h4><h4 className="make-it-gray">/ 60"</h4>
-                    <span>minutes passées à aider les réfugiés. Merci.</span>
-                  </Col>
-                  <Col>
-                    <h4>345</h4><h4 className="make-it-gray">/ 500</h4>
-                    <span>mots rédigés</span>
-                  </Col>
-                  <Col>
-                    <h4>73</h4><h4 className="make-it-gray">/ 200</h4>
-                    <span>mots traduits.</span>
-                  </Col>
-                </Row>
-              </div>
+                </CardFooter>
+                {!(contributeur || traducteur) &&
+                  <div className="ecran-protection no-obj">
+                    <div className="content-wrapper">
+                      <Button color="white">
+                        <Icon name="award-outline" fill="#3D3D3D" /> 
+                        Devenir contributeur pour débloquer cette section
+                      </Button>
+                    </div>
+                  </div>}
+              </Card>
             </Col>
           </Row>
-
-          <ActionTable 
-            dataArray={actions}
-            user={this.state.user}
-            toggleModal={this.toggleModal}
-            limit={5}
-            {...avancement_actions} />
+          
+          {(contributeur || traducteur) ?
+            <ActionTable 
+              dataArray={actions}
+              toggleModal={this.toggleModal}
+              showSuggestion={this.showSuggestion}
+              limit={5}
+              {...avancement_actions} />:
+            <FavoriTable 
+              dataArray={favoris}
+              toggleModal={this.toggleModal}
+              removeBookmark={this.removeBookmark}
+              hasFavori={hasFavori}
+              limit={5}
+              {...avancement_favoris} />
+          }
 
           <ContribTable 
             dataArray={contributions}
@@ -203,23 +319,36 @@ class UserProfile extends Component {
             dataArray={traductions}
             traducteur={traducteur}
             user={this.state.user}
-            langues={this.state.langues}
+            langues={langues}
             toggleModal={this.toggleModal}
+            motsRediges={this.state.progression.nbMots}
+            minutesPassees={Math.floor(this.state.progression.timeSpent / 60)}
             limit={5}
             {...avancement_langue} />
 
-          <FavoriTable 
-            dataArray={favoris}
-            user={this.state.user}
-            toggleModal={this.toggleModal}
-            limit={5}
-            {...avancement_favoris} />
+            {(contributeur || traducteur) &&
+              <FavoriTable 
+                dataArray={favoris}
+                toggleModal={this.toggleModal}
+                removeBookmark={this.removeBookmark}
+                hasFavori={hasFavori}
+                limit={5}
+                {...avancement_favoris} />
+              }
         </div>
 
+        <Modal isOpen={this.state.showModal.action} toggle={()=>this.toggleModal('action')} className='modal-plus'>
+          <ActionTable 
+            dataArray={actions}
+            toggleModal={this.toggleModal}
+            showSuggestion={this.showSuggestion}
+            {...avancement_actions} />
+        </Modal>
+        
         <Modal isOpen={this.state.showModal.contributeur} toggle={()=>this.toggleModal('contributeur')} className='modal-plus'>
           <ContribTable 
             dataArray={contributions}
-            user={this.state.user}
+            user={user}
             toggleModal={this.toggleModal}
             {...avancement_contrib} />
         </Modal>
@@ -228,12 +357,31 @@ class UserProfile extends Component {
           <TradTable 
             dataArray={traductions}
             user={this.state.user}
-            langues={this.state.langues}
+            langues={langues}
             toggleModal={this.toggleModal}
             {...avancement_langue} />
         </Modal>
 
+        <Modal isOpen={this.state.showModal.favori} toggle={()=>this.toggleModal('favori')} className='modal-plus'>
+          <FavoriTable 
+            dataArray={favoris}
+            toggleModal={this.toggleModal}
+            removeBookmark={this.removeBookmark}
+            hasFavori={hasFavori}
+            {...avancement_favoris} />
+        </Modal>
+
         <ThanksModal show={this.state.showModal.thanks} toggle={()=>this.toggleModal('thanks')} />
+        <SuggestionModal suggestion={this.state.suggestion} show={this.state.showModal.suggestion} toggle={()=>this.toggleModal('suggestion')} />
+        <ObjectifsModal 
+          objectifs={this.state.objectifs} 
+          suggestion={this.state.objectifs} 
+          notifyCheck={this.state.notifyCheck}
+          show={this.state.showModal.objectifs} 
+          handleCheckChange={this.handleCheckChange} 
+          toggle={()=>this.toggleModal('objectifs')}
+          toggleActive={this.toggleActive}
+          validateObjectifs={this.validateObjectifs} />
       </div>
     );
   }

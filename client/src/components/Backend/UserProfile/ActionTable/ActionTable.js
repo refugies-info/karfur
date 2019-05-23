@@ -9,7 +9,7 @@ import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 moment.locale('fr');
 
 const actionTable = (props) => {
-  let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
+  let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
   
   const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length - 1))}
 
@@ -36,7 +36,7 @@ const actionTable = (props) => {
                 {element.owner ? "Propriétaire" : "Contributeur" }
               </td>
               <td className={"align-middle"}>
-                <Button className={"action-btn " + element.action}>
+                <Button className={"action-btn " + element.action} onClick={()=>props.showSuggestion(element)}>
                   <EVAIcon name={element.action === "questions" ? "question-mark-circle-outline" : "bulb-outline"} fill="#FFFFFF" />
                   {jsUcfirst(element.action)}
                 </Button>
@@ -48,18 +48,16 @@ const actionTable = (props) => {
                 <Icon name="checkmark-circle-outline" fill="#3D3D3D"/>&nbsp;
                 <u>Archiver</u>
               </td>
-              <td className="align-middle pointer">
-                <NavLink to={"/traduction/"+element.articleId} className="no-decoration" >
-                  <Icon name="eye-outline" fill="#3D3D3D"/>&nbsp;
-                  <u>Voir</u>
-                </NavLink>
+              <td className="align-middle pointer" onClick={()=>props.showSuggestion(element)}>
+                <Icon name="eye-outline" fill="#3D3D3D"/>&nbsp;
+                <u>Voir</u>
               </td>
             </tr>
           );
         })}
         {props.limit && 
           <tr >
-            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('contributeur')}>
+            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('action')}>
               <Icon name="expand-outline" fill="#3D3D3D"/>&nbsp;
               Voir plus
             </td>
@@ -74,27 +72,21 @@ const actionTable = (props) => {
       <div className="tableau-wrapper" id="contributions">
         <Row>
           <Col>
-            <h1>{props.title}</h1>
+            <h1>
+              {props.title}
+              <sup className="nb-actions">{props.dataArray.length}</sup>
+            </h1>
           </Col>
-          <Col className="d-flex tableau-header no-margin" lg="1">
+          <Col className="d-flex tableau-header no-margin pointer" lg="1">
             <div className="d-flex left-element">
               <Icon name="edit-outline" fill="#828282"/>&nbsp;
-              <span> <u>Paramétrer mes modifications</u> </span>
+              <span> <u>Paramétrer mes notifications</u> </span>
             </div>
           </Col>
         </Row>
   
         <div className="tableau">
           {table}
-        </div>
-
-        <div className="tableau-footer">
-          <Button>
-            <NavLink to="/backend/user-dashboard" className="no-decoration" >
-              <Icon name="options-2-outline" fill="#FFFFFF" />
-              <span>Gérer mes articles</span>
-            </NavLink>
-          </Button>
         </div>
       </div>
     )

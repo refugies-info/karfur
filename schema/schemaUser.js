@@ -36,6 +36,14 @@ var userSchema = mongoose.Schema({
     type: Number,
     required: false
   },
+  objectifMotsContrib:{
+    type: Number,
+    required: false
+  },
+  notifyObjectifs:{
+    type: Boolean,
+    required: false
+  },
   picture: { 
     type: Object,
     required: false

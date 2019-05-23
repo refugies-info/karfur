@@ -5,6 +5,7 @@ import {NavLink} from 'react-router-dom';
 
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
+import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 const favoriTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
@@ -25,47 +26,30 @@ const favoriTable = (props) => {
           return (
             <tr key={key} >
               <td className="align-middle">
+                <Icon name="bookmark" fill="#3D3D3D" id="bookmarkBtn" />  
+              </td>
+              <td className="align-middle">
                 {element.titreMarque + ' - ' + element.titreInformatif} 
               </td>
-              <td className={"align-middle text-"+colorStatut(element.status)}>{element.status}</td>
               <td className="align-middle">
-                <Row>
-                  <Col>
-                    <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
-                  </Col>
-                  <Col className={'text-'+colorAvancement(element.avancement)}>
-                    {Math.round((element.avancement || 0) * 100)} %
-                  </Col>
-                </Row>
-              </td>
-              <td className="align-middle langue-item">
-                <Icon name={element.creatorId===props.user._id ? "shield-outline" : "people-outline" } fill="#3D3D3D" size="large"/>&nbsp;
-                {element.creatorId===props.user._id ? "Propriétaire" : "Contributeur" }
-              </td>
-              <td className="align-middle">
-                {element.participants && element.participants.map((participant) => {
+                {(element.tags || []).map((tag, key) => {
                   return ( 
-                      <img
-                        key={participant._id} 
-                        src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                        className="profile-img img-circle"
-                        alt="random profiles"
-                      />
+                    <Button key={key} color="warning" outline className="tag-btn">
+                      {tag}
+                    </Button>
                   );
                 })}
               </td>
-              <td className="align-middle">
-                <NavLink to={"/traduction/"+element.articleId} className="no-decoration" >
-                  <Icon name="eye-outline" fill="#3D3D3D" size="large"/>&nbsp;
-                  <u>Voir</u>
-                </NavLink>
+              <td className="align-middle" className="pointer" onClick={()=>props.removeBookmark(element._id)}>
+                <Icon name="close-circle-outline" fill="#3D3D3D"/>&nbsp;
+                <u>Supprimer</u>
               </td>
             </tr>
           );
         })}
         {props.limit && 
           <tr >
-            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('contributeur')}>
+            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('favori')}>
               <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
               Voir plus
             </td>
@@ -82,18 +66,9 @@ const favoriTable = (props) => {
           <Col>
             <h1>{props.title}</h1>
           </Col>
-          <Col className="d-flex tableau-header">
-            <div className="d-flex left-element">
-              <h4>345</h4>
-              <span>mots rédigés</span>
-            </div>
-            <div className="d-flex middle-element">
-              <h4>34</h4>
-              <span>minutes passées</span>
-            </div>
-            <div className="d-flex right-element">
-              <h4>22</h4>
-              <span>personnes informées</span>
+          <Col className="d-flex tableau-header no-margin pointer" lg="1">
+            <div className="d-flex left-element" onClick={()=>props.removeBookmark('all')}>
+              <span> <u>Tout supprimer</u> </span>
             </div>
           </Col>
         </Row>
@@ -102,29 +77,16 @@ const favoriTable = (props) => {
           {table}
         </div>
 
-        <div className="tableau-footer">
-          <Button>
-            <NavLink to="/backend/user-dashboard" className="no-decoration" >
-              <Icon name="options-2-outline" fill="#FFFFFF" />
-              <span>Gérer mes articles</span>
-            </NavLink>
-          </Button>
-        </div>
-
-        {!props.contributeur &&
-          <div className="ecran-protection no-contrib">
-            <div className="close-box text-white">
-              <Icon name="eye-off-2-outline" fill="#FFFFFF" />
-              <u>Masquer</u>
-            </div>
+        {!props.hasFavori &&
+          <div className="ecran-protection no-fav">
             <div className="content-wrapper">
-              <h1>Ici, vous pourrez accéder à vos contributions</h1>
-              <NavLink to="/dispositif" className="no-decoration" >
-                <Button>Proposer un nouveau contenu</Button>
-              </NavLink>
+              <h1>Retrouvez ici vos pages favorites</h1>
+              <div className="sous-contenu">
+                Sauvegardez-les en cliquant sur cette icône dans les dispositifs :
+                <EVAIcon name="bookmark-outline" fill="#3D3D3D" className="bookmark-icon" /> 
+              </div>
             </div>
-          </div>
-        }
+          </div>}
       </div>
     )
   }else{

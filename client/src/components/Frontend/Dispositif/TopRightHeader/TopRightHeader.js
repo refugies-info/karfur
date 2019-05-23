@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Card, CardBody , Button } from 'reactstrap';
+import { Col, Card, CardBody , Button, Spinner } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import { AppSwitch } from '@coreui/react'
 
@@ -11,8 +11,10 @@ const topRightHeader = (props) => {
     return(
       <Col className="top-right">
         <AudioBtn />
-        <div className="bookmark-icon-wrapper" onClick={props.toggleBookmarkModal}>
-          <EVAIcon name={"bookmark-outline"} fill={"#3D3D3D"} id="bookmarkBtn" />
+        <div className="bookmark-icon-wrapper" onClick={props.bookmarkDispositif}>
+          {props.showSpinnerBookmark ?
+            <Spinner color="success" /> :
+            <EVAIcon name={"bookmark" + (props.pinned ? "" : "-outline")} fill={"#3D3D3D"} id="bookmarkBtn" />}
         </div>
       </Col>
     )

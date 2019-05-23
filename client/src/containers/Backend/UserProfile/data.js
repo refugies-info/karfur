@@ -34,6 +34,12 @@ const fakeTraduction = {
   "userId" : "unidentifiantquelconque"
 };
 
+const fakeFavori = {
+  "_id" : "unidentifiantquelconque",
+  "titreInformatif" : "Un exemple de dispositif",
+  "titreMarque" : "Le nom du dispositif",
+}
+
 const fakeContribution = {
   "_id" : "unidentifiantquelconque",
   "titreInformatif" : "Un exemple de dispositif",
@@ -60,12 +66,13 @@ const avancement_actions={
 
 const avancement_favoris={
   title: 'Mes favoris',
-  headers: ['Titre', 'Thématique', '','']
+  headers: ['', 'Titre de la page', 'Tags','']
 }
 
 export {data, 
   fakeTraduction, 
   fakeContribution, 
+  fakeFavori,
   avancement_langue, 
   avancement_contrib, 
   avancement_actions, 

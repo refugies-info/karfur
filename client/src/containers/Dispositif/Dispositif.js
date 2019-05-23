@@ -49,6 +49,7 @@ const sponsorsData = [
 
 const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
 
+let user={_id:'', cookies:{}}
 class Dispositif extends Component {
   state={
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, content: (x.type ? null : x.tutoriel.contenu), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(lorems.paragraphe).contentBlocks))}}),
@@ -80,10 +81,13 @@ class Dispositif extends Component {
     showDispositifValidateModal:false,
     withHelp:true,
     showSpinnerPrint:false,
+    showSpinnerBookmark:false,
     suggestion:'',
     mail: '',
     tKeyValue: -1, 
     tSubkey: -1,
+    pinned:false,
+    user:{}
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -102,9 +106,20 @@ class Dispositif extends Component {
           tags:dispositif.tags,
           creator:dispositif.creatorId,
           uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
+          dispositif: dispositif,
           disableEdit: true
         })
       },function(error){ console.log(error); return; })
+      //On récupère les données de l'utilisateur
+      if(API.isAuth()){
+        API.get_user_info().then(data_res => {
+          let u=data_res.data.data;
+          user={_id:u._id, cookies:u.cookies || {}}
+          this.setState({
+            pinned: (user.cookies.dispositifsPinned || []).some( x => x._id === itemId),
+          })
+        })
+      }
     }else if(API.isAuth()){
       this.setState({
         disableEdit:false,
@@ -203,17 +218,6 @@ class Dispositif extends Component {
     this.setState({ uiArray: uiArray, tKeyValue: key, tSubkey: subkey });
   }
 
-  // handleContentClick=(key, subkey=null)=>{
-  //   this.handleMenuChange({
-  //     currentTarget:{
-  //       id:key,
-  //       dataset:{subkey : subkey}
-  //     },
-  //     target: {value: 'Texte '}
-  //   })
-  //   this.updateUIArray(key, subkey, 'isFakeContent', true)
-  // }
-
   addItem=(key, type='paragraphe', subkey=null)=>{
     let prevState = [...this.state.menu];
     let uiArray = [...this.state.uiArray];
@@ -280,6 +284,24 @@ class Dispositif extends Component {
   toggleHelp = () => this.setState(prevState=>({withHelp:!prevState.withHelp}))
 
   openAllAccordions = () =>this.setState({accordion: this.state.accordion.map(x => true)})
+
+  bookmarkDispositif = () => {
+    this.setState({showSpinnerBookmark:true})
+    if(API.isAuth()){
+      if(this.state.pinned){
+        user.cookies.dispositifsPinned = user.cookies.dispositifsPinned.filter(x => x._id !== this.state.dispositif._id)
+      }else{
+        user.cookies.dispositifsPinned=[...(user.cookies.dispositifsPinned || []), {...this.state.dispositif, pinned:true}];
+      }
+      API.set_user_info(user).then((data) => {
+        this.setState({
+          showSpinnerBookmark: false,
+          showBookmarkModal: !this.state.pinned,
+          pinned: !this.state.pinned
+        })
+      })
+    }else{Swal.fire( 'Oh non!', 'Vous devez être connecté pour utiliser cette fonctionnalité', 'error')}
+  }
 
   changeCardTitle = (key, subkey, node, value) => {
     const prevState = [...this.state.menu];
@@ -380,7 +402,9 @@ class Dispositif extends Component {
             <TopRightHeader 
               disableEdit={this.state.disableEdit} 
               withHelp={this.state.withHelp}
-              toggleBookmarkModal={this.toggleBookmarkModal}
+              showSpinnerBookmark={this.state.showSpinnerBookmark}
+              pinned={this.state.pinned}
+              bookmarkDispositif={this.bookmarkDispositif}
               toggleHelp={this.toggleHelp}
               toggleDispositifValidateModal={this.toggleDispositifValidateModal}
               valider_dispositif={this.valider_dispositif} />
