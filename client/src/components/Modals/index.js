@@ -12,6 +12,8 @@ import SuccessModal from './SuccessModal/SuccessModal'
 import SuggererModal from './SuggererModal/SuggererModal'
 import ThanksModal from './ThanksModal/ThanksModal'
 import TranslationModal from './TranslationModal/TranslationModal'
+import SuggestionModal from './SuggestionModal/SuggestionModal'
+import ObjectifsModal from './ObjectifsModal/ObjectifsModal'
 
 export {
   BookmarkedModal,
@@ -28,4 +30,6 @@ export {
   SuggererModal,
   ThanksModal,
   TranslationModal,
+  SuggestionModal,
+  ObjectifsModal,
 }

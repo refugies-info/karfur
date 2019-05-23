@@ -24,25 +24,6 @@
 
   .label.label-default.rank-label {
     background-color: rgb(81, 210, 183);
-    padding: 5px 10px 5px 10px;
-    border-radius: 27px;
   }
 
-  .rank-label-container [type=file] {
-    cursor: inherit;
-    display: block;
-    font-size: 999px;
-    filter: alpha(opacity=0);
-    min-height: 100%;
-    min-width: 100%;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    text-align: right;
-    top: 0;
-  }
-
-  .rank-label-container [type=file] {
-    cursor: pointer;
-  }
 }

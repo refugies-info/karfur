@@ -53,7 +53,7 @@
           padding-top: 0.3rem;
         }
         i, span{
-          z-index:2;
+          z-index:3;
         }
       }
       .top-right{
@@ -69,7 +69,7 @@
         .card{
           background: #FBFBFB;
           border-radius: 12px;
-          z-index:2;
+          z-index:3;
 
           .card-body{
             display:flex;
@@ -104,7 +104,7 @@
         }
 
         .audio-icon-wrapper{
-          z-index:2;
+          z-index:3;
         }
         .bookmark-icon-wrapper{
           position: relative;
@@ -118,7 +118,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          z-index:2;
+          z-index:3;
           background: #F2F2F2;
           box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
         }
