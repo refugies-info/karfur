@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Col, Card, CardBody, CardHeader, CardFooter, ButtonDropdown, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, ListGroup, ListGroupItem,Button } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import ContentEditable from 'react-contenteditable';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import Modal from '../../../components/Modals/Modal'
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
