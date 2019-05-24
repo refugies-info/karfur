@@ -156,7 +156,7 @@ class UserProfile extends Component {
     }
     API.set_user_info(newUser).then((data) => {
       Swal.fire( 'Yay...', 'Votre profil a bien été enregistré', 'success')
-      this.setState({ editing:false })
+      this.setState({ editing:false, user: data.data.data })
     })
   }
 

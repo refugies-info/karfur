@@ -101,8 +101,8 @@ class Dispositifs extends Component {
                 <img src={femmeDispo} alt="femme"/>
               </Col>
               <Col lg="6">
-                <h1>Construire sa vie en France</h1>
-                <h2>Trouver le dispositif qui vous correspond</h2>
+                <h1 className="text-white">Construire sa vie en France</h1>
+                <h2>Ici, vous pourrez comprendre comment ouvrir vos droits sociaux, trouver un emploi, trouver des cours de français</h2>
                 
                 <div className="input-group md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
                   <Autosuggest 

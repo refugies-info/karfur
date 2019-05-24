@@ -4,6 +4,7 @@ export default [
     title:'Je suis',
     value: 'réfugié',
     query: 'réfugiés',
+    title2:', ',
     queryName: 'audience',
     color:'success',
     children:[
@@ -30,56 +31,57 @@ export default [
     ]
   },
   {
-    title:'Je cherche à',
-    value: 'Trouver un emploi',
+    title:'je cherche à',
+    value: 'trouver un emploi',
     query: 'Emploi',
     queryName: 'tags',
+    title2:', ',
     color:'secondary',
     children: [
       {
-        name: 'Trouver un emploi',
+        name: 'trouver un emploi',
         query: 'Emploi',
       },
       {
-        name: 'Trouver un dispositif jeune',
+        name: 'trouver un dispositif jeune',
         query: 'Jeune',
       },
       {
-        name: "Être mobile",
+        name: "être mobile",
         query: 'Mobilité',
       },
       {
-        name: "Être logé",
+        name: "être logé",
         query: 'Logement',
       },
       {
-        name: "Devenir cultivé",
+        name: "devenir cultivé",
         query: 'Culture',
       },
       {
-        name: "Apprendre le français",
+        name: "apprendre le français",
         query: 'Apprendre le français',
       },
       {
-        name: "Faire des études",
+        name: "faire des études",
         query: 'Etudes',
       },
       {
-        name: "Faire une formation professionnelle",
+        name: "faire une formation professionnelle",
         query: 'Formation professionnelle',
       },
       {
-        name: "Être accompagné",
+        name: "être accompagné",
         query: 'Accompagnement',
       },
       {
-        name: "Trouver autre chose",
+        name: "trouver autre chose",
         query: 'Autre',
       }
     ]
   },
   {
-    title:'Aux alentours de',
+    title:'aux alentours de',
     value: 'Paris',
     queryName: 'localisation',
     color:'primary',
@@ -128,33 +130,18 @@ export default [
     children:[
       {
         name: "pas",
-        description: '#f093fb → #f5576c',
-        css: 'linear-gradient(137.67deg, #979797 -12.31%, #3D3D3D 95.23%)',
-        height: 400
       },
       {
         name: "peu",
-        description: '#5ee7df → #b490ca',
-        css: 'linear-gradient(137.67deg, #979797 -12.31%, #3D3D3D 95.23%)',
-        height: 400
       },
       {
         name: "moyennement",
-        description: '#f6d365 → #fda085',
-        css: 'linear-gradient(137.67deg, #979797 -12.31%, #3D3D3D 95.23%)',
-        height: 400
       },
       {
         name: "bien",
-        description: ' #ddd6f3 → #faaca8',
-        css: 'linear-gradient(137.67deg, #979797 -12.31%, #3D3D3D 95.23%)',
-        height: 400
       },
       {
         name: "parfaitement",
-        description: ' #ddd6f3 → #faaca8',
-        css: 'linear-gradient(137.67deg, #979797 -12.31%, #3D3D3D 95.23%)',
-        height: 400
       }
     ]
   }

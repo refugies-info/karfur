@@ -4,15 +4,15 @@ import { withTranslation } from 'react-i18next';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
 import track from 'react-tracking';
-import { AppAside, AppFooter } from '@coreui/react';
+// import { AppAside, AppFooter } from '@coreui/react';
 import { connect } from 'react-redux';
 
 import API from '../../utils/API';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
-import Footer from '../../components/Navigation/Footer/Footer';
+// import Footer from '../../components/Navigation/Footer/Footer';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import OnBoardingTraducteurModal from '../../components/Modals/OnBoardingTradModal/OnBoardingTraducteurModal'
-import RightSideDrawer from '../../components/Navigation/SideDrawer/RightSideDrawer/RightSideDrawer'
+// import RightSideDrawer from '../../components/Navigation/SideDrawer/RightSideDrawer/RightSideDrawer'
 import * as actions from '../../Store/actions';
 import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
 
@@ -152,11 +152,11 @@ class Layout extends Component {
                 </>
             </main>
 
-            <AppAside fixed>
+            {/* <AppAside fixed>
               <Suspense fallback={this.loading()}>
                 <RightSideDrawer />
               </Suspense>
-            </AppAside>
+            </AppAside> */}
           </div>
           {/* <AppFooter>
             <Suspense fallback={this.loading()}>

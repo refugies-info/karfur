@@ -77,9 +77,8 @@ class UserDash extends Component {
   }
   
   openThemes = (langue) => {
-    console.log(langue)
     this.props.history.push({
-      pathname: '/avancement/'+langue._id,
+      pathname: '/avancement/langue/'+langue._id,
       state: { langue: langue}
     })
   }
