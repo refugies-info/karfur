@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Card, CardBody, Button, ListGroup, ListGroupItem, Collapse, Tooltip } from 'reactstrap';
+import { Col, Row, Tooltip } from 'reactstrap';
 import { connect } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -55,7 +55,7 @@ class Dispositif extends Component {
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, content: (x.type ? null : x.tutoriel.contenu), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(lorems.paragraphe).contentBlocks))}}),
     content:contenu,
     sponsors:sponsorsData,
-    tags:['Insertion professionnelle', 'Apprendre le français'],
+    tags:['Formation professionnelle', 'Apprendre le français'],
     dateMaj:new Date(),
     
     hovers: menu.map((x) => {return {isHover:false, ...( x.children && {children: new Array(x.children.length).fill({isHover:false})})}}),
@@ -149,22 +149,31 @@ class Dispositif extends Component {
   _handleChange = (ev) => {
     this.setState({ content: {
       ...this.state.content,
-      [ev.currentTarget.id]:ev.target.value
+      [ev.currentTarget.id]:ev.currentTarget.innerText
      }
     });
   };
 
   handleModalChange = (ev) => this.setState({ [ev.currentTarget.id]: ev.target.value });
 
+  disableIsMapLoaded = (key, subkey) => {
+    let state=[...this.state.menu];
+    if(state.length > key && state[key].children && state[key].children.length > subkey){
+      state[key].children[subkey].isMapLoaded = true;
+      this.setState({ menu: state });
+    }
+  }
+  
   handleMenuChange = (ev) => {
     let node=ev.currentTarget;
     let state = JSON.parse(JSON.stringify(this.state.menu));
+    let value = node.dataset.target==="title" ? ev.currentTarget.innerText : ev.target.value;
     state[node.id]={
       ...state[node.id],
       ...(!node.dataset.subkey && {content : ev.target.value, isFakeContent:false}), 
       ...(node.dataset.subkey && state[node.id].children && state[node.id].children.length > node.dataset.subkey && {children : state[node.id].children.map((y,subidx) => { return {
             ...y,
-            ...(subidx==node.dataset.subkey && {[node.dataset.target || 'content'] : ev.target.value, isFakeContent:false})
+            ...(subidx==node.dataset.subkey && {[node.dataset.target || 'content'] : value, isFakeContent:false})
           }
         })
       })
@@ -180,7 +189,7 @@ class Dispositif extends Component {
       right_node.editable = editable;
       if(editable && right_node.content){
         right_node.editorState=EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks));
-      }else if(!editable){
+      }else if(!editable && right_node.editorState){
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
       this.setState({
@@ -225,11 +234,13 @@ class Dispositif extends Component {
       let newChild={...prevState[key].children[prevState[key].children.length - 1]};
       if(type==='card' && newChild.type!=='card'){
         prevState[key].type='cards';
-        newChild={type:'card',title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody:'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'};
+        newChild={type:'card', isFakeContent: true,title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody:'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'};
       }else if(type==='accordion' && !newChild.content){
         newChild={type:'accordion', isFakeContent: true, title:'Un exemple d\'accordéon',content: lorems.sousParagraphe};
       }else if(type==='map'){
-        newChild={type:'map', markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]};
+        newChild={type:'map', isFakeContent: true, isMapLoaded:false, markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]};
+      }else if(type === 'paragraph' && !newChild.content){
+        newChild={title:'Un exemple de paragraphe', isFakeContent: true,content: lorems.sousParagraphe, type:type}
       }
       newChild.type=type;
       if(subkey == null || subkey==undefined){
@@ -238,7 +249,14 @@ class Dispositif extends Component {
         prevState[key].children.splice(subkey+1,0,newChild)
       }
     }else{
-      prevState[key].children=[{title:'Nouveau sous-paragraphe',[type]:true,content: lorems.sousParagraphe}];
+      if(type==='card'){
+        prevState[key].type='cards';
+        prevState[key].children=[{type:'card', isFakeContent: true,title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody:'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'}];
+      }else if(type==='map'){
+        prevState[key].children=[{type:'map', isFakeContent: true, isMapLoaded:false, markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]}];
+      }else{
+        prevState[key].children=[{title:'Nouveau sous-paragraphe', type:type,content: lorems.sousParagraphe}];
+      }
     }
     uiArray[key].children= [...(uiArray[key].children || []), uiElement];
     this.setState({ menu: prevState, uiArray: uiArray });
@@ -311,6 +329,7 @@ class Dispositif extends Component {
 
   changeTag = (key, value) => this.setState({ tags: this.state.tags.map((x,i)=> i===key ? value : x) });
   addTag = () => this.setState({ tags: [...this.state.tags, 'Autre'] });
+  deleteTag = (idx) => this.setState({ tags: [...this.state.tags].filter((_,i) => i!==idx) });
 
   handleFileInputChange = event => {
     this.setState({sponsorLoading:true})
@@ -431,7 +450,7 @@ class Dispositif extends Component {
                 />
               </h2>
               <div className="header-footer">
-                <Tags tags={this.state.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} />
+                <Tags tags={this.state.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
               </div>
             </div>
           </Col>
@@ -492,6 +511,7 @@ class Dispositif extends Component {
               addItem={this.addItem}
               removeItem={this.removeItem}
               changeTitle={this.changeCardTitle}
+              disableIsMapLoaded={this.disableIsMapLoaded}
               {...this.state}
             />
             

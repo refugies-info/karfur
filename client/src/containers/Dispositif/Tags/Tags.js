@@ -4,7 +4,7 @@ import Icon from 'react-eva-icons';
 
 import './Tags.scss';
 
-const tags = ['Insertion professionnelle', 'Trouver un logement', 'Faire une demande d\'asile', 'Faire garder mes enfants', 'Apprendre le français', 'Autre']
+const tags = ['Emploi', 'Jeune', 'Mobilité', 'Logement', 'Culture', 'Apprendre le français', 'Etudes', 'Formation professionnelle', 'Accompagnement', 'Autre']
 
 class Tags extends Component {
   state= {
@@ -21,6 +21,11 @@ class Tags extends Component {
   addTag = () => {
     this.setState({isDropdownOpen:[...this.state.isDropdownOpen,false]})
     this.props.addTag();
+  }
+
+  removeTag = (idx) => {
+    this.setState({isDropdownOpen:[...this.state.isDropdownOpen].filter((_,i) => i!==idx)})
+    this.props.deleteTag(idx);
   }
 
   render(){
@@ -41,6 +46,12 @@ class Tags extends Component {
                   )} 
                 )}
               </DropdownMenu>
+              {!this.props.disableEdit && 
+                <div className="tags-icons">
+                  <div onClick={()=>this.removeTag(key)}>
+                    <Icon name="minus-circle-outline" fill="#0D1C2E" className="delete-icon"/>
+                  </div>
+                </div>}
             </ButtonDropdown>
           )}
         )}

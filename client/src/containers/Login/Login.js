@@ -28,7 +28,8 @@ class Login extends Component {
 
   togglePasswordVisibility = () => this.setState(prevState=>({passwordVisible: !prevState.passwordVisible}))
 
-  send = () => {
+  send = (e) => {
+    e.preventDefault();
     if(this.state.username.length === 0){
       Swal.fire( 'Oops...', 'Aucun nom d\'utilisateur n\'est renseigné !', 'error');return;
     }
@@ -69,7 +70,7 @@ class Login extends Component {
               <CardGroup>
                 <Card className="card-left">
                   <CardBody>
-                    <Form>
+                    <Form onSubmit={this.send}>
                       <h1>Se connecter</h1>
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend" className="icon-prepend">
@@ -90,10 +91,10 @@ class Login extends Component {
                         </InputGroupAddon>
                       </InputGroup>
                       <div className="footer-buttons">
-                        <Button color="transparent" className="px-0 text-dark password-btn">
+                        <Button type="button" color="transparent" className="px-0 text-dark password-btn">
                           <u>mot de passe oublié ?</u>
                         </Button>
-                        <Button onClick={this.send} color="dark" className="px-4 connect-btn">
+                        <Button type="submit" color="dark" className="px-4 connect-btn">
                           Connexion
                         </Button>
                       </div>
