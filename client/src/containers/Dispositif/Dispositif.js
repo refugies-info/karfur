@@ -147,7 +147,7 @@ class Dispositif extends Component {
   _handleChange = (ev) => {
     this.setState({ content: {
       ...this.state.content,
-      [ev.currentTarget.id]: h2p(ev.target.value)
+      [ev.currentTarget.id]: ev.target.value
      }
     });
   };
@@ -165,13 +165,12 @@ class Dispositif extends Component {
   handleMenuChange = (ev) => {
     let node=ev.currentTarget;
     let state = JSON.parse(JSON.stringify(this.state.menu));
-    let value = node.dataset.target==="title" ? ev.currentTarget.innerText : ev.target.value;
     state[node.id]={
       ...state[node.id],
       ...(!node.dataset.subkey && {content : ev.target.value, isFakeContent:false}), 
       ...(node.dataset.subkey && state[node.id].children && state[node.id].children.length > node.dataset.subkey && {children : state[node.id].children.map((y,subidx) => { return {
             ...y,
-            ...(subidx==node.dataset.subkey && {[node.dataset.target || 'content'] : value, isFakeContent:false})
+            ...(subidx==node.dataset.subkey && {[node.dataset.target || 'content'] : ev.target.value, isFakeContent:false})
           }
         })
       })
@@ -376,7 +375,7 @@ class Dispositif extends Component {
       keyValue: this.state.tKeyValue, 
       subkey: this.state.tSubkey,
       fieldName: fieldName,
-      ...(this.state.suggestion && {suggestion: this.state.suggestion})
+      ...(this.state.suggestion && {suggestion: h2p(this.state.suggestion)})
     }
     API.update_dispositif(dispositif).then(data => {
       console.log(data.data.data)
@@ -389,9 +388,11 @@ class Dispositif extends Component {
   }
 
   valider_dispositif = (status='Actif') => {
+    let content = {...this.state.content}
+    Object.keys(content).map( k => content[k] = h2p(content[k]))
     let dispositif = {
-      ...this.state.content,
-      contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, children : x.children}}),
+      ...content,
+      contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, ...(x.children && {children : x.children.map(x => ({...x, ...(x.title && {title: h2p(x.title)})}))}) }}),
       sponsors:this.state.sponsors,
       tags:this.state.tags,
       avancement:1,
@@ -402,7 +403,6 @@ class Dispositif extends Component {
     dispositif.audience=[(cardElement.find(x=> x.title==='Public visé') || []).contentTitle];
     dispositif.audienceAge=[((cardElement.find(x=> x.title==='Tranche d\'âge') || []).contentTitle || '').replace(' à ', '-').replace(' ans', '')];
     dispositif.niveauFrancais=(cardElement.find(x=> x.title==='Niveau de français') || []).contentTitle;
-    console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success');
     },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
