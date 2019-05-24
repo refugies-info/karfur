@@ -28,7 +28,8 @@ class Register extends Component {
 
   togglePasswordVisibility = () => this.setState(prevState=>({passwordVisible: !prevState.passwordVisible}))
 
-  send = () => {
+  send = (e) => {
+    e.preventDefault();
     if(this.state.username.length === 0){
       Swal.fire( 'Oops...', 'Aucun nom d\'utilisateur renseigné', 'error');return;
     }
@@ -69,7 +70,7 @@ class Register extends Component {
               <CardGroup>
                 <Card className="card-left">
                   <CardBody>
-                    <Form>
+                    <Form onSubmit={this.send}>
                       <h1>Création de compte</h1>
                       <InputGroup className="mb-3">
                         <InputGroupAddon addonType="prepend" className="icon-prepend">
@@ -100,10 +101,10 @@ class Register extends Component {
                         </InputGroupAddon>
                       </InputGroup>
                       <div className="footer-buttons">
-                        <Button color="transparent" className="px-0 text-white password-btn">
+                        <Button type="button" color="transparent" className="px-0 text-white password-btn">
                           <NavLink to={{ pathname:'/login', state: this.props.location.state }}><u>Déjà un compte ? connectez-vous</u></NavLink>
                         </Button>
-                        <Button onClick={this.send} className="px-4 connect-btn">
+                        <Button type="submit" className="px-4 connect-btn">
                           S'enregistrer
                         </Button>
                       </div>

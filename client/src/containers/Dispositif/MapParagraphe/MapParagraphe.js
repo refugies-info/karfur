@@ -16,18 +16,21 @@ class MapParagraphe extends PureComponent {
     center:{ lat: 48.856614, lng: 2.3522219 },
     markers:this.props.subitem.markers,
     showModal:false,
-    isModalShown:false,
   }
 
   componentDidMount (){
-    console.log(this.state)
-    if(!this.props.disableEdit && !this.state.isModalShown){
-      this.setState({showModal:true, isModalShown: true},()=>(console.log(this.state)))
+    if(!this.props.disableEdit && !this.props.subitem.isMapLoaded){
+      this.setState({showModal:true})
+    }
+  }
+
+  componentDidUpdate (){
+    if(!this.props.disableEdit && !this.props.subitem.isMapLoaded){
+      this.setState({showModal:true})
     }
   }
 
   handleMarkerClick = (e, marker, key) => {
-    console.log(key, this.state.showingInfoWindow)
     this.setState({
       showingInfoWindow: this.state.showingInfoWindow.map((x, id) => id===key ? !x : false)
     });
@@ -44,9 +47,8 @@ class MapParagraphe extends PureComponent {
   };
 
   toggleModal = () => {
-    this.setState(prevState => ({
-      showModal: !prevState.showModal
-    }));
+    if(this.state.showModal){ this.props.disableIsMapLoaded(this.props.keyValue, this.props.subkey); }
+    this.setState(prevState => ({ showModal: !prevState.showModal }));
   }
 
   selectLocation = key => {
