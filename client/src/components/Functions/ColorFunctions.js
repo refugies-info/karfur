@@ -15,7 +15,7 @@ const colorStatut= avancement => {
       return 'danger'
   }else if(avancement === "Inactif" || avancement === "Inactive"){
       return 'secondary'
-  }else if(avancement === "En attente" || avancement === "En cours"){
+  }else if(avancement === "En attente" || avancement === "En cours" || avancement === "Brouillon"){
       return 'warning'
   }else{
       return 'success'

@@ -38,7 +38,7 @@ class Tags extends Component {
                 {tag}
               </DropdownToggle>
               <DropdownMenu>
-                {tags.map((e, i) => {
+                {this.props.filtres.map((e, i) => {
                   return (
                     <DropdownItem key={i} id={i}>
                       {e}
