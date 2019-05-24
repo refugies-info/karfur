@@ -7,9 +7,10 @@ import './AvancementTable.scss';
 export default function AvancementTable(props) {
   return (
     <Card className="avancement-table">
-      <CardHeader>
-        {props.title}
-      </CardHeader>
+      {props.title && 
+        <CardHeader>
+          {props.title}
+        </CardHeader>}
       <CardBody>
         <Table responsive striped>
           <thead>

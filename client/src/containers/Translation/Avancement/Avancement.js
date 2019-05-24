@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-import { Card, CardBody, CardHeader, Carousel, CarouselControl, 
-  CarouselItem, Col, Row, Progress, CardFooter, Badge } from 'reactstrap';
+import { Card, CardBody, CardHeader, Carousel, CarouselControl, CarouselItem, Col, Row, Progress, CardFooter, Badge } from 'reactstrap';
+import moment from 'moment/min/moment-with-locales';
   
 import AvancementTable from '../../../components/Translation/Avancement/AvancementTable'
 import track from 'react-tracking';
@@ -11,40 +11,34 @@ import {colorAvancement, colorStatut} from '../../../components/Functions/ColorF
 import {languages} from './languagesData';
 import {strings} from './stringsData';
 import {themes} from './themesData';
+import {diffData} from './data';
 
 import './Avancement.scss';
 import AvancementLangue from '../../../components/Translation/Avancement/AvancementLangue/AvancementLangue';
 
-const diffData=[
-  {
-    title:'Avancement par langue',
-    headers:['Langue', 'Drapeau', 'Avancement', 'Statut']
-  },
-  {
-    title:'Avancement de ',
-    headers:['Titre', 'Nombre de mots', 'Avancement', 'Statut']
-  }
-];
+moment.locale('fr');
 
 class Avancement extends Component {
   state={
     mainView:true,
-    title: diffData[0].title,
-    headers: diffData[0].headers,
+    title: diffData.all.title,
+    headers: diffData.all.headers,
     activeIndex: 0,
 
     langue:{},
     data: [],
     themes:[],
     itemId:null,
+    isLangue: false,
     isExpert:false,
   }
 
   componentDidMount (){
-    console.log(this.props.match.params)
     let itemId=this.props.match.params.id;
+    let isLangue=this.props.location.pathname.includes('/langue');
     let isExpert=this.props.location.pathname.includes('/traductions');
-    if(itemId && !isExpert){
+    console.log(itemId, isLangue, isExpert)
+    if(isLangue && itemId){
       let i18nCode=null;
       if(this.props.location.state && this.props.location.state.langue && this.props.location.state.langue.i18nCode){
         this.setState({langue:this.props.location.state.langue});
@@ -56,8 +50,8 @@ class Avancement extends Component {
     }else if(isExpert){
       this._loadLangue(itemId, isExpert);
     }
-    this._loadThemes();
-    this.setState({itemId:itemId,isExpert:isExpert})
+    // this._loadThemes();
+    this.setState({itemId:itemId, isExpert:isExpert, isLangue: isLangue})
   }
 
   _loadArticles=(itemId, i18nCode=null) => {
@@ -78,14 +72,13 @@ class Avancement extends Component {
   _loadLangue=(itemId, isExpert) => {
     if(itemId){
       API.get_langues({_id:itemId},{'avancement':1}).then(data_res => {
-        console.log(data_res.data.data[0])
         let langue=data_res.data.data[0];
         this._loadTraductions(langue);
-        console.log('ici')
+        console.log(langue)
         this.setState({
           langue:langue,
-          title: diffData[1].title + ' : ' + langue.langueFr,
-          headers: diffData[1].headers
+          title: diffData.traducteur.title + ' : ' + langue.langueFr,
+          headers: diffData.traducteur.headers
         })
       })
     }
@@ -96,7 +89,7 @@ class Avancement extends Component {
       API.get_tradForReview({'langueCible':langue.i18nCode, 'status' : 'En attente'},{},'articleId').then(data_res => {
         let articles=data_res.data.data;
         articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1},status:x.status, articleId:x.articleId._id}});
-        this.setState({data:articles});
+        // this.setState({data:articles});
       })
     }
   }
@@ -119,16 +112,17 @@ class Avancement extends Component {
   }
 
   switchView= (mainView, element) =>{
-    if(this.state.mainView){
-      this.setState({
-        mainView: false,
-        title: diffData[1 * mainView].title + ' : ' + element.name,
-        headers: diffData[1 * mainView].headers,
-        data: strings
-      })
-    }else{
-      this.props.history.push('/traduction')
-    }
+    console.log('A vérifier')
+    // if(this.state.mainView){
+    //   this.setState({
+    //     mainView: false,
+    //     title: diffData[1 * mainView].title + ' : ' + element.name,
+    //     headers: diffData[1 * mainView].headers,
+    //     data: strings
+    //   })
+    // }else{
+    //   this.props.history.push('/traduction')
+    // }
   }
 
   onExiting = () => {
@@ -159,8 +153,7 @@ class Avancement extends Component {
   }
 
   render(){
-    const { activeIndex } = this.state;
-
+    const { activeIndex, langue } = this.state;
     const slides = this.state.themes.map((item, key) => {
       return (
         <CarouselItem
@@ -200,6 +193,7 @@ class Avancement extends Component {
 
     const AvancementData = () => {
       if(this.props.match.params.id && this.state.data.length>0 && this.state.langue.i18nCode){
+        console.log(this.state.data)
         return(
           this.state.data.map((element,key) => {
             return (
@@ -218,7 +212,7 @@ class Avancement extends Component {
                   <Progress color={colorAvancement((element.avancement || {})[this.state.langue.i18nCode])} value={(element.avancement || {})[this.state.langue.i18nCode]*100} className="mb-3" />
                 </td>
                 <td className="align-middle">
-                  <Badge color={colorStatut(element.status)}>{element.status}</Badge>
+                  <Badge color={colorStatut(element.status)}>{moment(element.created_at).fromNow()}</Badge>
                 </td>
               </tr>
             );
@@ -246,10 +240,24 @@ class Avancement extends Component {
             </Card>
           </Col>
         </Row>}
+        
+        <Row className="avancement-header">
+          <Col className="d-inline-flex align-items-end tableau-header">
+            <i className={'h1 flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
+            <h1>{langue.langueFr}</h1>
+            <Progress 
+              color={colorAvancement(langue.avancement)} 
+              value={langue.avancement*100} />
+            <span className={"chiffre-avancement text-" + colorAvancement(langue.avancement)}>{Math.round((langue.avancement || 0)*100)} %</span>
+          </Col>
+          <Col className="tableau-header">
+            <div className="float-right">
+              Plus que <b className="big-number">345</b> éléments à traduire, on lâche rien !
+            </div>
+          </Col>
+        </Row>
 
-        <AvancementTable 
-          headers={this.state.headers}
-          title={this.state.title} >
+        <AvancementTable headers={this.state.headers} >
           <AvancementData />
         </AvancementTable>
         {/* <AvancementLangue 

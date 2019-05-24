@@ -15,6 +15,7 @@ import Article from '../Article/Article'
 import API from '../../utils/API'
 
 import './Translation.scss';
+import Icon from 'react-eva-icons/dist/Icon';
 
 let last_target=null;
 let letter_pressed=null;
@@ -55,6 +56,7 @@ class Translation extends Component {
     locale:'',
     translationId:'',
     time: 0,
+    langue:{},
 
     feedbackModal:{
       show:false,
@@ -62,7 +64,6 @@ class Translation extends Component {
       success:false,
     },
   }
-  //activeJumb='body';  //A supprimer si pas de régression
   mountTime=0;
 
   componentDidMount (){
@@ -73,7 +74,10 @@ class Translation extends Component {
       })}, 1000);
     let itemId=null, locale=null;
     try{itemId=this.props.match.params.id}catch(e){console.log(e)}
-    try{locale=this.props.location.state.langue.i18nCode}catch(e){console.log(e)}
+    try{
+      this.setState({langue: this.props.location.state.langue})
+      locale=this.props.location.state.langue.i18nCode
+    }catch(e){console.log(e)} //Aller chercher ici par api la langue
     let isExpert=this.props.location.pathname.includes('/validation');
     // API.remove_traduction({query:{'_id':'5c9a1f235de3940eca6b7a6b'}, locale:locale})
     if(itemId && locale){
@@ -132,7 +136,7 @@ class Translation extends Component {
           if(!isExpert){
             //Je vérifie d'abord s'il n'y a pas eu une première traduction effectuée par un utilisateur :
             API.get_tradForReview({'articleId':itemId}, '-avancement').then(data => {
-              if(data.data.data.length > 0){
+              if(data.data.data && data.data.data.length > 0){
                 let traductionFaite = data.data.data[0];
                 this.setState({ translated: {
                   title: traductionFaite.translatedText.title,
@@ -297,6 +301,7 @@ class Translation extends Component {
   }
   
   render(){
+    let langue = this.state.langue || {};
     const ConditionalSpinner = (props) => {
       if(props.show){
         return (
@@ -372,52 +377,53 @@ class Translation extends Component {
               </span>
             </div>
           </Row>
-          <Row>
+          <Row className="translation-row">
             <Col>
               <Card id="card_texte_initial">
                 <CardHeader>
-                  <strong>Texte initial</strong>
+                  <i className={'flag-icon flag-icon-fr'} title='fr' id='fr'></i>
+                  <strong>Français</strong>
                   <div className="card-header-actions">
                     <a href="/" rel="noreferrer noopener" target="_blank" className="card-header-action">
-                      <small className="text-muted">Voir en contexte</small>
+                      <span className="text-muted">Voir en contexte</span>{' '} 
+                      <Icon name="eye-outline" fill="#3D3D3D" />
                     </a>
                   </div>
                 </CardHeader>
                 <CardBody>
                   {!this.state.isStructure && 
-                    <Jumbotron className="titre text-center">
+                    <div className="titre text-center">
                       <h1 id="title_texte_initial"
                         ref={initial_title => {this.initial_title = initial_title}}
                         onClick={((e) => this.handleClickText(e, "initial", "target"))}>
                         {ReactHtmlParser(this.state.francais.title)}
                       </h1>
-                    </Jumbotron>
-                  }
-                  <Jumbotron>
-                    <div id="body_texte_initial"
-                      ref={initial_text => {this.initial_text = initial_text}}
-                      onClick={((e) => this.handleClickText(e, "initial", "target"))}>
-                      {ReactHtmlParser(this.state.francais.body)}
                     </div>
-                  </Jumbotron>
+                  }
+                  <div id="body_texte_initial"
+                    ref={initial_text => {this.initial_text = initial_text}}
+                    onClick={((e) => this.handleClickText(e, "initial", "target"))}>
+                    {ReactHtmlParser(this.state.francais.body)}
+                  </div>
                 </CardBody>
               </Card>
             </Col>
             <Col>
-              <Card 
-                id="card_texte_final"> 
+              <Card id="card_texte_final"> 
                 {/* style={{height : 'calc(' + this.state.height + 'px - .8rem)'}} */}
                 <CardHeader>
-                  <strong>Texte final</strong>
+                  <i className={'flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
+                  <strong>{langue.langueFr}</strong>
                   <div className="card-header-actions">
                     <a href="#article-container" rel="noreferrer noopener" className="card-header-action">
-                      <small className="text-muted">Voir le rendu</small>
+                      <span className="text-muted">Voir le rendu</span>{' '}
+                      <Icon name="eye-outline" fill="#3D3D3D" />
                     </a>
                   </div>
                 </CardHeader>
                 <CardBody>
                   {!this.state.isStructure && 
-                    <Jumbotron className="titre text-center">
+                    <div className="titre text-center">
                       <ConditionalSpinner show={!this.state.translated.title} />
                       <ContentEditable
                         id="title_texte_final"
@@ -427,29 +433,27 @@ class Translation extends Component {
                         onChange={this.handleChange} 
                         onSelect={this.onSelect}
                       />
-                    </Jumbotron>
-                  }
-                  <Jumbotron>
-                    <div id="body_texte_final"
-                    onClick={((e) => this.handleClickText(e, "target", "initial"))}>
-                      <ConditionalSpinner show={!this.state.translated.body} />
-                      <ContentEditable
-                        key="target-editor-body"
-                        className="body"
-                        html={this.state.translated.body} // innerHTML of the editable div
-                        disabled={this.state.isExpert}       // use true to disable editing
-                        onChange={this.handleChange} // handle innerHTML change
-                        onSelect={this.onSelect}
-                      />
-                      {/* <h3>Source</h3>
-                      <textarea
-                        className="form-control body"
-                        value={this.state.translated.body}
-                        onChange={this.handleChange}
-                        onSelect={this.onSelect}
-                      /> */}
                     </div>
-                  </Jumbotron>
+                  }
+                  <div id="body_texte_final"
+                  onClick={((e) => this.handleClickText(e, "target", "initial"))}>
+                    <ConditionalSpinner show={!this.state.translated.body} />
+                    <ContentEditable
+                      key="target-editor-body"
+                      className="body"
+                      html={this.state.translated.body} // innerHTML of the editable div
+                      disabled={this.state.isExpert}       // use true to disable editing
+                      onChange={this.handleChange} // handle innerHTML change
+                      onSelect={this.onSelect}
+                    />
+                    {/* <h3>Source</h3>
+                    <textarea
+                      className="form-control body"
+                      value={this.state.translated.body}
+                      onChange={this.handleChange}
+                      onSelect={this.onSelect}
+                    /> */}
+                  </div>
                 </CardBody>
                 <CardFooter>
                   <Label>Estimez le niveau d'avancement de la traduction :</Label>

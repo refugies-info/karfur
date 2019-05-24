@@ -84,7 +84,7 @@ function get_article(req, res) {
       let structureArr=[];
       [].forEach.call(result, (article, i) => { 
         if(article.isStructure){
-          structureArr = _createFromNested(article.body, locale, query, article.status);
+          structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           result.splice(i, 1);
         }else{
@@ -515,7 +515,7 @@ const _updateAvancement = (locale) => {
   })
 }
 
-_createFromNested = (structJson, locale, query = {}, status = 'Actif', articles=[], path=[]) => {
+_createFromNested = (structJson, locale, query = {}, status = 'Actif', created_at, articles=[], path=[]) => {
   Object.keys(structJson).forEach((key) => {
     if(structJson[key] && typeof structJson[key].fr === 'string'){
       let newArticle={
@@ -526,6 +526,7 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', articles=
         status: status,
         isStructure: true,
         path: [...path, key],
+        created_at:created_at,
         _id: structJson[key].id
       }
       if(! (query['$or'] && query['$or'].length>0 && query['$or'][0] && query['$or'][0]['avancement.'+locale] && query['$or'][0]['avancement.'+locale]['$lt'] && newArticle.avancement === 1) ){
@@ -533,7 +534,7 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', articles=
       }
     }else if(structJson.constructor === Object){
       path.push(key)
-      articles=_createFromNested(structJson[key], locale, query, status, articles, path);
+      articles=_createFromNested(structJson[key], locale, query, status, created_at, articles, path);
     }
   })
   path.pop()

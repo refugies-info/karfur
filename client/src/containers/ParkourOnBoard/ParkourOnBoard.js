@@ -111,11 +111,11 @@ class ParkourOnBoard extends Component {
   render() {
     let QuestionItem = (props) => {
       return(
-        <div className="question-line">
+        <span className="question-line">
           {props.item.title}&nbsp;
-          <Button color={props.item.color} onClick={()=>this.toggleButtons(props.id)}>{props.item.value}</Button>
+          <Button className="filter-btn" onClick={()=>this.toggleButtons(props.id)}>{props.item.value}</Button>
           &nbsp;{props.item.title2}
-        </div>
+        </span>
       )
     }
 
@@ -135,12 +135,13 @@ class ParkourOnBoard extends Component {
     return (
       <div className="animated fadeIn parkour-on-board">
         <Row className="full-width">
-          <Col lg="6" className="left-panel">
+          <Col lg="4" className="left-panel">
             <Card>
               <CardHeader>
-                Découvrez les initiatives qui vous concernent : 
+                <div><b>Formulez votre requête</b></div>
               </CardHeader>
               <CardBody className="questionnaire-main">
+                <div className="text-muted sous-titre">pour découvrir les initiatives qui vous concernent</div>
                 {this.state.data.slice(0,3).map((item, id) =>  <QuestionItem key={id} item={item} id={id} />)}
                 {this.state.data.slice(0,3).map((item, id) => <SpringItem key={id} item={item} id={id} />)}
                 
@@ -171,7 +172,7 @@ class ParkourOnBoard extends Component {
               </CardFooter>
             </Card>
           </Col>
-          <Col lg="6" className="right-panel">
+          <Col lg="8" className="right-panel">
             <div className="header">
               {this.state.dispositifs.length} résultat{this.state.dispositifs.length>1 && "s"} sur {this.state.count_dispositifs}
               <AudioBtn />
@@ -180,7 +181,7 @@ class ParkourOnBoard extends Component {
               {[...this.state.pinned,...this.state.dispositifs].slice(0,8).map((dispositif) => {
                 if(!dispositif.hidden){
                   return (
-                    <Col xs="12" sm="6" md="4" className="card-col puff-in-center" key={dispositif._id}>
+                    <Col xs="12" sm="6" md="3" className="card-col puff-in-center" key={dispositif._id}>
                       <NavLink to={'/dispositif/'+dispositif._id}>
                         <CustomCard>
                           <CardBody>
@@ -197,7 +198,7 @@ class ParkourOnBoard extends Component {
                   return false
                 }}
               )}
-              <Col xs="12" sm="6" md="4" className="card-col">
+              <Col xs="12" sm="6" md="3" className="card-col">
                 <NavLink to={'/dispositif'}>
                   <CustomCard addcard="true" onClick={this.goToDispositif}>
                     <CardBody>
