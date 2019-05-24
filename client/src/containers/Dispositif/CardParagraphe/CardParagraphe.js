@@ -13,7 +13,7 @@ const cardTitles=[
   {title:'Public visé',titleIcon:'papiers', options:['associations','travailleurs sociaux','institutions d\'état','réfugiés','citoyens']},
   {title:'Tranche d\'âge',titleIcon:'calendar', options: ["0 à 18 ans","18 à 25 ans","25 à 56 ans","56 à 120 ans"]}, //["0-18","18-25","25-56","56-120"]
   {title:'Durée',titleIcon:'horloge'},
-  {title:'Niveau de français',titleIcon:'frBubble', options: ["Débutant (A1)","Débutant + (A2)","Intermédiaire (B1)","Intermédiaire + (B2)","Avancé (C1)","Avancé + (C2)"]},
+  {title:'Niveau de français',titleIcon:'frBubble', options: ["Débutant (A1)","Débutant + (A2)","Intermédiaire (B1)","Intermédiaire + (B2)","Avancé (C1)","Avancé + (C2)", "Tous niveaux"]},
   {title:'Important !',titleIcon:'warning'},
 ]
 
