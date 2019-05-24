@@ -71,7 +71,7 @@ class Avancement extends Component {
         let articles=data_res.data.data;
         console.log(articles)
         this.setState({data:articles})
-      },(error) => {console.log(error);return;})
+      })
     }
   }
 
@@ -81,12 +81,13 @@ class Avancement extends Component {
         console.log(data_res.data.data[0])
         let langue=data_res.data.data[0];
         this._loadTraductions(langue);
+        console.log('ici')
         this.setState({
           langue:langue,
           title: diffData[1].title + ' : ' + langue.langueFr,
           headers: diffData[1].headers
         })
-      },(error) => {console.log(error);return;})
+      })
     }
   }
 
@@ -96,7 +97,7 @@ class Avancement extends Component {
         let articles=data_res.data.data;
         articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1},status:x.status, articleId:x.articleId._id}});
         this.setState({data:articles});
-      },(error) => {console.log(error);return;})
+      })
     }
   }
 
@@ -114,7 +115,7 @@ class Avancement extends Component {
         return {currGrp: [...acc.currGrp, curr], groupedData: acc.groupedData }
       }, {currGrp: [], groupedData: []}).groupedData;
       this.setState({themes:reduced_themes})
-    },(error) => {console.log(error);return;})
+    })
   }
 
   switchView= (mainView, element) =>{
@@ -225,10 +226,11 @@ class Avancement extends Component {
         )
       }else{return (<tr><td>Chargement</td><td>Chargement</td><td>Chargement</td><td>Chargement</td></tr>)}
     }
+
     return(
       <div className="animated fadeIn avancement">
 
-        <Row>
+        {false && <Row>
           <Col xs="24" xl="12">
             <Card>
               <CardHeader>
@@ -243,7 +245,7 @@ class Avancement extends Component {
               </CardBody>
             </Card>
           </Col>
-        </Row>
+        </Row>}
 
         <AvancementTable 
           headers={this.state.headers}

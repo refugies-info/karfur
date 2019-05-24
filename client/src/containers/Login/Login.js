@@ -42,20 +42,11 @@ class Login extends Component {
       'traducteur' : this.state.traducteur,
     }
     API.login(user).then(data => {
-      Swal.fire( 'Yay...', 'Authentification réussie !', 'success');
+      Swal.fire( 'Yay...', 'Authentification réussie !', 'success').then(()=>{
+        this.props.history.push(this.state.redirectTo)
+      });
       localStorage.setItem('token', data.data.token);
       setAuthToken(data.data.token);
-      console.log(data.data.token)
-      console.log(this.state.redirectTo)
-      this.props.history.push(this.state.redirectTo)
-      // if(this.state.traducteur){
-      //   this.props.history.push("/backend/user-dashboard")
-      // }else{
-      //   this.props.history.push("/")
-      // }
-    },error => {
-      console.log(error);
-      return;
     })
   }    
 

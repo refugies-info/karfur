@@ -42,16 +42,11 @@ class Register extends Component {
       traducteur : this.state.traducteur
     }
     API.signup(_send).then(data => {
-      Swal.fire( 'Yay...', 'Authentification réussie !', 'success');
+      Swal.fire( 'Yay...', 'Authentification réussie !', 'success').then(()=>{
+        this.props.history.push(this.state.redirectTo)
+      });
       localStorage.setItem('token', data.data.token);
       setAuthToken(data.data.token);
-      console.log('succes', data.data.token)
-      this.props.history.push(this.state.redirectTo)
-      // if(this.state.traducteur){
-      //   this.props.history.push("/backend/user-dashboard")
-      // }else{
-      //   this.props.history.push("/homepage")
-      // }
     })
   }    
 

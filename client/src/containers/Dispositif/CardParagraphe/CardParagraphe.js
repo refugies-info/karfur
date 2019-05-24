@@ -9,14 +9,6 @@ import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
 import './CardParagraphe.scss';
 
-const cardTitles=[
-  {title:'Public visé',titleIcon:'papiers', options:['associations','travailleurs sociaux','institutions d\'état','réfugiés','citoyens']},
-  {title:'Tranche d\'âge',titleIcon:'calendar', options: ["0 à 18 ans","18 à 25 ans","25 à 56 ans","56 à 120 ans"]}, //["0-18","18-25","25-56","56-120"]
-  {title:'Durée',titleIcon:'horloge'},
-  {title:'Niveau de français',titleIcon:'frBubble', options: ["Débutant (A1)","Débutant + (A2)","Intermédiaire (B1)","Intermédiaire + (B2)","Avancé (C1)","Avancé + (C2)", "Tous niveaux"]},
-  {title:'Important !',titleIcon:'warning'},
-]
-
 const list_papiers=[
   {name:'Titre de séjour'},
   {name:'Contrat d\'intégration républicaine (CIR)'},
@@ -60,8 +52,7 @@ class CardParagraphe extends Component {
   };
 
   render(){
-    let subitem=this.props.subitem;
-    let subkey=this.props.subkey;
+    let {subitem, subkey, filtres} = this.props;
 
     const jsUcfirst = (string, title) => {
       if(title === 'Public visé' && string && string.length > 1){
@@ -69,6 +60,14 @@ class CardParagraphe extends Component {
       }else{ return string }
     }
 
+    let cardTitles=[
+      {title:'Public visé',titleIcon:'papiers', options: filtres.audience},
+      {title:'Tranche d\'âge',titleIcon:'calendar', options: filtres.audienceAge}, //["0-18","18-25","25-56","56-120"]
+      {title:'Durée',titleIcon:'horloge'},
+      {title:'Niveau de français',titleIcon:'frBubble', options: filtres.niveauFrancais},
+      {title:'Important !',titleIcon:'warning'},
+    ]
+    
     let contentTitle = (subitem) => {
       let cardTitle = cardTitles.find(x=>x.title==subitem.title);
       if(cardTitle && cardTitle.options && !this.props.disableEdit){

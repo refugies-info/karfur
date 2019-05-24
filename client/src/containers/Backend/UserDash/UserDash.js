@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Button, Progress, Badge, ListGroup, ListGroupItem, 
-  Card, CardHeader, CardBody, ListGroupItemHeading, ListGroupItemText, Modal } from 'reactstrap';
+import { Col, Row, Button, Progress, Badge, Modal } from 'reactstrap';
 import ReactJoyride from 'react-joyride';
 import {Redirect} from 'react-router-dom';
 import moment from 'moment/min/moment-with-locales';
+import Swal from 'sweetalert2';
 
 import marioProfile from '../../../assets/mario-profile.jpg'
 import {languages, past_translation, steps} from './data'
@@ -15,6 +15,7 @@ import './UserDash.scss';
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
 import Icon from 'react-eva-icons/dist/Icon';
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
+import { ObjectifsModal } from '../../../components/Modals';
 
 moment.locale('fr');
 
@@ -98,6 +99,15 @@ class UserDash extends Component {
   editProfile = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'editProfile' });
     this.props.history.push('/backend/user-form')
+  }
+
+  validateObjectifs = newUser => {
+    newUser={ _id: this.state.user._id, ...newUser }
+    API.set_user_info(newUser).then((data) => {
+      Swal.fire( 'Yay...', 'Vos objectifs ont bien été enregistrés', 'success')
+      this.setState({user:data.data.data})
+      this.toggleModal('objectifs')
+    })
   }
 
   render() {
@@ -222,6 +232,7 @@ class UserDash extends Component {
           title="Mes traductions"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 60)}
+          toggle={this.toggleModal}
           motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt
           minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 60))} //idem
         />
@@ -245,6 +256,10 @@ class UserDash extends Component {
           <TraductionsRecentes dataArray={langues} />
         </Modal>
 
+        <ObjectifsModal 
+          show={this.state.showModal.objectifs} 
+          toggle={()=>this.toggleModal('objectifs')}
+          validateObjectifs={this.validateObjectifs} />
       </div>
     );
   }

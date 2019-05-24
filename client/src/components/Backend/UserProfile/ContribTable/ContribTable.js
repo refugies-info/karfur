@@ -6,7 +6,7 @@ import {NavLink} from 'react-router-dom';
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
 
-const tradTable = (props) => {
+const contribTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
   
   let table = (
@@ -55,7 +55,7 @@ const tradTable = (props) => {
                 })}
               </td>
               <td className="align-middle">
-                <NavLink to={"/traduction/"+element.articleId} className="no-decoration" >
+                <NavLink to={"/dispositif/"+element._id} className="no-decoration" >
                   <Icon name="eye-outline" fill="#3D3D3D" size="large"/>&nbsp;
                   <u>Voir</u>
                 </NavLink>
@@ -132,4 +132,4 @@ const tradTable = (props) => {
   }
 }
 
-export default tradTable;
+export default contribTable;

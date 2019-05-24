@@ -28,7 +28,7 @@ import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/
 
 import {hugo, femmeCurly, manLab, diair} from '../../assets/figma/index';
 
-import {contenu, lorems, menu} from './data'
+import {contenu, lorems, menu, filtres} from './data'
 
 import './Dispositif.scss';
 
@@ -398,11 +398,20 @@ class Dispositif extends Component {
       dispositifId:this.state._id
     }
     let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
-    dispositif.audience=[(cardElement.find(x=> x.title==='Public visé') || []).contentTitle];
-    dispositif.audienceAge=[((cardElement.find(x=> x.title==='Tranche d\'âge') || []).contentTitle || '').replace(' à ', '-').replace(' ans', '')];
-    dispositif.niveauFrancais=(cardElement.find(x=> x.title==='Niveau de français') || []).contentTitle;
+    dispositif.audience= cardElement.find(x=> x.title==='Public visé') ?
+      [(cardElement.find(x=> x.title==='Public visé') || []).contentTitle] :
+      filtres.audience;
+    dispositif.audienceAge= cardElement.find(x=> x.title==='Tranche d\'âge') ? 
+      [(cardElement.find(x=> x.title==='Tranche d\'âge').contentTitle || '').replace(' à ', '-').replace(' ans', '')] :
+      filtres.audienceAge.map(x=> x.replace(' à ', '-').replace(' ans', ''));
+    dispositif.niveauFrancais= cardElement.find(x=> x.title==='Niveau de français') ?
+      (cardElement.find(x=> x.title==='Niveau de français') || []).contentTitle :
+      filtres.niveauFrancais;
+    console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
-      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success');
+      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+        this.props.history.push("/dispositif/" + data.data.data._id)
+      });
     },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
   }
 
@@ -453,7 +462,7 @@ class Dispositif extends Component {
                 />
               </h2>
               <div className="header-footer">
-                <Tags tags={this.state.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
+                <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
               </div>
             </div>
           </Col>
@@ -515,6 +524,7 @@ class Dispositif extends Component {
               removeItem={this.removeItem}
               changeTitle={this.changeCardTitle}
               disableIsMapLoaded={this.disableIsMapLoaded}
+              filtres={filtres}
               {...this.state}
             />
             
