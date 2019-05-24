@@ -75,6 +75,10 @@ function get_tradForReview(req, res) {
     populate={path:populate, select : '-password'};
   }else{populate='';}
   
+  if(query.articleId && query.articleId.includes('struct_')){
+    res.status(204).json({ "text": "Pas de données", "data" : []})
+    return false;
+  }
   var find = new Promise(function (resolve, reject) {
     Traduction.find(query).sort(sort).populate(populate).exec(function (err, result) {
       if (err) {

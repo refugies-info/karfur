@@ -24,10 +24,13 @@ $transition-time: 0.5s;
     }
     .custom-card{
       overflow: scroll;
-      height:215px;
+
+      h3{
+        font-size: 19.3943px;
+        line-height: 25px;
+      }
       .card-body{
         overflow: hidden;
-        height:124px;
       }
     }
   }
@@ -40,6 +43,7 @@ $transition-time: 0.5s;
       box-shadow: 0px 0px 20px rgba(205, 205, 205, 0.8);
       border-radius: 12px;
       height:100%;
+      padding: 35px;
 
       .card-header{
         font-style: normal;
@@ -49,8 +53,21 @@ $transition-time: 0.5s;
         background-color:inherit;
         border:none;
         border-radius: 12px 12px 0 0;
+        padding-bottom:0;
       }
-
+      
+      .card-body{
+        padding-top:0;
+        .sous-titre{
+          font-size:20px;
+        }
+        .filter-btn{
+          background: #F2F2F2;
+          border:none;
+          color:#3D3D3D;
+          padding:0;
+        }
+      }
       .buttons-wrapper div[style*="transform"]{
         background: #FBFBFB;
         border: 1px solid #828282;
@@ -71,15 +88,16 @@ $transition-time: 0.5s;
         }
       }
       .questionnaire-main .question-line{
-        font-size: 1.75rem;
-        margin: 20px 0;
+        font-size: 24px;
         .btn{
-          font-size: 1.75rem;
+          font-size: 24px;
+          font-weight: 600;
           &.m-0{
             font-size: initial;
           }
         }
       }
+      
       .card-footer{
         margin-top:5em;
         background-color:inherit;

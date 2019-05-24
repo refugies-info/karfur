@@ -42,7 +42,7 @@ const routes = [
 
   { path: '/editeur', name: 'Editeur', component: Editeur, restriction:[] },
   { path: '/avancement/traductions/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['ExpertTrad','Admin'] },
-  { path: '/avancement/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/avancement/langue/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/avancement', name: 'Avancement', component: Avancement, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/traduction', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/traduction/validation/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
