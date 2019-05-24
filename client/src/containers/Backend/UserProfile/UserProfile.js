@@ -4,6 +4,7 @@ import { Col, Row, Card, CardBody, CardHeader, CardFooter, Modal, Spinner, Input
 import {NavLink} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Icon from 'react-eva-icons';
+import h2p from 'html2plaintext';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
@@ -164,10 +165,10 @@ class UserProfile extends Component {
     let user = {...this.state.user};
     let newUser={
       _id:user._id,
-      username:user.username,
+      username:h2p(user.username),
       selectedLanguages:user.selectedLanguages,
-      email:user.email,
-      description:user.description,
+      email:h2p(user.email),
+      description:h2p(user.description),
       picture: user.picture
     }
     API.set_user_info(newUser).then((data) => {
