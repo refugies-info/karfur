@@ -122,9 +122,10 @@ class Dispositif extends Component {
       this.setState({
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
-        showDispositifCreateModal:false, //A modifier avant la mise en prod
+        showDispositifCreateModal:true, //A modifier avant la mise en prod
       })
     }else{ this.props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
+    window.scrollTo(0, 0);
   }
 
   onMenuNavigate = (tab) => {
@@ -189,9 +190,8 @@ class Dispositif extends Component {
       }else if(!editable && right_node.editorState){
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
-      this.setState({
-        menu: state,
-      });
+      if(right_node.type === 'accordion'){ this.updateUIArray(key, subkey, 'accordion', true) }
+      this.setState({ menu: state });
     }
   };
 
@@ -200,12 +200,12 @@ class Dispositif extends Component {
     if(state.length > key){
       if(subkey!==null && state[key].children.length > subkey){
         state[key].children[subkey].editorState =  editorState;
+        state[key].children[subkey].isFakeContent = false;
       }else{
         state[key].editorState =  editorState;
+        state[key].isFakeContent = false;
       }
-      this.setState({
-        menu: state,
-      });
+      this.setState({ menu: state });
     }
   };
 
@@ -369,7 +369,6 @@ class Dispositif extends Component {
 
   pushReaction = (modalName, fieldName) => {
     this.toggleModal(false, modalName);
-    console.log(this.state.tKeyValue, this.state.tSubkey)
     let dispositif = {
       dispositifId: this.state._id,
       keyValue: this.state.tKeyValue, 
@@ -378,7 +377,6 @@ class Dispositif extends Component {
       ...(this.state.suggestion && {suggestion: h2p(this.state.suggestion)})
     }
     API.update_dispositif(dispositif).then(data => {
-      console.log(data.data.data)
       if(modalName === 'reaction'){
         Swal.fire( 'Yay...', 'Votre réaction a bien été enregistrée, merci', 'success')
       }else{
