@@ -51,7 +51,7 @@ class Login extends Component {
       // if(this.state.traducteur){
       //   this.props.history.push("/backend/user-dashboard")
       // }else{
-      //   this.props.history.push("/homepage")
+      //   this.props.history.push("/")
       // }
     },error => {
       console.log(error);

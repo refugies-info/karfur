@@ -147,7 +147,7 @@ class Layout extends Component {
                         )} />
                       ) : (null);
                     })}
-                    <Redirect from="/" to="/homepage" />
+                    <Redirect from="/" to="/dispositifs" />
                   </Switch>
                 </>
             </main>
