@@ -2,7 +2,7 @@ const contenu={
   titreInformatif:'Le titre baseline',
   titreMarque:'Le nom du dispositif',
   abstract:'Ceci est le résumé du dispositif',
-  contact:'contact@volont-r.fr',
+  contact:'contact@lab-r.fr',
 };
 
 const lorems = {

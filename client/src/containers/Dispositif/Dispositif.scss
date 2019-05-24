@@ -636,4 +636,8 @@
   .pointer{
     cursor: pointer;
   }
+
+  div[contenteditable="true"]{
+    min-width: 20px;
+  }
 }
