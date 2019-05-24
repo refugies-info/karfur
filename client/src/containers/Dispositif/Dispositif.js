@@ -530,13 +530,12 @@ class Dispositif extends Component {
         <div className="contact-footer">
           Des questions ? Contactez-nous par email à&nbsp;
           <u>
-            {this.state.content.contact && 
-              <ContentEditable
-                id='contact'
-                html={this.state.content.contact}  // innerHTML of the editable div
-                disabled={this.state.disableEdit}       // use true to disable editing
-                onChange={this._handleChange} // handle innerHTML change
-              />}
+            <ContentEditable
+              id='contact'
+              html={this.state.content.contact || ''}  // innerHTML of the editable div
+              disabled={this.state.disableEdit}       // use true to disable editing
+              onChange={this._handleChange} // handle innerHTML change
+            />
           </u>
         </div>
         <div className="bottom-wrapper">
