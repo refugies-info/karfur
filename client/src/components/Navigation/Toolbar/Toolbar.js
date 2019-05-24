@@ -38,7 +38,7 @@ export class Toolbar extends React.Component {
 
   disconnect = () => {
     API.logout();
-    this.props.history.push('/homepage')
+    this.props.history.push('/')
   }
 
   toggle = () => {
