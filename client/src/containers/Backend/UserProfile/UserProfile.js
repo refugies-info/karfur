@@ -8,8 +8,8 @@ import h2p from 'html2plaintext';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
-import {ActionTable, TradTable, ContribTable, FavoriTable} from '../../../components/Backend/UserProfile/index';
-import {ThanksModal, SuggestionModal, ObjectifsModal} from '../../../components/Modals/index';
+import {ActionTable, TradTable, ContribTable, FavoriTable} from '../../../components/Backend/UserProfile';
+import {ThanksModal, SuggestionModal, ObjectifsModal} from '../../../components/Modals';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import ModifyProfile from '../../../components/Backend/UserProfile/ModifyProfile/ModifyProfile';
 
@@ -32,13 +32,6 @@ class UserProfile extends Component {
     isDropdownOpen:[],
     uploading: false,
     suggestion:{},
-    notifyCheck:false,
-    objectifs: [
-      {objectifTemps:30, mots: 300, objectifMots:50, status:'Contributeur ponctuel', selected:false},
-      {objectifTemps:60, mots: 600, objectifMots:100, status:'Contributeur ponctuel', selected:false},
-      {objectifTemps:120, mots: 1200, objectifMots:500, status:'Contributeur ponctuel', selected:false},
-      {objectifTemps:300, mots: 2000, objectifMots:2000, status:'Contributeur ponctuel', selected:false}
-    ],
     progression:{
       timeSpent:0,
       nbMots:0
@@ -93,8 +86,7 @@ class UserProfile extends Component {
   }
 
   toggleEditing = () => this.setState({editing : !this.state.editing})
-  toggleActive = key => {console.log(key); this.setState({objectifs : this.state.objectifs.map((x,i) => i===key ? {...x, selected:true} : {...x, selected:false})})}
-
+  
   toggleDropdown = (e, key) => {
     if(this.state.isDropdownOpen[key] && e.currentTarget.id){
       this.setState({
@@ -117,7 +109,6 @@ class UserProfile extends Component {
   }
 
   handleChange = (ev) => this.setState({ user: { ...this.state.user, [ev.currentTarget.id]:ev.target.value } });
-  handleCheckChange = (ev) => this.setState({ notifyCheck: ev.target.checked });
 
   handleFileInputChange = event => {
     this.setState({uploading:true})
@@ -144,16 +135,8 @@ class UserProfile extends Component {
     })
   }
 
-  validateObjectifs = () => {
-    let user = {...this.state.user};
-    let objectif=this.state.objectifs.find(x=>x.selected);
-    let newUser={
-      _id:user._id,
-      objectifTemps: objectif.objectifTemps, 
-      objectifMotsContrib: objectif.mots, 
-      objectifMots: objectif.objectifMots, 
-      notifyObjectifs: this.state.notifyCheck
-    }
+  validateObjectifs = (newUser) => {
+    newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
       Swal.fire( 'Yay...', 'Vos objectifs ont bien été enregistrés', 'success')
       this.setState({user:data.data.data})
@@ -375,13 +358,8 @@ class UserProfile extends Component {
         <ThanksModal show={this.state.showModal.thanks} toggle={()=>this.toggleModal('thanks')} />
         <SuggestionModal suggestion={this.state.suggestion} show={this.state.showModal.suggestion} toggle={()=>this.toggleModal('suggestion')} />
         <ObjectifsModal 
-          objectifs={this.state.objectifs} 
-          suggestion={this.state.objectifs} 
-          notifyCheck={this.state.notifyCheck}
           show={this.state.showModal.objectifs} 
-          handleCheckChange={this.handleCheckChange} 
           toggle={()=>this.toggleModal('objectifs')}
-          toggleActive={this.toggleActive}
           validateObjectifs={this.validateObjectifs} />
       </div>
     );
