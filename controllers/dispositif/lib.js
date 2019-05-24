@@ -17,25 +17,48 @@ function add_dispositif(req, res) {
     dispositif.creatorId = req.userId;
     dispositif.status = dispositif.status || 'Actif';
     dispositif.nbMots = nbMots;
-    //On l'insère
-    var _u = new Dispositif(dispositif);
-    _u.save((err, data) => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({"text": "Erreur interne"})
-      } else {
-        //Je rajoute le statut de contributeur à l'utilisateur
+
+    if(dispositif.dispositifId){
+      promise=Dispositif.findOneAndUpdate({_id: dispositif.dispositifId}, dispositif, { upsert: true , new: true});
+    }else{
+      promise=new Dispositif(dispositif).save();
+    }
+
+    promise.then(data => {
+      //Je rajoute le statut de contributeur à l'utilisateur
+      if(!dispositif.dispositifId){
         Role.findOne({'nom':'Contrib'}).exec((err, result) => {
           if(!err && result && req.userId){ 
             User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "roles": result._id, "contributions": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
           }
         })
-        res.status(200).json({
-          "text": "Succès",
-          "data": data
-        })
       }
+      res.status(200).json({
+        "text": "Succès",
+        "data": data
+      })
+    }).catch(err => {
+      console.log(err);
+      res.status(500).json({"text": "Erreur interne"})
     })
+
+    // _u.save((err, data) => {
+    //   if (err) {
+    //     console.log(err);
+    //     res.status(500).json({"text": "Erreur interne"})
+    //   } else {
+    //     //Je rajoute le statut de contributeur à l'utilisateur
+    //     Role.findOne({'nom':'Contrib'}).exec((err, result) => {
+    //       if(!err && result && req.userId){ 
+    //         User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "roles": result._id, "contributions": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+    //       }
+    //     })
+    //     res.status(200).json({
+    //       "text": "Succès",
+    //       "data": data
+    //     })
+    //   }
+    // })
   }
 }
 

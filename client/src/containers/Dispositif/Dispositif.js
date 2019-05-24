@@ -12,6 +12,7 @@ import { savePDF } from '@progress/kendo-react-pdf';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
 import Icon from 'react-eva-icons';
+import h2p from 'html2plaintext';
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import Modal from '../../components/Modals/Modal'
@@ -25,7 +26,7 @@ import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import LeftSideDispositif from '../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif';
 import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader';
 
-import {hugo, femmeCurly, manLab, concordia, ligueEnseignement, minInt, serviceCivique, solidariteJeunesse} from '../../assets/figma/index';
+import {hugo, femmeCurly, manLab, diair} from '../../assets/figma/index';
 
 import {contenu, lorems, menu} from './data'
 
@@ -40,11 +41,7 @@ const spyableMenu = menu.reduce((r, e, i) => {
 }, []);
 
 const sponsorsData = [
-  {src:minInt,alt:"ministère de l'intérieur"},
-  {src:serviceCivique,alt:"service civique"},
-  {src:ligueEnseignement,alt:"ligue de l'enseignement"},
-  {src:concordia,alt:"concordia"},
-  {src:solidariteJeunesse,alt:"solidarite jeunesse"},
+  {src:diair,alt:"logo DIAIR"},
 ]
 
 const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
@@ -109,17 +106,18 @@ class Dispositif extends Component {
           dispositif: dispositif,
           disableEdit: true
         })
-      },function(error){ console.log(error); return; })
-      //On récupère les données de l'utilisateur
-      if(API.isAuth()){
-        API.get_user_info().then(data_res => {
-          let u=data_res.data.data;
-          user={_id:u._id, cookies:u.cookies || {}}
-          this.setState({
-            pinned: (user.cookies.dispositifsPinned || []).some( x => x._id === itemId),
+        //On récupère les données de l'utilisateur
+        if(API.isAuth()){
+          API.get_user_info().then(data_res => {
+            let u=data_res.data.data;
+            user={_id:u._id, cookies:u.cookies || {}}
+            this.setState({
+              pinned: (user.cookies.dispositifsPinned || []).some( x => x._id === itemId),
+              isAuthor: u._id === dispositif.creatorId._id,
+            })
           })
-        })
-      }
+        }
+      },function(error){ console.log(error); return; })
     }else if(API.isAuth()){
       this.setState({
         disableEdit:false,
@@ -149,7 +147,7 @@ class Dispositif extends Component {
   _handleChange = (ev) => {
     this.setState({ content: {
       ...this.state.content,
-      [ev.currentTarget.id]:ev.currentTarget.innerText
+      [ev.currentTarget.id]: h2p(ev.target.value)
      }
     });
   };
@@ -366,6 +364,10 @@ class Dispositif extends Component {
     })
   }
 
+  editDispositif = () => {
+    this.setState({disableEdit: false})
+  }
+
   pushReaction = (modalName, fieldName) => {
     this.toggleModal(false, modalName);
     console.log(this.state.tKeyValue, this.state.tSubkey)
@@ -393,7 +395,8 @@ class Dispositif extends Component {
       sponsors:this.state.sponsors,
       tags:this.state.tags,
       avancement:1,
-      status:status
+      status:status,
+      dispositifId:this.state._id
     }
     let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
     dispositif.audience=[(cardElement.find(x=> x.title==='Public visé') || []).contentTitle];
@@ -423,9 +426,11 @@ class Dispositif extends Component {
               withHelp={this.state.withHelp}
               showSpinnerBookmark={this.state.showSpinnerBookmark}
               pinned={this.state.pinned}
+              isAuthor={this.state.isAuthor}
               bookmarkDispositif={this.bookmarkDispositif}
               toggleHelp={this.toggleHelp}
               toggleDispositifValidateModal={this.toggleDispositifValidateModal}
+              editDispositif = {this.editDispositif}
               valider_dispositif={this.valider_dispositif} />
               
           </Row>

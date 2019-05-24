@@ -16,6 +16,7 @@ import ligueEnseignement from './ligueEnseignement.png';
 import minInt from './minInt.png';
 import serviceCivique from './serviceCivique.png';
 import solidariteJeunesse from './solidariteJeunesse.png';
+import diair from './Diair.png';
 
 export {
   femmeCurly,
@@ -36,4 +37,5 @@ export {
   minInt,
   serviceCivique,
   solidariteJeunesse,
+  diair,
 }

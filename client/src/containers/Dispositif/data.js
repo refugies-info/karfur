@@ -1,7 +1,7 @@
 const contenu={
   titreInformatif:'Le titre baseline',
   titreMarque:'Le nom du dispositif',
-  abstract:'Est est veniam sint officia elit fugiat aliqua. Esse esse laboris cupidatat enim nulla Lorem in sit nulla id nostrud enim est. Amet incididunt amet velit pariatur labore magna aliquip ad fugiat aliquip do dolore. Exercitation aute culpa reprehenderit ipsum ex veniam reprehenderit nisi enim.',
+  abstract:'Ceci est le résumé du dispositif',
   contact:'contact@volont-r.fr',
 };
 
