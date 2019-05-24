@@ -8,10 +8,10 @@ const dispositifCreateModal = (props) => {
   return(
     <Modal isOpen={props.show} toggle={props.toggle} className="dispositif-create-modal">
       <ModalHeader>
-        Règles de rédaction générales
+      Comment rédiger ?
       </ModalHeader>
       <ModalBody>
-        <p>Vous allez commencer la rédaction d’une page dispositif, merci pour votre engagement. Cet exercice devrait vous prendre entre 20 et 40 minutes, en fonction de votre connaissance du dispositif et de votre préparation préalable.</p>
+        <p>Vous allez commencer la rédaction d’une page dispositif, merci pour votre engagement. Cet exercice devrait vous prendre entre 20 et 40 minutes.</p>
         <h6>Gardez en tête le public de la plateforme</h6> 
         <p>Celle-ci s’adresse d’abord aux réfugiés et à leurs accompagnants. Il ne s’agit pas d’un support de communication institutionnelle mais d’une fiche pratique qui donne les principales informations de votre dispositifs. Le contenu doit être synthétique et vulgarisé. La lecture complète de la fiche ne devrait pas excéder deux minutes.</p> 
         <h6>Ne vous inquiètez pas, on repasse derrière</h6> 

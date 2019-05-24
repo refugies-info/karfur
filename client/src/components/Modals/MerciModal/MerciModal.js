@@ -18,7 +18,7 @@ const merciModal = (props) => {
           Donnez-nous votre email pour être informé de notre réponse, ou&nbsp;
           <NavLink to={{ pathname:'/register', state: {redirectTo : window.location.pathname} }} className="no-decoration">créez-vous un compte</NavLink> :
         </p>
-        <Input type="text" placeholder="Cette fonctionnalité n'est pas encore active" value={props.suggestion} onChange={props.onChange} id="email" className="mail-input" />
+        <Input type="text" placeholder="email" value={props.suggestion} onChange={props.onChange} id="email" className="mail-input" />
       </ModalBody>
       <ModalFooter>
         <Button color="secondary" className="send-btn" onClick={validateMail}>Envoyer</Button>

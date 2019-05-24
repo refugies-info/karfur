@@ -232,7 +232,7 @@ class UserProfile extends Component {
                 </div> 
               </CardBody>
               <CardFooter>
-                <h2 className="name">{user.username}</h2>
+                {!this.state.editing && <h2 className="name">{user.username}</h2>}
                 <span className="status">{traducteur ? "Traducteur" : (contributeur ? "Contributeur" : "Utilisateur")}</span>
               </CardFooter>
             </Card>
