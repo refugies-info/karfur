@@ -16,7 +16,7 @@ import './i18n';
 import 'react-notifications/src/notifications.scss';
 import './App.scss';
 
-const loading = () => <Spinner color="success" />;
+const loading = () => <Spinner color="success" className="waiting-spinner" />;
 const chargement = () => <div>Chargement</div>
 
 // Containers

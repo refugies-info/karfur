@@ -13,9 +13,24 @@
 body,head{
   font-family: CircularStd;
   color: #3D3D3D;
+  height:100%;
+  min-height:100vh;
 
   [contenteditable] {
     -webkit-user-select: text;
     user-select: text;
+  }
+}
+
+#root{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+  min-height:100vh;
+
+  .waiting-spinner{
+    margin:auto;
   }
 }
