@@ -1,43 +1,38 @@
-
 {
-	"Bienvenue": "Bienvenue dans le projet Karfu'R",
-	"Elément principal": "Elément principal",
-	"Elément secondaire": "Elément secondaire",
-  "Troisième élément": "Troisième élément",
-  "Auteur":"Auteur123",
-	"test": {
-    "ici": "Troisième élément"
+  "Dispositifs": {
+    "Header": "Construire sa vie en France",
+    "Subheader" : "Ici, vous pourrez comprendre comment ouvrir vos droits sociaux, trouver un emploi, trouver des cours de français"
   },
-  "global":{
-    "article":{
-      "par": "par",
-      "categorie" : "Catégorie",
-      "date" : "Date",
-      "adapte_par" : "adapté par",
-      "poste_le" : "Posté le",
-      "laisser_commentaire" : "Laissez un commentaire" ,
-      "soumettre" : "Soumettre"
-    }
+  "Masquer la recherche avancée": "Masquer la recherche avancée",
+  "Afficher la recherche avancée": "Afficher la recherche avancée",
+  "Tags":{
+    "Emploi": "Emploi", 
+    "Jeune": "Jeune", 
+    "Mobilité": "Mobilité", 
+    "Logement": "Logement", 
+    "Culture": "Culture", 
+    "Apprendre le français": "Apprendre le français", 
+    "Etudes": "Etudes", 
+    "Formation professionnelle": "Formation professionnelle", 
+    "Accompagnement": "Accompagnement", 
+    "Autre": "Autre"
   },
-  "article":{
-    "Explication en 30 secondes": "Explication en 30 secondes",
-    "Catégories": "Catégories",
-    "Chercher" : "Chercher",
-    "Aller":"Aller"
+  "Dispositif":{
+    "fiabilite_faible_1":"Une information avec une",
+    "fiabilite_faible_2": "faible",
+    "fiabilite_faible_3":"fiabilité n'a pas été vérifiée auparavant.",
+    "cliquez": "Cliquez sur le '?' pour en savoir plus",
+    "questions": "Des questions ? Contactez-nous par email à",
+    "fiabilite": "Fiabilité de l’information"
   },
-  "contenu":{
-    "article":{
-      "1":{
-        "titre" : "Les 3 petits cochons",
-        "sous-titre" : "Comment une histoire pour enfants devient une leçon d'humilité",
-        "categorie" : "Contes pour enfants"
-      },
-      "contes":{
-        "Les 3 petits cochons":{
-          "titre":"Les 3 petits cochons",
-          "p":[]
-        }
-      }
-    }
-  }
+  "Retour à la recherche": "Retour à la recherche",
+  "avec le programme": "avec le programme",
+  "En bref": "En bref",
+  "Dernière mise à jour": "Dernière mise à jour",
+  "Fiabilité de l'information": "Fiabilité de l'information",
+  "Faible": "Faible",
+  "Moyenne": "Moyenne",
+  "Forte": "Forte",
+  "Contributeurs" : "Contributeurs",
+  "Traducteurs": "Traducteurs"
 }
