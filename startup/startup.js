@@ -51,6 +51,7 @@ if(process.env.NODE_ENV === 'dev') {
 }else{
   run = async (db) => {
     try{
+      console.log('starting insertion of strings')
       let isLocaleSuccess=_insertI18nLocales()
       // let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
@@ -62,6 +63,7 @@ const _insertI18nLocales = () => {
   let frJson=JSON.parse(fs.readFileSync(localeFolder + "/fr/translation.json", "utf8"));
   let nbMots=0;
   let avancement={fr:1};
+  console.log('ici')
   fs.readdirSync(localeFolder,{'withFileTypes':true}).forEach(dir => {
     if(dir.name && dir.name !=='fr' && !path.extname(dir.name) && dir.name.slice(0,1) !=='.'){
       try{
