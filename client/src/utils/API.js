@@ -122,6 +122,10 @@ export default {
       return axios.post(burl + '/traduction/get_progression', query, {headers: headers})
     },
 
+    get_translation : (query = {}) => {
+      return axios.post(burl + '/translate/get_translation',  query, {headers: headers})
+    },
+
     create_langue : query => {
       return axios.post(burl + '/langues/create_langues', query, {headers: headers})
     },
