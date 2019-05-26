@@ -32,7 +32,7 @@ const dashHeader = (props) => {
           <div className="left-side">
             <b>Au total</b>, 34 personnes ont bénéficiés de votre travail de traduction. Merci pour votre engagement en faveur des réfugié.es.
             <br/>
-            <u>Qui sont-ils ?</u>
+            <u className="pointer" onClick={props.upcoming}>Qui sont-ils ?</u>
           </div>
         </Col>
         <Col lg="4" className="second-indicator">
@@ -40,7 +40,7 @@ const dashHeader = (props) => {
           <div className="left-side">
             <b>Cette semaine</b>, 12 personnes ont bénéficiés de votre travail de traduction. 
             <br/>
-            <u>Qui sont-ils ?</u>
+            <u className="pointer" onClick={props.upcoming}>Qui sont-ils ?</u>
           </div>
         </Col>
         <Col lg="4" className="third-indicator">
@@ -48,7 +48,7 @@ const dashHeader = (props) => {
           <div className="left-side">
             <b>Cette semaine</b>, 8 personnes ont traduit des contenus avec vous 
             <br/>
-            <u>Échangez avec eux !</u>
+            <u className="pointer" onClick={props.upcoming}>Échangez avec eux !</u>
           </div>
         </Col>
       </Row>

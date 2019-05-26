@@ -33,7 +33,7 @@ class Tags extends Component {
       <div className="tags">
         {(this.props.tags || []).map((tag, key) => {
           return (
-            <ButtonDropdown isOpen={this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key)} className="tags-dropdown" key={key}>
+            <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key)} className="tags-dropdown" key={key}>
               <DropdownToggle caret={!this.props.disableEdit}>
                 {tag}
               </DropdownToggle>
