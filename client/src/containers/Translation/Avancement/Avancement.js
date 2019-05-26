@@ -148,6 +148,7 @@ class Avancement extends Component {
   goToTraduction = (article) => {
     this.props.history.push({
       pathname: '/traduction/'+ (this.state.isExpert ? 'validation/' : '') + article._id,
+      search: '?id=' + this.state.langue._id,
       state: { langue: this.state.langue}
     })
   }

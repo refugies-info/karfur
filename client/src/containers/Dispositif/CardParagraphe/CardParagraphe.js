@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Col, Card, CardBody, CardHeader, CardFooter, ButtonDropdown, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, ListGroup, ListGroupItem,Button } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import ContentEditable from 'react-contenteditable';
+import Swal from 'sweetalert2';
 
 import Modal from '../../../components/Modals/Modal'
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
@@ -50,6 +51,12 @@ class CardParagraphe extends Component {
     }
     this.setState({ isOptionsOpen: !this.state.isOptionsOpen })
   };
+
+  footerClicked = () => {
+    if(this.props.subitem.footer==='Pièces demandées'){
+      this.editCard(this.props.keyValue, this.props.subkey)
+    }else{Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')}
+  }
 
   render(){
     let {subitem, subkey, filtres} = this.props;
@@ -153,7 +160,7 @@ class CardParagraphe extends Component {
               </span>
             </CardBody>
             <CardFooter>
-              <Button onClick={()=>this.editCard(this.props.keyValue,subkey)}>
+              <Button onClick={this.footerClicked}>
                 <span className="footer-content">{subitem.footer}</span>
               </Button>
             </CardFooter>

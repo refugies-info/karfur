@@ -71,16 +71,17 @@ class Layout extends Component {
   }
 
   readAudio = (text, locale='fr-fr') => {
-    API.get_tts({text:text, locale:locale}).then(data_res => {
-
+    API.get_tts({text:text, locale:locale}).then(data => {
+      let audioData=data.data.data
+      console.log(audioData)
       audio.pause();
       
       try{
-        var len = data_res.data.length;
+        var len = audioData.length;
         var buf = new ArrayBuffer(len);
         var view = new Uint8Array(buf);
         for (var i = 0; i < len+10; i++) {
-          view[i] = data_res.data.charCodeAt(i) & 0xff;
+          view[i] = audioData.charCodeAt(i) & 0xff;
         }
         var blob = new Blob([view], {type: "audio/wav"});
         var url = window.URL.createObjectURL(blob)
@@ -89,7 +90,7 @@ class Layout extends Component {
         audio.play();
       }catch(e){
         console.log(e)
-        console.log(data_res.data)
+        console.log(audioData)
         console.log(url)
       }
 

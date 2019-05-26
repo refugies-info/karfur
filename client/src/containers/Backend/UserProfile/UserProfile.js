@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
 import { Col, Row, Card, CardBody, CardHeader, CardFooter, Modal, Spinner, Input, Button } from 'reactstrap';
-import {NavLink} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
@@ -16,10 +16,12 @@ import ModifyProfile from '../../../components/Backend/UserProfile/ModifyProfile
 import {fakeTraduction, fakeContribution, fakeFavori, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris} from './data'
 
 import './UserProfile.scss';
+import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 
 class UserProfile extends Component {
   state={
     showModal:{action:false, traducteur: false,contributeur: false, thanks:false, favori:false, suggestion: false, objectifs:false}, 
+    showSections:{traductions: true, contributions: true},
     user: {},
     traductions:[],
     contributions:[],
@@ -85,6 +87,11 @@ class UserProfile extends Component {
     this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}})
   }
 
+  toggleSection = (section) => {
+    this.props.tracking.trackEvent({ action: 'toggleSection', label: section, value : !this.state.showSections[section] });
+    this.setState({showSections : {...this.state.showSections, [section]: !this.state.showSections[section]}})
+  }
+
   toggleEditing = () => this.setState({editing : !this.state.editing})
   
   toggleDropdown = (e, key) => {
@@ -105,6 +112,14 @@ class UserProfile extends Component {
     this.setState({
       user : {...this.state.user, selectedLanguages:[...(this.state.user.selectedLanguages || []), (this.state.langues.length > 0 ? this.state.langues[0] : {})]},
       isDropdownOpen: new Array(this.state.isDropdownOpen.length + 1).fill(false)
+    })
+  }
+
+  removeLang = (e,idx) => {
+    e.stopPropagation();
+    this.setState({
+      user : {...this.state.user, selectedLanguages:[...this.state.user.selectedLanguages || []].filter((_,i) => i!==idx)},
+      isDropdownOpen: new Array(this.state.isDropdownOpen.length - 1).fill(false)
     })
   }
 
@@ -160,8 +175,10 @@ class UserProfile extends Component {
     })
   }
 
+  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+
   render() {
-    let {traducteur, contributeur, traductions, contributions, actions, langues, user}=this.state;
+    let {traducteur, contributeur, traductions, contributions, actions, langues, user, showSections}=this.state;
     if(!traducteur){traductions= new Array(5).fill(fakeTraduction)}
     if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
 
@@ -179,23 +196,39 @@ class UserProfile extends Component {
     }
 
     let nbReactions = contributions.map(dispo => ((dispo.merci || []).length + (dispo.bravo || []).length)).reduce((a,b) => a + b, 0);
+
+    let anchorOffset = '120';
     return (
       <div className="animated fadeIn user-profile">
         <div className="profile-header">
-          <NavLink to="#contributions">
-            Contribution
-          </NavLink>
-          <NavLink to="#contributions">
-            Traduction
-          </NavLink>
-          <NavLink to="#contributions">
-            Relecture
-          </NavLink>
-          <NavLink to="#contributions">
-            Validation
-          </NavLink>
+          <AnchorLink href="#mon-profil" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
+            <EVAIcon name="settings-2-outline" fill="#3D3D3D" className="header-icon" /> {' '}
+            Mon profil
+          </AnchorLink>
+          <AnchorLink href={(contributeur || traducteur) ? "#actions-requises" : "#mes-favoris"} offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
+            <EVAIcon name={((contributeur || traducteur) ? "bell-" : "bookmark-" ) + "outline"} fill="#3D3D3D" className="header-icon" /> {' '}
+            {(contributeur || traducteur) ? "Actions requises" : "Mes favoris"}
+          </AnchorLink>
+          {showSections.contributions && <AnchorLink href="#mes-contributions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
+            <EVAIcon name="file-add-outline" fill="#3D3D3D" className="header-icon" /> {' '}
+            Mes articles
+          </AnchorLink>}
+          {showSections.traductions && <AnchorLink href="#mes-traductions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
+            <SVGIcon name="bubbleTranslate" fill="#3D3D3D" className="header-icon" /> {' '}
+            Mes traductions
+          </AnchorLink>}
+          {(contributeur || traducteur) &&
+            <AnchorLink href="#mes-favoris" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
+              <EVAIcon name="bookmark-outline" fill="#3D3D3D" className="header-icon" /> {' '}
+              Mes favoris
+            </AnchorLink>}
+          {false && 
+            <AnchorLink href="#mes-contributions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
+              <EVAIcon name="message-circle-outline" fill="#3D3D3D" className="header-icon" /> {' '}
+              Messages
+            </AnchorLink>}
         </div>
-        <div className="profile-content">
+        <div className="profile-content" id="mon-profil">
           <Row className="profile-info">
             <Card className="profile-left">
               <CardBody>
@@ -224,6 +257,7 @@ class UserProfile extends Component {
                 handleChange={this.handleChange}
                 toggleDropdown={this.toggleDropdown}
                 addLangue={this.addLangue}
+                removeLang={this.removeLang}
                 toggleEditing={this.toggleEditing}
                 validateProfile = {this.validateProfile}
                 {...this.state} />
@@ -280,12 +314,14 @@ class UserProfile extends Component {
               dataArray={actions}
               toggleModal={this.toggleModal}
               showSuggestion={this.showSuggestion}
+              upcoming={this.upcoming}
               limit={5}
               {...avancement_actions} />:
             <FavoriTable 
               dataArray={favoris}
               toggleModal={this.toggleModal}
               removeBookmark={this.removeBookmark}
+              upcoming={this.upcoming}
               hasFavori={hasFavori}
               limit={5}
               {...avancement_favoris} />
@@ -296,7 +332,9 @@ class UserProfile extends Component {
             user={this.state.user}
             contributeur={contributeur}
             toggleModal={this.toggleModal}
+            toggleSection={this.toggleSection}
             limit={5}
+            hide={!showSections.contributions}
             {...avancement_contrib} />
 
           <TradTable 
@@ -305,6 +343,8 @@ class UserProfile extends Component {
             user={this.state.user}
             langues={langues}
             toggleModal={this.toggleModal}
+            toggleSection={this.toggleSection}
+            hide={!showSections.traductions}
             motsRediges={this.state.progression.nbMots}
             minutesPassees={Math.floor(this.state.progression.timeSpent / 60)}
             limit={5}
@@ -315,6 +355,7 @@ class UserProfile extends Component {
                 dataArray={favoris}
                 toggleModal={this.toggleModal}
                 removeBookmark={this.removeBookmark}
+                upcoming={this.upcoming}
                 hasFavori={hasFavori}
                 limit={5}
                 {...avancement_favoris} />

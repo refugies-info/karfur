@@ -35,6 +35,9 @@ const modifyProfile = (props) => {
                   <DropdownToggle caret={editing}>
                     <i className={'margin-right-8 flag-icon flag-icon-' + lang.langueCode} title={lang.langueCode} id={lang.langueCode}></i>
                     {lang.langueFr}
+                    {editing && <div className="minus-icon" onClick={(e)=>props.removeLang(e,key)}>
+                      <EVAIcon name="minus-circle-outline" fill="#0D1C2E" className="delete-icon"/>
+                    </div>}
                   </DropdownToggle>
                   <DropdownMenu>
                     {langues.map((l, i) => {
