@@ -315,7 +315,7 @@ class UserProfile extends Component {
                 {!(contributeur || traducteur) &&
                   <div className="ecran-protection no-obj">
                     <div className="content-wrapper">
-                      <Button color="white">
+                      <Button color="white" onClick={()=>this.toggleModal('devenirContributeur')}>
                         <Icon name="award-outline" fill="#3D3D3D" /> 
                         Devenir contributeur pour débloquer cette section
                       </Button>

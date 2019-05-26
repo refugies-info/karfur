@@ -73,7 +73,7 @@ class UserDash extends Component {
       }else{
         API.get_langues().then(data_langues => {
           console.log(data_langues.data.data)
-          this.setState({allLangues: data_langues.data.data})
+          this.setState({allLangues: data_langues.data.data, showModal:{...this.state.showModal, devenirTraducteur: true}})
         })
       }
       this.setState({user:user})
@@ -156,6 +156,8 @@ class UserDash extends Component {
     })
   }
 
+  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  
   render() {
     let {langues, traductionsFaites} = this.state;
 
@@ -260,8 +262,6 @@ class UserDash extends Component {
       )
     }
 
-    console.log(traductionsFaites)
-
     return (
       <div className="animated fadeIn user-dash">
         <ReactJoyride
@@ -278,6 +278,7 @@ class UserDash extends Component {
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}
+          upcoming={this.upcoming}
           motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt
           minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 1000 / 60))} //idem
         />

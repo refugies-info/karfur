@@ -189,7 +189,7 @@ class Translation extends Component {
     let value=target === 'title' ? targetNode.innerText : ev.target.value;
     this.setState({ translated: {
       ...this.state.translated,
-      [target]:value || 'Remplissez ici votre traduction'
+      [target]:value
      }
     });
   };
@@ -461,6 +461,7 @@ class Translation extends Component {
                     <ContentEditable
                       key="target-editor-body"
                       className="body"
+                      placeholder="Renseignez votre traduction ici"
                       html={this.state.translated.body} // innerHTML of the editable div
                       disabled={this.state.isExpert}       // use true to disable editing
                       onChange={this.handleChange} // handle innerHTML change
