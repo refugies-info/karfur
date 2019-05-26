@@ -1,4 +1,5 @@
 let run=null;
+console.log('starting up')
 const Article = require('../schema/schemaArticle.js');
 const fs = require('fs');
 var path = require('path');

@@ -32,9 +32,9 @@ var io = require('socket.io')(http);
 mongoose.set('debug', false);
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/db', { useNewUrlParser: true }).then(() => {
     console.log('Connected to mongoDB');
-    if(process.env.NODE_ENV === 'dev') {
+    // if(process.env.NODE_ENV === 'dev') {
       startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
-    } 
+    // } 
 }).catch(e => {
     console.log('Error while DB connecting');
     console.log(e);
@@ -45,10 +45,10 @@ var urlencodedParser = bodyParser.urlencoded({
     extended: true,
     limit: '50mb'
 });
+app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(urlencodedParser);
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(formData.parse());
-app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(cors());
 
 //Définition des CORS
