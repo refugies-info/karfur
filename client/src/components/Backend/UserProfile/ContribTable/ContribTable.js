@@ -122,9 +122,7 @@ const contribTable = (props) => {
             </div>
             <div className="content-wrapper">
               <h1>Ici, vous pourrez accéder à vos contributions</h1>
-              <NavLink to="/dispositif" className="no-decoration" >
-                <Button>Proposer un nouveau contenu</Button>
-              </NavLink>
+              <Button onClick={()=>props.toggleModal('devenirContributeur')}>Proposer un nouveau contenu</Button>
             </div>
           </div>
         }

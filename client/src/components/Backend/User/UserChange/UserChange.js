@@ -199,8 +199,7 @@ const userChange = (props) => {
               {...props}
               />
           </Col>
-        </FormGroup>
-      }
+        </FormGroup>}
 
       <FormGroup row>
         <Col md="3">
