@@ -21,7 +21,7 @@ const dashHeader = (props) => {
             <span>minutes passées</span>
           </div>
           <div className="d-flex right-element pointer" onClick={()=>props.toggle('objectifs')}>
-            <EVAIcon name="settings-2-outline" fill="#828282" className="align-right pointer" onClick={()=>props.toggleModal('objectifs')} />
+            <EVAIcon name="settings-2-outline" fill="#828282" className="align-right pointer" onClick={()=>props.toggleModal('objectifs')} /> {' '}
             <u className="modify-obj">Modifier mon objectif</u>
           </div>
         </Col>

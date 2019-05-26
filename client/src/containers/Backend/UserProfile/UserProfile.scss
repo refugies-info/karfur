@@ -4,6 +4,7 @@ $defaultSize:310px;
   min-height:100%;
   font-size: 18px;
   line-height: 23px;
+  margin-top:120px;
 
   .profile-header{
     height: 60px;
@@ -13,12 +14,19 @@ $defaultSize:310px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    z-index: 3;
+    background: #FFFFFF;
+    top: 60px;
 
     a{
       font-style: normal;
       font-weight: bold;
       color: #000000;
       padding:25px;
+    }
+    .header-icon{
+      margin-right:8px;
     }
   }
 
@@ -212,6 +220,12 @@ $defaultSize:310px;
             color: #3D3D3D;
             padding: 6px 10px;
           }
+          .minus-icon{
+            position: absolute;
+            right: -7px;
+            top: -15px;
+            cursor: pointer;
+          }
         }
         .card-footer{
           background: transparent;
@@ -267,7 +281,13 @@ $defaultSize:310px;
   .tableau-wrapper{
     margin-top:39px;
     position: relative;
+    height:100%;
 
+    &.swing-out-top-bck {
+      -webkit-animation: swing-out-top-bck 1s cubic-bezier(0.600, -0.280, 0.735, 0.045) both;
+              animation: swing-out-top-bck 1s cubic-bezier(0.600, -0.280, 0.735, 0.045) both;
+    }
+    
     &:nth-child(2){
       margin-top:10px;
     }
@@ -548,5 +568,50 @@ $defaultSize:310px;
       font-size: 18px;
       color: #828282;
     }
+  }
+}
+
+ @-webkit-keyframes swing-out-top-bck {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+    height:100%;
+  }
+  90%{
+    height:100%;
+  }
+  100% {
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+    height:0;
+    margin:0;
+  }
+}
+@keyframes swing-out-top-bck {
+  0% {
+    -webkit-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 1;
+    height:100%;
+  }
+  90%{
+    height:100%;
+  }
+  100% {
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0;
+    height:0;
+    margin:0;
   }
 }

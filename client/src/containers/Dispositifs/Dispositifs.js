@@ -1,10 +1,11 @@
 import React, { Component, Suspense } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Button, Collapse, CardBody, CardFooter } from 'reactstrap';
+import { Col, Row, Button, Collapse, CardBody, CardFooter, Spinner } from 'reactstrap';
 import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match'
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
+import Swal from 'sweetalert2';
 
 import Modal from '../../components/Modals/Modal'
 import {randomColor} from '../../components/Functions/ColorFunctions'
@@ -12,6 +13,8 @@ import API from '../../utils/API';
 import femmeDispo from '../../assets/figma/femmeDispo.svg'
 import hommeDispo from '../../assets/figma/hommeDispo.svg'
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
+import {filtres} from '../Dispositif/data';
+import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 
 import './Dispositifs.scss';
 
@@ -27,25 +30,29 @@ class Dispositifs extends Component {
     dispositifs:[],
     dispositif:{},
     showModal:false,
-    showSearch:true,
+    showSearch:false,
     value: '',
     suggestions: [],
+    showSpinner:true,
   }
 
   componentDidMount (){
-    API.get_dispositif({status:'Actif'}).then(data_res => {
+    this.queryDispositifs({status:'Actif'})
+  }
+
+  queryDispositifs = query => {
+    this.setState({ showSpinner: true })
+    API.get_dispositif(query).then(data_res => {
       let dispositifs=data_res.data.data
-      this.setState({ dispositifs:dispositifs })
-    })
+      this.setState({ dispositifs:dispositifs, showSpinner: false })
+    }).catch(()=>this.setState({ showSpinner: false }))
   }
 
   _toggleModal = (show, dispositif = {}) => {
     this.setState({showModal:show, dispositif:dispositif})
   }
 
-  _toggleSearch = () => { 
-    this.setState(prevState=>{return {showSearch:!prevState.showSearch}})
-  }
+  _toggleSearch = () => this.setState(prevState=>{return {showSearch:!prevState.showSearch}})
 
   onChange = (_, { newValue }) => this.setState({ value: newValue });
 
@@ -55,36 +62,34 @@ class Dispositifs extends Component {
 
   getSuggestions = (value) => {
     const escapedValue = escapeRegexCharacters(value.trim());
-    
     if (escapedValue === '') { return [];}
-  
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
-    
     return this.state.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif));
   }
+
+  onSuggestionSelected = (_,{suggestion}) => this.goToDispositif(suggestion, true)
 
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
     this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
   }
 
+  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+
   render() {
+    let {showSpinner} = this.state;
     const renderSuggestion = (suggestion, { query }) => {
       const suggestionText = `${suggestion.titreMarque} - ${suggestion.titreInformatif}`;
       const matches = AutosuggestHighlightMatch(suggestionText, query + ' ' + query);
       const parts = AutosuggestHighlightParse(suggestionText, matches);
       return (
-        <span className={'suggestion-content'} onClick={() => this.goToDispositif(suggestion, true)}>
+        <span className={'suggestion-content'}>
           <span className="name">
-            {
-              parts.map((part, index) => {
-                const className = part.highlight ? 'highlight' : null;
-    
-                return (
-                  <span className={className} key={index}>{part.text}</span>
-                );
-              })
-            }
+            {parts.map((part, index) => {
+              const className = part.highlight ? 'highlight' : null;
+  
+              return <span className={className} key={index}>{part.text}</span>;
+            })}
           </span>
         </span>
       );
@@ -111,7 +116,8 @@ class Dispositifs extends Component {
                     onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                     getSuggestionValue={getSuggestionValue}
                     renderSuggestion={renderSuggestion}
-                    inputProps={inputProps} />
+                    inputProps={inputProps}
+                    onSuggestionSelected={this.onSuggestionSelected} />
                   <i className="fa fa-search text-grey search-btn" aria-hidden="true"></i>
                 </div>
               </Col>
@@ -128,40 +134,24 @@ class Dispositifs extends Component {
               <ParkourOnBoard />
             </Suspense>
           </Collapse>
-          <Button className="btn-toggle-search" color="secondary" onClick={this._toggleSearch} style={{ marginBottom: '1rem' }}>
+          <Button className="btn-toggle-search" color="dark" onClick={this._toggleSearch} style={{ marginBottom: '1rem' }}>
             <h3>
               {this.state.showSearch ? "Masquer la recherche avancée" : "Afficher la recherche avancée"} &nbsp;&nbsp;
-              <i className={"fa fa-chevron-" + (this.state.showSearch ? "up" : "down") + " fa-lg mt-4"}></i>
+              <EVAIcon name={"chevron-" + (this.state.showSearch ? "up" : "down") + "-outline"} />
             </h3>
           </Button>
         </section>
 
         <section id="menu_dispo">
           <Row className="align-items-center themes">
-            <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-              <Button block outline color="danger">Logement</Button>
-            </Col>
-            <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-              <Button block outline color="primary">Français</Button>
-            </Col>
-            <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-              <Button block outline color="warning">Insertion professionnelle</Button>
-            </Col>
-            <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-              <Button block outline color="info">Formation professionnelle</Button>
-            </Col>
-            <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-              <Button block outline color="success">Reprise d'études</Button>
-            </Col>
-            <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-              <Button block outline color="secondary">Volontariat</Button>
-            </Col>
-            <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-              <Button block outline color="dark">Accès à la nationalité</Button>
-            </Col>
+            {filtres.tags.map(tag =>(
+              <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0" key={tag}>
+                <Button block outline color={randomColor()} onClick={()=>this.queryDispositifs({'tags':tag})}>{tag}</Button>
+              </Col>
+            ))}
             <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
               <span className="toggler active" data-toggle="grid"><span className="fa fa-th-large" /></span>
-              <span className="toggler" data-toggle="list"><span className="fa fa-th-list" /></span>{/*  or use entypo library from weloveicons */}
+              <span className="toggler" data-toggle="list" onClick={this.upcoming}><span className="fa fa-th-list" /></span>{/*  or use entypo library from weloveicons */}
             </Col>
           </Row>
           <Row>
@@ -181,9 +171,13 @@ class Dispositifs extends Component {
             <Col xs="9" sm="4" md="3">
               <CustomCard addcard="true" onClick={this.goToDispositif}>
                 <CardBody>
-                  <span className="add-sign">+</span>
+                  {showSpinner ?
+                    <Spinner color="success" /> : 
+                    <span className="add-sign">+</span> }
                 </CardBody>
-                <CardFooter className="align-right bg-secondary">Créer un nouveau dispositif</CardFooter>
+                <CardFooter className="align-right bg-secondary text-white">
+                  {showSpinner ? "Chargement..." : "Créer un nouveau dispositif"}
+                </CardFooter>
               </CustomCard>
             </Col>
           </Row>

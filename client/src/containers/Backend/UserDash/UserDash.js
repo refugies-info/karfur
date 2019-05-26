@@ -92,7 +92,14 @@ class UserDash extends Component {
   }
 
   quickAccess = (langue) => {
-    console.log(langue)
+    let i18nCode=langue.i18nCode;
+    let nom='avancement.'+i18nCode;
+    let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
+    API.getArticle({query: query, locale:i18nCode, random:true}).then(data_res => {
+      let articles=data_res.data.data;
+      if(articles.length===0){Swal.fire( 'Oh non', 'Aucun résultat n\'a été retourné, veuillez rééssayer', 'error')}
+      else{ this.props.history.push({ pathname: '/traduction/'+ articles[0]._id, search: '?id=' + langue._id, state: { langue: langue} }) }    
+    })
   }
 
   editProfile = () => {
@@ -196,17 +203,19 @@ class UserDash extends Component {
                   })}
                 </td>
                 <td className="align-middle">
-                  <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                    <Button block color="warning" className="quick-btn" onClick={() => this.quickAccess(element)}>
-                      <Icon name="flash-outline" fill="#3D3D3D" />
-                      <span>Aléatoire</span>
-                    </Button>
-                  </Col>
+                  {element.avancement !== 1 && 
+                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+                      <Button block color="warning" className="quick-btn" onClick={() => this.quickAccess(element)}>
+                        <Icon name="flash-outline" fill="#3D3D3D" />
+                        <span>Aléatoire</span>
+                      </Button>
+                    </Col>}
                 </td>
                 <td className="align-middle">
-                  <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                    {buttonTraductions(element)}
-                  </Col>
+                  {element.avancement !== 1 && 
+                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+                      {buttonTraductions(element)}
+                    </Col>}
                 </td>
               </tr>
             );

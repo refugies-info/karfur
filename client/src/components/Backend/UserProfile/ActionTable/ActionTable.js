@@ -68,7 +68,7 @@ const actionTable = (props) => {
   
   if(props.limit){
     return(
-      <div className="tableau-wrapper" id="contributions">
+      <div className="tableau-wrapper" id="actions-requises">
         <Row>
           <Col>
             <h1>
@@ -77,7 +77,7 @@ const actionTable = (props) => {
             </h1>
           </Col>
           <Col className="d-flex tableau-header no-margin pointer" lg="1">
-            <div className="d-flex left-element">
+            <div className="d-flex left-element" onClick={props.upcoming}>
               <Icon name="edit-outline" fill="#828282"/>&nbsp;
               <span> <u>Paramétrer mes notifications</u> </span>
             </div>

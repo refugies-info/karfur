@@ -140,6 +140,12 @@ $theme-color: #8DC63F;
         border-radius: 12px;
         font-weight: 600;
         white-space: nowrap;
+        &.btn-outline-light{
+          color: #212529;
+          border-color: #f8f9fa;
+          border-width: 1px;
+          border-radius: 12px;
+        }
       }
     }
 
@@ -189,6 +195,17 @@ $theme-color: #8DC63F;
   #advanced_search{
     .btn-toggle-search{
       width:100%;
+      background-color:#3D3D3D;
+      padding:20px;
+
+      h3{
+        font-size:32px;
+        line-height:32px;
+        margin-bottom:0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 

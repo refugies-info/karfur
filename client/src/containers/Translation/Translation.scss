@@ -2,6 +2,7 @@
 .traduction{
   height: 100%;
   min-height: 100vh;
+
   .traduction-container{
     background: #E5E5E5;
     padding: 25px;
@@ -15,96 +16,103 @@
       background-color: aliceblue
     }
 
-    .typing-bar{
-      width: 100%;
-      overflow-y: hidden;
-      height: 141px;
-      -webkit-font-smoothing: antialiased;
-      box-sizing: border-box;
-      display: block;
-      font-size: 16px;
-      line-height: 1.42857143;
-      color: #333;
-      margin: 15px;
-    }
+    .typing-row{
+      margin-right:-25px;
+      margin-left:-25px;
+      margin-top:-25px;
+      margin-bottom:15px;
 
-    .type-input{
-      background-color: #fff;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      width: 100%;
-      position: relative;
-      border-radius: 0.25rem;
-    }
+      .typing-bar{
+        width: 100%;
+        overflow-y: hidden;
+        height: 90px;
+        -webkit-font-smoothing: antialiased;
+        box-sizing: border-box;
+        display: block;
+        font-size: 16px;
+        line-height: 90px;;
+        color: #333;
+      }
 
-    .type-input:after, .type-input:before {
-      content: "";
-      box-shadow: 0 0 30px 30px #fff;
-      position: absolute;
-      top: 40px;
-      bottom: 40px;
-    }
+      .type-input{
+        background-color: #FBFBFB;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        width: 100%;
+        position: relative;
+        border-radius: 0.25rem;
+      }
 
-    .type-input .input-wrapper {
-      width: 50%;
-      max-height: 140px;
-      overflow: hidden;
-      display: inline-block;
-    }
+      .type-input:after, .type-input:before {
+        content: "";
+        box-shadow: 0 0 30px 30px #fff;
+        position: absolute;
+        top: 40px;
+        bottom: 40px;
+      }
 
-    .type-input .test-input-group {
-      min-width: 100%;
-      color: #6174b4;
-      float: right;
-      text-align: right;
-      white-space: nowrap;
-    }
+      .type-input .input-wrapper {
+        width: 50%;
+        max-height: 90px;
+        overflow: hidden;
+        display: inline-block;
+      }
 
-    .type-input .test-input-group, .type-input .test-prompt {
-      height: inherit;
-      line-height: 4.5em;
-      font-family: Merriweather;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-      font-weight: 100;
-      font-size: 1.9em;
-      border: 0;
-      outline: 0;
-      vertical-align: middle;
-    }
+      .type-input .test-input-group {
+        min-width: 100%;
+        color: #4A69BD;
+        float: right;
+        text-align: right;
+        white-space: nowrap;
+      }
 
-    .type-input .test-input {
-      display: inline-block;
-      line-height: 1.3em;
-      outline: 0;
-      padding-left: 5px;
-      vertical-align: middle;
-    }
+      .type-input .test-input-group, .type-input .test-prompt {
+        height: inherit;
+        line-height: 90px;;
+        font-family: Merriweather;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        font-weight: 100;
+        font-size: 1.9em;
+        border: 0;
+        outline: 0;
+        vertical-align: middle;
+      }
 
-    .type-input .test-prompt {
-      float: left;
-      text-align: left;
-      width: 5000px;
-    }
+      .type-input .test-input {
+        display: inline-block;
+        line-height: 90px;
+        outline: 0;
+        padding-left: 5px;
+        vertical-align: middle;
+        color: #4A69BD;
+      }
 
-    .type-input .test-input-group, .type-input .test-prompt {
-      height: inherit;
-      line-height: 4.5em;
-      font-family: Merriweather;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-      font-weight: 100;
-      font-size: 1.9em;
-      border: 0;
-      outline: 0;
-      vertical-align: middle;
-    }
+      .type-input .test-prompt {
+        float: left;
+        text-align: left;
+        width: 5000px;
+      }
 
-    .type-input .test-prompt .test-word:first-child {
-      padding-left: 0!important;
+      .type-input .test-input-group, .type-input .test-prompt {
+        height: inherit;
+        line-height: 90px;
+        font-family: Merriweather;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        font-weight: 100;
+        font-size: 1.9em;
+        border: 0;
+        outline: 0;
+        vertical-align: middle;
+      }
+
+      .type-input .test-prompt .test-word:first-child {
+        padding-left: 0!important;
+      }
     }
 
     .test-word {
@@ -119,11 +127,6 @@
 
     .temporarily_highlight{
       background-color: yellow;
-    }
-
-    #card_widgets{
-      text-align: center;
-      margin:auto;
     }
 
     .translation-row{
@@ -144,6 +147,65 @@
     }
   }
 
+  .trad-footer{
+    margin-top:15px;
+    font-size: 18px;
+    line-height: 23px;
+    font-weight: bold;
+    display: flex;
+    
+    .timer{
+      color: #CDCDCD;
+      margin-right:14px;
+    }
+    .words{
+      color: #3D3D3D;
+    }
+    .right-col, .left-col{
+      display:inline-flex;
+      align-items: center;
+    }
+    .right-col{
+      justify-content: flex-end;
+      .btn{
+        border-radius: 12px;
+        border:none;
+        box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        font-weight: bold;
+        width:fit-content;
+        display: inline-flex;
+        align-items: center;
+        white-space: nowrap;
+        margin-top:0;
+  
+        &.radio-btn{
+          background: #FBFBFB;
+          color: #3D3D3D;
+          &.active{
+            background: #F6B93B;
+            color: #FFFFFF;
+          }
+        }
+        &.btn-success{
+          background: linear-gradient(323.59deg, #78E08F 100%, #2CA12A 0%);
+        }
+      }
+
+      .rc-slider{
+        max-width: 230px;
+      }
+
+      span{
+        font-weight: normal;
+      }
+
+      & > div, & > .btn, & > span{
+        margin-left:10px;
+      }
+    }
+  }
+
   .article-container{
     position: relative;
     margin-top:2em;
@@ -151,4 +213,8 @@
       margin: auto;
     }
   }
+}
+
+.pointer{
+  cursor: pointer;
 }
