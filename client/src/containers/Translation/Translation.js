@@ -235,18 +235,14 @@ class Translation extends Component {
   }
 
   translate= (text,target,item) => {
-    axios.post('http://localhost:8000/translate/get_translation',{
-      q: text,
-      target: target
-    }).then(data => {
+    API.get_translation({ q: text, target: target }).then(data => {
       this.setState({
         translated:{
           ...this.state.translated,
           [item]: data.data.replace(/ id=\'initial_/g,' id=\'target_').replace(/ id="initial_/g,' id="target_')
           }
       });
-    }).catch(err => {
-      console.log('error : ', err);
+    }).catch((err)=>{ console.log('error : ', err);
       this.setState({
         translated:{
           ...this.state.translated,
