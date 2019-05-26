@@ -44,7 +44,7 @@ if(process.env.NODE_ENV === 'dev') {
         console.log(await db.collection('dispositifs').insertMany(dispositifs).insertedIds);
       }
 
-      // let isLocaleSuccess=_insertI18nLocales()
+      let isLocaleSuccess=_insertI18nLocales()
       // let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
   }
@@ -65,7 +65,7 @@ const _insertI18nLocales = () => {
   let avancement={fr:1};
   console.log('ici')
   fs.readdirSync(localeFolder,{'withFileTypes':true}).forEach(dir => {
-    if(dir.name && dir.name !=='fr' && !path.extname(dir.name) && dir.name.slice(0,1) !=='.'){
+    if(dir.name && !path.extname(dir.name) && dir.name.slice(0,1) !=='.'){
       try{
         fs.readdirSync(localeFolder + "/"  + dir.name).forEach(file => {
           if(file.includes(".json")){
