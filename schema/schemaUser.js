@@ -84,9 +84,10 @@ userSchema.methods = {
 		return passwordHash.verify(password, this.password);
 	},
 	getToken: function () {
+    console.log(process.env.SECRET, config.secret)
 		return jwt.encode(
       {_id:this._id,username:this.username,password:this.password, email:this.email}, 
-      process.env.SECRET || config.secret);
+      process.env.NODE_ENV === 'dev' ? config.secret : process.env.SECRET);
 	}
 }
 
