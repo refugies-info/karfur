@@ -130,7 +130,7 @@ class UserForm extends Component {
         pathname: '/backend/user-dashboard',
         state: { user: newUser}
       })
-    },error => {console.log(error);return;})
+    })
   }
 
   onCancel = (tab) => {

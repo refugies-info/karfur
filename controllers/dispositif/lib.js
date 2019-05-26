@@ -146,7 +146,7 @@ function update_dispositif(req, res) {
 }
 
 function count_dispositifs(req, res) {
-  Dispositif.count({}, (err, count) => {
+  Dispositif.count(req.body, (err, count) => {
     if (err){res.status(404).json({ "text": "Pas de résultat" })}
     else{res.status(200).json(count)}
   });

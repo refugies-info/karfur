@@ -14,6 +14,8 @@ import ThanksModal from './ThanksModal/ThanksModal'
 import TranslationModal from './TranslationModal/TranslationModal'
 import SuggestionModal from './SuggestionModal/SuggestionModal'
 import ObjectifsModal from './ObjectifsModal/ObjectifsModal'
+import ContributeurModal from './ContributeurModal/ContributeurModal'
+import TraducteurModal from './TraducteurModal/TraducteurModal'
 
 export {
   BookmarkedModal,
@@ -32,4 +34,6 @@ export {
   TranslationModal,
   SuggestionModal,
   ObjectifsModal,
+  ContributeurModal,
+  TraducteurModal
 }

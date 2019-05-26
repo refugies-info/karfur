@@ -44,7 +44,7 @@ if(process.env.NODE_ENV === 'dev') {
         console.log(await db.collection('dispositifs').insertMany(dispositifs).insertedIds);
       }
 
-      let isLocaleSuccess=_insertI18nLocales()
+      // let isLocaleSuccess=_insertI18nLocales()
       // let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
   }
@@ -52,8 +52,7 @@ if(process.env.NODE_ENV === 'dev') {
 }else{
   run = async (db) => {
     try{
-      console.log('starting insertion of strings')
-      let isLocaleSuccess=_insertI18nLocales()
+      // let isLocaleSuccess=_insertI18nLocales()
       // let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
   }

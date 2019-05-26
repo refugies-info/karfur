@@ -76,11 +76,15 @@ $transition-time: 0.5s;
           grid-gap: 11px;
           box-shadow: none;
         }
-        @media only screen and (max-width: 1500px)  {
-          grid-template-columns: repeat(2,minmax(100px,1fr));
+        @media (max-width: 1600px)  {
+          .cokmdy{
+            grid-template-columns: repeat(2,minmax(100px,1fr));
+          }
         }
-        @media only screen and (max-width: 600px)  {
-          grid-template-columns: repeat(1,minmax(100px,1fr));
+        @media (max-width: 1260px)  {
+          .cokmdy{
+            grid-template-columns: repeat(1,minmax(100px,1fr));
+          }
         }
         div[style*="transform"]{
           background: #FBFBFB;

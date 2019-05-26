@@ -102,8 +102,8 @@ export default {
     get_dispositif : (query={}, sort={}, populate='', limit=null) => {
       return axios.post(burl + '/dispositifs/get_dispositif', {query: query, sort: sort, populate: populate, limit: limit}, {headers: headers})
     },
-    count_dispositifs : () => {
-      return axios.post(burl + '/dispositifs/count_dispositifs', {}, {headers: headers})
+    count_dispositifs : (query) => {
+      return axios.post(burl + '/dispositifs/count_dispositifs', query, {headers: headers})
     },
     update_dispositif : query => {
       return axios.post(burl + '/dispositifs/update_dispositif', query, {headers: headers})
