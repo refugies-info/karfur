@@ -88,6 +88,15 @@ const tradTable = (props) => {
   let show=true;
   const onAnimationEnd = e => show=false;
 
+  const startTrad = () => {
+    console.log(props.user.selectedLanguages)
+    if(props.user.selectedLanguages && props.user.selectedLanguages.length>0){
+      props.history.push("/backend/user-dashboard")
+    }else{
+      props.toggleModal('devenirTraducteur')
+    }
+  }
+
   if(props.limit && show){
     return(
       <div className={"tableau-wrapper" + (props.hide ? " swing-out-top-bck" : "")} id="mes-traductions" onAnimationEnd={onAnimationEnd}>
@@ -132,9 +141,7 @@ const tradTable = (props) => {
             </div>
             <div className="content-wrapper">
               <h1>Ici, vous pourrez accéder à vos traductions</h1>
-              <NavLink to="/backend/user-dashboard" className="no-decoration" >
-                <Button>Commencer à traduire</Button>
-              </NavLink>
+              <Button onClick={startTrad}>Commencer à traduire</Button>
             </div>
           </div>
         }

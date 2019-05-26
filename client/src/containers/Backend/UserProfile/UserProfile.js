@@ -20,7 +20,7 @@ import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 
 class UserProfile extends Component {
   state={
-    showModal:{action:false, traducteur: false, contributeur: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: true}, 
+    showModal:{action:false, traducteur: false, contributeur: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: false}, 
     showSections:{traductions: true, contributions: true},
     user: {},
     traductions:[],
@@ -345,6 +345,7 @@ class UserProfile extends Component {
             toggleModal={this.toggleModal}
             toggleSection={this.toggleSection}
             hide={!showSections.traductions}
+            history={this.props.history}
             motsRediges={this.state.progression.nbMots}
             minutesPassees={Math.floor(this.state.progression.timeSpent / 60)}
             limit={5}
