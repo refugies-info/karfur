@@ -83,7 +83,6 @@ function get_article(req, res) {
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           if(random && structureArr.length > 1){structureArr = [structureArr[ Math.floor((Math.random() * structureArr.length)) ]]}
-          console.log(structureArr)
           result.splice(i, 1);
         }else{
           returnLocalizedContent(article.body, locale)
