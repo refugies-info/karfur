@@ -89,7 +89,6 @@ const tradTable = (props) => {
   const onAnimationEnd = e => show=false;
 
   const startTrad = () => {
-    console.log(props.user.selectedLanguages)
     if(props.user.selectedLanguages && props.user.selectedLanguages.length>0){
       props.history.push("/backend/user-dashboard")
     }else{

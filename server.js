@@ -14,7 +14,9 @@ let scraper;
 if(process.env.NODE_ENV === 'dev') {
   console.log('dev environment')
   //scraper = require('./scraper/puppeter');
-} 
+} else{
+  console.log(process.env.NODE_ENV + ' environment')
+}
 
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
@@ -30,14 +32,13 @@ var io = require('socket.io')(http);
 
 //Connexion à la base de donnée
 mongoose.set('debug', false);
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/db', { useNewUrlParser: true }).then(() => {
-    console.log('Connected to mongoDB');
-    // if(process.env.NODE_ENV === 'dev') {
-      startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
-    // } 
+let db_path = process.env.NODE_ENV === 'dev' ? 'mongodb://localhost/db' : process.env.MONGODB_URI;
+mongoose.connect(db_path, { useNewUrlParser: true }).then(() => {
+  console.log('Connected to mongoDB');
+  startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
 }).catch(e => {
-    console.log('Error while DB connecting');
-    console.log(e);
+  console.log('Error while DB connecting');
+  console.log(e);
 });
 
 //Body Parser
