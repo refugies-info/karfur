@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Button, Card, CardHeader, CardBody, CardFooter, Collapse, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Col, Row, Button, Card, CardHeader, CardBody, CardFooter, Collapse, Modal, ModalBody, ModalHeader, Spinner } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Icon from 'react-eva-icons';
 import {withRouter} from 'react-router-dom';
 
 import API from '../../utils/API';
-import data from './data'
+import fakeData from './data'
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import {randomColor} from '../../components/Functions/ColorFunctions';
 import SpringButtonParkour from '../../components/UI/SpringButton/SpringButtonParkour';
@@ -24,29 +24,32 @@ class ParkourOnBoard extends Component {
     showModals:{ vueParkourPerso: false, bookmarked: false },
     dispositifs: [],
     count_dispositifs:0,
-    open:new Array(data.length+1).fill(false),
-    data: data,
+    open:new Array(fakeData.length+1).fill(false),
+    data: fakeData,
     isToggleOpen:false,
     pinned:[],
+    loading:true
   }
   
   componentDidMount (){
-    this.getDispositifs(this.state.data);
+    // this.getDispositifs(this.state.data);
     this.retrieveCookies();
-    API.count_dispositifs().then(data => {
+    API.count_dispositifs({status:'Actif'}).then(data => {
       this.setState({ count_dispositifs:data.data })
-    },function(error){console.log(error);return;})
+    })
   }
 
   getDispositifs = (data) => {
-    let filter={};
-    data.map((x,id) => (id<3 || this.state.isToggleOpen) ? filter[x.queryName] = x.query || x.value : undefined);
+    this.setState({loading:true})
+    let filter={status:'Actif'};
+    data.map((x,id) => (id !== 2 && (id<3 || this.state.isToggleOpen) ) ? filter[x.queryName] = x.query || x.value : undefined);
     API.get_dispositif(filter).then(data_res => {
       let dispositifs=data_res.data.data;
       this.setState({
         dispositifs:dispositifs.filter(x => !this.state.pinned.find( y => y._id === x._id)), 
+        loading: false
       })
-    },function(error){console.log(error);return;})
+    })
   }
 
   retrieveCookies = () => {
@@ -63,9 +66,9 @@ class ParkourOnBoard extends Component {
           pinned:user.cookies.parkourPinned || [],
           dispositifs:[...this.state.dispositifs].filter(x => !((user.cookies.parkourPinned || []).find( y=> y._id === x._id))),
           ...(user.cookies.parkourData && user.cookies.parkourData.length>0 && 
-            {data:this.state.data.map((x,key)=> {return {...x, value:user.cookies.parkourData[key] || x.value}})})
-        })
-      },function(error){console.log(error);return;})
+            {data:this.state.data.map((x,key)=> {return {...x, value: (user.cookies.parkourData[key] || x.value), query: (x.children.find(y=> y.name === (user.cookies.parkourData[key] || x.value)) || {}).query }})})
+        }, () => this.getDispositifs(this.state.data))
+      })
     }
   }
 
@@ -112,6 +115,7 @@ class ParkourOnBoard extends Component {
   }
 
   render() {
+    let {loading} = this.state;
     let QuestionItem = (props) => {
       return(
         <span className="question-line">
@@ -206,9 +210,13 @@ class ParkourOnBoard extends Component {
                 <NavLink to={'/dispositif'}>
                   <CustomCard addcard="true" onClick={this.goToDispositif}>
                     <CardBody>
-                      <span className="add-sign">+</span>
+                      {loading ? 
+                        <Spinner color="green" />:
+                        <span className="add-sign">+</span>}
                     </CardBody>
-                    <CardFooter className="align-right bg-secondary text-white">Créer un nouveau dispositif</CardFooter>
+                    <CardFooter className="align-right bg-secondary text-white">
+                      {loading ? "Chargement..." : "Créer un nouveau dispositif"}
+                    </CardFooter>
                   </CustomCard>
                 </NavLink>
               </Col>

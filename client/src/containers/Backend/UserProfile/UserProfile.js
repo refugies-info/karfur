@@ -9,7 +9,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
 import {ActionTable, TradTable, ContribTable, FavoriTable} from '../../../components/Backend/UserProfile';
-import {ThanksModal, SuggestionModal, ObjectifsModal} from '../../../components/Modals';
+import {ThanksModal, SuggestionModal, ObjectifsModal, ContributeurModal, TraducteurModal} from '../../../components/Modals';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import ModifyProfile from '../../../components/Backend/UserProfile/ModifyProfile/ModifyProfile';
 
@@ -20,7 +20,7 @@ import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 
 class UserProfile extends Component {
   state={
-    showModal:{action:false, traducteur: false,contributeur: false, thanks:false, favori:false, suggestion: false, objectifs:false}, 
+    showModal:{action:false, traducteur: false, contributeur: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: true}, 
     showSections:{traductions: true, contributions: true},
     user: {},
     traductions:[],
@@ -398,6 +398,14 @@ class UserProfile extends Component {
 
         <ThanksModal show={this.state.showModal.thanks} toggle={()=>this.toggleModal('thanks')} />
         <SuggestionModal suggestion={this.state.suggestion} show={this.state.showModal.suggestion} toggle={()=>this.toggleModal('suggestion')} />
+        <ContributeurModal show={this.state.showModal.devenirContributeur} toggle={()=>this.toggleModal('devenirContributeur')} />
+        
+        <TraducteurModal 
+          user={this.state.user} 
+          langues={this.state.langues}
+          show={this.state.showModal.devenirTraducteur} 
+          toggle={()=>this.toggleModal('devenirTraducteur')} />
+
         <ObjectifsModal 
           show={this.state.showModal.objectifs} 
           toggle={()=>this.toggleModal('objectifs')}
