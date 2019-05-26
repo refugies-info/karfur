@@ -37,12 +37,12 @@ class Dispositifs extends Component {
   }
 
   componentDidMount (){
-    this.queryDispositifs({status:'Actif'})
+    this.queryDispositifs()
   }
 
   queryDispositifs = query => {
     this.setState({ showSpinner: true })
-    API.get_dispositif(query).then(data_res => {
+    API.get_dispositif({...query, status:'Actif'}).then(data_res => {
       let dispositifs=data_res.data.data
       this.setState({ dispositifs:dispositifs, showSpinner: false })
     }).catch(()=>this.setState({ showSpinner: false }))

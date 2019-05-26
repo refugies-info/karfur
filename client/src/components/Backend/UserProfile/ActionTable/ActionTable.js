@@ -43,7 +43,7 @@ const actionTable = (props) => {
               <td className="align-middle">
                 {element.depuis ? moment(element.depuis).fromNow() : ""}
               </td>
-              <td className="align-middle pointer">
+              <td className="align-middle pointer" onClick={()=>props.archive(element)}>
                 <Icon name="checkmark-circle-outline" fill="#3D3D3D"/>&nbsp;
                 <u>Archiver</u>
               </td>

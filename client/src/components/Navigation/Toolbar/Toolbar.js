@@ -96,9 +96,11 @@ export class Toolbar extends React.Component {
         </nav>
 
         <div className="right_buttons">
-          <Button className="traduire-btn">
-            <NavLink to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }}>Traduire</NavLink>
-          </Button>
+          <NavLink to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }}>
+            <Button className="traduire-btn">
+              Traduire
+            </Button>
+          </NavLink>
 
           {API.isAuth() ? 
             <ButtonDropdown className="user-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggle}>

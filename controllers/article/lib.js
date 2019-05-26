@@ -1,6 +1,8 @@
 const Article = require('../../schema/schemaArticle.js');
 const Traduction = require('../../schema/schemaTraduction.js');
 const Langue = require('../../schema/schemaLangue.js');
+const Role = require('../../schema/schemaRole.js');
+const User = require('../../schema/schemaUser.js');
 const traduction = require('../traduction/lib');
 const draftToHtml = require('draftjs-to-html');
 var sanitizeHtml = require('sanitize-html');
@@ -121,6 +123,13 @@ function add_traduction(req, res) {
   } else {
     let locale=req.body.langueCible; //TODO :S'assurer que ce locale est autorisé 
     
+    //On lui donne le rôle de traducteur
+    Role.findOne({'nom':'Trad'}).exec((err, result) => {
+      if(!err && result && req.userId){ 
+        User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "roles": result._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+      }
+    })
+
     //On l'insère en prod seulement si l'utilisateur a les droits admin ou expert en traduction
     if(req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null)){
       let traductionItem=req.body;

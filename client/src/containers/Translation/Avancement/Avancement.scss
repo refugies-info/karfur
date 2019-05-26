@@ -17,6 +17,10 @@
   }
 
   .avancement-header{
+    .row{
+      margin-right: 0;
+      margin-left: 0;
+    }
     i.h1{
       margin-right:13px;
       border-radius: 2px;
@@ -40,6 +44,12 @@
     .big-number{
       font-size: 64px;
       line-height: 81px;
+    }
+  }
+
+  .avancement-row{
+    &:hover{
+      background: lightgray;
     }
   }
 }

@@ -3,6 +3,7 @@ const Role = require('../../schema/schemaRole.js');
 const User = require('../../schema/schemaUser.js');
 var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
+var uniqid = require('uniqid');
 
 function add_dispositif(req, res) {
   if (!req.body || !req.body.titreMarque || !req.body.titreInformatif) {
@@ -126,13 +127,19 @@ function update_dispositif(req, res) {
   if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
-    let {dispositifId, fieldName, ...dispositif} = req.body;
-    let update = { "$push": { [fieldName]: {
-      ...(req.userId && {userId:req.userId}), 
-      ...(req.user && {username:req.user.username, picture: req.user.picture}), 
-      ...dispositif, 
-      createdAt: new Date()
-    } } }
+    let {dispositifId, fieldName, suggestionId, type, ...dispositif} = req.body;
+    let update = null;
+    if(type==='pull'){
+      update = { $pull: { [fieldName] : {'suggestionId': suggestionId } } }
+    }else{
+      update = { "$push": { [fieldName]: {
+        ...(req.userId && {userId:req.userId}), 
+        ...(req.user && {username:req.user.username, picture: req.user.picture}), 
+        ...dispositif, 
+        createdAt: new Date(),
+        suggestionId: uniqid('feedback_')
+      } } }
+    }
     Dispositif.findByIdAndUpdate({ _id: dispositifId },update,{new: true},(err, data) => {
       if (err){res.status(404).json({ "text": "Pas de résultat" })}
       else{

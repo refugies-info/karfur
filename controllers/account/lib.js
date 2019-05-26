@@ -1,4 +1,5 @@
 const User = require('../../schema/schemaUser.js');
+const Role = require('../../schema/schemaRole.js');
 const Langue = require('../../schema/schemaLangue.js');
 const passwordHash = require("password-hash");
 
@@ -35,24 +36,29 @@ function signup(req, res) {
         delete user.traducteur;
       }
       user.status='Actif';
-      var _u = new User(user);
-      _u.save(function (err, user) {
-        if (err) {
-          console.log(err)
-          res.status(500).json({
-            "text": "Erreur interne"
-          })
-        } else {
-          //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
-          //Je le fais en non bloquant, il faut pas que ça bloque l'enregistrement
-          populateLanguages(user);
 
-          res.status(200).json({
-            "text": "Succès",
-            "token": user.getToken(),
-            "data": user
-          })
-        }
+      Role.findOne({'nom':'User'}).exec((e, result) => {
+        user.roles = (result || {})._id;
+
+        var _u = new User(user);
+        _u.save(function (err, user) {
+          if (err) {
+            console.log(err)
+            res.status(500).json({
+              "text": "Erreur interne"
+            })
+          } else {
+            //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
+            //Je le fais en non bloquant, il faut pas que ça bloque l'enregistrement
+            populateLanguages(user);
+
+            res.status(200).json({
+              "text": "Succès",
+              "token": user.getToken(),
+              "data": user
+            })
+          }
+        })
       })
     }, function (error) {
       console.log(error)

@@ -162,7 +162,7 @@ class Translation extends Component {
         },()=>{
           if(!isExpert){
             //Je vérifie d'abord s'il n'y a pas eu une première traduction effectuée par un utilisateur :
-            API.get_tradForReview({'articleId':itemId}, '-avancement').then(data => {
+            API.get_tradForReview({'articleId':itemId, langueCible: locale}, '-avancement').then(data => {
               if(data.data.data && data.data.data.length > 0){
                 let traductionFaite = data.data.data[0];
                 this.setState({ translated: {
