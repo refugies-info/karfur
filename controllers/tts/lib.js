@@ -77,6 +77,7 @@ async function get_tts(req, res) {
       res.status(402).json({
         "text": "Token invalide"
       })
+      return false;
     }
     let options = textToSpeech(accessToken, text, locale);
 
@@ -85,10 +86,15 @@ async function get_tts(req, res) {
       // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
       // console.log('body:', body); // Print the HTML for the Google homepage.
       if (response && response.statusCode === 200) {
-        res.writeHead(200, { 'Content-Type': 'audio/wav',
-          "Content-Length": body.length});
-        res.end(body)
-      }
+        res.status(200).json({
+          "text": "Succès",
+          "data": body
+        })
+        // res.writeHead(200, { 'Content-Type': 'audio/wav',
+        //   "Content-Length": body.length});
+        // console.log(body.length)
+        // res.end(body)
+      }else{console.log(response.statusCode)}
     });
     // let request = rp(options).on('response', (response) => {
     //     if (response.statusCode === 200) {

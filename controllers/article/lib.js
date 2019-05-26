@@ -60,32 +60,29 @@ function get_article(req, res) {
     var sort = req.body.sort;
     var populate = req.body.populate;
     var limit = req.body.limit;
+    var random = req.body.random;
     
     let isStructure=false;let structId=null;
     if(query._id && query._id.includes('struct_')){
       isStructure=true;structId=query._id;
       query={isStructure:true};
     }
-    var find= new Promise(function (resolve, reject) {
-      Article.find(query).sort(sort).populate(populate).limit(limit).exec(function (err, result) {
-        if (err) {
-          reject(500);
-        } else {
-          if (result) {
-            resolve(result)
-          } else {
-            reject(404)
-          }
-        }
-      })
-    })
-
-    find.then(function (result) {
+    let promise=null;
+    if(random){
+      promise=Article.aggregate([
+        { $match : query },
+        { $sample : { size: 1 } }
+      ]);
+    }else{
+      promise=Article.find(query).sort(sort).populate(populate).limit(limit);
+    }
+    promise.then(result => {
       let structureArr=[];
       [].forEach.call(result, (article, i) => { 
         if(article.isStructure){
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
+          if(random && structureArr.length > 1){structureArr = [structureArr[ Math.floor((Math.random() * structureArr.length)) ]]}
           result.splice(i, 1);
         }else{
           returnLocalizedContent(article.body, locale)
@@ -97,23 +94,10 @@ function get_article(req, res) {
           "text": "Succès",
           "data": [...structureArr, ...result]
       })
-    }, function (error) {
-      switch (error) {
-        case 500:
-            res.status(500).json({
-                "text": "Erreur interne"
-            })
-            break;
-        case 404:
-          res.status(404).json({
-            "text": "Pas de résultat"
-          })
-          break;
-        default:
-          res.status(500).json({
-            "text": "Erreur interne"
-          })
-      }
+    }).catch(err => {
+      res.status(500).json({
+        "text": "Erreur interne"
+      })
     })
   }
 }

@@ -41,7 +41,7 @@ if(process.env.NODE_ENV === 'dev') {
         console.log(await db.collection('dispositifs').insertMany(dispositifs).insertedIds);
       }
 
-      // let isLocaleSuccess=_insertI18nLocales()
+      let isLocaleSuccess=_insertI18nLocales()
       // let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
   }
@@ -52,13 +52,14 @@ if(process.env.NODE_ENV === 'dev') {
     let nbMots=0;
     let avancement={fr:1};
     fs.readdirSync(localeFolder,{'withFileTypes':true}).forEach(dir => {
-      if(dir !=='fr' && !path.extname(dir)){
+      if(dir !=='fr' && !path.extname(dir.name)){
         try{
-          fs.readdirSync(localeFolder + "/"  + dir).forEach(file => {
+          fs.readdirSync(localeFolder + "/"  + dir.name).forEach(file => {
             if(file.includes(".json")){
-              var jsonLoc= JSON.parse(fs.readFileSync(localeFolder + "/"  + dir + "/" + file, "utf8"));
-              avancement[dir]=0;
-              let tempObj=_insertNested(frJson,jsonLoc, dir, nbMots, avancement);
+              console.log(file)
+              var jsonLoc= JSON.parse(fs.readFileSync(localeFolder + "/"  + dir.name + "/" + file, "utf8"));
+              avancement[dir.name ]=0;
+              let tempObj=_insertNested(frJson,jsonLoc, dir.name, nbMots, avancement);
               nbMots=tempObj.nbMots;
               avancement=tempObj.avancement;
             }
@@ -80,7 +81,7 @@ if(process.env.NODE_ENV === 'dev') {
         console.log("Something went wrong when updating data : " + err);
         return false
       }
-      console.log(doc);
+      console.log('translation data inserted with great success');
       return true
     });
   }

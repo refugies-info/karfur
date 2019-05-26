@@ -426,7 +426,7 @@ class Dispositif extends Component {
           <Row className="header-row">
             <Col className="top-left" onClick={this.goBack}>
               <i className="cui-arrow-left icons"></i> 
-              <span>Retour à la recherche</span>
+              <span>{t("Retour à la recherche")}</span>
             </Col>
             <TopRightHeader 
               disableEdit={this.state.disableEdit} 
@@ -453,7 +453,7 @@ class Dispositif extends Component {
                 />
               </h1>
               <h2 className="bloc-subtitle">
-                <span>avec le programme&nbsp;</span>
+                <span>{t("avec le programme")}&nbsp;</span>
                 <ContentEditable
                   id='titreMarque'
                   html={this.state.content.titreMarque}  // innerHTML of the editable div
@@ -469,7 +469,7 @@ class Dispositif extends Component {
           <img className="homme-icon" src={manLab} alt="homme"/>
         </section>
         <Row className="tags-row">
-          <b className="en-bref">En bref : </b>
+          <b className="en-bref">{t("En bref")} : </b>
           {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
             if(card.type==='card'){
               return (
@@ -486,15 +486,15 @@ class Dispositif extends Component {
           })}
           <Row className="right-side-row">
             <Col className="align-right">
-              Dernière mise à jour :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
+              {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
             </Col>
             <Col>
-              Fiabilité de l'information :&nbsp;<span className="fiabilite">Faible</span>
+              {t("Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t("Faible")}</span>
               <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#828282"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
               
               <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
-                Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant.
-                Cliquez sur le '?' pour en savoir plus
+                {t("Dispositif.fiabilite_faible_1")} <b>{t("Dispositif.fiabilite_faible_2")}</b> {t("Dispositif.fiabilite_faible_3")}{' '}
+                {t("Dispositif.cliquez")}
               </Tooltip>
             </Col>
           </Row>
@@ -536,7 +536,7 @@ class Dispositif extends Component {
         
 
         <div className="contact-footer">
-          Des questions ? Contactez-nous par email à&nbsp;
+          {t("Dispositif.questions")}&nbsp;
           <u>
             <ContentEditable
               id='contact'
@@ -550,7 +550,7 @@ class Dispositif extends Component {
           <div className="people-footer">
             <Row>
               <Col lg="6" className="people-col">
-                <div className="people-title">Contributeurs</div>
+                <div className="people-title">{t("Contributeurs")}</div>
                 <div className="people-card">
                   <img className="people-img" src={creatorImg} alt="juliette"/>
                   <div className="right-side">
@@ -560,7 +560,7 @@ class Dispositif extends Component {
                 </div>
               </Col>
               <Col lg="6" className="people-col">
-                <div className="people-title">Traducteurs</div>
+                <div className="people-title">{t("Traducteurs")}</div>
                 <div className="people-card">
                   <img className="people-img" src={hugo} alt="hugo"/>
                   <div className="right-side">
@@ -595,11 +595,11 @@ class Dispositif extends Component {
         <EnConstructionModal name='construction' show={showModals.construction} toggleModal={this.toggleModal} />
 
         <Modal show={this.state.showModals.fiabilite} modalClosed={()=>this.toggleModal(false, 'fiabilite')} classe='modal-fiabilite'>
-          <h1>Fiabilité de l’information</h1>
+          <h1>{t("Dispositif.fiabilite")}</h1>
           <div className="liste-fiabilite">
             <Row>
               <Col lg="4" className="make-it-red">
-                Faible
+                {t("Faible")}
               </Col>
               <Col lg="8">
                 L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
@@ -607,7 +607,7 @@ class Dispositif extends Component {
             </Row>
             <Row>
               <Col lg="4" className="make-it-orange">
-                Moyenne
+                {t("Moyenne")}
               </Col>
               <Col lg="8">
                 L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
@@ -615,7 +615,7 @@ class Dispositif extends Component {
             </Row>
             <Row>
               <Col lg="4" className="make-it-green">
-                Forte
+                {t("Forte")}
               </Col>
               <Col lg="8">
                 L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
