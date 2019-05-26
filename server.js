@@ -8,11 +8,11 @@ const bodyParser = require('body-parser');
 const cloudinary = require('cloudinary')
 const formData = require('express-form-data')
 const path = require("path");
+const startup = require('./startup/startup');
 
-let startup, scraper;
+let scraper;
 if(process.env.NODE_ENV === 'dev') {
   console.log('dev environment')
-  startup = require('./startup/startup');
   //scraper = require('./scraper/puppeter');
 } 
 
