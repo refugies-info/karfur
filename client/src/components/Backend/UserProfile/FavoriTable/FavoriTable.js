@@ -10,6 +10,8 @@ import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 const favoriTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
   
+  const goToDispositif = (dispositif) => props.history.push("/dispositif/" + dispositif._id)
+  
   let table = (
     <Table responsive striped className="avancement-user-table">
       <thead>
@@ -28,7 +30,7 @@ const favoriTable = (props) => {
               <td className="align-middle">
                 <Icon name="bookmark" fill="#3D3D3D" id="bookmarkBtn" />  
               </td>
-              <td className="align-middle">
+              <td className="align-middle pointer" onClick={()=>goToDispositif(element)}>
                 {element.titreMarque + ' - ' + element.titreInformatif} 
               </td>
               <td className="align-middle">

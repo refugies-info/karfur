@@ -46,10 +46,14 @@ class TraducteurModal extends Component {
     API.set_user_info(newUser).then(data => {
       let userRes=data.data.data;
       if(!userRes){return}
-      this.props.history.push({
-        pathname: '/backend/user-dashboard',
-        state: { user: userRes}
-      })
+      if(this.props.redirect){
+        this.props.history.push({
+          pathname: '/backend/user-dashboard',
+          state: { user: userRes}
+        })
+      }else if(this.props.setUser){
+        this.props.setUser(userRes)
+      }
     })
   }
 
@@ -82,15 +86,17 @@ class TraducteurModal extends Component {
             )}
           </FormGroup>
           
-          <h3>Veuillez prioriser vos langues de travail</h3>
           {langues_list.length>0 && 
-            <FormGroup>
-              <DraggableList 
-                items={langues_list}
-                maxLength={langues.length}
-                handleDraggableListChange={this.handleDraggableListChange}
-                />
-            </FormGroup>}
+            <>
+              <h3>Veuillez prioriser vos langues de travail</h3>
+              <FormGroup>
+                <DraggableList 
+                  items={langues_list}
+                  maxLength={langues.length}
+                  handleDraggableListChange={this.handleDraggableListChange}
+                  />
+              </FormGroup>
+            </>}
         </ModalBody>
         <ModalFooter>
           <Button className="validate-btn" onClick={this.onValidate}>

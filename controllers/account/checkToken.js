@@ -12,7 +12,7 @@ check = (req, res, next) => {
   if(!token || token === null || token === undefined || token === 'undefined')
     return res.status(403).send({ auth: false, message: "No token found."})
   
-  let decoded=jwt.decode(token, process.env.SECRET || config.secret);
+  let decoded=jwt.decode(token, process.env.NODE_ENV === 'dev' ? config.secret : process.env.SECRET);
 
   if(!decoded || decoded === null || decoded === undefined || decoded === 'undefined')
     return res.status(404).send({ auth: false, message: "No user found."});
@@ -35,7 +35,7 @@ getId = (req, res, next) => {
   
   req.userId=undefined;
   if(token !== null && token !== undefined && token !== 'undefined'){
-    let decoded=jwt.decode(token, process.env.SECRET || config.secret);
+    let decoded=jwt.decode(token, process.env.NODE_ENV === 'dev' ? config.secret : process.env.SECRET);
     if(decoded){
       req.user=decoded;
       req.userId=decoded._id;

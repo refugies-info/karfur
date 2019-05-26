@@ -194,12 +194,12 @@ class Avancement extends Component {
 
     const AvancementData = () => {
       if(this.props.match.params.id && this.state.data.length>0 && this.state.langue.i18nCode){
-        console.log(this.state.data)
         return(
           this.state.data.map((element,key) => {
             return (
               <tr 
                 key={element._id}
+                className="avancement-row pointer"
                 onClick={() => this.goToTraduction(element)} >
                 <td className="align-middle">{element.title.fr || element.title}</td>
                 <td className="align-middle">
@@ -253,7 +253,7 @@ class Avancement extends Component {
           </Col>
           <Col className="tableau-header">
             <div className="float-right">
-              Plus que <b className="big-number">345</b> éléments à traduire, on lâche rien !
+              Plus que <b className="big-number">{(this.state.data || []).length}</b> éléments à traduire, on lâche rien !
             </div>
           </Col>
         </Row>

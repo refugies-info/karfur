@@ -75,6 +75,8 @@ class UserProfile extends Component {
             read : x.read,
             username : x.username,
             picture : x.picture,
+            dispositifId:dispo._id,
+            suggestionId:x.suggestionId
           }))];
         }
       })
@@ -106,6 +108,20 @@ class UserProfile extends Component {
   showSuggestion = (suggestion) => {
     this.setState({suggestion});
     this.toggleModal('suggestion');
+  }
+
+  archiveSuggestion = (suggestion) => {
+    let dispositif = {
+      dispositifId: suggestion.dispositifId,
+      suggestionId: suggestion.suggestionId,
+      fieldName: suggestion.action,
+      type: 'pull'
+    }
+    console.log(dispositif)
+    API.update_dispositif(dispositif).then(data => {
+      console.log(data.data.data)
+      this.setState({actions: this.state.actions.filter(x=> x.suggestionId !== suggestion.suggestionId)})
+    })
   }
 
   addLangue = () => {
@@ -164,7 +180,7 @@ class UserProfile extends Component {
     let newUser={
       _id:user._id,
       username:h2p(user.username),
-      selectedLanguages:user.selectedLanguages,
+      selectedLanguages: [...new Set(user.selectedLanguages)],
       email:h2p(user.email),
       description:h2p(user.description),
       picture: user.picture
@@ -272,9 +288,9 @@ class UserProfile extends Component {
                 <CardBody>
                   <Row>
                     <Col className="obj-first">
-                      <h1 className="title">37/{user.objectifTemps || "60"}</h1>
+                      <h1 className="title">{Math.floor(this.state.progression.timeSpent / 1000 / 60)}/{user.objectifTemps || "60"}</h1>
                       <h6 className="subtitle">minutes contribuées</h6>
-                      <span className="content">37 minutes passées à informer les personnes réfugiées. Merci !</span>
+                      <span className="content">{Math.floor(this.state.progression.timeSpent / 1000 / 60)} minutes passées à informer les personnes réfugiées. Merci !</span>
                     </Col>
                     <Col className="obj-second">
                       <h1 className="title">234/{user.objectifMotsContrib || "600"}</h1>
@@ -282,7 +298,7 @@ class UserProfile extends Component {
                       <span className="content">pour les personnes réfugiées. Merci !</span>
                     </Col>
                     <Col className="obj-third">
-                      <h1 className="title">37/{user.objectifMots || "60"}</h1>
+                      <h1 className="title">{this.state.progression.nbMots}/{user.objectifMots || "60"}</h1>
                       <h6 className="subtitle">mots traduits</h6>
                       <span className="content">pour les personnes réfugiées. Merci !</span>
                     </Col>
@@ -315,6 +331,7 @@ class UserProfile extends Component {
               toggleModal={this.toggleModal}
               showSuggestion={this.showSuggestion}
               upcoming={this.upcoming}
+              archive={this.archiveSuggestion}
               limit={5}
               {...avancement_actions} />:
             <FavoriTable 
@@ -323,6 +340,7 @@ class UserProfile extends Component {
               removeBookmark={this.removeBookmark}
               upcoming={this.upcoming}
               hasFavori={hasFavori}
+              history={this.props.history}
               limit={5}
               {...avancement_favoris} />
           }
@@ -347,7 +365,7 @@ class UserProfile extends Component {
             hide={!showSections.traductions}
             history={this.props.history}
             motsRediges={this.state.progression.nbMots}
-            minutesPassees={Math.floor(this.state.progression.timeSpent / 60)}
+            minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
             limit={5}
             {...avancement_langue} />
 
@@ -358,6 +376,7 @@ class UserProfile extends Component {
                 removeBookmark={this.removeBookmark}
                 upcoming={this.upcoming}
                 hasFavori={hasFavori}
+                history={this.props.history}
                 limit={5}
                 {...avancement_favoris} />
               }
@@ -368,6 +387,7 @@ class UserProfile extends Component {
             dataArray={actions}
             toggleModal={this.toggleModal}
             showSuggestion={this.showSuggestion}
+            archive={this.archiveSuggestion}
             {...avancement_actions} />
         </Modal>
         
@@ -394,6 +414,7 @@ class UserProfile extends Component {
             toggleModal={this.toggleModal}
             removeBookmark={this.removeBookmark}
             hasFavori={hasFavori}
+            history={this.props.history}
             {...avancement_favoris} />
         </Modal>
 
@@ -405,6 +426,7 @@ class UserProfile extends Component {
           user={this.state.user} 
           langues={this.state.langues}
           show={this.state.showModal.devenirTraducteur} 
+          redirect
           toggle={()=>this.toggleModal('devenirTraducteur')} />
 
         <ObjectifsModal 

@@ -49,4 +49,65 @@
   .recent-row{
     margin-top:39px;
   }
+
+  .ecran-protection{
+    height: calc(100% + 2 * 20px);
+    width: calc(100% + 2 * 64px);
+    opacity: 1;
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding: 0;
+    transition: opacity .5s;
+    z-index:2;
+    margin: -20px -64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.no-recent{
+      background: rgba(130, 130, 130, 0.8);
+    }
+    
+    &:hover {
+      opacity: .9;
+      transition: opacity .5s;
+    }
+    .close-box{
+      position: absolute;
+      top:51px;
+      right:53px;
+      cursor: pointer;
+
+      i{
+        margin-right:12px;
+      }
+    }
+    .content-wrapper{
+      position: relative;
+      width:60%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      h1{
+        font-size: 40px;
+        line-height: 51px;
+        text-align: center;
+        color: #FFFFFF;
+        margin-bottom:11px;
+      }
+      .btn{
+        box-sizing: border-box;
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 23px;
+        color: #FFFFFF;
+        padding:13px;
+      }
+    }
+  }
 }

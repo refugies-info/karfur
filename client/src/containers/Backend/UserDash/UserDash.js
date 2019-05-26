@@ -15,7 +15,7 @@ import './UserDash.scss';
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
 import Icon from 'react-eva-icons/dist/Icon';
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
-import { ObjectifsModal } from '../../../components/Modals';
+import { ObjectifsModal, TraducteurModal } from '../../../components/Modals';
 
 moment.locale('fr');
 
@@ -33,11 +33,12 @@ const avancement_data={
 
 class UserDash extends Component {
   state={
-    showModal:{objectifs:false, traductionsFaites: false, progression:false}, 
+    showModal:{objectifs:false, traductionsFaites: false, progression:false, devenirTraducteur: false}, 
     images:[],
     runJoyRide:false, //penser à le réactiver !!
     user:{},
     langues:[],
+    allLangues:[],
     traductionsFaites:[],
     progression:{
       timeSpent:0,
@@ -55,25 +56,55 @@ class UserDash extends Component {
     
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
-      API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
-        console.log(data_langues.data.data)
-        this.setState({langues: data_langues.data.data})
-      })
-      API.get_progression().then(data_progr => {
-        if(data_progr.data.data && data_progr.data.data.length>0)
-          this.setState({progression: data_progr.data.data[0]})
-      })
-      API.get_tradForReview({'_id': { $in: user.traductionsFaites}},{updatedAt: -1}).then(data => {
-        console.log(data.data.data)
-        this.setState({traductionsFaites: data.data.data})
-      })
+      if(user.selectedLanguages && user.selectedLanguages.length > 0){
+        API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
+          console.log(data_langues.data.data)
+          this.setState({langues: data_langues.data.data})
+        })
+        API.get_progression().then(data_progr => {
+          console.log(data_progr.data.data)
+          if(data_progr.data.data && data_progr.data.data.length>0)
+            this.setState({progression: data_progr.data.data[0]})
+        })
+        API.get_tradForReview({'_id': { $in: user.traductionsFaites}},{updatedAt: -1}).then(data => {
+          console.log(data.data.data)
+          this.setState({traductionsFaites: data.data.data})
+        })
+      }else{
+        API.get_langues().then(data_langues => {
+          console.log(data_langues.data.data)
+          this.setState({allLangues: data_langues.data.data})
+        })
+      }
       this.setState({user:user})
     })
   }
 
   toggleModal = (modal) => {
+    console.log(modal)
     this.props.tracking.trackEvent({ action: 'toggleModal', label: modal, value : !this.state.showModal[modal] });
-    this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}}, ()=>(console.log(this.state)))
+    if(modal === 'devenirTraducteur' && this.state.showModal.devenirTraducteur && (!this.state.user.selectedLanguages || this.state.user.selectedLanguages.length === 0)){
+      this.triggerConfirmationRedirect();
+    }else{
+      this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}}, ()=>(console.log(this.state)))
+    }
+  }
+
+  triggerConfirmationRedirect = () => {
+    Swal.fire({
+      title: 'Êtes-vous sûr ?',
+      text: "Sans informations sur vos langues de travail, nous allons vous rediriger vers la page d'accueil",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Aller à l\'accueil',
+      confirmButtonText: 'Je veux continuer'
+    }).then((result) => {
+      if (!result.value) {
+        this.props.history.push("/")
+      }
+    })
   }
   
   openThemes = (langue) => {
@@ -91,7 +122,9 @@ class UserDash extends Component {
     })
   }
 
-  quickAccess = (langue) => {
+  quickAccess = (langue=null) => {
+    if(!langue && this.state.langues.length > 0){langue=this.state.langues.find(x=> x.langueCode!=='fr')}
+    if(!langue){return false;}
     let i18nCode=langue.i18nCode;
     let nom='avancement.'+i18nCode;
     let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
@@ -107,6 +140,13 @@ class UserDash extends Component {
     this.props.history.push('/backend/user-form')
   }
 
+  setUser = user => {
+    API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
+      this.setState({user, langues: data_langues.data.data});
+      this.toggleModal('devenirTraducteur')
+    })
+  }
+
   validateObjectifs = newUser => {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
@@ -119,12 +159,6 @@ class UserDash extends Component {
   render() {
     let {langues, traductionsFaites} = this.state;
 
-    const ConditionalRedirect = () => {
-      if (this.state.user.selectedLanguages && this.state.user.selectedLanguages.length===0) {
-        return (<Redirect to={{ pathname: '/backend/user-form', state: {user: this.state.user}}} />)
-      }else{return false}
-    }  
-    
     const buttonTraductions = element => (
       (this.state.user.roles || []).find(x => x.nom==='ExpertTrad') ?
         <Button block color="info" onClick={() => this.openTraductions(element)}>Valider les traductions</Button>
@@ -142,6 +176,8 @@ class UserDash extends Component {
           headers={past_translation_data.headers}
           title={past_translation_data.title}
           toggleModal={()=>this.toggleModal('traductionsFaites')}
+          protection={data.length === 0}
+          quickAccess={this.quickAccess}
           {...props}
           >
           {data.map( element => {
@@ -224,9 +260,10 @@ class UserDash extends Component {
       )
     }
 
+    console.log(traductionsFaites)
+
     return (
       <div className="animated fadeIn user-dash">
-        <ConditionalRedirect />
         <ReactJoyride
           continuous
           steps={steps}
@@ -239,10 +276,10 @@ class UserDash extends Component {
         <DashHeader 
           title="Mes traductions"
           motsRediges={this.state.progression.nbMots}
-          minutesPassees={Math.floor(this.state.progression.timeSpent / 60)}
+          minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}
           motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt
-          minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 60))} //idem
+          minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 1000 / 60))} //idem
         />
         
         <Row className="recent-row">
@@ -268,6 +305,13 @@ class UserDash extends Component {
           show={this.state.showModal.objectifs} 
           toggle={()=>this.toggleModal('objectifs')}
           validateObjectifs={this.validateObjectifs} />
+        
+        <TraducteurModal 
+          user={this.state.user} 
+          langues={this.state.allLangues}
+          show={this.state.showModal.devenirTraducteur} 
+          setUser={this.setUser}
+          toggle={()=>this.toggleModal('devenirTraducteur')} />
       </div>
     );
   }
