@@ -11,8 +11,8 @@ export default function SpringButtonParkour(props) {
   const { size, opacity, ...rest } = useSpring({
     ref: springRef,
     config: config.stiff,
-    from: { size: '20%', background: 'hotpink' },
-    to: { size: open ? '100%' : '20%', background: open ? 'white' : 'hotpink' }
+    from: { size: '33%', background: 'transparent' },
+    to: { size: open ? '100%' : '33%', background: open ? 'transparent' : 'transparent' }
   })
 
   const transRef = useRef()

@@ -66,40 +66,60 @@ $transition-time: 0.5s;
           border:none;
           color:#3D3D3D;
           padding:0;
+          margin-bottom: 5px;
         }
       }
-      .buttons-wrapper div[style*="transform"]{
-        background: #FBFBFB;
-        border: 1px solid #828282;
-        box-sizing: border-box;
-        border-radius: 12px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 23px;
-
-        min-height:130px;
-        min-width:130px;
-        &:hover{
-          background: linear-gradient(137.67deg, #979797 -12.31%, #3D3D3D 95.23%);
-          color: #FFFFFF;
+      .buttons-wrapper{ 
+        margin-top:15px;
+        .cokmdy{
+          grid-template-columns: repeat(3,minmax(100px,1fr));
+          grid-gap: 11px;
+          box-shadow: none;
         }
-      }
-      .questionnaire-main .question-line{
-        font-size: 24px;
-        .btn{
-          font-size: 24px;
+        @media only screen and (max-width: 1500px)  {
+          grid-template-columns: repeat(2,minmax(100px,1fr));
+        }
+        @media only screen and (max-width: 600px)  {
+          grid-template-columns: repeat(1,minmax(100px,1fr));
+        }
+        div[style*="transform"]{
+          background: #FBFBFB;
+          border: 1px solid #828282;
+          box-sizing: border-box;
+          border-radius: 12px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           font-weight: 600;
-          &.m-0{
-            font-size: initial;
+          font-size: 16px;
+          line-height: 23px;
+          padding:5px;
+
+          min-height:130px;
+          min-width:130px;
+          &:hover{
+            background: linear-gradient(137.67deg, #979797 -12.31%, #3D3D3D 95.23%);
+            color: #FFFFFF;
+          }
+        }
+      }
+      .questionnaire-main{ 
+        .questions{
+          margin-top:30px;
+          .question-line{
+            font-size: 24px;
+            .btn{
+              font-size: 24px;
+              font-weight: 600;
+              &.m-0{
+                font-size: initial;
+              }
+            }
           }
         }
       }
       
       .card-footer{
-        margin-top:5em;
         background-color:inherit;
         border:none;
         border-radius: 0 0 12px 12px;
@@ -121,6 +141,9 @@ $transition-time: 0.5s;
           border: 1px solid #3D3D3D;
           box-sizing: border-box;
           border-radius:50%;
+          width:50px;
+          height:50px;
+
           &:hover{
             background-color:lightgray;
           }
@@ -135,7 +158,7 @@ $transition-time: 0.5s;
 
   .continue-btn{
     float:right;
-    margin-top:20px;
+    margin-top:40px;
   }
 
   .pin-icon{
@@ -206,5 +229,11 @@ $transition-time: 0.5s;
     -webkit-filter: blur(0px);
             filter: blur(0px);
     opacity: 1;
+  }
+}
+
+.modal-vueParkourPerso{
+  .image-parkour{
+    width:100%;
   }
 }

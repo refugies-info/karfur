@@ -17,6 +17,7 @@ import minInt from './minInt.png';
 import serviceCivique from './serviceCivique.png';
 import solidariteJeunesse from './solidariteJeunesse.png';
 import diair from './Diair.png';
+import vueParkourPerso from './vueParkourPerso.png';
 
 export {
   femmeCurly,
@@ -38,4 +39,5 @@ export {
   serviceCivique,
   solidariteJeunesse,
   diair,
+  vueParkourPerso,
 }

@@ -75,9 +75,12 @@ const contribTable = (props) => {
     </Table>
   )
   
+  let show=true;
+  const onAnimationEnd = e => show=false;
+
   if(props.limit){
     return(
-      <div className="tableau-wrapper" id="contributions">
+      <div className={"tableau-wrapper" + (props.hide ? "swing-out-top-bck" : "")} id="mes-contributions" onAnimationEnd={onAnimationEnd}>
         <Row>
           <Col>
             <h1>{props.title}</h1>
@@ -113,7 +116,7 @@ const contribTable = (props) => {
 
         {!props.contributeur &&
           <div className="ecran-protection no-contrib">
-            <div className="close-box text-white">
+            <div className="close-box text-white" onClick={()=>props.toggleSection('contributions')}>
               <Icon name="eye-off-2-outline" fill="#FFFFFF" />
               <u>Masquer</u>
             </div>
@@ -127,8 +130,10 @@ const contribTable = (props) => {
         }
       </div>
     )
-  }else{
+  }else if(show){
     return table
+  }else{
+    return false
   }
 }
 

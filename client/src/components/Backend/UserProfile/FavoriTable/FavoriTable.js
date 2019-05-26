@@ -61,7 +61,7 @@ const favoriTable = (props) => {
   
   if(props.limit){
     return(
-      <div className="tableau-wrapper" id="contributions">
+      <div className="tableau-wrapper" id="mes-favoris">
         <Row>
           <Col>
             <h1>{props.title}</h1>

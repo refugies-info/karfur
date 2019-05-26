@@ -113,7 +113,7 @@ class Dispositif extends Component {
             user={_id:u._id, cookies:u.cookies || {}}
             this.setState({
               pinned: (user.cookies.dispositifsPinned || []).some( x => x._id === itemId),
-              isAuthor: u._id === dispositif.creatorId._id,
+              isAuthor: u._id === (dispositif.creatorId || {})._id,
             })
           })
         }
@@ -363,9 +363,7 @@ class Dispositif extends Component {
     })
   }
 
-  editDispositif = () => {
-    this.setState({disableEdit: false})
-  }
+  editDispositif = () => this.setState({disableEdit: false})
 
   pushReaction = (modalName, fieldName) => {
     this.toggleModal(false, modalName);
@@ -410,7 +408,9 @@ class Dispositif extends Component {
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
-        this.props.history.push("/dispositif/" + data.data.data._id)
+        this.setState({disableEdit: status==='Actif'}, () => {
+          this.props.history.push("/dispositif/" + data.data.data._id)
+        })
       });
     },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
   }

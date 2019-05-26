@@ -7,7 +7,7 @@ import './BookmarkedModal.scss'
 
 const bookmarkedModal = (props) => {
   return(
-    <Modal isOpen={props.showBookmarkModal} toggle={props.toggleBookmarkModal} className="bookmark-modal">
+    <Modal isOpen={props.show} toggle={props.toggle} className="bookmark-modal">
       <ModalHeader>
         <span>Recherche sauvegardée</span>
         <i className="bookmark-icon">
@@ -20,12 +20,12 @@ const bookmarkedModal = (props) => {
       </ModalBody>
       <ModalFooter>
         <NavLink to="/backend/user-profile" className="no-decoration btn-block btn-go">
-          <Button block color="secondary" onClick={props.toggleBookmarkModal} className="btn-go">
+          <Button block color="secondary" onClick={props.toggle} className="btn-go">
             <Icon name="arrow-forward-outline" fill="#3D3D3D" size="large" />
             Aller voir
           </Button>
         </NavLink>
-        <Button block color="success" onClick={props.toggleBookmarkModal}>Ok merci</Button>
+        <Button block color="success" onClick={props.toggle}>Ok merci</Button>
       </ModalFooter>
     </Modal>
   )

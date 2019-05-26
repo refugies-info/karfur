@@ -83,6 +83,7 @@ export default [
   {
     title:'aux alentours de',
     value: 'Paris',
+    title2:'. ',
     queryName: 'localisation',
     color:'primary',
     children:[
@@ -103,7 +104,7 @@ export default [
   {
     title:'J\'ai entre',
     value: '18-24',
-    title2:'ans',
+    title2:' ans, ',
     queryName: 'audienceAge',
     color:'warning',
     children:[
@@ -122,9 +123,9 @@ export default [
     ]
   },
   {
-    title:'Je parle',
+    title:'je parle',
     value: 'pas',
-    title2:'français',
+    title2:' français.',
     queryName: 'niveauFrancais',
     color:'danger',
     children:[

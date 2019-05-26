@@ -85,9 +85,12 @@ const tradTable = (props) => {
     </Table>
   )
   
-  if(props.limit){
+  let show=true;
+  const onAnimationEnd = e => show=false;
+
+  if(props.limit && show){
     return(
-      <div className="tableau-wrapper" id="contributions">
+      <div className={"tableau-wrapper" + (props.hide ? " swing-out-top-bck" : "")} id="mes-traductions" onAnimationEnd={onAnimationEnd}>
         <Row>
           <Col>
             <h1>{props.title}</h1>
@@ -123,7 +126,7 @@ const tradTable = (props) => {
 
         {!props.traducteur &&
           <div className="ecran-protection no-trad">
-            <div className="close-box text-white">
+            <div className="close-box text-white" onClick={()=>{props.toggleSection('traductions');}}>
               <Icon name="eye-off-2-outline" fill="#FFFFFF" />
               <u>Masquer</u>
             </div>
@@ -137,8 +140,10 @@ const tradTable = (props) => {
         }
       </div>
     )
-  }else{
+  }else if(show){
     return table
+  }else{
+    return false
   }
 }
 
