@@ -77,6 +77,7 @@ class Dispositifs extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render() {
+    const { t } = this.props;
     let {showSpinner} = this.state;
     const renderSuggestion = (suggestion, { query }) => {
       const suggestionText = `${suggestion.titreMarque} - ${suggestion.titreInformatif}`;
@@ -106,8 +107,8 @@ class Dispositifs extends Component {
                 <img src={femmeDispo} alt="femme"/>
               </Col>
               <Col lg="6">
-                <h1 className="text-white">Construire sa vie en France</h1>
-                <h2>Ici, vous pourrez comprendre comment ouvrir vos droits sociaux, trouver un emploi, trouver des cours de français</h2>
+                <h1 className="text-white">{t('Dispositifs.Header')}</h1>
+                <h2>{t('Dispositifs.Subheader')}</h2>
                 
                 <div className="input-group md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
                   <Autosuggest 
@@ -136,7 +137,7 @@ class Dispositifs extends Component {
           </Collapse>
           <Button className="btn-toggle-search" color="dark" onClick={this._toggleSearch} style={{ marginBottom: '1rem' }}>
             <h3>
-              {this.state.showSearch ? "Masquer la recherche avancée" : "Afficher la recherche avancée"} &nbsp;&nbsp;
+              {this.state.showSearch ? t("Masquer la recherche avancée") : t("Afficher la recherche avancée")} &nbsp;&nbsp;
               <EVAIcon name={"chevron-" + (this.state.showSearch ? "up" : "down") + "-outline"} />
             </h3>
           </Button>
@@ -146,7 +147,9 @@ class Dispositifs extends Component {
           <Row className="align-items-center themes">
             {filtres.tags.map(tag =>(
               <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0" key={tag}>
-                <Button block outline color={randomColor()} onClick={()=>this.queryDispositifs({'tags':tag})}>{tag}</Button>
+                <Button block outline color={randomColor()} onClick={()=>this.queryDispositifs({'tags':tag})}>
+                  {t("Tags." + tag)}
+                </Button>
               </Col>
             ))}
             <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">

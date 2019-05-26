@@ -79,7 +79,7 @@ export class Toolbar extends React.Component {
       <header className="Toolbar">
         <div className="left_buttons">
           <DrawerToggle 
-            forceShow={afficher_burger}
+            forceShow={false && afficher_burger}
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <NavLink to="/" className="Logo">
             Agir
@@ -121,7 +121,7 @@ export class Toolbar extends React.Component {
           }
         </div>
         
-        {afficher_burger_droite &&
+        {false && afficher_burger_droite &&
           <AppAsideToggler
             className="d-md-down-none" />
         }
