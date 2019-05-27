@@ -19,6 +19,23 @@ class ContributeurModal extends Component {
 
   selectTag = key => this.setState(prevState => ({tags: prevState.tags.map((x,i) => i===key ? {...x, selected: !x.selected} : x)}))
 
+  onValidate = () => {
+    // let user={...this.props.user}
+    // let newUser={
+    //   _id: user._id,
+    //   selectedLanguages: [...this.shadowSelectedLanguages, ...this.state.langues.filter(x => x.checked && !this.shadowSelectedLanguages.some(y=>y._id === x._id)) ].map(el =>{return { _id: el._id, i18nCode: el.i18nCode, langueCode: el.langueCode, langueFr: el.langueFr, langueLoc: el.langueLoc}})
+    // }
+    // API.set_user_info(newUser).then(data => {
+    //   let userRes=data.data.data;
+    //   if(!userRes){return}
+      if(this.props.redirect){
+        this.props.history.push({ pathname: '/backend/user-dash-contrib' })
+      }else if(this.props.setUser){
+        this.props.setUser()
+      }
+    // })
+  }
+
   render() {
     const {t, show, toggle } = this.props;
     const {tags, structure} = this.state;
@@ -42,12 +59,10 @@ class ContributeurModal extends Component {
           <Input type="text" placeholder="Aa" value={structure} onChange={this.onChange} />
         </ModalBody>
         <ModalFooter>
-          <NavLink to="/backend/user-dash-contrib" className="no-decoration">
-            <Button className="validate-btn">
-              <Icon name="award-outline" fill="#3D3D3D" />
-              Devenir contributeur
-            </Button>
-          </NavLink>
+          <Button className="validate-btn" onClick={this.onValidate}>
+            <Icon name="award-outline" fill="#3D3D3D" />
+            Devenir contributeur
+          </Button>
         </ModalFooter>
       </Modal>
     )

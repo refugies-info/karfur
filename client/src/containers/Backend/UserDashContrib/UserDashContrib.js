@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 import API from '../../../utils/API'
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
-import { ObjectifsModal } from '../../../components/Modals';
+import { ObjectifsModal, ContributeurModal } from '../../../components/Modals';
 import { ContribTable } from '../../../components/Backend/UserProfile';
 import { avancement_contrib } from '../UserProfile/data';
 
@@ -16,7 +16,7 @@ moment.locale('fr');
 
 class UserDashContrib extends Component {
   state={
-    showModal:{objectifs:false, contibutionsFaites: false, progression:false, devenirContributeur: false}, 
+    showModal:{objectifs:false, contibutionsFaites: false, progression:false, defineUser: false}, 
     user:{},
     langues:[],
     allLangues:[],
@@ -46,6 +46,13 @@ class UserDashContrib extends Component {
     this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}}, ()=>(console.log(this.state)))
   }
 
+  setUser = user => {
+    // API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
+    //   this.setState({user, langues: data_langues.data.data});
+      this.toggleModal('defineUser')
+    // })
+  }
+
   validateObjectifs = newUser => {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
@@ -59,12 +66,11 @@ class UserDashContrib extends Component {
   
   render() {
     let {contributionsFaites, contributeur, user} = this.state;
-    console.log(contributeur);
-
     return (
       <div className="animated fadeIn user-dash-contrib">
         <DashHeader 
           title="Mes contributions"
+          ctaText="Modifier mes thèmes de travail"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}
@@ -98,6 +104,11 @@ class UserDashContrib extends Component {
           toggle={()=>this.toggleModal('objectifs')}
           validateObjectifs={this.validateObjectifs} />
         
+        <ContributeurModal 
+          show={this.state.showModal.defineUser} 
+          toggle={()=>this.toggleModal('defineUser')}
+          setUser={this.setUser}
+          redirect={false} />
       </div>
     );
   }
