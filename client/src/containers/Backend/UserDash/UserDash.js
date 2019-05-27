@@ -33,7 +33,7 @@ const avancement_data={
 
 class UserDash extends Component {
   state={
-    showModal:{objectifs:false, traductionsFaites: false, progression:false, devenirTraducteur: false}, 
+    showModal:{objectifs:false, traductionsFaites: false, progression:false, defineUser: false}, 
     runJoyRide:false, //penser à le réactiver !!
     user:{},
     langues:[],
@@ -63,19 +63,16 @@ class UserDash extends Component {
           this.setState({traductionsFaites: data.data.data})
         })
       }else{
-        API.get_langues().then(data_langues => {
-          console.log(data_langues.data.data)
-          this.setState({allLangues: data_langues.data.data, showModal:{...this.state.showModal, devenirTraducteur: true}})
-        })
+        this.setState({showModal:{...this.state.showModal, defineUser: true}})
       }
+      API.get_langues().then(data_langues => { this.setState({allLangues: data_langues.data.data}) })
       this.setState({user:user})
     })
   }
 
   toggleModal = (modal) => {
-    console.log(modal)
     this.props.tracking.trackEvent({ action: 'toggleModal', label: modal, value : !this.state.showModal[modal] });
-    if(modal === 'devenirTraducteur' && this.state.showModal.devenirTraducteur && (!this.state.user.selectedLanguages || this.state.user.selectedLanguages.length === 0)){
+    if(modal === 'defineUser' && this.state.showModal.defineUser && (!this.state.user.selectedLanguages || this.state.user.selectedLanguages.length === 0)){
       this.triggerConfirmationRedirect();
     }else{
       this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}}, ()=>(console.log(this.state)))
@@ -135,7 +132,7 @@ class UserDash extends Component {
   setUser = user => {
     API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
       this.setState({user, langues: data_langues.data.data});
-      this.toggleModal('devenirTraducteur')
+      this.toggleModal('defineUser')
     })
   }
 
@@ -267,6 +264,7 @@ class UserDash extends Component {
 
         <DashHeader 
           title="Mes traductions"
+          ctaText="Modifier mes langues de travail"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}
@@ -302,9 +300,9 @@ class UserDash extends Component {
         <TraducteurModal 
           user={this.state.user} 
           langues={this.state.allLangues}
-          show={this.state.showModal.devenirTraducteur} 
+          show={this.state.showModal.defineUser} 
           setUser={this.setUser}
-          toggle={()=>this.toggleModal('devenirTraducteur')} />
+          toggle={()=>this.toggleModal('defineUser')} />
       </div>
     );
   }

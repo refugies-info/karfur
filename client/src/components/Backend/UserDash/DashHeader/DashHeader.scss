@@ -1,4 +1,11 @@
 .dash-header{
+  .tableau-header{
+    .right-element{
+      display:flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
 
   .header-indicateurs{
 

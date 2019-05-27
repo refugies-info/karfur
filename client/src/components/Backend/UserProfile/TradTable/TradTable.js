@@ -124,12 +124,12 @@ const tradTable = (props) => {
         </div>
 
         <div className="tableau-footer">
-          <Button>
-            <NavLink to="/backend/user-dashboard" className="no-decoration" >
+          <NavLink to="/backend/user-dashboard" className="no-decoration" >
+            <Button>
               <Icon name="options-2-outline" fill="#FFFFFF" />
               <span>Gérer mes traductions</span>
-            </NavLink>
-          </Button>
+            </Button>
+          </NavLink>
         </div>
 
         {!props.traducteur &&
