@@ -114,12 +114,12 @@ const contribTable = (props) => {
 
         {!props.overlayRedirect && 
           <div className="tableau-footer">
-            <Button>
-              <NavLink to="/backend/user-dash-contrib" className="no-decoration" >
+            <NavLink to="/backend/user-dash-contrib" className="no-decoration" >
+              <Button>
                 <Icon name="options-2-outline" fill="#FFFFFF" />
                 <span>Gérer mes articles</span>
-              </NavLink>
-            </Button>
+              </Button>
+            </NavLink>
           </div>}
 
         {!props.contributeur &&
