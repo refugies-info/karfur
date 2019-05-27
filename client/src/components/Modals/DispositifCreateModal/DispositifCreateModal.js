@@ -7,7 +7,7 @@ import './DispositifCreateModal.scss'
 const dispositifCreateModal = (props) => {
   return(
     <Modal isOpen={props.show} toggle={props.toggle} className="dispositif-create-modal">
-      <ModalHeader>
+      <ModalHeader toggle={props.toggle}>
       Comment rédiger ?
       </ModalHeader>
       <ModalBody>

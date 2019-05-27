@@ -14,7 +14,7 @@ const suggererModal = (props) => {
   }
   return(
     <Modal isOpen={isOpen} toggle={()=>props.toggleModal(false, name)} className='modal-suggerer'>
-      <ModalHeader>
+      <ModalHeader toggle={()=>props.toggleModal(false, name)}>
         <Icon name="message-circle" fill="#3D3D3D" />
         Nous vous écoutons :
       </ModalHeader>

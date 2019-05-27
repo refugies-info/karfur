@@ -52,6 +52,7 @@ class Avancement extends Component {
     }
     // this._loadThemes();
     this.setState({itemId:itemId, isExpert:isExpert, isLangue: isLangue})
+    window.scrollTo(0, 0);
   }
 
   _loadArticles=(itemId, i18nCode=null) => {

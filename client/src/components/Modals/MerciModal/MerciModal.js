@@ -10,7 +10,7 @@ const merciModal = (props) => {
   }
   return(
     <Modal isOpen={props.show} toggle={()=>props.toggleModal(false, props.name)} className='modal-merci'>
-      <ModalHeader>
+      <ModalHeader toggle={()=>props.toggleModal(false, props.name)}>
         Merci !
       </ModalHeader>
       <ModalBody>

@@ -7,7 +7,7 @@ import './ThanksModal.scss'
 const thanksModal = (props) => {
   return(
     <Modal isOpen={props.show} toggle={props.toggle} className='modal-thanks'>
-      <ModalHeader>
+      <ModalHeader toggle={props.toggle}>
         Disponible prochainement
       </ModalHeader>
       <ModalBody>
