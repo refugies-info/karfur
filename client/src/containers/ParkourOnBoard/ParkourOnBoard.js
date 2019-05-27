@@ -91,7 +91,7 @@ class ParkourOnBoard extends Component {
     this.getDispositifs(state);
     this.toggleButtons(id);
     user.cookies.parkourData=state.map(x=>{return x.value});
-    API.set_user_info(user);
+    if(API.isAuth()){API.set_user_info(user);}
     Cookies.set('data',state.map(x=>{return x.value}), {path:this.props.location.pathname})
   }
 
