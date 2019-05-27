@@ -9,7 +9,7 @@ const enConstructionModal = (props) => {
   }
   return(
     <Modal isOpen={props.show} toggle={()=>props.toggleModal(false, props.name)} className='modal-construction'>
-      <ModalHeader>
+      <ModalHeader toggle={()=>props.toggleModal(false, props.name)}>
         Encore en construction !
       </ModalHeader>
       <ModalBody>

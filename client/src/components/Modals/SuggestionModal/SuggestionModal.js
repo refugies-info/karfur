@@ -12,7 +12,7 @@ const suggestionModal = (props) => {
   const imgSrc = (suggestion.picture || []).secure_url || marioProfile
   return(
     <Modal isOpen={props.show} toggle={props.toggle} className='modal-suggestion'>
-      <ModalHeader>
+      <ModalHeader toggle={props.toggle}>
         <span>{jsUcfirst(suggestion.action)}</span>
         <span className="align-right">
           de la part de <span className="text-dark">{suggestion.username}</span> &nbsp;

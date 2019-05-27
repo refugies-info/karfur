@@ -3,7 +3,7 @@ const projectId = 'traduction-1551702821050';
 
 const translate = new Translate({
   projectId: projectId,
-  keyFilename: "/Users/tonyparker/Documents/github/karfur/config/Traduction-1edb23e00f9a-serviceAccount.json"
+  keyFilename: __dirname + "../../../config/Traduction-1edb23e00f9a-serviceAccount.json"
 });
 
 //A mettre en place d'abord:

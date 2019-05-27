@@ -13,7 +13,7 @@ const reagirModal = (props) => {
   }
   return(
     <Modal isOpen={props.show} toggle={()=>props.toggleModal(false, props.name)} className='modal-reagir'>
-      <ModalHeader>
+      <ModalHeader toggle={()=>props.toggleModal(false, props.name)}>
         <Icon name="message-circle" fill="#3D3D3D" />
         Réagir
       </ModalHeader>

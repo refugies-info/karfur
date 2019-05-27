@@ -11,7 +11,7 @@ const dispositifValidateModal = (props) => {
   }
   return(
     <Modal isOpen={props.show} toggle={props.toggle} className="dispositif-validate-modal">
-      <ModalHeader>
+      <ModalHeader toggle={props.toggle}>
         Un dernier effort !
       </ModalHeader>
       <ModalBody>
