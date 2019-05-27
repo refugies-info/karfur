@@ -45,12 +45,12 @@ const contribTable = (props) => {
               <td className="align-middle">
                 {element.participants && element.participants.map((participant) => {
                   return ( 
-                      <img
-                        key={participant._id} 
-                        src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                        className="profile-img img-circle"
-                        alt="random profiles"
-                      />
+                    <img
+                      key={participant._id} 
+                      src={participant.picture ? participant.picture.secure_url : marioProfile} 
+                      className="profile-img img-circle"
+                      alt="random profiles"
+                    />
                   );
                 })}
               </td>
@@ -78,6 +78,13 @@ const contribTable = (props) => {
   let show=true;
   const onAnimationEnd = e => show=false;
 
+  const onBtnClick = () => {
+    if(props.overlayRedirect){
+      props.history.push("/dispositif")
+    }else{
+      props.toggleModal('devenirContributeur')
+    }
+  }
   if(props.limit){
     return(
       <div className={"tableau-wrapper" + (props.hide ? "swing-out-top-bck" : "")} id="mes-contributions" onAnimationEnd={onAnimationEnd}>
@@ -105,24 +112,30 @@ const contribTable = (props) => {
           {table}
         </div>
 
-        <div className="tableau-footer">
-          <Button>
-            <NavLink to="/backend/user-dashboard" className="no-decoration" >
-              <Icon name="options-2-outline" fill="#FFFFFF" />
-              <span>Gérer mes articles</span>
-            </NavLink>
-          </Button>
-        </div>
+        {!props.overlayRedirect && 
+          <div className="tableau-footer">
+            <Button>
+              <NavLink to="/backend/user-dash-contrib" className="no-decoration" >
+                <Icon name="options-2-outline" fill="#FFFFFF" />
+                <span>Gérer mes articles</span>
+              </NavLink>
+            </Button>
+          </div>}
 
         {!props.contributeur &&
           <div className="ecran-protection no-contrib">
-            <div className="close-box text-white" onClick={()=>props.toggleSection('contributions')}>
-              <Icon name="eye-off-2-outline" fill="#FFFFFF" />
-              <u>Masquer</u>
-            </div>
+            {props.toggleSection && 
+              <div className="close-box text-white" onClick={()=>props.toggleSection('contributions')}>
+                <Icon name="eye-off-2-outline" fill="#FFFFFF" />
+                <u>Masquer</u>
+              </div>}
             <div className="content-wrapper">
-              <h1>Ici, vous pourrez accéder à vos contributions</h1>
-              <Button onClick={()=>props.toggleModal('devenirContributeur')}>Proposer un nouveau contenu</Button>
+              <h1>{props.overlayTitle}</h1>
+              <span>{props.overlaySpan}</span>
+              <Button onClick={onBtnClick}>
+                <Icon name="award-outline" fill="#3D3D3D" />{' '}
+                {props.overlayBtn}
+              </Button>
             </div>
           </div>
         }

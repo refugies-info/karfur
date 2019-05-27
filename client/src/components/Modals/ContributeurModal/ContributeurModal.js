@@ -20,7 +20,7 @@ class ContributeurModal extends Component {
   selectTag = key => this.setState(prevState => ({tags: prevState.tags.map((x,i) => i===key ? {...x, selected: !x.selected} : x)}))
 
   render() {
-    const {t, show, toggle, name} = this.props;
+    const {t, show, toggle } = this.props;
     const {tags, structure} = this.state;
     return (
       <Modal isOpen={show} toggle={toggle} className='modal-contributeur'>
@@ -42,7 +42,7 @@ class ContributeurModal extends Component {
           <Input type="text" placeholder="Aa" value={structure} onChange={this.onChange} />
         </ModalBody>
         <ModalFooter>
-          <NavLink to="/dispositif" className="no-decoration">
+          <NavLink to="/backend/user-dash-contrib" className="no-decoration">
             <Button className="validate-btn">
               <Icon name="award-outline" fill="#3D3D3D" />
               Devenir contributeur

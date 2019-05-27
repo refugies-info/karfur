@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import track from 'react-tracking';
 import { Col, Row, Button, Progress, Badge, Modal } from 'reactstrap';
 import ReactJoyride from 'react-joyride';
-import {Redirect} from 'react-router-dom';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
 
@@ -11,11 +10,12 @@ import {languages, past_translation, steps} from './data'
 import {colorAvancement, colorStatut} from '../../../components/Functions/ColorFunctions'
 import AvancementTable from '../../../components/Translation/Avancement/AvancementTable';
 import API from '../../../utils/API'
-import './UserDash.scss';
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
 import Icon from 'react-eva-icons/dist/Icon';
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import { ObjectifsModal, TraducteurModal } from '../../../components/Modals';
+
+import './UserDash.scss';
 
 moment.locale('fr');
 
@@ -34,7 +34,6 @@ const avancement_data={
 class UserDash extends Component {
   state={
     showModal:{objectifs:false, traductionsFaites: false, progression:false, devenirTraducteur: false}, 
-    images:[],
     runJoyRide:false, //penser à le réactiver !!
     user:{},
     langues:[],
@@ -47,13 +46,6 @@ class UserDash extends Component {
   }
 
   componentDidMount() {
-    let images=[]
-    var req = require.context('../../../assets/profile_pictures', false, /.*\.jpeg$/);
-    req.keys().forEach(function(key){
-      images.push(req(key))
-    });
-    this.setState({images:images})
-    
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
       if(user.selectedLanguages && user.selectedLanguages.length > 0){
@@ -157,7 +149,7 @@ class UserDash extends Component {
   }
 
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
-  
+
   render() {
     let {langues, traductionsFaites} = this.state;
 
@@ -299,7 +291,7 @@ class UserDash extends Component {
           <TraductionsRecentes dataArray={traductionsFaites} />
         </Modal>
         <Modal isOpen={this.state.showModal.progression} toggle={()=>this.toggleModal('progression')} className='modal-plus'>
-          <TraductionsRecentes dataArray={langues} />
+          <ProgressionTraduction dataArray={langues} />
         </Modal>
 
         <ObjectifsModal 
