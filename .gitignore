@@ -23,7 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 #Ajouts:
-/config
+/config/*config.js
+/config/Traduction-2f6401a22d30-main*
 /private
 .env
 /db-backup

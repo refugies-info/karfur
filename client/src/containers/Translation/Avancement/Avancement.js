@@ -89,7 +89,8 @@ class Avancement extends Component {
     if(langue.i18nCode){
       API.get_tradForReview({'langueCible':langue.i18nCode, 'status' : 'En attente'},{},'articleId').then(data_res => {
         let articles=data_res.data.data;
-        articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1},status:x.status, articleId:x.articleId._id}});
+        articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1},status:x.status, articleId:(x.articleId || {})._id}});
+        console.log(articles)
         // this.setState({data:articles});
       })
     }
