@@ -21,7 +21,9 @@ export class Toolbar extends React.Component {
   state = {
     dropdownOpen: false,
     available_languages:[],
-    user:{}
+    user:{},
+    traducteur:false,
+    contributeur: false
   };
 
   componentDidMount (){
@@ -31,7 +33,7 @@ export class Toolbar extends React.Component {
     if(API.isAuth()){
       API.get_user_info().then(data_res => {
         let user=data_res.data.data;
-        this.setState({user:user})
+        this.setState({user:user, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib")})
       },(error) => {console.log(error);return;})
     }
   }
@@ -61,6 +63,7 @@ export class Toolbar extends React.Component {
   render() {
     const path = this.props.location.pathname;
     const { i18n } = this.props;
+    let { user, contributeur, traducteur } = this.state;
     let afficher_burger=path.includes("/backend");
     let afficher_burger_droite=path.includes("/traduction");
 
@@ -74,7 +77,7 @@ export class Toolbar extends React.Component {
         return <i className={'flag-icon flag-icon-fr'} title="fr" id="fr"></i>
       }
     }
-    let userImg = (this.state.user.picture || {}).secure_url || marioProfile;
+    let userImg = (user.picture || {}).secure_url || marioProfile;
     return(
       <header className="Toolbar">
         <div className="left_buttons">
@@ -110,6 +113,8 @@ export class Toolbar extends React.Component {
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem onClick={()=>this.navigateTo("/backend/user-profile")}>Mon profil</DropdownItem>
+                {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>Mon univers contribution</DropdownItem>}
+                {traducteur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>Mon univers traduction</DropdownItem>}
                 <DropdownItem divider />
                 <DropdownItem onClick={this.disconnect} className="text-danger">Se déconnecter</DropdownItem>
               </DropdownMenu>

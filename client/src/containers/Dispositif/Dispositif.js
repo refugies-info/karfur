@@ -352,10 +352,16 @@ class Dispositif extends Component {
 
   createPdf = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'createPdf' });
-    this.setState({accordion: this.state.accordion.map(x => true), showSpinnerPrint:true}, ()=>{
+    let uiArray = JSON.parse(JSON.stringify(this.state.uiArray));
+    uiArray = uiArray.map(x => ({
+      ...x,
+      accordion : true, 
+      ...(x.children && {children : x.children.map(y => { return { ...y, accordion : true } }) })
+    }));
+    this.setState({ uiArray: uiArray, showSpinnerPrint:true }, ()=>{
       setTimeout(()=>{
         savePDF(this.newRef.current, { 
-          fileName: 'dispositif.pdf',
+          fileName: 'dispositif' + ((this.state.content && this.state.content.titreMarque) ? (' - ' + this.state.content.titreMarque) : '') +'.pdf',
           scale:.5
         })
         this.setState({showSpinnerPrint: false})
