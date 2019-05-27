@@ -51,7 +51,7 @@ const leftSideDispositif = (props) => {
         <Button className="print-button" onClick={props.createPdf}>
           <Icon name="download-outline" fill="#3D3D3D" />
           <span>Télécharger en PDF</span>
-          {props.showSpinner && <Spinner color="success" />}
+          {props.showSpinner && <Spinner color="success" className="margin-left-8" />}
         </Button>
         <Button className="print-button" onClick={enConstruction}>
           <Icon name="paper-plane-outline" fill="#3D3D3D" />
