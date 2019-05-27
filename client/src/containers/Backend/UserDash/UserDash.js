@@ -42,7 +42,8 @@ class UserDash extends Component {
     progression:{
       timeSpent:0,
       nbMots:0
-    }
+    },
+    isExpert: false
   }
 
   componentDidMount() {
@@ -66,7 +67,7 @@ class UserDash extends Component {
         this.setState({showModal:{...this.state.showModal, defineUser: true}})
       }
       API.get_langues().then(data_langues => { this.setState({allLangues: data_langues.data.data}) })
-      this.setState({user:user})
+      this.setState({user:user, isExpert: user.roles.some(x=>x.nom==="ExpertTrad")})
     })
   }
 
@@ -97,6 +98,7 @@ class UserDash extends Component {
   }
   
   openThemes = (langue) => {
+    this.props.tracking.trackEvent({ action: 'click', label: 'openThemes', value : langue._id });
     this.props.history.push({
       pathname: '/avancement/langue/'+langue._id,
       state: { langue: langue}
@@ -148,7 +150,7 @@ class UserDash extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render() {
-    let {langues, traductionsFaites} = this.state;
+    let {langues, traductionsFaites, allLangues} = this.state;
 
     const buttonTraductions = element => (
       (this.state.user.roles || []).find(x => x.nom==='ExpertTrad') ?
@@ -289,7 +291,7 @@ class UserDash extends Component {
           <TraductionsRecentes dataArray={traductionsFaites} />
         </Modal>
         <Modal isOpen={this.state.showModal.progression} toggle={()=>this.toggleModal('progression')} className='modal-plus'>
-          <ProgressionTraduction dataArray={langues} />
+          <ProgressionTraduction dataArray={allLangues} />
         </Modal>
 
         <ObjectifsModal 
@@ -299,7 +301,7 @@ class UserDash extends Component {
         
         <TraducteurModal 
           user={this.state.user} 
-          langues={this.state.allLangues}
+          langues={allLangues}
           show={this.state.showModal.defineUser} 
           setUser={this.setUser}
           toggle={()=>this.toggleModal('defineUser')} />
