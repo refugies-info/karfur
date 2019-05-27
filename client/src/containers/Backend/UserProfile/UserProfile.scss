@@ -231,6 +231,12 @@ $defaultSize:310px;
           background: transparent;
           border:none;
           padding:10px 0;
+          display: flex;
+          justify-content: flex-end;
+
+          .btn{
+            margin-left:10px;
+          }
           .validate-btn{
             float:right;
           }
