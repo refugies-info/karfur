@@ -284,6 +284,9 @@ class Dispositif extends Component {
 
   toggleModal = (show, name) => {
     this.props.tracking.trackEvent({ action: 'toggleModal', label: name, value : show });
+    if(name==='merci' && this.state.showModals.merci){
+      Swal.fire( 'Yay...', 'Votre suggestion a bien été enregistrée, merci', 'success')
+    }
     this.setState(prevState=>({showModals:{...prevState.showModals,[name]:show}, suggestion:''}))
   }
 

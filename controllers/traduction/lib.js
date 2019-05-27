@@ -54,8 +54,6 @@ function add_tradForReview(req, res) {
         console.log('succes')
         //J'ajoute en même temps cette traduction dans celles effectuées par l'utilisateur :
         if(req.userId){ User.findByIdAndUpdate({ _id: req.userId },{ "$push": { "traductionsFaites": data._id } },{new: true},(e) => {if(e){console.log(e);}}); }
-        //et j'update l'avancement de cette locale dans l'article :
-        Article.findOne({ _id: traduction.articleId }).exec((_, result) => { if (result) { result.avancement[traduction.langueCible]=traduction.avancement; result.markModified("avancement"); result.save(); } })
         res.status(200).json({
           "text": "Succès",
           "data": data

@@ -214,6 +214,7 @@ class Translation extends Component {
         le_text=le_text.substring(1)
         i++
       } while (le_text.slice(0,1) !==" " && le_text !=="" && le_text);
+      console.log('ici')
       this.setState(prevState => ({
         texte_a_traduire: prevState.texte_a_traduire.substring(i+1)
       }));
@@ -222,7 +223,7 @@ class Translation extends Component {
       this.setState(prevState => ({ texte_a_traduire: prevState.texte_a_traduire.substring(1) }));
     }
     this.setState({
-      texte_traduit: h2p(event.target.value),
+      texte_traduit: h2p(event.target.value) + (letter_pressed ===" " ? " " : ""),
       translated:{...this.state.trandslated,
         body: h2p(event.target.value) + (this.state.translated.body.length > event.target.value.length ? this.state.translated.body.substring(event.target.value.length) : '')
       }
