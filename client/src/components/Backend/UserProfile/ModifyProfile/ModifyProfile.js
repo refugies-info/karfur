@@ -31,7 +31,7 @@ const modifyProfile = (props) => {
             </Col>
             <Col>
               {(user.selectedLanguages || []).map((lang, key) => (
-                <ButtonDropdown isOpen={props.isDropdownOpen[key]} toggle={(e) => props.toggleDropdown(e, key)} className="langues-dropdown" key={key}>
+                <ButtonDropdown isOpen={editing && props.isDropdownOpen[key]} toggle={(e) => props.toggleDropdown(e, key)} className="langues-dropdown" key={key}>
                   <DropdownToggle caret={editing}>
                     <i className={'margin-right-8 flag-icon flag-icon-' + lang.langueCode} title={lang.langueCode} id={lang.langueCode}></i>
                     {lang.langueFr}
