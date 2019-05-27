@@ -5,6 +5,7 @@ import {NavLink} from 'react-router-dom';
 
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
+import SVGIcon from '../../../UI/SVGIcon/SVGIcon';
 
 const tradTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
@@ -134,13 +135,18 @@ const tradTable = (props) => {
 
         {!props.traducteur &&
           <div className="ecran-protection no-trad">
-            <div className="close-box text-white" onClick={()=>{props.toggleSection('traductions');}}>
-              <Icon name="eye-off-2-outline" fill="#FFFFFF" />
-              <u>Masquer</u>
-            </div>
+            {props.toggleSection && 
+              <div className="close-box text-white" onClick={()=>{props.toggleSection('traductions');}}>
+                <Icon name="eye-off-2-outline" fill="#FFFFFF" />
+                <u>Masquer</u>
+              </div>}
             <div className="content-wrapper">
-              <h1>Ici, vous pourrez accéder à vos traductions</h1>
-              <Button onClick={startTrad}>Commencer à traduire</Button>
+              <h1>{props.overlayTitle}</h1>
+              <span>{props.overlaySpan}</span>
+              <Button onClick={startTrad}>
+                <SVGIcon name="translate" />{' '}
+                {props.overlayBtn}
+              </Button>
             </div>
           </div>
         }

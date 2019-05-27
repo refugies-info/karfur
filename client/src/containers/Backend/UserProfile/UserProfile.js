@@ -367,6 +367,10 @@ class UserProfile extends Component {
             toggleModal={this.toggleModal}
             toggleSection={this.toggleSection}
             hide={!showSections.traductions}
+            overlayTitle="Par ici aussi !"
+            overlaySpan="Participez à la traduction de la plateforme à votre rythme et sans pression. Rejoignez un groupe de traducteurs bénévoles et de linguistes professionnels mobilisés pour les réfugiés."
+            overlayBtn="Devenir traducteur"
+            overlayRedirect={false}
             history={this.props.history}
             motsRediges={this.state.progression.nbMots}
             minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}

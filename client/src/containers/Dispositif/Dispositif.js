@@ -384,6 +384,8 @@ class Dispositif extends Component {
     API.update_dispositif(dispositif).then(data => {
       if(modalName === 'reaction'){
         Swal.fire( 'Yay...', 'Votre réaction a bien été enregistrée, merci', 'success')
+      }else if(API.isAuth()){
+        Swal.fire( 'Yay...', 'Votre suggestion a bien été enregistrée, merci', 'success')
       }else{
         this.toggleModal(true, 'merci');
       }
@@ -446,7 +448,6 @@ class Dispositif extends Component {
               toggleDispositifValidateModal={this.toggleDispositifValidateModal}
               editDispositif = {this.editDispositif}
               valider_dispositif={this.valider_dispositif} />
-              
           </Row>
           <img className="femme-icon" src={femmeCurly} alt="femme"/>
           <Col lg="12" md="12" sm="12" className="post-title-block">
