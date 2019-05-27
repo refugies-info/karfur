@@ -83,12 +83,17 @@ const modifyProfile = (props) => {
           </Row>
         </CardBody>
       </div>
-      {editing && <CardFooter>
-        <Button color="success" className="validate-btn d-flex align-items-center" onClick={props.validateProfile}>
-          <EVAIcon className="margin-right-8 d-inline-flex" name="checkmark-circle-outline" />
-          Valider
-        </Button>
-      </CardFooter>}
+      {editing && 
+        <CardFooter>
+          <Button color="secondary" className="cancel-btn d-flex align-items-center" onClick={props.toggleEditing}>
+            <EVAIcon className="margin-right-8 d-inline-flex" name="close-circle-outline" />
+            Annuler
+          </Button>
+          <Button color="success" className="validate-btn d-flex align-items-center" onClick={props.validateProfile}>
+            <EVAIcon className="margin-right-8 d-inline-flex" name="checkmark-circle-outline" />
+            Valider
+          </Button>
+        </CardFooter>}
     </Card>
   )
 }
