@@ -429,7 +429,8 @@ class UserProfile extends Component {
         <ThanksModal show={this.state.showModal.thanks} toggle={()=>this.toggleModal('thanks')} />
         <SuggestionModal suggestion={this.state.suggestion} show={this.state.showModal.suggestion} toggle={()=>this.toggleModal('suggestion')} />
         <ContributeurModal 
-          redirect={false}
+          redirect={true}
+          history={this.props.history}
           show={this.state.showModal.devenirContributeur} 
           toggle={()=>this.toggleModal('devenirContributeur')} />
         
