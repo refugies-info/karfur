@@ -69,8 +69,7 @@
 
       .type-input .test-input-group, .type-input .test-prompt {
         height: inherit;
-        line-height: 90px;;
-        font-family: Merriweather;
+        line-height: 90px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
@@ -83,11 +82,16 @@
 
       .type-input .test-input {
         display: inline-block;
-        line-height: 90px;
+        line-height: 45px;
         outline: 0;
         padding-left: 5px;
         vertical-align: middle;
         color: #4A69BD;
+        min-width:100%;
+        min-height:45px;
+        &:empty{
+          border: 1px solid red;
+        }
       }
 
       .type-input .test-prompt {
@@ -99,7 +103,6 @@
       .type-input .test-input-group, .type-input .test-prompt {
         height: inherit;
         line-height: 90px;
-        font-family: Merriweather;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
@@ -218,6 +221,7 @@
     content: attr(placeholder);
     display: block;
     color: #aaa;
+    line-height:45px;
   }
 }
 

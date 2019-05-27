@@ -373,6 +373,7 @@ class Translation extends Component {
                       id="test-input" 
                       className="test-input" 
                       html={this.state.texte_traduit}  // innerHTML of the editable div
+                      placeholder="Commencez votre traduction ici"
                       disabled={false}       // use true to disable editing
                       onChange={this.handleChangeEnCours} // handle innerHTML change
                       onKeyPress={this.handleKeyPress}
