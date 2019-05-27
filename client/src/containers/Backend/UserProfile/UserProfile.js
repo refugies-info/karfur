@@ -353,6 +353,10 @@ class UserProfile extends Component {
             toggleSection={this.toggleSection}
             limit={5}
             hide={!showSections.contributions}
+            overlayTitle="On a besoin de vous !"
+            overlaySpan="Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants"
+            overlayBtn="Devenir contributeur"
+            overlayRedirect={false}
             {...avancement_contrib} />
 
           <TradTable 
