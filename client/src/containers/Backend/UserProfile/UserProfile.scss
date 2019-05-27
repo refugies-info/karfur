@@ -208,6 +208,7 @@ $defaultSize:310px;
           }
           div[contenteditable="true"]:empty{
             border: 1px solid red;
+            min-height: 23px;
           }
           .langues-dropdown .btn, .plus-langue{
             background: linear-gradient(110.29deg, #FBFBFB 0%, #F2F2F2 100%);

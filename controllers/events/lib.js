@@ -11,7 +11,7 @@ function log_event(req, res) {
     event.userId=req.userId;
     if(event.action){console.log(event)}
     var _u = new Event(event);
-    _u.save(function (err, event,ptet) {
+    _u.save((err, event) => {
       if (err) {
         res.status(500).json({
           "text": "Erreur interne"
