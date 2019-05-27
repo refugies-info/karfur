@@ -34,7 +34,7 @@ class ObjectifsModal extends Component {
     let {objectifs, notifyObjectifs} = this.state;
     return(
       <Modal isOpen={this.props.show} toggle={this.props.toggle} className='modal-objectifs'>
-        <ModalHeader>
+        <ModalHeader toggle={this.props.toggle}>
           Quel est votre objectif de contribution hebdomadaire ?
         </ModalHeader>
         <ModalBody>

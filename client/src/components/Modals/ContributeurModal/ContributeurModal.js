@@ -24,7 +24,7 @@ class ContributeurModal extends Component {
     const {tags, structure} = this.state;
     return (
       <Modal isOpen={show} toggle={toggle} className='modal-contributeur'>
-        <ModalHeader>
+        <ModalHeader toggle={toggle}>
           C'est parti !
         </ModalHeader>
         <ModalBody>

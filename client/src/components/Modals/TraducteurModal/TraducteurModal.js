@@ -64,7 +64,7 @@ class TraducteurModal extends Component {
 
     return (
       <Modal isOpen={show} toggle={toggle} className='modal-contributeur'>
-        <ModalHeader>
+        <ModalHeader toggle={toggle}>
           C'est parti !
         </ModalHeader>
         <ModalBody>

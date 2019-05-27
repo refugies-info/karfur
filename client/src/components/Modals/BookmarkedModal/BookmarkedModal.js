@@ -8,7 +8,7 @@ import './BookmarkedModal.scss'
 const bookmarkedModal = (props) => {
   return(
     <Modal isOpen={props.show} toggle={props.toggle} className="bookmark-modal">
-      <ModalHeader>
+      <ModalHeader toggle={props.toggle}>
         <span>Recherche sauvegardée</span>
         <i className="bookmark-icon">
           <Icon name="bookmark" fill="#F6B93B" size="xlarge" />
