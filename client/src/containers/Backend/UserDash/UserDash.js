@@ -220,7 +220,7 @@ class UserDash extends Component {
                   <Progress color={colorAvancement(element.avancement)} value={(element.avancement || 0)*100} className="mb-3" />
                 </td>
                 <td className="align-middle">
-                  {element.participants.map((participant) => {
+                  {(element.participants || []).slice(0,5).map((participant) => {
                     return ( 
                         <img
                           key={participant._id} 
@@ -230,6 +230,7 @@ class UserDash extends Component {
                         />
                     );
                   })}
+                  {(element.participants || []).length>5 && " ..."}
                 </td>
                 <td className="align-middle">
                   {element.avancement !== 1 && 
