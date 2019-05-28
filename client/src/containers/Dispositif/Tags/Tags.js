@@ -4,8 +4,6 @@ import Icon from 'react-eva-icons';
 
 import './Tags.scss';
 
-const tags = ['Emploi', 'Jeune', 'Mobilité', 'Logement', 'Culture', 'Apprendre le français', 'Etudes', 'Formation professionnelle', 'Accompagnement', 'Autre']
-
 class Tags extends Component {
   state= {
     isDropdownOpen: new Array(this.props.tags.length).fill(false),
@@ -41,7 +39,7 @@ class Tags extends Component {
                 {this.props.filtres.map((e, i) => {
                   return (
                     <DropdownItem key={i} id={i}>
-                      {e}
+                      {e.name}
                     </DropdownItem>
                   )} 
                 )}

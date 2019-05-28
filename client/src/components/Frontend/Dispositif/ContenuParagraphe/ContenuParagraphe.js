@@ -72,7 +72,7 @@ const contenuParagraphe = (props) => {
                       {...subitem} />
                   </Collapse>
                 </Col>
-                <Col className='toolbar-col'>
+                <Col lg="2" className='toolbar-col'>
                   <QuickToolbar
                     show={safeUiArray(props.keyValue, subkey, 'isHover')}
                     keyValue={props.keyValue}
@@ -108,7 +108,7 @@ const contenuParagraphe = (props) => {
                     {...subitem} />
                   <br />
                 </Col>
-                <Col className='toolbar-col'>
+                <Col lg="2" className='toolbar-col'>
                   <QuickToolbar
                     show={props.uiArray[props.keyValue] && props.uiArray[props.keyValue].children && props.uiArray[props.keyValue].children.length>subkey && props.uiArray[props.keyValue].children[subkey] && props.uiArray[props.keyValue].children[subkey].isHover}
                     keyValue={props.keyValue}
