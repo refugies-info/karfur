@@ -53,7 +53,7 @@ class ParkourOnBoard extends Component {
   }
 
   retrieveCookies = () => {
-    Cookies.set('data', 'ici un test');
+    // Cookies.set('data', 'ici un test');
     let dataC=Cookies.getJSON('data');
     // if(dataC){ this.setState({data:data.map((x,key)=> {return {...x, value:dataC[key] || x.value}})})}
     let pinnedC=Cookies.getJSON('pinnedC');
