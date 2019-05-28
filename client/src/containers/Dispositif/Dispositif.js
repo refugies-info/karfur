@@ -516,6 +516,7 @@ class Dispositif extends Component {
               menu={this.state.menu}
               accordion={this.state.accordion}
               showSpinner={this.state.showSpinnerPrint}
+              content={this.state.content}
               handleScrollSpy={this.handleScrollSpy}
               onMenuNavigate={this.onMenuNavigate}
               createPdf={this.createPdf}

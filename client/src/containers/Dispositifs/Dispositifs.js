@@ -7,6 +7,8 @@ import AutosuggestHighlightMatch from 'autosuggest-highlight/match'
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
 import Swal from 'sweetalert2';
 import debounce from 'lodash.debounce';
+import querySearch from "stringquery";
+import {browserHistory} from 'react-router-dom'
 
 import Modal from '../../components/Modals/Modal'
 import {randomColor} from '../../components/Functions/ColorFunctions'
@@ -40,7 +42,8 @@ class Dispositifs extends Component {
   }
 
   componentDidMount (){
-    this.queryDispositifs()
+    let tag=querySearch(this.props.location.search).tag;
+    if(tag) { this.selectTag(decodeURIComponent(tag)) } else { this.queryDispositifs() }
   }
 
   queryDispositifs = query => {
@@ -51,9 +54,10 @@ class Dispositifs extends Component {
     }).catch(()=>this.setState({ showSpinner: false }))
   }
   
-  selectTag = (tag, key) => {
-    this.setState({tags: this.state.tags.map((x, i) => (i===key ? {...x, active: true} : {...x, active: false})), color: tag.color})
-    this.queryDispositifs({'tags':tag.name})
+  selectTag = tag => {
+    this.setState({tags: this.state.tags.map(x => (x.name===tag ? {...x, active: true} : {...x, active: false})), color: tag.color})
+    this.queryDispositifs({tags: tag})
+    this.props.history.replace("/dispositifs?tag="+tag)
   }
 
   _toggleModal = (show, dispositif = {}) => {
@@ -64,7 +68,7 @@ class Dispositifs extends Component {
 
   onChange = (_, { newValue }) => this.setState({ value: newValue });
 
-  onSuggestionsFetchRequested = debounce( ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }),1000)
+  onSuggestionsFetchRequested = debounce( ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }), 200)
 
   onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
 
@@ -158,7 +162,7 @@ class Dispositifs extends Component {
           <Row className="align-items-center themes">
             {tags.map((tag, key) =>(
               <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0" key={tag.name}>
-                <Button block outline={!tag.active} color={tag.color} onClick={()=>this.selectTag(tag, key)}>
+                <Button block outline={!tag.active} color={tag.color} onClick={()=>this.selectTag(tag.name)}>
                   {t("Tags." + tag.name)}
                 </Button>
               </Col>
