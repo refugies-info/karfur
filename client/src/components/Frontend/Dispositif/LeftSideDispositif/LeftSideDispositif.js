@@ -3,10 +3,8 @@ import { ListGroup, ListGroupItem, Button, Spinner } from 'reactstrap';
 import Scrollspy from 'react-scrollspy';
 import Icon from 'react-eva-icons';
 import ReactToPrint from 'react-to-print';
-import Swal from 'sweetalert2';
 
 const leftSideDispositif = (props) => {
-  const enConstruction = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
   return(
     <div className="sticky-affix">
       <ListGroup className="list-group-flush">
@@ -53,7 +51,7 @@ const leftSideDispositif = (props) => {
           <span>Télécharger en PDF</span>
           {props.showSpinner && <Spinner color="success" className="margin-left-8" />}
         </Button>
-        <Button className="print-button" onClick={enConstruction}>
+        <Button className="print-button" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf}>
           <Icon name="paper-plane-outline" fill="#3D3D3D" />
           <span>Envoyer par mail</span>
         </Button>
