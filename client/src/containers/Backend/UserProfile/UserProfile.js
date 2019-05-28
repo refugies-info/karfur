@@ -37,7 +37,8 @@ class UserProfile extends Component {
     progression:{
       timeSpent:0,
       nbMots:0
-    }
+    },
+    tempImg: null
   }
 
   componentDidMount() {
@@ -143,24 +144,26 @@ class UserProfile extends Component {
 
   handleFileInputChange = event => {
     this.setState({uploading:true})
+    let file=event.target.files[0]
+
+    //On l'affiche déjà directement pour l'utilisateur
+    let reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.addEventListener("load", () => this.setState({ tempImg : reader.result} ) , false);
+
+    //On l'envoie ensuite au serveur
     const formData = new FormData()
-    formData.append(0, event.target.files[0])
-
-    //let reader = new FileReader()
-  //   reader.readAsDataURL(file)
-
-  //   reader.onLoad=e=>{
-  // let src=e.target.result;
+    formData.append(0, file)
     API.set_image(formData).then(data_res => {
-      let imgData=data_res.data.data;
       this.setState({
         user:{
           ...this.state.user,
-          picture: imgData
+          picture: data_res.data.data
         },
         uploading:false,
+        tempImg: null
       });
-    },() => {this.setState({uploading:false});return;})
+    })
   }
 
   removeBookmark = (key) => {
@@ -206,7 +209,7 @@ class UserProfile extends Component {
     let favoris = ((user.cookies || {}).dispositifsPinned || []),hasFavori=true;
     if(favoris.length === 0){favoris= new Array(5).fill(fakeFavori); hasFavori=false;}
 
-    let imgSrc = (this.state.user.picture || []).secure_url || marioProfile
+    let imgSrc = this.state.tempImg || (this.state.user.picture || []).secure_url || marioProfile
 
     const ProfilePic = () => {
       if(this.state.uploading){
@@ -255,7 +258,8 @@ class UserProfile extends Component {
               <CardBody>
                 <div className="profile-header-container">   
                   <div className="rank-label-container">
-                    <ProfilePic />
+                    {this.state.uploading && <Spinner color="dark" className="fadeIn fadeOut" />}
+                    <img className="img-circle user-picture" src={imgSrc} alt="profile"/>
                     {this.state.editing && <>
                       <Input 
                         className="file-input"
