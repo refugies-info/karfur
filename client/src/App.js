@@ -6,6 +6,7 @@ import track from 'react-tracking';
 import { Spinner } from 'reactstrap';
 import IdleTimer from 'react-idle-timer'
 import './scss/fonts/circular-std/css/circular-std.css'
+import LogRocket from 'logrocket';
 
 import Store from './Store/configureStore';
 import { PrivateRoute } from './components/PrivateRoute';
@@ -15,6 +16,8 @@ import './i18n';
 
 import 'react-notifications/src/notifications.scss';
 import './App.scss';
+
+LogRocket.init('sqsruz/agir');
 
 const loading = () => (<div className="spinner-container"><Spinner color="success" className="waiting-spinner" /></div>);
 const chargement = () => <div>Chargement</div>

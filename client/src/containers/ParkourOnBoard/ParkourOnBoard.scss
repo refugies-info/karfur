@@ -17,13 +17,21 @@ $transition-time: 0.5s;
   .card-col{
     max-height: 33%;
     margin-bottom: 1.5rem;
+    scrollbar-width: none;
 
     a{
       text-decoration: none;
       color: inherit;
     }
+    ::-webkit-scrollbar {
+      display: none;
+      width: 0px;  /* remove scrollbar space */
+      background: transparent;  /* optional: just make scrollbar invisible */
+    }
     .custom-card{
-      overflow: scroll;
+      overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
 
       h3{
         font-size: 19.3943px;
