@@ -6,6 +6,7 @@ import Autosuggest from 'react-autosuggest';
 import AutosuggestHighlightMatch from 'autosuggest-highlight/match'
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
 import Swal from 'sweetalert2';
+import debounce from 'lodash.debounce';
 
 import Modal from '../../components/Modals/Modal'
 import {randomColor} from '../../components/Functions/ColorFunctions'
@@ -63,16 +64,19 @@ class Dispositifs extends Component {
 
   onChange = (_, { newValue }) => this.setState({ value: newValue });
 
-  onSuggestionsFetchRequested = ({ value }) => this.setState({ suggestions: this.getSuggestions(value) });
+  onSuggestionsFetchRequested = debounce( ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }),1000)
 
   onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
 
-  getSuggestions = (value) => {
+  getSuggestions = value => {
+    console.log(value)
     const escapedValue = escapeRegexCharacters(value.trim());
     if (escapedValue === '') { return [];}
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
-    return this.state.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif));
+    return this.state.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif) || regex.test(dispositif.abstract) || regex.test(dispositif.contact) || (dispositif.tags || []).some(x => regex.test(x)) || (dispositif.audience || []).some(x => regex.test(x)) || (dispositif.audienceAge || []).some(x => regex.test(x)) || this.findInContent(dispositif.contenu, regex) );
   }
+
+  findInContent = (contenu, regex) => contenu.some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent (x.children, regex)) );
 
   onSuggestionSelected = (_,{suggestion}) => this.goToDispositif(suggestion, true)
 
