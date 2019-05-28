@@ -34,6 +34,8 @@ class Dispositifs extends Component {
     value: '',
     suggestions: [],
     showSpinner:true,
+    tags: filtres.tags.map(x => ({...x, active: false})),
+    color: null
   }
 
   componentDidMount (){
@@ -46,6 +48,11 @@ class Dispositifs extends Component {
       let dispositifs=data_res.data.data
       this.setState({ dispositifs:dispositifs, showSpinner: false })
     }).catch(()=>this.setState({ showSpinner: false }))
+  }
+  
+  selectTag = (tag, key) => {
+    this.setState({tags: this.state.tags.map((x, i) => (i===key ? {...x, active: true} : {...x, active: false})), color: tag.color})
+    this.queryDispositifs({'tags':tag.name})
   }
 
   _toggleModal = (show, dispositif = {}) => {
@@ -78,7 +85,7 @@ class Dispositifs extends Component {
 
   render() {
     const { t } = this.props;
-    let {showSpinner} = this.state;
+    let {showSpinner, tags, color} = this.state;
     const renderSuggestion = (suggestion, { query }) => {
       const suggestionText = `${suggestion.titreMarque} - ${suggestion.titreInformatif}`;
       const matches = AutosuggestHighlightMatch(suggestionText, query + ' ' + query);
@@ -145,10 +152,10 @@ class Dispositifs extends Component {
 
         <section id="menu_dispo">
           <Row className="align-items-center themes">
-            {filtres.tags.map(tag =>(
-              <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0" key={tag}>
-                <Button block outline color={randomColor()} onClick={()=>this.queryDispositifs({'tags':tag})}>
-                  {t("Tags." + tag)}
+            {tags.map((tag, key) =>(
+              <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0" key={tag.name}>
+                <Button block outline={!tag.active} color={tag.color} onClick={()=>this.selectTag(tag, key)}>
+                  {t("Tags." + tag.name)}
                 </Button>
               </Col>
             ))}
@@ -166,7 +173,7 @@ class Dispositifs extends Component {
                       <h3>{dispositif.titreInformatif}</h3>
                       <p>{dispositif.abstract}</p>
                     </CardBody>
-                    <CardFooter className={"align-right bg-"+randomColor()}>{dispositif.titreMarque}</CardFooter>
+                    <CardFooter className={"align-right bg-"+ (color || randomColor())}>{dispositif.titreMarque}</CardFooter>
                   </CustomCard>
                 </Col>
               )}

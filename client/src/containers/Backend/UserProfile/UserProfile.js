@@ -146,6 +146,11 @@ class UserProfile extends Component {
     const formData = new FormData()
     formData.append(0, event.target.files[0])
 
+    //let reader = new FileReader()
+  //   reader.readAsDataURL(file)
+
+  //   reader.onLoad=e=>{
+  // let src=e.target.result;
     API.set_image(formData).then(data_res => {
       let imgData=data_res.data.data;
       this.setState({

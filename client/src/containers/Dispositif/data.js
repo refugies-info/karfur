@@ -34,12 +34,41 @@ const menu = [
   // {title:'Retours d\'expérience', children:[{title:'Questions réponses',content: lorems.sousParagraphe}, {title:'Avis',content: lorems.sousParagraphe}]},
 ];
 
-
 const filtres = {
   "audience": ['associations','travailleurs sociaux','institutions d\'état','réfugiés','citoyens'],
   "audienceAge": ["0 à 18 ans","18 à 25 ans","25 à 56 ans","56 à 120 ans"],
   "niveauFrancais": ["Débutant (A1)","Débutant + (A2)","Intermédiaire (B1)","Intermédiaire + (B2)","Avancé (C1)","Avancé + (C2)", "Tous niveaux"],
-  "tags": ['Emploi', 'Jeune', 'Mobilité', 'Logement', 'Culture', 'Apprendre le français', 'Etudes', 'Formation professionnelle', 'Accompagnement', 'Autre']
+  "tags": [{
+    name: 'Emploi',
+    color: 'primary'
+  }, {
+    name: 'Jeune',
+    color: 'secondary'
+  }, {
+    name: 'Mobilité',
+    color: 'success'
+  }, {
+    name: 'Logement',
+    color: 'danger'
+  }, {
+    name: 'Culture',
+    color: 'warning'
+  }, {
+    name: 'Apprendre le français',
+    color: 'info'
+  }, {
+    name: 'Etudes',
+    color: 'light'
+  }, {
+    name: 'Formation professionnelle',
+    color: 'dark'
+  }, {
+    name: 'Accompagnement',
+    color: 'muted'
+  }, {
+    name: 'Autre',
+    color: 'white'
+  }]
 };
 
 export {contenu, lorems, menu, filtres};
