@@ -18,6 +18,7 @@
     "cheerio": "^1.0.0-rc.3",
     "chownr": "^1.1.1",
     "cloudinary": "^1.13.2",
+    "compression": "^1.7.4",
     "concat-stream": "^2.0.0",
     "cors": "^2.8.5",
     "deep-is": "^0.1.3",
