@@ -12,7 +12,7 @@ import './ContributeurModal.scss'
 class ContributeurModal extends Component {
   state={
     structure:'',
-    tags: filtres.tags.map(x => ({name: x, color: randomColor(), selected: false}))
+    tags: filtres.tags.map(x => ({...x, selected: false}))
   }
 
   onChange = (e) => this.setState({structure: e.target.value})

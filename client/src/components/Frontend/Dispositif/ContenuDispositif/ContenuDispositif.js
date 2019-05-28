@@ -23,7 +23,7 @@ const contenuDispositif = (props) => {
                 {...item}/>
               }
             </Col>
-            <Col className='toolbar-col'>
+            <Col lg="2" className='toolbar-col'>
               <QuickToolbar 
                 show={props.uiArray[key].isHover}
                 keyValue={key}
