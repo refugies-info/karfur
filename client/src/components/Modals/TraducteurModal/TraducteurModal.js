@@ -63,7 +63,7 @@ class TraducteurModal extends Component {
     let langues_list = langues.filter(x => x.checked).map(x => x.langueFr);
 
     return (
-      <Modal isOpen={show} toggle={toggle} className='modal-contributeur'>
+      <Modal isOpen={show} toggle={toggle} className='modal-traducteur'>
         <ModalHeader toggle={toggle}>
           C'est parti !
         </ModalHeader>
@@ -71,8 +71,8 @@ class TraducteurModal extends Component {
           <h3>Quels sont vos langues de travail ?</h3>
           <FormGroup row>
             {(langues || []).map((langue, key) => (
-              <Col md="3" key={key}>
-                <FormGroup check className="checkbox">
+              <Col lg="3" key={key}>
+                <FormGroup check>
                   <Input  
                     className="form-check-input langue"
                     type="checkbox" 
