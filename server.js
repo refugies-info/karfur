@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const cloudinary = require('cloudinary')
 const formData = require('express-form-data')
 const path = require("path");
+const compression = require('compression');
 const startup = require('./startup/startup');
 
 let scraper;
@@ -46,6 +47,7 @@ var urlencodedParser = bodyParser.urlencoded({
     extended: true,
     limit: '50mb'
 });
+app.use(compression());
 app.use(express.static(path.join(__dirname, "client", "build")))
 app.use(urlencodedParser);
 app.use(bodyParser.json({limit: '50mb'}));
