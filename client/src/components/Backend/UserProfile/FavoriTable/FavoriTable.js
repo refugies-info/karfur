@@ -11,7 +11,8 @@ const favoriTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
   
   const goToDispositif = (dispositif) => props.history.push("/dispositif/" + dispositif._id)
-  
+  const searchTag = tag => props.history.push({ pathname:"/dispositifs", search: '?tag=' + tag })
+
   let table = (
     <Table responsive striped className="avancement-user-table">
       <thead>
@@ -36,7 +37,7 @@ const favoriTable = (props) => {
               <td className="align-middle">
                 {(element.tags || []).map((tag, key) => {
                   return ( 
-                    <Button key={key} color="warning" outline className="tag-btn">
+                    <Button key={key} color="warning" outline className="tag-btn" onClick={()=>searchTag(tag)}>
                       {tag}
                     </Button>
                   );
