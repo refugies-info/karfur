@@ -36,7 +36,6 @@ class Layout extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.ttsActive !== this.props.ttsActive && !this.props.ttsActive) {
-      console.log('pause demandée')
       audio.pause();
       audio.currentTime = 0;
     }
