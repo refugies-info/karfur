@@ -36,6 +36,7 @@ class Layout extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.ttsActive !== this.props.ttsActive && !this.props.ttsActive) {
+      console.log('pause demandée')
       audio.pause();
       audio.currentTime = 0;
     }
@@ -73,7 +74,6 @@ class Layout extends Component {
   readAudio = (text, locale='fr-fr') => {
     API.get_tts({text:text, locale:locale}).then(data => {
       let audioData=data.data.data
-      console.log(audioData)
       audio.pause();
       
       try{
@@ -89,9 +89,7 @@ class Layout extends Component {
         audio.load();
         audio.play();
       }catch(e){
-        console.log(e)
-        console.log(audioData)
-        console.log(url)
+        console.log(e, audioData, url)
       }
 
       // try{
@@ -103,7 +101,7 @@ class Layout extends Component {
       //   console.log(data_res.data)
       //   console.log(text)
       // }
-    },function(error){console.log(error);return;})
+    })
   }
 
   toggleHover = (e) => {
