@@ -44,25 +44,25 @@ class QuickToolbar extends Component {
           <Card className="quick-toolbar">
             <CardBody>
               <Row>
-                <Col lg="3" id="eva-icon-0">
+                <Col lg="3" md="3" sm="3" xs="3" id="eva-icon-0">
                   <EVAIcon name={"message-circle" + (this.state.fill[0] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(0)} className='icon-toolbar' />
                   <Tooltip placement="top" isOpen={this.state.tooltipOpen[0]} target="eva-icon-0" toggle={(e)=>this.toggleTooltip(0,e)}>
                     réagir
                   </Tooltip>
                 </Col>
-                <Col lg="3" id="eva-icon-1">
+                <Col lg="3" md="3" sm="3" xs="3" id="eva-icon-1">
                   <EVAIcon name={"alert-triangle" + (this.state.fill[1] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(1)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(1)} className='icon-toolbar'/>
                   <Tooltip placement="top" isOpen={this.state.tooltipOpen[1]} target="eva-icon-1" toggle={()=>this.toggleTooltip(1)}>
                     signaler
                   </Tooltip>
                 </Col>
-                <Col lg="3" id="eva-icon-2">
+                <Col lg="3" md="3" sm="3" xs="3" id="eva-icon-2">
                   <EVAIcon name={"volume-up" + (this.state.fill[2] || this.props.ttsActive ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(2)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(2)} className='icon-toolbar'/>
                   <Tooltip placement="top" isOpen={this.state.tooltipOpen[2]} target="eva-icon-2" toggle={()=>this.toggleTooltip(2)}>
                     écouter
                   </Tooltip>
                 </Col>
-                <Col lg="3" id="eva-icon-3">
+                <Col lg="3" md="3" sm="3" xs="3" id="eva-icon-3">
                   <SVGIcon name="translate" onClick={()=>this._onClick(3)} className='icon-toolbar'/>
                   <Tooltip placement="top" isOpen={this.state.tooltipOpen[3]} target="eva-icon-3" toggle={()=>this.toggleTooltip(3)}>
                     traduire

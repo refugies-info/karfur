@@ -6,6 +6,7 @@ import './AvancementTable.scss';
 import SVGIcon from '../../UI/SVGIcon/SVGIcon';
 
 export default function AvancementTable(props) {
+  let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
   return (
     <Card className="avancement-table">
       {props.title && 
@@ -16,11 +17,7 @@ export default function AvancementTable(props) {
         <Table responsive striped>
           <thead>
             <tr>
-              {props.headers.map((element,key) => {
-                return (
-                  <th key={key}>{element}</th>
-                )}
-              )}
+              {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element}</th> ))}
             </tr>
           </thead>
           <tbody>

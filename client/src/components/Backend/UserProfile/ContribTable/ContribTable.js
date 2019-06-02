@@ -8,27 +8,25 @@ import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
 
 const contribTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
-  
+  let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+
   let table = (
     <Table responsive striped className="avancement-user-table">
       <thead>
         <tr>
-          {props.headers.map((element,key) => {
-            return (
-              <th key={key}>{element}</th>
-            )}
-          )}
+          {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element}</th> ))}
         </tr>
       </thead>
       <tbody>
         {data.slice(0,props.limit).map((element,key) => {
+          let titre = element.titreMarque + ' - ' + element.titreInformatif;
           return (
             <tr key={key} >
               <td className="align-middle">
-                {element.titreMarque + ' - ' + element.titreInformatif} 
+                {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 && "..."))}
               </td>
               <td className={"align-middle text-"+colorStatut(element.status)}>{element.status}</td>
-              <td className="align-middle">
+              <td className="align-middle hideOnPhone">
                 <Row>
                   <Col>
                     <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
@@ -38,11 +36,11 @@ const contribTable = (props) => {
                   </Col>
                 </Row>
               </td>
-              <td className="align-middle langue-item">
+              <td className="align-middle langue-item hideOnPhone">
                 <Icon name={element.creatorId===props.user._id ? "shield-outline" : "people-outline" } fill="#3D3D3D" size="large"/>&nbsp;
                 {element.creatorId===props.user._id ? "Propriétaire" : "Contributeur" }
               </td>
-              <td className="align-middle">
+              <td className="align-middle hideOnPhone">
                 {element.participants && element.participants.map((participant) => {
                   return ( 
                     <img
@@ -56,7 +54,7 @@ const contribTable = (props) => {
               </td>
               <td className="align-middle">
                 <NavLink to={"/dispositif/"+element._id} className="no-decoration" >
-                  <Icon name="eye-outline" fill="#3D3D3D" size="large"/>&nbsp;
+                  <Icon name="eye-outline" fill="#3D3D3D" size="large"/>
                   <u>Voir</u>
                 </NavLink>
               </td>
@@ -87,24 +85,26 @@ const contribTable = (props) => {
   }
   if(props.limit){
     return(
-      <div className={"tableau-wrapper" + (props.hide ? "swing-out-top-bck" : "")} id="mes-contributions" onAnimationEnd={onAnimationEnd}>
+      <div className={"tableau-wrapper" + (props.hide ? " swing-out-top-bck" : "")} id="mes-contributions" onAnimationEnd={onAnimationEnd}>
         <Row>
           <Col>
             <h1>{props.title}</h1>
           </Col>
           <Col className="d-flex tableau-header">
-            <div className="d-flex left-element">
-              <h4>345</h4>
-              <span>mots rédigés</span>
-            </div>
-            <div className="d-flex middle-element">
-              <h4>34</h4>
-              <span>minutes passées</span>
-            </div>
-            <div className="d-flex right-element">
-              <h4>22</h4>
-              <span>personnes informées</span>
-            </div>
+            <Row className="full-width">
+              <Col lg="auto" md="4" sm="6" xs="12" className="d-flex left-element">
+                <h4>345</h4>
+                <span>mots rédigés</span>
+              </Col>
+              <Col lg="auto" md="4" sm="6" xs="12" className="d-flex middle-element">
+                <h4>34</h4>
+                <span>minutes passées</span>
+              </Col>
+              <Col lg="auto" md="4" sm="12" xs="12" className="d-flex right-element">
+                <h4>22</h4>
+                <span>personnes informées</span>
+              </Col>
+            </Row>
           </Col>
         </Row>
   
@@ -137,8 +137,7 @@ const contribTable = (props) => {
                 {props.overlayBtn}
               </Button>
             </div>
-          </div>
-        }
+          </div>}
       </div>
     )
   }else if(show){

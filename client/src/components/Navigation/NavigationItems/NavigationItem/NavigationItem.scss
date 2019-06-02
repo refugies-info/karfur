@@ -1,3 +1,5 @@
+@import 'src/scss/global.scss';
+
 .NavigationItem{
   margin: 10px 0;
   box-sizing: border-box;
@@ -34,7 +36,7 @@
   }
 }
 
-@media (min-width: 500px) {
+@media (min-width: $drawerLimit) {
   .NavigationItem {
     margin: 0;
     display: flex;

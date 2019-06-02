@@ -17,11 +17,7 @@ const favoriTable = (props) => {
     <Table responsive striped className="avancement-user-table">
       <thead>
         <tr>
-          {props.headers.map((element,key) => {
-            return (
-              <th key={key}>{element}</th>
-            )}
-          )}
+          {props.headers.map((element,key) => (<th key={key}>{element}</th> ))}
         </tr>
       </thead>
       <tbody>
@@ -43,8 +39,8 @@ const favoriTable = (props) => {
                   );
                 })}
               </td>
-              <td className="align-middle" className="pointer" onClick={()=>props.removeBookmark(element._id)}>
-                <Icon name="close-circle-outline" fill="#3D3D3D"/>&nbsp;
+              <td className="align-middle pointer" onClick={()=>props.removeBookmark(element._id)}>
+                <Icon name="close-circle-outline" fill="#3D3D3D"/>
                 <u>Supprimer</u>
               </td>
             </tr>

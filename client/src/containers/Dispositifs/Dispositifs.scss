@@ -1,11 +1,14 @@
+@import 'src/scss/global.scss';
 
 $primary-text-color: #000;
 $secondary-text-color: #A1A1A4;
 $theme-color: #8DC63F; 
+$imgWidth : 300px;
+$imgHeight : 420px;
 
 .dispositifs{
   font-family: CircularStd;
-  
+
   .full-width{
     width:100%;
   }
@@ -44,22 +47,41 @@ $theme-color: #8DC63F;
       align-items: center;
       flex-direction: column;
       text-align: center;
+
+      .hero-content{
+        position: relative; 
+        display: flex;
+        justify-content: center;
+
+        .img-header{
+          position: absolute;
+          @include media-max("desktop-down") { height: $imgHeight * 3/4; width: $imgWidth * 3/4; }
+          @include media-max("desktop-up") { height: $imgHeight / 2; width: $imgWidth / 2; }
+          @include media-max("tablet-up") { height: $imgHeight / 4; width: $imgWidth / 4; }
+          @include media-max("phone-down") { height: $imgHeight / 6; width: $imgWidth / 6; }
+
+          &.img-femme{
+            left:0;
+            bottom:0;
+          }
+          &.img-homme{
+            top:0;
+            right:0;
+          }
+        }
+
+        .header{
+          z-index:2;
+        }
+      }
     }
   
     h1 {
       font-size: 64px;
-      line-height: 64px;
       text-align: center;
-      width: 516px;
       margin:auto;
-      font-family: CircularStd;
-    }
-  
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 28px;
-        line-height: 28px;
-      }
+      @include media-max("desktop-up") { font-size: 32px; }
+      @include media-max("tablet-up") { font-size: 28px; }
     }
   
     h2 {
@@ -67,16 +89,9 @@ $theme-color: #8DC63F;
       margin-top: 30px;
       margin-bottom: 40px;
       font-size: 32px;
-      line-height: normal;
       text-align: center;
-    }
-  
-    @media (max-width: 768px) {
-      h2 {
-        font-size: 18px;
-        line-height: 24px;
-        margin-bottom: 30px;
-      }
+      @include media-max("desktop-up") { font-size: 20px; }
+      @include media-max("tablet-up") { font-size: 16px; }
     }
 
     .search-bar{
@@ -129,17 +144,21 @@ $theme-color: #8DC63F;
     margin:auto;
 
     .themes{
-      height:5em;
+      height: fit-content;
       margin-top: 30px;
       margin-bottom: 25px;
 
-      div.col-xl:not(:first-child){
-        padding-left: 0;
+      div.col-xl{
+        padding-left: 7px;
+        padding-right: 7px;
       }
       .btn{
         border-radius: 12px;
         font-weight: 600;
         white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
         &.btn-outline-light{
           color: #212529;
           border-color: #f8f9fa;
@@ -208,15 +227,18 @@ $theme-color: #8DC63F;
 
       h3{
         font-size:32px;
-        line-height:32px;
         margin-bottom:0;
         display: flex;
         align-items: center;
         justify-content: center;
+        @include media-max("desktop-up") { font-size: 26px; }
+        @include media-max("tablet-up") { font-size: 16px; }
       }
     }
   }
+}
 
+.dispositifs, .Toolbar{
   .react-autosuggest__container {
     position: relative;
     width: 100%;
@@ -226,7 +248,6 @@ $theme-color: #8DC63F;
     width: 240px;
     height: 30px;
     padding: 10px 20px;
-    font-family: Helvetica, sans-serif;
     font-weight: 300;
     font-size: 16px;
     border: 1px solid #aaa;
@@ -253,18 +274,21 @@ $theme-color: #8DC63F;
     width: 100%;
     border: 1px solid #aaa;
     background-color: #fff;
-    font-family: Helvetica, sans-serif;
     font-weight: 300;
     font-size: 16px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     z-index: 2;
+    overflow: scroll;
   }
   
   .react-autosuggest__suggestions-list {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    overflow: scroll;
+    height:300px;
+    max-height: 100%;
   }
   
   .react-autosuggest__suggestion {
@@ -278,6 +302,7 @@ $theme-color: #8DC63F;
   
   .react-autosuggest__section-container {
     border-top: 1px dashed #ccc;
+    overflow: scroll;
   }
   
   .react-autosuggest__section-container--first {

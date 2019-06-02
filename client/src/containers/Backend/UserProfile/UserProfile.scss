@@ -1,10 +1,12 @@
+@import 'src/scss/global.scss';
+
 $defaultSize:310px;
 .user-profile{
   background: #FBFBFB;
   min-height:100%;
   font-size: 18px;
   line-height: 23px;
-  margin-top:120px;
+  padding-top:100px;
 
   .profile-header{
     height: 60px;
@@ -32,22 +34,22 @@ $defaultSize:310px;
 
   .profile-content{
     margin: 23px 64px;
+    @include media-max("phone-down") { margin: 23px 32px; }
 
     .profile-info{
       background: inherit;
       border-radius: 12px;  
 
       .profile-left{
-        background: #F2F2F2;
-        padding: 0;
         height: 100%;
-        border-radius: 12px;
         text-align: center;
         width:fit-content;
-        margin:0;
+        margin-bottom: 1.5rem;
 
         .card-body{
           padding:20px;
+          background: #F2F2F2;
+          border-radius: 12px 12px 0px 0px;
           .user-picture{
             width: 160px;
           }
@@ -227,6 +229,13 @@ $defaultSize:310px;
             top: -15px;
             cursor: pointer;
           }
+          @include media-between("xl-limit", "widescreen-up") { 
+            .handleBetween{
+              flex: 0 0 40%;
+              max-width: 40%;
+              overflow-wrap: initial;
+            }
+          }
         }
         .card-footer{
           background: transparent;
@@ -316,12 +325,20 @@ $defaultSize:310px;
   .tag-btn{
     margin-right:10px;
   }
+
+  @include media-max("desktop-up") { 
+    .hideOnPhone{
+      display:none;
+    }
+  }
 }
 
 .modal.show .modal-dialog.modal-plus{
   overflow: scroll;
   max-height: 100vh;
   max-width: 60vw;
+  margin: auto;
+  @include media-max("tablet-up") { max-width: 100%; }
 
   .modal-content{
     padding:20px;
@@ -391,24 +408,24 @@ $defaultSize:310px;
     }
   }
 
-  .middle-element{
+  .ml-75{
     margin-left:75px;
   }
 
   .right-element{
     color: #F6B93B;
     display: flex;
-    margin-left: auto;
+
     h4{
       font-size: 64px;
       line-height: 81px;
-      margin: auto 23px;
+      margin: auto 23px auto 0;
     }
     span{
       font-size: 24px;
       line-height: 30px;
       max-width:260px;
-      margin:auto;
+      margin:auto 0;
     }
     .modify-obj{
       font-size: 18px;
@@ -435,16 +452,9 @@ $defaultSize:310px;
 
     h1{
       font-size: 64px;
-      line-height: 81px;
       color: #3D3D3D;
       display: inline;
-    }
-
-    span{
-      font-size: 18px;
-      line-height: 23px;
-      color: #FFFFFF;
-      margin-bottom:31px;
+      @include media-max("phone-down") { font-size: 46px; }
     }
 
     .nb-actions{
@@ -463,8 +473,15 @@ $defaultSize:310px;
         margin-top: 10px;
         margin-bottom: 0 !important;
       }
-      .langue-item span{
-        margin-left:8px;
+      .langue-item {
+        i{
+          margin-right:8px;
+        }
+      }
+      .align-middle{
+        svg{
+          margin-right:8px;
+        }
       }
     }
     
@@ -504,6 +521,7 @@ $defaultSize:310px;
     display: flex;
     justify-content: center;
     align-items: center;
+    @include media-max("phone-down") { width: calc(100% + 2 * 32px); margin: -20px -32px;}
 
     &.no-contrib{
       background: linear-gradient(125.36deg, rgba(74, 105, 189, 0.9) -7.66%, rgba(96, 163, 188, 0.9) 92.45%);
@@ -529,6 +547,13 @@ $defaultSize:310px;
       opacity: .9;
       transition: opacity .5s;
     }
+
+    span{
+      font-size: 18px;
+      color: #FFFFFF;
+      margin-bottom:31px;
+    }
+
     .close-box{
       position: absolute;
       top:51px;

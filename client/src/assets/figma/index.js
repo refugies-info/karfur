@@ -1,9 +1,9 @@
-import femmeCurly from './femmeCurly.svg';
-import manLab from './manLab.svg';
+import FemmeCurly from './femmeCurly';
+import ManLab from './manLab';
 import bookmark from './bookmark.svg';
 import audioBtn from './audioBtn.svg';
-import femmeDispo from './femmeDispo.svg';
-import hommeDispo from './hommeDispo.svg';
+import FemmeDispo from './femmeDispo';
+import HommeDispo from './hommeDispo';
 import puzzle from './puzzle.svg';
 import smiley from './smiley.svg';
 import hommeRouge from './hommeRouge.svg';
@@ -20,12 +20,12 @@ import diair from './Diair.png';
 import vueParkourPerso from './vueParkourPerso.png';
 
 export {
-  femmeCurly,
-  manLab,
+  FemmeCurly,
+  ManLab,
   bookmark,
   audioBtn,
-  femmeDispo,
-  hommeDispo,
+  FemmeDispo,
+  HommeDispo,
   puzzle,
   smiley,
   hommeRouge,

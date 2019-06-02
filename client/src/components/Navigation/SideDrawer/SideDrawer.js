@@ -4,7 +4,7 @@ import Backdrop from '../../UI/Backdrop/Backdrop';
 import LeftSideDrawer from './LeftSideDrawer/LeftSideDrawer'
 import RightSideDrawer from './RightSideDrawer/RightSideDrawer'
 
-import './SideDrawer.css';
+import './SideDrawer.scss';
 
 const sideDrawer = ( props ) => {
   const drawer = (

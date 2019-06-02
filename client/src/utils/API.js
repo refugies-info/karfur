@@ -1,5 +1,5 @@
 import axios from 'axios';
-import openSocket from 'socket.io-client';
+// import openSocket from 'socket.io-client';
 
 import setAuthToken from './setAuthToken'
 import Swal from 'sweetalert2';

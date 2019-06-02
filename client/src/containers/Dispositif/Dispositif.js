@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Tooltip } from 'reactstrap';
+import { Col, Row, Tooltip, Modal } from 'reactstrap';
 import { connect } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -15,7 +15,6 @@ import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
-import Modal from '../../components/Modals/Modal'
 import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
 import API from '../../utils/API';
 import {ReagirModal, BookmarkedModal, DispositifCreateModal, DispositifValidateModal, SuggererModal, MerciModal, EnConstructionModal} from '../../components/Modals/index';
@@ -26,7 +25,7 @@ import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import LeftSideDispositif from '../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif';
 import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader';
 
-import {hugo, femmeCurly, manLab, diair} from '../../assets/figma/index';
+import {hugo, ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 
 import {contenu, lorems, menu, filtres} from './data'
 
@@ -436,7 +435,7 @@ class Dispositif extends Component {
       <div className="animated fadeIn dispositif" ref={this.newRef}>
         <section className="banniere-dispo">
           <Row className="header-row">
-            <Col className="top-left" onClick={this.goBack}>
+            <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
               <i className="cui-arrow-left icons"></i> 
               <span>{t("Retour à la recherche")}</span>
             </Col>
@@ -452,10 +451,10 @@ class Dispositif extends Component {
               editDispositif = {this.editDispositif}
               valider_dispositif={this.valider_dispositif} />
           </Row>
-          <img className="femme-icon" src={femmeCurly} alt="femme"/>
-          <Col lg="12" md="12" sm="12" className="post-title-block">
+          <FemmeCurly className="header-img femme-icon" alt="femme" />
+          <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
             <div className="bloc-titre">
-              <h1>
+              <h1 className={this.state.disableEdit ? "" : "editable"}>
                 <ContentEditable
                   id='titreInformatif'
                   html={this.state.content.titreInformatif}  // innerHTML of the editable div
@@ -477,7 +476,7 @@ class Dispositif extends Component {
               </div>
             </div>
           </Col>
-          <img className="homme-icon" src={manLab} alt="homme"/>
+          <ManLab className="header-img homme-icon" alt="homme" />
         </section>
         <Row className="tags-row">
           <b className="en-bref">{t("En bref")} : </b>
@@ -524,7 +523,7 @@ class Dispositif extends Component {
               openAllAccordions={this.openAllAccordions}
             />
           </Col>
-          <Col lg="7">
+          <Col lg="7" md="10" sm="10" xs="10">
             <ContenuDispositif 
               updateUIArray={this.updateUIArray}
               handleContentClick={this.handleContentClick}
@@ -542,8 +541,7 @@ class Dispositif extends Component {
             
             {false && <Commentaires />}
           </Col>
-          <Col md="2" className="aside-right">
-          </Col>
+          <Col lg="2" md="2" sm="2" xs="2" className="aside-right" />
         </Row>
         
 
@@ -560,8 +558,8 @@ class Dispositif extends Component {
         </div>
         <div className="bottom-wrapper">
           <div className="people-footer">
-            <Row>
-              <Col lg="6" className="people-col">
+            <Row className="depasse-pas">
+              <Col lg="6" md="6" sm="12" xs="12" className="people-col">
                 <div className="people-title">{t("Contributeurs")}</div>
                 <div className="people-card">
                   <img className="people-img" src={creatorImg} alt="juliette"/>
@@ -571,7 +569,7 @@ class Dispositif extends Component {
                   </div>
                 </div>
               </Col>
-              <Col lg="6" className="people-col">
+              <Col lg="6" md="6" sm="12" xs="12" className="people-col">
                 <div className="people-title">{t("Traducteurs")}</div>
                 <div className="people-card">
                   <img className="people-img" src={hugo} alt="hugo"/>
@@ -585,13 +583,12 @@ class Dispositif extends Component {
           </div>
 
           {!this.state.disableEdit &&
-              <div className="ecran-protection">
-                <div className="content-wrapper">
-                  <Icon name="alert-triangle-outline" fill="#FFFFFF" />
-                  <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
-                </div>
+            <div className="ecran-protection">
+              <div className="content-wrapper">
+                <Icon name="alert-triangle-outline" fill="#FFFFFF" />
+                <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
               </div>
-            }
+            </div>}
         </div>
 
         <Sponsors 
@@ -606,7 +603,7 @@ class Dispositif extends Component {
         <MerciModal name='merci' show={showModals.merci} toggleModal={this.toggleModal} onChange={this.handleModalChange} mail={this.state.mail} />
         <EnConstructionModal name='construction' show={showModals.construction} toggleModal={this.toggleModal} />
 
-        <Modal show={this.state.showModals.fiabilite} modalClosed={()=>this.toggleModal(false, 'fiabilite')} classe='modal-fiabilite'>
+        <Modal isOpen={this.state.showModals.fiabilite} toggle={()=>this.toggleModal(false, 'fiabilite')} className='modal-fiabilite'>
           <h1>{t("Dispositif.fiabilite")}</h1>
           <div className="liste-fiabilite">
             <Row>

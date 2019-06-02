@@ -1,3 +1,5 @@
+@import 'src/scss/global.scss';
+
 .avancement-table.card{
   width:100%;
   border-radius: 12px;
@@ -58,6 +60,12 @@
       }
       svg{
         margin-right:10px;
+      }
+    }
+
+    @include media-max("tablet-up") { 
+      .hideOnPhone{
+        display:none;
       }
     }
   }

@@ -37,7 +37,7 @@ const contenuParagraphe = (props) => {
           return ( 
             <div key={subkey} onMouseEnter={(e)=>props.updateUIArray(props.keyValue, subkey, 'isHover', true, e)}>
               <Row className="relative-position">
-                <Col lg="12" className="accordeon-col">
+                <Col lg="12" md="12" sm="12" xs="12" className="accordeon-col">
                   <Button 
                     id="accordion-header" 
                     color="warning" 
@@ -72,7 +72,7 @@ const contenuParagraphe = (props) => {
                       {...subitem} />
                   </Collapse>
                 </Col>
-                <Col lg="2" className='toolbar-col'>
+                <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
                   <QuickToolbar
                     show={safeUiArray(props.keyValue, subkey, 'isHover')}
                     keyValue={props.keyValue}
@@ -86,7 +86,7 @@ const contenuParagraphe = (props) => {
           return ( 
             <div key={subkey} onMouseEnter={()=>props.updateUIArray(props.keyValue, subkey, 'isHover')}>
               <Row className="relative-position">
-                <Col lg="12">
+                <Col lg="12" md="12" sm="12" xs="12">
                   <h4>
                     <ContentEditable
                       id={props.keyValue}
@@ -108,7 +108,7 @@ const contenuParagraphe = (props) => {
                     {...subitem} />
                   <br />
                 </Col>
-                <Col lg="2" className='toolbar-col'>
+                <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
                   <QuickToolbar
                     show={props.uiArray[props.keyValue] && props.uiArray[props.keyValue].children && props.uiArray[props.keyValue].children.length>subkey && props.uiArray[props.keyValue].children[subkey] && props.uiArray[props.keyValue].children[subkey].isHover}
                     keyValue={props.keyValue}

@@ -8,13 +8,10 @@ import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
 import Swal from 'sweetalert2';
 import debounce from 'lodash.debounce';
 import querySearch from "stringquery";
-import {browserHistory} from 'react-router-dom'
 
-import Modal from '../../components/Modals/Modal'
 import {randomColor} from '../../components/Functions/ColorFunctions'
 import API from '../../utils/API';
-import femmeDispo from '../../assets/figma/femmeDispo.svg'
-import hommeDispo from '../../assets/figma/hommeDispo.svg'
+import {FemmeDispo, HommeDispo} from '../../assets/figma'
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import {filtres} from '../Dispositif/data';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
@@ -117,11 +114,9 @@ class Dispositifs extends Component {
       <div className="animated fadeIn dispositifs">
         <section id="hero">
           <div className="hero-container">
-            <Row className="full-width">
-              <Col lg="3">
-                <img src={femmeDispo} alt="femme"/>
-              </Col>
-              <Col lg="6">
+            <Row className="full-width hero-content">
+              <FemmeDispo className="img-header img-femme" alt="femme" />
+              <Col lg="6" md="8" sm="10" xs="12" className="header">
                 <h1 className="text-white">{t('Dispositifs.Header')}</h1>
                 <h2>{t('Dispositifs.Subheader')}</h2>
                 
@@ -137,9 +132,8 @@ class Dispositifs extends Component {
                   <i className="fa fa-search text-grey search-btn" aria-hidden="true"></i>
                 </div>
               </Col>
-              <Col lg="3">
-                <img src={hommeDispo} alt="homme"/>
-              </Col>
+              <HommeDispo className="img-header img-homme" alt="homme" />
+              {/* <img src={hommeDispo} className="img-header img-homme" alt="homme"/> */}
             </Row>
           </div>
         </section>
@@ -161,13 +155,13 @@ class Dispositifs extends Component {
         <section id="menu_dispo">
           <Row className="align-items-center themes">
             {tags.map((tag, key) =>(
-              <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0" key={tag.name}>
+              <Col lg="auto" sm="auto" md="auto" xl className="mb-3 mb-xl-0" key={tag.name}>
                 <Button block outline={!tag.active} color={tag.color} onClick={()=>this.selectTag(tag.name)}>
                   {t("Tags." + tag.name)}
                 </Button>
               </Col>
             ))}
-            <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
+            <Col lg="auto" sm="auto" md="auto" xl className="mb-3 mb-xl-0">
               <span className="toggler active" data-toggle="grid"><span className="fa fa-th-large" /></span>
               <span className="toggler" data-toggle="list" onClick={this.upcoming}><span className="fa fa-th-list" /></span>{/*  or use entypo library from weloveicons */}
             </Col>
@@ -175,7 +169,7 @@ class Dispositifs extends Component {
           <Row>
             {this.state.dispositifs.map((dispositif) => {
               return (
-                <Col xs="9" sm="4" md="3" key={dispositif._id}>
+                <Col xs="12" sm="6" md="3" lg="3" key={dispositif._id}>
                   <CustomCard onClick={() => this.goToDispositif(dispositif)}>
                     <CardBody>
                       <h3>{dispositif.titreInformatif}</h3>
@@ -186,7 +180,7 @@ class Dispositifs extends Component {
                 </Col>
               )}
             )}
-            <Col xs="9" sm="4" md="3">
+            <Col xs="12" sm="6" md="3">
               <CustomCard addcard="true" onClick={this.goToDispositif}>
                 <CardBody>
                   {showSpinner ?
