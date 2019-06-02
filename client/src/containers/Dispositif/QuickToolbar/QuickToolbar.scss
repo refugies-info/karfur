@@ -11,14 +11,18 @@
   z-index: 4;
 
   .card-body{
-    height:40px;
     padding-top:0;
     padding-bottom:0;
     display: flex;
     align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
     div[class^="col-lg"]{
       padding: 0 4px 0 4px;
+      width: fit-content;
+      margin-right: auto;
+      margin-left: auto;
     }
   }
   .custom-eva-size{

@@ -1,3 +1,5 @@
+@import 'src/scss/global.scss';
+
 $placeholderColor:#CDCDCD;
 
 .login{
@@ -95,10 +97,14 @@ $placeholderColor:#CDCDCD;
 
   .retour-wrapper{
     width:0;
+    @include media-max("tablet-up") { width: 100%; background: lightgray; margin:15px; border-radius: 12px; }
+
     .retour-btn{
       display:flex;
       text-decoration: none;
       color:inherit;
+      @include media-max("tablet-up") { margin:auto; }
+
       i{
         margin-right:3px;
       }

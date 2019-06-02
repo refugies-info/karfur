@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import { Col, Card, CardBody, CardHeader, CardFooter, ButtonDropdown, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, ListGroup, ListGroupItem,Button } from 'reactstrap';
+import { Col, Card, CardBody, CardHeader, CardFooter, ButtonDropdown, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, ListGroup, ListGroupItem,Button, Modal } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import ContentEditable from 'react-contenteditable';
 import Swal from 'sweetalert2';
 
-import Modal from '../../../components/Modals/Modal'
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
@@ -174,7 +173,7 @@ class CardParagraphe extends Component {
           </Card>
         </Col>
 
-        <Modal show={this.state.showModal} modalClosed={()=>this.toggleModal(false)} classe='modal-pieces'>
+        <Modal isOpen={this.state.showModal} toggle={()=>this.toggleModal(false)} className='modal-pieces'>
           <h1>Pièces demandées</h1>
           <p className="subtitle">
             Voici les pièces requises pour participer au dispositif {this.props.content.titreMarque}

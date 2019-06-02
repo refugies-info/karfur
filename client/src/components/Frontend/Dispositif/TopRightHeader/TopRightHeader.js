@@ -9,7 +9,7 @@ import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 const topRightHeader = (props) => {
   if(props.disableEdit){
     return(
-      <Col className="top-right">
+      <Col lg="6" md="6" sm="12" xs="12" className="top-right">
         {props.isAuthor && 
           <div className="top-icon-wrapper" onClick={props.editDispositif}>
             <EVAIcon name="edit-outline" fill="#3D3D3D" id="editBtn" />
@@ -24,7 +24,7 @@ const topRightHeader = (props) => {
     )
   }else{
     return(
-      <Col className="top-right">
+      <Col lg="6" md="6" sm="12" xs="12" className="top-right">
         <Card>
           <CardBody>
             {/* <div className="switch-wrapper">

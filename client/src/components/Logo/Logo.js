@@ -1,14 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import myLogo from '../../assets/logo_diair.png';
-import './Logo.css';
+import './Logo.scss';
 
 const logo = (props) => (
-  <NavLink to="/">
-    <div className="LogoWrapper" style={{height: props.height}}>
-      <img src={myLogo} alt="logo" />
-    </div>
+  <NavLink to="/" className="logo">
+    Agir
+    <sup className="beta-tag">beta</sup>
   </NavLink>
 );
 

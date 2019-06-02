@@ -48,7 +48,7 @@ class ContributeurModal extends Component {
           <h3>Quels sont vos thèmes de prédilection ?</h3>
           <Row className="align-items-center themes">
             {tags.map((tag, key) =>(
-              <Col col="6" sm="4" md="2" xl key={key}>
+              <Col lg="auto" sm="auto" md="auto" xs="auto" xl key={key}>
                 <Button block outline={!tag.selected} color={tag.color} onClick={()=>this.selectTag(key)}>
                   {t("Tags." + tag.name)}
                 </Button>

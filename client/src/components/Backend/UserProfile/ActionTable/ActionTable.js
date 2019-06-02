@@ -9,18 +9,15 @@ moment.locale('fr');
 
 const actionTable = (props) => {
   let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
-  
+  let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+
   const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length - 1))}
 
   let table = (
     <Table responsive striped className="avancement-user-table">
       <thead>
         <tr>
-          {props.headers.map((element,key) => {
-            return (
-              <th key={key}>{element}</th>
-            )}
-          )}
+          {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element}</th> ))}
         </tr>
       </thead>
       <tbody>
@@ -30,17 +27,17 @@ const actionTable = (props) => {
               <td className="align-middle">
                 {element.titre} 
               </td>
-              <td className="align-middle">
+              <td className="align-middle hideOnPhone">
                 <Icon name={element.owner ? "shield-outline" : "people-outline" } fill="#3D3D3D" size="large"/>&nbsp;
                 {element.owner ? "Propriétaire" : "Contributeur" }
               </td>
-              <td className={"align-middle"}>
+              <td className="align-middle">
                 <Button className={"action-btn " + element.action} onClick={()=>props.showSuggestion(element)}>
                   <EVAIcon name={element.action === "questions" ? "question-mark-circle-outline" : "bulb-outline"} fill="#FFFFFF" />
                   {jsUcfirst(element.action)}
                 </Button>
               </td>
-              <td className="align-middle">
+              <td className="align-middle hideOnPhone">
                 {element.depuis ? moment(element.depuis).fromNow() : ""}
               </td>
               <td className="align-middle pointer" onClick={()=>props.archive(element)}>

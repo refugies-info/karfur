@@ -14,10 +14,10 @@ const modifyProfile = (props) => {
         </CardHeader>
         <CardBody>
           <Row>
-            <Col lg="3">
+            <Col xl="4" lg="4" md="4" sm="4" xs="4" className="handleBetween">
               Pseudonyme
             </Col>
-            <Col>
+            <Col lg="6" md="6" sm="6" xs="6">
               <ContentEditable
                 id="username"
                 html={user.username || ''}
@@ -26,10 +26,10 @@ const modifyProfile = (props) => {
             </Col>
           </Row>
           <Row>
-            <Col lg="3">
+            <Col lg="4" md="4" sm="4" xs="4" className="handleBetween">
               Langue
             </Col>
-            <Col>
+            <Col lg="6" md="6" sm="6" xs="6">
               {(user.selectedLanguages || []).map((lang, key) => (
                 <ButtonDropdown isOpen={editing && props.isDropdownOpen[key]} toggle={(e) => props.toggleDropdown(e, key)} className="langues-dropdown" key={key}>
                   <DropdownToggle caret={editing}>
@@ -58,10 +58,10 @@ const modifyProfile = (props) => {
             </Col>
           </Row>
           <Row>
-            <Col lg="3">
+            <Col lg="4" md="4" sm="4" xs="4" className="handleBetween">
               Email
             </Col>
-            <Col>
+            <Col lg="6" md="6" sm="6" xs="6">
               <ContentEditable
                 id="email"
                 html={user.email || ''}
@@ -70,10 +70,10 @@ const modifyProfile = (props) => {
             </Col>
           </Row>
           <Row>
-            <Col lg="3">
+            <Col lg="4" md="4" sm="4" xs="4" className="handleBetween">
               A propos
             </Col>
-            <Col>
+            <Col lg="6" md="6" sm="6" xs="6">
               <ContentEditable
                 id="description"
                 html={user.description || ''}

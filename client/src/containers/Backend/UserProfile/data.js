@@ -51,17 +51,20 @@ const fakeContribution = {
 
 const avancement_langue={
   title: 'Mes traductions',
-  headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi','']
+  headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi',''],
+  hideOnPhone: [false, false, true, false, true, false]
 }
 
 const avancement_contrib={
   title: 'Mes articles',
-  headers: ['Titre', 'Statut', 'Progression', 'Mon rôle', 'Ils rédigent avec moi','']
+  headers: ['Titre', 'Statut', 'Progression', 'Mon rôle', 'Ils rédigent avec moi',''],
+  hideOnPhone: [false, false, true, true, true, false]
 }
 
 const avancement_actions={
   title: 'Action requise',
-  headers: ['Titre', 'Mon rôle', 'Actions', 'Depuis', '', '']
+  headers: ['Titre', 'Mon rôle', 'Actions', 'Depuis', '', ''],
+  hideOnPhone: [false, true, false, true, false, false]
 }
 
 const avancement_favoris={

@@ -22,12 +22,14 @@ moment.locale('fr');
 const past_translation_data={
   title: 'Traductions récemment effectuées',
   headers: ['Langue', 'Texte traduit','Statut', 'Depuis'],
+  hideOnPhone: [false,false,true,false],
   data: past_translation
 }
 
 const avancement_data={
   title: 'Progression de la traduction par langue',
   headers: ['Langue', 'Progression', 'Traducteurs mobilisés', '',''],
+  hideOnPhone: [false,true,true,false,false],
   data: languages
 }
 
@@ -166,12 +168,10 @@ class UserDash extends Component {
       let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
       return (
         <AvancementTable 
-          headers={past_translation_data.headers}
-          title={past_translation_data.title}
           toggleModal={()=>this.toggleModal('traductionsFaites')}
           protection={data.length === 0}
           quickAccess={this.quickAccess}
-          {...props}
+          {...past_translation_data}
           >
           {data.map( element => {
             let langElem=langues.find(x=>x.i18nCode===element.langueCible) || {};
@@ -184,7 +184,7 @@ class UserDash extends Component {
                   <b>{langElem.langueFr}</b>
                 </td>
                 <td className="align-middle text-grey">{(element.initialText || {}).title}</td>
-                <td className="align-middle">
+                <td className="align-middle hideOnPhone">
                   <Badge color={colorStatut(element.status)}>{element.status}</Badge>
                 </td>
                 <td className="align-middle since-col">
@@ -201,10 +201,8 @@ class UserDash extends Component {
       let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
       return (
         <AvancementTable 
-          headers={avancement_data.headers}
-          title={avancement_data.title}
           toggleModal={()=>this.toggleModal('progression')} 
-          {...props}
+          {...avancement_data}
           >
           {data.map( element => {
             return (
@@ -213,13 +211,13 @@ class UserDash extends Component {
                   <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.code} id={element.code}></i>
                   {element.langueFr}
                 </td>
-                <td className="align-middle">
+                <td className="align-middle hideOnPhone">
                   <div>
                     {Math.round((element.avancement || 0) * 100)} %
                   </div>
                   <Progress color={colorAvancement(element.avancement)} value={(element.avancement || 0)*100} className="mb-3" />
                 </td>
-                <td className="align-middle">
+                <td className="align-middle hideOnPhone">
                   {(element.participants || []).slice(0,5).map((participant) => {
                     return ( 
                         <img
@@ -234,18 +232,14 @@ class UserDash extends Component {
                 </td>
                 <td className="align-middle">
                   {element.avancement !== 1 && 
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                      <Button block color="warning" className="quick-btn" onClick={() => this.quickAccess(element)}>
-                        <Icon name="flash-outline" fill="#3D3D3D" />
-                        <span>Aléatoire</span>
-                      </Button>
-                    </Col>}
+                    <Button block color="warning" className="quick-btn" onClick={() => this.quickAccess(element)}>
+                      <Icon name="flash-outline" fill="#3D3D3D" />
+                      <span>Aléatoire</span>
+                    </Button>}
                 </td>
                 <td className="align-middle">
                   {element.avancement !== 1 && 
-                    <Col col="6" sm="4" md="2" xl className="mb-3 mb-xl-0">
-                      {buttonTraductions(element)}
-                    </Col>}
+                    buttonTraductions(element)}
                 </td>
               </tr>
             );

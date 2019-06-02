@@ -1,5 +1,7 @@
+@import 'src/scss/global.scss';
+
 .modal-objectifs{ 
-  min-width:900px;
+  @include media-min("tablet-down") { min-width:900px; }
 
   .modal-content{
     background: #FFFFFF;
@@ -14,7 +16,8 @@
       .modal-title{
         font-weight: bold;
         font-size: 40px;
-        line-height: 51px;
+        max-width: 100%;
+        @include media-max("phone-down") { font-size: 24px; }
       }
     }
     
@@ -65,14 +68,16 @@
     .modal-footer{
       border:none;
       justify-content: space-between;
+      @include media-max("phone-down") { flex-direction: column; }
 
       .form-check-label{
-        max-width:50%;
         margin:0;
         margin-left:20px;
         font-size: 16px;
         line-height: 20px;
         color: #828282;
+        @include media-min("phone-down") { max-width:50%; }
+        @include media-max("phone-down") { width:100%; }
       }
 
       .validate-btn{
@@ -80,6 +85,8 @@
         background: #78E08F;
         border-radius: 12px;
         border:none;
+        @include media-max("tablet-down") { width:100%; }
+        @include media-max("phone-down") { margin-top: 20px; }
       }
       .margin-right-8{
         margin-right:8px;

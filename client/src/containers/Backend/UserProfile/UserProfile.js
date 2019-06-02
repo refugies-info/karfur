@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import windowSize from 'react-window-size';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
@@ -227,34 +228,34 @@ class UserProfile extends Component {
         <div className="profile-header">
           <AnchorLink href="#mon-profil" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon name="settings-2-outline" fill="#3D3D3D" className="header-icon" /> {' '}
-            Mon profil
+            <span className="hideOnPhone">Mon profil</span>
           </AnchorLink>
           <AnchorLink href={(contributeur || traducteur) ? "#actions-requises" : "#mes-favoris"} offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon name={((contributeur || traducteur) ? "bell-" : "bookmark-" ) + "outline"} fill="#3D3D3D" className="header-icon" /> {' '}
-            {(contributeur || traducteur) ? "Actions requises" : "Mes favoris"}
+            <span className="hideOnPhone">{(contributeur || traducteur) ? "Actions requises" : "Mes favoris"}</span>
           </AnchorLink>
           {showSections.contributions && <AnchorLink href="#mes-contributions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon name="file-add-outline" fill="#3D3D3D" className="header-icon" /> {' '}
-            Mes articles
+            <span className="hideOnPhone">Mes articles</span>
           </AnchorLink>}
           {showSections.traductions && <AnchorLink href="#mes-traductions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <SVGIcon name="bubbleTranslate" fill="#3D3D3D" className="header-icon" /> {' '}
-            Mes traductions
+            <span className="hideOnPhone">Mes traductions</span>
           </AnchorLink>}
           {(contributeur || traducteur) &&
             <AnchorLink href="#mes-favoris" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
               <EVAIcon name="bookmark-outline" fill="#3D3D3D" className="header-icon" /> {' '}
-              Mes favoris
+              <span className="hideOnPhone">Mes favoris</span>
             </AnchorLink>}
           {false && 
             <AnchorLink href="#mes-contributions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
               <EVAIcon name="message-circle-outline" fill="#3D3D3D" className="header-icon" /> {' '}
-              Messages
+              <span className="hideOnPhone">Messages</span>
             </AnchorLink>}
         </div>
         <div className="profile-content" id="mon-profil">
           <Row className="profile-info">
-            <Card className="profile-left">
+            <Col xl="2" lg="4" md="12" sm="12" xs="12"  className="profile-left">
               <CardBody>
                 <div className="profile-header-container">   
                   <div className="rank-label-container">
@@ -276,8 +277,8 @@ class UserProfile extends Component {
                 {!this.state.editing && <h2 className="name">{user.username}</h2>}
                 <span className="status">{traducteur ? "Traducteur" : (contributeur ? "Contributeur" : "Utilisateur")}</span>
               </CardFooter>
-            </Card>
-            <Col className="modify-col">
+            </Col>
+            <Col xl="4" lg="8" md="12" sm="12" xs="12" className="modify-col">
               <ModifyProfile
                 handleChange={this.handleChange}
                 toggleDropdown={this.toggleDropdown}
@@ -288,10 +289,10 @@ class UserProfile extends Component {
                 {...this.state} />
             </Col>
 
-            <Col className="user-col">
+            <Col xl="6" lg="12" md="12" sm="12" xs="12" className="user-col">
               <Card className="profile-right">
                 <CardHeader>
-                  Vos objectifs de contribution hebdomadaire
+                  Vos objectifs de contribution hebdomadaires
                   <EVAIcon name="settings-2-outline" className="align-right pointer" onClick={()=>this.toggleModal('objectifs')} />
                 </CardHeader>
                 <CardBody>
@@ -360,6 +361,7 @@ class UserProfile extends Component {
             contributeur={contributeur}
             toggleModal={this.toggleModal}
             toggleSection={this.toggleSection}
+            windowWidth={this.props.windowWidth}
             limit={5}
             hide={!showSections.contributions}
             overlayTitle="On a besoin de vous !"
@@ -381,6 +383,7 @@ class UserProfile extends Component {
             overlayBtn="Devenir traducteur"
             overlayRedirect={false}
             history={this.props.history}
+            windowWidth={this.props.windowWidth}
             motsRediges={this.state.progression.nbMots}
             minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
             limit={5}
@@ -413,6 +416,7 @@ class UserProfile extends Component {
             dataArray={contributions}
             user={user}
             toggleModal={this.toggleModal}
+            windowWidth={this.props.windowWidth}
             {...avancement_contrib} />
         </Modal>
 
@@ -422,6 +426,7 @@ class UserProfile extends Component {
             user={this.state.user}
             langues={langues}
             toggleModal={this.toggleModal}
+            windowWidth={this.props.windowWidth}
             {...avancement_langue} />
         </Modal>
 
@@ -461,4 +466,4 @@ class UserProfile extends Component {
 
 export default track({
   page: 'UserProfile',
-})(UserProfile);
+})(windowSize(UserProfile));
