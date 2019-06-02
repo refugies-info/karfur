@@ -124,7 +124,32 @@
   }
 }
 
-.modal-pieces{
+.modal-pieces .modal-content{
+  background: #3D3D3D;
+  border-color: #3D3D3D;
+  mix-blend-mode: normal;/* Shadow autour */
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: #FFFFFF;
+  padding:20px;
+
+  h1{
+    font-size: 40px;
+    line-height: 51px;
+  }
+  .subtitle{
+    font-style: italic;
+  }
+  .list-group-item{
+    background: inherit;
+    color: inherit;
+    padding:20px;
+  }
+
   .papiers-toggle-btn{
     width:100%;
     text-align: left;

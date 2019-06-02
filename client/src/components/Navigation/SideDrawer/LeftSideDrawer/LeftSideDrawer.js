@@ -19,9 +19,7 @@ const leftSideDrawer = (props) => {
 
   return(
     <div className={attachedClasses.join(' ')}>
-      <div className="Logo">
-          <Logo />
-      </div>
+      <Logo />
       <nav>
           {!path.includes("/backend") && <NavigationItems {...props} />}
           {path.includes("/backend") && <BackendNavigationItems {...props} />}

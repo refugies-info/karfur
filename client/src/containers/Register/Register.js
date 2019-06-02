@@ -61,7 +61,7 @@ class Register extends Component {
       <div className="app flex-row align-items-center register">
         <Container>
           <Row className="justify-content-center">
-            <Col md="9">
+            <Col md="9" sm="12" xs="12">
               <CardGroup>
                 <Card className="card-left">
                   <CardBody>

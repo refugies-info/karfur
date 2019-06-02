@@ -41,7 +41,9 @@ class Avancement extends Component {
     if(isLangue && itemId){
       let i18nCode=null;
       if(this.props.location.state && this.props.location.state.langue && this.props.location.state.langue.i18nCode){
-        this.setState({langue:this.props.location.state.langue});
+        this.setState({langue:this.props.location.state.langue,
+          title: diffData.traducteur.title + ' : ' + this.props.location.state.langue.langueFr,
+          headers: diffData.traducteur.headers});
         i18nCode=this.props.location.state.langue.i18nCode;
       }else{
         this._loadLangue(itemId, isExpert);

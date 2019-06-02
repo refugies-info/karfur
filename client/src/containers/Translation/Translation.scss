@@ -1,3 +1,4 @@
+@import 'src/scss/global.scss';
 
 .traduction{
   height: 100%;
@@ -151,7 +152,7 @@
   }
 
   .trad-footer{
-    margin-top:15px;
+    margin-top: 5px;
     font-size: 18px;
     line-height: 23px;
     font-weight: bold;
@@ -167,9 +168,12 @@
     .right-col, .left-col{
       display:inline-flex;
       align-items: center;
+      margin-top: 10px;
     }
     .right-col{
       justify-content: flex-end;
+      flex-wrap: wrap;
+
       .btn{
         border-radius: 12px;
         border:none;
@@ -180,7 +184,6 @@
         display: inline-flex;
         align-items: center;
         white-space: nowrap;
-        margin-top:0;
   
         &.radio-btn{
           background: #FBFBFB;
@@ -205,6 +208,7 @@
 
       & > div, & > .btn, & > span{
         margin-left:10px;
+        @include media-max("xl-limit") { margin-top:10px; }
       }
     }
   }

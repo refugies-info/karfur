@@ -1,7 +1,10 @@
+@import 'src/scss/global.scss';
 
 .dispositif-create-modal{
-  min-width:650px;
   font-family: CircularStd;
+  @include media-min("tablet-up") { min-width:650px; }
+  @include media-max("tablet-up") { width:100%; }
+
   .modal-content{
     background: linear-gradient(113.12deg, #3D3D3D 6.51%, #000000 96.1%);
     mix-blend-mode: normal;
@@ -15,6 +18,9 @@
       h5{
         font-size: 40px;
         line-height: 51px;
+      }
+      .close{
+        color: white;
       }
     }
     .modal-body{

@@ -11,7 +11,7 @@ const contenuDispositif = (props) => {
       return ( 
         <div key={key} className='contenu-wrapper'>
           <Row className="relative-position" onMouseEnter={()=>props.updateUIArray(key, null, 'isHover')}>
-            <Col lg="12">
+            <Col lg="12" md="12" sm="12" xs="12">
               <a className="anchor" id={'item-head-'+key}></a>
               <h3 className="contenu-title">{item.title}</h3>
               {item.content && item.content!=='null' && <EditableParagraph 
@@ -23,7 +23,7 @@ const contenuDispositif = (props) => {
                 {...item}/>
               }
             </Col>
-            <Col lg="2" className='toolbar-col'>
+            <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
               <QuickToolbar 
                 show={props.uiArray[key].isHover}
                 keyValue={key}

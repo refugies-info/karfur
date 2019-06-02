@@ -1,5 +1,13 @@
+@import 'src/scss/global.scss';
+
+$h1Size: 64px;
+$normalSize: 18px;
+
 .dash-header{
   .tableau-header{
+    .full-width{
+      flex-grow:1;
+    }
     .right-element{
       display:flex;
       flex-direction: column;
@@ -10,35 +18,47 @@
   .header-indicateurs{
 
     .col-lg-4{
-      border-radius: 12px;
-      display:flex;
       padding:0;
-      flex: 0 0 calc(33% - 10px);
-      margin-left:10px;
+      @include media-max("lg-limit") { margin-top: 10px; }
       &:first-child{
-        margin-left:0;
+        .inner-indicator{
+          margin-left:0;
+        }
       }
 
-      .right-side{
-        font-weight: bold;
-        font-size: 64px;
-        line-height: 81px;
-        padding: 20px;
-      }
-      .left-side{
-        padding: 10px 20px;
-        margin:auto;
-      }
-      &.first-indicator{
-        background: #60A3BC;
-        color: #FFFFFF;
-      }
-      &.second-indicator{
-        background: rgba(185, 236, 255, 0.3);
-        color: #60A3BC;
-      }
-      &.third-indicator{
-        border: 1px solid #3D3D3D;
+      .inner-indicator{
+        border-radius: 12px;
+        display:flex;
+        margin-left:10px;
+        height:100%;
+        @include media-max("lg-limit") { margin-left:0; }
+
+        .right-side{
+          font-weight: bold;
+          font-size: $h1Size;
+          padding: 20px;
+          margin: auto 0;
+          @include media-max("desktop-down") { font-size: $h1Size * 4 / 5; }
+          @include media-max("desktop-up") { font-size: $h1Size * 3 / 5; }
+          @include media-max("tablet-up") { font-size: $h1Size * 2 / 5; }
+        }
+        .left-side{
+          padding: 10px 20px;
+          margin:auto 0;
+          font-size: $normalSize;
+          @include media-max("desktop-down") { font-size: $normalSize * 4 / 5; }
+        }
+        &.first-indicator{
+          background: #60A3BC;
+          color: #FFFFFF;
+        }
+        &.second-indicator{
+          background: rgba(185, 236, 255, 0.3);
+          color: #60A3BC;
+        }
+        &.third-indicator{
+          border: 1px solid #3D3D3D;
+        }
       }
     }
   }

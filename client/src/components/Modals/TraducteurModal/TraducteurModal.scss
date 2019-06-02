@@ -43,6 +43,12 @@
       border-radius: 12px;
       padding:20px;
     }
+    .draggable-list{
+      max-width: 100%;
+      div{
+        max-width: 100%;
+      }
+    }
   }
   .modal-footer{
     border:none;

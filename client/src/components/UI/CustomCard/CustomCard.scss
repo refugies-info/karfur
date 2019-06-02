@@ -1,9 +1,50 @@
+$breakpoints: (
+    "phone-down": 500px,
+    "tablet-up": 768px,
+    "tablet-down": 900px,
+    "desktop-up": 1024px,
+    "desktop-down": 1280px,
+    "widescreen-up": 1440px
+);
+
+/* from... */
+@mixin media-min($_key) {
+  @media screen and (min-width: map-get($breakpoints, $_key)) {
+      &{ @content; }
+  }
+}
+
+/* to... */
+@mixin media-max($_key) {
+  @media screen and (max-width: map-get($breakpoints, $_key) - 1) {
+      &{ @content; }
+  }
+}
+
+/* from... to... */
+@mixin media-between($_keymin, $_keymax) {
+  @media screen and (min-width: map-get($breakpoints, $_keymin)) and (max-width: map-get($breakpoints, $_keymax) - 1) {
+      &{ @content; }
+  }
+}
+
+/* at... */
+@mixin media($_key) {
+  @media screen and (min-width: map-get($breakpoints, $_key)) and (max-width: map-get($breakpoints, nth(map-keys($breakpoints), index(map-keys($breakpoints), $_key) + 1)) - 1) {
+      &{ @content; }
+  }
+}
 
 .custom-card{
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
   cursor : pointer;
   border-radius: 12px;
-  
+  font-size: 16px;
+
+  @include media-max("desktop-up") {
+    font-size: 12px;
+  }
+
   .align-right{
     text-align:right;
     font-style: italic;
@@ -11,15 +52,16 @@
   
   h3{
     font-size: 28px;
-    font-weight: 600;    
-    line-height: 28px;
+    font-weight: 600;   
     color: #3D3D3D;
     margin-bottom: 1rem;
+
+    @include media-max("desktop-up") {
+      font-size: 16px;
+    }
   }
 
   p{
-    font-size: 16px;
-    line-height: normal;
     color: #3D3D3D;
   }
 

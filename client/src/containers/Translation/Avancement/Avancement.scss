@@ -17,6 +17,10 @@
   }
 
   .avancement-header{
+    .tableau-header{
+      flex-wrap: wrap;
+    }
+    
     .row{
       margin-right: 0;
       margin-left: 0;

@@ -3,7 +3,7 @@ import React from 'react';
 import NavigationItem from './NavigationItem/NavigationItem';
 import routes from '../../../routes';
 
-import './NavigationItems.css';
+import './NavigationItems.scss';
 
 const navigationItems = () => {
   let dispRoutes=routes.filter(x => x.path === '/dispositifs');
