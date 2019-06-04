@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Button, Progress, Badge, Modal } from 'reactstrap';
+import { Col, Row, Button, Progress, Badge, Modal, Spinner } from 'reactstrap';
 import ReactJoyride from 'react-joyride';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
@@ -45,7 +45,8 @@ class UserDash extends Component {
       timeSpent:0,
       nbMots:0
     },
-    isExpert: false
+    isExpert: false,
+    isMainLoading: true
   }
 
   componentDidMount() {
@@ -54,7 +55,7 @@ class UserDash extends Component {
       if(user.selectedLanguages && user.selectedLanguages.length > 0){
         API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
           console.log(data_langues.data.data)
-          this.setState({langues: data_langues.data.data})
+          this.setState({langues: data_langues.data.data, isMainLoading: false})
         })
         API.get_progression().then(data_progr => {
           console.log(data_progr.data.data)
@@ -66,11 +67,12 @@ class UserDash extends Component {
           this.setState({traductionsFaites: data.data.data})
         })
       }else{
-        this.setState({showModal:{...this.state.showModal, defineUser: true}})
+        this.setState({isMainLoading:false, showModal:{...this.state.showModal, defineUser: true}})
       }
-      API.get_langues().then(data_langues => { this.setState({allLangues: data_langues.data.data}) })
+      API.get_langues({},{langueFr: 1}).then(data_langues => { this.setState({allLangues: data_langues.data.data}) })
       this.setState({user:user, isExpert: user.roles.some(x=>x.nom==="ExpertTrad")})
     })
+    window.scrollTo(0, 0);
   }
 
   toggleModal = (modal) => {
@@ -152,7 +154,7 @@ class UserDash extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render() {
-    let {langues, traductionsFaites, allLangues} = this.state;
+    let {langues, traductionsFaites, allLangues, isMainLoading} = this.state;
 
     const buttonTraductions = element => (
       (this.state.user.roles || []).find(x => x.nom==='ExpertTrad') ?
@@ -300,6 +302,14 @@ class UserDash extends Component {
           show={this.state.showModal.defineUser} 
           setUser={this.setUser}
           toggle={()=>this.toggleModal('defineUser')} />
+
+        {isMainLoading &&
+          <div className="ecran-protection no-main">
+            <div className="content-wrapper">
+              <h1 className="mb-3">Chargement...</h1>
+              <Spinner color="success" />
+            </div>
+          </div>}
       </div>
     );
   }

@@ -65,6 +65,7 @@ class App extends Component {
       this.props.tracking.trackEvent({ action: 'unmount', label: 'App' });
       return undefined;
     }.bind(this);
+    window.scrollTo(0, 0);
   }
 
   // _onAction = (e) => {

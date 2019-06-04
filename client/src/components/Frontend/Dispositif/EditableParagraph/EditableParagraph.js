@@ -29,7 +29,7 @@ const editableParagraph = (props) => {
                 toolbarClassName="toolbar-editeur"
                 wrapperClassName="wrapper-editeur"
                 editorClassName="editor-editeur"
-                placeholder="Ecrivez ici votre article..."
+                placeholder={props.placeholder}
                 onEditorStateChange={(editorState)=>props.onEditorStateChange(editorState, props.idx, props.subkey)}
                 editorState={props.editorState}
               />
@@ -47,7 +47,8 @@ const editableParagraph = (props) => {
         id={props.idx}
         data-subkey={props.subkey}
         className="animated fadeIn"
-        html={props.content}  // innerHTML of the editable div
+        html={props.content || '' }  // innerHTML of the editable div
+        placeholder={props.placeholder}
         disabled={props.disableEdit}       // use true to disable editing
         onChange={props.handleMenuChange} // handle innerHTML change
       />

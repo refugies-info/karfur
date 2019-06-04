@@ -11,7 +11,7 @@ import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
 import debounce from 'lodash.debounce';
 
-import * as actions from '../../../Store/actions';
+import * as actions from '../../../Store/actions/actions';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../../utils/API';
@@ -20,6 +20,7 @@ import marioProfile from '../../../assets/mario-profile.jpg';
 import Logo from '../../Logo/Logo';
 
 import './Toolbar.scss';
+import { get } from 'http';
 
 const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const getSuggestionValue = suggestion => suggestion.titreMarque + " - " + suggestion.titreInformatif;
@@ -40,7 +41,7 @@ export class Toolbar extends React.Component {
   componentDidMount (){
     API.get_langues({}).then(data_res => {
       this.setState({ available_languages:data_res.data.data })
-    },function(error){ console.log(error); return; })
+    })
     if(API.isAuth()){
       API.get_user_info().then(data_res => {
         let user=data_res.data.data;
@@ -52,8 +53,8 @@ export class Toolbar extends React.Component {
       this.setState({ dispositifs:dispositifs })
     })
   }
-
-  _toggleSearch = (e) => {console.log(e.currentTarget); this.setState(prevState=> ({showSearch: !prevState.showSearch}))}
+  
+  _toggleSearch = (e) => {this.setState(prevState=> ({showSearch: !prevState.showSearch}))}
 
   onChange = (_, { newValue }) => this.setState({ value: newValue });
 
@@ -62,7 +63,6 @@ export class Toolbar extends React.Component {
   onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
 
   getSuggestions = value => {
-    console.log(value)
     const escapedValue = escapeRegexCharacters(value.trim());
     if (escapedValue === '') { return [];}
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
@@ -83,20 +83,7 @@ export class Toolbar extends React.Component {
     this.props.history.push('/')
   }
 
-  toggle = () => {
-    this.setState((prevState) => ({
-      dropdownOpen: !prevState.dropdownOpen,
-    }));
-  }
-
-  changeLanguage = (lng) => {
-    this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
-    const action = { type: actions.TOGGLE_LANGUE, value: lng }
-    this.props.dispatch(action)
-    if(this.props.i18n.getResourceBundle(lng,"translation")){
-      this.props.i18n.changeLanguage(lng);
-    }else{console.log('Resource not found in i18next.')}
-  }
+  toggle = () => this.setState((prevState) => ({ dropdownOpen: !prevState.dropdownOpen }));
 
   navigateTo = route => this.props.history.push(route)
 
@@ -110,9 +97,7 @@ export class Toolbar extends React.Component {
     let CurrentLanguageIcon = () => {
       let current = this.state.available_languages.find(x => x.i18nCode === i18n.language)
       if (this.state.available_languages.length > 0 && current){
-        return(
-          <i className={'flag-icon flag-icon-' + current.langueCode} title={current.langueCode} id={current.langueCode}></i>
-        )
+        return <i className={'flag-icon flag-icon-' + current.langueCode} title={current.langueCode} id={current.langueCode} />
       }else{
         return <i className={'flag-icon flag-icon-fr'} title="fr" id="fr"></i>
       }
@@ -169,11 +154,9 @@ export class Toolbar extends React.Component {
         </div>
 
         <div className="right_buttons">
-          <NavLink to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }}>
-            <Button className="traduire-btn">
-              Traduire
-            </Button>
-          </NavLink>
+          <Button tag={NavLink} to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} className="traduire-btn">
+            Traduire
+          </Button>
 
           {API.isAuth() ? 
             <ButtonDropdown className="user-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -210,13 +193,14 @@ export class Toolbar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
-    showLangModal: state.langue.showLangModal,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleLangModal: () => dispatch({type: actions.TOGGLE_LANG_MODAL}),
+    
+    toggleLangModal: () => dispatch({type: actions.TOGGLE_LANG_MODAL}),: () => dispatch({type: actions.TOGGLE_LANG_MODAL}),
   }
 }
 

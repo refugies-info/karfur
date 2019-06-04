@@ -11,6 +11,13 @@ const path = require("path");
 const compression = require('compression');
 const startup = require('./startup/startup');
 
+// const session = require('express-session');
+// const sessionstore = require('sessionstore');
+
+// const oauthLoginCallback = require('./controllers/account/france-connect').oauthLoginCallback
+// const oauthLogoutCallback = require('./controllers/account/france-connect').oauthLogoutCallback
+// const getUser = require('./controllers/account/france-connect').getUser
+
 let scraper;
 if(process.env.NODE_ENV === 'dev') {
   console.log('dev environment')
@@ -63,6 +70,22 @@ app.use(function (req, res, next) {
     next();
 });
 
+// Note this enable to store user session in memory
+// As a consequence, restarting the node process will wipe all sessions data
+// app.use(session({
+//   store: sessionstore.createSessionStore(),
+//   secret: 'demo secret', // put your own secret
+//   cookie: {},
+//   saveUninitialized: true,
+//   resave: true,
+// }));
+
+// app.use((req, res, next) => {
+//   res.locals.user = req.session.user;
+//   res.locals.data = req.session.data;
+//   next();
+// });
+
 //Définition du routeur
 var router = express.Router();
 app.enable("strict routing")
@@ -94,6 +117,9 @@ require(__dirname + '/controllers/channelController')(router, io);
 require(__dirname + '/controllers/ttsController')(router);
 require(__dirname + '/messenger/controller')(router);
 require(__dirname + '/controllers/audioController')(router);
+// app.get('/login-callback', oauthLoginCallback);
+// app.get('/logout-callback', oauthLogoutCallback);
+// app.get('/user', getUser);
 
 
 //Partie dédiée à la messagerie instantanée
@@ -123,7 +149,7 @@ io.on('connection', function(socket){
 var ioport = process.env.PORTIO;
 io.listen(ioport, () => console.log(`Listening on port ${port}`));
 var port = process.env.PORT;
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+// });
 app.listen(port, () => console.log(`Listening on port ${port}`));

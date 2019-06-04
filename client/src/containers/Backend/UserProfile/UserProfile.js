@@ -39,7 +39,8 @@ class UserProfile extends Component {
       timeSpent:0,
       nbMots:0
     },
-    tempImg: null
+    tempImg: null,
+    isMainLoading:true,
   }
 
   componentDidMount() {
@@ -54,13 +55,14 @@ class UserProfile extends Component {
         this.setState({contributions: data.data.data, actions: this.parseActions(data.data.data)})
       })
       console.log(user)
-      this.setState({user:user, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
+      this.setState({user:user, isMainLoading:false, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
     })
     API.get_langues({}).then(data => this.setState({ langues: data.data.data }))
     API.get_progression().then(data_progr => {
       if(data_progr.data.data && data_progr.data.data.length>0)
         this.setState({progression: data_progr.data.data[0]})
     })
+    window.scrollTo(0, 0);
   }
 
   parseActions = dispositifs => {
@@ -203,7 +205,7 @@ class UserProfile extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render() {
-    let {traducteur, contributeur, traductions, contributions, actions, langues, user, showSections}=this.state;
+    let {traducteur, contributeur, traductions, contributions, actions, langues, user, showSections, isMainLoading}=this.state;
     if(!traducteur){traductions= new Array(5).fill(fakeTraduction)}
     if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
 
@@ -459,6 +461,14 @@ class UserProfile extends Component {
           show={this.state.showModal.objectifs} 
           toggle={()=>this.toggleModal('objectifs')}
           validateObjectifs={this.validateObjectifs} />
+
+        {isMainLoading &&
+          <div className="ecran-protection no-main">
+            <div className="content-wrapper">
+              <h1 className="mb-3">Chargement...</h1>
+              <Spinner color="success" />
+            </div>
+          </div>}
       </div>
     );
   }
