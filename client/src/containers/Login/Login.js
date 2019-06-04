@@ -7,6 +7,7 @@ import {NavLink} from 'react-router-dom'
 
 import API from '../../utils/API';
 import setAuthToken from '../../utils/setAuthToken'
+import FCBtn from '../../assets/FCboutons-10.png'
 
 import './Login.scss'
 
@@ -21,9 +22,8 @@ class Login extends Component {
 
   componentDidMount(){
     let locState = this.props.location.state ;
-    if(locState){
-      this.setState({traducteur: locState.traducteur, redirectTo: locState.redirectTo || "/"});
-    }
+    if(locState){ this.setState({traducteur: locState.traducteur, redirectTo: locState.redirectTo || "/"}); }
+    window.scrollTo(0, 0);
   }
 
   togglePasswordVisibility = () => this.setState(prevState=>({passwordVisible: !prevState.passwordVisible}))
@@ -90,6 +90,30 @@ class Login extends Component {
                         </Button>
                       </div>
                     </Form>
+                    {/* <div className="alt-login">
+                      <form action="/user/FClogin" method="post">
+                        <div className="field">
+                          <label className="label">
+                              Niveau eIDAS
+                              <span
+                                className="has-text-info tooltip is-tooltip-multiline"
+                                data-tooltip="Vous pouvez dès à présent tester les identités de niveau faible (eidas1), substantiel (eidas2) et fort (eidas3) sur l'environnement de qualification. En production, vous n'aurez cependant accès pour l'instant qu'à des identités de niveau faible (eidas1)." >
+                                  (info)
+                              </span>
+                          </label>
+                          <div className="select">
+                            <select name="eidasLevel">
+                              <option value="eidas1">Défaut : Faible (eidas1)</option>
+                              <option value="eidas2">Substantiel (eidas2)</option>
+                              <option value="eidas3">Fort (eidas3)</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="field">
+                          <input type="image" src={FCBtn} alt="Soumettre"/>
+                        </div>
+                      </form>
+                    </div> */}
                   </CardBody>
                 </Card>
                 <Card className="text-white py-5 d-md-down-none card-right">

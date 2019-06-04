@@ -66,6 +66,9 @@ export default {
     get_user_info : (query) => {
       return axios.post(burl + '/user/get_user_info',  query, {headers: headers})
     },
+    FClogout : () => {
+      return axios.post(burl + '/user/FClogout',{}, { headers: headers })
+    },
 
     log_event : (event) => {
       return axios.post(burl + '/events/log_event', event, {headers: headers})

@@ -76,7 +76,8 @@ class CardParagraphe extends Component {
     
     let contentTitle = (subitem) => {
       let cardTitle = cardTitles.find(x=>x.title==subitem.title);
-      if(cardTitle && cardTitle.options && !this.props.disableEdit){
+      if(cardTitle && cardTitle.options && cardTitle.options.length > 0 && !this.props.disableEdit){
+        if(!cardTitle.options.some(x => x===subitem.contentTitle)){ subitem.contentTitle = cardTitle.options[0]; subitem.contentBody = 'A modifier'; }
         return(
           <ButtonDropdown isOpen={this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title">
             <DropdownToggle caret>
@@ -181,9 +182,9 @@ class CardParagraphe extends Component {
           <ListGroup flush>
             {this.state.papiers.map((element, idx) => 
               <ListGroupItem action key={idx}>
-                <Dropdown isOpen={this.state.isModalDropdownOpen[idx]} toggle={()=>this.toggleModalDropdown(idx)}>
-                  <EVAIcon name="minus-circle-outline" onClick={()=>this.removePiece(idx)} className="btn-moins" />
-                  <DropdownToggle caret className="papiers-toggle-btn">
+                <Dropdown isOpen={!this.props.disableEdit && this.state.isModalDropdownOpen[idx]} toggle={()=>this.toggleModalDropdown(idx)}>
+                  {!this.props.disableEdit && <EVAIcon name="minus-circle-outline" onClick={()=>this.removePiece(idx)} className="btn-moins" />}
+                  <DropdownToggle caret={!this.props.disableEdit} className="papiers-toggle-btn">
                     <h6>{element.name}</h6>
                     <u>Comment obtenir cette pièce ?</u>
                   </DropdownToggle>
@@ -193,9 +194,10 @@ class CardParagraphe extends Component {
                 </Dropdown>
               </ListGroupItem>
             )}
-            <ListGroupItem action onClick={this.addPiece}>
-              <h6>Ajouter une pièce supplémentaire</h6>
-            </ListGroupItem>
+            {!this.props.disableEdit && 
+              <ListGroupItem action onClick={this.addPiece}>
+                <h6>Ajouter une pièce supplémentaire</h6>
+              </ListGroupItem>}
           </ListGroup>
         </Modal>
       </> 

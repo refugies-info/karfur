@@ -37,6 +37,7 @@ class ParkourOnBoard extends Component {
     API.count_dispositifs({status:'Actif'}).then(data => {
       this.setState({ count_dispositifs:data.data })
     })
+    window.scrollTo(0, 0);
   }
 
   getDispositifs = (data) => {

@@ -1,5 +1,8 @@
-// Store/Reducers/favoriteReducer.js
-import * as actions from '../actions'
+// Store/Reducers/langueReducer.js
+import Cookies from 'js-cookie';
+
+import * as actions from '../actions/actions'
+
 
 //A changer, c'est juste pour l'exemple
 const initialState = { 
@@ -11,6 +14,7 @@ function toggleLangue(state = initialState, action) {
   let nextState
   switch (action.type) {
     case actions.TOGGLE_LANGUE:
+      Cookies.set('languei18nCode',action.value)
       nextState = {
         ...state,
         languei18nCode: action.value
