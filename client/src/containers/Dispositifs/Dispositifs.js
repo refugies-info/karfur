@@ -41,6 +41,7 @@ class Dispositifs extends Component {
   componentDidMount (){
     let tag=querySearch(this.props.location.search).tag;
     if(tag) { this.selectTag(decodeURIComponent(tag)) } else { this.queryDispositifs() }
+    window.scrollTo(0, 0);
   }
 
   queryDispositifs = query => {
@@ -109,7 +110,7 @@ class Dispositifs extends Component {
     }
 
     const inputProps = { placeholder: 'Chercher', value: this.state.value, onChange: this.onChange };
-    
+
     return (
       <div className="animated fadeIn dispositifs">
         <section id="hero">

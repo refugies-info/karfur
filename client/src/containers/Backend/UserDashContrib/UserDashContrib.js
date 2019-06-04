@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Button, Progress, Badge, Modal } from 'reactstrap';
+import { Col, Row, Button, Progress, Badge, Modal, Spinner } from 'reactstrap';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
 
@@ -24,14 +24,15 @@ class UserDashContrib extends Component {
     progression:{
       timeSpent:0,
       nbMots:0
-    }
+    },
+    isMainLoading: true
   }
 
   componentDidMount() {
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
       API.get_dispositif({'creatorId': user._id}).then(data => {
-        this.setState({contributionsFaites: data.data.data})
+        this.setState({contributionsFaites: data.data.data, isMainLoading: false})
       })
       API.get_progression().then(data_progr => {
         if(data_progr.data.data && data_progr.data.data.length>0)
@@ -65,7 +66,7 @@ class UserDashContrib extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
   
   render() {
-    let {contributionsFaites, contributeur, user} = this.state;
+    let {contributionsFaites, contributeur, user, isMainLoading} = this.state;
     return (
       <div className="animated fadeIn user-dash-contrib">
         <DashHeader 
@@ -109,6 +110,15 @@ class UserDashContrib extends Component {
           toggle={()=>this.toggleModal('defineUser')}
           setUser={this.setUser}
           redirect={false} />
+
+        
+        {isMainLoading &&
+          <div className="ecran-protection no-main">
+            <div className="content-wrapper">
+              <h1 className="mb-3">Chargement...</h1>
+              <Spinner color="success" />
+            </div>
+          </div>}
       </div>
     );
   }

@@ -21,9 +21,8 @@ class Register extends Component {
 
   componentDidMount(){
     let locState = this.props.location.state ;
-    if(locState){
-      this.setState({traducteur: locState.traducteur, redirectTo: locState.redirectTo || "/"});
-    }
+    if(locState){ this.setState({traducteur: locState.traducteur, redirectTo: locState.redirectTo || "/"}); }
+    window.scrollTo(0, 0);
   }
 
   togglePasswordVisibility = () => this.setState(prevState=>({passwordVisible: !prevState.passwordVisible}))

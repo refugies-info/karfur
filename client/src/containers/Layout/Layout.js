@@ -6,6 +6,7 @@ import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/Directi
 import track from 'react-tracking';
 // import { AppAside, AppFooter } from '@coreui/react';
 import { connect } from 'react-redux';
+import Cookies from 'js-cookie';
 
 import API from '../../utils/API';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
@@ -13,7 +14,7 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import OnBoardingTraducteurModal from '../../components/Modals/OnBoardingTradModal/OnBoardingTraducteurModal'
 // import RightSideDrawer from '../../components/Navigation/SideDrawer/RightSideDrawer/RightSideDrawer'
-import * as actions from '../../Store/actions';
+import * as actions from '../../Store/actions/actions';
 import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
 
 import './Layout.scss';
@@ -31,7 +32,11 @@ class Layout extends Component {
   componentDidMount (){
     API.get_langues({},{avancement:-1}).then(data_res => {
       this.setState({ available_languages: data_res.data.data })
-    },function(error){ console.log(error); return; })
+      let languei18nCode = Cookies.get('languei18nCode');
+      if(languei18nCode && languei18nCode !== 'fr'){ this.changeLanguage(languei18nCode); }
+      else if(!languei18nCode){this.props.toggleLangModal();}
+    })
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps) {
@@ -67,7 +72,7 @@ class Layout extends Component {
     if(this.props.i18n.getResourceBundle(lng,"translation")){
       this.props.i18n.changeLanguage(lng);
     }else{console.log('Resource not found in i18next.')}
-    this.props.toggleLangModal();
+    if(this.props.showLangModal){this.props.toggleLangModal();}
   }
 
   readAudio = (text, locale='fr-fr') => {

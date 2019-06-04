@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
-import * as actions from '../../../Store/actions';
+import * as actions from '../../../Store/actions/actions';
 
 import './QuickToolbar.scss'
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Tooltip, Modal } from 'reactstrap';
+import { Col, Row, Tooltip, Modal, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -48,7 +48,7 @@ const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropd
 let user={_id:'', cookies:{}}
 class Dispositif extends Component {
   state={
-    menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, content: (x.type ? null : x.tutoriel.contenu), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(lorems.paragraphe).contentBlocks))}}),
+    menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : ''), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
     content:contenu,
     sponsors:sponsorsData,
     tags:['Formation professionnelle', 'Apprendre le français'],
@@ -83,7 +83,8 @@ class Dispositif extends Component {
     tKeyValue: -1, 
     tSubkey: -1,
     pinned:false,
-    user:{}
+    user:{},
+    isDispositifLoading: true,
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -103,7 +104,8 @@ class Dispositif extends Component {
           creator:dispositif.creatorId,
           uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
           dispositif: dispositif,
-          disableEdit: true
+          disableEdit: true,
+          isDispositifLoading: false,
         })
         //On récupère les données de l'utilisateur
         if(API.isAuth()){
@@ -122,6 +124,7 @@ class Dispositif extends Component {
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
         showDispositifCreateModal:true, //A modifier avant la mise en prod
+        isDispositifLoading: false
       })
     }else{ this.props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
     window.scrollTo(0, 0);
@@ -232,11 +235,11 @@ class Dispositif extends Component {
         prevState[key].type='cards';
         newChild={type:'card', isFakeContent: true,title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody:'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'};
       }else if(type==='accordion' && !newChild.content){
-        newChild={type:'accordion', isFakeContent: true, title:'Un exemple d\'accordéon',content: lorems.sousParagraphe};
+        newChild={type:'accordion', isFakeContent: true, title:'Un exemple d\'accordéon', placeholder: lorems.sousParagraphe,content: ''};
       }else if(type==='map'){
         newChild={type:'map', isFakeContent: true, isMapLoaded:false, markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]};
       }else if(type === 'paragraph' && !newChild.content){
-        newChild={title:'Un exemple de paragraphe', isFakeContent: true,content: lorems.sousParagraphe, type:type}
+        newChild={title:'Un exemple de paragraphe', isFakeContent: true, placeholder: lorems.sousParagraphe,content: '', type:type}
       }
       newChild.type=type;
       if(subkey == null || subkey==undefined){
@@ -430,13 +433,13 @@ class Dispositif extends Component {
     const {t} = this.props;
     const creator=this.state.creator || {};
     const creatorImg= (creator.picture || {}).secure_url || hugo;    
-    const {showModals} = this.state;
+    const {showModals, isDispositifLoading} = this.state;
     return(
       <div className="animated fadeIn dispositif" ref={this.newRef}>
         <section className="banniere-dispo">
           <Row className="header-row">
             <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
-              <i className="cui-arrow-left icons"></i> 
+              <EVAIcon name="arrow-back-outline" fill="#3D3D3D" className="icons" />
               <span>{t("Retour à la recherche")}</span>
             </Col>
             <TopRightHeader 
@@ -510,7 +513,7 @@ class Dispositif extends Component {
           </Row>
         </Row>
         <Row className="give-it-space">
-          <Col md="3">
+          <Col lg="3" md="3" sm="3" xs="12">
             <LeftSideDispositif
               menu={this.state.menu}
               accordion={this.state.accordion}
@@ -523,7 +526,7 @@ class Dispositif extends Component {
               openAllAccordions={this.openAllAccordions}
             />
           </Col>
-          <Col lg="7" md="10" sm="10" xs="10">
+          <Col lg="7" md="7" sm="7" xs="10">
             <ContenuDispositif 
               updateUIArray={this.updateUIArray}
               handleContentClick={this.handleContentClick}
@@ -648,6 +651,14 @@ class Dispositif extends Component {
           onChange={this._handleChange}
           validate={this.valider_dispositif}
         />
+
+        {isDispositifLoading &&
+          <div className="ecran-protection no-main">
+            <div className="content-wrapper">
+              <h1 className="mb-3">Chargement...</h1>
+              <Spinner color="success" />
+            </div>
+          </div>}
       </div>
     );
   }

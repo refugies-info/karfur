@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {withRouter, matchPath} from 'react-router-dom';
 
 import { socket } from '../../../../utils/API';
-import * as actions from '../../../../Store/actions'
+import * as actions from '../../../../Store/actions/actions'
 import defaultAvatar from '../../../../assets/avatar_bg_colored.svg';
 import API from '../../../../utils/API';
 

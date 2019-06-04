@@ -10,25 +10,25 @@ const contenuDispositif = (props) => {
     props.menu.map((item, key) => {
       return ( 
         <div key={key} className='contenu-wrapper'>
-          <Row className="relative-position" onMouseEnter={()=>props.updateUIArray(key, null, 'isHover')}>
-            <Col lg="12" md="12" sm="12" xs="12">
+          <Row className="relative-position">
+            <Col lg="12" md="12" sm="12" xs="12" onMouseEnter={()=>props.updateUIArray(key, null, 'isHover')}>
               <a className="anchor" id={'item-head-'+key}></a>
               <h3 className="contenu-title">{item.title}</h3>
-              {item.content && item.content!=='null' && <EditableParagraph 
+              {item.content!=='null' && <EditableParagraph 
                 idx={key} 
                 handleMenuChange={props.handleMenuChange}
                 onEditorStateChange={props.onEditorStateChange}
                 handleContentClick={props.handleContentClick}
                 disableEdit={props.disableEdit}
-                {...item}/>
-              }
+                {...item}/>}
             </Col>
-            <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
-              <QuickToolbar 
-                show={props.uiArray[key].isHover}
-                keyValue={key}
-                {...props} />
-            </Col>
+            {props.uiArray[key].isHover && 
+              <Col lg="3" md="3" sm="3" xs="3" className='toolbar-col'>
+                <QuickToolbar 
+                  show={props.uiArray[key].isHover}
+                  keyValue={key}
+                  {...props} />
+              </Col>}
           </Row>
           
           <ContenuParagraphe

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { withTranslation } from 'react-i18next';
-import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGroup, Label } from 'reactstrap';
+import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGroup, Label, Spinner } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import { withRouter } from 'react-router-dom';
 
@@ -11,7 +11,8 @@ import './TraducteurModal.scss'
 
 class TraducteurModal extends Component {
   state={
-    langues: []
+    langues: [],
+    spinner:false,
   }
   shadowSelectedLanguages=[];
 
@@ -38,12 +39,14 @@ class TraducteurModal extends Component {
   }
 
   onValidate = () => {
+    this.setState({spinner:true})
     let user={...this.props.user}
     let newUser={
       _id: user._id,
       selectedLanguages: [...this.shadowSelectedLanguages, ...this.state.langues.filter(x => x.checked && !this.shadowSelectedLanguages.some(y=>y._id === x._id)) ].map(el =>{return { _id: el._id, i18nCode: el.i18nCode, langueCode: el.langueCode, langueFr: el.langueFr, langueLoc: el.langueLoc}})
     }
     API.set_user_info(newUser).then(data => {
+      this.setState({spinner:false})
       let userRes=data.data.data;
       if(!userRes){return}
       if(this.props.redirect){
@@ -101,7 +104,8 @@ class TraducteurModal extends Component {
         <ModalFooter>
           <Button className="validate-btn" onClick={this.onValidate}>
             <Icon name="award-outline" fill="#3D3D3D" />
-            Devenir traducteur
+            {this.props.setUser ? "Valider" : "Devenir traducteur"}
+            {this.state.spinner && <Spinner color="success" className="ml-2" />}
           </Button>
         </ModalFooter>
       </Modal>
