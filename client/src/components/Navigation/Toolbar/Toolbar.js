@@ -199,8 +199,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     toggleLangModal: () => dispatch({type: actions.TOGGLE_LANG_MODAL}),
-    
-    toggleLangModal: () => dispatch({type: actions.TOGGLE_LANG_MODAL}),: () => dispatch({type: actions.TOGGLE_LANG_MODAL}),
+    onGetLangues: () => dispatch(actions.get_langues)
   }
 }
 
