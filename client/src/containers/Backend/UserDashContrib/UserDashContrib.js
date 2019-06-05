@@ -16,7 +16,7 @@ moment.locale('fr');
 
 class UserDashContrib extends Component {
   state={
-    showModal:{objectifs:false, contibutionsFaites: false, progression:false, defineUser: false}, 
+    showModal:{objectifs:false, contributionsFaites: false, progression:false, defineUser: false}, 
     user:{},
     langues:[],
     allLangues:[],

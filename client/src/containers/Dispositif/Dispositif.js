@@ -24,6 +24,7 @@ import Tags from './Tags/Tags';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import LeftSideDispositif from '../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif';
 import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader';
+import {fetch_dispositifs, fetch_user} from '../../Store/actions/index';
 
 import {hugo, ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 
@@ -422,6 +423,8 @@ class Dispositif extends Component {
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+        this.props.fetch_user();
+        this.props.fetch_dispositifs();
         this.setState({disableEdit: status==='Actif'}, () => {
           this.props.history.push("/dispositif/" + data.data.data._id)
         })
@@ -670,10 +673,12 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = {fetch_dispositifs, fetch_user};
+
 export default track({
     page: 'Dispositif',
   })(
-    connect(mapStateToProps)(
+    connect(mapStateToProps, mapDispatchToProps)(
       withTranslation()(Dispositif)
     )
   );

@@ -1,9 +1,18 @@
 // Store/configureStore.js
 
-import { createStore, combineReducers } from 'redux';
-import toggleLangue from './Reducers/langueReducer';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import thunk from 'redux-thunk';
+
+import langueReducer from './Reducers/langueReducer';
+import dispositifReducer from './Reducers/dispositifReducer';
+import userReducer from './Reducers/userReducer';
 import ttsReducer from './Reducers/ttsReducer';
 
-const rootReducer = combineReducers({langue: toggleLangue, tts: ttsReducer})
+const rootReducer = combineReducers({langue: langueReducer, dispositif: dispositifReducer, user: userReducer, tts: ttsReducer})
 
-export default createStore(rootReducer)
+export default createStore(
+  rootReducer, 
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ))
