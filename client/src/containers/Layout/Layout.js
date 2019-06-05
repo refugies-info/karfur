@@ -14,7 +14,7 @@ import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import OnBoardingTraducteurModal from '../../components/Modals/OnBoardingTradModal/OnBoardingTraducteurModal'
 // import RightSideDrawer from '../../components/Navigation/SideDrawer/RightSideDrawer/RightSideDrawer'
-import * as actions from '../../Store/actions/actions';
+import * as actions from '../../Store/actions/index';
 import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
 
 import './Layout.scss';
@@ -26,15 +26,15 @@ class Layout extends Component {
     showSideDrawer: {left:false,right:false},
     traducteur:false,
     showOnBoardingTraducteurModal:false,
-    available_languages:[],
   }
   
   componentDidMount (){
-    API.get_langues({},{avancement:-1}).then(data_res => {
-      this.setState({ available_languages: data_res.data.data })
+    this.props.fetch_user();
+    this.props.fetch_dispositifs();
+    this.props.fetch_langues().then( () => {
       let languei18nCode = Cookies.get('languei18nCode');
       if(languei18nCode && languei18nCode !== 'fr'){ this.changeLanguage(languei18nCode); }
-      else if(!languei18nCode){this.props.toggleLangModal();}
+      else if(!languei18nCode){this.props.toggle_lang_modal();}
     })
     window.scrollTo(0, 0);
   }
@@ -68,11 +68,11 @@ class Layout extends Component {
   
   changeLanguage = (lng) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'changeLanguage', value : lng });
-    this.props.toggleLangue(lng)
+    this.props.toggle_langue(lng)
     if(this.props.i18n.getResourceBundle(lng,"translation")){
       this.props.i18n.changeLanguage(lng);
     }else{console.log('Resource not found in i18next.')}
-    if(this.props.showLangModal){this.props.toggleLangModal();}
+    if(this.props.showLangModal){this.props.toggle_lang_modal();}
   }
 
   readAudio = (text, locale='fr-fr') => {
@@ -174,9 +174,9 @@ class Layout extends Component {
           <LanguageModal 
             show={this.props.showLangModal} 
             current_language={i18n.language}
-            toggle={this.props.toggleLangModal} 
+            toggle={this.props.toggle_lang_modal} 
             changeLanguage={this.changeLanguage} 
-            languages={this.state.available_languages}/>
+            languages={this.props.langues}/>
         </div>
       </DirectionProvider>
     )
@@ -188,15 +188,11 @@ const mapStateToProps = (state) => {
     ttsActive: state.tts.ttsActive,
     languei18nCode: state.langue.languei18nCode,
     showLangModal: state.langue.showLangModal,
+    langues: state.langue.langues,
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleLangModal: () => dispatch({type: actions.TOGGLE_LANG_MODAL}),
-    toggleLangue: (lng) => dispatch({ type: actions.TOGGLE_LANGUE, value: lng })
-  }
-}
+const mapDispatchToProps = actions;
 
 export default track({
         layout: 'Layout',
