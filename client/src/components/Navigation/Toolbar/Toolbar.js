@@ -11,7 +11,7 @@ import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
 import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
 import debounce from 'lodash.debounce';
 
-import * as actions from '../../../Store/actions/actions';
+import {toggle_lang_modal} from '../../../Store/actions/index';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../../utils/API';
@@ -20,7 +20,6 @@ import marioProfile from '../../../assets/mario-profile.jpg';
 import Logo from '../../Logo/Logo';
 
 import './Toolbar.scss';
-import { get } from 'http';
 
 const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const getSuggestionValue = suggestion => suggestion.titreMarque + " - " + suggestion.titreInformatif;
@@ -29,32 +28,12 @@ export class Toolbar extends React.Component {
 
   state = {
     dropdownOpen: false,
-    available_languages:[],
-    user:{},
-    traducteur:false,
-    contributeur: false,
     showSearch:false,
     value: '',
     suggestions: [],
   };
-
-  componentDidMount (){
-    API.get_langues({}).then(data_res => {
-      this.setState({ available_languages:data_res.data.data })
-    })
-    if(API.isAuth()){
-      API.get_user_info().then(data_res => {
-        let user=data_res.data.data;
-        this.setState({user:user, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib")})
-      })
-    }
-    API.get_dispositif({ status:'Actif'}).then(data_res => {
-      let dispositifs=data_res.data.data
-      this.setState({ dispositifs:dispositifs })
-    })
-  }
   
-  _toggleSearch = (e) => {this.setState(prevState=> ({showSearch: !prevState.showSearch}))}
+  _toggleSearch = () => {this.setState(prevState=> ({showSearch: !prevState.showSearch}))}
 
   onChange = (_, { newValue }) => this.setState({ value: newValue });
 
@@ -66,7 +45,7 @@ export class Toolbar extends React.Component {
     const escapedValue = escapeRegexCharacters(value.trim());
     if (escapedValue === '') { return [];}
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
-    return this.state.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif) || regex.test(dispositif.abstract) || regex.test(dispositif.contact) || (dispositif.tags || []).some(x => regex.test(x)) || (dispositif.audience || []).some(x => regex.test(x)) || (dispositif.audienceAge || []).some(x => regex.test(x)) || this.findInContent(dispositif.contenu, regex) );
+    return this.props.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif) || regex.test(dispositif.abstract) || regex.test(dispositif.contact) || (dispositif.tags || []).some(x => regex.test(x)) || (dispositif.audience || []).some(x => regex.test(x)) || (dispositif.audienceAge || []).some(x => regex.test(x)) || this.findInContent(dispositif.contenu, regex) );
   }
 
   findInContent = (contenu, regex) => contenu.some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent (x.children, regex)) );
@@ -89,14 +68,14 @@ export class Toolbar extends React.Component {
 
   render() {
     const path = this.props.location.pathname;
-    const { i18n } = this.props;
-    let { user, contributeur, traducteur, showSearch } = this.state;
+    const { i18n, user, contributeur, traducteur } = this.props;
+    let { showSearch } = this.state;
     let afficher_burger=path.includes("/backend");
     let afficher_burger_droite=path.includes("/traduction");
 
     let CurrentLanguageIcon = () => {
-      let current = this.state.available_languages.find(x => x.i18nCode === i18n.language)
-      if (this.state.available_languages.length > 0 && current){
+      let current = this.props.langues.find(x => x.i18nCode === i18n.language)
+      if (this.props.langues.length > 0 && current){
         return <i className={'flag-icon flag-icon-' + current.langueCode} title={current.langueCode} id={current.langueCode} />
       }else{
         return <i className={'flag-icon flag-icon-fr'} title="fr" id="fr"></i>
@@ -131,7 +110,7 @@ export class Toolbar extends React.Component {
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <Logo />
           <AudioBtn />
-          <Button className="flag-btn" onClick={this.props.toggleLangModal}>
+          <Button className="flag-btn" onClick={this.props.toggle_lang_modal}>
             <CurrentLanguageIcon />
           </Button>
         </div>
@@ -193,14 +172,15 @@ export class Toolbar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
+    langues: state.langue.langues,
+    dispositifs: state.dispositif.dispositifs,
+    user: state.user.user,
+    traducteur: state.user.traducteur,
+    contributeur: state.user.contributeur,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleLangModal: () => dispatch({type: actions.TOGGLE_LANG_MODAL})
-  }
-}
+const mapDispatchToProps = {toggle_lang_modal};
 
 export default track({
   component: 'Toolbar',

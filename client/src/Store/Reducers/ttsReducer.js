@@ -1,18 +1,14 @@
-import * as actions from '../actions/actions'
+import * as actions from '../actions/actionTypes'
+import { updateObject } from '../utility';
 
 const initialState = { ttsActive: false }
 
 function ttsReducer(state = initialState, action) {
-  let nextState
   switch (action.type) {
     case actions.TOGGLE_TTS:
-      nextState = {
-        ...state,
-        ttsActive: !state.ttsActive
-      }
-      return nextState || state
-  default:
-    return state
+      return updateObject(state, { ttsActive: !state.ttsActive })
+    default:
+      return state
   }
 }
 

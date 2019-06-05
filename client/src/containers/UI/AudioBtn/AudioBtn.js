@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
-import * as actions from '../../../Store/actions/actions';
+import * as actions from '../../../Store/actions/actionTypes';
 
 import './AudioBtn.scss';
 
