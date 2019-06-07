@@ -47,6 +47,7 @@
     "password-hash": "^1.2.2",
     "prepend-http": "^2.0.0",
     "puppeteer": "^1.14.0",
+    "python-shell": "^1.0.7",
     "readline-sync": "^1.4.9",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
