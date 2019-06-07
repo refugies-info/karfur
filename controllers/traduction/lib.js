@@ -5,61 +5,116 @@ const article = require('../article/lib');
 var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
 var h2p = require('html2plaintext');
+let {PythonShell} = require('python-shell')
+const fs = require("fs"); 
+const path = require("path"); 
+const spawn = require("child_process").spawn;
+const axios = require("axios");
 
-function add_tradForReview(req, res) {
+// const py = spawn('python3',['-u', path.join(__dirname, '../../xlm/mlm_tlm_prod.py'), 'init']);
+// py.stdout.on('data', (data) => {
+//   console.log('data1', data.toString())
+// });
+// py.stdout.on('end', (data) => {
+//   console.log('end1', data)
+// });
+// py.stderr.on('data', function(data) {
+//   console.error('python1:', data.toString());
+// });
+// py.on('close', function(code){ 
+//   console.log('code1', code)
+// });
+
+const headers = {
+  'Content-Type': 'application/json',
+}
+
+async function add_tradForReview(req, res) {
   if (!req.body || !req.body.langueCible || !req.body.translatedText) {
     //Le cas où la requête ne serait pas soumise ou nul
     res.status(400).json({
       "text": "Requête invalide"
     })
   } else {
-    let traduction=req.body;
-    traduction.status='En attente';
-    let nbMotsTitres=0;nbMotsBody=0;
-    //On transforme le html en JSON après l'avoir nettoyé
-    let html= traduction.translatedText.body || traduction.translatedText;
-    let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
-    if(!traduction.isStructure){
-      let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: true })
-      traduction.translatedText= traduction.translatedText.body ? {...traduction.translatedText, body:jsonBody}:jsonBody;
-    }else{
-      traduction={
-        ...traduction,
-        jsonId : traduction.articleId,
-        articleId : traduction.id,
-      }
-      delete traduction.id
-    }
-    nbMotsBody=(h2p(safeHTML).split(/\s+/).length || 0);
-    
-    traduction.userId=req.userId;
-    if(traduction.initialText && traduction.initialText.body && !traduction.isStructure){
-      traduction.initialText.body = himalaya.parse(sanitizeHtml(traduction.initialText.body, {allowedTags: false,allowedAttributes: false}), { ...himalaya.parseDefaults, includePositions: true })
-    }
-    if(traduction.initialText && traduction.initialText.title){
-      traduction.initialText.title = h2p(traduction.initialText.title)
-    }
-    if(traduction.translatedText.title){
-      traduction.translatedText.title = h2p(traduction.translatedText.title)
-      nbMotsTitres=traduction.translatedText.title.split(/\s+/).length || 0;
-    }
-    traduction.nbMots=nbMotsBody+nbMotsTitres;
-
-    var _u = new Traduction(traduction);
-    _u.save((err, data) => {
-      if (err) {
-        console.log(err);
-        res.status(501).json({"text": "Erreur interne"})
-      } else {
-        console.log('succes')
-        //J'ajoute en même temps cette traduction dans celles effectuées par l'utilisateur :
-        if(req.userId){ User.findByIdAndUpdate({ _id: req.userId },{ "$push": { "traductionsFaites": data._id } },{new: true},(e) => {if(e){console.log(e);}}); }
-        res.status(200).json({
-          "text": "Succès",
-          "data": data
-        })
-      }
+    console.log('allez python')
+    axios.post('http://localhost:5002/employees', {test: "allez"}, {headers: headers}).then(data => {
+      console.log('data', data)
     })
+    console.log('query sent')
+
+    // PythonShell.run(__dirname + '../../../xlm/mlm_tlm_prod.py', null, function (err) {
+    //   console.log('err', err);
+    //   if (err) throw err;
+    //   console.log('finished');
+    // });
+    // console.log(path.join(__dirname, '../../xlm/mlm_tlm_prod.py'))
+    // const py = spawn('python3',['-u', path.join(__dirname, '../../xlm/mlm_tlm_prod.py'), 'run']);
+    // console.log('ok python')
+    // py.stdout.on('data', (data) => {
+    //   console.log('data', data.toString())
+    // });
+    // py.stdout.on('end', (data) => {
+    //   console.log('end', data)
+    // });
+    // py.stderr.on('data', function(data) {
+    //   console.error('python:', data.toString());
+    // });
+    // py.on('close', function(code){ 
+    //   console.log('code', code)
+    // });
+    // py.stdin.write(JSON.stringify([
+    //   ["The technology is there to do it .", 'en'], 
+    //   ["La technologie est là pour le faire .", 'fr']]));
+    // py.stdin.end();
+    // console.log('fin python')
+
+    // let traduction=req.body;
+    // traduction.status='En attente';
+    // let nbMotsTitres=0;nbMotsBody=0;
+    // //On transforme le html en JSON après l'avoir nettoyé
+    // let html= traduction.translatedText.body || traduction.translatedText;
+    // let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+    // if(!traduction.isStructure){
+    //   let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: true })
+    //   traduction.translatedText= traduction.translatedText.body ? {...traduction.translatedText, body:jsonBody}:jsonBody;
+    // }else{
+    //   traduction={
+    //     ...traduction,
+    //     jsonId : traduction.articleId,
+    //     articleId : traduction.id,
+    //   }
+    //   delete traduction.id
+    // }
+    // nbMotsBody=(h2p(safeHTML).split(/\s+/).length || 0);
+    
+    // traduction.userId=req.userId;
+    // if(traduction.initialText && traduction.initialText.body && !traduction.isStructure){
+    //   traduction.initialText.body = himalaya.parse(sanitizeHtml(traduction.initialText.body, {allowedTags: false,allowedAttributes: false}), { ...himalaya.parseDefaults, includePositions: true })
+    // }
+    // if(traduction.initialText && traduction.initialText.title){
+    //   traduction.initialText.title = h2p(traduction.initialText.title)
+    // }
+    // if(traduction.translatedText.title){
+    //   traduction.translatedText.title = h2p(traduction.translatedText.title)
+    //   nbMotsTitres=traduction.translatedText.title.split(/\s+/).length || 0;
+    // }
+    // traduction.nbMots=nbMotsBody+nbMotsTitres;
+
+    // var _u = new Traduction(traduction);
+    // _u.save((err, data) => {
+    //   if (err) {
+    //     console.log(err);
+    //     res.status(501).json({"text": "Erreur interne"})
+    //   } else {
+    //     console.log('succes')
+    //     //J'ajoute en même temps cette traduction dans celles effectuées par l'utilisateur :
+    //     if(req.userId){ User.findByIdAndUpdate({ _id: req.userId },{ "$push": { "traductionsFaites": data._id } },{new: true},(e) => {if(e){console.log(e);}}); }
+    //     res.status(200).json({
+    //       "text": "Succès",
+    //       "data": data
+    //     })
+    //   }
+    // })
   }
 }
 
