@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Tooltip, Modal, Spinner } from 'reactstrap';
+import { Col, Row, Tooltip, Modal, Spinner, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -13,6 +13,7 @@ import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
 import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
+import ReactJoyride from 'react-joyride';
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
@@ -25,12 +26,13 @@ import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import LeftSideDispositif from '../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif';
 import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader';
 import {fetch_dispositifs, fetch_user} from '../../Store/actions/index';
+import ContribCaroussel from './ContribCaroussel/ContribCaroussel';
 
 import {hugo, ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 
-import {contenu, lorems, menu, filtres} from './data'
+import {contenu, lorems, menu, filtres, steps, tutoSteps} from './data'
 
-import './Dispositif.scss';
+import variables from './Dispositif.scss';
 
 moment.locale('fr');
 
@@ -86,6 +88,10 @@ class Dispositif extends Component {
     pinned:false,
     user:{},
     isDispositifLoading: true,
+    contributeurs:[],
+    darkColor:"red",
+    lightColor: "#FFFFFF",
+    runJoyRide: false
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -107,6 +113,7 @@ class Dispositif extends Component {
           dispositif: dispositif,
           disableEdit: true,
           isDispositifLoading: false,
+          contributeurs: new Array(14).fill(dispositif.creatorId),
         })
         //On récupère les données de l'utilisateur
         if(API.isAuth()){
@@ -128,10 +135,21 @@ class Dispositif extends Component {
         isDispositifLoading: false
       })
     }else{ this.props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
+    // this.setColors();
     window.scrollTo(0, 0);
   }
 
-  onMenuNavigate = (tab) => {
+  setColors = () => {
+    ["color", "borderColor", "backgroundColor"].map(s => {
+      ["dark", "light"].map(c => {
+        document.querySelectorAll('.' + s + '-' + c + 'Color').forEach(elem => {
+          elem.style[s] = this.state[c + 'Color'];
+        });
+      })
+    })
+  }
+ 
+  onMenuNavigate = (tab) => { //semble inutil vu qu'on a désactivé les accordéons dans le menu
     const prevState = this.state.menu;
     const state = prevState.map((x, index) => tab === index ? {...x, accordion : !x.accordion} : {...x, accordion: false});
     this.setState({
@@ -140,12 +158,12 @@ class Dispositif extends Component {
   }
 
   handleScrollSpy = el => {
-    if(el && el.id && el.id.includes('item-')){
-      let num=parseInt(el.id.replace( /^\D+/g, ''),10);
-      if(this.state.menu.length>num && this.state.menu[num].children && this.state.menu[num].children.length>0){
-        this.onMenuNavigate(num)
-      }
-    }
+    // if(el && el.id && el.id.includes('item-')){
+    //   let num=parseInt(el.id.replace( /^\D+/g, ''),10);
+    //   if(this.state.menu.length>num && this.state.menu[num].children && this.state.menu[num].children.length>0){
+    //     this.onMenuNavigate(num)
+    //   }
+    // }
   }
 
   _handleChange = (ev) => {
@@ -302,6 +320,10 @@ class Dispositif extends Component {
   toggleDispositifCreateModal = () => this.setState(prevState=>({showDispositifCreateModal:!prevState.showDispositifCreateModal}))
   toggleDispositifValidateModal = () => this.setState(prevState=>({showDispositifValidateModal:!prevState.showDispositifValidateModal}))
 
+  startJoyRide = () => {
+    this.setState({showDispositifCreateModal: false, runJoyRide: true});
+  }
+
   toggleHelp = () => this.setState(prevState=>({withHelp:!prevState.withHelp}))
 
   openAllAccordions = () =>this.setState({accordion: this.state.accordion.map(x => true)})
@@ -436,14 +458,45 @@ class Dispositif extends Component {
     const {t} = this.props;
     const creator=this.state.creator || {};
     const creatorImg= (creator.picture || {}).secure_url || hugo;    
-    const {showModals, isDispositifLoading} = this.state;
+    const {showModals, isDispositifLoading, darkColor, runJoyRide} = this.state;
+
     return(
-      <div className="animated fadeIn dispositif" ref={this.newRef}>
-        <section className="banniere-dispo">
+      <div className="animated fadeIn dispositif rouge" ref={this.newRef}>
+        {/* First general tour */}
+        {/* <ReactJoyride
+          steps={steps}
+          run={runJoyRide}
+          scrollToFirstStep
+          showProgress
+          showSkipButton
+        /> */}
+        {/* Second guided tour */}
+        <ReactJoyride
+          continuous
+          steps={tutoSteps}
+          run={runJoyRide}
+          scrollToFirstStep
+          showProgress
+          showSkipButton
+          disableOverlayClose={true}
+          spotlightClicks={true}
+          styles={{
+            options: {
+              width: 840,
+              backgroundColor: variables.darkColor,
+              arrowColor: variables.darkColor,
+              textColor: "white"
+            }
+          }}
+        />
+
+        <section className="banniere-dispo backgroundColor-lightColor">
           <Row className="header-row">
             <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
-              <EVAIcon name="arrow-back-outline" fill="#3D3D3D" className="icons" />
-              <span>{t("Retour à la recherche")}</span>
+              <Button color="warning" outline className="color-darkColor borderColor-darkColor">
+                <EVAIcon name="corner-up-left-outline" fill={darkColor} className="icons" />
+                <span>{t("Retour à la recherche")}</span>
+              </Button>
             </Col>
             <TopRightHeader 
               disableEdit={this.state.disableEdit} 
@@ -477,46 +530,37 @@ class Dispositif extends Component {
                   onChange={this._handleChange} // handle innerHTML change
                 />
               </h2>
-              <div className="header-footer">
-                <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
-              </div>
             </div>
           </Col>
           <ManLab className="header-img homme-icon" alt="homme" />
         </section>
-        <Row className="tags-row">
-          <b className="en-bref">{t("En bref")} : </b>
-          {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
-            if(card.type==='card'){
-              return (
-                <div className="tag-wrapper" key={key}>
-                  <div className="tag-item">
-                    <a href={'#item-head-1'} className="no-decoration">
-                      <SVGIcon name={card.titleIcon} />
-                      <span>{card.contentTitle}</span>
-                    </a>
-                  </div>
-                </div>
-              )
-            }else{return false}
-          })}
-          <Row className="right-side-row">
-            <Col className="align-right">
-              {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
-            </Col>
-            <Col>
-              {t("Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t("Faible")}</span>
-              <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#828282"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
-              
-              <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
-                {t("Dispositif.fiabilite_faible_1")} <b>{t("Dispositif.fiabilite_faible_2")}</b> {t("Dispositif.fiabilite_faible_3")}{' '}
-                {t("Dispositif.cliquez")}
-              </Tooltip>
-            </Col>
-          </Row>
+        <Row className="tags-row backgroundColor-darkColor">
+          <Col lg="7" md="7" sm="7" xs="7" className="col right-bar">
+            <Row>
+              <b className="en-bref mt-10">{t("En bref")} </b>
+              {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
+                if(card.type==='card'){
+                  return (
+                    <div className="tag-wrapper" key={key}>
+                      <div className="tag-item">
+                        <a href={'#item-head-1'} className="no-decoration">
+                          <SVGIcon name={card.titleIcon} />
+                          <span>{card.contentTitle}</span>
+                        </a>
+                      </div>
+                    </div>
+                  )
+                }else{return false}
+              })}
+            </Row>
+          </Col>
+          <Col lg="5" md="5" sm="5" xs="5" className="tags-bloc">
+            <b className="en-bref">{t("Thèmes")} </b>
+            <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
+          </Col>
         </Row>
         <Row className="give-it-space">
-          <Col lg="3" md="3" sm="3" xs="12">
+          <Col className="left-side-col pt-40" lg="3" md="3" sm="3" xs="12">
             <LeftSideDispositif
               menu={this.state.menu}
               accordion={this.state.accordion}
@@ -529,7 +573,21 @@ class Dispositif extends Component {
               openAllAccordions={this.openAllAccordions}
             />
           </Col>
-          <Col lg="7" md="7" sm="7" xs="10">
+          <Col className="pt-40" lg="7" md="7" sm="7" xs="10">
+            <Row className="fiabilite-row">
+              <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
+                {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
+              </Col>
+              <Col className="col">
+                {t("Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t("Faible")}</span>
+                <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#E55039"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
+                
+                <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
+                  {t("Dispositif.fiabilite_faible_1")} <b>{t("Dispositif.fiabilite_faible_2")}</b> {t("Dispositif.fiabilite_faible_3")}{' '}
+                  {t("Dispositif.cliquez")}
+                </Tooltip>
+              </Col>
+            </Row>
             <ContenuDispositif 
               updateUIArray={this.updateUIArray}
               handleContentClick={this.handleContentClick}
@@ -545,64 +603,76 @@ class Dispositif extends Component {
               {...this.state}
             />
             
+            <div className="feedback-footer">
+              <div>
+                <h5 className="color-darkColor">{t("Dispositif.informations_utiles")}</h5>
+                <span className="color-darkColor">{t("Dispositif.remerciez")}&nbsp;:</span>
+              </div>
+              <div>
+                <Button color="light" className="thanks-btn">
+                  {t("Merci")} 🙏 
+                </Button>
+                <Button color="light" className="down-btn">
+                  👎
+                </Button>
+              </div>
+            </div>
+            <div className="discussion-footer backgroundColor-darkColor">
+              <h5>{t("Dispositif.Avis")}</h5>
+              <span>{t("Dispositif.bientot")}</span>
+            </div>
+            <div className="bottom-wrapper">
+              <ContribCaroussel 
+                contributeurs={this.state.contributeurs}
+              />
+              {/* <div className="people-footer">
+
+                <Row className="depasse-pas">
+                  <Col lg="6" md="6" sm="12" xs="12" className="people-col">
+                    <div className="people-title">{t("Contributeurs")}</div>
+                    <div className="people-card">
+                      <img className="people-img" src={creatorImg} alt="juliette"/>
+                      <div className="right-side">
+                        <h6>{creator.username}</h6>
+                        <span>{creator.description}</span>
+                      </div>
+                    </div>
+                  </Col>
+                  <Col lg="6" md="6" sm="12" xs="12" className="people-col">
+                    <div className="people-title">{t("Traducteurs")}</div>
+                    <div className="people-card">
+                      <img className="people-img" src={hugo} alt="hugo"/>
+                      <div className="right-side">
+                        <h6>Hugo Stéphan</h6>
+                        <span>Designer pour la Diair</span>
+                      </div>
+                    </div>
+                  </Col>
+                </Row>
+              </div> */}
+
+              {!this.state.disableEdit &&
+                <div className="ecran-protection">
+                  <div className="content-wrapper">
+                    <Icon name="alert-triangle-outline" fill="#FFFFFF" />
+                    <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
+                  </div>
+                </div>}
+            </div>
+
+            <Sponsors 
+              sponsors={this.state.sponsors} 
+              loading={this.state.sponsorLoading}
+              disableEdit={this.state.disableEdit}
+              handleFileInputChange={this.handleFileInputChange} 
+              deleteSponsor={this.deleteSponsor}
+              t={t}  />
+            
+
             {false && <Commentaires />}
           </Col>
-          <Col lg="2" md="2" sm="2" xs="2" className="aside-right" />
+          <Col lg="2" md="2" sm="2" xs="2" className="aside-right pt-40" />
         </Row>
-        
-
-        <div className="contact-footer">
-          {t("Dispositif.questions")}&nbsp;
-          <u>
-            <ContentEditable
-              id='contact'
-              html={this.state.content.contact || ''}  // innerHTML of the editable div
-              disabled={this.state.disableEdit}       // use true to disable editing
-              onChange={this._handleChange} // handle innerHTML change
-            />
-          </u>
-        </div>
-        <div className="bottom-wrapper">
-          <div className="people-footer">
-            <Row className="depasse-pas">
-              <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                <div className="people-title">{t("Contributeurs")}</div>
-                <div className="people-card">
-                  <img className="people-img" src={creatorImg} alt="juliette"/>
-                  <div className="right-side">
-                    <h6>{creator.username}</h6>
-                    <span>{creator.description}</span>
-                  </div>
-                </div>
-              </Col>
-              <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                <div className="people-title">{t("Traducteurs")}</div>
-                <div className="people-card">
-                  <img className="people-img" src={hugo} alt="hugo"/>
-                  <div className="right-side">
-                    <h6>Hugo Stéphan</h6>
-                    <span>Designer pour la Diair</span>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-          </div>
-
-          {!this.state.disableEdit &&
-            <div className="ecran-protection">
-              <div className="content-wrapper">
-                <Icon name="alert-triangle-outline" fill="#FFFFFF" />
-                <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
-              </div>
-            </div>}
-        </div>
-
-        <Sponsors 
-          sponsors={this.state.sponsors} 
-          loading={this.state.sponsorLoading}
-          disableEdit={this.state.disableEdit}
-          handleFileInputChange={this.handleFileInputChange} 
-          deleteSponsor={this.deleteSponsor}  />
         
         <ReagirModal name='reaction' show={showModals.reaction} toggleModal={this.toggleModal} onValidate={this.pushReaction} />
         <SuggererModal showModals={showModals} toggleModal={this.toggleModal} onChange={this.handleModalChange} suggestion={this.state.suggestion} onValidate={this.pushReaction} />
@@ -646,6 +716,7 @@ class Dispositif extends Component {
         <DispositifCreateModal 
           show={this.state.showDispositifCreateModal}
           toggle={this.toggleDispositifCreateModal}
+          startJoyRide={this.startJoyRide}
         />
         <DispositifValidateModal
           show={this.state.showDispositifValidateModal}

@@ -139,16 +139,14 @@ class CardParagraphe extends Component {
     }
     return(
       <>
-        <Col lg="4" className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
+        <Col lg="auto" className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
           <Card className={subitem.title==='Important !' ? 'make-it-red':'regular'}>
-            <CardHeader>
+            <CardHeader className="backgroundColor-darkColor">
               {cardHeaderContent(subitem)}
             </CardHeader>
-            <CardBody className="text-center">
-              <h6>
-                {contentTitle(subitem)} 
-              </h6>
-              <span>
+            <CardBody>
+              <h4>{contentTitle(subitem)}</h4>
+              {/* <span>
                 <ContentEditable
                   id={this.props.keyValue}
                   data-subkey={subkey}
@@ -157,10 +155,11 @@ class CardParagraphe extends Component {
                   disabled={this.props.disableEdit}       // use true to disable editing
                   onChange={this.props.handleMenuChange} // handle innerHTML change
                 />
-              </span>
+              </span> */}
             </CardBody>
             <CardFooter>
-              <Button onClick={this.footerClicked}>
+              <Button color="light" outline onClick={this.footerClicked}>
+                <Icon name="plus-circle-outline" />
                 <span className="footer-content">{subitem.footer}</span>
               </Button>
             </CardFooter>

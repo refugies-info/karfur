@@ -21,24 +21,6 @@ const leftSideDispositif = (props) => {
                   onClick={() => props.onMenuNavigate(key)} >
                   {item.title}
                 </ListGroupItem>
-                {/* {item.children &&
-                  <Collapse isOpen={props.menu[key].accordion} data-parent="#accordion" id="collapseOne" aria-labelledby="headingOne">
-                    <ListGroup>
-                      {item.children.map((subitem, subkey) => {
-                        return ( 
-                          <div key={subkey}>
-                            <ListGroupItem 
-                              tag="a" 
-                              action 
-                              href={'#item-head-' + key + '-sub-' + subkey} >
-                              {subitem.title}
-                            </ListGroupItem>
-                          </div>
-                        )}
-                      )}
-                    </ListGroup>
-                  </Collapse>
-                } */}
               </div>
             )}
           )}
@@ -46,6 +28,10 @@ const leftSideDispositif = (props) => {
       </ListGroup>
 
       <div className="print-buttons">
+        <Button className="go-button backgroundColor-darkColor">
+          <Icon name="external-link-outline" fill="#F0E8F5" />
+          <span>Voir le site</span>
+        </Button>
         <Button className="print-button" onClick={props.createPdf}>
           <Icon name="download-outline" fill="#3D3D3D" />
           <span>Télécharger en PDF</span>

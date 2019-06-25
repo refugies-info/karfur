@@ -1,126 +1,120 @@
-.cards.row .card-col .card{
-  min-height: 230px;
-  background: #FBFBFB;
-  border-radius: 12px;
-  &.make-it-red{
-    background: rgba(229, 80, 57, 0.1);
-    .card-header{
-      background: #E55039;
-    }
-    .card-body, .card-footer{
-      background-color:rgba(229, 80, 57, 0.1);
-    }
-  }
-  .card-header{
-    background-color: #3D3D3D;
-    border: none;
-    border-radius: 12px 12px 0 0;
-    font-size: 16px;
-    line-height: 20px;
-    color: #FFFFFF;
+@import 'src/scss/colors.scss';
 
-    .header-content{
-      margin-left: 8px;
-      font-size: 16px;
-      line-height: 20px;
-    }
-    .form-control{
-      background-color:inherit;
-    }
-    .btn-group{
-      width: 100%;
-      .header-value{
-        background-color: inherit;
-        color: inherit;
-        border: none;
-        width: 100%;
-        text-align: initial;
-        padding:0;
-      }
-    }
-  }
-  .card-body{
-    padding-bottom: 12px;
-    font-size: 16px;
-    line-height: 20px;
-    color: #828282;
-    h6{
-      font-style: normal;
-      font-weight: bold;
-      font-size: 24px;
-      line-height: 30px;
-      color: #3D3D3D;
-    }
+.cards.row .card-col{ 
+  padding: 0 0 0 10px;
 
-    .content-title{
-      .dropdown-toggle.btn{
-        color: inherit;
-        background-color: inherit;
-        border-color: inherit;
-        font-weight: inherit;
-        font-size: inherit;
-        border:none;
-        padding:0;
-      }
-    }
-  }
-  .card-footer{
-    background: inherit;
-    border-radius: 0 0 12px 12px;
+  .card{
+    min-height: 230px;
+    background: $cardColor;
+    border-radius: 12px;
+    width:250px;
     border:none;
 
-    .btn{
-      background: #F2F2F2;
-      border-radius: 12px;
-      color: #828282;
+    &.make-it-red{
+      background: linear-gradient(114.72deg, rgba(229, 80, 57, 0.64) 6.51%, #B71540 96.1%);
+    }
+
+    .card-header{
+      background-color: $darkColor;
+      border: none;
+      border-radius: 12px 12px 0 0;
       font-size: 16px;
-      border:none;
-      width:100%;
+      color: #FFFFFF;
+      padding: 10px;
 
-      &:hover{
-        background: #F2F2F2;
-        border: 1px solid #CDCDCD;
+      .header-content{
+        margin-left: 10px;
+        font-size: 16px;
       }
-    }
-    .footer-content{
-      margin-left: 8px;
-    }
-  }
-
-  &.add-card{
-    background-color: rgba(0,0,0,0.05);
-    text-align: center;
-    &:hover{
-      background-color: rgba(0,0,0,0.1);
-      .add-sign{
-        opacity:1;
-        font-size:90px;
-        -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
-        -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
-        -o-transition: opacity 0.4s ease, font-size 0.4s ease;
-        transition: opacity 0.4s ease, font-size 0.4s ease;
+      .form-control{
+        background-color:inherit;
       }
-    }
-    .add-sign{
-      font-size:60px;
-      font-weight:bold;
-      opacity: .5;
+      .btn-group{
+        width: 100%;
+        .header-value{
+          background-color: inherit;
+          color: inherit;
+          border: none;
+          width: 100%;
+          text-align: initial;
+          padding:0;
+        }
+      }
     }
     .card-body{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: hsl(0,0%,20%);
+      padding-bottom: 12px;
+      font-size: 16px;
+      line-height: 20px;
+      color: #FFFFFF;
+      h4{
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        color: #FFFFFF;
+      }
+
+      .content-title{
+        .dropdown-toggle.btn{
+          color: inherit;
+          background-color: inherit;
+          border-color: inherit;
+          font-weight: inherit;
+          font-size: inherit;
+          border:none;
+          padding:0;
+        }
+      }
     }
-  }
-  .card-icons{
-    position: absolute;
-    top: -15px;
-    right: -5px;
-    display:none;
-  }
-  &:hover .card-icons{
-    display: inherit;
+    .card-footer{
+      background: transparent;
+      border-radius: 0 0 12px 12px;
+      border:none;
+
+      .btn{
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      .footer-content{
+        margin-left: 8px;
+      }
+    }
+
+    &.add-card{
+      background-color: rgba(0,0,0,0.05);
+      text-align: center;
+      &:hover{
+        background-color: rgba(0,0,0,0.1);
+        .add-sign{
+          opacity:1;
+          font-size:90px;
+          -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
+          -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
+          -o-transition: opacity 0.4s ease, font-size 0.4s ease;
+          transition: opacity 0.4s ease, font-size 0.4s ease;
+        }
+      }
+      .add-sign{
+        font-size:60px;
+        font-weight:bold;
+        opacity: .5;
+      }
+      .card-body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: hsl(0,0%,20%);
+      }
+    }
+    .card-icons{
+      position: absolute;
+      top: -15px;
+      right: -5px;
+      display:none;
+    }
+    &:hover .card-icons{
+      display: inherit;
+    }
   }
 }
 

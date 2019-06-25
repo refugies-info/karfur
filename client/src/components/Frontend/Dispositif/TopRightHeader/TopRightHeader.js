@@ -3,7 +3,6 @@ import { Col, Card, CardBody , Button, Spinner } from 'reactstrap';
 
 import { AppSwitch } from '@coreui/react'
 
-import AudioBtn from '../../../../containers/UI/AudioBtn/AudioBtn';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 const topRightHeader = (props) => {
@@ -14,7 +13,6 @@ const topRightHeader = (props) => {
           <div className="top-icon-wrapper" onClick={props.editDispositif}>
             <EVAIcon name="edit-outline" fill="#3D3D3D" id="editBtn" />
           </div>}
-        <AudioBtn />
         <div className="top-icon-wrapper" onClick={props.bookmarkDispositif}>
           {props.showSpinnerBookmark ?
             <Spinner color="success" /> :

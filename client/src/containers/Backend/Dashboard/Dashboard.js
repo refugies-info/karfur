@@ -16,6 +16,10 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
+  Form,
+  FormGroup,
+  Input,
+  Label,
   Progress,
   Row,
   Table
@@ -55,24 +59,20 @@ const brandSuccess = getStyle('--success')
 const brandWarning = getStyle('--warning')
 const brandDanger = getStyle('--danger')
 
+const eventFields = ["layout", "page", "userId"]
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    dropdownOpen: false,
+    radioSelected: 1,
 
-    this.toggle = this.toggle.bind(this);
-    this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
-
-    this.state = {
-      dropdownOpen: false,
-      radioSelected: 1,
-
-      traffic:[],
-      error:false,
-      mainChart: mainChart,
-      mainChartOpts: mainChartOpts,
-      max_traffic: 0
-    };
+    traffic:[],
+    error:false,
+    mainChart: mainChart,
+    mainChartOpts: mainChartOpts,
+    max_traffic: 0,
+    events:{},
+    eventValues:{},
   }
 
   componentDidMount () {
@@ -117,6 +117,7 @@ class Dashboard extends Component {
     API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), 0, -1/60)}}}).then((data) => {
       this.setState({onlineUsers:data.data.data})
     })
+    eventFields.map(x => this._call_distinct_event(x))
   }
 
   execute_search = (query, sort, numElements, dataset) =>{
@@ -167,13 +168,37 @@ class Dashboard extends Component {
     })
     .catch(err => console.log('Une erreur est survenue :' + err));
   }
-  toggle() {
+
+  _call_distinct_event = field => {
+    API.distinct_event({distinct : field}).then((data) => {
+      this.setState({events:{
+        ...this.state.events,
+        [field]: data.data.data
+      }})
+    })
+  }
+
+  _filterEventChanged = e => {
+    this.setState({eventValues:{
+        ...this.state.eventValues,
+        [e.target.id]: e.target.value
+    }}, () => {
+      let query = {...this.state.eventValues};
+      query.userId = (this.state.events.userId.find(x => x.username === this.state.eventValues.userId ) || {})._id;
+      console.log(query)
+      API.get_event(query).then((data) => {
+        console.log(data.data.data)
+      })
+    })
+  }
+
+  toggle = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen,
     });
   }
 
-  onRadioBtnClick(radioSelected) {
+  onRadioBtnClick = (radioSelected) => {
     this.setState({
       radioSelected: radioSelected,
     });
@@ -182,6 +207,7 @@ class Dashboard extends Component {
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   render() {
+    let {events, eventValues} = this.state;
     return (
       <div className="dashboardContainer animated fadeIn">
         <Row>
@@ -335,6 +361,36 @@ class Dashboard extends Component {
                   </Col>
                 </Row>
               </CardFooter>
+            </Card>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col>
+            <Card>
+              <CardBody>
+                <Row>
+                  <Col sm="5">
+                    Formulaire
+                    <Form>
+                        {eventFields.map((field, key) => (
+                          <FormGroup key={key}>
+                            <Label for={field}>{field}</Label>
+                            <Input type="select" name="select" id={field} value={eventValues[field]} onChange={this._filterEventChanged}>
+                              {(events[field] || []).map((option, subkey) => {
+                                let value = (field==="userId") ? option.username : option
+                                return <option key={subkey}>{value}</option>
+                              })}
+                            </Input>
+                          </FormGroup>
+                        ))}
+                    </Form>
+                  </Col>
+                  <Col sm="7" className="d-none d-sm-inline-block">
+                    Données
+                  </Col>
+                </Row>
+              </CardBody>
             </Card>
           </Col>
         </Row>

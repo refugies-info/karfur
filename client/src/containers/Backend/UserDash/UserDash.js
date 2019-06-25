@@ -36,7 +36,7 @@ const avancement_data={
 class UserDash extends Component {
   state={
     showModal:{objectifs:false, traductionsFaites: false, progression:false, defineUser: false}, 
-    runJoyRide:false, //penser à le réactiver !!
+    runJoyRide:true, //penser à le réactiver !!
     user:{},
     langues:[],
     allLangues:[],

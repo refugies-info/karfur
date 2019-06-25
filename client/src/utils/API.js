@@ -74,7 +74,10 @@ export default {
       return axios.post(burl + '/events/log_event', event, {headers: headers})
     },
     get_event : (query, sort) => {
-      return axios.post(burl + '/events/get', {query: query, sort: sort}, {headers: headers})
+      return axios.post(burl + '/events/get_event', {query: query, sort: sort}, {headers: headers})
+    },
+    distinct_event : (distinct) => {
+      return axios.post(burl + '/events/distinct_event', distinct, {headers: headers})
     },
     distinct_count_event : (query) => {
       return axios.post(burl + '/events/distinct_count_event', query, {headers: headers})
@@ -123,6 +126,12 @@ export default {
     },
     get_progression : query => {
       return axios.post(burl + '/traduction/get_progression', query, {headers: headers})
+    },
+    get_xlm : query => {
+      return axios.post(burl + '/traduction/get_xlm', query, {headers: headers})
+    },
+    get_laser : query => {
+      return axios.post(burl + '/traduction/get_laser', query, {headers: headers})
     },
 
     get_translation : (query = {}) => {

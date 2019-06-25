@@ -65,14 +65,14 @@ class EVAIcon extends Component {
     const dims = this.updateDims(size);
     
     const icon = (
-      <div key={this.props.name} {...props}>
+      <span key={this.props.name} {...props}>
         <i 
           data-eva={name}
           data-eva-fill={fill}
           data-eva-height={dims}
           data-eva-width={dims}
         />
-      </div>
+      </span>
     );
     
     return(icon);
