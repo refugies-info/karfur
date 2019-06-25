@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import track from 'react-tracking';
-import { Card, CardBody, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip } from 'reactstrap';
+import { Card, CardBody, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import * as actions from '../../../Store/actions/actionTypes';
+import variables from '../Dispositif.scss';
 
 import './QuickToolbar.scss'
 
@@ -43,30 +44,40 @@ class QuickToolbar extends Component {
         return(
           <Card className="quick-toolbar">
             <CardBody>
-              <Row>
-                <Col lg="3" md="3" sm="3" xs="3" id="eva-icon-0">
-                  <EVAIcon name={"message-circle" + (this.state.fill[0] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(0)} className='icon-toolbar' />
-                  <Tooltip placement="top" isOpen={this.state.tooltipOpen[0]} target="eva-icon-0" toggle={(e)=>this.toggleTooltip(0,e)}>
-                    réagir
-                  </Tooltip>
+              <Row className="first-row">
+                <Col lg="6" md="6" sm="6" xs="6" className="col-btn">
+                  <Button className="btn-pill" id="eva-icon-0" onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(0)}>
+                    <EVAIcon name={"message-circle" + (this.state.fill[0] ? '' : '-outline')} fill={variables.darkColor} className='icon-toolbar' />
+                    <Tooltip className="dark-back" placement="top" isOpen={this.state.tooltipOpen[0]} target="eva-icon-0" toggle={(e)=>this.toggleTooltip(0,e)}>
+                      réagir
+                    </Tooltip>
+                  </Button>
                 </Col>
-                <Col lg="3" md="3" sm="3" xs="3" id="eva-icon-1">
-                  <EVAIcon name={"alert-triangle" + (this.state.fill[1] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(1)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(1)} className='icon-toolbar'/>
-                  <Tooltip placement="top" isOpen={this.state.tooltipOpen[1]} target="eva-icon-1" toggle={()=>this.toggleTooltip(1)}>
-                    signaler
-                  </Tooltip>
+                <Col lg="6" md="6" sm="6" xs="6" className="col-btn">
+                  <Button className="btn-pill" id="eva-icon-1" onMouseEnter={()=>this._hoverOn(1)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(1)}>
+                    <EVAIcon name={"volume-up" + (this.state.fill[1] || this.props.ttsActive ? '' : '-outline')} fill={variables.darkColor} className='icon-toolbar'/>
+                    <Tooltip className="dark-back" placement="top" isOpen={this.state.tooltipOpen[1]} target="eva-icon-1" toggle={()=>this.toggleTooltip(1)}>
+                      écouter
+                    </Tooltip>
+                  </Button>
                 </Col>
-                <Col lg="3" md="3" sm="3" xs="3" id="eva-icon-2">
-                  <EVAIcon name={"volume-up" + (this.state.fill[2] || this.props.ttsActive ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(2)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(2)} className='icon-toolbar'/>
-                  <Tooltip placement="top" isOpen={this.state.tooltipOpen[2]} target="eva-icon-2" toggle={()=>this.toggleTooltip(2)}>
-                    écouter
-                  </Tooltip>
+              </Row>
+              <Row className="second-row">
+                <Col lg="6" md="6" sm="6" xs="6" className="col-btn">
+                  <Button className="btn-pill" id="eva-icon-2" onMouseEnter={()=>this._hoverOn(2)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(2)}>
+                    <EVAIcon name={"edit-2" + (this.state.fill[2] ? '' : '-outline')} fill={variables.lightColor} className='icon-toolbar'/>
+                    <Tooltip className="light-back" placement="bottom" isOpen={this.state.tooltipOpen[2]} target="eva-icon-2" toggle={()=>this.toggleTooltip(2)}>
+                      éditer
+                    </Tooltip>
+                  </Button>
                 </Col>
-                <Col lg="3" md="3" sm="3" xs="3" id="eva-icon-3">
-                  <SVGIcon name="translate" onClick={()=>this._onClick(3)} className='icon-toolbar'/>
-                  <Tooltip placement="top" isOpen={this.state.tooltipOpen[3]} target="eva-icon-3" toggle={()=>this.toggleTooltip(3)}>
-                    traduire
-                  </Tooltip>
+                <Col lg="6" md="6" sm="6" xs="6" className="col-btn">
+                  <Button className="btn-pill" id="eva-icon-3" onMouseEnter={()=>this._hoverOn(3)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(3)}>
+                    <SVGIcon name="translate" fill={variables.lightColor} className='icon-toolbar'/>
+                    <Tooltip className="light-back" placement="bottom" isOpen={this.state.tooltipOpen[3]} target="eva-icon-3" toggle={()=>this.toggleTooltip(3)}>
+                      aider à traduire
+                    </Tooltip>
+                  </Button>
                 </Col>
               </Row>
             </CardBody>

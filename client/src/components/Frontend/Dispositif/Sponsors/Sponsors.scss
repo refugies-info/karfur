@@ -1,7 +1,27 @@
+@import 'src/scss/colors.scss';
+
 $taille:60px;
 $tailleBig:80px;
 
 .sponsor-footer{
+  color: $darkColor;
+  background: #FFFFFF;
+  padding: 20px 40px;
+
+  h5{
+    margin-bottom: 20px;
+  }
+
+  .col{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    img{
+      height: fit-content;
+    }
+  }
 
   .image-wrapper{
     position:relative;

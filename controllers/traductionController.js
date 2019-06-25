@@ -6,4 +6,6 @@ module.exports = function (app) {
   app.post('/get_tradForReview', checkToken.check, traduction.get_tradForReview);
   app.post('/validate_tradForReview', checkToken.check, traduction.validate_tradForReview);
   app.post('/get_progression', checkToken.check, traduction.get_progression);
+  app.post('/get_xlm', traduction.get_xlm);
+  app.post('/get_laser', traduction.get_laser);
 }

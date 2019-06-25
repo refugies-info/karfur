@@ -1,3 +1,5 @@
+import React from 'react';
+
 const contenu={
   titreInformatif:'Le titre baseline',
   titreMarque:'Le nom du dispositif',
@@ -49,19 +51,22 @@ const filtres = {
     color: 'success'
   }, {
     name: 'Logement',
-    color: 'danger'
+    color: 'danger',
+    short: 'Se loger'
   }, {
     name: 'Culture',
     color: 'warning'
   }, {
     name: 'Apprendre le français',
-    color: 'info'
+    color: 'info',
+    short: 'Français'
   }, {
     name: 'Etudes',
     color: 'light'
   }, {
     name: 'Formation professionnelle',
-    color: 'dark'
+    color: 'dark',
+    short: 'Se former'
   }, {
     name: 'Accompagnement',
     color: 'muted'
@@ -71,4 +76,141 @@ const filtres = {
   }]
 };
 
-export {contenu, lorems, menu, filtres};
+const steps = [
+  {
+    content: <div><h3>Suivez le guide</h3><p>Cliquez sur les éléments en bleu pour saisir votre texte.</p></div>,
+    placement: 'bottom',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant'
+    },
+    target: '.bloc-titre',
+    disableBeacon: true
+  },
+  {
+    content: <div><h3>Suivez le guide</h3><p>Des consignes sont proposées pour chaque élément de la page.</p></div>,
+    placement: 'bottom',
+    target: '#titreMarque',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><h3>Suivez le guide</h3><p>Vous pouvez désactiver l’aide et sauvegardez à tout moment.</p></div>,
+    placement: 'left',
+    target: '.top-right .card',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent',
+      last : 'Terminer'
+    },
+  }
+]
+
+const tutoSteps = [
+  {
+    content: <div><b>Titre</b> : rédigez une courte phrase qui décrit l’action principale de votre dispositif. Nous vous conseillons de commencer la phrase par un verbe d’action à l’infinitif - rencontrer, apprendre, se former, trouver de l’aide, être accompagne, etc. </div>,
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant'
+    },
+    target: '#titreInformatif',
+    disableBeacon: true
+  },
+  {
+    content: <div><b>Nom du dispositif</b> : ce nom est également affiché dans les choix de recherche. Préférez la syntaxe la plus courte possible. Le champ est limité à 25 caractères. </div>,
+    target: '#titreMarque',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><b>Thème</b> : choisissez le thème principal qui caractérise le mieux votre dispositif. Puis ajoutez si besoin deux thèmes secondaires qui viennent améliorer le référencement de votre dispositif et préciser sa nature.</div>,
+    target: '.tags-dropdown',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><b>Lien vers le site du dispositif </b> : ajouter un lien direct vers la page la plus adéquate pour vous : inscription, présentation détaillée, page facebook, etc.</div>,
+    target: '.go-button',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><b>C’est quoi ?</b> <p>Brève synthèse de la fiche récapitulant les points les plus importants. Deux paragraphes maximum. Nous vous conseillons de rédiger cette section en dernier.</p> </div>,
+    target: '#contenu-0',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><b>C’est pour qui ?</b> <p>Ajoutez autant de carte que nécessaire pour expliciter les conditions d’accès au dispositif. Passez la souris sur chaque carte pour avoir des consignes détaillées.</p> </div>,
+    target: '#contenu-1',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><b>Pourquoi ?</b> <p>ajoutez jusqu’à 5 arguments principaux pour convaincre l’utilisateur de vous rejoindre. Chaque titre d’accordéon doit être compréhensible sans avoir à lire son contenu. N’hésitez pas à faire des sous-arguments à l’aide des listes à puce.</p> </div>,
+    target: '#contenu-2',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><b>Comment ?</b> <p>détaillez les différentes étapes pour accéder à votre dispositif : annuaire, prise de contact, premiers rendez-vous, formulaires d’inscriptions, etc. Vous pouvez ajouter une carte interactive pour cartographier vos points de contacts.</p> </div>,
+    target: '#contenu-3',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><b>Carte interactive</b> <p>ajoutez des points de contacts géolocalisés en recherchant une adresse dans la barre de recherche Google Maps. Puis saisissez les informations du point de contact. Vous pouvez également importer massivement des contacts.</p> </div>,
+    target: '.map-content',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><b>Auteur</b> <p>ajoutez les personnes qui vont ont aidées à rédiger le dispositif. Vous pouvez leur envoyer une invitation à se créer un compte pour participer à l’effort de mise à jour et d’échange avec la communauté.</p> </div>,
+    target: '.bottom-wrapper',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent'
+    },
+  },
+  {
+    content: <div><b>Structures partenaires</b> <p>ajoutez le logo de votre/vos structures. Attention : seul les fichiers .png, .jpg et .svg sont compatibles. Un lien vers le site de la structure et un texte alternatif à l’image vous est également demandé.</p> </div>,
+    target: '.sponsor-footer',
+    locale: { 
+      skip: 'Passer',
+      next: 'Suivant',
+      back : 'Précédent',
+      last : 'Terminer'
+    },
+  },
+]
+
+export {contenu, lorems, menu, filtres, steps, tutoSteps};

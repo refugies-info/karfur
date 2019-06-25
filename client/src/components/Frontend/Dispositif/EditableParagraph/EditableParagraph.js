@@ -51,6 +51,7 @@ const editableParagraph = (props) => {
         placeholder={props.placeholder}
         disabled={props.disableEdit}       // use true to disable editing
         onChange={props.handleMenuChange} // handle innerHTML change
+        onClick={props.handleContentClick(props.idx,true, props.subkey)}
       />
     )
   }
