@@ -1,22 +1,38 @@
+@import 'src/scss/colors.scss';
+
 .quick-toolbar{
   width: fit-content;
-
-  box-shadow: 0px 0px 18px #E5E5E5;
   
   top: 50%; 
   transform: translateY(-50%);
   border-radius: 8px;
-  border: 1px solid #F2F2F2;
-  background: #fbfbfb;
+  border: none;
   z-index: 4;
 
   .card-body{
-    padding-top:0;
-    padding-bottom:0;
-    display: flex;
     align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 0;
+
+    .col-btn{
+      padding:0 5px 5px 0;
+    }
+
+    .btn-pill{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border:none;
+    }
+
+    .first-row .btn-pill{
+      background-color: $lightColor;
+      &:hover{
+        background: #FFFFFF;
+      }
+    }
+    .second-row .btn-pill{
+      background-color: $darkColor;
+    }
 
     div[class^="col-lg"]{
       padding: 0 4px 0 4px;
@@ -73,5 +89,26 @@
   }
   .arrow::before{
     border-top-color: #3D3D3D;
+  }
+}
+
+.tooltip.show.light-back{ 
+  .tooltip-inner{
+    background: $lightColor;
+    color: $darkColor;
+  }
+  .arrow:before{
+    border-top-color: $lightColor;
+    border-bottom-color: $lightColor;
+  }
+}
+
+.tooltip.show.dark-back{ 
+  .tooltip-inner{
+    background: $darkColor;
+  }
+  .arrow:before{
+    border-top-color: $darkColor;
+    border-bottom-color: $darkColor;
   }
 }

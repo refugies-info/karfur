@@ -30,16 +30,17 @@ class Tags extends Component {
     return(
       <div className="tags">
         {(this.props.tags || []).map((tag, key) => {
+          let shortTag = (this.props.filtres.find(x => x.name ===tag ) || {} ).short
           return (
             <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key)} className="tags-dropdown" key={key}>
               <DropdownToggle caret={!this.props.disableEdit}>
-                {tag}
+                {shortTag || tag}
               </DropdownToggle>
               <DropdownMenu>
                 {this.props.filtres.map((e, i) => {
                   return (
                     <DropdownItem key={i} id={i}>
-                      {e.name}
+                      {e.short || e.name}
                     </DropdownItem>
                   )} 
                 )}

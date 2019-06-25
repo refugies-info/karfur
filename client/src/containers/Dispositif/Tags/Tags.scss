@@ -1,13 +1,16 @@
+@import 'src/scss/colors.scss';
+
 .tags{
   margin-top:-10px;
+  margin-right:-10px;
 
   .tags-dropdown{
-    margin-right:10px;
+    margin-left:10px;
     background: transparent;
-    border: 1px solid #4A69BD;
+    border: 1px solid #FFFFFF;
     box-sizing: border-box;
     border-radius: 12px;
-    color: #4A69BD;
+    color: #FFFFFF;
     margin-top:10px;
     
     .btn{
@@ -24,10 +27,10 @@
       color: #FFFFFF;
     }
     &:nth-child(2n){
-      border: 1px solid #E55039;
-      color: #E55039;
+      border: 1px solid $rouge;
+      background: $rouge;
       &:hover{
-        background: #E55039;
+        background: transparent;
         color: #FFFFFF;
       }
     }

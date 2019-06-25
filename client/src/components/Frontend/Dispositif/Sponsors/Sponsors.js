@@ -25,24 +25,28 @@ const sponsors = (props) => {
       )
     }else{return false;}
   }
+
   return (
-    <Row className="sponsor-footer">
-      {props.sponsors && props.sponsors.map((sponsor, key) => {
-        return (
-          <Col key={key} className="sponsor-col">
-            <div className="image-wrapper">
-              <img className="sponsor-img" src={sponsor.src} alt={sponsor.alt}/>
-              {!props.disableEdit && 
-                <div className="delete-icon" onClick={()=>props.deleteSponsor(key)}>
-                  <Icon name="minus-circle-outline" fill="#0D1C2E" size="xlarge"/>
-                </div>}
-            </div>
-          </Col>
+    <div className="sponsor-footer">
+      <h5 className="color-darkColor">{props.t("Dispositif.Structures")}</h5>
+      <Row className="sponsor-images">
+        {props.sponsors && props.sponsors.map((sponsor, key) => {
+          return (
+            <Col key={key} className="sponsor-col">
+              <div className="image-wrapper">
+                <img className="sponsor-img" src={sponsor.src} alt={sponsor.alt}/>
+                {!props.disableEdit && 
+                  <div className="delete-icon" onClick={()=>props.deleteSponsor(key)}>
+                    <Icon name="minus-circle-outline" fill="#0D1C2E" size="xlarge"/>
+                  </div>}
+              </div>
+            </Col>
+          )}
         )}
-      )}
-      
-      {plusOrLoad()}
-    </Row>
+        
+        {plusOrLoad()}
+      </Row>
+    </div>
   )
 }
 

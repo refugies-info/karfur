@@ -4,12 +4,14 @@ import { withTranslation } from 'react-i18next';
 import Autosuggest from 'react-autosuggest';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
+import debounce from 'lodash.debounce';
 
 ////////A enlever si pas utilisé/////////////:
 import Notifications from '../../components/UI/Notifications/Notifications';
 // import SendToMessenger from './SendToMessenger';
 import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
 import API from '../../utils/API';
+import {toggle_lang_modal} from '../../Store/actions/index';
 
 import './HomePage.scss';
 
@@ -38,26 +40,18 @@ class HomePage extends Component {
 
   onChange = (_, { newValue }) => this.setState({ value: newValue });
 
-  onSuggestionsFetchRequested = ({ value }) => this.setState({ suggestions: this.getSuggestions(value) });
+  onSuggestionsFetchRequested = debounce( ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }), 200)
 
   onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
 
-  getSuggestions = (value) => {
+  getSuggestions = value => {
     const escapedValue = escapeRegexCharacters(value.trim());
-    
     if (escapedValue === '') { return [];}
-  
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
-    
-    return this.state.search
-      .map(section => {
-        return {
-          title: section.type,
-          children: section.children.filter(child => regex.test(child.titreMarque || child.title))
-        };
-      })
-      .filter(section => section.children.length > 0);
+    return this.props.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif) || regex.test(dispositif.abstract) || regex.test(dispositif.contact) || (dispositif.tags || []).some(x => regex.test(x)) || (dispositif.audience || []).some(x => regex.test(x)) || (dispositif.audienceAge || []).some(x => regex.test(x)) || this.findInContent(dispositif.contenu, regex) );
   }
+
+  findInContent = (contenu, regex) => contenu.some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent (x.children, regex)) );
 
   validate = (suggestion) => {
     this.props.history.push((suggestion.titreMarque ? '/dispositif/' : '/article/') + suggestion._id)
@@ -86,12 +80,11 @@ class HomePage extends Component {
                     renderSectionTitle={renderSectionTitle}
                     getSectionSuggestions={getSectionSuggestions}
                     inputProps={inputProps} />
-{/* 
-                <input className="form-control my-0 py-1 amber-border" type="text" placeholder="Chercher" aria-label="Chercher" /> */}
+                {/*  <input className="form-control my-0 py-1 amber-border" type="text" placeholder="Chercher" aria-label="Chercher" /> */}
                 <div className="input-group-append">
-                    <span className="input-group-text amber lighten-3" id="basic-text1">
-                    <i className="fa fa-search text-grey"
-                        aria-hidden="true"></i></span>
+                  <span className="input-group-text amber lighten-3" id="basic-text1">
+                  <i className="fa fa-search text-grey"
+                      aria-hidden="true"></i></span>
                 </div>
               </div>
 
@@ -102,8 +95,6 @@ class HomePage extends Component {
               <NavLink to="/parcours-on-board" className="btn-get-started">Créer un parcours personnalisé</NavLink>
               </div>
           </section>
-
-
 
           {/* <div>
               <button onClick={() => this.changeLanguage('fr')}>fr</button>
@@ -139,13 +130,16 @@ class HomePage extends Component {
 const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
+    dispositifs: state.dispositif.dispositifs,
   }
 }
+
+const mapDispatchToProps = {toggle_lang_modal};
 
 export default track({
     page: 'HomePage',
   })(
-    connect(mapStateToProps)(
+    connect(mapStateToProps, mapDispatchToProps)(
       withTranslation()(HomePage)
     )
   );

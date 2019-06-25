@@ -12,6 +12,7 @@ import ms from 'pretty-ms';
 import Swal from 'sweetalert2';
 import querySearch from "stringquery";
 import h2p from 'html2plaintext';
+import debounce from 'lodash.debounce';
 
 import FeedbackModal from '../../components/Modals/FeedbackModal/FeedbackModal'
 import Article from '../Article/Article'
@@ -69,6 +70,7 @@ class Translation extends Component {
       title:'',
       success:false,
     },
+    score:-1,
   }
   mountTime=0;
 
@@ -192,7 +194,21 @@ class Translation extends Component {
       [target]:value
      }
     });
+    this.get_xlm([[h2p(value), this.state.locale], [this.state.francais.body, 'fr']])
   };
+
+  get_xlm = debounce( sentence => {
+    API.get_laser({sentences: sentence}).then(data => { 
+      try{
+        let result=JSON.parse(data.data.data) || {}
+        if(result && result.cosine && result.cosine.length > 0){
+          this.setState({score: result.cosine[0]}) 
+          console.log(result.cosine[0], result.distances, result.time)
+        }else{console.log(result)}
+      }catch(e){console.log(e)}
+    })
+  }, 500)
+
 
   handleClickText= (e, initial, target) => {
     try{
@@ -241,8 +257,8 @@ class Translation extends Component {
         translated:{
           ...this.state.translated,
           [item]: data.data.replace(/ id=\'initial_/g,' id=\'target_').replace(/ id="initial_/g,' id="target_')
-          }
-      });
+        }
+      }, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
     }).catch((err)=>{ console.log('error : ', err);
       this.setState({
         translated:{
@@ -432,6 +448,10 @@ class Translation extends Component {
                 <CardHeader>
                   <i className={'flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
                   <strong>{langue.langueFr}</strong>
+                  <span className="ml-2">
+                    {this.state.score !== -1 && 
+                      ('Score : ' + (this.state.score * 100).toFixed(2) + ' %')}
+                  </span>
                   <div className="card-header-actions pointer" onClick={this.upcoming}>
                     {/* <a href="#article-container" rel="noreferrer noopener" className="card-header-action"> */}
                       <span className="text-muted">Voir le rendu</span>{' '}

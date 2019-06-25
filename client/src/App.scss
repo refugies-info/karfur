@@ -18,6 +18,10 @@ body,head{
     -webkit-user-select: text;
     user-select: text;
   }
+
+  .flag-icon-sa {
+    background-image: url(./assets/figma/sa_custom.svg);
+  }
 }
 
 .spinner-container{ 
