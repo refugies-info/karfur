@@ -1,0 +1,94 @@
+@import 'src/scss/colors.scss';
+
+.figma-btn{
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 12px;
+  padding: 10px;
+  background: #FFFFFF;
+  color: $noir;
+  border:none;
+
+  &:not(.theme){
+    &:hover, &:not(:disabled):not(.disabled):active{
+      background: $gris;
+    }
+    &:focus{
+      background: $blanc;
+      border: 1px solid $focus;
+    }
+  }
+  &:focus{
+    outline:0;
+  }
+
+  &.dark{
+    background: $noir;
+    color: #FFFFFF;
+    &:hover, &:not(:disabled):not(.disabled):active{
+      background: #000000;
+    }
+    &:focus{
+      background: #000000;
+    }
+  }
+
+  &.validate{
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(334.49deg, #78E08F 100%, #2CA12A 0%);
+    color: #FFFFFF;
+    &:hover, &:not(:disabled):not(.disabled):active{
+      background: $vert;
+    }
+  }
+  
+  &.light-action{
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    svg{
+      fill: $noir;
+    }
+    &:hover{
+      background: $gris;
+    }
+    &:not(:disabled):not(.disabled):active{
+      background: $noir;
+      color: #FFFFFF;
+      svg{
+        fill: #FFFFFF;
+      }
+    }
+    &:focus{
+      box-shadow: 0px 4px 7px rgba(47, 128, 237, 0.3);
+      border: 1px solid $focus;
+    }
+  }
+
+  &.theme{
+    background: $darkColor;
+    color: #FFFFFF;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+  }
+
+  &.outline, &.pill{
+    border: 1px solid #FFFFFF;
+    background: transparent;
+    color: #FFFFFF;
+  }
+
+  &.pill{
+    border-radius: 50%;
+  }
+}
+
+.mr-10{
+  margin-right: 10px;
+}
+.mr-8{
+  margin-right: 8px;
+}
+.ml-10{
+  margin-left: 10px;
+}
+.ml-8{
+  margin-left: 8px;
+}
