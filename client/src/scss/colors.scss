@@ -1,10 +1,23 @@
 $lightColor: #F0E8F5;
-$darkColor: #3E2884;
+$darkColor: #583F93;
 $cardColor: linear-gradient(107.81deg, #4A69BD -7.66%, #60A3BC 92.45%);
 $blanc: #FBFBFB;
 $rouge: #E55039;
 $vert: #2CA12A;
 $noir: #3C3C3C;
 $gris: #F2F2F2;
-$violet: #3E2884;
-$focus: #3E2884;
+$violet: #583F93;
+$focus: #583F93;
+
+:export {
+  lightColor: $lightColor;
+  darkColor: $darkColor;
+  cardColor: $cardColor;
+  blanc: $blanc;
+  rouge: $rouge;
+  vert: $vert;
+  noir: $noir;
+  gris: $gris;
+  violet: $violet;
+  focus: $focus;
+}

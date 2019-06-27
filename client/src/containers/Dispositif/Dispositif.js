@@ -13,7 +13,7 @@ import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
 import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
-import ReactJoyride from 'react-joyride';
+import ReactJoyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
@@ -27,12 +27,13 @@ import LeftSideDispositif from '../../components/Frontend/Dispositif/LeftSideDis
 import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader';
 import {fetch_dispositifs, fetch_user} from '../../Store/actions/index';
 import ContribCaroussel from './ContribCaroussel/ContribCaroussel';
+import FButton from '../../components/FigmaUI/FButton/FButton'
 
 import {hugo, ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 
 import {contenu, lorems, menu, filtres, steps, tutoSteps} from './data'
 
-import variables from './Dispositif.scss';
+import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
@@ -91,7 +92,11 @@ class Dispositif extends Component {
     contributeurs:[],
     darkColor:"red",
     lightColor: "#FFFFFF",
-    runJoyRide: false
+    runJoyRide: false,
+    stepIndex: 0,
+    disableOverlay:false,
+    joyRideWidth: 800,
+    inputBtnClicked: false,
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -200,11 +205,12 @@ class Dispositif extends Component {
     this.setState({ menu: state });
   };
 
-  handleContentClick = (key, editable, subkey=null) => {
+  handleContentClick = (key, editable, subkey=undefined) => {
     let state=[...this.state.menu];
-    if(state.length > key){
+    if(state.length > key && key >= 0){
+      if(editable){ state = state.map(x => x.editable ? {...x, editable:false, ...(x.editorState && x.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(x.editorState.getCurrentContent())) } ) } : x );}
       let right_node=state[key];
-      if(subkey !==null && state[key].children.length > subkey){right_node= state[key].children[subkey];}
+      if(subkey !==undefined && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
       if(editable && right_node.content){
         right_node.editorState=EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks));
@@ -212,9 +218,21 @@ class Dispositif extends Component {
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
       if(right_node.type === 'accordion'){ this.updateUIArray(key, subkey, 'accordion', true) }
-      this.setState({ menu: state });
-    }
+      return new Promise(resolve => this.setState( { menu: state },()=>{ this.updateUI(key, subkey, editable) ; resolve()} ));
+    }else{return new Promise(r=> r())}
   };
+
+  updateUI = (key, subkey, editable) => {
+    if(editable){ 
+      try{ //On place le curseur à l'intérieur du wysiwyg et on ajuste la hauteur
+        let parentNode = document.getElementsByClassName('editeur-' + key + '-' + subkey)[0];
+        parentNode.getElementsByClassName('public-DraftEditor-content')[0].focus();
+        window.getSelection().addRange( document.createRange() );
+        parentNode.getElementsByClassName("DraftEditor-root")[0].style.height = parentNode.getElementsByClassName("public-DraftEditorPlaceholder-inner")[0].offsetHeight + "px";
+        this.setState({ stepIndex: key + 4, runJoyRide: true, disableOverlay: true, joyRideWidth: parentNode.offsetWidth, inputBtnClicked: false }) 
+      } catch(e){console.log(e)} 
+    } 
+  }
 
   onEditorStateChange = (editorState, key, subkey=null) => {
     let state=[...this.state.menu];
@@ -319,6 +337,7 @@ class Dispositif extends Component {
   toggleBookmarkModal = () => this.setState(prevState=>({showBookmarkModal:!prevState.showBookmarkModal}))
   toggleDispositifCreateModal = () => this.setState(prevState=>({showDispositifCreateModal:!prevState.showDispositifCreateModal}))
   toggleDispositifValidateModal = () => this.setState(prevState=>({showDispositifValidateModal:!prevState.showDispositifValidateModal}))
+  toggleInputBtnClicked = () => this.setState(prevState=>({inputBtnClicked:!prevState.inputBtnClicked}))
 
   startJoyRide = () => {
     this.setState({showDispositifCreateModal: false, runJoyRide: true});
@@ -355,6 +374,17 @@ class Dispositif extends Component {
   changeTag = (key, value) => this.setState({ tags: this.state.tags.map((x,i)=> i===key ? value : x) });
   addTag = () => this.setState({ tags: [...this.state.tags, 'Autre'] });
   deleteTag = (idx) => this.setState({ tags: [...this.state.tags].filter((_,i) => i!==idx) });
+
+  handleJoyrideCallback = data => {
+    const { action, index, type, lifecycle, status } = data;
+    if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+      this.setState({ runJoyRide: false, disableOverlay: false });
+    }else if(((action === ACTIONS.NEXT && index >= 3) || index > 4) && index < 7 && type === EVENTS.STEP_AFTER && lifecycle === "complete"){
+      this.handleContentClick(index - 3 + (action === ACTIONS.PREV ? -2 : 0), true)
+    } else if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
+      this.setState({ stepIndex: index + (action === ACTIONS.PREV ? -1 : 1), disableOverlay: index>3, inputBtnClicked: ((action === ACTIONS.NEXT && index === 2) || (action === ACTIONS.PREV && index===4)) });
+    }
+  };
 
   handleFileInputChange = event => {
     this.setState({sponsorLoading:true})
@@ -458,7 +488,45 @@ class Dispositif extends Component {
     const {t} = this.props;
     const creator=this.state.creator || {};
     const creatorImg= (creator.picture || {}).secure_url || hugo;    
-    const {showModals, isDispositifLoading, darkColor, runJoyRide} = this.state;
+    const {showModals, isDispositifLoading, darkColor, runJoyRide, stepIndex, disableOverlay, joyRideWidth} = this.state;
+
+    const Tooltip = ({
+      index,
+      step,
+      backProps,
+      primaryProps,
+      tooltipProps,
+      closeProps
+    }) => {
+      if(step){ return (
+      <div
+        key="JoyrideTooltip"
+        className="tooltip-wrapper backgroundColor-darkColor" 
+        style={{width: joyRideWidth + "px"}}
+        {...tooltipProps}>
+        <div className="tooltipContainer">
+          <b>{step.title}</b> : {step.content}
+        </div>
+        <div className="tooltipFooter">
+          <ul className="nav nav-tabs" role="tablist">
+            {tutoSteps.map((_,idx) => (
+              <li role="presentation" className={idx <= stepIndex ? "active" : "disabled"} key={idx}>
+                <span className="round-tab" />
+              </li>
+            ))}
+          </ul>
+          {index > 0 && 
+            <FButton onMouseEnter={e => e.target.focus()}  type="pill" className="mr-10" name="arrow-back-outline" fill="#FFFFFF" {...backProps} /> }
+          <FButton
+            onMouseEnter={e => e.target.focus()} 
+            {...primaryProps}>
+            Suivant
+            <EVAIcon name="arrow-forward-outline" fill={variables.noir} className="ml-10" />
+          </FButton>
+        </div>
+        <EVAIcon onMouseEnter={e => e.target.focus()} {...closeProps} name="close-outline" className="close-icon" />
+      </div>
+    )}else{return false}};
 
     return(
       <div className="animated fadeIn dispositif rouge" ref={this.newRef}>
@@ -475,17 +543,17 @@ class Dispositif extends Component {
           continuous
           steps={tutoSteps}
           run={runJoyRide}
-          scrollToFirstStep
           showProgress
-          showSkipButton
+          disableOverlay={disableOverlay}
           disableOverlayClose={true}
           spotlightClicks={true}
+          callback={this.handleJoyrideCallback}
+          stepIndex={stepIndex}
+          tooltipComponent={Tooltip}
+          debug={false}
           styles={{
             options: {
-              width: 840,
-              backgroundColor: variables.darkColor,
               arrowColor: variables.darkColor,
-              textColor: "white"
             }
           }}
         />
@@ -566,6 +634,9 @@ class Dispositif extends Component {
               accordion={this.state.accordion}
               showSpinner={this.state.showSpinnerPrint}
               content={this.state.content}
+              inputBtnClicked = {this.state.inputBtnClicked}
+              disableEdit = {this.state.disableEdit}
+              toggleInputBtnClicked={this.toggleInputBtnClicked}
               handleScrollSpy={this.handleScrollSpy}
               onMenuNavigate={this.onMenuNavigate}
               createPdf={this.createPdf}
@@ -603,62 +674,66 @@ class Dispositif extends Component {
               {...this.state}
             />
             
-            <div className="feedback-footer">
-              <div>
-                <h5 className="color-darkColor">{t("Dispositif.informations_utiles")}</h5>
-                <span className="color-darkColor">{t("Dispositif.remerciez")}&nbsp;:</span>
-              </div>
-              <div>
-                <Button color="light" className="thanks-btn">
-                  {t("Merci")} 🙏 
-                </Button>
-                <Button color="light" className="down-btn">
-                  👎
-                </Button>
-              </div>
-            </div>
-            <div className="discussion-footer backgroundColor-darkColor">
-              <h5>{t("Dispositif.Avis")}</h5>
-              <span>{t("Dispositif.bientot")}</span>
-            </div>
-            <div className="bottom-wrapper">
-              <ContribCaroussel 
-                contributeurs={this.state.contributeurs}
-              />
-              {/* <div className="people-footer">
-
-                <Row className="depasse-pas">
-                  <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                    <div className="people-title">{t("Contributeurs")}</div>
-                    <div className="people-card">
-                      <img className="people-img" src={creatorImg} alt="juliette"/>
-                      <div className="right-side">
-                        <h6>{creator.username}</h6>
-                        <span>{creator.description}</span>
-                      </div>
-                    </div>
-                  </Col>
-                  <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                    <div className="people-title">{t("Traducteurs")}</div>
-                    <div className="people-card">
-                      <img className="people-img" src={hugo} alt="hugo"/>
-                      <div className="right-side">
-                        <h6>Hugo Stéphan</h6>
-                        <span>Designer pour la Diair</span>
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-              </div> */}
-
-              {!this.state.disableEdit &&
-                <div className="ecran-protection">
-                  <div className="content-wrapper">
-                    <Icon name="alert-triangle-outline" fill="#FFFFFF" />
-                    <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
+            {this.state.disableEdit &&
+              <>
+                <div className="feedback-footer">
+                  <div>
+                    <h5 className="color-darkColor">{t("Dispositif.informations_utiles")}</h5>
+                    <span className="color-darkColor">{t("Dispositif.remerciez")}&nbsp;:</span>
                   </div>
-                </div>}
-            </div>
+                  <div>
+                    <Button color="light" className="thanks-btn">
+                      {t("Merci")} 🙏 
+                    </Button>
+                    <Button color="light" className="down-btn">
+                      👎
+                    </Button>
+                  </div>
+                </div>
+                <div className="discussion-footer backgroundColor-darkColor">
+                  <h5>{t("Dispositif.Avis")}</h5>
+                  <span>{t("Dispositif.bientot")}</span>
+                </div>
+                <div className="bottom-wrapper">
+                  <ContribCaroussel 
+                    contributeurs={this.state.contributeurs}
+                  />
+                  {/* <div className="people-footer">
+
+                    <Row className="depasse-pas">
+                      <Col lg="6" md="6" sm="12" xs="12" className="people-col">
+                        <div className="people-title">{t("Contributeurs")}</div>
+                        <div className="people-card">
+                          <img className="people-img" src={creatorImg} alt="juliette"/>
+                          <div className="right-side">
+                            <h6>{creator.username}</h6>
+                            <span>{creator.description}</span>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col lg="6" md="6" sm="12" xs="12" className="people-col">
+                        <div className="people-title">{t("Traducteurs")}</div>
+                        <div className="people-card">
+                          <img className="people-img" src={hugo} alt="hugo"/>
+                          <div className="right-side">
+                            <h6>Hugo Stéphan</h6>
+                            <span>Designer pour la Diair</span>
+                          </div>
+                        </div>
+                      </Col>
+                    </Row>
+                  </div> */}
+
+                  {!this.state.disableEdit &&
+                    <div className="ecran-protection">
+                      <div className="content-wrapper">
+                        <Icon name="alert-triangle-outline" fill="#FFFFFF" />
+                        <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
+                      </div>
+                    </div>}
+                </div>
+              </>
+            }
 
             <Sponsors 
               sponsors={this.state.sponsors} 

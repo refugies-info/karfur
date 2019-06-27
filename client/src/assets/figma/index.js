@@ -8,6 +8,13 @@ import puzzle from './puzzle.svg';
 import smiley from './smiley.svg';
 import hommeRouge from './hommeRouge.svg';
 import femmeRouge from './femmeRouge.svg';
+import boldBtn from './boldBtn.svg';
+import italicBtn from './italicBtn.svg';
+import underBtn from './underBtn.svg';
+import listBtn from './listBtn.svg';
+import imgBtn from './imgBtn.svg';
+import videoBtn from './videoBtn.svg';
+import linkBtn from './linkBtn.svg';
 
 import juliette from './juliette.png';
 import hugo from './hugo.png';
@@ -30,6 +37,13 @@ export {
   smiley,
   hommeRouge,
   femmeRouge,
+  boldBtn,
+  italicBtn,
+  underBtn,
+  listBtn,
+  imgBtn,
+  videoBtn,
+  linkBtn,
 
   juliette,
   hugo,
