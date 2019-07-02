@@ -1,9 +1,8 @@
 import React from 'react';
 import { Col, Card, CardBody , Button, Spinner } from 'reactstrap';
 
-import { AppSwitch } from '@coreui/react'
-
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
+import FSwitch from '../../../FigmaUI/FSwitch/FSwitch';
 
 const topRightHeader = (props) => {
   if(props.disableEdit){
@@ -23,12 +22,9 @@ const topRightHeader = (props) => {
   }else{
     return(
       <Col lg="6" md="6" sm="12" xs="12" className="top-right">
-        <Card>
+        <Card className="backgroundColor-darkColor">
           <CardBody>
-            {/* <div className="switch-wrapper">
-              <AppSwitch className='mx-1' variant='pill' color='dark' checked={props.withHelp} onClick={props.toggleHelp} />
-              Aide activée
-            </div> */}
+            <FSwitch content="Tutoriel" checked={props.withHelp} onClick={props.toggleHelp} />
             <Button className="save-btn text-dark" onClick={()=>props.valider_dispositif('Brouillon')}>Sauvegarder</Button>
             <Button className="publish-btn" onClick={props.toggleDispositifValidateModal}>Publier</Button>
           </CardBody>

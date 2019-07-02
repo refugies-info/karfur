@@ -79,7 +79,6 @@ class Dispositif extends Component {
     showBookmarkModal:false,
     showDispositifCreateModal:false,
     showDispositifValidateModal:false,
-    withHelp:true,
     showSpinnerPrint:false,
     showSpinnerBookmark:false,
     suggestion:'',
@@ -90,8 +89,9 @@ class Dispositif extends Component {
     user:{},
     isDispositifLoading: true,
     contributeurs:[],
-    darkColor:"red",
+    darkColor:"#583F93",
     lightColor: "#FFFFFF",
+    withHelp:true,
     runJoyRide: false,
     stepIndex: 0,
     disableOverlay:false,
@@ -119,7 +119,7 @@ class Dispositif extends Component {
           disableEdit: true,
           isDispositifLoading: false,
           contributeurs: new Array(14).fill(dispositif.creatorId),
-        })
+        },()=>this.setColors())
         //On récupère les données de l'utilisateur
         if(API.isAuth()){
           API.get_user_info().then(data_res => {
@@ -131,16 +131,15 @@ class Dispositif extends Component {
             })
           })
         }
-      },function(error){ console.log(error); return; })
+      })
     }else if(API.isAuth()){
       this.setState({
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
-        showDispositifCreateModal:true, //A modifier avant la mise en prod
+        showDispositifCreateModal:false, //A modifier avant la mise en prod
         isDispositifLoading: false
-      })
+      },()=>this.setColors())
     }else{ this.props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
-    // this.setColors();
     window.scrollTo(0, 0);
   }
 
@@ -339,9 +338,7 @@ class Dispositif extends Component {
   toggleDispositifValidateModal = () => this.setState(prevState=>({showDispositifValidateModal:!prevState.showDispositifValidateModal}))
   toggleInputBtnClicked = () => this.setState(prevState=>({inputBtnClicked:!prevState.inputBtnClicked}))
 
-  startJoyRide = () => {
-    this.setState({showDispositifCreateModal: false, runJoyRide: true});
-  }
+  startJoyRide = () => this.setState({showDispositifCreateModal: false, runJoyRide: true, stepIndex:0});
 
   toggleHelp = () => this.setState(prevState=>({withHelp:!prevState.withHelp}))
 
@@ -488,7 +485,7 @@ class Dispositif extends Component {
     const {t} = this.props;
     const creator=this.state.creator || {};
     const creatorImg= (creator.picture || {}).secure_url || hugo;    
-    const {showModals, isDispositifLoading, darkColor, runJoyRide, stepIndex, disableOverlay, joyRideWidth} = this.state;
+    const {showModals, isDispositifLoading, darkColor, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp} = this.state;
 
     const Tooltip = ({
       index,
@@ -502,7 +499,7 @@ class Dispositif extends Component {
       <div
         key="JoyrideTooltip"
         className="tooltip-wrapper backgroundColor-darkColor" 
-        style={{width: joyRideWidth + "px"}}
+        style={{width: joyRideWidth + "px", backgroundColor: darkColor}}
         {...tooltipProps}>
         <div className="tooltipContainer">
           <b>{step.title}</b> : {step.content}
@@ -529,7 +526,7 @@ class Dispositif extends Component {
     )}else{return false}};
 
     return(
-      <div className="animated fadeIn dispositif rouge" ref={this.newRef}>
+      <div className="animated fadeIn dispositif" ref={this.newRef}>
         {/* First general tour */}
         {/* <ReactJoyride
           steps={steps}
@@ -542,7 +539,7 @@ class Dispositif extends Component {
         <ReactJoyride
           continuous
           steps={tutoSteps}
-          run={runJoyRide}
+          run={withHelp && runJoyRide}
           showProgress
           disableOverlay={disableOverlay}
           disableOverlayClose={true}
@@ -553,7 +550,7 @@ class Dispositif extends Component {
           debug={false}
           styles={{
             options: {
-              arrowColor: variables.darkColor,
+              arrowColor: this.state.darkColor,
             }
           }}
         />
@@ -585,7 +582,8 @@ class Dispositif extends Component {
                 <ContentEditable
                   id='titreInformatif'
                   html={this.state.content.titreInformatif}  // innerHTML of the editable div
-                  disabled={this.state.disableEdit}       // use true to disable editing
+                  disabled={this.state.disableEdit}
+                  onClick={this.startJoyRide}
                   onChange={this._handleChange} // handle innerHTML change
                 />
               </h1>
