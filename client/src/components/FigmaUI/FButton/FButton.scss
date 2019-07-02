@@ -77,6 +77,11 @@
 
   &.pill{
     border-radius: 50%;
+    &:hover, &:not(:disabled):not(.disabled):active, &:focus{
+      svg{
+        fill: $noir;
+      }
+    }
   }
 }
 
