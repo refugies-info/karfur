@@ -1,3 +1,5 @@
+@import 'src/scss/colors.scss';
+
 .map-paragraphe{
   margin-top: 20px;
   margin-bottom: 20px;
@@ -30,5 +32,156 @@
         font-size:33px;
       }
     }
+  }
+
+  .map-content{
+    display: flex;
+    flex-direction: row;
+    overflow:hidden;
+
+    .inner-container{
+      flex: 1;
+    }
+    .right-menu{
+      width: 400px;
+      max-width: 400px;
+      background: $gris;
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+      padding: 20px 40px;
+      transition: padding 0.45s, width 0.45;
+      &.flip-out-ver-right{
+        width: 0;
+        padding:0;
+      }
+
+      label{
+        font-size: 12px;
+        color: $grisFonce;
+        margin-bottom: 0;
+      }
+      .marker-input{
+        font-size: 18px;
+        color: $darkColor;
+        background: transparent;
+        &.isTitle{
+          font-weight: bold;
+          font-size: 24px;
+        }
+      }
+      .validate-btn{
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+      }
+    }
+
+    .places-wrapper{
+      position: relative;
+    }
+    
+    .places-input{
+      box-sizing: border-box;
+      border: none;
+      width: 330px;
+      height: 40px;
+      margin-top: 30px;
+      margin-left: 30px;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 16px;
+      outline: none;
+      text-overflow: ellipses;
+    }
+
+    .places-icon{
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      z-index: 2;
+    }
+  }
+}
+
+.slide-in-blurred-right {
+	-webkit-animation: slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+	        animation: slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+
+.flip-out-ver-right {
+	-webkit-animation: flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes slide-in-blurred-right {
+  0% {
+    -webkit-transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+            transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+    -webkit-transform-origin: 0% 50%;
+            transform-origin: 0% 50%;
+    -webkit-filter: blur(40px);
+            filter: blur(40px);
+    opacity: 0;
+    flex: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+            transform: translateX(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+    flex: 1;
+  }
+}
+@keyframes slide-in-blurred-right {
+  0% {
+    -webkit-transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+            transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+    -webkit-transform-origin: 0% 50%;
+            transform-origin: 0% 50%;
+    -webkit-filter: blur(40px);
+            filter: blur(40px);
+    opacity: 0;
+    flex: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+            transform: translateX(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+    flex: 1;
+  }
+}
+
+ @-webkit-keyframes flip-out-ver-right {
+  0% {
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+    opacity: 1;
+    flex: 1;
+  }
+  100% {
+    -webkit-transform: rotateY(70deg);
+            transform: rotateY(70deg);
+    opacity: 0;
+    flex: 0;
+  }
+}
+@keyframes flip-out-ver-right {
+  0% {
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+    opacity: 1;
+    flex: 1;
+  }
+  100% {
+    -webkit-transform: rotateY(70deg);
+            transform: rotateY(70deg);
+    opacity: 0;
+    flex: 0;
   }
 }
