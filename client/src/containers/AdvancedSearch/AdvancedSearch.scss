@@ -1,0 +1,47 @@
+@import 'src/scss/global.scss';
+@import 'src/scss/common.scss';
+@import 'src/scss/colors.scss';
+
+.advanced-search{
+  background: #E5E5E5;
+  flex: 1 1;
+
+  .search-bar{
+    background: #FFFFFF;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    position: fixed;
+    top: 75px;
+    width: 66%;
+    display: flex;
+    justify-content: space-between;
+    z-index: 3;
+  }
+  .mt-250{
+    margin-top: 250px;
+  }
+  .central-col{
+    position: relative;
+  }
+
+  .side-col{
+    display: flex;
+    justify-content: center;
+
+    .side-options{
+      color: $grisFonce;
+      font-size: 16px;
+      line-height: 20px;
+      cursor: pointer;
+      .side-option{
+        &:hover{
+          color: $noir;
+        }
+        &.active{
+          color: $noir;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

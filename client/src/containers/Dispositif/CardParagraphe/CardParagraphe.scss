@@ -50,7 +50,11 @@
         font-style: normal;
         font-weight: 500;
         font-size: 32px;
-        color: #FFFFFF;
+        .card-input{
+          border-radius: 6px;
+          color: $darkColor;
+          padding-left: 10px;
+        }
       }
 
       .content-title{
@@ -62,6 +66,53 @@
           font-size: inherit;
           border:none;
           padding:0;
+        }
+      }
+
+      .age-input{
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 40px;
+        display: inline-block;
+        padding: 0;
+        border: none;
+        text-align: center;
+        margin: 0;
+        width: 50px;
+        color: $noir;
+      }
+      input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
+
+      .price-frequency{
+        font-weight: normal;
+        font-size: 16px;
+      }
+      .niveaux-wrapper{
+        margin-top: -5px;
+        button{
+          border: 0.5px solid $noirCD;
+          border-radius: 6px;
+          padding: 5px;
+          color: $noirCD;
+          background: transparent;
+          margin-right: 5px;
+          margin-top: 5px;
+          font-weight: bold;
+          font-size: 16px;
+          &:hover{
+            border-color: $darkColor;
+            color: $darkColor;
+            background: #FFFFFF;
+          }
+          &.active{
+            color: #FFFFFF;
+            background-color: $darkColor;
+            border:none;
+          }
         }
       }
     }
@@ -77,6 +128,13 @@
       }
       .footer-content{
         margin-left: 8px;
+      }
+      .footer-input{
+        font-style: italic;
+        font-size: 16px;
+        opacity: 0.6;
+        color: #FFFFFF;
+        background: transparent;
       }
     }
 

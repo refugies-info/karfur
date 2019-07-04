@@ -16,15 +16,16 @@ const menu = [
   {title:'C\'est quoi ?', tutoriel:{titre:'« C’est quoi ? » : Résumé de votre dispositif', contenu:'Il s\'agit d\'une synthèse en deux paragraphes maximum de l’ensemble de la fiche du dispositif. La lecture de cette section doit être auto-suffisante. Il est conseillé de rédiger cette section en dernier après les sections ultérieures.'}},
   {title:'C\'est pour qui ?', type:'cards', tutoriel:{titre:'« C’est pour qui ? » :  les pré-requis pour rejoindre', contenu:'Cette section précise les caractéristiques du public cible et les pré-requis éventuels pour s’engager dans le dispositif. Vous pouvez mobiliser les catégories suivantes à votre guise : \n> Le statut demandé ? Réfugié, demandeurs d’asiles, primo-arrivants… \n> L’âge ; \n> Le niveau de français \n> La durée sur laquelle engage le dispositif ; \n> Des alertes spécifiques (par exemple : avoir un compte bancaire).'}, children:[
     {type:'card', isFakeContent: true,title:'Public visé',titleIcon:'papiers',contentTitle: 'réfugiés', contentBody: 'ou bénéficiaire de la protection subsidiaire', footer:'Pièces demandées',footerIcon:'file-text-outline'},
-    {type:'card', isFakeContent: true,title:'Tranche d\'âge',titleIcon:'calendar',contentTitle: '18 à 25 ans', contentBody: '30 ans pour les personnes en situations de handicap', footer:'En savoir plus',footerIcon:'question-mark-circle-outline'},
+    {type:'card', isFakeContent: true,title:'Âge requis',titleIcon:'calendar',contentTitle: 'De ** à ** ans', bottomValue: 18, topValue:56, contentBody: '30 ans pour les personnes en situations de handicap', footer:'En savoir plus',footerIcon:'question-mark-circle-outline'},
     {type:'card', isFakeContent: true,title:'Durée',titleIcon:'horloge',contentTitle: '6 à 12 mois', contentBody: 'en fonction de ce qui est convenu sur votre contrat', footer:'En savoir plus',footerIcon:'plus-circle-outline'},
-    {type:'card', isFakeContent: true,title:'Niveau de français',titleIcon:'frBubble',contentTitle: 'Débutant (A1)', contentBody: 'Je peux poser et répondre à des questions simples', footer:'En savoir plus',footerIcon:'file-text-outline'},
+    {type:'card', isFakeContent: true,title:'Niveau de français',titleIcon:'frBubble',contentTitle: 'Débutant', niveaux:["A1", "A2"], footer:'Pièces demandées',footerIcon:'file-text-outline'},
+    {type:'card', isFakeContent: true,title:'Combien ça coûte ?',titleIcon:'money',free: true, price: 0, contentTitle: 'une seule fois', footer:'Ajouter un message complémentaire', footerType:"text"},
     {type:'card', isFakeContent: true,title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody: 'nécessaire pour recevoir l’indemnité', footer:'En savoir plus',footerIcon:'question-mark-circle-outline'},
   ]},
-  {title:'Pourquoi c\'est intéressant ?', tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif.  Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
+  {title:'Pourquoi c\'est intéressant ?', tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
     {isFakeContent: true, title:'Un exemple d\'accordéon',type:'accordion', placeholder: lorems.sousParagraphe,content: ''}
   ]},
-  {title:'Comment je m\'engage ?', tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif.  Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
+  {title:'Comment je m\'engage ?', tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
     {type:'accordion', isFakeContent: true, title:'Contacter l’association partenaire la plus proche de chez vous', placeholder: lorems.sousParagraphe,content: ''}, 
     {type:'map', isFakeContent: true, isMapLoaded:true, markers: []},
   ]},
@@ -37,9 +38,12 @@ const menu = [
 ];
 
 const filtres = {
-  "audience": ['associations','travailleurs sociaux','institutions d\'état','réfugiés','citoyens'],
-  "audienceAge": ["0 à 18 ans","18 à 25 ans","25 à 56 ans","56 à 120 ans"],
-  "niveauFrancais": ["Débutant (A1)","Débutant + (A2)","Intermédiaire (B1)","Intermédiaire + (B2)","Avancé (C1)","Avancé + (C2)", "Tous niveaux"],
+  "audience": ['réfugié', 'tout public'],
+  "audienceAge": ["De ** à ** ans","Moins de ** ans","Plus de ** ans"],
+  "niveauFrancais": ["Débutant","Intermédiaire","Avancé", "Tous les niveaux"],
+  // "audience": ['associations','travailleurs sociaux','institutions d\'état','réfugiés','citoyens'],
+  // "audienceAge": ["0 à 18 ans","18 à 25 ans","25 à 56 ans","56 à 120 ans"],
+  // "niveauFrancais": ["Débutant (A1)","Débutant + (A2)","Intermédiaire (B1)","Intermédiaire + (B2)","Avancé (C1)","Avancé + (C2)", "Tous niveaux"],
   "tags": [{
     name: 'Emploi',
     color: 'primary'

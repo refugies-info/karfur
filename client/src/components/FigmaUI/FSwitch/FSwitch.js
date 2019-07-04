@@ -6,8 +6,9 @@ import './FSwitch.scss';
 const fSwitch = props => {
   return(
     <div className="switch-wrapper">
-      <AppSwitch className='mr-10' outline variant='pill' color='light' {...props} />
-      Tutoriel
+      {props.precontent}
+      <AppSwitch className={'mr-10' + (props.precontent ? ' ml-10': '')} outline variant='pill' color='light' {...props} />
+      {props.content}
     </div>
   )
 }
