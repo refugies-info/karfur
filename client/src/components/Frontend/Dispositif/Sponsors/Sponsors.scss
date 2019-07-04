@@ -10,6 +10,7 @@ $tailleBig:80px;
 
   h5{
     margin-bottom: 20px;
+    font-weight: bold;
   }
 
   .col{
@@ -28,6 +29,10 @@ $tailleBig:80px;
     .sponsor-img{
       //max-width:64px;
       max-height:150px;
+      &:hover{
+        filter: grayscale(1);
+        cursor: pointer;
+      }
     }
     .delete-icon{
       position: absolute;
@@ -42,47 +47,93 @@ $tailleBig:80px;
 
   .add-sponsor{
     cursor: pointer;
-    background-color: rgba(0,0,0,0.05);
+    background: $gris;
+    border-radius: 12px;
     display:flex;
     justify-content: center;
     align-items: center;
-    border-radius:50%;
-    width:$taille;
     height:$taille;
     position:relative;
+    padding: 20px;
     &:hover{
-      background-color: rgba(0,0,0,0.1);
-      .add-sign{
-        opacity:1;
-        font-size:90px;
-        line-height:65px;
-        -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
-        -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
-        -o-transition: opacity 0.4s ease, font-size 0.4s ease;
-        transition: opacity 0.4s ease, font-size 0.4s ease;
-      }
+      cursor: pointer;
     }
     .add-sign{
-      font-size:60px;
-      line-height:$taille;
-      font-weight:bold;
-      opacity: .5;
-      margin-top: -8px;
+      border-radius: 50%;
+      padding: 10px;
+      margin-right: 10px;
+      font-size: 20px;
+      line-height: 20px;
     }
 
-    [type=file] {
-      z-index:2;
-      cursor: pointer;
-      display: block;
-      font-size: 999px;
-      filter: alpha(opacity=0);
-      height: 100%;
-      width: 100%;
-      opacity: 0;
-      position: absolute;
-      right: 0;
-      text-align: right;
-      top: 0;
+    .add-text{
+      font-weight: bold;
+      font-size: 16px;
     }
+  }
+}
+
+.modal-sponsors .modal-content{
+  background: $gris;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 40px;
+
+  .form-field{
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: $noir;
+
+    &.inline-div{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .input-group{
+      margin-top: 10px;
+      input{
+        border-radius: 12px;
+        border: none;
+        padding: 10px 10px 10px 40px;
+      }
+      .input-icon{
+        position: absolute;
+        top: 8px;
+        left: 10px;
+        z-index: 4;
+        line-height: 20px;
+      }
+    }
+
+    .image-wrapper{
+      position:relative;
+      .sponsor-img{
+        max-height: 40px;
+        max-width: 110px;
+      }
+    }
+  }
+  .btn-footer{
+    margin-top: 10px;
+    margin-left: auto;
+  }
+  .upload-btn{
+    position: relative;
+  }
+  [type=file] {
+    z-index:2;
+    cursor: pointer;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
   }
 }

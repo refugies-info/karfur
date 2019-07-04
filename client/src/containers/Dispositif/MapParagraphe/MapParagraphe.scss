@@ -38,6 +38,7 @@
     display: flex;
     flex-direction: row;
     overflow:hidden;
+    height: 470px;
 
     .inner-container{
       flex: 1;
@@ -48,7 +49,7 @@
       background: $gris;
       box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       padding: 20px 40px;
-      transition: padding 0.45s, width 0.45;
+      transform: padding 0.45s, width 0.45;
       &.flip-out-ver-right{
         width: 0;
         padding:0;
