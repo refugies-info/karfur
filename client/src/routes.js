@@ -23,6 +23,7 @@ import Editeur from './containers/Editeur/Editeur';
 import Avancement from './containers/Translation/Avancement/Avancement';
 import Translation from './containers/Translation/Translation';
 import RecordAudio from './containers/RecordAudio/RecordAudio';
+import AdvancedSearch from './containers/AdvancedSearch/AdvancedSearch';
 
 const routes = [
   { path: '/', exact: true, name: 'home', component: DefaultLayout, restriction:[] },
@@ -33,6 +34,8 @@ const routes = [
 
   { path: '/articles', name: 'Articles', component: Articles, restriction:[] },
   { path: '/article/:id', exact: true, name: 'Article', component: Article, restriction:[] },
+
+  { path: '/advanced-search', name: 'Recherche Avancée', component: AdvancedSearch, restriction:[] },
 
   { path: '/dispositifs', name: 'Rechercher un dispositif', component: Dispositifs, restriction:[] },
   { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },

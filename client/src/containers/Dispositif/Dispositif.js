@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
 import ReactJoyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
+import _ from "lodash";
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
@@ -44,7 +45,7 @@ const spyableMenu = menu.reduce((r, e, i) => {
 }, []);
 
 const sponsorsData = [
-  {src:diair,alt:"logo DIAIR"},
+  {src:diair,alt:"logo DIAIR", link: "https://www.agi-r.fr"},
 ]
 
 const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
@@ -75,7 +76,6 @@ class Dispositif extends Component {
     disableEdit:true,
     tooltipOpen:false,
     uiArray:new Array(menu.length).fill(uiElement),
-    sponsorLoading:false,
     showBookmarkModal:false,
     showDispositifCreateModal:false,
     showDispositifValidateModal:false,
@@ -337,6 +337,15 @@ class Dispositif extends Component {
   toggleDispositifCreateModal = () => this.setState(prevState=>({showDispositifCreateModal:!prevState.showDispositifCreateModal}))
   toggleDispositifValidateModal = () => this.setState(prevState=>({showDispositifValidateModal:!prevState.showDispositifValidateModal}))
   toggleInputBtnClicked = () => this.setState(prevState=>({inputBtnClicked:!prevState.inputBtnClicked}))
+  
+  toggleNiveau = (nv, key, subkey) => {
+    let niveaux = _.get(this.state.menu, key + ".children." + subkey + ".niveaux", [])
+    niveaux = niveaux.some( x => x===nv) ? niveaux.filter(x => x!==nv) : [...niveaux, nv]
+    this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, niveaux: niveaux} : y)} : x) })
+  }
+  toggleFree = (key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, free: !y.free} : y)} : x) })
+  changePrice = (e, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, price: e.target.value} : y)} : x) })
+  changeAge = (e, key, subkey, isBottom=true) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, [isBottom ? "bottomValue" : "topValue"]: e.target.value} : y)} : x) })
 
   startJoyRide = () => this.setState({showDispositifCreateModal: false, runJoyRide: true, stepIndex:0});
 
@@ -383,16 +392,7 @@ class Dispositif extends Component {
     }
   };
 
-  handleFileInputChange = event => {
-    this.setState({sponsorLoading:true})
-    const formData = new FormData()
-    formData.append(0, event.target.files[0])
-
-    API.set_image(formData).then(data_res => {
-      let imgData=data_res.data.data;
-      this.setState({sponsors: [...this.state.sponsors, {src: imgData.secure_url, alt:"sponsor " + imgData.public_id}], sponsorLoading:false})
-    },(error) => {console.log(error);return;})
-  }
+  addSponsor = sponsor => this.setState({sponsors: [...this.state.sponsors, sponsor]})
 
   deleteSponsor = key => {
     this.setState({
@@ -463,8 +463,8 @@ class Dispositif extends Component {
     dispositif.audience= cardElement.find(x=> x.title==='Public visé') ?
       [(cardElement.find(x=> x.title==='Public visé') || []).contentTitle] :
       filtres.audience;
-    dispositif.audienceAge= cardElement.find(x=> x.title==='Tranche d\'âge') ? 
-      [(cardElement.find(x=> x.title==='Tranche d\'âge').contentTitle || '').replace(' à ', '-').replace(' ans', '')] :
+    dispositif.audienceAge= cardElement.find(x=> x.title==='Âge requis') ? 
+      [(cardElement.find(x=> x.title==='Âge requis').contentTitle || '').replace(' à ', '-').replace(' ans', '')] :
       filtres.audienceAge.map(x=> x.replace(' à ', '-').replace(' ans', ''));
     dispositif.niveauFrancais= cardElement.find(x=> x.title==='Niveau de français') ?
       (cardElement.find(x=> x.title==='Niveau de français') || []).contentTitle :
@@ -668,6 +668,10 @@ class Dispositif extends Component {
               removeItem={this.removeItem}
               changeTitle={this.changeCardTitle}
               disableIsMapLoaded={this.disableIsMapLoaded}
+              toggleNiveau={this.toggleNiveau}
+              changeAge = {this.changeAge}
+              changePrice={this.changePrice}
+              toggleFree = {this.toggleFree}
               filtres={filtres}
               {...this.state}
             />
@@ -735,9 +739,8 @@ class Dispositif extends Component {
 
             <Sponsors 
               sponsors={this.state.sponsors} 
-              loading={this.state.sponsorLoading}
               disableEdit={this.state.disableEdit}
-              handleFileInputChange={this.handleFileInputChange} 
+              addSponsor = {this.addSponsor}
               deleteSponsor={this.deleteSponsor}
               t={t}  />
             

@@ -1,0 +1,33 @@
+@import 'src/scss/colors.scss';
+@import 'src/scss/common.scss';
+
+.search-col{
+  padding: 10px;
+  &:not(:first-child){
+    border-left: 1px solid #E55039;
+  }
+
+  .dropdown-menu.show{
+    display: flex;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    background: $noir;
+    border-radius: 12px;
+    padding: 8px;
+    max-width: 770px;
+    z-index: 3;
+    // flex-wrap: wrap;
+  }
+
+  .options-wrapper{
+    margin-top:-10px;
+  }
+  .search-options{
+    white-space: nowrap;
+    overflow: inherit;
+    margin-top:10px;
+
+    &:not(:last-child){
+      margin-right: 8px;
+    }
+  }
+}
