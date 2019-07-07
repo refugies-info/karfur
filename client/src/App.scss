@@ -8,6 +8,8 @@
 // Import Main styles for this application
 @import './scss/style.scss';
 
+@import './scss/colors.scss';
+
 body,head{
   font-family: CircularStd, "Helvetica Neue", "Noto Sans";
   color: #3D3D3D;
@@ -31,4 +33,8 @@ body,head{
   align-items: center;
   height:100vh;
   width:100vw;
+}
+
+body #root{
+  color: $noir;
 }

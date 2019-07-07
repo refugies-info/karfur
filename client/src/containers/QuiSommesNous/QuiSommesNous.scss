@@ -1,0 +1,65 @@
+@import 'src/scss/colors.scss';
+@import 'src/scss/common.scss';
+
+.qui-sommes-nous{
+  flex: 1 1;
+  background: #FFFFFF;
+
+  .arrowhead-icon{
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+  }
+
+  section{
+    height: 600px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  #hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .hero-container{
+    text-align: center;
+    max-width: 650px;
+  }
+
+  .section-container{
+    width: 100%;
+    padding: 0 100px;
+    height: 100%;
+  }
+
+  .card-col .card{
+    height: 330px;
+    border:none;
+    padding: 0;
+    font-size: 18px;
+    background: transparent;
+
+    .card-header{
+      background: transparent;
+      border: none;
+      font-weight: 900;
+      font-size: 27px;
+      line-height: 34px;
+      height: 100px;
+      padding:0;
+    }
+    .card-body{
+      padding:0;
+    }
+    .card-footer{
+      background: transparent;
+      border: none;
+      display: flex;
+      justify-content: center;
+      padding:0;
+    }
+  }
+}
