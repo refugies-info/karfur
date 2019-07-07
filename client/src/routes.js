@@ -24,6 +24,7 @@ import Avancement from './containers/Translation/Avancement/Avancement';
 import Translation from './containers/Translation/Translation';
 import RecordAudio from './containers/RecordAudio/RecordAudio';
 import AdvancedSearch from './containers/AdvancedSearch/AdvancedSearch';
+import QuiSommesNous from './containers/QuiSommesNous/QuiSommesNous';
 
 const routes = [
   { path: '/', exact: true, name: 'home', component: DefaultLayout, restriction:[] },
@@ -36,7 +37,8 @@ const routes = [
   { path: '/article/:id', exact: true, name: 'Article', component: Article, restriction:[] },
 
   { path: '/advanced-search', name: 'Recherche Avancée', component: AdvancedSearch, restriction:[] },
-
+  { path: '/qui-sommes-nous', name: 'Qui sommes-nous ?', component: QuiSommesNous, restriction:[] },
+  
   { path: '/dispositifs', name: 'Rechercher un dispositif', component: Dispositifs, restriction:[] },
   { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
   { path: '/dispositif', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
