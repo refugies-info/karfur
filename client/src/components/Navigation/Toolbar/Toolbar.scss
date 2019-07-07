@@ -1,8 +1,5 @@
 @import 'src/scss/global.scss';
 
-$btnHeight:40px;
-$btnWidth:40px;
-
 .Toolbar {
   height: 60px;
   width: 100%;
@@ -27,26 +24,6 @@ $btnWidth:40px;
     .navbar-toggler-icon {
       height: 23px;
       background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%232f353a' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    }
-  }
-
-  .flag-btn{
-    background: #F2F2F2;
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-    height: $btnHeight;
-    width: $btnWidth;
-    cursor: pointer;
-    box-sizing: border-box;
-    border-radius: 50%;
-    margin: auto 4px;
-    padding: 0;
-    border: none;
-    &:hover{
-      background: #CDCDCD;
-    }
-    i{
-      box-sizing: border-box;
-      border-radius: 2px;
     }
   }
 

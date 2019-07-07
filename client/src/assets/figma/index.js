@@ -15,6 +15,10 @@ import listBtn from './listBtn.svg';
 import imgBtn from './imgBtn.svg';
 import videoBtn from './videoBtn.svg';
 import linkBtn from './linkBtn.svg';
+import curvedBackground from './curved-background.svg';
+import headerBackground from './headerBackground.svg';
+import humaanRight from './humaanRight.svg';
+import humaanLeft from './humaanLeft.svg';
 
 import juliette from './juliette.png';
 import hugo from './hugo.png';
@@ -25,6 +29,7 @@ import serviceCivique from './serviceCivique.png';
 import solidariteJeunesse from './solidariteJeunesse.png';
 import diair from './Diair.png';
 import vueParkourPerso from './vueParkourPerso.png';
+import equipe from './equipe.png'
 
 export {
   FemmeCurly,
@@ -44,6 +49,10 @@ export {
   imgBtn,
   videoBtn,
   linkBtn,
+  curvedBackground,
+  headerBackground,
+  humaanRight,
+  humaanLeft,
 
   juliette,
   hugo,
@@ -54,4 +63,5 @@ export {
   solidariteJeunesse,
   diair,
   vueParkourPerso,
+  equipe
 }

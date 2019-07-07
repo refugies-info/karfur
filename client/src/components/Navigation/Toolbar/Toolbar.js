@@ -18,6 +18,7 @@ import API from '../../../utils/API';
 import AudioBtn from '../../../containers/UI/AudioBtn/AudioBtn';
 import marioProfile from '../../../assets/mario-profile.jpg';
 import Logo from '../../Logo/Logo';
+import LanguageBtn from '../../FigmaUI/LanguageBtn/LanguageBtn';
 
 import './Toolbar.scss';
 
@@ -72,15 +73,7 @@ export class Toolbar extends React.Component {
     let { showSearch } = this.state;
     let afficher_burger=path.includes("/backend");
     let afficher_burger_droite=path.includes("/traduction");
-
-    let CurrentLanguageIcon = () => {
-      let current = this.props.langues.find(x => x.i18nCode === i18n.language)
-      if (this.props.langues.length > 0 && current){
-        return <i className={'flag-icon flag-icon-' + current.langueCode} title={current.langueCode} id={current.langueCode} />
-      }else{
-        return <i className={'flag-icon flag-icon-fr'} title="fr" id="fr"></i>
-      }
-    }
+    
     let userImg = (user.picture || {}).secure_url || marioProfile;
 
     const renderSuggestion = (suggestion, { query }) => {
@@ -110,9 +103,7 @@ export class Toolbar extends React.Component {
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <Logo />
           <AudioBtn />
-          <Button className="flag-btn" onClick={this.props.toggle_lang_modal}>
-            <CurrentLanguageIcon />
-          </Button>
+          <LanguageBtn />
         </div>
 
         <nav className="DesktopOnly center_buttons">
