@@ -6,9 +6,10 @@ import Swal from 'sweetalert2';
 
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
+import FSwitch from '../../../components/FigmaUI/FSwitch/FSwitch';
 
 import './CardParagraphe.scss';
-import FSwitch from '../../../components/FigmaUI/FSwitch/FSwitch';
+import variables from 'scss/colors.scss';
 
 const list_papiers=[
   {name:'Titre de séjour'},
@@ -89,7 +90,7 @@ class CardParagraphe extends Component {
           <ButtonDropdown isOpen={this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title">
             <DropdownToggle caret>
               {subitem.title === "Âge requis" ? 
-                <div>{subitem.contentTitle.split("**").map((x, i, arr) => (
+                <span>{subitem.contentTitle.split("**").map((x, i, arr) => (
                   <React.Fragment key={i}>
                     <span>{x}</span>
                     {i < arr.length - 1 && 
@@ -100,7 +101,7 @@ class CardParagraphe extends Component {
                         onClick={e => e.stopPropagation()}
                         onChange={e => this.props.changeAge(e, this.props.keyValue, this.props.subkey, i===0 || arr[0] === "Plus de")} />}
                   </React.Fragment>
-                ))}</div>
+                ))}</span>
                 :
                 <span>{jsUcfirst(subitem.contentTitle, cardTitle.title)}</span> }
             </DropdownToggle>
@@ -161,7 +162,9 @@ class CardParagraphe extends Component {
       if(this.props.disableEdit){
         return(
           <>
-            <SVGIcon name={subitem.titleIcon} fill="white" width="20" height="20" /> 
+            {subitem.typeIcon === "eva" ?
+              <EVAIcon name={subitem.titleIcon} fill="#FFFFFF" /> :
+              <SVGIcon name={subitem.titleIcon} fill="#FFFFFF" width="20" height="20" /> }
             <span className="header-content">{subitem.title}</span>
           </>
         )
@@ -169,7 +172,9 @@ class CardParagraphe extends Component {
         return(
           <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown}>
             <DropdownToggle caret={!this.props.disableEdit} className="header-value">
-              <SVGIcon name={subitem.titleIcon} fill="white" width="20" height="20" /> 
+              {subitem.typeIcon === "eva" ?
+                <EVAIcon name={subitem.titleIcon} fill="#FFFFFF" /> :
+                <SVGIcon name={subitem.titleIcon} fill="#FFFFFF" width="20" height="20" /> }
               <span className="header-content">{subitem.title}</span>
             </DropdownToggle>
             <DropdownMenu>
@@ -208,7 +213,7 @@ class CardParagraphe extends Component {
 
     return(
       <>
-        <Col lg="auto" className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
+        <Col lg="4" className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
           <Card className={subitem.title==='Important !' ? 'make-it-red':'regular'}>
             <CardHeader className="backgroundColor-darkColor">
               {cardHeaderContent(subitem)}
@@ -247,7 +252,7 @@ class CardParagraphe extends Component {
             {!this.props.disableEdit && 
               <div className="card-icons">
                 <div onClick={()=>this.props.deleteCard(this.props.keyValue,subkey)}>
-                  <Icon name="minus-circle-outline" fill="#0D1C2E" className="delete-icon"/>
+                  <EVAIcon size="xlarge" name="minus-circle" fill={variables.noirCD} className="delete-icon"/>
                 </div>
               </div>}
           </Card>
@@ -288,12 +293,12 @@ const PlusCard = (props) => {
   return(
     <Col lg="4" className="card-col">
       <Card className="add-card" onClick={() => props.addItem(props.keyValue, 'card')}>
+        <CardHeader>
+          Ajouter une carte
+        </CardHeader>
         <CardBody>
           <span className="add-sign">+</span>
         </CardBody>
-        <CardFooter>
-          <span className="footer-content">Ajouter un item</span>
-        </CardFooter>
       </Card>
     </Col>
   )

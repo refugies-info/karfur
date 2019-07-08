@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
-import Icon from 'react-eva-icons';
+import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
 import './Tags.scss';
 
@@ -48,15 +48,15 @@ class Tags extends Component {
               {!this.props.disableEdit && 
                 <div className="tags-icons">
                   <div onClick={()=>this.removeTag(key)}>
-                    <Icon name="minus-circle-outline" fill="#0D1C2E" className="delete-icon"/>
+                    <EVAIcon name="minus-circle-outline" fill="#0D1C2E" className="delete-icon"/>
                   </div>
                 </div>}
             </ButtonDropdown>
           )}
         )}
         {!this.props.disableEdit && 
-          <Button className="plus-button" onClick={this.addTag}>
-            <Icon name="plus-circle-outline" fill="#CDCDCD" />
+          <Button className="plus-button ml-10" onClick={this.addTag}>
+            <EVAIcon className="mr-10" name="plus-circle-outline" fill="#CDCDCD" />
             Ajouter un tag
           </Button>}
       </div>

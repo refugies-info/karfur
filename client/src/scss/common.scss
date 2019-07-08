@@ -1,27 +1,11 @@
 $list: top bottom left right;
 
-#root{
+html body{
   @each $side in $list {
     @for $i from 8 through 12 {
       .m#{str-slice($side, 0, 1)}-#{$i} {
         margin-#{$side}: 1px*$i;
       }
     }
-  }
-
-  h1{
-    font-weight: 900;
-    font-size: 52px;
-    line-height: 66px;
-  }
-  h2{
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 51px;
-  }
-  h5{
-    font-weight: bold;
-    font-size: 24px;
-    line-height: 30px;
   }
 }

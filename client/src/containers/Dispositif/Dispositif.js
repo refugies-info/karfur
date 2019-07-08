@@ -56,7 +56,8 @@ class Dispositif extends Component {
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : ''), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
     content:contenu,
     sponsors:sponsorsData,
-    tags:['Formation professionnelle', 'Apprendre le français'],
+    tags:["me loger", "apprendre le français"],
+    mainTag: {darkColor: variables.noir, lightColor: variables.blanc, hoverColor: variables.gris},
     dateMaj:new Date(),
     
     hovers: menu.map((x) => {return {isHover:false, ...( x.children && {children: new Array(x.children.length).fill({isHover:false})})}}),
@@ -89,8 +90,6 @@ class Dispositif extends Component {
     user:{},
     isDispositifLoading: true,
     contributeurs:[],
-    darkColor:"#583F93",
-    lightColor: "#FFFFFF",
     withHelp:true,
     runJoyRide: false,
     stepIndex: 0,
@@ -147,7 +146,7 @@ class Dispositif extends Component {
     ["color", "borderColor", "backgroundColor"].map(s => {
       ["dark", "light"].map(c => {
         document.querySelectorAll('.' + s + '-' + c + 'Color').forEach(elem => {
-          elem.style[s] = this.state[c + 'Color'];
+          elem.style[s] = this.state.mainTag[c + 'Color'];
         });
       })
     })
@@ -377,7 +376,7 @@ class Dispositif extends Component {
     this.setState({ menu: prevState });
   }
 
-  changeTag = (key, value) => this.setState({ tags: this.state.tags.map((x,i)=> i===key ? value : x) });
+  changeTag = (key, value) => this.setState({ tags: this.state.tags.map((x,i)=> i===key ? value : x), ...(key===0 && {mainTag: filtres.tags.find( x => x.short === value)}) });
   addTag = () => this.setState({ tags: [...this.state.tags, 'Autre'] });
   deleteTag = (idx) => this.setState({ tags: [...this.state.tags].filter((_,i) => i!==idx) });
 
@@ -393,12 +392,7 @@ class Dispositif extends Component {
   };
 
   addSponsor = sponsor => this.setState({sponsors: [...this.state.sponsors, sponsor]})
-
-  deleteSponsor = key => {
-    this.setState({
-      sponsors: [...this.state.sponsors].filter( (_,i) => i !== key),
-    });
-  }
+  deleteSponsor = key => this.setState({ sponsors: [...this.state.sponsors].filter( (_,i) => i !== key) });
 
   goBack = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goBack' });
@@ -481,11 +475,13 @@ class Dispositif extends Component {
     },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
   }
 
+  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
+
   render(){
     const {t} = this.props;
     const creator=this.state.creator || {};
     const creatorImg= (creator.picture || {}).secure_url || hugo;    
-    const {showModals, isDispositifLoading, darkColor, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp} = this.state;
+    const {showModals, isDispositifLoading, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag} = this.state;
 
     const Tooltip = ({
       index,
@@ -499,7 +495,7 @@ class Dispositif extends Component {
       <div
         key="JoyrideTooltip"
         className="tooltip-wrapper backgroundColor-darkColor" 
-        style={{width: joyRideWidth + "px", backgroundColor: darkColor}}
+        style={{width: joyRideWidth + "px", backgroundColor: mainTag.darkColor}}
         {...tooltipProps}>
         <div className="tooltipContainer">
           <b>{step.title}</b> : {step.content}
@@ -550,7 +546,7 @@ class Dispositif extends Component {
           debug={false}
           styles={{
             options: {
-              arrowColor: this.state.darkColor,
+              arrowColor: mainTag.darkColor,
             }
           }}
         />
@@ -559,7 +555,7 @@ class Dispositif extends Component {
           <Row className="header-row">
             <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
               <Button color="warning" outline className="color-darkColor borderColor-darkColor">
-                <EVAIcon name="corner-up-left-outline" fill={darkColor} className="icons" />
+                <EVAIcon name="corner-up-left-outline" fill={mainTag.darkColor} className="icons" />
                 <span>{t("Retour à la recherche")}</span>
               </Button>
             </Col>
@@ -573,9 +569,10 @@ class Dispositif extends Component {
               toggleHelp={this.toggleHelp}
               toggleDispositifValidateModal={this.toggleDispositifValidateModal}
               editDispositif = {this.editDispositif}
-              valider_dispositif={this.valider_dispositif} />
+              valider_dispositif={this.valider_dispositif}
+              toggleDispositifCreateModal={this.toggleDispositifCreateModal} />
           </Row>
-          <FemmeCurly className="header-img femme-icon" alt="femme" />
+          <FemmeCurly height="300" className="header-img femme-icon" alt="femme" />
           <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
             <div className="bloc-titre">
               <h1 className={this.state.disableEdit ? "" : "editable"}>
@@ -598,7 +595,7 @@ class Dispositif extends Component {
               </h2>
             </div>
           </Col>
-          <ManLab className="header-img homme-icon" alt="homme" />
+          <ManLab height="250" className="header-img homme-icon" alt="homme" />
         </section>
         <Row className="tags-row backgroundColor-darkColor">
           <Col lg="7" md="7" sm="7" xs="7" className="col right-bar">
@@ -606,12 +603,22 @@ class Dispositif extends Component {
               <b className="en-bref mt-10">{t("En bref")} </b>
               {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
                 if(card.type==='card'){
+                  let texte = card.contentTitle;
+                  if(card.title==='Âge requis'){
+                    texte = (card.contentTitle === 'De ** à ** ans') ? 'De ' + card.bottomValue + ' à ' + card.topValue + ' ans' :
+                                        (card.contentTitle === 'Moins de ** ans') ? 'Moins de ' + card.topValue + ' ans' :
+                                        'Plus de ' + card.bottomValue + ' ans';
+                  }else if(card.title === 'Combien ça coûte ?'){
+                    texte = card.free ? "gratuit" : (card.price + " € " + card.contentTitle)
+                  }
                   return (
                     <div className="tag-wrapper" key={key}>
                       <div className="tag-item">
                         <a href={'#item-head-1'} className="no-decoration">
-                          <SVGIcon name={card.titleIcon} />
-                          <span>{card.contentTitle}</span>
+                          {card.typeIcon==="eva" ?
+                            <EVAIcon name={card.titleIcon} fill={variables.noir} /> :
+                            <SVGIcon width="20" height="20" viewBox="0 0 20 20" name={card.titleIcon} />}
+                          <span>{texte}</span>
                         </a>
                       </div>
                     </div>
@@ -643,7 +650,7 @@ class Dispositif extends Component {
             />
           </Col>
           <Col className="pt-40" lg="7" md="7" sm="7" xs="10">
-            <Row className="fiabilite-row">
+            {disableEdit && <Row className="fiabilite-row">
               <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
                 {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
               </Col>
@@ -656,7 +663,7 @@ class Dispositif extends Component {
                   {t("Dispositif.cliquez")}
                 </Tooltip>
               </Col>
-            </Row>
+            </Row>}
             <ContenuDispositif 
               updateUIArray={this.updateUIArray}
               handleContentClick={this.handleContentClick}
@@ -792,6 +799,7 @@ class Dispositif extends Component {
         <DispositifCreateModal 
           show={this.state.showDispositifCreateModal}
           toggle={this.toggleDispositifCreateModal}
+          upcoming = {this.upcoming}
           startJoyRide={this.startJoyRide}
         />
         <DispositifValidateModal
