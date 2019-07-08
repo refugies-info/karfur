@@ -1,7 +1,7 @@
 import React from 'react';
 
 const contenu={
-  titreInformatif:'Le titre baseline',
+  titreInformatif:'Titre informatif',
   titreMarque:'Le nom du dispositif',
   abstract:'Ceci est le résumé du dispositif',
   contact:'contact@lab-r.fr',
@@ -16,11 +16,11 @@ const menu = [
   {title:'C\'est quoi ?', tutoriel:{titre:'« C’est quoi ? » : Résumé de votre dispositif', contenu:'Il s\'agit d\'une synthèse en deux paragraphes maximum de l’ensemble de la fiche du dispositif. La lecture de cette section doit être auto-suffisante. Il est conseillé de rédiger cette section en dernier après les sections ultérieures.'}},
   {title:'C\'est pour qui ?', type:'cards', tutoriel:{titre:'« C’est pour qui ? » :  les pré-requis pour rejoindre', contenu:'Cette section précise les caractéristiques du public cible et les pré-requis éventuels pour s’engager dans le dispositif. Vous pouvez mobiliser les catégories suivantes à votre guise : \n> Le statut demandé ? Réfugié, demandeurs d’asiles, primo-arrivants… \n> L’âge ; \n> Le niveau de français \n> La durée sur laquelle engage le dispositif ; \n> Des alertes spécifiques (par exemple : avoir un compte bancaire).'}, children:[
     {type:'card', isFakeContent: true,title:'Public visé',titleIcon:'papiers',contentTitle: 'réfugiés', contentBody: 'ou bénéficiaire de la protection subsidiaire', footer:'Pièces demandées',footerIcon:'file-text-outline'},
-    {type:'card', isFakeContent: true,title:'Âge requis',titleIcon:'calendar',contentTitle: 'De ** à ** ans', bottomValue: 18, topValue:56, contentBody: '30 ans pour les personnes en situations de handicap', footer:'En savoir plus',footerIcon:'question-mark-circle-outline'},
-    {type:'card', isFakeContent: true,title:'Durée',titleIcon:'horloge',contentTitle: '6 à 12 mois', contentBody: 'en fonction de ce qui est convenu sur votre contrat', footer:'En savoir plus',footerIcon:'plus-circle-outline'},
+    {type:'card', isFakeContent: true,title:'Âge requis',titleIcon:'calendar-outline', typeIcon: "eva",contentTitle: 'De ** à ** ans', bottomValue: 18, topValue:56, contentBody: '30 ans pour les personnes en situations de handicap', footer: 'Ajouter un message complémentaire', footerType:"text"},
+    {type:'card', isFakeContent: true,title:'Durée',titleIcon:'clock-outline', typeIcon: "eva",contentTitle: '6 à 12 mois', contentBody: 'en fonction de ce qui est convenu sur votre contrat', footer: 'Ajouter un message complémentaire', footerType:"text"},
     {type:'card', isFakeContent: true,title:'Niveau de français',titleIcon:'frBubble',contentTitle: 'Débutant', niveaux:["A1", "A2"], footer:'Pièces demandées',footerIcon:'file-text-outline'},
     {type:'card', isFakeContent: true,title:'Combien ça coûte ?',titleIcon:'money',free: true, price: 0, contentTitle: 'une seule fois', footer:'Ajouter un message complémentaire', footerType:"text"},
-    {type:'card', isFakeContent: true,title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody: 'nécessaire pour recevoir l’indemnité', footer:'En savoir plus',footerIcon:'question-mark-circle-outline'},
+    {type:'card', isFakeContent: true,title:'Important !',titleIcon:'alert-triangle-outline', typeIcon: "eva",contentTitle: 'Compte bancaire', contentBody: 'nécessaire pour recevoir l’indemnité', footer:'Ajouter un message complémentaire', footerType:"text"},
   ]},
   {title:'Pourquoi c\'est intéressant ?', tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
     {isFakeContent: true, title:'Un exemple d\'accordéon',type:'accordion', placeholder: lorems.sousParagraphe,content: ''}
@@ -41,43 +41,56 @@ const filtres = {
   "audience": ['réfugié', 'tout public'],
   "audienceAge": ["De ** à ** ans","Moins de ** ans","Plus de ** ans"],
   "niveauFrancais": ["Débutant","Intermédiaire","Avancé", "Tous les niveaux"],
+  "tags": [
+    {short: "Français", name: "apprendre le français", darkColor: "#583F93", lightColor: "#F0E8F5", hoverColor: "#ADA8D4", illustrationColor: "#F9AA38"}, 
+    {short: "Logement", name: "me loger", darkColor: "#1174BA", lightColor: "#DDF3FA", hoverColor: "#55A6CE", illustrationColor: "#F77B0B"}, 
+    {short: "Insertion pro", name: "trouver un travail", darkColor: "#149295", lightColor: "#D6EFF4", hoverColor: "#4FD3BD", illustrationColor: "#DD0539"}, 
+    {short: "Formation pro", name: "apprendre un travail", darkColor: "#095411", lightColor: "#E8F4E9", hoverColor: "#7DC690", illustrationColor: "#FC1E73"}, 
+    {short: "Études", name: "faire des études", darkColor: "#378E04", lightColor: "#E8F7CD", hoverColor: "#ADEA5C", illustrationColor: "#E561D8"}, 
+    {short: "Mobilité", name: "me déplacer", darkColor: "#EA6206", lightColor: "#FFF0E7", hoverColor: "#F9D1B7", illustrationColor: "#5435D6"}, 
+    {short: "Bénévolat", name: "aider une association", darkColor: "#FC0E3B", lightColor: "#FFEEEE", hoverColor: "#FDA8AD", illustrationColor: "#1FC2C1"}, 
+    {short: "Rencontre", name: "rencontrer des gens", darkColor: "#A50455", lightColor: "#FFEBF5", hoverColor: "#FDA5C4", illustrationColor: "#76D327"}, 
+    {short: "Loisir", name: "occuper mon temps libre", darkColor: "#AB2DC1", lightColor: "#F6E6FC", hoverColor: "#E595F9", illustrationColor: "#FCBF35"}, 
+    {short: "Culture", name: "découvrir la culture", darkColor: "#CE310D", lightColor: "#FFF0E7", hoverColor: "#FEC396", illustrationColor: "#1898FC"}, 
+    {short: "Santé", name: "me soigner", darkColor: "#", lightColor: "#", hoverColor: "#", illustrationColor: "#"}
+  ],
   // "audience": ['associations','travailleurs sociaux','institutions d\'état','réfugiés','citoyens'],
   // "audienceAge": ["0 à 18 ans","18 à 25 ans","25 à 56 ans","56 à 120 ans"],
   // "niveauFrancais": ["Débutant (A1)","Débutant + (A2)","Intermédiaire (B1)","Intermédiaire + (B2)","Avancé (C1)","Avancé + (C2)", "Tous niveaux"],
-  "tags": [{
-    name: 'Emploi',
-    color: 'primary'
-  }, {
-    name: 'Jeune',
-    color: 'secondary'
-  }, {
-    name: 'Mobilité',
-    color: 'success'
-  }, {
-    name: 'Logement',
-    color: 'danger',
-    short: 'Se loger'
-  }, {
-    name: 'Culture',
-    color: 'warning'
-  }, {
-    name: 'Apprendre le français',
-    color: 'info',
-    short: 'Français'
-  }, {
-    name: 'Etudes',
-    color: 'light'
-  }, {
-    name: 'Formation professionnelle',
-    color: 'dark',
-    short: 'Se former'
-  }, {
-    name: 'Accompagnement',
-    color: 'muted'
-  }, {
-    name: 'Autre',
-    color: 'white'
-  }]
+  // "tags": [{
+  //   name: 'Emploi',
+  //   color: 'primary'
+  // }, {
+  //   name: 'Jeune',
+  //   color: 'secondary'
+  // }, {
+  //   name: 'Mobilité',
+  //   color: 'success'
+  // }, {
+  //   name: 'Logement',
+  //   color: 'danger',
+  //   short: 'Se loger'
+  // }, {
+  //   name: 'Culture',
+  //   color: 'warning'
+  // }, {
+  //   name: 'Apprendre le français',
+  //   color: 'info',
+  //   short: 'Français'
+  // }, {
+  //   name: 'Etudes',
+  //   color: 'light'
+  // }, {
+  //   name: 'Formation professionnelle',
+  //   color: 'dark',
+  //   short: 'Se former'
+  // }, {
+  //   name: 'Accompagnement',
+  //   color: 'muted'
+  // }, {
+  //   name: 'Autre',
+  //   color: 'white'
+  // }]
 };
 
 const steps = [

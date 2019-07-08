@@ -11,7 +11,7 @@ const dispositifCreateModal = (props) => {
       <ModalHeader toggle={props.toggle}>
         C’est parti !
         <div className="align-right">
-          <Icon name="clock-outline" size="large" />
+          <Icon className="mr-8" name="clock-outline" size="large" />
           <span>15-30 minutes</span>
         </div>
       </ModalHeader>
@@ -29,7 +29,7 @@ const dispositifCreateModal = (props) => {
       </ModalBody>
       <ModalFooter>
         <div className="align-left">
-          <u>J’ai besoin de plus d’explications</u>
+          <u className="cursor-pointer" onClick={props.upcoming}>J’ai besoin de plus d’explications</u>
         </div>
         <div className="align-right">
           <Button type="light" onClick={props.toggle} className="mr-10">

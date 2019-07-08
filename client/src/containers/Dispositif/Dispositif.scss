@@ -1,5 +1,6 @@
 @import 'src/scss/global.scss';
 @import 'src/scss/colors.scss';
+@import 'src/scss/common.scss';
 
 $imgWidth : 300px;
 $imgHeight : 350px;
@@ -85,15 +86,16 @@ $imgHeight : 350px;
         }
 
         .card{
-          background: #FBFBFB;
-          border-radius: 12px;
+          background: transparent;
           z-index:3;
           position: fixed;
+          border:none;
 
           .card-body{
             display:flex;
             flex-direction: column;
             align-items: flex-end;
+            border-radius: 12px;
 
             .btn{
               box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
@@ -108,6 +110,13 @@ $imgHeight : 350px;
                 border-radius: 12px;
                 margin-top: 10px;
               }
+            }
+          }
+          .card-footer{
+            background: transparent;
+            border:none;
+            svg{
+              fill: $darkColor;
             }
           }
         }
@@ -300,8 +309,10 @@ $imgHeight : 350px;
   h3.contenu-title{
     font-size: 40px;
     line-height: normal;
-    margin-top:20px;
     color: $darkColor;
+  }
+  .mt-20{
+    margin-top:20px;
   }
 
   .contenu-wrapper{

@@ -12,10 +12,11 @@ const languageModal = (props) => {
     return(
       <Modal isOpen={props.show} toggle={props.toggle} className="language-modal">
         <ModalHeader toggle={props.toggle}>
-          <span className="title">Choisir une langue</span>
-          <NavLink to={{ pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} className="subtitle">
+          <span className="title">Je choisis ma langue de lecture</span>
+          {/* <NavLink to={{ pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} className="subtitle">
             Aider à traduire
-          </NavLink>
+          </NavLink> */}
+          <div className="sous-titre">Cette page est disponible dans les langues suivantes :</div>
         </ModalHeader>
         <ModalBody>
           <ListGroup>
@@ -32,8 +33,9 @@ const languageModal = (props) => {
                     <Col lg="5">
                       <span><b>{props.languages[element].langueFr}</b> - {props.languages[element].langueLoc}</span>
                     </Col>
-                    <Col lg="5">
-                      <Progress color={colorAvancement(props.languages[element].avancement)} value={props.languages[element].avancement*100} className="mb-3" />
+                    <Col lg="5" className="progress-col">
+                      <Progress color={colorAvancement(props.languages[element].avancement)} value={props.languages[element].avancement*100} />
+                      <span>{Math.round(props.languages[element].avancement*100 || 0,0) + ' %'}</span>
                     </Col>
                     <Col lg="1">
                       {props.languages[element].i18nCode === props.current_language &&
