@@ -76,6 +76,12 @@
     color: #FFFFFF;
   }
 
+  &.outline-black{
+    border: 1px solid $noir;
+    background: transparent;
+    color: $noir;
+  }
+
   &.pill{
     border-radius: 50%;
     &:hover, &:not(:disabled):not(.disabled):active, &:focus{

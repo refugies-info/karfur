@@ -7,8 +7,8 @@
     min-height: 230px;
     background: $cardColor;
     border-radius: 12px;
-    width:250px;
     border:none;
+    height: 300px;
 
     &.make-it-red{
       background: linear-gradient(114.72deg, rgba(229, 80, 57, 0.64) 6.51%, #B71540 96.1%);
@@ -80,6 +80,7 @@
         margin: 0;
         width: 50px;
         color: $noir;
+        height: 40px;
       }
       input[type=number]::-webkit-inner-spin-button, 
       input[type=number]::-webkit-outer-spin-button { 
@@ -167,8 +168,14 @@
     .card-icons{
       position: absolute;
       top: -15px;
-      right: -5px;
+      right: -15px;
       display:none;
+      cursor: pointer;
+      &:hover{
+        svg{
+          fill: $noir;
+        }
+      }
     }
     &:hover .card-icons{
       display: inherit;

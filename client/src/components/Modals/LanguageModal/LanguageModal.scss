@@ -1,19 +1,26 @@
+@import 'src/scss/colors.scss';
+
 .language-modal{ 
   font-family: CircularStd;
+  width: 500px;
+
   .modal-content {
     background: #FFFFFF;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
   }
 
+  .modal-header{
+    border:none;
+  }
   .modal-title{
     width: 100%;
     .title{
       font-style: normal;
       font-weight: bold;
-      font-size: 32px;
-      line-height: 40px;
-      color: #3D3D3D;
+      font-size: 24px;
+      line-height: 30px;
+      color: $noir;
     }
 
     .subtitle{
@@ -25,20 +32,39 @@
       float: right;
       line-height: 40px;
     }
+    .sous-titre{
+      font-size: 16px;
+      font-weight: normal;
+    }
   }
 
   .modal-body{
     .list-group{
       .list-group-item{
-        border: 0.75px solid #3D3D3D;
-        &:first-child{
-          border-radius: 12px 12px 0 0;
-        }
-        &:last-child{
-          border-radius: 0 0 12px 12px;
+        border: 0.5px solid $noir;
+        border-radius: 12px;
+        margin-bottom: 10px;
+
+        &:hover{
+          background: $noir;
+          color: #FFFFFF;
+          svg{
+            fill: #FFFFFF;
+          }
         }
         &.disabled{
           color: #CDCDCD;
+        }
+      }
+
+      .progress-col{
+        display: flex;
+        align-items: center;
+
+        .progress{
+          width: 100px;
+          margin-right:10px;
+          height: 15px;
         }
       }
     }

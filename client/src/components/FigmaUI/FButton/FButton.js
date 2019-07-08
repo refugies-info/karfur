@@ -5,7 +5,7 @@ import EVAIcon from '../../UI/EVAIcon/EVAIcon';
 
 class FButton extends Component { //Je passe par une classe parce que le bouton d'impression passe des refs dans ses "children"
   render() {
-    //Possible types: default, dark, validate, outline (retour), pill (vocal), light-action (light-PDF), theme (ac couleur de theme dark)
+    //Possible types: default, dark, validate, outline (retour, en blanc), outline-black, pill (vocal), light-action (light-PDF), theme (ac couleur de theme dark)
     let {type, className, fill, name, size, ...bProps}= this.props;
     return (
       <button className={'figma-btn ' + type + ' ' + className + (type === "theme" ? " backgroundColor-darkColor" : "")} {...bProps}>
