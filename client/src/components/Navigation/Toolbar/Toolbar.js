@@ -21,6 +21,7 @@ import Logo from '../../Logo/Logo';
 import LanguageBtn from '../../FigmaUI/LanguageBtn/LanguageBtn';
 
 import './Toolbar.scss';
+import FButton from '../../FigmaUI/FButton/FButton';
 
 const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const getSuggestionValue = suggestion => suggestion.titreMarque + " - " + suggestion.titreInformatif;
@@ -29,7 +30,7 @@ export class Toolbar extends React.Component {
 
   state = {
     dropdownOpen: false,
-    showSearch:false,
+    showSearch:true,
     value: '',
     suggestions: [],
   };
@@ -102,12 +103,13 @@ export class Toolbar extends React.Component {
             forceShow={false && afficher_burger}
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <Logo />
-          <AudioBtn />
-          <LanguageBtn />
+          <span>Faciliter l’installation des réfugiés en France</span>
         </div>
 
-        <nav className="DesktopOnly center_buttons">
-          <NavigationItems />
+        <nav className="DesktopOnly center-buttons">
+          <AudioBtn />
+          <LanguageBtn />
+          {/* <NavigationItems /> */}
         </nav>
 
         <div className="md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
@@ -120,13 +122,13 @@ export class Toolbar extends React.Component {
               renderSuggestion={renderSuggestion}
               inputProps={inputProps}
               onSuggestionSelected={this.onSuggestionSelected} />}
-          <i onClick={this._toggleSearch} className={"fa fa-search text-grey search-btn pointer" + (showSearch ? "" : " icon-only")} aria-hidden="true"></i>
+          <i onClick={this._toggleSearch} className={"fa fa-search text-grey loupe-btn pointer" + (showSearch ? "" : " icon-only")} aria-hidden="true"></i>
         </div>
 
         <div className="right_buttons">
-          <Button tag={NavLink} to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} className="traduire-btn">
-            Traduire
-          </Button>
+          <FButton type="dark" name="flash" className="ml-10 mr-10" tag={NavLink} to="/advanced-search"> {/*to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} */}
+            Super recherche
+          </FButton>
 
           {API.isAuth() ? 
             <ButtonDropdown className="user-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
