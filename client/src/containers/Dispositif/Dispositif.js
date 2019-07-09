@@ -91,6 +91,7 @@ class Dispositif extends Component {
     isDispositifLoading: true,
     contributeurs:[],
     withHelp:true,
+    runFirstJoyRide: false,
     runJoyRide: false,
     stepIndex: 0,
     disableOverlay:false,
@@ -135,7 +136,7 @@ class Dispositif extends Component {
       this.setState({
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
-        showDispositifCreateModal:false, //A modifier avant la mise en prod
+        showDispositifCreateModal:true, //A modifier avant la mise en prod
         isDispositifLoading: false
       },()=>this.setColors())
     }else{ this.props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
@@ -169,7 +170,7 @@ class Dispositif extends Component {
     // }
   }
 
-  _handleChange = (ev) => {
+  handleChange = (ev) => {
     this.setState({ content: {
       ...this.state.content,
       [ev.currentTarget.id]: ev.target.value
@@ -189,13 +190,13 @@ class Dispositif extends Component {
   
   handleMenuChange = (ev) => {
     let node=ev.currentTarget;
-    let state = JSON.parse(JSON.stringify(this.state.menu));
+    let state = [...this.state.menu];
     state[node.id]={
       ...state[node.id],
       ...(!node.dataset.subkey && {content : ev.target.value, isFakeContent:false}), 
       ...(node.dataset.subkey && state[node.id].children && state[node.id].children.length > node.dataset.subkey && {children : state[node.id].children.map((y,subidx) => { return {
             ...y,
-            ...(subidx==node.dataset.subkey && {[node.dataset.target || 'content'] : ev.target.value, isFakeContent:false})
+            ...(subidx==node.dataset.subkey && { [node.dataset.target || 'content'] : ev.target.value, isFakeContent:false } )
           }
         })
       })
@@ -206,12 +207,12 @@ class Dispositif extends Component {
   handleContentClick = (key, editable, subkey=undefined) => {
     let state=[...this.state.menu];
     if(state.length > key && key >= 0){
-      if(editable){ state = state.map(x => x.editable ? {...x, editable:false, ...(x.editorState && x.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(x.editorState.getCurrentContent())) } ) } : x );}
+      if(editable){  state = state.map(x => ({...x, editable:false, ...(x.editable && x.editorState && x.editorState.getCurrentContent() && x.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(x.editorState.getCurrentContent())) } ), ...(x.children && {children: x.children.map(y => ({...y, editable:false}))}) }) );}
       let right_node=state[key];
       if(subkey !==undefined && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
       if(editable && right_node.content){
-        right_node.editorState=EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks));
+        right_node.editorState = EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks)) ;
       }else if(!editable && right_node.editorState){
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
@@ -226,7 +227,7 @@ class Dispositif extends Component {
         let parentNode = document.getElementsByClassName('editeur-' + key + '-' + subkey)[0];
         parentNode.getElementsByClassName('public-DraftEditor-content')[0].focus();
         window.getSelection().addRange( document.createRange() );
-        parentNode.getElementsByClassName("DraftEditor-root")[0].style.height = parentNode.getElementsByClassName("public-DraftEditorPlaceholder-inner")[0].offsetHeight + "px";
+        parentNode.getElementsByClassName("DraftEditor-root")[0].style.height = (parentNode.getElementsByClassName("public-DraftEditorPlaceholder-inner")[0] || {}).offsetHeight + "px";
         this.setState({ stepIndex: key + 4, runJoyRide: true, disableOverlay: true, joyRideWidth: parentNode.offsetWidth, inputBtnClicked: false }) 
       } catch(e){console.log(e)} 
     } 
@@ -344,9 +345,10 @@ class Dispositif extends Component {
   }
   toggleFree = (key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, free: !y.free} : y)} : x) })
   changePrice = (e, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, price: e.target.value} : y)} : x) })
-  changeAge = (e, key, subkey, isBottom=true) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, [isBottom ? "bottomValue" : "topValue"]: e.target.value} : y)} : x) })
+  changeAge = (e, key, subkey, isBottom=true) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, [isBottom ? "bottomValue" : "topValue"]: (e.target.value || "").replace(/\D/g, '')} : y)} : x) })
 
-  startJoyRide = () => this.setState({showDispositifCreateModal: false, runJoyRide: true, stepIndex:0});
+  startFirstJoyRide = () => this.setState({showDispositifCreateModal: false, runFirstJoyRide: true});
+  startJoyRide = () => this.setState({runJoyRide: true, stepIndex:0});
 
   toggleHelp = () => this.setState(prevState=>({withHelp:!prevState.withHelp}))
 
@@ -392,9 +394,15 @@ class Dispositif extends Component {
     if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
       this.setState({ runJoyRide: false, disableOverlay: false });
     }else if(((action === ACTIONS.NEXT && index >= 3) || index > 4) && index < 7 && type === EVENTS.STEP_AFTER && lifecycle === "complete"){
-      this.handleContentClick(index - 3 + (action === ACTIONS.PREV ? -2 : 0), true)
+      this.handleContentClick(index - 3 + (action === ACTIONS.PREV ? -2 : 0), true);
     } else if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
       this.setState({ stepIndex: index + (action === ACTIONS.PREV ? -1 : 1), disableOverlay: index>3, inputBtnClicked: ((action === ACTIONS.NEXT && index === 2) || (action === ACTIONS.PREV && index===4)) });
+    }
+  };
+
+  handleFirstJoyrideCallback = data => {
+    if ([STATUS.FINISHED, STATUS.SKIPPED].includes(data.status)) {
+      this.setState({ runJoyRide: true, runFirstJoyRide: false });
     }
   };
 
@@ -488,7 +496,42 @@ class Dispositif extends Component {
     const {t} = this.props;
     const creator=this.state.creator || {};
     const creatorImg= (creator.picture || {}).secure_url || hugo;    
-    const {showModals, isDispositifLoading, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag} = this.state;
+    const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag} = this.state;
+
+    const FirstTooltip = ({
+      index,
+      step,
+      backProps,
+      primaryProps,
+      tooltipProps,
+      closeProps
+    }) => {
+      if(step){ return (
+      <div
+        key="FirstJoyrideTooltip"
+        className="first-tooltip-wrapper custom-tooltip" 
+        {...tooltipProps}>
+        <div className="tooltipContainer">
+          <h3 className="tooltipTitle" aria-label={step.title}>
+            {step.title}
+          </h3>
+          <div className="tooltipContent">{step.content}</div>
+        </div>
+        <div className="tooltipFooter">
+          <ul className="nav nav-tabs" role="tablist">
+            {steps.map((_,idx) => (
+              <li role="presentation" className={idx <= index ? "active" : "disabled"} key={idx}>
+                <span className="round-tab" />
+              </li>
+            ))}
+          </ul>
+          {index > 0 && 
+            <FButton  type="pill pill-dark" className="mr-10" name="arrow-back-outline" fill={variables.noir} {...backProps} /> }
+          <FButton type="pill pill-dark" name="arrow-forward-outline" fill={variables.noir} {...primaryProps} />
+        </div>
+        <EVAIcon {...closeProps} fill={variables.noir} name="close-outline" className="close-icon" />
+      </div>
+    )}else{return false}};
 
     const Tooltip = ({
       index,
@@ -501,7 +544,7 @@ class Dispositif extends Component {
       if(step){ return (
       <div
         key="JoyrideTooltip"
-        className="tooltip-wrapper backgroundColor-darkColor" 
+        className="tooltip-wrapper custom-tooltip backgroundColor-darkColor" 
         style={{width: joyRideWidth + "px", backgroundColor: mainTag.darkColor}}
         {...tooltipProps}>
         <div className="tooltipContainer">
@@ -520,8 +563,12 @@ class Dispositif extends Component {
           <FButton
             onMouseEnter={e => e.target.focus()} 
             {...primaryProps}>
-            Suivant
-            <EVAIcon name="arrow-forward-outline" fill={variables.noir} className="ml-10" />
+            {index === tutoSteps.length - 1 ? 
+              <span>Terminer</span> : 
+              <span>
+                Suivant
+                <EVAIcon name="arrow-forward-outline" fill={variables.noir} className="ml-10" />
+              </span>}
           </FButton>
         </div>
         <EVAIcon onMouseEnter={e => e.target.focus()} {...closeProps} name="close-outline" className="close-icon" />
@@ -529,15 +576,19 @@ class Dispositif extends Component {
     )}else{return false}};
 
     return(
-      <div className="animated fadeIn dispositif" ref={this.newRef}>
+      <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : " reading-mode")} ref={this.newRef}>
         {/* First general tour */}
-        {/* <ReactJoyride
+        <ReactJoyride
+          continuous
           steps={steps}
-          run={runJoyRide}
+          run={withHelp && runFirstJoyRide}
           scrollToFirstStep
           showProgress
           showSkipButton
-        /> */}
+          callback={this.handleFirstJoyrideCallback}
+          tooltipComponent={FirstTooltip}
+          disableOverlayClose={true}
+        />
         {/* Second guided tour */}
         <ReactJoyride
           continuous
@@ -588,7 +639,7 @@ class Dispositif extends Component {
                   html={this.state.content.titreInformatif}  // innerHTML of the editable div
                   disabled={this.state.disableEdit}
                   onClick={this.startJoyRide}
-                  onChange={this._handleChange} // handle innerHTML change
+                  onChange={this.handleChange} // handle innerHTML change
                 />
               </h1>
               <h2 className="bloc-subtitle">
@@ -597,7 +648,7 @@ class Dispositif extends Component {
                   id='titreMarque'
                   html={this.state.content.titreMarque}  // innerHTML of the editable div
                   disabled={this.state.disableEdit}
-                  onChange={this._handleChange} // handle innerHTML change
+                  onChange={this.handleChange} // handle innerHTML change
                 />
               </h2>
             </div>
@@ -654,6 +705,7 @@ class Dispositif extends Component {
               createPdf={this.createPdf}
               newRef={this.newRef}
               openAllAccordions={this.openAllAccordions}
+              handleChange = {this.handleChange}
             />
           </Col>
           <Col className="pt-40" lg="7" md="7" sm="7" xs="10">
@@ -807,13 +859,13 @@ class Dispositif extends Component {
           show={this.state.showDispositifCreateModal}
           toggle={this.toggleDispositifCreateModal}
           upcoming = {this.upcoming}
-          startJoyRide={this.startJoyRide}
+          startFirstJoyRide={this.startFirstJoyRide}
         />
         <DispositifValidateModal
           show={this.state.showDispositifValidateModal}
           toggle={this.toggleDispositifValidateModal} 
           abstract={this.state.content.abstract} 
-          onChange={this._handleChange}
+          onChange={this.handleChange}
           validate={this.valider_dispositif}
         />
 
