@@ -15,11 +15,12 @@ const contenuDispositif = (props) => {
               <a className="anchor" id={'item-head-'+key}></a>
               <h3 className={"contenu-title color-darkColor" + (key !== 0 ? " mt-20": "")}>{item.title}</h3>
               {item.content!=='null' && <EditableParagraph 
-                idx={key} 
+                keyValue = {key}
                 handleMenuChange={props.handleMenuChange}
                 onEditorStateChange={props.onEditorStateChange}
                 handleContentClick={props.handleContentClick}
                 disableEdit={props.disableEdit}
+                addItem={props.addItem}
                 {...item}/>}
             </Col>
             {props.uiArray[key].isHover && 

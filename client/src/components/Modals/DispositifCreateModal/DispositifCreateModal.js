@@ -36,7 +36,7 @@ const dispositifCreateModal = (props) => {
           <Button type="light" onClick={props.toggle} className="mr-10">
             Annuler
           </Button>
-          <Button type="validate" onClick={props.startJoyRide} name="checkmark-circle-2-outline">
+          <Button type="validate" onClick={props.startFirstJoyRide} name="checkmark-circle-2-outline">
             Ok, j’ai compris
           </Button>
         </div>
