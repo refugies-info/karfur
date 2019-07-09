@@ -76,6 +76,11 @@
     border: 1px solid #FFFFFF;
     background: transparent;
     color: #FFFFFF;
+
+    &.pill-dark{
+      border-color: $noir;
+      color: $noir;
+    }
   }
 
   &.outline-black{

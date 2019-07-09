@@ -5,6 +5,7 @@ const contenu={
   titreMarque:'Le nom du dispositif',
   abstract:'Ceci est le résumé du dispositif',
   contact:'contact@lab-r.fr',
+  externalLink:""
 };
 
 const lorems = {

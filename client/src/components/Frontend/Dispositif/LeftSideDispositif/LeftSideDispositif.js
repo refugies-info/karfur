@@ -1,11 +1,12 @@
 import React from 'react';
 import { ListGroup, ListGroupItem, Spinner, InputGroup, Input } from 'reactstrap';
 import Scrollspy from 'react-scrollspy';
-import Icon from 'react-eva-icons';
 import ReactToPrint from 'react-to-print';
 
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
+
+import variables from 'scss/colors.scss';
 
 const leftSideDispositif = (props) => {
   const onLinkClicked = props.disableEdit ? null :props.toggleInputBtnClicked ;
@@ -34,10 +35,11 @@ const leftSideDispositif = (props) => {
       <div className="print-buttons">
         <div className="link-wrapper">
           {props.inputBtnClicked ?
-            <FButton className="input-btn">
+            <FButton type="default" className="input-btn">
               <InputGroup>
-                <EVAIcon className="link-icon" name="link-outline" fill="#828282"/>
-                <Input placeholder="Copiez-collez ici le lien vers votre site" />
+                <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
+                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Copiez-collez ici le lien vers votre site" id="externalLink" />
+                <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
               </InputGroup>
             </FButton>
             :
