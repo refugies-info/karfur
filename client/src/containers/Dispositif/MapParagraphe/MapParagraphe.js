@@ -166,26 +166,26 @@ class MapParagraphe extends PureComponent {
     let {markers, markerInfo} = this.state
     return(
       <div className="map-paragraphe">
-        <div className="where-header">
-          <b>Où souhaitez-vous vous engager ?</b>
-          <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} className="content-title">
-            <DropdownToggle caret color="transparent" className="dropdown-btn">
-              <span>{this.state.dropdownValue}</span>
-            </DropdownToggle>
-            <DropdownMenu>
-              {markers.map((marker, key) => {
-                return (
-                  <DropdownItem key={key} onClick={()=>this.selectLocation(key)}>
-                    {marker.ville}
-                  </DropdownItem>
+        {!this.props.disableEdit &&
+          <div className="where-header">
+            <b>Où souhaitez-vous vous engager ?</b>
+            <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} className="content-title">
+              <DropdownToggle caret color="transparent" className="dropdown-btn">
+                <span>{this.state.dropdownValue}</span>
+              </DropdownToggle>
+              <DropdownMenu>
+                {markers.map((marker, key) => {
+                  return (
+                    <DropdownItem key={key} onClick={()=>this.selectLocation(key)}>
+                      {marker.ville}
+                    </DropdownItem>
+                  )}
                 )}
-              )}
-            </DropdownMenu>
-          </ButtonDropdown>
-          {!this.props.disableEdit &&
-            <Button color="warning" onClick={this.toggleSidebar}>Changer le fichier de données</Button>}
+              </DropdownMenu>
+            </ButtonDropdown>
+            <Button color="warning" onClick={this.toggleSidebar}>Changer le fichier de données</Button>
             {/* <Button color="warning" onClick={this.toggleModal}>Changer le fichier de données</Button>} */}
-        </div>
+          </div>}
         <div className="map-content">
           <div className="inner-container">
             <MapComponent
