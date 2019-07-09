@@ -1,7 +1,8 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import Icon from 'react-eva-icons';
+
 import Button from "../../FigmaUI/FButton/FButton"
+import EVAIcon from '../../UI/EVAIcon/EVAIcon';
 
 import './DispositifCreateModal.scss'
 
@@ -11,7 +12,7 @@ const dispositifCreateModal = (props) => {
       <ModalHeader toggle={props.toggle}>
         C’est parti !
         <div className="align-right">
-          <Icon className="mr-8" name="clock-outline" size="large" />
+          <EVAIcon className="mr-8" name="clock-outline" size="large" />
           <span>15-30 minutes</span>
         </div>
       </ModalHeader>

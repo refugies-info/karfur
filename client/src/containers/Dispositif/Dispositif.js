@@ -143,7 +143,7 @@ class Dispositif extends Component {
   }
 
   setColors = () => {
-    ["color", "borderColor", "backgroundColor"].map(s => {
+    ["color", "borderColor", "backgroundColor", "fill"].map(s => {
       ["dark", "light"].map(c => {
         document.querySelectorAll('.' + s + '-' + c + 'Color').forEach(elem => {
           elem.style[s] = this.state.mainTag[c + 'Color'];
@@ -376,7 +376,14 @@ class Dispositif extends Component {
     this.setState({ menu: prevState });
   }
 
-  changeTag = (key, value) => this.setState({ tags: this.state.tags.map((x,i)=> i===key ? value : x), ...(key===0 && {mainTag: filtres.tags.find( x => x.short === value)}) });
+  changeTag = (key, value) => {
+    this.setState({ 
+      tags: this.state.tags.map((x,i)=> i===key ? value : x), ...(key===0 && {mainTag: filtres.tags.find( x => x.short === value) } ) 
+    }, () => {
+      if(key===0){ this.setColors(); }
+    });
+  }
+
   addTag = () => this.setState({ tags: [...this.state.tags, 'Autre'] });
   deleteTag = (idx) => this.setState({ tags: [...this.state.tags].filter((_,i) => i!==idx) });
 

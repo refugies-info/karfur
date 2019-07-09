@@ -30,7 +30,7 @@ const topRightHeader = (props) => {
             <Button className="publish-btn" onClick={props.toggleDispositifValidateModal}>Publier</Button>
           </CardBody>
           <CardFooter className="color-darkColor cursor-pointer" onClick={props.toggleDispositifCreateModal}>
-            <SVGIcon className="mr-8" name="radio" />
+            <SVGIcon className="mr-8 fill-darkColor" name="radio" />
             Besoin d'aide ?
           </CardFooter>
         </Card>
