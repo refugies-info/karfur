@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Tooltip, Modal, Spinner, Button } from 'reactstrap';
+import { Col, Row, Modal, Spinner, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -118,7 +118,7 @@ class Dispositif extends Component {
           dispositif: dispositif,
           disableEdit: true,
           isDispositifLoading: false,
-          contributeurs: new Array(14).fill(dispositif.creatorId),
+          contributeurs: [dispositif.creatorId],
         },()=>this.setColors())
         //On récupère les données de l'utilisateur
         if(API.isAuth()){
@@ -482,19 +482,19 @@ class Dispositif extends Component {
     dispositif.niveauFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
       cardElement.filter(x=> x.title==='Niveau de français').map(x => x.contentTitle) :
       filtres.niveauFrancais;
-    // dispositif.cecrlFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
-    //   cardElement.filter(x=> x.title==='Niveau de français').map(x => x.contentTitle) :
-    //   filtres.niveauFrancais;
+    dispositif.cecrlFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
+      [...new Set(cardElement.filter(x=> x.title==='Niveau de français').map(x => x.niveaux).reduce((acc, curr) => [...acc, ...curr]))] :
+      [];
     console.log(dispositif)
-    // API.add_dispositif(dispositif).then((data) => {
-    //   Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
-    //     this.props.fetch_user();
-    //     this.props.fetch_dispositifs();
-    //     this.setState({disableEdit: status==='Actif'}, () => {
-    //       this.props.history.push("/dispositif/" + data.data.data._id)
-    //     })
-    //   });
-    // },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
+    API.add_dispositif(dispositif).then((data) => {
+      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+        this.props.fetch_user();
+        this.props.fetch_dispositifs();
+        this.setState({disableEdit: status==='Actif'}, () => {
+          this.props.history.push("/dispositif/" + data.data.data._id)
+        })
+      });
+    },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
   }
 
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')

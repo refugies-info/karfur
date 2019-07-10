@@ -49,12 +49,12 @@ class ContribCaroussel extends Component {
       }else if(i % nbCards !== 0 && i === contributeurs.length-1){
         return {groupedData: [...acc.groupedData, [...acc.currGrp, curr]], currGrp:[]}
       }else if(i % nbCards === 0 && i === contributeurs.length-1){
-        return {groupedData: [...acc.groupedData, acc.currGrp, [curr]], currGrp:[]}
+        return {groupedData: [...acc.groupedData, ...acc.currGrp, [curr]], currGrp:[]}
       }
       return {currGrp: [...acc.currGrp, curr], groupedData: acc.groupedData }
     }, {currGrp: [], groupedData: []}).groupedData;
     let maxL = reduced_contributeurs.length;
-
+    
     const slides = reduced_contributeurs.map((item, key) => {
       return (
         <CarouselItem
