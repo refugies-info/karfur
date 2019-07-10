@@ -144,7 +144,6 @@ class MapParagraphe extends PureComponent {
   handleMarkerChange = (e, idx) => this.setState({markerInfo : this.state.markerInfo.map((x, i) => i === idx ? {...x, value : e.target.value} : x)})
 
   validateMarker = () => {
-    console.log(this.state.markerInfo[4].value === "ajouter@votreemail.fr")
     if(!this.state.markerInfo[0].value || this.state.markerInfo[0].value === "Saisir le titre", this.state.markerInfo[4].value === "00 11 22 33 44" ){
       Swal.fire( 'Oh non!', 'Vous devez renseigner un titre de lieu pour ce marqueur', 'error');
       return;
@@ -163,29 +162,28 @@ class MapParagraphe extends PureComponent {
   }
 
   render(){
-    let {markers, markerInfo} = this.state
+    let {markers, markerInfo} = this.state;
     return(
       <div className="map-paragraphe">
-        <div className="where-header">
-          <b>Où souhaitez-vous vous engager ?</b>
-          <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} className="content-title">
-            <DropdownToggle caret color="transparent" className="dropdown-btn">
-              <span>{this.state.dropdownValue}</span>
-            </DropdownToggle>
-            <DropdownMenu>
-              {markers.map((marker, key) => {
-                return (
-                  <DropdownItem key={key} onClick={()=>this.selectLocation(key)}>
-                    {marker.ville}
-                  </DropdownItem>
+        {this.props.disableEdit &&
+          <div className="where-header">
+            <b>Où souhaitez-vous vous engager ?</b>
+            <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} className="content-title">
+              <DropdownToggle caret color="transparent" className="dropdown-btn">
+                <span>{this.state.dropdownValue}</span>
+              </DropdownToggle>
+              <DropdownMenu>
+                {markers.map((marker, key) => {
+                  return (
+                    <DropdownItem key={key} onClick={()=>this.selectLocation(key)}>
+                      {marker.ville}
+                    </DropdownItem>
+                  )}
                 )}
-              )}
-            </DropdownMenu>
-          </ButtonDropdown>
-          {!this.props.disableEdit &&
-            <Button color="warning" onClick={this.toggleSidebar}>Changer le fichier de données</Button>}
+              </DropdownMenu>
+            </ButtonDropdown>
             {/* <Button color="warning" onClick={this.toggleModal}>Changer le fichier de données</Button>} */}
-        </div>
+          </div>}
         <div className="map-content">
           <div className="inner-container">
             <MapComponent

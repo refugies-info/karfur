@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Col, Card, CardBody, CardHeader, CardFooter, ButtonDropdown, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, ListGroup, ListGroupItem,Button, Modal, Input } from 'reactstrap';
+import { Col, Card, CardBody, CardHeader, CardFooter, ButtonDropdown, Dropdown, DropdownToggle, 
+  DropdownMenu, DropdownItem, ListGroup, ListGroupItem,Button, Modal, Input, Tooltip } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import ContentEditable from 'react-contenteditable';
 import Swal from 'sweetalert2';
@@ -10,16 +11,17 @@ import FSwitch from '../../../components/FigmaUI/FSwitch/FSwitch';
 
 import './CardParagraphe.scss';
 import variables from 'scss/colors.scss';
+import FButton from '../../../components/FigmaUI/FButton/FButton';
 
 const list_papiers=[
   {name:'Titre de séjour'},
   {name:'Contrat d\'intégration républicaine (CIR)'},
-]
+];
 
 const papiers=[...list_papiers]
 
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"]
-const frequencesPay = ["une seule fois ", "à chaque fois", "par mois", "par semaine", "par heure", "personnalisé"];
+const frequencesPay = ["une seule fois ", "à chaque fois", "par mois", "par semaine", "par heure"];
 
 class CardParagraphe extends Component {
   state= {
@@ -28,18 +30,19 @@ class CardParagraphe extends Component {
     isOptionsOpen: false,
     isModalDropdownOpen:new Array(2).fill(false),
     papiers:papiers,
-    showNiveaux: false
+    showNiveaux: false,
+    tooltipOpen: false,
   }
 
   editCard = () => this.toggleModal(true,'pieces')
 
   toggleModal = (show) => this.setState({showModal:show})
-  toggleNiveaux = () => this.setState({showNiveaux: !this.state.showNiveaux})
+  toggleNiveaux = () => this.setState({showNiveaux: !this.state.showNiveaux});
+  toggleTooltip = () => this.setState(prevState => ({tooltipOpen: !prevState.tooltipOpen })); 
   
   toggleDropdown = (e) => {
     if(this.state.isDropdownOpen && e.currentTarget.id){
       this.props.changeTitle(this.props.keyValue, this.props.subkey, 'title', e.target.innerText);
-      this.props.changeTitle(this.props.keyValue, this.props.subkey, 'titleIcon', e.currentTarget.dataset.titleicon);
     }
     this.setState({ isDropdownOpen: !this.state.isDropdownOpen })
   };
@@ -58,8 +61,8 @@ class CardParagraphe extends Component {
   };
 
   footerClicked = () => {
-    if(this.props.subitem.footer==='Pièces demandées'){
-      this.editCard(this.props.keyValue, this.props.subkey)
+    if(this.props.subitem.footerHref){
+      window.open( this.props.subitem.footerHref, "_blank" )
     }else{Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')}
   }
 
@@ -79,16 +82,17 @@ class CardParagraphe extends Component {
       {title:'Durée',titleIcon:'horloge'},
       {title:'Niveau de français',titleIcon:'frBubble', options: filtres.niveauFrancais},
       {title:'Combien ça coûte ?',titleIcon:'money'},
+      {title:'Justificatif demandé',titleIcon:'papiers', options: filtres.justificatifs},
       {title:'Important !',titleIcon:'warning'},
     ]
     
     let contentTitle = (subitem) => {
       let cardTitle = cardTitles.find(x=>x.title==subitem.title);
       if(cardTitle && cardTitle.options && cardTitle.options.length > 0 && !this.props.disableEdit){
-        if(!cardTitle.options.some(x => x===subitem.contentTitle)){ subitem.contentTitle = cardTitle.options[0]; subitem.contentBody = 'A modifier'; }
+        if(!cardTitle.options.some(x => x.toUpperCase()===subitem.contentTitle.toUpperCase())){ subitem.contentTitle = cardTitle.options[0]; subitem.contentBody = 'A modifier'; }
         return(
           <ButtonDropdown isOpen={this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title">
-            <DropdownToggle caret>
+            <DropdownToggle caret={!this.props.disableEdit}>
               {subitem.title === "Âge requis" ? 
                 <span>{subitem.contentTitle.split("**").map((x, i, arr) => (
                   <React.Fragment key={i}>
@@ -119,17 +123,22 @@ class CardParagraphe extends Component {
       }else if(subitem.title === "Combien ça coûte ?"){
         return(
           <>
-            <FSwitch precontent="Gratuit" content="Payant" checked={!subitem.free} onClick={() => this.props.toggleFree(this.props.keyValue, this.props.subkey)} />
+            {this.props.disableEdit ? 
+              <div>{subitem.free ? "Gratuit" : "Payant"}</div> :
+              <FSwitch precontent="Gratuit" content="Payant" checked={!subitem.free} onClick={() => this.props.toggleFree(this.props.keyValue, this.props.subkey)} />}
             {!subitem.free && 
               <span className="price-details">
-                <Input 
-                  type="number" 
-                  className="age-input"
-                  value={subitem.price} 
-                  onChange={e => this.props.changePrice(e, this.props.keyValue, this.props.subkey)} />
+                {this.props.disableEdit ?
+                  <span>{subitem.price}</span> :
+                  <Input 
+                    type="number" 
+                    className="age-input"
+                    disabled={this.props.disableEdit}
+                    value={subitem.price} 
+                    onChange={e => this.props.changePrice(e, this.props.keyValue, this.props.subkey)} /> }
                 <span>€ </span>
-                <ButtonDropdown isOpen={this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title price-frequency">
-                  <DropdownToggle caret>
+                <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title price-frequency">
+                  <DropdownToggle caret={!this.props.disableEdit}>
                     <span>{subitem.contentTitle}</span>
                   </DropdownToggle>
                   <DropdownMenu>
@@ -144,13 +153,21 @@ class CardParagraphe extends Component {
           </> 
         )
       }else{
+        let texte = subitem.contentTitle;
+        if(subitem.title==='Âge requis'){
+          texte = (subitem.contentTitle === 'De ** à ** ans') ? 'De ' + subitem.bottomValue + ' à ' + subitem.topValue + ' ans' :
+                              (subitem.contentTitle === 'Moins de ** ans') ? 'Moins de ' + subitem.topValue + ' ans' :
+                              'Plus de ' + subitem.bottomValue + ' ans';
+        }else if(subitem.title === 'Combien ça coûte ?'){
+          texte = subitem.free ? "gratuit" : (subitem.price + " € " + subitem.contentTitle)
+        }
         return(
           <ContentEditable
             id={this.props.keyValue}
             className="color-darkColor card-input"
             data-subkey={subkey}
             data-target='contentTitle'
-            html={subitem.contentTitle}  // innerHTML of the editable div
+            html={texte}  // innerHTML of the editable div
             disabled={this.props.disableEdit}       // use true to disable editing
             onChange={this.props.handleMenuChange} // handle innerHTML change
           />
@@ -193,47 +210,52 @@ class CardParagraphe extends Component {
     }
 
     let cardFooterContent = subitem => {
-      if(subitem.footerType==="text"){ return(
-        <ContentEditable
-          id={this.props.keyValue}
-          className="footer-input"
-          data-subkey={subkey}
-          data-target='footer'
-          html={subitem.footer}  // innerHTML of the editable div
-          disabled={this.props.disableEdit}       // use true to disable editing
-          onChange={this.props.handleMenuChange} // handle innerHTML change
-        />
-      )}else{ return (
-        <Button color="light" outline onClick={this.footerClicked}>
-          <Icon name="plus-circle-outline" />
-          <span className="footer-content">{subitem.footer}</span>
-        </Button>
+      console.log(subitem)
+      if(subitem.footerType==="text"){
+        if(subitem.footer !== "Ajouter un message complémentaire") {
+          return(
+            <ContentEditable
+              id={this.props.keyValue}
+              className="footer-input"
+              data-subkey={subkey}
+              data-target='footer'
+              html={subitem.footer}  // innerHTML of the editable div
+              disabled={this.props.disableEdit}       // use true to disable editing
+              onChange={this.props.handleMenuChange} // handle innerHTML change
+            />
+          )
+        }else{return false}
+      }else{ return (
+        <FButton type="outline" name={subitem.footerIcon} onClick={this.footerClicked}>
+          {subitem.footer}
+        </FButton>
       )}
     }
 
     return(
       <>
         <Col lg="4" className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
-          <Card className={subitem.title==='Important !' ? 'make-it-red':'regular'}>
+          <Card className={subitem.title==='Important !' ? 'make-it-red':'regular'} id={"info-card-" + this.props.keyValue + "-" + subkey}>
             <CardHeader className="backgroundColor-darkColor">
               {cardHeaderContent(subitem)}
             </CardHeader>
             <CardBody>
               <h4>{contentTitle(subitem)}</h4>
               {subitem.title==='Niveau de français' && 
-                (showNiveaux ? 
+                (showNiveaux || (niveaux || []).length > 0 ? 
                   <div className="niveaux-wrapper">
                     {niveaux.map((nv, key) => (
                       <button 
                         key={key} 
                         className={(subitem.niveaux || []).some(x => x===nv) ? "active": ""} 
+                        disabled={this.props.disableEdit}
                         onClick={()=> this.props.toggleNiveau(nv, this.props.keyValue, this.props.subkey)}>
                         {nv}
                       </button>
                     ))}
                   </div>
                   :
-                  <u className="cursor-pointer" onClick={this.toggleNiveaux}>Préciser</u>)}
+                  !this.props.disableEdit && <u className="cursor-pointer" onClick={this.toggleNiveaux}>Préciser</u>)}
               {/* <span>
                 <ContentEditable
                   id={this.props.keyValue}
@@ -256,6 +278,12 @@ class CardParagraphe extends Component {
                 </div>
               </div>}
           </Card>
+
+          <Tooltip className="card-tooltip backgroundColor-darkColor" isOpen={(subitem.tooltipHeader || subitem.tooltipContent) && !this.props.disableEdit && this.state.tooltipOpen} target={"info-card-" + this.props.keyValue + "-" + subkey} toggle={this.toggleTooltip}>
+            <div className="tooltip-header"><b>{subitem.tooltipHeader}</b></div>
+            <div className="tooltip-content">{subitem.tooltipContent}</div>
+            <div className="tooltip-footer"><u>{subitem.tooltipFooter}</u></div>
+          </Tooltip>
         </Col>
 
         <Modal isOpen={this.state.showModal} toggle={()=>this.toggleModal(false)} className='modal-pieces'>

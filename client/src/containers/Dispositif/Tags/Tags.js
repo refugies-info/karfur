@@ -55,7 +55,7 @@ class Tags extends Component {
             </ButtonDropdown>
           )}
         )}
-        {!this.props.disableEdit && 
+        {!this.props.disableEdit && (this.props.tags || []).length<3 && 
           <Button className="plus-button ml-10" onClick={this.addTag}>
             <EVAIcon className="mr-10" name="plus-circle-outline" fill="#CDCDCD" />
             Ajouter un tag
