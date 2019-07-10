@@ -58,7 +58,7 @@
       }
 
       .content-title{
-        .dropdown-toggle.btn{
+        .dropdown-toggle.btn, .btn{
           color: inherit;
           background-color: inherit;
           border-color: inherit;
@@ -104,7 +104,7 @@
           margin-top: 5px;
           font-weight: bold;
           font-size: 16px;
-          &:hover{
+          &:hover:not(:disabled){
             border-color: $darkColor;
             color: $darkColor;
             background: #FFFFFF;
@@ -183,6 +183,14 @@
   }
 }
 
+.card-tooltip{
+  .tooltip-header{
+    margin-bottom: 15px;
+  }
+  .tooltip-footer{
+    margin-top: 15px;
+  }
+}
 .modal-pieces .modal-content{
   background: #3D3D3D;
   border-color: #3D3D3D;
