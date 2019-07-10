@@ -43,7 +43,8 @@ class ContribCaroussel extends Component {
     const { contributeurs, t, width } = this.props;
     const { activeIndex } = this.state;
     let nbCards = Math.floor( ( (width - 2 * 10 ) * 7/12 - 2 * (15 + 20) ) / (140 + 20))
-    let reduced_contributeurs=contributeurs.reduce((acc, curr, i) => {
+    console.log(contributeurs)
+    let reduced_contributeurs=(contributeurs || []).reduce((acc, curr, i) => {
       if (i > 0 && i % nbCards === 0 && i !== contributeurs.length-1) {
         return {currGrp:[curr], groupedData: [...acc.groupedData, acc.currGrp]}
       }else if(i % nbCards !== 0 && i === contributeurs.length-1){
@@ -64,7 +65,7 @@ class ContribCaroussel extends Component {
           key={key}
         >
           <div className="ligne">
-            {item.map((contrib, subkey) => {
+            {(item || []).map((contrib, subkey) => {
               let contribImg= (contrib.picture || {}).secure_url || marioProfile;    
               return (
                 <div className="card-wrapper" key={subkey}>
