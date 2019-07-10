@@ -10,7 +10,7 @@ const contenuDispositif = (props) => {
     props.menu.map((item, key) => {
       return ( 
         <div key={key} className='contenu-wrapper' id={"contenu-" + key}>
-          <Row className="relative-position">
+          <Row className="relative-position nopadding">
             <Col lg="12" md="12" sm="12" xs="12" className={'contenu borderColor-darkColor' + (props.uiArray[key].isHover ? ' isHovered' : '')} onMouseEnter={()=>props.updateUIArray(key, null, 'isHover')}>
               <a className="anchor" id={'item-head-'+key}></a>
               <h3 className={"contenu-title color-darkColor" + (key !== 0 ? " mt-20": "")}>{item.title}</h3>

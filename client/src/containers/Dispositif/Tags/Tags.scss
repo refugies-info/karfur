@@ -3,6 +3,7 @@
 .tags{
   margin-top:-10px;
   margin-right:-10px;
+  outline: none;
 
   .tags-dropdown{
     margin-left:10px;
@@ -21,11 +22,19 @@
       border:none;
       color:inherit;
       padding:10px;
+      &:focus, &:not(:disabled):not(.disabled):active {
+        color: #FFF;
+        box-shadow: none;
+        border-color: transparent;
+        background-color: transparent;
+        outline: none;
+      }
     }
     &:hover{
-      background: #4A69BD;
-      color: #FFFFFF;
+      background: #ffffff;
+      color: $noir;
     }
+
     &:nth-child(2n){
       border: 1px solid $rouge;
       background: $rouge;
@@ -58,7 +67,7 @@
 
   .tags-icons{
     position: absolute;
-    right: -7px;
+    right: -15px;
     top: -15px;
     cursor: pointer;
   }

@@ -2,8 +2,10 @@
 
 .cards.row .card-col{ 
   padding: 0 0 0 10px;
+  margin-top:40px;
 
   .card{
+    margin-top: -40px;
     min-height: 230px;
     background: $cardColor;
     border-radius: 12px;
@@ -113,6 +115,10 @@
             color: #FFFFFF;
             background-color: $darkColor;
             border:none;
+            outline:none;
+          }
+          &:focus{
+            outline:none;
           }
         }
       }

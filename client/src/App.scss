@@ -10,7 +10,7 @@
 
 @import './scss/colors.scss';
 
-body,head{
+html head, html body{
   font-family: CircularStd, "Helvetica Neue", "Noto Sans";
   color: #3D3D3D;
   height:100%;
@@ -61,5 +61,18 @@ html body{
 
   .cursor-pointer{
     cursor: pointer;
+  }
+
+  .btn-group:focus{
+    outline:none;
+    box-shadow: none;
+  }
+  .btn:focus{
+    outline:none;
+    box-shadow: none !important;
+  }
+  .dropdown-menu.show{
+    border-radius: 12px;
+    border: none;
   }
 }
