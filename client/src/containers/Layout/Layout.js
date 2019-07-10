@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 
 import API from '../../utils/API';
-import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import Toolbar from '../Toolbar/Toolbar';
 // import Footer from '../../components/Navigation/Footer/Footer';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import OnBoardingTraducteurModal from '../../components/Modals/OnBoardingTradModal/OnBoardingTraducteurModal'
