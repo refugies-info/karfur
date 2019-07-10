@@ -36,19 +36,20 @@ const mapComponent = compose(
       streetViewControl:false,
     }}
     onClick={props.onClose} >
-    <SearchBox
-      ref={props.onSearchBoxMounted}
-      controlPosition={window.google.maps.ControlPosition.TOP_LEFT}
-      onPlacesChanged={props.onPlacesChanged}
-    >
-      <div className="places-input-wrapper">
-        <input
-          type="text"
-          placeholder="Placez ici vos lieux de contact"
-          className="places-input" />
-        <EVAIcon className="places-icon" name="search-outline" fill={variables.grisFonce} />
-      </div>
-    </SearchBox>
+    {!props.disableEdit && 
+      <SearchBox
+        ref={props.onSearchBoxMounted}
+        controlPosition={window.google.maps.ControlPosition.TOP_LEFT}
+        onPlacesChanged={props.onPlacesChanged}
+      >
+        <div className="places-input-wrapper">
+          <input
+            type="text"
+            placeholder="Placez ici vos lieux de contact"
+            className="places-input" />
+          <EVAIcon className="places-icon" name="search-outline" fill={variables.grisFonce} />
+        </div>
+      </SearchBox>}
     
     {props.markers && props.markers.length > 0 &&
       props.markers.map( (marker, key) =>  {

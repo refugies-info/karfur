@@ -4,6 +4,7 @@ import track from 'react-tracking';
 import { Col, Row, CardBody, CardFooter, Spinner } from 'reactstrap';
 import Swal from 'sweetalert2';
 import querySearch from "stringquery";
+import Cookies from 'js-cookie';
 
 import SearchItem from './SearchItem/SearchItem';
 import API from '../../utils/API';
@@ -18,6 +19,7 @@ import variables from 'scss/colors.scss';
 const tris = [{name: "Alphabétique"}, {name:"Derniers ajouts"}, {name: "Les plus visités"}, {name: "À traduire"}];
 const filtres = [{name: "Démarches"}, {name:"Dispositifs"}, {name: "Articles"}, {name: "Lexique"}, {name: "Annuaire"}];
 
+let user={_id:null, cookies:{}};
 class AdvancedSearch extends Component {
   state = {
     showSpinner: false,
@@ -25,17 +27,25 @@ class AdvancedSearch extends Component {
     dispositifs: [],
     pinned: [],
     activeFiltre: "Dispositifs",
-    activeTri: "Alphabétique"
+    activeTri: "Alphabétique",
+    data: [] //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
   }
 
   componentDidMount (){
+    this.retrieveCookies();
     let tag=querySearch(this.props.location.search).tag;
     if(tag) { this.selectTag(decodeURIComponent(tag)) } else { this.queryDispositifs() }
     window.scrollTo(0, 0);
   }
 
-  queryDispositifs = query => {
+  queryDispositifs = (query=null) => {
     this.setState({ showSpinner: true })
+    query = this.state.recherche.filter(x => x.active && x.queryName!=='localisation').map(x => (
+      x.queryName === "audienceAge" ? 
+      { "audienceAge.bottomValue": { $lt: x.topValue}, "audienceAge.topValue": { $gt: x.bottomValue} } :
+      {[x.queryName]: x.query}
+    )).reduce((acc, curr) => ({...acc, ...curr}),{});
+    console.log(query)
     API.get_dispositif({...query, status:'Actif'}).then(data_res => {
       let dispositifs=data_res.data.data
       this.setState({ dispositifs:dispositifs, showSpinner: false })
@@ -46,6 +56,46 @@ class AdvancedSearch extends Component {
     this.setState({tags: this.state.tags.map(x => (x.name===tag ? {...x, active: true} : {...x, active: false})), color: tag.color})
     this.queryDispositifs({tags: tag})
     this.props.history.replace("/dispositifs?tag="+tag)
+  }
+  
+  retrieveCookies = () => {
+    // Cookies.set('data', 'ici un test');
+    let dataC=Cookies.getJSON('data');
+    // if(dataC){ this.setState({data:data.map((x,key)=> {return {...x, value:dataC[key] || x.value}})})}
+    let pinnedC=Cookies.getJSON('pinnedC');
+    // if(pinnedC){ this.setState({pinned:pinnedC})}
+    //data à changer en recherche après
+    if(API.isAuth()){
+      API.get_user_info().then(data_res => {
+        let u=data_res.data.data;
+        user={_id:u._id, cookies:u.cookies || {}}
+        this.setState({
+          pinned:user.cookies.parkourPinned || [],
+          dispositifs:[...this.state.dispositifs].filter(x => !((user.cookies.parkourPinned || []).find( y=> y._id === x._id))),
+          ...(user.cookies.parkourData && user.cookies.parkourData.length>0 && 
+            {data:this.state.data.map((x,key)=> {return {...x, value: (user.cookies.parkourData[key] || x.value), query: (x.children.find(y=> y.name === (user.cookies.parkourData[key] || x.value)) || {}).query }})})
+        })
+      })
+    }
+  }
+
+  pin = (e,dispositif) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispositif.pinned=!dispositif.pinned;
+    let prevState=[...this.state.dispositifs];
+    console.log(this.state.dispositifs, this.state.pinned)
+    console.log(dispositif.pinned)
+    this.setState({
+      dispositifs: dispositif.pinned ? prevState.filter(x => x._id !== dispositif._id) : [...prevState,dispositif],
+      pinned: dispositif.pinned ? 
+        [...this.state.pinned,dispositif] :
+        this.state.pinned.filter(x=> x._id !== dispositif._id)
+    },()=>{
+      console.log(this.state.dispositifs, this.state.pinned)
+      user.cookies.parkourPinned=this.state.pinned;
+      API.set_user_info(user);
+    })
   }
 
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
@@ -61,12 +111,14 @@ class AdvancedSearch extends Component {
       ...recherche[key],
       value: subitem.name,
       query: subitem.query || subitem.name,
-      active: true
+      active: true,
+      ...(subitem.bottomValue && {bottomValue: subitem.bottomValue}),
+      ...(subitem.topValue && {topValue: subitem.topValue}),
     }
-    this.setState({recherche: recherche});
+    this.setState({recherche: recherche}, ()=> this.queryDispositifs());
   }
 
-  desactiver = key => this.setState({recherche: this.state.recherche.map((x, i) => i===key ? initial_data[i] : x)});
+  desactiver = key => this.setState({recherche: this.state.recherche.map((x, i) => i===key ? initial_data[i] : x)}, ()=> this.queryDispositifs());
 
   render() {
     const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
@@ -104,14 +156,20 @@ class AdvancedSearch extends Component {
             </div>
             <div className="results-wrapper">
               <Row>
-                {[...pinned,...dispositifs].slice(0,8).map((dispositif) => {
+                {[...pinned,...dispositifs].slice(0,100).map((dispositif) => {
                   if(!dispositif.hidden){
                     return (
                       <Col xs="12" sm="6" md="3" className="card-col puff-in-center" key={dispositif._id}>
                         <CustomCard onClick={() => this.goToDispositif(dispositif)}>
                           <CardBody>
-                            <EVAIcon name="bookmark" size="xlarge" onClick={(e)=>this.pin(e,dispositif)} fill={(dispositif.pinned ? variables.noir : variables.noirCD)} className="bookmark-icon" />
-                            <h3>{dispositif.titreInformatif}</h3>
+                            <EVAIcon 
+                              name="bookmark" 
+                              size="xlarge" 
+                              onClick={(e)=>this.pin(e,dispositif)} 
+                              fill={(dispositif.pinned ? variables.noir : variables.noirCD)} 
+                              className={"bookmark-icon" + (dispositif.pinned ? " pinned":"")} 
+                            />
+                            <h5>{dispositif.titreInformatif}</h5>
                             <p>{dispositif.abstract}</p>
                           </CardBody>
                           <CardFooter className={"align-right bg-violet"}>{dispositif.titreMarque}</CardFooter>
