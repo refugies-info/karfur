@@ -241,7 +241,7 @@ class CardParagraphe extends Component {
             <CardBody>
               <h4>{contentTitle(subitem)}</h4>
               {subitem.title==='Niveau de français' && 
-                (showNiveaux || (niveaux || []).length > 0 ? 
+                (showNiveaux || (subitem.niveaux || []).length > 0 ? 
                   <div className="niveaux-wrapper">
                     {niveaux.map((nv, key) => (
                       <button 

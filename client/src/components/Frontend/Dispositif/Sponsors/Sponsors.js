@@ -58,7 +58,7 @@ class Sponsors extends Component {
             return (
               <Col key={key} className="sponsor-col">
                 <div className="image-wrapper">
-                  <a  href={sponsor.link} target="_blank">
+                  <a  href={((sponsor.link || "").includes("http") ? "" : "http://") + sponsor.link} target="_blank">
                     <img className="sponsor-img" src={sponsor.src} alt={sponsor.alt} />
                   </a>
                   {!disableEdit && 

@@ -18,7 +18,7 @@ class QuiSommesNous extends Component {
     membre: {}
   }
 
-  _onSelectMembre = membre => this.setState({sideVisible: true, membre: membre})
+  _onSelectMembre = membre => this.setState(pS => ({sideVisible: !pS.sideVisible, membre: membre}))
   _closeSide = () => this.setState({sideVisible: false})
 
   render() {
