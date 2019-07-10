@@ -56,6 +56,11 @@ var dispositifSchema = mongoose.Schema({
 		unique: false,
     required: false
   },
+  niveauFrancais: {
+    type: Object,
+		unique: false,
+    required: false
+  },
   creatorId:{ type: mongoose.Schema.ObjectId, ref: 'User' },
   status: {
 		type: String,
@@ -73,6 +78,10 @@ var dispositifSchema = mongoose.Schema({
     unique:false
   },
   merci:{
+    type:Object,
+    required:false,
+  },
+  pasMerci:{
     type:Object,
     required:false,
   },

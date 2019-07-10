@@ -18,13 +18,13 @@ class QuiSommesNous extends Component {
     membre: {}
   }
 
-  _onSelectMembre = membre => this.setState({sideVisible: true, membre: membre})
+  _onSelectMembre = membre => this.setState(pS => ({sideVisible: !pS.sideVisible, membre: membre}))
   _closeSide = () => this.setState({sideVisible: false})
 
   render() {
     const {membre, sideVisible} = this.state;
     return (
-      <div className="animated fadeIn qui-sommes-nous">
+      <div className="animated fadeIn qui-sommes-nous texte-small">
         <section id="hero">
           <div className="hero-container">
             <h1>Qui sommes-nous ?</h1>
@@ -66,7 +66,7 @@ class QuiSommesNous extends Component {
               </Col>
               <Col lg="4" className="card-col">
                 <Card>
-                  <CardHeader>Recenser les nombreuses initiatives sur le territoire</CardHeader>
+                  <CardHeader>Recenser les initiatives sur tout le territoire</CardHeader>
                   <CardBody>
                     <span>Des milliers de personnes s’engagent au quotidien en France pour accueillir et accompagner les personnes réfugiées. Leurs actions, humbles et ambitieuses, souffrent parfois d’un manque de visibilité et ne profitent pas au plus grand nombre. Agi’r souhaite recenser et rendre accessible ces milliers d’initative</span>
                   </CardBody>
@@ -186,7 +186,7 @@ class QuiSommesNous extends Component {
                   </CardBody>
                   <CardFooter>
                     <FButton type="outline-black">
-                      Rejoindre le réseau des contributeurs
+                      Rejoindre le réseau
                     </FButton>
                   </CardFooter>
                 </Card>

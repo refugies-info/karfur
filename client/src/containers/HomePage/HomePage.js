@@ -55,10 +55,10 @@ class HomePage extends Component {
                 </div>
               </div>
               <div>
-                <div>ou essayez la</div>
+                <div className="try-it-out">ou essayez la :</div>
                 <NavLink to="/advanced-search">
                   <FButton type="dark">
-                    <SVGIcon name="fire" className="mr-10" />
+                    <EVAIcon name="flash" className="ml-10 mr-10" />
                     Super recherche
                   </FButton>
                 </NavLink>
@@ -80,7 +80,7 @@ class HomePage extends Component {
                     <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton type="dark" name="search-outline">
+                    <FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Chercher une démarche
                     </FButton>
                   </CardFooter>
@@ -94,7 +94,7 @@ class HomePage extends Component {
                       <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span>
                     </CardBody>
                     <CardFooter>
-                      <FButton type="dark" name="search-outline">
+                      <FButton type="outline-black" name="search-outline" fill={variables.noir}>
                         Trouver un dispositif
                       </FButton>
                     </CardFooter>
@@ -108,7 +108,7 @@ class HomePage extends Component {
                     <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton type="dark" name="search-outline">
+                    <FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Créer un parcours
                     </FButton>
                   </CardFooter>

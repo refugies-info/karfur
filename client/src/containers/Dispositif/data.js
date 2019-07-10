@@ -98,7 +98,7 @@ const filtres = {
 
 const steps = [
   {
-    content: <div><h3>Suivez le guide</h3><p>Cliquez sur les éléments en bleu pour saisir votre texte.</p></div>,
+    content: <div><h3>Cherchez les éléments en blanc</h3><p>Cliquez sur les éléments surlignés en blanc pour saisir votre texte.</p></div>,
     placement: 'bottom',
     locale: { 
       skip: 'Passer',
@@ -108,7 +108,7 @@ const steps = [
     disableBeacon: true
   },
   {
-    content: <div><h3>Suivez le guide</h3><p>Des consignes sont proposées pour chaque élément de la page.</p></div>,
+    content: <div><h3>Suivez le guide</h3><p>Des consignes vous sont proposées pour chaque élément modifiable.</p></div>,
     placement: 'bottom',
     target: '#titreMarque',
     locale: { 
@@ -118,7 +118,7 @@ const steps = [
     },
   },
   {
-    content: <div><h3>Suivez le guide</h3><p>Vous pouvez désactiver l’aide et sauvegardez à tout moment.</p></div>,
+    content: <div><h3>Revenez plus tard</h3><p>Vous pouvez désactiver l’aide et sauvegarder à tout moment.</p></div>,
     placement: 'left',
     target: '.top-right .card',
     locale: { 
