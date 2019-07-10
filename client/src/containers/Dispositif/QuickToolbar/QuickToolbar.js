@@ -29,8 +29,8 @@ class QuickToolbar extends Component {
     this.props.tracking.trackEvent({ action: 'click', label: 'btn click', value : this.props.disableEdit + "-" + id });
     if(this.props.disableEdit){
       if(id===0){ this.props.toggleModal(true, 'reaction'); }
-      else if(id===1){ this.props.toggleModal(true, 'signaler'); }
-      else if(id===2){ this.props.toggleAudio(); }
+      else if(id===1){ this.props.toggleAudio(); }
+      else if(id===2){ this.props.toggleModal(true, 'construction'); }
       else if(id===3){ this.props.toggleModal(true, 'construction');}
     }else{
       if(id===0){ this.props.handleContentClick(this.props.keyValue,true, this.props.subkey) }
