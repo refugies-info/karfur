@@ -39,18 +39,19 @@
   }
 
   .modal-body{
+    padding-top: 0;
+    p {
+      margin-top: 1rem;
+    }
     .list-group{
       .list-group-item{
         border: 0.5px solid $noir;
-        border-radius: 12px;
-        margin-bottom: 10px;
-
-        &:hover{
-          background: $noir;
-          color: #FFFFFF;
-          svg{
-            fill: #FFFFFF;
-          }
+        padding: 0.5rem 1rem;
+        &:first-child{
+          border-radius: 6px 6px 0 0;
+        }
+        &:last-child{
+          border-radius: 0 0 6px 6px;
         }
         &.disabled{
           color: #CDCDCD;
@@ -67,6 +68,16 @@
           height: 15px;
         }
       }
+
+      .icon-col{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        padding: 0;
+      }
     }
+  }
+  .close{
+    outline: none;
   }
 }

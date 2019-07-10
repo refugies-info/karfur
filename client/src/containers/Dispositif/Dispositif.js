@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Tooltip, Modal, Spinner, Button } from 'reactstrap';
+import { Col, Row, Modal, Spinner, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -110,7 +110,7 @@ class Dispositif extends Component {
         this.setState({
           _id:itemId,
           menu: dispositif.contenu, 
-          content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact}, 
+          content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact, externalLink: dispositif.externalLink}, 
           sponsors:dispositif.sponsors,
           tags:dispositif.tags,
           creator:dispositif.creatorId,
@@ -118,7 +118,7 @@ class Dispositif extends Component {
           dispositif: dispositif,
           disableEdit: true,
           isDispositifLoading: false,
-          contributeurs: new Array(14).fill(dispositif.creatorId),
+          contributeurs: [dispositif.creatorId].filter(x => x),
         },()=>this.setColors())
         //On récupère les données de l'utilisateur
         if(API.isAuth()){
@@ -374,7 +374,11 @@ class Dispositif extends Component {
 
   changeCardTitle = (key, subkey, node, value) => {
     const prevState = [...this.state.menu];
-    prevState[key].children[subkey][node]=value;
+    if(node==="title"){
+      prevState[key].children[subkey] = {...menu[1].children.find(x => x.title === value)};
+    }else{
+      prevState[key].children[subkey][node]=value;
+    }
     this.setState({ menu: prevState });
   }
 
@@ -469,15 +473,18 @@ class Dispositif extends Component {
       dispositifId:this.state._id
     }
     let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
-    dispositif.audience= cardElement.find(x=> x.title==='Public visé') ?
-      [(cardElement.find(x=> x.title==='Public visé') || []).contentTitle] :
+    dispositif.audience = cardElement.some(x=> x.title==='Public visé') ?
+      cardElement.filter(x=> x.title==='Public visé').map(x => x.contentTitle) :
       filtres.audience;
-    dispositif.audienceAge= cardElement.find(x=> x.title==='Âge requis') ? 
-      [(cardElement.find(x=> x.title==='Âge requis').contentTitle || '').replace(' à ', '-').replace(' ans', '')] :
-      filtres.audienceAge.map(x=> x.replace(' à ', '-').replace(' ans', ''));
-    dispositif.niveauFrancais= cardElement.find(x=> x.title==='Niveau de français') ?
-      (cardElement.find(x=> x.title==='Niveau de français') || []).contentTitle :
+    dispositif.audienceAge= cardElement.some(x=> x.title==='Âge requis') ? 
+      cardElement.filter(x=> x.title==='Âge requis').map(x => ({contentTitle: x.contentTitle, bottomValue: x.bottomValue, topValue:x.topValue})) :
+      [{contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999}];
+    dispositif.niveauFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
+      cardElement.filter(x=> x.title==='Niveau de français').map(x => x.contentTitle) :
       filtres.niveauFrancais;
+    dispositif.cecrlFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
+      [...new Set(cardElement.filter(x=> x.title==='Niveau de français').map(x => x.niveaux).reduce((acc, curr) => [...acc, ...curr]))] :
+      [];
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
@@ -574,7 +581,6 @@ class Dispositif extends Component {
         <EVAIcon onMouseEnter={e => e.target.focus()} {...closeProps} name="close-outline" className="close-icon" />
       </div>
     )}else{return false}};
-
     return(
       <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : " reading-mode")} ref={this.newRef}>
         {/* First general tour */}
@@ -612,7 +618,7 @@ class Dispositif extends Component {
         <section className="banniere-dispo backgroundColor-lightColor">
           <Row className="header-row">
             <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
-              <Button color="warning" outline className="color-darkColor borderColor-darkColor">
+              <Button color="warning" outline>
                 <EVAIcon name="corner-up-left-outline" fill={mainTag.darkColor} className="icons" />
                 <span>{t("Retour à la recherche")}</span>
               </Button>
@@ -643,7 +649,7 @@ class Dispositif extends Component {
                 />
               </h1>
               <h2 className="bloc-subtitle">
-                <span>{t("avec le programme")}&nbsp;</span>
+                <span>{t("avec")}&nbsp;</span>
                 <ContentEditable
                   id='titreMarque'
                   html={this.state.content.titreMarque}  // innerHTML of the editable div
@@ -674,8 +680,8 @@ class Dispositif extends Component {
                       <div className="tag-item">
                         <a href={'#item-head-1'} className="no-decoration">
                           {card.typeIcon==="eva" ?
-                            <EVAIcon name={card.titleIcon} fill={variables.noir} /> :
-                            <SVGIcon width="20" height="20" viewBox="0 0 20 20" name={card.titleIcon} />}
+                            <EVAIcon name={card.titleIcon} fill="#FFFFFF"/> :
+                            <SVGIcon fill="#FFFFFF" width="25" height="25" viewBox="0 0 25 25" name={card.titleIcon} />}
                           <span>{texte}</span>
                         </a>
                       </div>
@@ -690,7 +696,7 @@ class Dispositif extends Component {
             <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
           </Col>
         </Row>
-        <Row className="give-it-space">
+        <Row>
           <Col className="left-side-col pt-40" lg="3" md="3" sm="3" xs="12">
             <LeftSideDispositif
               menu={this.state.menu}
@@ -708,7 +714,7 @@ class Dispositif extends Component {
               handleChange = {this.handleChange}
             />
           </Col>
-          <Col className="pt-40" lg="7" md="7" sm="7" xs="10">
+          <Col className="pt-40 col-middle" lg="7" md="7" sm="7" xs="10">
             {disableEdit && <Row className="fiabilite-row">
               <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
                 {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
@@ -762,44 +768,45 @@ class Dispositif extends Component {
                   <h5>{t("Dispositif.Avis")}</h5>
                   <span>{t("Dispositif.bientot")}</span>
                 </div>
-                <div className="bottom-wrapper">
-                  <ContribCaroussel 
-                    contributeurs={this.state.contributeurs}
-                  />
-                  {/* <div className="people-footer">
+                {this.state.contributeurs.length>0 && 
+                  <div className="bottom-wrapper">
+                    <ContribCaroussel 
+                      contributeurs={this.state.contributeurs}
+                    />
+                    {/* <div className="people-footer">
 
-                    <Row className="depasse-pas">
-                      <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                        <div className="people-title">{t("Contributeurs")}</div>
-                        <div className="people-card">
-                          <img className="people-img" src={creatorImg} alt="juliette"/>
-                          <div className="right-side">
-                            <h6>{creator.username}</h6>
-                            <span>{creator.description}</span>
+                      <Row className="depasse-pas">
+                        <Col lg="6" md="6" sm="12" xs="12" className="people-col">
+                          <div className="people-title">{t("Contributeurs")}</div>
+                          <div className="people-card">
+                            <img className="people-img" src={creatorImg} alt="juliette"/>
+                            <div className="right-side">
+                              <h6>{creator.username}</h6>
+                              <span>{creator.description}</span>
+                            </div>
                           </div>
-                        </div>
-                      </Col>
-                      <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                        <div className="people-title">{t("Traducteurs")}</div>
-                        <div className="people-card">
-                          <img className="people-img" src={hugo} alt="hugo"/>
-                          <div className="right-side">
-                            <h6>Hugo Stéphan</h6>
-                            <span>Designer pour la Diair</span>
+                        </Col>
+                        <Col lg="6" md="6" sm="12" xs="12" className="people-col">
+                          <div className="people-title">{t("Traducteurs")}</div>
+                          <div className="people-card">
+                            <img className="people-img" src={hugo} alt="hugo"/>
+                            <div className="right-side">
+                              <h6>Hugo Stéphan</h6>
+                              <span>Designer pour la Diair</span>
+                            </div>
                           </div>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div> */}
+                        </Col>
+                      </Row>
+                    </div> */}
 
-                  {!this.state.disableEdit &&
-                    <div className="ecran-protection">
-                      <div className="content-wrapper">
-                        <Icon name="alert-triangle-outline" fill="#FFFFFF" />
-                        <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
-                      </div>
-                    </div>}
-                </div>
+                    {!this.state.disableEdit &&
+                      <div className="ecran-protection">
+                        <div className="content-wrapper">
+                          <Icon name="alert-triangle-outline" fill="#FFFFFF" />
+                          <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
+                        </div>
+                      </div>}
+                  </div>}
               </>
             }
 

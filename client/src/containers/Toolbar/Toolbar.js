@@ -6,58 +6,26 @@ import { Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } fr
 import { AppAsideToggler } from '@coreui/react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
-import Autosuggest from 'react-autosuggest';
-import AutosuggestHighlightMatch from 'autosuggest-highlight/match';
-import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
-import debounce from 'lodash.debounce';
 
-import {toggle_lang_modal} from '../../../Store/actions/index';
-import NavigationItems from '../NavigationItems/NavigationItems';
-import DrawerToggle from '../SideDrawer/DrawerToggle/DrawerToggle';
-import API from '../../../utils/API';
-import AudioBtn from '../../../containers/UI/AudioBtn/AudioBtn';
+import {toggle_lang_modal} from '../../Store/actions/index';
+import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
+import DrawerToggle from '../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle';
+import API from '../../utils/API';
+import AudioBtn from '../UI/AudioBtn/AudioBtn';
 import marioProfile from '../../../assets/mario-profile.jpg';
-import Logo from '../../Logo/Logo';
-import LanguageBtn from '../../FigmaUI/LanguageBtn/LanguageBtn';
+import Logo from '../../components/Logo/Logo';
+import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
+import FButton from '../../components/FigmaUI/FButton/FButton';
+import SearchBar from '../UI/SearchBar/SearchBar';
 
 import './Toolbar.scss';
-import FButton from '../../FigmaUI/FButton/FButton';
-
-const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const getSuggestionValue = suggestion => suggestion.titreMarque + " - " + suggestion.titreInformatif;
 
 export class Toolbar extends React.Component {
 
   state = {
     dropdownOpen: false,
     showSearch:true,
-    value: '',
-    suggestions: [],
   };
-  
-  _toggleSearch = () => {this.setState(prevState=> ({showSearch: !prevState.showSearch}))}
-
-  onChange = (_, { newValue }) => this.setState({ value: newValue });
-
-  onSuggestionsFetchRequested = debounce( ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }), 200)
-
-  onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
-
-  getSuggestions = value => {
-    const escapedValue = escapeRegexCharacters(value.trim());
-    if (escapedValue === '') { return [];}
-    const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
-    return this.props.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif) || regex.test(dispositif.abstract) || regex.test(dispositif.contact) || (dispositif.tags || []).some(x => regex.test(x)) || (dispositif.audience || []).some(x => regex.test(x)) || (dispositif.audienceAge || []).some(x => regex.test(x)) || this.findInContent(dispositif.contenu, regex) );
-  }
-
-  findInContent = (contenu, regex) => contenu.some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent (x.children, regex)) );
-
-  onSuggestionSelected = (_,{suggestion}) => this.goToDispositif(suggestion, true)
-
-  goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
-    this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
-    this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
-  }
 
   disconnect = () => {
     API.logout();
@@ -76,25 +44,6 @@ export class Toolbar extends React.Component {
     let afficher_burger_droite=path.includes("/traduction");
     
     let userImg = (user.picture || {}).secure_url || marioProfile;
-
-    const renderSuggestion = (suggestion, { query }) => {
-      const suggestionText = `${suggestion.titreMarque} - ${suggestion.titreInformatif}`;
-      const matches = AutosuggestHighlightMatch(suggestionText, query + ' ' + query);
-      const parts = AutosuggestHighlightParse(suggestionText, matches);
-      return (
-        <span className={'suggestion-content'}>
-          <span className="name">
-            {parts.map((part, index) => {
-              const className = part.highlight ? 'highlight' : null;
-  
-              return <span className={className} key={index}>{part.text}</span>;
-            })}
-          </span>
-        </span>
-      );
-    }
-
-    const inputProps = { placeholder: 'Chercher', value: this.state.value, onChange: this.onChange };
     
     return(
       <header className="Toolbar">
@@ -103,7 +52,7 @@ export class Toolbar extends React.Component {
             forceShow={false && afficher_burger}
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <Logo />
-          <span>Faciliter l’installation des réfugiés en France</span>
+          <span className="baseline">Construire sa vie en France</span>
         </div>
 
         <nav className="DesktopOnly center-buttons">
@@ -114,14 +63,7 @@ export class Toolbar extends React.Component {
 
         <div className="md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
           {showSearch && 
-            <Autosuggest 
-              suggestions={this.state.suggestions}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              getSuggestionValue={getSuggestionValue}
-              renderSuggestion={renderSuggestion}
-              inputProps={inputProps}
-              onSuggestionSelected={this.onSuggestionSelected} />}
+            <SearchBar />}
           <i onClick={this._toggleSearch} className={"fa fa-search text-grey loupe-btn pointer" + (showSearch ? "" : " icon-only")} aria-hidden="true"></i>
         </div>
 

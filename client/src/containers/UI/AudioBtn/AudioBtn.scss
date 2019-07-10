@@ -1,3 +1,5 @@
+@import 'src/scss/colors.scss';
+
 .audio-icon-wrapper{
   position: relative;
   width: 40px;
@@ -15,7 +17,7 @@
   align-items: center;
 
   &:hover{
-    background: #eeeeeec2;
+    background: $noirCD;
     border-color: #eeeeeec2;
     box-shadow: none;
   }

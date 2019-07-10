@@ -1,20 +1,23 @@
 @import 'src/scss/colors.scss';
 
-.figma-btn{
+body .figma-btn{
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   border-radius: 12px;
   padding: 10px;
   background: #FFFFFF;
-  color: $noir;
+  color: $grisFonce;
   border:none;
   width: fit-content;
   text-decoration: none;
 
   &:not(.theme){
     &:hover, &:not(:disabled):not(.disabled):active{
-      background: $gris;
+      color: $noir;
+    }
+    &:not(:disabled):not(.disabled):active{
+      background: $noirCD;
     }
     &:focus{
       background: $blanc;
@@ -38,7 +41,7 @@
 
   &.validate{
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(334.49deg, #78E08F 100%, #2CA12A 0%);
+    background: $vert;
     color: #FFFFFF;
     &:hover, &:not(:disabled):not(.disabled):active{
       background: $vert;

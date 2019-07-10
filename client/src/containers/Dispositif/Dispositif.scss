@@ -6,7 +6,7 @@ $imgWidth : 300px;
 $imgHeight : 350px;
 
 .dispositif{
-  
+  flex: 1 1;
   position: relative;
   
   .banniere-dispo{
@@ -32,7 +32,7 @@ $imgHeight : 350px;
       font-style: normal;
       font-weight: bold;
       font-size: 64px;
-      color: #3D3D3D;
+      color: $noir;
       text-transform: initial;
       @include media-max("phone-down") { &.editable{ max-width: calc(100% - 200px); } }
       @include media-max("tablet-up") { font-size: 46px; }
@@ -43,7 +43,7 @@ $imgHeight : 350px;
       font-style: normal;
       font-weight: normal;
       font-size: 32px;
-      color: #3D3D3D;
+      color: $noir;
       @include media-max("tablet-up") { font-size: 24px; }
       @include media-max("phone-down") { font-size: 16px; }
     }
@@ -63,8 +63,17 @@ $imgHeight : 350px;
         z-index:3;
         color: $darkColor;
         border-color: $darkColor;
+        background-color: $blanc;
         border-radius: 12px;
         padding: 10px 13px;
+        &:hover{
+          color: #ffffff;
+          background-color: $darkColor;
+          border-color: $darkColor;
+          svg{
+            fill: #FFF;
+          }
+        }
 
         .icons{
           margin-right: 10px;
@@ -106,7 +115,7 @@ $imgHeight : 350px;
                 margin-top: 10px;
               }
               &.publish-btn{
-                background: linear-gradient(313.13deg, #78E08F 100%, #2CA12A 0%);
+                background: $vert;
                 border-radius: 12px;
                 margin-top: 10px;
               }
@@ -115,6 +124,8 @@ $imgHeight : 350px;
           .card-footer{
             background: transparent;
             border:none;
+            padding-right: 0;
+            padding-top:  5px;
             svg{
               fill: $darkColor;
             }
@@ -148,9 +159,6 @@ $imgHeight : 350px;
     display: flex;
     justify-content: flex-end;
     padding-right:0;
-  }
-  .row.give-it-space{
-    margin: 0 10px;
   }
 
   .subtitle-container{
@@ -199,12 +207,9 @@ $imgHeight : 350px;
     font-size: 18px;
   }
   
-  .pt-40{
-    padding-top: 40px;
-  }
-
   .left-side-col{
-    background: $blanc;
+    background: $gris;
+    padding: 40px 60px;
 
     .sticky-affix{
       position: sticky;
@@ -221,7 +226,7 @@ $imgHeight : 350px;
     .list-group-item{
       background: inherit;
       &:hover{
-        color: gray;
+        color: $noir;
         font-weight: normal;
       }
     }
@@ -257,16 +262,16 @@ $imgHeight : 350px;
       background: transparent;
     }
   }
-  
-  
+
+  .rdw-editor-toolbar{
+    background: none;
+  }
   .toolbar-editeur{
     border:none;
     position: absolute;
-    right: 10px;
-    top: 22px;
-    &.no-top{
-      top: 0;
-    }
+    right: 34px;
+    top: 70px;
+
 
     .blc-gh{
       background: $noir;
@@ -326,19 +331,37 @@ $imgHeight : 350px;
   }
 
   h3.contenu-title{
-    font-size: 40px;
     line-height: normal;
     color: $darkColor;
+    margin-bottom: 2.5rem;
+
   }
   .mt-20{
-    margin-top:20px;
+    margin-top: 40px;
+  }
+
+  .contenu{
+    padding: 0 40px 0 0;
+  }
+  #contenu-0 .toolbar-editeur{
+    top: 32px;
+  }
+
+  .col-middle{
+    padding: 40px 0 0 0;
   }
 
   .contenu-wrapper{
     position:relative;
+    padding: 0 40px;
 
     .relative-position{
       position:relative;
+    }
+
+    .nopadding{
+      margin-left: 0;
+      margin-right: 0;
     }
     .toolbar-col{    
       position: absolute;
@@ -373,10 +396,24 @@ $imgHeight : 350px;
   }
 
   .tags-row{
-    padding : 15px 30px;
+    padding : 15px 60px;
     background: $darkColor;
     margin-right: 0;
     margin-top: -10px;
+    .dropdown-menu.show{
+      border-radius: 12px;
+      border: none;
+      outline: none;
+    .dropdown-item{
+      &:active{
+        background-color: $noir;
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+    
+  }
 
     .en-bref{
       font-size: 24px;
@@ -390,26 +427,25 @@ $imgHeight : 350px;
       box-sizing: border-box;
       font-size: 18px;
       line-height: normal;
-      color: #3D3D3D;
-      height: 41px;
-      margin-left: 12px;
-      background: #FFFFFF;
-      border-radius: 12px;
+      color: #FFFFFF;
+      height: 40px;
+      margin-left: 15px;
       margin-top: 10px;
       width: fit-content;
+      display: flex;
+      align-items: center;
       
       .tag-item{
-        padding: 8px 15px;
-        font-weight: bold;
+        font-weight: 400;
         font-size: 16px;
         line-height: 20px;
-        color: #3D3D3D;
+        color: #ffffff;
         .no-decoration{
           color:inherit;
           text-decoration: none;
         }
         svg{
-          padding-right: 9px;
+          padding-right: 10px;
         }
       }
     }
@@ -419,6 +455,7 @@ $imgHeight : 350px;
     margin-left: auto;
     margin-right:40px;
     margin-bottom: 20px;
+    padding: 0 40px;
 
     .col{
       padding:0;
@@ -458,7 +495,8 @@ $imgHeight : 350px;
       padding: 10px;
   
       &.active{
-        background: $lightColor;
+        color: #FFF;
+        background: $noir;
         border:none;
       }
   
@@ -469,6 +507,8 @@ $imgHeight : 350px;
   
       .accordion-text{
         margin: 0 18px 0 0;
+        font-size: 18px;
+        font-weight: 600;
       }
       .accordion-number, .accordion-expand{
         width: 50px;
@@ -536,19 +576,19 @@ $imgHeight : 350px;
     font-size: 18px;
 
     .btn{
-      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       font-weight: bold;
       font-size: 16px;
       border-radius: 12px;
+      border: 0.5px solid $rouge;
       color: $rouge;
       
       &:hover{
         background: linear-gradient(118.23deg, rgba(246, 185, 59, 0.3) 12.44%, rgba(229, 80, 57, 0.3) 71.69%);
-        color: #FFFFFF;
       }
       &:active{
         background: linear-gradient(124.79deg, #F6B93B 12.44%, $rouge 71.69%);
         color: #FFFFFF;
+        border: none;
       }
     }
     .thanks-btn{
@@ -665,6 +705,7 @@ $imgHeight : 350px;
   div[contenteditable="true"]{
     min-width: 20px;
     background: white;
+    outline: none;
   }
 
   div[contenteditable=true]:empty:before {
@@ -674,7 +715,7 @@ $imgHeight : 350px;
   }
 
   .wrapper-editeur{
-    border: 2px dashed $darkColor;
+    border: 1px dashed $darkColor;
     border-radius: 12px;
   }
 }
