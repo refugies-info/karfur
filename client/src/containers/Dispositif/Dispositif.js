@@ -561,7 +561,7 @@ class Dispositif extends Component {
         <section className="banniere-dispo backgroundColor-lightColor">
           <Row className="header-row">
             <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
-              <Button color="warning" outline className="color-darkColor borderColor-darkColor">
+              <Button color="warning" outline>
                 <EVAIcon name="corner-up-left-outline" fill={mainTag.darkColor} className="icons" />
                 <span>{t("Retour à la recherche")}</span>
               </Button>
@@ -592,7 +592,7 @@ class Dispositif extends Component {
                 />
               </h1>
               <h2 className="bloc-subtitle">
-                <span>{t("avec le programme")}&nbsp;</span>
+                <span>{t("avec")}&nbsp;</span>
                 <ContentEditable
                   id='titreMarque'
                   html={this.state.content.titreMarque}  // innerHTML of the editable div
@@ -623,8 +623,8 @@ class Dispositif extends Component {
                       <div className="tag-item">
                         <a href={'#item-head-1'} className="no-decoration">
                           {card.typeIcon==="eva" ?
-                            <EVAIcon name={card.titleIcon} fill={variables.noir} /> :
-                            <SVGIcon width="20" height="20" viewBox="0 0 20 20" name={card.titleIcon} />}
+                            <EVAIcon name={card.titleIcon} fill="#FFFFFF"/> :
+                            <SVGIcon fill="#FFFFFF" width="25" height="25" viewBox="0 0 25 25" name={card.titleIcon} />}
                           <span>{texte}</span>
                         </a>
                       </div>
@@ -639,7 +639,7 @@ class Dispositif extends Component {
             <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
           </Col>
         </Row>
-        <Row className="give-it-space">
+        <Row>
           <Col className="left-side-col pt-40" lg="3" md="3" sm="3" xs="12">
             <LeftSideDispositif
               menu={this.state.menu}
@@ -656,7 +656,7 @@ class Dispositif extends Component {
               openAllAccordions={this.openAllAccordions}
             />
           </Col>
-          <Col className="pt-40" lg="7" md="7" sm="7" xs="10">
+          <Col className="pt-40 col-middle" lg="7" md="7" sm="7" xs="10">
             {disableEdit && <Row className="fiabilite-row">
               <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
                 {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
