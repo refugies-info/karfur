@@ -38,8 +38,11 @@ class AdvancedSearch extends Component {
     window.scrollTo(0, 0);
   }
 
-  queryDispositifs = query => {
+  queryDispositifs = (query=null) => {
     this.setState({ showSpinner: true })
+    query = this.state.recherche.filter(x => x.active).map(x => ({[x.queryName]: x.query})).reduce((acc, curr) => ({...acc, ...curr}),{});
+    // query={'tags.short':"Bénévolat"}
+    console.log(query)
     API.get_dispositif({...query, status:'Actif'}).then(data_res => {
       let dispositifs=data_res.data.data
       this.setState({ dispositifs:dispositifs, showSpinner: false })
@@ -107,10 +110,10 @@ class AdvancedSearch extends Component {
       query: subitem.query || subitem.name,
       active: true
     }
-    this.setState({recherche: recherche});
+    this.setState({recherche: recherche}, ()=> this.queryDispositifs());
   }
 
-  desactiver = key => this.setState({recherche: this.state.recherche.map((x, i) => i===key ? initial_data[i] : x)});
+  desactiver = key => this.setState({recherche: this.state.recherche.map((x, i) => i===key ? initial_data[i] : x)}, ()=> this.queryDispositifs());
 
   render() {
     const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
