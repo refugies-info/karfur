@@ -11,7 +11,15 @@ body .figma-btn{
   border:none;
   width: fit-content;
   text-decoration: none;
-
+  
+  svg{
+      fill:$grisFonce;
+    }
+  &:hover{
+    svg{
+      fill: $noir;
+    }
+  }
   &:not(.theme){
     &:hover, &:not(:disabled):not(.disabled):active{
       color: $noir;
@@ -31,8 +39,23 @@ body .figma-btn{
   &.dark{
     background: $noir;
     color: #FFFFFF;
-    &:hover, &:not(:disabled):not(.disabled):active{
+    svg{
+      fill: $blanc;
+    }
+    &:hover{
       background: #000000;
+      color: #FFFFFF;
+      svg{
+        fill: $blanc;
+      }
+    }
+    
+    &:not(:disabled):not(.disabled):active{
+      background: #000000;
+      color: #FFFFFF;
+      svg{
+        fill: $blanc;
+      }
     }
     &:focus{
       background: #000000;
@@ -93,7 +116,11 @@ body .figma-btn{
   }
 
   &.pill{
-    border-radius: 50%;
+    border-radius: 12px;
+    height: auto;
+    svg{
+      fill: $blanc;
+    }
     &:hover, &:not(:disabled):not(.disabled):active, &:focus{
       svg{
         fill: $noir;
