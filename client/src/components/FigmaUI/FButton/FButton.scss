@@ -7,19 +7,17 @@ body .figma-btn{
   border-radius: 12px;
   padding: 10px;
   background: #FFFFFF;
-  color: $noir;
+  color: $grisFonce;
   border:none;
   width: fit-content;
   text-decoration: none;
 
-  &:hover, &:not(:disabled):not(.disabled):active{
-    color: inherit;
-    text-decoration: none;
-  }
-
   &:not(.theme){
     &:hover, &:not(:disabled):not(.disabled):active{
-      background: $gris;
+      color: $noir;
+    }
+    &:not(:disabled):not(.disabled):active{
+      background: $noirCD;
     }
     &:focus{
       background: $blanc;

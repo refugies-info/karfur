@@ -110,7 +110,7 @@ class Dispositif extends Component {
         this.setState({
           _id:itemId,
           menu: dispositif.contenu, 
-          content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact}, 
+          content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact, externalLink: dispositif.externalLink}, 
           sponsors:dispositif.sponsors,
           tags:dispositif.tags,
           creator:dispositif.creatorId,
@@ -118,7 +118,7 @@ class Dispositif extends Component {
           dispositif: dispositif,
           disableEdit: true,
           isDispositifLoading: false,
-          contributeurs: [dispositif.creatorId],
+          contributeurs: [dispositif.creatorId].filter(x => x),
         },()=>this.setColors())
         //On récupère les données de l'utilisateur
         if(API.isAuth()){
@@ -581,7 +581,6 @@ class Dispositif extends Component {
         <EVAIcon onMouseEnter={e => e.target.focus()} {...closeProps} name="close-outline" className="close-icon" />
       </div>
     )}else{return false}};
-
     return(
       <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : " reading-mode")} ref={this.newRef}>
         {/* First general tour */}
@@ -769,44 +768,45 @@ class Dispositif extends Component {
                   <h5>{t("Dispositif.Avis")}</h5>
                   <span>{t("Dispositif.bientot")}</span>
                 </div>
-                <div className="bottom-wrapper">
-                  <ContribCaroussel 
-                    contributeurs={this.state.contributeurs}
-                  />
-                  {/* <div className="people-footer">
+                {this.state.contributeurs.length>0 && 
+                  <div className="bottom-wrapper">
+                    <ContribCaroussel 
+                      contributeurs={this.state.contributeurs}
+                    />
+                    {/* <div className="people-footer">
 
-                    <Row className="depasse-pas">
-                      <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                        <div className="people-title">{t("Contributeurs")}</div>
-                        <div className="people-card">
-                          <img className="people-img" src={creatorImg} alt="juliette"/>
-                          <div className="right-side">
-                            <h6>{creator.username}</h6>
-                            <span>{creator.description}</span>
+                      <Row className="depasse-pas">
+                        <Col lg="6" md="6" sm="12" xs="12" className="people-col">
+                          <div className="people-title">{t("Contributeurs")}</div>
+                          <div className="people-card">
+                            <img className="people-img" src={creatorImg} alt="juliette"/>
+                            <div className="right-side">
+                              <h6>{creator.username}</h6>
+                              <span>{creator.description}</span>
+                            </div>
                           </div>
-                        </div>
-                      </Col>
-                      <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                        <div className="people-title">{t("Traducteurs")}</div>
-                        <div className="people-card">
-                          <img className="people-img" src={hugo} alt="hugo"/>
-                          <div className="right-side">
-                            <h6>Hugo Stéphan</h6>
-                            <span>Designer pour la Diair</span>
+                        </Col>
+                        <Col lg="6" md="6" sm="12" xs="12" className="people-col">
+                          <div className="people-title">{t("Traducteurs")}</div>
+                          <div className="people-card">
+                            <img className="people-img" src={hugo} alt="hugo"/>
+                            <div className="right-side">
+                              <h6>Hugo Stéphan</h6>
+                              <span>Designer pour la Diair</span>
+                            </div>
                           </div>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div> */}
+                        </Col>
+                      </Row>
+                    </div> */}
 
-                  {!this.state.disableEdit &&
-                    <div className="ecran-protection">
-                      <div className="content-wrapper">
-                        <Icon name="alert-triangle-outline" fill="#FFFFFF" />
-                        <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
-                      </div>
-                    </div>}
-                </div>
+                    {!this.state.disableEdit &&
+                      <div className="ecran-protection">
+                        <div className="content-wrapper">
+                          <Icon name="alert-triangle-outline" fill="#FFFFFF" />
+                          <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
+                        </div>
+                      </div>}
+                  </div>}
               </>
             }
 
