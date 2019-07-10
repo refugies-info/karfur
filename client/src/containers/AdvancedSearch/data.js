@@ -1,13 +1,15 @@
+import {filtres} from "../Dispositif/data";
+
 const initial_data = [
   {
     title:'Je suis',
     value: 'réfugié ou accompagnant',
-    query: 'réfugiés',
+    query: 'réfugié',
     queryName: 'audience',
     children:[
       {
         name: 'réfugié ou accompagnant',
-        query:'réfugiés',
+        query:'réfugié',
       },
       {
         name: 'une organisation',
@@ -20,48 +22,7 @@ const initial_data = [
     value: 'apprendre le français',
     query: 'Apprendre le français',
     queryName: 'tags.name',
-    children: [
-      {
-        name: 'trouver un emploi',
-        query: 'Emploi',
-      },
-      {
-        name: 'trouver un dispositif jeune',
-        query: 'Jeune',
-      },
-      {
-        name: "être mobile",
-        query: 'Mobilité',
-      },
-      {
-        name: "être logé",
-        query: 'Logement',
-      },
-      {
-        name: "devenir cultivé",
-        query: 'Culture',
-      },
-      {
-        name: "apprendre le français",
-        query: 'Apprendre le français',
-      },
-      {
-        name: "faire des études",
-        query: 'Etudes',
-      },
-      {
-        name: "faire une formation professionnelle",
-        query: 'Formation professionnelle',
-      },
-      {
-        name: "être accompagné",
-        query: 'Accompagnement',
-      },
-      {
-        name: "trouver autre chose",
-        query: 'Autre',
-      }
-    ]
+    children: filtres.tags
   },
   {
     title:'dans la ville de',
