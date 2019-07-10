@@ -238,7 +238,23 @@ $imgHeight : 350px;
     top: -56px;
     visibility: hidden;
   }
-
+  .plus-wrapper{
+    position: absolute;
+    bottom: 0;
+    right: 15px;
+    width: 50px;
+    height: 36px;
+    z-index: 2;
+    background: $darkColor;
+    border: 0.5px solid $darkColor;
+    border-radius: 12px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .plus-icon{
+      cursor: pointer;
+    }
+  }
   .editor-editeur{
     padding: 0 20px 20px 20px;
 
@@ -358,7 +374,7 @@ $imgHeight : 350px;
       @include media-max("tablet-up") { padding: 0; }
     }
   }
-  .contenu.isHovered{
+  &.reading-mode .contenu.isHovered{
     border-right: 4px solid $darkColor;
     position: relative;
 
@@ -607,7 +623,7 @@ $imgHeight : 350px;
     }
 
     .input-btn{
-      width: 330px;
+      width: 350px;
       padding: 0;
       .form-control {
         padding-right: 12px;
@@ -616,12 +632,23 @@ $imgHeight : 350px;
         border:none;
         border-radius: 12px;
       }
-      .link-icon{
+      .link-icon, .check-icon{
         position: absolute;
-        left: 10px;
         z-index: 2;
         top: 50%;
         transform: translateY(-50%);
+      }
+      .link-icon{
+        left: 10px;
+      }
+      .check-icon{
+        right: 10px;
+        cursor: pointer;
+        &:hover{
+          svg{
+            fill: $noir;
+          }
+        }
       }
     }
   }
@@ -729,16 +756,8 @@ $imgHeight : 350px;
   }
 }
 
-.tooltip-wrapper{
-  background-color: $darkColor;
+.custom-tooltip{
   border-radius: 12px;
-  color: white;
-  font-size: 16px;
-  line-height: 20px;
-  max-width: 100%;
-  padding: 20px;
-  position: relative;
-  width: 800px;
 
   .tooltipContainer{
     margin-bottom: 10px;
@@ -777,4 +796,41 @@ $imgHeight : 350px;
     right: 10px;
     cursor: pointer;
   }
+
+  &.first-tooltip-wrapper{
+    background: #FFFFFF;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    
+    .tooltipFooter {
+      .round-tab {
+        border: 0.5px solid $noir;
+      }
+      .active .round-tab {
+        background: $noir;
+      }
+    }
+
+  }
+
+  &.tooltip-wrapper{
+    background-color: $darkColor;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    line-height: 20px;
+    max-width: 100%;
+    padding: 20px;
+    position: relative;
+    width: 800px;
+  }
+}
+
+
+div[x-placement="bottom"] .custom-tooltip .close-icon{
+  top: 20px;
+}
+
+div[x-placement="left"] .custom-tooltip .close-icon{
+  right: 30px;
 }
