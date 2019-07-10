@@ -10,7 +10,7 @@ const topRightHeader = (props) => {
     return(
       <Col lg="6" md="6" sm="12" xs="12" className="top-right">
         {props.isAuthor && 
-          <div className="top-icon-wrapper" onClick={props.editDispositif}>
+          <div className="top-icon-wrapper mr-10" onClick={props.editDispositif}>
             <EVAIcon name="edit-outline" fill="#3D3D3D" id="editBtn" />
           </div>}
         <div className="top-icon-wrapper" onClick={props.bookmarkDispositif}>
