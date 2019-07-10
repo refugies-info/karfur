@@ -39,27 +39,31 @@ const contenuParagraphe = (props) => {
             <div key={subkey} className={'contenu borderColor-darkColor' + (safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>props.updateUIArray(props.keyValue, subkey, 'isHover', true, e)}>
               <Row className="relative-position">
                 <Col lg="12" md="12" sm="12" xs="12" className="accordeon-col">
-                  <Button 
-                    id="accordion-header" 
-                    color="warning" 
-                    className={"color-darkColor borderColor-darkColor text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} 
-                    onMouseUp={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
-                    aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} 
-                    aria-controls={"collapse" + props.keyValue + "-" + subkey}>
-                    <h5>
-                      <span className="accordion-text">
-                        <ContentEditable
-                          id={props.keyValue}
-                          data-subkey={subkey}
-                          data-target='title'
-                          html={subitem.title}  // innerHTML of the editable div
-                          disabled={props.disableEdit}       // use true to disable editing
-                          onChange={props.handleMenuChange} // handle innerHTML change
-                          onMouseUp={e=> !props.disableEdit && e.stopPropagation()} />
-                      </span>
-                      <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />
-                    </h5>
-                  </Button>
+                  <div className="title-bloc">
+                    <Button 
+                      id="accordion-header" 
+                      color="warning" 
+                      className={"color-darkColor borderColor-darkColor text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} 
+                      onMouseUp={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
+                      aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} 
+                      aria-controls={"collapse" + props.keyValue + "-" + subkey}>
+                      <h5>
+                        <span className="accordion-text">
+                          <ContentEditable
+                            id={props.keyValue}
+                            data-subkey={subkey}
+                            data-target='title'
+                            html={subitem.title}  // innerHTML of the editable div
+                            disabled={props.disableEdit}       // use true to disable editing
+                            onChange={props.handleMenuChange} // handle innerHTML change
+                            onMouseUp={e=> !props.disableEdit && e.stopPropagation()} />
+                        </span>
+                        <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />
+                      </h5>
+                    </Button>
+                    {!props.disableEdit && 
+                      <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="delete-icon ml-10 cursor-pointer" name="minus-circle-outline" fill={variables.noir} />}
+                  </div>
                   <Collapse className="contenu-accordeon" isOpen={safeUiArray(props.keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + props.keyValue + "-" + subkey} aria-labelledby={"heading" + props.keyValue + "-" + subkey}>
                     <EditableParagraph 
                       keyValue={props.keyValue} 
@@ -93,10 +97,13 @@ const contenuParagraphe = (props) => {
                       id={props.keyValue}
                       data-subkey={subkey}
                       data-target='title'
+                      className="display-inline-block"
                       html={subitem.title}  // innerHTML of the editable div
                       disabled={props.disableEdit}       // use true to disable editing
                       onChange={props.handleMenuChange} // handle innerHTML change
                     />
+                    {!props.disableEdit && 
+                      <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="delete-icon ml-10 cursor-pointer" name="minus-circle-outline" fill={variables.noir} />}
                   </h4>
                   <EditableParagraph 
                     keyValue={props.keyValue} 

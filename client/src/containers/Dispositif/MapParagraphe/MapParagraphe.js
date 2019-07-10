@@ -14,13 +14,13 @@ import './MapParagraphe.scss';
 const refs = {}
 class MapParagraphe extends PureComponent {
   state= {
-    isMarkerShown: new Array(this.props.subitem.markers.length).fill(true),
-    showingInfoWindow: new Array(this.props.subitem.markers.length).fill(false), 
+    markers: [],
+    isMarkerShown: [],
+    showingInfoWindow: [], 
     isDropdownOpen: false,
     dropdownValue: _.get(this.props.subitem.markers, "0.ville"),
     zoom: 5,
     center:{ lat: 48.856614, lng: 2.3522219 },
-    markers:this.props.subitem.markers,
     selectedMarker:-1,
     showModal:false,
     showSidebar: false,
@@ -33,6 +33,16 @@ class MapParagraphe extends PureComponent {
     }
   }
 
+  static getDerivedStateFromProps(nextProps, prevState){
+    if(nextProps.subitem.markers!==prevState.markers && nextProps.subitem.markers.length > (prevState.markers || []).length){
+      return { 
+        markers: nextProps.subitem.markers,
+        isMarkerShown: new Array(nextProps.subitem.markers.length).fill(true),
+        showingInfoWindow: new Array(nextProps.subitem.markers.length).fill(false)
+      };
+    } else return null;
+  }
+  
   componentDidUpdate (){
     if(!this.props.disableEdit && !this.props.subitem.isMapLoaded){
       this.setState({showModal:true})
@@ -42,10 +52,8 @@ class MapParagraphe extends PureComponent {
   onMapMounted = ref => refs.map = ref;
   onSearchBoxMounted =  ref => refs.searchBox = ref;
 
-
   onPlacesChanged = () => {
     const place = _.get(refs.searchBox.getPlaces(), "0", {});
-    console.log(place)
     const nextMarker = {
       latitude: place.geometry.location.lat(),
       longitude: place.geometry.location.lng(),
@@ -62,7 +70,7 @@ class MapParagraphe extends PureComponent {
       place_id: place.place_id
     };
     const nextCenter = _.get(nextMarker, 'position', this.state.center);
-    console.log(nextMarker)
+
     let tempMarkerInfo = [...this.state.markerInfo]
     if(nextMarker.name){_.set(tempMarkerInfo, "0.value", nextMarker.name);}
     _.set(tempMarkerInfo, "1.value", nextMarker.address);
@@ -81,13 +89,12 @@ class MapParagraphe extends PureComponent {
     });
   }
 
-
-
   handleMarkerClick = (e, marker, key) => {
-    console.log(this.state.markerInfo.map(x => marker[x.item] ? {...x, value: marker[x.item]} : x))
     this.setState({
       showSidebar: true,
       markerInfo: this.state.markerInfo.map(x => marker[x.item] ? {...x, value: marker[x.item]} : x),
+      zoom: 15,
+      center: {lat: marker.latitude, lng: marker.longitude}
       // showingInfoWindow: this.state.showingInfoWindow.map((x, id) => id===key ? !x : false)
     });
   }
@@ -158,6 +165,7 @@ class MapParagraphe extends PureComponent {
       ...markers[this.state.selectedMarker],
       ...this.state.markerInfo.reduce((accumulateur, valeurCourante) => ({...accumulateur, [valeurCourante.item] : valeurCourante.value}), {})
     }
+    this.props.setMarkers(markers, this.props.keyValue, this.props.subkey);
     this.setState({markers: markers, showSidebar: false})
   }
 
@@ -173,13 +181,11 @@ class MapParagraphe extends PureComponent {
                 <span>{this.state.dropdownValue}</span>
               </DropdownToggle>
               <DropdownMenu>
-                {markers.map((marker, key) => {
-                  return (
-                    <DropdownItem key={key} onClick={()=>this.selectLocation(key)}>
-                      {marker.ville}
-                    </DropdownItem>
-                  )}
-                )}
+                {markers.map((marker, key) => (
+                  <DropdownItem key={key} onClick={()=>this.selectLocation(key)}>
+                    {marker.name}
+                  </DropdownItem> 
+                ))}
               </DropdownMenu>
             </ButtonDropdown>
             {/* <Button color="warning" onClick={this.toggleModal}>Changer le fichier de données</Button>} */}
@@ -189,11 +195,12 @@ class MapParagraphe extends PureComponent {
             <MapComponent
               onMarkerClick={this.handleMarkerClick}
               onClose={this.onClose}
-              markers={this.state.markers || []}
+              markers={markers || []}
               toggleDropdown={this.toggleDropdown}
               onMapMounted = {this.onMapMounted}
               onSearchBoxMounted = {this.onSearchBoxMounted}
               onPlacesChanged = {this.onPlacesChanged}
+              disableEdit = {this.props.disableEdit}
               {...this.state}
             />
           </div>

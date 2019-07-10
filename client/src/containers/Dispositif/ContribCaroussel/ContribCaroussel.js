@@ -43,7 +43,7 @@ class ContribCaroussel extends Component {
     const { contributeurs, t, width } = this.props;
     const { activeIndex } = this.state;
     let nbCards = Math.floor( ( (width - 2 * 10 ) * 7/12 - 2 * (15 + 20) ) / (140 + 20))
-    console.log(contributeurs)
+    
     let reduced_contributeurs=(contributeurs || []).reduce((acc, curr, i) => {
       if (i > 0 && i % nbCards === 0 && i !== contributeurs.length-1) {
         return {currGrp:[curr], groupedData: [...acc.groupedData, acc.currGrp]}
