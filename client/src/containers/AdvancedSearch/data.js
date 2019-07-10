@@ -53,15 +53,23 @@ const initial_data = [
     children:[
       {
         name: "moins de 18 ans",
+        bottomValue:0,
+        topValue:18
       },
       {
         name: "entre 18 et 25 ans",
+        bottomValue:18,
+        topValue:25
       },
       {
         name: "entre 25 et 56 ans",
+        bottomValue:25,
+        topValue:56
       },
       {
         name: "56 ans et plus",
+        bottomValue:56,
+        topValue:120
       }
     ]
   },
@@ -74,18 +82,23 @@ const initial_data = [
     children:[
       {
         name: "pas du tout",
+        query: "Débutant",
       },
       {
         name: "un peu",
+        query: "Débutant",
       },
       {
         name: "moyennement",
+        query: "Intermédiaire",
       },
       {
         name: "bien",
+        query: "Intermédiaire",
       },
       {
         name: "très bien",
+        query: "Avancé",
       }
     ]
   }
