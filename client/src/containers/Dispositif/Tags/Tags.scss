@@ -13,6 +13,10 @@
     border-radius: 12px;
     color: #FFFFFF;
     margin-top:10px;
+    &:hover{
+      background: #ffffff;
+      color: $noir;
+    }
     
     .btn{
       background: transparent;
@@ -22,8 +26,12 @@
       border:none;
       color:inherit;
       padding:10px;
-      &:focus, &:not(:disabled):not(.disabled):active {
-        color: #FFF;
+   
+      &:focus {
+        background: transparent;
+      }
+      &:not(:disabled):not(.disabled):active {
+        color: $noir;
         box-shadow: none;
         border-color: transparent;
         background-color: transparent;
