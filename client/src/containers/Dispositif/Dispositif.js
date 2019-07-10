@@ -444,8 +444,8 @@ class Dispositif extends Component {
 
   editDispositif = () => this.setState({disableEdit: false}, ()=>this.setColors())
 
-  pushReaction = (modalName, fieldName) => {
-    this.toggleModal(false, modalName);
+  pushReaction = (modalName=null, fieldName) => {
+    if(modalName){this.toggleModal(false, modalName);}
     let dispositif = {
       dispositifId: this.state._id,
       keyValue: this.state.tKeyValue, 
@@ -582,7 +582,7 @@ class Dispositif extends Component {
               <span>Terminer</span> : 
               <span>
                 Suivant
-                <EVAIcon name="arrow-forward-outline" fill={variables.noir} className="ml-10" />
+                <EVAIcon name="arrow-forward-outline" fill={variables.grisFonce} className="ml-10" />
               </span>}
           </FButton>
         </div>
@@ -765,10 +765,10 @@ class Dispositif extends Component {
                     <span className="color-darkColor">{t("Dispositif.remerciez")}&nbsp;:</span>
                   </div>
                   <div>
-                    <Button color="light" className="thanks-btn">
+                    <Button color="light" className="thanks-btn" onClick={()=>this.pushReaction(null, "merci")}>
                       {t("Merci")} 🙏 
                     </Button>
-                    <Button color="light" className="down-btn">
+                    <Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
                       👎
                     </Button>
                   </div>

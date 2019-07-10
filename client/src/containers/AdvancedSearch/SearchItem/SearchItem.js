@@ -22,8 +22,8 @@ class SearchItem extends Component {
     const {item, keyValue} = this.props;
     return (
       <div className="search-col">
-        <span>{item.title}</span>
-        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        <div>{item.title}</div>
+        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="display-inline-block">
           <DropdownToggle
             tag="div"
             data-toggle="dropdown"
@@ -49,6 +49,7 @@ class SearchItem extends Component {
             </div>
           </DropdownMenu>
         </Dropdown>
+        <span className="ml-10">{item.title2}</span>
       </div>
     )
   }
