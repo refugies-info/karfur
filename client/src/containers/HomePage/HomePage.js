@@ -18,14 +18,13 @@ import SVGIcon from "../../components/UI/SVGIcon/SVGIcon"
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
+import SearchBar from '../UI/SearchBar/SearchBar';
 
 import './HomePage.scss';
 import variables from 'scss/colors.scss';
 
 const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const getSuggestionValue = suggestion => {
-  console.log('la');
-  return suggestion.titreInformatif ? (suggestion.titreMarque + " - " + suggestion.titreInformatif) : suggestion.title;}
+const getSuggestionValue = suggestion => suggestion.titreInformatif ? (suggestion.titreMarque + " - " + suggestion.titreInformatif) : suggestion.title;
 const renderSectionTitle = section => <strong>{section.title}</strong>
 const getSectionSuggestions = section => section.children;
 
@@ -36,44 +35,10 @@ class HomePage extends Component {
     suggestions: [],
   }
 
-  componentDidMount() {
-    API.get_dispositif({ status: 'Actif' }).then(data => {
-      let dispositifs = data.data.data
-      this.setState({ search: this.state.search.map(x => x.type === 'Dispositifs' ? { ...x, children: dispositifs } : x) })
-    })
-    API.get_article({ isStructure: { $ne: true } }).then(data => {
-      let articles = data.data.data;
-      this.setState({ search: this.state.search.map(x => x.type === 'Articles' ? { ...x, children: articles } : x) })
-    })
-  }
-
-  onChange = (_, { newValue }) => this.setState({ value: newValue });
-
-  onSuggestionsFetchRequested = debounce(({ value }) => {console.log('ici');this.setState({ suggestions: this.getSuggestions(value) })}, 200)
-
-  onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
-
-  getSuggestions = value => {
-    console.log(value);
-    const escapedValue = escapeRegexCharacters(value.trim());
-    if (escapedValue === '') { return []; }
-    const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
-    return this.props.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif) || regex.test(dispositif.abstract) || regex.test(dispositif.contact) || (dispositif.tags || []).some(x => regex.test(x)) || (dispositif.audience || []).some(x => regex.test(x)) || (dispositif.audienceAge || []).some(x => regex.test(x)) || this.findInContent(dispositif.contenu, regex));
-  }
-
-  findInContent = (contenu, regex) => contenu.some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent(x.children, regex)));
-
-  validate = (suggestion) => {
-    this.props.history.push((suggestion.titreMarque ? '/dispositif/' : '/article/') + suggestion._id)
-  }
-
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
 
   render() {
     const { t } = this.props;
-
-    const renderSuggestion = suggestion => <span onClick={() => this.validate(suggestion)}>{suggestion.titreInformatif ? (suggestion.titreMarque + " - " + suggestion.titreInformatif) : suggestion.title}</span>
-    const inputProps = { placeholder: 'Chercher', value: this.state.value, onChange: this.onChange };
     return (
       <div className="animated fadeIn homepage">
         <section id="hero">
@@ -82,17 +47,7 @@ class HomePage extends Component {
             <h5>Cherchez un des 13 dispositifs, démarches ou articles dédiés aux personnes réfugiées</h5>
             <div className="search-row">
               <div className="input-group md-form form-sm form-2 pl-0">
-                <Autosuggest
-                  multiSection={true}
-                  suggestions={this.state.suggestions}
-                  onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                  onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                  getSuggestionValue={getSuggestionValue}
-                  renderSuggestion={renderSuggestion}
-                  renderSectionTitle={renderSectionTitle}
-                  getSectionSuggestions={getSectionSuggestions}
-                  inputProps={inputProps} />
-                {/*  <input className="form-control my-0 py-1 amber-border" type="text" placeholder="Chercher" aria-label="Chercher" /> */}
+                <SearchBar />
                 <div className="input-group-append">
                   <span className="input-group-text amber lighten-3" id="basic-text1">
                     Valider

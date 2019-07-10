@@ -2,11 +2,7 @@ import React, { Component, Suspense } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
 import { Col, Row, Button, Collapse, CardBody, CardFooter, Spinner } from 'reactstrap';
-import Autosuggest from 'react-autosuggest';
-import AutosuggestHighlightMatch from 'autosuggest-highlight/match'
-import AutosuggestHighlightParse from 'autosuggest-highlight/parse'
 import Swal from 'sweetalert2';
-import debounce from 'lodash.debounce';
 import querySearch from "stringquery";
 
 import {randomColor} from '../../components/Functions/ColorFunctions'
@@ -15,6 +11,7 @@ import {FemmeDispo, HommeDispo} from '../../assets/figma'
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import {filtres} from '../Dispositif/data';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
+import SearchBar from '../UI/SearchBar/SearchBar';
 
 import './Dispositifs.scss';
 
@@ -22,17 +19,12 @@ const loading = () => <div className="animated fadeIn pt-1 text-center">Chargeme
 
 const ParkourOnBoard = React.lazy(() => import('../ParkourOnBoard/ParkourOnBoard'));
 
-const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const getSuggestionValue = suggestion => suggestion.titreMarque + " - " + suggestion.titreInformatif;
-
 class Dispositifs extends Component {
   state = {
     dispositifs:[],
     dispositif:{},
     showModal:false,
     showSearch:false,
-    value: '',
-    suggestions: [],
     showSpinner:true,
     tags: filtres.tags.map(x => ({...x, active: false})),
     color: null
@@ -64,24 +56,6 @@ class Dispositifs extends Component {
 
   _toggleSearch = () => this.setState(prevState=>{return {showSearch:!prevState.showSearch}})
 
-  onChange = (_, { newValue }) => this.setState({ value: newValue });
-
-  onSuggestionsFetchRequested = debounce( ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }), 200)
-
-  onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
-
-  getSuggestions = value => {
-    console.log(value)
-    const escapedValue = escapeRegexCharacters(value.trim());
-    if (escapedValue === '') { return [];}
-    const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
-    return this.state.dispositifs.filter(dispositif => regex.test(dispositif.titreMarque) || regex.test(dispositif.titreInformatif) || regex.test(dispositif.abstract) || regex.test(dispositif.contact) || (dispositif.tags || []).some(x => regex.test(x)) || (dispositif.audience || []).some(x => regex.test(x)) || (dispositif.audienceAge || []).some(x => regex.test(x)) || this.findInContent(dispositif.contenu, regex) );
-  }
-
-  findInContent = (contenu, regex) => contenu.some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent (x.children, regex)) );
-
-  onSuggestionSelected = (_,{suggestion}) => this.goToDispositif(suggestion, true)
-
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
     this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
@@ -92,25 +66,7 @@ class Dispositifs extends Component {
   render() {
     const { t } = this.props;
     let {showSpinner, tags, color} = this.state;
-    const renderSuggestion = (suggestion, { query }) => {
-      const suggestionText = `${suggestion.titreMarque} - ${suggestion.titreInformatif}`;
-      const matches = AutosuggestHighlightMatch(suggestionText, query + ' ' + query);
-      const parts = AutosuggestHighlightParse(suggestionText, matches);
-      return (
-        <span className={'suggestion-content'}>
-          <span className="name">
-            {parts.map((part, index) => {
-              const className = part.highlight ? 'highlight' : null;
-  
-              return <span className={className} key={index}>{part.text}</span>;
-            })}
-          </span>
-        </span>
-      );
-    }
-
-    const inputProps = { placeholder: 'Chercher', value: this.state.value, onChange: this.onChange };
-
+    
     return (
       <div className="animated fadeIn dispositifs">
         <section id="hero">
@@ -122,14 +78,7 @@ class Dispositifs extends Component {
                 <h2>{t('Dispositifs.Subheader')}</h2>
                 
                 <div className="input-group md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
-                  <Autosuggest 
-                    suggestions={this.state.suggestions}
-                    onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-                    onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-                    getSuggestionValue={getSuggestionValue}
-                    renderSuggestion={renderSuggestion}
-                    inputProps={inputProps}
-                    onSuggestionSelected={this.onSuggestionSelected} />
+                  <SearchBar />
                   <i className="fa fa-search text-grey search-btn" aria-hidden="true"></i>
                 </div>
               </Col>

@@ -21,6 +21,11 @@ var dispositifSchema = mongoose.Schema({
 		unique: false,
 		required: false
   },
+  externalLink: {
+    type: String,
+		unique: false,
+		required: false
+  },
   contenu: {
     type: Object,
 		unique: false,
