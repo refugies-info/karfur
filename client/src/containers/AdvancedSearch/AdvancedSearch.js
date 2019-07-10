@@ -40,8 +40,11 @@ class AdvancedSearch extends Component {
 
   queryDispositifs = (query=null) => {
     this.setState({ showSpinner: true })
-    query = this.state.recherche.filter(x => x.active).map(x => ({[x.queryName]: x.query})).reduce((acc, curr) => ({...acc, ...curr}),{});
-    // query={'tags.short':"Bénévolat"}
+    query = this.state.recherche.filter(x => x.active && x.queryName!=='localisation').map(x => (
+      x.queryName === "audienceAge" ? 
+      { "audienceAge.bottomValue": { $lt: x.topValue}, "audienceAge.topValue": { $gt: x.bottomValue} } :
+      {[x.queryName]: x.query}
+    )).reduce((acc, curr) => ({...acc, ...curr}),{});
     console.log(query)
     API.get_dispositif({...query, status:'Actif'}).then(data_res => {
       let dispositifs=data_res.data.data
@@ -108,7 +111,9 @@ class AdvancedSearch extends Component {
       ...recherche[key],
       value: subitem.name,
       query: subitem.query || subitem.name,
-      active: true
+      active: true,
+      ...(subitem.bottomValue && {bottomValue: subitem.bottomValue}),
+      ...(subitem.topValue && {topValue: subitem.topValue}),
     }
     this.setState({recherche: recherche}, ()=> this.queryDispositifs());
   }
