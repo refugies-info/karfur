@@ -1,13 +1,15 @@
+import {filtres} from "../Dispositif/data";
+
 const initial_data = [
   {
     title:'Je suis',
-    value: 'réfugié',
-    query: 'réfugiés',
+    value: 'réfugié ou accompagnant',
+    query: 'réfugié',
     queryName: 'audience',
     children:[
       {
-        name: 'réfugié et accompagnant',
-        query:'réfugiés',
+        name: 'réfugié ou accompagnant',
+        query:'réfugié',
       },
       {
         name: 'une organisation',
@@ -19,49 +21,8 @@ const initial_data = [
     title:'et je cherche à',
     value: 'apprendre le français',
     query: 'Apprendre le français',
-    queryName: 'tags',
-    children: [
-      {
-        name: 'trouver un emploi',
-        query: 'Emploi',
-      },
-      {
-        name: 'trouver un dispositif jeune',
-        query: 'Jeune',
-      },
-      {
-        name: "être mobile",
-        query: 'Mobilité',
-      },
-      {
-        name: "être logé",
-        query: 'Logement',
-      },
-      {
-        name: "devenir cultivé",
-        query: 'Culture',
-      },
-      {
-        name: "apprendre le français",
-        query: 'Apprendre le français',
-      },
-      {
-        name: "faire des études",
-        query: 'Etudes',
-      },
-      {
-        name: "faire une formation professionnelle",
-        query: 'Formation professionnelle',
-      },
-      {
-        name: "être accompagné",
-        query: 'Accompagnement',
-      },
-      {
-        name: "trouver autre chose",
-        query: 'Autre',
-      }
-    ]
+    queryName: 'tags.name',
+    children: filtres.tags
   },
   {
     title:'dans la ville de',
@@ -86,45 +47,58 @@ const initial_data = [
     ]
   },
   {
-    title:'J\'ai entre',
-    value: '18 et 25 ans',
+    title:'J\'ai',
+    value: 'entre 18 et 25 ans',
     queryName: 'audienceAge',
     children:[
       {
         name: "moins de 18 ans",
+        bottomValue:0,
+        topValue:18
       },
       {
-        name: "18 à 25 ans",
+        name: "entre 18 et 25 ans",
+        bottomValue:18,
+        topValue:25
       },
       {
-        name: "25 et 56 ans",
+        name: "entre 25 et 56 ans",
+        bottomValue:25,
+        topValue:56
       },
       {
-        name: "56 et plus",
+        name: "56 ans et plus",
+        bottomValue:56,
+        topValue:120
       }
     ]
   },
   {
     title:'et je parle',
     value: 'un peu',
-    title2:' français.',
+    title2:'français.',
     queryName: 'niveauFrancais',
     append: 'Quel est mon niveau ?',
     children:[
       {
         name: "pas du tout",
+        query: "Débutant",
       },
       {
         name: "un peu",
+        query: "Débutant",
       },
       {
         name: "moyennement",
+        query: "Intermédiaire",
       },
       {
         name: "bien",
+        query: "Intermédiaire",
       },
       {
         name: "très bien",
+        query: "Avancé",
       }
     ]
   }

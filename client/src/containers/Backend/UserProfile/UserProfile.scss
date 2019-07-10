@@ -1,4 +1,5 @@
 @import 'src/scss/global.scss';
+@import 'src/scss/colors.scss';
 
 $defaultSize:310px;
 .user-profile{
@@ -446,8 +447,8 @@ $defaultSize:310px;
     }
 
     h1{
-      font-size: 64px;
-      color: #3D3D3D;
+      font-size: 40px;
+      color: $noir;
       display: inline;
       @include media-max("phone-down") { font-size: 46px; }
     }
@@ -479,7 +480,9 @@ $defaultSize:310px;
         }
       }
     }
-    
+    .ecran-protection .content-wrapper{
+      max-width: 650px;
+    }
     .tableau-footer{
       display: flex;
       justify-content: flex-end;

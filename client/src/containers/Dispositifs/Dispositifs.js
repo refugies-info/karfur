@@ -122,7 +122,7 @@ class Dispositifs extends Component {
                 <Col xs="12" sm="6" md="3" lg="3" key={dispositif._id}>
                   <CustomCard onClick={() => this.goToDispositif(dispositif)}>
                     <CardBody>
-                      <h3>{dispositif.titreInformatif}</h3>
+                      <h5>{dispositif.titreInformatif}</h5>
                       <p>{dispositif.abstract}</p>
                     </CardBody>
                     <CardFooter className={"align-right bg-"+ (color || randomColor())}>{dispositif.titreMarque}</CardFooter>

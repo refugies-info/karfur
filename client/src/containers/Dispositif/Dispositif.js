@@ -56,8 +56,8 @@ class Dispositif extends Component {
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : ''), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
     content:contenu,
     sponsors:sponsorsData,
-    tags:["me loger", "apprendre le français"],
-    mainTag: {darkColor: variables.noir, lightColor: variables.blanc, hoverColor: variables.gris},
+    tags:[{short:"Logement"}, {short:"Français"}],
+    mainTag: {darkColor: variables.darkColor, lightColor: variables.lightColor, hoverColor: variables.gris},
     dateMaj:new Date(),
     
     hovers: menu.map((x) => {return {isHover:false, ...( x.children && {children: new Array(x.children.length).fill({isHover:false})})}}),
@@ -119,6 +119,7 @@ class Dispositif extends Component {
           disableEdit: true,
           isDispositifLoading: false,
           contributeurs: [dispositif.creatorId].filter(x => x),
+          mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x.name === dispositif.tags[0].name) || {}) : {},
         },()=>this.setColors())
         //On récupère les données de l'utilisateur
         if(API.isAuth()){
@@ -248,7 +249,7 @@ class Dispositif extends Component {
   };
 
   updateUIArray=(key, subkey=null, node='isHover', value=true)=>{
-    let uiArray = JSON.parse(JSON.stringify(this.state.uiArray));
+    let uiArray = [...this.state.uiArray];
     uiArray = uiArray.map((x,idx) => {return {
       ...x,
       ...((subkey==null && idx==key && {[node] : value}) || {[node] : false}), 
@@ -343,9 +344,11 @@ class Dispositif extends Component {
     niveaux = niveaux.some( x => x===nv) ? niveaux.filter(x => x!==nv) : [...niveaux, nv]
     this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, niveaux: niveaux} : y)} : x) })
   }
+
   toggleFree = (key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, free: !y.free} : y)} : x) })
   changePrice = (e, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, price: e.target.value} : y)} : x) })
   changeAge = (e, key, subkey, isBottom=true) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, [isBottom ? "bottomValue" : "topValue"]: (e.target.value || "").replace(/\D/g, '')} : y)} : x) })
+  setMarkers = (markers, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, markers: markers} : y)} : x) })
 
   startFirstJoyRide = () => this.setState({showDispositifCreateModal: false, runFirstJoyRide: true});
   startJoyRide = () => this.setState({runJoyRide: true, stepIndex:0});
@@ -384,7 +387,8 @@ class Dispositif extends Component {
 
   changeTag = (key, value) => {
     this.setState({ 
-      tags: this.state.tags.map((x,i)=> i===key ? value : x), ...(key===0 && {mainTag: filtres.tags.find( x => x.short === value) } ) 
+      tags: this.state.tags.map((x,i)=> i===key ? value : x), 
+      ...(key===0 && {mainTag: filtres.tags.find( x => x.short === value.short) } ) 
     }, () => {
       if(key===0){ this.setColors(); }
     });
@@ -415,12 +419,12 @@ class Dispositif extends Component {
 
   goBack = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goBack' });
-    this.props.history.push("/dispositifs");
+    this.props.history.push("/advanced-search");
   }
 
   createPdf = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'createPdf' });
-    let uiArray = JSON.parse(JSON.stringify(this.state.uiArray));
+    let uiArray = [...this.state.uiArray];
     uiArray = uiArray.map(x => ({
       ...x,
       accordion : true, 
@@ -437,10 +441,10 @@ class Dispositif extends Component {
     })
   }
 
-  editDispositif = () => this.setState({disableEdit: false})
+  editDispositif = () => this.setState({disableEdit: false}, ()=>this.setColors())
 
-  pushReaction = (modalName, fieldName) => {
-    this.toggleModal(false, modalName);
+  pushReaction = (modalName=null, fieldName) => {
+    if(modalName){this.toggleModal(false, modalName);}
     let dispositif = {
       dispositifId: this.state._id,
       keyValue: this.state.tKeyValue, 
@@ -465,9 +469,9 @@ class Dispositif extends Component {
     Object.keys(content).map( k => content[k] = h2p(content[k]))
     let dispositif = {
       ...content,
-      contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, ...(x.children && {children : x.children.map(x => ({...x, ...(x.title && {title: h2p(x.title)})}))}) }}),
+      contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, ...(x.children && {children : x.children.map(x => ({...x, editable: false, ...(x.title && {title: h2p(x.title)})}))}) }}),
       sponsors:this.state.sponsors,
-      tags:this.state.tags,
+      tags: this.state.tags,
       avancement:1,
       status:status,
       dispositifId:this.state._id
@@ -485,6 +489,9 @@ class Dispositif extends Component {
     dispositif.cecrlFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
       [...new Set(cardElement.filter(x=> x.title==='Niveau de français').map(x => x.niveaux).reduce((acc, curr) => [...acc, ...curr]))] :
       [];
+    dispositif.isFree= cardElement.some(x=> x.title==='Combien ça coûte ?') ?
+      cardElement.find(x=> x.title==='Combien ça coûte ?').free :
+      true;
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
@@ -574,7 +581,7 @@ class Dispositif extends Component {
               <span>Terminer</span> : 
               <span>
                 Suivant
-                <EVAIcon name="arrow-forward-outline" fill={variables.noir} className="ml-10" />
+                <EVAIcon name="arrow-forward-outline" fill={variables.grisFonce} className="ml-10" />
               </span>}
           </FButton>
         </div>
@@ -744,6 +751,7 @@ class Dispositif extends Component {
               changeAge = {this.changeAge}
               changePrice={this.changePrice}
               toggleFree = {this.toggleFree}
+              setMarkers = {this.setMarkers}
               filtres={filtres}
               {...this.state}
             />
@@ -756,10 +764,10 @@ class Dispositif extends Component {
                     <span className="color-darkColor">{t("Dispositif.remerciez")}&nbsp;:</span>
                   </div>
                   <div>
-                    <Button color="light" className="thanks-btn">
+                    <Button color="light" className="thanks-btn" onClick={()=>this.pushReaction(null, "merci")}>
                       {t("Merci")} 🙏 
                     </Button>
-                    <Button color="light" className="down-btn">
+                    <Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
                       👎
                     </Button>
                   </div>

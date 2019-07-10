@@ -38,6 +38,9 @@
     &:hover svg{
       fill: $noir;
     }
+    &.pinned{
+      visibility: visible;
+    }
   }
 
   .align-right{
