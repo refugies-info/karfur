@@ -12,7 +12,7 @@ import NavigationItems from '../../components/Navigation/NavigationItems/Navigat
 import DrawerToggle from '../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../utils/API';
 import AudioBtn from '../UI/AudioBtn/AudioBtn';
-import marioProfile from '../../../assets/mario-profile.jpg';
+import marioProfile from '../../assets/mario-profile.jpg';
 import Logo from '../../components/Logo/Logo';
 import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
 import FButton from '../../components/FigmaUI/FButton/FButton';
