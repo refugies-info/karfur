@@ -5,7 +5,8 @@ import Autosuggest from 'react-autosuggest';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import debounce from 'lodash.debounce';
-import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap'
+import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
+import Swal from 'sweetalert2';
 
 ////////A enlever si pas utilisé/////////////:
 import Notifications from '../../components/UI/Notifications/Notifications';
@@ -22,7 +23,9 @@ import './HomePage.scss';
 import variables from 'scss/colors.scss';
 
 const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const getSuggestionValue = suggestion => suggestion.titreInformatif ? (suggestion.titreMarque + " - " + suggestion.titreInformatif) : suggestion.title;
+const getSuggestionValue = suggestion => {
+  console.log('la');
+  return suggestion.titreInformatif ? (suggestion.titreMarque + " - " + suggestion.titreInformatif) : suggestion.title;}
 const renderSectionTitle = section => <strong>{section.title}</strong>
 const getSectionSuggestions = section => section.children;
 
@@ -46,11 +49,12 @@ class HomePage extends Component {
 
   onChange = (_, { newValue }) => this.setState({ value: newValue });
 
-  onSuggestionsFetchRequested = debounce(({ value }) => this.setState({ suggestions: this.getSuggestions(value) }), 200)
+  onSuggestionsFetchRequested = debounce(({ value }) => {console.log('ici');this.setState({ suggestions: this.getSuggestions(value) })}, 200)
 
   onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
 
   getSuggestions = value => {
+    console.log(value);
     const escapedValue = escapeRegexCharacters(value.trim());
     if (escapedValue === '') { return []; }
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
@@ -62,6 +66,8 @@ class HomePage extends Component {
   validate = (suggestion) => {
     this.props.history.push((suggestion.titreMarque ? '/dispositif/' : '/article/') + suggestion._id)
   }
+
+  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
 
   render() {
     const { t } = this.props;
@@ -113,7 +119,7 @@ class HomePage extends Component {
 
             <Row className="card-row">
               <Col lg="4" className="card-col">
-                <Card>
+                <Card className="cursor-pointer" onClick={this.upcoming}>
                   <CardHeader>Comprendre une démarche</CardHeader>
                   <CardBody>
                     <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span>
@@ -126,20 +132,22 @@ class HomePage extends Component {
                 </Card>
               </Col>
               <Col lg="4" className="card-col">
-                <Card>
-                  <CardHeader>Apprendre, travailler, me former, rencontrer</CardHeader>
-                  <CardBody>
-                    <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span>
-                  </CardBody>
-                  <CardFooter>
-                    <FButton type="dark" name="search-outline">
-                      Trouver un dispositif
-                    </FButton>
-                  </CardFooter>
-                </Card>
+                <NavLink to="/dispositifs" className="no-decoration">
+                  <Card>
+                    <CardHeader>Apprendre, travailler, me former, rencontrer</CardHeader>
+                    <CardBody>
+                      <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span>
+                    </CardBody>
+                    <CardFooter>
+                      <FButton type="dark" name="search-outline">
+                        Trouver un dispositif
+                      </FButton>
+                    </CardFooter>
+                  </Card>
+                </NavLink>
               </Col>
               <Col lg="4" className="card-col">
-                <Card>
+                <Card className="cursor-pointer" onClick={this.upcoming}>
                   <CardHeader>Créer mon parcours personnalisé</CardHeader>
                   <CardBody>
                     <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span>
@@ -160,11 +168,13 @@ class HomePage extends Component {
             <div className="section-body">
               <h2>Ouverte à la contribution</h2>
               <p>Agi’r est une plateforme ouverte à la contribution, comme Wikipédia. Son objectif est de centraliser et de garder à jour un maximum d’informations pratiques pour aider les réfugiés à prendre leurs marques en France.</p>
-              <u className="en-savoir-plus">En savoir plus</u>
+              <NavLink to="/qui-sommes-nous">
+                <u>En savoir plus</u>
+              </NavLink>
             </div>
             <footer>
               Déjà 230 contributeurs et contributrices engagés :
-              <FButton type="dark" className="ml-10">
+              <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
                 Je contribue
               </FButton>
             </footer>
@@ -180,7 +190,7 @@ class HomePage extends Component {
             </div>
             <footer>
               Déjà 32 traducteurs et traductrices mobilisés :
-              <FButton type="dark" className="ml-10">
+              <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
                 Je traduis
               </FButton>
             </footer>
@@ -195,7 +205,7 @@ class HomePage extends Component {
             </div>
             <footer>
               Nous ne censurons aucun contenu :
-              <FButton type="dark" className="ml-10">
+              <FButton type="dark" className="ml-10" onClick={this.upcoming}>
                 Notre charte éditoriale
               </FButton>
             </footer>
@@ -206,7 +216,7 @@ class HomePage extends Component {
           <div className="section-container half-width right-side">
             <h2>Explique les mots difficiles</h2>
             <p>Passez la souris sur un mot pour accéder à sa définition. Consulter le Lexique pour apprendre les nombreux mots spécifiques aux démarches administratives.</p>
-            <FButton type="dark">
+            <FButton type="dark" onClick={this.upcoming}>
               Voir le lexique
             </FButton>
           </div>

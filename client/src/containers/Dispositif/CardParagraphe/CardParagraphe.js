@@ -210,7 +210,6 @@ class CardParagraphe extends Component {
     }
 
     let cardFooterContent = subitem => {
-      console.log(subitem)
       if(subitem.footerType==="text"){
         if(subitem.footer !== "Ajouter un message complémentaire") {
           return(
