@@ -103,7 +103,7 @@ export class Toolbar extends React.Component {
             forceShow={false && afficher_burger}
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <Logo />
-          <span>Faciliter l’installation des réfugiés en France</span>
+          <span className="baseline">Construire sa vie en France</span>
         </div>
 
         <nav className="DesktopOnly center-buttons">

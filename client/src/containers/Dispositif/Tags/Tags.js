@@ -3,6 +3,7 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } fr
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
 import './Tags.scss';
+import variables from 'scss/colors.scss';
 
 class Tags extends Component {
   state= {
@@ -48,7 +49,7 @@ class Tags extends Component {
               {!this.props.disableEdit && 
                 <div className="tags-icons">
                   <div onClick={()=>this.removeTag(key)}>
-                    <EVAIcon name="minus-circle-outline" fill="#0D1C2E" className="delete-icon"/>
+                    <EVAIcon name="minus-circle" fill={variables.noirCD} className="delete-icon" size="xlarge"/>
                   </div>
                 </div>}
             </ButtonDropdown>
