@@ -107,7 +107,6 @@ class Dispositif extends Component {
       API.get_dispositif({_id: itemId},{},'creatorId').then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
-        console.log(dispositif.tags, filtres.tags.find(x => x.name === dispositif.tags[0]))
         this.setState({
           _id:itemId,
           menu: dispositif.contenu, 
