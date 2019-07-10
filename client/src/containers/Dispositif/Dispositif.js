@@ -374,7 +374,11 @@ class Dispositif extends Component {
 
   changeCardTitle = (key, subkey, node, value) => {
     const prevState = [...this.state.menu];
-    prevState[key].children[subkey][node]=value;
+    if(node==="title"){
+      prevState[key].children[subkey] = {...menu[1].children.find(x => x.title === value)};
+    }else{
+      prevState[key].children[subkey][node]=value;
+    }
     this.setState({ menu: prevState });
   }
 
@@ -469,25 +473,28 @@ class Dispositif extends Component {
       dispositifId:this.state._id
     }
     let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
-    dispositif.audience= cardElement.find(x=> x.title==='Public visé') ?
-      [(cardElement.find(x=> x.title==='Public visé') || []).contentTitle] :
+    dispositif.audience = cardElement.some(x=> x.title==='Public visé') ?
+      cardElement.filter(x=> x.title==='Public visé').map(x => x.contentTitle) :
       filtres.audience;
-    dispositif.audienceAge= cardElement.find(x=> x.title==='Âge requis') ? 
-      [(cardElement.find(x=> x.title==='Âge requis').contentTitle || '').replace(' à ', '-').replace(' ans', '')] :
-      filtres.audienceAge.map(x=> x.replace(' à ', '-').replace(' ans', ''));
-    dispositif.niveauFrancais= cardElement.find(x=> x.title==='Niveau de français') ?
-      (cardElement.find(x=> x.title==='Niveau de français') || []).contentTitle :
+    dispositif.audienceAge= cardElement.some(x=> x.title==='Âge requis') ? 
+      cardElement.filter(x=> x.title==='Âge requis').map(x => ({contentTitle: x.contentTitle, bottomValue: x.bottomValue, topValue:x.topValue})) :
+      [{contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999}];
+    dispositif.niveauFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
+      cardElement.filter(x=> x.title==='Niveau de français').map(x => x.contentTitle) :
       filtres.niveauFrancais;
+    // dispositif.cecrlFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
+    //   cardElement.filter(x=> x.title==='Niveau de français').map(x => x.contentTitle) :
+    //   filtres.niveauFrancais;
     console.log(dispositif)
-    API.add_dispositif(dispositif).then((data) => {
-      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
-        this.props.fetch_user();
-        this.props.fetch_dispositifs();
-        this.setState({disableEdit: status==='Actif'}, () => {
-          this.props.history.push("/dispositif/" + data.data.data._id)
-        })
-      });
-    },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
+    // API.add_dispositif(dispositif).then((data) => {
+    //   Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+    //     this.props.fetch_user();
+    //     this.props.fetch_dispositifs();
+    //     this.setState({disableEdit: status==='Actif'}, () => {
+    //       this.props.history.push("/dispositif/" + data.data.data._id)
+    //     })
+    //   });
+    // },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
   }
 
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
