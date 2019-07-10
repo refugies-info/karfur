@@ -84,76 +84,77 @@ class QuickToolbar extends Component {
           </Card>
         )
       }else{
-        return(
-          <Card className="quick-toolbar">
-            <CardBody>
-              <Row className="custom-eva-size">
-                <Col lg="4" id="eva-icon-0">
-                  <EVAIcon name={"edit-2" + (this.state.fill[0] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(0)} className='icon-toolbar' />
-                  <Tooltip placement="top" isOpen={this.state.tooltipOpen[0]} target="eva-icon-0" toggle={(e)=>this.toggleTooltip(0,e)}>
-                    édition avancée
-                  </Tooltip>
-                </Col>
-                <Col lg="4" id="eva-icon-1">
-                  <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle>
-                      <EVAIcon name={"plus-circle" + (this.state.fill[1] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(1)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(1)} className='icon-toolbar'/>
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "paragraph", this.props.subkey)} id='paragraph' onMouseEnter={()=>this.toggleColor(0, true)} onMouseLeave={()=>this.toggleColor(0, false)}>
-                        <SVGIcon name="paragraph" fill={this.state.dropdownColor[0]} id="0" />
-                        Paragraphe
-                      </DropdownItem>
-                      <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "card", this.props.subkey)} id='card' onMouseEnter={()=>this.toggleColor(1, true)} onMouseLeave={()=>this.toggleColor(1, false)}>
-                        <EVAIcon name="grid-outline" fill={this.state.dropdownColor[1]} id="1"  />
-                        Info Box
-                      </DropdownItem>
-                      <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "map", this.props.subkey)} id='map' onMouseEnter={()=>this.toggleColor(2, true)} onMouseLeave={()=>this.toggleColor(2, false)}>
-                        <EVAIcon name="pin-outline" fill={this.state.dropdownColor[2]} id="2"  />
-                        Carte
-                      </DropdownItem>
-                      <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "accordion", this.props.subkey)} id='accordion' onMouseEnter={()=>this.toggleColor(3, true)} onMouseLeave={()=>this.toggleColor(3, false)}>
-                        <EVAIcon name="list-outline" fill={this.state.dropdownColor[3]} id="3"  />
-                        Accordéon
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
+        return false
+        // return(
+        //   <Card className="quick-toolbar">
+        //     <CardBody>
+        //       <Row className="custom-eva-size">
+        //         <Col lg="4" id="eva-icon-0">
+        //           <EVAIcon name={"edit-2" + (this.state.fill[0] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(0)} className='icon-toolbar' />
+        //           <Tooltip placement="top" isOpen={this.state.tooltipOpen[0]} target="eva-icon-0" toggle={(e)=>this.toggleTooltip(0,e)}>
+        //             édition avancée
+        //           </Tooltip>
+        //         </Col>
+        //         <Col lg="4" id="eva-icon-1">
+        //           <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.toggle}>
+        //             <DropdownToggle>
+        //               <EVAIcon name={"plus-circle" + (this.state.fill[1] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(1)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(1)} className='icon-toolbar'/>
+        //             </DropdownToggle>
+        //             <DropdownMenu>
+        //               <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "paragraph", this.props.subkey)} id='paragraph' onMouseEnter={()=>this.toggleColor(0, true)} onMouseLeave={()=>this.toggleColor(0, false)}>
+        //                 <SVGIcon name="paragraph" fill={this.state.dropdownColor[0]} id="0" />
+        //                 Paragraphe
+        //               </DropdownItem>
+        //               <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "card", this.props.subkey)} id='card' onMouseEnter={()=>this.toggleColor(1, true)} onMouseLeave={()=>this.toggleColor(1, false)}>
+        //                 <EVAIcon name="grid-outline" fill={this.state.dropdownColor[1]} id="1"  />
+        //                 Info Box
+        //               </DropdownItem>
+        //               <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "map", this.props.subkey)} id='map' onMouseEnter={()=>this.toggleColor(2, true)} onMouseLeave={()=>this.toggleColor(2, false)}>
+        //                 <EVAIcon name="pin-outline" fill={this.state.dropdownColor[2]} id="2"  />
+        //                 Carte
+        //               </DropdownItem>
+        //               <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "accordion", this.props.subkey)} id='accordion' onMouseEnter={()=>this.toggleColor(3, true)} onMouseLeave={()=>this.toggleColor(3, false)}>
+        //                 <EVAIcon name="list-outline" fill={this.state.dropdownColor[3]} id="3"  />
+        //                 Accordéon
+        //               </DropdownItem>
+        //             </DropdownMenu>
+        //           </Dropdown>
 
                   
-                  <Tooltip placement="top" isOpen={this.state.tooltipOpen[1]} target="eva-icon-1" toggle={()=>this.toggleTooltip(1)}>
-                    ajouter
-                  </Tooltip>
-                </Col>
-                <Col lg="4" id="eva-icon-2">
-                  <EVAIcon name={"minus-circle" + (this.state.fill[2] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(2)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(2)} className='icon-toolbar'/>
-                  <Tooltip placement="top" isOpen={this.state.tooltipOpen[2]} target="eva-icon-2" toggle={()=>this.toggleTooltip(2)}>
-                    effacer
-                  </Tooltip>
-                </Col>
+        //           <Tooltip placement="top" isOpen={this.state.tooltipOpen[1]} target="eva-icon-1" toggle={()=>this.toggleTooltip(1)}>
+        //             ajouter
+        //           </Tooltip>
+        //         </Col>
+        //         <Col lg="4" id="eva-icon-2">
+        //           <EVAIcon name={"minus-circle" + (this.state.fill[2] ? '' : '-outline')} fill="#3D3D3D" onMouseEnter={()=>this._hoverOn(2)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(2)} className='icon-toolbar'/>
+        //           <Tooltip placement="top" isOpen={this.state.tooltipOpen[2]} target="eva-icon-2" toggle={()=>this.toggleTooltip(2)}>
+        //             effacer
+        //           </Tooltip>
+        //         </Col>
 
-                {/* <Col lg="4" className={(this.state.fillColor[0] === '#828282' ? 'hovered': this.state.fillColor[0] === '#3D3D3D' ? 'clicked':'')} onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={()=>this._hoverOff(0)} onClick={()=>this._onClick(1)} id='0' >
-                  <Icon name="edit" fill={this.state.fillColor[0]} />
-                </Col>
-                <Col lg="4" className={(this.state.fillColor[1] === '#828282' ? 'hovered': this.state.fillColor[1] === '#3D3D3D' ? 'clicked':'')} onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={()=>this._hoverOff(0)} id='1'>
-                  <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle>
-                      <Icon name="plus-circle" fill={this.state.fillColor[1]} />
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem id='paragraph'>Paragraphe</DropdownItem>
-                      <DropdownItem id='card'>Card</DropdownItem>
-                      <DropdownItem id='accordion'>Accordéon</DropdownItem>
-                      <DropdownItem id='map'>Map</DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                </Col>
-                <Col lg="4" className={(this.state.fillColor[2] === '#828282' ? 'hovered': this.state.fillColor[2] === '#3D3D3D' ? 'clicked':'')} onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={()=>this._hoverOff(0)} onClick={()=>this._onClick(1)} id='2'>
-                  <Icon name="minus-circle" size="xlarge" fill={this.state.fillColor[2]} />
-                </Col> */}
-              </Row>
-            </CardBody>
-          </Card>
-        )
+        //         {/* <Col lg="4" className={(this.state.fillColor[0] === '#828282' ? 'hovered': this.state.fillColor[0] === '#3D3D3D' ? 'clicked':'')} onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={()=>this._hoverOff(0)} onClick={()=>this._onClick(1)} id='0' >
+        //           <Icon name="edit" fill={this.state.fillColor[0]} />
+        //         </Col>
+        //         <Col lg="4" className={(this.state.fillColor[1] === '#828282' ? 'hovered': this.state.fillColor[1] === '#3D3D3D' ? 'clicked':'')} onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={()=>this._hoverOff(0)} id='1'>
+        //           <Dropdown isOpen={this.state.isDropdownOpen} toggle={this.toggle}>
+        //             <DropdownToggle>
+        //               <Icon name="plus-circle" fill={this.state.fillColor[1]} />
+        //             </DropdownToggle>
+        //             <DropdownMenu>
+        //               <DropdownItem id='paragraph'>Paragraphe</DropdownItem>
+        //               <DropdownItem id='card'>Card</DropdownItem>
+        //               <DropdownItem id='accordion'>Accordéon</DropdownItem>
+        //               <DropdownItem id='map'>Map</DropdownItem>
+        //             </DropdownMenu>
+        //           </Dropdown>
+        //         </Col>
+        //         <Col lg="4" className={(this.state.fillColor[2] === '#828282' ? 'hovered': this.state.fillColor[2] === '#3D3D3D' ? 'clicked':'')} onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={()=>this._hoverOff(0)} onClick={()=>this._onClick(1)} id='2'>
+        //           <Icon name="minus-circle" size="xlarge" fill={this.state.fillColor[2]} />
+        //         </Col> */}
+        //       </Row>
+        //     </CardBody>
+        //   </Card>
+        // )
       }
     }else{
       return null

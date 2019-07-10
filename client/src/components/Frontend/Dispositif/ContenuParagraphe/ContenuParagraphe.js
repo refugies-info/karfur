@@ -62,13 +62,14 @@ const contenuParagraphe = (props) => {
                   </Button>
                   <Collapse className="contenu-accordeon" isOpen={safeUiArray(props.keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + props.keyValue + "-" + subkey} aria-labelledby={"heading" + props.keyValue + "-" + subkey}>
                     <EditableParagraph 
-                      idx={props.keyValue} 
+                      keyValue={props.keyValue} 
                       subkey={subkey} 
                       handleMenuChange={props.handleMenuChange}
                       onEditorStateChange={props.onEditorStateChange}
                       handleContentClick={props.handleContentClick}
                       disableEdit={props.disableEdit}
                       tutoriel={item.tutoriel}
+                      addItem={props.addItem}
                       {...subitem} />
                   </Collapse>
                 </Col>
@@ -98,7 +99,7 @@ const contenuParagraphe = (props) => {
                     />
                   </h4>
                   <EditableParagraph 
-                    idx={props.keyValue} 
+                    keyValue={props.keyValue} 
                     subkey={subkey} 
                     handleMenuChange={props.handleMenuChange}
                     onEditorStateChange={props.onEditorStateChange}
