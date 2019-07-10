@@ -37,7 +37,7 @@ const languageModal = (props) => {
                       <Progress color={colorAvancement(props.languages[element].avancement)} value={props.languages[element].avancement*100} />
                       <span>{Math.round(props.languages[element].avancement*100 || 0,0) + ' %'}</span>
                     </Col>
-                    <Col lg="1">
+                    <Col lg="1" className="icon-col">
                       {props.languages[element].i18nCode === props.current_language &&
                         <Icon name="checkmark-circle-2" fill="#3D3D3D" /> }
                     </Col>
