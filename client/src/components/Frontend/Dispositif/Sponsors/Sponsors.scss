@@ -57,6 +57,7 @@ $tailleBig:80px;
     padding: 20px;
     &:hover{
       cursor: pointer;
+      background-color: $grisFonce;
     }
     .add-sign{
       border-radius: 50%;
@@ -64,6 +65,7 @@ $tailleBig:80px;
       margin-right: 10px;
       font-size: 20px;
       line-height: 20px;
+      height: 40px;
     }
 
     .add-text{

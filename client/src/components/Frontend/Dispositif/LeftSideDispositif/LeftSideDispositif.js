@@ -9,7 +9,7 @@ import FButton from '../../../FigmaUI/FButton/FButton';
 import variables from 'scss/colors.scss';
 
 const leftSideDispositif = (props) => {
-  const onLinkClicked = props.disableEdit ? null :props.toggleInputBtnClicked ;
+  const onLinkClicked = props.disableEdit ? (()=>window.open(props.content.externalLink, "_blank")) : props.toggleInputBtnClicked ;
   return(
     <div className="sticky-affix">
       <ListGroup className="list-group-flush">
