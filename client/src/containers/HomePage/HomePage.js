@@ -55,10 +55,10 @@ class HomePage extends Component {
                 </div>
               </div>
               <div>
-                <div>ou essayez la</div>
+                <div className="try-it-out">ou essayez la :</div>
                 <NavLink to="/advanced-search">
                   <FButton type="dark">
-                    <SVGIcon name="fire" className="mr-10" />
+                    <EVAIcon name="flash" className="ml-10 mr-10" />
                     Super recherche
                   </FButton>
                 </NavLink>
