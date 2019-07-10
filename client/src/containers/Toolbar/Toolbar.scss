@@ -1,4 +1,5 @@
 @import 'src/scss/global.scss';
+@import 'src/scss/colors.scss';
 
 .Toolbar {
   height: 60px;
@@ -10,10 +11,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 45px;
+  padding: 0 45px;
   box-sizing: border-box;
   z-index: 90;
-  color:#3D3D3D;
+  color: $noir;
 
   nav {
     height: 100%;
@@ -98,6 +99,7 @@
 
   .right-buttons{
     display: flex;
+    max-height: 40px;
   }
   
   .search-bar{
@@ -107,29 +109,32 @@
     @include media-max("tablet-up") { display: none; }
 
     input{
-      background: #FFFFFF;
-      border: 1px solid #d6d6d6;
-      box-sizing: border-box;
-      box-shadow: 0px 0px 20px #E5E5E5;
+      background:transparent;
+      border: 0.5px solid $noir;
       border-radius: 12px;
       padding-right: 30px; 
       padding-left: 15px;
-      font-size: 20px;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 400;
       height: 40px;
       width:100%;
+      &:hover{
+        background-color: $gris;
+      }
+      &:focus::-webkit-input-placeholder { color:transparent; }
+      &:focus:-moz-placeholder { color:transparent; }
 
       &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: #E5E5E5;
+        color: $noir;
         opacity: 1; /* Firefox */
       }
       
       &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-        color: #E5E5E5;
+        color: $noir;
       }
       
       &::-ms-input-placeholder { /* Microsoft Edge */
-        color: #E5E5E5;
+        color: $noir;
       }
     }
 
@@ -139,7 +144,7 @@
       right: 5px;
       font-size: 24px;
       transform: matrix(-1, 0, 0, 1, 0, 0) translateY(-50%);
-      color: #d6d6d6;
+      color: $noir;
       top: 50%;
 
       &.icon-only{

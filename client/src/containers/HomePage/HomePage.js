@@ -80,7 +80,7 @@ class HomePage extends Component {
                     <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton type="dark" name="search-outline">
+                    <FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Chercher une démarche
                     </FButton>
                   </CardFooter>
@@ -94,7 +94,7 @@ class HomePage extends Component {
                       <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span>
                     </CardBody>
                     <CardFooter>
-                      <FButton type="dark" name="search-outline">
+                      <FButton type="outline-black" name="search-outline" fill={variables.noir}>
                         Trouver un dispositif
                       </FButton>
                     </CardFooter>
@@ -108,7 +108,7 @@ class HomePage extends Component {
                     <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton type="dark" name="search-outline">
+                    <FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Créer un parcours
                     </FButton>
                   </CardFooter>

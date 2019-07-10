@@ -4,7 +4,7 @@
 .search-col{
   padding: 10px;
   &:not(:first-child){
-    border-left: 1px solid #E55039;
+    border-left: 1px solid $gris;
   }
 
   .dropdown-menu.show{

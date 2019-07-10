@@ -19,6 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 0;
   }
 
   .hero-container{
@@ -32,7 +33,7 @@
 
   .arrowhead-icon{
     position: absolute;
-    bottom: 0;
+    bottom: 100px;
     cursor: pointer;
   }
 
