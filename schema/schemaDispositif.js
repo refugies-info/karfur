@@ -76,6 +76,10 @@ var dispositifSchema = mongoose.Schema({
     type:Object,
     required:false,
   },
+  pasMerci:{
+    type:Object,
+    required:false,
+  },
   bravo:{
     type:Object,
     required:false,

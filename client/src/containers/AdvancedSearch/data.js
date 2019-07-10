@@ -1,12 +1,12 @@
 const initial_data = [
   {
     title:'Je suis',
-    value: 'réfugié',
+    value: 'réfugié ou accompagnant',
     query: 'réfugiés',
     queryName: 'audience',
     children:[
       {
-        name: 'réfugié et accompagnant',
+        name: 'réfugié ou accompagnant',
         query:'réfugiés',
       },
       {
@@ -19,7 +19,7 @@ const initial_data = [
     title:'et je cherche à',
     value: 'apprendre le français',
     query: 'Apprendre le français',
-    queryName: 'tags',
+    queryName: 'tags.name',
     children: [
       {
         name: 'trouver un emploi',
@@ -86,28 +86,28 @@ const initial_data = [
     ]
   },
   {
-    title:'J\'ai entre',
-    value: '18 et 25 ans',
+    title:'J\'ai',
+    value: 'entre 18 et 25 ans',
     queryName: 'audienceAge',
     children:[
       {
         name: "moins de 18 ans",
       },
       {
-        name: "18 à 25 ans",
+        name: "entre 18 et 25 ans",
       },
       {
-        name: "25 et 56 ans",
+        name: "entre 25 et 56 ans",
       },
       {
-        name: "56 et plus",
+        name: "56 ans et plus",
       }
     ]
   },
   {
     title:'et je parle',
     value: 'un peu',
-    title2:' français.',
+    title2:'français.',
     queryName: 'niveauFrancais',
     append: 'Quel est mon niveau ?',
     children:[
