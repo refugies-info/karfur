@@ -24,7 +24,8 @@ class MapParagraphe extends PureComponent {
     selectedMarker:-1,
     showModal:false,
     showSidebar: false,
-    markerInfo: markerInfo
+    markerInfo: markerInfo,
+    searchValue: "",
   }
 
   componentDidMount (){
@@ -86,6 +87,7 @@ class MapParagraphe extends PureComponent {
       selectedMarker: this.state.markers.length,
       zoom: 10,
       markerInfo: tempMarkerInfo,
+      searchValue : "",
     });
   }
 
@@ -98,6 +100,8 @@ class MapParagraphe extends PureComponent {
       // showingInfoWindow: this.state.showingInfoWindow.map((x, id) => id===key ? !x : false)
     });
   }
+
+  handleChange = e => this.setState({ searchValue : e.target.value })
 
   onClose = () => {
     this.setState({
@@ -201,6 +205,7 @@ class MapParagraphe extends PureComponent {
               onSearchBoxMounted = {this.onSearchBoxMounted}
               onPlacesChanged = {this.onPlacesChanged}
               disableEdit = {this.props.disableEdit}
+              handleChange = {this.handleChange}
               {...this.state}
             />
           </div>
