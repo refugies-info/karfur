@@ -351,7 +351,7 @@ class Dispositif extends Component {
   setMarkers = (markers, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, markers: markers} : y)} : x) })
 
   startFirstJoyRide = () => this.setState({showDispositifCreateModal: false, runFirstJoyRide: true});
-  startJoyRide = () => this.setState({runJoyRide: true, stepIndex:0});
+  startJoyRide = (idx = 0) => this.setState({runJoyRide: true, stepIndex:idx});
 
   toggleHelp = () => this.setState(prevState=>({withHelp:!prevState.withHelp}))
 
@@ -399,7 +399,7 @@ class Dispositif extends Component {
 
   handleJoyrideCallback = data => {
     const { action, index, type, lifecycle, status } = data;
-    if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status)) {
+    if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status) || (action === ACTIONS.CLOSE  && type === EVENTS.STEP_AFTER)) {
       this.setState({ runJoyRide: false, disableOverlay: false });
     }else if(((action === ACTIONS.NEXT && index >= 3) || index > 4) && index < 7 && type === EVENTS.STEP_AFTER && lifecycle === "complete"){
       this.handleContentClick(index - 3 + (action === ACTIONS.PREV ? -2 : 0), true);
@@ -511,49 +511,15 @@ class Dispositif extends Component {
     const creator=this.state.creator || {};
     const creatorImg= (creator.picture || {}).secure_url || hugo;    
     const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag} = this.state;
-
-    const FirstTooltip = ({
-      index,
-      step,
-      backProps,
-      primaryProps,
-      tooltipProps,
-      closeProps
-    }) => {
-      if(step){ return (
-      <div
-        key="FirstJoyrideTooltip"
-        className="first-tooltip-wrapper custom-tooltip" 
-        {...tooltipProps}>
-        <div className="tooltipContainer">
-          <h3 className="tooltipTitle" aria-label={step.title}>
-            {step.title}
-          </h3>
-          <div className="tooltipContent">{step.content}</div>
-        </div>
-        <div className="tooltipFooter">
-          <ul className="nav nav-tabs" role="tablist">
-            {steps.map((_,idx) => (
-              <li role="presentation" className={idx <= index ? "active" : "disabled"} key={idx}>
-                <span className="round-tab" />
-              </li>
-            ))}
-          </ul>
-          {index > 0 && 
-            <FButton  type="pill pill-dark" className="mr-10" name="arrow-back-outline" fill={variables.noir} {...backProps} /> }
-          <FButton type="pill pill-dark" name="arrow-forward-outline" fill={variables.noir} {...primaryProps} />
-        </div>
-        <EVAIcon {...closeProps} fill={variables.noir} name="close-outline" className="close-icon" />
-      </div>
-    )}else{return false}};
-
+    
     const Tooltip = ({
       index,
       step,
       backProps,
       primaryProps,
       tooltipProps,
-      closeProps
+      closeProps,
+      isLastStep
     }) => {
       if(step){ return (
       <div
@@ -573,11 +539,11 @@ class Dispositif extends Component {
             ))}
           </ul>
           {index > 0 && 
-            <FButton onMouseEnter={e => e.target.focus()}  type="pill" className="mr-10" name="arrow-back-outline" fill="#FFFFFF" {...backProps} /> }
+            <FButton onMouseEnter={e => e.target.focus()} type="pill" className="mr-10" name="arrow-back-outline" fill="#FFFFFF" {...backProps} /> }
           <FButton
             onMouseEnter={e => e.target.focus()} 
             {...primaryProps}>
-            {index === tutoSteps.length - 1 ? 
+            {isLastStep ? 
               <span>Terminer</span> : 
               <span>
                 Suivant
@@ -585,9 +551,10 @@ class Dispositif extends Component {
               </span>}
           </FButton>
         </div>
-        <EVAIcon onMouseEnter={e => e.target.focus()} {...closeProps} name="close-outline" className="close-icon" />
+        <EVAIcon onMouseEnter={e => e.currentTarget.focus()} {...closeProps} name="close-outline" className="close-icon" />
       </div>
     )}else{return false}};
+
     return(
       <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : " reading-mode")} ref={this.newRef}>
         {/* First general tour */}
@@ -620,6 +587,9 @@ class Dispositif extends Component {
               arrowColor: mainTag.darkColor,
             }
           }}
+          joyRideWidth={joyRideWidth}
+          mainTag={mainTag}
+          stepIndex={stepIndex}
         />
 
         <section className="banniere-dispo backgroundColor-lightColor">
@@ -661,6 +631,7 @@ class Dispositif extends Component {
                   id='titreMarque'
                   html={this.state.content.titreMarque}  // innerHTML of the editable div
                   disabled={this.state.disableEdit}
+                  onClick={()=>this.startJoyRide(1)}
                   onChange={this.handleChange} // handle innerHTML change
                 />
               </h2>
@@ -895,6 +866,41 @@ class Dispositif extends Component {
     );
   }
 }
+
+const FirstTooltip = ({
+  index,
+  step,
+  backProps,
+  primaryProps,
+  tooltipProps,
+  closeProps
+}) => {
+  if(step){ return (
+  <div
+    key="FirstJoyrideTooltip"
+    className="first-tooltip-wrapper custom-tooltip" 
+    {...tooltipProps}>
+    <div className="tooltipContainer">
+      <h3 className="tooltipTitle" aria-label={step.title}>
+        {step.title}
+      </h3>
+      <div className="tooltipContent">{step.content}</div>
+    </div>
+    <div className="tooltipFooter">
+      <ul className="nav nav-tabs" role="tablist">
+        {steps.map((_,idx) => (
+          <li role="presentation" className={idx <= index ? "active" : "disabled"} key={idx}>
+            <span className="round-tab" />
+          </li>
+        ))}
+      </ul>
+      {index > 0 && 
+        <FButton  type="pill pill-dark" className="mr-10" name="arrow-back-outline" fill={variables.noir} {...backProps} /> }
+      <FButton type="pill pill-dark" name="arrow-forward-outline" fill={variables.noir} {...primaryProps} />
+    </div>
+    <EVAIcon {...closeProps} fill={variables.noir} name="close-outline" className="close-icon" />
+  </div>
+)}else{return false}};
 
 const mapStateToProps = (state) => {
   return {
