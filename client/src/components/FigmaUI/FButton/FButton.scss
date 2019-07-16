@@ -12,16 +12,16 @@ body .figma-btn{
   width: fit-content;
   text-decoration: none;
   
-  svg{
-      fill:$grisFonce;
-    }
+  .default svg{
+    fill:$grisFonce;
+  }
   &:hover{
     svg{
       fill: $noir;
     }
   }
   &:not(.theme){
-    &:hover, &:not(:disabled):not(.disabled):active{
+    &:not(:disabled):hover, &:not(:disabled):not(.disabled):active{
       color: $noir;
     }
     &:not(:disabled):not(.disabled):active{
@@ -71,12 +71,12 @@ body .figma-btn{
     }
   }
   
-  &.light-action{
+  &.light-action{ 
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
     svg{
       fill: $noir;
     }
-    &:hover{
+    &:not(:disabled):hover{
       background: $gris;
     }
     &:not(:disabled):not(.disabled):active{

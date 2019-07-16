@@ -13,7 +13,6 @@ import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 
 import './AdvancedSearch.scss';
-
 import variables from 'scss/colors.scss';
 
 const tris = [{name: "Alphabétique"}, {name:"Derniers ajouts"}, {name: "Les plus visités"}, {name: "À traduire"}];
