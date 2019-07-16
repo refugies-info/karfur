@@ -14,7 +14,7 @@ class FButton extends Component { //Je passe par une classe parce que le bouton 
     let {type, className, fill, name, size, tag: Tag, ...bProps}= this.props;
     if (bProps.href && Tag === 'button') { Tag = 'a'; }
     return (
-      <Tag className={'figma-btn ' + type + ' ' + className + (type === "theme" ? " backgroundColor-darkColor" : "")} {...bProps}>
+      <Tag className={'figma-btn ' + (type || '') + ' ' + (className || '') + (type === "theme" ? " backgroundColor-darkColor" : "")} {...bProps}>
         {name && 
           <EVAIcon name={name} fill={fill} size={size} className={this.props.children ? "mr-10" : ""} />}
         {this.props.children}

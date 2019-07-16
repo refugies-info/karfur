@@ -84,42 +84,76 @@ function signup(req, res) {
 
 function login(req, res) {
   if (!req.body.username || !req.body.password) {
-      //Le cas où le username ou bien le password ne serait pas soumit ou nul
-      res.status(400).json({
-          "text": "Requête invalide"
-      })
+    //Le cas où le username ou bien le password ne serait pas soumis ou nul
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
     User.findOne({
       username: req.body.username
-    }, function (err, user) {
+    }, (err, user) => {
       if (err) {
-          res.status(500).json({
-              "text": "Erreur interne"
-          })
+        res.status(500).json({ "text": "Erreur interne" })
       }
-      else if(!user){
-          res.status(401).json({
-              "text": "L'utilisateur n'existe pas"
-          })
-      }
-      else {
-          if (user.authenticate(req.body.password)) {
-            res.status(200).json({
+      else if(!user){ //On lui crée un nouveau compte
+        user = req.body;
+        if(user.cpassword && user.cpassword === user.password){
+          user.password=passwordHash.generate(user.password);
+          if(user.traducteur){
+            user.roles=[req.roles.find(x=>x.nom==='Trad')._id]
+            delete user.traducteur;
+          }else{user.roles=[req.roles.find(x=>x.nom==='User')._id]}
+          user.status='Actif';
+          var _u = new User(user);
+          _u.save( (err, user) => {
+            if (err) {
+              res.status(500).json({ "text": "Erreur interne" })
+            } else {
+              //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
+              populateLanguages(user);
+              res.status(200).json({
+                "text": "Succès",
                 "token": user.getToken(),
-                "text": "Authentification réussi"
-            })
-            //On change les infos de l'utilisateur
-            if(req.body.traducteur){
-              console.log('je change le statut utilisateur à traducteur')
-              user.roles=[req.roles.find(x=>x.nom==='Trad')];
-              user.save();
-            }
-          }
-          else{
-              res.status(401).json({
-                  "text": "Mot de passe incorrect"
+                "data": user
               })
+            }
+          })
+        }else{
+          res.status(401).json({ "text": "L'utilisateur n'existe pas" });
+        }
+      } else {
+        if (user.authenticate(req.body.password)) {
+          //On change les infos de l'utilisateur
+          if(req.body.traducteur){
+            user.roles=[req.roles.find(x=>x.nom==='Trad')];
+            user.save();
           }
+          res.status(200).json({
+            "token": user.getToken(),
+            "text": "Authentification réussi"
+          })
+        }
+        else{
+          res.status(401).json({
+            "text": "Mot de passe incorrect"
+          })
+        }
+      }
+    })
+  }
+}
+
+function checkUserExists(req, res) {
+  if (!req.body.username) {
+    res.status(400).json({ "text": "Requête invalide" })
+  } else {
+    User.findOne({
+      username: req.body.username
+    }, (err, user) => {
+      if (err) {
+        res.status(500).json({ "text": "Erreur interne" })
+      } else if(!user){
+        res.status(204).json({ "text": "L'utilisateur n'existe pas", data: false })
+      } else {
+        res.status(200).json({ "text": "L'utilisateur existe", data: true })
       }
     })
   }
@@ -262,6 +296,7 @@ const populateLanguages = (user) => {
 
 exports.login = login;
 exports.signup = signup;
+exports.checkUserExists = checkUserExists;
 exports.set_user_info=set_user_info;
 exports.get_users=get_users;
 exports.get_user_info=get_user_info;

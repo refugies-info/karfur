@@ -1,0 +1,39 @@
+@import 'src/scss/colors.scss';
+
+.footer{
+  background: $noir;
+  padding: 30px 120px;
+  color: #FFFFFF;
+
+  .ligne-footer{
+    margin-top: 10px;
+  }
+  .lien-footer{
+    margin-top: 25px;
+    &:hover{
+      font-weight: bold;
+    }
+  }
+  .form-group{
+    margin: 10px 0 0 0;
+  }
+  .footer-btn{
+    display: block;
+  }
+  .icon-append{
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    right:20px;
+    cursor: pointer;
+  }
+  .right-col{
+    display: flex; 
+    flex-direction: column;
+
+    .main-row{
+      flex: 1 1;
+    }
+  }
+}
