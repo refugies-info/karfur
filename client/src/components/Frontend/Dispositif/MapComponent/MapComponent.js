@@ -46,7 +46,9 @@ const mapComponent = compose(
           <input
             type="text"
             placeholder="Placez ici vos lieux de contact"
-            className="places-input" />
+            className="places-input"
+            value={props.searchValue}
+            onChange={props.handleChange} />
           <EVAIcon className="places-icon" name="search-outline" fill={variables.grisFonce} />
         </div>
       </SearchBox>}

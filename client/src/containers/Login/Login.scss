@@ -113,12 +113,16 @@ $placeholderColor:#CDCDCD;
     background: $jauneClair;
     border-radius: 12px;
   }
-
+  .example-appear {
+    opacity: 0;
+  }
+  .example-exit {
+    opacity: 1;
+  }
   .example-appear-active {
     -webkit-animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
               animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   }
-  
   .example-exit-active {
     -webkit-animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
 	          animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
