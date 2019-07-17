@@ -1,9 +1,10 @@
+@import 'src/scss/colors.scss';
+
 $btnHeight:40px;
 $btnWidth:40px;
 
 .language-btn.btn{
-  background: #F2F2F2;
-  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+  background: transparent;
   height: $btnHeight;
   width: $btnWidth;
   cursor: pointer;
@@ -11,10 +12,10 @@ $btnWidth:40px;
   border-radius: 50%;
   margin: auto 10px auto 0px;
   padding: 0;
-  border: none;
+  border: 0.5px solid $noir;
   &:hover{
-    background: #CDCDCD;
-    box-shadow: none;
+    background: $noir;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
   }
   i{
     box-sizing: border-box;

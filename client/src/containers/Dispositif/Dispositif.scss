@@ -11,7 +11,7 @@ $imgHeight : 350px;
   
   .banniere-dispo{
     background-size:cover; 
-    background: $lightColor;
+    background: $blanc;
     min-height: 330px; 
     background-position:0;
     position: relative;
@@ -61,15 +61,15 @@ $imgHeight : 350px;
         width:fit-content;
         margin-left: 9%;
         z-index:3;
-        color: $darkColor;
-        border-color: $darkColor;
+        color: $noir;
+        border-color: $noir;
         background-color: $blanc;
         border-radius: 12px;
         padding: 10px 13px;
         &:hover{
           color: #ffffff;
-          background-color: $darkColor;
-          border-color: $darkColor;
+          background-color: $noir;
+          border-color: $noir;
           svg{
             fill: #FFF;
           }
@@ -100,6 +100,13 @@ $imgHeight : 350px;
           position: fixed;
           border:none;
 
+          .switch-outline-light .switch-input:checked + .switch-slider{
+            &:hover{
+              background-color: $grisFonce;
+              border-color: $grisFonce;
+            }
+          }
+
           .card-body{
             display:flex;
             flex-direction: column;
@@ -127,7 +134,10 @@ $imgHeight : 350px;
             padding-right: 0;
             padding-top:  5px;
             svg{
-              fill: $darkColor;
+              fill: $noir;
+            }
+            &:hover{
+              text-decoration: underline;
             }
           }
         }
@@ -255,12 +265,32 @@ $imgHeight : 350px;
       cursor: pointer;
     }
   }
+
+  .sous-paragraphe{
+    .toolbar-editeur{
+      right: 10px;
+      top: 34px;
+
+    }
+    .plus-wrapper{
+      right: 15px;
+
+    }
+  }
   .editor-editeur{
     padding: 0 20px 20px 20px;
 
     .public-DraftEditor-content{
       background: transparent;
     }
+  }
+
+  .public-DraftEditorPlaceholder-root{
+    color:$noir;
+  }
+
+  .public-DraftEditorPlaceholder-root.public-DraftEditorPlaceholder-hasFocus{
+    color:transparent; 
   }
 
   .rdw-editor-toolbar{
@@ -491,17 +521,15 @@ $imgHeight : 350px;
     #accordion-header{
       background: #FFFFFF;
       border-radius: 12px;
+      border: 0.5px solid $noir;
       margin-top:20px;
       outline: none;
       box-shadow: none;
-      border-color: $darkColor;
       color: $darkColor;
       padding: 10px;
   
       &.active{
-        color: #FFF;
-        background: $noir;
-        border:none;
+        transition: all 0.2s ease;
       }
   
       h5{
@@ -641,6 +669,7 @@ $imgHeight : 350px;
         z-index: 1;
         border:none;
         border-radius: 12px;
+        box-shadow: none;
       }
       .link-icon, .check-icon{
         position: absolute;
@@ -714,15 +743,16 @@ $imgHeight : 350px;
 
   div[contenteditable="true"]{
     min-width: 20px;
-    background: white;
+    background: $jauneClair;
     outline: none;
     min-height:30px;
+    padding-right: 40px;
   }
 
   div[contenteditable=true]:empty:before {
     content: attr(placeholder);
     display: block;
-    color: #aaa;
+    color: $noir;
   }
 
   .wrapper-editeur{
@@ -777,7 +807,7 @@ $imgHeight : 350px;
 
   .tooltipFooter {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: flex-end;
     margin-top: 15;
 
@@ -789,10 +819,11 @@ $imgHeight : 350px;
 
     .nav-tabs > li {
       margin-right: 5px;
+      line-height: 10px;
     }
     .round-tab {
-      width: 5px;
-      height: 5px;
+      width: 10px;
+      height: 10px;
       display: inline-block;
       border-radius: 50%;
       border: 0.5px solid #FFFFFF;
@@ -826,7 +857,7 @@ $imgHeight : 350px;
   }
 
   &.tooltip-wrapper{
-    background-color: $darkColor;
+    background-color: $noir;
     border-radius: 12px;
     color: white;
     font-size: 16px;

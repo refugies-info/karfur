@@ -19,6 +19,7 @@ import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
 
 import './Layout.scss';
 import routes from '../../routes';
+import Footer from '../Footer/Footer';
 
 let audio = new Audio();
 class Layout extends Component {
@@ -167,6 +168,8 @@ class Layout extends Component {
             </Suspense>
           </AppFooter> */}
 
+          <Footer />
+          
           <OnBoardingTraducteurModal 
             show={this.state.showOnBoardingTraducteurModal}
             closeOnBoardingTraducteurModal={this.closeOnBoardingTraducteurModal} />

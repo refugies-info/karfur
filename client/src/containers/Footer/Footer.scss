@@ -1,0 +1,74 @@
+@import 'src/scss/colors.scss';
+
+.footer{
+  background: $noir;
+  padding: 30px 120px;
+  color: #FFFFFF;
+
+  .ligne-footer{
+    margin-top: 10px;
+  }
+  .lien-footer{
+    margin-top: 25px;
+    &:hover{
+      font-weight: bold;
+    }
+  }
+  .form-group{
+    margin: 10px 0 0 0;
+  }
+
+$placeholderColor: $noir;
+
+*::-webkit-input-placeholder {
+  color: $placeholderColor;
+}
+*:-moz-placeholder {
+  color: $placeholderColor;
+  opacity: 1;
+}
+*::-moz-placeholder {
+  color: $placeholderColor;
+  opacity: 1;
+}
+*:-ms-input-placeholder {
+  color: $placeholderColor;
+}
+*::-ms-input-placeholder {
+  color: $placeholderColor;
+}
+*::placeholder {
+  color: $placeholderColor;
+}
+
+  .form-control{
+    border-radius: 12px;
+    border: none;
+    color: $noir;
+    outline: none;
+    &:hover{background: $gris;}
+    &:focus::-webkit-input-placeholder { color:transparent; }
+    &:focus:-moz-placeholder { color:transparent; }
+    &:focus{ box-shadow: none;}
+  }
+  .footer-btn{
+    display: block;
+  }
+  .icon-append{
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    outline: none;
+    cursor: pointer;
+  }
+  .right-col{
+    display: flex; 
+    flex-direction: column;
+
+    .main-row{
+      flex: 1 1;
+    }
+  }
+}

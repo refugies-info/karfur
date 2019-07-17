@@ -6,30 +6,38 @@ body .figma-btn{
   line-height: 20px;
   border-radius: 12px;
   padding: 10px;
-  background: #FFFFFF;
-  color: $grisFonce;
-  border:none;
+  background: $blanc;
+  border: 0.5px solid transparent;
+  color: $noir;
   width: fit-content;
   text-decoration: none;
   
-  svg{
-      fill:$grisFonce;
-    }
+  &.default svg{
+    fill:$noir;
+  }
   &:hover{
     svg{
       fill: $noir;
     }
   }
   &:not(.theme){
-    &:hover, &:not(:disabled):not(.disabled):active{
+    &:hover {
       color: $noir;
     }
-    &:not(:disabled):not(.disabled):active{
+    &:active{
       background: $noirCD;
+      color: $noir;
     }
     &:focus{
       background: $blanc;
-      border: 1px solid $focus;
+      border: 0.5px solid $focus;
+    }
+    &:disabled, &.disabled{
+      background: $gris;
+      color: $grisFonce;
+      svg{
+        fill:$grisFonce;
+      }
     }
   }
   &:focus{
@@ -45,6 +53,7 @@ body .figma-btn{
     &:hover{
       background: #000000;
       color: #FFFFFF;
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       svg{
         fill: $blanc;
       }
@@ -65,19 +74,27 @@ body .figma-btn{
   &.validate{
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
     background: $vert;
-    color: #FFFFFF;
-    &:hover, &:not(:disabled):not(.disabled):active{
+    color: $blanc;
+    &:hover{
+      background: $vertFonce;
+      color: $blanc;
+      svg{
+        fill: $blanc;
+      }
+    } 
+    &:not(:disabled):not(.disabled):active{
       background: $vert;
     }
   }
   
-  &.light-action{
+  &.light-action{ 
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
     svg{
       fill: $noir;
     }
-    &:hover{
-      background: $gris;
+    &:not(:disabled):hover{
+      background: $blanc;
+      box-shadow: none;
     }
     &:not(:disabled):not(.disabled):active{
       background: $noir;
@@ -88,31 +105,63 @@ body .figma-btn{
     }
     &:focus{
       box-shadow: 0px 4px 7px rgba(47, 128, 237, 0.3);
-      border: 1px solid $focus;
+      border: 0.5px solid $focus;
     }
   }
 
   &.theme{
-    background: $darkColor;
-    color: #FFFFFF;
+    background: $noir;
+    color: $blanc;
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    svg{
+      fill: $blanc;
+    }
+    &:hover{
+      box-shadow: none;
+    }
   }
 
   &.outline, &.pill{
-    border: 1px solid #FFFFFF;
+    border: 0.5px solid #FFFFFF;
     background: transparent;
     color: #FFFFFF;
+    transition: all 0.2s ease;
+    &:hover{
+      border-color: #000000;
+    }
+    &:active{
+      background: transparent;
+    }
+    &:focus{
+      background: transparent;
+    }
 
     &.pill-dark{
       border-color: $noir;
       color: $noir;
+      svg{
+        fill: $noir;
+      }
+      &:hover{
+        background-color: #000000;
+        svg{
+          fill: $blanc;}
+
+      }
     }
   }
 
   &.outline-black{
-    border: 1px solid $noir;
+    border: 0.5px solid $noir;
     background: transparent;
     color: $noir;
+    transition: all 0.2s ease;
+    &:hover{
+      border-color: #000000;
+      background: $gris;
+      color: #000000;
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    }
   }
 
   &.pill{
@@ -122,6 +171,7 @@ body .figma-btn{
       fill: $blanc;
     }
     &:hover, &:not(:disabled):not(.disabled):active, &:focus{
+      background: $blanc;
       svg{
         fill: $noir;
       }

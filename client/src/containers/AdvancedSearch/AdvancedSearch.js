@@ -13,7 +13,6 @@ import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 
 import './AdvancedSearch.scss';
-
 import variables from 'scss/colors.scss';
 
 const tris = [{name: "Alphabétique"}, {name:"Derniers ajouts"}, {name: "Les plus visités"}, {name: "À traduire"}];
@@ -187,8 +186,8 @@ class AdvancedSearch extends Component {
                         <Spinner color="success" /> : 
                         <span className="add-sign">+</span> }
                     </CardBody>
-                    <CardFooter className="align-right bg-secondary text-white">
-                      {showSpinner ? "Chargement..." : "Créer un nouveau dispositif"}
+                    <CardFooter className="align-right">
+                      {showSpinner ? "Chargement..." : "Créer un dispositif"}
                     </CardFooter>
                   </CustomCard>
                 </Col>
