@@ -172,9 +172,13 @@ class Dispositif extends Component {
   }
 
   handleChange = (ev) => {
+    const value = ev.target.value, id = ev.currentTarget.id;
+    if(id==="titreInformatif" && this.state.content.titreInformatif === contenu.titreInformatif){
+      console.log(ev)
+    }
     this.setState({ content: {
       ...this.state.content,
-      [ev.currentTarget.id]: ev.target.value
+      [id]: value
      }
     });
   };
@@ -621,7 +625,7 @@ class Dispositif extends Component {
                   id='titreInformatif'
                   html={this.state.content.titreInformatif}  // innerHTML of the editable div
                   disabled={this.state.disableEdit}
-                  onClick={this.startJoyRide}
+                  onClick={()=>this.startJoyRide()}
                   onChange={this.handleChange} // handle innerHTML change
                 />
               </h1>
