@@ -98,7 +98,7 @@ const filtres = {
 
 const steps = [
   {
-    content: <div><h3>Cherchez les éléments en blanc</h3><p>Cliquez sur les éléments surlignés en blanc pour saisir votre texte.</p></div>,
+    content: <div><h3>Modifiez le texte directement</h3><p>Cliquez sur les éléments surlignés en jaune pour saisir votre texte.</p></div>,
     placement: 'bottom',
     locale: { 
       skip: 'Passer',

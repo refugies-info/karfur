@@ -58,20 +58,6 @@
     display: inline-flex;
   }
 
-  .connect-btn{
-    border: 0.5px solid #000000;
-    box-sizing: border-box;
-    border-radius: 12px;
-    color: #3D3D3D;
-    a{
-      text-decoration: none;
-      color:inherit;
-    }
-    &:hover{
-      background-color: #6c757d;
-    }
-  }
-
   .user-dropdown{
     .btn{
       padding:0;
@@ -92,8 +78,26 @@
         border-radius: 50%;
       }
     }
-    .dropdown-item a{
+
+    .dropdown-menu.show{
+      border:none;
+      background-color: $gris;
+    }
+    .dropdown-divider{
+      display: none;
+    }
+    .dropdown-item{
+      outline:none;
+      a{
       text-decoration: none;
+      outline: none;
+      }
+      &:hover{
+        background-color: $blanc;
+      }
+      &:active{
+        background-color: $noir;
+      }
     }
   }
 

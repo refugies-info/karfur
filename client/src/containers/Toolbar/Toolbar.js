@@ -89,9 +89,9 @@ export class Toolbar extends React.Component {
             </ButtonDropdown>
             :
             <NavLink to={{ pathname:'/login', state: { redirectTo: "/backend/user-profile" } }}>
-              <Button color="white" className="connect-btn">
+              <FButton type="outline-black" className="connect-btn">
                 Connexion
-              </Button>
+              </FButton>
             </NavLink>
           }
         </div>

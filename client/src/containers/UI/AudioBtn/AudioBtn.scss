@@ -4,10 +4,10 @@
   position: relative;
   width: 40px;
   height: 40px;
-  background: #F2F2F2;
-  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+  background: transparent;
   box-sizing: border-box;
-  border-radius: 50%;
+  border: 0.5px solid $noir;
+  border-radius: 100%;
   margin: auto 10px auto 0px;
   cursor: pointer;
   user-select: none;
@@ -17,19 +17,22 @@
   align-items: center;
 
   &:hover{
-    background: $noirCD;
-    border-color: #eeeeeec2;
-    box-shadow: none;
+    background: $noir;
+    border-color: $noir;
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+    svg{
+      fill: $blanc;
+    }
   }
-  
   &.pressed{
-    background: linear-gradient(296.24deg, #78E08F 100%, #2CA12A 0%);
+    background: $vert;
+    border: none;
   }
 
   i.eva-hover{
     margin:auto;
   }
   #audioBtn{
-    line-height: 20px;
+    line-height: 20px; 
   }
 }
