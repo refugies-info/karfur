@@ -7,6 +7,7 @@
   font-size: 16px;
   height:250px;
   scrollbar-width: none;
+  border: none;
 
   @include media-max("desktop-up") { font-size: 12px; }
 
@@ -50,14 +51,14 @@
   h3{
     font-size: 24px;
     font-weight: 600;   
-    color: #3D3D3D;
+    color: $noir;
     margin-bottom: 8px;
 
     @include media-max("desktop-up") { font-size: 16px; }
   }
 
   p{
-    color: #3D3D3D;
+    color: $noir;
   }
 
   .card-footer{
@@ -67,9 +68,8 @@
   }
 
   &.add-card{
-    background-color: rgba(0,0,0,0.05);
+    background-color: $blanc;
     &:hover{
-      background-color: rgba(0,0,0,0.1);
       .add-sign{
         opacity:1;
         font-size:90px;

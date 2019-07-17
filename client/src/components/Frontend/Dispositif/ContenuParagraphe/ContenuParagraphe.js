@@ -36,14 +36,13 @@ const contenuParagraphe = (props) => {
           )
         }else if(subitem.type==='accordion'){
           return ( 
-            <div key={subkey} className={'contenu borderColor-darkColor' + (safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>props.updateUIArray(props.keyValue, subkey, 'isHover', true, e)}>
+            <div key={subkey} className={'contenu' + (safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>props.updateUIArray(props.keyValue, subkey, 'isHover', true, e)}>
               <Row className="relative-position">
                 <Col lg="12" md="12" sm="12" xs="12" className="accordeon-col">
                   <div className="title-bloc">
                     <Button 
-                      id="accordion-header" 
-                      color="warning" 
-                      className={"color-darkColor borderColor-darkColor text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} 
+                      id="accordion-header"  
+                      className={"text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} 
                       onMouseUp={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
                       aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} 
                       aria-controls={"collapse" + props.keyValue + "-" + subkey}>

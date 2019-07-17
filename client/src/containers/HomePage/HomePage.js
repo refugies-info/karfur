@@ -87,7 +87,7 @@ class HomePage extends Component {
                 </Card>
               </Col>
               <Col lg="4" className="card-col">
-                <NavLink to="/dispositifs" className="no-decoration">
+                <NavLink to="/advanced-search" className="no-decoration">
                   <Card>
                     <CardHeader>Apprendre, travailler, me former, rencontrer</CardHeader>
                     <CardBody>

@@ -25,6 +25,7 @@ import Translation from './containers/Translation/Translation';
 import RecordAudio from './containers/RecordAudio/RecordAudio';
 import AdvancedSearch from './containers/AdvancedSearch/AdvancedSearch';
 import QuiSommesNous from './containers/QuiSommesNous/QuiSommesNous';
+import CommentContribuer from './containers/CommentContribuer/CommentContribuer';
 
 const routes = [
   { path: '/', exact: true, name: 'home', component: DefaultLayout, restriction:[] },
@@ -38,7 +39,8 @@ const routes = [
 
   { path: '/advanced-search', name: 'Recherche Avancée', component: AdvancedSearch, restriction:[] },
   { path: '/qui-sommes-nous', name: 'Qui sommes-nous ?', component: QuiSommesNous, restriction:[] },
-  
+  { path: '/comment-contribuer', name: 'Comment contribuer ?', component: CommentContribuer, restriction:[] },
+
   { path: '/dispositifs', name: 'Rechercher un dispositif', component: Dispositifs, restriction:[] },
   { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
   { path: '/dispositif', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
@@ -66,5 +68,8 @@ const routes = [
   { path: '/backend/user-profile', name: 'UserProfile', component: UserProfile, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
 ];
+
+const simplesRoutes = routes.map( x => ({path: x.path, name: x.name, restriction: x.restriction}))
+export {simplesRoutes};
 
 export default routes;

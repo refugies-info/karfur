@@ -8,10 +8,21 @@
     background: #FFFFFF;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
+    border: none;
   }
 
   .modal-header{
     border:none;
+    padding: 1.25rem;
+    .close{
+      color: $noir;
+      outline: none;
+      text-shadow: none;
+      position: absolute;
+      opacity: 1;
+      top: 20px;
+      right: 20px;
+    }
   }
   .modal-title{
     width: 100%;
@@ -39,14 +50,14 @@
   }
 
   .modal-body{
-    padding-top: 0;
+    padding: 0 1.25rem 1.25rem ;
     p {
       margin-top: 1rem;
     }
     .list-group{
       .list-group-item{
         border: 0.5px solid $noir;
-        padding: 0.5rem 1rem;
+        padding: 0.8rem 1rem;
         &:first-child{
           border-radius: 6px 6px 0 0;
         }
