@@ -18,14 +18,20 @@ const dispositifCreateModal = (props) => {
       </ModalHeader>
       <ModalBody>
         <div className="content-bloc">
-          <h6>1. Gardez en tête le public de la plateforme</h6> 
-          <p>Vous vous adressez à des personnes réfugiées : le vocabulaire employé doit être simple et accessible. Il ne s’agit pas d’un support de communication institutionnelle mais d’une fiche pratique qui donne les principales informations de votre dispositifs. Le contenu doit être synthétique et vulgarisé. </p>
-          <p>La lecture complète de la fiche ne devrait pas excéder deux minutes. </p> 
+          <h5>1. Gardez en tête le public de la plateforme</h5> 
+          <ul className="liste-classic">
+            <li>Vous vous adressez à des personnes réfugiées : le vocabulaire employé doit être simple et accessible.</li> 
+            <li>Il ne s’agit pas d’un support de communication institutionnelle mais d’une fiche pratique qui donne les principales informations de votre dispositifs.</li> 
+            <li>Le contenu doit être synthétique et vulgarisé.</li> 
+            <li>La lecture complète de la fiche ne devrait pas excéder deux minutes.</li> 
+          </ul>
         </div>
         <div className="content-bloc">
-          <h6>2. Pas d’inquiétude, nous ne sommes pas loin !</h6> 
-          <p>Une fois votre rédaction terminée, l’équipe Agi’r sera notifiée et vérifiera le contenu : orthographe, exactitude des informations, conformité à la charte d’utilisation... puis publiera la page. </p>
-          <p>Vous recevrez alors une notification dans votre espace utilisateur. La fiche apparaîtra dans votre espace et vous serez notifier au fur et à mesure des réactions des utilisateurs. </p>
+          <h5>2. Pas d’inquiétude, nous ne sommes pas loin !</h5>
+          <ul className="liste-classic">
+          <li>Une fois votre rédaction terminée, l’équipe Agi’r sera notifiée et vérifiera le contenu : orthographe, exactitude des informations, conformité à la charte d’utilisation... puis publiera la page. </li>
+          <li>Vous recevrez alors une notification dans votre espace utilisateur. La fiche apparaîtra dans votre espace et vous serez notifier au fur et à mesure des réactions des utilisateurs. </li>
+          </ul> 
         </div>
       </ModalBody>
       <ModalFooter>

@@ -13,7 +13,7 @@
     height: 300px;
 
     &.make-it-red{
-      background: linear-gradient(114.72deg, rgba(229, 80, 57, 0.64) 6.51%, #B71540 96.1%);
+      background: $rouge;
     }
 
     .card-header{
@@ -83,6 +83,10 @@
         width: 50px;
         color: $noir;
         height: 40px;
+        background-color: $jauneClair;
+        &:active, &:focus{
+          background-color: $gris;
+        }
       }
       input[type=number]::-webkit-inner-spin-button, 
       input[type=number]::-webkit-outer-spin-button { 
@@ -188,8 +192,26 @@
     }
   }
 }
+.tooltip.show{
+  opacity: 1;
+}
+.tooltip.show .tooltip-inner{
+  background:$noir;
+  opacity: 1;
+  padding: 20px;
+  text-align: left;
+  max-width: 260px;
+  .arrow{
+    border-top-color: $noir; 
+  }
+}
+
+.bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before{
+  border-bottom-color: $noir;
+}
 
 .card-tooltip{
+ 
   .tooltip-header{
     margin-bottom: 15px;
   }
@@ -203,6 +225,7 @@
   mix-blend-mode: normal;/* Shadow autour */
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
+  border: none;
 
   font-weight: normal;
   font-size: 18px;
