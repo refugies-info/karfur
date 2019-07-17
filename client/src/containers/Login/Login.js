@@ -83,8 +83,8 @@ class Login extends Component {
           <Card className="card-login main-card">
             <CardBody>
               <Form onSubmit={this.send}>
-                <h5>Se connecter</h5>
-                <div className="texte-small mb-12">Ou se créer un compte</div>
+                <h5>{step === 0 || userExists ? "Se connecter" : "Se créer un compte"}</h5>
+                <div className="texte-small mb-12">{step === 0 ? "Ou se créer un compte" : (userExists ? "Content de vous revoir !" : "Pas besoin d’email")}</div>
                 <CSSTransition
                   in={true} 
                   appear={true} 
@@ -188,9 +188,10 @@ const PasswordField = props => (
 
 const PasswordFooter = props => (
   <div className="footer-buttons">
-    <Button type="button" color="transparent" className="mr-10 password-btn" onClick={props.upcoming}>
-      <u>mot de passe oublié ?</u>
-    </Button>
+    {props.userExists &&
+      <Button type="button" color="transparent" className="mr-10 password-btn" onClick={props.upcoming}>
+        <u>mot de passe oublié ?</u>
+      </Button>}
     <FButton type="dark" name="log-in" color="dark" className="connect-btn">
       Connexion
     </FButton>

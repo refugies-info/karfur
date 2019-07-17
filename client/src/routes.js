@@ -69,4 +69,7 @@ const routes = [
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
 ];
 
+const simplesRoutes = routes.map( x => ({path: x.path, name: x.name, restriction: x.restriction}))
+export {simplesRoutes};
+
 export default routes;

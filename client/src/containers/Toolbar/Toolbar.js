@@ -29,7 +29,6 @@ export class Toolbar extends React.Component {
 
   disconnect = () => {
     API.logout();
-    this.props.history.push('/')
   }
 
   toggle = () => this.setState((prevState) => ({ dropdownOpen: !prevState.dropdownOpen }));
@@ -83,7 +82,9 @@ export class Toolbar extends React.Component {
                 {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>Mon univers contribution</DropdownItem>}
                 {traducteur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>Mon univers traduction</DropdownItem>}
                 <DropdownItem divider />
-                <DropdownItem onClick={this.disconnect} className="text-danger">Se déconnecter</DropdownItem>
+                <NavLink to="/" onClick={this.disconnect}>
+                  <DropdownItem className="text-danger">Se déconnecter</DropdownItem>
+                </NavLink>
               </DropdownMenu>
             </ButtonDropdown>
             :
