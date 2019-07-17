@@ -190,7 +190,7 @@ const PasswordFooter = props => (
   <div className="footer-buttons">
     {props.userExists &&
       <Button type="button" color="transparent" className="mr-10 password-btn" onClick={props.upcoming}>
-        <u>mot de passe oublié ?</u>
+        <u>Mot de passe oublié ?</u>
       </Button>}
     <FButton type="dark" name="log-in" color="dark" className="connect-btn">
       Connexion
