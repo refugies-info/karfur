@@ -54,22 +54,24 @@
   }
 
   .plus-button{
-    background: #F2F2F2;
+    background:$jauneClair;
     border-radius: 12px;
-    font-style: italic;
     font-weight: normal;
     font-size: 16px;
     line-height: 20px;
-    color: #CDCDCD;
+    color: $noir;
     border:none;
     padding:10px;
     margin-top:10px;
+    svg{
+      fill: $noir;
+    }
 
     i{
       margin-right:10px;
     }
     &:hover{
-      color:black;
+      background-color: $gris;
     }
   }
 

@@ -2,7 +2,7 @@
 @import 'src/scss/common.scss';
 @import 'src/scss/colors.scss';
 
-$placeholderColor:#CDCDCD;
+$placeholderColor: $noir;
 
 .login{
   background: $noirCD;
@@ -13,7 +13,7 @@ $placeholderColor:#CDCDCD;
   .card-login{
     background: $gris;
     border-radius: 12px;
-    padding:40px;
+    padding:20px 40px;
     margin-bottom: 10px;
     &.main-card{
       box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
@@ -23,6 +23,7 @@ $placeholderColor:#CDCDCD;
       padding: 0;
     }
     .input-group{
+      margin-bottom: 10px;
       .icon-prepend{
         position: absolute;
         z-index: 10;
@@ -40,12 +41,22 @@ $placeholderColor:#CDCDCD;
       }
       input{
         background: #FFFFFF;
-        border-radius: 12px !important;
+        border-radius: 12px;
+        border: 0.5px solid $noir;
+        color: $noir;
+        outline: none;
         padding-left: 50px;
-
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 23px;
+        &:hover{
+          background: $gris;
+          border: 0.5px solid $noir;
+        }
+        &:focus::-webkit-input-placeholder { color:$grisFonce; }
+        &:focus:-moz-placeholder { color:$grisFonce; }
+        &:focus { 
+          box-shadow: none;
+          background: $blanc;
+        }
+        } 
       }
       *::-webkit-input-placeholder {
         color: $placeholderColor;
@@ -96,11 +107,6 @@ $placeholderColor:#CDCDCD;
         line-height: 15px;
         color: $noir;
       }
-      .connect-btn{
-        box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
-        background: #3D3D3D;
-        border-radius: 12px;
-      }
     }
   }
 
@@ -126,8 +132,7 @@ $placeholderColor:#CDCDCD;
   .example-exit-active {
     -webkit-animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
 	          animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
-  }  
-}
+  } 
 
 .fade-in-bottom {
 	-webkit-animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;

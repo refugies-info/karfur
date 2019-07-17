@@ -11,6 +11,7 @@
     font-size: 16px;
     border: 1px solid #aaa;
     border-radius: 4px;
+    &:hover{box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);}
     &:focus::-webkit-input-placeholder { color:transparent; }
     &:focus:-moz-placeholder { color:transparent; }
   }
@@ -26,6 +27,8 @@
 
   .react-autosuggest__suggestions-container {
     display: none;
+    
+
   }
 
   .react-autosuggest__suggestions-container--open {

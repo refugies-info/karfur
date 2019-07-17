@@ -186,8 +186,8 @@ class AdvancedSearch extends Component {
                         <Spinner color="success" /> : 
                         <span className="add-sign">+</span> }
                     </CardBody>
-                    <CardFooter className="align-right bg-secondary text-white">
-                      {showSpinner ? "Chargement..." : "Créer un nouveau dispositif"}
+                    <CardFooter className="align-right">
+                      {showSpinner ? "Chargement..." : "Créer un dispositif"}
                     </CardFooter>
                   </CustomCard>
                 </Col>
