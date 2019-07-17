@@ -95,7 +95,7 @@ class Login extends Component {
                   <>
                     <PasswordField 
                       id="password"
-                      placeholder="mot de passe"
+                      placeholder="Mot de passe"
                       value={this.state.password} 
                       onChange={this.handleChange} 
                       passwordVisible={passwordVisible}

@@ -47,7 +47,7 @@ $tailleBig:80px;
 
   .add-sponsor{
     cursor: pointer;
-    background: $gris;
+    background: $jauneClair;
     border-radius: 12px;
     display:flex;
     justify-content: center;
@@ -57,7 +57,7 @@ $tailleBig:80px;
     padding: 20px;
     &:hover{
       cursor: pointer;
-      background-color: $grisFonce;
+      background-color: $gris;
     }
     .add-sign{
       border-radius: 50%;

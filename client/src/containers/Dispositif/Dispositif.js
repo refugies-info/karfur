@@ -596,7 +596,7 @@ class Dispositif extends Component {
           stepIndex={stepIndex}
         />
 
-        <section className="banniere-dispo backgroundColor-lightColor">
+        <section className="banniere-dispo">
           <Row className="header-row">
             <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
               <Button color="warning" outline>
