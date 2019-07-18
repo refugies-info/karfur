@@ -15,6 +15,7 @@ import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
 import ReactJoyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import _ from "lodash";
+import ReactDOM from 'react-dom'
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
@@ -56,7 +57,7 @@ class Dispositif extends Component {
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : ''), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
     content:contenu,
     sponsors:sponsorsData,
-    tags:[{short:"Logement"}, {short:"Français"}],
+    tags:[{short:"Logement"}],
     mainTag: {darkColor: variables.darkColor, lightColor: variables.lightColor, hoverColor: variables.gris},
     dateMaj:new Date(),
     
@@ -171,14 +172,18 @@ class Dispositif extends Component {
     // }
   }
 
-  handleChange = (ev) => {
-    const value = ev.target.value, id = ev.currentTarget.id;
-    if(id==="titreInformatif" && this.state.content.titreInformatif === contenu.titreInformatif){
-      console.log(ev)
+  onInputClicked = ev => {
+    const id = ev.currentTarget.id;
+    if( (id==="titreInformatif" && this.state.content.titreInformatif === contenu.titreInformatif)
+        || (id==="titreMarque" && this.state.content.titreMarque === contenu.titreMarque) ){
+      this.setState({ content: { ...this.state.content, [id]: ""} })
     }
+  }
+
+  handleChange = (ev) => {
     this.setState({ content: {
       ...this.state.content,
-      [id]: value
+      [ev.currentTarget.id]: ev.target.value
      }
     });
   };
@@ -529,7 +534,7 @@ class Dispositif extends Component {
       <div
         key="JoyrideTooltip"
         className="tooltip-wrapper custom-tooltip backgroundColor-darkColor" 
-        style={{width: joyRideWidth + "px", backgroundColor: mainTag.darkColor}}
+        style={{width: joyRideWidth + "px", backgroundColor: mainTag.darkColor, marginRight: "40px"}}
         {...tooltipProps}>
         <div className="tooltipContainer">
           <b>{step.title}</b> : {step.content}
@@ -588,8 +593,8 @@ class Dispositif extends Component {
           debug={false}
           styles={{
             options: {
-              arrowColor: mainTag.darkColor,
-            }
+              arrowColor: mainTag.darkColor
+            },
           }}
           joyRideWidth={joyRideWidth}
           mainTag={mainTag}
@@ -625,8 +630,9 @@ class Dispositif extends Component {
                   id='titreInformatif'
                   html={this.state.content.titreInformatif}  // innerHTML of the editable div
                   disabled={this.state.disableEdit}
-                  onClick={()=>this.startJoyRide()}
-                  onChange={this.handleChange} // handle innerHTML change
+                  onClick={e=>{this.startJoyRide(); this.onInputClicked(e)}}
+                  onChange={this.handleChange}
+                  onMouseEnter={e => e.target.focus()} 
                 />
               </h1>
               <h2 className="bloc-subtitle">
@@ -635,8 +641,9 @@ class Dispositif extends Component {
                   id='titreMarque'
                   html={this.state.content.titreMarque}  // innerHTML of the editable div
                   disabled={this.state.disableEdit}
-                  onClick={()=>this.startJoyRide(1)}
-                  onChange={this.handleChange} // handle innerHTML change
+                  onClick={e=>{this.startJoyRide(1); this.onInputClicked(e)}}
+                  onChange={this.handleChange} 
+                  onMouseEnter={e => e.target.focus()} 
                 />
               </h2>
             </div>
@@ -674,7 +681,6 @@ class Dispositif extends Component {
             </Row>
           </Col>
           <Col lg="5" md="5" sm="5" xs="5" className="tags-bloc">
-            <b className="en-bref">{t("Thèmes")} </b>
             <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
           </Col>
         </Row>
