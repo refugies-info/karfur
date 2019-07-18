@@ -12,8 +12,10 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
     <Route {...rest} render={(props) => {
       var path = props.location.pathname;
       if(path !== "/" && path !== "/homepage"){
+        var id = path.split("/").length - 1 - (path.indexOf("http://")==-1?0:2) > 1 ? path.substring(path.lastIndexOf('/') + 1) : "";
         const routes = require("../routes").default;
-        const route = routes.find(x => x.path === path);
+        const route = routes.find(x => x.path.replace(":id", id) === path);
+        console.log(id, route, path)
         if(API.isAuth()===false && route.restriction && route.restriction.length > 0){
           return <Redirect to={{ pathname:'/login', state: { redirectTo: path } }} />
         }else if(API.isAuth() && route.restriction && route.restriction.length > 0){

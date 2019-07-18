@@ -48,7 +48,7 @@ const filtres = {
     {short: "Français", name: "apprendre le français", darkColor: "#583F93", lightColor: "#F0E8F5", hoverColor: "#ADA8D4", illustrationColor: "#F9AA38"}, 
     {short: "Logement", name: "me loger", darkColor: "#1174BA", lightColor: "#DDF3FA", hoverColor: "#55A6CE", illustrationColor: "#F77B0B"}, 
     {short: "Insertion pro", name: "trouver un travail", darkColor: "#149295", lightColor: "#D6EFF4", hoverColor: "#4FD3BD", illustrationColor: "#DD0539"}, 
-    {short: "Formation pro", name: "apprendre un travail", darkColor: "#095411", lightColor: "#E8F4E9", hoverColor: "#7DC690", illustrationColor: "#FC1E73"}, 
+    {short: "Formation pro", name: "apprendre un métier", darkColor: "#095411", lightColor: "#E8F4E9", hoverColor: "#7DC690", illustrationColor: "#FC1E73"}, 
     {short: "Études", name: "faire des études", darkColor: "#378E04", lightColor: "#E8F7CD", hoverColor: "#ADEA5C", illustrationColor: "#E561D8"}, 
     {short: "Mobilité", name: "me déplacer", darkColor: "#EA6206", lightColor: "#FFF0E7", hoverColor: "#F9D1B7", illustrationColor: "#5435D6"}, 
     {short: "Bénévolat", name: "aider une association", darkColor: "#FC0E3B", lightColor: "#FFEEEE", hoverColor: "#FDA8AD", illustrationColor: "#1FC2C1"}, 
