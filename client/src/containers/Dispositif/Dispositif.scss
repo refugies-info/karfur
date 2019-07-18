@@ -877,3 +877,11 @@ div[x-placement="bottom"] .custom-tooltip .close-icon{
 div[x-placement="left"] .custom-tooltip .close-icon{
   right: 30px;
 }
+
+div[x-placement="bottom"].__floater.__floater__open{
+  margin-top: -20px;
+}
+
+div[x-placement="top"].__floater.__floater__open{
+  margin-top: 20px;
+}
