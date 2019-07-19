@@ -11,6 +11,7 @@ import setAuthToken from '../../utils/setAuthToken';
 import FCBtn from '../../assets/FCboutons-10.png';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
+import FInput from '../../components/FigmaUI/FInput/FInput';
 
 import './Login.scss';
 import variables from 'scss/colors.scss';
@@ -35,6 +36,8 @@ class Login extends Component {
   }
 
   togglePasswordVisibility = () => this.setState(prevState=>({passwordVisible: !prevState.passwordVisible}))
+
+  goBack = () => this.setState({step: 0, userExists: false, password:"", cpassword: ""});
 
   send = (e) => {
     e.preventDefault();
@@ -79,7 +82,7 @@ class Login extends Component {
       <div className="app flex-row align-items-center login">
         <div className="login-wrapper">
           {step === 1 && !userExists && 
-            <RegisterHeader /> }
+            <RegisterHeader goBack={this.goBack} /> }
           <Card className="card-login main-card">
             <CardBody>
               <Form onSubmit={this.send}>
@@ -157,14 +160,11 @@ class Login extends Component {
 
 const UsernameField = props => (
   <div key="username-field">
-    <InputGroup className="mb-3">
-      <InputGroupAddon addonType="prepend" className="icon-prepend">
-        <Icon name="person-outline" fill={variables.noir} />
-      </InputGroupAddon>
-      <Input autoFocus id="username" type="username" placeholder="Pseudonyme" 
-        value={props.value} onChange={props.onChange} 
-        autoComplete="username" />
-    </InputGroup>
+    <FInput
+      prepend
+      prependName="person-outline"
+      {...props}
+      id="username" type="username" placeholder="Pseudonyme" autoComplete="username" />
     <div className="footer-buttons">
       <FButton type="dark" name="arrow-forward-outline" color="dark" className="connect-btn">
         Suivant
@@ -174,16 +174,15 @@ const UsernameField = props => (
 )
 
 const PasswordField = props => (
-  <InputGroup className="password-group">
-    <InputGroupAddon addonType="prepend" className="icon-prepend">
-      <Icon name="lock-outline" fill={variables.noir} />
-    </InputGroupAddon>
-    <Input type={props.passwordVisible ? "text" : "password"} id={props.id} value={props.value} onChange={props.onChange}  
-      placeholder={props.placeholder} autoComplete="password" className="password-input" />
-    <InputGroupAddon addonType="append" className="icon-append" onClick={props.onClick}>
-      <EVAIcon name={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"} fill={variables.noir} />
-    </InputGroupAddon>
-  </InputGroup>
+  <FInput
+    prepend append
+    prependName="lock-outline"
+    appendName={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"}
+    inputClassName="password-input"
+    onAppendClick={props.onClick}
+    {...props}
+    type={props.passwordVisible ? "text" : "password"} id={props.id} 
+    placeholder={props.placeholder} autoComplete="password" />
 )
 
 const PasswordFooter = props => (
@@ -198,14 +197,15 @@ const PasswordFooter = props => (
   </div>
 )
 
-const RegisterHeader = () => (
-  <Card className="card-login header-card">
+const RegisterHeader = props => (
+  <Card className="card-login header-card cursor-pointer" onClick={props.goBack}>
     <CardBody>
-      <EVAIcon name="alert-triangle" fill={variables.noir} className="mr-20" />
-      <span>Il n’existe pas de compte à ce nom. </span>
+      <EVAIcon name="corner-up-left-outline" fill={variables.noir} className="mr-20" />
+      <span>Il n'existe pas de compte à ce nom. </span>
     </CardBody>
   </Card>
 )
+
 export default track({
   page: 'Login',
 }, { dispatchOnMount: true })(Login);
