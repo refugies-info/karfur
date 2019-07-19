@@ -35,6 +35,10 @@ class HomePage extends Component {
     suggestions: [],
   }
 
+  componentDidMount (){
+    window.scrollTo(0, 0);
+  }
+
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
 
   render() {

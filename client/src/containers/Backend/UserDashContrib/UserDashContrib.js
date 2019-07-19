@@ -40,6 +40,7 @@ class UserDashContrib extends Component {
       })
       this.setState({user:user, contributeur:user.roles.some(x=>x.nom==="Contrib")})
     })
+    window.scrollTo(0, 0);
   }
 
   toggleModal = (modal) => {  
