@@ -17,6 +17,7 @@ export class SearchBar extends React.Component {
     showSearch:true,
     value: '',
     suggestions: [],
+    selectedResult:{}
   };
 
   onChange = (_, { newValue }) => this.setState({ value: newValue });
@@ -31,13 +32,19 @@ export class SearchBar extends React.Component {
   }
 
   findInContent = (contenu, regex) => contenu.some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent (x.children, regex)) );
-  onSuggestionSelected = (_,{suggestion}) => this.goToDispositif(suggestion, true)
+  
+  onSuggestionSelected = (_,{suggestion}) => {
+    this.setState({selectedResult : suggestion});
+    this.goToDispositif(suggestion, true);
+  }
 
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
     this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
   }
 
+  validateSearch = () => this.goToDispositif(this.state.selectedResult, true);
+  
   render() {
     const renderSuggestion = (suggestion, { query }) => {
       const suggestionText = `${suggestion.titreMarque} - ${suggestion.titreInformatif}`;
@@ -48,7 +55,6 @@ export class SearchBar extends React.Component {
           <span className="name">
             {parts.map((part, index) => {
               const className = part.highlight ? 'highlight' : null;
-  
               return <span className={className} key={index}>{part.text}</span>;
             })}
           </span>
@@ -59,14 +65,25 @@ export class SearchBar extends React.Component {
     const inputProps = { placeholder: 'Chercher', value: this.state.value, onChange: this.onChange };
     
     return(
-      <Autosuggest 
-        suggestions={this.state.suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={getSuggestionValue}
-        renderSuggestion={renderSuggestion}
-        inputProps={inputProps}
-        onSuggestionSelected={this.onSuggestionSelected} />
+      <div className={"md-form form-sm form-2 pl-0 " + this.props.className}>
+        <Autosuggest 
+          suggestions={this.state.suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          inputProps={inputProps}
+          onSuggestionSelected={this.onSuggestionSelected} 
+        />
+        {this.props.loupe &&
+          <i onClick={this.validateSearch} className="fa fa-search text-grey loupe-btn pointer" aria-hidden="true"/>}
+        {this.props.validate && 
+          <div className="input-group-append" onClick={this.validateSearch}>
+            <span className="input-group-text amber lighten-3" id="basic-text1">
+              Valider
+            </span>
+          </div>}
+      </div>
     )
   }
 };

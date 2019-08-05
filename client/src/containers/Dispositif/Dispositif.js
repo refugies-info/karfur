@@ -103,7 +103,17 @@ class Dispositif extends Component {
   newRef=React.createRef();
 
   componentDidMount (){
-    let itemId=this.props.match && this.props.match.params && this.props.match.params.id;
+    this._initializeDispositif(this.props);
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.match.params.id !== this.props.match.params.id){
+      this._initializeDispositif(nextProps);
+    }
+  }
+
+  _initializeDispositif = props => {
+    let itemId=props.match && props.match.params && props.match.params.id;
     if(itemId){
       API.get_dispositif({_id: itemId},{},'creatorId').then(data_res => {
         let dispositif={...data_res.data.data[0]};
@@ -141,7 +151,7 @@ class Dispositif extends Component {
         showDispositifCreateModal:true, //A modifier avant la mise en prod
         isDispositifLoading: false
       },()=>this.setColors())
-    }else{ this.props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
+    }else{ props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
     window.scrollTo(0, 0);
   }
 
@@ -372,7 +382,7 @@ class Dispositif extends Component {
       if(this.state.pinned){
         user.cookies.dispositifsPinned = user.cookies.dispositifsPinned.filter(x => x._id !== this.state.dispositif._id)
       }else{
-        user.cookies.dispositifsPinned=[...(user.cookies.dispositifsPinned || []), {...this.state.dispositif, pinned:true}];
+        user.cookies.dispositifsPinned=[...(user.cookies.dispositifsPinned || []), {...this.state.dispositif, pinned:true, datePin: new Date()}];
       }
       API.set_user_info(user).then((data) => {
         this.setState({
@@ -670,7 +680,7 @@ class Dispositif extends Component {
                         <a href={'#item-head-1'} className="no-decoration">
                           {card.typeIcon==="eva" ?
                             <EVAIcon name={card.titleIcon} fill="#FFFFFF"/> :
-                            <SVGIcon fill="#FFFFFF" width="25" height="25" viewBox="0 0 25 25" name={card.titleIcon} />}
+                            <SVGIcon fill="#FFFFFF" width="20" height="20" viewBox="0 0 25 25" name={card.titleIcon} />}
                           <span>{texte}</span>
                         </a>
                       </div>

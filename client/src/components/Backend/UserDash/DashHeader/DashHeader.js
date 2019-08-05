@@ -1,67 +1,52 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
-import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
+import {NavLink} from 'react-router-dom';
+
+import FButton from '../../../FigmaUI/FButton/FButton';
 
 import './DashHeader.scss'
+import variables from 'scss/colors.scss';
 
 const dashHeader = (props) => {
   return(
-    <div className="tableau-wrapper" className="dash-header">
+    <div className="dash-header">
       <Row>
         <Col>
-          <h1>{props.title}</h1>
+          <h2><NavLink to="/backend/user-dash-contrib" className="my-breadcrumb">Mon profil</NavLink> / {props.title}</h2>
         </Col>
-        <Col className="d-flex tableau-header">
-          <Row className="full-width">
-            <Col lg="auto" md="4" sm="6" xs="12" className="d-flex left-element">
-              <h4>{props.motsRediges}</h4>
-              <span>mots rédigés</span>
-            </Col>
-            <Col lg="auto" md="4" sm="6" xs="12" className="d-flex middle-element">
-              <h4>{props.minutesPassees}</h4>
-              <span>minutes passées</span>
-            </Col>
-            <Col lg="auto" md="4" sm="12" xs="12" className="right-element pointer">
-              <div className="modifier-objectif d-inline-flex" onClick={()=>props.toggle('objectifs')}>
-                <EVAIcon name="settings-2-outline" fill="#828282" className="align-right pointer" /> {' '}
-                <u className="modify-obj">Modifier mon objectif</u>
-              </div>
-              <div className="definir-user d-inline-flex" onClick={()=>props.toggle('defineUser')}>
-                <EVAIcon name="edit-outline" fill="#828282" className="align-right pointer" /> {' '}
-                <u className="modify-obj">{props.ctaText}</u>
-              </div>
-            </Col>
-          </Row>
+        <Col className="tableau-header align-right">
+          <FButton type="outline-black" name="info-outline" fill={variables.noir} className="mr-10">
+            Aide
+          </FButton>
+          <FButton type="dark" name="options-2-outline">
+            Mes objectifs
+          </FButton>
         </Col>
       </Row>
       <Row className="header-indicateurs">
         <Col lg="4" md="12" sm="12" xs="12">
           <div className="inner-indicator first-indicator">
-            <div className="right-side">34</div>
+            <h3 className="right-side">12</h3>
             <div className="left-side">
-              <b>Au total</b>, 34 personnes ont bénéficiés de votre travail de traduction. Merci pour votre engagement en faveur des réfugié.es.
-              <br/>
-              <u className="pointer" onClick={props.upcoming}>Qui sont-ils ?</u>
+              utilisateurs ont profité de vos contenus cette semaine.{' '}
+              <b className="pointer" onClick={props.upcoming}>Alors ?</b>
             </div>
           </div>
         </Col>
         <Col lg="4" md="12" sm="12" xs="12">
           <div className="inner-indicator second-indicator">
-            <div className="right-side">12</div>
+            <h3 className="right-side">{props.motsRediges} <span className="gris">/ {props.objectifMots}</span></h3>
             <div className="left-side">
-              <b>Cette semaine</b>, 12 personnes ont bénéficiés de votre travail de traduction. 
-              <br/>
-              <u className="pointer" onClick={props.upcoming}>Qui sont-ils ?</u>
+              Il vous reste {props.motsRestants} mots à traduire pour atteindre votre objectif. Courage !
             </div>
           </div>
         </Col>
         <Col lg="4" md="12" sm="12" xs="12">
           <div className="inner-indicator third-indicator">
-            <div className="right-side">34</div>
+            <h3 className="right-side">{props.minutesPassees} <span className="gris">/ {props.objectifTemps}'</span></h3>
             <div className="left-side">
-              <b>Cette semaine</b>, 8 personnes ont traduit des contenus avec vous 
-              <br/>
-              <u className="pointer" onClick={props.upcoming}>Échangez avec eux !</u>
+              Déjà {props.minutesPassees} minutes écoulées sur les {props.objectifTemps} que vous dédiez aux réfugiés.{' '}
+              <b>Merci !</b>
             </div>
           </div>
         </Col>

@@ -12,7 +12,11 @@ const getViewBox = name => {
       return "0 0 20 20";
     case "handwriting":
       return "0 0 80 80";
-    case "people" || "horloge" || "papiers" || "carte" || "frBubble":
+    case "people":
+    case "horloge":
+    case "papiers":
+    case "carte":
+    case "frBubble":
       return "0 0 25 25";
     case "construction":
       return "0 0 40 40";

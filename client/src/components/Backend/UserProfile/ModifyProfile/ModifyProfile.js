@@ -2,16 +2,13 @@ import React from 'react';
 import { Col, Row, Card, CardBody, CardHeader, CardFooter, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
+import FButton from '../../../FigmaUI/FButton/FButton';
 
 const modifyProfile = (props) => {
   let { user, langues, editing } = props;
   return (
     <Card className="profile-modify">
       <div className={"shadow-wrapper" + (editing ? " active" : "")}>
-        <CardHeader className={editing ? "editing" : ""}>
-          {editing ? "Modifier mon profil" : "Votre profil"}
-          {!editing && <EVAIcon name="settings-2-outline" className="align-right pointer" onClick={props.toggleEditing} />}
-        </CardHeader>
         <CardBody>
           <Row>
             <Col xl="4" lg="4" md="4" sm="4" xs="4" className="handleBetween">
@@ -25,7 +22,7 @@ const modifyProfile = (props) => {
                 onChange={props.handleChange} />
             </Col>
           </Row>
-          <Row>
+          {/* <Row>
             <Col lg="4" md="4" sm="4" xs="4" className="handleBetween">
               Langue
             </Col>
@@ -56,7 +53,7 @@ const modifyProfile = (props) => {
                 <EVAIcon name="plus-circle-outline" fill="#3D3D3D" />
               </Button>}
             </Col>
-          </Row>
+          </Row> */}
           <Row>
             <Col lg="4" md="4" sm="4" xs="4" className="handleBetween">
               Email
@@ -82,9 +79,14 @@ const modifyProfile = (props) => {
             </Col>
           </Row>
         </CardBody>
+        {!editing && <CardFooter>
+          <FButton type="dark" name="edit-outline" onClick={props.toggleEditing}>
+            Compléter
+          </FButton>
+        </CardFooter>}
       </div>
       {editing && 
-        <CardFooter>
+        <CardFooter className="mt-10">
           <Button color="secondary" className="cancel-btn d-flex align-items-center" onClick={props.toggleEditing}>
             <EVAIcon className="margin-right-8 d-inline-flex" name="close-circle-outline" />
             Annuler

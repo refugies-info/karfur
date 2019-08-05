@@ -3,11 +3,12 @@
 
 $defaultSize:310px;
 .user-profile{
-  background: #FBFBFB;
+  background: $blanc;
   min-height:100%;
   font-size: 18px;
   line-height: 23px;
   padding-top:100px;
+  flex: 1 1;
 
   .profile-header{
     height: 60px;
@@ -49,21 +50,24 @@ $defaultSize:310px;
 
         .card-body{
           padding:20px;
-          background: #F2F2F2;
+          padding-bottom:10px;
           border-radius: 12px 12px 0px 0px;
+          background: $gris;
+
           .user-picture{
-            width: 160px;
+            width: 120px;
           }
         }
         .card-footer{
-          background: #3D3D3D;
+          background: $gris;
           border-radius: 0px 0px 12px 12px;
-          color: #FFFFFF;
-          text-align: left;
+          color: $noir;
+          text-align: center;
+          border:none;
+          padding:0 20px 20px 20px;
 
           .name{
             font-weight: bold;
-            color: #FFFFFF;
             font-size: 18px;
             line-height: 23px;
             margin:0;
@@ -100,73 +104,6 @@ $defaultSize:310px;
           margin-top:-19px;
         }
       }
-
-      // .feedbacks-col{
-      //   align-items: center;
-      //   justify-content: center;
-      //   display: flex;
-      //   width: $defaultSize;
-      //   height: $defaultSize;
-      //   padding-left:14px;
-
-      //   .no-decoration{
-      //     text-decoration: none;
-      //   }
-      //   .feedbacks-card{
-      //     box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.25);
-      //     border-radius: 12px;
-      //     box-sizing: border-box;
-      //     width: 100%;
-      //     height: 100%;
-      //     font-weight: bold;
-      //     margin:0;
-      //     cursor: pointer;
-      //     color: #FFFFFF;
-
-      //     &.no-contrib{
-      //       background: #4A69BD;
-
-      //       .card-body{
-      //         padding: 23px 28px 18px 27px;
-      //         display: flex;
-      //         flex-direction: column;
-      //         justify-content: space-between;
-
-      //         .icones-rouges{
-      //           display: flex;
-      //           flex-direction: row;
-      //           justify-content: space-between;
-      //         }
-      //       }
-      //     }
-          
-      //     &.contributeur{
-      //       background: #F6B93B;
-    
-      //       .card-body{
-      //         padding: 29px 0 0 16px;
-      //       }
-    
-      //       svg{
-      //         bottom: 0;
-      //         right: 12px;
-      //         position: absolute;
-      //       }
-      //       .user-feedbacks{
-      //         width: 160px;
-      //         h4{
-      //           font-size: 40px;
-      //           line-height: 40px;
-      //           margin:0;
-      //         }
-      //         span{
-      //           font-size: 15px;
-      //           line-height: 19px;
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
       
       .align-right{
         display: inline-flex;
@@ -179,39 +116,37 @@ $defaultSize:310px;
         cursor: pointer;
       }
 
+      .shadow-wrapper{
+        border-radius: 12px;
+        &.active{
+          border:1px solid rgba(0, 0, 0, 0.125);
+          box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
+        }
+      }
+
       .profile-modify{
         border-radius: 12px;
-        color: #3D3D3D;
+        color: $noir;
         border:none;
         background: transparent;
 
         .shadow-wrapper{
-          border-radius: 12px;
-          border:1px solid rgba(0, 0, 0, 0.125);
-          &.active{
-            box-shadow: 0px 4px 20px #F6B93B;
-          }
-        }
-
-        .card-header{
-          background: #3D3D3D;
-          border-radius: 12px 12px 0px 0px;
-          font-weight: bold;
-          border:none;
-          color: #FFFFFF;   
-          &.editing{
-            background: #F2F2F2;
-            color: #3D3D3D;
-          }
+          background: $gris;
+          padding: 20px;
         }
         .card-body{
           border-radius: 0px 0px 12px 12px;
+          border:none;
+          padding: 0;
+
           .row{
             margin-bottom:23px;
           }
-          div[contenteditable="true"]:empty{
-            border: 1px solid red;
-            min-height: 23px;
+          div[contenteditable="true"]{
+            background: white;
+            &:empty{
+              min-height: 23px;
+            }
           }
           .langues-dropdown .btn, .plus-langue{
             background: linear-gradient(110.29deg, #FBFBFB 0%, #F2F2F2 100%);
@@ -221,7 +156,7 @@ $defaultSize:310px;
             font-weight: bold;
             font-size: 14px;
             line-height: 18px;
-            color: #3D3D3D;
+            color: $noir;
             padding: 6px 10px;
           }
           .minus-icon{
@@ -241,7 +176,7 @@ $defaultSize:310px;
         .card-footer{
           background: transparent;
           border:none;
-          padding:10px 0;
+          padding:0;
           display: flex;
           justify-content: flex-end;
 
@@ -256,31 +191,25 @@ $defaultSize:310px;
 
       .profile-right{
         border:none;
-        .card-header{
-          background: #3D3D3D;
-          border-radius: 12px 12px 0px 0px;
-          color: #FFFFFF;
-        }
+
         .card-body{
           padding:0;
           .row{
-            margin: 0;
+            margin: 0 -10px 0 0;
             .col{
-              padding: 16px 20px;
-            }
-            .obj-first{
-              background: rgba(184, 233, 148, 0.2);
-              border-radius: 0px 0px 0px 12px;
-              color: #B8E994;
-            }
-            .obj-second{
-              background: rgba(232, 208, 0, 0.1);
-              color: #E8D000;
-            }
-            .obj-third{
-              background: rgba(74, 105, 189, 0.1);
-              border-radius: 0px 0px 12px 0px;
-              color: #4A69BD;
+              padding: 8px 20px;
+              background: $gris;
+              color: $noirCD;
+              border-radius: 12px;
+              margin-right: 10px;
+              width: 200px;
+              max-width: 200px;
+              h1{
+                margin-bottom:10px;
+              }
+              .subtitle{
+                margin-bottom: 50px;
+              }
             }
           }
         }
@@ -292,31 +221,6 @@ $defaultSize:310px;
           color: #60A3BC;
         }
       }
-    }
-  }
-
-  .action-btn{
-    padding:10px;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 20px;
-    color: #FFFFFF;
-    display:flex;
-    border:none;
-    min-width : 150px;
-    justify-content: center;
-
-    i{
-      margin-right: 8px;
-    }
-    &.suggestions{
-      background: #F6B93B;
-    }
-    &.questions{
-      background: #CDCDCD;
-    }
-    &.signalements{
-      background: #CDCDCD;
     }
   }
   
@@ -331,6 +235,11 @@ $defaultSize:310px;
     .hideOnPhone{
       display:none;
     }
+  }
+
+
+  .tableau-wrapper .tableau{
+    background: $gris;
   }
 }
 
@@ -354,17 +263,44 @@ $defaultSize:310px;
     line-height: 23px;
     color: #828282;
   }
+  tbody tr:hover{
+    background: $blanc;
+    cursor: pointer;
+  }
   td {
     border-style : hidden;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
     line-height: 23px;
-    color: #3D3D3D;
+    color: $noir;
   }
   .voir-plus{
     text-align: center;
     cursor: pointer;
+  }
+  .dot-circle{
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: $noir;
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+  }
+  .depuis{
+    &.alert{
+      color: $rouge;
+    }
+    &.success{
+      color: $vert;
+    }
+  }
+  .fit-content{
+    width: 1%;
+  }
+  .status-pill{
+    width: max-content;
+    padding: 6px 10px;
+    border-radius: 6px;
   }
 }
 
@@ -381,26 +317,24 @@ $defaultSize:310px;
     cursor: pointer;
   }
 
+  h4{
+    font-size: 42px;
+    line-height: 53px;
+    margin: auto 23px auto 0;
+    display: inline;
+    margin:0;
+  }
 
   .left-element, .middle-element{
     font-style: normal;
     font-weight: bold;
-    color: #CDCDCD;
     align-items: center;
-    h4{
-      font-size: 64px;
-      line-height: 64px;
-      display: inline;
-      margin:0;
-      &.make-it-green{
-        color: #78E08F;
-      }
-    }
+  }
+
+  .left-element, .middle-element, .right-element{
     span{
-      font-size: 18px;
-      line-height: 23px;
-      display: block;
-      margin-left:11px;
+      width: 0;
+      overflow: visible;
     }
   }
 
@@ -409,28 +343,24 @@ $defaultSize:310px;
   }
 
   .right-element{
-    color: #F6B93B;
     display: flex;
-
-    h4{
-      font-size: 64px;
-      line-height: 81px;
-      margin: auto 23px auto 0;
-    }
-    span{
-      font-size: 24px;
-      line-height: 30px;
-      max-width:260px;
-      margin:auto 0;
-    }
+    align-items: center;
     .modify-obj{
       font-size: 18px;
       color: #828282;
     }
   }
+
+  .full-width{
+    width: 100%;
+  }
+  &.align-right{
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 
-.user-profile, .user-dash-contrib{
+.user-profile, .user-dash-contrib, .user-dash{
   .tableau-wrapper{
     margin-top:39px;
     position: relative;
@@ -448,7 +378,6 @@ $defaultSize:310px;
 
     h1{
       font-size: 40px;
-      color: $noir;
       display: inline;
       @include media-max("phone-down") { font-size: 46px; }
     }
@@ -462,7 +391,6 @@ $defaultSize:310px;
     }
 
     .tableau{
-      background: #FBFBFB;
       border-radius: 12px;
       .progress{
         height:6px;
@@ -471,11 +399,6 @@ $defaultSize:310px;
       }
       .langue-item {
         i{
-          margin-right:8px;
-        }
-      }
-      .align-middle{
-        svg{
           margin-right:8px;
         }
       }

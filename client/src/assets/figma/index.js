@@ -19,6 +19,7 @@ import curvedBackground from './curved-background.svg';
 import headerBackground from './headerBackground.svg';
 import humaanRight from './humaanRight.svg';
 import humaanLeft from './humaanLeft.svg';
+import countrySide from './countrySide.svg'
 
 import juliette from './juliette.png';
 import hugo from './hugo.png';
@@ -55,6 +56,7 @@ export {
   headerBackground,
   humaanRight,
   humaanLeft,
+  countrySide,
 
   juliette,
   hugo,

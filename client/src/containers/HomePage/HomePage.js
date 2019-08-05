@@ -49,15 +49,13 @@ class HomePage extends Component {
           <div className="hero-container">
             <h1>Construire sa vie en France</h1>
             <h5>Cherchez un des 13 dispositifs, démarches ou articles dédiés aux personnes réfugiées</h5>
+            
             <div className="search-row">
-              <div className="input-group md-form form-sm form-2 pl-0">
-                <SearchBar />
-                <div className="input-group-append">
-                  <span className="input-group-text amber lighten-3" id="basic-text1">
-                    Valider
-                  </span>
-                </div>
-              </div>
+              <SearchBar 
+                validate
+                validateTest="Valider"
+                className="input-group"
+              />
               <div>
                 <div className="try-it-out">ou essayez la :</div>
                 <NavLink to="/advanced-search">

@@ -11,11 +11,12 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
   return (
     <Route {...rest} render={(props) => {
       var path = props.location.pathname;
+      console.log(path, props)
       if(path !== "/" && path !== "/homepage"){
         var id = path.split("/").length - 1 - (path.indexOf("http://")==-1?0:2) > 1 ? path.substring(path.lastIndexOf('/') + 1) : "";
         const routes = require("../routes").default;
         const route = routes.find(x => x.path.replace(":id", id) === path);
-        console.log(id, route, path)
+        console.log(path, route, id)
         if(API.isAuth()===false && route.restriction && route.restriction.length > 0){
           return <Redirect to={{ pathname:'/login', state: { redirectTo: path } }} />
         }else if(API.isAuth() && route.restriction && route.restriction.length > 0){
@@ -31,6 +32,7 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
           return <Component {...props}  socket = { socket } socketFn = { socketFn }/> 
         }
       }else{
+        console.log('returning component', props)
         return <Component {...props}  socket = { socket } socketFn = { socketFn }/> 
       }
     }} />
