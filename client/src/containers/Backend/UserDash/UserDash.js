@@ -14,16 +14,16 @@ import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHead
 import Icon from 'react-eva-icons/dist/Icon';
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import { ObjectifsModal, TraducteurModal } from '../../../components/Modals';
+import {TradTable} from '../../../components/Backend/UserProfile';
 
 import './UserDash.scss';
 
 moment.locale('fr');
 
-const past_translation_data={
-  title: 'Traductions récemment effectuées',
-  headers: ['Langue', 'Texte traduit','Statut', 'Depuis'],
-  hideOnPhone: [false,false,true,false],
-  data: past_translation
+const avancement_langue={
+  title: 'Traductions',
+  headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi',''],
+  hideOnPhone: [false, false, true, false, true, false]
 }
 
 const avancement_data={
@@ -36,7 +36,7 @@ const avancement_data={
 class UserDash extends Component {
   state={
     showModal:{objectifs:false, traductionsFaites: false, progression:false, defineUser: false}, 
-    runJoyRide:true, //penser à le réactiver !!
+    runJoyRide:false, //penser à le réactiver !!
     user:{},
     langues:[],
     allLangues:[],
@@ -46,7 +46,8 @@ class UserDash extends Component {
       nbMots:0
     },
     isExpert: false,
-    isMainLoading: true
+    isMainLoading: true,
+    showSections:{traductions: true},
   }
 
   componentDidMount() {
@@ -82,6 +83,11 @@ class UserDash extends Component {
     }else{
       this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}}, ()=>(console.log(this.state)))
     }
+  }
+  
+  toggleSection = (section) => {
+    this.props.tracking.trackEvent({ action: 'toggleSection', label: section, value : !this.state.showSections[section] });
+    this.setState({showSections : {...this.state.showSections, [section]: !this.state.showSections[section]}})
   }
 
   triggerConfirmationRedirect = () => {
@@ -154,7 +160,7 @@ class UserDash extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render() {
-    let {langues, traductionsFaites, allLangues, isMainLoading} = this.state;
+    let {langues, traductionsFaites, allLangues, isMainLoading, showSections} = this.state;
 
     const buttonTraductions = element => (
       (this.state.user.roles || []).find(x => x.nom==='ExpertTrad') ?
@@ -165,39 +171,6 @@ class UserDash extends Component {
           <span>Commencer à traduire</span>
         </Button>
     )
-
-    const TraductionsRecentes = (props) => {
-      let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
-      return (
-        <AvancementTable 
-          toggleModal={()=>this.toggleModal('traductionsFaites')}
-          protection={data.length === 0}
-          quickAccess={this.quickAccess}
-          {...past_translation_data}
-          >
-          {data.map( element => {
-            let langElem=langues.find(x=>x.i18nCode===element.langueCible) || {};
-            return (
-              <tr 
-                key={element._id} 
-                onClick={this.navigateToDashLang}>
-                <td className="align-middle">
-                  <i className={'flag-icon flag-icon-' +  langElem.langueCode} title={element.code} id={element.code}></i>
-                  <b>{langElem.langueFr}</b>
-                </td>
-                <td className="align-middle text-grey">{(element.initialText || {}).title}</td>
-                <td className="align-middle hideOnPhone">
-                  <Badge color={colorStatut(element.status)}>{element.status}</Badge>
-                </td>
-                <td className="align-middle since-col">
-                  {moment(element.updatedAt).fromNow()}
-                </td>
-              </tr>
-            );
-          })}
-        </AvancementTable>
-      )
-    }
 
     const ProgressionTraduction = (props) => {
       let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
@@ -262,20 +235,38 @@ class UserDash extends Component {
         />
 
         <DashHeader 
-          title="Mes traductions"
+          title="Espace traduction"
           ctaText="Modifier mes langues de travail"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}
           upcoming={this.upcoming}
+          objectifMots={this.state.user.objectifMots}
+          objectifTemps={this.state.user.objectifTemps}
           motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt
           minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 1000 / 60))} //idem
         />
         
         <Row className="recent-row">
-          <TraductionsRecentes
+          <TradTable 
             dataArray={traductionsFaites}
-            limit={5} />
+            traducteur
+            isExpert={this.state.isExpert}
+            user={this.state.user}
+            langues={langues}
+            toggleModal={this.toggleModal}
+            toggleSection={this.toggleSection}
+            hide={!showSections.traductions}
+            overlayTitle="Aidez à traduire les contenus"
+            overlaySpan="Bilingue ? Polyglotte ? Participez à l’effort de traduction à votre rythme :"
+            overlayBtn="Démarrer une session"
+            overlayRedirect={false}
+            history={this.props.history}
+            windowWidth={this.props.windowWidth}
+            motsRediges={this.state.progression.nbMots}
+            minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
+            limit={5}
+            {...avancement_langue} />
         </Row>
 
         <Row>
@@ -285,7 +276,13 @@ class UserDash extends Component {
         </Row>
 
         <Modal isOpen={this.state.showModal.traductionsFaites} toggle={()=>this.toggleModal('traductionsFaites')} className='modal-plus'>
-          <TraductionsRecentes dataArray={traductionsFaites} />
+          <TradTable 
+            dataArray={traductionsFaites}
+            user={this.state.user}
+            langues={langues}
+            toggleModal={this.toggleModal}
+            windowWidth={this.props.windowWidth}
+            {...avancement_langue} />
         </Modal>
         <Modal isOpen={this.state.showModal.progression} toggle={()=>this.toggleModal('progression')} className='modal-plus'>
           <ProgressionTraduction dataArray={allLangues} />

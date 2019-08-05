@@ -11,6 +11,7 @@ body .figma-btn{
   color: $noir;
   width: fit-content;
   text-decoration: none;
+  white-space: nowrap;
   
   &.default svg{
     fill:$noir;

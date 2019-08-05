@@ -24,7 +24,6 @@ export class Toolbar extends React.Component {
 
   state = {
     dropdownOpen: false,
-    showSearch:true,
   };
 
   disconnect = () => {
@@ -38,7 +37,6 @@ export class Toolbar extends React.Component {
   render() {
     const path = this.props.location.pathname;
     const { i18n, user, contributeur, traducteur } = this.props;
-    let { showSearch } = this.state;
     let afficher_burger=path.includes("/backend");
     let afficher_burger_droite=path.includes("/traduction");
     
@@ -60,11 +58,10 @@ export class Toolbar extends React.Component {
           {/* <NavigationItems /> */}
         </nav>
 
-        <div className="md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
-          {showSearch && 
-            <SearchBar />}
-          <i onClick={this._toggleSearch} className={"fa fa-search text-grey loupe-btn pointer" + (showSearch ? "" : " icon-only")} aria-hidden="true"></i>
-        </div>
+        <SearchBar
+          loupe
+          className="search-bar inner-addon right-addon"
+        />
 
         <div className="right_buttons">
           <FButton type="dark" name="flash" className="ml-10 mr-10" tag={NavLink} to="/advanced-search"> {/*to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} */}

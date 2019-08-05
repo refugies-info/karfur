@@ -1,6 +1,9 @@
+@import 'src/scss/colors.scss';
+
 .user-dash-contrib{
   padding: 30px;
   position: relative;
+  background: $gris;
   
   .recent-row{
     margin-top:39px;

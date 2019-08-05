@@ -1,9 +1,15 @@
 @import 'src/scss/global.scss';
+@import 'src/scss/colors.scss';
 
 $h1Size: 64px;
 $normalSize: 18px;
 
 .dash-header{
+
+  .my-breadcrumb{
+    color: $grisFonce;
+  }
+
   .tableau-header{
     .full-width{
       flex-grow:1;
@@ -29,36 +35,36 @@ $normalSize: 18px;
 
       .inner-indicator{
         border-radius: 12px;
-        display:flex;
         margin-left:10px;
+        padding: 6px 20px 20px 20px;
         height:100%;
         @include media-max("lg-limit") { margin-left:0; }
 
         .right-side{
           font-weight: bold;
-          font-size: $h1Size;
-          padding: 20px;
           margin: auto 0;
+          color: $noir;
           @include media-max("desktop-down") { font-size: $h1Size * 4 / 5; }
           @include media-max("desktop-up") { font-size: $h1Size * 3 / 5; }
           @include media-max("tablet-up") { font-size: $h1Size * 2 / 5; }
         }
         .left-side{
-          padding: 10px 20px;
           margin:auto 0;
-          font-size: $normalSize;
           @include media-max("desktop-down") { font-size: $normalSize * 4 / 5; }
         }
         &.first-indicator{
-          background: #60A3BC;
-          color: #FFFFFF;
+          background: $blancSimple;
+          color: $grisFonce;
         }
-        &.second-indicator{
-          background: rgba(185, 236, 255, 0.3);
-          color: #60A3BC;
-        }
-        &.third-indicator{
-          border: 1px solid #3D3D3D;
+        &.second-indicator, &.third-indicator{
+          background: $noir;
+          color: $blancSimple;
+          .right-side{
+            color: $blancSimple;
+            .gris{
+              color: $grisFonce;
+            }
+          }
         }
       }
     }
