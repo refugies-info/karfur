@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Card, CardBody, CardHeader, CardFooter, Modal, Spinner, Input, Button } from 'reactstrap';
+import { Col, Row, Card, CardBody, CardFooter, Modal, Spinner, Input, Button } from 'reactstrap';
 import Swal from 'sweetalert2';
-import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import windowSize from 'react-window-size';
@@ -13,11 +12,12 @@ import {ActionTable, TradTable, ContribTable, FavoriTable} from '../../../compon
 import {ThanksModal, SuggestionModal, ObjectifsModal, ContributeurModal, TraducteurModal} from '../../../components/Modals';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import ModifyProfile from '../../../components/Backend/UserProfile/ModifyProfile/ModifyProfile';
+import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
+import FButton from '../../../components/FigmaUI/FButton/FButton';
 
-import {fakeTraduction, fakeContribution, fakeFavori, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris} from './data'
+import {fakeTraduction, fakeContribution, fakeFavori, fakeNotifs, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris} from './data'
 
 import './UserProfile.scss';
-import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 
 class UserProfile extends Component {
   state={
@@ -100,15 +100,6 @@ class UserProfile extends Component {
 
   toggleEditing = () => this.setState({editing : !this.state.editing})
   
-  toggleDropdown = (e, key) => {
-    if(this.state.isDropdownOpen[key] && e.currentTarget.id){
-      this.setState({
-        user : {...this.state.user, selectedLanguages:[...this.state.user.selectedLanguages].map((x,i)=> i==key ? this.state.langues[e.currentTarget.id] : x)},
-      })
-    }
-    this.setState({ isDropdownOpen: this.state.isDropdownOpen.map((x,i)=> i===key ? !x : false)})
-  };
-
   showSuggestion = (suggestion) => {
     this.setState({suggestion});
     this.toggleModal('suggestion');
@@ -125,21 +116,6 @@ class UserProfile extends Component {
     API.update_dispositif(dispositif).then(data => {
       console.log(data.data.data)
       this.setState({actions: this.state.actions.filter(x=> x.suggestionId !== suggestion.suggestionId)})
-    })
-  }
-
-  addLangue = () => {
-    this.setState({
-      user : {...this.state.user, selectedLanguages:[...(this.state.user.selectedLanguages || []), (this.state.langues.length > 0 ? this.state.langues[0] : {})]},
-      isDropdownOpen: new Array(this.state.isDropdownOpen.length + 1).fill(false)
-    })
-  }
-
-  removeLang = (e,idx) => {
-    e.stopPropagation();
-    this.setState({
-      user : {...this.state.user, selectedLanguages:[...this.state.user.selectedLanguages || []].filter((_,i) => i!==idx)},
-      isDropdownOpen: new Array(this.state.isDropdownOpen.length - 1).fill(false)
     })
   }
 
@@ -209,18 +185,11 @@ class UserProfile extends Component {
     if(!traducteur){traductions= new Array(5).fill(fakeTraduction)}
     if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
 
-    let favoris = ((user.cookies || {}).dispositifsPinned || []),hasFavori=true;
+    let favoris = ((user.cookies || {}).dispositifsPinned || []),hasFavori=true, hasNotifs= true;
     if(favoris.length === 0){favoris= new Array(5).fill(fakeFavori); hasFavori=false;}
-
+    if(actions.length === 0){actions= new Array(5).fill(fakeNotifs); hasNotifs=false;}
+    console.log(favoris)
     let imgSrc = this.state.tempImg || (this.state.user.picture || []).secure_url || marioProfile
-
-    const ProfilePic = () => {
-      if(this.state.uploading){
-        return <Spinner color="dark" className="fadeIn fadeOut" />
-      }else{
-        return <img className="img-circle user-picture" src={imgSrc} alt="profile"/>
-      }
-    }
 
     let nbReactions = contributions.map(dispo => ((dispo.merci || []).length + (dispo.bravo || []).length)).reduce((a,b) => a + b, 0);
 
@@ -257,82 +226,71 @@ class UserProfile extends Component {
         </div>
         <div className="profile-content" id="mon-profil">
           <Row className="profile-info">
-            <Col xl="2" lg="4" md="12" sm="12" xs="12"  className="profile-left">
-              <CardBody>
-                <div className="profile-header-container">   
-                  <div className="rank-label-container">
-                    {this.state.uploading && <Spinner color="dark" className="fadeIn fadeOut" />}
-                    <img className="img-circle user-picture" src={imgSrc} alt="profile"/>
-                    {this.state.editing && <>
-                      <Input 
-                        className="file-input"
-                        type="file"
-                        id="picture" 
-                        name="user" 
-                        accept="image/*"
-                        onChange = {this.handleFileInputChange} />
-                      <span className="label label-default rank-label">Changer</span> </>}
-                  </div>
-                </div> 
-              </CardBody>
-              <CardFooter>
-                {!this.state.editing && <h2 className="name">{user.username}</h2>}
-                <span className="status">{traducteur ? "Traducteur" : (contributeur ? "Contributeur" : "Utilisateur")}</span>
-              </CardFooter>
-            </Col>
-            <Col xl="4" lg="8" md="12" sm="12" xs="12" className="modify-col">
+            <div className="profile-left">
+              <div className={"shadow-wrapper" + (this.state.editing ? " active" : "")}>
+                <CardBody>
+                  <div className="profile-header-container">   
+                    <div className="rank-label-container">
+                      {this.state.uploading && <Spinner color="dark" className="fadeIn fadeOut" />}
+                      <img className="img-circle user-picture" src={imgSrc} alt="profile"/>
+                      {this.state.editing && <>
+                        <Input 
+                          className="file-input"
+                          type="file"
+                          id="picture" 
+                          name="user" 
+                          accept="image/*"
+                          onChange = {this.handleFileInputChange} />
+                        <span className="label label-default rank-label">Changer</span> </>}
+                    </div>
+                  </div> 
+                </CardBody>
+                <CardFooter>
+                  {!this.state.editing && <h2 className="name">{user.username}</h2>}
+                  <span className="status">{traducteur ? "Traducteur" : (contributeur ? "Contributeur" : "Utilisateur")}</span>
+                </CardFooter>
+              </div>
+              <FButton type="dark" name="edit-outline" className="mt-10">
+                Modifier mon profil
+              </FButton>
+            </div>
+            <Col className="modify-col">
               <ModifyProfile
                 handleChange={this.handleChange}
-                toggleDropdown={this.toggleDropdown}
-                addLangue={this.addLangue}
-                removeLang={this.removeLang}
                 toggleEditing={this.toggleEditing}
                 validateProfile = {this.validateProfile}
                 {...this.state} />
             </Col>
 
-            <Col xl="6" lg="12" md="12" sm="12" xs="12" className="user-col">
+            <Col xl="auto" lg="auto" md="12" sm="12" xs="12" className="user-col">
               <Card className="profile-right">
-                <CardHeader>
-                  Vos objectifs de contribution hebdomadaires
-                  <EVAIcon name="settings-2-outline" className="align-right pointer" onClick={()=>this.toggleModal('objectifs')} />
-                </CardHeader>
                 <CardBody>
                   <Row>
                     <Col className="obj-first">
-                      <h1 className="title">{Math.floor(this.state.progression.timeSpent / 1000 / 60)}/{user.objectifTemps || "60"}</h1>
-                      <h6 className="subtitle">minutes contribuées</h6>
-                      <span className="content">{Math.floor(this.state.progression.timeSpent / 1000 / 60)} minutes passées à informer les personnes réfugiées. Merci !</span>
+                      <h1 className="title">{Math.floor(this.state.progression.timeSpent / 1000 / 60)}</h1>
+                      <h6 className="subtitle">minutes données</h6>
+                      <span className="content">Commencez à contribuer sur Agi’r pour démarrer le compteur</span>
                     </Col>
                     <Col className="obj-second">
-                      <h1 className="title">234/{user.objectifMotsContrib || "600"}</h1>
+                      <h1 className="title">0</h1>
                       <h6 className="subtitle">mots écrits</h6>
-                      <span className="content">pour les personnes réfugiées. Merci !</span>
+                      <span className="content">Rédiger votre premier contenu sur Agi’r pour démarrer le compteur.</span>
                     </Col>
                     <Col className="obj-third">
-                      <h1 className="title">{this.state.progression.nbMots}/{user.objectifMots || "60"}</h1>
+                      <h1 className="title">{this.state.progression.nbMots}</h1>
                       <h6 className="subtitle">mots traduits</h6>
-                      <span className="content">pour les personnes réfugiées. Merci !</span>
+                      <span className="content">Traduisez vos premiers mots sur Agi’r pour démarrer le compteur.</span>
                     </Col>
                   </Row>
                 </CardBody>
-                <CardFooter>
+                {/* <CardFooter>
                   <div className="user-feedbacks pointer d-flex align-items-center" onClick={()=>this.toggleModal('thanks')}>
                     <EVAIcon name="heart" fill="#60A3BC" className="margin-right-8 d-inline-flex" />
                     {nbReactions>0 ?
                       <span>Vous avez participé à l’information de <u>{nbReactions} personne{nbReactions > 1 ? "s" : ""}</u>. Merci.</span> :
                       <span>Ici, nous vous dirons combien de personnes vous allez aider."</span>}
                   </div>
-                </CardFooter>
-                {!(contributeur || traducteur) &&
-                  <div className="ecran-protection no-obj">
-                    <div className="content-wrapper">
-                      <Button color="white" onClick={()=>this.toggleModal('devenirContributeur')}>
-                        <Icon name="award-outline" fill="#3D3D3D" /> 
-                        Devenir contributeur pour débloquer cette section
-                      </Button>
-                    </div>
-                  </div>}
+                </CardFooter> */}
               </Card>
             </Col>
           </Row>
@@ -344,6 +302,7 @@ class UserProfile extends Component {
               showSuggestion={this.showSuggestion}
               upcoming={this.upcoming}
               archive={this.archiveSuggestion}
+              hasNotifs={hasNotifs}
               limit={5}
               {...avancement_actions} />:
             <FavoriTable 
@@ -366,13 +325,14 @@ class UserProfile extends Component {
             windowWidth={this.props.windowWidth}
             limit={5}
             hide={!showSections.contributions}
-            overlayTitle="On a besoin de vous !"
-            overlaySpan="Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants"
-            overlayBtn="Devenir contributeur"
+            overlayTitle="Rédigez des nouveaux contenus"
+            overlaySpan="Agi’r est une plateforme contributive, vous pouvez participer à son enrichissement"
+            overlayBtn="Découvrir comment contribuer"
             overlayRedirect={false}
             {...avancement_contrib} />
 
           <TradTable 
+            displayIndicators
             dataArray={traductions}
             traducteur={traducteur}
             user={this.state.user}
@@ -380,9 +340,9 @@ class UserProfile extends Component {
             toggleModal={this.toggleModal}
             toggleSection={this.toggleSection}
             hide={!showSections.traductions}
-            overlayTitle="Par ici aussi !"
-            overlaySpan="Participez à la traduction de la plateforme à votre rythme et sans pression. Rejoignez un groupe de traducteurs bénévoles et de linguistes professionnels mobilisés pour les réfugiés."
-            overlayBtn="Devenir traducteur"
+            overlayTitle="Aidez à traduire les contenus"
+            overlaySpan="Bilingue ? Polyglotte ? Participez à l’effort de traduction à votre rythme :"
+            overlayBtn="Démarrer une session"
             overlayRedirect={false}
             history={this.props.history}
             windowWidth={this.props.windowWidth}
@@ -391,17 +351,26 @@ class UserProfile extends Component {
             limit={5}
             {...avancement_langue} />
 
-            {(contributeur || traducteur) &&
-              <FavoriTable 
-                dataArray={favoris}
-                toggleModal={this.toggleModal}
-                removeBookmark={this.removeBookmark}
-                upcoming={this.upcoming}
-                hasFavori={hasFavori}
-                history={this.props.history}
-                limit={5}
-                {...avancement_favoris} />
-              }
+          {(contributeur || traducteur) ?
+            <FavoriTable 
+              dataArray={favoris}
+              toggleModal={this.toggleModal}
+              removeBookmark={this.removeBookmark}
+              upcoming={this.upcoming}
+              hasFavori={hasFavori}
+              history={this.props.history}
+              limit={5}
+              {...avancement_favoris} /> :
+            <ActionTable 
+              dataArray={actions}
+              toggleModal={this.toggleModal}
+              showSuggestion={this.showSuggestion}
+              upcoming={this.upcoming}
+              archive={this.archiveSuggestion}
+              hasNotifs={hasNotifs}
+              limit={5}
+              {...avancement_actions} />
+            }
         </div>
 
         <Modal isOpen={this.state.showModal.action} toggle={()=>this.toggleModal('action')} className='modal-plus'>

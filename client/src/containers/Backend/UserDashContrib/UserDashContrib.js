@@ -71,13 +71,14 @@ class UserDashContrib extends Component {
     return (
       <div className="animated fadeIn user-dash-contrib">
         <DashHeader 
-          title="Mes contributions"
-          ctaText="Modifier mes thèmes de travail"
+          title="Espace contribution"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}
           upcoming={this.upcoming}
-          motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt
+          objectifMots={this.state.user.objectifMots}
+          objectifTemps={this.state.user.objectifTemps}
+          motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt -- je me suis pas trompé !
           minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 1000 / 60))} //idem
         />
         
@@ -93,6 +94,7 @@ class UserDashContrib extends Component {
             overlayBtn="Commencer à rédiger"
             overlayRedirect={true}
             history={this.props.history}
+            displayIndicators={false}
             {...avancement_contrib} />
         </Row>
 

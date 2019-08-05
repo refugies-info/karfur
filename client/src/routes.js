@@ -1,5 +1,3 @@
-import DefaultLayout from './containers/Layout/Layout';
-
 import HomePage from './containers/HomePage/HomePage';
 import Forms from './views/Base/Forms';
 import WelcomeParcours from './views/Base/WelcomeParcours';
@@ -28,7 +26,7 @@ import QuiSommesNous from './containers/QuiSommesNous/QuiSommesNous';
 import CommentContribuer from './containers/CommentContribuer/CommentContribuer';
 
 const routes = [
-  { path: '/', exact: true, name: 'home', component: DefaultLayout, restriction:[] },
+  { path: '/', exact: true, name: 'home', restriction:[] },
   { path: '/homepage', name: 'Page d\'accueil', component: HomePage, restriction:[] },
   { path: '/forms', name: 'Formulaire', component: Forms, restriction:[] },
   { path: '/welcome_parcours', name: 'Parcours d\'accueil', component: WelcomeParcours, restriction:[] },
@@ -65,7 +63,7 @@ const routes = [
   { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/backend/user-dash-contrib', name: 'UserDashContrib', component: UserDashContrib, restriction:['Contrib','Admin'] },
   { path: '/backend/user-form', name: 'UserForm', component: UserForm, restriction:['Trad','ExpertTrad','Admin']},
-  { path: '/backend/user-profile', name: 'UserProfile', component: UserProfile, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/backend/user-profile', name: 'UserProfile', component: UserProfile, restriction:['User','Trad','ExpertTrad','Admin'] },
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
 ];
 

@@ -5,7 +5,10 @@ import {NavLink} from 'react-router-dom';
 
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
-import SVGIcon from '../../../UI/SVGIcon/SVGIcon';
+import FButton from '../../../FigmaUI/FButton/FButton';
+
+import variables from 'scss/colors.scss';
+import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 const tradTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
@@ -23,7 +26,7 @@ const tradTable = (props) => {
     }else{return false}
   }
   let table = (
-    <Table responsive striped className="avancement-user-table">
+    <Table responsive className="avancement-user-table">
       <thead>
         <tr>
           {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element}</th> ))}
@@ -35,16 +38,20 @@ const tradTable = (props) => {
           return (
             <tr key={key} >
               <td className="align-middle">
-                {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 && "..."))}
+                {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 ? "..." : ""))}
               </td>
-              <td className={"align-middle text-"+colorStatut(element.status)}>{element.status}</td>
+              <td className="align-middle">
+                <div className={"status-pill bg-"+colorStatut(element.status)}>{element.status}</div>
+              </td>
               <td className="align-middle hideOnPhone">
                 <Row>
                   <Col>
                     <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
                   </Col>
                   <Col className={'text-'+colorAvancement(element.avancement)}>
-                    {Math.round((element.avancement || 0) * 100)} %
+                    {element.avancement === 1 ? 
+                      <EVAIcon name="checkmark-circle-2" fill={variables.vert} /> :
+                      <span>{Math.round((element.avancement || 0) * 100)} %</span> }
                   </Col>
                 </Row>
               </td>
@@ -65,8 +72,7 @@ const tradTable = (props) => {
               </td>
               <td className="align-middle">
                 <NavLink to={"/traduction/"+element.articleId} className="no-decoration" >
-                  <Icon name="eye-outline" fill="#3D3D3D" size="large"/>
-                  <u>Voir</u>
+                  <FButton type="light-action" name="eye-outline" fill={variables.noir} />
                 </NavLink>
               </td>
             </tr>
@@ -102,35 +108,42 @@ const tradTable = (props) => {
           <Col>
             <h1>{props.title}</h1>
           </Col>
-          <Col className="d-flex tableau-header">
-            <Row className="full-width">
-              <Col lg="auto" md="4" sm="6" xs="12" className="d-flex left-element">
-                <h4>{props.motsRediges}</h4>
-                <span>mots rédigés</span>
-              </Col>
-              <Col lg="auto" md="4" sm="6" xs="12" className="d-flex middle-element">
-                <h4>{props.minutesPassees}</h4>
-                <span>minutes passées</span>
-              </Col>
-              <Col lg="auto" md="4" sm="12" xs="12" className="d-flex right-element">
-                <h4>22</h4>
-                <span>personnes informées</span>
-              </Col>
-            </Row>
-          </Col>
+          {props.displayIndicators && 
+            <Col className="d-flex tableau-header">
+              <Row className="full-width">
+                <Col lg="3" md="3" sm="6" xs="12" className="d-flex left-element">
+                  <h4>{props.motsRediges}</h4>
+                  <span className="texte-small ml-10">mots rédigés</span>
+                </Col>
+                <Col lg="3" md="3" sm="6" xs="12" className="d-flex middle-element">
+                  <h4>{props.minutesPassees}</h4>
+                  <span className="texte-small ml-10">minutes passées</span>
+                </Col>
+                <Col lg="3" md="3" sm="12" xs="12" className="d-flex right-element">
+                  <h4>22</h4>
+                  <span className="texte-small ml-10">personnes informées</span>
+                </Col>
+                <Col lg="3" md="3" sm="12" xs="12">
+                  <FButton type="dark" name="file-add-outline">
+                    Espace traduction
+                  </FButton>
+                </Col>
+              </Row>
+            </Col>}
+            {props.isExpert && 
+              <Col className="d-flex tableau-header">
+                <Row className="full-width">
+                  <Col lg="3" md="3" sm="12" xs="12">
+                    <FButton type="dark" name="all-done-outline">
+                      Valider des traductions
+                    </FButton>
+                  </Col>
+                </Row>
+              </Col>}
         </Row>
   
         <div className="tableau">
           {table}
-        </div>
-
-        <div className="tableau-footer">
-          <NavLink to="/backend/user-dashboard" className="no-decoration" >
-            <Button>
-              <Icon name="options-2-outline" fill="#FFFFFF" />
-              <span>Gérer mes traductions</span>
-            </Button>
-          </NavLink>
         </div>
 
         {!props.traducteur &&
@@ -143,10 +156,9 @@ const tradTable = (props) => {
             <div className="content-wrapper">
               <h1>{props.overlayTitle}</h1>
               <span>{props.overlaySpan}</span>
-              <Button onClick={startTrad}>
-                <SVGIcon name="translate" />{' '}
+              <FButton type="light" name="play-circle-outline" fill={variables.noir} onClick={startTrad} >
                 {props.overlayBtn}
-              </Button>
+              </FButton>
             </div>
           </div>}
       </div>

@@ -1,6 +1,9 @@
+@import 'src/scss/colors.scss';
+
 .user-dash{
   padding: 30px;
   position:relative;
+  background: $gris;
   
   .profile-header-container{
     text-align: center;
