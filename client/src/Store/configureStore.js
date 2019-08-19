@@ -5,10 +5,11 @@ import thunk from 'redux-thunk';
 
 import langueReducer from './Reducers/langueReducer';
 import dispositifReducer from './Reducers/dispositifReducer';
+import structureReducer from './Reducers/structureReducer';
 import userReducer from './Reducers/userReducer';
 import ttsReducer from './Reducers/ttsReducer';
 
-const rootReducer = combineReducers({langue: langueReducer, dispositif: dispositifReducer, user: userReducer, tts: ttsReducer})
+const rootReducer = combineReducers({langue: langueReducer, dispositif: dispositifReducer, user: userReducer, tts: ttsReducer, structure: structureReducer})
 
 export default createStore(
   rootReducer, 

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-import { Card, CardBody, CardHeader, Carousel, CarouselControl, CarouselItem, Col, Row, Progress, CardFooter, Badge } from 'reactstrap';
+import { Card, CardBody, CardHeader, Carousel, CarouselControl, CarouselItem, Col, Row, Progress, CardFooter, Badge, Table } from 'reactstrap';
 import moment from 'moment/min/moment-with-locales';
+import {NavLink} from 'react-router-dom';
+import Swal from 'sweetalert2';
   
-import AvancementTable from '../../../components/Translation/Avancement/AvancementTable'
 import track from 'react-tracking';
 
 import API from '../../../utils/API'
-import {colorAvancement, colorStatut} from '../../../components/Functions/ColorFunctions'
-import {languages} from './languagesData';
-import {strings} from './stringsData';
-import {themes} from './themesData';
+import {colorAvancement, colorStatut} from '../../../components/Functions/ColorFunctions';
 import {diffData} from './data';
+import marioProfile from '../../../assets/mario-profile.jpg'
 
 import './Avancement.scss';
-import AvancementLangue from '../../../components/Translation/Avancement/AvancementLangue/AvancementLangue';
+import variables from 'scss/colors.scss';
+import FButton from '../../../components/FigmaUI/FButton/FButton';
 
 moment.locale('fr');
 
@@ -89,11 +89,11 @@ class Avancement extends Component {
 
   _loadTraductions=(langue) => {
     if(langue.i18nCode){
-      API.get_tradForReview({'langueCible':langue.i18nCode, 'status' : 'En attente'},{},'articleId').then(data_res => {
+      API.get_tradForReview({'langueCible':langue.i18nCode, 'status' : 'En attente'},{},'articleId userId').then(data_res => {
         let articles=data_res.data.data;
-        articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1},status:x.status, articleId:(x.articleId || {})._id}});
+        articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1}, status:x.status, articleId:(x.articleId || {})._id, created_at:x.created_at, user:x.userId}});
         console.log(articles)
-        // this.setState({data:articles});
+        this.setState({data:articles});
       })
     }
   }
@@ -157,6 +157,8 @@ class Avancement extends Component {
     })
   }
 
+  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+
   render(){
     const { activeIndex, langue } = this.state;
     const slides = this.state.themes.map((item, key) => {
@@ -200,30 +202,51 @@ class Avancement extends Component {
       if(this.props.match.params.id && this.state.data.length>0 && this.state.langue.i18nCode){
         return(
           this.state.data.map((element,key) => {
+            const joursDepuis = (new Date().getTime() -  new Date(element.created_at).getTime()) / (1000 * 3600 * 24);
             return (
               <tr 
                 key={element._id}
                 className="avancement-row pointer"
                 onClick={() => this.goToTraduction(element)} >
-                <td className="align-middle">{element.title.fr || element.title}</td>
-                <td className="align-middle">
+                <td className="align-middle">{element.isStructure ? "Site" : "Dispositif"}</td>
+                <td className="align-middle">{(element.title.fr || element.title).slice(0,30) + ((element.title.fr || element.title).length > 30 ? "..." : "")}</td>
+                <td className={"align-middle depuis " + (element.nombreMots > 100 ? "alert" : "success") }>
                   {element.nombreMots}
                 </td>
-                <td className="align-middle">
-                  <div>
-                    {Math.round(((element.avancement || {})[this.state.langue.i18nCode] || 0) * 100)} %
-                    {' (' + Math.round((element.nombreMots || 0) * (1-((element.avancement || {})[this.state.langue.i18nCode]) || 0)) + ' mots restants)'}
-                  </div>
-                  <Progress color={colorAvancement((element.avancement || {})[this.state.langue.i18nCode])} value={(element.avancement || {})[this.state.langue.i18nCode]*100} className="mb-3" />
+                {this.props.isExpert ? 
+                  <td className="align-middle">
+                    <div>
+                      {Math.round(((element.avancement || {})[this.state.langue.i18nCode] || 0) * 100)} %
+                      {' (' + Math.round((element.nombreMots || 0) * (1-((element.avancement || {})[this.state.langue.i18nCode]) || 0)) + ' mots restants)'}
+                    </div>
+                    <Progress color={colorAvancement((element.avancement || {})[this.state.langue.i18nCode])} value={(element.avancement || {})[this.state.langue.i18nCode]*100} className="mb-3" />
+                  </td> :
+                  <td className="align-middle">
+                    {element.user && [element.user].map((participant) => {
+                      return ( 
+                        <img
+                          key={participant._id} 
+                          src={participant.picture ? participant.picture.secure_url : marioProfile} 
+                          className="profile-img-pin img-circle"
+                          alt="random profiles"
+                        />
+                      );
+                    })}
+                  </td> }
+                <td className={"align-middle depuis " + (joursDepuis > 3 ? "alert" : "success") }>
+                  {moment(element.created_at).fromNow()}
                 </td>
-                <td className="align-middle">
-                  <Badge color={colorStatut(element.status)}>{moment(element.created_at).fromNow()}</Badge>
+                <td className="align-middle fit-content">
+                  <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/>
+                </td>
+                <td className="align-middle fit-content">
+                  <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={() => this.goToTraduction(element)}/>
                 </td>
               </tr>
             );
           })
         )
-      }else{return (<tr><td>Chargement</td><td>Chargement</td><td>Chargement</td><td>Chargement</td></tr>)}
+      }else{return (<tr><td>Chargement</td><td>Chargement</td><td>Chargement</td><td>Chargement</td><td>Chargement</td><td>Chargement</td></tr>)}
     }
 
     return(
@@ -246,25 +269,45 @@ class Avancement extends Component {
           </Col>
         </Row>}
         
-        <Row className="avancement-header">
-          <Col className="d-inline-flex align-items-end tableau-header">
-            <i className={'h1 flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
-            <h1>{langue.langueFr}</h1>
-            <Progress 
-              color={colorAvancement(langue.avancement)} 
-              value={langue.avancement*100} />
-            <span className={"chiffre-avancement text-" + colorAvancement(langue.avancement)}>{Math.round((langue.avancement || 0)*100)} %</span>
+        <Row>
+          <Col>
+            <h2>
+              <NavLink to="/backend/user-profile" className="my-breadcrumb">Mon profil / </NavLink>
+              <NavLink to="/backend/user-dashboard" className="my-breadcrumb">Espace traduction / </NavLink>
+              {langue.langueFr}
+            </h2>
           </Col>
+          <Col className="tableau-header align-right">
+            <FButton type="outline-black" name="info-outline" fill={variables.noir} className="mr-10">
+              Aide
+            </FButton>
+            <FButton type="dark" name="flip-2-outline">
+              Sélection aléatoire
+            </FButton>
+          </Col>
+        </Row>
+
+        <Row className="avancement-header">
           <Col className="tableau-header">
             <div className="float-right">
               Plus que <b className="big-number">{(this.state.data || []).length}</b> éléments à traduire, on lâche rien !
             </div>
           </Col>
         </Row>
+        
+        <div className="tableau">
+          <Table responsive className="avancement-user-table">
+            <thead>
+              <tr>
+                {this.state.headers.map((element,key) => (<th key={key}>{element}</th> ))}
+              </tr>
+            </thead>
+            <tbody>
+              <AvancementData />
+            </tbody>
+          </Table>
+        </div>
 
-        <AvancementTable headers={this.state.headers} >
-          <AvancementData />
-        </AvancementTable>
         {/* <AvancementLangue 
           mainView={this.state.mainView}
           title={this.state.title}

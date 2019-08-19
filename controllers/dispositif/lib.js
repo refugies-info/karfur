@@ -1,27 +1,40 @@
 const Dispositif = require('../../schema/schemaDispositif.js');
 const Role = require('../../schema/schemaRole.js');
 const User = require('../../schema/schemaUser.js');
+const Structure = require('../../schema/schemaStructure.js');
 var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
 var uniqid = require('uniqid');
+const nodemailer = require("nodemailer");
+
+//Réactiver ici si besoin
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'diairagir@gmail.com',
+    pass: process.env.GMAIL_PASS
+  }
+});
+
+var mailOptions = {
+  from: 'diairagir@gmail.com',
+  to: 'souflam007@yahoo.fr',
+  subject: 'Administration Agi\'R'
+};
 
 function add_dispositif(req, res) {
-  if (!req.body || !req.body.titreMarque || !req.body.titreInformatif) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+  if (!req.body || ((!req.body.titreMarque || !req.body.titreInformatif) && !req.body.dispositifId)) {
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
     let dispositif = req.body;
-    let nbMots=_turnHTMLtoJSON(dispositif.contenu)
     
-    dispositif.creatorId = req.userId;
-    dispositif.status = dispositif.status || 'Actif';
-    dispositif.nbMots = nbMots;
+    dispositif.status = dispositif.status || 'En attente';
+    if(dispositif.contenu){dispositif.nbMots = _turnHTMLtoJSON(dispositif.contenu);}
 
     if(dispositif.dispositifId){
       promise=Dispositif.findOneAndUpdate({_id: dispositif.dispositifId}, dispositif, { upsert: true , new: true});
     }else{
+      dispositif.creatorId = req.userId;
       promise=new Dispositif(dispositif).save();
     }
 
@@ -33,7 +46,17 @@ function add_dispositif(req, res) {
             User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "roles": result._id, "contributions": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
           }
         })
+        //J'associe la structure principale à ce dispositif
+        Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
       }
+      mailOptions.html = "<p>Bonjour,<p>" + 
+        "<p>Un nouveau contenu est en attente de validation sur la plateforme Agi'R, <a href='https://agir-dev.herokuapp.com/'>cliquez ici</a> pour y accéder</p>" + 
+        "<p>Une nouvelle structure est également en attente de validation, <a href='https://agir-dev.herokuapp.com/'>cliquez ici</a> pour y accéder</p>" + 
+        "<p>A bientôt,</p>" +
+        "<p>Soufiane</p>";
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) { console.log(error); } else { console.log('Email sent: ' + info.response); }
+      });
       res.status(200).json({
         "text": "Succès",
         "data": data
@@ -42,24 +65,6 @@ function add_dispositif(req, res) {
       console.log(err);
       res.status(500).json({"text": "Erreur interne"})
     })
-
-    // _u.save((err, data) => {
-    //   if (err) {
-    //     console.log(err);
-    //     res.status(500).json({"text": "Erreur interne"})
-    //   } else {
-    //     //Je rajoute le statut de contributeur à l'utilisateur
-    //     Role.findOne({'nom':'Contrib'}).exec((err, result) => {
-    //       if(!err && result && req.userId){ 
-    //         User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "roles": result._id, "contributions": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
-    //       }
-    //     })
-    //     res.status(200).json({
-    //       "text": "Succès",
-    //       "data": data
-    //     })
-    //   }
-    // })
   }
 }
 

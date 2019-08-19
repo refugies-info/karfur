@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import {Badge, Col, Row, Nav, NavItem, NavLink, TabContent} from 'reactstrap';
 import track from 'react-tracking';
+import Swal from 'sweetalert2';
 
 import CustomTabPane from '../../../components/Backend/Admin/CustomTabPane'
 import API from '../../../utils/API';
+import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
+
+import './Admin.scss'
+import variables from 'scss/colors.scss';
 
 class Admin extends Component {
   state = {
-    activeTab: new Array(4).fill('1'),
+    activeTab: new Array(5).fill('1'),
     orderedLangues : [],
     roles : [],
     users:[],
     langues : [],
     themes : [],
+    structures: [],
     uploading:false,
 
     user:{
@@ -57,6 +63,28 @@ class Admin extends Component {
       participants:[],
       articles:[],
     },
+
+    structure:{
+      nom:'',
+      acronyme:'',
+      link: '',
+      contact: '',
+      mail_contact:'',
+      phone_contact:'',
+      authorBelongs:false,
+      status:'',
+      picture: {
+        imgId: '',
+        public_id: '',
+        secure_url: '',
+      },
+      siren:'',
+      siret:'',
+      adresse:'',
+      mail_generique:'',
+      createur: {},
+      administrateur:undefined
+    },
   };
   initial_state = {...this.state};
   shadowSelectedLanguages=[];
@@ -66,11 +94,11 @@ class Admin extends Component {
       this.setState({
         roles:data_res.data.data.map((el) => { return {...el, isChecked:false}}),
       })
-    },(error) => {console.log(error);return;})
+    })
 
     API.get_users({}).then(data_res => {
       this.setState({users:data_res.data.data})
-    },(error) => {console.log(error);return;})
+    })
 
     API.get_langues({}).then(data_res => {
       this.setState({
@@ -80,7 +108,12 @@ class Admin extends Component {
 
     API.get_themes({}).then(data_res => {
       this.setState({themes:data_res.data.data})
-    },(error) => {console.log(error);return;})
+    })
+
+    API.get_structure({},{}, 'createur').then(data_res => {
+      console.log(data_res.data.data);
+      this.setState({structures:data_res.data.data})
+    })
   }
 
   toggleTab(tabPane, tab) {
@@ -95,30 +128,33 @@ class Admin extends Component {
     this.setState({
       [event.target.name]:{
         ...this.state[event.target.name],
-        [event.target.id.replace('B|><','').replace('T|=R','')]: event.target.value
+        [event.target.id.replace('B|><','').replace('T|=R','').replace('K//R','')]: event.target.value
       }
     });
   }
 
   handleFileInputChange = event => {
-    this.setState({uploading:true})
+    const name = event.currentTarget.name;
+    this.setState({uploading:true});
     const formData = new FormData()
     formData.append(0, event.target.files[0])
-
+    
     API.set_image(formData).then(data_res => {
       let imgData=data_res.data.data;
+      console.log(this.state.uploading)
       this.setState({
-        user:{
-          ...this.state.user,
+        [name]:{
+          ...this.state[name],
           picture: imgData
         },
         uploading:false,
       });
-    },(error) => {console.log(error);return;})
+    })
   }
 
   onSelect = (item) => {
-    this.setState(item);
+    console.log(item)
+    this.setState(item, ()=> console.log(this.state));
     if(item.user){
       this.setState({
         langues:[...this.state.langues.map((el) => { return { ...el, isChecked: item.user.selectedLanguages.find(x => x._id === el._id) ? true : false}})],
@@ -161,6 +197,8 @@ class Admin extends Component {
       });
     }
   }
+
+  handleBelongsChange = () => this.setState(pS => ({ structure: {...pS.structure, authorBelongs: !pS.structure.authorBelongs } }));
 
   handleSliderChange = (value, name) => {
     this.setState({
@@ -209,21 +247,32 @@ class Admin extends Component {
     });
   }
 
-  //A supprimer s'il n'y a pas de régression
-  // validateLangue = () => {
-  //   API.create_langues(this.state.langue).then(data => {
-  //     let newLangue=data.data.data;
-  //     if(this.state.langue._id){
-  //       let languesCopy=[...this.state.langues];
-  //       languesCopy[this.state.langues.findIndex((obj => obj._id === newLangue._id))]=newLangue;
-  //       this.setState({langues: languesCopy});
-  //     }else{
-  //       this.setState({langues: [...this.state.langues, newLangue]});
-  //     }
-  //   },error => {console.log(error);return;})
-  // }
+  preTraitementStruct = () => {
+    if(!this.state.structure.nom || !this.state.structure.contact || (!this.state.structure.mail_contact && !this.state.structure.phone_contact)){Swal.fire( 'Oh non!', 'Certaines informations sont manquantes', 'error'); return;}
+    let struct = {...this.state.structure};
+    let membres = struct.membres || [];
+    if(struct.administrateur === struct.createur._id){
+      membres = membres.find( x=> x.userId === struct.createur._id) ? 
+        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "administrateur"] } : x) :
+        [...membres, {userId : struct.createur._id, roles: ["createur", "administrateur"] } ];
+    }else if(struct.authorBelongs){
+      membres = membres.find( x=> x.userId === struct.createur._id) ? 
+        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "contributeur"] } : x) :
+        [...membres, {userId : struct.createur._id, roles: ["createur", "contributeur"] } ];
+      membres = membres.find( x=> x.userId === struct.administrateur) ? 
+        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : x) :
+        [...membres, {userId : struct.administrateur, roles: ["administrateur"] } ];
+    }else{
+      membres = membres.find( x=> x.userId === struct.administrateur) ? 
+        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : x) :
+        [...membres, {userId : struct.administrateur, roles: ["administrateur"] } ];
+    }
+    this.setState({structure : {...this.state.structure, membres: membres }}, 
+      () => this.onValidate('structure'));
+  }
 
   onValidate = (tab) => {
+    console.log(this.state[tab])
     API['create_'+tab](this.state[tab]).then(data => {
       let newItem=data.data.data;
       if(this.state.theme._id){
@@ -231,10 +280,12 @@ class Admin extends Component {
         itemsCopy[this.state[tab + 's'].findIndex((obj => obj._id === newItem._id))]=newItem;
         this.setState({[tab + 's']: itemsCopy});
       }else{
-        this.setState({[tab + 's']: [...this.state[tab + 's'], newItem]});
+        this.setState({[tab + 's']: this.state[tab]._id ?
+          this.state[tab + 's'].map(x => x._id === this.state[tab]._id ? newItem : x) :
+          [...this.state[tab + 's'], newItem]});
       }
       this.setState({[tab]: this.initial_state[tab]})
-    },error => {console.log(error);return;})
+    })
   }
 
   onCancel = (tab) => {
@@ -282,6 +333,15 @@ class Admin extends Component {
                     {'\u00A0'}<Badge pill color="info">{this.state.themes.length}</Badge>
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink
+                  active={this.state.activeTab[3] === '4'}
+                  onClick={() => { this.toggleTab(3, '4'); }} >
+                    <EVAIcon name="shopping-bag-outline" fill={variables.noir} />
+                    <span className={this.state.activeTab[3] === '4' ? '' : 'd-none'}> Structures</span>
+                    {'\u00A0'}<Badge pill color="alert">{this.state.structures.length}</Badge>
+                </NavLink>
+              </NavItem>
             </Nav>
             <TabContent activeTab={this.state.activeTab[3]}>
               <CustomTabPane
@@ -291,9 +351,11 @@ class Admin extends Component {
                 handleSliderChange={this.handleSliderChange}
                 handleDraggableListChange={this.handleDraggableListChange}
                 handleFileInputChange={this.handleFileInputChange}
+                handleBelongsChange={this.handleBelongsChange}
                 validateUser={this.validateUser}
                 onValidate={this.onValidate}
                 onCancel={this.onCancel}
+                preTraitementStruct={this.preTraitementStruct}
                 isAdmin={true}
                 {...this.state}  />
             </TabContent>

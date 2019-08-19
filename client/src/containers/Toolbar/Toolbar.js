@@ -36,12 +36,11 @@ export class Toolbar extends React.Component {
 
   render() {
     const path = this.props.location.pathname;
-    const { i18n, user, contributeur, traducteur } = this.props;
+    const { i18n, user, contributeur, traducteur, expertTrad, admin, membreStruct } = this.props;
     let afficher_burger=path.includes("/backend");
     let afficher_burger_droite=path.includes("/traduction");
     
     let userImg = (user.picture || {}).secure_url || marioProfile;
-    
     return(
       <header className="Toolbar">
         <div className="left_buttons">
@@ -77,7 +76,9 @@ export class Toolbar extends React.Component {
               <DropdownMenu>
                 <DropdownItem onClick={()=>this.navigateTo("/backend/user-profile")}>Mon profil</DropdownItem>
                 {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>Mon univers contribution</DropdownItem>}
-                {traducteur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>Mon univers traduction</DropdownItem>}
+                {(expertTrad || traducteur) && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>Mon univers traduction</DropdownItem>}
+                {membreStruct && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-structure")}>Mon univers structure</DropdownItem>}
+                {admin && <DropdownItem onClick={()=>this.navigateTo("/backend/admin")}>Administration</DropdownItem>}
                 <DropdownItem divider />
                 <NavLink to="/" onClick={this.disconnect}>
                   <DropdownItem className="text-danger">Se déconnecter</DropdownItem>
@@ -109,7 +110,10 @@ const mapStateToProps = (state) => {
     dispositifs: state.dispositif.dispositifs,
     user: state.user.user,
     traducteur: state.user.traducteur,
+    expertTrad: state.user.expertTrad,
     contributeur: state.user.contributeur,
+    admin: state.user.admin,
+    membreStruct: state.user.membreStruct,
   }
 }
 

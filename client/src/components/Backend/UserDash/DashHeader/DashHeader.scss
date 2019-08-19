@@ -20,6 +20,9 @@ $normalSize: 18px;
       align-items: flex-end;
       flex-grow: 1;
     }
+    .role{
+      margin: auto 10px;
+    }
   }
 
   .header-indicateurs{
@@ -66,6 +69,48 @@ $normalSize: 18px;
             }
           }
         }
+      }
+    }
+  }
+
+  .header-structure{
+    .titre-structure{
+      border-radius: 12px;
+      background: $blanc;
+      height: 100%;
+
+      .right-side{
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+
+        h5{
+          flex: 1;
+        }
+        .bottom-btn{
+          align-self: flex-end;
+        }
+      }
+    }
+    .img-wrapper{
+      padding: 35px 54px;
+      height: 100%;
+      background: $blancSimple;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo-img{
+      max-width: 190px;
+    }
+
+    .right-side-header{
+      margin-top: -10px;
+      .indicateur{
+        background: $blanc;
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 10px;
       }
     }
   }

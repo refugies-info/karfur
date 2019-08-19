@@ -32,6 +32,7 @@ class Layout extends Component {
   componentDidMount (){
     this.props.fetch_user();
     this.props.fetch_dispositifs();
+    this.props.fetch_structures();
     this.props.fetch_langues().then( () => {
       let languei18nCode = Cookies.get('languei18nCode');
       if(languei18nCode && languei18nCode !== 'fr'){ this.changeLanguage(languei18nCode); }

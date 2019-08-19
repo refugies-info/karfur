@@ -57,7 +57,7 @@ const actionTable = (props) => {
         })}
         {props.limit && 
           <tr >
-            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('action')}>
+            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('actions')}>
               <Icon name="expand-outline" fill="#3D3D3D"/>&nbsp;
               Voir plus
             </td>

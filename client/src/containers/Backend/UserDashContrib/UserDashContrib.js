@@ -72,6 +72,7 @@ class UserDashContrib extends Component {
       <div className="animated fadeIn user-dash-contrib">
         <DashHeader 
           title="Espace contribution"
+          ctaText="Mes objectifs"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}

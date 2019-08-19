@@ -15,7 +15,7 @@ const creationUForm = (props) => {
   return(
     <Card>
       <CardHeader className="h1">
-        <strong>Ajouter un nouvel utilisateur</strong>
+        {props.user._id ? 'Modifier un utilisateur' : 'Ajouter un nouvel utilisateur'}
       </CardHeader>
       <CardBody>
         <UserChange {...props}/>

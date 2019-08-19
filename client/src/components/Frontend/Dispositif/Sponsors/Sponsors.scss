@@ -1,4 +1,5 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
 
 $taille:60px;
 $tailleBig:80px;
@@ -73,26 +74,67 @@ $tailleBig:80px;
       font-size: 16px;
     }
   }
+
+  .default-logo{
+    font-family: monospace;
+    font-size: 18px;
+  }
 }
 
-.modal-sponsors .modal-content{
-  background: $gris;
+.modal.show .modal-dialog.modal-structure{
+  overflow: scroll;
+  max-height: 100vh;
+  width: 650px;
+  max-width: 60vw;
+  background: $blanc;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
-  padding: 40px;
+  @include media-max("tablet-up") { max-width: 100%; }
+
+  .modal-content{
+    background: transparent;
+    padding:20px;
+    border:none;
+  }
+  .modal-footer{
+    background: transparent;
+    justify-content: space-between;
+    border:none;
+  }
+
+  .case-cochee{
+    color: $grisFonce;
+    text-align: right;
+  }
+
+  .warning-bloc{
+    border-radius: 12px;
+    padding: 10px 20px 10px 60px;
+    position: relative;
+
+    .info-icon{
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .envoye-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .illu{
+      margin: 30px;
+    }
+    h5{
+      color: $validationHover;
+    }
+  }
 
   .form-field{
-    margin-bottom: 10px;
-    font-weight: bold;
-    font-size: 16px;
-    color: $noir;
-
-    &.inline-div{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
     .input-group{
       margin-top: 10px;
       input{
@@ -108,33 +150,28 @@ $tailleBig:80px;
         line-height: 20px;
       }
     }
+  }
 
-    .image-wrapper{
-      position:relative;
-      .sponsor-img{
-        max-height: 40px;
-        max-width: 110px;
-      }
+  .selection-wrapper{
+    border-radius: 12px;
+    padding: 10px 20px;
+
+    .selection-logo{
+      max-width: 40px;
+      max-height: 40px;
     }
   }
-  .btn-footer{
-    margin-top: 10px;
-    margin-left: auto;
+
+  .author-choice{
+    padding: 10px 20px 10px 40px;
+    border: 0.5px solid $noir;
+    border-radius: 12px;
+    width: fit-content;
   }
-  .upload-btn{
-    position: relative;
-  }
-  [type=file] {
-    z-index:2;
-    cursor: pointer;
-    display: block;
-    filter: alpha(opacity=0);
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    text-align: right;
-    top: 0;
+
+  .ma-structure{
+    padding: 10px 10px 10px 30px;
+    border: 0.5px solid $noir;
+    border-radius: 12px;
   }
 }

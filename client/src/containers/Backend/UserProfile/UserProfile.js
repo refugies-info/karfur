@@ -8,20 +8,22 @@ import windowSize from 'react-window-size';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
-import {ActionTable, TradTable, ContribTable, FavoriTable} from '../../../components/Backend/UserProfile';
+import {ActionTable, TradTable, ContribTable, FavoriTable, StructureCard} from '../../../components/Backend/UserProfile';
 import {ThanksModal, SuggestionModal, ObjectifsModal, ContributeurModal, TraducteurModal} from '../../../components/Modals';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import ModifyProfile from '../../../components/Backend/UserProfile/ModifyProfile/ModifyProfile';
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 
-import {fakeTraduction, fakeContribution, fakeFavori, fakeNotifs, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris} from './data'
+import {fakeTraduction, fakeContribution, fakeFavori, fakeNotifs, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
 
 import './UserProfile.scss';
 
+const anchorOffset = '120';
+
 class UserProfile extends Component {
   state={
-    showModal:{action:false, traducteur: false, contributeur: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: false}, 
+    showModal:{actions:false, traducteur: false, contributions: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: false}, 
     showSections:{traductions: true, contributions: true},
     user: {},
     traductions:[],
@@ -29,6 +31,7 @@ class UserProfile extends Component {
     actions:[],
     favoris:[],
     langues:[],
+    structure: {},
     traducteur:false,
     contributeur:false,
     editing: false,
@@ -46,14 +49,17 @@ class UserProfile extends Component {
   componentDidMount() {
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
-      API.get_tradForReview({'userId': user._id}).then(data => {
-        console.log(data.data.data)
+      API.get_tradForReview({'userId': user._id}).then(data => { console.log(data.data.data);
         this.setState({traductions: data.data.data})
       })
-      API.get_dispositif({'creatorId': user._id}).then(data => {
-        console.log(data.data.data)
+      API.get_dispositif({'creatorId': user._id}).then(data => { console.log(data.data.data);
         this.setState({contributions: data.data.data, actions: this.parseActions(data.data.data)})
       })
+      if(user.structures && user.structures.length > 0){
+        API.get_structure({_id: user.structures[0] }).then(data => { console.log(data.data.data);
+          this.setState({structure:data.data.data[0]})
+        })
+      }
       console.log(user)
       this.setState({user:user, isMainLoading:false, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
     })
@@ -181,19 +187,17 @@ class UserProfile extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render() {
-    let {traducteur, contributeur, traductions, contributions, actions, langues, user, showSections, isMainLoading}=this.state;
+    let {traducteur, contributeur, traductions, contributions, actions, langues, structure, user, showSections, isMainLoading}=this.state;
     if(!traducteur){traductions= new Array(5).fill(fakeTraduction)}
     if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
 
     let favoris = ((user.cookies || {}).dispositifsPinned || []),hasFavori=true, hasNotifs= true;
     if(favoris.length === 0){favoris= new Array(5).fill(fakeFavori); hasFavori=false;}
     if(actions.length === 0){actions= new Array(5).fill(fakeNotifs); hasNotifs=false;}
-    console.log(favoris)
+    
     let imgSrc = this.state.tempImg || (this.state.user.picture || []).secure_url || marioProfile
 
     let nbReactions = contributions.map(dispo => ((dispo.merci || []).length + (dispo.bravo || []).length)).reduce((a,b) => a + b, 0);
-
-    let anchorOffset = '120';
     return (
       <div className="animated fadeIn user-profile">
         <div className="profile-header">
@@ -317,6 +321,7 @@ class UserProfile extends Component {
           }
 
           <ContribTable 
+            displayIndicators
             dataArray={contributions}
             user={this.state.user}
             contributeur={contributeur}
@@ -371,9 +376,16 @@ class UserProfile extends Component {
               limit={5}
               {...avancement_actions} />
             }
+
+            {structure && structure._id &&
+              <StructureCard
+                displayIndicators
+                structure={structure}
+                user={user}
+                {...data_structure} />}
         </div>
 
-        <Modal isOpen={this.state.showModal.action} toggle={()=>this.toggleModal('action')} className='modal-plus'>
+        <Modal isOpen={this.state.showModal.actions} toggle={()=>this.toggleModal('actions')} className='modal-plus'>
           <ActionTable 
             dataArray={actions}
             toggleModal={this.toggleModal}
@@ -382,7 +394,7 @@ class UserProfile extends Component {
             {...avancement_actions} />
         </Modal>
         
-        <Modal isOpen={this.state.showModal.contributeur} toggle={()=>this.toggleModal('contributeur')} className='modal-plus'>
+        <Modal isOpen={this.state.showModal.contributions} toggle={()=>this.toggleModal('contributions')} className='modal-plus'>
           <ContribTable 
             dataArray={contributions}
             user={user}

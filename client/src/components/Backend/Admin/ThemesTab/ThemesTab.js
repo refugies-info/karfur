@@ -7,7 +7,7 @@ import './ThemesTab.scss'
 
 const themesTab = (props) => {
   return(
-    <Row className="langues-tab">
+    <Row className="themes-tab">
       <Col xs="12" md="6">
         <CreationTForm {...props} />
       </Col>
