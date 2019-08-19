@@ -490,6 +490,20 @@ class Dispositif extends Component {
     })
   }
 
+  update_status = status => {
+    let dispositif = {
+      status:status,
+      dispositifId:this.state._id
+    }
+    API.add_dispositif(dispositif).then((data) => {
+      this.props.fetch_dispositifs();
+      this.setState({status: status, disableEdit: status !== "Accepté structure"})
+      if(status==="Rejeté structure"){
+        this.props.history.push("/backend/user-dash-structure");
+      }
+    });
+  }
+
   valider_dispositif = (status='En attente') => {
     let content = {...this.state.content}
     Object.keys(content).map( k => content[k] = h2p(content[k]))
@@ -535,20 +549,6 @@ class Dispositif extends Component {
         })
       });
     },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
-  }
-
-  update_status = status => {
-    let dispositif = {
-      status:status,
-      dispositifId:this.state._id
-    }
-    API.add_dispositif(dispositif).then((data) => {
-      this.props.fetch_dispositifs();
-      this.setState({status: status, disableEdit: status !== "Accepté structure"})
-      if(status==="Rejeté structure"){
-        this.props.history.push("/backend/user-dash-structure");
-      }
-    });
   }
 
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')

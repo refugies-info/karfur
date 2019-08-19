@@ -18,6 +18,7 @@ import ContributeurModal from './ContributeurModal/ContributeurModal'
 import TraducteurModal from './TraducteurModal/TraducteurModal';
 import ResponsableModal from './ResponsableModal/ResponsableModal';
 import AddMemberModal from './AddMemberModal/AddMemberModal';
+import EditMemberModal from './EditMemberModal/EditMemberModal';
 
 export {
   BookmarkedModal,
@@ -40,4 +41,5 @@ export {
   TraducteurModal,
   ResponsableModal,
   AddMemberModal,
+  EditMemberModal,
 }
