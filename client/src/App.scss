@@ -8,6 +8,7 @@
 // Import Main styles for this application
 @import './scss/style.scss';
 
+@import './scss/common.scss';
 @import './scss/colors.scss';
 
 html head, html body{
@@ -95,5 +96,16 @@ html body{
   .dropdown-menu.show{
     border-radius: 12px;
     border: none;
+  }
+  .profile-img-pin {
+    height: 40px;
+    width: 40px;
+  }
+
+  .bg-attention{
+    background: $attention;
+  }
+  .bg-validation{
+    background: $validation;
   }
 }

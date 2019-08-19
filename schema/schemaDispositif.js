@@ -36,6 +36,7 @@ var dispositifSchema = mongoose.Schema({
 		unique: false,
     required: false
   },
+  mainSponsor:{ type: mongoose.Schema.ObjectId, ref: 'Structure' },
   audience: {
     type: Object,
 		unique: false,

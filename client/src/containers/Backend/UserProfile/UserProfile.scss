@@ -360,11 +360,10 @@ $defaultSize:310px;
   }
 }
 
-.user-profile, .user-dash-contrib, .user-dash{
+.user-profile, .user-dash-contrib, .user-dash, .user-dash-struct{
   .tableau-wrapper{
     margin-top:39px;
     position: relative;
-    height:100%;
     width: 100%;
 
     &.swing-out-top-bck {

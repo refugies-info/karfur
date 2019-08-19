@@ -1,6 +1,5 @@
 @import 'src/scss/global.scss';
 @import 'src/scss/colors.scss';
-@import 'src/scss/common.scss';
 
 $imgWidth : 300px;
 $imgHeight : 350px;
@@ -99,6 +98,7 @@ $imgHeight : 350px;
           z-index:3;
           position: fixed;
           border:none;
+          max-width:210px;
 
           .switch-outline-light .switch-input:checked + .switch-slider{
             &:hover{
@@ -112,6 +112,7 @@ $imgHeight : 350px;
             flex-direction: column;
             align-items: flex-end;
             border-radius: 12px;
+            color: $blancSimple;
 
             .btn{
               box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
@@ -126,6 +127,14 @@ $imgHeight : 350px;
                 border-radius: 12px;
                 margin-top: 10px;
               }
+            }
+
+            .validate-header{
+              text-align: left;
+              color: $noir;
+            }
+            .full-width{
+              width: 100%;
             }
           }
           .card-footer{
@@ -758,6 +767,13 @@ $imgHeight : 350px;
   .wrapper-editeur{
     border: 1px dashed $darkColor;
     border-radius: 12px;
+  }
+
+  .backgroundColor-darkColor{
+    background: $darkColor;
+  }
+  .backgroundColor-lightColor{
+    background: $lightColor;
   }
 }
 
