@@ -13,6 +13,11 @@ moment.locale('fr');
 
 const membersTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
+  data = data.map(x => ({
+    ...x, 
+    ...props.users.find(y => y._id === x.userId),
+    structRole: ((x.roles || []).includes("administrateur") ? "administrateur" : ((x.roles || []).includes("contributeur") ? "contributeur" : "membre")),
+  }));
   let table = (
     <Table responsive className="avancement-user-table">
       <thead>
@@ -34,8 +39,8 @@ const membersTable = (props) => {
                 {element.username}
               </td>
               <td className="align-middle">
-                <FButton type="light-action role-btn">
-                  {element.role}
+                <FButton type="light-action role-btn" onClick={() => props.editMember(element)}>
+                  {element.structRole}
                   <EVAIcon name="edit-outline" className="ml-10 edit-icon" />
                 </FButton>
               </td>
@@ -62,7 +67,7 @@ const membersTable = (props) => {
         })}
         {props.limit && 
           <tr >
-            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('members')}>
+            <td colSpan="8" className="align-middle voir-plus" onClick={()=>props.toggleModal('members')}>
               <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
               Voir plus
             </td>

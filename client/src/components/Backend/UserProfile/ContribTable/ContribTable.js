@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Progress, Table, Button } from 'reactstrap';
+import { Col, Row, Progress, Table } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import {NavLink} from 'react-router-dom';
 
@@ -61,9 +61,7 @@ const contribTable = (props) => {
                 })}
               </td>
               <td className="align-middle">
-                <NavLink to={"/dispositif/"+element._id} className="no-decoration" >
-                  <FButton type="light-action" name="eye-outline" fill={variables.noir} />
-                </NavLink>
+                <FButton tag={NavLink} to={"/dispositif/"+element._id} type="light-action" name="eye-outline" fill={variables.noir} />
               </td>
             </tr>
           );
