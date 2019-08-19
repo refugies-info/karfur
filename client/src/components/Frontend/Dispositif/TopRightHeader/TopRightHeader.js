@@ -4,9 +4,24 @@ import { Col, Card, CardBody, CardFooter, Button, Spinner } from 'reactstrap';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FSwitch from '../../../FigmaUI/FSwitch/FSwitch';
 import SVGIcon from '../../../UI/SVGIcon/SVGIcon';
+import FButton from '../../../FigmaUI/FButton/FButton';
 
 const topRightHeader = (props) => {
-  if(props.disableEdit){
+  if(props.status==="En attente" && (((props.mainSponsor.membres || []).find(x => x.userId=== props.userId) || {}).roles || []).some(y => y==="administrateur" || y==="contributeur") ){return(
+    <Col lg="6" md="6" sm="12" xs="12" className="top-right">
+      <Card>
+        <CardBody className="backgroundColor-lightColor">
+          <span className="validate-header">Souhaitez-vous récupérer ce contenu ?</span>
+          <FButton type="validate" className="mt-10 full-width" onClick={()=>props.toggleModal(true, "responsable")}>Oui</FButton>
+          <FButton type="error" className="mt-10 full-width" onClick={()=>props.update_status("Rejeté structure")}>Non</FButton>
+        </CardBody>
+        <CardFooter className="color-darkColor cursor-pointer" onClick={props.toggleDispositifCreateModal}>
+          <SVGIcon className="mr-8 fill-darkColor" name="radio" />
+          Besoin d'aide ?
+        </CardFooter>
+      </Card>
+    </Col>
+  )}else if(props.disableEdit){
     return(
       <Col lg="6" md="6" sm="12" xs="12" className="top-right">
         {props.isAuthor && 

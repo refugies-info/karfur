@@ -105,59 +105,6 @@
     display: flex;
     max-height: 40px;
   }
-  
-  .search-bar{
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    @include media-max("tablet-up") { display: none; }
-
-    input{
-      background:transparent;
-      border: 0.5px solid $noir;
-      border-radius: 12px;
-      padding-right: 42px;
-      padding-left: 15px;
-      font-size: 16px;
-      font-weight: 400;
-      height: 40px;
-      width:100%;
-      &:hover{
-        background-color: $gris;
-      }
-      &:focus::-webkit-input-placeholder { color:transparent; }
-      &:focus:-moz-placeholder { color:transparent; }
-
-      &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-        color: $noir;
-        opacity: 1; /* Firefox */
-      }
-      
-      &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-        color: $noir;
-      }
-      
-      &::-ms-input-placeholder { /* Microsoft Edge */
-        color: $noir;
-      }
-    }
-
-    .loupe-btn{
-      position: absolute;
-      padding: 10px;
-      right: 5px;
-      font-size: 24px;
-      transform: matrix(-1, 0, 0, 1, 0, 0) translateY(-50%);
-      color: $noir;
-      top: 50%;
-
-      &.icon-only{
-        position: relative;
-        right: 0;
-        transform: matrix(-1, 0, 0, 1, 0, 0);
-      }
-    }
-  }
 }
 
 @media (max-width: $drawerLimit) {

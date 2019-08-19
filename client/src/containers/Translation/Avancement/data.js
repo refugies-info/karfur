@@ -1,15 +1,15 @@
 const diffData={
   all: {
     title:'Avancement par langue',
-    headers:['Langue', 'Drapeau', 'Avancement', 'Statut']
+    headers:['Type de contenu', 'Titre du contenu', 'Mots restants', 'Avancement', 'En attente depuis', '']
   },
   traducteur: {
     title:'Avancement de ',
-    headers:['Titre de l\'élément à traduire', 'Nombre de mots', 'Avancement', 'Existe depuis']
+    headers:['Type de contenu', 'Titre du contenu', 'Mots restants', 'Avancement', 'En attente depuis', '']
   },
   expert: {
     title:'Avancement de ',
-    headers:['Titre de l\'élément à traduire', 'Nombre de mots', 'Avancement', 'Existe depuis']
+    headers:['Type de contenu', 'Titre du contenu', 'Mots restants', 'Traducteurs', 'En attente depuis', '']
   }
 };
 

@@ -54,7 +54,7 @@ const contribTable = (props) => {
                     <img
                       key={participant._id} 
                       src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                      className="profile-img img-circle"
+                      className="profile-img-pin img-circle"
                       alt="random profiles"
                     />
                   );
@@ -70,7 +70,7 @@ const contribTable = (props) => {
         })}
         {props.limit && 
           <tr >
-            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('contributeur')}>
+            <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('contributions')}>
               <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
               Voir plus
             </td>
@@ -127,16 +127,6 @@ const contribTable = (props) => {
         <div className="tableau">
           {table}
         </div>
-
-        {!props.overlayRedirect && 
-          <div className="tableau-footer">
-            <NavLink to="/backend/user-dash-contrib" className="no-decoration" >
-              <Button>
-                <Icon name="options-2-outline" fill="#FFFFFF" />
-                <span>Gérer mes articles</span>
-              </Button>
-            </NavLink>
-          </div>}
 
         {!props.contributeur &&
           <div className="ecran-protection no-contrib">

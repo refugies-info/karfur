@@ -85,6 +85,10 @@ const avancement_favoris={
   headers: [<EVAIcon name="bookmark" fill={variables.noir} />, 'Titre', 'Thèmes', 'Ajouté le','', '']
 }
 
+const data_structure = {
+  title: 'Ma structure',
+}
+
 export {data, 
   fakeTraduction, 
   fakeContribution, 
@@ -94,4 +98,5 @@ export {data,
   avancement_contrib, 
   avancement_actions, 
   avancement_favoris, 
+  data_structure,
 }

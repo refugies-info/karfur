@@ -1,6 +1,3 @@
-$lightColor: #F2F2F2;
-$darkColor: #212121;
-$cardColor: #828282;
 $blanc: #FBFBFB;
 $gris: #F2F2F2;
 $grisFonce: #828282;
@@ -13,6 +10,14 @@ $violet: #583F93;
 $focus: #2D9CDB;
 $blancSimple: #FFFFFF;
 $jauneClair: #FFF7AE;
+
+$attention : #F9EF99;
+$validation : #DEF7C2;
+$validationHover : #4CAF50;
+$error: #F44336;
+$lightColor: #F2F2F2;
+$darkColor: #212121;
+$cardColor: #828282;
 
 :export {
   lightColor: $lightColor;
@@ -29,4 +34,8 @@ $jauneClair: #FFF7AE;
   noirCD: $noirCD;
   blancSimple: $blancSimple;
   jauneClair: $jauneClair;
+  attention: $attention;
+  validation: $validation;
+  validationHover: $validationHover;
+  error: $error;
 }

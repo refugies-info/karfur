@@ -1,3 +1,4 @@
+@import 'src/scss/colors.scss';
 
 .avancement{
   padding: 25px;
@@ -55,5 +56,15 @@
     &:hover{
       background: lightgray;
     }
+  }
+  .my-breadcrumb{
+    color: $grisFonce;
+  }
+
+  .texte-vert{
+    color: $vert;
+  }
+  .texte-rouge{
+    color: $rouge;
   }
 }

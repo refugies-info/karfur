@@ -8,20 +8,26 @@ const initialState = {
   user: {},
   admin: false,
   traducteur: false,
+  expertTrad: false,
   contributeur: false,
 }
 
-function toggleLangue(state = initialState, action) {
+function userReducer(state = initialState, action) {
   switch (action.type) {
     case actions.SET_USER:
       return updateObject(state, { 
         user: action.value, 
+        userId: (action.value || {})._id, 
         admin: ((action.value || {}).roles || {}).some(x=>x.nom==="Admin"), 
         traducteur: ((action.value || {}).roles || {}).some(x=>x.nom==="Trad"), 
-        contributeur: ((action.value || {}).roles || {}).some(x=>x.nom==="Contrib") })
+        expertTrad: ((action.value || {}).roles || {}).some(x=>x.nom==="ExpertTrad"), 
+        contributeur: ((action.value || {}).roles || {}).some(x=>x.nom==="Contrib"), 
+        membreStruct: ((action.value || {}).roles || {}).some(x=>x.nom==="hasStructure") })
+    case actions.UPDATE_USER:
+      return updateObject(state, { user: action.value })
   default:
     return state
   }
 }
 
-export default toggleLangue;
+export default userReducer;

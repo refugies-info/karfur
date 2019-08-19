@@ -115,6 +115,13 @@ export default {
     return axios.post(burl + '/dispositifs/update_dispositif', query, {headers: headers})
   },
 
+  create_structure : query => {
+    return axios.post(burl + '/structures/add_structure', query, {headers: headers})
+  },
+  get_structure : (query={}, sort={}, populate='', limit=null) => {
+    return axios.post(burl + '/structures/get_structure', {query: query, sort: sort, populate: populate, limit: limit}, {headers: headers})
+  },
+
   add_tradForReview : query => {
     return axios.post(burl + '/traduction/add_tradForReview', query, {headers: headers})
   },

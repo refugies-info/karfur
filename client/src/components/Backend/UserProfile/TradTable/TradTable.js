@@ -64,7 +64,7 @@ const tradTable = (props) => {
                       <img
                         key={participant._id} 
                         src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                        className="profile-img img-circle"
+                        className="profile-img-pin img-circle"
                         alt="random profiles"
                       />
                   );
@@ -130,16 +130,6 @@ const tradTable = (props) => {
                 </Col>
               </Row>
             </Col>}
-            {props.isExpert && 
-              <Col className="d-flex tableau-header">
-                <Row className="full-width">
-                  <Col lg="3" md="3" sm="12" xs="12">
-                    <FButton type="dark" name="all-done-outline">
-                      Valider des traductions
-                    </FButton>
-                  </Col>
-                </Row>
-              </Col>}
         </Row>
   
         <div className="tableau">

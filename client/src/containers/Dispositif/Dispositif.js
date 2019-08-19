@@ -20,7 +20,7 @@ import ReactDOM from 'react-dom'
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
 import API from '../../utils/API';
-import {ReagirModal, BookmarkedModal, DispositifCreateModal, DispositifValidateModal, SuggererModal, MerciModal, EnConstructionModal} from '../../components/Modals/index';
+import {ReagirModal, BookmarkedModal, DispositifCreateModal, DispositifValidateModal, SuggererModal, MerciModal, EnConstructionModal, ResponsableModal} from '../../components/Modals/index';
 import SVGIcon from '../../components/UI/SVGIcon/SVGIcon';
 import Commentaires from '../../components/Frontend/Dispositif/Commentaires/Commentaires';
 import Tags from './Tags/Tags';
@@ -46,7 +46,7 @@ const spyableMenu = menu.reduce((r, e, i) => {
 }, []);
 
 const sponsorsData = [
-  {src:diair,alt:"logo DIAIR", link: "https://www.agi-r.fr"},
+  {picture:{secure_url:diair},alt:"logo DIAIR", link: "https://www.agi-r.fr", dummy: true},
 ]
 
 const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
@@ -71,7 +71,8 @@ class Dispositif extends Component {
       merci:false,
       allGood:false,
       construction:false,
-      map:false
+      map:false,
+      responsable: false
     },
     accordion: new Array(1).fill(false),
     dropdown: new Array(5).fill(false),
@@ -98,6 +99,8 @@ class Dispositif extends Component {
     disableOverlay:false,
     joyRideWidth: 800,
     inputBtnClicked: false,
+    mainSponsor:{},
+    status: ''
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -115,7 +118,7 @@ class Dispositif extends Component {
   _initializeDispositif = props => {
     let itemId=props.match && props.match.params && props.match.params.id;
     if(itemId){
-      API.get_dispositif({_id: itemId},{},'creatorId').then(data_res => {
+      API.get_dispositif({_id: itemId},{},'creatorId mainSponsor').then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
         this.setState({
@@ -127,10 +130,12 @@ class Dispositif extends Component {
           creator:dispositif.creatorId,
           uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
           dispositif: dispositif,
-          disableEdit: true,
+          disableEdit: dispositif.status !== "Accepté structure",
           isDispositifLoading: false,
           contributeurs: [dispositif.creatorId].filter(x => x),
           mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x.name === dispositif.tags[0].name) || {}) : {},
+          mainSponsor: dispositif.mainSponsor,
+          status: dispositif.status,
         },()=>this.setColors())
         //On récupère les données de l'utilisateur
         if(API.isAuth()){
@@ -148,7 +153,8 @@ class Dispositif extends Component {
       this.setState({
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
-        showDispositifCreateModal:true, //A modifier avant la mise en prod
+        ///////////////////////////////////
+        showDispositifCreateModal:false, //A modifier avant la mise en prod
         isDispositifLoading: false
       },()=>this.setColors())
     }else{ props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
@@ -433,8 +439,13 @@ class Dispositif extends Component {
     }
   };
 
-  addSponsor = sponsor => this.setState({sponsors: [...this.state.sponsors, sponsor]})
-  deleteSponsor = key => this.setState({ sponsors: [...this.state.sponsors].filter( (_,i) => i !== key) });
+  addSponsor = sponsor => this.setState({sponsors: [...this.state.sponsors.filter(x => !x.dummy), sponsor]})
+  deleteSponsor = key => {
+    if(this.state.status === "Accepté structure"){
+      Swal.fire( 'Oh non!', 'Vous ne pouvez plus supprimer de structures partenaires', 'error'); return;
+    }
+    this.setState({ sponsors: [...this.state.sponsors].filter( (_,i) => i !== key) });
+  }
 
   goBack = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goBack' });
@@ -444,11 +455,7 @@ class Dispositif extends Component {
   createPdf = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'createPdf' });
     let uiArray = [...this.state.uiArray];
-    uiArray = uiArray.map(x => ({
-      ...x,
-      accordion : true, 
-      ...(x.children && {children : x.children.map(y => { return { ...y, accordion : true } }) })
-    }));
+    uiArray = uiArray.map(x => ({ ...x, accordion : true,  ...(x.children && {children : x.children.map(y => { return { ...y, accordion : true } }) }) }));
     this.setState({ uiArray: uiArray, showSpinnerPrint:true }, ()=>{
       setTimeout(()=>{
         savePDF(this.newRef.current, { 
@@ -483,7 +490,7 @@ class Dispositif extends Component {
     })
   }
 
-  valider_dispositif = (status='Actif') => {
+  valider_dispositif = (status='En attente') => {
     let content = {...this.state.content}
     Object.keys(content).map( k => content[k] = h2p(content[k]))
     let dispositif = {
@@ -511,16 +518,37 @@ class Dispositif extends Component {
     dispositif.isFree= cardElement.some(x=> x.title==='Combien ça coûte ?') ?
       cardElement.find(x=> x.title==='Combien ça coûte ?').free :
       true;
+    if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
+      dispositif.mainSponsor = dispositif.sponsors[0]._id;
+      //Si l'auteur appartient à la structure principale je la fait passer directe en validation
+      if((dispositif.sponsors[0].membres || []).some(x => x.userId === this.props.userId)){
+        dispositif.status = "En attente admin";
+      }
+    }
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
         this.props.fetch_user();
         this.props.fetch_dispositifs();
-        this.setState({disableEdit: status==='Actif'}, () => {
+        this.setState({disableEdit: status === 'En attente admin' || status === 'En attente'}, () => {
           this.props.history.push("/dispositif/" + data.data.data._id)
         })
       });
     },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
+  }
+
+  update_status = status => {
+    let dispositif = {
+      status:status,
+      dispositifId:this.state._id
+    }
+    API.add_dispositif(dispositif).then((data) => {
+      this.props.fetch_dispositifs();
+      this.setState({status: status, disableEdit: status !== "Accepté structure"})
+      if(status==="Rejeté structure"){
+        this.props.history.push("/backend/user-dash-structure");
+      }
+    });
   }
 
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
@@ -620,13 +648,19 @@ class Dispositif extends Component {
               </Button>
             </Col>
             <TopRightHeader 
+              validateStructure={false}
               disableEdit={this.state.disableEdit} 
               withHelp={this.state.withHelp}
               showSpinnerBookmark={this.state.showSpinnerBookmark}
               pinned={this.state.pinned}
               isAuthor={this.state.isAuthor}
+              status={this.state.status}
+              mainSponsor={this.state.mainSponsor}
+              userId={this.props.userId}
+              update_status={this.update_status}
               bookmarkDispositif={this.bookmarkDispositif}
               toggleHelp={this.toggleHelp}
+              toggleModal={this.toggleModal}
               toggleDispositifValidateModal={this.toggleDispositifValidateModal}
               editDispositif = {this.editDispositif}
               valider_dispositif={this.valider_dispositif}
@@ -772,31 +806,6 @@ class Dispositif extends Component {
                     <ContribCaroussel 
                       contributeurs={this.state.contributeurs}
                     />
-                    {/* <div className="people-footer">
-
-                      <Row className="depasse-pas">
-                        <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                          <div className="people-title">{t("Contributeurs")}</div>
-                          <div className="people-card">
-                            <img className="people-img" src={creatorImg} alt="juliette"/>
-                            <div className="right-side">
-                              <h6>{creator.username}</h6>
-                              <span>{creator.description}</span>
-                            </div>
-                          </div>
-                        </Col>
-                        <Col lg="6" md="6" sm="12" xs="12" className="people-col">
-                          <div className="people-title">{t("Traducteurs")}</div>
-                          <div className="people-card">
-                            <img className="people-img" src={hugo} alt="hugo"/>
-                            <div className="right-side">
-                              <h6>Hugo Stéphan</h6>
-                              <span>Designer pour la Diair</span>
-                            </div>
-                          </div>
-                        </Col>
-                      </Row>
-                    </div> */}
 
                     {!this.state.disableEdit &&
                       <div className="ecran-protection">
@@ -826,6 +835,7 @@ class Dispositif extends Component {
         <SuggererModal showModals={showModals} toggleModal={this.toggleModal} onChange={this.handleModalChange} suggestion={this.state.suggestion} onValidate={this.pushReaction} />
         <MerciModal name='merci' show={showModals.merci} toggleModal={this.toggleModal} onChange={this.handleModalChange} mail={this.state.mail} />
         <EnConstructionModal name='construction' show={showModals.construction} toggleModal={this.toggleModal} />
+        <ResponsableModal name='responsable' show={showModals.responsable} toggleModal={this.toggleModal} createur={this.state.creator} mainSponsor={this.state.mainSponsor} editDispositif={this.editDispositif} update_status={this.update_status} />
 
         <Modal isOpen={this.state.showModals.fiabilite} toggle={()=>this.toggleModal(false, 'fiabilite')} className='modal-fiabilite'>
           <h1>{t("Dispositif.fiabilite")}</h1>
@@ -924,7 +934,9 @@ const FirstTooltip = ({
 
 const mapStateToProps = (state) => {
   return {
-    languei18nCode: state.languei18nCode
+    languei18nCode: state.langue.languei18nCode,
+    user: state.user.user,
+    userId: state.user.userId,
   }
 }
 
