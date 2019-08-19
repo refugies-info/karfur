@@ -25,6 +25,7 @@ import RecordAudio from './containers/RecordAudio/RecordAudio';
 import AdvancedSearch from './containers/AdvancedSearch/AdvancedSearch';
 import QuiSommesNous from './containers/QuiSommesNous/QuiSommesNous';
 import CommentContribuer from './containers/CommentContribuer/CommentContribuer';
+import AdminContrib from './containers/Backend/AdminContrib/AdminContrib';
 
 const routes = [
   { path: '/', exact: true, name: 'home', restriction:[] },
@@ -61,12 +62,14 @@ const routes = [
   { path: '/backend/dashboard', name: 'Dashboard', component: Dashboard, restriction:['Admin'] },
   { path: '/backend/admin', name: 'Admin', component: Admin, restriction:['Admin'] },
   { path: '/backend/chat', name: 'Chat', component: Chat, restriction:['Admin'] },
+  { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
+  { path: '/backend/admin-contrib', name: 'AdminContrib', component: AdminContrib, restriction:['Admin']},
+
   { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/backend/user-dash-contrib', name: 'UserDashContrib', component: UserDashContrib, restriction:['Contrib','Admin'] },
   { path: '/backend/user-dash-structure', name: 'UserDashStruct', component: UserDashStruct, restriction:['Admin', 'hasStructure'] },
   { path: '/backend/user-form', name: 'UserForm', component: UserForm, restriction:['Trad','ExpertTrad','Admin']},
   { path: '/backend/user-profile', name: 'UserProfile', component: UserProfile, restriction:['User','Trad','ExpertTrad','Admin'] },
-  { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
 ];
 
 const simplesRoutes = routes.map( x => ({path: x.path, name: x.name, restriction: x.restriction}))

@@ -9,10 +9,10 @@ import './DashHeader.scss'
 import variables from 'scss/colors.scss';
 
 const dashHeader = (props) => {
-  const roles = ((props.structure.membres || []).find(x => x.userId === props.user._id) || {}).roles || [];
-  let role = roles.some(x => x === "administrateur") ? "administrateur" :
-              roles.some(x => x === "createur") ? "créateur" :
-              roles.some(x => x === "contributeur") ? "contributeur" :
+  const roles = (((props.structure || {}).membres || []).find(x => x.userId === props.user._id) || {}).roles || [];
+  let role = roles.includes("administrateur") ? "administrateur" :
+              roles.includes("createur") ? "créateur" :
+              roles.includes("contributeur") ? "contributeur" :
               "membre";
 
   const IndicateursBloc = props => {
@@ -120,7 +120,7 @@ const dashHeader = (props) => {
           <h2><NavLink to="/backend/user-profile" className="my-breadcrumb">Mon profil</NavLink> / {props.title}</h2>
         </Col>
         <Col className="tableau-header align-right">
-          {role &&
+          {props.structure &&
             <b className="role">Vous êtes {role}</b>}
           <FButton type="outline-black" name="info-outline" fill={variables.noir} className="mr-10">
             Aide

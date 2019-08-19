@@ -12,9 +12,11 @@ $blancSimple: #FFFFFF;
 $jauneClair: #FFF7AE;
 
 $attention : #F9EF99;
+$uiattention : #FFEB3B;
 $validation : #DEF7C2;
 $validationHover : #4CAF50;
 $error: #F44336;
+$erreur: #FFCECB;
 $lightColor: #F2F2F2;
 $darkColor: #212121;
 $cardColor: #828282;
@@ -38,4 +40,6 @@ $cardColor: #828282;
   validation: $validation;
   validationHover: $validationHover;
   error: $error;
+  erreur: $erreur;
+  uiattention: $uiattention;
 }
