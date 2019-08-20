@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Card, CardBody, CardFooter, Modal, Spinner, Input, Button } from 'reactstrap';
+import { Col, Row, Card, CardBody, CardFooter, Modal, Spinner, Input } from 'reactstrap';
 import Swal from 'sweetalert2';
 import h2p from 'html2plaintext';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
@@ -16,12 +16,20 @@ import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 
 import {fakeTraduction, fakeContribution, fakeFavori, fakeNotifs, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
+import {showSuggestion, archiveSuggestion, parseActions} from './functions';
 
 import './UserProfile.scss';
+import variables from 'scss/colors.scss';
 
 const anchorOffset = '120';
 
 class UserProfile extends Component {
+  constructor(props) {
+    super(props);
+    this.showSuggestion = showSuggestion.bind(this);
+    this.archiveSuggestion = archiveSuggestion.bind(this);
+  }
+
   state={
     showModal:{actions:false, traducteur: false, contributions: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: false}, 
     showSections:{traductions: true, contributions: true},
@@ -53,7 +61,7 @@ class UserProfile extends Component {
         this.setState({traductions: data.data.data})
       })
       API.get_dispositif({'creatorId': user._id}).then(data => { console.log(data.data.data);
-        this.setState({contributions: data.data.data, actions: this.parseActions(data.data.data)})
+        this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
       })
       if(user.structures && user.structures.length > 0){
         API.get_structure({_id: user.structures[0] }).then(data => { console.log(data.data.data);
@@ -71,29 +79,6 @@ class UserProfile extends Component {
     window.scrollTo(0, 0);
   }
 
-  parseActions = dispositifs => {
-    let actions = [];
-    dispositifs.forEach(dispo => {
-      ['suggestions', 'questions', 'signalements'].map(item => {
-        if(dispo[item] && dispo[item].length > 0){
-          actions= [...actions, ...dispo[item].map(x => ({
-            action : item,
-            titre: dispo.titreInformatif,
-            owner: true,
-            depuis : x.createdAt,
-            texte : x.suggestion,
-            read : x.read,
-            username : x.username,
-            picture : x.picture,
-            dispositifId:dispo._id,
-            suggestionId:x.suggestionId
-          }))];
-        }
-      })
-    });
-    return actions
-  }
-
   toggleModal = (modal) => {
     this.props.tracking.trackEvent({ action: 'toggleModal', label: modal, value : !this.state.showModal[modal] });
     this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}})
@@ -105,25 +90,6 @@ class UserProfile extends Component {
   }
 
   toggleEditing = () => this.setState({editing : !this.state.editing})
-  
-  showSuggestion = (suggestion) => {
-    this.setState({suggestion});
-    this.toggleModal('suggestion');
-  }
-
-  archiveSuggestion = (suggestion) => {
-    let dispositif = {
-      dispositifId: suggestion.dispositifId,
-      suggestionId: suggestion.suggestionId,
-      fieldName: suggestion.action,
-      type: 'pull'
-    }
-    console.log(dispositif)
-    API.update_dispositif(dispositif).then(data => {
-      console.log(data.data.data)
-      this.setState({actions: this.state.actions.filter(x=> x.suggestionId !== suggestion.suggestionId)})
-    })
-  }
 
   handleChange = (ev) => this.setState({ user: { ...this.state.user, [ev.currentTarget.id]:ev.target.value } });
 
@@ -197,34 +163,39 @@ class UserProfile extends Component {
     
     let imgSrc = this.state.tempImg || (this.state.user.picture || []).secure_url || marioProfile
 
-    let nbReactions = contributions.map(dispo => ((dispo.merci || []).length + (dispo.bravo || []).length)).reduce((a,b) => a + b, 0);
+    // let nbReactions = contributions.map(dispo => ((dispo.merci || []).length + (dispo.bravo || []).length)).reduce((a,b) => a + b, 0);
     return (
       <div className="animated fadeIn user-profile">
         <div className="profile-header">
           <AnchorLink href="#mon-profil" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
-            <EVAIcon name="settings-2-outline" fill="#3D3D3D" className="header-icon" /> {' '}
+            <EVAIcon name="settings-2-outline" fill={variables.noir} className="header-icon" /> {' '}
             <span className="hideOnPhone">Mon profil</span>
           </AnchorLink>
           <AnchorLink href={(contributeur || traducteur) ? "#actions-requises" : "#mes-favoris"} offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
-            <EVAIcon name={((contributeur || traducteur) ? "bell-" : "bookmark-" ) + "outline"} fill="#3D3D3D" className="header-icon" /> {' '}
+            <EVAIcon name={((contributeur || traducteur) ? "bell-" : "bookmark-" ) + "outline"} fill={variables.noir} className="header-icon" /> {' '}
             <span className="hideOnPhone">{(contributeur || traducteur) ? "Actions requises" : "Mes favoris"}</span>
           </AnchorLink>
           {showSections.contributions && <AnchorLink href="#mes-contributions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
-            <EVAIcon name="file-add-outline" fill="#3D3D3D" className="header-icon" /> {' '}
+            <EVAIcon name="file-add-outline" fill={variables.noir} className="header-icon" /> {' '}
             <span className="hideOnPhone">Mes articles</span>
           </AnchorLink>}
           {showSections.traductions && <AnchorLink href="#mes-traductions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
-            <SVGIcon name="bubbleTranslate" fill="#3D3D3D" className="header-icon" /> {' '}
+            <SVGIcon name="bubbleTranslate" fill={variables.noir} className="header-icon" /> {' '}
             <span className="hideOnPhone">Mes traductions</span>
           </AnchorLink>}
           {(contributeur || traducteur) &&
             <AnchorLink href="#mes-favoris" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
-              <EVAIcon name="bookmark-outline" fill="#3D3D3D" className="header-icon" /> {' '}
+              <EVAIcon name="bookmark-outline" fill={variables.noir} className="header-icon" /> {' '}
               <span className="hideOnPhone">Mes favoris</span>
+            </AnchorLink>}
+          {structure && structure._id &&
+            <AnchorLink href="#structure" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
+              <EVAIcon name="briefcase-outline" fill={variables.noir} className="header-icon" /> {' '}
+              <span className="hideOnPhone">Ma structure</span>
             </AnchorLink>}
           {false && 
             <AnchorLink href="#mes-contributions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
-              <EVAIcon name="message-circle-outline" fill="#3D3D3D" className="header-icon" /> {' '}
+              <EVAIcon name="message-circle-outline" fill={variables.noir} className="header-icon" /> {' '}
               <span className="hideOnPhone">Messages</span>
             </AnchorLink>}
         </div>
@@ -334,6 +305,7 @@ class UserProfile extends Component {
             overlaySpan="Agi’r est une plateforme contributive, vous pouvez participer à son enrichissement"
             overlayBtn="Découvrir comment contribuer"
             overlayRedirect={false}
+            history={this.props.history}
             {...avancement_contrib} />
 
           <TradTable 
@@ -377,12 +349,12 @@ class UserProfile extends Component {
               {...avancement_actions} />
             }
 
-            {structure && structure._id &&
-              <StructureCard
-                displayIndicators
-                structure={structure}
-                user={user}
-                {...data_structure} />}
+          {structure && structure._id &&
+            <StructureCard
+              displayIndicators
+              structure={structure}
+              user={user}
+              {...data_structure} />}
         </div>
 
         <Modal isOpen={this.state.showModal.actions} toggle={()=>this.toggleModal('actions')} className='modal-plus'>

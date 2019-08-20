@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Col, Card, CardBody, CardHeader, CardFooter, ButtonDropdown, Dropdown, DropdownToggle, 
-  DropdownMenu, DropdownItem, ListGroup, ListGroupItem,Button, Modal, Input, Tooltip } from 'reactstrap';
-import Icon from 'react-eva-icons';
+  DropdownMenu, DropdownItem, ListGroup, ListGroupItem, Modal, Input, Tooltip } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import Swal from 'sweetalert2';
 
@@ -87,7 +86,7 @@ class CardParagraphe extends Component {
     ]
     
     let contentTitle = (subitem) => {
-      let cardTitle = cardTitles.find(x=>x.title==subitem.title);
+      let cardTitle = cardTitles.find(x=>x.title===subitem.title);
       if(cardTitle && cardTitle.options && cardTitle.options.length > 0 && !this.props.disableEdit){
         if(!cardTitle.options.some(x => x.toUpperCase()===subitem.contentTitle.toUpperCase())){ subitem.contentTitle = cardTitle.options[0]; subitem.contentBody = 'A modifier'; }
         return(

@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import track from 'react-tracking';
-import { Card, CardBody, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip, Button } from 'reactstrap';
+import { Card, CardBody, Row, Col, Tooltip, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import Swal from 'sweetalert2';
 
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-import { Col, Row, Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 
 import FSearchBtn from '../../../components/FigmaUI/FSearchBtn/FSearchBtn';
 

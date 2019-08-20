@@ -1,17 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Col,
-  Form,
-  FormGroup,
-  FormText,
-  Input,
-  Label,
-  Row} from 'reactstrap';
+import { Button, Card, CardBody, CardFooter, CardHeader, Col, FormGroup, Input, Label, Row} from 'reactstrap';
 
 import CreationContent from "../../../../Frontend/Dispositif/CreationContent/CreationContent"
 

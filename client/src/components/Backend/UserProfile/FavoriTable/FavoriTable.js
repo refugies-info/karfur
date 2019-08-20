@@ -80,18 +80,18 @@ const favoriTable = (props) => {
   
         <div className="tableau">
           {table}
-        </div>
 
-        {!props.hasFavori &&
-          <div className="ecran-protection no-fav">
-            <div className="content-wrapper">
-              <h1>Retrouvez ici vos pages favorites</h1>
-              <div className="sous-contenu">
-                Cherchez ce bouton dans les contenus pour les sauvegarder :
-                <EVAIcon name="bookmark-outline" fill={variables.noir} className="bookmark-icon" /> 
+          {!props.hasFavori &&
+            <div className="ecran-protection no-fav">
+              <div className="content-wrapper">
+                <h1>Retrouvez ici vos pages favorites</h1>
+                <div className="sous-contenu">
+                  Cherchez ce bouton dans les contenus pour les sauvegarder :
+                  <EVAIcon name="bookmark-outline" fill={variables.noir} className="bookmark-icon" /> 
+                </div>
               </div>
-            </div>
-          </div>}
+            </div>}
+        </div>
       </div>
     )
   }else{

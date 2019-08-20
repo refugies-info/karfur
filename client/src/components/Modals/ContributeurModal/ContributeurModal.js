@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import { withTranslation } from 'react-i18next';
 import { Col, Row, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import Icon from 'react-eva-icons';
-import {NavLink} from 'react-router-dom';
 
 import {filtres} from '../../../containers/Dispositif/data';
-import {randomColor} from '../../Functions/ColorFunctions';
 
 import './ContributeurModal.scss'
 

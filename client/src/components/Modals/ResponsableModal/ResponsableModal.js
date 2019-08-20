@@ -86,7 +86,7 @@ class ResponsableModal extends Component {
                 </div>}
               </>:
               <>
-                <img src={inspection} className="inspection-img" />
+                <img src={inspection} className="inspection-img" alt="inspection" />
                 <h5 className="text-center">Merci de prendre un temps pour relire ce contenu avant de nous l’envoyer pour validation</h5>
               </>}
         </ModalBody>

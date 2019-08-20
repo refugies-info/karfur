@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import { Col, Row, TabContent, TabPane, Nav, NavItem, NavLink, Card, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
-import Icon from 'react-eva-icons';
 import moment from 'moment/min/moment-with-locales';
 
-import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
 import {diairMinInt} from '../../../../assets/figma/index'
 
-import './StructureCard.scss'
-import variables from 'scss/colors.scss';
+import './StructureCard.scss';
 
 moment.locale('fr');
 
@@ -26,7 +23,7 @@ class StructureCard extends Component {
   }
   render(){
     return(
-      <div className="tableau-wrapper structure-card" id="mes-favoris">
+      <div className="tableau-wrapper structure-card" id="structure">
         <Row>
           <Col>
             <h1>{this.props.title}</h1>
@@ -48,7 +45,7 @@ class StructureCard extends Component {
             <div className="left-side">
               <div className="logo-bloc">
                 <div className="img-wrapper">
-                  <img src={(this.props.structure.picture || {}).secure_url || diairMinInt} className="logo-img" />
+                  <img src={(this.props.structure.picture || {}).secure_url || diairMinInt} className="logo-img" alt="logo de la structure" />
                 </div>
                 <div className="logo-footer">
                   <b>{this.props.structure.nom}</b>

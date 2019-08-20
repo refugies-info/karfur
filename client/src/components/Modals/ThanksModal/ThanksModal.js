@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Card, CardBody, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Col, Row, Card, CardBody, Modal, ModalHeader, ModalBody } from 'reactstrap';
 import EVAIcon from '../../UI/EVAIcon/EVAIcon';
 
 import './ThanksModal.scss'

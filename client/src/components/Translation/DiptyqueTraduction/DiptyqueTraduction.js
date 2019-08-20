@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, Label, FormFeedback } from 'reactstrap';
+import { FormGroup, Label } from 'reactstrap';
 import ReactHtmlParser from 'react-html-parser';
 import ContentEditable from 'react-contenteditable';
 

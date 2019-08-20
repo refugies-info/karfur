@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, Input, Spinner, Modal, ModalBody, ModalFooter, InputGroup, Tooltip, FormGroup, Label } from 'reactstrap';
+import { Row, Col, Input, Modal, ModalBody, ModalFooter, InputGroup, Tooltip, FormGroup, Label } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -8,7 +8,7 @@ import API from "utils/API.js";
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
 import { SearchBar } from '../../../../containers/UI/SearchBar/SearchBar';
-import {sentIllu, DGEF} from '../../../../assets/figma/index';
+import {sentIllu} from '../../../../assets/figma/index';
 import CreationContent from "../CreationContent/CreationContent"
 import {update_user} from "../../../../Store/actions/index";
 
@@ -113,7 +113,7 @@ class Sponsors extends Component {
             return (
               <Col key={key} className="sponsor-col">
                 <div className="image-wrapper">
-                  <a  href={((sponsor.link || "").includes("http") ? "" : "http://") + sponsor.link} target="_blank">
+                  <a href={((sponsor.link || "").includes("http") ? "" : "http://") + sponsor.link} target="_blank" rel="noopener noreferrer">
                     {sponsor.picture && sponsor.picture.secure_url ?
                       <img className="sponsor-img" src={sponsor.picture.secure_url} alt={sponsor.alt} /> : 
                       <span className="default-logo">{sponsor.type === "Not found" ? "A déterminer par la suite" : (sponsor.acronyme + " - " + sponsor.nom)}</span>}
@@ -143,7 +143,7 @@ class Sponsors extends Component {
           keyValue= {0}
           title="Responsabilité du dispositif"
           lowerLeftBtn={<FButton type="outline-black" name="info-outline" fill={variables.noir}>En savoir plus</FButton>}
-          lowerRightBtn={<FButton type="dark" name="paper-plane-outline" fill={variables.noir} disabled={(!checked || (!this.props.user.email && !this.props.user.phone)) && !mesStructures.some(x => x.checked)} onClick={this.validerRespo}>Valider</FButton>} 
+          lowerRightBtn={<FButton type="dark" name="paper-plane-outline" fill={variables.noir} disabled={(!checked || (!user.email && !user.phone)) && !mesStructures.some(x => x.checked)} onClick={this.validerRespo}>Valider</FButton>} 
         >
           <p>Pour assurer la mise à jour des informations, nous devons relier ce dispositif à sa structure d’origine. Merci de la renseigner ci-dessous :</p>
           
@@ -163,7 +163,7 @@ class Sponsors extends Component {
             loupe
             className="search-bar inner-addon right-addon"
             placeholder = "Rechercher ou créer une structure"
-            array={[...this.props.structures.filter(x => x.status === 'Actif'), {createNew: true}]}
+            array={[...structures.filter(x => x.status === 'Actif'), {createNew: true}]}
             selectItem={this.selectItem} />
 
           <FormGroup check className="case-cochee mt-10">
@@ -182,11 +182,11 @@ class Sponsors extends Component {
               <div className="form-field">
                 <InputGroup>
                   <EVAIcon className="input-icon" name="at-outline" fill={variables.noir}/>
-                  <Input id="email" placeholder="Entrez votre email pour que nous puissions vous contacter" value={this.props.user.email || ""} onChange={this.handleUserChange} name="user" />
+                  <Input id="email" placeholder="Entrez votre email pour que nous puissions vous contacter" value={user.email || ""} onChange={this.handleUserChange} name="user" />
                 </InputGroup>
                 <InputGroup>
                   <EVAIcon className="input-icon" name="phone-outline" fill={variables.noir}/>
-                  <Input id="phone" placeholder="Ou votre numéro de téléphone pour un contact plus rapide" value={this.props.user.phone || ""} onChange={this.handleUserChange} name="user" />
+                  <Input id="phone" placeholder="Ou votre numéro de téléphone pour un contact plus rapide" value={user.phone || ""} onChange={this.handleUserChange} name="user" />
                 </InputGroup>
               </div>
             </>}
@@ -211,7 +211,7 @@ class Sponsors extends Component {
       
           <div className='selection-wrapper bg-validation mb-10'>
             {selected.picture && selected.picture.secure_url && 
-              <img src={selected.picture.secure_url} className="selection-logo mr-10" />}
+              <img src={selected.picture.secure_url} className="selection-logo mr-10" alt="logo de structure" />}
             <span>{selected.acronyme} - {selected.nom}</span>
           </div>
 
@@ -259,14 +259,14 @@ class Sponsors extends Component {
           lowerRightBtn={<FButton type="validate" name="checkmark-circle-outline" onClick={()=>this.toggleModal("envoye")}>Ok !</FButton>} 
         >
           <div className="envoye-content">
-            <img src={sentIllu} className="illu" />
+            <img src={sentIllu} className="illu" alt="illustration" />
             {selected.nom? 
               (authorBelongs ? 
                 (<>
                   <h5 className="mb-10">Votre demande est soumise aux reponsables de :</h5>
                   <div className='selection-wrapper mb-10'>
                     {selected.picture && selected.picture.secure_url && 
-                      <img src={selected.picture.secure_url} className="selection-logo mr-10" />}
+                      <img src={selected.picture.secure_url} className="selection-logo mr-10" alt="logo de structure" />}
                     <span>{selected.acronyme} - {selected.nom}</span>
                   </div>
                   <div className="contenu">
@@ -279,7 +279,7 @@ class Sponsors extends Component {
                   <h5 className="mb-10">Votre contenu va être transféré à la structure :</h5>
                   <div className='selection-wrapper mb-10'>
                     {selected.picture && selected.picture.secure_url && 
-                      <img src={selected.picture.secure_url} className="selection-logo mr-10" />}
+                      <img src={selected.picture.secure_url} className="selection-logo mr-10" alt="logo de structure" />}
                     <span>{selected.acronyme} - {selected.nom}</span>
                   </div>
                   <div className="contenu">

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalBody, ListGroup, ListGroupItem, Row, Col, Progress } from 'reactstrap';
-import {NavLink} from 'react-router-dom';
 import Icon from 'react-eva-icons';
 
 import {colorAvancement} from '../../Functions/ColorFunctions';

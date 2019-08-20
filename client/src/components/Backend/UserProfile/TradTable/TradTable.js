@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Progress, Table, Button } from 'reactstrap';
+import { Col, Row, Progress, Table } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import {NavLink} from 'react-router-dom';
 
@@ -108,7 +108,7 @@ const tradTable = (props) => {
           <Col>
             <h1>{props.title}</h1>
           </Col>
-          {props.displayIndicators && 
+          {props.displayIndicators && props.traducteur &&
             <Col className="d-flex tableau-header">
               <Row className="full-width">
                 <Col lg="3" md="3" sm="6" xs="12" className="d-flex left-element">
@@ -134,23 +134,23 @@ const tradTable = (props) => {
   
         <div className="tableau">
           {table}
-        </div>
 
-        {!props.traducteur &&
-          <div className="ecran-protection no-trad">
-            {props.toggleSection && 
-              <div className="close-box text-white" onClick={()=>{props.toggleSection('traductions');}}>
-                <Icon name="eye-off-2-outline" fill="#FFFFFF" />
-                <u>Masquer</u>
-              </div>}
-            <div className="content-wrapper">
-              <h1>{props.overlayTitle}</h1>
-              <span>{props.overlaySpan}</span>
-              <FButton type="light" name="play-circle-outline" fill={variables.noir} onClick={startTrad} >
-                {props.overlayBtn}
-              </FButton>
-            </div>
-          </div>}
+          {!props.traducteur &&
+            <div className="ecran-protection no-trad">
+              {props.toggleSection && 
+                <div className="close-box text-white" onClick={()=>{props.toggleSection('traductions');}}>
+                  <Icon name="eye-off-2-outline" fill="#FFFFFF" />
+                  <u>Masquer</u>
+                </div>}
+              <div className="content-wrapper">
+                <h1>{props.overlayTitle}</h1>
+                <span>{props.overlaySpan}</span>
+                <FButton type="light" name="play-circle-outline" fill={variables.noir} onClick={startTrad} >
+                  {props.overlayBtn}
+                </FButton>
+              </div>
+            </div>}
+        </div>
       </div>
     )
   }else if(show){

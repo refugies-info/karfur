@@ -1,10 +1,12 @@
-import React, { Components, Component } from 'react';
+/* eslint no-eval: 0 */
+import React, { Component } from 'react';
 import track from 'react-tracking';
 import { Modal, Spinner } from 'reactstrap';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
+import windowSize from 'react-window-size';
 
 import {avancement_actions, fakeNotifs, avancement_contributions, avancement_members, fakeContribution, fakeMembre} from './data'
 import API from '../../../utils/API'
@@ -12,7 +14,8 @@ import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHead
 import {MembersTable, ActionTable, ContribTable} from '../../../components/Backend/UserProfile';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
-import {AddMemberModal, EditMemberModal} from '../../../components/Modals/index';
+import {AddMemberModal, EditMemberModal, SuggestionModal} from '../../../components/Modals/index';
+import {showSuggestion, archiveSuggestion, parseActions} from '../UserProfile/functions';
 
 import './UserDashStruct.scss';
 import variables from 'scss/colors.scss';
@@ -22,9 +25,14 @@ moment.locale('fr');
 const tables = [{name:'actions', component: ActionTable}, {name:'contributions', component: ContribTable}, {name:'members', component: MembersTable}];
 
 class UserDashStruct extends Component {
+  constructor(props) {
+    super(props);
+    this.showSuggestion = showSuggestion.bind(this);
+    this.archiveSuggestion = archiveSuggestion.bind(this);
+  }
+  
   state={
-    showModal:{actions:false, contributions: false, members:false, addMember: false, editMember: false}, 
-    user:{},
+    showModal:{actions:false, contributions: false, members:false, addMember: false, editMember: false, suggestion: false}, 
     languesUser:[],
     traductionsFaites:[],
     progression:{
@@ -32,165 +40,51 @@ class UserDashStruct extends Component {
       nbMots:0
     },
     isMainLoading: true,
-    showSections:{traductions: true},
+    showSections:{contributions: true},
     contributions: [],
     actions:[],
-    contributeur:false,
     members:[],
 
     structure:{},
     users:[],
     selected:{},
+    suggestion:{},
   }
 
   componentDidMount() {
     let user=this.props.user;
     console.log(user)
+    if(!user.structures || !user.structures.length > 0){ Swal.fire( 'Oh non', "Nous n'avons aucune information sur votre structure d'affiliation, vous allez être redirigé vers la page d'accueil", 'error').then(() => this.props.history.push("/") ); return; }
 
     this.initializeStructure();
-
     API.get_users({}).then(data => this.setState({users: data.data.data}) )
 
-    API.get_dispositif({'creatorId': user._id}).then(data => {
-      console.log(data.data.data)
-      this.setState({contributions: data.data.data, actions: this.parseActions(data.data.data)})
+    API.get_dispositif({'mainSponsor': user.structures[0]}).then(data => {console.log(data.data.data)
+      this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
     })
-
-
-    if(user && user.selectedLanguages && user.selectedLanguages.length > 0){
-      API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
-        console.log(data_langues.data.data)
-        this.setState({languesUser: data_langues.data.data, isMainLoading: false})
-      })
-      API.get_progression().then(data_progr => {
-        console.log(data_progr.data.data)
-        if(data_progr.data.data && data_progr.data.data.length>0)
-          this.setState({progression: data_progr.data.data[0]})
-      })
-      API.get_tradForReview({'_id': { $in: user.traductionsFaites}},{updatedAt: -1}).then(data => {
-        console.log(data.data.data)
-        this.setState({traductionsFaites: data.data.data})
-      })
-    }else{
-      this.setState({isMainLoading:false, showModal:{...this.state.showModal, defineUser: true}})
-    }
-    this.setState({user:user})
     window.scrollTo(0, 0);
   }
 
   initializeStructure = () => {
     const user=this.props.user;
-    if(user.structures && user.structures.length > 0){
-      API.get_structure({_id: user.structures[0] }, {}, 'dispositifsAssocies').then(data => { console.log(data.data.data[0]);
-        this.setState({structure:data.data.data[0]})
-      })
-    }
-  }
-  
-  parseActions = dispositifs => {
-    let actions = [];
-    dispositifs.forEach(dispo => {
-      ['suggestions', 'questions', 'signalements'].map(item => {
-        if(dispo[item] && dispo[item].length > 0){
-          actions= [...actions, ...dispo[item].map(x => ({
-            action : item,
-            titre: dispo.titreInformatif,
-            owner: true,
-            depuis : x.createdAt,
-            texte : x.suggestion,
-            read : x.read,
-            username : x.username,
-            picture : x.picture,
-            dispositifId:dispo._id,
-            suggestionId:x.suggestionId
-          }))];
-        }
-      })
-    });
-    return actions
+    API.get_structure({_id: user.structures[0] }, {}, 'dispositifsAssocies').then(data => { console.log(data.data.data[0]);
+      this.setState({structure:data.data.data[0], isMainLoading:false});
+    })
   }
 
   toggleModal = (modal) => {
     this.props.tracking.trackEvent({ action: 'toggleModal', label: modal, value : !this.state.showModal[modal] });
-    this.setState(pS => ({showModal : {...pS.showModal, [modal]: !pS.showModal[modal]}}), ()=>(console.log(this.state)))
+    this.setState(pS => ({showModal : {...pS.showModal, [modal]: !pS.showModal[modal]}}) )
   }
   
   toggleSection = (section) => {
     this.props.tracking.trackEvent({ action: 'toggleSection', label: section, value : !this.state.showSections[section] });
     this.setState({showSections : {...this.state.showSections, [section]: !this.state.showSections[section]}})
   }
-
-  triggerConfirmationRedirect = () => {
-    Swal.fire({
-      title: 'Êtes-vous sûr ?',
-      text: "Sans informations sur vos langues de travail, nous allons vous rediriger vers la page d'accueil",
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      cancelButtonText: 'Aller à l\'accueil',
-      confirmButtonText: 'Je veux continuer'
-    }).then((result) => {
-      if (!result.value) {
-        this.props.history.push("/")
-      }
-    })
-  }
   
-  openThemes = (langue) => {
-    this.props.tracking.trackEvent({ action: 'click', label: 'openThemes', value : langue._id });
-    this.props.history.push({
-      pathname: '/avancement/langue/'+langue._id,
-      state: { langue: langue}
-    })
-  }
-
-  openTraductions = (langue) => {
-    this.props.tracking.trackEvent({ action: 'click', label: 'openTraductions', value : langue._id });
-    this.props.history.push({
-      pathname: '/avancement/traductions/'+langue._id,
-      state: { langue: langue}
-    })
-  }
-
-  quickAccess = (langue=null) => {
-    if(!langue && this.state.languesUser.length > 0){langue=this.state.languesUser.find(x=> x.langueCode!=='fr')}
-    if(!langue){return false;}
-    let i18nCode=langue.i18nCode;
-    let nom='avancement.'+i18nCode;
-    let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
-    API.getArticle({query: query, locale:i18nCode, random:true}).then(data_res => {
-      let articles=data_res.data.data;
-      if(articles.length===0){Swal.fire( 'Oh non', 'Aucun résultat n\'a été retourné, veuillez rééssayer', 'error')}
-      else{ this.props.history.push({ pathname: '/traduction/'+ articles[0]._id, search: '?id=' + langue._id, state: { langue: langue} }) }    
-    })
-  }
-
-  editProfile = () => {
-    this.props.tracking.trackEvent({ action: 'click', label: 'editProfile' });
-    this.props.history.push('/backend/user-form')
-  }
-
-  setUser = user => {
-    API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
-      this.setState({user, languesUser: data_langues.data.data});
-      this.toggleModal('defineUser')
-    })
-  }
-
-  validateObjectifs = newUser => {
-    newUser={ _id: this.state.user._id, ...newUser }
-    API.set_user_info(newUser).then((data) => {
-      Swal.fire( 'Yay...', 'Vos objectifs ont bien été enregistrés', 'success')
-      this.setState({user:data.data.data})
-      this.toggleModal('objectifs')
-    })
-  }
-
   selectItem = suggestion => this.setState({selected : suggestion});
 
   editMember = member => {
-    console.log(member)
     this.setState({selected: member});
     this.toggleModal("editMember");
   }
@@ -211,14 +105,14 @@ class UserDashStruct extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render() {
-    let {isMainLoading, actions, contributions, contributeur, structure, users} = this.state;
+    let {isMainLoading, actions, contributions, structure, users} = this.state;
     const {user} = this.props;
-    if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
-    
+
     let members = structure.membres;
-    let hasMembres=true, hasNotifs= true;
-    if(!members || members.length === 0){members= new Array(5).fill(fakeMembre); hasMembres=false;}
+    let hasMembres=true, hasNotifs= true, contributeur=true;
     if(actions.length === 0){actions= new Array(5).fill(fakeNotifs); hasNotifs=false;}
+    if(contributions.length === 0){contributions= new Array(5).fill(fakeContribution); contributeur=false;}
+    if(!members || members.length === 0){members= new Array(5).fill(fakeMembre); hasMembres=false;}
 
     const enAttente = (structure.dispositifsAssocies || []).filter(x => x.status === "En attente");
     return (
@@ -263,7 +157,7 @@ class UserDashStruct extends Component {
 
         <ContribTable 
           dataArray={contributions}
-          user={this.state.user}
+          user={user}
           contributeur={contributeur}
           toggleModal={this.toggleModal}
           toggleSection={this.toggleSection}
@@ -274,6 +168,7 @@ class UserDashStruct extends Component {
           overlaySpan="Agi’r est une plateforme contributive, vous pouvez participer à son enrichissement"
           overlayBtn="Découvrir comment contribuer"
           overlayRedirect={false}
+          history={this.props.history}
           {...avancement_contributions} />
 
         <MembersTable 
@@ -299,7 +194,11 @@ class UserDashStruct extends Component {
                 dataArray={eval(table.name)}
                 user={this.state.user}
                 upcoming={this.upcoming}
+                showSuggestion={this.showSuggestion}
+                archive={this.archiveSuggestion}
                 editMember={this.editMember}
+                history={this.props.history}
+                users={users}
                 {...avancement} />
             </Modal>
           )}
@@ -324,6 +223,8 @@ class UserDashStruct extends Component {
           initializeStructure={this.initializeStructure}
         />
 
+        <SuggestionModal suggestion={this.state.suggestion} show={this.state.showModal.suggestion} toggle={()=>this.toggleModal('suggestion')} />
+
         {isMainLoading &&
           <div className="ecran-protection no-main">
             <div className="content-wrapper">
@@ -346,4 +247,6 @@ const mapStateToProps = (state) => {
 
 export default track({
   page: 'UserDashStruct',
-})(connect(mapStateToProps)(UserDashStruct));
+})(connect(mapStateToProps)(
+  windowSize(UserDashStruct)
+));

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Button, Progress, Table, Modal, Spinner } from 'reactstrap';
+import { Col, Row, Progress, Table, Modal, Spinner } from 'reactstrap';
 import ReactJoyride from 'react-joyride';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
@@ -8,8 +8,8 @@ import Icon from 'react-eva-icons';
 import { connect } from 'react-redux';
 
 import marioProfile from '../../../assets/mario-profile.jpg'
-import {languages, past_translation, steps} from './data'
-import {colorAvancement, colorStatut} from '../../../components/Functions/ColorFunctions'
+import {languages, steps} from './data'
+import {colorAvancement} from '../../../components/Functions/ColorFunctions'
 import API from '../../../utils/API'
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
 import { ObjectifsModal, TraducteurModal } from '../../../components/Modals';
