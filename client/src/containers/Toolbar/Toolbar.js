@@ -2,13 +2,13 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import { AppAsideToggler } from '@coreui/react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {toggle_lang_modal} from '../../Store/actions/index';
-import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
+// import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
 import DrawerToggle from '../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../utils/API';
 import AudioBtn from '../UI/AudioBtn/AudioBtn';
@@ -36,16 +36,16 @@ export class Toolbar extends React.Component {
 
   render() {
     const path = this.props.location.pathname;
-    const { i18n, user, contributeur, traducteur, expertTrad, admin, membreStruct } = this.props;
-    let afficher_burger=path.includes("/backend");
-    let afficher_burger_droite=path.includes("/traduction");
+    const { user, contributeur, traducteur, expertTrad, admin, membreStruct } = this.props;
+    let afficher_burger = admin && path.includes("/backend") && path.includes("/admin");
+    let afficher_burger_droite = path.includes("/traduction");
     
     let userImg = (user.picture || {}).secure_url || marioProfile;
     return(
       <header className="Toolbar">
         <div className="left_buttons">
           <DrawerToggle 
-            forceShow={false && afficher_burger}
+            forceShow={afficher_burger}
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <Logo />
           <span className="baseline">Construire sa vie en France</span>
@@ -70,7 +70,7 @@ export class Toolbar extends React.Component {
           {API.isAuth() ? 
             <ButtonDropdown className="user-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle color="transparent">
-                <img src={userImg} className="user-picture" />
+                <img src={userImg} className="user-picture" alt="user" />
                 <div className="user-badge" />
               </DropdownToggle>
               <DropdownMenu>

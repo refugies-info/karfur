@@ -27,10 +27,10 @@ const reagirModal = (props) => {
                 </div>
                 <div className="feedback-buttons">
                   <Button color="dark" onClick={()=>props.onValidate(props.name, 'merci')}>
-                    Merci ! 🙏 
+                    Merci ! <span role="img" aria-label="merci">🙏</span>
                   </Button>
                   <Button color="dark" onClick={()=>props.onValidate(props.name, 'bravo')}>
-                    Bravo ! 😊
+                    Bravo ! <span role="img" aria-label="bravo">😊</span>
                   </Button>
                 </div>
               </CardBody>

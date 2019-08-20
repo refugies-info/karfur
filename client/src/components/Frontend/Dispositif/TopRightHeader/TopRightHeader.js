@@ -7,7 +7,7 @@ import SVGIcon from '../../../UI/SVGIcon/SVGIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
 
 const topRightHeader = (props) => {
-  if(props.status==="En attente" && (((props.mainSponsor.membres || []).find(x => x.userId=== props.userId) || {}).roles || []).some(y => y==="administrateur" || y==="contributeur") ){return(
+  if(props.status==="En attente" && ((((props.mainSponsor || {}).membres || []).find(x => x.userId=== props.userId) || {}).roles || []).some(y => y==="administrateur" || y==="contributeur") ){return(
     <Col lg="6" md="6" sm="12" xs="12" className="top-right">
       <Card>
         <CardBody className="backgroundColor-lightColor">

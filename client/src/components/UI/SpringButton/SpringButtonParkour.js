@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { useTransition, useSpring, useChain, config, animated } from 'react-spring'
+import { useTransition, useSpring, useChain, config } from 'react-spring'
 import { Container, Item } from './styles'
 
 import './SpringButton.css';

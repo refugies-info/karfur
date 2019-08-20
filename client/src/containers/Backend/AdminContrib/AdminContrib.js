@@ -114,6 +114,7 @@ const mapDispatchToProps = {fetch_dispositifs};
 export default track({
   page: 'AdminContrib',
 })(
-  connect(mapStateToProps, mapDispatchToProps)
-    (AdminContrib)
-  );
+  connect(mapStateToProps, mapDispatchToProps)(
+    AdminContrib
+  )
+);

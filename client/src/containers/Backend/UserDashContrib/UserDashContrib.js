@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Button, Progress, Badge, Modal, Spinner } from 'reactstrap';
+import { Row, Modal, Spinner } from 'reactstrap';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
 

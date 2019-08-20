@@ -22,7 +22,7 @@ class Footer extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
 
   render() {
-    const { t } = this.props;
+    // const { t } = this.props;
     return (
       <div className="animated fadeIn footer">
         <Row>

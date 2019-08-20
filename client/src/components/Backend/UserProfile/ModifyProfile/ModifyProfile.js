@@ -1,11 +1,11 @@
 import React from 'react';
-import { Col, Row, Card, CardBody, CardHeader, CardFooter, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Col, Row, Card, CardBody, CardFooter, Button } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
 
 const modifyProfile = (props) => {
-  let { user, langues, editing } = props;
+  let { user, editing } = props;
   return (
     <Card className="profile-modify">
       <div className={"shadow-wrapper" + (editing ? " active" : "")}>

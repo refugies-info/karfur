@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
-import Autosuggest from 'react-autosuggest';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import debounce from 'lodash.debounce';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import Swal from 'sweetalert2';
 
 ////////A enlever si pas utilisé/////////////:
-import Notifications from '../../components/UI/Notifications/Notifications';
+// import Notifications from '../../components/UI/Notifications/Notifications';
 // import SendToMessenger from './SendToMessenger';
-import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
-import API from '../../utils/API';
+// import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
 import { toggle_lang_modal } from '../../Store/actions/index';
-import SVGIcon from "../../components/UI/SVGIcon/SVGIcon"
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
@@ -22,11 +18,6 @@ import SearchBar from '../UI/SearchBar/SearchBar';
 
 import './HomePage.scss';
 import variables from 'scss/colors.scss';
-
-const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const getSuggestionValue = suggestion => suggestion.titreInformatif ? (suggestion.titreMarque + " - " + suggestion.titreInformatif) : suggestion.title;
-const renderSectionTitle = section => <strong>{section.title}</strong>
-const getSectionSuggestions = section => section.children;
 
 class HomePage extends Component {
   state = {
@@ -42,7 +33,7 @@ class HomePage extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
 
   render() {
-    const { t } = this.props;
+    // const { t } = this.props;
     return (
       <div className="animated fadeIn homepage">
         <section id="hero">

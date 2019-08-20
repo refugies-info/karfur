@@ -133,7 +133,7 @@ export const fakeMembre = {
     "secure_url" : "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1559036274/pictures/zgjpujxzk9kxoqylt93n.jpg"
   },
   "role": "Contributeur",
-  "last_connected": moment().add('month', -1),
-  "created_at": moment().add('month', -3),
+  "last_connected": moment().add(-1, 'month'),
+  "created_at": moment().add(-3, 'month'),
   "nb_contenu": 3,
 }
