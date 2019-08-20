@@ -15,7 +15,6 @@ import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
 import ReactJoyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import _ from "lodash";
-import ReactDOM from 'react-dom'
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
@@ -31,7 +30,7 @@ import {fetch_dispositifs, fetch_user} from '../../Store/actions/index';
 import ContribCaroussel from './ContribCaroussel/ContribCaroussel';
 import FButton from '../../components/FigmaUI/FButton/FButton'
 
-import {hugo, ManLab, diair, FemmeCurly} from '../../assets/figma/index';
+import {ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 
 import {contenu, lorems, menu, filtres, steps, tutoSteps} from './data'
 
@@ -39,19 +38,10 @@ import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
-const spyableMenu = menu.reduce((r, e, i) => {
-  r.push('item-'+i);
-  (e.children || []).map((_,subkey)=> {return r.push('item-'+i+'-sub-'+subkey)})
-  return r
-}, []);
-
-const sponsorsData = [
-  {picture:{secure_url:diair},alt:"logo DIAIR", link: "https://www.agi-r.fr", dummy: true},
-]
-
+const sponsorsData = [ {picture:{secure_url:diair},alt:"logo DIAIR", link: "https://www.agi-r.fr", dummy: true} ];
 const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
-
 let user={_id:'', cookies:{}}
+
 class Dispositif extends Component {
   state={
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : ''), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
@@ -163,29 +153,18 @@ class Dispositif extends Component {
 
   setColors = () => {
     ["color", "borderColor", "backgroundColor", "fill"].map(s => {
-      ["dark", "light"].map(c => {
-        document.querySelectorAll('.' + s + '-' + c + 'Color').forEach(elem => {
+      return ["dark", "light"].map(c => {
+        return document.querySelectorAll('.' + s + '-' + c + 'Color').forEach(elem => {
           elem.style[s] = this.state.mainTag[c + 'Color'];
         });
       })
     })
   }
  
-  onMenuNavigate = (tab) => { //semble inutil vu qu'on a désactivé les accordéons dans le menu
+  onMenuNavigate = (tab) => { //semble inutile vu qu'on a désactivé les accordéons dans le menu
     const prevState = this.state.menu;
-    const state = prevState.map((x, index) => tab === index ? {...x, accordion : !x.accordion} : {...x, accordion: false});
-    this.setState({
-      menu: state,
-    });
-  }
-
-  handleScrollSpy = el => {
-    // if(el && el.id && el.id.includes('item-')){
-    //   let num=parseInt(el.id.replace( /^\D+/g, ''),10);
-    //   if(this.state.menu.length>num && this.state.menu[num].children && this.state.menu[num].children.length>0){
-    //     this.onMenuNavigate(num)
-    //   }
-    // }
+    const menu = prevState.map((x, index) => (tab === index ? {...x, accordion : !x.accordion} : {...x, accordion: false}));
+    this.setState({ menu });
   }
 
   onInputClicked = ev => {
@@ -222,7 +201,7 @@ class Dispositif extends Component {
       ...(!node.dataset.subkey && {content : ev.target.value, isFakeContent:false}), 
       ...(node.dataset.subkey && state[node.id].children && state[node.id].children.length > node.dataset.subkey && {children : state[node.id].children.map((y,subidx) => { return {
             ...y,
-            ...(subidx==node.dataset.subkey && { [node.dataset.target || 'content'] : ev.target.value, isFakeContent:false } )
+            ...(subidx===node.dataset.subkey && { [node.dataset.target || 'content'] : ev.target.value, isFakeContent:false } )
           }
         })
       })
@@ -277,10 +256,10 @@ class Dispositif extends Component {
     let uiArray = [...this.state.uiArray];
     uiArray = uiArray.map((x,idx) => {return {
       ...x,
-      ...((subkey==null && idx==key && {[node] : value}) || {[node] : false}), 
+      ...((subkey===null && idx===key && {[node] : value}) || {[node] : false}), 
       ...(x.children && {children : x.children.map((y,subidx) => { return {
             ...y,
-            ...((subidx==subkey && idx==key && {[node] : value}) || {[node] : false})
+            ...((subidx===subkey && idx===key && {[node] : value}) || {[node] : false})
           }
         })
       })
@@ -304,7 +283,7 @@ class Dispositif extends Component {
         newChild={title:'Un exemple de paragraphe', isFakeContent: true, placeholder: lorems.sousParagraphe,content: '', type:type}
       }
       newChild.type=type;
-      if(subkey == null || subkey==undefined){
+      if(subkey === null || subkey === undefined){
         prevState[key].children.push(newChild)
       }else{
         prevState[key].children.splice(subkey+1,0,newChild)
@@ -327,7 +306,7 @@ class Dispositif extends Component {
     let prevState = [...this.state.menu];
     let uiArray = [...this.state.uiArray];
     if(prevState[key].children && prevState[key].children.length > 0){
-      if(subkey == null || subkey == undefined){
+      if(subkey === null || subkey === undefined){
         prevState[key].children.pop();
         uiArray[key].children.pop();
       }else if(prevState[key].children.length > subkey){
@@ -510,7 +489,7 @@ class Dispositif extends Component {
     let dispositif = {
       ...content,
       contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, ...(x.children && {children : x.children.map(x => ({...x, editable: false, ...(x.title && {title: h2p(x.title)})}))}) }}),
-      sponsors:this.state.sponsors,
+      sponsors:this.state.sponsors.filter(x => !x.dummy),
       tags: this.state.tags,
       avancement:1,
       status:status,
@@ -538,6 +517,8 @@ class Dispositif extends Component {
       if((dispositif.sponsors[0].membres || []).some(x => x.userId === this.props.userId)){
         dispositif.status = "En attente admin";
       }
+    }else{
+      dispositif.status = "En attente non prioritaire";
     }
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
@@ -555,8 +536,6 @@ class Dispositif extends Component {
 
   render(){
     const {t} = this.props;
-    const creator=this.state.creator || {};
-    const creatorImg= (creator.picture || {}).secure_url || hugo;    
     const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag} = this.state;
     
     const Tooltip = ({
@@ -636,7 +615,6 @@ class Dispositif extends Component {
           }}
           joyRideWidth={joyRideWidth}
           mainTag={mainTag}
-          stepIndex={stepIndex}
         />
 
         <section className="banniere-dispo">
@@ -790,10 +768,10 @@ class Dispositif extends Component {
                   </div>
                   <div>
                     <Button color="light" className="thanks-btn" onClick={()=>this.pushReaction(null, "merci")}>
-                      {t("Merci")} 🙏 
+                      {t("Merci")} <span role="img" aria-label="merci">🙏</span>
                     </Button>
                     <Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
-                      👎
+                      <span role="img" aria-label="merci">👎</span>
                     </Button>
                   </div>
                 </div>

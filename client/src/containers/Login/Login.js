@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Button, Card, CardBody, Form, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Button, Card, CardBody, Form } from 'reactstrap';
 import Swal from 'sweetalert2';
-import Icon from 'react-eva-icons'
-import {NavLink} from 'react-router-dom'
-import { CSSTransition } from 'react-transition-group'
+import {NavLink} from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 import API from '../../utils/API';
 import setAuthToken from '../../utils/setAuthToken';
@@ -76,7 +75,7 @@ class Login extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
 
   render() {
-    const {passwordVisible, username, step, userExists, usernameHidden} = this.state;
+    const {passwordVisible, username, step, userExists} = this.state;
 
     return (
       <div className="app flex-row align-items-center login">

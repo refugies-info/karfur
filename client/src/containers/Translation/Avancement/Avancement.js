@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-import { Card, CardBody, CardHeader, Carousel, CarouselControl, CarouselItem, Col, Row, Progress, CardFooter, Badge, Table } from 'reactstrap';
+import { Card, CardBody, CardHeader, Carousel, CarouselControl, CarouselItem, Col, Row, Progress, CardFooter, Table } from 'reactstrap';
 import moment from 'moment/min/moment-with-locales';
 import {NavLink} from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import track from 'react-tracking';
 
 import API from '../../../utils/API'
-import {colorAvancement, colorStatut} from '../../../components/Functions/ColorFunctions';
+import {colorAvancement} from '../../../components/Functions/ColorFunctions';
 import {diffData} from './data';
 import marioProfile from '../../../assets/mario-profile.jpg'
 

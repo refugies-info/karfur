@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Card, Tooltip, Spinner } from 'reactstrap';
+import { Col, Row, Card, Spinner } from 'reactstrap';
 import ReactHtmlParser from 'react-html-parser';
 import {stringify} from 'himalaya';
 import { connect } from 'react-redux';

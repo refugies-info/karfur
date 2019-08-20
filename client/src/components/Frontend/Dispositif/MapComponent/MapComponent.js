@@ -2,7 +2,6 @@ import React from 'react';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 import variables from 'scss/colors.scss';
-import Icon from 'react-eva-icons/dist/Icon';
 
 const { compose, withProps } = require("recompose");
 const {

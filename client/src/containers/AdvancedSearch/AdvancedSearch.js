@@ -1,10 +1,10 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
 import { Col, Row, CardBody, CardFooter, Spinner } from 'reactstrap';
 import Swal from 'sweetalert2';
 import querySearch from "stringquery";
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 import SearchItem from './SearchItem/SearchItem';
 import API from '../../utils/API';
@@ -59,9 +59,9 @@ class AdvancedSearch extends Component {
   
   retrieveCookies = () => {
     // Cookies.set('data', 'ici un test');
-    let dataC=Cookies.getJSON('data');
+    // let dataC=Cookies.getJSON('data');
     // if(dataC){ this.setState({data:data.map((x,key)=> {return {...x, value:dataC[key] || x.value}})})}
-    let pinnedC=Cookies.getJSON('pinnedC');
+    // let pinnedC=Cookies.getJSON('pinnedC');
     // if(pinnedC){ this.setState({pinned:pinnedC})}
     //data à changer en recherche après
     if(API.isAuth()){

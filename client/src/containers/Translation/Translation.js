@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Card, CardBody, CardHeader, Col, Tooltip, Row, Button, Spinner, FormGroup, FormText, Label, Input } from 'reactstrap';
-import Slider, { createSliderWithTooltip } from 'rc-slider';
-import 'rc-slider/assets/index.css';
-import axios from 'axios';
+import { Card, CardBody, CardHeader, Col, Tooltip, Row, Button, Spinner, FormGroup, Input } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import ReactHtmlParser from 'react-html-parser';
 import {stringify} from 'himalaya';
@@ -13,6 +10,8 @@ import Swal from 'sweetalert2';
 import querySearch from "stringquery";
 import h2p from 'html2plaintext';
 import debounce from 'lodash.debounce';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 import FeedbackModal from '../../components/Modals/FeedbackModal/FeedbackModal'
 import Article from '../Article/Article'
@@ -127,7 +126,7 @@ class Translation extends Component {
           this.setState({
             translated:{
               title:traduction.translatedText.title,
-              body: traduction.jsonId? traduction.translatedText.body : (stringify(traduction.translatedText.body) || '').replace(/ id=\'initial_/g,' id=\'target_')
+              body: traduction.jsonId? traduction.translatedText.body : (stringify(traduction.translatedText.body) || '').replace(/ id='initial_/g,' id=\'target_') //Ici il y avait id=\'initial_/ avant
             },
             itemId: traduction.jsonId || traduction.articleId,
             translationId:itemId,
@@ -256,7 +255,7 @@ class Translation extends Component {
       this.setState({
         translated:{
           ...this.state.translated,
-          [item]: data.data.replace(/ id=\'initial_/g,' id=\'target_').replace(/ id="initial_/g,' id="target_')
+          [item]: data.data.replace(/ id='initial_/g,' id=\'target_').replace(/ id="initial_/g,' id="target_')
         }
       }, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
     }).catch((err)=>{ console.log('error : ', err);
@@ -271,7 +270,7 @@ class Translation extends Component {
 
   _change_target_ids = (html) => {
     [].forEach.call(html.children, (el, i) => { 
-      el.setAttribute("id", el.id.replace(/ id=\'initial_/g, "target_"));
+      el.setAttribute("id", el.id.replace(/ id='initial_/g, "target_"));
       if(el.hasChildNodes()){
         this._change_target_ids(el)
       }

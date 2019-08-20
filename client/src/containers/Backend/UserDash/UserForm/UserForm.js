@@ -1,30 +1,12 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Col,
-  Row
-} from 'reactstrap';
+import { Button, Card, CardBody, CardFooter, CardHeader, Col, Row } from 'reactstrap';
 import track from 'react-tracking';
 import 'rc-slider/assets/index.css';
 
 import UserChange from '../../../../components/Backend/User/UserChange/UserChange'
-import API from '../../../../utils/API'
-import {languages} from './data'
-import './UserForm.scss'
+import API from '../../../../utils/API';
 
-const nb_lignes = Math.ceil(languages.length / 3);
-const reduced_languages=languages.reduce((acc, curr, i) => {
-  if (i > 0 && i % nb_lignes === 0) {
-    return {currGrp:[curr], groupedData: [...acc.groupedData, acc.currGrp]}
-  }else if(i === languages.length-1){
-    return {groupedData: [...acc.groupedData, [...acc.currGrp, curr]], currGrp:[]}
-  }
-  return {currGrp: [...acc.currGrp, curr], groupedData: acc.groupedData }
-}, {currGrp: [], groupedData: []}).groupedData;
+import './UserForm.scss';
 
 class UserForm extends Component {
   state={

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Table, Button } from 'reactstrap';
+import { Col, Row, Table } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import moment from 'moment/min/moment-with-locales';
 
@@ -86,18 +86,18 @@ const actionTable = (props) => {
   
         <div className="tableau">
           {table}
-        </div>
 
-        {!props.hasNotifs &&
-          <div className="ecran-protection no-notifs">
-            <div className="content-wrapper">
-              <img src={countrySide} />
-              <h1>Aucune notification</h1>
-              <div className="sous-contenu">
-                Ne vous inquiétez pas, ça ne va pas tarder... ;)
+          {!props.hasNotifs &&
+            <div className="ecran-protection no-notifs">
+              <div className="content-wrapper">
+                <img src={countrySide} alt="illustration protection" />
+                <h1>Aucune notification</h1>
+                <div className="sous-contenu">
+                  Ne vous inquiétez pas, ça ne va pas tarder... ;)
+                </div>
               </div>
-            </div>
-          </div>}
+            </div>}
+        </div>
       </div>
     )
   }else{

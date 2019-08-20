@@ -23,7 +23,7 @@ const dashHeader = (props) => {
             <Row className="titre-structure">
               <Col lg="6" md="6" sm="6" xs="6">
                 <div className="img-wrapper">
-                  <img src={(props.structure.picture || {}).secure_url ||  diairMinInt} className="logo-img" />
+                  <img src={(props.structure.picture || {}).secure_url ||  diairMinInt} className="logo-img" alt="logo-img" />
                 </div>
               </Col>
               <Col lg="6" md="6" sm="6" xs="6" className="right-side">

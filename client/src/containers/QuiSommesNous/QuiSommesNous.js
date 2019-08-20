@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap'
 
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
@@ -93,7 +93,7 @@ class QuiSommesNous extends Component {
             </Row>
           </div>  
           <div className="team-wrapper">  
-            <img className="team-picture" src={equipe} onClick={this._closeSide} />
+            <img className="team-picture" src={equipe} onClick={this._closeSide} alt="équipe" />
             {sideVisible && 
               <div className="description">
                 <div className="team-header">
@@ -217,7 +217,7 @@ class QuiSommesNous extends Component {
             <Row className="partner-row">
               <Col lg="2"/>
               <Col lg="3" className="partner-col d-flex justify-content-center">
-                <img className="partner-img" src={diairMinInt} />
+                <img className="partner-img" src={diairMinInt} alt="logo DIAIR" />
               </Col>
               <Col lg="1"/>
               <Col lg="4" className="partner-col">
@@ -227,7 +227,7 @@ class QuiSommesNous extends Component {
             <Row className="partner-row">
               <Col lg="2"/>
               <Col lg="3" className="partner-col d-flex justify-content-center">
-                <img className="partner-img" src={DGEF} />
+                <img className="partner-img" src={DGEF} alt="logo DGEF" />
               </Col>
               <Col lg="1"/>
               <Col lg="4" className="partner-col">

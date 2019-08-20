@@ -3,7 +3,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip } from 'r
 import ContentEditable from 'react-contenteditable';
 import { Editor } from 'react-draft-wysiwyg';
 
-import Backdrop from '../../../UI/Backdrop/Backdrop';
+// import Backdrop from '../../../UI/Backdrop/Backdrop';
 import {boldBtn, italicBtn, underBtn, listBtn, imgBtn, videoBtn, linkBtn} from '../../../../assets/figma/index'
 import CustomOption from './CustomOption/CustomOption'
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';

@@ -25,7 +25,7 @@ const contribTable = (props) => {
         {data.slice(0,props.limit).map((element,key) => {
           let titre = element.titreMarque + ' - ' + element.titreInformatif;
           return (
-            <tr key={key} >
+            <tr key={key} onClick={()=>props.history.push("/dispositif/"+element._id)}>
               <td className="align-middle">
                 {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 && "..."))}
               </td>
@@ -95,7 +95,7 @@ const contribTable = (props) => {
           <Col>
             <h1>{props.title}</h1>
           </Col>
-          {props.displayIndicators && 
+          {props.displayIndicators && props.contributeur &&
             <Col className="d-flex tableau-header">
               <Row className="full-width">
                 <Col lg="3" md="4" sm="6" xs="12" className="d-flex left-element">
@@ -124,23 +124,23 @@ const contribTable = (props) => {
   
         <div className="tableau">
           {table}
-        </div>
 
-        {!props.contributeur &&
-          <div className="ecran-protection no-contrib">
-            {props.toggleSection && 
-              <div className="close-box" onClick={()=>props.toggleSection('contributions')}>
-                <Icon name="eye-off-2-outline" fill={variables.noir} />
-                <u>Masquer</u>
-              </div>}
-            <div className="content-wrapper">
-              <h1>{props.overlayTitle}</h1>
-              <span>{props.overlaySpan}</span>
-              <FButton type="light" name="info-outline" fill={variables.noir} onClick={onBtnClick} >
-                {props.overlayBtn}
-              </FButton>
-            </div>
-          </div>}
+          {!props.contributeur &&
+            <div className="ecran-protection no-contrib">
+              {props.toggleSection && 
+                <div className="close-box" onClick={()=>props.toggleSection('contributions')}>
+                  <Icon name="eye-off-2-outline" fill={variables.noir} />
+                  <u>Masquer</u>
+                </div>}
+              <div className="content-wrapper">
+                <h1>{props.overlayTitle}</h1>
+                <span>{props.overlaySpan}</span>
+                <FButton type="light" name="info-outline" fill={variables.noir} onClick={onBtnClick} >
+                  {props.overlayBtn}
+                </FButton>
+              </div>
+            </div>}
+        </div>
       </div>
     )
   }else if(show){

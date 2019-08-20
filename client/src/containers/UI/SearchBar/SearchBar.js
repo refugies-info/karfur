@@ -77,7 +77,7 @@ export class SearchBar extends React.Component {
         return (
           <span className='suggestion-content'>
             {isArray && suggestion.picture && suggestion.picture.secure_url && 
-              <img src={suggestion.picture.secure_url} className="selection-logo mr-10" />}
+              <img src={suggestion.picture.secure_url} className="selection-logo mr-10" alt="logo" />}
             <span className="name">
               {parts.map((part, index) => {
                 const className = part.highlight ? 'highlight' : null;

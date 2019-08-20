@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import {withRouter, matchPath} from 'react-router-dom';
 
 import { socket } from '../../../../utils/API';
-import * as actions from '../../../../Store/actions/actionTypes'
 import defaultAvatar from '../../../../assets/avatar_bg_colored.svg';
 import API from '../../../../utils/API';
 
@@ -101,7 +100,7 @@ class RightSideDrawer extends React.Component {
                 <li key={idx}>
                   <div className={"msj" + (msg.isMe ? '' : '-rta') + " macro"}>
                     {msg.isMe && <div className="avatar">
-                      <img className="img-circle" src={defaultAvatar} />
+                      <img className="img-circle" src={defaultAvatar} alt="avatar" />
                     </div>}
                     <div className={"text text-" + (msg.isMe ? 'l' : 'r')}>
                       <b>{(msg.from || {}).username}</b>
@@ -109,7 +108,7 @@ class RightSideDrawer extends React.Component {
                       <p><small>{moment.utc(msg.created_at).fromNow()}</small></p>
                     </div>
                     {!msg.isMe && <div className="avatar not-me">
-                      <img className="img-circle" src={defaultAvatar} />
+                      <img className="img-circle" src={defaultAvatar} alt="avatar" />
                     </div> }   
                   </div>
                 </li>

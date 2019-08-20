@@ -7,7 +7,7 @@ import CustomTabPane from '../../../components/Backend/Admin/CustomTabPane'
 import API from '../../../utils/API';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
-import './Admin.scss'
+import './Admin.scss';
 import variables from 'scss/colors.scss';
 
 class Admin extends Component {
@@ -175,12 +175,12 @@ class Admin extends Component {
           ...this.state.user,
           selectedLanguages: event.target.checked ? 
               [...oldSelectedLanguages, changedLangue] : 
-              oldSelectedLanguages.filter(obj => obj._id != event.target.id),
+              oldSelectedLanguages.filter(obj => obj._id !== event.target.id),
         }
       });
       this.shadowSelectedLanguages=event.target.checked ? 
         [...this.shadowSelectedLanguages, changedLangue] : 
-        this.shadowSelectedLanguages.filter(obj => obj._id != event.target.id)
+        this.shadowSelectedLanguages.filter(obj => obj._id !== event.target.id)
     }else{
       let roleCopy=[...this.state.roles];
       let changedRole=roleCopy[this.state.roles.findIndex((obj => obj._id === event.target.id))]
@@ -192,7 +192,7 @@ class Admin extends Component {
           ...this.state.user,
           roles: event.target.checked ? 
               [...oldRoles, event.target.id] : 
-              oldRoles.filter(obj => obj != event.target.id),
+              oldRoles.filter(obj => obj !== event.target.id),
         }
       });
     }

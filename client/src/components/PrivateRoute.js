@@ -1,8 +1,8 @@
 import React from 'react';
-import API from '../utils/API';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import API from '../utils/API';
 import UnauthorizedAccess from './Navigation/UnauthorizedAccess/UnauthorizedAccess';
 import * as actions from '../Store/actions/index';
 
@@ -13,10 +13,9 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
       var path = props.location.pathname;
       console.log(path, props)
       if(path !== "/" && path !== "/homepage"){
-        var id = path.split("/").length - 1 - (path.indexOf("http://")==-1?0:2) > 1 ? path.substring(path.lastIndexOf('/') + 1) : "";
+        var id = path.split("/").length - 1 - (path.indexOf("http://") === -1?0:2) > 1 ? path.substring(path.lastIndexOf('/') + 1) : "";
         const routes = require("../routes").default;
         const route = routes.find(x => x.path.replace(":id", id) === path);
-        console.log(path, route, id)
         if(API.isAuth()===false && route.restriction && route.restriction.length > 0){
           return <Redirect to={{ pathname:'/login', state: { redirectTo: path } }} />
         }else if(API.isAuth() && route.restriction && route.restriction.length > 0){

@@ -363,8 +363,12 @@ $defaultSize:310px;
 .user-profile, .user-dash-contrib, .user-dash, .user-dash-struct{
   .tableau-wrapper{
     margin-top:39px;
-    position: relative;
     width: 100%;
+    position: relative;
+    
+    .tableau{
+      position: relative;
+    }
 
     &.swing-out-top-bck {
       -webkit-animation: swing-out-top-bck 1s cubic-bezier(0.600, -0.280, 0.735, 0.045) both;

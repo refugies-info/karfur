@@ -116,32 +116,32 @@ class RecordAudio extends Component {
 }
 
 
-var handleSuccess = function(stream) {
-  const mediaRecorder = new MediaRecorder(stream);
-  // mediaRecorder.start(1000);
-  console.log(mediaRecorder)
-  const audioChunks = [];
+// var handleSuccess = function(stream) {
+//   const mediaRecorder = new MediaRecorder(stream);
+//   // mediaRecorder.start(1000);
+//   console.log(mediaRecorder)
+//   const audioChunks = [];
 
-  mediaRecorder.addEventListener("dataavailable", async event => {
-    console.log(event.data)
-    let blob=event.data;
-    var fd = new FormData();
-    fd.append('fname', 'test.wav');
-    fd.append('data', blob);
-    API.set_audio(fd).then(data => {
-      console.log(data)
-    })
-    audioChunks.push(event.data);
-  });
+//   mediaRecorder.addEventListener("dataavailable", async event => {
+//     console.log(event.data)
+//     let blob=event.data;
+//     var fd = new FormData();
+//     fd.append('fname', 'test.wav');
+//     fd.append('data', blob);
+//     API.set_audio(fd).then(data => {
+//       console.log(data)
+//     })
+//     audioChunks.push(event.data);
+//   });
 
-  mediaRecorder.addEventListener("stop", () => {
-    const audioBlob = new Blob(audioChunks);
-  });
+//   mediaRecorder.addEventListener("stop", () => {
+//     const audioBlob = new Blob(audioChunks);
+//   });
 
-  // setTimeout(() => {
-  //   mediaRecorder.stop();
-  // }, 1000);
-};
+//   // setTimeout(() => {
+//   //   mediaRecorder.stop();
+//   // }, 1000);
+// };
 
 export default track({
     page: 'RecordAudio',

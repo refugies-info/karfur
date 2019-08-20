@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Table, Button } from 'reactstrap';
+import { Col, Row, Table } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import moment from 'moment/min/moment-with-locales';
 
@@ -54,13 +54,13 @@ const membersTable = (props) => {
                 <span>{element.nb_contenu} contenus</span>
               </td>
               <td className="align-middle fit-content">
-                <FButton type="light-action" name="person-outline" fill={variables.noir} />
+                <FButton type="light-action" name="person-outline" fill={variables.noir} onClick={props.upcoming} />
               </td>
               <td className="align-middle fit-content">
-                <FButton type="light-action" name="message-circle-outline" fill={variables.noir} />
+                <FButton type="light-action" name="message-circle-outline" fill={variables.noir} onClick={props.upcoming} />
               </td>
               <td className="align-middle fit-content">
-                <FButton type="light-action" name="eye-outline" fill={variables.noir} />
+                <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={props.upcoming} />
               </td>
             </tr>
           );
@@ -95,17 +95,6 @@ const membersTable = (props) => {
         <div className="tableau">
           {table}
         </div>
-
-        {/* {!props.hasFavori &&
-          <div className="ecran-protection no-fav">
-            <div className="content-wrapper">
-              <h1>Retrouvez ici vos pages favorites</h1>
-              <div className="sous-contenu">
-                Cherchez ce bouton dans les contenus pour les sauvegarder :
-                <EVAIcon name="bookmark-outline" fill={variables.noir} className="bookmark-icon" /> 
-              </div>
-            </div>
-          </div>} */}
       </div>
     )
   }else{

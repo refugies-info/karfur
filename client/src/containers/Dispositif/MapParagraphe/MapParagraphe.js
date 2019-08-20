@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import _ from "lodash";
 import ContentEditable from 'react-contenteditable';
 import Swal from 'sweetalert2';
@@ -155,7 +155,7 @@ class MapParagraphe extends PureComponent {
   handleMarkerChange = (e, idx) => this.setState({markerInfo : this.state.markerInfo.map((x, i) => i === idx ? {...x, value : e.target.value} : x)})
 
   validateMarker = () => {
-    if(!this.state.markerInfo[0].value || this.state.markerInfo[0].value === "Saisir le titre", this.state.markerInfo[4].value === "00 11 22 33 44" ){
+    if(!this.state.markerInfo[0].value || this.state.markerInfo[0].value === "Saisir le titre" || this.state.markerInfo[4].value === "00 11 22 33 44" ){
       Swal.fire( 'Oh non!', 'Vous devez renseigner un titre de lieu pour ce marqueur', 'error');
       return;
     }
@@ -237,7 +237,7 @@ class MapParagraphe extends PureComponent {
           toggleModal={this.toggleModal}
           handleFileLoaded={this.handleFileLoaded}
           handleError={this.handleError}
-          toggleModal={this.toggleModal} />
+        />
       </div> 
     )
   }
