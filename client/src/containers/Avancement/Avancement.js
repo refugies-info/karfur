@@ -4,17 +4,17 @@ import { Card, CardBody, CardHeader, Carousel, CarouselControl, CarouselItem, Co
 import moment from 'moment/min/moment-with-locales';
 import {NavLink} from 'react-router-dom';
 import Swal from 'sweetalert2';
-  
+import { connect } from 'react-redux';  
 import track from 'react-tracking';
 
-import API from '../../../utils/API'
-import {colorAvancement} from '../../../components/Functions/ColorFunctions';
+import API from '../../utils/API'
+import {colorAvancement} from '../../components/Functions/ColorFunctions';
 import {diffData} from './data';
-import marioProfile from '../../../assets/mario-profile.jpg'
+import marioProfile from '../../assets/mario-profile.jpg';
+import FButton from '../../components/FigmaUI/FButton/FButton';
 
 import './Avancement.scss';
 import variables from 'scss/colors.scss';
-import FButton from '../../../components/FigmaUI/FButton/FButton';
 
 moment.locale('fr');
 
@@ -31,6 +31,7 @@ class Avancement extends Component {
     itemId:null,
     isLangue: false,
     isExpert:false,
+    traductionsFaites: []
   }
 
   componentDidMount (){
@@ -52,6 +53,9 @@ class Avancement extends Component {
     }else if(isExpert){
       this._loadLangue(itemId, isExpert);
     }
+    API.get_tradForReview({}).then(data => { console.log(data.data.data);
+      this.setState({traductionsFaites: data.data.data})
+    })
     // this._loadThemes();
     this.setState({itemId:itemId, isExpert:isExpert, isLangue: isLangue})
     window.scrollTo(0, 0);
@@ -65,7 +69,7 @@ class Avancement extends Component {
         query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
       }
       API.get_article(query,i18nCode).then(data_res => {
-        let articles=data_res.data.data;
+        let articles=data_res.data.data.map(x => ({...x, type: "string"}));
         console.log(articles)
         this.setState({data:articles})
       })
@@ -88,14 +92,14 @@ class Avancement extends Component {
   }
 
   _loadTraductions=(langue) => {
-    if(langue.i18nCode){
-      API.get_tradForReview({'langueCible':langue.i18nCode, 'status' : 'En attente'},{},'articleId userId').then(data_res => {
-        let articles=data_res.data.data;
-        articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1}, status:x.status, articleId:(x.articleId || {})._id, created_at:x.created_at, user:x.userId}});
-        console.log(articles)
-        this.setState({data:articles});
-      })
-    }
+    // if(langue.i18nCode){
+    //   API.get_tradForReview({'langueCible':langue.i18nCode, 'status' : 'En attente'},{},'articleId userId').then(data_res => {
+    //     let articles=data_res.data.data;
+    //     articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1}, status:x.status, articleId:(x.articleId || {})._id, created_at:x.created_at, user:x.userId, type: "string"}});
+    //     console.log(articles)
+    //     this.setState({data:articles});
+    //   })
+    // }
   }
 
   _loadThemes=() => {
@@ -149,9 +153,11 @@ class Avancement extends Component {
     this.setState({ activeIndex: nextIndex });
   }
 
-  goToTraduction = (article) => {
+  goToTraduction = (element) => {
+    console.log(element)
     this.props.history.push({
-      pathname: '/traduction/'+ (this.state.isExpert ? 'validation/' : '') + article._id,
+      pathname: (this.state.isExpert ? '/validation' : '/traduction') + '/' + element.type + '/' + element._id,
+      // pathname: '/traduction/'+ (this.state.isExpert ? 'validation/' : '') + element._id,
       search: '?id=' + this.state.langue._id,
       state: { langue: this.state.langue}
     })
@@ -160,7 +166,7 @@ class Avancement extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render(){
-    const { activeIndex, langue } = this.state;
+    const { activeIndex, langue, isExpert } = this.state;
     const slides = this.state.themes.map((item, key) => {
       return (
         <CarouselItem
@@ -198,29 +204,40 @@ class Avancement extends Component {
       );
     });
 
+    let traductions = [
+      ...this.state.data, 
+      ...this.props.dispositifs.filter(x => x.status === "Actif").map(x => (
+        {
+          _id:x._id, 
+          title:x.titreMarque + " - " + x.titreInformatif, 
+          nombreMots:x.nbMots,
+          avancement: Math.max(0, ...((this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => (z.avancement || -1)) || [])) || 0, 
+          status:x.status, 
+          created_at:x.created_at, 
+          user:undefined, 
+          type: "dispositif"
+        }
+      ) )
+    ].sort((a,b)=> a.nombreMots - b.nombreMots);
+    console.log(traductions, this.state.traductionsFaites, isExpert)
+    if(isExpert){ traductions = traductions.filter(x => x.avancement === 1); }
     const AvancementData = () => {
-      if(this.props.match.params.id && this.state.data.length>0 && this.state.langue.i18nCode){
+      if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
-          this.state.data.map((element,key) => {
+          traductions.map((element,key) => {
             const joursDepuis = (new Date().getTime() -  new Date(element.created_at).getTime()) / (1000 * 3600 * 24);
+            const titre = (element.title || {}).fr || element.title || (element.initialText || {}).title || (element.titreMarque + " - " + element.titreMarque) ||'' ;
             return (
               <tr 
                 key={element._id}
                 className="avancement-row pointer"
                 onClick={() => this.goToTraduction(element)} >
                 <td className="align-middle">{element.isStructure ? "Site" : "Dispositif"}</td>
-                <td className="align-middle">{(element.title.fr || element.title).slice(0,30) + ((element.title.fr || element.title).length > 30 ? "..." : "")}</td>
+                <td className="align-middle">{titre.slice(0,30) + (titre.length > 30 ? "..." : "")}</td>
                 <td className={"align-middle depuis " + (element.nombreMots > 100 ? "alert" : "success") }>
                   {element.nombreMots}
                 </td>
                 {this.props.isExpert ? 
-                  <td className="align-middle">
-                    <div>
-                      {Math.round(((element.avancement || {})[this.state.langue.i18nCode] || 0) * 100)} %
-                      {' (' + Math.round((element.nombreMots || 0) * (1-((element.avancement || {})[this.state.langue.i18nCode]) || 0)) + ' mots restants)'}
-                    </div>
-                    <Progress color={colorAvancement((element.avancement || {})[this.state.langue.i18nCode])} value={(element.avancement || {})[this.state.langue.i18nCode]*100} className="mb-3" />
-                  </td> :
                   <td className="align-middle">
                     {element.user && [element.user].map((participant) => {
                       return ( 
@@ -232,7 +249,14 @@ class Avancement extends Component {
                         />
                       );
                     })}
-                  </td> }
+                  </td> :
+                  <td className="align-middle">
+                    <div>
+                      {Math.round( (element.avancement || 0) * 100)} %
+                      {' (' + Math.round((element.nombreMots || 0) * (1-(element.avancement || 0))) + ' mots restants)'}
+                    </div>
+                    <Progress color={colorAvancement(element.avancement)} value={element.avancement *100} className="mb-3" />
+                  </td>} 
                 <td className={"align-middle depuis " + (joursDepuis > 3 ? "alert" : "success") }>
                   {moment(element.created_at).fromNow()}
                 </td>
@@ -320,8 +344,29 @@ class Avancement extends Component {
   }
 }
 
+function shuffle(arr) {
+  var i,
+      j,
+      temp;
+  for (i = arr.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+  }
+  return arr;    
+};
+
+const mapStateToProps = (state) => {
+  return {
+    dispositifs: state.dispositif.dispositifs,
+  }
+}
+
 export default track({
     page: 'Avancement',
   })(
-    withTranslation()(Avancement)
+    connect(mapStateToProps)(
+      withTranslation()(Avancement)
+    )
   );

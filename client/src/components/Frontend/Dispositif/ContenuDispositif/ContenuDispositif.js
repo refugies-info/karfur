@@ -23,7 +23,7 @@ const contenuDispositif = (props) => {
                 addItem={props.addItem}
                 {...item}/>}
             </Col>
-            {props.uiArray[key].isHover && 
+            {!props.sideView && props.uiArray[key].isHover && 
               <Col lg="3" md="3" sm="3" xs="3" className='toolbar-col'>
                 <QuickToolbar 
                   show={props.uiArray[key].isHover}

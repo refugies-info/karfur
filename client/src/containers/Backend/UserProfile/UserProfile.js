@@ -154,7 +154,6 @@ class UserProfile extends Component {
 
   render() {
     let {traducteur, contributeur, traductions, contributions, actions, langues, structure, user, showSections, isMainLoading}=this.state;
-    if(!traducteur){traductions= new Array(5).fill(fakeTraduction)}
     if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
 
     let favoris = ((user.cookies || {}).dispositifsPinned || []),hasFavori=true, hasNotifs= true;
@@ -311,7 +310,6 @@ class UserProfile extends Component {
           <TradTable 
             displayIndicators
             dataArray={traductions}
-            traducteur={traducteur}
             user={this.state.user}
             langues={langues}
             toggleModal={this.toggleModal}

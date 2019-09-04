@@ -58,7 +58,22 @@ var traductionSchema = mongoose.Schema({
 		type: Number,
 		unique: false,
 		required: false
-	}
+  },
+  type:{
+		type: String,
+		unique: false,
+		required: false
+	},
+  title:{
+		type: String,
+		unique: false,
+		required: false
+	},
+  score:{
+		type: Number,
+		unique: false,
+		required: false
+	},
 },{ timestamps: { createdAt: 'created_at' }})
 
 traductionSchema.options.autoIndex = false

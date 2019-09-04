@@ -100,6 +100,7 @@ class EditableParagraph extends Component {
         <ContentEditable
           id={props.keyValue}
           data-subkey={props.subkey}
+          data-target={props.target}
           className="animated fadeIn"
           html={props.content || '' }  // innerHTML of the editable div
           placeholder={props.placeholder}

@@ -249,6 +249,14 @@ $imgHeight : 350px;
         font-weight: normal;
       }
     }
+
+    &.sideView{
+      display: none;
+    }
+  }
+
+  .aside-right.sideView{
+    display: none;
   }
 
   .anchor {
@@ -651,6 +659,10 @@ $imgHeight : 350px;
     font-size: 24px;
   }
 
+  .translating{
+    background: $bgfocus;
+    border-radius: 6px;
+  }
 
   .discussion-footer{
     background: $darkColor;
