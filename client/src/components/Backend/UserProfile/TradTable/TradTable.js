@@ -6,12 +6,15 @@ import {NavLink} from 'react-router-dom';
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
 import FButton from '../../../FigmaUI/FButton/FButton';
+import { fakeTraduction } from '../../../../containers/Backend/UserProfile/data';
 
 import variables from 'scss/colors.scss';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 const tradTable = (props) => {
-  let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
+  const traducteur = (props.dataArray || []).length > 0;
+  const dataArray = traducteur ? props.dataArray : new Array(5).fill(fakeTraduction);
+  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
   let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
 
   const langueItem = i18nCode => {
@@ -34,7 +37,7 @@ const tradTable = (props) => {
       </thead>
       <tbody>
         {data.slice(0,props.limit).map((element,key) => {
-          let titre= (element.initialText || {}).title || '';
+          const titre= element.title || (element.initialText || {}).title || '';
           return (
             <tr key={key} >
               <td className="align-middle">
@@ -71,7 +74,12 @@ const tradTable = (props) => {
                 })}
               </td>
               <td className="align-middle">
-                <NavLink to={"/traduction/"+element.articleId} className="no-decoration" >
+                <NavLink to={{
+                  pathname: "/traduction/" + (element.type || "string") + "/" + element.articleId, 
+                  search: '?id=' + ((props.langues || []).find(x => x.i18nCode === element.langueCible) || {})._id,
+                  state: { langue: (props.langues || []).find(x => x.i18nCode === element.langueCible)}
+                }} 
+                className="no-decoration" >
                   <FButton type="light-action" name="eye-outline" fill={variables.noir} />
                 </NavLink>
               </td>
@@ -91,10 +99,12 @@ const tradTable = (props) => {
   )
   
   let show=true;
-  const onAnimationEnd = e => show=false;
+  const onAnimationEnd = () => show=false;
 
   const startTrad = () => {
-    if(props.user.selectedLanguages && props.user.selectedLanguages.length>0){
+    if(props.inUserDash){
+      document.getElementById("progression-traduction").scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }else if(props.user.selectedLanguages && props.user.selectedLanguages.length>0){
       props.history.push("/backend/user-dashboard")
     }else{
       props.toggleModal('devenirTraducteur')
@@ -108,7 +118,7 @@ const tradTable = (props) => {
           <Col>
             <h1>{props.title}</h1>
           </Col>
-          {props.displayIndicators && props.traducteur &&
+          {props.displayIndicators && traducteur &&
             <Col className="d-flex tableau-header">
               <Row className="full-width">
                 <Col lg="3" md="3" sm="6" xs="12" className="d-flex left-element">
@@ -135,7 +145,7 @@ const tradTable = (props) => {
         <div className="tableau">
           {table}
 
-          {!props.traducteur &&
+          {!traducteur &&
             <div className="ecran-protection no-trad">
               {props.toggleSection && 
                 <div className="close-box text-white" onClick={()=>{props.toggleSection('traductions');}}>

@@ -19,7 +19,7 @@ import Dispositif from './containers/Dispositif/Dispositif';
 import ParkourOnBoard from './containers/ParkourOnBoard/ParkourOnBoard';
 import ParkourPerso from './containers/ParkourPerso/ParkourPerso';
 import Editeur from './containers/Editeur/Editeur';
-import Avancement from './containers/Translation/Avancement/Avancement';
+import Avancement from './containers/Avancement/Avancement';
 import Translation from './containers/Translation/Translation';
 import RecordAudio from './containers/RecordAudio/RecordAudio';
 import AdvancedSearch from './containers/AdvancedSearch/AdvancedSearch';
@@ -55,6 +55,11 @@ const routes = [
   { path: '/traduction', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/traduction/validation/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/traduction/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+
+  { path: '/traduction/string/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/traduction/dispositif/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/validation/string/:id', exact: true, name: 'Validation', component: Translation, restriction:['ExpertTrad','Admin'] },
+  { path: '/validation/dispositif/:id', exact: true, name: 'Validation', component: Translation, restriction:['ExpertTrad','Admin'] },
 
   { path: '/record-audio', exact: true, name: 'Enregistrement audio', component: RecordAudio, restriction:[] },
 

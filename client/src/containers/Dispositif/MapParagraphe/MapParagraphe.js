@@ -177,7 +177,7 @@ class MapParagraphe extends PureComponent {
     let {markers, markerInfo} = this.state;
     return(
       <div className="map-paragraphe">
-        {this.props.disableEdit &&
+        {this.props.disableEdit && (window.google || {}).maps &&
           <div className="where-header">
             <b>Où souhaitez-vous vous engager ?</b>
             <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} className="content-title">
