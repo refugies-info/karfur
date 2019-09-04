@@ -67,6 +67,7 @@ const contenuParagraphe = (props) => {
                     <EditableParagraph 
                       keyValue={props.keyValue} 
                       subkey={subkey} 
+                      target='content'
                       handleMenuChange={props.handleMenuChange}
                       onEditorStateChange={props.onEditorStateChange}
                       handleContentClick={props.handleContentClick}
@@ -76,13 +77,14 @@ const contenuParagraphe = (props) => {
                       {...subitem} />
                   </Collapse>
                 </Col>
-                <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
-                  <QuickToolbar
-                    show={safeUiArray(props.keyValue, subkey, 'isHover')}
-                    keyValue={props.keyValue}
-                    subkey={subkey}
-                    {...props} />
-                </Col>
+                {!props.sideView && 
+                  <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
+                    <QuickToolbar
+                      show={safeUiArray(props.keyValue, subkey, 'isHover')}
+                      keyValue={props.keyValue}
+                      subkey={subkey}
+                      {...props} />
+                  </Col>}
               </Row>
             </div>
           )
@@ -107,6 +109,7 @@ const contenuParagraphe = (props) => {
                   <EditableParagraph 
                     keyValue={props.keyValue} 
                     subkey={subkey} 
+                    target='content'
                     handleMenuChange={props.handleMenuChange}
                     onEditorStateChange={props.onEditorStateChange}
                     handleContentClick={props.handleContentClick}
@@ -115,13 +118,14 @@ const contenuParagraphe = (props) => {
                     {...subitem} />
                   <br />
                 </Col>
-                <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
-                  <QuickToolbar
-                    show={safeUiArray(props.keyValue, subkey, "isHover")}
-                    keyValue={props.keyValue}
-                    subkey={subkey}
-                    {...props} />
-                </Col>
+                {!props.sideView && 
+                  <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
+                    <QuickToolbar
+                      show={safeUiArray(props.keyValue, subkey, "isHover")}
+                      keyValue={props.keyValue}
+                      subkey={subkey}
+                      {...props} />
+                  </Col>}
               </Row>
             </div>
           )

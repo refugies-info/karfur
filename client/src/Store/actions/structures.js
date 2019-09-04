@@ -10,9 +10,7 @@ const set_structures = (value) => {
 
 export const fetch_structures = () => {
   return dispatch => {
-    console.log('ici')
     return API.get_structure().then(data => {
-      console.log(data.data.data)
       return  dispatch(set_structures(data.data.data));
     })
   };

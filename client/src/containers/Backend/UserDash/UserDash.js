@@ -37,7 +37,7 @@ const avancement_data={
 
 class UserDash extends Component {
   state={
-    showModal:{objectifs:false, traductionsFaites: false, progression:false, defineUser: false}, 
+    showModal:{objectifs:false, traducteur: false, progression:false, defineUser: false}, 
     runJoyRide:false, //penser à le réactiver !!
     user:{},
     languesUser:[],
@@ -186,8 +186,8 @@ class UserDash extends Component {
         
         <Row className="recent-row">
           <TradTable 
+            inUserDash
             dataArray={traductionsFaites}
-            traducteur
             user={this.state.user}
             langues={languesUser}
             toggleModal={this.toggleModal}
@@ -216,7 +216,7 @@ class UserDash extends Component {
             {...avancement_data} />
         </Row>
 
-        <Modal isOpen={this.state.showModal.traductionsFaites} toggle={()=>this.toggleModal('traductionsFaites')} className='modal-plus'>
+        <Modal isOpen={this.state.showModal.traducteur} toggle={()=>this.toggleModal('traducteur')} className='modal-plus'>
           <TradTable 
             dataArray={traductionsFaites}
             user={this.state.user}
@@ -271,7 +271,7 @@ const ProgressionTraduction = (props) => {
   let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
   let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
   return (
-    <div className="tableau-wrapper" id="mes-traductions">
+    <div className="tableau-wrapper" id="progression-traduction">
       <Row>
         <Col>
           <h1>{props.title}</h1>

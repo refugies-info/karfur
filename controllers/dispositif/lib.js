@@ -29,7 +29,7 @@ function add_dispositif(req, res) {
     let dispositif = req.body;
     
     dispositif.status = dispositif.status || 'En attente';
-    if(dispositif.contenu){dispositif.nbMots = _turnHTMLtoJSON(dispositif.contenu);}
+    if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
     if(dispositif.dispositifId){
       promise=Dispositif.findOneAndUpdate({_id: dispositif.dispositifId}, dispositif, { upsert: true , new: true});
@@ -100,7 +100,7 @@ function get_dispositif(req, res) {
 
     find.then(function (result) {
       [].forEach.call(result, (dispositif) => { 
-        _turnJSONtoHTML(dispositif.contenu)
+        turnJSONtoHTML(dispositif.contenu)
       });
       res.status(200).json({
           "text": "Succès",
@@ -165,27 +165,29 @@ function count_dispositifs(req, res) {
 }
 
 
-const _turnHTMLtoJSON = (contenu, nbMots=null) => {
+const turnHTMLtoJSON = (contenu, nbMots=null) => {
   for(var i=0; i < contenu.length;i++){
     let html= contenu[i].content;
+    console.log(html)
     nbMots+=(html || '').trim().split(/\s+/).length;
     let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
     let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
     contenu[i].content=jsonBody;
 
     if( (contenu[i].children || []).length > 0){
-      nbMots=_turnHTMLtoJSON(contenu[i].children, nbMots)  
+      nbMots=turnHTMLtoJSON(contenu[i].children, nbMots)  
     }
   }
   return nbMots
 }
 
-const _turnJSONtoHTML = (contenu) => {
+const turnJSONtoHTML = (contenu) => {
   for(var i=0; i < contenu.length;i++){
-    contenu[i].content = himalaya.stringify(contenu[i].content);
-
-    if( (contenu[i].children || []).length > 0){
-      _turnJSONtoHTML(contenu[i].children)  
+    if(contenu[i] && contenu[i].content){
+      contenu[i].content = himalaya.stringify(contenu[i].content);
+    }
+    if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
+      turnJSONtoHTML(contenu[i].children)  
     }
   }
 }
@@ -195,3 +197,5 @@ exports.add_dispositif = add_dispositif;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs=count_dispositifs;
 exports.update_dispositif = update_dispositif;
+exports.turnHTMLtoJSON = turnHTMLtoJSON;
+exports.turnJSONtoHTML = turnJSONtoHTML;

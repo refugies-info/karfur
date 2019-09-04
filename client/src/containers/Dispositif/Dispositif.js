@@ -31,6 +31,7 @@ import ContribCaroussel from './ContribCaroussel/ContribCaroussel';
 import FButton from '../../components/FigmaUI/FButton/FButton'
 
 import {ManLab, diair, FemmeCurly} from '../../assets/figma/index';
+import SideTrad from './SideTrad/SideTrad';
 
 import {contenu, lorems, menu, filtres, steps, tutoSteps} from './data'
 
@@ -90,7 +91,8 @@ class Dispositif extends Component {
     joyRideWidth: 800,
     inputBtnClicked: false,
     mainSponsor:{},
-    status: ''
+    status: '',
+    sideView: true
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -100,13 +102,14 @@ class Dispositif extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.match.params.id !== this.props.match.params.id){
+    if(((nextProps.match || {}).params || {}).id !== ((this.props.match || {}).params || {}).id){
       this._initializeDispositif(nextProps);
     }
   }
 
   _initializeDispositif = props => {
     let itemId=props.match && props.match.params && props.match.params.id;
+    console.log(itemId)
     if(itemId){
       API.get_dispositif({_id: itemId},{},'creatorId mainSponsor').then(data_res => {
         let dispositif={...data_res.data.data[0]};
@@ -536,7 +539,7 @@ class Dispositif extends Component {
 
   render(){
     const {t} = this.props;
-    const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag} = this.state;
+    const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag, sideView} = this.state;
     
     const Tooltip = ({
       index,
@@ -582,7 +585,7 @@ class Dispositif extends Component {
     )}else{return false}};
 
     return(
-      <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : " reading-mode")} ref={this.newRef}>
+      <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : sideView ? " side-view-mode" : " reading-mode")} ref={this.newRef}>
         {/* First general tour */}
         <ReactJoyride
           continuous
@@ -617,259 +620,273 @@ class Dispositif extends Component {
           mainTag={mainTag}
         />
 
-        <section className="banniere-dispo">
-          <Row className="header-row">
-            <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
-              <Button color="warning" outline>
-                <EVAIcon name="corner-up-left-outline" fill={mainTag.darkColor} className="icons" />
-                <span>{t("Retour à la recherche")}</span>
-              </Button>
-            </Col>
-            <TopRightHeader 
-              validateStructure={false}
-              disableEdit={this.state.disableEdit} 
-              withHelp={this.state.withHelp}
-              showSpinnerBookmark={this.state.showSpinnerBookmark}
-              pinned={this.state.pinned}
-              isAuthor={this.state.isAuthor}
-              status={this.state.status}
-              mainSponsor={this.state.mainSponsor}
-              userId={this.props.userId}
-              update_status={this.update_status}
-              bookmarkDispositif={this.bookmarkDispositif}
-              toggleHelp={this.toggleHelp}
-              toggleModal={this.toggleModal}
-              toggleDispositifValidateModal={this.toggleDispositifValidateModal}
-              editDispositif = {this.editDispositif}
-              valider_dispositif={this.valider_dispositif}
-              toggleDispositifCreateModal={this.toggleDispositifCreateModal} />
-          </Row>
-          <FemmeCurly height="300" className="header-img femme-icon" alt="femme" />
-          <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
-            <div className="bloc-titre">
-              <h1 className={this.state.disableEdit ? "" : "editable"}>
-                <ContentEditable
-                  id='titreInformatif'
-                  html={this.state.content.titreInformatif}  // innerHTML of the editable div
-                  disabled={this.state.disableEdit}
-                  onClick={e=>{this.startJoyRide(); this.onInputClicked(e)}}
-                  onChange={this.handleChange}
-                  onMouseEnter={e => e.target.focus()} 
-                />
-              </h1>
-              <h2 className="bloc-subtitle">
-                <span>{t("avec")}&nbsp;</span>
-                <ContentEditable
-                  id='titreMarque'
-                  html={this.state.content.titreMarque}  // innerHTML of the editable div
-                  disabled={this.state.disableEdit}
-                  onClick={e=>{this.startJoyRide(1); this.onInputClicked(e)}}
-                  onChange={this.handleChange} 
-                  onMouseEnter={e => e.target.focus()} 
-                />
-              </h2>
-            </div>
+        <Row className="main-row">
+          <Col lg={sideView ? "4" : "0"} className="side-col">
+            <SideTrad 
+              menu={this.state.menu}
+              content={this.state.content}
+              updateUIArray={this.updateUIArray}
+              {...this.props}
+            />
           </Col>
-          <ManLab height="250" className="header-img homme-icon" alt="homme" />
-        </section>
-        <Row className="tags-row backgroundColor-darkColor">
-          <Col lg="7" md="7" sm="7" xs="7" className="col right-bar">
+          <Col lg={sideView ? "8" : "12"} className="main-col">
+            <section className="banniere-dispo">
+              <Row className="header-row">
+                <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
+                  <Button color="warning" outline>
+                    <EVAIcon name="corner-up-left-outline" fill={mainTag.darkColor} className="icons" />
+                    <span>{t("Retour à la recherche")}</span>
+                  </Button>
+                </Col>
+                <TopRightHeader 
+                  validateStructure={false}
+                  disableEdit={this.state.disableEdit} 
+                  withHelp={this.state.withHelp}
+                  showSpinnerBookmark={this.state.showSpinnerBookmark}
+                  pinned={this.state.pinned}
+                  isAuthor={this.state.isAuthor}
+                  status={this.state.status}
+                  mainSponsor={this.state.mainSponsor}
+                  userId={this.props.userId}
+                  update_status={this.update_status}
+                  bookmarkDispositif={this.bookmarkDispositif}
+                  toggleHelp={this.toggleHelp}
+                  toggleModal={this.toggleModal}
+                  toggleDispositifValidateModal={this.toggleDispositifValidateModal}
+                  editDispositif = {this.editDispositif}
+                  valider_dispositif={this.valider_dispositif}
+                  toggleDispositifCreateModal={this.toggleDispositifCreateModal} />
+              </Row>
+              <FemmeCurly height="300" className="header-img femme-icon" alt="femme" />
+              <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
+                <div className="bloc-titre">
+                  <h1 className={this.state.disableEdit ? "" : "editable"}>
+                    <ContentEditable
+                      id='titreInformatif'
+                      html={this.state.content.titreInformatif}  // innerHTML of the editable div
+                      disabled={this.state.disableEdit}
+                      onClick={e=>{this.startJoyRide(); this.onInputClicked(e)}}
+                      onChange={this.handleChange}
+                      onMouseEnter={e => e.target.focus()} 
+                    />
+                  </h1>
+                  <h2 className="bloc-subtitle">
+                    <span>{t("avec")}&nbsp;</span>
+                    <ContentEditable
+                      id='titreMarque'
+                      html={this.state.content.titreMarque}  // innerHTML of the editable div
+                      disabled={this.state.disableEdit}
+                      onClick={e=>{this.startJoyRide(1); this.onInputClicked(e)}}
+                      onChange={this.handleChange} 
+                      onMouseEnter={e => e.target.focus()} 
+                    />
+                  </h2>
+                </div>
+              </Col>
+              <ManLab height="250" className="header-img homme-icon" alt="homme" />
+            </section>
+            <Row className="tags-row backgroundColor-darkColor">
+              <Col lg="7" md="7" sm="7" xs="7" className="col right-bar">
+                <Row>
+                  <b className="en-bref mt-10">{t("En bref")} </b>
+                  {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
+                    if(card.type==='card'){
+                      let texte = card.contentTitle;
+                      if(card.title==='Âge requis'){
+                        texte = (card.contentTitle === 'De ** à ** ans') ? 'De ' + card.bottomValue + ' à ' + card.topValue + ' ans' :
+                                            (card.contentTitle === 'Moins de ** ans') ? 'Moins de ' + card.topValue + ' ans' :
+                                            'Plus de ' + card.bottomValue + ' ans';
+                      }else if(card.title === 'Combien ça coûte ?'){
+                        texte = card.free ? "gratuit" : (card.price + " € " + card.contentTitle)
+                      }
+                      return (
+                        <div className="tag-wrapper" key={key}>
+                          <div className="tag-item">
+                            <a href={'#item-head-1'} className="no-decoration">
+                              {card.typeIcon==="eva" ?
+                                <EVAIcon name={card.titleIcon} fill="#FFFFFF"/> :
+                                <SVGIcon fill="#FFFFFF" width="20" height="20" viewBox="0 0 25 25" name={card.titleIcon} />}
+                              <span>{texte}</span>
+                            </a>
+                          </div>
+                        </div>
+                      )
+                    }else{return false}
+                  })}
+                </Row>
+              </Col>
+              <Col lg="5" md="5" sm="5" xs="5" className="tags-bloc">
+                <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
+              </Col>
+            </Row>
             <Row>
-              <b className="en-bref mt-10">{t("En bref")} </b>
-              {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
-                if(card.type==='card'){
-                  let texte = card.contentTitle;
-                  if(card.title==='Âge requis'){
-                    texte = (card.contentTitle === 'De ** à ** ans') ? 'De ' + card.bottomValue + ' à ' + card.topValue + ' ans' :
-                                        (card.contentTitle === 'Moins de ** ans') ? 'Moins de ' + card.topValue + ' ans' :
-                                        'Plus de ' + card.bottomValue + ' ans';
-                  }else if(card.title === 'Combien ça coûte ?'){
-                    texte = card.free ? "gratuit" : (card.price + " € " + card.contentTitle)
-                  }
-                  return (
-                    <div className="tag-wrapper" key={key}>
-                      <div className="tag-item">
-                        <a href={'#item-head-1'} className="no-decoration">
-                          {card.typeIcon==="eva" ?
-                            <EVAIcon name={card.titleIcon} fill="#FFFFFF"/> :
-                            <SVGIcon fill="#FFFFFF" width="20" height="20" viewBox="0 0 25 25" name={card.titleIcon} />}
-                          <span>{texte}</span>
-                        </a>
+              <Col className={"left-side-col pt-40" + (sideView ? " sideView" : "")} lg="3" md="3" sm="3" xs="12">
+                <LeftSideDispositif
+                  menu={this.state.menu}
+                  accordion={this.state.accordion}
+                  showSpinner={this.state.showSpinnerPrint}
+                  content={this.state.content}
+                  inputBtnClicked = {this.state.inputBtnClicked}
+                  disableEdit = {this.state.disableEdit}
+                  toggleInputBtnClicked={this.toggleInputBtnClicked}
+                  handleScrollSpy={this.handleScrollSpy}
+                  onMenuNavigate={this.onMenuNavigate}
+                  createPdf={this.createPdf}
+                  newRef={this.newRef}
+                  openAllAccordions={this.openAllAccordions}
+                  handleChange = {this.handleChange}
+                />
+              </Col>
+              <Col className="pt-40 col-middle" lg={sideView ? "12" : "7"} md={sideView ? "12" : "7"} sm={sideView ? "12" : "7"} xs={sideView ? "12" : "7"}>
+                {disableEdit && <Row className="fiabilite-row">
+                  <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
+                    {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
+                  </Col>
+                  <Col className="col">
+                    {t("Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t("Faible")}</span>
+                    <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#E55039"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
+                    
+                    <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
+                      {t("Dispositif.fiabilite_faible_1")} <b>{t("Dispositif.fiabilite_faible_2")}</b> {t("Dispositif.fiabilite_faible_3")}{' '}
+                      {t("Dispositif.cliquez")}
+                    </Tooltip>
+                  </Col>
+                </Row>}
+                <ContenuDispositif 
+                  updateUIArray={this.updateUIArray}
+                  handleContentClick={this.handleContentClick}
+                  handleMenuChange={this.handleMenuChange}
+                  onEditorStateChange={this.onEditorStateChange}
+                  toggleModal={this.toggleModal}
+                  deleteCard={this.deleteCard}
+                  addItem={this.addItem}
+                  removeItem={this.removeItem}
+                  changeTitle={this.changeCardTitle}
+                  disableIsMapLoaded={this.disableIsMapLoaded}
+                  toggleNiveau={this.toggleNiveau}
+                  changeAge = {this.changeAge}
+                  changePrice={this.changePrice}
+                  toggleFree = {this.toggleFree}
+                  setMarkers = {this.setMarkers}
+                  filtres={filtres}
+                  sideView={sideView}
+                  {...this.state}
+                />
+                
+                {this.state.disableEdit &&
+                  <>
+                    <div className="feedback-footer">
+                      <div>
+                        <h5 className="color-darkColor">{t("Dispositif.informations_utiles")}</h5>
+                        <span className="color-darkColor">{t("Dispositif.remerciez")}&nbsp;:</span>
+                      </div>
+                      <div>
+                        <Button color="light" className="thanks-btn" onClick={()=>this.pushReaction(null, "merci")}>
+                          {t("Merci")} <span role="img" aria-label="merci">🙏</span>
+                        </Button>
+                        <Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
+                          <span role="img" aria-label="merci">👎</span>
+                        </Button>
                       </div>
                     </div>
-                  )
-                }else{return false}
-              })}
-            </Row>
-          </Col>
-          <Col lg="5" md="5" sm="5" xs="5" className="tags-bloc">
-            <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
-          </Col>
-        </Row>
-        <Row>
-          <Col className="left-side-col pt-40" lg="3" md="3" sm="3" xs="12">
-            <LeftSideDispositif
-              menu={this.state.menu}
-              accordion={this.state.accordion}
-              showSpinner={this.state.showSpinnerPrint}
-              content={this.state.content}
-              inputBtnClicked = {this.state.inputBtnClicked}
-              disableEdit = {this.state.disableEdit}
-              toggleInputBtnClicked={this.toggleInputBtnClicked}
-              handleScrollSpy={this.handleScrollSpy}
-              onMenuNavigate={this.onMenuNavigate}
-              createPdf={this.createPdf}
-              newRef={this.newRef}
-              openAllAccordions={this.openAllAccordions}
-              handleChange = {this.handleChange}
-            />
-          </Col>
-          <Col className="pt-40 col-middle" lg="7" md="7" sm="7" xs="10">
-            {disableEdit && <Row className="fiabilite-row">
-              <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
-                {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
-              </Col>
-              <Col className="col">
-                {t("Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t("Faible")}</span>
-                <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#E55039"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
-                
-                <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
-                  {t("Dispositif.fiabilite_faible_1")} <b>{t("Dispositif.fiabilite_faible_2")}</b> {t("Dispositif.fiabilite_faible_3")}{' '}
-                  {t("Dispositif.cliquez")}
-                </Tooltip>
-              </Col>
-            </Row>}
-            <ContenuDispositif 
-              updateUIArray={this.updateUIArray}
-              handleContentClick={this.handleContentClick}
-              handleMenuChange={this.handleMenuChange}
-              onEditorStateChange={this.onEditorStateChange}
-              toggleModal={this.toggleModal}
-              deleteCard={this.deleteCard}
-              addItem={this.addItem}
-              removeItem={this.removeItem}
-              changeTitle={this.changeCardTitle}
-              disableIsMapLoaded={this.disableIsMapLoaded}
-              toggleNiveau={this.toggleNiveau}
-              changeAge = {this.changeAge}
-              changePrice={this.changePrice}
-              toggleFree = {this.toggleFree}
-              setMarkers = {this.setMarkers}
-              filtres={filtres}
-              {...this.state}
-            />
-            
-            {this.state.disableEdit &&
-              <>
-                <div className="feedback-footer">
-                  <div>
-                    <h5 className="color-darkColor">{t("Dispositif.informations_utiles")}</h5>
-                    <span className="color-darkColor">{t("Dispositif.remerciez")}&nbsp;:</span>
-                  </div>
-                  <div>
-                    <Button color="light" className="thanks-btn" onClick={()=>this.pushReaction(null, "merci")}>
-                      {t("Merci")} <span role="img" aria-label="merci">🙏</span>
-                    </Button>
-                    <Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
-                      <span role="img" aria-label="merci">👎</span>
-                    </Button>
-                  </div>
-                </div>
-                <div className="discussion-footer backgroundColor-darkColor">
-                  <h5>{t("Dispositif.Avis")}</h5>
-                  <span>{t("Dispositif.bientot")}</span>
-                </div>
-                {this.state.contributeurs.length>0 && 
-                  <div className="bottom-wrapper">
-                    <ContribCaroussel 
-                      contributeurs={this.state.contributeurs}
-                    />
+                    <div className="discussion-footer backgroundColor-darkColor">
+                      <h5>{t("Dispositif.Avis")}</h5>
+                      <span>{t("Dispositif.bientot")}</span>
+                    </div>
+                    {this.state.contributeurs.length>0 && 
+                      <div className="bottom-wrapper">
+                        <ContribCaroussel 
+                          contributeurs={this.state.contributeurs}
+                        />
 
-                    {!this.state.disableEdit &&
-                      <div className="ecran-protection">
-                        <div className="content-wrapper">
-                          <Icon name="alert-triangle-outline" fill="#FFFFFF" />
-                          <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
-                        </div>
+                        {!this.state.disableEdit &&
+                          <div className="ecran-protection">
+                            <div className="content-wrapper">
+                              <Icon name="alert-triangle-outline" fill="#FFFFFF" />
+                              <span>Ajout des contributeurs <u className="pointer" onClick={()=>this.toggleModal(true, 'construction')}>disponible prochainement</u></span>
+                            </div>
+                          </div>}
                       </div>}
-                  </div>}
-              </>
-            }
+                  </>
+                }
 
-            <Sponsors 
-              sponsors={this.state.sponsors} 
-              disableEdit={this.state.disableEdit}
-              addSponsor = {this.addSponsor}
-              deleteSponsor={this.deleteSponsor}
-              t={t}  />
+                <Sponsors 
+                  sponsors={this.state.sponsors} 
+                  disableEdit={this.state.disableEdit}
+                  addSponsor = {this.addSponsor}
+                  deleteSponsor={this.deleteSponsor}
+                  t={t}  />
+                
+
+                {false && <Commentaires />}
+              </Col>
+              <Col lg="2" md="2" sm="2" xs="2" className={"aside-right pt-40" + (sideView ? " sideView" : "")} />
+            </Row>
             
+            <ReagirModal name='reaction' show={showModals.reaction} toggleModal={this.toggleModal} onValidate={this.pushReaction} />
+            <SuggererModal showModals={showModals} toggleModal={this.toggleModal} onChange={this.handleModalChange} suggestion={this.state.suggestion} onValidate={this.pushReaction} />
+            <MerciModal name='merci' show={showModals.merci} toggleModal={this.toggleModal} onChange={this.handleModalChange} mail={this.state.mail} />
+            <EnConstructionModal name='construction' show={showModals.construction} toggleModal={this.toggleModal} />
+            <ResponsableModal name='responsable' show={showModals.responsable} toggleModal={this.toggleModal} createur={this.state.creator} mainSponsor={this.state.mainSponsor} editDispositif={this.editDispositif} update_status={this.update_status} />
 
-            {false && <Commentaires />}
+            <Modal isOpen={this.state.showModals.fiabilite} toggle={()=>this.toggleModal(false, 'fiabilite')} className='modal-fiabilite'>
+              <h1>{t("Dispositif.fiabilite")}</h1>
+              <div className="liste-fiabilite">
+                <Row>
+                  <Col lg="4" className="make-it-red">
+                    {t("Faible")}
+                  </Col>
+                  <Col lg="8">
+                    L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
+                  </Col>
+                </Row>
+                <Row>
+                  <Col lg="4" className="make-it-orange">
+                    {t("Moyenne")}
+                  </Col>
+                  <Col lg="8">
+                    L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
+                  </Col>
+                </Row>
+                <Row>
+                  <Col lg="4" className="make-it-green">
+                    {t("Forte")}
+                  </Col>
+                  <Col lg="8">
+                    L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
+                  </Col>
+                </Row>
+              </div>
+            </Modal>
+
+            <BookmarkedModal 
+              showBookmarkModal={this.state.showBookmarkModal}
+              toggleBookmarkModal={this.toggleBookmarkModal}
+            />
+            <DispositifCreateModal 
+              show={this.state.showDispositifCreateModal}
+              toggle={this.toggleDispositifCreateModal}
+              upcoming = {this.upcoming}
+              startFirstJoyRide={this.startFirstJoyRide}
+            />
+            <DispositifValidateModal
+              show={this.state.showDispositifValidateModal}
+              toggle={this.toggleDispositifValidateModal} 
+              abstract={this.state.content.abstract} 
+              onChange={this.handleChange}
+              validate={this.valider_dispositif}
+            />
+
+            {isDispositifLoading &&
+              <div className="ecran-protection no-main">
+                <div className="content-wrapper">
+                  <h1 className="mb-3">Chargement...</h1>
+                  <Spinner color="success" />
+                </div>
+              </div>}
+
           </Col>
-          <Col lg="2" md="2" sm="2" xs="2" className="aside-right pt-40" />
         </Row>
-        
-        <ReagirModal name='reaction' show={showModals.reaction} toggleModal={this.toggleModal} onValidate={this.pushReaction} />
-        <SuggererModal showModals={showModals} toggleModal={this.toggleModal} onChange={this.handleModalChange} suggestion={this.state.suggestion} onValidate={this.pushReaction} />
-        <MerciModal name='merci' show={showModals.merci} toggleModal={this.toggleModal} onChange={this.handleModalChange} mail={this.state.mail} />
-        <EnConstructionModal name='construction' show={showModals.construction} toggleModal={this.toggleModal} />
-        <ResponsableModal name='responsable' show={showModals.responsable} toggleModal={this.toggleModal} createur={this.state.creator} mainSponsor={this.state.mainSponsor} editDispositif={this.editDispositif} update_status={this.update_status} />
-
-        <Modal isOpen={this.state.showModals.fiabilite} toggle={()=>this.toggleModal(false, 'fiabilite')} className='modal-fiabilite'>
-          <h1>{t("Dispositif.fiabilite")}</h1>
-          <div className="liste-fiabilite">
-            <Row>
-              <Col lg="4" className="make-it-red">
-                {t("Faible")}
-              </Col>
-              <Col lg="8">
-                L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
-              </Col>
-            </Row>
-            <Row>
-              <Col lg="4" className="make-it-orange">
-                {t("Moyenne")}
-              </Col>
-              <Col lg="8">
-                L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
-              </Col>
-            </Row>
-            <Row>
-              <Col lg="4" className="make-it-green">
-                {t("Forte")}
-              </Col>
-              <Col lg="8">
-                L’information a été rédigée par un contributeur qui n’est pas directement responsable et n’a pas été validée par l’autorité compétente.
-              </Col>
-            </Row>
-          </div>
-        </Modal>
-
-        <BookmarkedModal 
-          showBookmarkModal={this.state.showBookmarkModal}
-          toggleBookmarkModal={this.toggleBookmarkModal}
-        />
-        <DispositifCreateModal 
-          show={this.state.showDispositifCreateModal}
-          toggle={this.toggleDispositifCreateModal}
-          upcoming = {this.upcoming}
-          startFirstJoyRide={this.startFirstJoyRide}
-        />
-        <DispositifValidateModal
-          show={this.state.showDispositifValidateModal}
-          toggle={this.toggleDispositifValidateModal} 
-          abstract={this.state.content.abstract} 
-          onChange={this.handleChange}
-          validate={this.valider_dispositif}
-        />
-
-        {isDispositifLoading &&
-          <div className="ecran-protection no-main">
-            <div className="content-wrapper">
-              <h1 className="mb-3">Chargement...</h1>
-              <Spinner color="success" />
-            </div>
-          </div>}
       </div>
     );
   }

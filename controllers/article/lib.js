@@ -115,7 +115,7 @@ function add_traduction(req, res) {
     res.status(401).json({
       "text": "La langue n'est pas spécifiée"
     })
-  }else if (!req.body.translatedText.title && !req.body.translatedText.body) {
+  }else if (!req.body.translatedText) {
     //Le cas où la requête ne serait pas soumise ou nul
     res.status(401).json({
       "text": "Pas de contenu de traduction"
@@ -131,7 +131,7 @@ function add_traduction(req, res) {
     })
 
     //On l'insère en prod seulement si l'utilisateur a les droits admin ou expert en traduction
-    if(req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null)){
+    if(false && req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null)){
       let traductionItem=req.body;
       //On transforme le html en JSON après l'avoir nettoyé
       let html=traductionItem.translatedText.body;
