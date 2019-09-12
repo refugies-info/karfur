@@ -7,6 +7,8 @@ var himalaya = require('himalaya');
 var uniqid = require('uniqid');
 const nodemailer = require("nodemailer");
 
+const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
+
 //Réactiver ici si besoin
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -100,7 +102,8 @@ function get_dispositif(req, res) {
 
     find.then(function (result) {
       [].forEach.call(result, (dispositif) => { 
-        turnJSONtoHTML(dispositif.contenu)
+        dispositif = _turnToFr(dispositif);
+        turnJSONtoHTML(dispositif.contenu);
       });
       res.status(200).json({
           "text": "Succès",
@@ -126,6 +129,24 @@ function get_dispositif(req, res) {
       }
     })
   }
+}
+
+const _turnToFr = result => {
+  pointeurs.forEach(x => { 
+    if(result[x] && result[x].fr){ result[x] = result[x].fr };
+  });
+
+  result.contenu.forEach((p, i) => {
+    if(p.title && p.title.fr){ p.title = p.title.fr; }
+    if(p.content && p.content.fr){ p.content = p.content.fr; }
+    if(p.children && p.children.length > 0){
+      p.children.forEach((c, j) => {
+        if(c.title && c.title.fr){ c.title = c.title.fr; }
+        if(c.content && c.content.fr){ c.content = c.content.fr; }
+      });
+    }
+  });
+  return result
 }
 
 function update_dispositif(req, res) {

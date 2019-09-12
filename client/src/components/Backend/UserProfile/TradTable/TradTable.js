@@ -134,7 +134,7 @@ const tradTable = (props) => {
                   <span className="texte-small ml-10">personnes informées</span>
                 </Col>
                 <Col lg="3" md="3" sm="12" xs="12">
-                  <FButton type="dark" name="file-add-outline">
+                  <FButton tag={NavLink} to="/backend/user-dashboard" type="dark" name="file-add-outline">
                     Espace traduction
                   </FButton>
                 </Col>

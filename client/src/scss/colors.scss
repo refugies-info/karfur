@@ -21,6 +21,7 @@ $darkColor: #212121;
 $cardColor: #828282;
 $focus: #2D9CDB;
 $bgfocus : #D2EDFC;
+$standby : #FDD497;
 
 :export {
   lightColor: $lightColor;
@@ -43,4 +44,5 @@ $bgfocus : #D2EDFC;
   error: $error;
   erreur: $erreur;
   uiattention: $uiattention;
+  standby: $standby;
 }

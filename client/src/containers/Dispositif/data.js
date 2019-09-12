@@ -3,7 +3,7 @@ import React from 'react';
 const contenu={
   titreInformatif:'Titre informatif',
   titreMarque:'Le nom du dispositif',
-  abstract:'Ceci est le résumé du dispositif',
+  abstract:'',
   contact:'contact@lab-r.fr',
   externalLink:""
 };

@@ -1,5 +1,6 @@
 const Traduction = require('../../schema/schemaTraduction.js');
 const Article = require('../../schema/schemaArticle.js');
+const Dispositif = require('../../schema/schemaDispositif.js');
 const User = require('../../schema/schemaUser.js');
 const article = require('../article/lib');
 var sanitizeHtml = require('sanitize-html');
@@ -15,6 +16,7 @@ const headers = {
 
 let burl = 'https://laser-agir.herokuapp.com'
 // if(process.env.NODE_ENV === 'dev'){burl = 'http://localhost:5001' }
+const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
 
 async function add_tradForReview(req, res) {
   if (!req.body || !req.body.langueCible || !req.body.translatedText) {
@@ -116,48 +118,108 @@ function get_tradForReview(req, res) {
 }
 
 function validate_tradForReview(req, res) {
-  if (!req.body || !req.body.articleId || (req.body.translatedText || []).length===0) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+  if (!req.body || !req.body.articleId || !req.body.translatedText) {
+    res.status(400).json({ "text": "Requête invalide" })
+  }else if(!((req.user || {}).roles || {}).some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
+    res.status(400).json({ "text": "Token invalide" });
   } else {
-    let traductionUser=req.body;
-    Traduction.findOneAndUpdate({_id: traductionUser._id}, {status:'Validée'}, { upsert: true , new: true}).then(data_traduction => {
-      let traduction=data_traduction;
-      Article.findOne({_id:traduction.articleId}).exec((err, result) => {
-        if (!err) {
-          if(result.body && result.body.constructor === Array){
-            if(!_findNodeAndReplace(result.body, traduction.translatedText, traduction.langueCible, traduction.rightId)){
-              res.status(300).json({"text": "Erreur d'insertion"})
-            }else{
-              //console.log(JSON.stringify(result.body));
-              result.markModified("body");
-              result.save((err, article_saved) => {
-                if (err) {
-                  console.log(err);
-                  res.status(500).json({"text": "Erreur interne"})
-                } else {
-                  console.log('succes')
-                  res.status(200).json({
-                    "text": "Succès",
-                    "data": article_saved,
-                    "data_traduction" : data_traduction
-                  })
-                }
-              });
+    let traductionUser=req.body || {};
+    //Ici il y en a plusieurs: à régler
+    if(traductionUser.type === "dispositif"){
+      (traductionUser.traductions || []).forEach(x => {
+        Traduction.findOneAndUpdate({_id: x._id}, {status:'Validée'}, { upsert: true , new: true}).then(() => console.log("updated"))
+      })
+      insertInDispositif(res, traductionUser, traductionUser.locale);
+    }else{
+      Traduction.findOneAndUpdate({_id: traductionUser._id}, {status:'Validée'}, { upsert: true , new: true}).then(data_traduction => {
+        let traduction=data_traduction;
+        Article.findOne({_id:traduction.articleId}).exec((err, result) => {
+          if (!err) {
+            if(result.body && result.body.constructor === Array){
+              if(!_findNodeAndReplace(result.body, traduction.translatedText, traduction.langueCible, traduction.rightId)){
+                res.status(300).json({"text": "Erreur d'insertion"})
+              }else{
+                //console.log(JSON.stringify(result.body));
+                result.markModified("body");
+                result.save((err, article_saved) => {
+                  if (err) {
+                    console.log(err);
+                    res.status(500).json({"text": "Erreur interne"})
+                  } else {
+                    console.log('succes')
+                    res.status(200).json({
+                      "text": "Succès",
+                      "data": article_saved,
+                      "data_traduction" : data_traduction
+                    })
+                  }
+                });
+              }
             }
-          }
-        }else{console.log(err); res.status(400).json({"text": "Erreur d'identification de l'article"})}
-      })
-    }, err => {
-      console.log(err)
-      res.status(501).json({
-        "text": "Erreur interne"
-      })
-    });
-
+          }else{console.log(err); res.status(400).json({"text": "Erreur d'identification de l'article"})}
+        })
+      }, err => {
+        console.log(err)
+        res.status(501).json({
+          "text": "Erreur interne"
+        })
+      });
+    }
   }
+}
+
+const insertInDispositif = (res, traduction, locale) => {
+  return Dispositif.findOne({_id:traduction.articleId}).exec((err, result) => {
+    if (!err && result) {
+      pointeurs.forEach(x => { if(!result[x]){return;}
+        if(!result[x].fr){ result[x] = {fr: result[x]} };
+        result[x][locale] = traduction.translatedText[x];
+        result.markModified(x);
+      });
+
+      result.contenu.forEach((p, i) => {
+        if(p.title){
+          if(!p.title.fr){ p.title = {fr: p.title} };
+          p.title[locale] = traduction.translatedText.contenu[i].title;
+        }
+        if(p.content){
+          if(!p.content.fr){ p.content = {fr: p.content} };
+          p.content[locale] = traduction.translatedText.contenu[i].content;
+        }   
+        if(p.children && p.children.length > 0){
+          p.children.forEach((c, j) => {
+            if(c.title){
+              if(!c.title.fr){ c.title = {fr: c.title} };
+              c.title[locale] = traduction.translatedText.contenu[i].children[j].title;
+            }
+            if(c.content){
+              if(!c.content.fr){ c.content = {fr: c.content} };
+              c.content[locale] = traduction.translatedText.contenu[i].children[j].content;
+            }
+          });
+        }
+      });
+      result.markModified("contenu");
+
+      result.traductions = [ ...new Set([ ...(result.traductions || []), ...(traduction.traductions || []).map(x => x._id) ] ) ];
+      result.participants = [ ...new Set([ ...(result.participants || []), ...(traduction.traductions || []).map(x => (x.userId || {})._id) ] ) ];
+      result.avancement = {
+        ...result.avancement,
+        [locale] : 1
+      }
+      return result.save((err, data) => {
+        if (err) { console.log(err);
+          res.status(500).json({"text": "Erreur interne"})
+        } else { console.log('succes');
+          res.status(200).json({
+            "text": "Succès",
+            "data": data,
+          })
+        }
+        return res;
+      });
+    }else{console.log(err); res.status(400).json({"text": "Erreur d'identification du dispositif"}); return res;}
+  })
 }
 
 const recalculate_all = () => {
@@ -280,29 +342,32 @@ const _findNodeAndReplace = (initial,translated,locale,id) => {
 }
 
 function update_tradForReview(req, res) {
-  var translationId = req.body.translationId;
-  var update = req.body.update;
-  
-  var find = new Promise(function (resolve, reject) {
-    Traduction.findByIdAndUpdate({_id: translationId},update,{new: true}).exec(function (err, result) {
-      if (err) {
-        reject(500);
-      } else {
-        if (result) {
-          resolve(result)
+  if(!req.user.roles.some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
+    res.status(400).json({ "text": "Requête invalide" });
+  }else{
+    var translation = req.body;
+    console.log(translation)
+    var find = new Promise(function (resolve, reject) {
+      Traduction.findByIdAndUpdate({_id: translation._id},translation,{new: true}).exec(function (err, result) {
+        if (err) {
+          reject(500);
         } else {
-          reject(204)
+          if (result) {
+            resolve(result)
+          } else {
+            reject(204)
+          }
         }
-      }
+      })
     })
-  })
-
-  find.then(function (result) {
-    res.status(200).json({
-        "text": "Succès",
-        "data": result
-    })
-  }, (e) => _errorHandler(e,res))
+  
+    find.then(function (result) {
+      res.status(200).json({
+          "text": "Succès",
+          "data": result
+      })
+    }, (e) => _errorHandler(e,res))
+  }
 }
 
 function get_progression(req, res) {

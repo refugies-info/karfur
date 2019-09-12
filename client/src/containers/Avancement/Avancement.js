@@ -23,7 +23,6 @@ class Avancement extends Component {
     mainView:true,
     title: diffData.all.title,
     headers: diffData.all.headers,
-    activeIndex: 0,
 
     langue:{},
     data: [],
@@ -53,11 +52,11 @@ class Avancement extends Component {
     }else if(isExpert){
       this._loadLangue(itemId, isExpert);
     }
-    API.get_tradForReview({}).then(data => { console.log(data.data.data);
+    API.get_tradForReview({}, {}, 'userId').then(data => { console.log(data.data.data);
       this.setState({traductionsFaites: data.data.data})
     })
     // this._loadThemes();
-    this.setState({itemId:itemId, isExpert:isExpert, isLangue: isLangue})
+    this.setState({itemId, isExpert, isLangue})
     window.scrollTo(0, 0);
   }
 
@@ -85,7 +84,7 @@ class Avancement extends Component {
         this.setState({
           langue:langue,
           title: diffData.traducteur.title + ' : ' + langue.langueFr,
-          headers: diffData.traducteur.headers
+          headers: diffData[isExpert ? "expert" : "traducteur"].headers
         })
       })
     }
@@ -117,20 +116,6 @@ class Avancement extends Component {
       }, {currGrp: [], groupedData: []}).groupedData;
       this.setState({themes:reduced_themes})
     })
-  }
-
-  switchView= (mainView, element) =>{
-    console.log('A vérifier')
-    // if(this.state.mainView){
-    //   this.setState({
-    //     mainView: false,
-    //     title: diffData[1 * mainView].title + ' : ' + element.name,
-    //     headers: diffData[1 * mainView].headers,
-    //     data: strings
-    //   })
-    // }else{
-    //   this.props.history.push('/traduction')
-    // }
   }
 
   onExiting = () => {
@@ -166,67 +151,30 @@ class Avancement extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render(){
-    const { activeIndex, langue, isExpert } = this.state;
-    const slides = this.state.themes.map((item, key) => {
-      return (
-        <CarouselItem
-          onExiting={this.onExiting}
-          onExited={this.onExited}
-          key={key}
-        >
-          <Row>
-            {item.map((theme) => {
-              return (
-                <Col key={theme._id}>
-                  <Card>
-                    <CardHeader>
-                      {theme.themeNom}
-                    </CardHeader>
-                    <CardBody>
-                      {theme.themeDescription}
-                      <br />
-                      Texte de remplissage : Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                      laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
-                    </CardBody>
-                    <CardFooter>
-                      Progression :
-                      <Progress 
-                        color={colorAvancement(theme.avancement)} 
-                        value={theme.avancement*100} 
-                        className="mb-3" />
-                    </CardFooter>
-                  </Card>
-                </Col>
-              )
-            })}
-          </Row>
-        </CarouselItem>
-      );
-    });
-
+    const { langue, isExpert } = this.state;
+    
     let traductions = [
       ...this.state.data, 
-      ...this.props.dispositifs.filter(x => x.status === "Actif").map(x => (
-        {
+      ...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
           _id:x._id, 
           title:x.titreMarque + " - " + x.titreInformatif, 
           nombreMots:x.nbMots,
           avancement: Math.max(0, ...((this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => (z.avancement || -1)) || [])) || 0, 
           status:x.status, 
           created_at:x.created_at, 
-          user:undefined, 
+          users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
           type: "dispositif"
-        }
-      ) )
+      } ) )
     ].sort((a,b)=> a.nombreMots - b.nombreMots);
+    if(isExpert){ traductions = traductions.filter(x => x.avancement === 1); } //rajouter un filtre sur le statut
     console.log(traductions, this.state.traductionsFaites, isExpert)
-    if(isExpert){ traductions = traductions.filter(x => x.avancement === 1); }
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
           traductions.map((element,key) => {
             const joursDepuis = (new Date().getTime() -  new Date(element.created_at).getTime()) / (1000 * 3600 * 24);
             const titre = (element.title || {}).fr || element.title || (element.initialText || {}).title || (element.titreMarque + " - " + element.titreMarque) ||'' ;
+            console.log(element)
             return (
               <tr 
                 key={element._id}
@@ -237,9 +185,9 @@ class Avancement extends Component {
                 <td className={"align-middle depuis " + (element.nombreMots > 100 ? "alert" : "success") }>
                   {element.nombreMots}
                 </td>
-                {this.props.isExpert ? 
+                {isExpert ? 
                   <td className="align-middle">
-                    {element.user && [element.user].map((participant) => {
+                    {element.users && [...element.users].map((participant) => {
                       return ( 
                         <img
                           key={participant._id} 
@@ -274,25 +222,7 @@ class Avancement extends Component {
     }
 
     return(
-      <div className="animated fadeIn avancement">
-
-        {false && <Row>
-          <Col xs="24" xl="12">
-            <Card>
-              <CardHeader>
-                <strong>Thèmes</strong>
-              </CardHeader>
-              <CardBody className="fixHeight">
-                <Carousel activeIndex={activeIndex} next={this.next} previous={this.previous}>
-                  {slides}
-                  <CarouselControl direction="prev" directionText="Précédent" onClickHandler={this.previous} />
-                  <CarouselControl direction="next" directionText="Suivant" onClickHandler={this.next} />
-                </Carousel>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>}
-        
+      <div className="animated fadeIn avancement">        
         <Row>
           <Col>
             <h2>
@@ -302,10 +232,10 @@ class Avancement extends Component {
             </h2>
           </Col>
           <Col className="tableau-header align-right">
-            <FButton type="outline-black" name="info-outline" fill={variables.noir} className="mr-10">
+            <FButton type="outline-black" name="info-outline" fill={variables.noir} className="mr-10" onClick={this.upcoming}>
               Aide
             </FButton>
-            <FButton type="dark" name="flip-2-outline">
+            <FButton type="dark" name="flip-2-outline" onClick={this.upcoming}>
               Sélection aléatoire
             </FButton>
           </Col>

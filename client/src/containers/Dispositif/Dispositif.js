@@ -92,7 +92,6 @@ class Dispositif extends Component {
     inputBtnClicked: false,
     mainSponsor:{},
     status: '',
-    sideView: true
   }
   _initialState=this.state;
   newRef=React.createRef();
@@ -302,7 +301,7 @@ class Dispositif extends Component {
       }
     }
     uiArray[key].children= [...(uiArray[key].children || []), uiElement];
-    this.setState({ menu: prevState, uiArray: uiArray });
+    this.setState({ menu: prevState, uiArray: uiArray }, () => type === "card" && this.setColors() );
   }
 
   removeItem=(key, subkey=null)=>{
@@ -538,8 +537,8 @@ class Dispositif extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
 
   render(){
-    const {t} = this.props;
-    const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag, sideView} = this.state;
+    const {t, translating} = this.props;
+    const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag} = this.state;
     
     const Tooltip = ({
       index,
@@ -585,7 +584,7 @@ class Dispositif extends Component {
     )}else{return false}};
 
     return(
-      <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : sideView ? " side-view-mode" : " reading-mode")} ref={this.newRef}>
+      <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : " reading-mode")} ref={this.newRef}>
         {/* First general tour */}
         <ReactJoyride
           continuous
@@ -621,15 +620,16 @@ class Dispositif extends Component {
         />
 
         <Row className="main-row">
-          <Col lg={sideView ? "4" : "0"} className="side-col">
-            <SideTrad 
-              menu={this.state.menu}
-              content={this.state.content}
-              updateUIArray={this.updateUIArray}
-              {...this.props}
-            />
-          </Col>
-          <Col lg={sideView ? "8" : "12"} className="main-col">
+          {translating && 
+            <Col lg={translating ? "4" : "0"} className="side-col">
+              <SideTrad 
+                menu={this.state.menu}
+                content={this.state.content}
+                updateUIArray={this.updateUIArray}
+                {...this.props}
+              />
+            </Col>}
+          <Col lg={translating ? "8" : "12"} className="main-col">
             <section className="banniere-dispo">
               <Row className="header-row">
                 <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
@@ -720,7 +720,7 @@ class Dispositif extends Component {
               </Col>
             </Row>
             <Row>
-              <Col className={"left-side-col pt-40" + (sideView ? " sideView" : "")} lg="3" md="3" sm="3" xs="12">
+              <Col className={"left-side-col pt-40" + (translating ? " sideView" : "")} lg="3" md="3" sm="3" xs="12">
                 <LeftSideDispositif
                   menu={this.state.menu}
                   accordion={this.state.accordion}
@@ -737,7 +737,7 @@ class Dispositif extends Component {
                   handleChange = {this.handleChange}
                 />
               </Col>
-              <Col className="pt-40 col-middle" lg={sideView ? "12" : "7"} md={sideView ? "12" : "7"} sm={sideView ? "12" : "7"} xs={sideView ? "12" : "7"}>
+              <Col className="pt-40 col-middle" lg={translating ? "12" : "7"} md={translating ? "12" : "7"} sm={translating ? "12" : "7"} xs={translating ? "12" : "7"}>
                 {disableEdit && <Row className="fiabilite-row">
                   <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
                     {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
@@ -769,7 +769,7 @@ class Dispositif extends Component {
                   toggleFree = {this.toggleFree}
                   setMarkers = {this.setMarkers}
                   filtres={filtres}
-                  sideView={sideView}
+                  sideView={translating}
                   {...this.state}
                 />
                 
@@ -820,7 +820,7 @@ class Dispositif extends Component {
 
                 {false && <Commentaires />}
               </Col>
-              <Col lg="2" md="2" sm="2" xs="2" className={"aside-right pt-40" + (sideView ? " sideView" : "")} />
+              <Col lg="2" md="2" sm="2" xs="2" className={"aside-right pt-40" + (translating ? " sideView" : "")} />
             </Row>
             
             <ReagirModal name='reaction' show={showModals.reaction} toggleModal={this.toggleModal} onValidate={this.pushReaction} />

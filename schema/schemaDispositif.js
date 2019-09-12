@@ -7,12 +7,12 @@ var dispositifSchema = mongoose.Schema({
 		required: true
   },
   titreInformatif: { 
-		type: String,
+		type: Object,
 		unique: false,
 		required: true
   },
   abstract: {
-    type: String,
+    type: Object,
 		unique: false,
 		required: false
   },
@@ -103,8 +103,22 @@ var dispositifSchema = mongoose.Schema({
     type:Object,
     required:false,
   },
+  traductions:{ 
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'Traduction' }],
+    required: false
+  },
+  participants:{
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
+    required:false,
+  },
+  avancement:{
+    type:Object,
+    required:false,
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
 dispositifSchema.options.autoIndex = false
+
+// Dispositif.collection.dropIndex('titreInformatif');
 
 module.exports = mongoose.model('Dispositif', dispositifSchema);
