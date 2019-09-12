@@ -86,6 +86,15 @@
         padding: 20px 25px;
         border: none;
       }
+
+      .depuis{
+        &.alert{
+          background: $standby;
+        }
+        &.warning{
+          background: $attention;
+        }
+      }
     }
   }
 }

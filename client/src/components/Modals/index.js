@@ -19,6 +19,7 @@ import TraducteurModal from './TraducteurModal/TraducteurModal';
 import ResponsableModal from './ResponsableModal/ResponsableModal';
 import AddMemberModal from './AddMemberModal/AddMemberModal';
 import EditMemberModal from './EditMemberModal/EditMemberModal';
+import RejectTradModal from './RejectTradModal/RejectTradModal';
 
 export {
   BookmarkedModal,
@@ -42,4 +43,5 @@ export {
   ResponsableModal,
   AddMemberModal,
   EditMemberModal,
+  RejectTradModal,
 }

@@ -49,7 +49,8 @@ class TranslationHOC extends Component {
     score:-1,
     type:"",
     traduction:{initialText:{ contenu: new Array(menu.length).fill(false) }, translatedText:{ contenu: new Array(menu.length).fill(false) }},
-    traductionsFaites: []
+    traductionsFaites: [],
+    translating: true,
   }
   mountTime=0;
 
@@ -84,7 +85,7 @@ class TranslationHOC extends Component {
     this.setState({ type, itemId, locale, isExpert })
     console.log(itemId)
     if(itemId){
-      API.get_tradForReview({[type === "dispositif" ? 'articleId' : '_id']:itemId}).then(data_res => {
+      API.get_tradForReview({[type === "dispositif" ? 'articleId' : '_id']:itemId}, {}, 'userId').then(data_res => {
         if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           this.setState({traductionsFaites : data_res.data.data})
         }
@@ -164,7 +165,7 @@ class TranslationHOC extends Component {
             ...this.state.translated,
             [item]: value
           }
-        }, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
+        })//, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
       }
     }).catch((err)=>{ console.log('error : ', err);
       if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
@@ -201,7 +202,7 @@ class TranslationHOC extends Component {
       [target]:value
      }
     });
-    this.get_xlm([[h2p(value), this.state.locale], [this.state.francais.body, 'fr']])
+    // this.get_xlm([[h2p(value), this.state.locale], [this.state.francais.body, 'fr']])
   };
 
   onEditorStateChange = (editorState, target="body") => {

@@ -39,7 +39,7 @@ const leftSideDispositif = (props) => {
             <FButton type="default" className="input-btn">
               <InputGroup>
                 <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
-                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Copiez-collez ici le lien vers votre site" id="externalLink" />
+                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Collez ici le lien vers votre site" id="externalLink" />
                 <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
               </InputGroup>
             </FButton>

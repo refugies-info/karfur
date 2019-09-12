@@ -140,6 +140,9 @@ export default {
   get_laser : query => {
     return axios.post(burl + '/traduction/get_laser', query, {headers: headers})
   },
+  update_tradForReview : query => {
+    return axios.post(burl + '/traduction/update_tradForReview',  query, {headers: headers})
+  },
 
   get_translation : (query = {}) => {
     return axios.post(burl + '/translate/get_translation',  query, {headers: headers})

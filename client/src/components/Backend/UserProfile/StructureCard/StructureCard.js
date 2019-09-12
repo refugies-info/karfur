@@ -9,9 +9,11 @@ import './StructureCard.scss';
 
 moment.locale('fr');
 
+const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length - 1))}
+
 class StructureCard extends Component {
   state = {
-    activeTab: '1'
+    activeTab: 0
   };
 
   toggle = tab => {
@@ -22,6 +24,8 @@ class StructureCard extends Component {
     }
   }
   render(){
+    const {actions}= this.props;
+    const actionTypes = [...new Set((actions || []).map(x => x.action))].map(a => ({type: a, actions: (actions || []).filter(y => y.action === a) || [] }))
     return(
       <div className="tableau-wrapper structure-card" id="structure">
         <Row>
@@ -54,48 +58,34 @@ class StructureCard extends Component {
             </div>
             <div className="middle-side">
               <Nav tabs>
-                <NavItem>
-                  <NavLink
-                    className={this.state.activeTab === '1' ? "active" : "" }
-                    onClick={() => { this.toggle('1'); }}
-                  >
-                    Suggestions
-                    <span className="float-right">6</span>
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    className={this.state.activeTab === '2' ? "active" : "" }
-                    onClick={() => { this.toggle('2'); }}
-                  >
-                    Commentaires
-                    <span className="float-right">6</span>
-                  </NavLink>
-                </NavItem>
+                {actionTypes.map((type, i) => (
+                  <NavItem key={i}>
+                    <NavLink
+                      className={this.state.activeTab === i ? "active" : "" }
+                      onClick={() => this.toggle(i)}
+                    >
+                      {jsUcfirst(type.type)}
+                      <span className="float-right">{type.actions.length}</span>
+                    </NavLink>
+                  </NavItem>
+                ))}
               </Nav>
               <TabContent activeTab={this.state.activeTab}>
-                <TabPane tabId="1">
-                  <ListGroup className="liste-actions">
-                    <ListGroupItem>
-                      Suggestion de test
-                      <span className="float-right">6</span>
-                    </ListGroupItem>
-                    <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                    <ListGroupItem>Morbi leo risus</ListGroupItem>
-                    <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                  </ListGroup>
-                </TabPane>
-                <TabPane tabId="2">
-                  <ListGroup className="liste-actions">
-                    <ListGroupItem>
-                      Commentaire de test
-                      <span className="float-right">6</span>
-                    </ListGroupItem>
-                    <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                    <ListGroupItem>Morbi leo risus</ListGroupItem>
-                    <ListGroupItem>Porta ac consectetur ac</ListGroupItem>
-                  </ListGroup>
-                </TabPane>
+                {actionTypes.map((type, i) => (
+                  <TabPane tabId={i} key={i}>
+                    <ListGroup className="liste-actions">
+                      {type.actions.map(act => {
+                        const joursDepuis = (new Date().getTime() -  new Date(act.depuis).getTime()) / (1000 * 3600 * 24);
+                        return (
+                          <ListGroupItem key={act.suggestionId} className={"depuis " + (joursDepuis > 10 ? "alert" : (joursDepuis > 3 ? "warning" : "")) }>
+                            {act.texte}
+                            <span className="float-right">{moment(act.depuis).fromNow()}</span>
+                          </ListGroupItem>
+                        )}
+                      )}
+                    </ListGroup>
+                  </TabPane>
+                ))}
               </TabContent>
             </div>
             <div className="right-side">

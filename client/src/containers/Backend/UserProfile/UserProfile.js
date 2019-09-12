@@ -40,6 +40,7 @@ class UserProfile extends Component {
     favoris:[],
     langues:[],
     structure: {},
+    actionsStruct: [],
     traducteur:false,
     contributeur:false,
     editing: false,
@@ -66,6 +67,9 @@ class UserProfile extends Component {
       if(user.structures && user.structures.length > 0){
         API.get_structure({_id: user.structures[0] }).then(data => { console.log(data.data.data);
           this.setState({structure:data.data.data[0]})
+        })
+        API.get_dispositif({'mainSponsor': user.structures[0]}).then(data => {console.log(parseActions(data.data.data))
+          this.setState({actionsStruct: parseActions(data.data.data)})
         })
       }
       console.log(user)
@@ -153,7 +157,7 @@ class UserProfile extends Component {
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
   render() {
-    let {traducteur, contributeur, traductions, contributions, actions, langues, structure, user, showSections, isMainLoading}=this.state;
+    let {traducteur, contributeur, traductions, contributions, actions, langues, structure, user, showSections, isMainLoading, actionsStruct}=this.state;
     if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
 
     let favoris = ((user.cookies || {}).dispositifsPinned || []),hasFavori=true, hasNotifs= true;
@@ -351,6 +355,7 @@ class UserProfile extends Component {
             <StructureCard
               displayIndicators
               structure={structure}
+              actions={actionsStruct}
               user={user}
               {...data_structure} />}
         </div>
