@@ -82,7 +82,7 @@ class Footer extends Component {
                   Vous cherchez ?
                 </h5>
                 <div className="lien-footer">
-                  <NavLink to="/dispositifs">
+                  <NavLink to="/advanced-search">
                     <b>Dispositif</b> - Être accompagné ou rejoindre un dispositif
                   </NavLink>
                 </div>

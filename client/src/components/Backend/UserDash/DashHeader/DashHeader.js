@@ -30,9 +30,9 @@ const dashHeader = (props) => {
                 <h5>
                   {props.structure.nom}
                 </h5>
-                <FButton type="dark" name="edit-outline" className="bottom-btn">
+                {/* <FButton type="dark" name="edit-outline" className="bottom-btn">
                   Modifier
-                </FButton>
+                </FButton> */}
               </Col>
             </Row>
           </Col>
