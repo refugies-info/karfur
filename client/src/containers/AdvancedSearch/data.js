@@ -18,14 +18,14 @@ const initial_data = [
     ]
   },
   {
-    title:'et je cherche à',
+    title:'Je cherche à',
     value: 'apprendre le français',
     query: 'Apprendre le français',
     queryName: 'tags.name',
     children: filtres.tags
   },
   {
-    title:'dans la ville de',
+    title:'J\'habite à',
     value: 'Nantes',
     queryName: 'localisation',
     children:[
@@ -74,7 +74,7 @@ const initial_data = [
     ]
   },
   {
-    title:'et je parle',
+    title:'Je parle',
     value: 'un peu',
     title2:'français.',
     queryName: 'niveauFrancais',

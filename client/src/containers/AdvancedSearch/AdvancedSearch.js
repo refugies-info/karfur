@@ -15,8 +15,8 @@ import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
 
-const tris = [{name: "Alphabétique"}, {name:"Derniers ajouts"}, {name: "Les plus visités"}, {name: "À traduire"}];
-const filtres = [{name: "Démarches"}, {name:"Dispositifs"}, {name: "Articles"}, {name: "Lexique"}, {name: "Annuaire"}];
+const tris = [{name: "Alphabétique"}, {name:"Derniers ajouts"}, {name: "Les plus visités"}];
+const filtres = [{name: "Démarches"}, {name:"Dispositifs"}, {name: "Articles"}, {name: "Lexique"}, {name: "Annuaire"}, {name: "À traduire"}];
 
 let user={_id:null, cookies:{}};
 class AdvancedSearch extends Component {
@@ -121,6 +121,7 @@ class AdvancedSearch extends Component {
 
   render() {
     const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
+    console.log(recherche)
     return (
       <div className="animated fadeIn advanced-search">
         <Row className="search-wrapper">

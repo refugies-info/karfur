@@ -95,6 +95,7 @@ function get_tradForReview(req, res) {
     res.status(204).json({ "text": "Pas de données", "data" : []})
     return false;
   }
+  console.log(query, sort, populate)
   var find = new Promise(function (resolve, reject) {
     Traduction.find(query).sort(sort).populate(populate).exec(function (err, result) {
       if (err) {

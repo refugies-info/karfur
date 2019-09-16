@@ -33,7 +33,7 @@ import FButton from '../../components/FigmaUI/FButton/FButton'
 import {ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 import SideTrad from './SideTrad/SideTrad';
 
-import {contenu, lorems, menu, filtres, steps, tutoSteps} from './data'
+import {contenu, lorems, menu, filtres, steps, tutoSteps, importantCard} from './data'
 
 import variables from 'scss/colors.scss';
 
@@ -45,10 +45,10 @@ let user={_id:'', cookies:{}}
 
 class Dispositif extends Component {
   state={
-    menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : ''), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
+    menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
     content:contenu,
     sponsors:sponsorsData,
-    tags:[{short:"Logement"}],
+    tags:[],
     mainTag: {darkColor: variables.darkColor, lightColor: variables.lightColor, hoverColor: variables.gris},
     dateMaj:new Date(),
     
@@ -122,7 +122,7 @@ class Dispositif extends Component {
           creator:dispositif.creatorId,
           uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
           dispositif: dispositif,
-          disableEdit: dispositif.status !== "Accepté structure",
+          disableEdit: dispositif.status !== "Accepté structure" || !props.translating,
           isDispositifLoading: false,
           contributeurs: [dispositif.creatorId].filter(x => x),
           mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x.name === dispositif.tags[0].name) || {}) : {},
@@ -232,11 +232,14 @@ class Dispositif extends Component {
     if(editable){ 
       try{ //On place le curseur à l'intérieur du wysiwyg et on ajuste la hauteur
         let parentNode = document.getElementsByClassName('editeur-' + key + '-' + subkey)[0];
-        parentNode.getElementsByClassName('public-DraftEditor-content')[0].focus();
-        window.getSelection().addRange( document.createRange() );
-        parentNode.getElementsByClassName("DraftEditor-root")[0].style.height = (parentNode.getElementsByClassName("public-DraftEditorPlaceholder-inner")[0] || {}).offsetHeight + "px";
-        this.setState({ stepIndex: key + 4, runJoyRide: true, disableOverlay: true, joyRideWidth: parentNode.offsetWidth, inputBtnClicked: false }) 
+        if(parentNode){
+          parentNode.getElementsByClassName('public-DraftEditor-content')[0].focus();
+          window.getSelection().addRange( document.createRange() );
+          parentNode.getElementsByClassName("DraftEditor-root")[0].style.height = (parentNode.getElementsByClassName("public-DraftEditorPlaceholder-inner")[0] || {}).offsetHeight + "px";
+          this.setState({ joyRideWidth: parentNode.offsetWidth }) 
+        }
       } catch(e){console.log(e)} 
+      this.setState({ stepIndex: key + 4, runJoyRide: true, disableOverlay: true, inputBtnClicked: false }) 
     } 
   }
 
@@ -384,7 +387,7 @@ class Dispositif extends Component {
   changeCardTitle = (key, subkey, node, value) => {
     const prevState = [...this.state.menu];
     if(node==="title"){
-      prevState[key].children[subkey] = {...menu[1].children.find(x => x.title === value)};
+      prevState[key].children[subkey] = [...menu[1].children, importantCard].find(x => x.title === value);
     }else{
       prevState[key].children[subkey][node]=value;
     }
@@ -678,6 +681,7 @@ class Dispositif extends Component {
                       disabled={this.state.disableEdit}
                       onClick={e=>{this.startJoyRide(1); this.onInputClicked(e)}}
                       onChange={this.handleChange} 
+                      onKeyDown={this.onInputClicked}
                       onMouseEnter={e => e.target.focus()} 
                     />
                   </h2>

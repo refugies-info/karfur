@@ -36,16 +36,17 @@ class SearchItem extends Component {
           </DropdownToggle>
           <DropdownMenu>
             <div className="options-wrapper">
-              {item.children.map((subi, idx) => (
+              {item.children.map((subi, idx) => {
+                return(
                 <FSearchBtn 
                   key={idx} 
                   onClick={()=> this.selectOption(subi)}
-                  className="search-options full"
-                  color={subi.color}
+                  className={"search-options" + (subi.short ? "": " full")}
+                  color={(subi.short || '').replace(/ /g, "-")} 
                 >
                   {subi.name}
                 </FSearchBtn>
-              ))}
+              )})}
             </div>
           </DropdownMenu>
         </Dropdown>

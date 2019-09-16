@@ -5,7 +5,14 @@
   margin-bottom: 20px;
 
   .where-header{
-    margin-bottom: 21px;
+    background: $darkColor;
+    border-radius: 0px 12px 0px 0px;
+    padding: 10px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
 
     .btn-group{
       max-width: 100%;
@@ -14,22 +21,18 @@
       width:100%;
     }
     .dropdown-btn{
-      margin-left:12px;
-      border-bottom: 1px solid #000000;
+      background: #FFFFFF;
+      border: 0.5px solid $grisFonce;
+      border-radius: 12px;
       font-weight: bold;
-      font-size: 18px;
-      line-height: 23px;
-      color: #CDCDCD;
-      width:313px;
+      width:390px;
+      height: 40px;
       text-align: left;
-      margin-right: 50px;
       max-width: 100%;
 
       &:after{
         position: absolute;
-        right:-33px;
-        top:50%;
-        font-size:33px;
+        right:10px;
       }
     }
   }
@@ -63,7 +66,9 @@
       .marker-input{
         font-size: 18px;
         color: $darkColor;
-        background: transparent;
+        &.no-highlight{
+          background: transparent;
+        }
         &.isTitle{
           font-weight: bold;
           font-size: 24px;
@@ -100,6 +105,13 @@
       top: 40px;
       z-index: 2;
     }
+  }
+
+  .remove-btn{
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    cursor: pointer;
   }
 }
 
