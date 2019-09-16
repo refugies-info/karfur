@@ -46,7 +46,8 @@ class AdvancedSearch extends Component {
     )).reduce((acc, curr) => ({...acc, ...curr}),{});
     console.log(query)
     API.get_dispositif({...query, status:'Actif'}).then(data_res => {
-      let dispositifs=data_res.data.data
+      let dispositifs=data_res.data.data;
+      console.log(data_res)
       this.setState({ dispositifs:dispositifs, showSpinner: false })
     }).catch(()=>this.setState({ showSpinner: false }))
   }

@@ -83,7 +83,8 @@ class Admin extends Component {
       adresse:'',
       mail_generique:'',
       createur: {},
-      administrateur:undefined
+      administrateur:undefined,
+      alt: '',
     },
   };
   initial_state = {...this.state};
@@ -153,7 +154,6 @@ class Admin extends Component {
   }
 
   onSelect = (item) => {
-    console.log(item)
     this.setState(item, ()=> console.log(this.state));
     if(item.user){
       this.setState({
@@ -339,7 +339,7 @@ class Admin extends Component {
                   onClick={() => { this.toggleTab(3, '4'); }} >
                     <EVAIcon name="shopping-bag-outline" fill={variables.noir} />
                     <span className={this.state.activeTab[3] === '4' ? '' : 'd-none'}> Structures</span>
-                    {'\u00A0'}<Badge pill color="alert">{this.state.structures.length}</Badge>
+                    {'\u00A0'}<Badge pill color="danger">{this.state.structures.length}</Badge>
                 </NavLink>
               </NavItem>
             </Nav>
@@ -357,6 +357,7 @@ class Admin extends Component {
                 onCancel={this.onCancel}
                 preTraitementStruct={this.preTraitementStruct}
                 isAdmin={true}
+                initial_state={this.initial_state}
                 {...this.state}  />
             </TabContent>
           </Col>

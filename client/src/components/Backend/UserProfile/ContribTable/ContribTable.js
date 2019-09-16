@@ -113,7 +113,7 @@ const contribTable = (props) => {
                     informées
                   </span>
                 </Col>
-                <Col lg="3" md="4" sm="12" xs="12">
+                <Col lg="3" md="12" sm="12" xs="12">
                   <FButton tag={NavLink} to="/backend/user-dash-contrib" type="dark" name="file-add-outline">
                     Espace contribution
                   </FButton>

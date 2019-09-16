@@ -73,14 +73,14 @@ const CreationContent = props => (
 
     {props.adminView && 
       <>
-        {props._id && 
+        {props._id && props.createur && props.createur._id && 
           <div className="creator-wrapper">
-            {props.createur && props.createur.picture && props.createur.picture.secure_url &&
+            {props.createur.picture && props.createur.picture.secure_url &&
               <img className="img-circle mr-10" src={props.createur.picture.secure_url} alt="profile"/>}
             <div className="creator-info">
-              <p><b>Nom d'utilisateur : </b> {(props.createur || {}).username}</p>
-              <p><b>Email : </b> {(props.createur || {}).email}</p>
-              <p><b>Description : </b> {(props.createur || {}).description}</p>
+              <p><b>Nom d'utilisateur : </b> {props.createur.username}</p>
+              <p><b>Email : </b> {props.createur.email}</p>
+              <p><b>Description : </b> {props.createur.description}</p>
             </div>
           </div>}
         <FormGroup row>
@@ -163,7 +163,7 @@ const CreationContent = props => (
           <b>Texte alternatif à l’image</b>
           <InputGroup>
             <EVAIcon className="input-icon" name="eye-off-outline" fill={variables.noir}/>
-            <Input id="alt" placeholder="Agi’r" value={props.alt} onChange={props.handleChange} />
+            <Input id="alt" placeholder="Agi’r" value={props.alt} onChange={props.handleChange} name="structure" />
           </InputGroup>
         </div>
       </>}

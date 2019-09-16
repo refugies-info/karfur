@@ -79,11 +79,6 @@ const modifyProfile = (props) => {
             </Col>
           </Row>
         </CardBody>
-        {!editing && <CardFooter>
-          <FButton type="dark" name="edit-outline" onClick={props.toggleEditing}>
-            Compléter
-          </FButton>
-        </CardFooter>}
       </div>
       {editing && 
         <CardFooter className="mt-10">

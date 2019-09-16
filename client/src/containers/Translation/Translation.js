@@ -17,8 +17,6 @@ import { menu } from '../Dispositif/data';
 let last_target=null;
 let letter_pressed=null;
 
-const initial_title = React.createRef();
-
 class TranslationHOC extends Component {
   state = {
     value: '',
@@ -82,11 +80,10 @@ class TranslationHOC extends Component {
     let locale = await this._setLangue(props);
     let isExpert=props.location.pathname.includes('/validation');
     const type = (props.match.path || "").includes("dispositif") ? "dispositif" : "string";
-    this.setState({ type, itemId, locale, isExpert })
-    console.log(itemId)
-    if(itemId){
-      API.get_tradForReview({[type === "dispositif" ? 'articleId' : '_id']:itemId}, {}, 'userId').then(data_res => {
-        if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
+    this.setState({ type, itemId, locale, isExpert });
+    if(itemId && type==="dispositif"){
+      API.get_tradForReview({'articleId':itemId}, {}, 'userId').then(data_res => {
+        if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           this.setState({traductionsFaites : data_res.data.data})
         }
       })
@@ -114,41 +111,6 @@ class TranslationHOC extends Component {
       locale=langue.i18nCode;
     } catch(err){console.log(err)} }
     return locale;
-  }
-
-  setArticle = article => {
-    const { itemId, locale, isExpert } = this.state;
-    this.setState({
-      francais:{
-        title: article.title,
-        body: article.isStructure? article.body : stringify(article.body),
-      },
-      isStructure: article.isStructure,
-      path: article.path,
-      id: article.articleId,
-      jsonBody:article.body,
-      ...(article.avancement && article.avancement[locale] && {avancement : article.avancement[locale]})
-    },()=>{
-      if(!isExpert){
-        //Je vérifie d'abord s'il n'y a pas eu une première traduction effectuée par un utilisateur :
-        API.get_tradForReview({'articleId': itemId, langueCible:  locale}, '-avancement').then(data => {
-          if(data.data.data && data.data.data.length > 0){
-            let traductionFaite = data.data.data[0];
-            this.setState({ translated: {
-              title: traductionFaite.translatedText.title,
-              body: article.isStructure? traductionFaite.translatedText.body : stringify(traductionFaite.translatedText.body),
-              }
-            });
-          }else{
-            console.log(this.initial_text)
-            //Je rend chaque noeud unique:
-            // this.translate(this.initial_text.innerHTML, locale, 'body')
-            // if(!this.state.isStructure){this.translate(this.initial_title.innerHTML, locale, 'title')}
-          }
-          // this.setState({texte_a_traduire:this.initial_text.innerText})
-        })
-      }
-    })
   }
 
   setRef = (refObj, name) => {console.log(name, refObj); this[name] = refObj;}
@@ -342,7 +304,6 @@ class TranslationHOC extends Component {
         <StringTranslation
           translate={this.translate} 
           setArticle = {this.setArticle}
-          initial_title={this.initial_title}
           setRef = {this.setRef}
           valider={this.valider}
           onSkip={this.onSkip}
@@ -353,7 +314,7 @@ class TranslationHOC extends Component {
           onKeyPress={this.handleKeyPress}
           onChange={this.handleChangeEnCours}
           handleClickText={this.handleClickText}
-          ref={initial_title}
+          fwdSetState={this.fwdSetState}
           {...this.state} 
         />
       )
