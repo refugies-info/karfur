@@ -32,4 +32,10 @@
       background: #FFFFFF;
     }
   }
+  &.color{
+    color: #FFFFFF;
+    &:hover{
+      filter:brightness(80%);
+    }
+  }
 }

@@ -39,23 +39,18 @@ class HomePage extends Component {
         <section id="hero">
           <div className="hero-container">
             <h1>Construire sa vie en France</h1>
-            <h5>Cherchez un des 13 dispositifs, démarches ou articles dédiés aux personnes réfugiées</h5>
+            <h5>Cherchez un des {this.props.dispositifs.length} dispositifs, démarches ou articles dédiés aux personnes réfugiées</h5>
             
             <div className="search-row">
               <SearchBar 
-                validate
                 validateTest="Valider"
                 className="input-group"
+                placeholder="Rechercher..."
               />
-              <div>
-                <div className="try-it-out">ou essayez la :</div>
-                <NavLink to="/advanced-search">
-                  <FButton type="dark">
-                    <EVAIcon name="flash" className="ml-10 mr-10" />
-                    Super recherche
-                  </FButton>
-                </NavLink>
-              </div>
+              <div className="try-it-out mr-10">ou</div>
+              <FButton tag={NavLink} to="/advanced-search" name="flash" type="dark" className="large-btn">
+                Super recherche
+              </FButton>
             </div>
           </div>
           <EVAIcon className="arrowhead-icon" name="arrowhead-down-outline" fill={variables.noir} />
@@ -68,9 +63,9 @@ class HomePage extends Component {
             <Row className="card-row">
               <Col lg="4" className="card-col">
                 <Card className="cursor-pointer" onClick={this.upcoming}>
-                  <CardHeader>Comprendre une démarche</CardHeader>
+                  <CardHeader>À comprendre une démarche</CardHeader>
                   <CardBody>
-                    <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span>
+                    {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
                   </CardBody>
                   <CardFooter>
                     <FButton type="outline-black" name="search-outline" fill={variables.noir}>
@@ -82,9 +77,9 @@ class HomePage extends Component {
               <Col lg="4" className="card-col">
                 <NavLink to="/advanced-search" className="no-decoration">
                   <Card>
-                    <CardHeader>Apprendre, travailler, me former, rencontrer</CardHeader>
+                    <CardHeader>À apprendre, travailler, vous former, rencontrer</CardHeader>
                     <CardBody>
-                      <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span>
+                      {/* <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span> */}
                     </CardBody>
                     <CardFooter>
                       <FButton type="outline-black" name="search-outline" fill={variables.noir}>
@@ -96,9 +91,9 @@ class HomePage extends Component {
               </Col>
               <Col lg="4" className="card-col">
                 <Card className="cursor-pointer" onClick={this.upcoming}>
-                  <CardHeader>Créer mon parcours personnalisé</CardHeader>
+                  <CardHeader>À créer votre parcours personnalisé</CardHeader>
                   <CardBody>
-                    <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span>
+                    {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
                   <CardFooter>
                     <FButton type="outline-black" name="search-outline" fill={variables.noir}>

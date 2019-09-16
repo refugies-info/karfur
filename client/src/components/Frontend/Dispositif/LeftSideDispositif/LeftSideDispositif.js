@@ -50,7 +50,7 @@ const leftSideDispositif = (props) => {
         </div>
         <FButton type="light-action" onClick={props.createPdf} name="download-outline">
           Télécharger en PDF
-          {props.showSpinner && <Spinner color="success" className="margin-left-8" />}
+          {props.showSpinner && <Spinner color="success" className="ml-8 small-spinner" />}
         </FButton>
         <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
           Envoyer par mail

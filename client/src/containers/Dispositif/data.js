@@ -14,20 +14,19 @@ const lorems = {
 }
 
 const menu = [
-  {title:'C\'est quoi ?', tutoriel:{titre:'« C’est quoi ? » : Résumé de votre dispositif', contenu:'Il s\'agit d\'une synthèse en deux paragraphes maximum de l’ensemble de la fiche du dispositif. La lecture de cette section doit être auto-suffisante. Il est conseillé de rédiger cette section en dernier après les sections ultérieures.'}},
-  {title:'C\'est pour qui ?', type:'cards', tutoriel:{titre:'« C’est pour qui ? » :  les pré-requis pour rejoindre', contenu:'Cette section précise les caractéristiques du public cible et les pré-requis éventuels pour s’engager dans le dispositif. Vous pouvez mobiliser les catégories suivantes à votre guise : \n> Le statut demandé ? Réfugié, demandeurs d’asiles, primo-arrivants… \n> L’âge ; \n> Le niveau de français \n> La durée sur laquelle engage le dispositif ; \n> Des alertes spécifiques (par exemple : avoir un compte bancaire).'}, children:[
+  {title:'C\'est quoi ?', content: '', tutoriel:{titre:'« C’est quoi ? » : Résumé de votre dispositif', contenu:'Il s\'agit d\'une synthèse en deux paragraphes maximum de l’ensemble de la fiche du dispositif. La lecture de cette section doit être auto-suffisante. Il est conseillé de rédiger cette section en dernier après les sections ultérieures.'}},
+  {title:'C\'est pour qui ?', type:'cards', content: null, tutoriel:{titre:'« C’est pour qui ? » :  les pré-requis pour rejoindre', contenu:'Cette section précise les caractéristiques du public cible et les pré-requis éventuels pour s’engager dans le dispositif. Vous pouvez mobiliser les catégories suivantes à votre guise : \n> Le statut demandé ? Réfugié, demandeurs d’asiles, primo-arrivants… \n> L’âge ; \n> Le niveau de français \n> La durée sur laquelle engage le dispositif ; \n> Des alertes spécifiques (par exemple : avoir un compte bancaire).'}, children:[
     {type:'card', isFakeContent: true,title:'Public visé',titleIcon:'papiers',contentTitle: 'réfugiés', contentBody: 'ou bénéficiaire de la protection subsidiaire', footer:'En savoir plus',footerIcon:'info-outline'},
     {type:'card', isFakeContent: true,title:'Âge requis',titleIcon:'calendar-outline', typeIcon: "eva",contentTitle: 'De ** à ** ans', bottomValue: 18, topValue:56, contentBody: '30 ans pour les personnes en situations de handicap', footer: 'Ajouter un message complémentaire', footerType:"text"},
     {type:'card', isFakeContent: true,title:'Durée',titleIcon:'clock-outline', typeIcon: "eva",contentTitle: '6 à 12 mois', contentBody: 'en fonction de ce qui est convenu sur votre contrat', footer: 'Ajouter un message complémentaire', footerType:"text", tooltipHeader: "Durée du dispositif", tooltipContent: "Indiquez un intervalle ou une durée fixe ou supprimez la carte si elle n’est pas pertinente."},
     {type:'card', isFakeContent: true,title:'Niveau de français',titleIcon:'frBubble',contentTitle: 'Débutant', niveaux:[], footer:'Évaluer mon niveau',footerIcon:'bar-chart-outline', footerHref:"https://savoirs.rfi.fr/fr/testez-votre-niveau-de-fran%C3%87ais", tooltipHeader: "Niveau de français requis", tooltipContent: "Indiquez un niveau généraliste et précisez si besoin le niveau CECR demandé (A1,A2, etc.).", tooltipFooter: "En savoir plus"},
     {type:'card', isFakeContent: true,title:'Combien ça coûte ?',titleIcon:'money',free: true, price: 0, contentTitle: 'une seule fois', footer:'Ajouter un message complémentaire', footerType:"text", tooltipHeader: "Combien ça coûte ?", tooltipContent: "Précisez si l’accès à votre dispositif est gratuit ou s’il existe des frais d’inscription, ou des coûts récurrent.\nPensez à expliquer la raison du coût en message complémentaire."},
     {type:'card', isFakeContent: true,title:'Justificatif demandé',titleIcon:'papiers',contentTitle: 'Titre de séjour', footer:'Voir un exemple',footerIcon:'eye-outline'},
-    {type:'card', isFakeContent: true,title:'Important !',titleIcon:'alert-triangle-outline', typeIcon: "eva",contentTitle: 'Compte bancaire', contentBody: 'nécessaire pour recevoir l’indemnité', footer:'Ajouter un message complémentaire', footerType:"text", tooltipHeader: "Critère spécifique", tooltipContent: "Vous avez la possibilité d’ajouter jusqu’à 3 critères supplémentaires pour prévenir les utilisateurs. Choisissez un titre court puis ajoutez une brève description."},
   ]},
-  {title:'Pourquoi c\'est intéressant ?', tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
+  {title:'Pourquoi c\'est intéressant ?', content: null, tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
     {isFakeContent: true, title:'Un exemple d\'accordéon',type:'accordion', placeholder: lorems.sousParagraphe,content: ''}
   ]},
-  {title:'Comment je m\'engage ?', tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
+  {title:'Comment je m\'engage ?', content: null, tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
     {type:'accordion', isFakeContent: true, title:'Contacter l’association partenaire la plus proche de chez vous', placeholder: lorems.sousParagraphe,content: ''}, 
     {type:'map', isFakeContent: true, isMapLoaded:true, markers: []},
   ]},
@@ -38,6 +37,8 @@ const menu = [
   // {title:'Dispositifs connexes', children:[{title:'Dispositifs similaires',content: lorems.sousParagraphe}, {title:'Dispositifs complémentaires',content: lorems.sousParagraphe}]},
   // {title:'Retours d\'expérience', children:[{title:'Questions réponses',content: lorems.sousParagraphe}, {title:'Avis',content: lorems.sousParagraphe}]},
 ];
+
+const importantCard = {type:'card', isFakeContent: true,title:'Important !',titleIcon:'alert-triangle-outline', typeIcon: "eva",contentTitle: 'Votre message', footer:'Ajouter un message complémentaire', footerType:"text", tooltipHeader: "Critère spécifique", tooltipContent: "Vous avez la possibilité d’ajouter jusqu’à 3 critères supplémentaires pour prévenir les utilisateurs. Choisissez un titre court puis ajoutez une brève description."}
 
 const filtres = {
   "audience": ['réfugié', 'tout public'],
@@ -184,7 +185,7 @@ const tutoSteps = [
   {
     title: 'C’est pour qui ?',
     content: "Ajoutez autant de carte que nécessaire pour expliciter les conditions d’accès au dispositif. Passez la souris sur chaque carte pour avoir des consignes détaillées.",
-    target: '#contenu-1 .contenu',
+    target: '#contenu-1 #info-card-1-1',
     locale: { 
       skip: 'Passer',
       next: 'Suivant',
@@ -194,7 +195,7 @@ const tutoSteps = [
   {
     title: 'Pourquoi ?',
     content: "ajoutez jusqu’à 5 arguments principaux pour convaincre l’utilisateur de vous rejoindre. Chaque titre d’accordéon doit être compréhensible sans avoir à lire son contenu. N’hésitez pas à faire des sous-arguments à l’aide des listes à puce.",
-    target: '#contenu-2 .contenu',
+    target: '#contenu-2 #accordion-header',
     locale: { 
       skip: 'Passer',
       next: 'Suivant',
@@ -204,7 +205,7 @@ const tutoSteps = [
   {
     title: 'Comment ?',
     content: "détaillez les différentes étapes pour accéder à votre dispositif : annuaire, prise de contact, premiers rendez-vous, formulaires d’inscriptions, etc. Vous pouvez ajouter une carte interactive pour cartographier vos points de contacts.",
-    target: '#contenu-3 .contenu',
+    target: '#contenu-3 #accordion-header',
     locale: { 
       skip: 'Passer',
       next: 'Suivant',
@@ -246,4 +247,4 @@ const tutoSteps = [
   },
 ]
 
-export {contenu, lorems, menu, filtres, steps, tutoSteps};
+export {contenu, lorems, menu, filtres, steps, tutoSteps, importantCard};

@@ -11,6 +11,19 @@
 @import './scss/common.scss';
 @import './scss/colors.scss';
 
+$theme-list: (
+  Français #583F93     #F0E8F5    #ADA8D4,
+  Logement    #1174BA     #DDF3FA    #55A6CE,
+  Insertion-pro    #149295     #D6EFF4    #4FD3BD,
+  Formation-pro    #095411     #E8F4E9    #7DC690,
+  Études    #378E04     #E8F7CD    #ADEA5C,
+  Mobilité    #EA6206     #FFF0E7    #F9D1B7,
+  Bénévolat    #FC0E3B     #FFEEEE    #FDA8AD,
+  Rencontre    #A50455     #FFEBF5    #FDA5C4,
+  Loisir    #AB2DC1     #F6E6FC    #E595F9,
+  Culture    #CE310D     #FFF0E7    #FEC396,
+);
+
 html head, html body{
   font-family: CircularStd, "Helvetica Neue", "Noto Sans";
   color: #3D3D3D;
@@ -108,5 +121,14 @@ html body{
   }
   .bg-validation{
     background: $validation;
+  }
+
+  @each $value in $theme-list {
+    .bg-#{nth($value, 1)} {
+      background-color: nth($value, 2);
+    }
+    .border-#{nth($value, 1)} {
+      border-color: nth($value, 2);
+    }
   }
 }

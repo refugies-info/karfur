@@ -129,9 +129,9 @@ function add_traduction(req, res) {
         User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "roles": result._id } },{new: true},(e) => {if(e){console.log(e);}}); 
       }
     })
-
+    
     //On l'insère en prod seulement si l'utilisateur a les droits admin ou expert en traduction
-    if(false && req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null)){
+    if(type!=='dispositif' && req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null)){
       let traductionItem=req.body;
       //On transforme le html en JSON après l'avoir nettoyé
       let html=traductionItem.translatedText.body;
@@ -163,9 +163,11 @@ function add_traduction(req, res) {
               }else{succes=false;}
             }else{
               avancement={value : result.avancement[locale] * result.nombreMots};
+              console.log(0, avancement)
               if(_insertStructTranslation(result.body,traductionItem.translatedText.body,locale,traductionItem.jsonId, avancement)){
                 result.markModified("body");
-                if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;};
+                if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;
+                  console.log(1, avancement)};
               }else{succes=false;}
             }
           }else{succes=false;}
@@ -175,7 +177,8 @@ function add_traduction(req, res) {
             req.body.update={status:'Validée'};
             Traduction.findByIdAndUpdate({_id: req.body.translationId},{status:'Validée'},{new: true}).exec();
           }
-          if(succes){
+          console.log(2, avancement)
+          if(false && succes){
             result.avancement = {...result.avancement,[locale]:avancement.value};
             result.markModified("avancement");
             result.save((err, article_saved) => {
