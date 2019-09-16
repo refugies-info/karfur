@@ -494,13 +494,13 @@ class Dispositif extends Component {
     let dispositif = {
       ...content,
       contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, ...(x.children && {children : x.children.map(x => ({...x, editable: false, ...(x.title && {title: h2p(x.title)})}))}) }}),
-      sponsors:this.state.sponsors.filter(x => !x.dummy),
+      sponsors:(this.state.sponsors || []).filter(x => !x.dummy),
       tags: this.state.tags,
       avancement:1,
       status:status,
       dispositifId:this.state._id
     }
-    let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children;
+    let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || [];
     dispositif.audience = cardElement.some(x=> x.title==='Public visé') ?
       cardElement.filter(x=> x.title==='Public visé').map(x => x.contentTitle) :
       filtres.audience;
@@ -658,7 +658,8 @@ class Dispositif extends Component {
                   toggleDispositifValidateModal={this.toggleDispositifValidateModal}
                   editDispositif = {this.editDispositif}
                   valider_dispositif={this.valider_dispositif}
-                  toggleDispositifCreateModal={this.toggleDispositifCreateModal} />
+                  toggleDispositifCreateModal={this.toggleDispositifCreateModal}
+                  admin={this.props.admin} />
               </Row>
               <FemmeCurly height="300" className="header-img femme-icon" alt="femme" />
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
@@ -936,6 +937,7 @@ const mapStateToProps = (state) => {
     languei18nCode: state.langue.languei18nCode,
     user: state.user.user,
     userId: state.user.userId,
+    admin: state.user.admin,
   }
 }
 

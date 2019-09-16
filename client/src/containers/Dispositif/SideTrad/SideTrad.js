@@ -56,6 +56,7 @@ class SideTrad extends Component {
     if(isNext && fromFn){this.setState({hasBeenSkipped: true})}
     if(this.state.currIdx > this.props.menu.length - 1){this._endingFeedback(); return;}
     const oldP = pointeurs.findIndex(x => this.state.currIdx === x);
+    console.log(oldP)
     if( (oldP > (- 1 + (isNext ? 0 : 1)) && oldP < pointeurs.length - (isNext ? 1 : 0))
         || (!isNext && this.state.currIdx === 0 && this.state.currSubIdx === -1 && this.state.currSubName === "content") ){
       this.setState({currIdx: pointeurs[oldP + (isNext ? 1 : this.state.currIdx === 0 ? pointeurs.length : -1)]}, () => {
@@ -90,20 +91,22 @@ class SideTrad extends Component {
       }
       this.setState({currIdx: idx, currSubIdx: subidx, currSubName: subname}, () => {
         let value = "";
-        console.log('ici')
+        console.log('ici', idx, subidx, subname)
         if(idx > this.props.menu.length - 1){
           console.log('la')
           this._endingFeedback();
           return;
         }else if(subidx > -1 && this.props.menu[idx].type === "cards"){
+          console.log('la 1')
           if(this.props.menu[idx].children[subidx][subname] === "Important !"){
             subname = "contentTitle";
             value = this.props.menu[idx].children[subidx].contentTitle;
           }
         }else{
           value = subidx > -1 ? this.props.menu[idx].children[subidx][subname] : this.props.menu[idx].content;
+          console.log('la 2', this.props.menu[idx].content, h2p(value))
         }
-        if(!value || value === "" || value === "undefined" || value === "null"){this.goChange(isNext, false); return;}
+        if(!value || h2p(value) === "" || h2p(value) === "undefined" || h2p(value) === "null"){this.goChange(isNext, false); return;}
         this._scrollAndHighlight(idx, subidx, subname);
         this.props.fwdSetState(() => ({francais: {body: value } }), ()=> this.checkTranslate(this.props.locale));
       })
