@@ -42,15 +42,6 @@
       background: #ffffff;
       color: $noir;
     }
-
-    &:nth-child(2n){
-      border: 1px solid $rouge;
-      background: $rouge;
-      &:hover{
-        background: transparent;
-        color: #FFFFFF;
-      }
-    }
   }
 
   .plus-button{

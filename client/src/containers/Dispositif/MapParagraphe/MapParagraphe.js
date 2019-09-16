@@ -7,9 +7,11 @@ import Swal from 'sweetalert2';
 import MapComponent from '../../../components/Frontend/Dispositif/MapComponent/MapComponent';
 import MapModal from '../../../components/Modals/MapModal/MapModal';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
+import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import {markerInfo} from './data';
 
 import './MapParagraphe.scss';
+import variables from 'scss/colors.scss';
 
 const refs = {}
 class MapParagraphe extends PureComponent {
@@ -30,7 +32,7 @@ class MapParagraphe extends PureComponent {
 
   componentDidMount (){
     if(!this.props.disableEdit && !this.props.subitem.isMapLoaded){
-      this.setState({showModal:true})
+      // this.setState({showModal:true})
     }
   }
 
@@ -46,7 +48,7 @@ class MapParagraphe extends PureComponent {
   
   componentDidUpdate (){
     if(!this.props.disableEdit && !this.props.subitem.isMapLoaded){
-      this.setState({showModal:true})
+      // this.setState({showModal:true})
     }
   }
 
@@ -177,9 +179,12 @@ class MapParagraphe extends PureComponent {
     let {markers, markerInfo} = this.state;
     return(
       <div className="map-paragraphe">
-        {this.props.disableEdit && (window.google || {}).maps &&
-          <div className="where-header">
-            <b>Où souhaitez-vous vous engager ?</b>
+        <div className="where-header backgroundColor-darkColor">
+          <div>
+            <EVAIcon name="pin-outline" className="mr-10" />
+            <b>Trouver un interlocuteur : </b>
+          </div>
+          {markers.length > 0 && 
             <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} className="content-title">
               <DropdownToggle caret color="transparent" className="dropdown-btn">
                 <span>{this.state.dropdownValue}</span>
@@ -191,9 +196,9 @@ class MapParagraphe extends PureComponent {
                   </DropdownItem> 
                 ))}
               </DropdownMenu>
-            </ButtonDropdown>
-            {/* <Button color="warning" onClick={this.toggleModal}>Changer le fichier de données</Button>} */}
-          </div>}
+            </ButtonDropdown>}
+            <EVAIcon onClick={()=>this.props.deleteCard(this.props.keyValue,this.props.subkey)} name="minus-circle" fill={variables.error} className="remove-btn" />
+        </div>
         <div className="map-content">
           <div className="inner-container">
             <MapComponent

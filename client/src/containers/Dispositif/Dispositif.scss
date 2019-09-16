@@ -499,6 +499,10 @@ $imgHeight : 350px;
       }
     }
   }
+  .small-spinner{
+    width: 16px;
+    height: 16px;
+  }
 
   .fiabilite-row{
     margin-left: auto;
@@ -681,8 +685,12 @@ $imgHeight : 350px;
       margin-bottom:12px;
     }
 
+    .link-wrapper{
+      width: 100%;
+    }
+
     .input-btn{
-      width: 350px;
+      width: 100%;
       padding: 0;
       .form-control {
         padding-right: 12px;
@@ -911,5 +919,5 @@ div[x-placement="bottom"].__floater.__floater__open{
 }
 
 div[x-placement="top"].__floater.__floater__open{
-  margin-top: 20px;
+  margin-top: 60px;
 }

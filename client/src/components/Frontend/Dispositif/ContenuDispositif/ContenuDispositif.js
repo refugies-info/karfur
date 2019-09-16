@@ -14,7 +14,7 @@ const contenuDispositif = (props) => {
             <Col lg="12" md="12" sm="12" xs="12" className={'contenu borderColor-darkColor' + (props.uiArray[key].isHover ? ' isHovered' : '')} onMouseEnter={()=>props.updateUIArray(key, null, 'isHover')}>
               <button className="anchor" id={'item-head-'+key}>{item.title}</button>
               <h3 className={"contenu-title color-darkColor" + (key !== 0 ? " mt-20": "")}>{item.title}</h3>
-              {item.content!=='null' && <EditableParagraph 
+              {item.content!==null && <EditableParagraph 
                 keyValue = {key}
                 handleMenuChange={props.handleMenuChange}
                 onEditorStateChange={props.onEditorStateChange}

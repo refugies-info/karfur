@@ -277,7 +277,7 @@ class CardParagraphe extends Component {
               </div>}
           </Card>
 
-          <Tooltip className="card-tooltip backgroundColor-darkColor" isOpen={(subitem.tooltipHeader || subitem.tooltipContent) && !this.props.disableEdit && this.state.tooltipOpen} target={"info-card-" + this.props.keyValue + "-" + subkey} toggle={this.toggleTooltip}>
+          <Tooltip className="card-tooltip backgroundColor-darkColor" isOpen={(subitem.tooltipHeader || subitem.tooltipContent) && !this.props.disableEdit && this.props.withHelp && this.state.tooltipOpen} target={"info-card-" + this.props.keyValue + "-" + subkey} toggle={this.toggleTooltip}>
             <div className="tooltip-header"><b>{subitem.tooltipHeader}</b></div>
             <div className="tooltip-content">{subitem.tooltipContent}</div>
             <div className="tooltip-footer"><u>{subitem.tooltipFooter}</u></div>
