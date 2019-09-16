@@ -228,7 +228,7 @@ class UserProfile extends Component {
                   <span className="status">{traducteur ? "Traducteur" : (contributeur ? "Contributeur" : "Utilisateur")}</span>
                 </CardFooter>
               </div>
-              <FButton type="dark" name="edit-outline" className="mt-10">
+              <FButton type="dark" name="edit-outline" className="mt-10" onClick={this.toggleEditing}>
                 Modifier mon profil
               </FButton>
             </div>

@@ -6,10 +6,8 @@ function create_langues(req, res) {
     res.status(400).json({
         "text": "Requête invalide"
     })
-  } else if (!req.user || !req.user.isAdmin) {
-    res.status(403).json({
-      "text": "L'utilisateur n'a pas les droits pour effectuer cette modification"
-    })
+  } else if (!req.user || !req.user.roles.some(x => x.nom === "Admin")) {
+    res.status(403).json({ "text": "L'utilisateur n'a pas les droits pour effectuer cette modification" })
   } else {
     var langue = req.body;
     let promise=null;

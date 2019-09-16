@@ -40,9 +40,11 @@ class Translation extends Component {
     tooltipOpen: false,
   }
 
-  // componentDidMount (){
-  //   this._initializeComponent(this.props)
-  // }
+  componentDidMount (){
+    if(this.props.itemId){
+      this._initializeComponent(this.props);
+    }
+  }
 
   componentWillReceiveProps(nextProps){
     if(nextProps.itemId !== this.props.itemId){
@@ -53,10 +55,10 @@ class Translation extends Component {
 
   _initializeComponent = async props => {
     const { itemId, locale, isExpert } = props;
-    if(itemId && locale){
+    console.log(itemId, locale, isExpert)
+    if(itemId && locale && !isExpert){
       this._getArticle(itemId,locale)
-    }
-    if(itemId && isExpert){
+    }else if(itemId && isExpert){
       API.get_tradForReview({'_id':itemId}).then(data_res => {
         if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           let traduction=data_res.data.data[0];
@@ -88,7 +90,41 @@ class Translation extends Component {
     API.get_article({_id: itemId}).then(data_res => {
       if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
         let article=data_res.data.data[0];
-        this.props.setArticle(article);
+        this.setArticle(article);
+      }
+    })
+  }
+
+  setArticle = article => {
+    const { itemId, locale, isExpert } = this.props;
+    this.props.fwdSetState({
+      francais:{
+        title: article.title,
+        body: article.isStructure? article.body : stringify(article.body),
+      },
+      isStructure: article.isStructure,
+      path: article.path,
+      id: article.articleId,
+      jsonBody:article.body,
+      ...(article.avancement && article.avancement[locale] && {avancement : article.avancement[locale]})
+    },()=>{
+      if(!isExpert){
+        //Je vérifie d'abord s'il n'y a pas eu une première traduction effectuée par un utilisateur :
+        API.get_tradForReview({'articleId': itemId, langueCible:  locale}, '-avancement').then(data => {
+          if(data.data.data && data.data.data.length > 0){
+            let traductionFaite = data.data.data[0];
+            this.fwdSetState({ translated: {
+              title: traductionFaite.translatedText.title,
+              body: article.isStructure? traductionFaite.translatedText.body : stringify(traductionFaite.translatedText.body),
+              }
+            });
+          }else{
+            //Je rend chaque noeud unique:
+            this.props.translate(this.initial_text.innerHTML, locale, 'body')
+            if(!this.props.isStructure){this.props.translate(this.initial_title.innerHTML, locale, 'title')}
+          }
+          this.props.fwdSetState({texte_a_traduire:this.initial_text.innerText})
+        })
       }
     })
   }

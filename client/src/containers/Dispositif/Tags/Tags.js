@@ -10,8 +10,20 @@ class Tags extends Component {
     isDropdownOpen: new Array(this.props.tags.length).fill(false),
   }
 
+  componentDidMount(){
+    if(this.props.tags){
+      this.setState({isDropdownOpen: new Array(this.props.tags.length).fill(false)})
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.tags !== this.props.tags){
+      this.setState({isDropdownOpen: new Array(nextProps.tags.length).fill(false)})
+    }
+  }
+
   toggleDropdown = (e, key) => {
-    this.setState({ isDropdownOpen: this.state.isDropdownOpen.map((x,i)=> i===key ? !x : false)})
+    this.setState({ isDropdownOpen: this.state.isDropdownOpen.map((x,i)=> i===key ? !x : false)}, () => console.log(this.state))
   };
 
   addTag = () => {
@@ -28,6 +40,7 @@ class Tags extends Component {
     return(
       <div className="tags">
         {(this.props.tags || []).map((tag, key) => {
+          console.log(this.props.disableEdit, this.state.isDropdownOpen, this.state.isDropdownOpen[key])
           return (
             <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key)} className="tags-dropdown" key={key}>
               <DropdownToggle caret={!this.props.disableEdit}>
