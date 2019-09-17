@@ -176,20 +176,20 @@ class UserProfile extends Component {
           </AnchorLink>
           <AnchorLink href={(contributeur || traducteur) ? "#actions-requises" : "#mes-favoris"} offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon name={((contributeur || traducteur) ? "bell-" : "bookmark-" ) + "outline"} fill={variables.noir} className="header-icon" /> {' '}
-            <span className="hideOnPhone">{(contributeur || traducteur) ? "Actions requises" : "Mes favoris"}</span>
+            <span className="hideOnPhone">{(contributeur || traducteur) ? "Notifications" : "Favoris"}</span>
           </AnchorLink>
           {showSections.contributions && <AnchorLink href="#mes-contributions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon name="file-add-outline" fill={variables.noir} className="header-icon" /> {' '}
-            <span className="hideOnPhone">Mes articles</span>
+            <span className="hideOnPhone">Rédactions</span>
           </AnchorLink>}
           {showSections.traductions && <AnchorLink href="#mes-traductions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
-            <SVGIcon name="bubbleTranslate" fill={variables.noir} className="header-icon" /> {' '}
-            <span className="hideOnPhone">Mes traductions</span>
+            <SVGIcon name="translate" fill={variables.noir} className="header-icon svgico" /> {' '}
+            <span className="hideOnPhone">Traductions</span>
           </AnchorLink>}
           {(contributeur || traducteur) &&
             <AnchorLink href="#mes-favoris" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
               <EVAIcon name="bookmark-outline" fill={variables.noir} className="header-icon" /> {' '}
-              <span className="hideOnPhone">Mes favoris</span>
+              <span className="hideOnPhone">Favoris</span>
             </AnchorLink>}
           {structure && structure._id &&
             <AnchorLink href="#structure" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
@@ -245,19 +245,19 @@ class UserProfile extends Component {
                 <CardBody>
                   <Row>
                     <Col className="obj-first">
-                      <h1 className="title">{Math.floor(this.state.progression.timeSpent / 1000 / 60)}</h1>
+                      <h1 className="title text-big">{Math.floor(this.state.progression.timeSpent / 1000 / 60)}</h1>
                       <h6 className="subtitle">minutes données</h6>
-                      <span className="content">Commencez à contribuer sur Agi’r pour démarrer le compteur</span>
+                      <span className="content texte-small">Commencez à contribuer pour démarrer le compteur.</span>
                     </Col>
                     <Col className="obj-second">
-                      <h1 className="title">0</h1>
+                      <h1 className="title text-big">0</h1>
                       <h6 className="subtitle">mots écrits</h6>
-                      <span className="content">Rédiger votre premier contenu sur Agi’r pour démarrer le compteur.</span>
+                      <span className="content texte-small">Rédiger votre premier contenu pour démarrer le compteur.</span>
                     </Col>
                     <Col className="obj-third">
-                      <h1 className="title">{this.state.progression.nbMots}</h1>
+                      <h1 className="title text-big">{this.state.progression.nbMots}</h1>
                       <h6 className="subtitle">mots traduits</h6>
-                      <span className="content">Traduisez vos premiers mots sur Agi’r pour démarrer le compteur.</span>
+                      <span className="content texte-small">Traduisez vos premiers mots pour démarrer le compteur.</span>
                     </Col>
                   </Row>
                 </CardBody>

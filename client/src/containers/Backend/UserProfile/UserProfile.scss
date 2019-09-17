@@ -13,40 +13,61 @@ $defaultSize:310px;
   .profile-header{
     height: 60px;
     width:100%;
-    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
     display:flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     position: fixed;
     z-index: 3;
-    background: #FFFFFF;
+    background: $gris;
     top: 60px;
 
     a{
       font-style: normal;
       font-weight: bold;
-      color: #000000;
-      padding:25px;
+      color: $noir;
+      padding:18px 25px;
+      &:hover{
+        background-color: $noir;
+        color: $blancSimple;
+        svg{
+          fill: #FFFFFF;
+        }
+        .svgico{
+          filter: invert(100%);
+        }
+    
+      }
+
+      .header-icon{
+        margin-right:8px;
+      }
     }
-    .header-icon{
-      margin-right:8px;
-    }
+    
   }
 
   .profile-content{
-    margin: 23px 64px;
+    margin: 23px 60px;
     @include media-max("phone-down") { margin: 23px 32px; }
 
     .profile-info{
       background: inherit;
-      border-radius: 12px;  
+      border-radius: 12px;
+      max-width: 100%;
+      
+      .modify-col{
+        padding: 0 10px;
+      }
+
+      .user-col {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
 
       .profile-left{
         height: 100%;
         text-align: center;
         width:fit-content;
-        margin-bottom: 1.5rem;
 
         .card-body{
           padding:20px;
@@ -118,8 +139,8 @@ $defaultSize:310px;
 
       .shadow-wrapper{
         border-radius: 12px;
+        height: 100%;
         &.active{
-          border:1px solid rgba(0, 0, 0, 0.125);
           box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
         }
       }
@@ -129,10 +150,12 @@ $defaultSize:310px;
         color: $noir;
         border:none;
         background: transparent;
+        height: 100%;
 
         .shadow-wrapper{
           background: $gris;
           padding: 20px;
+          height: 100%;
         }
         .card-body{
           border-radius: 0px 0px 12px 12px;
@@ -144,8 +167,16 @@ $defaultSize:310px;
           }
           div[contenteditable="true"]{
             background: white;
+            border-radius: 6px;
+            min-height: 30px;
+            &:after{
+              border-radius: 6px;
+            }
             &:empty{
-              min-height: 23px;
+              min-height: 30px;
+            }
+            .input{
+              text-align: center;
             }
           }
           .langues-dropdown .btn, .plus-langue{
@@ -164,6 +195,10 @@ $defaultSize:310px;
             right: -7px;
             top: -15px;
             cursor: pointer;
+          }
+
+          .handleBetween {
+            font-weight: bold;
           }
           @include media-between("xl-limit", "widescreen-up") { 
             .handleBetween{
@@ -191,24 +226,38 @@ $defaultSize:310px;
 
       .profile-right{
         border:none;
+        background: inherit;
+        height: 100%;
 
         .card-body{
           padding:0;
+          height:100%;
+          margin-bottom: none;
           .row{
             margin: 0 -10px 0 0;
+            height: 100%;
             .col{
-              padding: 8px 20px;
+              padding: 20px 20px;
               background: $gris;
               color: $noirCD;
               border-radius: 12px;
               margin-right: 10px;
               width: 200px;
               max-width: 200px;
+              height: 100%;
+              line-height: 20px;
+              display: flex;
+              flex-direction: column;
               h1{
                 margin-bottom:10px;
               }
               .subtitle{
-                margin-bottom: 50px;
+                margin-bottom: 30px;
+              }
+              .content{
+                color: $noir;
+                margin-top: auto;
+
               }
             }
           }
@@ -258,14 +307,17 @@ $defaultSize:310px;
 .avancement-user-table.table, .avancement-table .table{
   border-style : hidden;
   thead{
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 23px;
-    color: #828282;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    color:$noir;
   }
   tbody tr:hover{
     background: $blanc;
     cursor: pointer;
+    border-style: hidden;
+    border-radius: 12px;
+
   }
   td {
     border-style : hidden;
@@ -383,15 +435,24 @@ $defaultSize:310px;
       font-size: 40px;
       display: inline;
       @include media-max("phone-down") { font-size: 46px; }
+
+      .sup, .nb-actions{
+        display: inline-block;
+        width: 1.5em;
+        height: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.5em;
+        background-color: $noir;
+        border-radius: 1000px;
+        color: $blanc;
+        top: -25px;
+        left: 10px;
+      }
     }
 
-    .nb-actions{
-      font-weight: bold;
-      font-size: 24px;
-      line-height: 30px;
-      color: #E55039;
-      top:-36px;
-    }
+ 
 
     .tableau{
       border-radius: 12px;
@@ -406,8 +467,11 @@ $defaultSize:310px;
         }
       }
     }
-    .ecran-protection .content-wrapper{
+    .ecran-protection{
+      opacity: 1;
+      .content-wrapper{
       max-width: 650px;
+      }
     }
     .tableau-footer{
       display: flex;
