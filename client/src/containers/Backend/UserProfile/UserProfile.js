@@ -5,18 +5,19 @@ import Swal from 'sweetalert2';
 import h2p from 'html2plaintext';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import windowSize from 'react-window-size';
+import { connect } from 'react-redux';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
 import {ActionTable, TradTable, ContribTable, FavoriTable, StructureCard} from '../../../components/Backend/UserProfile';
-import {ThanksModal, SuggestionModal, ObjectifsModal, ContributeurModal, TraducteurModal} from '../../../components/Modals';
+import {ThanksModal, SuggestionModal, ObjectifsModal, ContributeurModal, TraducteurModal, AddMemberModal} from '../../../components/Modals';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import ModifyProfile from '../../../components/Backend/UserProfile/ModifyProfile/ModifyProfile';
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
-
-import {fakeTraduction, fakeContribution, fakeFavori, fakeNotifs, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
-import {showSuggestion, archiveSuggestion, parseActions} from './functions';
+import {selectItem, editMember, addMember} from '../UserDashStruct/functions';
+import {fakeContribution, fakeFavori, fakeNotifs, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
+import {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgression} from './functions';
 
 import './UserProfile.scss';
 import variables from 'scss/colors.scss';
@@ -28,10 +29,15 @@ class UserProfile extends Component {
     super(props);
     this.showSuggestion = showSuggestion.bind(this);
     this.archiveSuggestion = archiveSuggestion.bind(this);
+    this.selectItem = selectItem.bind(this);
+    this.editMember = editMember.bind(this);
+    this.addMember = addMember.bind(this);
+    this.deleteContrib = deleteContrib.bind(this);
+    this.getProgression = getProgression.bind(this);
   }
 
   state={
-    showModal:{actions:false, traducteur: false, contributions: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: false}, 
+    showModal:{actions:false, traducteur: false, contributions: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: false, addMember: false}, 
     showSections:{traductions: true, contributions: true},
     user: {},
     traductions:[],
@@ -49,43 +55,43 @@ class UserProfile extends Component {
     suggestion:{},
     progression:{
       timeSpent:0,
-      nbMots:0
+      nbMots:0,
+      nbMotsContrib: 0,
     },
     tempImg: null,
     isMainLoading:true,
+    users:[],
+    selected:{},
   }
 
   componentDidMount() {
-    API.get_user_info().then(data_res => {
-      let user=data_res.data.data;
-      API.get_tradForReview({'userId': user._id}).then(data => { console.log(data.data.data);
-        this.setState({traductions: data.data.data})
-      })
-      API.get_dispositif({'creatorId': user._id}).then(data => { console.log(data.data.data);
-        this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
-      })
-      if(user.structures && user.structures.length > 0){
-        API.get_structure({_id: user.structures[0] }).then(data => { console.log(data.data.data);
-          this.setState({structure:data.data.data[0]})
-        })
-        API.get_dispositif({'mainSponsor': user.structures[0]}).then(data => {console.log(parseActions(data.data.data))
-          this.setState({actionsStruct: parseActions(data.data.data)})
-        })
-      }
-      console.log(user)
-      this.setState({user:user, isMainLoading:false, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
+    const user=this.props.user, userId = this.props.user;
+    API.get_tradForReview({'userId': userId}).then(data => { console.log(data.data.data);
+      this.setState({traductions: data.data.data})
     })
+    API.get_dispositif({'creatorId': userId, status: {$ne: "Supprimé"}}).then(data => { console.log(data.data.data);
+      this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
+    })
+    if(user.structures && user.structures.length > 0){
+      API.get_structure({_id: user.structures[0] }).then(data => { console.log(data.data.data);
+        this.setState({structure:data.data.data[0]})
+      })
+      API.get_dispositif({'mainSponsor': user.structures[0]}).then(data => {console.log(parseActions(data.data.data))
+        this.setState({actionsStruct: parseActions(data.data.data)})
+      })
+    }
+    console.log(user)
+    this.setState({user:user, isMainLoading:false, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
+    
+    API.get_users({}).then(data => this.setState({users: data.data.data}) );
     API.get_langues({}).then(data => this.setState({ langues: data.data.data }))
-    API.get_progression().then(data_progr => {
-      if(data_progr.data.data && data_progr.data.data.length>0)
-        this.setState({progression: data_progr.data.data[0]})
-    })
+    this.getProgression();
     window.scrollTo(0, 0);
   }
 
   toggleModal = (modal) => {
     this.props.tracking.trackEvent({ action: 'toggleModal', label: modal, value : !this.state.showModal[modal] });
-    this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}})
+    this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}}, () => console.log(this.state))
   }
 
   toggleSection = (section) => {
@@ -244,17 +250,17 @@ class UserProfile extends Component {
               <Card className="profile-right">
                 <CardBody>
                   <Row>
-                    <Col className="obj-first">
-                      <h1 className="title text-big">{Math.floor(this.state.progression.timeSpent / 1000 / 60)}</h1>
+                    <Col className={"obj-first" + (this.state.progression.timeSpent > 0 ? " active" : "")}>
+                      <h1 className="title text-big">{Math.round(this.state.progression.timeSpent / 1000 / 60)}</h1>
                       <h6 className="subtitle">minutes données</h6>
                       <span className="content texte-small">Commencez à contribuer pour démarrer le compteur.</span>
                     </Col>
-                    <Col className="obj-second">
-                      <h1 className="title text-big">0</h1>
+                    <Col className={"obj-second" + (this.state.progression.nbMotsContrib > 0 ? " active" : "")}>
+                      <h1 className="title text-big">{this.state.progression.nbMotsContrib}</h1>
                       <h6 className="subtitle">mots écrits</h6>
                       <span className="content texte-small">Rédiger votre premier contenu pour démarrer le compteur.</span>
                     </Col>
-                    <Col className="obj-third">
+                    <Col className={"obj-third" + (this.state.progression.nbMots > 0 ? " active" : "")}>
                       <h1 className="title text-big">{this.state.progression.nbMots}</h1>
                       <h6 className="subtitle">mots traduits</h6>
                       <span className="content texte-small">Traduisez vos premiers mots pour démarrer le compteur.</span>
@@ -295,6 +301,7 @@ class UserProfile extends Component {
           }
 
           <ContribTable 
+            type="user"
             displayIndicators
             dataArray={contributions}
             user={this.state.user}
@@ -309,6 +316,7 @@ class UserProfile extends Component {
             overlayBtn="Découvrir comment contribuer"
             overlayRedirect={false}
             history={this.props.history}
+            deleteContrib = {this.deleteContrib}
             {...avancement_contrib} />
 
           <TradTable 
@@ -357,6 +365,7 @@ class UserProfile extends Component {
               structure={structure}
               actions={actionsStruct}
               user={user}
+              toggleModal={this.toggleModal}
               {...data_structure} />}
         </div>
 
@@ -371,10 +380,12 @@ class UserProfile extends Component {
         
         <Modal isOpen={this.state.showModal.contributions} toggle={()=>this.toggleModal('contributions')} className='modal-plus'>
           <ContribTable 
+            type="user"
             dataArray={contributions}
             user={user}
             toggleModal={this.toggleModal}
             windowWidth={this.props.windowWidth}
+            deleteContrib = {this.deleteContrib}
             {...avancement_contrib} />
         </Modal>
 
@@ -418,6 +429,15 @@ class UserProfile extends Component {
           toggle={()=>this.toggleModal('objectifs')}
           validateObjectifs={this.validateObjectifs} />
 
+        <AddMemberModal 
+          show={this.state.showModal.addMember}
+          toggle={()=>this.toggleModal("addMember")}
+          users={this.state.users}
+          selectItem={this.selectItem}
+          addMember={this.addMember}
+          selected={this.state.selected}
+        />
+
         {isMainLoading &&
           <div className="ecran-protection no-main">
             <div className="content-wrapper">
@@ -430,6 +450,15 @@ class UserProfile extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user,
+    userId: state.user.userId,
+  }
+}
+
 export default track({
   page: 'UserProfile',
-})(windowSize(UserProfile));
+})(connect(mapStateToProps)(
+  windowSize(UserProfile))
+);

@@ -36,6 +36,7 @@ function signup(req, res) {
         delete user.traducteur;
       }
       user.status='Actif';
+      user.last_connected = new Date();
 
       Role.findOne({'nom':'User'}).exec((e, result) => {
         user.roles = (result || {})._id;
@@ -102,6 +103,7 @@ function login(req, res) {
             delete user.traducteur;
           }else{user.roles=[req.roles.find(x=>x.nom==='User')._id]}
           user.status='Actif';
+          user.last_connected = new Date();
           var _u = new User(user);
           _u.save( (err, user) => {
             if (err) {
@@ -124,8 +126,9 @@ function login(req, res) {
           //On change les infos de l'utilisateur
           if(req.body.traducteur){
             user.roles=[req.roles.find(x=>x.nom==='Trad')];
-            user.save();
           }
+          user.last_connected = new Date();
+          user.save();
           res.status(200).json({
             "token": user.getToken(),
             "text": "Authentification réussi"

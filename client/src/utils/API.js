@@ -114,6 +114,9 @@ export default {
   update_dispositif : query => {
     return axios.post(burl + '/dispositifs/update_dispositif', query, {headers: headers})
   },
+  get_dispo_progression : query => {
+    return axios.post(burl + '/dispositifs/get_dispo_progression', query, {headers: headers})
+  },
 
   create_structure : query => {
     return axios.post(burl + '/structures/add_structure', query, {headers: headers})

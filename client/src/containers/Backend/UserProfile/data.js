@@ -70,8 +70,8 @@ const avancement_langue={
 
 const avancement_contrib={
   title: 'Contributions',
-  headers: ['Titre', 'Statut', 'Progression', 'Rôle', 'Ils rédigent avec moi',''],
-  hideOnPhone: [false, false, true, true, true, false]
+  headers: ['Titre', 'Statut', 'Progression', 'Rôle', 'Ils rédigent avec moi','', ''],
+  hideOnPhone: [false, false, true, true, true, false, false]
 }
 
 const avancement_actions={
