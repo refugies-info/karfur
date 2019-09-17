@@ -12,7 +12,7 @@ const modifyProfile = (props) => {
         <CardBody>
           <Row>
             <Col xl="4" lg="4" md="4" sm="4" xs="4" className="handleBetween">
-              Pseudonyme
+              Pseudonyme :
             </Col>
             <Col lg="6" md="6" sm="6" xs="6">
               <ContentEditable
@@ -56,7 +56,7 @@ const modifyProfile = (props) => {
           </Row> */}
           <Row>
             <Col lg="4" md="4" sm="4" xs="4" className="handleBetween">
-              Email
+              E-mail :
             </Col>
             <Col lg="6" md="6" sm="6" xs="6">
               <ContentEditable
@@ -68,7 +68,7 @@ const modifyProfile = (props) => {
           </Row>
           <Row>
             <Col lg="4" md="4" sm="4" xs="4" className="handleBetween">
-              A propos
+              À propos :
             </Col>
             <Col lg="6" md="6" sm="6" xs="6">
               <ContentEditable

@@ -147,11 +147,11 @@ const tradTable = (props) => {
 
           {!traducteur &&
             <div className="ecran-protection no-trad">
-              {props.toggleSection && 
+              {/*props.toggleSection && 
                 <div className="close-box text-white" onClick={()=>{props.toggleSection('traductions');}}>
                   <Icon name="eye-off-2-outline" fill="#FFFFFF" />
                   <u>Masquer</u>
-                </div>}
+              </div>*/}
               <div className="content-wrapper">
                 <h1>{props.overlayTitle}</h1>
                 <span>{props.overlaySpan}</span>

@@ -30,15 +30,15 @@ class Footer extends Component {
             <Logo />
             <Form>
               <FormGroup>
-                <Label for="emailNewsletter">Rejoindre la newsletter</Label>
-                <div className="position-relative">
+                {/*<Label for="emailNewsletter">Rejoindre la newsletter</Label>*/}
+               <div className="position-relative">
                   <Input 
                     type="email" 
                     name="email" 
                     value={this.state.email}
                     onChange={this.onChange}
                     id="emailNewsletter" 
-                    placeholder="Je veux suivre l’avancée du projet" />
+                    placeholder="Je m'abonne à la newsletter" />
                   <InputGroupAddon addonType="append" className="icon-append" onClick={this.onClick}>
                     <EVAIcon name='at-outline' fill={variables.noir} />
                   </InputGroupAddon>
@@ -46,13 +46,13 @@ class Footer extends Component {
               </FormGroup>
             </Form>
             <div className="ligne-footer">
-              <label>Rejoindre la newsletter</label>
+              {/*<label>Rejoindre la newsletter</label>*/}
               <FButton className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
                 Rejoindre le réseau
               </FButton>
             </div>
             <div className="ligne-footer">
-              <label>Demander de nouveaux contenus</label>
+              {/*<label>Demander de nouveaux contenus</label>*/}
               <FButton className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
                 Suggérer des contenus
               </FButton>
@@ -103,7 +103,7 @@ class Footer extends Component {
                 </div>
               </Col>
             </Row>
-            <Row>
+            <Row className="social-custom-buttons-row">
               <Col lg="4">
                 <FButton disabled onClick={this.upcoming} type="light-action" name="twitter-outline" fill={variables.noir}>
                   Nous suivre sur Twitter

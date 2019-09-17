@@ -63,7 +63,7 @@ export class SearchBar extends React.Component {
           <span className='suggestion-content'>
             <span className="name">
               <EVAIcon name="plus-outline" className="mr-10 plus-btn" />
-              <i>Créer une nouvelle structure</i>
+              <span>Créer une nouvelle structure</span>
             </span>
             <span className="float-right mt-10">
               <EVAIcon name="plus-circle-outline" fill={variables.grisFonce} />

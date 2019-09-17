@@ -87,6 +87,7 @@
         &:active, &:focus{
           background-color: $gris;
         }
+        
       }
       input[type=number]::-webkit-inner-spin-button, 
       input[type=number]::-webkit-outer-spin-button { 
@@ -179,8 +180,10 @@
       position: absolute;
       top: -15px;
       right: -15px;
-      display:none;
       cursor: pointer;
+      svg{
+        fill: $rouge;
+      }
       &:hover{
         svg{
           fill: $noir;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap'
 
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
@@ -30,7 +30,7 @@ class QuiSommesNous extends Component {
             <h1>Qui sommes-nous ?</h1>
             <h4>Agi’r est une plateforme numérique dédiée à faciliter les parcours d’intégration des réfugiés en France.</h4>
           </div>
-          <EVAIcon className="arrowhead-icon" name="arrowhead-down-outline" fill={variables.noir} />
+          <EVAIcon className="arrowhead-icon" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
         </section>
 
         <section id="missions">
@@ -45,9 +45,10 @@ class QuiSommesNous extends Component {
                     <span>Obtenir l’asile, c’est surtout reconstruire. Un chez soi, un réseau, une vocation. Le déracinement a souvent brouillé les repères, les ambitions, les objectifs. Agi’r propose un outil structurant l’action et permettant aux réfugiés d’atteindre plus vite et plus sereinement ses objectifs de vie.</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton type="outline-black">
+                    <span>Bientôt disponible</span>
+                    {/*<FButton type="outline-black">
                       Créer mon parcours
-                    </FButton>
+                    </FButton>*/}
                   </CardFooter>
                 </Card>
               </Col>
@@ -58,9 +59,10 @@ class QuiSommesNous extends Component {
                     <span>Dès la protection obtenue, les personnes réfugiées entre dans le droit commun et bénéficie des mêmes droits sociaux que tous les français. Cette situation engendre de nombreuses démarches administratives. Agi’r produit des fiches pratiques pour vulgariser ces démarches et les propose dans plus de 10 langues.</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton type="outline-black">
+                    {/*<FButton type="outline-black">
                       Chercher une démarche
-                    </FButton>
+                  </FButton>*/}
+                    <span>Bientôt disponible</span>
                   </CardFooter>
                 </Card>
               </Col>
@@ -71,9 +73,11 @@ class QuiSommesNous extends Component {
                     <span>Des milliers de personnes s’engagent au quotidien en France pour accueillir et accompagner les personnes réfugiées. Leurs actions, humbles et ambitieuses, souffrent parfois d’un manque de visibilité et ne profitent pas au plus grand nombre. Agi’r souhaite recenser et rendre accessible ces milliers d’initative</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton type="outline-black">
-                      Chercher un dispositif
-                    </FButton>
+                    <NavLink to="/advanced-search" className="no-decoration">
+                      <FButton type="outline-black">
+                        Chercher un dispositif
+                      </FButton>
+                    </NavLink>
                   </CardFooter>
                 </Card>
               </Col>

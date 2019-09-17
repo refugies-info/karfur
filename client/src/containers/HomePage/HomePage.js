@@ -53,7 +53,7 @@ class HomePage extends Component {
               </FButton>
             </div>
           </div>
-          <EVAIcon className="arrowhead-icon" name="arrowhead-down-outline" fill={variables.noir} />
+          <EVAIcon className="arrowhead-icon slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
         </section>
 
         <section id="plan">
@@ -68,9 +68,10 @@ class HomePage extends Component {
                     {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
                   </CardBody>
                   <CardFooter>
-                    <FButton type="outline-black" name="search-outline" fill={variables.noir}>
+                    {/*<FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Chercher une démarche
-                    </FButton>
+                    </FButton>*/}
+                    <span>Bientôt disponible !</span>
                   </CardFooter>
                 </Card>
               </Col>
@@ -96,9 +97,10 @@ class HomePage extends Component {
                     {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
                   <CardFooter>
-                    <FButton type="outline-black" name="search-outline" fill={variables.noir}>
+                    {/*<FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Créer un parcours
-                    </FButton>
+                  </FButton>*/}
+                    <span>Bientôt disponible !</span>
                   </CardFooter>
                 </Card>
               </Col>
@@ -110,10 +112,13 @@ class HomePage extends Component {
           <div className="section-container half-width">
             <div className="section-body">
               <h2>Ouverte à la contribution</h2>
-              <p>Agi’r est une plateforme ouverte à la contribution, comme Wikipédia. Son objectif est de centraliser et de garder à jour un maximum d’informations pratiques pour aider les réfugiés à prendre leurs marques en France.</p>
-              <NavLink to="/qui-sommes-nous">
+              <p className="text-normal">
+                Agi’r est une plateforme ouverte à la contribution, comme Wikipédia. Son objectif est de centraliser et de garder à jour un maximum d’informations pratiques pour aider les réfugiés à prendre leurs marques en France.
+                {" "}
+                <NavLink to="/qui-sommes-nous">
                 <u>En savoir plus</u>
-              </NavLink>
+                </NavLink>
+              </p>
             </div>
             <footer>
               Déjà 230 contributeurs et contributrices engagés :
@@ -128,8 +133,8 @@ class HomePage extends Component {
           <div className="section-container half-width right-side">
             <div className="section-body">
               <h2>Disponible en plusieurs langues</h2>
-              <p>Agi’r est lisible dans les 10 langues les plus parlées par les personnes réfugiées. Participez à l’effort de traduction pour rendre l’information toujours plus accessible.</p>
-              <LanguageBtn />
+              <p className="text-normal">Agi’r est lisible dans les 10 langues les plus parlées par les personnes réfugiées. Participez à l’effort de traduction pour rendre l’information toujours plus accessible.</p>
+              {/*<LanguageBtn />*/}
             </div>
             <footer>
               Déjà 32 traducteurs et traductrices mobilisés :
@@ -144,7 +149,7 @@ class HomePage extends Component {
           <div className="section-container half-width">
             <div className="section-body">
               <h2>De l’information vérifiée et certifiée par l’État</h2>
-              <p>Les contenus proposés sont relus, corrigés et si besoin certifiés avant d’être publiés afin d’éviter les erreurs et les informations périmées.</p>
+              <p className="text-normal">Les contenus proposés sont relus, corrigés et si besoin certifiés avant d’être publiés afin d’éviter les erreurs et les informations périmées.</p>
             </div>
             <footer>
               Nous ne censurons aucun contenu :
@@ -158,10 +163,11 @@ class HomePage extends Component {
         <section id="explique">
           <div className="section-container half-width right-side">
             <h2>Explique les mots difficiles</h2>
-            <p>Passez la souris sur un mot pour accéder à sa définition. Consulter le Lexique pour apprendre les nombreux mots spécifiques aux démarches administratives.</p>
-            <FButton type="dark" onClick={this.upcoming}>
+            <p className="text-normal">Passez la souris sur un mot pour accéder à sa définition. Consulter le Lexique pour apprendre les nombreux mots spécifiques aux démarches administratives.</p>
+            <span className="text-normal">Bientôt disponible !</span>
+            {/*<FButton type="dark" onClick={this.upcoming}>
               Voir le lexique
-            </FButton>
+                </FButton>*/}
           </div>
         </section>
         {/* <div>
