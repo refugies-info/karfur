@@ -42,4 +42,32 @@ const parseActions = dispositifs => {
   return actions
 }
 
-export {showSuggestion, archiveSuggestion, parseActions};
+const deleteContrib = function(dispositif, type){
+  API.add_dispositif(dispositif).then(() => {
+    const query = type === "user" ? {'creatorId': this.props.userId} : {'mainSponsor': ((this.props.user || {}).structures || [{}])[0]};
+    API.get_dispositif({...query, status: {$ne: "Supprimé"}}).then(data => { console.log(data.data.data);
+      this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
+    })
+  })
+}
+
+const getProgression = function(){
+  API.get_progression().then(data_progr => {
+    const progression = (data_progr.data.data || [{}])[0] || {};
+    this.setState(pS => ({progression: {
+      ...pS.progression,
+      timeSpent: (progression.timeSpent || 0) + (pS.progression.timeSpent || 0),
+      nbMots: progression.nbMots
+    }}))
+  })
+  API.get_dispo_progression().then(data_progr => {
+    const progression = (data_progr.data.data || [{}])[0] || {};
+    this.setState(pS => ({progression: {
+      ...pS.progression,
+      timeSpent: (progression.timeSpent || 0) + (pS.progression.timeSpent || 0),
+      nbMotsContrib: progression.nbMots
+    }}))
+  })
+}
+
+export {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgression};

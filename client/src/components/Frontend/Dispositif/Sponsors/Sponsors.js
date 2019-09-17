@@ -123,6 +123,11 @@ class Sponsors extends Component {
                       <Icon name="minus-circle" fill={variables.darkColor} size="xlarge"/>
                     </div>}
                 </div>
+                {key === 0 && 
+                  <div className="owner-badge">
+                    <EVAIcon name="shield" className="mr-10" />
+                    Responsable
+                  </div>}
               </Col>
             )}
           )}

@@ -178,6 +178,43 @@ function update_dispositif(req, res) {
   }
 }
 
+function get_dispo_progression(req, res) {
+  var start = new Date();
+  start.setHours(0,0,0,0);
+
+  var find = new Promise(function (resolve, reject) {
+    Dispositif.aggregate([
+      {$match:
+        {'creatorId': req.userId,
+         'created_at': {$gte: start},
+         'timeSpent': { $ne: null } } },
+      {$group:
+         { _id : req.userId,
+          nbMots: { $sum: "$nbMots"},
+          timeSpent:{ $sum: "$timeSpent"},
+          count:{ $sum: 1}}}
+    ]).exec(function (err, result) {
+      console.log(result)
+      if (err) {
+        reject(500);
+      } else {
+        if (result) {
+          resolve(result)
+        } else {
+          reject(404)
+        }
+      }
+    })
+  })
+
+  find.then(function (result) {
+    res.status(200).json({
+        "text": "Succès",
+        "data": result
+    })
+  }, (e) => _errorHandler(e,res))
+}
+
 function count_dispositifs(req, res) {
   Dispositif.count(req.body, (err, count) => {
     if (err){res.status(404).json({ "text": "Pas de résultat" })}
@@ -220,3 +257,4 @@ exports.count_dispositifs=count_dispositifs;
 exports.update_dispositif = update_dispositif;
 exports.turnHTMLtoJSON = turnHTMLtoJSON;
 exports.turnJSONtoHTML = turnJSONtoHTML;
+exports.get_dispo_progression = get_dispo_progression;

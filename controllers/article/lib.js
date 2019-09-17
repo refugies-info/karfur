@@ -131,7 +131,7 @@ function add_traduction(req, res) {
     })
     
     //On l'insère en prod seulement si l'utilisateur a les droits admin ou expert en traduction
-    if(type!=='dispositif' && req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null)){
+    if(req.body.type!=='dispositif' && req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null) && req.body.translationId){
       let traductionItem=req.body;
       //On transforme le html en JSON après l'avoir nettoyé
       let html=traductionItem.translatedText.body;
@@ -178,7 +178,7 @@ function add_traduction(req, res) {
             Traduction.findByIdAndUpdate({_id: req.body.translationId},{status:'Validée'},{new: true}).exec();
           }
           console.log(2, avancement)
-          if(false && succes){
+          if(succes){
             result.avancement = {...result.avancement,[locale]:avancement.value};
             result.markModified("avancement");
             result.save((err, article_saved) => {

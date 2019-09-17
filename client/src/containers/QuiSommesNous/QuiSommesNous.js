@@ -6,7 +6,7 @@ import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap'
 
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
-import {equipe, diairMinInt, DGEF} from '../../assets/figma/index';
+import {equipe, diair, DGEF} from '../../assets/figma/index';
 import {membres} from './data'
 
 import './QuiSommesNous.scss';
@@ -221,14 +221,14 @@ class QuiSommesNous extends Component {
             <Row className="partner-row">
               <Col lg="2"/>
               <Col lg="3" className="partner-col d-flex justify-content-center">
-                <img className="partner-img" src={diairMinInt} alt="logo DIAIR" />
+                <img className="partner-img" src={diair} alt="logo DIAIR" />
               </Col>
               <Col lg="1"/>
               <Col lg="4" className="partner-col">
                 La Diair est à l’origine de la création du projet et héberge actuellement l’équipe projet. 
               </Col>
             </Row>
-            <Row className="partner-row">
+            {/* <Row className="partner-row">
               <Col lg="2"/>
               <Col lg="3" className="partner-col d-flex justify-content-center">
                 <img className="partner-img" src={DGEF} alt="logo DGEF" />
@@ -237,7 +237,7 @@ class QuiSommesNous extends Component {
               <Col lg="4" className="partner-col">
                 La Diair est à l’origine de la création du projet et héberge actuellement l’équipe projet. 
               </Col>
-            </Row>
+            </Row> */}
             <h3>Associatifs</h3>
           </div>
         </section>
