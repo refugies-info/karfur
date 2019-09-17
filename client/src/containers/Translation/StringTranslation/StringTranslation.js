@@ -121,7 +121,7 @@ class Translation extends Component {
           }else{
             //Je rend chaque noeud unique:
             this.props.translate(this.initial_text.innerHTML, locale, 'body')
-            if(!this.props.isStructure){this.props.translate(this.initial_title.innerHTML, locale, 'title')}
+            // if(!this.props.isStructure){this.props.translate(this.initial_title.innerHTML, locale, 'title')}
           }
           this.props.fwdSetState({texte_a_traduire:this.initial_text.innerText})
         })
@@ -200,12 +200,10 @@ class Translation extends Component {
                 <CardHeader>
                   <i className={'flag-icon flag-icon-fr'} title='fr' id='fr'></i>
                   <strong>Français</strong>
-                  <div className="card-header-actions pointer" onClick={this.upcoming}>
-                    {/* <a href="/" rel="noreferrer noopener" target="_blank" className="card-header-action"> */}
-                      <span className="text-muted">Voir en contexte</span>{' '} 
-                      <Icon name="eye-outline" fill="#3D3D3D" />
-                    {/* </a> */}
-                  </div>
+                  {/* <div className="card-header-actions pointer" onClick={this.upcoming}>
+                    <span className="text-muted">Voir en contexte</span>{' '} 
+                    <Icon name="eye-outline" fill="#3D3D3D" />
+                  </div> */}
                 </CardHeader>
                 <CardBody>
                   {!isStructure && 
@@ -236,12 +234,10 @@ class Translation extends Component {
                     {score !== -1 && 
                       ('Score : ' + (score * 100).toFixed(2) + ' %')}
                   </span>
-                  <div className="card-header-actions pointer" onClick={this.upcoming}>
-                    {/* <a href="#article-container" rel="noreferrer noopener" className="card-header-action"> */}
-                      <span className="text-muted">Voir le rendu</span>{' '}
-                      <Icon name="eye-outline" fill="#3D3D3D" />
-                    {/* </a> */}
-                  </div>
+                  {/* <div className="card-header-actions pointer" onClick={this.upcoming}>
+                    <span className="text-muted">Voir le rendu</span>{' '}
+                    <Icon name="eye-outline" fill="#3D3D3D" />
+                  </div> */}
                 </CardHeader>
                 <CardBody>
                   {!isStructure && 
@@ -322,7 +318,7 @@ class Translation extends Component {
                 <Icon name="skip-forward-outline" />
                 Passer
               </Button>
-              <Button onClick={this.props.valider} color="success">
+              <Button onClick={()=> this.props.valider()} color="success">
                 <Icon name="checkmark-circle-2-outline" />
                 Valider
               </Button>

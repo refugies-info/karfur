@@ -199,16 +199,19 @@ $defaultSize:310px;
             .col{
               padding: 8px 20px;
               background: $gris;
-              color: $noirCD;
               border-radius: 12px;
               margin-right: 10px;
               width: 200px;
               max-width: 200px;
+              color: $noirCD;
               h1{
                 margin-bottom:10px;
               }
               .subtitle{
                 margin-bottom: 50px;
+              }
+              &.active{
+                color: $noir;
               }
             }
           }
@@ -245,13 +248,15 @@ $defaultSize:310px;
 
 .modal.show .modal-dialog.modal-plus{
   overflow: scroll;
-  max-height: 100vh;
+  max-height: 90vh;
   max-width: 60vw;
   margin: auto;
+  overflow: scroll;
   @include media-max("tablet-up") { max-width: 100%; }
 
   .modal-content{
     padding:20px;
+    max-height: 90vh;
   }
 }
 
@@ -373,10 +378,6 @@ $defaultSize:310px;
     &.swing-out-top-bck {
       -webkit-animation: swing-out-top-bck 1s cubic-bezier(0.600, -0.280, 0.735, 0.045) both;
               animation: swing-out-top-bck 1s cubic-bezier(0.600, -0.280, 0.735, 0.045) both;
-    }
-    
-    &:nth-child(2){
-      margin-top:10px;
     }
 
     h1{

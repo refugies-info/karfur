@@ -56,6 +56,7 @@ class MapParagraphe extends PureComponent {
   onSearchBoxMounted =  ref => refs.searchBox = ref;
 
   onPlacesChanged = () => {
+    this.setState(pS => ({ markers: pS.markers.filter(x => this.props.subitem.markers.some(y => y.gid === x.gid)) })); //J'enlève tous les markers qui ont pas été validés
     const place = _.get(refs.searchBox.getPlaces(), "0", {});
     const nextMarker = {
       latitude: place.geometry.location.lat(),
@@ -114,9 +115,7 @@ class MapParagraphe extends PureComponent {
   }
 
   toggleSidebar = () => this.setState(pS => ({showSidebar: !pS.showSidebar}))
-  toggleDropdown = (e) => {
-    this.setState({ isDropdownOpen: !this.state.isDropdownOpen })
-  };
+  toggleDropdown = () => this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
 
   toggleModal = () => {
     if(this.state.showModal){ this.props.disableIsMapLoaded(this.props.keyValue, this.props.subkey); }
@@ -166,6 +165,7 @@ class MapParagraphe extends PureComponent {
       Swal.fire( 'Oh non!', 'Vous devez renseigner au moins une information de contact (email ou téléphone)', 'error');
       return;
     }
+    console.log(this.state.markers,this.props.subitem.markers)
     let markers = [...this.state.markers];
     markers[this.state.selectedMarker] = {
       ...markers[this.state.selectedMarker],
