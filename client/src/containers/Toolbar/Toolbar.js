@@ -75,9 +75,9 @@ export class Toolbar extends React.Component {
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem onClick={()=>this.navigateTo("/backend/user-profile")}>Mon profil</DropdownItem>
-                {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>Mon univers contribution</DropdownItem>}
-                {(expertTrad || traducteur) && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>Mon univers traduction</DropdownItem>}
-                {membreStruct && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-structure")}>Mon univers structure</DropdownItem>}
+                {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>Espace rédaction</DropdownItem>}
+                {(expertTrad || traducteur) && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>Espace traduction</DropdownItem>}
+                {membreStruct && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-structure")}>Ma structure</DropdownItem>}
                 {admin && <DropdownItem onClick={()=>this.navigateTo("/backend/admin")}>Administration</DropdownItem>}
                 <DropdownItem divider />
                 <NavLink to="/" onClick={this.disconnect}>

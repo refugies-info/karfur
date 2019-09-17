@@ -2,7 +2,7 @@
 
 .footer{
   background: $noir;
-  padding: 30px 120px;
+  padding: 60px 120px;
   color: #FFFFFF;
 
   .ligne-footer{
@@ -10,6 +10,9 @@
   }
   .lien-footer{
     margin-top: 25px;
+    &:first-child{
+      margin-top: 40px;
+    }
     &:hover{
       font-weight: bold;
     }
@@ -67,8 +70,16 @@ $placeholderColor: $noir;
     display: flex; 
     flex-direction: column;
 
+    .social-custom-buttons-row{
+      margin-top: 40px;
+    }
+
     .main-row{
       flex: 1 1;
+
+    .footer-header h5{
+      margin-bottom: 1rem;
+    }
     }
   }
 }

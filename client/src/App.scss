@@ -74,6 +74,11 @@ html body{
     line-height: 30px;
   }
 
+  .text-big{
+    font-weight: bold;
+    font-size: 80px;
+  }
+
   .text-normal{
     font-weight: 400;
     font-size: 18px;
@@ -83,7 +88,7 @@ html body{
   .texte-small{
     font-weight: 400;
     font-size: 16px;
-    line-height: auto;
+    line-height: 19px;
   }
   .cursor-pointer{
     cursor: pointer;

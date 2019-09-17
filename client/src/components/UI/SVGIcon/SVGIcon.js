@@ -55,7 +55,7 @@ const getFill = name => {
       return "none";
     case "clapping":
       return "none";
-    case "translate" || "idea" || "question":
+    case "idea" || "question":
       return "#3D3D3D";
     default:
       return "";

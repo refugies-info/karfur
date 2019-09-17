@@ -127,11 +127,11 @@ const contribTable = (props) => {
 
           {!props.contributeur &&
             <div className="ecran-protection no-contrib">
-              {props.toggleSection && 
-                <div className="close-box" onClick={()=>props.toggleSection('contributions')}>
+              {/*props.toggleSection && 
+               <div className="close-box" onClick={()=>props.toggleSection('contributions')}>
                   <Icon name="eye-off-2-outline" fill={variables.noir} />
                   <u>Masquer</u>
-                </div>}
+              </div>*/}
               <div className="content-wrapper">
                 <h1>{props.overlayTitle}</h1>
                 <span>{props.overlaySpan}</span>
