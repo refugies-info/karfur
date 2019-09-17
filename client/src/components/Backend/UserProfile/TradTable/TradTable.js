@@ -39,7 +39,13 @@ const tradTable = (props) => {
         {data.slice(0,props.limit).map((element,key) => {
           const titre= element.title || (element.initialText || {}).title || '';
           return (
-            <tr key={key} >
+            <tr 
+              key={key} 
+              onClick={() => props.history.push({
+                pathname: "/traduction/" + (element.type || "string") + "/" + element.articleId, 
+                search: '?id=' + ((props.langues || []).find(x => x.i18nCode === element.langueCible) || {})._id,
+                state: { langue: (props.langues || []).find(x => x.i18nCode === element.langueCible)}
+              })} >
               <td className="align-middle">
                 {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 ? "..." : ""))}
               </td>
@@ -62,26 +68,26 @@ const tradTable = (props) => {
                 {langueItem(element.langueCible)}
               </td>
               <td className="align-middle hideOnPhone">
-                {element.participants && element.participants.map((participant) => {
-                  return ( 
-                      <img
-                        key={participant._id} 
-                        src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                        className="profile-img-pin img-circle"
-                        alt="random profiles"
-                      />
-                  );
-                })}
+                {element.participants && element.participants.map((participant) => ( 
+                  <img
+                    key={participant._id} 
+                    src={participant.picture ? participant.picture.secure_url : marioProfile} 
+                    className="profile-img-pin img-circle"
+                    alt="random profiles"
+                  />
+                ))}
               </td>
               <td className="align-middle">
-                <NavLink to={{
-                  pathname: "/traduction/" + (element.type || "string") + "/" + element.articleId, 
-                  search: '?id=' + ((props.langues || []).find(x => x.i18nCode === element.langueCible) || {})._id,
-                  state: { langue: (props.langues || []).find(x => x.i18nCode === element.langueCible)}
-                }} 
-                className="no-decoration" >
-                  <FButton type="light-action" name="eye-outline" fill={variables.noir} />
-                </NavLink>
+                <FButton 
+                  tag={NavLink} 
+                  to={{
+                    pathname: "/traduction/" + (element.type || "string") + "/" + element.articleId, 
+                    search: '?id=' + ((props.langues || []).find(x => x.i18nCode === element.langueCible) || {})._id,
+                    state: { langue: (props.langues || []).find(x => x.i18nCode === element.langueCible)}
+                  }} 
+                  type="light-action" 
+                  name="eye-outline" 
+                  fill={variables.noir} />
               </td>
             </tr>
           );

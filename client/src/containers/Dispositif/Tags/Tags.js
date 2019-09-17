@@ -17,7 +17,7 @@ class Tags extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.tags !== this.props.tags){
+    if(nextProps.tags && nextProps.tags !== this.props.tags){
       this.setState({isDropdownOpen: new Array(nextProps.tags.length).fill(false)})
     }
   }
@@ -40,7 +40,6 @@ class Tags extends Component {
     return(
       <div className="tags">
         {(this.props.tags || []).map((tag, key) => {
-          console.log(this.props.disableEdit, this.state.isDropdownOpen, this.state.isDropdownOpen[key])
           return (
             <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key)} className="tags-dropdown" key={key}>
               <DropdownToggle caret={!this.props.disableEdit}>

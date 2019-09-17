@@ -11,12 +11,12 @@ import API from '../../utils/API';
 import {initial_data} from "./data"
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
+import {filtres} from "../Dispositif/data";
 
 import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
 
 const tris = [{name: "Alphabétique"}, {name:"Derniers ajouts"}, {name: "Les plus visités"}];
-const filtres = [{name: "Démarches"}, {name:"Dispositifs"}, {name: "Articles"}, {name: "Lexique"}, {name: "Annuaire"}, {name: "À traduire"}];
 
 let user={_id:null, cookies:{}};
 class AdvancedSearch extends Component {
@@ -27,6 +27,7 @@ class AdvancedSearch extends Component {
     pinned: [],
     activeFiltre: "Dispositifs",
     activeTri: "Alphabétique",
+    tags: filtres.tags,
     data: [] //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
   }
 
@@ -39,7 +40,7 @@ class AdvancedSearch extends Component {
 
   queryDispositifs = (query=null) => {
     this.setState({ showSpinner: true })
-    query = this.state.recherche.filter(x => x.active && x.queryName!=='localisation').map(x => (
+    query = query || this.state.recherche.filter(x => x.active && x.queryName!=='localisation').map(x => (
       x.queryName === "audienceAge" ? 
       { "audienceAge.bottomValue": { $lt: x.topValue}, "audienceAge.topValue": { $gt: x.bottomValue} } :
       {[x.queryName]: x.query}
@@ -47,15 +48,14 @@ class AdvancedSearch extends Component {
     console.log(query)
     API.get_dispositif({...query, status:'Actif'}).then(data_res => {
       let dispositifs=data_res.data.data;
-      console.log(data_res)
       this.setState({ dispositifs:dispositifs, showSpinner: false })
     }).catch(()=>this.setState({ showSpinner: false }))
   }
   
   selectTag = tag => {
-    this.setState({tags: this.state.tags.map(x => (x.name===tag ? {...x, active: true} : {...x, active: false})), color: tag.color})
-    this.queryDispositifs({tags: tag})
-    this.props.history.replace("/dispositifs?tag="+tag)
+    this.setState(pS => ({tags: pS.tags.map(x => (x.short===tag ? {...x, active: true} : {...x, active: false})), color: tag.color}))
+    this.queryDispositifs({["tags.short"]: tag})
+    this.props.history.replace("/advanced-search?tag="+tag)
   }
   
   retrieveCookies = () => {
@@ -159,6 +159,8 @@ class AdvancedSearch extends Component {
               <Row>
                 {[...pinned,...dispositifs].slice(0,100).map((dispositif) => {
                   if(!dispositif.hidden){
+                    let shortTag = null;
+                    if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = dispositif.tags[0].short }
                     return (
                       <Col xs="12" sm="6" md="3" className="card-col puff-in-center" key={dispositif._id}>
                         <CustomCard onClick={() => this.goToDispositif(dispositif)}>
@@ -173,7 +175,7 @@ class AdvancedSearch extends Component {
                             <h5>{dispositif.titreInformatif}</h5>
                             <p>{dispositif.abstract}</p>
                           </CardBody>
-                          <CardFooter className={"align-right bg-violet"}>{dispositif.titreMarque}</CardFooter>
+                          <CardFooter className={"align-right bg-" + shortTag}>{dispositif.titreMarque}</CardFooter>
                         </CustomCard>
                       </Col>
                     )
@@ -196,7 +198,7 @@ class AdvancedSearch extends Component {
               </Row>
             </div>
           </Col>
-          <Col lg="2" className="mt-250 side-col">
+          {/* <Col lg="2" className="mt-250 side-col">
             <EVAIcon name="funnel-outline" fill={variables.noir} className="mr-12" />
             <div className="right-side">
               <b>Filtrer par :</b> 
@@ -212,7 +214,7 @@ class AdvancedSearch extends Component {
                 ))}
               </div>
             </div>
-          </Col>
+          </Col> */}
         </Row>
       </div>
     )

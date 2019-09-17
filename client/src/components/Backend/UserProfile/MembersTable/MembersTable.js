@@ -48,7 +48,7 @@ const membersTable = (props) => {
                 {element.last_connected ? <span>{moment(element.last_connected).calendar()} <span className={"depuis " + (joursLastC > 3 ? "alert" : "success")}>{moment(element.last_connected).fromNow()}</span></span> : ""}
               </td>
               <td className="align-middle">
-                {element.created_at ? moment(element.created_at).calendar() : ""}
+                {element.added_at ? moment(element.added_at).calendar() : ""}
               </td>
               <td className="align-middle" onClick={()=>props.removeBookmark(element._id)}>
                 <span>{element.nb_contenu} contenus</span>

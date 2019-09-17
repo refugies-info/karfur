@@ -14,9 +14,9 @@ import variables from 'scss/colors.scss';
 
 const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const getSuggestionValue = (suggestion, isArray = false, structures=false) => isArray ? 
-  structures ? (suggestion.acronyme || "") + " - " + (suggestion.nom || "") : 
-  (suggestion.username || "") + " - " + (suggestion.email || "") : 
-  suggestion.titreMarque + " - " + suggestion.titreInformatif;
+  structures ? (suggestion.acronyme || "") + (suggestion.acronyme && suggestion.nom ? " - " : "") + (suggestion.nom || "") : 
+  (suggestion.username || "") + (suggestion.username && suggestion.email ? " - " : "") + (suggestion.email || "") : 
+  suggestion.titreMarque + (suggestion.titreMarque && suggestion.titreInformatif ? " - " : "") + suggestion.titreInformatif;
 
 export class SearchBar extends React.Component {
   state = {
@@ -94,6 +94,7 @@ export class SearchBar extends React.Component {
     return(
       <div className={"md-form form-sm form-2 pl-0 " + this.props.className + (isArray ? " isArray": "")}>
         <Autosuggest 
+          highlightFirstSuggestion
           suggestions={this.state.suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
