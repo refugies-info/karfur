@@ -9,13 +9,14 @@ import {NavLink} from 'react-router-dom';
 import windowSize from 'react-window-size';
 
 import {avancement_actions, fakeNotifs, avancement_contributions, avancement_members, fakeContribution, fakeMembre} from './data'
-import API from '../../../utils/API'
+import API from '../../../utils/API';
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
 import {MembersTable, ActionTable, ContribTable} from '../../../components/Backend/UserProfile';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
-import {AddMemberModal, EditMemberModal, SuggestionModal} from '../../../components/Modals/index';
-import {showSuggestion, archiveSuggestion, parseActions} from '../UserProfile/functions';
+import {AddMemberModal, EditMemberModal, SuggestionModal} from '../../../components/Modals';
+import {showSuggestion, archiveSuggestion, parseActions, deleteContrib} from '../UserProfile/functions';
+import {selectItem, editMember, addMember} from './functions';
 
 import './UserDashStruct.scss';
 import variables from 'scss/colors.scss';
@@ -29,6 +30,10 @@ class UserDashStruct extends Component {
     super(props);
     this.showSuggestion = showSuggestion.bind(this);
     this.archiveSuggestion = archiveSuggestion.bind(this);
+    this.selectItem = selectItem.bind(this);
+    this.editMember = editMember.bind(this);
+    this.addMember = addMember.bind(this);
+    this.deleteContrib = deleteContrib.bind(this);
   }
   
   state={
@@ -59,7 +64,7 @@ class UserDashStruct extends Component {
     this.initializeStructure();
     API.get_users({}).then(data => this.setState({users: data.data.data}) )
 
-    API.get_dispositif({'mainSponsor': user.structures[0]}).then(data => {console.log(data.data.data)
+    API.get_dispositif({'mainSponsor': user.structures[0], status: {$ne: "Supprimé"} }).then(data => {console.log(data.data.data)
       this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
     })
     window.scrollTo(0, 0);
@@ -81,26 +86,6 @@ class UserDashStruct extends Component {
     this.props.tracking.trackEvent({ action: 'toggleSection', label: section, value : !this.state.showSections[section] });
     this.setState({showSections : {...this.state.showSections, [section]: !this.state.showSections[section]}})
   }
-  
-  selectItem = suggestion => this.setState({selected : suggestion});
-
-  editMember = member => {
-    this.setState({selected: member});
-    this.toggleModal("editMember");
-  }
-
-  addMember = () => {
-    if(!this.state.selected || !this.state.structure){Swal.fire( 'Oh non!', 'Certaines informations sont manquantes', 'error'); return;}
-    let structure={
-      _id: this.state.structure._id,
-      "$addToSet": { "membres": {userId: this.state.selected._id, roles: ["membre"] } },
-    };
-    API.create_structure(structure).then((data) => {
-      console.log(data);
-      Swal.fire( 'Yay...', 'Votre nouveau membre a bien été ajouté, merci', 'success');
-      this.toggleModal("addMember")
-    })
-  }
 
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
 
@@ -120,7 +105,7 @@ class UserDashStruct extends Component {
         <DashHeader 
           isStructure
           title="Votre structure"
-          ctaText="Gérer mon rôle"
+          // ctaText="Gérer mon rôle"
           structure={structure}
           user={user}
           toggle={this.toggleModal}
@@ -156,6 +141,7 @@ class UserDashStruct extends Component {
           {...avancement_actions} />
 
         <ContribTable 
+          type="structure"
           dataArray={contributions}
           user={user}
           contributeur={contributeur}
@@ -169,6 +155,7 @@ class UserDashStruct extends Component {
           overlayBtn="Découvrir comment contribuer"
           overlayRedirect={false}
           history={this.props.history}
+          deleteContrib = {this.deleteContrib}
           {...avancement_contributions} />
 
         <MembersTable 
@@ -191,14 +178,16 @@ class UserDashStruct extends Component {
           return(
             <Modal isOpen={this.state.showModal[table.name]} toggle={()=>this.toggleModal(table.name)} className='modal-plus' key={key}>
               <TagName 
+                type="structure"
                 dataArray={eval(table.name)}
-                user={this.state.user}
+                user={user}
                 upcoming={this.upcoming}
                 showSuggestion={this.showSuggestion}
                 archive={this.archiveSuggestion}
                 editMember={this.editMember}
                 history={this.props.history}
                 users={users}
+                deleteContrib = {this.deleteContrib}
                 {...avancement} />
             </Modal>
           )}

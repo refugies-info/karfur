@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {stringify} from 'himalaya';
 import Swal from 'sweetalert2';
 import querySearch from "stringquery";
 import h2p from 'html2plaintext';
@@ -9,15 +8,20 @@ import htmlToDraft from 'html-to-draftjs';
 import 'rc-slider/assets/index.css';
 
 import API from '../../utils/API';
-
 import StringTranslation from './StringTranslation/StringTranslation';
 import Dispositif from '../Dispositif/Dispositif';
 import { menu } from '../Dispositif/data';
+import {initializeTimer} from './functions';
 
 let last_target=null;
 let letter_pressed=null;
 
 class TranslationHOC extends Component {
+  constructor(props) {
+    super(props);
+    this.initializeTimer = initializeTimer.bind(this);
+  }
+
   state = {
     value: '',
     francais:{
@@ -40,7 +44,6 @@ class TranslationHOC extends Component {
     id:'',
     locale:'',
     translationId:'',
-    time: 0,
     langue:{},
     tooltipOpen:false,
     nbMotsRestants:0,
@@ -49,6 +52,8 @@ class TranslationHOC extends Component {
     traduction:{initialText:{ contenu: new Array(menu.length).fill(false) }, translatedText:{ contenu: new Array(menu.length).fill(false) }},
     traductionsFaites: [],
     translating: true,
+    time: 0,
+    initialTime: 0,
   }
   mountTime=0;
 
@@ -74,7 +79,7 @@ class TranslationHOC extends Component {
   }
 
   _initializeComponent = async props => {
-    this._initializeTimer();
+    this.initializeTimer();
     let itemId=null;
     try{itemId=props.match.params.id}catch(e){console.log(e)};
     let locale = await this._setLangue(props);
@@ -88,15 +93,6 @@ class TranslationHOC extends Component {
         }
       })
     }
-  }
-
-  _initializeTimer = () => {
-    clearInterval(this.timer)
-    this.mountTime = Date.now();
-    this.timer = setInterval(() => {
-      this.setState({
-        time: Date.now() - this.mountTime
-      })}, 1000);
   }
 
   _setLangue = async props => {
@@ -312,7 +308,7 @@ class TranslationHOC extends Component {
           handleSliderChange={this.handleSliderChange}
           handleCheckboxChange={this.handleCheckboxChange}
           onKeyPress={this.handleKeyPress}
-          onChange={this.handleChangeEnCours}
+          handleChangeEnCours={this.handleChangeEnCours}
           handleClickText={this.handleClickText}
           fwdSetState={this.fwdSetState}
           {...this.state} 

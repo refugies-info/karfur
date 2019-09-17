@@ -44,7 +44,7 @@ const mapComponent = compose(
         <div className="places-input-wrapper">
           <input
             type="text"
-            placeholder="Placez ici vos lieux de contact"
+            placeholder="Ajoutez un nouveau lieu"
             className="places-input"
             value={props.searchValue}
             onChange={props.handleChange} />

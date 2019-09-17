@@ -2,17 +2,40 @@ import React from 'react';
 import { Col, Row, Progress, Table } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import {NavLink} from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
 import FButton from '../../../FigmaUI/FButton/FButton';
+import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 import variables from 'scss/colors.scss';
-import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 const contribTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
   let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+
+  const deleteContrib = (e, dispositif) => {
+    e.stopPropagation();
+    Swal.fire({
+      title: 'Êtes-vous sûr ?',
+      text: "La suppression d'un dispositif est irréversible",
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonColor: variables.rouge,
+      cancelButtonColor: variables.vert,
+      confirmButtonText: 'Oui, le supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.value) {
+        const newDispositif = {
+          dispositifId: dispositif._id,
+          status: "Supprimé"
+        }
+        props.deleteContrib(newDispositif, props.type);
+      }
+    })
+  }
 
   let table = (
     <Table responsive className="avancement-user-table">
@@ -59,6 +82,10 @@ const contribTable = (props) => {
                     />
                   );
                 })}
+              </td>
+              <td className="align-middle pointer fit-content">
+                {(props.type !== "user" || ["En attente non prioritaire", "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif"].includes(element.status) ) &&
+                  <FButton type="light-action" name="archive-outline" fill={variables.noir} onClick={e => deleteContrib(e, element)} />}                
               </td>
               <td className="align-middle">
                 <FButton tag={NavLink} to={"/dispositif/"+element._id} type="light-action" name="eye-outline" fill={variables.noir} />
