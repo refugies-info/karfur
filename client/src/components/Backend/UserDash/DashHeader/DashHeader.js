@@ -125,9 +125,10 @@ const dashHeader = (props) => {
           <FButton type="outline-black" name="info-outline" fill={variables.noir} className="mr-10">
             Aide
           </FButton>
-          <FButton type="dark" name="options-2-outline" onClick={()=>props.toggle('objectifs')}>
-            {props.ctaText}
-          </FButton>
+          {props.ctaText && 
+            <FButton type="dark" name="options-2-outline" onClick={()=>props.toggle('objectifs')}>
+              {props.ctaText}
+            </FButton>}
         </Col>
       </Row>
       <IndicateursBloc {...props} />

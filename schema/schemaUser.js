@@ -85,6 +85,10 @@ var userSchema = mongoose.Schema({
     type: [{ type: mongoose.Schema.ObjectId, ref: 'Structure' }],
     required: false
   },
+  last_connected: { 
+    type: Date,
+    required: false
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
 

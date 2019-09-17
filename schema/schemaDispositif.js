@@ -67,7 +67,7 @@ var dispositifSchema = mongoose.Schema({
 		type: String,
 		unique: false,
     required: false,
-    enum: ["Actif", "En attente", "En attente admin", "En attente non prioritaire", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé", "Supprimé"]
+    enum: ["Actif", "En attente", "En attente admin", "En attente non prioritaire", "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé"]
 	},
   nbMots:{
 		type: Number,
@@ -115,6 +115,11 @@ var dispositifSchema = mongoose.Schema({
     type:Object,
     required:false,
   },
+  timeSpent:{
+		type: Number,
+		unique: false,
+		required: false
+	},
 },{ timestamps: { createdAt: 'created_at' }})
 
 dispositifSchema.options.autoIndex = false

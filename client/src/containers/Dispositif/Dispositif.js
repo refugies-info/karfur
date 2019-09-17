@@ -29,9 +29,9 @@ import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/
 import {fetch_dispositifs, fetch_user} from '../../Store/actions/index';
 import ContribCaroussel from './ContribCaroussel/ContribCaroussel';
 import FButton from '../../components/FigmaUI/FButton/FButton'
-
 import {ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 import SideTrad from './SideTrad/SideTrad';
+import {initializeTimer} from '../Translation/functions';
 
 import {contenu, lorems, menu, filtres, steps, tutoSteps, importantCard} from './data'
 
@@ -39,11 +39,16 @@ import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
-const sponsorsData = [ {picture:{secure_url:diair},alt:"logo DIAIR", link: "https://www.agi-r.fr", dummy: true} ];
+const sponsorsData = [];
 const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false};
 let user={_id:'', cookies:{}}
 
 class Dispositif extends Component {
+  constructor(props) {
+    super(props);
+    this.initializeTimer = initializeTimer.bind(this);
+  }
+
   state={
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
     content:contenu,
@@ -92,9 +97,12 @@ class Dispositif extends Component {
     inputBtnClicked: false,
     mainSponsor:{},
     status: '',
+    time: 0,
+    initialTime: 0,
   }
   _initialState=this.state;
   newRef=React.createRef();
+  mountTime=0;
 
   componentDidMount (){
     this._initializeDispositif(this.props);
@@ -106,13 +114,20 @@ class Dispositif extends Component {
     }
   }
 
+  componentWillUnmount (){
+    clearInterval(this.timer)
+  }
+
   _initializeDispositif = props => {
+    this.initializeTimer();
     let itemId=props.match && props.match.params && props.match.params.id;
     console.log(itemId)
     if(itemId){
       API.get_dispositif({_id: itemId},{},'creatorId mainSponsor').then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
+        if(dispositif.status === "Brouillon"){
+          this.initializeTimer();}
         this.setState({
           _id:itemId,
           menu: dispositif.contenu, 
@@ -128,11 +143,13 @@ class Dispositif extends Component {
           mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x.name === dispositif.tags[0].name) || {}) : {},
           mainSponsor: dispositif.mainSponsor,
           status: dispositif.status,
+          ...(dispositif.status==="Brouillon" && {initialTime: dispositif.timeSpent}),
         },()=>this.setColors())
         //On récupère les données de l'utilisateur
         if(API.isAuth()){
           API.get_user_info().then(data_res => {
             let u=data_res.data.data;
+            console.log(u)
             user={_id:u._id, cookies:u.cookies || {}}
             this.setState({
               pinned: (user.cookies.dispositifsPinned || []).some( x => x._id === itemId),
@@ -142,11 +159,12 @@ class Dispositif extends Component {
         }
       })
     }else if(API.isAuth()){
+      this.initializeTimer();
       this.setState({
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
         ///////////////////////////////////
-        showDispositifCreateModal:false, //A modifier avant la mise en prod
+        showDispositifCreateModal:true, //A modifier avant la mise en prod
         isDispositifLoading: false
       },()=>this.setColors())
     }else{ props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
@@ -490,15 +508,17 @@ class Dispositif extends Component {
 
   valider_dispositif = (status='En attente') => {
     let content = {...this.state.content}
-    Object.keys(content).map( k => content[k] = h2p(content[k]))
+    Object.keys(content).map( k => content[k] = h2p(content[k]));
+    console.log(this.state._id, this.state.status, status)
     let dispositif = {
       ...content,
       contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, ...(x.children && {children : x.children.map(x => ({...x, editable: false, ...(x.title && {title: h2p(x.title)})}))}) }}),
       sponsors:(this.state.sponsors || []).filter(x => !x.dummy),
       tags: this.state.tags,
-      avancement:1,
-      status:status,
-      dispositifId:this.state._id
+      avancement: 1,
+      status: status,
+      dispositifId: this.state._id,
+      ...(!this.state._id && this.state.status!=="Brouillon" && {timeSpent : this.state.time}),
     }
     let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || [];
     dispositif.audience = cardElement.some(x=> x.title==='Public visé') ?
@@ -516,7 +536,9 @@ class Dispositif extends Component {
     dispositif.isFree= cardElement.some(x=> x.title==='Combien ça coûte ?') ?
       cardElement.find(x=> x.title==='Combien ça coûte ?').free :
       true;
-    if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
+    if(this.state.status && this.state.status!== '' && this.state._id){
+      dispositif.status = this.state.status;
+    }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
       dispositif.mainSponsor = dispositif.sponsors[0]._id;
       //Si l'auteur appartient à la structure principale je la fait passer directe en validation
       if((dispositif.sponsors[0].membres || []).some(x => x.userId === this.props.userId)){
@@ -534,7 +556,7 @@ class Dispositif extends Component {
           this.props.history.push("/dispositif/" + data.data.data._id)
         })
       });
-    },(e)=>{Swal.fire( 'Oh non!', 'Une erreur est survenue !', 'error');console.log(e);return;})
+    })
   }
 
   upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')

@@ -74,7 +74,8 @@ const actionTable = (props) => {
           <Col>
             <h1>
               {props.title}
-              <sup className="nb-actions">{props.dataArray.length}</sup>
+              {props.hasNotifs &&
+                <sup className="nb-actions">{props.dataArray.length}</sup>}
             </h1>
           </Col>
           <Col className="tableau-header no-margin" lg="1">

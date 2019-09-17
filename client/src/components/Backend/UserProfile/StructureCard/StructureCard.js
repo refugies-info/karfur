@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Col, Row, TabContent, TabPane, Nav, NavItem, NavLink, Card, CardBody, ListGroup, ListGroupItem } from 'reactstrap';
 import moment from 'moment/min/moment-with-locales';
+import {NavLink as DefaultNavLink} from 'react-router-dom';
 
 import FButton from '../../../FigmaUI/FButton/FButton';
 import {diairMinInt} from '../../../../assets/figma/index'
@@ -35,10 +36,10 @@ class StructureCard extends Component {
           {this.props.displayIndicators && 
             <Col className="d-flex tableau-header justify-content-end">
               {(((this.props.structure.membres || []).find(x => x.userId === this.props.user._id) || {}).roles || []).some(y => y==="administrateur" || y==="contributeur") && 
-                <FButton type="dark" name="options-2-outline" className="mr-10">
+                <FButton type="dark" name="options-2-outline" className="mr-10" onClick={()=>this.props.toggleModal('addMember')}>
                   Ajouter un membre
                 </FButton>}
-              <FButton tag={NavLink} href="/backend/user-dash-structure" type="dark" name="settings-2-outline">
+              <FButton tag={DefaultNavLink} to="/backend/user-dash-structure" type="dark" name="settings-2-outline">
                 Espace structure
               </FButton>
             </Col>}

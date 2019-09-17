@@ -79,6 +79,13 @@ $tailleBig:80px;
     font-family: monospace;
     font-size: 18px;
   }
+
+  .owner-badge{
+    background: $noirCD;
+    border-radius: 12px;
+    padding: 10px;
+    color: #FFFFFF;
+  }
 }
 
 .modal.show .modal-dialog.modal-structure{

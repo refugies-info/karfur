@@ -15,7 +15,7 @@ const favoriTable = (props) => {
   let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
   
   const goToDispositif = (dispositif) => props.history.push("/dispositif/" + dispositif._id)
-  const searchTag = tag => props.history.push({ pathname:"/dispositifs", search: '?tag=' + tag })
+  const searchTag = tag => props.history.push({ pathname:"/advanced-search", search: '?tag=' + tag })
 
   let table = (
     <Table responsive className="avancement-user-table">
@@ -29,7 +29,7 @@ const favoriTable = (props) => {
           return (
             <tr key={key} >
               <td className="align-middle">
-                <Icon name="bookmark" fill="#3D3D3D" id="bookmarkBtn" />  
+                <EVAIcon name="bookmark" fill={variables.noir} id="bookmarkBtn" />  
               </td>
               <td className="align-middle pointer" onClick={()=>goToDispositif(element)}>
                 {element.titreMarque + ' - ' + element.titreInformatif} 
