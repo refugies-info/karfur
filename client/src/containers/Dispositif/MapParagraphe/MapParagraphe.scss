@@ -33,6 +33,7 @@
       &:after{
         position: absolute;
         right:10px;
+        top: 50%;
       }
     }
   }
@@ -56,6 +57,13 @@
       &.flip-out-ver-right{
         width: 0;
         padding:0;
+
+        .marker-input, label, .validate-btn{
+          width: 0;
+          padding: 0;
+          margin:0;
+          min-width: 0;
+        }
       }
 
       label{
@@ -117,15 +125,41 @@
 
 .slide-in-blurred-right {
 	-webkit-animation: slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+    -moz-animation : slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+      -ms-animation: slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
 	        animation: slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
 }
 
 .flip-out-ver-right {
-	-webkit-animation: flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  -webkit-animation: flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    -moz-animation : flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+      -ms-animation: flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 	        animation: flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
 }
 
 @-webkit-keyframes slide-in-blurred-right {
+  0% {
+    -webkit-transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+            transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+    -webkit-transform-origin: 0% 50%;
+            transform-origin: 0% 50%;
+    -webkit-filter: blur(40px);
+            filter: blur(40px);
+    opacity: 0;
+    flex: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+            transform: translateX(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+    flex: 1;
+  }
+}
+@-moz-keyframes slide-in-blurred-right {
   0% {
     -webkit-transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
             transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
@@ -170,7 +204,21 @@
   }
 }
 
- @-webkit-keyframes flip-out-ver-right {
+@-webkit-keyframes flip-out-ver-right {
+  0% {
+    -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+    opacity: 1;
+    flex: 1;
+  }
+  100% {
+    -webkit-transform: rotateY(70deg);
+            transform: rotateY(70deg);
+    opacity: 0;
+    flex: 0;
+  }
+}
+@-moz-keyframes flip-out-ver-right {
   0% {
     -webkit-transform: rotateY(0);
             transform: rotateY(0);

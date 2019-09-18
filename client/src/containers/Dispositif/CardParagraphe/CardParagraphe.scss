@@ -68,6 +68,7 @@
           font-size: inherit;
           border:none;
           padding:0;
+          white-space: normal;
         }
       }
 
@@ -80,7 +81,7 @@
         border: none;
         text-align: center;
         margin: 0;
-        width: 50px;
+        width: 75px;
         color: $noir;
         height: 40px;
         background-color: $jauneClair;

@@ -27,18 +27,18 @@ class EditMemberModal extends Component {
   onValidate = () => {
     const selectedRole = (this.state.roles.find(x => x.checked) || {}).role;
     const userRoles = (((this.props.structure.membres || []).find(x => x.userId === this.props.user._id) || {}).roles || []);
-    if(!selectedRole || !this.props.selected || !this.props.structure || !this.props.structure._id){Swal.fire( 'Oh non!', 'Certaines informations sont manquantes', 'error'); return;}
+    if(!selectedRole || !this.props.selected || !this.props.structure || !this.props.structure._id){Swal.fire( {title: 'Oh non!', text: 'Certaines informations sont manquantes', type: 'error', timer: 1500 }); return;}
     
     if(selectedRole === "delete" && this.state.selection){
       this.setState(pS => ({selection: !pS.selection}))
     }else{
-      if(this.props.selected.structRole === "administrateur" && (this.props.structure.membres.filter(x => x.roles.includes("administrateur")) || []).length < 2 ){Swal.fire( 'Oh non!', 'Il doit toujours y avoir un responsable de structure ', 'error'); return;} //Si on change le rôle de l'administrateur il faut s'assurer qu'il en reste toujours un
-      if( (this.props.selected.structRole === "administrateur" || selectedRole === "administrateur") && !userRoles.includes("administrateur") ){Swal.fire( 'Oh non!', 'Seul un responsable peut donner ou retirer les droits administrateurs', 'error'); return;} //On touche pas aux droits admins sans être admin
-      if( selectedRole === "contributeur" && !userRoles.includes("administrateur") && !userRoles.includes("contributeur") ){Swal.fire( 'Oh non!', 'Seul un rédacteur peut donner ou retirer les droits d\'édition', 'error'); return;} //On touche pas aux droits admins sans être admin
+      if(this.props.selected.structRole === "administrateur" && (this.props.structure.membres.filter(x => x.roles.includes("administrateur")) || []).length < 2 ){Swal.fire( {title:'Oh non!', text:'Il doit toujours y avoir un responsable de structure ', type: 'error', timer: 1500}); return;} //Si on change le rôle de l'administrateur il faut s'assurer qu'il en reste toujours un
+      if( (this.props.selected.structRole === "administrateur" || selectedRole === "administrateur") && !userRoles.includes("administrateur") ){Swal.fire( {title:'Oh non!', text:'Seul un responsable peut donner ou retirer les droits administrateurs', type: 'error', timer: 1500}); return;} //On touche pas aux droits admins sans être admin
+      if( selectedRole === "contributeur" && !userRoles.includes("administrateur") && !userRoles.includes("contributeur") ){Swal.fire( {title:'Oh non!', text:'Seul un rédacteur peut donner ou retirer les droits d\'édition', type: 'error', timer: 1500}); return;} //On touche pas aux droits admins sans être admin
       
       let structure={};
       if(selectedRole === "delete"){
-        if( !userRoles.includes("administrateur") ){Swal.fire( 'Oh non!', 'Seul un administrateur peut supprimer un membre', 'error'); return;} //On supprime pas un membre sans être admin
+        if( !userRoles.includes("administrateur") ){Swal.fire({title:'Oh non!', text:'Seul un administrateur peut supprimer un membre', type:'error', timer: 1500}); return;} //On supprime pas un membre sans être admin
         structure={
           _id: this.props.structure._id,
           '$pull': { membres : {'userId': this.props.selected._id } },
@@ -52,7 +52,7 @@ class EditMemberModal extends Component {
       }
       API.create_structure(structure).then((data) => {
         console.log(data);
-        Swal.fire( 'Yay...', 'La mise à jour a bien été effectuée, merci', 'success');
+        Swal.fire( {title:'Yay...', text:'La mise à jour a bien été effectuée, merci', type:'success', timer: 1500});
         this.props.initializeStructure();
         this.props.toggle();
       })

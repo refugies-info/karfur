@@ -137,7 +137,7 @@ class Dispositif extends Component {
           creator:dispositif.creatorId,
           uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
           dispositif: dispositif,
-          disableEdit: dispositif.status !== "Accepté structure" || !props.translating,
+          disableEdit: dispositif.status !== "Accepté structure" || !props.translating, //A vérifier
           isDispositifLoading: false,
           contributeurs: [dispositif.creatorId].filter(x => x),
           mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x.name === dispositif.tags[0].name) || {}) : {},
@@ -149,7 +149,6 @@ class Dispositif extends Component {
         if(API.isAuth()){
           API.get_user_info().then(data_res => {
             let u=data_res.data.data;
-            console.log(u)
             user={_id:u._id, cookies:u.cookies || {}}
             this.setState({
               pinned: (user.cookies.dispositifsPinned || []).some( x => x._id === itemId),
@@ -162,11 +161,11 @@ class Dispositif extends Component {
       this.initializeTimer();
       this.setState({
         disableEdit:false,
-        uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
+        uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}),
         ///////////////////////////////////
         showDispositifCreateModal:true, //A modifier avant la mise en prod
         isDispositifLoading: false
-      },()=>this.setColors())
+      },()=>this.setColors());
     }else{ props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
     window.scrollTo(0, 0);
   }
@@ -180,12 +179,6 @@ class Dispositif extends Component {
       })
     })
   }
- 
-  onMenuNavigate = (tab) => { //semble inutile vu qu'on a désactivé les accordéons dans le menu
-    const prevState = this.state.menu;
-    const menu = prevState.map((x, index) => (tab === index ? {...x, accordion : !x.accordion} : {...x, accordion: false}));
-    this.setState({ menu });
-  }
 
   onInputClicked = ev => {
     const id = ev.currentTarget.id;
@@ -198,7 +191,7 @@ class Dispositif extends Component {
   handleChange = (ev) => {
     this.setState({ content: {
       ...this.state.content,
-      [ev.currentTarget.id]: ev.target.value
+      [ev.currentTarget.id]: h2p(ev.target.value)
      }
     });
   };
@@ -214,14 +207,14 @@ class Dispositif extends Component {
   }
   
   handleMenuChange = (ev) => {
-    let node=ev.currentTarget;
+    const node=ev.currentTarget;
     let state = [...this.state.menu];
     state[node.id]={
       ...state[node.id],
       ...(!node.dataset.subkey && {content : ev.target.value, isFakeContent:false}), 
-      ...(node.dataset.subkey && state[node.id].children && state[node.id].children.length > node.dataset.subkey && {children : state[node.id].children.map((y,subidx) => { return {
+      ...(node.dataset.subkey && state[node.id].children && state[node.id].children.length > node.dataset.subkey && {children : state[node.id].children.map((y,subidx) => {return {
             ...y,
-            ...(subidx===node.dataset.subkey && { [node.dataset.target || 'content'] : ev.target.value, isFakeContent:false } )
+            ...(subidx===parseInt(node.dataset.subkey) && { [node.dataset.target || 'content'] : ev.target.value, isFakeContent:false } )
           }
         })
       })
@@ -254,7 +247,9 @@ class Dispositif extends Component {
           parentNode.getElementsByClassName('public-DraftEditor-content')[0].focus();
           window.getSelection().addRange( document.createRange() );
           parentNode.getElementsByClassName("DraftEditor-root")[0].style.height = (parentNode.getElementsByClassName("public-DraftEditorPlaceholder-inner")[0] || {}).offsetHeight + "px";
-          this.setState({ joyRideWidth: parentNode.offsetWidth }) 
+          parentNode.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+          console.log(parentNode, parentNode.offsetWidth)
+          this.setState(pS => ({ joyRideWidth: parentNode.offsetWidth || pS.joyRideWidth }))
         }
       } catch(e){console.log(e)} 
       this.setState({ stepIndex: key + 4, runJoyRide: true, disableOverlay: true, inputBtnClicked: false }) 
@@ -277,12 +272,14 @@ class Dispositif extends Component {
 
   updateUIArray=(key, subkey=null, node='isHover', value=true)=>{
     let uiArray = [...this.state.uiArray];
-    uiArray = uiArray.map((x,idx) => {return {
+    uiArray = uiArray.map((x,idx) => {
+      const updateOthers = this.state.disableEdit || node !=="accordion" ;
+      return {
       ...x,
       ...((subkey===null && idx===key && {[node] : value}) || {[node] : false}), 
       ...(x.children && {children : x.children.map((y,subidx) => { return {
             ...y,
-            ...((subidx===subkey && idx===key && {[node] : value}) || {[node] : false})
+            ...((subidx===subkey && idx===key && {[node] : value}) || (updateOthers && {[node] : false}))
           }
         })
       })
@@ -321,14 +318,14 @@ class Dispositif extends Component {
         prevState[key].children=[{title:'Nouveau sous-paragraphe', type:type,content: lorems.sousParagraphe}];
       }
     }
-    uiArray[key].children= [...(uiArray[key].children || []), uiElement];
-    this.setState({ menu: prevState, uiArray: uiArray }, () => type === "card" && this.setColors() );
+    uiArray[key].children= [...(uiArray[key].children || []), {...uiElement, accordion: true}];
+    this.setState({ menu: prevState, uiArray: uiArray }, () => (type === "card" || type==="map") && this.setColors() );
   }
 
   removeItem=(key, subkey=null)=>{
     let prevState = [...this.state.menu];
     let uiArray = [...this.state.uiArray];
-    if(prevState[key].children && prevState[key].children.length > 0){
+    if(prevState[key].children && prevState[key].children.length > 0 && (prevState[key].children.length > 1 || prevState[key].content)){
       if(subkey === null || subkey === undefined){
         prevState[key].children.pop();
         uiArray[key].children.pop();
@@ -351,7 +348,7 @@ class Dispositif extends Component {
   toggleModal = (show, name) => {
     this.props.tracking.trackEvent({ action: 'toggleModal', label: name, value : show });
     if(name==='merci' && this.state.showModals.merci){
-      Swal.fire( 'Yay...', 'Votre suggestion a bien été enregistrée, merci', 'success')
+      Swal.fire( {title: 'Yay...', text: 'Votre suggestion a bien été enregistrée, merci', type: 'success', timer: 1500})
     }
     this.setState(prevState=>({showModals:{...prevState.showModals,[name]:show}, suggestion:''}))
   }
@@ -374,15 +371,13 @@ class Dispositif extends Component {
 
   toggleFree = (key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, free: !y.free} : y)} : x) })
   changePrice = (e, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, price: e.target.value} : y)} : x) })
-  changeAge = (e, key, subkey, isBottom=true) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, [isBottom ? "bottomValue" : "topValue"]: (e.target.value || "").replace(/\D/g, '')} : y)} : x) })
+  changeAge = (e, key, subkey, isBottom=true) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, [isBottom ? "bottomValue" : "topValue"]: (e.target.value || "").replace(/\D/g, ''), isFakeContent: false} : y)} : x) })
   setMarkers = (markers, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, markers: markers} : y)} : x) })
 
   startFirstJoyRide = () => this.setState({showDispositifCreateModal: false, runFirstJoyRide: true});
   startJoyRide = (idx = 0) => this.setState({runJoyRide: true, stepIndex:idx});
 
   toggleHelp = () => this.setState(prevState=>({withHelp:!prevState.withHelp}))
-
-  openAllAccordions = () =>this.setState({accordion: this.state.accordion.map(x => true)})
 
   bookmarkDispositif = () => {
     this.setState({showSpinnerBookmark:true})
@@ -399,7 +394,7 @@ class Dispositif extends Component {
           pinned: !this.state.pinned
         })
       })
-    }else{Swal.fire( 'Oh non!', 'Vous devez être connecté pour utiliser cette fonctionnalité', 'error')}
+    }else{Swal.fire( {title: 'Oh non!', text: 'Vous devez être connecté pour utiliser cette fonctionnalité', type: 'error', timer: 1500})}
   }
 
   changeCardTitle = (key, subkey, node, value) => {
@@ -429,9 +424,12 @@ class Dispositif extends Component {
     if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status) || (action === ACTIONS.CLOSE  && type === EVENTS.STEP_AFTER)) {
       this.setState({ runJoyRide: false, disableOverlay: false });
     }else if(((action === ACTIONS.NEXT && index >= 3) || index > 4) && index < 7 && type === EVENTS.STEP_AFTER && lifecycle === "complete"){
-      this.handleContentClick(index - 3 + (action === ACTIONS.PREV ? -2 : 0), true);
+      const key = index - 3 + (action === ACTIONS.PREV ? -2 : 0);
+      this.handleContentClick(key, true, key>1 ? 0 : undefined);
     } else if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
-      this.setState({ stepIndex: index + (action === ACTIONS.PREV ? -1 : 1), disableOverlay: index>3, inputBtnClicked: ((action === ACTIONS.NEXT && index === 2) || (action === ACTIONS.PREV && index===4)) });
+      const inputBtnClicked= ((action === ACTIONS.NEXT && index === 2) || (action === ACTIONS.PREV && index===4))
+      if(inputBtnClicked){document.getElementById("input-btn").scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})};
+      this.setState({ stepIndex: index + (action === ACTIONS.PREV ? -1 : 1), disableOverlay: index>3, inputBtnClicked});
     }
   };
 
@@ -444,7 +442,7 @@ class Dispositif extends Component {
   addSponsor = sponsor => this.setState({sponsors: [...this.state.sponsors.filter(x => !x.dummy), sponsor]})
   deleteSponsor = key => {
     if(this.state.status === "Accepté structure"){
-      Swal.fire( 'Oh non!', 'Vous ne pouvez plus supprimer de structures partenaires', 'error'); return;
+      Swal.fire( {title: 'Oh non!', text: 'Vous ne pouvez plus supprimer de structures partenaires', type: 'error', timer: 1500}); return;
     }
     this.setState({ sponsors: [...this.state.sponsors].filter( (_,i) => i !== key) });
   }
@@ -483,9 +481,9 @@ class Dispositif extends Component {
     }
     API.update_dispositif(dispositif).then(data => {
       if(modalName === 'reaction'){
-        Swal.fire( 'Yay...', 'Votre réaction a bien été enregistrée, merci', 'success')
+        Swal.fire( {title: 'Yay...', text: 'Votre réaction a bien été enregistrée, merci', type: 'success', timer: 1500})
       }else if(API.isAuth()){
-        Swal.fire( 'Yay...', 'Votre suggestion a bien été enregistrée, merci', 'success')
+        Swal.fire( {title: 'Yay...', text: 'Votre suggestion a bien été enregistrée, merci', type: 'success', timer: 1500})
       }else{
         this.toggleModal(true, 'merci');
       }
@@ -559,7 +557,7 @@ class Dispositif extends Component {
     })
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render(){
     const {t, translating} = this.props;
@@ -614,7 +612,7 @@ class Dispositif extends Component {
         <ReactJoyride
           continuous
           steps={steps}
-          run={withHelp && runFirstJoyRide}
+          run={!disableEdit && withHelp && runFirstJoyRide}
           scrollToFirstStep
           showProgress
           showSkipButton
@@ -626,7 +624,7 @@ class Dispositif extends Component {
         <ReactJoyride
           continuous
           steps={tutoSteps}
-          run={withHelp && runJoyRide}
+          run={!disableEdit && withHelp && runJoyRide}
           showProgress
           disableOverlay={disableOverlay}
           disableOverlayClose={true}
@@ -681,7 +679,8 @@ class Dispositif extends Component {
                   editDispositif = {this.editDispositif}
                   valider_dispositif={this.valider_dispositif}
                   toggleDispositifCreateModal={this.toggleDispositifCreateModal}
-                  admin={this.props.admin} />
+                  admin={this.props.admin}
+                  translating={translating} />
               </Row>
               <FemmeCurly height="300" className="header-img femme-icon" alt="femme" />
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
@@ -743,7 +742,7 @@ class Dispositif extends Component {
                 </Row>
               </Col>
               <Col lg="5" md="5" sm="5" xs="5" className="tags-bloc">
-                <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} />
+                <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} history={this.props.history} />
               </Col>
             </Row>
             <Row>
@@ -757,10 +756,8 @@ class Dispositif extends Component {
                   disableEdit = {this.state.disableEdit}
                   toggleInputBtnClicked={this.toggleInputBtnClicked}
                   handleScrollSpy={this.handleScrollSpy}
-                  onMenuNavigate={this.onMenuNavigate}
                   createPdf={this.createPdf}
                   newRef={this.newRef}
-                  openAllAccordions={this.openAllAccordions}
                   handleChange = {this.handleChange}
                 />
               </Col>

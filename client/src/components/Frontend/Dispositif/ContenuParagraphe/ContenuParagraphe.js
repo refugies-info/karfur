@@ -43,7 +43,7 @@ const contenuParagraphe = (props) => {
                     <Button 
                       id="accordion-header"  
                       className={"text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} 
-                      onMouseUp={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
+                      onMouseUp={() => props.disableEdit && props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
                       aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} 
                       aria-controls={"collapse" + props.keyValue + "-" + subkey}>
                       <h5>

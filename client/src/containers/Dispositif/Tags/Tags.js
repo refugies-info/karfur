@@ -22,8 +22,13 @@ class Tags extends Component {
     }
   }
 
-  toggleDropdown = (e, key) => {
-    this.setState({ isDropdownOpen: this.state.isDropdownOpen.map((x,i)=> i===key ? !x : false)}, () => console.log(this.state))
+  toggleDropdown = (e, key, tag) => {
+    if(this.props.disableEdit){
+      console.log(this.props.tags[key])
+      this.props.history.push({ pathname:"/advanced-search", search: '?tag=' + tag.short || tag.name || tag })
+    }else{
+      this.setState({ isDropdownOpen: this.state.isDropdownOpen.map((x,i)=> i===key ? !x : false)}, () => console.log(this.state))
+    }
   };
 
   addTag = () => {
@@ -41,7 +46,7 @@ class Tags extends Component {
       <div className="tags">
         {(this.props.tags || []).map((tag, key) => {
           return (
-            <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key)} className="tags-dropdown" key={key}>
+            <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key, tag)} className="tags-dropdown" key={key}>
               <DropdownToggle caret={!this.props.disableEdit}>
                 {tag.short || tag.name || tag}
               </DropdownToggle>

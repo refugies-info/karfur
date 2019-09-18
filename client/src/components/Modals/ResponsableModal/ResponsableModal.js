@@ -25,7 +25,7 @@ class ResponsableModal extends Component {
   validateModal = async () => {
     if(this.state.step === 0){ 
       if(this.state.memberAdded){
-        if(!this.props.createur || !this.props.createur._id || !this.props.mainSponsor || !this.props.mainSponsor._id){Swal.fire( 'Oh non!', 'Certaines informations sont manquantes', 'error'); return;}
+        if(!this.props.createur || !this.props.createur._id || !this.props.mainSponsor || !this.props.mainSponsor._id){Swal.fire( {title: 'Oh non!', text: 'Certaines informations sont manquantes', type: 'error', timer: 1500 }); return;}
         let structure={
           _id: this.props.mainSponsor._id,
           "$addToSet": { "membres": {userId: this.props.createur._id, roles: [this.state.makeContrib ? "contributeur" : "membre"] } },

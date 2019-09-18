@@ -35,9 +35,11 @@ export class SearchBar extends React.Component {
     const escapedValue = escapeRegexCharacters(value.trim());
     if (escapedValue === '') { return [];}
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
-    return array.filter(child => this.props.isArray ? 
+    return array.filter(child => {
+      console.log(child)
+      return ( this.props.isArray ? 
       (regex.test(child.acronyme) || regex.test(child.nom) || child.createNew) || (regex.test(child.username) || regex.test(child.email)) : 
-      regex.test(child.titreMarque) || regex.test(child.titreInformatif) || regex.test(child.abstract) || regex.test(child.contact) || (child.tags || []).some(x => regex.test(x)) || (child.audience || []).some(x => regex.test(x)) || (child.audienceAge || []).some(x => regex.test(x)) || this.findInContent(child.contenu, regex) );
+      regex.test(child.titreMarque) || regex.test(child.titreInformatif) || regex.test(child.abstract) || regex.test(child.contact) || (child.tags || []).some(x => regex.test(x)) || (child.audience || []).some(x => regex.test(x)) || (child.audienceAge || []).some(x => regex.test(x)) || this.findInContent(child.contenu, regex) )})
   }
 
   findInContent = (contenu, regex) => contenu.some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent (x.children, regex)) );
