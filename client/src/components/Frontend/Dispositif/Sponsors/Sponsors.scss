@@ -16,7 +16,7 @@ $tailleBig:80px;
 
   .col{
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
@@ -85,6 +85,8 @@ $tailleBig:80px;
     border-radius: 12px;
     padding: 10px;
     color: #FFFFFF;
+    align-self: flex-end;
+    margin-top: 10px;
   }
 }
 

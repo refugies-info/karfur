@@ -103,7 +103,7 @@ class AdvancedSearch extends Component {
     this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title:'Oh non!', text:'Cette fonctionnalité n\'est pas encore activée', type:'error', timer: 1500})
 
   selectParam = (key, subitem) => {
     let recherche = [...this.state.recherche];
@@ -146,7 +146,7 @@ class AdvancedSearch extends Component {
           <Col lg="8" className="mt-250 central-col">
             <div className="search-bar">
               {recherche.map((d,i) => (
-                <SearchItem 
+                <SearchItem  
                   key={i}
                   item={d}
                   keyValue={i}
@@ -160,7 +160,7 @@ class AdvancedSearch extends Component {
                 {[...pinned,...dispositifs].slice(0,100).map((dispositif) => {
                   if(!dispositif.hidden){
                     let shortTag = null;
-                    if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = dispositif.tags[0].short }
+                    if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-") }
                     return (
                       <Col xs="12" sm="6" md="3" className="card-col puff-in-center" key={dispositif._id}>
                         <CustomCard onClick={() => this.goToDispositif(dispositif)}>

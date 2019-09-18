@@ -70,7 +70,7 @@ class Sponsors extends Component {
   }
 
   createStructure = () => {
-    if(!this.state.structure.nom || !this.state.structure.contact || (!this.state.structure.mail_contact && !this.state.structure.phone_contact)){Swal.fire( 'Oh non!', 'Certaines informations sont manquantes', 'error'); return;}
+    if(!this.state.structure.nom || !this.state.structure.contact || (!this.state.structure.mail_contact && !this.state.structure.phone_contact)){Swal.fire( {title: 'Oh non!', text: 'Certaines informations sont manquantes', type: 'error', timer: 1500 }); return;}
     let structure={}, fields = ["nom", "acronyme", "link", "contact", "mail_contact", "phone_contact", "authorBelongs"];
     fields.forEach(x => this.state.structure[x] !== "" ? structure[x] = this.state.structure[x] : false);
     API.create_structure(structure).then((data) => {
@@ -98,7 +98,7 @@ class Sponsors extends Component {
     this.toggleModal("envoye");
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render(){
     let {disableEdit, t, sponsors, deleteSponsor, user, structures} = this.props
@@ -116,7 +116,7 @@ class Sponsors extends Component {
                   <a href={((sponsor.link || "").includes("http") ? "" : "http://") + sponsor.link} target="_blank" rel="noopener noreferrer">
                     {sponsor.picture && sponsor.picture.secure_url ?
                       <img className="sponsor-img" src={sponsor.picture.secure_url} alt={sponsor.alt} /> : 
-                      <span className="default-logo">{sponsor.type === "Not found" ? "A déterminer par la suite" : sponsor.acronyme ? (sponsor.acronyme + " - " + sponsor.nom) : sponsor.alt}</span>}
+                      <span className="default-logo">{sponsor.type === "Not found" ? "A déterminer par la suite" : (sponsor.acronyme || sponsor.nom) ? (sponsor.acronyme + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + sponsor.nom) : sponsor.alt}</span>}
                   </a>
                   {!disableEdit && 
                     <div className="delete-icon" onClick={()=>deleteSponsor(key)}>

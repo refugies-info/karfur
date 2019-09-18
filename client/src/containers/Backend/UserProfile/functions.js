@@ -42,12 +42,15 @@ const parseActions = dispositifs => {
   return actions
 }
 
-const deleteContrib = function(dispositif, type){
+const deleteContrib = function(dispositif, type, callback=()=>{}){
   API.add_dispositif(dispositif).then(() => {
-    const query = type === "user" ? {'creatorId': this.props.userId} : {'mainSponsor': ((this.props.user || {}).structures || [{}])[0]};
-    API.get_dispositif({...query, status: {$ne: "Supprimé"}}).then(data => { console.log(data.data.data);
-      this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
-    })
+    if(type){
+      const query = type === "user" ? {'creatorId': this.props.userId} : {'mainSponsor': ((this.props.user || {}).structures || [{}])[0]};
+      API.get_dispositif({...query, status: {$ne: "Supprimé"}}).then(data => { console.log(data.data.data);
+        this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
+      })
+    }
+    return callback();
   })
 }
 

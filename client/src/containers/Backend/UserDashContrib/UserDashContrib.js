@@ -65,13 +65,13 @@ class UserDashContrib extends Component {
   validateObjectifs = newUser => {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
-      Swal.fire( 'Yay...', 'Vos objectifs ont bien été enregistrés', 'success')
+      Swal.fire( {title: 'Yay...', text: 'Vos objectifs ont bien été enregistrés', type: 'success', timer: 1500})
       this.setState({user:data.data.data})
       this.toggleModal('objectifs')
     })
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
   
   render() {
     let {contributions, contributeur, user, isMainLoading} = this.state;
