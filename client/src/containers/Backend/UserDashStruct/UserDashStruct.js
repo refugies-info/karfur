@@ -87,7 +87,7 @@ class UserDashStruct extends Component {
     this.setState({showSections : {...this.state.showSections, [section]: !this.state.showSections[section]}})
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render() {
     let {isMainLoading, actions, contributions, structure, users} = this.state;

@@ -157,12 +157,12 @@ class MapParagraphe extends PureComponent {
 
   validateMarker = () => {
     if(!this.state.markerInfo[0].value || this.state.markerInfo[0].value === "Saisir le titre" || this.state.markerInfo[4].value === "00 11 22 33 44" ){
-      Swal.fire( 'Oh non!', 'Vous devez renseigner un titre de lieu pour ce marqueur', 'error');
+      Swal.fire( {title: 'Oh non!', text: 'Vous devez renseigner un titre de lieu pour ce marqueur', type: 'error', timer: 1500});
       return;
     }
     if((!this.state.markerInfo[4].value || this.state.markerInfo[4].value === "ajouter@votreemail.fr") && 
       (!this.state.markerInfo[5].value || this.state.markerInfo[5].value === "00 11 22 33 44")){
-      Swal.fire( 'Oh non!', 'Vous devez renseigner au moins une information de contact (email ou téléphone)', 'error');
+      Swal.fire( {title: 'Oh non!', text: 'Vous devez renseigner au moins une information de contact (email ou téléphone)', type: 'error', timer: 1500});
       return;
     }
     console.log(this.state.markers,this.props.subitem.markers)
@@ -172,7 +172,7 @@ class MapParagraphe extends PureComponent {
       ...this.state.markerInfo.reduce((accumulateur, valeurCourante) => ({...accumulateur, [valeurCourante.item] : valeurCourante.value}), {})
     }
     this.props.setMarkers(markers, this.props.keyValue, this.props.subkey);
-    this.setState({markers: markers, showSidebar: false})
+    this.setState({markers: markers, showSidebar: false, dropdownValue: markers[this.state.selectedMarker].nom})
   }
 
   render(){

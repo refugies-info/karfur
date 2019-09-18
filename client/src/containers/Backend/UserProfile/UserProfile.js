@@ -138,7 +138,7 @@ class UserProfile extends Component {
   validateObjectifs = (newUser) => {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
-      Swal.fire( 'Yay...', 'Vos objectifs ont bien été enregistrés', 'success')
+      Swal.fire( {title: 'Yay...', text: 'Vos objectifs ont bien été enregistrés', type: 'success', timer: 1500})
       this.setState({user:data.data.data})
       this.toggleModal('objectifs')
     })
@@ -155,12 +155,12 @@ class UserProfile extends Component {
       picture: user.picture
     }
     API.set_user_info(newUser).then((data) => {
-      Swal.fire( 'Yay...', 'Votre profil a bien été enregistré', 'success')
+      Swal.fire( {title: 'Yay...', text: 'Votre profil a bien été enregistré', type: 'success', timer: 1500})
       this.setState({ editing:false, user: data.data.data })
     })
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render() {
     let {traducteur, contributeur, traductions, contributions, actions, langues, structure, user, showSections, isMainLoading, actionsStruct}=this.state;
@@ -251,17 +251,17 @@ class UserProfile extends Component {
                 <CardBody>
                   <Row>
                     <Col className={"obj-first" + (this.state.progression.timeSpent > 0 ? " active" : "")}>
-                      <h1 className="title text-big">{Math.round(this.state.progression.timeSpent / 1000 / 60)}</h1>
+                      <h1 className="title text-big">{Math.round(this.state.progression.timeSpent / 1000 / 60) || 0}</h1>
                       <h6 className="subtitle">minutes données</h6>
                       <span className="content texte-small">Commencez à contribuer pour démarrer le compteur.</span>
                     </Col>
                     <Col className={"obj-second" + (this.state.progression.nbMotsContrib > 0 ? " active" : "")}>
-                      <h1 className="title text-big">{this.state.progression.nbMotsContrib}</h1>
+                      <h1 className="title text-big">{this.state.progression.nbMotsContrib || 0}</h1>
                       <h6 className="subtitle">mots écrits</h6>
                       <span className="content texte-small">Rédiger votre premier contenu pour démarrer le compteur.</span>
                     </Col>
                     <Col className={"obj-third" + (this.state.progression.nbMots > 0 ? " active" : "")}>
-                      <h1 className="title text-big">{this.state.progression.nbMots}</h1>
+                      <h1 className="title text-big">{this.state.progression.nbMots || 0}</h1>
                       <h6 className="subtitle">mots traduits</h6>
                       <span className="content texte-small">Traduisez vos premiers mots pour démarrer le compteur.</span>
                     </Col>

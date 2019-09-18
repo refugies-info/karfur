@@ -18,7 +18,11 @@ class QuiSommesNous extends Component {
     membre: {}
   }
 
-  _onSelectMembre = membre => this.setState(pS => ({sideVisible: !pS.sideVisible, membre: membre}))
+  componentDidMount(){
+    window.scrollTo(0, 0);
+  }
+  
+  _onSelectMembre = membre => this.setState({sideVisible: true, membre: membre})
   _closeSide = () => this.setState({sideVisible: false})
 
   render() {
@@ -73,11 +77,9 @@ class QuiSommesNous extends Component {
                     <span>Des milliers de personnes s’engagent au quotidien en France pour accueillir et accompagner les personnes réfugiées. Leurs actions, humbles et ambitieuses, souffrent parfois d’un manque de visibilité et ne profitent pas au plus grand nombre. Agi’r souhaite recenser et rendre accessible ces milliers d’initative</span>
                   </CardBody>
                   <CardFooter>
-                    <NavLink to="/advanced-search" className="no-decoration">
-                      <FButton type="outline-black">
-                        Chercher un dispositif
-                      </FButton>
-                    </NavLink>
+                    <FButton tag={NavLink} to="/advanced-search" type="outline-black">
+                      Chercher un dispositif
+                    </FButton>
                   </CardFooter>
                 </Card>
               </Col>
@@ -135,11 +137,11 @@ class QuiSommesNous extends Component {
                   <CardBody>
                     <span>Mieux comprendre c'est déjà mieux accueillir. Migrant, demandeur d'asile ou réfugié ne désignent pas les mêmes réalités. Agi'r s'adresse plus particulièrement aux réfugiés, c'est-à-dire aux personnes à qui la France accorde une protection internationale car leur vie est menacée.</span>
                   </CardBody>
-                  <CardFooter>
+                  {/* <CardFooter>
                     <FButton type="outline-black">
                       En savoir plus
                     </FButton>
-                  </CardFooter>
+                  </CardFooter> */}
                 </Card>
               </Col>
               <Col lg="4" className="card-col">
@@ -174,7 +176,7 @@ class QuiSommesNous extends Component {
                     <span>Les valeurs d’ouverture et de transparence sont au coeur du projet Agi’r : le code source du site est entièrement disponible. Un réseau ouvert participe à la conception et conseille l’équipe du projet sur les besoins et les fonctionnalités à développer.</span>
                   </CardBody>
                   <CardFooter>
-                    <a href="https://github.com/Tony4469/karfur" className="no-decoration">
+                    <a href="https://github.com/Tony4469/karfur" className="no-decoration" target="_blank">
                       <FButton type="outline-black">
                         Voir le code source
                       </FButton>
@@ -189,7 +191,7 @@ class QuiSommesNous extends Component {
                     <span>Seuls les écosystèmes d’acteurs locaux sont capables de recenser efficacement les actions et de nourrir une base de connaissance. Ainsi Agi’r permet à chaque territoire de recenser et de valoriser ses initiatives. Agi’r donne un cadre technique et ergonomique pour favoriser la rencontre et l’échange de bonnes pratiques au niveau local.</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton type="outline-black">
+                    <FButton tag={"a"} href="https://agi-r.mn.co" target="_blank" type="outline-black">
                       Rejoindre le réseau
                     </FButton>
                   </CardFooter>
@@ -202,7 +204,7 @@ class QuiSommesNous extends Component {
                     <span>En donnant à chacun la possibilité d’être facilement acteur et contributeur de la plateforme, à l’instar de Wikipédia, Agi’r favorise de nouvelles formes de micro-engagement permettant à de nouveaux publics de s’engager pour une cause de solidarité, en faveur des réfugiés.</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton type="outline-black">
+                    <FButton tag={NavLink} to="/backend/user-profile" type="outline-black">
                       Contribuer
                     </FButton>
                   </CardFooter>

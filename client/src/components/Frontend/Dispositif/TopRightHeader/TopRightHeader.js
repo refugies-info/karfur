@@ -25,7 +25,7 @@ const topRightHeader = (props) => {
   )}else if(props.disableEdit){
     return(
       <Col lg="6" md="6" sm="12" xs="12" className="top-right">
-        {(props.isAuthor || props.admin || userIsSponsor) && 
+        {!props.translating && (props.isAuthor || props.admin || userIsSponsor) && 
           <div className="top-icon-wrapper mr-10" onClick={props.editDispositif}>
             <EVAIcon name="edit-outline" fill="#3D3D3D" id="editBtn" />
           </div>}
