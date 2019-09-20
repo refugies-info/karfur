@@ -30,7 +30,7 @@ class QuiSommesNous extends Component {
             <h1>Qui sommes-nous ?</h1>
             <h4>Agi’r est une plateforme numérique dédiée à faciliter les parcours d’intégration des réfugiés en France.</h4>
           </div>
-          <EVAIcon className="arrowhead-icon" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          <EVAIcon className="arrowhead-icon slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
         </section>
 
         <section id="missions">

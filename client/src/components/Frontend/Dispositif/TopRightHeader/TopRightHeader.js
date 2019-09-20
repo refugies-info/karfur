@@ -40,13 +40,13 @@ const topRightHeader = (props) => {
     return(
       <Col lg="6" md="6" sm="12" xs="12" className="top-right">
         <Card>
-          <CardBody className="backgroundColor-darkColor">
-            <FSwitch content="Tutoriel" checked={props.withHelp} onClick={props.toggleHelp} />
-            <Button className="save-btn text-dark" onClick={()=>props.valider_dispositif('Brouillon')}>Sauvegarder</Button>
-            <Button className="publish-btn" onClick={props.toggleDispositifValidateModal}>Publier</Button>
+          <CardBody className="telecommande">
+            <FSwitch content="Consignes" checked={props.withHelp} onClick={props.toggleHelp} />
+            <FButton className="savebtn" type="light-action" name="save-outline" onClick={()=>props.valider_dispositif('Brouillon')}>Brouillon</FButton>
+            <FButton className="validate" name="checkmark" onClick={props.toggleDispositifValidateModal}>Publier</FButton>
           </CardBody>
-          <CardFooter className="color-darkColor cursor-pointer" onClick={props.toggleDispositifCreateModal}>
-            <SVGIcon className="mr-8 fill-darkColor" name="radio" />
+          <CardFooter className="helpbtn cursor-pointer" onClick={props.toggleDispositifCreateModal}>
+            <EVAIcon className="mr-8" name="question-mark-circle" viewBox="0 0 20 20" />
             Besoin d'aide ?
           </CardFooter>
         </Card>

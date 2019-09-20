@@ -290,7 +290,7 @@ const SVGIcon = ({
     xmlnsXlink="http://www.w3.org/1999/xlink"
     {...props}
   >
-    {getPath(name, { fill : (fill || getFill(name)), ...props })}
+    {getPath(name, { ...((fill || getFill(name)) && {fill : (fill || getFill(name))}), ...props })}
   </svg>
 );
 

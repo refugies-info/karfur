@@ -272,7 +272,7 @@ class CardParagraphe extends Component {
             {!this.props.disableEdit && 
               <div className="card-icons">
                 <div onClick={()=>this.props.deleteCard(this.props.keyValue,subkey)}>
-                  <EVAIcon size="xlarge" name="minus-circle" fill={variables.noirCD} className="delete-icon"/>
+                  <EVAIcon size="xlarge" name="close-circle" fill={variables.noirCD} className="delete-icon"/>
                 </div>
               </div>}
           </Card>
@@ -293,7 +293,7 @@ class CardParagraphe extends Component {
             {this.state.papiers.map((element, idx) => 
               <ListGroupItem action key={idx}>
                 <Dropdown isOpen={!this.props.disableEdit && this.state.isModalDropdownOpen[idx]} toggle={()=>this.toggleModalDropdown(idx)}>
-                  {!this.props.disableEdit && <EVAIcon name="minus-circle-outline" onClick={()=>this.removePiece(idx)} className="btn-moins" />}
+                  {!this.props.disableEdit && <EVAIcon name="close-circle" onClick={()=>this.removePiece(idx)} className="btn-moins" />}
                   <DropdownToggle caret={!this.props.disableEdit} className="papiers-toggle-btn">
                     <h6>{element.name}</h6>
                     <u>Comment obtenir cette pièce ?</u>

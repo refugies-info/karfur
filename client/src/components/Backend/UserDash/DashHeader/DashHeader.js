@@ -87,8 +87,8 @@ const dashHeader = (props) => {
             <div className="inner-indicator first-indicator">
               <h3 className="right-side">12</h3>
               <div className="left-side">
-                utilisateurs ont profité de vos contenus cette semaine.{' '}
-                <b className="pointer" onClick={props.upcoming}>Alors ?</b>
+                <b className="mot-indicateur">utilisateurs</b> ont profité de vos contenus cette semaine.{' '}<br/>
+                <i>Ça fait plaisir !</i>
               </div>
             </div>
           </Col>
@@ -96,7 +96,8 @@ const dashHeader = (props) => {
             <div className="inner-indicator second-indicator">
               <h3 className="right-side">{props.motsRediges} <span className="gris">/ {props.objectifMots}</span></h3>
               <div className="left-side">
-                Il vous reste {props.motsRestants} mots à traduire pour atteindre votre objectif. Courage !
+              <b className="mot-indicateur">mots</b> à traduire pour atteindre votre objectif.{' '}<br/>
+              <i>Courage !</i>
               </div>
             </div>
           </Col>
@@ -104,8 +105,8 @@ const dashHeader = (props) => {
             <div className="inner-indicator third-indicator">
               <h3 className="right-side">{props.minutesPassees} <span className="gris">/ {props.objectifTemps}'</span></h3>
               <div className="left-side">
-                Déjà {props.minutesPassees} minutes écoulées sur les {props.objectifTemps} que vous dédiez aux réfugiés.{' '}
-                <b>Merci !</b>
+              <b className="mot-indicateur">minutes</b> dédiées à l'accueil des personnes réfugiés.{' '}<br/>
+                <i>Merci !</i>
               </div>
             </div>
           </Col>
@@ -117,7 +118,7 @@ const dashHeader = (props) => {
     <div className="dash-header">
       <Row>
         <Col>
-          <h2><NavLink to="/backend/user-profile" className="my-breadcrumb">Mon profil</NavLink> / {props.title}</h2>
+          <h2 className="ariane" ><NavLink to="/backend/user-profile" className="my-breadcrumb">Mon profil</NavLink> / {props.title}</h2>
         </Col>
         <Col className="tableau-header align-right">
           {props.structure &&

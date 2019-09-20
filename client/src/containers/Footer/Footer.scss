@@ -6,7 +6,7 @@
   color: #FFFFFF;
 
   .ligne-footer{
-    margin-top: 10px;
+    margin-top: 20px;
   }
   .lien-footer{
     margin-top: 25px;
@@ -49,6 +49,8 @@ $placeholderColor: $noir;
     border: none;
     color: $noir;
     outline: none;
+    height: 3.75em;
+    placeholder
     &:hover{background: $gris;}
     &:focus::-webkit-input-placeholder { color:transparent; }
     &:focus:-moz-placeholder { color:transparent; }
@@ -56,6 +58,8 @@ $placeholderColor: $noir;
   }
   .footer-btn{
     display: block;
+    height: 60px;
+    padding: 10px 20px;
   }
   .icon-append{
     position: absolute;

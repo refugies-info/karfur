@@ -16,6 +16,7 @@
       background: $rouge;
     }
 
+    
     .card-header{
       background-color: $darkColor;
       border: none;
@@ -51,7 +52,7 @@
       h4{
         font-style: normal;
         font-weight: 500;
-        font-size: 32px;
+        font-size: 24px;
         .card-input{
           border-radius: 6px;
           color: $darkColor;
@@ -73,7 +74,7 @@
 
       .age-input{
         font-weight: 500;
-        font-size: 32px;
+        font-size: 24px;
         line-height: 40px;
         display: inline-block;
         padding: 0;
@@ -182,7 +183,7 @@
       right: -15px;
       cursor: pointer;
       svg{
-        fill: $rouge;
+        fill: $error;
       }
       &:hover{
         svg{
