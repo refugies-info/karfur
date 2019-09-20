@@ -80,27 +80,30 @@ function get_dispositif(req, res) {
     var sort = req.body.sort;
     var populate = req.body.populate;
     var limit = req.body.limit;
+    var random = req.body.random;
+
     if(populate && populate.constructor === Object){
       populate.select = '-password';
     }else if(populate){
       populate={path:populate, select : '-password'};
     }else{populate='';}
 
-    var find= new Promise(function (resolve, reject) {
-      Dispositif.find(query).sort(sort).populate(populate).limit(limit).exec(function (err, result) {
-        if (err) {
-          reject(500);
-        } else {
-          if (result) {
-            resolve(result)
-          } else {
-            reject(404)
-          }
-        }
-      })
-    })
+    let promise=null;
+    console.log(random)
+    if(random){
+      promise=Dispositif.aggregate([
+        { $match : query },
+        { $sample : { size: 1 } }
+      ]);
+      console.log([
+        { $match : query },
+        { $sample : { size: 1 } }
+      ])
+    }else{
+      promise=Dispositif.find(query).sort(sort).populate(populate).limit(limit);
+    }
 
-    find.then(function (result) {
+    promise.then(result => {
       [].forEach.call(result, (dispositif) => { 
         dispositif = _turnToFr(dispositif);
         turnJSONtoHTML(dispositif.contenu);
@@ -109,7 +112,7 @@ function get_dispositif(req, res) {
           "text": "Succès",
           "data": result
       })
-    }, function (error) {
+    }).catch(function (error) {
       console.log(error)
       switch (error) {
         case 500:

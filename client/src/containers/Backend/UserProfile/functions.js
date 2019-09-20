@@ -46,7 +46,7 @@ const deleteContrib = function(dispositif, type, callback=()=>{}){
   API.add_dispositif(dispositif).then(() => {
     if(type){
       const query = type === "user" ? {'creatorId': this.props.userId} : {'mainSponsor': ((this.props.user || {}).structures || [{}])[0]};
-      API.get_dispositif({...query, status: {$ne: "Supprimé"}}).then(data => { console.log(data.data.data);
+      API.get_dispositif({query: {...query, status: {$ne: "Supprimé"}}}).then(data => { console.log(data.data.data);
         this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
       })
     }

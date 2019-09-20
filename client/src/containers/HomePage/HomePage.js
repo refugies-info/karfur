@@ -117,7 +117,7 @@ class HomePage extends Component {
           <div className="section-container half-width">
             <div className="section-body">
               <h2>Ouverte à la contribution</h2>
-              <p className="text-normal">
+              <p className="texte-normal">
                 Agi’r est une plateforme ouverte à la contribution, comme Wikipédia. Son objectif est de centraliser et de garder à jour un maximum d’informations pratiques pour aider les réfugiés à prendre leurs marques en France.
                 {" "}
                 <NavLink to="/qui-sommes-nous">
@@ -138,7 +138,7 @@ class HomePage extends Component {
           <div className="section-container half-width right-side">
             <div className="section-body">
               <h2>Disponible en plusieurs langues</h2>
-              <p className="text-normal">Agi’r est lisible dans les 10 langues les plus parlées par les personnes réfugiées. Participez à l’effort de traduction pour rendre l’information toujours plus accessible.</p>
+              <p className="texte-normal">Agi’r est lisible dans les 10 langues les plus parlées par les personnes réfugiées. Participez à l’effort de traduction pour rendre l’information toujours plus accessible.</p>
               {/*<LanguageBtn />*/}
             </div>
             <footer>
@@ -154,7 +154,7 @@ class HomePage extends Component {
           <div className="section-container half-width">
             <div className="section-body">
               <h2>De l’information vérifiée et certifiée par l’État</h2>
-              <p className="text-normal">Les contenus proposés sont relus, corrigés et si besoin certifiés avant d’être publiés afin d’éviter les erreurs et les informations périmées.</p>
+              <p className="texte-normal">Les contenus proposés sont relus, corrigés et si besoin certifiés avant d’être publiés afin d’éviter les erreurs et les informations périmées.</p>
             </div>
             <footer>
               Nous ne censurons aucun contenu :
@@ -168,8 +168,8 @@ class HomePage extends Component {
         <section id="explique">
           <div className="section-container half-width right-side">
             <h2>Explique les mots difficiles</h2>
-            <p className="text-normal">Passez la souris sur un mot pour accéder à sa définition. Consulter le Lexique pour apprendre les nombreux mots spécifiques aux démarches administratives.</p>
-            <span className="text-normal">Bientôt disponible !</span>
+            <p className="texte-normal">Passez la souris sur un mot pour accéder à sa définition. Consulter le Lexique pour apprendre les nombreux mots spécifiques aux démarches administratives.</p>
+            <span className="texte-normal">Bientôt disponible !</span>
             {/*<FButton type="dark" onClick={this.upcoming}>
               Voir le lexique
                 </FButton>*/}

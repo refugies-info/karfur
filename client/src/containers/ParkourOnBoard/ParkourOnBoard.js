@@ -44,7 +44,7 @@ class ParkourOnBoard extends Component {
     this.setState({loading:true})
     let filter={status:'Actif'};
     data.map((x,id) => (id !== 2 && (id<3 || this.state.isToggleOpen) ) ? filter[x.queryName] = x.query || x.value : undefined);
-    API.get_dispositif(filter).then(data_res => {
+    API.get_dispositif({query: filter}).then(data_res => {
       let dispositifs=data_res.data.data;
       this.setState({
         dispositifs:dispositifs.filter(x => !this.state.pinned.find( y => y._id === x._id)), 

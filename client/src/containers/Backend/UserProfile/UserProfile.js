@@ -70,14 +70,12 @@ class UserProfile extends Component {
     API.get_tradForReview({'userId': userId}).then(data => { console.log(data.data.data);
       this.setState({traductions: data.data.data})
     })
-    API.get_dispositif({'creatorId': userId, status: {$ne: "Supprimé"}}).then(data => { console.log(data.data.data);
+    API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}}}).then(data => { console.log(data.data.data);
       this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
     })
     if(user.structures && user.structures.length > 0){
-      API.get_structure({_id: user.structures[0] }).then(data => { console.log(data.data.data);
-        this.setState({structure:data.data.data[0]})
-      })
-      API.get_dispositif({'mainSponsor': user.structures[0]}).then(data => {console.log(parseActions(data.data.data))
+      this.initializeStructure();
+      API.get_dispositif({query: {'mainSponsor': user.structures[0]}}).then(data => {console.log(parseActions(data.data.data))
         this.setState({actionsStruct: parseActions(data.data.data)})
       })
     }
@@ -88,6 +86,13 @@ class UserProfile extends Component {
     API.get_langues({}).then(data => this.setState({ langues: data.data.data }))
     this.getProgression();
     window.scrollTo(0, 0);
+  }
+
+  initializeStructure = () => {
+    const user=this.props.user;
+    API.get_structure({_id: user.structures[0] }).then(data => { console.log(data.data.data);
+      this.setState({structure:data.data.data[0]})
+    })
   }
 
   toggleModal = (modal) => {

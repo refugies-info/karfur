@@ -33,7 +33,7 @@ class ParkourPerso extends Component {
   }
 
   getDispositifs = (filter = {}, limit=null) => {
-    API.get_dispositif(filter,{},'', limit).then(data_res => {
+    API.get_dispositif({query: filter,limit}).then(data_res => {
       this.setState({
         dispositifs:data_res.data.data.map(x=> {return {...x, checked:false}}), 
       },()=>{this.getCookies();})
