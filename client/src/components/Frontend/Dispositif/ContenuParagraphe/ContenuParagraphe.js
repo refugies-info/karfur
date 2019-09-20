@@ -55,7 +55,7 @@ const contenuParagraphe = (props) => {
                             html={subitem.title || ""}  // innerHTML of the editable div
                             disabled={props.disableEdit}       // use true to disable editing
                             onChange={props.handleMenuChange} // handle innerHTML change
-                            onMouseUp={e=> !props.disableEdit && e.stopPropagation()} />
+                            onMouseUp={e=> {console.log(e); return !props.disableEdit && e.stopPropagation()}} />
                         </span>
                         {props.disableEdit && 
                           <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />}
