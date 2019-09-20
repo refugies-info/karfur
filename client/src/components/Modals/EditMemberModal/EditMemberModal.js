@@ -18,7 +18,7 @@ class EditMemberModal extends Component {
 
   componentWillReceiveProps(nextProps){
     if(nextProps.selected && nextProps.selected.structRole){
-      this.setState({roles: roles.map(x => ({...x, checked: nextProps.selected.structRole === x.role}))})
+      this.setState({roles: roles.map(x => ({...x, checked: nextProps.selected.structRole === x.role})), selection: true})
     }
   }
 
@@ -30,7 +30,7 @@ class EditMemberModal extends Component {
     if(!selectedRole || !this.props.selected || !this.props.structure || !this.props.structure._id){Swal.fire( {title: 'Oh non!', text: 'Certaines informations sont manquantes', type: 'error', timer: 1500 }); return;}
     
     if(selectedRole === "delete" && this.state.selection){
-      this.setState(pS => ({selection: !pS.selection}))
+      this.setState({selection: false})
     }else{
       if(this.props.selected.structRole === "administrateur" && (this.props.structure.membres.filter(x => x.roles.includes("administrateur")) || []).length < 2 && selectedRole!=="administrateur"){Swal.fire( {title:'Oh non!', text:'Il doit toujours y avoir un responsable de structure ', type: 'error', timer: 1500}); return;} //Si on change le rôle de l'administrateur il faut s'assurer qu'il en reste toujours un
       if( (this.props.selected.structRole === "administrateur" || selectedRole === "administrateur") && !userRoles.includes("administrateur") ){Swal.fire( {title:'Oh non!', text:'Seul un responsable peut donner ou retirer les droits administrateurs', type: 'error', timer: 1500}); return;} //On touche pas aux droits admins sans être admin
@@ -50,6 +50,7 @@ class EditMemberModal extends Component {
           '$set':  {'membres.$.roles': [selectedRole]},
         };
       }
+      console.log(structure)
       API.create_structure(structure).then((data) => {
         console.log(data);
         Swal.fire( {title:'Yay...', text:'La mise à jour a bien été effectuée, merci', type:'success', timer: 1500});
