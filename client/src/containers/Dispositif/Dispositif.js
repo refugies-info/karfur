@@ -123,6 +123,7 @@ class Dispositif extends Component {
     let itemId=props.match && props.match.params && props.match.params.id;
     console.log(itemId)
     if(itemId){
+      this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
       API.get_dispositif({_id: itemId},{},'creatorId mainSponsor').then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
@@ -182,6 +183,7 @@ class Dispositif extends Component {
 
   onInputClicked = ev => {
     const id = ev.currentTarget.id;
+    console.log(id)
     if( (id==="titreInformatif" && this.state.content.titreInformatif === contenu.titreInformatif)
         || (id==="titreMarque" && this.state.content.titreMarque === contenu.titreMarque) ){
       this.setState({ content: { ...this.state.content, [id]: ""} })
@@ -189,11 +191,23 @@ class Dispositif extends Component {
   }
 
   handleChange = (ev) => {
+    console.log('ici')
     this.setState({ content: {
       ...this.state.content,
-      [ev.currentTarget.id]: h2p(ev.target.value)
+      [ev.currentTarget.id]: ev.target.value
      }
     });
+  };
+
+  handleKeyPress = (ev, index) => {
+    if(ev.key === 'Enter'){
+      ev.preventDefault();
+      this.setState({ stepIndex: index + 1});
+      if( index===0 && this.state.content.titreMarque === contenu.titreMarque ){
+        this.setState({ content: { ...this.state.content, titreMarque: ""} });
+        document.getElementById("titreMarque").focus();
+      }
+    }
   };
 
   handleModalChange = (ev) => this.setState({ [ev.currentTarget.id]: ev.target.value });
@@ -235,12 +249,14 @@ class Dispositif extends Component {
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
       if(right_node.type === 'accordion'){ this.updateUIArray(key, subkey, 'accordion', true) }
+      console.log((key, editable, subkey))
       return new Promise(resolve => this.setState( { menu: state },()=>{ this.updateUI(key, subkey, editable) ; resolve()} ));
     }else{return new Promise(r=> r())}
   };
 
   updateUI = (key, subkey, editable) => {
-    if(editable){ 
+    if(editable && (subkey===undefined || (subkey===0 && key>1) )){ 
+      console.log(key, subkey, editable)
       try{ //On place le curseur à l'intérieur du wysiwyg et on ajuste la hauteur
         let parentNode = document.getElementsByClassName('editeur-' + key + '-' + subkey)[0];
         if(parentNode){
@@ -248,7 +264,6 @@ class Dispositif extends Component {
           window.getSelection().addRange( document.createRange() );
           parentNode.getElementsByClassName("DraftEditor-root")[0].style.height = (parentNode.getElementsByClassName("public-DraftEditorPlaceholder-inner")[0] || {}).offsetHeight + "px";
           parentNode.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-          console.log(parentNode, parentNode.offsetWidth)
           this.setState(pS => ({ joyRideWidth: parentNode.offsetWidth || pS.joyRideWidth }))
         }
       } catch(e){console.log(e)} 
@@ -427,9 +442,14 @@ class Dispositif extends Component {
       const key = index - 3 + (action === ACTIONS.PREV ? -2 : 0);
       this.handleContentClick(key, true, key>1 ? 0 : undefined);
     } else if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
+      const stepIndex = index + (action === ACTIONS.PREV ? -1 : 1); 
       const inputBtnClicked= ((action === ACTIONS.NEXT && index === 2) || (action === ACTIONS.PREV && index===4))
-      if(inputBtnClicked){document.getElementById("input-btn").scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})};
-      this.setState({ stepIndex: index + (action === ACTIONS.PREV ? -1 : 1), disableOverlay: index>3, inputBtnClicked});
+      this.setState({ stepIndex, disableOverlay: index>3, inputBtnClicked});
+      if(tutoSteps[stepIndex] && tutoSteps[stepIndex].target && tutoSteps[stepIndex].target.includes("#") && document.getElementById(tutoSteps[stepIndex].target.replace("#", ""))){
+        const cible = document.getElementById(tutoSteps[stepIndex].target.replace("#", ""));
+        cible.focus();
+        cible.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})
+      }
     }
   };
 
@@ -539,7 +559,8 @@ class Dispositif extends Component {
     }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
       dispositif.mainSponsor = dispositif.sponsors[0]._id;
       //Si l'auteur appartient à la structure principale je la fait passer directe en validation
-      if((dispositif.sponsors[0].membres || []).some(x => x.userId === this.props.userId)){
+      const membre = (dispositif.sponsors[0].membres || []).find(x => x.userId === this.props.userId);
+      if(membre && membre.roles && membre.roles.some(x => x==="administrateur" || x==="contributeur")){
         dispositif.status = "En attente admin";
       }
     }else{
@@ -693,6 +714,7 @@ class Dispositif extends Component {
                       onClick={e=>{this.startJoyRide(); this.onInputClicked(e)}}
                       onChange={this.handleChange}
                       onMouseEnter={e => e.target.focus()} 
+                      onKeyPress={e=>this.handleKeyPress(e, 0)}
                     />
                   </h1>
                   <h2 className="bloc-subtitle">
@@ -705,6 +727,7 @@ class Dispositif extends Component {
                       onChange={this.handleChange} 
                       onKeyDown={this.onInputClicked}
                       onMouseEnter={e => e.target.focus()} 
+                      onKeyPress={e=>this.handleKeyPress(e, 1)}
                     />
                   </h2>
                 </div>

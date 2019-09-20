@@ -6,14 +6,17 @@ import moment from 'moment/min/moment-with-locales';
 
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
+import { fakeFavori } from '../../../../containers/Backend/UserProfile/data';
 
 import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
 const favoriTable = (props) => {
-  let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
-  
+  const hasFavori = (props.dataArray || []).length > 0;
+  const dataArray = hasFavori ? props.dataArray : new Array(5).fill(fakeFavori);
+  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
+
   const goToDispositif = (dispositif) => props.history.push("/dispositif/" + dispositif._id)
   const searchTag = tag => props.history.push({ pathname:"/advanced-search", search: '?tag=' + tag })
 
@@ -81,7 +84,7 @@ const favoriTable = (props) => {
         <div className="tableau">
           {table}
 
-          {!props.hasFavori &&
+          {!hasFavori &&
             <div className="ecran-protection no-fav">
               <div className="content-wrapper">
                 <h1>Retrouvez ici vos pages favorites</h1>

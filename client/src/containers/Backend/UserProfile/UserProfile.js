@@ -6,17 +6,18 @@ import h2p from 'html2plaintext';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import windowSize from 'react-window-size';
 import { connect } from 'react-redux';
+import {NavLink} from 'react-router-dom';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
 import {ActionTable, TradTable, ContribTable, FavoriTable, StructureCard} from '../../../components/Backend/UserProfile';
-import {ThanksModal, SuggestionModal, ObjectifsModal, ContributeurModal, TraducteurModal, AddMemberModal} from '../../../components/Modals';
+import {ThanksModal, SuggestionModal, ObjectifsModal, TraducteurModal, AddMemberModal} from '../../../components/Modals';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import ModifyProfile from '../../../components/Backend/UserProfile/ModifyProfile/ModifyProfile';
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import {selectItem, editMember, addMember} from '../UserDashStruct/functions';
-import {fakeContribution, fakeFavori, fakeNotifs, avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
+import {avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
 import {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgression} from './functions';
 
 import './UserProfile.scss';
@@ -164,11 +165,8 @@ class UserProfile extends Component {
 
   render() {
     let {traducteur, contributeur, traductions, contributions, actions, langues, structure, user, showSections, isMainLoading, actionsStruct}=this.state;
-    if(!contributeur){contributions= new Array(5).fill(fakeContribution)}
-
-    let favoris = ((user.cookies || {}).dispositifsPinned || []),hasFavori=true, hasNotifs= true;
-    if(favoris.length === 0){favoris= new Array(5).fill(fakeFavori); hasFavori=false;}
-    if(actions.length === 0){actions= new Array(5).fill(fakeNotifs); hasNotifs=false;}
+    
+    let favoris = ((user.cookies || {}).dispositifsPinned || []);
     
     let imgSrc = this.state.tempImg || (this.state.user.picture || []).secure_url || marioProfile
 
@@ -251,19 +249,25 @@ class UserProfile extends Component {
                 <CardBody>
                   <Row>
                     <Col className={"obj-first" + (this.state.progression.timeSpent > 0 ? " active" : "")}>
-                      <h1 className="title text-big">{Math.round(this.state.progression.timeSpent / 1000 / 60) || 0}</h1>
-                      <h6 className="subtitle">minutes données</h6>
-                      <span className="content texte-small">Commencez à contribuer pour démarrer le compteur.</span>
+                      <NavLink to="/dispositif">
+                        <h1 className="title text-big">{Math.round(this.state.progression.timeSpent / 1000 / 60) || 0}</h1>
+                        <h6 className="subtitle">minutes données</h6>
+                        <span className="content texte-small">Commencez à contribuer pour démarrer le compteur.</span>
+                      </NavLink>
                     </Col>
                     <Col className={"obj-second" + (this.state.progression.nbMotsContrib > 0 ? " active" : "")}>
-                      <h1 className="title text-big">{this.state.progression.nbMotsContrib || 0}</h1>
-                      <h6 className="subtitle">mots écrits</h6>
-                      <span className="content texte-small">Rédiger votre premier contenu pour démarrer le compteur.</span>
+                      <NavLink to="/dispositif">
+                        <h1 className="title text-big">{this.state.progression.nbMotsContrib || 0}</h1>
+                        <h6 className="subtitle">mots écrits</h6>
+                        <span className="content texte-small">Rédiger votre premier contenu pour démarrer le compteur.</span>
+                      </NavLink>
                     </Col>
                     <Col className={"obj-third" + (this.state.progression.nbMots > 0 ? " active" : "")}>
-                      <h1 className="title text-big">{this.state.progression.nbMots || 0}</h1>
-                      <h6 className="subtitle">mots traduits</h6>
-                      <span className="content texte-small">Traduisez vos premiers mots pour démarrer le compteur.</span>
+                      <NavLink to="/backend/user-dashboard">
+                        <h1 className="title text-big">{this.state.progression.nbMots || 0}</h1>
+                        <h6 className="subtitle">mots traduits</h6>
+                        <span className="content texte-small">Traduisez vos premiers mots pour démarrer le compteur.</span>
+                      </NavLink>
                     </Col>
                   </Row>
                 </CardBody>
@@ -286,7 +290,6 @@ class UserProfile extends Component {
               showSuggestion={this.showSuggestion}
               upcoming={this.upcoming}
               archive={this.archiveSuggestion}
-              hasNotifs={hasNotifs}
               limit={5}
               {...avancement_actions} />:
             <FavoriTable 
@@ -294,7 +297,6 @@ class UserProfile extends Component {
               toggleModal={this.toggleModal}
               removeBookmark={this.removeBookmark}
               upcoming={this.upcoming}
-              hasFavori={hasFavori}
               history={this.props.history}
               limit={5}
               {...avancement_favoris} />
@@ -305,7 +307,6 @@ class UserProfile extends Component {
             displayIndicators
             dataArray={contributions}
             user={this.state.user}
-            contributeur={contributeur}
             toggleModal={this.toggleModal}
             toggleSection={this.toggleSection}
             windowWidth={this.props.windowWidth}
@@ -344,7 +345,6 @@ class UserProfile extends Component {
               toggleModal={this.toggleModal}
               removeBookmark={this.removeBookmark}
               upcoming={this.upcoming}
-              hasFavori={hasFavori}
               history={this.props.history}
               limit={5}
               {...avancement_favoris} /> :
@@ -354,7 +354,6 @@ class UserProfile extends Component {
               showSuggestion={this.showSuggestion}
               upcoming={this.upcoming}
               archive={this.archiveSuggestion}
-              hasNotifs={hasNotifs}
               limit={5}
               {...avancement_actions} />
             }
@@ -404,18 +403,17 @@ class UserProfile extends Component {
             dataArray={favoris}
             toggleModal={this.toggleModal}
             removeBookmark={this.removeBookmark}
-            hasFavori={hasFavori}
             history={this.props.history}
             {...avancement_favoris} />
         </Modal>
 
         <ThanksModal show={this.state.showModal.thanks} toggle={()=>this.toggleModal('thanks')} />
         <SuggestionModal suggestion={this.state.suggestion} show={this.state.showModal.suggestion} toggle={()=>this.toggleModal('suggestion')} />
-        <ContributeurModal 
+        {/* <ContributeurModal 
           redirect={true}
           history={this.props.history}
           show={this.state.showModal.devenirContributeur} 
-          toggle={()=>this.toggleModal('devenirContributeur')} />
+          toggle={()=>this.toggleModal('devenirContributeur')} /> */}
         
         <TraducteurModal 
           user={this.state.user} 

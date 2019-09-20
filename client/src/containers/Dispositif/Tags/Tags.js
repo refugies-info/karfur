@@ -43,7 +43,7 @@ class Tags extends Component {
 
   render(){
     return(
-      <div className="tags">
+      <div className="tags" id="tags">
         {(this.props.tags || []).map((tag, key) => {
           return (
             <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key, tag)} className="tags-dropdown" key={key}>

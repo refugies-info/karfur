@@ -33,7 +33,7 @@ const initial_data = [
         name: 'Paris',
       },
       {
-        name: 'Paris',
+        name: 'Lyon',
       },
       {
         name: 'Besançon',

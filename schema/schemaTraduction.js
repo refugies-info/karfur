@@ -23,6 +23,7 @@ var traductionSchema = mongoose.Schema({
 		required: false
   },
   userId:{ type: mongoose.Schema.ObjectId, ref: 'User' },
+  validatorId:{ type: mongoose.Schema.ObjectId, ref: 'User' },
   articleId:{ type: mongoose.Schema.ObjectId, ref: 'Article', required: true },
   status: {
 		type: String,

@@ -4,7 +4,8 @@ import Icon from 'react-eva-icons';
 import moment from 'moment/min/moment-with-locales';
 
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
-import { countrySide } from "../../../../assets/figma/index"
+import { countrySide } from "../../../../assets/figma/index";
+import { fakeNotifs } from '../../../../containers/Backend/UserProfile/data';
 
 import variables from 'scss/colors.scss';
 import FButton from '../../../FigmaUI/FButton/FButton';
@@ -12,9 +13,11 @@ import FButton from '../../../FigmaUI/FButton/FButton';
 moment.locale('fr');
 
 const actionTable = (props) => {
-  let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
+  const hasNotifs = (props.dataArray || []).length > 0;
+  const dataArray = hasNotifs ? props.dataArray : new Array(5).fill(fakeNotifs);
+  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
   let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
-
+  
   const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length - 1))}
 
   let table = (
@@ -55,7 +58,7 @@ const actionTable = (props) => {
             </tr>
           );
         })}
-        {props.limit && 
+        {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="7" className="align-middle voir-plus" onClick={()=>props.toggleModal('actions')}>
               <Icon name="expand-outline" fill="#3D3D3D"/>&nbsp;
@@ -74,7 +77,7 @@ const actionTable = (props) => {
           <Col>
             <h1>
               {props.title}
-              {props.hasNotifs &&
+              {hasNotifs &&
                 <sup className="nb-actions">{props.dataArray.length}</sup>}
             </h1>
           </Col>
@@ -88,7 +91,7 @@ const actionTable = (props) => {
         <div className="tableau">
           {table}
 
-          {!props.hasNotifs &&
+          {!hasNotifs &&
             <div className="ecran-protection no-notifs">
               <div className="content-wrapper">
                 <img src={countrySide} alt="illustration protection" />
