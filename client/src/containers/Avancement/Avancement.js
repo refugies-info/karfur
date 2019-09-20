@@ -160,7 +160,7 @@ class Avancement extends Component {
         avancement: Math.max(0, ...((this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => (z.avancement || -1)) || [])) || 0, 
         users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
         type: "string",
-        _id: ((this.state.traductionsFaites || []).find(y => y.jsonId === x._id && y.avancement === 1) || {})._id,
+        _id: isExpert ? ((this.state.traductionsFaites || []).find(y => y.jsonId === x._id && y.avancement === 1) || {})._id : x._id,
       } ) ), 
       ...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
           _id:x._id, 
@@ -174,7 +174,7 @@ class Avancement extends Component {
       } ) )
     ].filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> a.nombreMots - b.nombreMots);
     
-    console.log(traductions, data)
+    console.log(traductions)
 
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){

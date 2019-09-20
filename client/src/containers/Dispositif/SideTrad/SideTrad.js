@@ -37,6 +37,7 @@ class SideTrad extends Component {
       rejected:false,
     },
   }
+  initialState=this.state;
 
   componentWillReceiveProps(nextProps){
     if(nextProps.content.titreInformatif !== this.props.content.titreInformatif || nextProps.traductionsFaites !== this.props.traductionsFaites){
@@ -114,15 +115,12 @@ class SideTrad extends Component {
   }
 
   _endingFeedback = () => {
-    if(!this.state.hasBeenSkipped){
-      if(this.props.isExpert){
-        this._insertTrad(); //On insère cette traduction
-      }else{
-        Swal.fire( 'Yay...', 'Ce dispositif est maintenant intégralement traduit et sera transmis à l\'expert pour validation', 'success').then(()=>{
-          // this.onSkip();
-        });
-      }
-    } 
+    if(this.props.isExpert && !this.state.hasBeenSkipped){
+      this._insertTrad(); //On insère cette traduction
+    }else{
+      this.props.onSkip();  
+      this.setState({...this.initialState})
+    }
   }
 
   _scrollAndHighlight = (idx, subidx = -1, subname = "") => {
@@ -131,6 +129,7 @@ class SideTrad extends Component {
     }
     Array.from(document.getElementsByClassName("translating")).forEach(x => {x.classList.remove("translating")}); //On enlève le surlignage des anciens éléments
     const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
+    console.log(idx,subidx, subname, elems)
     if(elems.length > 0){
       const elem = elems[0];
       elem.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
@@ -274,7 +273,7 @@ class SideTrad extends Component {
     API.validate_tradForReview(newTrad).then(data => {
       console.log(data.data.data)
       Swal.fire( 'Yay...', 'Ce dispositif est maintenant intégralement validé et disponible à la lecture', 'success').then(()=>{
-        // this.onSkip();
+        this.props.onSkip();
       });
     })
   }
