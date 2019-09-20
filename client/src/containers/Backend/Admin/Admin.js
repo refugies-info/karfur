@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import {Badge, Col, Row, Nav, NavItem, NavLink, TabContent} from 'reactstrap';
 import track from 'react-tracking';
 import Swal from 'sweetalert2';
+import { connect } from 'react-redux';
 
 import CustomTabPane from '../../../components/Backend/Admin/CustomTabPane'
 import API from '../../../utils/API';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
+import {fetch_structures} from "../../../Store/actions/index";
 
 import './Admin.scss';
 import variables from 'scss/colors.scss';
@@ -72,7 +74,7 @@ class Admin extends Component {
       mail_contact:'',
       phone_contact:'',
       authorBelongs:false,
-      status:'',
+      status:'Actif',
       picture: {
         imgId: '',
         public_id: '',
@@ -112,7 +114,6 @@ class Admin extends Component {
     })
 
     API.get_structure({},{}, 'createur').then(data_res => {
-      console.log(data_res.data.data);
       this.setState({structures:data_res.data.data})
     })
   }
@@ -248,31 +249,31 @@ class Admin extends Component {
   }
 
   preTraitementStruct = () => {
-    if(!this.state.structure.nom || !this.state.structure.contact || (!this.state.structure.mail_contact && !this.state.structure.phone_contact)){Swal.fire( 'Oh non!', 'Certaines informations sont manquantes', 'error'); return;}
+    if(!this.state.structure.nom || !this.state.structure.contact || (!this.state.structure.mail_contact && !this.state.structure.phone_contact)){Swal.fire( {title: 'Oh non!', text: 'Certaines informations sont manquantes', type: 'error', timer: 1500 }); return;}
     let struct = {...this.state.structure};
     let membres = struct.membres || [];
     if(struct.administrateur === struct.createur._id){
-      membres = membres.find( x=> x.userId === struct.createur._id) ? 
-        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "administrateur"] } : x) :
-        [...membres, {userId : struct.createur._id, roles: ["createur", "administrateur"] } ];
+      membres = membres.some( x=> x.userId === struct.createur._id) ? 
+        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "administrateur"] } : {...x, roles: (x.roles || []).filter(z=>z!=="administrateur")} ) :
+        [...membres.map(y=>({...y, roles: y.roles.filter(z=>z!=="administrateur")})), {userId : struct.createur._id, roles: ["createur", "administrateur"], added_at: new Date() } ];
     }else if(struct.authorBelongs){
-      membres = membres.find( x=> x.userId === struct.createur._id) ? 
-        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "contributeur"] } : x) :
-        [...membres, {userId : struct.createur._id, roles: ["createur", "contributeur"] } ];
-      membres = membres.find( x=> x.userId === struct.administrateur) ? 
-        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : x) :
-        [...membres, {userId : struct.administrateur, roles: ["administrateur"] } ];
+      membres = membres.some( x=> x.userId === struct.createur._id) ? 
+        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "contributeur"] } : {...x, roles: (x.roles || []).filter(z=>z!=="administrateur")} ) :
+        [...membres.map(y=>({...y, roles: y.roles.filter(z=>z!=="administrateur")})), {userId : struct.createur._id, roles: ["createur", "contributeur"], added_at: new Date() } ];
+      membres = membres.some( x=> x.userId === struct.administrateur) ? 
+        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : {...x, roles: (x.roles || []).filter(z=>z!=="administrateur")} ) :
+        [...membres.map(y=>({...y, roles: y.roles.filter(z=>z!=="administrateur")})), {userId : struct.administrateur, roles: ["administrateur"], added_at: new Date() } ];
     }else{
-      membres = membres.find( x=> x.userId === struct.administrateur) ? 
-        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : x) :
-        [...membres, {userId : struct.administrateur, roles: ["administrateur"] } ];
+      membres = membres.some( x=> x.userId === struct.administrateur) ? 
+        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : {...x, roles: (x.roles || []).filter(z=>z!=="administrateur")} ) :
+        [...membres.map(y=>({...y, roles: y.roles.filter(z=>z!=="administrateur")})), {userId : struct.administrateur, roles: ["administrateur"], added_at: new Date() } ];
     }
-    this.setState({structure : {...this.state.structure, membres: membres }}, 
+    console.log(this.state.structure)
+    this.setState({structure : {...this.state.structure, membres: membres, createur: (this.state.structure.createur || {})._id }}, 
       () => this.onValidate('structure'));
   }
 
   onValidate = (tab) => {
-    console.log(this.state[tab])
     API['create_'+tab](this.state[tab]).then(data => {
       let newItem=data.data.data;
       if(this.state.theme._id){
@@ -284,7 +285,8 @@ class Admin extends Component {
           this.state[tab + 's'].map(x => x._id === this.state[tab]._id ? newItem : x) :
           [...this.state[tab + 's'], newItem]});
       }
-      this.setState({[tab]: this.initial_state[tab]})
+      this.setState({[tab]: this.initial_state[tab]});
+      if(tab === "structure"){this.props.fetch_structures();}
     })
   }
 
@@ -367,6 +369,11 @@ class Admin extends Component {
   }
 }
 
+const mapDispatchToProps = {fetch_structures};
+
 export default track({
   page: 'Admin',
-}, { dispatchOnMount: true })(Admin);
+}, { dispatchOnMount: true })(
+  connect(null, mapDispatchToProps)
+    (Admin)
+  );

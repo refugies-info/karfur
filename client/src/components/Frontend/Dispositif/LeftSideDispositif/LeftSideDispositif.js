@@ -10,7 +10,7 @@ import variables from 'scss/colors.scss';
 
 const leftSideDispositif = (props) => {
 
-  const onLinkClicked = props.disableEdit ? (()=>window.open( ((props.content.externalLink || '').includes("http") ? "" : "http://") + props.content.externalLink, "_blank")) : props.toggleInputBtnClicked ;
+  const onLinkClicked = props.disableEdit ? (()=> props.content.externalLink  && window.open( (props.content.externalLink.includes("http") ? "" : "http://") + props.content.externalLink, "_blank")) : props.toggleInputBtnClicked ;
   return(
     <div className="sticky-affix">
       <ListGroup className="list-group-flush">
@@ -34,12 +34,12 @@ const leftSideDispositif = (props) => {
       </ListGroup>
 
       <div className="print-buttons">
-        <div className="link-wrapper">
+        <div className="link-wrapper" id="input-btn">
           {props.inputBtnClicked ?
             <FButton type="default" className="input-btn">
               <InputGroup>
                 <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
-                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Collez ici le lien vers votre site" id="externalLink" />
+                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Lien vers votre site" id="externalLink" />
                 <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
               </InputGroup>
             </FButton>
@@ -60,8 +60,8 @@ const leftSideDispositif = (props) => {
             <FButton type="light-action" name="printer-outline">
               Imprimer
             </FButton>}
-          content={() => props.newRef.current}
-          onBeforePrint={props.openAllAccordions} />
+          content={() => props.newRef.current} />
+          {/* onBeforePrint={props.openAllAccordions} /> */}
       </div>
     </div>
   )

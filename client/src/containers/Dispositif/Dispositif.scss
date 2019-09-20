@@ -771,8 +771,13 @@ $imgHeight : 350px;
     min-width: 20px;
     background: $jauneClair;
     outline: none;
-    min-height:30px;
+    min-height:38px;
     padding-right: 40px;
+  }
+  
+  h1 div[contenteditable="true"]{
+    min-height:60px;
+    min-width: 60px;
   }
 
   div[contenteditable=true]:empty:before {

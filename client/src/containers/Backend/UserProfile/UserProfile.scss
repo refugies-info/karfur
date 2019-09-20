@@ -54,6 +54,7 @@ $defaultSize:310px;
       background: inherit;
       border-radius: 12px;
       max-width: 100%;
+      margin:0;
       
       .modify-col{
         padding: 0 10px;
@@ -228,7 +229,13 @@ $defaultSize:310px;
         border:none;
         background: inherit;
         height: 100%;
-
+        
+        a{
+          display: inherit;
+          flex-direction: inherit;
+          justify-content: inherit;
+          height: 100%;
+        }
         .card-body{
           padding:0;
           height:100%;
@@ -388,11 +395,9 @@ $defaultSize:310px;
     align-items: center;
   }
 
-  .left-element, .middle-element, .right-element{
-    span{
-      width: 0;
-      overflow: visible;
-    }
+  .equi-reparti{
+    display: flex;
+    justify-content: space-between;
   }
 
   .ml-75{
@@ -460,7 +465,7 @@ $defaultSize:310px;
       .progress{
         height:6px;
         margin-top: 10px;
-        margin-bottom: 0 !important;
+        margin-bottom: 0;
       }
       .langue-item {
         i{

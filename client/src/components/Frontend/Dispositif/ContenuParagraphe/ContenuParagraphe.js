@@ -43,7 +43,7 @@ const contenuParagraphe = (props) => {
                     <Button 
                       id="accordion-header"  
                       className={"text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} 
-                      onMouseUp={() => props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
+                      onMouseUp={() => props.disableEdit && props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
                       aria-expanded={safeUiArray(props.keyValue, subkey, 'accordion')} 
                       aria-controls={"collapse" + props.keyValue + "-" + subkey}>
                       <h5>
@@ -52,7 +52,7 @@ const contenuParagraphe = (props) => {
                             id={props.keyValue}
                             data-subkey={subkey}
                             data-target='title'
-                            html={subitem.title}  // innerHTML of the editable div
+                            html={subitem.title || ""}  // innerHTML of the editable div
                             disabled={props.disableEdit}       // use true to disable editing
                             onChange={props.handleMenuChange} // handle innerHTML change
                             onMouseUp={e=> !props.disableEdit && e.stopPropagation()} />
@@ -99,7 +99,7 @@ const contenuParagraphe = (props) => {
                       data-subkey={subkey}
                       data-target='title'
                       className="display-inline-block"
-                      html={subitem.title}  // innerHTML of the editable div
+                      html={subitem.title || ""}  // innerHTML of the editable div
                       disabled={props.disableEdit}       // use true to disable editing
                       onChange={props.handleMenuChange} // handle innerHTML change
                     />
@@ -115,6 +115,7 @@ const contenuParagraphe = (props) => {
                     handleContentClick={props.handleContentClick}
                     disableEdit={props.disableEdit}
                     tutoriel={item.tutoriel}
+                    addItem={props.addItem}
                     {...subitem} />
                   <br />
                 </Col>

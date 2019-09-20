@@ -28,13 +28,6 @@ const userChange = (props) => {
   let langues_list=(props.user.selectedLanguages || []).map(function (item) { return item.langueFr; });
   let imgSrc = (props.user.picture || []).secure_url || marioProfile
   
-  const ProfilePic = () => {
-    if(props.uploading){
-      return <Spinner color="dark" className="fadeIn fadeOut" />
-    }else{
-      return <img className="img-circle" src={imgSrc} alt="profile"/>
-    }
-  }
   return (
     <Form action="" method="post" encType="multipart/form-data" className="form-horizontal user-change">
       <FormGroup row>
@@ -44,7 +37,7 @@ const userChange = (props) => {
         <Col xs="12" md="9">
           <div className="profile-header-container">   
             <div className="rank-label-container">
-              <ProfilePic />
+              <ProfilePic uploading={props.uploading} imgSrc={imgSrc} />
               <Input 
                 className="file-input"
                 type="file"
@@ -290,6 +283,14 @@ const userChange = (props) => {
       }
     </Form>
   )
+}
+
+const ProfilePic = props => {
+  if(props.uploading){
+    return <Spinner color="dark" className="fadeIn fadeOut" />
+  }else{
+    return <img className="img-circle" src={props.imgSrc} alt="profile"/>
+  }
 }
 
 export default userChange;

@@ -26,7 +26,8 @@ axios.interceptors.request.use(request => {
     type: 'error',
     title: 'Oops...',
     text: ((error.response.data || {}).text || ''),
-    footer: '<i>'+ error.message + '</i>'
+    footer: '<i>'+ error.message + '</i>', 
+    timer: 1500
   })
   console.log(error.response.data, error.response.status, error.message)
   return Promise.reject(error)
@@ -41,7 +42,8 @@ axios.interceptors.response.use(response => {
       type: 'error',
       title: 'Oops...',
       text: ((error.response.data || {}).text || ''),
-      footer: '<i>'+ error.message + '</i>'
+      footer: '<i>'+ error.message + '</i>',
+      timer: 1500
     })
   }else{ console.log((error.response || {}).data, (error.response || {}).status, error.message) }
   return Promise.reject(error)
@@ -181,6 +183,10 @@ export default {
   },
   get_image : (query, sort) => {
     return axios.post(burl + '/images/get_image',  {query: query, sort: sort}, {headers: headers})
+  },
+
+  set_mail : query => {
+    return axios.post(burl + '/miscellaneous/set_mail', query, {headers: headers})
   },
 
   get_tts : (query) => {
