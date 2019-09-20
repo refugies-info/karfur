@@ -161,7 +161,7 @@ const tradTable = (props) => {
               <div className="content-wrapper">
                 <h1>{props.overlayTitle}</h1>
                 <span>{props.overlaySpan}</span>
-                <FButton type="light" name="play-circle-outline" fill={variables.noir} onClick={startTrad} >
+                <FButton type="light-action" name="play-circle-outline" fill={variables.noir} onClick={startTrad} >
                   {props.overlayBtn}
                 </FButton>
               </div>

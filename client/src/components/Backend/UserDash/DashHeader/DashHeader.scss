@@ -6,8 +6,16 @@ $normalSize: 18px;
 
 .dash-header{
 
-  .my-breadcrumb{
-    color: $grisFonce;
+  .ariane{
+    color: $noir;
+    }
+    
+    .my-breadcrumb{
+      color: $grisFonce;
+      &:hover{
+        color: $noir;
+        text-decoration: underline;
+      }
   }
 
   .tableau-header{
@@ -26,9 +34,11 @@ $normalSize: 18px;
   }
 
   .header-indicateurs{
+    margin: 0;
 
     .col-lg-4{
-      padding:0;
+      padding-left: 0px;
+      padding-right: 0px;
       @include media-max("lg-limit") { margin-top: 10px; }
       &:first-child{
         .inner-indicator{
@@ -39,35 +49,42 @@ $normalSize: 18px;
       .inner-indicator{
         border-radius: 12px;
         margin-left:10px;
-        padding: 6px 20px 20px 20px;
-        height:100%;
+        padding: 20px;
+        font-size: 18px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        background: $blancSimple;
         @include media-max("lg-limit") { margin-left:0; }
+        .mot-indicateur{
+          background: $gradiantSplash;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
 
         .right-side{
-          font-weight: bold;
-          margin: auto 0;
-          color: $noir;
+          font-weight: 600;
+          font-size: 80px;
+          display: flex;
+          align-items: center;
+          line-height: 55px;
+          background: $gradiantSplash;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           @include media-max("desktop-down") { font-size: $h1Size * 4 / 5; }
           @include media-max("desktop-up") { font-size: $h1Size * 3 / 5; }
           @include media-max("tablet-up") { font-size: $h1Size * 2 / 5; }
+          .gris{
+            font-size: 40px;
+            margin: 0 10px;
+          }
         }
         .left-side{
-          margin:auto 0;
-          @include media-max("desktop-down") { font-size: $normalSize * 4 / 5; }
-        }
-        &.first-indicator{
-          background: $blancSimple;
+          margin-left: 40px;
+          margin-right: 10px;
           color: $grisFonce;
-        }
-        &.second-indicator, &.third-indicator{
-          background: $noir;
-          color: $blancSimple;
-          .right-side{
-            color: $blancSimple;
-            .gris{
-              color: $grisFonce;
-            }
-          }
+          align-items: baseline;
+          @include media-max("desktop-down") { font-size: $normalSize * 4 / 5; }
         }
       }
     }

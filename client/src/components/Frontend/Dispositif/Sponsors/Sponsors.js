@@ -156,7 +156,7 @@ class Sponsors extends Component {
             mesStructures.map((struct, key) => (
               <FormGroup check className="ma-structure mb-10" key={struct._id}>
                 <Label check>
-                  <Input type="checkbox" checked={struct.checked} onChange={()=> this.handleStructChange(struct._id)} />{' '}
+                  <Input type="radio" checked={struct.checked} onChange={()=> this.handleStructChange(struct._id)} />{' '}
                   <b>Ma structure : </b>{struct.nom}
                 </Label>
               </FormGroup>
