@@ -50,14 +50,14 @@ const routes = [
 
   { path: '/editeur', name: 'Editeur', component: Editeur, restriction:[] },
   { path: '/avancement/traductions/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['ExpertTrad','Admin'] },
-  { path: '/avancement/langue/:id', exact: true, name: 'Avancement', component: Avancement, restriction:[] },
-  { path: '/avancement', name: 'Avancement', component: Avancement, restriction:[] },
-  { path: '/traduction', exact: true, name: 'Traduction', component: Translation, restriction:[] },
-  { path: '/traduction/validation/:id', exact: true, name: 'Traduction', component: Translation, restriction:[] },
-  { path: '/traduction/:id', exact: true, name: 'Traduction', component: Translation, restriction:[] },
+  { path: '/avancement/langue/:id', exact: true, name: 'Avancement', component: Avancement, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/avancement', name: 'Avancement', component: Avancement, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/traduction', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/traduction/validation/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/traduction/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
 
-  { path: '/traduction/string/:id', exact: true, name: 'Traduction', component: Translation, restriction:[] },
-  { path: '/traduction/dispositif/:id', exact: true, name: 'Traduction', component: Translation, restriction:[] },
+  { path: '/traduction/string/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/traduction/dispositif/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/validation/string/:id', exact: true, name: 'Validation', component: Translation, restriction:['ExpertTrad','Admin'] },
   { path: '/validation/dispositif/:id', exact: true, name: 'Validation', component: Translation, restriction:['ExpertTrad','Admin'] },
 
@@ -70,7 +70,7 @@ const routes = [
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
   { path: '/backend/admin-contrib', name: 'AdminContrib', component: AdminContrib, restriction:['Admin']},
 
-  { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:[] },
+  { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:['User','Trad','ExpertTrad','Admin'] },
   { path: '/backend/user-dash-contrib', name: 'UserDashContrib', component: UserDashContrib, restriction:['Contrib','Admin'] },
   { path: '/backend/user-dash-structure', name: 'UserDashStruct', component: UserDashStruct, restriction:['Admin', 'hasStructure'] },
   { path: '/backend/user-form', name: 'UserForm', component: UserForm, restriction:['Trad','ExpertTrad','Admin']},

@@ -5,6 +5,7 @@ import moment from 'moment/min/moment-with-locales';
 
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import FButton from '../../../FigmaUI/FButton/FButton';
+import { fakeMembre } from '../../../../containers/Backend/UserDashStruct/data';
 
 import variables from 'scss/colors.scss';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
@@ -12,12 +13,16 @@ import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 moment.locale('fr');
 
 const membersTable = (props) => {
-  let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
+  const hasMembers = (props.dataArray || []).length > 0;
+  const dataArray = hasMembers ? props.dataArray : new Array(5).fill(fakeMembre);
+  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
+  
   data = data.map(x => ({
     ...x, 
     ...props.users.find(y => y._id === x.userId),
     structRole: ((x.roles || []).includes("administrateur") ? "administrateur" : ((x.roles || []).includes("contributeur") ? "contributeur" : "membre")),
   }));
+
   let table = (
     <Table responsive className="avancement-user-table">
       <thead>
@@ -65,7 +70,7 @@ const membersTable = (props) => {
             </tr>
           );
         })}
-        {props.limit && 
+        {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="8" className="align-middle voir-plus" onClick={()=>props.toggleModal('members')}>
               <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
