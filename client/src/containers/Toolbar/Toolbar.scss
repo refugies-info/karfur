@@ -98,6 +98,9 @@
       &:active{
         background-color: $noir;
       }
+      &:last-child{
+        outline: none;
+      }
     }
   }
 

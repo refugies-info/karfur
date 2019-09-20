@@ -60,7 +60,7 @@ class Tags extends Component {
               {!this.props.disableEdit && 
                 <div className="tags-icons">
                   <div onClick={()=>this.removeTag(key)}>
-                    <EVAIcon name="minus-circle" fill={variables.noirCD} className="delete-icon" size="xlarge"/>
+                    <EVAIcon name="close-circle" fill={variables.error} className="delete-icon" size="xlarge"/>
                   </div>
                 </div>}
             </ButtonDropdown>

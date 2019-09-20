@@ -85,7 +85,7 @@ const contribTable = (props) => {
               </td>
               <td className="align-middle pointer fit-content">
                 {(props.type !== "user" || ["En attente non prioritaire", "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif"].includes(element.status) ) &&
-                  <FButton type="light-action" name="archive-outline" fill={variables.noir} onClick={e => deleteContrib(e, element)} />}                
+                  <FButton type="light-action" name="trash-outline" fill={variables.noir} onClick={e => deleteContrib(e, element)} />}                
               </td>
               <td className="align-middle">
                 <FButton tag={NavLink} to={"/dispositif/"+element._id} type="light-action" name="eye-outline" fill={variables.noir} />
@@ -162,7 +162,7 @@ const contribTable = (props) => {
               <div className="content-wrapper">
                 <h1>{props.overlayTitle}</h1>
                 <span>{props.overlaySpan}</span>
-                <FButton type="light" name="info-outline" fill={variables.noir} onClick={onBtnClick} >
+                <FButton type="light-action" name="info-outline" fill={variables.noir} onClick={onBtnClick} >
                   {props.overlayBtn}
                 </FButton>
               </div>

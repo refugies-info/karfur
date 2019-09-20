@@ -61,7 +61,7 @@ const contenuParagraphe = (props) => {
                       </h5>
                     </Button>
                     {!props.disableEdit && 
-                      <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="delete-icon ml-10 cursor-pointer" name="minus-circle-outline" fill={variables.noir} />}
+                      <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="delete-icon ml-10 cursor-pointer" name="close-circle" fill={variables.noir} size="xlarge" />}
                   </div>
                   <Collapse className="contenu-accordeon" isOpen={safeUiArray(props.keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + props.keyValue + "-" + subkey} aria-labelledby={"heading" + props.keyValue + "-" + subkey}>
                     <EditableParagraph 

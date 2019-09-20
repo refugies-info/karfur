@@ -1,7 +1,7 @@
 @import 'src/scss/colors.scss';
 
 .user-dash{
-  padding: 30px;
+  padding: 60px;
   position:relative;
   background: $gris;
   flex: 1 1;
@@ -53,6 +53,7 @@
 
   .recent-row{
     margin-top:39px;
+    margin-left: 0;
   }
 
   .limit-width-340 {
