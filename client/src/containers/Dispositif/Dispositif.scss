@@ -544,6 +544,8 @@ $imgHeight : 350px;
       box-shadow: none;
       color: $darkColor;
       padding: 10px;
+      cursor: pointer;
+      display: inline-block;
   
       &.active{
         transition: all 0.2s ease;
@@ -554,7 +556,6 @@ $imgHeight : 350px;
         margin: auto;
         line-height: 38px;
       }
-  
       .accordion-text{
         margin: 0 18px 0 0;
         font-size: 18px;

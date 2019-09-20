@@ -40,7 +40,7 @@ const contenuParagraphe = (props) => {
               <Row className="relative-position">
                 <Col lg="12" md="12" sm="12" xs="12" className="accordeon-col">
                   <div className="title-bloc">
-                    <Button 
+                    <div 
                       id="accordion-header"  
                       className={"text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} 
                       onMouseUp={() => props.disableEdit && props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
@@ -60,7 +60,7 @@ const contenuParagraphe = (props) => {
                         {props.disableEdit && 
                           <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />}
                       </h5>
-                    </Button>
+                    </div>
                     {!props.disableEdit && 
                       <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="delete-icon ml-10 cursor-pointer" name="close-circle" fill={variables.noir} size="xlarge" />}
                   </div>
