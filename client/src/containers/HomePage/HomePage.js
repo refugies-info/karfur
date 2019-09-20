@@ -56,8 +56,8 @@ class HomePage extends Component {
               </FButton>
             </div>
           </div>
-          <AnchorLink href="#plan" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
-            <EVAIcon className="arrowhead-icon slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          <AnchorLink href="#plan" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
+            <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
           </AnchorLink>
         </section>
 
