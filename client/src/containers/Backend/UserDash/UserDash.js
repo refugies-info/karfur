@@ -136,7 +136,7 @@ class UserDash extends Component {
   setUser = user => {
     API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
       this.setState({user, languesUser: data_langues.data.data});
-      this.toggleModal('defineUser')
+      this.toggleModal('defineUser');
     })
   }
 
@@ -153,7 +153,6 @@ class UserDash extends Component {
 
   render() {
     let {languesUser, traductionsFaites, isMainLoading, showSections} = this.state;
-    console.log(languesUser)
     return (
       <div className="animated fadeIn user-dash">
         <ReactJoyride
@@ -236,7 +235,6 @@ class UserDash extends Component {
         
         <TraducteurModal 
           user={this.state.user} 
-          langues={this.props.langues}
           show={this.state.showModal.defineUser} 
           setUser={this.setUser}
           toggle={()=>this.toggleModal('defineUser')} />

@@ -39,8 +39,8 @@ class Avancement extends Component {
     let isLangue=this.props.location.pathname.includes('/langue');
     let isExpert=this.props.location.pathname.includes('/traductions');
     console.log(itemId, isLangue, isExpert)
+    let i18nCode=null;
     if(isLangue && itemId){
-      let i18nCode=null;
       if(this.props.location.state && this.props.location.state.langue && this.props.location.state.langue.i18nCode){
         this.setState({langue:this.props.location.state.langue,
           title: diffData.traducteur.title + ' : ' + this.props.location.state.langue.langueFr,
@@ -49,10 +49,10 @@ class Avancement extends Component {
       }else{
         this._loadLangue(itemId, isExpert);
       }
-      this._loadArticles(itemId, i18nCode);
     }else if(isExpert){
       this._loadLangue(itemId, isExpert);
     }
+    this._loadArticles(itemId, i18nCode);
     API.get_tradForReview({}, {}, 'userId').then(data => { console.log(data.data.data);
       this.setState({traductionsFaites: data.data.data})
     })
@@ -69,7 +69,7 @@ class Avancement extends Component {
         query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
       }
       API.get_article(query,i18nCode).then(data_res => {
-        let articles=data_res.data.data.map(x => ({...x, type: "string"}));
+        let articles=data_res.data.data;
         console.log(articles)
         this.setState({data:articles})
       })
@@ -152,10 +152,16 @@ class Avancement extends Component {
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render(){
-    const { langue, isExpert } = this.state;
-    
+    const { langue, isExpert, data } = this.state;
+
     let traductions = [
-      ...this.state.data, 
+      ...data.map(x => ( {
+        ...x,
+        avancement: Math.max(0, ...((this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => (z.avancement || -1)) || [])) || 0, 
+        users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
+        type: "string",
+        _id: ((this.state.traductionsFaites || []).find(y => y.jsonId === x._id && y.avancement === 1) || {})._id,
+      } ) ), 
       ...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
           _id:x._id, 
           title:x.titreMarque + " - " + x.titreInformatif, 
@@ -166,8 +172,10 @@ class Avancement extends Component {
           users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
           type: "dispositif"
       } ) )
-    ].sort((a,b)=> a.nombreMots - b.nombreMots);
-    if(isExpert){ traductions = traductions.filter(x => x.avancement === 1); } //rajouter un filtre sur le statut
+    ].filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> a.nombreMots - b.nombreMots);
+    
+    console.log(traductions, data)
+
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
@@ -182,7 +190,7 @@ class Avancement extends Component {
                 <td className="align-middle">{element.isStructure ? "Site" : "Dispositif"}</td>
                 <td className="align-middle">{titre.slice(0,30) + (titre.length > 30 ? "..." : "")}</td>
                 <td className={"align-middle depuis " + (element.nombreMots > 100 ? "alert" : "success") }>
-                  {Math.round((element.nombreMots || 0) * (element.avancement || 0)) + " / " + element.nombreMots}
+                  {(isExpert ? "" : (Math.round((element.nombreMots || 0) * (element.avancement || 0)) + " / ")) + element.nombreMots}
                 </td>
                 {isExpert ? 
                   <td className="align-middle">
@@ -190,8 +198,8 @@ class Avancement extends Component {
                       return ( 
                         <img
                           key={participant._id} 
-                          src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                          className="profile-img-pin img-circle"
+                          src={participant.picture && participant.picture.secure_url ? participant.picture.secure_url : marioProfile} 
+                          className="profile-img-pin img-circle mr-10"
                           alt="random profiles"
                         />
                       );

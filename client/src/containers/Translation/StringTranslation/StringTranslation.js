@@ -6,7 +6,6 @@ import ContentEditable from 'react-contenteditable';
 import ReactHtmlParser from 'react-html-parser';
 import {stringify} from 'himalaya';
 import ms from 'pretty-ms';
-import Swal from 'sweetalert2';
 import Icon from 'react-eva-icons/dist/Icon';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
@@ -63,7 +62,7 @@ class Translation extends Component {
         if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           let traduction=data_res.data.data[0];
           this._getArticle(traduction.jsonId || traduction.articleId,'fr',isExpert)
-          this.setState({
+          this.props.fwdSetState({
             translated:{
               title:traduction.translatedText.title,
               body: traduction.jsonId? traduction.translatedText.body : (stringify(traduction.translatedText.body) || '').replace(/ id='initial_/g,' id=\'target_') //Ici il y avait id=\'initial_/ avant
@@ -139,15 +138,6 @@ class Translation extends Component {
   render(){
     const langue = this.state.langue || {};
     const { texte_a_traduire, texte_traduit, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, isComplete } = this.props;
-    const ConditionalSpinner = (props) => {
-      if(props.show){
-        return (
-          <div className="text-center">
-            <Spinner color="success" className="fadeIn fadeOut" />
-          </div>
-        )
-      }else{return false}
-    }
     
     let feedbackModal = (
       this.state.feedbackModal.show && 
@@ -337,6 +327,16 @@ class Translation extends Component {
       </div>
     );
   }
+}
+
+const ConditionalSpinner = (props) => {
+  if(props.show){
+    return (
+      <div className="text-center">
+        <Spinner color="success" className="fadeIn fadeOut" />
+      </div>
+    )
+  }else{return false}
 }
 
 export default track({
