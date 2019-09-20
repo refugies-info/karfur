@@ -286,6 +286,7 @@ class Dispositif extends Component {
   };
 
   updateUIArray=(key, subkey=null, node='isHover', value=true)=>{
+    console.log('updating ui array', key, subkey, node, value);
     let uiArray = [...this.state.uiArray];
     uiArray = uiArray.map((x,idx) => {
       const updateOthers = this.state.disableEdit || node !=="accordion" ;
