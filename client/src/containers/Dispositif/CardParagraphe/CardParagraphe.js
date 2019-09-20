@@ -319,7 +319,7 @@ const PlusCard = (props) => {
     <Col lg="4" className="card-col">
       <Card className="add-card" onClick={() => props.addItem(props.keyValue, 'card')}>
         <CardHeader className="backgroundColor-darkColor">
-          Ajouter une carte
+          Ajouter un item
         </CardHeader>
         <CardBody>
           <span className="add-sign">+</span>

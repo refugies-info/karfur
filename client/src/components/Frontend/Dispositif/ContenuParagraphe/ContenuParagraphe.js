@@ -57,7 +57,8 @@ const contenuParagraphe = (props) => {
                             onChange={props.handleMenuChange} // handle innerHTML change
                             onMouseUp={e=> !props.disableEdit && e.stopPropagation()} />
                         </span>
-                        <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />
+                        {props.disableEdit && 
+                          <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />}
                       </h5>
                     </Button>
                     {!props.disableEdit && 
@@ -77,7 +78,7 @@ const contenuParagraphe = (props) => {
                       {...subitem} />
                   </Collapse>
                 </Col>
-                {!props.sideView && 
+                {!props.sideView && props.disableEdit && 
                   <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
                     <QuickToolbar
                       show={safeUiArray(props.keyValue, subkey, 'isHover')}
@@ -119,7 +120,7 @@ const contenuParagraphe = (props) => {
                     {...subitem} />
                   <br />
                 </Col>
-                {!props.sideView && 
+                {!props.sideView && props.disableEdit && 
                   <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
                     <QuickToolbar
                       show={safeUiArray(props.keyValue, subkey, "isHover")}
