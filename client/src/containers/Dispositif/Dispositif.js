@@ -100,7 +100,6 @@ class Dispositif extends Component {
     time: 0,
     initialTime: 0,
   }
-  _initialState=this.state;
   newRef=React.createRef();
   mountTime=0;
 
@@ -124,7 +123,7 @@ class Dispositif extends Component {
     console.log(itemId)
     if(itemId){
       this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
-      API.get_dispositif({_id: itemId},{},'creatorId mainSponsor').then(data_res => {
+      API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor'}).then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
         if(dispositif.status === "Brouillon"){
@@ -286,7 +285,6 @@ class Dispositif extends Component {
   };
 
   updateUIArray=(key, subkey=null, node='isHover', value=true)=>{
-    console.log('updating ui array', key, subkey, node, value);
     let uiArray = [...this.state.uiArray];
     uiArray = uiArray.map((x,idx) => {
       const updateOthers = this.state.disableEdit || node !=="accordion" ;
@@ -554,7 +552,7 @@ class Dispositif extends Component {
     dispositif.isFree= cardElement.some(x=> x.title==='Combien ça coûte ?') ?
       cardElement.find(x=> x.title==='Combien ça coûte ?').free :
       true;
-    if(this.state.status && this.state.status!== '' && this.state._id){
+    if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire"){
       dispositif.status = this.state.status;
     }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
       dispositif.mainSponsor = dispositif.sponsors[0]._id;

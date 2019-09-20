@@ -23,7 +23,7 @@ class UserDashContrib extends Component {
   }
 
   state={
-    showModal:{objectifs:false, contributions: false, progression:false, defineUser: false}, 
+    showModal:{objectifs:true, contributions: false, progression:false, defineUser: false}, 
     user:{},
     langues:[],
     allLangues:[],
@@ -38,7 +38,7 @@ class UserDashContrib extends Component {
   componentDidMount() {
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
-      API.get_dispositif({'creatorId': user._id, status: {$ne: "Supprimé"}}).then(data => {
+      API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}}}).then(data => {
         this.setState({contributions: data.data.data, isMainLoading: false})
       })
       API.get_progression().then(data_progr => {
@@ -121,6 +121,7 @@ class UserDashContrib extends Component {
         </Modal>
 
         <ObjectifsModal 
+          contributeur
           show={this.state.showModal.objectifs} 
           toggle={()=>this.toggleModal('objectifs')}
           validateObjectifs={this.validateObjectifs} />

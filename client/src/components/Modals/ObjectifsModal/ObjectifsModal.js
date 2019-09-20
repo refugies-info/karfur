@@ -1,16 +1,17 @@
 import React, {Component} from 'react';
-import { Col, Row, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
-import EVAIcon from '../../UI/EVAIcon/EVAIcon';
+import { Row, Col, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+
+import FButton from '../../FigmaUI/FButton/FButton';
 
 import './ObjectifsModal.scss'
 
 class ObjectifsModal extends Component {
   state={
     objectifs: [
-      {objectifTemps:30, objectifMotsContrib: 300, objectifMots:50, status:'Contributeur ponctuel', selected:false},
-      {objectifTemps:60, objectifMotsContrib: 600, objectifMots:100, status:'Contributeur ponctuel', selected:false},
-      {objectifTemps:120, objectifMotsContrib: 1200, objectifMots:500, status:'Contributeur ponctuel', selected:false},
-      {objectifTemps:300, objectifMotsContrib: 2000, objectifMots:2000, status:'Contributeur ponctuel', selected:false}
+      {objectifTemps:3, objectifMots:150, status:'ponctuel', texte: "« Je n’ai vraiment pas beaucoup de temps en ce moment... »", selected:false},
+      {objectifTemps:8, objectifMots:400, status:'régulier', texte: "« Je vais trouver un peu de temps ! »", selected:false},
+      {objectifTemps:20, objectifMots:800, status:'Grand', texte: "« Je vais m’investir sérieusement  »", selected:false},
+      {objectifTemps:30, objectifMots:2000, status:'Ambassadeur', texte: "« Vous êtes ma priorité du moment  »", selected:false}
     ],
     notifyObjectifs:false,
   }
@@ -32,63 +33,49 @@ class ObjectifsModal extends Component {
 
   render(){
     let {objectifs, notifyObjectifs} = this.state;
+    let {contributeur, traducteur} = this.props;
+    const statut = contributeur ? "Rédacteur" : "Traducteur"
     return(
       <Modal isOpen={this.props.show} toggle={this.props.toggle} className='modal-objectifs'>
         <ModalHeader toggle={this.props.toggle}>
-          Quel est votre objectif de contribution hebdomadaire ?
+          Mon objectif de {contributeur ? "rédaction" : "traduction"}
         </ModalHeader>
         <ModalBody>
           <span className="text-small">
-            Ces formules vous aident à définir un niveau d’engagement pour vous-même et nous aide à mieux vous comprendre. Vous pouvez modifier vos objectifs à tout moment.
+            Ces objectifs mensuels vous aident à définir un niveau d’engagement et nous aident à mieux vous comprendre. Vous pouvez les modifier à tout moment.
           </span>
-          <Row className="obj-row">
-            <Col lg="3" className={objectifs[0].selected ? "active" : ""} onClick={()=>this.toggleActive(0)}>
-              <h3>Je n’ai pas beaucoup de temps...</h3>
-              <span className="statut">Je n’ai pas beaucoup de temps...</span>
-              <div className="detail">
-                <div><b>30</b><span className="text-dark"> minutes</span></div>
-                <div><b>300</b><span className="text-dark"> mots</span></div>
-                <div><b>50</b><span className="text-dark"> mots traduits</span></div>
-              </div>
-            </Col>
-            <Col lg="3" className={objectifs[1].selected ? "active" : ""} onClick={()=>this.toggleActive(1)}>
-              <h3>J’ai un peu de temps</h3>
-              <span className="statut">Contributeur régulier</span>
-              <div className="detail">
-                <div><b>60</b><span className="text-dark"> minutes</span></div>
-                <div><b>600</b><span className="text-dark"> mots</span></div>
-                <div><b>100</b><span className="text-dark"> mots traduits</span></div>
-              </div>
-            </Col>
-            <Col lg="3" className={objectifs[2].selected ? "active" : ""} onClick={()=>this.toggleActive(2)}>
-              <h3>J’ai du temps à vous accorder</h3>
-              <span className="statut">Grand contributeur</span>
-              <div className="detail">
-                <div><b>120</b><span className="text-dark"> minutes</span></div>
-                <div><b>1200</b><span className="text-dark"> mots</span></div>
-                <div><b>500</b><span className="text-dark"> mots traduits</span></div>
-              </div>
-            </Col>
-            <Col lg="3" className={objectifs[3].selected ? "active" : ""} onClick={()=>this.toggleActive(3)}>
-              <h3>Ce projet est génial</h3>
-              <span className="statut">Ambassadeur céleste</span>
-              <div className="detail">
-                <div><b>300</b><span className="text-dark"> minutes</span></div>
-                <div><b>2000</b><span className="text-dark"> mots</span></div>
-                <div><b>2000</b><span className="text-dark"> mots traduits</span></div>
-              </div>
-            </Col>
-          </Row>
+          <div className="objectifs-wrapper">
+            {objectifs.map((objectif, key) => (
+              <Row className={"obj-row mt-10" + (objectifs[key].selected ? " active" : "")} onClick={()=>this.toggleActive(key)} key={key}>
+                <Col lg="1" className="obj-col">
+                  <div className="dot-circle" />
+                </Col>
+                <Col lg="4" className="obj-col texte-normal">
+                  <b>{(key===2?(objectif.status + " "):"") + (key<3?statut:"") + ((key < 2 || key === 3) ? (" " + objectif.status) : "")}</b>
+                </Col>
+                <Col lg="4" className="obj-col texte-very-small texte-gris-fonce">{objectif.texte}</Col>
+                <Col lg="3" className="obj-col texte-small">
+                  <div>
+                    <b>{(key===3 ? "+ de " : "" ) + objectif.objectifTemps} heures</b>
+                    {key<3 && <span className="texte-gris"> données</span>}
+                  </div>
+                  <div>
+                    <b>{(key===3 ? "+ de " : "" ) + objectif.objectifMots} mots</b>
+                    {key<3 && <span className="texte-gris"> traduits</span>}
+                  </div>
+                </Col>
+              </Row>
+            ))}
+          </div>
         </ModalBody>
         <ModalFooter>
           <Label check>
             <Input type="checkbox" checked={notifyObjectifs} onChange={this.handleCheckChange} />{' '}
-            Je ne veux pas être notifié par email si je n’atteins pas mes objectifs hebdomadaire.
+            Je souhaite être notifié par email si je ne parviens pas à tenir mes objectifs hebdomadaires.
           </Label>
-          <Button disabled={!objectifs.some(x => x.selected)} color="success" className="validate-btn d-flex align-items-center" onClick={this._validateObjectifs}>
-            <EVAIcon className="margin-right-8 d-inline-flex" name="checkmark-circle-outline" />
-            C’est bon ! J’ai choisi.
-          </Button>
+          <FButton type="validate" name="checkmark-circle-outline" disabled={!objectifs.some(x => x.selected)} onClick={this._validateObjectifs}>
+            C’est parti !
+          </FButton>
         </ModalFooter>
       </Modal>
     )
