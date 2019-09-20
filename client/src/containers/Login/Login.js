@@ -4,6 +4,7 @@ import { Button, Card, CardBody, Form } from 'reactstrap';
 import Swal from 'sweetalert2';
 import {NavLink} from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+import { connect } from 'react-redux';
 
 import API from '../../utils/API';
 import setAuthToken from '../../utils/setAuthToken';
@@ -11,6 +12,7 @@ import FCBtn from '../../assets/FCboutons-10.png';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FInput from '../../components/FigmaUI/FInput/FInput';
+import {fetch_user} from "../../Store/actions";
 
 import './Login.scss';
 import variables from 'scss/colors.scss';
@@ -42,17 +44,17 @@ class Login extends Component {
     e.preventDefault();
     if(this.state.step === 0){
       if(this.state.username.length === 0){
-        Swal.fire( 'Oops...', 'Aucun nom d\'utilisateur n\'est renseigné !', 'error');return;
+        Swal.fire( {title: 'Oops...', text: 'Aucun nom d\'utilisateur n\'est renseigné !', type: 'error', timer: 1500});return;
       }
       API.checkUserExists({'username' : this.state.username}).then(data => {
         this.setState({userExists: data.status === 200, step: 1});
       })
     }else{
       if(this.state.password.length === 0){
-        Swal.fire( 'Oops...', 'Aucun mot de passe n\'est renseigné !', 'error');return;
+        Swal.fire( {title: 'Oops...', text: 'Aucun mot de passe n\'est renseigné !', type: 'error', timer: 1500});return;
       }
       if(!this.state.userExists && this.state.password !== this.state.cpassword){
-        Swal.fire( 'Oops...', 'Les mots de passes ne correspondent pas !', 'error');return;
+        Swal.fire( {title: 'Oops...', text: 'Les mots de passes ne correspondent pas !', type: 'error', timer: 1500});return;
       }
       let user = {
         'username' : this.state.username,
@@ -66,13 +68,14 @@ class Login extends Component {
         });
         localStorage.setItem('token', data.data.token);
         setAuthToken(data.data.token);
+        this.props.fetch_user();
       })
     }
   }    
 
   handleChange = event => this.setState({ [event.target.id]: event.target.value });
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render() {
     const {passwordVisible, username, step, userExists} = this.state;
@@ -205,6 +208,11 @@ const RegisterHeader = props => (
   </Card>
 )
 
+const mapDispatchToProps = {fetch_user};
+
 export default track({
   page: 'Login',
-}, { dispatchOnMount: true })(Login);
+}, { dispatchOnMount: true })(
+  connect(null, mapDispatchToProps)
+    (Login)
+  );

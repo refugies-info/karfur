@@ -130,7 +130,7 @@ class AdminLangues extends Component {
                     <div>
                       {Math.round((langue.avancement || 0) * 100)} %
                     </div>
-                    <Progress color={colorAvancement(langue.avancement)} value={langue.avancement*100} className="mb-3" />
+                    <Progress color={colorAvancement(langue.avancement)} value={langue.avancement*100} />
                   </td>
                   <td className="align-middle limit-width-340">
                     <Row className="limit-width-340">

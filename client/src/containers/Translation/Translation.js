@@ -248,7 +248,7 @@ class TranslationHOC extends Component {
     let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
     API.getArticle({query: query, locale:i18nCode, random:true}).then(data_res => {
       let articles=data_res.data.data;
-      if(articles.length===0){Swal.fire( 'Oh non', 'Aucun résultat n\'a été retourné, veuillez rééssayer', 'error')}
+      if(articles.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
       else{ clearInterval(this.timer);
         this.props.history.push({ 
           pathname: '/traduction/'+ articles[0]._id, 
@@ -280,7 +280,7 @@ class TranslationHOC extends Component {
     }
   }
   
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render(){ 
     if(this.state.type === "dispositif"){

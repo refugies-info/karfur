@@ -38,7 +38,7 @@ class RejectTradModal extends Component {
   onReject = () => {
     console.log('rejected', this.props);
     const {clicked, message} = this.state, {selectedTrad, currIdx} = this.props;
-    if(!clicked.includes(true)){Swal.fire( 'Oh non', 'Aucune option n\'a été sélectionnée, veuillez rééssayer', 'error'); return;}
+    if(!clicked.includes(true)){Swal.fire( {title:'Oh non', text:'Aucune option n\'a été sélectionnée, veuillez rééssayer', type:'error', timer: 1500}); return;}
     const selectedR = clicked.findIndex(x => x===true);
     let newTrad = {
       _id: selectedTrad._id, 

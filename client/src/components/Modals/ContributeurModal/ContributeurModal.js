@@ -27,7 +27,7 @@ class ContributeurModal extends Component {
     //   let userRes=data.data.data;
     //   if(!userRes){return}
       if(this.props.redirect){
-        this.props.history.push({ pathname: '/backend/user-dash-contrib' })
+        this.props.history.push('/dispositif')
       }else if(this.props.setUser){
         this.props.setUser()
       }

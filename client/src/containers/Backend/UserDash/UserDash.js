@@ -8,7 +8,7 @@ import Icon from 'react-eva-icons';
 import { connect } from 'react-redux';
 
 import marioProfile from '../../../assets/mario-profile.jpg'
-import {languages, steps} from './data'
+import {steps, avancement_langue, avancement_data} from './data'
 import {colorAvancement} from '../../../components/Functions/ColorFunctions'
 import API from '../../../utils/API'
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
@@ -21,19 +21,6 @@ import './UserDash.scss';
 import variables from 'scss/colors.scss';
 
 moment.locale('fr');
-
-const avancement_langue={
-  title: 'Traductions',
-  headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi',''],
-  hideOnPhone: [false, false, true, false, true, false]
-}
-
-const avancement_data={
-  title: 'Commencer à traduire',
-  headers: ['Langue', 'Progression', 'Traducteurs mobilisés', ''],
-  hideOnPhone: [false,true,true,false],
-  data: languages
-}
 
 class UserDash extends Component {
   state={
@@ -59,9 +46,7 @@ class UserDash extends Component {
         console.log(data_langues.data.data)
         this.setState({languesUser: data_langues.data.data, isMainLoading: false}, () => {
           if(this.props.expertTrad){
-            console.log('expert')
-            API.get_tradForReview({'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"},{updatedAt: -1}).then(data => {
-              console.log(data.data.data)
+            API.get_tradForReview({'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"},{updatedAt: -1}).then(data => {console.log(data.data.data)
               this.setState({languesUser: this.state.languesUser.map( x => ({...x, nbTrads: ((data.data.data || []).filter(y => y.langueCible === x.i18nCode) || []).length }) ) })
             })
           }
@@ -138,7 +123,7 @@ class UserDash extends Component {
     let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
     API.getArticle({query: query, locale:i18nCode, random:true}).then(data_res => {
       let articles=data_res.data.data;
-      if(articles.length===0){Swal.fire( 'Oh non', 'Aucun résultat n\'a été retourné, veuillez rééssayer', 'error')}
+      if(articles.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
       else{ this.props.history.push({ pathname: '/traduction/'+ articles[0]._id, search: '?id=' + langue._id, state: { langue: langue} }) }    
     })
   }
@@ -158,13 +143,13 @@ class UserDash extends Component {
   validateObjectifs = newUser => {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
-      Swal.fire( 'Yay...', 'Vos objectifs ont bien été enregistrés', 'success')
+      Swal.fire( {title: 'Yay...', text: 'Vos objectifs ont bien été enregistrés', type: 'success', timer: 1500})
       this.setState({user:data.data.data})
       this.toggleModal('objectifs')
     })
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render() {
     let {languesUser, traductionsFaites, isMainLoading, showSections} = this.state;
@@ -306,7 +291,7 @@ const ProgressionTraduction = (props) => {
                   <td className="align-middle hideOnPhone">
                     <Row>
                       <Col>
-                        <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
+                        <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} />
                       </Col>
                       <Col className={'text-'+colorAvancement(element.avancement)}>
                         {element.avancement === 1 ? 

@@ -1,57 +1,6 @@
 import React from 'react';
 
-export const languages = [
-  {
-    name: 'Anglais',
-    code: 'gb',
-    avancement: .8,
-    nbParticipants:4,
-    premiere_image: Math.floor(Math.random() * Math.floor(15))
-  },
-  {
-    name: 'Espagnol',
-    code: 'es',
-    avancement: .7,
-    nbParticipants:3,
-    premiere_image: Math.floor(Math.random() * Math.floor(15))
-  },
-  {
-    name: 'Arabe',
-    code: 'ma',
-    avancement: .55,
-    nbParticipants:1,
-    premiere_image: Math.floor(Math.random() * Math.floor(15))
-  }
-]
-
-export const past_translation = [
-  {
-    name: 'Anglais',
-    code: 'gb',
-    titre: 'Les 3 petits cochons',
-    statut: 'Validée'
-  },
-  {
-    name: 'Anglais',
-    code: 'gb',
-    titre: 'Blanche neige et les 7 nains',
-    statut: 'En attente'
-  },
-  {
-    name: 'Espagnol',
-    code: 'es',
-    titre: 'Les 3 petits cochons',
-    statut: 'En cours'
-  },
-  {
-    name: 'Espagnol',
-    code: 'es',
-    titre: 'Les chiens aboient quand la caravane passe',
-    statut: 'Annulée'
-  }
-]
-
-export const steps = [
+const steps = [
   {
     content: <div><h3>Bienvenue dans votre espace !</h3><p>Commençons ensemble la visite...</p></div>,
     placement: 'center',
@@ -85,3 +34,17 @@ export const steps = [
     },
   }
 ]
+
+const avancement_langue={
+  title: 'Traductions',
+  headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi',''],
+  hideOnPhone: [false, false, true, false, true, false]
+}
+
+const avancement_data={
+  title: 'Commencer à traduire',
+  headers: ['Langue', 'Progression', 'Traducteurs mobilisés', ''],
+  hideOnPhone: [false,true,true,false],
+}
+
+export {steps, avancement_langue, avancement_data}

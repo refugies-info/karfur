@@ -41,7 +41,7 @@ class SearchItem extends Component {
                 <FSearchBtn 
                   key={idx} 
                   onClick={()=> this.selectOption(subi)}
-                  className={"search-options" + (subi.short ? "": " full")}
+                  className={"search-options color" + (subi.short ? "": " full")}
                   color={(subi.short || '').replace(/ /g, "-")} 
                 >
                   {subi.name}

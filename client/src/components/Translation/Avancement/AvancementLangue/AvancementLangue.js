@@ -33,7 +33,7 @@ export default function AvancementLangue(props) {
                   ' (' + Math.round(element.nombreMots *(1-element.avancement)) + ' mots restants)'
                 }
               </div>
-              <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
+              <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} />
             </td>
             <td className="align-middle">
               <Badge color={colorStatut(element.status)}>{element.status}</Badge>

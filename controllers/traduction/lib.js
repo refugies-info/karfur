@@ -90,8 +90,8 @@ function get_tradForReview(req, res) {
   }else if(populate){
     populate={path:populate, select : '-password'};
   }else{populate='';}
-  
-  if(query.articleId && query.articleId.includes('struct_')){
+
+  if(query.articleId && typeof query.articleId === "string" && query.articleId.includes('struct_')){
     res.status(204).json({ "text": "Pas de données", "data" : []})
     return false;
   }
@@ -127,11 +127,11 @@ function validate_tradForReview(req, res) {
     //Ici il y en a plusieurs: à régler
     if(traductionUser.type === "dispositif"){
       (traductionUser.traductions || []).forEach(x => {
-        Traduction.findOneAndUpdate({_id: x._id}, {status:'Validée'}, { upsert: true , new: true}).then(() => console.log("updated"))
+        Traduction.findOneAndUpdate({_id: x._id}, {status:'Validée', validatorId: req.userId}, { upsert: true , new: true}).then(() => console.log("updated"))
       })
       insertInDispositif(res, traductionUser, traductionUser.locale);
     }else{
-      Traduction.findOneAndUpdate({_id: traductionUser._id}, {status:'Validée'}, { upsert: true , new: true}).then(data_traduction => {
+      Traduction.findOneAndUpdate({_id: traductionUser._id}, {status:'Validée', validatorId: req.userId}, { upsert: true , new: true}).then(data_traduction => {
         let traduction=data_traduction;
         Article.findOne({_id:traduction.articleId}).exec((err, result) => {
           if (!err) {
@@ -188,11 +188,11 @@ const insertInDispositif = (res, traduction, locale) => {
         }   
         if(p.children && p.children.length > 0){
           p.children.forEach((c, j) => {
-            if(c.title){
+            if(c.title && traduction.translatedText.contenu[i] && traduction.translatedText.contenu[i].children && traduction.translatedText.contenu[i].children[j]){
               if(!c.title.fr){ c.title = {fr: c.title} };
               c.title[locale] = traduction.translatedText.contenu[i].children[j].title;
             }
-            if(c.content){
+            if(c.content && traduction.translatedText.contenu[i] && traduction.translatedText.contenu[i].children && traduction.translatedText.contenu[i].children[j]){
               if(!c.content.fr){ c.content = {fr: c.content} };
               c.content[locale] = traduction.translatedText.contenu[i].children[j].content;
             }
@@ -346,7 +346,6 @@ function update_tradForReview(req, res) {
     res.status(400).json({ "text": "Requête invalide" });
   }else{
     var translation = req.body;
-    console.log(translation)
     var find = new Promise(function (resolve, reject) {
       Traduction.findByIdAndUpdate({_id: translation._id},translation,{new: true}).exec(function (err, result) {
         if (err) {
@@ -386,7 +385,6 @@ function get_progression(req, res) {
           timeSpent:{ $sum: "$timeSpent"},
           count:{ $sum: 1}}}
     ]).exec(function (err, result) {
-      console.log(result)
       if (err) {
         reject(500);
       } else {
