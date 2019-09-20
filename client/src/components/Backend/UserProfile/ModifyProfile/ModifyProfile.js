@@ -6,10 +6,6 @@ import FButton from '../../../FigmaUI/FButton/FButton';
 
 const modifyProfile = (props) => {
   let { user, editing } = props;
-  // const shortDescription=e=>{
-  //   console.log(user.description, (user.description || '').length,e.currentTarget.value)
-  //   return (user.description || '').length>120 && e.preventDefault()
-  // }
   return (
     <Card className="profile-modify">
       <div className={"shadow-wrapper" + (editing ? " active" : "")}>
