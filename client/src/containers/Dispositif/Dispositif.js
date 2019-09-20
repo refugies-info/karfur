@@ -136,7 +136,7 @@ class Dispositif extends Component {
           sponsors:dispositif.sponsors,
           tags:dispositif.tags,
           creator:dispositif.creatorId,
-          uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
+          uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: dispositif.status === "Accepté structure"})})}}),
           dispositif: dispositif,
           disableEdit: dispositif.status !== "Accepté structure" || !props.translating, //A vérifier
           isDispositifLoading: false,
@@ -487,7 +487,7 @@ class Dispositif extends Component {
     })
   }
 
-  editDispositif = () => this.setState({disableEdit: false}, ()=>this.setColors())
+  editDispositif = () => this.setState({disableEdit: false, uiArray: this.state.menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}) }, ()=>this.setColors())
 
   pushReaction = (modalName=null, fieldName) => {
     if(modalName){this.toggleModal(false, modalName);}
@@ -527,7 +527,6 @@ class Dispositif extends Component {
   valider_dispositif = (status='En attente') => {
     let content = {...this.state.content}
     Object.keys(content).map( k => content[k] = h2p(content[k]));
-    console.log(this.state._id, this.state.status, status)
     let dispositif = {
       ...content,
       contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, ...(x.children && {children : x.children.map(x => ({...x, editable: false, ...(x.title && {title: h2p(x.title)})}))}) }}),
