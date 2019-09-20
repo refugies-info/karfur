@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import Swal from 'sweetalert2';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 ////////A enlever si pas utilisé/////////////:
 // import Notifications from '../../components/UI/Notifications/Notifications';
@@ -18,6 +19,8 @@ import SearchBar from '../UI/SearchBar/SearchBar';
 
 import './HomePage.scss';
 import variables from 'scss/colors.scss';
+
+const anchorOffset = '120';
 
 class HomePage extends Component {
   state = {
@@ -53,7 +56,9 @@ class HomePage extends Component {
               </FButton>
             </div>
           </div>
-          <EVAIcon className="arrowhead-icon slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          <AnchorLink href="#plan" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
+            <EVAIcon className="arrowhead-icon slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          </AnchorLink>
         </section>
 
         <section id="plan">
