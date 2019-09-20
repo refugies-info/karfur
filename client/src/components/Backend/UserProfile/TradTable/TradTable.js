@@ -36,7 +36,7 @@ const tradTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {data.slice(0,props.limit).map((element,key) => {
+        {data.map((element,key) => {
           const titre= element.title || (element.initialText || {}).title || '';
           return (
             <tr 
@@ -55,7 +55,7 @@ const tradTable = (props) => {
               <td className="align-middle hideOnPhone">
                 <Row>
                   <Col>
-                    <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
+                    <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} />
                   </Col>
                   <Col className={'text-'+colorAvancement(element.avancement)}>
                     {element.avancement === 1 ? 
@@ -92,7 +92,7 @@ const tradTable = (props) => {
             </tr>
           );
         })}
-        {props.limit && 
+        {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('traducteur')}>
               <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
@@ -126,25 +126,23 @@ const tradTable = (props) => {
           </Col>
           {props.displayIndicators && traducteur &&
             <Col className="d-flex tableau-header">
-              <Row className="full-width">
-                <Col lg="3" md="3" sm="6" xs="12" className="d-flex left-element">
+              <div className="full-width equi-reparti">
+                <div className="d-flex left-element">
                   <h4>{props.motsRediges}</h4>
-                  <span className="texte-small ml-10">mots rédigés</span>
-                </Col>
-                <Col lg="3" md="3" sm="6" xs="12" className="d-flex middle-element">
+                  <span className="texte-small ml-10">mots<br/>rédigés</span>
+                </div>
+                <div className="d-flex middle-element">
                   <h4>{props.minutesPassees}</h4>
-                  <span className="texte-small ml-10">minutes passées</span>
-                </Col>
-                <Col lg="3" md="3" sm="12" xs="12" className="d-flex right-element">
+                  <span className="texte-small ml-10">minutes<br/>passées</span>
+                </div>
+                <div className="d-flex right-element">
                   <h4>22</h4>
-                  <span className="texte-small ml-10">personnes informées</span>
-                </Col>
-                <Col lg="3" md="3" sm="12" xs="12">
-                  <FButton tag={NavLink} to="/backend/user-dashboard" type="dark" name="file-add-outline">
-                    Espace traduction
-                  </FButton>
-                </Col>
-              </Row>
+                  <span className="texte-small ml-10">personnes<br/>informées</span>
+                </div>
+                <FButton tag={NavLink} to="/backend/user-dashboard" type="dark" name="file-add-outline">
+                  Espace traduction
+                </FButton>
+              </div>
             </Col>}
         </Row>
   

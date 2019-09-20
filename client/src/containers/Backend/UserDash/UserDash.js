@@ -8,7 +8,7 @@ import Icon from 'react-eva-icons';
 import { connect } from 'react-redux';
 
 import marioProfile from '../../../assets/mario-profile.jpg'
-import {languages, steps} from './data'
+import {steps, avancement_langue, avancement_data} from './data'
 import {colorAvancement} from '../../../components/Functions/ColorFunctions'
 import API from '../../../utils/API'
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
@@ -21,19 +21,6 @@ import './UserDash.scss';
 import variables from 'scss/colors.scss';
 
 moment.locale('fr');
-
-const avancement_langue={
-  title: 'Traductions',
-  headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi',''],
-  hideOnPhone: [false, false, true, false, true, false]
-}
-
-const avancement_data={
-  title: 'Commencer à traduire',
-  headers: ['Langue', 'Progression', 'Traducteurs mobilisés', ''],
-  hideOnPhone: [false,true,true,false],
-  data: languages
-}
 
 class UserDash extends Component {
   state={
@@ -59,9 +46,7 @@ class UserDash extends Component {
         console.log(data_langues.data.data)
         this.setState({languesUser: data_langues.data.data, isMainLoading: false}, () => {
           if(this.props.expertTrad){
-            console.log('expert')
-            API.get_tradForReview({'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"},{updatedAt: -1}).then(data => {
-              console.log(data.data.data)
+            API.get_tradForReview({'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"},{updatedAt: -1}).then(data => {console.log(data.data.data)
               this.setState({languesUser: this.state.languesUser.map( x => ({...x, nbTrads: ((data.data.data || []).filter(y => y.langueCible === x.i18nCode) || []).length }) ) })
             })
           }
@@ -306,7 +291,7 @@ const ProgressionTraduction = (props) => {
                   <td className="align-middle hideOnPhone">
                     <Row>
                       <Col>
-                        <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
+                        <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} />
                       </Col>
                       <Col className={'text-'+colorAvancement(element.avancement)}>
                         {element.avancement === 1 ? 

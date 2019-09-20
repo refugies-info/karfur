@@ -38,12 +38,6 @@ class UserDashStruct extends Component {
   
   state={
     showModal:{actions:false, contributions: false, members:false, addMember: false, editMember: false, suggestion: false}, 
-    languesUser:[],
-    traductionsFaites:[],
-    progression:{
-      timeSpent:0,
-      nbMots:0
-    },
     isMainLoading: true,
     showSections:{contributions: true},
     contributions: [],
@@ -54,6 +48,7 @@ class UserDashStruct extends Component {
     users:[],
     selected:{},
     suggestion:{},
+    traductions: [],
   }
 
   componentDidMount() {
@@ -62,10 +57,17 @@ class UserDashStruct extends Component {
     if(!user.structures || !user.structures.length > 0){ Swal.fire( 'Oh non', "Nous n'avons aucune information sur votre structure d'affiliation, vous allez être redirigé vers la page d'accueil", 'error').then(() => this.props.history.push("/") ); return; }
 
     this.initializeStructure();
-    API.get_users({}).then(data => this.setState({users: data.data.data}) )
+    API.get_users({status: "Actif"}).then(data => this.setState({users: data.data.data}) )
 
     API.get_dispositif({'mainSponsor': user.structures[0], status: {$ne: "Supprimé"} }).then(data => {console.log(data.data.data)
-      this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
+      this.setState({contributions: data.data.data, actions: parseActions(data.data.data)}, () => {
+        API.get_tradForReview({type: "dispositif", articleId: {$in: this.state.contributions.map(x => x._id)} }).then(data => {console.log(data.data.data)
+          this.setState({traductions: data.data.data})
+        });
+        API.distinct_count_event({distinct: "userId", query: {action: 'readDispositif', label: "dispositifId", value : {$in: this.state.contributions.map(x => x._id)} } }).then(data => {
+          this.setState({nbRead: data.data.data})
+        })
+      })
     })
     window.scrollTo(0, 0);
   }
@@ -90,7 +92,7 @@ class UserDashStruct extends Component {
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render() {
-    let {isMainLoading, actions, contributions, structure, users} = this.state;
+    let {isMainLoading, actions, contributions, structure, users, nbRead} = this.state;
     const {user} = this.props;
 
     let members = structure.membres;
@@ -107,6 +109,9 @@ class UserDashStruct extends Component {
           title="Votre structure"
           // ctaText="Gérer mon rôle"
           structure={structure}
+          traductions={this.state.traductions}
+          actions={this.state.actions}
+          nbRead={nbRead}
           user={user}
           toggle={this.toggleModal}
           upcoming={this.upcoming}

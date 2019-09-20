@@ -52,7 +52,7 @@ const contenuParagraphe = (props) => {
                             id={props.keyValue}
                             data-subkey={subkey}
                             data-target='title'
-                            html={subitem.title}  // innerHTML of the editable div
+                            html={subitem.title || ""}  // innerHTML of the editable div
                             disabled={props.disableEdit}       // use true to disable editing
                             onChange={props.handleMenuChange} // handle innerHTML change
                             onMouseUp={e=> !props.disableEdit && e.stopPropagation()} />
@@ -99,7 +99,7 @@ const contenuParagraphe = (props) => {
                       data-subkey={subkey}
                       data-target='title'
                       className="display-inline-block"
-                      html={subitem.title}  // innerHTML of the editable div
+                      html={subitem.title || ""}  // innerHTML of the editable div
                       disabled={props.disableEdit}       // use true to disable editing
                       onChange={props.handleMenuChange} // handle innerHTML change
                     />
@@ -115,6 +115,7 @@ const contenuParagraphe = (props) => {
                     handleContentClick={props.handleContentClick}
                     disableEdit={props.disableEdit}
                     tutoriel={item.tutoriel}
+                    addItem={props.addItem}
                     {...subitem} />
                   <br />
                 </Col>
