@@ -168,7 +168,7 @@ class SideTrad extends Component {
         oldTrad = this.props.traduction.translatedText[this.state.currIdx];
       }else{
         oldTrad = this.props.traduction.translatedText.contenu[this.state.currIdx];
-        if(this.state.currSubIdx > -1 && oldTrad){
+        if(this.state.currSubIdx > -1 && oldTrad && oldTrad.children){
           oldTrad = oldTrad.children[this.state.currSubIdx][this.state.currSubName];
         }else if(oldTrad){
           oldTrad = oldTrad[this.state.currSubName];

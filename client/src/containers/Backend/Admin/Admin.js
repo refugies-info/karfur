@@ -253,22 +253,23 @@ class Admin extends Component {
     let struct = {...this.state.structure};
     let membres = struct.membres || [];
     if(struct.administrateur === struct.createur._id){
-      membres = membres.find( x=> x.userId === struct.createur._id) ? 
-        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "administrateur"] } : x) :
-        [...membres, {userId : struct.createur._id, roles: ["createur", "administrateur"] } ];
+      membres = membres.some( x=> x.userId === struct.createur._id) ? 
+        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "administrateur"] } : {...x, roles: (x.roles || []).filter(z=>z!=="administrateur")} ) :
+        [...membres.map(y=>({...y, roles: y.roles.filter(z=>z!=="administrateur")})), {userId : struct.createur._id, roles: ["createur", "administrateur"], added_at: new Date() } ];
     }else if(struct.authorBelongs){
-      membres = membres.find( x=> x.userId === struct.createur._id) ? 
-        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "contributeur"] } : x) :
-        [...membres, {userId : struct.createur._id, roles: ["createur", "contributeur"] } ];
-      membres = membres.find( x=> x.userId === struct.administrateur) ? 
-        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : x) :
-        [...membres, {userId : struct.administrateur, roles: ["administrateur"] } ];
+      membres = membres.some( x=> x.userId === struct.createur._id) ? 
+        membres.map( x => x.userId === struct.createur._id ? {...x, roles: ["createur", "contributeur"] } : {...x, roles: (x.roles || []).filter(z=>z!=="administrateur")} ) :
+        [...membres.map(y=>({...y, roles: y.roles.filter(z=>z!=="administrateur")})), {userId : struct.createur._id, roles: ["createur", "contributeur"], added_at: new Date() } ];
+      membres = membres.some( x=> x.userId === struct.administrateur) ? 
+        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : {...x, roles: (x.roles || []).filter(z=>z!=="administrateur")} ) :
+        [...membres.map(y=>({...y, roles: y.roles.filter(z=>z!=="administrateur")})), {userId : struct.administrateur, roles: ["administrateur"], added_at: new Date() } ];
     }else{
-      membres = membres.find( x=> x.userId === struct.administrateur) ? 
-        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : x) :
-        [...membres, {userId : struct.administrateur, roles: ["administrateur"] } ];
+      membres = membres.some( x=> x.userId === struct.administrateur) ? 
+        membres.map( x => x.userId === struct.administrateur ? {...x, roles: ["administrateur"] } : {...x, roles: (x.roles || []).filter(z=>z!=="administrateur")} ) :
+        [...membres.map(y=>({...y, roles: y.roles.filter(z=>z!=="administrateur")})), {userId : struct.administrateur, roles: ["administrateur"], added_at: new Date() } ];
     }
-    this.setState({structure : {...this.state.structure, membres: membres }}, 
+    console.log(this.state.structure)
+    this.setState({structure : {...this.state.structure, membres: membres, createur: (this.state.structure.createur || {})._id }}, 
       () => this.onValidate('structure'));
   }
 

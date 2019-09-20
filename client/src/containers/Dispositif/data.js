@@ -155,7 +155,7 @@ const tutoSteps = [
   {
     title: 'Thème',
     content: "choisissez le thème principal qui caractérise le mieux votre dispositif. Puis ajoutez si besoin deux thèmes secondaires qui viennent améliorer le référencement de votre dispositif et préciser sa nature.",
-    target: '.tags .plus-button',
+    target: '#tags',
     locale: { 
       skip: 'Passer',
       next: 'Suivant',
@@ -165,7 +165,7 @@ const tutoSteps = [
   {
     title: 'Lien vers le site du dispositif',
     content: "ajouter un lien direct vers la page la plus adéquate pour vous : inscription, présentation détaillée, page facebook, etc.",
-    target: '.link-wrapper',
+    target: '#input-btn',
     locale: { 
       skip: 'Passer',
       next: 'Suivant',

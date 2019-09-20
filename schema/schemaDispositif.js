@@ -67,7 +67,7 @@ var dispositifSchema = mongoose.Schema({
 		type: String,
 		unique: false,
     required: false,
-    enum: ["Actif", "En attente", "En attente admin", "En attente non prioritaire", "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé"]
+    enum: ["Actif", "Accepté structure", "En attente", "En attente admin", "En attente non prioritaire", "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé"]
 	},
   nbMots:{
 		type: Number,

@@ -13,7 +13,7 @@ async function add_structure(req, res) {
       //Il faut avoir soit un rôle admin soit être admin de la structure
       const r = await Structure.findOne({_id: structure._id});
       if(!r){res.status(402).json({ "text": "Id non valide" }); return;}
-      const isAdmin = req.user.roles.find(x => x.nom==='Admin') || r.administrateur === req.userId;
+      const isAdmin = (req.user.roles || []).some(x => x.nom==='Admin') || r.administrateur === req.userId;
       const isContributeur = (((r.membres || []).find(x => x.userId === req.userId) || {}).roles || []).includes("contributeur");
       if(isAdmin || (isContributeur && !JSON.stringify(structure).includes("administrateur"))){ //Soit l'auteur est admin soit il est contributeur et modifie les droits d'un membre seul
         promise=Structure.findOneAndUpdate({_id: structure._id, ...(membreId && {"membres.userId": membreId})}, structure, { upsert: true , new: true});
@@ -30,14 +30,14 @@ async function add_structure(req, res) {
       //J'ajoute cette structure à l'utilisateur
       Role.findOne({'nom':'hasStructure'}).exec((err, result) => {
         if(!err && result && req.userId){ 
-          data.membres.forEach(x => User.findByIdAndUpdate({ _id: x.userId },{ "$addToSet": { "roles": result._id, "structures": data._id } },{upsert: true, new: true},e => {if(e){console.log(e);}}) );
+          (data.membres || []).forEach(x => User.findByIdAndUpdate({ _id: x.userId },{ "$addToSet": { "roles": result._id, "structures": data._id } },{upsert: true, new: true},e => {if(e){console.log(e);}}) );
         }
       })
       res.status(200).json({
         "text": "Succès",
         "data": data
       })
-    }).catch(err => { res.status(500).json({"text": "Erreur interne", data: err}) })
+    }).catch(err => { console.log(err);res.status(500).json({"text": "Erreur interne", data: err}) })
   }
 }
 

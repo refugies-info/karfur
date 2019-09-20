@@ -4,6 +4,7 @@ import { Button, Card, CardHeader, CardBody, Badge, Collapse, Table} from 'react
 import {NavLink} from 'react-router-dom'; 
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
+import moment from 'moment/min/moment-with-locales';
 
 import API from '../../../utils/API';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
@@ -13,7 +14,15 @@ import {deleteContrib} from '../UserProfile/functions';
 import './AdminContrib.scss';
 import variables from 'scss/colors.scss';
 
-const reviews_data=[{value: "En attente admin", explain: "(Déjà validé par une structure)"}, {value: "Rejeté structure", explain: "(La structure considère que ce dispositif ne lui appartient pas)"}, {value: "En attente non prioritaire", explain: "(Créé par un utilisateur, sans structure d'appartenance)"}]
+moment.locale('fr');
+
+const reviews_data=[
+  {value: "En attente admin", explain: "(Déjà validé par une structure)"}, 
+  {value: "Rejeté structure", explain: "(La structure considère que ce dispositif ne lui appartient pas)"}, 
+  {value: "En attente non prioritaire", explain: "(Créé par un utilisateur, sans structure d'appartenance)"}, 
+  {value: "En attente", explain: "(Doit être validé par la structure)"},
+  {value: "Accepté structure", explain: "(La structure a accepté la paternité mais n'a pas encore validé le contenu)"},
+]
 
 class AdminContrib extends Component {
   constructor(props) {
@@ -23,7 +32,7 @@ class AdminContrib extends Component {
 
   state={
     dispositifs:[],
-    accordion: [true, false, false],
+    accordion: new Array(reviews_data.length).fill(false).map((_,i)=> i===0),
   };
 
   componentDidMount (){
@@ -31,7 +40,7 @@ class AdminContrib extends Component {
   }
 
   _initializeContrib = () => {
-    API.get_dispositif({status:{$in: reviews_data.map(x=>x.value) }},{},'creatorId mainSponsor').then(data_res => {
+    API.get_dispositif({status:{$in: reviews_data.map(x=>x.value) }},{updatedAt: -1},'creatorId mainSponsor').then(data_res => {
       let dispositifs=[...data_res.data.data];
       this.setState({ dispositifs });
     })
@@ -60,12 +69,27 @@ class AdminContrib extends Component {
     })
   }
 
-  update_status = (dispositifId, status="Actif") => {
-    let dispositif = { status: status, dispositifId: dispositifId };
-    API.add_dispositif(dispositif).then(() => {
-      this.props.fetch_dispositifs();
-      this.setState(pS => ({ dispositifs: pS.dispositifs.map(x => x._id === dispositifId ? {...x, status: status} : x) }));
-    });
+  update_status = async (dispositif, status="Actif") => {
+    let newDispositif = { status: status, dispositifId: dispositif._id };
+    let question = {value: true};
+    if(dispositif.status === "En attente" || dispositif.status === "Accepté structure"){
+      question = await Swal.fire({
+        title: 'Êtes-vous sûr ?',
+        text: "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
+        type: 'question',
+        showCancelButton: true,
+        confirmButtonColor: variables.rouge,
+        cancelButtonColor: variables.vert,
+        confirmButtonText: 'Oui, le valider',
+        cancelButtonText: 'Annuler'
+      })
+    }
+    if(question.value){
+      API.add_dispositif(newDispositif).then(() => {
+        this.props.fetch_dispositifs();
+        this.setState(pS => ({ dispositifs: pS.dispositifs.map(x => x._id === dispositif._id ? {...x, status: status} : x) }));
+      });
+    }
   }
 
   render() {
@@ -96,13 +120,16 @@ class AdminContrib extends Component {
                     <Collapse isOpen={accordion[index] && arr.length > 0} data-parent="#accordion" id="collapseOne" aria-labelledby="headingOne">
                       <CardBody>
                         <Table responsive className="avancement-user-table">
-                          <thead><tr><th>Titre</th><th>Structure</th><th>Tej</th><th>Voir</th><th>Valider</th></tr></thead>
+                          <thead><tr><th>Titre</th><th>Depuis</th><th>Structure</th><th>Tej</th><th>Voir</th><th>Valider</th></tr></thead>
                           <tbody>
                             {arr.map((element,key) => {
                               return (
                                 <tr key={key} >
                                   <td className="align-middle">
                                     <b>{element.titreMarque + ' - ' + element.titreInformatif}</b>
+                                  </td>
+                                  <td className="align-middle">
+                                    {moment(element.updatedAt).fromNow()}
                                   </td>
                                   <td className="align-middle">
                                     {(element.mainSponsor || {}).acronyme || (element.mainSponsor || {}).nom}
@@ -114,7 +141,7 @@ class AdminContrib extends Component {
                                     <FButton tag={NavLink} to={"/dispositif/"+element._id} type="light-action" name="eye-outline" fill={variables.noir} />
                                   </td>
                                   <td className="align-middle fit-content">
-                                    <FButton type="validate" name="checkmark-circle-outline" onClick={()=>this.update_status(element._id)}>
+                                    <FButton type="validate" name="checkmark-circle-outline" onClick={()=>this.update_status(element)}>
                                       Valider
                                     </FButton>
                                   </td>
