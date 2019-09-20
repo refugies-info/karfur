@@ -155,7 +155,7 @@ const tutoSteps = [
   {
     title: 'Thème',
     content: "choisissez le thème principal qui caractérise le mieux votre dispositif. Puis ajoutez si besoin deux thèmes secondaires qui viennent améliorer le référencement de votre dispositif et préciser sa nature.",
-    target: '.tags',
+    target: '#tags',
     locale: { 
       skip: 'Passer',
       next: 'Suivant',
@@ -165,7 +165,7 @@ const tutoSteps = [
   {
     title: 'Lien vers le site du dispositif',
     content: "ajouter un lien direct vers la page la plus adéquate pour vous : inscription, présentation détaillée, page facebook, etc.",
-    target: '.link-wrapper',
+    target: '#input-btn',
     locale: { 
       skip: 'Passer',
       next: 'Suivant',
@@ -195,7 +195,7 @@ const tutoSteps = [
   {
     title: 'Pourquoi ?',
     content: "ajoutez jusqu’à 5 arguments principaux pour convaincre l’utilisateur de vous rejoindre. Chaque titre d’accordéon doit être compréhensible sans avoir à lire son contenu. N’hésitez pas à faire des sous-arguments à l’aide des listes à puce.",
-    target: '#contenu-2 #accordion-header',
+    target: '#contenu-2 .accordeon-col',
     locale: { 
       skip: 'Passer',
       next: 'Suivant',
@@ -205,7 +205,7 @@ const tutoSteps = [
   {
     title: 'Comment ?',
     content: "détaillez les différentes étapes pour accéder à votre dispositif : annuaire, prise de contact, premiers rendez-vous, formulaires d’inscriptions, etc. Vous pouvez ajouter une carte interactive pour cartographier vos points de contacts.",
-    target: '#contenu-3 #accordion-header',
+    target: '#contenu-3 .accordeon-col',
     locale: { 
       skip: 'Passer',
       next: 'Suivant',

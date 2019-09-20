@@ -6,6 +6,7 @@ import { Row, Col, Form, FormGroup, Label, Input, InputGroupAddon } from 'reacts
 import Swal from 'sweetalert2';
 
 import Logo from '../../components/Logo/Logo';
+import API from '../../utils/API';
 
 import './Footer.scss';
 import variables from 'scss/colors.scss';
@@ -19,7 +20,16 @@ class Footer extends Component {
 
   onChange = e => this.setState({email: e.target.value});
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
+  sendMail = (e) => {
+    e.preventDefault();
+    if(!this.state.email){ Swal.fire( {title: 'Oops...', text: 'Aucun mail renseigné', type: 'error', timer: 1500});return;}
+    API.set_mail({mail: this.state.email}).then(() => {
+      Swal.fire( {title: 'Yay...', text: 'Mail correctement enregistré !', type: 'success', timer: 1500});
+      this.setState({email:""})
+    }).catch(e=>Swal.fire( 'Oh non...', 'Une erreur s\'est produite', 'error'));
+  }    
+
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render() {
     // const { t } = this.props;
@@ -28,10 +38,10 @@ class Footer extends Component {
         <Row>
           <Col lg="4">
             <Logo />
-            <Form>
+            <Form onSubmit={this.sendMail}>
               <FormGroup>
                 {/*<Label for="emailNewsletter">Rejoindre la newsletter</Label>*/}
-               <div className="position-relative">
+                <div className="position-relative">
                   <Input 
                     type="email" 
                     name="email" 
@@ -39,7 +49,7 @@ class Footer extends Component {
                     onChange={this.onChange}
                     id="emailNewsletter" 
                     placeholder="Je m'abonne à la newsletter" />
-                  <InputGroupAddon addonType="append" className="icon-append" onClick={this.onClick}>
+                  <InputGroupAddon addonType="append" className="icon-append" onClick={this.sendMail}>
                     <EVAIcon name='at-outline' fill={variables.noir} />
                   </InputGroupAddon>
                 </div>
@@ -47,14 +57,14 @@ class Footer extends Component {
             </Form>
             <div className="ligne-footer">
               {/*<label>Rejoindre la newsletter</label>*/}
-              <FButton className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
+              <FButton tag={"a"} href="https://agi-r.mn.co" target="_blank" className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
                 Rejoindre le réseau
               </FButton>
             </div>
             <div className="ligne-footer">
               {/*<label>Demander de nouveaux contenus</label>*/}
-              <FButton className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
-                Suggérer des contenus
+              <FButton tag={"a"} href="https://agir.canny.io/agir" target="_blank" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
+                Suggérer des fonctionnalités
               </FButton>
             </div>
           </Col>

@@ -106,8 +106,8 @@ export const fakeNotifs = {
 
 export const avancement_contributions={
   title: 'Contributions',
-  headers: ['Titre', 'Statut', 'Progression', 'Rôle', 'Ils rédigent avec moi',''],
-  hideOnPhone: [false, false, true, true, true, false]
+  headers: ['Titre', 'Statut', 'Ils rédigent avec moi',''],
+  hideOnPhone: [false, false, true, false]
 };
 
 export const avancement_members={

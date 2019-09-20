@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-import { Card, CardBody, CardHeader, Carousel, CarouselControl, CarouselItem, Col, Row, Progress, CardFooter, Table } from 'reactstrap';
+import { Col, Row, Progress, CardFooter, Table } from 'reactstrap';
 import moment from 'moment/min/moment-with-locales';
 import {NavLink} from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -12,6 +12,7 @@ import {colorAvancement} from '../../components/Functions/ColorFunctions';
 import {diffData} from './data';
 import marioProfile from '../../assets/mario-profile.jpg';
 import FButton from '../../components/FigmaUI/FButton/FButton';
+import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 
 import './Avancement.scss';
 import variables from 'scss/colors.scss';
@@ -148,7 +149,7 @@ class Avancement extends Component {
     })
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render(){
     const { langue, isExpert } = this.state;
@@ -167,14 +168,12 @@ class Avancement extends Component {
       } ) )
     ].sort((a,b)=> a.nombreMots - b.nombreMots);
     if(isExpert){ traductions = traductions.filter(x => x.avancement === 1); } //rajouter un filtre sur le statut
-    console.log(traductions, this.state.traductionsFaites, isExpert)
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
           traductions.map((element,key) => {
             const joursDepuis = (new Date().getTime() -  new Date(element.created_at).getTime()) / (1000 * 3600 * 24);
             const titre = (element.title || {}).fr || element.title || (element.initialText || {}).title || (element.titreMarque + " - " + element.titreMarque) ||'' ;
-            console.log(element)
             return (
               <tr 
                 key={element._id}
@@ -183,7 +182,7 @@ class Avancement extends Component {
                 <td className="align-middle">{element.isStructure ? "Site" : "Dispositif"}</td>
                 <td className="align-middle">{titre.slice(0,30) + (titre.length > 30 ? "..." : "")}</td>
                 <td className={"align-middle depuis " + (element.nombreMots > 100 ? "alert" : "success") }>
-                  {element.nombreMots}
+                  {Math.round((element.nombreMots || 0) * (element.avancement || 0)) + " / " + element.nombreMots}
                 </td>
                 {isExpert ? 
                   <td className="align-middle">
@@ -199,11 +198,16 @@ class Avancement extends Component {
                     })}
                   </td> :
                   <td className="align-middle">
-                    <div>
-                      {Math.round( (element.avancement || 0) * 100)} %
-                      {' (' + Math.round((element.nombreMots || 0) * (1-(element.avancement || 0))) + ' mots restants)'}
-                    </div>
-                    <Progress color={colorAvancement(element.avancement)} value={element.avancement *100} className="mb-3" />
+                    <Row>
+                      <Col>
+                        <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} />
+                      </Col>
+                      <Col className={'text-'+colorAvancement(element.avancement)}>
+                        {element.avancement === 1 ? 
+                          <EVAIcon name="checkmark-circle-2" fill={variables.vert} /> :
+                          <span>{Math.round((element.avancement || 0) * 100)} %</span> }
+                      </Col>
+                    </Row>
                   </td>} 
                 <td className={"align-middle depuis " + (joursDepuis > 3 ? "alert" : "success") }>
                   {moment(element.created_at).fromNow()}

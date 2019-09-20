@@ -74,7 +74,7 @@ class SideTrad extends Component {
         idx = this.state.currIdx - 1;
         subidx = this.props.menu[idx].children.length - 1;
         subname = "content";
-      }else if( (isNext && this.state.currSubIdx >= this.props.menu[this.state.currIdx].children.length - 1 && this.state.currSubName === "content" )
+      }else if( (isNext && (!this.props.menu[this.state.currIdx].children || this.state.currSubIdx >= this.props.menu[this.state.currIdx].children.length - 1) && this.state.currSubName === "content" )
                 || (!isNext && this.state.currSubIdx <= 0 && this.state.currSubName === "title") ){
         idx = this.state.currIdx + (isNext ? 1 : 0);
         subidx = -1;
@@ -168,7 +168,7 @@ class SideTrad extends Component {
         oldTrad = this.props.traduction.translatedText[this.state.currIdx];
       }else{
         oldTrad = this.props.traduction.translatedText.contenu[this.state.currIdx];
-        if(this.state.currSubIdx > -1 && oldTrad){
+        if(this.state.currSubIdx > -1 && oldTrad && oldTrad.children){
           oldTrad = oldTrad.children[this.state.currSubIdx][this.state.currSubName];
         }else if(oldTrad){
           oldTrad = oldTrad[this.state.currSubName];
@@ -218,7 +218,7 @@ class SideTrad extends Component {
   }
 
   onValidate = async () => {
-    if(!this.props.translated.body){Swal.fire( 'Oh non', 'Aucune traduction n\'a été rentrée, veuillez rééssayer', 'error'); return;}
+    if(!this.props.translated.body){Swal.fire( {title: 'Oh non', text: 'Aucune traduction n\'a été rentrée, veuillez rééssayer', type: 'error', timer: 1500}); return;}
     const pos = pointeurs.findIndex(x => this.state.currIdx === x);
     const node = pos > -1 ? this.state.currIdx : "contenu";
     let {currIdx, currSubIdx, currSubName} = this.state;

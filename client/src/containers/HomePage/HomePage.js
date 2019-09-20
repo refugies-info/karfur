@@ -30,7 +30,7 @@ class HomePage extends Component {
     window.scrollTo(0, 0);
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render() {
     // const { t } = this.props;
@@ -116,7 +116,7 @@ class HomePage extends Component {
                 Agi’r est une plateforme ouverte à la contribution, comme Wikipédia. Son objectif est de centraliser et de garder à jour un maximum d’informations pratiques pour aider les réfugiés à prendre leurs marques en France.
                 {" "}
                 <NavLink to="/qui-sommes-nous">
-                <u>En savoir plus</u>
+                  <u>En savoir plus</u>
                 </NavLink>
               </p>
             </div>
