@@ -82,9 +82,9 @@ const actionTable = (props) => {
             </h1>
           </Col>
           <Col className="tableau-header no-margin" lg="1">
-            <FButton type="dark" name="options-2-outline" onClick={props.upcoming}>
+           {/*<FButton type="dark" name="options-2-outline" onClick={props.upcoming}>
               Paramétrer
-            </FButton>
+              </FButton>*/}
           </Col>
         </Row>
   

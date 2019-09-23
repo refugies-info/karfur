@@ -61,7 +61,7 @@ class QuickToolbar extends Component {
                   </Button>
                 </Col>
               </Row>
-              <Row className="second-row">
+              {/*<Row className="second-row">
                 <Col lg="6" md="6" sm="6" xs="6" className="col-btn">
                   <Button className="btn-pill" id="eva-icon-2" onMouseEnter={()=>this._hoverOn(2)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(2)}>
                     <EVAIcon name={"edit-2" + (this.state.fill[2] ? '' : '-outline')} fill={variables.lightColor} className='icon-toolbar'/>
@@ -78,7 +78,7 @@ class QuickToolbar extends Component {
                     </Tooltip>
                   </Button>
                 </Col>
-              </Row>
+        </Row>*/}
             </CardBody>
           </Card>
         )
