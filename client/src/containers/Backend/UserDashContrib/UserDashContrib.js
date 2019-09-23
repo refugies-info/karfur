@@ -23,7 +23,7 @@ class UserDashContrib extends Component {
   }
 
   state={
-    showModal:{objectifs:true, contributions: false, progression:false, defineUser: false}, 
+    showModal:{objectifs:false, contributions: false, progression:false, defineUser: false}, 
     user:{},
     langues:[],
     allLangues:[],
@@ -66,8 +66,8 @@ class UserDashContrib extends Component {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
       Swal.fire( {title: 'Yay...', text: 'Vos objectifs ont bien été enregistrés', type: 'success', timer: 1500})
-      this.setState({user:data.data.data})
-      this.toggleModal('objectifs')
+      this.setState({user:data.data.data});
+      this.toggleModal('objectifs');
     })
   }
 
@@ -84,8 +84,8 @@ class UserDashContrib extends Component {
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}
           upcoming={this.upcoming}
-          objectifMots={this.state.user.objectifMots}
-          objectifTemps={this.state.user.objectifTemps}
+          objectifMots={this.state.user.objectifMotsContrib}
+          objectifTemps={this.state.user.objectifTempsContrib}
           motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt -- je me suis pas trompé !
           minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 1000 / 60))} //idem
         />

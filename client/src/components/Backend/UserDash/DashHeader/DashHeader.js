@@ -102,7 +102,7 @@ const dashHeader = (props) => {
           </Col>
           <Col lg="4" md="12" sm="12" xs="12">
             <div className="inner-indicator second-indicator">
-              <h3 className="right-side">{props.motsRediges} <span className="gris">/ {props.objectifMots}</span></h3>
+              <h3 className="right-side">{props.motsRediges || 0} <span className="gris">/ {props.objectifMots || 0}</span></h3>
               <div className="left-side">
               <b className="mot-indicateur">mots</b> à traduire pour atteindre votre objectif.{' '}<br/>
               <i>Courage !</i>
@@ -111,7 +111,7 @@ const dashHeader = (props) => {
           </Col>
           <Col lg="4" md="12" sm="12" xs="12">
             <div className="inner-indicator third-indicator">
-              <h3 className="right-side">{props.minutesPassees} <span className="gris">/ {props.objectifTemps}'</span></h3>
+              <h3 className="right-side">{props.minutesPassees || 0} <span className="gris">/ {props.objectifTemps || 0}h</span></h3>
               <div className="left-side">
               <b className="mot-indicateur">minutes</b> dédiées à l'accueil des personnes réfugiés.{' '}<br/>
                 <i>Merci !</i>

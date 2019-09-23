@@ -17,6 +17,7 @@ import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import {AddMemberModal, EditMemberModal, SuggestionModal} from '../../../components/Modals';
 import {showSuggestion, archiveSuggestion, parseActions, deleteContrib} from '../UserProfile/functions';
 import {selectItem, editMember, addMember} from './functions';
+import DateOffset from '../../../components/Functions/DateOffset';
 
 import './UserDashStruct.scss';
 import variables from 'scss/colors.scss';
@@ -76,6 +77,9 @@ class UserDashStruct extends Component {
     const user=this.props.user;
     API.get_structure({_id: user.structures[0] }, {}, 'dispositifsAssocies').then(data => { console.log(data.data.data[0]);
       this.setState({structure:data.data.data[0], isMainLoading:false});
+      API.get_event({created_at : {"$gte": DateOffset(new Date(), 0, 0, -15) }, userId: {$in: ((data.data.data[0] || {}).membres || []).map(x => x.userId)}, action : {$ne: "idle"} }).then(data_res => { 
+        this.setState(pS=>({structure: {...pS.structure, membres: (pS.structure.membres || []).map(y=> ({...y, connected: (data_res.data.data || []).some(z => z.userId === y.userId)}))   }}) );
+      })
     })
   }
 

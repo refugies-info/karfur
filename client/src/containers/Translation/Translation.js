@@ -234,9 +234,11 @@ class TranslationHOC extends Component {
     API.add_traduction(traduction).then((data) => {
       traduction._id = (data.data.data || {})._id;
       this.setState({traduction});
-      Swal.fire( 'Yay...', 'La traduction a bien été enregistrée', 'success').then(()=>{
-        this.onSkip();
-      });
+      if(traduction.avancement === 1){
+        Swal.fire( 'Yay...', 'La traduction a bien été enregistrée', 'success').then(()=>{
+          this.onSkip();
+        });
+      }
     })
   }
 

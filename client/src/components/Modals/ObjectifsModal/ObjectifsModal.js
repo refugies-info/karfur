@@ -22,18 +22,19 @@ class ObjectifsModal extends Component {
 
   _validateObjectifs = () => {
     let objectif=this.state.objectifs.find(x=>x.selected);
+    const contribPrepend = this.props.contributeur ? "Contrib" : "";
     let newUser={
-      objectifTemps: objectif.objectifTemps, 
-      objectifMotsContrib: objectif.objectifMotsContrib, 
-      objectifMots: objectif.objectifMots, 
-      notifyObjectifs: this.state.notifyObjectifs
+      ["objectifTemps" + contribPrepend]: objectif.objectifTemps, 
+      ["objectifMots" + contribPrepend]: objectif.objectifMots, 
+      ["notifyObjectifs" + contribPrepend]: this.state.notifyObjectifs
     }
+    console.log(newUser)
     this.props.validateObjectifs(newUser)
   }
 
   render(){
     let {objectifs, notifyObjectifs} = this.state;
-    let {contributeur, traducteur} = this.props;
+    let {contributeur} = this.props;
     const statut = contributeur ? "Rédacteur" : "Traducteur"
     return(
       <Modal isOpen={this.props.show} toggle={this.props.toggle} className='modal-objectifs'>

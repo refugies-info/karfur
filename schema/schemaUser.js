@@ -41,11 +41,19 @@ var userSchema = mongoose.Schema({
     type: Number,
     required: false
   },
+  notifyObjectifs:{
+    type: Boolean,
+    required: false
+  },
+	objectifTempsContrib: {
+    type: Number,
+    required: false
+  },
   objectifMotsContrib:{
     type: Number,
     required: false
   },
-  notifyObjectifs:{
+  notifyObjectifsContrib:{
     type: Boolean,
     required: false
   },

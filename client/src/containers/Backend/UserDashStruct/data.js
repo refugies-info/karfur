@@ -112,7 +112,7 @@ export const avancement_contributions={
 
 export const avancement_members={
   title: 'Membres',
-  headers: ['Nom', 'Rôle', 'Dernière connexion', 'Ajouté le','Propriété', '', '', '']
+  headers: ['Nom', 'Rôle', 'Dernière connexion', 'Ajouté le', '', '', '']
 }
 
 export const fakeContribution = {

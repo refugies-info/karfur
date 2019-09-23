@@ -42,7 +42,7 @@ class UserDash extends Component {
     let user=this.props.user;
     console.log(user)
     if(user && user.selectedLanguages && user.selectedLanguages.length > 0){
-      API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
+      API.get_langues({'_id': { $in: user.selectedLanguages}},{avancement: 1},'participants').then(data_langues => {
         console.log(data_langues.data.data)
         this.setState({languesUser: data_langues.data.data, isMainLoading: false}, () => {
           if(this.props.expertTrad){
@@ -216,6 +216,7 @@ class UserDash extends Component {
             langues={languesUser}
             toggleModal={this.toggleModal}
             windowWidth={this.props.windowWidth}
+            history={this.props.history}
             {...avancement_langue} />
         </Modal>
         <Modal isOpen={this.state.showModal.progression} toggle={()=>this.toggleModal('progression')} className='modal-plus'>
@@ -229,6 +230,7 @@ class UserDash extends Component {
         </Modal>
 
         <ObjectifsModal 
+          traducteur
           show={this.state.showModal.objectifs} 
           toggle={()=>this.toggleModal('objectifs')}
           validateObjectifs={this.validateObjectifs} />
@@ -262,8 +264,11 @@ const buttonTraductions = (element, user, openThemes, openTraductions) => (
 )
 
 const ProgressionTraduction = (props) => {
-  let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
+  const hasLangues = (props.dataArray || []).length > 0;
+  const dataArray = hasLangues ? props.dataArray : new Array(5).fill({langueFr: "Français", langueCode: "fr", avancement: 1});
+  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
   let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+
   return (
     <div className="tableau-wrapper" id="progression-traduction">
       <Row>
@@ -279,9 +284,12 @@ const ProgressionTraduction = (props) => {
             </tr>
           </thead>
           <tbody>
-            {data.map( element => {
+            {data.map( (element, key) => {
               return (
-                <tr key={element._id} onClick={() =>  element.avancement !== 1 && (props.isExpert ? props.openTraductions(element) : props.openThemes(element) )} > 
+                <tr 
+                  key={element._id || key} 
+                  onClick={() =>  element.avancement !== 1 && (props.isExpert ? props.openTraductions(element) : props.openThemes(element) )}
+                  className={element.avancement === 1 ? "terminee" : ""} > 
                   <td className="align-middle">
                     <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.code} id={element.code}></i>
                     {element.langueFr}
@@ -319,7 +327,7 @@ const ProgressionTraduction = (props) => {
                 </tr>
               );
             })}
-            {props.limit && 
+            {props.limit && dataArray.length > 5 && 
               <tr >
                 <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('progression')}>
                   <Icon name="expand-outline" fill={variables.noir} size="large"/>&nbsp;
