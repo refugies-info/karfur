@@ -44,11 +44,13 @@
         }
       }
     }
+
     .card-body{
       padding-bottom: 12px;
       font-size: 16px;
       line-height: 20px;
       color: #FFFFFF;
+
       h4{
         font-style: normal;
         font-weight: 500;
@@ -57,6 +59,10 @@
           border-radius: 6px;
           color: $darkColor;
           padding-left: 10px;
+          line-height: 38px;
+        }
+        .switch-wrapper{
+          color: $blancSimple;
         }
       }
 
@@ -82,7 +88,7 @@
         border: none;
         text-align: center;
         margin: 0;
-        width: 75px;
+        width: 40px;
         color: $noir;
         height: 40px;
         background-color: $jauneClair;

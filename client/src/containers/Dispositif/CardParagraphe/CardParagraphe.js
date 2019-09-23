@@ -130,7 +130,7 @@ class CardParagraphe extends Component {
         return(
           <>
             {this.props.disableEdit ? 
-              <div className="color-darkColor">{subitem.free ? "Gratuit" : "Payant"}</div> :
+              <div>{subitem.free ? "Gratuit" : "Payant"}</div> :
               <FSwitch precontent="Gratuit" content="Payant" checked={!subitem.free} onClick={() => this.props.toggleFree(this.props.keyValue, this.props.subkey)} />}
             {!subitem.free && 
               <span className="color-darkColor price-details">

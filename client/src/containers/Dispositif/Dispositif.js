@@ -596,8 +596,8 @@ class Dispositif extends Component {
       if(step){ return (
       <div
         key="JoyrideTooltip"
-        className="tooltip-wrapper custom-tooltip backgroundColor-darkColor" 
-        style={{width: joyRideWidth + "px", backgroundColor: mainTag.darkColor, marginRight: "40px"}}
+        className="tooltip-wrapper custom-tooltip" 
+        style={{width: joyRideWidth + "px", /*backgroundColor: mainTag.darkColor,*/ marginRight: "40px"}}
         {...tooltipProps}>
         <div className="tooltipContainer">
           <b>{step.title}</b> : {step.content}

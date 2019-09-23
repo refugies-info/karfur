@@ -135,7 +135,7 @@ class AdminContrib extends Component {
                                     {(element.mainSponsor || {}).acronyme || (element.mainSponsor || {}).nom}
                                   </td>
                                   <td className="align-middle pointer fit-content">
-                                    <FButton type="light-action" name="archive-outline" fill={variables.noir} onClick={() => this.prepareDeleteContrib(element)} />
+                                    <FButton type="light-action" name="trash-outline" fill={variables.noir} onClick={() => this.prepareDeleteContrib(element)} />
                                   </td>
                                   <td className="align-middle fit-content">
                                     <FButton tag={NavLink} to={"/dispositif/"+element._id} type="light-action" name="eye-outline" fill={variables.noir} />

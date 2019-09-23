@@ -215,7 +215,7 @@ class QuiSommesNous extends Component {
         </section>
 
 
-        <section id="partenaires">
+        {/*<section id="partenaires">
           <div className="section-container">
             <h2>Partenaires</h2>
 
@@ -239,10 +239,10 @@ class QuiSommesNous extends Component {
               <Col lg="4" className="partner-col">
                 La Diair est à l’origine de la création du projet et héberge actuellement l’équipe projet. 
               </Col>
-            </Row> */}
+            </Row>
             <h3>Associatifs</h3>
           </div>
-        </section>
+        </section>*/}
       </div>
     );
   }
