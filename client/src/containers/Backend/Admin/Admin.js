@@ -99,7 +99,7 @@ class Admin extends Component {
       })
     })
 
-    API.get_users({}).then(data_res => {
+    API.get_users({}, {username: 1}).then(data_res => {
       this.setState({users:data_res.data.data})
     })
 
@@ -326,7 +326,7 @@ class Admin extends Component {
                   {'\u00A0'}<Badge pill color="warning">{this.state.langues.length}</Badge>
                 </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink
                   active={this.state.activeTab[3] === '3'}
                   onClick={() => { this.toggleTab(3, '3'); }} >
@@ -334,7 +334,7 @@ class Admin extends Component {
                     <span className={this.state.activeTab[3] === '3' ? '' : 'd-none'}> Thèmes</span>
                     {'\u00A0'}<Badge pill color="info">{this.state.themes.length}</Badge>
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <NavLink
                   active={this.state.activeTab[3] === '4'}

@@ -348,9 +348,9 @@ $imgHeight : 350px;
     }
     .blc-dr{
       &.bloc-droite-link{
-        border-radius: 0;
+        border-radius: 0 12px 12px 0;
         padding-left:0;
-        padding-right:0;
+        margin-bottom: 6px;
       }
       &.bloc-droite-alert{
         border-radius: 0 12px 12px 0;
@@ -544,6 +544,8 @@ $imgHeight : 350px;
       box-shadow: none;
       color: $darkColor;
       padding: 10px;
+      cursor: pointer;
+      display: inline-block;
   
       &.active{
         transition: all 0.2s ease;
@@ -552,8 +554,8 @@ $imgHeight : 350px;
       h5{
         display: flex;
         margin: auto;
+        line-height: 38px;
       }
-  
       .accordion-text{
         margin: 0 18px 0 0;
         font-size: 18px;

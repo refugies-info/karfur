@@ -18,8 +18,9 @@ const addMember = function() {
   };
   API.create_structure(structure).then((data) => {
     console.log(data);
+    this.initializeStructure();
     Swal.fire( {title: 'Yay...', text: 'Votre nouveau membre a bien été ajouté, merci', type: 'success', timer: 1500});
-    this.toggleModal("addMember")
+    this.toggleModal("addMember");
   })
 }
 

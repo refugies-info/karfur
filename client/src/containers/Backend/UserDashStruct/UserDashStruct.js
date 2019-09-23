@@ -17,6 +17,7 @@ import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import {AddMemberModal, EditMemberModal, SuggestionModal} from '../../../components/Modals';
 import {showSuggestion, archiveSuggestion, parseActions, deleteContrib} from '../UserProfile/functions';
 import {selectItem, editMember, addMember} from './functions';
+import DateOffset from '../../../components/Functions/DateOffset';
 
 import './UserDashStruct.scss';
 import variables from 'scss/colors.scss';
@@ -59,7 +60,7 @@ class UserDashStruct extends Component {
     this.initializeStructure();
     API.get_users({status: "Actif"}).then(data => this.setState({users: data.data.data}) )
 
-    API.get_dispositif({'mainSponsor': user.structures[0], status: {$ne: "Supprimé"} }).then(data => {console.log(data.data.data)
+    API.get_dispositif({query: {'mainSponsor': user.structures[0], status: {$ne: "Supprimé"} }}).then(data => {console.log(data.data.data)
       this.setState({contributions: data.data.data, actions: parseActions(data.data.data)}, () => {
         API.get_tradForReview({type: "dispositif", articleId: {$in: this.state.contributions.map(x => x._id)} }).then(data => {console.log(data.data.data)
           this.setState({traductions: data.data.data})
@@ -76,6 +77,9 @@ class UserDashStruct extends Component {
     const user=this.props.user;
     API.get_structure({_id: user.structures[0] }, {}, 'dispositifsAssocies').then(data => { console.log(data.data.data[0]);
       this.setState({structure:data.data.data[0], isMainLoading:false});
+      API.get_event({created_at : {"$gte": DateOffset(new Date(), 0, 0, -15) }, userId: {$in: ((data.data.data[0] || {}).membres || []).map(x => x.userId)}, action : {$ne: "idle"} }).then(data_res => { 
+        this.setState(pS=>({structure: {...pS.structure, membres: (pS.structure.membres || []).map(y=> ({...y, connected: (data_res.data.data || []).some(z => z.userId === y.userId)}))   }}) );
+      })
     })
   }
 
@@ -96,11 +100,6 @@ class UserDashStruct extends Component {
     const {user} = this.props;
 
     let members = structure.membres;
-    let hasMembres=true, hasNotifs= true, contributeur=true;
-    if(actions.length === 0){actions= new Array(5).fill(fakeNotifs); hasNotifs=false;}
-    if(contributions.length === 0){contributions= new Array(5).fill(fakeContribution); contributeur=false;}
-    if(!members || members.length === 0){members= new Array(5).fill(fakeMembre); hasMembres=false;}
-
     const enAttente = (structure.dispositifsAssocies || []).filter(x => x.status === "En attente");
     return (
       <div className="animated fadeIn user-dash-struct">
@@ -141,7 +140,6 @@ class UserDashStruct extends Component {
           showSuggestion={this.showSuggestion}
           upcoming={this.upcoming}
           archive={this.archiveSuggestion}
-          hasNotifs={hasNotifs}
           limit={5}
           {...avancement_actions} />
 
@@ -149,7 +147,6 @@ class UserDashStruct extends Component {
           type="structure"
           dataArray={contributions}
           user={user}
-          contributeur={contributeur}
           toggleModal={this.toggleModal}
           toggleSection={this.toggleSection}
           windowWidth={this.props.windowWidth}
@@ -169,7 +166,6 @@ class UserDashStruct extends Component {
           removeBookmark={this.removeBookmark}
           editMember={this.editMember}
           upcoming={this.upcoming}
-          hasFavori={hasMembres}
           history={this.props.history}
           user={user}
           users={users}

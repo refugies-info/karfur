@@ -5,6 +5,7 @@ import moment from 'moment/min/moment-with-locales';
 
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import FButton from '../../../FigmaUI/FButton/FButton';
+import { fakeMembre } from '../../../../containers/Backend/UserDashStruct/data';
 
 import variables from 'scss/colors.scss';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
@@ -12,12 +13,16 @@ import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 moment.locale('fr');
 
 const membersTable = (props) => {
-  let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
+  const hasMembers = (props.dataArray || []).length > 0;
+  const dataArray = hasMembers ? props.dataArray : new Array(5).fill(fakeMembre);
+  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
+  
   data = data.map(x => ({
     ...x, 
     ...props.users.find(y => y._id === x.userId),
     structRole: ((x.roles || []).includes("administrateur") ? "administrateur" : ((x.roles || []).includes("contributeur") ? "contributeur" : "membre")),
   }));
+
   let table = (
     <Table responsive className="avancement-user-table">
       <thead>
@@ -45,27 +50,25 @@ const membersTable = (props) => {
                 </FButton>
               </td>
               <td className="align-middle">
-                {element.last_connected ? <span>{moment(element.last_connected).calendar()} <span className={"depuis " + (joursLastC > 3 ? "alert" : "success")}>{moment(element.last_connected).fromNow()}</span></span> : ""}
+                {element.connected ? <span className="depuis success">Actuellement en ligne</span> :
+                  element.last_connected ? <span>{moment(element.last_connected).calendar()} <span className={"depuis " + (joursLastC > 3 ? "alert" : "success")}>{moment(element.last_connected).fromNow()}</span></span> : ""}
               </td>
               <td className="align-middle">
                 {element.added_at ? moment(element.added_at).calendar() : ""}
               </td>
-              <td className="align-middle" onClick={()=>props.removeBookmark(element._id)}>
-                <span>{element.nb_contenu} contenus</span>
+              <td className="align-middle fit-content">
+                {/* <FButton type="light-action" name="person-outline" fill={variables.noir} onClick={props.upcoming} /> */}
               </td>
               <td className="align-middle fit-content">
-                <FButton type="light-action" name="person-outline" fill={variables.noir} onClick={props.upcoming} />
+                {/* <FButton type="light-action" name="message-circle-outline" fill={variables.noir} onClick={props.upcoming} /> */}
               </td>
               <td className="align-middle fit-content">
-                <FButton type="light-action" name="message-circle-outline" fill={variables.noir} onClick={props.upcoming} />
-              </td>
-              <td className="align-middle fit-content">
-                <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={props.upcoming} />
+                {/* <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={props.upcoming} /> */}
               </td>
             </tr>
           );
         })}
-        {props.limit && 
+        {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="8" className="align-middle voir-plus" onClick={()=>props.toggleModal('members')}>
               <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
