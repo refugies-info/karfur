@@ -27,10 +27,14 @@
     display: flex;
     justify-content: center;
 
+    .right-side{
+      font-size: 18px;
+    }
+
     .side-options{
       color: $grisFonce;
-      font-size: 16px;
-      line-height: 20px;
+      font-size: 18px;
+      line-height: 26px;
       cursor: pointer;
       .side-option{
         &:hover{

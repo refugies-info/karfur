@@ -1,14 +1,13 @@
 @import 'src/scss/colors.scss';
 
 .search-btn{
-  box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
   background: $gris;
   border-radius: 6px;
   border:none;
-  color: $noirCD;
+  color: $cardColor;
   font-weight: bold;
   font-size: 16px;
-  padding: 6px;
+  padding: 6px 10px;
 
   &:hover{
     color: $noir;
@@ -16,6 +15,7 @@
   &:not(:disabled):not(.disabled):active, &.active{
     color: #FFFFFF;
     background: $noir;
+
   }
   &:focus{
     outline: none;

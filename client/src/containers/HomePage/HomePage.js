@@ -151,12 +151,12 @@ class HomePage extends Component {
               <h2>De l’information vérifiée et certifiée par l’État</h2>
               <p className="text-normal">Les contenus proposés sont relus, corrigés et si besoin certifiés avant d’être publiés afin d’éviter les erreurs et les informations périmées.</p>
             </div>
-            <footer>
+            {/*<footer>
               Nous ne censurons aucun contenu :
               <FButton type="dark" className="ml-10" onClick={this.upcoming}>
                 Notre charte éditoriale
               </FButton>
-            </footer>
+            </footer>*/}
           </div>
         </section>
 

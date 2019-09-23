@@ -10,7 +10,7 @@ const contenu={
 
 const lorems = {
   paragraphe:'Sint tempor enim exercitation elit duis ad irure enim incididunt incididunt laboris non. Aliquip non ut quis commodo nulla nulla minim elit. Enim reprehenderit duis adipisicing mollit ad incididunt laboris fugiat officia duis do pariatur. Quis quis aliqua ipsum labore ea sunt commodo sint dolor minim aliquip veniam magna commodo.',
-  sousParagraphe:'Sint aute sunt nulla excepteur sunt amet ullamco in sint id ad amet. Est incididunt ut et proident in sint laborum occaecat reprehenderit. Id culpa ea esse do sit excepteur esse. Commodo reprehenderit consequat eu elit Lorem sunt qui est esse. Minim tempor labore labore eiusmod labore.'
+  sousParagraphe:"Précisez votre pensée ! N'hésitez pas créer des listes, à importer des images, des vidéos ou à mettre en avant une information importante avec les options à votre disposition." 
 }
 
 const menu = [
@@ -24,7 +24,7 @@ const menu = [
     {type:'card', isFakeContent: true,title:'Justificatif demandé',titleIcon:'papiers',contentTitle: 'Titre de séjour', footer:'Voir un exemple',footerIcon:'eye-outline'},
   ]},
   {title:'Pourquoi c\'est intéressant ?', content: null, tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
-    {isFakeContent: true, title:'Un exemple d\'accordéon',type:'accordion', placeholder: lorems.sousParagraphe,content: ''}
+    {isFakeContent: true, title:'Un exemple d\'accordéon',type:'accordion', placeholder:lorems.sousParagraphe ,content: ''}
   ]},
   {title:'Comment je m\'engage ?', content: null, tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
     {type:'accordion', isFakeContent: true, title:'Contacter l’association partenaire la plus proche de chez vous', placeholder: lorems.sousParagraphe,content: ''}, 

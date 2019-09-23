@@ -16,7 +16,7 @@ import {filtres} from "../Dispositif/data";
 import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
 
-const tris = [{name: "Alphabétique"}, {name:"Derniers ajouts"}, {name: "Les plus visités"}];
+const tris = [{name: "A > Z"}, {name:"Derniers ajouts"}, {name: "Les plus visités"}];
 
 let user={_id:null, cookies:{}};
 class AdvancedSearch extends Component {
@@ -26,7 +26,7 @@ class AdvancedSearch extends Component {
     dispositifs: [],
     pinned: [],
     activeFiltre: "Dispositifs",
-    activeTri: "Alphabétique",
+    activeTri: "A > Z",
     tags: filtres.tags,
     data: [] //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
   }
