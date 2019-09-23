@@ -10,7 +10,7 @@ const set_dispositifs = (value) => {
 
 export const fetch_dispositifs = () => {
   return dispatch => {
-    return API.get_dispositif({ status:'Actif'}).then(data => {
+    return API.get_dispositif({query: { status:'Actif'}}).then(data => {
       return  dispatch(set_dispositifs(data.data.data));
     })
   };

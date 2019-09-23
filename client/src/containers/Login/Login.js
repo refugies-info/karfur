@@ -121,7 +121,7 @@ class Login extends Component {
               </Form>
             </CardBody>
           </Card>
-          <Card className="card-login">
+          {/* <Card className="card-login">
             <CardBody>
               <div className="alt-login">
                 <form action="/user/FClogin" method="post">
@@ -148,7 +148,7 @@ class Login extends Component {
                 </form>
               </div>
             </CardBody>
-          </Card>
+          </Card> */}
           <NavLink to="/">
             <FButton type="outline" name="corner-up-left-outline" className="retour-btn">
               Retour à l'accueil

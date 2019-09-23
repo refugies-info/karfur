@@ -232,11 +232,11 @@ class CardParagraphe extends Component {
             />
           )
         }else{return false}
-      }else{ return (
+      }else if(this.props.subitem.footerHref){ return (
         <FButton type="outline" name={subitem.footerIcon} onClick={this.footerClicked}>
           {subitem.footer}
         </FButton>
-      )}
+      )}else{return false}
     }
 
     return(
@@ -319,7 +319,7 @@ const PlusCard = (props) => {
     <Col lg="4" className="card-col">
       <Card className="add-card" onClick={() => props.addItem(props.keyValue, 'card')}>
         <CardHeader className="backgroundColor-darkColor">
-          Ajouter une carte
+          Ajouter un item
         </CardHeader>
         <CardBody>
           <span className="add-sign">+</span>

@@ -176,13 +176,13 @@ function set_user_info(req, res) {
     //Si l'utilisateur n'est pas admin je vérifie qu'il ne se modifie que lui-même
     let isAdmin = req.user.roles.find(x => x.nom==='Admin')
 
-    if(!isAdmin){
-      if(user._id != req.user._id){
-        res.status(401).json({
-          "text": "Token invalide"
-        })
-        return false;
-      }
+    if(!isAdmin && user._id != req.user._id){
+      res.status(401).json({ "text": "Token invalide" }); return false;
+    }
+
+    if(user.traducteur){
+      user = {...user, $addToSet:{roles: req.roles.find(x=>x.nom==='Trad')._id}}
+      delete user.traducteur;
     }
 
     User.findByIdAndUpdate({

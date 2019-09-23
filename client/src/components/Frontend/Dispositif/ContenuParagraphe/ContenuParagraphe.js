@@ -40,7 +40,7 @@ const contenuParagraphe = (props) => {
               <Row className="relative-position">
                 <Col lg="12" md="12" sm="12" xs="12" className="accordeon-col">
                   <div className="title-bloc">
-                    <Button 
+                    <div 
                       id="accordion-header"  
                       className={"text-left " + (safeUiArray(props.keyValue, subkey, 'accordion') ? "active": "inactive")} 
                       onMouseUp={() => props.disableEdit && props.updateUIArray(props.keyValue, subkey, 'accordion', !safeUiArray(props.keyValue, subkey, 'accordion'))} 
@@ -55,12 +55,13 @@ const contenuParagraphe = (props) => {
                             html={subitem.title || ""}  // innerHTML of the editable div
                             disabled={props.disableEdit}       // use true to disable editing
                             onChange={props.handleMenuChange} // handle innerHTML change
-                            onMouseUp={e=> !props.disableEdit && e.stopPropagation()} />
+                            onMouseUp={e=> {console.log(e); return !props.disableEdit && e.stopPropagation()}} />
                         </span>
-                        <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />
+                        {props.disableEdit && 
+                          <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />}
                       </h5>
-                    </Button>
-                    {!props.disableEdit && 
+                    </div>
+                    {!props.disableEdit && subkey > 0 && 
                       <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="delete-icon ml-10 cursor-pointer" name="close-circle" fill={variables.noir} size="xlarge" />}
                   </div>
                   <Collapse className="contenu-accordeon" isOpen={safeUiArray(props.keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + props.keyValue + "-" + subkey} aria-labelledby={"heading" + props.keyValue + "-" + subkey}>
@@ -77,7 +78,7 @@ const contenuParagraphe = (props) => {
                       {...subitem} />
                   </Collapse>
                 </Col>
-                {!props.sideView && 
+                {!props.sideView && props.disableEdit && 
                   <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
                     <QuickToolbar
                       show={safeUiArray(props.keyValue, subkey, 'isHover')}
@@ -119,7 +120,7 @@ const contenuParagraphe = (props) => {
                     {...subitem} />
                   <br />
                 </Col>
-                {!props.sideView && 
+                {!props.sideView && props.disableEdit && 
                   <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
                     <QuickToolbar
                       show={safeUiArray(props.keyValue, subkey, "isHover")}

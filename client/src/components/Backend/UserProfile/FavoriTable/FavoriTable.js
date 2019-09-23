@@ -60,7 +60,7 @@ const favoriTable = (props) => {
             </tr>
           );
         })}
-        {props.limit && 
+        {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('favori')}>
               <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;

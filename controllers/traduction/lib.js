@@ -95,6 +95,7 @@ function get_tradForReview(req, res) {
     res.status(204).json({ "text": "Pas de données", "data" : []})
     return false;
   }
+  
   var find = new Promise(function (resolve, reject) {
     Traduction.find(query).sort(sort).populate(populate).exec(function (err, result) {
       if (err) {
@@ -203,6 +204,7 @@ const insertInDispositif = (res, traduction, locale) => {
 
       result.traductions = [ ...new Set([ ...(result.traductions || []), ...(traduction.traductions || []).map(x => x._id) ] ) ];
       result.participants = [ ...new Set([ ...(result.participants || []), ...(traduction.traductions || []).map(x => (x.userId || {})._id) ] ) ];
+      if(result.avancement === 1){result.avancement = {fr: 1}};
       result.avancement = {
         ...result.avancement,
         [locale] : 1

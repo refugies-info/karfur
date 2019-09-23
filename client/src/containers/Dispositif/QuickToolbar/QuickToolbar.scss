@@ -22,7 +22,9 @@
       height: 50px;
       border-radius: 50%;
       border:none;
-      line-height: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .first-row .btn-pill{

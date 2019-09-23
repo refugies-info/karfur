@@ -1,4 +1,5 @@
 @import 'src/scss/global.scss';
+@import 'src/scss/colors.scss';
 
 .modal-objectifs{ 
   @include media-min("tablet-down") { min-width:900px; }
@@ -24,44 +25,43 @@
     .modal-body{
       font-size: 18px;
       line-height: 23px;
+
       .text-small{
         color: #828282;
       }
-      .obj-row{
+      .objectifs-wrapper{
         margin-top:30px;
 
-        .col-lg-3{
-          min-height:235px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          padding:20px;
-
-          h3{
-            font-weight: bold;
-            font-size: 24px;
-            line-height: 30px;
-          }
-          .statut{
-            font-size: 18px;
-            line-height: 23px;
-            color: #4A69BD;
-            font-style: italic;
-          }
-          .detail{
-            color: #4A69BD;
-          }
-
+        .obj-row{
+          background: $gris;
+          border-radius: 12px;
+          padding: 10px;
+          cursor: pointer;
           &:hover{
-            background: #FBFBFB;
-            box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-            border-radius: 12px;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
           }
           &.active{
-            background: #FBFBFB;
-            border: 1px solid #78E08F;
+            background: $validation;
           }
         }
+        .obj-col{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .texte-gris-fonce{
+          color: $grisFonce;
+        }
+        .texte-gris{
+          color: $grisFonce;
+        }
+      }
+      .dot-circle{
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: $noir;
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
       }
     }
 
@@ -80,14 +80,6 @@
         @include media-max("phone-down") { width:100%; }
       }
 
-      .validate-btn{
-        box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
-        background: #78E08F;
-        border-radius: 12px;
-        border:none;
-        @include media-max("tablet-down") { width:100%; }
-        @include media-max("phone-down") { margin-top: 20px; }
-      }
       .margin-right-8{
         margin-right:8px;
       }
