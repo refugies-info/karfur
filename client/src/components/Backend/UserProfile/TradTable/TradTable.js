@@ -42,7 +42,7 @@ const tradTable = (props) => {
             <tr 
               key={key} 
               onClick={() => props.history.push({
-                pathname: "/traduction/" + (element.type || "string") + "/" + element.articleId, 
+                pathname: "/traduction/" + (element.type || "string") + "/" + (element.jsonId || element.articleId), 
                 search: '?id=' + ((props.langues || []).find(x => x.i18nCode === element.langueCible) || {})._id,
                 state: { langue: (props.langues || []).find(x => x.i18nCode === element.langueCible)}
               })} >

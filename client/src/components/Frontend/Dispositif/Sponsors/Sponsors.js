@@ -118,21 +118,21 @@ class Sponsors extends Component {
                       <img className="sponsor-img" src={sponsor.picture.secure_url} alt={sponsor.alt} /> : 
                       <span className="default-logo">{sponsor.type === "Not found" ? "A déterminer par la suite" : (sponsor.acronyme || sponsor.nom) ? (sponsor.acronyme + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + sponsor.nom) : sponsor.alt}</span>}
                   </a>
+                  {key === 0 && 
+                    <div className="owner-badge">
+                      <EVAIcon name="shield" className="mr-10" />
+                      Responsable
+                    </div>}
                   {!disableEdit && 
                     <div className="delete-icon" onClick={()=>deleteSponsor(key)}>
                       <Icon name="minus-circle" fill={variables.darkColor} size="xlarge"/>
                     </div>}
                 </div>
-                {key === 0 && 
-                  <div className="owner-badge">
-                    <EVAIcon name="shield" className="mr-10" />
-                    Responsable
-                  </div>}
               </Col>
             )}
           )}
           
-          {!disableEdit && 
+          {!disableEdit && (!sponsors || sponsors.length === 0) &&
             <Col>
               <div className="add-sponsor" onClick={()=>this.toggleModal("responsabilite")}>
                 <EVAIcon className="add-sign backgroundColor-darkColor" name="plus-outline" />

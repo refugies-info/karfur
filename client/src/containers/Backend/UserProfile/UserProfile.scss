@@ -329,7 +329,10 @@ $defaultSize:310px;
     cursor: pointer;
     border-style: hidden;
     border-radius: 12px;
-
+    &.terminee{
+      background: inherit;
+      cursor: inherit;
+    }
   }
   td {
     border-style : hidden;

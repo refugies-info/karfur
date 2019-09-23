@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 import { Row, Col, Form, FormGroup, Label, Input, InputGroupAddon } from 'reactstrap';
 import Swal from 'sweetalert2';
 
@@ -96,20 +97,20 @@ class Footer extends Component {
                     <b>Dispositif</b> - Être accompagné ou rejoindre un dispositif
                   </NavLink>
                 </div>
-                <div className="lien-footer" onClick={this.upcoming}>
-                  <NavLink to="/">
+                <div className="lien-footer">
+                  <NavHashLink to="/homepage#plan" smooth>
                     <b>Démarches</b> - Comprendre mes démarches administratives
-                  </NavLink>
+                  </NavHashLink>
                 </div>
-                <div className="lien-footer" onClick={this.upcoming}>
-                  <NavLink to="/">
+                <div className="lien-footer">
+                  <NavHashLink to="/homepage#plan" smooth>
                     <b>Parcours</b> - Créer mon parcours d’intégration
-                  </NavLink>
+                  </NavHashLink>
                 </div>
-                <div className="lien-footer" onClick={this.upcoming}>
-                  <NavLink to="/">
+                <div className="lien-footer">
+                  <NavHashLink to="/homepage#explique">
                     <b>Lexique</b> - Comprendre un mot
-                  </NavLink>
+                  </NavHashLink>
                 </div>
               </Col>
             </Row>

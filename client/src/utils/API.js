@@ -91,7 +91,7 @@ export default {
   get_article : (query, locale, sort={}, populate='', limit=null, random=false) => {
     return axios.post(burl + '/article/get_article', {query: query, locale: locale, sort: sort, populate: populate, limit: limit, random: random}, {headers: headers})
   },
-  getArticle : (params={}) => { //{query, locale, sort, populate, limit, random}
+  getArticle : (params={}) => {
     return axios.post(burl + '/article/get_article', params, {headers: headers})
   },
   add_traduction : query => {
@@ -107,8 +107,8 @@ export default {
   add_dispositif : query => {
     return axios.post(burl + '/dispositifs/add_dispositif', query, {headers: headers})
   },
-  get_dispositif : (query={}, sort={}, populate='', limit=null) => {
-    return axios.post(burl + '/dispositifs/get_dispositif', {query: query, sort: sort, populate: populate, limit: limit}, {headers: headers})
+  get_dispositif : (params={}) => {
+    return axios.post(burl + '/dispositifs/get_dispositif', params, {headers: headers})
   },
   count_dispositifs : (query) => {
     return axios.post(burl + '/dispositifs/count_dispositifs', query, {headers: headers})

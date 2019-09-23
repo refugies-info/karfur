@@ -32,6 +32,7 @@ import FButton from '../../components/FigmaUI/FButton/FButton'
 import {ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 import SideTrad from './SideTrad/SideTrad';
 import {initializeTimer} from '../Translation/functions';
+import {readAudio} from "../Layout/functions";
 
 import {contenu, lorems, menu, filtres, steps, tutoSteps, importantCard} from './data'
 
@@ -47,7 +48,9 @@ class Dispositif extends Component {
   constructor(props) {
     super(props);
     this.initializeTimer = initializeTimer.bind(this);
+    this.readAudio = readAudio.bind(this);
   }
+  audio = new Audio();
 
   state={
     menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
@@ -100,7 +103,6 @@ class Dispositif extends Component {
     time: 0,
     initialTime: 0,
   }
-  _initialState=this.state;
   newRef=React.createRef();
   mountTime=0;
 
@@ -124,7 +126,7 @@ class Dispositif extends Component {
     console.log(itemId)
     if(itemId){
       this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
-      API.get_dispositif({_id: itemId},{},'creatorId mainSponsor').then(data_res => {
+      API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor'}).then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
         if(dispositif.status === "Brouillon"){
@@ -136,7 +138,7 @@ class Dispositif extends Component {
           sponsors:dispositif.sponsors,
           tags:dispositif.tags,
           creator:dispositif.creatorId,
-          uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill(uiElement)})}}),
+          uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: dispositif.status === "Accepté structure"})})}}),
           dispositif: dispositif,
           disableEdit: dispositif.status !== "Accepté structure" || !props.translating, //A vérifier
           isDispositifLoading: false,
@@ -144,6 +146,7 @@ class Dispositif extends Component {
           mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x.name === dispositif.tags[0].name) || {}) : {},
           mainSponsor: dispositif.mainSponsor,
           status: dispositif.status,
+          fiabilite: calculFiabilite(dispositif),
           ...(dispositif.status==="Brouillon" && {initialTime: dispositif.timeSpent}),
         },()=>this.setColors())
         //On récupère les données de l'utilisateur
@@ -239,7 +242,14 @@ class Dispositif extends Component {
   handleContentClick = (key, editable, subkey=undefined) => {
     let state=[...this.state.menu];
     if(state.length > key && key >= 0){
-      if(editable){  state = state.map(x => ({...x, editable:false, ...(x.editable && x.editorState && x.editorState.getCurrentContent() && x.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(x.editorState.getCurrentContent())) } ), ...(x.children && {children: x.children.map(y => ({...y, editable:false}))}) }) );}
+      if(editable){  
+        state = state.map(x => ({
+          ...x, 
+          editable:false, 
+          ...(x.editable && x.editorState && x.editorState.getCurrentContent() && x.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(x.editorState.getCurrentContent())) } ), 
+          ...(x.children && {children: x.children.map(y => ({ ...y, ...(y.editable && y.editorState && y.editorState.getCurrentContent() && y.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(y.editorState.getCurrentContent())) } ), editable:false }))}) 
+        }))
+      }
       let right_node=state[key];
       if(subkey !==undefined && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
@@ -384,10 +394,10 @@ class Dispositif extends Component {
     this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, niveaux: niveaux} : y)} : x) })
   }
 
-  toggleFree = (key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, free: !y.free} : y)} : x) })
-  changePrice = (e, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, price: e.target.value} : y)} : x) })
+  toggleFree = (key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, free: !y.free, isFakeContent: false} : y)} : x) })
+  changePrice = (e, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, price: e.target.value, isFakeContent: false} : y)} : x) })
   changeAge = (e, key, subkey, isBottom=true) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, [isBottom ? "bottomValue" : "topValue"]: (e.target.value || "").replace(/\D/g, ''), isFakeContent: false} : y)} : x) })
-  setMarkers = (markers, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, markers: markers} : y)} : x) })
+  setMarkers = (markers, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, markers: markers, isFakeContent: false} : y)} : x) })
 
   startFirstJoyRide = () => this.setState({showDispositifCreateModal: false, runFirstJoyRide: true});
   startJoyRide = (idx = 0) => this.setState({runJoyRide: true, stepIndex:idx});
@@ -448,7 +458,7 @@ class Dispositif extends Component {
       if(tutoSteps[stepIndex] && tutoSteps[stepIndex].target && tutoSteps[stepIndex].target.includes("#") && document.getElementById(tutoSteps[stepIndex].target.replace("#", ""))){
         const cible = document.getElementById(tutoSteps[stepIndex].target.replace("#", ""));
         cible.focus();
-        cible.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"})
+        cible.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
       }
     }
   };
@@ -459,12 +469,12 @@ class Dispositif extends Component {
     }
   };
 
-  addSponsor = sponsor => this.setState({sponsors: [...this.state.sponsors.filter(x => !x.dummy), sponsor]})
+  addSponsor = sponsor => this.setState({sponsors: [...(this.state.sponsors || []).filter(x => !x.dummy), sponsor]})
   deleteSponsor = key => {
     if(this.state.status === "Accepté structure"){
       Swal.fire( {title: 'Oh non!', text: 'Vous ne pouvez plus supprimer de structures partenaires', type: 'error', timer: 1500}); return;
     }
-    this.setState({ sponsors: [...this.state.sponsors].filter( (_,i) => i !== key) });
+    this.setState({ sponsors: (this.state.sponsors || []).filter( (_,i) => i !== key) });
   }
 
   goBack = () => {
@@ -487,7 +497,7 @@ class Dispositif extends Component {
     })
   }
 
-  editDispositif = () => this.setState({disableEdit: false}, ()=>this.setColors())
+  editDispositif = () => this.setState({disableEdit: false, uiArray: this.state.menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}) }, ()=>this.setColors())
 
   pushReaction = (modalName=null, fieldName) => {
     if(modalName){this.toggleModal(false, modalName);}
@@ -527,7 +537,6 @@ class Dispositif extends Component {
   valider_dispositif = (status='En attente') => {
     let content = {...this.state.content}
     Object.keys(content).map( k => content[k] = h2p(content[k]));
-    console.log(this.state._id, this.state.status, status)
     let dispositif = {
       ...content,
       contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, ...(x.children && {children : x.children.map(x => ({...x, editable: false, ...(x.title && {title: h2p(x.title)})}))}) }}),
@@ -554,7 +563,7 @@ class Dispositif extends Component {
     dispositif.isFree= cardElement.some(x=> x.title==='Combien ça coûte ?') ?
       cardElement.find(x=> x.title==='Combien ça coûte ?').free :
       true;
-    if(this.state.status && this.state.status!== '' && this.state._id){
+    if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire"){
       dispositif.status = this.state.status;
     }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
       dispositif.mainSponsor = dispositif.sponsors[0]._id;
@@ -582,7 +591,7 @@ class Dispositif extends Component {
 
   render(){
     const {t, translating} = this.props;
-    const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag} = this.state;
+    const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag, fiabilite} = this.state;
     
     const Tooltip = ({
       index,
@@ -735,7 +744,7 @@ class Dispositif extends Component {
               <ManLab height="250" className="header-img homme-icon" alt="homme" />
             </section>
             <Row className="tags-row backgroundColor-darkColor">
-              <Col lg="7" md="7" sm="7" xs="7" className="col right-bar">
+              <Col lg="8" md="8" sm="8" xs="8" className="col right-bar">
                 <Row>
                   <b className="en-bref mt-10">{t("En bref")} </b>
                   {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
@@ -755,7 +764,7 @@ class Dispositif extends Component {
                               {card.typeIcon==="eva" ?
                                 <EVAIcon name={card.titleIcon} fill="#FFFFFF"/> :
                                 <SVGIcon fill="#FFFFFF" width="20" height="20" viewBox="0 0 25 25" name={card.titleIcon} />}
-                              <span>{texte}</span>
+                              <span>{h2p(texte)}</span>
                             </a>
                           </div>
                         </div>
@@ -764,7 +773,7 @@ class Dispositif extends Component {
                   })}
                 </Row>
               </Col>
-              <Col lg="5" md="5" sm="5" xs="5" className="tags-bloc">
+              <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
                 <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} history={this.props.history} />
               </Col>
             </Row>
@@ -790,7 +799,7 @@ class Dispositif extends Component {
                     {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
                   </Col>
                   <Col className="col">
-                    {t("Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t("Faible")}</span>
+                    {t("Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
                     <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#E55039"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
                     
                     <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
@@ -817,6 +826,7 @@ class Dispositif extends Component {
                   setMarkers = {this.setMarkers}
                   filtres={filtres}
                   sideView={translating}
+                  readAudio={this.readAudio}
                   {...this.state}
                 />
                 
@@ -973,6 +983,42 @@ const FirstTooltip = ({
     <EVAIcon {...closeProps} fill={variables.noir} name="close-outline" className="close-icon" />
   </div>
 )}else{return false}};
+
+const calculFiabilite = dispositif => {
+  let score = 0;
+  if(dispositif.status ===  "Actif"){score = 1};
+  const nbMoisAvantMaJ = (new Date().getTime() -  new Date(dispositif.updatedAt).getTime()) / (1000 * 3600 * 24 * 30);
+  const nbMoisEntreCreationEtMaj = (new Date(dispositif.updatedAt).getTime() -  new Date(dispositif.created_at).getTime()) / (1000 * 3600 * 24 * 30);
+  const hasSponsor = dispositif.sponsors && dispositif.sponsors.length > 0 && dispositif.sponsors[0] && dispositif.sponsors[0]._id ? true : false;
+  const nbMots = dispositif.nbMots;
+  const nbLangues = Object.keys(dispositif.avancement || {}).length || 1;
+  const nbTags = (dispositif.tags || []).length;
+  const tagAutreExist = (dispositif.tags || []).includes("Autre");
+  const hasExternalLink = dispositif.externalLink ? true : false;
+  // nbSections Seulement pour le calcul 
+  const nbSections = dispositif.contenu.length + dispositif.contenu.reduce((acc, curr) => acc += curr.children && curr.children.length > 1 ? curr.children.length : 0, 0);
+  const nbSectionsSansContenu = (dispositif.contenu.filter(x => (!x.content || x.content === "" || x.content === "null") && (!x.children || x.children.some(y => !y.title || (!y.content && !y.contentTitle) ))) || []).length;
+  const nbFakeContent = (dispositif.contenu.filter(x => x.isFakeContent) || []).length + dispositif.contenu.reduce((acc, curr) => acc += curr.children && curr.children.length > 1 ? (curr.children.filter(x => x.isFakeContent) || []).length : 0, 0)
+  const nbAddedChildren = nbSections - menu.length - menu.reduce((acc, curr) => acc += curr.children && curr.children.length > 1 ? curr.children.length : 0, 0)
+  const hasMap = dispositif.contenu.some(x => x.children && x.children.length > 0 && x.children.some(y => y.type==="map" && y.markers && y.markers.length > 0))
+
+  score = score * (1 - (Math.min(3, nbMoisAvantMaJ) / 3)) //Dernière mise à jour date de moins de 3 mois
+    * ( Math.min(6, nbMoisEntreCreationEtMaj + 1) / 6 )   //Doit avoir été créé au moins 6 mois depuis la dernière mise à jour
+    * (1 - 0.1 * !hasSponsor)                             //10% de pénalité si pas de sponsor
+    * ( Math.min(100, nbMots) / 100 )                     //Au moins 100 mots
+    * ( Math.min(5, nbLangues) / 5 )                      // Doit être traduit en au moins 5 langues
+    * ( Math.max(Math.min(nbTags,2), 1) / 2 )             // Doit avoir au moins 2 tags
+    * (1 - 0.1 * tagAutreExist)                           // 10% de pénalité si le tag "Autres" est mis
+    * (1 + 0.1 * hasExternalLink)                         // 10% de bonus si de lien externe
+    * (1 - nbSectionsSansContenu / menu.length)           // Grosse pénalité si une section n'a pas de contenu dessus
+    * (1 - nbFakeContent / (2 * nbSections))              // Si un contenu est laissé sans modification, on sanctionne à 50%
+    * (1 + Math.min(nbAddedChildren, 30) / (2 * 30))      // On rajoute un bonus jusqu'à 50% si du contenu original est créé
+    * (1 + 0.1 * hasMap);                                 // 10% de bonus si une map est créée
+  // console.log(score, dispositif, nbMoisAvantMaJ, nbMoisEntreCreationEtMaj, 
+  //   hasSponsor, nbMots, nbLangues, nbTags, tagAutreExist, hasExternalLink,
+  //   nbSectionsSansContenu, nbFakeContent, nbAddedChildren, hasMap, nbSections)
+  return score
+}
 
 const mapStateToProps = (state) => {
   return {

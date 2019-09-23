@@ -40,7 +40,7 @@ class AdminContrib extends Component {
   }
 
   _initializeContrib = () => {
-    API.get_dispositif({status:{$in: reviews_data.map(x=>x.value) }},{updatedAt: -1},'creatorId mainSponsor').then(data_res => {
+    API.get_dispositif({query: {status:{$in: reviews_data.map(x=>x.value) }},sort: {updatedAt: -1}, populate: 'creatorId mainSponsor'}).then(data_res => {
       let dispositifs=[...data_res.data.data];
       this.setState({ dispositifs });
     })

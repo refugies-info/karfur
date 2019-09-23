@@ -79,16 +79,19 @@ html body{
     font-size: 80px;
   }
 
-  .text-normal{
+  .texte-normal{
     font-weight: 400;
     font-size: 18px;
     line-height: auto; 
   }
-
   .texte-small{
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
+  }
+  .texte-very-small{
+    font-size: 12px;
+    line-height: 15px;
   }
   .cursor-pointer{
     cursor: pointer;

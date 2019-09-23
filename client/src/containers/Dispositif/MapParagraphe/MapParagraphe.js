@@ -197,7 +197,8 @@ class MapParagraphe extends PureComponent {
                 ))}
               </DropdownMenu>
             </ButtonDropdown>}
-            <EVAIcon onClick={()=>this.props.deleteCard(this.props.keyValue,this.props.subkey)} name="close-circle" fill={variables.error} size="xlarge" className="remove-btn" />
+            {!this.props.disableEdit &&
+              <EVAIcon onClick={()=>this.props.deleteCard(this.props.keyValue,this.props.subkey)} name="close-circle" fill={variables.error} size="xlarge" className="remove-btn" />}
         </div>
         <div className="map-content">
           <div className="inner-container">

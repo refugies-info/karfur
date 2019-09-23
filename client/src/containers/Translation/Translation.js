@@ -234,7 +234,7 @@ class TranslationHOC extends Component {
     API.add_traduction(traduction).then((data) => {
       traduction._id = (data.data.data || {})._id;
       this.setState({traduction});
-      if(this.state.type === "string"){
+      if(traduction.avancement === 1){
         Swal.fire( 'Yay...', 'La traduction a bien été enregistrée', 'success').then(()=>{
           this.onSkip();
         });
@@ -245,17 +245,18 @@ class TranslationHOC extends Component {
   onSkip=()=>{
     let i18nCode=(this.state.langue || {}).i18nCode;
     let nom='avancement.'+i18nCode;
-    let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
-    API.getArticle({query: query, locale:i18nCode, random:true}).then(data_res => {
-      let articles=data_res.data.data;
-      if(articles.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
+    let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}]};
+    console.log(query)
+    API[this.state.type==="dispositif" ? "get_dispositif" : "getArticle"]({query: query, locale:i18nCode, random:true}).then(data_res => {
+      let results=data_res.data.data;
+      if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
       else{ clearInterval(this.timer);
         this.props.history.push({ 
-          pathname: '/traduction/'+ articles[0]._id, 
+          pathname: '/traduction/' + this.state.type + '/' + results[0]._id, 
           search: '?id=' + this.state.langue._id,
           state: { langue: this.state.langue} })
       }    
-    })
+    }).catch(()=>Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500}))
   }
 
   handleCheckboxChange = event => {
@@ -291,6 +292,7 @@ class TranslationHOC extends Component {
           handleChange={this.handleChange}
           valider={this.valider}
           onEditorStateChange={this.onEditorStateChange}
+          onSkip={this.onSkip}
           {...this.state} 
           {...this.props}
         />
