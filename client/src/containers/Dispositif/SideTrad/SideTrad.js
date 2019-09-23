@@ -128,11 +128,12 @@ class SideTrad extends Component {
       this.props.updateUIArray(idx, subidx, 'accordion', true)
     }
     Array.from(document.getElementsByClassName("translating")).forEach(x => {x.classList.remove("translating")}); //On enlève le surlignage des anciens éléments
-    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
+    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
     console.log(idx,subidx, subname, elems)
     if(elems.length > 0){
       const elem = elems[0];
       elem.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+      console.log('scrolling to', elem)
       elem.classList.toggle("translating"); //On le surligne 
     }
   }

@@ -35,7 +35,7 @@ class EditableParagraph extends Component {
             placeholder={props.placeholder}
             onEditorStateChange={(editorState)=>props.onEditorStateChange(editorState, props.keyValue, props.subkey)}
             editorState={props.editorState}
-            toolbarCustomButtons={[<CustomOption />]}
+            // toolbarCustomButtons={[<CustomOption />]}
             toolbar={{
               options: ['inline','list', 'image', 'embedded', 'link'],
               inline: {

@@ -232,11 +232,11 @@ class CardParagraphe extends Component {
             />
           )
         }else{return false}
-      }else{ return (
+      }else if(this.props.subitem.footerHref){ return (
         <FButton type="outline" name={subitem.footerIcon} onClick={this.footerClicked}>
           {subitem.footer}
         </FButton>
-      )}
+      )}else{return false}
     }
 
     return(

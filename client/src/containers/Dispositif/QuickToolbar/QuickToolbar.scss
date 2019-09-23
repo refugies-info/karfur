@@ -22,6 +22,9 @@
       height: 50px;
       border-radius: 50%;
       border:none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .first-row .btn-pill{

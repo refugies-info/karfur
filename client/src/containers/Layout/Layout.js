@@ -8,7 +8,6 @@ import track from 'react-tracking';
 import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 
-import API from '../../utils/API';
 import Toolbar from '../Toolbar/Toolbar';
 // import Footer from '../../components/Navigation/Footer/Footer';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
@@ -16,18 +15,24 @@ import OnBoardingTraducteurModal from '../../components/Modals/OnBoardingTradMod
 // import RightSideDrawer from '../../components/Navigation/SideDrawer/RightSideDrawer/RightSideDrawer'
 import * as actions from '../../Store/actions/index';
 import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
-
-import './Layout.scss';
+import {readAudio} from './functions';
 import routes from '../../routes';
 import Footer from '../Footer/Footer';
 
-let audio = new Audio();
+import './Layout.scss';
+
 class Layout extends Component {
+  constructor(props) {
+    super(props);
+    this.readAudio = readAudio.bind(this);
+  }
+
   state = {
     showSideDrawer: {left:false,right:false},
     traducteur:false,
     showOnBoardingTraducteurModal:false,
   }
+  audio = new Audio();
   
   componentDidMount (){
     this.props.fetch_user();
@@ -43,8 +48,8 @@ class Layout extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.ttsActive !== this.props.ttsActive && !this.props.ttsActive) {
-      audio.pause();
-      audio.currentTime = 0;
+      this.audio.pause();
+      this.audio.currentTime = 0;
     }
   }
 
@@ -75,39 +80,6 @@ class Layout extends Component {
       this.props.i18n.changeLanguage(lng);
     }else{console.log('Resource not found in i18next.')}
     if(this.props.showLangModal){this.props.toggle_lang_modal();}
-  }
-
-  readAudio = (text, locale='fr-fr') => {
-    API.get_tts({text:text, locale:locale}).then(data => {
-      let audioData=data.data.data
-      audio.pause();
-      
-      try{
-        var len = audioData.length;
-        var buf = new ArrayBuffer(len);
-        var view = new Uint8Array(buf);
-        for (var i = 0; i < len+10; i++) {
-          view[i] = audioData.charCodeAt(i) & 0xff;
-        }
-        var blob = new Blob([view], {type: "audio/wav"});
-        var url = window.URL.createObjectURL(blob)
-        audio.src = url;
-        audio.load();
-        audio.play();
-      }catch(e){
-        console.log(e, audioData, url)
-      }
-
-      // try{
-      //   var wave = new Audio('data:audio/wav;base64,' + btoa(unescape(data_res.data)));
-      //   wave.controls = true;
-      //   wave.play()
-      // }catch(e){
-      //   console.log(e)
-      //   console.log(data_res.data)
-      //   console.log(text)
-      // }
-    })
   }
 
   toggleHover = (e) => {
@@ -156,18 +128,7 @@ class Layout extends Component {
                   </Switch>
                 </>
             </main>
-
-            {/* <AppAside fixed>
-              <Suspense fallback={this.loading()}>
-                <RightSideDrawer />
-              </Suspense>
-            </AppAside> */}
           </div>
-          {/* <AppFooter>
-            <Suspense fallback={this.loading()}>
-              <Footer devenirTraducteur={this.devenirTraducteur} />
-            </Suspense>
-          </AppFooter> */}
 
           <Footer />
           
