@@ -27,6 +27,8 @@ $tailleBig:80px;
 
   .image-wrapper{
     position:relative;
+    display: flex;
+    flex-direction: column;
     .sponsor-img{
       //max-width:64px;
       max-height:150px;
@@ -87,6 +89,8 @@ $tailleBig:80px;
     color: #FFFFFF;
     align-self: flex-end;
     margin-top: 10px;
+    width: fit-content;
+    margin-left: auto;
   }
 }
 

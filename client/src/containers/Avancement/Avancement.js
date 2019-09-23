@@ -172,7 +172,7 @@ class Avancement extends Component {
           users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
           type: "dispositif"
       } ) )
-    ].filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> a.nombreMots - b.nombreMots);
+    ].filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
     
     console.log(traductions)
 

@@ -50,22 +50,20 @@ const membersTable = (props) => {
                 </FButton>
               </td>
               <td className="align-middle">
-                {element.last_connected ? <span>{moment(element.last_connected).calendar()} <span className={"depuis " + (joursLastC > 3 ? "alert" : "success")}>{moment(element.last_connected).fromNow()}</span></span> : ""}
+                {element.connected ? <span className="depuis success">Actuellement en ligne</span> :
+                  element.last_connected ? <span>{moment(element.last_connected).calendar()} <span className={"depuis " + (joursLastC > 3 ? "alert" : "success")}>{moment(element.last_connected).fromNow()}</span></span> : ""}
               </td>
               <td className="align-middle">
                 {element.added_at ? moment(element.added_at).calendar() : ""}
               </td>
-              <td className="align-middle" onClick={()=>props.removeBookmark(element._id)}>
-                <span>{element.nb_contenu} contenus</span>
+              <td className="align-middle fit-content">
+                {/* <FButton type="light-action" name="person-outline" fill={variables.noir} onClick={props.upcoming} /> */}
               </td>
               <td className="align-middle fit-content">
-                <FButton type="light-action" name="person-outline" fill={variables.noir} onClick={props.upcoming} />
+                {/* <FButton type="light-action" name="message-circle-outline" fill={variables.noir} onClick={props.upcoming} /> */}
               </td>
               <td className="align-middle fit-content">
-                <FButton type="light-action" name="message-circle-outline" fill={variables.noir} onClick={props.upcoming} />
-              </td>
-              <td className="align-middle fit-content">
-                <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={props.upcoming} />
+                {/* <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={props.upcoming} /> */}
               </td>
             </tr>
           );

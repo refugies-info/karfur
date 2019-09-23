@@ -348,9 +348,9 @@ $imgHeight : 350px;
     }
     .blc-dr{
       &.bloc-droite-link{
-        border-radius: 0;
+        border-radius: 0 12px 12px 0;
         padding-left:0;
-        padding-right:0;
+        margin-bottom: 6px;
       }
       &.bloc-droite-alert{
         border-radius: 0 12px 12px 0;

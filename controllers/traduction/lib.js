@@ -204,6 +204,7 @@ const insertInDispositif = (res, traduction, locale) => {
 
       result.traductions = [ ...new Set([ ...(result.traductions || []), ...(traduction.traductions || []).map(x => x._id) ] ) ];
       result.participants = [ ...new Set([ ...(result.participants || []), ...(traduction.traductions || []).map(x => (x.userId || {})._id) ] ) ];
+      if(result.avancement === 1){result.avancement = {fr: 1}};
       result.avancement = {
         ...result.avancement,
         [locale] : 1
