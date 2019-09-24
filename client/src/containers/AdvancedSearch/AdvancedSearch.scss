@@ -47,4 +47,15 @@
       }
     }
   }
+  .no-result{
+    .card-body{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      
+      h5, p{
+        color: $grisFonce;
+      }
+    }
+  }
 }

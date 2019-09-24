@@ -6,8 +6,7 @@ import ContentEditable from 'react-contenteditable';
 import ReactHtmlParser from 'react-html-parser';
 import {stringify} from 'himalaya';
 import ms from 'pretty-ms';
-import Icon from 'react-eva-icons/dist/Icon';
-import Slider, { createSliderWithTooltip } from 'rc-slider';
+import {NavLink} from 'react-router-dom';
 import 'rc-slider/assets/index.css';
 
 import FeedbackModal from '../../../components/Modals/FeedbackModal/FeedbackModal';
@@ -16,8 +15,8 @@ import API from '../../../utils/API';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
 import './StringTranslation.scss';
-
-const SliderWithTooltip = createSliderWithTooltip(Slider);
+import variables from 'scss/colors.scss';
+import FButton from '../../../components/FigmaUI/FButton/FButton';
 
 var option = {
   style: 'percent',
@@ -136,9 +135,8 @@ class Translation extends Component {
   modalClosed=()=> this.setState({feedbackModal:{...this.state.feedbackModal,show:false}})
   
   render(){
-    const langue = this.state.langue || {};
-    const { texte_a_traduire, texte_traduit, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, isComplete } = this.props;
-    
+    const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest } = this.props;
+
     let feedbackModal = (
       this.state.feedbackModal.show && 
         <FeedbackModal 
@@ -154,7 +152,7 @@ class Translation extends Component {
       <div className="animated fadeIn traduction">
         <div className="animated fadeIn traduction-container">
           {feedbackModal}
-          <Row className="typing-row">
+          {/* <Row className="typing-row">
             <div className="typing-bar">
               <div className="type-input">
                 <div className="input-wrapper">
@@ -183,7 +181,8 @@ class Translation extends Component {
                 </div>
               </div>
             </div>
-          </Row>
+          </Row> */}
+          <h2>Traduction des éléments du site</h2>
           <Row className="translation-row">
             <Col>
               <Card id="card_texte_initial">
@@ -218,16 +217,17 @@ class Translation extends Component {
               <Card id="card_texte_final"> 
                 {/* style={{height : 'calc(' + this.state.height + 'px - .8rem)'}} */}
                 <CardHeader>
+                  <span>Votre traduction en </span>
                   <i className={'flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
                   <strong>{langue.langueFr}</strong>
                   <span className="ml-2">
                     {score !== -1 && 
                       ('Score : ' + (score * 100).toFixed(2) + ' %')}
                   </span>
-                  {/* <div className="card-header-actions pointer" onClick={this.upcoming}>
-                    <span className="text-muted">Voir le rendu</span>{' '}
-                    <Icon name="eye-outline" fill="#3D3D3D" />
-                  </div> */}
+                  {autosuggest && 
+                    <div className="card-header-actions pointer" onClick={this.upcoming}>
+                      <span className="text-muted">Suggestion automatique</span>
+                    </div>}
                 </CardHeader>
                 <CardBody>
                   {!isStructure && 
@@ -268,50 +268,21 @@ class Translation extends Component {
           </Row>
           <Row className="trad-footer">
             <Col lg="auto" className="left-col">
+              <EVAIcon name="clock" fill={variables.grisFonce} className="mr-10" />
               <span className="timer">{ms(time)} passées</span>
+              <EVAIcon name="hash" fill={variables.grisFonce} className="mr-10" />
               <span className="words">{nbMotsRestants} mot{nbMotsRestants > 1 && "s"} restant{nbMotsRestants > 1 && "s"}</span>
             </Col>
             <Col className="right-col">
-              <span>Progression</span>
-              <EVAIcon name="alert-circle" fill="#3D3D3D" id="tooltip-icon" />
-              <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="tooltip-icon" toggle={this.toggleTooltip}>
-                Définissez ici le pourcentage d'avancement estimé de votre traduction
-              </Tooltip>
-              <SliderWithTooltip 
-                min={0}
-                max={1}
-                step={0.05}
-                tipFormatter={localeFormatter}
-                trackStyle={{ background: 'linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)', height: 10 }}
-                handleStyle={{
-                  borderColor: 'blue',
-                  height: 20,
-                  width: 20,
-                  marginLeft: -14,
-                  marginTop: -5,
-                  backgroundColor: 'blue',
-                }}
-                railStyle={{ backgroundColor: 'red', height: 10 }}
-                name="user" 
-                onChange={this.handleSliderChange}
-                value={avancement}
-              /> 
-              <span>{Math.round((avancement || 0) * 100, 0)}%</span>
-
-              {/* <Button className={"radio-btn" + (isComplete ? " active":"")} onClick={this.handleCheckboxClicked}>
-                <FormGroup check className="checkbox">
-                  <Input className="form-check-input" type="checkbox" id="isComplete" checked={isComplete} onChange={this.handleCheckboxChange}/>
-                  <span className="form-check-label">100% traduit</span>
-                </FormGroup>
-              </Button> */}
-              <Button onClick={this.props.onSkip} color="danger">
-                <Icon name="skip-forward-outline" />
+              <FButton tag={NavLink} to="/backend/user-dashboard" type="light-action" name="log-out" fill={variables.noir} className="mr-10">
+                Fin de la session
+              </FButton>
+              <FButton type="error" name="arrow-forward" onClick={this.props.onSkip} className="mr-10">
                 Passer
-              </Button>
-              <Button onClick={()=> this.props.valider()} color="success">
-                <Icon name="checkmark-circle-2-outline" />
+              </FButton>
+              <FButton type="validate" name="checkmark-outline" fill={variables.error} onClick={()=> this.props.valider()}>
                 Valider
-              </Button>
+              </FButton>
             </Col>
           </Row>
         </div>

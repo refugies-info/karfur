@@ -1,4 +1,5 @@
 @import 'src/scss/global.scss';
+@import 'src/scss/colors.scss';
 
 .traduction{
   height: 100%;
@@ -159,13 +160,12 @@
     line-height: 23px;
     font-weight: bold;
     display: flex;
-    
-    .timer{
-      color: #CDCDCD;
-      margin-right:14px;
+
+    .left-col{
+      color: $grisFonce;
     }
-    .words{
-      color: #3D3D3D;
+    .timer{
+      margin-right:14px;
     }
     .right-col, .left-col{
       display:inline-flex;

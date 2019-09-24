@@ -34,7 +34,7 @@ import SideTrad from './SideTrad/SideTrad';
 import {initializeTimer} from '../Translation/functions';
 import {readAudio} from "../Layout/functions";
 
-import {contenu, lorems, menu, filtres, steps, tutoSteps, importantCard} from './data'
+import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard} from './data'
 
 import variables from 'scss/colors.scss';
 
@@ -79,6 +79,7 @@ class Dispositif extends Component {
     tooltipOpen:false,
     uiArray:new Array(menu.length).fill(uiElement),
     showBookmarkModal:false,
+    isAuth: false,
     showDispositifCreateModal:false,
     showDispositifValidateModal:false,
     showSpinnerPrint:false,
@@ -399,7 +400,7 @@ class Dispositif extends Component {
   changeAge = (e, key, subkey, isBottom=true) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, [isBottom ? "bottomValue" : "topValue"]: (e.target.value || "").replace(/\D/g, ''), isFakeContent: false} : y)} : x) })
   setMarkers = (markers, key, subkey) => this.setState({menu: [...this.state.menu].map( (x,i) => i===key ? {...x, children: x.children.map((y,ix) => ix === subkey ? {...y, markers: markers, isFakeContent: false} : y)} : x) })
 
-  startFirstJoyRide = () => this.setState({showDispositifCreateModal: false, runFirstJoyRide: true});
+  startFirstJoyRide = () => this.setState({showDispositifCreateModal: false, runJoyRide: true});
   startJoyRide = (idx = 0) => this.setState({runJoyRide: true, stepIndex:idx});
 
   toggleHelp = () => this.setState(prevState=>({withHelp:!prevState.withHelp}))
@@ -412,14 +413,21 @@ class Dispositif extends Component {
       }else{
         user.cookies.dispositifsPinned=[...(user.cookies.dispositifsPinned || []), {...this.state.dispositif, pinned:true, datePin: new Date()}];
       }
-      API.set_user_info(user).then((data) => {
-        this.setState({
+      API.set_user_info(user).then(() => {
+        this.props.fetch_user();
+        this.setState(pS=>({
           showSpinnerBookmark: false,
-          showBookmarkModal: !this.state.pinned,
-          pinned: !this.state.pinned
-        })
+          showBookmarkModal: !pS.pinned,
+          pinned: !pS.pinned,
+          isAuth: true,
+        }))
       })
-    }else{Swal.fire( {title: 'Oh non!', text: 'Vous devez être connecté pour utiliser cette fonctionnalité', type: 'error', timer: 1500})}
+    }else{
+      this.setState(pS=>({
+        showBookmarkModal: !pS.pinned,
+        isAuth: false,
+      }))
+    }
   }
 
   changeCardTitle = (key, subkey, node, value) => {
@@ -539,7 +547,18 @@ class Dispositif extends Component {
     Object.keys(content).map( k => content[k] = h2p(content[k]));
     let dispositif = {
       ...content,
-      contenu : [...this.state.menu].map(x=> {return {title: x.title, content : x.content, type:x.type, ...(x.children && {children : x.children.map(x => ({...x, editable: false, ...(x.title && {title: h2p(x.title)})}))}) }}),
+      contenu : [...this.state.menu].map(x=> {return {
+        title: x.title, 
+        content : x.editable && x.editorState && x.editorState.getCurrentContent() && x.editorState.getCurrentContent().getPlainText() !== '' ? draftToHtml(convertToRaw(x.editorState.getCurrentContent())) : x.content, 
+        editable: false,
+        type:x.type, 
+        ...(x.children && {children : x.children.map(y => ({
+          ...y, 
+          ...(y.editable && y.editorState && y.editorState.getCurrentContent() && y.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(y.editorState.getCurrentContent())) }),
+          editable: false, 
+          ...(y.title && {title: h2p(y.title)})
+        }))}) 
+      }}),
       sponsors:(this.state.sponsors || []).filter(x => !x.dummy),
       tags: this.state.tags,
       avancement: 1,
@@ -638,18 +657,6 @@ class Dispositif extends Component {
 
     return(
       <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : " reading-mode")} ref={this.newRef}>
-        {/* First general tour */}
-        <ReactJoyride
-          continuous
-          steps={steps}
-          run={!disableEdit && withHelp && runFirstJoyRide}
-          scrollToFirstStep
-          showProgress
-          showSkipButton
-          callback={this.handleFirstJoyrideCallback}
-          tooltipComponent={FirstTooltip}
-          disableOverlayClose={true}
-        />
         {/* Second guided tour */}
         <ReactJoyride
           continuous
@@ -917,14 +924,15 @@ class Dispositif extends Component {
             </Modal>
 
             <BookmarkedModal 
-              showBookmarkModal={this.state.showBookmarkModal}
-              toggleBookmarkModal={this.toggleBookmarkModal}
+              success={this.state.isAuth}
+              show={this.state.showBookmarkModal}
+              toggle={this.toggleBookmarkModal}
             />
             <DispositifCreateModal 
               show={this.state.showDispositifCreateModal}
               toggle={this.toggleDispositifCreateModal}
-              upcoming = {this.upcoming}
               startFirstJoyRide={this.startFirstJoyRide}
+              onBoardSteps={onBoardSteps}
             />
             <DispositifValidateModal
               show={this.state.showDispositifValidateModal}
@@ -948,41 +956,6 @@ class Dispositif extends Component {
     );
   }
 }
-
-const FirstTooltip = ({
-  index,
-  step,
-  backProps,
-  primaryProps,
-  tooltipProps,
-  closeProps
-}) => {
-  if(step){ return (
-  <div
-    key="FirstJoyrideTooltip"
-    className="first-tooltip-wrapper custom-tooltip" 
-    {...tooltipProps}>
-    <div className="tooltipContainer">
-      <h3 className="tooltipTitle" aria-label={step.title}>
-        {step.title}
-      </h3>
-      <div className="tooltipContent">{step.content}</div>
-    </div>
-    <div className="tooltipFooter">
-      <ul className="nav nav-tabs" role="tablist">
-        {steps.map((_,idx) => (
-          <li role="presentation" className={idx <= index ? "active" : "disabled"} key={idx}>
-            <span className="round-tab" />
-          </li>
-        ))}
-      </ul>
-      {index > 0 && 
-        <FButton  type="pill pill-dark" className="mr-10" name="arrow-back-outline" fill={variables.noir} {...backProps} /> }
-      <FButton type="pill pill-dark" name="arrow-forward-outline" fill={variables.noir} {...primaryProps} />
-    </div>
-    <EVAIcon {...closeProps} fill={variables.noir} name="close-outline" className="close-icon" />
-  </div>
-)}else{return false}};
 
 const calculFiabilite = dispositif => {
   let score = 0;
@@ -1017,7 +990,8 @@ const calculFiabilite = dispositif => {
   // console.log(score, dispositif, nbMoisAvantMaJ, nbMoisEntreCreationEtMaj, 
   //   hasSponsor, nbMots, nbLangues, nbTags, tagAutreExist, hasExternalLink,
   //   nbSectionsSansContenu, nbFakeContent, nbAddedChildren, hasMap, nbSections)
-  return score
+  return score;
+  //Nouvelles idées: nombre de suggestions, merci etc
 }
 
 const mapStateToProps = (state) => {
