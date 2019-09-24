@@ -1,20 +1,20 @@
+@import 'src/scss/colors.scss';
 
 .bookmark-modal.modal-dialog{
   max-width:400px;
   font-family: CircularStd;
 
   .modal-content{
-    background: #3D3D3D;
+    background: $gris;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
-    color: #FFFFFF;
     font-size: 18px;
     line-height: 23px;
     border: none;
 
     .modal-header{
       border:none;
-      padding:30px;
+      padding:30px 30px 0;
 
       .modal-title{
         font-size: 40px;
@@ -22,10 +22,13 @@
         font-weight:600;
         background:inherit;
     
-        .bookmark-icon svg{
-          position: absolute;
-          top: 30px;
-          right: 30px;
+        .bookmark-icon{
+          line-height: 20px;
+          padding: 10px;
+          border-radius: 50%;
+          background: #FFFFFF;
+          width: fit-content;
+          margin-bottom: 20px;
         }
       }
     }
@@ -38,21 +41,6 @@
     }
     .modal-footer{
       border:none;
-      padding:0;
-
-      .btn-block{
-        min-height:50px;
-        margin: 0;
-        border-radius: 0 0 12px 0;
-        border: none;
-        font-weight:600;
-
-        &.btn-go{
-          background: #F2F2F2;
-          color: #3D3D3D;
-          border-radius: 0 0 0 12px;
-        }
-      }
     }
   }
 }

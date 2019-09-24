@@ -52,8 +52,8 @@ class AdvancedSearch extends Component {
     }).catch(()=>this.setState({ showSpinner: false }))
   }
   
-  selectTag = tag => {
-    this.setState(pS => ({tags: pS.tags.map(x => (x.short===tag ? {...x, active: true} : {...x, active: false})), color: tag.color}))
+  selectTag = (tag = {}) => {
+    this.setState(pS => ({tags: pS.tags.map(x => (x.short===tag ? {...x, active: true} : {...x, active: false})), color: (tag || {}).color}))
     this.queryDispositifs({["tags.short"]: tag})
     this.props.history.replace("/advanced-search?tag="+tag)
   }
@@ -84,8 +84,7 @@ class AdvancedSearch extends Component {
     e.stopPropagation();
     dispositif.pinned=!dispositif.pinned;
     let prevState=[...this.state.dispositifs];
-    console.log(this.state.dispositifs, this.state.pinned)
-    console.log(dispositif.pinned)
+    console.log(this.state.dispositifs, this.state.pinned,dispositif.pinned)
     this.setState({
       dispositifs: dispositif.pinned ? prevState.filter(x => x._id !== dispositif._id) : [...prevState,dispositif],
       pinned: dispositif.pinned ? 
@@ -183,6 +182,18 @@ class AdvancedSearch extends Component {
                     return false
                   }}
                 )}
+                {!showSpinner && [...pinned,...dispositifs].length === 0 &&
+                  <Col xs="12" sm="6" md="3" className="no-result" onClick={()=>this.selectTag()}>
+                    <CustomCard>
+                      <CardBody>
+                        <h5>Aucun résultat</h5>
+                        <p>Essayez d’élargir votre recherche en désactivant certains tags </p>
+                      </CardBody>
+                      <CardFooter className="align-right">
+                        Désolé...
+                      </CardFooter>
+                    </CustomCard>
+                  </Col>}
                 <Col xs="12" sm="6" md="3">
                   <CustomCard addcard="true" onClick={this.goToDispositif}>
                     <CardBody>

@@ -36,6 +36,9 @@
       height: 100%;
       margin-right: 21px;
       flex: 1;
+      &.no-results-wrapper{
+        margin: auto;
+      }
     }
 
     .right-side{
@@ -96,5 +99,13 @@
         }
       }
     }
+  }
+  .no-results{
+    color: $grisFonce;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
   }
 }

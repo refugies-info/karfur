@@ -109,7 +109,7 @@ class CardParagraphe extends Component {
                         value={((arr[0] === "De " && i===0) || arr[0] === "Plus de ") ? subitem.bottomValue : subitem.topValue} 
                         onClick={e => e.stopPropagation()}
                         onMouseUp={() => (this.props.subitem || {}).isFakeContent && this.props.changeAge({target:{value:""}}, this.props.keyValue, this.props.subkey, i===0 || arr[0] === "Plus de")}
-                        onChange={e => this.props.changeAge(e, this.props.keyValue, this.props.subkey, i===0 || arr[0] === "Plus de")} />}
+                        onChange={e => this.props.changeAge(e, this.props.keyValue, this.props.subkey, (arr[0] === "De " && i===0) || arr[0] === "Plus de")} />}
                   </React.Fragment>
                 ))}</span>
                 :

@@ -7,11 +7,8 @@
   @include media-max("tablet-up") { width:100%; }
 
   .modal-content{
-    background: $noir;
-    mix-blend-mode: normal;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
-    color: #FFFFFF;
     padding:40px;
     border: none;
 
@@ -29,7 +26,6 @@
         align-items: flex-end;
       }
       .close{
-        color: white;
         outline: none;
         text-shadow: none;
         position: absolute;
@@ -46,10 +42,7 @@
     .modal-body{
       padding: 0;
       .content-bloc{
-        background: $blanc;
-        border-radius: 12px;
         color: $noir;
-        padding: 20px;
         margin-bottom: 10px;
       }
       p{
@@ -63,15 +56,35 @@
         margin-bottom: 15px;
       }
       .liste-classic{
-        margin-left: 10px;
-        padding-left: 1em;
+        background: $blanc;
+        border-radius: 12px;
         margin-bottom: 0;
+        padding: 20px;
+        padding-left: 40px;
         li{
           margin-bottom: 5px;
           &:last-child{
             margin-bottom: 0;
           }
         }
+      }
+
+      .image-figma{
+        box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        margin-top: 14px;
+      }
+      .tuto-wrapper{
+        text-align: center;
+      }
+      .texte-jaune{
+        background-color: $jauneClair;
+      }
+      .texte-rouge{
+        background-color: $erreur;
+        color: $error;
       }
     }
     .modal-footer{
@@ -91,6 +104,31 @@
         i{
           margin-right:10px;
         }
+      }
+
+      .nav-tabs {
+        position: relative;
+        flex: 1;
+        border:none;
+      }
+  
+      .nav-tabs > li {
+        margin-right: 5px;
+        line-height: 10px;
+      }
+      .round-tab {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0.5px solid $noir;
+      }
+      .active .round-tab {
+        background: $noir;
+      }
+      .active.ended .round-tab{
+        background: $validationDefault;
+        border: 0.5px solid $validationDefault;
       }
     }
   }

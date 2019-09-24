@@ -78,6 +78,7 @@ class UserDashContrib extends Component {
     return (
       <div className="animated fadeIn user-dash-contrib">
         <DashHeader 
+          contributeur
           title="Espace contribution"
           ctaText="Mes objectifs"
           motsRediges={this.state.progression.nbMots}

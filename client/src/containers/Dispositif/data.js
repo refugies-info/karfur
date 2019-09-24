@@ -97,37 +97,22 @@ const filtres = {
   // }]
 };
 
-const steps = [
+const onBoardSteps = [
   {
-    content: <div><h3>Modifiez le texte directement</h3><p>Cliquez sur les éléments surlignés en jaune pour saisir votre texte.</p></div>,
-    placement: 'bottom',
-    locale: { 
-      skip: 'Passer',
-      next: 'Suivant'
-    },
-    target: '.bloc-titre',
-    disableBeacon: true
+    title: "C’est parti !",
+    firstStep: true,
   },
   {
-    content: <div><h3>Suivez le guide</h3><p>Des consignes vous sont proposées pour chaque élément modifiable.</p></div>,
-    placement: 'bottom',
-    target: '#titreMarque',
-    locale: { 
-      skip: 'Passer',
-      next: 'Suivant',
-      back : 'Précédent'
-    },
+    title: "Modifiez directement le texte",
+    content: <h5>Cliquez sur les éléments surlignés <span className="texte-jaune">en jaune</span> pour saisir votre texte.</h5>,
   },
   {
-    content: <div><h3>Revenez plus tard</h3><p>Vous pouvez désactiver l’aide et sauvegarder à tout moment.</p></div>,
-    placement: 'left',
-    target: '.top-right .card',
-    locale: { 
-      skip: 'Passer',
-      next: 'Suivant',
-      back : 'Précédent',
-      last : 'Terminer'
-    },
+    title: "Suivez le guide",
+    content: <h5>Des consignes sont proposées pour chaque <span className="texte-jaune">élément modifiable</span>.</h5>,
+  },
+  {
+    title: "Tout à portée de main",
+    content: <h5>Ce menu vous suit dans votre rédaction. Vous pouvez désactiver les consignes, sauvegarder votre brouillon et accéder à <span className="texte-rouge">plus d’aide</span>.</h5>,
   }
 ]
 
@@ -247,4 +232,4 @@ const tutoSteps = [
   },
 ]
 
-export {contenu, lorems, menu, filtres, steps, tutoSteps, importantCard};
+export {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard};

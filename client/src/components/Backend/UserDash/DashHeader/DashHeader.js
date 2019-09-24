@@ -138,6 +138,14 @@ const dashHeader = (props) => {
             <FButton type="dark" name="options-2-outline" onClick={()=>props.toggle('objectifs')}>
               {props.ctaText}
             </FButton>}
+          {props.contributeur &&
+            <FButton tag={NavLink} to="/dispositif" type="dark" name="plus-circle-outline" className="ml-10">
+              Créer un contenu
+            </FButton>}
+          {props.traducteur &&
+            <FButton type="dark" name="done-all-outline" className="ml-10" onClick={()=>props.toggle('defineUser')}>
+              Modifier mes langues
+            </FButton>}
         </Col>
       </Row>
       <IndicateursBloc {...props} />
