@@ -4,7 +4,7 @@ import moment from 'moment/min/moment-with-locales';
 import {NavLink as DefaultNavLink} from 'react-router-dom';
 
 import FButton from '../../../FigmaUI/FButton/FButton';
-import {diairMinInt} from '../../../../assets/figma/index'
+import {diairMinInt, countrySide} from '../../../../assets/figma/index';
 
 import './StructureCard.scss';
 
@@ -57,37 +57,42 @@ class StructureCard extends Component {
                 </div>
               </div>
             </div>
-            <div className="middle-side">
-              <Nav tabs>
-                {actionTypes.map((type, i) => (
-                  <NavItem key={i}>
-                    <NavLink
-                      className={this.state.activeTab === i ? "active" : "" }
-                      onClick={() => this.toggle(i)}
-                    >
-                      {jsUcfirst(type.type)}
-                      <span className="float-right">{type.actions.length}</span>
-                    </NavLink>
-                  </NavItem>
-                ))}
-              </Nav>
-              <TabContent activeTab={this.state.activeTab}>
-                {actionTypes.map((type, i) => (
-                  <TabPane tabId={i} key={i}>
-                    <ListGroup className="liste-actions">
-                      {type.actions.map(act => {
-                        const joursDepuis = (new Date().getTime() -  new Date(act.depuis).getTime()) / (1000 * 3600 * 24);
-                        return (
-                          <ListGroupItem key={act.suggestionId} className={"depuis " + (joursDepuis > 10 ? "alert" : (joursDepuis > 3 ? "warning" : "")) }>
-                            {act.texte}
-                            <span className="float-right">{moment(act.depuis).fromNow()}</span>
-                          </ListGroupItem>
+            <div className={"middle-side" + (actions && actions.length > 0 ? "" : " no-results-wrapper")}>
+              {actions && actions.length > 0 ?
+                <><Nav tabs>
+                  {actionTypes.map((type, i) => (
+                    <NavItem key={i}>
+                      <NavLink
+                        className={this.state.activeTab === i ? "active" : "" }
+                        onClick={() => this.toggle(i)}
+                      >
+                        {jsUcfirst(type.type)}
+                        <span className="float-right">{type.actions.length}</span>
+                      </NavLink>
+                    </NavItem>
+                  ))}
+                </Nav>
+                <TabContent activeTab={this.state.activeTab}>
+                  {actionTypes.map((type, i) => (
+                    <TabPane tabId={i} key={i}>
+                      <ListGroup className="liste-actions">
+                        {type.actions.map(act => {
+                          const joursDepuis = (new Date().getTime() -  new Date(act.depuis).getTime()) / (1000 * 3600 * 24);
+                          return (
+                            <ListGroupItem key={act.suggestionId} className={"depuis " + (joursDepuis > 10 ? "alert" : (joursDepuis > 3 ? "warning" : "")) }>
+                              {act.texte}
+                              <span className="float-right">{moment(act.depuis).fromNow()}</span>
+                            </ListGroupItem>
+                          )}
                         )}
-                      )}
-                    </ListGroup>
-                  </TabPane>
-                ))}
-              </TabContent>
+                      </ListGroup>
+                    </TabPane>
+                  ))}
+                </TabContent></> :
+                <div className="no-results">
+                  <img src={countrySide} alt="illustration protection" />
+                  <h5 className="mt-12">Ici apparaîtront les notifications relatives à votre structure....</h5>
+                </div>}
             </div>
             <div className="right-side">
               <Row>

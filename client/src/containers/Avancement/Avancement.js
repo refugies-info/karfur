@@ -53,7 +53,7 @@ class Avancement extends Component {
       this._loadLangue(itemId, isExpert);
     }
     this._loadArticles(itemId, i18nCode);
-    API.get_tradForReview({}, {}, 'userId').then(data => { console.log(data.data.data);
+    API.get_tradForReview({}, {}, 'userId').then(data => { //console.log(data.data.data);
       this.setState({traductionsFaites: data.data.data})
     })
     // this._loadThemes();
@@ -173,8 +173,6 @@ class Avancement extends Component {
           type: "dispositif"
       } ) )
     ].filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
-    
-    console.log(traductions)
 
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){

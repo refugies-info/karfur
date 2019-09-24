@@ -165,6 +165,7 @@ class UserDash extends Component {
         />
 
         <DashHeader 
+          traducteur
           title="Espace traduction"
           ctaText="Mes objectifs"
           motsRediges={this.state.progression.nbMots}
@@ -177,6 +178,17 @@ class UserDash extends Component {
           minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 1000 / 60))} //idem
         />
         
+        <Row>
+          <ProgressionTraduction
+            dataArray={languesUser}
+            isExpert={this.props.expertTrad}
+            user={this.state.user}
+            openThemes={this.openThemes} 
+            openTraductions={this.openTraductions} 
+            limit={5}
+            {...avancement_data} />
+        </Row>
+
         <Row className="recent-row">
           <TradTable 
             inUserDash
@@ -196,17 +208,6 @@ class UserDash extends Component {
             minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
             limit={5}
             {...avancement_langue} />
-        </Row>
-
-        <Row>
-          <ProgressionTraduction
-            dataArray={languesUser}
-            isExpert={this.props.expertTrad}
-            user={this.state.user}
-            openThemes={this.openThemes} 
-            openTraductions={this.openTraductions} 
-            limit={5}
-            {...avancement_data} />
         </Row>
 
         <Modal isOpen={this.state.showModal.traducteur} toggle={()=>this.toggleModal('traducteur')} className='modal-plus'>
@@ -260,7 +261,7 @@ const buttonTraductions = (element, user, openThemes, openTraductions) => (
         Valider les traductions
       </FButton> :
       <b className="meme-ligne">Rien à valider !</b> :
-    <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={() => openThemes(element)} />
+    <FButton type="dark" name="play-circle" fill={variables.noir} onClick={() => openThemes(element)}>Démarrer</FButton>
 )
 
 const ProgressionTraduction = (props) => {

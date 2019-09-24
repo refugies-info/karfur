@@ -16,7 +16,7 @@ const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const getSuggestionValue = (suggestion, isArray = false, structures=false) => isArray ? 
   structures ? (suggestion.acronyme || "") + (suggestion.acronyme && suggestion.nom ? " - " : "") + (suggestion.nom || "") : 
   (suggestion.username || "") + (suggestion.username && suggestion.email ? " - " : "") + (suggestion.email || "") : 
-  suggestion.titreMarque + (suggestion.titreMarque && suggestion.titreInformatif ? " - " : "") + suggestion.titreInformatif;
+  suggestion.titreMarque || suggestion.titreInformatif; // + (suggestion.titreMarque && suggestion.titreInformatif ? " - " : "") + suggestion.titreInformatif;
 
 export class SearchBar extends React.Component {
   state = {
@@ -26,7 +26,7 @@ export class SearchBar extends React.Component {
     selectedResult:{}
   };
 
-  onChange = (_, { newValue }) => this.setState({ value: newValue });
+  onChange = (_, { newValue }) => this.setState({ value: newValue }, ()=>console.log(newValue));
   onSuggestionsFetchRequested = debounce( ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }), 200)
   onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
 
@@ -36,7 +36,6 @@ export class SearchBar extends React.Component {
     if (escapedValue === '') { return [];}
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
     return array.filter(child => {
-      console.log(child)
       return ( this.props.isArray ? 
       (regex.test(child.acronyme) || regex.test(child.nom) || child.createNew) || (regex.test(child.username) || regex.test(child.email)) : 
       regex.test(child.titreMarque) || regex.test(child.titreInformatif) || regex.test(child.abstract) || regex.test(child.contact) || (child.tags || []).some(x => regex.test(x)) || (child.audience || []).some(x => regex.test(x)) || (child.audienceAge || []).some(x => regex.test(x)) || this.findInContent(child.contenu, regex) )})

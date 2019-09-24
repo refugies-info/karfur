@@ -1,22 +1,22 @@
 import {filtres} from "../Dispositif/data";
 
 const initial_data = [
-  {
-    title:'Je suis',
-    value: 'réfugié ou accompagnant',
-    query: 'réfugié',
-    queryName: 'audience',
-    children:[
-      {
-        name: 'réfugié ou accompagnant',
-        query:'réfugié',
-      },
-      {
-        name: 'une organisation',
-        query:'associations',
-      }
-    ]
-  },
+  // {
+  //   title:'Je suis',
+  //   value: 'réfugié ou accompagnant',
+  //   query: 'réfugié',
+  //   queryName: 'audience',
+  //   children:[
+  //     {
+  //       name: 'réfugié ou accompagnant',
+  //       query:'réfugié',
+  //     },
+  //     {
+  //       name: 'une organisation',
+  //       query:'associations',
+  //     }
+  //   ]
+  // },
   {
     title:'Je cherche à',
     value: 'apprendre le français',

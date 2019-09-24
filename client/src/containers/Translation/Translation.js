@@ -54,6 +54,7 @@ class TranslationHOC extends Component {
     translating: true,
     time: 0,
     initialTime: 0,
+    autosuggest: false,
   }
   mountTime=0;
 
@@ -113,7 +114,7 @@ class TranslationHOC extends Component {
   fwdSetState = (fn, cb) => this.setState(fn, cb);
 
   translate = (text,target,item,toEditor=false) => {
-    this.setState({ translated:{ ...this.state.translated, [item]: "" } });
+    this.setState({ translated:{ ...this.state.translated, [item]: "" }, autosuggest: true });
     API.get_translation({ q: text, target: target }).then(data => {
       if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
         let value = data.data.replace(/ id='initial_/g,' id=\'target_').replace(/ id="initial_/g,' id="target_') || "";
@@ -155,10 +156,12 @@ class TranslationHOC extends Component {
     var targetNode = ev.currentTarget;
     let target=targetNode.className.includes('title')?'title':'body';
     let value=target === 'title' ? targetNode.innerText : ev.target.value;
-    this.setState({ translated: {
-      ...this.state.translated,
-      [target]:value
-     }
+    this.setState({ 
+      translated: {
+        ...this.state.translated,
+        [target]:value
+      }, 
+      autosuggest: false
     });
     // this.get_xlm([[h2p(value), this.state.locale], [this.state.francais.body, 'fr']])
   };
