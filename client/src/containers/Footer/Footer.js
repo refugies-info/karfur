@@ -76,7 +76,7 @@ class Footer extends Component {
                   Le projet
                 </h5>
                 <div className="lien-footer">
-                  <NavLink to="/qui-sommes-nous">Qui sommes-nous ?</NavLink>
+                  <NavHashLink to="/qui-sommes-nous#hero">Qui sommes-nous ?</NavHashLink>
                 </div>
                 <div className="lien-footer">
                   <NavLink to="/comment-contribuer">Comment contribuer ?</NavLink>

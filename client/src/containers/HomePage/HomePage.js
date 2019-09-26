@@ -36,13 +36,13 @@ class HomePage extends Component {
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render() {
-    // const { t } = this.props;
+    const { t } = this.props;
     return (
       <div className="animated fadeIn homepage">
         <section id="hero">
           <div className="hero-container">
-            <h1>Construire sa vie en France</h1>
-            <h5>Cherchez un des {this.props.dispositifs.length} dispositifs, démarches ou articles dédiés aux personnes réfugiées</h5>
+            <h1>{t("Construire sa vie en France")}</h1>
+            <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
             
             <div className="search-row">
               <SearchBar 

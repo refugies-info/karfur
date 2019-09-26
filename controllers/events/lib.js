@@ -84,8 +84,9 @@ function distinct_count_event(req, res) {
 }
 
 async function distinct_event (req, res) {
-  var body = req.body;
-  Event.distinct(body.distinct).exec(async (err, data) => {
+  const body = req.body;
+  const query = body.query || {};
+  Event.find(query).distinct(body.distinct).exec(async (err, data) => {
     if (err) { res.status(500).json({ "text": "Erreur interne" }) }
     else if(!data) {res.status(404).json({ "text": "Data not found" }) }
     else {
@@ -98,8 +99,57 @@ async function distinct_event (req, res) {
   })
 }
 
+function aggregate_events(req, res) {
+  console.log(req.body)
+  var find = new Promise(function (resolve, reject) {
+    Event.aggregate(req.body).exec(function (err, result) {
+      console.log(err)
+      if (err) {
+        reject(500);
+      } else {
+        if (result) {
+          resolve(result)
+        } else {
+          reject(404)
+        }
+      }
+    })
+  })
+
+  find.then(function (result) {
+    res.status(200).json({
+        "text": "Succès",
+        "data": result
+    })
+  }, (e) => _errorHandler(e,res))
+}
+
+const _errorHandler = (error, res) => {
+  console.log("error events : ", error)
+  switch (error) {
+    case 500:
+      res.status(500).json({
+        "text": "Erreur interne",
+        data: error
+      })
+      break;
+    case 404:
+      res.status(404).json({
+        "text": "Pas de résultats",
+        data: error
+      })
+      break;
+    default:
+      res.status(500).json({
+        "text": "Erreur interne",
+        data: error
+      })
+  }
+}
+
 //On exporte notre fonction
 exports.log_event = log_event;
 exports.get_event = get_event;
 exports.distinct_count_event = distinct_count_event;
 exports.distinct_event = distinct_event;
+exports.aggregate_events = aggregate_events;

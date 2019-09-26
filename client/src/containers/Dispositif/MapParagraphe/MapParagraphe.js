@@ -178,7 +178,7 @@ class MapParagraphe extends PureComponent {
   render(){
     let {markers, markerInfo} = this.state;
     return(
-      <div className="map-paragraphe">
+      <div className="map-paragraphe" id="map-paragraphe">
         <div className="where-header backgroundColor-darkColor">
           <div>
             <EVAIcon name="pin-outline" className="mr-10" />

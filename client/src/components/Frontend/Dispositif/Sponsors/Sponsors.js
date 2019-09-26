@@ -147,8 +147,7 @@ class Sponsors extends Component {
           modal= {modal}
           keyValue= {0}
           title="Responsabilité du dispositif"
-          lowerLeftBtn={<FButton type="outline-black" name="info-outline" fill={variables.noir}>En savoir plus</FButton>}
-          lowerRightBtn={<FButton type="dark" name="paper-plane-outline" fill={variables.noir} disabled={(!checked || (!user.email && !user.phone)) && !mesStructures.some(x => x.checked)} onClick={this.validerRespo}>Valider</FButton>} 
+          lowerRightBtn={<FButton type="dark" name="paper-plane-outline" fill={variables.noir} disabled={(!checked || (!user.email && !user.phone)) && !mesStructures.some(x => x.checked)} onClick={this.validerRespo} className="push-right">Valider</FButton>} 
         >
           <p>Pour assurer la mise à jour des informations, nous devons relier ce dispositif à sa structure d’origine. Merci de la renseigner ci-dessous :</p>
           
@@ -203,8 +202,7 @@ class Sponsors extends Component {
           modal= {{name: "etVous"}}
           keyValue= {1}
           title="Et vous ?"
-          lowerLeftBtn={<FButton type="outline-black" name="info-outline" fill={variables.noir}>En savoir plus</FButton>}
-          lowerRightBtn={<FButton type="dark" name="paper-plane-outline" fill={variables.noir} onClick={this.addSponsor}>Valider</FButton>} 
+          lowerRightBtn={<FButton type="dark" name="paper-plane-outline" fill={variables.noir} onClick={this.addSponsor} className="push-right">Valider</FButton>} 
         >
           <p>
             <span>Faites-vous partie de cette structure</span>
@@ -260,8 +258,7 @@ class Sponsors extends Component {
           modal= {{name: "envoye"}}
           keyValue= {3}
           title="C’est envoyé !"
-          lowerLeftBtn={<FButton type="outline-black" name="info-outline" fill={variables.noir} onClick={this.upcoming}>En savoir plus</FButton>}
-          lowerRightBtn={<FButton type="validate" name="checkmark-circle-outline" onClick={()=>this.toggleModal("envoye")}>Ok !</FButton>} 
+          lowerRightBtn={<FButton type="validate" name="checkmark-circle-outline" onClick={()=>this.toggleModal("envoye")} className="push-right">Ok !</FButton>} 
         >
           <div className="envoye-content">
             <img src={sentIllu} className="illu" alt="illustration" />

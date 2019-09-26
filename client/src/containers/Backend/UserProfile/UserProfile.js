@@ -19,6 +19,7 @@ import FButton from '../../../components/FigmaUI/FButton/FButton';
 import {selectItem, editMember, addMember} from '../UserDashStruct/functions';
 import {avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
 import {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgression} from './functions';
+import {fetch_user} from '../../../Store/actions';
 
 import './UserProfile.scss';
 import variables from 'scss/colors.scss';
@@ -107,7 +108,7 @@ class UserProfile extends Component {
 
   toggleEditing = () => this.setState({editing : !this.state.editing})
 
-  handleChange = (ev) => this.setState({ user: { ...this.state.user, [ev.currentTarget.id]:ev.target.value } });
+  handleChange = (ev) => this.setState({ user: { ...this.state.user, [ev.currentTarget.id]: ev.currentTarget.id === "description" ? ev.target.value.slice(0,120) : ev.target.value } });
 
   handleFileInputChange = event => {
     this.setState({uploading:true})
@@ -161,6 +162,7 @@ class UserProfile extends Component {
       picture: user.picture
     }
     API.set_user_info(newUser).then((data) => {
+      this.props.fetch_user();
       Swal.fire( {title: 'Yay...', text: 'Votre profil a bien été enregistré', type: 'success', timer: 1500})
       this.setState({ editing:false, user: data.data.data })
     })
@@ -218,7 +220,7 @@ class UserProfile extends Component {
                 <CardBody>
                   <div className="profile-header-container">   
                     <div className="rank-label-container">
-                      {this.state.uploading && <Spinner color="dark" className="fadeIn fadeOut" />}
+                      {this.state.uploading && <Spinner color="success" className="fadeIn fadeOut position-absolute" />}
                       <img className="img-circle user-picture" src={imgSrc} alt="profile"/>
                       {this.state.editing && <>
                         <Input 
@@ -237,9 +239,6 @@ class UserProfile extends Component {
                   <span className="status">{traducteur ? "Traducteur" : (contributeur ? "Contributeur" : "Utilisateur")}</span>
                 </CardFooter>
               </div>
-              <FButton type="dark" name="edit-outline" className="mt-10" onClick={this.toggleEditing}>
-                Modifier mon profil
-              </FButton>
             </div>
             <Col className="modify-col">
               <ModifyProfile
@@ -460,8 +459,10 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = {fetch_user};
+
 export default track({
   page: 'UserProfile',
-})(connect(mapStateToProps)(
+})(connect(mapStateToProps, mapDispatchToProps)(
   windowSize(UserProfile))
 );

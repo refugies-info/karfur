@@ -35,7 +35,7 @@ const modifyProfile = (props) => {
             </Col>
           </Row>
           <Row>
-            <Col lxl="4" g="4" md="4" sm="4" xs="4" className="handleBetween">
+            <Col xl="4" g="4" md="4" sm="4" xs="4" className="handleBetween">
               À propos :
             </Col>
             <Col xl="8" lg="8" md="8" sm="8" xs="8">
@@ -46,19 +46,29 @@ const modifyProfile = (props) => {
                 onChange={props.handleChange} />
             </Col>
           </Row>
+          {editing && 
+            <Row className="nb-car-row">
+              <Col xl="4" g="4" md="4" sm="4" xs="4" className="handleBetween" />
+              <Col xl="8" lg="8" md="8" sm="8" xs="8">
+                <span className="texte-vert">{(user.description || '').length}</span> sur 120 caractères
+              </Col>
+            </Row>}
         </CardBody>
+        {editing ? 
+          <CardFooter className="mt-10">
+            <FButton type="light-action" onClick={props.toggleEditing} className="mr-10">
+              Annuler
+            </FButton>
+            <FButton type="validate" name="save-outline" onClick={props.validateProfile}>
+              Sauvegarder
+            </FButton>
+          </CardFooter> :
+          <CardFooter className="mt-10">
+            <FButton type="dark" name="edit-outline" onClick={props.toggleEditing}>
+              Modifier mon profil
+            </FButton>
+          </CardFooter>}
       </div>
-      {editing && 
-        <CardFooter className="mt-10">
-          <Button color="secondary" className="cancel-btn d-flex align-items-center" onClick={props.toggleEditing}>
-            <EVAIcon className="margin-right-8 d-inline-flex" name="close-circle-outline" />
-            Annuler
-          </Button>
-          <Button color="success" className="validate-btn d-flex align-items-center" onClick={props.validateProfile}>
-            <EVAIcon className="margin-right-8 d-inline-flex" name="checkmark-circle-outline" />
-            Valider
-          </Button>
-        </CardFooter>}
     </Card>
   )
 }

@@ -3,6 +3,7 @@ import {Badge, Col, Row, Nav, NavItem, NavLink, TabContent} from 'reactstrap';
 import track from 'react-tracking';
 import Swal from 'sweetalert2';
 import { connect } from 'react-redux';
+import _ from "lodash";
 
 import CustomTabPane from '../../../components/Backend/Admin/CustomTabPane'
 import API from '../../../utils/API';
@@ -22,6 +23,8 @@ class Admin extends Component {
     themes : [],
     structures: [],
     uploading:false,
+    order: "username",
+    croissant: true,
 
     user:{
       picture: {
@@ -218,6 +221,14 @@ class Admin extends Component {
     this.shadowSelectedLanguages=newOrder;
   }
 
+  reorder = (table, order = "username") => {
+    const croissant = order === this.state.order ? !this.state.croissant : true;
+    this.setState(pS => ({[table]: pS[table].sort((a,b)=> {
+      const aValue = _.get(a, order), bValue = _.get(b, order);
+      return aValue > bValue ? (croissant ? 1 : -1) : aValue < bValue ? (croissant ? -1 : 1) : 0;
+    }), order: order, croissant: croissant}))
+  }
+
   validateUser = () => {
     let user={...this.state.user}
     if(this.shadowSelectedLanguages.length > 0){user.selectedLanguages = [...this.shadowSelectedLanguages]}
@@ -360,6 +371,7 @@ class Admin extends Component {
                 preTraitementStruct={this.preTraitementStruct}
                 isAdmin={true}
                 initial_state={this.initial_state}
+                reorder={this.reorder}
                 {...this.state}  />
             </TabContent>
           </Col>

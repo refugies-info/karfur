@@ -113,7 +113,6 @@ $imgHeight : 350px;
             flex-direction: column;
             align-content: space-between;
             border-radius: 12px 12px 0px 0px;
-            color: $blancSimple;
             background: $gris;
 
             .validate{
@@ -387,6 +386,9 @@ $imgHeight : 350px;
     .display-inline-block{
       display:inline-block;
     }
+  }
+  .paragraphe{
+    margin-top: 20px;
   }
   #contenu-0 .toolbar-editeur{
     top: 32px;

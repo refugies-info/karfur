@@ -48,7 +48,7 @@ class DispositifCreateModal extends Component {
             </div></>:
             <div className="tuto-wrapper">
               <div className="image-figma">
-                <img src={interieur_2} />
+                <img src={stepIdx === 1 ? interieur_2 : stepIdx === 2 ? interieur_3 : interieur_4} />
               </div>
               {onBoardSteps[stepIdx].content}
             </div>}
