@@ -84,6 +84,9 @@ export default {
   distinct_count_event : (query) => {
     return axios.post(burl + '/events/distinct_count_event', query, {headers: headers})
   },
+  aggregate_events : (query) => {
+    return axios.post(burl + '/events/aggregate_events', query, {headers: headers})
+  },
   
   add_article : query => {
     return axios.post(burl + '/article/add_article', query, {headers: headers})

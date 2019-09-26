@@ -6,4 +6,5 @@ module.exports = function (app) {
   app.post('/get_event', checkToken.check, events.get_event);
   app.post('/distinct_count_event', checkToken.check, events.distinct_count_event);
   app.post('/distinct_event', checkToken.check, events.distinct_event);
+  app.post('/aggregate_events', checkToken.check, events.aggregate_events);
 }

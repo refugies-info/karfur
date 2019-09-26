@@ -1,4 +1,7 @@
 {
+  "Homepage":{
+    "subtitle": "Cherchez un des {{nombre}} dispositifs, démarches ou articles dédiés aux personnes réfugiées"
+  },
   "Dispositifs": {
     "Header": "Construire sa vie en France",
     "Subheader" : "Ici, vous pourrez comprendre comment ouvrir vos droits sociaux, trouver un emploi, trouver des cours de français"

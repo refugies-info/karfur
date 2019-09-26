@@ -45,7 +45,7 @@ class Tags extends Component {
     return(
       <div className="tags" id="tags">
         {(this.props.tags || []).map((tag, key) => {
-          return (
+          if(tag){return (
             <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key, tag)} className="tags-dropdown" key={key}>
               <DropdownToggle caret={!this.props.disableEdit}>
                 {tag.short || tag.name || tag}
@@ -69,7 +69,7 @@ class Tags extends Component {
                   </div>
                 </div>}
             </ButtonDropdown>
-          )}
+          )}else{return;}}
         )}
         {!this.props.disableEdit && (this.props.tags || []).length<3 && 
           <Button className="plus-button ml-10" onClick={this.addTag}>
