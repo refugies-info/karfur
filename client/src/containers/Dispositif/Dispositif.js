@@ -144,7 +144,7 @@ class Dispositif extends Component {
           disableEdit: dispositif.status !== "Accepté structure" || !props.translating, //A vérifier
           isDispositifLoading: false,
           contributeurs: [dispositif.creatorId].filter(x => x),
-          mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x.name === dispositif.tags[0].name) || {}) : {},
+          mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x && x.name === (dispositif.tags[0] || {}).name) || {}) : {},
           mainSponsor: dispositif.mainSponsor,
           status: dispositif.status,
           fiabilite: calculFiabilite(dispositif),
@@ -260,22 +260,27 @@ class Dispositif extends Component {
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
       if(right_node.type === 'accordion'){ this.updateUIArray(key, subkey, 'accordion', true) }
-      console.log((key, editable, subkey))
+      console.log(key, editable, subkey)
       return new Promise(resolve => this.setState( { menu: state },()=>{ this.updateUI(key, subkey, editable) ; resolve()} ));
     }else{return new Promise(r=> r())}
   };
 
   updateUI = (key, subkey, editable) => {
     if(editable && (subkey===undefined || (subkey===0 && key>1) )){ 
-      console.log(key, subkey, editable)
       try{ //On place le curseur à l'intérieur du wysiwyg et on ajuste la hauteur
-        let parentNode = document.getElementsByClassName('editeur-' + key + '-' + subkey)[0];
-        if(parentNode){
+        const target = (key === 0 || subkey !== undefined) ? 
+          ('editeur-' + key + '-' + subkey) : 
+          (key === 1 ? "card-col col-lg-4" : undefined);
+        let parentNode = document.getElementsByClassName(target)[0];
+        console.log(parentNode, target)
+        if(subkey && parentNode){
           parentNode.getElementsByClassName('public-DraftEditor-content')[0].focus();
           window.getSelection().addRange( document.createRange() );
           parentNode.getElementsByClassName("DraftEditor-root")[0].style.height = (parentNode.getElementsByClassName("public-DraftEditorPlaceholder-inner")[0] || {}).offsetHeight + "px";
-          parentNode.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
           this.setState(pS => ({ joyRideWidth: parentNode.offsetWidth || pS.joyRideWidth }))
+        }
+        if(parentNode){
+          parentNode.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
         }
       } catch(e){console.log(e)} 
       this.setState({ stepIndex: key + 4, runJoyRide: true, disableOverlay: true, inputBtnClicked: false }) 

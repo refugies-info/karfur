@@ -91,7 +91,7 @@ const contenuParagraphe = (props) => {
           )
         }else{
           return ( 
-            <div key={subkey} className={'contenu borderColor-darkColor' + (safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={()=>props.updateUIArray(props.keyValue, subkey, 'isHover')}>
+            <div key={subkey} className={'contenu paragraphe borderColor-darkColor' + (safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={()=>props.updateUIArray(props.keyValue, subkey, 'isHover')}>
               <Row className="relative-position">
                 <Col lg="12" md="12" sm="12" xs="12">
                   <h4>

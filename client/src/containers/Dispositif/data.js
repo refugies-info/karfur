@@ -200,7 +200,7 @@ const tutoSteps = [
   {
     title: 'Carte interactive',
     content: "ajoutez des points de contacts géolocalisés en recherchant une adresse dans la barre de recherche Google Maps. Puis saisissez les informations du point de contact. Vous pouvez également importer massivement des contacts.",
-    target: '.map-paragraphe',
+    target: '#map-paragraphe',
     placement: 'bottom',
     locale: { 
       skip: 'Passer',

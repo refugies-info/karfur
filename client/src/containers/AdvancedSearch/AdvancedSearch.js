@@ -4,6 +4,7 @@ import track from 'react-tracking';
 import { Col, Row, CardBody, CardFooter, Spinner } from 'reactstrap';
 import Swal from 'sweetalert2';
 import querySearch from "stringquery";
+import _ from "lodash";
 // import Cookies from 'js-cookie';
 
 import SearchItem from './SearchItem/SearchItem';
@@ -16,7 +17,7 @@ import {filtres} from "../Dispositif/data";
 import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
 
-const tris = [{name: "A > Z"}, {name:"Derniers ajouts"}, {name: "Les plus visités"}];
+const tris = [{name: "A > Z", value: "titreInformatif"}, {name:"Derniers ajouts", value: "created_at"}, {name: "Les plus visités", value:"nbVues"}];
 
 let user={_id:null, cookies:{}};
 class AdvancedSearch extends Component {
@@ -24,17 +25,21 @@ class AdvancedSearch extends Component {
     showSpinner: false,
     recherche: initial_data.map( x => ({...x, active: false})),
     dispositifs: [],
+    nbVues: [],
     pinned: [],
     activeFiltre: "Dispositifs",
     activeTri: "A > Z",
     tags: filtres.tags,
-    data: [] //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
+    data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
+    order: "created_at",
+    croissant: true,
   }
 
   componentDidMount (){
     this.retrieveCookies();
     let tag=querySearch(this.props.location.search).tag;
     if(tag) { this.selectTag(decodeURIComponent(tag)) } else { this.queryDispositifs() }
+    this._initializeEvents();
     window.scrollTo(0, 0);
   }
 
@@ -48,6 +53,11 @@ class AdvancedSearch extends Component {
     console.log(query)
     API.get_dispositif({query: {...query, status:'Actif'}}).then(data_res => {
       let dispositifs=data_res.data.data;
+      if(query["tags.name"]){       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
+        dispositifs = dispositifs.sort((a,b)=> (a.tags.findIndex(x => x ? x.short === query["tags.name"] : 99) - b.tags.findIndex(x => x ? x.short === query["tags.name"] : 99)))
+      }
+      dispositifs = dispositifs.map(x => ({...x, nbVues: (this.state.nbVues.find(y=>y._id === x._id) || {}).count }))     //Je rajoute la donnée sur le nombre de vues par dispositif
+        .filter(x => !this.state.pinned.some(y=>y._id===x._id))
       this.setState({ dispositifs:dispositifs, showSpinner: false })
     }).catch(()=>this.setState({ showSpinner: false }))
   }
@@ -58,6 +68,21 @@ class AdvancedSearch extends Component {
     this.props.history.replace("/advanced-search?tag="+tag)
   }
   
+  _initializeEvents = () => {
+    API.aggregate_events([
+      {$match:
+        {'action': 'readDispositif',
+         'label': 'dispositifId',
+         'value': { $ne: null } } },
+      {$group:
+         { _id : "$value",
+          count:{ $sum: 1}}}
+    ]).then(data_res => { 
+      const countEvents = data_res.data.data;
+      this.setState(pS => ({nbVues: countEvents, dispositifs: pS.dispositifs.map(x => ({...x, nbVues: (countEvents.find(y=>y._id === x._id) || {}).count })) }));
+    })
+  }
+
   retrieveCookies = () => {
     // Cookies.set('data', 'ici un test');
     // let dataC=Cookies.getJSON('data');
@@ -84,7 +109,7 @@ class AdvancedSearch extends Component {
     e.stopPropagation();
     dispositif.pinned=!dispositif.pinned;
     let prevState=[...this.state.dispositifs];
-    console.log(this.state.dispositifs, this.state.pinned,dispositif.pinned)
+    console.log(this.state.dispositifs, this.state.pinned,dispositif)
     this.setState({
       dispositifs: dispositif.pinned ? prevState.filter(x => x._id !== dispositif._id) : [...prevState,dispositif],
       pinned: dispositif.pinned ? 
@@ -95,6 +120,15 @@ class AdvancedSearch extends Component {
       user.cookies.parkourPinned=this.state.pinned;
       API.set_user_info(user);
     })
+  }
+
+  reorder = tri => {
+    console.log(tri, this.state.dispositifs);
+    const order = tri.value,  croissant = order === this.state.order ? !this.state.croissant : true;
+    this.setState(pS => ({dispositifs: pS.dispositifs.sort((a,b)=> {
+      const aValue = _.get(a, order), bValue = _.get(b, order);
+      return aValue > bValue ? (croissant ? 1 : -1) : aValue < bValue ? (croissant ? -1 : 1) : 0;
+    }), order: tri.value, activeTri: tri.name, croissant: croissant}))
   }
 
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
@@ -121,7 +155,6 @@ class AdvancedSearch extends Component {
 
   render() {
     const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
-    console.log(recherche)
     return (
       <div className="animated fadeIn advanced-search">
         <Row className="search-wrapper">
@@ -134,7 +167,7 @@ class AdvancedSearch extends Component {
                   <div 
                     key={idx} 
                     className={"side-option" + (tri.name === activeTri ? " active" : "")}
-                    onClick={this.upcoming}
+                    onClick={()=>this.reorder(tri)}
                   >
                     {tri.name}
                   </div>
@@ -156,7 +189,7 @@ class AdvancedSearch extends Component {
             </div>
             <div className="results-wrapper">
               <Row>
-                {[...pinned,...dispositifs].slice(0,100).map((dispositif) => {
+                {[...pinned,...dispositifs].map((dispositif) => {
                   if(!dispositif.hidden){
                     let shortTag = null;
                     if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-") }

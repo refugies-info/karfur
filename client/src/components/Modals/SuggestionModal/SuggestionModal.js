@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 
@@ -9,7 +10,7 @@ const suggestionModal = (props) => {
   let suggestion = props.suggestion || {};
   const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length - 1))}
 
-  const imgSrc = (suggestion.picture || []).secure_url || marioProfile
+  const imgSrc = (suggestion.picture || []).secure_url || marioProfile;
   return(
     <Modal isOpen={props.show} toggle={props.toggle} className='modal-suggestion'>
       <ModalHeader toggle={props.toggle}>
@@ -22,7 +23,10 @@ const suggestionModal = (props) => {
       <ModalBody>
         <div className="body-header">
           <span><b>son message :</b></span>
-          <span className="align-right"><b>sur la page :</b> <u className="text-dark">{suggestion.titre}</u></span>
+          <span className="align-right">
+            <b>sur la page :</b>{' '}
+            <NavLink to={"/dispositif/" + suggestion.dispositifId} className="link-to-page">{suggestion.titre}</NavLink>
+          </span>
         </div>
         <Input disabled type="textarea" placeholder="Aa" rows={5} value={suggestion.texte} id="suggestion" />
       </ModalBody>

@@ -54,35 +54,41 @@ class ResponsableModal extends Component {
               <h5 className="texte-vert">Vous êtes responsable d’un nouveau contenu</h5>
               <p>Nous comptons sur vous pour maintenir ce contenu à jour et répondre aux suggestions des contributeurs.</p>
               {createur && createur._id && !((mainSponsor || {}).membres || []).some(x => x.userId === createur._id) && 
-                <div className={"creator-wrapper mb-10" + (memberAdded ? " member-added" : "")}>
-                  <div className="creator-info">
-                    {createur.picture && createur.picture.secure_url &&
-                      <img className="img-circle mr-10" src={createur.picture.secure_url} alt="profile"/>}
-                    <b>{(createur || {}).username}</b>
+                <> 
+                  <br/>
+                  <p>{(createur || {}).username} a crée ce dispositif et souhaite devenir membre de votre structure. Acceptez-vous ?</p>
+                  <div className={"creator-wrapper mb-10" + (memberAdded ? " member-added" : "")}>
+                    <div className="creator-info">
+                      {createur.picture && createur.picture.secure_url &&
+                        <img className="img-circle mr-10" src={createur.picture.secure_url} alt="profile"/>}
+                      <b>{(createur || {}).username}</b>
+                    </div>
+                    {memberAdded ? 
+                      <div className="texte-validationHover">
+                        <b>Sera ajouté en tant que membre</b>
+                      </div> :
+                      <FButton type="light-action" name="person-add-outline" fill={variables.noir} onClick={this.addMember}>
+                        Ajouter en tant que membre
+                      </FButton>}
                   </div>
-                  {memberAdded ? 
-                    <div className="texte-validationHover">
-                      <b>Sera ajouté en tant que membre</b>
-                    </div> :
-                    <FButton type="light-action" name="person-add-outline" fill={variables.noir} onClick={this.addMember}>
-                      Ajouter en tant que membre
-                    </FButton>}
-                </div>}
+                </>}
               {memberAdded && 
                 <div className="contributeur-wrapper">
                   Souhaitez-vous que <b>{(createur || {}).username}</b> devienne un contributeur ?
-                  <FormGroup check className="contrib-choice mr-10 mt-12">
-                    <Label check>
-                      <Input type="checkbox" checked={this.state.makeContrib} onChange={this.handleCheckChange} />{' '}
-                      <b>Oui</b>
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check className="contrib-choice mt-12">
-                    <Label check>
-                      <Input type="checkbox" checked={!this.state.makeContrib} onChange={this.handleCheckChange} />{' '}
-                      <b>Non</b>
-                    </Label>
-                  </FormGroup>
+                  <div>
+                    <FormGroup check className="contrib-choice mr-10 mt-12">
+                      <Label check>
+                        <Input type="checkbox" checked={this.state.makeContrib} onChange={this.handleCheckChange} />{' '}
+                        <b>Oui</b>
+                      </Label>
+                    </FormGroup>
+                    <FormGroup check className="contrib-choice mt-12">
+                      <Label check>
+                        <Input type="checkbox" checked={!this.state.makeContrib} onChange={this.handleCheckChange} />{' '}
+                        <b>Non</b>
+                      </Label>
+                    </FormGroup>
+                  </div>
                 </div>}
               </>:
               <>

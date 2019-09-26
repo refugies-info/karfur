@@ -66,9 +66,8 @@ $defaultSize:310px;
       }
 
       .profile-left{
-        height: 100%;
         text-align: center;
-        width:fit-content;
+        width: 200px;
 
         .card-body{
           padding:20px;
@@ -141,6 +140,8 @@ $defaultSize:310px;
       .shadow-wrapper{
         border-radius: 12px;
         height: 100%;
+        display: flex;
+        flex-direction: column;
         &.active{
           box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
         }
@@ -222,6 +223,13 @@ $defaultSize:310px;
           .validate-btn{
             float:right;
           }
+        }
+
+        .nb-car-row{
+          margin-top:-20px;
+        }
+        .texte-vert{
+          color: $validationHover;
         }
       }
 

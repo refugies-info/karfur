@@ -140,7 +140,7 @@ class AdminLangues extends Component {
                             <img
                               key={(participant.picture || {}).imgId || key} 
                               src={(participant.picture || {}).secure_url || marioProfile}
-                              className="profile-img img-circle"
+                              className="profile-img-pin img-circle"
                               alt="random profiles" />
                           )}
                         )}
