@@ -187,15 +187,13 @@ class Dispositif extends Component {
 
   onInputClicked = ev => {
     const id = ev.currentTarget.id;
-    console.log(id)
-    if( (id==="titreInformatif" && this.state.content.titreInformatif === contenu.titreInformatif)
-        || (id==="titreMarque" && this.state.content.titreMarque === contenu.titreMarque) ){
+    if( !this.state.disableEdit && ((id==="titreInformatif" && this.state.content.titreInformatif === contenu.titreInformatif)
+        || (id==="titreMarque" && this.state.content.titreMarque === contenu.titreMarque)) ){
       this.setState({ content: { ...this.state.content, [id]: ""} })
     }
   }
 
   handleChange = (ev) => {
-    console.log('ici')
     this.setState({ content: {
       ...this.state.content,
       [ev.currentTarget.id]: ev.target.value
@@ -700,7 +698,7 @@ class Dispositif extends Component {
                 <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
                   <Button color="warning" outline>
                     <EVAIcon name="corner-up-left-outline" fill={mainTag.darkColor} className="icons" />
-                    <span>{t("Retour à la recherche")}</span>
+                    <span>{t("Retour à la recherche", "Retour à la recherche")}</span>
                   </Button>
                 </Col>
                 <TopRightHeader 
@@ -739,7 +737,7 @@ class Dispositif extends Component {
                     />
                   </h1>
                   <h2 className="bloc-subtitle">
-                    <span>{t("avec")}&nbsp;</span>
+                    <span>{t("avec", "avec")}&nbsp;</span>
                     <ContentEditable
                       id='titreMarque'
                       html={this.state.content.titreMarque}  // innerHTML of the editable div
@@ -758,7 +756,7 @@ class Dispositif extends Component {
             <Row className="tags-row backgroundColor-darkColor">
               <Col lg="8" md="8" sm="8" xs="8" className="col right-bar">
                 <Row>
-                  <b className="en-bref mt-10">{t("En bref")} </b>
+                  <b className="en-bref mt-10">{t("En bref", "En bref")} </b>
                   {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
                     if(card.type==='card'){
                       let texte = card.contentTitle;
@@ -808,15 +806,15 @@ class Dispositif extends Component {
               <Col className="pt-40 col-middle" lg={translating ? "12" : "7"} md={translating ? "12" : "7"} sm={translating ? "12" : "7"} xs={translating ? "12" : "7"}>
                 {disableEdit && <Row className="fiabilite-row">
                   <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
-                    {t("Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
+                    {t("Dernière mise à jour", "Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
                   </Col>
                   <Col className="col">
-                    {t("Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
+                    {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
                     <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#E55039"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
                     
                     <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
-                      {t("Dispositif.fiabilite_faible_1")} <b>{t("Dispositif.fiabilite_faible_2")}</b> {t("Dispositif.fiabilite_faible_3")}{' '}
-                      {t("Dispositif.cliquez")}
+                      <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Dispositif.fiabilite_faible", "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant") }} />
+                      {t("Dispositif.cliquez", "Cliquez sur le '?' pour en savoir plus")}
                     </Tooltip>
                   </Col>
                 </Row>}
@@ -846,12 +844,12 @@ class Dispositif extends Component {
                   <>
                     <div className="feedback-footer">
                       <div>
-                        <h5 className="color-darkColor">{t("Dispositif.informations_utiles")}</h5>
-                        <span className="color-darkColor">{t("Dispositif.remerciez")}&nbsp;:</span>
+                        <h5 className="color-darkColor">{t("Dispositif.informations_utiles", "Vous avez trouvé des informations utiles ?")}</h5>
+                        <span className="color-darkColor">{t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigé pour vous")}&nbsp;:</span>
                       </div>
                       <div>
                         <Button color="light" className="thanks-btn" onClick={()=>this.pushReaction(null, "merci")}>
-                          {t("Merci")} <span role="img" aria-label="merci">🙏</span>
+                          {t("Merci", "Merci")} <span role="img" aria-label="merci">🙏</span>
                         </Button>
                         <Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
                           <span role="img" aria-label="merci">👎</span>
@@ -859,8 +857,8 @@ class Dispositif extends Component {
                       </div>
                     </div>
                     <div className="discussion-footer backgroundColor-darkColor">
-                      <h5>{t("Dispositif.Avis")}</h5>
-                      <span>{t("Dispositif.bientot")}</span>
+                      <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
+                      <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
                     </div>
                     {this.state.contributeurs.length>0 && 
                       <div className="bottom-wrapper">
@@ -899,7 +897,7 @@ class Dispositif extends Component {
             <ResponsableModal name='responsable' show={showModals.responsable} toggleModal={this.toggleModal} createur={this.state.creator} mainSponsor={this.state.mainSponsor} editDispositif={this.editDispositif} update_status={this.update_status} />
 
             <Modal isOpen={this.state.showModals.fiabilite} toggle={()=>this.toggleModal(false, 'fiabilite')} className='modal-fiabilite'>
-              <h1>{t("Dispositif.fiabilite")}</h1>
+              <h1>{t("Dispositif.fiabilite", "Fiabilité de l’information")}</h1>
               <div className="liste-fiabilite">
                 <Row>
                   <Col lg="4" className="make-it-red">
@@ -950,7 +948,7 @@ class Dispositif extends Component {
             {isDispositifLoading &&
               <div className="ecran-protection no-main">
                 <div className="content-wrapper">
-                  <h1 className="mb-3">Chargement...</h1>
+                  <h1 className="mb-3">{t("Chargement", "Chargement")}...</h1>
                   <Spinner color="success" />
                 </div>
               </div>}

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
+
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
 import './Tags.scss';
@@ -42,13 +44,14 @@ class Tags extends Component {
   }
 
   render(){
+    const {t} = this.props;
     return(
       <div className="tags" id="tags">
         {(this.props.tags || []).map((tag, key) => {
           if(tag){return (
             <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key, tag)} className="tags-dropdown" key={key}>
               <DropdownToggle caret={!this.props.disableEdit}>
-                {tag.short || tag.name || tag}
+                {tag && t("Tags." + tag.short || tag.name || tag, tag.short || tag.name || tag)}
               </DropdownToggle>
               <DropdownMenu>
                 {this.props.filtres.map((e, i) => {
@@ -57,7 +60,7 @@ class Tags extends Component {
                       onMouseOver={ev=>ev.target.style.backgroundColor=e.hoverColor}
                       onMouseOut={ev=>ev.target.style.backgroundColor='#FFFFFF'}
                       onClick={()=>this.props.changeTag(key, e)} key={i} id={i}>
-                      {e.short || e.name}
+                      {e && t("Tags." + e.short || e.name, e.short || e.name)}
                     </DropdownItem>
                   )} 
                 )}
@@ -74,11 +77,11 @@ class Tags extends Component {
         {!this.props.disableEdit && (this.props.tags || []).length<3 && 
           <Button className="plus-button ml-10" onClick={this.addTag}>
             <EVAIcon className="mr-10" name="plus-circle-outline" fill="#CDCDCD" />
-            Ajouter un tag
+            {t("Dispositif.Ajouter un tag", "Ajouter un tag")}
           </Button>}
       </div>
     )
   }
 }
 
-export default Tags;
+export default withTranslation()(Tags);

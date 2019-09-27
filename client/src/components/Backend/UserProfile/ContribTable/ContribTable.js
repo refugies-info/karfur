@@ -1,8 +1,9 @@
 import React from 'react';
-import { Col, Row, Progress, Table } from 'reactstrap';
+import { Col, Row, Table } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import {NavLink} from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { withTranslation } from 'react-i18next';
 
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import {colorStatut} from '../../../Functions/ColorFunctions';
@@ -12,6 +13,7 @@ import { fakeContribution } from '../../../../containers/Backend/UserProfile/dat
 import variables from 'scss/colors.scss';
 
 const contribTable = (props) => {
+  const {t} = props;
   const contributeur = (props.dataArray || []).length > 0;
   const dataArray = contributeur ? props.dataArray : new Array(5).fill(fakeContribution);
   let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
@@ -43,7 +45,7 @@ const contribTable = (props) => {
     <Table responsive className="avancement-user-table">
       <thead>
         <tr>
-          {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element}</th> ))}
+          {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element && t("Tables." + element, element)}</th> ))}
         </tr>
       </thead>
       <tbody>
@@ -55,7 +57,7 @@ const contribTable = (props) => {
                 {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 && "..."))}
               </td>
               <td className="align-middle">
-                <div className={"status-pill bg-"+colorStatut(element.status)}>{element.status}</div>
+                <div className={"status-pill bg-"+colorStatut(element.status)}>{t("Status." + element.status, element.status)}</div>
               </td>
               <td className="align-middle hideOnPhone">
                 {element.participants && element.participants.map((participant, key) => {
@@ -82,8 +84,8 @@ const contribTable = (props) => {
         {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('contributions')}>
-              <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
-              Voir plus
+              <Icon name="expand-outline" fill={variables.noir} size="large"/>&nbsp;
+              {t("Tables.Voir plus", "Voir plus")}
             </td>
           </tr>
         }
@@ -106,26 +108,26 @@ const contribTable = (props) => {
       <div className={"tableau-wrapper" + (props.hide ? " swing-out-top-bck" : "")} id="mes-contributions" onAnimationEnd={onAnimationEnd}>
         <Row>
           <Col>
-            <h1>{props.title}</h1>
+            <h1>{t("Tables." + props.title, props.title)}</h1>
           </Col>
           {props.displayIndicators && contributeur &&
             <Col className="d-flex tableau-header">
               <div className="full-width equi-reparti">
                 <div className="d-flex left-element">
                   <h4>345</h4>
-                  <span className="texte-small ml-10">mots<br/>rédigés</span>
+                  <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Tables.mots rédigés", "mots<br/>rédigés") }} />
                 </div>
                 <div className="d-flex middle-element">
                   <h4>34</h4>
-                  <span className="texte-small ml-10">minutes<br/>passées</span>
+                  <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Tables.minutes passées", "minutes<br/>passées") }} />
                 </div>
                 <div className="d-flex right-element">
                   <h4>22</h4>
-                  <span className="texte-small ml-10">personnes<br/>informées</span>
+                  <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Tables.personnes informées", "personnes<br/>informées") }} />
                 </div>
                 <div>
                   <FButton tag={NavLink} to="/backend/user-dash-contrib" type="dark" name="file-add-outline">
-                    Espace contribution
+                    {t("Tables.Espace contribution", "Espace contribution")}
                   </FButton>
                 </div>
               </div>
@@ -143,10 +145,10 @@ const contribTable = (props) => {
                   <u>Masquer</u>
               </div>*/}
               <div className="content-wrapper">
-                <h1>{props.overlayTitle}</h1>
-                <span>{props.overlaySpan}</span>
+                <h1>{t("Tables." + props.overlayTitle, props.overlayTitle)}</h1>
+                <span>{t("Tables." + props.overlaySpan, props.overlaySpan)}</span>
                 <FButton type="light-action" name="info-outline" fill={variables.noir} onClick={onBtnClick} >
-                  {props.overlayBtn}
+                  {t("Tables." + props.overlayBtn, props.overlayBtn)}
                 </FButton>
               </div>
             </div>}
@@ -160,4 +162,4 @@ const contribTable = (props) => {
   }
 }
 
-export default contribTable;
+export default withTranslation()(contribTable);
