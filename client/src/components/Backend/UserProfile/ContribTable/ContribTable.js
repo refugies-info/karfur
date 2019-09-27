@@ -73,7 +73,7 @@ const contribTable = (props) => {
               </td>
               <td className="align-middle pointer fit-content">
                 {(props.type !== "user" || ["En attente non prioritaire", "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif"].includes(element.status) ) &&
-                  <FButton type="light-action" name="trash-outline" fill={variables.noir} onClick={e => deleteContrib(e, element)} />}                
+                  <FButton type="light-action" name="trash-2-outline" fill={variables.noir} onClick={e => deleteContrib(e, element)} />}                
               </td>
               <td className="align-middle">
                 <FButton tag={NavLink} to={"/dispositif/"+element._id} type="light-action" name="eye-outline" fill={variables.noir} />
