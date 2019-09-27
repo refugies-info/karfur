@@ -81,14 +81,13 @@ function get_article(req, res) {
     promise.then(result => {
       let structureArr=[];
       [].forEach.call(result, (article, i) => {
-        console.log(article) 
+        // console.log(article) 
         if(article.isStructure){
           console.log(locale, query, article.status, result[0].created_at) 
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
-          console.log(1, structureArr) 
+          console.log(1, "terminé") 
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           if(random && structureArr.length > 1){structureArr = [structureArr[ Math.floor((Math.random() * structureArr.length)) ]]}
-          console.log(2, structureArr) 
           result.splice(i, 1);
         }else{
           returnLocalizedContent(article.body, locale)
@@ -98,8 +97,8 @@ function get_article(req, res) {
       });
       console.log(structureArr.length)
       res.status(200).json({
-          "text": "Succès",
-          "data": [...structureArr, ...result]
+        "text": "Succès",
+        "data": [...structureArr, ...result]
       })
     }).catch(err => {
       res.status(500).json({
@@ -517,8 +516,9 @@ const _updateAvancement = (locale) => {
 }
 
 _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_at, articles=[], path=[]) => {
+  console.log(structJson.Homepage.subtitle)
   Object.keys(structJson).forEach((key) => {
-    console.log(path, key, structJson[key].fr, typeof structJson[key].fr, structJson.constructor)
+    console.log(path, key, structJson[key] && structJson[key].fr, typeof structJson[key].fr, structJson.constructor)
     if(structJson[key] && (typeof structJson[key].fr === 'string' || structJson.constructor === String)){
       let newArticle={
         title: structJson[key].fr,
@@ -532,7 +532,7 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
         _id: structJson[key].id
       }
       path.pop()
-      console.log("newArticle: ", newArticle)
+      console.log("newArticle: ")
       if(! (query['$or'] && query['$or'].length>0 && query['$or'][0] && query['$or'][0]['avancement.'+locale] && query['$or'][0]['avancement.'+locale]['$lt'] && newArticle.avancement === 1) ){
         articles.push(newArticle)
       }
