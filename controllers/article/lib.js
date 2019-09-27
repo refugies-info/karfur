@@ -79,17 +79,19 @@ function get_article(req, res) {
       promise=Article.find(query).sort(sort).populate(populate).limit(limit);
     }
     promise.then(result => {
+      console.log(result)
       let structureArr=[];
       [].forEach.call(result, (article, i) => {
         // console.log(article) 
         if(article.isStructure){
-          console.log(locale, query, article.status, result[0].created_at) 
+          console.log(article) 
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
           console.log(1, "terminé") 
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           if(random && structureArr.length > 1){structureArr = [structureArr[ Math.floor((Math.random() * structureArr.length)) ]]}
           result.splice(i, 1);
         }else{
+          console.log('localizing')
           returnLocalizedContent(article.body, locale)
           article.title=article.title[locale] || article.title.fr;
           article.avancement=article.avancement[locale] || article.avancement.fr
