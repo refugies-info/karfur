@@ -6,8 +6,8 @@ var options = require('./config/i18next-scanner.config.js').options
 console.log(options)
 
 vfs.src(['client/src/**/*.{js,jsx}'])
-    .pipe(sort()) // Sort files in stream by path
-    .pipe(scanner(options))
-    .pipe(vfs.dest('.'));
+  .pipe(sort()) // Sort files in stream by path
+  .pipe(scanner(options))
+  .pipe(vfs.dest('.'));
 
 

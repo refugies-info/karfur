@@ -2,6 +2,7 @@ import React from 'react';
 import { ListGroup, ListGroupItem, Spinner, InputGroup, Input } from 'reactstrap';
 import Scrollspy from 'react-scrollspy';
 import ReactToPrint from 'react-to-print';
+import { withTranslation } from 'react-i18next';
 
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
@@ -9,7 +10,7 @@ import FButton from '../../../FigmaUI/FButton/FButton';
 import variables from 'scss/colors.scss';
 
 const leftSideDispositif = (props) => {
-
+  const {t} = props;
   const onLinkClicked = props.disableEdit ? (()=> props.content.externalLink  && window.open( (props.content.externalLink.includes("http") ? "" : "http://") + props.content.externalLink, "_blank")) : props.toggleInputBtnClicked ;
   return(
     <div className="sticky-affix">
@@ -25,7 +26,7 @@ const leftSideDispositif = (props) => {
                 <ListGroupItem tag="a" data-toggle="list" action
                   href={'#item-head-' + key} 
                   onClick={() => props.onMenuNavigate(key)} >
-                  {item.title}
+                  {item.title && t("Dispositif." + item.title, item.title)}
                 </ListGroupItem>
               </div>
             )}
@@ -45,20 +46,20 @@ const leftSideDispositif = (props) => {
             </FButton>
             :
             <FButton type="theme" name="external-link-outline" onClick={onLinkClicked}>
-              Voir le site
+              {t("Dispositif.Voir le site", "Voir le site")}
             </FButton>}
         </div>
         <FButton type="light-action" onClick={props.createPdf} name="download-outline">
-          Télécharger en PDF
+          {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
           {props.showSpinner && <Spinner color="success" className="ml-8 small-spinner" />}
         </FButton>
         <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
-          Envoyer par mail
+          {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
         </FButton>
         <ReactToPrint
           trigger={() => 
             <FButton type="light-action" name="printer-outline">
-              Imprimer
+              {t("Dispositif.Imprimer", "Imprimer")}
             </FButton>}
           content={() => props.newRef.current} />
           {/* onBeforePrint={props.openAllAccordions} /> */}
@@ -67,4 +68,4 @@ const leftSideDispositif = (props) => {
   )
 }
 
-export default leftSideDispositif;
+export default withTranslation()(leftSideDispositif);

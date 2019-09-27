@@ -41,7 +41,7 @@ class HomePage extends Component {
       <div className="animated fadeIn homepage">
         <section id="hero">
           <div className="hero-container">
-            <h1>{t("Construire sa vie en France")}</h1>
+            <h1>{t("Homepage.Construire sa vie en France", "Construire sa vie en France")}</h1>
             <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
             
             <div className="search-row">
@@ -50,9 +50,9 @@ class HomePage extends Component {
                 className="input-group"
                 placeholder="Rechercher..."
               />
-              <div className="try-it-out mr-10">ou</div>
+              <div className="try-it-out mr-10">{t("ou", "ou")}</div>
               <FButton tag={NavLink} to="/advanced-search" name="flash" type="dark" className="large-btn">
-                Super recherche
+                {t("Homepage.Super recherche", "Super recherche")}
               </FButton>
             </div>
           </div>
@@ -63,12 +63,12 @@ class HomePage extends Component {
 
         <section id="plan">
           <div className="section-container">
-            <h2>Vous cherchez ?</h2>
+            <h2>{t("Homepage.Vous cherchez ?", "Vous cherchez ?")}</h2>
 
             <Row className="card-row">
               <Col lg="4" className="card-col">
                 <Card className="cursor-pointer" onClick={this.upcoming}>
-                  <CardHeader>À comprendre une démarche</CardHeader>
+                  <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
                   <CardBody>
                     {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
                   </CardBody>
@@ -76,20 +76,20 @@ class HomePage extends Component {
                     {/*<FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Chercher une démarche
                     </FButton>*/}
-                    <span>Bientôt disponible !</span>
+                    <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
                   </CardFooter>
                 </Card>
               </Col>
               <Col lg="4" className="card-col">
                 <NavLink to="/advanced-search" className="no-decoration">
                   <Card>
-                    <CardHeader>À apprendre, travailler, vous former, rencontrer</CardHeader>
+                    <CardHeader>{t("Homepage.A apprendre", "À apprendre, travailler, vous former, rencontrer")}</CardHeader>
                     <CardBody>
                       {/* <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span> */}
                     </CardBody>
                     <CardFooter>
                       <FButton type="outline-black" name="search-outline" fill={variables.noir}>
-                        Trouver un dispositif
+                        {t("Homepage.Trouver un dispositif", "Trouver un dispositif")}
                       </FButton>
                     </CardFooter>
                   </Card>
@@ -97,7 +97,7 @@ class HomePage extends Component {
               </Col>
               <Col lg="4" className="card-col">
                 <Card className="cursor-pointer" onClick={this.upcoming}>
-                  <CardHeader>À créer votre parcours personnalisé</CardHeader>
+                  <CardHeader>{t("Homepage.creer parcours", "À créer votre parcours personnalisé")}</CardHeader>
                   <CardBody>
                     {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
@@ -105,7 +105,7 @@ class HomePage extends Component {
                     {/*<FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Créer un parcours
                   </FButton>*/}
-                    <span>Bientôt disponible !</span>
+                    <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
                   </CardFooter>
                 </Card>
               </Col>
@@ -116,19 +116,19 @@ class HomePage extends Component {
         <section id="contribution">
           <div className="section-container half-width">
             <div className="section-body">
-              <h2>Ouverte à la contribution</h2>
+              <h2>{t("Homepage.contributive")}</h2>
               <p className="texte-normal">
-                Agi’r est une plateforme ouverte à la contribution, comme Wikipédia. Son objectif est de centraliser et de garder à jour un maximum d’informations pratiques pour aider les réfugiés à prendre leurs marques en France.
+                {t("Homepage.contributive subheader")}
                 {" "}
                 <NavLink to="/qui-sommes-nous">
-                  <u>En savoir plus</u>
+                  <u>{t("En savoir plus", "En savoir plus")}</u>
                 </NavLink>
               </p>
             </div>
             <footer>
-              Déjà 230 contributeurs et contributrices engagés :
+              {t("Homepage.contributeurs mobilises", {nombre: 230})}
               <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
-                Je contribue
+                {t("Homepage.Je contribue", "Je contribue")}
               </FButton>
             </footer>
           </div>
@@ -137,14 +137,14 @@ class HomePage extends Component {
         <section id="multilangues">
           <div className="section-container half-width right-side">
             <div className="section-body">
-              <h2>Disponible en plusieurs langues</h2>
-              <p className="texte-normal">Agi’r est lisible dans les 10 langues les plus parlées par les personnes réfugiées. Participez à l’effort de traduction pour rendre l’information toujours plus accessible.</p>
+              <h2>{t("Homepage.disponible langues")}</h2>
+              <p className="texte-normal">{t("Homepage.disponible langues subheader")}</p>
               {/*<LanguageBtn />*/}
             </div>
             <footer>
-              Déjà 32 traducteurs et traductrices mobilisés :
+              {t("Homepage.traducteurs mobilises", {nombre: 32})}
               <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
-                Je traduis
+                {t("Homepage.Je traduis", "Je traduis")}
               </FButton>
             </footer>
           </div>
@@ -153,8 +153,8 @@ class HomePage extends Component {
         <section id="certifiee">
           <div className="section-container half-width">
             <div className="section-body">
-              <h2>De l’information vérifiée et certifiée par l’État</h2>
-              <p className="texte-normal">Les contenus proposés sont relus, corrigés et si besoin certifiés avant d’être publiés afin d’éviter les erreurs et les informations périmées.</p>
+              <h2>{t("Homepage.information vérifiée")}</h2>
+              <p className="texte-normal">{t("Homepage.information vérifiée subheader")}</p>
             </div>
             {/*<footer>
               Nous ne censurons aucun contenu :
@@ -167,9 +167,9 @@ class HomePage extends Component {
 
         <section id="explique">
           <div className="section-container half-width right-side">
-            <h2>Explique les mots difficiles</h2>
-            <p className="texte-normal">Passez la souris sur un mot pour accéder à sa définition. Consulter le Lexique pour apprendre les nombreux mots spécifiques aux démarches administratives.</p>
-            <span className="texte-normal">Bientôt disponible !</span>
+            <h2>{t("Homepage.Explique les mots difficiles", "Explique les mots difficiles")}</h2>
+            <p className="texte-normal">{t("Homepage.explication lexique")}</p>
+            <span className="texte-normal">{t("Bientôt disponible !", "Bientôt disponible !")}</span>
             {/*<FButton type="dark" onClick={this.upcoming}>
               Voir le lexique
                 </FButton>*/}
@@ -179,7 +179,7 @@ class HomePage extends Component {
             <button onClick={() => this.changeLanguage('fr')}>fr</button>
             <button onClick={() => this.changeLanguage('en')}>en</button>
             <button onClick={() => this.changeLanguage('ar')}>ar</button>
-            <h1>{this.props.t('Bienvenue')}</h1>
+            <h1>{t('Bienvenue')}</h1>
         </div>
         <div>Toolbar, SideDrawer and Backdrop</div>
 

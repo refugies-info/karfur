@@ -19,10 +19,10 @@ class SearchItem extends Component {
   }
 
   render() {
-    const {item, keyValue} = this.props;
+    const {t, item, keyValue} = this.props;
     return (
       <div className="search-col">
-        <div>{item.title}</div>
+        <div>{t("SearchItem." + item.title, item.title)}</div>
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="display-inline-block">
           <DropdownToggle
             tag="div"
@@ -31,7 +31,7 @@ class SearchItem extends Component {
             className="mt-8"
           >
             <FSearchBtn active={item.active} desactiver = {() => this.props.desactiver(keyValue)}>
-              {item.value}
+              {t("Tags." + item.value, item.value)}
             </FSearchBtn>
           </DropdownToggle>
           <DropdownMenu>
@@ -44,13 +44,13 @@ class SearchItem extends Component {
                   className={"search-options color" + (subi.short ? "": " full")}
                   color={(subi.short || '').replace(/ /g, "-")} 
                 >
-                  {subi.name}
+                  {t("Tags." + subi.name, subi.name)}
                 </FSearchBtn>
               )})}
             </div>
           </DropdownMenu>
         </Dropdown>
-        <span className="ml-10">{item.title2}</span>
+        <span className="ml-10">{item.title2 ? t("SearchItem." + item.title2, item.title2) : ""}</span>
       </div>
     )
   }

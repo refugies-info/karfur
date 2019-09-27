@@ -3,6 +3,7 @@ import { Col, Card, CardBody, CardHeader, CardFooter, ButtonDropdown, Dropdown, 
   DropdownMenu, DropdownItem, ListGroup, ListGroupItem, Modal, Input, Tooltip } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import Swal from 'sweetalert2';
+import { withTranslation } from 'react-i18next';
 
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
@@ -72,7 +73,7 @@ class CardParagraphe extends Component {
   }
 
   render(){
-    let {subitem, subkey, filtres} = this.props;
+    let {subitem, subkey, filtres, t} = this.props;
     let {showNiveaux} = this.state;
 
     const jsUcfirst = (string, title) => {
@@ -113,7 +114,7 @@ class CardParagraphe extends Component {
                   </React.Fragment>
                 ))}</span>
                 :
-                <span>{jsUcfirst(subitem.contentTitle, cardTitle.title)}</span> }
+                <span>{subitem.contentTitle && jsUcfirst( ("Dispositif." + subitem.contentTitle, subitem.contentTitle), cardTitle.title)}</span> }
             </DropdownToggle>
             <DropdownMenu>
               {cardTitle.options.map((option, key) => {
@@ -130,7 +131,7 @@ class CardParagraphe extends Component {
         return(
           <>
             {this.props.disableEdit ? 
-              <div>{subitem.free ? "Gratuit" : "Payant"}</div> :
+              <div>{subitem.free ? t("Dispositif.Gratuit", "Gratuit") : t("Dispositif.Payant", "Payant") }</div> :
               <FSwitch precontent="Gratuit" content="Payant" checked={!subitem.free} onClick={() => this.props.toggleFree(this.props.keyValue, this.props.subkey)} />}
             {!subitem.free && 
               <span className="color-darkColor price-details">
@@ -146,7 +147,7 @@ class CardParagraphe extends Component {
                 <span>€ </span>
                 <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title price-frequency">
                   <DropdownToggle caret={!this.props.disableEdit}>
-                    <span>{subitem.contentTitle}</span>
+                    <span>{subitem.contentTitle && t("Dispositif." + subitem.contentTitle, subitem.contentTitle)}</span>
                   </DropdownToggle>
                   <DropdownMenu>
                     {frequencesPay.map((f, key) => (
@@ -160,13 +161,15 @@ class CardParagraphe extends Component {
           </> 
         )
       }else{
-        let texte = subitem.contentTitle;
+        let texte;
         if(subitem.title==='Âge requis'){
-          texte = (subitem.contentTitle === 'De ** à ** ans') ? 'De ' + subitem.bottomValue + ' à ' + subitem.topValue + ' ans' :
-            (subitem.contentTitle === 'Moins de ** ans') ? 'Moins de ' + subitem.topValue + ' ans' :
-            'Plus de ' + subitem.bottomValue + ' ans';
+          texte = (subitem.contentTitle === 'De ** à ** ans') ? t("Dispositif.De", "De") + ' ' + subitem.bottomValue + ' ' + t("Dispositif.à", "à") + ' ' + subitem.topValue  + ' ' + t("Dispositif.ans", "ans") :
+            (subitem.contentTitle === 'Moins de ** ans') ? t("Dispositif.Moins de", "Moins de") + ' ' + subitem.topValue + ' ' + t("Dispositif.ans", "ans") :
+            t("Dispositif.Plus de", "Plus de") + ' ' + subitem.bottomValue + ' ' + t("Dispositif.ans", "ans");
         }else if(subitem.title === 'Combien ça coûte ?'){
-          texte = subitem.free ? "gratuit" : (subitem.price + " € " + subitem.contentTitle)
+          texte = subitem.free ? t("Dispositif.gratuit", "gratuit") : (subitem.price + " € " + t("Dispositif." + subitem.contentTitle,  subitem.contentTitle))
+        }else{
+          texte = subitem.contentTitle;
         }
         return(
           <ContentEditable
@@ -331,4 +334,4 @@ const PlusCard = (props) => {
 
 export {PlusCard}
 
-export default CardParagraphe;
+export default withTranslation()(CardParagraphe);

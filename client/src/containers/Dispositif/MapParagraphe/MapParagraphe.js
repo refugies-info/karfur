@@ -3,6 +3,7 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reac
 import _ from "lodash";
 import ContentEditable from 'react-contenteditable';
 import Swal from 'sweetalert2';
+import { withTranslation } from 'react-i18next';
 
 import MapComponent from '../../../components/Frontend/Dispositif/MapComponent/MapComponent';
 import MapModal from '../../../components/Modals/MapModal/MapModal';
@@ -176,13 +177,14 @@ class MapParagraphe extends PureComponent {
   }
 
   render(){
-    let {markers, markerInfo} = this.state;
+    const {markers, markerInfo} = this.state;
+    const {t} = this.props;
     return(
       <div className="map-paragraphe" id="map-paragraphe">
         <div className="where-header backgroundColor-darkColor">
           <div>
             <EVAIcon name="pin-outline" className="mr-10" />
-            <b>Trouver un interlocuteur : </b>
+            <b>{t("Dispositif.Trouver un interlocuteur", "Trouver un interlocuteur")} : </b>
           </div>
           {markers.length > 0 && 
             <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} className="content-title">
@@ -233,7 +235,7 @@ class MapParagraphe extends PureComponent {
               )}
             )}
             <FButton onClick={this.validateMarker} type="theme" name="checkmark-circle-2-outline" className="validate-btn">
-              Valider
+              {t("Valider", "Valider")}
             </FButton>
           </div>
         </div>
@@ -249,4 +251,4 @@ class MapParagraphe extends PureComponent {
   }
 }
 
-export default MapParagraphe;
+export default withTranslation()(MapParagraphe);

@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Row } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 import moment from 'moment/min/moment-with-locales';
+import { withTranslation } from 'react-i18next';
 
 import FButton from '../../../FigmaUI/FButton/FButton';
 import {diairMinInt} from '../../../../assets/figma/index'
@@ -153,4 +154,4 @@ const dashHeader = (props) => {
   )
 }
 
-export default dashHeader;
+export default withTranslation()(dashHeader);

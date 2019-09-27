@@ -7,6 +7,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import windowSize from 'react-window-size';
 import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
@@ -171,11 +172,11 @@ class UserProfile extends Component {
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render() {
-    let {traducteur, contributeur, traductions, contributions, actions, langues, structure, user, showSections, isMainLoading, actionsStruct}=this.state;
+    const {traducteur, contributeur, traductions, contributions, actions, langues, structure, user, showSections, isMainLoading, actionsStruct}=this.state;
+    const {t}= this.props;
+    const favoris = ((user.cookies || {}).dispositifsPinned || []);
     
-    let favoris = ((user.cookies || {}).dispositifsPinned || []);
-    
-    let imgSrc = this.state.tempImg || (this.state.user.picture || []).secure_url || marioProfile
+    const imgSrc = this.state.tempImg || (this.state.user.picture || []).secure_url || marioProfile
 
     // let nbReactions = contributions.map(dispo => ((dispo.merci || []).length + (dispo.bravo || []).length)).reduce((a,b) => a + b, 0);
     return (
@@ -183,34 +184,34 @@ class UserProfile extends Component {
         <div className="profile-header">
           <AnchorLink href="#mon-profil" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon name="settings-2-outline" fill={variables.noir} className="header-icon" /> {' '}
-            <span className="hideOnPhone">Mon profil</span>
+            <span className="hideOnPhone">{t("Tables.Mon profil", "Mon profil")}</span>
           </AnchorLink>
           <AnchorLink href={(contributeur || traducteur) ? "#actions-requises" : "#mes-favoris"} offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon name={((contributeur || traducteur) ? "bell-" : "bookmark-" ) + "outline"} fill={variables.noir} className="header-icon" /> {' '}
-            <span className="hideOnPhone">{(contributeur || traducteur) ? "Notifications" : "Favoris"}</span>
+            <span className="hideOnPhone">{(contributeur || traducteur) ? t("Tables.Notifications", "Notifications") : t("Tables.Favoris", "Favoris")}</span>
           </AnchorLink>
           {showSections.contributions && <AnchorLink href="#mes-contributions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon name="file-add-outline" fill={variables.noir} className="header-icon" /> {' '}
-            <span className="hideOnPhone">Rédactions</span>
+            <span className="hideOnPhone">{t("Tables.Rédactions", "Rédactions")}</span>
           </AnchorLink>}
           {showSections.traductions && <AnchorLink href="#mes-traductions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
             <SVGIcon name="translate" fill={variables.noir} className="header-icon svgico" /> {' '}
-            <span className="hideOnPhone">Traductions</span>
+            <span className="hideOnPhone">{t("Tables.Traductions", "Traductions")}</span>
           </AnchorLink>}
           {(contributeur || traducteur) &&
             <AnchorLink href="#mes-favoris" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
               <EVAIcon name="bookmark-outline" fill={variables.noir} className="header-icon" /> {' '}
-              <span className="hideOnPhone">Favoris</span>
+              <span className="hideOnPhone">{t("Tables.Favoris", "Favoris")}</span>
             </AnchorLink>}
           {structure && structure._id &&
             <AnchorLink href="#structure" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
               <EVAIcon name="briefcase-outline" fill={variables.noir} className="header-icon" /> {' '}
-              <span className="hideOnPhone">Ma structure</span>
+              <span className="hideOnPhone">{t("Tables.Ma structure", "Ma structure")}</span>
             </AnchorLink>}
           {false && 
             <AnchorLink href="#mes-contributions" offset={anchorOffset} className="header-anchor d-inline-flex justify-content-center align-items-center">
               <EVAIcon name="message-circle-outline" fill={variables.noir} className="header-icon" /> {' '}
-              <span className="hideOnPhone">Messages</span>
+              <span className="hideOnPhone">{t("Tables.Messages", "Messages")}</span>
             </AnchorLink>}
         </div>
         <div className="profile-content" id="mon-profil">
@@ -230,13 +231,13 @@ class UserProfile extends Component {
                           name="user" 
                           accept="image/*"
                           onChange = {this.handleFileInputChange} />
-                        <span className="label label-default rank-label">Changer</span> </>}
+                        <span className="label label-default rank-label">{t("Changer", "Changer")}</span> </>}
                     </div>
                   </div> 
                 </CardBody>
                 <CardFooter>
                   {!this.state.editing && <h2 className="name">{user.username}</h2>}
-                  <span className="status">{traducteur ? "Traducteur" : (contributeur ? "Contributeur" : "Utilisateur")}</span>
+                  <span className="status">{traducteur ? t("UserProfile.Traducteur", "Traducteur") : (contributeur ? t("UserProfile.Contributeur", "Contributeur") : t("UserProfile.Utilisateur", "Utilisateur"))}</span>
                 </CardFooter>
               </div>
             </div>
@@ -255,22 +256,22 @@ class UserProfile extends Component {
                     <Col className={"obj-first" + (this.state.progression.timeSpent > 0 ? " active" : "")}>
                       <NavLink to="/dispositif">
                         <h1 className="title text-big">{Math.round(this.state.progression.timeSpent / 1000 / 60) || 0}</h1>
-                        <h6 className="subtitle">minutes données</h6>
-                        <span className="content texte-small">Commencez à contribuer pour démarrer le compteur.</span>
+                        <h6 className="subtitle">{t("UserProfile.minutes données", "minutes données")}</h6>
+                        <span className="content texte-small">{t("UserProfile.commencez à contribuer", "Commencez à contribuer pour démarrer le compteur")}.</span>
                       </NavLink>
                     </Col>
                     <Col className={"obj-second" + (this.state.progression.nbMotsContrib > 0 ? " active" : "")}>
                       <NavLink to="/dispositif">
                         <h1 className="title text-big">{this.state.progression.nbMotsContrib || 0}</h1>
-                        <h6 className="subtitle">mots écrits</h6>
-                        <span className="content texte-small">Rédiger votre premier contenu pour démarrer le compteur.</span>
+                        <h6 className="subtitle">{t("UserProfile.mots écrits", "mots écrits")}</h6>
+                        <span className="content texte-small">{t("UserProfile.commencez à rédiger", "Rédigez votre premier contenu pour démarrer le compteur")}.</span>
                       </NavLink>
                     </Col>
                     <Col className={"obj-third" + (this.state.progression.nbMots > 0 ? " active" : "")}>
                       <NavLink to="/backend/user-dashboard">
                         <h1 className="title text-big">{this.state.progression.nbMots || 0}</h1>
-                        <h6 className="subtitle">mots traduits</h6>
-                        <span className="content texte-small">Traduisez vos premiers mots pour démarrer le compteur.</span>
+                        <h6 className="subtitle">{t("UserProfile.mots traduits", "mots traduits")}</h6>
+                        <span className="content texte-small">{t("UserProfile.commencez à traduire", "Traduisez vos premiers mots pour démarrer le compteur")}.</span>
                       </NavLink>
                     </Col>
                   </Row>
@@ -333,6 +334,7 @@ class UserProfile extends Component {
             toggleSection={this.toggleSection}
             hide={!showSections.traductions}
             overlayTitle="Aidez à traduire les contenus"
+            overlayi18n="bilingue"
             overlaySpan="Bilingue ? Polyglotte ? Participez à l’effort de traduction à votre rythme :"
             overlayBtn="Démarrer une session"
             overlayRedirect={false}
@@ -443,7 +445,7 @@ class UserProfile extends Component {
         {isMainLoading &&
           <div className="ecran-protection no-main">
             <div className="content-wrapper">
-              <h1 className="mb-3">Chargement...</h1>
+              <h1 className="mb-3">{t("Chargement", "Chargement")}...</h1>
               <Spinner color="success" />
             </div>
           </div>}
@@ -464,5 +466,9 @@ const mapDispatchToProps = {fetch_user};
 export default track({
   page: 'UserProfile',
 })(connect(mapStateToProps, mapDispatchToProps)(
-  windowSize(UserProfile))
+  withTranslation()(
+    windowSize(
+      UserProfile)
+    )
+  )
 );

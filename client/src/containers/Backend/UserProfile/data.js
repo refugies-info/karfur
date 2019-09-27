@@ -69,7 +69,7 @@ const avancement_langue={
 }
 
 const avancement_contrib={
-  title: 'Contributions',
+  title: 'Rédactions',
   headers: ['Titre', 'Statut', 'Ils rédigent avec moi','', ''],
   hideOnPhone: [false, false, true, false, false]
 }
