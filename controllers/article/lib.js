@@ -80,11 +80,14 @@ function get_article(req, res) {
     }
     promise.then(result => {
       let structureArr=[];
-      [].forEach.call(result, (article, i) => { 
+      [].forEach.call(result, (article, i) => {
+        console.log(article) 
         if(article.isStructure){
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
+          console.log(1, structureArr) 
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           if(random && structureArr.length > 1){structureArr = [structureArr[ Math.floor((Math.random() * structureArr.length)) ]]}
+          console.log(2, structureArr) 
           result.splice(i, 1);
         }else{
           returnLocalizedContent(article.body, locale)
