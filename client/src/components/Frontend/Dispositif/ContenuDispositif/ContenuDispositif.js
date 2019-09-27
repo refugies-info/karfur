@@ -1,11 +1,13 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
 
 import EditableParagraph from '../EditableParagraph/EditableParagraph'
 import QuickToolbar from '../../../../containers/Dispositif/QuickToolbar/QuickToolbar';
 import ContenuParagraphe from '../ContenuParagraphe/ContenuParagraphe';
 
 const contenuDispositif = (props) => {
+  const {t} = props;
   return(
     props.menu.map((item, key) => {
       return ( 
@@ -13,7 +15,7 @@ const contenuDispositif = (props) => {
           <Row className="relative-position nopadding">
             <Col lg="12" md="12" sm="12" xs="12" className={'contenu borderColor-darkColor' + (props.uiArray[key].isHover ? ' isHovered' : '')} onMouseEnter={()=>props.updateUIArray(key, null, 'isHover')}>
               <button className="anchor" id={'item-head-'+key}>{item.title}</button>
-              <h3 className={"contenu-title color-darkColor" + (key !== 0 ? " mt-20": "")}>{item.title}</h3>
+              <h3 className={"contenu-title color-darkColor" + (key !== 0 ? " mt-20": "")}>{item.title && t("Dispositif." + item.title, item.title)}</h3>
               {item.content!==null && item.content!=="null" && <EditableParagraph 
                 keyValue = {key}
                 handleMenuChange={props.handleMenuChange}
@@ -44,4 +46,4 @@ const contenuDispositif = (props) => {
   )
 }
 
-export default contenuDispositif;
+export default withTranslation()(contenuDispositif);

@@ -10,6 +10,7 @@ const formData = require('express-form-data')
 const path = require("path");
 const compression = require('compression');
 const startup = require('./startup/startup');
+// const scanner = require('./i18nscanner.js'); // Si besoin de lancer une extraction des strings manquantes en traduction
 
 // const session = require('express-session');
 // const sessionstore = require('sessionstore');

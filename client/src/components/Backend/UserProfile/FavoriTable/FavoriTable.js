@@ -3,6 +3,7 @@ import { Col, Row, Table, Button } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import {NavLink} from 'react-router-dom';
 import moment from 'moment/min/moment-with-locales';
+import { withTranslation } from 'react-i18next';
 
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
@@ -13,6 +14,7 @@ import variables from 'scss/colors.scss';
 moment.locale('fr');
 
 const favoriTable = (props) => {
+  const {t} = props;
   const hasFavori = (props.dataArray || []).length > 0;
   const dataArray = hasFavori ? props.dataArray : new Array(5).fill(fakeFavori);
   let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
@@ -24,7 +26,7 @@ const favoriTable = (props) => {
     <Table responsive className="avancement-user-table">
       <thead>
         <tr>
-          {props.headers.map((element,key) => (<th key={key}>{element}</th> ))}
+          {props.headers.map((element,key) => (<th key={key}>{element && typeof element === "string" ? t("Tables." + element, element) : element}</th> ))}
         </tr>
       </thead>
       <tbody>
@@ -41,7 +43,7 @@ const favoriTable = (props) => {
                 {(element.tags || []).map((tag, key) => {
                   return ( 
                     <Button key={key} color="warning" className="tag-btn" onClick={()=>searchTag(tag.short)}>
-                      {tag.short}
+                      {tag.short && t("Tags." + tag.short, tag.short)}
                     </Button>
                   );
                 })}
@@ -63,8 +65,8 @@ const favoriTable = (props) => {
         {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('favori')}>
-              <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
-              Voir plus
+              <Icon name="expand-outline" fill={variables.noir} size="large"/>&nbsp;
+              {t("Tables.Voir plus", "Voir plus")}
             </td>
           </tr>
         }
@@ -77,7 +79,7 @@ const favoriTable = (props) => {
       <div className="tableau-wrapper" id="mes-favoris">
         <Row>
           <Col>
-            <h1>{props.title}</h1>
+            <h1>{t("Tables." + props.title, props.title)}</h1>
           </Col>
         </Row>
   
@@ -87,9 +89,9 @@ const favoriTable = (props) => {
           {!hasFavori &&
             <div className="ecran-protection no-fav">
               <div className="content-wrapper">
-                <h1>Retrouvez ici vos pages favorites</h1>
+                <h1>{t("Tables.Retrouvez ici vos pages favorites", "Retrouvez ici vos pages favorites")}</h1>
                 <div className="sous-contenu">
-                  Cherchez ce bouton dans les contenus pour les sauvegarder :
+                  {t("Tables.cherche btn", "Cherchez ce bouton dans les contenus pour les sauvegarder")} :
                   <EVAIcon name="bookmark" fill={variables.noir} className="bookmark-icon" /> 
                 </div>
               </div>
@@ -102,4 +104,4 @@ const favoriTable = (props) => {
   }
 }
 
-export default favoriTable;
+export default withTranslation()(favoriTable);

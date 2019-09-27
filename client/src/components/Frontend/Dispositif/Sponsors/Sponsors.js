@@ -107,7 +107,7 @@ class Sponsors extends Component {
     const modal = {name: "responsabilite"};
     return (
       <div className="sponsor-footer">
-        <h5 className="color-darkColor">{t("Dispositif.Structures")}</h5>
+        <h5 className="color-darkColor">{t("Dispositif.Structures", "Structures partenaires")}</h5>
         <Row className="sponsor-images">
           {sponsors && sponsors.map((sponsor, key) => {
             return (

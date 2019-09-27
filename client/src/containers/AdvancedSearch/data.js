@@ -36,14 +36,8 @@ const initial_data = [
         name: 'Lyon',
       },
       {
-        name: 'Besançon',
+        name: 'Nantes',
       },
-      {
-        name: 'Nîmes',
-      },
-      {
-        name: 'Arles'
-      }
     ]
   },
   {
@@ -76,7 +70,7 @@ const initial_data = [
   {
     title:'Je parle',
     value: 'un peu',
-    title2:'français.',
+    title2:'français',
     queryName: 'niveauFrancais',
     append: 'Quel est mon niveau ?',
     children:[

@@ -87,7 +87,7 @@ class ContribCaroussel extends Component {
       <div className="people-footer">
         <Row className="people-header">
           <Col lg="auto" className="people-subheader">
-            <h5>{t("Dispositif.Contributeurs")}</h5>
+            <h5>{t("Dispositif.Contributeurs", "Contributeurs mobilisés")}</h5>
             <sup><Badge color="light">{contributeurs.length}</Badge></sup>
             <span>Tiennent la page à jour et répondent à vos questions</span>
           </Col>

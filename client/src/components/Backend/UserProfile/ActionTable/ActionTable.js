@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Row, Table } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import moment from 'moment/min/moment-with-locales';
+import { withTranslation } from 'react-i18next';
 
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import { countrySide } from "../../../../assets/figma/index";
@@ -13,6 +14,7 @@ import FButton from '../../../FigmaUI/FButton/FButton';
 moment.locale('fr');
 
 const actionTable = (props) => {
+  const {t} = props;
   const hasNotifs = (props.dataArray || []).length > 0;
   const dataArray = hasNotifs ? props.dataArray : new Array(5).fill(fakeNotifs);
   let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
@@ -25,7 +27,7 @@ const actionTable = (props) => {
     <Table responsive className="avancement-user-table">
       <thead>
         <tr>
-          {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element}</th> ))}
+          {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element && typeof element === "string" ? t("Tables." + element, element) : element}</th> ))}
         </tr>
       </thead>
       <tbody>
@@ -40,12 +42,12 @@ const actionTable = (props) => {
                 {element.titre} 
               </td>
               <td className="align-middle hideOnPhone">
-                <Icon name={element.owner ? "shield-outline" : "people-outline" } fill="#3D3D3D" size="large"/>&nbsp;
-                {element.owner ? "Propriétaire" : "Contributeur" }
+                <Icon name={element.owner ? "shield-outline" : "people-outline" } fill={variables.noir} size="large"/>&nbsp;
+                {element.owner ? t("Tables.Propriétaire", "Propriétaire") : t("Tables.Contributeur", "Contributeur") }
               </td>
               <td className="align-middle">
                 <EVAIcon className="mr-8" name={element.action === "questions" ? "question-mark-circle-outline" : "bulb-outline"} fill={variables.noir} />
-                {jsUcfirst(element.action)}
+                {jsUcfirst( t("Tables." + element.action, element.action) )}
               </td>
               <td className={"align-middle hideOnPhone depuis " + (joursDepuis > 3 ? "alert" : "success") }>
                 {element.depuis ? moment(element.depuis).fromNow() : ""}
@@ -62,8 +64,8 @@ const actionTable = (props) => {
         {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="7" className="align-middle voir-plus" onClick={()=>props.toggleModal('actions')}>
-              <Icon name="expand-outline" fill="#3D3D3D"/>&nbsp;
-              Voir plus
+              <Icon name="expand-outline" fill={variables.noir}/>&nbsp;
+              {t("Tables.Voir plus", "Voir plus")}
             </td>
           </tr>
         }
@@ -77,7 +79,7 @@ const actionTable = (props) => {
         <Row>
           <Col>
             <h1>
-              {props.title}
+              {t("Tables." + props.title, props.title)}
               {hasNotifs &&
                 <sup className="nb-actions">{props.dataArray.length}</sup>}
             </h1>
@@ -96,9 +98,9 @@ const actionTable = (props) => {
             <div className="ecran-protection no-notifs">
               <div className="content-wrapper">
                 <img src={countrySide} alt="illustration protection" />
-                <h1>Aucune notification</h1>
+                <h1>{t("Tables.Aucune notification", "Aucune notification")}</h1>
                 <div className="sous-contenu">
-                  Ne vous inquiétez pas, ça ne va pas tarder... ;)
+                  {t("Tables.no worries", "Ne vous inquiétez pas, ça ne va pas tarder")}... ;)
                 </div>
               </div>
             </div>}
@@ -110,4 +112,4 @@ const actionTable = (props) => {
   }
 }
 
-export default actionTable;
+export default withTranslation()(actionTable);

@@ -155,13 +155,14 @@ class AdvancedSearch extends Component {
 
   render() {
     const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
+    const {t} = this.props;
     return (
       <div className="animated fadeIn advanced-search">
         <Row className="search-wrapper">
           <Col lg="2" className="mt-250 side-col">
             <EVAIcon name="options-2-outline" fill={variables.noir} className="mr-12" />
             <div className="right-side">
-              <b>Trier par :</b> 
+              <b>{t("AdvancedSearch.Trier par", "Trier par :")}</b> 
               <div className="mt-10 side-options">
                 {tris.map((tri, idx) => (
                   <div 
@@ -169,7 +170,7 @@ class AdvancedSearch extends Component {
                     className={"side-option" + (tri.name === activeTri ? " active" : "")}
                     onClick={()=>this.reorder(tri)}
                   >
-                    {tri.name}
+                    {t("AdvancedSearch." + tri.name, tri.name)}
                   </div>
                 ))}
               </div>
@@ -219,11 +220,11 @@ class AdvancedSearch extends Component {
                   <Col xs="12" sm="6" md="3" className="no-result" onClick={()=>this.selectTag()}>
                     <CustomCard>
                       <CardBody>
-                        <h5>Aucun résultat</h5>
-                        <p>Essayez d’élargir votre recherche en désactivant certains tags </p>
+                        <h5>{t("Aucun résultat", "Aucun résultat")}</h5>
+                        <p>{t("Elargir recherche", "Essayez d’élargir votre recherche en désactivant certains tags")} </p>
                       </CardBody>
                       <CardFooter className="align-right">
-                        Désolé...
+                        {t("Désolé", "Désolé")}...
                       </CardFooter>
                     </CustomCard>
                   </Col>}
@@ -235,7 +236,7 @@ class AdvancedSearch extends Component {
                         <span className="add-sign">+</span> }
                     </CardBody>
                     <CardFooter className="align-right">
-                      {showSpinner ? "Chargement..." : "Créer un dispositif"}
+                      {showSpinner ? t("Chargement", "Chargement") + "..." : t("Créer un dispositif", "Créer un dispositif")}
                     </CardFooter>
                   </CustomCard>
                 </Col>
