@@ -70,7 +70,7 @@ class Avancement extends Component {
       }
       API.get_article(query,i18nCode).then(data_res => {
         let articles=data_res.data.data;
-        console.log(articles)
+        console.log(query, articles)
         this.setState({data:articles})
       })
     }
