@@ -63,7 +63,7 @@ function get_article(req, res) {
     var populate = req.body.populate;
     var limit = req.body.limit;
     var random = req.body.random;
-    
+    console.log(query, locale, sort, populate, limit, random)
     let isStructure=false;let structId=null;
     if(query._id && query._id.includes('struct_')){
       isStructure=true;structId=query._id;
@@ -92,6 +92,7 @@ function get_article(req, res) {
           article.avancement=article.avancement[locale] || article.avancement.fr
         }
       });
+      console.log(structureArr.length)
       res.status(200).json({
           "text": "Succès",
           "data": [...structureArr, ...result]
