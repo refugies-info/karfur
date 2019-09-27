@@ -518,8 +518,8 @@ const _updateAvancement = (locale) => {
 
 _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_at, articles=[], path=[]) => {
   Object.keys(structJson).forEach((key) => {
-    console.log(structJson[key] && true, typeof structJson[key].fr, structJson.constructor)
-    if(structJson[key] && typeof structJson[key].fr === 'string'){
+    console.log(path, key, structJson[key].fr, typeof structJson[key].fr, structJson.constructor)
+    if(structJson[key] && (typeof structJson[key].fr === 'string' || structJson.constructor === String)){
       let newArticle={
         title: structJson[key].fr,
         body: structJson[key].fr,
@@ -537,6 +537,7 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
         articles.push(newArticle)
       }
     }else if(structJson.constructor === Object){
+      console.log('ici')
       path.push(key)
       articles=_createFromNested(structJson[key], locale, query, status, created_at, articles, path);
     }
