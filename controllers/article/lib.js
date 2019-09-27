@@ -83,7 +83,7 @@ function get_article(req, res) {
       [].forEach.call(result, (article, i) => {
         console.log(article) 
         if(article.isStructure){
-          console.log(article.body, locale, query, article.status, result[0].created_at) 
+          console.log(locale, query, article.status, result[0].created_at) 
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
           console.log(1, structureArr) 
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
@@ -530,6 +530,8 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
         created_at:created_at,
         _id: structJson[key].id
       }
+      path.pop()
+      console.log("newArticle: ", newArticle)
       if(! (query['$or'] && query['$or'].length>0 && query['$or'][0] && query['$or'][0]['avancement.'+locale] && query['$or'][0]['avancement.'+locale]['$lt'] && newArticle.avancement === 1) ){
         articles.push(newArticle)
       }
@@ -539,6 +541,7 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
     }
   })
   path.pop()
+  console.log("longueur: ", articles.length)
   return articles
 }
 
