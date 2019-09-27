@@ -79,12 +79,12 @@ function get_article(req, res) {
       promise=Article.find(query).sort(sort).populate(populate).limit(limit);
     }
     promise.then(result => {
-      console.log(result)
+      // console.log(result)
       let structureArr=[];
       [].forEach.call(result, (article, i) => {
         // console.log(article) 
         if(article.isStructure){
-          console.log(article) 
+          // console.log(article) 
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
           console.log(1, "terminé") 
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
@@ -521,7 +521,7 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
   console.log(structJson.Homepage.subtitle)
   Object.keys(structJson).forEach((key) => {
     console.log(path, key, structJson[key] && structJson[key].fr, typeof structJson[key].fr, structJson.constructor)
-    if(structJson[key] && (typeof structJson[key].fr === 'string' || structJson.constructor === String)){
+    if(structJson[key] && typeof structJson[key].fr === 'string'){
       let newArticle={
         title: structJson[key].fr,
         body: structJson[key].fr,
