@@ -83,6 +83,7 @@ function get_article(req, res) {
       [].forEach.call(result, (article, i) => {
         console.log(article) 
         if(article.isStructure){
+          console.log(article.body, locale, query, article.status, result[0].created_at) 
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
           console.log(1, structureArr) 
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
