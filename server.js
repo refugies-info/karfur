@@ -19,18 +19,20 @@ const startup = require('./startup/startup');
 // const oauthLogoutCallback = require('./controllers/account/france-connect').oauthLogoutCallback
 // const getUser = require('./controllers/account/france-connect').getUser
 
+const {NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, DB_CONN, DB_USER, DB_PW, MONGODB_URI} = process.env;
+
 let scraper;
-if(process.env.NODE_ENV === 'dev') {
+if(NODE_ENV === 'dev') {
   console.log('dev environment')
   //scraper = require('./scraper/puppeter');
 } else{
-  console.log(process.env.NODE_ENV + ' environment')
+  console.log(NODE_ENV + ' environment')
 }
 
 cloudinary.config({ 
-  cloud_name: process.env.CLOUD_NAME, 
-  api_key: process.env.API_KEY, 
-  api_secret: process.env.API_SECRET
+  cloud_name: CLOUD_NAME, 
+  api_key: API_KEY, 
+  api_secret: API_SECRET
 })
 
 //On définit notre objet express nommé app
@@ -41,8 +43,12 @@ var io = require('socket.io')(http);
 
 //Connexion à la base de donnée
 mongoose.set('debug', false);
-let db_path = process.env.NODE_ENV === 'dev' ? 'mongodb://localhost/db' : process.env.MONGODB_URI;
-mongoose.connect(db_path, { useNewUrlParser: true }).then(() => {
+let auth = null;
+let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_URI;
+
+// let db_path = DB_CONN;
+// auth = {user: DB_USER, password: DB_PW};
+mongoose.connect(db_path, { ...(auth && {auth: auth}), useNewUrlParser: true }).then(() => {
   console.log('Connected to mongoDB');
   startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
 }).catch(e => {

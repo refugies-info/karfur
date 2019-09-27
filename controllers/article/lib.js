@@ -541,6 +541,7 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
     }else if(structJson.constructor === Object){
       console.log('ici')
       path.push(key)
+      console.log(locale, query, status, created_at, articles, path)
       articles=_createFromNested(structJson[key], locale, query, status, created_at, articles, path);
     }
   })
