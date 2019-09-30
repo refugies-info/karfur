@@ -1,3 +1,5 @@
+@import 'src/scss/colors.scss';
+
 .modal-suggestion{ 
   min-width:900px;
 
@@ -46,6 +48,11 @@
 
     .modal-footer{
       border:none;
+    }
+
+    .link-to-page{
+      color:$noir;
+      text-decoration: underline;
     }
   }
 }

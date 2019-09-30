@@ -26,7 +26,8 @@ axios.interceptors.request.use(request => {
     type: 'error',
     title: 'Oops...',
     text: ((error.response.data || {}).text || ''),
-    footer: '<i>'+ error.message + '</i>'
+    footer: '<i>'+ error.message + '</i>', 
+    timer: 1500
   })
   console.log(error.response.data, error.response.status, error.message)
   return Promise.reject(error)
@@ -41,7 +42,8 @@ axios.interceptors.response.use(response => {
       type: 'error',
       title: 'Oops...',
       text: ((error.response.data || {}).text || ''),
-      footer: '<i>'+ error.message + '</i>'
+      footer: '<i>'+ error.message + '</i>',
+      timer: 1500
     })
   }else{ console.log((error.response || {}).data, (error.response || {}).status, error.message) }
   return Promise.reject(error)
@@ -82,6 +84,9 @@ export default {
   distinct_count_event : (query) => {
     return axios.post(burl + '/events/distinct_count_event', query, {headers: headers})
   },
+  aggregate_events : (query) => {
+    return axios.post(burl + '/events/aggregate_events', query, {headers: headers})
+  },
   
   add_article : query => {
     return axios.post(burl + '/article/add_article', query, {headers: headers})
@@ -89,7 +94,7 @@ export default {
   get_article : (query, locale, sort={}, populate='', limit=null, random=false) => {
     return axios.post(burl + '/article/get_article', {query: query, locale: locale, sort: sort, populate: populate, limit: limit, random: random}, {headers: headers})
   },
-  getArticle : (params={}) => { //{query, locale, sort, populate, limit, random}
+  getArticle : (params={}) => {
     return axios.post(burl + '/article/get_article', params, {headers: headers})
   },
   add_traduction : query => {
@@ -105,14 +110,24 @@ export default {
   add_dispositif : query => {
     return axios.post(burl + '/dispositifs/add_dispositif', query, {headers: headers})
   },
-  get_dispositif : (query={}, sort={}, populate='', limit=null) => {
-    return axios.post(burl + '/dispositifs/get_dispositif', {query: query, sort: sort, populate: populate, limit: limit}, {headers: headers})
+  get_dispositif : (params={}) => {
+    return axios.post(burl + '/dispositifs/get_dispositif', params, {headers: headers})
   },
   count_dispositifs : (query) => {
     return axios.post(burl + '/dispositifs/count_dispositifs', query, {headers: headers})
   },
   update_dispositif : query => {
     return axios.post(burl + '/dispositifs/update_dispositif', query, {headers: headers})
+  },
+  get_dispo_progression : query => {
+    return axios.post(burl + '/dispositifs/get_dispo_progression', query, {headers: headers})
+  },
+
+  create_structure : query => {
+    return axios.post(burl + '/structures/add_structure', query, {headers: headers})
+  },
+  get_structure : (query={}, sort={}, populate='', limit=null) => {
+    return axios.post(burl + '/structures/get_structure', {query: query, sort: sort, populate: populate, limit: limit}, {headers: headers})
   },
 
   add_tradForReview : query => {
@@ -132,6 +147,9 @@ export default {
   },
   get_laser : query => {
     return axios.post(burl + '/traduction/get_laser', query, {headers: headers})
+  },
+  update_tradForReview : query => {
+    return axios.post(burl + '/traduction/update_tradForReview',  query, {headers: headers})
   },
 
   get_translation : (query = {}) => {
@@ -168,6 +186,10 @@ export default {
   },
   get_image : (query, sort) => {
     return axios.post(burl + '/images/get_image',  {query: query, sort: sort}, {headers: headers})
+  },
+
+  set_mail : query => {
+    return axios.post(burl + '/miscellaneous/set_mail', query, {headers: headers})
   },
 
   get_tts : (query) => {

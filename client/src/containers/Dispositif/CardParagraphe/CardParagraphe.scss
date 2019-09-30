@@ -16,6 +16,7 @@
       background: $rouge;
     }
 
+    
     .card-header{
       background-color: $darkColor;
       border: none;
@@ -43,19 +44,25 @@
         }
       }
     }
+
     .card-body{
       padding-bottom: 12px;
       font-size: 16px;
       line-height: 20px;
       color: #FFFFFF;
+
       h4{
         font-style: normal;
         font-weight: 500;
-        font-size: 32px;
+        font-size: 24px;
         .card-input{
           border-radius: 6px;
           color: $darkColor;
           padding-left: 10px;
+          line-height: 38px;
+        }
+        .switch-wrapper{
+          color: $blancSimple;
         }
       }
 
@@ -68,25 +75,27 @@
           font-size: inherit;
           border:none;
           padding:0;
+          white-space: normal;
         }
       }
 
       .age-input{
         font-weight: 500;
-        font-size: 32px;
+        font-size: 24px;
         line-height: 40px;
         display: inline-block;
         padding: 0;
         border: none;
         text-align: center;
         margin: 0;
-        width: 50px;
+        width: 40px;
         color: $noir;
         height: 40px;
         background-color: $jauneClair;
         &:active, &:focus{
           background-color: $gris;
         }
+        
       }
       input[type=number]::-webkit-inner-spin-button, 
       input[type=number]::-webkit-outer-spin-button { 
@@ -179,8 +188,10 @@
       position: absolute;
       top: -15px;
       right: -15px;
-      display:none;
       cursor: pointer;
+      svg{
+        fill: $error;
+      }
       &:hover{
         svg{
           fill: $noir;

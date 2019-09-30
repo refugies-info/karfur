@@ -1,31 +1,31 @@
 import {filtres} from "../Dispositif/data";
 
 const initial_data = [
+  // {
+  //   title:'Je suis',
+  //   value: 'réfugié ou accompagnant',
+  //   query: 'réfugié',
+  //   queryName: 'audience',
+  //   children:[
+  //     {
+  //       name: 'réfugié ou accompagnant',
+  //       query:'réfugié',
+  //     },
+  //     {
+  //       name: 'une organisation',
+  //       query:'associations',
+  //     }
+  //   ]
+  // },
   {
-    title:'Je suis',
-    value: 'réfugié ou accompagnant',
-    query: 'réfugié',
-    queryName: 'audience',
-    children:[
-      {
-        name: 'réfugié ou accompagnant',
-        query:'réfugié',
-      },
-      {
-        name: 'une organisation',
-        query:'associations',
-      }
-    ]
-  },
-  {
-    title:'et je cherche à',
+    title:'Je cherche à',
     value: 'apprendre le français',
     query: 'Apprendre le français',
     queryName: 'tags.name',
     children: filtres.tags
   },
   {
-    title:'dans la ville de',
+    title:'J\'habite à',
     value: 'Nantes',
     queryName: 'localisation',
     children:[
@@ -33,17 +33,11 @@ const initial_data = [
         name: 'Paris',
       },
       {
-        name: 'Paris',
+        name: 'Lyon',
       },
       {
-        name: 'Besançon',
+        name: 'Nantes',
       },
-      {
-        name: 'Nîmes',
-      },
-      {
-        name: 'Arles'
-      }
     ]
   },
   {
@@ -74,9 +68,9 @@ const initial_data = [
     ]
   },
   {
-    title:'et je parle',
+    title:'Je parle',
     value: 'un peu',
-    title2:'français.',
+    title2:'français',
     queryName: 'niveauFrancais',
     append: 'Quel est mon niveau ?',
     children:[

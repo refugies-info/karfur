@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
-import Autosuggest from 'react-autosuggest';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import debounce from 'lodash.debounce';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import Swal from 'sweetalert2';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 ////////A enlever si pas utilisé/////////////:
-import Notifications from '../../components/UI/Notifications/Notifications';
+// import Notifications from '../../components/UI/Notifications/Notifications';
 // import SendToMessenger from './SendToMessenger';
-import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
-import API from '../../utils/API';
+// import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
 import { toggle_lang_modal } from '../../Store/actions/index';
-import SVGIcon from "../../components/UI/SVGIcon/SVGIcon"
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
@@ -23,10 +20,7 @@ import SearchBar from '../UI/SearchBar/SearchBar';
 import './HomePage.scss';
 import variables from 'scss/colors.scss';
 
-const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const getSuggestionValue = suggestion => suggestion.titreInformatif ? (suggestion.titreMarque + " - " + suggestion.titreInformatif) : suggestion.title;
-const renderSectionTitle = section => <strong>{section.title}</strong>
-const getSectionSuggestions = section => section.children;
+const anchorOffset = '120';
 
 class HomePage extends Component {
   state = {
@@ -39,7 +33,7 @@ class HomePage extends Component {
     window.scrollTo(0, 0);
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore disponible', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render() {
     const { t } = this.props;
@@ -47,59 +41,55 @@ class HomePage extends Component {
       <div className="animated fadeIn homepage">
         <section id="hero">
           <div className="hero-container">
-            <h1>Construire sa vie en France</h1>
-            <h5>Cherchez un des 13 dispositifs, démarches ou articles dédiés aux personnes réfugiées</h5>
+            <h1>{t("Homepage.Construire sa vie en France", "Construire sa vie en France")}</h1>
+            <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
+            
             <div className="search-row">
-              <div className="input-group md-form form-sm form-2 pl-0">
-                <SearchBar />
-                <div className="input-group-append">
-                  <span className="input-group-text amber lighten-3" id="basic-text1">
-                    Valider
-                  </span>
-                </div>
-              </div>
-              <div>
-                <div className="try-it-out">ou essayez la :</div>
-                <NavLink to="/advanced-search">
-                  <FButton type="dark">
-                    <EVAIcon name="flash" className="ml-10 mr-10" />
-                    Super recherche
-                  </FButton>
-                </NavLink>
-              </div>
+              <SearchBar 
+                validateTest="Valider"
+                className="input-group"
+                placeholder="Rechercher..."
+              />
+              <div className="try-it-out mr-10">{t("ou", "ou")}</div>
+              <FButton tag={NavLink} to="/advanced-search" name="flash" type="dark" className="large-btn">
+                {t("Homepage.Super recherche", "Super recherche")}
+              </FButton>
             </div>
           </div>
-          <EVAIcon className="arrowhead-icon" name="arrowhead-down-outline" fill={variables.noir} />
+          <AnchorLink href="#plan" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
+            <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          </AnchorLink>
         </section>
 
         <section id="plan">
           <div className="section-container">
-            <h2>Vous cherchez ?</h2>
+            <h2>{t("Homepage.Vous cherchez ?", "Vous cherchez ?")}</h2>
 
             <Row className="card-row">
               <Col lg="4" className="card-col">
                 <Card className="cursor-pointer" onClick={this.upcoming}>
-                  <CardHeader>Comprendre une démarche</CardHeader>
+                  <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
                   <CardBody>
-                    <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span>
+                    {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
                   </CardBody>
                   <CardFooter>
-                    <FButton type="outline-black" name="search-outline" fill={variables.noir}>
+                    {/*<FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Chercher une démarche
-                    </FButton>
+                    </FButton>*/}
+                    <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
                   </CardFooter>
                 </Card>
               </Col>
               <Col lg="4" className="card-col">
                 <NavLink to="/advanced-search" className="no-decoration">
                   <Card>
-                    <CardHeader>Apprendre, travailler, me former, rencontrer</CardHeader>
+                    <CardHeader>{t("Homepage.A apprendre", "À apprendre, travailler, vous former, rencontrer")}</CardHeader>
                     <CardBody>
-                      <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span>
+                      {/* <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span> */}
                     </CardBody>
                     <CardFooter>
                       <FButton type="outline-black" name="search-outline" fill={variables.noir}>
-                        Trouver un dispositif
+                        {t("Homepage.Trouver un dispositif", "Trouver un dispositif")}
                       </FButton>
                     </CardFooter>
                   </Card>
@@ -107,14 +97,15 @@ class HomePage extends Component {
               </Col>
               <Col lg="4" className="card-col">
                 <Card className="cursor-pointer" onClick={this.upcoming}>
-                  <CardHeader>Créer mon parcours personnalisé</CardHeader>
+                  <CardHeader>{t("Homepage.creer parcours", "À créer votre parcours personnalisé")}</CardHeader>
                   <CardBody>
-                    <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span>
+                    {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
                   <CardFooter>
-                    <FButton type="outline-black" name="search-outline" fill={variables.noir}>
+                    {/*<FButton type="outline-black" name="search-outline" fill={variables.noir}>
                       Créer un parcours
-                    </FButton>
+                  </FButton>*/}
+                    <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
                   </CardFooter>
                 </Card>
               </Col>
@@ -125,16 +116,19 @@ class HomePage extends Component {
         <section id="contribution">
           <div className="section-container half-width">
             <div className="section-body">
-              <h2>Ouverte à la contribution</h2>
-              <p>Agi’r est une plateforme ouverte à la contribution, comme Wikipédia. Son objectif est de centraliser et de garder à jour un maximum d’informations pratiques pour aider les réfugiés à prendre leurs marques en France.</p>
-              <NavLink to="/qui-sommes-nous">
-                <u>En savoir plus</u>
-              </NavLink>
+              <h2>{t("Homepage.contributive")}</h2>
+              <p className="texte-normal">
+                {t("Homepage.contributive subheader")}
+                {" "}
+                <NavLink to="/qui-sommes-nous">
+                  <u>{t("En savoir plus", "En savoir plus")}</u>
+                </NavLink>
+              </p>
             </div>
             <footer>
-              Déjà 230 contributeurs et contributrices engagés :
+              {t("Homepage.contributeurs mobilises", {nombre: 230})}
               <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
-                Je contribue
+                {t("Homepage.Je contribue", "Je contribue")}
               </FButton>
             </footer>
           </div>
@@ -143,14 +137,14 @@ class HomePage extends Component {
         <section id="multilangues">
           <div className="section-container half-width right-side">
             <div className="section-body">
-              <h2>Disponible en plusieurs langues</h2>
-              <p>Agi’r est lisible dans les 10 langues les plus parlées par les personnes réfugiées. Participez à l’effort de traduction pour rendre l’information toujours plus accessible.</p>
-              <LanguageBtn />
+              <h2>{t("Homepage.disponible langues")}</h2>
+              <p className="texte-normal">{t("Homepage.disponible langues subheader")}</p>
+              {/*<LanguageBtn />*/}
             </div>
             <footer>
-              Déjà 32 traducteurs et traductrices mobilisés :
+              {t("Homepage.traducteurs mobilises", {nombre: 32})}
               <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
-                Je traduis
+                {t("Homepage.Je traduis", "Je traduis")}
               </FButton>
             </footer>
           </div>
@@ -159,32 +153,33 @@ class HomePage extends Component {
         <section id="certifiee">
           <div className="section-container half-width">
             <div className="section-body">
-              <h2>De l’information vérifiée et certifiée par l’État</h2>
-              <p>Les contenus proposés sont relus, corrigés et si besoin certifiés avant d’être publiés afin d’éviter les erreurs et les informations périmées.</p>
+              <h2>{t("Homepage.information vérifiée")}</h2>
+              <p className="texte-normal">{t("Homepage.information vérifiée subheader")}</p>
             </div>
-            <footer>
+            {/*<footer>
               Nous ne censurons aucun contenu :
               <FButton type="dark" className="ml-10" onClick={this.upcoming}>
                 Notre charte éditoriale
               </FButton>
-            </footer>
+            </footer>*/}
           </div>
         </section>
 
         <section id="explique">
           <div className="section-container half-width right-side">
-            <h2>Explique les mots difficiles</h2>
-            <p>Passez la souris sur un mot pour accéder à sa définition. Consulter le Lexique pour apprendre les nombreux mots spécifiques aux démarches administratives.</p>
-            <FButton type="dark" onClick={this.upcoming}>
+            <h2>{t("Homepage.Explique les mots difficiles", "Explique les mots difficiles")}</h2>
+            <p className="texte-normal">{t("Homepage.explication lexique")}</p>
+            <span className="texte-normal">{t("Bientôt disponible !", "Bientôt disponible !")}</span>
+            {/*<FButton type="dark" onClick={this.upcoming}>
               Voir le lexique
-            </FButton>
+                </FButton>*/}
           </div>
         </section>
         {/* <div>
             <button onClick={() => this.changeLanguage('fr')}>fr</button>
             <button onClick={() => this.changeLanguage('en')}>en</button>
             <button onClick={() => this.changeLanguage('ar')}>ar</button>
-            <h1>{this.props.t('Bienvenue')}</h1>
+            <h1>{t('Bienvenue')}</h1>
         </div>
         <div>Toolbar, SideDrawer and Backdrop</div>
 

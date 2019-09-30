@@ -2,6 +2,7 @@ import React from 'react';
 import { ListGroup, ListGroupItem, Spinner, InputGroup, Input } from 'reactstrap';
 import Scrollspy from 'react-scrollspy';
 import ReactToPrint from 'react-to-print';
+import { withTranslation } from 'react-i18next';
 
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
@@ -9,8 +10,8 @@ import FButton from '../../../FigmaUI/FButton/FButton';
 import variables from 'scss/colors.scss';
 
 const leftSideDispositif = (props) => {
-
-  const onLinkClicked = props.disableEdit ? (()=>window.open( ((props.content.externalLink || '').includes("http") ? "" : "http://") + props.content.externalLink, "_blank")) : props.toggleInputBtnClicked ;
+  const {t} = props;
+  const onLinkClicked = props.disableEdit ? (()=> props.content.externalLink  && window.open( (props.content.externalLink.includes("http") ? "" : "http://") + props.content.externalLink, "_blank")) : props.toggleInputBtnClicked ;
   return(
     <div className="sticky-affix">
       <ListGroup className="list-group-flush">
@@ -25,7 +26,7 @@ const leftSideDispositif = (props) => {
                 <ListGroupItem tag="a" data-toggle="list" action
                   href={'#item-head-' + key} 
                   onClick={() => props.onMenuNavigate(key)} >
-                  {item.title}
+                  {item.title && t("Dispositif." + item.title, item.title)}
                 </ListGroupItem>
               </div>
             )}
@@ -34,37 +35,37 @@ const leftSideDispositif = (props) => {
       </ListGroup>
 
       <div className="print-buttons">
-        <div className="link-wrapper">
+        <div className="link-wrapper" id="input-btn">
           {props.inputBtnClicked ?
             <FButton type="default" className="input-btn">
               <InputGroup>
                 <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
-                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Copiez-collez ici le lien vers votre site" id="externalLink" />
+                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Lien vers votre site" id="externalLink" />
                 <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
               </InputGroup>
             </FButton>
             :
             <FButton type="theme" name="external-link-outline" onClick={onLinkClicked}>
-              Voir le site
+              {t("Dispositif.Voir le site", "Voir le site")}
             </FButton>}
         </div>
         <FButton type="light-action" onClick={props.createPdf} name="download-outline">
-          Télécharger en PDF
-          {props.showSpinner && <Spinner color="success" className="margin-left-8" />}
+          {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
+          {props.showSpinner && <Spinner color="success" className="ml-8 small-spinner" />}
         </FButton>
         <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
-          Envoyer par mail
+          {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
         </FButton>
         <ReactToPrint
           trigger={() => 
             <FButton type="light-action" name="printer-outline">
-              Imprimer
+              {t("Dispositif.Imprimer", "Imprimer")}
             </FButton>}
-          content={() => props.newRef.current}
-          onBeforePrint={props.openAllAccordions} />
+          content={() => props.newRef.current} />
+          {/* onBeforePrint={props.openAllAccordions} /> */}
       </div>
     </div>
   )
 }
 
-export default leftSideDispositif;
+export default withTranslation()(leftSideDispositif);

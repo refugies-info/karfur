@@ -8,9 +8,12 @@ import {
   Col,
   Row} from 'reactstrap';
 
-import marioProfile from '../../../../../assets/mario-profile.jpg'
-import {colorStatut} from '../../../../Functions/ColorFunctions'
-import './UsersList.scss'
+import marioProfile from '../../../../../assets/mario-profile.jpg';
+import {colorStatut} from '../../../../Functions/ColorFunctions';
+import EVAIcon from '../../../../UI/EVAIcon/EVAIcon';
+
+import './UsersList.scss';
+import variables from 'scss/colors.scss';
 
 const usersList = (props) => {
   const getRoleName = (role) => {
@@ -26,11 +29,11 @@ const usersList = (props) => {
         <Table responsive hover>
           <thead>
             <tr>
-              <th scope="col">Photo</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Langues</th>
-              <th scope="col">Rôles</th>
-              <th scope="col">Statut</th>
+              <th scope="col">Photo<EVAIcon onClick={()=>props.reorder("users", "picture.imgId")} name="chevron-down" fill={variables.noir} className="sort-btn"/></th>
+              <th scope="col">Nom<EVAIcon onClick={()=>props.reorder("users", "username")} name="chevron-down" fill={variables.noir} className="sort-btn"/></th>
+              <th scope="col">Langues<EVAIcon onClick={()=>props.reorder("users", "selectedLanguages.0.langueFr")} name="chevron-down" fill={variables.noir} className="sort-btn"/></th>
+              <th scope="col">Rôles<EVAIcon onClick={()=>props.reorder("users", "roles.0")} name="chevron-down" fill={variables.noir} className="sort-btn"/></th>
+              <th scope="col">Statut<EVAIcon onClick={()=>props.reorder("users", "status")} name="chevron-down" fill={variables.noir} className="sort-btn"/></th>
             </tr>
           </thead>
           <tbody>

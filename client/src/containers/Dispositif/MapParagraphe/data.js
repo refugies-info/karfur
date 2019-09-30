@@ -8,10 +8,12 @@ export const markerInfo = [{
   label: "Adresse",
   value:"3 rue de la Folie-Méricourt",
   item: "adresse",
+  customClass: "no-highlight",
 }, {
   label: "Ville",
   value:"Ville",
   item: "ville",
+  customClass: "no-highlight",
 }, {
   label: "Informations pratiques",
   value:"Saisir des informations complémentaires si besoin",

@@ -1,0 +1,35 @@
+@import 'src/scss/colors.scss';
+
+.user-dash-struct{
+  padding: 30px;
+  position:relative;
+  background: $gris;
+  flex: 1 1;
+  
+  .nouveau-contenu{
+    background: $attention;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-right: -15px;
+    margin-left: -15px;
+
+    .left-side, .middle-side{
+      padding: 10px;
+    }
+
+    .middle-side{
+      color: $rouge;
+    }
+  }
+
+  .role-btn{
+    .edit-icon{
+      display: none;
+    }
+    &:hover .edit-icon{
+      display: inline;
+    }
+  }
+}

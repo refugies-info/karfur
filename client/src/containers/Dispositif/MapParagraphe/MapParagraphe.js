@@ -1,15 +1,18 @@
 import React, {PureComponent} from 'react';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import _ from "lodash";
 import ContentEditable from 'react-contenteditable';
 import Swal from 'sweetalert2';
+import { withTranslation } from 'react-i18next';
 
 import MapComponent from '../../../components/Frontend/Dispositif/MapComponent/MapComponent';
 import MapModal from '../../../components/Modals/MapModal/MapModal';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
+import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import {markerInfo} from './data';
 
 import './MapParagraphe.scss';
+import variables from 'scss/colors.scss';
 
 const refs = {}
 class MapParagraphe extends PureComponent {
@@ -30,7 +33,7 @@ class MapParagraphe extends PureComponent {
 
   componentDidMount (){
     if(!this.props.disableEdit && !this.props.subitem.isMapLoaded){
-      this.setState({showModal:true})
+      // this.setState({showModal:true})
     }
   }
 
@@ -46,7 +49,7 @@ class MapParagraphe extends PureComponent {
   
   componentDidUpdate (){
     if(!this.props.disableEdit && !this.props.subitem.isMapLoaded){
-      this.setState({showModal:true})
+      // this.setState({showModal:true})
     }
   }
 
@@ -54,6 +57,7 @@ class MapParagraphe extends PureComponent {
   onSearchBoxMounted =  ref => refs.searchBox = ref;
 
   onPlacesChanged = () => {
+    this.setState(pS => ({ markers: pS.markers.filter(x => this.props.subitem.markers.some(y => y.gid === x.gid)) })); //J'enlève tous les markers qui ont pas été validés
     const place = _.get(refs.searchBox.getPlaces(), "0", {});
     const nextMarker = {
       latitude: place.geometry.location.lat(),
@@ -112,9 +116,7 @@ class MapParagraphe extends PureComponent {
   }
 
   toggleSidebar = () => this.setState(pS => ({showSidebar: !pS.showSidebar}))
-  toggleDropdown = (e) => {
-    this.setState({ isDropdownOpen: !this.state.isDropdownOpen })
-  };
+  toggleDropdown = () => this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
 
   toggleModal = () => {
     if(this.state.showModal){ this.props.disableIsMapLoaded(this.props.keyValue, this.props.subkey); }
@@ -155,31 +157,36 @@ class MapParagraphe extends PureComponent {
   handleMarkerChange = (e, idx) => this.setState({markerInfo : this.state.markerInfo.map((x, i) => i === idx ? {...x, value : e.target.value} : x)})
 
   validateMarker = () => {
-    if(!this.state.markerInfo[0].value || this.state.markerInfo[0].value === "Saisir le titre", this.state.markerInfo[4].value === "00 11 22 33 44" ){
-      Swal.fire( 'Oh non!', 'Vous devez renseigner un titre de lieu pour ce marqueur', 'error');
+    if(!this.state.markerInfo[0].value || this.state.markerInfo[0].value === "Saisir le titre" || this.state.markerInfo[4].value === "00 11 22 33 44" ){
+      Swal.fire( {title: 'Oh non!', text: 'Vous devez renseigner un titre de lieu pour ce marqueur', type: 'error', timer: 1500});
       return;
     }
     if((!this.state.markerInfo[4].value || this.state.markerInfo[4].value === "ajouter@votreemail.fr") && 
       (!this.state.markerInfo[5].value || this.state.markerInfo[5].value === "00 11 22 33 44")){
-      Swal.fire( 'Oh non!', 'Vous devez renseigner au moins une information de contact (email ou téléphone)', 'error');
+      Swal.fire( {title: 'Oh non!', text: 'Vous devez renseigner au moins une information de contact (email ou téléphone)', type: 'error', timer: 1500});
       return;
     }
+    console.log(this.state.markers,this.props.subitem.markers)
     let markers = [...this.state.markers];
     markers[this.state.selectedMarker] = {
       ...markers[this.state.selectedMarker],
       ...this.state.markerInfo.reduce((accumulateur, valeurCourante) => ({...accumulateur, [valeurCourante.item] : valeurCourante.value}), {})
     }
     this.props.setMarkers(markers, this.props.keyValue, this.props.subkey);
-    this.setState({markers: markers, showSidebar: false})
+    this.setState({markers: markers, showSidebar: false, dropdownValue: markers[this.state.selectedMarker].nom})
   }
 
   render(){
-    let {markers, markerInfo} = this.state;
+    const {markers, markerInfo} = this.state;
+    const {t} = this.props;
     return(
-      <div className="map-paragraphe">
-        {this.props.disableEdit &&
-          <div className="where-header">
-            <b>Où souhaitez-vous vous engager ?</b>
+      <div className="map-paragraphe" id="map-paragraphe">
+        <div className="where-header backgroundColor-darkColor">
+          <div>
+            <EVAIcon name="pin-outline" className="mr-10" />
+            <b>{t("Dispositif.Trouver un interlocuteur", "Trouver un interlocuteur")} : </b>
+          </div>
+          {markers.length > 0 && 
             <ButtonDropdown isOpen={this.state.isDropdownOpen} toggle={this.toggleDropdown} className="content-title">
               <DropdownToggle caret color="transparent" className="dropdown-btn">
                 <span>{this.state.dropdownValue}</span>
@@ -191,9 +198,10 @@ class MapParagraphe extends PureComponent {
                   </DropdownItem> 
                 ))}
               </DropdownMenu>
-            </ButtonDropdown>
-            {/* <Button color="warning" onClick={this.toggleModal}>Changer le fichier de données</Button>} */}
-          </div>}
+            </ButtonDropdown>}
+            {!this.props.disableEdit &&
+              <EVAIcon onClick={()=>this.props.deleteCard(this.props.keyValue,this.props.subkey)} name="close-circle" fill={variables.error} size="xlarge" className="remove-btn" />}
+        </div>
         <div className="map-content">
           <div className="inner-container">
             <MapComponent
@@ -227,7 +235,7 @@ class MapParagraphe extends PureComponent {
               )}
             )}
             <FButton onClick={this.validateMarker} type="theme" name="checkmark-circle-2-outline" className="validate-btn">
-              Valider
+              {t("Valider", "Valider")}
             </FButton>
           </div>
         </div>
@@ -237,10 +245,10 @@ class MapParagraphe extends PureComponent {
           toggleModal={this.toggleModal}
           handleFileLoaded={this.handleFileLoaded}
           handleError={this.handleError}
-          toggleModal={this.toggleModal} />
+        />
       </div> 
     )
   }
 }
 
-export default MapParagraphe;
+export default withTranslation()(MapParagraphe);

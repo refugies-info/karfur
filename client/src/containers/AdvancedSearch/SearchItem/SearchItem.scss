@@ -1,5 +1,4 @@
 @import 'src/scss/colors.scss';
-@import 'src/scss/common.scss';
 
 .search-col{
   padding: 10px;
@@ -20,10 +19,15 @@
 
   .options-wrapper{
     margin-top:-10px;
+    max-height: 50vh;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    &::-webkit-scrollbar { width: 0 !important }
   }
   .search-options{
     white-space: nowrap;
-    overflow: inherit;
+    overflow: visible;
     margin-top:10px;
 
     &:not(:last-child){

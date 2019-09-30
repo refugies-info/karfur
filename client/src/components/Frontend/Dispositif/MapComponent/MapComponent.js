@@ -2,7 +2,6 @@ import React from 'react';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 import variables from 'scss/colors.scss';
-import Icon from 'react-eva-icons/dist/Icon';
 
 const { compose, withProps } = require("recompose");
 const {
@@ -45,7 +44,7 @@ const mapComponent = compose(
         <div className="places-input-wrapper">
           <input
             type="text"
-            placeholder="Placez ici vos lieux de contact"
+            placeholder="Ajoutez un nouveau lieu"
             className="places-input"
             value={props.searchValue}
             onChange={props.handleChange} />

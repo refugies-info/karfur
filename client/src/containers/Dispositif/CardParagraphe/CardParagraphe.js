@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { Col, Card, CardBody, CardHeader, CardFooter, ButtonDropdown, Dropdown, DropdownToggle, 
-  DropdownMenu, DropdownItem, ListGroup, ListGroupItem,Button, Modal, Input, Tooltip } from 'reactstrap';
-import Icon from 'react-eva-icons';
+  DropdownMenu, DropdownItem, ListGroup, ListGroupItem, Modal, Input, Tooltip } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import Swal from 'sweetalert2';
+import { withTranslation } from 'react-i18next';
 
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
@@ -52,6 +52,12 @@ class CardParagraphe extends Component {
   setPapier = (idx, y) => this.setState({ papiers: this.state.papiers.map((x,i) => i===idx ? list_papiers[y] : x) })
   addPiece = () => this.setState({ papiers: [...this.state.papiers,{name:'Titre de séjour'}], isModalDropdownOpen:[...this.state.isModalDropdownOpen, false] })
   removePiece = idx => this.setState({ papiers: [...this.state.papiers].filter( (_,key) => key !== idx) })
+  emptyPlaceholder = e => {
+    console.log(e.currentTarget, (this.props.subitem || {}).isFakeContent)
+    if((this.props.subitem || {}).isFakeContent){
+      this.props.handleMenuChange({currentTarget: e.currentTarget, target:{value: ""}}); 
+    }
+  }
 
   toggleOptions = (e) => {
     if(this.state.isOptionsOpen && e.currentTarget.id){
@@ -59,15 +65,15 @@ class CardParagraphe extends Component {
     }
     this.setState({ isOptionsOpen: !this.state.isOptionsOpen })
   };
-
+  
   footerClicked = () => {
     if(this.props.subitem.footerHref){
       window.open( this.props.subitem.footerHref, "_blank" )
-    }else{Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')}
+    }else{Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })}
   }
 
   render(){
-    let {subitem, subkey, filtres} = this.props;
+    let {subitem, subkey, filtres, t} = this.props;
     let {showNiveaux} = this.state;
 
     const jsUcfirst = (string, title) => {
@@ -87,7 +93,7 @@ class CardParagraphe extends Component {
     ]
     
     let contentTitle = (subitem) => {
-      let cardTitle = cardTitles.find(x=>x.title==subitem.title);
+      let cardTitle = cardTitles.find(x=>x.title===subitem.title);
       if(cardTitle && cardTitle.options && cardTitle.options.length > 0 && !this.props.disableEdit){
         if(!cardTitle.options.some(x => x.toUpperCase()===subitem.contentTitle.toUpperCase())){ subitem.contentTitle = cardTitle.options[0]; subitem.contentBody = 'A modifier'; }
         return(
@@ -100,14 +106,15 @@ class CardParagraphe extends Component {
                     {i < arr.length - 1 && 
                       <Input 
                         type="number" 
-                        className="age-input"
+                        className="color-darkColor age-input"
                         value={((arr[0] === "De " && i===0) || arr[0] === "Plus de ") ? subitem.bottomValue : subitem.topValue} 
                         onClick={e => e.stopPropagation()}
-                        onChange={e => this.props.changeAge(e, this.props.keyValue, this.props.subkey, i===0 || arr[0] === "Plus de")} />}
+                        onMouseUp={() => (this.props.subitem || {}).isFakeContent && this.props.changeAge({target:{value:""}}, this.props.keyValue, this.props.subkey, i===0 || arr[0] === "Plus de")}
+                        onChange={e => this.props.changeAge(e, this.props.keyValue, this.props.subkey, (arr[0] === "De " && i===0) || arr[0] === "Plus de")} />}
                   </React.Fragment>
                 ))}</span>
                 :
-                <span>{jsUcfirst(subitem.contentTitle, cardTitle.title)}</span> }
+                <span>{subitem.contentTitle && jsUcfirst( ("Dispositif." + subitem.contentTitle, subitem.contentTitle), cardTitle.title)}</span> }
             </DropdownToggle>
             <DropdownMenu>
               {cardTitle.options.map((option, key) => {
@@ -124,22 +131,23 @@ class CardParagraphe extends Component {
         return(
           <>
             {this.props.disableEdit ? 
-              <div>{subitem.free ? "Gratuit" : "Payant"}</div> :
+              <div>{subitem.free ? t("Dispositif.Gratuit", "Gratuit") : t("Dispositif.Payant", "Payant") }</div> :
               <FSwitch precontent="Gratuit" content="Payant" checked={!subitem.free} onClick={() => this.props.toggleFree(this.props.keyValue, this.props.subkey)} />}
             {!subitem.free && 
-              <span className="price-details">
+              <span className="color-darkColor price-details">
                 {this.props.disableEdit ?
                   <span>{subitem.price}</span> :
                   <Input 
                     type="number" 
-                    className="age-input"
+                    className="color-darkColor age-input"
                     disabled={this.props.disableEdit}
                     value={subitem.price} 
+                    onMouseUp={() => (this.props.subitem || {}).isFakeContent && this.props.changePrice({target:{value:""}}, this.props.keyValue, this.props.subkey)}
                     onChange={e => this.props.changePrice(e, this.props.keyValue, this.props.subkey)} /> }
                 <span>€ </span>
                 <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title price-frequency">
                   <DropdownToggle caret={!this.props.disableEdit}>
-                    <span>{subitem.contentTitle}</span>
+                    <span>{subitem.contentTitle && t("Dispositif." + subitem.contentTitle, subitem.contentTitle)}</span>
                   </DropdownToggle>
                   <DropdownMenu>
                     {frequencesPay.map((f, key) => (
@@ -153,13 +161,15 @@ class CardParagraphe extends Component {
           </> 
         )
       }else{
-        let texte = subitem.contentTitle;
+        let texte;
         if(subitem.title==='Âge requis'){
-          texte = (subitem.contentTitle === 'De ** à ** ans') ? 'De ' + subitem.bottomValue + ' à ' + subitem.topValue + ' ans' :
-                              (subitem.contentTitle === 'Moins de ** ans') ? 'Moins de ' + subitem.topValue + ' ans' :
-                              'Plus de ' + subitem.bottomValue + ' ans';
+          texte = (subitem.contentTitle === 'De ** à ** ans') ? t("Dispositif.De", "De") + ' ' + subitem.bottomValue + ' ' + t("Dispositif.à", "à") + ' ' + subitem.topValue  + ' ' + t("Dispositif.ans", "ans") :
+            (subitem.contentTitle === 'Moins de ** ans') ? t("Dispositif.Moins de", "Moins de") + ' ' + subitem.topValue + ' ' + t("Dispositif.ans", "ans") :
+            t("Dispositif.Plus de", "Plus de") + ' ' + subitem.bottomValue + ' ' + t("Dispositif.ans", "ans");
         }else if(subitem.title === 'Combien ça coûte ?'){
-          texte = subitem.free ? "gratuit" : (subitem.price + " € " + subitem.contentTitle)
+          texte = subitem.free ? t("Dispositif.gratuit", "gratuit") : (subitem.price + " € " + t("Dispositif." + subitem.contentTitle,  subitem.contentTitle))
+        }else{
+          texte = subitem.contentTitle;
         }
         return(
           <ContentEditable
@@ -170,6 +180,7 @@ class CardParagraphe extends Component {
             html={texte}  // innerHTML of the editable div
             disabled={this.props.disableEdit}       // use true to disable editing
             onChange={this.props.handleMenuChange} // handle innerHTML change
+            onMouseUp={this.emptyPlaceholder}
           />
         )
       }
@@ -224,11 +235,11 @@ class CardParagraphe extends Component {
             />
           )
         }else{return false}
-      }else{ return (
+      }else if(this.props.subitem.footerHref){ return (
         <FButton type="outline" name={subitem.footerIcon} onClick={this.footerClicked}>
           {subitem.footer}
         </FButton>
-      )}
+      )}else{return false}
     }
 
     return(
@@ -255,16 +266,6 @@ class CardParagraphe extends Component {
                   </div>
                   :
                   !this.props.disableEdit && <u className="cursor-pointer" onClick={this.toggleNiveaux}>Préciser</u>)}
-              {/* <span>
-                <ContentEditable
-                  id={this.props.keyValue}
-                  data-subkey={subkey}
-                  data-target='contentBody'
-                  html={subitem.contentBody}  // innerHTML of the editable div
-                  disabled={this.props.disableEdit}       // use true to disable editing
-                  onChange={this.props.handleMenuChange} // handle innerHTML change
-                />
-              </span> */}
             </CardBody>
             <CardFooter>
               {cardFooterContent(subitem)}
@@ -273,12 +274,12 @@ class CardParagraphe extends Component {
             {!this.props.disableEdit && 
               <div className="card-icons">
                 <div onClick={()=>this.props.deleteCard(this.props.keyValue,subkey)}>
-                  <EVAIcon size="xlarge" name="minus-circle" fill={variables.noirCD} className="delete-icon"/>
+                  <EVAIcon size="xlarge" name="close-circle" fill={variables.noirCD} className="delete-icon"/>
                 </div>
               </div>}
           </Card>
 
-          <Tooltip className="card-tooltip backgroundColor-darkColor" isOpen={(subitem.tooltipHeader || subitem.tooltipContent) && !this.props.disableEdit && this.state.tooltipOpen} target={"info-card-" + this.props.keyValue + "-" + subkey} toggle={this.toggleTooltip}>
+          <Tooltip className="card-tooltip backgroundColor-darkColor" isOpen={(subitem.tooltipHeader || subitem.tooltipContent) && !this.props.disableEdit && this.props.withHelp && this.state.tooltipOpen} target={"info-card-" + this.props.keyValue + "-" + subkey} toggle={this.toggleTooltip}>
             <div className="tooltip-header"><b>{subitem.tooltipHeader}</b></div>
             <div className="tooltip-content">{subitem.tooltipContent}</div>
             <div className="tooltip-footer"><u>{subitem.tooltipFooter}</u></div>
@@ -294,7 +295,7 @@ class CardParagraphe extends Component {
             {this.state.papiers.map((element, idx) => 
               <ListGroupItem action key={idx}>
                 <Dropdown isOpen={!this.props.disableEdit && this.state.isModalDropdownOpen[idx]} toggle={()=>this.toggleModalDropdown(idx)}>
-                  {!this.props.disableEdit && <EVAIcon name="minus-circle-outline" onClick={()=>this.removePiece(idx)} className="btn-moins" />}
+                  {!this.props.disableEdit && <EVAIcon name="close-circle" onClick={()=>this.removePiece(idx)} className="btn-moins" />}
                   <DropdownToggle caret={!this.props.disableEdit} className="papiers-toggle-btn">
                     <h6>{element.name}</h6>
                     <u>Comment obtenir cette pièce ?</u>
@@ -321,7 +322,7 @@ const PlusCard = (props) => {
     <Col lg="4" className="card-col">
       <Card className="add-card" onClick={() => props.addItem(props.keyValue, 'card')}>
         <CardHeader className="backgroundColor-darkColor">
-          Ajouter une carte
+          Ajouter un item
         </CardHeader>
         <CardBody>
           <span className="add-sign">+</span>
@@ -333,4 +334,4 @@ const PlusCard = (props) => {
 
 export {PlusCard}
 
-export default CardParagraphe;
+export default withTranslation()(CardParagraphe);

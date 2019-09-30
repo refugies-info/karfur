@@ -1,23 +1,32 @@
 import React from 'react';
-import { Col, Row, Progress, Table, Button } from 'reactstrap';
+import { Col, Row, Table, Button } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import {NavLink} from 'react-router-dom';
+import moment from 'moment/min/moment-with-locales';
+import { withTranslation } from 'react-i18next';
 
-import marioProfile from '../../../../assets/mario-profile.jpg';
-import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
+import FButton from '../../../FigmaUI/FButton/FButton';
+import { fakeFavori } from '../../../../containers/Backend/UserProfile/data';
+
+import variables from 'scss/colors.scss';
+
+moment.locale('fr');
 
 const favoriTable = (props) => {
-  let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
-  
+  const {t} = props;
+  const hasFavori = (props.dataArray || []).length > 0;
+  const dataArray = hasFavori ? props.dataArray : new Array(5).fill(fakeFavori);
+  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
+
   const goToDispositif = (dispositif) => props.history.push("/dispositif/" + dispositif._id)
-  const searchTag = tag => props.history.push({ pathname:"/dispositifs", search: '?tag=' + tag })
+  const searchTag = tag => props.history.push({ pathname:"/advanced-search", search: '?tag=' + tag })
 
   let table = (
-    <Table responsive striped className="avancement-user-table">
+    <Table responsive className="avancement-user-table">
       <thead>
         <tr>
-          {props.headers.map((element,key) => (<th key={key}>{element}</th> ))}
+          {props.headers.map((element,key) => (<th key={key}>{element && typeof element === "string" ? t("Tables." + element, element) : element}</th> ))}
         </tr>
       </thead>
       <tbody>
@@ -25,7 +34,7 @@ const favoriTable = (props) => {
           return (
             <tr key={key} >
               <td className="align-middle">
-                <Icon name="bookmark" fill="#3D3D3D" id="bookmarkBtn" />  
+                <EVAIcon name="bookmark" fill={variables.noir} id="bookmarkBtn" />  
               </td>
               <td className="align-middle pointer" onClick={()=>goToDispositif(element)}>
                 {element.titreMarque + ' - ' + element.titreInformatif} 
@@ -33,24 +42,31 @@ const favoriTable = (props) => {
               <td className="align-middle">
                 {(element.tags || []).map((tag, key) => {
                   return ( 
-                    <Button key={key} color="warning" outline className="tag-btn" onClick={()=>searchTag(tag)}>
-                      {tag}
+                    <Button key={key} color="warning" className="tag-btn" onClick={()=>searchTag(tag.short)}>
+                      {tag.short && t("Tags." + tag.short, tag.short)}
                     </Button>
                   );
                 })}
               </td>
-              <td className="align-middle pointer" onClick={()=>props.removeBookmark(element._id)}>
-                <Icon name="close-circle-outline" fill="#3D3D3D"/>
-                <u>Supprimer</u>
+              <td className="align-middle">
+                {element.datePin ? moment(element.datePin).fromNow() : ""}
+              </td>
+              <td className="align-middle fit-content" onClick={()=>props.removeBookmark(element._id)}>
+                <FButton type="light-action" name="trash-2-outline" fill={variables.noir} />
+              </td>
+              <td className="align-middle fit-content">
+                <NavLink to={"/dispositif/"+element._id} className="no-decoration" >
+                  <FButton type="light-action" name="eye-outline" fill={variables.noir} />
+                </NavLink>
               </td>
             </tr>
           );
         })}
-        {props.limit && 
+        {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('favori')}>
-              <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
-              Voir plus
+              <Icon name="expand-outline" fill={variables.noir} size="large"/>&nbsp;
+              {t("Tables.Voir plus", "Voir plus")}
             </td>
           </tr>
         }
@@ -63,29 +79,24 @@ const favoriTable = (props) => {
       <div className="tableau-wrapper" id="mes-favoris">
         <Row>
           <Col>
-            <h1>{props.title}</h1>
-          </Col>
-          <Col className="d-flex tableau-header no-margin pointer" lg="1">
-            <div className="d-flex left-element" onClick={()=>props.removeBookmark('all')}>
-              <span> <u>Tout supprimer</u> </span>
-            </div>
+            <h1>{t("Tables." + props.title, props.title)}</h1>
           </Col>
         </Row>
   
         <div className="tableau">
           {table}
-        </div>
 
-        {!props.hasFavori &&
-          <div className="ecran-protection no-fav">
-            <div className="content-wrapper">
-              <h1>Retrouvez ici vos pages favorites</h1>
-              <div className="sous-contenu">
-                Sauvegardez-les en cliquant sur cette icône dans les dispositifs :
-                <EVAIcon name="bookmark-outline" fill="#3D3D3D" className="bookmark-icon" /> 
+          {!hasFavori &&
+            <div className="ecran-protection no-fav">
+              <div className="content-wrapper">
+                <h1>{t("Tables.Retrouvez ici vos pages favorites", "Retrouvez ici vos pages favorites")}</h1>
+                <div className="sous-contenu">
+                  {t("Tables.cherche btn", "Cherchez ce bouton dans les contenus pour les sauvegarder")} :
+                  <EVAIcon name="bookmark" fill={variables.noir} className="bookmark-icon" /> 
+                </div>
               </div>
-            </div>
-          </div>}
+            </div>}
+        </div>
       </div>
     )
   }else{
@@ -93,4 +104,4 @@ const favoriTable = (props) => {
   }
 }
 
-export default favoriTable;
+export default withTranslation()(favoriTable);

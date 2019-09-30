@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import track from 'react-tracking';
-import { Card, CardBody, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip, Button } from 'reactstrap';
+import { Card, CardBody, Row, Col, Tooltip, Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import Swal from 'sweetalert2';
+import h2p from 'html2plaintext';
 
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import * as actions from '../../../Store/actions/actionTypes';
-import variables from '../Dispositif.scss';
 
 import './QuickToolbar.scss'
+import variables from '../Dispositif.scss'; //A changer
 
 class QuickToolbar extends Component {
   state= {
@@ -29,8 +29,13 @@ class QuickToolbar extends Component {
     this.props.tracking.trackEvent({ action: 'click', label: 'btn click', value : this.props.disableEdit + "-" + id });
     if(this.props.disableEdit){
       if(id===0){ this.props.toggleModal(true, 'reaction'); }
-      else if(id===1){ this.props.toggleAudio(); }
-      else if(id===2){ this.props.toggleModal(true, 'construction'); }
+      else if(id===1){ 
+        let node=this.props.item;
+        if(this.props.subkey !== undefined && this.props.subkey !== null && this.props.subkey >= 0 && node.children && node.children.length > 0){
+          node = this.props.item.children[this.props.subkey]
+        }
+        this.props.readAudio(h2p(node.title), 'fr-fr', ()=>this.props.readAudio(h2p(node.content))); 
+      }else if(id===2){ this.props.toggleModal(true, 'construction'); }
       else if(id===3){ this.props.toggleModal(true, 'construction');}
     }else{
       if(id===0){ this.props.handleContentClick(this.props.keyValue,true, this.props.subkey) }
@@ -62,7 +67,7 @@ class QuickToolbar extends Component {
                   </Button>
                 </Col>
               </Row>
-              <Row className="second-row">
+              {/* <Row className="second-row">
                 <Col lg="6" md="6" sm="6" xs="6" className="col-btn">
                   <Button className="btn-pill" id="eva-icon-2" onMouseEnter={()=>this._hoverOn(2)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(2)}>
                     <EVAIcon name={"edit-2" + (this.state.fill[2] ? '' : '-outline')} fill={variables.lightColor} className='icon-toolbar'/>
@@ -79,7 +84,7 @@ class QuickToolbar extends Component {
                     </Tooltip>
                   </Button>
                 </Col>
-              </Row>
+        </Row>*/}
             </CardBody>
           </Card>
         )

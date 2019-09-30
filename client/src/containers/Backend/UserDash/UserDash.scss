@@ -1,6 +1,10 @@
+@import 'src/scss/colors.scss';
+
 .user-dash{
-  padding: 30px;
+  padding: 60px;
   position:relative;
+  background: $gris;
+  flex: 1 1;
   
   .profile-header-container{
     text-align: center;
@@ -49,5 +53,19 @@
 
   .recent-row{
     margin-top:39px;
+    margin-left: 0;
+  }
+
+  .limit-width-340 {
+    max-width: 340px;
+  }
+  .flag-icon{
+    font-size: 18px;
+    margin-right: 8px;
+    border-radius: 6px;
+  }
+
+  .meme-ligne{
+    white-space: nowrap;
   }
 }

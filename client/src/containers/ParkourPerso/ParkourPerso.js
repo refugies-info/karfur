@@ -26,14 +26,14 @@ class ParkourPerso extends Component {
   }
 
   componentDidUpdate() {
-    if(this.state.dispositifs.length>0 && this.state.articles.length>0 && user.cookies && user._id && user.cookies.parkourPerso!=this.state){
+    if(this.state.dispositifs.length>0 && this.state.articles.length>0 && user.cookies && user._id && user.cookies.parkourPerso !== this.state){
       user.cookies.parkourPerso=this.state;
       API.set_user_info(user);
     }
   }
 
   getDispositifs = (filter = {}, limit=null) => {
-    API.get_dispositif(filter,{},'', limit).then(data_res => {
+    API.get_dispositif({query: filter,limit}).then(data_res => {
       this.setState({
         dispositifs:data_res.data.data.map(x=> {return {...x, checked:false}}), 
       },()=>{this.getCookies();})

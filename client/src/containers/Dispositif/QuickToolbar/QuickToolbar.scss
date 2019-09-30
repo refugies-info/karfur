@@ -2,7 +2,7 @@
 
 .quick-toolbar{
   width: fit-content;
-  
+  background: transparent;
   top: 50%; 
   transform: translateY(-50%);
   border-radius: 8px;
@@ -22,6 +22,9 @@
       height: 50px;
       border-radius: 50%;
       border:none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .first-row .btn-pill{

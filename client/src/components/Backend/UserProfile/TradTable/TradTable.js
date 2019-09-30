@@ -1,14 +1,22 @@
 import React from 'react';
-import { Col, Row, Progress, Table, Button } from 'reactstrap';
+import { Col, Row, Progress, Table } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import {NavLink} from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import {colorAvancement, colorStatut} from '../../../Functions/ColorFunctions';
-import SVGIcon from '../../../UI/SVGIcon/SVGIcon';
+import FButton from '../../../FigmaUI/FButton/FButton';
+import { fakeTraduction } from '../../../../containers/Backend/UserProfile/data';
+
+import variables from 'scss/colors.scss';
+import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 const tradTable = (props) => {
-  let data = props.limit ? props.dataArray.slice(0,props.limit) : props.dataArray;
+  const {t} = props;
+  const traducteur = (props.dataArray || []).length > 0;
+  const dataArray = traducteur ? props.dataArray : new Array(5).fill(fakeTraduction);
+  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
   let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
 
   const langueItem = i18nCode => {
@@ -17,34 +25,44 @@ const tradTable = (props) => {
       return (
         <>
           <i className={'flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
-          <span>{langue.langueFr}</span>
+          <span>{langue.langueLoc}</span>
         </>
       )
     }else{return false}
   }
   let table = (
-    <Table responsive striped className="avancement-user-table">
+    <Table responsive className="avancement-user-table">
       <thead>
         <tr>
-          {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element}</th> ))}
+          {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element && t("Tables." + element, element)}</th> ))}
         </tr>
       </thead>
       <tbody>
-        {data.slice(0,props.limit).map((element,key) => {
-          let titre= (element.initialText || {}).title || '';
+        {data.map((element,key) => {
+          const titre= element.title || (element.initialText || {}).title || '';
           return (
-            <tr key={key} >
+            <tr 
+              key={key} 
+              onClick={() => props.history.push({
+                pathname: "/traduction/" + (element.type || "string") + "/" + (element.jsonId || element.articleId), 
+                search: '?id=' + ((props.langues || []).find(x => x.i18nCode === element.langueCible) || {})._id,
+                state: { langue: (props.langues || []).find(x => x.i18nCode === element.langueCible)}
+              })} >
               <td className="align-middle">
-                {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 && "..."))}
+                {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 ? "..." : ""))}
               </td>
-              <td className={"align-middle text-"+colorStatut(element.status)}>{element.status}</td>
+              <td className="align-middle">
+                <div className={"status-pill bg-"+colorStatut(element.status)}>{t("Status." + element.status, element.status)}</div>
+              </td>
               <td className="align-middle hideOnPhone">
                 <Row>
                   <Col>
-                    <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} className="mb-3" />
+                    <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} />
                   </Col>
                   <Col className={'text-'+colorAvancement(element.avancement)}>
-                    {Math.round((element.avancement || 0) * 100)} %
+                    {element.avancement === 1 ? 
+                      <EVAIcon name="checkmark-circle-2" fill={variables.vert} /> :
+                      <span>{Math.round((element.avancement || 0) * 100)} %</span> }
                   </Col>
                 </Row>
               </td>
@@ -52,31 +70,35 @@ const tradTable = (props) => {
                 {langueItem(element.langueCible)}
               </td>
               <td className="align-middle hideOnPhone">
-                {element.participants && element.participants.map((participant) => {
-                  return ( 
-                      <img
-                        key={participant._id} 
-                        src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                        className="profile-img img-circle"
-                        alt="random profiles"
-                      />
-                  );
-                })}
+                {element.participants && element.participants.map((participant) => ( 
+                  <img
+                    key={participant._id} 
+                    src={participant.picture ? participant.picture.secure_url : marioProfile} 
+                    className="profile-img-pin img-circle"
+                    alt="random profiles"
+                  />
+                ))}
               </td>
               <td className="align-middle">
-                <NavLink to={"/traduction/"+element.articleId} className="no-decoration" >
-                  <Icon name="eye-outline" fill="#3D3D3D" size="large"/>
-                  <u>Voir</u>
-                </NavLink>
+                <FButton 
+                  tag={NavLink} 
+                  to={{
+                    pathname: "/traduction/" + (element.type || "string") + "/" + element.articleId, 
+                    search: '?id=' + ((props.langues || []).find(x => x.i18nCode === element.langueCible) || {})._id,
+                    state: { langue: (props.langues || []).find(x => x.i18nCode === element.langueCible)}
+                  }} 
+                  type="light-action" 
+                  name="eye-outline" 
+                  fill={variables.noir} />
               </td>
             </tr>
           );
         })}
-        {props.limit && 
+        {props.limit && dataArray.length > 5 && 
           <tr >
             <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('traducteur')}>
-              <Icon name="expand-outline" fill="#3D3D3D" size="large"/>&nbsp;
-              Voir plus
+              <Icon name="expand-outline" fill={variables.noir} size="large"/>&nbsp;
+              {t("Tables.Voir plus", "Voir plus")}
             </td>
           </tr>
         }
@@ -85,10 +107,12 @@ const tradTable = (props) => {
   )
   
   let show=true;
-  const onAnimationEnd = e => show=false;
+  const onAnimationEnd = () => show=false;
 
   const startTrad = () => {
-    if(props.user.selectedLanguages && props.user.selectedLanguages.length>0){
+    if(props.inUserDash){
+      document.getElementById("progression-traduction").scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }else if(props.user.selectedLanguages && props.user.selectedLanguages.length>0){
       props.history.push("/backend/user-dashboard")
     }else{
       props.toggleModal('devenirTraducteur')
@@ -100,55 +124,49 @@ const tradTable = (props) => {
       <div className={"tableau-wrapper" + (props.hide ? " swing-out-top-bck" : "")} id="mes-traductions" onAnimationEnd={onAnimationEnd}>
         <Row>
           <Col>
-            <h1>{props.title}</h1>
+            <h1>{t("Tables." + props.title, props.title)}</h1>
           </Col>
-          <Col className="d-flex tableau-header">
-            <Row className="full-width">
-              <Col lg="auto" md="4" sm="6" xs="12" className="d-flex left-element">
-                <h4>{props.motsRediges}</h4>
-                <span>mots rédigés</span>
-              </Col>
-              <Col lg="auto" md="4" sm="6" xs="12" className="d-flex middle-element">
-                <h4>{props.minutesPassees}</h4>
-                <span>minutes passées</span>
-              </Col>
-              <Col lg="auto" md="4" sm="12" xs="12" className="d-flex right-element">
-                <h4>22</h4>
-                <span>personnes informées</span>
-              </Col>
-            </Row>
-          </Col>
+          {props.displayIndicators && traducteur &&
+            <Col className="d-flex tableau-header">
+              <div className="full-width equi-reparti">
+                <div className="d-flex left-element">
+                  <h4>{props.motsRediges}</h4>
+                  <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Tables.mots rédigés", "mots<br/>rédigés") }} />
+                </div>
+                <div className="d-flex middle-element">
+                  <h4>34</h4>
+                  <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Tables.minutes passées", "minutes<br/>passées") }} />
+                </div>
+                <div className="d-flex right-element">
+                  <h4>22</h4>
+                  <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Tables.personnes informées", "personnes<br/>informées") }} />
+                </div>
+                <FButton tag={NavLink} to="/backend/user-dashboard" type="dark" name="file-add-outline">
+                  {t("Tables.Espace traduction", "Espace traduction")}
+                </FButton>
+              </div>
+            </Col>}
         </Row>
   
         <div className="tableau">
           {table}
-        </div>
 
-        <div className="tableau-footer">
-          <NavLink to="/backend/user-dashboard" className="no-decoration" >
-            <Button>
-              <Icon name="options-2-outline" fill="#FFFFFF" />
-              <span>Gérer mes traductions</span>
-            </Button>
-          </NavLink>
+          {!traducteur &&
+            <div className="ecran-protection no-trad">
+              {/*props.toggleSection && 
+                <div className="close-box text-white" onClick={()=>{props.toggleSection('traductions');}}>
+                  <Icon name="eye-off-2-outline" fill="#FFFFFF" />
+                  <u>Masquer</u>
+              </div>*/}
+              <div className="content-wrapper">
+                <h1>{t("Tables." + props.overlayTitle, props.overlayTitle)}</h1>
+                <span>{props.overlayi18n ? t("Tables." + props.overlayi18n, props.overlaySpan) : props.overlaySpan}</span>
+                <FButton type="light-action" name="play-circle-outline" fill={variables.noir} onClick={startTrad} >
+                  {t("Tables." + props.overlayBtn, props.overlayBtn)}
+                </FButton>
+              </div>
+            </div>}
         </div>
-
-        {!props.traducteur &&
-          <div className="ecran-protection no-trad">
-            {props.toggleSection && 
-              <div className="close-box text-white" onClick={()=>{props.toggleSection('traductions');}}>
-                <Icon name="eye-off-2-outline" fill="#FFFFFF" />
-                <u>Masquer</u>
-              </div>}
-            <div className="content-wrapper">
-              <h1>{props.overlayTitle}</h1>
-              <span>{props.overlaySpan}</span>
-              <Button onClick={startTrad}>
-                <SVGIcon name="translate" />{' '}
-                {props.overlayBtn}
-              </Button>
-            </div>
-          </div>}
       </div>
     )
   }else if(show){
@@ -158,4 +176,4 @@ const tradTable = (props) => {
   }
 }
 
-export default tradTable;
+export default withTranslation()(tradTable);

@@ -1,5 +1,4 @@
 @import 'src/scss/colors.scss';
-@import 'src/scss/common.scss';
 
 .homepage{
   flex: 1 1;
@@ -28,17 +27,34 @@
     .search-row{
       margin-top: 30px;
       display:flex;
+      align-items: center;
+      justify-content: space-between;
+      background: $blanc;
+      opacity: 0.9;
+      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 10px;
+      height: 80px;
+
+      .large-btn{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+      }
     }
     .try-it-out{
       text-align: left;
-      padding-bottom: 10px;
+      font-size: 16px;
+      text-transform: uppercase; 
+      color: $noirCD;
+      font-weight: bold;
     }
   }
 
   .arrowhead-icon{
     position: absolute;
     bottom: 100px;
-    cursor: pointer;
   }
   
   .section-container{
@@ -50,9 +66,13 @@
       width: 50%;
       display: flex;
       flex-direction: column;
+      h2{
+        margin-bottom: 40px;
+      }
 
       &.right-side{
         margin-left: auto;
+
       }
     }
     .section-body{
@@ -114,9 +134,9 @@
   --------------------------------------------------------------*/
   .input-group.md-form.form-sm.form-2 {
     flex: 1;
-    margin-right: 15px;
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    margin-right: 10px;
     border-radius: 12px;
+    height: 100%;
 
     .react-autosuggest__container{
       width:100%;
@@ -128,10 +148,7 @@
       .react-autosuggest__input{
         width:100%;
         border-radius: 12px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        border: 0.5px solid #3C3C3C;
-        border-right: none;
+        border: 0.5px solid $grisFonce;
         height: 100%;
       }
     }
@@ -145,5 +162,31 @@
     font-weight: bold;
     border: 0.5px solid #3C3C3C;
     border-left: none;
+  }
+}
+
+.slide-bottom {
+	-webkit-animation: slide-bottom 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+	        animation: slide-bottom 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+}
+
+ @-webkit-keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+  }
+}
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
   }
 }

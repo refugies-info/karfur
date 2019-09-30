@@ -42,15 +42,6 @@
       background: #ffffff;
       color: $noir;
     }
-
-    &:nth-child(2n){
-      border: 1px solid $rouge;
-      background: $rouge;
-      &:hover{
-        background: transparent;
-        color: #FFFFFF;
-      }
-    }
   }
 
   .plus-button{
@@ -77,8 +68,8 @@
 
   .tags-icons{
     position: absolute;
-    right: -15px;
-    top: -15px;
+    right: -16px;
+    top: -16px;
     cursor: pointer;
   }
 }

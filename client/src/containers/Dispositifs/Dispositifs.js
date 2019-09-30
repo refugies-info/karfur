@@ -38,7 +38,7 @@ class Dispositifs extends Component {
 
   queryDispositifs = query => {
     this.setState({ showSpinner: true })
-    API.get_dispositif({...query, status:'Actif'}).then(data_res => {
+    API.get_dispositif({query: {...query, status:'Actif'}}).then(data_res => {
       let dispositifs=data_res.data.data
       this.setState({ dispositifs:dispositifs, showSpinner: false })
     }).catch(()=>this.setState({ showSpinner: false }))
@@ -61,7 +61,7 @@ class Dispositifs extends Component {
     this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render() {
     const { t } = this.props;

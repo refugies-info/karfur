@@ -23,6 +23,7 @@ var traductionSchema = mongoose.Schema({
 		required: false
   },
   userId:{ type: mongoose.Schema.ObjectId, ref: 'User' },
+  validatorId:{ type: mongoose.Schema.ObjectId, ref: 'User' },
   articleId:{ type: mongoose.Schema.ObjectId, ref: 'Article', required: true },
   status: {
 		type: String,
@@ -58,7 +59,22 @@ var traductionSchema = mongoose.Schema({
 		type: Number,
 		unique: false,
 		required: false
-	}
+  },
+  type:{
+		type: String,
+		unique: false,
+		required: false
+	},
+  title:{
+		type: String,
+		unique: false,
+		required: false
+	},
+  score:{
+		type: Number,
+		unique: false,
+		required: false
+	},
 },{ timestamps: { createdAt: 'created_at' }})
 
 traductionSchema.options.autoIndex = false
