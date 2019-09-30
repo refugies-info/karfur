@@ -1,20 +1,22 @@
 import React from 'react';
 import { Col, Row } from 'reactstrap';
+import { withTranslation } from 'react-i18next';
 
 import EditableParagraph from '../EditableParagraph/EditableParagraph'
 import QuickToolbar from '../../../../containers/Dispositif/QuickToolbar/QuickToolbar';
 import ContenuParagraphe from '../ContenuParagraphe/ContenuParagraphe';
 
 const contenuDispositif = (props) => {
+  const {t} = props;
   return(
     props.menu.map((item, key) => {
       return ( 
         <div key={key} className='contenu-wrapper' id={"contenu-" + key}>
           <Row className="relative-position nopadding">
             <Col lg="12" md="12" sm="12" xs="12" className={'contenu borderColor-darkColor' + (props.uiArray[key].isHover ? ' isHovered' : '')} onMouseEnter={()=>props.updateUIArray(key, null, 'isHover')}>
-              <a className="anchor" id={'item-head-'+key}></a>
-              <h3 className={"contenu-title color-darkColor" + (key !== 0 ? " mt-20": "")}>{item.title}</h3>
-              {item.content!=='null' && <EditableParagraph 
+              <button className="anchor" id={'item-head-'+key}>{item.title}</button>
+              <h3 className={"contenu-title color-darkColor" + (key !== 0 ? " mt-20": "")}>{item.title && t("Dispositif." + item.title, item.title)}</h3>
+              {item.content!==null && item.content!=="null" && <EditableParagraph 
                 keyValue = {key}
                 handleMenuChange={props.handleMenuChange}
                 onEditorStateChange={props.onEditorStateChange}
@@ -23,7 +25,7 @@ const contenuDispositif = (props) => {
                 addItem={props.addItem}
                 {...item}/>}
             </Col>
-            {props.uiArray[key].isHover && 
+            {!props.sideView && props.uiArray[key].isHover && 
               <Col lg="3" md="3" sm="3" xs="3" className='toolbar-col'>
                 <QuickToolbar 
                   show={props.uiArray[key].isHover}
@@ -37,11 +39,11 @@ const contenuDispositif = (props) => {
             keyValue={key}
             {...props} />
           
-          <a className="anchor" id={'item-' + key}></a>
+          <button className="anchor" id={'item-' + key}>{item.title}</button>
         </div>
       )}
     )
   )
 }
 
-export default contenuDispositif;
+export default withTranslation()(contenuDispositif);

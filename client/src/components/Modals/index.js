@@ -15,7 +15,11 @@ import TranslationModal from './TranslationModal/TranslationModal'
 import SuggestionModal from './SuggestionModal/SuggestionModal'
 import ObjectifsModal from './ObjectifsModal/ObjectifsModal'
 import ContributeurModal from './ContributeurModal/ContributeurModal'
-import TraducteurModal from './TraducteurModal/TraducteurModal'
+import TraducteurModal from './TraducteurModal/TraducteurModal';
+import ResponsableModal from './ResponsableModal/ResponsableModal';
+import AddMemberModal from './AddMemberModal/AddMemberModal';
+import EditMemberModal from './EditMemberModal/EditMemberModal';
+import RejectTradModal from './RejectTradModal/RejectTradModal';
 
 export {
   BookmarkedModal,
@@ -35,5 +39,9 @@ export {
   SuggestionModal,
   ObjectifsModal,
   ContributeurModal,
-  TraducteurModal
+  TraducteurModal,
+  ResponsableModal,
+  AddMemberModal,
+  EditMemberModal,
+  RejectTradModal,
 }

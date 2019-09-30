@@ -1,17 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './BackendNavigationItem.css';
+import './BackendNavigationItem.scss';
 
 const backendNavigationItem = ( props ) => (
+  <NavLink
+    exact
+    to={props.link} 
+    onClick={props.closed}
+    className="backend-navgation-wrapper"
+  >
     <li className="BackendNavigationItem">
-      <NavLink
-        to={props.link} 
-        onClick={props.closed}
-        exact>
-        {props.children}
-      </NavLink>
+      {props.children}
     </li>
+  </NavLink>
 );
 
 export default backendNavigationItem;

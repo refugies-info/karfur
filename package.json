@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@google-cloud/translate": "^2.1.3",
+    "airtable": "^0.7.1",
     "axios-logger": "^1.0.0",
     "body-parser": "^1.18.3",
     "chalk": "^2.4.2",
@@ -43,6 +44,7 @@
     "mkdirp": "^0.5.1",
     "mongoose": "^5.4.13",
     "mongoose-gridstore": "^0.1.25",
+    "nodemailer": "^6.3.0",
     "parse-json": "^4.0.0",
     "password-hash": "^1.2.2",
     "prepend-http": "^2.0.0",
@@ -54,7 +56,7 @@
     "request-promise": "^4.2.4",
     "sanitize-html": "^1.20.0",
     "session": "^0.1.0",
-    "sessionstore": "^1.3.3",
+    "sessionstore": "^1.3.5",
     "socket.io": "^2.2.0",
     "uniqid": "^5.0.3",
     "xmlbuilder": "^12.0.0"

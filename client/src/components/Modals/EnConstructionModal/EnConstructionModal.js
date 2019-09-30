@@ -4,9 +4,6 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import './EnConstructionModal.scss'
 
 const enConstructionModal = (props) => {
-  const validateMail=()=>{
-    props.toggleModal(false, props.name);
-  }
   return(
     <Modal isOpen={props.show} toggle={()=>props.toggleModal(false, props.name)} className='modal-construction'>
       <ModalHeader toggle={()=>props.toggleModal(false, props.name)}>

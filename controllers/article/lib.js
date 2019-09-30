@@ -63,7 +63,7 @@ function get_article(req, res) {
     var populate = req.body.populate;
     var limit = req.body.limit;
     var random = req.body.random;
-    
+    console.log(query, locale, sort, populate, limit, random)
     let isStructure=false;let structId=null;
     if(query._id && query._id.includes('struct_')){
       isStructure=true;structId=query._id;
@@ -79,22 +79,28 @@ function get_article(req, res) {
       promise=Article.find(query).sort(sort).populate(populate).limit(limit);
     }
     promise.then(result => {
+      // console.log(result)
       let structureArr=[];
-      [].forEach.call(result, (article, i) => { 
+      [].forEach.call(result, (article, i) => {
+        // console.log(article) 
         if(article.isStructure){
+          // console.log(article) 
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
+          console.log(1, "terminé") 
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           if(random && structureArr.length > 1){structureArr = [structureArr[ Math.floor((Math.random() * structureArr.length)) ]]}
           result.splice(i, 1);
         }else{
+          console.log('localizing')
           returnLocalizedContent(article.body, locale)
           article.title=article.title[locale] || article.title.fr;
           article.avancement=article.avancement[locale] || article.avancement.fr
         }
       });
+      console.log(structureArr.length)
       res.status(200).json({
-          "text": "Succès",
-          "data": [...structureArr, ...result]
+        "text": "Succès",
+        "data": [...structureArr, ...result]
       })
     }).catch(err => {
       res.status(500).json({
@@ -115,7 +121,7 @@ function add_traduction(req, res) {
     res.status(401).json({
       "text": "La langue n'est pas spécifiée"
     })
-  }else if (!req.body.translatedText.title && !req.body.translatedText.body) {
+  }else if (!req.body.translatedText) {
     //Le cas où la requête ne serait pas soumise ou nul
     res.status(401).json({
       "text": "Pas de contenu de traduction"
@@ -129,9 +135,9 @@ function add_traduction(req, res) {
         User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "roles": result._id } },{new: true},(e) => {if(e){console.log(e);}}); 
       }
     })
-
+    
     //On l'insère en prod seulement si l'utilisateur a les droits admin ou expert en traduction
-    if(req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null)){
+    if(req.body.type!=='dispositif' && req.user.roles.find(x => x.nom==='Admin' || x.nom==='ExpertTrad') && (req.body.avancement === 1 || req.body.avancement == undefined || req.body.avancement == null) && req.body.translationId){
       let traductionItem=req.body;
       //On transforme le html en JSON après l'avoir nettoyé
       let html=traductionItem.translatedText.body;
@@ -163,9 +169,11 @@ function add_traduction(req, res) {
               }else{succes=false;}
             }else{
               avancement={value : result.avancement[locale] * result.nombreMots};
+              console.log(0, avancement)
               if(_insertStructTranslation(result.body,traductionItem.translatedText.body,locale,traductionItem.jsonId, avancement)){
                 result.markModified("body");
-                if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;};
+                if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;
+                  console.log(1, avancement)};
               }else{succes=false;}
             }
           }else{succes=false;}
@@ -175,6 +183,7 @@ function add_traduction(req, res) {
             req.body.update={status:'Validée'};
             Traduction.findByIdAndUpdate({_id: req.body.translationId},{status:'Validée'},{new: true}).exec();
           }
+          console.log(2, avancement)
           if(succes){
             result.avancement = {...result.avancement,[locale]:avancement.value};
             result.markModified("avancement");
@@ -509,7 +518,9 @@ const _updateAvancement = (locale) => {
 }
 
 _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_at, articles=[], path=[]) => {
+  console.log(structJson.Homepage.subtitle)
   Object.keys(structJson).forEach((key) => {
+    console.log(path, key, structJson[key] && structJson[key].fr, typeof structJson[key].fr, structJson.constructor)
     if(structJson[key] && typeof structJson[key].fr === 'string'){
       let newArticle={
         title: structJson[key].fr,
@@ -522,15 +533,20 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
         created_at:created_at,
         _id: structJson[key].id
       }
+      path.pop()
+      console.log("newArticle: ")
       if(! (query['$or'] && query['$or'].length>0 && query['$or'][0] && query['$or'][0]['avancement.'+locale] && query['$or'][0]['avancement.'+locale]['$lt'] && newArticle.avancement === 1) ){
         articles.push(newArticle)
       }
     }else if(structJson.constructor === Object){
+      console.log('ici')
       path.push(key)
+      console.log(locale, query, status, created_at, articles, path)
       articles=_createFromNested(structJson[key], locale, query, status, created_at, articles, path);
     }
   })
   path.pop()
+  console.log("longueur: ", articles.length)
   return articles
 }
 

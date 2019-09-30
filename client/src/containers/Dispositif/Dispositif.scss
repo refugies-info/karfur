@@ -1,6 +1,5 @@
 @import 'src/scss/global.scss';
 @import 'src/scss/colors.scss';
-@import 'src/scss/common.scss';
 
 $imgWidth : 300px;
 $imgHeight : 350px;
@@ -99,6 +98,7 @@ $imgHeight : 350px;
           z-index:3;
           position: fixed;
           border:none;
+          max-width:210px;
 
           .switch-outline-light .switch-input:checked + .switch-slider{
             &:hover{
@@ -106,38 +106,42 @@ $imgHeight : 350px;
               border-color: $grisFonce;
             }
           }
+            
 
           .card-body{
             display:flex;
             flex-direction: column;
-            align-items: flex-end;
-            border-radius: 12px;
+            align-content: space-between;
+            border-radius: 12px 12px 0px 0px;
+            background: $gris;
 
-            .btn{
-              box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
-              border:none;
-              &.save-btn{
-                background: #FBFBFB;
-                border-radius: 12px;
-                margin-top: 10px;
-              }
-              &.publish-btn{
-                background: $vert;
-                border-radius: 12px;
-                margin-top: 10px;
-              }
+            .validate{
+              margin-top: 10px;
+            }
+
+            .savebtn{
+              margin-top: 10px;
+            }
+            .full-width{
+              width: 100%;
             }
           }
           .card-footer{
-            background: transparent;
+            background: $erreur;
             border:none;
-            padding-right: 0;
-            padding-top:  5px;
+            border-radius: 0px 0px 12px 12px;
+            color: $error;
+            
+            font-weight: bold;
             svg{
-              fill: $noir;
+              fill: $error;
             }
             &:hover{
-              text-decoration: underline;
+              background: $error;
+              color: $blancSimple;
+              svg{
+                fill: $blancSimple;
+              }
             }
           }
         }
@@ -240,9 +244,17 @@ $imgHeight : 350px;
         font-weight: normal;
       }
     }
+
+    &.sideView{
+      display: none;
+    }
   }
 
-  a.anchor {
+  .aside-right.sideView{
+    display: none;
+  }
+
+  .anchor {
     display: block;
     position: relative;
     top: -56px;
@@ -335,9 +347,9 @@ $imgHeight : 350px;
     }
     .blc-dr{
       &.bloc-droite-link{
-        border-radius: 0;
+        border-radius: 0 12px 12px 0;
         padding-left:0;
-        padding-right:0;
+        margin-bottom: 6px;
       }
       &.bloc-droite-alert{
         border-radius: 0 12px 12px 0;
@@ -375,6 +387,9 @@ $imgHeight : 350px;
       display:inline-block;
     }
   }
+  .paragraphe{
+    margin-top: 20px;
+  }
   #contenu-0 .toolbar-editeur{
     top: 32px;
   }
@@ -399,7 +414,7 @@ $imgHeight : 350px;
       position: absolute;
       height: 100%;
       top: 0;
-      right: -20px;
+      right: -50px;
       transform: translateX(100%);
       z-index: 4;
       width: calc(20vw - 40px);
@@ -477,10 +492,14 @@ $imgHeight : 350px;
           text-decoration: none;
         }
         svg{
-          padding-right: 10px;
+          margin-right: 10px;
         }
       }
     }
+  }
+  .small-spinner{
+    width: 16px;
+    height: 16px;
   }
 
   .fiabilite-row{
@@ -527,6 +546,8 @@ $imgHeight : 350px;
       box-shadow: none;
       color: $darkColor;
       padding: 10px;
+      cursor: pointer;
+      display: inline-block;
   
       &.active{
         transition: all 0.2s ease;
@@ -535,8 +556,8 @@ $imgHeight : 350px;
       h5{
         display: flex;
         margin: auto;
+        line-height: 38px;
       }
-  
       .accordion-text{
         margin: 0 18px 0 0;
         font-size: 18px;
@@ -577,6 +598,7 @@ $imgHeight : 350px;
     }
 
     .delete-icon{
+      color: $error;
       position: absolute;
       top: calc(50% + 10px);
       transform: translateY(-50%);
@@ -642,6 +664,10 @@ $imgHeight : 350px;
     font-size: 24px;
   }
 
+  .translating{
+    background: $bgfocus;
+    border-radius: 6px;
+  }
 
   .discussion-footer{
     background: $darkColor;
@@ -660,8 +686,12 @@ $imgHeight : 350px;
       margin-bottom:12px;
     }
 
+    .link-wrapper{
+      width: 100%;
+    }
+
     .input-btn{
-      width: 350px;
+      width: 100%;
       padding: 0;
       .form-control {
         padding-right: 12px;
@@ -745,8 +775,13 @@ $imgHeight : 350px;
     min-width: 20px;
     background: $jauneClair;
     outline: none;
-    min-height:30px;
+    min-height:38px;
     padding-right: 40px;
+  }
+  
+  h1 div[contenteditable="true"]{
+    min-height:60px;
+    min-width: 60px;
   }
 
   div[contenteditable=true]:empty:before {
@@ -758,6 +793,13 @@ $imgHeight : 350px;
   .wrapper-editeur{
     border: 1px dashed $darkColor;
     border-radius: 12px;
+  }
+
+  .backgroundColor-darkColor{
+    background: $darkColor;
+  }
+  .backgroundColor-lightColor{
+    background: $lightColor;
   }
 }
 
@@ -866,6 +908,10 @@ $imgHeight : 350px;
     padding: 20px;
     position: relative;
     width: 800px;
+
+    .polygon{
+      fill: $noir
+    }
   }
 }
 
@@ -883,5 +929,5 @@ div[x-placement="bottom"].__floater.__floater__open{
 }
 
 div[x-placement="top"].__floater.__floater__open{
-  margin-top: 20px;
+  margin-top: 60px;
 }

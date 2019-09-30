@@ -23,7 +23,12 @@ var userSchema = mongoose.Schema({
 		trim: true,
 		unique: false,
 		required: false
-	},
+  },
+  phone: {
+		type: String,
+		unique: false,
+		required: false
+  },
 	description: {
     type: String,
     required: false
@@ -36,11 +41,19 @@ var userSchema = mongoose.Schema({
     type: Number,
     required: false
   },
+  notifyObjectifs:{
+    type: Boolean,
+    required: false
+  },
+	objectifTempsContrib: {
+    type: Number,
+    required: false
+  },
   objectifMotsContrib:{
     type: Number,
     required: false
   },
-  notifyObjectifs:{
+  notifyObjectifsContrib:{
     type: Boolean,
     required: false
   },
@@ -75,7 +88,15 @@ var userSchema = mongoose.Schema({
   cookies: { 
     type: Object,
     required: false
-  }
+  },
+  structures: { 
+    type: [{ type: mongoose.Schema.ObjectId, ref: 'Structure' }],
+    required: false
+  },
+  last_connected: { 
+    type: Date,
+    required: false
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, Card, CardBody, Carousel, CarouselItem, CarouselControl, CarouselIndicators, Badge } from 'reactstrap';
+import { Row, Col, Card, CardBody, Carousel, CarouselItem, Badge } from 'reactstrap';
 import { withTranslation } from 'react-i18next';
 import withSizes from 'react-sizes'
 
@@ -87,17 +87,17 @@ class ContribCaroussel extends Component {
       <div className="people-footer">
         <Row className="people-header">
           <Col lg="auto" className="people-subheader">
-            <h5>{t("Dispositif.Contributeurs")}</h5>
+            <h5>{t("Dispositif.Contributeurs", "Contributeurs mobilisés")}</h5>
             <sup><Badge color="light">{contributeurs.length}</Badge></sup>
             <span>Tiennent la page à jour et répondent à vos questions</span>
           </Col>
           <Col lg="auto" className="navigate-btns">
-            <a className="left-btn" onClick={()=>this.previous(maxL)}>
+            <div className="left-btn cursor-pointer" onClick={()=>this.previous(maxL)}>
               <Icon name="arrow-ios-back-outline" size="large" fill={variables.darkColor} />
-            </a>
-            <a className="left-btn" onClick={()=>this.next(maxL)}>
+            </div>
+            <div className="left-btn cursor-pointer" onClick={()=>this.next(maxL)}>
               <Icon name="arrow-ios-forward-outline" size="large" fill={variables.darkColor} />
-            </a>
+            </div>
           </Col>
         </Row>
         <Carousel

@@ -17,7 +17,7 @@ import 'react-notifications/src/notifications.scss';
 import './App.scss';
 
 const loading = () => (<div className="spinner-container"><Spinner color="success" className="waiting-spinner" /></div>);
-const chargement = () => <div>Chargement</div>
+// const chargement = () => <div>Chargement</div>
 
 // Containers
 const Layout = Loadable({
@@ -47,10 +47,10 @@ const Page500 = Loadable({
   loading
 });
 
-const LiveChat = Loadable({
-  loader: () => import('./components/UI/LiveChat/LiveChat'),
-  loading : chargement
-});
+// const LiveChat = Loadable({
+//   loader: () => import('./components/UI/LiveChat/LiveChat'),
+//   loading : chargement
+// });
 
 class App extends Component {
   state = { data: {} }

@@ -1,3 +1,9 @@
+import React from 'react';
+
+import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+
+import variables from 'scss/colors.scss';
+
 const data = [
   {
     name: 'Anglais',
@@ -40,6 +46,13 @@ const fakeFavori = {
   "titreMarque" : "Le nom du dispositif",
 }
 
+const fakeNotifs = {
+  "_id" : "unidentifiantquelconque",
+  "titre" : "Faire son service civique en France",
+  "owner": true,
+  "action": "questions",
+}
+
 const fakeContribution = {
   "_id" : "unidentifiantquelconque",
   "titreInformatif" : "Un exemple de dispositif",
@@ -50,34 +63,40 @@ const fakeContribution = {
 }
 
 const avancement_langue={
-  title: 'Mes traductions',
+  title: 'Traductions',
   headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi',''],
   hideOnPhone: [false, false, true, false, true, false]
 }
 
 const avancement_contrib={
-  title: 'Mes articles',
-  headers: ['Titre', 'Statut', 'Progression', 'Mon rôle', 'Ils rédigent avec moi',''],
-  hideOnPhone: [false, false, true, true, true, false]
+  title: 'Rédactions',
+  headers: ['Titre', 'Statut', 'Ils rédigent avec moi','', ''],
+  hideOnPhone: [false, false, true, false, false]
 }
 
 const avancement_actions={
-  title: 'Action requise',
-  headers: ['Titre', 'Mon rôle', 'Actions', 'Depuis', '', ''],
-  hideOnPhone: [false, true, false, true, false, false]
+  title: 'Notifications',
+  headers: [<EVAIcon name="bell-outline" fill={variables.noir} />, 'Titre', 'Mon rôle', 'Type', 'Depuis', '', ''],
+  hideOnPhone: [false, false, true, false, true, false, false]
 }
 
 const avancement_favoris={
-  title: 'Mes favoris',
-  headers: ['', 'Titre de la page', 'Tags','']
+  title: 'Favoris',
+  headers: [<EVAIcon name="bookmark" fill={variables.noir} />, 'Titre', 'Thèmes', 'Ajouté le','', '']
+}
+
+const data_structure = {
+  title: 'Ma structure',
 }
 
 export {data, 
   fakeTraduction, 
   fakeContribution, 
   fakeFavori,
+  fakeNotifs,
   avancement_langue, 
   avancement_contrib, 
   avancement_actions, 
   avancement_favoris, 
+  data_structure,
 }

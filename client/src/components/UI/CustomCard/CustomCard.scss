@@ -1,7 +1,7 @@
 @import 'src/scss/global.scss';
 @import 'src/scss/colors.scss';
 
-.custom-card{
+.custom-card.card{
   cursor : pointer;
   border-radius: 12px;
   font-size: 16px;
@@ -46,6 +46,7 @@
 
   .align-right{
     text-align:right;
+    color: #FFF;
   }
   
   h3{
@@ -89,6 +90,7 @@
       justify-content: center;
       align-items: center;
       color: hsl(0,0%,20%);
+
     }
   }
 }

@@ -17,3 +17,5 @@ export const fetch_user = () => {
     }else{ return false; }
   };
 };
+
+export const update_user = value => ({ type: actionTypes.UPDATE_USER, value: value });

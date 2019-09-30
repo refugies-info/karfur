@@ -1,16 +1,21 @@
+@import 'src/scss/colors.scss';
 
 .dispositif-validate-modal{
   min-width:650px;
   font-family: CircularStd;
   .modal-content{
-    background: linear-gradient(113.12deg, #3D3D3D 6.51%, #000000 96.1%);
-    mix-blend-mode: normal;
+    background: $noir;
+    border: hidden;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
     color: #FFFFFF;
-    padding:32px;
+    padding:40px;
 
     .modal-header{
+      .close{
+        color: #FFFFFF;
+      }
+      padding: 0;
       border:none;
       h5{
         font-size: 40px;
@@ -18,6 +23,8 @@
       }
     }
     .modal-body{
+      padding: 0;
+      margin-top: 60px;
       p{
         font-size: 18px;
         line-height: 23px;
@@ -28,6 +35,7 @@
       }
     }
     .modal-footer{
+      margin-top: 20px;
       border:none;
       padding:0;
 

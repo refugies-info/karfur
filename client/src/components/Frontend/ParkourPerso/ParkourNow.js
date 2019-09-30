@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Button, Card, CardBody, CardFooter, FormGroup, Input, Label } from 'reactstrap';
+import { Col, Row, CardBody, CardFooter, FormGroup, Input } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 
 import CustomCard from '../../UI/CustomCard/CustomCard';
