@@ -19,7 +19,7 @@ const startup = require('./startup/startup');
 // const oauthLogoutCallback = require('./controllers/account/france-connect').oauthLogoutCallback
 // const getUser = require('./controllers/account/france-connect').getUser
 
-const {NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, DB_CONN, DB_USER, DB_PW, MONGODB_URI} = process.env;
+const {NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, DB_CONN, USERNAME_DB, DB_PW, MONGODB_URI} = process.env;
 
 let scraper;
 if(NODE_ENV === 'dev') {
@@ -47,7 +47,7 @@ let auth = null;
 let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_URI;
 
 // let db_path = DB_CONN;
-// auth = {user: DB_USER, password: DB_PW};
+// auth = {user: USERNAME_DB, password: DB_PW};
 mongoose.connect(db_path, { ...(auth && {auth: auth}), useNewUrlParser: true }).then(() => {
   console.log('Connected to mongoDB');
   startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
