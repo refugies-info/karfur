@@ -2,13 +2,13 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Button, ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import { AppAsideToggler } from '@coreui/react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {toggle_lang_modal} from '../../Store/actions/index';
-import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
+// import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
 import DrawerToggle from '../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle';
 import API from '../../utils/API';
 import AudioBtn from '../UI/AudioBtn/AudioBtn';
@@ -24,7 +24,6 @@ export class Toolbar extends React.Component {
 
   state = {
     dropdownOpen: false,
-    showSearch:true,
   };
 
   disconnect = () => {
@@ -37,18 +36,16 @@ export class Toolbar extends React.Component {
 
   render() {
     const path = this.props.location.pathname;
-    const { i18n, user, contributeur, traducteur } = this.props;
-    let { showSearch } = this.state;
-    let afficher_burger=path.includes("/backend");
-    let afficher_burger_droite=path.includes("/traduction");
+    const { user, contributeur, traducteur, expertTrad, admin, membreStruct } = this.props;
+    let afficher_burger = admin && path.includes("/backend") && path.includes("/admin");
+    let afficher_burger_droite = path.includes("/traduction");
     
     let userImg = (user.picture || {}).secure_url || marioProfile;
-    
     return(
       <header className="Toolbar">
         <div className="left_buttons">
           <DrawerToggle 
-            forceShow={false && afficher_burger}
+            forceShow={afficher_burger}
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <Logo />
           <span className="baseline">Construire sa vie en France</span>
@@ -60,11 +57,10 @@ export class Toolbar extends React.Component {
           {/* <NavigationItems /> */}
         </nav>
 
-        <div className="md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
-          {showSearch && 
-            <SearchBar />}
-          <i onClick={this._toggleSearch} className={"fa fa-search text-grey loupe-btn pointer" + (showSearch ? "" : " icon-only")} aria-hidden="true"></i>
-        </div>
+        <SearchBar
+          loupe
+          className="search-bar inner-addon right-addon"
+        />
 
         <div className="right_buttons">
           <FButton type="dark" name="flash" className="ml-10 mr-10" tag={NavLink} to="/advanced-search"> {/*to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} */}
@@ -74,13 +70,15 @@ export class Toolbar extends React.Component {
           {API.isAuth() ? 
             <ButtonDropdown className="user-dropdown" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
               <DropdownToggle color="transparent">
-                <img src={userImg} className="user-picture" />
+                <img src={userImg} className="user-picture" alt="user" />
                 <div className="user-badge" />
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem onClick={()=>this.navigateTo("/backend/user-profile")}>Mon profil</DropdownItem>
-                {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>Mon univers contribution</DropdownItem>}
-                {traducteur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>Mon univers traduction</DropdownItem>}
+                {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>Espace rédaction</DropdownItem>}
+                {(expertTrad || traducteur) && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>Espace traduction</DropdownItem>}
+                {membreStruct && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-structure")}>Ma structure</DropdownItem>}
+                {admin && <DropdownItem onClick={()=>this.navigateTo("/backend/admin")}>Administration</DropdownItem>}
                 <DropdownItem divider />
                 <NavLink to="/" onClick={this.disconnect}>
                   <DropdownItem className="text-danger">Se déconnecter</DropdownItem>
@@ -112,7 +110,10 @@ const mapStateToProps = (state) => {
     dispositifs: state.dispositif.dispositifs,
     user: state.user.user,
     traducteur: state.user.traducteur,
+    expertTrad: state.user.expertTrad,
     contributeur: state.user.contributeur,
+    admin: state.user.admin,
+    membreStruct: state.user.membreStruct,
   }
 }
 

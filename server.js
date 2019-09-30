@@ -10,6 +10,7 @@ const formData = require('express-form-data')
 const path = require("path");
 const compression = require('compression');
 const startup = require('./startup/startup');
+// const scanner = require('./i18nscanner.js'); // Si besoin de lancer une extraction des strings manquantes en traduction
 
 // const session = require('express-session');
 // const sessionstore = require('sessionstore');
@@ -18,18 +19,20 @@ const startup = require('./startup/startup');
 // const oauthLogoutCallback = require('./controllers/account/france-connect').oauthLogoutCallback
 // const getUser = require('./controllers/account/france-connect').getUser
 
+const {NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, DB_CONN, USERNAME_DB, DB_PW, MONGODB_URI} = process.env;
+
 let scraper;
-if(process.env.NODE_ENV === 'dev') {
+if(NODE_ENV === 'dev') {
   console.log('dev environment')
   //scraper = require('./scraper/puppeter');
 } else{
-  console.log(process.env.NODE_ENV + ' environment')
+  console.log(NODE_ENV + ' environment')
 }
 
 cloudinary.config({ 
-  cloud_name: process.env.CLOUD_NAME, 
-  api_key: process.env.API_KEY, 
-  api_secret: process.env.API_SECRET
+  cloud_name: CLOUD_NAME, 
+  api_key: API_KEY, 
+  api_secret: API_SECRET
 })
 
 //On définit notre objet express nommé app
@@ -40,8 +43,12 @@ var io = require('socket.io')(http);
 
 //Connexion à la base de donnée
 mongoose.set('debug', false);
-let db_path = process.env.NODE_ENV === 'dev' ? 'mongodb://localhost/db' : process.env.MONGODB_URI;
-mongoose.connect(db_path, { useNewUrlParser: true }).then(() => {
+let auth = null;
+let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_URI;
+
+// let db_path = DB_CONN;
+// auth = {user: USERNAME_DB, password: DB_PW};
+mongoose.connect(db_path, { ...(auth && {auth: auth}), useNewUrlParser: true }).then(() => {
   console.log('Connected to mongoDB');
   startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
 }).catch(e => {
@@ -99,10 +106,12 @@ app.use('/images', router);
 app.use('/themes', router);
 app.use('/traduction', router);
 app.use('/dispositifs', router);
+app.use('/structures', router);
 app.use('/channels', router);
 app.use('/tts', router);
 app.use('/audio', router);
 app.use('/webhook', router);
+app.use('/miscellaneous', router);
 require(__dirname + '/controllers/userController')(router);
 require(__dirname + '/controllers/eventsController')(router);
 require(__dirname + '/controllers/translateController')(router);
@@ -113,10 +122,12 @@ require(__dirname + '/controllers/imageController')(router);
 require(__dirname + '/controllers/themesController')(router);
 require(__dirname + '/controllers/traductionController')(router);
 require(__dirname + '/controllers/dispositifController')(router);
+require(__dirname + '/controllers/structureController')(router);
 require(__dirname + '/controllers/channelController')(router, io);
 require(__dirname + '/controllers/ttsController')(router);
 require(__dirname + '/messenger/controller')(router);
 require(__dirname + '/controllers/audioController')(router);
+require(__dirname + '/controllers/miscellaneousController')(router);
 // app.get('/login-callback', oauthLoginCallback);
 // app.get('/logout-callback', oauthLogoutCallback);
 // app.get('/user', getUser);

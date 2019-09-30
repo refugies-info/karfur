@@ -44,7 +44,7 @@ class ParkourOnBoard extends Component {
     this.setState({loading:true})
     let filter={status:'Actif'};
     data.map((x,id) => (id !== 2 && (id<3 || this.state.isToggleOpen) ) ? filter[x.queryName] = x.query || x.value : undefined);
-    API.get_dispositif(filter).then(data_res => {
+    API.get_dispositif({query: filter}).then(data_res => {
       let dispositifs=data_res.data.data;
       this.setState({
         dispositifs:dispositifs.filter(x => !this.state.pinned.find( y => y._id === x._id)), 
@@ -55,9 +55,9 @@ class ParkourOnBoard extends Component {
 
   retrieveCookies = () => {
     // Cookies.set('data', 'ici un test');
-    let dataC=Cookies.getJSON('data');
+    // let dataC=Cookies.getJSON('data');
     // if(dataC){ this.setState({data:data.map((x,key)=> {return {...x, value:dataC[key] || x.value}})})}
-    let pinnedC=Cookies.getJSON('pinnedC');
+    // let pinnedC=Cookies.getJSON('pinnedC');
     // if(pinnedC){ this.setState({pinned:pinnedC})}
     if(API.isAuth()){
       API.get_user_info().then(data_res => {
@@ -233,7 +233,7 @@ class ParkourOnBoard extends Component {
             Voici un aperçu de la vue à venir
           </ModalHeader>
           <ModalBody>
-            <img src={vueParkourPerso} className="image-parkour" />
+            <img src={vueParkourPerso} className="image-parkour" alt="parkour" />
           </ModalBody>
         </Modal>
       </div>

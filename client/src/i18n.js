@@ -22,7 +22,7 @@ i18n
     fallbackLng: ['fr', 'en'], // use en if detected lng is not available
 
     interpolation: {
-      escapeValue: true // react already safes from xss
+      escapeValue: true, // react already safes from xss
     },
   });
 

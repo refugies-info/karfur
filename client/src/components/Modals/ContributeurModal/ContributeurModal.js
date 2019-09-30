@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import { withTranslation } from 'react-i18next';
 import { Col, Row, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input } from 'reactstrap';
 import Icon from 'react-eva-icons';
-import {NavLink} from 'react-router-dom';
 
 import {filtres} from '../../../containers/Dispositif/data';
-import {randomColor} from '../../Functions/ColorFunctions';
 
 import './ContributeurModal.scss'
 
@@ -29,7 +27,7 @@ class ContributeurModal extends Component {
     //   let userRes=data.data.data;
     //   if(!userRes){return}
       if(this.props.redirect){
-        this.props.history.push({ pathname: '/backend/user-dash-contrib' })
+        this.props.history.push('/dispositif')
       }else if(this.props.setUser){
         this.props.setUser()
       }

@@ -1,18 +1,30 @@
-$lightColor: #F2F2F2;
-$darkColor: #212121;
-$cardColor: #828282;
 $blanc: #FBFBFB;
 $gris: #F2F2F2;
 $grisFonce: #828282;
+$noir3: #E5E5E5;
 $rouge: #E55039;
 $vert: #2CA12A;
 $vertFonce: #219653;
 $noir: #212121;
 $noirCD: #CDCDCD;
 $violet: #583F93;
-$focus: #2D9CDB;
-$blanc: #FFFFFF;
+$blancSimple: #FFFFFF;
 $jauneClair: #FFF7AE;
+$gradiantSplash: radial-gradient(69.75% 67.64% at 100% -3.25%, #ADEA5C 0%, rgba(173, 234, 92, 0) 100%), radial-gradient(118.25% 69.25% at -3.25% -5.5%, #149295 0%, rgba(20, 146, 149, 0) 100%), radial-gradient(100% 100% at 100% 92.25%, #EA6206 0%, rgba(255, 255, 255, 0) 100%, rgba(234, 98, 6, 0) 100%), radial-gradient(135.5% 137.75% at -10% 109%, #55A6CE 0%, #55A6CE 100%);
+
+$attention : #F9EF99;
+$uiattention : #FFEB3B;
+$validation : #DEF7C2;
+$validationHover : #4CAF50;
+$validationDefault : #8BC34A;
+$error: #F44336;
+$erreur: #FFCECB;
+$lightColor: #F2F2F2;
+$darkColor: #212121;
+$cardColor: #828282;
+$focus: #2D9CDB;
+$bgfocus : #D2EDFC;
+$standby : #FDD497;
 
 :export {
   lightColor: $lightColor;
@@ -27,6 +39,13 @@ $jauneClair: #FFF7AE;
   focus: $focus;
   grisFonce: $grisFonce;
   noirCD: $noirCD;
-  blanc: $blanc;
+  blancSimple: $blancSimple;
   jauneClair: $jauneClair;
+  attention: $attention;
+  validation: $validation;
+  validationHover: $validationHover;
+  error: $error;
+  erreur: $erreur;
+  uiattention: $uiattention;
+  standby: $standby;
 }

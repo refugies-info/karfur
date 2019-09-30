@@ -3,9 +3,11 @@ import { withTranslation } from 'react-i18next';
 import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGroup, Label, Spinner } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import DraggableList from '../../UI/DraggableList/DraggableList';
 import API from '../../../utils/API';
+import {fetch_user} from '../../../Store/actions';
 
 import './TraducteurModal.scss'
 
@@ -43,20 +45,23 @@ class TraducteurModal extends Component {
     let user={...this.props.user}
     let newUser={
       _id: user._id,
-      selectedLanguages: [...this.shadowSelectedLanguages, ...this.state.langues.filter(x => x.checked && !this.shadowSelectedLanguages.some(y=>y._id === x._id)) ].map(el =>{return { _id: el._id, i18nCode: el.i18nCode, langueCode: el.langueCode, langueFr: el.langueFr, langueLoc: el.langueLoc}})
+      selectedLanguages: [...this.shadowSelectedLanguages, ...this.state.langues.filter(x => x.checked && !this.shadowSelectedLanguages.some(y=>y._id === x._id)) ].map(el =>{return { _id: el._id, i18nCode: el.i18nCode, langueCode: el.langueCode, langueFr: el.langueFr, langueLoc: el.langueLoc}}),
+      traducteur: true,
     }
     API.set_user_info(newUser).then(data => {
-      this.setState({spinner:false})
       let userRes=data.data.data;
       if(!userRes){return}
-      if(this.props.redirect){
-        this.props.history.push({
-          pathname: '/backend/user-dashboard',
-          state: { user: userRes}
-        })
-      }else if(this.props.setUser){
-        this.props.setUser(userRes)
-      }
+      this.props.fetch_user().then(()=>{
+        this.setState({spinner:false});
+        if(this.props.redirect){
+          this.props.history.push({
+            pathname: '/backend/user-dashboard',
+            state: { user: userRes}
+          })
+        }else if(this.props.setUser){
+          this.props.setUser(userRes)
+        }
+      });
     })
   }
 
@@ -71,7 +76,7 @@ class TraducteurModal extends Component {
           C'est parti !
         </ModalHeader>
         <ModalBody>
-          <h3>Quels sont vos langues de travail ?</h3>
+          <h3>Quelles sont vos langues de travail ?</h3>
           <FormGroup row>
             {(langues || []).map((langue, key) => (
               <Col lg="3" key={key}>
@@ -113,6 +118,16 @@ class TraducteurModal extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    langues: state.langue.langues,
+  }
+}
+
+const mapDispatchToProps = {fetch_user};
+
 export default withRouter(
-  withTranslation()(TraducteurModal)
+  withTranslation()(
+    connect(mapStateToProps, mapDispatchToProps)(TraducteurModal)
+  )
 );

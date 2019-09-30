@@ -1,77 +1,70 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Button, Progress, Badge, Modal, Spinner } from 'reactstrap';
+import { Col, Row, Progress, Table, Modal, Spinner } from 'reactstrap';
 import ReactJoyride from 'react-joyride';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
+import Icon from 'react-eva-icons';
+import { connect } from 'react-redux';
 
 import marioProfile from '../../../assets/mario-profile.jpg'
-import {languages, past_translation, steps} from './data'
-import {colorAvancement, colorStatut} from '../../../components/Functions/ColorFunctions'
-import AvancementTable from '../../../components/Translation/Avancement/AvancementTable';
+import {steps, avancement_langue, avancement_data} from './data'
+import {colorAvancement} from '../../../components/Functions/ColorFunctions'
 import API from '../../../utils/API'
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
-import Icon from 'react-eva-icons/dist/Icon';
-import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import { ObjectifsModal, TraducteurModal } from '../../../components/Modals';
+import {TradTable} from '../../../components/Backend/UserProfile';
+import FButton from '../../../components/FigmaUI/FButton/FButton';
+import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
 import './UserDash.scss';
+import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
-const past_translation_data={
-  title: 'Traductions récemment effectuées',
-  headers: ['Langue', 'Texte traduit','Statut', 'Depuis'],
-  hideOnPhone: [false,false,true,false],
-  data: past_translation
-}
-
-const avancement_data={
-  title: 'Progression de la traduction par langue',
-  headers: ['Langue', 'Progression', 'Traducteurs mobilisés', '',''],
-  hideOnPhone: [false,true,true,false,false],
-  data: languages
-}
-
 class UserDash extends Component {
   state={
-    showModal:{objectifs:false, traductionsFaites: false, progression:false, defineUser: false}, 
-    runJoyRide:true, //penser à le réactiver !!
+    showModal:{objectifs:false, traducteur: false, progression:false, defineUser: false}, 
+    runJoyRide:false, //penser à le réactiver !!
     user:{},
-    langues:[],
-    allLangues:[],
+    languesUser:[],
     traductionsFaites:[],
     progression:{
       timeSpent:0,
       nbMots:0
     },
-    isExpert: false,
-    isMainLoading: true
+    isMainLoading: true,
+    showSections:{traductions: true},
+    tradsForReview: [],
   }
 
   componentDidMount() {
-    API.get_user_info().then(data_res => {
-      let user=data_res.data.data;
-      if(user.selectedLanguages && user.selectedLanguages.length > 0){
-        API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
-          console.log(data_langues.data.data)
-          this.setState({langues: data_langues.data.data, isMainLoading: false})
+    let user=this.props.user;
+    console.log(user)
+    if(user && user.selectedLanguages && user.selectedLanguages.length > 0){
+      API.get_langues({'_id': { $in: user.selectedLanguages}},{avancement: 1},'participants').then(data_langues => {
+        console.log(data_langues.data.data)
+        this.setState({languesUser: data_langues.data.data, isMainLoading: false}, () => {
+          if(this.props.expertTrad){
+            API.get_tradForReview({'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"},{updatedAt: -1}).then(data => {console.log(data.data.data)
+              this.setState({languesUser: this.state.languesUser.map( x => ({...x, nbTrads: ((data.data.data || []).filter(y => y.langueCible === x.i18nCode) || []).length }) ) })
+            })
+          }
         })
-        API.get_progression().then(data_progr => {
-          console.log(data_progr.data.data)
-          if(data_progr.data.data && data_progr.data.data.length>0)
-            this.setState({progression: data_progr.data.data[0]})
-        })
-        API.get_tradForReview({'_id': { $in: user.traductionsFaites}},{updatedAt: -1}).then(data => {
-          console.log(data.data.data)
-          this.setState({traductionsFaites: data.data.data})
-        })
-      }else{
-        this.setState({isMainLoading:false, showModal:{...this.state.showModal, defineUser: true}})
-      }
-      API.get_langues({},{langueFr: 1}).then(data_langues => { this.setState({allLangues: data_langues.data.data}) })
-      this.setState({user:user, isExpert: user.roles.some(x=>x.nom==="ExpertTrad")})
-    })
+      })
+      API.get_progression().then(data_progr => {
+        console.log(data_progr.data.data)
+        if(data_progr.data.data && data_progr.data.data.length>0)
+          this.setState({progression: data_progr.data.data[0]})
+      })
+      API.get_tradForReview({'_id': { $in: user.traductionsFaites}},{updatedAt: -1}).then(data => {
+        console.log(data.data.data)
+        this.setState({traductionsFaites: data.data.data})
+      })
+    }else{
+      this.setState({isMainLoading:false, showModal:{...this.state.showModal, defineUser: true}})
+    }
+    this.setState({user:user})
     window.scrollTo(0, 0);
   }
 
@@ -80,8 +73,13 @@ class UserDash extends Component {
     if(modal === 'defineUser' && this.state.showModal.defineUser && (!this.state.user.selectedLanguages || this.state.user.selectedLanguages.length === 0)){
       this.triggerConfirmationRedirect();
     }else{
-      this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}}, ()=>(console.log(this.state)))
+      this.setState(pS => ({showModal : {...pS.showModal, [modal]: !pS.showModal[modal]}}), ()=>(console.log(this.state)))
     }
+  }
+  
+  toggleSection = (section) => {
+    this.props.tracking.trackEvent({ action: 'toggleSection', label: section, value : !this.state.showSections[section] });
+    this.setState({showSections : {...this.state.showSections, [section]: !this.state.showSections[section]}})
   }
 
   triggerConfirmationRedirect = () => {
@@ -118,14 +116,14 @@ class UserDash extends Component {
   }
 
   quickAccess = (langue=null) => {
-    if(!langue && this.state.langues.length > 0){langue=this.state.langues.find(x=> x.langueCode!=='fr')}
+    if(!langue && this.state.languesUser.length > 0){langue=this.state.languesUser.find(x=> x.langueCode!=='fr')}
     if(!langue){return false;}
     let i18nCode=langue.i18nCode;
     let nom='avancement.'+i18nCode;
     let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
     API.getArticle({query: query, locale:i18nCode, random:true}).then(data_res => {
       let articles=data_res.data.data;
-      if(articles.length===0){Swal.fire( 'Oh non', 'Aucun résultat n\'a été retourné, veuillez rééssayer', 'error')}
+      if(articles.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
       else{ this.props.history.push({ pathname: '/traduction/'+ articles[0]._id, search: '?id=' + langue._id, state: { langue: langue} }) }    
     })
   }
@@ -137,119 +135,24 @@ class UserDash extends Component {
 
   setUser = user => {
     API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
-      this.setState({user, langues: data_langues.data.data});
-      this.toggleModal('defineUser')
+      this.setState({user, languesUser: data_langues.data.data});
+      this.toggleModal('defineUser');
     })
   }
 
   validateObjectifs = newUser => {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
-      Swal.fire( 'Yay...', 'Vos objectifs ont bien été enregistrés', 'success')
+      Swal.fire( {title: 'Yay...', text: 'Vos objectifs ont bien été enregistrés', type: 'success', timer: 1500})
       this.setState({user:data.data.data})
       this.toggleModal('objectifs')
     })
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render() {
-    let {langues, traductionsFaites, allLangues, isMainLoading} = this.state;
-
-    const buttonTraductions = element => (
-      (this.state.user.roles || []).find(x => x.nom==='ExpertTrad') ?
-        <Button block color="info" onClick={() => this.openTraductions(element)}>Valider les traductions</Button>
-        :
-        <Button block color="primary" className="traduire-btn" onClick={() => this.openThemes(element)}>
-          <SVGIcon name="translate" fill="#FFFFFF"/>
-          <span>Commencer à traduire</span>
-        </Button>
-    )
-
-    const TraductionsRecentes = (props) => {
-      let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
-      return (
-        <AvancementTable 
-          toggleModal={()=>this.toggleModal('traductionsFaites')}
-          protection={data.length === 0}
-          quickAccess={this.quickAccess}
-          {...past_translation_data}
-          >
-          {data.map( element => {
-            let langElem=langues.find(x=>x.i18nCode===element.langueCible) || {};
-            return (
-              <tr 
-                key={element._id} 
-                onClick={this.navigateToDashLang}>
-                <td className="align-middle">
-                  <i className={'flag-icon flag-icon-' +  langElem.langueCode} title={element.code} id={element.code}></i>
-                  <b>{langElem.langueFr}</b>
-                </td>
-                <td className="align-middle text-grey">{(element.initialText || {}).title}</td>
-                <td className="align-middle hideOnPhone">
-                  <Badge color={colorStatut(element.status)}>{element.status}</Badge>
-                </td>
-                <td className="align-middle since-col">
-                  {moment(element.updatedAt).fromNow()}
-                </td>
-              </tr>
-            );
-          })}
-        </AvancementTable>
-      )
-    }
-
-    const ProgressionTraduction = (props) => {
-      let data = props.limit ? [...props.dataArray].slice(0,props.limit) : props.dataArray;
-      return (
-        <AvancementTable 
-          toggleModal={()=>this.toggleModal('progression')} 
-          {...avancement_data}
-          >
-          {data.map( element => {
-            return (
-              <tr key={element._id} >
-                <td className="align-middle">
-                  <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.code} id={element.code}></i>
-                  {element.langueFr}
-                </td>
-                <td className="align-middle hideOnPhone">
-                  <div>
-                    {Math.round((element.avancement || 0) * 100)} %
-                  </div>
-                  <Progress color={colorAvancement(element.avancement)} value={(element.avancement || 0)*100} className="mb-3" />
-                </td>
-                <td className="align-middle hideOnPhone">
-                  {(element.participants || []).slice(0,5).map((participant) => {
-                    return ( 
-                        <img
-                          key={participant._id} 
-                          src={participant.picture ? participant.picture.secure_url : marioProfile} 
-                          className="profile-img img-circle"
-                          alt="random profiles"
-                        />
-                    );
-                  })}
-                  {(element.participants || []).length>5 && " ..."}
-                </td>
-                <td className="align-middle">
-                  {element.avancement !== 1 && 
-                    <Button block color="warning" className="quick-btn" onClick={() => this.quickAccess(element)}>
-                      <Icon name="flash-outline" fill="#3D3D3D" />
-                      <span>Aléatoire</span>
-                    </Button>}
-                </td>
-                <td className="align-middle">
-                  {element.avancement !== 1 && 
-                    buttonTraductions(element)}
-                </td>
-              </tr>
-            );
-          })}
-        </AvancementTable>
-      )
-    }
-
+    let {languesUser, traductionsFaites, isMainLoading, showSections} = this.state;
     return (
       <div className="animated fadeIn user-dash">
         <ReactJoyride
@@ -262,43 +165,79 @@ class UserDash extends Component {
         />
 
         <DashHeader 
-          title="Mes traductions"
-          ctaText="Modifier mes langues de travail"
+          traducteur
+          title="Espace traduction"
+          ctaText="Mes objectifs"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}
           upcoming={this.upcoming}
+          objectifMots={this.state.user.objectifMots}
+          objectifTemps={this.state.user.objectifTemps}
           motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt
           minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 1000 / 60))} //idem
         />
         
-        <Row className="recent-row">
-          <TraductionsRecentes
-            dataArray={traductionsFaites}
-            limit={5} />
-        </Row>
-
         <Row>
           <ProgressionTraduction
-            dataArray={langues}
-            limit={5} />
+            dataArray={languesUser}
+            isExpert={this.props.expertTrad}
+            user={this.state.user}
+            openThemes={this.openThemes} 
+            openTraductions={this.openTraductions} 
+            limit={5}
+            {...avancement_data} />
         </Row>
 
-        <Modal isOpen={this.state.showModal.traductionsFaites} toggle={()=>this.toggleModal('traductionsFaites')} className='modal-plus'>
-          <TraductionsRecentes dataArray={traductionsFaites} />
+        <Row className="recent-row">
+          <TradTable 
+            inUserDash
+            dataArray={traductionsFaites}
+            user={this.state.user}
+            langues={languesUser}
+            toggleModal={this.toggleModal}
+            toggleSection={this.toggleSection}
+            hide={!showSections.traductions}
+            overlayTitle="Aidez à traduire les contenus"
+            overlaySpan="Bilingue ? Polyglotte ? Participez à l’effort de traduction à votre rythme :"
+            overlayBtn="Démarrer une session"
+            overlayRedirect={false}
+            history={this.props.history}
+            windowWidth={this.props.windowWidth}
+            motsRediges={this.state.progression.nbMots}
+            minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
+            limit={5}
+            {...avancement_langue} />
+        </Row>
+
+        <Modal isOpen={this.state.showModal.traducteur} toggle={()=>this.toggleModal('traducteur')} className='modal-plus'>
+          <TradTable 
+            dataArray={traductionsFaites}
+            user={this.state.user}
+            langues={languesUser}
+            toggleModal={this.toggleModal}
+            windowWidth={this.props.windowWidth}
+            history={this.props.history}
+            {...avancement_langue} />
         </Modal>
         <Modal isOpen={this.state.showModal.progression} toggle={()=>this.toggleModal('progression')} className='modal-plus'>
-          <ProgressionTraduction dataArray={allLangues} />
+          <ProgressionTraduction 
+            dataArray={this.props.langues}
+            isExpert={this.props.expertTrad}
+            user={this.state.user}
+            openThemes={this.openThemes} 
+            openTraductions={this.openTraductions} 
+            {...avancement_data} />
         </Modal>
 
         <ObjectifsModal 
+          traducteur
           show={this.state.showModal.objectifs} 
           toggle={()=>this.toggleModal('objectifs')}
           validateObjectifs={this.validateObjectifs} />
         
         <TraducteurModal 
           user={this.state.user} 
-          langues={allLangues}
           show={this.state.showModal.defineUser} 
           setUser={this.setUser}
           toggle={()=>this.toggleModal('defineUser')} />
@@ -315,6 +254,102 @@ class UserDash extends Component {
   }
 }
 
+const buttonTraductions = (element, user, openThemes, openTraductions) => (
+  (user.roles || []).find(x => x.nom==='ExpertTrad') ?
+    element.nbTrads > 0 ?
+      <FButton type="dark" name="done-all-outline" fill={variables.noir} onClick={() => openTraductions(element)}>
+        Valider les traductions
+      </FButton> :
+      <b className="meme-ligne">Rien à valider !</b> :
+    <FButton type="dark" name="play-circle" fill={variables.noir} onClick={() => openThemes(element)}>Démarrer</FButton>
+)
+
+const ProgressionTraduction = (props) => {
+  const hasLangues = (props.dataArray || []).length > 0;
+  const dataArray = hasLangues ? props.dataArray : new Array(5).fill({langueFr: "Français", langueCode: "fr", avancement: 1});
+  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
+  let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+
+  return (
+    <div className="tableau-wrapper" id="progression-traduction">
+      <Row>
+        <Col>
+          <h1>{props.title}</h1>
+        </Col>
+      </Row>
+      <div className="tableau">
+        <Table responsive className="avancement-user-table">
+          <thead>
+            <tr>
+              {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element}</th> ))}
+            </tr>
+          </thead>
+          <tbody>
+            {data.map( (element, key) => {
+              return (
+                <tr 
+                  key={element._id || key} 
+                  onClick={() =>  element.avancement !== 1 && (props.isExpert ? props.openTraductions(element) : props.openThemes(element) )}
+                  className={element.avancement === 1 ? "terminee" : ""} > 
+                  <td className="align-middle">
+                    <i className={'flag-icon flag-icon-' + element.langueCode + ' h1'} title={element.code} id={element.code}></i>
+                    {element.langueFr}
+                  </td>
+                  <td className="align-middle hideOnPhone">
+                    <Row>
+                      <Col>
+                        <Progress color={colorAvancement(element.avancement)} value={element.avancement*100} />
+                      </Col>
+                      <Col className={'text-'+colorAvancement(element.avancement)}>
+                        {element.avancement === 1 ? 
+                          <EVAIcon name="checkmark-circle-2" fill={variables.vert} /> :
+                          <span>{Math.round((element.avancement || 0) * 100)} %</span> }
+                      </Col>
+                    </Row>
+                  </td>
+                  <td className="align-middle hideOnPhone">
+                    <b className="mr-10">{(element.participants || []).length}</b>
+                    {(element.participants || []).slice(0,5).map((participant) => {
+                      return ( 
+                          <img
+                            key={participant._id} 
+                            src={participant.picture ? participant.picture.secure_url : marioProfile} 
+                            className="profile-img-pin img-circle"
+                            alt="random profiles"
+                          />
+                      );
+                    })}
+                    {(element.participants || []).length>5 && " ..."}
+                  </td>
+                  <td className="align-middle fit-content">
+                    {element.avancement !== 1 && 
+                      buttonTraductions(element, props.user, props.openThemes, props.openTraductions)}
+                  </td>
+                </tr>
+              );
+            })}
+            {props.limit && dataArray.length > 5 && 
+              <tr >
+                <td colSpan="6" className="align-middle voir-plus" onClick={()=>props.toggleModal('progression')}>
+                  <Icon name="expand-outline" fill={variables.noir} size="large"/>&nbsp;
+                  Voir plus
+                </td>
+              </tr> }
+          </tbody>
+        </Table>
+      </div>
+    </div>
+  )
+}
+
+const mapStateToProps = (state) => {
+  return {
+    langues: state.langue.langues,
+    user: state.user.user,
+    expertTrad: state.user.expertTrad,
+  }
+}
+
 export default track({
   page: 'UserDash',
-})(UserDash);
+})(connect(mapStateToProps)(UserDash));

@@ -1,4 +1,6 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
+
 .react-autosuggest__container {
   position: relative;
   width: 100%;
@@ -27,8 +29,6 @@
 
   .react-autosuggest__suggestions-container {
     display: none;
-    
-
   }
 
   .react-autosuggest__suggestions-container--open {
@@ -36,7 +36,6 @@
     position: absolute;
     top: 51px;
     width: 100%;
-    background-color: #fff;
     font-weight: 300;
     font-size: 16px;
     z-index: 2;
@@ -88,5 +87,96 @@
 
   .react-autosuggest__suggestion--focused .highlight {
     color: #120000;
+  }
+
+  .plus-btn{
+    padding: 12px;
+    background: $grisFonce;
+    border-radius: 1000px;
+    display: inline-block;
+    line-height: 18px;
+  }  
+}
+
+.search-bar{
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  @include media-max("tablet-up") { display: none; }
+
+  .react-autosuggest__container input{
+    background:transparent;
+    border: 0.5px solid $noir;
+    border-radius: 12px;
+    padding-right: 42px;
+    padding-left: 15px;
+    font-size: 16px;
+    font-weight: 400;
+    height: 40px;
+    width:100%;
+    &:hover{
+      background-color: $gris;
+    }
+    &:focus::-webkit-input-placeholder { color:transparent; }
+    &:focus:-moz-placeholder { color:transparent; }
+
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: $noir;
+      opacity: 1; /* Firefox */
+    }
+    
+    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: $noir;
+    }
+    
+    &::-ms-input-placeholder { /* Microsoft Edge */
+      color: $noir;
+    }
+  }
+
+  .loupe-btn{
+    position: absolute;
+    padding: 10px;
+    right: 5px;
+    font-size: 24px;
+    transform: matrix(-1, 0, 0, 1, 0, 0) translateY(-50%);
+    color: $noir;
+    top: 20px;
+
+    &.icon-only{
+      position: relative;
+      right: 0;
+      transform: matrix(-1, 0, 0, 1, 0, 0);
+    }
+  }
+
+  &.isArray{
+    .react-autosuggest__suggestions-container--open {
+      background: transparent;
+      box-shadow:none;
+      border-radius: 12px;
+      position: relative;
+      top: 0;
+    }
+    .react-autosuggest__suggestions-list {
+      background: transparent;
+      border-radius: 12px;
+    }
+    .react-autosuggest__suggestion {
+      padding: 10px 15px;
+      background: $blancSimple;
+      border-radius: 12px;
+      margin-top: 10px;
+      &:hover{
+        background: $validation;
+      }
+    }
+    .name{
+      color: $grisFonce;
+    }
+    .selection-logo{
+      max-width: 40px;
+      max-height: 40px;
+    }
   }
 }

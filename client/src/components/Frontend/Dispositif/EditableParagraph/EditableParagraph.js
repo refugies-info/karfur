@@ -3,7 +3,7 @@ import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip } from 'r
 import ContentEditable from 'react-contenteditable';
 import { Editor } from 'react-draft-wysiwyg';
 
-import Backdrop from '../../../UI/Backdrop/Backdrop';
+// import Backdrop from '../../../UI/Backdrop/Backdrop';
 import {boldBtn, italicBtn, underBtn, listBtn, imgBtn, videoBtn, linkBtn} from '../../../../assets/figma/index'
 import CustomOption from './CustomOption/CustomOption'
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
@@ -35,7 +35,7 @@ class EditableParagraph extends Component {
             placeholder={props.placeholder}
             onEditorStateChange={(editorState)=>props.onEditorStateChange(editorState, props.keyValue, props.subkey)}
             editorState={props.editorState}
-            toolbarCustomButtons={[<CustomOption />]}
+            // toolbarCustomButtons={[<CustomOption />]}
             toolbar={{
               options: ['inline','list', 'image', 'embedded', 'link'],
               inline: {
@@ -100,6 +100,7 @@ class EditableParagraph extends Component {
         <ContentEditable
           id={props.keyValue}
           data-subkey={props.subkey}
+          data-target={props.target}
           className="animated fadeIn"
           html={props.content || '' }  // innerHTML of the editable div
           placeholder={props.placeholder}

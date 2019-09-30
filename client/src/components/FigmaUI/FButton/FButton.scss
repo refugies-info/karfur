@@ -11,6 +11,8 @@ body .figma-btn{
   color: $noir;
   width: fit-content;
   text-decoration: none;
+  white-space: nowrap;
+  display: inline-block;
   
   &.default svg{
     fill:$noir;
@@ -29,8 +31,12 @@ body .figma-btn{
       color: $noir;
     }
     &:focus{
+      color: $focus;
       background: $blanc;
       border: 0.5px solid $focus;
+      svg{
+        fill : $focus;
+      }
     }
     &:disabled, &.disabled{
       background: $gris;
@@ -75,15 +81,35 @@ body .figma-btn{
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
     background: $vert;
     color: $blanc;
+    svg{
+      fill: $blancSimple;
+    }
     &:hover{
       background: $vertFonce;
       color: $blanc;
+      box-shadow: none;
       svg{
         fill: $blanc;
       }
     } 
     &:not(:disabled):not(.disabled):active{
       background: $vert;
+    }
+  }
+
+  &.error{
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    background: $error;
+    color: $blanc;
+    &:hover{
+      background: $rouge;
+      color: $blanc;
+      svg{
+        fill: $blanc;
+      }
+    } 
+    &:not(:disabled):not(.disabled):active{
+      background: $error;
     }
   }
   
@@ -93,7 +119,7 @@ body .figma-btn{
       fill: $noir;
     }
     &:not(:disabled):hover{
-      background: $blanc;
+      background: $noir3;
       box-shadow: none;
     }
     &:not(:disabled):not(.disabled):active{

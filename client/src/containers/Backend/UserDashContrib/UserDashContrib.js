@@ -1,26 +1,33 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Button, Progress, Badge, Modal, Spinner } from 'reactstrap';
+import { Row, Modal, Spinner } from 'reactstrap';
 import moment from 'moment/min/moment-with-locales';
 import Swal from 'sweetalert2';
+import { connect } from 'react-redux';
 
 import API from '../../../utils/API'
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
 import { ObjectifsModal, ContributeurModal } from '../../../components/Modals';
 import { ContribTable } from '../../../components/Backend/UserProfile';
 import { avancement_contrib } from '../UserProfile/data';
+import {deleteContrib} from '../UserProfile/functions';
 
 import './UserDashContrib.scss';
 
 moment.locale('fr');
 
 class UserDashContrib extends Component {
+  constructor(props) {
+    super(props);
+    this.deleteContrib = deleteContrib.bind(this);
+  }
+
   state={
-    showModal:{objectifs:false, contributionsFaites: false, progression:false, defineUser: false}, 
+    showModal:{objectifs:false, contributions: false, progression:false, defineUser: false}, 
     user:{},
     langues:[],
     allLangues:[],
-    contributionsFaites:[],
+    contributions:[],
     progression:{
       timeSpent:0,
       nbMots:0
@@ -31,8 +38,8 @@ class UserDashContrib extends Component {
   componentDidMount() {
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
-      API.get_dispositif({'creatorId': user._id}).then(data => {
-        this.setState({contributionsFaites: data.data.data, isMainLoading: false})
+      API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}}}).then(data => {
+        this.setState({contributions: data.data.data, isMainLoading: false})
       })
       API.get_progression().then(data_progr => {
         if(data_progr.data.data && data_progr.data.data.length>0)
@@ -58,32 +65,36 @@ class UserDashContrib extends Component {
   validateObjectifs = newUser => {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
-      Swal.fire( 'Yay...', 'Vos objectifs ont bien été enregistrés', 'success')
-      this.setState({user:data.data.data})
-      this.toggleModal('objectifs')
+      Swal.fire( {title: 'Yay...', text: 'Vos objectifs ont bien été enregistrés', type: 'success', timer: 1500})
+      this.setState({user:data.data.data});
+      this.toggleModal('objectifs');
     })
   }
 
-  upcoming = () => Swal.fire( 'Oh non!', 'Cette fonctionnalité n\'est pas encore activée', 'error')
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
   
   render() {
-    let {contributionsFaites, contributeur, user, isMainLoading} = this.state;
+    let {contributions, contributeur, user, isMainLoading} = this.state;
     return (
       <div className="animated fadeIn user-dash-contrib">
         <DashHeader 
-          title="Mes contributions"
-          ctaText="Modifier mes thèmes de travail"
+          contributeur
+          title="Espace contribution"
+          ctaText="Mes objectifs"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}
           toggle={this.toggleModal}
           upcoming={this.upcoming}
-          motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt
+          objectifMots={this.state.user.objectifMotsContrib}
+          objectifTemps={this.state.user.objectifTempsContrib}
+          motsRestants={Math.max(0,this.state.user.objectifMots - this.state.progression.nbMots)} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt -- je me suis pas trompé !
           minutesRestantes={Math.max(0,this.state.user.objectifTemps - Math.floor(this.state.progression.timeSpent / 1000 / 60))} //idem
         />
         
         <Row className="recent-row">
           <ContribTable 
-            dataArray={contributionsFaites}
+            type="user"
+            dataArray={contributions}
             user={user}
             contributeur={contributeur}
             toggleModal={this.toggleModal}
@@ -93,15 +104,25 @@ class UserDashContrib extends Component {
             overlayBtn="Commencer à rédiger"
             overlayRedirect={true}
             history={this.props.history}
+            displayIndicators={false}
+            deleteContrib = {this.deleteContrib}
             {...avancement_contrib} />
         </Row>
 
-        <Modal isOpen={this.state.showModal.contributionsFaites} toggle={()=>this.toggleModal('contributionsFaites')} className='modal-plus'>
+        <Modal isOpen={this.state.showModal.contributions} toggle={()=>this.toggleModal('contributions')} className='modal-plus'>
           <ContribTable
-            dataArray={contributionsFaites} />
+            type="user"
+            dataArray={contributions}
+            user={user}
+            contributeur={contributeur}
+            toggleModal={this.toggleModal}
+            history={this.props.history}
+            deleteContrib = {this.deleteContrib}
+            {...avancement_contrib} />
         </Modal>
 
         <ObjectifsModal 
+          contributeur
           show={this.state.showModal.objectifs} 
           toggle={()=>this.toggleModal('objectifs')}
           validateObjectifs={this.validateObjectifs} />
@@ -125,6 +146,13 @@ class UserDashContrib extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user,
+    userId: state.user.userId,
+  }
+}
+
 export default track({
   page: 'UserDashContrib',
-})(UserDashContrib);
+})(connect(mapStateToProps)(UserDashContrib));

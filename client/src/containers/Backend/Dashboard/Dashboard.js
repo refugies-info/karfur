@@ -49,7 +49,7 @@ import {get_filtered_events} from '../../../components/Functions/APIFunctions'
 import API from '../../../utils/API';
 import marioProfile from '../../../assets/mario-profile.jpg'
 
-import './Dashboard.css';
+import './Dashboard.scss';
 
 const Widget03 = lazy(() => import('../../../components/Widgets/Widget03'));
 
@@ -209,7 +209,7 @@ class Dashboard extends Component {
   render() {
     let {events, eventValues} = this.state;
     return (
-      <div className="dashboardContainer animated fadeIn">
+      <div className="dashboard-container animated fadeIn">
         <Row>
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-info">
