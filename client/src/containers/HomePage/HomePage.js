@@ -127,7 +127,7 @@ class HomePage extends Component {
             </div>
             <footer>
               {t("Homepage.contributeurs mobilises", {nombre: 230})}
-              <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
+              <FButton tag={NavLink} to="/comment-contribuer" type="dark" className="ml-10">
                 {t("Homepage.Je contribue", "Je contribue")}
               </FButton>
             </footer>
