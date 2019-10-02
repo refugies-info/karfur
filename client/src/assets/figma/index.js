@@ -25,6 +25,7 @@ import inspection from './inspection.svg';
 import interieur_2 from './interieur_2.svg';
 import interieur_3 from './interieur_3.svg';
 import interieur_4 from './interieur_4.svg';
+import image_corriger from './image_corriger.svg';
 
 import juliette from './juliette.png';
 import hugo from './hugo.png';
@@ -67,6 +68,7 @@ export {
   interieur_2,
   interieur_3,
   interieur_4,
+  image_corriger,
 
   juliette,
   hugo,
