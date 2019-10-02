@@ -1,9 +1,191 @@
 @import 'src/scss/colors.scss';
 
+$tailleCarte:200px;
 .comment-contribuer{
   flex: 1 1;
-  background: #FFFFFF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: $gris;
+
+  .arrowhead-icon{
+    position: absolute;
+    bottom: 33px;
+    cursor: pointer;
+  }
+
+  section{
+    min-height: 650px;
+    padding: 70px 120px;
+  }
+
+  #hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(180deg, #FFFFFF 0%, $gris 100%);
+  }
+
+  .hero-container{
+    text-align: center;
+    max-width: 725px;
+  }
+
+  .cartes-wrapper{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 -15px;
+  }
+
+  .carte-contrib{
+    display: flex;
+    flex-direction: column;
+    background: radial-gradient(114.75% 114.75% at 95% 104.5%, #A50455 0%, rgba(165, 4, 85, 0) 100%), radial-gradient(69.75% 67.64% at 100% -3.25%, #FF9800 0%, rgba(255, 152, 0, 0) 100%), radial-gradient(118.25% 69.25% at -3.25% -5.5%, #1174BA 0%, rgba(17, 116, 186, 0) 100%), radial-gradient(120.25% 132.25% at 5.25% 103.5%, #7DC690 0%, rgba(125, 198, 144, 0) 100%), radial-gradient(41% 41% at 50% 53%, #F9EF99 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF;
+    border-radius: 12px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: $tailleCarte;
+    height: $tailleCarte;
+    align-items: flex-start;
+    margin: 25px;
+  }
+
+  .carte-icon{
+    flex: 1;
+    align-self: flex-end;
+  }
+
+  .section-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 80px;
+
+    h5{
+      color: $grisFonce;
+    }
+  } 
+  .card-col .card{
+    height: 380px;
+    border-radius: 12px;
+    border:none;
+    padding: 20px;
+    font-size: 18px;
+    color: #FFFFFF;
+    background: $noirCD;
+
+    &.dispositif-card{
+      background: radial-gradient(80.39% 60.36% at 100% -3.25%, #55A6CE 0%, rgba(85, 166, 206, 0) 100%), radial-gradient(118.25% 69.25% at -3.25% -5.5%, #1174BA 0%, rgba(17, 116, 186, 0) 100%), radial-gradient(139.65% 131.88% at 112.25% 100%, #149295 0%, rgba(255, 255, 255, 0) 100%, rgba(20, 146, 149, 0) 100%), radial-gradient(135.5% 137.75% at -10% 109%, #55A6CE 0%, rgba(85, 166, 206, 0) 100%), radial-gradient(41% 41% at 50% 53%, #149295 0%, rgba(20, 146, 149, 0) 100%), #FFFFFF;
+    }
+    &.demarche-card{
+      background: radial-gradient(80.39% 60.36% at 100% -3.25%, #CE310D 0%, rgba(206, 49, 13, 0) 100%), radial-gradient(118.25% 69.25% at -3.25% -5.5%, #FF9800 0%, rgba(255, 152, 0, 0) 100%), radial-gradient(139.65% 131.88% at 112.25% 100%, #F9EF99 0%, rgba(255, 255, 255, 0) 100%, rgba(249, 239, 153, 0) 100%), radial-gradient(135.5% 137.75% at -10% 109%, #F44336 0%, #F44336 100%), radial-gradient(41% 41% at 50% 53%, #EA6206 0%, rgba(234, 98, 6, 0) 100%), #FFFFFF;
+    }
+    .card-header{
+      background: transparent;
+      border: none;
+      font-weight: 900;
+      font-size: 27px;
+      line-height: 34px;
+      height: 120px;
+      padding:0;
+    }
+    .card-body{
+      padding:0;
+    }
+    .card-footer{
+      background: transparent;
+      border: none;
+      display: flex;
+      justify-content: flex-end;
+      padding:0;
+    }
+    .clock-icon{
+      margin-right: 26px;
+    }
+  }
+
+  .trad-layout{
+    display: flex;
+
+    .left-side{
+      width: 360px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 40px;
+      margin-right: 30px;
+    }
+    .data{
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+    .left-data{
+      background: radial-gradient(69.75% 67.64% at 100% -3.25%, #ADEA5C 0%, rgba(173, 234, 92, 0) 100%), radial-gradient(118.25% 69.25% at -3.25% -5.5%, #149295 0%, rgba(20, 146, 149, 0) 100%), radial-gradient(100% 100% at 100% 92.25%, #EA6206 0%, rgba(255, 255, 255, 0) 100%, rgba(234, 98, 6, 0) 100%), radial-gradient(135.5% 137.75% at -10% 109%, #55A6CE 0%, #55A6CE 100%);
+      border-radius: 12px;
+      color: #FFFFFF;
+      padding: 10px;
+      min-width: 80px;
+      text-align: center;
+      margin-right: 20px;
+
+      h3{
+        margin: 0;
+      }
+    }
+
+    .langues-wrapper{
+      margin-bottom: -30px;
+    }
+    .langue-item{
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+  }
+  .mb-20{
+    margin-bottom: 20px;
+  }
+  .mr-20{
+    margin-right: 20px;
+  }
+  .texte-validation{
+    color: $validationDefault;
+  }
+
+  .correct-layout{
+    display: flex;
+
+    .left-side{
+      flex: 0 0 33%;
+      margin-right: 50px;
+
+      .row{
+        margin-bottom: 16px;
+      }
+    }
+    .toolbar-icon-wrapper{
+      width: 50px;
+      height: 50px;
+      padding: 12px;
+      background: $gris;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &.dark{
+        background: $noir;
+      }
+    }
+
+    .right-side{
+      background: #FFFFFF;
+      box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+    }
+  }
 }
