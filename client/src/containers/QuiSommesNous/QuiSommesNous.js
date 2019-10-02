@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
-import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap'
+import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
@@ -35,7 +36,9 @@ class QuiSommesNous extends Component {
             <h1>{t("QuiSommesNous.Qui sommes-nous", "Qui sommes-nous ?")}</h1>
             <h4>{t("QuiSommesNous.subheader", "Agi’r est une plateforme numérique dédiée à faciliter les parcours d’intégration des réfugiés en France")}.</h4>
           </div>
-          <EVAIcon className="arrowhead-icon slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          <AnchorLink href="#missions" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
+            <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          </AnchorLink>
         </section>
 
         <section id="missions">

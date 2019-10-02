@@ -10,6 +10,7 @@ const initialState = {
   traducteur: false,
   expertTrad: false,
   contributeur: false,
+  membreStruct:false,
 }
 
 function userReducer(state = initialState, action) {
