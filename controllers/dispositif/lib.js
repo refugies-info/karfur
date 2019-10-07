@@ -48,9 +48,10 @@ function add_dispositif(req, res) {
             User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "roles": result._id, "contributions": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
           }
         })
-        //J'associe la structure principale à ce dispositif
-        Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
       }
+      //J'associe la structure principale à ce dispositif
+      Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+
       mailOptions.html = "<p>Bonjour,<p>" + 
         "<p>Un nouveau contenu est en attente de validation sur la plateforme Agi'R, <a href='https://agir-dev.herokuapp.com/'>cliquez ici</a> pour y accéder</p>" + 
         "<p>Une nouvelle structure est également en attente de validation, <a href='https://agir-dev.herokuapp.com/'>cliquez ici</a> pour y accéder</p>" + 
