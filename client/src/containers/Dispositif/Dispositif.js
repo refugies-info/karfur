@@ -585,10 +585,10 @@ class Dispositif extends Component {
     dispositif.isFree= cardElement.some(x=> x.title==='Combien ça coûte ?') ?
       cardElement.find(x=> x.title==='Combien ça coûte ?').free :
       true;
+    dispositif.mainSponsor = ((dispositif.sponsors || [{}])[0] || {})._id;
     if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire"){
       dispositif.status = this.state.status;
     }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
-      dispositif.mainSponsor = dispositif.sponsors[0]._id;
       //Si l'auteur appartient à la structure principale je la fait passer directe en validation
       const membre = (dispositif.sponsors[0].membres || []).find(x => x.userId === this.props.userId);
       if(membre && membre.roles && membre.roles.some(x => x==="administrateur" || x==="contributeur")){
