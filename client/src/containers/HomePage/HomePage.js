@@ -67,8 +67,13 @@ class HomePage extends Component {
 
             <Row className="card-row">
               <Col lg="4" className="card-col">
+<<<<<<< Updated upstream
                 <Card className="cursor-pointer" onClick={this.upcoming}>
                   <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
+=======
+                <Card className="cursor-pointer demarche-card" onClick={this.upcoming}>
+                  <CardHeader>À comprendre une démarche</CardHeader>
+>>>>>>> Stashed changes
                   <CardBody>
                     {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
                   </CardBody>
@@ -82,30 +87,50 @@ class HomePage extends Component {
               </Col>
               <Col lg="4" className="card-col">
                 <NavLink to="/advanced-search" className="no-decoration">
+<<<<<<< Updated upstream
                   <Card>
                     <CardHeader>{t("Homepage.A apprendre", "À apprendre, travailler, vous former, rencontrer")}</CardHeader>
+=======
+                  <Card className="dispo-card">
+                    <CardHeader>À apprendre, travailler, vous former, rencontrer</CardHeader>
+>>>>>>> Stashed changes
                     <CardBody>
                       {/* <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span> */}
                     </CardBody>
                     <CardFooter>
+<<<<<<< Updated upstream
                       <FButton type="outline-black" name="search-outline" fill={variables.noir}>
                         {t("Homepage.Trouver un dispositif", "Trouver un dispositif")}
+=======
+                      <FButton type="homebtn" name="search-outline" fill={variables.noir}>
+                        Trouver un dispositif
+>>>>>>> Stashed changes
                       </FButton>
                     </CardFooter>
                   </Card>
                 </NavLink>
               </Col>
               <Col lg="4" className="card-col">
+<<<<<<< Updated upstream
                 <Card className="cursor-pointer" onClick={this.upcoming}>
                   <CardHeader>{t("Homepage.creer parcours", "À créer votre parcours personnalisé")}</CardHeader>
+=======
+                <Card className="cursor-pointer parcours-card" onClick={this.upcoming}>
+                  <CardHeader>À créer votre parcours personnalisé</CardHeader>
+>>>>>>> Stashed changes
                   <CardBody>
                     {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
                   <CardFooter>
-                    {/*<FButton type="outline-black" name="search-outline" fill={variables.noir}>
+                    <FButton type="homebtndisabled" name="search-outline" fill={variables.noir}>
                       Créer un parcours
+<<<<<<< Updated upstream
                   </FButton>*/}
                     <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
+=======
+                  </FButton>
+                    <span>Bientôt disponible !</span>
+>>>>>>> Stashed changes
                   </CardFooter>
                 </Card>
               </Col>
@@ -113,7 +138,7 @@ class HomePage extends Component {
           </div>
         </section>
 
-        <section id="contribution">
+        <section id="contribution" className="contrib">
           <div className="section-container half-width">
             <div className="section-body">
               <h2>{t("Homepage.contributive")}</h2>
