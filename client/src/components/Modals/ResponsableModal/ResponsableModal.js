@@ -52,7 +52,7 @@ class ResponsableModal extends Component {
           {step === 0 ?
             <>
               <h5 className="texte-vert">Vous êtes responsable d’un nouveau contenu</h5>
-              <p>Nous comptons sur vous pour maintenir ce contenu à jour et répondre aux suggestions des contributeurs.</p>
+              <p>Nous comptons sur vous pour maintenir ce contenu à jour et répondre aux suggestions des contributeurs. Voici l'utilisateur qui a rédigé cette fiche pour vous :</p>
               {createur && createur._id && !((mainSponsor || {}).membres || []).some(x => x.userId === createur._id) && 
                 <> 
                   <br/>
@@ -74,6 +74,7 @@ class ResponsableModal extends Component {
                 </>}
               {memberAdded && 
                 <div className="contributeur-wrapper">
+<<<<<<< Updated upstream
                   Souhaitez-vous que <b>{(createur || {}).username}</b> devienne un contributeur ?
                   <div>
                     <FormGroup check className="contrib-choice mr-10 mt-12">
@@ -89,6 +90,21 @@ class ResponsableModal extends Component {
                       </Label>
                     </FormGroup>
                   </div>
+=======
+                  Souhaitez-vous que <b>{(createur || {}).username}</b> devienne un membre ?
+                  <FormGroup check className="contrib-choice mr-10 mt-12">
+                    <Label check>
+                      <Input type="checkbox" checked={this.state.makeContrib} onChange={this.handleCheckChange} />{' '}
+                      <b>Oui</b>
+                    </Label>
+                  </FormGroup>
+                  <FormGroup check className="contrib-choice mt-12">
+                    <Label check>
+                      <Input type="checkbox" checked={!this.state.makeContrib} onChange={this.handleCheckChange} />{' '}
+                      <b>Non</b>
+                    </Label>
+                  </FormGroup>
+>>>>>>> Stashed changes
                 </div>}
               </>:
               <>
