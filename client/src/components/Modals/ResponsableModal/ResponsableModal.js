@@ -74,7 +74,6 @@ class ResponsableModal extends Component {
                 </>}
               {memberAdded && 
                 <div className="contributeur-wrapper">
-<<<<<<< Updated upstream
                   Souhaitez-vous que <b>{(createur || {}).username}</b> devienne un contributeur ?
                   <div>
                     <FormGroup check className="contrib-choice mr-10 mt-12">
@@ -90,21 +89,6 @@ class ResponsableModal extends Component {
                       </Label>
                     </FormGroup>
                   </div>
-=======
-                  Souhaitez-vous que <b>{(createur || {}).username}</b> devienne un membre ?
-                  <FormGroup check className="contrib-choice mr-10 mt-12">
-                    <Label check>
-                      <Input type="checkbox" checked={this.state.makeContrib} onChange={this.handleCheckChange} />{' '}
-                      <b>Oui</b>
-                    </Label>
-                  </FormGroup>
-                  <FormGroup check className="contrib-choice mt-12">
-                    <Label check>
-                      <Input type="checkbox" checked={!this.state.makeContrib} onChange={this.handleCheckChange} />{' '}
-                      <b>Non</b>
-                    </Label>
-                  </FormGroup>
->>>>>>> Stashed changes
                 </div>}
               </>:
               <>

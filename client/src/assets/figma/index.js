@@ -22,14 +22,11 @@ import humaanLeft from './humaanLeft.svg';
 import countrySide from './countrySide.svg';
 import sentIllu from './sentIllu.svg';
 import inspection from './inspection.svg';
-<<<<<<< Updated upstream
 import interieur_2 from './interieur_2.svg';
 import interieur_3 from './interieur_3.svg';
 import interieur_4 from './interieur_4.svg';
 import image_corriger from './image_corriger.svg';
-=======
 import dispo_trip_1 from './dispo_trip_1.svg';
->>>>>>> Stashed changes
 
 import juliette from './juliette.png';
 import hugo from './hugo.png';
@@ -69,15 +66,12 @@ export {
   countrySide,
   sentIllu,
   inspection,
-<<<<<<< Updated upstream
   interieur_2,
   interieur_3,
   interieur_4,
   image_corriger,
-=======
   dispo_trip_1,
->>>>>>> Stashed changes
-
+  
   juliette,
   hugo,
   concordia,
