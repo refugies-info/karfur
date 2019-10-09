@@ -258,12 +258,7 @@ class Sponsors extends Component {
           modal= {{name: "envoye"}}
           keyValue= {3}
           title="C’est envoyé !"
-<<<<<<< Updated upstream
-          lowerRightBtn={<FButton type="validate" name="checkmark-circle-outline" onClick={()=>this.toggleModal("envoye")} className="push-right">Ok !</FButton>} 
-=======
-          lowerLeftBtn={<FButton type="outline-black" name="info-outline" fill={variables.noir} onClick={this.upcoming}>En savoir plus</FButton>}
-          lowerRightBtn={<FButton type="validate" name="checkmark" onClick={()=>this.toggleModal("envoye")}>Ok !</FButton>} 
->>>>>>> Stashed changes
+          lowerRightBtn={<FButton type="validate" name="checkmark" onClick={()=>this.toggleModal("envoye")} className="push-right">Ok !</FButton>} 
         >
           <div className="envoye-content">
             <img src={sentIllu} className="illu" alt="illustration" />
