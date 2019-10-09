@@ -219,7 +219,7 @@ const tutoSteps = [
   //   },
   // },
   {
-    title: 'Structures partenaires',
+    title: 'Structure responsable',
     content: "ajoutez le logo de votre/vos structures. Attention : seul les fichiers .png, .jpg et .svg sont compatibles. Un lien vers le site de la structure et un texte alternatif à l’image vous est également demandé.",
     target: '.sponsor-footer',
     locale: { 
