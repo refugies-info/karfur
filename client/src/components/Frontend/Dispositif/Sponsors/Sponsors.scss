@@ -29,9 +29,10 @@ $tailleBig:80px;
     position:relative;
     display: flex;
     flex-direction: column;
+    margin: 40px 20px;
     .sponsor-img{
       //max-width:64px;
-      max-height:150px;
+      max-height:80px;
       &:hover{
         filter: grayscale(1);
         cursor: pointer;

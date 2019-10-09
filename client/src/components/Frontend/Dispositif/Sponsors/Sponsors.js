@@ -205,7 +205,7 @@ class Sponsors extends Component {
           lowerRightBtn={<FButton type="dark" name="paper-plane-outline" fill={variables.noir} onClick={this.addSponsor} className="push-right">Valider</FButton>} 
         >
           <p>
-            <span>Faites-vous partie de cette structure</span>
+            <span>Faites-vous partie de la structure suivante : </span>
             <EVAIcon className="float-right" id="alt-tooltip" name="info" fill={variables.noir} />
             <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="alt-tooltip" toggle={this.toggleTooltip}>
               Si oui, nous enverrons une demande d’ajout à un responsable de la structure. Si non, la propriété de la page lui sera transférée pour qu’il puisse vérifier les informations.
@@ -221,13 +221,13 @@ class Sponsors extends Component {
           <FormGroup check className="author-choice mb-10">
             <Label check>
               <Input type="checkbox" checked={this.state.authorBelongs} onChange={this.handleBelongsSChange} />{' '}
-              <b>Oui et je veux contribuer en tant que membre</b>
+              <b>Oui !</b>
             </Label>
           </FormGroup>
           <FormGroup check className="author-choice">
             <Label check>
               <Input type="checkbox" checked={!this.state.authorBelongs} onChange={this.handleBelongsSChange} />{' '}
-              <b>Non et j’accepte que la structure reprenne le droit d’édition</b>
+              <b>Non et je renonce à mon droit d’édition</b>
             </Label>
           </FormGroup>
         </CustomModal>
@@ -258,7 +258,12 @@ class Sponsors extends Component {
           modal= {{name: "envoye"}}
           keyValue= {3}
           title="C’est envoyé !"
+<<<<<<< Updated upstream
           lowerRightBtn={<FButton type="validate" name="checkmark-circle-outline" onClick={()=>this.toggleModal("envoye")} className="push-right">Ok !</FButton>} 
+=======
+          lowerLeftBtn={<FButton type="outline-black" name="info-outline" fill={variables.noir} onClick={this.upcoming}>En savoir plus</FButton>}
+          lowerRightBtn={<FButton type="validate" name="checkmark" onClick={()=>this.toggleModal("envoye")}>Ok !</FButton>} 
+>>>>>>> Stashed changes
         >
           <div className="envoye-content">
             <img src={sentIllu} className="illu" alt="illustration" />

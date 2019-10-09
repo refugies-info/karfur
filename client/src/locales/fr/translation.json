@@ -192,6 +192,7 @@
     "fiabilite": "Fiabilité de l’information",
     "Avis": "Avis et discussions",
     "Contributeurs": "Contributeurs mobilisés",
+<<<<<<< Updated upstream
     "Structures": "Structures partenaires",
     "C'est quoi ?": "C'est quoi ?",
     "C'est pour qui ?": "C'est pour qui ?",
@@ -223,6 +224,9 @@
     "Combien ça coûte ?": "Combien ça coûte ?",
     "Justificatif demandé": "Justificatif demandé",
     "Important !": "Important !"
+=======
+    "Structures": "Structure responsable"
+>>>>>>> Stashed changes
   },
   "Retour à la recherche": "Retour à la recherche",
   "avec": "avec",
