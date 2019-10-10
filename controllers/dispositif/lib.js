@@ -33,6 +33,7 @@ function add_dispositif(req, res) {
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
+    //Si le dispositif existe déjà on fait juste un update
     if(dispositif.dispositifId){
       promise=Dispositif.findOneAndUpdate({_id: dispositif.dispositifId}, dispositif, { upsert: true , new: true});
     }else{

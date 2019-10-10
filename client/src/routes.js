@@ -45,6 +45,9 @@ const routes = [
   { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
   { path: '/dispositif', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
 
+  { path: '/demarche/:id', exact: true, name: 'Demarche', component: Dispositif, restriction:[] },
+  { path: '/demarche', exact: true, name: 'Demarche', component: Dispositif, restriction:[] },
+
   { path: '/parcours-on-board', name: 'Parcours On Board', component: ParkourOnBoard, restriction:[] },
   { path: '/parcours-perso', name: 'Parcours perso', component: ParkourPerso, restriction:[] },
 

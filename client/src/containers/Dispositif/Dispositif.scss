@@ -536,12 +536,15 @@ $imgHeight : 350px;
   .accordeon-col{
     .title-bloc{
       position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
     }
     #accordion-header{
       background: #FFFFFF;
       border-radius: 12px;
       border: 0.5px solid $noir;
-      margin-top:20px;
       outline: none;
       box-shadow: none;
       color: $darkColor;
@@ -597,8 +600,7 @@ $imgHeight : 350px;
       // }
     }
 
-    .delete-icon{
-      color: $error;
+    .accordeon-delete-icon{
       position: absolute;
       top: calc(50% + 10px);
       transform: translateY(-50%);

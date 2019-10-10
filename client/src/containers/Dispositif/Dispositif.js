@@ -15,6 +15,7 @@ import Icon from 'react-eva-icons';
 import h2p from 'html2plaintext';
 import ReactJoyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import _ from "lodash";
+import querySearch from "stringquery";
 
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
 import ContenuDispositif from '../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif'
@@ -33,8 +34,8 @@ import {ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 import SideTrad from './SideTrad/SideTrad';
 import {initializeTimer} from '../Translation/functions';
 import {readAudio} from "../Layout/functions";
-
-import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard} from './data'
+import MoteurVariantes from './MoteurVariantes/MoteurVariantes';
+import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps} from './data'
 
 import variables from 'scss/colors.scss';
 
@@ -53,31 +54,19 @@ class Dispositif extends Component {
   audio = new Audio();
 
   state={
-    menu: menu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
+    menu: [],
     content:contenu,
     sponsors:sponsorsData,
     tags:[],
     mainTag: {darkColor: variables.darkColor, lightColor: variables.lightColor, hoverColor: variables.gris},
     dateMaj:new Date(),
     
-    hovers: menu.map((x) => {return {isHover:false, ...( x.children && {children: new Array(x.children.length).fill({isHover:false})})}}),
-    showModals:{
-      reaction:false,
-      fiabilite:false,
-      suggerer:false,
-      question:false, //correspond au modal suggerer, mais permet de différencier comment on est arrivés là
-      signaler:false, //correspond au modal suggerer, mais permet de différencier comment on est arrivés là
-      merci:false,
-      allGood:false,
-      construction:false,
-      map:false,
-      responsable: false
-    },
+    uiArray:new Array(menu.length).fill(uiElement),
+    showModals: showModals,
     accordion: new Array(1).fill(false),
     dropdown: new Array(5).fill(false),
     disableEdit:true,
     tooltipOpen:false,
-    uiArray:new Array(menu.length).fill(uiElement),
     showBookmarkModal:false,
     isAuth: false,
     showDispositifCreateModal:false,
@@ -103,17 +92,25 @@ class Dispositif extends Component {
     status: '',
     time: 0,
     initialTime: 0,
+    type: "dispositif",
+    variantes:[],
+    search: "",
   }
   newRef=React.createRef();
   mountTime=0;
 
   componentDidMount (){
+    console.log(this.props.history.location.search)
     this._initializeDispositif(this.props);
   }
 
   componentWillReceiveProps(nextProps){
     if(((nextProps.match || {}).params || {}).id !== ((this.props.match || {}).params || {}).id){
       this._initializeDispositif(nextProps);
+    }
+    if(((nextProps.history || {}).location || {}).search !== this.state.search){
+      console.log(nextProps.history.location.search, this.props.history.location.search)
+      this.setState({search: nextProps.history.location.search})
     }
   }
 
@@ -123,8 +120,9 @@ class Dispositif extends Component {
 
   _initializeDispositif = props => {
     this.initializeTimer();
-    let itemId=props.match && props.match.params && props.match.params.id;
-    console.log(itemId)
+    const itemId = props.match && props.match.params && props.match.params.id;
+    const type = (props.match.path || "").includes("demarche") ? "demarche" : "dispositif";
+    console.log(itemId, type)
     if(itemId){
       this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
       API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor'}).then(data_res => {
@@ -148,6 +146,7 @@ class Dispositif extends Component {
           mainSponsor: dispositif.mainSponsor,
           status: dispositif.status,
           fiabilite: calculFiabilite(dispositif),
+          type,
           ...(dispositif.status==="Brouillon" && {initialTime: dispositif.timeSpent}),
         },()=>this.setColors())
         //On récupère les données de l'utilisateur
@@ -167,9 +166,10 @@ class Dispositif extends Component {
       this.setState({
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}),
-        ///////////////////////////////////
-        showDispositifCreateModal:true, //A modifier avant la mise en prod
-        isDispositifLoading: false
+        showDispositifCreateModal:false, //A modifier avant la mise en prod
+        isDispositifLoading: false,
+        type,
+        menu: (type === "demarche" ? menuDemarche : menu).map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
       },()=>this.setColors());
     }else{ props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
     window.scrollTo(0, 0);
@@ -222,20 +222,22 @@ class Dispositif extends Component {
     }
   }
   
-  handleMenuChange = (ev) => {
+  fwdSetState = (fn, cb) => this.setState(fn, cb);
+
+  handleMenuChange = (ev, value=null) => {
     const node=ev.currentTarget;
     let state = [...this.state.menu];
     state[node.id]={
       ...state[node.id],
-      ...(!node.dataset.subkey && {content : ev.target.value, isFakeContent:false}), 
+      ...(!node.dataset.subkey && {content : (value || ev.target.value), isFakeContent:false}), 
       ...(node.dataset.subkey && state[node.id].children && state[node.id].children.length > node.dataset.subkey && {children : state[node.id].children.map((y,subidx) => {return {
             ...y,
-            ...(subidx===parseInt(node.dataset.subkey) && { [node.dataset.target || 'content'] : ev.target.value, isFakeContent:false } )
+            ...(subidx===parseInt(node.dataset.subkey) && { [node.dataset.target || 'content'] : (value || ev.target.value), isFakeContent:false } )
           }
         })
       })
     }
-    this.setState({ menu: state });
+    return this.setState({ menu: state });
   };
 
   handleContentClick = (key, editable, subkey=undefined) => {
@@ -258,7 +260,6 @@ class Dispositif extends Component {
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
       if(right_node.type === 'accordion'){ this.updateUIArray(key, subkey, 'accordion', true) }
-      console.log(key, editable, subkey)
       return new Promise(resolve => this.setState( { menu: state },()=>{ this.updateUI(key, subkey, editable) ; resolve()} ));
     }else{return new Promise(r=> r())}
   };
@@ -270,7 +271,6 @@ class Dispositif extends Component {
           ('editeur-' + key + '-' + subkey) : 
           (key === 1 ? "card-col col-lg-4" : undefined);
         let parentNode = document.getElementsByClassName(target)[0];
-        console.log(parentNode, target)
         if(subkey && parentNode){
           parentNode.getElementsByClassName('public-DraftEditor-content')[0].focus();
           window.getSelection().addRange( document.createRange() );
@@ -509,6 +509,7 @@ class Dispositif extends Component {
   }
 
   editDispositif = () => this.setState({disableEdit: false, uiArray: this.state.menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}) }, ()=>this.setColors())
+  validateVariante = newVariante => this.setState(pS => ({variantes: [newVariante]}))
 
   pushReaction = (modalName=null, fieldName) => {
     if(modalName){this.toggleModal(false, modalName);}
@@ -550,7 +551,7 @@ class Dispositif extends Component {
     Object.keys(content).map( k => content[k] = h2p(content[k]));
     let dispositif = {
       ...content,
-      contenu : [...this.state.menu].map(x=> {return {
+      contenu : [...this.state.menu].map(x=> ({
         title: x.title, 
         content : x.editable && x.editorState && x.editorState.getCurrentContent() && x.editorState.getCurrentContent().getPlainText() !== '' ? draftToHtml(convertToRaw(x.editorState.getCurrentContent())) : x.content, 
         editable: false,
@@ -561,34 +562,37 @@ class Dispositif extends Component {
           editable: false, 
           ...(y.title && {title: h2p(y.title)})
         }))}) 
-      }}),
+      })),
       sponsors:(this.state.sponsors || []).filter(x => !x.dummy),
       tags: this.state.tags,
       avancement: 1,
       status: status,
       dispositifId: this.state._id,
+      type: this.state.type,
       ...(!this.state._id && this.state.status!=="Brouillon" && {timeSpent : this.state.time}),
     }
-    let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || [];
-    dispositif.audience = cardElement.some(x=> x.title==='Public visé') ?
-      cardElement.filter(x=> x.title==='Public visé').map(x => x.contentTitle) :
-      filtres.audience;
-    dispositif.audienceAge= cardElement.some(x=> x.title==='Âge requis') ? 
-      cardElement.filter(x=> x.title==='Âge requis').map(x => ({contentTitle: x.contentTitle, bottomValue: x.bottomValue, topValue:x.topValue})) :
-      [{contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999}];
-    dispositif.niveauFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
-      cardElement.filter(x=> x.title==='Niveau de français').map(x => x.contentTitle) :
-      filtres.niveauFrancais;
-    dispositif.cecrlFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
-      [...new Set(cardElement.filter(x=> x.title==='Niveau de français').map(x => x.niveaux).reduce((acc, curr) => [...acc, ...curr]))] :
-      [];
-    dispositif.isFree= cardElement.some(x=> x.title==='Combien ça coûte ?') ?
-      cardElement.find(x=> x.title==='Combien ça coûte ?').free :
-      true;
+    if(dispositif.type === "dispositif"){
+      let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || [];
+      dispositif.audience = cardElement.some(x=> x.title==='Public visé') ?
+        cardElement.filter(x=> x.title==='Public visé').map(x => x.contentTitle) :
+        filtres.audience;
+      dispositif.audienceAge= cardElement.some(x=> x.title==='Âge requis') ? 
+        cardElement.filter(x=> x.title==='Âge requis').map(x => ({contentTitle: x.contentTitle, bottomValue: x.bottomValue, topValue:x.topValue})) :
+        [{contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999}];
+      dispositif.niveauFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
+        cardElement.filter(x=> x.title==='Niveau de français').map(x => x.contentTitle) :
+        filtres.niveauFrancais;
+      dispositif.cecrlFrancais= cardElement.some(x=> x.title==='Niveau de français') ?
+        [...new Set(cardElement.filter(x=> x.title==='Niveau de français').map(x => x.niveaux).reduce((acc, curr) => [...acc, ...curr]))] :
+        [];
+      dispositif.isFree= cardElement.some(x=> x.title==='Combien ça coûte ?') ?
+        cardElement.find(x=> x.title==='Combien ça coûte ?').free :
+        true;
+    }else{dispositif.variantes = this.state.variantes}
+    dispositif.mainSponsor = ((dispositif.sponsors || [{}])[0] || {})._id;
     if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire"){
       dispositif.status = this.state.status;
     }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
-      dispositif.mainSponsor = dispositif.sponsors[0]._id;
       //Si l'auteur appartient à la structure principale je la fait passer directe en validation
       const membre = (dispositif.sponsors[0].membres || []).find(x => x.userId === this.props.userId);
       if(membre && membre.roles && membre.roles.some(x => x==="administrateur" || x==="contributeur")){
@@ -603,7 +607,7 @@ class Dispositif extends Component {
         this.props.fetch_user();
         this.props.fetch_dispositifs();
         this.setState({disableEdit: status === 'En attente admin' || status === 'En attente'}, () => {
-          this.props.history.push("/dispositif/" + data.data.data._id)
+          this.props.history.push("/" + dispositif.type + "/" + data.data.data._id)
         })
       });
     })
@@ -613,7 +617,7 @@ class Dispositif extends Component {
 
   render(){
     const {t, translating} = this.props;
-    const {showModals, isDispositifLoading, runFirstJoyRide, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag, fiabilite} = this.state;
+    const {showModals, isDispositifLoading, type, runJoyRide, stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, mainTag, fiabilite} = this.state;
     
     const Tooltip = ({
       index,
@@ -736,19 +740,20 @@ class Dispositif extends Component {
                       onKeyPress={e=>this.handleKeyPress(e, 0)}
                     />
                   </h1>
-                  <h2 className="bloc-subtitle">
-                    <span>{t("avec", "avec")}&nbsp;</span>
-                    <ContentEditable
-                      id='titreMarque'
-                      html={this.state.content.titreMarque}  // innerHTML of the editable div
-                      disabled={this.state.disableEdit}
-                      onClick={e=>{this.startJoyRide(1); this.onInputClicked(e)}}
-                      onChange={this.handleChange} 
-                      onKeyDown={this.onInputClicked}
-                      onMouseEnter={e => e.target.focus()} 
-                      onKeyPress={e=>this.handleKeyPress(e, 1)}
-                    />
-                  </h2>
+                  {type === "dispositif" &&
+                    <h2 className="bloc-subtitle">
+                      <span>{t("avec", "avec")}&nbsp;</span>
+                      <ContentEditable
+                        id='titreMarque'
+                        html={this.state.content.titreMarque}  // innerHTML of the editable div
+                        disabled={this.state.disableEdit}
+                        onClick={e=>{this.startJoyRide(1); this.onInputClicked(e)}}
+                        onChange={this.handleChange} 
+                        onKeyDown={this.onInputClicked}
+                        onMouseEnter={e => e.target.focus()} 
+                        onKeyPress={e=>this.handleKeyPress(e, 1)}
+                      />
+                    </h2>}
                 </div>
               </Col>
               <ManLab height="250" className="header-img homme-icon" alt="homme" />
@@ -804,20 +809,29 @@ class Dispositif extends Component {
                 />
               </Col>
               <Col className="pt-40 col-middle" lg={translating ? "12" : "7"} md={translating ? "12" : "7"} sm={translating ? "12" : "7"} xs={translating ? "12" : "7"}>
-                {disableEdit && <Row className="fiabilite-row">
-                  <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
-                    {t("Dernière mise à jour", "Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
-                  </Col>
-                  <Col className="col">
-                    {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
-                    <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#E55039"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
-                    
-                    <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
-                      <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Dispositif.fiabilite_faible", "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant") }} />
-                      {t("Dispositif.cliquez", "Cliquez sur le '?' pour en savoir plus")}
-                    </Tooltip>
-                  </Col>
-                </Row>}
+                {disableEdit && 
+                  <Row className="fiabilite-row">
+                    <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
+                      {t("Dernière mise à jour", "Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
+                    </Col>
+                    <Col className="col">
+                      {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
+                      <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#E55039"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
+                      
+                      <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
+                        <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Dispositif.fiabilite_faible", "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant") }} />
+                        {t("Dispositif.cliquez", "Cliquez sur le '?' pour en savoir plus")}
+                      </Tooltip>
+                    </Col>
+                  </Row>}
+
+                <MoteurVariantes 
+                  disableEdit={disableEdit}
+                  validateVariante={this.validateVariante} 
+                  filtres={filtres}
+                  upcoming={this.upcoming}
+                  variantes = {this.state.variantes} />
+
                 <ContenuDispositif 
                   updateUIArray={this.updateUIArray}
                   handleContentClick={this.handleContentClick}
@@ -837,6 +851,8 @@ class Dispositif extends Component {
                   filtres={filtres}
                   sideView={translating}
                   readAudio={this.readAudio}
+                  demarcheSteps={demarcheSteps}
+                  upcoming={this.upcoming}
                   {...this.state}
                 />
                 
@@ -934,6 +950,7 @@ class Dispositif extends Component {
             <DispositifCreateModal 
               show={this.state.showDispositifCreateModal}
               toggle={this.toggleDispositifCreateModal}
+              type={type}
               startFirstJoyRide={this.startFirstJoyRide}
               onBoardSteps={onBoardSteps}
             />

@@ -93,8 +93,28 @@ html body{
     font-size: 12px;
     line-height: 15px;
   }
+
+  .color-vert{
+    color: $validationHover;
+  }
+  .color-jaune{
+    color: $uiattention;
+  }
+  .color-orange{
+    color: $orange;
+  }
+  .color-rouge{
+    color: $error;
+  }
+  .color-grisFonce{
+    color: $grisFonce;
+  }
+
   .cursor-pointer{
     cursor: pointer;
+  }
+  .full-width{
+    width: 100%;
   }
 
   a{
