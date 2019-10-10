@@ -1,26 +1,20 @@
 import React from 'react';
+import { Modal, ModalHeader } from 'reactstrap';
 
-import './Modal.css';
-import Backdrop from '../UI/Backdrop/Backdrop';
+import './Modal.scss';
 
 const modal = (props) => {
-  if(props.show){
-    return(
-      <>
-        <Backdrop show={props.show} clicked={props.modalClosed} />
-        <div
-          className={"Modal " + props.classe}
-          style={{
-              transform: props.show ? 'translateY(0)' : 'translateY(-100vh)',
-              opacity: props.show ? '1' : '0'
-          }}>
-          {props.children}
-        </div>
-      </>
-    )
-  }else{
-    return false
-  }
+  const {show, toggle, modalHeader, className, children} = props;
+  return (
+    <Modal isOpen={show} toggle={toggle} className={["custom-modal", className].join(" ")}>
+      {modalHeader && 
+        <ModalHeader toggle={toggle}>
+          {modalHeader}
+        </ModalHeader>}
+
+      {children}
+    </Modal>
+  )
 }
 
 export default modal;

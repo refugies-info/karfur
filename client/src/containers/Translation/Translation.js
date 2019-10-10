@@ -110,7 +110,7 @@ class TranslationHOC extends Component {
     return locale;
   }
 
-  setRef = (refObj, name) => {console.log(name, refObj); this[name] = refObj;}
+  setRef = (refObj, name) => this[name] = refObj;
   fwdSetState = (fn, cb) => this.setState(fn, cb);
 
   translate = (text,target,item,toEditor=false) => {

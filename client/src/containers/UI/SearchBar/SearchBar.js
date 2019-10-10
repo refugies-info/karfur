@@ -26,22 +26,22 @@ export class SearchBar extends React.Component {
     selectedResult:{}
   };
 
-  onChange = (_, { newValue }) => this.setState({ value: newValue }, ()=>console.log(newValue));
+  onChange = (_, { newValue }) => this.setState({ value: newValue });
   onSuggestionsFetchRequested = debounce( ({ value }) => this.setState({ suggestions: this.getSuggestions(value) }), 200)
   onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
 
   getSuggestions = value => {
     const array = this.props.array || this.props.dispositifs || [];
-    const escapedValue = escapeRegexCharacters(value.trim());
+    const escapedValue = removeAccents(escapeRegexCharacters(value.trim()));
     if (escapedValue === '') { return [];}
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
     return array.filter(child => {
       return ( this.props.isArray ? 
-      (regex.test(child.acronyme) || regex.test(child.nom) || child.createNew) || (regex.test(child.username) || regex.test(child.email)) : 
-      regex.test(child.titreMarque) || regex.test(child.titreInformatif) || regex.test(child.abstract) || regex.test(child.contact) || (child.tags || []).some(x => regex.test(x)) || (child.audience || []).some(x => regex.test(x)) || (child.audienceAge || []).some(x => regex.test(x)) || this.findInContent(child.contenu, regex) )})
+      (regex.test(child.acronyme) || regex.test(removeAccents(child.nom)) || child.createNew) || (regex.test(removeAccents(child.username)) || regex.test(removeAccents(child.email))) : 
+      regex.test(removeAccents(child.titreMarque)) || regex.test(removeAccents(child.titreInformatif)) || regex.test(removeAccents(child.abstract)) || child.createNew || regex.test(child.contact) || (child.tags || []).some(x => regex.test(x)) || (child.audience || []).some(x => regex.test(x)) || (child.audienceAge || []).some(x => regex.test(x)) || this.findInContent(child.contenu, regex) )})
   }
 
-  findInContent = (contenu, regex) => contenu.some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent (x.children, regex)) );
+  findInContent = (contenu, regex) => (contenu || []).some(x => regex.test(x.title) || regex.test(x.content) || (x.children && x.children.length > 0 && this.findInContent (x.children, regex)) );
   
   onSuggestionSelected = (_,{suggestion}) => {
     this.setState({selectedResult : suggestion});
@@ -50,21 +50,21 @@ export class SearchBar extends React.Component {
 
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
-    this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
+    this.props.history.push('/' + (dispositif.type || "dispositif") + (dispositif._id ? ('/' + dispositif._id) : ''))
   }
 
   validateSearch = () => this.goToDispositif(this.state.selectedResult, true);
   
   render() {
-    const {isArray, structures} = this.props;
+    const {isArray, structures, createNewCta} = this.props;
 
     const renderSuggestion = (suggestion, { query }) => {
-      if(isArray && suggestion.createNew){
+      if(suggestion.createNew){
         return (
           <span className='suggestion-content'>
             <span className="name">
               <EVAIcon name="plus-outline" className="mr-10 plus-btn" />
-              <span>Créer une nouvelle structure</span>
+              <span>{createNewCta || "Créer une nouvelle structure"}</span>
             </span>
             <span className="float-right mt-10">
               <EVAIcon name="plus-circle-outline" fill={variables.grisFonce} />
@@ -91,7 +91,7 @@ export class SearchBar extends React.Component {
     }
 
     const inputProps = { placeholder: this.props.placeholder || 'Chercher', value: this.state.value, onChange: this.onChange };
-    
+
     return(
       <div className={"md-form form-sm form-2 pl-0 " + this.props.className + (isArray ? " isArray": "")}>
         <Autosuggest 
@@ -116,6 +116,19 @@ export class SearchBar extends React.Component {
     )
   }
 };
+
+const removeAccents = (str = "") => {
+  var accents    = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+  var accentsOut = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
+  str = str.split('');
+  var i, x;
+  for (i = 0; i < str.length; i++) {
+    if ((x = accents.indexOf(str[i])) != -1) {
+      str[i] = accentsOut[x];
+    }
+  }
+  return str.join('');
+}
 
 const mapStateToProps = (state) => {
   return {

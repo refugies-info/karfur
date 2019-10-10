@@ -168,6 +168,7 @@ class Sponsors extends Component {
             className="search-bar inner-addon right-addon"
             placeholder = "Rechercher ou créer une structure"
             array={[...structures.filter(x => x.status === 'Actif'), {createNew: true}]}
+            createNewCta="Créer une nouvelle structure"
             selectItem={this.selectItem} />
 
           <FormGroup check className="case-cochee mt-10">
