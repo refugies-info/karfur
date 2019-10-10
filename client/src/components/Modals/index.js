@@ -20,6 +20,7 @@ import ResponsableModal from './ResponsableModal/ResponsableModal';
 import AddMemberModal from './AddMemberModal/AddMemberModal';
 import EditMemberModal from './EditMemberModal/EditMemberModal';
 import RejectTradModal from './RejectTradModal/RejectTradModal';
+import CheckDemarcheModal from './CheckDemarcheModal/CheckDemarcheModal'
 
 export {
   BookmarkedModal,
@@ -44,4 +45,5 @@ export {
   AddMemberModal,
   EditMemberModal,
   RejectTradModal,
+  CheckDemarcheModal,
 }

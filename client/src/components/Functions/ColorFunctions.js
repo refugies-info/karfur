@@ -10,6 +10,18 @@ const colorAvancement= avancement => {
   }
 }
 
+const fColorAvancement= avancement => {
+  if(avancement >.75){
+    return 'vert'
+  }else if(avancement >.50){
+    return 'jaune'
+  }else if(avancement >.2){
+    return 'orange'
+  }else{
+    return 'rouge'
+  }
+}
+
 const colorStatut= avancement => {
   if(avancement === "Annulé" || avancement === "Annulée" || avancement === "Exclu" || avancement === "Supprimé"){
       return 'danger'
@@ -28,4 +40,4 @@ const randomColor = () => {
   return colorArr[nb];
 }
 
-export {colorAvancement, colorStatut, randomColor}
+export {colorAvancement, colorStatut, randomColor, fColorAvancement}

@@ -3,7 +3,7 @@
 $placeholderColor: $noir;
 $borderRadius: 12px;
 
-.input-group{
+.figma-input-group{
   .icon-prepend{
     position: absolute;
     z-index: 10;
@@ -19,13 +19,15 @@ $borderRadius: 12px;
     right:20px;
     cursor: pointer;
   }
-  input{
+  input, textarea{
     background: #FFFFFF;
     border-radius: $borderRadius;
     border: 0.5px solid $noir;
     color: $noir;
     outline: none;
-    padding-left: 50px;
+    &.has-prepend{
+      padding-left: 50px;
+    }
     &:hover{
       background: $gris;
       border: 0.5px solid $noir;

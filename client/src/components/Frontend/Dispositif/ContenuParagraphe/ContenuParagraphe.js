@@ -1,11 +1,13 @@
 import React from 'react';
-import { Col, Row, Button, Collapse } from 'reactstrap';
+import { Col, Row, Collapse } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 
-import EditableParagraph from '../EditableParagraph/EditableParagraph'
+import EditableParagraph from '../EditableParagraph/EditableParagraph';
 import QuickToolbar from '../../../../containers/Dispositif/QuickToolbar/QuickToolbar';
 import CardParagraphe, {PlusCard} from '../../../../containers/Dispositif/CardParagraphe/CardParagraphe';
 import MapParagraphe from '../../../../containers/Dispositif/MapParagraphe/MapParagraphe';
+import EtapeParagraphe from '../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe';
+
 import variables from '../../../../containers/Dispositif/Dispositif.scss';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
@@ -34,6 +36,15 @@ const contenuParagraphe = (props) => {
               tutoriel={item.tutoriel}
               {...props} />
           )
+        }else if(subitem.type==='etape'){
+          return ( 
+            <EtapeParagraphe 
+              key={subkey}
+              subkey={subkey}
+              subitem={subitem}
+              tutoriel={item.tutoriel}
+              {...props} />
+          )
         }else if(subitem.type==='accordion'){
           return ( 
             <div key={subkey} className={'contenu' + (safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>props.updateUIArray(props.keyValue, subkey, 'isHover', true, e)}>
@@ -55,14 +66,14 @@ const contenuParagraphe = (props) => {
                             html={subitem.title || ""}  // innerHTML of the editable div
                             disabled={props.disableEdit}       // use true to disable editing
                             onChange={props.handleMenuChange} // handle innerHTML change
-                            onMouseUp={e=> {console.log(e); return !props.disableEdit && e.stopPropagation()}} />
+                            onMouseUp={e=> !props.disableEdit && e.stopPropagation()} />
                         </span>
                         {props.disableEdit && 
                           <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />}
                       </h5>
                     </div>
                     {!props.disableEdit && subkey > 0 && 
-                      <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="delete-icon ml-10 cursor-pointer" name="close-circle" fill={variables.noir} size="xlarge" />}
+                      <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="accordeon-delete-icon ml-10 cursor-pointer" name="close-circle" fill={variables.noir} size="xlarge" />}
                   </div>
                   <Collapse className="contenu-accordeon" isOpen={safeUiArray(props.keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + props.keyValue + "-" + subkey} aria-labelledby={"heading" + props.keyValue + "-" + subkey}>
                     <EditableParagraph 

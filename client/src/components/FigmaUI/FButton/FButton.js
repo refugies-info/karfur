@@ -10,7 +10,7 @@ const defaultProps = {
 
 class FButton extends Component { //Je passe par une classe parce que le bouton d'impression passe des refs dans ses "children"
   render() {
-    //Possible types: default, dark, validate, outline (retour, en blanc), outline-black, pill (vocal), light-action (light-PDF), theme (ac couleur de theme dark), error (rouge)
+    //Possible types: default, dark, validate, outline (retour, en blanc), outline-black, pill (vocal), light-action (light-PDF), theme (ac couleur de theme dark), error (rouge), help (rouge clair)
     let {type, className, fill, name, size, tag: Tag, ...bProps}= this.props;
     if (bProps.href && Tag === 'button') { Tag = 'a'; }
     return (

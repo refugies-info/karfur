@@ -67,18 +67,19 @@ class HomePage extends Component {
 
             <Row className="card-row">
               <Col lg="4" className="card-col">
-                <Card className="cursor-pointer" onClick={this.upcoming}>
-                  <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
-                  <CardBody>
-                    {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
-                  </CardBody>
-                  <CardFooter>
-                    {/*<FButton type="outline-black" name="search-outline" fill={variables.noir}>
-                      Chercher une démarche
-                    </FButton>*/}
-                    <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
-                  </CardFooter>
-                </Card>
+                <NavLink to="/advanced-search" className="no-decoration">
+                  <Card className="cursor-pointer" onClick={this.upcoming}>
+                    <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
+                    <CardBody>
+                      {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
+                    </CardBody>
+                    <CardFooter>
+                      <FButton type="outline-black" name="search-outline" fill={variables.noir}>
+                        Chercher une démarche
+                      </FButton>
+                    </CardFooter>
+                  </Card>
+                </NavLink>
               </Col>
               <Col lg="4" className="card-col">
                 <NavLink to="/advanced-search" className="no-decoration">
