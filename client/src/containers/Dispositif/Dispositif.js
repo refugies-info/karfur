@@ -108,6 +108,7 @@ class Dispositif extends Component {
   mountTime=0;
 
   componentDidMount (){
+    console.log("test")
     this._initializeDispositif(this.props);
   }
 
