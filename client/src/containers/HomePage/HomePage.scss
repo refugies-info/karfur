@@ -12,13 +12,13 @@
   }
 
   #hero {
-    background-image: url(../../assets/figma/headerBackground.svg);
-    background-size: cover;
+    background-image: url(../../assets/figma/integration_illu.svg), url(../../assets/figma/Integration_bg.svg);
+    background-size: 100%, cover;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding-top: 0;
+    align-items: flex-start;
+    padding-top: 100px;
   }
 
   .hero-container{
@@ -29,9 +29,8 @@
       display:flex;
       align-items: center;
       justify-content: space-between;
-      background: $blanc;
-      opacity: 0.9;
-      box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
+      background: rgba(255, 255,255, .9);
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
       padding: 10px;
       height: 80px;
@@ -81,19 +80,26 @@
     }
   }
 
-  #contribution, #certifiee{
+  #contribution{
+    background-image: url(../../assets/figma/contrib_illu.svg), url(../../assets/figma/collaboratif_both.svg);
+    background-size: 55%, cover;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 100px),0;
+  }
+  
+  #certifiee{
     background-image: url(../../assets/figma/humaanRight.svg), url(../../assets/figma/curved-background.svg);
     background-size: 420px, cover;
     background-repeat: no-repeat, no-repeat;
     background-position: calc(100% - 180px),0;
-    padding-top: 156cpx;
+    padding-top: 156px;
   }
 
   #multilangues, #explique{
-    background-image: url(../../assets/figma/humaanLeft.svg);
-    background-size: 420px;
+    background-image: url(../../assets/figma/Definition_illu.svg), url(../../assets/figma/Definition_Test1.svg);
+    background-size: 55%, cover;
     background-repeat: no-repeat;
-    background-position: 180px;
+    background-position: calc(100% - 550px),0;
   }
 
   #plan{
@@ -111,8 +117,8 @@
         background: transparent;
         border: none;
         font-weight: 900;
-        font-size: 27px;
-        line-height: 34px;
+        font-size: 30px;
+        line-height: 36px;
         height: 100px;
         padding:0;
       }
@@ -125,6 +131,28 @@
         display: flex;
         justify-content: center;
         padding:0;
+        font-size: 18px;
+        font-weight: bold;
+
+        .homebtn{
+          background: rgba(255, 255, 255, 0.95);
+          color: $noir;
+          transition: all 0.5s ease;
+          height: 60px;
+          padding: 10px 20px;
+          box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+          display: flex;
+          align-items: center;
+          &:hover{
+            background: $noir;
+            color: $blancSimple;
+            box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+            svg{
+              transition: all 0.5s ease;
+              fill: $blancSimple;
+            }
+          }
+        }
       }
     }
   }
@@ -162,6 +190,21 @@
     font-weight: bold;
     border: 0.5px solid #3C3C3C;
     border-left: none;
+  }
+
+  .dispo-card{
+    background-image: url(../../assets/figma/dispo_trip_1.svg);
+    background-size: cover;
+  }
+
+  .demarche-card{
+    background-image: url(../../assets/figma/demarche_trip_1.svg);
+    background-size: cover;
+  }
+
+  .parcours-card{
+    background-image: url(../../assets/figma/parcours_trip_1.svg);
+    background-size: cover;
   }
 }
 
