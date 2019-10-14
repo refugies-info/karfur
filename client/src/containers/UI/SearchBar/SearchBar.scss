@@ -147,6 +147,10 @@
       position: relative;
       right: 0;
       transform: matrix(-1, 0, 0, 1, 0, 0);
+
+    &.active{
+      display:none;
+    }
     }
   }
 
