@@ -1,1 +1,0 @@
-{"version":3,"sources":["/Users/tonyparker/Documents/github/karfur/client/src/components/UI/LiveChat/LiveChat.css","11.acc1fb2d.chunk.css"],"names":[],"mappings":"AAAA,yBACE,YCCF","file":"11.acc1fb2d.chunk.css","sourcesContent":[".myLiveChat .sc-launcher{\n  z-index:1000;\n}",".myLiveChat .sc-launcher{\n  z-index:1000;\n}\n"]}
