@@ -46,7 +46,7 @@ const filtres = {
   "niveauFrancais": ["Débutant","Intermédiaire","Avancé", "Tous les niveaux"],
   "justificatifs": ["Titre de séjour", "Justificatif de domicile", "Diplôme", "Permis de conduire"],
   "tags": [
-    {short: "Français", name: "apprendre le français", darkColor: "#583F93", lightColor: "#F0E8F5", hoverColor: "#ADA8D4", illustrationColor: "#F9AA38"}, 
+    {short: "Français", name: "apprendre le français", darkColor: "#37277C", lightColor: "#F0E8F5", hoverColor: "#ADA8D4", illustrationColor: "#F9AA38"}, 
     {short: "Logement", name: "me loger", darkColor: "#1174BA", lightColor: "#DDF3FA", hoverColor: "#55A6CE", illustrationColor: "#F77B0B"}, 
     {short: "Insertion pro", name: "trouver un travail", darkColor: "#149295", lightColor: "#D6EFF4", hoverColor: "#4FD3BD", illustrationColor: "#DD0539"}, 
     {short: "Formation pro", name: "apprendre un métier", darkColor: "#095411", lightColor: "#E8F4E9", hoverColor: "#7DC690", illustrationColor: "#FC1E73"}, 
