@@ -1,5 +1,35 @@
 @import 'src/scss/colors.scss';
 
+.Public-visé{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Public.svg);
+  background-size: cover;
+}
+
+.Âge-requis{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Age.svg);
+  background-size: cover;
+}
+
+.Durée{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Durée.svg);
+  background-size: cover;
+}
+
+.Niveau-de-français{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Français.svg);
+  background-size: cover;
+}
+
+.Combien-ça-coute{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Prix.svg);
+  background-size: cover;
+}
+
+.Justificatif-demandé{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Papiers.svg);
+  background-size: cover;
+}
+
 .cards.row .card-col{ 
   padding: 0 0 0 10px;
   margin-top:40px;
@@ -15,7 +45,6 @@
     &.make-it-red{
       background: $rouge;
     }
-
     
     .card-header{
       background-color: $darkColor;

@@ -236,12 +236,12 @@ class Avancement extends Component {
         <Row>
           <Col>
             <h2>
-              <NavLink to="/backend/user-profile" className="my-breadcrumb">Mon profil / </NavLink>
-              <NavLink to="/backend/user-dashboard" className="my-breadcrumb">Espace traduction / </NavLink>
-              {langue.langueFr}
+              <NavLink to="/backend/user-profile" className="my-breadcrumb">Mon profil</NavLink> /{" "}
+              <NavLink to="/backend/user-dashboard" className="my-breadcrumb">Espace traduction</NavLink> / 
+              {" "}{langue.langueFr}
             </h2>
           </Col>
-          <Col className="tableau-header align-right">
+          <Col className="avancement-header-right tableau-header align-right">
             <FButton type="outline-black" name="info-outline" fill={variables.noir} className="mr-10" onClick={this.upcoming}>
               Aide
             </FButton>
@@ -251,13 +251,13 @@ class Avancement extends Component {
           </Col>
         </Row>
 
-        <Row className="avancement-header">
+        {/*<Row className="avancement-header">
           <Col className="tableau-header">
             <div className="float-right">
               Plus que <b className="big-number">{(this.state.data || []).length}</b> éléments à traduire, on lâche rien !
             </div>
           </Col>
-        </Row>
+    </Row>*/}
         
         <div className="tableau">
           <Table responsive className="avancement-user-table">

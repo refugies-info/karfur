@@ -63,8 +63,8 @@ export class Toolbar extends React.Component {
         />
 
         <div className="right_buttons">
-          <FButton type="dark" name="flash" className="ml-10 mr-10" tag={NavLink} to="/advanced-search"> {/*to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} */}
-            Super recherche
+          <FButton type="dark" name="grid" className="ml-10 mr-10" tag={NavLink} to="/advanced-search"> {/*to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} */}
+            Tout voir
           </FButton>
 
           {API.isAuth() ? 
