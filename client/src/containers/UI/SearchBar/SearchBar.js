@@ -51,7 +51,7 @@ export class SearchBar extends React.Component {
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
     this.props.history.push({ 
-      pathname: '/' + (dispositif.type || "dispositif") + (dispositif._id ? ('/' + dispositif._id) : ''), 
+      pathname: '/' + (dispositif.typeContenu || "dispositif") + (dispositif._id ? ('/' + dispositif._id) : ''), 
       state: { inVariante: true} 
     } )
   }
