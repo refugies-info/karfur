@@ -7,11 +7,12 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
 
+import API from '../../utils/API';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import SVGIcon from '../../components/UI/SVGIcon/SVGIcon';
 import {fColorAvancement} from '../../components/Functions/ColorFunctions';
 import {image_corriger} from '../../assets/figma';
-import {CheckDemarcheModal} from '../../components/Modals'
+import {CheckDemarcheModal} from '../../components/Modals';
 
 import './CommentContribuer.scss';
 import variables from 'scss/colors.scss';
@@ -19,9 +20,11 @@ import variables from 'scss/colors.scss';
 class CommentContribuer extends Component {
   state={
     showModals:{ checkDemarche: false },
+    users:[],
   }
 
   componentDidMount (){
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
     window.scrollTo(0, 0);
   }
 
@@ -31,6 +34,7 @@ class CommentContribuer extends Component {
 
   render() {
     const {t, langues} = this.props;
+    const {showModals, users} = this.state;
     return (
       <div className="animated fadeIn comment-contribuer texte-small">
         <section id="hero">
@@ -38,18 +42,24 @@ class CommentContribuer extends Component {
             <h1>{t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}</h1>
             <div className="cartes-row">
               <div className="cartes-wrapper">
-                <div className="carte-contrib">
-                  <EVAIcon name="edit-outline" className="carte-icon" />
-                  <h3 className="texte-footer">{t("CommentContribuer.écrire", "écrire")}</h3>
-                </div>
-                <div className="carte-contrib">
-                  <EVAIcon name="edit-outline" className="carte-icon" />
-                  <h3 className="texte-footer">{t("CommentContribuer.traduire", "traduire")}</h3>
-                </div>
-                <div className="carte-contrib">
-                  <EVAIcon name="edit-outline" className="carte-icon" />
-                  <h3 className="texte-footer">{t("CommentContribuer.corriger", "corriger")}</h3>
-                </div>
+                <AnchorLink href="#ecrire">
+                  <div className="carte-contrib">
+                    <EVAIcon name="edit-outline" className="carte-icon" />
+                    <h3 className="texte-footer">{t("CommentContribuer.écrire", "écrire")}</h3>
+                  </div>
+                </AnchorLink>
+                <AnchorLink href="#traduire">
+                  <div className="carte-contrib">
+                    <EVAIcon name="edit-outline" className="carte-icon" />
+                    <h3 className="texte-footer">{t("CommentContribuer.traduire", "traduire")}</h3>
+                  </div>
+                </AnchorLink>
+                <AnchorLink href="#corriger">
+                  <div className="carte-contrib">
+                    <EVAIcon name="edit-outline" className="carte-icon" />
+                    <h3 className="texte-footer">{t("CommentContribuer.corriger", "corriger")}</h3>
+                  </div>
+                </AnchorLink>
               </div>
             </div>
           </div>
@@ -129,25 +139,27 @@ class CommentContribuer extends Component {
               <div className="left-side">
                 <h5>{t("CommentContribuer.Autre langue", "Vous parlez une autre langue ? Rejoignez-nous !")}</h5>
                 <div className="data mb-20">
-                  <div className="left-data"><h3>32</h3></div>
-                  <div className="right-data">traducteurs actifs</div>
+                  <div className="left-data"><h3>{(users.filter(x => (x.roles || []).some(y=>y.nom==="Trad")) || []).length}</h3></div>
+                  <div className="right-data">{t("CommentContribuer.traducteurs actifs", "traducteurs actifs")}</div>
                 </div>
                 <div className="data">
-                  <div className="left-data"><h3>4</h3></div>
-                  <div className="right-data">experts en traduction</div>
+                  <div className="left-data"><h3>{(users.filter(x => (x.roles || []).some(y=>y.nom==="ExpertTrad")) || []).length}</h3></div>
+                  <div className="right-data">{t("CommentContribuer.experts en traduction", "experts en traduction")}</div>
                 </div>
               </div>
               <div className="right-side">
                 <Row className="langues-wrapper">
                   {langues.map(langue => (
                     <Col xl="4" lg="4" md="4" sm="4" xs="4" className="langue-col" key={langue._id}>
-                      <div className="langue-item">
-                        <h5>
-                        <i className={"mr-20 flag-icon flag-icon-" + langue.langueCode} title={langue.langueCode} />
-                          {langue.langueFr}
-                          <span className={"float-right color-" + fColorAvancement(langue.avancement)}>{Math.round((langue.avancement || 0) * 100, 0) + " %"}</span>
-                        </h5>
-                      </div>
+                      <NavLink to="/backend/user-dashboard">
+                        <div className="langue-item">
+                          <h5>
+                          <i className={"mr-20 flag-icon flag-icon-" + langue.langueCode} title={langue.langueCode} />
+                            {langue.langueFr}
+                            <span className={"float-right color-" + fColorAvancement(langue.avancement)}>{Math.round((langue.avancement || 0) * 100, 0) + " %"}</span>
+                          </h5>
+                        </div>
+                      </NavLink>
                     </Col> 
                   ))}
                 </Row>
@@ -225,7 +237,7 @@ class CommentContribuer extends Component {
           </div>
         </section>
 
-        <CheckDemarcheModal show={this.state.showModals.checkDemarche} toggle={()=>this.toggleModal(false, "checkDemarche")} upcoming={this.upcoming} />
+        <CheckDemarcheModal show={showModals.checkDemarche} toggle={()=>this.toggleModal(false, "checkDemarche")} upcoming={this.upcoming} />
       </div>
     );
   }

@@ -244,7 +244,7 @@ class CardParagraphe extends Component {
 
     return(
       <>
-        <Col lg="4" className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
+        <Col className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
           <Card className={subitem.title==='Important !' ? 'make-it-red':'regular'} id={"info-card-" + this.props.keyValue + "-" + subkey}>
             <CardHeader className="backgroundColor-darkColor">
               {cardHeaderContent(subitem)}

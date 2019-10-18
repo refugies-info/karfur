@@ -69,7 +69,8 @@
     "Rédactions": "Rédactions",
     "Traductions": "Traductions",
     "Ma structure": "Ma structure",
-    "Messages": "Messages"
+    "Messages": "Messages",
+    "Contributions": "Contributions"
   },
   "UserProfile": {
     "Pseudonyme": "Pseudonyme",
@@ -139,7 +140,9 @@
     "Écoute du texte": "Écoute du texte",
     "Écoutez ou faites écouter": "Écoutez ou faites écouter les informations écrites de la plateforme",
     "Traduction directe": "Traduction directe",
-    "paragraphe pas accessible": "Ce paragraphe n'est pas accessible dans une langue que vous maîtrisez ? Aidez-nous à le traduire !"
+    "paragraphe pas accessible": "Ce paragraphe n'est pas accessible dans une langue que vous maîtrisez ? Aidez-nous à le traduire !",
+    "traducteurs actifs": "traducteurs actifs",
+    "experts en traduction": "experts en traduction"
   },
   "Dispositifs": {
     "Header": "Construire sa vie en France",
@@ -263,7 +266,22 @@
     "Dispositifs connexes": "Dispositifs connexes",
     "Retours d'expérience": "Retours d'expérience",
     "Pourquoi ça m'intéresse": "Pourquoi ça m'intéresse",
-    "Détail de l'offre": "Détail de l'offre"
+    "Détail de l'offre": "Détail de l'offre",
+    "Voir le numéro de téléphone": "Voir le numéro de téléphone",
+    "Voir l’adresse postale": "Voir l’adresse postale",
+    "Bouton personnalisé": "Bouton personnalisé",
+    "compris": "Ok, j’ai compris",
+    "Délais de réponse annoncés": "Délais de réponse annoncés",
+    "Documents nécessaires": "Documents nécessaires",
+    "realisation etape": "Je réalise cette étape :",
+    "Type de démarche": "Type de démarche",
+    "Combien de temps": "Combien de temps ça va vous prendre ?",
+    "Clique sur ce lien": "Clique sur ce lien",
+    "Ton lieu de rendez-vous est": "Ton lieu de rendez-vous est",
+    "Numéro à appeler": "Numéro à appeler",
+    "Ton courrier doit être adressé à": "Ton courrier doit être adressé à",
+    "Ce que tu dois faire": "Ce que tu dois faire",
+    "izok": "Est-ce que ça c’est bien passé comme on a dit ?"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",
@@ -312,5 +330,5 @@
   "Non": "Non",
   "Oui": "Oui",
   "Retour": "Retour",
-  "J’ai besoin d’aide": "J’ai besoin d’aide"
+  "J'ai besoin d'aide": "J'ai besoin d'aide"
 }

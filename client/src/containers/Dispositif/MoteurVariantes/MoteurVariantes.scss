@@ -5,17 +5,6 @@
   border-radius: 12px;
   margin: 0 40px;
 
-  .dashed-panel{
-    background: repeating-linear-gradient(
-      -45deg,
-      $uiattention,
-      $uiattention 20px,
-      $noir 20px,
-      $noir 40px
-    );
-    height: 10px;
-    border-radius: 12px 12px 0 0;
-  }
   .moteur-wrapper{
     padding: 40px;
   }
@@ -29,10 +18,35 @@
     }
   }
   .moteur-row{
-    background: #FFFFFF;
-    border-radius: 12px;
-    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .moteur-col{
     margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    &:not(:first-child){
+      padding-left: 10px;
+    }
+  }
+  .col-header{
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    color: #FFFFFF;
+    background: $noir;
+    border-radius: 12px 12px 0 0;
+    padding: 10px 20px;
+  }
+  .col-body{
+    background: #FFFFFF;
+    padding: 10px;
+    border-radius: 12px;
+    flex:1;
+    &.with-header{
+      border-radius: 0 0 12px 12px;
+    }
   }
   .critere{
     padding: 30px 20px;
@@ -154,5 +168,8 @@
   .reduced-header{
     margin-bottom: 30px;
     font-weight: bold;
+  }
+  .negative-margin{
+    margin-top: -10px;
   }
 }

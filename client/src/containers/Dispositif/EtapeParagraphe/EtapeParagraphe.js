@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { Row, Col, Collapse, ButtonDropdown, DropdownToggle, DropdownMenu, Input, DropdownItem, Form, Label, FormGroup } from 'reactstrap';
+import { Row, Col, Collapse, ButtonDropdown, DropdownToggle, DropdownMenu, Input, DropdownItem, Form, Label, FormGroup, Tooltip } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
-import Swal from 'sweetalert2';
+import _ from "lodash";
 import { withTranslation } from 'react-i18next';
 
 import FButton from '../../../components/FigmaUI/FButton/FButton';
@@ -12,6 +12,7 @@ import FInput from '../../../components/FigmaUI/FInput/FInput';
 
 import './EtapeParagraphe.scss';
 import variables from 'scss/colors.scss';
+import { EtapeModal } from '../../../components/Modals';
 
 class EtapeParagraphe extends Component {
   state= {
@@ -26,7 +27,25 @@ class EtapeParagraphe extends Component {
     value4: "",
     isOptionSelected: false,
     selectedOption: {},
-    configurationOpen: false
+    configurationOpen: false,
+    tooltipOpen: new Array(4).fill(false),
+    showModal: false
+  }
+
+  componentWillReceiveProps(nextProps){
+    const {isOptionSelected} = this.state;
+    if(!isOptionSelected && 
+      ((_.get(nextProps, "subitem.option.value1") && _.get(nextProps, "subitem.option.value1") !== _.get(this.state, "subitem.option.value1")) || 
+      ( _.get(nextProps, "subitem.option.value2") && _.get(nextProps, "subitem.option.value2") !== _.get(this.state, "subitem.option.value2")) || 
+      (_.get(nextProps, "subitem.option.texte") && _.get(nextProps, "subitem.option.texte") !== _.get(this.state, "subitem.option.texte")) || 
+      _.get(nextProps, "subitem.option.checked") !== _.get(this.state, "subitem.option.checked") ) ){
+      let {checked, value1, value2, value3, value4, texte} = nextProps.subitem.option;
+      this.setState(pS => ({ checked, value1, value2, value3, value4, texte,
+        isPapiersDropdownOpen: new Array(((nextProps.subitem || {}).papiers || []).length).fill(false),
+        isOptionSelected: true, 
+        selectedOption: nextProps.subitem.option, 
+        options: pS.options.map(x => ({...x, selected: x.texte === texte})) }))
+    }
   }
 
   editCard = () => this.toggleModal(true,'pieces')
@@ -37,6 +56,8 @@ class EtapeParagraphe extends Component {
   toggleConfigurationOpen = () => this.setState(pS => ({ configurationOpen: !pS.configurationOpen }));
   handleChange = (e, target) => this.setState({ [target]: e.target.value });
   selectOption = (idx = null, option={}) => this.setState(pS => ({isOptionSelected: idx !== null, selectedOption: option, options: pS.options.map((x,i) => ({...x, selected: i===idx})), value1: "", value2:"", value3: "", value4:"", checked:false}))
+  toggleTooltip = (idx) => this.setState(pS => ({tooltipOpen: pS.tooltipOpen.map((x,i) => i===idx ? !x : x) })); 
+  toggleModal = () => this.setState(pS => ({showModal: !pS.showModal })); 
 
   validateOption = e => {
     e.preventDefault();
@@ -53,10 +74,11 @@ class EtapeParagraphe extends Component {
   }
 
   setOption = () => {
-    const {checked, value1, value2, value3, value4} = this.state;
+    const {selectedOption, checked, value1, value2, value3, value4} = this.state;
     const newOption = {
-      ...this.state.selectedOption,
+      ...selectedOption,
       checked, value1, value2, value3, value4,
+      ctaText: selectedOption.ctaField ? selectedOption[selectedOption.ctaField] : selectedOption.ctaText
     }
     this.setPropsValue(newOption, "option")
   }
@@ -71,15 +93,16 @@ class EtapeParagraphe extends Component {
         }
       }
     }, value)
-    console.log(value, target)
     this.setState(pS => ({ validatedRow: pS.validatedRow.map((x,i) => ((target === "duree" && i===1) || (target === "delai" && i===2) || (target === "papiers" && i===3)) ? (i !==3 || value.length > 0) : x) }))
   }
 
   render(){
     const {keyValue, subitem, subkey, uiArray, updateUIArray, disableEdit, sideView, demarcheSteps, t} = this.props;
-    const {isDropdownOpen, checked, value1, value2, value3, value4, options, isOptionSelected, selectedOption, validatedRow, isPapiersDropdownOpen, configurationOpen} = this.state;
+    const {isDropdownOpen, checked, value1, value2, value3, value4, options, isOptionSelected, selectedOption, 
+      validatedRow, isPapiersDropdownOpen, configurationOpen, tooltipOpen, showModal} = this.state;
 
     const safeUiArray = (key, subkey, node) => uiArray[key] && uiArray[key].children && uiArray[key].children.length>subkey && uiArray[key].children[subkey] && uiArray[key].children[subkey][node]
+
     return(
       <div key={subkey} className={'etape contenu' + (safeUiArray(keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>updateUIArray(keyValue, subkey, 'isHover', true, e)}>
         <Row className="relative-position">
@@ -111,24 +134,42 @@ class EtapeParagraphe extends Component {
                   <EVAIcon onClick={() => this.props.removeItem(keyValue, subkey)} className="delete-icon cursor-pointer" name="close-circle" fill={variables.error} size="xlarge" />}
               </div>
               <div className={"etapes-data ml-10" + (disableEdit ? "" : " editing")} onClick={this.toggleConfigurationOpen}>
-                <div className="etape-data">
-                  <EVAIcon name="at-outline" fill={variables.grisFonce} className="mr-8" />
-                  <span>{t("Dispositif." + ((subitem.option || {}).texte || "En ligne"), ((subitem.option || {}).texte || "En ligne"))}</span>
-                </div>
-                <div className="etape-data">
-                  <EVAIcon name="clock-outline" fill={variables.grisFonce} className="mr-8" />
-                  <span>{subitem.duree || 0} {t(subitem.timeStepDuree, subitem.timeStepDuree)}</span>
-                </div>
-                <div className="etape-data">
-                  <EVAIcon name="undo" fill={variables.grisFonce} className="mr-8" />
-                  <span>{subitem.delai && subitem.delai!=="00" && subitem.timeStepDelai ?
-                    <span>{subitem.delai} {t(subitem.timeStepDelai, subitem.timeStepDelai)}</span> :
-                    t("Dispositif.Immédiate", "Immédiate")}</span>
-                </div>
-                <div className="etape-data">
-                  <EVAIcon name="file-text-outline" fill={variables.grisFonce} className="mr-8" />
-                  <span>{(subitem.papiers || []).length || 0}</span>
-                </div>
+                {(!disableEdit || subitem.option) &&
+                  <div className="etape-data" id="etape-option">
+                    <EVAIcon name="at-outline" fill={variables.grisFonce} className="mr-8" />
+                    <span>{t("Dispositif." + ((subitem.option || {}).texte || "En ligne"), ((subitem.option || {}).texte || "En ligne"))}</span>
+                    <Tooltip placement="top" offset="0px, 8px" isOpen={tooltipOpen[0]} target="etape-option" toggle={()=>this.toggleTooltip(0)}>
+                      {t("Dispositif.Type de démarche", "Type de démarche")}
+                    </Tooltip>
+                  </div>}
+                {(!disableEdit || subitem.duree) &&
+                  <div className="etape-data" id="etape-duree">
+                    <EVAIcon name="clock-outline" fill={variables.grisFonce} className="mr-8" />
+                    <span>{subitem.duree || 0} {t(subitem.timeStepDuree, subitem.timeStepDuree)}</span>
+                    <Tooltip placement="top" offset="0px, 8px" isOpen={tooltipOpen[1]} target="etape-duree" toggle={()=>this.toggleTooltip(1)}>
+                      {t("Dispositif.Combien de temps", "Combien de temps ça va vous prendre ?")}
+                    </Tooltip>
+                  </div>}
+                {(!disableEdit || subitem.delai) &&
+                  <div className="etape-data" id="etape-delai">
+                    <EVAIcon name="undo" fill={variables.grisFonce} className="mr-8" />
+                    <span>
+                      {subitem.delai && subitem.delai!=="00" && subitem.timeStepDelai ?
+                        <span>{subitem.delai} {t(subitem.timeStepDelai, subitem.timeStepDelai)}</span> :
+                        t("Dispositif.Immédiate", "Immédiate")}
+                    </span>
+                    <Tooltip placement="top" offset="0px, 8px" isOpen={tooltipOpen[2]} target="etape-delai" toggle={()=>this.toggleTooltip(2)}>
+                      {t("Dispositif.Délais de réponse annoncés", "Délais de réponse annoncés")}
+                    </Tooltip>
+                  </div>}
+                {(!disableEdit || subitem.papiers) &&
+                  <div className="etape-data" id="etape-papiers">
+                    <EVAIcon name="file-text-outline" fill={variables.grisFonce} className="mr-8" />
+                    <span>{(subitem.papiers || []).length || 0}</span>
+                    <Tooltip placement="top" offset="0px, 8px" isOpen={tooltipOpen[3]} target="etape-papiers" toggle={()=>this.toggleTooltip(3)}>
+                      {t("Dispositif.Documents nécessaires", "Documents nécessaires")}
+                    </Tooltip>
+                  </div>}
               </div>
             </div>
             
@@ -307,7 +348,7 @@ class EtapeParagraphe extends Component {
 
               <div className="footer-btns mt-10">
                 <FButton type="help" name="question-mark-circle-outline" fill={variables.error} onClick={this.props.upcoming}>
-                  J'ai besoin d'aide
+                  {t("J'ai besoin d'aide")}
                 </FButton>
                 <FButton 
                   type="validate" 
@@ -320,7 +361,24 @@ class EtapeParagraphe extends Component {
               </div>
             </Collapse>
 
-            <Collapse className="contenu-accordeon" isOpen={safeUiArray(keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + keyValue + "-" + subkey} aria-labelledby={"heading" + keyValue + "-" + subkey}>
+            <Collapse className="contenu-accordeon etape-accordeon" isOpen={safeUiArray(keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + keyValue + "-" + subkey} aria-labelledby={"heading" + keyValue + "-" + subkey}>
+              {disableEdit && subitem.option && 
+                <div className="realisation-wrapper">
+                  <h5>{t("Dispositif.realisation etape", "Je réalise cette étape :")}</h5>
+                  <div className="real-btns">
+                    <FButton 
+                      type="dark" 
+                      name="link-outline" 
+                      className="mr-10"
+                      fill={variables.noir}
+                      onClick={this.toggleModal} >
+                      {subitem.option.ctaField ? subitem.option[subitem.option.ctaField] : (subitem.option.ctaText && t("Dispositif." + subitem.option.ctaText, subitem.option.ctaText))}
+                    </FButton>
+                    <FButton type="help" name="question-mark-circle-outline" fill={variables.error} onClick={this.props.upcoming}>
+                      {t("J'ai besoin d'aide")}
+                    </FButton>
+                  </div>
+                </div>}
               <EditableParagraph 
                 keyValue={keyValue} 
                 subkey={subkey} 
@@ -331,7 +389,21 @@ class EtapeParagraphe extends Component {
                 disableEdit={disableEdit}
                 tutoriel={this.props.item.tutoriel}
                 addItem={this.props.addItem}
+                typeContenu = {this.props.typeContenu}
                 {...subitem} />
+              
+              {disableEdit && 
+                <div className="feedback-wrapper">
+                  <b>{t("Dispositif.izok", "Est-ce que ça c’est bien passé comme on a dit ?")}</b>
+                  <div className="feedback-btns">
+                    <FButton type="validate" className="mr-10" onClick={this.props.upcoming} >
+                      {t("Oui", "Oui")}
+                    </FButton>
+                    <FButton type="error" onClick={this.props.upcoming}>
+                      {t("Non", "Non")}
+                    </FButton>
+                  </div>
+                </div>}
             </Collapse>
             {!disableEdit &&
               <FButton type="dark" name="plus-circle-outline" className="mt-10" onClick={()=>this.props.addItem(keyValue, "etape", subkey)} >
@@ -347,6 +419,12 @@ class EtapeParagraphe extends Component {
                 {...this.props} />
             </Col>}
         </Row>
+
+        <EtapeModal
+          show={showModal}
+          toggle={this.toggleModal}
+          {...this.props}
+        />
       </div>
     )
   }

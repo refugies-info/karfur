@@ -50,13 +50,16 @@ export class SearchBar extends React.Component {
 
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
-    this.props.history.push('/' + (dispositif.type || "dispositif") + (dispositif._id ? ('/' + dispositif._id) : ''))
+    this.props.history.push({ 
+      pathname: '/' + (dispositif.type || "dispositif") + (dispositif._id ? ('/' + dispositif._id) : ''), 
+      state: { inVariante: true} 
+    } )
   }
 
   validateSearch = () => this.goToDispositif(this.state.selectedResult, true);
   
   render() {
-    const {isArray, structures, createNewCta} = this.props;
+    const {isArray, structures, createNewCta, withEye} = this.props;
 
     const renderSuggestion = (suggestion, { query }) => {
       if(suggestion.createNew){
@@ -66,13 +69,15 @@ export class SearchBar extends React.Component {
               <EVAIcon name="plus-outline" className="mr-10 plus-btn" />
               <span>{createNewCta || "Créer une nouvelle structure"}</span>
             </span>
-            <span className="float-right mt-10">
+            <span>
               <EVAIcon name="plus-circle-outline" fill={variables.grisFonce} />
             </span>
           </span>
         );
       }else{
-        const suggestionText = `${isArray ? structures ? suggestion.acronyme : suggestion.username : suggestion.titreMarque} - ${isArray ? structures ? suggestion.nom : (suggestion.email || "") : suggestion.titreInformatif}`;
+        const firstPart = isArray ? structures ? suggestion.acronyme : suggestion.username : suggestion.titreMarque;
+        const secondPart = isArray ? structures ? suggestion.nom : suggestion.email : suggestion.titreInformatif;
+        const suggestionText = (firstPart || "") + (firstPart && secondPart ? " - " : "") + (secondPart || "");
         const matches = AutosuggestHighlightMatch(suggestionText, query + ' ' + query);
         const parts = AutosuggestHighlightParse(suggestionText, matches);
         return (
@@ -85,6 +90,10 @@ export class SearchBar extends React.Component {
                 return <span className={className} key={index}>{part.text}</span>;
               })}
             </span>
+            {withEye && 
+              <span className="oeil-btn">
+                <EVAIcon name="eye-outline" fill={variables.noir} />
+              </span>}
           </span>
         );
       }

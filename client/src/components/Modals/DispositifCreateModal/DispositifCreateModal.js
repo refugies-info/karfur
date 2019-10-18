@@ -17,19 +17,19 @@ class DispositifCreateModal extends Component {
   changeStep = (next=true) => this.setState(pS => ({stepIdx: pS.stepIdx + (next ? 1 : -1)}))
   
   render(){
-    const {toggle, startFirstJoyRide, onBoardSteps, type} = this.props;
+    const {toggle, startFirstJoyRide, onBoardSteps, typeContenu} = this.props;
     const {stepIdx} = this.state;
     return(
       <Modal 
         className="dispositif-create-modal" 
         modalHeader = {<>
           {stepIdx === 0 ? 
-            (type === "demarche" ? "Ajoutez une démarche" : "C’est parti !") :
+            (typeContenu === "demarche" ? "Ajoutez une démarche" : "C’est parti !") :
             onBoardSteps[stepIdx].title}
           {stepIdx === 0 &&
             <div className="temps-right">
               <EVAIcon className="mr-8" name="clock-outline" size="large" fill={variables.noir} />
-              <span>≈ {type === "demarche" ? 40 : 20} minutes</span>
+              <span>≈ {typeContenu === "demarche" ? 40 : 20} minutes</span>
             </div>} </>}
         {...this.props}
       >
@@ -41,7 +41,7 @@ class DispositifCreateModal extends Component {
                 <li>Vous vous adressez à des personnes réfugiées : le vocabulaire employé doit être simple et accessible.</li> 
                 <li>Il ne s’agit pas d’un support de communication institutionnelle mais d’une fiche pratique qui donne les principales informations de votre dispositifs.</li> 
                 <li>Le contenu doit être synthétique et vulgarisé.</li> 
-                <li>La lecture complète de la fiche ne devrait pas excéder {type === "demarche" ? "trois" : "deux"} minutes.</li> 
+                <li>La lecture complète de la fiche ne devrait pas excéder {typeContenu === "demarche" ? "trois" : "deux"} minutes.</li> 
               </ul>
             </div>
             <div className="content-bloc">

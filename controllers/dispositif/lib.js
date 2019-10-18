@@ -91,7 +91,6 @@ function get_dispositif(req, res) {
     }else{populate='';}
 
     let promise=null;
-    console.log(random)
     if(random){
       promise=Dispositif.aggregate([
         { $match : query },

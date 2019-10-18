@@ -23,7 +23,8 @@ const showModals = {
   allGood:false,
   construction:false,
   map:false,
-  responsable: false
+  responsable: false,
+  variante: false
 }
 
 const menu = [
@@ -47,14 +48,7 @@ const menu = [
 
 const menuDemarche = [
   {title:'C\'est quoi ?', content: '', tutoriel:{titre:'« C’est quoi ? » : Résumé de votre dispositif', contenu:'Il s\'agit d\'une synthèse en deux paragraphes maximum de l’ensemble de la fiche du dispositif. La lecture de cette section doit être auto-suffisante. Il est conseillé de rédiger cette section en dernier après les sections ultérieures.'}},
-  {title:'C\'est pour qui ?', type:'cards', content: null, tutoriel:{titre:'« C’est pour qui ? » :  les pré-requis pour rejoindre', contenu:'Cette section précise les caractéristiques du public cible et les pré-requis éventuels pour s’engager dans le dispositif. Vous pouvez mobiliser les catégories suivantes à votre guise : \n> Le statut demandé ? Réfugié, demandeurs d’asiles, primo-arrivants… \n> L’âge ; \n> Le niveau de français \n> La durée sur laquelle engage le dispositif ; \n> Des alertes spécifiques (par exemple : avoir un compte bancaire).'}, children:[
-    {type:'card', isFakeContent: true,title:'Public visé',titleIcon:'papiers',contentTitle: 'réfugiés', contentBody: 'ou bénéficiaire de la protection subsidiaire', footer:'En savoir plus',footerIcon:'info-outline'},
-    {type:'card', isFakeContent: true,title:'Âge requis',titleIcon:'calendar-outline', typeIcon: "eva",contentTitle: 'De ** à ** ans', bottomValue: 18, topValue:56, contentBody: '30 ans pour les personnes en situations de handicap', footer: 'Ajouter un message complémentaire', footerType:"text"},
-    {type:'card', isFakeContent: true,title:'Durée',titleIcon:'clock-outline', typeIcon: "eva",contentTitle: '6 à 12 mois', contentBody: 'en fonction de ce qui est convenu sur votre contrat', footer: 'Ajouter un message complémentaire', footerType:"text", tooltipHeader: "Durée du dispositif", tooltipContent: "Indiquez un intervalle ou une durée fixe ou supprimez la carte si elle n’est pas pertinente."},
-    {type:'card', isFakeContent: true,title:'Niveau de français',titleIcon:'frBubble',contentTitle: 'Débutant', niveaux:[], footer:'Évaluer mon niveau',footerIcon:'bar-chart-outline', footerHref:"https://savoirs.rfi.fr/fr/testez-votre-niveau-de-fran%C3%87ais", tooltipHeader: "Niveau de français requis", tooltipContent: "Indiquez un niveau généraliste et précisez si besoin le niveau CECR demandé (A1,A2, etc.).", tooltipFooter: "En savoir plus"},
-    {type:'card', isFakeContent: true,title:'Combien ça coûte ?',titleIcon:'money',free: true, price: 0, contentTitle: 'une seule fois', footer:'Ajouter un message complémentaire', footerType:"text", tooltipHeader: "Combien ça coûte ?", tooltipContent: "Précisez si l’accès à votre dispositif est gratuit ou s’il existe des frais d’inscription, ou des coûts récurrent.\nPensez à expliquer la raison du coût en message complémentaire."},
-    {type:'card', isFakeContent: true,title:'Justificatif demandé',titleIcon:'papiers',contentTitle: 'Titre de séjour', footer:'Voir un exemple',footerIcon:'eye-outline'},
-  ]},
+  {title:'C\'est pour qui ?', type:'cards', content: null, tutoriel:{titre:'« C’est pour qui ? » :  les pré-requis pour rejoindre', contenu:'Cette section précise les caractéristiques du public cible et les pré-requis éventuels pour s’engager dans le dispositif. Vous pouvez mobiliser les catégories suivantes à votre guise : \n> Le statut demandé ? Réfugié, demandeurs d’asiles, primo-arrivants… \n> L’âge ; \n> Le niveau de français \n> La durée sur laquelle engage le dispositif ; \n> Des alertes spécifiques (par exemple : avoir un compte bancaire).'}, children:[]},
   {title:'La démarche par étapes', content: null, tutoriel:{titre:'Les arguments principaux pour votre dispositif', contenu:'Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.'}, children:[
     {isFakeContent: true, title: 'Titre de la première étape', type: 'etape', placeholder: "Donnez plus d’information sur les modalités de réalisation de cette étape", content: '', papiers: [], duree: "00", timeStepDuree: "minutes", delai: "00", timeStepDelai: "minutes", option:{texte: "En ligne"}},
     {isFakeContent: true, title: 'Titre de la deuxième étape', type: 'etape', placeholder: "Donnez plus d’information sur les modalités de réalisation de cette étape", content: '', papiers: [], duree: "00", timeStepDuree: "minutes", delai: "00", timeStepDelai: "minutes", option:{texte: "En ligne"}}
@@ -223,11 +217,11 @@ const tutoSteps = [
 
 const demarcheSteps = {
   options : [
-    {texte: "En ligne", logo: "at", label1: "Lien vers la démarche :", label2: "Texte sur le bouton :", placeholder1: "Copiez-collez ici l’URL de votre lien", placeholder2: "Ex : “Évaluer mes droits en ligne”", checkbox: "Je ne connais pas le lien exact à ajouter", icon1: "link-2", icon2:"external-link"},
-    {texte: "En physique", logo: "pin", label1: "Adresse :", label2: null, placeholder1: "Indiquez ici l’adresse à laquelle les usagers doivent se rendre", placeholder2: null, checkbox: "Je ne connais pas l’adresse exacte à ajouter", icon1: "pin"},
-    {texte: "Par téléphone", logo: "phone-call", label1: "Numéro :", label2: null, placeholder1: "Insérez ici le numéro de téléphone à faire composer aux usagers", placeholder2: null, checkbox: "Je ne connais pas le numéro exact à ajouter", icon1: "phone-call"},
-    {texte: "Par courrier", logo: "email", label1: null, label2: null, placeholder1: "Numéro et libéllé de la voie", placeholder2: "Code postal", placeholder3: "Ville", placeholder4: "Cedex", checkbox: "Je ne connais pas l’adresse postale exacte à ajouter", icon1: "home", icon2:"hash", icon3: "pin", icon4: "hash"},
-    {texte: "Autre", logo: "alert-triangle", label1: "Indiquez en deux mots le type de démarche que vous demandez à l’usager :", label2: null, placeholder1: "Type de démarche", placeholder2: "Expliquez maintenant les détails de l’action à réaliser pour réaliser l’étape"},
+    {texte: "En ligne", logo: "at", label1: "Lien vers la démarche :", label2: "Texte sur le bouton :", placeholder1: "Copiez-collez ici l’URL de votre lien", placeholder2: "Ex : “Évaluer mes droits en ligne”", checkbox: "Je ne connais pas le lien exact à ajouter", icon1: "link-2", icon2:"external-link", ctaText: "Évaluer mes droits en ligne", ctaField: "value2", modalHeader: "Clique sur ce lien"},
+    {texte: "En physique", logo: "pin", label1: "Adresse :", label2: null, placeholder1: "Indiquez ici l’adresse à laquelle les usagers doivent se rendre", placeholder2: null, checkbox: "Je ne connais pas l’adresse exacte à ajouter", icon1: "pin", ctaText: "Voir l’adresse", ctaField: "value1", modalHeader: "Ton lieu de rendez-vous est"},
+    {texte: "Par téléphone", logo: "phone-call", label1: "Numéro :", label2: null, placeholder1: "Insérez ici le numéro de téléphone à faire composer aux usagers", placeholder2: null, checkbox: "Je ne connais pas le numéro exact à ajouter", icon1: "phone-call", ctaText: "Voir le numéro de téléphone", modalHeader: "Numéro à appeler"},
+    {texte: "Par courrier", logo: "email", label1: null, label2: null, placeholder1: "Numéro et libéllé de la voie", placeholder2: "Code postal", placeholder3: "Ville", placeholder4: "Cedex", checkbox: "Je ne connais pas l’adresse postale exacte à ajouter", icon1: "home", icon2:"hash", icon3: "pin", icon4: "hash", ctaText: "Voir l’adresse postale", modalHeader: "Ton courrier doit être adressé à"},
+    {texte: "Autre", logo: "alert-triangle", label1: "Indiquez en deux mots le type de démarche que vous demandez à l’usager :", label2: null, placeholder1: "Type de démarche", placeholder2: "Expliquez maintenant les détails de l’action à réaliser pour réaliser l’étape", ctaText: "Bouton personnalisé", modalHeader: "Ce que tu dois faire"},
   ],
   timeSteps:[
     {texte: "secondes"},

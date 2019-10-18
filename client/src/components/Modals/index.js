@@ -20,7 +20,9 @@ import ResponsableModal from './ResponsableModal/ResponsableModal';
 import AddMemberModal from './AddMemberModal/AddMemberModal';
 import EditMemberModal from './EditMemberModal/EditMemberModal';
 import RejectTradModal from './RejectTradModal/RejectTradModal';
-import CheckDemarcheModal from './CheckDemarcheModal/CheckDemarcheModal'
+import CheckDemarcheModal from './CheckDemarcheModal/CheckDemarcheModal';
+import VarianteCreateModal from './VarianteCreateModal/VarianteCreateModal';
+import EtapeModal from './EtapeModal/EtapeModal';
 
 export {
   BookmarkedModal,
@@ -46,4 +48,6 @@ export {
   EditMemberModal,
   RejectTradModal,
   CheckDemarcheModal,
+  VarianteCreateModal,
+  EtapeModal
 }

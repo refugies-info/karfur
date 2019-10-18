@@ -179,4 +179,14 @@
       max-height: 40px;
     }
   }
+  .suggestion-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .oeil-btn{
+    padding: 10px;
+    background: $gris;
+    border-radius: 10px;
+  }
 }

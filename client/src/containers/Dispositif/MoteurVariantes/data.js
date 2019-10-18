@@ -5,7 +5,7 @@ const customCriteres = [
     {texte: "Les hommes"},
     {texte: "Les deux"},
   ]},
-  {texte: "Public visé", query: "public", displayText: "Votre public concerne :", options: [
+  {texte: "Public visé", query: "publicVise", displayText: "Votre public concerne :", options: [
     {texte: "Les réfugiés statutaires"},
     {texte: "Les accompagnants"},
     {texte: "Tout public"},
