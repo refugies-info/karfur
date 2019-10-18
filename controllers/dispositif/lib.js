@@ -25,7 +25,7 @@ var mailOptions = {
 };
 
 function add_dispositif(req, res) {
-  if (!req.body || ((!req.body.titreMarque || !req.body.titreInformatif) && !req.body.dispositifId)) {
+  if (!req.body || ((!req.body.titreInformatif) && !req.body.dispositifId)) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let dispositif = req.body;

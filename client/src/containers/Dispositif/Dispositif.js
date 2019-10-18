@@ -182,7 +182,7 @@ class Dispositif extends Component {
       this.setState({
         disableEdit:false,
         uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}),
-        showDispositifCreateModal: false, //A modifier avant la mise en prod
+        showDispositifCreateModal: true, //A modifier avant la mise en prod
         isDispositifLoading: false,
         typeContenu,
         menu: (typeContenu === "demarche" ? menuDemarche : menu).map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
