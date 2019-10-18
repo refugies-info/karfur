@@ -41,7 +41,7 @@ class HomePage extends Component {
       <div className="animated fadeIn homepage">
         <section id="hero">
           <div className="hero-container">
-            <h1>{t("Homepage.Construire sa vie en France", "Construire sa vie en France")}</h1>
+            <h1>{t("Homepage.Construis ta vie en France", "Construis ta vie en France")}</h1>
             <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
             
             <div className="search-row">
@@ -61,14 +61,14 @@ class HomePage extends Component {
           </AnchorLink>
         </section>
 
-        <section id="plan">
+        <section id="plan" className="triptique">
           <div className="section-container">
-            <h2>{t("Homepage.Vous cherchez ?", "Vous cherchez ?")}</h2>
+            <h2>{t("Homepage.Vous cherchez ?", "Tu cherches à ?")}</h2>
 
             <Row className="card-row">
               <Col lg="4" className="card-col">
                 <Card className="cursor-pointer demarche-card" onClick={this.upcoming}>
-                  <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
+                  <CardHeader>{t("Homepage.À comprendre une démarche", "Comprendre une démarche administrative")}</CardHeader>
                   <CardBody>
                     {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
                   </CardBody>
@@ -83,7 +83,7 @@ class HomePage extends Component {
               <Col lg="4" className="card-col">
                 <NavLink to="/advanced-search" className="no-decoration">
                   <Card className="dispo-card">
-                    <CardHeader>{t("Homepage.A apprendre", "À apprendre, travailler, vous former, rencontrer")}</CardHeader>
+                    <CardHeader>{t("Homepage.A apprendre", "Rejoindre un dispositif d'accompagnement")}</CardHeader>
                     <CardBody>
                       {/* <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span> */}
                     </CardBody>
@@ -97,14 +97,14 @@ class HomePage extends Component {
               </Col>
               <Col lg="4" className="card-col">
                 <Card className="cursor-pointer parcours-card" onClick={this.upcoming}>
-                  <CardHeader>{t("Homepage.creer parcours", "À créer votre parcours personnalisé")}</CardHeader>
+                  <CardHeader>{t("Homepage.creer parcours", "Créer ton parcours personnalisé")}</CardHeader>
                   <CardBody>
                     {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
                   <CardFooter>
-                    <FButton type="homebtn" disabled name="search-outline" fill={variables.noir}>
+                    {/*<FButton type="homebtn" disabled name="search-outline" fill={variables.noir}>
                       Créer un parcours
-                    </FButton>
+                  </FButton>*/}
                     <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
                   </CardFooter>
                 </Card>
@@ -125,7 +125,7 @@ class HomePage extends Component {
                 </NavLink>
               </p>
             </div>
-            <footer>
+            <footer className="footer-section">
               {t("Homepage.contributeurs mobilises", {nombre: 230})}
               <FButton tag={NavLink} to="/comment-contribuer" type="dark" className="ml-10">
                 {t("Homepage.Je contribue", "Je contribue")}
@@ -141,7 +141,7 @@ class HomePage extends Component {
               <p className="texte-normal">{t("Homepage.disponible langues subheader")}</p>
               {/*<LanguageBtn />*/}
             </div>
-            <footer>
+            <footer className="footer-section">
               {t("Homepage.traducteurs mobilises", {nombre: 32})}
               <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
                 {t("Homepage.Je traduis", "Je traduis")}
@@ -159,7 +159,7 @@ class HomePage extends Component {
             {/*<footer>
               Nous ne censurons aucun contenu :
               <FButton type="dark" className="ml-10" onClick={this.upcoming}>
-                Notre charte éditoriale
+                
               </FButton>
             </footer>*/}
           </div>

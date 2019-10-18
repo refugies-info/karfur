@@ -54,7 +54,7 @@ class CommentContribuer extends Component {
               <Col lg="3" className="card-col">
                 <NavLink to="/dispositif" className="no-decoration">
                   <Card className="dispositif-card">
-                    <CardHeader>{t("CommentContribuer.Ajouter un dispositif", "Ajouter un dispositif")}</CardHeader>
+                    <CardHeader>{t("CommentContribuer.Ajouter un dispositif", "Ajouter un dispositif d'accompagnement")}</CardHeader>
                     <CardBody>
                       Rédigez la fiche pratique d'un dispositif d'accompagnement pour que les personnes réfugiées soient pleinement informées et puissent s'y engager.
                     </CardBody>
@@ -69,7 +69,7 @@ class CommentContribuer extends Component {
                 <Card className="cursor-pointer demarche-card" onClick={this.upcoming}>
                   <CardHeader>{t("CommentContribuer.Expliquer une démarche administrative", "Expliquer une démarche administrative")}</CardHeader>
                   <CardBody>
-                    Rédigez la fiche pratique d'une démarche administrative qui détaille, étape par étape, les actions à mener pour la réussir (titre de séjour, logement, santé etc).
+                    Rédigez la fiche pratique d'une démarche administrative qui détaille, étape par étape, les actions à mener pour la réussir.
                   </CardBody>
                   <CardFooter>
                     <EVAIcon name="clock-outline" className="clock-icon" />
