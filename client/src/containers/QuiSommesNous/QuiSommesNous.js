@@ -34,7 +34,7 @@ class QuiSommesNous extends Component {
         <section id="hero">
           <div className="hero-container">
             <h1>{t("QuiSommesNous.Qui sommes-nous", "Qui sommes-nous ?")}</h1>
-            <h4>{t("QuiSommesNous.subheader", "Agi’r est une plateforme numérique dédiée à faciliter les parcours d’intégration des réfugiés en France")}.</h4>
+            <h4>{t("QuiSommesNous.subheader", "Réfugiés.info est une plateforme numérique dédiée à faciliter les parcours d’intégration des réfugiés en France")}.</h4>
           </div>
           <AnchorLink href="#missions" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
@@ -107,7 +107,7 @@ class QuiSommesNous extends Component {
             {sideVisible && 
               <div className="description">
                 <div className="team-header">
-                  <h3>{membre.firstName}</h3>
+                  <h3>{membre.name}</h3>
                   <span>{membre.statut && t("QuiSommesNous." + membre.statut, membre.statut)}</span>
                 </div>
                 <div className="team-body">

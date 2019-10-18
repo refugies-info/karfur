@@ -1,10 +1,19 @@
 @import 'src/scss/global.scss';
 @import 'src/scss/colors.scss';
 
+.card{
+  margin-bottom: 15px;
+}
+
+.puff-in-center {
+  padding-right: 0px;
+}
+
 .custom-card.card{
   cursor : pointer;
   border-radius: 12px;
   font-size: 16px;
+  line-height: 21px;
   height:250px;
   scrollbar-width: none;
   border: none;
@@ -19,7 +28,6 @@
   }
 
   .card-body{
-    height: 309px;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -58,18 +66,31 @@
     @include media-max("desktop-up") { font-size: 16px; }
   }
 
+  h5{
+    margin-bottom: 5%;
+  }
+
   p{
     color: $noir;
+    margin-bottom: 0;
   }
 
   .card-footer{
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
     border:none;
+    &.bg-null{
+      background-color: $noir;
+    }
   }
 
   &.add-card{
-    background-color: $blanc;
+    padding-right: 0px;
+    width: 100%;
+    background-color: $gris;
+    .card-footer{
+      background-color: $grisFonce;
+    }
     &:hover{
       .add-sign{
         opacity:1;

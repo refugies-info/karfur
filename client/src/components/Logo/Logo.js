@@ -5,7 +5,7 @@ import './Logo.scss';
 
 const logo = (props) => (
   <NavLink to="/" className="logo">
-    Agir
+    Réfugiés.info
     <sup className="beta-tag">beta</sup>
   </NavLink>
 );
