@@ -9,18 +9,21 @@ $imgHeight : 350px;
   position: relative;
   
   .banniere-dispo{
+    margin-top: -60px;
+    padding-top: 60px;
     background-size:cover; 
     background: $blanc;
-    min-height: 330px; 
+    min-height: 500px; 
     background-position:0;
     position: relative;
 
     .post-title-block{
-      padding: 114px 0 49px 0;
+      padding: 114px 0 0;
       display: flex;
       z-index: 2;
 
       .bloc-titre{
+        padding-top: 155px;
         margin:auto;
       }
       .bloc-subtitle{
@@ -30,9 +33,13 @@ $imgHeight : 350px;
     .post-title-block h1 {
       font-style: normal;
       font-weight: bold;
-      font-size: 64px;
+      font-size: 52px;
       color: $noir;
+      background-color: rgba(255, 255, 255, 0.95);
+      line-height: 60px;
+      padding: 15px 20px;
       text-transform: initial;
+      margin-bottom: 0;
       @include media-max("phone-down") { &.editable{ max-width: calc(100% - 200px); } }
       @include media-max("tablet-up") { font-size: 46px; }
       @include media-max("phone-down") { font-size: 32px; }
@@ -43,6 +50,10 @@ $imgHeight : 350px;
       font-weight: normal;
       font-size: 32px;
       color: $noir;
+      background-color: rgba(255, 255, 255, 0.95);
+      line-height: 34px;
+      padding: 15px 20px;
+      padding-top: 0px;
       @include media-max("tablet-up") { font-size: 24px; }
       @include media-max("phone-down") { font-size: 16px; }
     }
@@ -50,38 +61,11 @@ $imgHeight : 350px;
     .header-row{
       position: absolute;
       width: 100%;
-      margin-top:18px;
+      margin-top: 30px;
       z-index: 3;
 
-      .top-left .btn {
-        display: flex;
-        cursor: pointer;
-        height:fit-content;
-        width:fit-content;
-        margin-left: 9%;
-        z-index:3;
-        color: $noir;
-        border-color: $noir;
-        background-color: $blanc;
-        border-radius: 12px;
-        padding: 10px 13px;
-        &:hover{
-          color: #ffffff;
-          background-color: $noir;
-          border-color: $noir;
-          svg{
-            fill: #FFF;
-          }
-        }
-
-        .icons{
-          margin-right: 10px;
-        }
-        i{
-          padding-right:7px;
-          padding-top: 0.3rem;
-          margin: 0 19px;
-        }
+      .top-left .btn-retour {
+        margin-left: 30px;
       }
       
       .top-right{
@@ -614,26 +598,6 @@ $imgHeight : 350px;
     }
   }
   
-
-  .header-img{
-    position: absolute;
-    @include media-max("desktop-down") { height: $imgHeight * 3/4; width: $imgWidth * 3/4; }
-    @include media-max("desktop-up") { height: $imgHeight / 2; width: $imgWidth / 2; }
-    @include media-max("tablet-up") { height: $imgHeight / 4; width: $imgWidth / 4; }
-    @include media-max("phone-down") { height: $imgHeight / 6; width: $imgWidth / 6; }
-
-    &.femme-icon{
-      left:0;
-      bottom:0;
-    }
-    &.homme-icon{
-      bottom:0;
-      right: 100px;
-      @include media-max("desktop-up") { right: 0; }
-    }
-  }
-
-
   .feedback-footer{
     background: $blanc;
     color: $darkColor;
