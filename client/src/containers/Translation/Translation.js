@@ -73,7 +73,7 @@ class TranslationHOC extends Component {
     clearInterval(this.timer)
   }
 
-  componentWillUpdate(nextProps, nextState){
+  componentWillUpdate(_, nextState){
     if(nextState.translated.body !== this.state.translated.body){
       this.setState({nbMotsRestants : Math.max(0, h2p(nextState.francais.body).split(/\s+/).length - h2p(nextState.translated.body).split(/\s+/).length) })
     }
@@ -110,7 +110,7 @@ class TranslationHOC extends Component {
     return locale;
   }
 
-  setRef = (refObj, name) => {console.log(name, refObj); this[name] = refObj;}
+  setRef = (refObj, name) => this[name] = refObj;
   fwdSetState = (fn, cb) => this.setState(fn, cb);
 
   translate = (text,target,item,toEditor=false) => {

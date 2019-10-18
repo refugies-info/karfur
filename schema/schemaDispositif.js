@@ -4,7 +4,7 @@ var dispositifSchema = mongoose.Schema({
   titreMarque: {
     type: Object,
 		unique: false,
-		required: true
+		required: false
   },
   titreInformatif: { 
 		type: Object,
@@ -120,6 +120,18 @@ var dispositifSchema = mongoose.Schema({
 		unique: false,
 		required: false
 	},
+  variantes: {
+    type: Object,
+		unique: false,
+    required: false
+  },
+  typeContenu: {
+    type: String,
+		unique: false,
+    required: false,
+    enum: ["dispositif", "demarche"]
+  },
+  demarcheId:{ type: mongoose.Schema.ObjectId, ref: 'Dispositif' },
 },{ timestamps: { createdAt: 'created_at' }})
 
 dispositifSchema.options.autoIndex = false
