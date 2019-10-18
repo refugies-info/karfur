@@ -20,7 +20,7 @@ import FButton from '../../../components/FigmaUI/FButton/FButton';
 import {selectItem, editMember, addMember} from '../UserDashStruct/functions';
 import {avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
 import {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgression} from './functions';
-import {fetch_user} from '../../../Store/actions';
+import {fetch_user, fetch_dispositifs} from '../../../Store/actions';
 
 import './UserProfile.scss';
 import variables from 'scss/colors.scss';
@@ -84,7 +84,7 @@ class UserProfile extends Component {
     console.log(user)
     this.setState({user:user, isMainLoading:false, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
     
-    API.get_users({}).then(data => this.setState({users: data.data.data}) );
+    API.get_users().then(data => this.setState({users: data.data.data}) );
     API.get_langues({}).then(data => this.setState({ langues: data.data.data }))
     this.getProgression();
     window.scrollTo(0, 0);
@@ -461,7 +461,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {fetch_user};
+const mapDispatchToProps = {fetch_user, fetch_dispositifs};
 
 export default track({
   page: 'UserProfile',

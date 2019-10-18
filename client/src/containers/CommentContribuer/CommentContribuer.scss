@@ -107,7 +107,6 @@ $tailleCarte:200px;
     display: flex;
 
     .left-side{
-      width: 360px;
       background: #FFFFFF;
       border-radius: 12px;
       padding: 40px;
@@ -136,10 +135,13 @@ $tailleCarte:200px;
       margin-bottom: -30px;
     }
     .langue-item{
-      background: #FFFFFF;
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 30px;
+      cursor: pointer;
+      &:hover{
+        background: #FFFFFF;
+      }
     }
   }
   .mb-20{

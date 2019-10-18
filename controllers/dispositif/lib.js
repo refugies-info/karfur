@@ -25,7 +25,7 @@ var mailOptions = {
 };
 
 function add_dispositif(req, res) {
-  if (!req.body || ((!req.body.titreMarque || !req.body.titreInformatif) && !req.body.dispositifId)) {
+  if (!req.body || ((!req.body.titreInformatif) && !req.body.dispositifId)) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let dispositif = req.body;
@@ -33,6 +33,7 @@ function add_dispositif(req, res) {
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
+    //Si le dispositif existe déjà on fait juste un update
     if(dispositif.dispositifId){
       promise=Dispositif.findOneAndUpdate({_id: dispositif.dispositifId}, dispositif, { upsert: true , new: true});
     }else{
@@ -90,7 +91,6 @@ function get_dispositif(req, res) {
     }else{populate='';}
 
     let promise=null;
-    console.log(random)
     if(random){
       promise=Dispositif.aggregate([
         { $match : query },

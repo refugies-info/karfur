@@ -10,6 +10,7 @@ import API from '../../../utils/API';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import {fetch_dispositifs} from '../../../Store/actions';
 import {deleteContrib} from '../UserProfile/functions';
+import {prepareDeleteContrib} from './functions';
 
 import './AdminContrib.scss';
 import variables from 'scss/colors.scss';
@@ -28,6 +29,7 @@ class AdminContrib extends Component {
   constructor(props) {
     super(props);
     this.deleteContrib = deleteContrib.bind(this);
+    this.prepareDeleteContrib = prepareDeleteContrib.bind(this);
   }
 
   state={
@@ -39,7 +41,7 @@ class AdminContrib extends Component {
     this._initializeContrib();
   }
 
-  _initializeContrib = () => {
+  _initializeContrib = (_) => {
     API.get_dispositif({query: {status:{$in: reviews_data.map(x=>x.value) }},sort: {updatedAt: -1}, populate: 'creatorId mainSponsor'}).then(data_res => {
       let dispositifs=[...data_res.data.data];
       this.setState({ dispositifs });
@@ -47,27 +49,6 @@ class AdminContrib extends Component {
   }
 
   toggleAccordion = tab => this.setState(pS => ({ accordion: pS.accordion.map( (x,i) => tab === i ? !x : false )} ));
-
-  prepareDeleteContrib = (dispositif) => {
-    Swal.fire({
-      title: 'Êtes-vous sûr ?',
-      text: "La suppression d'un dispositif est irréversible",
-      type: 'question',
-      showCancelButton: true,
-      confirmButtonColor: variables.rouge,
-      cancelButtonColor: variables.vert,
-      confirmButtonText: 'Oui, le supprimer',
-      cancelButtonText: 'Annuler'
-    }).then((result) => {
-      if (result.value) {
-        const newDispositif = {
-          dispositifId: dispositif._id,
-          status: "Supprimé"
-        }
-        this.deleteContrib(newDispositif, null, this._initializeContrib);
-      }
-    })
-  }
 
   update_status = async (dispositif, status="Actif") => {
     let newDispositif = { status: status, dispositifId: dispositif._id };
@@ -123,10 +104,11 @@ class AdminContrib extends Component {
                           <thead><tr><th>Titre</th><th>Depuis</th><th>Structure</th><th>Tej</th><th>Voir</th><th>Valider</th></tr></thead>
                           <tbody>
                             {arr.map((element,key) => {
+                              const titre = (element.titreMarque || "") + (element.titreMarque && element.titreInformatif ? " - " : "") + (element.titreInformatif || "");
                               return (
                                 <tr key={key} >
                                   <td className="align-middle">
-                                    <b>{element.titreMarque + ' - ' + element.titreInformatif}</b>
+                                    <b>{titre}</b>
                                   </td>
                                   <td className="align-middle">
                                     {moment(element.updatedAt).fromNow()}
@@ -138,7 +120,7 @@ class AdminContrib extends Component {
                                     <FButton type="light-action" name="trash-outline" fill={variables.noir} onClick={() => this.prepareDeleteContrib(element)} />
                                   </td>
                                   <td className="align-middle fit-content">
-                                    <FButton tag={NavLink} to={"/dispositif/"+element._id} type="light-action" name="eye-outline" fill={variables.noir} />
+                                    <FButton tag={NavLink} to={"/" + (element.typeContenu || "dispositif") + "/" + element._id} type="light-action" name="eye-outline" fill={variables.noir} />
                                   </td>
                                   <td className="align-middle fit-content">
                                     <FButton type="validate" name="checkmark-circle-outline" onClick={()=>this.update_status(element)}>

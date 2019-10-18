@@ -1,9 +1,8 @@
 import React from 'react';
-import { Col, Card, CardBody, CardFooter, Button, Spinner } from 'reactstrap';
+import { Col, Card, CardBody, CardFooter, Spinner } from 'reactstrap';
 
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FSwitch from '../../../FigmaUI/FSwitch/FSwitch';
-import SVGIcon from '../../../UI/SVGIcon/SVGIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
 
 const topRightHeader = (props) => {
@@ -17,7 +16,7 @@ const topRightHeader = (props) => {
           <FButton type="error" className="mt-10 full-width" onClick={()=>props.update_status("Rejeté structure")}>Non</FButton>
         </CardBody>
         <CardFooter className="color-darkColor cursor-pointer" onClick={props.toggleDispositifCreateModal}>
-          <SVGIcon className="mr-8 fill-darkColor" name="radio" />
+          <EVAIcon className="mr-8" name="question-mark-circle" viewBox="0 0 20 20" />
           Besoin d'aide ?
         </CardFooter>
       </Card>
