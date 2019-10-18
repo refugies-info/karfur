@@ -31,7 +31,6 @@
 
   .section-container{
     width: 100%;
-    padding: 0 100px;
 
     h2{
       text-align: center;
@@ -64,6 +63,8 @@
       }
       .card-body{
         padding:0;
+        font-size: 18px;
+        line-height: 24px;
       }
       .card-footer{
         background: transparent;
@@ -76,6 +77,15 @@
   }
   .membres-row{
     text-align: center;
+    background-color: $gris;
+    margin-bottom: -13px;
+    .col{
+      padding: 20px;
+      &:hover{
+        background-color: $noir;
+        color: $blancSimple;
+      }
+    }
   }
   .team-wrapper{
     margin-top: 13px;
@@ -99,12 +109,12 @@
       flex-direction: column;
     }
     .team-header{
-      margin-bottom: 30px;
+      margin-bottom: 15px;
     }
     .team-body{
       flex: 1;
       h5{
-        margin-top:15px;
+        margin: 15px 0;
       }
     }
     .team-footer{

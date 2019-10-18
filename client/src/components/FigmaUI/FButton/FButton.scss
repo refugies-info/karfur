@@ -5,14 +5,17 @@ body .figma-btn{
   font-size: 16px;
   line-height: 20px;
   border-radius: 12px;
+  min-height: 40px;
   padding: 10px;
   background: $blanc;
+  cursor: pointer;
   border: 0.5px solid transparent;
   color: $noir;
   width: fit-content;
   text-decoration: none;
   white-space: nowrap;
-  display: inline-block;
+  display: inline-flex;
+  align-items: flex-end;
   
   &.default svg{
     fill:$noir;
@@ -68,6 +71,7 @@ body .figma-btn{
     &:not(:disabled):not(.disabled):active{
       background: #000000;
       color: #FFFFFF;
+      cursor: not-allowed;
       svg{
         fill: $blancSimple;
       }

@@ -38,6 +38,7 @@ import {readAudio} from "../Layout/functions";
 import MoteurVariantes from './MoteurVariantes/MoteurVariantes';
 import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps} from './data'
 import {switchVariante, initializeVariantes, initializeInfoCards} from "./functions";
+import image from "../../assets/figma/Français.svg"
 
 import variables from 'scss/colors.scss';
 
@@ -468,7 +469,7 @@ class Dispositif extends Component {
     });
   }
 
-  addTag = () => this.setState({ tags: [...this.state.tags, 'Autre'] });
+  addTag = () => this.setState({ tags: [...(this.state.tags || []), 'Autre'] });
   deleteTag = (idx) => this.setState({ tags: [...this.state.tags].filter((_,i) => i!==idx) });
 
   handleJoyrideCallback = data => {
@@ -736,7 +737,7 @@ class Dispositif extends Component {
               />
             </Col>}
           <Col lg={translating ? "8" : "12"} className="main-col">
-            <section className="banniere-dispo">
+            <section className="banniere-dispo" style={{backgroundImage: `url(${bgImage("Français")})`}}>
               {inVariante &&
                 <BandeauEdition
                   editDispositif={this.editDispositif}
@@ -750,10 +751,9 @@ class Dispositif extends Component {
 
               <Row className="header-row">
                 <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
-                  <Button color="warning" outline>
-                    <EVAIcon name="corner-up-left-outline" fill={mainTag.darkColor} className="icons" />
+                  <FButton type="light-action" name="arrow-back" className="btn-retour">
                     <span>{t("Retour à la recherche", "Retour à la recherche")}</span>
-                  </Button>
+                  </FButton>
                 </Col>
                 {!inVariante &&
                   <TopRightHeader 
@@ -777,7 +777,6 @@ class Dispositif extends Component {
                     admin={this.props.admin}
                     translating={translating} />}
               </Row>
-              <FemmeCurly height="300" className="header-img femme-icon" alt="femme" />
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
                 <div className="bloc-titre">
                   <h1 className={this.state.disableEdit ? "" : "editable"}>
@@ -807,7 +806,6 @@ class Dispositif extends Component {
                     </h2>}
                 </div>
               </Col>
-              <ManLab height="250" className="header-img homme-icon" alt="homme" />
             </section>
             {!inVariante && 
               <Row className="tags-row backgroundColor-darkColor">
@@ -1077,6 +1075,11 @@ const calculFiabilite = dispositif => {
   //   nbSectionsSansContenu, nbFakeContent, nbAddedChildren, hasMap, nbSections)
   return score;
   //Nouvelles idées: nombre de suggestions, merci etc
+}
+
+function bgImage(short) {
+  const imageUrl = require("../../assets/figma/" + short + ".svg") //illustration_
+  return imageUrl
 }
 
 const mapStateToProps = (state) => {
