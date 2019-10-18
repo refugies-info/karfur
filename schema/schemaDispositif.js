@@ -4,7 +4,7 @@ var dispositifSchema = mongoose.Schema({
   titreMarque: {
     type: Object,
 		unique: false,
-		required: true
+		required: false
   },
   titreInformatif: { 
 		type: Object,
