@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next';
 import ReactDependentScript from 'react-dependent-script';
 import Autocomplete from 'react-google-autocomplete';
 import { withRouter } from 'react-router-dom';
-import 'url-search-params-polyfill';
+import qs from 'query-string';
 
 import EVAIcon from '../../../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../../../components/FigmaUI/FButton/FButton';
@@ -16,30 +16,48 @@ class UserVariantes extends Component {
   state= {
     age: "",
     ville: "",
+    isMounted: false,
+    place:{}
+  }
+  mapRef = React.createRef();
+  
+  componentDidMount(){
+    this.setState({isMounted: true})
   }
   
+  componentWillReceiveProps(nextProps){
+    if(nextProps.search){
+      if(nextProps.search.age && nextProps.search.age !== this.state.age){
+        this.setState({age: nextProps.search.age});
+      }
+      // if(nextProps.search.ville && nextProps.search.ville !== this.state.ville){//Marche pas trop, injecte le plac_id à la place, chiant de changer
+      //   this.setState({ville: nextProps.search.ville});
+      // }
+    }
+  }
+
   onPlaceSelected = (place) => {
     console.log(place)
-    this.updateURL("ville", place.place_id)
-    this.setState({ ville: place.formatted_address });
+    this.setState({ ville: place.formatted_address, place });
   }
 
   handleChange = (e) => this.setState({ [e.currentTarget.id]: e.target.value });
-  
-  updateURL = (target, value) => {
-    const url = setParams({target, value});
-    this.props.history.push(`?${url}`);
-//     audienceAge.bottomValue: {$lt: 56}
-// audienceAge.topValue: {$gt: 25}
-  };
 
   validateCriteres = () => {
-    this.updateURL("age", this.state.age)
+    let query={
+      ...(this.state.age !== "" && Number(this.state.age) && {"age": this.state.age}),
+      ...(this.state.place.place_id && {"ville": this.state.place.place_id}),
+    };
+    if(this.state.place.place_id || this.state.age !== ""){
+      const searchString = qs.stringify(query);
+      this.props.history.push(`?${searchString}`);
+      this.props.switchVariante();
+    };
   }
 
   render(){
     const {t} = this.props;
-    const {age, ville} = this.state;
+    const {age, ville, isMounted} = this.state;
     return(
       <div className="user-variantes">
         <div className="bandeau-haut">
@@ -50,21 +68,23 @@ class UserVariantes extends Component {
           <Row>
             <Col lg="auto">
               <b>{t("Dispositif.jhabite", "J’habite à")} :</b>
-              <ReactDependentScript
-                loadingComponent={<div>Chargement de Google Maps...</div>}
-                scripts={["https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_GOOGLE_API_KEY + "&v=3.exp&libraries=places&language=fr&region=FR"]}
-              >
-                <Autocomplete
-                  className="criteres-autocomplete"
-                  placeholder="Choisir ma ville"
-                  id="ville"
-                  value={ville}
-                  onChange={this.handleChange}
-                  onPlaceSelected={this.onPlaceSelected}
-                  types={['(regions)']}
-                  componentRestrictions={{country: "fr"}}
-                />
-              </ReactDependentScript>
+              {isMounted && 
+                <ReactDependentScript
+                  loadingComponent={<div>Chargement de Google Maps...</div>}
+                  scripts={["https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_GOOGLE_API_KEY + "&v=3.exp&libraries=places&language=fr&region=FR"]}
+                >
+                  <Autocomplete
+                    ref={this.mapRef}
+                    className="criteres-autocomplete"
+                    placeholder="Choisir ma ville"
+                    id="ville"
+                    value={ville}
+                    onChange={this.handleChange}
+                    onPlaceSelected={this.onPlaceSelected}
+                    types={['(regions)']}
+                    componentRestrictions={{country: "fr"}}
+                  />
+                </ReactDependentScript>}
             </Col>
 
             <Col lg="auto">
@@ -89,19 +109,6 @@ class UserVariantes extends Component {
       </div>
     )
   }
-}
-
-function setParams({ target = "query", value = ""}) {
-  const searchParams = new URLSearchParams();
-  searchParams.set(target, value);
-  return searchParams.toString();
-}
-
-function getParams(location) {
-  const searchParams = new URLSearchParams(location.search);
-  return {
-    query: searchParams.get('query') || '',
-  };
 }
 
 export default withRouter(

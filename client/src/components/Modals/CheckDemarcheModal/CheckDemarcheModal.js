@@ -62,11 +62,11 @@ class CheckDemarcheModal extends Component {
               <SearchBar
                 dispositifs
                 loupe
+                withEye
                 className="search-bar inner-addon right-addon mt-10"
                 placeholder = "CMU-C, demande de logement social, solidarité transport..."
-                array={[...this.props.dispositifs, {createNew: true, type: "demarche"}]}
-                createNewCta = "Créer une nouvelle démarche"
-                selectItem={this.selectItem} />
+                array={[...(this.props.dispositifs || []).filter(x => x.status === "Actif" && x.typeContenu === "demarche" && !x.demarcheId), {createNew: true, type: "demarche"}]}
+                createNewCta = "Créer une nouvelle démarche" />
               <FormGroup check className={"no-match" + (checked ? " checked" : "")}>
                 <Label check>
                   <Input type="checkbox" checked={checked} onChange={this.handleCheck} />{' '}
@@ -80,10 +80,10 @@ class CheckDemarcheModal extends Component {
             {t("Retour", "Retour")}
           </FButton>
           <FButton type="help" name="question-mark-circle" fill={variables.error} onClick={this.props.upcoming}>
-            {t("J’ai besoin d’aide", "J’ai besoin d’aide")}
+            {t("J'ai besoin d'aide", "J'ai besoin d'aide")}
           </FButton>
           {step > 0 && 
-            <FButton tag={NavLink} to="/demarche" type="validate" name="file-add-outline" className="right-button" disabled={!checked}>
+            <FButton tag={NavLink} to="/demarche" type="validate" name="file-add-outline" className={"right-button" + (checked ? "" : "disabled")}>
               Créer une démarche
             </FButton>}
         </ModalFooter>

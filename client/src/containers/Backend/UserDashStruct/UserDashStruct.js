@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import windowSize from 'react-window-size';
 
-import {avancement_actions, fakeNotifs, avancement_contributions, avancement_members, fakeContribution, fakeMembre} from './data'
+import {avancement_actions, avancement_contributions, avancement_members, fakeContribution, fakeMembre} from './data'
 import API from '../../../utils/API';
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
 import {MembersTable, ActionTable, ContribTable} from '../../../components/Backend/UserProfile';
@@ -18,6 +18,7 @@ import {AddMemberModal, EditMemberModal, SuggestionModal} from '../../../compone
 import {showSuggestion, archiveSuggestion, parseActions, deleteContrib} from '../UserProfile/functions';
 import {selectItem, editMember, addMember} from './functions';
 import DateOffset from '../../../components/Functions/DateOffset';
+import {fetch_dispositifs} from '../../../Store/actions';
 
 import './UserDashStruct.scss';
 import variables from 'scss/colors.scss';
@@ -58,7 +59,7 @@ class UserDashStruct extends Component {
     if(!user.structures || !user.structures.length > 0){ Swal.fire( 'Oh non', "Nous n'avons aucune information sur votre structure d'affiliation, vous allez être redirigé vers la page d'accueil", 'error').then(() => this.props.history.push("/") ); return; }
 
     this.initializeStructure();
-    API.get_users({status: "Actif"}).then(data => this.setState({users: data.data.data}) )
+    API.get_users({query: {status: "Actif"}}).then(data => this.setState({users: data.data.data}) )
 
     API.get_dispositif({query: {'mainSponsor': user.structures[0], status: {$in: ["Actif", "Accepté structure", "En attente", "En attente admin"]} }}).then(data => {console.log(data.data.data)
       this.setState({contributions: data.data.data, actions: parseActions(data.data.data)}, () => {
@@ -235,8 +236,10 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = {fetch_dispositifs};
+
 export default track({
   page: 'UserDashStruct',
-})(connect(mapStateToProps)(
+})(connect(mapStateToProps, mapDispatchToProps)(
   windowSize(UserDashStruct)
 ));

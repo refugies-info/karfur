@@ -37,6 +37,7 @@ axios.interceptors.response.use(response => {
   // console.log(response)
   return response;
 }, error => {
+  console.log((error.response || {}).data, (error.response || {}).status, error.message)
   if(error.response && error.response.status < 500){
     Swal.fire({
       type: 'error',
@@ -62,8 +63,8 @@ export default {
   set_user_info : (user) => {
     return axios.post(burl + '/user/set_user_info', user,{headers: headers})
   },
-  get_users : (query, sort) => {
-    return axios.post(burl + '/user/get_users',  {query: query, sort: sort}, {headers: headers})
+  get_users : (params={}) => {
+    return axios.post(burl + '/user/get_users',  params, {headers: headers})
   },
   get_user_info : (query) => {
     return axios.post(burl + '/user/get_user_info',  query, {headers: headers})

@@ -73,7 +73,7 @@ class TranslationHOC extends Component {
     clearInterval(this.timer)
   }
 
-  componentWillUpdate(nextProps, nextState){
+  componentWillUpdate(_, nextState){
     if(nextState.translated.body !== this.state.translated.body){
       this.setState({nbMotsRestants : Math.max(0, h2p(nextState.francais.body).split(/\s+/).length - h2p(nextState.translated.body).split(/\s+/).length) })
     }

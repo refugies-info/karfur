@@ -109,6 +109,9 @@ html body{
   .color-grisFonce{
     color: $grisFonce;
   }
+  .color-focus{
+    color: $focus;
+  }
 
   .cursor-pointer{
     cursor: pointer;
@@ -149,6 +152,21 @@ html body{
   }
   .bg-validation{
     background: $validation;
+  }
+  .bg-gris{
+    background: $gris;
+  }
+
+  .dashed-panel{
+    background: repeating-linear-gradient(
+      -45deg,
+      $uiattention,
+      $uiattention 20px,
+      $noir 20px,
+      $noir 40px
+    );
+    height: 10px;
+    border-radius: 12px 12px 0 0;
   }
 
   @each $value in $theme-list {

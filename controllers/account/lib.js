@@ -211,8 +211,16 @@ function set_user_info(req, res) {
 function get_users(req, res) {
   var query = req.body.query;
   var sort = req.body.sort;
+  var populate = req.body.populate;
+
+  if(populate && populate.constructor === Object){
+    populate.select = '-password';
+  }else if(populate){
+    populate={path:populate, select : '-password'};
+  }else{populate='';}
+  
   var find = new Promise( (resolve, reject) => {
-    User.find(query).sort(sort).exec(function (err, result) {
+    User.find(query).sort(sort).populate(populate).exec(function (err, result) {
       if (err) {
         reject(500);
       } else {
@@ -239,19 +247,19 @@ function get_users(req, res) {
   }, (error) => {
     switch (error) {
       case 500:
-          res.status(500).json({
-              "text": "Erreur interne"
-          })
-          break;
+        res.status(500).json({
+          "text": "Erreur interne"
+        })
+        break;
       case 404:
-          res.status(404).json({
-              "text": "Pas de résultats"
-          })
-          break;
+        res.status(404).json({
+          "text": "Pas de résultats"
+        })
+        break;
       default:
-          res.status(500).json({
-              "text": "Erreur interne"
-          })
+        res.status(500).json({
+          "text": "Erreur interne"
+        })
     }
   })
 }

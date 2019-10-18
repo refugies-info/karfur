@@ -145,4 +145,29 @@
       justify-content: space-between;
     }
   }
+
+  .realisation-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: linear-gradient(160.54deg, #FFFFFF -3.98%, #F2F2F2 115.05%);
+    border-radius: 12px;
+    margin-bottom: 20px;
+
+    .real-btns .figma-btn{
+      padding: 20px;
+    }
+  }
+
+  .feedback-wrapper{
+    margin-bottom: 10px;
+    background: $noir;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: #FFFFFF;
+  }
 }

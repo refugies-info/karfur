@@ -36,6 +36,7 @@ class EditableParagraph extends Component {
             onEditorStateChange={(editorState)=>props.onEditorStateChange(editorState, props.keyValue, props.subkey)}
             editorState={props.editorState}
             // toolbarCustomButtons={[<CustomOption />]}
+            stripPastedStyles
             toolbar={{
               options: ['inline','list', 'image', 'embedded', 'link'],
               inline: {
@@ -86,6 +87,11 @@ class EditableParagraph extends Component {
                   <EVAIcon name="list-outline" fill={this.state.dropdownColor[3]} id="3"  />
                   Accordéon
                 </DropdownItem>
+                {this.props.typeContenu==="demarche" && 
+                  <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "etape", this.props.subkey)} id='etape' onMouseEnter={()=>this.toggleColor(4, true)} onMouseLeave={()=>this.toggleColor(4, false)}>
+                    <EVAIcon name="list-outline" fill={this.state.dropdownColor[4]} id="4"  />
+                    Etape
+                  </DropdownItem>}
               </DropdownMenu>
             </Dropdown>
             
