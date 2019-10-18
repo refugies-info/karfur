@@ -10,6 +10,7 @@ $noirCD: #CDCDCD;
 $violet: #583F93;
 $blancSimple: #FFFFFF;
 $jauneClair: #FFF7AE;
+$orange: #FF9800;
 $gradiantSplash: radial-gradient(69.75% 67.64% at 100% -3.25%, #ADEA5C 0%, rgba(173, 234, 92, 0) 100%), radial-gradient(118.25% 69.25% at -3.25% -5.5%, #149295 0%, rgba(20, 146, 149, 0) 100%), radial-gradient(100% 100% at 100% 92.25%, #EA6206 0%, rgba(255, 255, 255, 0) 100%, rgba(234, 98, 6, 0) 100%), radial-gradient(135.5% 137.75% at -10% 109%, #55A6CE 0%, #55A6CE 100%);
 
 $attention : #F9EF99;
@@ -48,4 +49,5 @@ $standby : #FDD497;
   erreur: $erreur;
   uiattention: $uiattention;
   standby: $standby;
+  orange: $orange;
 }

@@ -44,6 +44,7 @@ const parseActions = dispositifs => {
 
 const deleteContrib = function(dispositif, type, callback=()=>{}){
   API.add_dispositif(dispositif).then(() => {
+    this.props.fetch_dispositifs();
     if(type){
       const query = type === "user" ? {'creatorId': this.props.userId} : {'mainSponsor': ((this.props.user || {}).structures || [{}])[0]};
       API.get_dispositif({query: {...query, status: {$ne: "Supprimé"}}}).then(data => { console.log(data.data.data);
