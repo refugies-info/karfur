@@ -59,13 +59,13 @@ class Footer extends Component {
             <div className="ligne-footer">
               {/*<label>Rejoindre la newsletter</label>*/}
               <FButton tag={"a"} href="https://agi-r.mn.co" target="_blank" className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
-                Rejoindre le réseau
+                Participer à l'évolution de réfugiés.info
               </FButton>
             </div>
             <div className="ligne-footer">
               {/*<label>Demander de nouveaux contenus</label>*/}
               <FButton tag={"a"} href="https://agir.canny.io/agir" target="_blank" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
-                Suggérer des fonctionnalités
+                Demander des fonctionnalités
               </FButton>
             </div>
           </Col>
@@ -94,27 +94,27 @@ class Footer extends Component {
                 </h5>
                 <div className="lien-footer">
                   <NavLink to="/advanced-search">
-                    <b>Dispositif</b> - Être accompagné ou rejoindre un dispositif
+                    Dispositif d'accompagnement
                   </NavLink>
                 </div>
                 <div className="lien-footer">
                   <NavHashLink to="/homepage#plan" smooth>
-                    <b>Démarches</b> - Comprendre mes démarches administratives
+                    Démarche administrative
                   </NavHashLink>
                 </div>
                 <div className="lien-footer">
                   <NavHashLink to="/homepage#plan" smooth>
-                    <b>Parcours</b> - Créer mon parcours d’intégration
+                    Parcours personnalisé
                   </NavHashLink>
                 </div>
                 <div className="lien-footer">
                   <NavHashLink to="/homepage#explique">
-                    <b>Lexique</b> - Comprendre un mot
+                    Lexique
                   </NavHashLink>
                 </div>
               </Col>
             </Row>
-            <Row className="social-custom-buttons-row">
+            {/*<Row className="social-custom-buttons-row">
               <Col lg="4">
                 <FButton disabled onClick={this.upcoming} type="light-action" name="twitter-outline" fill={variables.noir}>
                   Nous suivre sur Twitter
@@ -130,7 +130,7 @@ class Footer extends Component {
                   Suivre sur Whatsapp
                 </FButton>
               </Col>
-            </Row>
+    </Row>*/}
           </Col>
         </Row>
       </div>

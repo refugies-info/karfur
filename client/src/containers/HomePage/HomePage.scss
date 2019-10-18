@@ -12,20 +12,31 @@
   }
 
   #hero {
-    background-image: url(../../assets/figma/integration_illu.svg), url(../../assets/figma/Integration_bg.svg);
-    background-size: 100%, cover;
+    background-image: url(../../assets/figma/integration_illu.svg);
+    background-size: cover;
     background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    padding-top: 100px;
+    padding-top: 150px;
+    margin-top: -60px;
+    height: 772px;
+  }
+
+  .triptique{
+    padding-top: 50px;
   }
 
   .hero-container{
     text-align: center;
 
+    h5{
+      margin-top: 10px;
+      font-weight: normal;
+    }
+
     .search-row{
-      margin-top: 30px;
+      margin-top: 25px;
       display:flex;
       align-items: center;
       justify-content: space-between;
@@ -76,31 +87,44 @@
     }
     .section-body{
       flex: 1 1 auto;
-      padding-top: 40px;
+    }
+
+    .footer-section{
+      font-size: 18px;
+      margin-right: -20px;
+
     }
   }
 
   #contribution{
-    background-image: url(../../assets/figma/contrib_illu.svg), url(../../assets/figma/collaboratif_both.svg);
-    background-size: 55%, cover;
+    background-image: url(../../assets/figma/contribution_illu.svg), url(../../assets/figma/trame_home_bg.svg);
+    background-size: 70%, cover;
     background-repeat: no-repeat;
-    background-position: calc(100% - 100px),0;
+    background-position: calc(100% + 20px) calc(100% - 160px),0;
   }
   
   #certifiee{
-    background-image: url(../../assets/figma/humaanRight.svg), url(../../assets/figma/curved-background.svg);
-    background-size: 420px, cover;
+    background-image: url(../../assets/figma/certifiee_illu.svg), url(../../assets/figma/trame_home_bg.svg);
+    background-size: 65%, cover;
     background-repeat: no-repeat, no-repeat;
-    background-position: calc(100% - 180px),0;
-    padding-top: 156px;
+    background-position: calc(100% - 60px) calc(100% - 120px),0;
   }
 
   #multilangues, #explique{
-    background-image: url(../../assets/figma/Definition_illu.svg), url(../../assets/figma/Definition_Test1.svg);
-    background-size: 55%, cover;
+    background-image: url(../../assets/figma/illustration_Traduction.svg);
+    background-size: 70%;
     background-repeat: no-repeat;
-    background-position: calc(100% - 550px),0;
+    background-position: calc(100% - 300px);
   }
+
+  #explique{
+    background-image: url(../../assets/figma/illustration_Lexique.svg);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 300px);
+  }
+
+
 
   #plan{
     h2{
@@ -117,7 +141,7 @@
         background: transparent;
         border: none;
         font-weight: 900;
-        font-size: 30px;
+        font-size: 32px;
         line-height: 36px;
         height: 100px;
         padding:0;
@@ -193,17 +217,17 @@
   }
 
   .dispo-card{
-    background-image: url(../../assets/figma/dispo_trip_1.svg);
+    background-image: url(../../assets/figma/illustration_Dispositifs.svg);
     background-size: cover;
   }
 
   .demarche-card{
-    background-image: url(../../assets/figma/demarche_trip_1.svg);
+    background-image: url(../../assets/figma/illustration_Demarches.svg);
     background-size: cover;
   }
 
   .parcours-card{
-    background-image: url(../../assets/figma/parcours_trip_1.svg);
+    background-image: url(../../assets/figma/illustration_Parcours.svg);
     background-size: cover;
   }
 }
