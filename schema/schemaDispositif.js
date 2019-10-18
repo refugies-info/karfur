@@ -125,12 +125,13 @@ var dispositifSchema = mongoose.Schema({
 		unique: false,
     required: false
   },
-  type: {
+  typeContenu: {
     type: String,
 		unique: false,
     required: false,
     enum: ["dispositif", "demarche"]
   },
+  demarcheId:{ type: mongoose.Schema.ObjectId, ref: 'Dispositif' },
 },{ timestamps: { createdAt: 'created_at' }})
 
 dispositifSchema.options.autoIndex = false

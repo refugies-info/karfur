@@ -102,7 +102,7 @@ class Admin extends Component {
       })
     })
 
-    API.get_users({}, {username: 1}).then(data_res => {
+    API.get_users({sort: {username: 1}}).then(data_res => {
       this.setState({users:data_res.data.data})
     })
 

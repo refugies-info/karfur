@@ -26,6 +26,7 @@ import AdvancedSearch from './containers/AdvancedSearch/AdvancedSearch';
 import QuiSommesNous from './containers/QuiSommesNous/QuiSommesNous';
 import CommentContribuer from './containers/CommentContribuer/CommentContribuer';
 import AdminContrib from './containers/Backend/AdminContrib/AdminContrib';
+import AdminContenu from './containers/Backend/AdminContenu/AdminContenu';
 
 const routes = [
   { path: '/', exact: true, name: 'home', restriction:[] },
@@ -72,6 +73,7 @@ const routes = [
   { path: '/backend/chat', name: 'Chat', component: Chat, restriction:['Admin'] },
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
   { path: '/backend/admin-contrib', name: 'AdminContrib', component: AdminContrib, restriction:['Admin']},
+  { path: '/backend/admin-contenu', name: 'AdminContenu', component: AdminContenu, restriction:['Admin']},
 
   { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:['User','Trad','ExpertTrad','Admin'] },
   { path: '/backend/user-dash-contrib', name: 'UserDashContrib', component: UserDashContrib, restriction:['Contrib','Admin'] },

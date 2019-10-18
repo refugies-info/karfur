@@ -1,0 +1,56 @@
+
+@import 'src/scss/colors.scss';
+
+.reduced-variable{
+  display: flex;
+  flex-direction: row;
+  // justify-content: space-between;
+  align-items: center;
+
+  &.direction-row{
+    .variable-item{
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  &.direction-column{
+    flex-direction: column;
+    height: 100%;
+
+    .variable-item{
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .reduced-critere{
+      width: 100%;
+    }
+  }
+}
+.plus-col{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .add-wrapper{
+    text-align: center;
+  }
+  .big-plus{
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 81px;
+    color: $grisFonce;
+  }
+  .add-texte{
+    color: $grisFonce;
+  }
+
+  &:not(.disabled):hover{
+    cursor: pointer;
+    .big-plus, .add-texte{
+      color: $noir;
+    }
+  }
+}

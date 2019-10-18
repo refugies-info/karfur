@@ -5,6 +5,7 @@ import { Col, Row, CardBody, CardFooter, Spinner } from 'reactstrap';
 import Swal from 'sweetalert2';
 import querySearch from "stringquery";
 import _ from "lodash";
+import { NavHashLink } from 'react-router-hash-link';
 // import Cookies from 'js-cookie';
 
 import SearchItem from './SearchItem/SearchItem';
@@ -50,9 +51,9 @@ class AdvancedSearch extends Component {
       { "audienceAge.bottomValue": { $lt: x.topValue}, "audienceAge.topValue": { $gt: x.bottomValue} } :
       {[x.queryName]: x.query}
     )).reduce((acc, curr) => ({...acc, ...curr}),{});
-    console.log(query)
-    API.get_dispositif({query: {...query, status:'Actif'}}).then(data_res => {
+    API.get_dispositif({query: {...query, status:'Actif', demarcheId: { $exists: false } }}).then(data_res => {
       let dispositifs=data_res.data.data;
+      console.log(query, dispositifs)
       if(query["tags.name"]){       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
         dispositifs = dispositifs.sort((a,b)=> (a.tags.findIndex(x => x ? x.short === query["tags.name"] : 99) - b.tags.findIndex(x => x ? x.short === query["tags.name"] : 99)))
       }
@@ -133,7 +134,7 @@ class AdvancedSearch extends Component {
 
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
-    this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
+    this.props.history.push('/' + (dispositif.typeContenu || "dispositif") + (dispositif._id ? ('/' + dispositif._id) : ''))
   }
 
   upcoming = () => Swal.fire( {title:'Oh non!', text:'Cette fonctionnalité n\'est pas encore activée', type:'error', timer: 1500})
@@ -229,16 +230,18 @@ class AdvancedSearch extends Component {
                     </CustomCard>
                   </Col>}
                 <Col xs="12" sm="6" md="3">
-                  <CustomCard addcard="true" onClick={this.goToDispositif}>
-                    <CardBody>
-                      {showSpinner ?
-                        <Spinner color="success" /> : 
-                        <span className="add-sign">+</span> }
-                    </CardBody>
-                    <CardFooter className="align-right">
-                      {showSpinner ? t("Chargement", "Chargement") + "..." : t("Créer un dispositif", "Créer un dispositif")}
-                    </CardFooter>
-                  </CustomCard>
+                  <NavHashLink to="/comment-contribuer#ecrire">
+                    <CustomCard addcard="true">
+                      <CardBody>
+                        {showSpinner ?
+                          <Spinner color="success" /> : 
+                          <span className="add-sign">+</span> }
+                      </CardBody>
+                      <CardFooter className="align-right">
+                        {showSpinner ? t("Chargement", "Chargement") + "..." : t("Créer un dispositif", "Créer un dispositif")}
+                      </CardFooter>
+                    </CustomCard>
+                  </NavHashLink>
                 </Col>
               </Row>
             </div>
