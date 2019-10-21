@@ -1,8 +1,9 @@
 const Traduction = require('../../schema/schemaTraduction.js');
 const Article = require('../../schema/schemaArticle.js');
 const Dispositif = require('../../schema/schemaDispositif.js');
+const Langue = require('../../schema/schemaLangue.js');
+const Role = require('../../schema/schemaRole.js');
 const User = require('../../schema/schemaUser.js');
-const article = require('../article/lib');
 var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
 var h2p = require('html2plaintext');
@@ -69,7 +70,7 @@ async function add_tradForReview(req, res) {
       promise= new Traduction(traduction).save();
     }
     promise.then(data => {
-      if(req.userId){ User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "traductionsFaites": data._id } },{new: true},(e) => {if(e){console.log(e);}}); }
+      if(req.userId){ User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "traductionsFaites": data._id, roles: req.roles.find(x=>x.nom==='Trad')._id } },{new: true},(e) => {if(e){console.log(e);}}); }
       res.status(200).json({
         "text": "Succès",
         "data": data
@@ -424,6 +425,32 @@ const _errorHandler = (error, res) => {
           "text": "Erreur interne"
       })
   }
+}
+
+const updateRoles = () => {
+  Langue.find().exec(function (err, result) {
+    if (err) {
+      console.log(err)
+    } else {
+      if (result) {
+        console.log(result)
+        Role.findOne({'nom':'Trad'}).exec((err_role, result_role) => {
+          console.log("result_role._id",result_role._id)
+          if(!err_role && result_role){ 
+            result.forEach(x => {
+              const traducteurs = x.participants;
+              traducteurs.forEach(y => {
+                console.log(y)
+                User.findByIdAndUpdate({ _id: y },{ "$addToSet": { "roles": result_role._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+              })
+            })
+          }
+        })
+      } else {
+        console.log(204)
+      }
+    }
+  })
 }
 
 //On exporte notre fonction

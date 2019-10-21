@@ -14,6 +14,7 @@ import {initial_data} from "./data"
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import {filtres} from "../Dispositif/data";
+import {filtres_contenu} from "./data";
 
 import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
@@ -28,12 +29,13 @@ class AdvancedSearch extends Component {
     dispositifs: [],
     nbVues: [],
     pinned: [],
-    activeFiltre: "Dispositifs",
+    activeFiltre: "",
     activeTri: "A > Z",
     tags: filtres.tags,
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
+    filter:{},
   }
 
   componentDidMount (){
@@ -51,7 +53,7 @@ class AdvancedSearch extends Component {
       { "audienceAge.bottomValue": { $lt: x.topValue}, "audienceAge.topValue": { $gt: x.bottomValue} } :
       {[x.queryName]: x.query}
     )).reduce((acc, curr) => ({...acc, ...curr}),{});
-    API.get_dispositif({query: {...query, status:'Actif', demarcheId: { $exists: false } }}).then(data_res => {
+    API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', demarcheId: { $exists: false } }}).then(data_res => {
       let dispositifs=data_res.data.data;
       console.log(query, dispositifs)
       if(query["tags.name"]){       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
@@ -130,6 +132,12 @@ class AdvancedSearch extends Component {
       const aValue = _.get(a, order), bValue = _.get(b, order);
       return aValue > bValue ? (croissant ? 1 : -1) : aValue < bValue ? (croissant ? -1 : 1) : 0;
     }), order: tri.value, activeTri: tri.name, croissant: croissant}))
+  }
+
+  filter_content = filtre => {
+    const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
+    const activeFiltre = this.state.activeFiltre === filtre.name ? "" : filtre.name;
+    this.setState({filter, activeFiltre }, () => this.queryDispositifs());
   }
 
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
@@ -246,23 +254,23 @@ class AdvancedSearch extends Component {
               </Row>
             </div>
           </Col>
-          {/* <Col lg="2" className="mt-250 side-col">
+          <Col lg="2" className="mt-250 side-col">
             <EVAIcon name="funnel-outline" fill={variables.noir} className="mr-12" />
             <div className="right-side">
               <b>Filtrer par :</b> 
               <div className="mt-10 side-options">
-                {filtres.map((filtre, idx) => (
+                {filtres_contenu.map((filtre, idx) => (
                   <div 
                     key={idx} 
                     className={"side-option" + (filtre.name === activeFiltre ? " active" : "")}
-                    onClick={this.upcoming}
+                    onClick={()=>this.filter_content(filtre)}
                   >
                     {filtre.name}
                   </div>
                 ))}
               </div>
             </div>
-          </Col> */}
+          </Col>
         </Row>
       </div>
     )

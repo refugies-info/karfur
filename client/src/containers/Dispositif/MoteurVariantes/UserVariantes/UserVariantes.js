@@ -56,58 +56,67 @@ class UserVariantes extends Component {
   }
 
   render(){
-    const {t} = this.props;
+    const {t, allDemarches, variantes} = this.props;
     const {age, ville, isMounted} = this.state;
-    return(
-      <div className="user-variantes">
-        <div className="bandeau-haut">
-          <EVAIcon name="options-2-outline" fill={variables.noir} className="icone-jaune mr-10" />
-          <div className="contenu-bandeau">{t("Dispositif.Personnalisation disponible", "Personnalisation disponible !")}</div>
-        </div>
-        <div className="bandeau-bas">
-          <Row>
-            <Col lg="auto">
-              <b>{t("Dispositif.jhabite", "J’habite à")} :</b>
-              {isMounted && 
-                <ReactDependentScript
-                  loadingComponent={<div>Chargement de Google Maps...</div>}
-                  scripts={["https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_GOOGLE_API_KEY + "&v=3.exp&libraries=places&language=fr&region=FR"]}
-                >
-                  <Autocomplete
-                    ref={this.mapRef}
-                    className="criteres-autocomplete"
-                    placeholder="Choisir ma ville"
-                    id="ville"
-                    value={ville}
+    const currCities = variantes.reduce((acc, curr) => [...acc, ...(curr.villes || []).map(x => x.place_id)], []);
+    const hasCityVar = allDemarches.some(d => d.variantes.some(va => va.villes.some(vi => !currCities.includes(vi.place_id) )));
+    const currAges = variantes.reduce((acc, curr) => [...acc, {bottomValue: curr.bottomValue, topValue: curr.topValue}], []);
+    const hasAgesVar = allDemarches.some(d => d.variantes.some(va => !currAges.some(c => c.bottomValue === va.bottomValue && c.topValue === va.topValue  )));
+    
+    if(hasAgesVar || hasCityVar){
+      return(
+        <div className="user-variantes">
+          <div className="bandeau-haut">
+            <EVAIcon name="options-2-outline" fill={variables.noir} className="icone-jaune mr-10" />
+            <div className="contenu-bandeau">{t("Dispositif.Personnalisation disponible", "Personnalisation disponible !")}</div>
+          </div>
+          <div className="bandeau-bas">
+            <Row>
+              {hasCityVar && 
+                <Col lg="auto">
+                  <b>{t("Dispositif.jhabite", "J’habite à")} :</b>
+                  {isMounted && 
+                    <ReactDependentScript
+                      loadingComponent={<div>Chargement de Google Maps...</div>}
+                      scripts={["https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_GOOGLE_API_KEY + "&v=3.exp&libraries=places&language=fr&region=FR"]}
+                    >
+                      <Autocomplete
+                        ref={this.mapRef}
+                        className="criteres-autocomplete"
+                        placeholder="Choisir ma ville"
+                        id="ville"
+                        value={ville}
+                        onChange={this.handleChange}
+                        onPlaceSelected={this.onPlaceSelected}
+                        types={['(regions)']}
+                        componentRestrictions={{country: "fr"}}
+                      />
+                    </ReactDependentScript>}
+                </Col>}
+
+              {hasAgesVar && 
+                <Col lg="auto">
+                  <b>{t("Dispositif.jai", "J’ai")} :</b>
+                  <Input
+                    className="criteres-autocomplete text-input mr-10"
+                    placeholder="18"
+                    id="age"
+                    value={age}
                     onChange={this.handleChange}
-                    onPlaceSelected={this.onPlaceSelected}
-                    types={['(regions)']}
-                    componentRestrictions={{country: "fr"}}
                   />
-                </ReactDependentScript>}
-            </Col>
+                  <b>{t("ans", "ans")}</b>
+                </Col>}
 
-            <Col lg="auto">
-              <b>{t("Dispositif.jai", "J’ai")} :</b>
-              <Input
-                className="criteres-autocomplete text-input mr-10"
-                placeholder="18"
-                id="age"
-                value={age}
-                onChange={this.handleChange}
-              />
-              <b>{t("ans", "ans")}</b>
-            </Col>
-
-            <Col lg="auto">
-              <FButton type="validate" onClick={this.validateCriteres} name="checkmark-circle-outline" fill={variables.noir}>
-                Valider
-              </FButton>
-            </Col>
-          </Row>
+              <Col lg="auto">
+                <FButton type="validate" onClick={this.validateCriteres} name="checkmark-circle-outline" fill={variables.noir}>
+                  Valider
+                </FButton>
+              </Col>
+            </Row>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }else{return false;}
   }
 }
 

@@ -76,14 +76,16 @@ class CheckDemarcheModal extends Component {
             </> }
         </ModalBody>
         <ModalFooter>
-          <FButton type="light-action" name="arrow-back" fill={variables.noir}>
-            {t("Retour", "Retour")}
-          </FButton>
-          <FButton type="help" name="question-mark-circle" fill={variables.error} onClick={this.props.upcoming}>
-            {t("J'ai besoin d'aide", "J'ai besoin d'aide")}
-          </FButton>
+          <div>
+            <FButton type="light-action" name="arrow-back" fill={variables.noir} className="mr-10">
+              {t("Retour", "Retour")}
+            </FButton>
+            <FButton type="help" name="question-mark-circle" fill={variables.error} onClick={this.props.upcoming}>
+              {t("J'ai besoin d'aide", "J'ai besoin d'aide")}
+            </FButton>
+          </div>
           {step > 0 && 
-            <FButton tag={NavLink} to="/demarche" type="validate" name="file-add-outline" className={"right-button" + (checked ? "" : "disabled")}>
+            <FButton tag={NavLink} to="/demarche" type="validate" name="file-add-outline" className={"right-button" + (checked ? "" : " disabled")}>
               Créer une démarche
             </FButton>}
         </ModalFooter>
