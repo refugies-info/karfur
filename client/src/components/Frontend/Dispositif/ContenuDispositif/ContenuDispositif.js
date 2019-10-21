@@ -30,7 +30,7 @@ const contenuDispositif = (props) => {
               <Col 
                 lg="12" md="12" sm="12" xs="12" 
                 className={'contenu borderColor-darkColor' + 
-                  (props.uiArray[key].isHover ? ' isHovered' : '')} 
+                  (!props.inVariante && props.uiArray[key].isHover ? ' isHovered' : '')} 
                 onMouseEnter={()=>props.updateUIArray(key, null, 'isHover')}
               >
                 <button className="anchor" id={'item-head-'+key}>{item.title}</button>
@@ -45,7 +45,7 @@ const contenuDispositif = (props) => {
                     addItem={props.addItem}
                     {...item}/>}
               </Col>
-              {!props.sideView && props.uiArray[key].isHover && 
+              {!props.sideView && !props.inVariante && props.uiArray[key].isHover && 
                 <Col lg="3" md="3" sm="3" xs="3" className='toolbar-col'>
                   <QuickToolbar 
                     show={props.uiArray[key].isHover}

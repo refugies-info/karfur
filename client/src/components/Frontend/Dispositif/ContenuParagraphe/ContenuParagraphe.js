@@ -57,7 +57,7 @@ const contenuParagraphe = (props) => {
                 disableEdit={newDisableEdit}
                 {...bprops} /> :
             subitem.type==='accordion' ?
-              <div key={subkey} className={'contenu' + (safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>props.updateUIArray(props.keyValue, subkey, 'isHover', true, e)}>
+              <div key={subkey} className={'contenu' + (!props.inVariante && safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>props.updateUIArray(props.keyValue, subkey, 'isHover', true, e)}>
                 <Row className="relative-position">
                   <Col lg="12" md="12" sm="12" xs="12" className="accordeon-col">
                     <div className="title-bloc">
@@ -99,7 +99,7 @@ const contenuParagraphe = (props) => {
                         {...subitem} />
                     </Collapse>
                   </Col>
-                  {!props.sideView && newDisableEdit && 
+                  {!props.sideView && !props.inVariante && newDisableEdit && 
                     <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
                       <QuickToolbar
                         show={safeUiArray(props.keyValue, subkey, 'isHover')}
@@ -111,7 +111,7 @@ const contenuParagraphe = (props) => {
                 </Row>
               </div>
             :
-              <div key={subkey} className={'contenu paragraphe borderColor-darkColor' + (safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={()=>props.updateUIArray(props.keyValue, subkey, 'isHover')}>
+              <div key={subkey} className={'contenu paragraphe borderColor-darkColor' + (!props.inVariante && safeUiArray(props.keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={()=>props.updateUIArray(props.keyValue, subkey, 'isHover')}>
                 <Row className="relative-position">
                   <Col lg="12" md="12" sm="12" xs="12">
                     <h4>
@@ -140,7 +140,7 @@ const contenuParagraphe = (props) => {
                       {...subitem} />
                     <br />
                   </Col>
-                  {!props.sideView && newDisableEdit && 
+                  {!props.sideView && !props.inVariante && newDisableEdit && 
                     <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
                       <QuickToolbar
                         show={safeUiArray(props.keyValue, subkey, "isHover")}

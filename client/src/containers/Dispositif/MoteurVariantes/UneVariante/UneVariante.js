@@ -82,7 +82,7 @@ class UneVariante extends Component {
     }))
 
   validateCriteres = (close=false, idx=0) => {
-    const {villes, ageTitle, bottomValue, topValue, validatedRow} = this.state;
+    let {villes, ageTitle, bottomValue, topValue, validatedRow} = this.state;
     if(ageTitle === "Moins de ** ans"){ bottomValue = -1; }else if(ageTitle === "Plus de ** ans"){topValue=999};
     let newVariante = {
       ...(validatedRow[0] && {villes}),
