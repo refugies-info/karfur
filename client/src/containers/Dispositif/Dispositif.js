@@ -752,13 +752,15 @@ class Dispositif extends Component {
             <section className="banniere-dispo" style={{backgroundImage: `url(${bgImage("Français")})`}}>
               {inVariante &&
                 <BandeauEdition
-                  editDispositif={this.editDispositif}
                   menu={this.state.menu}
                   uiArray={this.state.uiArray}
+                  withHelp={withHelp}
                   disableEdit={disableEdit}
+                  editDispositif={this.editDispositif}
                   upcoming={this.upcoming}
                   toggleDispositifValidateModal={this.toggleDispositifValidateModal}
                   valider_dispositif={this.valider_dispositif}
+                  toggleHelp={this.toggleHelp}
                 />}
 
               <Row className="header-row">

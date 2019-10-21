@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import FButton from '../../../FigmaUI/FButton/FButton';
 import {etapes} from './data';
+import FSwitch from '../../../FigmaUI/FSwitch/FSwitch';
 
 import './BandeauEdition.scss';
 import variables from 'scss/colors.scss';
@@ -26,6 +27,8 @@ const bandeauEdition = (props) => {
           </b>
         </div>
         <div className="bandeau-btns">
+          {step === 1 && 
+            <FSwitch content="Consignes" checked={props.withHelp} onClick={props.toggleHelp} className="mr-10" />}
           {step === 0 ?
             <FButton tag={NavLink} to="/comment-contribuer" type="light-action" name="close-outline" className="mr-10">
               Quitter

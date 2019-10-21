@@ -17,6 +17,7 @@
   height:250px;
   scrollbar-width: none;
   border: none;
+  background: #FFFFFF;
 
   @include media-max("desktop-up") { font-size: 12px; }
 
