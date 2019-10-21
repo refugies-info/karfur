@@ -16,13 +16,13 @@ class MoteurVariantes extends Component {
   toggleVue = () => this.setState(pS => ({isReducedVue: !pS.isReducedVue}))
 
   render(){
-    const {t, variantes, search, itemId} = this.props;
+    const {t, variantes, search, itemId, allDemarches} = this.props;
     const {isReducedVue} = this.state;
     if(this.props.disableEdit){
-      return <UserVariantes switchVariante={this.props.switchVariante} search={search} />
+      return <UserVariantes switchVariante={this.props.switchVariante} allDemarches={allDemarches} variantes={variantes} search={search} />
     }else{
       return(
-        <div className="moteur-variantes">
+        <div className="moteur-variantes" id="moteur-variantes">
           <div className="dashed-panel" />
 
           <div className="moteur-wrapper">

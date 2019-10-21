@@ -36,9 +36,8 @@ import SideTrad from './SideTrad/SideTrad';
 import {initializeTimer} from '../Translation/functions';
 import {readAudio} from "../Layout/functions";
 import MoteurVariantes from './MoteurVariantes/MoteurVariantes';
-import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps} from './data'
+import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche} from './data'
 import {switchVariante, initializeVariantes, initializeInfoCards} from "./functions";
-import image from "../../assets/figma/Français.svg"
 
 import variables from 'scss/colors.scss';
 
@@ -136,6 +135,7 @@ class Dispositif extends Component {
       API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor'}).then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
+        const disableEdit = dispositif.status !== "Accepté structure" || !props.translating
         if(dispositif.status === "Brouillon"){
           this.initializeTimer();}
         this.setState({
@@ -147,7 +147,6 @@ class Dispositif extends Component {
           creator:dispositif.creatorId,
           uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: dispositif.status === "Accepté structure"})})}}),
           dispositif: dispositif,
-          disableEdit: dispositif.status !== "Accepté structure" || !props.translating, //A vérifier
           isDispositifLoading: false,
           contributeurs: [dispositif.creatorId].filter(x => x),
           mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x && x.name === (dispositif.tags[0] || {}).name) || {}) : {},
@@ -155,7 +154,8 @@ class Dispositif extends Component {
           status: dispositif.status,
           variantes: dispositif.variantes || [],
           fiabilite: calculFiabilite(dispositif),
-          typeContenu, inVariante,
+          disableEdit, typeContenu, inVariante,
+          ...(inVariante && disableEdit && {showModals:{...this.state.showModals, variante: true}}),
           ...(dispositif.status==="Brouillon" && {initialTime: dispositif.timeSpent}),
         },()=>{
           if(typeContenu === "demarche"){
@@ -259,6 +259,7 @@ class Dispositif extends Component {
   handleContentClick = (key, editable, subkey=undefined) => {
     let state=[...this.state.menu];
     if(state.length > key && key >= 0 && !this.state.disableEdit && (!this.state.inVariante || _.get(this.state.uiArray, key + (subkey ? ".children." + subkey : "") + ".varianteSelected")) ){
+      console.log(key, editable, subkey)
       if(editable){  
         state = state.map(x => ({
           ...x, 
@@ -276,16 +277,19 @@ class Dispositif extends Component {
         right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
       if(right_node.type === 'accordion'){ this.updateUIArray(key, subkey, 'accordion', true) }
+      console.log(right_node)
       return new Promise(resolve => this.setState( { menu: state },()=>{ this.updateUI(key, subkey, editable) ; resolve()} ));
     }else{return new Promise(r=> r())}
   };
 
   updateUI = (key, subkey, editable) => {
-    if(editable && (subkey===undefined || (subkey===0 && key>1) )){ 
+    if(editable && (subkey===undefined || (subkey===0 && key>1) ) && this.state.withHelp){ 
+      const seuil_tuto = this.state.typeContenu === "demarche" ? 3 : 4;
       try{ //On place le curseur à l'intérieur du wysiwyg et on ajuste la hauteur
         const target = (key === 0 || subkey !== undefined) ? 
           ('editeur-' + key + '-' + subkey) : 
           (key === 1 ? "card-col col-lg-4" : undefined);
+        console.log(target)
         let parentNode = document.getElementsByClassName(target)[0];
         if(subkey && parentNode){
           parentNode.getElementsByClassName('public-DraftEditor-content')[0].focus();
@@ -297,7 +301,8 @@ class Dispositif extends Component {
           parentNode.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
         }
       } catch(e){console.log(e)} 
-      this.setState({ stepIndex: key + 4, runJoyRide: true, disableOverlay: true, inputBtnClicked: false }) 
+      console.log(key, seuil_tuto)
+      this.setState({ stepIndex: key + seuil_tuto, runJoyRide: true, disableOverlay: true, inputBtnClicked: false }) 
     } 
   }
 
@@ -474,17 +479,20 @@ class Dispositif extends Component {
 
   handleJoyrideCallback = data => {
     const { action, index, type, lifecycle, status } = data;
+    const etapes_tuto = this.state.typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
+    const trigger_lower = this.state.typeContenu === "demarche" ? 2 : 3, trigger_upper = this.state.typeContenu === "demarche" ? 5 : 7;
     if ([STATUS.FINISHED, STATUS.SKIPPED].includes(status) || (action === ACTIONS.CLOSE  && type === EVENTS.STEP_AFTER)) {
       this.setState({ runJoyRide: false, disableOverlay: false });
-    }else if(((action === ACTIONS.NEXT && index >= 3) || index > 4) && index < 7 && type === EVENTS.STEP_AFTER && lifecycle === "complete"){
-      const key = index - 3 + (action === ACTIONS.PREV ? -2 : 0);
+    }else if(((action === ACTIONS.NEXT && index >= trigger_lower) || index > trigger_lower + 1) && index < trigger_upper && type === EVENTS.STEP_AFTER && lifecycle === "complete"){
+      let key = index - trigger_lower + (action === ACTIONS.PREV ? -2 : 0);
+      if(this.state.typeContenu === "demarche" && key === 1){ key = 2; }
       this.handleContentClick(key, true, key>1 ? 0 : undefined);
     } else if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
       const stepIndex = index + (action === ACTIONS.PREV ? -1 : 1); 
-      const inputBtnClicked= ((action === ACTIONS.NEXT && index === 2) || (action === ACTIONS.PREV && index===4))
-      this.setState({ stepIndex, disableOverlay: index>3, inputBtnClicked});
-      if(tutoSteps[stepIndex] && tutoSteps[stepIndex].target && tutoSteps[stepIndex].target.includes("#") && document.getElementById(tutoSteps[stepIndex].target.replace("#", ""))){
-        const cible = document.getElementById(tutoSteps[stepIndex].target.replace("#", ""));
+      const inputBtnClicked= ((action === ACTIONS.NEXT && index === 2) || (action === ACTIONS.PREV && index===4));
+      this.setState({ stepIndex, disableOverlay: index>trigger_lower, inputBtnClicked});
+      if(this.state.withHelp && etapes_tuto[stepIndex] && etapes_tuto[stepIndex].target && etapes_tuto[stepIndex].target.includes("#") && document.getElementById(etapes_tuto[stepIndex].target.replace("#", ""))){
+        const cible = document.getElementById(etapes_tuto[stepIndex].target.replace("#", ""));
         cible.focus();
         cible.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
       }
@@ -583,6 +591,9 @@ class Dispositif extends Component {
   }
 
   valider_dispositif = (status='En attente') => {
+    if(this.state.typeContenu === "demarche" && this.state.variantes.length === 0){
+      Swal.fire( {title: 'Oh non!', text: 'Il faut renseigner au moins un critère dans l\'encadré jaune avant de pouvoir valider la démarche', type: 'error', timer: 1500 }); return;
+    }
     let content = {...this.state.content};
     const uiArray = {...this.state.uiArray}, inVariante= this.state.inVariante;
     Object.keys(content).map( k => content[k] = h2p(content[k]));
@@ -658,6 +669,7 @@ class Dispositif extends Component {
     const {t, translating} = this.props;
     const {showModals, isDispositifLoading, typeContenu, runJoyRide, stepIndex, disableOverlay, joyRideWidth, 
       withHelp, disableEdit, mainTag, fiabilite, inVariante} = this.state;
+    const etapes_tuto = typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
     
     const Tooltip = ({
       index,
@@ -679,7 +691,7 @@ class Dispositif extends Component {
         </div>
         <div className="tooltipFooter">
           <ul className="nav nav-tabs" role="tablist">
-            {tutoSteps.map((_,idx) => (
+            {etapes_tuto.map((_,idx) => (
               <li role="presentation" className={idx <= stepIndex ? "active" : "disabled"} key={idx}>
                 <span className="round-tab" />
               </li>
@@ -707,7 +719,7 @@ class Dispositif extends Component {
         {/* Second guided tour */}
         <ReactJoyride
           continuous
-          steps={tutoSteps}
+          steps={etapes_tuto}
           run={!disableEdit && withHelp && runJoyRide}
           showProgress
           disableOverlay={disableOverlay}
@@ -779,15 +791,15 @@ class Dispositif extends Component {
               </Row>
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
                 <div className="bloc-titre">
-                  <h1 className={this.state.disableEdit ? "" : "editable"}>
+                  <h1 className={disableEdit ? "" : "editable"}>
                     <ContentEditable
                       id='titreInformatif'
                       html={this.state.content.titreInformatif}  // innerHTML of the editable div
                       disabled={disableEdit || inVariante}
-                      onClick={e=>{this.startJoyRide(); this.onInputClicked(e)}}
+                      onClick={e=> {if(!disableEdit && !inVariante){this.startJoyRide(); this.onInputClicked(e)}}}
                       onChange={this.handleChange}
                       onMouseEnter={e => e.target.focus()} 
-                      onKeyPress={e=>this.handleKeyPress(e, 0)}
+                      onKeyPress={e=> this.handleKeyPress(e, 0)}
                     />
                   </h1>
                   {typeContenu === "dispositif" &&
@@ -810,33 +822,34 @@ class Dispositif extends Component {
             {!inVariante && 
               <Row className="tags-row backgroundColor-darkColor">
                 <Col lg="8" md="8" sm="8" xs="8" className="col right-bar">
-                  <Row>
-                    <b className="en-bref mt-10">{t("En bref", "En bref")} </b>
-                    {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
-                      if(card.type==='card'){
-                        let texte = card.contentTitle;
-                        if(card.title==='Âge requis'){
-                          texte = (card.contentTitle === 'De ** à ** ans') ? 'De ' + card.bottomValue + ' à ' + card.topValue + ' ans' :
-                                              (card.contentTitle === 'Moins de ** ans') ? 'Moins de ' + card.topValue + ' ans' :
-                                              'Plus de ' + card.bottomValue + ' ans';
-                        }else if(card.title === 'Combien ça coûte ?'){
-                          texte = card.free ? "gratuit" : (card.price + " € " + card.contentTitle)
-                        }
-                        return (
-                          <div className="tag-wrapper" key={key}>
-                            <div className="tag-item">
-                              <a href={'#item-head-1'} className="no-decoration">
-                                {card.typeIcon==="eva" ?
-                                  <EVAIcon name={card.titleIcon} fill="#FFFFFF"/> :
-                                  <SVGIcon fill="#FFFFFF" width="20" height="20" viewBox="0 0 25 25" name={card.titleIcon} />}
-                                <span>{h2p(texte)}</span>
-                              </a>
+                  {(disableEdit || typeContenu !== "demarche") &&
+                    <Row>
+                      <b className="en-bref mt-10">{t("En bref", "En bref")} </b>
+                      {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
+                        if(card.type==='card'){
+                          let texte = card.contentTitle;
+                          if(card.title==='Âge requis'){
+                            texte = (card.contentTitle === 'De ** à ** ans') ? 'De ' + card.bottomValue + ' à ' + card.topValue + ' ans' :
+                                                (card.contentTitle === 'Moins de ** ans') ? 'Moins de ' + card.topValue + ' ans' :
+                                                'Plus de ' + card.bottomValue + ' ans';
+                          }else if(card.title === 'Combien ça coûte ?'){
+                            texte = card.free ? "gratuit" : (card.price + " € " + card.contentTitle)
+                          }
+                          return (
+                            <div className="tag-wrapper" key={key}>
+                              <div className="tag-item">
+                                <a href={'#item-head-1'} className="no-decoration">
+                                  {card.typeIcon==="eva" ?
+                                    <EVAIcon name={card.titleIcon} fill="#FFFFFF"/> :
+                                    <SVGIcon fill="#FFFFFF" width="20" height="20" viewBox="0 0 25 25" name={card.titleIcon} />}
+                                  <span>{h2p(texte)}</span>
+                                </a>
+                              </div>
                             </div>
-                          </div>
-                        )
-                      }else{return false}
-                    })}
-                  </Row>
+                          )
+                        }else{return false}
+                      })}
+                    </Row>}
                 </Col>
                 <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
                   <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} history={this.props.history} />
@@ -856,6 +869,7 @@ class Dispositif extends Component {
                   createPdf={this.createPdf}
                   newRef={this.newRef}
                   handleChange = {this.handleChange}
+                  typeContenu={typeContenu}
                 />
               </Col>
               {inVariante && disableEdit && 
@@ -888,6 +902,7 @@ class Dispositif extends Component {
                     upcoming={this.upcoming}
                     switchVariante={this.switchVariante}
                     variantes = {this.state.variantes}
+                    allDemarches={this.state.allDemarches}
                     search={this.state.search} />}
 
                 <ContenuDispositif 
