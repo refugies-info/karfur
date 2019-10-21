@@ -96,13 +96,13 @@ class EtapeParagraphe extends Component {
   }
 
   render(){
-    const {keyValue, subitem, subkey, uiArray, updateUIArray, disableEdit, sideView, demarcheSteps, t} = this.props;
+    const {keyValue, subitem, subkey, uiArray, updateUIArray, disableEdit, sideView, demarcheSteps, inVariante, t} = this.props;
     const {isDropdownOpen, checked, value1, value2, value3, value4, options, isOptionSelected, selectedOption, 
       validatedRow, isPapiersDropdownOpen, configurationOpen, tooltipOpen, showModal} = this.state;
 
     const safeUiArray = (key, subkey, node) => uiArray[key] && uiArray[key].children && uiArray[key].children.length>subkey && uiArray[key].children[subkey] && uiArray[key].children[subkey][node]
     return(
-      <div key={subkey} className={'etape contenu' + (safeUiArray(keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>updateUIArray(keyValue, subkey, 'isHover', true, e)}>
+      <div key={subkey} className={'etape contenu' + (!inVariante && safeUiArray(keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>updateUIArray(keyValue, subkey, 'isHover', true, e)}>
         <Row className="relative-position">
           <Col lg="12" md="12" sm="12" xs="12" className="accordeon-col">
             <div className="title-bloc">
@@ -408,7 +408,7 @@ class EtapeParagraphe extends Component {
                 Ajouter une étape
               </FButton>}
           </Col>
-          {!sideView && disableEdit && 
+          {!sideView && !inVariante && disableEdit && 
             <Col lg="2" md="2" sm="2" xs="2" className='toolbar-col'>
               <QuickToolbar
                 show={safeUiArray(keyValue, subkey, 'isHover')}
