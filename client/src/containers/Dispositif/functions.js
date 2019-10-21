@@ -21,7 +21,7 @@ const initializeInfoCards = function() {
   const variante = _.get(this.state, "variantes.0", {});
   const card = { "type" : "card", "isFakeContent" : false, "editable" : false, typeIcon: "eva"};
   const {villes, ageTitle, bottomValue, topValue} = variante;
-  if(villes && villes.length > 0){ infocards = [...infocards, {...card, contentTitle: (villes.length === 1 ?_.get(villes, "0.formatted_address") : (villes.length + "villes")), title:'Localisation',titleIcon:'pin-outline'}] }
+  if(villes && villes.length > 0){ infocards = [...infocards, {...card, contentTitle: (villes.length === 1 ?_.get(villes, "0.formatted_address") : (villes.length + " villes")), title:'Localisation',titleIcon:'pin-outline'}] }
   if(ageTitle){ infocards = [...infocards, {...card, title:'Âge requis',titleIcon:'calendar-outline', ageTitle, bottomValue, topValue}] }
   customCriteres.forEach(x => { if(x.query && variante[x.query] && variante[x.query].length > 0){
     let texte = ""; 

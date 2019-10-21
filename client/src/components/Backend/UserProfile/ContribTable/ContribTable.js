@@ -50,9 +50,9 @@ const contribTable = (props) => {
       </thead>
       <tbody>
         {data.slice(0,props.limit).map((element,key) => {
-          let titre = element.titreMarque + ' - ' + element.titreInformatif;
+          let titre = (element.titreMarque || "") + (element.titreMarque && element.titreInformatif ? " - " : "") + (element.titreInformatif || "");
           return (
-            <tr key={key} onClick={()=>props.history.push("/dispositif/"+element._id)}>
+            <tr key={key} onClick={()=>props.history.push("/" + (element.typeContenu || "dispositif") + "/"+element._id)}>
               <td className="align-middle">
                 {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 && "..."))}
               </td>

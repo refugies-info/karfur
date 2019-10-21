@@ -35,10 +35,9 @@ class EtapeParagraphe extends Component {
   componentWillReceiveProps(nextProps){
     const {isOptionSelected} = this.state;
     if(!isOptionSelected && 
-      ((_.get(nextProps, "subitem.option.value1") && _.get(nextProps, "subitem.option.value1") !== _.get(this.state, "subitem.option.value1")) || 
-      ( _.get(nextProps, "subitem.option.value2") && _.get(nextProps, "subitem.option.value2") !== _.get(this.state, "subitem.option.value2")) || 
-      (_.get(nextProps, "subitem.option.texte") && _.get(nextProps, "subitem.option.texte") !== _.get(this.state, "subitem.option.texte")) || 
-      _.get(nextProps, "subitem.option.checked") !== _.get(this.state, "subitem.option.checked") ) ){
+      ((_.get(nextProps, "subitem.option.value1") && _.get(nextProps, "subitem.option.value1") !== this.state.value1) || 
+      ( _.get(nextProps, "subitem.option.value2") && _.get(nextProps, "subitem.option.value2") !== this.state.value2) || 
+      (_.get(nextProps, "subitem.option.checked") !== undefined && (_.get(nextProps, "subitem.option.checked") !== this.state.checked)) ) ){
       let {checked, value1, value2, value3, value4, texte} = nextProps.subitem.option;
       this.setState(pS => ({ checked, value1, value2, value3, value4, texte,
         isPapiersDropdownOpen: new Array(((nextProps.subitem || {}).papiers || []).length).fill(false),
@@ -61,7 +60,7 @@ class EtapeParagraphe extends Component {
 
   validateOption = e => {
     e.preventDefault();
-    this.setState(pS => ({validatedRow: pS.validatedRow.map((x,i) => i===0 ? true : x), isOptionSelected: false, value1: "", value2:"", value3: "", value4:"", checked:false}))
+    this.setState(pS => ({validatedRow: pS.validatedRow.map((x,i) => i===0 ? true : x), isOptionSelected: false}))
   }
   
   addDoc = (papier, idx=null, add=true) => {
@@ -102,7 +101,6 @@ class EtapeParagraphe extends Component {
       validatedRow, isPapiersDropdownOpen, configurationOpen, tooltipOpen, showModal} = this.state;
 
     const safeUiArray = (key, subkey, node) => uiArray[key] && uiArray[key].children && uiArray[key].children.length>subkey && uiArray[key].children[subkey] && uiArray[key].children[subkey][node]
-
     return(
       <div key={subkey} className={'etape contenu' + (safeUiArray(keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>updateUIArray(keyValue, subkey, 'isHover', true, e)}>
         <Row className="relative-position">
@@ -150,7 +148,7 @@ class EtapeParagraphe extends Component {
                       {t("Dispositif.Combien de temps", "Combien de temps ça va vous prendre ?")}
                     </Tooltip>
                   </div>}
-                {(!disableEdit || subitem.delai) &&
+                {(!disableEdit || (subitem.delai)) &&
                   <div className="etape-data" id="etape-delai">
                     <EVAIcon name="undo" fill={variables.grisFonce} className="mr-8" />
                     <span>
@@ -162,7 +160,7 @@ class EtapeParagraphe extends Component {
                       {t("Dispositif.Délais de réponse annoncés", "Délais de réponse annoncés")}
                     </Tooltip>
                   </div>}
-                {(!disableEdit || subitem.papiers) &&
+                {(!disableEdit || (subitem.papiers && subitem.papiers.length > 0)) &&
                   <div className="etape-data" id="etape-papiers">
                     <EVAIcon name="file-text-outline" fill={variables.grisFonce} className="mr-8" />
                     <span>{(subitem.papiers || []).length || 0}</span>
@@ -173,7 +171,7 @@ class EtapeParagraphe extends Component {
               </div>
             </div>
             
-            <Collapse className="bloc-configuration" isOpen={configurationOpen} data-parent=".etapes-data">
+            <Collapse className="bloc-configuration" isOpen={!disableEdit && configurationOpen} data-parent=".etapes-data">
               <h5>Configurez votre étape</h5>
 
               <div className={"row-config direction-colonne mb-10" + (validatedRow[0] ? " validated" : "")}>

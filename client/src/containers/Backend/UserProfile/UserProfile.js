@@ -72,12 +72,12 @@ class UserProfile extends Component {
     API.get_tradForReview({'userId': userId}).then(data => { console.log(data.data.data);
       this.setState({traductions: data.data.data})
     })
-    API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}}}).then(data => { console.log(data.data.data);
+    API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}, demarcheId: { $exists: false }}}).then(data => { console.log(data.data.data);
       this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
     })
     if(user.structures && user.structures.length > 0){
       this.initializeStructure();
-      API.get_dispositif({query: {'mainSponsor': user.structures[0]}}).then(data => {console.log(parseActions(data.data.data))
+      API.get_dispositif({query: {'mainSponsor': user.structures[0]}}).then(data => {
         this.setState({actionsStruct: parseActions(data.data.data)})
       })
     }

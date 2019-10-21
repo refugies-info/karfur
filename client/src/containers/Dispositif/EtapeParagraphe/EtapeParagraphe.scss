@@ -12,15 +12,17 @@
   .etapes-data{
     display: flex;
     justify-content: space-between;
-    &.editing .etape-data{
-      background: $attention;
+    &.editing{ 
+      cursor: pointer;
+      .etape-data{
+        background: $attention;
+      }
     }
   }
   .etape-data{
     border-right: 1px solid $grisFonce;
     color: $grisFonce;
     padding: 10px;
-    cursor: pointer;
     &:last-child{
       border:none;
     }

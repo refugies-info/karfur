@@ -39,7 +39,7 @@ class UserDashContrib extends Component {
   componentDidMount() {
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
-      API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}}}).then(data => {
+      API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}, demarcheId: { $exists: false } }}).then(data => {
         this.setState({contributions: data.data.data, isMainLoading: false})
       })
       API.get_progression().then(data_progr => {
