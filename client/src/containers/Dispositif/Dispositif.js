@@ -129,7 +129,7 @@ class Dispositif extends Component {
     this.initializeTimer();
     const itemId = props.match && props.match.params && props.match.params.id;
     const typeContenu = (props.match.path || "").includes("demarche") ? "demarche" : "dispositif";
-    const inVariante = _.get(props, "location.state.inVariante");
+    const inVariante = _.get(props, "location.state.inVariante"), textInput = _.get(props, "location.state.textInput");
     if(itemId){
       this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
       API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor'}).then(data_res => {
@@ -179,13 +179,15 @@ class Dispositif extends Component {
       })
     }else if(API.isAuth()){
       this.initializeTimer();
+      const menuContenu = typeContenu === "demarche" ? menuDemarche : menu;
       this.setState({
         disableEdit:false,
-        uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}),
+        uiArray: menuContenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}),
         showDispositifCreateModal: true, //A modifier avant la mise en prod
         isDispositifLoading: false,
+        menu: menuContenu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
         typeContenu,
-        menu: (typeContenu === "demarche" ? menuDemarche : menu).map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
+        ...(textInput && {content: {...contenu, titreInformatif: textInput}})
       },()=>this.setColors());
     }else{ props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
     window.scrollTo(0, 0);
@@ -351,6 +353,8 @@ class Dispositif extends Component {
         newChild={type:'map', isFakeContent: true, isMapLoaded:false, markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]};
       }else if(type === 'paragraph' && !newChild.content){
         newChild={title:'Un exemple de paragraphe', isFakeContent: true, placeholder: lorems.sousParagraphe,content: '', type:type}
+      }else if(type === "etape"){
+        newChild = {...newChild, papiers: [], duree: "00", timeStepDuree: "minutes", delai: "00", timeStepDelai: "minutes", option:{}}
       }
       newChild.type=type;
       if(subkey === null || subkey === undefined){
@@ -594,6 +598,7 @@ class Dispositif extends Component {
     if(this.state.typeContenu === "demarche" && this.state.variantes.length === 0){
       Swal.fire( {title: 'Oh non!', text: 'Il faut renseigner au moins un critère dans l\'encadré jaune avant de pouvoir valider la démarche', type: 'error', timer: 1500 }); return;
     }
+    this.setState({isDispositifLoading: true});
     let content = {...this.state.content};
     const uiArray = {...this.state.uiArray}, inVariante= this.state.inVariante;
     Object.keys(content).map( k => content[k] = h2p(content[k]));
@@ -656,7 +661,7 @@ class Dispositif extends Component {
       Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
         this.props.fetch_user();
         this.props.fetch_dispositifs();
-        this.setState({disableEdit: status === 'En attente admin' || status === 'En attente'}, () => {
+        this.setState({disableEdit: status === 'En attente admin' || status === 'En attente', isDispositifLoading: false}, () => {
           this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
         })
       });

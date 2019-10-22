@@ -112,14 +112,12 @@ class AdvancedSearch extends Component {
     e.stopPropagation();
     dispositif.pinned=!dispositif.pinned;
     let prevState=[...this.state.dispositifs];
-    console.log(this.state.dispositifs, this.state.pinned,dispositif)
     this.setState({
       dispositifs: dispositif.pinned ? prevState.filter(x => x._id !== dispositif._id) : [...prevState,dispositif],
       pinned: dispositif.pinned ? 
-        [...this.state.pinned,dispositif] :
+        [...this.state.pinned, dispositif] :
         this.state.pinned.filter(x=> x._id !== dispositif._id)
     },()=>{
-      console.log(this.state.dispositifs, this.state.pinned)
       user.cookies.parkourPinned=this.state.pinned;
       API.set_user_info(user);
     })
@@ -163,8 +161,10 @@ class AdvancedSearch extends Component {
   desactiver = key => this.setState({recherche: this.state.recherche.map((x, i) => i===key ? initial_data[i] : x)}, ()=> this.queryDispositifs());
 
   render() {
-    const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
+    const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri, filter} = this.state;
     const {t} = this.props;
+    const filteredPinned = filter && filter.name ? pinned.filter(x => filter.name === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : pinned;
+    console.log(filteredPinned, filter)
     return (
       <div className="animated fadeIn advanced-search">
         <Row className="search-wrapper">
@@ -199,7 +199,7 @@ class AdvancedSearch extends Component {
             </div>
             <div className="results-wrapper">
               <Row>
-                {[...pinned,...dispositifs].map((dispositif) => {
+                {[...filteredPinned,...dispositifs].map((dispositif) => {
                   if(!dispositif.hidden){
                     let shortTag = null;
                     if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-") }
