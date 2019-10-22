@@ -63,10 +63,11 @@ function get_article(req, res) {
     var populate = req.body.populate;
     var limit = req.body.limit;
     var random = req.body.random;
-    console.log(query, locale, sort, populate, limit, random)
-    let isStructure=false;let structId=null;
+    // console.log(query, locale, sort, populate, limit, random)
+    let isStructure=false, structId=null;
     if(query._id && query._id.includes('struct_')){
-      isStructure=true;structId=query._id;
+      isStructure=true; 
+      structId=query._id;
       query={isStructure:true};
     }
     let promise=null;
@@ -103,8 +104,10 @@ function get_article(req, res) {
         "data": [...structureArr, ...result]
       })
     }).catch(err => {
+      console.log(err)
       res.status(500).json({
-        "text": "Erreur interne"
+        "text": "Erreur interne",
+        "error": err
       })
     })
   }
@@ -518,9 +521,7 @@ const _updateAvancement = (locale) => {
 }
 
 _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_at, articles=[], path=[]) => {
-  console.log(structJson.Homepage.subtitle)
   Object.keys(structJson).forEach((key) => {
-    console.log(path, key, structJson[key] && structJson[key].fr, typeof structJson[key].fr, structJson.constructor)
     if(structJson[key] && typeof structJson[key].fr === 'string'){
       let newArticle={
         title: structJson[key].fr,
@@ -534,14 +535,14 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
         _id: structJson[key].id
       }
       path.pop()
-      console.log("newArticle: ")
+      // console.log("newArticle: ")
       if(! (query['$or'] && query['$or'].length>0 && query['$or'][0] && query['$or'][0]['avancement.'+locale] && query['$or'][0]['avancement.'+locale]['$lt'] && newArticle.avancement === 1) ){
         articles.push(newArticle)
       }
     }else if(structJson.constructor === Object){
-      console.log('ici')
+      console.log('ici', 0)
       path.push(key)
-      console.log(locale, query, status, created_at, articles, path)
+      // console.log(locale, query, status, created_at, articles, path)
       articles=_createFromNested(structJson[key], locale, query, status, created_at, articles, path);
     }
   })
