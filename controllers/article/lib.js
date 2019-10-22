@@ -87,18 +87,15 @@ function get_article(req, res) {
         if(article.isStructure){
           // console.log(article) 
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
-          console.log(1, "terminé") 
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           if(random && structureArr.length > 1){structureArr = [structureArr[ Math.floor((Math.random() * structureArr.length)) ]]}
           result.splice(i, 1);
         }else{
-          console.log('localizing')
           returnLocalizedContent(article.body, locale)
           article.title=article.title[locale] || article.title.fr;
           article.avancement=article.avancement[locale] || article.avancement.fr
         }
       });
-      console.log(structureArr.length)
       res.status(200).json({
         "text": "Succès",
         "data": [...structureArr, ...result]
@@ -172,11 +169,9 @@ function add_traduction(req, res) {
               }else{succes=false;}
             }else{
               avancement={value : result.avancement[locale] * result.nombreMots};
-              console.log(0, avancement)
               if(_insertStructTranslation(result.body,traductionItem.translatedText.body,locale,traductionItem.jsonId, avancement)){
                 result.markModified("body");
-                if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;
-                  console.log(1, avancement)};
+                if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;};
               }else{succes=false;}
             }
           }else{succes=false;}
@@ -186,7 +181,6 @@ function add_traduction(req, res) {
             req.body.update={status:'Validée'};
             Traduction.findByIdAndUpdate({_id: req.body.translationId},{status:'Validée'},{new: true}).exec();
           }
-          console.log(2, avancement)
           if(succes){
             result.avancement = {...result.avancement,[locale]:avancement.value};
             result.markModified("avancement");
@@ -352,7 +346,6 @@ const _correctNodewithLocale = (right_node, node, id, locale, i, errArr=[]) => {
     if(right_node.children.length === 1 && right_node.children[0].content.replace(/\s/g, '').length){
       node.content[locale] = right_node.children[0].content;right_node.children[0].inserted=true;
     }else if(right_node.children.length === 0){
-      console.log('cest la maaarde')
       errArr.push({right_node: right_node, node : node, id : id, i: i});
       return false;
     }else{
@@ -377,13 +370,11 @@ const _correctNodewithLocale = (right_node, node, id, locale, i, errArr=[]) => {
             let noeudFils=right_node.children.filter(x => x.children && x.children.length === 1 && x.children[0].content.replace(/\s/g, ''))[0].children[0];
             node.content[locale] = noeudFils.content;noeudFils.inserted=true;
           }else{
-            console.log('cest la meeerde : ' + nbWithContent); errArr.push({right_node: right_node, node : node, id : id, i: i});
             return false;
           }
         }else{
           //On garde en mémoire qu'on n'a pas réussi à traiter ce bout de phrase et on y reviendra après
           errArr.push({right_node: right_node, node : node, id : id, i: i});
-          console.log('cest encore plus la meeerde : ' + nbWithContent);
           return false;
         }
       }
@@ -540,14 +531,12 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
         articles.push(newArticle)
       }
     }else if(structJson.constructor === Object){
-      console.log('ici', 0)
       path.push(key)
       // console.log(locale, query, status, created_at, articles, path)
       articles=_createFromNested(structJson[key], locale, query, status, created_at, articles, path);
     }
   })
   path.pop()
-  console.log("longueur: ", articles.length)
   return articles
 }
 

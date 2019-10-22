@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import Swal from 'sweetalert2';
@@ -16,6 +17,7 @@ import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
 import SearchBar from '../UI/SearchBar/SearchBar';
+import API from '../../utils/API';
 
 import './HomePage.scss';
 import variables from 'scss/colors.scss';
@@ -48,7 +50,7 @@ class HomePage extends Component {
               <SearchBar 
                 validateTest="Valider"
                 className="input-group"
-                placeholder="Rechercher..."
+                placeholder="Rechercher"
               />
               <div className="try-it-out mr-10">{t("ou", "ou")}</div>
               <FButton tag={NavLink} to="/advanced-search" name="flash" type="dark" className="large-btn">
@@ -128,7 +130,7 @@ class HomePage extends Component {
             </div>
             <footer className="footer-section">
               {t("Homepage.contributeurs mobilises", {nombre: 230})}
-              <FButton tag={NavLink} to="/comment-contribuer" type="dark" className="ml-10">
+              <FButton tag={NavHashLink} to="/comment-contribuer#ecrire" type="dark" className="ml-10">
                 {t("Homepage.Je contribue", "Je contribue")}
               </FButton>
             </footer>
@@ -144,7 +146,7 @@ class HomePage extends Component {
             </div>
             <footer className="footer-section">
               {t("Homepage.traducteurs mobilises", {nombre: 32})}
-              <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
+              <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-profile" : "/comment-contribuer#traduire"} type="dark" className="ml-10">
                 {t("Homepage.Je traduis", "Je traduis")}
               </FButton>
             </footer>
@@ -157,12 +159,11 @@ class HomePage extends Component {
               <h2>{t("Homepage.information vérifiée")}</h2>
               <p className="texte-normal">{t("Homepage.information vérifiée subheader")}</p>
             </div>
-            {/*<footer>
-              Nous ne censurons aucun contenu :
-              <FButton type="dark" className="ml-10" onClick={this.upcoming}>
-                
+            <footer>
+              <FButton tag={NavHashLink} to="/comment-contribuer#corriger" type="dark" className="ml-10">
+                {t("En savoir plus", "En savoir plus")}
               </FButton>
-            </footer>*/}
+            </footer>
           </div>
         </section>
 

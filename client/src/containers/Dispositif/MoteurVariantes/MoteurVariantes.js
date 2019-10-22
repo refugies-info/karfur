@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { withTranslation } from 'react-i18next';
 
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import UneVariante from './UneVariante/UneVariante';
@@ -16,7 +15,7 @@ class MoteurVariantes extends Component {
   toggleVue = () => this.setState(pS => ({isReducedVue: !pS.isReducedVue}))
 
   render(){
-    const {t, variantes, search, itemId, allDemarches} = this.props;
+    const {variantes, search, itemId, allDemarches} = this.props;
     const {isReducedVue} = this.state;
     if(this.props.disableEdit){
       return <UserVariantes switchVariante={this.props.switchVariante} allDemarches={allDemarches} variantes={variantes} search={search} />
@@ -54,4 +53,4 @@ class MoteurVariantes extends Component {
   }
 }
 
-export default withTranslation()(MoteurVariantes);
+export default MoteurVariantes;

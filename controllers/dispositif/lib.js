@@ -269,7 +269,7 @@ const _handleMailNotification = dispositif => {
     html = "<p>Bonjour,</p>";
   
     if( ["En attente", "En attente admin", "En attente non prioritaire"].includes(status) ){
-      html += "<p>Un nouveau contenu (" + dispositif.typeContenu + ") est '<b>" + status + " de validation</b>' sur la plateforme Réfugiés.info</p>" +
+      html += "<p>Un nouveau contenu (" + dispositif.typeContenu + ") est '<b>" + status + " de validation</b>' sur la plateforme Réfugiés.info (environnement : '" + process.env.NODE_ENV + "')</p>" +
         "<p><a href=" + url + (dispositif.typeContenu || "dispositif") + "/" + dispositif._id + ">Cliquez ici</a> pour accéder au contenu, ou accédez <a href=" + url + "backend/admin-contrib>à la page d'administration</a>.</p>";
     }
     html += "<p>A bientôt,</p>" +
