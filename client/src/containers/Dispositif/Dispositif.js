@@ -37,7 +37,7 @@ import {initializeTimer} from '../Translation/functions';
 import {readAudio} from "../Layout/functions";
 import MoteurVariantes from './MoteurVariantes/MoteurVariantes';
 import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche} from './data'
-import {switchVariante, initializeVariantes, initializeInfoCards} from "./functions";
+import {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche} from "./functions";
 
 import variables from 'scss/colors.scss';
 
@@ -55,6 +55,7 @@ class Dispositif extends Component {
     this.switchVariante = switchVariante.bind(this);
     this.initializeVariantes = initializeVariantes.bind(this);
     this.initializeInfoCards = initializeInfoCards.bind(this);
+    this.verifierDemarche = verifierDemarche.bind(this);
   }
   audio = new Audio();
 
@@ -103,6 +104,7 @@ class Dispositif extends Component {
     inVariante: false,
     allDemarches: [],
     demarcheId: null,
+    isVarianteValidated: false,
   }
   newRef=React.createRef();
   mountTime=0;
@@ -554,10 +556,10 @@ class Dispositif extends Component {
     )}
   )) }), ()=>this.setColors())
 
-  validateVariante = (newVariante, idx) => this.setState(pS => ({variantes: [
+  validateVariante = (newVariante, idx) => this.setState(pS => ({isVarianteValidated: true, variantes: [
     ...pS.variantes.map((x,i)=> i===idx ? newVariante : x), 
     ...(idx >= pS.variantes.length ? [newVariante] : [])
-  ]}), () => console.log(this.state.variantes))
+  ]}))
 
   pushReaction = (modalName=null, fieldName) => {
     if(modalName){this.toggleModal(false, modalName);}
@@ -595,9 +597,7 @@ class Dispositif extends Component {
   }
 
   valider_dispositif = (status='En attente') => {
-    if(this.state.typeContenu === "demarche" && this.state.variantes.length === 0){
-      Swal.fire( {title: 'Oh non!', text: 'Il faut renseigner au moins un critère dans l\'encadré jaune avant de pouvoir valider la démarche', type: 'error', timer: 1500 }); return;
-    }
+    if(!this.verifierDemarche()){return};
     this.setState({isDispositifLoading: true});
     let content = {...this.state.content};
     const uiArray = {...this.state.uiArray}, inVariante= this.state.inVariante;
@@ -657,15 +657,15 @@ class Dispositif extends Component {
       dispositif.status = "En attente non prioritaire";
     }
     console.log(dispositif)
-    API.add_dispositif(dispositif).then((data) => {
-      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
-        this.props.fetch_user();
-        this.props.fetch_dispositifs();
-        this.setState({disableEdit: status === 'En attente admin' || status === 'En attente', isDispositifLoading: false}, () => {
-          this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
-        })
-      });
-    })
+    // API.add_dispositif(dispositif).then((data) => {
+    //   Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+    //     this.props.fetch_user();
+    //     this.props.fetch_dispositifs();
+    //     this.setState({disableEdit: status === 'En attente admin' || status === 'En attente', isDispositifLoading: false}, () => {
+    //       this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
+    //     })
+    //   });
+    // })
   }
 
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })

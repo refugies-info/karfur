@@ -8,6 +8,7 @@ import draftToHtml from 'draftjs-to-html';
 import h2p from 'html2plaintext';
 import { convertToRaw, EditorState, ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
+import _ from "lodash";
 
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
@@ -147,7 +148,7 @@ class SideTrad extends Component {
       listTrad = ((traductionsFaites || []).map(x => {
         let newValue = x.translatedText || {}, scoreArr= {};
         if(pos > -1){
-          scoreArr = newValue.scoreHeaders[this.state.currIdx] || {};
+          scoreArr = _.get(newValue, "scoreHeaders." + this.state.currIdx, {});
           newValue = newValue[this.state.currIdx];
         }else{
           newValue = newValue.contenu[this.state.currIdx] ;
@@ -184,7 +185,7 @@ class SideTrad extends Component {
   }
 
   selectTranslation = sugg => {
-    const listTrad = (((this.props.traductionsFaites || []).map(x => ({value: (x.translatedText || {})[this.state.currIdx], score: (((((x.translatedText || {}).scoreHeaders || {})[this.state.currIdx] || {}).cosine || [{}])[0] || [{}])[0], ...x})) || []).filter(x => x._id !== sugg._id) || []).sort((a,b) => b.score - a.score);
+    const listTrad = (((this.props.traductionsFaites || []).map(x => ({value: (x.translatedText || {})[this.state.currIdx], score: _.get(x, "translatedText.scoreHeaders." + this.state.currIdx + ".cosine.0.0"), ...x})) || []).filter(x => x._id !== sugg._id) || []).sort((a,b) => b.score - a.score);
     const score = sugg.score, userId = sugg.userId, selectedTrad = sugg;
     this.setState({listTrad, score, userId, selectedTrad});
     this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(sugg.value).contentBlocks)) } } );

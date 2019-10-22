@@ -59,7 +59,7 @@
     "questions": "questions", 
     "signalements": "signalements",
     "Rédigez des nouveaux contenus": "Rédigez des nouveaux contenus",
-    "Agi’r est une plateforme contributive, vous pouvez participer à son enrichissement": "Agi’r est une plateforme contributive, vous pouvez participer à son enrichissement",
+    "Réfugiés-info est une plateforme contributive, vous pouvez participer à son enrichissement": "Réfugiés.info est une plateforme contributive, vous pouvez participer à son enrichissement",
     "Découvrir comment contribuer": "Découvrir comment contribuer",
     "Aidez à traduire les contenus": "Aidez à traduire les contenus",
     "bilingue": "Bilingue ? Polyglotte ? Participez à l’effort de traduction à votre rythme :",
@@ -294,6 +294,24 @@
     "Finalement": "Finalement je préfère plutôt créer une fiche <b>dispositif</b>",
     "je suis sur": "Je suis sûr de vouloir créer une fiche <b>démarche administrative</b>"
   },
+  "Toolbar": {
+    "Accueil": "Accueil",
+    "Tout voir": "Tout voir",
+    "Mon profil": "Mon profil",
+    "Espace rédaction": "Espace rédaction",
+    "Espace traduction": "Espace traduction",
+    "Ma structure": "Ma structure",
+    "Administration": "Administration",
+    "Se déconnecter": "Se déconnecter",
+    "Connexion": "Connexion"
+  },
+  "Footer": {
+    "Je m'abonne à la newsletter": "Je m'abonne à la newsletter",
+    "Participer à l'évolution de réfugiés-info": "Participer à l'évolution de réfugiés.info",
+    "Demander des fonctionnalités": "Demander des fonctionnalités",
+    "Le projet": "Le projet",
+    "Vous cherchez ?": "Vous cherchez ?"
+  },
   "Retour à la recherche": "Retour à la recherche",
   "avec": "avec",
   "En bref": "En bref",
@@ -331,5 +349,18 @@
   "Non": "Non",
   "Oui": "Oui",
   "Retour": "Retour",
-  "J'ai besoin d'aide": "J'ai besoin d'aide"
+  "J'ai besoin d'aide": "J'ai besoin d'aide",
+  "Chercher": "Chercher",
+  "Rechercher ou créer une structure": "Rechercher ou créer une structure",
+  "Rechercher un utilisateur": "Rechercher un utilisateur",
+  "CMU-C, demande de logement social, solidarité transport": "CMU-C, demande de logement social, solidarité transport",
+  "Rechercher": "Rechercher",
+  "Qui sommes-nous ?": "Qui sommes-nous ?",
+  "Comment contribuer ?": "Comment contribuer ?",
+  "Accessibilité": "Accessibilité",
+  "Mentions légales": "Mentions légales",
+  "Dispositif d'accompagnement": "Dispositif d'accompagnement",
+  "Démarche administrative": "Démarche administrative",
+  "Parcours personnalisé": "Parcours personnalisé",
+  "Lexique": "Lexique"
 }
