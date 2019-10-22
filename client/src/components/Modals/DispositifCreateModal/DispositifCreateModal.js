@@ -14,6 +14,12 @@ class DispositifCreateModal extends Component {
     stepIdx: 0,
   }
 
+  componentWillReceiveProps(nextProps){
+    if(nextProps.show !== this.props.show && this.state.stepIdx !== 0){
+      this.setState({stepIdx: 0})
+    }
+  }
+
   changeStep = (next=true) => this.setState(pS => ({stepIdx: pS.stepIdx + (next ? 1 : -1)}))
   
   render(){
