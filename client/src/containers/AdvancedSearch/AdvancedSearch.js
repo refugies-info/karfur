@@ -31,7 +31,6 @@ class AdvancedSearch extends Component {
     pinned: [],
     activeFiltre: "",
     activeTri: "A > Z",
-    tags: filtres.tags,
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
@@ -66,9 +65,9 @@ class AdvancedSearch extends Component {
   }
   
   selectTag = (tag = {}) => {
-    this.setState(pS => ({tags: pS.tags.map(x => (x.short===tag ? {...x, active: true} : {...x, active: false})), color: (tag || {}).color}))
+    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: (filtres.tags.find(x => x.short === tag) || {}).name, active: true} : x)}))
     this.queryDispositifs({["tags.short"]: tag})
-    this.props.history.replace("/advanced-search?tag="+tag)
+    // this.props.history.replace("/advanced-search?tag="+tag)
   }
   
   _initializeEvents = () => {
@@ -161,10 +160,10 @@ class AdvancedSearch extends Component {
   desactiver = key => this.setState({recherche: this.state.recherche.map((x, i) => i===key ? initial_data[i] : x)}, ()=> this.queryDispositifs());
 
   render() {
-    const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri, filter} = this.state;
+    const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
     const {t} = this.props;
-    const filteredPinned = filter && filter.name ? pinned.filter(x => filter.name === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : pinned;
-    console.log(filteredPinned, filter)
+    const filteredPinned = activeFiltre ? pinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : pinned;
+
     return (
       <div className="animated fadeIn advanced-search">
         <Row className="search-wrapper">

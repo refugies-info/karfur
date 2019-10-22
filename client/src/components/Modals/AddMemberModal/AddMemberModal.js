@@ -19,7 +19,7 @@ const addMemberModal = (props) => {
           users
           loupe
           className="search-bar inner-addon right-addon mt-10"
-          placeholder = "Rechercher un utilisateur..."
+          placeholder = "Rechercher un utilisateur"
           array={props.users}
           selectItem={props.selectItem} />
       </ModalBody>

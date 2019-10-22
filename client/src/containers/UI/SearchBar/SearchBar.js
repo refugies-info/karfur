@@ -6,6 +6,7 @@ import AutosuggestHighlightParse from 'autosuggest-highlight/parse';
 import debounce from 'lodash.debounce';
 import track from 'react-tracking';
 import {withRouter} from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
@@ -13,7 +14,7 @@ import './SearchBar.scss';
 import variables from 'scss/colors.scss';
 
 const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const getSuggestionValue = (suggestion, isArray = false, structures=false) => isArray ? 
+const getSuggestionValue = (suggestion, isArray = false, structures=false) => console.log('ici') && isArray ? 
   structures ? (suggestion.acronyme || "") + (suggestion.acronyme && suggestion.nom ? " - " : "") + (suggestion.nom || "") : 
   (suggestion.username || "") + (suggestion.username && suggestion.email ? " - " : "") + (suggestion.email || "") : 
   suggestion.titreMarque || suggestion.titreInformatif; // + (suggestion.titreMarque && suggestion.titreInformatif ? " - " : "") + suggestion.titreInformatif;
@@ -23,7 +24,8 @@ export class SearchBar extends React.Component {
     showSearch:true,
     value: '',
     suggestions: [],
-    selectedResult:{}
+    selectedResult:{},
+    isFocused: false,
   };
 
   onChange = (_, { newValue }) => this.setState({ value: newValue });
@@ -31,6 +33,8 @@ export class SearchBar extends React.Component {
   onSuggestionsClearRequested = () => this.setState({ suggestions: [] });
 
   getSuggestions = value => {
+    this.setState({isFocused: true});
+    if(!value || value.length === 0){ return []; }
     const array = this.props.array || this.props.dispositifs || [];
     const escapedValue = removeAccents(escapeRegexCharacters(value.trim()));
     if (escapedValue === '') { return [];}
@@ -59,7 +63,8 @@ export class SearchBar extends React.Component {
   validateSearch = () => this.goToDispositif(this.state.selectedResult, true);
   
   render() {
-    const {isArray, structures, createNewCta, withEye} = this.props;
+    const {isArray, structures, createNewCta, withEye, t} = this.props;
+    const {isFocused} = this.state;
 
     const renderSuggestion = (suggestion, { query }) => {
       if(suggestion.createNew){
@@ -99,11 +104,12 @@ export class SearchBar extends React.Component {
       }
     }
 
-    const inputProps = { placeholder: this.props.placeholder || 'Chercher', value: this.state.value, onChange: this.onChange };
+    const inputProps = { placeholder: t(this.props.placeholder || 'Chercher', this.props.placeholder || 'Chercher'), value: this.state.value, onChange: this.onChange };
 
     return(
       <div className={"md-form form-sm form-2 pl-0 " + this.props.className + (isArray ? " isArray": "")}>
         <Autosuggest 
+          shouldRenderSuggestions={value=>value.length>=0}
           highlightFirstSuggestion
           suggestions={this.state.suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -113,8 +119,8 @@ export class SearchBar extends React.Component {
           inputProps={inputProps}
           onSuggestionSelected={this.onSuggestionSelected} 
         />
-        {this.props.loupe &&
-          <i onClick={this.validateSearch} className="fa fa-search text-grey loupe-btn pointer" aria-hidden="true"/>}
+        {this.props.loupe && !isFocused && 
+          <i className="fa fa-search text-grey loupe-btn" aria-hidden="true"/>}
         {this.props.validate && 
           <div className="input-group-append" onClick={this.validateSearch}>
             <span className="input-group-text amber lighten-3" id="basic-text1">
@@ -149,6 +155,8 @@ export default track({
     component: 'SearchBar',
   })(
     withRouter(
-      connect(mapStateToProps)(SearchBar)
+      connect(mapStateToProps)(
+        withTranslation()(SearchBar)
+      )
     )
   );
