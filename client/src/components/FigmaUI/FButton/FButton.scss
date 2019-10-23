@@ -44,8 +44,12 @@ body .figma-btn{
     &:disabled, &.disabled{
       background: $gris;
       color: $grisFonce;
+      cursor: not-allowed;
       svg{
         fill:$grisFonce;
+      }
+      &:hover{
+        background-color: $gris;
       }
     }
   }

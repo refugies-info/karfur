@@ -5,6 +5,10 @@
   color: $noir;
   background: $gris;
 
+  .link{
+    text-decoration: underline;
+  }
+
   section{
     height: 750px;
     padding-top: 100px;
@@ -62,6 +66,11 @@
     }
   }
 
+  .header-anchor{
+    margin-top: -60px;
+    padding-top: 60px;
+  }
+
   .arrowhead-icon{
     position: absolute;
     bottom: 100px;
@@ -94,6 +103,9 @@
       margin-right: -20px;
 
     }
+  }
+  .card{
+    background-color: none;
   }
 
   #contribution{
@@ -176,6 +188,16 @@
               fill: $blancSimple;
             }
           }
+          &:disabled{
+            svg{
+              fill: $blancSimple
+            }
+            background: $grisFonce;
+            color: $blancSimple;
+            &:hover{
+              background: $grisFonce;
+            };
+          }
         }
       }
     }
@@ -233,8 +255,18 @@
 }
 
 .slide-bottom {
-	-webkit-animation: slide-bottom 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
-	        animation: slide-bottom 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+  radius: 50%;
+  background-color: $noir;
+  fill: $blancSimple;
+  transition: all 0.5s ease;
+	-webkit-animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+          animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+  &:hover{
+    svg{
+      transition: all 0.5s ease;
+      fill:$noir;
+    }
+  }
 }
 
  @-webkit-keyframes slide-bottom {
