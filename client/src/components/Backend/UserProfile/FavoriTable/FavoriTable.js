@@ -42,9 +42,9 @@ const favoriTable = (props) => {
               <td className="align-middle">
                 {(element.tags || []).map((tag, key) => {
                   return ( 
-                    <Button key={key} color="warning" className="tag-btn" onClick={()=>searchTag(tag.short)}>
+                    <FButton key={key} className={"tag-btn bg-light-" + tag.short} onClick={()=>searchTag(tag.short)}>
                       {tag.short && t("Tags." + tag.short, tag.short)}
-                    </Button>
+                    </FButton>
                   );
                 })}
               </td>
