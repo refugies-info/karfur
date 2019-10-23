@@ -159,7 +159,7 @@ class SideTrad extends Component {
           scoreArr = newValue["score" + this.state.currSubName] || {};
           newValue = newValue[this.state.currSubName];
         }
-        return ({value: newValue, score: ((scoreArr.cosine || [{}])[0] || [{}])[0], ...x})
+        return ({value: newValue, score: _.get(scoreArr, "cosine.0.0"), ...x})
       }) || []).sort((a,b) => b.score - a.score);
       if(listTrad && listTrad.length > 0){
         oldTrad = listTrad[0].value; score = listTrad[0].score; userId = listTrad[0].userId;  selectedTrad=listTrad[0];
