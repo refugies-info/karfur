@@ -137,6 +137,7 @@ class Translation extends Component {
   
   render(){
     const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest } = this.props;
+    const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
     let feedbackModal = (
       this.state.feedbackModal.show && 
@@ -246,7 +247,7 @@ class Translation extends Component {
                   <div id="body_texte_final"
                   onClick={((e) => this.props.handleClickText(e, "target", "initial"))}>
                     <ConditionalSpinner show={!translated.body} />
-                    <DirectionProvider direction={["ar", "ps", "fa"].includes(langue.i18nCode) ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+                    <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
                       <ContentEditable
                         key="target-editor-body"
                         className="body"
@@ -255,6 +256,7 @@ class Translation extends Component {
                         disabled={isExpert}       // use true to disable editing
                         onChange={this.props.handleChange} // handle innerHTML change
                         onSelect={this.onSelect}
+                        style={{textAlign: isRTL ? "right" : "left"}}
                       />
                     </DirectionProvider>
                     {/* <h3>Source</h3>
