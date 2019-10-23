@@ -745,7 +745,7 @@ class Dispositif extends Component {
 
         <Row className="main-row">
           {translating && 
-            <Col lg={translating ? "4" : "0"} className="side-col">
+            <Col lg={translating ? "4" : "0"} md={translating ? "4" : "0"} sm={translating ? "4" : "0"} xs={translating ? "4" : "0"} className="side-col">
               <SideTrad 
                 menu={this.state.menu}
                 content={this.state.content}
@@ -753,7 +753,7 @@ class Dispositif extends Component {
                 {...this.props}
               />
             </Col>}
-          <Col lg={translating ? "8" : "12"} className="main-col">
+          <Col lg={translating ? "8" : "12"} md={translating ? "8" : "12"} sm={translating ? "8" : "12"} xs={translating ? "8" : "12"} className="main-col">
             <section className="banniere-dispo" style={{backgroundImage: `url(${bgImage("Français")})`}}>
               {inVariante &&
                 <BandeauEdition
