@@ -5,12 +5,6 @@ $tailleCarte:200px;
   flex: 1 1;
   background: $gris;
 
-  .arrowhead-icon{
-    position: absolute;
-    bottom: 33px;
-    cursor: pointer;
-  }
-
   section{
     min-height: 650px;
     padding: 70px 120px;
@@ -29,15 +23,19 @@ $tailleCarte:200px;
     max-width: 725px;
   }
 
+  h1{
+    margin-bottom: 60px;
+  }
+
   .cartes-wrapper{
     display: flex;
-    justify-content: space-between;
     margin: 0 -15px;
   }
 
   .carte-contrib{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background: radial-gradient(114.75% 114.75% at 95% 104.5%, #A50455 0%, rgba(165, 4, 85, 0) 100%), radial-gradient(69.75% 67.64% at 100% -3.25%, #FF9800 0%, rgba(255, 152, 0, 0) 100%), radial-gradient(118.25% 69.25% at -3.25% -5.5%, #1174BA 0%, rgba(17, 116, 186, 0) 100%), radial-gradient(120.25% 132.25% at 5.25% 103.5%, #7DC690 0%, rgba(125, 198, 144, 0) 100%), radial-gradient(41% 41% at 50% 53%, #F9EF99 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF;
     border-radius: 12px;
     color: #FFFFFF;
@@ -46,11 +44,19 @@ $tailleCarte:200px;
     height: $tailleCarte;
     align-items: flex-start;
     margin: 25px;
+    h3{
+      margin-bottom: 0;
+      line-height: 40px;
+    }
   }
 
   .carte-icon{
-    flex: 1;
     align-self: flex-end;
+  }
+
+  .texte-footer{
+    margin-bottom: auto;
+    align-self: flex-start;
   }
 
   .section-header{
@@ -105,8 +111,13 @@ $tailleCarte:200px;
 
   .trad-layout{
     display: flex;
+    justify-content: space-between;
 
     .left-side{
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+      flex-direction: column;
       background: #FFFFFF;
       border-radius: 12px;
       padding: 40px;
@@ -114,6 +125,7 @@ $tailleCarte:200px;
     }
     .data{
       display: flex;
+      align-self: auto;
       align-items: center;
       margin-top: 10px;
     }
@@ -131,16 +143,30 @@ $tailleCarte:200px;
       }
     }
 
+    .right-side{
+      display: flex;
+      flex-grow: 3;
+    }
+
+    h5.right-data{
+      color: $grisFonce;
+      margin-bottom: 0;
+    }
+
     .langues-wrapper{
       margin-bottom: -30px;
     }
     .langue-item{
+      line-height: 45px;
       border-radius: 12px;
       padding: 20px;
       margin-bottom: 30px;
       cursor: pointer;
       &:hover{
         background: #FFFFFF;
+      }
+      h5{
+        margin-bottom: 0;
       }
     }
   }
@@ -154,15 +180,28 @@ $tailleCarte:200px;
     color: $validationDefault;
   }
 
+  #corriger, #ecrire{
+    background-color: $blancSimple;
+  }
+
   .correct-layout{
     display: flex;
 
+    .texte-normal{
+      margin-bottom: 5px;
+    }
+
     .left-side{
       flex: 0 0 33%;
+      flex-direction: column;
+      justify-content: space-between;
       margin-right: 50px;
 
       .row{
         margin-bottom: 16px;
+      }
+      .row:last-child{
+        margin-bottom: 0;
       }
     }
     .toolbar-icon-wrapper{
@@ -188,7 +227,7 @@ $tailleCarte:200px;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex: 1;
+      flex-grow: 1;
     }
   }
 }
