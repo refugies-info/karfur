@@ -64,11 +64,11 @@ class CheckDemarcheModal extends Component {
                 loupe
                 withEye
                 className="search-bar inner-addon right-addon mt-10"
-                placeholder = "CMU-C, demande de logement social, solidarité transport..."
-                array={[...(this.props.dispositifs || []).filter(x => x.status === "Actif" && x.typeContenu === "demarche" && !x.demarcheId), {createNew: true, type: "demarche"}]}
+                placeholder = "CMU-C, demande de logement social, solidarité transport"
+                array={[...(this.props.dispositifs || []).filter(x => x.status === "Actif" && x.typeContenu === "demarche" && !x.demarcheId), {createNew: true, typeContenu: "demarche"}]}
                 createNewCta = "Créer une nouvelle démarche" />
-              <FormGroup check className={"no-match" + (checked ? " checked" : "")}>
-                <Label check>
+              <FormGroup check className={"no-match cursor-pointer" + (checked ? " checked" : "")}>
+                <Label check className="cursor-pointer">
                   <Input type="checkbox" checked={checked} onChange={this.handleCheck} />{' '}
                   <span>Aucune fiche ne correspond à ma démarche administrative</span>
                 </Label>

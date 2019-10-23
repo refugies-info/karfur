@@ -1,5 +1,6 @@
 import querySearch from "stringquery";
 import _ from "lodash";
+import Swal from 'sweetalert2';
 
 import { customCriteres } from './MoteurVariantes/data';
 import API from '../../utils/API';
@@ -7,11 +8,13 @@ import API from '../../utils/API';
 //Je met ici toutes les fonctions relatives aux démarches pour pas encombrer
 
 const initializeVariantes = function(itemId){
-  let query = this.state.dispositif.demarcheId ? 
+  const query = this.state.dispositif.demarcheId ? 
     { $or: [{demarcheId: this.state.dispositif.demarcheId}, {_id: this.state.dispositif.demarcheId}] } :
     {demarcheId: itemId};  //Si on est dans le cas général, on va chercher toutes les variantes. Sinon, on va aussi chercher le cas général en plus
+  console.log(query)
   API.get_dispositif({query: {...query, status: "Actif"}}).then(data_res => {
     const allDemarches=[...data_res.data.data];
+    console.log(allDemarches)
     this.setState({allDemarches});
   }).catch(e=>console.log(e))
 }
@@ -35,6 +38,7 @@ const switchVariante = async function() {
   const userQuery = querySearch(this.props.history.location.search);
   const place_id = userQuery.ville, age = userQuery.age;
   let demarchesEligibles = [];
+  console.log('ici variantes')
   if(age && Number(age)){
     [...this.state.allDemarches, this.state.dispositif].forEach(demarche => {
       demarche.variantes.some(variante => {
@@ -101,4 +105,39 @@ const check_place = function(place_id, demarchesEligibles, age, allDemarches, di
   })
 }
 
-export {switchVariante, initializeVariantes, initializeInfoCards};
+const verifierDemarche  = function(){
+  if(this.state.typeContenu === "demarche"){
+    const {allDemarches, dispositif, variantes} = this.state;
+    //Une démarche doit avoir des critères
+    if(this.state.variantes.length === 0){
+      Swal.fire( {title: 'Oh non!', text: 'Il faut renseigner au moins un critère dans l\'encadré jaune avant de pouvoir valider la démarche', type: 'error', timer: 1500 });
+      return false;
+    }
+    //Toute démarche ou variante doit avoir positivement validé ses critères
+    if(!this.state.isVarianteValidated){
+      Swal.fire( {title: 'Oh non!', text: 'Vous n\'avez pas validé les critères de votre démarche (encadré jaune)', type: 'error', timer: 1500 });
+      return false;
+    }
+    //Deux démarches ne peuvent pas avoir exactement les mêmes critères
+    const varianteAlreadyExists = variantes.some(variante => {
+      return [...allDemarches, dispositif].some(d => (d.variantes || []).some(va => {
+        let isEqual = true;
+        if(va.bottomValue !== variante.bottomValue || va.topValue !== variante.topValue){
+          isEqual = false;
+        }
+        isEqual = isEqual ? !(va.villes || []).some(vi => !(variante.villes || []).some(ville => ville.place_id === vi.place_id ) ) : isEqual;
+        customCriteres.forEach(cc =>{if(cc.query){
+          isEqual = isEqual ? (variante[cc.query] || []).length === (va[cc.query] || []).length &&  !(va[cc.query] || []).some(x => !(variante[cc.query] || []).includes(x) ) : isEqual;
+        } } )
+        return isEqual;
+      } ))
+    })
+    if(varianteAlreadyExists){
+      Swal.fire( {title: 'Oh non!', text: 'Vous avez rentré les mêmes critères qu\'une variante existante, peut-être souhaitez-vous la préciser ?', type: 'error', timer: 1500 });
+      return false;
+    }
+  } 
+  return true;
+}
+
+export {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche};
