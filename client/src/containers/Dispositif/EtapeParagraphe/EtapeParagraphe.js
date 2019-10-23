@@ -38,12 +38,15 @@ class EtapeParagraphe extends Component {
       ((_.get(nextProps, "subitem.option.value1") && _.get(nextProps, "subitem.option.value1") !== this.state.value1) || 
       ( _.get(nextProps, "subitem.option.value2") && _.get(nextProps, "subitem.option.value2") !== this.state.value2) || 
       (_.get(nextProps, "subitem.option.checked") !== undefined && (_.get(nextProps, "subitem.option.checked") !== this.state.checked)) ) ){
-      let {checked, value1, value2, value3, value4, texte} = nextProps.subitem.option;
+      const {checked, value1, value2, value3, value4, texte} = nextProps.subitem.option;
       this.setState(pS => ({ checked, value1, value2, value3, value4, texte,
         isPapiersDropdownOpen: new Array(((nextProps.subitem || {}).papiers || []).length).fill(false),
         isOptionSelected: true, 
         selectedOption: nextProps.subitem.option, 
         options: pS.options.map(x => ({...x, selected: x.texte === texte})) }))
+    }
+    if(_.get(nextProps, "subitem.papiers", []).length > 0){
+      this.setState({isPapiersDropdownOpen: new Array( _.get(nextProps, "subitem.papiers", []).length + 1 ).fill(false)})
     }
   }
 
@@ -101,6 +104,7 @@ class EtapeParagraphe extends Component {
       validatedRow, isPapiersDropdownOpen, configurationOpen, tooltipOpen, showModal} = this.state;
 
     const safeUiArray = (key, subkey, node) => uiArray[key] && uiArray[key].children && uiArray[key].children.length>subkey && uiArray[key].children[subkey] && uiArray[key].children[subkey][node]
+
     return(
       <div key={subkey} className={'etape contenu' + (!inVariante && safeUiArray(keyValue, subkey, "isHover") ? ' isHovered' : '')} onMouseEnter={(e)=>updateUIArray(keyValue, subkey, 'isHover', true, e)}>
         <Row className="relative-position">
@@ -134,7 +138,7 @@ class EtapeParagraphe extends Component {
               <div className={"etapes-data ml-10" + (disableEdit ? "" : " editing")} onClick={this.toggleConfigurationOpen}>
                 {(!disableEdit || subitem.option) &&
                   <div className="etape-data" id="etape-option">
-                    <EVAIcon name="at-outline" fill={variables.grisFonce} className="mr-8" />
+                    <EVAIcon name={((subitem.option || {}).logo || "at") + "-outline"} fill={variables.grisFonce} className="mr-8" />
                     <span>{t("Dispositif." + ((subitem.option || {}).texte || "En ligne"), ((subitem.option || {}).texte || "En ligne"))}</span>
                     <Tooltip placement="top" offset="0px, 8px" isOpen={tooltipOpen[0]} target="etape-option" toggle={()=>this.toggleTooltip(0)}>
                       {t("Dispositif.Type de démarche", "Type de démarche")}

@@ -31,7 +31,6 @@ class AdvancedSearch extends Component {
     pinned: [],
     activeFiltre: "",
     activeTri: "A > Z",
-    tags: filtres.tags,
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
@@ -66,9 +65,9 @@ class AdvancedSearch extends Component {
   }
   
   selectTag = (tag = {}) => {
-    this.setState(pS => ({tags: pS.tags.map(x => (x.short===tag ? {...x, active: true} : {...x, active: false})), color: (tag || {}).color}))
+    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: (filtres.tags.find(x => x.short === tag) || {}).name, active: true} : x)}))
     this.queryDispositifs({["tags.short"]: tag})
-    this.props.history.replace("/advanced-search?tag="+tag)
+    // this.props.history.replace("/advanced-search?tag="+tag)
   }
   
   _initializeEvents = () => {
@@ -112,14 +111,12 @@ class AdvancedSearch extends Component {
     e.stopPropagation();
     dispositif.pinned=!dispositif.pinned;
     let prevState=[...this.state.dispositifs];
-    console.log(this.state.dispositifs, this.state.pinned,dispositif)
     this.setState({
       dispositifs: dispositif.pinned ? prevState.filter(x => x._id !== dispositif._id) : [...prevState,dispositif],
       pinned: dispositif.pinned ? 
-        [...this.state.pinned,dispositif] :
+        [...this.state.pinned, dispositif] :
         this.state.pinned.filter(x=> x._id !== dispositif._id)
     },()=>{
-      console.log(this.state.dispositifs, this.state.pinned)
       user.cookies.parkourPinned=this.state.pinned;
       API.set_user_info(user);
     })
@@ -165,6 +162,8 @@ class AdvancedSearch extends Component {
   render() {
     const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
     const {t} = this.props;
+    const filteredPinned = activeFiltre ? pinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : pinned;
+
     return (
       <div className="animated fadeIn advanced-search">
         <Row className="search-wrapper">
@@ -199,7 +198,7 @@ class AdvancedSearch extends Component {
             </div>
             <div className="results-wrapper">
               <Row>
-                {[...pinned,...dispositifs].map((dispositif) => {
+                {[...filteredPinned,...dispositifs].map((dispositif) => {
                   if(!dispositif.hidden){
                     let shortTag = null;
                     if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-") }

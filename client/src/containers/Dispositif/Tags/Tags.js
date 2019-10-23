@@ -51,7 +51,7 @@ class Tags extends Component {
           if(tag){return (
             <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key, tag)} className="tags-dropdown" key={key}>
               <DropdownToggle caret={!this.props.disableEdit}>
-                {tag && t("Tags." + tag.short || tag.name || tag, tag.short || tag.name || tag)}
+                {tag && t("Tags." + (tag.short || tag.name || tag), tag.short || tag.name || tag)}
               </DropdownToggle>
               <DropdownMenu>
                 {this.props.filtres.map((e, i) => {

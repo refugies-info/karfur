@@ -154,7 +154,7 @@ class UserDashStruct extends Component {
           limit={5}
           hide={false}
           overlayTitle="Rédigez des nouveaux contenus"
-          overlaySpan="Agi’r est une plateforme contributive, vous pouvez participer à son enrichissement"
+          overlaySpan="Réfugiés-info est une plateforme contributive, vous pouvez participer à son enrichissement"
           overlayBtn="Découvrir comment contribuer"
           overlayRedirect={false}
           history={this.props.history}

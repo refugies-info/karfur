@@ -8,6 +8,8 @@ import draftToHtml from 'draftjs-to-html';
 import h2p from 'html2plaintext';
 import { convertToRaw, EditorState, ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
+import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
+import _ from "lodash";
 
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
@@ -60,8 +62,9 @@ class SideTrad extends Component {
     console.log(oldP)
     if( (oldP > (- 1 + (isNext ? 0 : 1)) && oldP < pointeurs.length - (isNext ? 1 : 0))
         || (!isNext && this.state.currIdx === 0 && this.state.currSubIdx === -1 && this.state.currSubName === "content") ){
-      this.setState({currIdx: pointeurs[oldP + (isNext ? 1 : this.state.currIdx === 0 ? pointeurs.length : -1)]}, () => {
-        this.props.fwdSetState(() => ({francais: {body: this.props.content[ pointeurs[oldP + (isNext ? 1 : this.state.currIdx === 0 ? pointeurs.length : -1)] ]} }), ()=> this.checkTranslate(this.props.locale))
+      this.setState({currIdx: pointeurs[ oldP + (isNext ? 1 : (this.state.currIdx === 0 ? pointeurs.length : -1)) ]}, () => {
+        const texte_francais = this.props.content[ this.state.currIdx ];
+        this.props.fwdSetState(() => ({francais: {body: texte_francais} }), ()=> {console.log((this.props.francais || {}).body); this.checkTranslate(this.props.locale)})
         this._scrollAndHighlight(this.state.currIdx);
       })
     }else{
@@ -107,7 +110,7 @@ class SideTrad extends Component {
           value = subidx > -1 ? this.props.menu[idx].children[subidx][subname] : this.props.menu[idx].content;
           console.log('la 2', this.props.menu[idx].content, h2p(value))
         }
-        if(!value || h2p(value) === "" || h2p(value) === "undefined" || h2p(value) === "null"){this.goChange(isNext, false); return;}
+        if(!value || h2p(value) === "" || h2p(value) === "undefined" || h2p(value) === "null" || h2p(value) === "<br>"){this.goChange(isNext, false); return;}
         this._scrollAndHighlight(idx, subidx, subname);
         this.props.fwdSetState(() => ({francais: {body: value } }), ()=> this.checkTranslate(this.props.locale));
       })
@@ -129,11 +132,9 @@ class SideTrad extends Component {
     }
     Array.from(document.getElementsByClassName("translating")).forEach(x => {x.classList.remove("translating")}); //On enlève le surlignage des anciens éléments
     const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
-    console.log(idx,subidx, subname, elems)
     if(elems.length > 0){
       const elem = elems[0];
       elem.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-      console.log('scrolling to', elem)
       elem.classList.toggle("translating"); //On le surligne 
     }
   }
@@ -143,11 +144,12 @@ class SideTrad extends Component {
     //On vérifie si une traduction n'a pas déjà été validée
     const pos = pointeurs.findIndex(x => this.state.currIdx === x), {isExpert, traductionsFaites} = this.props;
     let oldTrad = "", listTrad = [], score= 0, userId={}, selectedTrad={};
+    console.log(this.initial_text, text,target,item, pos, this.props.traduction.translatedText)
     if(isExpert){
       listTrad = ((traductionsFaites || []).map(x => {
         let newValue = x.translatedText || {}, scoreArr= {};
         if(pos > -1){
-          scoreArr = newValue.scoreHeaders[this.state.currIdx] || {};
+          scoreArr = _.get(newValue, "scoreHeaders." + this.state.currIdx, {});
           newValue = newValue[this.state.currIdx];
         }else{
           newValue = newValue.contenu[this.state.currIdx] ;
@@ -184,7 +186,7 @@ class SideTrad extends Component {
   }
 
   selectTranslation = sugg => {
-    const listTrad = (((this.props.traductionsFaites || []).map(x => ({value: (x.translatedText || {})[this.state.currIdx], score: (((((x.translatedText || {}).scoreHeaders || {})[this.state.currIdx] || {}).cosine || [{}])[0] || [{}])[0], ...x})) || []).filter(x => x._id !== sugg._id) || []).sort((a,b) => b.score - a.score);
+    const listTrad = (((this.props.traductionsFaites || []).map(x => ({value: (x.translatedText || {})[this.state.currIdx], score: _.get(x, "translatedText.scoreHeaders." + this.state.currIdx + ".cosine.0.0"), ...x})) || []).filter(x => x._id !== sugg._id) || []).sort((a,b) => b.score - a.score);
     const score = sugg.score, userId = sugg.userId, selectedTrad = sugg;
     this.setState({listTrad, score, userId, selectedTrad});
     this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(sugg.value).contentBlocks)) } } );
@@ -283,6 +285,7 @@ class SideTrad extends Component {
     const langue = this.props.langue || {};
     const { francais, translated, isExpert } = this.props;
     const { currIdx, currSubIdx, currSubName, listTrad, score, userId, showModals, selectedTrad } = this.state;
+    const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
     return(
       <div className="side-trad">
@@ -320,32 +323,34 @@ class SideTrad extends Component {
         </div>
         <div className="content-data" id="body_texte_final">
           <ConditionalSpinner show={!(translated || {}).body} />
-          <Editor
-            toolbarClassName="toolbar-editeur"
-            editorClassName="editor-editeur"
-            wrapperClassName="wrapper-editeur editeur-sidebar"
-            placeholder="Renseignez votre traduction ici"
-            onEditorStateChange={this.props.onEditorStateChange}
-            editorState={(translated || {}).body}
-            toolbarHidden = {pointeurs.includes(this.state.currIdx)}
-            toolbar={{
-              options: ['inline','list'],
-              inline: {
-                inDropdown: false,
-                options: ['bold', 'italic', 'underline'],
-                className: "bloc-gauche-inline blc-gh",
-                bold: { icon: boldBtn, className: "inline-btn btn-bold" },
-                italic: { icon: italicBtn, className: "inline-btn btn-italic"  },
-                underline: { icon: underBtn, className: "inline-btn btn-underline"  },
-              },
-              list: {
-                inDropdown: false,
-                options: ['unordered'],
-                className: "bloc-gauche-list blc-gh",
-                unordered:{icon: listBtn, className: "list-btn"}
-              },
-            }}
-          />
+          <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+            <Editor
+              toolbarClassName="toolbar-editeur"
+              editorClassName="editor-editeur"
+              wrapperClassName="wrapper-editeur editeur-sidebar"
+              placeholder="Renseignez votre traduction ici"
+              onEditorStateChange={this.props.onEditorStateChange}
+              editorState={(translated || {}).body}
+              toolbarHidden = {pointeurs.includes(this.state.currIdx)}
+              toolbar={{
+                options: ['inline','list'],
+                inline: {
+                  inDropdown: false,
+                  options: ['bold', 'italic', 'underline'],
+                  className: "bloc-gauche-inline blc-gh",
+                  bold: { icon: boldBtn, className: "inline-btn btn-bold" },
+                  italic: { icon: italicBtn, className: "inline-btn btn-italic"  },
+                  underline: { icon: underBtn, className: "inline-btn btn-underline"  },
+                },
+                list: {
+                  inDropdown: false,
+                  options: ['unordered'],
+                  className: "bloc-gauche-list blc-gh",
+                  unordered:{icon: listBtn, className: "list-btn"}
+                },
+              }}
+            />
+          </DirectionProvider>
         </div>
         <div className="expert-bloc">
           {score && score !== 0 && score !== "0" ? 

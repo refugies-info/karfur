@@ -37,7 +37,7 @@ import {initializeTimer} from '../Translation/functions';
 import {readAudio} from "../Layout/functions";
 import MoteurVariantes from './MoteurVariantes/MoteurVariantes';
 import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche} from './data'
-import {switchVariante, initializeVariantes, initializeInfoCards} from "./functions";
+import {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche} from "./functions";
 
 import variables from 'scss/colors.scss';
 
@@ -55,6 +55,7 @@ class Dispositif extends Component {
     this.switchVariante = switchVariante.bind(this);
     this.initializeVariantes = initializeVariantes.bind(this);
     this.initializeInfoCards = initializeInfoCards.bind(this);
+    this.verifierDemarche = verifierDemarche.bind(this);
   }
   audio = new Audio();
 
@@ -103,6 +104,7 @@ class Dispositif extends Component {
     inVariante: false,
     allDemarches: [],
     demarcheId: null,
+    isVarianteValidated: false,
   }
   newRef=React.createRef();
   mountTime=0;
@@ -129,7 +131,7 @@ class Dispositif extends Component {
     this.initializeTimer();
     const itemId = props.match && props.match.params && props.match.params.id;
     const typeContenu = (props.match.path || "").includes("demarche") ? "demarche" : "dispositif";
-    const inVariante = _.get(props, "location.state.inVariante");
+    const inVariante = _.get(props, "location.state.inVariante"), textInput = _.get(props, "location.state.textInput");
     if(itemId){
       this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
       API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor'}).then(data_res => {
@@ -179,13 +181,15 @@ class Dispositif extends Component {
       })
     }else if(API.isAuth()){
       this.initializeTimer();
+      const menuContenu = typeContenu === "demarche" ? menuDemarche : menu;
       this.setState({
         disableEdit:false,
-        uiArray: menu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}),
+        uiArray: menuContenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}),
         showDispositifCreateModal: true, //A modifier avant la mise en prod
         isDispositifLoading: false,
+        menu: menuContenu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
         typeContenu,
-        menu: (typeContenu === "demarche" ? menuDemarche : menu).map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
+        ...(textInput && {content: {...contenu, titreInformatif: textInput}})
       },()=>this.setColors());
     }else{ props.history.push({ pathname: '/login', state: {redirectTo:"/dispositif"} }); }
     window.scrollTo(0, 0);
@@ -351,6 +355,8 @@ class Dispositif extends Component {
         newChild={type:'map', isFakeContent: true, isMapLoaded:false, markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]};
       }else if(type === 'paragraph' && !newChild.content){
         newChild={title:'Un exemple de paragraphe', isFakeContent: true, placeholder: lorems.sousParagraphe,content: '', type:type}
+      }else if(type === "etape"){
+        newChild = {...newChild, papiers: [], duree: "00", timeStepDuree: "minutes", delai: "00", timeStepDelai: "minutes", option:{}}
       }
       newChild.type=type;
       if(subkey === null || subkey === undefined){
@@ -550,10 +556,10 @@ class Dispositif extends Component {
     )}
   )) }), ()=>this.setColors())
 
-  validateVariante = (newVariante, idx) => this.setState(pS => ({variantes: [
+  validateVariante = (newVariante, idx) => this.setState(pS => ({isVarianteValidated: true, variantes: [
     ...pS.variantes.map((x,i)=> i===idx ? newVariante : x), 
     ...(idx >= pS.variantes.length ? [newVariante] : [])
-  ]}), () => console.log(this.state.variantes))
+  ]}))
 
   pushReaction = (modalName=null, fieldName) => {
     if(modalName){this.toggleModal(false, modalName);}
@@ -591,9 +597,8 @@ class Dispositif extends Component {
   }
 
   valider_dispositif = (status='En attente') => {
-    if(this.state.typeContenu === "demarche" && this.state.variantes.length === 0){
-      Swal.fire( {title: 'Oh non!', text: 'Il faut renseigner au moins un critère dans l\'encadré jaune avant de pouvoir valider la démarche', type: 'error', timer: 1500 }); return;
-    }
+    if(!this.verifierDemarche()){return};
+    this.setState({isDispositifLoading: true});
     let content = {...this.state.content};
     const uiArray = {...this.state.uiArray}, inVariante= this.state.inVariante;
     Object.keys(content).map( k => content[k] = h2p(content[k]));
@@ -652,15 +657,15 @@ class Dispositif extends Component {
       dispositif.status = "En attente non prioritaire";
     }
     console.log(dispositif)
-    API.add_dispositif(dispositif).then((data) => {
-      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
-        this.props.fetch_user();
-        this.props.fetch_dispositifs();
-        this.setState({disableEdit: status === 'En attente admin' || status === 'En attente'}, () => {
-          this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
-        })
-      });
-    })
+    // API.add_dispositif(dispositif).then((data) => {
+    //   Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+    //     this.props.fetch_user();
+    //     this.props.fetch_dispositifs();
+    //     this.setState({disableEdit: status === 'En attente admin' || status === 'En attente', isDispositifLoading: false}, () => {
+    //       this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
+    //     })
+    //   });
+    // })
   }
 
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
@@ -740,7 +745,7 @@ class Dispositif extends Component {
 
         <Row className="main-row">
           {translating && 
-            <Col lg={translating ? "4" : "0"} className="side-col">
+            <Col lg={translating ? "4" : "0"} md={translating ? "4" : "0"} sm={translating ? "4" : "0"} xs={translating ? "4" : "0"} className="side-col">
               <SideTrad 
                 menu={this.state.menu}
                 content={this.state.content}
@@ -748,7 +753,7 @@ class Dispositif extends Component {
                 {...this.props}
               />
             </Col>}
-          <Col lg={translating ? "8" : "12"} className="main-col">
+          <Col lg={translating ? "8" : "12"} md={translating ? "8" : "12"} sm={translating ? "8" : "12"} xs={translating ? "8" : "12"} className="main-col">
             <section className="banniere-dispo" style={{backgroundImage: `url(${bgImage("Français")})`}}>
               {inVariante &&
                 <BandeauEdition

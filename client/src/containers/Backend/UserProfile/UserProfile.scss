@@ -296,6 +296,7 @@ $defaultSize:310px;
   }
   .tag-btn{
     margin-right:10px;
+    color: #FFFFFF;
   }
 
   @include media-max("desktop-up") { 
@@ -486,7 +487,7 @@ $defaultSize:310px;
     }
     .ecran-protection{
       .content-wrapper{
-      max-width: 650px;
+        max-width: 650px;
       }
     }
     .tableau-footer{

@@ -7,6 +7,7 @@ import ReactHtmlParser from 'react-html-parser';
 import {stringify} from 'himalaya';
 import ms from 'pretty-ms';
 import {NavLink} from 'react-router-dom';
+import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
 import 'rc-slider/assets/index.css';
 
 import FeedbackModal from '../../../components/Modals/FeedbackModal/FeedbackModal';
@@ -136,6 +137,7 @@ class Translation extends Component {
   
   render(){
     const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest } = this.props;
+    const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
     let feedbackModal = (
       this.state.feedbackModal.show && 
@@ -147,7 +149,7 @@ class Translation extends Component {
           modalClosed={this.modalClosed}
         />
     )
-
+    
     return(
       <div className="animated fadeIn traduction">
         <div className="animated fadeIn traduction-container">
@@ -233,27 +235,30 @@ class Translation extends Component {
                   {!isStructure && 
                     <div className="titre text-center">
                       <ConditionalSpinner show={!translated.title} />
-                      <ContentEditable
-                        id="title_texte_final"
-                        className="title"
-                        html={'<h1>'+translated.title+'</h1>'} 
-                        disabled={isExpert}       
-                        onChange={this.props.handleChange} 
-                      />
+                        <ContentEditable
+                          id="title_texte_final"
+                          className="title"
+                          html={'<h1>'+translated.title+'</h1>'} 
+                          disabled={isExpert}       
+                          onChange={this.props.handleChange} 
+                        />
                     </div>
                   }
                   <div id="body_texte_final"
                   onClick={((e) => this.props.handleClickText(e, "target", "initial"))}>
                     <ConditionalSpinner show={!translated.body} />
-                    <ContentEditable
-                      key="target-editor-body"
-                      className="body"
-                      placeholder="Renseignez votre traduction ici"
-                      html={translated.body} // innerHTML of the editable div
-                      disabled={isExpert}       // use true to disable editing
-                      onChange={this.props.handleChange} // handle innerHTML change
-                      onSelect={this.onSelect}
-                    />
+                    <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+                      <ContentEditable
+                        key="target-editor-body"
+                        className="body"
+                        placeholder="Renseignez votre traduction ici"
+                        html={translated.body} // innerHTML of the editable div
+                        disabled={isExpert}       // use true to disable editing
+                        onChange={this.props.handleChange} // handle innerHTML change
+                        onSelect={this.onSelect}
+                        style={{textAlign: isRTL ? "right" : "left"}}
+                      />
+                    </DirectionProvider>
                     {/* <h3>Source</h3>
                     <textarea
                       className="form-control body"

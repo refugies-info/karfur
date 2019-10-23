@@ -108,15 +108,15 @@ class QuiSommesNous extends Component {
               <div className="description">
                 <div className="team-header">
                   <h3>{membre.name}</h3>
-                  <span>{membre.statut && t("QuiSommesNous." + membre.statut, membre.statut)}</span>
+                  <span>{membre.statut && t("QuiSommesNous.statut-" + membre.firstName, membre.statut)}</span>
                 </div>
                 <div className="team-body">
                   <h5>{t("QuiSommesNous.Mon engagement", "Mon engagement")}</h5>
-                  <span>{membre.engagement && t("QuiSommesNous." + membre.engagement, membre.engagement)}</span>
+                  <span>{membre.engagement && t("QuiSommesNous.engagement-" + membre.firstName, membre.engagement)}</span>
                   <h5>{t("QuiSommesNous.Mon rôle", "Mon rôle")}</h5>
-                  <span>{membre.role && t("QuiSommesNous." + membre.role, membre.role)}</span>
+                  <span>{membre.role && t("QuiSommesNous.role-" + membre.firstName, membre.role)}</span>
                   <h5>{t("QuiSommesNous.Mes outils", "Mes outils")}</h5>
-                  <span>{membre.outils && t("QuiSommesNous." + membre.outils, membre.outils)}</span>
+                  <span>{membre.outils}</span>
                 </div>
                 <div className="team-footer">
                   <a href={membre.linkedin} className="no-decoration">
