@@ -8,6 +8,7 @@ import draftToHtml from 'draftjs-to-html';
 import h2p from 'html2plaintext';
 import { convertToRaw, EditorState, ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
+import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
 import _ from "lodash";
 
 import FButton from '../../../components/FigmaUI/FButton/FButton';
@@ -284,6 +285,7 @@ class SideTrad extends Component {
     const langue = this.props.langue || {};
     const { francais, translated, isExpert } = this.props;
     const { currIdx, currSubIdx, currSubName, listTrad, score, userId, showModals, selectedTrad } = this.state;
+    const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
     return(
       <div className="side-trad">
@@ -321,32 +323,34 @@ class SideTrad extends Component {
         </div>
         <div className="content-data" id="body_texte_final">
           <ConditionalSpinner show={!(translated || {}).body} />
-          <Editor
-            toolbarClassName="toolbar-editeur"
-            editorClassName="editor-editeur"
-            wrapperClassName="wrapper-editeur editeur-sidebar"
-            placeholder="Renseignez votre traduction ici"
-            onEditorStateChange={this.props.onEditorStateChange}
-            editorState={(translated || {}).body}
-            toolbarHidden = {pointeurs.includes(this.state.currIdx)}
-            toolbar={{
-              options: ['inline','list'],
-              inline: {
-                inDropdown: false,
-                options: ['bold', 'italic', 'underline'],
-                className: "bloc-gauche-inline blc-gh",
-                bold: { icon: boldBtn, className: "inline-btn btn-bold" },
-                italic: { icon: italicBtn, className: "inline-btn btn-italic"  },
-                underline: { icon: underBtn, className: "inline-btn btn-underline"  },
-              },
-              list: {
-                inDropdown: false,
-                options: ['unordered'],
-                className: "bloc-gauche-list blc-gh",
-                unordered:{icon: listBtn, className: "list-btn"}
-              },
-            }}
-          />
+          <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+            <Editor
+              toolbarClassName="toolbar-editeur"
+              editorClassName="editor-editeur"
+              wrapperClassName="wrapper-editeur editeur-sidebar"
+              placeholder="Renseignez votre traduction ici"
+              onEditorStateChange={this.props.onEditorStateChange}
+              editorState={(translated || {}).body}
+              toolbarHidden = {pointeurs.includes(this.state.currIdx)}
+              toolbar={{
+                options: ['inline','list'],
+                inline: {
+                  inDropdown: false,
+                  options: ['bold', 'italic', 'underline'],
+                  className: "bloc-gauche-inline blc-gh",
+                  bold: { icon: boldBtn, className: "inline-btn btn-bold" },
+                  italic: { icon: italicBtn, className: "inline-btn btn-italic"  },
+                  underline: { icon: underBtn, className: "inline-btn btn-underline"  },
+                },
+                list: {
+                  inDropdown: false,
+                  options: ['unordered'],
+                  className: "bloc-gauche-list blc-gh",
+                  unordered:{icon: listBtn, className: "list-btn"}
+                },
+              }}
+            />
+          </DirectionProvider>
         </div>
         <div className="expert-bloc">
           {score && score !== 0 && score !== "0" ? 
