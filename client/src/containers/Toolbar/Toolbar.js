@@ -18,6 +18,7 @@ import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import SearchBar from '../UI/SearchBar/SearchBar';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
+import {fetch_user} from '../../Store/actions';
 
 import './Toolbar.scss';
 import variables from 'scss/colors.scss';
@@ -30,6 +31,7 @@ export class Toolbar extends React.Component {
 
   disconnect = () => {
     API.logout();
+    this.props.fetch_user();
   }
 
   toggle = () => this.setState((prevState) => ({ dropdownOpen: !prevState.dropdownOpen }));
@@ -123,7 +125,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {toggle_lang_modal};
+const mapDispatchToProps = {toggle_lang_modal, fetch_user};
 
 export default track({
   component: 'Toolbar',

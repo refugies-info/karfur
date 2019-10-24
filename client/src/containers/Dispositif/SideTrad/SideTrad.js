@@ -221,6 +221,7 @@ class SideTrad extends Component {
 
   onValidate = async () => {
     if(!this.props.translated.body){Swal.fire( {title: 'Oh non', text: 'Aucune traduction n\'a été rentrée, veuillez rééssayer', type: 'error', timer: 1500}); return;}
+    this.props.fwdSetState({disableBtn: true});
     const pos = pointeurs.findIndex(x => this.state.currIdx === x);
     const node = pos > -1 ? this.state.currIdx : "contenu";
     let {currIdx, currSubIdx, currSubName} = this.state;
@@ -268,6 +269,7 @@ class SideTrad extends Component {
     }
     this.props.fwdSetState({traduction}, () => this.props.isExpert ? false : this.props.valider(this.props.traduction));
     this.goChange(true, false);
+    this.props.fwdSetState({disableBtn: false});
   }
 
   _insertTrad = () => {
@@ -283,7 +285,7 @@ class SideTrad extends Component {
 
   render(){
     const langue = this.props.langue || {};
-    const { francais, translated, isExpert } = this.props;
+    const { francais, translated, isExpert, disableBtn } = this.props;
     const { currIdx, currSubIdx, currSubName, listTrad, score, userId, showModals, selectedTrad } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
@@ -375,13 +377,13 @@ class SideTrad extends Component {
             </FButton>}
           <div>
             {isExpert && 
-              <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(this.props.translated || {}).body} fill={variables.noir} className="mr-10">
+              <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(translated || {}).body} fill={variables.noir} className="mr-10">
                 Signaler
               </FButton>}
             <FButton type="light-action" name={(isExpert ? "close" : "skip-forward") + "-outline"} fill={variables.noir} className="mr-10" onClick={()=> isExpert ? this.toggleModal(true, 'rejected') : this.goChange()}>
               {isExpert ? "Refuser" : "Passer"}
             </FButton>
-            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(this.props.translated || {}).body}>
+            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(translated || {}).body || disableBtn}>
               Valider
             </FButton>
           </div>

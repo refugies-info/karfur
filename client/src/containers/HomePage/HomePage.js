@@ -29,9 +29,11 @@ class HomePage extends Component {
     search: [{ type: 'Dispositifs', children: [] }, { type: 'Articles', children: [] }, { type: 'Démarches', children: [] }],
     value: '',
     suggestions: [],
+    users: [],
   }
 
   componentDidMount (){
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
     window.scrollTo(0, 0);
   }
 
@@ -39,6 +41,7 @@ class HomePage extends Component {
 
   render() {
     const { t } = this.props;
+    const {users} = this.state;
     return (
       <div className="animated fadeIn homepage">
         <section id="hero">
@@ -58,8 +61,8 @@ class HomePage extends Component {
               </FButton>
             </div>
           </div>
-          <AnchorLink href="#plan" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
-            <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          <AnchorLink offset='60' href="#plan" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
+            <EVAIcon className="slide-bottom" name="arrow-circle-down" size="hero"/>
           </AnchorLink>
         </section>
 
@@ -76,7 +79,7 @@ class HomePage extends Component {
                       {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
                     </CardBody>
                     <CardFooter>
-                      <FButton type="outline-black" name="search-outline" fill={variables.noir}>
+                      <FButton type="homebtn" name="search-outline" fill={variables.noir}>
                         {t("Homepage.Trouver une démarche", "Trouver une démarche")}
                       </FButton>
                     </CardFooter>
@@ -99,16 +102,16 @@ class HomePage extends Component {
                 </NavLink>
               </Col>
               <Col lg="4" className="card-col">
-                <Card className="cursor-pointer parcours-card" onClick={this.upcoming}>
+                <Card className="parcours-card">
                   <CardHeader>{t("Homepage.creer parcours", "Créer ton parcours personnalisé")}</CardHeader>
                   <CardBody>
                     {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
                   <CardFooter>
-                    {/*<FButton type="homebtn" disabled name="search-outline" fill={variables.noir}>
-                      Créer un parcours
-                  </FButton>*/}
-                    <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
+                    <FButton type="homebtn" disabled name="clock-outline" fill={variables.noir}>
+                      Bientôt disponible
+                    </FButton>
+                    {/*<span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>*/}
                   </CardFooter>
                 </Card>
               </Col>
@@ -122,14 +125,13 @@ class HomePage extends Component {
               <h2>{t("Homepage.contributive")}</h2>
               <p className="texte-normal">
                 {t("Homepage.contributive subheader")}
-                {" "}
-                <NavLink to="/qui-sommes-nous">
-                  <u>{t("En savoir plus", "En savoir plus")}</u>
+                <NavLink className="link" to="/qui-sommes-nous">
+                  <p>{t("En savoir plus", "En savoir plus")}</p>
                 </NavLink>
               </p>
             </div>
             <footer className="footer-section">
-              {t("Homepage.contributeurs mobilises", {nombre: 230})}
+              {t("Homepage.contributeurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Contrib" || y.nom==="ExpertTrad")) || []).length })}
               <FButton tag={NavHashLink} to="/comment-contribuer#ecrire" type="dark" className="ml-10">
                 {t("Homepage.Je contribue", "Je contribue")}
               </FButton>
@@ -145,7 +147,7 @@ class HomePage extends Component {
               {/*<LanguageBtn />*/}
             </div>
             <footer className="footer-section">
-              {t("Homepage.traducteurs mobilises", {nombre: 32})}
+              {t("Homepage.traducteurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Trad" || y.nom==="ExpertTrad")) || []).length })}
               <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-profile" : "/comment-contribuer#traduire"} type="dark" className="ml-10">
                 {t("Homepage.Je traduis", "Je traduis")}
               </FButton>

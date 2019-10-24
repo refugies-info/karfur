@@ -42,30 +42,30 @@ class CommentContribuer extends Component {
             <h1>{t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}</h1>
             <div className="cartes-row">
               <div className="cartes-wrapper">
-                <AnchorLink href="#ecrire">
+                <AnchorLink offset='60' href="#ecrire">
                   <div className="carte-contrib">
-                    <EVAIcon name="edit-outline" className="carte-icon" />
+                    <EVAIcon name="edit-outline" className="carte-icon" size="xlarge"/>
                     <h3 className="texte-footer">{t("CommentContribuer.écrire", "écrire")}</h3>
                   </div>
                 </AnchorLink>
-                <AnchorLink href="#traduire">
+                <AnchorLink offset='60' href="#traduire">
                   <div className="carte-contrib">
-                    <EVAIcon name="edit-outline" className="carte-icon" />
+                    <SVGIcon name="translate" fill="#FFFFFF" className='carte-icon' width="30px" height="30px"/>
                     <h3 className="texte-footer">{t("CommentContribuer.traduire", "traduire")}</h3>
                   </div>
                 </AnchorLink>
-                <AnchorLink href="#corriger">
+                <AnchorLink offset='60' href="#corriger">
                   <div className="carte-contrib">
-                    <EVAIcon name="edit-outline" className="carte-icon" />
+                    <EVAIcon name="done-all" className="carte-icon" size="xlarge" />
                     <h3 className="texte-footer">{t("CommentContribuer.corriger", "corriger")}</h3>
                   </div>
                 </AnchorLink>
               </div>
             </div>
           </div>
-          <AnchorLink href="#ecrire" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
+          {/*<AnchorLink offset='60' href="#ecrire" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
-          </AnchorLink>
+    </AnchorLink>*/}
         </section>
 
         <section id="ecrire">
@@ -138,13 +138,13 @@ class CommentContribuer extends Component {
             <div className="trad-layout">
               <div className="left-side">
                 <h5>{t("CommentContribuer.Autre langue", "Vous parlez une autre langue ? Rejoignez-nous !")}</h5>
-                <div className="data mb-20">
+                <div className="data">
                   <div className="left-data"><h3>{(users.filter(x => (x.roles || []).some(y=>y.nom==="Trad")) || []).length}</h3></div>
-                  <div className="right-data">{t("CommentContribuer.traducteurs actifs", "traducteurs actifs")}</div>
+                  <h5 className="right-data">{t("CommentContribuer.traducteurs actifs", "traducteurs actifs")}</h5>
                 </div>
                 <div className="data">
                   <div className="left-data"><h3>{(users.filter(x => (x.roles || []).some(y=>y.nom==="ExpertTrad")) || []).length}</h3></div>
-                  <div className="right-data">{t("CommentContribuer.experts en traduction", "experts en traduction")}</div>
+                  <h5 className="right-data">{t("CommentContribuer.experts en traduction", "experts en traduction")}</h5>
                 </div>
               </div>
               <div className="right-side">
