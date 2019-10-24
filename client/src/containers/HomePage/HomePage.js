@@ -29,9 +29,11 @@ class HomePage extends Component {
     search: [{ type: 'Dispositifs', children: [] }, { type: 'Articles', children: [] }, { type: 'Démarches', children: [] }],
     value: '',
     suggestions: [],
+    users: [],
   }
 
   componentDidMount (){
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
     window.scrollTo(0, 0);
   }
 
@@ -39,6 +41,7 @@ class HomePage extends Component {
 
   render() {
     const { t } = this.props;
+    const {users} = this.state;
     return (
       <div className="animated fadeIn homepage">
         <section id="hero">
@@ -129,7 +132,7 @@ class HomePage extends Component {
               </p>
             </div>
             <footer className="footer-section">
-              {t("Homepage.contributeurs mobilises", {nombre: 230})}
+              {t("Homepage.contributeurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Contrib" || y.nom==="ExpertTrad")) || []).length })}
               <FButton tag={NavHashLink} to="/comment-contribuer#ecrire" type="dark" className="ml-10">
                 {t("Homepage.Je contribue", "Je contribue")}
               </FButton>
@@ -145,7 +148,7 @@ class HomePage extends Component {
               {/*<LanguageBtn />*/}
             </div>
             <footer className="footer-section">
-              {t("Homepage.traducteurs mobilises", {nombre: 32})}
+              {t("Homepage.traducteurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Trad" || y.nom==="ExpertTrad")) || []).length })}
               <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-profile" : "/comment-contribuer#traduire"} type="dark" className="ml-10">
                 {t("Homepage.Je traduis", "Je traduis")}
               </FButton>

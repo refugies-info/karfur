@@ -19,11 +19,11 @@ function userReducer(state = initialState, action) {
       return updateObject(state, { 
         user: action.value, 
         userId: (action.value || {})._id, 
-        admin: ((action.value || {}).roles || {}).some(x=>x.nom==="Admin"), 
-        traducteur: ((action.value || {}).roles || {}).some(x=>x.nom==="Trad"), 
-        expertTrad: ((action.value || {}).roles || {}).some(x=>x.nom==="ExpertTrad"), 
-        contributeur: ((action.value || {}).roles || {}).some(x=>x.nom==="Contrib"), 
-        membreStruct: ((action.value || {}).roles || {}).some(x=>x.nom==="hasStructure") })
+        admin: ((action.value || {}).roles || []).some(x=>x.nom==="Admin"), 
+        traducteur: ((action.value || {}).roles || []).some(x=>x.nom==="Trad"), 
+        expertTrad: ((action.value || {}).roles || []).some(x=>x.nom==="ExpertTrad"), 
+        contributeur: ((action.value || {}).roles || []).some(x=>x.nom==="Contrib"), 
+        membreStruct: ((action.value || {}).roles || []).some(x=>x.nom==="hasStructure") })
     case actions.UPDATE_USER:
       return updateObject(state, { user: action.value })
   default:

@@ -1,27 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import { Button } from 'reactstrap';
+import FButton from '../FButton/FButton';
 
 import {toggle_lang_modal} from "../../../Store/actions/index";
 
 import './LanguageBtn.scss'
 
 const languageBtn = (props) => {
-
-  const CurrentLanguageIcon = () => {
-    let current = props.langues.find(x => x.i18nCode === props.i18n.language)
-    if (props.langues.length > 0 && current){
-      return <i className={'flag-icon flag-icon-' + current.langueCode} title={current.langueCode} id={current.langueCode} />
-    }else{
-      return <i className={'flag-icon flag-icon-fr'} title="fr" id="fr"></i>
-    }
-  }
+  const current = (props.langues || []).find(x => x.i18nCode === props.i18n.language) || {};
+  const langueCode = props.langues.length > 0 && current ? current.langueCode : "fr";
 
   return(
-    <Button className="language-btn" onClick={props.toggle_lang_modal}>
-      <CurrentLanguageIcon />
-    </Button>
+    <FButton type="outline-black" className="language-btn" onClick={props.toggle_lang_modal}>
+      <i className={'mr-10 flag-icon flag-icon-' + langueCode} title={langueCode} id={langueCode} />
+      <span className="language-name">{current.langueLoc || "Langue"}</span>
+    </FButton>
   )
 }
 

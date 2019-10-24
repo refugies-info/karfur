@@ -23,9 +23,12 @@ const leftSideDispositif = (props) => {
           {props.menu.map((item, key) => {
             return ( 
               <div key={key} className="list-item-wrapper">
-                <ListGroupItem tag="a" data-toggle="list" action
+                <ListGroupItem
+                  action 
+                  tag="a" 
+                  data-toggle="list"
                   href={'#item-head-' + key} 
-                  onClick={() => props.onMenuNavigate(key)} >
+                >
                   {item.title && t("Dispositif." + item.title, item.title)}
                 </ListGroupItem>
               </div>

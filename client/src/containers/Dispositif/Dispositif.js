@@ -754,7 +754,7 @@ class Dispositif extends Component {
               />
             </Col>}
           <Col lg={translating ? "8" : "12"} md={translating ? "8" : "12"} sm={translating ? "8" : "12"} xs={translating ? "8" : "12"} className="main-col">
-            <section className="banniere-dispo" style={{backgroundImage: `url(${bgImage("Français")})`}}>
+            <section className="banniere-dispo" style={mainTag && mainTag.short && {backgroundImage: `url(${bgImage(mainTag.short)})`}}>
               {inVariante &&
                 <BandeauEdition
                   menu={this.state.menu}
@@ -1100,7 +1100,7 @@ const calculFiabilite = dispositif => {
 }
 
 function bgImage(short) {
-  const imageUrl = require("../../assets/figma/" + short + ".svg") //illustration_
+  const imageUrl = require("../../assets/figma/illustration_" + short + ".svg") //illustration_
   return imageUrl
 }
 

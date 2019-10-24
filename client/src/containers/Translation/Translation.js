@@ -55,6 +55,7 @@ class TranslationHOC extends Component {
     time: 0,
     initialTime: 0,
     autosuggest: false,
+    disableBtn: false,
   }
   mountTime=0;
 
@@ -214,6 +215,7 @@ class TranslationHOC extends Component {
   }
 
   valider = (tradData = {}) => {
+    this.setState({disableBtn: true});
     let traduction={
       langueCible: this.state.locale,
       articleId: this.state.itemId,
@@ -239,10 +241,11 @@ class TranslationHOC extends Component {
       this.setState({traduction});
       if(traduction.avancement === 1){
         Swal.fire( 'Yay...', 'La traduction a bien été enregistrée', 'success').then(()=>{
+          this.setState({disableBtn: false});
           this.onSkip();
         });
       }
-    })
+    }).catch(()=> this.setState({disableBtn: false}))
   }
 
   onSkip=()=>{
@@ -257,7 +260,8 @@ class TranslationHOC extends Component {
         this.props.history.push({ 
           pathname: '/traduction/' + this.state.type + '/' + results[0]._id, 
           search: '?id=' + this.state.langue._id,
-          state: { langue: this.state.langue} })
+          state: { langue: this.state.langue} });
+        this.setState({disableBtn: false});
       }    
     }).catch(()=>Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500}))
   }
