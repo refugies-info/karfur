@@ -209,7 +209,7 @@ export default {
   },
   logout : () => {
     setAuthToken(false);
-    localStorage.removeItem("token");
     delete headers['x-access-token'];
+    return localStorage.removeItem("token");
   }
 }
