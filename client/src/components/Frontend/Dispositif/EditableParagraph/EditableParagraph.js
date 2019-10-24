@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import { Editor } from 'react-draft-wysiwyg';
+import { Draft, DefaultDraftBlockRenderMap } from 'draft-js';
+import { Map } from 'immutable';
 
 // import Backdrop from '../../../UI/Backdrop/Backdrop';
 import {boldBtn, italicBtn, underBtn, listBtn, imgBtn, videoBtn, linkBtn} from '../../../../assets/figma/index'
@@ -10,6 +12,39 @@ import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 import './EditableParagraph.scss'
 import variables from 'scss/colors.scss';
+
+
+class MyCustomBlock extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className='MyCustomBlock'>
+        {/* here, this.props.children contains a <section> container, as that was the matching element */}
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+const blockRenderMap = Map({
+  'MyCustomBlock': {
+    // element is used during paste or html conversion to auto match your component;
+    // it is also retained as part of this.props.children and not stripped out
+    element: 'section',
+    wrapper: <MyCustomBlock />,
+  }
+});
+
+function myBlockStyleFn(contentBlock) {
+  const type = contentBlock.getType();
+  console.log(type)
+  if (type === 'div') {
+    return 'bloc-rouge';
+  }
+}
 
 class EditableParagraph extends Component {
   state= {
@@ -21,9 +56,11 @@ class EditableParagraph extends Component {
   toggle = () => this.setState({isDropdownOpen:!this.state.isDropdownOpen})
   toggleTooltip = () => this.setState(prevState => ({tooltipOpen: !prevState.tooltipOpen })); 
   toggleColor = (key, hover) => this.setState(prevState=>({dropdownColor:prevState.dropdownColor.map((_,i)=> (i===key ? (hover ? variables.noir : "#FFFFFF") : "#FFFFFF"))}))
-
+  
   render(){
     const props=this.props;
+    const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap);
+
     if(props.editable){
       return (
         // {/* <Backdrop show={true} clicked={()=>props.handleContentClick(props.keyValue,false, props.subkey)} /> */}
@@ -35,7 +72,9 @@ class EditableParagraph extends Component {
             placeholder={props.placeholder}
             onEditorStateChange={(editorState)=>props.onEditorStateChange(editorState, props.keyValue, props.subkey)}
             editorState={props.editorState}
-            // toolbarCustomButtons={[<CustomOption />]}
+            toolbarCustomButtons={[<CustomOption editorState={props.editorState} />]}
+            blockRenderMap={extendedBlockRenderMap}
+            blockStyleFn={myBlockStyleFn}
             stripPastedStyles
             toolbar={{
               options: ['inline','list', 'image', 'embedded', 'link'],
