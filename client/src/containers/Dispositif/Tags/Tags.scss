@@ -17,6 +17,12 @@
       background: #ffffff;
       color: $noir;
     }
+
+    .dropdown-custom{
+      &:hover{
+        color: $blancSimple;
+      }
+    }
     
     .btn{
       background: transparent;

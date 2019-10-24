@@ -3,17 +3,19 @@
 
 .modal.show .modal-dialog.dispositif-create-modal .modal-content{
   background: #FFFFFF;
+  height: 680px;
+
   .modal-header{
     border:none;
-    margin-bottom: 16px;
+    padding-top: 0;
 
     h5{
       font-size: 40px;
       line-height: 51px;
-      display: inline-flex;
+      display: flex;
       flex: 1;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
     }
     .close{
       outline: none;
@@ -24,11 +26,20 @@
       right: 20px;
     }
     .temps-right{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       font-size: 16px;
       line-height: 20px;
       font-weight: bold;
       padding: 20px;
       background: $blanc;
+      border-radius: 12px;
+
+      .inline-custom{
+        display: inline-flex;
+      }
     }
   }
   .modal-body{
@@ -83,6 +94,8 @@
     display: inline-flex;
     flex: 1;
     justify-content: space-between;
+    padding-top: 0;
+    padding-bottom: 0;
 
     .btn{
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.07);
