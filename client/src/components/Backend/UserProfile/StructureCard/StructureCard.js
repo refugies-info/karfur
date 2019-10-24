@@ -48,16 +48,18 @@ class StructureCard extends Component {
 
         <Card className="main-card">
           <CardBody>
-            <div className="left-side">
-              <div className="logo-bloc">
-                <div className="img-wrapper">
-                  <img src={(structure.picture || {}).secure_url || diairMinInt} className="logo-img" alt="logo de la structure" />
-                </div>
-                <div className="logo-footer">
-                  <b>{structure.nom}</b>
+            <DefaultNavLink to="/backend/user-dash-structure">
+              <div className="left-side">
+                <div className="logo-bloc">
+                  <div className="img-wrapper">
+                    <img src={(structure.picture || {}).secure_url || diairMinInt} className="logo-img" alt="logo de la structure" />
+                  </div>
+                  <div className="logo-footer">
+                    <b>{structure.nom}</b>
+                  </div>
                 </div>
               </div>
-            </div>
+            </DefaultNavLink>
             <div className={"middle-side" + (actions && actions.length > 0 ? "" : " no-results-wrapper")}>
               {actions && actions.length > 0 ?
                 <><Nav tabs>

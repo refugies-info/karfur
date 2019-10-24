@@ -541,6 +541,7 @@ $imgHeight : 350px;
       padding: 10px;
       cursor: pointer;
       display: inline-block;
+      position: relative;
   
       &.active{
         transition: all 0.2s ease;
@@ -593,8 +594,8 @@ $imgHeight : 350px;
 
     .accordeon-delete-icon{
       position: absolute;
-      top: calc(50% + 10px);
-      transform: translateY(-50%);
+      top: -15px;
+      right: -15px;
     }
   }
   

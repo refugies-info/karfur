@@ -300,7 +300,13 @@
     "Numéro à appeler": "Numéro à appeler",
     "Ton courrier doit être adressé à": "Ton courrier doit être adressé à",
     "Ce que tu dois faire": "Ce que tu dois faire",
-    "izok": "Est-ce que ça c’est bien passé comme on a dit ?"
+    "izok": "Est-ce que ça c’est bien passé comme on a dit ?",
+    "Titre du lieu": "Titre du lieu",
+    "Adresse": "Adresse",
+    "Ville": "Ville",
+    "Informations pratiques": "Informations pratiques",
+    "Email de contact": "Email de contact",
+    "Numéro de téléphone": "Numéro de téléphone"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",
@@ -329,6 +335,19 @@
     "Demander des fonctionnalités": "Demander des fonctionnalités",
     "Le projet": "Le projet",
     "Vous cherchez ?": "Vous cherchez ?"
+  },
+  "Login":{
+    "Mot de passe": "Mot de passe",
+    "Confirmez le mot de passe": "Confirmez le mot de passe",
+    "Se connecter": "Se connecter",
+    "Se créer un compte": "Se créer un compte",
+    "Ou se créer un compte": "Ou se créer un compte",
+    "Content de vous revoir !": "Content de vous revoir !",
+    "Pas besoin d’email": "Pas besoin d’email",
+    "Retour à l'accueil": "Retour à l'accueil",
+    "Pseudonyme": "Pseudonyme",
+    "Mot de passe oublié ?": "Mot de passe oublié ?",
+    "no-account": "Il n'existe pas de compte à ce nom"
   },
   "Retour à la recherche": "Retour à la recherche",
   "avec": "avec",
@@ -380,5 +399,7 @@
   "Dispositif d'accompagnement": "Dispositif d'accompagnement",
   "Démarche administrative": "Démarche administrative",
   "Parcours personnalisé": "Parcours personnalisé",
-  "Lexique": "Lexique"
+  "Lexique": "Lexique",
+  "Suivant": "Suivant",
+  "Connexion": "Connexion"
 }
