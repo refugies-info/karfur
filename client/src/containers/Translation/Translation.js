@@ -171,7 +171,7 @@ class TranslationHOC extends Component {
     this.setState({ translated: {
       ...this.state.translated,
       [target]: editorState,
-    } });
+    }, autosuggest: false });
   };
 
   handleClickText= (e, initial, target) => {

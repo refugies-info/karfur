@@ -380,7 +380,7 @@ function get_progression(req, res) {
     Traduction.aggregate([
       {$match:
         {'userId': req.userId,
-         'created_at': {$gte: start},
+        //  'created_at': {$gte: start},
          'timeSpent': { $ne: null } } },
       {$group:
          { _id : req.userId,
