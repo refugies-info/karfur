@@ -136,7 +136,7 @@ class Translation extends Component {
   modalClosed=()=> this.setState({feedbackModal:{...this.state.feedbackModal,show:false}})
   
   render(){
-    const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest } = this.props;
+    const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest, disableBtn } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
     let feedbackModal = (
@@ -285,7 +285,7 @@ class Translation extends Component {
               <FButton type="error" name="arrow-forward" onClick={this.props.onSkip} className="mr-10">
                 Passer
               </FButton>
-              <FButton type="validate" name="checkmark-outline" fill={variables.error} onClick={()=> this.props.valider()}>
+              <FButton type="validate" name="checkmark-outline" fill={variables.error} onClick={()=> this.props.valider()} disabled={disableBtn}>
                 Valider
               </FButton>
             </Col>

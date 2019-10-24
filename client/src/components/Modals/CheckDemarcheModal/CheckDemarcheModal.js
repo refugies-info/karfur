@@ -77,7 +77,7 @@ class CheckDemarcheModal extends Component {
         </ModalBody>
         <ModalFooter>
           <div>
-            <FButton type="light-action" name="arrow-back" fill={variables.noir} className="mr-10">
+            <FButton type="light-action" name="arrow-back" fill={variables.noir} className="mr-10" onClick={()=>step === 1 ? this.setStep(0) : this.props.toggle()}>
               {t("Retour", "Retour")}
             </FButton>
             <FButton type="help" name="question-mark-circle" fill={variables.error} onClick={this.props.upcoming}>
