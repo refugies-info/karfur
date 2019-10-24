@@ -13,7 +13,7 @@ import _ from "lodash";
 
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
-import {boldBtn, italicBtn, underBtn, listBtn} from '../../../assets/figma/index';
+import {boldBtn, italicBtn, underBtn, listBtn, logo_google} from '../../../assets/figma/index';
 import marioProfile from '../../../assets/mario-profile.jpg';
 import { RejectTradModal } from '../../../components/Modals';
 
@@ -285,7 +285,7 @@ class SideTrad extends Component {
 
   render(){
     const langue = this.props.langue || {};
-    const { francais, translated, isExpert, disableBtn } = this.props;
+    const { francais, translated, isExpert, disableBtn, autosuggest } = this.props;
     const { currIdx, currSubIdx, currSubName, listTrad, score, userId, showModals, selectedTrad } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
@@ -353,6 +353,8 @@ class SideTrad extends Component {
               }}
             />
           </DirectionProvider>
+          {autosuggest && 
+            <div className="google-suggest">Suggestion par <img src={logo_google} className="google-logo" /></div>}
         </div>
         <div className="expert-bloc">
           {score && score !== 0 && score !== "0" ? 
