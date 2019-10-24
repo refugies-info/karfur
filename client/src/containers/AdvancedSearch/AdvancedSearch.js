@@ -30,7 +30,7 @@ class AdvancedSearch extends Component {
     nbVues: [],
     pinned: [],
     activeFiltre: "",
-    activeTri: "A > Z",
+    activeTri: "",
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
@@ -65,7 +65,8 @@ class AdvancedSearch extends Component {
   }
   
   selectTag = (tag = {}) => {
-    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: (filtres.tags.find(x => x.short === tag) || {}).name, active: true} : x)}))
+    const tagValue = (filtres.tags.find(x => x.short === tag) || {});
+    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: tagValue.name, short: tagValue.short, active: true} : x)}))
     this.queryDispositifs({["tags.short"]: tag})
     // this.props.history.replace("/advanced-search?tag="+tag)
   }
@@ -151,6 +152,7 @@ class AdvancedSearch extends Component {
       value: subitem.name,
       query: subitem.query || subitem.name,
       active: true,
+      ...(subitem.short && {short: subitem.short}),
       ...(subitem.bottomValue && {bottomValue: subitem.bottomValue}),
       ...(subitem.topValue && {topValue: subitem.topValue}),
     }
@@ -160,10 +162,13 @@ class AdvancedSearch extends Component {
   desactiver = key => this.setState({recherche: this.state.recherche.map((x, i) => i===key ? initial_data[i] : x)}, ()=> this.queryDispositifs());
 
   render() {
-    const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
+    let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
     const {t} = this.props;
     const filteredPinned = activeFiltre ? pinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : pinned;
 
+    if(recherche[0].active){
+      dispositifs = dispositifs.sort((a,b) => _.get(a,"tags.0.name", {}) === recherche[0].query ? -1 : _.get(b,"tags.0.name", {}) === recherche[0].query ? 1 : 0)
+    }
     return (
       <div className="animated fadeIn advanced-search">
         <Row className="search-wrapper">

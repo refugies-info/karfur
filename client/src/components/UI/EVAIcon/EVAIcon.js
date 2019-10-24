@@ -10,6 +10,7 @@ const SIZE = {
   MEDIUM: '20px',
   LARGE: '24px',
   XLARGE: '30px',
+  HERO: '60px',
 };
 
 class EVAIcon extends Component {
@@ -49,6 +50,8 @@ class EVAIcon extends Component {
         return SIZE.LARGE;
       case 'xlarge':
         return SIZE.XLARGE;
+      case 'hero':
+        return SIZE.HERO;
       default:
         return SIZE.MEDIUM;
     }

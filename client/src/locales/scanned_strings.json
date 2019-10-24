@@ -219,6 +219,19 @@
     "Cinquième élément": "",
     "Six": ""
   },
+  "Login": {
+    "Se connecter": "Se connecter",
+    "Se créer un compte": "Se créer un compte",
+    "Ou se créer un compte": "Ou se créer un compte",
+    "Content de vous revoir !": "Content de vous revoir !",
+    "Pas besoin d’email": "Pas besoin d’email",
+    "Retour à l'accueil": "Retour à l'accueil",
+    "Pseudonyme": "Pseudonyme",
+    "Mot de passe oublié ?": "Mot de passe oublié ?",
+    "no-account": "Il n'existe pas de compte à ce nom"
+  },
+  "Suivant": "Suivant",
+  "Connexion": "Connexion",
   "QuiSommesNous": {
     "Qui sommes-nous": "Qui sommes-nous ?",
     "subheader": "Réfugiés.info améliore le parcours d’intégration des bénéficiaires de la protection internationale en France",
