@@ -1108,7 +1108,7 @@ const calculFiabilite = dispositif => {
 }
 
 function bgImage(short) {
-  const imageUrl = null; //require("../../assets/figma/illustration_" + short + ".svg") //illustration_
+  const imageUrl = require("../../assets/figma/illustration_" + short + ".svg") //illustration_
   return imageUrl
 }
 
