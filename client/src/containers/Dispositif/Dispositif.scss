@@ -324,17 +324,12 @@ $imgHeight : 350px;
       padding-right:0;
       margin-left:10px;
     }
-    .rdw-embedded-wrapper{
+    .rdw-embedded-wrapper, .bloc-droite-link{
       border-radius: 0;
       padding-left:0;
       padding-right:0;
     }
     .blc-dr{
-      &.bloc-droite-link{
-        border-radius: 0 12px 12px 0;
-        padding-left:0;
-        margin-bottom: 6px;
-      }
       &.bloc-droite-alert{
         border-radius: 0 12px 12px 0;
         padding-left:0;
@@ -599,6 +594,18 @@ $imgHeight : 350px;
     }
   }
   
+  .bloc-rouge{
+    background: $erreur;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    margin-bottom: 10px;;
+
+    .icon-left-side{
+      padding: 0 20px 0 0;
+    }
+  }
+
   .feedback-footer{
     background: $blanc;
     color: $darkColor;
