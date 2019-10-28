@@ -106,6 +106,7 @@ class Dispositif extends Component {
     allDemarches: [],
     demarcheId: null,
     isVarianteValidated: false,
+    dispositif: {},
   }
   newRef=React.createRef();
   mountTime=0;
@@ -653,7 +654,7 @@ class Dispositif extends Component {
         true;
     }else{dispositif.variantes = this.state.variantes; delete dispositif.titreMarque;}
     dispositif.mainSponsor = ((dispositif.sponsors || [{}])[0] || {})._id;
-    if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire" && !inVariante){
+    if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire" && !inVariante && this.state.status !== "Brouillon" && status !== "Brouillon"){
       dispositif.status = this.state.status;
     }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
       //Si l'auteur appartient à la structure principale je la fait passer directe en validation
@@ -665,15 +666,15 @@ class Dispositif extends Component {
       dispositif.status = "En attente non prioritaire";
     }
     console.log(dispositif)
-    // API.add_dispositif(dispositif).then((data) => {
-    //   Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
-    //     this.props.fetch_user();
-    //     this.props.fetch_dispositifs();
-    //     this.setState({disableEdit: status === 'En attente admin' || status === 'En attente', isDispositifLoading: false}, () => {
-    //       this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
-    //     })
-    //   });
-    // })
+    API.add_dispositif(dispositif).then((data) => {
+      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+        this.props.fetch_user();
+        this.props.fetch_dispositifs();
+        this.setState({disableEdit: ['En attente admin', 'En attente', "En attente non prioritaire", "Brouillon", "Actif"].includes(status), isDispositifLoading: false}, () => {
+          this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
+        })
+      });
+    })
   }
 
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
@@ -912,6 +913,7 @@ class Dispositif extends Component {
                   <MoteurVariantes 
                     itemId={this.state._id}
                     disableEdit={disableEdit}
+                    inVariante={inVariante}
                     validateVariante={this.validateVariante} 
                     filtres={filtres}
                     upcoming={this.upcoming}
