@@ -98,21 +98,21 @@ class UneVariante extends Component {
   }
 
   render(){
-    const {filtres, itemId, variantes} = this.props;
+    const {filtres, inVariante, variantes} = this.props;
     const {villes, ageTitle, bottomValue, topValue, ville, validatedRow, newCriteres, isMounted} = this.state;
-    let allCase = itemId ? [true] : this.state.allCase;
+    let allCase = inVariante ? [true] : this.state.allCase;
     return(
       <>
         <div className="moteur-row">
           {allCase.map((cas, i) => {
             if(cas){
               return(
-                <Col lg={itemId ? "12" : (12 - 3 * (allCase.length - 1))} className="moteur-col" key={i}>
-                  {!itemId &&
+                <Col lg={inVariante ? "12" : (12 - 3 * (allCase.length - 1))} className="moteur-col" key={i}>
+                  {!inVariante &&
                     <div className="col-header">
                       Cas #{i+1}
                     </div>}
-                  <div className={"col-body" + " " + (itemId ? "no-header" : "with-header")}>
+                  <div className={"col-body" + " " + (inVariante ? "no-header" : "with-header")}>
 
                     <div className={"critere mb-10" + (validatedRow[0] ? " validated" : "")}>
                       <h5 className="critere-title">
@@ -232,7 +232,7 @@ class UneVariante extends Component {
               )
             }else{
               return(
-                <Col lg={itemId ? "0" : "3"} className="moteur-col" key={i}>
+                <Col lg={inVariante ? "0" : "3"} className="moteur-col" key={i}>
                   <div className="col-header">
                     Cas #{i+1}
                   </div>

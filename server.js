@@ -44,11 +44,10 @@ var io = require('socket.io')(http);
 //Connexion à la base de donnée
 mongoose.set('debug', false);
 let auth = null;
-let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_URI;
-
-// let db_path = DB_CONN;
+// let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_URI; //ancienne connexion à mLab
+let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : DB_CONN;
 // auth = {user: USERNAME_DB, password: DB_PW};
-mongoose.connect(db_path, { ...(auth && {auth: auth}), useNewUrlParser: true }).then(() => {
+mongoose.connect(db_path, { useNewUrlParser: true }).then(() => {
   console.log('Connected to mongoDB');
   startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
 }).catch(e => {
