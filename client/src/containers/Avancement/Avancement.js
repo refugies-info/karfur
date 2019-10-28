@@ -69,7 +69,7 @@ class Avancement extends Component {
         query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
       }
       API.get_article(query,i18nCode).then(data_res => {
-        let articles=data_res.data.data;
+        const articles=data_res.data.data;
         this.setState({data:articles})
       })
     }
@@ -171,8 +171,10 @@ class Avancement extends Component {
           users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
           type: "dispositif"
       } ) )
-    ].filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
-
+    ];
+    console.log(traductions)
+    traductions = traductions.filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots)
+    console.log(traductions)
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
