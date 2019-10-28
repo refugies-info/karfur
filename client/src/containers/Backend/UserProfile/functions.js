@@ -1,8 +1,16 @@
 import API from '../../../utils/API';
 
-const showSuggestion = function(suggestion) {
-  this.setState({suggestion});
+const showSuggestion = function(suggestion, idx=-1) {
+  this.setState(pS=>({suggestion, actions: pS.actions.map((x,i) => i===idx ? {...x, read: true} : x)}));
   this.toggleModal('suggestion');
+  //On enregistre aussi en BDD que la notif est lue :
+  const dispositif = {
+    dispositifId: suggestion.dispositifId,
+    suggestionId: suggestion.suggestionId,
+    fieldName: suggestion.action + ".$.read",
+    type:'set',
+  }
+  API.update_dispositif(dispositif);
 }
 
 const archiveSuggestion = function(suggestion) {
@@ -39,7 +47,7 @@ const parseActions = dispositifs => {
       } return actions;
     })
   });
-  return actions
+  return actions.sort((a,b) => a.read ? 1 : b.read ? -1 : 0)
 }
 
 const deleteContrib = function(dispositif, type, callback=()=>{}){
