@@ -36,7 +36,7 @@ export class SearchBar extends React.Component {
     this.setState({isFocused: true});
     if(!value || value.length === 0){ return []; }
     const array = this.props.array || this.props.dispositifs || [];
-    const escapedValue = removeAccents(escapeRegexCharacters(value.trim()));
+    const escapedValue = removeAccents(escapeRegexCharacters((value || "").trim()));
     if (escapedValue === '') { return [];}
     const regex = new RegExp('.*?' + escapedValue + '.*', 'i');
     return array.filter(child => {
@@ -64,7 +64,7 @@ export class SearchBar extends React.Component {
   
   render() {
     const {isArray, structures, createNewCta, withEye, t} = this.props;
-    const {isFocused} = this.state;
+    const {isFocused, value} = this.state;
 
     const renderSuggestion = (suggestion, { query }) => {
       if(suggestion.createNew){
@@ -104,7 +104,7 @@ export class SearchBar extends React.Component {
       }
     }
 
-    const inputProps = { placeholder: t(this.props.placeholder || 'Chercher', this.props.placeholder || 'Chercher'), value: this.state.value, onChange: this.onChange };
+    const inputProps = { placeholder: t && t(this.props.placeholder || 'Chercher', this.props.placeholder || 'Chercher'), value: value || "", onChange: this.onChange };
 
     return(
       <div className={"md-form form-sm form-2 pl-0 " + this.props.className + (isArray ? " isArray": "")}>
