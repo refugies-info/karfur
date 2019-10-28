@@ -571,7 +571,7 @@ class Dispositif extends Component {
 
   pushReaction = (modalName=null, fieldName) => {
     if(modalName){this.toggleModal(false, modalName);}
-    let dispositif = {
+    const dispositif = {
       dispositifId: this.state._id,
       keyValue: this.state.tKeyValue, 
       subkey: this.state.tSubkey,
@@ -1108,7 +1108,7 @@ const calculFiabilite = dispositif => {
 }
 
 function bgImage(short) {
-  const imageUrl = require("../../assets/figma/illustration_" + short + ".svg") //illustration_
+  const imageUrl = require("../../assets/figma/illustration_" + short.split(" ").join("-") + ".svg") //illustration_
   return imageUrl
 }
 
