@@ -240,10 +240,9 @@ class TranslationHOC extends Component {
       traduction._id = (data.data.data || {})._id;
       this.setState({traduction});
       if(traduction.avancement === 1){
-        Swal.fire( 'Yay...', 'La traduction a bien été enregistrée', 'success').then(()=>{
-          this.setState({disableBtn: false});
-          this.onSkip();
-        });
+        Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000})
+        this.setState({disableBtn: false});
+        this.onSkip();
       }
     }).catch(()=> this.setState({disableBtn: false}))
   }

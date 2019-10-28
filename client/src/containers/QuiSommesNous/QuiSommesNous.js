@@ -36,8 +36,11 @@ class QuiSommesNous extends Component {
             <h1>{t("QuiSommesNous.Qui sommes-nous", "Qui sommes-nous ?")}</h1>
             <h4>{t("QuiSommesNous.subheader", "Réfugiés.info améliore le parcours d’intégration des bénéficiaires de la protection internationale en France")}</h4>
           </div>
-          <AnchorLink href="#missions" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
-            <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          <AnchorLink offset='60' href="#missions" className=" header-anchor d-inline-flex justify-content-center align-items-center">
+            <div className="slide-animation">
+              <span className="slide-background"></span>
+              <EVAIcon className="slide-bottom" name="arrow-circle-down" size="hero"/>
+            </div>
           </AnchorLink>
         </section>
 

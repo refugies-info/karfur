@@ -147,9 +147,12 @@ function update_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let {dispositifId, fieldName, suggestionId, type, ...dispositif} = req.body;
-    let update = null;
+    let update = null, query = { _id: dispositifId };
     if(type==='pull'){
       update = { $pull: { [fieldName] : {'suggestionId': suggestionId } } }
+    }else if(type==='set'){
+      query = {...query, "suggestions.suggestionId": suggestionId};
+      update = { "$set": { [fieldName]: true } }
     }else{
       update = { "$push": { [fieldName]: {
         ...(req.userId && {userId:req.userId}), 
@@ -159,8 +162,8 @@ function update_dispositif(req, res) {
         suggestionId: uniqid('feedback_')
       } } }
     }
-    Dispositif.findByIdAndUpdate({ _id: dispositifId },update,{new: true},(err, data) => {
-      if (err){res.status(404).json({ "text": "Pas de résultat" })}
+    Dispositif.findOneAndUpdate(query, update,{new: true},(err, data) => {
+      if (err){res.status(404).json({ "text": "Pas de résultat", error: err }); console.log(err)}
       else{
         res.status(200).json({
           "text": "Succès",
