@@ -42,7 +42,7 @@
     "lodash.isempty": "^4.4.0",
     "messaging-api-messenger": "^0.7.16",
     "mkdirp": "^0.5.1",
-    "mongoose": "^5.4.13",
+    "mongoose": "^5.7.5",
     "mongoose-gridstore": "^0.1.25",
     "nodemailer": "^6.3.0",
     "parse-json": "^4.0.0",
