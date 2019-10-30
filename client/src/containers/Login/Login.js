@@ -196,7 +196,7 @@ const PasswordField = props => (
     onAppendClick={props.onClick}
     {...props}
     type={props.passwordVisible ? "text" : "password"} id={props.id} 
-    placeholder={props.placeholder && props.t("Login." + props.placeholder, props.placeholder)} autoComplete="password" />
+    placeholder={props.placeholder && props.t("Login." + props.placeholder, props.placeholder)} autoComplete="new-password" />
 )
 
 const PasswordFooter = props => (

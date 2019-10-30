@@ -1105,6 +1105,7 @@ const calculFiabilite = dispositif => {
   // console.log(score, dispositif, nbMoisAvantMaJ, nbMoisEntreCreationEtMaj, 
   //   hasSponsor, nbMots, nbLangues, nbTags, tagAutreExist, hasExternalLink,
   //   nbSectionsSansContenu, nbFakeContent, nbAddedChildren, hasMap, nbSections)
+  console.log(score)
   return score;
   //Nouvelles idées: nombre de suggestions, merci etc
 }
