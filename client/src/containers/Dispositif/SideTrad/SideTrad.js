@@ -385,7 +385,7 @@ class SideTrad extends Component {
             <FButton type="light-action" name={(isExpert ? "close" : "skip-forward") + "-outline"} fill={variables.noir} className="mr-10" onClick={()=> isExpert ? this.toggleModal(true, 'rejected') : this.goChange()}>
               {isExpert ? "Refuser" : "Passer"}
             </FButton>
-            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(translated || {}).body || disableBtn}>
+            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(translated || {}).body}>  {/* || disableBtn */}
               Valider
             </FButton>
           </div>
