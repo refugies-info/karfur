@@ -57,7 +57,7 @@ function get_article(req, res) {
         "text": "Requête invalide"
     })
   } else {
-    var {query, locale, sort, populate, limit, random} = req.body;
+    let {query, locale, sort, populate, limit, random} = req.body;
     locale = locale || 'fr';
     // console.log(query, locale, sort, populate, limit, random)
     let isStructure=false, structId=null;
@@ -78,7 +78,7 @@ function get_article(req, res) {
     promise.then(async result => {
       // console.log(result)
       let structureArr=[];
-      await [].forEach.call(result, async (article, i) => {
+      await asyncForEach(result, async (article, i) => {
         // console.log(article) 
         if(article.isStructure){
           // console.log(article) 
@@ -539,6 +539,12 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
   })
   path.pop()
   return articles
+}
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < (array || []).length; index++) {
+    await callback(array[index], index, array);
+  }
 }
 
 //On exporte notre fonction
