@@ -255,7 +255,6 @@ class UserDash extends Component {
 }
 
 const buttonTraductions = (element, user, openThemes, openTraductions) => (
-  console.log(user, user.roles)
   (user.roles || []).find(x => x && x.nom==='ExpertTrad') ?
     element.nbTrads > 0 ?
       <FButton type="dark" name="done-all-outline" fill={variables.noir} onClick={() => openTraductions(element)}>
