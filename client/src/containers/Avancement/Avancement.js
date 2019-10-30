@@ -174,7 +174,7 @@ class Avancement extends Component {
     ];
     console.log(traductions)
     traductions = traductions.filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots)
-    console.log(traductions)
+    console.log(traductions, isExpert)
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
