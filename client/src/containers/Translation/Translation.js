@@ -88,6 +88,7 @@ class TranslationHOC extends Component {
     let isExpert=props.location.pathname.includes('/validation');
     const type = (props.match.path || "").includes("dispositif") ? "dispositif" : "string";
     this.setState({ type, itemId, locale, isExpert });
+    console.log(itemId)
     if(itemId && type==="dispositif"){
       API.get_tradForReview({'articleId':itemId}, {}, 'userId').then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
@@ -256,6 +257,7 @@ class TranslationHOC extends Component {
       let results=data_res.data.data;
       if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
       else{ clearInterval(this.timer);
+        console.log('nb resultats', results.length)
         this.props.history.push({ 
           pathname: '/traduction/' + this.state.type + '/' + results[0]._id, 
           search: '?id=' + this.state.langue._id,
