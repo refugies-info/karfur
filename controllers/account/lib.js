@@ -92,7 +92,8 @@ function login(req, res) {
       username: req.body.username
     }, (err, user) => {
       if (err) {
-        res.status(500).json({ "text": "Erreur interne" })
+        console.log(err)
+        res.status(500).json({ "text": "Erreur interne", data: err })
       }
       else if(!user){ //On lui crée un nouveau compte
         user = req.body;
