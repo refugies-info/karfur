@@ -6,6 +6,7 @@ import {NavLink} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { connect } from 'react-redux';  
 import track from 'react-tracking';
+import _ from "lodash";
 
 import API from '../../utils/API'
 import {colorAvancement} from '../../components/Functions/ColorFunctions';
@@ -53,7 +54,7 @@ class Avancement extends Component {
       this._loadLangue(itemId, isExpert);
     }
     this._loadArticles(itemId, i18nCode);
-    API.get_tradForReview({}, {}, 'userId').then(data => { //console.log(data.data.data);
+    API.get_tradForReview({langueCible: i18nCode}, {}, 'userId').then(data => { //console.log(data.data.data);
       this.setState({traductionsFaites: data.data.data})
     })
     // this._loadThemes();
@@ -69,7 +70,7 @@ class Avancement extends Component {
         query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}]};
       }
       API.get_article(query,i18nCode).then(data_res => {
-        let articles=data_res.data.data;
+        const articles=data_res.data.data;
         this.setState({data:articles})
       })
     }
@@ -77,7 +78,7 @@ class Avancement extends Component {
 
   _loadLangue=(itemId, isExpert) => {
     if(itemId){
-      API.get_langues({_id:itemId},{'avancement':1}).then(data_res => {
+      API.get_langues({_id:itemId},{'avancement':1}, 'langueBackupId').then(data_res => {
         let langue=data_res.data.data[0];
         this._loadTraductions(langue);
         console.log(langue)
@@ -141,7 +142,7 @@ class Avancement extends Component {
   goToTraduction = (element) => {
     console.log(element)
     this.props.history.push({
-      pathname: (this.state.isExpert ? '/validation' : '/traduction') + '/' + element.type + '/' + element._id,
+      pathname: (this.state.isExpert ? '/validation' : '/traduction') + '/' + element.typeContenu + '/' + element._id,
       // pathname: '/traduction/'+ (this.state.isExpert ? 'validation/' : '') + element._id,
       search: '?id=' + this.state.langue._id,
       state: { langue: this.state.langue}
@@ -158,33 +159,36 @@ class Avancement extends Component {
         ...x,
         avancement: Math.max(0, ...((this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => (z.avancement || -1)) || [])) || 0, 
         users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
-        type: "string",
+        typeContenu: "string",
         _id: isExpert ? ((this.state.traductionsFaites || []).find(y => y.jsonId === x._id && y.avancement === 1) || {})._id : x._id,
       } ) ), 
       ...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
           _id:x._id, 
-          title:x.titreMarque + " - " + x.titreInformatif, 
+          title: ((x.titreMarque || "") + (x.titreMarque && x.titreInformatif ? " - " : "") + (x.titreInformatif || "")), 
           nombreMots:x.nbMots,
           avancement: Math.max(0, ...((this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => (z.avancement || -1)) || [])) || 0, 
           status:x.status, 
           created_at:x.created_at, 
           users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
-          type: "dispositif"
+          typeContenu: x.typeContenu || "dispositif"
       } ) )
-    ].filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
+    ];
+    traductions = traductions.filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
 
+    const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length))}
+    
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
-          traductions.map((element,key) => {
+          traductions.map((element) => {
             const joursDepuis = (new Date().getTime() -  new Date(element.created_at).getTime()) / (1000 * 3600 * 24);
-            const titre = (element.title || {}).fr || element.title || (element.initialText || {}).title || (element.titreMarque + " - " + element.titreMarque) ||'' ;
+            const titre = (element.title || {}).fr || element.title || (element.initialText || {}).title || ((element.titreMarque || "") + (element.titreMarque && element.titreInformatif ? " - " : "") + (element.titreInformatif || "")) ||'' ;
             return (
               <tr 
                 key={element._id}
                 className="avancement-row pointer"
                 onClick={() => this.goToTraduction(element)} >
-                <td className="align-middle">{element.isStructure ? "Site" : "Dispositif"}</td>
+                <td className="align-middle">{element.isStructure ? "Site" : jsUcfirst(element.typeContenu)}</td>
                 <td className="align-middle">{titre.slice(0,30) + (titre.length > 30 ? "..." : "")}</td>
                 <td className={"align-middle depuis " + (element.nombreMots > 100 ? "alert" : "success") }>
                   {(isExpert ? "" : (Math.round((element.nombreMots || 0) * (element.avancement || 0)) + " / ")) + element.nombreMots}
@@ -215,7 +219,7 @@ class Avancement extends Component {
                     </Row>
                   </td>} 
                 <td className={"align-middle depuis " + (joursDepuis > 3 ? "alert" : "success") }>
-                  {moment(element.created_at).fromNow()}
+                  {moment(element.updatedAt).fromNow()}
                 </td>
                 <td className="align-middle fit-content">
                   <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/>

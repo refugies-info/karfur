@@ -29,7 +29,7 @@ function add_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let dispositif = req.body;
-    
+    console.log('content-length', req.headers['content-length'])
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
@@ -51,7 +51,9 @@ function add_dispositif(req, res) {
         })
       }
       //J'associe la structure principale à ce dispositif
-      Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+      if(dispositif.mainSponsor){
+        Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+      }
 
       _handleMailNotification(data);
 
@@ -61,7 +63,7 @@ function add_dispositif(req, res) {
       })
     }).catch(err => {
       console.log(err);
-      res.status(500).json({"text": "Erreur interne"})
+      res.status(500).json({"text": "Erreur interne", data: err})
     })
   }
 }
@@ -147,9 +149,12 @@ function update_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let {dispositifId, fieldName, suggestionId, type, ...dispositif} = req.body;
-    let update = null;
+    let update = null, query = { _id: dispositifId };
     if(type==='pull'){
       update = { $pull: { [fieldName] : {'suggestionId': suggestionId } } }
+    }else if(type==='set'){
+      query = {...query, "suggestions.suggestionId": suggestionId};
+      update = { "$set": { [fieldName]: true } }
     }else{
       update = { "$push": { [fieldName]: {
         ...(req.userId && {userId:req.userId}), 
@@ -159,8 +164,8 @@ function update_dispositif(req, res) {
         suggestionId: uniqid('feedback_')
       } } }
     }
-    Dispositif.findByIdAndUpdate({ _id: dispositifId },update,{new: true},(err, data) => {
-      if (err){res.status(404).json({ "text": "Pas de résultat" })}
+    Dispositif.findOneAndUpdate(query, update,{new: true},(err, data) => {
+      if (err){res.status(404).json({ "text": "Pas de résultat", error: err }); console.log(err)}
       else{
         res.status(200).json({
           "text": "Succès",

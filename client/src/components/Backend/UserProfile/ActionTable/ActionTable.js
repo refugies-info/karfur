@@ -7,9 +7,10 @@ import { withTranslation } from 'react-i18next';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import { countrySide } from "../../../../assets/figma/index";
 import { fakeNotifs } from '../../../../containers/Backend/UserProfile/data';
-
-import variables from 'scss/colors.scss';
 import FButton from '../../../FigmaUI/FButton/FButton';
+
+import './ActionTable.scss'
+import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
@@ -34,9 +35,10 @@ const actionTable = (props) => {
         {data.slice(0,props.limit).map((element,key) => {
           const joursDepuis = (new Date().getTime() -  new Date(element.depuis).getTime()) / (1000 * 3600 * 24);
           return (
-            <tr key={key} onClick={()=>props.showSuggestion(element)}>
+            <tr key={key} onClick={()=>props.showSuggestion(element, key)} className={"action-table " + (element.read ? "is-read" : "not-read")}>
               <td className="align-middle">
-                <div className="dot-circle" />
+                {!element.read &&
+                  <div className="dot-circle" />}
               </td>
               <td className="align-middle">
                 {element.titre} 

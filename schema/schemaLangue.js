@@ -21,11 +21,7 @@ var langueSchema = mongoose.Schema({
 		unique: false,
 		required: false
 	},
-  langueBackupId: {
-		type: String,
-		unique: false,
-		required: false
-	},
+  langueBackupId: { type: mongoose.Schema.ObjectId, ref: 'Langue' },
   status: {
 		type: String,
 		unique: false,
