@@ -71,7 +71,10 @@
     "Traductions": "Traductions",
     "Ma structure": "Ma structure",
     "Messages": "Messages",
-    "Contributions": "Contributions"
+    "Contributions": "Contributions",
+    "Commencer à rédiger": "Commencer à rédiger",
+    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants" : "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants",
+    "Ici, vous pourrez accéder à vos contributions": "Ici, vous pourrez accéder à vos contributions"
   },
   "UserProfile": {
     "Pseudonyme": "Pseudonyme",
@@ -181,6 +184,7 @@
     "Loisir": "Loisir",
     "Culture": "Culture",
     "Santé": "Santé",
+    "Autre": "Autre",
     "apprendre le français": "apprendre le français",
     "me loger": "me loger",
     "trouver un travail": "trouver un travail",

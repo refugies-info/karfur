@@ -68,7 +68,7 @@ const routes = [
   { path: '/record-audio', exact: true, name: 'Enregistrement audio', component: RecordAudio, restriction:[] },
 
   { path: '/backend', exact:true, forceShow:true, name: 'Administration', component: Dashboard, restriction:['Admin'] },
-  { path: '/backend/dashboard', name: 'Dashboard', component: Dashboard, restriction:['Admin'] },
+  { path: '/backend/admin-dashboard', name: 'Dashboard', component: Dashboard, restriction:['Admin'] },
   { path: '/backend/admin', name: 'Admin', component: Admin, restriction:['Admin'] },
   { path: '/backend/chat', name: 'Chat', component: Chat, restriction:['Admin'] },
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},

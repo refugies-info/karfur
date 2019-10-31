@@ -21,9 +21,10 @@ function create_langues(req, res) {
         "text": "Succès",
         "data": data
       })
-    }).catch(err => {
+    }).catch(err => { console.log(err);
       res.status(500).json({
-        "text": "Erreur interne"
+        "text": "Erreur interne",
+        data: err
       })
     })
   }
@@ -44,6 +45,7 @@ function get_langues(req, res) {
   var findLangue = new Promise(function (resolve, reject) {
     Langue.find(query).sort(sort).populate(populate).exec(function (err, result) {
       if (err) {
+        console.log(err)
         reject(500);
       } else {
         if (result) {

@@ -319,4 +319,12 @@ const tutoStepsDemarche = [
   },
 ]
 
-export {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche};
+const customConvertOption = {
+  blockToHTML: (block) => {
+    if (block.type === 'header-six') {
+      return {start:"<div class='bloc-rouge'> <div class='icon-left-side'> <span>i</span> </div> <div class='right-side'> <div><b>Bon à savoir :</b></div>", end: "</div> </div>"};
+    }
+  }
+};
+
+export {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche, customConvertOption};

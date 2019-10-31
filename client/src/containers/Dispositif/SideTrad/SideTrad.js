@@ -131,7 +131,7 @@ class SideTrad extends Component {
       this.props.updateUIArray(idx, subidx, 'accordion', true)
     }
     Array.from(document.getElementsByClassName("translating")).forEach(x => {x.classList.remove("translating")}); //On enlève le surlignage des anciens éléments
-    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
+    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx!==undefined && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx!==undefined && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
     if(elems.length > 0){
       const elem = elems[0];
       elem.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
@@ -159,7 +159,7 @@ class SideTrad extends Component {
           scoreArr = newValue["score" + this.state.currSubName] || {};
           newValue = newValue[this.state.currSubName];
         }
-        return ({value: newValue, score: ((scoreArr.cosine || [{}])[0] || [{}])[0], ...x})
+        return ({value: newValue, score: _.get(scoreArr, "cosine.0.0", 0), ...x})
       }) || []).sort((a,b) => b.score - a.score);
       if(listTrad && listTrad.length > 0){
         oldTrad = listTrad[0].value; score = listTrad[0].score; userId = listTrad[0].userId;  selectedTrad=listTrad[0];
@@ -177,6 +177,7 @@ class SideTrad extends Component {
         }
       }
     }
+    console.log(oldTrad)
     this.setState({listTrad, score, userId, selectedTrad});
     if(oldTrad){
       this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } } )
@@ -273,7 +274,6 @@ class SideTrad extends Component {
   }
 
   _insertTrad = () => {
-    console.log(this.props.traduction);
     let newTrad = {...this.props.traduction, articleId: this.props.itemId, type: "dispositif", locale: this.props.locale, traductions: this.props.traductionsFaites};
     API.validate_tradForReview(newTrad).then(data => {
       console.log(data.data.data)
@@ -385,7 +385,7 @@ class SideTrad extends Component {
             <FButton type="light-action" name={(isExpert ? "close" : "skip-forward") + "-outline"} fill={variables.noir} className="mr-10" onClick={()=> isExpert ? this.toggleModal(true, 'rejected') : this.goChange()}>
               {isExpert ? "Refuser" : "Passer"}
             </FButton>
-            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(translated || {}).body || disableBtn}>
+            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(translated || {}).body}>  {/* || disableBtn */}
               Valider
             </FButton>
           </div>

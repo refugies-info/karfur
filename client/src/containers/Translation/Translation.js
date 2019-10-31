@@ -5,7 +5,8 @@ import h2p from 'html2plaintext';
 import debounce from 'lodash.debounce';
 import { EditorState, ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
-import 'rc-slider/assets/index.css';
+import { connect } from 'react-redux'; 
+import _ from "lodash";
 
 import API from '../../utils/API';
 import StringTranslation from './StringTranslation/StringTranslation';
@@ -84,30 +85,36 @@ class TranslationHOC extends Component {
     this.initializeTimer();
     let itemId=null;
     try{itemId=props.match.params.id}catch(e){console.log(e)};
-    let locale = await this._setLangue(props);
-    let isExpert=props.location.pathname.includes('/validation');
-    const type = (props.match.path || "").includes("dispositif") ? "dispositif" : "string";
+    const locale = await this._setLangue(props), userId = props.userId;
+    const isExpert=props.location.pathname.includes('/validation');
+    const type = (props.match.path || "").includes("dispositif") || (props.match.path || "").includes("demarche") ? "dispositif" : "string";
     this.setState({ type, itemId, locale, isExpert });
     if(itemId && type==="dispositif"){
-      API.get_tradForReview({'articleId':itemId}, {}, 'userId').then(data_res => {
+      API.get_tradForReview({'articleId':itemId, ...(!isExpert && userId && {userId})}, {updatedAt: -1}, 'userId').then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
-          this.setState({traductionsFaites : data_res.data.data})
+          const traductions = data_res.data.data; console.log(traductions);
+          this.setState({
+            traductionsFaites : traductions,
+            ...(!isExpert && userId && {traduction : {
+              initialText: _.get(traductions, "0.initialText", {}), 
+              translatedText: _.get(traductions, "0.translatedText", {})
+            }, autosuggest: false})
+          })
         }
       })
     }
   }
 
   _setLangue = async props => {
-    let locale=null;
+    let langue=null;
     try{
-      this.setState({langue: props.location.state.langue})
-      locale=props.location.state.langue.i18nCode;
+      langue = props.location.state.langue;
     }catch(e){ try{
       const params = querySearch(props.location.search);
-      let langue = (await API.get_langues({_id:params.id})).data.data[0];
-      this.setState({langue: langue});
-      locale=langue.i18nCode;
+      langue = (await API.get_langues({_id:params.id}, {}, 'langueBackupId')).data.data[0];
     } catch(err){console.log(err)} }
+    const locale = langue.langueBackupId && langue.langueBackupId.i18nCode ? langue.langueBackupId.i18nCode : langue.i18nCode
+    this.setState({langue})
     return locale;
   }
 
@@ -115,8 +122,10 @@ class TranslationHOC extends Component {
   fwdSetState = (fn, cb) => this.setState(fn, cb);
 
   translate = (text,target,item,toEditor=false) => {
+    console.log("start translate") 
     this.setState({ translated:{ ...this.state.translated, [item]: "" }, autosuggest: true });
     API.get_translation({ q: text, target: target }).then(data => {
+      console.log("getting translate") 
       if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
         let value = data.data.replace(/ id='initial_/g,' id=\'target_').replace(/ id="initial_/g,' id="target_') || "";
         value = toEditor ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks)) : value;
@@ -125,9 +134,10 @@ class TranslationHOC extends Component {
             ...this.state.translated,
             [item]: value
           }
-        })//, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
+        }, ()=> console.log("setting translate", this.state.translated) )//, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
       }
     }).catch((err)=>{ console.log('error : ', err);
+      console.log("catching translate") 
       if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
         let value = this.state.francais[item] || "";
         value = toEditor ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks)) : value;
@@ -136,7 +146,7 @@ class TranslationHOC extends Component {
             ...this.state.translated,
             [item]: value,
             }
-        });
+        }, ()=> console.log("setting translate", this.state.translated) );
       }
     })
   }
@@ -240,10 +250,9 @@ class TranslationHOC extends Component {
       traduction._id = (data.data.data || {})._id;
       this.setState({traduction});
       if(traduction.avancement === 1){
-        Swal.fire( 'Yay...', 'La traduction a bien été enregistrée', 'success').then(()=>{
-          this.setState({disableBtn: false});
-          this.onSkip();
-        });
+        Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000})
+        this.setState({disableBtn: false});
+        this.onSkip();
       }
     }).catch(()=> this.setState({disableBtn: false}))
   }
@@ -252,7 +261,6 @@ class TranslationHOC extends Component {
     let i18nCode=(this.state.langue || {}).i18nCode;
     let nom='avancement.'+i18nCode;
     let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}]};
-    console.log(query)
     API[this.state.type==="dispositif" ? "get_dispositif" : "getArticle"]({query: query, locale:i18nCode, random:true}).then(data_res => {
       let results=data_res.data.data;
       if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
@@ -327,4 +335,11 @@ class TranslationHOC extends Component {
   }
 }
 
-export default TranslationHOC;
+
+const mapStateToProps = (state) => {
+  return {
+    userId: state.user.userId,
+  }
+}
+
+export default  connect(mapStateToProps)(TranslationHOC);
