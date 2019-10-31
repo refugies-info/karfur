@@ -5,7 +5,8 @@ import h2p from 'html2plaintext';
 import debounce from 'lodash.debounce';
 import { EditorState, ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
-import 'rc-slider/assets/index.css';
+import { connect } from 'react-redux'; 
+import _ from "lodash";
 
 import API from '../../utils/API';
 import StringTranslation from './StringTranslation/StringTranslation';
@@ -84,15 +85,21 @@ class TranslationHOC extends Component {
     this.initializeTimer();
     let itemId=null;
     try{itemId=props.match.params.id}catch(e){console.log(e)};
-    let locale = await this._setLangue(props);
-    let isExpert=props.location.pathname.includes('/validation');
-    const type = (props.match.path || "").includes("dispositif") ? "dispositif" : "string";
+    const locale = await this._setLangue(props), userId = props.userId;
+    const isExpert=props.location.pathname.includes('/validation');
+    const type = (props.match.path || "").includes("dispositif") || (props.match.path || "").includes("demarche") ? "dispositif" : "string";
     this.setState({ type, itemId, locale, isExpert });
-    console.log(itemId)
     if(itemId && type==="dispositif"){
-      API.get_tradForReview({'articleId':itemId}, {}, 'userId').then(data_res => {
+      API.get_tradForReview({'articleId':itemId, ...(!isExpert && userId && {userId})}, {updatedAt: -1}, 'userId').then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
-          this.setState({traductionsFaites : data_res.data.data})
+          const traductions = data_res.data.data; console.log(traductions);
+          this.setState({
+            traductionsFaites : traductions,
+            ...(!isExpert && userId && {traduction : {
+              initialText: _.get(traductions, "0.initialText", {}), 
+              translatedText: _.get(traductions, "0.translatedText", {})
+            }, autosuggest: false})
+          })
         }
       })
     }
@@ -252,12 +259,10 @@ class TranslationHOC extends Component {
     let i18nCode=(this.state.langue || {}).i18nCode;
     let nom='avancement.'+i18nCode;
     let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}]};
-    console.log(query)
     API[this.state.type==="dispositif" ? "get_dispositif" : "getArticle"]({query: query, locale:i18nCode, random:true}).then(data_res => {
       let results=data_res.data.data;
       if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
       else{ clearInterval(this.timer);
-        console.log('nb resultats', results.length)
         this.props.history.push({ 
           pathname: '/traduction/' + this.state.type + '/' + results[0]._id, 
           search: '?id=' + this.state.langue._id,
@@ -328,4 +333,11 @@ class TranslationHOC extends Component {
   }
 }
 
-export default TranslationHOC;
+
+const mapStateToProps = (state) => {
+  return {
+    userId: state.user.userId,
+  }
+}
+
+export default  connect(mapStateToProps)(TranslationHOC);

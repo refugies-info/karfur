@@ -131,7 +131,7 @@ class SideTrad extends Component {
       this.props.updateUIArray(idx, subidx, 'accordion', true)
     }
     Array.from(document.getElementsByClassName("translating")).forEach(x => {x.classList.remove("translating")}); //On enlève le surlignage des anciens éléments
-    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
+    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx!==undefined && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx!==undefined && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
     if(elems.length > 0){
       const elem = elems[0];
       elem.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
@@ -177,6 +177,7 @@ class SideTrad extends Component {
         }
       }
     }
+    console.log(oldTrad)
     this.setState({listTrad, score, userId, selectedTrad});
     if(oldTrad){
       this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } } )
@@ -273,7 +274,6 @@ class SideTrad extends Component {
   }
 
   _insertTrad = () => {
-    console.log(this.props.traduction);
     let newTrad = {...this.props.traduction, articleId: this.props.itemId, type: "dispositif", locale: this.props.locale, traductions: this.props.traductionsFaites};
     API.validate_tradForReview(newTrad).then(data => {
       console.log(data.data.data)
