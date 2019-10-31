@@ -78,7 +78,7 @@ class Avancement extends Component {
 
   _loadLangue=(itemId, isExpert) => {
     if(itemId){
-      API.get_langues({_id:itemId},{'avancement':1}).then(data_res => {
+      API.get_langues({_id:itemId},{'avancement':1}, 'langueBackupId').then(data_res => {
         let langue=data_res.data.data[0];
         this._loadTraductions(langue);
         console.log(langue)
