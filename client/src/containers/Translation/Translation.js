@@ -122,8 +122,10 @@ class TranslationHOC extends Component {
   fwdSetState = (fn, cb) => this.setState(fn, cb);
 
   translate = (text,target,item,toEditor=false) => {
+    console.log("start translate") 
     this.setState({ translated:{ ...this.state.translated, [item]: "" }, autosuggest: true });
     API.get_translation({ q: text, target: target }).then(data => {
+      console.log("getting translate") 
       if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
         let value = data.data.replace(/ id='initial_/g,' id=\'target_').replace(/ id="initial_/g,' id="target_') || "";
         value = toEditor ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks)) : value;
@@ -132,9 +134,10 @@ class TranslationHOC extends Component {
             ...this.state.translated,
             [item]: value
           }
-        })//, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
+        }, ()=> console.log("setting translate", this.state.translated) )//, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
       }
     }).catch((err)=>{ console.log('error : ', err);
+      console.log("catching translate") 
       if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
         let value = this.state.francais[item] || "";
         value = toEditor ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks)) : value;
@@ -143,7 +146,7 @@ class TranslationHOC extends Component {
             ...this.state.translated,
             [item]: value,
             }
-        });
+        }, ()=> console.log("setting translate", this.state.translated) );
       }
     })
   }
