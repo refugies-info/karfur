@@ -44,10 +44,17 @@ class UserDash extends Component {
     if(user && user.selectedLanguages && user.selectedLanguages.length > 0){
       API.get_langues({'_id': { $in: user.selectedLanguages}},{avancement: 1},'participants').then(data_langues => {
         console.log(data_langues.data.data)
-        this.setState({languesUser: data_langues.data.data, isMainLoading: false}, () => {
+        const languesUser = data_langues.data.data;
+        this.setState({languesUser, isMainLoading: false}, () => {
           if(this.props.expertTrad){
             API.get_tradForReview({'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"},{updatedAt: -1}).then(data => {console.log(data.data.data)
-              this.setState({languesUser: this.state.languesUser.map( x => ({...x, nbTrads: ((data.data.data || []).filter(y => y.langueCible === x.i18nCode) || []).length }) ) })
+              this.setState(pS => ({languesUser: pS.languesUser.map( x => ({...x, nbTrads: ((data.data.data || []).filter(y => y.langueCible === x.i18nCode) || []).length }) ) }))
+            })
+          }
+          if(languesUser.some(x => x.langueBackupId)){
+            API.get_langues({'_id': { $in: languesUser.filter(x => x.langueBackupId).map(x => x.langueBackupId) } }).then(data => {
+              const languesToPopulate = data.data.data;
+              this.setState(pS => ({languesUser : pS.languesUser.map(x => x.langueBackupId ? {...x, langueBackupId: languesToPopulate.find(y => y._id === x.langueBackupId) } : x ) }), ()=> console.log(this.state.languesUser))
             })
           }
         })
@@ -255,7 +262,7 @@ class UserDash extends Component {
 }
 
 const buttonTraductions = (element, user, openThemes, openTraductions) => (
-  (user.roles || []).find(x => x.nom==='ExpertTrad') ?
+  (user.roles || []).find(x => x && x.nom==='ExpertTrad') ?
     element.nbTrads > 0 ?
       <FButton type="dark" name="done-all-outline" fill={variables.noir} onClick={() => openTraductions(element)}>
         Valider les traductions

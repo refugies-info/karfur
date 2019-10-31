@@ -163,6 +163,12 @@ html body{
     background: $gris;
   }
 
+  .flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .dashed-panel{
     background: repeating-linear-gradient(
       -45deg,

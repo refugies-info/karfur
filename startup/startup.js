@@ -87,16 +87,22 @@ const _insertI18nLocales = () => {
     nombreMots:nbMots,
     avancement:avancement,
     status:'Actif',
-    isStructure: true
+    isStructure: true,
+    canBeUpdated: false
   }
-  Article.findOneAndUpdate({isStructure: true, title: 'Structure du site', status:'Actif'}, localeArticle, {upsert: true,new: true}, (err, doc) => {
-    if (err) {
-      console.log("Something went wrong when updating data : " + err);
-      return false
-    }
-    console.log('translation data inserted with great success');
-    return true
-  });
+  Article.findOneAndUpdate(
+    {isStructure: true, title: 'Structure du site', status:'Actif', canBeUpdated: true}, 
+    localeArticle, 
+    {upsert: false,new: true},  //Modifier upsert à true si on accepte d'en créer un nouveau si on ne le trouve pas
+    (err, doc) => {
+      if (err) {
+        console.log("Something went wrong when updating data : " + err);
+        return false
+      }else if(doc){
+        console.log('translation data inserted with great success');
+      }
+      return true
+    });
 }
 
 _insertNested = (frJson, jsonLoc, locale, nbMots, avancement) => {

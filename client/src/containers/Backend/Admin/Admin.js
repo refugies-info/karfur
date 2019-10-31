@@ -49,7 +49,7 @@ class Admin extends Component {
       langueLoc:'',
       langueCode:'',
       langueIsDialect:false,
-      langueBackupId:"undefined",
+      langueBackupId: undefined,
       i18nCode : '',
       _id:undefined,
       status: 'Active',

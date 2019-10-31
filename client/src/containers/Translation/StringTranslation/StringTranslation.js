@@ -285,7 +285,7 @@ class Translation extends Component {
               <FButton type="error" name="arrow-forward" onClick={this.props.onSkip} className="mr-10">
                 Passer
               </FButton>
-              <FButton type="validate" name="checkmark-outline" fill={variables.error} onClick={()=> this.props.valider()} disabled={disableBtn}>
+              <FButton type="validate" name="checkmark-outline" fill={variables.error} onClick={()=> this.props.valider()}>  {/* disabled={disableBtn} */}
                 Valider
               </FButton>
             </Col>

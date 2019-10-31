@@ -57,12 +57,8 @@ function get_article(req, res) {
         "text": "Requête invalide"
     })
   } else {
-    var query = req.body.query;
-    var locale=req.body.locale || 'fr';
-    var sort = req.body.sort;
-    var populate = req.body.populate;
-    var limit = req.body.limit;
-    var random = req.body.random;
+    let {query, locale, sort, populate, limit, random} = req.body;
+    locale = locale || 'fr';
     // console.log(query, locale, sort, populate, limit, random)
     let isStructure=false, structId=null;
     if(query._id && query._id.includes('struct_')){
@@ -79,16 +75,21 @@ function get_article(req, res) {
     }else{
       promise=Article.find(query).sort(sort).populate(populate).limit(limit);
     }
-    promise.then(result => {
+    promise.then(async result => {
       // console.log(result)
       let structureArr=[];
-      [].forEach.call(result, (article, i) => {
+      await asyncForEach(result, async (article, i) => {
         // console.log(article) 
         if(article.isStructure){
           // console.log(article) 
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
-          if(random && structureArr.length > 1){structureArr = [structureArr[ Math.floor((Math.random() * structureArr.length)) ]]}
+          if(random && structureArr.length > 1){
+            //Je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
+            const traductions = await Traduction.find({type: "string", userId: req.userId, langueCible: locale, avancement: 1, articleId: article._id})
+            structureArr = traductions && traductions.length > 0 ? structureArr.filter(x => !traductions.some(y => x._id === y.jsonId)) : structureArr;
+            structureArr = structureArr.length > 1 ? [structureArr[ Math.floor((Math.random() * structureArr.length)) ]] : structureArr;
+          }
           result.splice(i, 1);
         }else{
           returnLocalizedContent(article.body, locale)
@@ -538,6 +539,12 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
   })
   path.pop()
   return articles
+}
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < (array || []).length; index++) {
+    await callback(array[index], index, array);
+  }
 }
 
 //On exporte notre fonction

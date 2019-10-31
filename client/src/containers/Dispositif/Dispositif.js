@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import htmlToDraft from 'html-to-draftjs';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { EditorState, convertToRaw, convertFromRaw, ContentState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { savePDF } from '@progress/kendo-react-pdf';
 import moment from 'moment/min/moment-with-locales';
@@ -16,6 +16,7 @@ import h2p from 'html2plaintext';
 import ReactJoyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import _ from "lodash";
 import querySearch from "stringquery";
+import {convertToHTML} from "draft-convert";
 
 import API from '../../utils/API';
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
@@ -36,7 +37,7 @@ import SideTrad from './SideTrad/SideTrad';
 import {initializeTimer} from '../Translation/functions';
 import {readAudio} from "../Layout/functions";
 import MoteurVariantes from './MoteurVariantes/MoteurVariantes';
-import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche} from './data'
+import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche, customConvertOption} from './data'
 import {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche} from "./functions";
 
 import variables from 'scss/colors.scss';
@@ -87,7 +88,7 @@ class Dispositif extends Component {
     user:{},
     isDispositifLoading: true,
     contributeurs:[],
-    withHelp:true,
+    withHelp: process.env.NODE_ENV !== "development",
     runFirstJoyRide: false,
     runJoyRide: false,
     stepIndex: 0,
@@ -105,6 +106,7 @@ class Dispositif extends Component {
     allDemarches: [],
     demarcheId: null,
     isVarianteValidated: false,
+    dispositif: {},
   }
   newRef=React.createRef();
   mountTime=0;
@@ -185,7 +187,7 @@ class Dispositif extends Component {
       this.setState({
         disableEdit:false,
         uiArray: menuContenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}),
-        showDispositifCreateModal: true, //A modifier avant la mise en prod
+        showDispositifCreateModal: process.env.NODE_ENV !== "development", //A modifier avant la mise en prod
         isDispositifLoading: false,
         menu: menuContenu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
         typeContenu,
@@ -263,25 +265,32 @@ class Dispositif extends Component {
   handleContentClick = (key, editable, subkey=undefined) => {
     let state=[...this.state.menu];
     if(state.length > key && key >= 0 && !this.state.disableEdit && (!this.state.inVariante || _.get(this.state.uiArray, key + (subkey ? ".children." + subkey : "") + ".varianteSelected")) ){
-      console.log(key, editable, subkey)
       if(editable){  
         state = state.map(x => ({
           ...x, 
           editable:false, 
-          ...(x.editable && x.editorState && x.editorState.getCurrentContent() && x.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(x.editorState.getCurrentContent())) } ), 
-          ...(x.children && {children: x.children.map(y => ({ ...y, ...(y.editable && y.editorState && y.editorState.getCurrentContent() && y.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(y.editorState.getCurrentContent())) } ), editable:false }))}) 
+          ...(x.editable && x.editorState && x.editorState.getCurrentContent() && x.editorState.getCurrentContent().getPlainText() !== '' && 
+            { content: convertToHTML(customConvertOption)(x.editorState.getCurrentContent()) } ), 
+          ...(x.children && {children: x.children.map(y => ({ ...y, ...(y.editable && y.editorState && y.editorState.getCurrentContent() && y.editorState.getCurrentContent().getPlainText() !== '' && 
+            { content: convertToHTML(customConvertOption)(y.editorState.getCurrentContent()) } ), editable:false }))})  //draftToHtml(convertToRaw(y.editorState.getCurrentContent()))
         }))
       }
       let right_node=state[key];
       if(subkey !==undefined && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
       if(editable && right_node.content){
-        right_node.editorState = EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks)) ;
+        const contentState = ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks);
+        const rawContentState = convertToRaw(contentState) || {};
+        const rawBlocks = rawContentState.blocks || [];
+        const textPosition = rawBlocks.findIndex(x => (x.text || "").includes("Bon à savoir :"));
+        const newRawBlocks = rawBlocks.filter((_,i) => i < textPosition - 3 || i>=textPosition)
+        const newRawContentState = {...rawContentState, blocks : newRawBlocks.map(x => x.text.includes("Bon à savoir :") ? {...x, text: x.text.replace("Bon à savoir :", ""), type: "header-six"} : x)}
+        const newContentState = convertFromRaw(newRawContentState)
+        right_node.editorState = EditorState.createWithContent(newContentState) ;
       }else if(!editable && right_node.editorState && right_node.editorState.getCurrentContent){
-        right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
+        right_node.content= convertToHTML(customConvertOption)(right_node.editorState.getCurrentContent()); //draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
       if(right_node.type === 'accordion'){ this.updateUIArray(key, subkey, 'accordion', true) }
-      console.log(right_node)
       return new Promise(resolve => this.setState( { menu: state },()=>{ this.updateUI(key, subkey, editable) ; resolve()} ));
     }else{return new Promise(r=> r())}
   };
@@ -563,7 +572,7 @@ class Dispositif extends Component {
 
   pushReaction = (modalName=null, fieldName) => {
     if(modalName){this.toggleModal(false, modalName);}
-    let dispositif = {
+    const dispositif = {
       dispositifId: this.state._id,
       keyValue: this.state.tKeyValue, 
       subkey: this.state.tSubkey,
@@ -645,7 +654,7 @@ class Dispositif extends Component {
         true;
     }else{dispositif.variantes = this.state.variantes; delete dispositif.titreMarque;}
     dispositif.mainSponsor = ((dispositif.sponsors || [{}])[0] || {})._id;
-    if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire" && !inVariante){
+    if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire" && !inVariante && this.state.status !== "Brouillon" && status !== "Brouillon"){
       dispositif.status = this.state.status;
     }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
       //Si l'auteur appartient à la structure principale je la fait passer directe en validation
@@ -657,15 +666,15 @@ class Dispositif extends Component {
       dispositif.status = "En attente non prioritaire";
     }
     console.log(dispositif)
-    // API.add_dispositif(dispositif).then((data) => {
-    //   Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
-    //     this.props.fetch_user();
-    //     this.props.fetch_dispositifs();
-    //     this.setState({disableEdit: status === 'En attente admin' || status === 'En attente', isDispositifLoading: false}, () => {
-    //       this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
-    //     })
-    //   });
-    // })
+    API.add_dispositif(dispositif).then((data) => {
+      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+        this.props.fetch_user();
+        this.props.fetch_dispositifs();
+        this.setState({disableEdit: ['En attente admin', 'En attente', "En attente non prioritaire", "Brouillon", "Actif"].includes(status), isDispositifLoading: false}, () => {
+          this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
+        })
+      });
+    })
   }
 
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
@@ -904,6 +913,7 @@ class Dispositif extends Component {
                   <MoteurVariantes 
                     itemId={this.state._id}
                     disableEdit={disableEdit}
+                    inVariante={inVariante}
                     validateVariante={this.validateVariante} 
                     filtres={filtres}
                     upcoming={this.upcoming}
@@ -1095,12 +1105,13 @@ const calculFiabilite = dispositif => {
   // console.log(score, dispositif, nbMoisAvantMaJ, nbMoisEntreCreationEtMaj, 
   //   hasSponsor, nbMots, nbLangues, nbTags, tagAutreExist, hasExternalLink,
   //   nbSectionsSansContenu, nbFakeContent, nbAddedChildren, hasMap, nbSections)
+  console.log(score)
   return score;
   //Nouvelles idées: nombre de suggestions, merci etc
 }
 
 function bgImage(short) {
-  const imageUrl = require("../../assets/figma/illustration_" + short + ".svg") //illustration_
+  const imageUrl = require("../../assets/figma/illustration_" + short.split(" ").join("-") + ".svg") //illustration_
   return imageUrl
 }
 
