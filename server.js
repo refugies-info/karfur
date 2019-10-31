@@ -19,7 +19,7 @@ const startup = require('./startup/startup');
 // const oauthLogoutCallback = require('./controllers/account/france-connect').oauthLogoutCallback
 // const getUser = require('./controllers/account/france-connect').getUser
 
-const {NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, DB_CONN, USERNAME_DB, DB_PW, MONGODB_URI} = process.env;
+const {NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, DB_CONN, USERNAME_DB, DB_PW, MONGODB_URI, MONGODB_PROD_URI} = process.env;
 
 let scraper;
 if(NODE_ENV === 'dev') {
@@ -44,10 +44,10 @@ var io = require('socket.io')(http);
 //Connexion à la base de donnée
 mongoose.set('debug', false);
 let auth = null;
-// let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_URI; //ancienne connexion à mLab
-let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : DB_CONN;
+let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_PROD_URI; 
+// let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : DB_CONN; //ancienne connexion à Azure
 // auth = {user: USERNAME_DB, password: DB_PW};
-mongoose.connect(db_path).then(() => { //, { ...(auth && {auth: auth}), useNewUrlParser: true }
+mongoose.connect(db_path, { useNewUrlParser: true }).then(() => { //, { ...(auth && {auth: auth}), useNewUrlParser: true }
   console.log('Connected to mongoDB');
   startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
 }).catch(e => {
