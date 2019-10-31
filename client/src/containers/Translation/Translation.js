@@ -106,16 +106,15 @@ class TranslationHOC extends Component {
   }
 
   _setLangue = async props => {
-    let locale=null;
+    let langue=null;
     try{
-      this.setState({langue: props.location.state.langue})
-      locale=props.location.state.langue.i18nCode;
+      langue = props.location.state.langue;
     }catch(e){ try{
       const params = querySearch(props.location.search);
-      let langue = (await API.get_langues({_id:params.id})).data.data[0];
-      this.setState({langue: langue});
-      locale=langue.i18nCode;
+      langue = (await API.get_langues({_id:params.id}, {}, 'langueBackupId')).data.data[0];
     } catch(err){console.log(err)} }
+    const locale = langue.langueBackupId && langue.langueBackupId.i18nCode ? langue.langueBackupId.i18nCode : langue.i18nCode
+    this.setState({langue})
     return locale;
   }
 
