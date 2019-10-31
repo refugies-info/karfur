@@ -47,7 +47,7 @@ let auth = null;
 // let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_URI; //ancienne connexion à mLab
 let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : DB_CONN;
 // auth = {user: USERNAME_DB, password: DB_PW};
-mongoose.connect(db_path, { ...(auth && {auth: auth}), useNewUrlParser: true }).then(() => { //, { ...(auth && {auth: auth}), useNewUrlParser: true }
+mongoose.connect(db_path).then(() => { //, { ...(auth && {auth: auth}), useNewUrlParser: true }
   console.log('Connected to mongoDB');
   startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
 }).catch(e => {
