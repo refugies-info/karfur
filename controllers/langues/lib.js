@@ -21,9 +21,10 @@ function create_langues(req, res) {
         "text": "Succès",
         "data": data
       })
-    }).catch(err => {
+    }).catch(err => { console.log(err);
       res.status(500).json({
-        "text": "Erreur interne"
+        "text": "Erreur interne",
+        data: err
       })
     })
   }
