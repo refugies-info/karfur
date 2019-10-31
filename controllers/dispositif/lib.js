@@ -29,7 +29,7 @@ function add_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let dispositif = req.body;
-    
+    console.log('content-length', req.headers['content-length'])
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
@@ -51,7 +51,9 @@ function add_dispositif(req, res) {
         })
       }
       //J'associe la structure principale à ce dispositif
-      Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+      if(dispositif.mainSponsor){
+        Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+      }
 
       _handleMailNotification(data);
 
@@ -61,7 +63,7 @@ function add_dispositif(req, res) {
       })
     }).catch(err => {
       console.log(err);
-      res.status(500).json({"text": "Erreur interne"})
+      res.status(500).json({"text": "Erreur interne", data: err})
     })
   }
 }
