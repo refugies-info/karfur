@@ -86,15 +86,15 @@ function get_article(req, res) {
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           if(random && structureArr.length > 1){
             let traductions;
-            if(isExpert){ //S'il est expert, je vais chercher dans toutes les strings traduites celles qui n'ont pas encore été validées
-              traductions = await Traduction.find({status: "En attente", type: "string", langueCible: locale, avancement: 1, articleId: article._id})
-              console.log(traductions)
-              if(!traductions || traductions.length === 0){ res.status(400).json({"text": "Aucune traduction restante à valider"}); return; }
-            }else{ //Sinon, je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
+            // if(isExpert){ //S'il est expert, je vais chercher dans toutes les strings traduites celles qui n'ont pas encore été validées
+            //   traductions = await Traduction.find({status: "En attente", type: "string", langueCible: locale, avancement: 1, articleId: article._id})
+            //   console.log("traductions",traductions)
+            //   if(!traductions || traductions.length === 0){ res.status(400).json({"text": "Aucune traduction restante à valider"}); return; }
+            // }else{ //Sinon, je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
               traductions = await Traduction.find({userId: req.userId, type: "string", langueCible: locale, avancement: 1, articleId: article._id})
-            }
-            structureArr = traductions && traductions.length > 0 ? structureArr.filter(x => !traductions.some(y => x._id === y.jsonId)) : structureArr;
-            structureArr = structureArr.length > 1 ? [structureArr[ Math.floor((Math.random() * structureArr.length)) ]] : structureArr;
+              structureArr = traductions && traductions.length > 0 ? structureArr.filter(x => !traductions.some(y => x._id === y.jsonId)) : structureArr;
+              structureArr = structureArr.length > 1 ? [structureArr[ Math.floor((Math.random() * structureArr.length)) ]] : structureArr;
+            // }
           }
           result.splice(i, 1);
         }else{

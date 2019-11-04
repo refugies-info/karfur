@@ -83,40 +83,41 @@ async function add_tradForReview(req, res) {
 }
 
 function get_tradForReview(req, res) {
-  var query = req.body.query;
-  var sort = req.body.sort;
-  var populate = req.body.populate;
+  let {query, sort, populate, random, locale} = req.body;
   if(populate && populate.constructor === Object){
     populate.select = '-password';
   }else if(populate){
     populate={path:populate, select : '-password'};
   }else{populate='';}
 
-  console.log(query)
+  console.log(query, random)
   if(query.articleId && typeof query.articleId === "string" && query.articleId.includes('struct_')){
     res.status(204).json({ "text": "Pas de données", "data" : []})
     return false;
   }
-  var find = new Promise(function (resolve, reject) {
-    Traduction.find(query).sort(sort).populate(populate).exec(function (err, result) {
-      if (err) { console.log(err);
-        reject(500);
-      } else {
-        if (result) {
-          resolve(result)
-        } else {
-          reject(204)
-        }
-      }
+
+  let promise;
+  if(random){
+    console.log({status: "En attente", type: "string", langueCible: locale, avancement: 1})
+    promise=Traduction.aggregate([
+      { $match : {status: "En attente", type: "string", langueCible: locale, avancement: 1} },
+      { $sample : { size: 1 } }
+    ]);
+  }else{
+    promise=Traduction.find(query).sort(sort).populate(populate);
+  }
+
+  promise.then(result => {
+    res.status(200).json({
+      "text": "Succès",
+      "data": result
+    })
+  }).catch(err => { console.log(err);
+    res.status(500).json({
+      "text": "Erreur interne",
+      "error": err
     })
   })
-
-  find.then(function (result) {
-    res.status(200).json({
-        "text": "Succès",
-        "data": result
-    })
-  }, (e) => _errorHandler(e,res))
 }
 
 function validate_tradForReview(req, res) {
