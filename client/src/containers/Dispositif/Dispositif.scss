@@ -264,8 +264,8 @@ $imgHeight : 350px;
 
   .sous-paragraphe{
     .toolbar-editeur{
-      right: 10px;
-      top: -10px;
+      right: 0;
+      top: -60px;
     }
     .plus-wrapper{
       right: 15px;
@@ -288,6 +288,21 @@ $imgHeight : 350px;
     color:transparent; 
   }
 
+  .rdw-link-decorator-wrapper, .edited-btn {
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 12px;
+    background: $blanc;
+    cursor: pointer;
+    &:hover{
+      background: $noir3;
+      box-shadow: none;
+    }
+    a{
+      cursor: pointer;
+    }
+  }
+
   .rdw-editor-toolbar{
     background: none;
   }
@@ -296,7 +311,6 @@ $imgHeight : 350px;
     position: absolute;
     right: 34px;
     top: 70px;
-
 
     .blc-gh{
       background: $noir;
@@ -369,7 +383,8 @@ $imgHeight : 350px;
     margin-top: 20px;
   }
   #contenu-0 .toolbar-editeur{
-    top: -10px;
+    top: -70px;
+    right: 0;
   }
 
   .col-middle{
@@ -582,6 +597,8 @@ $imgHeight : 350px;
         .toolbar-editeur{
           bottom: -10px;
           top: initial;
+          bottom: -60px;
+          right: 0;
         }
       }
     }

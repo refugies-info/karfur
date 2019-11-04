@@ -56,18 +56,20 @@ class Translation extends Component {
     const { itemId, locale, isExpert } = props;
     console.log(itemId, locale, isExpert)
     if(itemId && locale && !isExpert){
-      this._getArticle(itemId,locale)
+      this._getArticle(itemId)
     }else if(itemId && isExpert){
+      console.log(itemId)
       API.get_tradForReview({'_id':itemId}).then(data_res => {
         if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
-          let traduction=data_res.data.data[0];
-          this._getArticle(traduction.jsonId || traduction.articleId,'fr',isExpert)
+          const traduction=data_res.data.data[0];
+          console.log(traduction.jsonId, traduction.articleId)
+          this._getArticle(traduction.jsonId || traduction.articleId,isExpert)
           this.props.fwdSetState({
             translated:{
               title:traduction.translatedText.title,
-              body: traduction.jsonId? traduction.translatedText.body : (stringify(traduction.translatedText.body) || '').replace(/ id='initial_/g,' id=\'target_') //Ici il y avait id=\'initial_/ avant
+              body: traduction.jsonId ? traduction.translatedText.body : (stringify(traduction.translatedText.body) || '').replace(/ id='initial_/g,' id=\'target_') //Ici il y avait id=\'initial_/ avant
             },
-            itemId: traduction.jsonId || traduction.articleId,
+            jsonId: traduction.jsonId,
             translationId:itemId,
             locale : traduction.langueCible,
             isExpert:isExpert,
@@ -85,7 +87,7 @@ class Translation extends Component {
     }
   }
 
-  _getArticle = (itemId) => {
+  _getArticle = (itemId, isExpert = false) => {
     API.get_article({_id: itemId}).then(data_res => {
       if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
         let article=data_res.data.data[0];
