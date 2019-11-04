@@ -21,6 +21,7 @@ const FInput = props => (
       value={props.value} 
       onChange={props.onChange} 
       autoComplete={props.autoComplete}
+      disabled={props.disabled}
       className={[props.inputClassName, props.prepend ? "has-prepend" : ""].join(" ")} />
     {props.append && 
       <InputGroupAddon addonType="append" className="icon-append" onClick={props.onAppendClick}>
