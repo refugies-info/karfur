@@ -116,6 +116,7 @@ class UserDash extends Component {
 
   openTraductions = (langue) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'openTraductions', value : langue._id });
+    console.log(langue)
     this.props.history.push({
       pathname: '/avancement/traductions/'+langue._id,
       state: { langue: langue}
