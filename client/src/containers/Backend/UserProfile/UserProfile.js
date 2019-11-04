@@ -69,7 +69,7 @@ class UserProfile extends Component {
 
   componentDidMount() {
     const user=this.props.user, userId = this.props.user;
-    API.get_tradForReview({'userId': userId}).then(data => { console.log(data.data.data);
+    API.get_tradForReview({query: {'userId': userId}}).then(data => { console.log(data.data.data);
       this.setState({traductions: data.data.data})
     })
     API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}, demarcheId: { $exists: false }}, sort:{updatedAt: -1}}).then(data => { console.log(data.data.data);

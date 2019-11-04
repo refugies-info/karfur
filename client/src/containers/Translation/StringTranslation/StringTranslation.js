@@ -58,11 +58,9 @@ class Translation extends Component {
     if(itemId && locale && !isExpert){
       this._getArticle(itemId)
     }else if(itemId && isExpert){
-      console.log(itemId)
-      API.get_tradForReview({'_id':itemId}).then(data_res => {
+      API.get_tradForReview({query: {'_id':itemId}}).then(data_res => {
         if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           const traduction=data_res.data.data[0];
-          console.log(traduction.jsonId, traduction.articleId)
           this._getArticle(traduction.jsonId || traduction.articleId,isExpert)
           this.props.fwdSetState({
             translated:{
@@ -73,7 +71,7 @@ class Translation extends Component {
             translationId:itemId,
             locale : traduction.langueCible,
             isExpert:isExpert,
-          },()=>{console.log(this.state)})
+          })
         }
       })
     }
@@ -111,7 +109,7 @@ class Translation extends Component {
     },()=>{
       if(!isExpert){
         //Je vérifie d'abord s'il n'y a pas eu une première traduction effectuée par un utilisateur :
-        API.get_tradForReview({'jsonId': itemId, langueCible:  locale}, '-avancement').then(data => {
+        API.get_tradForReview({query: {'jsonId': itemId, langueCible:  locale}, sort: '-avancement'}).then(data => {
           if(data.data.data && data.data.data.length > 0){
             let traductionFaite = data.data.data[0];
             this.props.fwdSetState({ translated: {
