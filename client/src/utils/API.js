@@ -134,8 +134,8 @@ export default {
   add_tradForReview : query => {
     return axios.post(burl + '/traduction/add_tradForReview', query, {headers: headers})
   },
-  get_tradForReview : (query, sort, populate) => {
-    return axios.post(burl + '/traduction/get_tradForReview',  {query: query, sort: sort, populate: populate}, {headers: headers})
+  get_tradForReview : (query) => {
+    return axios.post(burl + '/traduction/get_tradForReview',  query, {headers: headers})
   },
   validate_tradForReview : query => {
     return axios.post(burl + '/traduction/validate_tradForReview', query, {headers: headers})
