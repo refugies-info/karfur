@@ -88,7 +88,8 @@ function get_article(req, res) {
             let traductions;
             if(isExpert){ //S'il est expert, je vais chercher dans toutes les strings traduites celles qui n'ont pas encore été validées
               traductions = await Traduction.find({status: "En attente", type: "string", langueCible: locale, avancement: 1, articleId: article._id})
-              if(!traductions || traductions.length === 0){ res.status(400).json({"text": "Aucune traduction restant à valider"}); return; }
+              console.log(traductions)
+              if(!traductions || traductions.length === 0){ res.status(400).json({"text": "Aucune traduction restante à valider"}); return; }
             }else{ //Sinon, je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
               traductions = await Traduction.find({userId: req.userId, type: "string", langueCible: locale, avancement: 1, articleId: article._id})
             }
@@ -106,8 +107,7 @@ function get_article(req, res) {
         "text": "Succès",
         "data": [...structureArr, ...result]
       })
-    }).catch(err => {
-      console.log(err)
+    }).catch(err => { console.log(err);
       res.status(500).json({
         "text": "Erreur interne",
         "error": err

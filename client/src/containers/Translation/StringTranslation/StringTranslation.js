@@ -97,7 +97,7 @@ class Translation extends Component {
   }
 
   setArticle = article => {
-    const { itemId, locale, isExpert } = this.props;
+    const { itemId, locale, isExpert, langueBackupId } = this.props;
     this.props.fwdSetState({
       francais:{
         title: article.title,
@@ -121,7 +121,7 @@ class Translation extends Component {
             });
           }else{
             //Je rend chaque noeud unique:
-            this.props.translate(this.initial_text.innerHTML, locale, 'body')
+            this.props.translate(this.initial_text.innerHTML, langueBackupId || locale, 'body')
             // if(!this.props.isStructure){this.props.translate(this.initial_title.innerHTML, locale, 'title')}
           }
           this.props.fwdSetState({texte_a_traduire:this.initial_text.innerText})
