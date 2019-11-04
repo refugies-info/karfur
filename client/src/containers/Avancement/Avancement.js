@@ -55,7 +55,7 @@ class Avancement extends Component {
       i18nCode= await this._loadLangue(itemId, isExpert);
     }
     this._loadArticles(itemId, i18nCode);
-    API.get_tradForReview({langueCible: i18nCode}, {}, 'userId').then(data => { //console.log(data.data.data);
+    API.get_tradForReview({query: {langueCible: i18nCode}, populate: 'userId'}).then(data => { //console.log(data.data.data);
       this.setState({traductionsFaites: data.data.data})
     })
     // this._loadThemes();
@@ -96,7 +96,7 @@ class Avancement extends Component {
 
   _loadTraductions=(langue) => {
     // if(langue.i18nCode){
-    //   API.get_tradForReview({'langueCible':langue.i18nCode, 'status' : 'En attente'},{},'articleId userId').then(data_res => {
+    //   API.get_tradForReview({query: {'langueCible':langue.i18nCode, 'status' : 'En attente'},populate: 'articleId userId'}).then(data_res => {
     //     let articles=data_res.data.data;
     //     articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1}, status:x.status, articleId:(x.articleId || {})._id, created_at:x.created_at, user:x.userId, type: "string"}});
     //     console.log(articles)

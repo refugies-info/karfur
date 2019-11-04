@@ -92,7 +92,7 @@ class TranslationHOC extends Component {
     const type = (props.match.path || "").includes("dispositif") || (props.match.path || "").includes("demarche") ? "dispositif" : "string";
     this.setState({ type, itemId, locale, isExpert, langueBackupId });
     if(itemId && type==="dispositif"){
-      API.get_tradForReview({'articleId':itemId, ...(!isExpert && userId && {userId})}, {updatedAt: -1}, 'userId').then(data_res => {
+      API.get_tradForReview({query: {'articleId':itemId, ...(!isExpert && userId && {userId})}, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           const traductions = data_res.data.data; console.log(traductions);
           this.setState({
@@ -262,12 +262,12 @@ class TranslationHOC extends Component {
     const i18nCode=(this.state.langue || {}).i18nCode, {isExpert, type, langue} = this.state;
     const nom='avancement.'+i18nCode;
     const query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}]};
-    API[type==="dispositif" ? "get_dispositif" : "getArticle"]({query: query, locale:i18nCode, random:true, isExpert}).then(data_res => {
+    API[isExpert ? "get_tradForReview" : (type==="dispositif" ? "get_dispositif" : "getArticle")]({query: query, locale:i18nCode, random:true, isExpert}).then(data_res => {
       let results=data_res.data.data;
       if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
       else{ clearInterval(this.timer);
         this.props.history.push({ 
-          pathname: '/' + (isExpert ? "validation" : "traduction") + '/' + type + '/' + results[0]._id, 
+          pathname: '/' + (isExpert ? "validation" : "traduction") + '/' + type + '/' + _.get(results, "0._id"), 
           search: '?id=' + langue._id,
           state: { langue: langue} });
         this.setState({disableBtn: false});
