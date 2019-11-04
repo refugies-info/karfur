@@ -253,7 +253,7 @@ class Translation extends Component {
                         className="body"
                         placeholder="Renseignez votre traduction ici"
                         html={translated.body} // innerHTML of the editable div
-                        disabled={isExpert}       // use true to disable editing
+                        disabled={false}       // isExpert
                         onChange={this.props.handleChange} // handle innerHTML change
                         onSelect={this.onSelect}
                         style={{textAlign: isRTL ? "right" : "left"}}
