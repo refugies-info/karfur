@@ -35,7 +35,7 @@ class Avancement extends Component {
     traductionsFaites: []
   }
 
-  componentDidMount (){
+  async componentDidMount (){
     let itemId=this.props.match.params.id;
     let isLangue=this.props.location.pathname.includes('/langue');
     let isExpert=this.props.location.pathname.includes('/traductions');
@@ -47,11 +47,12 @@ class Avancement extends Component {
           title: diffData.traducteur.title + ' : ' + this.props.location.state.langue.langueFr,
           headers: diffData.traducteur.headers});
         i18nCode=this.props.location.state.langue.i18nCode;
+        console.log(this.props.location.state.langue)
       }else{
-        this._loadLangue(itemId, isExpert);
+        i18nCode= await this._loadLangue(itemId, isExpert);
       }
     }else if(isExpert){
-      this._loadLangue(itemId, isExpert);
+      i18nCode= await this._loadLangue(itemId, isExpert);
     }
     this._loadArticles(itemId, i18nCode);
     API.get_tradForReview({langueCible: i18nCode}, {}, 'userId').then(data => { //console.log(data.data.data);
@@ -76,19 +77,21 @@ class Avancement extends Component {
     }
   }
 
-  _loadLangue=(itemId, isExpert) => {
+  _loadLangue = async (itemId, isExpert) => {
     if(itemId){
-      API.get_langues({_id:itemId},{'avancement':1}, 'langueBackupId').then(data_res => {
+      const data_res = await API.get_langues({_id:itemId},{'avancement':1}, 'langueBackupId')
+      if(data_res && data_res.data && data_res.data.data){
         let langue=data_res.data.data[0];
         this._loadTraductions(langue);
-        console.log(langue)
         this.setState({
           langue:langue,
           title: diffData.traducteur.title + ' : ' + langue.langueFr,
           headers: diffData[isExpert ? "expert" : "traducteur"].headers
         })
-      })
+        return langue.i18nCode
+      }
     }
+    return false;
   }
 
   _loadTraductions=(langue) => {
@@ -155,13 +158,15 @@ class Avancement extends Component {
     const { langue, isExpert, data } = this.state;
 
     let traductions = [
-      ...data.map(x => ( {
+      ...data.map(x =>{ 
+        // console.log(x, (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id), (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => (z.avancement || -1)))
+        return ( {
         ...x,
         avancement: Math.max(0, ...((this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => (z.avancement || -1)) || [])) || 0, 
         users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
         typeContenu: "string",
         _id: isExpert ? ((this.state.traductionsFaites || []).find(y => y.jsonId === x._id && y.avancement === 1) || {})._id : x._id,
-      } ) ), 
+      } )} ), 
       ...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
           _id:x._id, 
           title: ((x.titreMarque || "") + (x.titreMarque && x.titreInformatif ? " - " : "") + (x.titreInformatif || "")), 
@@ -173,6 +178,7 @@ class Avancement extends Component {
           typeContenu: x.typeContenu || "dispositif"
       } ) )
     ];
+    console.log(this.state.traductionsFaites)
     traductions = traductions.filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
 
     const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length))}
