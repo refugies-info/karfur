@@ -178,8 +178,8 @@ class Avancement extends Component {
           typeContenu: x.typeContenu || "dispositif"
       } ) )
     ];
-    console.log(this.state.traductionsFaites)
     traductions = traductions.filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
+    console.log(this.state.traductionsFaites, traductions)
 
     const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length))}
     
@@ -201,7 +201,7 @@ class Avancement extends Component {
                 </td>
                 {isExpert ? 
                   <td className="align-middle">
-                    {element.users && [...element.users].map((participant) => {
+                    {element.users && element.users.map((participant) => {
                       return ( 
                         <img
                           key={participant._id} 

@@ -324,6 +324,16 @@ const customConvertOption = {
     if (block.type === 'header-six') {
       return {start:"<div class='bloc-rouge'> <div class='icon-left-side'> <span>i</span> </div> <div class='right-side'> <div><b>Bon à savoir :</b></div>", end: "</div> </div>"};
     }
+  },
+  entityToHTML: (entity, originalText) => {
+    if (entity.type === 'link' || entity.type === 'LINK') {
+      return (
+        <a href={entity.data.url} target="_blank" className="edited-btn">
+          {originalText}
+        </a>
+      )
+    }
+    return originalText
   }
 };
 
