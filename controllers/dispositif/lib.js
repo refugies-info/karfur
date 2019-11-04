@@ -236,12 +236,14 @@ const turnHTMLtoJSON = (contenu, nbMots=null) => {
 }
 
 const turnJSONtoHTML = (contenu) => {
-  for(var i=0; i < contenu.length;i++){
-    if(contenu[i] && contenu[i].content){
-      contenu[i].content = himalaya.stringify(contenu[i].content);
-    }
-    if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
-      turnJSONtoHTML(contenu[i].children)  
+  if(contenu){
+    for(var i=0; i < contenu.length;i++){
+      if(contenu[i] && contenu[i].content){
+        contenu[i].content = himalaya.stringify(contenu[i].content);
+      }
+      if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
+        turnJSONtoHTML(contenu[i].children)  
+      }
     }
   }
 }
