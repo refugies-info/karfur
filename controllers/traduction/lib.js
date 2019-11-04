@@ -238,7 +238,7 @@ const recalculate_all = () => {
     }
   })
 }
-// recalculate_all();
+recalculate_all();
 
 async function calculateScores(data, traductionInitiale){
   const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
