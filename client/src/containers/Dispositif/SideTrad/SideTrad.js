@@ -180,7 +180,7 @@ class SideTrad extends Component {
     console.log(oldTrad)
     this.setState({listTrad, score, userId, selectedTrad});
     if(oldTrad){
-      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } } )
+      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } }, () => console.log("ok fwd state") )
     }else{
       this.props.translate(text,target,item, true);
     }

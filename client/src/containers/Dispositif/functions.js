@@ -121,7 +121,7 @@ const verifierDemarche  = function(){
     //Deux démarches ne peuvent pas avoir exactement les mêmes critères
     if(this.state.inVariante){
       const varianteAlreadyExists = variantes.some(variante => {
-        return [...allDemarches, dispositif].some(d => (d.variantes || []).some(va => {
+        return [...allDemarches, dispositif].some(d => d && (d.variantes || []).some(va => {
           let isEqual = true;
           if(va.bottomValue !== variante.bottomValue || va.topValue !== variante.topValue){
             isEqual = false;
