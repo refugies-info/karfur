@@ -58,7 +58,7 @@ class AdminLangues extends Component {
       })
     },(error) => {console.log(error);return;})
 
-    API.get_tradForReview({ rightId: { $ne: null }, status: 'En attente' },{'langueCible':1},{path: 'userId',select: '-password'}).then(data_res => {
+    API.get_tradForReview({query: { rightId: { $ne: null }, status: 'En attente' }, sort: {'langueCible':1}, populate: {path: 'userId',select: '-password'}}).then(data_res => {
       if(data_res.data.data.length>0){
         console.log(data_res.data.data)
         let traductions=data_res.data.data.map(x=>{return {...x,initialText:stringify(x.initialText),translatedText:stringify(x.translatedText)}})
