@@ -58,6 +58,7 @@ class TranslationHOC extends Component {
     autosuggest: false,
     disableBtn: false,
     jsonId: null,
+    langueBackupId: null,
   }
   mountTime=0;
 
@@ -86,10 +87,10 @@ class TranslationHOC extends Component {
     this.initializeTimer();
     let itemId=null;
     try{itemId=props.match.params.id}catch(e){console.log(e)};
-    const locale = await this._setLangue(props), userId = props.userId;
+    const {locale, langueBackupId} = await this._setLangue(props), userId = props.userId;
     const isExpert=props.location.pathname.includes('/validation');
     const type = (props.match.path || "").includes("dispositif") || (props.match.path || "").includes("demarche") ? "dispositif" : "string";
-    this.setState({ type, itemId, locale, isExpert });
+    this.setState({ type, itemId, locale, isExpert, langueBackupId });
     if(itemId && type==="dispositif"){
       API.get_tradForReview({'articleId':itemId, ...(!isExpert && userId && {userId})}, {updatedAt: -1}, 'userId').then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
@@ -114,9 +115,8 @@ class TranslationHOC extends Component {
       const params = querySearch(props.location.search);
       langue = (await API.get_langues({_id:params.id}, {}, 'langueBackupId')).data.data[0];
     } catch(err){console.log(err)} }
-    const locale = langue.langueBackupId && langue.langueBackupId.i18nCode ? langue.langueBackupId.i18nCode : langue.i18nCode
     this.setState({langue})
-    return locale;
+    return {locale: langue.i18nCode, langueBackupId: _.get(langue, "langueBackupId.i18nCode")};
   }
 
   setRef = (refObj, name) => this[name] = refObj;
