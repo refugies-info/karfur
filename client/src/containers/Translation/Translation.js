@@ -57,6 +57,7 @@ class TranslationHOC extends Component {
     initialTime: 0,
     autosuggest: false,
     disableBtn: false,
+    jsonId: null,
   }
   mountTime=0;
 
@@ -228,7 +229,7 @@ class TranslationHOC extends Component {
     this.setState({disableBtn: true});
     let traduction={
       langueCible: this.state.locale,
-      articleId: this.state.itemId,
+      articleId: this.state.jsonId || this.state.itemId,
       initialText: this.state.francais,
       translatedText: this.state.translated,
       timeSpent : this.state.time,
@@ -258,20 +259,20 @@ class TranslationHOC extends Component {
   }
 
   onSkip=()=>{
-    let i18nCode=(this.state.langue || {}).i18nCode;
-    let nom='avancement.'+i18nCode;
-    let query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}]};
-    API[this.state.type==="dispositif" ? "get_dispositif" : "getArticle"]({query: query, locale:i18nCode, random:true}).then(data_res => {
+    const i18nCode=(this.state.langue || {}).i18nCode, {isExpert, type, langue} = this.state;
+    const nom='avancement.'+i18nCode;
+    const query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}]};
+    API[type==="dispositif" ? "get_dispositif" : "getArticle"]({query: query, locale:i18nCode, random:true, isExpert}).then(data_res => {
       let results=data_res.data.data;
       if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
       else{ clearInterval(this.timer);
         this.props.history.push({ 
-          pathname: '/traduction/' + this.state.type + '/' + results[0]._id, 
-          search: '?id=' + this.state.langue._id,
-          state: { langue: this.state.langue} });
+          pathname: '/' + (isExpert ? "validation" : "traduction") + '/' + type + '/' + results[0]._id, 
+          search: '?id=' + langue._id,
+          state: { langue: langue} });
         this.setState({disableBtn: false});
       }    
-    }).catch(()=>Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500}))
+    }).catch(()=>Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s\'est produite', type: 'error', timer: 2000}))
   }
 
   handleCheckboxChange = event => {

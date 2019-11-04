@@ -57,7 +57,7 @@ function get_article(req, res) {
         "text": "Requête invalide"
     })
   } else {
-    let {query, locale, sort, populate, limit, random} = req.body;
+    let {query, locale, sort, populate, limit, random, isExpert} = req.body;
     locale = locale || 'fr';
     // console.log(query, locale, sort, populate, limit, random)
     let isStructure=false, structId=null;
@@ -85,8 +85,13 @@ function get_article(req, res) {
           structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           if(random && structureArr.length > 1){
-            //Je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
-            const traductions = await Traduction.find({type: "string", userId: req.userId, langueCible: locale, avancement: 1, articleId: article._id})
+            let traductions;
+            if(isExpert){ //S'il est expert, je vais chercher dans toutes les strings traduites celles qui n'ont pas encore été validées
+              traductions = await Traduction.find({status: "En attente", type: "string", langueCible: locale, avancement: 1, articleId: article._id})
+              if(!traductions || traductions.length === 0){ res.status(400).json({"text": "Aucune traduction restant à valider"}); return; }
+            }else{ //Sinon, je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
+              traductions = await Traduction.find({userId: req.userId, type: "string", langueCible: locale, avancement: 1, articleId: article._id})
+            }
             structureArr = traductions && traductions.length > 0 ? structureArr.filter(x => !traductions.some(y => x._id === y.jsonId)) : structureArr;
             structureArr = structureArr.length > 1 ? [structureArr[ Math.floor((Math.random() * structureArr.length)) ]] : structureArr;
           }
@@ -144,15 +149,15 @@ function add_traduction(req, res) {
       let html=traductionItem.translatedText.body;
       let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
       let jsonBody=null;
-      if(!traductionItem.isStructure){
-        jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false }) //Réactiver les positions si ça devient utile, mais je ne pense pas
-      }else{
+      if(traductionItem.isStructure){
         traductionItem={
           ...traductionItem,
           jsonId : traductionItem.articleId,
           articleId : traductionItem.id,
         }
         delete traductionItem.id
+      }else{
+        jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false }) //Réactiver les positions si ça devient utile, mais je ne pense pas
       }
   
       Article.findOne({_id:traductionItem.articleId}).exec((err, result) => {
@@ -167,15 +172,16 @@ function add_traduction(req, res) {
             if(!traductionItem.isStructure){
               if((addTranslationRestructure(result,jsonBody,locale,errArr)) || (errArr.length>0 && _dealWithErrors(result,jsonBody,locale,errArr))){
                 result.markModified("body");
-              }else{succes=false;}
+              }else{succes=false;console.log('erreur 1');}
             }else{
-              avancement={value : result.avancement[locale] * result.nombreMots};
+              avancement={value : (result.avancement[locale] || 0) * (result.nombreMots || 0)};
+              console.log(traductionItem)
               if(_insertStructTranslation(result.body,traductionItem.translatedText.body,locale,traductionItem.jsonId, avancement)){
                 result.markModified("body");
                 if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;};
-              }else{succes=false;}
+              }else{succes=false;console.log('erreur 2');}
             }
-          }else{succes=false;}
+          }else{succes=false;console.log('erreur 3');}
           if(req.body.translationId){
             result.traductions = [...result.traductions,req.body.translationId];
             result.markModified("translations");
@@ -328,6 +334,7 @@ const _insertStructTranslation = (initial, translated, locale, id, avancement) =
   let succes=false;
   Object.keys(initial).forEach((key) => {
     if(initial[key] && initial[key].id){
+      // console.log(initial[key].id)
       if(initial[key].id === id){
         initial[key][locale]=translated;
         avancement.value+=initial[key].fr.trim().split(/\s+/).length
@@ -499,12 +506,13 @@ const _updateAvancement = (locale) => {
     } else {
       let resultat = {...result[0]};
       let newAvancement=resultat.sommeprod / resultat.nbMots;
-      if(newAvancement>1 || newAvancement<0){console.log('avancement déconnant : '+ newAvancement);return false;}
+      console.log(newAvancement)
+      if(newAvancement>1 || newAvancement<0 || Number.isNaN(newAvancement)){console.log('avancement déconnant : '+ newAvancement);return false;}
       Langue.findOne({i18nCode:locale}).exec( (err, resultLangue) => {
         if (err || !resultLangue) {
           console.log('erreur à la mise à jour de l\'avancement de la langue cible')
         } else {
-          resultLangue.avancement=newAvancement
+          resultLangue.avancement=newAvancement || 0;
           resultLangue.save();
         }
       })
