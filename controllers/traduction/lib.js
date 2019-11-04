@@ -92,14 +92,14 @@ function get_tradForReview(req, res) {
     populate={path:populate, select : '-password'};
   }else{populate='';}
 
+  console.log(query)
   if(query.articleId && typeof query.articleId === "string" && query.articleId.includes('struct_')){
     res.status(204).json({ "text": "Pas de données", "data" : []})
     return false;
   }
-  
   var find = new Promise(function (resolve, reject) {
     Traduction.find(query).sort(sort).populate(populate).exec(function (err, result) {
-      if (err) {
+      if (err) { console.log(err);
         reject(500);
       } else {
         if (result) {
@@ -412,17 +412,17 @@ const _errorHandler = (error, res) => {
   switch (error) {
     case 500:
       res.status(500).json({
-          "text": "Erreur interne"
+        "text": "Erreur interne"
       })
       break;
     case 404:
       res.status(404).json({
-          "text": "Pas de résultats"
+        "text": "Pas de résultats"
       })
       break;
     default:
       res.status(500).json({
-          "text": "Erreur interne"
+        "text": "Erreur interne"
       })
   }
 }
