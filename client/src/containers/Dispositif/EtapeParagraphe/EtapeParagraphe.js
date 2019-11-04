@@ -54,7 +54,7 @@ class EtapeParagraphe extends Component {
 
   toggleDropdown = (idx) => this.setState(pS=> ({isDropdownOpen: pS.isDropdownOpen.map((x,i) => i===idx ? !x : x)}))
   togglePapiersDropdown = (idx) => this.setState(pS=> ({isPapiersDropdownOpen: pS.isPapiersDropdownOpen.map((x,i) => i===idx ? !x : x)}))
-  handleCheck = () => this.setState(pS => ({ checked: !pS.checked }));
+  handleCheck = () => this.setState(pS => ({ checked: !pS.checked, ...(!pS.checked && {value1: ""}) }));
   toggleConfigurationOpen = () => this.setState(pS => ({ configurationOpen: !pS.configurationOpen }));
   handleChange = (e, target) => this.setState({ [target]: e.target.value });
   selectOption = (idx = null, option={}) => this.setState(pS => ({isOptionSelected: idx !== null, selectedOption: option, options: pS.options.map((x,i) => ({...x, selected: i===idx})), value1: "", value2:"", value3: "", value4:"", checked:false}))
@@ -196,6 +196,7 @@ class EtapeParagraphe extends Component {
                           prepend={!!selectedOption.icon1}
                           prependName={selectedOption.icon1 + "-outline"}
                           value={value1} 
+                          disabled={checked}
                           onChange={e=>this.handleChange(e, "value1")}
                           id="link" type="text" placeholder={selectedOption.placeholder1} />
                       </Col>

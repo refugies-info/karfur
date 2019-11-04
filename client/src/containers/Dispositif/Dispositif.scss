@@ -265,8 +265,7 @@ $imgHeight : 350px;
   .sous-paragraphe{
     .toolbar-editeur{
       right: 10px;
-      top: 34px;
-
+      top: -10px;
     }
     .plus-wrapper{
       right: 15px;
@@ -370,7 +369,7 @@ $imgHeight : 350px;
     margin-top: 20px;
   }
   #contenu-0 .toolbar-editeur{
-    top: 32px;
+    top: -10px;
   }
 
   .col-middle{
@@ -774,6 +773,7 @@ $imgHeight : 350px;
   .wrapper-editeur{
     border: 1px dashed $darkColor;
     border-radius: 12px;
+    position: relative;
   }
 
   .backgroundColor-darkColor{
