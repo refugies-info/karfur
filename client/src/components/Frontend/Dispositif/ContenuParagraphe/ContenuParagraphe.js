@@ -7,9 +7,10 @@ import QuickToolbar from '../../../../containers/Dispositif/QuickToolbar/QuickTo
 import CardParagraphe, {PlusCard} from '../../../../containers/Dispositif/CardParagraphe/CardParagraphe';
 import MapParagraphe from '../../../../containers/Dispositif/MapParagraphe/MapParagraphe';
 import EtapeParagraphe from '../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe';
-
-import variables from '../../../../containers/Dispositif/Dispositif.scss';
+import FButton from '../../../FigmaUI/FButton/FButton';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
+
+import variables from 'scss/colors.scss';
 
 const contenuParagraphe = (props) => {
   const {disableEdit, ...bprops}=props;
@@ -97,6 +98,10 @@ const contenuParagraphe = (props) => {
                         tutoriel={item.tutoriel}
                         addItem={props.addItem}
                         {...subitem} />
+                    {!newDisableEdit &&
+                      <FButton type="dark" name="plus-circle-outline" className="mt-10" onClick={()=>props.addItem(props.keyValue, "paragraphe", subkey)} >
+                        Ajouter un module
+                      </FButton>}
                     </Collapse>
                   </Col>
                   {!props.sideView && !props.inVariante && newDisableEdit && 
