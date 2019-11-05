@@ -49,6 +49,7 @@ class EditableParagraph extends Component {
   
   render(){
     const props=this.props;
+    console.log(props, typeof props.content)
     if(props.editable && !props.disableEdit){
       return (
         // {/* <Backdrop show={true} clicked={()=>props.handleContentClick(props.keyValue,false, props.subkey)} /> */}
@@ -128,7 +129,7 @@ class EditableParagraph extends Component {
           </div>
         </>
       )
-    }else{
+    }else if(typeof props.content === "string"){
       return(
         <ContentEditable
           id={props.keyValue}
@@ -142,7 +143,7 @@ class EditableParagraph extends Component {
           onClick={()=>props.handleContentClick(props.keyValue,!props.disableEdit, props.subkey)}
         />
       )
-    }
+    }else{return false}
   }
 }
 
