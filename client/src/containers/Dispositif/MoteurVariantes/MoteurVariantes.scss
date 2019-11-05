@@ -172,4 +172,11 @@
   .negative-margin{
     margin-top: -10px;
   }
+
+  .delete-icon{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    z-index: 2;
+  }
 }

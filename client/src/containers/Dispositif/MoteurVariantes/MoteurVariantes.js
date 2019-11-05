@@ -41,6 +41,7 @@ class MoteurVariantes extends Component {
               <UneVariante 
                 variantes={this.props.variantes}
                 validateVariante={this.props.validateVariante} 
+                deleteVariante={this.props.deleteVariante}
                 inVariante={inVariante}
                 toggleVue={this.toggleVue}
                 filtres={this.props.filtres} 

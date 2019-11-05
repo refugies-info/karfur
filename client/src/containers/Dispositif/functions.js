@@ -142,4 +142,25 @@ const verifierDemarche  = function(){
   return true;
 }
 
-export {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche};
+const validateVariante = function(newVariante, idx){
+  this.setState(pS => ({isVarianteValidated: true, variantes: [
+    ...pS.variantes.map((x,i)=> i===idx ? newVariante : x), 
+    ...(idx >= pS.variantes.length ? [newVariante] : [])
+  ]}))
+}
+
+const deleteVariante = function(idx){
+  this.setState(pS => ({
+    variantes: pS.variantes.filter((_,i)=> i!==idx), 
+    isVarianteValidated: pS.variantes.length > 1,
+  }), ()=> console.log(this.state.variantes))
+}
+
+export {
+  switchVariante, 
+  initializeVariantes, 
+  initializeInfoCards, 
+  verifierDemarche,
+  validateVariante,
+  deleteVariante
+};

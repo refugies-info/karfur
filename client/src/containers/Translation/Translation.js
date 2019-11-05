@@ -59,6 +59,7 @@ class TranslationHOC extends Component {
     disableBtn: false,
     jsonId: null,
     langueBackupId: null,
+    traducteur: {},
   }
   mountTime=0;
 
@@ -247,15 +248,15 @@ class TranslationHOC extends Component {
     }
     traduction = {...traduction, ...tradData};
     console.log(traduction)
-    // API.add_traduction(traduction).then((data) => {
-    //   traduction._id = (data.data.data || {})._id;
-    //   this.setState({traduction});
-    //   if(traduction.avancement === 1){
-    //     Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000})
-    //     this.setState({disableBtn: false});
-    //     this.onSkip();
-    //   }
-    // }).catch(()=> this.setState({disableBtn: false}))
+    API.add_traduction(traduction).then((data) => {
+      traduction._id = (data.data.data || {})._id;
+      this.setState({traduction});
+      if(traduction.avancement === 1){
+        Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000})
+        this.setState({disableBtn: false});
+        this.onSkip();
+      }
+    }).catch(()=> this.setState({disableBtn: false}))
   }
 
   onSkip=()=>{

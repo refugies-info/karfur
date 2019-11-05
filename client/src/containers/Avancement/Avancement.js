@@ -188,9 +188,8 @@ class Avancement extends Component {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
           traductions.map((element) => {
-            const joursDepuis = (new Date().getTime() -  new Date(element.created_at).getTime()) / (1000 * 3600 * 24);
+            const joursDepuis = (new Date().getTime() -  new Date(element.updatedAt).getTime()) / (1000 * 3600 * 24);
             const titre = (element.title || {}).fr || element.title || (element.initialText || {}).title || ((element.titreMarque || "") + (element.titreMarque && element.titreInformatif ? " - " : "") + (element.titreInformatif || "")) ||'' ;
-            console.log(element,moment(element.updatedAt).fromNow())
             return (
               <tr 
                 key={element._id}

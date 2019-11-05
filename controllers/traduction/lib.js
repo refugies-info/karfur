@@ -241,7 +241,7 @@ const recalculate_all = () => {
     }
   })
 }
-recalculate_all();
+// recalculate_all();
 
 async function calculateScores(data, traductionInitiale){
   let newTrad = {_id : data._id, initialText: data.initialText, translatedText: {...data.translatedText}};

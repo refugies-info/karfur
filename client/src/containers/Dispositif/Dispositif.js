@@ -38,7 +38,7 @@ import {initializeTimer} from '../Translation/functions';
 import {readAudio} from "../Layout/functions";
 import MoteurVariantes from './MoteurVariantes/MoteurVariantes';
 import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche, customConvertOption} from './data'
-import {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche} from "./functions";
+import {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche, validateVariante, deleteVariante} from "./functions";
 
 import variables from 'scss/colors.scss';
 
@@ -57,6 +57,8 @@ class Dispositif extends Component {
     this.initializeVariantes = initializeVariantes.bind(this);
     this.initializeInfoCards = initializeInfoCards.bind(this);
     this.verifierDemarche = verifierDemarche.bind(this);
+    this.validateVariante = validateVariante.bind(this);
+    this.deleteVariante = deleteVariante.bind(this);
   }
   audio = new Audio();
 
@@ -565,11 +567,6 @@ class Dispositif extends Component {
     )}
   )) }), ()=>this.setColors())
 
-  validateVariante = (newVariante, idx) => this.setState(pS => ({isVarianteValidated: true, variantes: [
-    ...pS.variantes.map((x,i)=> i===idx ? newVariante : x), 
-    ...(idx >= pS.variantes.length ? [newVariante] : [])
-  ]}))
-
   pushReaction = (modalName=null, fieldName) => {
     if(modalName){this.toggleModal(false, modalName);}
     const dispositif = {
@@ -915,6 +912,7 @@ class Dispositif extends Component {
                     disableEdit={disableEdit}
                     inVariante={inVariante}
                     validateVariante={this.validateVariante} 
+                    deleteVariante={this.deleteVariante}
                     filtres={filtres}
                     upcoming={this.upcoming}
                     switchVariante={this.switchVariante}
