@@ -23,13 +23,14 @@ class UneVariante extends Component {
     isMounted: false,
     allCase:[true, false]
   }
+  _initialState={...this.state};
 
   componentDidMount(){
     this.setState({isMounted: true})
     if(this.props.variantes && this.props.variantes.length > 0){
       const {villes, ageTitle, bottomValue, topValue, ...bprops} = this.props.variantes[0];
       let newCriteres = [], validatedRow = [!!villes && villes.length > 0, !!ageTitle]
-      customCriteres.forEach((x,i) => { if(x.query && bprops[x.query]){
+      customCriteres.forEach(x => { if(x.query && bprops[x.query]){
         newCriteres = [...newCriteres, {...x, options: x.options.map(y => ({...y, selected: bprops[x.query].includes(y.texte)}))}]
         validatedRow = [...validatedRow, true];
       } })
@@ -62,12 +63,19 @@ class UneVariante extends Component {
       if(!this.state.validatedRow.includes(true)){return}
       this.validateCriteres(false, idx);
     } 
+    const { villes, ageTitle, bottomValue, topValue, ville, validatedRow } = this._initialState;
     this.setState(pS=>({
       allCase: [
         ...pS.allCase.map((x,i)=> idx === i ? !x : pS.allCase[idx]), 
         ...(idx === pS.allCase.length -1 && idx < 3 ? [false] : [])
-      ]
+      ],
+      villes, ageTitle, bottomValue, topValue, ville, validatedRow
     }))
+  }
+
+  supprimer_cas = idx => {
+    this.setState(pS=>({ allCase: pS.allCase.filter((_,i)=> idx !== i) }))
+    this.props.deleteVariante(idx)
   }
 
   changeAge = (e, isBottom=true) => {
@@ -77,7 +85,10 @@ class UneVariante extends Component {
 
   addCritere = () => this.setState(pS => ({
       newCriteres: [...pS.newCriteres, customCriteres[0]],
-      dropdowns:{...pS.dropdowns, criteres: [...pS.dropdowns.criteres, false]},
+      dropdowns: {
+        ...pS.dropdowns, 
+        criteres: [...pS.dropdowns.criteres, false]
+      },
       validatedRow: [...pS.validatedRow, false],
     }))
 
@@ -235,6 +246,8 @@ class UneVariante extends Component {
                 <Col lg={inVariante ? "0" : "3"} className="moteur-col" key={i}>
                   <div className="col-header">
                     Cas #{i+1}
+                    {variantes && variantes.length > i && variantes[i] && 
+                      <EVAIcon onClick={() => this.supprimer_cas(i)} className="delete-icon cursor-pointer" name="close-circle" fill={variables.error} size="xlarge" />}
                   </div>
                   <div className="col-body with-header">
                     <ReducedVariante 

@@ -98,7 +98,7 @@ function get_dispositif(req, res) {
 
     promise.then(result => {
       [].forEach.call(result, (dispositif) => { 
-        dispositif = _turnToFr(dispositif); console.log('ici')
+        dispositif = _turnToFr(dispositif);
         turnJSONtoHTML(dispositif.contenu);
       });
       res.status(200).json({
