@@ -174,6 +174,7 @@ class Avancement extends Component {
           avancement: Math.max(0, ...((this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => (z.avancement || -1)) || [])) || 0, 
           status:x.status, 
           created_at:x.created_at, 
+          updatedAt:x.updatedAt, 
           users: [...new Set( (this.state.traductionsFaites || []).filter(y => y.articleId === x._id).map(z => ((z.userId || {})._id) ) || [] ) ].map(id => ({_id : id, picture: (((this.state.traductionsFaites || []).find(t => (t.userId || {})._id === id) || {}).userId || {}).picture || {} })), 
           typeContenu: x.typeContenu || "dispositif"
       } ) )
@@ -189,6 +190,7 @@ class Avancement extends Component {
           traductions.map((element) => {
             const joursDepuis = (new Date().getTime() -  new Date(element.created_at).getTime()) / (1000 * 3600 * 24);
             const titre = (element.title || {}).fr || element.title || (element.initialText || {}).title || ((element.titreMarque || "") + (element.titreMarque && element.titreInformatif ? " - " : "") + (element.titreInformatif || "")) ||'' ;
+            console.log(element,moment(element.updatedAt).fromNow())
             return (
               <tr 
                 key={element._id}
@@ -228,7 +230,7 @@ class Avancement extends Component {
                   {moment(element.updatedAt).fromNow()}
                 </td>
                 <td className="align-middle fit-content">
-                  <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/>
+                  {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
                 </td>
                 <td className="align-middle fit-content">
                   <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={() => this.goToTraduction(element)}/>
