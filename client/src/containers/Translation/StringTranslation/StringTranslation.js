@@ -14,10 +14,11 @@ import FeedbackModal from '../../../components/Modals/FeedbackModal/FeedbackModa
 import Article from '../../Article/Article';
 import API from '../../../utils/API';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
+import FButton from '../../../components/FigmaUI/FButton/FButton';
+import marioProfile from '../../../assets/mario-profile.jpg';
 
 import './StringTranslation.scss';
 import variables from 'scss/colors.scss';
-import FButton from '../../../components/FigmaUI/FButton/FButton';
 
 var option = {
   style: 'percent',
@@ -29,7 +30,7 @@ const localeFormatter = (v) => {
   return new Intl.NumberFormat('fr-FR', option).format(v)
 }
 
-class Translation extends Component {
+class StringTranslation extends Component {
   state = {
     feedbackModal:{
       show:false,
@@ -58,7 +59,7 @@ class Translation extends Component {
     if(itemId && locale && !isExpert){
       this._getArticle(itemId)
     }else if(itemId && isExpert){
-      API.get_tradForReview({query: {'_id':itemId}}).then(data_res => {
+      API.get_tradForReview({query: {'_id':itemId}, populate:"userId"}).then(data_res => {
         if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           const traduction=data_res.data.data[0];
           this._getArticle(traduction.jsonId || traduction.articleId,isExpert)
@@ -70,7 +71,8 @@ class Translation extends Component {
             jsonId: traduction.jsonId,
             translationId:itemId,
             locale : traduction.langueCible,
-            isExpert:isExpert,
+            isExpert: isExpert,
+            traducteur: traduction.userId,
           })
         }
       })
@@ -136,10 +138,10 @@ class Translation extends Component {
   modalClosed=()=> this.setState({feedbackModal:{...this.state.feedbackModal,show:false}})
   
   render(){
-    const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest, disableBtn } = this.props;
+    const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest, disableBtn, traducteur } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
-    let feedbackModal = (
+    const feedbackModal = (
       this.state.feedbackModal.show && 
         <FeedbackModal 
           show={this.state.feedbackModal.show}
@@ -219,7 +221,18 @@ class Translation extends Component {
               <Card id="card_texte_final"> 
                 {/* style={{height : 'calc(' + this.state.height + 'px - .8rem)'}} */}
                 <CardHeader>
-                  <span>Votre traduction en </span>
+                  <span>
+                    {isExpert ? <>
+                      La traduction de{' '}
+                      <img
+                        src={traducteur.picture && traducteur.picture.secure_url ? traducteur.picture.secure_url : marioProfile} 
+                        className="profile-img-pin img-circle small-img"
+                        alt="user profile picture"
+                      />{' '}
+                      <i>{traducteur.username}</i>{' '}
+                      en{' '}</>: 
+                      "Votre traduction en "}
+                  </span>
                   <i className={'flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
                   <strong>{langue.langueFr}</strong>
                   <span className="ml-2">
@@ -316,9 +329,9 @@ const ConditionalSpinner = (props) => {
 }
 
 export default track({
-    page: 'Translation',
+    page: 'StringTranslation',
   })(
     withTranslation()(
-      React.forwardRef((props, ref) => <Translation innerRef={ref} {...props} />)
+      React.forwardRef((props, ref) => <StringTranslation innerRef={ref} {...props} />)
     )
   );
