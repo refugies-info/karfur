@@ -62,7 +62,6 @@ class StringTranslation extends Component {
       API.get_tradForReview({query: {'_id':itemId}, populate:"userId"}).then(data_res => {
         if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           const traduction=data_res.data.data[0];
-          console.log(traduction)
           this._getArticle(traduction.jsonId || traduction.articleId,isExpert)
           this.props.fwdSetState({
             translated:{
