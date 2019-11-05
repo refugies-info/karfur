@@ -57,7 +57,7 @@ function get_article(req, res) {
         "text": "Requête invalide"
     })
   } else {
-    let {query, locale, sort, populate, limit, random, isExpert} = req.body;
+    let {query, locale, sort, populate, limit, random} = req.body;
     locale = locale || 'fr';
     // console.log(query, locale, sort, populate, limit, random)
     let isStructure=false, structId=null;
@@ -82,19 +82,13 @@ function get_article(req, res) {
         // console.log(article) 
         if(article.isStructure){
           // console.log(article) 
-          structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
+          structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at, result[0].updatedAt);
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
           if(random && structureArr.length > 1){
-            let traductions;
-            // if(isExpert){ //S'il est expert, je vais chercher dans toutes les strings traduites celles qui n'ont pas encore été validées
-            //   traductions = await Traduction.find({status: "En attente", type: "string", langueCible: locale, avancement: 1, articleId: article._id})
-            //   console.log("traductions",traductions)
-            //   if(!traductions || traductions.length === 0){ res.status(400).json({"text": "Aucune traduction restante à valider"}); return; }
-            // }else{ //Sinon, je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
-              traductions = await Traduction.find({userId: req.userId, type: "string", langueCible: locale, avancement: 1, articleId: article._id})
-              structureArr = traductions && traductions.length > 0 ? structureArr.filter(x => !traductions.some(y => x._id === y.jsonId)) : structureArr;
-              structureArr = structureArr.length > 1 ? [structureArr[ Math.floor((Math.random() * structureArr.length)) ]] : structureArr;
-            // }
+            //Je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
+            const traductions = await Traduction.find({userId: req.userId, type: "string", langueCible: locale, avancement: 1, articleId: article._id})
+            structureArr = traductions && traductions.length > 0 ? structureArr.filter(x => !traductions.some(y => x._id === y.jsonId)) : structureArr;
+            structureArr = structureArr.length > 1 ? [structureArr[ Math.floor((Math.random() * structureArr.length)) ]] : structureArr;
           }
           result.splice(i, 1);
         }else{
@@ -520,7 +514,7 @@ const _updateAvancement = (locale) => {
   })
 }
 
-_createFromNested = (structJson, locale, query = {}, status = 'Actif', created_at, articles=[], path=[]) => {
+_createFromNested = (structJson, locale, query = {}, status = 'Actif', created_at, updatedAt, articles=[], path=[]) => {
   Object.keys(structJson).forEach((key) => {
     if(structJson[key] && typeof structJson[key].fr === 'string'){
       let newArticle={
@@ -532,6 +526,7 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
         isStructure: true,
         path: [...path, key],
         created_at:created_at,
+        updatedAt:updatedAt,
         _id: structJson[key].id
       }
       path.pop()
@@ -542,7 +537,7 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
     }else if(structJson.constructor === Object){
       path.push(key)
       // console.log(locale, query, status, created_at, articles, path)
-      articles=_createFromNested(structJson[key], locale, query, status, created_at, articles, path);
+      articles=_createFromNested(structJson[key], locale, query, status, created_at, updatedAt, articles, path);
     }
   })
   path.pop()
