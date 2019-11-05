@@ -397,7 +397,7 @@ class EtapeParagraphe extends Component {
               
               {disableEdit && 
                 <div className="feedback-wrapper">
-                  <b>{t("Dispositif.izok", "Est-ce que ça c’est bien passé comme on a dit ?")}</b>
+                  <b>{t("Dispositif.izok", "Est-ce que ça s’est bien passé comme on a dit ?")}</b>
                   <div className="feedback-btns">
                     <FButton type="validate" className="mr-10" onClick={this.props.upcoming} >
                       {t("Oui", "Oui")}

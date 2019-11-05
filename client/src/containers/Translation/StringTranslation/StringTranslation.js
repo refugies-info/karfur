@@ -8,6 +8,7 @@ import {stringify} from 'himalaya';
 import ms from 'pretty-ms';
 import {NavLink} from 'react-router-dom';
 import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
+import _ from "lodash";
 import 'rc-slider/assets/index.css';
 
 import FeedbackModal from '../../../components/Modals/FeedbackModal/FeedbackModal';
@@ -73,6 +74,7 @@ class StringTranslation extends Component {
             locale : traduction.langueCible,
             isExpert: isExpert,
             traducteur: traduction.userId,
+            score: _.get(traduction, "translatedText.scoreBody.cosine.0.0", -1)
           })
         }
       })
@@ -235,10 +237,12 @@ class StringTranslation extends Component {
                   </span>
                   <i className={'flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
                   <strong>{langue.langueFr}</strong>
-                  <span className="ml-2">
-                    {score !== -1 && 
-                      ('Score : ' + (score * 100).toFixed(2) + ' %')}
-                  </span>
+                  {score !== -1 && 
+                    <span className="float-right">
+                      Score :{' '}
+                      <b>{(score * 100).toFixed(2)}</b>{' '}
+                      %
+                    </span>}
                   {autosuggest && 
                     <div className="card-header-actions pointer" onClick={this.upcoming}>
                       <span className="text-muted">Suggestion automatique</span>
