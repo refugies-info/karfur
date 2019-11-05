@@ -64,7 +64,7 @@ class Login extends Component {
         'traducteur' : this.state.traducteur,
       }
       API.login(user).then(data => {
-        Swal.fire( 'Yay...', 'Authentification réussie !', 'success').then(()=>{
+        Swal.fire( {title: 'Yay...', text: 'Authentification réussie !', type: 'success', timer: 1500} ).then(()=>{
           this.props.history.push(this.state.redirectTo)
         });
         localStorage.setItem('token', data.data.token);
