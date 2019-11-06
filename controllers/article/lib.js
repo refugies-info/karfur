@@ -180,7 +180,7 @@ function add_traduction(req, res) {
             result.traductions = [...result.traductions,req.body.translationId];
             result.markModified("translations");
             req.body.update={status:'Validée'};
-            Traduction.findByIdAndUpdate({_id: req.body.translationId},{status:'Validée'},{new: true}).exec();
+            Traduction.findByIdAndUpdate({_id: req.body.translationId},{status:'Validée', validatorId: req.userId},{new: true}).exec();
           }
           if(succes){
             result.avancement = {...result.avancement,[locale]:avancement.value};
