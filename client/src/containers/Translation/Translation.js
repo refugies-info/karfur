@@ -265,7 +265,7 @@ class TranslationHOC extends Component {
     const query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}]};
     API[isExpert ? "get_tradForReview" : (type==="dispositif" ? "get_dispositif" : "getArticle")]({query: query, locale:i18nCode, random:true, isExpert}).then(data_res => {
       let results=data_res.data.data;
-      if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné, veuillez rééssayer', type: 'error', timer: 1500})}
+      if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s\'est produite', type: 'error', timer: 1500})}
       else{ clearInterval(this.timer);
         this.props.history.push({ 
           pathname: '/' + (isExpert ? "validation" : "traduction") + '/' + type + '/' + _.get(results, "0._id"), 
