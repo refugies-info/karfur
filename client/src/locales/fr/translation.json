@@ -73,7 +73,7 @@
     "Messages": "Messages",
     "Contributions": "Contributions",
     "Commencer à rédiger": "Commencer à rédiger",
-    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants" : "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants",
+    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants": "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants",
     "Ici, vous pourrez accéder à vos contributions": "Ici, vous pourrez accéder à vos contributions"
   },
   "UserProfile": {
@@ -120,22 +120,17 @@
     "contributive_2_subheader": "Seuls les acteurs locaux sont capables de recenser efficacement les actions et de nourrir une base de connaissance commune. Ainsi Réfugiés.info permet à chaque territoire de recenser et de valoriser ses initiatives tout en découvrant de nouvelles",
     "contributive_3_header": "Favoriser le micro-engagement",
     "contributive_3_subheader": "En donnant à chacun la possibilité d’être facilement acteur et contributeur de la plateforme, à l’instar de Wikipédia, Réfugiés.info favorise de nouvelles formes de micro-engagement permettant à de nouveaux publics de s’engager pour une cause de solidarité, en faveur des réfugiés",
-    
     "statut-Hugo": "Designer d’intérêt général",
     "engagement-Hugo": "Le projet Réfugiés.info est une formidable opportunité pour mettre le numérique au service d’un public et non l’inverse. La complexité des situations individuelles doit être étudiée afin de proposer un service correspondant aux usages des personnes réfugiés. Impressionné par la vitalité et la détermination du tissu associatif mobilisé pour accueillir les réfugiés, j'ai hâte de proposer un outil pour valoriser les nombreuses initiatives présentes dans tous les territoires.",
     "role-Hugo": "Concevoir une expérience de service réussie répondant aux besoins réels des personnes réfugiées. Être capable de piloter le projet dans des délais réduits.",
-
     "statut-Chloé": "Designer spécialisée en Innovation Sociale",
     "engagement-Chloé": "Mon travail vise à favoriser l’accomplissement personnel des individus et à améliorer la cohésion sociale. Je suis convaincue qu’en mettant en place des outils facilitant l’information et le dialogue entre les différents acteurs de l’accueil migratoire et les réfugiés nous pouvons faciliter leur intégration et améliorer le vivre-ensemble, c’est là le sens de mon engagement sur le projet Réfugiés.info.",
     "role-Chloé": "Je travaille sur l’identité visuelle de la plateforme et produis des illustrations visant à faciliter la navigation et la compréhension de ses contenus ainsi qu’à l’humaniser en tenant compte de la pluralité de culture des utilisateurs.",
-    
     "statut-Simon": "Chef de projet",
     "engagement-Simon": "L’accès à l’information est un des enjeux majeurs adressés à la fonction publique. L’ensemble des personnes vivant en France doivent pouvoir connaître simplement leurs droits et devoirs. Les personnes réfugiées, particulièrement vulnérables de par leur exil, leur maîtrise du français et leur parcours administratif appellent toute notre attention. Réfugiés.info sera une des pierres d’une intégration réussie en France.",
     "role-Simon": "Directeur de cabinet du Délégué interministériel pour l’accueil et l’intégration des réfugiés, je suis cofondateur de son laboratoire d’innovation publique, le Lab’r, qui héberge le projet Réfugiés.info pour lequel je suis mentor opérationnel.",
-
     "statut-Nour": "Chef de projet",
     "role-Nour": "Directeur de cabinet du Délégué interministériel pour l’accueil et l’intégration des réfugiés, je suis cofondateur de son laboratoire d’innovation publique, le Lab’r, qui héberge le projet Réfugiés.info pour lequel je suis mentor opérationnel.",
-
     "statut-Soufiane": "Développeur d'Intérêt Général",
     "role-Soufiane": "Concevoir une expérience de service réussie et répondant aux besoins réels des personnes réfugiées. Livrer un prototype utilisable, démontrant tout le potentiel d’une plateforme numérique sur la problématique de l’accueil et de l’intégration."
   },
@@ -304,7 +299,7 @@
     "Numéro à appeler": "Numéro à appeler",
     "Ton courrier doit être adressé à": "Ton courrier doit être adressé à",
     "Ce que tu dois faire": "Ce que tu dois faire",
-    "izok": "Est-ce que ça s’est bien passé comme on a dit ?",
+    "izok": "Est-ce que ça c’est bien passé comme on a dit ?",
     "Titre du lieu": "Titre du lieu",
     "Adresse": "Adresse",
     "Ville": "Ville",
@@ -340,7 +335,7 @@
     "Le projet": "Le projet",
     "Vous cherchez ?": "Vous cherchez ?"
   },
-  "Login":{
+  "Login": {
     "Mot de passe": "Mot de passe",
     "Confirmez le mot de passe": "Confirmez le mot de passe",
     "Se connecter": "Se connecter",
