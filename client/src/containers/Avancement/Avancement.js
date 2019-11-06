@@ -55,7 +55,7 @@ class Avancement extends Component {
       i18nCode= await this._loadLangue(itemId, isExpert);
     }
     this._loadArticles(itemId, i18nCode);
-    API.get_tradForReview({query: {langueCible: i18nCode}, populate: 'userId'}).then(data => { //console.log(data.data.data);
+    API.get_tradForReview({query: {langueCible: i18nCode, status: "En attente"}, populate: 'userId'}).then(data => { //console.log(data.data.data);
       this.setState({traductionsFaites: data.data.data})
     })
     // this._loadThemes();
