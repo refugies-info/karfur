@@ -49,7 +49,6 @@ class EditableParagraph extends Component {
   
   render(){
     const props=this.props;
-    console.log(props, typeof props.content)
     if(props.editable && !props.disableEdit){
       return (
         // {/* <Backdrop show={true} clicked={()=>props.handleContentClick(props.keyValue,false, props.subkey)} /> */}

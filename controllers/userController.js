@@ -3,8 +3,8 @@ const checkToken = require('./account/checkToken');
 const franceConnect = require('./account/france-connect.js');
 
 module.exports = function (app) {
-  app.post('/login', checkToken.getRoles,account.login);
-  app.post('/signup', checkToken.getRoles,account.signup);
+  app.post('/login', checkToken.getId, checkToken.getRoles, account.login);
+  app.post('/signup', checkToken.getRoles, account.signup);
   app.post('/checkUserExists', account.checkUserExists);
   app.post('/set_user_info', checkToken.check, checkToken.getRoles, account.set_user_info);
   app.post('/get_users', checkToken.getId, account.get_users);

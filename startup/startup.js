@@ -45,7 +45,7 @@ if(process.env.NODE_ENV === 'dev') {
       }
 
       // let isLocaleSuccess=_insertI18nLocales()
-      // let isDownloadSuccess=_getI18nLocales()
+      let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
   }
 
@@ -53,7 +53,7 @@ if(process.env.NODE_ENV === 'dev') {
   run = async (db) => {
     try{
       // let isLocaleSuccess=_insertI18nLocales()
-      // let isDownloadSuccess=_getI18nLocales()
+      let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
   }
 }
