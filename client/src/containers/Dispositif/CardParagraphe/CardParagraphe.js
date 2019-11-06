@@ -73,7 +73,7 @@ class CardParagraphe extends Component {
   }
 
   render(){
-    let {subitem, subkey, filtres, t} = this.props;
+    let {subitem, subkey, filtres, disableEdit, t} = this.props;
     let {showNiveaux} = this.state;
 
     const jsUcfirst = (string, title) => {
@@ -94,11 +94,11 @@ class CardParagraphe extends Component {
     
     let contentTitle = (subitem) => {
       let cardTitle = cardTitles.find(x=>x.title===subitem.title);
-      if(cardTitle && cardTitle.options && cardTitle.options.length > 0 && !this.props.disableEdit){
+      if(cardTitle && cardTitle.options && cardTitle.options.length > 0 && !disableEdit){
         if(!cardTitle.options.some(x => x.toUpperCase()===subitem.contentTitle.toUpperCase())){ subitem.contentTitle = cardTitle.options[0]; subitem.contentBody = 'A modifier'; }
         return(
           <ButtonDropdown isOpen={this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title">
-            <DropdownToggle caret={!this.props.disableEdit}>
+            <DropdownToggle caret={!disableEdit}>
               {subitem.title === "Âge requis" ? 
                 <span>{subitem.contentTitle.split("**").map((x, i, arr) => (
                   <React.Fragment key={i}>
@@ -130,23 +130,23 @@ class CardParagraphe extends Component {
       }else if(subitem.title === "Combien ça coûte ?"){
         return(
           <>
-            {this.props.disableEdit ? 
+            {disableEdit ? 
               <div>{subitem.free ? t("Dispositif.Gratuit", "Gratuit") : t("Dispositif.Payant", "Payant") }</div> :
               <FSwitch precontent="Gratuit" content="Payant" checked={!subitem.free} onClick={() => this.props.toggleFree(this.props.keyValue, this.props.subkey)} />}
             {!subitem.free && 
               <span className="color-darkColor price-details">
-                {this.props.disableEdit ?
+                {disableEdit ?
                   <span>{subitem.price}</span> :
                   <Input 
                     type="number" 
                     className="color-darkColor age-input"
-                    disabled={this.props.disableEdit}
+                    disabled={disableEdit}
                     value={subitem.price} 
                     onMouseUp={() => (this.props.subitem || {}).isFakeContent && this.props.changePrice({target:{value:""}}, this.props.keyValue, this.props.subkey)}
                     onChange={e => this.props.changePrice(e, this.props.keyValue, this.props.subkey)} /> }
                 <span>€ </span>
-                <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title price-frequency">
-                  <DropdownToggle caret={!this.props.disableEdit}>
+                <ButtonDropdown isOpen={!disableEdit && this.state.isOptionsOpen} toggle={this.toggleOptions} className="content-title price-frequency">
+                  <DropdownToggle caret={!disableEdit}>
                     <span>{subitem.contentTitle && t("Dispositif." + subitem.contentTitle, subitem.contentTitle)}</span>
                   </DropdownToggle>
                   <DropdownMenu>
@@ -235,7 +235,7 @@ class CardParagraphe extends Component {
             />
           )
         }else{return false}
-      }else if(this.props.subitem.footerHref){ return (
+      }else if(this.props.subitem.footerHref && disableEdit){ return (
         <FButton type="outline" name={subitem.footerIcon} onClick={this.footerClicked}>
           {subitem.footer}
         </FButton>
@@ -244,8 +244,8 @@ class CardParagraphe extends Component {
 
     return(
       <>
-        <Col lg="4" className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
-          <Card className={subitem.title==='Important !' ? 'make-it-red':'regular'} id={"info-card-" + this.props.keyValue + "-" + subkey}>
+        <Col className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
+          <Card className={(subitem.title==='Important !' ? 'make-it-red':'regular') + " " + subitem.title.replace(/ /g,"-")} id={"info-card-" + this.props.keyValue + "-" + subkey}>
             <CardHeader className="backgroundColor-darkColor">
               {cardHeaderContent(subitem)}
             </CardHeader>
@@ -278,8 +278,9 @@ class CardParagraphe extends Component {
                 </div>
               </div>}
           </Card>
-
-          <Tooltip className="card-tooltip backgroundColor-darkColor" isOpen={(subitem.tooltipHeader || subitem.tooltipContent) && !this.props.disableEdit && this.props.withHelp && this.state.tooltipOpen} target={"info-card-" + this.props.keyValue + "-" + subkey} toggle={this.toggleTooltip}>
+          
+          {/* temporairement désactivés à la demande d'hugo mais je sens que ça va revenir */}
+          <Tooltip className="card-tooltip backgroundColor-darkColor" isOpen={false && (subitem.tooltipHeader || subitem.tooltipContent) && !this.props.disableEdit && this.props.withHelp && this.state.tooltipOpen} target={"info-card-" + this.props.keyValue + "-" + subkey} toggle={this.toggleTooltip}>
             <div className="tooltip-header"><b>{subitem.tooltipHeader}</b></div>
             <div className="tooltip-content">{subitem.tooltipContent}</div>
             <div className="tooltip-footer"><u>{subitem.tooltipFooter}</u></div>

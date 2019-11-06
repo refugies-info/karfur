@@ -31,20 +31,21 @@ const favoriTable = (props) => {
       </thead>
       <tbody>
         {data.slice(0,props.limit).map((element,key) => {
+          const titre = (element.titreMarque || "") + (element.titreMarque && element.titreInformatif ? " - " : "") + (element.titreInformatif || "");
           return (
             <tr key={key} >
               <td className="align-middle">
                 <EVAIcon name="bookmark" fill={variables.noir} id="bookmarkBtn" />  
               </td>
               <td className="align-middle pointer" onClick={()=>goToDispositif(element)}>
-                {element.titreMarque + ' - ' + element.titreInformatif} 
+                {titre} 
               </td>
               <td className="align-middle">
                 {(element.tags || []).map((tag, key) => {
                   return ( 
-                    <Button key={key} color="warning" className="tag-btn" onClick={()=>searchTag(tag.short)}>
+                    <FButton key={key} className={"tag-btn bg-light-" + tag.short} onClick={()=>searchTag(tag.short)}>
                       {tag.short && t("Tags." + tag.short, tag.short)}
-                    </Button>
+                    </FButton>
                   );
                 })}
               </td>
@@ -55,7 +56,7 @@ const favoriTable = (props) => {
                 <FButton type="light-action" name="trash-2-outline" fill={variables.noir} />
               </td>
               <td className="align-middle fit-content">
-                <NavLink to={"/dispositif/"+element._id} className="no-decoration" >
+                <NavLink to={"/" + (element.typeContenu || "dispositif") + "/"+element._id} className="no-decoration" >
                   <FButton type="light-action" name="eye-outline" fill={variables.noir} />
                 </NavLink>
               </td>

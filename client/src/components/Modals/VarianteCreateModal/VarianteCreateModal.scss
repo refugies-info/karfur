@@ -1,0 +1,61 @@
+@import 'src/scss/global.scss';
+@import 'src/scss/colors.scss';
+
+.modal.show .modal-dialog.variante-create-modal .modal-content{
+  background: #FFFFFF;
+  
+  .modal-header{
+    margin-bottom: 16px;
+
+    h5{
+      font-size: 40px;
+      line-height: 51px;
+      display: inline-flex;
+      flex: 1;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .temps-right{
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: bold;
+      padding: 20px;
+      background: $blanc;
+    }
+  }
+  .modal-body{
+    .bandeau-bleu{
+      background: $bgfocus;
+      border-radius: 12px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .video-bloc{
+      display: flex;
+      background: $blanc;
+      border-radius: 12px;
+      padding: 10px;
+      margin-top: 10px;
+    }
+    .video-wrapper{
+      height: 90px;
+      min-width: 160px;
+      background: #C4C4C4;
+      border-radius: 12px;  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 40px;
+    }
+  }
+  .modal-footer{
+    border:none;
+    display: inline-flex;
+    flex: 1;
+    justify-content: space-between;
+  }
+}

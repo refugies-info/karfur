@@ -11,6 +11,7 @@ import { ObjectifsModal, ContributeurModal } from '../../../components/Modals';
 import { ContribTable } from '../../../components/Backend/UserProfile';
 import { avancement_contrib } from '../UserProfile/data';
 import {deleteContrib} from '../UserProfile/functions';
+import {fetch_dispositifs} from '../../../Store/actions';
 
 import './UserDashContrib.scss';
 
@@ -38,7 +39,7 @@ class UserDashContrib extends Component {
   componentDidMount() {
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
-      API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}}}).then(data => {
+      API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}, demarcheId: { $exists: false } }, sort:{updatedAt: -1}}).then(data => {
         this.setState({contributions: data.data.data, isMainLoading: false})
       })
       API.get_progression().then(data_progr => {
@@ -153,6 +154,8 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = {fetch_dispositifs};
+
 export default track({
   page: 'UserDashContrib',
-})(connect(mapStateToProps)(UserDashContrib));
+})(connect(mapStateToProps, mapDispatchToProps)(UserDashContrib));

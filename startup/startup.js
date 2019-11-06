@@ -45,7 +45,7 @@ if(process.env.NODE_ENV === 'dev') {
       }
 
       // let isLocaleSuccess=_insertI18nLocales()
-      // let isDownloadSuccess=_getI18nLocales()
+      let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
   }
 
@@ -53,7 +53,7 @@ if(process.env.NODE_ENV === 'dev') {
   run = async (db) => {
     try{
       // let isLocaleSuccess=_insertI18nLocales()
-      // let isDownloadSuccess=_getI18nLocales()
+      let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
   }
 }
@@ -63,7 +63,6 @@ const _insertI18nLocales = () => {
   let frJson=JSON.parse(fs.readFileSync(localeFolder + "/fr/translation.json", "utf8"));
   let nbMots=0;
   let avancement={fr:1};
-  console.log('ici')
   fs.readdirSync(localeFolder,{'withFileTypes':true}).forEach(dir => {
     if(dir.name && !path.extname(dir.name) && dir.name.slice(0,1) !=='.'){
       try{
@@ -87,16 +86,22 @@ const _insertI18nLocales = () => {
     nombreMots:nbMots,
     avancement:avancement,
     status:'Actif',
-    isStructure: true
+    isStructure: true,
+    canBeUpdated: false
   }
-  Article.findOneAndUpdate({isStructure: true, title: 'Structure du site', status:'Actif'}, localeArticle, {upsert: true,new: true}, (err, doc) => {
-    if (err) {
-      console.log("Something went wrong when updating data : " + err);
-      return false
-    }
-    console.log('translation data inserted with great success');
-    return true
-  });
+  Article.findOneAndUpdate(
+    {isStructure: true, title: 'Structure du site', status:'Actif', canBeUpdated: true}, 
+    localeArticle, 
+    {upsert: false,new: true},  //Modifier upsert à true si on accepte d'en créer un nouveau si on ne le trouve pas
+    (err, doc) => {
+      if (err) {
+        console.log("Something went wrong when updating data : " + err);
+        return false
+      }else if(doc){
+        console.log('translation data inserted with great success');
+      }
+      return true
+    });
 }
 
 _insertNested = (frJson, jsonLoc, locale, nbMots, avancement) => {

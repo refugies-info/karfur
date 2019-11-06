@@ -30,7 +30,7 @@ class SearchItem extends Component {
             aria-expanded={this.state.dropdownOpen}
             className="mt-8"
           >
-            <FSearchBtn active={item.active} desactiver = {() => this.props.desactiver(keyValue)}>
+            <FSearchBtn active={!item.short && item.active} desactiver = {() => this.props.desactiver(keyValue)} className={item.short && item.active && ("bg-" + item.short.split(" ").join("-") + " texte-blanc")}>
               {t("Tags." + item.value, item.value)}
             </FSearchBtn>
           </DropdownToggle>

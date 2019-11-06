@@ -1,8 +1,16 @@
 import API from '../../../utils/API';
 
-const showSuggestion = function(suggestion) {
-  this.setState({suggestion});
+const showSuggestion = function(suggestion, idx=-1) {
+  this.setState(pS=>({suggestion, actions: pS.actions.map((x,i) => i===idx ? {...x, read: true} : x)}));
   this.toggleModal('suggestion');
+  //On enregistre aussi en BDD que la notif est lue :
+  const dispositif = {
+    dispositifId: suggestion.dispositifId,
+    suggestionId: suggestion.suggestionId,
+    fieldName: suggestion.action + ".$.read",
+    type:'set',
+  }
+  API.update_dispositif(dispositif);
 }
 
 const archiveSuggestion = function(suggestion) {
@@ -39,11 +47,12 @@ const parseActions = dispositifs => {
       } return actions;
     })
   });
-  return actions
+  return actions.sort((a,b) => a.read ? 1 : b.read ? -1 : 0)
 }
 
 const deleteContrib = function(dispositif, type, callback=()=>{}){
   API.add_dispositif(dispositif).then(() => {
+    this.props.fetch_dispositifs();
     if(type){
       const query = type === "user" ? {'creatorId': this.props.userId} : {'mainSponsor': ((this.props.user || {}).structures || [{}])[0]};
       API.get_dispositif({query: {...query, status: {$ne: "Supprimé"}}}).then(data => { console.log(data.data.data);

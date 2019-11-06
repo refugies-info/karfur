@@ -8,7 +8,7 @@ import './FInput.scss';
 import variables from 'scss/colors.scss';
 
 const FInput = props => (
-  <InputGroup className="mb-10 figma-imput-group">
+  <InputGroup className="mb-10 figma-input-group">
     {props.prepend && 
       <InputGroupAddon addonType="prepend" className="icon-prepend">
         <EVAIcon name={props.prependName} fill={props.prependFill || variables.noir} />
@@ -21,7 +21,8 @@ const FInput = props => (
       value={props.value} 
       onChange={props.onChange} 
       autoComplete={props.autoComplete}
-      className={props.inputClassName} />
+      disabled={props.disabled}
+      className={[props.inputClassName, props.prepend ? "has-prepend" : ""].join(" ")} />
     {props.append && 
       <InputGroupAddon addonType="append" className="icon-append" onClick={props.onAppendClick}>
         <EVAIcon name={props.appendName} fill={props.appendFill || variables.noir} />

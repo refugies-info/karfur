@@ -26,10 +26,9 @@ class Tags extends Component {
 
   toggleDropdown = (e, key, tag) => {
     if(this.props.disableEdit){
-      console.log(this.props.tags[key])
       this.props.history.push({ pathname:"/advanced-search", search: '?tag=' + tag.short || tag.name || tag })
     }else{
-      this.setState({ isDropdownOpen: this.state.isDropdownOpen.map((x,i)=> i===key ? !x : false)}, () => console.log(this.state))
+      this.setState({ isDropdownOpen: this.state.isDropdownOpen.map((x,i)=> i===key ? !x : false)})
     }
   };
 
@@ -51,13 +50,13 @@ class Tags extends Component {
           if(tag){return (
             <ButtonDropdown isOpen={!this.props.disableEdit && this.state.isDropdownOpen[key]} toggle={(e)=>this.toggleDropdown(e, key, tag)} className="tags-dropdown" key={key}>
               <DropdownToggle caret={!this.props.disableEdit}>
-                {tag && t("Tags." + tag.short || tag.name || tag, tag.short || tag.name || tag)}
+                {tag && t("Tags." + (tag.short || tag.name || tag), tag.short || tag.name || tag)}
               </DropdownToggle>
               <DropdownMenu>
                 {this.props.filtres.map((e, i) => {
                   return (
-                    <DropdownItem 
-                      onMouseOver={ev=>ev.target.style.backgroundColor=e.hoverColor}
+                    <DropdownItem className="dropdown-custom"
+                      onMouseOver={ev=>ev.target.style.backgroundColor=e.darkColor}
                       onMouseOut={ev=>ev.target.style.backgroundColor='#FFFFFF'}
                       onClick={()=>this.props.changeTag(key, e)} key={i} id={i}>
                       {e && t("Tags." + e.short || e.name, e.short || e.name)}
@@ -77,7 +76,7 @@ class Tags extends Component {
         {!this.props.disableEdit && (this.props.tags || []).length<3 && 
           <Button className="plus-button ml-10" onClick={this.addTag}>
             <EVAIcon className="mr-10" name="plus-circle-outline" fill="#CDCDCD" />
-            {t("Dispositif.Ajouter un tag", "Ajouter un tag")}
+            {t("Dispositif.Ajouter un thème", "Ajouter un thème")}
           </Button>}
       </div>
     )

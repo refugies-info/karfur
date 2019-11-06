@@ -178,7 +178,7 @@ class MapParagraphe extends PureComponent {
 
   render(){
     const {markers, markerInfo} = this.state;
-    const {t} = this.props;
+    const {t, disableEdit} = this.props;
     return(
       <div className="map-paragraphe" id="map-paragraphe">
         <div className="where-header backgroundColor-darkColor">
@@ -199,7 +199,7 @@ class MapParagraphe extends PureComponent {
                 ))}
               </DropdownMenu>
             </ButtonDropdown>}
-            {!this.props.disableEdit &&
+            {!disableEdit &&
               <EVAIcon onClick={()=>this.props.deleteCard(this.props.keyValue,this.props.subkey)} name="close-circle" fill={variables.error} size="xlarge" className="remove-btn" />}
         </div>
         <div className="map-content">
@@ -212,7 +212,7 @@ class MapParagraphe extends PureComponent {
               onMapMounted = {this.onMapMounted}
               onSearchBoxMounted = {this.onSearchBoxMounted}
               onPlacesChanged = {this.onPlacesChanged}
-              disableEdit = {this.props.disableEdit}
+              disableEdit = {disableEdit}
               handleChange = {this.handleChange}
               {...this.state}
             />
@@ -222,21 +222,22 @@ class MapParagraphe extends PureComponent {
               return (
                 <React.Fragment key={key}>
                   <label>
-                    {field.label}
+                    {t("Dispositif." + field.label, field.label)}
                     {field.mandatory && (<sup>*</sup>)}
                   </label>
                   <ContentEditable
                     html={field.value || '' } 
-                    disabled={this.props.disableEdit} 
+                    disabled={disableEdit} 
                     onChange={e => this.handleMarkerChange(e, key)}
                     className={"marker-input color-darkColor " + field.customClass}
                   />
                 </React.Fragment>
               )}
             )}
-            <FButton onClick={this.validateMarker} type="theme" name="checkmark-circle-2-outline" className="validate-btn">
-              {t("Valider", "Valider")}
-            </FButton>
+            {!disableEdit &&
+              <FButton onClick={this.validateMarker} type="theme" name="checkmark-circle-2-outline" className="validate-btn">
+                {t("Valider", "Valider")}
+              </FButton>}
           </div>
         </div>
 

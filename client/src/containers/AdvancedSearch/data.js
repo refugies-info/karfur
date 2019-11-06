@@ -98,4 +98,9 @@ const initial_data = [
   }
 ];
 
-export {initial_data};
+const filtres_contenu = [
+  {name: "Dispositifs", query: {$or: [{typeContenu: {$exists: false}}, {typeContenu: "dispositif"}] }},
+  {name: "Démarches", query: {typeContenu: "demarche"} },
+]
+
+export {initial_data, filtres_contenu};

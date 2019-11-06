@@ -20,19 +20,20 @@ var transporter = nodemailer.createTransport({
 
 var mailOptions = {
   from: 'diairagir@gmail.com',
-  to: 'souflam007@yahoo.fr',
-  subject: 'Administration Agi\'R'
+  to: process.env.NODE_ENV === "dev" ? "souflam007@yahoo.fr" : 'diairagir@gmail.com',
+  subject: 'Administration Réfugiés.info'
 };
 
 function add_dispositif(req, res) {
-  if (!req.body || ((!req.body.titreMarque || !req.body.titreInformatif) && !req.body.dispositifId)) {
+  if (!req.body || ((!req.body.titreInformatif) && !req.body.dispositifId)) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let dispositif = req.body;
-    
+    console.log('content-length', req.headers['content-length'])
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
+    //Si le dispositif existe déjà on fait juste un update
     if(dispositif.dispositifId){
       promise=Dispositif.findOneAndUpdate({_id: dispositif.dispositifId}, dispositif, { upsert: true , new: true});
     }else{
@@ -50,23 +51,19 @@ function add_dispositif(req, res) {
         })
       }
       //J'associe la structure principale à ce dispositif
-      Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+      if(dispositif.mainSponsor){
+        Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+      }
 
-      mailOptions.html = "<p>Bonjour,<p>" + 
-        "<p>Un nouveau contenu est en attente de validation sur la plateforme Agi'R, <a href='https://agir-dev.herokuapp.com/'>cliquez ici</a> pour y accéder</p>" + 
-        "<p>Une nouvelle structure est également en attente de validation, <a href='https://agir-dev.herokuapp.com/'>cliquez ici</a> pour y accéder</p>" + 
-        "<p>A bientôt,</p>" +
-        "<p>Soufiane</p>";
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) { console.log(error); } else { console.log('Email sent: ' + info.response); }
-      });
+      _handleMailNotification(data);
+
       res.status(200).json({
         "text": "Succès",
         "data": data
       })
     }).catch(err => {
       console.log(err);
-      res.status(500).json({"text": "Erreur interne"})
+      res.status(500).json({"text": "Erreur interne", data: err})
     })
   }
 }
@@ -90,16 +87,11 @@ function get_dispositif(req, res) {
     }else{populate='';}
 
     let promise=null;
-    console.log(random)
     if(random){
       promise=Dispositif.aggregate([
         { $match : query },
         { $sample : { size: 1 } }
       ]);
-      console.log([
-        { $match : query },
-        { $sample : { size: 1 } }
-      ])
     }else{
       promise=Dispositif.find(query).sort(sort).populate(populate).limit(limit);
     }
@@ -114,7 +106,6 @@ function get_dispositif(req, res) {
           "data": result
       })
     }).catch(function (error) {
-      console.log(error)
       switch (error) {
         case 500:
             res.status(500).json({
@@ -158,9 +149,12 @@ function update_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let {dispositifId, fieldName, suggestionId, type, ...dispositif} = req.body;
-    let update = null;
+    let update = null, query = { _id: dispositifId };
     if(type==='pull'){
       update = { $pull: { [fieldName] : {'suggestionId': suggestionId } } }
+    }else if(type==='set'){
+      query = {...query, "suggestions.suggestionId": suggestionId};
+      update = { "$set": { [fieldName]: true } }
     }else{
       update = { "$push": { [fieldName]: {
         ...(req.userId && {userId:req.userId}), 
@@ -170,8 +164,8 @@ function update_dispositif(req, res) {
         suggestionId: uniqid('feedback_')
       } } }
     }
-    Dispositif.findByIdAndUpdate({ _id: dispositifId },update,{new: true},(err, data) => {
-      if (err){res.status(404).json({ "text": "Pas de résultat" })}
+    Dispositif.findOneAndUpdate(query, update,{new: true},(err, data) => {
+      if (err){res.status(404).json({ "text": "Pas de résultat", error: err }); console.log(err)}
       else{
         res.status(200).json({
           "text": "Succès",
@@ -198,7 +192,6 @@ function get_dispo_progression(req, res) {
           timeSpent:{ $sum: "$timeSpent"},
           count:{ $sum: 1}}}
     ]).exec(function (err, result) {
-      console.log(result)
       if (err) {
         reject(500);
       } else {
@@ -230,7 +223,6 @@ function count_dispositifs(req, res) {
 const turnHTMLtoJSON = (contenu, nbMots=null) => {
   for(var i=0; i < contenu.length;i++){
     let html= contenu[i].content;
-    console.log(html)
     nbMots+=(html || '').trim().split(/\s+/).length;
     let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
     let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
@@ -244,12 +236,14 @@ const turnHTMLtoJSON = (contenu, nbMots=null) => {
 }
 
 const turnJSONtoHTML = (contenu) => {
-  for(var i=0; i < contenu.length;i++){
-    if(contenu[i] && contenu[i].content){
-      contenu[i].content = himalaya.stringify(contenu[i].content);
-    }
-    if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
-      turnJSONtoHTML(contenu[i].children)  
+  if(contenu){
+    for(var i=0; i < contenu.length;i++){
+      if(contenu[i] && contenu[i].content && (typeof contenu[i].content === Object || typeof contenu[i].content === "object")){
+        contenu[i].content = himalaya.stringify(contenu[i].content);
+      }
+      if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
+        turnJSONtoHTML(contenu[i].children)  
+      }
     }
   }
 }
@@ -274,6 +268,27 @@ const _errorHandler = (error, res) => {
   }
 }
 
+const _handleMailNotification = dispositif => {
+  let html = "";
+  const status = dispositif.status, url = process.env.NODE_ENV === 'dev' ? "http://localhost:3000/" : process.env.NODE_ENV === 'quality' ? "https://agir-qa.herokuapp.com/" : "https://www.refugies.info/";
+  // ["Actif", "Accepté structure", , "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé"]
+  if(["En attente", "En attente admin", "En attente non prioritaire"].includes(status)){
+    html = "<p>Bonjour,</p>";
+  
+    if( ["En attente", "En attente admin", "En attente non prioritaire"].includes(status) ){
+      html += "<p>Un nouveau contenu (" + dispositif.typeContenu + ") est '<b>" + status + " de validation</b>' sur la plateforme Réfugiés.info (environnement : '" + process.env.NODE_ENV + "')</p>" +
+        "<p><a href=" + url + (dispositif.typeContenu || "dispositif") + "/" + dispositif._id + ">Cliquez ici</a> pour accéder au contenu, ou accédez <a href=" + url + "backend/admin-contrib>à la page d'administration</a>.</p>";
+    }
+    html += "<p>A bientôt,</p>" +
+      "<p>Soufiane, webmestre (who says that ?!) Réfugiés.info</p>";
+    
+    mailOptions.html = html;
+    mailOptions.subject = 'Administration Réfugiés.info - ' + dispositif.titreInformatif + ' - ' + status;
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) { console.log(error); } else { console.log('Email sent: ' + info.response); }
+    });
+  }
+}
 //On exporte notre fonction
 exports.add_dispositif = add_dispositif;
 exports.get_dispositif = get_dispositif;

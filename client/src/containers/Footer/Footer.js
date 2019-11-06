@@ -33,7 +33,7 @@ class Footer extends Component {
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render() {
-    // const { t } = this.props;
+    const { t } = this.props;
     return (
       <div className="animated fadeIn footer">
         <Row>
@@ -49,7 +49,7 @@ class Footer extends Component {
                     value={this.state.email}
                     onChange={this.onChange}
                     id="emailNewsletter" 
-                    placeholder="Je m'abonne à la newsletter" />
+                    placeholder={t("Footer.Je m'abonne à la newsletter", "Je m'abonne à la newsletter")} />
                   <InputGroupAddon addonType="append" className="icon-append" onClick={this.sendMail}>
                     <EVAIcon name='at-outline' fill={variables.noir} />
                   </InputGroupAddon>
@@ -59,13 +59,13 @@ class Footer extends Component {
             <div className="ligne-footer">
               {/*<label>Rejoindre la newsletter</label>*/}
               <FButton tag={"a"} href="https://agi-r.mn.co" target="_blank" className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
-                Rejoindre le réseau
+                {t("Footer.Participer à l'évolution de réfugiés-info", "Participer à l'évolution de réfugiés.info")}
               </FButton>
             </div>
             <div className="ligne-footer">
               {/*<label>Demander de nouveaux contenus</label>*/}
               <FButton tag={"a"} href="https://agir.canny.io/agir" target="_blank" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
-                Suggérer des fonctionnalités
+                {t("Footer.Demander des fonctionnalités", "Demander des fonctionnalités")}
               </FButton>
             </div>
           </Col>
@@ -73,48 +73,48 @@ class Footer extends Component {
             <Row className="main-row">
               <Col lg="4">
                 <h5 className="footer-header">
-                  Le projet
+                  {t("Footer.Le projet", "Le projet")}
                 </h5>
                 <div className="lien-footer">
-                  <NavHashLink to="/qui-sommes-nous#hero">Qui sommes-nous ?</NavHashLink>
+                  <NavHashLink to="/qui-sommes-nous#hero">{t("Qui sommes-nous ?", "Qui sommes-nous ?")}</NavHashLink>
                 </div>
                 <div className="lien-footer">
-                  <NavLink to="/comment-contribuer">Comment contribuer ?</NavLink>
+                  <NavHashLink to="/comment-contribuer#hero">{t("Comment contribuer ?", "Comment contribuer ?")}</NavHashLink>
                 </div>
                 <div className="lien-footer" onClick={this.upcoming}>
-                  <NavLink to="/">Accessibilité</NavLink>
+                  <NavLink to="/">{t("Accessibilité", "Accessibilité")}</NavLink>
                 </div>
                 <div className="lien-footer" onClick={this.upcoming}>
-                  <NavLink to="/">Mentions légales</NavLink>
+                  <NavLink to="/">{t("Mentions légales", "Mentions légales")}</NavLink>
                 </div>
               </Col>
               <Col lg="8">
                 <h5 className="footer-header">
-                  Vous cherchez ?
+                  {t("Footer.Vous cherchez ?", "Vous cherchez ?")}
                 </h5>
                 <div className="lien-footer">
                   <NavLink to="/advanced-search">
-                    <b>Dispositif</b> - Être accompagné ou rejoindre un dispositif
+                    {t("Dispositif d'accompagnement", "Dispositif d'accompagnement")}
                   </NavLink>
                 </div>
                 <div className="lien-footer">
                   <NavHashLink to="/homepage#plan" smooth>
-                    <b>Démarches</b> - Comprendre mes démarches administratives
+                    {t("Démarche administrative", "Démarche administrative")}
                   </NavHashLink>
                 </div>
                 <div className="lien-footer">
                   <NavHashLink to="/homepage#plan" smooth>
-                    <b>Parcours</b> - Créer mon parcours d’intégration
+                    {t("Parcours personnalisé", "Parcours personnalisé")}
                   </NavHashLink>
                 </div>
                 <div className="lien-footer">
                   <NavHashLink to="/homepage#explique">
-                    <b>Lexique</b> - Comprendre un mot
+                    {t("Lexique", "Lexique")}
                   </NavHashLink>
                 </div>
               </Col>
             </Row>
-            <Row className="social-custom-buttons-row">
+            {/*<Row className="social-custom-buttons-row">
               <Col lg="4">
                 <FButton disabled onClick={this.upcoming} type="light-action" name="twitter-outline" fill={variables.noir}>
                   Nous suivre sur Twitter
@@ -130,7 +130,7 @@ class Footer extends Component {
                   Suivre sur Whatsapp
                 </FButton>
               </Col>
-            </Row>
+    </Row>*/}
           </Col>
         </Row>
       </div>

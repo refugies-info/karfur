@@ -15,7 +15,7 @@ body .figma-btn{
   text-decoration: none;
   white-space: nowrap;
   display: inline-flex;
-  align-items: flex-end;
+  align-items: center;
   
   &.default svg{
     fill:$noir;
@@ -44,8 +44,12 @@ body .figma-btn{
     &:disabled, &.disabled{
       background: $gris;
       color: $grisFonce;
+      cursor: not-allowed;
       svg{
         fill:$grisFonce;
+      }
+      &:hover{
+        background-color: $gris;
       }
     }
   }
@@ -57,14 +61,14 @@ body .figma-btn{
     background: $noir;
     color: #FFFFFF;
     svg{
-      fill: $blanc;
+      fill: $blancSimple;
     }
     &:hover{
       background: #000000;
       color: #FFFFFF;
       box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       svg{
-        fill: $blanc;
+        fill: $blancSimple;
       }
     }
     
@@ -73,7 +77,7 @@ body .figma-btn{
       color: #FFFFFF;
       cursor: not-allowed;
       svg{
-        fill: $blanc;
+        fill: $blancSimple;
       }
     }
     &:focus{
@@ -82,21 +86,21 @@ body .figma-btn{
   }
 
   &.validate{
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
     background: $vert;
-    color: $blanc;
+    color: $blancSimple;
     svg{
       fill: $blancSimple;
     }
-    &:hover{
+    &:not(:disabled):not(.disabled):hover{
       background: $vertFonce;
-      color: $blanc;
+      color: $blancSimple;
       box-shadow: none;
       svg{
-        fill: $blanc;
+        fill: $blancSimple;
       }
     } 
     &:not(:disabled):not(.disabled):active{
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       background: $vert;
     }
   }
@@ -104,12 +108,12 @@ body .figma-btn{
   &.error{
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
     background: $error;
-    color: $blanc;
+    color: $blancSimple;
     &:hover{
       background: $rouge;
-      color: $blanc;
+      color: $blancSimple;
       svg{
-        fill: $blanc;
+        fill: $blancSimple;
       }
     } 
     &:not(:disabled):not(.disabled):active{
@@ -205,6 +209,22 @@ body .figma-btn{
       svg{
         fill: $noir;
       }
+    }
+  }
+
+  &.help{
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
+    background: $erreur;
+    color: $error;
+    &:hover{
+      background: $error;
+      color: $blancSimple;
+      svg{
+        fill: $blancSimple;
+      }
+    } 
+    &:not(:disabled):not(.disabled):active{
+      background: $erreur;
     }
   }
 }

@@ -7,16 +7,19 @@ import ReactHtmlParser from 'react-html-parser';
 import {stringify} from 'himalaya';
 import ms from 'pretty-ms';
 import {NavLink} from 'react-router-dom';
+import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
+import _ from "lodash";
 import 'rc-slider/assets/index.css';
 
 import FeedbackModal from '../../../components/Modals/FeedbackModal/FeedbackModal';
 import Article from '../../Article/Article';
 import API from '../../../utils/API';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
+import FButton from '../../../components/FigmaUI/FButton/FButton';
+import marioProfile from '../../../assets/mario-profile.jpg';
 
 import './StringTranslation.scss';
 import variables from 'scss/colors.scss';
-import FButton from '../../../components/FigmaUI/FButton/FButton';
 
 var option = {
   style: 'percent',
@@ -28,7 +31,7 @@ const localeFormatter = (v) => {
   return new Intl.NumberFormat('fr-FR', option).format(v)
 }
 
-class Translation extends Component {
+class StringTranslation extends Component {
   state = {
     feedbackModal:{
       show:false,
@@ -55,22 +58,24 @@ class Translation extends Component {
     const { itemId, locale, isExpert } = props;
     console.log(itemId, locale, isExpert)
     if(itemId && locale && !isExpert){
-      this._getArticle(itemId,locale)
+      this._getArticle(itemId)
     }else if(itemId && isExpert){
-      API.get_tradForReview({'_id':itemId}).then(data_res => {
+      API.get_tradForReview({query: {'_id':itemId}, populate:"userId"}).then(data_res => {
         if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
-          let traduction=data_res.data.data[0];
-          this._getArticle(traduction.jsonId || traduction.articleId,'fr',isExpert)
+          const traduction=data_res.data.data[0];
+          this._getArticle(traduction.jsonId || traduction.articleId,isExpert)
           this.props.fwdSetState({
             translated:{
               title:traduction.translatedText.title,
-              body: traduction.jsonId? traduction.translatedText.body : (stringify(traduction.translatedText.body) || '').replace(/ id='initial_/g,' id=\'target_') //Ici il y avait id=\'initial_/ avant
+              body: traduction.jsonId ? traduction.translatedText.body : (stringify(traduction.translatedText.body) || '').replace(/ id='initial_/g,' id=\'target_') //Ici il y avait id=\'initial_/ avant
             },
-            itemId: traduction.jsonId || traduction.articleId,
+            jsonId: traduction.jsonId,
             translationId:itemId,
             locale : traduction.langueCible,
-            isExpert:isExpert,
-          },()=>{console.log(this.state)})
+            isExpert: isExpert,
+            traducteur: traduction.userId,
+            score: _.get(traduction, "translatedText.scoreBody.cosine.0.0", -1)
+          })
         }
       })
     }
@@ -84,7 +89,7 @@ class Translation extends Component {
     }
   }
 
-  _getArticle = (itemId) => {
+  _getArticle = (itemId, isExpert = false) => {
     API.get_article({_id: itemId}).then(data_res => {
       if(data_res.data.data.constructor === Array && data_res.data.data.length > 0){
         let article=data_res.data.data[0];
@@ -94,7 +99,7 @@ class Translation extends Component {
   }
 
   setArticle = article => {
-    const { itemId, locale, isExpert } = this.props;
+    const { itemId, locale, isExpert, langueBackupId } = this.props;
     this.props.fwdSetState({
       francais:{
         title: article.title,
@@ -108,7 +113,7 @@ class Translation extends Component {
     },()=>{
       if(!isExpert){
         //Je vérifie d'abord s'il n'y a pas eu une première traduction effectuée par un utilisateur :
-        API.get_tradForReview({'jsonId': itemId, langueCible:  locale}, '-avancement').then(data => {
+        API.get_tradForReview({query: {'jsonId': itemId, langueCible:  locale}, sort: '-avancement'}).then(data => {
           if(data.data.data && data.data.data.length > 0){
             let traductionFaite = data.data.data[0];
             this.props.fwdSetState({ translated: {
@@ -118,7 +123,7 @@ class Translation extends Component {
             });
           }else{
             //Je rend chaque noeud unique:
-            this.props.translate(this.initial_text.innerHTML, locale, 'body')
+            this.props.translate(this.initial_text.innerHTML, langueBackupId || locale, 'body')
             // if(!this.props.isStructure){this.props.translate(this.initial_title.innerHTML, locale, 'title')}
           }
           this.props.fwdSetState({texte_a_traduire:this.initial_text.innerText})
@@ -135,9 +140,10 @@ class Translation extends Component {
   modalClosed=()=> this.setState({feedbackModal:{...this.state.feedbackModal,show:false}})
   
   render(){
-    const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest } = this.props;
+    const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest, disableBtn, traducteur } = this.props;
+    const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
-    let feedbackModal = (
+    const feedbackModal = (
       this.state.feedbackModal.show && 
         <FeedbackModal 
           show={this.state.feedbackModal.show}
@@ -147,7 +153,7 @@ class Translation extends Component {
           modalClosed={this.modalClosed}
         />
     )
-
+    
     return(
       <div className="animated fadeIn traduction">
         <div className="animated fadeIn traduction-container">
@@ -217,13 +223,26 @@ class Translation extends Component {
               <Card id="card_texte_final"> 
                 {/* style={{height : 'calc(' + this.state.height + 'px - .8rem)'}} */}
                 <CardHeader>
-                  <span>Votre traduction en </span>
+                  <span>
+                    {isExpert ? <>
+                      La traduction de{' '}
+                      <img
+                        src={traducteur.picture && traducteur.picture.secure_url ? traducteur.picture.secure_url : marioProfile} 
+                        className="profile-img-pin img-circle small-img"
+                        alt="user profile picture"
+                      />{' '}
+                      <i>{traducteur.username}</i>{' '}
+                      en{' '}</>: 
+                      "Votre traduction en "}
+                  </span>
                   <i className={'flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
                   <strong>{langue.langueFr}</strong>
-                  <span className="ml-2">
-                    {score !== -1 && 
-                      ('Score : ' + (score * 100).toFixed(2) + ' %')}
-                  </span>
+                  {score !== -1 && 
+                    <span className="float-right">
+                      Score :{' '}
+                      <b>{(score * 100).toFixed(2)}</b>{' '}
+                      %
+                    </span>}
                   {autosuggest && 
                     <div className="card-header-actions pointer" onClick={this.upcoming}>
                       <span className="text-muted">Suggestion automatique</span>
@@ -233,27 +252,30 @@ class Translation extends Component {
                   {!isStructure && 
                     <div className="titre text-center">
                       <ConditionalSpinner show={!translated.title} />
-                      <ContentEditable
-                        id="title_texte_final"
-                        className="title"
-                        html={'<h1>'+translated.title+'</h1>'} 
-                        disabled={isExpert}       
-                        onChange={this.props.handleChange} 
-                      />
+                        <ContentEditable
+                          id="title_texte_final"
+                          className="title"
+                          html={'<h1>'+translated.title+'</h1>'} 
+                          disabled={isExpert}       
+                          onChange={this.props.handleChange} 
+                        />
                     </div>
                   }
                   <div id="body_texte_final"
                   onClick={((e) => this.props.handleClickText(e, "target", "initial"))}>
                     <ConditionalSpinner show={!translated.body} />
-                    <ContentEditable
-                      key="target-editor-body"
-                      className="body"
-                      placeholder="Renseignez votre traduction ici"
-                      html={translated.body} // innerHTML of the editable div
-                      disabled={isExpert}       // use true to disable editing
-                      onChange={this.props.handleChange} // handle innerHTML change
-                      onSelect={this.onSelect}
-                    />
+                    <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+                      <ContentEditable
+                        key="target-editor-body"
+                        className="body"
+                        placeholder="Renseignez votre traduction ici"
+                        html={translated.body} // innerHTML of the editable div
+                        disabled={false}       // isExpert
+                        onChange={this.props.handleChange} // handle innerHTML change
+                        onSelect={this.onSelect}
+                        style={{textAlign: isRTL ? "right" : "left"}}
+                      />
+                    </DirectionProvider>
                     {/* <h3>Source</h3>
                     <textarea
                       className="form-control body"
@@ -280,7 +302,7 @@ class Translation extends Component {
               <FButton type="error" name="arrow-forward" onClick={this.props.onSkip} className="mr-10">
                 Passer
               </FButton>
-              <FButton type="validate" name="checkmark-outline" fill={variables.error} onClick={()=> this.props.valider()}>
+              <FButton type="validate" name="checkmark-outline" fill={variables.error} onClick={()=> this.props.valider()}>  {/* disabled={disableBtn} */}
                 Valider
               </FButton>
             </Col>
@@ -311,9 +333,9 @@ const ConditionalSpinner = (props) => {
 }
 
 export default track({
-    page: 'Translation',
+    page: 'StringTranslation',
   })(
     withTranslation()(
-      React.forwardRef((props, ref) => <Translation innerRef={ref} {...props} />)
+      React.forwardRef((props, ref) => <StringTranslation innerRef={ref} {...props} />)
     )
   );

@@ -1,208 +1,240 @@
 @import 'src/scss/colors.scss';
 
-.cards.row .card-col{ 
-  padding: 0 0 0 10px;
-  margin-top:40px;
+.Public-visé{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Public.svg);
+  background-size: cover;
+}
 
-  .card{
-    margin-top: -40px;
-    min-height: 230px;
-    background: $cardColor;
-    border-radius: 12px;
-    border:none;
-    height: 300px;
+.Âge-requis{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Age.svg);
+  background-size: cover;
+}
 
-    &.make-it-red{
-      background: $rouge;
-    }
+.Durée{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Durée.svg);
+  background-size: cover;
+}
 
-    
-    .card-header{
-      background-color: $darkColor;
-      border: none;
-      border-radius: 12px 12px 0 0;
-      font-size: 16px;
-      color: #FFFFFF;
-      padding: 10px;
+.Niveau-de-français{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Français.svg);
+  background-size: cover;
+}
 
-      .header-content{
-        margin-left: 10px;
-        font-size: 16px;
+.Combien-ça-coute{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Prix.svg);
+  background-size: cover;
+}
+
+.Justificatif-demandé{
+  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Papiers.svg);
+  background-size: cover;
+}
+
+.cards.row{
+  padding: 0 40px;
+  .card-col{ 
+    padding: 0 0 0 10px;
+    margin-top:40px;
+
+    .card{
+      margin-top: -40px;
+      min-height: 230px;
+      background: $cardColor;
+      border-radius: 12px;
+      border:none;
+      height: 300px;
+
+      &.make-it-red{
+        background: $rouge;
       }
-      .form-control{
-        background-color:inherit;
-      }
-      .btn-group{
-        width: 100%;
-        .header-value{
-          background-color: inherit;
-          color: inherit;
-          border: none;
-          width: 100%;
-          text-align: initial;
-          padding:0;
-        }
-      }
-    }
-
-    .card-body{
-      padding-bottom: 12px;
-      font-size: 16px;
-      line-height: 20px;
-      color: #FFFFFF;
-
-      h4{
-        font-style: normal;
-        font-weight: 500;
-        font-size: 24px;
-        .card-input{
-          border-radius: 6px;
-          color: $darkColor;
-          padding-left: 10px;
-          line-height: 38px;
-        }
-        .switch-wrapper{
-          color: $blancSimple;
-        }
-      }
-
-      .content-title{
-        .dropdown-toggle.btn, .btn{
-          color: inherit;
-          background-color: inherit;
-          border-color: inherit;
-          font-weight: inherit;
-          font-size: inherit;
-          border:none;
-          padding:0;
-          white-space: normal;
-        }
-      }
-
-      .age-input{
-        font-weight: 500;
-        font-size: 24px;
-        line-height: 40px;
-        display: inline-block;
-        padding: 0;
+      
+      .card-header{
+        background-color: $darkColor;
         border: none;
-        text-align: center;
-        margin: 0;
-        width: 40px;
-        color: $noir;
-        height: 40px;
-        background-color: $jauneClair;
-        &:active, &:focus{
-          background-color: $gris;
+        border-radius: 12px 12px 0 0;
+        font-size: 16px;
+        color: #FFFFFF;
+        padding: 10px;
+
+        .header-content{
+          margin-left: 10px;
+          font-size: 16px;
+        }
+        .form-control{
+          background-color:inherit;
+        }
+        .btn-group{
+          width: 100%;
+          .header-value{
+            background-color: inherit;
+            color: inherit;
+            border: none;
+            width: 100%;
+            text-align: initial;
+            padding:0;
+          }
+        }
+      }
+    
+      .card-body{
+        padding-bottom: 12px;
+        font-size: 16px;
+        line-height: 20px;
+        color: #FFFFFF;
+  
+        h4{
+          font-style: normal;
+          font-weight: 500;
+          font-size: 24px;
+          .card-input{
+            border-radius: 6px;
+            color: $darkColor;
+            padding-left: 10px;
+            line-height: 38px;
+          }
+          .switch-wrapper{
+            color: $blancSimple;
+          }
+        }
+  
+        .content-title{
+          .dropdown-toggle.btn, .btn{
+            color: inherit;
+            background-color: inherit;
+            border-color: inherit;
+            font-weight: inherit;
+            font-size: inherit;
+            border:none;
+            padding:0;
+            white-space: normal;
+          }
+        }
+  
+        .age-input{
+          font-weight: 500;
+          font-size: 24px;
+          line-height: 40px;
+          display: inline-block;
+          padding: 0;
+          border: none;
+          text-align: center;
+          margin: 0;
+          width: 40px;
+          color: $noir;
+          height: 40px;
+          background-color: $jauneClair;
+          &:active, &:focus{
+            background-color: $gris;
+          }
         }
         
-      }
-      input[type=number]::-webkit-inner-spin-button, 
-      input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-      }
-
-      .price-frequency{
-        font-weight: normal;
-        font-size: 16px;
-      }
-      .niveaux-wrapper{
-        margin-top: -5px;
-        button{
-          border: 0.5px solid $noirCD;
-          border-radius: 6px;
-          padding: 5px;
-          color: $noirCD;
-          background: transparent;
-          margin-right: 5px;
-          margin-top: 5px;
-          font-weight: bold;
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+  
+        .price-frequency{
+          font-weight: normal;
           font-size: 16px;
-          &:hover:not(:disabled){
-            border-color: $darkColor;
-            color: $darkColor;
-            background: #FFFFFF;
-          }
-          &.active{
-            color: #FFFFFF;
-            background-color: $darkColor;
-            border:none;
-            outline:none;
-          }
-          &:focus{
-            outline:none;
+        }
+        .niveaux-wrapper{
+          margin-top: -5px;
+          button{
+            border: 0.5px solid $noirCD;
+            border-radius: 6px;
+            padding: 5px;
+            color: $noirCD;
+            background: transparent;
+            margin-right: 5px;
+            margin-top: 5px;
+            font-weight: bold;
+            font-size: 16px;
+            &:hover:not(:disabled){
+              border-color: $darkColor;
+              color: $darkColor;
+              background: #FFFFFF;
+            }
+            &.active{
+              color: #FFFFFF;
+              background-color: $darkColor;
+              border:none;
+              outline:none;
+            }
+            &:focus{
+              outline:none;
+            }
           }
         }
       }
-    }
-    .card-footer{
-      background: transparent;
-      border-radius: 0 0 12px 12px;
-      border:none;
-
-      .btn{
-        border-radius: 12px;
-        font-size: 16px;
-        font-weight: bold;
-      }
-      .footer-content{
-        margin-left: 8px;
-      }
-      .footer-input{
-        font-style: italic;
-        font-size: 16px;
-        opacity: 0.6;
-        color: #FFFFFF;
+      .card-footer{
         background: transparent;
+        border-radius: 0 0 12px 12px;
+        border:none;
+  
+        .btn{
+          border-radius: 12px;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        .footer-content{
+          margin-left: 8px;
+        }
+        .footer-input{
+          font-style: italic;
+          font-size: 16px;
+          opacity: 0.6;
+          color: #FFFFFF;
+          background: transparent;
+        }
       }
-    }
-
-    &.add-card{
-      background-color: rgba(0,0,0,0.05);
-      text-align: center;
-      &:hover{
-        background-color: rgba(0,0,0,0.1);
+  
+      &.add-card{
+        background-color: rgba(0,0,0,0.05);
+        text-align: center;
+        &:hover{
+          background-color: rgba(0,0,0,0.1);
+          .add-sign{
+            opacity:1;
+            font-size:90px;
+            -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
+            -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
+            -o-transition: opacity 0.4s ease, font-size 0.4s ease;
+            transition: opacity 0.4s ease, font-size 0.4s ease;
+          }
+        }
         .add-sign{
-          opacity:1;
-          font-size:90px;
-          -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
-          -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
-          -o-transition: opacity 0.4s ease, font-size 0.4s ease;
-          transition: opacity 0.4s ease, font-size 0.4s ease;
+          font-size:60px;
+          font-weight:bold;
+          opacity: .5;
+        }
+        .card-body{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: hsl(0,0%,20%);
         }
       }
-      .add-sign{
-        font-size:60px;
-        font-weight:bold;
-        opacity: .5;
-      }
-      .card-body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: hsl(0,0%,20%);
-      }
-    }
-    .card-icons{
-      position: absolute;
-      top: -15px;
-      right: -15px;
-      cursor: pointer;
-      svg{
-        fill: $error;
-      }
-      &:hover{
+      .card-icons{
+        position: absolute;
+        top: -15px;
+        right: -15px;
+        cursor: pointer;
         svg{
-          fill: $noir;
+          fill: $error;
+        }
+        &:hover{
+          svg{
+            fill: $noir;
+          }
         }
       }
-    }
-    &:hover .card-icons{
-      display: inherit;
+      &:hover .card-icons{
+        display: inherit;
+      }
     }
   }
-}
+} 
 .tooltip.show{
   opacity: 1;
 }

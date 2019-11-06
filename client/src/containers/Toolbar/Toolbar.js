@@ -17,8 +17,11 @@ import Logo from '../../components/Logo/Logo';
 import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import SearchBar from '../UI/SearchBar/SearchBar';
+import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
+import {fetch_user} from '../../Store/actions';
 
 import './Toolbar.scss';
+import variables from 'scss/colors.scss';
 
 export class Toolbar extends React.Component {
 
@@ -28,6 +31,7 @@ export class Toolbar extends React.Component {
 
   disconnect = () => {
     API.logout();
+    this.props.fetch_user();
   }
 
   toggle = () => this.setState((prevState) => ({ dropdownOpen: !prevState.dropdownOpen }));
@@ -36,7 +40,7 @@ export class Toolbar extends React.Component {
 
   render() {
     const path = this.props.location.pathname;
-    const { user, contributeur, traducteur, expertTrad, admin, membreStruct } = this.props;
+    const { user, contributeur, traducteur, expertTrad, admin, membreStruct, t } = this.props;
     let afficher_burger = admin && path.includes("/backend") && path.includes("/admin");
     let afficher_burger_droite = path.includes("/traduction");
     
@@ -48,7 +52,11 @@ export class Toolbar extends React.Component {
             forceShow={afficher_burger}
             clicked={()=>this.props.drawerToggleClicked('left')} />
           <Logo />
-          <span className="baseline">Construire sa vie en France</span>
+          {path !== "/" && path !== "/homepage" &&
+            <NavLink to="/" className="home-btn">
+              <EVAIcon name="home" fill={variables.noir} className="mr-10"/>
+              <b className="home-texte">{t("Toolbar.Accueil","Accueil")}</b>
+            </NavLink>}
         </div>
 
         <nav className="DesktopOnly center-buttons">
@@ -63,8 +71,8 @@ export class Toolbar extends React.Component {
         />
 
         <div className="right_buttons">
-          <FButton type="dark" name="flash" className="ml-10 mr-10" tag={NavLink} to="/advanced-search"> {/*to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} */}
-            Super recherche
+          <FButton type="dark" name="grid" className="ml-10 mr-10" tag={NavLink} to="/advanced-search"> {/*to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} */}
+            {t("Toolbar.Tout voir", "Tout voir")}
           </FButton>
 
           {API.isAuth() ? 
@@ -74,21 +82,21 @@ export class Toolbar extends React.Component {
                 <div className="user-badge" />
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={()=>this.navigateTo("/backend/user-profile")}>Mon profil</DropdownItem>
-                {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>Espace rédaction</DropdownItem>}
-                {(expertTrad || traducteur) && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>Espace traduction</DropdownItem>}
-                {membreStruct && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-structure")}>Ma structure</DropdownItem>}
-                {admin && <DropdownItem onClick={()=>this.navigateTo("/backend/admin")}>Administration</DropdownItem>}
+                <DropdownItem onClick={()=>this.navigateTo("/backend/user-profile")}>{t("Toolbar.Mon profil", "Mon profil")}</DropdownItem>
+                {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>{t("Toolbar.Espace rédaction", "Espace rédaction")}</DropdownItem>}
+                {(expertTrad || traducteur) && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>{t("Toolbar.Espace traduction", "Espace traduction")}</DropdownItem>}
+                {membreStruct && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-structure")}>{t("Toolbar.Ma structure", "Ma structure")}</DropdownItem>}
+                {admin && <DropdownItem onClick={()=>this.navigateTo("/backend/admin")}>{t("Toolbar.Administration", "Administration")}</DropdownItem>}
                 <DropdownItem divider />
                 <NavLink to="/" onClick={this.disconnect}>
-                  <DropdownItem className="text-danger">Se déconnecter</DropdownItem>
+                  <DropdownItem className="text-danger">{t("Toolbar.Se déconnecter", "Se déconnecter")}</DropdownItem>
                 </NavLink>
               </DropdownMenu>
             </ButtonDropdown>
             :
             <NavLink to={{ pathname:'/login', state: { redirectTo: "/backend/user-profile" } }}>
               <FButton type="outline-black" className="connect-btn">
-                Connexion
+                {t("Toolbar.Connexion", "Connexion")}
               </FButton>
             </NavLink>
           }
@@ -117,7 +125,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {toggle_lang_modal};
+const mapDispatchToProps = {toggle_lang_modal, fetch_user};
 
 export default track({
   component: 'Toolbar',
