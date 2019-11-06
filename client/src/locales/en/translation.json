@@ -1,1 +1,19 @@
-{}
+{
+  "Homepage": {},
+  "AdvancedSearch": {},
+  "Tables": {},
+  "UserProfile": {},
+  "QuiSommesNous": {},
+  "CommentContribuer": {},
+  "Dispositifs": {},
+  "Tags": {},
+  "SearchItem": {},
+  "Status": {},
+  "Dispositif": {
+    "Gratuit": "free of charge"
+  },
+  "CheckDemarche": {},
+  "Toolbar": {},
+  "Footer": {},
+  "Login": {}
+}

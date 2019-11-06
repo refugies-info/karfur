@@ -23,9 +23,12 @@ const leftSideDispositif = (props) => {
           {props.menu.map((item, key) => {
             return ( 
               <div key={key} className="list-item-wrapper">
-                <ListGroupItem tag="a" data-toggle="list" action
+                <ListGroupItem
+                  action 
+                  tag="a" 
+                  data-toggle="list"
                   href={'#item-head-' + key} 
-                  onClick={() => props.onMenuNavigate(key)} >
+                >
                   {item.title && t("Dispositif." + item.title, item.title)}
                 </ListGroupItem>
               </div>
@@ -35,33 +38,35 @@ const leftSideDispositif = (props) => {
       </ListGroup>
 
       <div className="print-buttons">
-        <div className="link-wrapper" id="input-btn">
-          {props.inputBtnClicked ?
-            <FButton type="default" className="input-btn">
-              <InputGroup>
-                <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
-                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Lien vers votre site" id="externalLink" />
-                <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
-              </InputGroup>
-            </FButton>
-            :
-            <FButton type="theme" name="external-link-outline" onClick={onLinkClicked}>
-              {t("Dispositif.Voir le site", "Voir le site")}
-            </FButton>}
-        </div>
-        <FButton type="light-action" onClick={props.createPdf} name="download-outline">
-          {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
-          {props.showSpinner && <Spinner color="success" className="ml-8 small-spinner" />}
-        </FButton>
-        <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
-          {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
-        </FButton>
-        <ReactToPrint
-          trigger={() => 
-            <FButton type="light-action" name="printer-outline">
-              {t("Dispositif.Imprimer", "Imprimer")}
-            </FButton>}
-          content={() => props.newRef.current} />
+        {props.typeContenu !== "demarche" && 
+          <div className="link-wrapper" id="input-btn">
+            {props.inputBtnClicked ?
+              <FButton type="default" className="input-btn">
+                <InputGroup>
+                  <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
+                  <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Lien vers votre site" id="externalLink" />
+                  <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
+                </InputGroup>
+              </FButton>
+              :
+              <FButton type="theme" name="external-link-outline" onClick={onLinkClicked}>
+                {t("Dispositif.Voir le site", "Voir le site")}
+              </FButton>}
+          </div>}
+        {props.disableEdit && <>
+          <FButton type="light-action" onClick={props.createPdf} name="download-outline">
+            {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
+            {props.showSpinner && <Spinner color="success" className="ml-8 small-spinner" />}
+          </FButton>
+          <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
+            {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
+          </FButton>
+          <ReactToPrint
+            trigger={() => 
+              <FButton type="light-action" name="printer-outline">
+                {t("Dispositif.Imprimer", "Imprimer")}
+              </FButton>}
+            content={() => props.newRef.current} /> </>}
           {/* onBeforePrint={props.openAllAccordions} /> */}
       </div>
     </div>

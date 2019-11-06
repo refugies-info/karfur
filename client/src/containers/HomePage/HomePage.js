@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import Swal from 'sweetalert2';
@@ -16,6 +17,7 @@ import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
 import SearchBar from '../UI/SearchBar/SearchBar';
+import API from '../../utils/API';
 
 import './HomePage.scss';
 import variables from 'scss/colors.scss';
@@ -27,9 +29,11 @@ class HomePage extends Component {
     search: [{ type: 'Dispositifs', children: [] }, { type: 'Articles', children: [] }, { type: 'Démarches', children: [] }],
     value: '',
     suggestions: [],
+    users: [],
   }
 
   componentDidMount (){
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
     window.scrollTo(0, 0);
   }
 
@@ -37,18 +41,19 @@ class HomePage extends Component {
 
   render() {
     const { t } = this.props;
+    const {users} = this.state;
     return (
       <div className="animated fadeIn homepage">
         <section id="hero">
           <div className="hero-container">
-            <h1>{t("Homepage.Construire sa vie en France", "Construire sa vie en France")}</h1>
+            <h1>{t("Homepage.Construis ta vie en France", "Construis ta vie en France")}</h1>
             <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
             
             <div className="search-row">
               <SearchBar 
                 validateTest="Valider"
                 className="input-group"
-                placeholder="Rechercher..."
+                placeholder="Rechercher"
               />
               <div className="try-it-out mr-10">{t("ou", "ou")}</div>
               <FButton tag={NavLink} to="/advanced-search" name="flash" type="dark" className="large-btn">
@@ -56,34 +61,38 @@ class HomePage extends Component {
               </FButton>
             </div>
           </div>
-          <AnchorLink href="#plan" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
-            <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
+          <AnchorLink offset='60' href="#plan" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
+            <div className="slide-animation">
+              <span className="slide-background"></span>
+              <EVAIcon className="slide-bottom" name="arrow-circle-down" size="hero"/>
+            </div>
           </AnchorLink>
         </section>
 
-        <section id="plan">
+        <section id="plan" className="triptique">
           <div className="section-container">
-            <h2>{t("Homepage.Vous cherchez ?", "Vous cherchez ?")}</h2>
+            <h2>{t("Homepage.Vous cherchez ?", "Tu cherches à ?")}</h2>
 
             <Row className="card-row">
               <Col lg="4" className="card-col">
-                <Card className="cursor-pointer demarche-card" onClick={this.upcoming}>
-                  <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
-                  <CardBody>
-                    {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
-                  </CardBody>
-                  <CardFooter>
-                    {/*<FButton type="outline-black" name="search-outline" fill={variables.noir}>
-                      Chercher une démarche
-                    </FButton>*/}
-                    <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
-                  </CardFooter>
-                </Card>
+                <NavLink to="/advanced-search" className="no-decoration">
+                  <Card className="demarche-card">
+                    <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
+                    <CardBody>
+                      {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
+                    </CardBody>
+                    <CardFooter>
+                      <FButton type="homebtn" name="search-outline" fill={variables.noir}>
+                        {t("Homepage.Trouver une démarche", "Trouver une démarche")}
+                      </FButton>
+                    </CardFooter>
+                  </Card>
+                </NavLink>
               </Col>
               <Col lg="4" className="card-col">
                 <NavLink to="/advanced-search" className="no-decoration">
                   <Card className="dispo-card">
-                    <CardHeader>{t("Homepage.A apprendre", "À apprendre, travailler, vous former, rencontrer")}</CardHeader>
+                    <CardHeader>{t("Homepage.A apprendre", "Rejoindre un dispositif d'accompagnement")}</CardHeader>
                     <CardBody>
                       {/* <span>Je veux rejoindre un dispositif d’accompagnement ou une initiative</span> */}
                     </CardBody>
@@ -96,16 +105,16 @@ class HomePage extends Component {
                 </NavLink>
               </Col>
               <Col lg="4" className="card-col">
-                <Card className="cursor-pointer parcours-card" onClick={this.upcoming}>
-                  <CardHeader>{t("Homepage.creer parcours", "À créer votre parcours personnalisé")}</CardHeader>
+                <Card className="parcours-card">
+                  <CardHeader>{t("Homepage.creer parcours", "Créer ton parcours personnalisé")}</CardHeader>
                   <CardBody>
                     {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
                   <CardFooter>
-                    <FButton type="homebtn" disabled name="search-outline" fill={variables.noir}>
-                      Créer un parcours
+                    <FButton type="homebtn" disabled name="clock-outline" fill={variables.noir}>
+                      Bientôt disponible
                     </FButton>
-                    <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
+                    {/*<span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>*/}
                   </CardFooter>
                 </Card>
               </Col>
@@ -119,15 +128,14 @@ class HomePage extends Component {
               <h2>{t("Homepage.contributive")}</h2>
               <p className="texte-normal">
                 {t("Homepage.contributive subheader")}
-                {" "}
-                <NavLink to="/qui-sommes-nous">
-                  <u>{t("En savoir plus", "En savoir plus")}</u>
+                <NavLink className="link" to="/qui-sommes-nous">
+                  {t("En savoir plus", "En savoir plus")}
                 </NavLink>
               </p>
             </div>
-            <footer>
-              {t("Homepage.contributeurs mobilises", {nombre: 230})}
-              <FButton tag={NavLink} to="/comment-contribuer" type="dark" className="ml-10">
+            <footer className="footer-section">
+              {t("Homepage.contributeurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Contrib" || y.nom==="ExpertTrad")) || []).length })}
+              <FButton tag={NavHashLink} to="/comment-contribuer#ecrire" type="dark" className="ml-10">
                 {t("Homepage.Je contribue", "Je contribue")}
               </FButton>
             </footer>
@@ -141,9 +149,9 @@ class HomePage extends Component {
               <p className="texte-normal">{t("Homepage.disponible langues subheader")}</p>
               {/*<LanguageBtn />*/}
             </div>
-            <footer>
-              {t("Homepage.traducteurs mobilises", {nombre: 32})}
-              <FButton tag={NavLink} to="/backend/user-profile" type="dark" className="ml-10">
+            <footer className="footer-section">
+              {t("Homepage.traducteurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Trad" || y.nom==="ExpertTrad")) || []).length })}
+              <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-profile" : "/comment-contribuer#traduire"} type="dark" className="ml-10">
                 {t("Homepage.Je traduis", "Je traduis")}
               </FButton>
             </footer>
@@ -156,12 +164,11 @@ class HomePage extends Component {
               <h2>{t("Homepage.information vérifiée")}</h2>
               <p className="texte-normal">{t("Homepage.information vérifiée subheader")}</p>
             </div>
-            {/*<footer>
-              Nous ne censurons aucun contenu :
-              <FButton type="dark" className="ml-10" onClick={this.upcoming}>
-                Notre charte éditoriale
+            <footer>
+              <FButton tag={NavHashLink} to="/comment-contribuer#corriger" type="dark" className="ml-10">
+                {t("En savoir plus", "En savoir plus")}
               </FButton>
-            </footer>*/}
+            </footer>
           </div>
         </section>
 

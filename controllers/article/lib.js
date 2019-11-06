@@ -57,16 +57,13 @@ function get_article(req, res) {
         "text": "Requête invalide"
     })
   } else {
-    var query = req.body.query;
-    var locale=req.body.locale || 'fr';
-    var sort = req.body.sort;
-    var populate = req.body.populate;
-    var limit = req.body.limit;
-    var random = req.body.random;
-    console.log(query, locale, sort, populate, limit, random)
-    let isStructure=false;let structId=null;
+    let {query, locale, sort, populate, limit, random} = req.body;
+    locale = locale || 'fr';
+    // console.log(query, locale, sort, populate, limit, random)
+    let isStructure=false, structId=null;
     if(query._id && query._id.includes('struct_')){
-      isStructure=true;structId=query._id;
+      isStructure=true; 
+      structId=query._id;
       query={isStructure:true};
     }
     let promise=null;
@@ -78,33 +75,36 @@ function get_article(req, res) {
     }else{
       promise=Article.find(query).sort(sort).populate(populate).limit(limit);
     }
-    promise.then(result => {
+    promise.then(async result => {
       // console.log(result)
       let structureArr=[];
-      [].forEach.call(result, (article, i) => {
+      await asyncForEach(result, async (article, i) => {
         // console.log(article) 
         if(article.isStructure){
           // console.log(article) 
-          structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at);
-          console.log(1, "terminé") 
+          structureArr = _createFromNested(article.body, locale, query, article.status, result[0].created_at, result[0].updatedAt);
           if(isStructure){structureArr = structureArr.filter(x => x._id === structId).map(x => {return {...x, articleId:result[0]._id}});}
-          if(random && structureArr.length > 1){structureArr = [structureArr[ Math.floor((Math.random() * structureArr.length)) ]]}
+          if(random && structureArr.length > 1){
+            //Je vais chercher tous les strings que cet utilisateur a déjà traduit pour ne pas lui reproposer
+            const traductions = await Traduction.find({userId: req.userId, type: "string", langueCible: locale, avancement: 1, articleId: article._id})
+            structureArr = traductions && traductions.length > 0 ? structureArr.filter(x => !traductions.some(y => x._id === y.jsonId)) : structureArr;
+            structureArr = structureArr.length > 1 ? [structureArr[ Math.floor((Math.random() * structureArr.length)) ]] : structureArr;
+          }
           result.splice(i, 1);
         }else{
-          console.log('localizing')
           returnLocalizedContent(article.body, locale)
           article.title=article.title[locale] || article.title.fr;
           article.avancement=article.avancement[locale] || article.avancement.fr
         }
       });
-      console.log(structureArr.length)
       res.status(200).json({
         "text": "Succès",
         "data": [...structureArr, ...result]
       })
-    }).catch(err => {
+    }).catch(err => { console.log(err);
       res.status(500).json({
-        "text": "Erreur interne"
+        "text": "Erreur interne",
+        "error": err
       })
     })
   }
@@ -143,15 +143,15 @@ function add_traduction(req, res) {
       let html=traductionItem.translatedText.body;
       let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
       let jsonBody=null;
-      if(!traductionItem.isStructure){
-        jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false }) //Réactiver les positions si ça devient utile, mais je ne pense pas
-      }else{
+      if(traductionItem.isStructure){
         traductionItem={
           ...traductionItem,
           jsonId : traductionItem.articleId,
           articleId : traductionItem.id,
         }
         delete traductionItem.id
+      }else{
+        jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false }) //Réactiver les positions si ça devient utile, mais je ne pense pas
       }
   
       Article.findOne({_id:traductionItem.articleId}).exec((err, result) => {
@@ -166,24 +166,22 @@ function add_traduction(req, res) {
             if(!traductionItem.isStructure){
               if((addTranslationRestructure(result,jsonBody,locale,errArr)) || (errArr.length>0 && _dealWithErrors(result,jsonBody,locale,errArr))){
                 result.markModified("body");
-              }else{succes=false;}
+              }else{succes=false;console.log('erreur 1');}
             }else{
-              avancement={value : result.avancement[locale] * result.nombreMots};
-              console.log(0, avancement)
+              avancement={value : (result.avancement[locale] || 0) * (result.nombreMots || 0)};
+              console.log(traductionItem)
               if(_insertStructTranslation(result.body,traductionItem.translatedText.body,locale,traductionItem.jsonId, avancement)){
                 result.markModified("body");
-                if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;
-                  console.log(1, avancement)};
-              }else{succes=false;}
+                if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;};
+              }else{succes=false;console.log('erreur 2');}
             }
-          }else{succes=false;}
+          }else{succes=false;console.log('erreur 3');}
           if(req.body.translationId){
             result.traductions = [...result.traductions,req.body.translationId];
             result.markModified("translations");
             req.body.update={status:'Validée'};
             Traduction.findByIdAndUpdate({_id: req.body.translationId},{status:'Validée'},{new: true}).exec();
           }
-          console.log(2, avancement)
           if(succes){
             result.avancement = {...result.avancement,[locale]:avancement.value};
             result.markModified("avancement");
@@ -330,6 +328,7 @@ const _insertStructTranslation = (initial, translated, locale, id, avancement) =
   let succes=false;
   Object.keys(initial).forEach((key) => {
     if(initial[key] && initial[key].id){
+      // console.log(initial[key].id)
       if(initial[key].id === id){
         initial[key][locale]=translated;
         avancement.value+=initial[key].fr.trim().split(/\s+/).length
@@ -349,7 +348,6 @@ const _correctNodewithLocale = (right_node, node, id, locale, i, errArr=[]) => {
     if(right_node.children.length === 1 && right_node.children[0].content.replace(/\s/g, '').length){
       node.content[locale] = right_node.children[0].content;right_node.children[0].inserted=true;
     }else if(right_node.children.length === 0){
-      console.log('cest la maaarde')
       errArr.push({right_node: right_node, node : node, id : id, i: i});
       return false;
     }else{
@@ -374,13 +372,11 @@ const _correctNodewithLocale = (right_node, node, id, locale, i, errArr=[]) => {
             let noeudFils=right_node.children.filter(x => x.children && x.children.length === 1 && x.children[0].content.replace(/\s/g, ''))[0].children[0];
             node.content[locale] = noeudFils.content;noeudFils.inserted=true;
           }else{
-            console.log('cest la meeerde : ' + nbWithContent); errArr.push({right_node: right_node, node : node, id : id, i: i});
             return false;
           }
         }else{
           //On garde en mémoire qu'on n'a pas réussi à traiter ce bout de phrase et on y reviendra après
           errArr.push({right_node: right_node, node : node, id : id, i: i});
-          console.log('cest encore plus la meeerde : ' + nbWithContent);
           return false;
         }
       }
@@ -504,12 +500,13 @@ const _updateAvancement = (locale) => {
     } else {
       let resultat = {...result[0]};
       let newAvancement=resultat.sommeprod / resultat.nbMots;
-      if(newAvancement>1 || newAvancement<0){console.log('avancement déconnant : '+ newAvancement);return false;}
+      console.log(newAvancement)
+      if(newAvancement>1 || newAvancement<0 || Number.isNaN(newAvancement)){console.log('avancement déconnant : '+ newAvancement);return false;}
       Langue.findOne({i18nCode:locale}).exec( (err, resultLangue) => {
         if (err || !resultLangue) {
           console.log('erreur à la mise à jour de l\'avancement de la langue cible')
         } else {
-          resultLangue.avancement=newAvancement
+          resultLangue.avancement=newAvancement || 0;
           resultLangue.save();
         }
       })
@@ -517,10 +514,8 @@ const _updateAvancement = (locale) => {
   })
 }
 
-_createFromNested = (structJson, locale, query = {}, status = 'Actif', created_at, articles=[], path=[]) => {
-  console.log(structJson.Homepage.subtitle)
+_createFromNested = (structJson, locale, query = {}, status = 'Actif', created_at, updatedAt, articles=[], path=[]) => {
   Object.keys(structJson).forEach((key) => {
-    console.log(path, key, structJson[key] && structJson[key].fr, typeof structJson[key].fr, structJson.constructor)
     if(structJson[key] && typeof structJson[key].fr === 'string'){
       let newArticle={
         title: structJson[key].fr,
@@ -531,23 +526,28 @@ _createFromNested = (structJson, locale, query = {}, status = 'Actif', created_a
         isStructure: true,
         path: [...path, key],
         created_at:created_at,
+        updatedAt:updatedAt,
         _id: structJson[key].id
       }
       path.pop()
-      console.log("newArticle: ")
+      // console.log("newArticle: ")
       if(! (query['$or'] && query['$or'].length>0 && query['$or'][0] && query['$or'][0]['avancement.'+locale] && query['$or'][0]['avancement.'+locale]['$lt'] && newArticle.avancement === 1) ){
         articles.push(newArticle)
       }
     }else if(structJson.constructor === Object){
-      console.log('ici')
       path.push(key)
-      console.log(locale, query, status, created_at, articles, path)
-      articles=_createFromNested(structJson[key], locale, query, status, created_at, articles, path);
+      // console.log(locale, query, status, created_at, articles, path)
+      articles=_createFromNested(structJson[key], locale, query, status, created_at, updatedAt, articles, path);
     }
   })
   path.pop()
-  console.log("longueur: ", articles.length)
   return articles
+}
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < (array || []).length; index++) {
+    await callback(array[index], index, array);
+  }
 }
 
 //On exporte notre fonction

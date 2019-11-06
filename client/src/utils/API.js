@@ -37,6 +37,7 @@ axios.interceptors.response.use(response => {
   // console.log(response)
   return response;
 }, error => {
+  console.log((error.response || {}).data, (error.response || {}).status, error.message)
   if(error.response && error.response.status < 500){
     Swal.fire({
       type: 'error',
@@ -62,8 +63,8 @@ export default {
   set_user_info : (user) => {
     return axios.post(burl + '/user/set_user_info', user,{headers: headers})
   },
-  get_users : (query, sort) => {
-    return axios.post(burl + '/user/get_users',  {query: query, sort: sort}, {headers: headers})
+  get_users : (params={}) => {
+    return axios.post(burl + '/user/get_users',  params, {headers: headers})
   },
   get_user_info : (query) => {
     return axios.post(burl + '/user/get_user_info',  query, {headers: headers})
@@ -133,8 +134,8 @@ export default {
   add_tradForReview : query => {
     return axios.post(burl + '/traduction/add_tradForReview', query, {headers: headers})
   },
-  get_tradForReview : (query, sort, populate) => {
-    return axios.post(burl + '/traduction/get_tradForReview',  {query: query, sort: sort, populate: populate}, {headers: headers})
+  get_tradForReview : (query) => {
+    return axios.post(burl + '/traduction/get_tradForReview',  query, {headers: headers})
   },
   validate_tradForReview : query => {
     return axios.post(burl + '/traduction/validate_tradForReview', query, {headers: headers})
@@ -208,7 +209,7 @@ export default {
   },
   logout : () => {
     setAuthToken(false);
-    localStorage.removeItem("token");
     delete headers['x-access-token'];
+    return localStorage.removeItem("token");
   }
 }

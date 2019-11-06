@@ -1,8 +1,9 @@
 const Traduction = require('../../schema/schemaTraduction.js');
 const Article = require('../../schema/schemaArticle.js');
 const Dispositif = require('../../schema/schemaDispositif.js');
+const Langue = require('../../schema/schemaLangue.js');
+const Role = require('../../schema/schemaRole.js');
 const User = require('../../schema/schemaUser.js');
-const article = require('../article/lib');
 var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
 var h2p = require('html2plaintext');
@@ -17,6 +18,9 @@ const headers = {
 let burl = 'https://laser-agir.herokuapp.com'
 // if(process.env.NODE_ENV === 'dev'){burl = 'http://localhost:5001' }
 const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
+
+const instance = axios.create();
+instance.defaults.timeout = 12000000;
 
 async function add_tradForReview(req, res) {
   if (!req.body || !req.body.langueCible || !req.body.translatedText) {
@@ -69,7 +73,7 @@ async function add_tradForReview(req, res) {
       promise= new Traduction(traduction).save();
     }
     promise.then(data => {
-      if(req.userId){ User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "traductionsFaites": data._id } },{new: true},(e) => {if(e){console.log(e);}}); }
+      if(req.userId){ User.findByIdAndUpdate({ _id: req.userId },{ "$addToSet": { "traductionsFaites": data._id, roles: ((req.roles || []).find(x=>x.nom==='Trad') || {})._id } },{new: true},(e) => {if(e){console.log(e);}}); }
       res.status(200).json({
         "text": "Succès",
         "data": data
@@ -82,40 +86,41 @@ async function add_tradForReview(req, res) {
 }
 
 function get_tradForReview(req, res) {
-  var query = req.body.query;
-  var sort = req.body.sort;
-  var populate = req.body.populate;
+  let {query, sort, populate, random, locale} = req.body;
   if(populate && populate.constructor === Object){
     populate.select = '-password';
   }else if(populate){
     populate={path:populate, select : '-password'};
   }else{populate='';}
 
+  console.log(query, random)
   if(query.articleId && typeof query.articleId === "string" && query.articleId.includes('struct_')){
     res.status(204).json({ "text": "Pas de données", "data" : []})
     return false;
   }
-  
-  var find = new Promise(function (resolve, reject) {
-    Traduction.find(query).sort(sort).populate(populate).exec(function (err, result) {
-      if (err) {
-        reject(500);
-      } else {
-        if (result) {
-          resolve(result)
-        } else {
-          reject(204)
-        }
-      }
+
+  let promise;
+  if(random){
+    console.log({status: "En attente", type: "string", langueCible: locale, avancement: 1})
+    promise=Traduction.aggregate([
+      { $match : {status: "En attente", type: "string", langueCible: locale, avancement: 1} },
+      { $sample : { size: 1 } }
+    ]);
+  }else{
+    promise=Traduction.find(query).sort(sort).populate(populate);
+  }
+
+  promise.then(result => {
+    res.status(200).json({
+      "text": "Succès",
+      "data": result
+    })
+  }).catch(err => { console.log(err);
+    res.status(500).json({
+      "text": "Erreur interne",
+      "error": err
     })
   })
-
-  find.then(function (result) {
-    res.status(200).json({
-        "text": "Succès",
-        "data": result
-    })
-  }, (e) => _errorHandler(e,res))
 }
 
 function validate_tradForReview(req, res) {
@@ -229,7 +234,7 @@ const recalculate_all = () => {
     if (!err && result) {
       result.forEach(x => {
         let traductionInitiale = {...x.translatedText};
-        traductionInitiale.contenu = turnJSONtoHTML(traductionInitiale.contenu);
+        traductionInitiale.contenu = turnJSONtoHTML(traductionInitiale.contenu || traductionInitiale.body);
         console.log('calculating : ', x._id)
         calculateScores(x, traductionInitiale)
       })
@@ -239,41 +244,50 @@ const recalculate_all = () => {
 // recalculate_all();
 
 async function calculateScores(data, traductionInitiale){
-  const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
-  const newTrad = {_id : data._id, initialText: data.initialText, translatedText: {...data.translatedText, scoreHeaders:{}}};
-  await asyncForEach(pointeurs, async (x) => {
-    if(traductionInitiale[x]){
-      const sentences = [[h2p(traductionInitiale[x]), data.langueCible], [h2p(data.initialText[x]), 'fr']];
-      newTrad.translatedText.scoreHeaders[x] = await getScore(sentences);
-    }
-  });
-  await asyncForEach(traductionInitiale.contenu, async (x,i) => {
-    if(x){
-      if(x.content && x.content !== ""){
-        const sentences = [[h2p(x.content), data.langueCible], [h2p(data.initialText.contenu[i].content), 'fr']];
-        newTrad.translatedText.contenu[i].scoreContent = await getScore(sentences);
+  let newTrad = {_id : data._id, initialText: data.initialText, translatedText: {...data.translatedText}};
+  if(!data || !data.initialText){console.log("pas de data.initialText"); return false}
+  if(!traductionInitiale){console.log("pas de traductionInitiale"); return false}
+  
+  if(data.type === "string"){
+    const sentences = [[h2p(traductionInitiale.body), data.langueCible], [h2p(data.initialText.body), 'fr']];
+    newTrad.translatedText.scoreBody = await getScore(sentences);
+  }else{
+    const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
+    newTrad.translatedText.scoreHeaders = {};
+    await asyncForEach(pointeurs, async (x) => {
+      if(traductionInitiale[x]){
+        const sentences = [[h2p(traductionInitiale[x]), data.langueCible], [h2p(data.initialText[x]), 'fr']];
+        newTrad.translatedText.scoreHeaders[x] = await getScore(sentences);
       }
-      await asyncForEach(x.children, async (y,j) => {
-        if(y){
-          if(y.content && y.content !== ""){
-            const sentences = [[h2p(y.content), data.langueCible], [h2p(data.initialText.contenu[i].children[j].content), 'fr']];
-            newTrad.translatedText.contenu[i].children[j].scoreContent = await getScore(sentences);
-          }
-          if(y.title && y.title !== ""){
-            const sentences = [[h2p(y.title), data.langueCible], [h2p(data.initialText.contenu[i].children[j].title), 'fr']];
-            newTrad.translatedText.contenu[i].children[j].scoreTitle = await getScore(sentences);
-          }
+    });
+    await asyncForEach(traductionInitiale.contenu, async (x,i) => {
+      if(x){
+        if(x.content && x.content !== ""){
+          const sentences = [[h2p(x.content), data.langueCible], [h2p(data.initialText.contenu[i].content), 'fr']];
+          newTrad.translatedText.contenu[i].scoreContent = await getScore(sentences);
         }
-      });
-    }
-  });
-  return Traduction.findOneAndUpdate({_id: newTrad._id}, newTrad, { upsert: true , new: true}).then(d => console.log(d)).catch(e => console.log(e));
+        await asyncForEach(x.children, async (y,j) => {
+          if(y){
+            if(y.content && y.content !== ""){
+              const sentences = [[h2p(y.content), data.langueCible], [h2p(data.initialText.contenu[i].children[j].content), 'fr']];
+              newTrad.translatedText.contenu[i].children[j].scoreContent = await getScore(sentences);
+            }
+            if(y.title && y.title !== ""){
+              const sentences = [[h2p(y.title), data.langueCible], [h2p(data.initialText.contenu[i].children[j].title), 'fr']];
+              newTrad.translatedText.contenu[i].children[j].scoreTitle = await getScore(sentences);
+            }
+          }
+        });
+      }
+    });
+  }
+  return Traduction.findOneAndUpdate({_id: newTrad._id}, newTrad, { upsert: true , new: true}).then(d => console.log("succes : ", d._id)).catch(e => console.log(e));
 }
 
 function getScore(sentences){
-  return axios.post(burl + "/laser", { sentences: sentences }, {headers: headers}).then(data => {
+  return instance.post(burl + "/laser", { sentences: sentences }, {headers: headers}).then(data => {
     return JSON.parse(data.data);
-  }).catch(e => console.log(e))
+  }).catch(e => console.log((e.config || {}).data, (e.response || {}).status, (e.response || {}).statusText, !e.response && e))
 }
 
 async function asyncForEach(array, callback) {
@@ -379,7 +393,7 @@ function get_progression(req, res) {
     Traduction.aggregate([
       {$match:
         {'userId': req.userId,
-         'created_at': {$gte: start},
+        //  'created_at': {$gte: start},
          'timeSpent': { $ne: null } } },
       {$group:
          { _id : req.userId,
@@ -411,19 +425,45 @@ const _errorHandler = (error, res) => {
   switch (error) {
     case 500:
       res.status(500).json({
-          "text": "Erreur interne"
+        "text": "Erreur interne"
       })
       break;
     case 404:
       res.status(404).json({
-          "text": "Pas de résultats"
+        "text": "Pas de résultats"
       })
       break;
     default:
       res.status(500).json({
-          "text": "Erreur interne"
+        "text": "Erreur interne"
       })
   }
+}
+
+const updateRoles = () => {
+  Langue.find().exec(function (err, result) {
+    if (err) {
+      console.log(err)
+    } else {
+      if (result) {
+        console.log(result)
+        Role.findOne({'nom':'Trad'}).exec((err_role, result_role) => {
+          console.log("result_role._id",result_role._id)
+          if(!err_role && result_role){ 
+            result.forEach(x => {
+              const traducteurs = x.participants;
+              traducteurs.forEach(y => {
+                console.log(y)
+                User.findByIdAndUpdate({ _id: y },{ "$addToSet": { "roles": result_role._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+              })
+            })
+          }
+        })
+      } else {
+        console.log(204)
+      }
+    }
+  })
 }
 
 //On exporte notre fonction

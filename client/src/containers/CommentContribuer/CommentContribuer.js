@@ -5,17 +5,36 @@ import { NavLink } from 'react-router-dom';
 import {Row, Col, Card, CardHeader, CardFooter, CardBody} from 'reactstrap';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { connect } from 'react-redux';
+import Swal from 'sweetalert2';
 
+import API from '../../utils/API';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import SVGIcon from '../../components/UI/SVGIcon/SVGIcon';
+import {fColorAvancement} from '../../components/Functions/ColorFunctions';
 import {image_corriger} from '../../assets/figma';
+import {CheckDemarcheModal} from '../../components/Modals';
 
 import './CommentContribuer.scss';
 import variables from 'scss/colors.scss';
 
 class CommentContribuer extends Component {
+  state={
+    showModals:{ checkDemarche: false },
+    users:[],
+  }
+
+  componentDidMount (){
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
+    window.scrollTo(0, 0);
+  }
+
+  toggleModal = (show, name) => this.setState(prevState=>({showModals:{...prevState.showModals,[name]:show}}))
+
+  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
+
   render() {
     const {t, langues} = this.props;
+    const {showModals, users} = this.state;
     return (
       <div className="animated fadeIn comment-contribuer texte-small">
         <section id="hero">
@@ -23,24 +42,30 @@ class CommentContribuer extends Component {
             <h1>{t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}</h1>
             <div className="cartes-row">
               <div className="cartes-wrapper">
-                <div className="carte-contrib">
-                  <EVAIcon name="edit-outline" className="carte-icon" />
-                  <h3 className="texte-footer">{t("CommentContribuer.écrire", "écrire")}</h3>
-                </div>
-                <div className="carte-contrib">
-                  <EVAIcon name="edit-outline" className="carte-icon" />
-                  <h3 className="texte-footer">{t("CommentContribuer.traduire", "traduire")}</h3>
-                </div>
-                <div className="carte-contrib">
-                  <EVAIcon name="edit-outline" className="carte-icon" />
-                  <h3 className="texte-footer">{t("CommentContribuer.corriger", "corriger")}</h3>
-                </div>
+                <AnchorLink offset='60' href="#ecrire">
+                  <div className="carte-contrib">
+                    <EVAIcon name="edit-outline" className="carte-icon" size="xlarge"/>
+                    <h3 className="texte-footer">{t("CommentContribuer.écrire", "écrire")}</h3>
+                  </div>
+                </AnchorLink>
+                <AnchorLink offset='60' href="#traduire">
+                  <div className="carte-contrib">
+                    <SVGIcon name="translate" fill="#FFFFFF" className='carte-icon' width="30px" height="30px"/>
+                    <h3 className="texte-footer">{t("CommentContribuer.traduire", "traduire")}</h3>
+                  </div>
+                </AnchorLink>
+                <AnchorLink offset='60' href="#corriger">
+                  <div className="carte-contrib">
+                    <EVAIcon name="done-all" className="carte-icon" size="xlarge" />
+                    <h3 className="texte-footer">{t("CommentContribuer.corriger", "corriger")}</h3>
+                  </div>
+                </AnchorLink>
               </div>
             </div>
           </div>
-          <AnchorLink href="#ecrire" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
+          {/*<AnchorLink offset='60' href="#ecrire" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
             <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
-          </AnchorLink>
+    </AnchorLink>*/}
         </section>
 
         <section id="ecrire">
@@ -54,7 +79,7 @@ class CommentContribuer extends Component {
               <Col lg="3" className="card-col">
                 <NavLink to="/dispositif" className="no-decoration">
                   <Card className="dispositif-card">
-                    <CardHeader>{t("CommentContribuer.Ajouter un dispositif", "Ajouter un dispositif")}</CardHeader>
+                    <CardHeader>{t("CommentContribuer.Ajouter un dispositif", "Ajouter un dispositif d'accompagnement")}</CardHeader>
                     <CardBody>
                       Rédigez la fiche pratique d'un dispositif d'accompagnement pour que les personnes réfugiées soient pleinement informées et puissent s'y engager.
                     </CardBody>
@@ -66,10 +91,10 @@ class CommentContribuer extends Component {
                 </NavLink>
               </Col>
               <Col lg="3" className="card-col">
-                <Card className="cursor-pointer demarche-card" onClick={this.upcoming}>
+                <Card className="cursor-pointer demarche-card" onClick={()=>this.toggleModal(true, "checkDemarche")}>
                   <CardHeader>{t("CommentContribuer.Expliquer une démarche administrative", "Expliquer une démarche administrative")}</CardHeader>
                   <CardBody>
-                    Rédigez la fiche pratique d'une démarche administrative qui détaille, étape par étape, les actions à mener pour la réussir (titre de séjour, logement, santé etc).
+                    Rédigez la fiche pratique d'une démarche administrative qui détaille, étape par étape, les actions à mener pour la réussir.
                   </CardBody>
                   <CardFooter>
                     <EVAIcon name="clock-outline" className="clock-icon" />
@@ -113,26 +138,28 @@ class CommentContribuer extends Component {
             <div className="trad-layout">
               <div className="left-side">
                 <h5>{t("CommentContribuer.Autre langue", "Vous parlez une autre langue ? Rejoignez-nous !")}</h5>
-                <div className="data mb-20">
-                  <div className="left-data"><h3>32</h3></div>
-                  <div className="right-data">traducteurs actifs</div>
+                <div className="data">
+                  <div className="left-data"><h3>{(users.filter(x => (x.roles || []).some(y=>y.nom==="Trad")) || []).length}</h3></div>
+                  <h5 className="right-data">{t("CommentContribuer.traducteurs actifs", "traducteurs actifs")}</h5>
                 </div>
                 <div className="data">
-                  <div className="left-data"><h3>4</h3></div>
-                  <div className="right-data">experts en traduction</div>
+                  <div className="left-data"><h3>{(users.filter(x => (x.roles || []).some(y=>y.nom==="ExpertTrad")) || []).length}</h3></div>
+                  <h5 className="right-data">{t("CommentContribuer.experts en traduction", "experts en traduction")}</h5>
                 </div>
               </div>
               <div className="right-side">
                 <Row className="langues-wrapper">
                   {langues.map(langue => (
-                    <Col xl="4" lg="4" md="4" sm="4" xs="4" className="langue-col">
-                      <div className="langue-item">
-                        <h5>
-                        <i className={"mr-20 flag-icon flag-icon-" + langue.langueCode} title={langue.langueCode} />
-                          {langue.langueFr}
-                          <span className="float-right texte-validation">{Math.round((langue.avancement || 0) * 100, 0) + " %"}</span>
-                        </h5>
-                      </div>
+                    <Col xl="4" lg="4" md="4" sm="4" xs="4" className="langue-col" key={langue._id}>
+                      <NavLink to="/backend/user-dashboard">
+                        <div className="langue-item">
+                          <h5>
+                          <i className={"mr-20 flag-icon flag-icon-" + langue.langueCode} title={langue.langueCode} />
+                            {langue.langueFr}
+                            <span className={"float-right color-" + fColorAvancement(langue.avancement)}>{Math.round((langue.avancement || 0) * 100, 0) + " %"}</span>
+                          </h5>
+                        </div>
+                      </NavLink>
                     </Col> 
                   ))}
                 </Row>
@@ -209,6 +236,8 @@ class CommentContribuer extends Component {
             </div>
           </div>
         </section>
+
+        <CheckDemarcheModal show={showModals.checkDemarche} toggle={()=>this.toggleModal(false, "checkDemarche")} upcoming={this.upcoming} />
       </div>
     );
   }
