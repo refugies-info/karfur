@@ -99,7 +99,7 @@ const contribTable = (props) => {
 
   const onBtnClick = () => {
     // if(props.overlayRedirect){
-      props.history.push("/dispositif")
+      props.history.push("/comment-contribuer")
     // }else{
     //   props.toggleModal('devenirContributeur')
     // }
