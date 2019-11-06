@@ -8,10 +8,12 @@ import draftToHtml from 'draftjs-to-html';
 import h2p from 'html2plaintext';
 import { convertToRaw, EditorState, ContentState } from 'draft-js';
 import htmlToDraft from 'html-to-draftjs';
+import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
+import _ from "lodash";
 
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
-import {boldBtn, italicBtn, underBtn, listBtn} from '../../../assets/figma/index';
+import {boldBtn, italicBtn, underBtn, listBtn, logo_google} from '../../../assets/figma/index';
 import marioProfile from '../../../assets/mario-profile.jpg';
 import { RejectTradModal } from '../../../components/Modals';
 
@@ -60,8 +62,9 @@ class SideTrad extends Component {
     console.log(oldP)
     if( (oldP > (- 1 + (isNext ? 0 : 1)) && oldP < pointeurs.length - (isNext ? 1 : 0))
         || (!isNext && this.state.currIdx === 0 && this.state.currSubIdx === -1 && this.state.currSubName === "content") ){
-      this.setState({currIdx: pointeurs[oldP + (isNext ? 1 : this.state.currIdx === 0 ? pointeurs.length : -1)]}, () => {
-        this.props.fwdSetState(() => ({francais: {body: this.props.content[ pointeurs[oldP + (isNext ? 1 : this.state.currIdx === 0 ? pointeurs.length : -1)] ]} }), ()=> this.checkTranslate(this.props.locale))
+      this.setState({currIdx: pointeurs[ oldP + (isNext ? 1 : (this.state.currIdx === 0 ? pointeurs.length : -1)) ]}, () => {
+        const texte_francais = this.props.content[ this.state.currIdx ];
+        this.props.fwdSetState(() => ({francais: {body: texte_francais} }), ()=> {console.log((this.props.francais || {}).body); this.checkTranslate(this.props.locale)})
         this._scrollAndHighlight(this.state.currIdx);
       })
     }else{
@@ -107,7 +110,7 @@ class SideTrad extends Component {
           value = subidx > -1 ? this.props.menu[idx].children[subidx][subname] : this.props.menu[idx].content;
           console.log('la 2', this.props.menu[idx].content, h2p(value))
         }
-        if(!value || h2p(value) === "" || h2p(value) === "undefined" || h2p(value) === "null"){this.goChange(isNext, false); return;}
+        if(!value || h2p(value) === "" || h2p(value) === "undefined" || h2p(value) === "null" || h2p(value) === "<br>"){this.goChange(isNext, false); return;}
         this._scrollAndHighlight(idx, subidx, subname);
         this.props.fwdSetState(() => ({francais: {body: value } }), ()=> this.checkTranslate(this.props.locale));
       })
@@ -128,12 +131,10 @@ class SideTrad extends Component {
       this.props.updateUIArray(idx, subidx, 'accordion', true)
     }
     Array.from(document.getElementsByClassName("translating")).forEach(x => {x.classList.remove("translating")}); //On enlève le surlignage des anciens éléments
-    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
-    console.log(idx,subidx, subname, elems)
+    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx!==undefined && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx!==undefined && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
     if(elems.length > 0){
       const elem = elems[0];
       elem.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-      console.log('scrolling to', elem)
       elem.classList.toggle("translating"); //On le surligne 
     }
   }
@@ -143,11 +144,12 @@ class SideTrad extends Component {
     //On vérifie si une traduction n'a pas déjà été validée
     const pos = pointeurs.findIndex(x => this.state.currIdx === x), {isExpert, traductionsFaites} = this.props;
     let oldTrad = "", listTrad = [], score= 0, userId={}, selectedTrad={};
+    console.log(this.initial_text, text,target,item, pos, this.props.traduction.translatedText)
     if(isExpert){
       listTrad = ((traductionsFaites || []).map(x => {
         let newValue = x.translatedText || {}, scoreArr= {};
         if(pos > -1){
-          scoreArr = newValue.scoreHeaders[this.state.currIdx] || {};
+          scoreArr = _.get(newValue, "scoreHeaders." + this.state.currIdx, {});
           newValue = newValue[this.state.currIdx];
         }else{
           newValue = newValue.contenu[this.state.currIdx] ;
@@ -157,7 +159,7 @@ class SideTrad extends Component {
           scoreArr = newValue["score" + this.state.currSubName] || {};
           newValue = newValue[this.state.currSubName];
         }
-        return ({value: newValue, score: ((scoreArr.cosine || [{}])[0] || [{}])[0], ...x})
+        return ({value: newValue, score: _.get(scoreArr, "cosine.0.0", 0), ...x})
       }) || []).sort((a,b) => b.score - a.score);
       if(listTrad && listTrad.length > 0){
         oldTrad = listTrad[0].value; score = listTrad[0].score; userId = listTrad[0].userId;  selectedTrad=listTrad[0];
@@ -175,16 +177,17 @@ class SideTrad extends Component {
         }
       }
     }
+    console.log(oldTrad)
     this.setState({listTrad, score, userId, selectedTrad});
     if(oldTrad){
-      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } } )
+      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } }, () => console.log("ok fwd state") )
     }else{
       this.props.translate(text,target,item, true);
     }
   }
 
   selectTranslation = sugg => {
-    const listTrad = (((this.props.traductionsFaites || []).map(x => ({value: (x.translatedText || {})[this.state.currIdx], score: (((((x.translatedText || {}).scoreHeaders || {})[this.state.currIdx] || {}).cosine || [{}])[0] || [{}])[0], ...x})) || []).filter(x => x._id !== sugg._id) || []).sort((a,b) => b.score - a.score);
+    const listTrad = (((this.props.traductionsFaites || []).map(x => ({value: (x.translatedText || {})[this.state.currIdx], score: _.get(x, "translatedText.scoreHeaders." + this.state.currIdx + ".cosine.0.0"), ...x})) || []).filter(x => x._id !== sugg._id) || []).sort((a,b) => b.score - a.score);
     const score = sugg.score, userId = sugg.userId, selectedTrad = sugg;
     this.setState({listTrad, score, userId, selectedTrad});
     this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(sugg.value).contentBlocks)) } } );
@@ -219,6 +222,7 @@ class SideTrad extends Component {
 
   onValidate = async () => {
     if(!this.props.translated.body){Swal.fire( {title: 'Oh non', text: 'Aucune traduction n\'a été rentrée, veuillez rééssayer', type: 'error', timer: 1500}); return;}
+    this.props.fwdSetState({disableBtn: true});
     const pos = pointeurs.findIndex(x => this.state.currIdx === x);
     const node = pos > -1 ? this.state.currIdx : "contenu";
     let {currIdx, currSubIdx, currSubName} = this.state;
@@ -266,10 +270,10 @@ class SideTrad extends Component {
     }
     this.props.fwdSetState({traduction}, () => this.props.isExpert ? false : this.props.valider(this.props.traduction));
     this.goChange(true, false);
+    this.props.fwdSetState({disableBtn: false});
   }
 
   _insertTrad = () => {
-    console.log(this.props.traduction);
     let newTrad = {...this.props.traduction, articleId: this.props.itemId, type: "dispositif", locale: this.props.locale, traductions: this.props.traductionsFaites};
     API.validate_tradForReview(newTrad).then(data => {
       console.log(data.data.data)
@@ -281,8 +285,9 @@ class SideTrad extends Component {
 
   render(){
     const langue = this.props.langue || {};
-    const { francais, translated, isExpert } = this.props;
+    const { francais, translated, isExpert, disableBtn, autosuggest } = this.props;
     const { currIdx, currSubIdx, currSubName, listTrad, score, userId, showModals, selectedTrad } = this.state;
+    const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
     return(
       <div className="side-trad">
@@ -320,32 +325,36 @@ class SideTrad extends Component {
         </div>
         <div className="content-data" id="body_texte_final">
           <ConditionalSpinner show={!(translated || {}).body} />
-          <Editor
-            toolbarClassName="toolbar-editeur"
-            editorClassName="editor-editeur"
-            wrapperClassName="wrapper-editeur editeur-sidebar"
-            placeholder="Renseignez votre traduction ici"
-            onEditorStateChange={this.props.onEditorStateChange}
-            editorState={(translated || {}).body}
-            toolbarHidden = {pointeurs.includes(this.state.currIdx)}
-            toolbar={{
-              options: ['inline','list'],
-              inline: {
-                inDropdown: false,
-                options: ['bold', 'italic', 'underline'],
-                className: "bloc-gauche-inline blc-gh",
-                bold: { icon: boldBtn, className: "inline-btn btn-bold" },
-                italic: { icon: italicBtn, className: "inline-btn btn-italic"  },
-                underline: { icon: underBtn, className: "inline-btn btn-underline"  },
-              },
-              list: {
-                inDropdown: false,
-                options: ['unordered'],
-                className: "bloc-gauche-list blc-gh",
-                unordered:{icon: listBtn, className: "list-btn"}
-              },
-            }}
-          />
+          <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+            <Editor
+              toolbarClassName="toolbar-editeur"
+              editorClassName="editor-editeur"
+              wrapperClassName="wrapper-editeur editeur-sidebar"
+              placeholder="Renseignez votre traduction ici"
+              onEditorStateChange={this.props.onEditorStateChange}
+              editorState={(translated || {}).body}
+              toolbarHidden = {pointeurs.includes(this.state.currIdx)}
+              toolbar={{
+                options: ['inline','list'],
+                inline: {
+                  inDropdown: false,
+                  options: ['bold', 'italic', 'underline'],
+                  className: "bloc-gauche-inline blc-gh",
+                  bold: { icon: boldBtn, className: "inline-btn btn-bold" },
+                  italic: { icon: italicBtn, className: "inline-btn btn-italic"  },
+                  underline: { icon: underBtn, className: "inline-btn btn-underline"  },
+                },
+                list: {
+                  inDropdown: false,
+                  options: ['unordered'],
+                  className: "bloc-gauche-list blc-gh",
+                  unordered:{icon: listBtn, className: "list-btn"}
+                },
+              }}
+            />
+          </DirectionProvider>
+          {autosuggest && 
+            <div className="google-suggest">Suggestion par <img src={logo_google} className="google-logo" /></div>}
         </div>
         <div className="expert-bloc">
           {score && score !== 0 && score !== "0" ? 
@@ -370,13 +379,13 @@ class SideTrad extends Component {
             </FButton>}
           <div>
             {isExpert && 
-              <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(this.props.translated || {}).body} fill={variables.noir} className="mr-10">
+              <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(translated || {}).body} fill={variables.noir} className="mr-10">
                 Signaler
               </FButton>}
             <FButton type="light-action" name={(isExpert ? "close" : "skip-forward") + "-outline"} fill={variables.noir} className="mr-10" onClick={()=> isExpert ? this.toggleModal(true, 'rejected') : this.goChange()}>
               {isExpert ? "Refuser" : "Passer"}
             </FButton>
-            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(this.props.translated || {}).body}>
+            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(translated || {}).body}>  {/* || disableBtn */}
               Valider
             </FButton>
           </div>

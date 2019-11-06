@@ -48,16 +48,18 @@ class StructureCard extends Component {
 
         <Card className="main-card">
           <CardBody>
-            <div className="left-side">
-              <div className="logo-bloc">
-                <div className="img-wrapper">
-                  <img src={(structure.picture || {}).secure_url || diairMinInt} className="logo-img" alt="logo de la structure" />
-                </div>
-                <div className="logo-footer">
-                  <b>{structure.nom}</b>
+            <DefaultNavLink to="/backend/user-dash-structure">
+              <div className="left-side">
+                <div className="logo-bloc">
+                  <div className="img-wrapper">
+                    <img src={(structure.picture || {}).secure_url || diairMinInt} className="logo-img" alt="logo de la structure" />
+                  </div>
+                  <div className="logo-footer">
+                    <b>{structure.nom}</b>
+                  </div>
                 </div>
               </div>
-            </div>
+            </DefaultNavLink>
             <div className={"middle-side" + (actions && actions.length > 0 ? "" : " no-results-wrapper")}>
               {actions && actions.length > 0 ?
                 <><Nav tabs>
@@ -77,10 +79,10 @@ class StructureCard extends Component {
                   {actionTypes.map((type, i) => (
                     <TabPane tabId={i} key={i}>
                       <ListGroup className="liste-actions">
-                        {type.actions.map(act => {
+                        {type.actions.map((act, key) => {
                           const joursDepuis = (new Date().getTime() -  new Date(act.depuis).getTime()) / (1000 * 3600 * 24);
                           return (
-                            <ListGroupItem key={act.suggestionId} className={"depuis " + (joursDepuis > 10 ? "alert" : (joursDepuis > 3 ? "warning" : "")) }>
+                            <ListGroupItem key={act.suggestionId || key} className={"depuis " + (joursDepuis > 10 ? "alert" : (joursDepuis > 3 ? "warning" : "")) }>
                               {act.texte}
                               <span className="float-right">{moment(act.depuis).fromNow()}</span>
                             </ListGroupItem>

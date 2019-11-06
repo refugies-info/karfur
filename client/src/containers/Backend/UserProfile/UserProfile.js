@@ -20,7 +20,7 @@ import FButton from '../../../components/FigmaUI/FButton/FButton';
 import {selectItem, editMember, addMember} from '../UserDashStruct/functions';
 import {avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
 import {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgression} from './functions';
-import {fetch_user} from '../../../Store/actions';
+import {fetch_user, fetch_dispositifs} from '../../../Store/actions';
 
 import './UserProfile.scss';
 import variables from 'scss/colors.scss';
@@ -69,22 +69,22 @@ class UserProfile extends Component {
 
   componentDidMount() {
     const user=this.props.user, userId = this.props.user;
-    API.get_tradForReview({'userId': userId}).then(data => { console.log(data.data.data);
+    API.get_tradForReview({query: {'userId': userId}}).then(data => { console.log(data.data.data);
       this.setState({traductions: data.data.data})
     })
-    API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}}}).then(data => { console.log(data.data.data);
+    API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}, demarcheId: { $exists: false }}, sort:{updatedAt: -1}}).then(data => { console.log(data.data.data);
       this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
     })
     if(user.structures && user.structures.length > 0){
       this.initializeStructure();
-      API.get_dispositif({query: {'mainSponsor': user.structures[0]}}).then(data => {console.log(parseActions(data.data.data))
+      API.get_dispositif({query: {'mainSponsor': user.structures[0]}, sort:{updatedAt: -1}}).then(data => {
         this.setState({actionsStruct: parseActions(data.data.data)})
       })
     }
     console.log(user)
     this.setState({user:user, isMainLoading:false, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
     
-    API.get_users({}).then(data => this.setState({users: data.data.data}) );
+    API.get_users().then(data => this.setState({users: data.data.data}) );
     API.get_langues({}).then(data => this.setState({ langues: data.data.data }))
     this.getProgression();
     window.scrollTo(0, 0);
@@ -318,7 +318,7 @@ class UserProfile extends Component {
             limit={5}
             hide={!showSections.contributions}
             overlayTitle="Rédigez des nouveaux contenus"
-            overlaySpan="Agi’r est une plateforme contributive, vous pouvez participer à son enrichissement"
+            overlaySpan="Réfugiés-info est une plateforme contributive, vous pouvez participer à son enrichissement"
             overlayBtn="Découvrir comment contribuer"
             overlayRedirect={false}
             history={this.props.history}
@@ -461,7 +461,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {fetch_user};
+const mapDispatchToProps = {fetch_user, fetch_dispositifs};
 
 export default track({
   page: 'UserProfile',

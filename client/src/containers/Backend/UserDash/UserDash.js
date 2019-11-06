@@ -44,10 +44,17 @@ class UserDash extends Component {
     if(user && user.selectedLanguages && user.selectedLanguages.length > 0){
       API.get_langues({'_id': { $in: user.selectedLanguages}},{avancement: 1},'participants').then(data_langues => {
         console.log(data_langues.data.data)
-        this.setState({languesUser: data_langues.data.data, isMainLoading: false}, () => {
+        const languesUser = data_langues.data.data;
+        this.setState({languesUser, isMainLoading: false}, () => {
           if(this.props.expertTrad){
-            API.get_tradForReview({'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"},{updatedAt: -1}).then(data => {console.log(data.data.data)
-              this.setState({languesUser: this.state.languesUser.map( x => ({...x, nbTrads: ((data.data.data || []).filter(y => y.langueCible === x.i18nCode) || []).length }) ) })
+            API.get_tradForReview({query: {'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"}, sort: {updatedAt: -1}}).then(data => {//console.log(data.data.data);
+              this.setState(pS => ({languesUser: pS.languesUser.map( x => ({...x, nbTrads: ((data.data.data || []).filter(y => y.langueCible === x.i18nCode) || []).length }) ) }))
+            })
+          }
+          if(languesUser.some(x => x.langueBackupId)){
+            API.get_langues({'_id': { $in: languesUser.filter(x => x.langueBackupId).map(x => x.langueBackupId) } }).then(data => {
+              const languesToPopulate = data.data.data;
+              this.setState(pS => ({languesUser : pS.languesUser.map(x => x.langueBackupId ? {...x, langueBackupId: languesToPopulate.find(y => y._id === x.langueBackupId) } : x ) }), ()=> console.log(this.state.languesUser))
             })
           }
         })
@@ -57,7 +64,7 @@ class UserDash extends Component {
         if(data_progr.data.data && data_progr.data.data.length>0)
           this.setState({progression: data_progr.data.data[0]})
       })
-      API.get_tradForReview({'_id': { $in: user.traductionsFaites}},{updatedAt: -1}).then(data => {
+      API.get_tradForReview({query: {'_id': { $in: user.traductionsFaites}}, sort: {updatedAt: -1}}).then(data => {
         console.log(data.data.data)
         this.setState({traductionsFaites: data.data.data})
       })
@@ -109,6 +116,7 @@ class UserDash extends Component {
 
   openTraductions = (langue) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'openTraductions', value : langue._id });
+    console.log(langue)
     this.props.history.push({
       pathname: '/avancement/traductions/'+langue._id,
       state: { langue: langue}
@@ -255,7 +263,7 @@ class UserDash extends Component {
 }
 
 const buttonTraductions = (element, user, openThemes, openTraductions) => (
-  (user.roles || []).find(x => x.nom==='ExpertTrad') ?
+  (user.roles || []).find(x => x && x.nom==='ExpertTrad') ?
     element.nbTrads > 0 ?
       <FButton type="dark" name="done-all-outline" fill={variables.noir} onClick={() => openTraductions(element)}>
         Valider les traductions

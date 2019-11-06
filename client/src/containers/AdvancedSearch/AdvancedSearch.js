@@ -5,6 +5,7 @@ import { Col, Row, CardBody, CardFooter, Spinner } from 'reactstrap';
 import Swal from 'sweetalert2';
 import querySearch from "stringquery";
 import _ from "lodash";
+import { NavHashLink } from 'react-router-hash-link';
 // import Cookies from 'js-cookie';
 
 import SearchItem from './SearchItem/SearchItem';
@@ -13,6 +14,7 @@ import {initial_data} from "./data"
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import {filtres} from "../Dispositif/data";
+import {filtres_contenu} from "./data";
 
 import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
@@ -27,12 +29,12 @@ class AdvancedSearch extends Component {
     dispositifs: [],
     nbVues: [],
     pinned: [],
-    activeFiltre: "Dispositifs",
-    activeTri: "A > Z",
-    tags: filtres.tags,
+    activeFiltre: "",
+    activeTri: "",
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
+    filter:{},
   }
 
   componentDidMount (){
@@ -50,9 +52,9 @@ class AdvancedSearch extends Component {
       { "audienceAge.bottomValue": { $lt: x.topValue}, "audienceAge.topValue": { $gt: x.bottomValue} } :
       {[x.queryName]: x.query}
     )).reduce((acc, curr) => ({...acc, ...curr}),{});
-    console.log(query)
-    API.get_dispositif({query: {...query, status:'Actif'}}).then(data_res => {
+    API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', demarcheId: { $exists: false } }}).then(data_res => {
       let dispositifs=data_res.data.data;
+      console.log(query, dispositifs)
       if(query["tags.name"]){       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
         dispositifs = dispositifs.sort((a,b)=> (a.tags.findIndex(x => x ? x.short === query["tags.name"] : 99) - b.tags.findIndex(x => x ? x.short === query["tags.name"] : 99)))
       }
@@ -63,9 +65,10 @@ class AdvancedSearch extends Component {
   }
   
   selectTag = (tag = {}) => {
-    this.setState(pS => ({tags: pS.tags.map(x => (x.short===tag ? {...x, active: true} : {...x, active: false})), color: (tag || {}).color}))
+    const tagValue = (filtres.tags.find(x => x.short === tag) || {});
+    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: tagValue.name, short: tagValue.short, active: true} : x)}))
     this.queryDispositifs({["tags.short"]: tag})
-    this.props.history.replace("/advanced-search?tag="+tag)
+    // this.props.history.replace("/advanced-search?tag="+tag)
   }
   
   _initializeEvents = () => {
@@ -109,14 +112,12 @@ class AdvancedSearch extends Component {
     e.stopPropagation();
     dispositif.pinned=!dispositif.pinned;
     let prevState=[...this.state.dispositifs];
-    console.log(this.state.dispositifs, this.state.pinned,dispositif)
     this.setState({
       dispositifs: dispositif.pinned ? prevState.filter(x => x._id !== dispositif._id) : [...prevState,dispositif],
       pinned: dispositif.pinned ? 
-        [...this.state.pinned,dispositif] :
+        [...this.state.pinned, dispositif] :
         this.state.pinned.filter(x=> x._id !== dispositif._id)
     },()=>{
-      console.log(this.state.dispositifs, this.state.pinned)
       user.cookies.parkourPinned=this.state.pinned;
       API.set_user_info(user);
     })
@@ -131,9 +132,15 @@ class AdvancedSearch extends Component {
     }), order: tri.value, activeTri: tri.name, croissant: croissant}))
   }
 
+  filter_content = filtre => {
+    const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
+    const activeFiltre = this.state.activeFiltre === filtre.name ? "" : filtre.name;
+    this.setState({filter, activeFiltre }, () => this.queryDispositifs());
+  }
+
   goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
     this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
-    this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
+    this.props.history.push('/' + (dispositif.typeContenu || "dispositif") + (dispositif._id ? ('/' + dispositif._id) : ''))
   }
 
   upcoming = () => Swal.fire( {title:'Oh non!', text:'Cette fonctionnalité n\'est pas encore activée', type:'error', timer: 1500})
@@ -145,6 +152,7 @@ class AdvancedSearch extends Component {
       value: subitem.name,
       query: subitem.query || subitem.name,
       active: true,
+      ...(subitem.short && {short: subitem.short}),
       ...(subitem.bottomValue && {bottomValue: subitem.bottomValue}),
       ...(subitem.topValue && {topValue: subitem.topValue}),
     }
@@ -154,8 +162,13 @@ class AdvancedSearch extends Component {
   desactiver = key => this.setState({recherche: this.state.recherche.map((x, i) => i===key ? initial_data[i] : x)}, ()=> this.queryDispositifs());
 
   render() {
-    const {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
+    let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
     const {t} = this.props;
+    const filteredPinned = activeFiltre ? pinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : pinned;
+
+    if(recherche[0].active){
+      dispositifs = dispositifs.sort((a,b) => _.get(a,"tags.0.name", {}) === recherche[0].query ? -1 : _.get(b,"tags.0.name", {}) === recherche[0].query ? 1 : 0)
+    }
     return (
       <div className="animated fadeIn advanced-search">
         <Row className="search-wrapper">
@@ -190,7 +203,7 @@ class AdvancedSearch extends Component {
             </div>
             <div className="results-wrapper">
               <Row>
-                {[...pinned,...dispositifs].map((dispositif) => {
+                {[...filteredPinned,...dispositifs].map((dispositif) => {
                   if(!dispositif.hidden){
                     let shortTag = null;
                     if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-") }
@@ -229,37 +242,39 @@ class AdvancedSearch extends Component {
                     </CustomCard>
                   </Col>}
                 <Col xs="12" sm="6" md="3">
-                  <CustomCard addcard="true" onClick={this.goToDispositif}>
-                    <CardBody>
-                      {showSpinner ?
-                        <Spinner color="success" /> : 
-                        <span className="add-sign">+</span> }
-                    </CardBody>
-                    <CardFooter className="align-right">
-                      {showSpinner ? t("Chargement", "Chargement") + "..." : t("Créer un dispositif", "Créer un dispositif")}
-                    </CardFooter>
-                  </CustomCard>
+                  <NavHashLink to="/comment-contribuer#ecrire">
+                    <CustomCard addcard="true">
+                      <CardBody>
+                        {showSpinner ?
+                          <Spinner color="success" /> : 
+                          <span className="add-sign">+</span> }
+                      </CardBody>
+                      <CardFooter className="align-right">
+                        {showSpinner ? t("Chargement", "Chargement") + "..." : t("Créer un dispositif", "Créer un dispositif")}
+                      </CardFooter>
+                    </CustomCard>
+                  </NavHashLink>
                 </Col>
               </Row>
             </div>
           </Col>
-          {/* <Col lg="2" className="mt-250 side-col">
+          <Col lg="2" className="mt-250 side-col">
             <EVAIcon name="funnel-outline" fill={variables.noir} className="mr-12" />
             <div className="right-side">
               <b>Filtrer par :</b> 
               <div className="mt-10 side-options">
-                {filtres.map((filtre, idx) => (
+                {filtres_contenu.map((filtre, idx) => (
                   <div 
                     key={idx} 
                     className={"side-option" + (filtre.name === activeFiltre ? " active" : "")}
-                    onClick={this.upcoming}
+                    onClick={()=>this.filter_content(filtre)}
                   >
                     {filtre.name}
                   </div>
                 ))}
               </div>
             </div>
-          </Col> */}
+          </Col>
         </Row>
       </div>
     )

@@ -26,6 +26,7 @@ import AdvancedSearch from './containers/AdvancedSearch/AdvancedSearch';
 import QuiSommesNous from './containers/QuiSommesNous/QuiSommesNous';
 import CommentContribuer from './containers/CommentContribuer/CommentContribuer';
 import AdminContrib from './containers/Backend/AdminContrib/AdminContrib';
+import AdminContenu from './containers/Backend/AdminContenu/AdminContenu';
 
 const routes = [
   { path: '/', exact: true, name: 'home', restriction:[] },
@@ -44,6 +45,9 @@ const routes = [
   { path: '/dispositifs', name: 'Rechercher un dispositif', component: Dispositifs, restriction:[] },
   { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
   { path: '/dispositif', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },
+
+  { path: '/demarche/:id', exact: true, name: 'Demarche', component: Dispositif, restriction:[] },
+  { path: '/demarche', exact: true, name: 'Demarche', component: Dispositif, restriction:[] },
 
   { path: '/parcours-on-board', name: 'Parcours On Board', component: ParkourOnBoard, restriction:[] },
   { path: '/parcours-perso', name: 'Parcours perso', component: ParkourPerso, restriction:[] },
@@ -64,11 +68,12 @@ const routes = [
   { path: '/record-audio', exact: true, name: 'Enregistrement audio', component: RecordAudio, restriction:[] },
 
   { path: '/backend', exact:true, forceShow:true, name: 'Administration', component: Dashboard, restriction:['Admin'] },
-  { path: '/backend/dashboard', name: 'Dashboard', component: Dashboard, restriction:['Admin'] },
+  { path: '/backend/admin-dashboard', name: 'Dashboard', component: Dashboard, restriction:['Admin'] },
   { path: '/backend/admin', name: 'Admin', component: Admin, restriction:['Admin'] },
   { path: '/backend/chat', name: 'Chat', component: Chat, restriction:['Admin'] },
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
   { path: '/backend/admin-contrib', name: 'AdminContrib', component: AdminContrib, restriction:['Admin']},
+  { path: '/backend/admin-contenu', name: 'AdminContenu', component: AdminContenu, restriction:['Admin']},
 
   { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:['User','Trad','ExpertTrad','Admin'] },
   { path: '/backend/user-dash-contrib', name: 'UserDashContrib', component: UserDashContrib, restriction:['Contrib','Admin'] },

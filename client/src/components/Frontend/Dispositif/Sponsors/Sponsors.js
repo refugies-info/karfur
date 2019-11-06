@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import API from "utils/API.js";
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
-import { SearchBar } from '../../../../containers/UI/SearchBar/SearchBar';
+import SearchBar from '../../../../containers/UI/SearchBar/SearchBar';
 import {sentIllu} from '../../../../assets/figma/index';
 import CreationContent from "../CreationContent/CreationContent"
 import {update_user} from "../../../../Store/actions/index";
@@ -168,6 +168,7 @@ class Sponsors extends Component {
             className="search-bar inner-addon right-addon"
             placeholder = "Rechercher ou créer une structure"
             array={[...structures.filter(x => x.status === 'Actif'), {createNew: true}]}
+            createNewCta="Créer une nouvelle structure"
             selectItem={this.selectItem} />
 
           <FormGroup check className="case-cochee mt-10">

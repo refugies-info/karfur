@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import { Editor } from 'react-draft-wysiwyg';
+import { Draft, DefaultDraftBlockRenderMap, EditorBlock, convertToRaw, convertFromRaw } from 'draft-js';
+import { Map } from 'immutable';
+import draftToHtml from 'draftjs-to-html';
 
 // import Backdrop from '../../../UI/Backdrop/Backdrop';
 import {boldBtn, italicBtn, underBtn, listBtn, imgBtn, videoBtn, linkBtn} from '../../../../assets/figma/index'
@@ -10,6 +13,28 @@ import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 import './EditableParagraph.scss'
 import variables from 'scss/colors.scss';
+
+
+const MyCustomBlock = props => (
+  <div className="bloc-rouge">
+    <div className="icon-left-side">
+      <EVAIcon name="info-outline" fill={variables.noir} className="flex-center" />
+    </div>
+    <div className="right-side">
+      <b>Bon à savoir :</b>
+      <EditorBlock {...props} />
+    </div>
+  </div>
+)
+
+function myBlockRenderer(contentBlock) {
+  const type = contentBlock.getType();
+  if (type === 'header-six') {
+    return {
+      component: MyCustomBlock,
+    };
+  }
+}
 
 class EditableParagraph extends Component {
   state= {
@@ -21,21 +46,24 @@ class EditableParagraph extends Component {
   toggle = () => this.setState({isDropdownOpen:!this.state.isDropdownOpen})
   toggleTooltip = () => this.setState(prevState => ({tooltipOpen: !prevState.tooltipOpen })); 
   toggleColor = (key, hover) => this.setState(prevState=>({dropdownColor:prevState.dropdownColor.map((_,i)=> (i===key ? (hover ? variables.noir : "#FFFFFF") : "#FFFFFF"))}))
-
+  
   render(){
     const props=this.props;
-    if(props.editable){
+    if(props.editable && !props.disableEdit){
       return (
         // {/* <Backdrop show={true} clicked={()=>props.handleContentClick(props.keyValue,false, props.subkey)} /> */}
         <>
           <Editor
+            spellCheck
             toolbarClassName={"toolbar-editeur" + (props.keyValue===0 ? " no-top":"")}
             editorClassName="editor-editeur"
             wrapperClassName={"wrapper-editeur editeur-" + props.keyValue + '-' + props.subkey}
             placeholder={props.placeholder}
             onEditorStateChange={(editorState)=>props.onEditorStateChange(editorState, props.keyValue, props.subkey)}
             editorState={props.editorState}
-            // toolbarCustomButtons={[<CustomOption />]}
+            toolbarCustomButtons={[<CustomOption editorState={props.editorState} />]}
+            blockRendererFn={myBlockRenderer}
+            stripPastedStyles
             toolbar={{
               options: ['inline','list', 'image', 'embedded', 'link'],
               inline: {
@@ -86,6 +114,11 @@ class EditableParagraph extends Component {
                   <EVAIcon name="list-outline" fill={this.state.dropdownColor[3]} id="3"  />
                   Accordéon
                 </DropdownItem>
+                {this.props.typeContenu==="demarche" && 
+                  <DropdownItem onClick={()=>this.props.addItem(this.props.keyValue, "etape", this.props.subkey)} id='etape' onMouseEnter={()=>this.toggleColor(4, true)} onMouseLeave={()=>this.toggleColor(4, false)}>
+                    <EVAIcon name="list-outline" fill={this.state.dropdownColor[4]} id="4"  />
+                    Etape
+                  </DropdownItem>}
               </DropdownMenu>
             </Dropdown>
             
@@ -95,7 +128,7 @@ class EditableParagraph extends Component {
           </div>
         </>
       )
-    }else{
+    }else if(typeof props.content === "string"){
       return(
         <ContentEditable
           id={props.keyValue}
@@ -109,7 +142,7 @@ class EditableParagraph extends Component {
           onClick={()=>props.handleContentClick(props.keyValue,!props.disableEdit, props.subkey)}
         />
       )
-    }
+    }else{return false}
   }
 }
 

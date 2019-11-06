@@ -100,7 +100,6 @@ async function distinct_event (req, res) {
 }
 
 function aggregate_events(req, res) {
-  console.log(req.body)
   var find = new Promise(function (resolve, reject) {
     Event.aggregate(req.body).exec(function (err, result) {
       console.log(err)

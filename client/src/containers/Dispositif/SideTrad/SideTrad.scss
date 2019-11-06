@@ -13,6 +13,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 25px;
+    flex-wrap: wrap;
   }
   .langue-data{
     margin-bottom: 15px;
@@ -24,7 +25,7 @@
     position: relative;
 
     &#body_texte_initial{
-      background: $noirCD;
+      background-color: #D2EDFC;
     }
     &#body_texte_final{
       background: #FFFFFF;
@@ -105,5 +106,18 @@
 
   .mb-20{
     margin-bottom: 20px;
+  }
+
+  .google-suggest{
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 12px;
+    line-height: 15px;
+    color: $noirCD;
+  }
+  .google-logo{
+    width: 13px;
+    height: 13px;
   }
 }
