@@ -12,7 +12,7 @@ async function add_structure(req, res) {
       //Il faut avoir soit un rôle admin soit être admin de la structure
       const r = await Structure.findOne({_id: structure._id});
       if(!r){res.status(402).json({ "text": "Id non valide" }); return;}
-      const isAdmin = (req.user.roles || []).some(x => x.nom==='Admin') || r.administrateur === req.userId;
+      const isAdmin = (req.user.roles || []).some(x => x.nom==='Admin') || req.userId.equals(r.administrateur);
       const isContributeur = (((r.membres || []).find(x => x.userId === req.userId) || {}).roles || []).includes("contributeur");
       console.log(isAdmin, isContributeur, membreId, r.administrateur, req.userId, structure)
       if(isAdmin || (isContributeur && ( !JSON.stringify(structure).includes("administrateur") ) )){ //Soit l'auteur est admin soit il est contributeur et modifie les droits d'un membre seul
