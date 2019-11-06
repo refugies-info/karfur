@@ -40,7 +40,7 @@ class RejectTradModal extends Component {
     const {clicked, message} = this.state, {selectedTrad, currIdx} = this.props;
     if(!clicked.includes(true)){Swal.fire( {title:'Oh non', text:'Aucune option n\'a été sélectionnée, veuillez rééssayer', type:'error', timer: 1500}); return;}
     const selectedR = clicked.findIndex(x => x===true);
-    let newTrad = {
+    const newTrad = {
       _id: selectedTrad._id, 
       translatedText: {
         ...selectedTrad.translatedText,
