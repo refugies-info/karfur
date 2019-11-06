@@ -12,6 +12,13 @@ const compression = require('compression');
 const startup = require('./startup/startup');
 // const scanner = require('./i18nscanner.js'); // Si besoin de lancer une extraction des strings manquantes en traduction
 
+// var log = console.log;
+// console.log = function() {
+//     log.apply(console, arguments);
+//     // Print the stack trace
+//     console.trace();
+// };
+
 // const session = require('express-session');
 // const sessionstore = require('sessionstore');
 

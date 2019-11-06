@@ -9,8 +9,11 @@
   "Tags": {},
   "SearchItem": {},
   "Status": {},
-  "Dispositif": {},
+  "Dispositif": {
+    "Gratuit": "free of charge"
+  },
   "CheckDemarche": {},
   "Toolbar": {},
-  "Footer": {}
+  "Footer": {},
+  "Login": {}
 }

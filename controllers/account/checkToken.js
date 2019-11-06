@@ -37,11 +37,22 @@ getId = (req, res, next) => {
   if(token !== null && token !== undefined && token !== 'undefined'){
     let decoded=jwt.decode(token, process.env.NODE_ENV === 'dev' ? config.secret : process.env.SECRET);
     if(decoded){
-      req.user=decoded;
-      req.userId=decoded._id;
+      User.findById(decoded._id)
+        .populate('roles')
+        .exec(function (err, user) {
+          if (err || !user) return
+          let userCopy={...user.toObject()};
+          delete userCopy.password;
+          req.userId=userCopy._id;
+          req.user=userCopy;
+          next();
+        });
+    }else{
+      next();
     }
+  }else{
+    next();
   }
-  next();
 }
 
 getRoles = (req, res, next) => {
