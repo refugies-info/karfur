@@ -896,8 +896,8 @@ class Dispositif extends Component {
                       {t("Dernière mise à jour", "Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
                     </Col>
                     <Col className="col">
-                      {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
-                      <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#E55039"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
+                      {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className={"fiabilite color-" + (fiabilite > 0.5 ? "vert" : fiabilite > 0.2 ? "orange" : "rouge")}>{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
+                      <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill={variables[fiabilite > 0.5 ? "validationHover" : fiabilite > 0.2 ? "orange" : "error"]}  onClick={()=>this.toggleModal(true, 'fiabilite')} />
                       
                       <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
                         <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Dispositif.fiabilite_faible", "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant") }} />

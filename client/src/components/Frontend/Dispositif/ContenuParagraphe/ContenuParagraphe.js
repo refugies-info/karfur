@@ -98,10 +98,10 @@ const contenuParagraphe = (props) => {
                         tutoriel={item.tutoriel}
                         addItem={props.addItem}
                         {...subitem} />
-                    {!newDisableEdit &&
-                      <FButton type="dark" name="plus-circle-outline" className="mt-10" onClick={()=>props.addItem(props.keyValue, "paragraphe", subkey)} >
-                        Ajouter un module
-                      </FButton>}
+                      {!newDisableEdit &&
+                        <FButton type="dark" name="plus-circle-outline" className="mt-10" onClick={()=>props.addItem(props.keyValue, "accordion", subkey)} >
+                          Ajouter un module
+                        </FButton>}
                     </Collapse>
                   </Col>
                   {!props.sideView && !props.inVariante && newDisableEdit && 

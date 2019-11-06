@@ -2,7 +2,6 @@ const Structure = require('../../schema/schemaStructure.js');
 const User = require('../../schema/schemaUser.js');
 const Role = require('../../schema/schemaRole.js');
 
-console.log(JSON.stringify({"test": "administrateur"}).includes("admdzin"))
 async function add_structure(req, res) {
   if (!req.body || (!req.body.nom && !req.body._id)) {
     res.status(400).json({ "text": "Requête invalide" })
@@ -15,7 +14,8 @@ async function add_structure(req, res) {
       if(!r){res.status(402).json({ "text": "Id non valide" }); return;}
       const isAdmin = (req.user.roles || []).some(x => x.nom==='Admin') || r.administrateur === req.userId;
       const isContributeur = (((r.membres || []).find(x => x.userId === req.userId) || {}).roles || []).includes("contributeur");
-      if(isAdmin || (isContributeur && !JSON.stringify(structure).includes("administrateur"))){ //Soit l'auteur est admin soit il est contributeur et modifie les droits d'un membre seul
+      console.log(isAdmin, isContributeur, membreId, structure)
+      if(isAdmin || (isContributeur && ( !structure.membres || !JSON.stringify(structure).includes("administrateur") ) )){ //Soit l'auteur est admin soit il est contributeur et modifie les droits d'un membre seul
         promise=Structure.findOneAndUpdate({_id: structure._id, ...(membreId && {"membres.userId": membreId})}, structure, { upsert: true , new: true});
       }else{//Voir les cas qu'on laissera passer pour les membres
         res.status(401).json({ "text": "Token invalide" }); return false;
