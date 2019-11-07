@@ -171,6 +171,17 @@ class AdvancedSearch extends Component {
     }
     return (
       <div className="animated fadeIn advanced-search">
+        <div className="search-bar">
+          {recherche.map((d,i) => (
+            <SearchItem  
+              key={i}
+              item={d}
+              keyValue={i}
+              selectParam = {this.selectParam}
+              desactiver={this.desactiver}
+            />
+          ))}
+        </div>
         <Row className="search-wrapper">
           <Col lg="2" className="mt-250 side-col">
             <EVAIcon name="options-2-outline" fill={variables.noir} className="mr-12" />
@@ -190,17 +201,6 @@ class AdvancedSearch extends Component {
             </div>
           </Col>
           <Col lg="8" className="mt-250 central-col">
-            <div className="search-bar">
-              {recherche.map((d,i) => (
-                <SearchItem  
-                  key={i}
-                  item={d}
-                  keyValue={i}
-                  selectParam = {this.selectParam}
-                  desactiver={this.desactiver}
-                />
-              ))}
-            </div>
             <div className="results-wrapper">
               <Row>
                 {[...filteredPinned,...dispositifs].map((dispositif) => {
