@@ -40,7 +40,7 @@
       font-weight: normal;
       font-size: 16px;
       text-decoration-line: underline;
-      color: #828282;
+      color: $grisFonce;
       float: right;
       line-height: 40px;
     }
@@ -57,16 +57,28 @@
     }
     .list-group{
       .list-group-item{
-        border: 0.5px solid $noir;
-        padding: 0.8rem 1rem;
-        &:first-child{
-          border-radius: 6px 6px 0 0;
-        }
-        &:last-child{
-          border-radius: 0 0 6px 6px;
-        }
+        padding: 15px;
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        margin-bottom: 10px;
+        cursor: pointer;
         &.disabled{
-          color: #CDCDCD;
+          color: $noirCD;
+        }
+        &.unavailable-item{
+          background: $grisFonce;
+          border:none;
+          color: #FFFFFF;
+          padding: 10px;
+          box-shadow: none;
+        }
+        &.active{
+          background: $validationHover;
+          border: 0.5px solid $validationHover;
+        }
+        .vertical-center{
+          display: flex;
+          align-items: center;
         }
       }
 
@@ -77,7 +89,7 @@
         .progress{
           width: 100px;
           margin-right:10px;
-          height: 15px;
+          height: 10px;
         }
       }
 

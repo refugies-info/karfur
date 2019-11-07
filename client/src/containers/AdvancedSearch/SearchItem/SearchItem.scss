@@ -2,9 +2,6 @@
 
 .search-col{
   padding: 10px;
-  &:not(:first-child){
-    border-left: 1px solid $gris;
-  }
 
   .dropdown-menu.show{
     display: flex;
@@ -39,5 +36,11 @@
   }
   .texte-blanc{
     color: #FFFFFF;
+  }
+
+  .search-dropdown{
+    background: $gris;
+    border-radius: 6px;
+    padding: 20px;
   }
 }

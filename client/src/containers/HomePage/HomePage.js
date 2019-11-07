@@ -18,9 +18,13 @@ import FButton from '../../components/FigmaUI/FButton/FButton';
 import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
 import SearchBar from '../UI/SearchBar/SearchBar';
 import API from '../../utils/API';
+import FSearchBtn from '../../components/FigmaUI/FSearchBtn/FSearchBtn';
 
 import './HomePage.scss';
 import variables from 'scss/colors.scss';
+import { filtres } from '../Dispositif/data';
+import SearchItem from '../AdvancedSearch/SearchItem/SearchItem';
+import { initial_data } from '../AdvancedSearch/data';
 
 const anchorOffset = '120';
 
@@ -37,11 +41,14 @@ class HomePage extends Component {
     window.scrollTo(0, 0);
   }
 
+  selectParam = (_, subitem) => subitem && this.props.history.push({ pathname:"/advanced-search", search: '?tag=' + subitem.short });
+
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render() {
     const { t } = this.props;
     const {users} = this.state;
+    const item = initial_data[0]
     return (
       <div className="animated fadeIn homepage">
         <section id="hero">
@@ -50,15 +57,16 @@ class HomePage extends Component {
             <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
             
             <div className="search-row">
-              <SearchBar 
-                validateTest="Valider"
-                className="input-group"
-                placeholder="Rechercher"
+              <SearchItem  
+                item={{...item, value: item.children[0].name}}
+                keyValue={0}
+                selectParam = {this.selectParam}
+                desactiver={()=>{}}
               />
-              <div className="try-it-out mr-10">{t("ou", "ou")}</div>
-              <FButton tag={NavLink} to="/advanced-search" name="flash" type="dark" className="large-btn">
-                {t("Homepage.Super recherche", "Super recherche")}
-              </FButton>
+              {/* <h5>Je cherche à</h5>
+              <FSearchBtn className={"bg-" + item.short.split(" ").join("-") + " texte-blanc"}>
+                <h5>{t("Tags." + item.name, item.name)}</h5>
+              </FSearchBtn> */}
             </div>
           </div>
           <AnchorLink offset='60' href="#plan" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
