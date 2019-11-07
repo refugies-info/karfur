@@ -40,29 +40,14 @@
     }
 
     .search-row{
-      margin-top: 25px;
+      margin: 25px auto 0;
       display:flex;
       align-items: center;
       justify-content: space-between;
       background: rgba(255, 255,255, .9);
       box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
-      padding: 10px;
-      height: 80px;
-
-      .large-btn{
-        height: 100%;
-        display: flex;
-        align-items: center;
-        padding: 10px 20px;
-      }
-    }
-    .try-it-out{
-      text-align: left;
-      font-size: 16px;
-      text-transform: uppercase; 
-      color: $noirCD;
-      font-weight: bold;
+      width: fit-content;
     }
   }
 
