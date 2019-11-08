@@ -1,8 +1,10 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
 
 $btnHeight:40px;
 $btnWidth:40px;
 
 .language-btn.figma-btn{
   margin: auto 10px auto 0px;
+  @include media-max("phone-down") { margin-right: 5px; }
 }
