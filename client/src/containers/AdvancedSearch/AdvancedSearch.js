@@ -261,7 +261,7 @@ class AdvancedSearch extends Component {
           <Col lg="2" className="mt-250 side-col">
             <EVAIcon name="funnel-outline" fill={variables.noir} className="mr-12" />
             <div className="right-side">
-              <b>Filtrer par :</b> 
+              <b>{t("AdvancedSearch.Filtrer par", "Filtrer par :")}</b>
               <div className="mt-10 side-options">
                 {filtres_contenu.map((filtre, idx) => (
                   <div 
@@ -269,7 +269,7 @@ class AdvancedSearch extends Component {
                     className={"side-option" + (filtre.name === activeFiltre ? " active" : "")}
                     onClick={()=>this.filter_content(filtre)}
                   >
-                    {filtre.name}
+                    {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
                   </div>
                 ))}
               </div>
