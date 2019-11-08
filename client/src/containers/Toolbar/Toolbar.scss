@@ -16,6 +16,8 @@
   z-index: 90;
   color: $noir;
 
+  @media (max-width: $drawerLimit) { padding: 0 10px; }
+
   nav {
     height: 100%;
   }
@@ -46,7 +48,7 @@
 
   .home-btn{
     margin:auto;
-    padding-left:20px;
+    padding-left:10px;
     font-size: 18px;
   }
   .left_buttons{
@@ -108,6 +110,12 @@
   .right-buttons{
     display: flex;
     max-height: 40px;
+  }
+  .search-bar .react-autosuggest__container input{
+    height: 100%;
+  }
+  .figma-btn{
+    height: 100%;
   }
 }
 
