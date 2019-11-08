@@ -81,7 +81,7 @@ class CommentContribuer extends Component {
                   <Card className="dispositif-card">
                     <CardHeader>{t("CommentContribuer.Ajouter un dispositif", "Ajouter un dispositif d'accompagnement")}</CardHeader>
                     <CardBody>
-                      Rédigez la fiche pratique d'un dispositif d'accompagnement pour que les personnes réfugiées soient pleinement informées et puissent s'y engager.
+                      {t("CommentContribuer.Ajouter dispositif cardbody", "Rédigez la fiche pratique d'un dispositif d'accompagnement pour que les personnes réfugiées soient pleinement informées et puissent s'y engager.")}
                     </CardBody>
                     <CardFooter>
                       <EVAIcon name="clock-outline" className="clock-icon" />
@@ -94,7 +94,7 @@ class CommentContribuer extends Component {
                 <Card className="cursor-pointer demarche-card" onClick={()=>this.toggleModal(true, "checkDemarche")}>
                   <CardHeader>{t("CommentContribuer.Expliquer une démarche administrative", "Expliquer une démarche administrative")}</CardHeader>
                   <CardBody>
-                    Rédigez la fiche pratique d'une démarche administrative qui détaille, étape par étape, les actions à mener pour la réussir.
+                    {t("CommentContribuer.Expliquer démarche cardbody", "Rédigez la fiche pratique d'une démarche administrative qui détaille, étape par étape, les actions à mener pour la réussir.")}
                   </CardBody>
                   <CardFooter>
                     <EVAIcon name="clock-outline" className="clock-icon" />
@@ -106,7 +106,7 @@ class CommentContribuer extends Component {
                 <Card className="cursor-pointer" onClick={this.upcoming}>
                   <CardHeader>{t("CommentContribuer.Ajouter une définition", "Ajouter une définition")}</CardHeader>
                   <CardBody>
-                    Enrichissez le lexique collaboratif pour que tout le monde comprenne mieux les mots de l’intégration.
+                    {t("CommentContribuer.Ajouter définition cardbody", "Enrichissez le lexique collaboratif pour que tout le monde comprenne mieux les mots de l’intégration.")}
                   </CardBody>
                   <CardFooter>
                     <span>{t("Bientôt disponible", "Bientôt disponible")}</span>
@@ -117,7 +117,7 @@ class CommentContribuer extends Component {
                 <Card className="cursor-pointer" onClick={this.upcoming}>
                   <CardHeader>{t("CommentContribuer.Créer un parcours", "Créer un parcours")}</CardHeader>
                   <CardBody>
-                    Vous avez un objectif ? On vous liste les étapes à franchir pour l’atteindre dans notre moteur de parcours d’intégration.
+                    {t("CommentContribuer.Créer parcours cardbody", "Vous avez un objectif ? On vous liste les étapes à franchir pour l’atteindre dans notre moteur de parcours d’intégration.")}
                   </CardBody>
                   <CardFooter>
                     <span>{t("Printemps 2020", "Printemps 2020")}</span>
