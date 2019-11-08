@@ -69,20 +69,23 @@ class HomePage extends Component {
               </FSearchBtn> */}
             </div>
           </div>
-          <AnchorLink offset='60' href="#plan" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
+          <div className="chevron-wrapper">
             <div className="slide-animation">
-              <span className="slide-background"></span>
-              <EVAIcon className="slide-bottom" name="arrow-circle-down" size="hero"/>
+              <AnchorLink offset='60' href="#plan" className="arrowhead-icon header-anchor">
+                <div className="slide-background">
+                  <EVAIcon className="bottom-slider" name="arrow-circle-down" size="hero"/>
+                </div>
+              </AnchorLink>
             </div>
-          </AnchorLink>
+          </div>
         </section>
 
         <section id="plan" className="triptique">
           <div className="section-container">
             <h2>{t("Homepage.Vous cherchez ?", "Tu cherches à ?")}</h2>
-
+              
             <Row className="card-row">
-              <Col lg="4" className="card-col">
+              <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
                 <NavLink to="/advanced-search" className="no-decoration">
                   <Card className="demarche-card">
                     <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
@@ -97,7 +100,7 @@ class HomePage extends Component {
                   </Card>
                 </NavLink>
               </Col>
-              <Col lg="4" className="card-col">
+              <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
                 <NavLink to="/advanced-search" className="no-decoration">
                   <Card className="dispo-card">
                     <CardHeader>{t("Homepage.A apprendre", "Rejoindre un dispositif d'accompagnement")}</CardHeader>
@@ -112,7 +115,7 @@ class HomePage extends Component {
                   </Card>
                 </NavLink>
               </Col>
-              <Col lg="4" className="card-col">
+              <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
                 <Card className="parcours-card">
                   <CardHeader>{t("Homepage.creer parcours", "Créer ton parcours personnalisé")}</CardHeader>
                   <CardBody>
@@ -142,8 +145,8 @@ class HomePage extends Component {
               </p>
             </div>
             <footer className="footer-section">
-              {t("Homepage.contributeurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Contrib" || y.nom==="ExpertTrad")) || []).length })}
-              <FButton tag={NavHashLink} to="/comment-contribuer#ecrire" type="dark" className="ml-10">
+              {t("Homepage.contributeurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Contrib" || y.nom==="ExpertTrad")) || []).length })}{' '}
+              <FButton tag={NavHashLink} to="/comment-contribuer#ecrire" type="dark">
                 {t("Homepage.Je contribue", "Je contribue")}
               </FButton>
             </footer>
@@ -158,8 +161,8 @@ class HomePage extends Component {
               {/*<LanguageBtn />*/}
             </div>
             <footer className="footer-section">
-              {t("Homepage.traducteurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Trad" || y.nom==="ExpertTrad")) || []).length })}
-              <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-profile" : "/comment-contribuer#traduire"} type="dark" className="ml-10">
+              {t("Homepage.traducteurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Trad" || y.nom==="ExpertTrad")) || []).length })}{' '}
+              <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-profile" : "/comment-contribuer#traduire"} type="dark">
                 {t("Homepage.Je traduis", "Je traduis")}
               </FButton>
             </footer>
@@ -173,7 +176,7 @@ class HomePage extends Component {
               <p className="texte-normal">{t("Homepage.information vérifiée subheader")}</p>
             </div>
             <footer>
-              <FButton tag={NavHashLink} to="/comment-contribuer#corriger" type="dark" className="ml-10">
+              <FButton tag={NavHashLink} to="/comment-contribuer#corriger" type="dark">
                 {t("En savoir plus", "En savoir plus")}
               </FButton>
             </footer>
