@@ -41,16 +41,16 @@ export class Toolbar extends React.Component {
   render() {
     const path = this.props.location.pathname;
     const { user, contributeur, traducteur, expertTrad, admin, membreStruct, t } = this.props;
-    let afficher_burger = admin && path.includes("/backend") && path.includes("/admin");
-    let afficher_burger_droite = path.includes("/traduction");
-    
-    let userImg = (user.picture || {}).secure_url || marioProfile;
+    const afficher_burger = admin && path.includes("/backend") && path.includes("/admin");
+    const afficher_burger_droite = path.includes("/traduction");
+    const userImg = (user.picture || {}).secure_url || marioProfile;
     return(
       <header className="Toolbar">
         <div className="left_buttons">
-          <DrawerToggle 
-            forceShow={afficher_burger}
-            clicked={()=>this.props.drawerToggleClicked('left')} />
+          {afficher_burger &&
+            <DrawerToggle 
+              forceShow={afficher_burger}
+              clicked={()=>this.props.drawerToggleClicked('left')} />}
           <Logo />
           {path !== "/" && path !== "/homepage" &&
             <NavLink to="/" className="home-btn">
