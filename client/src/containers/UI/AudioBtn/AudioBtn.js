@@ -7,6 +7,7 @@ import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import * as actions from '../../../Store/actions/actionTypes';
 
 import './AudioBtn.scss';
+import variables from 'scss/colors.scss';
 
 class AudioBtn extends Component {
   toggleAudio = () => {
@@ -17,7 +18,7 @@ class AudioBtn extends Component {
   render() {
     return (
       <div className={"audio-icon-wrapper" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
-        <EVAIcon name={"volume-up" + (this.props.ttsActive ? "" : "-outline")} fill={(this.props.ttsActive ? "#FFFFFF" : "#3D3D3D")} id="audioBtn" />
+        <EVAIcon name={"volume-up" + (this.props.ttsActive ? "" : "-outline")} fill={(this.props.ttsActive ? "#FFFFFF" : variables.noir)} id="audioBtn" />
       </div>
     )
   }

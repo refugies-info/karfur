@@ -1,9 +1,12 @@
+@import 'src/scss/global.scss';
+
 .logo {
   font-weight: 800;
   font-size: 22px;
   margin: auto;
   text-decoration: none;
   color:inherit;
+  @include media-max("phone-down") { font-size: 18px; }
 
   .beta-tag{
     font-style: normal;
