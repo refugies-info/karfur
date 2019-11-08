@@ -20,7 +20,7 @@
     "mots rédigés": "كلمات <br>كُتِبَت<br>",
     "personnes informées": "<div>أشخاص <br></div><div>أُعلِموا<br></div>",
     "Ajouter un membre": "أضف عضواً<br>",
-    "futures notifs": "هنا ستظهر الإشعارات المتعلّقة بهيأتكم<br>",
+    "futures notifs": "هنا ستظهر الإشعارات المتعلّقة بهيأتكم",
     "contenu": "محتوى {{s}}",
     "Espace traduction": "مكان الترجمة<br>",
     "Langue": "اللغة",
@@ -35,7 +35,7 @@
     "Contributions": "مساهمات"
   },
   "UserProfile": {
-    "E-mail": "البريد الإلكتروني<br>",
+    "E-mail": "البريد الإلكتروني:",
     "minutes données": "دقائق مقضيّة <br>",
     "mots écrits": "كلمات مكتوبة",
     "mots traduits": "<div>كلمات مترجمة</div>",
@@ -90,6 +90,7 @@
     "Rejeté structure": "هيئة مرفوضة<br>",
     "Rejeté admin": "رفض مسؤول<br>"
   },
+  "Login": {},
   "Dispositif": {
     "fiabilite_faible": "معلومة ذات موثوقيّة منخفضة، لم يتم التحقق منها سابقاً<br>",
     "informations_utiles": "هل وجدت معلومات مفيدة ؟",

@@ -136,7 +136,7 @@ class HomePage extends Component {
               <h2>{t("Homepage.contributive")}</h2>
               <p className="texte-normal">
                 {t("Homepage.contributive subheader")}
-                <NavLink className="link" to="/qui-sommes-nous">
+                <NavLink className="link ml-10" to="/qui-sommes-nous">
                   {t("En savoir plus", "En savoir plus")}
                 </NavLink>
               </p>

@@ -20,17 +20,16 @@
     "Je traduis": "Je traduis",
     "Construis ta vie en France": "Construis ta vie en France",
     "Explique les mots difficiles": "Réfugiés.info explique les mots difficiles",
-    "Trouver une démarche": "Trouver une démarche",
-    "Choisir une langue": "Choisir une langue",
-    "site dispo": "Réfugiés.info est disponible dans les langues suivantes :",
-    "Demander": "Demander",
-    "langue indispo": "Votre langue n’est pas disponible ?"
+    "Trouver une démarche": "Trouver une démarche"
   },
   "AdvancedSearch": {
     "A > Z": "A > Z",
     "Derniers ajouts": "Derniers ajouts",
     "Les plus visités": "Les plus visités",
-    "Trier par": "Trier par :"
+    "Trier par": "Trier par :",
+    "Filtrer par": "Filtrer par :",
+    "Dispositifs": "Dispositifs",
+    "Démarches": "Démarches"
   },
   "Tables": {
     "Propriétaire": "Propriétaire",
@@ -75,12 +74,16 @@
     "Traductions": "Traductions",
     "Ma structure": "Ma structure",
     "Messages": "Messages",
-    "Contributions": "Contributions"
+    "Contributions": "Contributions",
+    "traducteur mobilisé": "traducteur{{s}} mobilisé{{s}}",
+    "membre": "membre{{s}}",
+    "notification": "notification{{s}}",
+    "personne informée": "personne{{s}} informée{{s}}"
   },
   "UserProfile": {
-    "Pseudonyme": "Pseudonyme",
-    "E-mail": "E-mail",
-    "A propos": "À propos",
+    "Pseudonyme": "Pseudonyme :",
+    "E-mail": "E-mail :",
+    "A propos": "À propos :",
     "nbCarMax": "sur 120 caractères",
     "Traducteur": "Traducteur",
     "Contributeur": "Contributeur",
@@ -147,7 +150,11 @@
     "Traduction directe": "Traduction directe",
     "paragraphe pas accessible": "Ce paragraphe n'est pas accessible dans une langue que vous maîtrisez ? Aidez-nous à le traduire !",
     "traducteurs actifs": "traducteurs actifs",
-    "experts en traduction": "experts en traduction"
+    "experts en traduction": "experts en traduction",
+    "Ajouter dispositif cardbody": "Rédigez la fiche pratique d'un dispositif d'accompagnement pour que les personnes réfugiées soient pleinement informées et puissent s'y engager.",
+    "Expliquer démarche cardbody": "Rédigez la fiche pratique d'une démarche administrative qui détaille, étape par étape, les actions à mener pour la réussir.",
+    "Ajouter définition cardbody": "Enrichissez le lexique collaboratif pour que tout le monde comprenne mieux les mots de l’intégration.",
+    "Créer parcours cardbody": "Vous avez un objectif ? On vous liste les étapes à franchir pour l’atteindre dans notre moteur de parcours d’intégration."
   },
   "Dispositifs": {
     "Header": "Construire sa vie en France",
@@ -216,6 +223,18 @@
     "Rejeté structure": "Rejeté structure",
     "Rejeté admin": "Rejeté admin",
     "Inactif": "Inactif"
+  },
+  "Login": {
+    "Pseudonyme": "Pseudonyme",
+    "Retour à l'accueil": "Retour à l'accueil",
+    "Ou se créer un compte": "Ou se créer un compte",
+    "Se connecter": "Se connecter",
+    "Content de vous revoir !": "Content de vous revoir !",
+    "Mot de passe": "Mot de passe",
+    "Se créer un compte": "Se créer un compte",
+    "Pas besoin d’email": "Pas besoin d’email",
+    "Mot de passe oublié ?": "Mot de passe oublié ?",
+    "no-account": "Il n'existe pas de compte à ce nom"
   },
   "Dispositif": {
     "fiabilite_faible": "Une information avec une faible fiabilité n'a pas été vérifiée auparavant",
@@ -366,5 +385,7 @@
   "Dispositif d'accompagnement": "Dispositif d'accompagnement",
   "Démarche administrative": "Démarche administrative",
   "Parcours personnalisé": "Parcours personnalisé",
+  "Suivant": "Suivant",
+  "Connexion": "Connexion",
   "Lexique": "Lexique"
 }

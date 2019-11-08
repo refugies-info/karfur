@@ -13,7 +13,7 @@ const modifyProfile = (props) => {
         <CardBody>
           <Row>
             <Col xl="4" lg="4" md="4" sm="4" xs="4" className="handleBetween">
-              {t("UserProfile.Pseudonyme", "Pseudonyme")} :
+              {t("UserProfile.Pseudonyme", "Pseudonyme :")}
             </Col>
             <Col xl="8" lg="8" md="8" sm="8" xs="8">
               <ContentEditable
@@ -25,7 +25,7 @@ const modifyProfile = (props) => {
           </Row>
           <Row>
             <Col xl="4" lg="4" md="4" sm="4" xs="4" className="handleBetween">
-              {t("UserProfile.E-mail", "E-mail")} :
+              {t("UserProfile.E-mail", "E-mail :")}
             </Col>
             <Col xl="8" lg="8" md="8" sm="8" xs="8">
               <ContentEditable
@@ -37,7 +37,7 @@ const modifyProfile = (props) => {
           </Row>
           <Row>
             <Col xl="4" g="4" md="4" sm="4" xs="4" className="handleBetween">
-              {t("UserProfile.A propos", "À propos")} :
+              {t("UserProfile.A propos", "À propos :")}
             </Col>
             <Col xl="8" lg="8" md="8" sm="8" xs="8">
               <ContentEditable

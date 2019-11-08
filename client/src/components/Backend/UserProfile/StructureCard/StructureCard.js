@@ -108,25 +108,25 @@ class StructureCard extends Component {
               <Col lg="6">
                 <div className="indicateur">
                   {/* <h2>{nbTraducteurs}</h2> */}
-                  {/* <div>traducteur{nbTraducteurs>1?"s":""} mobilisé{nbTraducteurs>1?"s":""}</div> */}
+                  {/* <div>{t("Tables.traducteur mobilisé", "traducteur{{s}} mobilisé{{s}}", {s: nbTraducteurs > 1 ? "s" : "" })}</div> */}
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
                   {/* <h2>{(structure.membres || []).length}</h2> */}
-                  <div>membre{(structure.membres || []).length>1?"s":""}</div>
+                  <div>{t("Tables.membre", "membre{{s}}", {s: (structure.membres || []).length > 1? "s" : "" })}</div>
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
                   {/* <h2>{props.actions.length}</h2> */}
-                  <div>notification{actions.length>1?"s":""}</div>
+                  <div>{t("Tables.notification", "notification{{s}}", {s: actions.length > 1? "s" : "" })}</div>
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
                   {/* <h2>{props.nbRead}</h2> */}
-                  <div>personne{nbRead>1?"s":""} informée{nbRead>1?"s":""}</div>
+                  <div>{t("Tables.personne informée", "personne{{s}} informée{{s}}", {s: nbRead > 1? "s" : "" })}</div>
                 </div>
               </Col>
               {/* {moyenneDate &&
