@@ -33,15 +33,15 @@
   .responsive-footer{
     z-index: 2;
     position: absolute;
-    bottom: -15px;
+    bottom: -45px;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    // align-items: center;
   }
   .options-dropdown{
-    background: $noir;
+    background: $grisFonce;
     border-radius: 50%;
     width: 45px;
     height: 45px;
@@ -49,6 +49,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    &.active{
+      background: $noir;
     }
   }
 
@@ -81,6 +84,11 @@
         }
       }
     }
+  }
+  .side-option.dropdown-item.active{
+    color: $noir;
+    font-weight: bold;
+    background-color: transparent;
   }
   .results-wrapper{
     .row{
