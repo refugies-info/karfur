@@ -189,40 +189,16 @@ class AdvancedSearch extends Component {
               desactiver={this.desactiver}
             />
           ))}
-          {windowWidth < breakpoints.smLimit &&
-            <div className="responsive-footer">
-              <ButtonDropdown className="options-dropdown" isOpen={this.state.dropdownOpenTri} toggle={this.toggleDropdownTri}>
-                <DropdownToggle color="transparent">
-                  <EVAIcon name="options-2-outline" />
-                </DropdownToggle>
-                <DropdownMenu>
-                  {tris.map((tri, idx) => (
-                    <DropdownItem key={idx} onClick={()=>this.reorder(tri)} className={"side-option" + (tri.name === activeTri ? " active" : "")}>
-                      {t("AdvancedSearch." + tri.name, tri.name)}
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </ButtonDropdown>
-              <ButtonDropdown className="options-dropdown" isOpen={this.state.dropdownOpenFiltre} toggle={this.toggleDropdownFiltre}>
-                <DropdownToggle color="transparent">
-                  <EVAIcon name="funnel-outline" />
-                </DropdownToggle>
-                <DropdownMenu>
-                  {filtres_contenu.map((filtre, idx) => (
-                    <DropdownItem key={idx} onClick={()=>this.filter_content(filtre)} className={"side-option" + (filtre.name === activeTri ? " active" : "")}>
-                      {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
-                    </DropdownItem>
-                  ))}
-                </DropdownMenu>
-              </ButtonDropdown>
-              <EVAIcon 
-                name={"arrow-circle-" + (displayAll ? "up" : "down")} 
-                size="xlarge" 
-                onClick={this.toggleDisplayAll} 
-                className="close-arrow" 
-                fill={variables.grisFonce} 
-              />
-            </div>}
+          <ResponsiveFooter
+            {...this.state}
+            show = {windowWidth < breakpoints.smLimit}
+            toggleDropdownTri={this.toggleDropdownTri}
+            toggleDropdownFiltre={this.toggleDropdownFiltre}
+            reorder={this.reorder}
+            filter_content={this.filter_content}
+            toggleDisplayAll={this.toggleDisplayAll}
+            t={t}
+          />
         </div>
         <Row className="search-wrapper">
           {windowWidth >= breakpoints.smLimit && 
@@ -329,6 +305,53 @@ class AdvancedSearch extends Component {
       </div>
     )
   }
+}
+
+const ResponsiveFooter = props => {
+  const {activeFiltre, activeTri, displayAll, t, show} = props;
+  return show && (
+    <div className="responsive-footer">
+      <ButtonDropdown className={"options-dropdown" + (activeTri ? " active" : "")} isOpen={props.dropdownOpenTri} toggle={props.toggleDropdownTri}>
+        <DropdownToggle color="transparent">
+          <EVAIcon name="options-2-outline" />
+        </DropdownToggle>
+        <DropdownMenu>
+          {tris.map((tri, idx) => (
+            <DropdownItem 
+              key={idx} 
+              onClick={()=>props.reorder(tri)} 
+              className={"side-option" + (tri.name === activeTri ? " active" : "")}
+            >
+              {t("AdvancedSearch." + tri.name, tri.name)}
+            </DropdownItem>
+          ))}
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown className={"options-dropdown" + (activeFiltre ? " active" : "")} isOpen={props.dropdownOpenFiltre} toggle={props.toggleDropdownFiltre}>
+        <DropdownToggle color="transparent" className={activeFiltre ? "active" : ""}>
+          <EVAIcon name="funnel-outline" />
+        </DropdownToggle>
+        <DropdownMenu>
+          {filtres_contenu.map((filtre, idx) => (
+            <DropdownItem 
+              key={idx} 
+              onClick={()=>props.filter_content(filtre)} 
+              className={"side-option" + (filtre.name === activeFiltre ? " active" : "")}
+            >
+              {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
+            </DropdownItem>
+          ))}
+        </DropdownMenu>
+      </ButtonDropdown>
+      <EVAIcon 
+        name={"arrow-circle-" + (displayAll ? "up" : "down")} 
+        size="xlarge" 
+        onClick={props.toggleDisplayAll} 
+        className="close-arrow" 
+        fill={variables.grisFonce} 
+      />
+    </div>
+  )
 }
 
 export default track({
