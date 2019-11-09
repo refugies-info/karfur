@@ -92,6 +92,7 @@ class Layout extends Component {
   }
 
   render() {
+    console.log(this.props.langues)
     return (
       <DirectionProvider 
         direction={i18n.language==="ar" ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
@@ -142,7 +143,7 @@ class Layout extends Component {
             toggle={this.props.toggle_lang_modal} 
             changeLanguage={this.changeLanguage} 
             languages={{
-              ...this.props.langues.filter(x => x.avancement >= 0.8),
+              ...this.props.langues.filter(x => x.avancement >= 0),
               unavailable: {unavailable: true}
             }}/>
         </div>

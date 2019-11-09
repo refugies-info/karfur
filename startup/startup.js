@@ -111,7 +111,7 @@ _insertNested = (frJson, jsonLoc, locale, nbMots, avancement, currBody) => {
   Object.keys(frJson).forEach((key) => {
     if(typeof frJson[key] === 'string' || (frJson[key] && typeof frJson[key].fr === 'string')){
       frJson[key]=frJson[key].fr ? frJson[key] : {fr:frJson[key], id: _.get(currBody, key + ".id") || uniqid('struct_')};
-      nbMots+=frJson[key].fr.trim().split(/\s+/).length;
+      if(locale === "fr"){ nbMots+=frJson[key].fr.trim().split(/\s+/).length; }
       if(jsonLoc && jsonLoc[key] && (typeof jsonLoc[key] === 'string' || jsonLoc[key] instanceof String)){
         frJson[key][locale]=jsonLoc[key];
         avancement[locale]+=frJson[key].fr.trim().split(/\s+/).length
