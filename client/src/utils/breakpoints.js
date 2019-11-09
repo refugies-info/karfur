@@ -1,5 +1,6 @@
 export const breakpoints = {
   "phoneDown": 500, //px
+  "smLimit": 577,
   "tabletUp": 768,
   "tabletDown": 900,
   "lgLimit": 992,
