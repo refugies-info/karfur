@@ -92,7 +92,6 @@ class Layout extends Component {
   }
 
   render() {
-    console.log(this.props.langues)
     return (
       <DirectionProvider 
         direction={i18n.language==="ar" ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
