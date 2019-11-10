@@ -9,6 +9,8 @@ $defaultSize:310px;
   line-height: 23px;
   padding-top:100px;
   flex: 1 1;
+  max-width: 100%;
+  overflow: scroll;
 
   .profile-header{
     height: 60px;
@@ -53,21 +55,25 @@ $defaultSize:310px;
     .profile-info{
       background: inherit;
       border-radius: 12px;
-      max-width: 100%;
-      margin:0;
+      margin-top: -10px;
       
       .modify-col{
         padding: 0 10px;
+        @include media-max("xl-limit") { padding-right: 15px; }
+        @include media-max("sm-limit") { padding: 0; margin-left:15px; }
       }
 
       .user-col {
         padding-left: 0px;
-        padding-right: 0px;
+        padding-right: 15px;
+        // @include media-max("sm-limit") { padding-right: 10px; }
       }
 
       .profile-left{
         text-align: center;
         width: 200px;
+        margin-left: 15px;
+        @include media-max("sm-limit") { width: 100%; }
 
         .card-body{
           padding:20px;
@@ -199,13 +205,10 @@ $defaultSize:310px;
             cursor: pointer;
           }
 
-          .handleBetween {
-            font-weight: bold;
-          }
           @include media-between("xl-limit", "widescreen-up") { 
             .handleBetween{
-              flex: 0 0 40%;
-              max-width: 40%;
+              flex: 0 0 100%;
+              max-width: 100%;
               overflow-wrap: initial;
             }
           }
@@ -249,20 +252,28 @@ $defaultSize:310px;
           height:100%;
           margin-bottom: none;
           .row{
-            margin: 0 -10px 0 0;
+            margin: -10px -10px 0 0;
             height: 100%;
-            .col{
-              padding: 20px 20px;
+            @include media-max("xl-limit") { margin-left:15px; }
+            .obj-col{
+              padding: 20px;
               background: $gris;
               border-radius: 12px;
               margin-right: 10px;
+              margin-top: 10px;
               width: 200px;
-              max-width: 200px;
               height: 100%;
               line-height: 20px;
               display: flex;
               flex-direction: column;
               color: $noirCD;
+              @include media-between("sm-limit", "xl-limit") {
+                max-width: calc(33% - 8px)
+              }
+              @include media-max("sm-limit") {
+                height: auto; 
+                width: 100%;
+              }
               h1{
                 margin-bottom:10px;
               }
@@ -308,6 +319,10 @@ $defaultSize:310px;
 
   .tableau-wrapper .tableau{
     background: $gris;
+  }
+
+  .overflow-scroll{
+    // overflow: scroll;
   }
 }
 
@@ -378,6 +393,9 @@ $defaultSize:310px;
     padding: 6px 10px;
     border-radius: 6px;
   }
+  .negative-margin{
+    margin-top:-10px;
+  }
 }
 
 .tableau-header{
@@ -410,6 +428,10 @@ $defaultSize:310px;
   .equi-reparti{
     display: flex;
     justify-content: space-between;
+
+    .d-flex, .figma-btn{
+      @include media-max("phone-down") { width: 100%; justify-content: flex-end; }
+    }
   }
 
   .ml-75{
@@ -427,6 +449,7 @@ $defaultSize:310px;
 
   .full-width{
     width: 100%;
+    flex-wrap: wrap;
   }
   &.align-right{
     display: flex;
