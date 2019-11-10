@@ -122,7 +122,7 @@ const tradTable = (props) => {
   if(props.limit && show){
     return(
       <div className={"tableau-wrapper" + (props.hide ? " swing-out-top-bck" : "")} id="mes-traductions" onAnimationEnd={onAnimationEnd}>
-        <Row>
+        <Row className="overflow-scroll">
           <Col>
             <h1>{t("Tables." + props.title, props.title)}</h1>
           </Col>

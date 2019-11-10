@@ -40,10 +40,10 @@ const favoriTable = (props) => {
               <td className="align-middle pointer" onClick={()=>goToDispositif(element)}>
                 {titre} 
               </td>
-              <td className="align-middle">
+              <td className="align-middle negative-margin">
                 {(element.tags || []).map((tag, key) => {
                   return ( 
-                    <FButton key={key} className={"tag-btn bg-light-" + tag.short} onClick={()=>searchTag(tag.short)}>
+                    <FButton key={key} className={"tag-btn mt-10 bg-light-" + tag.short} onClick={()=>searchTag(tag.short)}>
                       {tag.short && t("Tags." + tag.short, tag.short)}
                     </FButton>
                   );
