@@ -69,10 +69,10 @@ class UserProfile extends Component {
 
   componentDidMount() {
     const user=this.props.user, userId = this.props.user;
-    API.get_tradForReview({query: {'userId': userId}}).then(data => { console.log(data.data.data);
+    API.get_tradForReview({query: {'userId': userId}}).then(data => { //console.log(data.data.data);
       this.setState({traductions: data.data.data})
     })
-    API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}, demarcheId: { $exists: false }}, sort:{updatedAt: -1}}).then(data => { console.log(data.data.data);
+    API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}, demarcheId: { $exists: false }}, sort:{updatedAt: -1}}).then(data => { //console.log(data.data.data);
       this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
     })
     if(user.structures && user.structures.length > 0){
@@ -92,7 +92,7 @@ class UserProfile extends Component {
 
   initializeStructure = () => {
     const user=this.props.user;
-    API.get_structure({_id: user.structures[0] }).then(data => { console.log(data.data.data);
+    API.get_structure({_id: user.structures[0] }).then(data => { //console.log(data.data.data);
       this.setState({structure:data.data.data[0]})
     })
   }
@@ -214,9 +214,10 @@ class UserProfile extends Component {
               <span className="hideOnPhone">{t("Tables.Messages", "Messages")}</span>
             </AnchorLink>}
         </div>
+        
         <div className="profile-content" id="mon-profil">
           <Row className="profile-info">
-            <div className="profile-left">
+            <div className="profile-left mt-10">
               <div className={"shadow-wrapper" + (this.state.editing ? " active" : "")}>
                 <CardBody>
                   <div className="profile-header-container">   
@@ -241,7 +242,8 @@ class UserProfile extends Component {
                 </CardFooter>
               </div>
             </div>
-            <Col className="modify-col">
+            
+            <Col className="modify-col mt-10">
               <ModifyProfile
                 handleChange={this.handleChange}
                 toggleEditing={this.toggleEditing}
@@ -249,25 +251,25 @@ class UserProfile extends Component {
                 {...this.state} />
             </Col>
 
-            <Col xl="auto" lg="auto" md="12" sm="12" xs="12" className="user-col">
+            <Col xl="auto" lg="12" md="12" sm="12" xs="12" className="user-col mt-10">
               <Card className="profile-right">
                 <CardBody>
                   <Row>
-                    <Col className={"obj-first" + (this.state.progression.timeSpent > 0 ? " active" : "")}>
+                    <Col xl="auto" lg="4" md="4" sm="12" xs="12" className={"obj-col obj-first" + (this.state.progression.timeSpent > 0 ? " active" : "")}>
                       <NavLink to="/dispositif">
                         <h1 className="title text-big">{Math.round(this.state.progression.timeSpent / 1000 / 60) || 0}</h1>
                         <h6 className="subtitle">{t("UserProfile.minutes données", "minutes données")}</h6>
                         <span className="content texte-small">{t("UserProfile.commencez à contribuer", "Commencez à contribuer pour démarrer le compteur")}.</span>
                       </NavLink>
                     </Col>
-                    <Col className={"obj-second" + (this.state.progression.nbMotsContrib > 0 ? " active" : "")}>
+                    <Col xl="auto" lg="4" md="4" sm="12" xs="12" className={"obj-col obj-second" + (this.state.progression.nbMotsContrib > 0 ? " active" : "")}>
                       <NavLink to="/dispositif">
                         <h1 className="title text-big">{this.state.progression.nbMotsContrib || 0}</h1>
                         <h6 className="subtitle">{t("UserProfile.mots écrits", "mots écrits")}</h6>
                         <span className="content texte-small">{t("UserProfile.commencez à rédiger", "Rédigez votre premier contenu pour démarrer le compteur")}.</span>
                       </NavLink>
                     </Col>
-                    <Col className={"obj-third" + (this.state.progression.nbMots > 0 ? " active" : "")}>
+                    <Col xl="auto" lg="4" md="4" sm="12" xs="12" className={"obj-col obj-third" + (this.state.progression.nbMots > 0 ? " active" : "")}>
                       <NavLink to="/backend/user-dashboard">
                         <h1 className="title text-big">{this.state.progression.nbMots || 0}</h1>
                         <h6 className="subtitle">{t("UserProfile.mots traduits", "mots traduits")}</h6>
@@ -276,14 +278,6 @@ class UserProfile extends Component {
                     </Col>
                   </Row>
                 </CardBody>
-                {/* <CardFooter>
-                  <div className="user-feedbacks pointer d-flex align-items-center" onClick={()=>this.toggleModal('thanks')}>
-                    <EVAIcon name="heart" fill="#60A3BC" className="margin-right-8 d-inline-flex" />
-                    {nbReactions>0 ?
-                      <span>Vous avez participé à l’information de <u>{nbReactions} personne{nbReactions > 1 ? "s" : ""}</u>. Merci.</span> :
-                      <span>Ici, nous vous dirons combien de personnes vous allez aider."</span>}
-                  </div>
-                </CardFooter> */}
               </Card>
             </Col>
           </Row>
