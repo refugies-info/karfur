@@ -63,9 +63,6 @@ class CommentContribuer extends Component {
               </div>
             </div>
           </div>
-          {/*<AnchorLink offset='60' href="#ecrire" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
-            <EVAIcon className="slide-bottom" name="arrowhead-down-outline" size="xlarge" fill={variables.noir} />
-    </AnchorLink>*/}
         </section>
 
         <section id="ecrire">
@@ -76,7 +73,7 @@ class CommentContribuer extends Component {
             </div>
 
             <Row className="cards-row">
-              <Col lg="3" className="card-col">
+              <Col xl="3" lg="3" md="6" sm="12" xs="12" className="card-col">
                 <NavLink to="/dispositif" className="no-decoration">
                   <Card className="dispositif-card">
                     <CardHeader>{t("CommentContribuer.Ajouter un dispositif", "Ajouter un dispositif d'accompagnement")}</CardHeader>
@@ -90,7 +87,7 @@ class CommentContribuer extends Component {
                   </Card>
                 </NavLink>
               </Col>
-              <Col lg="3" className="card-col">
+              <Col xl="3" lg="3" md="6" sm="12" xs="12" className="card-col">
                 <Card className="cursor-pointer demarche-card" onClick={()=>this.toggleModal(true, "checkDemarche")}>
                   <CardHeader>{t("CommentContribuer.Expliquer une démarche administrative", "Expliquer une démarche administrative")}</CardHeader>
                   <CardBody>
@@ -102,7 +99,7 @@ class CommentContribuer extends Component {
                   </CardFooter>
                 </Card>
               </Col>
-              <Col lg="3" className="card-col">
+              <Col xl="3" lg="3" md="6" sm="12" xs="12" className="card-col">
                 <Card className="cursor-pointer" onClick={this.upcoming}>
                   <CardHeader>{t("CommentContribuer.Ajouter une définition", "Ajouter une définition")}</CardHeader>
                   <CardBody>
@@ -113,7 +110,7 @@ class CommentContribuer extends Component {
                   </CardFooter>
                 </Card>
               </Col>
-              <Col lg="3" className="card-col">
+              <Col xl="3" lg="3" md="6" sm="12" xs="12" className="card-col">
                 <Card className="cursor-pointer" onClick={this.upcoming}>
                   <CardHeader>{t("CommentContribuer.Créer un parcours", "Créer un parcours")}</CardHeader>
                   <CardBody>
@@ -178,12 +175,12 @@ class CommentContribuer extends Component {
             <div className="correct-layout">
               <div className="left-side">
                 <Row>
-                  <Col lg="2">
+                  <Col xl="2" lg="2" md="2" sm="2" xs="2">
                     <div className="toolbar-icon-wrapper">
                       <EVAIcon name="message-circle-outline" fill={variables.noir} />
                     </div>
                   </Col>
-                  <Col lg="10">
+                  <Col xl="10" lg="10" md="10" sm="10" xs="10">
                     <div className="texte-normal">
                       <b>{t("CommentContribuer.Commentaire ciblé", "Commentaire ciblé")}</b>
                     </div>
@@ -191,12 +188,12 @@ class CommentContribuer extends Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col lg="2">
+                  <Col xl="2" lg="2" md="2" sm="2" xs="2">
                     <div className="toolbar-icon-wrapper dark">
                       <EVAIcon name="edit-outline" />
                     </div>
                   </Col>
-                  <Col lg="10">
+                  <Col xl="10" lg="10" md="10" sm="10" xs="10">
                     <div className="texte-normal">
                       <b>{t("CommentContribuer.Suggestion de formulation", "Suggestion de formulation")}</b>
                     </div>
@@ -204,12 +201,12 @@ class CommentContribuer extends Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col lg="2">
+                  <Col xl="2" lg="2" md="2" sm="2" xs="2">
                     <div className="toolbar-icon-wrapper">
                       <EVAIcon name="volume-up-outline" fill={variables.noir} />
                     </div>
                   </Col>
-                  <Col lg="10">
+                  <Col xl="10" lg="10" md="10" sm="10" xs="10">
                     <div className="texte-normal">
                       <b>{t("CommentContribuer.Écoute du texte", "Écoute du texte")}</b>
                     </div>
@@ -217,12 +214,12 @@ class CommentContribuer extends Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col lg="2">
+                  <Col xl="2" lg="2" md="2" sm="2" xs="2">
                     <div className="toolbar-icon-wrapper dark">
                       <SVGIcon name="translate" fill="#FFFFFF"/>
                     </div>
                   </Col>
-                  <Col lg="10">
+                  <Col xl="10" lg="10" md="10" sm="10" xs="10">
                     <div className="texte-normal">
                       <b>{t("CommentContribuer.Traduction directe", "Traduction directe")}</b>
                     </div>
