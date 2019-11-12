@@ -36,6 +36,7 @@ body .figma-btn{
     &:focus{
       color: $focus;
       background: $blanc;
+      outline: 0;
       border: 0.5px solid $focus;
       svg{
         fill : $focus;
@@ -53,9 +54,7 @@ body .figma-btn{
       }
     }
   }
-  &:focus{
-    outline:0;
-  }
+
 
   &.dark{
     background: $noir;
@@ -155,7 +154,20 @@ body .figma-btn{
     }
   }
 
-  &.outline, &.pill{
+  // Outline-Light
+  &.outline{
+    border: 0.5px solid #FFFFFF;
+    background: transparent;
+    color: #FFFFFF;
+    transition: all 0.2s ease;
+    &:hover{
+      color: $noir;
+      border-color: $noir;
+    }
+
+  } 
+  
+  &.pill{
     border: 0.5px solid #FFFFFF;
     background: transparent;
     color: #FFFFFF;
