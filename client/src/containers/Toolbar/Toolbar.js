@@ -6,6 +6,7 @@ import { ButtonDropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reac
 import { AppAsideToggler } from '@coreui/react';
 import {NavLink} from 'react-router-dom';
 import { connect } from 'react-redux';
+import windowSize from 'react-window-size';
 
 import {toggle_lang_modal} from '../../Store/actions/index';
 // import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
@@ -19,6 +20,7 @@ import FButton from '../../components/FigmaUI/FButton/FButton';
 import SearchBar from '../UI/SearchBar/SearchBar';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import {fetch_user} from '../../Store/actions';
+import {breakpoints} from 'utils/breakpoints.js';
 
 import './Toolbar.scss';
 import variables from 'scss/colors.scss';
@@ -40,39 +42,39 @@ export class Toolbar extends React.Component {
 
   render() {
     const path = this.props.location.pathname;
-    const { user, contributeur, traducteur, expertTrad, admin, membreStruct, t } = this.props;
-    let afficher_burger = admin && path.includes("/backend") && path.includes("/admin");
-    let afficher_burger_droite = path.includes("/traduction");
-    
-    let userImg = (user.picture || {}).secure_url || marioProfile;
+    const { user, contributeur, traducteur, expertTrad, admin, membreStruct, t, windowWidth } = this.props;
+    const afficher_burger = admin && path.includes("/backend") && path.includes("/admin");
+    const afficher_burger_droite = path.includes("/traduction");
+    const userImg = (user.picture || {}).secure_url || marioProfile;
     return(
       <header className="Toolbar">
         <div className="left_buttons">
-          <DrawerToggle 
-            forceShow={afficher_burger}
-            clicked={()=>this.props.drawerToggleClicked('left')} />
-          <Logo />
-          {path !== "/" && path !== "/homepage" &&
+          {afficher_burger &&
+            <DrawerToggle 
+              forceShow={afficher_burger}
+              clicked={()=>this.props.drawerToggleClicked('left')} />}
+          <Logo reduced={windowWidth < breakpoints.phoneDown} />
+          {path !== "/" && path !== "/homepage" && windowWidth >= breakpoints.phoneDown && 
             <NavLink to="/" className="home-btn">
-              <EVAIcon name="home" fill={variables.noir} className="mr-10"/>
-              <b className="home-texte">{t("Toolbar.Accueil","Accueil")}</b>
+              <EVAIcon name="home" fill={variables.noir} className="mr-10 rsz"/>
+              {windowWidth >= breakpoints.lgLimit && 
+                <b className="home-texte">{t("Toolbar.Accueil","Accueil")}</b>}
             </NavLink>}
         </div>
 
-        <nav className="DesktopOnly center-buttons">
+        <div className="center-buttons">
           <AudioBtn />
-          <LanguageBtn />
+          <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
           {/* <NavigationItems /> */}
-        </nav>
 
-        <SearchBar
-          loupe
-          className="search-bar inner-addon right-addon"
-        />
+          <SearchBar
+            loupe
+            className="search-bar inner-addon right-addon mr-10 rsz"
+          />
 
-        <div className="right_buttons">
-          <FButton type="dark" name="grid" className="ml-10 mr-10" tag={NavLink} to="/advanced-search"> {/*to={ API.isAuth() ? "/backend/user-dashboard" : { pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} */}
-            {t("Toolbar.Tout voir", "Tout voir")}
+          <FButton type="dark" name="grid" className="mr-10 rsz" tag={NavLink} to="/advanced-search">
+            {windowWidth >= breakpoints.tabletUp && 
+              t("Toolbar.Tout voir", "Tout voir")}
           </FButton>
 
           {API.isAuth() ? 
@@ -95,11 +97,11 @@ export class Toolbar extends React.Component {
             </ButtonDropdown>
             :
             <NavLink to={{ pathname:'/login', state: { redirectTo: "/backend/user-profile" } }}>
-              <FButton type="outline-black" className="connect-btn">
-                {t("Toolbar.Connexion", "Connexion")}
+              <FButton type="outline-black" className="connect-btn" name={windowWidth < breakpoints.tabletUp && "log-in-outline"} fill={variables.noir}>
+                {windowWidth >= breakpoints.tabletUp &&
+                  t("Toolbar.Connexion", "Connexion")}
               </FButton>
-            </NavLink>
-          }
+            </NavLink>}
         </div>
         
         {false && afficher_burger_droite &&
@@ -132,7 +134,9 @@ export default track({
 })(
   withRouter(
     connect(mapStateToProps, mapDispatchToProps)(
-      withTranslation()(Toolbar)
+      withTranslation()(
+        windowSize(Toolbar)
+      )
     )
   )
 );

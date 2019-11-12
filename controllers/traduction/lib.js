@@ -101,7 +101,6 @@ function get_tradForReview(req, res) {
 
   let promise;
   if(random){
-    console.log({status: "En attente", type: "string", langueCible: locale, avancement: 1})
     promise=Traduction.aggregate([
       { $match : {status: "En attente", type: "string", langueCible: locale, avancement: 1} },
       { $sample : { size: 1 } }
@@ -361,8 +360,10 @@ function update_tradForReview(req, res) {
   if(!req.user.roles.some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
     res.status(400).json({ "text": "Requête invalide" });
   }else{
-    var translation = req.body;
-    var find = new Promise(function (resolve, reject) {
+    let translation = req.body;
+    translation.validatorId = req.userId;
+
+    const find = new Promise(function (resolve, reject) {
       Traduction.findByIdAndUpdate({_id: translation._id},translation,{new: true}).exec(function (err, result) {
         if (err) {
           reject(500);

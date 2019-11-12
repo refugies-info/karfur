@@ -141,7 +141,10 @@ class Layout extends Component {
             current_language={i18n.language}
             toggle={this.props.toggle_lang_modal} 
             changeLanguage={this.changeLanguage} 
-            languages={this.props.langues}/>
+            languages={{
+              ...this.props.langues.filter(x => x.avancement >= 0.8),
+              unavailable: {unavailable: true}
+            }}/>
         </div>
       </DirectionProvider>
     )

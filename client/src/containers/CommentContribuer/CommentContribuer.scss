@@ -1,13 +1,18 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
 
 $tailleCarte:200px;
 .comment-contribuer{
   flex: 1 1;
   background: $gris;
+  max-width: 100%;
+  overflow: scroll;
 
   section{
     min-height: 650px;
     padding: 70px 120px;
+    @include media-max("sm-limit") { padding: 35px 30px; }
+    @include media-max("md-limit") { padding: 70px 60px; }
   }
 
   #hero {
@@ -30,6 +35,8 @@ $tailleCarte:200px;
   .cartes-wrapper{
     display: flex;
     margin: 0 -15px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .carte-contrib{
@@ -64,7 +71,7 @@ $tailleCarte:200px;
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 80px;
-
+    flex-wrap: wrap;
     h5{
       color: $grisFonce;
     }
@@ -112,6 +119,7 @@ $tailleCarte:200px;
   .trad-layout{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 
     .left-side{
       display: flex;
@@ -122,12 +130,21 @@ $tailleCarte:200px;
       border-radius: 12px;
       padding: 40px;
       margin-right: 30px;
+      max-width: calc(25% - 30px);
+      @include media-max("xl-limit") { margin-right: 0; max-width: 100%; }
+    }
+    .right-side{
+      display: flex;
+      flex-grow: 3;
+      max-width: 75%;
+      @include media-max("xl-limit") { margin-right: 0; max-width: 100%; }
     }
     .data{
       display: flex;
       align-self: auto;
       align-items: center;
       margin-top: 10px;
+      flex-wrap: wrap;
     }
     .left-data{
       background: radial-gradient(69.75% 67.64% at 100% -3.25%, #ADEA5C 0%, rgba(173, 234, 92, 0) 100%), radial-gradient(118.25% 69.25% at -3.25% -5.5%, #149295 0%, rgba(20, 146, 149, 0) 100%), radial-gradient(100% 100% at 100% 92.25%, #EA6206 0%, rgba(255, 255, 255, 0) 100%, rgba(234, 98, 6, 0) 100%), radial-gradient(135.5% 137.75% at -10% 109%, #55A6CE 0%, #55A6CE 100%);
@@ -141,11 +158,6 @@ $tailleCarte:200px;
       h3{
         margin: 0;
       }
-    }
-
-    .right-side{
-      display: flex;
-      flex-grow: 3;
     }
 
     h5.right-data{
@@ -162,11 +174,16 @@ $tailleCarte:200px;
       padding: 20px;
       margin-bottom: 30px;
       cursor: pointer;
+      @include media-max("lg-limit"){padding: 5px;}
       &:hover{
         background: #FFFFFF;
       }
       h5{
         margin-bottom: 0;
+        @include media-max("lg-limit"){
+          font-size: 16px;
+          line-height: 16px;
+        }
       }
     }
   }
@@ -175,6 +192,7 @@ $tailleCarte:200px;
   }
   .mr-20{
     margin-right: 20px;
+    @include media-max("lg-limit") { margin-right: 5px; }
   }
   .texte-validation{
     color: $validationDefault;
@@ -186,6 +204,8 @@ $tailleCarte:200px;
 
   .correct-layout{
     display: flex;
+    flex-wrap: wrap;
+    margin-top: -10px;
 
     .texte-normal{
       margin-bottom: 5px;
@@ -195,13 +215,18 @@ $tailleCarte:200px;
       flex: 0 0 33%;
       flex-direction: column;
       justify-content: space-between;
-      margin-right: 50px;
+      margin-top: 10px;
+      @include media-max("xl-limit") { flex: 0 0 100%; }
 
       .row{
         margin-bottom: 16px;
+        @include media-min("xl-limit") { margin-right: 50px; }
       }
       .row:last-child{
         margin-bottom: 0;
+      }
+      .col-2{
+        min-width: 50px;
       }
     }
     .toolbar-icon-wrapper{
@@ -228,6 +253,12 @@ $tailleCarte:200px;
       justify-content: center;
       align-items: center;
       flex-grow: 1;
+      margin-top: 10px;
+      flex: 0 0 66%;
+      @include media-max("xl-limit") { flex: 0 0 100%; }
+      img{
+        max-width: 100%;
+      }
     }
   }
 }
