@@ -57,31 +57,31 @@ html body{
     font-weight: bold;
     font-size: 52px;
     line-height: 66px;
-    @include media-max("md-limit") { font-size: 35px; }
+    @include media-max("sm-limit") { font-size: 35px; }
   }
   h2{
     font-weight: bold;
     font-size: 40px;
     line-height: 51px;
-    @include media-max("md-limit") { font-size: 27px; }
+    @include media-max("sm-limit") { font-size: 27px; }
   }
   h3{
     font-weight: bold;
     font-size: 40px;
     line-height: 51px;
-    @include media-max("md-limit") { font-size: 27px; }
+    @include media-max("sm-limit") { font-size: 27px; }
   }
   h4{
     font-weight: normal;
     font-size: 32px;
     line-height: 40px;
-    @include media-max("md-limit") { font-size: 21px; }
+    @include media-max("sm-limit") { font-size: 21px; }
   }
   h5{
     font-weight: bold;
     font-size: 22px;
     line-height: 27px;
-    @include media-max("md-limit") { font-size: 15px; }
+    @include media-max("sm-limit") { font-size: 15px; }
   }
 
   .text-big{
@@ -93,13 +93,13 @@ html body{
     font-weight: 400;
     font-size: 18px;
     line-height: 23px; 
-    @include media-max("md-limit") { font-size: 12px; }
+    @include media-max("sm-limit") { font-size: 12px; }
   }
   .texte-small{
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    @include media-max("md-limit") { font-size: 11px; }
+    @include media-max("sm-limit") { font-size: 11px; }
   }
   .texte-very-small{
     font-size: 12px;
