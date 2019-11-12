@@ -6,7 +6,9 @@ $imgHeight : 350px;
 
 .dispositif{
   flex: 1 1;
-  position: relative;
+  position: relative;    
+  max-width: 100%;
+  overflow: scroll;
   
   .banniere-dispo{
     margin-top: -60px;
@@ -193,6 +195,11 @@ $imgHeight : 350px;
     }
   }
 
+  .list-group.list-group-flush, .print-buttons {
+    flex: 0 0 100%;
+    @include media-max("lg-limit") { flex: 0 0 50%; margin-top: 10px;}
+  }
+
   .list-group.list-group-flush .list-group {
     padding-left: 30px;
     border: none;
@@ -208,11 +215,16 @@ $imgHeight : 350px;
   .left-side-col{
     background: $gris;
     padding: 40px 60px;
+    @include media-max("lg-limit") { padding: 20px 30px; }
 
     .sticky-affix{
       position: sticky;
       position: -webkit-sticky;
       top: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 100%;
+      @include media-max("lg-limit") { margin-top: -10px;}
     }
 
     .list-item-wrapper.active > .list-group-item{
@@ -402,15 +414,23 @@ $imgHeight : 350px;
       margin-left: 0;
       margin-right: 0;
     }
+
     .toolbar-col{    
       position: absolute;
       height: 100%;
       top: 0;
-      right: -50px;
+      right: 15px;
       transform: translateX(100%);
       z-index: 4;
       width: calc(20vw - 40px);
       @include media-max("tablet-up") { padding: 0; }
+    }
+
+    .sous-contenu-wrapper{
+      .toolbar-col{    
+        right: -50px;
+        // @include media-max("lg-limit") { right: 0px; }
+      }
     }
   }
   .content-row, .sous-contenu-wrapper{
@@ -628,6 +648,7 @@ $imgHeight : 350px;
     margin-top:120px;
     padding: 35px 20px 35px 40px;
     font-size: 18px;
+    @include media-max("lg-limit") { width: 116% }
 
     .btn{
       font-weight: bold;
@@ -668,6 +689,7 @@ $imgHeight : 350px;
     color: #FFFFFF;
     padding: 35px 40px;
     font-size: 18px;
+    @include media-max("lg-limit") { width: 116% }
   }
 
   .print-buttons{
@@ -675,6 +697,7 @@ $imgHeight : 350px;
     align-items: flex-start;
     flex-direction: column;
     margin-top: 24px;
+    @include media-max("lg-limit") { margin-top: 10px; }
 
     .figma-btn{
       margin-bottom:12px;
@@ -718,6 +741,7 @@ $imgHeight : 350px;
 
   .bottom-wrapper{
     position: relative;
+    @include media-max("lg-limit") { width: 116% }
 
     .ecran-protection{
       position: absolute;
@@ -844,6 +868,12 @@ $imgHeight : 350px;
     &.variante-selected, &.variante-selected .variante-radio{
       background: $bgfocus;
     }
+  }
+  .negative-margin{
+    margin-top: -10px;
+  }
+  .no-margin-right{
+    margin-right: 0;
   }
 }
 
