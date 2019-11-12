@@ -93,25 +93,25 @@ function get_dispositif(req, res) {
         { $sample : { size: 1 } }
       ]);
     }else{
-      promise=Dispositif.find(query).sort(sort).populate(populate).limit(limit);
+      promise=Dispositif.find(query).sort(sort).populate(populate).limit(limit)//.setOptions({explain: 'executionStats'});
     }
-
-    promise.then(result => {
+    // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
+    promise.then((result) => {
       [].forEach.call(result, (dispositif) => { 
         dispositif = _turnToFr(dispositif);
         turnJSONtoHTML(dispositif.contenu);
       });
       res.status(200).json({
-          "text": "Succès",
-          "data": result
+        "text": "Succès",
+        "data": result
       })
-    }).catch(function (error) {
+    }).catch(function (error) {console.log(error)
       switch (error) {
         case 500:
-            res.status(500).json({
-                "text": "Erreur interne"
-            })
-            break;
+          res.status(500).json({
+            "text": "Erreur interne"
+          })
+          break;
         case 404:
           res.status(404).json({
             "text": "Pas de résultat"

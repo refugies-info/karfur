@@ -27,7 +27,8 @@ import interieur_3 from './interieur_3.svg';
 import interieur_4 from './interieur_4.svg';
 import image_corriger from './image_corriger.svg';
 import dispo_trip_1 from './dispo_trip_1.svg';
-import logo_google from './logo_google.svg'
+import logo_google from './logo_google.svg';
+import logo_header from './logo_header.svg';
 
 import juliette from './juliette.png';
 import hugo from './hugo.png';
@@ -73,6 +74,7 @@ export {
   image_corriger,
   dispo_trip_1,
   logo_google,
+  logo_header,
   
   juliette,
   hugo,
