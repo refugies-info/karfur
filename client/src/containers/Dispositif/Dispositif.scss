@@ -568,6 +568,7 @@ $imgHeight : 350px;
       cursor: pointer;
       display: inline-block;
       position: relative;
+      padding-left: 15px;
   
       &.active{
         transition: all 0.2s ease;
@@ -579,8 +580,8 @@ $imgHeight : 350px;
         line-height: 38px;
       }
       .accordion-text{
-        margin: 0 18px 0 0;
-        font-size: 18px;
+        margin: 0 22px 0 0;
+        font-size: 22px;
         font-weight: 600;
       }
       .accordion-number, .accordion-expand{
@@ -607,6 +608,10 @@ $imgHeight : 350px;
     .contenu-accordeon{
       margin-top:20px;
       margin-left:50px;
+      p{
+        font-size: 18px;
+        line-height: 27px;
+      }
       &.etape-accordeon{ 
         .plus-wrapper{
           bottom: 53px;
