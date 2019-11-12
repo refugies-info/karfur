@@ -174,7 +174,7 @@ class CardParagraphe extends Component {
         return(
           <ContentEditable
             id={this.props.keyValue}
-            className="color-darkColor card-input"
+            className="card-input"
             data-subkey={subkey}
             data-target='contentTitle'
             html={texte}  // innerHTML of the editable div
