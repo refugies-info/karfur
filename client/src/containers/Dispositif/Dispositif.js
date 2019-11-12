@@ -466,7 +466,7 @@ class Dispositif extends Component {
       })
     }else{
       this.setState(pS=>({
-        showBookmarkModal: !pS.pinned,
+        showBookmarkModal: false,
         isAuth: false,
       }))
     }
