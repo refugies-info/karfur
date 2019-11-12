@@ -466,7 +466,7 @@ class Dispositif extends Component {
       })
     }else{
       this.setState(pS=>({
-        showBookmarkModal: !pS.pinned,
+        showBookmarkModal: false,
         isAuth: false,
       }))
     }
@@ -832,6 +832,7 @@ class Dispositif extends Component {
                 </div>
               </Col>
             </section>
+            
             {!inVariante && 
               <Row className="tags-row backgroundColor-darkColor">
                 <Col lg="8" md="8" sm="8" xs="8" className="col right-bar">
@@ -868,8 +869,9 @@ class Dispositif extends Component {
                   <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} history={this.props.history} />
                 </Col>
               </Row>}
-            <Row>
-              <Col className={"left-side-col pt-40" + (translating ? " sideView" : "")} lg="3" md="3" sm="3" xs="12">
+            
+            <Row className="no-margin-right">
+              <Col xl="3" lg="3" md="12" sm="12" xs="12" className={"left-side-col pt-40" + (translating ? " sideView" : "")}>
                 <LeftSideDispositif
                   menu={this.state.menu}
                   accordion={this.state.accordion}
@@ -889,7 +891,7 @@ class Dispositif extends Component {
                 <Col className="variante-col">
                   <div className="radio-btn" />
                 </Col>}
-              <Col className="pt-40 col-middle" lg={translating ? "12" : "7"} md={translating ? "12" : "7"} sm={translating ? "12" : "7"} xs={translating ? "12" : "7"}>
+              <Col xl={translating ? "12" : "7"} lg={translating ? "12" : "7"} md={translating ? "12" : "10"} sm={translating ? "12" : "10"} xs={translating ? "12" : "10"} className="pt-40 col-middle">
                 {disableEdit && !inVariante && 
                   <Row className="fiabilite-row">
                     <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
@@ -951,11 +953,11 @@ class Dispositif extends Component {
                         <h5 className="color-darkColor">{t("Dispositif.informations_utiles", "Vous avez trouvé des informations utiles ?")}</h5>
                         <span className="color-darkColor">{t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigé pour vous")}&nbsp;:</span>
                       </div>
-                      <div>
-                        <Button color="light" className="thanks-btn" onClick={()=>this.pushReaction(null, "merci")}>
+                      <div className="negative-margin">
+                        <Button color="light" className="thanks-btn mt-10" onClick={()=>this.pushReaction(null, "merci")}>
                           {t("Merci", "Merci")} <span role="img" aria-label="merci">🙏</span>
                         </Button>
-                        <Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
+                        <Button color="light" className="down-btn mt-10" onClick={()=>this.pushReaction(null, "pasMerci")}>
                           <span role="img" aria-label="merci">👎</span>
                         </Button>
                       </div>
@@ -990,7 +992,7 @@ class Dispositif extends Component {
 
                 {false && <Commentaires />}
               </Col>
-              <Col lg="2" md="2" sm="2" xs="2" className={"aside-right pt-40" + (translating ? " sideView" : "")} />
+              <Col xl="2" lg="2" md="2" sm="2" xs="2" className={"aside-right pt-40" + (translating ? " sideView" : "")} />
             </Row>
             
             <ReagirModal name='reaction' show={showModals.reaction} toggleModal={this.toggleModal} onValidate={this.pushReaction} />
