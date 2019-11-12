@@ -8,11 +8,7 @@
   color:inherit;
   @include media-max("phone-down") { font-size: 18px; }
 
-  .beta-tag{
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 26px;
-    color: #B71540;
+  .logo-img{
+    width:150px;
   }
 }
