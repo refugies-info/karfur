@@ -1,7 +1,8 @@
 @import 'src/scss/colors.scss';
 
 .bookmark-modal.modal-dialog{
-  max-width:400px;
+  width:400px;
+  max-width: 90vw;
   font-family: CircularStd;
 
   .modal-content{
