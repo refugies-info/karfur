@@ -248,10 +248,10 @@ class CardParagraphe extends Component {
           <Card 
             className={(subitem.title==='Important !' ? 'make-it-red':'regular') + " " + subitem.title.replace(/ /g,"-")} 
             id={"info-card-" + this.props.keyValue + "-" + subkey}
-            // style={subitem.title && {backgroundImage: `url(${bgImage(subitem.title)})`}}
+            //style={subitem.title && {backgroundImage: `url(${bgImage(subitem.title)})`}}
           >
             <CardHeader className="backgroundColor-darkColor">
-              {cardHeaderContent(subitem)}
+              {cardHeaderContent(subitem)}‡
             </CardHeader>
             <CardBody>
               <h4>{contentTitle(subitem)}</h4>
