@@ -3,6 +3,8 @@
 .qui-sommes-nous{
   flex: 1 1;
   background: #FFFFFF;
+  max-width: 100%;
+  overflow: scroll;
 
   .slide-animation{
     position: absolute;
