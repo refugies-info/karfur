@@ -71,9 +71,9 @@ class UserVariantes extends Component {
             <div className="contenu-bandeau">{t("Dispositif.Personnalisation disponible", "Personnalisation disponible !")}</div>
           </div>
           <div className="bandeau-bas">
-            <Row>
+            <Row className="negative-margin">
               {hasCityVar && 
-                <Col lg="auto">
+                <Col xl="auto" lg="auto" md="auto" sm="12" xs="12" className="mt-10">
                   <b>{t("Dispositif.jhabite", "J’habite à")} :</b>
                   {isMounted && 
                     <ReactDependentScript
@@ -95,7 +95,7 @@ class UserVariantes extends Component {
                 </Col>}
 
               {hasAgesVar && 
-                <Col lg="auto">
+                <Col xl="auto" lg="auto" md="auto" sm="12" xs="12" className="mt-10">
                   <b>{t("Dispositif.jai", "J’ai")} :</b>
                   <Input
                     className="criteres-autocomplete text-input mr-10"
@@ -107,7 +107,7 @@ class UserVariantes extends Component {
                   <b>{t("ans", "ans")}</b>
                 </Col>}
 
-              <Col lg="auto">
+              <Col xl="auto" lg="auto" md="auto" sm="12" xs="12" className="mt-10">
                 <FButton type="validate" onClick={this.validateCriteres} name="checkmark-circle-outline" fill={variables.noir}>
                   Valider
                 </FButton>

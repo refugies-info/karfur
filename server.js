@@ -56,14 +56,7 @@ let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_PROD_URI;
 // auth = {user: USERNAME_DB, password: DB_PW};
 mongoose.connect(db_path, { useNewUrlParser: true }).then(() => { //, { ...(auth && {auth: auth}), useNewUrlParser: true }
   console.log('Connected to mongoDB');
-  const currDb = mongoose.connection.db
   startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
-  // currDb.setProfilingLevel('all', { slowms: 20, sampleRate: 0.42 });
-  currDb.command({ "currentOp": 1, "active": true },function(err,result) {
-    console.log('ici')
-    console.log("result", result)
-    console.log("err", err)
-  });
 }).catch(e => {
   console.log('Error while DB connecting');
   console.log(e);
