@@ -309,7 +309,13 @@
     "Numéro à appeler": "Numéro à appeler",
     "Ton courrier doit être adressé à": "Ton courrier doit être adressé à",
     "Ce que tu dois faire": "Ce que tu dois faire",
-    "izok": "Est-ce que ça s’est bien passé comme on a dit ?"
+    "izok": "Est-ce que ça s’est bien passé comme on a dit ?",
+    "Titre du lieu": "Titre du lieu",
+    "Adresse": "Adresse",
+    "Ville": "Ville",
+    "Informations pratiques": "Informations pratiques",
+    "Email de contact": "Email de contact",
+    "Numéro de téléphone": "Numéro de téléphone"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",
