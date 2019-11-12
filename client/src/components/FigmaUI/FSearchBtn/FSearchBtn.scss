@@ -1,13 +1,14 @@
 @import 'src/scss/colors.scss';
 
 .search-btn{
-  background: $gris;
+  background: $grisFonce;
   border-radius: 6px;
   border:none;
   color: $cardColor;
   font-weight: bold;
   font-size: 16px;
   padding: 6px 10px;
+  cursor: pointer;
 
   &:hover{
     color: $noir;
@@ -36,6 +37,14 @@
     color: #FFFFFF;
     &:hover{
       filter:brightness(80%);
+    }
+  }
+  &.in-header{
+    padding: 20px;
+    color: $blanc;
+    border-radius: 12px;
+    &:after{
+      margin-left: 13px;
     }
   }
 }

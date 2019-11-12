@@ -3,11 +3,15 @@ import { Col, Row, TabContent, TabPane, Nav, NavItem, NavLink, Card, CardBody, L
 import moment from 'moment/min/moment-with-locales';
 import {NavLink as DefaultNavLink} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import windowSize from 'react-window-size';
 
 import FButton from '../../../FigmaUI/FButton/FButton';
-import {diairMinInt, countrySide} from '../../../../assets/figma/index';
+import {diairMinInt, countrySide} from '../../../../assets/figma';
+import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
+import {breakpoints} from 'utils/breakpoints.js';
 
 import './StructureCard.scss';
+import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
@@ -26,17 +30,17 @@ class StructureCard extends Component {
     }
   }
   render(){
-    const {t, actions, title, structure, nbRead} = this.props;
+    const {t, actions, title, structure, nbRead, windowWidth} = this.props;
     const actionTypes = [...new Set((actions || []).map(x => x.action))].map(a => ({type: a, actions: (actions || []).filter(y => y.action === a) || [] }))
     return(
       <div className="tableau-wrapper structure-card" id="structure">
         <Row>
-          <Col>
+          <Col xl="6" lg="6" md="12" sm="12" xs="12">
             <h1>{t("Tables." + title, title)}</h1>
           </Col>
           {this.props.displayIndicators && 
-            <Col className="d-flex tableau-header justify-content-end">
-              {(((structure.membres || []).find(x => x.userId === this.props.user._id) || {}).roles || []).some(y => y==="administrateur" || y==="contributeur") && 
+            <Col xl="6" lg="6" md="12" sm="12" xs="12" className="d-flex tableau-header justify-content-end">
+              {windowWidth >= breakpoints.phoneDown && (((structure.membres || []).find(x => x.userId === this.props.user._id) || {}).roles || []).some(y => y==="administrateur" || y==="contributeur") && 
                 <FButton type="dark" name="options-2-outline" className="mr-10" onClick={()=>this.props.toggleModal('addMember')}>
                   {t("Tables.Ajouter un membre", "Ajouter un membre")}
                 </FButton>}
@@ -48,7 +52,7 @@ class StructureCard extends Component {
 
         <Card className="main-card">
           <CardBody>
-            <DefaultNavLink to="/backend/user-dash-structure">
+            <DefaultNavLink to="/backend/user-dash-structure" className="one-third right-padding">
               <div className="left-side">
                 <div className="logo-bloc">
                   <div className="img-wrapper">
@@ -60,7 +64,7 @@ class StructureCard extends Component {
                 </div>
               </div>
             </DefaultNavLink>
-            <div className={"middle-side" + (actions && actions.length > 0 ? "" : " no-results-wrapper")}>
+            <div className={"one-third middle-side" + (actions && actions.length > 0 ? "" : " no-results-wrapper")}>
               {actions && actions.length > 0 ?
                 <><Nav tabs>
                   {actionTypes.map((type, i) => (
@@ -69,7 +73,9 @@ class StructureCard extends Component {
                         className={this.state.activeTab === i ? "active" : "" }
                         onClick={() => this.toggle(i)}
                       >
-                        {jsUcfirst( t("Tables." + type.type, type.type) )}
+                        {windowWidth >= breakpoints.widescreenUp ?
+                          <span>{jsUcfirst( t("Tables." + type.type, type.type) )}</span> :
+                          <EVAIcon name={(type.type === "suggestion" ? "file-text" : "question-mark-circle") + "-outline"} fill={variables.noir} />}
                         <span className="float-right">{type.actions.length}</span>
                       </NavLink>
                     </NavItem>
@@ -82,8 +88,8 @@ class StructureCard extends Component {
                         {type.actions.map((act, key) => {
                           const joursDepuis = (new Date().getTime() -  new Date(act.depuis).getTime()) / (1000 * 3600 * 24);
                           return (
-                            <ListGroupItem key={act.suggestionId || key} className={"depuis " + (joursDepuis > 10 ? "alert" : (joursDepuis > 3 ? "warning" : "")) }>
-                              {act.texte}
+                            <ListGroupItem key={act.suggestionId || key} className={"depuis text-ellipsis " + (joursDepuis > 10 ? "alert" : (joursDepuis > 3 ? "warning" : "")) }>
+                              <span>{act.texte}</span>
                               <span className="float-right">{moment(act.depuis).fromNow()}</span>
                             </ListGroupItem>
                           )}
@@ -97,7 +103,7 @@ class StructureCard extends Component {
                   <h5 className="mt-12">{t("Tables.futures notifs", "Ici apparaîtront les notifications relatives à votre structure")}...</h5>
                 </div>}
             </div>
-            <div className="right-side">
+            <div className="one-third right-side">
               <Row>
               <Col lg="6">
                 <div className="indicateur">
@@ -108,25 +114,25 @@ class StructureCard extends Component {
               <Col lg="6">
                 <div className="indicateur">
                   {/* <h2>{nbTraducteurs}</h2> */}
-                  {/* <div>traducteur{nbTraducteurs>1?"s":""} mobilisé{nbTraducteurs>1?"s":""}</div> */}
+                  {/* <div>{t("Tables.traducteur mobilisé", "traducteur{{s}} mobilisé{{s}}", {s: nbTraducteurs > 1 ? "s" : "" })}</div> */}
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
                   {/* <h2>{(structure.membres || []).length}</h2> */}
-                  <div>membre{(structure.membres || []).length>1?"s":""}</div>
+                  <div>{t("Tables.membre", "membre{{s}}", {s: (structure.membres || []).length > 1? "s" : "" })}</div>
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
                   {/* <h2>{props.actions.length}</h2> */}
-                  <div>notification{actions.length>1?"s":""}</div>
+                  <div>{t("Tables.notification", "notification{{s}}", {s: actions.length > 1? "s" : "" })}</div>
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
                   {/* <h2>{props.nbRead}</h2> */}
-                  <div>personne{nbRead>1?"s":""} informée{nbRead>1?"s":""}</div>
+                  <div>{t("Tables.personne informée", "personne{{s}} informée{{s}}", {s: nbRead > 1? "s" : "" })}</div>
                 </div>
               </Col>
               {/* {moyenneDate &&
@@ -145,4 +151,6 @@ class StructureCard extends Component {
   }
 }
 
-export default withTranslation()(StructureCard);
+export default withTranslation()(
+  windowSize(StructureCard)
+);

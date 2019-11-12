@@ -1,8 +1,11 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
 
 .qui-sommes-nous{
   flex: 1 1;
   background: #FFFFFF;
+  max-width: 100%;
+  overflow: scroll;
 
   .slide-animation{
     position: absolute;
@@ -44,7 +47,8 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    background: linear-gradient(124.63deg, #FFFFFF -3.98%, #F2F2F2 115.05%);
+    background: linear-gradient(124.63deg, #FFFFFF -3.98%, $gris 115.05%);
+    flex-direction: column;
   }
 
   .hero-container{
@@ -64,15 +68,19 @@
       margin-left: 17%;
     }
   }
-
+  .card-row{
+    margin-top: -10px;
+  }
   .card-col{ 
     padding: 0 70px;
+    margin-top: 10px;
 
     .card{
-      height: 450px;
+      min-height: 450px;
       border:none;
       padding: 0;
       background: transparent;
+      @include media-max("md-limit") { min-height: 200px; }
 
       .card-header{
         background: transparent;
@@ -118,6 +126,7 @@
     }
     .description{
       width: 600px;
+      max-width: 50%;
       background: $noir;
       opacity: 0.95;
       height: 100%;
@@ -130,6 +139,8 @@
       line-height: 20px;
       display: flex;
       flex-direction: column;
+      overflow: scroll;
+      // @include media-max("md-limit") { min-height: 200px; }
     }
     .team-header{
       margin-bottom: 15px;

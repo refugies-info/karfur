@@ -50,7 +50,7 @@ class QuickToolbar extends Component {
           <Card className="quick-toolbar">
             <CardBody>
               <Row className="first-row">
-                <Col lg="6" md="6" sm="6" xs="6" className="col-btn">
+                <Col lg="6" md="6" sm="12" xs="12" className="col-btn">
                   <Button className="btn-pill" id="eva-icon-0" onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(0)}>
                     <EVAIcon name={"message-circle" + (this.state.fill[0] ? '' : '-outline')} fill={variables.darkColor} className='icon-toolbar' />
                     <Tooltip className="dark-back" placement="top" isOpen={this.state.tooltipOpen[0]} target="eva-icon-0" toggle={(e)=>this.toggleTooltip(0,e)}>
@@ -58,7 +58,7 @@ class QuickToolbar extends Component {
                     </Tooltip>
                   </Button>
                 </Col>
-                <Col lg="6" md="6" sm="6" xs="6" className="col-btn">
+                <Col lg="6" md="6" sm="12" xs="12" className="col-btn">
                   <Button className="btn-pill" id="eva-icon-1" onMouseEnter={()=>this._hoverOn(1)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(1)}>
                     <EVAIcon name={"volume-up" + (this.state.fill[1] || this.props.ttsActive ? '' : '-outline')} fill={variables.darkColor} className='icon-toolbar'/>
                     <Tooltip className="dark-back" placement="top" isOpen={this.state.tooltipOpen[1]} target="eva-icon-1" toggle={()=>this.toggleTooltip(1)}>

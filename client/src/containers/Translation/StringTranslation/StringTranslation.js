@@ -139,6 +139,12 @@ class StringTranslation extends Component {
 
   modalClosed=()=> this.setState({feedbackModal:{...this.state.feedbackModal,show:false}})
   
+  reject_translation = () => {
+    const newTrad = { _id: this.props.itemId, status: "Rejetée", };
+    console.log(newTrad);
+    API.update_tradForReview(newTrad).then(() => this.props.onSkip())
+  }
+
   render(){
     const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest, disableBtn, traducteur } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
@@ -299,9 +305,13 @@ class StringTranslation extends Component {
               <FButton tag={NavLink} to="/backend/user-dashboard" type="light-action" name="log-out" fill={variables.noir} className="mr-10">
                 Fin de la session
               </FButton>
-              <FButton type="error" name="arrow-forward" onClick={this.props.onSkip} className="mr-10">
+              <FButton type="light-action" name="arrow-forward" onClick={this.props.onSkip} className="mr-10">
                 Passer
               </FButton>
+              {isExpert &&
+                <FButton type="error" name="close-outline" onClick={this.reject_translation} className="mr-10">
+                  Rejeter
+                </FButton>}
               <FButton type="validate" name="checkmark-outline" fill={variables.error} onClick={()=> this.props.valider()}>  {/* disabled={disableBtn} */}
                 Valider
               </FButton>
