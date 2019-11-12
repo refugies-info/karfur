@@ -251,7 +251,7 @@ class CardParagraphe extends Component {
             //style={subitem.title && {backgroundImage: `url(${bgImage(subitem.title)})`}}
           >
             <CardHeader className="backgroundColor-darkColor">
-              {cardHeaderContent(subitem)}‡
+              {cardHeaderContent(subitem)}
             </CardHeader>
             <CardBody>
               <h4>{contentTitle(subitem)}</h4>
