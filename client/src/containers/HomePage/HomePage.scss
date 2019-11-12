@@ -1,4 +1,5 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
 
 .homepage{
   flex: 1 1;
@@ -10,7 +11,7 @@
   }
 
   section{
-    height: 750px;
+    min-height: 750px;
     padding-top: 100px;
     padding-bottom: 93px;
   }
@@ -20,8 +21,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     padding-top: 150px;
     margin-top: -60px;
     height: 772px;
@@ -40,41 +42,26 @@
     }
 
     .search-row{
-      margin-top: 25px;
+      margin: 25px auto 0;
       display:flex;
       align-items: center;
       justify-content: space-between;
       background: rgba(255, 255,255, .9);
       box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
-      padding: 10px;
-      height: 80px;
-
-      .large-btn{
-        height: 100%;
-        display: flex;
-        align-items: center;
-        padding: 10px 20px;
-      }
-    }
-    .try-it-out{
-      text-align: left;
-      font-size: 16px;
-      text-transform: uppercase; 
-      color: $noirCD;
-      font-weight: bold;
+      width: fit-content;
     }
   }
 
-  .header-anchor{
-    margin-top: -60px;
-    padding-top: 60px;
-  }
+  // .header-anchor{
+  //   margin-top: -60px;
+  //   padding-top: 60px;
+  // }
 
-  .arrowhead-icon{
-    position: absolute;
-    bottom: 100px;
-  }
+  // .arrowhead-icon{
+  //   position: absolute;
+  //   bottom: 100px;
+  // }
   
   .section-container{
     width: 100%;
@@ -85,6 +72,7 @@
       width: 50%;
       display: flex;
       flex-direction: column;
+      @include media-max("tablet-down") { width: 100%; }
       h2{
         margin-bottom: 40px;
       }
@@ -101,7 +89,6 @@
     .footer-section{
       font-size: 18px;
       margin-right: -20px;
-
     }
   }
   .card{
@@ -112,7 +99,8 @@
     background-image: url(../../assets/figma/contribution_illu.svg), url(../../assets/figma/trame_home_bg.svg);
     background-size: 70%, cover;
     background-repeat: no-repeat;
-    background-position: calc(100% + 20px) calc(100% - 160px),0;
+    background-position: calc(100% + 20px) calc(100% - 160px), 0;
+    @include media-max("tablet-down") { background-position: calc(100% + 20px) calc(100% - 110px), 0; }
   }
   
   #certifiee{
@@ -127,6 +115,10 @@
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: calc(100% - 300px);
+    @include media-max("desktop-down") { background-position: calc(100% - 300px) calc(100% - 60px); }
+    @include media-max("desktop-up") { background-position: calc(100% - 300px) calc(100% - 80px); }
+    @include media-max("tablet-down") { background-position: calc(100% - 240px) calc(100% - 140px); }
+    @include media-max("tablet-up") { background-position: calc(100% - 180px) calc(100% - 140px); }
   }
 
   #explique{
@@ -134,6 +126,10 @@
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: calc(100% - 300px);
+    @include media-max("desktop-down") { background-position: calc(100% - 300px) calc(100% - 60px); }
+    @include media-max("desktop-up") { background-position: calc(100% - 300px) calc(100% - 80px); }
+    @include media-max("tablet-down") { background-position: calc(100% - 240px) calc(100% - 140px); }
+    @include media-max("tablet-up") { background-position: calc(100% - 180px) calc(100% - 140px); }
   }
 
 
@@ -142,61 +138,67 @@
     h2{
       margin-bottom: 42px;
     }
-    .card-col .card{
-      height: 520px;
+    .card-col{
       border-radius: 12px;
-      border:none;
-      padding: 40px;
-      font-size: 18px;
-
-      .card-header{
-        background: transparent;
-        border: none;
-        font-weight: 900;
-        font-size: 32px;
-        line-height: 36px;
-        height: 100px;
-        padding:0;
-      }
-      .card-body{
-        padding:0;
-      }
-      .card-footer{
-        background: transparent;
-        border: none;
-        display: flex;
-        justify-content: center;
-        padding:0;
+      .card{
+        height: 520px;
+        border-radius: 12px;
+        border:none;
+        padding: 40px;
         font-size: 18px;
-        font-weight: bold;
 
-        .homebtn{
-          background: rgba(255, 255, 255, 0.95);
-          color: $noir;
-          transition: all 0.5s ease;
-          height: 60px;
-          padding: 10px 20px;
-          box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+        .card-header{
+          background: transparent;
+          border: none;
+          font-weight: 900;
+          font-size: 32px;
+          line-height: 36px;
+          height: 100px;
+          padding:0;
+        }
+        .card-body{
+          padding:0;
+        }
+        .card-footer{
+          background: transparent;
+          border: none;
           display: flex;
-          align-items: center;
-          &:hover{
-            background: $noir;
-            color: $blancSimple;
-            box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
-            svg{
-              transition: all 0.5s ease;
-              fill: $blancSimple;
-            }
+          justify-content: center;
+          padding:0;
+          font-size: 18px;
+          font-weight: bold;
+
+          .figma-btn{
+            max-width: 100%;
           }
-          &:disabled{
-            svg{
-              fill: $blancSimple
-            }
-            background: $grisFonce;
-            color: $blancSimple;
+          .homebtn{
+            background: rgba(255, 255, 255, 0.95);
+            color: $noir;
+            transition: all 0.5s ease;
+            height: 60px;
+            padding: 10px 20px;
+            box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
             &:hover{
+              background: $noir;
+              color: $blancSimple;
+              box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+              svg{
+                transition: all 0.5s ease;
+                fill: $blancSimple;
+              }
+            }
+            &:disabled{
+              svg{
+                fill: $blancSimple
+              }
               background: $grisFonce;
-            };
+              color: $blancSimple;
+              &:hover{
+                background: $grisFonce;
+              };
+            }
           }
         }
       }
@@ -252,35 +254,47 @@
     background-image: url(../../assets/figma/illustration_Parcours.svg);
     background-size: cover;
   }
-}
 
-.slide-animation{
-  transition: all 0.5s ease;
-	-webkit-animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
-          animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
-}
+  .chevron-wrapper{
+    flex: 1;
+    width: 100%;
+    position: relative;
+  }
 
-.slide-background{
-  left: 6px;
-  bottom: 6px;
-  position: absolute;
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-  background-color: $noir;
-}
-.slide-bottom {
-  position: relative;
-  fill: $blancSimple;
-  &:hover{
-    svg{
-      transition: all 0.5s ease;
-      fill:$gris;
+  .background-wrapper{
+    border-radius: 50%;
+    background-color: $noir;
+  }
+  .slide-animation{
+    position: absolute;
+    bottom: -180px;
+    left: 50%;
+    background: $noir;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    -webkit-animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+            animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+  }
+
+  .slide-background{
+    margin:-10px;
+  }
+
+  .bottom-slider {
+    position: relative;
+    fill: $blancSimple;
+    &:hover{
+      svg{
+        transition: all 0.5s ease;
+        fill:$gris;
+      }
     }
   }
 }
 
- @-webkit-keyframes slide-bottom {
+
+
+@-webkit-keyframes slide-bottom {
   0% {
     -webkit-transform: translateY(0);
             transform: translateY(0);

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, CardBody, CardFooter, Spinner } from 'reactstrap';
+import { Col, Row, CardBody, CardFooter, Spinner, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Swal from 'sweetalert2';
 import querySearch from "stringquery";
 import _ from "lodash";
 import { NavHashLink } from 'react-router-hash-link';
+import windowSize from 'react-window-size';
 // import Cookies from 'js-cookie';
 
 import SearchItem from './SearchItem/SearchItem';
@@ -15,6 +16,7 @@ import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import {filtres} from "../Dispositif/data";
 import {filtres_contenu} from "./data";
+import {breakpoints} from 'utils/breakpoints.js';
 
 import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
@@ -35,6 +37,9 @@ class AdvancedSearch extends Component {
     order: "created_at",
     croissant: true,
     filter:{},
+    displayAll: true,
+    dropdownOpenTri: false,
+    dropdownOpenFiltre: false,
   }
 
   componentDidMount (){
@@ -160,10 +165,13 @@ class AdvancedSearch extends Component {
   }
 
   desactiver = key => this.setState({recherche: this.state.recherche.map((x, i) => i===key ? initial_data[i] : x)}, ()=> this.queryDispositifs());
+  toggleDisplayAll = () => this.setState(pS => ({displayAll: !pS.displayAll}));
+  toggleDropdownTri = () => this.setState(pS => ({ dropdownOpenTri: !pS.dropdownOpenTri }));
+  toggleDropdownFiltre = () => this.setState(pS => ({ dropdownOpenFiltre: !pS.dropdownOpenFiltre }));
 
   render() {
-    let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri} = this.state;
-    const {t} = this.props;
+    let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri, displayAll} = this.state;
+    const {t, windowWidth} = this.props;
     const filteredPinned = activeFiltre ? pinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : pinned;
 
     if(recherche[0].active){
@@ -171,36 +179,50 @@ class AdvancedSearch extends Component {
     }
     return (
       <div className="animated fadeIn advanced-search">
+        <div className="search-bar">
+          {recherche.filter((_,i) => displayAll || i===0 ).map((d,i) => (
+            <SearchItem  
+              key={i}
+              item={d}
+              keyValue={i}
+              selectParam = {this.selectParam}
+              desactiver={this.desactiver}
+            />
+          ))}
+          <ResponsiveFooter
+            {...this.state}
+            show = {windowWidth < breakpoints.smLimit}
+            toggleDropdownTri={this.toggleDropdownTri}
+            toggleDropdownFiltre={this.toggleDropdownFiltre}
+            reorder={this.reorder}
+            filter_content={this.filter_content}
+            toggleDisplayAll={this.toggleDisplayAll}
+            t={t}
+          />
+        </div>
         <Row className="search-wrapper">
-          <Col lg="2" className="mt-250 side-col">
-            <EVAIcon name="options-2-outline" fill={variables.noir} className="mr-12" />
-            <div className="right-side">
-              <b>{t("AdvancedSearch.Trier par", "Trier par :")}</b> 
-              <div className="mt-10 side-options">
-                {tris.map((tri, idx) => (
-                  <div 
-                    key={idx} 
-                    className={"side-option" + (tri.name === activeTri ? " active" : "")}
-                    onClick={()=>this.reorder(tri)}
-                  >
-                    {t("AdvancedSearch." + tri.name, tri.name)}
-                  </div>
-                ))}
+          {windowWidth >= breakpoints.smLimit && 
+            <Col xl="2" lg="2" md="2" sm="2" xs="2" className="mt-250 side-col">
+              {windowWidth >= breakpoints.desktopUp && 
+                <EVAIcon name="options-2-outline" fill={variables.noir} className="mr-12" />}
+              <div className="right-side">
+                {windowWidth >= breakpoints.desktopUp ?
+                  <b>{t("AdvancedSearch.Trier par", "Trier par :")}</b> :
+                  <EVAIcon name="options-2-outline" fill={variables.noir} />}
+                <div className="mt-10 side-options">
+                  {tris.map((tri, idx) => (
+                    <div 
+                      key={idx} 
+                      className={"side-option" + (tri.name === activeTri ? " active" : "")}
+                      onClick={()=>this.reorder(tri)}
+                    >
+                      {t("AdvancedSearch." + tri.name, tri.name)}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </Col>
-          <Col lg="8" className="mt-250 central-col">
-            <div className="search-bar">
-              {recherche.map((d,i) => (
-                <SearchItem  
-                  key={i}
-                  item={d}
-                  keyValue={i}
-                  selectParam = {this.selectParam}
-                  desactiver={this.desactiver}
-                />
-              ))}
-            </div>
+            </Col>}
+          <Col xl="8" lg="8" md="8" sm="8" xs="12" className="mt-250 central-col">
             <div className="results-wrapper">
               <Row>
                 {[...filteredPinned,...dispositifs].map((dispositif) => {
@@ -208,7 +230,7 @@ class AdvancedSearch extends Component {
                     let shortTag = null;
                     if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-") }
                     return (
-                      <Col xs="12" sm="6" md="3" className="card-col puff-in-center" key={dispositif._id}>
+                      <Col xl="3" lg="3" md="4" sm="6" xs="12" className="card-col puff-in-center" key={dispositif._id}>
                         <CustomCard onClick={() => this.goToDispositif(dispositif)}>
                           <CardBody>
                             <EVAIcon 
@@ -258,32 +280,85 @@ class AdvancedSearch extends Component {
               </Row>
             </div>
           </Col>
-          <Col lg="2" className="mt-250 side-col">
-            <EVAIcon name="funnel-outline" fill={variables.noir} className="mr-12" />
-            <div className="right-side">
-              <b>Filtrer par :</b> 
-              <div className="mt-10 side-options">
-                {filtres_contenu.map((filtre, idx) => (
-                  <div 
-                    key={idx} 
-                    className={"side-option" + (filtre.name === activeFiltre ? " active" : "")}
-                    onClick={()=>this.filter_content(filtre)}
-                  >
-                    {filtre.name}
-                  </div>
-                ))}
+          {windowWidth >= breakpoints.smLimit && 
+            <Col xl="2" lg="2" md="2" sm="2" xs="2" className="mt-250 side-col">
+              {windowWidth >= breakpoints.desktopUp && 
+                <EVAIcon name="funnel-outline" fill={variables.noir} className="mr-12" />}
+              <div className="right-side">
+                {windowWidth >= breakpoints.desktopUp ?
+                  <b>{t("AdvancedSearch.Filtrer par", "Filtrer par :")}</b> :
+                  <EVAIcon name="funnel-outline" fill={variables.noir} />}
+                <div className="mt-10 side-options">
+                  {filtres_contenu.map((filtre, idx) => (
+                    <div 
+                      key={idx} 
+                      className={"side-option right" + (filtre.name === activeFiltre ? " active" : "")}
+                      onClick={()=>this.filter_content(filtre)}
+                    >
+                      {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </Col>
+            </Col>}
         </Row>
       </div>
     )
   }
 }
 
+const ResponsiveFooter = props => {
+  const {activeFiltre, activeTri, displayAll, t, show} = props;
+  return show && (
+    <div className="responsive-footer">
+      <ButtonDropdown className={"options-dropdown" + (activeTri ? " active" : "")} isOpen={props.dropdownOpenTri} toggle={props.toggleDropdownTri}>
+        <DropdownToggle color="transparent">
+          <EVAIcon name="options-2-outline" />
+        </DropdownToggle>
+        <DropdownMenu>
+          {tris.map((tri, idx) => (
+            <DropdownItem 
+              key={idx} 
+              onClick={()=>props.reorder(tri)} 
+              className={"side-option" + (tri.name === activeTri ? " active" : "")}
+            >
+              {t("AdvancedSearch." + tri.name, tri.name)}
+            </DropdownItem>
+          ))}
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown className={"options-dropdown" + (activeFiltre ? " active" : "")} isOpen={props.dropdownOpenFiltre} toggle={props.toggleDropdownFiltre}>
+        <DropdownToggle color="transparent" className={activeFiltre ? "active" : ""}>
+          <EVAIcon name="funnel-outline" />
+        </DropdownToggle>
+        <DropdownMenu>
+          {filtres_contenu.map((filtre, idx) => (
+            <DropdownItem 
+              key={idx} 
+              onClick={()=>props.filter_content(filtre)} 
+              className={"side-option" + (filtre.name === activeFiltre ? " active" : "")}
+            >
+              {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
+            </DropdownItem>
+          ))}
+        </DropdownMenu>
+      </ButtonDropdown>
+      <EVAIcon 
+        name={"arrow-circle-" + (displayAll ? "up" : "down")} 
+        size="xlarge" 
+        onClick={props.toggleDisplayAll} 
+        className="close-arrow" 
+        fill={variables.grisFonce} 
+      />
+    </div>
+  )
+}
+
 export default track({
     page: 'AdvancedSearch',
   })(
-    withTranslation()(AdvancedSearch)
+    withTranslation()(
+      windowSize(AdvancedSearch)
+    )
   );
 

@@ -126,11 +126,9 @@ const contribTable = (props) => {
                   <h4>22</h4>
                   <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Tables.personnes informées", "personnes<br/>informées") }} />
                 </div>
-                <div>
-                  <FButton tag={NavLink} to="/backend/user-dash-contrib" type="dark" name="file-add-outline">
-                    {t("Tables.Espace contribution", "Espace contribution")}
-                  </FButton>
-                </div>
+                <FButton tag={NavLink} to="/backend/user-dash-contrib" type="dark" name="file-add-outline">
+                  {t("Tables.Espace contribution", "Espace contribution")}
+                </FButton>
               </div>
             </Col>}
         </Row>

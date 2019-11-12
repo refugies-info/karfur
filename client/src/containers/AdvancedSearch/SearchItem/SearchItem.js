@@ -22,17 +22,18 @@ class SearchItem extends Component {
     const {t, item, keyValue} = this.props;
     return (
       <div className="search-col">
-        <div>{t("SearchItem." + item.title, item.title)}</div>
+        <span className="mr-10">{t("SearchItem." + item.title, item.title)}</span>
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="display-inline-block">
           <DropdownToggle
+            caret
             tag="div"
             data-toggle="dropdown"
             aria-expanded={this.state.dropdownOpen}
-            className="mt-8"
+            className={"search-btn in-header " + (item.short && item.active ? ("bg-" + item.short.split(" ").join("-")) : "") + (!item.short && item.active ? "active" : "")}
           >
-            <FSearchBtn active={!item.short && item.active} desactiver = {() => this.props.desactiver(keyValue)} className={item.short && item.active && ("bg-" + item.short.split(" ").join("-") + " texte-blanc")}>
-              {t("Tags." + item.value, item.value)}
-            </FSearchBtn>
+            {/* <FSearchBtn active={!item.short && item.active} desactiver = {() => this.props.desactiver(keyValue)} className={item.short && item.active && ("bg-" + item.short.split(" ").join("-") + " texte-blanc")}> */}
+            {t("Tags." + item.value, item.value)}
+            {/* </FSearchBtn> */}
           </DropdownToggle>
           <DropdownMenu>
             <div className="options-wrapper">
@@ -50,7 +51,8 @@ class SearchItem extends Component {
             </div>
           </DropdownMenu>
         </Dropdown>
-        <span className="ml-10">{item.title2 ? t("SearchItem." + item.title2, item.title2) : ""}</span>
+        {item.title2 &&
+          <span className="ml-10">{t("SearchItem." + item.title2, item.title2)}</span>}
       </div>
     )
   }
