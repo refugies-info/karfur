@@ -1,12 +1,11 @@
 import React from 'react';
 import { Modal, ModalHeader, ModalBody, ListGroup, ListGroupItem, Row, Col, Progress } from 'reactstrap';
-import Icon from 'react-eva-icons';
 import { withTranslation } from 'react-i18next';
-
 import {colorAvancement} from '../../Functions/ColorFunctions';
 
 import './LanguageModal.scss';
 import FButton from '../../FigmaUI/FButton/FButton';
+import EVAIcon from '../../UI/EVAIcon/EVAIcon';
 
 const languageModal = (props) => {
   const {t} = props;
@@ -31,9 +30,9 @@ const languageModal = (props) => {
                   >
                     <Row>
                       <Col lg="8" className="vertical-center">
-                        {t("Homepage.langue indispo", "Votre langue n’est pas disponible ?")}
+                        <b>{t("Homepage.langue indispo", "Votre langue n’est pas disponible ?")}</b>
                       </Col>
-                      <Col lg="4" className="icon-col">
+                      <Col lg="4" className="button-col">
                         <FButton type="outline">
                           {t("Homepage.Demander", "Demander")}
                         </FButton>
@@ -63,7 +62,7 @@ const languageModal = (props) => {
                       </Col>
                       <Col lg="1" className="icon-col">
                         {isSelected &&
-                          <Icon name="checkmark-circle-2" fill="#3D3D3D" /> }
+                          <EVAIcon name="checkmark-circle-2" fill="#FFFFFF" size="large"/> }
                       </Col>
                     </Row>
                   </ListGroupItem>
