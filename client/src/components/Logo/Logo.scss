@@ -10,5 +10,6 @@
 
   .logo-img{
     width:150px;
+    @include media-max("tablet-up") { width:100px; }
   }
 }

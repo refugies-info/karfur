@@ -439,6 +439,8 @@ $imgHeight : 350px;
   .sous-contenu-wrapper.sous-contenu-cards{
     flex: 0 0 33%;
     padding: 0;
+    @include media-max("xl-limit") { flex: 0 0 50%; }
+    @include media-max("md-limit") { flex: 0 0 100%; }
   }
   &.reading-mode .contenu.isHovered{
     border-right: 4px solid $darkColor;
@@ -556,6 +558,7 @@ $imgHeight : 350px;
       justify-content: space-between;
       align-items: center;
       margin-top: 20px;
+      flex-wrap: wrap;
     }
     #accordion-header{
       background: #FFFFFF;
