@@ -11,7 +11,6 @@ import {equipe, diair, DGEF} from '../../assets/figma/index';
 import {membres} from './data'
 
 import './QuiSommesNous.scss';
-import variables from 'scss/colors.scss';
 
 class QuiSommesNous extends Component {
   state={
@@ -49,7 +48,7 @@ class QuiSommesNous extends Component {
             <h2>{t("QuiSommesNous.Missions", "Missions")}</h2>
 
             <Row className="card-row">
-            <Col lg="4" className="card-col">
+              <Col xl="4" lg="4" md="4" sm="12" xs="12" className="card-col">
                 <Card>
                   <CardHeader>{t("QuiSommesNous.Mission_3_header", "Recenser les initiatives sur tout le territoire")}</CardHeader>
                   <CardBody>
@@ -62,7 +61,7 @@ class QuiSommesNous extends Component {
                   </CardFooter>
                 </Card>
               </Col>
-              <Col lg="4" className="card-col">
+              <Col xl="4" lg="4" md="4" sm="12" xs="12" className="card-col">
                 <Card>
                   <CardHeader>{t("QuiSommesNous.Mission_2_header", "Vulgariser et traduire les démarches administratives")}</CardHeader>
                   <CardBody>
@@ -76,7 +75,7 @@ class QuiSommesNous extends Component {
                   </CardFooter>
                 </Card>
               </Col>
-              <Col lg="4" className="card-col">
+              <Col xl="4" lg="4" md="4" sm="12" xs="12" className="card-col">
                 <Card>
                   <CardHeader>{t("QuiSommesNous.Mission_1_header", "Créer des parcours personnalisés d’intégration")}</CardHeader>
                   <CardBody>
