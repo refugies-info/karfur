@@ -65,6 +65,16 @@ class App extends Component {
       this.props.tracking.trackEvent({ action: 'unmount', label: 'App' });
       return undefined;
     }.bind(this);
+    window.$crisp=[];
+    window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
+    (function(){
+      let d=document;
+      let s=d.createElement("script");
+      s.src="https://client.crisp.chat/l.js";
+      s.async=1;
+      d.getElementsByTagName("head")[0].appendChild(s);
+    })();
+
     window.scrollTo(0, 0);
   }
 

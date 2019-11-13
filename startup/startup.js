@@ -45,8 +45,8 @@ if(process.env.NODE_ENV === 'dev') {
         console.log(await db.collection('dispositifs').insertMany(dispositifs).insertedIds);
       }
 
-      // let isLocaleSuccess=_insertI18nLocales()
-      // let isDownloadSuccess=_getI18nLocales()
+      // let isLocaleSuccess=_insertI18nLocales() //depuis le fichier local vers la BDD
+      // let isDownloadSuccess=_getI18nLocales() //depuis la BDD vers le fichier local
     }catch(e){console.log(e)}
   }
 }else{

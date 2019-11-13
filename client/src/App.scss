@@ -10,6 +10,7 @@
 
 @import './scss/common.scss';
 @import './scss/colors.scss';
+@import './scss/rtl-handler.scss';
 
 $theme-list: (
   Français #37277C     #F0E8F5    #ADA8D4,
@@ -192,10 +193,16 @@ html body{
       background-color: nth($value, 2);
     }
     .bg-light-#{nth($value, 1)} {
-      background-color: nth($value, 2);
+      background-color: nth($value, 3);
     }
     .border-#{nth($value, 1)} {
       border-color: nth($value, 2);
+    }
+    .texte-#{nth($value, 1)} {
+      color: nth($value, 2);
+    }
+    .texte-light-#{nth($value, 1)} {
+      color: nth($value, 2);
     }
   }
 }

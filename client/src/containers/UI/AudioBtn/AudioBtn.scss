@@ -16,7 +16,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto 10px auto 0px;
+  margin-top: auto;
+  margin-bottom: auto;
   @include media-max("phone-down") { margin-right: 5px; }
 
   &:hover{

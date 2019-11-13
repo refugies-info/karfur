@@ -27,9 +27,9 @@ const dashHeader = (props) => {
       const moyenneDate = sommeDates / (structure.dispositifsAssocies || []).length
       return (
         <Row className="header-structure">
-          <Col lg="6" md="12" sm="12" xs="12">
+          <Col xl="6" lg="6" md="12" sm="12" xs="12" className="mt-10">
             <Row className="titre-structure">
-              <Col lg="6" md="6" sm="6" xs="6">
+              <Col lg="6" md="6" sm="6" xs="6" className="img-wrapper-col">
                 <div className="img-wrapper">
                   <img src={(structure.picture || {}).secure_url ||  diairMinInt} className="logo-img" alt="logo-img" />
                 </div>
@@ -44,42 +44,42 @@ const dashHeader = (props) => {
               </Col>
             </Row>
           </Col>
-          <Col lg="6" md="12" sm="12" xs="12" className="right-side-header">
-            <Row>
-              <Col lg="4">
+          <Col xl="6" lg="6" md="12" sm="12" xs="12" className="right-side-header">
+            <Row className="row-indicateurs">
+              <Col lg="4" className="struct-indicateurs">
                 <div className="indicateur">
                   <h2>{(structure.dispositifsAssocies || []).length}</h2>
-                  <div>contenu{(structure.dispositifsAssocies || []).length > 1 ? "s" : ""}</div>
+                  <div>contenu{(structure.dispositifsAssocies || []).length > 1 ? "s" : ""} publié{(structure.dispositifsAssocies || []).length > 1 ? "s" : ""} </div>
                 </div>
               </Col>
-              <Col lg="4">
+              <Col lg="4" className="struct-indicateurs">
                 <div className="indicateur">
                   <h2>{nbTraducteurs}</h2>
                   <div>traducteur{nbTraducteurs>1?"s":""} mobilisé{nbTraducteurs>1?"s":""}</div>
                 </div>
               </Col>
-              <Col lg="4">
+              <Col lg="4" className="struct-indicateurs">
                 <div className="indicateur">
                   <h2>{(structure.membres || []).length}</h2>
                   <div>membre{(structure.membres || []).length>1?"s":""}</div>
                 </div>
               </Col>
             </Row>
-            <Row>
-              <Col lg="4">
+            <Row className="row-indicateurs">
+              <Col lg="4" className="struct-indicateurs">
                 <div className="indicateur">
                   <h2>{props.actions.length}</h2>
                   <div>notification{props.actions.length>1?"s":""}</div>
                 </div>
               </Col>
-              <Col lg="4">
+              <Col lg="4" className="struct-indicateurs">
                 <div className="indicateur">
                   <h2>{props.nbRead}</h2>
                   <div>personne{props.nbRead>1?"s":""} informée{props.nbRead>1?"s":""}</div>
                 </div>
               </Col>
               {moyenneDate &&
-                <Col lg="4">
+                <Col lg="4" className="struct-indicateurs">
                   <div className="indicateur">
                     <h4>{moment(moyenneDate).fromNow()}</h4>
                     <div>moyenne des dernières intéractions</div>
@@ -112,9 +112,9 @@ const dashHeader = (props) => {
           </Col>
           <Col lg="4" md="12" sm="12" xs="12">
             <div className="inner-indicator third-indicator">
-              <h3 className="right-side">{props.minutesPassees || 0} <span className="gris">/ {props.objectifTemps || 0}h</span></h3>
+              <h3 className="right-side">{props.minutesPassees || 0} <span className="gris">/ {props.objectifTemps || 0}</span></h3>
               <div className="left-side">
-              <b className="mot-indicateur">minutes</b> dédiées à l'accueil des personnes réfugiés.{' '}<br/>
+              <b className="mot-indicateur">heures</b> dédiées à l'accueil des personnes réfugiés.{' '}<br/>
                 <i>Merci !</i>
               </div>
             </div>
@@ -132,7 +132,7 @@ const dashHeader = (props) => {
         <Col className="tableau-header align-right">
           {props.structure &&
             <b className="role">Vous êtes {role}</b>}
-          <FButton type="outline-black" name="info-outline" fill={variables.noir} className="mr-10">
+          <FButton type="help" name="info-outline" className="mr-10">
             Aide
           </FButton>
           {props.ctaText && 
@@ -140,7 +140,7 @@ const dashHeader = (props) => {
               {props.ctaText}
             </FButton>}
           {props.contributeur &&
-            <FButton tag={NavLink} to="/dispositif" type="dark" name="plus-circle-outline" className="ml-10">
+            <FButton tag={NavLink} to="/comment-contribuer" type="dark" name="plus-circle-outline" className="ml-10">
               Créer un contenu
             </FButton>}
           {props.traducteur &&

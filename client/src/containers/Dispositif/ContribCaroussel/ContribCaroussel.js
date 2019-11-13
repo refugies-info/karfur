@@ -42,9 +42,9 @@ class ContribCaroussel extends Component {
   render(){
     const { contributeurs, t, width } = this.props;
     const { activeIndex } = this.state;
-    let nbCards = Math.floor( ( (width - 2 * 10 ) * 7/12 - 2 * (15 + 20) ) / (140 + 20))
+    const nbCards = Math.floor( ( (width - 2 * 10 ) * 7/12 - 2 * (15 + 20) ) / (140 + 20))
     
-    let reduced_contributeurs=(contributeurs || []).reduce((acc, curr, i) => {
+    const reduced_contributeurs=(contributeurs || []).reduce((acc, curr, i) => {
       if (i > 0 && i % nbCards === 0 && i !== contributeurs.length-1) {
         return {currGrp:[curr], groupedData: [...acc.groupedData, acc.currGrp]}
       }else if(i % nbCards !== 0 && i === contributeurs.length-1){
@@ -54,7 +54,7 @@ class ContribCaroussel extends Component {
       }
       return {currGrp: [...acc.currGrp, curr], groupedData: acc.groupedData }
     }, {currGrp: [], groupedData: []}).groupedData;
-    let maxL = reduced_contributeurs.length;
+    const maxL = reduced_contributeurs.length;
     
     const slides = reduced_contributeurs.map((item, key) => {
       return (
@@ -89,7 +89,7 @@ class ContribCaroussel extends Component {
           <Col lg="auto" className="people-subheader">
             <h5>{t("Dispositif.Contributeurs", "Contributeurs mobilisés")}</h5>
             <sup><Badge color="light">{contributeurs.length}</Badge></sup>
-            <span>Tiennent la page à jour et répondent à vos questions</span>
+            <span>{t("Dispositif.Tiennent la page", "Tiennent la page à jour et répondent à vos questions")}</span>
           </Col>
           <Col lg="auto" className="navigate-btns">
             <div className="left-btn cursor-pointer" onClick={()=>this.previous(maxL)}>

@@ -17,20 +17,20 @@ const bandeauEdition = (props) => {
   const step = props.disableEdit ? 0 : 1;
   return(
     <div className="bandeau-edition">
-      <div className="dashed-panel" />
+      <div className="dashed-panel no-radius" />
       <div className="bandeau">
         <div className="etapes">
-          <b>
+          <h5>
             Étape {step+1} sur 2 - {etapes[step].titre}{' : '}
             {step===0 && 
               <span className="color-focus">{nbSelected} sur {nbSections} paragraphes</span>}
-          </b>
+          </h5>
         </div>
         <div className="bandeau-btns">
           {step === 1 && 
             <FSwitch content="Consignes" checked={props.withHelp} onClick={props.toggleHelp} className="mr-10" />}
           {step === 0 ?
-            <FButton tag={NavLink} to="/comment-contribuer" type="light-action" name="close-outline" className="mr-10">
+            <FButton tag={NavLink} to="/comment-contribuer" type="outline-black" name="close-outline" className="mr-10">
               Quitter
             </FButton> :
             <FButton type="light-action" name="arrow-back-outline" className="mr-10" onClick={()=>props.editDispositif(null, true)}>

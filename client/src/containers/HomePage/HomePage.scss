@@ -5,6 +5,8 @@
   flex: 1 1;
   color: $noir;
   background: $gris;
+  max-width: 100%;
+  overflow: scroll;
 
   .link{
     text-decoration: underline;
@@ -14,6 +16,8 @@
     min-height: 750px;
     padding-top: 100px;
     padding-bottom: 93px;
+    position: relative;
+    overflow: hidden;
   }
 
   #hero {
@@ -110,7 +114,7 @@
     background-position: calc(100% - 60px) calc(100% - 120px),0;
   }
 
-  #multilangues, #explique{
+  #multilangues{
     background-image: url(../../assets/figma/illustration_Traduction.svg);
     background-size: 70%;
     background-repeat: no-repeat;
@@ -267,22 +271,22 @@
   }
   .slide-animation{
     position: absolute;
-    bottom: -180px;
+    width: 52px;
+    height: 52px;
+    bottom: -30px;
     left: 50%;
     background: $noir;
     border-radius: 50%;
+    z-index: 1;
     transition: all 0.5s ease;
     -webkit-animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
             animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
   }
 
-  .slide-background{
-    margin:-10px;
-  }
-
   .bottom-slider {
     position: relative;
     fill: $blancSimple;
+    z-index: 2;
     &:hover{
       svg{
         transition: all 0.5s ease;
@@ -291,8 +295,6 @@
     }
   }
 }
-
-
 
 @-webkit-keyframes slide-bottom {
   0% {
@@ -304,6 +306,7 @@
             transform: translateY(30px);
   }
 }
+
 @keyframes slide-bottom {
   0% {
     -webkit-transform: translateY(0);
