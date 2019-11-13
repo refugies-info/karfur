@@ -48,6 +48,8 @@ body .figma-btn{
         fill : $blancSimple;
       }
     }
+
+    // Ici on précise le comportement "disabled"
     &:disabled, &.disabled{
       background: $gris;
       color: $grisFonce;
@@ -146,10 +148,6 @@ body .figma-btn{
       svg{
         fill: #FFFFFF;
       }
-    }
-    &:focus{
-      box-shadow: 0px 4px 7px rgba(47, 128, 237, 0.3);
-      border: 0.5px solid $focus;
     }
   }
 
