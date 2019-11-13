@@ -230,8 +230,8 @@ class AdvancedSearch extends Component {
                     let shortTag = null;
                     if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-") }
                     return (
-                      <Col xl="3" lg="3" md="4" sm="6" xs="12" className="card-col puff-in-center" key={dispositif._id}>
-                        <CustomCard onClick={() => this.goToDispositif(dispositif)}>
+                      <Col xl="3" lg="3" md="4" sm="6" xs="12" className={"card-col puff-in-center " + (dispositif.typeContenu || "dispositif")} key={dispositif._id}>
+                        <CustomCard onClick={() => this.goToDispositif(dispositif)} className={(dispositif.typeContenu === "demarche" ? ("texte-" + shortTag + " bg-light-" + shortTag) : "")}>
                           <CardBody>
                             <EVAIcon 
                               name="bookmark" 
