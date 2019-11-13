@@ -22,7 +22,7 @@ const dispositifValidateModal = (props) => {
       </ModalBody>
       <ModalFooter>
         <span className={"decompte" + (props.abstract.length > 110 ? " text-danger":"")}>{110 - props.abstract.length} sur 110 caractères restants</span>
-        <FButton name="checkmark" fill={variables.noir} onClick={validateAndClose} className="btn-go" disabled={!props.abstract || props.abstract === "" || props.abstract.length > 110}>
+        <FButton name="checkmark" type="validate" onClick={validateAndClose} disabled={!props.abstract || props.abstract === "" || props.abstract.length > 110}>
           Envoyer
         </FButton>
       </ModalFooter>
