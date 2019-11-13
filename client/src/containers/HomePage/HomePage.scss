@@ -267,22 +267,22 @@
   }
   .slide-animation{
     position: absolute;
-    bottom: -180px;
+    width: 52px;
+    height: 52px;
+    bottom: -30px;
     left: 50%;
     background: $noir;
     border-radius: 50%;
+    z-index: 1;
     transition: all 0.5s ease;
     -webkit-animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
             animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
   }
 
-  .slide-background{
-    margin:-10px;
-  }
-
   .bottom-slider {
     position: relative;
     fill: $blancSimple;
+    z-index: 2;
     &:hover{
       svg{
         transition: all 0.5s ease;
@@ -291,28 +291,6 @@
     }
   }
 }
-
-.slide-background{
-  left: 6px;
-  bottom: 6px;
-  position: absolute;
-  height: 48px;
-  width: 48px;
-  border-radius: 50%;
-  background-color: $noir;
-}
-.slide-bottom {
-  position: relative;
-  fill: $blancSimple;
-  &:hover{
-    svg{
-      transition: all 0.5s ease;
-      fill:$gris;
-    }
-  }
-}
-
-
 
 @-webkit-keyframes slide-bottom {
   0% {
