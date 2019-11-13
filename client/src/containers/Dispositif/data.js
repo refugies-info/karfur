@@ -69,13 +69,8 @@ const filtres = {
     {short: "Français", name: "apprendre le français", darkColor: "#3E2884", lightColor: "#F0E8F5", hoverColor: "#3E2884", illustrationColor: "#F9AA38"}, 
     {short: "Logement", name: "me loger", darkColor: "#188CC6", lightColor: "#DDF3FA", hoverColor: "#188CC6", illustrationColor: "#F77B0B"}, 
     {short: "Insertion pro", name: "trouver un travail", darkColor: "#149295", lightColor: "#D6EFF4", hoverColor: "#4FD3BD", illustrationColor: "#DD0539"}, 
-<<<<<<< Updated upstream
     {short: "Formation pro", name: "apprendre un métier", darkColor: "#137F3A", lightColor: "#E8F4E9", hoverColor: "#7DC690", illustrationColor: "#FC1E73"}, 
     {short: "Études", name: "faire des études", darkColor: "#307205", lightColor: "#E8F7CD", hoverColor: "#ADEA5C", illustrationColor: "#E561D8"}, 
-=======
-    {short: "Formation pro", name: "apprendre un métier", darkColor: "#095411", lightColor: "#E8F4E9", hoverColor: "#7DC690", illustrationColor: "#FC1E73"}, 
-    {short: "Études", name: "faire des études", darkColor: "#276002", lightColor: "#E8F7CD", hoverColor: "#ADEA5C", illustrationColor: "#E561D8"}, 
->>>>>>> Stashed changes
     {short: "Mobilité", name: "me déplacer", darkColor: "#F97821", lightColor: "#FFF0E7", hoverColor: "#F9D1B7", illustrationColor: "#5435D6"}, 
     {short: "Bénévolat", name: "aider une association", darkColor: "#0A54BF", lightColor: "#FFEEEE", hoverColor: "#FDA8AD", illustrationColor: "#1FC2C1"}, 
     {short: "Rencontre", name: "rencontrer des gens", darkColor: "#8E1B5A", lightColor: "#FFEBF5", hoverColor: "#FDA5C4", illustrationColor: "#76D327"}, 
