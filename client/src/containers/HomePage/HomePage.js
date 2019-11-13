@@ -63,10 +63,6 @@ class HomePage extends Component {
                 selectParam = {this.selectParam}
                 desactiver={()=>{}}
               />
-              {/* <h5>Je cherche à</h5>
-              <FSearchBtn className={"bg-" + item.short.split(" ").join("-") + " texte-blanc"}>
-                <h5>{t("Tags." + item.name, item.name)}</h5>
-              </FSearchBtn> */}
             </div>
           </div>
           <div className="chevron-wrapper">
