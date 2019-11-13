@@ -17,7 +17,7 @@ class AudioBtn extends Component {
 
   render() {
     return (
-      <div className={"audio-icon-wrapper" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
+      <div className={"audio-icon-wrapper mr-10" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
         <EVAIcon name={"volume-up" + (this.props.ttsActive ? "" : "-outline")} fill={(this.props.ttsActive ? "#FFFFFF" : variables.noir)} id="audioBtn" />
       </div>
     )

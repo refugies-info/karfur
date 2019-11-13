@@ -3,6 +3,7 @@ import track from 'react-tracking';
 import { Card, CardBody, Row, Col, Tooltip, Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import h2p from 'html2plaintext';
+import { withTranslation } from 'react-i18next';
 
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
@@ -44,8 +45,10 @@ class QuickToolbar extends Component {
   }
 
   render() {
-    if(this.props.show){
-      if(this.props.disableEdit){
+    const {t, show, disableEdit} = this.props;
+
+    if(show){
+      if(disableEdit){
         return(
           <Card className="quick-toolbar">
             <CardBody>
@@ -54,7 +57,7 @@ class QuickToolbar extends Component {
                   <Button className="btn-pill" id="eva-icon-0" onMouseEnter={()=>this._hoverOn(0)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(0)}>
                     <EVAIcon name={"message-circle" + (this.state.fill[0] ? '' : '-outline')} fill={variables.darkColor} className='icon-toolbar' />
                     <Tooltip className="dark-back" placement="top" isOpen={this.state.tooltipOpen[0]} target="eva-icon-0" toggle={(e)=>this.toggleTooltip(0,e)}>
-                      réagir
+                      {t("Dispositif.réagir", "réagir")}
                     </Tooltip>
                   </Button>
                 </Col>
@@ -62,7 +65,7 @@ class QuickToolbar extends Component {
                   <Button className="btn-pill" id="eva-icon-1" onMouseEnter={()=>this._hoverOn(1)} onMouseLeave={this._hoverOff} onClick={()=>this._onClick(1)}>
                     <EVAIcon name={"volume-up" + (this.state.fill[1] || this.props.ttsActive ? '' : '-outline')} fill={variables.darkColor} className='icon-toolbar'/>
                     <Tooltip className="dark-back" placement="top" isOpen={this.state.tooltipOpen[1]} target="eva-icon-1" toggle={()=>this.toggleTooltip(1)}>
-                      écouter
+                      {t("Dispositif.écouter", "écouter")}
                     </Tooltip>
                   </Button>
                 </Col>
@@ -182,5 +185,7 @@ const mapDispatchToProps = dispatch => {
 export default track({
     layout: 'QuickToolbar',
   }, { dispatchOnMount: false })(
-    connect(mapStateToProps, mapDispatchToProps)(QuickToolbar)
+    connect(mapStateToProps, mapDispatchToProps)(
+      withTranslation()(QuickToolbar)
+    )
   )
