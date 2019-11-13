@@ -324,7 +324,7 @@ class CardParagraphe extends Component {
 
 const PlusCard = (props) => {
   return(
-    <Col lg="4" className="card-col">
+    <Col xl="4" lg="6" md="6" sm="12" xs="12" className="card-col">
       <Card className="add-card" onClick={() => props.addItem(props.keyValue, 'card')}>
         <CardHeader className="backgroundColor-darkColor">
           Ajouter un item

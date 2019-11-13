@@ -50,11 +50,12 @@
     }
     .right-menu{
       width: 400px;
-      max-width: 400px;
+      max-width: 50%;
       background: $gris;
       box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       padding: 20px 40px;
       transform: padding 0.45s, width 0.45;
+      overflow: scroll;
       &.flip-out-ver-right{
         width: 0;
         padding:0;
@@ -84,9 +85,9 @@
         }
       }
       .validate-btn{
-        position: absolute;
+        position: sticky;
         bottom: 20px;
-        right: 20px;
+        left: 200px;
       }
     }
 
