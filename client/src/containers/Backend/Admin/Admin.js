@@ -49,7 +49,7 @@ class Admin extends Component {
       langueLoc:'',
       langueCode:'',
       langueIsDialect:false,
-      langueBackupId:"undefined",
+      langueBackupId: undefined,
       i18nCode : '',
       _id:undefined,
       status: 'Active',
@@ -236,7 +236,7 @@ class Admin extends Component {
     if(user.password.length === 0){return;}
     if(user.selectedLanguages.length>0){user.selectedLanguages=[...user.selectedLanguages.map(el =>{return { _id: el._id, i18nCode: el.i18nCode, langueCode: el.langueCode, langueFr: el.langueFr, langueLoc: el.langueLoc}})]}
     if(!user._id){
-      API.signup(user).then(data => {
+      API.login({...user, cpassword: user.password}).then(data => {
         let newUser=data.data.data;
         newUser.password='Hidden'
         this.setState({users: [...this.state.users, newUser], user: this.initial_state.user});

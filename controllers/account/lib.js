@@ -91,17 +91,20 @@ function login(req, res) {
     User.findOne({
       username: req.body.username
     }, (err, user) => {
-      if (err) {
-        res.status(500).json({ "text": "Erreur interne" })
-      }
-      else if(!user){ //On lui crée un nouveau compte
+      if (err) { console.log(err);
+        res.status(500).json({ "text": "Erreur interne", data: err });
+      } else if(!user){ //On lui crée un nouveau compte
         user = req.body;
         if(user.cpassword && user.cpassword === user.password){
           user.password=passwordHash.generate(user.password);
-          if(user.traducteur){
+          if(user.roles && user.roles.length > 0 && req.user.roles.some(x => x.nom === "Admin")){
+            user.roles=[...new Set([...user.roles, req.roles.find(x=>x.nom==='User')._id])]
+          }else if(user.traducteur){
             user.roles=[req.roles.find(x=>x.nom==='Trad')._id]
             delete user.traducteur;
-          }else{user.roles=[req.roles.find(x=>x.nom==='User')._id]}
+          }else{
+            user.roles=[req.roles.find(x=>x.nom==='User')._id]
+          }
           user.status='Actif';
           user.last_connected = new Date();
           var _u = new User(user);
@@ -119,7 +122,7 @@ function login(req, res) {
             }
           })
         }else{
-          res.status(401).json({ "text": "L'utilisateur n'existe pas" });
+          res.status(401).json({ "text": "Les mots de passe ne correspondent pas" });
         }
       } else {
         if (user.authenticate(req.body.password)) {
@@ -184,16 +187,12 @@ function set_user_info(req, res) {
       user = {...user, $addToSet:{roles: req.roles.find(x=>x.nom==='Trad')._id}}
       delete user.traducteur;
     }
-
+    console.log(user.roles)
     User.findByIdAndUpdate({
       _id: user._id
     },user,{new: true},function(error,result){
-      if(error){
-        console.log(error);
-        res.status(500).json({
-          "text": "Erreur interne",
-          "error": error
-        })
+      if(error){ console.log(error);
+        res.status(500).json({ "text": "Erreur interne", "error": error })
       }else{
         //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
         //Je le fais en non bloquant, il faut pas que ça renvoie une erreur à l'enregistrement

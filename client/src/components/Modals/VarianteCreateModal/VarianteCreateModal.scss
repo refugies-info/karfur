@@ -5,7 +5,11 @@
   background: #FFFFFF;
   
   .modal-header{
-    margin-bottom: 16px;
+
+    .modal-title{
+      display: inline-flex;
+      align-items: center;
+    }
 
     h5{
       font-size: 40px;
@@ -21,18 +25,20 @@
       font-weight: bold;
       padding: 20px;
       background: $blanc;
+      border-radius: 12px;
     }
   }
   .modal-body{
+    padding-bottom: 0;;
     .bandeau-bleu{
       background: $bgfocus;
       border-radius: 12px;
-      padding: 10px;
+      padding: 10px 10px 10px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      margin-bottom: 10px;
+      margin-top: 10px;
     }
     .video-bloc{
       display: flex;

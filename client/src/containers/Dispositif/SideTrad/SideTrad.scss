@@ -107,4 +107,17 @@
   .mb-20{
     margin-bottom: 20px;
   }
+
+  .google-suggest{
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 12px;
+    line-height: 15px;
+    color: $noirCD;
+  }
+  .google-logo{
+    width: 13px;
+    height: 13px;
+  }
 }

@@ -119,25 +119,48 @@ const verifierDemarche  = function(){
       return false;
     }
     //Deux démarches ne peuvent pas avoir exactement les mêmes critères
-    const varianteAlreadyExists = variantes.some(variante => {
-      return [...allDemarches, dispositif].some(d => (d.variantes || []).some(va => {
-        let isEqual = true;
-        if(va.bottomValue !== variante.bottomValue || va.topValue !== variante.topValue){
-          isEqual = false;
-        }
-        isEqual = isEqual ? !(va.villes || []).some(vi => !(variante.villes || []).some(ville => ville.place_id === vi.place_id ) ) : isEqual;
-        customCriteres.forEach(cc =>{if(cc.query){
-          isEqual = isEqual ? (variante[cc.query] || []).length === (va[cc.query] || []).length &&  !(va[cc.query] || []).some(x => !(variante[cc.query] || []).includes(x) ) : isEqual;
-        } } )
-        return isEqual;
-      } ))
-    })
-    if(varianteAlreadyExists){
-      Swal.fire( {title: 'Oh non!', text: 'Vous avez rentré les mêmes critères qu\'une variante existante, peut-être souhaitez-vous la préciser ?', type: 'error', timer: 1500 });
-      return false;
+    if(this.state.inVariante){
+      const varianteAlreadyExists = variantes.some(variante => {
+        return [...allDemarches, dispositif].some(d => d && (d.variantes || []).some(va => {
+          let isEqual = true;
+          if(va.bottomValue !== variante.bottomValue || va.topValue !== variante.topValue){
+            isEqual = false;
+          }
+          isEqual = isEqual ? !(va.villes || []).some(vi => !(variante.villes || []).some(ville => ville.place_id === vi.place_id ) ) : isEqual;
+          customCriteres.forEach(cc =>{if(cc.query){
+            isEqual = isEqual ? (variante[cc.query] || []).length === (va[cc.query] || []).length &&  !(va[cc.query] || []).some(x => !(variante[cc.query] || []).includes(x) ) : isEqual;
+          } } )
+          return isEqual;
+        } ))
+      })
+      if(varianteAlreadyExists){
+        Swal.fire( {title: 'Oh non!', text: 'Vous avez rentré les mêmes critères qu\'une variante existante, peut-être souhaitez-vous la préciser ?', type: 'error', timer: 1500 });
+        return false;
+      }
     }
   } 
   return true;
 }
 
-export {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche};
+const validateVariante = function(newVariante, idx){
+  this.setState(pS => ({isVarianteValidated: true, variantes: [
+    ...pS.variantes.map((x,i)=> i===idx ? newVariante : x), 
+    ...(idx >= pS.variantes.length ? [newVariante] : [])
+  ]}))
+}
+
+const deleteVariante = function(idx){
+  this.setState(pS => ({
+    variantes: pS.variantes.filter((_,i)=> i!==idx), 
+    isVarianteValidated: pS.variantes.length > 1,
+  }), ()=> console.log(this.state.variantes))
+}
+
+export {
+  switchVariante, 
+  initializeVariantes, 
+  initializeInfoCards, 
+  verifierDemarche,
+  validateVariante,
+  deleteVariante
+};

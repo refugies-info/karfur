@@ -1,15 +1,15 @@
 @import 'src/scss/colors.scss';
 
 .moteur-variantes{
-  background: $attention;
+  background: $gris;
   border-radius: 12px;
   margin: 0 40px;
 
   .moteur-wrapper{
-    padding: 40px;
+    padding: 20px;
   }
   .moteur-header{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,7 +36,7 @@
     line-height: 23px;
     color: #FFFFFF;
     background: $noir;
-    border-radius: 12px 12px 0 0;
+    border-radius: 6px 6px 0 0;
     padding: 10px 20px;
   }
   .col-body{
@@ -48,12 +48,16 @@
       border-radius: 0 0 12px 12px;
     }
   }
+
+  .btn{
+    width: 100%;
+  }
   .critere{
-    padding: 30px 20px;
+    padding: 20px 20px;
     background: $gris;
-    border-radius: 12px;
+    border-radius: 6px;
     &.validated{
-      background: $attention;
+      background: $validation;
     }
     &.add-critere{
       padding: 10px 20px;
@@ -79,7 +83,6 @@
     justify-content: space-between;
   }
   .criteres-autocomplete{
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
     background: #FFFFFF;
     border-radius: 12px;
     border: none;
@@ -94,17 +97,19 @@
     border-radius: 12px;
     color: #FFFFFF;
     padding: 10px;
+    display: inline-flex;
   }
   .dropdown-toggle.btn, .btn{
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
-    padding:10px;
+    padding:10px 15px;
     border-radius: 12px;
     background: #FFFFFF;
     border:none;
     color: inherit;
     font-weight: inherit;
     font-size: inherit;
-    white-space: normal;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
   }
 
   .age-input{
@@ -137,6 +142,7 @@
 
   .figma-btn.light-action.custom-critere-btn{
     box-shadow: none;
+    margin-bottom: 10px;
     &.active{
       background: $noir;
       color: #FFFFFF;
@@ -158,9 +164,9 @@
   }
 
   .reduced-critere{
-    background: $gris;
-    border-radius: 12px;
-    padding: 10px;
+    background: $blancSimple;
+    border-radius: 6px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     width: fit-content;
@@ -171,5 +177,12 @@
   }
   .negative-margin{
     margin-top: -10px;
+  }
+
+  .delete-icon{
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    z-index: 2;
   }
 }

@@ -13,7 +13,7 @@ import _ from "lodash";
 
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
-import {boldBtn, italicBtn, underBtn, listBtn} from '../../../assets/figma/index';
+import {boldBtn, italicBtn, underBtn, listBtn, logo_google} from '../../../assets/figma/index';
 import marioProfile from '../../../assets/mario-profile.jpg';
 import { RejectTradModal } from '../../../components/Modals';
 
@@ -131,7 +131,7 @@ class SideTrad extends Component {
       this.props.updateUIArray(idx, subidx, 'accordion', true)
     }
     Array.from(document.getElementsByClassName("translating")).forEach(x => {x.classList.remove("translating")}); //On enlève le surlignage des anciens éléments
-    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
+    const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx!==undefined && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx!==undefined && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
     if(elems.length > 0){
       const elem = elems[0];
       elem.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
@@ -159,7 +159,7 @@ class SideTrad extends Component {
           scoreArr = newValue["score" + this.state.currSubName] || {};
           newValue = newValue[this.state.currSubName];
         }
-        return ({value: newValue, score: _.get(scoreArr, "cosine.0.0"), ...x})
+        return ({value: newValue, score: _.get(scoreArr, "cosine.0.0", 0), ...x})
       }) || []).sort((a,b) => b.score - a.score);
       if(listTrad && listTrad.length > 0){
         oldTrad = listTrad[0].value; score = listTrad[0].score; userId = listTrad[0].userId;  selectedTrad=listTrad[0];
@@ -177,9 +177,10 @@ class SideTrad extends Component {
         }
       }
     }
+    console.log(oldTrad)
     this.setState({listTrad, score, userId, selectedTrad});
     if(oldTrad){
-      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } } )
+      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } }, () => console.log("ok fwd state") )
     }else{
       this.props.translate(text,target,item, true);
     }
@@ -221,6 +222,7 @@ class SideTrad extends Component {
 
   onValidate = async () => {
     if(!this.props.translated.body){Swal.fire( {title: 'Oh non', text: 'Aucune traduction n\'a été rentrée, veuillez rééssayer', type: 'error', timer: 1500}); return;}
+    this.props.fwdSetState({disableBtn: true});
     const pos = pointeurs.findIndex(x => this.state.currIdx === x);
     const node = pos > -1 ? this.state.currIdx : "contenu";
     let {currIdx, currSubIdx, currSubName} = this.state;
@@ -268,10 +270,10 @@ class SideTrad extends Component {
     }
     this.props.fwdSetState({traduction}, () => this.props.isExpert ? false : this.props.valider(this.props.traduction));
     this.goChange(true, false);
+    this.props.fwdSetState({disableBtn: false});
   }
 
   _insertTrad = () => {
-    console.log(this.props.traduction);
     let newTrad = {...this.props.traduction, articleId: this.props.itemId, type: "dispositif", locale: this.props.locale, traductions: this.props.traductionsFaites};
     API.validate_tradForReview(newTrad).then(data => {
       console.log(data.data.data)
@@ -283,7 +285,7 @@ class SideTrad extends Component {
 
   render(){
     const langue = this.props.langue || {};
-    const { francais, translated, isExpert } = this.props;
+    const { francais, translated, isExpert, disableBtn, autosuggest } = this.props;
     const { currIdx, currSubIdx, currSubName, listTrad, score, userId, showModals, selectedTrad } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
@@ -351,6 +353,8 @@ class SideTrad extends Component {
               }}
             />
           </DirectionProvider>
+          {autosuggest && 
+            <div className="google-suggest">Suggestion par <img src={logo_google} className="google-logo" /></div>}
         </div>
         <div className="expert-bloc">
           {score && score !== 0 && score !== "0" ? 
@@ -375,13 +379,13 @@ class SideTrad extends Component {
             </FButton>}
           <div>
             {isExpert && 
-              <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(this.props.translated || {}).body} fill={variables.noir} className="mr-10">
+              <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(translated || {}).body} fill={variables.noir} className="mr-10">
                 Signaler
               </FButton>}
             <FButton type="light-action" name={(isExpert ? "close" : "skip-forward") + "-outline"} fill={variables.noir} className="mr-10" onClick={()=> isExpert ? this.toggleModal(true, 'rejected') : this.goChange()}>
               {isExpert ? "Refuser" : "Passer"}
             </FButton>
-            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(this.props.translated || {}).body}>
+            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(translated || {}).body}>  {/* || disableBtn */}
               Valider
             </FButton>
           </div>

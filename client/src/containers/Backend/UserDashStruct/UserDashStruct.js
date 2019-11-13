@@ -61,9 +61,9 @@ class UserDashStruct extends Component {
     this.initializeStructure();
     API.get_users({query: {status: "Actif"}}).then(data => this.setState({users: data.data.data}) )
 
-    API.get_dispositif({query: {'mainSponsor': user.structures[0], status: {$in: ["Actif", "Accepté structure", "En attente", "En attente admin"]}, demarcheId: { $exists: false } }}).then(data => {console.log(data.data.data)
+    API.get_dispositif({query: {'mainSponsor': user.structures[0], status: {$in: ["Actif", "Accepté structure", "En attente", "En attente admin"]}, demarcheId: { $exists: false } }, sort:{updatedAt: -1}}).then(data => {console.log(data.data.data)
       this.setState({contributions: data.data.data, actions: parseActions(data.data.data)}, () => {
-        API.get_tradForReview({type: "dispositif", articleId: {$in: this.state.contributions.map(x => x._id)} }).then(data => {console.log(data.data.data)
+        API.get_tradForReview({query: {type: "dispositif", articleId: {$in: this.state.contributions.map(x => x._id)} }}).then(data => {console.log(data.data.data)
           this.setState({traductions: data.data.data})
         });
         API.distinct_count_event({distinct: "userId", query: {action: 'readDispositif', label: "dispositifId", value : {$in: this.state.contributions.map(x => x._id)} } }).then(data => {

@@ -1,34 +1,6 @@
 @import 'src/scss/colors.scss';
 
-.Public-visé{
-  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Public.svg);
-  background-size: cover;
-}
 
-.Âge-requis{
-  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Age.svg);
-  background-size: cover;
-}
-
-.Durée{
-  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Durée.svg);
-  background-size: cover;
-}
-
-.Niveau-de-français{
-  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Français.svg);
-  background-size: cover;
-}
-
-.Combien-ça-coute{
-  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Prix.svg);
-  background-size: cover;
-}
-
-.Justificatif-demandé{
-  background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Papiers.svg);
-  background-size: cover;
-}
 
 .cards.row{
   padding: 0 40px;
@@ -39,10 +11,39 @@
     .card{
       margin-top: -40px;
       min-height: 230px;
-      background: $cardColor;
       border-radius: 12px;
       border:none;
       height: 300px;
+
+      &.Public-visé{
+        background-image: url(../../../assets/figma/InfoCard/infocard_Public.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
+        background-size: cover, cover; 
+      }
+      
+      .Âge-requis{
+        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Age.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+        background-size: cover, cover;
+      }
+      
+      .Durée{
+        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Durée.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+        background-size: cover, cover;
+      }
+      
+      .Niveau-de-français{
+        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Français.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+        background-size: cover, cover;
+      }
+      
+      .Combien-ça-coute{
+        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Prix.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+        background-size: cover, cover;
+      }
+      
+      .Justificatif-demandé{
+        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Papiers.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+        background-size: cover, cover;
+      }
 
       &.make-it-red{
         background: $rouge;
@@ -52,13 +53,11 @@
         background-color: $darkColor;
         border: none;
         border-radius: 12px 12px 0 0;
-        font-size: 16px;
         color: #FFFFFF;
         padding: 10px;
 
         .header-content{
           margin-left: 10px;
-          font-size: 16px;
         }
         .form-control{
           background-color:inherit;
@@ -78,14 +77,10 @@
     
       .card-body{
         padding-bottom: 12px;
-        font-size: 16px;
         line-height: 20px;
         color: #FFFFFF;
   
         h4{
-          font-style: normal;
-          font-weight: 500;
-          font-size: 24px;
           .card-input{
             border-radius: 6px;
             color: $darkColor;

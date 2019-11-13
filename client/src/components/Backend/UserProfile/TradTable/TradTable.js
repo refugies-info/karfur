@@ -122,7 +122,7 @@ const tradTable = (props) => {
   if(props.limit && show){
     return(
       <div className={"tableau-wrapper" + (props.hide ? " swing-out-top-bck" : "")} id="mes-traductions" onAnimationEnd={onAnimationEnd}>
-        <Row>
+        <Row className="overflow-scroll">
           <Col>
             <h1>{t("Tables." + props.title, props.title)}</h1>
           </Col>
@@ -161,7 +161,7 @@ const tradTable = (props) => {
               <div className="content-wrapper">
                 <h1>{t("Tables." + props.overlayTitle, props.overlayTitle)}</h1>
                 <span className="subtitle">{props.overlayi18n ? t("Tables." + props.overlayi18n, props.overlaySpan) : props.overlaySpan}</span>
-                <FButton type="light-action" name="play-circle-outline" fill={variables.noir} onClick={startTrad} >
+                <FButton type="light-action hero" name="play-circle-outline" fill={variables.noir} onClick={startTrad} >
                   {t("Tables." + props.overlayBtn, props.overlayBtn)}
                 </FButton>
               </div>

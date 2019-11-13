@@ -39,7 +39,7 @@ class UserDashContrib extends Component {
   componentDidMount() {
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
-      API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}, demarcheId: { $exists: false } }}).then(data => {
+      API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}, demarcheId: { $exists: false } }, sort:{updatedAt: -1}}).then(data => {
         this.setState({contributions: data.data.data, isMainLoading: false})
       })
       API.get_progression().then(data_progr => {
@@ -80,7 +80,7 @@ class UserDashContrib extends Component {
       <div className="animated fadeIn user-dash-contrib">
         <DashHeader 
           contributeur
-          title="Espace contribution"
+          title="Espace rédaction"
           ctaText="Mes objectifs"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(this.state.progression.timeSpent / 1000 / 60)}

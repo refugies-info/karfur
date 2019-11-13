@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import API from "utils/API.js";
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
-import { SearchBar } from '../../../../containers/UI/SearchBar/SearchBar';
+import SearchBar from '../../../../containers/UI/SearchBar/SearchBar';
 import {sentIllu} from '../../../../assets/figma/index';
 import CreationContent from "../CreationContent/CreationContent"
 import {update_user} from "../../../../Store/actions/index";
