@@ -27,7 +27,7 @@ const dashHeader = (props) => {
       const moyenneDate = sommeDates / (structure.dispositifsAssocies || []).length
       return (
         <Row className="header-structure">
-          <Col lg="6" md="12" sm="12" xs="12">
+          <Col xl="6" lg="6" md="12" sm="12" xs="12" className="mt-10">
             <Row className="titre-structure">
               <Col lg="6" md="6" sm="6" xs="6" className="img-wrapper-col">
                 <div className="img-wrapper">
@@ -44,7 +44,7 @@ const dashHeader = (props) => {
               </Col>
             </Row>
           </Col>
-          <Col lg="6" md="12" sm="12" xs="12" className="right-side-header">
+          <Col xl="6" lg="6" md="12" sm="12" xs="12" className="right-side-header">
             <Row className="row-indicateurs">
               <Col lg="4" className="struct-indicateurs">
                 <div className="indicateur">
@@ -140,7 +140,7 @@ const dashHeader = (props) => {
               {props.ctaText}
             </FButton>}
           {props.contributeur &&
-            <FButton tag={NavLink} to="/dispositif" type="dark" name="plus-circle-outline" className="ml-10">
+            <FButton tag={NavLink} to="/comment-contribuer" type="dark" name="plus-circle-outline" className="ml-10">
               Créer un contenu
             </FButton>}
           {props.traducteur &&

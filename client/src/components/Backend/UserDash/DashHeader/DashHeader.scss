@@ -91,6 +91,7 @@ $normalSize: 18px;
   }
 
   .header-structure{
+    margin-top: -10px;
     .titre-structure{
       border-radius: 12px;
       background: $blanc;
@@ -132,7 +133,6 @@ $normalSize: 18px;
     }
 
     .right-side-header{
-      margin-top: -10px;
       .indicateur{
         background: $blanc;
         border-radius: 12px;
@@ -141,6 +141,7 @@ $normalSize: 18px;
         align-items: center;
         display: flex;
         flex : 1 0 auto;
+        overflow: scroll;
         h2{
           margin-right: 10px;
         }
