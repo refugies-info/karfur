@@ -36,9 +36,8 @@ class Footer extends Component {
     const { t } = this.props;
     return (
       <div className="animated fadeIn footer">
-        <Row>
-          <Col lg="4">
-            <Logo />
+        <Row className="negative-margin">
+          <Col xl="4" lg="4" md="4" sm="12" xs="12" className="mt-10">
             <Form onSubmit={this.sendMail}>
               <FormGroup>
                 {/*<Label for="emailNewsletter">Rejoindre la newsletter</Label>*/}
@@ -69,9 +68,9 @@ class Footer extends Component {
               </FButton>
             </div>
           </Col>
-          <Col lg="8" className="right-col">
-            <Row className="main-row">
-              <Col lg="4">
+          <Col xl="8" lg="8" md="8" sm="12" xs="12" className="right-col mt-10">
+            <Row className="main-row negative-margin">
+              <Col xl="4" lg="4" md="4" sm="4" xs="12" className="mt-10">
                 <h5 className="footer-header">
                   {t("Footer.Le projet", "Le projet")}
                 </h5>
@@ -88,7 +87,7 @@ class Footer extends Component {
                   <NavLink to="/">{t("Mentions légales", "Mentions légales")}</NavLink>
                 </div>
               </Col>
-              <Col lg="8">
+              <Col xl="8" lg="8" md="8" sm="8" xs="12" className="mt-10">
                 <h5 className="footer-header">
                   {t("Footer.Vous cherchez ?", "Vous cherchez ?")}
                 </h5>

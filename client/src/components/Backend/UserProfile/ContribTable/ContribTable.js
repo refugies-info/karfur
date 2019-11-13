@@ -50,11 +50,12 @@ const contribTable = (props) => {
       </thead>
       <tbody>
         {data.slice(0,props.limit).map((element,key) => {
-          let titre = (element.titreMarque || "") + (element.titreMarque && element.titreInformatif ? " - " : "") + (element.titreInformatif || "");
+          const titre = (element.titreMarque || "") + (element.titreMarque && element.titreInformatif ? " - " : "") + (element.titreInformatif || "");
+          
           return (
             <tr key={key} onClick={()=>props.history.push("/" + (element.typeContenu || "dispositif") + "/"+element._id)}>
               <td className="align-middle">
-                {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 && "..."))}
+                {props.windowWidth > 768 ? titre : (titre.slice(0,24) + (titre.length > 24 ? "..." : ""))}
               </td>
               <td className="align-middle">
                 <div className={"status-pill bg-"+colorStatut(element.status)}>{t("Status." + element.status, element.status)}</div>
@@ -76,7 +77,7 @@ const contribTable = (props) => {
                   <FButton type="light-action" name="trash-2-outline" fill={variables.noir} onClick={e => deleteContrib(e, element)} />}                
               </td>
               <td className="align-middle">
-                <FButton tag={NavLink} to={"/dispositif/"+element._id} type="light-action" name="eye-outline" fill={variables.noir} />
+                <FButton tag={NavLink} to={"/" + (element.typeContenu || "dispositif") + "/"+element._id} type="light-action" name="eye-outline" fill={variables.noir} />
               </td>
             </tr>
           );
@@ -98,7 +99,7 @@ const contribTable = (props) => {
 
   const onBtnClick = () => {
     // if(props.overlayRedirect){
-      props.history.push("/dispositif")
+      props.history.push("/comment-contribuer")
     // }else{
     //   props.toggleModal('devenirContributeur')
     // }
@@ -125,11 +126,9 @@ const contribTable = (props) => {
                   <h4>22</h4>
                   <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Tables.personnes informées", "personnes<br/>informées") }} />
                 </div>
-                <div>
-                  <FButton tag={NavLink} to="/backend/user-dash-contrib" type="dark" name="file-add-outline">
-                    {t("Tables.Espace contribution", "Espace contribution")}
-                  </FButton>
-                </div>
+                <FButton tag={NavLink} to="/backend/user-dash-contrib" type="dark" name="file-add-outline">
+                  {t("Tables.Espace contribution", "Espace contribution")}
+                </FButton>
               </div>
             </Col>}
         </Row>

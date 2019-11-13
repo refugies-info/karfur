@@ -40,7 +40,7 @@
       font-weight: normal;
       font-size: 16px;
       text-decoration-line: underline;
-      color: #828282;
+      color: $grisFonce;
       float: right;
       line-height: 40px;
     }
@@ -57,16 +57,37 @@
     }
     .list-group{
       .list-group-item{
+        padding: 15px;
         border: 0.5px solid $noir;
-        padding: 0.8rem 1rem;
-        &:first-child{
-          border-radius: 6px 6px 0 0;
-        }
-        &:last-child{
-          border-radius: 0 0 6px 6px;
+        color: $noir;
+        border-radius: 12px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        &:hover{
+          transition: all 0.5s ease;
+          color: $blancSimple;
+          background: $noir;
         }
         &.disabled{
-          color: #CDCDCD;
+          color: $noirCD;
+          border-color: $noirCD;
+        }
+        &.unavailable-item{
+          background: $grisFonce;
+          border:none;
+          color: #FFFFFF;
+          padding: 10px;
+          box-shadow: none;
+        }
+        &.active{
+          color: $blancSimple; 
+          background-color: $validationHover;
+          border: 0.5px solid $validationHover;
+        }
+        .vertical-center{
+          display: flex;
+          align-items: center;
+          padding-left: 20px;
         }
       }
 
@@ -77,15 +98,21 @@
         .progress{
           width: 100px;
           margin-right:10px;
-          height: 15px;
+          height: 10px;
         }
+      }
+
+      .button-col{
+        display: flex;
+        padding-right: 15px;
+        justify-content:flex-end;
       }
 
       .icon-col{
         justify-content: center;
         align-items: center;
         display: flex;
-        padding: 0;
+        padding-right: 20px;
       }
     }
   }

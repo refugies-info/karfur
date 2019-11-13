@@ -15,7 +15,7 @@ class MoteurVariantes extends Component {
   toggleVue = () => this.setState(pS => ({isReducedVue: !pS.isReducedVue}))
 
   render(){
-    const {variantes, search, itemId, allDemarches} = this.props;
+    const {variantes, search, inVariante, allDemarches} = this.props;
     const {isReducedVue} = this.state;
     if(this.props.disableEdit){
       return <UserVariantes switchVariante={this.props.switchVariante} allDemarches={allDemarches} variantes={variantes} search={search} />
@@ -26,7 +26,7 @@ class MoteurVariantes extends Component {
 
           <div className="moteur-wrapper">
             <div className="moteur-header">
-              <h5>{itemId ? "Tout d’abord : à qui s’adresse votre variante ?" : "Créez vos cas ici : "}</h5>
+              <h5>{inVariante ? "À qui s’adresse votre variante ?" : "Créez vos cas ici : "}</h5>
               {isReducedVue && 
                 <FButton type="dark" name="edit-outline" onClick={this.toggleVue}>
                   Modifier
@@ -41,7 +41,8 @@ class MoteurVariantes extends Component {
               <UneVariante 
                 variantes={this.props.variantes}
                 validateVariante={this.props.validateVariante} 
-                itemId={itemId}
+                deleteVariante={this.props.deleteVariante}
+                inVariante={inVariante}
                 toggleVue={this.toggleVue}
                 filtres={this.props.filtres} 
                 upcoming={this.props.upcoming} />}

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import htmlToDraft from 'html-to-draftjs';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { EditorState, convertToRaw, convertFromRaw, ContentState } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
 import { savePDF } from '@progress/kendo-react-pdf';
 import moment from 'moment/min/moment-with-locales';
@@ -16,6 +16,7 @@ import h2p from 'html2plaintext';
 import ReactJoyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import _ from "lodash";
 import querySearch from "stringquery";
+import {convertToHTML} from "draft-convert";
 
 import API from '../../utils/API';
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
@@ -36,8 +37,8 @@ import SideTrad from './SideTrad/SideTrad';
 import {initializeTimer} from '../Translation/functions';
 import {readAudio} from "../Layout/functions";
 import MoteurVariantes from './MoteurVariantes/MoteurVariantes';
-import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche} from './data'
-import {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche} from "./functions";
+import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche, customConvertOption} from './data'
+import {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche, validateVariante, deleteVariante} from "./functions";
 
 import variables from 'scss/colors.scss';
 
@@ -56,6 +57,8 @@ class Dispositif extends Component {
     this.initializeVariantes = initializeVariantes.bind(this);
     this.initializeInfoCards = initializeInfoCards.bind(this);
     this.verifierDemarche = verifierDemarche.bind(this);
+    this.validateVariante = validateVariante.bind(this);
+    this.deleteVariante = deleteVariante.bind(this);
   }
   audio = new Audio();
 
@@ -87,7 +90,7 @@ class Dispositif extends Component {
     user:{},
     isDispositifLoading: true,
     contributeurs:[],
-    withHelp:true,
+    withHelp: process.env.NODE_ENV !== "development",
     runFirstJoyRide: false,
     runJoyRide: false,
     stepIndex: 0,
@@ -105,6 +108,7 @@ class Dispositif extends Component {
     allDemarches: [],
     demarcheId: null,
     isVarianteValidated: false,
+    dispositif: {},
   }
   newRef=React.createRef();
   mountTime=0;
@@ -185,7 +189,7 @@ class Dispositif extends Component {
       this.setState({
         disableEdit:false,
         uiArray: menuContenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: true})})}}),
-        showDispositifCreateModal: true, //A modifier avant la mise en prod
+        showDispositifCreateModal: process.env.NODE_ENV !== "development", //A modifier avant la mise en prod
         isDispositifLoading: false,
         menu: menuContenu.map((x) => {return {...x, type:x.type || 'paragraphe', isFakeContent: true, placeholder: (x.tutoriel || {}).contenu, content: (x.type ? null : x.content), editorState: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft('').contentBlocks))}}),
         typeContenu,
@@ -263,25 +267,32 @@ class Dispositif extends Component {
   handleContentClick = (key, editable, subkey=undefined) => {
     let state=[...this.state.menu];
     if(state.length > key && key >= 0 && !this.state.disableEdit && (!this.state.inVariante || _.get(this.state.uiArray, key + (subkey ? ".children." + subkey : "") + ".varianteSelected")) ){
-      console.log(key, editable, subkey)
       if(editable){  
         state = state.map(x => ({
           ...x, 
           editable:false, 
-          ...(x.editable && x.editorState && x.editorState.getCurrentContent() && x.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(x.editorState.getCurrentContent())) } ), 
-          ...(x.children && {children: x.children.map(y => ({ ...y, ...(y.editable && y.editorState && y.editorState.getCurrentContent() && y.editorState.getCurrentContent().getPlainText() !== '' && { content: draftToHtml(convertToRaw(y.editorState.getCurrentContent())) } ), editable:false }))}) 
+          ...(x.editable && x.editorState && x.editorState.getCurrentContent() && x.editorState.getCurrentContent().getPlainText() !== '' && 
+            { content: convertToHTML(customConvertOption)(x.editorState.getCurrentContent()) } ), 
+          ...(x.children && {children: x.children.map(y => ({ ...y, ...(y.editable && y.editorState && y.editorState.getCurrentContent() && y.editorState.getCurrentContent().getPlainText() !== '' && 
+            { content: convertToHTML(customConvertOption)(y.editorState.getCurrentContent()) } ), editable:false }))})  //draftToHtml(convertToRaw(y.editorState.getCurrentContent()))
         }))
       }
       let right_node=state[key];
       if(subkey !==undefined && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
       if(editable && right_node.content){
-        right_node.editorState = EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks)) ;
+        const contentState = ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks);
+        const rawContentState = convertToRaw(contentState) || {};
+        const rawBlocks = rawContentState.blocks || [];
+        const textPosition = rawBlocks.findIndex(x => (x.text || "").includes("Bon à savoir :"));
+        const newRawBlocks = rawBlocks.filter((_,i) => i < textPosition - 3 || i>=textPosition)
+        const newRawContentState = {...rawContentState, blocks : newRawBlocks.map(x => x.text.includes("Bon à savoir :") ? {...x, text: x.text.replace("Bon à savoir :", ""), type: "header-six"} : x)}
+        const newContentState = convertFromRaw(newRawContentState)
+        right_node.editorState = EditorState.createWithContent(newContentState) ;
       }else if(!editable && right_node.editorState && right_node.editorState.getCurrentContent){
-        right_node.content=draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
+        right_node.content= convertToHTML(customConvertOption)(right_node.editorState.getCurrentContent()); //draftToHtml(convertToRaw(right_node.editorState.getCurrentContent()));
       }
       if(right_node.type === 'accordion'){ this.updateUIArray(key, subkey, 'accordion', true) }
-      console.log(right_node)
       return new Promise(resolve => this.setState( { menu: state },()=>{ this.updateUI(key, subkey, editable) ; resolve()} ));
     }else{return new Promise(r=> r())}
   };
@@ -455,7 +466,7 @@ class Dispositif extends Component {
       })
     }else{
       this.setState(pS=>({
-        showBookmarkModal: !pS.pinned,
+        showBookmarkModal: false,
         isAuth: false,
       }))
     }
@@ -556,14 +567,9 @@ class Dispositif extends Component {
     )}
   )) }), ()=>this.setColors())
 
-  validateVariante = (newVariante, idx) => this.setState(pS => ({isVarianteValidated: true, variantes: [
-    ...pS.variantes.map((x,i)=> i===idx ? newVariante : x), 
-    ...(idx >= pS.variantes.length ? [newVariante] : [])
-  ]}))
-
   pushReaction = (modalName=null, fieldName) => {
     if(modalName){this.toggleModal(false, modalName);}
-    let dispositif = {
+    const dispositif = {
       dispositifId: this.state._id,
       keyValue: this.state.tKeyValue, 
       subkey: this.state.tSubkey,
@@ -645,7 +651,7 @@ class Dispositif extends Component {
         true;
     }else{dispositif.variantes = this.state.variantes; delete dispositif.titreMarque;}
     dispositif.mainSponsor = ((dispositif.sponsors || [{}])[0] || {})._id;
-    if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire" && !inVariante){
+    if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire" && !inVariante && this.state.status !== "Brouillon" && status !== "Brouillon"){
       dispositif.status = this.state.status;
     }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
       //Si l'auteur appartient à la structure principale je la fait passer directe en validation
@@ -657,15 +663,15 @@ class Dispositif extends Component {
       dispositif.status = "En attente non prioritaire";
     }
     console.log(dispositif)
-    // API.add_dispositif(dispositif).then((data) => {
-    //   Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
-    //     this.props.fetch_user();
-    //     this.props.fetch_dispositifs();
-    //     this.setState({disableEdit: status === 'En attente admin' || status === 'En attente', isDispositifLoading: false}, () => {
-    //       this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
-    //     })
-    //   });
-    // })
+    API.add_dispositif(dispositif).then((data) => {
+      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+        this.props.fetch_user();
+        this.props.fetch_dispositifs();
+        this.setState({disableEdit: ['En attente admin', 'En attente', "En attente non prioritaire", "Brouillon", "Actif"].includes(status), isDispositifLoading: false}, () => {
+          this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
+        })
+      });
+    })
   }
 
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
@@ -754,7 +760,7 @@ class Dispositif extends Component {
               />
             </Col>}
           <Col lg={translating ? "8" : "12"} md={translating ? "8" : "12"} sm={translating ? "8" : "12"} xs={translating ? "8" : "12"} className="main-col">
-            <section className="banniere-dispo" style={{backgroundImage: `url(${bgImage("Français")})`}}>
+            <section className="banniere-dispo" style={mainTag && mainTag.short && {backgroundImage: `url(${bgImage(mainTag.short)})`}}>
               {inVariante &&
                 <BandeauEdition
                   menu={this.state.menu}
@@ -826,6 +832,7 @@ class Dispositif extends Component {
                 </div>
               </Col>
             </section>
+            
             {!inVariante && 
               <Row className="tags-row backgroundColor-darkColor">
                 <Col lg="8" md="8" sm="8" xs="8" className="col right-bar">
@@ -862,8 +869,9 @@ class Dispositif extends Component {
                   <Tags tags={this.state.tags} filtres={filtres.tags} disableEdit={this.state.disableEdit} changeTag={this.changeTag} addTag={this.addTag} deleteTag={this.deleteTag} history={this.props.history} />
                 </Col>
               </Row>}
-            <Row>
-              <Col className={"left-side-col pt-40" + (translating ? " sideView" : "")} lg="3" md="3" sm="3" xs="12">
+            
+            <Row className="no-margin-right">
+              <Col xl="3" lg="3" md="12" sm="12" xs="12" className={"left-side-col pt-40" + (translating ? " sideView" : "")}>
                 <LeftSideDispositif
                   menu={this.state.menu}
                   accordion={this.state.accordion}
@@ -883,15 +891,15 @@ class Dispositif extends Component {
                 <Col className="variante-col">
                   <div className="radio-btn" />
                 </Col>}
-              <Col className="pt-40 col-middle" lg={translating ? "12" : "7"} md={translating ? "12" : "7"} sm={translating ? "12" : "7"} xs={translating ? "12" : "7"}>
+              <Col xl={translating ? "12" : "7"} lg={translating ? "12" : "7"} md={translating ? "12" : "10"} sm={translating ? "12" : "10"} xs={translating ? "12" : "10"} className="pt-40 col-middle">
                 {disableEdit && !inVariante && 
                   <Row className="fiabilite-row">
                     <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
                       {t("Dernière mise à jour", "Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
                     </Col>
                     <Col className="col">
-                      {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className="fiabilite">{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
-                      <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill="#E55039"  onClick={()=>this.toggleModal(true, 'fiabilite')} />
+                      {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className={"fiabilite color-" + (fiabilite > 0.5 ? "vert" : fiabilite > 0.2 ? "orange" : "rouge")}>{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
+                      <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill={variables[fiabilite > 0.5 ? "validationHover" : fiabilite > 0.2 ? "orange" : "error"]}  onClick={()=>this.toggleModal(true, 'fiabilite')} />
                       
                       <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
                         <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Dispositif.fiabilite_faible", "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant") }} />
@@ -904,7 +912,9 @@ class Dispositif extends Component {
                   <MoteurVariantes 
                     itemId={this.state._id}
                     disableEdit={disableEdit}
+                    inVariante={inVariante}
                     validateVariante={this.validateVariante} 
+                    deleteVariante={this.deleteVariante}
                     filtres={filtres}
                     upcoming={this.upcoming}
                     switchVariante={this.switchVariante}
@@ -943,13 +953,21 @@ class Dispositif extends Component {
                         <h5 className="color-darkColor">{t("Dispositif.informations_utiles", "Vous avez trouvé des informations utiles ?")}</h5>
                         <span className="color-darkColor">{t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigé pour vous")}&nbsp;:</span>
                       </div>
-                      <div>
-                        <Button color="light" className="thanks-btn" onClick={()=>this.pushReaction(null, "merci")}>
+<<<<<<< Updated upstream
+                      <div className="negative-margin">
+                        <Button color="light" className="thanks-btn mt-10" onClick={()=>this.pushReaction(null, "merci")}>
                           {t("Merci", "Merci")} <span role="img" aria-label="merci">🙏</span>
                         </Button>
-                        <Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
-                          <span role="img" aria-label="merci">👎</span>
+                        <Button color="light" className="down-btn mt-10" onClick={()=>this.pushReaction(null, "pasMerci")}>
+=======
+                      <div>
+                        <Button color="light" className="thanks-btn color-darkColor" onClick={()=>this.pushReaction(null, "merci")}>
+                          {t("Merci", "Merci")}
                         </Button>
+                        {/*<Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
+>>>>>>> Stashed changes
+                          <span role="img" aria-label="merci">👎</span>
+                         </Button>*/}
                       </div>
                     </div>
                     <div className="discussion-footer backgroundColor-darkColor">
@@ -982,7 +1000,7 @@ class Dispositif extends Component {
 
                 {false && <Commentaires />}
               </Col>
-              <Col lg="2" md="2" sm="2" xs="2" className={"aside-right pt-40" + (translating ? " sideView" : "")} />
+              <Col xl="2" lg="2" md="2" sm="2" xs="2" className={"aside-right pt-40" + (translating ? " sideView" : "")} />
             </Row>
             
             <ReagirModal name='reaction' show={showModals.reaction} toggleModal={this.toggleModal} onValidate={this.pushReaction} />
@@ -1095,12 +1113,13 @@ const calculFiabilite = dispositif => {
   // console.log(score, dispositif, nbMoisAvantMaJ, nbMoisEntreCreationEtMaj, 
   //   hasSponsor, nbMots, nbLangues, nbTags, tagAutreExist, hasExternalLink,
   //   nbSectionsSansContenu, nbFakeContent, nbAddedChildren, hasMap, nbSections)
+  console.log(score)
   return score;
   //Nouvelles idées: nombre de suggestions, merci etc
 }
 
 function bgImage(short) {
-  const imageUrl = require("../../assets/figma/" + short + ".svg") //illustration_
+  const imageUrl = require("../../assets/figma/illustration_" + short.split(" ").join("-") + ".svg") //illustration_
   return imageUrl
 }
 

@@ -35,7 +35,7 @@ class DispositifCreateModal extends Component {
           {stepIdx === 0 &&
             <div className="temps-right">
               <EVAIcon className="mr-8" name="clock-outline" size="large" fill={variables.noir} />
-              <span>≈ {typeContenu === "demarche" ? 40 : 20} minutes</span>
+              <span className="inline-custom">≈ {typeContenu === "demarche" ? 40 : 20} min</span>
             </div>} </>}
         {...this.props}
       >
@@ -45,8 +45,7 @@ class DispositifCreateModal extends Component {
               <h5>1. Gardez en tête le public de la plateforme</h5> 
               <ul className="liste-classic">
                 <li>Vous vous adressez à des personnes réfugiées : le vocabulaire employé doit être simple et accessible.</li> 
-                <li>Il ne s’agit pas d’un support de communication institutionnelle mais d’une fiche pratique qui donne les principales informations de votre dispositifs.</li> 
-                <li>Le contenu doit être synthétique et vulgarisé.</li> 
+                <li>Il ne s’agit pas d’un support de communication institutionnelle mais d’une fiche pratique qui donne les principales informations de votre dispositifs. Le contenu doit être synthétique et vulgarisé.</li> 
                 <li>La lecture complète de la fiche ne devrait pas excéder {typeContenu === "demarche" ? "trois" : "deux"} minutes.</li> 
               </ul>
             </div>

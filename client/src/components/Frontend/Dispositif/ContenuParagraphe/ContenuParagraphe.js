@@ -7,9 +7,10 @@ import QuickToolbar from '../../../../containers/Dispositif/QuickToolbar/QuickTo
 import CardParagraphe, {PlusCard} from '../../../../containers/Dispositif/CardParagraphe/CardParagraphe';
 import MapParagraphe from '../../../../containers/Dispositif/MapParagraphe/MapParagraphe';
 import EtapeParagraphe from '../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe';
-
-import variables from '../../../../containers/Dispositif/Dispositif.scss';
+import FButton from '../../../FigmaUI/FButton/FButton';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
+
+import variables from 'scss/colors.scss';
 
 const contenuParagraphe = (props) => {
   const {disableEdit, ...bprops}=props;
@@ -81,9 +82,9 @@ const contenuParagraphe = (props) => {
                           {newDisableEdit && 
                             <EVAIcon name={"chevron-" + (safeUiArray(props.keyValue, subkey, 'accordion') ? "up" : "down") + "-outline"} size="large" fill={variables.darkColor} />}
                         </h5>
+                        {!newDisableEdit && subkey > 0 && 
+                          <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="accordeon-delete-icon ml-10 cursor-pointer" name="close-circle" fill={variables.error} size="xlarge" />}
                       </div>
-                      {!newDisableEdit && subkey > 0 && 
-                        <EVAIcon onClick={() => props.removeItem(props.keyValue, subkey)} className="accordeon-delete-icon ml-10 cursor-pointer" name="close-circle" fill={variables.noir} size="xlarge" />}
                     </div>
                     <Collapse className="contenu-accordeon" isOpen={safeUiArray(props.keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + props.keyValue + "-" + subkey} aria-labelledby={"heading" + props.keyValue + "-" + subkey}>
                       <EditableParagraph 
@@ -97,6 +98,10 @@ const contenuParagraphe = (props) => {
                         tutoriel={item.tutoriel}
                         addItem={props.addItem}
                         {...subitem} />
+                      {!newDisableEdit &&
+                        <FButton type="dark" name="plus-circle-outline" className="mt-10" onClick={()=>props.addItem(props.keyValue, "accordion", subkey)} >
+                          Ajouter un module
+                        </FButton>}
                     </Collapse>
                   </Col>
                   {!props.sideView && !props.inVariante && newDisableEdit && 

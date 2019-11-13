@@ -73,8 +73,8 @@ class CardParagraphe extends Component {
   }
 
   render(){
-    let {subitem, subkey, filtres, disableEdit, t} = this.props;
-    let {showNiveaux} = this.state;
+    const {subitem, subkey, filtres, disableEdit, t} = this.props;
+    const {showNiveaux} = this.state;
 
     const jsUcfirst = (string, title) => {
       if(title === 'Public visé' && string && string.length > 1){
@@ -82,7 +82,7 @@ class CardParagraphe extends Component {
       }else{ return string }
     }
 
-    let cardTitles=[
+    const cardTitles=[
       {title:'Public visé',titleIcon:'papiers', options: filtres.audience},
       {title:'Âge requis',titleIcon:'calendar', options: filtres.audienceAge}, //["0-18","18-25","25-56","56-120"]
       {title:'Durée',titleIcon:'horloge'},
@@ -92,7 +92,7 @@ class CardParagraphe extends Component {
       {title:'Important !',titleIcon:'warning'},
     ]
     
-    let contentTitle = (subitem) => {
+    const contentTitle = (subitem) => {
       let cardTitle = cardTitles.find(x=>x.title===subitem.title);
       if(cardTitle && cardTitle.options && cardTitle.options.length > 0 && !disableEdit){
         if(!cardTitle.options.some(x => x.toUpperCase()===subitem.contentTitle.toUpperCase())){ subitem.contentTitle = cardTitle.options[0]; subitem.contentBody = 'A modifier'; }
@@ -174,7 +174,7 @@ class CardParagraphe extends Component {
         return(
           <ContentEditable
             id={this.props.keyValue}
-            className="color-darkColor card-input"
+            className="card-input"
             data-subkey={subkey}
             data-target='contentTitle'
             html={texte}  // innerHTML of the editable div
@@ -186,7 +186,7 @@ class CardParagraphe extends Component {
       }
     }
 
-    let cardHeaderContent = (subitem) => {
+    const cardHeaderContent = (subitem) => {
       if(this.props.disableEdit){
         return(
           <>
@@ -220,7 +220,7 @@ class CardParagraphe extends Component {
       }
     }
 
-    let cardFooterContent = subitem => {
+    const cardFooterContent = subitem => {
       if(subitem.footerType==="text"){
         if(subitem.footer !== "Ajouter un message complémentaire") {
           return(
@@ -245,7 +245,11 @@ class CardParagraphe extends Component {
     return(
       <>
         <Col className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
-          <Card className={(subitem.title==='Important !' ? 'make-it-red':'regular') + " " + subitem.title.replace(/ /g,"-")} id={"info-card-" + this.props.keyValue + "-" + subkey}>
+          <Card 
+            className={(subitem.title==='Important !' ? 'make-it-red':'regular') + " " + subitem.title.replace(/ /g,"-")} 
+            id={"info-card-" + this.props.keyValue + "-" + subkey}
+            //style={subitem.title && {backgroundImage: `url(${bgImage(subitem.title)})`}}
+          >
             <CardHeader className="backgroundColor-darkColor">
               {cardHeaderContent(subitem)}
             </CardHeader>
@@ -278,8 +282,9 @@ class CardParagraphe extends Component {
                 </div>
               </div>}
           </Card>
-
-          <Tooltip className="card-tooltip backgroundColor-darkColor" isOpen={(subitem.tooltipHeader || subitem.tooltipContent) && !this.props.disableEdit && this.props.withHelp && this.state.tooltipOpen} target={"info-card-" + this.props.keyValue + "-" + subkey} toggle={this.toggleTooltip}>
+          
+          {/* temporairement désactivés à la demande d'hugo mais je sens que ça va revenir */}
+          <Tooltip className="card-tooltip backgroundColor-darkColor" isOpen={false && (subitem.tooltipHeader || subitem.tooltipContent) && !this.props.disableEdit && this.props.withHelp && this.state.tooltipOpen} target={"info-card-" + this.props.keyValue + "-" + subkey} toggle={this.toggleTooltip}>
             <div className="tooltip-header"><b>{subitem.tooltipHeader}</b></div>
             <div className="tooltip-content">{subitem.tooltipContent}</div>
             <div className="tooltip-footer"><u>{subitem.tooltipFooter}</u></div>
@@ -330,6 +335,14 @@ const PlusCard = (props) => {
       </Card>
     </Col>
   )
+}
+
+function bgImage(cardName) {
+  try{
+    const imageUrl = require("../../../assets/figma/InfoCard/infocard_" + cardName.replace(/ /g,"-").replace("-?", "").replace("-!", "") + ".svg") //illustration_
+    return imageUrl
+  }catch(e){console.log(e)}
+  return false;
 }
 
 export {PlusCard}

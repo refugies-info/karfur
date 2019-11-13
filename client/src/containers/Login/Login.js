@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import {NavLink} from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 
 import API from '../../utils/API';
 import setAuthToken from '../../utils/setAuthToken';
@@ -63,7 +64,7 @@ class Login extends Component {
         'traducteur' : this.state.traducteur,
       }
       API.login(user).then(data => {
-        Swal.fire( 'Yay...', 'Authentification réussie !', 'success').then(()=>{
+        Swal.fire( {title: 'Yay...', text: 'Authentification réussie !', type: 'success', timer: 1500} ).then(()=>{
           this.props.history.push(this.state.redirectTo)
         });
         localStorage.setItem('token', data.data.token);
@@ -79,24 +80,33 @@ class Login extends Component {
 
   render() {
     const {passwordVisible, username, step, userExists} = this.state;
-
+    const { t } = this.props;
     return (
       <div className="app flex-row align-items-center login">
         <div className="login-wrapper">
           {step === 1 && !userExists && 
-            <RegisterHeader goBack={this.goBack} /> }
+            <RegisterHeader goBack={this.goBack} t={t} /> }
           <Card className="card-login main-card">
             <CardBody>
               <Form onSubmit={this.send}>
-                <h5>{step === 0 || userExists ? "Se connecter" : "Se créer un compte"}</h5>
-                <div className="texte-small mb-12">{step === 0 ? "Ou se créer un compte" : (userExists ? "Content de vous revoir !" : "Pas besoin d’email")}</div>
+                <h5>
+                  {step === 0 || userExists ? 
+                    t("Login.Se connecter", "Se connecter") : 
+                    t("Login.Se créer un compte", "Se créer un compte")}
+                </h5>
+                <div className="texte-small mb-12">
+                  {step === 0 ? 
+                    t("Login.Ou se créer un compte", "Ou se créer un compte") : 
+                      (userExists ? t("Login.Content de vous revoir !", "Content de vous revoir !") : 
+                        t("Login.Pas besoin d’email", "Pas besoin d’email"))}
+                </div>
                 <CSSTransition
                   in={true} 
                   appear={true} 
                   timeout={600} 
                   classNames="example"
                 >
-                  {step===0 ? <UsernameField value={username} onChange={this.handleChange} step={step} key="username-field"/>:
+                  {step===0 ? <UsernameField value={username} onChange={this.handleChange} step={step} key="username-field" t={t}/>:
                   <>
                     <PasswordField 
                       id="password"
@@ -104,7 +114,8 @@ class Login extends Component {
                       value={this.state.password} 
                       onChange={this.handleChange} 
                       passwordVisible={passwordVisible}
-                      onClick={this.togglePasswordVisibility} />
+                      onClick={this.togglePasswordVisibility}
+                      t={t} />
                       {step === 1 && !userExists &&
                     <PasswordField 
                       id="cpassword"
@@ -112,12 +123,13 @@ class Login extends Component {
                       value={this.state.cpassword} 
                       onChange={this.handleChange} 
                       passwordVisible={passwordVisible}
-                      onClick={this.togglePasswordVisibility} />}
+                      onClick={this.togglePasswordVisibility}
+                      t={t} />}
                   </>}
                 </CSSTransition>
                 
                 {step === 1 &&
-                  <PasswordFooter upcoming={this.upcoming} />}
+                  <PasswordFooter value={this.state.password} upcoming={this.upcoming} t={t} />}
               </Form>
             </CardBody>
           </Card>
@@ -151,7 +163,7 @@ class Login extends Component {
           </Card> */}
           <NavLink to="/">
             <FButton type="outline" name="corner-up-left-outline" className="retour-btn">
-              Retour à l'accueil
+              {t("Login.Retour à l'accueil", "Retour à l'accueil")}
             </FButton>
           </NavLink>
         </div>
@@ -166,10 +178,10 @@ const UsernameField = props => (
       prepend
       prependName="person-outline"
       {...props}
-      id="username" type="username" placeholder="Pseudonyme" autoComplete="username" />
+      id="username" type="username" placeholder={props.t("Login.Pseudonyme", "Pseudonyme")} autoComplete="username" />
     <div className="footer-buttons">
-      <FButton type="dark" name="arrow-forward-outline" color="dark" className="connect-btn">
-        Suivant
+      <FButton type="dark" name="arrow-forward-outline" color="dark" className="connect-btn" disabled={!props.value}>
+        {props.t("Suivant", "Suivant")}
       </FButton>
     </div>
   </div>
@@ -184,17 +196,17 @@ const PasswordField = props => (
     onAppendClick={props.onClick}
     {...props}
     type={props.passwordVisible ? "text" : "password"} id={props.id} 
-    placeholder={props.placeholder} autoComplete="password" />
+    placeholder={props.placeholder && props.t("Login." + props.placeholder, props.placeholder)} autoComplete="new-password" />
 )
 
 const PasswordFooter = props => (
   <div className="footer-buttons">
     {props.userExists &&
       <Button type="button" color="transparent" className="mr-10 password-btn" onClick={props.upcoming}>
-        <u>Mot de passe oublié ?</u>
+        <u>{props.t("Login.Mot de passe oublié ?", "Mot de passe oublié ?")}</u>
       </Button>}
-    <FButton type="dark" name="log-in" color="dark" className="connect-btn">
-      Connexion
+    <FButton type="dark" name="log-in" color="dark" className="connect-btn" disabled={!props.value}>
+      {props.t("Connexion", "Connexion")}
     </FButton>
   </div>
 )
@@ -203,7 +215,7 @@ const RegisterHeader = props => (
   <Card className="card-login header-card cursor-pointer" onClick={props.goBack}>
     <CardBody>
       <EVAIcon name="corner-up-left-outline" fill={variables.noir} className="mr-20" />
-      <span>Il n'existe pas de compte à ce nom. </span>
+      <span>{props.t("Login.no-account", "Il n'existe pas de compte à ce nom")}. </span>
     </CardBody>
   </Card>
 )
@@ -213,6 +225,7 @@ const mapDispatchToProps = {fetch_user};
 export default track({
   page: 'Login',
 }, { dispatchOnMount: true })(
-  connect(null, mapDispatchToProps)
-    (Login)
-  );
+  connect(null, mapDispatchToProps)(
+      withTranslation()(Login)
+  )
+);

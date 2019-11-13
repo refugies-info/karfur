@@ -1,9 +1,12 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
 
 .footer{
   background: $noir;
   padding: 60px 120px;
   color: #FFFFFF;
+  @include media-max("tablet-up") { padding: 60px 60px; }
+  @include media-max("phone-down") { padding: 60px 30px; }
 
   .ligne-footer{
     margin-top: 20px;
@@ -21,28 +24,28 @@
     margin: 10px 0 0 0;
   }
 
-$placeholderColor: $noir;
+  $placeholderColor: $noir;
 
-*::-webkit-input-placeholder {
-  color: $placeholderColor;
-}
-*:-moz-placeholder {
-  color: $placeholderColor;
-  opacity: 1;
-}
-*::-moz-placeholder {
-  color: $placeholderColor;
-  opacity: 1;
-}
-*:-ms-input-placeholder {
-  color: $placeholderColor;
-}
-*::-ms-input-placeholder {
-  color: $placeholderColor;
-}
-*::placeholder {
-  color: $placeholderColor;
-}
+  *::-webkit-input-placeholder {
+    color: $placeholderColor;
+  }
+  *:-moz-placeholder {
+    color: $placeholderColor;
+    opacity: 1;
+  }
+  *::-moz-placeholder {
+    color: $placeholderColor;
+    opacity: 1;
+  }
+  *:-ms-input-placeholder {
+    color: $placeholderColor;
+  }
+  *::-ms-input-placeholder {
+    color: $placeholderColor;
+  }
+  *::placeholder {
+    color: $placeholderColor;
+  }
 
   .form-control{
     border-radius: 12px;
@@ -50,17 +53,28 @@ $placeholderColor: $noir;
     color: $noir;
     outline: none;
     height: 3.75em;
-    placeholder
+<<<<<<< Updated upstream
+    padding-right: 35px;
+    placeholder{
+      &:hover{background: $gris;}
+      &:focus::-webkit-input-placeholder { color:transparent; }
+      &:focus:-moz-placeholder { color:transparent; }
+      &:focus{ box-shadow: none;}
+    }
+=======
     &:hover{background: $gris;}
     &:focus::-webkit-input-placeholder { color:transparent; }
     &:focus:-moz-placeholder { color:transparent; }
     &:focus{ box-shadow: none;}
+>>>>>>> Stashed changes
   }
   .footer-btn{
     display: block;
-    height: 60px;
+    min-height: 60px;
+    max-width: 100%;
     padding: 10px 20px;
     line-height: 38px;
+    white-space: initial;
   }
   .icon-append{
     position: absolute;
@@ -86,5 +100,8 @@ $placeholderColor: $noir;
       margin-bottom: 1rem;
     }
     }
+  }
+  .negative-margin{
+    margin-top:-10px;
   }
 }
