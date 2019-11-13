@@ -78,6 +78,12 @@ class HomePage extends Component {
               </AnchorLink>
             </div>
           </div>
+          <AnchorLink offset='60' href="#plan" className="arrowhead-icon header-anchor d-inline-flex justify-content-center align-items-center">
+            <div className="slide-animation">
+              <span className="slide-background"></span>
+              <EVAIcon className="slide-bottom" name="arrow-circle-down" size="hero"/>
+            </div>
+          </AnchorLink>
         </section>
 
         <section id="plan" className="triptique">
