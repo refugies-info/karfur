@@ -31,17 +31,17 @@
         background-size: cover, cover;
       }
       
-      .Niveau-de-français{
+      &.Niveau-de-français{
         background-image: url(../../../assets/figma/InfoCard/infocard_Français.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover;
       }
       
-      .Combien-ça-coute{
+      &.Combien-ça-coute{
         background-image: url(../../../assets/figma/InfoCard/infocard_Prix.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover;
       }
       
-      .Justificatif-demandé{
+      &.Justificatif-demandé{
         background-image: url(../../../assets/figma/InfoCard/infocard_Papiers.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover;
       }
