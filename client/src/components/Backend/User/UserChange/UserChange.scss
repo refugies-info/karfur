@@ -1,3 +1,5 @@
+@import 'src/scss/colors.scss';
+
 .user-change{
   
   .profile-header-container{
@@ -23,7 +25,8 @@
   }
 
   .label.label-default.rank-label {
-    background-color: rgb(81, 210, 183);
+    color: $blancSimple;
+    background-color: red;
   }
 
 }
