@@ -36,13 +36,13 @@ const steps = [
 ]
 
 const avancement_langue={
-  title: 'Traductions',
+  title: 'Mes traductions',
   headers: ['Titre', 'Statut', 'Progression', 'Langue', 'Ils rédigent avec moi',''],
   hideOnPhone: [false, false, true, false, true, false]
 }
 
 const avancement_data={
-  title: 'Commencer à traduire',
+  title: 'Mes langues',
   headers: ['Langue', 'Progression', 'Traducteurs mobilisés', ''],
   hideOnPhone: [false,true,true,false],
 }

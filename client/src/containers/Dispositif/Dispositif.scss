@@ -379,7 +379,7 @@ $imgHeight : 350px;
   h3.contenu-title{
     line-height: normal;
     color: $darkColor;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   .mt-20{
     margin-top: 40px;
@@ -392,7 +392,7 @@ $imgHeight : 350px;
     }
   }
   .paragraphe{
-    margin-top: 20px;
+    margin-top: 10px;
   }
   #contenu-0 .toolbar-editeur{
     top: -70px;
@@ -571,6 +571,7 @@ $imgHeight : 350px;
       cursor: pointer;
       display: inline-block;
       position: relative;
+      padding-left: 15px;
   
       &.active{
         transition: all 0.2s ease;
@@ -582,8 +583,8 @@ $imgHeight : 350px;
         line-height: 38px;
       }
       .accordion-text{
-        margin: 0 18px 0 0;
-        font-size: 18px;
+        margin: 0 22px 0 0;
+        font-size: 22px;
         font-weight: 600;
       }
       .accordion-number, .accordion-expand{
@@ -609,7 +610,19 @@ $imgHeight : 350px;
 
     .contenu-accordeon{
       margin-top:20px;
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
       margin-left:50px;
+      p{
+        font-size: 18px;
+        line-height: 27px;
+      }
+=======
+
+>>>>>>> Stashed changes
+=======
+
+>>>>>>> Stashed changes
       &.etape-accordeon{ 
         .plus-wrapper{
           bottom: 53px;
@@ -649,7 +662,7 @@ $imgHeight : 350px;
     justify-content: space-between;
     align-items: center;
     margin-top:120px;
-    padding: 35px 20px 35px 40px;
+    padding: 35px 40px;
     font-size: 18px;
     @include media-max("lg-limit") { width: 116% }
 
@@ -657,29 +670,21 @@ $imgHeight : 350px;
       font-weight: bold;
       font-size: 16px;
       border-radius: 12px;
-      border: 0.5px solid $rouge;
-      color: $rouge;
-      
+      border: 0.5px solid;
+      padding: 15px 20px;
       &:hover{
-        background: linear-gradient(118.23deg, rgba(246, 185, 59, 0.3) 12.44%, rgba(229, 80, 57, 0.3) 71.69%);
+        background: darken($color: $gris, $amount: 0);
+
       }
       &:active{
-        background: linear-gradient(124.79deg, #F6B93B 12.44%, $rouge 71.69%);
+        background: $validationHover;
         color: #FFFFFF;
         border: none;
       }
+      &::after{
+        background: $validationHover;
+      }
     }
-    .thanks-btn{
-      margin-right: 10px;
-      background: #FFFFFF;
-    }
-    .down-btn{
-      border: 0.5px solid $rouge;
-      background-color: $blanc;
-    }
-  }
-  h5{
-    font-size: 24px;
   }
 
   .translating{

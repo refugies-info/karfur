@@ -166,7 +166,7 @@ class UneVariante extends Component {
                         Tranche d’âge
                       </h5>
                       <div className="critere-body justify-content-space-between">
-                        <span className="color-grisFonce">Cette variante s’applique aux personnes qui ont : </span>
+                        {/*<span className="color-grisFonce">Cette variante s’applique aux personnes qui ont : </span>*/}
                         
                         <ButtonDropdown isOpen={this.state.dropdowns.age} toggle={()=>this.toggleDropdown("age")} className="content-title">
                           <DropdownToggle caret>

@@ -192,10 +192,16 @@ html body{
       background-color: nth($value, 2);
     }
     .bg-light-#{nth($value, 1)} {
-      background-color: nth($value, 2);
+      background-color: nth($value, 3);
     }
     .border-#{nth($value, 1)} {
       border-color: nth($value, 2);
+    }
+    .texte-#{nth($value, 1)} {
+      color: nth($value, 2);
+    }
+    .texte-light-#{nth($value, 1)} {
+      color: nth($value, 2);
     }
   }
 }

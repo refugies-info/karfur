@@ -7,6 +7,11 @@
   max-width: 100%;
   overflow: scroll;
 
+  .header-anchor{
+    position: absolute;
+    top: 600px;
+  }
+
   .slide-animation{
     position: absolute;
     bottom: 33px;
@@ -47,13 +52,18 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    background: linear-gradient(124.63deg, #FFFFFF -3.98%, $gris 115.05%);
+    background: linear-gradient(124.63deg, #FFFFFF -3.98%, #F2F2F2 115.05%);
+    background-image: url(../../assets/figma/trame_home_bg.svg);
+    background-size: cover;
     flex-direction: column;
   }
 
   .hero-container{
     text-align: center;
     max-width: 650px;
+    h1{
+      margin-bottom: 30px;
+    }
   }
 
   .section-container{
