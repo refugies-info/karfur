@@ -15,8 +15,8 @@
       border:none;
       height: 300px;
 
-      .Public-visé{
-        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Public.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+      &.Public-visé{
+        background-image: url(../../../assets/figma/InfoCard/infocard_Public.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover; 
       }
       
@@ -53,13 +53,11 @@
         background-color: $darkColor;
         border: none;
         border-radius: 12px 12px 0 0;
-        font-size: 16px;
         color: #FFFFFF;
         padding: 10px;
 
         .header-content{
           margin-left: 10px;
-          font-size: 16px;
         }
         .form-control{
           background-color:inherit;
@@ -79,14 +77,10 @@
     
       .card-body{
         padding-bottom: 12px;
-        font-size: 16px;
         line-height: 20px;
         color: #FFFFFF;
   
         h4{
-          font-style: normal;
-          font-weight: 500;
-          font-size: 24px;
           .card-input{
             border-radius: 6px;
             color: $darkColor;
