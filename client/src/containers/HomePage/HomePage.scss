@@ -255,6 +255,7 @@
     background-size: cover;
   }
 
+<<<<<<< Updated upstream
   .chevron-wrapper{
     flex: 1;
     width: 100%;
@@ -288,6 +289,30 @@
         transition: all 0.5s ease;
         fill:$gris;
       }
+=======
+.slide-animation{
+  transition: all 0.5s ease;
+	-webkit-animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+          animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+}
+
+.slide-background{
+  left: 6px;
+  bottom: 6px;
+  position: absolute;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  background-color: $noir;
+}
+.slide-bottom {
+  position: relative;
+  fill: $blancSimple;
+  &:hover{
+    svg{
+      transition: all 0.5s ease;
+      fill:$gris;
+>>>>>>> Stashed changes
     }
   }
 }
