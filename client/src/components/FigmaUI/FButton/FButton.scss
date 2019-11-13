@@ -131,6 +131,8 @@ body .figma-btn{
   // Fill-Light
   &.light-action{
     min-width: 40px;
+    color: $noir;
+    background: $blancSimple;
     svg{
       fill: $noir;
     }
@@ -138,6 +140,7 @@ body .figma-btn{
       background: $noir;
       box-shadow: none;
       color: $blancSimple;
+      border: 0.5px solid $blancSimple;
       svg{
         fill: $blancSimple;
       }
