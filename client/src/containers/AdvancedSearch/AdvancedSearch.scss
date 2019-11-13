@@ -134,7 +134,9 @@
       .bookmark-icon{
         opacity: 1;
       }
-
+    }
+    .card-body{
+      overflow: scroll;
     }
   }
 
@@ -152,7 +154,7 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
       padding: 16px;
-
+      overflow: scroll;
     }
   }
   .no-result{

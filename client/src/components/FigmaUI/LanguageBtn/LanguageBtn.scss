@@ -5,6 +5,7 @@ $btnHeight:40px;
 $btnWidth:40px;
 
 .language-btn.figma-btn{
-  margin: auto 10px auto 0px;
+  margin-top: auto;
+  margin-bottom: auto;
   @include media-max("phone-down") { margin-right: 5px; }
 }
