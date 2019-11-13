@@ -16,18 +16,19 @@ const membersTable = (props) => {
   const hasMembers = (props.dataArray || []).length > 0;
   const dataArray = hasMembers ? props.dataArray : new Array(5).fill(fakeMembre);
   let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
-  
+  const hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+
   data = data.map(x => ({
     ...x, 
     ...props.users.find(y => y._id === x.userId),
     structRole: ((x.roles || []).includes("administrateur") ? "administrateur" : ((x.roles || []).includes("contributeur") ? "contributeur" : "membre")),
   }));
 
-  let table = (
+  const table = (
     <Table responsive className="avancement-user-table">
       <thead>
         <tr>
-          {props.headers.map((element,key) => (<th key={key}>{element}</th> ))}
+          {props.headers.map((element,key) => (<th key={key} className={hideOnPhone[key] ? "hideOnPhone" : ""}>{element}</th> ))}
         </tr>
       </thead>
       <tbody>
@@ -49,20 +50,20 @@ const membersTable = (props) => {
                   <EVAIcon name="edit-outline" className="ml-10 edit-icon" />
                 </FButton>
               </td>
-              <td className="align-middle">
+              <td className="align-middle hideOnPhone">
                 {element.connected ? <span className="depuis success">Actuellement en ligne</span> :
                   element.last_connected ? <span>{moment(element.last_connected).calendar()} <span className={"depuis " + (joursLastC > 3 ? "alert" : "success")}>{moment(element.last_connected).fromNow()}</span></span> : ""}
               </td>
-              <td className="align-middle">
+              <td className="align-middle hideOnPhone">
                 {element.added_at ? moment(element.added_at).calendar() : ""}
               </td>
-              <td className="align-middle fit-content">
+              <td className="align-middle fit-content hideOnPhone">
                 {/* <FButton type="light-action" name="person-outline" fill={variables.noir} onClick={props.upcoming} /> */}
               </td>
-              <td className="align-middle fit-content">
+              <td className="align-middle fit-content hideOnPhone">
                 {/* <FButton type="light-action" name="message-circle-outline" fill={variables.noir} onClick={props.upcoming} /> */}
               </td>
-              <td className="align-middle fit-content">
+              <td className="align-middle fit-content hideOnPhone">
                 {/* <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={props.upcoming} /> */}
               </td>
             </tr>
@@ -88,7 +89,7 @@ const membersTable = (props) => {
             <h1>{props.title}</h1>
           </Col>
           {(((props.structure.membres || []).find(x => x.userId === props.user._id) || {}).roles || []).some(y => y==="administrateur" || y==="contributeur") && 
-            <Col className="tableau-header no-margin" lg="1">
+            <Col xl="auto" lg="auto" md="auto" sm="12" xs="12" className="tableau-header no-margin">
               <FButton type="dark" name="options-2-outline" onClick={()=>props.toggleModal("addMember")}>
                 Ajouter un membre
               </FButton>

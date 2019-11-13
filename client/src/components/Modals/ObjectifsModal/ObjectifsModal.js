@@ -48,14 +48,14 @@ class ObjectifsModal extends Component {
           <div className="objectifs-wrapper">
             {objectifs.map((objectif, key) => (
               <Row className={"obj-row mt-10" + (objectifs[key].selected ? " active" : "")} onClick={()=>this.toggleActive(key)} key={key}>
-                <Col lg="1" className="obj-col">
+                <Col xl="1" lg="1" md="1" sm="1" md="1" className="obj-col">
                   <div className="dot-circle" />
                 </Col>
-                <Col lg="4" className="obj-col texte-normal">
+                <Col xl="4" lg="4" md="4" sm="4" xs="4" className="obj-col texte-normal">
                   <b>{(key===2?(objectif.status + " "):"") + (key<3?statut:"") + ((key < 2 || key === 3) ? (" " + objectif.status) : "")}</b>
                 </Col>
-                <Col lg="4" className="obj-col texte-very-small texte-gris-fonce">{objectif.texte}</Col>
-                <Col lg="3" className="obj-col texte-small">
+                <Col xl="4" lg="4" md="4" sm="4" xs="4" className="obj-col texte-very-small texte-gris-fonce">{objectif.texte}</Col>
+                <Col xl="3" lg="3" md="3" sm="3" xs="3" className="obj-col texte-small">
                   <div>
                     <b>{(key===3 ? "+ de " : "" ) + objectif.objectifTemps} heures</b>
                     {key<3 && <span className="texte-gris"> données</span>}
