@@ -5,6 +5,8 @@
   flex: 1 1;
   color: $noir;
   background: $gris;
+  max-width: 100%;
+  overflow: scroll;
 
   .link{
     text-decoration: underline;

@@ -8,7 +8,7 @@ $imgHeight : 350px;
   flex: 1 1;
   position: relative;    
   max-width: 100%;
-  overflow: scroll;
+  overflow: scroll !important;
   
   .banniere-dispo{
     margin-top: -60px;
@@ -615,7 +615,6 @@ $imgHeight : 350px;
         font-size: 18px;
         line-height: 27px;
       }
-
       &.etape-accordeon{ 
         .plus-wrapper{
           bottom: 53px;
@@ -712,7 +711,7 @@ $imgHeight : 350px;
       width: 100%;
       padding: 0;
       .form-control {
-        padding-right: 12px;
+        padding-right: 30px;
         padding-left: 40px;
         z-index: 1;
         border:none;
