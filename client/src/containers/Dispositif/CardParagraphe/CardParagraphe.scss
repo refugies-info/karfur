@@ -14,7 +14,8 @@
       border-radius: 12px;
       border:none;
       height: 300px;
-
+      background-color: $noirCD;
+      
       &.Public-visé{
         background-image: url(../../../assets/figma/InfoCard/infocard_Public.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover; 
