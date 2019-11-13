@@ -294,6 +294,26 @@
   }
 }
 
+.slide-background{
+  left: 6px;
+  bottom: 6px;
+  position: absolute;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  background-color: $noir;
+}
+.slide-bottom {
+  position: relative;
+  fill: $blancSimple;
+  &:hover{
+    svg{
+      transition: all 0.5s ease;
+      fill:$gris;
+    }
+  }
+}
+
 
 
 @-webkit-keyframes slide-bottom {
@@ -306,6 +326,7 @@
             transform: translateY(30px);
   }
 }
+
 @keyframes slide-bottom {
   0% {
     -webkit-transform: translateY(0);
