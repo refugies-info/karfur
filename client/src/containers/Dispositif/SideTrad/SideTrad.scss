@@ -14,9 +14,16 @@
     justify-content: space-between;
     margin-bottom: 25px;
     flex-wrap: wrap;
+    margin-top: -10px;
   }
   .langue-data{
     margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .toolbar-spacer{
+    width: 175px;
+    height: 35px;
   }
   .content-data{
     min-height:200px;
@@ -48,8 +55,8 @@
           flex: 1;
         }
         .toolbar-editeur{
-          right: 0px;
-          top: -57px;
+          right: -25px;
+          top: -75px;
         }
       }
     }
@@ -57,7 +64,16 @@
   .footer-btns{
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+
+    .right-footer{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-right: -10px;
+    }
   }
   .margin-left-auto{
     margin-left: auto;

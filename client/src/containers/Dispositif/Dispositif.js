@@ -726,7 +726,10 @@ class Dispositif extends Component {
     )}else{return false}};
 
     return(
-      <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : " reading-mode")} ref={this.newRef}>
+      <div 
+        className={"animated fadeIn dispositif vue" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : " reading-mode")} 
+        ref={this.newRef} 
+      >
         {/* Second guided tour */}
         <ReactJoyride
           continuous
@@ -843,19 +846,21 @@ class Dispositif extends Component {
                         if(card.type==='card'){
                           let texte = card.contentTitle;
                           if(card.title==='Âge requis'){
-                            texte = (card.contentTitle === 'De ** à ** ans') ? 'De ' + card.bottomValue + ' à ' + card.topValue + ' ans' :
-                                                (card.contentTitle === 'Moins de ** ans') ? 'Moins de ' + card.topValue + ' ans' :
-                                                'Plus de ' + card.bottomValue + ' ans';
+                            texte = (card.contentTitle === 'De ** à ** ans') ? t("Dispositif.De", "De") + ' ' + card.bottomValue + ' ' + t("Dispositif.à", "à") + ' ' + card.topValue  + ' ' + t("Dispositif.ans", "ans") :
+                              (card.contentTitle === 'Moins de ** ans') ? t("Dispositif.Moins de", "Moins de") + ' ' + card.topValue + ' ' + t("Dispositif.ans", "ans") :
+                              t("Dispositif.Plus de", "Plus de") + ' ' + card.bottomValue + ' ' + t("Dispositif.ans", "ans");
+                          }else if(["Niveau de français", "Justificatif demandé", "Public visé"].includes(card.title)){
+                            texte = card.contentTitle && t("Dispositif." + card.contentTitle, card.contentTitle);
                           }else if(card.title === 'Combien ça coûte ?'){
-                            texte = card.free ? "gratuit" : (card.price + " € " + card.contentTitle)
+                            texte = card.free ? t("Dispositif.Gratuit", "Gratuit") : (card.price + " € " + t("Dispositif." + card.contentTitle, card.contentTitle))
                           }
                           return (
-                            <div className="tag-wrapper" key={key}>
+                            <div className="tag-wrapper ml-15" key={key}>
                               <div className="tag-item">
                                 <a href={'#item-head-1'} className="no-decoration">
                                   {card.typeIcon==="eva" ?
-                                    <EVAIcon name={card.titleIcon} fill="#FFFFFF"/> :
-                                    <SVGIcon fill="#FFFFFF" width="20" height="20" viewBox="0 0 25 25" name={card.titleIcon} />}
+                                    <EVAIcon name={card.titleIcon} fill="#FFFFFF" className="mr-10" /> :
+                                    <SVGIcon fill="#FFFFFF" width="20" height="20" viewBox="0 0 25 25" name={card.titleIcon} className="mr-10" />}
                                   <span>{h2p(texte)}</span>
                                 </a>
                               </div>
@@ -899,7 +904,7 @@ class Dispositif extends Component {
                     </Col>
                     <Col className="col">
                       {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className={"fiabilite color-" + (fiabilite > 0.5 ? "vert" : fiabilite > 0.2 ? "orange" : "rouge")}>{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
-                      <EVAIcon className="question-bloc" id="question-bloc" name="question-mark-circle" fill={variables[fiabilite > 0.5 ? "validationHover" : fiabilite > 0.2 ? "orange" : "error"]}  onClick={()=>this.toggleModal(true, 'fiabilite')} />
+                      <EVAIcon className="question-bloc ml-8" id="question-bloc" name="question-mark-circle" fill={variables[fiabilite > 0.5 ? "validationHover" : fiabilite > 0.2 ? "orange" : "error"]}  onClick={()=>this.toggleModal(true, 'fiabilite')} />
                       
                       <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
                         <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Dispositif.fiabilite_faible", "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant") }} />
@@ -953,13 +958,20 @@ class Dispositif extends Component {
                         <h5 className="color-darkColor">{t("Dispositif.informations_utiles", "Vous avez trouvé des informations utiles ?")}</h5>
                         <span className="color-darkColor">{t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigé pour vous")}&nbsp;:</span>
                       </div>
-                      <div className="negative-margin">
-                        <Button color="light" className="thanks-btn mt-10" onClick={()=>this.pushReaction(null, "merci")}>
-                          {t("Merci", "Merci")} <span role="img" aria-label="merci">🙏</span>
+                      <div>
+                        <Button color="light" className="thanks-btn color-darkColor" onClick={()=>this.pushReaction(null, "merci")}>
+                          {t("Merci", "Merci")}
                         </Button>
-                        <Button color="light" className="down-btn mt-10" onClick={()=>this.pushReaction(null, "pasMerci")}>
+                        {/*<Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
+=======
+                      <div>
+                        <Button color="light" className="thanks-btn color-darkColor" onClick={()=>this.pushReaction(null, "merci")}>
+                          {t("Merci", "Merci")}
+                        </Button>
+                        {/*<Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
+>>>>>>> Stashed changes
                           <span role="img" aria-label="merci">👎</span>
-                        </Button>
+                         </Button>*/}
                       </div>
                     </div>
                     <div className="discussion-footer backgroundColor-darkColor">

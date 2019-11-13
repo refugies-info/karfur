@@ -38,7 +38,6 @@ class Footer extends Component {
       <div className="animated fadeIn footer">
         <Row className="negative-margin">
           <Col xl="4" lg="4" md="4" sm="12" xs="12" className="mt-10">
-            <Logo />
             <Form onSubmit={this.sendMail}>
               <FormGroup>
                 {/*<Label for="emailNewsletter">Rejoindre la newsletter</Label>*/}

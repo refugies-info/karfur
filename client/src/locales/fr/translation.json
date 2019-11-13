@@ -33,7 +33,10 @@
     "Trier par": "Trier par :",
     "Filtrer par": "Filtrer par :",
     "Dispositifs": "Dispositifs",
-    "Démarches": "Démarches"
+    "Démarches": "Démarches",
+    "Créer une fiche": "Créer une fiche",
+    "Elargir recherche": "Essayez d’élargir votre recherche en désactivant certains filtres",
+    "Oups": "Oups !"
   },
   "Tables": {
     "Propriétaire": "Propriétaire",
@@ -315,7 +318,27 @@
     "Ville": "Ville",
     "Informations pratiques": "Informations pratiques",
     "Email de contact": "Email de contact",
-    "Numéro de téléphone": "Numéro de téléphone"
+    "Numéro de téléphone": "Numéro de téléphone",
+    "Débutant": "Débutant",
+    "Intermédiaire": "Intermédiaire",
+    "Avancé": "Avancé", 
+    "Tous les niveaux": "Tous les niveaux",
+    "Titre de séjour": "Titre de séjour", 
+    "Justificatif de domicile": "Justificatif de domicile", 
+    "Diplôme": "Diplôme", 
+    "Permis de conduire": "Permis de conduire",
+    "réfugié": "réfugié", 
+    "tout public": "tout public",
+    "En savoir plus": "En savoir plus",
+    "Tiennent la page": "Tiennent la page à jour et répondent à vos questions",
+    "Évaluer mon niveau": "Évaluer mon niveau",
+    "Nous vous écoutons": "Nous vous écoutons :",
+    "Réagir": "Réagir",
+    "J'ai une question": "J'ai une question",
+    "J'ai une suggestion !": "J'ai une suggestion !",
+    "Je veux juste vous dire": "Je veux juste vous dire",
+    "réagir": "réagir",
+    "écouter": "écouter"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",
@@ -356,6 +379,7 @@
   "Contributeurs": "Contributeurs",
   "Traducteurs": "Traducteurs",
   "Merci": "Merci !",
+  "Bravo": "Bravo !",
   "ou": "ou",
   "Bientôt disponible !": "Bientôt disponible !",
   "En savoir plus": "En savoir plus",
@@ -397,5 +421,6 @@
   "Parcours personnalisé": "Parcours personnalisé",
   "Suivant": "Suivant",
   "Connexion": "Connexion",
+  "Envoyer": "Envoyer",
   "Lexique": "Lexique"
 }

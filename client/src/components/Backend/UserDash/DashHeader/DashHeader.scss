@@ -91,10 +91,12 @@ $normalSize: 18px;
   }
 
   .header-structure{
+    margin-top: -10px;
     .titre-structure{
       border-radius: 12px;
       background: $blanc;
       height: 100%;
+      padding: 0;
 
       .right-side{
         padding: 20px;
@@ -110,7 +112,7 @@ $normalSize: 18px;
       }
     }
     .img-wrapper{
-      padding: 35px 54px;
+      padding: 35px 35px;
       height: 100%;
       background: $blancSimple;
       display: flex;
@@ -121,13 +123,29 @@ $normalSize: 18px;
       max-width: 190px;
     }
 
+    .row-indicateurs{
+      margin-left: 10px;
+    }
+
+    .struct-indicateurs{
+      padding-left: 0;
+      padding-right: 10px;
+    }
+
     .right-side-header{
-      margin-top: -10px;
       .indicateur{
         background: $blanc;
         border-radius: 12px;
         padding: 20px;
         margin-top: 10px;
+        align-items: center;
+        display: flex;
+        flex : 1 0 auto;
+        overflow: scroll;
+        h2{
+          margin-right: 10px;
+        }
+
       }
     }
   }
