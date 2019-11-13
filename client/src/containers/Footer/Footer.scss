@@ -53,20 +53,14 @@
     color: $noir;
     outline: none;
     height: 3.75em;
-<<<<<<< Updated upstream
     padding-right: 35px;
-    placeholder{
+
+    .placeholder{
       &:hover{background: $gris;}
-      &:focus::-webkit-input-placeholder { color:transparent; }
-      &:focus:-moz-placeholder { color:transparent; }
-      &:focus{ box-shadow: none;}
+      &:focus::-webkit-input-placeholder {color:transparent;}
+      &:focus:-moz-placeholder {color:transparent;}
+      &:focus{box-shadow: none;}
     }
-=======
-    &:hover{background: $gris;}
-    &:focus::-webkit-input-placeholder { color:transparent; }
-    &:focus:-moz-placeholder { color:transparent; }
-    &:focus{ box-shadow: none;}
->>>>>>> Stashed changes
   }
   .footer-btn{
     display: block;
