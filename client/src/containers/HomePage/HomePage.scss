@@ -16,6 +16,8 @@
     min-height: 750px;
     padding-top: 100px;
     padding-bottom: 93px;
+    position: relative;
+    overflow: hidden;
   }
 
   #hero {
@@ -112,7 +114,7 @@
     background-position: calc(100% - 60px) calc(100% - 120px),0;
   }
 
-  #multilangues, #explique{
+  #multilangues{
     background-image: url(../../assets/figma/illustration_Traduction.svg);
     background-size: 70%;
     background-repeat: no-repeat;

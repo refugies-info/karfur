@@ -12,7 +12,7 @@ const languageBtn = (props) => {
   const langueCode = props.langues.length > 0 && current ? current.langueCode : "fr";
 
   return(
-    <FButton type="outline-black" className="language-btn" onClick={props.toggle_lang_modal}>
+    <FButton type="outline-black" className="language-btn mr-10" onClick={props.toggle_lang_modal}>
       <i className={'flag-icon flag-icon-' + langueCode} title={langueCode} id={langueCode} />
       {!props.hideText &&
         <span className="ml-10 language-name">{current.langueLoc || "Langue"}</span>}

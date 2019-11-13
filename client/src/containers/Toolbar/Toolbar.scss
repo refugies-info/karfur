@@ -15,8 +15,7 @@
   box-sizing: border-box;
   z-index: 90;
   color: $noir;
-
-  @media (max-width: $drawerLimit) { padding: 0 10px; }
+  @include media-max("desktop-up") { padding: 0 10px; }
 
   nav {
     height: 100%;
@@ -57,7 +56,6 @@
   }
 
   .center-buttons{
-    margin-left:auto;
     display: inline-flex;
   }
 

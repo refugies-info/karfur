@@ -1,0 +1,33 @@
+html body div[dir="rtl"] {
+  text-align: right;
+
+  .homepage{
+    #contribution, #certifiee{
+      background-position: 0 100%, 0;
+    }
+  }
+  .dispositif.vue{
+    .people-footer .people-header .navigate-btns {
+      justify-content: flex-start;
+      direction: ltr;
+    }
+    &.reading-mode .contenu.isHovered{
+      border-right: none;
+      border-left: 4px solid $darkColor;
+      &:after, &:before {
+        right: 100%;
+        left: 0;
+      }
+      &:before {
+        border-right-color: inherit;
+        border-left-color: #FFFFFF;
+      }
+    }
+    .contenu-wrapper .toolbar-col {
+      left: 15px;
+      -webkit-transform: translateX(-100%);
+      transform: translateX(-100%);
+      right: inherit;
+    }
+  }
+}
