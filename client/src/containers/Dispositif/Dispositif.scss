@@ -697,7 +697,7 @@ $imgHeight : 350px;
     align-items: flex-start;
     flex-direction: column;
     margin-top: 24px;
-    @include media-max("lg-limit") { margin-top: 10px; }
+    @include media-max("lg-limit") {margin-top: 10px;}
 
     .figma-btn{
       margin-bottom:12px;
