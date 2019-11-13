@@ -23,9 +23,12 @@ const leftSideDispositif = (props) => {
           {props.menu.map((item, key) => {
             return ( 
               <div key={key} className="list-item-wrapper">
-                <ListGroupItem tag="a" data-toggle="list" action
+                <ListGroupItem
+                  action 
+                  tag="a" 
+                  data-toggle="list"
                   href={'#item-head-' + key} 
-                  onClick={() => props.onMenuNavigate(key)} >
+                >
                   {item.title && t("Dispositif." + item.title, item.title)}
                 </ListGroupItem>
               </div>
@@ -50,19 +53,20 @@ const leftSideDispositif = (props) => {
                 {t("Dispositif.Voir le site", "Voir le site")}
               </FButton>}
           </div>}
-        <FButton type="light-action" onClick={props.createPdf} name="download-outline">
-          {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
-          {props.showSpinner && <Spinner color="success" className="ml-8 small-spinner" />}
-        </FButton>
-        <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
-          {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
-        </FButton>
-        <ReactToPrint
-          trigger={() => 
-            <FButton type="light-action" name="printer-outline">
-              {t("Dispositif.Imprimer", "Imprimer")}
-            </FButton>}
-          content={() => props.newRef.current} />
+        {props.disableEdit && <>
+          <FButton type="light-action" onClick={props.createPdf} name="download-outline">
+            {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
+            {props.showSpinner && <Spinner color="success" className="ml-8 small-spinner" />}
+          </FButton>
+          <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
+            {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
+          </FButton>
+          <ReactToPrint
+            trigger={() => 
+              <FButton type="light-action" name="printer-outline">
+                {t("Dispositif.Imprimer", "Imprimer")}
+              </FButton>}
+            content={() => props.newRef.current} /> </>}
           {/* onBeforePrint={props.openAllAccordions} /> */}
       </div>
     </div>

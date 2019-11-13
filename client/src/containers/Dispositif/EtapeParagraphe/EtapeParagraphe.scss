@@ -10,7 +10,7 @@
     top: -15px;
   }
   .etapes-data{
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     &.editing{ 
       cursor: pointer;
@@ -153,7 +153,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background: linear-gradient(160.54deg, #FFFFFF -3.98%, #F2F2F2 115.05%);
+    background: $gris;
     border-radius: 12px;
     margin-bottom: 20px;
 
@@ -164,12 +164,13 @@
 
   .feedback-wrapper{
     margin-bottom: 10px;
-    background: $noir;
+    background: $gris;
     border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    color: #FFFFFF;
+    padding-left: 20px;
+    color: $noir;
   }
 }

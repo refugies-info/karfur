@@ -1,24 +1,10 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
 
 $btnHeight:40px;
 $btnWidth:40px;
 
-.language-btn.btn{
-  background: transparent;
-  height: $btnHeight;
-  width: $btnWidth;
-  cursor: pointer;
-  box-sizing: border-box;
-  border-radius: 50%;
+.language-btn.figma-btn{
   margin: auto 10px auto 0px;
-  padding: 0;
-  border: 0.5px solid $noir;
-  &:hover{
-    background: $noir;
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-  }
-  i{
-    box-sizing: border-box;
-    border-radius: 2px;
-  }
+  @include media-max("phone-down") { margin-right: 5px; }
 }

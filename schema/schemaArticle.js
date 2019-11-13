@@ -33,6 +33,10 @@ var articleSchema = mongoose.Schema({
   isStructure:{ 
     type: Boolean,
     required: false
+  },
+  canBeUpdated:{ 
+    type: Boolean,
+    required: false
   }
 },{ timestamps: { createdAt: 'created_at' }})
 

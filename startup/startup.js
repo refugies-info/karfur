@@ -4,6 +4,7 @@ const Article = require('../schema/schemaArticle.js');
 const fs = require('fs');
 var path = require('path');
 var uniqid = require('uniqid');
+var _ = require("lodash");
 
 if(process.env.NODE_ENV === 'dev') {
   const langues = require('../private/langues.json');
@@ -48,7 +49,6 @@ if(process.env.NODE_ENV === 'dev') {
       // let isDownloadSuccess=_getI18nLocales()
     }catch(e){console.log(e)}
   }
-
 }else{
   run = async (db) => {
     try{
@@ -58,21 +58,22 @@ if(process.env.NODE_ENV === 'dev') {
   }
 }
 
-const _insertI18nLocales = () => {
+const _insertI18nLocales = async () => {
+  //On commence par récupérer l'article dans son état actuel :
+  const currArticle = await Article.findOne({isStructure: true, title: 'Structure du site', status:'Actif', canBeUpdated: true});
+  if(!currArticle || !currArticle.body){console.log('aucun article retourné, fin.'); return;}
   const localeFolder = __dirname + "/../client/src/locales";
   let frJson=JSON.parse(fs.readFileSync(localeFolder + "/fr/translation.json", "utf8"));
   let nbMots=0;
   let avancement={fr:1};
-  console.log('ici')
   fs.readdirSync(localeFolder,{'withFileTypes':true}).forEach(dir => {
-    if(dir.name && !path.extname(dir.name) && dir.name.slice(0,1) !=='.'){
+    if(dir.name && !path.extname(dir.name) && dir.name.slice(0,1) !== '.'){
       try{
         fs.readdirSync(localeFolder + "/"  + dir.name).forEach(file => {
-          if(file.includes(".json")){
-            console.log(file)
+          if(file.includes(".json")){ console.log(dir.name, file)
             var jsonLoc= JSON.parse(fs.readFileSync(localeFolder + "/"  + dir.name + "/" + file, "utf8"));
-            avancement[dir.name ]=0;
-            let tempObj=_insertNested(frJson,jsonLoc, dir.name, nbMots, avancement);
+            avancement[dir.name]=0;
+            let tempObj=_insertNested(frJson,jsonLoc, dir.name, nbMots, avancement, currArticle.body);
             nbMots=tempObj.nbMots;
             avancement=tempObj.avancement;
           }
@@ -87,29 +88,36 @@ const _insertI18nLocales = () => {
     nombreMots:nbMots,
     avancement:avancement,
     status:'Actif',
-    isStructure: true
+    isStructure: true,
+    canBeUpdated: false
   }
-  Article.findOneAndUpdate({isStructure: true, title: 'Structure du site', status:'Actif'}, localeArticle, {upsert: true,new: true}, (err, doc) => {
-    if (err) {
-      console.log("Something went wrong when updating data : " + err);
-      return false
+  Article.findOneAndUpdate(
+    {isStructure: true, title: 'Structure du site', status:'Actif', canBeUpdated: true}, 
+    localeArticle, 
+    {upsert: false,new: true},  //Modifier upsert à true si on accepte d'en créer un nouveau si on ne le trouve pas
+    (err, doc) => {
+      if (err) {
+        console.log("Something went wrong when updating data : " + err);
+        return false
+      }else if(doc){
+        console.log('translation data inserted with great success');
+      }
+      return true
     }
-    console.log('translation data inserted with great success');
-    return true
-  });
+  );
 }
 
-_insertNested = (frJson, jsonLoc, locale, nbMots, avancement) => {
+_insertNested = (frJson, jsonLoc, locale, nbMots, avancement, currBody) => {
   Object.keys(frJson).forEach((key) => {
     if(typeof frJson[key] === 'string' || (frJson[key] && typeof frJson[key].fr === 'string')){
-      frJson[key]=frJson[key].fr ? frJson[key] : {fr:frJson[key], id : uniqid('struct_')};
-      nbMots+=frJson[key].fr.trim().split(/\s+/).length;
+      frJson[key]=frJson[key].fr ? frJson[key] : {fr:frJson[key], id: _.get(currBody, key + ".id") || uniqid('struct_')};
+      if(locale === "fr"){ nbMots+=frJson[key].fr.trim().split(/\s+/).length; }
       if(jsonLoc && jsonLoc[key] && (typeof jsonLoc[key] === 'string' || jsonLoc[key] instanceof String)){
         frJson[key][locale]=jsonLoc[key];
         avancement[locale]+=frJson[key].fr.trim().split(/\s+/).length
       }
     }else if(frJson.constructor === Object){
-      let tempObj=_insertNested(frJson[key], (jsonLoc || {})[key], locale, nbMots, avancement);
+      let tempObj=_insertNested(frJson[key], (jsonLoc || {})[key], locale, nbMots, avancement, _.get(currBody, key, {}));
       nbMots=tempObj.nbMots;
       avancement=tempObj.avancement;
     }else{

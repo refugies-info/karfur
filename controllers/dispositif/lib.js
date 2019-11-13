@@ -29,7 +29,7 @@ function add_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let dispositif = req.body;
-    
+    console.log('content-length', req.headers['content-length'])
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
@@ -51,7 +51,9 @@ function add_dispositif(req, res) {
         })
       }
       //J'associe la structure principale à ce dispositif
-      Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+      if(dispositif.mainSponsor){
+        Structure.findByIdAndUpdate({ _id: dispositif.mainSponsor },{ "$addToSet": { "dispositifsAssocies": data._id } },{new: true},(e) => {if(e){console.log(e);}}); 
+      }
 
       _handleMailNotification(data);
 
@@ -61,7 +63,7 @@ function add_dispositif(req, res) {
       })
     }).catch(err => {
       console.log(err);
-      res.status(500).json({"text": "Erreur interne"})
+      res.status(500).json({"text": "Erreur interne", data: err})
     })
   }
 }
@@ -91,25 +93,25 @@ function get_dispositif(req, res) {
         { $sample : { size: 1 } }
       ]);
     }else{
-      promise=Dispositif.find(query).sort(sort).populate(populate).limit(limit);
+      promise=Dispositif.find(query).sort(sort).populate(populate).limit(limit)//.setOptions({explain: 'executionStats'});
     }
-
-    promise.then(result => {
+    // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
+    promise.then((result) => {
       [].forEach.call(result, (dispositif) => { 
         dispositif = _turnToFr(dispositif);
         turnJSONtoHTML(dispositif.contenu);
       });
       res.status(200).json({
-          "text": "Succès",
-          "data": result
+        "text": "Succès",
+        "data": result
       })
-    }).catch(function (error) {
+    }).catch(function (error) {console.log(error)
       switch (error) {
         case 500:
-            res.status(500).json({
-                "text": "Erreur interne"
-            })
-            break;
+          res.status(500).json({
+            "text": "Erreur interne"
+          })
+          break;
         case 404:
           res.status(404).json({
             "text": "Pas de résultat"
@@ -147,9 +149,12 @@ function update_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let {dispositifId, fieldName, suggestionId, type, ...dispositif} = req.body;
-    let update = null;
+    let update = null, query = { _id: dispositifId };
     if(type==='pull'){
       update = { $pull: { [fieldName] : {'suggestionId': suggestionId } } }
+    }else if(type==='set'){
+      query = {...query, "suggestions.suggestionId": suggestionId};
+      update = { "$set": { [fieldName]: true } }
     }else{
       update = { "$push": { [fieldName]: {
         ...(req.userId && {userId:req.userId}), 
@@ -159,8 +164,8 @@ function update_dispositif(req, res) {
         suggestionId: uniqid('feedback_')
       } } }
     }
-    Dispositif.findByIdAndUpdate({ _id: dispositifId },update,{new: true},(err, data) => {
-      if (err){res.status(404).json({ "text": "Pas de résultat" })}
+    Dispositif.findOneAndUpdate(query, update,{new: true},(err, data) => {
+      if (err){res.status(404).json({ "text": "Pas de résultat", error: err }); console.log(err)}
       else{
         res.status(200).json({
           "text": "Succès",
@@ -231,12 +236,14 @@ const turnHTMLtoJSON = (contenu, nbMots=null) => {
 }
 
 const turnJSONtoHTML = (contenu) => {
-  for(var i=0; i < contenu.length;i++){
-    if(contenu[i] && contenu[i].content){
-      contenu[i].content = himalaya.stringify(contenu[i].content);
-    }
-    if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
-      turnJSONtoHTML(contenu[i].children)  
+  if(contenu){
+    for(var i=0; i < contenu.length;i++){
+      if(contenu[i] && contenu[i].content && (typeof contenu[i].content === Object || typeof contenu[i].content === "object")){
+        contenu[i].content = himalaya.stringify(contenu[i].content);
+      }
+      if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
+        turnJSONtoHTML(contenu[i].children)  
+      }
     }
   }
 }

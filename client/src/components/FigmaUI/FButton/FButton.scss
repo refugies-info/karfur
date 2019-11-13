@@ -1,13 +1,14 @@
 @import 'src/scss/colors.scss';
 
+// Base de la structure des boutons du design system
+
 body .figma-btn{
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   border-radius: 12px;
   min-height: 40px;
-  padding: 10px;
-  background: $blanc;
+  padding: 10px 15px;
   cursor: pointer;
   border: 0.5px solid transparent;
   color: $noir;
@@ -17,10 +18,13 @@ body .figma-btn{
   display: inline-flex;
   align-items: center;
   
+  // Ici on précise le comportement des icônes avec svg et fill
+
   &.default svg{
     fill:$noir;
   }
   &:hover{
+    transition: all 0.5s ease;
     svg{
       fill: $noir;
     }
@@ -33,12 +37,15 @@ body .figma-btn{
       background: $noirCD;
       color: $noir;
     }
+
+    // Ici on précise le comportement du focus, il s'applique sur toutes les variantes
     &:focus{
-      color: $focus;
-      background: $blanc;
-      border: 0.5px solid $focus;
+      color: $blancSimple;
+      background: $focus;
+      outline:0;
+      border: 0.5px solid transparent;
       svg{
-        fill : $focus;
+        fill : $blancSimple;
       }
     }
     &:disabled, &.disabled{
@@ -49,14 +56,13 @@ body .figma-btn{
         fill:$grisFonce;
       }
       &:hover{
+        transition: all 0.5s ease;
         background-color: $gris;
       }
     }
   }
-  &:focus{
-    outline:0;
-  }
 
+// Fill-Dark
   &.dark{
     background: $noir;
     color: #FFFFFF;
@@ -64,26 +70,23 @@ body .figma-btn{
       fill: $blancSimple;
     }
     &:hover{
+      transition: all 0.5s ease;
       background: #000000;
       color: #FFFFFF;
-      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       svg{
         fill: $blancSimple;
       }
     }
-    
     &:not(:disabled):not(.disabled):active{
       background: #000000;
       color: #FFFFFF;
-      cursor: not-allowed;
       svg{
         fill: $blancSimple;
       }
     }
-    &:focus{
-      background: #000000;
-    }
   }
+
+  // Validate
 
   &.validate{
     background: $vert;
@@ -92,6 +95,7 @@ body .figma-btn{
       fill: $blancSimple;
     }
     &:not(:disabled):not(.disabled):hover{
+      transition: all 0.5s ease;
       background: $vertFonce;
       color: $blancSimple;
       box-shadow: none;
@@ -105,8 +109,9 @@ body .figma-btn{
     }
   }
 
+  // Bouton d'erreur
+
   &.error{
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
     background: $error;
     color: $blancSimple;
     &:hover{
@@ -121,14 +126,19 @@ body .figma-btn{
     }
   }
   
-  &.light-action{ 
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+  // Fill-Light
+  &.light-action{
+    min-width: 40px;
     svg{
       fill: $noir;
     }
     &:not(:disabled):hover{
-      background: $noir3;
+      background: $noir;
       box-shadow: none;
+      color: $blancSimple;
+      svg{
+        fill: $blancSimple;
+      }
     }
     &:not(:disabled):not(.disabled):active{
       background: $noir;
@@ -155,7 +165,20 @@ body .figma-btn{
     }
   }
 
-  &.outline, &.pill{
+  // Outline-Light
+  &.outline{
+    border: 0.5px solid #FFFFFF;
+    background: transparent;
+    color: #FFFFFF;
+    transition: all 0.2s ease;
+    &:hover{
+      color: $noir;
+      border-color: $noir;
+    }
+
+  } 
+  
+  &.pill{
     border: 0.5px solid #FFFFFF;
     background: transparent;
     color: #FFFFFF;
@@ -185,16 +208,23 @@ body .figma-btn{
     }
   }
 
+  // Outline-Dark
+
   &.outline-black{
     border: 0.5px solid $noir;
     background: transparent;
     color: $noir;
-    transition: all 0.2s ease;
+    transition: all 0.4s ease;
+    svg{
+      fill: $noir;
+    }
     &:hover{
-      border-color: #000000;
-      background: $gris;
-      color: #000000;
-      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+      border-color: $noir;
+      background: $noir;
+      color: $blancSimple;
+      svg{
+        fill: $blancSimple;
+      }
     }
   }
 
@@ -212,10 +242,19 @@ body .figma-btn{
     }
   }
 
+  &.hero{
+    height: 60px;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  // Bouton Aide ou J'ai besoin d'aide
   &.help{
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
     background: $erreur;
     color: $error;
+    svg{
+      fill: $error;
+    }
     &:hover{
       background: $error;
       color: $blancSimple;

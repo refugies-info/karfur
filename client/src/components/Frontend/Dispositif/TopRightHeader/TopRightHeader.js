@@ -7,6 +7,7 @@ import FButton from '../../../FigmaUI/FButton/FButton';
 
 const topRightHeader = (props) => {
   const userIsSponsor = ((((props.mainSponsor || {}).membres || []).find(x => x.userId=== props.userId) || {}).roles || []).some(y => y==="administrateur" || y==="contributeur")
+  
   if(props.status==="En attente" && userIsSponsor ){return(
     <Col lg="6" md="6" sm="12" xs="12" className="top-right">
       <Card>

@@ -37,6 +37,7 @@
     border: none;
     padding: 10px;
     margin-left: 10px;
+    max-width: 90%;
     &:focus{
       outline: none;
     }
@@ -45,5 +46,6 @@
     display: inline-block;
     width: 50px;
     text-align: center;
+    height: 100%;
   }
 }

@@ -104,7 +104,7 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  @include media-max("tablet-up") { display: none; }
+  @include media-max("phone-down") { display: none; }
 
   .react-autosuggest__container input{
     background:transparent;

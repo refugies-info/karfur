@@ -1,4 +1,5 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
 
 .structure-card{
   .main-card{
@@ -9,14 +10,18 @@
     .card-body{
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: -10px;
     }
 
     .left-side{
       width: 240px;
+      max-width: 100%;
       background: $blancSimple;
       padding: 20px;
       border-radius: 12px;
       margin-right: 21px;
+      @include media-max("tablet-up") { width: 100%; margin-right: 0; }
 
       .logo-bloc{
         display: flex;
@@ -28,7 +33,8 @@
         flex: 1;
       }
       .logo-img{
-        max-width: 160px;
+        width: 160px;
+        max-width: 100%;
       }
     }
 
@@ -98,6 +104,22 @@
           background: $attention;
         }
       }
+    }
+
+    .text-ellipsis{
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .one-third{
+      margin-top: 10px;
+      max-width: 33%;
+      @include media-max("tablet-up") { max-width: 100%; }
+    }
+
+    .right-padding{
+      padding-right: 21px;
     }
   }
   .no-results{

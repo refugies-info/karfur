@@ -43,7 +43,7 @@ class VarianteCreateModal extends Component {
         </ModalBody>
         <ModalFooter>
           <div className="left-side">
-            <FButton type="light-action" name="arrow-back-outline" onClick={toggle} className="mr-10">
+            <FButton type="outline-black" name="arrow-back-outline" onClick={toggle} className="mr-10">
               Retour
             </FButton>
             <FButton type="help" name="question-mark-circle" fill={variables.error} onClick={this.props.upcoming}>
