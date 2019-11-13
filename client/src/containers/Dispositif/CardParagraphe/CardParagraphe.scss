@@ -14,34 +14,35 @@
       border-radius: 12px;
       border:none;
       height: 300px;
+      background-color: $noirCD;
 
       &.Public-visé{
         background-image: url(../../../assets/figma/InfoCard/infocard_Public.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover; 
       }
       
-      .Âge-requis{
-        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Age.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+      &.Âge-requis{
+        background-image: url(../../../assets/figma/InfoCard/infocard_Age.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover;
       }
       
-      .Durée{
-        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Durée.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+      &.Durée{
+        background-image: url(../../../assets/figma/InfoCard/infocard_Durée.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover;
       }
       
-      .Niveau-de-français{
-        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Français.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+      &.Niveau-de-français{
+        background-image: url(../../../assets/figma/InfoCard/infocard_Français.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover;
       }
       
-      .Combien-ça-coute{
-        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Prix.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+      &.Combien-ça-coute{
+        background-image: url(../../../assets/figma/InfoCard/infocard_Prix.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover;
       }
       
-      .Justificatif-demandé{
-        background-image: url(/Users/hugostephan/karfur/client/src/assets/figma/InfoCard/infocard_Papiers.svg), url(/Users/hugostephan/karfur/client/src/assets/figma/bg-infocard.svg);
+      &.Justificatif-demandé{
+        background-image: url(../../../assets/figma/InfoCard/infocard_Papiers.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: cover, cover;
       }
 

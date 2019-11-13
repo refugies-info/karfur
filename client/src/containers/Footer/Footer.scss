@@ -54,11 +54,12 @@
     outline: none;
     height: 3.75em;
     padding-right: 35px;
-    placeholder{
+
+    .placeholder{
       &:hover{background: $gris;}
-      &:focus::-webkit-input-placeholder { color:transparent; }
-      &:focus:-moz-placeholder { color:transparent; }
-      &:focus{ box-shadow: none;}
+      &:focus::-webkit-input-placeholder {color:transparent;}
+      &:focus:-moz-placeholder {color:transparent;}
+      &:focus{box-shadow: none;}
     }
   }
   .footer-btn{
