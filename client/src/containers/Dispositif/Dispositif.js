@@ -726,7 +726,10 @@ class Dispositif extends Component {
     )}else{return false}};
 
     return(
-      <div className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : " reading-mode")} ref={this.newRef}>
+      <div 
+        className={"animated fadeIn dispositif" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : " reading-mode")} 
+        ref={this.newRef} 
+      >
         {/* Second guided tour */}
         <ReactJoyride
           continuous

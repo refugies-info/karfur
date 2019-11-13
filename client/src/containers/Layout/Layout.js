@@ -144,7 +144,8 @@ class Layout extends Component {
             languages={{
               ...this.props.langues.filter(x => x.avancement >= 0.8),
               unavailable: {unavailable: true}
-            }}/>
+            }}
+          />
         </div>
       </DirectionProvider>
     )
