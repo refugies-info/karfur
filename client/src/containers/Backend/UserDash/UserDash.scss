@@ -1,10 +1,13 @@
 @import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
 
 .user-dash{
   padding: 60px;
   position:relative;
   background: $gris;
   flex: 1 1;
+  max-width: 100%;
+  overflow: scroll;
   
   .profile-header-container{
     text-align: center;
@@ -67,5 +70,11 @@
 
   .meme-ligne{
     white-space: nowrap;
+  }
+
+  @include media-max("desktop-up") { 
+    .hideOnPhone{
+      display:none;
+    }
   }
 }

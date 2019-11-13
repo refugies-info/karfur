@@ -16,8 +16,8 @@ const contribTable = (props) => {
   const {t} = props;
   const contributeur = (props.dataArray || []).length > 0;
   const dataArray = contributeur ? props.dataArray : new Array(5).fill(fakeContribution);
-  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
-  let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+  const data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
+  const hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
 
   const deleteContrib = (e, dispositif) => {
     e.stopPropagation();
@@ -41,7 +41,7 @@ const contribTable = (props) => {
     })
   }
 
-  let table = (
+  const table = (
     <Table responsive className="avancement-user-table">
       <thead>
         <tr>
