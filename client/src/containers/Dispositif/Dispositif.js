@@ -953,13 +953,21 @@ class Dispositif extends Component {
                         <h5 className="color-darkColor">{t("Dispositif.informations_utiles", "Vous avez trouvé des informations utiles ?")}</h5>
                         <span className="color-darkColor">{t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigé pour vous")}&nbsp;:</span>
                       </div>
+<<<<<<< Updated upstream
                       <div className="negative-margin">
                         <Button color="light" className="thanks-btn mt-10" onClick={()=>this.pushReaction(null, "merci")}>
                           {t("Merci", "Merci")} <span role="img" aria-label="merci">🙏</span>
                         </Button>
                         <Button color="light" className="down-btn mt-10" onClick={()=>this.pushReaction(null, "pasMerci")}>
-                          <span role="img" aria-label="merci">👎</span>
+=======
+                      <div>
+                        <Button color="light" className="thanks-btn color-darkColor" onClick={()=>this.pushReaction(null, "merci")}>
+                          {t("Merci", "Merci")}
                         </Button>
+                        {/*<Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
+>>>>>>> Stashed changes
+                          <span role="img" aria-label="merci">👎</span>
+                         </Button>*/}
                       </div>
                     </div>
                     <div className="discussion-footer backgroundColor-darkColor">

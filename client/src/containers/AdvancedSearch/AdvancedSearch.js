@@ -243,7 +243,8 @@ class AdvancedSearch extends Component {
                             <h5>{dispositif.titreInformatif}</h5>
                             <p>{dispositif.abstract}</p>
                           </CardBody>
-                          <CardFooter className={"align-right bg-" + shortTag}>{dispositif.titreMarque}</CardFooter>
+                          {dispositif.typeContenu !== "demarche" &&
+                            <CardFooter className={"align-right bg-" + shortTag}>{dispositif.titreMarque}</CardFooter>}
                         </CustomCard>
                       </Col>
                     )
@@ -253,13 +254,13 @@ class AdvancedSearch extends Component {
                 )}
                 {!showSpinner && [...pinned,...dispositifs].length === 0 &&
                   <Col xs="12" sm="6" md="3" className="no-result" onClick={()=>this.selectTag()}>
-                    <CustomCard>
+                    <CustomCard className="no-result-card">
                       <CardBody>
                         <h5>{t("Aucun résultat", "Aucun résultat")}</h5>
-                        <p>{t("Elargir recherche", "Essayez d’élargir votre recherche en désactivant certains tags")} </p>
+                        <p>{t("Elargir recherche", "Essayez d’élargir votre recherche en désactivant certains filtres")} </p>
                       </CardBody>
                       <CardFooter className="align-right">
-                        {t("Désolé", "Désolé")}...
+                        {t("Oups", "Oups !")}...
                       </CardFooter>
                     </CustomCard>
                   </Col>}
@@ -272,7 +273,7 @@ class AdvancedSearch extends Component {
                           <span className="add-sign">+</span> }
                       </CardBody>
                       <CardFooter className="align-right">
-                        {showSpinner ? t("Chargement", "Chargement") + "..." : t("Créer un dispositif", "Créer un dispositif")}
+                        {showSpinner ? t("Chargement", "Chargement") + "..." : t("Créer une fiche", "Créer une fiche")}
                       </CardFooter>
                     </CustomCard>
                   </NavHashLink>

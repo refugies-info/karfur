@@ -367,7 +367,7 @@ class EtapeParagraphe extends Component {
             <Collapse className="contenu-accordeon etape-accordeon" isOpen={safeUiArray(keyValue, subkey, 'accordion')} data-parent="#accordion" id={"collapse" + keyValue + "-" + subkey} aria-labelledby={"heading" + keyValue + "-" + subkey}>
               {disableEdit && subitem.option && 
                 <div className="realisation-wrapper">
-                  <h5>{t("Dispositif.realisation etape", "Je réalise cette étape :")}</h5>
+                  {/*<h5>{t("Dispositif.realisation etape", "Je réalise cette étape :")}</h5>*/}
                   <div className="real-btns">
                     <FButton 
                       type="dark" 
