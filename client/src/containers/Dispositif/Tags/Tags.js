@@ -55,11 +55,7 @@ class Tags extends Component {
               <DropdownMenu>
                 {this.props.filtres.map((e, i) => {
                   return (
-<<<<<<< Updated upstream
                     <DropdownItem className="dropdown-custom"
-=======
-                    <DropdownItem 
->>>>>>> Stashed changes
                       onMouseOver={ev=>ev.target.style.backgroundColor=e.darkColor}
                       onMouseOut={ev=>ev.target.style.backgroundColor='#FFFFFF'}
                       onClick={()=>this.props.changeTag(key, e)} key={i} id={i}>
