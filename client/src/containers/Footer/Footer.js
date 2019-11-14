@@ -57,13 +57,13 @@ class Footer extends Component {
             </Form>
             <div className="ligne-footer">
               {/*<label>Rejoindre la newsletter</label>*/}
-              <FButton tag={"a"} href="https://agi-r.mn.co" target="_blank" className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
+              <FButton tag={"a"} href="https://refugies-info.mn.co" target="_blank" className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
                 {t("Footer.Participer à l'évolution de réfugiés-info", "Participer à l'évolution de réfugiés.info")}
               </FButton>
             </div>
             <div className="ligne-footer">
               {/*<label>Demander de nouveaux contenus</label>*/}
-              <FButton tag={"a"} href="https://agir.canny.io/agir" target="_blank" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
+              <FButton tag={"a"} href="https://refugies.canny.io/" target="_blank" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
                 {t("Footer.Demander des fonctionnalités", "Demander des fonctionnalités")}
               </FButton>
             </div>
