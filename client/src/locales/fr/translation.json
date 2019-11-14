@@ -209,9 +209,13 @@
   },
   "SearchItem": {
     "Je cherche à": "Je cherche à",
+    "choisir un thème": "choisir un thème",
     "J'habite à": "J'habite à",
+    "ma ville": "ma ville",
     "J'ai": "J'ai",
+    "mon âge": "mon âge",
     "Je parle": "Je parle",
+    "mon niveau": "mon niveau",
     "Je suis": "Je suis",
     "français": "français"
   },

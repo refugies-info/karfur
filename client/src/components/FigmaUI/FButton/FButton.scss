@@ -174,7 +174,8 @@ body .figma-btn{
     transition: all 0.2s ease;
     &:hover{
       color: $noir;
-      border-color: $noir;
+      border-color: $blancSimple;
+      background: $blancSimple;
     }
 
   } 
