@@ -268,10 +268,10 @@
     background-color: $noir;
   }
   .slide-animation{
-    position: absolute;
-    width: 52px;
-    height: 52px;
-    bottom: -30px;
+    position: relative;
+    width: 48px;
+    height: 48px;
+    bottom: -230px;
     left: 50%;
     background: $noir;
     border-radius: 50%;
@@ -282,9 +282,11 @@
   }
 
   .bottom-slider {
-    position: relative;
+    position: absolute;
+    top: -6px;
+    left: -6px;
     fill: $blancSimple;
-    z-index: 2;
+    z-index: 10;
     &:hover{
       svg{
         transition: all 0.5s ease;
