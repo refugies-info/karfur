@@ -105,7 +105,7 @@ const dashHeader = (props) => {
             <div className="inner-indicator second-indicator">
               <h3 className="right-side">{props.motsRediges || 0} <span className="gris">/ {props.objectifMots || 0}</span></h3>
               <div className="left-side">
-              <b className="mot-indicateur">mots</b> à traduire pour atteindre votre objectif.{' '}<br/>
+              <b className="mot-indicateur">mots</b> traduits pour atteindre votre objectif.{' '}
               <i>Courage !</i>
               </div>
             </div>
