@@ -30,4 +30,16 @@ html body div[dir="rtl"] {
       right: inherit;
     }
   }
+  .structure-card {
+    .main-card{
+      .middle-side {
+        margin-right: 0;
+        margin-left: 21px;
+      }
+      .right-padding {
+        padding-right: 0;
+        padding-left: 21px;
+      }
+    }
+  }
 }
