@@ -114,7 +114,7 @@ class CardParagraphe extends Component {
                   </React.Fragment>
                 ))}</span>
                 :
-                <span>{subitem.contentTitle && jsUcfirst( ("Dispositif." + subitem.contentTitle, subitem.contentTitle), cardTitle.title)}</span> }
+                <span>{subitem.contentTitle && jsUcfirst( t("Dispositif." + subitem.contentTitle, subitem.contentTitle), cardTitle.title)}</span> }
             </DropdownToggle>
             <DropdownMenu>
               {cardTitle.options.map((option, key) => {
@@ -167,7 +167,9 @@ class CardParagraphe extends Component {
             (subitem.contentTitle === 'Moins de ** ans') ? t("Dispositif.Moins de", "Moins de") + ' ' + subitem.topValue + ' ' + t("Dispositif.ans", "ans") :
             t("Dispositif.Plus de", "Plus de") + ' ' + subitem.bottomValue + ' ' + t("Dispositif.ans", "ans");
         }else if(subitem.title === 'Combien ça coûte ?'){
-          texte = subitem.free ? t("Dispositif.gratuit", "gratuit") : (subitem.price + " € " + t("Dispositif." + subitem.contentTitle,  subitem.contentTitle))
+          texte = subitem.free ? t("Dispositif.gratuit", "gratuit") : (subitem.price + " € " + t("Dispositif." + subitem.contentTitle,  subitem.contentTitle));
+        }else if(cardTitle && cardTitle.options){
+          texte = subitem.contentTitle && t("Dispositif." + subitem.contentTitle, subitem.contentTitle);
         }else{
           texte = subitem.contentTitle;
         }
@@ -193,7 +195,7 @@ class CardParagraphe extends Component {
             {subitem.typeIcon === "eva" ?
               <EVAIcon name={subitem.titleIcon} fill="#FFFFFF" /> :
               <SVGIcon name={subitem.titleIcon} fill="#FFFFFF" width="20" height="20" /> }
-            <span className="header-content">{subitem.title}</span>
+            <span className="header-content">{subitem.title && t("Dispositif." + subitem.title, subitem.title)}</span>
           </>
         )
       }else{
@@ -237,7 +239,7 @@ class CardParagraphe extends Component {
         }else{return false}
       }else if(this.props.subitem.footerHref && disableEdit){ return (
         <FButton type="outline" name={subitem.footerIcon} onClick={this.footerClicked}>
-          {subitem.footer}
+          {subitem.footer && t("Dispositif." + subitem.footer, subitem.footer)}
         </FButton>
       )}else{return false}
     }

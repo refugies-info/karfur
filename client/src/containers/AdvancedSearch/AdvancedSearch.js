@@ -257,10 +257,10 @@ class AdvancedSearch extends Component {
                     <CustomCard className="no-result-card">
                       <CardBody>
                         <h5>{t("Aucun résultat", "Aucun résultat")}</h5>
-                        <p>{t("Elargir recherche", "Essayez d’élargir votre recherche en désactivant certains filtres")} </p>
+                        <p>{t("AdvancedSearch.Elargir recherche", "Essayez d’élargir votre recherche en désactivant certains filtres")} </p>
                       </CardBody>
                       <CardFooter className="align-right">
-                        {t("Oups", "Oups !")}...
+                        {t("AdvancedSearch.Oups", "Oups !")}...
                       </CardFooter>
                     </CustomCard>
                   </Col>}
@@ -273,7 +273,7 @@ class AdvancedSearch extends Component {
                           <span className="add-sign">+</span> }
                       </CardBody>
                       <CardFooter className="align-right">
-                        {showSpinner ? t("Chargement", "Chargement") + "..." : t("Créer une fiche", "Créer une fiche")}
+                        {showSpinner ? t("Chargement", "Chargement") + "..." : t("AdvancedSearch.Créer une fiche", "Créer une fiche")}
                       </CardFooter>
                     </CustomCard>
                   </NavHashLink>
