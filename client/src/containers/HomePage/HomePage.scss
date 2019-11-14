@@ -294,15 +294,11 @@
     top: -6px;
     left: -6px;
     fill: $blancSimple;
-<<<<<<< HEAD
-    z-index: 2;
+    z-index: 10;
     svg{
       margin-left: -6px;
       margin-top: -6px;
     }
-=======
-    z-index: 10;
->>>>>>> 54220e5a2002eaed392895f5294ba4cba5a2804e
     &:hover{
       svg{
         transition: all 0.5s ease;
