@@ -4,7 +4,7 @@
 $imgWidth : 300px;
 $imgHeight : 350px;
 
-.dispositif{
+.dispositif.vue{
   flex: 1 1;
   position: relative;    
   max-width: 100%;
@@ -159,6 +159,7 @@ $imgHeight : 350px;
     display: flex;
     justify-content: flex-end;
     padding-right:0;
+    padding-left:0;
   }
 
   .subtitle-container{
@@ -497,7 +498,6 @@ $imgHeight : 350px;
       line-height: normal;
       color: #FFFFFF;
       height: 40px;
-      margin-left: 15px;
       margin-top: 10px;
       width: fit-content;
       display: flex;
@@ -511,9 +511,6 @@ $imgHeight : 350px;
         .no-decoration{
           color:inherit;
           text-decoration: none;
-        }
-        svg{
-          margin-right: 10px;
         }
       }
     }
@@ -541,9 +538,6 @@ $imgHeight : 350px;
       &.align-right{
         margin-right:15px;
         padding: 0;
-      }
-      #question-bloc{
-        margin-left:8px;
       }
     }
     .date-maj{
