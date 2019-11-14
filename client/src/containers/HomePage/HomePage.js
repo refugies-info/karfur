@@ -74,7 +74,7 @@ class HomePage extends Component {
 
         <section id="plan" className="triptique">
           <div className="section-container">
-            <h2>{t("Homepage.Vous cherchez ?", "Tu cherches à ?")}</h2>
+            <h2>{t("Homepage.Vous cherchez ?", "Je cherche à ?")}</h2>
               
             <Row className="card-row">
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
@@ -109,7 +109,7 @@ class HomePage extends Component {
               </Col>
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
                 <Card className="parcours-card">
-                  <CardHeader>{t("Homepage.creer parcours", "Créer ton parcours personnalisé")}</CardHeader>
+                  <CardHeader>{t("Homepage.creer parcours", "Créer mon parcours personnalisé")}</CardHeader>
                   <CardBody>
                     {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
