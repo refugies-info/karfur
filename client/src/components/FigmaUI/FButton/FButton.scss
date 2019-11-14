@@ -114,7 +114,6 @@ body .figma-btn{
   }
 
   // Bouton d'erreur
-
   &.error{
     background: $error;
     color: $blancSimple;
@@ -142,7 +141,6 @@ body .figma-btn{
       background: $noir;
       box-shadow: none;
       color: $blancSimple;
-      border: 0.5px solid $blancSimple;
       svg{
         fill: $blancSimple;
       }
