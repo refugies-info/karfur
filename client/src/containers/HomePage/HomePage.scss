@@ -57,6 +57,11 @@
     }
   }
 
+  .search-btn{
+    -webkit-animation: on-homepage 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+	          animation: on-homepage 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+  }
+
   // .header-anchor{
   //   margin-top: -60px;
   //   padding-top: 60px;
@@ -317,5 +322,26 @@
   100% {
     -webkit-transform: translateY(30px);
             transform: translateY(30px);
+  }
+}
+
+@-webkit-keyframes flip-horizontal-top {
+  0% {
+    -webkit-transform: rotateX(0);
+            transform: rotateX(0);
+  }
+  100% {
+    -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+  }
+}
+@keyframes flip-horizontal-top {
+  0% {
+    -webkit-transform: rotateX(0);
+            transform: rotateX(0);
+  }
+  100% {
+    -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
   }
 }

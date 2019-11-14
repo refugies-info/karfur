@@ -57,7 +57,7 @@ class HomePage extends Component {
             <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
             
             <div className="search-row">
-              <SearchItem  
+              <SearchItem className="on-homepage"
                 item={{...item, value: item.children[0].name}}
                 keyValue={0}
                 selectParam = {this.selectParam}
