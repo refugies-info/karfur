@@ -67,7 +67,7 @@ class HomePage extends Component {
           </div>
           <div className="chevron-wrapper">
             <div className="slide-animation">
-               <EVAIcon className="bottom-slider" name="arrow-circle-down" size="hero"/>
+              <EVAIcon className="bottom-slider" name="arrow-circle-down" size="hero"/>
             </div>
           </div>
         </section>
