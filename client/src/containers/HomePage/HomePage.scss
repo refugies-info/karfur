@@ -31,6 +31,24 @@
     padding-top: 150px;
     margin-top: -60px;
     height: 772px;
+
+    .search-col{
+      padding-left: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: $noir;
+      display: flex;
+      align-items: center;
+      .mr-10{
+        padding-right: 10px;
+      }
+      .search-btn{
+        font-size: 22px;
+      }
+      .search-options{
+        font-size: 18px;
+      }
+    }
   }
 
   .triptique{
@@ -296,8 +314,6 @@
 
   .bottom-slider {
     position: absolute;
-    top: -6px;
-    left: -6px;
     fill: $blancSimple;
     z-index: 10;
     svg{
