@@ -76,7 +76,7 @@ const filtres = {
     {short: "Rencontre", name: "rencontrer des gens", darkColor: "#8E1B5A", lightColor: "#FFEBF5", hoverColor: "#FDA5C4", illustrationColor: "#76D327"}, 
     {short: "Loisir", name: "occuper mon temps libre", darkColor: "#861B8E", lightColor: "#F6E6FC", hoverColor: "#E595F9", illustrationColor: "#FCBF35"}, 
     {short: "Culture", name: "découvrir la culture", darkColor: "#ED4C26", lightColor: "#FFF0E7", hoverColor: "#FEC396", illustrationColor: "#1898FC"}, 
-    {short: "Santé", name: "me soigner", darkColor: "#C6093F", lightColor: "#", hoverColor: "#", illustrationColor: "#"}
+    {short: "Santé", name: "me soigner", darkColor: "#C6093F", lightColor: "#FFEEEE", hoverColor: "#F7698E", illustrationColor: "#1FC2C1"}
   ],
 };
 
