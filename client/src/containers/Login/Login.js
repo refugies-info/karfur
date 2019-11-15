@@ -1,34 +1,43 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Button, Card, CardBody, Form } from 'reactstrap';
+import { Button, Card, CardBody, Form, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import Swal from 'sweetalert2';
 import {NavLink} from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
+import _ from "lodash";
+import passwdCheck from "zxcvbn";
 
 import API from '../../utils/API';
 import setAuthToken from '../../utils/setAuthToken';
-import FCBtn from '../../assets/FCboutons-10.png';
+// import FCBtn from '../../assets/FCboutons-10.png';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FInput from '../../components/FigmaUI/FInput/FInput';
 import {fetch_user} from "../../Store/actions";
+import Modal from '../../components/Modals/Modal';
 
 import './Login.scss';
 import variables from 'scss/colors.scss';
+import { colorAvancement } from '../../components/Functions/ColorFunctions';
 
 class Login extends Component {
   state = {
     username : "",
     password: "",
     cpassword: "",
+    code: "",
+    email: "",
+    phone: "",
+    authy_id: "",
     traducteur : false,
     passwordVisible:false,
     redirectTo : "/",
     step: 0,
     userExists: false,
     usernameHidden:false,
+    showModal:false
   }
 
   componentDidMount(){
@@ -37,7 +46,8 @@ class Login extends Component {
     window.scrollTo(0, 0);
   }
 
-  togglePasswordVisibility = () => this.setState(prevState=>({passwordVisible: !prevState.passwordVisible}))
+  togglePasswordVisibility = () => this.setState(pS=>({passwordVisible: !pS.passwordVisible}))
+  toggleModal = () => this.setState(pS=>({showModal: !pS.showModal}))
 
   goBack = () => this.setState({step: 0, userExists: false, password:"", cpassword: ""});
 
@@ -52,16 +62,22 @@ class Login extends Component {
       })
     }else{
       if(this.state.password.length === 0){
-        Swal.fire( {title: 'Oops...', text: 'Aucun mot de passe n\'est renseigné !', type: 'error', timer: 1500});return;
+        return Swal.fire( {title: 'Oops...', text: 'Aucun mot de passe n\'est renseigné !', type: 'error', timer: 1500});
       }
       if(!this.state.userExists && this.state.password !== this.state.cpassword){
-        Swal.fire( {title: 'Oops...', text: 'Les mots de passes ne correspondent pas !', type: 'error', timer: 1500});return;
+        return Swal.fire( {title: 'Oops...', text: 'Les mots de passes ne correspondent pas !', type: 'error', timer: 1500});
       }
-      let user = {
-        'username' : this.state.username,
-        'password' : this.state.password,
-        'cpassword' : this.state.cpassword,
-        'traducteur' : this.state.traducteur,
+      if(!this.state.userExists && (passwdCheck(this.state.password) || {}).score < 1){
+        return Swal.fire( {title: 'Oops...', text: 'Le mot de passe est trop faible', type: 'error', timer: 1500});
+      }
+      const user = {
+        username : this.state.username,
+        password : this.state.password,
+        cpassword : this.state.cpassword,
+        traducteur : this.state.traducteur,
+        code: this.state.code,
+        email: this.state.email,
+        phone: this.state.phone,
       }
       API.login(user).then(data => {
         Swal.fire( {title: 'Yay...', text: 'Authentification réussie !', type: 'success', timer: 1500} ).then(()=>{
@@ -70,6 +86,12 @@ class Login extends Component {
         localStorage.setItem('token', data.data.token);
         setAuthToken(data.data.token);
         this.props.fetch_user();
+      }).catch(e => {
+        if(e.response.status === 501){
+          this.setState({step: 2});
+        }else if(e.response.status === 502){
+          this.setState({showModal: true, phone: _.get(e,"response.data.phone", ""), email: _.get(e,"response.data.email", "") });
+        }else{console.log(e.response)}
       })
     }
   }    
@@ -79,7 +101,7 @@ class Login extends Component {
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render() {
-    const {passwordVisible, username, step, userExists} = this.state;
+    const {passwordVisible, username, step, userExists, code, showModal, email, phone} = this.state;
     const { t } = this.props;
     return (
       <div className="app flex-row align-items-center login">
@@ -92,13 +114,14 @@ class Login extends Component {
                 <h5>
                   {step === 0 || userExists ? 
                     t("Login.Se connecter", "Se connecter") : 
-                    t("Login.Se créer un compte", "Se créer un compte")}
+                    step === 1 ? t("Login.Se créer un compte", "Se créer un compte") :
+                    "Votre code de confirmation"}
                 </h5>
                 <div className="texte-small mb-12">
                   {step === 0 ? 
                     t("Login.Ou se créer un compte", "Ou se créer un compte") : 
-                      (userExists ? t("Login.Content de vous revoir !", "Content de vous revoir !") : 
-                        t("Login.Pas besoin d’email", "Pas besoin d’email"))}
+                      (userExists && step === 1 ? t("Login.Content de vous revoir !", "Content de vous revoir !") : 
+                        step === 1 ? t("Login.Pas besoin d’email", "Pas besoin d’email") : "Nous vous avons envoyé un SMS à votre numéro")}
                 </div>
                 <CSSTransition
                   in={true} 
@@ -106,26 +129,30 @@ class Login extends Component {
                   timeout={600} 
                   classNames="example"
                 >
-                  {step===0 ? <UsernameField value={username} onChange={this.handleChange} step={step} key="username-field" t={t}/>:
-                  <>
-                    <PasswordField 
-                      id="password"
-                      placeholder="Mot de passe"
-                      value={this.state.password} 
-                      onChange={this.handleChange} 
-                      passwordVisible={passwordVisible}
-                      onClick={this.togglePasswordVisibility}
-                      t={t} />
-                      {step === 1 && !userExists &&
-                    <PasswordField 
-                      id="cpassword"
-                      placeholder="Confirmez le mot de passe"
-                      value={this.state.cpassword} 
-                      onChange={this.handleChange} 
-                      passwordVisible={passwordVisible}
-                      onClick={this.togglePasswordVisibility}
-                      t={t} />}
-                  </>}
+                  {step===0 ? 
+                    <UsernameField value={username} onChange={this.handleChange} step={step} key="username-field" t={t}/> :
+                    step === 1 ?
+                      <>
+                        <PasswordField 
+                          id="password"
+                          placeholder="Mot de passe"
+                          value={this.state.password} 
+                          onChange={this.handleChange} 
+                          passwordVisible={passwordVisible}
+                          onClick={this.togglePasswordVisibility}
+                          userExists={userExists}
+                          t={t} />
+                        {step === 1 && !userExists &&
+                          <PasswordField 
+                            id="cpassword"
+                            placeholder="Confirmez le mot de passe"
+                            value={this.state.cpassword} 
+                            onChange={this.handleChange} 
+                            passwordVisible={passwordVisible}
+                            onClick={this.togglePasswordVisibility}
+                            t={t} />}
+                      </> : 
+                      <CodeField value={code} onChange={this.handleChange} key="code-field"/>}
                 </CSSTransition>
                 
                 {step === 1 &&
@@ -167,6 +194,15 @@ class Login extends Component {
             </FButton>
           </NavLink>
         </div>
+
+        <InfoModal 
+          show={showModal} 
+          email={email}
+          phone={phone}
+          toggle={this.toggleModal} 
+          send={this.send} 
+          onChange={this.handleChange} 
+        />
       </div>
     );
   }
@@ -187,17 +223,28 @@ const UsernameField = props => (
   </div>
 )
 
-const PasswordField = props => (
-  <FInput
-    prepend append
-    prependName="lock-outline"
-    appendName={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"}
-    inputClassName="password-input"
-    onAppendClick={props.onClick}
-    {...props}
-    type={props.passwordVisible ? "text" : "password"} id={props.id} 
-    placeholder={props.placeholder && props.t("Login." + props.placeholder, props.placeholder)} autoComplete="new-password" />
-)
+const PasswordField = props => {
+  const password_check = passwdCheck(props.value);
+  return (<>
+    <FInput
+      prepend append
+      prependName="lock-outline"
+      appendName={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"}
+      inputClassName="password-input"
+      onAppendClick={props.onClick}
+      {...props}
+      type={props.passwordVisible ? "text" : "password"} id={props.id} 
+      placeholder={props.placeholder && props.t("Login." + props.placeholder, props.placeholder)} autoComplete="new-password" />
+    {props.id==="password" && !props.userExists && props.value && 
+      <div className="score-wrapper mb-10">
+        <span className="mr-10">{props.t("Login.Force", "Force")} :</span>
+        <Progress 
+          color={colorAvancement(password_check.score/4)} 
+          value={(0.1+(password_check.score/4))*100/1.1} 
+        />
+      </div>}
+  </>)
+}
 
 const PasswordFooter = props => (
   <div className="footer-buttons">
@@ -218,6 +265,52 @@ const RegisterHeader = props => (
       <span>{props.t("Login.no-account", "Il n'existe pas de compte à ce nom")}. </span>
     </CardBody>
   </Card>
+)
+
+const CodeField = props => (
+  <div key="code-field">
+    <FInput
+      prepend
+      prependName="lock-outline"
+      {...props}
+      id="code" type="number" placeholder="code" />
+    <div className="footer-buttons">
+      <FButton type="dark" name="arrow-forward-outline" color="dark" className="connect-btn" disabled={!props.value}>
+        Valider
+      </FButton>
+    </div>
+  </div>
+);
+
+const InfoModal = props => (
+  <Modal
+    className="info-modal" 
+    modalHeader = "Vos informations de compte"
+    {...props}
+  >
+    <ModalBody>
+      <FInput
+        prepend
+        prependName="at-outline"
+        value={props.email}
+        {...props}
+        id="email" type="email" placeholder="Email" />
+      <FInput
+        prepend
+        prependName="phone-call-outline"
+        value={props.phone}
+        {...props}
+        id="phone" type="phone" placeholder="Téléphone : 06 11 22 33 44" />
+    </ModalBody>
+    <ModalFooter>
+      <FButton type="light-action" onClick={props.toggle} className="mr-10">
+        Annuler
+      </FButton>
+      <FButton type="validate" name="checkmark" onClick={props.send}>
+        Valider
+      </FButton>
+    </ModalFooter>
+  </Modal>
 )
 
 const mapDispatchToProps = {fetch_user};
