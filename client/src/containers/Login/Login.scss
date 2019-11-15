@@ -46,6 +46,15 @@ $placeholderColor: $noir;
     background: $jauneClair;
     border-radius: 12px;
   }
+
+  .score-wrapper{
+    display: flex;
+    align-items: center;
+    .progress{
+      flex-grow: 1;
+      background-color: $noir3;
+    }
+  }
   .example-appear {
     opacity: 0;
   }
@@ -69,6 +78,10 @@ $placeholderColor: $noir;
 .slide-out-blurred-top {
 	-webkit-animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
 	        animation: slide-out-blurred-top 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) both;
+}
+
+.modal.show .modal-dialog.custom-modal.info-modal{
+  height: initial;
 }
 
 @-webkit-keyframes fade-in-bottom {

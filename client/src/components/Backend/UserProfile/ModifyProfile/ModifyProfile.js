@@ -57,6 +57,9 @@ const modifyProfile = (props) => {
         </CardBody>
         {editing ? 
           <CardFooter className="mt-10">
+            <FButton type="light-action" name="lock-outline" onClick={()=>props.toggleModal('password')} className="mr-10">
+              {t("UserProfile.Modifier le mot de passe", "Modifier le mot de passe")}
+            </FButton>
             <FButton type="light-action" onClick={props.toggleEditing} className="mr-10">
               {t("Annuler", "Annuler")}
             </FButton>
