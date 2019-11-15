@@ -18,17 +18,23 @@
 
       &.Public-visé{
         background-image: url(../../../assets/figma/InfoCard/infocard_Public.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
-        background-size: cover, cover; 
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
       }
       
       &.Âge-requis{
         background-image: url(../../../assets/figma/InfoCard/infocard_Age.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
-        background-size: cover, cover;
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
       }
       
       &.Durée{
         background-image: url(../../../assets/figma/InfoCard/infocard_Durée.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
-        background-size: cover, cover;
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 10px), center;
       }
       
       &.Niveau-de-français{
