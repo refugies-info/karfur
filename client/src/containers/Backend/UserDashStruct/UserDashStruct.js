@@ -128,7 +128,7 @@ class UserDashStruct extends Component {
                 <b>{element.created_at ? moment(element.created_at).fromNow() : ""}</b>
               </div>
               <div className="right-side">
-                <FButton tag={NavLink} to={{pathname: "/dispositif/" + element._id, state: {structure: structure} }} type="light" name="eye-outline" fill={variables.noir}>
+                <FButton tag={NavLink} to={{pathname: "/dispositif/" + element._id, state: {structure: structure} }} type="light-action" name="eye-outline" fill={variables.noir}>
                   Voir le contenu
                 </FButton>
               </div>

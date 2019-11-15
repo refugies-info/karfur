@@ -72,6 +72,9 @@ export default {
   FClogout : () => {
     return axios.post(burl + '/user/FClogout',{}, { headers: headers })
   },
+  change_password : query => {
+    return axios.post(burl + '/user/change_password', query,{headers: headers})
+  },
 
   log_event : (event) => {
     return axios.post(burl + '/events/log_event', event, {headers: headers})

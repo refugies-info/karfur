@@ -2,19 +2,24 @@ const User = require('../../schema/schemaUser.js');
 const Role = require('../../schema/schemaRole.js');
 const Langue = require('../../schema/schemaLangue.js');
 const passwordHash = require("password-hash");
+const authy = require('authy')(process.env.ACCOUNT_SECURITY_API_KEY);
+const passwdCheck = require("zxcvbn");
 
+//Cette fonction est appelée seulement lorsqu'un administrateur crée un nouveau compte
 function signup(req, res) {
   if (!req.body.username || !req.body.password) {
     //Le cas où l'email ou bien le password ne serait pas soumis ou nul
-    res.status(400).json({
-        "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
-    var user = req.body;
-    if(user.password)
+    let user = req.body;
+    if(user.password){
+      if((passwdCheck(user.password) || {}).score < 1){
+        return res.status(401).json({ "text": "Le mot de passe est trop faible" });
+      }
       user.password=passwordHash.generate(user.password)
+    }
 
-    var find = new Promise(function (resolve, reject) {
+    const find = new Promise(function (resolve, reject) {
       User.findOne({
         username: user.username
       }, function (err, result) {
@@ -83,6 +88,7 @@ function signup(req, res) {
   }
 }
 
+//Cette fonction est appelée quand tout utilisateur cherche à se connecter ou créer un compte
 function login(req, res) {
   if (!req.body.username || !req.body.password) {
     //Le cas où le username ou bien le password ne serait pas soumis ou nul
@@ -90,12 +96,15 @@ function login(req, res) {
   } else {
     User.findOne({
       username: req.body.username
-    }, (err, user) => {
+    }, async (err, user) => {
       if (err) { console.log(err);
         res.status(500).json({ "text": "Erreur interne", data: err });
       } else if(!user){ //On lui crée un nouveau compte
         user = req.body;
         if(user.cpassword && user.cpassword === user.password){
+          if((passwdCheck(user.password) || {}).score < 1){
+            return res.status(401).json({ "text": "Le mot de passe est trop faible" });
+          }
           user.password=passwordHash.generate(user.password);
           if(user.roles && user.roles.length > 0 && req.user.roles.some(x => x.nom === "Admin")){
             user.roles=[...new Set([...user.roles, req.roles.find(x=>x.nom==='User')._id])]
@@ -126,25 +135,54 @@ function login(req, res) {
         }
       } else {
         if (user.authenticate(req.body.password)) {
-          //On change les infos de l'utilisateur
-          if(req.body.traducteur){
-            user.roles=[req.roles.find(x=>x.nom==='Trad')];
+          if((user.roles || []).some(x => x.equals(req.roles.find(x=>x.nom==='Admin')._id) )){
+            if(user.authy_id && req.body.code){
+              return authy.verify(user.authy_id, req.body.code, function (err, result) {
+                if(err || !result){return res.status(204).json({ "text": "Erreur à la vérification du code" });}
+                return proceed_with_login(req,res, user);
+              });
+            }else if(user.authy_id){
+              return authy.request_sms(user.authy_id, function (err_sms, result_sms) {
+                if(err_sms){return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'" });}
+                return res.status(501).json({ "text": "no code supplied" });
+              });
+            }else if(req.body.email && req.body.phone){
+              return authy.register_user(req.body.email, req.body.phone, '33', function (err, result) {
+                if(err){return res.status(204).json({ "text": "Erreur à la création du compte authy" });}
+                const authy_id = result.user.id;
+                authy.request_sms(authy_id, function (err_sms, result_sms) {
+                  if(err_sms){res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'" }); return}
+                });
+                //On enregistre aussi son identifiant pour la suite
+                user.authy_id= authy_id;
+                user.phone= req.body.phone;
+                user.email= req.body.email;
+                user.save();
+                return res.status(501).json({ "text": "no code supplied" });
+              });
+            }else{return res.status(502).json({ "text": "no authy_id", phone: user.phone, email: user.email });}
           }
-          user.last_connected = new Date();
-          user.save();
-          res.status(200).json({
-            "token": user.getToken(),
-            "text": "Authentification réussi"
-          })
+          return proceed_with_login(req,res, user);
         }
         else{
-          res.status(401).json({
-            "text": "Mot de passe incorrect"
-          })
+          res.status(401).json({ "text": "Mot de passe incorrect" })
         }
       }
     })
   }
+}
+
+const proceed_with_login = function (req,res, user){
+  //On change les infos de l'utilisateur
+  if(req.body.traducteur){
+    user.roles=[...new Set([...(user.roles || []), req.roles.find(x=>x.nom==='Trad')._id])]
+  }
+  user.last_connected = new Date();
+  user.save();
+  res.status(200).json({
+    "token": user.getToken(),
+    "text": "Authentification réussi"
+  })
 }
 
 function checkUserExists(req, res) {
@@ -152,7 +190,7 @@ function checkUserExists(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     User.findOne({
-      username: req.body.username
+      username: req.body.username //.toLowerCase()
     }, (err, user) => {
       if (err) {
         res.status(500).json({ "text": "Erreur interne" })
@@ -168,9 +206,7 @@ function checkUserExists(req, res) {
 function set_user_info(req, res) {
   let user=req.body;
   if (!user || !user._id) {
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
     if(user.password){
       delete user.password;
@@ -187,7 +223,6 @@ function set_user_info(req, res) {
       user = {...user, $addToSet:{roles: req.roles.find(x=>x.nom==='Trad')._id}}
       delete user.traducteur;
     }
-    console.log(user.roles)
     User.findByIdAndUpdate({
       _id: user._id
     },user,{new: true},function(error,result){
@@ -206,6 +241,33 @@ function set_user_info(req, res) {
   }
 }
 
+function change_password(req, res) {
+  const {query, newUser}=req.body;
+  if (!query._id || !query.username || !newUser.password || !newUser.newPassword) {
+    res.status(400).json({ "text": "Requête invalide" })
+  } else {
+    if(query._id != req.user._id){ return res.status(401).json({ "text": "Token invalide" }); }
+    if(newUser.newPassword !== newUser.cpassword){ return res.status(400).json({ "text": "Les mots de passe ne correspondent pas" }); }
+    User.findOne(query, (err, user) => {
+      if (err) {
+        return res.status(500).json({ "text": "Erreur interne" })
+      } else if(!user){
+        return res.status(404).json({ "text": "L'utilisateur n'existe pas" })
+      } else if( !user.authenticate(newUser.password) ){
+        return res.status(401).json({ "text": "Echec d'authentification" })
+      }else if( (passwdCheck(newUser.newPassword) || {}).score < 1 ){
+        return res.status(401).json({ "text": "Le mot de passe est trop faible" });
+      } else {
+        user.password = passwordHash.generate(newUser.newPassword);
+        user.save();
+        res.status(200).json({
+          "token": user.getToken(),
+          "text": "Authentification réussi"
+        })
+      }
+    })
+  }
+}
 
 function get_users(req, res) {
   var query = req.body.query;
@@ -240,8 +302,8 @@ function get_users(req, res) {
     }
 
     res.status(200).json({
-        "text": "Succès",
-        "data": result
+      "text": "Succès",
+      "data": result
     })
   }, (error) => {
     switch (error) {
@@ -308,5 +370,6 @@ exports.login = login;
 exports.signup = signup;
 exports.checkUserExists = checkUserExists;
 exports.set_user_info=set_user_info;
+exports.change_password = change_password;
 exports.get_users=get_users;
 exports.get_user_info=get_user_info;
