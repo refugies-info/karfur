@@ -138,20 +138,20 @@ function login(req, res) {
           if((user.roles || []).some(x => x.equals(req.roles.find(x=>x.nom==='Admin')._id) )){
             if(user.authy_id && req.body.code){
               return authy.verify(user.authy_id, req.body.code, function (err, result) {
-                if(err || !result){return res.status(204).json({ "text": "Erreur à la vérification du code" });}
+                if(err || !result){return res.status(204).json({ "text": "Erreur à la vérification du code", data: err });}
                 return proceed_with_login(req,res, user);
               });
             }else if(user.authy_id){
-              return authy.request_sms(user.authy_id, function (err_sms, result_sms) {
-                if(err_sms){return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'" });}
+              return authy.request_sms(user.authy_id, force=true, function (err_sms, result_sms) {
+                if(err_sms){console.log(err_sms);return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'", data: err_sms });}
                 return res.status(501).json({ "text": "no code supplied" });
               });
             }else if(req.body.email && req.body.phone){
               return authy.register_user(req.body.email, req.body.phone, '33', function (err, result) {
-                if(err){return res.status(204).json({ "text": "Erreur à la création du compte authy" });}
+                if(err){return res.status(204).json({ "text": "Erreur à la création du compte authy", data: err });}
                 const authy_id = result.user.id;
                 authy.request_sms(authy_id, function (err_sms, result_sms) {
-                  if(err_sms){res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'" }); return}
+                  if(err_sms){res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'", data: err_sms }); return}
                 });
                 //On enregistre aussi son identifiant pour la suite
                 user.authy_id= authy_id;
