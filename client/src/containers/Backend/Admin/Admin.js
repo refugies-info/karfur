@@ -4,6 +4,7 @@ import track from 'react-tracking';
 import Swal from 'sweetalert2';
 import { connect } from 'react-redux';
 import _ from "lodash";
+import passwdCheck from "zxcvbn";
 
 import CustomTabPane from '../../../components/Backend/Admin/CustomTabPane'
 import API from '../../../utils/API';
@@ -35,6 +36,7 @@ class Admin extends Component {
       username:'',
       password:'',
       email:'',
+      phone:'',
       description:'',
       selectedLanguages: [],
       objectifTemps : 20,
@@ -232,20 +234,19 @@ class Admin extends Component {
   validateUser = () => {
     let user={...this.state.user}
     if(this.shadowSelectedLanguages.length > 0){user.selectedLanguages = [...this.shadowSelectedLanguages]}
-    if(user.username.length === 0){return;}
-    if(user.password.length === 0){return;}
+    if(user.username.length === 0){ return Swal.fire( {title: 'Oops...', text: 'Aucun nom d\'utilisateur n\'est renseigné !', type: 'error', timer: 1500}); }
+    if(user.password.length === 0){ return Swal.fire( {title: 'Oops...', text: 'Aucun mot de passe n\'est renseigné !', type: 'error', timer: 1500}); }
     if(user.selectedLanguages.length>0){user.selectedLanguages=[...user.selectedLanguages.map(el =>{return { _id: el._id, i18nCode: el.i18nCode, langueCode: el.langueCode, langueFr: el.langueFr, langueLoc: el.langueLoc}})]}
     if(!user._id){
+      if((passwdCheck(user.password) || {}).score < 1){ return Swal.fire( {title: 'Oops...', text: 'Le mot de passe est trop faible', type: 'error', timer: 1500}); }
       API.login({...user, cpassword: user.password}).then(data => {
         let newUser=data.data.data;
         newUser.password='Hidden'
         this.setState({users: [...this.state.users, newUser], user: this.initial_state.user});
       },error => {console.log(error);return;})
     }else{
-      console.log(user)
       API.set_user_info(user).then(data => {
         let newUser=data.data.data;
-        console.log(newUser)
         if(!newUser){return}
         newUser.password='Hidden';
         let usersCopy=[...this.state.users];

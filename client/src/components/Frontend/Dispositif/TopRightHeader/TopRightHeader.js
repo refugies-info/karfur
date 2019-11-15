@@ -9,7 +9,7 @@ const topRightHeader = (props) => {
   const userIsSponsor = ((((props.mainSponsor || {}).membres || []).find(x => x.userId=== props.userId) || {}).roles || []).some(y => y==="administrateur" || y==="contributeur")
   
   if(props.status==="En attente" && userIsSponsor ){return(
-    <Col lg="6" md="6" sm="12" xs="12" className="top-right">
+    <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
       <Card>
         <CardBody className="backgroundColor-lightColor">
           <span className="validate-header">Souhaitez-vous récupérer ce contenu ?</span>
@@ -17,14 +17,14 @@ const topRightHeader = (props) => {
           <FButton type="error" className="mt-10 full-width" onClick={()=>props.update_status("Rejeté structure")}>Non</FButton>
         </CardBody>
         <CardFooter className="color-darkColor cursor-pointer" onClick={props.toggleDispositifCreateModal}>
-          <EVAIcon className="mr-8" name="question-mark-circle" viewBox="0 0 20 20" />
+          <EVAIcon className="mr-8" name="question-mark-circle" viewBox="0 0 20 20" size="medium" />
           Besoin d'aide ?
         </CardFooter>
       </Card>
     </Col>
   )}else if(props.disableEdit){
     return(
-      <Col lg="6" md="6" sm="12" xs="12" className="top-right">
+      <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
         {!props.translating && (props.isAuthor || props.admin || userIsSponsor) && 
           <div className="top-icon-wrapper mr-10" onClick={props.editDispositif}>
             <EVAIcon name="edit-outline" fill="#3D3D3D" id="editBtn" />
@@ -38,7 +38,7 @@ const topRightHeader = (props) => {
     )
   }else{
     return(
-      <Col lg="6" md="6" sm="12" xs="12" className="top-right">
+      <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
         <Card>
           <CardBody className="telecommande">
             <FSwitch content="Consignes" checked={props.withHelp} onClick={props.toggleHelp} />

@@ -7,26 +7,28 @@ import {
   FormText,
   Input,
   Label,
-  Spinner
+  Spinner,
+  Progress
 } from 'reactstrap';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
+import passwdCheck from "zxcvbn";
 import 'rc-slider/assets/index.css';
 
-import DraggableList from '../../../../components/UI/DraggableList/DraggableList'
-import marioProfile from '../../../../assets/mario-profile.jpg'
+import DraggableList from '../../../../components/UI/DraggableList/DraggableList';
+import marioProfile from '../../../../assets/mario-profile.jpg';
+import { colorAvancement } from '../../../Functions/ColorFunctions';
 
 import './UserChange.scss'
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
-const localeFormatter = (v) => {
-  return new Intl.NumberFormat().format(v)
-}
+const localeFormatter = (v) => new Intl.NumberFormat().format(v);
 
 const userChange = (props) => {
-  let statuts = ['Actif', 'En attente', 'Inactif', 'Exclu']
-  let langues_list=(props.user.selectedLanguages || []).map(function (item) { return item.langueFr; });
-  let imgSrc = (props.user.picture || []).secure_url || marioProfile
+  const statuts = ['Actif', 'En attente', 'Inactif', 'Exclu']
+  const langues_list=(props.user.selectedLanguages || []).map(function (item) { return item.langueFr; });
+  const imgSrc = (props.user.picture || []).secure_url || marioProfile
+  const password_check = passwdCheck(props.user.password);
   
   return (
     <Form action="" method="post" encType="multipart/form-data" className="form-horizontal user-change">
@@ -82,6 +84,14 @@ const userChange = (props) => {
             onChange = {props.handleChange}
             disabled={props.user.password === 'Hidden'} />
           <FormText color="muted">Par exemple : motdepasse</FormText>
+          {props.user.password && props.user.password !== 'Hidden' &&
+            <div className="score-wrapper mb-10">
+              <span className="mr-10">Force :</span>
+              <Progress 
+                color={colorAvancement(password_check.score/4)} 
+                value={(0.1+(password_check.score/4))*100/1.1} 
+              />
+            </div>}
         </Col>
       </FormGroup>}
 
@@ -211,6 +221,23 @@ const userChange = (props) => {
         </Col>
       </FormGroup>
       
+      {(props.roles || []).some(x => x.nom==="Admin" && x.isChecked) && 
+        <FormGroup row>
+          <Col md="3">
+            <Label>Numéro de téléphone</Label>
+          </Col>
+          <Col xs="12" md="9">
+            <Input 
+              type="phone" 
+              id="phone" 
+              name="user" 
+              placeholder="Téléphone"
+              value={props.user.phone || ''}
+              onChange = {props.handleChange} />
+            <FormText color="muted">Par exemple : 06 11 22 33 44</FormText>
+          </Col>
+        </FormGroup>}
+
       <FormGroup row>
         <Col md="3">
           <Label htmlFor="description">Description</Label>
