@@ -85,7 +85,8 @@
     "traducteur mobilisé": "traducteur{{s}} mobilisé{{s}}",
     "membre": "membre{{s}}",
     "notification": "notification{{s}}",
-    "personne informée": "personne{{s}} informée{{s}}"
+    "personne informée": "personne{{s}} informée{{s}}",
+    "Mes traductions": "Mes traductions"
   },
   "UserProfile": {
     "Pseudonyme": "Pseudonyme :",
@@ -331,13 +332,13 @@
     "Numéro de téléphone": "Numéro de téléphone",
     "Débutant": "Débutant",
     "Intermédiaire": "Intermédiaire",
-    "Avancé": "Avancé", 
+    "Avancé": "Avancé",
     "Tous les niveaux": "Tous les niveaux",
-    "Titre de séjour": "Titre de séjour", 
-    "Justificatif de domicile": "Justificatif de domicile", 
-    "Diplôme": "Diplôme", 
+    "Titre de séjour": "Titre de séjour",
+    "Justificatif de domicile": "Justificatif de domicile",
+    "Diplôme": "Diplôme",
     "Permis de conduire": "Permis de conduire",
-    "réfugié": "réfugié", 
+    "réfugié": "réfugié",
     "tout public": "tout public",
     "En savoir plus": "En savoir plus",
     "Tiennent la page": "Tiennent la page à jour et répondent à vos questions",

@@ -244,7 +244,7 @@ class AdvancedSearch extends Component {
                             <p>{dispositif.abstract}</p>
                           </CardBody>
                           {dispositif.typeContenu !== "demarche" &&
-                            <CardFooter className={"align-right bg-" + shortTag}>{dispositif.titreMarque}</CardFooter>}
+                            <CardFooter className={"correct-radius align-right bg-" + shortTag}>{dispositif.titreMarque}</CardFooter>}
                         </CustomCard>
                       </Col>
                     )
