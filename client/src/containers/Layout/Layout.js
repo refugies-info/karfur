@@ -92,9 +92,10 @@ class Layout extends Component {
   }
 
   render() {
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     return (
       <DirectionProvider 
-        direction={i18n.language==="ar" ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
+        direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
         <div onMouseOver={this.toggleHover}>
           <Suspense  fallback={this.loading()}>
             <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
