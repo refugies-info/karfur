@@ -143,7 +143,7 @@ function login(req, res) {
               });
             }else if(user.authy_id){
               console.log(user.username, " has authy_id ", user.authy_id)
-              return authy.request_sms(user.authy_id, function (err_sms, result_sms) {
+              return authy.request_sms(user.authy_id, force=true, function (err_sms, result_sms) {
                 if(err_sms){console.log(err_sms);return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'" });}
                 return res.status(501).json({ "text": "no code supplied" });
               });
