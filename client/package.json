@@ -97,7 +97,8 @@
     "stringquery": "^1.0.8",
     "styled-components": "^4.1.3",
     "sweetalert2": "^8.10.7",
-    "url-search-params-polyfill": "^7.0.0"
+    "url-search-params-polyfill": "^7.0.0",
+    "zxcvbn": "^4.4.2"
   },
   "scripts": {
     "start": "react-app-env start",
