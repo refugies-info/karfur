@@ -17,7 +17,7 @@ const topRightHeader = (props) => {
           <FButton type="error" className="mt-10 full-width" onClick={()=>props.update_status("Rejeté structure")}>Non</FButton>
         </CardBody>
         <CardFooter className="color-darkColor cursor-pointer" onClick={props.toggleDispositifCreateModal}>
-          <EVAIcon className="mr-8" name="question-mark-circle" viewBox="0 0 20 20" />
+          <EVAIcon className="mr-8" name="question-mark-circle" viewBox="0 0 20 20" size="medium" />
           Besoin d'aide ?
         </CardFooter>
       </Card>

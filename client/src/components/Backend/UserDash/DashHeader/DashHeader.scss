@@ -52,8 +52,9 @@ $normalSize: 18px;
         padding: 20px;
         font-size: 18px;
         height: 100%;
-        display: flex;
+        display: inline-flex;
         align-items: center;
+        justify-content: space-between;
         background: $blancSimple;
         @include media-max("lg-limit") { margin-left:0; }
         .mot-indicateur{
@@ -65,8 +66,10 @@ $normalSize: 18px;
         .right-side{
           font-weight: 600;
           font-size: 80px;
-          display: flex;
-          align-items: center;
+          display: inline-flex;
+          align-items: baseline;
+          justify-content: space-between;
+          margin-bottom: 0px;
           line-height: 55px;
           background: $gradiantSplash;
           -webkit-background-clip: text;
@@ -75,12 +78,13 @@ $normalSize: 18px;
           @include media-max("desktop-up") { font-size: $h1Size * 3 / 5; }
           @include media-max("tablet-up") { font-size: $h1Size * 2 / 5; }
           .gris{
+            white-space: nowrap;
             font-size: 40px;
             margin: 0 10px;
           }
         }
         .left-side{
-          margin-left: 40px;
+          margin-left: 30px;
           margin-right: 10px;
           color: $grisFonce;
           align-items: baseline;
