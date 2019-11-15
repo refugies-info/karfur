@@ -142,8 +142,9 @@ function login(req, res) {
                 return proceed_with_login(req,res, user);
               });
             }else if(user.authy_id){
+              console.log(user.username, " has authy_id ", user.authy_id)
               return authy.request_sms(user.authy_id, function (err_sms, result_sms) {
-                if(err_sms){return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'" });}
+                if(err_sms){console.log(err_sms);return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'" });}
                 return res.status(501).json({ "text": "no code supplied" });
               });
             }else if(req.body.email && req.body.phone){
