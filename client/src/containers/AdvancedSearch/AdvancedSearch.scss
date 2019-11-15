@@ -197,5 +197,9 @@
     &.bg-null{
       background-color: $noir;
     }
+    &.correct-radius{
+      border-bottom-right-radius: 12px;
+      border-bottom-left-radius: 12px;
+    }
   }
 }
