@@ -18,7 +18,7 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
         if(API.isAuth()===false && route.restriction && route.restriction.length > 0){
           return <Redirect to={{ pathname:'/login', state: { redirectTo: path } }} />
         }else if(API.isAuth() && route.restriction && route.restriction.length > 0){
-          if(!user || !user.roles){ console.log("fetch_user"); fetch_user(); }
+          if(!user || !user.roles){ fetch_user(); }
           const roles = user.roles || [];
           const isAuthorized = roles.filter( x => route.restriction.includes(x.nom)).length > 0
           if(isAuthorized){

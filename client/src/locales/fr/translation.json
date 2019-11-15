@@ -100,7 +100,8 @@
     "mots écrits": "mots écrits",
     "commencez à rédiger": "Rédigez votre premier contenu pour démarrer le compteur",
     "mots traduits": "mots traduits",
-    "commencez à traduire": "Traduisez vos premiers mots pour démarrer le compteur"
+    "commencez à traduire": "Traduisez vos premiers mots pour démarrer le compteur",
+    "Modifier le mot de passe": "Modifier le mot de passe"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Qui sommes-nous ?",
@@ -241,7 +242,12 @@
     "Se créer un compte": "Se créer un compte",
     "Pas besoin d’email": "Pas besoin d’email",
     "Mot de passe oublié ?": "Mot de passe oublié ?",
-    "no-account": "Il n'existe pas de compte à ce nom"
+    "no-account": "Il n'existe pas de compte à ce nom",
+    "Confirmez le mot de passe": "Confirmez le mot de passe",
+    "Force": "Force",
+    "Mot de passe actuel": "Mot de passe actuel",
+    "Nouveau mot de passe": "Nouveau mot de passe",
+    "Confirmez le nouveau mot de passe": "Confirmez le nouveau mot de passe"
   },
   "Dispositif": {
     "fiabilite_faible": "Une information avec une faible fiabilité n'a pas été vérifiée auparavant",
@@ -422,5 +428,6 @@
   "Suivant": "Suivant",
   "Connexion": "Connexion",
   "Envoyer": "Envoyer",
-  "Lexique": "Lexique"
+  "Lexique": "Lexique",
+  "Changer": "Changer"
 }
