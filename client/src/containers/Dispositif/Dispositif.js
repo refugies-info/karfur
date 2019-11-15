@@ -17,6 +17,7 @@ import ReactJoyride, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
 import _ from "lodash";
 import querySearch from "stringquery";
 import {convertToHTML} from "draft-convert";
+import windowSize from 'react-window-size';
 
 import API from '../../utils/API';
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
@@ -39,6 +40,7 @@ import {readAudio} from "../Layout/functions";
 import MoteurVariantes from './MoteurVariantes/MoteurVariantes';
 import {contenu, lorems, menu, filtres, onBoardSteps, tutoSteps, importantCard, showModals, menuDemarche, demarcheSteps, tutoStepsDemarche, customConvertOption} from './data'
 import {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarche, validateVariante, deleteVariante} from "./functions";
+import {breakpoints} from 'utils/breakpoints.js';
 
 import variables from 'scss/colors.scss';
 
@@ -677,7 +679,7 @@ class Dispositif extends Component {
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render(){
-    const {t, translating} = this.props;
+    const {t, translating, windowWidth} = this.props;
     const {showModals, isDispositifLoading, typeContenu, runJoyRide, stepIndex, disableOverlay, joyRideWidth, 
       withHelp, disableEdit, mainTag, fiabilite, inVariante} = this.state;
     const etapes_tuto = typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
@@ -778,11 +780,12 @@ class Dispositif extends Component {
                 />}
 
               <Row className="header-row">
-                <Col lg="6" md="6" sm="12" xs="12" className="top-left" onClick={this.goBack}>
-                  <FButton type="light-action" name="arrow-back" className="btn-retour">
-                    <span>{t("Retour à la recherche", "Retour à la recherche")}</span>
-                  </FButton>
-                </Col>
+                {windowWidth >= breakpoints.smLimit && 
+                  <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-left" onClick={this.goBack}>
+                    <FButton type="light-action" name="arrow-back" className="btn-retour">
+                      <span>{t("Retour à la recherche", "Retour à la recherche")}</span>
+                    </FButton>
+                  </Col>}
                 {!inVariante &&
                   <TopRightHeader 
                     validateStructure={false}
@@ -1142,6 +1145,8 @@ export default track({
     page: 'Dispositif',
   })(
     connect(mapStateToProps, mapDispatchToProps)(
-      withTranslation()(Dispositif)
+      withTranslation()(
+        windowSize(Dispositif)
+      )
     )
   );

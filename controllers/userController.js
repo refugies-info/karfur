@@ -9,7 +9,8 @@ module.exports = function (app) {
   app.post('/set_user_info', checkToken.check, checkToken.getRoles, account.set_user_info);
   app.post('/get_users', checkToken.getId, account.get_users);
   app.post('/get_user_info', checkToken.check, account.get_user_info);
-
+  app.post('/change_password', checkToken.check, account.change_password);
+  
   app.post('/FClogin', franceConnect.FClogin);
   app.post('/FClogout', franceConnect.FClogout);
   app.post('/getUser', franceConnect.getUser);

@@ -85,7 +85,8 @@
     "traducteur mobilisé": "traducteur{{s}} mobilisé{{s}}",
     "membre": "membre{{s}}",
     "notification": "notification{{s}}",
-    "personne informée": "personne{{s}} informée{{s}}"
+    "personne informée": "personne{{s}} informée{{s}}",
+    "Mes traductions": "Mes traductions"
   },
   "UserProfile": {
     "Pseudonyme": "Pseudonyme :",
@@ -100,7 +101,8 @@
     "mots écrits": "mots écrits",
     "commencez à rédiger": "Rédigez votre premier contenu pour démarrer le compteur",
     "mots traduits": "mots traduits",
-    "commencez à traduire": "Traduisez vos premiers mots pour démarrer le compteur"
+    "commencez à traduire": "Traduisez vos premiers mots pour démarrer le compteur",
+    "Modifier le mot de passe": "Modifier le mot de passe"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Qui sommes-nous ?",
@@ -245,7 +247,12 @@
     "Se créer un compte": "Se créer un compte",
     "Pas besoin d’email": "Pas besoin d’email",
     "Mot de passe oublié ?": "Mot de passe oublié ?",
-    "no-account": "Il n'existe pas de compte à ce nom"
+    "no-account": "Il n'existe pas de compte à ce nom",
+    "Confirmez le mot de passe": "Confirmez le mot de passe",
+    "Force": "Force",
+    "Mot de passe actuel": "Mot de passe actuel",
+    "Nouveau mot de passe": "Nouveau mot de passe",
+    "Confirmez le nouveau mot de passe": "Confirmez le nouveau mot de passe"
   },
   "Dispositif": {
     "fiabilite_faible": "Une information avec une faible fiabilité n'a pas été vérifiée auparavant",
@@ -325,13 +332,13 @@
     "Numéro de téléphone": "Numéro de téléphone",
     "Débutant": "Débutant",
     "Intermédiaire": "Intermédiaire",
-    "Avancé": "Avancé", 
+    "Avancé": "Avancé",
     "Tous les niveaux": "Tous les niveaux",
-    "Titre de séjour": "Titre de séjour", 
-    "Justificatif de domicile": "Justificatif de domicile", 
-    "Diplôme": "Diplôme", 
+    "Titre de séjour": "Titre de séjour",
+    "Justificatif de domicile": "Justificatif de domicile",
+    "Diplôme": "Diplôme",
     "Permis de conduire": "Permis de conduire",
-    "réfugié": "réfugié", 
+    "réfugié": "réfugié",
     "tout public": "tout public",
     "En savoir plus": "En savoir plus",
     "Tiennent la page": "Tiennent la page à jour et répondent à vos questions",
@@ -426,5 +433,6 @@
   "Suivant": "Suivant",
   "Connexion": "Connexion",
   "Envoyer": "Envoyer",
-  "Lexique": "Lexique"
+  "Lexique": "Lexique",
+  "Changer": "Changer"
 }
