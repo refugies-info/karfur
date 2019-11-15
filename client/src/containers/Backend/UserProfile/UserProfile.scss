@@ -226,6 +226,9 @@ $defaultSize:310px;
           .validate-btn{
             float:right;
           }
+          .figma-btn{
+            flex-wrap: wrap;
+          }
         }
 
         .nb-car-row{
@@ -528,6 +531,10 @@ $defaultSize:310px;
       cursor: pointer;
     }
   }
+}
+
+.modal.show .modal-dialog.custom-modal.password-modal{
+  height: initial;
 }
 
 @-webkit-keyframes swing-out-top-bck {

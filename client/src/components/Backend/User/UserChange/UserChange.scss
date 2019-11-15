@@ -1,7 +1,6 @@
 @import 'src/scss/colors.scss';
 
 .user-change{
-  
   .profile-header-container{
     width: 120px;
   }
@@ -29,4 +28,12 @@
     background-color: red;
   }
 
+  .score-wrapper{
+    display: flex;
+    align-items: center;
+    .progress{
+      flex-grow: 1;
+      background-color: $noir3;
+    }
+  }
 }

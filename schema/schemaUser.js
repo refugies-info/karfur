@@ -9,6 +9,7 @@ if(process.env.NODE_ENV === 'dev') {
 var userSchema = mongoose.Schema({
 	username: {
 		type: String,
+		lowercase: true,
 		trim: true,
 		unique: true,
 		required: true
@@ -97,12 +98,20 @@ var userSchema = mongoose.Schema({
     type: Date,
     required: false
   },
+  authy_id: { 
+    type: String,
+    required: false
+  },
+  phone: { 
+    type: String,
+    required: false
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
 
 userSchema.methods = {
 	authenticate: function (password) {
-		return passwordHash.verify(password, this.password);
+    return passwordHash.verify(password, this.password);
 	},
 	getToken: function () {
 		return jwt.encode(
