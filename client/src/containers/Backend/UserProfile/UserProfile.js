@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Card, CardBody, CardFooter, Modal, Spinner, Input } from 'reactstrap';
+import { Col, Row, Card, CardBody, CardFooter, Modal, Spinner, Input, ModalBody, ModalFooter, Progress } from 'reactstrap';
 import Swal from 'sweetalert2';
 import h2p from 'html2plaintext';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
@@ -8,11 +8,12 @@ import windowSize from 'react-window-size';
 import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import passwdCheck from "zxcvbn";
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
 import {ActionTable, TradTable, ContribTable, FavoriTable, StructureCard} from '../../../components/Backend/UserProfile';
-import {ThanksModal, SuggestionModal, ObjectifsModal, TraducteurModal, AddMemberModal} from '../../../components/Modals';
+import {ThanksModal, SuggestionModal, ObjectifsModal, TraducteurModal, AddMemberModal, Modal as FModal} from '../../../components/Modals';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import ModifyProfile from '../../../components/Backend/UserProfile/ModifyProfile/ModifyProfile';
 import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
@@ -21,9 +22,12 @@ import {selectItem, editMember, addMember} from '../UserDashStruct/functions';
 import {avancement_langue,  avancement_contrib, avancement_actions, avancement_favoris, data_structure} from './data'
 import {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgression} from './functions';
 import {fetch_user, fetch_dispositifs} from '../../../Store/actions';
+import FInput from '../../../components/FigmaUI/FInput/FInput';
+import { colorAvancement } from '../../../components/Functions/ColorFunctions';
 
 import './UserProfile.scss';
 import variables from 'scss/colors.scss';
+import setAuthToken from '../../../utils/setAuthToken';
 
 const anchorOffset = '120';
 
@@ -40,7 +44,7 @@ class UserProfile extends Component {
   }
 
   state={
-    showModal:{actions:false, traducteur: false, contributions: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: false, addMember: false}, 
+    showModal:{actions:false, traducteur: false, contributions: false, thanks:false, favori:false, suggestion: false, objectifs:false, devenirContributeur: false, devenirTraducteur: false, addMember: false, password: false}, 
     showSections:{traductions: true, contributions: true},
     user: {},
     traductions:[],
@@ -65,6 +69,10 @@ class UserProfile extends Component {
     isMainLoading:true,
     users:[],
     selected:{},
+    password:"", 
+    newPassword:"", 
+    cpassword: "", 
+    passwordVisible: false
   }
 
   componentDidMount() {
@@ -99,8 +107,9 @@ class UserProfile extends Component {
 
   toggleModal = (modal) => {
     this.props.tracking.trackEvent({ action: 'toggleModal', label: modal, value : !this.state.showModal[modal] });
-    this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}}, () => console.log(this.state))
+    this.setState({showModal : {...this.state.showModal, [modal]: !this.state.showModal[modal]}, password:"", newPassword:"", cpassword: "", passwordVisible: false})
   }
+  togglePasswordVisibility = () => this.setState(pS=>({passwordVisible: !pS.passwordVisible}))
 
   toggleSection = (section) => {
     this.props.tracking.trackEvent({ action: 'toggleSection', label: section, value : !this.state.showSections[section] });
@@ -110,6 +119,7 @@ class UserProfile extends Component {
   toggleEditing = () => this.setState({editing : !this.state.editing})
 
   handleChange = (ev) => this.setState({ user: { ...this.state.user, [ev.currentTarget.id]: ev.currentTarget.id === "description" ? ev.target.value.slice(0,120) : ev.target.value } });
+  handlePasswordChange = (ev) => this.setState({ [ev.currentTarget.id]: ev.target.value });
 
   handleFileInputChange = event => {
     this.setState({uploading:true})
@@ -143,6 +153,23 @@ class UserProfile extends Component {
     })
   }
 
+  changePassword = () => {
+    const {password, newPassword, cpassword, user} = this.state;
+    if(!password || password.length === 0){ return Swal.fire( {title: 'Oops...', text: 'Le mot de passe initial n\'est pas renseigné !', type: 'error', timer: 1500}); }
+    if(!newPassword || newPassword.length === 0){ return Swal.fire( {title: 'Oops...', text: 'Le nouveau mot de passe n\'est pas renseigné !', type: 'error', timer: 1500}); }
+    if(!cpassword || cpassword.length === 0){ return Swal.fire( {title: 'Oops...', text: 'Le nouveau mot de passe n\'est pas confirmé !', type: 'error', timer: 1500}); }
+    if(newPassword !== cpassword){ return Swal.fire( {title: 'Oops...', text: 'Les mots de passes ne correspondent pas !', type: 'error', timer: 1500}); }
+    if((passwdCheck(newPassword) || {}).score < 1){ return Swal.fire( {title: 'Oops...', text: 'Le mot de passe est trop faible', type: 'error', timer: 1500}); }
+    const newUser = { password, newPassword, cpassword }
+    API.change_password({query: {_id : user._id, username: user.username}, newUser}).then(data => {
+      Swal.fire( {title: 'Yay...', text: 'Mise à jour réussie !', type: 'success', timer: 1500} )
+      localStorage.setItem('token', data.data.token);
+      setAuthToken(data.data.token);
+      this.props.fetch_user();
+      this.toggleModal("password");
+    });
+  }   
+
   validateObjectifs = (newUser) => {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
@@ -172,7 +199,9 @@ class UserProfile extends Component {
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render() {
-    const {traducteur, contributeur, traductions, contributions, actions, langues, structure, user, showSections, isMainLoading, actionsStruct}=this.state;
+    const {traducteur, contributeur, traductions, contributions, actions, 
+      langues, structure, user, showSections, isMainLoading, actionsStruct,
+      password, newPassword, cpassword, passwordVisible}=this.state;
     const {t}= this.props;
     const favoris = ((user.cookies || {}).dispositifsPinned || []);
     
@@ -248,6 +277,7 @@ class UserProfile extends Component {
                 handleChange={this.handleChange}
                 toggleEditing={this.toggleEditing}
                 validateProfile = {this.validateProfile}
+                toggleModal={this.toggleModal}
                 {...this.state} />
             </Col>
 
@@ -409,11 +439,6 @@ class UserProfile extends Component {
 
         <ThanksModal show={this.state.showModal.thanks} toggle={()=>this.toggleModal('thanks')} />
         <SuggestionModal suggestion={this.state.suggestion} show={this.state.showModal.suggestion} toggle={()=>this.toggleModal('suggestion')} />
-        {/* <ContributeurModal 
-          redirect={true}
-          history={this.props.history}
-          show={this.state.showModal.devenirContributeur} 
-          toggle={()=>this.toggleModal('devenirContributeur')} /> */}
         
         <TraducteurModal 
           user={this.state.user} 
@@ -436,6 +461,19 @@ class UserProfile extends Component {
           selected={this.state.selected}
         />
 
+        <PasswordModal 
+          show={this.state.showModal.password} 
+          password={password}
+          newPassword={newPassword}
+          cpassword={cpassword}
+          passwordVisible={passwordVisible}
+          toggle={()=>this.toggleModal("password")} 
+          changePassword={this.changePassword} 
+          onChange={this.handlePasswordChange} 
+          onClick={this.togglePasswordVisibility}
+          t={t}
+        />
+
         {isMainLoading &&
           <div className="ecran-protection no-main">
             <div className="content-wrapper">
@@ -446,6 +484,80 @@ class UserProfile extends Component {
       </div>
     );
   }
+}
+
+const PasswordModal = props => {
+  const password_check = passwdCheck(props.newPassword) || {};
+  return (
+    <FModal
+      className="password-modal" 
+      modalHeader = "Modifier mon mot de passe"
+      {...props}
+    >
+      <ModalBody>
+        <FInput
+          prepend append
+          prependName="lock-outline"
+          appendName={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"}
+          inputClassName="password-input"
+          onAppendClick={props.onClick}
+          type={props.passwordVisible ? "text" : "password"} 
+          id="password"
+          placeholder={props.t("Login.Mot de passe actuel", "Mot de passe actuel")} 
+          autoComplete="new-password" 
+          value={props.password}
+          onChange={props.onChange}
+        />
+        <FInput
+          prepend append
+          prependName="lock-outline"
+          appendName={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"}
+          type={props.passwordVisible ? "text" : "password"} 
+          inputClassName="password-input"
+          onAppendClick={props.onClick}
+          id="newPassword"
+          placeholder={props.t("Login.Nouveau mot de passe", "Nouveau mot de passe")} 
+          autoComplete="new-password" 
+          value={props.newPassword}
+          onChange={props.onChange}
+        />
+        {props.newPassword && 
+          <div className="score-wrapper mb-10">
+            <span className="mr-10">{props.t("Login.Force", "Force")} :</span>
+            <Progress 
+              color={colorAvancement(password_check.score/4)} 
+              value={(0.1+(password_check.score/4))*100/1.1} 
+            />
+          </div>}
+        <FInput
+          prepend append
+          prependName="lock-outline"
+          appendName={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"}
+          inputClassName="password-input"
+          type={props.passwordVisible ? "text" : "password"} 
+          onAppendClick={props.onClick}
+          id="cpassword"
+          placeholder={props.t("Login.Confirmez le nouveau mot de passe", "Confirmez le nouveau mot de passe")} 
+          autoComplete="cpassword" 
+          value={props.cpassword}
+          onChange={props.onChange}
+        />
+      </ModalBody>
+      <ModalFooter>
+        <FButton type="light-action" onClick={props.toggle} className="mr-10">
+          {props.t("Annuler", "Annuler")}
+        </FButton>
+        <FButton 
+          type="validate" 
+          name="checkmark" 
+          onClick={props.changePassword}
+          disabled={!props.password || !props.newPassword || !props.cpassword || (password_check || {}).score < 1}
+        >
+          {props.t("Valider", "Valider")}
+        </FButton>
+      </ModalFooter>
+    </FModal>
+  )
 }
 
 const mapStateToProps = (state) => {

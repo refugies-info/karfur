@@ -93,7 +93,6 @@ function get_tradForReview(req, res) {
     populate={path:populate, select : '-password'};
   }else{populate='';}
 
-  console.log(query, random)
   if(query.articleId && typeof query.articleId === "string" && query.articleId.includes('struct_')){
     res.status(204).json({ "text": "Pas de données", "data" : []})
     return false;
@@ -447,7 +446,6 @@ const updateRoles = () => {
       console.log(err)
     } else {
       if (result) {
-        console.log(result)
         Role.findOne({'nom':'Trad'}).exec((err_role, result_role) => {
           console.log("result_role._id",result_role._id)
           if(!err_role && result_role){ 
