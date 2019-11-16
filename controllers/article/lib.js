@@ -10,6 +10,12 @@ var himalaya = require('himalaya');
 var uniqid = require('uniqid');
 var h2p = require('html2plaintext');
 
+var html = "<strong>hello world</strong>";
+console.log(sanitizeHtml(html));
+console.log(sanitizeHtml("<img src=x onerror=alert('img') />"));
+console.log(sanitizeHtml("console.log('hello world')"));
+console.log(sanitizeHtml("<script>alert('hello world')</script>"));
+
 let elementId=Math.floor(Math.random() * Math.floor(9999999));
 let nombreMots = 0;
 
