@@ -10,6 +10,7 @@
 
 @import './scss/common.scss';
 @import './scss/colors.scss';
+@import './scss/rtl-handler.scss';
 
 $theme-list: (
   Français #37277C     #F0E8F5    #ADA8D4,
@@ -22,6 +23,7 @@ $theme-list: (
   Rencontre    #A50455     #FFEBF5    #FDA5C4,
   Loisir    #AB2DC1     #F6E6FC    #E595F9,
   Culture    #CE310D     #FFF0E7    #FEC396,
+  Santé       #C6093F   #FFEEEE  #F985A6,
 );
 
 html head, html body{
@@ -192,10 +194,16 @@ html body{
       background-color: nth($value, 2);
     }
     .bg-light-#{nth($value, 1)} {
-      background-color: nth($value, 2);
+      background-color: nth($value, 3);
     }
     .border-#{nth($value, 1)} {
       border-color: nth($value, 2);
+    }
+    .texte-#{nth($value, 1)} {
+      color: nth($value, 2);
+    }
+    .texte-light-#{nth($value, 1)} {
+      color: nth($value, 2);
     }
   }
 }

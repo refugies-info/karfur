@@ -226,6 +226,9 @@ $defaultSize:310px;
           .validate-btn{
             float:right;
           }
+          .figma-btn{
+            flex-wrap: wrap;
+          }
         }
 
         .nb-car-row{
@@ -347,6 +350,10 @@ $defaultSize:310px;
     font-size: 16px;
     line-height: 20px;
     color:$noir;
+    padding: 15px;
+    th{
+      padding: 15px 20px;
+    }
   }
   tbody tr:hover{
     background: $blanc;
@@ -365,6 +372,7 @@ $defaultSize:310px;
     font-size: 18px;
     line-height: 23px;
     color: $noir;
+    padding: 10px 20px;
   }
   .voir-plus{
     text-align: center;
@@ -392,6 +400,7 @@ $defaultSize:310px;
     width: max-content;
     padding: 6px 10px;
     border-radius: 6px;
+    font-weight: bold;
   }
   .negative-margin{
     margin-top:-10px;
@@ -516,24 +525,16 @@ $defaultSize:310px;
     .tableau-footer{
       display: flex;
       justify-content: flex-end;
-
-      .btn{
-        background: linear-gradient(147.25deg, #4A69BD -7.66%, #60A3BC 92.45%);
-        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
-        border-radius: 12px;
-        span{
-          font-weight: bold;
-          font-size: 18px;
-          line-height: 23px;
-          margin-left:8px;
-        }
-      }
     }
 
     .pointer{
       cursor: pointer;
     }
   }
+}
+
+.modal.show .modal-dialog.custom-modal.password-modal{
+  height: initial;
 }
 
 @-webkit-keyframes swing-out-top-bck {

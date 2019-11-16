@@ -1,24 +1,24 @@
 {
   "Homepage": {
-    "subtitle": "Ici, trouve et partage de l'information pour réussir ton projet de vie",
-    "explication lexique": "Consulte le lexique pour comprendre les mots que tu rencontres dans ta lecture.",
+    "subtitle": "Ici, je trouve et partage de l'information pour réussir mon projet de vie",
+    "explication lexique": "Consultez le lexique collaboratif pour comprendre les mots que vous rencontrez dans votre navigation.",
     "information vérifiée": "Réfugiés.info est transparent sur la qualité de l'information",
-    "information vérifiée subheader": "Les contenus proposés sont relus et corrigés avant d’être publiés afin d’éviter les erreurs et les informations périmées. Une fois en ligne, si tu vois une erreur, tu peux la signaler facilement.",
+    "information vérifiée subheader": "Les contenus proposés sont relus et corrigés avant d’être publiés afin d’éviter les erreurs et les informations périmées. Une fois en ligne, vous pouvez facilement signaler une erreur.",
     "disponible langues": "Réfugiés.info est disponible en plusieurs langues",
-    "disponible langues subheader": "Participe à la traduction pour rendre l’information toujours plus accessible pour les personnes réfugiées.",
+    "disponible langues subheader": "Participez à la traduction pour rendre l’information toujours plus accessible pour les personnes réfugiées.",
     "traducteurs mobilises": "Déjà {{nombre}} traducteurs et traductrices mobilisés :",
     "contributeurs mobilises": "Déjà {{nombre}} contributeurs et contributrices engagés :",
     "contributive": "Réfugiés.info est ouvert à la contribution",
-    "contributive subheader": "Un peu comme Wikipédia, réfugiés.info est un outil simple pour réunir de l'information pratique. Participe à l'enrichissement du site en rédigeant toi-même de nouvelles fiches. Tu peux aussi suggérer des modifications sur les fiches existantes.",
+    "contributive subheader": "Un peu comme Wikipédia, réfugiés.info est un outil simple pour réunir de l'information pratique. Participez à l'enrichissement du site en rédigeant vous-même de nouvelles fiches. Vous pouvez également suggérer des modifications sur les fiches existantes.",
     "Super recherche": "Super recherche",
-    "Vous cherchez ?": "Tu cherches à :",
+    "Vous cherchez ?": "Je cherche à :",
     "À comprendre une démarche": "Comprendre une démarche administrative",
     "A apprendre": "Rejoindre un dispositif d'accompagnement",
     "Trouver un dispositif": "Trouver un dispositif",
-    "creer parcours": "Créer ton parcours personnalisé",
+    "creer parcours": "Créer mon parcours personnalisé",
     "Je contribue": "Je contribue",
     "Je traduis": "Je traduis",
-    "Construis ta vie en France": "Construis ta vie en France",
+    "Construis ta vie en France": "Construire ma vie en France",
     "Explique les mots difficiles": "Réfugiés.info explique les mots difficiles",
     "Trouver une démarche": "Trouver une démarche",
     "Choisir une langue": "Choisir une langue",
@@ -33,7 +33,10 @@
     "Trier par": "Trier par :",
     "Filtrer par": "Filtrer par :",
     "Dispositifs": "Dispositifs",
-    "Démarches": "Démarches"
+    "Démarches": "Démarches",
+    "Créer une fiche": "Créer une fiche",
+    "Elargir recherche": "Essayez d’élargir votre recherche en désactivant certains filtres",
+    "Oups": "Oups !"
   },
   "Tables": {
     "Propriétaire": "Propriétaire",
@@ -44,7 +47,7 @@
     "mots rédigés": "mots<br/>rédigés",
     "minutes passées": "minutes<br/>passées",
     "personnes informées": "personnes<br/>informées",
-    "Espace contribution": "Espace contribution",
+    "Espace rédaction": "Espace rédaction",
     "Retrouvez ici vos pages favorites": "Retrouvez ici vos pages favorites",
     "cherche btn": "Cherchez ce bouton dans les contenus pour les sauvegarder",
     "Ajouter un membre": "Ajouter un membre",
@@ -82,7 +85,8 @@
     "traducteur mobilisé": "traducteur{{s}} mobilisé{{s}}",
     "membre": "membre{{s}}",
     "notification": "notification{{s}}",
-    "personne informée": "personne{{s}} informée{{s}}"
+    "personne informée": "personne{{s}} informée{{s}}",
+    "Mes traductions": "Mes traductions"
   },
   "UserProfile": {
     "Pseudonyme": "Pseudonyme :",
@@ -97,7 +101,8 @@
     "mots écrits": "mots écrits",
     "commencez à rédiger": "Rédigez votre premier contenu pour démarrer le compteur",
     "mots traduits": "mots traduits",
-    "commencez à traduire": "Traduisez vos premiers mots pour démarrer le compteur"
+    "commencez à traduire": "Traduisez vos premiers mots pour démarrer le compteur",
+    "Modifier le mot de passe": "Modifier le mot de passe"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Qui sommes-nous ?",
@@ -206,9 +211,13 @@
   },
   "SearchItem": {
     "Je cherche à": "Je cherche à",
+    "choisir un thème": "choisir un thème",
     "J'habite à": "J'habite à",
+    "ma ville": "ma ville",
     "J'ai": "J'ai",
+    "mon âge": "mon âge",
     "Je parle": "Je parle",
+    "mon niveau": "mon niveau",
     "Je suis": "Je suis",
     "français": "français"
   },
@@ -238,7 +247,12 @@
     "Se créer un compte": "Se créer un compte",
     "Pas besoin d’email": "Pas besoin d’email",
     "Mot de passe oublié ?": "Mot de passe oublié ?",
-    "no-account": "Il n'existe pas de compte à ce nom"
+    "no-account": "Il n'existe pas de compte à ce nom",
+    "Confirmez le mot de passe": "Confirmez le mot de passe",
+    "Force": "Force",
+    "Mot de passe actuel": "Mot de passe actuel",
+    "Nouveau mot de passe": "Nouveau mot de passe",
+    "Confirmez le nouveau mot de passe": "Confirmez le nouveau mot de passe"
   },
   "Dispositif": {
     "fiabilite_faible": "Une information avec une faible fiabilité n'a pas été vérifiée auparavant",
@@ -315,7 +329,27 @@
     "Ville": "Ville",
     "Informations pratiques": "Informations pratiques",
     "Email de contact": "Email de contact",
-    "Numéro de téléphone": "Numéro de téléphone"
+    "Numéro de téléphone": "Numéro de téléphone",
+    "Débutant": "Débutant",
+    "Intermédiaire": "Intermédiaire",
+    "Avancé": "Avancé",
+    "Tous les niveaux": "Tous les niveaux",
+    "Titre de séjour": "Titre de séjour",
+    "Justificatif de domicile": "Justificatif de domicile",
+    "Diplôme": "Diplôme",
+    "Permis de conduire": "Permis de conduire",
+    "réfugié": "réfugié",
+    "tout public": "tout public",
+    "En savoir plus": "En savoir plus",
+    "Tiennent la page": "Tiennent la page à jour et répondent à vos questions",
+    "Évaluer mon niveau": "Évaluer mon niveau",
+    "Nous vous écoutons": "Nous vous écoutons :",
+    "Réagir": "Réagir",
+    "J'ai une question": "J'ai une question",
+    "J'ai une suggestion !": "J'ai une suggestion !",
+    "Je veux juste vous dire": "Je veux juste vous dire",
+    "réagir": "réagir",
+    "écouter": "écouter"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",
@@ -356,6 +390,7 @@
   "Contributeurs": "Contributeurs",
   "Traducteurs": "Traducteurs",
   "Merci": "Merci !",
+  "Bravo": "Bravo !",
   "ou": "ou",
   "Bientôt disponible !": "Bientôt disponible !",
   "En savoir plus": "En savoir plus",
@@ -397,5 +432,7 @@
   "Parcours personnalisé": "Parcours personnalisé",
   "Suivant": "Suivant",
   "Connexion": "Connexion",
-  "Lexique": "Lexique"
+  "Envoyer": "Envoyer",
+  "Lexique": "Lexique",
+  "Changer": "Changer"
 }

@@ -29,7 +29,6 @@ import image_corriger from './image_corriger.svg';
 import dispo_trip_1 from './dispo_trip_1.svg';
 import logo_google from './logo_google.svg';
 import logo_header from './logo_header.svg';
-
 import juliette from './juliette.png';
 import hugo from './hugo.png';
 import concordia from './concordia.png';
@@ -75,7 +74,6 @@ export {
   dispo_trip_1,
   logo_google,
   logo_header,
-  
   juliette,
   hugo,
   concordia,
