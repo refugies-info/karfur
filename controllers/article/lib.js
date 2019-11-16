@@ -330,8 +330,8 @@ const _insertStructTranslation = (initial, translated, locale, id, avancement) =
     if(initial[key] && initial[key].id){
       // console.log(initial[key].id)
       if(initial[key].id === id){
-        initial[key][locale]=translated;
-        avancement.value+=initial[key].fr.trim().split(/\s+/).length
+        initial[key][locale] = initial[key].fr && initial[key].fr === h2p(initial[key].fr) ? h2p(translated) : translated;
+        avancement.value += initial[key].fr.trim().split(/\s+/).length
         succes = true;
         return true
       }
