@@ -294,10 +294,10 @@ class SideTrad extends Component {
         {!isExpert &&
           <div className="nav-btns">
             {currIdx !== "titreInformatif" &&
-              <FButton type="outline-black" name="arrow-back-outline" fill={variables.noir} onClick={()=>this.goChange(false)}>
+              <FButton type="outline-black" name="arrow-back-outline" fill={variables.noir} onClick={()=>this.goChange(false)} className="mt-10">
                 Paragraphe précédent
               </FButton>}
-            <FButton className="margin-left-auto" type="light-action" onClick={this.goChange}>
+            <FButton className="margin-left-auto mt-10" type="light-action" onClick={this.goChange}>
               Paragraphe suivant
               <EVAIcon name="arrow-forward-outline" fill={variables.noir} className="ml-10" />
             </FButton>
@@ -314,14 +314,18 @@ class SideTrad extends Component {
               </Tooltip>
             </div>}
         </div>
-        <div className="content-data mb-20" id="body_texte_initial"
-          ref={initial_text => {this.initial_text = initial_text}}>
+        <div 
+          className="content-data mb-20" 
+          id="body_texte_initial"
+          ref={initial_text => {this.initial_text = initial_text}}
+        >
           {ReactHtmlParser((francais || {}).body || "")}
         </div>
 
         <div className="langue-data">
           <i className={'mr-12 flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
           <strong>Votre traduction en {(langue.langueFr || '').toLowerCase()}</strong>
+          <div className="toolbar-spacer" />
         </div>
         <div className="content-data" id="body_texte_final">
           <ConditionalSpinner show={!(translated || {}).body} />
@@ -374,18 +378,18 @@ class SideTrad extends Component {
         </div>
         <div className="footer-btns">
           {isExpert ? <div></div> :
-            <FButton type="outline-black" name="refresh-outline" fill={variables.noir} onClick={this.reset}>
+            <FButton type="outline-black" name="refresh-outline" fill={variables.noir} onClick={this.reset} className="mt-10 mr-10">
               Réinitialiser
             </FButton>}
-          <div>
+          <div className="right-footer">
             {isExpert && 
-              <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(translated || {}).body} fill={variables.noir} className="mr-10">
+              <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(translated || {}).body} fill={variables.noir} className="mr-10 mt-10">
                 Signaler
               </FButton>}
-            <FButton type="light-action" name={(isExpert ? "close" : "skip-forward") + "-outline"} fill={variables.noir} className="mr-10" onClick={()=> isExpert ? this.toggleModal(true, 'rejected') : this.goChange()}>
+            <FButton type="light-action" name={(isExpert ? "close" : "skip-forward") + "-outline"} fill={variables.noir} className="mr-10 mt-10" onClick={()=> isExpert ? this.toggleModal(true, 'rejected') : this.goChange()}>
               {isExpert ? "Refuser" : "Passer"}
             </FButton>
-            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(translated || {}).body}>  {/* || disableBtn */}
+            <FButton type="validate" name="checkmark-circle-outline" onClick={this.onValidate} disabled={!(translated || {}).body} className="mt-10 mr-10">  {/* || disableBtn */}
               Valider
             </FButton>
           </div>

@@ -45,8 +45,9 @@ if(process.env.NODE_ENV === 'dev') {
         console.log(await db.collection('dispositifs').insertMany(dispositifs).insertedIds);
       }
 
-      // let isLocaleSuccess=_insertI18nLocales()
-      // let isDownloadSuccess=_getI18nLocales()
+      // let isLocaleSuccess=_insertI18nLocales() //depuis le fichier local vers la BDD
+      // let isDownloadSuccess=_getI18nLocales() //depuis la BDD vers le fichier local
+      // let isMergeSuccess=_mergeLocalesFiles() //fusionner en local avec les données de prod
     }catch(e){console.log(e)}
   }
 }else{
@@ -150,6 +151,64 @@ const _getI18nLocales = () => {
       });
     })
   });
+}
+
+const _mergeLocalesFiles = () => {
+  const localJson = require('../client/src/locales/merger/local.js').local;
+  const prodJson = require('../client/src/locales/merger/prod.js').prod;
+  let nbMots=0;
+  let avancement={fr:1};
+  
+  let tempObj=_mergeNested(localJson.body,prodJson.body,nbMots, avancement);
+  nbMots=tempObj.nbMots;
+  avancement=tempObj.avancement;
+  
+  if(nbMots>0){Object.keys(avancement).map((key) => {avancement[key] = key==="fr" ? avancement[key] : avancement[key]/nbMots;});}
+  let localeArticle={
+    title: 'Structure du site',
+    body: localJson.body,
+    nombreMots:nbMots,
+    avancement:avancement,
+    canBeUpdated: false
+  }
+  Article.findOneAndUpdate(
+    {isStructure: true, title: 'Structure du site', status:'Actif', canBeUpdated: true}, 
+    localeArticle, 
+    {upsert: false,new: true},  //Modifier upsert à true si on accepte d'en créer un nouveau si on ne le trouve pas
+    (err, doc) => {
+      if (err) {
+        console.log("Something went wrong when updating data : " + err);
+        return false
+      }else if(doc){
+        console.log('translation data merged with great success');
+      }
+      return true
+    }
+  );
+}
+
+_mergeNested = (localJson, prodJson, nbMots, avancement) => {
+  //On insère les traductions en prod dans le json local
+  Object.keys(localJson).forEach((key) => {
+    if(localJson[key] && localJson[key].fr && typeof localJson[key].fr === 'string'){
+      if(prodJson && prodJson[key] && prodJson[key].constructor === Object){
+        Object.keys(prodJson[key]).forEach((ln) => {
+          if(ln !== "fr"){
+            localJson[key][ln] = prodJson[key][ln];
+            avancement[ln]= (avancement[ln] || 0) + localJson[key].fr.trim().split(/\s+/).length
+          }
+        })
+      }
+      nbMots+=localJson[key].fr.trim().split(/\s+/).length;
+    }else if(localJson.constructor === Object){
+      let tempObj=_mergeNested(localJson[key], (prodJson || {})[key], nbMots, avancement);
+      nbMots=tempObj.nbMots;
+      avancement=tempObj.avancement;
+    }else{
+      console.log("erreur merge : ", localJson.constructor)
+    }
+  })
+  return {nbMots, avancement}
 }
 
 _getFromNested = (localeJSON, locale) => {

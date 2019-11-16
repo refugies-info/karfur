@@ -38,7 +38,6 @@ class Footer extends Component {
       <div className="animated fadeIn footer">
         <Row className="negative-margin">
           <Col xl="4" lg="4" md="4" sm="12" xs="12" className="mt-10">
-            <Logo />
             <Form onSubmit={this.sendMail}>
               <FormGroup>
                 {/*<Label for="emailNewsletter">Rejoindre la newsletter</Label>*/}
@@ -58,13 +57,13 @@ class Footer extends Component {
             </Form>
             <div className="ligne-footer">
               {/*<label>Rejoindre la newsletter</label>*/}
-              <FButton tag={"a"} href="https://agi-r.mn.co" target="_blank" className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
+              <FButton tag={"a"} href="https://refugies-info.mn.co" target="_blank" className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
                 {t("Footer.Participer à l'évolution de réfugiés-info", "Participer à l'évolution de réfugiés.info")}
               </FButton>
             </div>
             <div className="ligne-footer">
               {/*<label>Demander de nouveaux contenus</label>*/}
-              <FButton tag={"a"} href="https://agir.canny.io/agir" target="_blank" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
+              <FButton tag={"a"} href="https://refugies.canny.io/" target="_blank" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
                 {t("Footer.Demander des fonctionnalités", "Demander des fonctionnalités")}
               </FButton>
             </div>

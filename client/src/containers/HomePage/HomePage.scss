@@ -5,6 +5,8 @@
   flex: 1 1;
   color: $noir;
   background: $gris;
+  max-width: 100%;
+  overflow: scroll;
 
   .link{
     text-decoration: underline;
@@ -14,6 +16,8 @@
     min-height: 750px;
     padding-top: 100px;
     padding-bottom: 93px;
+    position: relative;
+    overflow: hidden;
   }
 
   #hero {
@@ -27,6 +31,24 @@
     padding-top: 150px;
     margin-top: -60px;
     height: 772px;
+
+    .search-col{
+      padding-left: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: $noir;
+      display: flex;
+      align-items: center;
+      .mr-10{
+        padding-right: 10px;
+      }
+      .search-btn{
+        font-size: 22px;
+      }
+      .search-options{
+        font-size: 18px;
+      }
+    }
   }
 
   .triptique{
@@ -53,6 +75,11 @@
     }
   }
 
+  .search-btn{
+    -webkit-animation: on-homepage 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+	          animation: on-homepage 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+  }
+
   // .header-anchor{
   //   margin-top: -60px;
   //   padding-top: 60px;
@@ -67,6 +94,7 @@
     width: 100%;
     padding: 0 100px;
     height: 100%;
+    @include media-max("sm-limit") { padding: 0 20px; }
 
     &.half-width{
       width: 50%;
@@ -110,7 +138,7 @@
     background-position: calc(100% - 60px) calc(100% - 120px),0;
   }
 
-  #multilangues, #explique{
+  #multilangues{
     background-image: url(../../assets/figma/illustration_Traduction.svg);
     background-size: 70%;
     background-repeat: no-repeat;
@@ -145,7 +173,6 @@
         border-radius: 12px;
         border:none;
         padding: 40px;
-        font-size: 18px;
 
         .card-header{
           background: transparent;
@@ -155,6 +182,7 @@
           line-height: 36px;
           height: 100px;
           padding:0;
+          @include media-max("sm-limit") { font-size: 21px; }
         }
         .card-body{
           padding:0;
@@ -165,17 +193,22 @@
           display: flex;
           justify-content: center;
           padding:0;
-          font-size: 18px;
           font-weight: bold;
 
           .figma-btn{
             max-width: 100%;
+            flex-wrap: wrap;
+            text-overflow: ellipsis;
+            white-space: inherit;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            min-height: 60px;
+            justify-content: center;
           }
           .homebtn{
             background: rgba(255, 255, 255, 0.95);
             color: $noir;
             transition: all 0.5s ease;
-            height: 60px;
             padding: 10px 20px;
             box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
             display: flex;
@@ -267,22 +300,26 @@
   }
   .slide-animation{
     position: absolute;
-    bottom: -180px;
+    width: 48px;
+    height: 48px;
+    bottom: -30px;
     left: 50%;
     background: $noir;
     border-radius: 50%;
+    z-index: 1;
     transition: all 0.5s ease;
     -webkit-animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
             animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
   }
 
-  .slide-background{
-    margin:-10px;
-  }
-
   .bottom-slider {
-    position: relative;
+    position: absolute;
     fill: $blancSimple;
+    z-index: 10;
+    svg{
+      margin-left: -6px;
+      margin-top: -6px;
+    }
     &:hover{
       svg{
         transition: all 0.5s ease;
@@ -291,8 +328,6 @@
     }
   }
 }
-
-
 
 @-webkit-keyframes slide-bottom {
   0% {
@@ -304,6 +339,7 @@
             transform: translateY(30px);
   }
 }
+
 @keyframes slide-bottom {
   0% {
     -webkit-transform: translateY(0);
@@ -312,5 +348,26 @@
   100% {
     -webkit-transform: translateY(30px);
             transform: translateY(30px);
+  }
+}
+
+@-webkit-keyframes flip-horizontal-top {
+  0% {
+    -webkit-transform: rotateX(0);
+            transform: rotateX(0);
+  }
+  100% {
+    -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
+  }
+}
+@keyframes flip-horizontal-top {
+  0% {
+    -webkit-transform: rotateX(0);
+            transform: rotateX(0);
+  }
+  100% {
+    -webkit-transform: rotateX(180deg);
+            transform: rotateX(180deg);
   }
 }

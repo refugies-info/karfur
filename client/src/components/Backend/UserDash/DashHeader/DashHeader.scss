@@ -52,8 +52,9 @@ $normalSize: 18px;
         padding: 20px;
         font-size: 18px;
         height: 100%;
-        display: flex;
+        display: inline-flex;
         align-items: center;
+        justify-content: space-between;
         background: $blancSimple;
         @include media-max("lg-limit") { margin-left:0; }
         .mot-indicateur{
@@ -65,8 +66,10 @@ $normalSize: 18px;
         .right-side{
           font-weight: 600;
           font-size: 80px;
-          display: flex;
-          align-items: center;
+          display: inline-flex;
+          align-items: baseline;
+          justify-content: space-between;
+          margin-bottom: 0px;
           line-height: 55px;
           background: $gradiantSplash;
           -webkit-background-clip: text;
@@ -75,12 +78,13 @@ $normalSize: 18px;
           @include media-max("desktop-up") { font-size: $h1Size * 3 / 5; }
           @include media-max("tablet-up") { font-size: $h1Size * 2 / 5; }
           .gris{
+            white-space: nowrap;
             font-size: 40px;
             margin: 0 10px;
           }
         }
         .left-side{
-          margin-left: 40px;
+          margin-left: 30px;
           margin-right: 10px;
           color: $grisFonce;
           align-items: baseline;
@@ -91,10 +95,12 @@ $normalSize: 18px;
   }
 
   .header-structure{
+    margin-top: -10px;
     .titre-structure{
       border-radius: 12px;
       background: $blanc;
       height: 100%;
+      padding: 0;
 
       .right-side{
         padding: 20px;
@@ -110,7 +116,7 @@ $normalSize: 18px;
       }
     }
     .img-wrapper{
-      padding: 35px 54px;
+      padding: 35px 35px;
       height: 100%;
       background: $blancSimple;
       display: flex;
@@ -121,13 +127,29 @@ $normalSize: 18px;
       max-width: 190px;
     }
 
+    .row-indicateurs{
+      margin-left: 10px;
+    }
+
+    .struct-indicateurs{
+      padding-left: 0;
+      padding-right: 10px;
+    }
+
     .right-side-header{
-      margin-top: -10px;
       .indicateur{
         background: $blanc;
         border-radius: 12px;
         padding: 20px;
         margin-top: 10px;
+        align-items: center;
+        display: flex;
+        flex : 1 0 auto;
+        overflow: scroll;
+        h2{
+          margin-right: 10px;
+        }
+
       }
     }
   }

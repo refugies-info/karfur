@@ -26,7 +26,7 @@ class MoteurVariantes extends Component {
 
           <div className="moteur-wrapper">
             <div className="moteur-header">
-              <h5>{inVariante ? "Tout d’abord : à qui s’adresse votre variante ?" : "Créez vos cas ici : "}</h5>
+              <h5>{inVariante ? "À qui s’adresse votre variante ?" : "Créez vos cas ici : "}</h5>
               {isReducedVue && 
                 <FButton type="dark" name="edit-outline" onClick={this.toggleVue}>
                   Modifier

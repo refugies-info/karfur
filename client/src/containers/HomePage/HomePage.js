@@ -57,32 +57,24 @@ class HomePage extends Component {
             <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
             
             <div className="search-row">
-              <SearchItem  
+              <SearchItem className="on-homepage"
                 item={{...item, value: item.children[0].name}}
                 keyValue={0}
                 selectParam = {this.selectParam}
                 desactiver={()=>{}}
               />
-              {/* <h5>Je cherche à</h5>
-              <FSearchBtn className={"bg-" + item.short.split(" ").join("-") + " texte-blanc"}>
-                <h5>{t("Tags." + item.name, item.name)}</h5>
-              </FSearchBtn> */}
             </div>
           </div>
           <div className="chevron-wrapper">
             <div className="slide-animation">
-              <AnchorLink offset='60' href="#plan" className="arrowhead-icon header-anchor">
-                <div className="slide-background">
-                  <EVAIcon className="bottom-slider" name="arrow-circle-down" size="hero"/>
-                </div>
-              </AnchorLink>
+              <EVAIcon className="bottom-slider" name="arrow-circle-down" size="hero"/>
             </div>
           </div>
         </section>
 
         <section id="plan" className="triptique">
           <div className="section-container">
-            <h2>{t("Homepage.Vous cherchez ?", "Tu cherches à ?")}</h2>
+            <h2>{t("Homepage.Vous cherchez ?", "Je cherche à ?")}</h2>
               
             <Row className="card-row">
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
@@ -117,7 +109,7 @@ class HomePage extends Component {
               </Col>
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
                 <Card className="parcours-card">
-                  <CardHeader>{t("Homepage.creer parcours", "Créer ton parcours personnalisé")}</CardHeader>
+                  <CardHeader>{t("Homepage.creer parcours", "Créer mon parcours personnalisé")}</CardHeader>
                   <CardBody>
                     {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
                   </CardBody>
