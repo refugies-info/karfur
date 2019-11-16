@@ -269,7 +269,7 @@ const buttonTraductions = (element, user, openThemes, openTraductions) => (
         Valider les traductions
       </FButton> :
       <b className="meme-ligne">Rien à valider !</b> :
-    <FButton type="dark" name="play-circle" fill={variables.noir} onClick={() => openThemes(element)}>Démarrer</FButton>
+    <FButton type="dark" name="play-circle" fill={variables.noir} onClick={() => openThemes(element)}>Démarrer une session</FButton>
 )
 
 const ProgressionTraduction = (props) => {

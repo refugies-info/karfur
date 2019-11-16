@@ -1,5 +1,6 @@
+@import 'src/scss/colors.scss';
+
 .user-change{
-  
   .profile-header-container{
     width: 120px;
   }
@@ -23,7 +24,16 @@
   }
 
   .label.label-default.rank-label {
-    background-color: rgb(81, 210, 183);
+    color: $blancSimple;
+    background-color: red;
   }
 
+  .score-wrapper{
+    display: flex;
+    align-items: center;
+    .progress{
+      flex-grow: 1;
+      background-color: $noir3;
+    }
+  }
 }

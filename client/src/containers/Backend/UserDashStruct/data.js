@@ -112,7 +112,8 @@ export const avancement_contributions={
 
 export const avancement_members={
   title: 'Membres',
-  headers: ['Nom', 'Rôle', 'Dernière connexion', 'Ajouté le', '', '', '']
+  headers: ['Nom', 'Rôle', 'Dernière connexion', 'Ajouté le', '', '', ''],
+  hideOnPhone: [false, false, true, true, true, true, true]
 }
 
 export const fakeContribution = {

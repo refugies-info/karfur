@@ -18,13 +18,13 @@ const actionTable = (props) => {
   const {t} = props;
   const hasNotifs = (props.dataArray || []).length > 0;
   const dataArray = hasNotifs ? props.dataArray : new Array(5).fill(fakeNotifs);
-  let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
+  const data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
   
-  let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+  const hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
   
   const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length - 1))}
 
-  let table = (
+  const table = (
     <Table responsive className="avancement-user-table">
       <thead>
         <tr>

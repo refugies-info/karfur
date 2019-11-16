@@ -230,8 +230,8 @@ class AdvancedSearch extends Component {
                     let shortTag = null;
                     if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-") }
                     return (
-                      <Col xl="3" lg="3" md="4" sm="6" xs="12" className="card-col puff-in-center" key={dispositif._id}>
-                        <CustomCard onClick={() => this.goToDispositif(dispositif)}>
+                      <Col xl="3" lg="3" md="4" sm="6" xs="12" className={"card-col puff-in-center " + (dispositif.typeContenu || "dispositif")} key={dispositif._id}>
+                        <CustomCard onClick={() => this.goToDispositif(dispositif)} className={(dispositif.typeContenu === "demarche" ? ("texte-" + shortTag + " bg-light-" + shortTag) : "")}>
                           <CardBody>
                             <EVAIcon 
                               name="bookmark" 
@@ -243,7 +243,8 @@ class AdvancedSearch extends Component {
                             <h5>{dispositif.titreInformatif}</h5>
                             <p>{dispositif.abstract}</p>
                           </CardBody>
-                          <CardFooter className={"align-right bg-" + shortTag}>{dispositif.titreMarque}</CardFooter>
+                          {dispositif.typeContenu !== "demarche" &&
+                            <CardFooter className={"correct-radius align-right bg-" + shortTag}>{dispositif.titreMarque}</CardFooter>}
                         </CustomCard>
                       </Col>
                     )
@@ -253,13 +254,13 @@ class AdvancedSearch extends Component {
                 )}
                 {!showSpinner && [...pinned,...dispositifs].length === 0 &&
                   <Col xs="12" sm="6" md="3" className="no-result" onClick={()=>this.selectTag()}>
-                    <CustomCard>
+                    <CustomCard className="no-result-card">
                       <CardBody>
                         <h5>{t("Aucun résultat", "Aucun résultat")}</h5>
-                        <p>{t("Elargir recherche", "Essayez d’élargir votre recherche en désactivant certains tags")} </p>
+                        <p>{t("AdvancedSearch.Elargir recherche", "Essayez d’élargir votre recherche en désactivant certains filtres")} </p>
                       </CardBody>
                       <CardFooter className="align-right">
-                        {t("Désolé", "Désolé")}...
+                        {t("AdvancedSearch.Oups", "Oups !")}...
                       </CardFooter>
                     </CustomCard>
                   </Col>}
@@ -272,7 +273,7 @@ class AdvancedSearch extends Component {
                           <span className="add-sign">+</span> }
                       </CardBody>
                       <CardFooter className="align-right">
-                        {showSpinner ? t("Chargement", "Chargement") + "..." : t("Créer un dispositif", "Créer un dispositif")}
+                        {showSpinner ? t("Chargement", "Chargement") + "..." : t("AdvancedSearch.Créer une fiche", "Créer une fiche")}
                       </CardFooter>
                     </CustomCard>
                   </NavHashLink>

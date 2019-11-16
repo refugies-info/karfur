@@ -4,11 +4,11 @@
 $imgWidth : 300px;
 $imgHeight : 350px;
 
-.dispositif{
+.dispositif.vue{
   flex: 1 1;
   position: relative;    
   max-width: 100%;
-  overflow: scroll;
+  overflow: scroll !important;
   
   .banniere-dispo{
     margin-top: -60px;
@@ -101,8 +101,8 @@ $imgHeight : 350px;
             border-radius: 12px 12px 0px 0px;
             background: $gris;
 
-            .validate{
-              margin-top: 10px;
+            .validate-header{
+              text-align: center;
             }
 
             .savebtn{
@@ -110,9 +110,15 @@ $imgHeight : 350px;
             }
             .full-width{
               width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
           }
           .card-footer{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background: $erreur;
             border:none;
             border-radius: 0px 0px 12px 12px;
@@ -159,6 +165,7 @@ $imgHeight : 350px;
     display: flex;
     justify-content: flex-end;
     padding-right:0;
+    padding-left:0;
   }
 
   .subtitle-container{
@@ -379,7 +386,7 @@ $imgHeight : 350px;
   h3.contenu-title{
     line-height: normal;
     color: $darkColor;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   .mt-20{
     margin-top: 40px;
@@ -392,7 +399,7 @@ $imgHeight : 350px;
     }
   }
   .paragraphe{
-    margin-top: 20px;
+    margin-top: 10px;
   }
   #contenu-0 .toolbar-editeur{
     top: -70px;
@@ -497,7 +504,6 @@ $imgHeight : 350px;
       line-height: normal;
       color: #FFFFFF;
       height: 40px;
-      margin-left: 15px;
       margin-top: 10px;
       width: fit-content;
       display: flex;
@@ -511,9 +517,6 @@ $imgHeight : 350px;
         .no-decoration{
           color:inherit;
           text-decoration: none;
-        }
-        svg{
-          margin-right: 10px;
         }
       }
     }
@@ -542,9 +545,6 @@ $imgHeight : 350px;
         margin-right:15px;
         padding: 0;
       }
-      #question-bloc{
-        margin-left:8px;
-      }
     }
     .date-maj{
       color: green;
@@ -560,6 +560,7 @@ $imgHeight : 350px;
       margin-top: 20px;
       flex-wrap: wrap;
     }
+
     #accordion-header{
       background: #FFFFFF;
       border-radius: 12px;
@@ -571,6 +572,7 @@ $imgHeight : 350px;
       cursor: pointer;
       display: inline-block;
       position: relative;
+      padding-left: 15px;
   
       &.active{
         transition: all 0.2s ease;
@@ -582,8 +584,8 @@ $imgHeight : 350px;
         line-height: 38px;
       }
       .accordion-text{
-        margin: 0 18px 0 0;
-        font-size: 18px;
+        margin: 0 22px 0 0;
+        font-size: 22px;
         font-weight: 600;
       }
       .accordion-number, .accordion-expand{
@@ -610,6 +612,10 @@ $imgHeight : 350px;
     .contenu-accordeon{
       margin-top:20px;
       margin-left:50px;
+      p{
+        font-size: 18px;
+        line-height: 27px;
+      }
       &.etape-accordeon{ 
         .plus-wrapper{
           bottom: 53px;
@@ -625,8 +631,8 @@ $imgHeight : 350px;
 
     .accordeon-delete-icon{
       position: absolute;
-      top: -15px;
-      right: -15px;
+      top: -16px;
+      right: -16px;
     }
   }
   
@@ -649,7 +655,7 @@ $imgHeight : 350px;
     justify-content: space-between;
     align-items: center;
     margin-top:120px;
-    padding: 35px 20px 35px 40px;
+    padding: 35px 40px;
     font-size: 18px;
     @include media-max("lg-limit") { width: 116% }
 
@@ -657,29 +663,21 @@ $imgHeight : 350px;
       font-weight: bold;
       font-size: 16px;
       border-radius: 12px;
-      border: 0.5px solid $rouge;
-      color: $rouge;
-      
+      border: 0.5px solid;
+      padding: 15px 20px;
       &:hover{
-        background: linear-gradient(118.23deg, rgba(246, 185, 59, 0.3) 12.44%, rgba(229, 80, 57, 0.3) 71.69%);
+        background: darken($color: $gris, $amount: 0);
+
       }
       &:active{
-        background: linear-gradient(124.79deg, #F6B93B 12.44%, $rouge 71.69%);
+        background: $validationHover;
         color: #FFFFFF;
         border: none;
       }
+      &::after{
+        background: $validationHover;
+      }
     }
-    .thanks-btn{
-      margin-right: 10px;
-      background: #FFFFFF;
-    }
-    .down-btn{
-      border: 0.5px solid $rouge;
-      background-color: $blanc;
-    }
-  }
-  h5{
-    font-size: 24px;
   }
 
   .translating{
@@ -700,7 +698,7 @@ $imgHeight : 350px;
     align-items: flex-start;
     flex-direction: column;
     margin-top: 24px;
-    @include media-max("lg-limit") { margin-top: 10px; }
+    @include media-max("lg-limit") {margin-top: 10px;}
 
     .figma-btn{
       margin-bottom:12px;
@@ -714,7 +712,7 @@ $imgHeight : 350px;
       width: 100%;
       padding: 0;
       .form-control {
-        padding-right: 12px;
+        padding-right: 30px;
         padding-left: 40px;
         z-index: 1;
         border:none;

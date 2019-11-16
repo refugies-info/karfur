@@ -23,6 +23,7 @@ import RejectTradModal from './RejectTradModal/RejectTradModal';
 import CheckDemarcheModal from './CheckDemarcheModal/CheckDemarcheModal';
 import VarianteCreateModal from './VarianteCreateModal/VarianteCreateModal';
 import EtapeModal from './EtapeModal/EtapeModal';
+import Modal from './Modal';
 
 export {
   BookmarkedModal,
@@ -49,5 +50,6 @@ export {
   RejectTradModal,
   CheckDemarcheModal,
   VarianteCreateModal,
-  EtapeModal
+  EtapeModal,
+  Modal
 }
