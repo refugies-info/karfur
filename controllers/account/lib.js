@@ -135,7 +135,7 @@ function login(req, res) {
         }
       } else {
         if (user.authenticate(req.body.password)) {
-          if((user.roles || []).some(x => x.equals(req.roles.find(x=>x.nom==='Admin')._id) )){
+          if((user.roles || []).some(x => x && x.equals(req.roles.find(x=>x.nom==='Admin')._id) )){
             if(user.authy_id && req.body.code){
               return authy.verify(user.authy_id, req.body.code, function (err, result) {
                 if(err || !result){return res.status(204).json({ "text": "Erreur à la vérification du code", data: err });}
