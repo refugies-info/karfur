@@ -111,6 +111,7 @@ class Dispositif extends Component {
     demarcheId: null,
     isVarianteValidated: false,
     dispositif: {},
+    _id: undefined,
   }
   newRef=React.createRef();
   mountTime=0;
@@ -455,7 +456,7 @@ class Dispositif extends Component {
       if(this.state.pinned){
         user.cookies.dispositifsPinned = user.cookies.dispositifsPinned.filter(x => x._id !== this.state.dispositif._id)
       }else{
-        user.cookies.dispositifsPinned=[...(user.cookies.dispositifsPinned || []), {...this.state.dispositif, pinned:true, datePin: new Date()}];
+        user.cookies.dispositifsPinned=[...(user.cookies.dispositifsPinned || []), {_id: this.state._id, datePin: new Date()}];
       }
       API.set_user_info(user).then(() => {
         this.props.fetch_user();

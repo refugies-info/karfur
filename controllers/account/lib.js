@@ -4,8 +4,9 @@ const Langue = require('../../schema/schemaLangue.js');
 const passwordHash = require("password-hash");
 const authy = require('authy')(process.env.ACCOUNT_SECURITY_API_KEY);
 const passwdCheck = require("zxcvbn");
+let {transporter, mailOptions} = require('../dispositif/lib.js');
 
-//Cette fonction est appelée seulement lorsqu'un administrateur crée un nouveau compte
+//Cette fonction semble inutilisée maintenant, à vérifier
 function signup(req, res) {
   if (!req.body.username || !req.body.password) {
     //Le cas où l'email ou bien le password ne serait pas soumis ou nul
@@ -107,13 +108,14 @@ function login(req, res) {
           }
           user.password=passwordHash.generate(user.password);
           if(user.roles && user.roles.length > 0 && req.user.roles.some(x => x.nom === "Admin")){
-            user.roles=[...new Set([...user.roles, req.roles.find(x=>x.nom==='User')._id])]
+            user.roles=[...new Set([...user.roles, req.roles.find(x=>x.nom==='User')._id])];
           }else if(user.traducteur){
             user.roles=[req.roles.find(x=>x.nom==='Trad')._id]
             delete user.traducteur;
           }else{
             user.roles=[req.roles.find(x=>x.nom==='User')._id]
           }
+          _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
           user.status='Actif';
           user.last_connected = new Date();
           var _u = new User(user);
@@ -185,6 +187,38 @@ const proceed_with_login = function (req,res, user){
   })
 }
 
+const _checkAndNotifyAdmin = async function(user, roles, requestingUser, isNew=true){
+  const adminId = roles.find(x => x.nom === "Admin")._id;
+  if(user.roles && user.roles.some(x => adminId.equals(x))){
+    if(!isNew){ //Si l'utilisateur existe déjà, je vérifie qu'il n'avait pas déjà ce rôle pour pas spammer à chaque modif de l'utilisateur
+      const currUser = await User.findOne({ _id: user._id });
+      if(!currUser || !currUser.roles || currUser.roles.includes(adminId)){
+        return false; //On ne fait rien s'il avait déjà ce rôle;
+      }
+    }
+    let html = "<p>Bonjour,</p>";
+    
+    html += "<p>Un nouvel administrateur a été ajouté sur la plateforme Réfugiés.info (environnement : '" + process.env.NODE_ENV + "') : </p>";
+    html += "<ul>";
+    html += "<li>username : " + user.username + "</li>";
+    html += user._id ? "<li>identifiant : " + user._id + "</li>" : "";
+    html += user.email ? "<li>email : " + user.email + "</li>" : "";
+    html += user.description ? "<li>description : " + user.description + "</li>" : "";
+    html += user.phone ? "<li>phone : " + user.phone + "</li>" : "";
+    html += "</ul>";
+    html += "Cet utilisateur a été ajouté par : " + requestingUser.username;
+    html += "<p>A bientôt,</p>";
+    html += "<p>Soufiane, admin Réfugiés.info</p>";
+    
+    mailOptions.html = html;
+    mailOptions.subject = 'Nouvel administrateur Réfugiés.info - ' + user.username;
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) { console.log(error); } else { console.log('Email sent: ' + info.response); }
+    });
+  }
+}
+
+
 function checkUserExists(req, res) {
   if (!req.body.username) {
     res.status(400).json({ "text": "Requête invalide" })
@@ -215,9 +249,11 @@ function set_user_info(req, res) {
     //Si l'utilisateur n'est pas admin je vérifie qu'il ne se modifie que lui-même
     let isAdmin = req.user.roles.find(x => x.nom==='Admin')
 
-    if(!isAdmin && user._id != req.user._id){
+    if(!isAdmin && !user._id.equals(req.user._id)){
       res.status(401).json({ "text": "Token invalide" }); return false;
     }
+
+    _checkAndNotifyAdmin(user, req.roles, req.user, false); //Si on lui donne un role admin, je notifie tous les autres admin
 
     if(user.traducteur){
       user = {...user, $addToSet:{roles: req.roles.find(x=>x.nom==='Trad')._id}}

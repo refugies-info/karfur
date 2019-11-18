@@ -6,16 +6,21 @@ var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
 var uniqid = require('uniqid');
 const nodemailer = require("nodemailer");
+const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
+// const gmail_auth = require('./gmail_auth');
 
 const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
 
 //Réactiver ici si besoin
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  // service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: 'diairagir@gmail.com',
     pass: process.env.GMAIL_PASS
-  }
+  },
 });
 
 var mailOptions = {
@@ -29,7 +34,6 @@ function add_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let dispositif = req.body;
-    console.log('content-length', req.headers['content-length'])
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
@@ -224,7 +228,7 @@ const turnHTMLtoJSON = (contenu, nbMots=null) => {
   for(var i=0; i < contenu.length;i++){
     let html= contenu[i].content;
     nbMots+=(html || '').trim().split(/\s+/).length;
-    let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+    let safeHTML=sanitizeHtml(html, sanitizeOptions); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
     let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
     contenu[i].content=jsonBody;
 
@@ -297,3 +301,7 @@ exports.update_dispositif = update_dispositif;
 exports.turnHTMLtoJSON = turnHTMLtoJSON;
 exports.turnJSONtoHTML = turnJSONtoHTML;
 exports.get_dispo_progression = get_dispo_progression;
+
+//Utilisés dans d'autres controllers :
+exports.transporter = transporter;
+exports.mailOptions = mailOptions;

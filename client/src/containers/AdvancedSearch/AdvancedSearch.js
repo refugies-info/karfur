@@ -7,6 +7,7 @@ import querySearch from "stringquery";
 import _ from "lodash";
 import { NavHashLink } from 'react-router-hash-link';
 import windowSize from 'react-window-size';
+import { connect } from 'react-redux';
 // import Cookies from 'js-cookie';
 
 import SearchItem from './SearchItem/SearchItem';
@@ -59,12 +60,11 @@ class AdvancedSearch extends Component {
     )).reduce((acc, curr) => ({...acc, ...curr}),{});
     API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', demarcheId: { $exists: false } }}).then(data_res => {
       let dispositifs=data_res.data.data;
-      console.log(query, dispositifs)
       if(query["tags.name"]){       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
         dispositifs = dispositifs.sort((a,b)=> (a.tags.findIndex(x => x ? x.short === query["tags.name"] : 99) - b.tags.findIndex(x => x ? x.short === query["tags.name"] : 99)))
       }
       dispositifs = dispositifs.map(x => ({...x, nbVues: (this.state.nbVues.find(y=>y._id === x._id) || {}).count }))     //Je rajoute la donnée sur le nombre de vues par dispositif
-        .filter(x => !this.state.pinned.some(y=>y._id===x._id))
+        .filter(x => !this.state.pinned.some(y=>y._id===x._id || y===x._id))
       this.setState({ dispositifs:dispositifs, showSpinner: false })
     }).catch(()=>this.setState({ showSpinner: false }))
   }
@@ -104,7 +104,7 @@ class AdvancedSearch extends Component {
         user={_id:u._id, cookies:u.cookies || {}}
         this.setState({
           pinned:user.cookies.parkourPinned || [],
-          dispositifs:[...this.state.dispositifs].filter(x => !((user.cookies.parkourPinned || []).find( y=> y._id === x._id))),
+          dispositifs:[...this.state.dispositifs].filter(x => !((user.cookies.parkourPinned || []).find( y=> y._id === x._id || y === x._id))),
           ...(user.cookies.parkourData && user.cookies.parkourData.length>0 && 
             {data:this.state.data.map((x,key)=> {return {...x, value: (user.cookies.parkourData[key] || x.value), query: (x.children.find(y=> y.name === (user.cookies.parkourData[key] || x.value)) || {}).query }})})
         })
@@ -123,7 +123,7 @@ class AdvancedSearch extends Component {
         [...this.state.pinned, dispositif] :
         this.state.pinned.filter(x=> x._id !== dispositif._id)
     },()=>{
-      user.cookies.parkourPinned=this.state.pinned;
+      user.cookies.parkourPinned=[...new Set(this.state.pinned.map(x => x._id))];
       API.set_user_info(user);
     })
   }
@@ -171,9 +171,10 @@ class AdvancedSearch extends Component {
 
   render() {
     let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri, displayAll} = this.state;
-    const {t, windowWidth} = this.props;
-    const filteredPinned = activeFiltre ? pinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : pinned;
-
+    const {t, windowWidth, dispositifs: storeDispo} = this.props;
+    const populatedPinned = storeDispo && storeDispo.length > 0 ? pinned.map(x => x._id ? x : (storeDispo.find(y => y._id === x) || {})) : [];
+    const filteredPinned = activeFiltre ? populatedPinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : populatedPinned;
+    
     if(recherche[0].active){
       dispositifs = dispositifs.sort((a,b) => _.get(a,"tags.0.name", {}) === recherche[0].query ? -1 : _.get(b,"tags.0.name", {}) === recherche[0].query ? 1 : 0)
     }
@@ -355,11 +356,19 @@ const ResponsiveFooter = props => {
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    dispositifs: state.dispositif.dispositifs,
+  }
+}
+
 export default track({
     page: 'AdvancedSearch',
   })(
-    withTranslation()(
-      windowSize(AdvancedSearch)
+    connect(mapStateToProps)(
+      withTranslation()(
+        windowSize(AdvancedSearch)
+      )
     )
   );
 
