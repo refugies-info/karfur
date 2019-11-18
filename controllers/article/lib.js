@@ -10,14 +10,18 @@ var himalaya = require('himalaya');
 var uniqid = require('uniqid');
 var h2p = require('html2plaintext');
 
-var html = "<strong>hello world</strong>";
-console.log(sanitizeHtml(html));
-console.log(sanitizeHtml("<img src=x onerror=alert('img') />"));
-console.log(sanitizeHtml("console.log('hello world')"));
-console.log(sanitizeHtml("<script>alert('hello world')</script>"));
-
 let elementId=Math.floor(Math.random() * Math.floor(9999999));
 let nombreMots = 0;
+
+const sanitizeOptions = {
+  allowedTags: [ 'div', 'p', 'strong', 'em', 'u', 'span', 'b', 'ul', 'li', 'figure', 'a', //Les principaux qui sont effectivement utilisés
+  'i', 'br', 'blockquote', 'ol' ], //des secondaires qu'on peut autoriser sans trop de risque
+  allowedAttributes: {
+    a: [ 'href', 'name', 'target', 'class' ],
+    '*': [ 'class' ],
+    img: [ 'src' ]
+  }
+}
 
 function add_article(req, res) {
   if (!req.body || !req.body.title || !req.body.body) {
@@ -29,13 +33,13 @@ function add_article(req, res) {
     //On transforme le html en JSON après l'avoir nettoyé
     let draft=req.body.body;
     let html= draft.blocks ? draftToHtml(draft) : draft;
-    let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+    let safeHTML=sanitizeHtml(html, sanitizeOptions);
     let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
 
     make_nodes_unique_and_local(jsonBody, uniqid('initial_'))
 
     var article = {
-      title:{fr:sanitizeHtml(req.body.title)},
+      title:{fr:sanitizeHtml(req.body.title, sanitizeOptions)},
       body:jsonBody,
       nombreMots : nombreMots,
       avancement:{fr:1},
@@ -147,7 +151,7 @@ function add_traduction(req, res) {
       let traductionItem=req.body;
       //On transforme le html en JSON après l'avoir nettoyé
       let html=traductionItem.translatedText.body;
-      let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+      let safeHTML=sanitizeHtml(html, sanitizeOptions);
       let jsonBody=null;
       if(traductionItem.isStructure){
         traductionItem={
@@ -175,7 +179,6 @@ function add_traduction(req, res) {
               }else{succes=false;console.log('erreur 1');}
             }else{
               avancement={value : (result.avancement[locale] || 0) * (result.nombreMots || 0)};
-              console.log(traductionItem)
               if(_insertStructTranslation(result.body,traductionItem.translatedText.body,locale,traductionItem.jsonId, avancement)){
                 result.markModified("body");
                 if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;};
@@ -336,7 +339,7 @@ const _insertStructTranslation = (initial, translated, locale, id, avancement) =
     if(initial[key] && initial[key].id){
       // console.log(initial[key].id)
       if(initial[key].id === id){
-        initial[key][locale] = initial[key].fr && initial[key].fr === h2p(initial[key].fr) ? h2p(translated) : translated;
+        initial[key][locale] = initial[key].fr && initial[key].fr === h2p(initial[key].fr) ? h2p(translated) : sanitizeHtml(translated, sanitizeOptions);
         avancement.value += initial[key].fr.trim().split(/\s+/).length
         succes = true;
         return true
@@ -564,3 +567,4 @@ exports.remove_traduction = remove_traduction;
 
 //Utilisés dans d'autres controllers
 exports.addTranslationRestructure=addTranslationRestructure;
+exports.sanitizeOptions = sanitizeOptions;

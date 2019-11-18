@@ -88,7 +88,7 @@ class Login extends Component {
         this.props.fetch_user();
       }).catch(e => {
         if(e.response.status === 501){
-          this.setState({step: 2});
+          this.setState({showModal: false, step: 2});
         }else if(e.response.status === 502){
           this.setState({showModal: true, phone: _.get(e,"response.data.phone", ""), email: _.get(e,"response.data.email", "") });
         }else{console.log(e.response)}
