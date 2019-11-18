@@ -114,11 +114,17 @@
         fill: $noir;
       }
     }
+    &:focus{
+      svg{
+        fill: $noir;
+      }
+    }
   }
 
   .pinned{
-    .bookmark-icon{
-      opacity: 1;
+    opacity: 1;
+    svg{
+      fill: $validationHover;
     }
   }
 
