@@ -23,38 +23,6 @@ const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
 const instance = axios.create();
 instance.defaults.timeout = 12000000;
 
-const reinsert_traductions_validees = () => {
-  Article.findOne({isStructure: true, canBeUpdated: true}).exec((err, result) => {
-    if(result && !err){
-      console.log("result found")
-      Traduction.find({langueCible: "ti-ER", status: "Validée"}).then(data_traduction => {
-        console.log("traductions found")
-        const traductions=data_traduction;
-        for (var item of Object.keys(result.body)) {
-          if(result.body[item].fr && result.body[item].id && !result.body[item]["ti-ER"] && traductions.some(x => x.jsonId === result.body[item].id)){
-            console.log("one lonely result.body[item]", result.body[item].fr)
-            result.body[item]["ti-ER"] = traductions.find(x => x.jsonId === result.body[item].id).translatedText.body;
-          }else if(!result.body[item].fr && result.body[item].constructor === Object){
-            console.log("descending")
-            for (var subitem of Object.keys(result.body[item])) {
-              if(result.body[item][subitem].fr && result.body[item][subitem].id && !result.body[item][subitem]["ti-ER"] && traductions.some(x => x.jsonId === result.body[item][subitem].id)){
-                console.log("one lonely result.body[item][subitem]", result.body[item][subitem].fr)
-                result.body[item][subitem]["ti-ER"] = traductions.find(x => x.jsonId === result.body[item][subitem].id).translatedText.body;
-              }
-            }
-          }
-        }
-        result.canBeUpdated=false;
-        result.markModified("body");
-        result.save();
-        console.log("terminé")
-      })
-    }
-  })
-}
-
-
-
 async function add_tradForReview(req, res) {
   if (!req.body || !req.body.langueCible || !req.body.translatedText) {
     //Le cas où la requête ne serait pas soumise ou nul
