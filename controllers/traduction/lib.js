@@ -10,6 +10,7 @@ var h2p = require('html2plaintext');
 const axios = require("axios");
 const turnHTMLtoJSON = require('../dispositif/lib.js').turnHTMLtoJSON;
 const turnJSONtoHTML = require('../dispositif/lib.js').turnJSONtoHTML;
+const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
 
 const headers = {
   'Content-Type': 'application/json',
@@ -21,6 +22,38 @@ const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
 
 const instance = axios.create();
 instance.defaults.timeout = 12000000;
+
+const reinsert_traductions_validees = () => {
+  Article.findOne({isStructure: true, canBeUpdated: true}).exec((err, result) => {
+    if(result && !err){
+      console.log("result found")
+      Traduction.find({langueCible: "ti-ER", status: "Validée"}).then(data_traduction => {
+        console.log("traductions found")
+        const traductions=data_traduction;
+        for (var item of Object.keys(result.body)) {
+          if(result.body[item].fr && result.body[item].id && !result.body[item]["ti-ER"] && traductions.some(x => x.jsonId === result.body[item].id)){
+            console.log("one lonely result.body[item]", result.body[item].fr)
+            result.body[item]["ti-ER"] = traductions.find(x => x.jsonId === result.body[item].id).translatedText.body;
+          }else if(!result.body[item].fr && result.body[item].constructor === Object){
+            console.log("descending")
+            for (var subitem of Object.keys(result.body[item])) {
+              if(result.body[item][subitem].fr && result.body[item][subitem].id && !result.body[item][subitem]["ti-ER"] && traductions.some(x => x.jsonId === result.body[item][subitem].id)){
+                console.log("one lonely result.body[item][subitem]", result.body[item][subitem].fr)
+                result.body[item][subitem]["ti-ER"] = traductions.find(x => x.jsonId === result.body[item][subitem].id).translatedText.body;
+              }
+            }
+          }
+        }
+        result.canBeUpdated=false;
+        result.markModified("body");
+        result.save();
+        console.log("terminé")
+      })
+    }
+  })
+}
+
+
 
 async function add_tradForReview(req, res) {
   if (!req.body || !req.body.langueCible || !req.body.translatedText) {
@@ -39,7 +72,11 @@ async function add_tradForReview(req, res) {
       traduction.nbMots = turnHTMLtoJSON(traduction.translatedText.contenu);
     }else{
       let html= traduction.translatedText.body || traduction.translatedText;
-      let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+      let safeHTML=sanitizeHtml(html, sanitizeOptions); //On nettoie le html
+      if(traduction.initialText.body && traduction.initialText.body === h2p(traduction.initialText.body)){ //Si le texte initial n'a pas de html, je force le texte traduit à ne pas en avoir non plus
+        safeHTML=h2p(html);
+      }
+
       if(!traduction.isStructure){
         let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: true })
         traduction.translatedText= traduction.translatedText.body ? {...traduction.translatedText, body:jsonBody}:jsonBody;
@@ -54,7 +91,7 @@ async function add_tradForReview(req, res) {
       nbMotsBody=(h2p(safeHTML).split(/\s+/).length || 0);
       
       if(traduction.initialText && traduction.initialText.body && !traduction.isStructure){
-        traduction.initialText.body = himalaya.parse(sanitizeHtml(traduction.initialText.body, {allowedTags: false,allowedAttributes: false}), { ...himalaya.parseDefaults, includePositions: true })
+        traduction.initialText.body = himalaya.parse(sanitizeHtml(traduction.initialText.body, sanitizeOptions), { ...himalaya.parseDefaults, includePositions: true })
       }
       if(traduction.initialText && traduction.initialText.title){
         traduction.initialText.title = h2p(traduction.initialText.title)
@@ -452,7 +489,6 @@ const updateRoles = () => {
             result.forEach(x => {
               const traducteurs = x.participants;
               traducteurs.forEach(y => {
-                console.log(y)
                 User.findByIdAndUpdate({ _id: y },{ "$addToSet": { "roles": result_role._id } },{new: true},(e) => {if(e){console.log(e);}}); 
               })
             })

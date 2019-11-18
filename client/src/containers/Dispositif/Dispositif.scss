@@ -100,6 +100,7 @@ $imgHeight : 350px;
             align-content: space-between;
             border-radius: 12px 12px 0px 0px;
             background: $gris;
+            z-index: 2;
 
             .validate-header{
               text-align: center;
