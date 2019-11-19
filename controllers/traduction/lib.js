@@ -10,6 +10,7 @@ var h2p = require('html2plaintext');
 const axios = require("axios");
 const turnHTMLtoJSON = require('../dispositif/lib.js').turnHTMLtoJSON;
 const turnJSONtoHTML = require('../dispositif/lib.js').turnJSONtoHTML;
+const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
 
 const headers = {
   'Content-Type': 'application/json',
@@ -39,7 +40,11 @@ async function add_tradForReview(req, res) {
       traduction.nbMots = turnHTMLtoJSON(traduction.translatedText.contenu);
     }else{
       let html= traduction.translatedText.body || traduction.translatedText;
-      let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+      let safeHTML=sanitizeHtml(html, sanitizeOptions); //On nettoie le html
+      if(traduction.initialText.body && traduction.initialText.body === h2p(traduction.initialText.body)){ //Si le texte initial n'a pas de html, je force le texte traduit à ne pas en avoir non plus
+        safeHTML=h2p(html);
+      }
+
       if(!traduction.isStructure){
         let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: true })
         traduction.translatedText= traduction.translatedText.body ? {...traduction.translatedText, body:jsonBody}:jsonBody;
@@ -54,7 +59,7 @@ async function add_tradForReview(req, res) {
       nbMotsBody=(h2p(safeHTML).split(/\s+/).length || 0);
       
       if(traduction.initialText && traduction.initialText.body && !traduction.isStructure){
-        traduction.initialText.body = himalaya.parse(sanitizeHtml(traduction.initialText.body, {allowedTags: false,allowedAttributes: false}), { ...himalaya.parseDefaults, includePositions: true })
+        traduction.initialText.body = himalaya.parse(sanitizeHtml(traduction.initialText.body, sanitizeOptions), { ...himalaya.parseDefaults, includePositions: true })
       }
       if(traduction.initialText && traduction.initialText.title){
         traduction.initialText.title = h2p(traduction.initialText.title)
@@ -452,7 +457,6 @@ const updateRoles = () => {
             result.forEach(x => {
               const traducteurs = x.participants;
               traducteurs.forEach(y => {
-                console.log(y)
                 User.findByIdAndUpdate({ _id: y },{ "$addToSet": { "roles": result_role._id } },{new: true},(e) => {if(e){console.log(e);}}); 
               })
             })

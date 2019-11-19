@@ -44,7 +44,6 @@ class UneVariante extends Component {
   }
 
   onPlaceSelected = (place) => {
-    console.log(place)
     const newVilles = [...this.state.villes, place];
     const filteredNewVilles = [...new Set( newVilles.map(x => x.place_id) )].map(x => newVilles.find(y => y.place_id === x))
     this.setState(pS => ({villes: filteredNewVilles, validatedRow: pS.validatedRow.map((x,i) => i===0 ? true : x), ville: "" }));
@@ -58,7 +57,6 @@ class UneVariante extends Component {
   changeTitle = (idx, value) => this.setState(pS => ({ageTitle: value, validatedRow: pS.validatedRow.map((x,i) => i===1 ? idx > 0 : x) }));
 
   toggleCas = (idx) => {
-    console.log(idx)
     if(idx === this.state.allCase.length - 1){
       if(!this.state.validatedRow.includes(true)){return}
       this.validateCriteres(false, idx);
@@ -102,7 +100,6 @@ class UneVariante extends Component {
     validatedRow.forEach((x,i) => { if(i>1 && x){
         newVariante[this.state.newCriteres[i-2].query] = this.state.newCriteres[i-2].options.filter(y=>y.selected).map(y => y.texte);
     } })
-    console.log(newVariante)
     this.props.validateVariante(newVariante, idx);
     if(close){ this.props.toggleVue(); };
     return;
@@ -111,7 +108,7 @@ class UneVariante extends Component {
   render(){
     const {filtres, inVariante, variantes} = this.props;
     const {villes, ageTitle, bottomValue, topValue, ville, validatedRow, newCriteres, isMounted} = this.state;
-    let allCase = inVariante ? [true] : this.state.allCase;
+    const allCase = inVariante ? [true] : this.state.allCase;
     return(
       <>
         <div className="moteur-row">
@@ -132,7 +129,7 @@ class UneVariante extends Component {
                       </h5>
                       <div className={"critere-body" + (villes.length === 0 ? " justify-content-space-between" : "")}>
                         {villes.length === 0 && 
-                          <span className="color-grisFonce">Cette démarche s’applique aux habitants de :</span>}
+                          <span className="color-grisFonce mt-10">Cette démarche s’applique aux habitants de :</span>}
 
                         {isMounted && 
                           <ReactDependentScript
@@ -213,13 +210,13 @@ class UneVariante extends Component {
                           </DropdownMenu>
                         </ButtonDropdown>
                         <div className="critere-body justify-content-space-between">
-                          <span className="color-grisFonce">{customCritere.displayText}</span>
+                          <span className="color-grisFonce mt-10">{customCritere.displayText}</span>
                           <div className="critere-options">
                             {customCritere.options.map((option, key) => (
                               <FButton 
                                 type="light-action" 
                                 key={key} 
-                                className={"ml-10 custom-critere-btn" + (option.selected ? " active" : "")}
+                                className={"ml-10 mt-10 custom-critere-btn" + (option.selected ? " active" : "")}
                                 onClick={()=>this.selectCritere(key, idx)}
                               >
                                 {option.texte}
@@ -232,8 +229,8 @@ class UneVariante extends Component {
 
                     <div className="critere add-critere cursor-pointer" onClick={this.addCritere}>
                       <div className="critere-body">
-                        <EVAIcon name="plus-circle-outline" fill={variables.grisFonce} className="mr-10" />
-                        <span className="color-grisFonce">
+                        <EVAIcon name="plus-circle-outline" fill={variables.grisFonce} className="mr-10 mt-10" />
+                        <span className="color-grisFonce mt-10">
                           Ajouter un critère supplémentaire
                         </span>
                       </div>

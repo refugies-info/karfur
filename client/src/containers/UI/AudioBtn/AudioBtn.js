@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import track from 'react-tracking';
+import { Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
@@ -16,9 +17,12 @@ class AudioBtn extends Component {
   }
 
   render() {
+    const {showAudioSpinner, ttsActive} = this.props;
     return (
-      <div className={"audio-icon-wrapper mr-10" + (this.props.ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
-        <EVAIcon name={"volume-up" + (this.props.ttsActive ? "" : "-outline")} fill={(this.props.ttsActive ? "#FFFFFF" : variables.noir)} id="audioBtn" />
+      <div className={"audio-icon-wrapper mr-10" + (ttsActive ? " pressed" : "")} onClick={this.toggleAudio}>
+        {showAudioSpinner ?
+          <Spinner color="light" className="audio-spinner" /> :
+          <EVAIcon name={"volume-up" + (ttsActive ? "" : "-outline")} fill={(ttsActive ? "#FFFFFF" : variables.noir)} id="audioBtn" />}
       </div>
     )
   }
@@ -26,7 +30,8 @@ class AudioBtn extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ttsActive: state.tts.ttsActive
+    ttsActive: state.tts.ttsActive,
+    showAudioSpinner: state.tts.showAudioSpinner,
   }
 }
 

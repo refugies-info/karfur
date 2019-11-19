@@ -43,3 +43,6 @@ yarn-error.log*
 *.orig
 .idea/
 .vscode/
+credentials.json
+token.json
+controllers/dispositif/gmail_auth.js
