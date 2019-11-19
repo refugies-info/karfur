@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Col, Row, Modal, Spinner, Button } from 'reactstrap';
+import { Col, Row, Modal, Spinner } from 'reactstrap';
 import { connect } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -18,6 +18,8 @@ import _ from "lodash";
 import querySearch from "stringquery";
 import {convertToHTML} from "draft-convert";
 import windowSize from 'react-window-size';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import "../../../node_modules/video-react/dist/video-react.css";
 
 import API from '../../utils/API';
 import Sponsors from '../../components/Frontend/Dispositif/Sponsors/Sponsors';
@@ -111,6 +113,7 @@ class Dispositif extends Component {
     demarcheId: null,
     isVarianteValidated: false,
     dispositif: {},
+    _id: undefined,
   }
   newRef=React.createRef();
   mountTime=0;
@@ -134,7 +137,6 @@ class Dispositif extends Component {
   }
 
   _initializeDispositif = props => {
-    this.initializeTimer();
     const itemId = props.match && props.match.params && props.match.params.id;
     const typeContenu = (props.match.path || "").includes("demarche") ? "demarche" : "dispositif";
     const inVariante = _.get(props, "location.state.inVariante"), textInput = _.get(props, "location.state.textInput");
@@ -145,7 +147,7 @@ class Dispositif extends Component {
         console.log(dispositif);
         const disableEdit = dispositif.status !== "Accepté structure" || !props.translating
         if(dispositif.status === "Brouillon"){
-          this.initializeTimer();}
+          this.initializeTimer(3 * 60 * 1000, ()=>this.valider_dispositif('Brouillon', true) ); }  //Enregistrement automatique du dispositif toutes les 3 minutes 
         this.setState({
           _id:itemId,
           menu: dispositif.contenu, 
@@ -186,7 +188,7 @@ class Dispositif extends Component {
         }
       })
     }else if(API.isAuth()){
-      this.initializeTimer();
+      this.initializeTimer(3 * 60 * 1000, ()=>this.valider_dispositif('Brouillon', true) ); //Enregistrement automatique du dispositif toutes les 3 minutes
       const menuContenu = typeContenu === "demarche" ? menuDemarche : menu;
       this.setState({
         disableEdit:false,
@@ -455,7 +457,7 @@ class Dispositif extends Component {
       if(this.state.pinned){
         user.cookies.dispositifsPinned = user.cookies.dispositifsPinned.filter(x => x._id !== this.state.dispositif._id)
       }else{
-        user.cookies.dispositifsPinned=[...(user.cookies.dispositifsPinned || []), {...this.state.dispositif, pinned:true, datePin: new Date()}];
+        user.cookies.dispositifsPinned=[...(user.cookies.dispositifsPinned || []), {_id: this.state._id, datePin: new Date()}];
       }
       API.set_user_info(user).then(() => {
         this.props.fetch_user();
@@ -604,12 +606,13 @@ class Dispositif extends Component {
     });
   }
 
-  valider_dispositif = (status='En attente') => {
-    if(!this.verifierDemarche()){return};
-    this.setState({isDispositifLoading: true});
+  valider_dispositif = (status='En attente', auto=false) => {
+    if(!auto && !this.verifierDemarche()){return};
+    this.setState({isDispositifLoading: !auto});
     let content = {...this.state.content};
     const uiArray = {...this.state.uiArray}, inVariante= this.state.inVariante;
     Object.keys(content).map( k => content[k] = h2p(content[k]));
+    if(auto && !Object.keys(content).some(k => content[k] && content[k] !== contenu[k])){return};
     let dispositif = {
       ...content,
       contenu : [...this.state.menu].map((x, i)=> ({
@@ -634,6 +637,7 @@ class Dispositif extends Component {
       ...(this.state.inVariante ? {demarcheId: this.state._id} : {dispositifId: this.state._id}),
       ...(!this.state._id && this.state.status!=="Brouillon" && {timeSpent : this.state.time}),
     }
+    dispositif.mainSponsor = _.get(dispositif, "sponsors.0._id");
     if(dispositif.typeContenu === "dispositif"){
       let cardElement=(this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || [];
       dispositif.audience = cardElement.some(x=> x.title==='Public visé') ?
@@ -652,27 +656,37 @@ class Dispositif extends Component {
         cardElement.find(x=> x.title==='Combien ça coûte ?').free :
         true;
     }else{dispositif.variantes = this.state.variantes; delete dispositif.titreMarque;}
-    dispositif.mainSponsor = ((dispositif.sponsors || [{}])[0] || {})._id;
-    if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire" && !inVariante && this.state.status !== "Brouillon" && status !== "Brouillon"){
-      dispositif.status = this.state.status;
-    }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
-      //Si l'auteur appartient à la structure principale je la fait passer directe en validation
-      const membre = (dispositif.sponsors[0].membres || []).find(x => x.userId === this.props.userId);
-      if(membre && membre.roles && membre.roles.some(x => x==="administrateur" || x==="contributeur")){
-        dispositif.status = "En attente admin";
+    
+    if(status !== "Brouillon"){
+      if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire" && !inVariante && this.state.status !== "Brouillon"){
+        dispositif.status = this.state.status;
+      }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
+        //Si l'auteur appartient à la structure principale je la fait passer directe en validation
+        const membre = (dispositif.sponsors[0].membres || []).find(x => x.userId === this.props.userId);
+        if(membre && membre.roles && membre.roles.some(x => x==="administrateur" || x==="contributeur")){
+          dispositif.status = "En attente admin";
+        }
+      }else{
+        dispositif.status = "En attente non prioritaire";
       }
-    }else{
-      dispositif.status = "En attente non prioritaire";
     }
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
-      Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
-        this.props.fetch_user();
-        this.props.fetch_dispositifs();
-        this.setState({disableEdit: ['En attente admin', 'En attente', "En attente non prioritaire", "Brouillon", "Actif"].includes(status), isDispositifLoading: false}, () => {
-          this.props.history.push("/" + dispositif.typeContenu + "/" + data.data.data._id)
-        })
-      });
+      const newDispo = data.data.data;
+      if(!auto){
+        Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
+          this.props.fetch_user();
+          this.props.fetch_dispositifs();
+          this.setState({disableEdit: ['En attente admin', 'En attente', 'Brouillon', "En attente non prioritaire", "Actif"].includes(status), isDispositifLoading: false}, () => {
+            this.props.history.push("/" + dispositif.typeContenu + "/" + newDispo._id)
+          })
+        });
+      }else{
+        NotificationManager.success('Retrouvez votre contribution dans votre page "Mon profil"', 'Enregistrement automatique', 5000, () => {
+          Swal.fire( 'Enregistrement automatique', 'Retrouvez votre contribution dans votre page "Mon profil"', 'success')
+        });
+        this.setState({_id: newDispo._id})
+      }
     })
   }
 
@@ -906,13 +920,13 @@ class Dispositif extends Component {
                       {t("Dernière mise à jour", "Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
                     </Col>
                     <Col className="col">
-                      {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className={"fiabilite color-" + (fiabilite > 0.5 ? "vert" : fiabilite > 0.2 ? "orange" : "rouge")}>{t(fiabilite > 0.5 ? "Forte" : fiabilite > 0.2 ? "Moyenne" : "Faible")}</span>
-                      <EVAIcon className="question-bloc ml-8" id="question-bloc" name="question-mark-circle" fill={variables[fiabilite > 0.5 ? "validationHover" : fiabilite > 0.2 ? "orange" : "error"]}  onClick={()=>this.toggleModal(true, 'fiabilite')} />
-                      
-                      <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
-                        <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Dispositif.fiabilite_faible", "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant") }} />
-                        {t("Dispositif.cliquez", "Cliquez sur le '?' pour en savoir plus")}
-                      </Tooltip>
+                      {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className={"fiabilite color-" + (fiabilite > 0.2 ? "vert" : (fiabilite > 0.1 ? "orange" : "rouge"))}>{t(fiabilite > 0.2 ? "Forte" : fiabilite > 0.1 ? "Moyenne" : "Faible")}</span>
+                      {fiabilite && <>
+                        <EVAIcon className="question-bloc ml-8" id="question-bloc" name="question-mark-circle" fill={variables[fiabilite > 0.2 ? "validationHover" : (fiabilite > 0.1 ? "orange" : "error")]}  onClick={()=>this.toggleModal(true, 'fiabilite')} />                      
+                        <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
+                          <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Dispositif.fiabilite_faible", "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant") }} />
+                          {t("Dispositif.cliquez", "Cliquez sur le '?' pour en savoir plus")}
+                        </Tooltip> </>}
                     </Col>
                   </Row>}
 
@@ -962,19 +976,9 @@ class Dispositif extends Component {
                         <span className="color-darkColor">{t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigé pour vous")}&nbsp;:</span>
                       </div>
                       <div>
-                        <Button color="light" className="thanks-btn color-darkColor" onClick={()=>this.pushReaction(null, "merci")}>
+                        <FButton className="thanks" onClick={()=>this.pushReaction(null, "merci")}>
                           {t("Merci", "Merci")}
-                        </Button>
-                        {/*<Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
-=======
-                      <div>
-                        <Button color="light" className="thanks-btn color-darkColor" onClick={()=>this.pushReaction(null, "merci")}>
-                          {t("Merci", "Merci")}
-                        </Button>
-                        {/*<Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
->>>>>>> Stashed changes
-                          <span role="img" aria-label="merci">👎</span>
-                         </Button>*/}
+                        </FButton>
                       </div>
                     </div>
                     <div className="discussion-footer backgroundColor-darkColor">
@@ -1071,6 +1075,8 @@ class Dispositif extends Component {
               toggle={()=>this.toggleModal(false, 'variante')}
               upcoming={this.upcoming}
             />
+
+            <NotificationContainer/>
 
             {isDispositifLoading &&
               <div className="ecran-protection no-main">

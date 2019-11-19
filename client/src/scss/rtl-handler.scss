@@ -5,6 +5,10 @@ html body div[dir="rtl"] {
     #contribution, #certifiee{
       background-position: 0 100%, 0;
     }
+    .section-container .footer-section {
+      margin-right: 0;
+      margin-left: -20px;
+    }
   }
   .dispositif.vue{
     .people-footer .people-header .navigate-btns {

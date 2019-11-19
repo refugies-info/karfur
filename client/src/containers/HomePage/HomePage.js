@@ -58,7 +58,7 @@ class HomePage extends Component {
             
             <div className="search-row">
               <SearchItem className="on-homepage"
-                item={{...item, value: item.children[0].name}}
+                item={item}
                 keyValue={0}
                 selectParam = {this.selectParam}
                 desactiver={()=>{}}

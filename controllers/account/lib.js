@@ -4,89 +4,8 @@ const Langue = require('../../schema/schemaLangue.js');
 const passwordHash = require("password-hash");
 const authy = require('authy')(process.env.ACCOUNT_SECURITY_API_KEY);
 const passwdCheck = require("zxcvbn");
-
-//Cette fonction est appelée seulement lorsqu'un administrateur crée un nouveau compte
-function signup(req, res) {
-  if (!req.body.username || !req.body.password) {
-    //Le cas où l'email ou bien le password ne serait pas soumis ou nul
-    res.status(400).json({ "text": "Requête invalide" })
-  } else {
-    let user = req.body;
-    if(user.password){
-      if((passwdCheck(user.password) || {}).score < 1){
-        return res.status(401).json({ "text": "Le mot de passe est trop faible" });
-      }
-      user.password=passwordHash.generate(user.password)
-    }
-
-    const find = new Promise(function (resolve, reject) {
-      User.findOne({
-        username: user.username
-      }, function (err, result) {
-        if (err) {
-          reject(500);
-        } else {
-          if (result) {
-            reject(204)
-          } else {
-            resolve(true)
-          }
-        }
-      })
-    })
-
-    find.then(function () {
-      if(user.traducteur){
-        user.roles=[req.roles.find(x=>x.nom==='Trad')._id]
-        delete user.traducteur;
-      }
-      user.status='Actif';
-      user.last_connected = new Date();
-
-      Role.findOne({'nom':'User'}).exec((e, result) => {
-        user.roles = (result || {})._id;
-
-        var _u = new User(user);
-        _u.save(function (err, user) {
-          if (err) {
-            console.log(err)
-            res.status(500).json({
-              "text": "Erreur interne"
-            })
-          } else {
-            //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
-            //Je le fais en non bloquant, il faut pas que ça bloque l'enregistrement
-            populateLanguages(user);
-
-            res.status(200).json({
-              "text": "Succès",
-              "token": user.getToken(),
-              "data": user
-            })
-          }
-        })
-      })
-    }, function (error) {
-      console.log(error)
-      switch (error) {
-        case 500:
-          res.status(500).json({
-            "text": "Erreur interne"
-          })
-          break;
-        case 204:
-          res.status(404).json({
-            "text": "Le nom d'utilisateur existe déjà"
-          })
-          break;
-        default:
-          res.status(500).json({
-            "text": "Erreur interne"
-          })
-        }
-    })
-  }
-}
+const crypto = require("crypto");
+let {transporter, mailOptions, url} = require('../dispositif/lib.js');
 
 //Cette fonction est appelée quand tout utilisateur cherche à se connecter ou créer un compte
 function login(req, res) {
@@ -107,13 +26,14 @@ function login(req, res) {
           }
           user.password=passwordHash.generate(user.password);
           if(user.roles && user.roles.length > 0 && req.user.roles.some(x => x.nom === "Admin")){
-            user.roles=[...new Set([...user.roles, req.roles.find(x=>x.nom==='User')._id])]
+            user.roles=[...new Set([...user.roles, req.roles.find(x=>x.nom==='User')._id])];
           }else if(user.traducteur){
             user.roles=[req.roles.find(x=>x.nom==='Trad')._id]
             delete user.traducteur;
           }else{
             user.roles=[req.roles.find(x=>x.nom==='User')._id]
           }
+          _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
           user.status='Actif';
           user.last_connected = new Date();
           var _u = new User(user);
@@ -185,6 +105,38 @@ const proceed_with_login = function (req,res, user){
   })
 }
 
+const _checkAndNotifyAdmin = async function(user, roles, requestingUser, isNew=true){
+  const adminId = roles.find(x => x.nom === "Admin")._id;
+  if(user.roles && user.roles.some(x => adminId.equals(x))){
+    if(!isNew){ //Si l'utilisateur existe déjà, je vérifie qu'il n'avait pas déjà ce rôle pour pas spammer à chaque modif de l'utilisateur
+      const currUser = await User.findOne({ _id: user._id });
+      if(!currUser || !currUser.roles || currUser.roles.includes(adminId)){
+        return false; //On ne fait rien s'il avait déjà ce rôle;
+      }
+    }
+    let html = "<p>Bonjour,</p>";
+    
+    html += "<p>Un nouvel administrateur a été ajouté sur la plateforme Réfugiés.info (environnement : '" + process.env.NODE_ENV + "') : </p>";
+    html += "<ul>";
+    html += "<li>username : " + user.username + "</li>";
+    html += user._id ? "<li>identifiant : " + user._id + "</li>" : "";
+    html += user.email ? "<li>email : " + user.email + "</li>" : "";
+    html += user.description ? "<li>description : " + user.description + "</li>" : "";
+    html += user.phone ? "<li>phone : " + user.phone + "</li>" : "";
+    html += "</ul>";
+    html += "Cet utilisateur a été ajouté par : " + requestingUser.username;
+    html += "<p>A bientôt,</p>";
+    html += "<p>Soufiane, admin Réfugiés.info</p>";
+    
+    mailOptions.html = html;
+    mailOptions.subject = 'Nouvel administrateur Réfugiés.info - ' + user.username;
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) { console.log(error); } else { console.log('Email sent: ' + info.response); }
+    });
+  }
+}
+
+
 function checkUserExists(req, res) {
   if (!req.body.username) {
     res.status(400).json({ "text": "Requête invalide" })
@@ -213,11 +165,12 @@ function set_user_info(req, res) {
     }
 
     //Si l'utilisateur n'est pas admin je vérifie qu'il ne se modifie que lui-même
-    let isAdmin = req.user.roles.find(x => x.nom==='Admin')
-
-    if(!isAdmin && user._id != req.user._id){
+    let isAdmin = req.user.roles.find(x => x.nom==='Admin');
+    if(!isAdmin && !(req.user._id).equals(user._id)){
       res.status(401).json({ "text": "Token invalide" }); return false;
     }
+
+    _checkAndNotifyAdmin(user, req.roles, req.user, false); //Si on lui donne un role admin, je notifie tous les autres admin
 
     if(user.traducteur){
       user = {...user, $addToSet:{roles: req.roles.find(x=>x.nom==='Trad')._id}}
@@ -259,6 +212,84 @@ function change_password(req, res) {
         return res.status(401).json({ "text": "Le mot de passe est trop faible" });
       } else {
         user.password = passwordHash.generate(newUser.newPassword);
+        user.save();
+        res.status(200).json({
+          "token": user.getToken(),
+          "text": "Authentification réussi"
+        })
+      }
+    })
+  }
+}
+
+function reset_password(req, res) {
+  const {username}=req.body;
+  if (!username) {
+    return res.status(400).json({ "text": "Requête invalide" })
+  } else {
+    return User.findOne({
+      username: username
+    }, async (err, user) => {
+      if (err) { console.log(err);
+        return res.status(500).json({ "text": "Erreur interne", data: err });
+      }else if (!user) {
+        return res.status(404).json({ "text": "L'utilisateur n'existe pas" });
+      }else if (!user.email) {
+        return res.status(403).json({ "text": "Aucune adresse mail n\'est associée à ce compte. Il n\'est pas possible de récupérer le mot de passe ainsi." });
+      } else {
+        if((user.roles || []).some(x => x && x.equals(req.roles.find(x=>x.nom==='Admin')._id) )){ //L'admin ne peut pas le faire comme ça
+          return res.status(401).json({ "text": "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site" });
+        }
+        crypto.randomBytes(20, function(errb, buffer) {
+          if(errb){return res.status(422).json({ message: errb });}
+          const token = buffer.toString('hex');
+          user.updateOne({reset_password_token: token, reset_password_expires: Date.now() + 1 * 60 * 60 * 1000}).exec();
+          const newUrl = url + 'reset/' + token;
+
+          let html = "<p>Bonjour " + username + ",</p>";
+          html += "<p>Vous avez demandé à réinitialiser votre mot de passe sur la plateforme 'Réfugiés.info'</p>";
+          html += "<p>Pour ce faire, merci de cliquer sur le lien ci-dessous ou de le copier-coller dans votre navigateur</p>";
+          html += "<a href=" + newUrl + ">" + newUrl + "</a>"
+          html += "<p>A bientôt,</p>";
+          html += "<p>Les administrateurs de Réfugiés.info</p>";
+          
+          mailOptions.html = html;
+          mailOptions.subject = 'Réfugiés.info - réinitialisation du mot de passe';
+          mailOptions.to = user.email;
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) { console.log(error); } else { console.log('Email sent: ' + info.response); }
+          });
+          return res.status(200).json({ "text": "Envoi réussi" })
+        });
+      }
+    })
+  }
+}
+
+function set_new_password(req, res) {
+  const {newPassword, cpassword, reset_password_token}=req.body;
+  if (!newPassword || !cpassword || !reset_password_token) {
+    return res.status(400).json({ "text": "Requête invalide" })
+  } else {
+    return User.findOne({
+      reset_password_token,
+      reset_password_expires: { $gt: Date.now() }
+    }, async (err, user) => {
+      if (err) { console.log(err);
+        return res.status(500).json({ "text": "Erreur interne", data: err });
+      }else if (!user) {
+        return res.status(404).json({ "text": "L'utilisateur n'existe pas" });
+      }else if (!user.email) {
+        return res.status(403).json({ "text": "Aucune adresse mail n\'est associée à ce compte. Il n\'est pas possible de récupérer le mot de passe ainsi." });
+      } else {
+        if((user.roles || []).some(x => x && x.equals(req.roles.find(x=>x.nom==='Admin')._id) )){ //L'admin ne peut pas le faire comme ça
+          return res.status(401).json({ "text": "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site" });
+        }
+        if(newPassword !== cpassword){ return res.status(400).json({ "text": "Les mots de passe ne correspondent pas" }); }
+        else if( (passwdCheck(newPassword) || {}).score < 1 ){ return res.status(401).json({ "text": "Le mot de passe est trop faible" }); }
+        user.password = passwordHash.generate(newPassword);
+        user.reset_password_token = undefined;
+        user.reset_password_expires = undefined;
         user.save();
         res.status(200).json({
           "token": user.getToken(),
@@ -364,6 +395,91 @@ const populateLanguages = (user) => {
   };
 }
 
+
+//Cette fonction semble inutilisée maintenant, à vérifier
+function signup(req, res) {
+  if (!req.body.username || !req.body.password) {
+    //Le cas où l'email ou bien le password ne serait pas soumis ou nul
+    res.status(400).json({ "text": "Requête invalide" })
+  } else {
+    let user = req.body;
+    if(user.password){
+      if((passwdCheck(user.password) || {}).score < 1){
+        return res.status(401).json({ "text": "Le mot de passe est trop faible" });
+      }
+      user.password=passwordHash.generate(user.password)
+    }
+
+    const find = new Promise(function (resolve, reject) {
+      User.findOne({
+        username: user.username
+      }, function (err, result) {
+        if (err) {
+          reject(500);
+        } else {
+          if (result) {
+            reject(204)
+          } else {
+            resolve(true)
+          }
+        }
+      })
+    })
+
+    find.then(function () {
+      if(user.traducteur){
+        user.roles=[req.roles.find(x=>x.nom==='Trad')._id]
+        delete user.traducteur;
+      }
+      user.status='Actif';
+      user.last_connected = new Date();
+
+      Role.findOne({'nom':'User'}).exec((e, result) => {
+        user.roles = (result || {})._id;
+
+        var _u = new User(user);
+        _u.save(function (err, user) {
+          if (err) {
+            console.log(err)
+            res.status(500).json({
+              "text": "Erreur interne"
+            })
+          } else {
+            //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
+            //Je le fais en non bloquant, il faut pas que ça bloque l'enregistrement
+            populateLanguages(user);
+
+            res.status(200).json({
+              "text": "Succès",
+              "token": user.getToken(),
+              "data": user
+            })
+          }
+        })
+      })
+    }, function (error) {
+      console.log(error)
+      switch (error) {
+        case 500:
+          res.status(500).json({
+            "text": "Erreur interne"
+          })
+          break;
+        case 204:
+          res.status(404).json({
+            "text": "Le nom d'utilisateur existe déjà"
+          })
+          break;
+        default:
+          res.status(500).json({
+            "text": "Erreur interne"
+          })
+        }
+    })
+  }
+}
+
+
 //On exporte nos fonctions
 
 exports.login = login;
@@ -373,3 +489,5 @@ exports.set_user_info=set_user_info;
 exports.change_password = change_password;
 exports.get_users=get_users;
 exports.get_user_info=get_user_info;
+exports.reset_password = reset_password;
+exports.set_new_password = set_new_password;

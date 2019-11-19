@@ -100,6 +100,7 @@ $imgHeight : 350px;
             align-content: space-between;
             border-radius: 12px 12px 0px 0px;
             background: $gris;
+            z-index: 2;
 
             .validate-header{
               text-align: center;
@@ -262,23 +263,6 @@ $imgHeight : 350px;
     position: relative;
     top: -56px;
     visibility: hidden;
-  }
-  .plus-wrapper{
-    position: absolute;
-    bottom: 0;
-    right: 40px;
-    width: 50px;
-    height: 36px;
-    z-index: 2;
-    background: $darkColor;
-    border: 0.5px solid $darkColor;
-    border-radius: 12px 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .plus-icon{
-      cursor: pointer;
-    }
   }
 
   .sous-paragraphe{
@@ -611,7 +595,10 @@ $imgHeight : 350px;
 
     .contenu-accordeon{
       margin-top:20px;
-      margin-left:50px;
+      margin-left: 15px;
+      a{
+        font-weight: bold;
+      }
       p{
         font-size: 18px;
         line-height: 27px;
@@ -667,7 +654,6 @@ $imgHeight : 350px;
       padding: 15px 20px;
       &:hover{
         background: darken($color: $gris, $amount: 0);
-
       }
       &:active{
         background: $validationHover;
@@ -680,6 +666,10 @@ $imgHeight : 350px;
     }
   }
 
+  .contenu figure .image-wrapper img{
+    max-width: 100px;
+  }
+  
   .translating{
     background: $bgfocus;
     border-radius: 6px;

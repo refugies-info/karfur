@@ -34,9 +34,11 @@ class MoteurVariantes extends Component {
             </div>
 
             {isReducedVue && variantes.length > 0 ?
-              variantes.map((_, key) => (
-                <ReducedVariante variantes={variantes} toggleVue={this.toggleVue} activeIdx={key} key={key} /> 
-              ))
+              <div className="variantes-wrapper">
+                {variantes.map((_, key) => (
+                  <ReducedVariante variantes={variantes} toggleVue={this.toggleVue} activeIdx={key} key={key} /> 
+                ))}
+              </div>
             :
               <UneVariante 
                 variantes={this.props.variantes}
