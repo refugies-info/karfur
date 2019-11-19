@@ -53,8 +53,7 @@ class CardParagraphe extends Component {
   addPiece = () => this.setState({ papiers: [...this.state.papiers,{name:'Titre de séjour'}], isModalDropdownOpen:[...this.state.isModalDropdownOpen, false] })
   removePiece = idx => this.setState({ papiers: [...this.state.papiers].filter( (_,key) => key !== idx) })
   emptyPlaceholder = e => {
-    console.log(e.currentTarget, (this.props.subitem || {}).isFakeContent)
-    if((this.props.subitem || {}).isFakeContent){
+    if(!this.props.disableEdit && (this.props.subitem || {}).isFakeContent){
       this.props.handleMenuChange({currentTarget: e.currentTarget, target:{value: ""}}); 
     }
   }

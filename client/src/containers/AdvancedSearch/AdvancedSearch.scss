@@ -141,7 +141,7 @@
     }
   }
 
-  .demarche{
+  .card-col{
     .card{
       border:none;
       border-radius: 12px;
@@ -156,6 +156,11 @@
       scrollbar-width: none;
       padding: 16px;
       overflow: scroll;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+      width: 0px;  /* remove scrollbar space */
+      background: transparent;  /* optional: just make scrollbar invisible */
     }
   }
   .no-result{
