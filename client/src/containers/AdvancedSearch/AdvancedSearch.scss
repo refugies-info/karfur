@@ -114,16 +114,23 @@
         fill: $noir;
       }
     }
+    &:focus{
+      svg{
+        fill: $noir;
+      }
+    }
   }
 
   .pinned{
-    .bookmark-icon{
-      opacity: 1;
+    opacity: 1;
+    svg{
+      fill: $validationHover;
     }
   }
 
   p{
     margin-bottom: 0;
+    line-height: 20px;
   }
 
   .card{
@@ -141,7 +148,7 @@
     }
   }
 
-  .demarche{
+  .card-col{
     .card{
       border:none;
       border-radius: 12px;
@@ -156,6 +163,11 @@
       scrollbar-width: none;
       padding: 16px;
       overflow: scroll;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+      width: 0px;  /* remove scrollbar space */
+      background: transparent;  /* optional: just make scrollbar invisible */
     }
   }
   .no-result{

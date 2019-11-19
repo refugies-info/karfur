@@ -6,16 +6,21 @@ var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
 var uniqid = require('uniqid');
 const nodemailer = require("nodemailer");
+const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
+// const gmail_auth = require('./gmail_auth');
 
 const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
 
 //Réactiver ici si besoin
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
+const transporter = nodemailer.createTransport({
+  // service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: 'diairagir@gmail.com',
     pass: process.env.GMAIL_PASS
-  }
+  },
 });
 
 var mailOptions = {
@@ -24,12 +29,13 @@ var mailOptions = {
   subject: 'Administration Réfugiés.info'
 };
 
+const url = process.env.NODE_ENV === 'dev' ? "http://localhost:3000/" : process.env.NODE_ENV === 'quality' ? "https://agir-qa.herokuapp.com/" : "https://www.refugies.info/"
+
 function add_dispositif(req, res) {
   if (!req.body || ((!req.body.titreInformatif) && !req.body.dispositifId)) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let dispositif = req.body;
-    console.log('content-length', req.headers['content-length'])
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
@@ -224,7 +230,7 @@ const turnHTMLtoJSON = (contenu, nbMots=null) => {
   for(var i=0; i < contenu.length;i++){
     let html= contenu[i].content;
     nbMots+=(html || '').trim().split(/\s+/).length;
-    let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+    let safeHTML=sanitizeHtml(html, sanitizeOptions); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
     let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
     contenu[i].content=jsonBody;
 
@@ -270,7 +276,7 @@ const _errorHandler = (error, res) => {
 
 const _handleMailNotification = dispositif => {
   let html = "";
-  const status = dispositif.status, url = process.env.NODE_ENV === 'dev' ? "http://localhost:3000/" : process.env.NODE_ENV === 'quality' ? "https://agir-qa.herokuapp.com/" : "https://www.refugies.info/";
+  const status = dispositif.status;
   // ["Actif", "Accepté structure", , "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé"]
   if(["En attente", "En attente admin", "En attente non prioritaire"].includes(status)){
     html = "<p>Bonjour,</p>";
@@ -297,3 +303,8 @@ exports.update_dispositif = update_dispositif;
 exports.turnHTMLtoJSON = turnHTMLtoJSON;
 exports.turnJSONtoHTML = turnJSONtoHTML;
 exports.get_dispo_progression = get_dispo_progression;
+
+//Utilisés dans d'autres controllers :
+exports.transporter = transporter;
+exports.mailOptions = mailOptions;
+exports.url = url;

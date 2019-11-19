@@ -13,7 +13,11 @@ const reducedVariante = (props) => {
   const currVariante = variantes && variantes.length > activeIdx && variantes[activeIdx];
   if(currVariante){
     return(
-      <div className={"reduced-variable" + " direction-" + (direction==="column" ? "column" : "row")} onClick={e => props.toggleCas ? props.toggleCas(e) : props.toggleVue(e)}>
+      <div className={"reduced-variable direction-" + (direction==="column" ? "column" : "row")} onClick={e => props.toggleCas ? props.toggleCas(e) : props.toggleVue(e)}>
+        {direction!=="column" &&
+          <div className="case-number">
+            {activeIdx + 1}
+          </div>}
         {currVariante.villes && currVariante.villes.length > 0 &&
           <div className="variable-item">
             <div className="reduced-critere">

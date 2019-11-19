@@ -75,6 +75,12 @@ export default {
   change_password : query => {
     return axios.post(burl + '/user/change_password', query,{headers: headers})
   },
+  reset_password : query => {
+    return axios.post(burl + '/user/reset_password', query,{headers: headers})
+  },
+  set_new_password : query => {
+    return axios.post(burl + '/user/set_new_password', query,{headers: headers})
+  },
 
   log_event : (event) => {
     return axios.post(burl + '/events/log_event', event, {headers: headers})
