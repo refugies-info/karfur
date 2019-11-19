@@ -290,7 +290,7 @@ class SideTrad extends Component {
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
     return(
-      <div className="side-trad">
+      <div className="side-trad shadow">
         {!isExpert &&
           <div className="nav-btns">
             {currIdx !== "titreInformatif" &&

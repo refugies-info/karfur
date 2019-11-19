@@ -114,16 +114,23 @@
         fill: $noir;
       }
     }
+    &:focus{
+      svg{
+        fill: $noir;
+      }
+    }
   }
 
   .pinned{
-    .bookmark-icon{
-      opacity: 1;
+    opacity: 1;
+    svg{
+      fill: $validationHover;
     }
   }
 
   p{
     margin-bottom: 0;
+    line-height: 20px;
   }
 
   .card{
