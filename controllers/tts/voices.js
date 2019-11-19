@@ -1,4 +1,6 @@
-exports.data = [{'locale':'ar-EG', 'langue':'Arabic (Egypt)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (ar-EG, Hoda)"},
+exports.data = [
+  {'locale':'ar', 'langue':'Arabic (Egypt)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (ar-EG, Hoda)"}, //Cas générique dupliqué
+  {'locale':'ar-EG', 'langue':'Arabic (Egypt)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (ar-EG, Hoda)"},
   {'locale':'ar-SA', 'langue':'Arabic (Saudi Arabia)', 'gender':'Male', 'name':"Microsoft Server Speech Text to Speech Voice (ar-SA, Naayf)"},
   {'locale':'bg-BG', 'langue':'Bulgarian', 'gender':'Male', 'name':"Microsoft Server Speech Text to Speech Voice (bg-BG, Ivan)"},
   {'locale':'ca-ES', 'langue':'Catalan', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (ca-ES, HerenaRUS)"},
@@ -14,6 +16,8 @@ exports.data = [{'locale':'ar-EG', 'langue':'Arabic (Egypt)', 'gender':'Female',
   {'locale':'en-AU2', 'langue':'English (Australia)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (en-AU, HayleyRUS)"},
   {'locale':'en-CA', 'langue':'English (Canada)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (en-CA, Linda)"},
   {'locale':'en-CA2', 'langue':'English (Canada)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (en-CA, HeatherRUS)"},
+  
+  {'locale':'en', 'langue':'English (UK)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (en-GB, Susan, Apollo)"}, //Cas générique dupliqué
   {'locale':'en-GB', 'langue':'English (UK)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (en-GB, Susan, Apollo)"},
   {'locale':'en-GB2', 'langue':'English (UK)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (en-GB, HazelRUS)"},
   {'locale':'en-GB3', 'langue':'English (UK)', 'gender':'Male', 'name':"Microsoft Server Speech Text to Speech Voice (en-GB, George, Apollo)"},
@@ -35,6 +39,8 @@ exports.data = [{'locale':'ar-EG', 'langue':'Arabic (Egypt)', 'gender':'Female',
   {'locale':'fr-CA', 'langue':'French (Canada)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (fr-CA, Caroline)"},
   {'locale':'fr-CA2', 'langue':'French (Canada)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (fr-CA, HarmonieRUS)"},
   {'locale':'fr-CH', 'langue':'French (Switzerland)', 'gender':'Male', 'name':"Microsoft Server Speech Text to Speech Voice (fr-CH, Guillaume)"},
+  
+  {'locale':'fr', 'langue':'French (France)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (fr-FR, Julie, Apollo)"}, //Cas générique dupliqué
   {'locale':'fr-FR', 'langue':'French (France)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (fr-FR, Julie, Apollo)"},
   {'locale':'fr-FR2', 'langue':'French (France)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (fr-FR, HortenseRUS)"},
   {'locale':'fr-FR3', 'langue':'French (France)', 'gender':'Male', 'name':"Microsoft Server Speech Text to Speech Voice (fr-FR, Paul, Apollo)"},
@@ -77,5 +83,6 @@ exports.data = [{'locale':'ar-EG', 'langue':'Arabic (Egypt)', 'gender':'Female',
   {'locale':'zh-HK2', 'langue':'Chinese (Hong Kong)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (zh-HK, TracyRUS)"},
   {'locale':'zh-HK3', 'langue':'Chinese (Hong Kong)', 'gender':'Male', 'name':"Microsoft Server Speech Text to Speech Voice (zh-HK, Danny, Apollo)"},
   {'locale':'zh-TW', 'langue':'Chinese (Taiwan)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (zh-TW, Yating, Apollo)"},
-  {'locale':'zh-TW2', 'langue':'Chinese (Taiwan)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (zh-TW, HanHanRUS)"}]
+  {'locale':'zh-TW2', 'langue':'Chinese (Taiwan)', 'gender':'Female', 'name':"Microsoft Server Speech Text to Speech Voice (zh-TW, HanHanRUS)"}
+]
   

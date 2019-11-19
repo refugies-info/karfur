@@ -19,14 +19,16 @@ const initial_data = [
   // },
   {
     title:'Je cherche à',
-    value: 'apprendre le français',
+    value: null,
+    placeholder: 'choisir un thème',
     query: 'Apprendre le français',
     queryName: 'tags.name',
     children: filtres.tags
   },
   {
     title:'J\'habite à',
-    value: 'Nantes',
+    value: null,
+    placeholder: 'ma ville',
     queryName: 'localisation',
     children:[
       {
@@ -42,7 +44,8 @@ const initial_data = [
   },
   {
     title:'J\'ai',
-    value: 'entre 18 et 25 ans',
+    value: null,
+    placeholder: 'âge',
     queryName: 'audienceAge',
     children:[
       {
@@ -69,7 +72,8 @@ const initial_data = [
   },
   {
     title:'Je parle',
-    value: 'un peu',
+    value: null,
+    placeholder: 'mon niveau',
     title2:'français',
     queryName: 'niveauFrancais',
     append: 'Quel est mon niveau ?',

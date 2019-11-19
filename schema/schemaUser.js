@@ -106,6 +106,14 @@ var userSchema = mongoose.Schema({
     type: String,
     required: false
   },
+  reset_password_token: { 
+    type: String,
+    required: false
+  }, 
+  reset_password_expires: { 
+    type: Date,
+    required: false
+  }
 },{ timestamps: { createdAt: 'created_at' }})
 
 

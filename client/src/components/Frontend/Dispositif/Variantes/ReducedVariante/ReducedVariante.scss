@@ -6,8 +6,16 @@
   flex-direction: row;
   // justify-content: space-between;
   align-items: center;
+  position: relative;
 
   &.direction-row{
+    margin-left: 65px;
+    margin-top: 10px;
+    background: $gris;
+    border-radius: 6px;
+    padding: 0 0 10px 10px;
+    display: inline-flex;
+    flex-wrap: wrap;
     .variable-item{
       margin-top: 10px;
       margin-right: 10px;
@@ -24,7 +32,19 @@
     }
     .reduced-critere{
       width: 100%;
+      background: $validation;
+      // border-radius: 12px;
     }
+  }
+  .case-number{
+    font-weight: bold;
+    background: $noir;
+    border-radius: 6px;
+    padding: 10px 20px;
+    position: absolute;
+    left: -55px;
+    top:0;
+    color: #FFFFFF;
   }
 }
 .plus-col{

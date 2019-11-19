@@ -55,6 +55,14 @@ $placeholderColor: $noir;
       background-color: $noir3;
     }
   }
+
+  .forgotten-password{
+    text-decoration-line: underline;
+    color: $grisFonce;
+    cursor: pointer;
+    float: right;
+  }
+
   .example-appear {
     opacity: 0;
   }

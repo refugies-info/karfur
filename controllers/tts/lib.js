@@ -14,13 +14,12 @@ const voices = require('./voices').data;
 // Gets an access token.
 let subscriptionKey, accessToken;
 function getAccessToken(subscriptionKey) {
-  console.log('getting access token')
-  let options = {
-      method: 'POST',
-      uri: ' https://francecentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken',
-      headers: {
-          'Ocp-Apim-Subscription-Key': subscriptionKey
-      }
+  const options = {
+    method: 'POST',
+    uri: ' https://francecentral.api.cognitive.microsoft.com/sts/v1.0/issuetoken',
+    headers: {
+        'Ocp-Apim-Subscription-Key': subscriptionKey
+    }
   }
   return rp(options);
 }
@@ -43,26 +42,24 @@ function textToSpeech(accessToken, text, locale='fr-fr') {
   // Convert the XML into a string to send in the TTS request.
   let body = xml_body.toString();
 
-  let options = {
-      method: 'POST',
-      baseUrl: 'https://francecentral.tts.speech.microsoft.com/',
-      url: 'cognitiveservices/v1',
-      headers: {
-          'Authorization': 'Bearer ' + accessToken,
-          'cache-control': 'no-cache',
-          'User-Agent': 'MicrosoftTTS',
-          'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm',
-          'Content-Type': 'application/ssml+xml'
-      },
-      encoding: 'latin1',
-      body: body
+  const options = {
+    method: 'POST',
+    baseUrl: 'https://francecentral.tts.speech.microsoft.com/',
+    url: 'cognitiveservices/v1',
+    headers: {
+      'Authorization': 'Bearer ' + accessToken,
+      'cache-control': 'no-cache',
+      'User-Agent': 'MicrosoftTTS',
+      'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm',
+      'Content-Type': 'application/ssml+xml'
+    },
+    encoding: 'latin1',
+    body: body
   }
   return options;
 }
 
-var ll=0;
 async function get_tts(req, res) {
-  console.log(req.body)
   if (!req.body || !req.body.text) {
     res.status(400).json({
       "text": "Requête invalide"
@@ -83,28 +80,13 @@ async function get_tts(req, res) {
 
     rp(options, function (error, response, body) {
       if(error){console.error('error:', error);} // Print the error if one occurred
-      // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-      // console.log('body:', body); // Print the HTML for the Google homepage.
       if (response && response.statusCode === 200) {
         res.status(200).json({
           "text": "Succès",
           "data": body
         })
-        // res.writeHead(200, { 'Content-Type': 'audio/wav',
-        //   "Content-Length": body.length});
-        // console.log(body.length)
-        // res.end(body)
       }else{console.log(response.statusCode)}
     });
-    // let request = rp(options).on('response', (response) => {
-    //     if (response.statusCode === 200) {
-    //       //console.log(response)
-    //       //res.end(response, 'utf-8');
-    //       ll++;
-    //       request.pipe(fs.createWriteStream(__dirname + '/TTSOutput' + ll + '.wav'));
-    //       // console.log('\nYour file is ready.\n')
-    //     }
-    // });
   }
 }
 
