@@ -80,13 +80,13 @@ class CardParagraphe extends Component {
         return string.charAt(0).toUpperCase() + string.slice(1)
       }else{ return string }
     }
-
+    
     const cardTitles=[
       {title:'Public visé',titleIcon:'papiers', options: filtres.audience},
       {title:'Âge requis',titleIcon:'calendar', options: filtres.audienceAge}, //["0-18","18-25","25-56","56-120"]
-      {title:'Durée',titleIcon:'horloge'},
+      {title:'Durée',titleIcon:'clock-outline'},
       {title:'Niveau de français',titleIcon:'frBubble', options: filtres.niveauFrancais},
-      {title:'Combien ça coûte ?',titleIcon:'money'},
+      {title:'Combien ça coûte ?',titleIcon:'pricetags-outline'},
       {title:'Justificatif demandé',titleIcon:'papiers', options: filtres.justificatifs},
       {title:'Important !',titleIcon:'warning'},
     ]
@@ -130,8 +130,8 @@ class CardParagraphe extends Component {
         return(
           <>
             {disableEdit ? 
-              <div>{subitem.free ? t("Dispositif.Gratuit", "Gratuit") : t("Dispositif.Payant", "Payant") }</div> :
-              <FSwitch precontent="Gratuit" content="Payant" checked={!subitem.free} onClick={() => this.props.toggleFree(this.props.keyValue, this.props.subkey)} />}
+              <div className="card-custom-title">{subitem.free ? t("Dispositif.Gratuit", "Gratuit") : t("Dispositif.Payant", "Payant") }</div> :
+              <FSwitch className="card-custom-title" precontent="Gratuit" content="Payant" checked={!subitem.free} onClick={() => this.props.toggleFree(this.props.keyValue, this.props.subkey)} />}
             {!subitem.free && 
               <span className="color-darkColor price-details">
                 {disableEdit ?
@@ -237,7 +237,7 @@ class CardParagraphe extends Component {
           )
         }else{return false}
       }else if(this.props.subitem.footerHref && disableEdit){ return (
-        <FButton type="outline" name={subitem.footerIcon} onClick={this.footerClicked}>
+        <FButton type="light-action" name={subitem.footerIcon} onClick={this.footerClicked}>
           {subitem.footer && t("Dispositif." + subitem.footer, subitem.footer)}
         </FButton>
       )}else{return false}
@@ -247,7 +247,7 @@ class CardParagraphe extends Component {
       <>
         <Col className="card-col" onMouseEnter={()=>this.props.updateUIArray(this.props.keyValue, this.props.subkey, 'isHover')}>
           <Card 
-            className={(subitem.title==='Important !' ? 'make-it-red':'regular') + " " + subitem.title.replace(/ /g,"-")} 
+            className={(subitem.title==='Important !' ? 'make-it-red':'regular') + " " + subitem.title.replace(/ /g,"-").replace("-?", "").replace("-!", "")} 
             id={"info-card-" + this.props.keyValue + "-" + subkey}
             //style={subitem.title && {backgroundImage: `url(${bgImage(subitem.title)})`}}
           >
@@ -255,7 +255,7 @@ class CardParagraphe extends Component {
               {cardHeaderContent(subitem)}
             </CardHeader>
             <CardBody>
-              <h4>{contentTitle(subitem)}</h4>
+              <span className="color-darkColor card-custom-title">{contentTitle(subitem)}</span>
               {subitem.title==='Niveau de français' && 
                 (showNiveaux || (subitem.niveaux || []).length > 0 ? 
                   <div className="niveaux-wrapper">

@@ -976,13 +976,9 @@ class Dispositif extends Component {
                         <span className="color-darkColor">{t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigé pour vous")}&nbsp;:</span>
                       </div>
                       <div>
-                        <FButton type="theme" className="thanks-btn" onClick={()=>this.pushReaction(null, "merci")}>
-                        {/* <Button color="light" className="thanks-btn color-darkColor" onClick={()=>this.pushReaction(null, "merci")}> */}
+                        <FButton className="thanks" onClick={()=>this.pushReaction(null, "merci")}>
                           {t("Merci", "Merci")}
                         </FButton>
-                        {/*<Button color="light" className="down-btn" onClick={()=>this.pushReaction(null, "pasMerci")}>
-                          <span role="img" aria-label="merci">👎</span>
-                         </Button>*/}
                       </div>
                     </div>
                     <div className="discussion-footer backgroundColor-darkColor">

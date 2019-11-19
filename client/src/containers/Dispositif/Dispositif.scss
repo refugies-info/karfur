@@ -595,7 +595,10 @@ $imgHeight : 350px;
 
     .contenu-accordeon{
       margin-top:20px;
-      margin-left:50px;
+      margin-left: 15px;
+      a{
+        font-weight: bold;
+      }
       p{
         font-size: 18px;
         line-height: 27px;
@@ -651,7 +654,6 @@ $imgHeight : 350px;
       padding: 15px 20px;
       &:hover{
         background: darken($color: $gris, $amount: 0);
-
       }
       &:active{
         background: $validationHover;
@@ -667,9 +669,7 @@ $imgHeight : 350px;
   .contenu figure .image-wrapper img{
     max-width: 100px;
   }
-  // .video-wrapper{
-  //   background: red;
-  // }
+  
   .translating{
     background: $bgfocus;
     border-radius: 6px;
