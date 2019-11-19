@@ -68,10 +68,9 @@ class QuiSommesNous extends Component {
                     <span>{t("QuiSommesNous.Mission_2_subheader", "Dès la protection obtenue, les personnes réfugiées entre dans le droit commun et bénéficie des mêmes droits sociaux que tous les français. Cette situation engendre de nombreuses démarches administratives. Agi’r produit des fiches pratiques pour vulgariser ces démarches et les propose dans plus de 10 langues")}.</span>
                   </CardBody>
                   <CardFooter>
-                    {/*<FButton type="outline-black">
-                      Chercher une démarche
-                  </FButton>*/}
-                    <span>{t("Bientôt disponible", "Bientôt disponible")}</span>
+                    <FButton tag={NavLink} to="/advanced-search" type="outline-black">
+                      {t("Chercher une démarche", "Explorer les démarches")}
+                    </FButton>
                   </CardFooter>
                 </Card>
               </Col>

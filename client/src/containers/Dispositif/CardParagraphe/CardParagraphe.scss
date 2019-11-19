@@ -20,7 +20,7 @@
         background-image: url(../../../assets/figma/InfoCard/infocard_Public.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
-        background-position: calc(100% - 20px) calc(100% + 10px), center;
+        background-position: calc(100% - 20px) calc(100% + 25px), center;
       }
       
       &.Âge-requis{
@@ -34,22 +34,28 @@
         background-image: url(../../../assets/figma/InfoCard/infocard_Durée.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
-        background-position: calc(100% - 30px) calc(100% + 10px), center;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
       }
       
       &.Niveau-de-français{
         background-image: url(../../../assets/figma/InfoCard/infocard_Français.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
-        background-size: cover, cover;
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
       }
       
-      &.Combien-ça-coute{
+      &.Combien-ça-coûte{
         background-image: url(../../../assets/figma/InfoCard/infocard_Prix.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
-        background-size: cover, cover;
+        background-size: 70%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 0px) calc(100% + 0px), center;
       }
       
       &.Justificatif-demandé{
         background-image: url(../../../assets/figma/InfoCard/infocard_Papiers.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
-        background-size: cover, cover;
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
       }
 
       &.make-it-red{
@@ -57,11 +63,13 @@
       }
       
       .card-header{
+        display: inline-flex;
+        align-items: center;
         background-color: $darkColor;
         border: none;
         border-radius: 12px 12px 0 0;
         color: #FFFFFF;
-        padding: 10px;
+        padding: 10px 15px;
 
         .header-content{
           margin-left: 10px;
@@ -85,17 +93,14 @@
       .card-body{
         padding-bottom: 12px;
         line-height: 20px;
-        color: #FFFFFF;
+        color: $noir;
   
-        h4{
+        .card-custom-title{
           .card-input{
+            font-size: 24px;
+            font-weight: 600;
             border-radius: 6px;
-            color: $darkColor;
-            padding-left: 10px;
             line-height: 38px;
-          }
-          .switch-wrapper{
-            color: $blancSimple;
           }
         }
   
@@ -135,10 +140,17 @@
           -webkit-appearance: none; 
           margin: 0; 
         }
+
+        .price-details{
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-between;
+        }
   
         .price-frequency{
           font-weight: normal;
           font-size: 16px;
+          margin-left: 10px;
         }
         .niveaux-wrapper{
           margin-top: -5px;
