@@ -50,6 +50,7 @@ const contenuDispositif = (props) => {
                   <QuickToolbar 
                     show={props.uiArray[key].isHover}
                     keyValue={key}
+                    item={item}
                     {...props} />
                 </Col>}
             </Row>

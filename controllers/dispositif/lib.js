@@ -12,7 +12,7 @@ const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
 const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
 
 //Réactiver ici si besoin
-var transporter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   // service: 'gmail',
   host: 'smtp.gmail.com',
   port: 465,
@@ -28,6 +28,8 @@ var mailOptions = {
   to: process.env.NODE_ENV === "dev" ? "souflam007@yahoo.fr" : 'diairagir@gmail.com',
   subject: 'Administration Réfugiés.info'
 };
+
+const url = process.env.NODE_ENV === 'dev' ? "http://localhost:3000/" : process.env.NODE_ENV === 'quality' ? "https://agir-qa.herokuapp.com/" : "https://www.refugies.info/"
 
 function add_dispositif(req, res) {
   if (!req.body || ((!req.body.titreInformatif) && !req.body.dispositifId)) {
@@ -274,7 +276,7 @@ const _errorHandler = (error, res) => {
 
 const _handleMailNotification = dispositif => {
   let html = "";
-  const status = dispositif.status, url = process.env.NODE_ENV === 'dev' ? "http://localhost:3000/" : process.env.NODE_ENV === 'quality' ? "https://agir-qa.herokuapp.com/" : "https://www.refugies.info/";
+  const status = dispositif.status;
   // ["Actif", "Accepté structure", , "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé"]
   if(["En attente", "En attente admin", "En attente non prioritaire"].includes(status)){
     html = "<p>Bonjour,</p>";
@@ -305,3 +307,4 @@ exports.get_dispo_progression = get_dispo_progression;
 //Utilisés dans d'autres controllers :
 exports.transporter = transporter;
 exports.mailOptions = mailOptions;
+exports.url = url;

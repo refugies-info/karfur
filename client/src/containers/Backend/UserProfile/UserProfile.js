@@ -202,8 +202,9 @@ class UserProfile extends Component {
     const {traducteur, contributeur, traductions, contributions, actions, 
       langues, structure, user, showSections, isMainLoading, actionsStruct,
       password, newPassword, cpassword, passwordVisible}=this.state;
-    const {t}= this.props;
-    const favoris = ((user.cookies || {}).dispositifsPinned || []);
+    const {t, dispositifs}= this.props;
+    const favorisId = (user.cookies || {}).dispositifsPinned || [];
+    const favoris = dispositifs && favorisId.map(x => ({...x, ...dispositifs.find(y => y._id === x._id)}) )
     
     const imgSrc = this.state.tempImg || (this.state.user.picture || []).secure_url || marioProfile
 
@@ -289,21 +290,27 @@ class UserProfile extends Component {
                       <NavLink to="/dispositif">
                         <h1 className="title text-big">{Math.round(this.state.progression.timeSpent / 1000 / 60) || 0}</h1>
                         <h6 className="subtitle">{t("UserProfile.minutes données", "minutes données")}</h6>
-                        <span className="content texte-small">{t("UserProfile.commencez à contribuer", "Commencez à contribuer pour démarrer le compteur")}.</span>
+                        <span className="content texte-small">{this.state.progression.timeSpent ? 
+                          t("UserProfile.Merci de donner de votre temps", "Merci de donner de votre temps pour l’intégration des personnes réfugiées") :
+                          t("UserProfile.commencez à contribuer", "Commencez à contribuer pour démarrer le compteur")}.</span>
                       </NavLink>
                     </Col>
                     <Col xl="auto" lg="4" md="4" sm="12" xs="12" className={"obj-col obj-second" + (this.state.progression.nbMotsContrib > 0 ? " active" : "")}>
                       <NavLink to="/dispositif">
                         <h1 className="title text-big">{this.state.progression.nbMotsContrib || 0}</h1>
                         <h6 className="subtitle">{t("UserProfile.mots écrits", "mots écrits")}</h6>
-                        <span className="content texte-small">{t("UserProfile.commencez à rédiger", "Rédigez votre premier contenu pour démarrer le compteur")}.</span>
+                        <span className="content texte-small">{this.state.progression.nbMotsContrib > 0 ?
+                          t("UserProfile.Grâce à vous", "Grâce à vous, les personnes réfugiées seront plus et mieux informées") :
+                          t("UserProfile.commencez à rédiger", "Rédigez votre premier contenu pour démarrer le compteur")}.</span>
                       </NavLink>
                     </Col>
                     <Col xl="auto" lg="4" md="4" sm="12" xs="12" className={"obj-col obj-third" + (this.state.progression.nbMots > 0 ? " active" : "")}>
                       <NavLink to="/backend/user-dashboard">
                         <h1 className="title text-big">{this.state.progression.nbMots || 0}</h1>
                         <h6 className="subtitle">{t("UserProfile.mots traduits", "mots traduits")}</h6>
-                        <span className="content texte-small">{t("UserProfile.commencez à traduire", "Traduisez vos premiers mots pour démarrer le compteur")}.</span>
+                        <span className="content texte-small">{this.state.progression.nbMots > 0 ?
+                          t("UserProfile.Merci de participer", "Merci de participer à rendre accessible l’information au plus grand nombre") :
+                          t("UserProfile.commencez à traduire", "Traduisez vos premiers mots pour démarrer le compteur")}.</span>
                       </NavLink>
                     </Col>
                   </Row>
@@ -564,6 +571,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     userId: state.user.userId,
+    dispositifs: state.dispositif.dispositifs,
   }
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Player } from 'video-react';
 
 const contenu={
   titreInformatif:'Titre informatif',
@@ -321,6 +322,7 @@ const tutoStepsDemarche = [
 
 const customConvertOption = {
   blockToHTML: (block) => {
+    // console.log(block)
     if (block.type === 'header-six') {
       return {start:"<div class='bloc-rouge'> <div class='icon-left-side'> <span>i</span> </div> <div class='right-side'> <div><b>Bon à savoir :</b></div>", end: "</div> </div>"};
     }
@@ -331,6 +333,21 @@ const customConvertOption = {
         <a href={entity.data.url} target="_blank" className="edited-btn">
           {originalText}
         </a>
+      )
+    }else if (entity.type === 'image' || entity.type === 'IMAGE') {
+      return (
+        <div className="image-wrapper">
+          <img {...entity.data} />
+        </div>
+      )
+    }else if (entity.type === 'embedded_link' || entity.type === 'EMBEDDED_LINK') {
+      return (
+        <div className="video-wrapper">
+          <Player
+            playsInline
+            {...entity.data}
+          />
+        </div>
       )
     }
     return originalText
