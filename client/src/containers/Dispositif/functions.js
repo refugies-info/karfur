@@ -12,10 +12,8 @@ const initializeVariantes = function(itemId){
   const query = this.state.dispositif.demarcheId ? 
     { $or: [{demarcheId: this.state.dispositif.demarcheId}, {_id: this.state.dispositif.demarcheId}] } :
     {demarcheId: itemId};  //Si on est dans le cas général, on va chercher toutes les variantes. Sinon, on va aussi chercher le cas général en plus
-  console.log(query)
   API.get_dispositif({query: {...query, status: "Actif"}}).then(data_res => {
     const allDemarches=[...data_res.data.data];
-    console.log(allDemarches)
     this.setState({allDemarches});
   }).catch(e=>console.log(e))
 }
@@ -26,10 +24,10 @@ const initializeInfoCards = function() {
   const card = { "type" : "card", "isFakeContent" : false, "editable" : false, typeIcon: "eva"};
   const {villes, ageTitle, bottomValue, topValue} = variante;
   if(villes && villes.length > 0){ infocards = [...infocards, {...card, contentTitle: (villes.length === 1 ?_.get(villes, "0.formatted_address") : (villes.length + " villes")), title:'Localisation',titleIcon:'pin-outline'}] }
-  if(ageTitle){ infocards = [...infocards, {...card, title:'Âge requis',titleIcon:'calendar-outline', ageTitle, bottomValue, topValue}] }
+  if(ageTitle && bottomValue!==null && topValue !== null){ infocards = [...infocards, {...card, title:'Âge requis',titleIcon:'calendar-outline', ageTitle, bottomValue, topValue}] }
   customCriteres.forEach(x => { if(x.query && variante[x.query] && variante[x.query].length > 0){
     let texte = ""; 
-    _.get(variante, x.query, []).forEach((y, i, arr) => { texte = texte + y + (i < arr.length - 1 ? " ou " : ""); })
+    _.get(variante, x.query, []).forEach((y, i, arr) => { texte = texte + this.props.t("Dispositif." + y, y) + (i < arr.length - 1 ? (" " + this.props.t("ou", "ou") + " ") : ""); })
     infocards = [...infocards, {...card, contentTitle: texte, title: x.texte, titleIcon:'options-2-outline'}]
   } })
   this.setState(pS => ({menu: pS.menu.map((x,i) => i===1 ? {...x, children: infocards} : x)}), ()=>this.setColors());

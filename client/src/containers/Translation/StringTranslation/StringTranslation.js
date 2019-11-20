@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
 import track from 'react-tracking';
-import { Card, CardBody, CardHeader, Col, Tooltip, Row, Button, Spinner, FormGroup, Input } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Row, Spinner } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import ReactHtmlParser from 'react-html-parser';
 import {stringify} from 'himalaya';
@@ -20,16 +20,6 @@ import marioProfile from '../../../assets/mario-profile.jpg';
 
 import './StringTranslation.scss';
 import variables from 'scss/colors.scss';
-
-var option = {
-  style: 'percent',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0
-};
-
-const localeFormatter = (v) => {
-  return new Intl.NumberFormat('fr-FR', option).format(v)
-}
 
 class StringTranslation extends Component {
   state = {
@@ -146,7 +136,7 @@ class StringTranslation extends Component {
   }
 
   render(){
-    const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, avancement, itemId, autosuggest, disableBtn, traducteur } = this.props;
+    const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, itemId, autosuggest, traducteur } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
     const feedbackModal = (
@@ -235,7 +225,7 @@ class StringTranslation extends Component {
                       <img
                         src={traducteur.picture && traducteur.picture.secure_url ? traducteur.picture.secure_url : marioProfile} 
                         className="profile-img-pin img-circle small-img"
-                        alt="user profile picture"
+                        alt="user profile"
                       />{' '}
                       <i>{traducteur.username}</i>{' '}
                       en{' '}</>: 

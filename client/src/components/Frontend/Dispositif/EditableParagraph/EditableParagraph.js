@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Tooltip } from 'reactstrap';
 import ContentEditable from 'react-contenteditable';
 import { Editor } from 'react-draft-wysiwyg';
-import { Draft, DefaultDraftBlockRenderMap, EditorBlock, convertToRaw, convertFromRaw } from 'draft-js';
-import { Map } from 'immutable';
-import draftToHtml from 'draftjs-to-html';
+import { EditorBlock } from 'draft-js';
 import { Player } from 'video-react';
+import { withTranslation } from 'react-i18next';
 
 // import Backdrop from '../../../UI/Backdrop/Backdrop';
-import {boldBtn, italicBtn, underBtn, listBtn, imgBtn, videoBtn, linkBtn} from '../../../../assets/figma/index'
-import CustomOption from './CustomOption/CustomOption'
+import {boldBtn, italicBtn, underBtn, listBtn, imgBtn, linkBtn} from '../../../../assets/figma'; //videoBtn
+import CustomOption from './CustomOption/CustomOption';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 import FButton from '../../../FigmaUI/FButton/FButton';
 import API from '../../../../utils/API';
@@ -37,7 +36,7 @@ const MyImageBlock = props => {
     if(data.alt !== undefined){
       return (
         <div className="image-wrapper">
-          <img {...data} />
+          <img {...data} alt={(data || {}).alt} />
         </div>
       )
     }else{
@@ -95,6 +94,9 @@ class EditableParagraph extends Component {
             toolbarCustomButtons={[<CustomOption editorState={props.editorState} />]}
             blockRendererFn={myBlockRenderer}
             stripPastedStyles
+            localization={{
+              locale: this.props.i18n.language,
+            }}
             toolbar={{
               options: ['inline','list', 'image', 'link'], //, 'embedded'
               inline: {
@@ -159,15 +161,16 @@ class EditableParagraph extends Component {
           onChange={props.handleMenuChange} // handle innerHTML change
           onClick={()=>props.handleContentClick(props.keyValue,!props.disableEdit, props.subkey)}
         />
-        <AddModuleBtn 
-          isDropdownOpen={this.state.isDropdownOpen}
-          dropdownColor={this.state.dropdownColor}
-          tooltipOpen={this.state.tooltipOpen}
-          toggle={this.toggle}
-          toggleColor={this.toggleColor}
-          toggleTooltip={this.toggleTooltip}
-          {...this.props}
-        />
+        {!props.disableEdit && 
+          <AddModuleBtn 
+            isDropdownOpen={this.state.isDropdownOpen}
+            dropdownColor={this.state.dropdownColor}
+            tooltipOpen={this.state.tooltipOpen}
+            toggle={this.toggle}
+            toggleColor={this.toggleColor}
+            toggleTooltip={this.toggleTooltip}
+            {...this.props}
+          />}
       </>)
     }else{return false}
   }
@@ -227,4 +230,4 @@ function uploadImageCallBack(file) {
   );
 }
 
-export default EditableParagraph;
+export default withTranslation()(EditableParagraph);

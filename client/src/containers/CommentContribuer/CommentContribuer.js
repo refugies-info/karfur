@@ -228,7 +228,7 @@ class CommentContribuer extends Component {
                 </Row>
               </div>
               <div className="right-side">
-                <img src={image_corriger} className="image_corriger" />
+                <img src={image_corriger} className="image_corriger" alt="corriger" />
               </div>
             </div>
           </div>
