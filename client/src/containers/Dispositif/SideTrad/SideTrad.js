@@ -127,7 +127,7 @@ class SideTrad extends Component {
   }
 
   _scrollAndHighlight = (idx, subidx = -1, subname = "") => {
-    if(subidx > -1 && subname === "content" && this.props.menu[idx].children[subidx].type == "accordion"){
+    if(subidx > -1 && subname === "content" && this.props.menu[idx].children[subidx].type === "accordion"){
       this.props.updateUIArray(idx, subidx, 'accordion', true)
     }
     Array.from(document.getElementsByClassName("translating")).forEach(x => {x.classList.remove("translating")}); //On enlève le surlignage des anciens éléments
@@ -285,7 +285,7 @@ class SideTrad extends Component {
 
   render(){
     const langue = this.props.langue || {};
-    const { francais, translated, isExpert, disableBtn, autosuggest } = this.props;
+    const { francais, translated, isExpert, autosuggest } = this.props; //disableBtn
     const { currIdx, currSubIdx, currSubName, listTrad, score, userId, showModals, selectedTrad } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
@@ -358,7 +358,7 @@ class SideTrad extends Component {
             />
           </DirectionProvider>
           {autosuggest && 
-            <div className="google-suggest">Suggestion par <img src={logo_google} className="google-logo" /></div>}
+            <div className="google-suggest">Suggestion par <img src={logo_google} className="google-logo" alt="google" /></div>}
         </div>
         <div className="expert-bloc">
           {score && score !== 0 && score !== "0" ? 
@@ -372,7 +372,7 @@ class SideTrad extends Component {
             </div> : <div></div>}
           {userId && userId.username &&
             <div className="trad-info">
-              <img src={(userId.picture || {}).secure_url || marioProfile} className="profile-img-pin mr-10" />
+              <img src={(userId.picture || {}).secure_url || marioProfile} className="profile-img-pin mr-10" alt="profile" />
               <span>{userId.username}</span>
             </div>}
         </div>
@@ -409,7 +409,7 @@ class SideTrad extends Component {
                         <b className="score">{Math.round((sugg.score || 0) * 100)} %</b>}
                     </ListGroupItem>
                   )
-                }
+                }else{return false}
               })}
             </ListGroup>
           </div>}

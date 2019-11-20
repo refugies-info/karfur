@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import h2p from 'html2plaintext';
 import { withTranslation } from 'react-i18next';
 
-import SVGIcon from '../../../components/UI/SVGIcon/SVGIcon';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import * as actions from '../../../Store/actions/actionTypes';
 

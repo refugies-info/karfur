@@ -33,7 +33,7 @@ const languageModal = (props) => {
                         <b>{t("Homepage.langue indispo", "Votre langue n’est pas disponible ?")}</b>
                       </Col>
                       <Col xl="4" lg="4" md="4" sm="4" xs="4" className="button-col">
-                        <FButton tag={"a"} href="https://refugies.canny.io/" target="_blank" type="outline">
+                        <FButton tag={"a"} href="https://refugies.canny.io/" target="_blank" rel="noopener noreferrer" type="outline">
                           {t("Homepage.Demander", "Demander")}
                         </FButton>
                       </Col>

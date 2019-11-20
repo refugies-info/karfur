@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Button, Card, CardBody, Form, ModalBody, ModalFooter, Progress } from 'reactstrap';
+import { Card, CardBody, Form, Progress } from 'reactstrap';
 import Swal from 'sweetalert2';
 import {NavLink} from 'react-router-dom';
-import { CSSTransition } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import _ from "lodash";
@@ -11,12 +10,9 @@ import passwdCheck from "zxcvbn";
 
 import API from '../../utils/API';
 import setAuthToken from '../../utils/setAuthToken';
-// import FCBtn from '../../assets/FCboutons-10.png';
 import FButton from '../../components/FigmaUI/FButton/FButton';
-import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FInput from '../../components/FigmaUI/FInput/FInput';
 import {fetch_user} from "../../Store/actions";
-import Modal from '../../components/Modals/Modal';
 import { colorAvancement } from '../../components/Functions/ColorFunctions';
 
 import './Reset.scss';

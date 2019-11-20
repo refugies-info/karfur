@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { withTranslation } from 'react-i18next';
-import { Col, Row, Progress, CardFooter, Table } from 'reactstrap';
+import { Col, Row, Progress, Table } from 'reactstrap';
 import moment from 'moment/min/moment-with-locales';
 import {NavLink} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { connect } from 'react-redux';  
 import track from 'react-tracking';
-import _ from "lodash";
 
 import API from '../../utils/API'
 import {colorAvancement} from '../../components/Functions/ColorFunctions';
@@ -39,7 +38,6 @@ class Avancement extends Component {
     let itemId=this.props.match.params.id;
     let isLangue=this.props.location.pathname.includes('/langue');
     let isExpert=this.props.location.pathname.includes('/traductions');
-    console.log(itemId, isLangue, isExpert)
     let i18nCode=null;
     if(isLangue && itemId){
       if(this.props.location.state && this.props.location.state.langue && this.props.location.state.langue.i18nCode){
@@ -47,7 +45,6 @@ class Avancement extends Component {
           title: diffData.traducteur.title + ' : ' + this.props.location.state.langue.langueFr,
           headers: diffData.traducteur.headers});
         i18nCode=this.props.location.state.langue.i18nCode;
-        console.log(this.props.location.state.langue)
       }else{
         i18nCode= await this._loadLangue(itemId, isExpert);
       }
@@ -179,10 +176,8 @@ class Avancement extends Component {
           typeContenu: x.typeContenu || "dispositif"
       } ) )
     ];
-    console.log(this.state.traductionsFaites, traductions)
     traductions = traductions.filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
-    console.log(traductions)
-
+    
     const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length))}
     
     const AvancementData = () => {
@@ -294,19 +289,6 @@ class Avancement extends Component {
     );
   }
 }
-
-function shuffle(arr) {
-  var i,
-      j,
-      temp;
-  for (i = arr.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      temp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = temp;
-  }
-  return arr;    
-};
 
 const mapStateToProps = (state) => {
   return {
