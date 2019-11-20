@@ -40,7 +40,6 @@
     "mots rédigés": "كلمات<br/>كُتِبَت",
     "minutes passées": "دقائق<br/>مقضّية",
     "personnes informées": "أشخاص<br/>أُعلِموا",
-    "Espace contribution": "مكان المساهمة",
     "Retrouvez ici vos pages favorites": "تجد هنا صفحاتك المفضلة",
     "cherche btn": "ابحث عن هذا الزر في المحتويات لحفظهم",
     "Ajouter un membre": "أضف عضواً",
@@ -236,6 +235,7 @@
     "Mot de passe oublié ?": "نسيت كلمة المرور؟",
     "no-account": "لا يوجد حساب بهذا الاسم"
   },
+  "UnauthorizedAccess": {},
   "Dispositif": {
     "fiabilite_faible": "معلومة ذات موثوقيّة منخفضة، لم يتم التحقق منها سابقاً",
     "cliquez": "انقر فوق الـ \"؟\" لمعرفة المزيد",

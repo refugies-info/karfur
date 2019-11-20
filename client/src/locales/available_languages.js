@@ -3,6 +3,7 @@ import translationEN from './en/translation.json';
 import translationAR from './ar/translation.json';
 import translationFA from './fa/translation.json';
 import translationTIER from './ti-ER/translation.json';
+import translationPS from './ps/translation.json';
 
 export const available_languages = {
   fr: {
@@ -34,5 +35,11 @@ export const available_languages = {
     name :  "ትግርኛ",
     RTL : true,
     code: "ti-ER",
-  }
+  },
+  ps: {
+    translation: translationPS,
+    name :  "پښتو",
+    RTL : true,
+    code: 'ps',
+  },
 };
