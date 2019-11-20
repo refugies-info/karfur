@@ -3,6 +3,7 @@ import _ from "lodash";
 import Swal from 'sweetalert2';
 
 import { customCriteres } from './MoteurVariantes/data';
+import { google_localities } from "./data";
 import API from '../../utils/API';
 
 //Je met ici toutes les fonctions relatives aux démarches pour pas encombrer
@@ -78,7 +79,7 @@ const check_place = function(place_id, demarchesEligibles, age, allDemarches, di
             demarche.variantes.forEach(variante => {
               (variante.villes || []).forEach(ville => {
                 (ville.address_components || []).forEach(comp => {
-                  ["administrative_area_level_1", "administrative_area_level_2", "administrative_area_level_3", "administrative_area_level_4", "administrative_area_level_5", "locality", "sublocality", "sublocality_level_1", "sublocality_level_2", "sublocality_level_3", "sublocality_level_4", "sublocality_level_5","neighborhood"].forEach((loc, i) => {
+                  google_localities.forEach((loc, i) => {
                     if((comp.types || []).includes(loc)){
                       const valeurCherchee = data.address_components.find(z => (z.types || []).includes(loc) && z.long_name === comp.long_name);
                       //Si on obtient un niveau de précision supérieur à toutes les autres démarches (y compris celle affichée actuellement), on passe sur la nouvelle démarche
