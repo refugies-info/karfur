@@ -116,9 +116,14 @@ class Sponsors extends Component {
                   <a href={((sponsor.link || "").includes("http") ? "" : "http://") + sponsor.link} target="_blank" rel="noopener noreferrer">
                     {sponsor.picture && sponsor.picture.secure_url ?
                       <img className="sponsor-img" src={sponsor.picture.secure_url} alt={sponsor.alt} /> : 
-                      <span className="default-logo">{sponsor.type === "Not found" ? "A déterminer par la suite" : (sponsor.acronyme || sponsor.nom) ? (sponsor.acronyme + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + sponsor.nom) : sponsor.alt}</span>}
+                      sponsor.type === "Not found" ? 
+                        <div className="not-found-wrapper">
+                          <EVAIcon name="question-mark-circle" className="not-found-icon" size="large" />
+                          <span>Structure responsable<br/>non-identifiée</span>
+                        </div>:
+                        <span className="default-logo">{(sponsor.acronyme || sponsor.nom) ? (sponsor.acronyme + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + sponsor.nom) : sponsor.alt}</span>}
                   </a>
-                  {key === 0 && 
+                  {key === 0 && sponsor.type !== "Not found" &&
                     <div className="owner-badge">
                       <EVAIcon name="shield" className="mr-10" />
                       Responsable

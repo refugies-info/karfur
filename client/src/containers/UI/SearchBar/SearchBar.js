@@ -138,7 +138,7 @@ const removeAccents = (str = "") => {
   str = str.split('');
   var i, x;
   for (i = 0; i < str.length; i++) {
-    if ((x = accents.indexOf(str[i])) != -1) {
+    if ((x = accents.indexOf(str[i])) !== -1) {
       str[i] = accentsOut[x];
     }
   }

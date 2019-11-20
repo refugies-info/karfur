@@ -66,6 +66,10 @@ class App extends Component {
     //   console.log('évènement',data)
     //   this.setState({ data })
     // })
+    //On désactive les logs en prod
+    if(process.env.NODE_ENV !== "development"){
+      console.log = function(){};
+    }
     window.onbeforeunload = function() {
       this.props.tracking.trackEvent({ action: 'unmount', label: 'App' });
       return undefined;
