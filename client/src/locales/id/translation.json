@@ -47,7 +47,7 @@
     "mots rédigés": "struct_9u3tlk22y432f",
     "minutes passées": "struct_9u3tlk22y432g",
     "personnes informées": "struct_9u3tlk22y432h",
-    "Espace contribution": "struct_9u3tlk22y432i",
+    "Espace rédaction": "struct_9u1txbk37dw5gd",
     "Retrouvez ici vos pages favorites": "struct_9u3tlk22y432j",
     "cherche btn": "struct_9u3tlk22y432k",
     "Ajouter un membre": "struct_9u3tlk22y432l",
@@ -102,7 +102,10 @@
     "commencez à rédiger": "struct_9u3tlk22y433r",
     "mots traduits": "struct_9u3tlk22y433s",
     "commencez à traduire": "struct_9u3tlk22y433t",
-    "Modifier le mot de passe": "struct_8g1fi0k2zwtnhx"
+    "Modifier le mot de passe": "struct_8g1fi0k2zwtnhx",
+    "Merci de donner de votre temps": "struct_9u1txbk37dw5ge",
+    "Grâce à vous": "struct_9u1txbk37dw5gf",
+    "Merci de participer": "struct_9u1txbk37dw5gg"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "struct_9u3tlk22y433u",
@@ -207,7 +210,11 @@
     "très bien": "struct_9u3tlk22y436b",
     "Paris": "struct_9u3tlk22y436c",
     "Lyon": "struct_9u3tlk22y436d",
-    "Nantes": "struct_9u3tlk22y436e"
+    "Nantes": "struct_9u3tlk22y436e",
+    "choisir un thème": "struct_9u1txbk37dw5gh",
+    "ma ville": "struct_9u1txbk37dw5gi",
+    "âge": "struct_9u1txbk37dw5gj",
+    "mon niveau": "struct_9u1txbk37dw5gk"
   },
   "SearchItem": {
     "Je cherche à": "struct_9u3tlk22y436f",
@@ -252,7 +259,16 @@
     "Force": "struct_8g1fi0k2zwtni3",
     "Mot de passe actuel": "struct_8g1fi0k2zwtni4",
     "Nouveau mot de passe": "struct_8g1fi0k2zwtni5",
-    "Confirmez le nouveau mot de passe": "struct_8g1fi0k2zwtni6"
+    "Confirmez le nouveau mot de passe": "struct_8g1fi0k2zwtni6",
+    "Réinitialisez votre mot de passe": "struct_9u1txbk37dw5gl",
+    "Renseignez ici le nouveau mot de passe souhaité": "struct_9u1txbk37dw5gm",
+    "Chargement des données utilisateur": "struct_9u1txbk37dw5gn",
+    "Problème mdp": "struct_9u1txbk37dw5go",
+    "Revenir à la page de connexion": "struct_9u1txbk37dw5gp"
+  },
+  "UnauthorizedAccess": {
+    "Accès refusé": "struct_9u1txbk37dw5gq",
+    "Revenir à l'accueil": "struct_9u1txbk37dw5gr"
   },
   "Dispositif": {
     "fiabilite_faible": "struct_9u3tlk22y436z",
@@ -349,7 +365,11 @@
     "J'ai une suggestion !": "struct_8g1fi0k2zwtnin",
     "Je veux juste vous dire": "struct_8g1fi0k2zwtnio",
     "réagir": "struct_8g1fi0k2zwtnip",
-    "écouter": "struct_8g1fi0k2zwtniq"
+    "écouter": "struct_8g1fi0k2zwtniq",
+    "Ajouter un thème": "struct_9u1txbk37dw5gs",
+    "réfugiés": "struct_9u1txbk37dw5gt",
+    "Localisation": "struct_9u1txbk37dw5gu",
+    "Tout public": "struct_9u1txbk37dw5gv"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "struct_9u3tlk22y438w",
@@ -404,6 +424,7 @@
   "Modifier mon profil": "struct_9u3tlk22y43a3",
   "Bientôt disponible": "struct_9u3tlk22y43a4",
   "Chercher un dispositif": "struct_9u3tlk22y43a5",
+  "Chercher une démarche": "struct_9u1txbk37dw5gw",
   "Rejoindre le réseau": "struct_9u3tlk22y43a6",
   "Valider": "struct_9u3tlk22y43a7",
   "Contribuer": "struct_9u3tlk22y43a8",
