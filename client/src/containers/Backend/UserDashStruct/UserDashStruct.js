@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import windowSize from 'react-window-size';
 
-import {avancement_actions, avancement_contributions, avancement_members, fakeContribution, fakeMembre} from './data'
+import {avancement_actions, avancement_contributions, avancement_members} from './data'
 import API from '../../../utils/API';
 import DashHeader from '../../../components/Backend/UserDash/DashHeader/DashHeader';
 import {MembersTable, ActionTable, ContribTable} from '../../../components/Backend/UserProfile';
@@ -128,7 +128,7 @@ class UserDashStruct extends Component {
                 <b>{element.created_at ? moment(element.created_at).fromNow() : ""}</b>
               </div>
               <div className="right-side">
-                <FButton tag={NavLink} to={{pathname: "/dispositif/" + element._id, state: {structure: structure} }} type="light-action" name="eye-outline" fill={variables.noir}>
+                <FButton tag={NavLink} to={{pathname: "/" + (element.typeContenu || "dispositif") + "/" + element._id, state: {structure: structure} }} type="light-action" name="eye-outline" fill={variables.noir}>
                   Voir le contenu
                 </FButton>
               </div>

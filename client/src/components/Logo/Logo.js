@@ -5,9 +5,9 @@ import { logo_header } from '../../assets/figma';
 
 import './Logo.scss';
 
-const logo = (props) => (
+const logo = () => (
   <NavLink to="/" className="logo mr-10">
-    <img src={logo_header} className="logo-img" />
+    <img src={logo_header} className="logo-img" alt="logo refugies-info" />
   </NavLink>
 );
 

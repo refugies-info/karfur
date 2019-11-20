@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import { Row, Col, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import FButton from '../../FigmaUI/FButton/FButton';
 
@@ -48,7 +48,7 @@ class ObjectifsModal extends Component {
           <div className="objectifs-wrapper">
             {objectifs.map((objectif, key) => (
               <Row className={"obj-row mt-10" + (objectifs[key].selected ? " active" : "")} onClick={()=>this.toggleActive(key)} key={key}>
-                <Col xl="1" lg="1" md="1" sm="1" md="1" className="obj-col">
+                <Col xl="1" lg="1" md="1" sm="1" xs="1" className="obj-col">
                   <div className="dot-circle" />
                 </Col>
                 <Col xl="4" lg="4" md="4" sm="4" xs="4" className="obj-col texte-normal">
