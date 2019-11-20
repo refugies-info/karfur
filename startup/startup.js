@@ -57,7 +57,7 @@ if(process.env.NODE_ENV === 'dev') {
     try{
       // let isLocaleSuccess=_insertI18nLocales()
       // let isDownloadSuccess=_getI18nLocales()
-      let isAvancementSuccess = _recalculateAvancement(); //Recalcule l'avancement de tous les strings du site
+      // let isAvancementSuccess = _recalculateAvancement(); //Recalcule l'avancement de tous les strings du site
     }catch(e){console.log(e)}
   }
 }
@@ -252,6 +252,10 @@ const _recalculateAvancement = () => {
           });
         }
       });
+      article.avancement = avancement;
+      article.canBeUpdated = false;
+      article.save();
+      console.log('article correctement enregistré')
     }
 
   });
