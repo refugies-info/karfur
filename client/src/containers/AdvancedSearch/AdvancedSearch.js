@@ -15,14 +15,12 @@ import API from '../../utils/API';
 import {initial_data} from "./data"
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
-import {filtres} from "../Dispositif/data";
-import {filtres_contenu} from "./data";
+import {filtres, google_localities} from "../Dispositif/data";
+import {filtres_contenu, tris} from "./data";
 import {breakpoints} from 'utils/breakpoints.js';
 
 import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
-
-const tris = [{name: "A > Z", value: "titreInformatif"}, {name:"Derniers ajouts", value: "created_at"}, {name: "Les plus visités", value:"nbVues"}];
 
 let user={_id:null, cookies:{}};
 class AdvancedSearch extends Component {
@@ -58,10 +56,25 @@ class AdvancedSearch extends Component {
       { "audienceAge.bottomValue": { $lt: x.topValue}, "audienceAge.topValue": { $gt: x.bottomValue} } :
       {[x.queryName]: x.query}
     )).reduce((acc, curr) => ({...acc, ...curr}),{});
-    API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', demarcheId: { $exists: false } }}).then(data_res => {
+    const localisationSearch = this.state.recherche.find(x => x.queryName === 'localisation' && x.value);
+    console.log(localisationSearch)
+    API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', ...(!localisationSearch && {demarcheId: { $exists: false }}) }}).then(data_res => {
       let dispositifs=data_res.data.data;
       if(query["tags.name"]){       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
         dispositifs = dispositifs.sort((a,b)=> (a.tags.findIndex(x => x ? x.short === query["tags.name"] : 99) - b.tags.findIndex(x => x ? x.short === query["tags.name"] : 99)))
+      }
+      if(localisationSearch){       //On applique le filtre géographique maintenant
+        dispositifs = dispositifs.filter(x => (
+          x.typeContenu !== "demarche" || 
+          !(x.variantes || []).some(y => y.villes) || 
+          x.variantes.some(y => y.villes.some(z => (
+            !z.address_components.some(ad => (
+              !localisationSearch.query.some(lq => lq.long_name === ad.long_name) //On compare seulement les noms, il faudrait idéalement rajouter le type aussi mais la comparaison des Arrays me paraît lourde
+            ))
+          )))
+        ));
+        const filterDoubles = [...new Set(dispositifs.map(x => x.demarcheId || x._id))]; //Je vire les doublons créés par les variantes
+        dispositifs = filterDoubles.map(x => dispositifs.find(y => y.demarcheId === x || y._id === x));
       }
       dispositifs = dispositifs.map(x => ({...x, nbVues: (this.state.nbVues.find(y=>y._id === x._id) || {}).count }))     //Je rajoute la donnée sur le nombre de vues par dispositif
         .filter(x => !this.state.pinned.some(y=>y._id===x._id || y===x._id))
@@ -154,8 +167,8 @@ class AdvancedSearch extends Component {
     let recherche = [...this.state.recherche];
     recherche[key]={
       ...recherche[key],
-      value: subitem.name,
-      query: subitem.query || subitem.name,
+      value: subitem.name || subitem.formatted_address,
+      query: subitem.query || subitem.address_components || subitem.name,
       active: true,
       ...(subitem.short && {short: subitem.short}),
       ...(subitem.bottomValue && {bottomValue: subitem.bottomValue}),
