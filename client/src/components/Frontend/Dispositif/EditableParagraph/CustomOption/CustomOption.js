@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { RichUtils, AtomicBlockUtils } from 'draft-js';
-import { EditorState, Modifier, ContentState, convertToRaw, SelectionState,convertFromRaw } from 'draft-js';
+import { EditorState, convertToRaw,convertFromRaw } from 'draft-js';
 import EVAIcon from '../../../../UI/EVAIcon/EVAIcon';
-import htmlToDraft from 'html-to-draftjs';
-import draftToHtml from 'draftjs-to-html';
-import { Map } from 'immutable';
-import {stateFromHTML} from 'draft-js-import-html';
 import { convertFromHTML } from 'draft-convert';
 
 class CustomOption extends Component {
@@ -46,10 +41,7 @@ class CustomOption extends Component {
     const currentContentBlock = currentContent.getBlockForKey(anchorKey);
     const start = selection.getStartOffset();
     const end = selection.getEndOffset();
-    const initial_text = editorState.getCurrentContent().getPlainText();
     const selectedText = currentContentBlock.getText().slice(start, end);
-    const startText = initial_text.slice(0, start - 1);
-    const endText = initial_text.slice(end + 1, initial_text.length);
     const startKey = selection.getStartKey();
 
     // const newHTMLContent = "<h6>Bon à savoir<p>" + selectedText + "</p></h6>";

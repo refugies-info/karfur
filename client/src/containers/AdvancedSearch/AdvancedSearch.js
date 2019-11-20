@@ -15,7 +15,7 @@ import API from '../../utils/API';
 import {initial_data} from "./data"
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
-import {filtres, google_localities} from "../Dispositif/data";
+import {filtres} from "../Dispositif/data";
 import {filtres_contenu, tris} from "./data";
 import {breakpoints} from 'utils/breakpoints.js';
 
@@ -57,7 +57,6 @@ class AdvancedSearch extends Component {
       {[x.queryName]: x.query}
     )).reduce((acc, curr) => ({...acc, ...curr}),{});
     const localisationSearch = this.state.recherche.find(x => x.queryName === 'localisation' && x.value);
-    console.log(localisationSearch)
     API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', ...(!localisationSearch && {demarcheId: { $exists: false }}) }}).then(data_res => {
       let dispositifs=data_res.data.data;
       if(query["tags.name"]){       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
@@ -85,7 +84,7 @@ class AdvancedSearch extends Component {
   selectTag = (tag = {}) => {
     const tagValue = (filtres.tags.find(x => x.short === tag) || {});
     this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: tagValue.name, short: tagValue.short, active: true} : x)}))
-    this.queryDispositifs({["tags.short"]: tag})
+    this.queryDispositifs({"tags.short": tag})
     // this.props.history.replace("/advanced-search?tag="+tag)
   }
   

@@ -387,6 +387,7 @@ const mapDispatchToProps = {fetch_structures};
 export default track({
   page: 'Admin',
 }, { dispatchOnMount: true })(
-  connect(null, mapDispatchToProps)
-    (Admin)
-  );
+  connect(null, mapDispatchToProps)(
+    Admin
+  )
+);

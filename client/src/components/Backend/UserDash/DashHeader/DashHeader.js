@@ -7,8 +7,7 @@ import { withTranslation } from 'react-i18next';
 import FButton from '../../../FigmaUI/FButton/FButton';
 import {diairMinInt} from '../../../../assets/figma/index'
 
-import './DashHeader.scss'
-import variables from 'scss/colors.scss';
+import './DashHeader.scss';
 
 moment.locale('fr');
 

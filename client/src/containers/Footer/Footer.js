@@ -3,10 +3,9 @@ import track from 'react-tracking';
 import { withTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { NavHashLink } from 'react-router-hash-link';
-import { Row, Col, Form, FormGroup, Label, Input, InputGroupAddon } from 'reactstrap';
+import { Row, Col, Form, FormGroup, Input, InputGroupAddon } from 'reactstrap';
 import Swal from 'sweetalert2';
 
-import Logo from '../../components/Logo/Logo';
 import API from '../../utils/API';
 
 import './Footer.scss';
@@ -57,13 +56,13 @@ class Footer extends Component {
             </Form>
             <div className="ligne-footer">
               {/*<label>Rejoindre la newsletter</label>*/}
-              <FButton tag={"a"} href="https://refugies-info.mn.co" target="_blank" className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
+              <FButton tag={"a"} href="https://refugies-info.mn.co" target="_blank" rel="noopener noreferrer" className="footer-btn" type="light-action" name="people-outline" fill={variables.noir}>
                 {t("Footer.Participer à l'évolution de réfugiés-info", "Participer à l'évolution de réfugiés.info")}
               </FButton>
             </div>
             <div className="ligne-footer">
               {/*<label>Demander de nouveaux contenus</label>*/}
-              <FButton tag={"a"} href="https://refugies.canny.io/" target="_blank" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
+              <FButton tag={"a"} href="https://refugies.canny.io/" target="_blank" rel="noopener noreferrer" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
                 {t("Footer.Demander des fonctionnalités", "Demander des fonctionnalités")}
               </FButton>
             </div>

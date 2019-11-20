@@ -6,7 +6,6 @@ import h2p from 'html2plaintext';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import windowSize from 'react-window-size';
 import { connect } from 'react-redux';
-import {NavLink} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import passwdCheck from "zxcvbn";
 
@@ -24,10 +23,10 @@ import {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgr
 import {fetch_user, fetch_dispositifs} from '../../../Store/actions';
 import FInput from '../../../components/FigmaUI/FInput/FInput';
 import { colorAvancement } from '../../../components/Functions/ColorFunctions';
+import setAuthToken from '../../../utils/setAuthToken';
 
 import './UserProfile.scss';
 import variables from 'scss/colors.scss';
-import setAuthToken from '../../../utils/setAuthToken';
 
 const anchorOffset = '120';
 

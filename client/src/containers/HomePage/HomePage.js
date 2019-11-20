@@ -6,7 +6,6 @@ import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import Swal from 'sweetalert2';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 ////////A enlever si pas utilisé/////////////:
 // import Notifications from '../../components/UI/Notifications/Notifications';
@@ -15,18 +14,12 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { toggle_lang_modal } from '../../Store/actions/index';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
-import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
-import SearchBar from '../UI/SearchBar/SearchBar';
 import API from '../../utils/API';
-import FSearchBtn from '../../components/FigmaUI/FSearchBtn/FSearchBtn';
 
 import './HomePage.scss';
 import variables from 'scss/colors.scss';
-import { filtres } from '../Dispositif/data';
 import SearchItem from '../AdvancedSearch/SearchItem/SearchItem';
 import { initial_data } from '../AdvancedSearch/data';
-
-const anchorOffset = '120';
 
 class HomePage extends Component {
   state = {
