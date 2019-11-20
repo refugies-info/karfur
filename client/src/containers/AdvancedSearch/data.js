@@ -29,18 +29,7 @@ const initial_data = [
     title:'J\'habite à',
     value: null,
     placeholder: 'ma ville',
-    queryName: 'localisation',
-    children:[
-      {
-        name: 'Paris',
-      },
-      {
-        name: 'Lyon',
-      },
-      {
-        name: 'Nantes',
-      },
-    ]
+    queryName: 'localisation'
   },
   {
     title:'J\'ai',
@@ -107,4 +96,6 @@ const filtres_contenu = [
   {name: "Démarches", query: {typeContenu: "demarche"} },
 ]
 
-export {initial_data, filtres_contenu};
+const tris = [{name: "A > Z", value: "titreInformatif"}, {name:"Derniers ajouts", value: "created_at"}, {name: "Les plus visités", value:"nbVues"}];
+
+export {initial_data, filtres_contenu, tris};
