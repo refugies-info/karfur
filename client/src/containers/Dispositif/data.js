@@ -330,14 +330,14 @@ const customConvertOption = {
   entityToHTML: (entity, originalText) => {
     if (entity.type === 'link' || entity.type === 'LINK') {
       return (
-        <a href={entity.data.url} target="_blank" className="edited-btn">
+        <a href={entity.data.url} target="_blank" rel="noopener noreferrer" className="edited-btn">
           {originalText}
         </a>
       )
     }else if (entity.type === 'image' || entity.type === 'IMAGE') {
       return (
         <div className="image-wrapper">
-          <img {...entity.data} />
+          <img {...entity.data} alt={(entity.data || {}).alt} />
         </div>
       )
     }else if (entity.type === 'embedded_link' || entity.type === 'EMBEDDED_LINK') {

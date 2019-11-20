@@ -7,7 +7,6 @@ import marioProfile from '../../../../assets/mario-profile.jpg';
 import FButton from '../../../FigmaUI/FButton/FButton';
 import { fakeMembre } from '../../../../containers/Backend/UserDashStruct/data';
 
-import variables from 'scss/colors.scss';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 moment.locale('fr');

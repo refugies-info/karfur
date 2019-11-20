@@ -33,7 +33,7 @@ class SearchItem extends Component {
   }
 
   render() {
-    const {t, item, keyValue} = this.props;
+    const {t, item} = this.props; //keyValue
     const {dropdownOpen, isMounted, ville}=this.state;
     return (
       <div className="search-col">

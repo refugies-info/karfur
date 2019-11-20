@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import track from 'react-tracking';
-import { Col, Row, Table } from 'reactstrap';
+import { Table } from 'reactstrap';
 import {NavLink} from 'react-router-dom'; 
 import { connect } from 'react-redux';
-import Swal from 'sweetalert2';
 import moment from 'moment/min/moment-with-locales';
 
-import API from '../../../utils/API';
 import FButton from '../../../components/FigmaUI/FButton/FButton';
 import {fetch_dispositifs} from '../../../Store/actions';
 import {deleteContrib} from '../UserProfile/functions';
@@ -61,9 +59,9 @@ class AdminContenu extends Component {
                 "-", 
                 y.variantes.map(z => 
                   ["(", 
-                  ...(z.ageTitle ? ["Âge : " + ((z.ageTitle === 'De ** à ** ans') ? "De" + ' ' + z.bottomValue + ' ' + "à" + ' ' + z.topValue  + ' ' + "ans" :
-                    (z.contentTitle === 'Moins de ** ans') ? "Moins de" + ' ' + z.topValue + ' ' + "ans" :
-                      "Plus de" + ' ' + z.bottomValue + ' ' + "ans") + ", " ] : []),
+                  ...(z.ageTitle ? ["Âge : " + ((z.ageTitle === 'De ** à ** ans') ? "De " + z.bottomValue + " à " + z.topValue  + " ans" :
+                    (z.contentTitle === 'Moins de ** ans') ? "Moins de " + z.topValue + " ans" :
+                      "Plus de " + z.bottomValue + " ans") + ", " ] : []),
                   ...(z.villes ? ["Localisation : " + (z.villes.length>1 ? (z.villes.length + " villes") : z.villes[0].formatted_address) + ", " ] : []),
                   customCriteres.reduce((acc,curr) => acc += curr.query && z[curr.query] ? (curr.texte + " : " + z[curr.query].join(" ou ") + ", ") : "", "").slice(0, -2),
                   ")"].join(" ")

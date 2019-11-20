@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, Input, DropdownItem } from 'reactstrap';
+import { Col, ButtonDropdown, DropdownToggle, DropdownMenu, Input, DropdownItem } from 'reactstrap';
 import ReactDependentScript from 'react-dependent-script';
 import Autocomplete from 'react-google-autocomplete';
 import { connect } from 'react-redux';
@@ -79,7 +79,9 @@ class UneVariante extends Component {
 
   changeAge = (e, isBottom=true) => {
     e.persist();
-    this.setState(pS => ({[isBottom ? "bottomValue" : "topValue"]: parseInt(((e.target || {}).value || "").replace(/\D/g, '')), validatedRow: pS.validatedRow.map((x,i) => i===1 ? true : x) } ));
+    console.log(this.state.bottomValue)
+    this.setState(pS => ({[isBottom ? "bottomValue" : "topValue"]: parseInt(((e.target || {}).value || "").replace(/\D/g, '')), validatedRow: pS.validatedRow.map((x,i) => i===1 ? true : x) } ), ()=> 
+      console.log(this.state.bottomValue) );
   }
 
   addCritere = () => this.setState(pS => ({
@@ -121,7 +123,7 @@ class UneVariante extends Component {
                     <div className="col-header">
                       Cas #{i+1}
                     </div>}
-                  <div className={"col-body" + " " + (inVariante ? "no-header" : "with-header")}>
+                  <div className={"col-body " + (inVariante ? "no-header" : "with-header")}>
 
                     <div className={"critere mb-10" + (validatedRow[0] ? " validated" : "")}>
                       <h5 className="critere-title">
@@ -175,7 +177,7 @@ class UneVariante extends Component {
                                   <Input 
                                     type="number" 
                                     className="age-input"
-                                    value={((arr[0] === "De " && i===0) || arr[0] === "Plus de ") ? bottomValue : topValue} 
+                                    value={(((arr[0] === "De " && i===0) || arr[0] === "Plus de ") ? bottomValue : topValue) || 0} 
                                     onClick={e => e.stopPropagation()}
                                     // onMouseUp={() => (this.props.subitem || {}).isFakeContent && this.props.changeAge({target:{value:""}}, this.props.keyValue, this.props.subkey, i===0 || arr[0] === "Plus de")}
                                     onChange={e => this.changeAge(e, (arr[0] === "De " && i===0) || arr[0] === "Plus de ")} />}

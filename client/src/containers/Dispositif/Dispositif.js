@@ -35,7 +35,6 @@ import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/
 import {fetch_dispositifs, fetch_user} from '../../Store/actions/index';
 import ContribCaroussel from './ContribCaroussel/ContribCaroussel';
 import FButton from '../../components/FigmaUI/FButton/FButton';
-import {ManLab, diair, FemmeCurly} from '../../assets/figma/index';
 import SideTrad from './SideTrad/SideTrad';
 import {initializeTimer} from '../Translation/functions';
 import {readAudio} from "../Layout/functions";
@@ -697,7 +696,7 @@ class Dispositif extends Component {
     const {showModals, isDispositifLoading, typeContenu, runJoyRide, stepIndex, disableOverlay, joyRideWidth, 
       withHelp, disableEdit, mainTag, fiabilite, inVariante} = this.state;
     const etapes_tuto = typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
-    
+
     const Tooltip = ({
       index,
       step,
@@ -827,7 +826,7 @@ class Dispositif extends Component {
                   <h1 className={disableEdit ? "" : "editable"}>
                     <ContentEditable
                       id='titreInformatif'
-                      html={this.state.content.titreInformatif}  // innerHTML of the editable div
+                      html={this.state.content.titreInformatif || ""}  // innerHTML of the editable div
                       disabled={disableEdit || inVariante}
                       onClick={e=> {if(!disableEdit && !inVariante){this.startJoyRide(); this.onInputClicked(e)}}}
                       onChange={this.handleChange}
@@ -840,7 +839,7 @@ class Dispositif extends Component {
                       <span>{t("avec", "avec")}&nbsp;</span>
                       <ContentEditable
                         id='titreMarque'
-                        html={this.state.content.titreMarque}  // innerHTML of the editable div
+                        html={this.state.content.titreMarque || ""}  // innerHTML of the editable div
                         disabled={this.state.disableEdit}
                         onClick={e=>{this.startJoyRide(1); this.onInputClicked(e)}}
                         onChange={this.handleChange} 
@@ -920,13 +919,13 @@ class Dispositif extends Component {
                       {t("Dernière mise à jour", "Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
                     </Col>
                     <Col className="col">
-                      {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className={"fiabilite color-" + (fiabilite > 0.2 ? "vert" : (fiabilite > 0.1 ? "orange" : "rouge"))}>{t(fiabilite > 0.2 ? "Forte" : fiabilite > 0.1 ? "Moyenne" : "Faible")}</span>
-                      {fiabilite && <>
+                      {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className={"fiabilite color-" + (fiabilite > 0.2 ? "vert" : (fiabilite > 0.1 ? "orange" : "rouge"))}>{t(fiabilite > 0.2 ? "Forte" : (fiabilite > 0.1 ? "Moyenne" : "Faible"))}</span>
+                      {fiabilite ? <>
                         <EVAIcon className="question-bloc ml-8" id="question-bloc" name="question-mark-circle" fill={variables[fiabilite > 0.2 ? "validationHover" : (fiabilite > 0.1 ? "orange" : "error")]}  onClick={()=>this.toggleModal(true, 'fiabilite')} />                      
                         <Tooltip placement="top" isOpen={this.state.tooltipOpen} target="question-bloc" toggle={this.toggleTooltip} onClick={()=>this.toggleModal(true, 'fiabilite')}>
                           <span className="texte-small ml-10" dangerouslySetInnerHTML={{ __html: t("Dispositif.fiabilite_faible", "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant") }} />
                           {t("Dispositif.cliquez", "Cliquez sur le '?' pour en savoir plus")}
-                        </Tooltip> </>}
+                        </Tooltip> </> : false}
                     </Col>
                   </Row>}
 

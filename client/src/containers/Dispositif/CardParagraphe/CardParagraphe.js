@@ -74,7 +74,7 @@ class CardParagraphe extends Component {
   render(){
     const {subitem, subkey, filtres, disableEdit, t} = this.props;
     const {showNiveaux} = this.state;
-
+    
     const jsUcfirst = (string, title) => {
       if(title === 'Public visé' && string && string.length > 1){
         return string.charAt(0).toUpperCase() + string.slice(1)
@@ -336,14 +336,6 @@ const PlusCard = (props) => {
       </Card>
     </Col>
   )
-}
-
-function bgImage(cardName) {
-  try{
-    const imageUrl = require("../../../assets/figma/InfoCard/infocard_" + cardName.replace(/ /g,"-").replace("-?", "").replace("-!", "") + ".svg") //illustration_
-    return imageUrl
-  }catch(e){console.log(e)}
-  return false;
 }
 
 export {PlusCard}
