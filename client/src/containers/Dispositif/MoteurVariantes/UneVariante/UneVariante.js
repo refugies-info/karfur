@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, Input, DropdownItem } from 'reactstrap';
 import ReactDependentScript from 'react-dependent-script';
 import Autocomplete from 'react-google-autocomplete';
+import { connect } from 'react-redux';
 
 import FButton from '../../../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../../../components/UI/EVAIcon/EVAIcon';
@@ -26,7 +27,7 @@ class UneVariante extends Component {
   _initialState={...this.state};
 
   componentDidMount(){
-    this.setState({isMounted: true})
+    this.setState({isMounted: true, allCase: this.props.admin ? [true, false] : [true]})
     if(this.props.variantes && this.props.variantes.length > 0){
       const {villes, ageTitle, bottomValue, topValue, ...bprops} = this.props.variantes[0];
       let newCriteres = [], validatedRow = [!!villes && villes.length > 0, !!ageTitle]
@@ -39,7 +40,7 @@ class UneVariante extends Component {
         ...(villes && {villes}), 
         ...(ageTitle && {ageTitle, bottomValue, topValue}), 
         newCriteres, validatedRow,
-      })
+      });
     }
   }
 
@@ -278,4 +279,10 @@ class UneVariante extends Component {
   }
 }
 
-export default UneVariante;
+const mapStateToProps = (state) => {
+  return {
+    admin: state.user.admin,
+  }
+}
+
+export default connect(mapStateToProps)(UneVariante);
