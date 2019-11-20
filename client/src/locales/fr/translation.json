@@ -266,7 +266,7 @@
     "Problème mdp": "Un problème est survenu au moment de réinitialiser le mot de passe. Merci d'essayer à nouveau",
     "Revenir à la page de connexion": "Revenir à la page de connexion"
   },
-  "UnauthorizedAccess":{
+  "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",
     "Revenir à l'accueil": "Revenir à l'accueil"
   },
