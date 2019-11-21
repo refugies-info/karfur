@@ -24,7 +24,7 @@ const dashHeader = (props) => {
       const structure = props.structure || {};
       const nbTraducteurs = [...new Set((props.traductions || []).reduce((acc, curr) => ([...acc, curr.userId, curr.validatorId]),[]).filter(x => x))].length;
       const sommeDates=(structure.dispositifsAssocies || []).map(x => x.updatedAt).reduce((acc, curr) => acc += moment(curr), 0);
-      const moyenneDate = sommeDates / (structure.dispositifsAssocies || []).length
+      const moyenneDate = sommeDates / (structure.dispositifsAssocies || []).length;
       return (
         <Row className="header-structure">
           <Col xl="6" lg="6" md="12" sm="12" xs="12" className="mt-10">
@@ -78,13 +78,13 @@ const dashHeader = (props) => {
                   <div>personne{props.nbRead>1?"s":""} informée{props.nbRead>1?"s":""}</div>
                 </div>
               </Col>
-              {moyenneDate &&
+              {moyenneDate ?
                 <Col lg="4" className="struct-indicateurs">
                   <div className="indicateur">
                     <h4>{moment(moyenneDate).fromNow()}</h4>
                     <div>moyenne des dernières intéractions</div>
                   </div>
-                </Col>}
+                </Col> : false}
             </Row>
           </Col>
         </Row>
