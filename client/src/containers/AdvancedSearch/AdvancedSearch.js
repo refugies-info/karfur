@@ -279,7 +279,7 @@ class AdvancedSearch extends Component {
                   </Col>}
                 <Col xs="12" sm="6" md="3">
                   <NavHashLink to="/comment-contribuer#ecrire">
-                    <CustomCard addcard="true">
+                    <CustomCard addcard="true" className="plus-card">
                       <CardBody>
                         {showSpinner ?
                           <Spinner color="success" /> : 

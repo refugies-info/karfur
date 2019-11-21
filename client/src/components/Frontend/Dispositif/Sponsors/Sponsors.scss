@@ -110,6 +110,15 @@ $tailleBig:80px;
       left:10px;
     }
   }
+
+  .not-exist-wrapper{
+    background: $gris;
+    border-radius: 12px;
+    font-weight: bold;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
 }
 
 .modal.show .modal-dialog.modal-structure{

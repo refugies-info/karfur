@@ -10,7 +10,7 @@ function log_event(req, res) {
   } else {
     var event = req.body
     event.userId=req.userId;
-    if(event.action){console.log(event)}
+    // if(event.action){console.log(event)}
     var _u = new Event(event);
     _u.save((err, event) => {
       if (err) {
@@ -102,8 +102,7 @@ async function distinct_event (req, res) {
 function aggregate_events(req, res) {
   var find = new Promise(function (resolve, reject) {
     Event.aggregate(req.body).exec(function (err, result) {
-      console.log(err)
-      if (err) {
+      if (err) {console.log(err);
         reject(500);
       } else {
         if (result) {

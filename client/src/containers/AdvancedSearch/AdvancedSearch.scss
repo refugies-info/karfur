@@ -159,10 +159,15 @@
       flex-direction: column;
       justify-content: space-between;
       overflow: auto;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
       padding: 16px;
       overflow: scroll;
+    }
+  }
+
+  .card-col, .no-result-card, .plus-card{
+    .card-body{
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
     ::-webkit-scrollbar {
       display: none;

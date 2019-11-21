@@ -10,6 +10,8 @@ const formData = require('express-form-data')
 const path = require("path");
 const compression = require('compression');
 const startup = require('./startup/startup');
+const DBEvent = require('./schema/schemaDBEvent.js');
+const _ = require('lodash');
 // const scanner = require('./i18nscanner.js'); // Si besoin de lancer une extraction des strings manquantes en traduction
 
 // var log = console.log;
@@ -76,11 +78,11 @@ app.use(cors());
 
 //Définition des CORS
 app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
 });
 
 // Note this enable to store user session in memory
