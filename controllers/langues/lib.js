@@ -1,16 +1,15 @@
 const Langue = require('../../schema/schemaLangue.js');
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
 
 function create_langues(req, res) {
   if (!req.body || !req.body.langueFr) {
-    //Le cas où la page ne serait pas soumise ou nul
-    res.status(400).json({
-        "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else if (!req.user || !req.user.roles.some(x => x.nom === "Admin")) {
     res.status(403).json({ "text": "L'utilisateur n'a pas les droits pour effectuer cette modification" })
   } else {
-    var langue = req.body;
-    let promise=null;
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
+    var langue = req.body, promise;
     if(langue._id){
       promise=Langue.findOneAndUpdate({_id: langue._id}, langue, { upsert: true , new: true});
     }else{
@@ -31,9 +30,8 @@ function create_langues(req, res) {
 }
 
 function get_langues(req, res) {
-  var query = req.body.query;
-  var sort = req.body.sort;
-  var populate = req.body.populate;
+  new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
+  var {query, sort, populate} = req.body;
   if(populate){
     if(populate.constructor === Object){
       populate.select = '-password';

@@ -56,6 +56,7 @@
     padding: 20px 20px;
     background: $gris;
     border-radius: 6px;
+    position: relative;
     &.validated{
       background: $validation;
     }
@@ -70,6 +71,12 @@
           fill: #FFFFFF;
         }
       }
+    }
+    .close-icon{
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      cursor: pointer;
     }
   }
   .critere-title{

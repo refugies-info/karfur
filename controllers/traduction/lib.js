@@ -11,6 +11,8 @@ const axios = require("axios");
 const turnHTMLtoJSON = require('../dispositif/lib.js').turnHTMLtoJSON;
 const turnJSONtoHTML = require('../dispositif/lib.js').turnJSONtoHTML;
 const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
 
 const headers = {
   'Content-Type': 'application/json',
@@ -25,11 +27,9 @@ instance.defaults.timeout = 12000000;
 
 async function add_tradForReview(req, res) {
   if (!req.body || !req.body.langueCible || !req.body.translatedText) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let traduction=req.body;
     traduction.status='En attente';
     let nbMotsTitres=0;nbMotsBody=0;
@@ -91,6 +91,7 @@ async function add_tradForReview(req, res) {
 }
 
 function get_tradForReview(req, res) {
+  new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   let {query, sort, populate, random, locale} = req.body;
   if(populate && populate.constructor === Object){
     populate.select = '-password';
@@ -132,6 +133,7 @@ function validate_tradForReview(req, res) {
   }else if(!((req.user || {}).roles || {}).some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
     res.status(400).json({ "text": "Token invalide" });
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let traductionUser=req.body || {};
     //Ici il y en a plusieurs: à régler
     if(traductionUser.type === "dispositif"){
@@ -303,7 +305,7 @@ function get_laser(req, res) {
   if (!req.body || !req.body.sentences) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
-    console.log("xlm url is : ", burl)
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     sentences= req.body.sentences;
     axios.post(burl + "/laser", { sentences: sentences }, {headers: headers}).then(data => {
         res.status(200).json({
@@ -312,7 +314,6 @@ function get_laser(req, res) {
         })
       }
     )
-    console.log('query sent')
   }
 }
 
@@ -320,9 +321,9 @@ function get_xlm(req, res) {
   if (!req.body || !req.body.sentences) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     burl = 'https://xlm-agir.herokuapp.com'
     if(process.env.NODE_ENV === 'dev'){burl = 'http://localhost:5002' }
-    console.log("xlm url is : ", burl)
     sentences= req.body.sentences;
     axios.post(burl + "/xlm", { sentences: sentences }, {headers: headers}).then(data => {
         res.status(200).json({
@@ -331,7 +332,6 @@ function get_xlm(req, res) {
         })
       }
     )
-    console.log('query sent')
   }
 }
 
@@ -364,6 +364,7 @@ function update_tradForReview(req, res) {
   if(!req.user.roles.some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
     res.status(400).json({ "text": "Requête invalide" });
   }else{
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let translation = req.body;
     translation.validatorId = req.userId;
 
@@ -391,6 +392,7 @@ function update_tradForReview(req, res) {
 }
 
 function get_progression(req, res) {
+  new DBEvent({userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   var start = new Date();
   start.setHours(0,0,0,0);
 

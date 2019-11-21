@@ -3,9 +3,10 @@ import { Col, Row } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 import moment from 'moment/min/moment-with-locales';
 import { withTranslation } from 'react-i18next';
+import { NavHashLink } from 'react-router-hash-link';
 
 import FButton from '../../../FigmaUI/FButton/FButton';
-import {diairMinInt} from '../../../../assets/figma/index'
+import {diairMinInt} from '../../../../assets/figma';
 
 import './DashHeader.scss';
 
@@ -139,7 +140,7 @@ const dashHeader = (props) => {
               {props.ctaText}
             </FButton>}
           {props.contributeur &&
-            <FButton tag={NavLink} to="/comment-contribuer" type="dark" name="plus-circle-outline" className="ml-10">
+            <FButton tag={NavHashLink} to="/comment-contribuer#ecrire" type="dark" name="plus-circle-outline" className="ml-10">
               Créer un contenu
             </FButton>}
           {props.traducteur &&

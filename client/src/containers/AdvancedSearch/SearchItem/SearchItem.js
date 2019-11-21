@@ -5,8 +5,10 @@ import ReactDependentScript from 'react-dependent-script';
 import Autocomplete from 'react-google-autocomplete';
 
 import FSearchBtn from '../../../components/FigmaUI/FSearchBtn/FSearchBtn';
+import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 
 import "./SearchItem.scss";
+// import variables from 'scss/colors.scss';
 
 class SearchItem extends Component {
   state = {
@@ -26,6 +28,7 @@ class SearchItem extends Component {
 
   toggle = () => this.setState(prevState=>{return {dropdownOpen:!prevState.dropdownOpen}})
   handleChange = (e) => this.setState({ [e.currentTarget.id]: e.target.value });
+  initializeVille = () => this.setState({ville: "" });
 
   selectOption = subi => {
     this.props.selectParam(this.props.keyValue, subi);
@@ -33,8 +36,9 @@ class SearchItem extends Component {
   }
 
   render() {
-    const {t, item} = this.props; //keyValue
+    const {t, item, keyValue} = this.props;
     const {dropdownOpen, isMounted, ville}=this.state;
+
     return (
       <div className="search-col">
         <span className="mr-10">{t("SearchItem." + item.title, item.title)}</span>
@@ -43,17 +47,21 @@ class SearchItem extends Component {
             <ReactDependentScript
               loadingComponent={<div>Chargement de Google Maps...</div>}
               scripts={["https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_GOOGLE_API_KEY + "&v=3.exp&libraries=places&language=fr&region=FR"]}
-            >
-              <Autocomplete
-                className={"search-btn in-header search-autocomplete " + (item.active ? "active" : "")}
-                placeholder={item.placeholder}
-                id="ville"
-                value={ville}
-                onChange={this.handleChange}
-                onPlaceSelected={this.onPlaceSelected}
-                types={['(regions)']}
-                componentRestrictions={{country: "fr"}}
-              />
+            > 
+              <div className="position-relative">
+                <Autocomplete
+                  className={"search-btn in-header search-autocomplete " + (item.active ? "active" : "")}
+                  placeholder={item.placeholder}
+                  id="ville"
+                  value={ville}
+                  onChange={this.handleChange}
+                  onPlaceSelected={this.onPlaceSelected}
+                  types={['(regions)']}
+                  componentRestrictions={{country: "fr"}}
+                />
+                {item.active && 
+                  <EVAIcon name="close-circle" size="xlarge" className="close-icon" onClick={e => {e.stopPropagation(); this.props.desactiver(keyValue); this.initializeVille()}} />}
+              </div>
             </ReactDependentScript> :
           <Dropdown isOpen={dropdownOpen} toggle={this.toggle} className="display-inline-block">
             <DropdownToggle
@@ -63,9 +71,9 @@ class SearchItem extends Component {
               aria-expanded={dropdownOpen}
               className={"search-btn in-header " + (item.short && item.active ? ("bg-" + item.short.split(" ").join("-")) : "") + (!item.short && item.active ? "active" : "")}
             >
-              {/* <FSearchBtn active={!item.short && item.active} desactiver = {() => this.props.desactiver(keyValue)} className={item.short && item.active && ("bg-" + item.short.split(" ").join("-") + " texte-blanc")}> */}
               {item.value ? t("Tags." + item.value, item.value) : t("Tags." + item.placeholder, item.placeholder)}
-              {/* </FSearchBtn> */}
+              {item.active && 
+                <EVAIcon name="close-circle" size="xlarge" className="close-icon" onClick={e => {e.stopPropagation(); this.props.desactiver(keyValue)}} />}
             </DropdownToggle>
             <DropdownMenu>
               <div className="options-wrapper">

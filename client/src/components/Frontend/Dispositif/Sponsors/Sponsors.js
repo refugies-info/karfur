@@ -120,8 +120,12 @@ class Sponsors extends Component {
                         <div className="not-found-wrapper">
                           <EVAIcon name="question-mark-circle" className="not-found-icon" size="large" />
                           <span>Structure responsable<br/>non-identifiée</span>
-                        </div>:
-                        <span className="default-logo">{(sponsor.acronyme || sponsor.nom) ? (sponsor.acronyme + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + sponsor.nom) : sponsor.alt}</span>}
+                        </div> :
+                        <div className="not-exist-wrapper">
+                          <EVAIcon name="image-outline" className="not-exist-icon mr-16" size="large" fill={variables.noir} />
+                          <span>{(sponsor.acronyme || sponsor.nom) ? ((sponsor.acronyme || "") + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + (sponsor.nom || "")) : (sponsor.alt || "Structure 1")}</span>
+                        </div>}
+                        {/* <span className="default-logo">{(sponsor.acronyme || sponsor.nom) ? (sponsor.acronyme + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + sponsor.nom) : sponsor.alt}</span>} */}
                   </a>
                   {key === 0 && sponsor.type !== "Not found" &&
                     <div className="owner-badge">

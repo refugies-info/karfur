@@ -3,13 +3,12 @@ require('dotenv').config();
 // Requires request and request-promise for HTTP requests
 // e.g. npm install request request-promise
 const rp = require('request-promise');
-// Requires fs to write synthesized speech to a file
-const fs = require('fs');
-// Requires readline-sync to read command line inputs
-const readline = require('readline-sync');
 // Requires xmlbuilder to build the SSML body
 const xmlbuilder = require('xmlbuilder');
 const voices = require('./voices').data;
+
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
 
 // Gets an access token.
 let subscriptionKey, accessToken;
@@ -61,19 +60,16 @@ function textToSpeech(accessToken, text, locale='fr-fr') {
 
 async function get_tts(req, res) {
   if (!req.body || !req.body.text) {
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     var text = req.body.text;
     var locale = req.body.locale;
     
     subscriptionKey = process.env.TTS_KEY_1;
     accessToken = await getAccessToken(subscriptionKey);
     if(!accessToken){
-      res.status(402).json({
-        "text": "Token invalide"
-      })
+      res.status(402).json({ "text": "Token invalide" })
       return false;
     }
     let options = textToSpeech(accessToken, text, locale);
