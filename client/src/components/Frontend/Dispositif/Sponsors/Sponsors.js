@@ -74,8 +74,7 @@ class Sponsors extends Component {
     let structure={}, fields = ["nom", "acronyme", "link", "contact", "mail_contact", "phone_contact", "authorBelongs"];
     fields.forEach(x => this.state.structure[x] !== "" ? structure[x] = this.state.structure[x] : false);
     API.create_structure(structure).then((data) => {
-      console.log(data);
-      this.props.addSponsor(structure)
+      this.props.addSponsor(data.data.data)
       this.toggleModal("envoye")
     })
   }

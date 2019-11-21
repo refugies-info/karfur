@@ -113,6 +113,7 @@ class Dispositif extends Component {
     isVarianteValidated: false,
     dispositif: {},
     _id: undefined,
+    checkingVariante: false,
   }
   newRef=React.createRef();
   mountTime=0;
@@ -138,7 +139,7 @@ class Dispositif extends Component {
   _initializeDispositif = props => {
     const itemId = props.match && props.match.params && props.match.params.id;
     const typeContenu = (props.match.path || "").includes("demarche") ? "demarche" : "dispositif";
-    const inVariante = _.get(props, "location.state.inVariante"), textInput = _.get(props, "location.state.textInput");
+    const checkingVariante = _.get(props, "location.state.checkingVariante"), textInput = _.get(props, "location.state.textInput");
     if(itemId){
       this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
       API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor'}).then(data_res => {
@@ -163,8 +164,7 @@ class Dispositif extends Component {
           status: dispositif.status,
           variantes: dispositif.variantes || [],
           fiabilite: calculFiabilite(dispositif),
-          disableEdit, typeContenu, inVariante,
-          ...(inVariante && disableEdit && {showModals:{...this.state.showModals, variante: true}}),
+          disableEdit, typeContenu, checkingVariante,
           ...(dispositif.status==="Brouillon" && {initialTime: dispositif.timeSpent}),
         },()=>{
           if(typeContenu === "demarche"){
@@ -433,7 +433,9 @@ class Dispositif extends Component {
   toggleDispositifCreateModal = () => this.setState(prevState=>({showDispositifCreateModal:!prevState.showDispositifCreateModal}))
   toggleDispositifValidateModal = () => this.setState(prevState=>({showDispositifValidateModal:!prevState.showDispositifValidateModal}))
   toggleInputBtnClicked = () => this.setState(prevState=>({inputBtnClicked:!prevState.inputBtnClicked}))
-  
+  toggleCheckingVariante = () => this.setState(pS=>({checkingVariante:!pS.checkingVariante}))
+  toggleInVariante = () => this.setState(pS=>({inVariante:!pS.inVariante, ...(!pS.inVariante && pS.disableEdit && {checkingVariante: false, showModals:{...this.state.showModals, variante: true}}) }))
+
   toggleNiveau = (nv, key, subkey) => {
     let niveaux = _.get(this.state.menu, key + ".children." + subkey + ".niveaux", [])
     niveaux = niveaux.some( x => x===nv) ? niveaux.filter(x => x!==nv) : [...niveaux, nv]
@@ -655,13 +657,16 @@ class Dispositif extends Component {
         cardElement.find(x=> x.title==='Combien ça coûte ?').free :
         true;
     }else{dispositif.variantes = this.state.variantes; delete dispositif.titreMarque;}
-    
+    console.log(status, this.state.status)
     if(status !== "Brouillon"){
-      if(this.state.status && this.state.status!== '' && this.state._id && this.state.status!=="En attente non prioritaire" && !inVariante && this.state.status !== "Brouillon"){
-        dispositif.status = this.state.status;
+      if(this.state.status && this.state._id && !inVariante && !["", "En attente non prioritaire", "Brouillon", "Accepté structure"].includes(this.state.status)){ console.log("un cas qui justifie ici :", this.state.status, status)
+        dispositif.status = this.state.status; console.log(dispositif.status)
       }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
+        //Je vais chercher les membres de cette structure
+        const sponsors  = _.get(dispositif, "sponsors.0", {});
+        const currSponsor = this.props.structures.find(x => x._id === sponsors._id);
         //Si l'auteur appartient à la structure principale je la fait passer directe en validation
-        const membre = (dispositif.sponsors[0].membres || []).find(x => x.userId === this.props.userId);
+        const membre = currSponsor ? (currSponsor.membres || []).find(x => x.userId === this.props.userId) : (sponsors.membres || []).find(x => x.userId === this.props.userId);
         if(membre && membre.roles && membre.roles.some(x => x==="administrateur" || x==="contributeur")){
           dispositif.status = "En attente admin";
         }
@@ -694,7 +699,7 @@ class Dispositif extends Component {
   render(){
     const {t, translating, windowWidth} = this.props;
     const {showModals, isDispositifLoading, typeContenu, runJoyRide, stepIndex, disableOverlay, joyRideWidth, 
-      withHelp, disableEdit, mainTag, fiabilite, inVariante} = this.state;
+      withHelp, disableEdit, mainTag, fiabilite, inVariante, checkingVariante} = this.state;
     const etapes_tuto = typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
 
     const Tooltip = ({
@@ -779,17 +784,20 @@ class Dispositif extends Component {
             </Col>}
           <Col lg={translating ? "8" : "12"} md={translating ? "8" : "12"} sm={translating ? "8" : "12"} xs={translating ? "8" : "12"} className="main-col">
             <section className="banniere-dispo" style={mainTag && mainTag.short && {backgroundImage: `url(${bgImage(mainTag.short)})`}}>
-              {inVariante &&
+              {(inVariante || checkingVariante) &&
                 <BandeauEdition
                   menu={this.state.menu}
                   uiArray={this.state.uiArray}
                   withHelp={withHelp}
                   disableEdit={disableEdit}
+                  checkingVariante = {checkingVariante}
                   editDispositif={this.editDispositif}
                   upcoming={this.upcoming}
                   toggleDispositifValidateModal={this.toggleDispositifValidateModal}
                   valider_dispositif={this.valider_dispositif}
                   toggleHelp={this.toggleHelp}
+                  toggleCheckingVariante={this.toggleCheckingVariante}
+                  toggleInVariante={this.toggleInVariante}
                 />}
 
               <Row className="header-row">
@@ -1017,7 +1025,7 @@ class Dispositif extends Component {
             <SuggererModal showModals={showModals} toggleModal={this.toggleModal} onChange={this.handleModalChange} suggestion={this.state.suggestion} onValidate={this.pushReaction} />
             <MerciModal name='merci' show={showModals.merci} toggleModal={this.toggleModal} onChange={this.handleModalChange} mail={this.state.mail} />
             <EnConstructionModal name='construction' show={showModals.construction} toggleModal={this.toggleModal} />
-            <ResponsableModal name='responsable' show={showModals.responsable} toggleModal={this.toggleModal} createur={this.state.creator} mainSponsor={this.state.mainSponsor} editDispositif={this.editDispositif} update_status={this.update_status} />
+            <ResponsableModal name='responsable' show={showModals.responsable} toggleModal={this.toggleModal} createur={this.state.creator} mainSponsor={this.state.mainSponsor} editDispositif={this.editDispositif} update_status={this.update_status} sponsors={this.state.sponsors} />
 
             <Modal isOpen={this.state.showModals.fiabilite} toggle={()=>this.toggleModal(false, 'fiabilite')} className='modal-fiabilite'>
               <h1>{t("Dispositif.fiabilite", "Fiabilité de l’information")}</h1>
@@ -1141,6 +1149,7 @@ const mapStateToProps = (state) => {
     user: state.user.user,
     userId: state.user.userId,
     admin: state.user.admin,
+    structures: state.structure.structures,
   }
 }
 
