@@ -41,13 +41,11 @@ const leftSideDispositif = (props) => {
         {props.typeContenu !== "demarche" && 
           <div className="link-wrapper" id="input-btn">
             {props.inputBtnClicked ?
-              <FButton type="default" className="input-btn">
-                <InputGroup>
-                  <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
-                  <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Lien vers votre site" id="externalLink" />
-                  <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
-                </InputGroup>
-              </FButton>
+              <InputGroup className="input-btn">
+                <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
+                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Lien vers votre site" id="externalLink" />
+                <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
+              </InputGroup>
               :
               <FButton type="theme" name="external-link-outline" onClick={onLinkClicked}>
                 {t("Dispositif.Voir le site", "Voir le site")}

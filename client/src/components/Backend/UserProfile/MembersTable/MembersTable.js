@@ -33,6 +33,9 @@ const membersTable = (props) => {
       <tbody>
         {data.map((element,key) => {
           const joursLastC = (new Date().getTime() -  new Date(element.last_connected).getTime()) / (1000 * 3600 * 24);
+          const newWordingRole = element.structRole === "administrateur" ? "Responsable" :
+            element.structRole === "contributeur" ? "Rédacteur" :
+              element.structRole === "membre" ? "Membre simple" : element.structRole;
           return (
             <tr key={key} >
               <td className="align-middle">
@@ -45,7 +48,7 @@ const membersTable = (props) => {
               </td>
               <td className="align-middle">
                 <FButton type="light-action role-btn" onClick={() => props.editMember(element)}>
-                  {element.structRole}
+                  {newWordingRole}
                   <EVAIcon name="edit-outline" className="ml-10 edit-icon" />
                 </FButton>
               </td>

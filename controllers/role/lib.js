@@ -1,11 +1,12 @@
 const Role = require('../../schema/schemaRole.js');
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
 
 function set_role(req, res) {
   if (!req.body || !req.body.nom) {
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     var role = req.body
     var _u = new Role(role);
     _u.save(function (err, data) {
@@ -24,20 +25,20 @@ function set_role(req, res) {
 }
 
 function get_role(req, res) {
-  var query = req.body.query;
-  var sort = req.body.sort;
+  new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
+  const {query, sort} = req.body;
   var findRole = new Promise(function (resolve, reject) {
-      Role.find(query).sort(sort).exec(function (err, result) {
-        if (err) {
-          reject(500);
+    Role.find(query).sort(sort).exec(function (err, result) {
+      if (err) {
+        reject(500);
+      } else {
+        if (result) {
+          resolve(result)
         } else {
-          if (result) {
-            resolve(result)
-          } else {
-            reject(404)
-          }
+          reject(404)
         }
-      })
+      }
+    })
   })
 
   findRole.then(function (result) {

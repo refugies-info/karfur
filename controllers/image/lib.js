@@ -1,12 +1,12 @@
 const Image = require('../../schema/schemaImage.js');
-const cloudinary = require('cloudinary')
+const cloudinary = require('cloudinary');
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
 
 
 function set_image(req, res) {
   if (!req.files) {
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
     const values = Object.values(req.files)
     
@@ -29,6 +29,7 @@ function set_image(req, res) {
             url: imgData.url,
             version: imgData.version
           }
+          new DBEvent({action: image, userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
           var _u = new Image(image);
           _u.save( (err, data) => {
             if (err) {
