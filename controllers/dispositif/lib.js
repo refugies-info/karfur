@@ -7,6 +7,8 @@ var himalaya = require('himalaya');
 var uniqid = require('uniqid');
 const nodemailer = require("nodemailer");
 const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
 // const gmail_auth = require('./gmail_auth');
 
 const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
@@ -35,6 +37,7 @@ function add_dispositif(req, res) {
   if (!req.body || ((!req.body.titreInformatif) && !req.body.dispositifId)) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let dispositif = req.body;
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
@@ -80,11 +83,8 @@ function get_dispositif(req, res) {
         "text": "Requête invalide"
     })
   } else {
-    var query = req.body.query;
-    var sort = req.body.sort;
-    var populate = req.body.populate;
-    var limit = req.body.limit;
-    var random = req.body.random;
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
+    let {query, sort, populate, limit, random} = req.body;
 
     if(populate && populate.constructor === Object){
       populate.select = '-password';
@@ -154,6 +154,7 @@ function update_dispositif(req, res) {
   if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let {dispositifId, fieldName, suggestionId, type, ...dispositif} = req.body;
     let update = null, query = { _id: dispositifId };
     if(type==='pull'){
@@ -183,6 +184,7 @@ function update_dispositif(req, res) {
 }
 
 function get_dispo_progression(req, res) {
+  new DBEvent({userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   var start = new Date();
   start.setHours(0,0,0,0);
 
@@ -219,6 +221,7 @@ function get_dispo_progression(req, res) {
 }
 
 function count_dispositifs(req, res) {
+  new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   Dispositif.count(req.body, (err, count) => {
     if (err){res.status(404).json({ "text": "Pas de résultat" })}
     else{res.status(200).json(count)}

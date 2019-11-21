@@ -916,7 +916,7 @@ class Dispositif extends Component {
                 {disableEdit && !inVariante && 
                   <Row className="fiabilite-row">
                     <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
-                      {t("Dernière mise à jour", "Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(this.state.dateMaj).format('ll')}</span>
+                      {t("Dernière mise à jour", "Dernière mise à jour")} :&nbsp;<span className="date-maj">{moment(_.get(this.state,"dispositif.updatedAt", 0)).format('ll')}</span>
                     </Col>
                     <Col className="col">
                       {t("Fiabilité de l'information", "Fiabilité de l'information")} :&nbsp;<span className={"fiabilite color-" + (fiabilite > 0.2 ? "vert" : (fiabilite > 0.1 ? "orange" : "rouge"))}>{t(fiabilite > 0.2 ? "Forte" : (fiabilite > 0.1 ? "Moyenne" : "Faible"))}</span>
