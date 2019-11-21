@@ -53,6 +53,8 @@ class UserProfile extends Component {
     langues:[],
     structure: {},
     actionsStruct: [],
+    contributionsStruct: [],
+    traductionsStruct:[],
     traducteur:false,
     contributeur:false,
     editing: false,
@@ -71,7 +73,8 @@ class UserProfile extends Component {
     password:"", 
     newPassword:"", 
     cpassword: "", 
-    passwordVisible: false
+    passwordVisible: false,
+    nbReadStruct: 0,
   }
 
   componentDidMount() {
@@ -84,8 +87,15 @@ class UserProfile extends Component {
     })
     if(user.structures && user.structures.length > 0){
       this.initializeStructure();
-      API.get_dispositif({query: {'mainSponsor': user.structures[0]}, sort:{updatedAt: -1}}).then(data => {
-        this.setState({actionsStruct: parseActions(data.data.data)})
+      API.get_dispositif({query: {'mainSponsor': user.structures[0], status: {$in: ["Actif", "Accepté structure", "En attente", "En attente admin"]}, demarcheId: { $exists: false } }, sort:{updatedAt: -1}}).then(data => { //console.log(data.data.data)
+        this.setState({contributionsStruct: data.data.data, actionsStruct: parseActions(data.data.data)}, () => {
+          API.get_tradForReview({query: {type: "dispositif", articleId: {$in: this.state.contributionsStruct.map(x => x._id)} }}).then(data => { //console.log(data.data.data)
+            this.setState({traductionsStruct: data.data.data})
+          });
+          API.distinct_count_event({distinct: "userId", query: {action: 'readDispositif', label: "dispositifId", value : {$in: this.state.contributionsStruct.map(x => x._id)} } }).then(data => {
+            this.setState({nbReadStruct: data.data.data})
+          })
+        })
       })
     }
     console.log(user)
@@ -99,7 +109,7 @@ class UserProfile extends Component {
 
   initializeStructure = () => {
     const user=this.props.user;
-    API.get_structure({_id: user.structures[0] }).then(data => { //console.log(data.data.data);
+    API.get_structure({_id: user.structures[0] }, {}, 'dispositifsAssocies').then(data => { //console.log(data.data.data);
       this.setState({structure:data.data.data[0]})
     })
   }
@@ -200,7 +210,7 @@ class UserProfile extends Component {
   render() {
     const {traducteur, contributeur, traductions, contributions, actions, 
       langues, structure, user, showSections, isMainLoading, actionsStruct,
-      password, newPassword, cpassword, passwordVisible}=this.state;
+      password, newPassword, cpassword, passwordVisible, nbReadStruct, traductionsStruct}=this.state;
     const {t, dispositifs}= this.props;
     const favorisId = (user.cookies || {}).dispositifsPinned || [];
     const favoris = dispositifs && favorisId.map(x => ({...x, ...dispositifs.find(y => y._id === x._id)}) )
@@ -401,6 +411,8 @@ class UserProfile extends Component {
               actions={actionsStruct}
               user={user}
               toggleModal={this.toggleModal}
+              nbRead={nbReadStruct}
+              traductions={traductionsStruct}
               {...data_structure} />}
         </div>
 

@@ -16,8 +16,8 @@ async function add_structure(req, res) {
       const r = await Structure.findOne({_id: structure._id});
       if(!r){res.status(402).json({ "text": "Id non valide" }); return;}
       const isAdmin = (req.user.roles || []).some(x => x.nom==='Admin') || req.userId.equals(r.administrateur);
-      const isContributeur = (((r.membres || []).find(x => x.userId === req.userId) || {}).roles || []).includes("contributeur");
-      console.log(isAdmin, isContributeur, membreId, r.administrateur, req.userId, structure)
+      const isContributeur = (((r.membres || []).find(x => req.userId.equals(x.userId)) || {}).roles || []).includes("contributeur");
+      console.log(isAdmin, isContributeur, req.userId, structure)
       if(isAdmin || (isContributeur && ( !JSON.stringify(structure).includes("administrateur") ) )){ //Soit l'auteur est admin soit il est contributeur et modifie les droits d'un membre seul
         promise=Structure.findOneAndUpdate({_id: structure._id, ...(membreId && {"membres.userId": membreId})}, structure, { upsert: true , new: true});
       }else{//Voir les cas qu'on laissera passer pour les membres
