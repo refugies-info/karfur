@@ -92,6 +92,15 @@ class UneVariante extends Component {
       },
       validatedRow: [...pS.validatedRow, false],
     }))
+  
+  remove_critere = idx => this.setState(pS => ({
+      newCriteres: pS.newCriteres.filter((_,i) => i!==idx),
+      dropdowns: {
+        ...pS.dropdowns, 
+        criteres: pS.dropdowns.criteres.filter((_,i) => i!==idx)
+      },
+      validatedRow: pS.validatedRow.filter((_,i) => i!==idx+2),
+    }))
 
   validateCriteres = (close=false, idx=0) => {
     let {villes, ageTitle, bottomValue, topValue, validatedRow} = this.state;
@@ -227,6 +236,7 @@ class UneVariante extends Component {
                             ))}
                           </div>
                         </div>
+                        <EVAIcon name="close-circle" fill={variables.error} size="xlarge" className="close-icon" onClick={() => this.remove_critere(idx)} />
                       </div>
                     ))}
 

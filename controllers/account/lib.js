@@ -6,6 +6,8 @@ const authy = require('authy')(process.env.ACCOUNT_SECURITY_API_KEY);
 const passwdCheck = require("zxcvbn");
 const crypto = require("crypto");
 let {transporter, mailOptions, url} = require('../dispositif/lib.js');
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
 
 //Cette fonction est appelée quand tout utilisateur cherche à se connecter ou créer un compte
 function login(req, res) {
@@ -13,6 +15,7 @@ function login(req, res) {
     //Le cas où le username ou bien le password ne serait pas soumis ou nul
     res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({api: arguments.callee.name, userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), action: {username: req.body.username}}).save()
     User.findOne({
       username: req.body.username
     }, async (err, user) => {
@@ -141,6 +144,7 @@ function checkUserExists(req, res) {
   if (!req.body.username) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({api: arguments.callee.name, userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), action: {username: req.body.username}}).save()
     User.findOne({
       username: req.body.username //.toLowerCase()
     }, (err, user) => {
@@ -160,9 +164,8 @@ function set_user_info(req, res) {
   if (!user || !user._id) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
-    if(user.password){
-      delete user.password;
-    }
+    if(user.password){ delete user.password; }
+    new DBEvent({api: arguments.callee.name, userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), action: user}).save()
 
     //Si l'utilisateur n'est pas admin je vérifie qu'il ne se modifie que lui-même
     let isAdmin = req.user.roles.find(x => x.nom==='Admin');
@@ -201,6 +204,7 @@ function change_password(req, res) {
   } else {
     if(query._id != req.user._id){ return res.status(401).json({ "text": "Token invalide" }); }
     if(newUser.newPassword !== newUser.cpassword){ return res.status(400).json({ "text": "Les mots de passe ne correspondent pas" }); }
+    new DBEvent({api: arguments.callee.name, userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), action: {username: query.username}}).save()
     User.findOne(query, (err, user) => {
       if (err) {
         return res.status(500).json({ "text": "Erreur interne" })
@@ -227,8 +231,9 @@ function reset_password(req, res) {
   if (!username) {
     return res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({api: arguments.callee.name, action: {username}, userId: _.get(req, "userId"), roles: _.get(req, "user.roles")}).save()
     return User.findOne({
-      username: username
+      username
     }, async (err, user) => {
       if (err) { console.log(err);
         return res.status(500).json({ "text": "Erreur interne", data: err });
@@ -271,6 +276,7 @@ function set_new_password(req, res) {
   if (!newPassword || !cpassword || !reset_password_token) {
     return res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     return User.findOne({
       reset_password_token,
       reset_password_expires: { $gt: Date.now() }
@@ -310,6 +316,7 @@ function get_users(req, res) {
   }else if(populate){
     populate={path:populate, select : '-password'};
   }else{populate='';}
+  new DBEvent({action: {query, sort, populate}, userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   
   var find = new Promise( (resolve, reject) => {
     User.find(query).sort(sort).populate(populate).exec(function (err, result) {
@@ -358,6 +365,7 @@ function get_users(req, res) {
 
 
 function get_user_info(req, res) {
+  new DBEvent({userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   res.status(200).json({
     "text": "Succès",
     "data": req.user
@@ -403,6 +411,7 @@ function signup(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     let user = req.body;
+    new DBEvent({action: {username: user.username}, userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     if(user.password){
       if((passwdCheck(user.password) || {}).score < 1){
         return res.status(401).json({ "text": "Le mot de passe est trop faible" });
