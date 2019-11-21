@@ -15,12 +15,12 @@ const membersTable = (props) => {
   const hasMembers = (props.dataArray || []).length > 0;
   const dataArray = hasMembers ? props.dataArray : new Array(5).fill(fakeMembre);
   let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
-  const hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+  const hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false);
 
   data = data.map(x => ({
     ...x, 
     ...props.users.find(y => y._id === x.userId),
-    structRole: ((x.roles || []).includes("administrateur") ? "administrateur" : ((x.roles || []).includes("contributeur") ? "contributeur" : "membre")),
+    structRole: ((x.roles || []).includes("administrateur") ? "Responsable" : ((x.roles || []).includes("contributeur") ? "Rédacteur" : "Membre simple")),
   }));
 
   const table = (
@@ -33,9 +33,6 @@ const membersTable = (props) => {
       <tbody>
         {data.map((element,key) => {
           const joursLastC = (new Date().getTime() -  new Date(element.last_connected).getTime()) / (1000 * 3600 * 24);
-          const newWordingRole = element.structRole === "administrateur" ? "Responsable" :
-            element.structRole === "contributeur" ? "Rédacteur" :
-              element.structRole === "membre" ? "Membre simple" : element.structRole;
           return (
             <tr key={key} >
               <td className="align-middle">
@@ -48,7 +45,7 @@ const membersTable = (props) => {
               </td>
               <td className="align-middle">
                 <FButton type="light-action role-btn" onClick={() => props.editMember(element)}>
-                  {newWordingRole}
+                  {element.structRole}
                   <EVAIcon name="edit-outline" className="ml-10 edit-icon" />
                 </FButton>
               </td>
