@@ -60,9 +60,7 @@ class CheckDemarcheModal extends Component {
             <>
               <p>Ok ! Pour éviter les doublons, on va vérifier qu'elle n'existe pas déjà. Inscrivez le titre de votre démarche :</p>
               <SearchBar
-                dispositifs
-                loupe
-                withEye
+                dispositifs loupe withEye toVariante
                 className="search-bar inner-addon right-addon mt-10"
                 placeholder = "CMU-C, demande de logement social, solidarité transport"
                 array={[...(this.props.dispositifs || []).filter(x => x.status === "Actif" && x.typeContenu === "demarche" && !x.demarcheId), {createNew: true, typeContenu: "demarche"}]}
