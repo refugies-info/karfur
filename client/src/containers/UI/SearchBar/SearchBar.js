@@ -14,10 +14,10 @@ import './SearchBar.scss';
 import variables from 'scss/colors.scss';
 
 const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const getSuggestionValue = (suggestion, isArray = false, structures=false) => console.log('ici') && isArray ? 
+const getSuggestionValue = (suggestion, isArray = false, structures=false) => isArray ? 
   structures ? (suggestion.acronyme || "") + (suggestion.acronyme && suggestion.nom ? " - " : "") + (suggestion.nom || "") : 
   (suggestion.username || "") + (suggestion.username && suggestion.email ? " - " : "") + (suggestion.email || "") : 
-  suggestion.titreMarque || suggestion.titreInformatif; // + (suggestion.titreMarque && suggestion.titreInformatif ? " - " : "") + suggestion.titreInformatif;
+  (suggestion.titreMarque || suggestion.titreInformatif); // + (suggestion.titreMarque && suggestion.titreInformatif ? " - " : "") + suggestion.titreInformatif;
 
 export class SearchBar extends React.Component {
   state = {
