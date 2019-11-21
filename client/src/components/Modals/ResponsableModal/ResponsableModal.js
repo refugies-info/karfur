@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, Input } from 'reactstrap';
 import Swal from 'sweetalert2';
+import _ from "lodash";
 
 import FButton from '../../FigmaUI/FButton/FButton';
 import API from '../../../utils/API';
-import {inspection} from '../../../assets/figma/index';
+import {inspection} from '../../../assets/figma';
 
 import './ResponsableModal.scss';
 import variables from 'scss/colors.scss';
@@ -41,8 +42,9 @@ class ResponsableModal extends Component {
   }
 
   render(){
-    const {show, name, toggleModal, createur, mainSponsor} = this.props;
+    const {show, name, toggleModal, createur, mainSponsor, sponsors} = this.props;
     const {memberAdded, step} = this.state;
+    const userBelongs = _.get(sponsors, "0.userBelongs");
     return(
       <Modal isOpen={show} toggle={()=>toggleModal(false, name)} className='modal-responsable'>
         <ModalHeader toggle={()=>toggleModal(false, name)}>
@@ -53,10 +55,10 @@ class ResponsableModal extends Component {
             <>
               <h5 className="texte-vert">Vous êtes responsable d’un nouveau contenu</h5>
               <p>Nous comptons sur vous pour maintenir ce contenu à jour et répondre aux suggestions des contributeurs. Voici l'utilisateur qui a rédigé cette fiche pour vous :</p>
-              {createur && createur._id && !((mainSponsor || {}).membres || []).some(x => x.userId === createur._id) && 
+              {userBelongs && createur && createur._id && createur.username && !((mainSponsor || {}).membres || []).some(x => x.userId === createur._id) && 
                 <> 
                   <br/>
-                  <p>{(createur || {}).username} a crée ce dispositif et souhaite devenir membre de votre structure. Acceptez-vous ?</p>
+                  <p>{createur.username} a crée ce dispositif et souhaite devenir membre de votre structure. Acceptez-vous ?</p>
                   <div className={"creator-wrapper mb-10" + (memberAdded ? " member-added" : "")}>
                     <div className="creator-info">
                       {createur.picture && createur.picture.secure_url &&
