@@ -140,10 +140,8 @@ class Avancement extends Component {
   }
 
   goToTraduction = (element) => {
-    console.log(element)
     this.props.history.push({
-      pathname: (this.state.isExpert ? '/validation' : '/traduction') + '/' + element.typeContenu + '/' + element._id,
-      // pathname: '/traduction/'+ (this.state.isExpert ? 'validation/' : '') + element._id,
+      pathname: (this.state.isExpert ? '/validation' : '/traduction') + '/' + (element.typeContenu || "dispositif") + '/' + element._id,
       search: '?id=' + this.state.langue._id,
       state: { langue: this.state.langue}
     })
