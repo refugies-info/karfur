@@ -183,7 +183,7 @@ class SideTrad extends Component {
     console.log(oldTrad)
     this.setState({listTrad, score, userId, selectedTrad});
     if(oldTrad && typeof oldTrad === "string"){
-      this.props.fwdSetState({ autosuggest: false, translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad || "").contentBlocks)) } }, () => console.log("ok fwd state") )
+      this.props.fwdSetState({ autosuggest: false, translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad || "").contentBlocks)) } } )
     }else{
       this.props.translate(text,target,item, true);
     }
@@ -385,7 +385,7 @@ class SideTrad extends Component {
               Réinitialiser
             </FButton>}
           <div className="right-footer">
-            {isExpert && 
+            {false && isExpert && 
               <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(translated || {}).body} fill={variables.noir} className="mr-10 mt-10">
                 Signaler
               </FButton>}
