@@ -753,13 +753,11 @@ $imgHeight : 350px;
       top: 0;
       left: 0;
       padding: 0;
-      transition: opacity .5s;
       z-index:2;
       margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(140.38deg, rgba(229, 80, 57, 0.64) 6.51%, rgba(183, 21, 64, 0.7) 96.1%);
 
       &:hover {
         opacity: .9;

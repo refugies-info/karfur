@@ -12,9 +12,9 @@ const initializeVariantes = function(itemId){
   const query = this.state.dispositif.demarcheId ? 
     { $or: [{demarcheId: this.state.dispositif.demarcheId}, {_id: this.state.dispositif.demarcheId}] } :
     {demarcheId: itemId};  //Si on est dans le cas général, on va chercher toutes les variantes. Sinon, on va aussi chercher le cas général en plus
-  API.get_dispositif({query: {...query, status: "Actif"}}).then(data_res => {
+  this._isMounted && API.get_dispositif({query: {...query, status: "Actif"}}).then(data_res => {
     const allDemarches=[...data_res.data.data];
-    this.setState({allDemarches});
+    this._isMounted && this.setState({allDemarches});
   }).catch(e=>console.log(e))
 }
 
@@ -36,14 +36,12 @@ const initializeInfoCards = function() {
 const switchVariante = async function() {
   const userQuery = querySearch(this.props.history.location.search);
   const place_id = userQuery.ville, age = userQuery.age;
-  let demarchesEligibles = [];
-  console.log('ici variantes')
+  let demarchesEligibles = []; console.log('ici variantes');
   if(age && Number(age)){
     [...this.state.allDemarches, this.state.dispositif].forEach(demarche => {
       demarche.variantes.some(variante => {
         console.log(demarche._id, parseInt(variante.topValue),parseInt(age),parseInt(variante.bottomValue))
         if(parseInt(variante.topValue)>=parseInt(age) && parseInt(variante.bottomValue)<=parseInt(age)){
-          console.log(variante)
           demarchesEligibles = [...demarchesEligibles, demarche];
           return true;
         }else{return false;}
@@ -96,7 +94,7 @@ const check_place = function(place_id, demarchesEligibles, age, allDemarches, di
       });
     }else if(place_id){
       console.log('relooping')
-      return setTimeout(this.switchVariante, 1000);
+      return this._isMounted && setTimeout(this.switchVariante, 1000);
     }else{
       console.log('rejecting')
       resolve(false)
