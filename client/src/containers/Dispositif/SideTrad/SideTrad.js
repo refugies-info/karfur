@@ -78,7 +78,7 @@ class SideTrad extends Component {
         subname = "content";
       }else if(!isNext && currSubIdx === -1 && this.state.currSubName === "title"){
         idx = currIdx - 1;
-        subidx = this.props.menu[idx].children.length - 1;
+        subidx = _.get(this.props, "menu." + idx + ".children", []).length - 1;
         subname = "content";
       }else if( (isNext && (!this.props.menu[currIdx].children || currSubIdx >= this.props.menu[currIdx].children.length - 1) && this.state.currSubName === "content" )
                 || (!isNext && currSubIdx <= 0 && this.state.currSubName === "title") ){
