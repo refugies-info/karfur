@@ -183,7 +183,7 @@ class SideTrad extends Component {
     console.log(oldTrad)
     this.setState({listTrad, score, userId, selectedTrad});
     if(oldTrad){
-      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } }, () => console.log("ok fwd state") )
+      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad || "").contentBlocks)) } }, () => console.log("ok fwd state") )
     }else{
       this.props.translate(text,target,item, true);
     }
@@ -193,7 +193,7 @@ class SideTrad extends Component {
     const listTrad = (((this.props.traductionsFaites || []).map(x => ({value: (x.translatedText || {})[this.state.currIdx], score: _.get(x, "translatedText.scoreHeaders." + this.state.currIdx + ".cosine.0.0"), ...x})) || []).filter(x => x._id !== sugg._id) || []).sort((a,b) => b.score - a.score);
     const score = sugg.score, userId = sugg.userId, selectedTrad = sugg;
     this.setState({listTrad, score, userId, selectedTrad});
-    this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(sugg.value).contentBlocks)) } } );
+    this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(sugg.value || "").contentBlocks)) } } );
   }
 
   toggleTooltip = () => this.setState(prevState => ({tooltipOpen: !prevState.tooltipOpen })); 
@@ -218,7 +218,7 @@ class SideTrad extends Component {
     if(listTrad && listTrad.length > 0){
       oldTrad = listTrad[0].value; score = listTrad[0].score; userId = listTrad[0].userId;  selectedTrad=listTrad[0];
       listTrad.shift();
-      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad).contentBlocks)) } } )
+      this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad || "").contentBlocks)) } } )
     }
     this.setState({listTrad, score, userId, selectedTrad});
   }
@@ -359,7 +359,7 @@ class SideTrad extends Component {
               }}
             />
           </DirectionProvider>
-          {autosuggest && 
+          {autosuggest && !isExpert &&
             <div className="google-suggest">Suggestion par <img src={logo_google} className="google-logo" alt="google" /></div>}
         </div>
         <div className="expert-bloc">
