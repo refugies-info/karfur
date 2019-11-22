@@ -2,6 +2,7 @@ import API from '../../utils/API';
 
 const readAudio = function(text, locale='fr-fr', callback=()=>{}) {
   this.props.toggleSpinner(true);
+  API.cancel_tts_subscription();
   return API.get_tts({text:text, locale:locale}).then(data => {
     let audioData=data.data.data;
     this.forceStopAudio();
@@ -22,7 +23,7 @@ const readAudio = function(text, locale='fr-fr', callback=()=>{}) {
       //On ne le joue que si l'audio est toujours activé
       if(this.props.ttsActive){
         this.audio.load();
-        this.audio.play();
+        this.audio.play().catch(e => console.log(e));
       }
       this.props.toggleSpinner(false);
       return true;
@@ -31,6 +32,9 @@ const readAudio = function(text, locale='fr-fr', callback=()=>{}) {
       this.props.toggleSpinner(false);
       return false;
     }
+  }).catch(err => {
+      console.log('Error: ', err.message); // => prints: Api is being canceled
+
   })
 }
 
