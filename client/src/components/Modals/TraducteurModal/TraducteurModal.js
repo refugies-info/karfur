@@ -94,7 +94,7 @@ class TraducteurModal extends Component {
             )}
           </FormGroup>
           
-          {langues_list.length>0 && 
+          {/* {langues_list.length>0 && 
             <>
               <h3>Veuillez prioriser vos langues de travail</h3>
               <FormGroup>
@@ -104,7 +104,7 @@ class TraducteurModal extends Component {
                   handleDraggableListChange={this.handleDraggableListChange}
                   />
               </FormGroup>
-            </>}
+            </>} */}
         </ModalBody>
         <ModalFooter>
           <Button className="validate-btn" onClick={this.onValidate}>
