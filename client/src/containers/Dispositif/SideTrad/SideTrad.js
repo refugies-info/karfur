@@ -183,6 +183,7 @@ class SideTrad extends Component {
     console.log(oldTrad)
     this.setState({listTrad, score, userId, selectedTrad});
     if(oldTrad){
+      console.log("oldTrad ici")
       this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad || "").contentBlocks)) } }, () => console.log("ok fwd state") )
     }else{
       this.props.translate(text,target,item, true);
@@ -193,6 +194,7 @@ class SideTrad extends Component {
     const listTrad = (((this.props.traductionsFaites || []).map(x => ({value: (x.translatedText || {})[this.state.currIdx], score: _.get(x, "translatedText.scoreHeaders." + this.state.currIdx + ".cosine.0.0"), ...x})) || []).filter(x => x._id !== sugg._id) || []).sort((a,b) => b.score - a.score);
     const score = sugg.score, userId = sugg.userId, selectedTrad = sugg;
     this.setState({listTrad, score, userId, selectedTrad});
+    console.log("selectTranslation ici")
     this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(sugg.value || "").contentBlocks)) } } );
   }
 
@@ -218,6 +220,7 @@ class SideTrad extends Component {
     if(listTrad && listTrad.length > 0){
       oldTrad = listTrad[0].value; score = listTrad[0].score; userId = listTrad[0].userId;  selectedTrad=listTrad[0];
       listTrad.shift();
+      console.log("removeTranslation ici")
       this.props.fwdSetState({ translated:{ ...this.props.translated, body: EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(oldTrad || "").contentBlocks)) } } )
     }
     this.setState({listTrad, score, userId, selectedTrad});
