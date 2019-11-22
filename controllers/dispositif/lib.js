@@ -228,7 +228,7 @@ function count_dispositifs(req, res) {
   });
 }
 
-
+//Dupliqué dans traduction/lib : Node ne semble pas gérer cet export (circulaire)
 const turnHTMLtoJSON = (contenu, nbMots=null) => {
   for(var i=0; i < contenu.length;i++){
     let html= contenu[i].content;
@@ -244,6 +244,7 @@ const turnHTMLtoJSON = (contenu, nbMots=null) => {
   return nbMots
 }
 
+//Dupliqué dans traduction/lib : Node ne semble pas gérer cet export (circulaire)
 const turnJSONtoHTML = (contenu) => {
   if(contenu){
     for(var i=0; i < contenu.length;i++){
@@ -303,11 +304,11 @@ exports.add_dispositif = add_dispositif;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs=count_dispositifs;
 exports.update_dispositif = update_dispositif;
-exports.turnHTMLtoJSON = turnHTMLtoJSON;
-exports.turnJSONtoHTML = turnJSONtoHTML;
 exports.get_dispo_progression = get_dispo_progression;
 
 //Utilisés dans d'autres controllers :
 exports.transporter = transporter;
 exports.mailOptions = mailOptions;
 exports.url = url;
+exports.turnHTMLtoJSON = turnHTMLtoJSON;
+exports.turnJSONtoHTML = turnJSONtoHTML;

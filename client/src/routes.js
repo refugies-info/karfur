@@ -62,8 +62,10 @@ const routes = [
 
   { path: '/traduction/string/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/traduction/dispositif/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
+  { path: '/traduction/demarche/:id', exact: true, name: 'Traduction', component: Translation, restriction:['Trad','ExpertTrad','Admin'] },
   { path: '/validation/string/:id', exact: true, name: 'Validation', component: Translation, restriction:['ExpertTrad','Admin'] },
   { path: '/validation/dispositif/:id', exact: true, name: 'Validation', component: Translation, restriction:['ExpertTrad','Admin'] },
+  { path: '/validation/demarche/:id', exact: true, name: 'Validation', component: Translation, restriction:['ExpertTrad','Admin'] },
 
   { path: '/record-audio', exact: true, name: 'Enregistrement audio', component: RecordAudio, restriction:[] },
 
