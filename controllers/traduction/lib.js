@@ -11,8 +11,8 @@ const axios = require("axios");
 const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
 const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
-const {turnToFr, turnHTMLtoJSON, turnJSONtoHTML} = require('../dispositif/functions');
-
+const {turnHTMLtoJSON, turnJSONtoHTML} = require('../dispositif/functions');
+console.log("traduction", turnHTMLtoJSON, turnJSONtoHTML)
 const headers = {
   'Content-Type': 'application/json',
 }
