@@ -19,6 +19,7 @@ import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
+const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length))}
 class Avancement extends Component {
   state={
     mainView:true,
@@ -176,8 +177,8 @@ class Avancement extends Component {
     ];
     traductions = traductions.filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
     
-    const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length))}
-    
+    const displayedText = (data || []).length === 0 || (this.props.dispositifs || []).length === 0 ? "Chargement" : "Aucun résultat";
+    if((data || []).length > 0 && (this.props.dispositifs || []).length > 0 && traductions.length === 0){Swal.fire({title: 'Oh non!', text: 'Il semblerait qu\'il n\'y ait aucun élément à ' + (isExpert ? 'valider' : 'traduire'), type: 'error', timer: 1500 }) }
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
@@ -232,7 +233,7 @@ class Avancement extends Component {
             );
           })
         )
-      }else{return (<tr><td>Chargement</td><td>Chargement</td><td>Chargement</td><td>Chargement</td><td>Chargement</td><td>Chargement</td></tr>)}
+      }else{return (<tr><td>{displayedText}</td><td>{displayedText}</td><td>{displayedText}</td><td>{displayedText}</td><td>{displayedText}</td><td>{displayedText}</td></tr>)}
     }
 
     return(
