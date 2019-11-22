@@ -227,6 +227,11 @@ $imgHeight : 350px;
     font-size: 18px;
   }
   
+  &.side-view-mode{
+    .main-col{
+      padding-left: 0;
+    }
+  }
   .left-side-col{
     background: $gris;
     padding: 40px 60px;
