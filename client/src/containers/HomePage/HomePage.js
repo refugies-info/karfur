@@ -6,6 +6,7 @@ import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
 import Swal from 'sweetalert2';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 ////////A enlever si pas utilisé/////////////:
 // import Notifications from '../../components/UI/Notifications/Notifications';
@@ -28,10 +29,16 @@ class HomePage extends Component {
     suggestions: [],
     users: [],
   }
+  _isMounted = false;
 
   componentDidMount (){
-    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
+    this._isMounted = true;
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this._isMounted && this.setState({users: data.data.data}) );
     window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount (){
+    this._isMounted = false;
   }
 
   selectParam = (_, subitem) => subitem && this.props.history.push({ pathname:"/advanced-search", search: '?tag=' + subitem.short });
@@ -59,9 +66,11 @@ class HomePage extends Component {
             </div>
           </div>
           <div className="chevron-wrapper">
-            <div className="slide-animation">
-              <EVAIcon className="bottom-slider" name="arrow-circle-down" size="hero"/>
-            </div>
+            <AnchorLink offset='60' href="#plan" className="header-anchor d-inline-flex justify-content-center align-items-center">
+              <div className="slide-animation">
+                <EVAIcon className="bottom-slider" name="arrow-circle-down" size="hero"/>
+              </div>
+            </AnchorLink>
           </div>
         </section>
 

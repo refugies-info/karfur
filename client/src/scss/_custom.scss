@@ -19,7 +19,7 @@
   border-radius: 12px;
   color: $grisFonce;
   background: $gris;
-  opacity: 0.95;
+  opacity: 1;
 
   &.no-main{
     background: linear-gradient(114.47deg, rgba(246, 185, 59, 0.9) 12.52%, rgba(229, 80, 57, 0.9) 79.83%);
@@ -43,11 +43,6 @@
   
   &.no-recent{
     background: rgba(130, 130, 130, 0.8);
-  }
-
-  &:hover {
-    opacity: .9;
-    transition: opacity .5s;
   }
 
   span{

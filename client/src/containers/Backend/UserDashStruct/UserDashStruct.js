@@ -30,6 +30,7 @@ const tables = [{name:'actions', component: ActionTable}, {name:'contributions',
 class UserDashStruct extends Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.showSuggestion = showSuggestion.bind(this);
     this.archiveSuggestion = archiveSuggestion.bind(this);
     this.selectItem = selectItem.bind(this);
@@ -55,23 +56,28 @@ class UserDashStruct extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     let user=this.props.user;
     console.log(user)
     if(!user.structures || !user.structures.length > 0){ Swal.fire( 'Oh non', "Nous n'avons aucune information sur votre structure d'affiliation, vous allez être redirigé vers la page d'accueil", 'error').then(() => this.props.history.push("/") ); return; }
 
     this.initializeStructure();
-    API.get_users({query: {status: "Actif"}}).then(data => this.setState({users: data.data.data}) )
+    API.get_users({query: {status: "Actif"}}).then(data => this._isMounted && this.setState({users: data.data.data}) )
     API.get_dispositif({query: {'mainSponsor': user.structures[0], status: {$in: ["Actif", "Accepté structure", "En attente", "En attente admin"]}, demarcheId: { $exists: false } }, sort:{updatedAt: -1}}).then(data => {console.log(data.data.data)
-      this.setState({contributions: data.data.data, actions: parseActions(data.data.data)}, () => {
-        API.get_tradForReview({query: {type: "dispositif", articleId: {$in: this.state.contributions.map(x => x._id)} }}).then(data => { //console.log(data.data.data)
-          this.setState({traductions: data.data.data})
+      this._isMounted && this.setState({contributions: data.data.data, actions: parseActions(data.data.data)}, () => {
+        this._isMounted && API.get_tradForReview({query: {type: "dispositif", articleId: {$in: this.state.contributions.map(x => x._id)} }}).then(data => { //console.log(data.data.data)
+          this._isMounted && this.setState({traductions: data.data.data})
         });
-        API.distinct_count_event({distinct: "userId", query: {action: 'readDispositif', label: "dispositifId", value : {$in: this.state.contributions.map(x => x._id)} } }).then(data => {
-          this.setState({nbRead: data.data.data})
+        this._isMounted && API.distinct_count_event({distinct: "userId", query: {action: 'readDispositif', label: "dispositifId", value : {$in: this.state.contributions.map(x => x._id)} } }).then(data => {
+          this._isMounted && this.setState({nbRead: data.data.data})
         })
       })
     })
     window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount (){
+    this._isMounted = false;
   }
 
   initializeStructure = () => {
