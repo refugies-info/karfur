@@ -47,3 +47,17 @@ html body div[dir="rtl"] {
     }
   }
 }
+html body {
+  .dispositif.vue  div[dir="rtl"] .toolbar-editeur{
+    .blc-gh.bloc-gauche-list {
+      border-radius: 12px 0 0 12px;
+      padding-right: 0;
+      padding-left: 10px;
+    }
+    .blc-gh.bloc-gauche-inline {
+      border-radius: 0 12px 12px 0;
+      padding-left: 0;
+      padding-right: 10px;
+    }
+  }
+}

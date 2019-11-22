@@ -27,6 +27,8 @@ import QuiSommesNous from './containers/QuiSommesNous/QuiSommesNous';
 import CommentContribuer from './containers/CommentContribuer/CommentContribuer';
 import AdminContrib from './containers/Backend/AdminContrib/AdminContrib';
 import AdminContenu from './containers/Backend/AdminContenu/AdminContenu';
+import MentionsLegales from './containers/MentionsLegales/MentionsLegales';
+import PolitiqueConfidentialite from './containers/PolitiqueConfidentialite/PolitiqueConfidentialite';
 
 const routes = [
   { path: '/', exact: true, name: 'home', restriction:[] },
@@ -41,6 +43,8 @@ const routes = [
   { path: '/advanced-search', name: 'Recherche Avancée', component: AdvancedSearch, restriction:[] },
   { path: '/qui-sommes-nous', name: 'Qui sommes-nous ?', component: QuiSommesNous, restriction:[] },
   { path: '/comment-contribuer', name: 'Comment contribuer ?', component: CommentContribuer, restriction:[] },
+  { path: '/mentions-legales', name: 'Mentions Légales', component: MentionsLegales, restriction:[] },
+  { path: '/politique-de-confidentialite', name: 'Politique de confidentialité', component: PolitiqueConfidentialite, restriction:[] },
 
   { path: '/dispositifs', name: 'Rechercher un dispositif', component: Dispositifs, restriction:[] },
   { path: '/dispositif/:id', exact: true, name: 'Dispositif', component: Dispositif, restriction:[] },

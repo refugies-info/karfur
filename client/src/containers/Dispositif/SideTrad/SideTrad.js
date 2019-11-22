@@ -129,8 +129,8 @@ class SideTrad extends Component {
   }
 
   _scrollAndHighlight = (idx, subidx = -1, subname = "") => {
-    if(subidx > -1 && subname === "content" && this.props.menu[idx].children[subidx].type === "accordion"){
-      this.props.updateUIArray(idx, subidx, 'accordion', true)
+    if(subidx > -1 && subname === "content" && ["accordion", "etape"].includes(this.props.menu[idx].children[subidx].type) ){
+      this.props.updateUIArray(idx, subidx, 'accordion', true);
     }
     Array.from(document.getElementsByClassName("translating")).forEach(x => {x.classList.remove("translating")}); //On enlève le surlignage des anciens éléments
     const elems = document.querySelectorAll('div[id="' + idx + '"]' + (subidx!==undefined && subidx > -1 ? '[data-subkey="' + subidx + '"]' : '') + (subidx!==undefined && subidx > -1 && subname && subname !== "" ? '[data-target="' + subname + '"]' : ''));
@@ -226,7 +226,7 @@ class SideTrad extends Component {
 
   onValidate = async () => {
     if(!this.props.translated.body){Swal.fire( {title: 'Oh non', text: 'Aucune traduction n\'a été rentrée, veuillez rééssayer', type: 'error', timer: 1500}); return;}
-    const {pointeurs, currIdx, currSubIdx, currSubName} = this.state;
+    let {pointeurs, currIdx, currSubIdx, currSubName} = this.state;
     this.props.fwdSetState({disableBtn: true});
     const pos = pointeurs.findIndex(x => currIdx === x);
     const node = pos > -1 ? currIdx : "contenu";

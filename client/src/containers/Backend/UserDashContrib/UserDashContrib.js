@@ -20,6 +20,7 @@ moment.locale('fr');
 class UserDashContrib extends Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.deleteContrib = deleteContrib.bind(this);
   }
 
@@ -37,18 +38,23 @@ class UserDashContrib extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     API.get_user_info().then(data_res => {
       let user=data_res.data.data;
-      API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}, demarcheId: { $exists: false } }, sort:{updatedAt: -1}}).then(data => {
-        this.setState({contributions: data.data.data, isMainLoading: false})
+      this._isMounted && API.get_dispositif({query: {'creatorId': user._id, status: {$ne: "Supprimé"}, demarcheId: { $exists: false } }, sort:{updatedAt: -1}}).then(data => {
+        this._isMounted && this.setState({contributions: data.data.data, isMainLoading: false})
       })
-      API.get_progression().then(data_progr => {
+      this._isMounted && API.get_progression().then(data_progr => {
         if(data_progr.data.data && data_progr.data.data.length>0)
-          this.setState({progression: data_progr.data.data[0]})
+          this._isMounted && this.setState({progression: data_progr.data.data[0]})
       })
-      this.setState({user:user, contributeur:user.roles.some(x=>x.nom==="Contrib")})
+      this._isMounted && this.setState({user:user, contributeur:user.roles.some(x=>x.nom==="Contrib")})
     })
     window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount (){
+    this._isMounted = false;
   }
 
   toggleModal = (modal) => {  
