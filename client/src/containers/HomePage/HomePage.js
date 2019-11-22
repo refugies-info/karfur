@@ -156,7 +156,7 @@ class HomePage extends Component {
             </div>
             <footer className="footer-section">
               {t("Homepage.traducteurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Trad" || y.nom==="ExpertTrad")) || []).length })}{' '}
-              <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-profile" : "/comment-contribuer#traduire"} type="dark">
+              <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-dashboard" : "/comment-contribuer#traduire"} type="dark">
                 {t("Homepage.Je traduis", "Je traduis")}
               </FButton>
             </footer>
