@@ -19,6 +19,7 @@ import querySearch from "stringquery";
 import {convertToHTML} from "draft-convert";
 import windowSize from 'react-window-size';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import axios from 'axios';
 import "../../../node_modules/video-react/dist/video-react.css";
 
 import API from '../../utils/API';
@@ -133,7 +134,8 @@ class Dispositif extends Component {
   }
 
   componentWillUnmount (){
-    clearInterval(this.timer)
+    clearInterval(this.timer);
+    console.log("trying cancel");
   }
 
   _initializeDispositif = props => {
@@ -184,6 +186,12 @@ class Dispositif extends Component {
               isAuthor: u._id === (dispositif.creatorId || {})._id,
             })
           })
+        }
+      }).catch (err => {
+        if (axios.isCancel(err)) {
+          console.log('Error: ', err.message); // => prints: Api is being canceled
+        } else {
+          this.setState({ isLoading: false });
         }
       })
     }else if(API.isAuth()){
