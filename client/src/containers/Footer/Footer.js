@@ -79,11 +79,11 @@ class Footer extends Component {
                 <div className="lien-footer">
                   <NavHashLink to="/comment-contribuer#hero">{t("Comment contribuer ?", "Comment contribuer ?")}</NavHashLink>
                 </div>
-                <div className="lien-footer" onClick={this.upcoming}>
-                  <NavLink to="/">{t("Accessibilité", "Accessibilité")}</NavLink>
+                <div className="lien-footer">
+                  <NavLink to="/politique-de-confidentialite">{t("Politique de confidentialité", "Politique de confidentialité")}</NavLink>
                 </div>
-                <div className="lien-footer" onClick={this.upcoming}>
-                  <NavLink to="/">{t("Mentions légales", "Mentions légales")}</NavLink>
+                <div className="lien-footer">
+                  <NavLink to="/mentions-legales">{t("Mentions légales", "Mentions légales")}</NavLink>
                 </div>
               </Col>
               <Col xl="8" lg="8" md="8" sm="8" xs="12" className="mt-10">
