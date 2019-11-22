@@ -1,6 +1,6 @@
 const himalaya = require('himalaya');
-var sanitizeHtml = require('sanitize-html');
-const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
+const sanitizeHtml = require('sanitize-html');
+const {sanitizeOptions} = require('../article/data');
 
 const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
 
