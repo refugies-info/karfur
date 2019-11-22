@@ -145,8 +145,8 @@ const contribTable = (props) => {
               </div>*/}
               <div className="content-wrapper">
                 <h1>{t("Tables." + props.overlayTitle, props.overlayTitle)}</h1>
-                <span>{t("Tables." + props.overlaySpan, props.overlaySpan)}</span>
-                <FButton type="light-action" name="info-outline" fill={variables.noir} onClick={onBtnClick} >
+                <span className="subtitle">{t("Tables." + props.overlaySpan, props.overlaySpan)}</span>
+                <FButton type="light-action hero" name="info-outline" fill={variables.noir} onClick={onBtnClick} >
                   {t("Tables." + props.overlayBtn, props.overlayBtn)}
                 </FButton>
               </div>
