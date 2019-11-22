@@ -145,7 +145,7 @@ class Dispositif extends Component {
       API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor'}).then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
-        const disableEdit = dispositif.status !== "Accepté structure" || !props.translating
+        const disableEdit = dispositif.status !== "Accepté structure" || props.translating
         if(dispositif.status === "Brouillon"){
           this.initializeTimer(3 * 60 * 1000, ()=>this.valider_dispositif('Brouillon', true) ); }  //Enregistrement automatique du dispositif toutes les 3 minutes 
         this.setState({
@@ -637,6 +637,7 @@ class Dispositif extends Component {
       typeContenu: this.state.typeContenu,
       ...(this.state.inVariante ? {demarcheId: this.state._id} : {dispositifId: this.state._id}),
       ...(!this.state._id && this.state.status!=="Brouillon" && {timeSpent : this.state.time}),
+      autoSave: auto,
     }
     dispositif.mainSponsor = _.get(dispositif, "sponsors.0._id");
     if(dispositif.typeContenu === "dispositif"){
@@ -657,10 +658,9 @@ class Dispositif extends Component {
         cardElement.find(x=> x.title==='Combien ça coûte ?').free :
         true;
     }else{dispositif.variantes = this.state.variantes; delete dispositif.titreMarque;}
-    console.log(status, this.state.status)
     if(status !== "Brouillon"){
       if(this.state.status && this.state._id && !inVariante && !["", "En attente non prioritaire", "Brouillon", "Accepté structure"].includes(this.state.status)){ console.log("un cas qui justifie ici :", this.state.status, status)
-        dispositif.status = this.state.status; console.log(dispositif.status)
+        dispositif.status = this.state.status; 
       }else if(dispositif.sponsors &&  dispositif.sponsors.length > 0){
         //Je vais chercher les membres de cette structure
         const sponsors  = _.get(dispositif, "sponsors.0", {});
@@ -779,6 +779,7 @@ class Dispositif extends Component {
                 menu={this.state.menu}
                 content={this.state.content}
                 updateUIArray={this.updateUIArray}
+                typeContenu={typeContenu}
                 {...this.props}
               />
             </Col>}

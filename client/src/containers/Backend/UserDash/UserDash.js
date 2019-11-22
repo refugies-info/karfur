@@ -64,6 +64,7 @@ class UserDash extends Component {
         if(data_progr.data.data && data_progr.data.data.length>0)
           this.setState({progression: data_progr.data.data[0]})
       })
+      console.log(user.traductionsFaites)
       API.get_tradForReview({query: {'_id': { $in: user.traductionsFaites}}, sort: {updatedAt: -1}}).then(data => {
         console.log(data.data.data)
         this.setState({traductionsFaites: data.data.data})
