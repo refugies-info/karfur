@@ -2,16 +2,12 @@ const Dispositif = require('../../schema/schemaDispositif.js');
 const Role = require('../../schema/schemaRole.js');
 const User = require('../../schema/schemaUser.js');
 const Structure = require('../../schema/schemaStructure.js');
-var sanitizeHtml = require('sanitize-html');
-var himalaya = require('himalaya');
 var uniqid = require('uniqid');
 const nodemailer = require("nodemailer");
-const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
 const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
+const {turnToFr, turnHTMLtoJSON, turnJSONtoHTML} = require('./functions');
 // const gmail_auth = require('./gmail_auth');
-
-const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
 
 //Réactiver ici si besoin
 const transporter = nodemailer.createTransport({
@@ -79,9 +75,7 @@ function add_dispositif(req, res) {
 
 function get_dispositif(req, res) {
   if (!req.body || !req.body.query) {
-    res.status(400).json({
-        "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let {query, sort, populate, limit, random} = req.body;
@@ -104,7 +98,7 @@ function get_dispositif(req, res) {
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise.then((result) => {
       [].forEach.call(result, (dispositif) => { 
-        dispositif = _turnToFr(dispositif);
+        dispositif = turnToFr(dispositif);
         turnJSONtoHTML(dispositif.contenu);
       });
       res.status(200).json({
@@ -130,24 +124,6 @@ function get_dispositif(req, res) {
       }
     })
   }
-}
-
-const _turnToFr = result => {
-  pointeurs.forEach(x => { 
-    if(result[x] && result[x].fr){ result[x] = result[x].fr };
-  });
-
-  result.contenu.forEach((p, i) => {
-    if(p.title && p.title.fr){ p.title = p.title.fr; }
-    if(p.content && p.content.fr){ p.content = p.content.fr; }
-    if(p.children && p.children.length > 0){
-      p.children.forEach((c, j) => {
-        if(c.title && c.title.fr){ c.title = c.title.fr; }
-        if(c.content && c.content.fr){ c.content = c.content.fr; }
-      });
-    }
-  });
-  return result
 }
 
 function update_dispositif(req, res) {
@@ -228,37 +204,6 @@ function count_dispositifs(req, res) {
   });
 }
 
-//Dupliqué dans traduction/lib : Node ne semble pas gérer cet export (circulaire)
-const turnHTMLtoJSON = (contenu, nbMots=null) => {
-  for(var i=0; i < contenu.length;i++){
-    let html= contenu[i].content;
-    nbMots+=(html || '').trim().split(/\s+/).length;
-    let safeHTML=sanitizeHtml(html, sanitizeOptions); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
-    let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
-    contenu[i].content=jsonBody;
-
-    if( (contenu[i].children || []).length > 0){
-      nbMots=turnHTMLtoJSON(contenu[i].children, nbMots)  
-    }
-  }
-  return nbMots
-}
-
-//Dupliqué dans traduction/lib : Node ne semble pas gérer cet export (circulaire)
-const turnJSONtoHTML = (contenu) => {
-  if(contenu){
-    for(var i=0; i < contenu.length;i++){
-      if(contenu[i] && contenu[i].content && (typeof contenu[i].content === Object || typeof contenu[i].content === "object")){
-        contenu[i].content = himalaya.stringify(contenu[i].content);
-      }
-      if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
-        turnJSONtoHTML(contenu[i].children)  
-      }
-    }
-  }
-}
-
-
 const _errorHandler = (error, res) => {
   switch (error) {
     case 500:
@@ -310,5 +255,3 @@ exports.get_dispo_progression = get_dispo_progression;
 exports.transporter = transporter;
 exports.mailOptions = mailOptions;
 exports.url = url;
-exports.turnHTMLtoJSON = turnHTMLtoJSON;
-exports.turnJSONtoHTML = turnJSONtoHTML;

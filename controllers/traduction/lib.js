@@ -11,6 +11,7 @@ const axios = require("axios");
 const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
 const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
+const {turnToFr, turnHTMLtoJSON, turnJSONtoHTML} = require('../dispositif/functions');
 
 const headers = {
   'Content-Type': 'application/json',
@@ -112,10 +113,15 @@ function get_tradForReview(req, res) {
     promise=Traduction.find(query).sort(sort).populate(populate);
   }
 
-  promise.then(result => {
+  promise.then(results => {
+    [].forEach.call(results, (result) => { 
+      if(result && result.type === "dispositif" && result.translatedText){
+        turnJSONtoHTML(result.translatedText.contenu);
+      }
+    });
     res.status(200).json({
       "text": "Succès",
-      "data": result
+      "data": results
     })
   }).catch(err => { console.log(err);
     res.status(500).json({
@@ -467,36 +473,6 @@ const updateRoles = () => {
       }
     }
   })
-}
-
-//Dupliqué depuis dispositif/lib : Node ne semble pas gérer cet export (circulaire)
-const turnHTMLtoJSON = (contenu, nbMots=null) => {
-  for(var i=0; i < contenu.length;i++){
-    let html= contenu[i].content;
-    nbMots+=(html || '').trim().split(/\s+/).length;
-    let safeHTML=sanitizeHtml(html, sanitizeOptions); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
-    let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
-    contenu[i].content=jsonBody;
-
-    if( (contenu[i].children || []).length > 0){
-      nbMots=turnHTMLtoJSON(contenu[i].children, nbMots)  
-    }
-  }
-  return nbMots
-}
-
-//Dupliqué depuis dispositif/lib : Node ne semble pas gérer cet export (circulaire)
-const turnJSONtoHTML = (contenu) => {
-  if(contenu){
-    for(var i=0; i < contenu.length;i++){
-      if(contenu[i] && contenu[i].content && (typeof contenu[i].content === Object || typeof contenu[i].content === "object")){
-        contenu[i].content = himalaya.stringify(contenu[i].content);
-      }
-      if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
-        turnJSONtoHTML(contenu[i].children)  
-      }
-    }
-  }
 }
 
 //On exporte notre fonction
