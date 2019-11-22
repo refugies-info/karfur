@@ -33,7 +33,7 @@ import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import LeftSideDispositif from '../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif';
 import BandeauEdition from '../../components/Frontend/Dispositif/BandeauEdition/BandeauEdition';
 import TopRightHeader from '../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader';
-import {fetch_dispositifs, fetch_user} from '../../Store/actions/index';
+import {fetch_dispositifs, fetch_user} from '../../Store/actions';
 import ContribCaroussel from './ContribCaroussel/ContribCaroussel';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 import SideTrad from './SideTrad/SideTrad';
@@ -55,6 +55,8 @@ let user={_id:'', cookies:{}}
 class Dispositif extends Component {
   constructor(props) {
     super(props);
+    this.audio = new Audio();
+    this._isMounted = false;
     this.initializeTimer = initializeTimer.bind(this);
     this.readAudio = readAudio.bind(this);
     this.switchVariante = switchVariante.bind(this);
@@ -64,7 +66,6 @@ class Dispositif extends Component {
     this.validateVariante = validateVariante.bind(this);
     this.deleteVariante = deleteVariante.bind(this);
   }
-  audio = new Audio();
 
   state={
     menu: [],
@@ -120,20 +121,22 @@ class Dispositif extends Component {
   mountTime=0;
 
   componentDidMount (){
+    this._isMounted = true;
     this._initializeDispositif(this.props);
   }
 
   componentWillReceiveProps(nextProps){
     if(((nextProps.match || {}).params || {}).id !== ((this.props.match || {}).params || {}).id){
-      this._initializeDispositif(nextProps);
+      this._isMounted && this._initializeDispositif(nextProps);
     }
     const userQuery = querySearch(_.get(nextProps, "history.location.search", ""));
     if(userQuery && userQuery.age !== this.state.search.age && userQuery.ville !== this.state.search.ville){
-      this.setState({search: userQuery})
+      this._isMounted && this.setState({search: userQuery})
     }
   }
 
   componentWillUnmount (){
+    this._isMounted = false; console.log('unmounting');
     clearInterval(this.timer);
   }
 
@@ -149,7 +152,7 @@ class Dispositif extends Component {
         const disableEdit = dispositif.status !== "Accepté structure" || props.translating
         if(dispositif.status === "Brouillon"){
           this.initializeTimer(3 * 60 * 1000, ()=>this.valider_dispositif('Brouillon', true) ); }  //Enregistrement automatique du dispositif toutes les 3 minutes 
-        this.setState({
+        this._isMounted && this.setState({
           _id:itemId,
           menu: dispositif.contenu, 
           content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact, externalLink: dispositif.externalLink}, 
@@ -176,23 +179,17 @@ class Dispositif extends Component {
           }
         })
         //On récupère les données de l'utilisateur
-        if(API.isAuth()){
-          API.get_user_info().then(data_res => {
+        if(this._isMounted && API.isAuth()){
+          this._isMounted && API.get_user_info().then(data_res => {
             let u=data_res.data.data;
             user={_id:u._id, cookies:u.cookies || {}}
-            this.setState({
+            this._isMounted && this.setState({
               pinned: (user.cookies.dispositifsPinned || []).some( x => x._id === itemId),
               isAuthor: u._id === (dispositif.creatorId || {})._id,
             })
           })
         }
-      }).catch (err => {
-        if (axios.isCancel(err)) {
-          console.log('Error: ', err.message); // => prints: Api is being canceled
-        } else {
-          this.setState({ isLoading: false });
-        }
-      })
+      }).catch (err => console.log('Error: ', err.message))
     }else if(API.isAuth()){
       this.initializeTimer(3 * 60 * 1000, ()=>this.valider_dispositif('Brouillon', true) ); //Enregistrement automatique du dispositif toutes les 3 minutes
       const menuContenu = typeContenu === "demarche" ? menuDemarche : menu;
@@ -469,7 +466,7 @@ class Dispositif extends Component {
       }
       API.set_user_info(user).then(() => {
         this.props.fetch_user();
-        this.setState(pS=>({
+        this._isMounted && this.setState(pS=>({
           showSpinnerBookmark: false,
           showBookmarkModal: !pS.pinned,
           pinned: !pS.pinned,
@@ -557,7 +554,7 @@ class Dispositif extends Component {
           fileName: 'dispositif' + ((this.state.content && this.state.content.titreMarque) ? (' - ' + this.state.content.titreMarque) : '') +'.pdf',
           scale:.5
         })
-        this.setState({showSpinnerPrint: false})
+        this._isMounted && this.setState({showSpinnerPrint: false})
       }, 3000);
     })
   }
@@ -590,11 +587,11 @@ class Dispositif extends Component {
       ...(this.state.suggestion && {suggestion: h2p(this.state.suggestion)})
     }
     API.update_dispositif(dispositif).then(data => {
-      if(modalName === 'reaction'){
+      if(modalName === 'reaction' && this._isMounted){
         Swal.fire( {title: 'Yay...', text: 'Votre réaction a bien été enregistrée, merci', type: 'success', timer: 1500})
-      }else if(API.isAuth()){
+      }else if(API.isAuth() && this._isMounted){
         Swal.fire( {title: 'Yay...', text: 'Votre suggestion a bien été enregistrée, merci', type: 'success', timer: 1500})
-      }else{
+      }else if(this._isMounted){
         this.toggleModal(true, 'merci');
       }
     })
@@ -607,7 +604,7 @@ class Dispositif extends Component {
     }
     API.add_dispositif(dispositif).then((data) => {
       this.props.fetch_dispositifs();
-      this.setState({status: status, disableEdit: status !== "Accepté structure"})
+      this._isMounted && this.setState({status: status, disableEdit: status !== "Accepté structure"})
       if(status==="Rejeté structure"){
         this.props.history.push("/backend/user-dash-structure");
       }
@@ -684,7 +681,7 @@ class Dispositif extends Component {
     console.log(dispositif)
     API.add_dispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
-      if(!auto){
+      if(!auto && this._isMounted){
         Swal.fire( 'Yay...', 'Enregistrement réussi !', 'success').then(() => {
           this.props.fetch_user();
           this.props.fetch_dispositifs();
@@ -692,7 +689,7 @@ class Dispositif extends Component {
             this.props.history.push("/" + dispositif.typeContenu + "/" + newDispo._id)
           })
         });
-      }else{
+      }else if(this._isMounted){
         NotificationManager.success('Retrouvez votre contribution dans votre page "Mon profil"', 'Enregistrement automatique', 5000, () => {
           Swal.fire( 'Enregistrement automatique', 'Retrouvez votre contribution dans votre page "Mon profil"', 'success')
         });
@@ -751,7 +748,7 @@ class Dispositif extends Component {
         <EVAIcon onMouseEnter={e => e.currentTarget.focus()} {...closeProps} name="close-outline" className="close-icon" />
       </div>
     )}else{return false}};
-
+    
     return(
       <div 
         className={"animated fadeIn dispositif vue" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : " reading-mode")} 

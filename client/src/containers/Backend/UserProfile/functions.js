@@ -66,20 +66,20 @@ const deleteContrib = function(dispositif, type, callback=()=>{}){
 const getProgression = function(){
   API.get_progression().then(data_progr => {
     const progression = (data_progr.data.data || [{}])[0] || {};
-    this.setState(pS => ({progression: {
+    this._isMounted && this.setState(pS => ({progression: {
       ...pS.progression,
       timeSpent: (progression.timeSpent || 0) + (pS.progression.timeSpent || 0),
       nbMots: progression.nbMots
-    }}))
-  })
+    }}));
+  });
   API.get_dispo_progression().then(data_progr => {
     const progression = (data_progr.data.data || [{}])[0] || {};
-    this.setState(pS => ({progression: {
+    this._isMounted && this.setState(pS => ({progression: {
       ...pS.progression,
       timeSpent: (progression.timeSpent || 0) + (pS.progression.timeSpent || 0),
       nbMotsContrib: progression.nbMots
     }}))
-  })
+  });
 }
 
 export {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgression};

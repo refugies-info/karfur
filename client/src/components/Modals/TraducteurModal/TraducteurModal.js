@@ -5,7 +5,7 @@ import Icon from 'react-eva-icons';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import DraggableList from '../../UI/DraggableList/DraggableList';
+// import DraggableList from '../../UI/DraggableList/DraggableList';
 import API from '../../../utils/API';
 import {fetch_user} from '../../../Store/actions';
 
@@ -68,7 +68,7 @@ class TraducteurModal extends Component {
   render() {
     const {show, toggle} = this.props;
     const {langues} = this.state;
-    let langues_list = langues.filter(x => x.checked).map(x => x.langueFr);
+    // let langues_list = langues.filter(x => x.checked).map(x => x.langueFr);
 
     return (
       <Modal isOpen={show} toggle={toggle} className='modal-traducteur'>

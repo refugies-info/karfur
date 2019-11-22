@@ -28,10 +28,16 @@ class HomePage extends Component {
     suggestions: [],
     users: [],
   }
+  _isMounted = false;
 
   componentDidMount (){
-    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
+    this._isMounted = true;
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this._isMounted && this.setState({users: data.data.data}) );
     window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount (){
+    this._isMounted = false;
   }
 
   selectParam = (_, subitem) => subitem && this.props.history.push({ pathname:"/advanced-search", search: '?tag=' + subitem.short });

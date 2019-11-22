@@ -1,0 +1,9 @@
+@import 'src/scss/colors.scss';
+@import 'src/scss/global.scss';
+
+.politique-de-confidentialite{
+  flex: 1 1;
+  background: #FFFFFF;
+  max-width: 100%;
+  overflow: scroll;
+}
