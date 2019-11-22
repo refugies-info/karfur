@@ -135,7 +135,6 @@ class Dispositif extends Component {
 
   componentWillUnmount (){
     clearInterval(this.timer);
-    console.log("trying cancel");
   }
 
   _initializeDispositif = props => {

@@ -11,19 +11,10 @@ const uniqid = require('uniqid');
 const h2p = require('html2plaintext');
 const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
+const {sanitizeOptions} = require("./data");
 
 let elementId=Math.floor(Math.random() * Math.floor(9999999));
 let nombreMots = 0;
-
-const sanitizeOptions = {
-  allowedTags: [ 'div', 'p', 'strong', 'em', 'u', 'span', 'b', 'ul', 'li', 'figure', 'a', //Les principaux qui sont effectivement utilisés
-  'i', 'br', 'blockquote', 'ol' ], //des secondaires qu'on peut autoriser sans trop de risque
-  allowedAttributes: {
-    a: [ 'href', 'name', 'target', 'class' ],
-    '*': [ 'class' ],
-    img: [ 'src' ]
-  }
-}
 
 function add_article(req, res) {
   if (!req.body || !req.body.title || !req.body.body) {
