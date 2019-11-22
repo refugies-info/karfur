@@ -19,7 +19,6 @@ import querySearch from "stringquery";
 import {convertToHTML} from "draft-convert";
 import windowSize from 'react-window-size';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-import axios from 'axios';
 import "../../../node_modules/video-react/dist/video-react.css";
 
 import API from '../../utils/API';
@@ -45,6 +44,7 @@ import {switchVariante, initializeVariantes, initializeInfoCards, verifierDemarc
 import {breakpoints} from 'utils/breakpoints.js';
 
 import variables from 'scss/colors.scss';
+// var opentype = require('opentype.js');
 
 moment.locale('fr');
 
@@ -55,6 +55,8 @@ let user={_id:'', cookies:{}}
 class Dispositif extends Component {
   constructor(props) {
     super(props);
+    this.newRef=React.createRef();
+    this.mountTime=0;
     this.audio = new Audio();
     this._isMounted = false;
     this.initializeTimer = initializeTimer.bind(this);
@@ -117,8 +119,6 @@ class Dispositif extends Component {
     _id: undefined,
     checkingVariante: false,
   }
-  newRef=React.createRef();
-  mountTime=0;
 
   componentDidMount (){
     this._isMounted = true;
@@ -136,7 +136,7 @@ class Dispositif extends Component {
   }
 
   componentWillUnmount (){
-    this._isMounted = false; console.log('unmounting');
+    this._isMounted = false; 
     clearInterval(this.timer);
   }
 
@@ -177,6 +177,10 @@ class Dispositif extends Component {
           }else{
             this.setColors();
           }
+        })
+        //On va récupérer les vraies données des sponsors
+        this._isMounted && API.get_structure({ _id: {$in: _.get(dispositif, "sponsors", []).map(s => s && s._id) } }).then(data => {
+          this._isMounted && data.data.data && data.data.data.length > 0 && this.setState({sponsors: data.data.data})
         })
         //On récupère les données de l'utilisateur
         if(this._isMounted && API.isAuth()){
@@ -550,13 +554,23 @@ class Dispositif extends Component {
     uiArray = uiArray.map(x => ({ ...x, accordion : true,  ...(x.children && {children : x.children.map(y => { return { ...y, accordion : true } }) }) }));
     this.setState({ uiArray: uiArray, showSpinnerPrint:true }, ()=>{
       setTimeout(()=>{
-        savePDF(this.newRef.current, { 
-          fileName: 'dispositif' + ((this.state.content && this.state.content.titreMarque) ? (' - ' + this.state.content.titreMarque) : '') +'.pdf',
+        this._isMounted && savePDF(this.newRef.current, { 
+          fileName: (this.state.typeContenu || 'dispositif') + ((this.state.content && this.state.content.titreMarque) ? (' - ' + this.state.content.titreMarque) : '') +'.pdf',
           scale:.5
         })
         this._isMounted && this.setState({showSpinnerPrint: false})
       }, 3000);
     })
+
+
+    // opentype.load("https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans.ttf", function(err, font) {
+    //   if (err) { alert('Font could not be loaded: ' + err);
+    //   } else {
+    //     var ctx = document.getElementById('dispositif').getContext('2d');
+    //     var path = font.getPath('Hello, World!', 0, 150, 72);
+    //     path.draw(ctx);
+    //   }
+    // });
   }
 
   editDispositif = (_ = null, disableEdit = false) => this.setState(pS => ({
@@ -751,6 +765,7 @@ class Dispositif extends Component {
     
     return(
       <div 
+        id="dispositif"
         className={"animated fadeIn dispositif vue" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : " reading-mode")} 
         ref={this.newRef} 
       >
