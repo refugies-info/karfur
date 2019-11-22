@@ -96,7 +96,7 @@ class TranslationHOC extends Component {
     const type = (props.match.path || "").includes("dispositif") || (props.match.path || "").includes("demarche") ? "dispositif" : "string";
     this.setState({ type, itemId, locale, isExpert, langueBackupId });
     if(itemId && type==="dispositif"){
-      API.get_tradForReview({query: {'articleId':itemId, ...(!isExpert && userId && {userId})}, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
+      API.get_tradForReview({query: {'articleId':itemId, langueCible: locale, ...(!isExpert && userId && {userId})}, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           const traductions = data_res.data.data; console.log(traductions);
           this._isMounted && this.setState({
