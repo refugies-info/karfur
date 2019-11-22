@@ -8,7 +8,6 @@ const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
 const {turnToFr, turnHTMLtoJSON, turnJSONtoHTML} = require('./functions');
 // const gmail_auth = require('./gmail_auth');
-console.log("dispositif", turnHTMLtoJSON, turnJSONtoHTML)
 
 //Réactiver ici si besoin
 const transporter = nodemailer.createTransport({
