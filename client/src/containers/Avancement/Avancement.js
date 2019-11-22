@@ -178,7 +178,11 @@ class Avancement extends Component {
     traductions = traductions.filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
     
     const displayedText = (data || []).length === 0 || (this.props.dispositifs || []).length === 0 ? "Chargement" : "Aucun résultat";
-    if((data || []).length > 0 && (this.props.dispositifs || []).length > 0 && traductions.length === 0){Swal.fire({title: 'Oh non!', text: 'Il semblerait qu\'il n\'y ait aucun élément à ' + (isExpert ? 'valider' : 'traduire'), type: 'error', timer: 1500 }) }
+    
+    if((data || []).length > 0 && 
+    (this.props.dispositifs || []).length > 0 
+    && traductions.length === 0
+    && (!isExpert || (this.state.traductionsFaites || []).length > 0 )){console.log(isExpert, this.state.traductionsFaites, data, this.props.dispositifs,traductions.length); Swal.fire({title: 'Oh non!', text: 'Il semblerait qu\'il n\'y ait aucun élément à ' + (isExpert ? 'valider' : 'traduire'), type: 'error', timer: 1500 }) }
     const AvancementData = () => {
       if(this.props.match.params.id && traductions.length>0 && this.state.langue.i18nCode){
         return(
