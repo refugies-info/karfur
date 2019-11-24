@@ -1,11 +1,14 @@
 const Structure = require('../../schema/schemaStructure.js');
 const User = require('../../schema/schemaUser.js');
 const Role = require('../../schema/schemaRole.js');
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
 
 async function add_structure(req, res) {
   if (!req.body || (!req.body.nom && !req.body._id)) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let {membreId, ...structure} = req.body;
 
     if(structure._id){
@@ -13,8 +16,8 @@ async function add_structure(req, res) {
       const r = await Structure.findOne({_id: structure._id});
       if(!r){res.status(402).json({ "text": "Id non valide" }); return;}
       const isAdmin = (req.user.roles || []).some(x => x.nom==='Admin') || req.userId.equals(r.administrateur);
-      const isContributeur = (((r.membres || []).find(x => x.userId === req.userId) || {}).roles || []).includes("contributeur");
-      console.log(isAdmin, isContributeur, membreId, r.administrateur, req.userId, structure)
+      const isContributeur = (((r.membres || []).find(x => req.userId.equals(x.userId)) || {}).roles || []).includes("contributeur");
+      console.log(isAdmin, isContributeur, req.userId, structure)
       if(isAdmin || (isContributeur && ( !JSON.stringify(structure).includes("administrateur") ) )){ //Soit l'auteur est admin soit il est contributeur et modifie les droits d'un membre seul
         promise=Structure.findOneAndUpdate({_id: structure._id, ...(membreId && {"membres.userId": membreId})}, structure, { upsert: true , new: true});
       }else{//Voir les cas qu'on laissera passer pour les membres
@@ -45,10 +48,8 @@ function get_structure(req, res) {
   if (!req.body || !req.body.query) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
-    var query = req.body.query;
-    var sort = req.body.sort;
-    var populate = req.body.populate;
-    var limit = req.body.limit;
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
+    let {query, sort, populate, limit} = req.body;
     if(populate && populate.constructor === Object){
       populate.select = '-password';
     }else if(populate){

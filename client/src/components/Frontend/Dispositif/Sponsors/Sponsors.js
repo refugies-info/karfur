@@ -74,8 +74,7 @@ class Sponsors extends Component {
     let structure={}, fields = ["nom", "acronyme", "link", "contact", "mail_contact", "phone_contact", "authorBelongs"];
     fields.forEach(x => this.state.structure[x] !== "" ? structure[x] = this.state.structure[x] : false);
     API.create_structure(structure).then((data) => {
-      console.log(data);
-      this.props.addSponsor(structure)
+      this.props.addSponsor(data.data.data)
       this.toggleModal("envoye")
     })
   }
@@ -116,9 +115,18 @@ class Sponsors extends Component {
                   <a href={((sponsor.link || "").includes("http") ? "" : "http://") + sponsor.link} target="_blank" rel="noopener noreferrer">
                     {sponsor.picture && sponsor.picture.secure_url ?
                       <img className="sponsor-img" src={sponsor.picture.secure_url} alt={sponsor.alt} /> : 
-                      <span className="default-logo">{sponsor.type === "Not found" ? "A déterminer par la suite" : (sponsor.acronyme || sponsor.nom) ? (sponsor.acronyme + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + sponsor.nom) : sponsor.alt}</span>}
+                      sponsor.type === "Not found" ? 
+                        <div className="not-found-wrapper">
+                          <EVAIcon name="question-mark-circle" className="not-found-icon" size="large" />
+                          <span>Structure responsable<br/>non-identifiée</span>
+                        </div> :
+                        <div className="not-exist-wrapper">
+                          <EVAIcon name="image-outline" className="not-exist-icon mr-16" size="large" fill={variables.noir} />
+                          <span>{(sponsor.acronyme || sponsor.nom) ? ((sponsor.acronyme || "") + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + (sponsor.nom || "")) : (sponsor.alt || "Structure 1")}</span>
+                        </div>}
+                        {/* <span className="default-logo">{(sponsor.acronyme || sponsor.nom) ? (sponsor.acronyme + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + sponsor.nom) : sponsor.alt}</span>} */}
                   </a>
-                  {key === 0 && 
+                  {key === 0 && sponsor.type !== "Not found" &&
                     <div className="owner-badge">
                       <EVAIcon name="shield" className="mr-10" />
                       Responsable
@@ -261,7 +269,7 @@ class Sponsors extends Component {
           title="C’est envoyé !"
           lowerRightBtn={<FButton type="validate" name="checkmark" onClick={()=>this.toggleModal("envoye")} className="push-right">Ok !</FButton>} 
         >
-          <div className="envoye-content">
+          <div className="envoye-content center-text">
             <img src={sentIllu} className="illu" alt="illustration" />
             {selected.nom? 
               (authorBelongs ? 

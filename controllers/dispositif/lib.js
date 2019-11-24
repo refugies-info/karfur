@@ -2,20 +2,23 @@ const Dispositif = require('../../schema/schemaDispositif.js');
 const Role = require('../../schema/schemaRole.js');
 const User = require('../../schema/schemaUser.js');
 const Structure = require('../../schema/schemaStructure.js');
-var sanitizeHtml = require('sanitize-html');
-var himalaya = require('himalaya');
 var uniqid = require('uniqid');
 const nodemailer = require("nodemailer");
-
-const pointeurs = [ "titreInformatif", "titreMarque", "abstract"];
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
+const {turnToFr, turnHTMLtoJSON, turnJSONtoHTML} = require('./functions');
+// const gmail_auth = require('./gmail_auth');
 
 //Réactiver ici si besoin
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
+const transporter = nodemailer.createTransport({
+  // service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true,
   auth: {
     user: 'diairagir@gmail.com',
     pass: process.env.GMAIL_PASS
-  }
+  },
 });
 
 var mailOptions = {
@@ -24,12 +27,14 @@ var mailOptions = {
   subject: 'Administration Réfugiés.info'
 };
 
+const url = process.env.NODE_ENV === 'dev' ? "http://localhost:3000/" : process.env.NODE_ENV === 'quality' ? "https://agir-qa.herokuapp.com/" : "https://www.refugies.info/"
+
 function add_dispositif(req, res) {
   if (!req.body || ((!req.body.titreInformatif) && !req.body.dispositifId)) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let dispositif = req.body;
-    console.log('content-length', req.headers['content-length'])
     dispositif.status = dispositif.status || 'En attente';
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
 
@@ -70,15 +75,10 @@ function add_dispositif(req, res) {
 
 function get_dispositif(req, res) {
   if (!req.body || !req.body.query) {
-    res.status(400).json({
-        "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
-    var query = req.body.query;
-    var sort = req.body.sort;
-    var populate = req.body.populate;
-    var limit = req.body.limit;
-    var random = req.body.random;
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
+    let {query, sort, populate, limit, random} = req.body;
 
     if(populate && populate.constructor === Object){
       populate.select = '-password';
@@ -98,7 +98,7 @@ function get_dispositif(req, res) {
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise.then((result) => {
       [].forEach.call(result, (dispositif) => { 
-        dispositif = _turnToFr(dispositif);
+        dispositif = turnToFr(dispositif);
         turnJSONtoHTML(dispositif.contenu);
       });
       res.status(200).json({
@@ -126,28 +126,11 @@ function get_dispositif(req, res) {
   }
 }
 
-const _turnToFr = result => {
-  pointeurs.forEach(x => { 
-    if(result[x] && result[x].fr){ result[x] = result[x].fr };
-  });
-
-  result.contenu.forEach((p, i) => {
-    if(p.title && p.title.fr){ p.title = p.title.fr; }
-    if(p.content && p.content.fr){ p.content = p.content.fr; }
-    if(p.children && p.children.length > 0){
-      p.children.forEach((c, j) => {
-        if(c.title && c.title.fr){ c.title = c.title.fr; }
-        if(c.content && c.content.fr){ c.content = c.content.fr; }
-      });
-    }
-  });
-  return result
-}
-
 function update_dispositif(req, res) {
   if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let {dispositifId, fieldName, suggestionId, type, ...dispositif} = req.body;
     let update = null, query = { _id: dispositifId };
     if(type==='pull'){
@@ -177,6 +160,7 @@ function update_dispositif(req, res) {
 }
 
 function get_dispo_progression(req, res) {
+  new DBEvent({userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   var start = new Date();
   start.setHours(0,0,0,0);
 
@@ -213,41 +197,12 @@ function get_dispo_progression(req, res) {
 }
 
 function count_dispositifs(req, res) {
+  new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   Dispositif.count(req.body, (err, count) => {
     if (err){res.status(404).json({ "text": "Pas de résultat" })}
     else{res.status(200).json(count)}
   });
 }
-
-
-const turnHTMLtoJSON = (contenu, nbMots=null) => {
-  for(var i=0; i < contenu.length;i++){
-    let html= contenu[i].content;
-    nbMots+=(html || '').trim().split(/\s+/).length;
-    let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
-    let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
-    contenu[i].content=jsonBody;
-
-    if( (contenu[i].children || []).length > 0){
-      nbMots=turnHTMLtoJSON(contenu[i].children, nbMots)  
-    }
-  }
-  return nbMots
-}
-
-const turnJSONtoHTML = (contenu) => {
-  if(contenu){
-    for(var i=0; i < contenu.length;i++){
-      if(contenu[i] && contenu[i].content && (typeof contenu[i].content === Object || typeof contenu[i].content === "object")){
-        contenu[i].content = himalaya.stringify(contenu[i].content);
-      }
-      if( contenu[i] && contenu[i].children && contenu[i].children.length > 0){
-        turnJSONtoHTML(contenu[i].children)  
-      }
-    }
-  }
-}
-
 
 const _errorHandler = (error, res) => {
   switch (error) {
@@ -270,7 +225,7 @@ const _errorHandler = (error, res) => {
 
 const _handleMailNotification = dispositif => {
   let html = "";
-  const status = dispositif.status, url = process.env.NODE_ENV === 'dev' ? "http://localhost:3000/" : process.env.NODE_ENV === 'quality' ? "https://agir-qa.herokuapp.com/" : "https://www.refugies.info/";
+  const status = dispositif.status;
   // ["Actif", "Accepté structure", , "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé"]
   if(["En attente", "En attente admin", "En attente non prioritaire"].includes(status)){
     html = "<p>Bonjour,</p>";
@@ -294,6 +249,9 @@ exports.add_dispositif = add_dispositif;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs=count_dispositifs;
 exports.update_dispositif = update_dispositif;
-exports.turnHTMLtoJSON = turnHTMLtoJSON;
-exports.turnJSONtoHTML = turnJSONtoHTML;
 exports.get_dispo_progression = get_dispo_progression;
+
+//Utilisés dans d'autres controllers :
+exports.transporter = transporter;
+exports.mailOptions = mailOptions;
+exports.url = url;

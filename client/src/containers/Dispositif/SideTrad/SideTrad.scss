@@ -1,13 +1,20 @@
 @import 'src/scss/colors.scss';
 
 .side-trad{
-  background: rgba(242, 242, 242, 0.4);
+  background: rgba(242, 242, 242, 0.8);
   padding: 20px 20px 60px;
   position: fixed;
   width: 33%;
   max-height: calc(100% - 56px);
   overflow: scroll;
   z-index:3;
+  backdrop-filter: blur(10px);
+
+  .shadow {
+    -webkit-box-shadow: 4px 40px rgba(0, 0, 0, 0.25);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow:    4px 40px rgba(0, 0, 0, 0.25);  /* Firefox 3.5 - 3.6 */
+    box-shadow:         4px 40px rgba(0, 0, 0, 0.25);  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  }
 
   .nav-btns{
     display: flex;
@@ -20,10 +27,14 @@
     margin-bottom: 15px;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
   }
   .toolbar-spacer{
     width: 175px;
     height: 35px;
+  }
+  .align-right{
+    margin-left: auto;
   }
   .content-data{
     min-height:200px;

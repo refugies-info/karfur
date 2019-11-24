@@ -7,7 +7,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
-import {equipe, diair, DGEF} from '../../assets/figma/index';
+import {equipe} from '../../assets/figma/index';
 import {membres} from './data'
 
 import './QuiSommesNous.scss';
@@ -68,10 +68,9 @@ class QuiSommesNous extends Component {
                     <span>{t("QuiSommesNous.Mission_2_subheader", "Dès la protection obtenue, les personnes réfugiées entre dans le droit commun et bénéficie des mêmes droits sociaux que tous les français. Cette situation engendre de nombreuses démarches administratives. Agi’r produit des fiches pratiques pour vulgariser ces démarches et les propose dans plus de 10 langues")}.</span>
                   </CardBody>
                   <CardFooter>
-                    {/*<FButton type="outline-black">
-                      Chercher une démarche
-                  </FButton>*/}
-                    <span>{t("Bientôt disponible", "Bientôt disponible")}</span>
+                    <FButton tag={NavLink} to="/advanced-search" type="outline-black">
+                      {t("Chercher une démarche", "Explorer les démarches")}
+                    </FButton>
                   </CardFooter>
                 </Card>
               </Col>
@@ -182,7 +181,7 @@ class QuiSommesNous extends Component {
                     <span>{t("QuiSommesNous.contributive_1_subheader", "Les valeurs d’ouverture et de transparence sont au coeur du projet Réfugiés.info : le code source du site est entièrement disponible. Un réseau ouvert participe à la conception et conseille l’équipe du projet sur les besoins et les fonctionnalités à développer")}.</span>
                   </CardBody>
                   <CardFooter>
-                    <a href="https://github.com/Tony4469/karfur" className="no-decoration" target="_blank">
+                    <a href="https://github.com/Tony4469/karfur" className="no-decoration" target="_blank" rel="noopener noreferrer">
                       <FButton type="outline-black">
                         {t("QuiSommesNous.Voir le code source", "Voir le code source")}
                       </FButton>
@@ -197,7 +196,7 @@ class QuiSommesNous extends Component {
                     <span>{t("QuiSommesNous.contributive_2_subheader", "Seuls les acteurs locaux sont capables de recenser efficacement les actions et de nourrir une base de connaissance commune. Ainsi Réfugiés.info permet à chaque territoire de recenser et de valoriser ses initiatives tout en découvrant de nouvelles")}.</span>
                   </CardBody>
                   <CardFooter>
-                    <FButton tag={"a"} href="https://agi-r.mn.co" target="_blank" type="outline-black">
+                    <FButton tag={"a"} href="https://agi-r.mn.co" target="_blank" rel="noopener noreferrer" type="outline-black">
                       {t("Rejoindre le réseau", "Rejoindre le réseau")}
                     </FButton>
                   </CardFooter>

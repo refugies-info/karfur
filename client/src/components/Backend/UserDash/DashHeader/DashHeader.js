@@ -3,12 +3,12 @@ import { Col, Row } from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 import moment from 'moment/min/moment-with-locales';
 import { withTranslation } from 'react-i18next';
+import { NavHashLink } from 'react-router-hash-link';
 
 import FButton from '../../../FigmaUI/FButton/FButton';
-import {diairMinInt} from '../../../../assets/figma/index'
+import {diairMinInt} from '../../../../assets/figma';
 
-import './DashHeader.scss'
-import variables from 'scss/colors.scss';
+import './DashHeader.scss';
 
 moment.locale('fr');
 
@@ -24,7 +24,7 @@ const dashHeader = (props) => {
       const structure = props.structure || {};
       const nbTraducteurs = [...new Set((props.traductions || []).reduce((acc, curr) => ([...acc, curr.userId, curr.validatorId]),[]).filter(x => x))].length;
       const sommeDates=(structure.dispositifsAssocies || []).map(x => x.updatedAt).reduce((acc, curr) => acc += moment(curr), 0);
-      const moyenneDate = sommeDates / (structure.dispositifsAssocies || []).length
+      const moyenneDate = sommeDates / (structure.dispositifsAssocies || []).length;
       return (
         <Row className="header-structure">
           <Col xl="6" lg="6" md="12" sm="12" xs="12" className="mt-10">
@@ -78,13 +78,13 @@ const dashHeader = (props) => {
                   <div>personne{props.nbRead>1?"s":""} informée{props.nbRead>1?"s":""}</div>
                 </div>
               </Col>
-              {moyenneDate &&
+              {moyenneDate ?
                 <Col lg="4" className="struct-indicateurs">
                   <div className="indicateur">
                     <h4>{moment(moyenneDate).fromNow()}</h4>
                     <div>moyenne des dernières intéractions</div>
                   </div>
-                </Col>}
+                </Col> : false}
             </Row>
           </Col>
         </Row>
@@ -132,15 +132,15 @@ const dashHeader = (props) => {
         <Col className="tableau-header align-right">
           {props.structure &&
             <b className="role">Vous êtes {role}</b>}
-          <FButton type="help" name="info-outline" className="mr-10">
+            <FButton tag={"a"} href="https://help.refugies.info/fr/" target="_blank" rel="noopener noreferrer" type="help" name="info-outline" className="mr-10">
             Aide
-          </FButton>
+            </FButton>
           {props.ctaText && 
             <FButton type="dark" name="options-2-outline" onClick={()=>props.toggle('objectifs')}>
               {props.ctaText}
             </FButton>}
           {props.contributeur &&
-            <FButton tag={NavLink} to="/comment-contribuer" type="dark" name="plus-circle-outline" className="ml-10">
+            <FButton tag={NavHashLink} to="/comment-contribuer#ecrire" type="dark" name="plus-circle-outline" className="ml-10">
               Créer un contenu
             </FButton>}
           {props.traducteur &&

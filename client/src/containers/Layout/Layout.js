@@ -48,11 +48,17 @@ class Layout extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.ttsActive !== this.props.ttsActive && !this.props.ttsActive) {
-      this.audio.pause();
-      this.audio.currentTime = 0;
+      this.forceStopAudio();
     }
   }
 
+  componentWillReceiveProps(nextProps){
+    if(nextProps.ttsActive !== this.props.ttsActive && !nextProps.ttsActive){
+      this.forceStopAudio();
+    }
+  }
+
+  forceStopAudio = () => {this.audio.pause(); this.audio.currentTime = 0;}
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   sideDrawerClosedHandler = (dir) => {
@@ -85,8 +91,9 @@ class Layout extends Component {
   toggleHover = (e) => {
     if(this.props.ttsActive){
       if(e.target && e.target.firstChild && e.target.firstChild.nodeValue){
-        console.log(e.target.firstChild.nodeValue)
-        this.readAudio(e.target.firstChild.nodeValue)
+        this.readAudio(e.target.firstChild.nodeValue, i18n.language)
+      }else{
+        this.forceStopAudio();
       }
     }
   }

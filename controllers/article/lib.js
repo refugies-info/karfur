@@ -5,16 +5,13 @@ const Role = require('../../schema/schemaRole.js');
 const User = require('../../schema/schemaUser.js');
 const traduction = require('../traduction/lib');
 const draftToHtml = require('draftjs-to-html');
-var sanitizeHtml = require('sanitize-html');
-var himalaya = require('himalaya');
-var uniqid = require('uniqid');
-var h2p = require('html2plaintext');
-
-var html = "<strong>hello world</strong>";
-console.log(sanitizeHtml(html));
-console.log(sanitizeHtml("<img src=x onerror=alert('img') />"));
-console.log(sanitizeHtml("console.log('hello world')"));
-console.log(sanitizeHtml("<script>alert('hello world')</script>"));
+const sanitizeHtml = require('sanitize-html');
+const himalaya = require('himalaya');
+const uniqid = require('uniqid');
+const h2p = require('html2plaintext');
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
+const {sanitizeOptions} = require("./data");
 
 let elementId=Math.floor(Math.random() * Math.floor(9999999));
 let nombreMots = 0;
@@ -26,16 +23,17 @@ function add_article(req, res) {
       "text": "Requête invalide"
     })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     //On transforme le html en JSON après l'avoir nettoyé
     let draft=req.body.body;
     let html= draft.blocks ? draftToHtml(draft) : draft;
-    let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+    let safeHTML=sanitizeHtml(html, sanitizeOptions);
     let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: false })
 
     make_nodes_unique_and_local(jsonBody, uniqid('initial_'))
 
     var article = {
-      title:{fr:sanitizeHtml(req.body.title)},
+      title:{fr:sanitizeHtml(req.body.title, sanitizeOptions)},
       body:jsonBody,
       nombreMots : nombreMots,
       avancement:{fr:1},
@@ -63,6 +61,7 @@ function get_article(req, res) {
         "text": "Requête invalide"
     })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let {query, locale, sort, populate, limit, random} = req.body;
     locale = locale || 'fr';
     // console.log(query, locale, sort, populate, limit, random)
@@ -133,6 +132,7 @@ function add_traduction(req, res) {
       "text": "Pas de contenu de traduction"
     })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let locale=req.body.langueCible; //TODO :S'assurer que ce locale est autorisé 
     
     //On lui donne le rôle de traducteur
@@ -147,7 +147,7 @@ function add_traduction(req, res) {
       let traductionItem=req.body;
       //On transforme le html en JSON après l'avoir nettoyé
       let html=traductionItem.translatedText.body;
-      let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+      let safeHTML=sanitizeHtml(html, sanitizeOptions);
       let jsonBody=null;
       if(traductionItem.isStructure){
         traductionItem={
@@ -175,7 +175,6 @@ function add_traduction(req, res) {
               }else{succes=false;console.log('erreur 1');}
             }else{
               avancement={value : (result.avancement[locale] || 0) * (result.nombreMots || 0)};
-              console.log(traductionItem)
               if(_insertStructTranslation(result.body,traductionItem.translatedText.body,locale,traductionItem.jsonId, avancement)){
                 result.markModified("body");
                 if(avancement.value && result.nombreMots > 0){avancement.value=avancement.value/result.nombreMots;};
@@ -219,12 +218,10 @@ function remove_traduction(req, res) {
         "text": "Requête invalide"
     })
   } else {
-    var query = req.body.query;
-    var locale=req.body.locale;
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
+    const {query, locale} = req.body;
     if(locale==='fr'){
-      res.status(401).json({
-          "text": "Suppression impossible"
-      });
+      res.status(401).json({ "text": "Suppression impossible" });
       return false;
     }
     var find= new Promise(function (resolve, reject) {
@@ -336,7 +333,7 @@ const _insertStructTranslation = (initial, translated, locale, id, avancement) =
     if(initial[key] && initial[key].id){
       // console.log(initial[key].id)
       if(initial[key].id === id){
-        initial[key][locale] = initial[key].fr && initial[key].fr === h2p(initial[key].fr) ? h2p(translated) : translated;
+        initial[key][locale] = initial[key].fr && initial[key].fr === h2p(initial[key].fr) ? h2p(translated) : sanitizeHtml(translated, sanitizeOptions);
         avancement.value += initial[key].fr.trim().split(/\s+/).length
         succes = true;
         return true
@@ -564,3 +561,4 @@ exports.remove_traduction = remove_traduction;
 
 //Utilisés dans d'autres controllers
 exports.addTranslationRestructure=addTranslationRestructure;
+exports.sanitizeOptions = sanitizeOptions;

@@ -17,10 +17,10 @@ import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FInput from '../../components/FigmaUI/FInput/FInput';
 import {fetch_user} from "../../Store/actions";
 import Modal from '../../components/Modals/Modal';
+import { colorAvancement } from '../../components/Functions/ColorFunctions';
 
 import './Login.scss';
 import variables from 'scss/colors.scss';
-import { colorAvancement } from '../../components/Functions/ColorFunctions';
 
 class Login extends Component {
   state = {
@@ -50,6 +50,12 @@ class Login extends Component {
   toggleModal = () => this.setState(pS=>({showModal: !pS.showModal}))
 
   goBack = () => this.setState({step: 0, userExists: false, password:"", cpassword: ""});
+
+  resetPassword = () => {
+    API.reset_password({username: this.state.username}).then(data => {
+      Swal.fire( {title: 'Yay...', text: 'Le mot de passe de récupération a été envoyé à l\'adresse mail renseignée lors de la création du compte', type: 'success'} )
+    })
+  }
 
   send = (e) => {
     e.preventDefault();
@@ -88,7 +94,7 @@ class Login extends Component {
         this.props.fetch_user();
       }).catch(e => {
         if(e.response.status === 501){
-          this.setState({step: 2});
+          this.setState({showModal: false, step: 2});
         }else if(e.response.status === 502){
           this.setState({showModal: true, phone: _.get(e,"response.data.phone", ""), email: _.get(e,"response.data.email", "") });
         }else{console.log(e.response)}
@@ -156,7 +162,7 @@ class Login extends Component {
                 </CSSTransition>
                 
                 {step === 1 &&
-                  <PasswordFooter value={this.state.password} upcoming={this.upcoming} t={t} />}
+                  <PasswordFooter value={this.state.password} upcoming={this.upcoming} t={t} userExists={userExists} resetPassword={this.resetPassword} />}
               </Form>
             </CardBody>
           </Card>
@@ -227,7 +233,8 @@ const PasswordField = props => {
   const password_check = passwdCheck(props.value);
   return (<>
     <FInput
-      prepend append
+      prepend append 
+      autoFocus={props.id==="password"}
       prependName="lock-outline"
       appendName={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"}
       inputClassName="password-input"
@@ -249,7 +256,7 @@ const PasswordField = props => {
 const PasswordFooter = props => (
   <div className="footer-buttons">
     {props.userExists &&
-      <Button type="button" color="transparent" className="mr-10 password-btn" onClick={props.upcoming}>
+      <Button type="button" color="transparent" className="mr-10 password-btn" onClick={props.resetPassword}>
         <u>{props.t("Login.Mot de passe oublié ?", "Mot de passe oublié ?")}</u>
       </Button>}
     <FButton type="dark" name="log-in" color="dark" className="connect-btn" disabled={!props.value}>
@@ -319,6 +326,6 @@ export default track({
   page: 'Login',
 }, { dispatchOnMount: true })(
   connect(null, mapDispatchToProps)(
-      withTranslation()(Login)
+    withTranslation()(Login)
   )
 );

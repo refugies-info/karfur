@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Table, Button } from 'reactstrap';
+import { Col, Row, Table } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import {NavLink} from 'react-router-dom';
 import moment from 'moment/min/moment-with-locales';
@@ -43,7 +43,7 @@ const favoriTable = (props) => {
               <td className="align-middle negative-margin">
                 {(element.tags || []).map((tag, key) => {
                   return ( 
-                    <FButton key={key} className={"tag-btn mt-10 bg-light-" + tag.short} onClick={()=>searchTag(tag.short)}>
+                    <FButton key={key} className={"tag-btn mt-10 bg-" + (tag.short || "").replace(/ /g,"-")} onClick={()=>searchTag(tag.short)}>
                       {tag.short && t("Tags." + tag.short, tag.short)}
                     </FButton>
                   );

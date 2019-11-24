@@ -6,7 +6,6 @@ import h2p from 'html2plaintext';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import windowSize from 'react-window-size';
 import { connect } from 'react-redux';
-import {NavLink} from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import passwdCheck from "zxcvbn";
 
@@ -24,16 +23,17 @@ import {showSuggestion, archiveSuggestion, parseActions, deleteContrib, getProgr
 import {fetch_user, fetch_dispositifs} from '../../../Store/actions';
 import FInput from '../../../components/FigmaUI/FInput/FInput';
 import { colorAvancement } from '../../../components/Functions/ColorFunctions';
+import setAuthToken from '../../../utils/setAuthToken';
 
 import './UserProfile.scss';
 import variables from 'scss/colors.scss';
-import setAuthToken from '../../../utils/setAuthToken';
 
 const anchorOffset = '120';
 
 class UserProfile extends Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.showSuggestion = showSuggestion.bind(this);
     this.archiveSuggestion = archiveSuggestion.bind(this);
     this.selectItem = selectItem.bind(this);
@@ -54,6 +54,8 @@ class UserProfile extends Component {
     langues:[],
     structure: {},
     actionsStruct: [],
+    contributionsStruct: [],
+    traductionsStruct:[],
     traducteur:false,
     contributeur:false,
     editing: false,
@@ -72,36 +74,49 @@ class UserProfile extends Component {
     password:"", 
     newPassword:"", 
     cpassword: "", 
-    passwordVisible: false
+    passwordVisible: false,
+    nbReadStruct: 0,
   }
 
   componentDidMount() {
+    this._isMounted = true;
     const user=this.props.user, userId = this.props.user;
     API.get_tradForReview({query: {'userId': userId}}).then(data => { //console.log(data.data.data);
-      this.setState({traductions: data.data.data})
+      this._isMounted && this.setState({traductions: data.data.data})
     })
     API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}, demarcheId: { $exists: false }}, sort:{updatedAt: -1}}).then(data => { //console.log(data.data.data);
-      this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
+      this._isMounted && this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
     })
     if(user.structures && user.structures.length > 0){
       this.initializeStructure();
-      API.get_dispositif({query: {'mainSponsor': user.structures[0]}, sort:{updatedAt: -1}}).then(data => {
-        this.setState({actionsStruct: parseActions(data.data.data)})
+      API.get_dispositif({query: {'mainSponsor': user.structures[0], status: {$in: ["Actif", "Accepté structure", "En attente", "En attente admin"]}, demarcheId: { $exists: false } }, sort:{updatedAt: -1}}).then(data => { //console.log(data.data.data)
+        this._isMounted && this.setState({contributionsStruct: data.data.data, actionsStruct: parseActions(data.data.data)}, () => {
+          this._isMounted && API.get_tradForReview({query: {type: "dispositif", articleId: {$in: this.state.contributionsStruct.map(x => x._id)} }}).then(data => { //console.log(data.data.data)
+            this._isMounted && this.setState({traductionsStruct: data.data.data})
+          });
+          this._isMounted && API.distinct_count_event({distinct: "userId", query: {action: 'readDispositif', label: "dispositifId", value : {$in: this.state.contributionsStruct.map(x => x._id)} } }).then(data => {
+            this._isMounted && this.setState({nbReadStruct: data.data.data})
+          })
+        })
       })
     }
     console.log(user)
     this.setState({user:user, isMainLoading:false, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
     
-    API.get_users().then(data => this.setState({users: data.data.data}) );
-    API.get_langues({}).then(data => this.setState({ langues: data.data.data }))
+    API.get_users().then(data => this._isMounted && this.setState({users: data.data.data}) );
+    API.get_langues({}).then(data => this._isMounted && this.setState({ langues: data.data.data }))
     this.getProgression();
     window.scrollTo(0, 0);
   }
 
+  componentWillUnmount (){
+    this._isMounted = false;
+  }
+
   initializeStructure = () => {
     const user=this.props.user;
-    API.get_structure({_id: user.structures[0] }).then(data => { //console.log(data.data.data);
-      this.setState({structure:data.data.data[0]})
+    API.get_structure({_id: user.structures[0] }, {}, 'dispositifsAssocies').then(data => { //console.log(data.data.data);
+      this._isMounted && this.setState({structure:data.data.data[0]})
     })
   }
 
@@ -134,7 +149,7 @@ class UserProfile extends Component {
     const formData = new FormData()
     formData.append(0, file)
     API.set_image(formData).then(data_res => {
-      this.setState({
+      this._isMounted && this.setState({
         user:{
           ...this.state.user,
           picture: data_res.data.data
@@ -149,7 +164,7 @@ class UserProfile extends Component {
     let user={...this.state.user};
     user.cookies.dispositifsPinned = key==='all' ? [] : user.cookies.dispositifsPinned.filter(x => x._id !== key);
     API.set_user_info(user).then((data) => {
-      this.setState({ user: data.data.data })
+      this._isMounted && this.setState({ user: data.data.data })
     })
   }
 
@@ -162,20 +177,24 @@ class UserProfile extends Component {
     if((passwdCheck(newPassword) || {}).score < 1){ return Swal.fire( {title: 'Oops...', text: 'Le mot de passe est trop faible', type: 'error', timer: 1500}); }
     const newUser = { password, newPassword, cpassword }
     API.change_password({query: {_id : user._id, username: user.username}, newUser}).then(data => {
-      Swal.fire( {title: 'Yay...', text: 'Mise à jour réussie !', type: 'success', timer: 1500} )
-      localStorage.setItem('token', data.data.token);
-      setAuthToken(data.data.token);
-      this.props.fetch_user();
-      this.toggleModal("password");
+      if(this._isMounted){
+        Swal.fire( {title: 'Yay...', text: 'Mise à jour réussie !', type: 'success', timer: 1500} )
+        localStorage.setItem('token', data.data.token);
+        setAuthToken(data.data.token);
+        this.props.fetch_user();
+        this.toggleModal("password");
+      }
     });
   }   
 
   validateObjectifs = (newUser) => {
     newUser={ _id: this.state.user._id, ...newUser }
     API.set_user_info(newUser).then((data) => {
-      Swal.fire( {title: 'Yay...', text: 'Vos objectifs ont bien été enregistrés', type: 'success', timer: 1500})
-      this.setState({user:data.data.data})
-      this.toggleModal('objectifs')
+      if(this._isMounted){
+        Swal.fire( {title: 'Yay...', text: 'Vos objectifs ont bien été enregistrés', type: 'success', timer: 1500});
+        this.setState({user:data.data.data});
+        this.toggleModal('objectifs');
+      }
     })
   }
 
@@ -190,9 +209,11 @@ class UserProfile extends Component {
       picture: user.picture
     }
     API.set_user_info(newUser).then((data) => {
-      this.props.fetch_user();
-      Swal.fire( {title: 'Yay...', text: 'Votre profil a bien été enregistré', type: 'success', timer: 1500})
-      this.setState({ editing:false, user: data.data.data })
+      if(this._isMounted){
+        this.props.fetch_user();
+        Swal.fire( {title: 'Yay...', text: 'Votre profil a bien été enregistré', type: 'success', timer: 1500});
+        this.setState({ editing:false, user: data.data.data });
+      }
     })
   }
 
@@ -201,9 +222,10 @@ class UserProfile extends Component {
   render() {
     const {traducteur, contributeur, traductions, contributions, actions, 
       langues, structure, user, showSections, isMainLoading, actionsStruct,
-      password, newPassword, cpassword, passwordVisible}=this.state;
-    const {t}= this.props;
-    const favoris = ((user.cookies || {}).dispositifsPinned || []);
+      password, newPassword, cpassword, passwordVisible, nbReadStruct, traductionsStruct}=this.state;
+    const {t, dispositifs}= this.props;
+    const favorisId = (user.cookies || {}).dispositifsPinned || [];
+    const favoris = dispositifs && favorisId.map(x => ({...x, ...dispositifs.find(y => y._id === x._id)}) )
     
     const imgSrc = this.state.tempImg || (this.state.user.picture || []).secure_url || marioProfile
 
@@ -286,25 +308,31 @@ class UserProfile extends Component {
                 <CardBody>
                   <Row>
                     <Col xl="auto" lg="4" md="4" sm="12" xs="12" className={"obj-col obj-first" + (this.state.progression.timeSpent > 0 ? " active" : "")}>
-                      <NavLink to="/dispositif">
+                      <AnchorLink href="#mes-contributions" offset={anchorOffset}>
                         <h1 className="title text-big">{Math.round(this.state.progression.timeSpent / 1000 / 60) || 0}</h1>
                         <h6 className="subtitle">{t("UserProfile.minutes données", "minutes données")}</h6>
-                        <span className="content texte-small">{t("UserProfile.commencez à contribuer", "Commencez à contribuer pour démarrer le compteur")}.</span>
-                      </NavLink>
+                        <span className="content texte-small">{this.state.progression.timeSpent ? 
+                          t("UserProfile.Merci de donner de votre temps", "Merci de donner de votre temps pour l’intégration des personnes réfugiées") :
+                          t("UserProfile.commencez à contribuer", "Commencez à contribuer pour démarrer le compteur")}.</span>
+                      </AnchorLink>
                     </Col>
                     <Col xl="auto" lg="4" md="4" sm="12" xs="12" className={"obj-col obj-second" + (this.state.progression.nbMotsContrib > 0 ? " active" : "")}>
-                      <NavLink to="/dispositif">
+                      <AnchorLink href="#mes-contributions" offset={anchorOffset}>
                         <h1 className="title text-big">{this.state.progression.nbMotsContrib || 0}</h1>
                         <h6 className="subtitle">{t("UserProfile.mots écrits", "mots écrits")}</h6>
-                        <span className="content texte-small">{t("UserProfile.commencez à rédiger", "Rédigez votre premier contenu pour démarrer le compteur")}.</span>
-                      </NavLink>
+                        <span className="content texte-small">{this.state.progression.nbMotsContrib > 0 ?
+                          t("UserProfile.Grâce à vous", "Grâce à vous, les personnes réfugiées seront plus et mieux informées") :
+                          t("UserProfile.commencez à rédiger", "Rédigez votre premier contenu pour démarrer le compteur")}.</span>
+                      </AnchorLink>
                     </Col>
                     <Col xl="auto" lg="4" md="4" sm="12" xs="12" className={"obj-col obj-third" + (this.state.progression.nbMots > 0 ? " active" : "")}>
-                      <NavLink to="/backend/user-dashboard">
+                      <AnchorLink href="#mes-traductions" offset={anchorOffset}>
                         <h1 className="title text-big">{this.state.progression.nbMots || 0}</h1>
                         <h6 className="subtitle">{t("UserProfile.mots traduits", "mots traduits")}</h6>
-                        <span className="content texte-small">{t("UserProfile.commencez à traduire", "Traduisez vos premiers mots pour démarrer le compteur")}.</span>
-                      </NavLink>
+                        <span className="content texte-small">{this.state.progression.nbMots > 0 ?
+                          t("UserProfile.Merci de participer", "Merci de participer à rendre accessible l’information au plus grand nombre") :
+                          t("UserProfile.commencez à traduire", "Traduisez vos premiers mots pour démarrer le compteur")}.</span>
+                      </AnchorLink>
                     </Col>
                   </Row>
                 </CardBody>
@@ -395,6 +423,8 @@ class UserProfile extends Component {
               actions={actionsStruct}
               user={user}
               toggleModal={this.toggleModal}
+              nbRead={nbReadStruct}
+              traductions={traductionsStruct}
               {...data_structure} />}
         </div>
 
@@ -564,6 +594,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     userId: state.user.userId,
+    dispositifs: state.dispositif.dispositifs,
   }
 }
 

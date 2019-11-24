@@ -58,7 +58,7 @@ class DispositifCreateModal extends Component {
             </div></>:
             <div className="tuto-wrapper">
               <div className="image-figma">
-                <img src={stepIdx === 1 ? interieur_2 : stepIdx === 2 ? interieur_3 : interieur_4} />
+                <img src={stepIdx === 1 ? interieur_2 : stepIdx === 2 ? interieur_3 : interieur_4} alt="step illustration" />
               </div>
               {onBoardSteps[stepIdx].content}
             </div>}
@@ -75,15 +75,15 @@ class DispositifCreateModal extends Component {
           </div>
           <div className="align-right">
             {stepIdx === 0 ?
-              <FButton type="light-action" onClick={toggle} className="mr-10">
+              <FButton type="outline-black" onClick={toggle} className="mr-10">
                 Annuler
               </FButton>:
-              <FButton type="light-action" name="arrow-back" fill={variables.noir} onClick={()=>this.changeStep(false)} className="mr-10" />}
+              <FButton type="outline-black" name="arrow-back" fill={variables.noir} onClick={()=>this.changeStep(false)} className="mr-10" />}
             {stepIdx === onBoardSteps.length - 1 ?
               <FButton type="validate" name="checkmark" onClick={startFirstJoyRide}>
                 Démarrer
               </FButton>:
-              <FButton type="light-action" name="arrow-forward" fill={variables.noir} onClick={this.changeStep} />}
+              <FButton type="outline-black" name="arrow-forward" fill={variables.noir} onClick={this.changeStep} />}
           </div>
         </ModalFooter>
       </Modal>

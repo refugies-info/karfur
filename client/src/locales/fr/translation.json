@@ -86,7 +86,10 @@
     "membre": "membre{{s}}",
     "notification": "notification{{s}}",
     "personne informée": "personne{{s}} informée{{s}}",
-    "Mes traductions": "Mes traductions"
+    "Mes traductions": "Mes traductions",
+    "Commencer à rédiger": "Commencer à rédiger",
+    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants": "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants",
+    "Ici, vous pourrez accéder à vos contributions": "Ici, vous pourrez accéder à vos contributions"
   },
   "UserProfile": {
     "Pseudonyme": "Pseudonyme :",
@@ -102,7 +105,10 @@
     "commencez à rédiger": "Rédigez votre premier contenu pour démarrer le compteur",
     "mots traduits": "mots traduits",
     "commencez à traduire": "Traduisez vos premiers mots pour démarrer le compteur",
-    "Modifier le mot de passe": "Modifier le mot de passe"
+    "Modifier le mot de passe": "Modifier le mot de passe",
+    "Merci de donner de votre temps": "Merci de donner de votre temps pour l’intégration des personnes réfugiées",
+    "Grâce à vous": "Grâce à vous, les personnes réfugiées seront plus et mieux informées",
+    "Merci de participer": "Merci de participer à rendre accessible l’information au plus grand nombre"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Qui sommes-nous ?",
@@ -183,6 +189,7 @@
     "Loisir": "Loisir",
     "Culture": "Culture",
     "Santé": "Santé",
+    "Autre": "Autre",
     "apprendre le français": "apprendre le français",
     "me loger": "me loger",
     "trouver un travail": "trouver un travail",
@@ -207,7 +214,11 @@
     "très bien": "très bien",
     "Paris": "Paris",
     "Lyon": "Lyon",
-    "Nantes": "Nantes"
+    "Nantes": "Nantes",
+    "choisir un thème": "choisir un thème",
+    "ma ville": "ma ville",
+    "âge": "âge",
+    "mon niveau": "mon niveau"
   },
   "SearchItem": {
     "Je cherche à": "Je cherche à",
@@ -229,6 +240,7 @@
     "Actif": "Actif",
     "Supprimé": "Supprimé",
     "Supprimée": "Supprimée",
+    "Rejetée": "Rejetée",
     "Accepté structure": "Accepté structure",
     "En attente admin": "En attente admin",
     "En attente non prioritaire": "En attente non prioritaire",
@@ -252,7 +264,16 @@
     "Force": "Force",
     "Mot de passe actuel": "Mot de passe actuel",
     "Nouveau mot de passe": "Nouveau mot de passe",
-    "Confirmez le nouveau mot de passe": "Confirmez le nouveau mot de passe"
+    "Confirmez le nouveau mot de passe": "Confirmez le nouveau mot de passe",
+    "Réinitialisez votre mot de passe": "Réinitialisez votre mot de passe",
+    "Renseignez ici le nouveau mot de passe souhaité": "Renseignez ici le nouveau mot de passe souhaité",
+    "Chargement des données utilisateur": "Chargement des données utilisateur",
+    "Problème mdp": "Un problème est survenu au moment de réinitialiser le mot de passe. Merci d'essayer à nouveau",
+    "Revenir à la page de connexion": "Revenir à la page de connexion"
+  },
+  "UnauthorizedAccess": {
+    "Accès refusé": "Accès refusé",
+    "Revenir à l'accueil": "Revenir à l'accueil"
   },
   "Dispositif": {
     "fiabilite_faible": "Une information avec une faible fiabilité n'a pas été vérifiée auparavant",
@@ -318,11 +339,11 @@
     "realisation etape": "Je réalise cette étape :",
     "Type de démarche": "Type de démarche",
     "Combien de temps": "Combien de temps ça va vous prendre ?",
-    "Clique sur ce lien": "Clique sur ce lien",
-    "Ton lieu de rendez-vous est": "Ton lieu de rendez-vous est",
+    "Clique sur ce lien": "Cliquez sur ce lien",
+    "Ton lieu de rendez-vous est": "Votre lieu de rendez-vous est",
     "Numéro à appeler": "Numéro à appeler",
-    "Ton courrier doit être adressé à": "Ton courrier doit être adressé à",
-    "Ce que tu dois faire": "Ce que tu dois faire",
+    "Ton courrier doit être adressé à": "Votre courrier doit être adressé à",
+    "Ce que tu dois faire": "Ce que vous devez faire",
     "izok": "Est-ce que ça s’est bien passé comme on a dit ?",
     "Titre du lieu": "Titre du lieu",
     "Adresse": "Adresse",
@@ -350,7 +371,26 @@
     "Je veux juste vous dire": "Je veux juste vous dire",
     "réagir": "réagir",
     "écouter": "écouter",
-    "Ajouter un thème": "Ajouter un thème"
+    "Ajouter un thème": "Ajouter un thème",
+    "réfugiés": "réfugiés",
+    "Localisation": "Localisation",
+    "Tout public": "Tout public",
+    "Situation familiale": "Situation familiale",
+    "Situation d’hébergement": "Situation d’hébergement",
+    "Sexe": "Sexe",
+    "Les réfugiés statutaires": "Les réfugiés statutaires",
+    "Célibataire": "Célibataire",
+    "En concubinage": "En concubinage",
+    "Marié": "Marié",
+    "Sans enfants": "Sans enfants",
+    "Avec enfants": "Avec enfants",
+    "Logé": "Logé",
+    "Hébergé": "Hébergé",
+    "Sans-abri": "Sans-abri",
+    "Les accompagnants": "Les accompagnants",
+    "Les femmes": "Les femmes",
+    "Les hommes": "Les hommes",
+    "Les deux": "Les deux"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",
@@ -378,7 +418,8 @@
     "Participer à l'évolution de réfugiés-info": "Participer à l'évolution de réfugiés.info",
     "Demander des fonctionnalités": "Demander des fonctionnalités",
     "Le projet": "Le projet",
-    "Vous cherchez ?": "Vous cherchez ?"
+    "Vous cherchez ?": "Vous cherchez ?",
+    "Centre d'aide": "Centre d'aide"
   },
   "Retour à la recherche": "Retour à la recherche",
   "avec": "avec",
@@ -405,6 +446,7 @@
   "Modifier mon profil": "Modifier mon profil",
   "Bientôt disponible": "Bientôt disponible",
   "Chercher un dispositif": "Explorer les dispositifs",
+  "Chercher une démarche": "Explorer les démarches",
   "Rejoindre le réseau": "Rejoindre le réseau",
   "Valider": "Valider",
   "Contribuer": "Contribuer",
@@ -427,6 +469,7 @@
   "Qui sommes-nous ?": "Qui sommes-nous ?",
   "Comment contribuer ?": "Comment contribuer ?",
   "Accessibilité": "Accessibilité",
+  "Politique de confidentialité": "Politique de confidentialité",
   "Mentions légales": "Mentions légales",
   "Dispositif d'accompagnement": "Dispositif d'accompagnement",
   "Démarche administrative": "Démarche administrative",

@@ -24,14 +24,16 @@ class StructureCard extends Component {
 
   toggle = tab => {
     if (this.state.activeTab !== tab) {
-      this.setState({
-        activeTab: tab
-      });
+      this.setState({ activeTab: tab });
     }
   }
+
   render(){
-    const {t, actions, title, structure, nbRead, windowWidth} = this.props;
+    const {t, actions, title, structure, nbRead, windowWidth, traductions} = this.props;
     const actionTypes = [...new Set((actions || []).map(x => x.action))].map(a => ({type: a, actions: (actions || []).filter(y => y.action === a) || [] }))
+    const nbTraducteurs = [...new Set((traductions || []).reduce((acc, curr) => ([...acc, curr.userId, curr.validatorId]),[]).filter(x => x))].length;
+    const sommeDates=(structure.dispositifsAssocies || []).map(x => x.updatedAt).reduce((acc, curr) => acc += moment(curr), 0);
+    const moyenneDate = sommeDates / (structure.dispositifsAssocies || []).length;
     return(
       <div className="tableau-wrapper structure-card" id="structure">
         <Row>
@@ -107,41 +109,41 @@ class StructureCard extends Component {
               <Row>
               <Col lg="6">
                 <div className="indicateur">
-                  {/* <h2>{(structure.dispositifsAssocies || []).length}</h2> */}
+                  <h2>{(structure.dispositifsAssocies || []).length}</h2>
                   <div>{t("Tables.contenu", "contenu{{s}}", {s: (structure.dispositifsAssocies || []).length > 1 ? "s" : ""})}</div>
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
-                  {/* <h2>{nbTraducteurs}</h2> */}
-                  {/* <div>{t("Tables.traducteur mobilisé", "traducteur{{s}} mobilisé{{s}}", {s: nbTraducteurs > 1 ? "s" : "" })}</div> */}
+                  <h2>{nbTraducteurs}</h2>
+                  <div>{t("Tables.traducteur mobilisé", "traducteur{{s}} mobilisé{{s}}", {s: nbTraducteurs > 1 ? "s" : "" })}</div>
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
-                  {/* <h2>{(structure.membres || []).length}</h2> */}
+                  <h2>{(structure.membres || []).length}</h2>
                   <div>{t("Tables.membre", "membre{{s}}", {s: (structure.membres || []).length > 1? "s" : "" })}</div>
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
-                  {/* <h2>{props.actions.length}</h2> */}
+                  <h2>{actions.length}</h2>
                   <div>{t("Tables.notification", "notification{{s}}", {s: actions.length > 1? "s" : "" })}</div>
                 </div>
               </Col>
               <Col lg="6">
                 <div className="indicateur">
-                  {/* <h2>{props.nbRead}</h2> */}
+                  <h2>{nbRead}</h2>
                   <div>{t("Tables.personne informée", "personne{{s}} informée{{s}}", {s: nbRead > 1? "s" : "" })}</div>
                 </div>
               </Col>
-              {/* {moyenneDate &&
+              {moyenneDate &&
                 <Col lg="6">
                   <div className="indicateur">
                     <h4>{moment(moyenneDate).fromNow()}</h4>
                     <div>moyenne des dernières intéractions</div>
                   </div>
-                </Col>} */}
+                </Col>}
               </Row>
             </div>
           </CardBody>

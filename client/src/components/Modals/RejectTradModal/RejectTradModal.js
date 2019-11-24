@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter, ListGroup, ListGroupItem } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, ListGroup, ListGroupItem } from 'reactstrap';
 import Swal from 'sweetalert2';
 
 import FButton from '../../FigmaUI/FButton/FButton';
@@ -84,7 +84,7 @@ class RejectTradModal extends Component {
             <ListGroupItem tag="button" action key={reasons.length} onClick={() => this.selectReason(reasons.length)} active={clicked[reasons.length]}>
               <EVAIcon name={"radio-button-" + (clicked[reasons.length] ? "on" : "off")} fill={variables.noir} className="mr-10" />
               <span>Message personnalisé à : </span> 
-              <img src={(userId.picture || {}).secure_url || marioProfile} className="profile-img-pin mr-10" />
+              <img src={(userId.picture || {}).secure_url || marioProfile} className="profile-img-pin mr-10" alt="profile" />
               <b>{userId.username}</b>
             </ListGroupItem>
           </ListGroup>

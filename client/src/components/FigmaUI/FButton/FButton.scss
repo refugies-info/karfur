@@ -60,8 +60,11 @@ body .figma-btn{
         fill:$grisFonce;
       }
       &:hover{
-        transition: all 0.5s ease;
         background-color: $gris;
+        color: $grisFonce;
+        svg{
+          fill: $grisFonce;
+        }
       }
     }
   }
@@ -154,6 +157,30 @@ body .figma-btn{
     }
   }
 
+  // Le bouton "merci" dans dispositif
+  &.thanks{
+    background: transparent;
+    color: $grisFonce;
+    border: 0.5px solid $grisFonce;
+    padding: 15px 20px;
+    &:hover{
+      background: $validationDefault;
+      color: $blancSimple;
+      border: 0.5px solid $validationDefault;
+    }
+    &:active{
+      background: $validationHover;
+      color: $blancSimple;
+      border: 0.5px solid $validationHover;
+    }
+    &.clicked{
+      background: $validationHover;
+      color: $blancSimple;
+      border: 0.5px solid $validationHover;
+    }
+  }
+
+  // Utilisé lorsqu'un bouton utilise la couleur de thème de façon dynamique dans le JS
   &.theme{
     background: $noir;
     color: $blanc;
@@ -176,10 +203,47 @@ body .figma-btn{
       color: $noir;
       border-color: $blancSimple;
       background: $blancSimple;
+      svg{
+        fill: $noir;
+      }
     }
 
   } 
-  
+
+  // Outline-Dark
+  &.outline-black{
+    border: 0.5px solid $noir;
+    background: transparent;
+    color: $noir;
+    transition: all 0.4s ease;
+    svg{
+      fill: $noir;
+    }
+    &:hover{
+      border-color: $noir;
+      background: $noir;
+      color: $blancSimple;
+      svg{
+        fill: $blancSimple;
+      }
+    }
+  }
+
+  // La version sans texte, notamment utilisée dans l'univers profil pour les tables
+  &.pill{
+    border-radius: 12px;
+    height: auto;
+    svg{
+      fill: $blanc;
+    }
+    &:hover, &:not(:disabled):not(.disabled):active, &:focus{
+      background: $blanc;
+      svg{
+        fill: $noir;
+      }
+    }
+  }
+
   &.pill{
     border: 0.5px solid #FFFFFF;
     background: transparent;
@@ -210,40 +274,7 @@ body .figma-btn{
     }
   }
 
-  // Outline-Dark
-
-  &.outline-black{
-    border: 0.5px solid $noir;
-    background: transparent;
-    color: $noir;
-    transition: all 0.4s ease;
-    svg{
-      fill: $noir;
-    }
-    &:hover{
-      border-color: $noir;
-      background: $noir;
-      color: $blancSimple;
-      svg{
-        fill: $blancSimple;
-      }
-    }
-  }
-
-  &.pill{
-    border-radius: 12px;
-    height: auto;
-    svg{
-      fill: $blanc;
-    }
-    &:hover, &:not(:disabled):not(.disabled):active, &:focus{
-      background: $blanc;
-      svg{
-        fill: $noir;
-      }
-    }
-  }
-
+  // Les gros boutons de la page d'accueil
   &.hero{
     height: 60px;
     padding: 10px 20px;
