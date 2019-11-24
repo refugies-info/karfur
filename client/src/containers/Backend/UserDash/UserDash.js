@@ -49,7 +49,7 @@ class UserDash extends Component {
         const languesUser = data_langues.data.data;
         this._isMounted && this.setState({languesUser, isMainLoading: false}, () => {
           if(this.props.expertTrad){
-            this._isMounted && API.get_tradForReview({query: {'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"}, sort: {updatedAt: -1}}).then(data => {//console.log(data.data.data);
+            this._isMounted && API.get_tradForReview({query: {'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"}, sort: {updatedAt: -1}}).then(data => { console.log(data.data.data);
               this._isMounted && this.setState(pS => ({languesUser: pS.languesUser.map( x => ({...x, nbTrads: ((data.data.data || []).filter(y => y.langueCible === x.i18nCode) || []).length }) ) }))
             })
           }
