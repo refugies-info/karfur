@@ -173,12 +173,11 @@ body .figma-btn{
       color: $blancSimple;
       border: 0.5px solid $validationHover;
     }
-    &.cliqued{
+    &.clicked{
       background: $validationHover;
       color: $blancSimple;
       border: 0.5px solid $validationHover;
     }
-    
   }
 
   // Utilisé lorsqu'un bouton utilise la couleur de thème de façon dynamique dans le JS
