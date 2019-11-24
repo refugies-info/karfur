@@ -47,8 +47,8 @@ if(process.env.NODE_ENV === 'dev') {
       }
 
       // let isLocaleSuccess=_insertI18nLocales() //depuis le fichier local vers la BDD
-      // let isDownloadSuccess=_getI18nLocales() //depuis la BDD vers le fichier local
       // let isMergeSuccess=_mergeLocalesFiles() //fusionner en local avec les données de prod
+      // let isDownloadSuccess=_getI18nLocales() //depuis la BDD vers le fichier local
       // let isAvancementSuccess = _recalculateAvancement(); //Recalcule l'avancement de tous les strings du site
     }catch(e){console.log(e)}
   }
@@ -57,7 +57,7 @@ if(process.env.NODE_ENV === 'dev') {
     try{
       // let isLocaleSuccess=_insertI18nLocales()
       // let isDownloadSuccess=_getI18nLocales()
-      // let isAvancementSuccess = _recalculateAvancement(); //Recalcule l'avancement de tous les strings du site
+      let isAvancementSuccess = _recalculateAvancement(); //Recalcule l'avancement de tous les strings du site
     }catch(e){console.log(e)}
   }
 }

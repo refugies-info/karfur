@@ -33,7 +33,10 @@
     "Trier par": "ነገራት በብመዶቦም ምስራዕ",
     "Filtrer par": "በዚ መንፊት",
     "Dispositifs": "ዕዮ ፣ ኣብርክቶ",
-    "Démarches": "ዝቕጽል"
+    "Démarches": "ዝቕጽል",
+    "Créer une fiche": "ሓደ ገጽ ፍጠር",
+    "Elargir recherche": "ናይ ምድልይካ ክእለትካ  ኣዕብዮ ፣ ነቶም ዘይንጥፉ ሓደ ሓደ መሰኻኹቲ ነገራት",
+    "Oups": "ኣብ ጌጋ ዝጥቀሙላ ቃል ልክዕ ከም ፣ ( ኦው)"
   },
   "Tables": {
     "Propriétaire": "ወናኒ",
@@ -44,6 +47,7 @@
     "mots rédigés": "ቓል<br/>ጽሓፍ",
     "minutes passées": "ዝሓለፈ<br/>ደቒቕ",
     "personnes informées": "ሰባት<br/>ሰልጢኖም",
+    "Espace rédaction": "ቦታ ናይ መጽሓፊ",
     "Retrouvez ici vos pages favorites": "ኣብዚ ናትኩም ተምርጽቲ ገጽ ናይ ጽሕፋት",
     "cherche btn": "እዚ መጥውቒ ኣጽናዓዮ መታን ኣብ ዝቅጽል ውሑስ ክኾነልካ",
     "Ajouter un membre": "ምውሳኽ ከም ኣባል ማሕበር",
@@ -81,7 +85,8 @@
     "traducteur mobilisé": "ኣስተርጋሚ ምርካብ",
     "membre": "ኣባል",
     "notification": "ንሓቤሬታ ዝውክል ምልክታት",
-    "personne informée": "ማንም ሰብ ኣይትርድኦን/ወይ ኣይብጽሖን ሓቤሬታ"
+    "personne informée": "ማንም ሰብ ኣይትርድኦን/ወይ ኣይብጽሖን ሓቤሬታ",
+    "Mes traductions": "ኣነ ዝተርገምኩዎም"
   },
   "UserProfile": {
     "Pseudonyme": "ዝኾነ ስም",
@@ -97,7 +102,10 @@
     "commencez à rédiger": "መጀመርያ ግዜካ ጽሓፍ መታን እቲ ቖጻሪ ምስራሕ ክጅምር",
     "mots traduits": "ዝተተርጎሙ ቃላት",
     "commencez à traduire": "ተርጉም መጀመርያ ቓል መታን እቲ ቆጻሪ ምስራሕ ክጅምር",
-    "Modifier le mot de passe": "መቐይሪ ናይ ኮድ / ወይ መቀይሪ ፓስ ዎርድ"
+    "Modifier le mot de passe": "መቐይሪ ናይ ኮድ / ወይ መቀይሪ ፓስ ዎርድ",
+    "Merci de donner de votre temps": "የቐነልና  ካብ ግዜኻ ምሃብካ  ስዴኛናታት ኣብ ምውህሃድ  ኣብርክቶ ዝገበርካ",
+    "Grâce à vous": "ብጣዕሚ ነምስግነኩም ብሳላኹም  እቶም ሓተትቲ ዑቕባ ዝያዳ ክስልጥኑ ኢዮም",
+    "Merci de participer": "ነምስግነኩም ነዚ  ሓቤረታትን ንጥፈታትን ናብ ኩሉ  ብብዝሒ ቑጽሪ  ንኽባጻሕ ዘብርከትኩም  ፣፣"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "መን ኢና ንሕና ?",
@@ -202,13 +210,21 @@
     "très bien": "ብጣዕሚ ጽቡቕ",
     "Paris": "ፓሪስ",
     "Lyon": "ሊዮን",
-    "Nantes": "ናንት"
+    "Nantes": "ናንት",
+    "choisir un thème": "ሓደ  ኣርእስቲ ምረጽ",
+    "ma ville": "ናተይ ከተማ",
+    "âge": "ዕድመ",
+    "mon niveau": "ናተይ  ደረጃ"
   },
   "SearchItem": {
     "Je cherche à": "ኣብዚ እደሊ",
+    "choisir un thème": "ሓደ  ቁም ነገር ምረጽ",
     "J'habite à": "ኣብዚ እነብር",
+    "ma ville": "ናተይ ከተማ",
     "J'ai": "ኣለኒ",
+    "mon âge": "ዕድመይ",
     "Je parle": "እዛረብ",
+    "mon niveau": "ናተይ ደርጃ",
     "Je suis": "ኣነ",
     "français": "ፈረንሳይ"
   },
@@ -239,9 +255,21 @@
     "Pas besoin d’email": "ኢመይል ኣይድለካን ኢዩ",
     "Mot de passe oublié ?": "ናተይ ኮድ ረስዔዮ",
     "no-account": "በዚ ሽም ዝኾነ ኣክውንቲ የለን",
-    "Force": "ሓይሊ"
+    "Confirmez le mot de passe": "ድጎሞ ነቲ ዝነበረ ፓስዎርድ",
+    "Force": "ሓይሊ",
+    "Mot de passe actuel": "ናይ ሕጂ ፓስ ዎርድ / ወይ ኮድ ናይ ሕጂ",
+    "Nouveau mot de passe": "ሓድሽ ኮድ ፣  ወይ ሓድሽ ፓስ ዎርድ",
+    "Confirmez le nouveau mot de passe": "ነቲ ሓድሽ  ኮድ ፣ ወይ  ፓስ ወርድ  ንምርግጋጽ ድገሞ",
+    "Réinitialisez votre mot de passe": "ዳግማይ  ጀምር  ናትካ  ፓስ ዎርድ ፣ ወይ ኮድ",
+    "Renseignez ici le nouveau mot de passe souhaité": "ኣብዚ ኣረጋግጽ እቲ ትደሊዮ  ዝነበረካ ሓድሽ  ኮድ  ወይ ፓስዎርድ",
+    "Chargement des données utilisateur": "ኣብ ጥቕሚ ክውዕሉ ዝኽእሉ ምላእ",
+    "Problème mdp": "ኣብ ዝሓለፈ ካልኣይ ክትፍትን ከለኻ በቲ ናይ ቅድም ፓስ ዎርድ የሽግሩ ነሮም ፣ ሕጂ ግን ኽትፍትን ከለኻ ብካልእ ሓድሽ ፓስ ዎርድ ጌርካ ፈትን፣   የቐነልና ብ ምፍታንካ",
+    "Revenir à la page de connexion": "ምምጻእ ናብቲ  ገጽ ናይ መመዝገቢ"
   },
-  "UnauthorizedAccess": {},
+  "UnauthorizedAccess": {
+    "Accès refusé": "ኣብ  ምንጻግ በጺሑ",
+    "Revenir à l'accueil": "ናብ መቀበሊ ምምጻእ"
+  },
   "Dispositif": {
     "fiabilite_faible": "ብርግጽ ሓደ ሓቤሬታ ቅድሚ ሕጂ ብዝኾነ ምኽንያት ናይ ድኽመት ኣይተረጋገጸን",
     "cliquez": "ኣብዚ ጠውቕ ንዝያዳ ሓቤሬታ",
@@ -312,17 +340,36 @@
     "Ton courrier doit être adressé à": "ደብዳቤኻ ኣብዚ ክልኣኽ ኣለዎ",
     "Ce que tu dois faire": "ክትገብሮ ዝግባእ",
     "izok": "ርእቶኩም ሃቡና ከምቲ ዝብልናዮ ዶ ረክብክሞ ወላ ካልእ ነገር ?",
+    "Titre du lieu": "ኣድራሻ ናይ ቦታ",
     "Adresse": "ኣድራሻ",
     "Ville": "ከትማ",
+    "Informations pratiques": "ሓቤሬታ ብተግባር",
+    "Email de contact": "ኢመይል ናይ መራኻቢ",
     "Numéro de téléphone": "ቁጽሪ ናይ ተለፎን",
     "Débutant": "ጀማሪ",
+    "Intermédiaire": "ሞንጎኛ",
     "Avancé": "ዝቀደመ",
+    "Tous les niveaux": "ኩሎም ደረጀታት",
+    "Titre de séjour": "ታሴራ ፣ ወይ    ቲትኽ ዱ ሱጁኽ",
     "Justificatif de domicile": "መርጋገጺ ናይ ገዛ",
+    "Diplôme": "ዲብሎም",
     "Permis de conduire": "ማንጃ ፍቃድ",
+    "réfugié": "ስደቴኛ",
     "tout public": "ኩሉ ህዝቢ",
+    "En savoir plus": "ብብዝሒ ምፍላጥ",
     "Tiennent la page": "እዛ ገጽ ጹቡቅ ጌርካ ኣጽናዓያ መታን ን ሕቶታት ምምላጽስ ክትጠቅመካ",
+    "Évaluer mon niveau": "ናተይ ዓቐን ደረጃ  ምግምጋም",
+    "Nous vous écoutons": "ንሕና ንዓኹም ንሰምዓኩም ፣",
+    "Réagir": "ግብረ መልሲ",
     "J'ai une question": "ሓንቲ ሕቶ ኣላትኒ",
-    "J'ai une suggestion !": "ሓደ ርእይቶ ኣለኒ"
+    "J'ai une suggestion !": "ሓደ ርእይቶ ኣለኒ",
+    "Je veux juste vous dire": "ብዛዕባ  እዚኣ   ጥራሕ  ክብለካ  ደልየ",
+    "réagir": "ግብረ መልሲ",
+    "écouter": "ምስማዕ",
+    "Ajouter un thème": "ወስኽ ሓደ ዛዕባ",
+    "réfugiés": "ዑቕባ ዝረኸቡ",
+    "Localisation": "ቦታ",
+    "Tout public": "ኒ ኹሉ ህዝቢ"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "ርግጽኛ ዲኻ ?",
@@ -377,6 +424,7 @@
   "Modifier mon profil": "ምቅያር ናተይ ፕሮፋያል",
   "Bientôt disponible": "ኣብ ቀረባ ግዜ ድልው ኢዩ",
   "Chercher un dispositif": "ምርኣይ መሳርሒ",
+  "Chercher une démarche": "ትዕዝብቲ ናይ ኣሰራርሓ",
   "Rejoindre le réseau": "መስመር ን ምርካብ",
   "Valider": "ምርግጋጽ",
   "Contribuer": "ኣበርክቶ",
@@ -406,5 +454,6 @@
   "Suivant": "ዝስዕብ",
   "Connexion": "መስምር",
   "Envoyer": "መልእኽቲ",
-  "Lexique": "ላህጃ / ካልእይ ቃንቃ"
+  "Lexique": "ላህጃ / ካልእይ ቃንቃ",
+  "Changer": "ምቕያር"
 }
