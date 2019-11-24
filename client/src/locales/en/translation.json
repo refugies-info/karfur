@@ -47,6 +47,7 @@
     "mots rédigés": "words<br/>written",
     "minutes passées": "minutes<br/>spent",
     "personnes informées": "people<br/>informed",
+    "Espace rédaction": "Writing area",
     "Retrouvez ici vos pages favorites": "Find your favorite pages here",
     "cherche btn": "Look for this button in the content to save it",
     "Ajouter un membre": "Add a member",
@@ -101,7 +102,10 @@
     "commencez à rédiger": "Write content to start the meter",
     "mots traduits": "translated words",
     "commencez à traduire": "Begin translating to start the meter",
-    "Modifier le mot de passe": "change password"
+    "Modifier le mot de passe": "change password",
+    "Merci de donner de votre temps": "Thank you for giving your time to help refugee integration",
+    "Grâce à vous": "Thanks to you, refugees will be better informed",
+    "Merci de participer": "Thanks for your help making information accessible to as many people as possible!"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Who are we?",
@@ -206,7 +210,11 @@
     "très bien": "very good",
     "Paris": "Paris",
     "Lyon": "Lyon",
-    "Nantes": "Nantes"
+    "Nantes": "Nantes",
+    "choisir un thème": "choose a subject",
+    "ma ville": "my city",
+    "âge": "age",
+    "mon niveau": "my level"
   },
   "SearchItem": {
     "Je cherche à": "I'm looking to",
@@ -251,9 +259,17 @@
     "Force": "Strength",
     "Mot de passe actuel": "Current password",
     "Nouveau mot de passe": "New password",
-    "Confirmez le nouveau mot de passe": "Confirm new password"
+    "Confirmez le nouveau mot de passe": "Confirm new password",
+    "Réinitialisez votre mot de passe": "Reset your password",
+    "Renseignez ici le nouveau mot de passe souhaité": "Fill in the new password of your choice here",
+    "Chargement des données utilisateur": "Loading user data",
+    "Problème mdp": "A problem occurred while resetting your password. Please try again.",
+    "Revenir à la page de connexion": "Return to the sign-in page"
   },
-  "UnauthorizedAccess": {},
+  "UnauthorizedAccess": {
+    "Accès refusé": "Access denied",
+    "Revenir à l'accueil": "Return to home"
+  },
   "Dispositif": {
     "fiabilite_faible": "Information is not certain and has not yet been verified",
     "cliquez": "Click \"?\" to learn more",
@@ -349,7 +365,11 @@
     "J'ai une suggestion !": "I have a suggestion!",
     "Je veux juste vous dire": "I just want to tell you",
     "réagir": "react",
-    "écouter": "listen"
+    "écouter": "listen",
+    "Ajouter un thème": "Add a subject",
+    "réfugiés": "refugees",
+    "Localisation": "Location",
+    "Tout public": "For all"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Are you sure?",
@@ -404,6 +424,7 @@
   "Modifier mon profil": "Edit my profile",
   "Bientôt disponible": "Coming soon",
   "Chercher un dispositif": "Explore programs",
+  "Chercher une démarche": "Explore processes",
   "Rejoindre le réseau": "Join the network",
   "Valider": "Validate",
   "Contribuer": "Contribute",

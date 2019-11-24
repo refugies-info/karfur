@@ -86,7 +86,10 @@
     "membre": "struct_59ph3wefk2pzetsp",
     "notification": "struct_59ph3wefk2pzetsq",
     "personne informée": "struct_59ph3wefk2pzetsr",
-    "Mes traductions": "struct_8g1fi0k2zwtnhw"
+    "Mes traductions": "struct_8g1fi0k2zwtnhw",
+    "Commencer à rédiger": "struct_sktwi38ik3dig6at",
+    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants": "struct_sktwi38ik3dig6au",
+    "Ici, vous pourrez accéder à vos contributions": "struct_sktwi38ik3dig6av"
   },
   "UserProfile": {
     "Pseudonyme": "struct_9u3tlk22y433h",
@@ -186,6 +189,7 @@
     "Loisir": "struct_9u3tlk22y435n",
     "Culture": "struct_9u3tlk22y435o",
     "Santé": "struct_9u3tlk22y435p",
+    "Autre": "struct_sktwi38ik3dig6aw",
     "apprendre le français": "struct_9u3tlk22y435q",
     "me loger": "struct_9u3tlk22y435r",
     "trouver un travail": "struct_9u3tlk22y435s",
@@ -236,6 +240,7 @@
     "Actif": "struct_9u3tlk22y436p",
     "Supprimé": "struct_9u3tlk22y436q",
     "Supprimée": "struct_9u3tlk22y436r",
+    "Rejetée": "struct_sktwi38ik3dig6ax",
     "Accepté structure": "struct_9u3tlk22y436s",
     "En attente admin": "struct_9u3tlk22y436t",
     "En attente non prioritaire": "struct_9u3tlk22y436u",
@@ -369,7 +374,23 @@
     "Ajouter un thème": "struct_9u1txbk37dw5gs",
     "réfugiés": "struct_9u1txbk37dw5gt",
     "Localisation": "struct_9u1txbk37dw5gu",
-    "Tout public": "struct_9u1txbk37dw5gv"
+    "Tout public": "struct_9u1txbk37dw5gv",
+    "Situation familiale": "struct_sktwi38ik3dig6ay",
+    "Situation d’hébergement": "struct_sktwi38ik3dig6az",
+    "Sexe": "struct_sktwi38ik3dig6b0",
+    "Les réfugiés statutaires": "struct_sktwi38ik3dig6b1",
+    "Célibataire": "struct_sktwi38ik3dig6b2",
+    "En concubinage": "struct_sktwi38ik3dig6b3",
+    "Marié": "struct_sktwi38ik3dig6b4",
+    "Sans enfants": "struct_sktwi38ik3dig6b5",
+    "Avec enfants": "struct_sktwi38ik3dig6b6",
+    "Logé": "struct_sktwi38ik3dig6b7",
+    "Hébergé": "struct_sktwi38ik3dig6b8",
+    "Sans-abri": "struct_sktwi38ik3dig6b9",
+    "Les accompagnants": "struct_sktwi38ik3dig6ba",
+    "Les femmes": "struct_sktwi38ik3dig6bb",
+    "Les hommes": "struct_sktwi38ik3dig6bc",
+    "Les deux": "struct_sktwi38ik3dig6bd"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "struct_9u3tlk22y438w",
@@ -397,7 +418,8 @@
     "Participer à l'évolution de réfugiés-info": "struct_9u3tlk22y439e",
     "Demander des fonctionnalités": "struct_9u3tlk22y439f",
     "Le projet": "struct_9u3tlk22y439g",
-    "Vous cherchez ?": "struct_9u3tlk22y439h"
+    "Vous cherchez ?": "struct_9u3tlk22y439h",
+    "Centre d'aide": "struct_sktwi38ik3dig6be"
   },
   "Retour à la recherche": "struct_9u3tlk22y439i",
   "avec": "struct_9u3tlk22y439j",
@@ -447,6 +469,7 @@
   "Qui sommes-nous ?": "struct_9u3tlk22y43ap",
   "Comment contribuer ?": "struct_9u3tlk22y43aq",
   "Accessibilité": "struct_9u3tlk22y43ar",
+  "Politique de confidentialité": "struct_sktwi38ik3dig6bf",
   "Mentions légales": "struct_9u3tlk22y43as",
   "Dispositif d'accompagnement": "struct_9u3tlk22y43at",
   "Démarche administrative": "struct_9u3tlk22y43au",
