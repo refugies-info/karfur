@@ -68,8 +68,8 @@ class Footer extends Component {
             </div>
             <div className="ligne-footer">
               {/*<label>Demander de nouveaux contenus</label>*/}
-              <FButton tag={"a"} href="https://refugies.canny.io/" target="_blank" rel="noopener noreferrer" className="footer-btn" type="light-action" name="plus-circle-outline" fill={variables.noir}>
-                {t("Footer.Demander des fonctionnalités", "Demander des fonctionnalités")}
+              <FButton tag={"a"} href="https://help.refugies.info/fr/" target="_blank" rel="noopener noreferrer" className="footer-btn" type="help" name="question-mark-circle-outline" fill={variables.noir}>
+                {t("Footer.Centre d'aide", "Centre d'aide")}
               </FButton>
             </div>
           </Col>

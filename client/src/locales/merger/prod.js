@@ -24,9 +24,9 @@ exports.prod = {
             "id" : "struct_9u3tlk22y431n",
             "ar" : "Réfugiés.info شفاف حول جودة المعلومات",
             "en" : "Réfugiés.info is transparent about the quality of its information",
-            "fa" : "Refugees.info در مورد کیفیت اطلاعات شفافیت دارد.",
-            "ti-ER" : "Refugees.info የማሓላልፍ ንጽር ሓቤሬታ",
-            "ps" : "Refugees.info د معلوماتو د کیفیت په اړه شفافه ده"
+            "fa" : "Réfugiés.info در مورد کیفیت اطلاعات شفافیت دارد.",
+            "ti-ER" : "Réfugiés.info የማሓላልፍ ንጽር ሓቤሬታ",
+            "ps" : "Réfugiés.info د معلوماتو د کیفیت په اړه شفافه ده"
         },
         "information vérifiée subheader" : {
             "fr" : "Les contenus proposés sont relus et corrigés avant d’être publiés afin d’éviter les erreurs et les informations périmées. Une fois en ligne, vous pouvez facilement signaler une erreur.",
@@ -42,9 +42,9 @@ exports.prod = {
             "id" : "struct_9u3tlk22y431p",
             "ar" : "Réfugiés.info متاح بعدة لغات",
             "en" : "Réfugiés.info is available in multiple languages",
-            "fa" : "Refugees.info در چند زبان مختلف موجود است",
-            "ti-ER" : "Refugees.info ህልው ኢዩ ብብዝሒ ቓንቓታት",
-            "ps" : "Refugees.info په بیلابیلو ژبو کې شتون لري"
+            "fa" : "Réfugiés.info در چند زبان مختلف موجود است",
+            "ti-ER" : "Réfugiés.info ህልው ኢዩ ብብዝሒ ቓንቓታት",
+            "ps" : "Réfugiés.info په بیلابیلو ژبو کې شتون لري"
         },
         "disponible langues subheader" : {
             "fr" : "Participez à la traduction pour rendre l’information toujours plus accessible pour les personnes réfugiées.",
@@ -62,7 +62,7 @@ exports.prod = {
             "en" : "Already {{nombre}} contributing translators:",
             "fa" : "در حال حاضر {{nombre}} مترجم فعال هستند:",
             "ti-ER" : "ሕጂ {{nombre}} ኣስተርጎምትን፣ቲን ተዳሊዮም",
-            "ps" : "فعلا {{نمبر}} متحرک (شریک) ژباړونکې :"
+            "ps" : "فعلا {{nombre}} متحرک (شریک) ژباړونکې :"
         },
         "contributeurs mobilises" : {
             "fr" : "Déjà {{nombre}} contributeurs et contributrices engagés :",
@@ -71,16 +71,16 @@ exports.prod = {
             "en" : "Already {{nombre}} engaged contributors:",
             "fa" : "تعداد مشارکت کنندگان ثبت شده در حال حاضر: {{nombre}}",
             "ti-ER" : "ብዝሓት ኣብርክቲ/ትን ይሳተፉ",
-            "ps" : "فعلآ {{شمیره}} ونډه اخستونکي فعاله دي:"
+            "ps" : "فعلآ {{nombre}} ونډه اخستونکي فعاله دي:"
         },
         "contributive" : {
             "fr" : "Réfugiés.info est ouvert à la contribution",
             "id" : "struct_9u3tlk22y431t",
             "ar" : "Réfugiés.info مفتوح للمساهمة",
             "en" : "Réfugiés.info is open to contribution",
-            "ti-ER" : "ኣብ Réfugiés.info ን ኸተብርክቱ/ታ ክፉት ኢዩ",
             "fa" : "Réfugiés.info برای مشارکت و همکاری در خدمت شما باز است.",
-            "ps" : "Réfugiés.info&nbsp; ستاسو د ګډون او همکاری لپاره چمتوده"
+            "ti-ER" : "ኣብ Réfugiés.info ን ኸተብርክቱ/ታ ክፉት ኢዩ",
+            "ps" : "Réfugiés.info ستاسو د ګډون او همکاری لپاره چمتوده"
         },
         "contributive subheader" : {
             "fr" : "Un peu comme Wikipédia, réfugiés.info est un outil simple pour réunir de l'information pratique. Participez à l'enrichissement du site en rédigeant vous-même de nouvelles fiches. Vous pouvez également suggérer des modifications sur les fiches existantes.",
@@ -133,7 +133,7 @@ exports.prod = {
             "ar" : "العثور على برنامج",
             "en" : "Find a program",
             "fa" : "یک برانمه را پیدا کنید",
-            "ti-ER" : "መሳርሒ ምርካብ&nbsp;",
+            "ti-ER" : "መሳርሒ ምርካብ",
             "ps" : "یوپروګرام پیداکړئ"
         },
         "creer parcours" : {
@@ -177,8 +177,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y4324",
             "ar" : "يفسّر Réfugiés.info  الكلمات الصعبة",
             "en" : "Réfugiés.info explains difficult words",
-            "fa" : "Refugees.info کلمات دشوار را توضیح می دهد",
-            "ti-ER" : "Refugees.info ከብድ ቃል ይሕብር",
+            "fa" : "Réfugiés.info کلمات دشوار را توضیح می دهد",
+            "ti-ER" : "Réfugiés.info ከብድ ቃል ይሕብር",
             "ps" : "Réfugiés.info مشکلي کلمې او لغات تشریح کوي"
         },
         "Trouver une démarche" : {
@@ -196,7 +196,8 @@ exports.prod = {
             "fa" : "یک زبان انتخاب کنید",
             "ti-ER" : "ሓደ ቃንቃ ምረጽ",
             "en" : "Choose a language",
-            "ps" : "ژبه غوره کړئ"
+            "ps" : "ژبه غوره کړئ",
+            "ar" : "اختر لغة"
         },
         "site dispo" : {
             "fr" : "Réfugiés.info est disponible dans les langues suivantes :",
@@ -204,7 +205,8 @@ exports.prod = {
             "fa" : "Réfugiés.info به زبانهای زیر موجود است:",
             "ti-ER" : "Réfugiés.info ብ ኻልኦት ቓንቓ ከድልው ኢዩ ኣብ ቀጻሊ ፣",
             "en" : "Réfugiés.info is available in the following languages:",
-            "ps" : "Réfugiés.info په لاندې ژبو کې شتون لري:"
+            "ps" : "Réfugiés.info په لاندې ژبو کې شتون لري:",
+            "ar" : "Réfugiés.info متوفّر باللغات التالية :"
         },
         "langue indispo" : {
             "fr" : "Votre langue n’est pas disponible ?",
@@ -212,7 +214,8 @@ exports.prod = {
             "fa" : "زبان شما در دسترس نیست؟",
             "ti-ER" : "ቓንቓ ናትኩም የለን ዲዩ ?",
             "en" : "Your language is not available?",
-            "ps" : "ستاسو ژبه فعلا  شتون نه لري؟"
+            "ps" : "ستاسو ژبه فعلا  شتون نه لري؟",
+            "ar" : "لغتك غير متوفرة ؟"
         },
         "Demander" : {
             "fr" : "Demander",
@@ -220,7 +223,8 @@ exports.prod = {
             "fa" : "پرسیدن",
             "ti-ER" : "ምሕታት",
             "en" : "Request",
-            "ps" : "تقاضا کول"
+            "ps" : "تقاضا کول",
+            "ar" : "اطلب"
         }
     },
     "AdvancedSearch" : {
@@ -292,21 +296,27 @@ exports.prod = {
             "id" : "struct_8g1fi0k2zwtnht",
             "en" : "Create a page",
             "fa" : "یک فرم ایجاد کنید",
-            "ps" : "یوه فورمه جوړه کړئ"
+            "ps" : "یوه فورمه جوړه کړئ",
+            "ar" : "إنشاء ملفّ",
+            "ti-ER" : "ሓደ ገጽ ፍጠር"
         },
         "Elargir recherche" : {
             "fr" : "Essayez d’élargir votre recherche en désactivant certains filtres",
             "id" : "struct_8g1fi0k2zwtnhu",
             "en" : "Try to broaden your search by disabling some filters",
             "fa" : "کوشش کنید با غیرفعال کردن برخی از فیلترها، جستجوی خود را گسترده تر کنید",
-            "ps" : "د ځینو فلټرونو په خاموشه کولوسره خپل لټون پراخ کړئ"
+            "ps" : "د ځینو فلټرونو په خاموشه کولوسره خپل لټون پراخ کړئ",
+            "ar" : "حاول توسيع بحثك بتعطيل بعض الفلاتر",
+            "ti-ER" : "ናይ ምድልይካ ክእለትካ  ኣዕብዮ ፣ ነቶም ዘይንጥፉ ሓደ ሓደ መሰኻኹቲ ነገራት"
         },
         "Oups" : {
             "fr" : "Oups !",
             "id" : "struct_8g1fi0k2zwtnhv",
             "en" : "Oops!",
             "fa" : "اوه!",
-            "ps" : "اوه!"
+            "ps" : "اوه!",
+            "ar" : "أوبس !",
+            "ti-ER" : "ኣብ ጌጋ ዝጥቀሙላ ቃል ልክዕ ከም ፣ ( ኦው)"
         }
     },
     "Tables" : {
@@ -316,7 +326,7 @@ exports.prod = {
             "ar" : "مالك",
             "en" : "Owner",
             "fa" : "مالک یا صاحب یک چیزی",
-            "ti-ER" : "ወናኒ&nbsp;",
+            "ti-ER" : "ወናኒ",
             "ps" : "خاوند"
         },
         "Contributeur" : {
@@ -325,7 +335,7 @@ exports.prod = {
             "ar" : "مساهم",
             "en" : "Contributor",
             "fa" : "شریک کننده",
-            "ti-ER" : "የበርክት&nbsp;",
+            "ti-ER" : "የበርክት",
             "ps" : "وڼده اخستونکی"
         },
         "Voir plus" : {
@@ -362,7 +372,7 @@ exports.prod = {
             "en" : "words<br/>written",
             "fa" : "کلمات<br/>نوشته",
             "ti-ER" : "ቓል<br/>ጽሓፍ",
-            "ps" : "لغاتونه (کلمی)<div>ترتیب شوی</div>"
+            "ps" : "لغاتونه (کلمی)<br/>ترتیب شوی"
         },
         "minutes passées" : {
             "fr" : "minutes<br/>passées",
@@ -371,7 +381,7 @@ exports.prod = {
             "en" : "minutes<br/>spent",
             "fa" : "دقیقه<br/>گذشت",
             "ti-ER" : "ዝሓለፈ<br/>ደቒቕ",
-            "ps" : "دقیقې <br>تیرشوي"
+            "ps" : "دقیقې<br>تیرشوي"
         },
         "personnes informées" : {
             "fr" : "personnes<br/>informées",
@@ -380,24 +390,24 @@ exports.prod = {
             "en" : "people<br/>informed",
             "fa" : "افراد<br/>مطلع",
             "ti-ER" : "ሰባት<br/>ሰልጢኖም",
-            "ps" : "افراد&nbsp;<br>باخبره"
+            "ps" : "افراد<br>باخبره"
         },
-        "Espace contribution" : {
-            "fr" : "Espace contribution",
-            "id" : "struct_9u3tlk22y432i",
-            "ar" : "مكان المساهمة",
-            "en" : "Contribution area",
-            "ti-ER" : "ቦታ ኣበርክቶ",
-            "fa" : "جای مشارکت",
-            "ps" : "د همکارۍ  او ونډي اخستوځای"
+        "Espace rédaction" : {
+            "fr" : "Espace rédaction",
+            "id" : "struct_9u1txbk37dw5gd",
+            "en" : "Writing area",
+            "ar" : "مكان الكتابة",
+            "ti-ER" : "ቦታ ናይ መጽሓፊ",
+            "fa" : "منطقه نوشتن مقاله",
+            "ps" : "د تحریر ځای"
         },
         "Retrouvez ici vos pages favorites" : {
             "fr" : "Retrouvez ici vos pages favorites",
             "id" : "struct_9u3tlk22y432j",
             "ar" : "تجد هنا صفحاتك المفضلة",
             "en" : "Find your favorite pages here",
-            "ti-ER" : "ኣብዚ ናትኩም ተምርጽቲ ገጽ ናይ ጽሕፋት",
-            "fa" : "صفحات مورد علاقه خود را در اینجا پیدا کنید"
+            "fa" : "صفحات مورد علاقه خود را در اینجا پیدا کنید",
+            "ti-ER" : "ኣብዚ ናትኩም ተምርጽቲ ገጽ ናይ ጽሕፋት"
         },
         "cherche btn" : {
             "fr" : "Cherchez ce bouton dans les contenus pour les sauvegarder",
@@ -414,7 +424,7 @@ exports.prod = {
             "ar" : "أضف عضواً",
             "en" : "Add a member",
             "fa" : "یک عضو را اضافه کنید",
-            "ti-ER" : "ምውሳኽ ከም &nbsp;ኣባል ማሕበር",
+            "ti-ER" : "ምውሳኽ ከም ኣባል ማሕበር",
             "ps" : "یو غړی اضافه کړئ"
         },
         "Espace structure" : {
@@ -422,8 +432,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y432m",
             "ar" : "مكان الهيئة",
             "en" : "Organization area",
-            "ti-ER" : "ቦታ ናይ ኣቃውማ",
             "fa" : "جای ساختار",
+            "ti-ER" : "ቦታ ናይ ኣቃውማ",
             "ps" : "د (ساختار) جوړښت ځای"
         },
         "futures notifs" : {
@@ -442,7 +452,7 @@ exports.prod = {
             "en" : "material{{s}}",
             "fa" : "محتوای",
             "ti-ER" : "ትሕዝቶ",
-            "ps" : "محتوا {{s}}"
+            "ps" : "محتوا"
         },
         "Espace traduction" : {
             "fr" : "Espace traduction",
@@ -503,8 +513,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y432v",
             "ar" : "دوري",
             "en" : "My role",
-            "ti-ER" : "ተራይ / ግደይ",
             "fa" : "نقش من",
+            "ti-ER" : "ተራይ / ግደይ",
             "ps" : "زما رول"
         },
         "Type" : {
@@ -521,8 +531,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y432x",
             "ar" : "منذ",
             "en" : "Since",
-            "ti-ER" : "ካብ",
             "fa" : "از",
+            "ti-ER" : "ካብ",
             "ps" : "له"
         },
         "Thèmes" : {
@@ -602,8 +612,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y4336",
             "ar" : "ساعدوا على ترجمة المحتوى",
             "en" : "Help translate content",
-            "ti-ER" : "ሓግዝ ኣብ ምትርጋም ኣድማዒ ንምኻን",
             "fa" : "به ترجمه مطالب کمک کنید",
+            "ti-ER" : "ሓግዝ ኣብ ምትርጋም ኣድማዒ ንምኻን",
             "ps" : "د محتوا په ژباړلو کې مرسته وکړئ"
         },
         "bilingue" : {
@@ -621,7 +631,7 @@ exports.prod = {
             "ar" : "بدء جلسة",
             "en" : "Start a session",
             "fa" : "شروع کردن جلسه",
-            "ti-ER" : "ሓደ ክፋል ግዜ ጀሚሩ&nbsp;",
+            "ti-ER" : "ሓደ ክፋል ግዜ ጀሚሩ",
             "ps" : "یوه ناسته (سیشن) پیل کړئ"
         },
         "Mon profil" : {
@@ -638,8 +648,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433a",
             "ar" : "إشعارات",
             "en" : "Notifications",
-            "ti-ER" : "ሓቤሬታት",
             "fa" : "اطلاعیه",
+            "ti-ER" : "ሓቤሬታት",
             "ps" : "خبرتیاوې"
         },
         "Favoris" : {
@@ -665,8 +675,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433d",
             "ar" : "ترجمات",
             "en" : "Translations",
-            "ti-ER" : "ትርጉም",
             "fa" : "ترجمه",
+            "ti-ER" : "ትርጉም",
             "ps" : "ژباړې"
         },
         "Ma structure" : {
@@ -702,8 +712,8 @@ exports.prod = {
             "ar" : "مترجم مُسجِّل",
             "fa" : "مترجم متحرک",
             "en" : "translator{{s}} engaged{{s}}",
-            "ti-ER" : "ኣስተርጋሚ{{s}} ምርካብ &nbsp;{{s}}",
-            "ps" : "متحرک {{s}} ژباړونکي {{s}}"
+            "ti-ER" : "ኣስተርጋሚ ምርካብ",
+            "ps" : "متحرک ژباړونکي"
         },
         "membre" : {
             "fr" : "membre{{s}}",
@@ -712,7 +722,7 @@ exports.prod = {
             "en" : "member{{s}}",
             "fa" : "اعضای",
             "ti-ER" : "ኣባል",
-            "ps" : "غړی {{s}}"
+            "ps" : "غړی"
         },
         "notification" : {
             "fr" : "notification{{s}}",
@@ -721,7 +731,7 @@ exports.prod = {
             "en" : "notification{{s}}",
             "fa" : "اطلاعیه}}",
             "ti-ER" : "ንሓቤሬታ ዝውክል ምልክታት",
-            "ps" : "خبرتیاوې او اطلاعیه {{s}}"
+            "ps" : "خبرتیاوې او اطلاعیه"
         },
         "personne informée" : {
             "fr" : "personne{{s}} informée{{s}}",
@@ -730,14 +740,16 @@ exports.prod = {
             "en" : "people informed",
             "fa" : "هیچ کس باخبر",
             "ti-ER" : "ማንም ሰብ ኣይትርድኦን/ወይ ኣይብጽሖን ሓቤሬታ",
-            "ps" : "کس {{s}} باخبره {{s}}"
+            "ps" : "کس باخبره"
         },
         "Mes traductions" : {
             "fr" : "Mes traductions",
             "id" : "struct_8g1fi0k2zwtnhw",
             "en" : "My translations",
             "fa" : "ترجمه های من",
-            "ps" : "زما ژباړې"
+            "ps" : "زما ژباړې",
+            "ar" : "ترجماتي",
+            "ti-ER" : "ኣነ ዝተርገምኩዎም"
         }
     },
     "UserProfile" : {
@@ -755,8 +767,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433i",
             "ar" : "البريد الإلكتروني:",
             "en" : "Email:",
-            "ti-ER" : "ኢመይል",
             "fa" : "ایمیل:",
+            "ti-ER" : "ኢመይል",
             "ps" : "بریښنالیک:"
         },
         "A propos" : {
@@ -764,8 +776,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433j",
             "ar" : "حول :",
             "en" : "About:",
-            "ti-ER" : "ስለ",
             "fa" : "درمورد",
+            "ti-ER" : "ስለ",
             "ps" : "په اړه :"
         },
         "nbCarMax" : {
@@ -782,8 +794,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433l",
             "ar" : "مترجم",
             "en" : "Translator",
-            "ti-ER" : "ኣስተርጋሚ",
             "fa" : "مترجم",
+            "ti-ER" : "ኣስተርጋሚ",
             "ps" : "ترجمان"
         },
         "Contributeur" : {
@@ -809,8 +821,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433o",
             "ar" : "دقائق مقضيّة ",
             "en" : "minutes given",
-            "ti-ER" : "ደቓይቕ ሃብ",
             "fa" : "دقیقه های داده شده",
+            "ti-ER" : "ደቓይቕ ሃብ",
             "ps" : "ورکړل شوې دقیقې"
         },
         "commencez à contribuer" : {
@@ -818,8 +830,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433p",
             "ar" : "ابدأ في المساهمة لبدء العدّاد",
             "en" : "Begin contributing to start the meter",
-            "ti-ER" : "ጀምር መታን እቲ ቆጻሪ ክትስርሕ",
             "fa" : "برای شروع حساب کننده لطفا مشارکت کنید",
+            "ti-ER" : "ጀምር መታን እቲ ቆጻሪ ክትስርሕ",
             "ps" : "د حساب نیونکې دپیل لپاره برخه واخلئ"
         },
         "mots écrits" : {
@@ -846,7 +858,7 @@ exports.prod = {
             "ar" : "كلمات مترجمة",
             "en" : "translated words",
             "fa" : "کلمات ترجمه شده",
-            "ti-ER" : "ዝተተርጎሙ &nbsp;ቃላት",
+            "ti-ER" : "ዝተተርጎሙ ቃላት",
             "ps" : "ژباړل شوي کلمې"
         },
         "commencez à traduire" : {
@@ -854,17 +866,45 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433t",
             "ar" : "ترجم كلماتك الأولى لبدء العداد",
             "en" : "Begin translating to start the meter",
-            "ti-ER" : "ተርጉም መጀመርያ ቓል መታን እቲ ቆጻሪ ምስራሕ ክጅምር",
             "fa" : "اولین کلمات خود را برای شروع حساب کننده ترجمه کنید",
+            "ti-ER" : "ተርጉም መጀመርያ ቓል መታን እቲ ቆጻሪ ምስራሕ ክጅምር",
             "ps" : "خپل لومړني الفاظ د کاونټر د پیل لپاره وژباړئ"
         },
         "Modifier le mot de passe" : {
             "fr" : "Modifier le mot de passe",
             "id" : "struct_8g1fi0k2zwtnhx",
-            "ti-ER" : "መቐይሪ ናይ ኮድ / ወይ መቀይሪ &nbsp;ፓስ ዎርድ&nbsp;",
+            "ti-ER" : "መቐይሪ ናይ ኮድ / ወይ መቀይሪ ፓስ ዎርድ",
             "en" : "change password",
             "fa" : "رمز عبور (پاس ورد) را تغییر دهید",
-            "ps" : "رمز(پاس ورډ) بدل کړئ"
+            "ps" : "رمز(پاس ورډ) بدل کړئ",
+            "ar" : "تغيير كلمة المرور"
+        },
+        "Merci de donner de votre temps" : {
+            "fr" : "Merci de donner de votre temps pour l’intégration des personnes réfugiées",
+            "id" : "struct_9u1txbk37dw5ge",
+            "en" : "Thank you for giving your time to help refugee integration",
+            "ar" : "شكرا لوقتك المعطى لاندامج اللاجئين",
+            "ps" : "ستاسو له وخت او همکاری نه مننه چی د کډوالو په ټولنه کې د ادغام کیدو لپاره مو ورکړی.",
+            "ti-ER" : "የቐነልና  ካብ ግዜኻ ምሃብካ  ስዴኛናታት ኣብ ምውህሃድ  ኣብርክቶ ዝገበርካ",
+            "fa" : "تشکر از این که وقت خود را برای کمک ادغام پناهندگان درجامعه دادید"
+        },
+        "Grâce à vous" : {
+            "fr" : "Grâce à vous, les personnes réfugiées seront plus et mieux informées",
+            "id" : "struct_9u1txbk37dw5gf",
+            "en" : "Thanks to you, refugees will be better informed",
+            "ar" : "بفضلكم، سيزوّد اللاجئون بمعلومات أفضل وأكثر",
+            "ti-ER" : "ብጣዕሚ ነምስግነኩም ብሳላኹም  እቶም ሓተትቲ ዑቕባ ዝያዳ ክስልጥኑ ኢዮም",
+            "fa" : "به همکاری و کمک شما پناهندگان بیشتر و بهتر آگاه خواهند شد.",
+            "ps" : "ستاسو د همکاري او مرستي په نتیجه کې به مهاجرین لا نور هم بهتره او ښو معلوماتوته لاس رسي پیدا کړي."
+        },
+        "Merci de participer" : {
+            "fr" : "Merci de participer à rendre accessible l’information au plus grand nombre",
+            "id" : "struct_9u1txbk37dw5gg",
+            "en" : "Thanks for your help making information accessible to as many people as possible!",
+            "ar" : "شكراً لمشاركتك في إتاحة المعلومات لأكبر عدد ممكن من الأشخاص",
+            "ti-ER" : "ነምስግነኩም ነዚ  ሓቤረታትን ንጥፈታትን ናብ ኩሉ  ብብዝሒ ቑጽሪ  ንኽባጻሕ ዘብርከትኩም  ፣፣",
+            "fa" : "مشارکت درایجاد اطلاعات و انها را دردسترسی هر چه بیشتر مردم قرار دادن از شما تشکری می کنیم",
+            "ps" : "د لا زیاتو کسانو لپاره د معلوماتو په تهیه کولو او برخه اخستلو کې ستاسو نه مننه کوو."
         }
     },
     "QuiSommesNous" : {
@@ -873,8 +913,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433u",
             "ar" : "من نحن ؟",
             "en" : "Who are we?",
-            "ti-ER" : "መን ኢና ንሕና ?",
             "fa" : "ما که هستیم؟",
+            "ti-ER" : "መን ኢና ንሕና ?",
             "ps" : "موږ څوک یو؟"
         },
         "subheader" : {
@@ -882,8 +922,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433v",
             "ar" : "يحسّن Réfugiés.info مسارات الاندماج للمستفيدين من الحماية الدولية في فرنسا",
             "en" : "Réfugiés.info improves the integration process for beneficiaries of international protection in France",
-            "ti-ER" : "Réfugiés.info ፣ ኣዚዩ ኣገዳሲ ዝኾነ ረቓሒ ንስዴተኛታት ኣባል ማሕበር ናይ ተጸንበርቲ  ንምግባር ፣ ብመሰረት ምክልኻል ዓለም ለኻዊ ኣብ ሃገረ ፈረንሳይ ኣብ መስርሕ ይነጥፍ ፣፣",
             "fa" : "Réfugiés.info روند ادغام در جامعه را برای پناهدگان که دارای اسناد قانونی در فرانسه می باشد بهبود می بخشد.",
+            "ti-ER" : "Réfugiés.info ፣ ኣዚዩ ኣገዳሲ ዝኾነ ረቓሒ ንስዴተኛታት ኣባል ማሕበር ናይ ተጸንበርቲ  ንምግባር ፣ ብመሰረት ምክልኻል ዓለም ለኻዊ ኣብ ሃገረ ፈረንሳይ ኣብ መስርሕ ይነጥፍ ፣፣",
             "ps" : "Réfugiés.info  د هغوکسانو لپاره چی په فرانسه کې د پناهندګې اواوسیدوقانوني اسناد لري په جامعه کې د ادغام کیدو پروسه بهتره او فعاله کوې."
         },
         "Missions" : {
@@ -918,8 +958,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y433z",
             "ar" : "تبسيط وترجمة المعاملات الإدارية",
             "en" : "Make administrative processes accessible and translated",
-            "ti-ER" : "ሓፈሻዊ ፣ ትርጉምን ምስላጥ ናይ ቤት ጽሕፌታት",
             "fa" : "پروسیجرهای اداری را ترجمه و منتشرکنید.",
+            "ti-ER" : "ሓፈሻዊ ፣ ትርጉምን ምስላጥ ናይ ቤት ጽሕፌታት",
             "ps" : "د اداري پروسیجرونو ترجمه کول او اسانه کول"
         },
         "Mission_2_subheader" : {
@@ -973,7 +1013,7 @@ exports.prod = {
             "ar" : "دوري",
             "en" : "My role",
             "fa" : "نقش من",
-            "ti-ER" : "ተራይ&nbsp;",
+            "ti-ER" : "ተራይ",
             "ps" : "زما رول"
         },
         "Mes outils" : {
@@ -1008,17 +1048,17 @@ exports.prod = {
             "id" : "struct_9u3tlk22y4349",
             "ar" : "الفهم الأفضل يؤدّي إلى الاستقبال الأفضل. إن المهاجرين و طالبي اللجوء و اللاجئين القانونيين لا يتشاركون نفس الوقائع. Réfugiés.info يخاطب اللاجئين القانونيين، أي الأشخاص الذين منحتهم فرنسا حماية دولية لأن حياتهم مهددة في بلدهم الأصلي",
             "en" : "Better understanding fosters better welcoming. The words \"migrant\", \"asylum seeker\", or \"refugee\" can all have different definitions. Réfugiés.info is designed for statutory refugees, meaning people to whom France has granted international protection because their lives are threatened in their country of origin",
+            "fa" : "برای درک کردن خوب باید استقبال خوب کنیم. بخاطر که مهاجر یا پناهنده همه واقعیت ها وشرایط یکسان را ندارند. خدماتی Réfugiés.info متوجه پناه جویان است که دولت فرانسه انها را به حیث پناهنده شناخته و حق اقامت در کشور دارد.",
             "ti-ER" : "መታን ብጽቡቕ ምርዳእ ብዝበለጸ ክትቕበል፣ ገየሽቲ ፣ ወይ ሓተትቲ/ታት ዑቕባ ሓደ ዓይነት ምልክት ባህሪ የብሎምን፣ Réfugiés.Info ይሕብር ነቶም ካብ ሃገሮም ተሰዲዶም ናይ ይ ዑቕባ መሰል ዚወሰዱ ኣብ ሃገረ ፈርንሳይ ብምኽንያት ናይ ዓዶም ሽግር ታህዲድ ን ፍርሓትን ስለ ዘጋጠሞም ፣ ",
-            "fa" : "برای درک کردن خوب باید استقبال خوب کنیم. بخاطر که مهاجر یا پناهنده همه واقعیت ها وشرایط یکسان را ندارند. خدماتی Refugees.info متوجه پناه جویان است که دولت فرانسه انها را به حیث پناهنده شناخته و حق اقامت در کشور دارد.",
-            "ps" : "د کډوالود لا ښه پیژندلو لپاره اړینه ده چی اول دهغوې ښه استقبال وکړو. هغه کسان چې په حیث د مهاجرو پیژندل شوی او په فرانسه کی د استوګنې قانوني حق لري، دهغوی شرایط له پناه غوښتنکوکسانو سره خورا زیات توپیرلري. Refugees.info یواځی د هغو کسانو لپاره خپل خدمات پیش کوي چی د فرانسي دولت هغوی په حیث د قانونی مهاجرو منلې دي او په فرانسه کې د اسیدو اسناد لري."
+            "ps" : "د کډوالود لا ښه پیژندلو لپاره اړینه ده چی اول دهغوې ښه استقبال وکړو. هغه کسان چې په حیث د مهاجرو پیژندل شوی او په فرانسه کی د استوګنې قانوني حق لري، دهغوی شرایط له پناه غوښتنکوکسانو سره خورا زیات توپیرلري. Réfugiés.info یواځی د هغو کسانو لپاره خپل خدمات پیش کوي چی د فرانسي دولت هغوی په حیث د قانونی مهاجرو منلې دي او په فرانسه کې د اسیدو اسناد لري."
         },
         "problem_2_header" : {
             "fr" : "Une information cryptée, dispersée et périssable",
             "id" : "struct_9u3tlk22y434a",
             "ar" : "معلومات مشفرة ومشتتة و بائدة",
             "en" : "Cryptic, decentralized, and outdated information",
-            "ti-ER" : "ሓቤሬታት ካብ ዝተፈላለዩ ቦታታት ዜይንጹራትን",
             "fa" : "اطلاعات رمزگذاری شده ، پراکنده و نابود شدنی",
+            "ti-ER" : "ሓቤሬታት ካብ ዝተፈላለዩ ቦታታት ዜይንጹራትን",
             "ps" : "کوډ شوي، ویشل شوي او تلف کیدونکي معلومات"
         },
         "problem_2_subheader" : {
@@ -1026,9 +1066,9 @@ exports.prod = {
             "id" : "struct_9u3tlk22y434b",
             "ar" : "التطور السريع للقوانين وكثرة عروض الجمعيات وتعقيد بعض المعاملات الإدارية يصعّب فهم الحقوق والواجبات. إن مهمة Réfugiés.info هي مركزة المعلومات الموثوقة والمحدّثة والمبسّطة",
             "en" : "Constant legislative evolution, multiplying organizations, and administrative complexity make it difficult to understand one's rights and duties. Réfugiés.info centralizes reliable, up-to-date, accessible information for this reason.",
-            "fa" : "تغیرات سریع در قانونگزاری و تعداد بیشماری انجمنها و پیچیدگی های در برخی ازپروسیجرهای اداری واجراآت، باعث نفهمیدن و درک کردن حقوق و وظایف مردم می شود. Refugees.info اطلاعات معتبر، تازه و عمومی را مرکزی می سازد و دردسترس شما قرار میدهد.",
-            "ti-ER" : "ምስ ምምዕባልን ምርቃቅን ሕግን ፣ ዝኾነ ይኹን ነገር ሓቤሬታት ካብ ትካላት ዝመጽእ ብብዝሒ ብምንህሃር ዘይንጹር ሓቤሬታ ብምሃብ ብዛዕባ መሰልን ግብኡካን ንምዕያይ ነቲ ንገር ናብ ጸገም ከም ዚውርድ ጌርዎ ኣሎ ፣ ነዚ ነገር ስጉምቲ ብምውሳድ ሓድሽ ኣሰራርሓ ብግቡእን ንጽሩን ሓቤሬታ ንምሃብ Refugees.info ሓቤሬታት ክህብ ኢዩ ፥ ፣",
-            "ps" : "په قوانینوکې ګړندې تغییرات، د سازمانونواو انجمنونو بی شمیره شتون او د ځینومغلقواو پیچلو اداري پروسیجرونو موجودیت په مسؤلیتونواو حقوقو باندي  د پوهیدو پروسه سخته او ستونزمنه کړې ده. پدی خاطرRefugees.info  د اعتبار وړ، نوي او درست معلومات مرکزي کوي تر څو په اسانه ورته لاس رسۍ ولرئ."
+            "fa" : "تغیرات سریع در قانونگزاری و تعداد بیشماری انجمنها و پیچیدگی های در برخی ازپروسیجرهای اداری واجراآت، باعث نفهمیدن و درک کردن حقوق و وظایف مردم می شود. Réfugiés.info اطلاعات معتبر، تازه و عمومی را مرکزی می سازد و دردسترس شما قرار میدهد.",
+            "ti-ER" : "ምስ ምምዕባልን ምርቃቅን ሕግን ፣ ዝኾነ ይኹን ነገር ሓቤሬታት ካብ ትካላት ዝመጽእ ብብዝሒ ብምንህሃር ዘይንጹር ሓቤሬታ ብምሃብ ብዛዕባ መሰልን ግብኡካን ንምዕያይ ነቲ ንገር ናብ ጸገም ከም ዚውርድ ጌርዎ ኣሎ ፣ ነዚ ነገር ስጉምቲ ብምውሳድ ሓድሽ ኣሰራርሓ ብግቡእን ንጽሩን ሓቤሬታ ንምሃብ Réfugiés.info ሓቤሬታት ክህብ ኢዩ ፥ ፣",
+            "ps" : "په قوانینوکې ګړندې تغییرات، د سازمانونواو انجمنونو بی شمیره شتون او د ځینومغلقواو پیچلو اداري پروسیجرونو موجودیت په مسؤلیتونواو حقوقو باندي  د پوهیدو پروسه سخته او ستونزمنه کړې ده. پدی Réfugiés.info  د اعتبار وړ، نوي او درست معلومات مرکزي کوي تر څو په اسانه ورته لاس رسۍ ولرئ."
         },
         "problem_3_header" : {
             "fr" : "Des ruptures d'accompagnement",
@@ -1044,9 +1084,9 @@ exports.prod = {
             "id" : "struct_9u3tlk22y434d",
             "ar" : "عند الانتقال أو تغيير مشروع حياتك... غالبًا ما يتعين شرح كل شيء من البداية لكل مخاطَبٍ جديد تقابله. Réfugiés.info يقترح للاجئين إنشاء مسار شخصي يمكنهم مشاركته مع مساعديهم أو مخاطبيهم.",
             "en" : "Moving, changing life plans...each new interaction often requires starting from scratch. Réfugiés.info offers a tool that allows refugees to create personalized paths in their profiles that they can then share with their helpers",
+            "fa" : "در حال تغییر جای ویا تغییردر پروژه زندگی شما... شما اکثر مجبور هستید وخت که به یک محاور یا مخاطب جدید در تماس می شوید که همه جریان را ازسرشروع کنید. بنابراین Réfugiés.info به پناهندگان پیشنهاد می کند که مسیری زندگی و سابقه شخصی خودرا در ساحه مربوط خودشان درست کنند تا بتوانند آن را به کومک کنندگان خود شریک بسازند.",
             "ti-ER" : "ኣብ ምቅያርት ናይ ሂወትካን ናይ ዝኾነ ዓይነትንጥፈታትካን ፣ ን ዅሉ ጻውዒት ካብ መሰረቱ ክምለስ ኣለዎ ፣ Réfugiés.info ይጽውዕ ን ኹሉ ዑቕባ ዝሓተቱ ስዴኔኛታት ፣ ሓድሽ ኢመይል ክምስርቱ ኣብዚ ዌብ ሳይት መታን ሓቤሬታት ንኽበጽሖም ካብ ተሓጋግዝቶም",
-            "fa" : "در حال تغییر جای ویا تغییردر پروژه زندگی شما... شما اکثر مجبور هستید وخت که به یک محاور یا مخاطب جدید در تماس می شوید که همه جریان را ازسرشروع کنید. بنابراین Refugees.info به پناهندگان پیشنهاد می کند که مسیری زندگی و سابقه شخصی خودرا در ساحه مربوط خودشان درست کنند تا بتوانند آن را به کومک کنندگان خود شریک بسازند.",
-            "ps" : "بل ځای ته کډه کول او دخپل ژوند پروژی او پلان ته تغییر ورکول ... د هر نوي حالت سره او نوی مخاطب سره د مخامخ کیدو په صورت کی اکثره وخت تاسو مجوره کیږی چی هرسه یو څل بیا له سره&nbsp; پیل کړئ. پدی خاطر Refugees.info کډوالو ته وړاندوینه کوي چی په خپل شخصي اکاونټ کې خپله شخصی سابقه ولیکي ترڅو وکولای شي له هغو کسانو او مارجعو سره چی ورسره کومک کوې شریک کړای شئ."
+            "ps" : "بل ځای ته کډه کول او دخپل ژوند پروژی او پلان ته تغییر ورکول ... د هر نوي حالت سره او نوی مخاطب سره د مخامخ کیدو په صورت کی اکثره وخت تاسو مجوره کیږی چی هرسه یو څل بیا له سره پیل کړئ. پدی خاطر Réfugiés.info کډوالو ته وړاندوینه کوي چی په خپل شخصي اکاونټ کې خپله شخصی سابقه ولیکي ترڅو وکولای شي له هغو کسانو او مارجعو سره چی ورسره کومک کوې شریک کړای شئ."
         },
         "Approche contributive" : {
             "fr" : "Approche contributive",
@@ -1062,8 +1102,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y434f",
             "ar" : "مشروع مفتوح بالكامل",
             "en" : "A fully open project",
-            "ti-ER" : "ብርግጽ ንሓደ ዓቢመደብ ኩፉት",
             "fa" : "یک پروژه کاملاً باز",
+            "ti-ER" : "ብርግጽ ንሓደ ዓቢመደብ ኩፉት",
             "ps" : "په بشپړ ډول ازده پروژه"
         },
         "contributive_1_subheader" : {
@@ -1071,7 +1111,7 @@ exports.prod = {
             "id" : "struct_9u3tlk22y434g",
             "ar" : "الانفتاح و الشفافية هما أساس مشروع Réfugiés.info : إن الكود البرمجي للموقع متاح بالكامل للعلن، بالإضافة لشبكة علاقات مفتوحة تشارك مع فريق العمل في تصوّر و تصميم الميّزات البرمجية اللازم تطويرها",
             "en" : "Openness and transparency are at the core of Réfugiés.info. The source code of the site is publicly available. An open network helps identity needs and propose new solutions",
-            "fa" : "معیار و شفافیت در قلب پروژه Refugees.info قرار دارد: منبع کود سایت کاملاً در دسترس شما است. یک شبکه باز در طراحی برنامه شرکت می کند و به تیم پروژه در مورد نیازها و ویژگی های لازم برای توسعه مشاوره می دهد.",
+            "fa" : "معیار و شفافیت در قلب پروژه Réfugiés.info قرار دارد: منبع کود سایت کاملاً در دسترس شما است. یک شبکه باز در طراحی برنامه شرکت می کند و به تیم پروژه در مورد نیازها و ویژگی های لازم برای توسعه مشاوره می دهد.",
             "ti-ER" : "እዚ ግምት ናይ ምኽፋት ሓድሽ ፕሮጀክት ን ኩሉ ንጹር ምግባር ፣ ዕማም ናይ Réfugié;info ኢዩ ፣ ኩሉ ኣብዚ ዌብ ሳይት ክህልው ኢዩ ፣ እዚ ዌብ ሳይት ክፉት ኢዩ ፣ ን ኽሉ ንኽካፋል ፣ ንርድኢት ሓቤሬታት ኣብ ናይ ጉሩብ ፕሮጅክታት ን ዝኾነ ኣድለይቲ መሳሪሕታት ን ምምዕባል ፣፣",
             "ps" : "اسانه لاس رسې سیسټم ته او شفافیت د Réfugiés.info اساسي ارزښتونه دي: د سایټ د سرچینې کوډ په بشپړ ډول ستاسوپه د سترس کې دئ. یوه پرانستي ارتباطی شبکه د ویب سایټ په ډیزاین کې برخه اخلي او د پروژې ټیم ته د اړتیا په وخت کی دسیسټم د ودي، پراختیا او بهتري لپاره مشوره ورکوي."
         },
@@ -1098,7 +1138,7 @@ exports.prod = {
             "id" : "struct_9u3tlk22y434j",
             "ar" : "فقط هم الفاعلون المحليون القادرون على تجميع ما يحصل على الصعيد المحلّي بشكل فعّال، بهذا الشكل يسمح Réfugiés.info لكلّ إقليم بتحديد وتعزيز مبادراته بالإضافة لاكتشاف جدد",
             "en" : "People on the ground are best able to identify and list local actions. Réfugiés.info allows different geographic areas to identify and promote their initiatives -- and to discover new ones",
-            "fa" : "تنها مسؤولین محلی قادر به این هستند که به طور مؤثر اقدامات را شناسایی کنند و به یک سیستم معلوماتی مشترک بهبود و تقویت ببخشند. بنابراین Refugees.info به هراقلیم اجازه می دهد تا اقدمات و ابتکارات جدید خود را در این زمینه تشخیص، تقویه و عملی کند.",
+            "fa" : "تنها مسؤولین محلی قادر به این هستند که به طور مؤثر اقدامات را شناسایی کنند و به یک سیستم معلوماتی مشترک بهبود و تقویت ببخشند. بنابراین Réfugiés.info به هراقلیم اجازه می دهد تا اقدمات و ابتکارات جدید خود را در این زمینه تشخیص، تقویه و عملی کند.",
             "ti-ER" : "እቶም ተሳተፍቲ ወይ ሰራሕተኛታት ኣሳለጥቲ ናይቲ ከባቢ ዘለኩሞ ዚያዳ ኣፍልጦ ዘለዎም መታን ክሕግዝኩም ፣ ንዝያዳ ሓቤሬታ መታን ክዓቢ፣ ከም ኡውን Réfugies.infoንኹሉ መሰረታዊ ብቅዓት ዘለዎ ሊስት ከቅርብልኩም ኢዮም ፣፣",
             "ps" : "یوزاي سیمیزکارکونکي او همکاران ددی جوګه دي چی  په ښه ډول سیمیز فعالیتونه او ضروریتونه په ګوته کړي اوهمدارنګه کولی شئ د همکاری او پیژندنې یو مشترک سیسټم ته وده اورشد ورکړي. پدي توګه Réfugiés.info هري سیمي ته په ځانګړې ډول اجازه ورکوی چی خپلي غوښتني او فعالیتونه په ګوته او شریک کړی او د وخت په تیریدوسره نوي فعالیتونه ورزیات کړي."
         },
@@ -1116,8 +1156,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y434l",
             "ar" : "بمنح الجميع الفرصة للمشاركة بسهولة على الموقع، على نمط ويكيبيديا، Réfugiés.info يحفّز طرق جديدة للمساعدة، ذلك من خلال الميكرو-مساهمات أو المساهمات الصغيرة التي ستسمح لجماهير جديدة المساهمة في التضامن مع اللاجئين",
             "en" : "By giving everyone the opportunity to easily contribute to the platform, like on Wikipedia, Réfugiés.info promotes new forms of micro-engagement, allowing new people to get involved in the support of refugees",
-            "fa" : "با دادن فرصت نماینده گی، شرکت و سهمگیری برای همه دراین برنامه تا هر یک شمابتواند بحیث کمکننده و سهم گیرنده فعال در پیشرفت این پلتفرم مشترک باشد. مانند ویکیپیدا Refugees.info همچنان برای بهبود و پیشرفت وظعیت پناهندگان به رویشها ی جدید از طریق مشارکت به سطح پایین و عمومی مردم را ترویج می دهد، که این کار به افراد جدید اجازه می‌دهد تا به هدف همبستگی برای پناهندگان خودرا سرگرم بسازد.",
-            "ti-ER" : "ን ኹሉ ሰብ ነናቱ ኣማራጺ ምሃብን ምቅላልን ኣብ ምብርካት ናይዚ መድረኽ ፣ እዚ ዌብ ሳይት ልክዕ ከም Wikipédia, ኮይኑ ፍልይ ዝበለ ኣማራጺ ሓድሽ ኣሰራርሓ ን ስዴኛታት ሓተትቲ ዑቕባ ኽሕግዝ ዝኽእል መደብ ኢዩ ፣ Réfugies;Info ",
+            "fa" : "با دادن فرصت نماینده گی، شرکت و سهمگیری برای همه دراین برنامه تا هر یک شمابتواند بحیث کمکننده و سهم گیرنده فعال در پیشرفت این پلتفرم مشترک باشد. مانند ویکیپیدا Réfugiés.info همچنان برای بهبود و پیشرفت وظعیت پناهندگان به رویشها ی جدید از طریق مشارکت به سطح پایین و عمومی مردم را ترویج می دهد، که این کار به افراد جدید اجازه می‌دهد تا به هدف همبستگی برای پناهندگان خودرا سرگرم بسازد.",
+            "ti-ER" : "ን ኹሉ ሰብ ነናቱ ኣማራጺ ምሃብን ምቅላልን ኣብ ምብርካት ናይዚ መድረኽ ፣ እዚ ዌብ ሳይት ልክዕ ከም Wikipédia, ኮይኑ ፍልይ ዝበለ ኣማራጺ ሓድሽ ኣሰራርሓ ን ስዴኛታት ሓተትቲ ዑቕባ ኽሕግዝ ዝኽእል መደብ ኢዩ ፣ Réfugies.info ",
             "ps" : "د ویکیپیډیا په څیر، دا پلیټ فارم هم هرچاته د شرکت او ونډي اخستواسانه فرصت برابروی. پدی خاطر Réfugiés.info  په نوې ډول او طریقه غواړی چې په ټیته کچه  فعالیتونو ته اولویت ورکړئ، کوم چې نوی کسانو ته ددې اجازه ورکوئ چې دانسانې همدردي او یووالي په اساس د مهاجرینو د وضعیت د بهبود لپاره  فعالیت او کار وکړئ."
         }
     },
@@ -1145,8 +1185,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y434o",
             "ar" : "ترجم",
             "en" : "translate",
-            "ti-ER" : "ምትርጋም",
             "fa" : "ترجمه کردن",
+            "ti-ER" : "ምትርጋም",
             "ps" : "ترجمه کول"
         },
         "corriger" : {
@@ -1217,8 +1257,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y434w",
             "ar" : "ترجم",
             "en" : "Translate",
-            "ti-ER" : "ትርጉም",
             "fa" : "ترجمه کردن",
+            "ti-ER" : "ትርጉም",
             "ps" : "ترجمه کول"
         },
         "Rendons l-information accessible" : {
@@ -1228,7 +1268,7 @@ exports.prod = {
             "en" : "Make information accessible to everyone!",
             "fa" : "اطلاعات را در دسترس همه قرار دهید!",
             "ps" : "معلوماتو ته د لاس رسې امکانات د ټولو لپاره اماده کول!",
-            "ti-ER" : "እዚ ሓቤሬታ ናብ ኩሉ ኣብጽሓዮ&nbsp;"
+            "ti-ER" : "እዚ ሓቤሬታ ናብ ኩሉ ኣብጽሓዮ"
         },
         "Autre langue" : {
             "fr" : "Vous parlez une autre langue ? Rejoignez-nous !",
@@ -1244,8 +1284,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y434z",
             "ar" : "تصحيح",
             "en" : "Edit",
-            "ti-ER" : "ምእራም",
             "fa" : "درست کردن",
+            "ti-ER" : "ምእራም",
             "ps" : "تصحیح کول"
         },
         "information juste" : {
@@ -1262,8 +1302,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y4351",
             "ar" : "تعليق موجَّه",
             "en" : "Leave a comment",
-            "ti-ER" : "ብቐጥታ ምምልካት",
             "fa" : "نظر هدفمند",
+            "ti-ER" : "ብቐጥታ ምምልካት",
             "ps" : "په نښه شوی (مستهدف) نظر"
         },
         "paragraphe erroné" : {
@@ -1290,7 +1330,7 @@ exports.prod = {
             "ar" : "اقترحوا مباشرة إعادة صياغة أو إضافة نص من أجل مساعدة المسؤولين عن المحتوى",
             "en" : "Suggest edits or new text to help page owners",
             "fa" : "برای کومک کردن به مسؤولین، شما می توانید پیشنهادهای جدید خود را پیش کنید و یا یک متن را به طور مستقیم اضافه کنید",
-            "ti-ER" : "ርእይቶኻ ኣቅርብ ብቀጥታ ፣ ወይ ሓሳብካ ኣካፍል ጽሓፈሎም ነቶም ሓለፍቲ መታን ሓገዝ ክኾነም &nbsp;!",
+            "ti-ER" : "ርእይቶኻ ኣቅርብ ብቀጥታ ፣ ወይ ሓሳብካ ኣካፍል ጽሓፈሎም ነቶም ሓለፍቲ መታን ሓገዝ ክኾነም",
             "ps" : "له مسؤلینو سره د همکاري په هدف تاسو کولای شئ په متن کی د تغییراتو راوستلو او یا اضافه کولو لپاره خپل وړاندیزونه مستقیما  هغوي ته ورکړي."
         },
         "Écoute du texte" : {
@@ -1335,7 +1375,7 @@ exports.prod = {
             "ar" : "المترجمون النّشطون",
             "en" : "active translators",
             "fa" : "مترجمان فعال",
-            "ti-ER" : "ኣብ ምትርጋም ዝነጥፉ&nbsp;",
+            "ti-ER" : "ኣብ ምትርጋም ዝነጥፉ",
             "ps" : "فعال ژباړونکي"
         },
         "experts en traduction" : {
@@ -1352,8 +1392,8 @@ exports.prod = {
             "id" : "struct_59ph3wefk2pzetss",
             "ar" : "اكتب الملف العملي لبرنامج المرافقة لتعطي اللاجئين المعلومات الكافية لتسمح لهم بالانضمام لهذا البرنامج.",
             "en" : "Create a program page to describe courses, meetups, or other elements that help refugees be informed and engaged.",
-            "ti-ER" : "ኣገዳሲ ሓቤሬታ ጽሓፍ ብዛዕባ ናይ ስራሕ ንስድኛታት ዝኽውን መታን ክፈልጡን ክብርትዑን ኣብ መዓልታዊ ሂወቶም ዝነጥፍሉ",
             "fa" : "برای اینکه پناهندگان کاملاً آگاه باشند و بتوانند شرکت کنند، باید عمل کرد برنامه همراهی و مرافقت را به شکل بهتر و منظم ترتیب کنید.",
+            "ti-ER" : "ኣገዳሲ ሓቤሬታ ጽሓፍ ብዛዕባ ናይ ስራሕ ንስድኛታት ዝኽውን መታን ክፈልጡን ክብርትዑን ኣብ መዓልታዊ ሂወቶም ዝነጥፍሉ",
             "ps" : "د مرفقت او ملاتړ پروګرام د فعالیتونوپاڼه (فورمه) ترتیب کړئ ترڅو مهاجرین په کامل ډول باخبره وي او وکولی شئ ګډون وکړئ"
         },
         "Expliquer démarche cardbody" : {
@@ -1361,8 +1401,8 @@ exports.prod = {
             "id" : "struct_59ph3wefk2pzetst",
             "ar" : "اكتب الملف العملي للمعاملة الإداريّة الذي يوضح خطوة بخطوة الإجراءات التي يجب اتّباعها لتحقيقها.",
             "en" : "Create an administrative process page that details step-by-step how to go through official procedures.",
-            "ti-ER" : "ጽሓፍ ሓደ ካብ ኣብነታት ኣገደስተን ጠቓምትን ፣ ብ ደቂቅ ኣሰራርሓ ናይ ምስላጥ፣ በብደረጅኡ ብተግባር ናይ ኣሰራርሓ ቤት ጽሕፈት ከዕውት ዘኽእል ነጥብታት ፣ ፣",
             "fa" : "از یک پروسیجر اجرایی یک ورق عملکرد را بنویسید که در آن جزئیات قدم به قدم در مورد اجراآت تشریح شده باشد و این عملکردها شما را به موفقیت برساند.",
+            "ti-ER" : "ጽሓፍ ሓደ ካብ ኣብነታት ኣገደስተን ጠቓምትን ፣ ብ ደቂቅ ኣሰራርሓ ናይ ምስላጥ፣ በብደረጅኡ ብተግባር ናይ ኣሰራርሓ ቤት ጽሕፈት ከዕውት ዘኽእል ነጥብታት ፣ ፣",
             "ps" : "د یواداري پروسیجرد عملي اجراآتوعریضه (فورمه) ترتیب کړئ کومه چی به دپروسی د بریالیتوب عملي اقدامات اواجراآت په تفصلي اومرحله وارډول په ګوته کوي."
         },
         "Ajouter définition cardbody" : {
@@ -1370,8 +1410,8 @@ exports.prod = {
             "id" : "struct_59ph3wefk2pzetsu",
             "ar" : "أَثروا \"المفردات\" بطريقة تشاركيّة من أجل أن يفهم كلّ الأشخاص كلمات الاندماج و مفردات اللجوء",
             "en" : "Add to our official glossary so that everyone can understand useful vocabulary.",
-            "ti-ER" : "ን ምምዕባል ኣብ መዝገብ ቃላት ኣበርክት መታን ኩሉ ሰብ ክርዳእ ብ ዝበለጸ ዝሓሸ ቓላት ናይ ሓበራዊ ተጠቀም",
             "fa" : "لغات مشترک را غنی تر و اسانتربسازید تا همه مردم کلمات ادغام شده را بهتر بفهمند.",
+            "ti-ER" : "ን ምምዕባል ኣብ መዝገብ ቃላት ኣበርክት መታን ኩሉ ሰብ ክርዳእ ብ ዝበለጸ ዝሓሸ ቓላት ናይ ሓበራዊ ተጠቀም",
             "ps" : "د لغت نامي په رشد او بهبود کي برخه واخلئ ترڅو ټول خلګ د مدغم شویو کلموپه معنی په ښه توګه پوه شي"
         },
         "Créer parcours cardbody" : {
@@ -1380,7 +1420,7 @@ exports.prod = {
             "ar" : "هل لديك هدف تريد تحقيقه ؟ سنسرد لك الخطوات الواجب فعلها لتصل لهدفك ضمن محرّكنا لمسارات اللجوء.",
             "en" : "Do you have a goal? Our tools can help you list out the steps necessary to achieve your very own objectives.",
             "fa" : "آیا شما یک هدف دارید؟ برای رسیدن به هدف شما لست یک سلسله مراحل و اقدامات را برای شما در سیستم برنامه ادغام ما تهیه شده.",
-            "ti-ER" : "ሓደ መደብ ኣለካ ዶ &nbsp;ንምርካብና ? ካባኻ ንጽበዮም ትብሎም ዝርዝራት &nbsp; ናይ ተምክሮኻ ናዓና ከምዕብሉ &nbsp;ዝኽእሉ ነገራት ፣ ሓይሊ ክኾኑና ዝክእሉ ኣብዚ ዓውዲ ፍልጠት.",
+            "ti-ER" : "ሓደ መደብ ኣለካ ዶ ንምርካብና ? ካባኻ ንጽበዮም ትብሎም ዝርዝራት  ናይ ተምክሮኻ ናዓና ከምዕብሉ ዝኽእሉ ነገራት ፣ ሓይሊ ክኾኑና ዝክእሉ ኣብዚ ዓውዲ ፍልጠት.",
             "ps" : "ایا تاسو یوهدف لری؟  ستاسې د هدف ته د رسیدو او مرستي لپاره یو لیست داجراآتواو مختلفو مراحلو زمونږ په سیسټم کې ځای په ځای شوې دئ."
         }
     },
@@ -1391,7 +1431,7 @@ exports.prod = {
             "ar" : "بناء حياتك في فرنسا",
             "en" : "Build your life in France",
             "fa" : "زندگی خود را در فرانسه بسازید",
-            "ti-ER" : "ምምስራት ሂወትካ ኣብ ሃገረ ፍርናስ&nbsp;",
+            "ti-ER" : "ምምስራት ሂወትካ ኣብ ሃገረ ፍርናስ",
             "ps" : "خپل ژوند په فرانسه کې جوړ کړئ"
         },
         "Subheader" : {
@@ -1419,7 +1459,7 @@ exports.prod = {
         "ar" : "أظهر البحث المتقدم",
         "en" : "Show advanced search",
         "fa" : "نشان دادن جستجوی پیشرفته",
-        "ti-ER" : "ሊስት ናይ መድለይ ናይ ዝሓለፈ&nbsp;",
+        "ti-ER" : "ሊስት ናይ መድለይ ናይ ዝሓለፈ",
         "ps" : "پرمختللې لټون وښایاست"
     },
     "Tags" : {
@@ -1437,8 +1477,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y435g",
             "ar" : "إسكان",
             "en" : "Housing",
-            "ti-ER" : "መንበሪ ገዛ",
             "fa" : "مسکن",
+            "ti-ER" : "መንበሪ ገዛ",
             "ps" : "استوګنځای"
         },
         "Insertion pro" : {
@@ -1446,8 +1486,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y435h",
             "ar" : "الإدراج المهني",
             "en" : "Job hunting",
-            "ti-ER" : "ምትእትታው ሞያ ብውሕልልነት",
             "fa" : "اضافه کردن پیشه و کسب",
+            "ti-ER" : "ምትእትታው ሞያ ብውሕልልነት",
             "ps" : "مسلکي مرسته"
         },
         "Formation pro" : {
@@ -1482,8 +1522,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y435l",
             "ar" : "تطوع",
             "en" : "Volunteering",
-            "ti-ER" : "ወልንታዊ",
             "fa" : "داوطلب",
+            "ti-ER" : "ወልንታዊ",
             "ps" : "داوطلب"
         },
         "Rencontre" : {
@@ -1554,8 +1594,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y435t",
             "ar" : "تعلم مهنة",
             "en" : "learn a job",
-            "ti-ER" : "ሓደ ሞያ ምምሃር",
             "fa" : "یک کسب یاد بگیرید",
+            "ti-ER" : "ሓደ ሞያ ምምሃር",
             "ps" : "یوه پیشه او کسب زده کړئ"
         },
         "faire des études" : {
@@ -1608,8 +1648,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y435z",
             "ar" : "اكتشف الثقافة",
             "en" : "discover French culture",
-            "ti-ER" : "ሓድሽ ባህሊ ምልላይ",
             "fa" : "با فرهنگ اشناشدن",
+            "ti-ER" : "ሓድሽ ባህሊ ምልላይ",
             "ps" : "د کلتور په هکله زان خبر کړئ"
         },
         "me soigner" : {
@@ -1617,8 +1657,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y4360",
             "ar" : "معالجة صحّية",
             "en" : "get medical care",
-            "ti-ER" : "ኣነ ክሕከም",
             "fa" : "دسترس به تداوی و علاج",
+            "ti-ER" : "ኣነ ክሕከም",
             "ps" : "تداوي کول غواړم"
         },
         "réfugié ou accompagnant" : {
@@ -1635,8 +1675,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y4362",
             "ar" : "منظمة",
             "en" : "an organization",
-            "ti-ER" : "ሓንቲ ማሕበር",
             "fa" : "یک سازمان",
+            "ti-ER" : "ሓንቲ ማሕበር",
             "ps" : "یو سازمان"
         },
         "moins de 18 ans" : {
@@ -1707,8 +1747,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y436a",
             "ar" : "جيّد",
             "en" : "good",
-            "ti-ER" : "ጽቡቕ",
             "fa" : "خوب",
+            "ti-ER" : "ጽቡቕ",
             "ps" : "ښه"
         },
         "très bien" : {
@@ -1725,8 +1765,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y436c",
             "ar" : "باريس",
             "en" : "Paris",
-            "ti-ER" : "ፓሪስ",
             "fa" : "پاریس",
+            "ti-ER" : "ፓሪስ",
             "ps" : "پاریس"
         },
         "Lyon" : {
@@ -1746,6 +1786,42 @@ exports.prod = {
             "fa" : "نانت",
             "ti-ER" : "ናንት",
             "ps" : "Nantes نانت"
+        },
+        "choisir un thème" : {
+            "fr" : "choisir un thème",
+            "id" : "struct_9u1txbk37dw5gh",
+            "en" : "choose a subject",
+            "ar" : "اختر موضوعاً",
+            "ti-ER" : "ሓደ  ኣርእስቲ ምረጽ",
+            "fa" : "یک موضوع را انتخاب کنید",
+            "ps" : "یو موضوع غوره کړه"
+        },
+        "ma ville" : {
+            "fr" : "ma ville",
+            "id" : "struct_9u1txbk37dw5gi",
+            "en" : "my city",
+            "ar" : "مدينتي",
+            "ps" : "زما ښار",
+            "ti-ER" : "ናተይ ከተማ",
+            "fa" : "شهر من"
+        },
+        "âge" : {
+            "fr" : "âge",
+            "id" : "struct_9u1txbk37dw5gj",
+            "en" : "age",
+            "ar" : "عمر",
+            "ti-ER" : "ዕድመ",
+            "fa" : "سن",
+            "ps" : "عمر"
+        },
+        "mon niveau" : {
+            "fr" : "mon niveau",
+            "id" : "struct_9u1txbk37dw5gk",
+            "en" : "my level",
+            "ar" : "مستواي",
+            "ti-ER" : "ናተይ  ደረጃ",
+            "fa" : "سطح من",
+            "ps" : "زما سطح"
         }
     },
     "SearchItem" : {
@@ -1763,7 +1839,9 @@ exports.prod = {
             "id" : "struct_8g1fi0k2zwtnhy",
             "en" : "choose a theme",
             "fa" : "یک موضوع را انتخاب کنید",
-            "ps" : "یو موضوع غوره کړئ"
+            "ps" : "یو موضوع غوره کړئ",
+            "ar" : "اختر موضوعاً",
+            "ti-ER" : "ሓደ  ቁም ነገር ምረጽ"
         },
         "J'habite à" : {
             "fr" : "J'habite à",
@@ -1779,7 +1857,9 @@ exports.prod = {
             "id" : "struct_8g1fi0k2zwtnhz",
             "en" : "my city",
             "fa" : "شهر من",
-            "ps" : "زما ښار"
+            "ps" : "زما ښار",
+            "ar" : "مدينتي",
+            "ti-ER" : "ናተይ ከተማ"
         },
         "J'ai" : {
             "fr" : "J'ai",
@@ -1795,15 +1875,17 @@ exports.prod = {
             "id" : "struct_8g1fi0k2zwtni0",
             "en" : "my age",
             "fa" : "سن (عمر) من",
-            "ps" : "زما عمر"
+            "ps" : "زما عمر",
+            "ar" : "عمري",
+            "ti-ER" : "ዕድመይ"
         },
         "Je parle" : {
             "fr" : "Je parle",
             "id" : "struct_9u3tlk22y436i",
             "ar" : "أتكلم",
             "en" : "I speak",
-            "ti-ER" : "እዛረብ",
             "fa" : "من صحبت می کنم",
+            "ti-ER" : "እዛረብ",
             "ps" : "زه خبري کوم"
         },
         "mon niveau" : {
@@ -1811,7 +1893,9 @@ exports.prod = {
             "id" : "struct_8g1fi0k2zwtni1",
             "en" : "my level",
             "fa" : "سطح من",
-            "ps" : "زما سطح (سویه)"
+            "ps" : "زما سطح (سویه)",
+            "ar" : "مستواي",
+            "ti-ER" : "ናተይ ደርጃ"
         },
         "Je suis" : {
             "fr" : "Je suis",
@@ -1827,8 +1911,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y436k",
             "ar" : "الفرنسية",
             "en" : "French",
-            "ti-ER" : "ፈረንሳይ",
             "fa" : "فرانسوی",
+            "ti-ER" : "ፈረንሳይ",
             "ps" : "فرانسوې"
         }
     },
@@ -1892,8 +1976,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y436r",
             "ar" : "محذوفة",
             "en" : "Deleted",
-            "ti-ER" : "ምስራዝ / ምድምሳስ",
             "fa" : "حذف کردن",
+            "ti-ER" : "ምስራዝ / ምድምሳስ",
             "ps" : "حذف کول"
         },
         "Accepté structure" : {
@@ -1974,8 +2058,8 @@ exports.prod = {
             "fr" : "Retour à l'accueil",
             "id" : "struct_59ph3wefk2pzetsx",
             "ar" : "عودة إلى الصفحة الرئيسية",
-            "ti-ER" : "ምምላስ ናብ መቀበሊ ",
             "fa" : "بازگشت به صفحه اصلی",
+            "ti-ER" : "ምምላስ ናብ መቀበሊ ",
             "en" : "Back to homepage",
             "ps" : "کور پاڼي ته بیرته راګرځیدل"
         },
@@ -1983,8 +2067,8 @@ exports.prod = {
             "fr" : "Ou se créer un compte",
             "id" : "struct_59ph3wefk2pzetsy",
             "ar" : "أو أنشئ حساب",
-            "ti-ER" : "ኣበይ ነውጽእ ሓድሽ ሕሳብ ናይ ኣድረስ",
             "fa" : "یک حساب کاربری را باز کنید",
+            "ti-ER" : "ኣበይ ነውጽእ ሓድሽ ሕሳብ ናይ ኣድረስ",
             "en" : "Or create an account",
             "ps" : "یا یو حساب (اکاونټ) جوړ کړئ"
         },
@@ -2037,8 +2121,8 @@ exports.prod = {
             "fr" : "Mot de passe oublié ?",
             "id" : "struct_59ph3wefk2pzett4",
             "ar" : "نسيت كلمة المرور؟",
-            "ti-ER" : "ናተይ ኮድ ረስዔዮ",
             "fa" : "رمز عبور را فراموش کرده اید؟",
+            "ti-ER" : "ናተይ ኮድ ረስዔዮ",
             "en" : "Forgot your password?",
             "ps" : "رمز(پاس ورډ) مو هیر شوی؟"
         },
@@ -2056,7 +2140,9 @@ exports.prod = {
             "id" : "struct_8g1fi0k2zwtni2",
             "en" : "Confirm password",
             "fa" : "رمز عبور (پاس ورد) را تأیید کنید",
-            "ps" : "رمز(پاس ورډ) تایید کړئ"
+            "ps" : "رمز(پاس ورډ) تایید کړئ",
+            "ar" : "أكّد كلمة المرور",
+            "ti-ER" : "ድጎሞ ነቲ ዝነበረ ፓስዎርድ"
         },
         "Force" : {
             "fr" : "Force",
@@ -2064,28 +2150,100 @@ exports.prod = {
             "ti-ER" : "ሓይሊ",
             "en" : "Strength",
             "fa" : "زور",
-            "ps" : "ځواک"
+            "ps" : "ځواک",
+            "ar" : "قوية"
         },
         "Mot de passe actuel" : {
             "fr" : "Mot de passe actuel",
             "id" : "struct_8g1fi0k2zwtni4",
             "en" : "Current password",
             "fa" : "رمز عبور (پاس ورد) فعلی",
-            "ps" : "اوسنی (پاس ورډ) رمز"
+            "ps" : "اوسنی (پاس ورډ) رمز",
+            "ar" : "كلمة السر الحالية",
+            "ti-ER" : "ናይ ሕጂ ፓስ ዎርድ / ወይ ኮድ ናይ ሕጂ"
         },
         "Nouveau mot de passe" : {
             "fr" : "Nouveau mot de passe",
             "id" : "struct_8g1fi0k2zwtni5",
             "en" : "New password",
             "fa" : "رمز عبور(پاس ورد) جدید",
-            "ps" : "نوی رمزد عبور(پاس ورډ)"
+            "ps" : "نوی رمزد عبور(پاس ورډ)",
+            "ar" : "كلمة مرور جديدة",
+            "ti-ER" : "ሓድሽ ኮድ ፣  ወይ ሓድሽ ፓስ ዎርድ"
         },
         "Confirmez le nouveau mot de passe" : {
             "fr" : "Confirmez le nouveau mot de passe",
             "id" : "struct_8g1fi0k2zwtni6",
             "en" : "Confirm new password",
             "fa" : "کلمه مرور(پاس ورد) جدید را تأیید کنید",
-            "ps" : "نوی رمز(پاس ورډ) تایید کړئ"
+            "ps" : "نوی رمز(پاس ورډ) تایید کړئ",
+            "ar" : "تأكيد كلمة المرور الجديدة",
+            "ti-ER" : "ነቲ ሓድሽ  ኮድ ፣ ወይ  ፓስ ወርድ  ንምርግጋጽ ድገሞ"
+        },
+        "Réinitialisez votre mot de passe" : {
+            "fr" : "Réinitialisez votre mot de passe",
+            "id" : "struct_9u1txbk37dw5gl",
+            "en" : "Reset your password",
+            "ar" : "إعادة تعيين كلمة مرورك",
+            "ps" : "خپل رمز (پاس ورډ) بیا تازه کړئ",
+            "ti-ER" : "ዳግማይ  ጀምር  ናትካ  ፓስ ዎርድ ፣ ወይ ኮድ",
+            "fa" : "رمزعبور خود را دوباره تنظیم کنید"
+        },
+        "Renseignez ici le nouveau mot de passe souhaité" : {
+            "fr" : "Renseignez ici le nouveau mot de passe souhaité",
+            "id" : "struct_9u1txbk37dw5gm",
+            "en" : "Fill in the new password of your choice here",
+            "ar" : "إملأ كلمة المرور الجديدة هنا",
+            "ti-ER" : "ኣብዚ ኣረጋግጽ እቲ ትደሊዮ  ዝነበረካ ሓድሽ  ኮድ  ወይ ፓስዎርድ",
+            "fa" : "کلمه عبور جدید را اینجا وارد کنید",
+            "ps" : "دلته نوی رمز (پاس ورډ) ولیکي"
+        },
+        "Chargement des données utilisateur" : {
+            "fr" : "Chargement des données utilisateur",
+            "id" : "struct_9u1txbk37dw5gn",
+            "en" : "Loading user data",
+            "ar" : "تحميل بيانات المستخدم",
+            "ti-ER" : "ኣብ ጥቕሚ ክውዕሉ ዝኽእሉ ምላእ",
+            "fa" : "بارگیری داده های کاربر",
+            "ps" : "د مستخدم معلومات (ډیټا) لوډ کول"
+        },
+        "Problème mdp" : {
+            "fr" : "Un problème est survenu au moment de réinitialiser le mot de passe. Merci d'essayer à nouveau",
+            "id" : "struct_9u1txbk37dw5go",
+            "en" : "A problem occurred while resetting your password. Please try again.",
+            "ar" : "حدثت مشكلة أثناء إعادة تعيين كلمة المرور. شكراً للمحاولة مرة أخرى",
+            "ps" : "درمز (پاس ورډ) په کارولو کې له ستونزی سره مخ شوی. مهرباني وکړی یوځل بیا کوشش وکړئ.",
+            "ti-ER" : "ኣብ ዝሓለፈ ካልኣይ ክትፍትን ከለኻ በቲ ናይ ቅድም ፓስ ዎርድ የሽግሩ ነሮም ፣ ሕጂ ግን ኽትፍትን ከለኻ ብካልእ ሓድሽ ፓስ ዎርድ ጌርካ ፈትን፣   የቐነልና ብ ምፍታንካ",
+            "fa" : "اگردر تنظیم رمز عبور (پاس ورد) مشکلی روبرو شدید، لطفا دوباره کوشش کنید."
+        },
+        "Revenir à la page de connexion" : {
+            "fr" : "Revenir à la page de connexion",
+            "id" : "struct_9u1txbk37dw5gp",
+            "en" : "Return to the sign-in page",
+            "ar" : "العودة إلى صفحة تسجيل الدخول",
+            "ti-ER" : "ምምጻእ ናብቲ  ገጽ ናይ መመዝገቢ",
+            "fa" : "بازگشت به صفحه ورود",
+            "ps" : "د ننوتلو (کونکټ) کیدو صفحې ته راستون شه"
+        }
+    },
+    "UnauthorizedAccess" : {
+        "Accès refusé" : {
+            "fr" : "Accès refusé",
+            "id" : "struct_9u1txbk37dw5gq",
+            "en" : "Access denied",
+            "ar" : "الوصول مرفوض",
+            "ti-ER" : "ኣብ  ምንጻግ በጺሑ",
+            "fa" : "دسترسی رد شد",
+            "ps" : "لاسرسی رد شو"
+        },
+        "Revenir à l'accueil" : {
+            "fr" : "Revenir à l'accueil",
+            "id" : "struct_9u1txbk37dw5gr",
+            "en" : "Return to home",
+            "ar" : "العودة إلى الصفحة الرئيسية",
+            "ps" : "اصلي صفحی ته بیرته راستنیدل",
+            "ti-ER" : "ናብ መቀበሊ ምምጻእ",
+            "fa" : "بازگشت به خانه"
         }
     },
     "Dispositif" : {
@@ -2095,7 +2253,7 @@ exports.prod = {
             "ar" : "معلومة ذات موثوقيّة منخفضة، لم يتم التحقق منها سابقاً",
             "en" : "Information is not certain and has not yet been verified",
             "fa" : "بخاطر نداشتن اعتبار کافی این معلومات قبلآ تایید نشده است.",
-            "ti-ER" : "ብርግጽ ሓደ ሓቤሬታ &nbsp;ቅድሚ ሕጂ ብዝኾነ ምኽንያት ናይ &nbsp;ድኽመት ኣይተረጋገጸን",
+            "ti-ER" : "ብርግጽ ሓደ ሓቤሬታ ቅድሚ ሕጂ ብዝኾነ ምኽንያት ናይ ድኽመት ኣይተረጋገጸን",
             "ps" : "د کم اعتبارلرونکي معلومات قبلا ندي تایید کړای شوي"
         },
         "cliquez" : {
@@ -2122,7 +2280,7 @@ exports.prod = {
             "ar" : "أشكر المساهمين الذين كتبوا من أجلك",
             "en" : "Thank people who wrote them for you",
             "fa" : "مشارکت کنندگانی که آنهارا برای شما نوشت تشکری کنید.",
-            "ti-ER" : "ኣምስግኖም ነቶም ንዓኻ &nbsp;ኣብርክቶ ዝገበሩ ኣብ ተሳትፍኦም&nbsp;",
+            "ti-ER" : "ኣምስግኖም ነቶም ንዓኻ ኣብርክቶ ዝገበሩ ኣብ ተሳትፍኦም",
             "ps" : "له هغو مرسته کونکو څخه مننه وکړی چاچی د معلوماتو په اضافه کولو، ژباړه او لیکول که ونډه اخستي"
         },
         "fiabilite" : {
@@ -2158,7 +2316,7 @@ exports.prod = {
             "ar" : "الهيئات الشريكة",
             "en" : "Partner organizations",
             "fa" : "ساختارهای شریک",
-            "ti-ER" : "ኣቃውማ ናይ &nbsp;መሻርክቲ",
+            "ti-ER" : "ኣቃውማ ናይ መሻርክቲ",
             "ps" : "شریک جوړښتونه"
         },
         "C'est quoi ?" : {
@@ -2184,8 +2342,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y4379",
             "ar" : "لماذا يكون مهماً ؟",
             "en" : "Why is it interesting?",
-            "ti-ER" : "ስለ ምንታይ ደስ ዘብል?",
             "fa" : "چرا این جالب است؟",
+            "ti-ER" : "ስለ ምንታይ ደስ ዘብል?",
             "ps" : "ولې دا په زړه پورې ده؟"
         },
         "La démarche par étapes" : {
@@ -2202,8 +2360,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y437b",
             "ar" : "و بعد ذلك ؟",
             "en" : "And after?",
-            "ti-ER" : "ብድሕሪኡ ዝቅጽል",
             "fa" : "و بعد؟",
+            "ti-ER" : "ብድሕሪኡ ዝቅጽል",
             "ps" : "او وروسته؟"
         },
         "Comment je m'engage ?" : {
@@ -2220,8 +2378,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y437d",
             "ar" : "انظر الموقع",
             "en" : "See the website",
-            "ti-ER" : "ኣብ ዌብ ሳይት ተዓዘብ",
             "fa" : "ویب سایت را مشاهده کنید",
+            "ti-ER" : "ኣብ ዌብ ሳይት ተዓዘብ",
             "ps" : "ویب پاڼه وګورئ"
         },
         "Télécharger en PDF" : {
@@ -2230,7 +2388,7 @@ exports.prod = {
             "ar" : "تحميل بصيغة PDF",
             "en" : "Download PDF",
             "fa" : "PDF را بارگیری کنید",
-            "ti-ER" : "ፔዲፍ &nbsp;መውረዲ&nbsp;",
+            "ti-ER" : "ፔዲፍ መውረዲ",
             "ps" : "د پی ډی ایف فایل ښکته (ډاونلوډ) کول"
         },
         "Envoyer par mail" : {
@@ -2256,8 +2414,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y437h",
             "ar" : "مجّاني",
             "en" : "Free",
-            "ti-ER" : "ነጻ",
             "fa" : "رایگان",
+            "ti-ER" : "ነጻ",
             "ps" : "وړيا"
         },
         "Payant" : {
@@ -2275,7 +2433,7 @@ exports.prod = {
             "ar" : "من",
             "en" : "From",
             "fa" : "از",
-            "ti-ER" : "ካብ&nbsp;",
+            "ti-ER" : "ካብ",
             "ps" : "د"
         },
         "à" : {
@@ -2310,8 +2468,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y437n",
             "ar" : "أكثر من",
             "en" : "More than",
-            "ti-ER" : "ቀጻሊ ነገር",
             "fa" : "بیشتر از",
+            "ti-ER" : "ቀጻሊ ነገር",
             "ps" : "له دی زیات"
         },
         "gratuit" : {
@@ -2328,8 +2486,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y437p",
             "ar" : "أجد متحدّثاً",
             "en" : "Find a contact",
-            "ti-ER" : "ኣዛራቢ ምርካብ",
             "fa" : "یک مخاطب مورد نظر خودرا پیدا کنید",
+            "ti-ER" : "ኣዛራቢ ምርካብ",
             "ps" : "یو مخاطب اوکس پیدا کړئ چی تاسو سره په اجراآتوکې مرسته وکړي"
         },
         "Ajouter un tag" : {
@@ -2355,8 +2513,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y437s",
             "ar" : "في كل مرة",
             "en" : "each time",
-            "ti-ER" : "ኩሉ ጊዜ",
             "fa" : "هر دفعه",
+            "ti-ER" : "ኩሉ ጊዜ",
             "ps" : "هر واری"
         },
         "par mois" : {
@@ -2382,8 +2540,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y437v",
             "ar" : "في الساعة",
             "en" : "per hour",
-            "ti-ER" : "ብ ሰዓት",
             "fa" : "در هر ساعت",
+            "ti-ER" : "ብ ሰዓት",
             "ps" : "ساعت کی"
         },
         "Public visé" : {
@@ -2454,8 +2612,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y4383",
             "ar" : "على الانترنت",
             "en" : "Online",
-            "ti-ER" : "ኣብ መስመር",
             "fa" : "آنلاین",
+            "ti-ER" : "ኣብ መስመር",
             "ps" : "آنلاین"
         },
         "En physique" : {
@@ -2563,7 +2721,7 @@ exports.prod = {
             "ar" : "لماذا يهمني",
             "en" : "Why I'm interested",
             "fa" : "چرا برایم مورد علاقه است",
-            "ti-ER" : "ንምንታይ እዚ &nbsp;የግድሰኒ&nbsp;",
+            "ti-ER" : "ንምንታይ እዚ የግድሰኒ",
             "ps" : "ولی دا زما لپاره د علاقې وړدی"
         },
         "Détail de l'offre" : {
@@ -2608,7 +2766,7 @@ exports.prod = {
             "ar" : "نعم، لقد فهمت",
             "en" : "Ok, I understand",
             "fa" : "خیل خوب، فهمیدم",
-            "ti-ER" : "ሕራይ &nbsp; ተረዲእኒ፣",
+            "ti-ER" : "ሕራይ ተረዲእኒ፣",
             "ps" : "سمه ده، زه پوه شوم"
         },
         "Délais de réponse annoncés" : {
@@ -2657,7 +2815,7 @@ exports.prod = {
             "ps" : "دا به له تاسو څومره وخت ونیسي؟"
         },
         "Clique sur ce lien" : {
-            "fr" : "Clique sur ce lien",
+            "fr" : "Cliquez sur ce lien",
             "id" : "struct_9u3tlk22y438q",
             "ar" : "انقر على هذا الرابط",
             "en" : "Click on this link",
@@ -2666,7 +2824,7 @@ exports.prod = {
             "ps" : "په دې لینک کلیک وکړئ"
         },
         "Ton lieu de rendez-vous est" : {
-            "fr" : "Ton lieu de rendez-vous est",
+            "fr" : "Votre lieu de rendez-vous est",
             "id" : "struct_9u3tlk22y438r",
             "ar" : "مكان موعدك هو",
             "en" : "Your meeting place is",
@@ -2684,7 +2842,7 @@ exports.prod = {
             "ps" : "د زنګ وهلو شمیره"
         },
         "Ton courrier doit être adressé à" : {
-            "fr" : "Ton courrier doit être adressé à",
+            "fr" : "Votre courrier doit être adressé à",
             "id" : "struct_9u3tlk22y438t",
             "ar" : "يجب أن توجّه بريدك إلى",
             "en" : "Your mail must be addressed to",
@@ -2693,7 +2851,7 @@ exports.prod = {
             "ps" : "ستاسو بریښنالیک باید مربوطه مرجع ته ولیږل شي"
         },
         "Ce que tu dois faire" : {
-            "fr" : "Ce que tu dois faire",
+            "fr" : "Ce que vous devez faire",
             "id" : "struct_9u3tlk22y438u",
             "ar" : "ما عليك القيام به",
             "en" : "What you should do",
@@ -2715,193 +2873,270 @@ exports.prod = {
             "id" : "struct_9u14npk2vnfc8x",
             "fa" : "عنوان مکان",
             "en" : "Place title",
-            "ps" : "د ځای عنوان"
+            "ps" : "د ځای عنوان",
+            "ar" : "عنوان المكان",
+            "ti-ER" : "ኣድራሻ ናይ ቦታ"
         },
         "Adresse" : {
             "fr" : "Adresse",
             "id" : "struct_9u14npk2vnfc8y",
             "fa" : "آدرس",
-            "ti-ER" : "ኣድራሻ&nbsp;",
+            "ti-ER" : "ኣድራሻ",
             "en" : "Address",
-            "ps" : "پته (ادرس)"
+            "ps" : "پته (ادرس)",
+            "ar" : "عنوان"
         },
         "Ville" : {
             "fr" : "Ville",
             "id" : "struct_9u14npk2vnfc8z",
             "fa" : "شهر",
-            "ti-ER" : "ከትማ&nbsp;",
+            "ti-ER" : "ከትማ",
             "en" : "City",
-            "ps" : "ښار"
+            "ps" : "ښار",
+            "ar" : "مدينة"
         },
         "Informations pratiques" : {
             "fr" : "Informations pratiques",
             "id" : "struct_9u14npk2vnfc90",
             "fa" : "اطلاعات عملی",
             "en" : "Useful information",
-            "ps" : "عملي معلومات"
+            "ps" : "عملي معلومات",
+            "ar" : "معلومات عمليّة",
+            "ti-ER" : "ሓቤሬታ ብተግባር"
         },
         "Email de contact" : {
             "fr" : "Email de contact",
             "id" : "struct_9u14npk2vnfc91",
             "fa" : "آدرس ایمیل برای تماس",
             "en" : "Contact email",
-            "ps" : "د اړیکې نیولوبریښنالیک (ایمل)"
+            "ps" : "د اړیکې نیولوبریښنالیک (ایمل)",
+            "ar" : "البريد الإلكتروني للاتصال",
+            "ti-ER" : "ኢመይል ናይ መራኻቢ"
         },
         "Numéro de téléphone" : {
             "fr" : "Numéro de téléphone",
             "id" : "struct_9u14npk2vnfc92",
             "fa" : "شماره تلفن",
-            "ti-ER" : "ቁጽሪ ናይ ተለፎን&nbsp;",
+            "ti-ER" : "ቁጽሪ ናይ ተለፎን",
             "en" : "Phone number",
-            "ps" : "د تلیفون شمیره"
+            "ps" : "د تلیفون شمیره",
+            "ar" : "رقم الهاتف"
         },
         "Débutant" : {
             "fr" : "Débutant",
             "id" : "struct_8g1fi0k2zwtni7",
-            "ti-ER" : "ጀማሪ&nbsp;",
+            "ti-ER" : "ጀማሪ",
             "en" : "Beginner",
             "fa" : "مبتدی",
-            "ps" : "ابتدائی"
+            "ps" : "ابتدائی",
+            "ar" : "مبتدئ"
         },
         "Intermédiaire" : {
             "fr" : "Intermédiaire",
             "id" : "struct_8g1fi0k2zwtni8",
             "en" : "Intermediate",
             "fa" : "متوسط",
-            "ps" : "منځني (متوسط)"
+            "ps" : "منځني (متوسط)",
+            "ar" : "متوسط",
+            "ti-ER" : "ሞንጎኛ"
         },
         "Avancé" : {
             "fr" : "Avancé",
             "id" : "struct_8g1fi0k2zwtni9",
-            "ti-ER" : "ዝቀደመ&nbsp;",
+            "ti-ER" : "ዝቀደመ",
             "en" : "Advanced",
             "fa" : "پیشرفته",
-            "ps" : "پرمختللې"
+            "ps" : "پرمختللې",
+            "ar" : "متقدم"
         },
         "Tous les niveaux" : {
             "fr" : "Tous les niveaux",
             "id" : "struct_8g1fi0k2zwtnia",
             "en" : "All levels",
             "fa" : "همه سطوح",
-            "ps" : "ټولي سطحي"
+            "ps" : "ټولي سطحي",
+            "ar" : "جميع المستويات",
+            "ti-ER" : "ኩሎም ደረጀታት"
         },
         "Titre de séjour" : {
             "fr" : "Titre de séjour",
             "id" : "struct_8g1fi0k2zwtnib",
             "en" : "Visa or residence permit",
             "fa" : "جواز اقامت",
-            "ps" : "په فرانسه کې د اوسیدو سند"
+            "ps" : "په فرانسه کې د اوسیدو سند",
+            "ar" : "كرت الإقامة",
+            "ti-ER" : "ታሴራ ፣ ወይ    ቲትኽ ዱ ሱጁኽ"
         },
         "Justificatif de domicile" : {
             "fr" : "Justificatif de domicile",
             "id" : "struct_8g1fi0k2zwtnic",
-            "ti-ER" : "መርጋገጺ ናይ ገዛ&nbsp;",
+            "ti-ER" : "መርጋገጺ ናይ ገዛ",
             "en" : "Proof of address",
             "fa" : "سند برای اثبات آدرس",
-            "ps" : "د استګونځای د اثبات سند"
+            "ps" : "د استګونځای د اثبات سند",
+            "ar" : "إثبات السكن"
         },
         "Diplôme" : {
             "fr" : "Diplôme",
             "id" : "struct_8g1fi0k2zwtnid",
             "en" : "Diploma",
             "fa" : "دیپلوم",
-            "ps" : "دیپلم"
+            "ps" : "دیپلم",
+            "ar" : "شهادة",
+            "ti-ER" : "ዲብሎም"
         },
         "Permis de conduire" : {
             "fr" : "Permis de conduire",
             "id" : "struct_8g1fi0k2zwtnie",
-            "ti-ER" : "ማንጃ ፍቃድ&nbsp;",
+            "ti-ER" : "ማንጃ ፍቃድ",
             "en" : "Driver's license",
             "fa" : "گواهینامه (لایسنس) رانندگی",
-            "ps" : "د موټر چلولو(لایسنس) جواز"
+            "ps" : "د موټر چلولو(لایسنس) جواز",
+            "ar" : "رخصة القيادة"
         },
         "réfugié" : {
             "fr" : "réfugié",
             "id" : "struct_8g1fi0k2zwtnif",
             "en" : "refugee",
             "fa" : "مهاجر",
-            "ps" : "کډوال (مهاجر)"
+            "ps" : "کډوال (مهاجر)",
+            "ar" : "لاجئ",
+            "ti-ER" : "ስደቴኛ"
         },
         "tout public" : {
             "fr" : "tout public",
             "id" : "struct_8g1fi0k2zwtnig",
-            "ti-ER" : "ኩሉ ህዝቢ&nbsp;",
+            "ti-ER" : "ኩሉ ህዝቢ",
             "en" : "for all",
             "fa" : "همه مردم",
-            "ps" : "هرڅوک"
+            "ps" : "هرڅوک",
+            "ar" : "لكلّ الأشخاص"
         },
         "En savoir plus" : {
             "fr" : "En savoir plus",
             "id" : "struct_8g1fi0k2zwtnih",
             "en" : "Learn more",
             "fa" : "بیشتر بدانید",
-            "ps" : "د اضافي معلوماتو لپاره"
+            "ps" : "د اضافي معلوماتو لپاره",
+            "ar" : "إقرأ المزيد",
+            "ti-ER" : "ብብዝሒ ምፍላጥ"
         },
         "Tiennent la page" : {
             "fr" : "Tiennent la page à jour et répondent à vos questions",
             "id" : "struct_8g1fi0k2zwtnii",
-            "ti-ER" : "እዛ ገጽ ጹቡቅ ጌርካ ኣጽናዓያ &nbsp;መታን ን ሕቶታት ምምላጽስ ክትጠቅመካ",
+            "ti-ER" : "እዛ ገጽ ጹቡቅ ጌርካ ኣጽናዓያ መታን ን ሕቶታት ምምላጽስ ክትጠቅመካ",
             "en" : "Keep the page up to date and answer your questions",
             "fa" : "صفحه را مطابق تاریخ روز نگاه دارید و به سوالات خود پاسخ دهید",
-            "ps" : "دا صفحه اپډیټ وساتئ او خپلې پوښتنې ځواب کړئ"
+            "ps" : "دا صفحه اپډیټ وساتئ او خپلې پوښتنې ځواب کړئ",
+            "ar" : "حافظ على الصفحة محدّثة وأجب عن أسئلتك"
         },
         "Évaluer mon niveau" : {
             "fr" : "Évaluer mon niveau",
             "id" : "struct_8g1fi0k2zwtnij",
             "en" : "Evaluate my level",
             "fa" : "ارزیابی کردن سطح خود",
-            "ps" : "زما سویه (سطح) ارزول"
+            "ps" : "زما سویه (سطح) ارزول",
+            "ar" : "تقييم مستواي",
+            "ti-ER" : "ናተይ ዓቐን ደረጃ  ምግምጋም"
         },
         "Nous vous écoutons" : {
             "fr" : "Nous vous écoutons :",
             "id" : "struct_8g1fi0k2zwtnik",
             "en" : "We're here for you:",
             "fa" : "ما شما را میشنویم :",
-            "ps" : "موږ ستاسو په خدمت کي یو که کومه پښتنه او یا ستونزه لرئ:"
+            "ps" : "موږ ستاسو په خدمت کي یو که کومه پښتنه او یا ستونزه لرئ:",
+            "ar" : "نحن نسمعك :",
+            "ti-ER" : "ንሕና ንዓኹም ንሰምዓኩም ፣"
         },
         "Réagir" : {
             "fr" : "Réagir",
             "id" : "struct_8g1fi0k2zwtnil",
             "en" : "React",
             "fa" : "واکنش نشان دادن",
-            "ps" : "غبرګون"
+            "ps" : "غبرګون",
+            "ar" : "علّق",
+            "ti-ER" : "ግብረ መልሲ"
         },
         "J'ai une question" : {
             "fr" : "J'ai une question",
             "id" : "struct_8g1fi0k2zwtnim",
-            "ti-ER" : "ሓንቲ ሕቶ ኣላትኒ&nbsp;",
+            "ti-ER" : "ሓንቲ ሕቶ ኣላትኒ",
             "en" : "I have a question",
             "fa" : "یک سئوال دارم",
-            "ps" : "زه یوه پوښتنه لرم"
+            "ps" : "زه یوه پوښتنه لرم",
+            "ar" : "لديّ سؤال"
         },
         "J'ai une suggestion !" : {
             "fr" : "J'ai une suggestion !",
             "id" : "struct_8g1fi0k2zwtnin",
-            "ti-ER" : "ሓደ ርእይቶ ኣለኒ&nbsp;",
+            "ti-ER" : "ሓደ ርእይቶ ኣለኒ",
             "en" : "I have a suggestion!",
             "fa" : "یک پیشنهاد دارم!",
-            "ps" : "زه یو وړاندیز لرم!"
+            "ps" : "زه یو وړاندیز لرم!",
+            "ar" : "لديّ اقتراح !"
         },
         "Je veux juste vous dire" : {
             "fr" : "Je veux juste vous dire",
             "id" : "struct_8g1fi0k2zwtnio",
             "en" : "I just want to tell you",
             "fa" : "من فقط می خواهم به شما بگویم",
-            "ps" : "زه یوازې غواړم تاسو ته ووایم"
+            "ps" : "زه یوازې غواړم تاسو ته ووایم",
+            "ar" : "أريد فقط أن أخبركم",
+            "ti-ER" : "ብዛዕባ  እዚኣ   ጥራሕ  ክብለካ  ደልየ"
         },
         "réagir" : {
             "fr" : "réagir",
             "id" : "struct_8g1fi0k2zwtnip",
             "en" : "react",
             "fa" : "واکنش نشان دادن",
-            "ps" : "غبرګون ښودل"
+            "ps" : "غبرګون ښودل",
+            "ar" : "علّق",
+            "ti-ER" : "ግብረ መልሲ"
         },
         "écouter" : {
             "fr" : "écouter",
             "id" : "struct_8g1fi0k2zwtniq",
             "en" : "listen",
             "fa" : "گوش دادن",
-            "ps" : "اوریدل"
+            "ps" : "اوریدل",
+            "ar" : "استمع",
+            "ti-ER" : "ምስማዕ"
+        },
+        "Ajouter un thème" : {
+            "fr" : "Ajouter un thème",
+            "id" : "struct_9u1txbk37dw5gs",
+            "en" : "Add a subject",
+            "ar" : "اختر موضوعاً",
+            "ps" : "یوه موضوع اضافه کړئ",
+            "ti-ER" : "ወስኽ ሓደ ዛዕባ",
+            "fa" : "یک موضوع اضافه کنید"
+        },
+        "réfugiés" : {
+            "fr" : "réfugiés",
+            "id" : "struct_9u1txbk37dw5gt",
+            "en" : "refugees",
+            "ar" : "لاجئون",
+            "ps" : "کډوال (مهاجر)",
+            "ti-ER" : "ዑቕባ ዝረኸቡ",
+            "fa" : "پناهندگان (مهاجرین)"
+        },
+        "Localisation" : {
+            "fr" : "Localisation",
+            "id" : "struct_9u1txbk37dw5gu",
+            "en" : "Location",
+            "ar" : "موقع",
+            "ti-ER" : "ቦታ",
+            "fa" : "محل (موقع)",
+            "ps" : "موقع"
+        },
+        "Tout public" : {
+            "fr" : "Tout public",
+            "id" : "struct_9u1txbk37dw5gv",
+            "en" : "For all",
+            "ar" : "كلّ الأشخاص",
+            "ti-ER" : "ኒ ኹሉ ህዝቢ",
+            "fa" : "همه",
+            "ps" : "هرڅوک"
         }
     },
     "CheckDemarche" : {
@@ -2910,8 +3145,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y438w",
             "ar" : "هل انت متأكد ؟",
             "en" : "Are you sure?",
-            "ti-ER" : "ርግጽኛ ዲኻ ?",
             "fa" : "آیا شما مطمئن هستید؟",
+            "ti-ER" : "ርግጽኛ ዲኻ ?",
             "ps" : "ایا ته ډاډه یې؟"
         },
         "Existe deja" : {
@@ -2957,16 +3192,16 @@ exports.prod = {
             "en" : "The Volont'R civic service project is a program",
             "fa" : "پرگرام خدمات اجتماعی Volont'R یک برنامه است",
             "ti-ER" : "ፕሮግራም ሓገዝ ምስ ግብረ ሰናይ ፣ኣብ ከተማ ናይ ወልንታዊ",
-            "ps" : "&nbsp;<span style=\"text-align: left;\">Volont'R</span>&nbsp;یوه برنامه ده د مدني خدمت پروګرام لپاره"
+            "ps" : "Volont'Rیوه برنامه ده د مدني خدمت پروګرام لپاره"
         },
         "Finalement" : {
             "fr" : "Finalement je préfère plutôt créer une fiche <b>dispositif</b>",
             "id" : "struct_9u3tlk22y4392",
             "ar" : "أخيراً، أفضّل إنشاء ورقة<b> برنامج</b>",
             "en" : "Okay, I'd rather create a <b>program page</b>",
-            "ti-ER" : "ከም ኣማራጺ ሓድሽ ገጽ ኣብ ምጽሓፍ ከብርክት ይሕሸኒ",
             "fa" : "در آخر من ترجیح می دهم یک <b>فرم برنامه ایجاد کنم</b>",
-            "ps" : "په اخیره کې زه غواړم چې د<b>&nbsp;پروګرام فورمه</b> جوړه کړم"
+            "ti-ER" : "ከም ኣማራጺ ሓድሽ ገጽ ኣብ ምጽሓፍ ከብርክት ይሕሸኒ",
+            "ps" : "په اخیره کې زه غواړم چې د<b>پروګرام فورمه</b> جوړه کړم"
         },
         "je suis sur" : {
             "fr" : "Je suis sûr de vouloir créer une fiche <b>démarche administrative</b>",
@@ -2994,7 +3229,7 @@ exports.prod = {
             "ar" : "أظهر الكلّ",
             "en" : "See all",
             "fa" : "دیدن همه",
-            "ti-ER" : "ን ኹሉ ምርኣይ&nbsp;",
+            "ti-ER" : "ን ኹሉ ምርኣይ",
             "ps" : "ټول وګوری"
         },
         "Mon profil" : {
@@ -3029,8 +3264,8 @@ exports.prod = {
             "id" : "struct_9u3tlk22y4399",
             "ar" : "هيئتي",
             "en" : "Organization area",
-            "ti-ER" : "ኣቃውማ ናተይ",
             "fa" : "ساختار من",
+            "ti-ER" : "ኣቃውማ ናተይ",
             "ps" : "زما جوړښت (ساختار)"
         },
         "Administration" : {
@@ -3078,7 +3313,7 @@ exports.prod = {
             "en" : "Participate in Réfugiés.info's improvement",
             "fa" : "درتکامل وبهبود réfugiés.info سهم بگیرید",
             "ti-ER" : "ተሳተፍ ንምዕባለ Réfugiés.info",
-            "ps" : "د&nbsp;<span style=\"text-align: left;\">réfugiés.info</span>&nbsp;په انکشاف او بهبود کې برخه واخلئ"
+            "ps" : "دréfugiés.infoپه انکشاف او بهبود کې برخه واخلئ"
         },
         "Demander des fonctionnalités" : {
             "fr" : "Demander des fonctionnalités",
@@ -3210,10 +3445,11 @@ exports.prod = {
     "Bravo" : {
         "fr" : "Bravo !",
         "id" : "struct_8g1fi0k2zwtnir",
-        "ti-ER" : "ንፉዕ!&nbsp;",
+        "ti-ER" : "ንፉዕ!",
         "en" : "Bravo!",
         "fa" : "افرین!",
-        "ps" : "شاباش (براوو)!"
+        "ps" : "شاباش (براوو)!",
+        "ar" : "أحسنت !"
     },
     "ou" : {
         "fr" : "ou",
@@ -3256,8 +3492,8 @@ exports.prod = {
         "id" : "struct_9u3tlk22y439x",
         "ar" : "حاول توسيع بحثك بإلغاء بعض الفلاتر",
         "en" : "Try to expand your search by removing some tags",
-        "ti-ER" : "ፈትን ከትማዕብሎ ናይ ምድላይ ንጥፈታት ን ብዝኾነ ምልክታት",
         "fa" : "برای گسترده ترکردن جستجوشما کوشش کنید برخی از تگ ها را خاموش کنید",
+        "ti-ER" : "ፈትን ከትማዕብሎ ናይ ምድላይ ንጥፈታት ን ብዝኾነ ምልክታት",
         "ps" : "د ځینې بخشونو(ٹاګونو) په خاموشه کولو سره د لټون د پراخه کولو هڅه وکړئ"
     },
     "Désolé" : {
@@ -3292,8 +3528,8 @@ exports.prod = {
         "id" : "struct_9u3tlk22y43a1",
         "ar" : "إلغاء",
         "en" : "Cancel",
-        "ti-ER" : "ምስራዝ",
         "fa" : "لغو کردن",
+        "ti-ER" : "ምስራዝ",
         "ps" : "لغوه کول"
     },
     "Sauvegarder" : {
@@ -3329,8 +3565,17 @@ exports.prod = {
         "ar" : "استكشاف البرامج",
         "en" : "Explore programs",
         "fa" : "برنامه ها را بشتر بفهمید",
-        "ti-ER" : "ምርኣይ &nbsp;መሳርሒ&nbsp;",
+        "ti-ER" : "ምርኣይ መሳርሒ",
         "ps" : "دمختلفوپروګرامونوپه هکله معلومات ترلاسه کړئ"
+    },
+    "Chercher une démarche" : {
+        "fr" : "Explorer les démarches",
+        "id" : "struct_9u1txbk37dw5gw",
+        "en" : "Explore processes",
+        "ar" : "استكشاف المعاملات",
+        "ti-ER" : "ትዕዝብቲ ናይ ኣሰራርሓ",
+        "fa" : "اجراآت و پروسجر ها را بهتر بدانید",
+        "ps" : "د پروسیجرونو او اجراآتو په هکله نور معلومات ترلاسه کړي"
     },
     "Rejoindre le réseau" : {
         "fr" : "Rejoindre le réseau",
@@ -3355,8 +3600,8 @@ exports.prod = {
         "id" : "struct_9u3tlk22y43a8",
         "ar" : "ساهم",
         "en" : "Contribute",
-        "ti-ER" : "ኣበርክቶ",
         "fa" : "شرکت کردن",
+        "ti-ER" : "ኣበርክቶ",
         "ps" : "ونډه اخستونکی"
     },
     "secondes" : {
@@ -3391,8 +3636,8 @@ exports.prod = {
         "id" : "struct_9u3tlk22y43ac",
         "ar" : "أيام",
         "en" : "days",
-        "ti-ER" : "መዓልቲ",
         "fa" : "روز",
+        "ti-ER" : "መዓልቲ",
         "ps" : "ورځې"
     },
     "mois" : {
@@ -3472,8 +3717,8 @@ exports.prod = {
         "id" : "struct_9u3tlk22y43al",
         "ar" : "ابحث عن أو أنشِئ هيئة",
         "en" : "Search or create an organization",
-        "ti-ER" : "ምድላይ ወይ ሓደ ኣቃውማ ምድላው",
         "fa" : "یک ساختار را جستجو یا ایجاد کنید",
+        "ti-ER" : "ምድላይ ወይ ሓደ ኣቃውማ ምድላው",
         "ps" : "یو جوړښت (ساختار) ومومئ یا جوړ کړئ"
     },
     "Rechercher un utilisateur" : {
@@ -3517,8 +3762,8 @@ exports.prod = {
         "id" : "struct_9u3tlk22y43aq",
         "ar" : "كيفية المساهمة ؟",
         "en" : "How will you contribute?",
-        "ti-ER" : "ብኸመይ እሳተፍ ንምብርካት",
         "fa" : "چگونه مشارکت کرد؟",
+        "ti-ER" : "ብኸመይ እሳተፍ ንምብርካት",
         "ps" : "څنګه ونډه واخلو؟"
     },
     "Accessibilité" : {
@@ -3527,7 +3772,7 @@ exports.prod = {
         "ar" : "إمكانية الوصول",
         "en" : "Accessibility",
         "fa" : "دسترس",
-        "ti-ER" : "መራኸቢ ናይ መእተዊ&nbsp;",
+        "ti-ER" : "መራኸቢ ናይ መእተዊ",
         "ps" : "لاسرسي"
     },
     "Mentions légales" : {
@@ -3579,18 +3824,19 @@ exports.prod = {
         "fr" : "Connexion",
         "id" : "struct_59ph3wefk2pzett7",
         "ar" : "تسجيل الدخول",
-        "ti-ER" : "መስምር",
         "fa" : "ورود به سیستم",
+        "ti-ER" : "መስምር",
         "en" : "Sign in",
         "ps" : "خپل حساب ته ننوتل (کونیکشن)"
     },
     "Envoyer" : {
         "fr" : "Envoyer",
         "id" : "struct_8g1fi0k2zwtnis",
-        "ti-ER" : "መልእኽቲ &nbsp;",
+        "ti-ER" : "መልእኽቲ",
         "en" : "Send",
         "fa" : "ارسال",
-        "ps" : "لیږدول"
+        "ps" : "لیږدول",
+        "ar" : "إرسال"
     },
     "Lexique" : {
         "fr" : "Lexique",
@@ -3606,7 +3852,9 @@ exports.prod = {
         "id" : "struct_8g1fi0k2zwtnit",
         "en" : "Change",
         "fa" : "تغییردادن",
-        "ps" : "بدلول"
+        "ps" : "بدلول",
+        "ar" : "تعديل",
+        "ti-ER" : "ምቕያር"
     }
   },
 }

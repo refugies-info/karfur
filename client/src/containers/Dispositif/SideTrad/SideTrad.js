@@ -253,9 +253,11 @@ class SideTrad extends Component {
       }
     })
     console.log(traduction)
-    const nbTraduits = this._countContents([traduction.translatedText]);
-    const nbInit = (this._countContents(this.props.menu) + pointeurs.length - this.props.menu.length);
-    traduction.avancement = nbTraduits / nbInit;
+    if(traduction.hasBeenSkipped){
+      const nbTraduits = this._countContents([traduction.translatedText]);
+      const nbInit = (this._countContents(this.props.menu) + pointeurs.length - this.props.menu.length);
+      traduction.avancement =  nbTraduits / nbInit;
+    }else{ traduction.avancement = 1 }
     traduction.title= (this.props.content.titreMarque || "") + (this.props.content.titreMarque && this.props.content.titreInformatif ? " - " : "") + (this.props.content.titreInformatif || "");
 
     if(this.props.isExpert){
