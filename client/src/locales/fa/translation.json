@@ -47,6 +47,7 @@
     "mots rédigés": "کلمات<br/>نوشته",
     "minutes passées": "دقیقه<br/>گذشت",
     "personnes informées": "افراد<br/>مطلع",
+    "Espace rédaction": "منطقه نوشتن مقاله",
     "Retrouvez ici vos pages favorites": "صفحات مورد علاقه خود را در اینجا پیدا کنید",
     "cherche btn": "برای حفظ معلومات این دکمه را در محتوا پیدا کنید؟",
     "Ajouter un membre": "یک عضو را اضافه کنید",
@@ -101,7 +102,10 @@
     "commencez à rédiger": "اولین محتوای خود را برای شروع حساب کننده بنویسید",
     "mots traduits": "کلمات ترجمه شده",
     "commencez à traduire": "اولین کلمات خود را برای شروع حساب کننده ترجمه کنید",
-    "Modifier le mot de passe": "رمز عبور (پاس ورد) را تغییر دهید"
+    "Modifier le mot de passe": "رمز عبور (پاس ورد) را تغییر دهید",
+    "Merci de donner de votre temps": "تشکر از این که وقت خود را برای کمک ادغام پناهندگان درجامعه دادید",
+    "Grâce à vous": "به همکاری و کمک شما پناهندگان بیشتر و بهتر آگاه خواهند شد.",
+    "Merci de participer": "مشارکت درایجاد اطلاعات و انها را دردسترسی هر چه بیشتر مردم قرار دادن از شما تشکری می کنیم"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "ما که هستیم؟",
@@ -206,7 +210,11 @@
     "très bien": "خیلی خوب",
     "Paris": "پاریس",
     "Lyon": "لیون",
-    "Nantes": "نانت"
+    "Nantes": "نانت",
+    "choisir un thème": "یک موضوع را انتخاب کنید",
+    "ma ville": "شهر من",
+    "âge": "سن",
+    "mon niveau": "سطح من"
   },
   "SearchItem": {
     "Je cherche à": "من درجستجوی هستم به",
@@ -251,9 +259,17 @@
     "Force": "زور",
     "Mot de passe actuel": "رمز عبور (پاس ورد) فعلی",
     "Nouveau mot de passe": "رمز عبور(پاس ورد) جدید",
-    "Confirmez le nouveau mot de passe": "کلمه مرور(پاس ورد) جدید را تأیید کنید"
+    "Confirmez le nouveau mot de passe": "کلمه مرور(پاس ورد) جدید را تأیید کنید",
+    "Réinitialisez votre mot de passe": "رمزعبور خود را دوباره تنظیم کنید",
+    "Renseignez ici le nouveau mot de passe souhaité": "کلمه عبور جدید را اینجا وارد کنید",
+    "Chargement des données utilisateur": "بارگیری داده های کاربر",
+    "Problème mdp": "اگردر تنظیم رمز عبور (پاس ورد) مشکلی روبرو شدید، لطفا دوباره کوشش کنید.",
+    "Revenir à la page de connexion": "بازگشت به صفحه ورود"
   },
-  "UnauthorizedAccess": {},
+  "UnauthorizedAccess": {
+    "Accès refusé": "دسترسی رد شد",
+    "Revenir à l'accueil": "بازگشت به خانه"
+  },
   "Dispositif": {
     "fiabilite_faible": "بخاطر نداشتن اعتبار کافی این معلومات قبلآ تایید نشده است.",
     "cliquez": "برای دانستن بیشتر روی این نشان \"؟\" کلیک کنید",
@@ -349,7 +365,11 @@
     "J'ai une suggestion !": "یک پیشنهاد دارم!",
     "Je veux juste vous dire": "من فقط می خواهم به شما بگویم",
     "réagir": "واکنش نشان دادن",
-    "écouter": "گوش دادن"
+    "écouter": "گوش دادن",
+    "Ajouter un thème": "یک موضوع اضافه کنید",
+    "réfugiés": "پناهندگان (مهاجرین)",
+    "Localisation": "محل (موقع)",
+    "Tout public": "همه"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "آیا شما مطمئن هستید؟",
@@ -404,6 +424,7 @@
   "Modifier mon profil": "پروفایل خود را تغییر دادن",
   "Bientôt disponible": "به زودی در دسترس است",
   "Chercher un dispositif": "برنامه ها را بشتر بفهمید",
+  "Chercher une démarche": "اجراآت و پروسجر ها را بهتر بدانید",
   "Rejoindre le réseau": "به شبکه بپیوندید",
   "Valider": "اعتبار",
   "Contribuer": "شرکت کردن",

@@ -43,7 +43,7 @@ const favoriTable = (props) => {
               <td className="align-middle negative-margin">
                 {(element.tags || []).map((tag, key) => {
                   return ( 
-                    <FButton key={key} className={"tag-btn mt-10 bg-" + tag.short} onClick={()=>searchTag(tag.short)}>
+                    <FButton key={key} className={"tag-btn mt-10 bg-" + (tag.short || "").replace(/ /g,"-")} onClick={()=>searchTag(tag.short)}>
                       {tag.short && t("Tags." + tag.short, tag.short)}
                     </FButton>
                   );

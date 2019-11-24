@@ -21,6 +21,7 @@ $imgHeight : 350px;
     margin-top: -60px;
     padding-top: 60px;
     background-size:cover; 
+    background-repeat: no-repeat;
     background: $blanc;
     min-height: 500px; 
     background-position:0;
@@ -259,10 +260,6 @@ $imgHeight : 350px;
         color: $noir;
         font-weight: normal;
       }
-    }
-
-    &.sideView{
-      display: none;
     }
   }
 

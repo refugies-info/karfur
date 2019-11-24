@@ -274,7 +274,7 @@ class UneVariante extends Component {
         </div>
 
         <div className="footer-btns mt-10">
-          <FButton type="help" name="question-mark-circle-outline" fill={variables.error} onClick={this.props.upcoming}>
+          <FButton tag={"a"} href="https://help.refugies.info/fr/" target="_blank" rel="noopener noreferrer" type="help" name="question-mark-circle-outline" fill={variables.error}>
             J'ai besoin d'aide
           </FButton>
           <FButton 
