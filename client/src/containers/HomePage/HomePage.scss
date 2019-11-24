@@ -327,6 +327,11 @@
       }
     }
   }
+
+  .flip-horizontal-top {
+    -webkit-animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+            animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+  }
 }
 
 @-webkit-keyframes slide-bottom {
