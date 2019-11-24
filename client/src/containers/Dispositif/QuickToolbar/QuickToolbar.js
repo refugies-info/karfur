@@ -34,7 +34,7 @@ class QuickToolbar extends Component {
         if(this.props.subkey !== undefined && this.props.subkey !== null && this.props.subkey >= 0 && node.children && node.children.length > 0){
           node = this.props.item.children[this.props.subkey]
         }
-        node && node.title && this.props.readAudio(h2p(node.title), 'fr-fr', ()=>this.props.readAudio(h2p(node.content))); 
+        node && node.title && this.props.readAudio(h2p(node.title), 'fr-fr', ()=>this.props.readAudio(h2p(node.content), 'fr-fr', null, true), true); 
       }else if(id===2){ this.props.toggleModal(true, 'construction'); }
       else if(id===3){ this.props.toggleModal(true, 'construction');}
     }else{
