@@ -83,8 +83,8 @@ class AdvancedSearch extends Component {
   
   selectTag = (tag = {}) => {
     const tagValue = (filtres.tags.find(x => x.short === tag) || {});
-    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: tagValue.name, short: tagValue.short, active: true} : x)}))
-    this.queryDispositifs({"tags.short": tag})
+    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: tagValue.name, short: tagValue.short, query: tagValue.name, active: true} : x)}))
+    this.queryDispositifs({"tags.name": tagValue.name})
     // this.props.history.replace("/advanced-search?tag="+tag)
   }
   
@@ -184,7 +184,7 @@ class AdvancedSearch extends Component {
   render() {
     let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri, displayAll} = this.state;
     const {t, windowWidth, dispositifs: storeDispo} = this.props;
-    const populatedPinned = storeDispo && storeDispo.length > 0 ? pinned.map(x => x._id ? x : (storeDispo.find(y => y._id === x) || {})) : [];
+    const populatedPinned = storeDispo && storeDispo.length > 0 ? pinned.map(x => ({...(x._id ? x : (storeDispo.find(y => y._id === x) || {})), pinned: true})) : [];
     const filteredPinned = activeFiltre ? populatedPinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : populatedPinned;
     
     if(recherche[0].active){

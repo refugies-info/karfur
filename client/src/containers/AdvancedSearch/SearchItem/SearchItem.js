@@ -60,7 +60,7 @@ class SearchItem extends Component {
                   componentRestrictions={{country: "fr"}}
                 />
                 {item.active && 
-                  <EVAIcon name="close-circle" size="medium" className="close-icon" onClick={e => {e.stopPropagation(); this.props.desactiver(keyValue); this.initializeVille()}} />}
+                  <EVAIcon name="close-circle" size="xlarge" className="close-icon" onClick={e => {e.stopPropagation(); this.props.desactiver(keyValue); this.initializeVille()}} />}
               </div>
             </ReactDependentScript> :
           <Dropdown isOpen={dropdownOpen} toggle={this.toggle} className="display-inline-block">

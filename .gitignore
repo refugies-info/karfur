@@ -45,5 +45,5 @@ yarn-error.log*
 .vscode/
 credentials.json
 token.json
-controllers/dispositif/gmail_auth.js
+/controllers/dispositif/gmail_auth.js
 /client/brouillon.js

@@ -74,7 +74,7 @@ class TraducteurModal extends Component {
     return (
       <Modal isOpen={show} toggle={toggle} className='modal-traducteur'>
         <ModalHeader toggle={toggle}>
-          <h3>C'est parti !</h3>
+          C'est parti !
         </ModalHeader>
         <ModalBody>
           <h5>Quelles sont vos langues de travail ?</h5>
