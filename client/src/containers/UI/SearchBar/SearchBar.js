@@ -14,10 +14,10 @@ import './SearchBar.scss';
 import variables from 'scss/colors.scss';
 
 const escapeRegexCharacters = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const getSuggestionValue = (suggestion, isArray = false, structures=false) => console.log('ici') && isArray ? 
+const getSuggestionValue = (suggestion, isArray = false, structures=false) => isArray ? 
   structures ? (suggestion.acronyme || "") + (suggestion.acronyme && suggestion.nom ? " - " : "") + (suggestion.nom || "") : 
   (suggestion.username || "") + (suggestion.username && suggestion.email ? " - " : "") + (suggestion.email || "") : 
-  suggestion.titreMarque || suggestion.titreInformatif; // + (suggestion.titreMarque && suggestion.titreInformatif ? " - " : "") + suggestion.titreInformatif;
+  (suggestion.titreMarque || suggestion.titreInformatif); // + (suggestion.titreMarque && suggestion.titreInformatif ? " - " : "") + suggestion.titreInformatif;
 
 export class SearchBar extends React.Component {
   state = {
@@ -56,7 +56,7 @@ export class SearchBar extends React.Component {
     this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
     this.props.history.push({ 
       pathname: '/' + (dispositif.typeContenu || "dispositif") + (dispositif._id ? ('/' + dispositif._id) : ''), 
-      state: { inVariante: dispositif.typeContenu === "demarche", textInput: this.state.value} 
+      state: { checkingVariante: this.props.toVariante && dispositif.typeContenu === "demarche", textInput: this.state.value} 
     } )
   }
 
@@ -138,7 +138,7 @@ const removeAccents = (str = "") => {
   str = str.split('');
   var i, x;
   for (i = 0; i < str.length; i++) {
-    if ((x = accents.indexOf(str[i])) != -1) {
+    if ((x = accents.indexOf(str[i])) !== -1) {
       str[i] = accentsOut[x];
     }
   }

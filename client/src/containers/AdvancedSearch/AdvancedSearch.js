@@ -7,6 +7,7 @@ import querySearch from "stringquery";
 import _ from "lodash";
 import { NavHashLink } from 'react-router-hash-link';
 import windowSize from 'react-window-size';
+import { connect } from 'react-redux';
 // import Cookies from 'js-cookie';
 
 import SearchItem from './SearchItem/SearchItem';
@@ -15,13 +16,11 @@ import {initial_data} from "./data"
 import CustomCard from '../../components/UI/CustomCard/CustomCard';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import {filtres} from "../Dispositif/data";
-import {filtres_contenu} from "./data";
+import {filtres_contenu, tris} from "./data";
 import {breakpoints} from 'utils/breakpoints.js';
 
 import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
-
-const tris = [{name: "A > Z", value: "titreInformatif"}, {name:"Derniers ajouts", value: "created_at"}, {name: "Les plus visités", value:"nbVues"}];
 
 let user={_id:null, cookies:{}};
 class AdvancedSearch extends Component {
@@ -57,22 +56,35 @@ class AdvancedSearch extends Component {
       { "audienceAge.bottomValue": { $lt: x.topValue}, "audienceAge.topValue": { $gt: x.bottomValue} } :
       {[x.queryName]: x.query}
     )).reduce((acc, curr) => ({...acc, ...curr}),{});
-    API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', demarcheId: { $exists: false } }}).then(data_res => {
+    const localisationSearch = this.state.recherche.find(x => x.queryName === 'localisation' && x.value);
+    API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', ...(!localisationSearch && {demarcheId: { $exists: false }}) }}).then(data_res => {
       let dispositifs=data_res.data.data;
-      console.log(query, dispositifs)
       if(query["tags.name"]){       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
         dispositifs = dispositifs.sort((a,b)=> (a.tags.findIndex(x => x ? x.short === query["tags.name"] : 99) - b.tags.findIndex(x => x ? x.short === query["tags.name"] : 99)))
       }
+      if(localisationSearch){       //On applique le filtre géographique maintenant
+        dispositifs = dispositifs.filter(x => (
+          x.typeContenu !== "demarche" || 
+          !(x.variantes || []).some(y => y.villes) || 
+          x.variantes.some(y => y.villes.some(z => (
+            !z.address_components.some(ad => (
+              !localisationSearch.query.some(lq => lq.long_name === ad.long_name) //On compare seulement les noms, il faudrait idéalement rajouter le type aussi mais la comparaison des Arrays me paraît lourde
+            ))
+          )))
+        ));
+        const filterDoubles = [...new Set(dispositifs.map(x => x.demarcheId || x._id))]; //Je vire les doublons créés par les variantes
+        dispositifs = filterDoubles.map(x => dispositifs.find(y => y.demarcheId === x || y._id === x));
+      }
       dispositifs = dispositifs.map(x => ({...x, nbVues: (this.state.nbVues.find(y=>y._id === x._id) || {}).count }))     //Je rajoute la donnée sur le nombre de vues par dispositif
-        .filter(x => !this.state.pinned.some(y=>y._id===x._id))
+        .filter(x => !this.state.pinned.some(y=>y._id===x._id || y===x._id))
       this.setState({ dispositifs:dispositifs, showSpinner: false })
     }).catch(()=>this.setState({ showSpinner: false }))
   }
   
   selectTag = (tag = {}) => {
     const tagValue = (filtres.tags.find(x => x.short === tag) || {});
-    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: tagValue.name, short: tagValue.short, active: true} : x)}))
-    this.queryDispositifs({["tags.short"]: tag})
+    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: tagValue.name, short: tagValue.short, query: tagValue.name, active: true} : x)}))
+    this.queryDispositifs({"tags.name": tagValue.name})
     // this.props.history.replace("/advanced-search?tag="+tag)
   }
   
@@ -104,7 +116,7 @@ class AdvancedSearch extends Component {
         user={_id:u._id, cookies:u.cookies || {}}
         this.setState({
           pinned:user.cookies.parkourPinned || [],
-          dispositifs:[...this.state.dispositifs].filter(x => !((user.cookies.parkourPinned || []).find( y=> y._id === x._id))),
+          dispositifs:[...this.state.dispositifs].filter(x => !((user.cookies.parkourPinned || []).find( y=> y._id === x._id || y === x._id))),
           ...(user.cookies.parkourData && user.cookies.parkourData.length>0 && 
             {data:this.state.data.map((x,key)=> {return {...x, value: (user.cookies.parkourData[key] || x.value), query: (x.children.find(y=> y.name === (user.cookies.parkourData[key] || x.value)) || {}).query }})})
         })
@@ -123,7 +135,7 @@ class AdvancedSearch extends Component {
         [...this.state.pinned, dispositif] :
         this.state.pinned.filter(x=> x._id !== dispositif._id)
     },()=>{
-      user.cookies.parkourPinned=this.state.pinned;
+      user.cookies.parkourPinned=[...new Set(this.state.pinned.map(x => x._id))];
       API.set_user_info(user);
     })
   }
@@ -154,8 +166,8 @@ class AdvancedSearch extends Component {
     let recherche = [...this.state.recherche];
     recherche[key]={
       ...recherche[key],
-      value: subitem.name,
-      query: subitem.query || subitem.name,
+      value: subitem.name || subitem.formatted_address,
+      query: subitem.query || subitem.address_components || subitem.name,
       active: true,
       ...(subitem.short && {short: subitem.short}),
       ...(subitem.bottomValue && {bottomValue: subitem.bottomValue}),
@@ -171,9 +183,10 @@ class AdvancedSearch extends Component {
 
   render() {
     let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri, displayAll} = this.state;
-    const {t, windowWidth} = this.props;
-    const filteredPinned = activeFiltre ? pinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : pinned;
-
+    const {t, windowWidth, dispositifs: storeDispo} = this.props;
+    const populatedPinned = storeDispo && storeDispo.length > 0 ? pinned.map(x => ({...(x._id ? x : (storeDispo.find(y => y._id === x) || {})), pinned: true})) : [];
+    const filteredPinned = activeFiltre ? populatedPinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : populatedPinned;
+    
     if(recherche[0].active){
       dispositifs = dispositifs.sort((a,b) => _.get(a,"tags.0.name", {}) === recherche[0].query ? -1 : _.get(b,"tags.0.name", {}) === recherche[0].query ? 1 : 0)
     }
@@ -266,7 +279,7 @@ class AdvancedSearch extends Component {
                   </Col>}
                 <Col xs="12" sm="6" md="3">
                   <NavHashLink to="/comment-contribuer#ecrire">
-                    <CustomCard addcard="true">
+                    <CustomCard addcard="true" className="create-card">
                       <CardBody>
                         {showSpinner ?
                           <Spinner color="success" /> : 
@@ -355,11 +368,19 @@ const ResponsiveFooter = props => {
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    dispositifs: state.dispositif.dispositifs,
+  }
+}
+
 export default track({
     page: 'AdvancedSearch',
   })(
-    withTranslation()(
-      windowSize(AdvancedSearch)
+    connect(mapStateToProps)(
+      withTranslation()(
+        windowSize(AdvancedSearch)
+      )
     )
   );
 

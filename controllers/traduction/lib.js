@@ -8,8 +8,10 @@ var sanitizeHtml = require('sanitize-html');
 var himalaya = require('himalaya');
 var h2p = require('html2plaintext');
 const axios = require("axios");
-const turnHTMLtoJSON = require('../dispositif/lib.js').turnHTMLtoJSON;
-const turnJSONtoHTML = require('../dispositif/lib.js').turnJSONtoHTML;
+const sanitizeOptions = require('../article/lib.js').sanitizeOptions;
+const DBEvent = require('../../schema/schemaDBEvent.js');
+const _ = require('lodash');
+const {turnHTMLtoJSON, turnJSONtoHTML} = require('../dispositif/functions');
 
 const headers = {
   'Content-Type': 'application/json',
@@ -24,11 +26,9 @@ instance.defaults.timeout = 12000000;
 
 async function add_tradForReview(req, res) {
   if (!req.body || !req.body.langueCible || !req.body.translatedText) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let traduction=req.body;
     traduction.status='En attente';
     let nbMotsTitres=0;nbMotsBody=0;
@@ -39,7 +39,11 @@ async function add_tradForReview(req, res) {
       traduction.nbMots = turnHTMLtoJSON(traduction.translatedText.contenu);
     }else{
       let html= traduction.translatedText.body || traduction.translatedText;
-      let safeHTML=sanitizeHtml(html, {allowedTags: false,allowedAttributes: false}); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+      let safeHTML=sanitizeHtml(html, sanitizeOptions); //On nettoie le html
+      if(traduction.initialText.body && traduction.initialText.body === h2p(traduction.initialText.body)){ //Si le texte initial n'a pas de html, je force le texte traduit à ne pas en avoir non plus
+        safeHTML=h2p(html);
+      }
+
       if(!traduction.isStructure){
         let jsonBody=himalaya.parse(safeHTML, { ...himalaya.parseDefaults, includePositions: true })
         traduction.translatedText= traduction.translatedText.body ? {...traduction.translatedText, body:jsonBody}:jsonBody;
@@ -54,7 +58,7 @@ async function add_tradForReview(req, res) {
       nbMotsBody=(h2p(safeHTML).split(/\s+/).length || 0);
       
       if(traduction.initialText && traduction.initialText.body && !traduction.isStructure){
-        traduction.initialText.body = himalaya.parse(sanitizeHtml(traduction.initialText.body, {allowedTags: false,allowedAttributes: false}), { ...himalaya.parseDefaults, includePositions: true })
+        traduction.initialText.body = himalaya.parse(sanitizeHtml(traduction.initialText.body, sanitizeOptions), { ...himalaya.parseDefaults, includePositions: true })
       }
       if(traduction.initialText && traduction.initialText.title){
         traduction.initialText.title = h2p(traduction.initialText.title)
@@ -86,6 +90,7 @@ async function add_tradForReview(req, res) {
 }
 
 function get_tradForReview(req, res) {
+  new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   let {query, sort, populate, random, locale} = req.body;
   if(populate && populate.constructor === Object){
     populate.select = '-password';
@@ -108,10 +113,15 @@ function get_tradForReview(req, res) {
     promise=Traduction.find(query).sort(sort).populate(populate);
   }
 
-  promise.then(result => {
+  promise.then(results => {
+    [].forEach.call(results, (result) => { 
+      if(result && result.type === "dispositif" && result.translatedText){
+        turnJSONtoHTML(result.translatedText.contenu);
+      }
+    });
     res.status(200).json({
       "text": "Succès",
-      "data": result
+      "data": results
     })
   }).catch(err => { console.log(err);
     res.status(500).json({
@@ -127,6 +137,7 @@ function validate_tradForReview(req, res) {
   }else if(!((req.user || {}).roles || {}).some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
     res.status(400).json({ "text": "Token invalide" });
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let traductionUser=req.body || {};
     //Ici il y en a plusieurs: à régler
     if(traductionUser.type === "dispositif"){
@@ -298,7 +309,7 @@ function get_laser(req, res) {
   if (!req.body || !req.body.sentences) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
-    console.log("xlm url is : ", burl)
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     sentences= req.body.sentences;
     axios.post(burl + "/laser", { sentences: sentences }, {headers: headers}).then(data => {
         res.status(200).json({
@@ -307,7 +318,6 @@ function get_laser(req, res) {
         })
       }
     )
-    console.log('query sent')
   }
 }
 
@@ -315,9 +325,9 @@ function get_xlm(req, res) {
   if (!req.body || !req.body.sentences) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     burl = 'https://xlm-agir.herokuapp.com'
     if(process.env.NODE_ENV === 'dev'){burl = 'http://localhost:5002' }
-    console.log("xlm url is : ", burl)
     sentences= req.body.sentences;
     axios.post(burl + "/xlm", { sentences: sentences }, {headers: headers}).then(data => {
         res.status(200).json({
@@ -326,7 +336,6 @@ function get_xlm(req, res) {
         })
       }
     )
-    console.log('query sent')
   }
 }
 
@@ -359,6 +368,7 @@ function update_tradForReview(req, res) {
   if(!req.user.roles.some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
     res.status(400).json({ "text": "Requête invalide" });
   }else{
+    new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let translation = req.body;
     translation.validatorId = req.userId;
 
@@ -386,6 +396,7 @@ function update_tradForReview(req, res) {
 }
 
 function get_progression(req, res) {
+  new DBEvent({userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   var start = new Date();
   start.setHours(0,0,0,0);
 
@@ -452,7 +463,6 @@ const updateRoles = () => {
             result.forEach(x => {
               const traducteurs = x.participants;
               traducteurs.forEach(y => {
-                console.log(y)
                 User.findByIdAndUpdate({ _id: y },{ "$addToSet": { "roles": result_role._id } },{new: true},(e) => {if(e){console.log(e);}}); 
               })
             })

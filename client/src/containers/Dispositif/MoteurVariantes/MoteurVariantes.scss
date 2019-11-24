@@ -1,7 +1,7 @@
 @import 'src/scss/colors.scss';
 
 .moteur-variantes{
-  background: $gris;
+  background: $attention;
   border-radius: 12px;
   margin: 0 40px;
 
@@ -56,6 +56,7 @@
     padding: 20px 20px;
     background: $gris;
     border-radius: 6px;
+    position: relative;
     &.validated{
       background: $validation;
     }
@@ -70,6 +71,12 @@
           fill: #FFFFFF;
         }
       }
+    }
+    .close-icon{
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      cursor: pointer;
     }
   }
   .critere-title{
@@ -142,7 +149,6 @@
 
   .figma-btn.light-action.custom-critere-btn{
     box-shadow: none;
-    margin-bottom: 10px;
     &.active{
       background: $noir;
       color: #FFFFFF;
@@ -184,5 +190,20 @@
     top: -15px;
     right: -15px;
     z-index: 2;
+  }
+
+  .critere-body{
+    flex-wrap: wrap;
+    margin-top: -10px;
+
+    .critere-options{
+      margin-left: -10px;
+    }
+  }
+
+  .variantes-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left:-10px;
   }
 }

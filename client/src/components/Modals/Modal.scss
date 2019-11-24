@@ -12,6 +12,8 @@
   border-radius: 12px;
   font-family: CircularStd;
   display: flex;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   @include media-min("tablet-up") { min-width:650px; }
   @include media-max("tablet-up") { width:100%; }
 
@@ -52,5 +54,18 @@
   .modal-footer{
     background: transparent;
     border:none;
+  }
+}
+
+.modal.show{
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+  }
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
   }
 }

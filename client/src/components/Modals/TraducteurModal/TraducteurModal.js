@@ -4,8 +4,9 @@ import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGro
 import Icon from 'react-eva-icons';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import FButton from '../../FigmaUI/FButton/FButton';
 
-import DraggableList from '../../UI/DraggableList/DraggableList';
+// import DraggableList from '../../UI/DraggableList/DraggableList';
 import API from '../../../utils/API';
 import {fetch_user} from '../../../Store/actions';
 
@@ -68,7 +69,7 @@ class TraducteurModal extends Component {
   render() {
     const {show, toggle} = this.props;
     const {langues} = this.state;
-    let langues_list = langues.filter(x => x.checked).map(x => x.langueFr);
+    // let langues_list = langues.filter(x => x.checked).map(x => x.langueFr);
 
     return (
       <Modal isOpen={show} toggle={toggle} className='modal-traducteur'>
@@ -76,7 +77,7 @@ class TraducteurModal extends Component {
           C'est parti !
         </ModalHeader>
         <ModalBody>
-          <h3>Quelles sont vos langues de travail ?</h3>
+          <h5>Quelles sont vos langues de travail ?</h5>
           <FormGroup row>
             {(langues || []).map((langue, key) => (
               <Col lg="3" key={key}>
@@ -94,7 +95,7 @@ class TraducteurModal extends Component {
             )}
           </FormGroup>
           
-          {langues_list.length>0 && 
+          {/* {langues_list.length>0 && 
             <>
               <h3>Veuillez prioriser vos langues de travail</h3>
               <FormGroup>
@@ -104,14 +105,13 @@ class TraducteurModal extends Component {
                   handleDraggableListChange={this.handleDraggableListChange}
                   />
               </FormGroup>
-            </>}
+            </>} */}
         </ModalBody>
         <ModalFooter>
-          <Button className="validate-btn" onClick={this.onValidate}>
-            <Icon name="award-outline" fill="#3D3D3D" />
+          <FButton className="validate hero" onClick={this.onValidate}>
             {this.props.setUser ? "Valider" : "Devenir traducteur"}
             {this.state.spinner && <Spinner color="success" className="ml-2" />}
-          </Button>
+          </FButton>
         </ModalFooter>
       </Modal>
     )

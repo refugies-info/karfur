@@ -1,6 +1,7 @@
 let run=null;
 console.log('starting up')
 const Article = require('../schema/schemaArticle.js');
+const Langue = require('../schema/schemaLangue.js');
 const fs = require('fs');
 var path = require('path');
 var uniqid = require('uniqid');
@@ -46,8 +47,9 @@ if(process.env.NODE_ENV === 'dev') {
       }
 
       // let isLocaleSuccess=_insertI18nLocales() //depuis le fichier local vers la BDD
-      // let isDownloadSuccess=_getI18nLocales() //depuis la BDD vers le fichier local
       // let isMergeSuccess=_mergeLocalesFiles() //fusionner en local avec les données de prod
+      // let isDownloadSuccess=_getI18nLocales() //depuis la BDD vers le fichier local
+      // let isAvancementSuccess = _recalculateAvancement(); //Recalcule l'avancement de tous les strings du site
     }catch(e){console.log(e)}
   }
 }else{
@@ -55,6 +57,7 @@ if(process.env.NODE_ENV === 'dev') {
     try{
       // let isLocaleSuccess=_insertI18nLocales()
       // let isDownloadSuccess=_getI18nLocales()
+      let isAvancementSuccess = _recalculateAvancement(); //Recalcule l'avancement de tous les strings du site
     }catch(e){console.log(e)}
   }
 }
@@ -223,6 +226,60 @@ _getFromNested = (localeJSON, locale) => {
       _getFromNested(localeJSON[key], locale);
     }
   })
+}
+
+const _recalculateAvancement = () => {
+  Article.findOne({isStructure: true, title: 'Structure du site', status:'Actif', canBeUpdated: true}, (err, article) => {
+    if (err || !article) {
+      return console.log("Something went wrong when downloading data : " + err);
+    }
+    let nbMots=0, avancement={fr:1};
+    let tempObj=_calculateNested(article.body, nbMots, avancement);
+    nbMots=tempObj.nbMots;
+    avancement=tempObj.avancement;
+    if(nbMots>0){
+      Object.keys(avancement).map((key) => {
+        avancement[key] = key !== "fr" ? avancement[key]/nbMots : avancement[key];
+        if(key !== "fr" && avancement[key] && avancement[key] > 0){
+          Langue.findOne({i18nCode:key}).exec( (err, resultLangue) => {
+            if (err || !resultLangue) {
+              return console.log('erreur à la mise à jour de l\'avancement de la langue cible : ' + key, avancement[key])
+            } else {
+              resultLangue.avancement= avancement[key] || 0;
+              resultLangue.save();
+              console.log('Langue ' + key + ' sauvegardée avec l\'avancement : ' + avancement[key]);
+            }
+          });
+        }
+      });
+      article.avancement = avancement;
+      article.canBeUpdated = false;
+      article.save();
+      console.log('article correctement enregistré')
+    }
+
+  });
+}
+
+_calculateNested = (article, nbMots, avancement) => {
+  Object.keys(article).forEach((key) => {
+    if(article[key] && article[key].fr && typeof article[key].fr === 'string'){
+      Object.keys(article[key]).forEach((locale) => {
+        if(locale === "fr"){
+          nbMots = (nbMots || 0) + article[key].fr.trim().split(/\s+/).length;
+        }else if(locale !== "id"){
+          avancement[locale]= (avancement[locale] || 0) + article[key].fr.trim().split(/\s+/).length;
+        }
+      })
+    }else if(article.constructor === Object){
+      let tempObj=_calculateNested(article[key], nbMots, avancement);
+      nbMots=tempObj.nbMots;
+      avancement=tempObj.avancement;
+    }else{
+      console.log(article.constructor)
+    }
+  })
+  return {nbMots, avancement}
 }
 
 exports.run = run;

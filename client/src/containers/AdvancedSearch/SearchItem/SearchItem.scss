@@ -1,7 +1,12 @@
 @import 'src/scss/colors.scss';
 
+$placeholderColor: $blanc;
+
 .search-col{
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .dropdown-menu.show{
     display: flex;
@@ -43,5 +48,43 @@
     background: $gris;
     border-radius: 6px;
     padding: 20px;
+  }
+
+  .search-autocomplete{
+    width: 150px;
+    text-align: center;
+    &::-webkit-input-placeholder {
+      color: $placeholderColor;
+      text-align: center;
+    }
+    &:-moz-placeholder {
+      color: $placeholderColor;
+      opacity: 1;
+      text-align: center;
+    }
+    &::-moz-placeholder {
+      color: $placeholderColor;
+      opacity: 1;
+      text-align: center;
+    }
+    &:-ms-input-placeholder {
+      color: $placeholderColor;
+      text-align: center;
+    }
+    &::-ms-input-placeholder {
+      color: $placeholderColor;
+      text-align: center;
+    }
+    &::placeholder {
+      color: $placeholderColor;
+      text-align: center;
+    }
+  }
+
+  .close-icon{
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    cursor: pointer;
   }
 }

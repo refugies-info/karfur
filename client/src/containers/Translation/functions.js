@@ -1,10 +1,17 @@
-const initializeTimer = function() {
+const initializeTimer = function(step = null, action = () => {}) {
   clearInterval(this.timer)
   this.mountTime = Date.now();
+  const timestep = 10000;
   this.timer = setInterval(() => {
-    this.setState({
+    console.log(this._isMounted)
+    this._isMounted && this.setState({
       time: Date.now() - this.mountTime + this.state.initialTime
-    })}, 10000);
+    }, ()=>{
+      if(this._isMounted && step && this.state.time > timestep && this.state.time % step < timestep){
+        action(); console.log("autosave"); 
+      }
+    });
+  }, timestep);
 }
 
 export {initializeTimer}

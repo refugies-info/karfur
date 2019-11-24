@@ -9,6 +9,7 @@
     background: $noir3;
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
     position: fixed;
+    padding: 5px 0px;
     top: 60px;
     width: 100%;
     display: flex;
@@ -114,16 +115,23 @@
         fill: $noir;
       }
     }
+    &:focus{
+      svg{
+        fill: $noir;
+      }
+    }
   }
 
   .pinned{
-    .bookmark-icon{
-      opacity: 1;
+    opacity: 1;
+    svg{
+      fill: $validationHover;
     }
   }
 
   p{
     margin-bottom: 0;
+    line-height: 20px;
   }
 
   .card{
@@ -141,7 +149,7 @@
     }
   }
 
-  .demarche{
+  .card-col{
     .card{
       border:none;
       border-radius: 12px;
@@ -152,10 +160,20 @@
       flex-direction: column;
       justify-content: space-between;
       overflow: auto;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
       padding: 16px;
       overflow: scroll;
+    }
+  }
+
+  .card-col, .no-result-card, .create-card{
+    .card-body{
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+      width: 0px;  /* remove scrollbar space */
+      background: transparent;  /* optional: just make scrollbar invisible */
     }
   }
   .no-result{

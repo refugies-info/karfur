@@ -7,7 +7,6 @@ import marioProfile from '../../../../assets/mario-profile.jpg';
 import FButton from '../../../FigmaUI/FButton/FButton';
 import { fakeMembre } from '../../../../containers/Backend/UserDashStruct/data';
 
-import variables from 'scss/colors.scss';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 moment.locale('fr');
@@ -16,12 +15,12 @@ const membersTable = (props) => {
   const hasMembers = (props.dataArray || []).length > 0;
   const dataArray = hasMembers ? props.dataArray : new Array(5).fill(fakeMembre);
   let data = props.limit ? dataArray.slice(0,props.limit) : dataArray;
-  const hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false)
+  const hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false);
 
   data = data.map(x => ({
     ...x, 
     ...props.users.find(y => y._id === x.userId),
-    structRole: ((x.roles || []).includes("administrateur") ? "administrateur" : ((x.roles || []).includes("contributeur") ? "contributeur" : "membre")),
+    structRole: ((x.roles || []).includes("administrateur") ? "Responsable" : ((x.roles || []).includes("contributeur") ? "Rédacteur" : "Membre simple")),
   }));
 
   const table = (

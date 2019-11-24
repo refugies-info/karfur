@@ -19,30 +19,22 @@ const initial_data = [
   // },
   {
     title:'Je cherche à',
-    value: 'apprendre le français',
+    value: null,
+    placeholder: 'choisir un thème',
     query: 'Apprendre le français',
     queryName: 'tags.name',
     children: filtres.tags
   },
   {
     title:'J\'habite à',
-    value: 'Nantes',
-    queryName: 'localisation',
-    children:[
-      {
-        name: 'Paris',
-      },
-      {
-        name: 'Lyon',
-      },
-      {
-        name: 'Nantes',
-      },
-    ]
+    value: null,
+    placeholder: 'ma ville',
+    queryName: 'localisation'
   },
   {
     title:'J\'ai',
-    value: 'entre 18 et 25 ans',
+    value: null,
+    placeholder: 'âge',
     queryName: 'audienceAge',
     children:[
       {
@@ -69,7 +61,8 @@ const initial_data = [
   },
   {
     title:'Je parle',
-    value: 'un peu',
+    value: null,
+    placeholder: 'mon niveau',
     title2:'français',
     queryName: 'niveauFrancais',
     append: 'Quel est mon niveau ?',
@@ -103,4 +96,6 @@ const filtres_contenu = [
   {name: "Démarches", query: {typeContenu: "demarche"} },
 ]
 
-export {initial_data, filtres_contenu};
+const tris = [{name: "A > Z", value: "titreInformatif"}, {name:"Derniers ajouts", value: "created_at"}, {name: "Les plus visités", value:"nbVues"}];
+
+export {initial_data, filtres_contenu, tris};
