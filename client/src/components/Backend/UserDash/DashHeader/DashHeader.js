@@ -132,9 +132,9 @@ const dashHeader = (props) => {
         <Col className="tableau-header align-right">
           {props.structure &&
             <b className="role">Vous êtes {role}</b>}
-          <FButton type="help" name="info-outline" className="mr-10">
+            <FButton tag={"a"} href="https://help.refugies.info/fr/" target="_blank" rel="noopener noreferrer" type="help" name="info-outline" className="mr-10">
             Aide
-          </FButton>
+            </FButton>
           {props.ctaText && 
             <FButton type="dark" name="options-2-outline" onClick={()=>props.toggle('objectifs')}>
               {props.ctaText}
