@@ -9,38 +9,22 @@
   border:none;
 
   .modal-header{
+    padding: 40px 40px 20px 40px;
     border:none;
     .modal-title{
       font-size: 40px;
       line-height: 51px;
-      color: #4A69BD;
     }
     .close{
       outline: none;
     }
   }
   .modal-body{
+    padding: 20px 40px;
     .col-xl{
       margin-bottom:10px;
     }
-    h3{
-      font-size: 20px;
-      line-height: 25px;
-      margin-top:10px;
-    }
-    .btn{
-      white-space: nowrap;
-      border-radius: 12px;
-
-      &.btn-outline-light{
-        color: gray;
-        border-color: gray;
-      }
-      &.btn-light{
-        background-color: gray;
-        color:white;
-      }
-    }
+    
     input{
       border: 1px solid #ECEBED;
       border-radius: 12px;
@@ -56,7 +40,6 @@
   }
   .modal-footer{
     border:none;
-    background: linear-gradient(146.48deg, #4A69BD -7.66%, #60A3BC 92.45%);
     padding:20px;
 
     .btn{
