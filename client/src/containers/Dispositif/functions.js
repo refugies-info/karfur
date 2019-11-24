@@ -3,6 +3,7 @@ import _ from "lodash";
 import Swal from 'sweetalert2';
 
 import { customCriteres } from './MoteurVariantes/data';
+import { google_localities } from "./data";
 import API from '../../utils/API';
 
 //Je met ici toutes les fonctions relatives aux démarches pour pas encombrer
@@ -11,11 +12,9 @@ const initializeVariantes = function(itemId){
   const query = this.state.dispositif.demarcheId ? 
     { $or: [{demarcheId: this.state.dispositif.demarcheId}, {_id: this.state.dispositif.demarcheId}] } :
     {demarcheId: itemId};  //Si on est dans le cas général, on va chercher toutes les variantes. Sinon, on va aussi chercher le cas général en plus
-  console.log(query)
-  API.get_dispositif({query: {...query, status: "Actif"}}).then(data_res => {
+  this._isMounted && API.get_dispositif({query: {...query, status: "Actif"}}).then(data_res => {
     const allDemarches=[...data_res.data.data];
-    console.log(allDemarches)
-    this.setState({allDemarches});
+    this._isMounted && this.setState({allDemarches});
   }).catch(e=>console.log(e))
 }
 
@@ -25,10 +24,10 @@ const initializeInfoCards = function() {
   const card = { "type" : "card", "isFakeContent" : false, "editable" : false, typeIcon: "eva"};
   const {villes, ageTitle, bottomValue, topValue} = variante;
   if(villes && villes.length > 0){ infocards = [...infocards, {...card, contentTitle: (villes.length === 1 ?_.get(villes, "0.formatted_address") : (villes.length + " villes")), title:'Localisation',titleIcon:'pin-outline'}] }
-  if(ageTitle){ infocards = [...infocards, {...card, title:'Âge requis',titleIcon:'calendar-outline', ageTitle, bottomValue, topValue}] }
+  if(ageTitle && bottomValue!==null && topValue !== null){ infocards = [...infocards, {...card, title:'Âge requis',titleIcon:'calendar-outline', ageTitle, bottomValue, topValue}] }
   customCriteres.forEach(x => { if(x.query && variante[x.query] && variante[x.query].length > 0){
     let texte = ""; 
-    _.get(variante, x.query, []).forEach((y, i, arr) => { texte = texte + y + (i < arr.length - 1 ? " ou " : ""); })
+    _.get(variante, x.query, []).forEach((y, i, arr) => { texte = texte + this.props.t("Dispositif." + y, y) + (i < arr.length - 1 ? (" " + this.props.t("ou", "ou") + " ") : ""); })
     infocards = [...infocards, {...card, contentTitle: texte, title: x.texte, titleIcon:'options-2-outline'}]
   } })
   this.setState(pS => ({menu: pS.menu.map((x,i) => i===1 ? {...x, children: infocards} : x)}), ()=>this.setColors());
@@ -37,14 +36,12 @@ const initializeInfoCards = function() {
 const switchVariante = async function() {
   const userQuery = querySearch(this.props.history.location.search);
   const place_id = userQuery.ville, age = userQuery.age;
-  let demarchesEligibles = [];
-  console.log('ici variantes')
+  let demarchesEligibles = []; console.log('ici variantes');
   if(age && Number(age)){
     [...this.state.allDemarches, this.state.dispositif].forEach(demarche => {
       demarche.variantes.some(variante => {
         console.log(demarche._id, parseInt(variante.topValue),parseInt(age),parseInt(variante.bottomValue))
         if(parseInt(variante.topValue)>=parseInt(age) && parseInt(variante.bottomValue)<=parseInt(age)){
-          console.log(variante)
           demarchesEligibles = [...demarchesEligibles, demarche];
           return true;
         }else{return false;}
@@ -78,7 +75,7 @@ const check_place = function(place_id, demarchesEligibles, age, allDemarches, di
             demarche.variantes.forEach(variante => {
               (variante.villes || []).forEach(ville => {
                 (ville.address_components || []).forEach(comp => {
-                  ["administrative_area_level_1", "administrative_area_level_2", "administrative_area_level_3", "administrative_area_level_4", "administrative_area_level_5", "locality", "sublocality", "sublocality_level_1", "sublocality_level_2", "sublocality_level_3", "sublocality_level_4", "sublocality_level_5","neighborhood"].forEach((loc, i) => {
+                  google_localities.forEach((loc, i) => {
                     if((comp.types || []).includes(loc)){
                       const valeurCherchee = data.address_components.find(z => (z.types || []).includes(loc) && z.long_name === comp.long_name);
                       //Si on obtient un niveau de précision supérieur à toutes les autres démarches (y compris celle affichée actuellement), on passe sur la nouvelle démarche
@@ -97,7 +94,7 @@ const check_place = function(place_id, demarchesEligibles, age, allDemarches, di
       });
     }else if(place_id){
       console.log('relooping')
-      return setTimeout(this.switchVariante, 1000);
+      return this._isMounted && setTimeout(this.switchVariante, 1000);
     }else{
       console.log('rejecting')
       resolve(false)

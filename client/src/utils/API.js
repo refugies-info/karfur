@@ -37,7 +37,6 @@ axios.interceptors.response.use(response => {
   // console.log(response)
   return response;
 }, error => {
-  console.log((error.response || {}).data, (error.response || {}).status, error.message)
   if(error.response && error.response.status < 500){
     Swal.fire({
       type: 'error',
@@ -46,9 +45,18 @@ axios.interceptors.response.use(response => {
       footer: '<i>'+ error.message + '</i>',
       timer: 1500
     })
+  }else if (axios.isCancel(error)) {
+    console.log('Error: ', error.message);
   }else{ console.log((error.response || {}).data, (error.response || {}).status, error.message) }
   return Promise.reject(error)
 })
+
+const CancelToken = axios.CancelToken;
+let cancel;
+// const source = CancelToken.source();
+// const sourceToken = source.token
+
+// export {source};
 
 export default {
   login : (user) => {
@@ -74,6 +82,12 @@ export default {
   },
   change_password : query => {
     return axios.post(burl + '/user/change_password', query,{headers: headers})
+  },
+  reset_password : query => {
+    return axios.post(burl + '/user/reset_password', query,{headers: headers})
+  },
+  set_new_password : query => {
+    return axios.post(burl + '/user/set_new_password', query,{headers: headers})
   },
 
   log_event : (event) => {
@@ -197,8 +211,11 @@ export default {
   },
 
   get_tts : (query) => {
-    return axios.post(burl + '/tts/get_tts',  query, {headers: headers})
+    return axios.post(burl + '/tts/get_tts',  query, {headers: headers, cancelToken: new CancelToken(function executor(c) {
+      cancel = c;
+    })})
   },
+  cancel_tts_subscription : () => cancel && cancel(),
 
   set_audio : (query) => {
     return axios.post(burl + '/audio/set_audio',  query, {headers: headers})

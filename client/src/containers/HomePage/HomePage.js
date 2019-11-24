@@ -15,18 +15,12 @@ import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { toggle_lang_modal } from '../../Store/actions/index';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
-import LanguageBtn from '../../components/FigmaUI/LanguageBtn/LanguageBtn';
-import SearchBar from '../UI/SearchBar/SearchBar';
 import API from '../../utils/API';
-import FSearchBtn from '../../components/FigmaUI/FSearchBtn/FSearchBtn';
 
 import './HomePage.scss';
 import variables from 'scss/colors.scss';
-import { filtres } from '../Dispositif/data';
 import SearchItem from '../AdvancedSearch/SearchItem/SearchItem';
 import { initial_data } from '../AdvancedSearch/data';
-
-const anchorOffset = '120';
 
 class HomePage extends Component {
   state = {
@@ -35,10 +29,16 @@ class HomePage extends Component {
     suggestions: [],
     users: [],
   }
+  _isMounted = false;
 
   componentDidMount (){
-    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
+    this._isMounted = true;
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this._isMounted && this.setState({users: data.data.data}) );
     window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount (){
+    this._isMounted = false;
   }
 
   selectParam = (_, subitem) => subitem && this.props.history.push({ pathname:"/advanced-search", search: '?tag=' + subitem.short });
@@ -58,7 +58,7 @@ class HomePage extends Component {
             
             <div className="search-row">
               <SearchItem className="on-homepage"
-                item={{...item, value: item.children[0].name}}
+                item={item}
                 keyValue={0}
                 selectParam = {this.selectParam}
                 desactiver={()=>{}}
@@ -66,9 +66,11 @@ class HomePage extends Component {
             </div>
           </div>
           <div className="chevron-wrapper">
-            <div className="slide-animation">
-              <EVAIcon className="bottom-slider" name="arrow-circle-down" size="hero"/>
-            </div>
+            <AnchorLink offset='60' href="#plan" className="header-anchor d-inline-flex justify-content-center align-items-center">
+              <div className="slide-animation">
+                <EVAIcon className="bottom-slider" name="arrow-circle-down" size="hero"/>
+              </div>
+            </AnchorLink>
           </div>
         </section>
 
@@ -154,7 +156,7 @@ class HomePage extends Component {
             </div>
             <footer className="footer-section">
               {t("Homepage.traducteurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Trad" || y.nom==="ExpertTrad")) || []).length })}{' '}
-              <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-profile" : "/comment-contribuer#traduire"} type="dark">
+              <FButton tag={NavHashLink} to={API.isAuth() ? "/backend/user-dashboard" : "/comment-contribuer#traduire"} type="dark">
                 {t("Homepage.Je traduis", "Je traduis")}
               </FButton>
             </footer>

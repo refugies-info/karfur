@@ -22,10 +22,16 @@ class CommentContribuer extends Component {
     showModals:{ checkDemarche: false },
     users:[],
   }
+  _isMounted = false;
 
   componentDidMount (){
-    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
+    this._isMounted = true;
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: this._isMounted && data.data.data}) );
     window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount (){
+    this._isMounted = false;
   }
 
   toggleModal = (show, name) => this.setState(prevState=>({showModals:{...prevState.showModals,[name]:show}}))
@@ -228,7 +234,7 @@ class CommentContribuer extends Component {
                 </Row>
               </div>
               <div className="right-side">
-                <img src={image_corriger} className="image_corriger" />
+                <img src={image_corriger} className="image_corriger" alt="corriger" />
               </div>
             </div>
           </div>

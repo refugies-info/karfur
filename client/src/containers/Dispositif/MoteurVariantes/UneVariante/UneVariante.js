@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, Input, DropdownItem } from 'reactstrap';
+import { Col, ButtonDropdown, DropdownToggle, DropdownMenu, Input, DropdownItem } from 'reactstrap';
 import ReactDependentScript from 'react-dependent-script';
 import Autocomplete from 'react-google-autocomplete';
+import { connect } from 'react-redux';
 
 import FButton from '../../../../components/FigmaUI/FButton/FButton';
 import EVAIcon from '../../../../components/UI/EVAIcon/EVAIcon';
@@ -26,7 +27,7 @@ class UneVariante extends Component {
   _initialState={...this.state};
 
   componentDidMount(){
-    this.setState({isMounted: true})
+    this.setState({isMounted: true, allCase: this.props.admin ? [true, false] : [true]})
     if(this.props.variantes && this.props.variantes.length > 0){
       const {villes, ageTitle, bottomValue, topValue, ...bprops} = this.props.variantes[0];
       let newCriteres = [], validatedRow = [!!villes && villes.length > 0, !!ageTitle]
@@ -39,12 +40,11 @@ class UneVariante extends Component {
         ...(villes && {villes}), 
         ...(ageTitle && {ageTitle, bottomValue, topValue}), 
         newCriteres, validatedRow,
-      })
+      });
     }
   }
 
   onPlaceSelected = (place) => {
-    console.log(place)
     const newVilles = [...this.state.villes, place];
     const filteredNewVilles = [...new Set( newVilles.map(x => x.place_id) )].map(x => newVilles.find(y => y.place_id === x))
     this.setState(pS => ({villes: filteredNewVilles, validatedRow: pS.validatedRow.map((x,i) => i===0 ? true : x), ville: "" }));
@@ -58,7 +58,6 @@ class UneVariante extends Component {
   changeTitle = (idx, value) => this.setState(pS => ({ageTitle: value, validatedRow: pS.validatedRow.map((x,i) => i===1 ? idx > 0 : x) }));
 
   toggleCas = (idx) => {
-    console.log(idx)
     if(idx === this.state.allCase.length - 1){
       if(!this.state.validatedRow.includes(true)){return}
       this.validateCriteres(false, idx);
@@ -80,7 +79,9 @@ class UneVariante extends Component {
 
   changeAge = (e, isBottom=true) => {
     e.persist();
-    this.setState(pS => ({[isBottom ? "bottomValue" : "topValue"]: parseInt(((e.target || {}).value || "").replace(/\D/g, '')), validatedRow: pS.validatedRow.map((x,i) => i===1 ? true : x) } ));
+    console.log(this.state.bottomValue)
+    this.setState(pS => ({[isBottom ? "bottomValue" : "topValue"]: parseInt(((e.target || {}).value || "").replace(/\D/g, '')), validatedRow: pS.validatedRow.map((x,i) => i===1 ? true : x) } ), ()=> 
+      console.log(this.state.bottomValue) );
   }
 
   addCritere = () => this.setState(pS => ({
@@ -90,6 +91,15 @@ class UneVariante extends Component {
         criteres: [...pS.dropdowns.criteres, false]
       },
       validatedRow: [...pS.validatedRow, false],
+    }))
+  
+  remove_critere = idx => this.setState(pS => ({
+      newCriteres: pS.newCriteres.filter((_,i) => i!==idx),
+      dropdowns: {
+        ...pS.dropdowns, 
+        criteres: pS.dropdowns.criteres.filter((_,i) => i!==idx)
+      },
+      validatedRow: pS.validatedRow.filter((_,i) => i!==idx+2),
     }))
 
   validateCriteres = (close=false, idx=0) => {
@@ -102,7 +112,6 @@ class UneVariante extends Component {
     validatedRow.forEach((x,i) => { if(i>1 && x){
         newVariante[this.state.newCriteres[i-2].query] = this.state.newCriteres[i-2].options.filter(y=>y.selected).map(y => y.texte);
     } })
-    console.log(newVariante)
     this.props.validateVariante(newVariante, idx);
     if(close){ this.props.toggleVue(); };
     return;
@@ -111,7 +120,7 @@ class UneVariante extends Component {
   render(){
     const {filtres, inVariante, variantes} = this.props;
     const {villes, ageTitle, bottomValue, topValue, ville, validatedRow, newCriteres, isMounted} = this.state;
-    let allCase = inVariante ? [true] : this.state.allCase;
+    const allCase = inVariante ? [true] : this.state.allCase;
     return(
       <>
         <div className="moteur-row">
@@ -123,7 +132,7 @@ class UneVariante extends Component {
                     <div className="col-header">
                       Cas #{i+1}
                     </div>}
-                  <div className={"col-body" + " " + (inVariante ? "no-header" : "with-header")}>
+                  <div className={"col-body " + (inVariante ? "no-header" : "with-header")}>
 
                     <div className={"critere mb-10" + (validatedRow[0] ? " validated" : "")}>
                       <h5 className="critere-title">
@@ -132,7 +141,7 @@ class UneVariante extends Component {
                       </h5>
                       <div className={"critere-body" + (villes.length === 0 ? " justify-content-space-between" : "")}>
                         {villes.length === 0 && 
-                          <span className="color-grisFonce">Cette démarche s’applique aux habitants de :</span>}
+                          <span className="color-grisFonce mt-10">Cette démarche s’applique aux habitants de :</span>}
 
                         {isMounted && 
                           <ReactDependentScript
@@ -177,7 +186,7 @@ class UneVariante extends Component {
                                   <Input 
                                     type="number" 
                                     className="age-input"
-                                    value={((arr[0] === "De " && i===0) || arr[0] === "Plus de ") ? bottomValue : topValue} 
+                                    value={(((arr[0] === "De " && i===0) || arr[0] === "Plus de ") ? bottomValue : topValue) || 0} 
                                     onClick={e => e.stopPropagation()}
                                     // onMouseUp={() => (this.props.subitem || {}).isFakeContent && this.props.changeAge({target:{value:""}}, this.props.keyValue, this.props.subkey, i===0 || arr[0] === "Plus de")}
                                     onChange={e => this.changeAge(e, (arr[0] === "De " && i===0) || arr[0] === "Plus de ")} />}
@@ -213,13 +222,13 @@ class UneVariante extends Component {
                           </DropdownMenu>
                         </ButtonDropdown>
                         <div className="critere-body justify-content-space-between">
-                          <span className="color-grisFonce">{customCritere.displayText}</span>
+                          <span className="color-grisFonce mt-10">{customCritere.displayText}</span>
                           <div className="critere-options">
                             {customCritere.options.map((option, key) => (
                               <FButton 
                                 type="light-action" 
                                 key={key} 
-                                className={"ml-10 custom-critere-btn" + (option.selected ? " active" : "")}
+                                className={"ml-10 mt-10 custom-critere-btn" + (option.selected ? " active" : "")}
                                 onClick={()=>this.selectCritere(key, idx)}
                               >
                                 {option.texte}
@@ -227,13 +236,14 @@ class UneVariante extends Component {
                             ))}
                           </div>
                         </div>
+                        <EVAIcon name="close-circle" fill={variables.error} size="xlarge" className="close-icon" onClick={() => this.remove_critere(idx)} />
                       </div>
                     ))}
 
                     <div className="critere add-critere cursor-pointer" onClick={this.addCritere}>
                       <div className="critere-body">
-                        <EVAIcon name="plus-circle-outline" fill={variables.grisFonce} className="mr-10" />
-                        <span className="color-grisFonce">
+                        <EVAIcon name="plus-circle-outline" fill={variables.grisFonce} className="mr-10 mt-10" />
+                        <span className="color-grisFonce mt-10">
                           Ajouter un critère supplémentaire
                         </span>
                       </div>
@@ -264,7 +274,7 @@ class UneVariante extends Component {
         </div>
 
         <div className="footer-btns mt-10">
-          <FButton type="help" name="question-mark-circle-outline" fill={variables.error} onClick={this.props.upcoming}>
+          <FButton tag={"a"} href="https://help.refugies.info/fr/" target="_blank" rel="noopener noreferrer" type="help" name="question-mark-circle-outline" fill={variables.error}>
             J'ai besoin d'aide
           </FButton>
           <FButton 
@@ -281,4 +291,10 @@ class UneVariante extends Component {
   }
 }
 
-export default UneVariante;
+const mapStateToProps = (state) => {
+  return {
+    admin: state.user.admin,
+  }
+}
+
+export default connect(mapStateToProps)(UneVariante);

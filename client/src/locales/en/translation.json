@@ -20,7 +20,11 @@
     "Je traduis": "I'd like to translate",
     "Construis ta vie en France": "Build your life in France",
     "Explique les mots difficiles": "Réfugiés.info explains difficult words",
-    "Trouver une démarche": "Find a process"
+    "Trouver une démarche": "Find a process",
+    "Choisir une langue": "Choose a language",
+    "site dispo": "Réfugiés.info is available in the following languages:",
+    "langue indispo": "Your language is not available?",
+    "Demander": "Request"
   },
   "AdvancedSearch": {
     "A > Z": "A > Z",
@@ -29,7 +33,10 @@
     "Trier par": "Sort by:",
     "Filtrer par": "Filter by:",
     "Dispositifs": "Programs",
-    "Démarches": "Processes"
+    "Démarches": "Processes",
+    "Créer une fiche": "Create a page",
+    "Elargir recherche": "Try to broaden your search by disabling some filters",
+    "Oups": "Oops!"
   },
   "Tables": {
     "Propriétaire": "Owner",
@@ -40,7 +47,7 @@
     "mots rédigés": "words<br/>written",
     "minutes passées": "minutes<br/>spent",
     "personnes informées": "people<br/>informed",
-    "Espace contribution": "Contribution area",
+    "Espace rédaction": "Writing area",
     "Retrouvez ici vos pages favorites": "Find your favorite pages here",
     "cherche btn": "Look for this button in the content to save it",
     "Ajouter un membre": "Add a member",
@@ -75,9 +82,11 @@
     "Ma structure": "My organization",
     "Messages": "Messages",
     "Contributions": "Contributions",
+    "traducteur mobilisé": "translator{{s}} engaged{{s}}",
     "membre": "member{{s}}",
     "notification": "notification{{s}}",
-    "personne informée": "people informed"
+    "personne informée": "people informed",
+    "Mes traductions": "My translations"
   },
   "UserProfile": {
     "Pseudonyme": "Username:",
@@ -92,7 +101,11 @@
     "mots écrits": "words written",
     "commencez à rédiger": "Write content to start the meter",
     "mots traduits": "translated words",
-    "commencez à traduire": "Begin translating to start the meter"
+    "commencez à traduire": "Begin translating to start the meter",
+    "Modifier le mot de passe": "change password",
+    "Merci de donner de votre temps": "Thank you for giving your time to help refugee integration",
+    "Grâce à vous": "Thanks to you, refugees will be better informed",
+    "Merci de participer": "Thanks for your help making information accessible to as many people as possible!"
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "Who are we?",
@@ -125,6 +138,7 @@
     "contributive_3_subheader": "By giving everyone the opportunity to easily contribute to the platform, like on Wikipedia, Réfugiés.info promotes new forms of micro-engagement, allowing new people to get involved in the support of refugees"
   },
   "CommentContribuer": {
+    "Comment contribuer": "How to contribute",
     "écrire": "write",
     "traduire": "translate",
     "corriger": "edit",
@@ -196,13 +210,21 @@
     "très bien": "very good",
     "Paris": "Paris",
     "Lyon": "Lyon",
-    "Nantes": "Nantes"
+    "Nantes": "Nantes",
+    "choisir un thème": "choose a subject",
+    "ma ville": "my city",
+    "âge": "age",
+    "mon niveau": "my level"
   },
   "SearchItem": {
     "Je cherche à": "I'm looking to",
+    "choisir un thème": "choose a theme",
     "J'habite à": "I live in",
+    "ma ville": "my city",
     "J'ai": "I am",
+    "mon âge": "my age",
     "Je parle": "I speak",
+    "mon niveau": "my level",
     "Je suis": "I am",
     "français": "French"
   },
@@ -222,7 +244,32 @@
     "Rejeté admin": "Rejected by site admin",
     "Inactif": "Inactive"
   },
-  "Login": {},
+  "Login": {
+    "Pseudonyme": "Username",
+    "Retour à l'accueil": "Back to homepage",
+    "Ou se créer un compte": "Or create an account",
+    "Se connecter": "Sign in",
+    "Content de vous revoir !": "Happy to see you again!",
+    "Mot de passe": "Password",
+    "Se créer un compte": "Create an account",
+    "Pas besoin d’email": "No need for email",
+    "Mot de passe oublié ?": "Forgot your password?",
+    "no-account": "No account exists for this name",
+    "Confirmez le mot de passe": "Confirm password",
+    "Force": "Strength",
+    "Mot de passe actuel": "Current password",
+    "Nouveau mot de passe": "New password",
+    "Confirmez le nouveau mot de passe": "Confirm new password",
+    "Réinitialisez votre mot de passe": "Reset your password",
+    "Renseignez ici le nouveau mot de passe souhaité": "Fill in the new password of your choice here",
+    "Chargement des données utilisateur": "Loading user data",
+    "Problème mdp": "A problem occurred while resetting your password. Please try again.",
+    "Revenir à la page de connexion": "Return to the sign-in page"
+  },
+  "UnauthorizedAccess": {
+    "Accès refusé": "Access denied",
+    "Revenir à l'accueil": "Return to home"
+  },
   "Dispositif": {
     "fiabilite_faible": "Information is not certain and has not yet been verified",
     "cliquez": "Click \"?\" to learn more",
@@ -292,7 +339,37 @@
     "Numéro à appeler": "Number to call",
     "Ton courrier doit être adressé à": "Your mail must be addressed to",
     "Ce que tu dois faire": "What you should do",
-    "izok": "Did everything go as planned?"
+    "izok": "Did everything go as planned?",
+    "Titre du lieu": "Place title",
+    "Adresse": "Address",
+    "Ville": "City",
+    "Informations pratiques": "Useful information",
+    "Email de contact": "Contact email",
+    "Numéro de téléphone": "Phone number",
+    "Débutant": "Beginner",
+    "Intermédiaire": "Intermediate",
+    "Avancé": "Advanced",
+    "Tous les niveaux": "All levels",
+    "Titre de séjour": "Visa or residence permit",
+    "Justificatif de domicile": "Proof of address",
+    "Diplôme": "Diploma",
+    "Permis de conduire": "Driver's license",
+    "réfugié": "refugee",
+    "tout public": "for all",
+    "En savoir plus": "Learn more",
+    "Tiennent la page": "Keep the page up to date and answer your questions",
+    "Évaluer mon niveau": "Evaluate my level",
+    "Nous vous écoutons": "We're here for you:",
+    "Réagir": "React",
+    "J'ai une question": "I have a question",
+    "J'ai une suggestion !": "I have a suggestion!",
+    "Je veux juste vous dire": "I just want to tell you",
+    "réagir": "react",
+    "écouter": "listen",
+    "Ajouter un thème": "Add a subject",
+    "réfugiés": "refugees",
+    "Localisation": "Location",
+    "Tout public": "For all"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Are you sure?",
@@ -333,6 +410,7 @@
   "Contributeurs": "Contributors",
   "Traducteurs": "Translators",
   "Merci": "Thank you!",
+  "Bravo": "Bravo!",
   "ou": "or",
   "Bientôt disponible !": "Coming soon",
   "En savoir plus": "Learn more",
@@ -346,9 +424,12 @@
   "Modifier mon profil": "Edit my profile",
   "Bientôt disponible": "Coming soon",
   "Chercher un dispositif": "Explore programs",
+  "Chercher une démarche": "Explore processes",
   "Rejoindre le réseau": "Join the network",
+  "Valider": "Validate",
   "Contribuer": "Contribute",
   "secondes": "seconds",
+  "minutes": "minutes",
   "heures": "hours",
   "jours": "days",
   "mois": "month",
@@ -370,5 +451,9 @@
   "Dispositif d'accompagnement": "Helpful programs",
   "Démarche administrative": "Administrative procedures",
   "Parcours personnalisé": "Personalized paths",
-  "Lexique": "Vocabulary"
+  "Suivant": "next",
+  "Connexion": "Sign in",
+  "Envoyer": "Send",
+  "Lexique": "Vocabulary",
+  "Changer": "Change"
 }

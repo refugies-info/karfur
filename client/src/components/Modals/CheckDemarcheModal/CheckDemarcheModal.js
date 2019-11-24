@@ -60,9 +60,7 @@ class CheckDemarcheModal extends Component {
             <>
               <p>Ok ! Pour éviter les doublons, on va vérifier qu'elle n'existe pas déjà. Inscrivez le titre de votre démarche :</p>
               <SearchBar
-                dispositifs
-                loupe
-                withEye
+                dispositifs loupe withEye toVariante
                 className="search-bar inner-addon right-addon mt-10"
                 placeholder = "CMU-C, demande de logement social, solidarité transport"
                 array={[...(this.props.dispositifs || []).filter(x => x.status === "Actif" && x.typeContenu === "demarche" && !x.demarcheId), {createNew: true, typeContenu: "demarche"}]}
@@ -80,7 +78,7 @@ class CheckDemarcheModal extends Component {
             <FButton type="light-action" name="arrow-back" fill={variables.noir} className="mr-10" onClick={()=>step === 1 ? this.setStep(0) : this.props.toggle()}>
               {t("Retour", "Retour")}
             </FButton>
-            <FButton type="help" name="question-mark-circle" fill={variables.error} onClick={this.props.upcoming}>
+            <FButton tag={"a"} href="https://help.refugies.info/fr/" target="_blank" rel="noopener noreferrer" type="help" name="question-mark-circle" fill={variables.error}>
               {t("J'ai besoin d'aide", "J'ai besoin d'aide")}
             </FButton>
           </div>

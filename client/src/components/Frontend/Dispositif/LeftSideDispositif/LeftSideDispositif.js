@@ -41,13 +41,11 @@ const leftSideDispositif = (props) => {
         {props.typeContenu !== "demarche" && 
           <div className="link-wrapper" id="input-btn">
             {props.inputBtnClicked ?
-              <FButton type="default" className="input-btn">
-                <InputGroup>
-                  <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
-                  <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Lien vers votre site" id="externalLink" />
-                  <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
-                </InputGroup>
-              </FButton>
+              <InputGroup className="input-btn">
+                <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
+                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Lien vers votre site" id="externalLink" />
+                <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
+              </InputGroup>
               :
               <FButton type="theme" name="external-link-outline" onClick={onLinkClicked}>
                 {t("Dispositif.Voir le site", "Voir le site")}
@@ -56,7 +54,7 @@ const leftSideDispositif = (props) => {
         {props.disableEdit && <>
           <FButton type="light-action" onClick={props.createPdf} name="download-outline">
             {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
-            {props.showSpinner && <Spinner color="success" className="ml-8 small-spinner" />}
+            {props.showSpinner && <Spinner color="light" className="ml-8 small-spinner" />}
           </FButton>
           <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
             {t("Dispositif.Envoyer par mail", "Envoyer par mail")}

@@ -125,7 +125,7 @@
 
   #contribution{
     background-image: url(../../assets/figma/contribution_illu.svg), url(../../assets/figma/trame_home_bg.svg);
-    background-size: 70%, cover;
+    background-size: 65%, cover;
     background-repeat: no-repeat;
     background-position: calc(100% + 20px) calc(100% - 160px), 0;
     @include media-max("tablet-down") { background-position: calc(100% + 20px) calc(100% - 110px), 0; }
@@ -142,7 +142,7 @@
     background-image: url(../../assets/figma/illustration_Traduction.svg);
     background-size: 70%;
     background-repeat: no-repeat;
-    background-position: calc(100% - 300px);
+    background-position: calc(100% - 350px);
     @include media-max("desktop-down") { background-position: calc(100% - 300px) calc(100% - 60px); }
     @include media-max("desktop-up") { background-position: calc(100% - 300px) calc(100% - 80px); }
     @include media-max("tablet-down") { background-position: calc(100% - 240px) calc(100% - 140px); }
@@ -326,6 +326,11 @@
         fill:$gris;
       }
     }
+  }
+
+  .flip-horizontal-top {
+    -webkit-animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+            animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
   }
 }
 

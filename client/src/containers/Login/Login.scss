@@ -10,7 +10,7 @@ $placeholderColor: $noir;
   align-items: center;
 
   .card-login{
-    background: $gris;
+    background: $blancSimple;
     border-radius: 12px;
     padding:20px 40px;
     margin-bottom: 10px;
@@ -55,6 +55,14 @@ $placeholderColor: $noir;
       background-color: $noir3;
     }
   }
+
+  .forgotten-password{
+    text-decoration-line: underline;
+    color: $grisFonce;
+    cursor: pointer;
+    float: right;
+  }
+
   .example-appear {
     opacity: 0;
   }

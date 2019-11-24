@@ -20,6 +20,8 @@ let letter_pressed=null;
 class TranslationHOC extends Component {
   constructor(props) {
     super(props);
+    this.mountTime=0;
+    this._isMounted = false;
     this.initializeTimer = initializeTimer.bind(this);
   }
 
@@ -61,9 +63,9 @@ class TranslationHOC extends Component {
     langueBackupId: null,
     traducteur: {},
   }
-  mountTime=0;
 
   componentDidMount (){
+    this._isMounted = true;
     this._initializeComponent(this.props)
     window.scrollTo(0, 0);
   }
@@ -75,6 +77,7 @@ class TranslationHOC extends Component {
   }
 
   componentWillUnmount (){
+    this._isMounted = false;
     clearInterval(this.timer)
   }
 
@@ -93,10 +96,10 @@ class TranslationHOC extends Component {
     const type = (props.match.path || "").includes("dispositif") || (props.match.path || "").includes("demarche") ? "dispositif" : "string";
     this.setState({ type, itemId, locale, isExpert, langueBackupId });
     if(itemId && type==="dispositif"){
-      API.get_tradForReview({query: {'articleId':itemId, ...(!isExpert && userId && {userId})}, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
+      API.get_tradForReview({query: {'articleId':itemId, langueCible: locale, ...(!isExpert && userId && {userId})}, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           const traductions = data_res.data.data; console.log(traductions);
-          this.setState({
+          this._isMounted && this.setState({
             traductionsFaites : traductions,
             ...(!isExpert && userId && {traduction : {
               initialText: _.get(traductions, "0.initialText", {}), 
@@ -116,12 +119,12 @@ class TranslationHOC extends Component {
       const params = querySearch(props.location.search);
       langue = (await API.get_langues({_id:params.id}, {}, 'langueBackupId')).data.data[0];
     } catch(err){console.log(err)} }
-    this.setState({langue})
+    this._isMounted && this.setState({langue})
     return {locale: langue.i18nCode, langueBackupId: _.get(langue, "langueBackupId.i18nCode")};
   }
 
   setRef = (refObj, name) => this[name] = refObj;
-  fwdSetState = (fn, cb) => this.setState(fn, cb);
+  fwdSetState = (fn, cb) => this._isMounted && this.setState(fn, cb);
 
   translate = (text,target,item,toEditor=false) => {
     console.log("start translate") 
@@ -131,7 +134,7 @@ class TranslationHOC extends Component {
       if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
         let value = data.data.replace(/ id='initial_/g,' id=\'target_').replace(/ id="initial_/g,' id="target_') || "";
         value = toEditor ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks)) : value;
-        this.setState({
+        this._isMounted && this.setState({
           translated:{
             ...this.state.translated,
             [item]: value
@@ -143,7 +146,7 @@ class TranslationHOC extends Component {
       if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
         let value = this.state.francais[item] || "";
         value = toEditor ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks)) : value;
-        this.setState({
+        this._isMounted && this.setState({
           translated:{
             ...this.state.translated,
             [item]: value,
@@ -158,7 +161,7 @@ class TranslationHOC extends Component {
       try{
         let result=JSON.parse(data.data.data) || {}
         if(result && result.cosine && result.cosine.length > 0){
-          this.setState({score: result.cosine[0]}) 
+          this._isMounted && this.setState({score: result.cosine[0]}) 
           console.log(result.cosine[0], result.distances, result.time)
         }else{console.log(result)}
       }catch(e){console.log(e)}
@@ -253,8 +256,8 @@ class TranslationHOC extends Component {
       this.setState({traduction});
       if(traduction.avancement === 1){
         Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000})
-        this.setState({disableBtn: false});
-        this.onSkip();
+        this._isMounted && this.setState({disableBtn: false});
+        this._isMounted && this.onSkip();
       }
     }).catch(()=> this.setState({disableBtn: false}))
   }
@@ -262,13 +265,13 @@ class TranslationHOC extends Component {
   onSkip=()=>{
     const i18nCode=(this.state.langue || {}).i18nCode, {isExpert, type, langue} = this.state;
     const nom='avancement.'+i18nCode;
-    const query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}]};
+    const query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}], status: "Actif"};
     API[isExpert ? "get_tradForReview" : (type==="dispositif" ? "get_dispositif" : "getArticle")]({query: query, locale:i18nCode, random:true, isExpert}).then(data_res => {
       let results=data_res.data.data;
       if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s\'est produite', type: 'error', timer: 1500})}
       else{ clearInterval(this.timer);
         this.props.history.push({ 
-          pathname: '/' + (isExpert ? "validation" : "traduction") + '/' + type + '/' + _.get(results, "0._id"), 
+          pathname: '/' + (isExpert ? "validation" : "traduction") + '/' + (_.get(results, "0.typeContenu") || type) + '/' + _.get(results, "0._id"), 
           search: '?id=' + langue._id,
           state: { langue: langue} });
         this.setState({disableBtn: false});
