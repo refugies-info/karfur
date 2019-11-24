@@ -269,7 +269,7 @@ class Sponsors extends Component {
           title="C’est envoyé !"
           lowerRightBtn={<FButton type="validate" name="checkmark" onClick={()=>this.toggleModal("envoye")} className="push-right">Ok !</FButton>} 
         >
-          <div className="envoye-content">
+          <div className="envoye-content center-text">
             <img src={sentIllu} className="illu" alt="illustration" />
             {selected.nom? 
               (authorBelongs ? 
