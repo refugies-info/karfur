@@ -118,6 +118,8 @@ class Dispositif extends Component {
     dispositif: {},
     _id: undefined,
     checkingVariante: false,
+    printing: false,
+    didThank: false
   }
 
   componentDidMount (){
@@ -146,7 +148,7 @@ class Dispositif extends Component {
     const checkingVariante = _.get(props, "location.state.checkingVariante"), textInput = _.get(props, "location.state.textInput");
     if(itemId){
       this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
-      API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor'}).then(data_res => {
+      API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor participants'}).then(data_res => {
         let dispositif={...data_res.data.data[0]};
         console.log(dispositif);
         const disableEdit = dispositif.status !== "Accepté structure" || props.translating
@@ -162,7 +164,7 @@ class Dispositif extends Component {
           uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: dispositif.status === "Accepté structure"})})}}),
           dispositif: dispositif,
           isDispositifLoading: false,
-          contributeurs: [dispositif.creatorId].filter(x => x),
+          contributeurs: dispositif.participants || [],
           mainTag: (dispositif.tags && dispositif.tags.length >0) ? (filtres.tags.find(x => x && x.name === (dispositif.tags[0] || {}).name) || {}) : {},
           mainSponsor: dispositif.mainSponsor,
           status: dispositif.status,
@@ -554,11 +556,14 @@ class Dispositif extends Component {
     uiArray = uiArray.map(x => ({ ...x, accordion : true,  ...(x.children && {children : x.children.map(y => { return { ...y, accordion : true } }) }) }));
     this.setState({ uiArray: uiArray, showSpinnerPrint:true }, ()=>{
       setTimeout(()=>{
-        this._isMounted && savePDF(this.newRef.current, { 
-          fileName: (this.state.typeContenu || 'dispositif') + ((this.state.content && this.state.content.titreMarque) ? (' - ' + this.state.content.titreMarque) : '') +'.pdf',
-          scale:.5
-        })
-        this._isMounted && this.setState({showSpinnerPrint: false})
+        this.setState({printing: true}, () => 
+          this._isMounted && savePDF(this.newRef.current, { 
+            fileName: (this.state.typeContenu || 'dispositif') + ((this.state.content && this.state.content.titreMarque) ? (' - ' + this.state.content.titreMarque) : '') +'.pdf',
+            scale:.5,
+            margin: { top: '2cm', left: '1.5cm', right: '1.5cm', bottom: '2cm' },
+          }, this._isMounted && setTimeout(()=>{
+            this._isMounted && this.setState({showSpinnerPrint: false, printing: false})
+          }, 3000) ));
       }, 3000);
     })
 
@@ -601,9 +606,10 @@ class Dispositif extends Component {
       ...(this.state.suggestion && {suggestion: h2p(this.state.suggestion)})
     }
     API.update_dispositif(dispositif).then(data => {
-      if(modalName === 'reaction' && this._isMounted){
+      if((modalName === 'reaction' || fieldName === 'merci') && this._isMounted){
         Swal.fire( {title: 'Yay...', text: 'Votre réaction a bien été enregistrée, merci', type: 'success', timer: 1500})
-      }else if(API.isAuth() && this._isMounted){
+        fieldName === 'merci' && this.setState({didThank: true});
+      }else if(API.isAuth() && fieldName !== 'merci' && this._isMounted){
         Swal.fire( {title: 'Yay...', text: 'Votre suggestion a bien été enregistrée, merci', type: 'success', timer: 1500})
       }else if(this._isMounted){
         this.toggleModal(true, 'merci');
@@ -716,8 +722,9 @@ class Dispositif extends Component {
 
   render(){
     const {t, translating, windowWidth} = this.props;
-    const {showModals, isDispositifLoading, typeContenu, runJoyRide, stepIndex, disableOverlay, joyRideWidth, 
-      withHelp, disableEdit, mainTag, fiabilite, inVariante, checkingVariante} = this.state;
+    const {showModals, isDispositifLoading, typeContenu, runJoyRide, 
+      stepIndex, disableOverlay, joyRideWidth, withHelp, disableEdit, 
+      mainTag, fiabilite, inVariante, checkingVariante, printing, didThank} = this.state;
     const etapes_tuto = typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
 
     const Tooltip = ({
@@ -766,7 +773,7 @@ class Dispositif extends Component {
     return(
       <div 
         id="dispositif"
-        className={"animated fadeIn dispositif vue" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : " reading-mode")} 
+        className={"animated fadeIn dispositif vue" + (!disableEdit ? " edition-mode" : translating ? " side-view-mode" : printing ? " printing-mode" : " reading-mode")} 
         ref={this.newRef} 
       >
         {/* Second guided tour */}
@@ -793,7 +800,7 @@ class Dispositif extends Component {
 
         <Row className="main-row">
           {translating && 
-            <Col lg={translating ? "4" : "0"} md={translating ? "4" : "0"} sm={translating ? "4" : "0"} xs={translating ? "4" : "0"} className="side-col">
+            <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
               <SideTrad 
                 menu={this.state.menu}
                 content={this.state.content}
@@ -802,7 +809,7 @@ class Dispositif extends Component {
                 {...this.props}
               />
             </Col>}
-          <Col lg={translating ? "8" : "12"} md={translating ? "8" : "12"} sm={translating ? "8" : "12"} xs={translating ? "8" : "12"} className="main-col">
+          <Col xl={translating ? "8" : "12"} lg={translating ? "8" : "12"} md={translating ? "8" : "12"} sm={translating ? "8" : "12"} xs={translating ? "8" : "12"} className="main-col">
             <section className="banniere-dispo" style={mainTag && mainTag.short && {backgroundImage: `url(${bgImage(mainTag.short)})`}}>
               {(inVariante || checkingVariante) &&
                 <BandeauEdition
@@ -920,27 +927,28 @@ class Dispositif extends Component {
               </Row>}
             
             <Row className="no-margin-right">
-              <Col xl="3" lg="3" md="12" sm="12" xs="12" className={"left-side-col pt-40" + (translating ? " sideView" : "")}>
-                <LeftSideDispositif
-                  menu={this.state.menu}
-                  accordion={this.state.accordion}
-                  showSpinner={this.state.showSpinnerPrint}
-                  content={this.state.content}
-                  inputBtnClicked = {this.state.inputBtnClicked}
-                  disableEdit = {this.state.disableEdit}
-                  toggleInputBtnClicked={this.toggleInputBtnClicked}
-                  handleScrollSpy={this.handleScrollSpy}
-                  createPdf={this.createPdf}
-                  newRef={this.newRef}
-                  handleChange = {this.handleChange}
-                  typeContenu={typeContenu}
-                />
-              </Col>
+              {!translating && !printing &&
+                <Col xl="3" lg="3" md="12" sm="12" xs="12" className="left-side-col pt-40">
+                  <LeftSideDispositif
+                    menu={this.state.menu}
+                    accordion={this.state.accordion}
+                    showSpinner={this.state.showSpinnerPrint}
+                    content={this.state.content}
+                    inputBtnClicked = {this.state.inputBtnClicked}
+                    disableEdit = {this.state.disableEdit}
+                    toggleInputBtnClicked={this.toggleInputBtnClicked}
+                    handleScrollSpy={this.handleScrollSpy}
+                    createPdf={this.createPdf}
+                    newRef={this.newRef}
+                    handleChange = {this.handleChange}
+                    typeContenu={typeContenu}
+                  />
+                </Col>}
               {inVariante && disableEdit && 
                 <Col className="variante-col">
                   <div className="radio-btn" />
                 </Col>}
-              <Col xl={translating ? "12" : "7"} lg={translating ? "12" : "7"} md={translating ? "12" : "10"} sm={translating ? "12" : "10"} xs={translating ? "12" : "10"} className="pt-40 col-middle">
+              <Col xl={(translating || printing) ? "12" : "7"} lg={(translating || printing) ? "12" : "7"} md={(translating || printing) ? "12" : "10"} sm={(translating || printing) ? "12" : "10"} xs={(translating || printing) ? "12" : "10"} className="pt-40 col-middle">
                 {disableEdit && !inVariante && 
                   <Row className="fiabilite-row">
                     <Col lg="auto" md="auto" sm="auto" xs="auto" className="col align-right">
@@ -995,23 +1003,25 @@ class Dispositif extends Component {
                   {...this.state}
                 />
                 
-                {this.state.disableEdit && !inVariante &&
+                {this.state.disableEdit && !inVariante && 
                   <>
-                    <div className="feedback-footer">
-                      <div>
-                        <h5 className="color-darkColor">{t("Dispositif.informations_utiles", "Vous avez trouvé des informations utiles ?")}</h5>
-                        <span className="color-darkColor">{t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigé pour vous")}&nbsp;:</span>
-                      </div>
-                      <div>
-                        <FButton className="thanks" onClick={()=>this.pushReaction(null, "merci")}>
-                          {t("Merci", "Merci")}
-                        </FButton>
-                      </div>
-                    </div>
-                    <div className="discussion-footer backgroundColor-darkColor">
-                      <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
-                      <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
-                    </div>
+                    {!printing && 
+                      <div className="feedback-footer">
+                        <div>
+                          <h5 className="color-darkColor">{t("Dispositif.informations_utiles", "Vous avez trouvé des informations utiles ?")}</h5>
+                          <span className="color-darkColor">{t("Dispositif.remerciez", "Remerciez les contributeurs qui les ont rédigé pour vous")}&nbsp;:</span>
+                        </div>
+                        <div>
+                          <FButton className={"thanks" + (didThank ? " clicked" : "")} onClick={()=>this.pushReaction(null, "merci")}>
+                            {t("Merci", "Merci")}
+                          </FButton>
+                        </div>
+                      </div>}
+                    {!printing &&
+                      <div className="discussion-footer backgroundColor-darkColor">
+                        <h5>{t("Dispositif.Avis", "Avis et discussions")}</h5>
+                        <span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>
+                      </div>}
                     {this.state.contributeurs.length>0 && 
                       <div className="bottom-wrapper">
                         <ContribCaroussel 
@@ -1026,8 +1036,7 @@ class Dispositif extends Component {
                             </div>
                           </div>}
                       </div>}
-                  </>
-                }
+                  </> }
 
                 <Sponsors 
                   sponsors={this.state.sponsors} 
