@@ -7,6 +7,7 @@ class LocalStorageMock {
   }
 
   clear() {
+    console.log("111")
     this.store = {};
   }
 
@@ -21,9 +22,11 @@ class LocalStorageMock {
   }
 
   removeItem(key) {
+    console.log("222 ")
     delete this.store[key];
   }
 };
 
+global.window = { localStorage: new LocalStorageMock }
 global.localStorage = new LocalStorageMock;
 window.localStorage = new LocalStorageMock;
