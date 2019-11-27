@@ -15,7 +15,6 @@ const headers = {
   'x-access-token' : localStorage.getItem("token") || undefined,
   'cookie-id' : Cookies.get("_ga")
 }
-console.log(headers)
 const burl = ""
 
 axios.withCredentials = true;
