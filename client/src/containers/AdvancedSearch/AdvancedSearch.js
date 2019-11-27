@@ -133,9 +133,9 @@ class AdvancedSearch extends Component {
       dispositifs: dispositif.pinned ? prevState.filter(x => x._id !== dispositif._id) : [...prevState,dispositif],
       pinned: dispositif.pinned ? 
         [...this.state.pinned, dispositif] :
-        this.state.pinned.filter(x=> x._id !== dispositif._id)
+        this.state.pinned.filter(x=> x && x._id ? x._id !== dispositif._id : x !== dispositif._id)
     },()=>{
-      user.cookies.parkourPinned=[...new Set(this.state.pinned.map(x => x._id))];
+      user.cookies.parkourPinned=[...new Set(this.state.pinned.map(x => x._id || x))];
       API.set_user_info(user);
     })
   }
@@ -184,7 +184,7 @@ class AdvancedSearch extends Component {
   render() {
     let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri, displayAll} = this.state;
     const {t, windowWidth, dispositifs: storeDispo} = this.props;
-    const populatedPinned = storeDispo && storeDispo.length > 0 ? pinned.map(x => ({...(x && x._id ? x : (storeDispo.find(y => y && y._id === x) || {})), pinned: true})) : [];
+    const populatedPinned = storeDispo && storeDispo.length > 0 ? (pinned.map(x => ({...(x && x._id ? x : (storeDispo.find(y => y && y._id === x) || {})), pinned: true})) || []) : [];
     const filteredPinned = activeFiltre ? populatedPinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : populatedPinned;
     
     if(recherche[0].active){
