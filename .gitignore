@@ -47,3 +47,5 @@ credentials.json
 token.json
 /controllers/dispositif/gmail_auth.js
 /client/brouillon.js
+/client/development.env
+/client/production.env
