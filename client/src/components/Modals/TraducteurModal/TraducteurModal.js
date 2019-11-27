@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { withTranslation } from 'react-i18next';
-import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGroup, Label, Spinner } from 'reactstrap';
-import Icon from 'react-eva-icons';
+import { Col, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGroup, Label, Spinner } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import FButton from '../../FigmaUI/FButton/FButton';
