@@ -1,32 +1,29 @@
-class LocalStorageMock {
-  constructor() {
-    this.store = {
-      'x-access-token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1ZGIzMTRhZTkwOTc5ZjNkOGZmYTE4YjAiLCJ1c2VybmFtZSI6InNvdWZpYW5lZXhwZXJ0IiwicGFzc3dvcmQiOiJzaGExJGQ2ZTU5MmViJDEkNmYwMjBkODE3Yzc1YTAxZGYxNjY1NjIyNzVhMmMzNTljZGJlY2FhOSIsImVtYWlsIjoidHJhZHVjdGV1cjFAdGVzdC5jb20ifQ.R_Ul18uPZcR-ZIEh10SD8PJP0nAuskzf4Rcoo2GGjKY"
-    };
-    console.log(this.store) 
-  }
+var localStorageMock = (function() {
+  var store = {
+    token: process.env.REACT_APP_FAKE_TOKEN
+  };
 
-  clear() {
-    console.log("111")
-    this.store = {};
-  }
+  return {
+      getItem: function(key) {
+        console.log(key)
+        console.log(store[key])
+        return store[key] || null;
+      },
+      setItem: function(key, value) {
+        store[key] = (value || '').toString();
+      },
+      clear: function() {
+        store = {};
+      }
+  };
 
-  getItem(key) {
-    console.log(key)
-    return this.store[key] || null;
-  }
+})();
 
-  setItem(key, value) {
-    console.log("là")
-    this.store[key] = (value || '').toString();
-  }
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock
+});
 
-  removeItem(key) {
-    console.log("222 ")
-    delete this.store[key];
-  }
-};
-
-global.window = { localStorage: new LocalStorageMock }
-global.localStorage = new LocalStorageMock;
-window.localStorage = new LocalStorageMock;
+Object.defineProperty(window.document, 'cookie', {
+  writable: true,
+  value: '_ga=' + process.env.REACT_APP_FAKE_COOKIE
+});
