@@ -184,7 +184,7 @@ class AdvancedSearch extends Component {
   render() {
     let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri, displayAll} = this.state;
     const {t, windowWidth, dispositifs: storeDispo} = this.props;
-    const populatedPinned = storeDispo && storeDispo.length > 0 ? pinned.map(x => ({...(x._id ? x : (storeDispo.find(y => y._id === x) || {})), pinned: true})) : [];
+    const populatedPinned = storeDispo && storeDispo.length > 0 ? pinned.map(x => ({...(x && x._id ? x : (storeDispo.find(y => y._id === x) || {})), pinned: true})) : [];
     const filteredPinned = activeFiltre ? populatedPinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : populatedPinned;
     
     if(recherche[0].active){
