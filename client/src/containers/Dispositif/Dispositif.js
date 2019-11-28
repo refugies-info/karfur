@@ -123,6 +123,7 @@ class Dispositif extends Component {
   }
 
   componentDidMount (){
+    API.get_map().then(data => console.log(data.data.map.directions))
     this._isMounted = true;
     this._initializeDispositif(this.props);
   }
