@@ -658,6 +658,7 @@ class Dispositif extends Component {
 
   valider_dispositif = (status='En attente', auto=false) => {
     if(!auto && !this.verifierDemarche()){return};
+    if(auto && this.state.disableEdit){return};
     this.setState({isDispositifLoading: !auto});
     let content = {...this.state.content};
     const uiArray = {...this.state.uiArray}, inVariante= this.state.inVariante;
