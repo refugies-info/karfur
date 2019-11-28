@@ -213,9 +213,6 @@ export default {
   send_sms : (query) => {
     return axios.post(burl + '/miscellaneous/send_sms',  query, {headers: headers})
   },
-  get_map : (query) => {
-    return axios.post(burl + '/miscellaneous/get_map',  query, {headers: headers})
-  },
 
   get_tts : (query) => {
     return axios.post(burl + '/tts/get_tts',  query, {headers: headers, cancelToken: new CancelToken(function executor(c) {
