@@ -2,7 +2,7 @@ import React from 'react';
 import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
 
 import variables from 'scss/colors.scss';
-
+console.log(process.env, process.env.REACT_APP_GOOGLE_API_KEY )
 const { compose, withProps } = require("recompose");
 const {
   withScriptjs,
