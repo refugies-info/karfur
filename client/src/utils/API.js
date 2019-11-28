@@ -15,7 +15,7 @@ const headers = {
   'x-access-token' : localStorage.getItem("token") || undefined,
   'cookie-id' : Cookies.get("_ga")
 }
-console.log(Cookies.get())
+
 const burl = ""
 
 axios.withCredentials = true;
@@ -212,6 +212,9 @@ export default {
   },
   send_sms : (query) => {
     return axios.post(burl + '/miscellaneous/send_sms',  query, {headers: headers})
+  },
+  get_map : (query) => {
+    return axios.post(burl + '/miscellaneous/get_map',  query, {headers: headers})
   },
 
   get_tts : (query) => {
