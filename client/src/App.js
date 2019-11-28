@@ -67,7 +67,7 @@ class App extends Component {
     //   this.setState({ data })
     // })
     //On désactive les logs en prod après le 25
-    if(process.env.NODE_ENV !== "development" && new Date() >= new Date("11/25/2019")){
+    if(process.env.NODE_ENV !== "development" && new Date() >= new Date("11/29/2019")){
       console.log = function(){};
     }
     window.onbeforeunload = function() {
