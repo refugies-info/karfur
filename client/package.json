@@ -44,6 +44,7 @@
     "lodash.debounce": "^4.0.8",
     "lottie-web": "^5.4.4",
     "moment": "^2.24.0",
+    "nice-try": "^2.0.0",
     "node-sass": "^4.12.0",
     "opentype": "^0.1.2",
     "opentype.js": "^1.1.0",
