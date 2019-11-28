@@ -293,7 +293,7 @@ class Dispositif extends Component {
       let right_node=state[key];
       if(subkey !==undefined && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
-      if(editable && right_node.content){
+      if(editable && right_node.content !== undefined && right_node.content !== null){
         const contentState = ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks);
         const rawContentState = convertToRaw(contentState) || {};
         const rawBlocks = rawContentState.blocks || [];
