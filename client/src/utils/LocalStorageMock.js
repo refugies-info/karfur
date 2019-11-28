@@ -4,19 +4,16 @@ var localStorageMock = (function() {
   };
 
   return {
-      getItem: function(key) {
-        console.log(key)
-        console.log(store[key])
-        return store[key] || null;
-      },
-      setItem: function(key, value) {
-        store[key] = (value || '').toString();
-      },
-      clear: function() {
-        store = {};
-      }
+    getItem: function(key) {
+      return store[key] || null;
+    },
+    setItem: function(key, value) {
+      store[key] = (value || '').toString();
+    },
+    clear: function() {
+      store = {};
+    }
   };
-
 })();
 
 Object.defineProperty(window, 'localStorage', {
