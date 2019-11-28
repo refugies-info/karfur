@@ -59,6 +59,9 @@ const leftSideDispositif = (props) => {
           <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
             {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
           </FButton>
+          <FButton type="light-action" onClick={props.send_sms} name="smartphone-outline">
+            {t("Dispositif.Envoyer par SMS", "Envoyer par SMS")}
+          </FButton>
           <ReactToPrint
             trigger={() => 
               <FButton type="light-action" name="printer-outline">

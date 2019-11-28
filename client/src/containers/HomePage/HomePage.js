@@ -48,12 +48,12 @@ class HomePage extends Component {
   render() {
     const { t } = this.props;
     const {users} = this.state;
-    const item = initial_data[0]
+    const item = initial_data[0];
     return (
       <div className="animated fadeIn homepage">
         <section id="hero">
           <div className="hero-container">
-            <h1>{t("Homepage.Construis ta vie en France", "Construis ta vie en France")}</h1>
+            <h1>{t("Homepage.Construis ta vie en France", "Construire ma vie en France")}</h1>
             <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
             
             <div className="search-row">
