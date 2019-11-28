@@ -103,9 +103,9 @@
     "zxcvbn": "^4.4.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-env start",
+    "build": "react-app-env build",
+    "test": "react-app-env test",
     "eject": "react-scripts eject",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json"
