@@ -12,7 +12,7 @@ const {
   InfoWindow,
 } = require("react-google-maps");
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
-console.log(process.env.REACT_APP_GOOGLE_API_KEY)
+console.log(process.env, process.env.REACT_APP_GOOGLE_API_KEY)
 const mapComponent = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_GOOGLE_API_KEY + "&v=3.exp&libraries=geometry,drawing,places",
