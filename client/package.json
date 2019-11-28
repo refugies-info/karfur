@@ -109,7 +109,8 @@
     "test": "react-app-env test",
     "eject": "react-scripts eject",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
-    "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json"
+    "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json",
+    "cypress:open": "cypress open"
   },
   "proxy": "http://localhost:8000",
   "bugs": {
@@ -131,6 +132,7 @@
     "chai-jest-snapshot": "^2.0.0",
     "chromedriver": "^2.46.0",
     "codecov": "^3.1.0",
+    "cypress": "^3.7.0",
     "dirty-chai": "^2.0.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.0",
