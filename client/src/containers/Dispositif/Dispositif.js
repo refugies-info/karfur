@@ -293,7 +293,7 @@ class Dispositif extends Component {
       let right_node=state[key];
       if(subkey !==undefined && state[key].children.length > subkey){right_node= state[key].children[subkey];}
       right_node.editable = editable;
-      if(editable && right_node.content){
+      if(editable && right_node.content !== undefined && right_node.content !== null){
         const contentState = ContentState.createFromBlockArray(htmlToDraft(right_node.isFakeContent ? '' : right_node.content).contentBlocks);
         const rawContentState = convertToRaw(contentState) || {};
         const rawBlocks = rawContentState.blocks || [];
@@ -549,6 +549,31 @@ class Dispositif extends Component {
     this.props.tracking.trackEvent({ action: 'click', label: 'goBack' });
     this.props.history.push("/advanced-search");
   }
+
+  send_sms = () => Swal.fire({
+      title: 'Veuillez renseigner votre numéro de téléphone',
+      input: 'tel',
+      inputPlaceholder: '0633445566',
+      inputAttributes: {
+        autocomplete: 'on'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Envoyer',
+      cancelButtonText: 'Annuler',
+      showLoaderOnConfirm: true,
+      preConfirm: (number) => {
+        return API.send_sms({number, typeContenu: this.state.typeContenu, url: window.location.href, title: this.state.content.titreInformatif})
+          .then(response => {
+            if (!response.status === 200) { throw new Error(response.statusText) }
+            return response.data
+          }).catch(error => { Swal.showValidationMessage( `Echec d'envoi: ${error}` ) })
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire( {title: 'Yay...', text: 'Votre message a bien été envoyé, merci', type: 'success', timer: 1500})
+      }
+    });
 
   createPdf = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'createPdf' });
@@ -942,6 +967,7 @@ class Dispositif extends Component {
                     newRef={this.newRef}
                     handleChange = {this.handleChange}
                     typeContenu={typeContenu}
+                    send_sms={this.send_sms}
                   />
                 </Col>}
               {inVariante && disableEdit && 
