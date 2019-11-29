@@ -54,7 +54,7 @@ class HomePage extends Component {
         <section id="hero">
           <div className="hero-container">
             <h1>{t("Homepage.Construis ta vie en France", "Construire ma vie en France")}</h1>
-            <h5>{t("Homepage.subtitle", {nombre: this.props.dispositifs.length})}</h5>
+            <h5>{t("Homepage.subtitle")}</h5>
             
             <div className="search-row">
               <SearchItem className="on-homepage"
