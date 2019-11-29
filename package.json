@@ -9,7 +9,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
+    "azure-postinstall": "cd client && npm install --only=dev && npm install && npm run build",
+    "postinstall": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
     "@google-cloud/translate": "^2.1.3",
