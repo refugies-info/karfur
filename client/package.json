@@ -10,7 +10,7 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:Tony4469/karfur.git"
-  },
+  }, 
   "dependencies": {
     "@coreui/coreui": "^2.1.5",
     "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.2.0",
