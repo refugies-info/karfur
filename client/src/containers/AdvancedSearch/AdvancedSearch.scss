@@ -21,7 +21,7 @@
     max-width: 100%;
   }
   .mt-250{
-    margin-top: 250px;
+    margin-top: 180px;
     @include media-max("desktop-up") { margin-top: 300px; }
     @include media-max("sm-limit") { margin-top: 350px; }
   }
