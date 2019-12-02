@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { withTranslation } from 'react-i18next';
-import { Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGroup, Label, Spinner } from 'reactstrap';
-import Icon from 'react-eva-icons';
+import { Col, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGroup, Label, Spinner } from 'reactstrap';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import FButton from '../../FigmaUI/FButton/FButton';
@@ -74,7 +73,7 @@ class TraducteurModal extends Component {
     return (
       <Modal isOpen={show} toggle={toggle} className='modal-traducteur'>
         <ModalHeader toggle={toggle}>
-          <h3>C'est parti !</h3>
+          C'est parti !
         </ModalHeader>
         <ModalBody>
           <h5>Quelles sont vos langues de travail ?</h5>

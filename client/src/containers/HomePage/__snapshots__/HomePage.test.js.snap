@@ -1,7 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should match its reference snapshot 1`] = `
-<ContextConsumer>
-  <Component />
-</ContextConsumer>
+exports[`HomePage should match its reference snapshot 1`] = `
+<Connect(withI18nextTranslation(HomePage))
+  tracking={
+    Object {
+      "getTrackingData": [Function],
+      "trackEvent": [Function],
+    }
+  }
+/>
 `;

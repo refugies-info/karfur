@@ -13,7 +13,7 @@
   font-family: CircularStd;
   display: flex;
   -ms-overflow-style: none;
-  scrollbar-width: none;
+  scrollbar-width: 0;
   @include media-min("tablet-up") { min-width:650px; }
   @include media-max("tablet-up") { width:100%; }
 
