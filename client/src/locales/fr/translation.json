@@ -293,6 +293,7 @@
     "Voir le site": "Voir le site",
     "Télécharger en PDF": "Télécharger en PDF",
     "Envoyer par mail": "Envoyer par mail",
+    "Envoyer par SMS": "Envoyer par SMS",
     "Imprimer": "Imprimer",
     "Gratuit": "Gratuit",
     "Payant": "Payant",
@@ -418,7 +419,8 @@
     "Participer à l'évolution de réfugiés-info": "Participer à l'évolution de réfugiés.info",
     "Demander des fonctionnalités": "Demander des fonctionnalités",
     "Le projet": "Le projet",
-    "Vous cherchez ?": "Vous cherchez ?"
+    "Vous cherchez ?": "Vous cherchez ?",
+    "Centre d'aide": "Centre d'aide"
   },
   "Retour à la recherche": "Retour à la recherche",
   "avec": "avec",

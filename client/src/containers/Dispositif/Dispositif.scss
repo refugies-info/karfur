@@ -10,7 +10,7 @@ $imgHeight : 350px;
   max-width: 100%;
   overflow: scroll !important;
   -ms-overflow-style: none;
-  scrollbar-width: none;
+  scrollbar-width: 0;
   ::-webkit-scrollbar {
     display: none;
     width: 0px;  /* remove scrollbar space */
@@ -261,10 +261,6 @@ $imgHeight : 350px;
         font-weight: normal;
       }
     }
-
-    &.sideView{
-      display: none;
-    }
   }
 
   .aside-right.sideView{
@@ -458,7 +454,6 @@ $imgHeight : 350px;
       height: 0;
       width: 0;
       position: absolute;
-      pointer-events: none;
     }
     &:before {
       border-left-color: inherit;
@@ -927,7 +922,7 @@ $imgHeight : 350px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    margin-top: 15;
+    margin-top: 15px;
 
     .nav-tabs {
       position: relative;

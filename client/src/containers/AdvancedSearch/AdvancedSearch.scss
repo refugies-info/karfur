@@ -168,7 +168,7 @@
   .card-col, .no-result-card, .create-card{
     .card-body{
       -ms-overflow-style: none;
-      scrollbar-width: none;
+      scrollbar-width: 0;
     }
     ::-webkit-scrollbar {
       display: none;
@@ -183,7 +183,7 @@
       font-size: 16px;
       line-height: 21px;
       height: 250px;
-      scrollbar-width: none;
+      scrollbar-width: 0;
       border: none;
       background: #FFFFFF;
 
@@ -201,7 +201,7 @@
       justify-content: space-between;
       overflow: auto;
       -ms-overflow-style: none;
-      scrollbar-width: none;
+      scrollbar-width: 0;
       padding: 16px;
     }
   }

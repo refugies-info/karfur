@@ -41,7 +41,7 @@ const Page404 = Loadable({
   loader: () => import('./views/Pages/Page404'),
   loading
 });
-
+ 
 const Page500 = Loadable({
   loader: () => import('./views/Pages/Page500'),
   loading
