@@ -175,7 +175,7 @@ class Avancement extends Component {
           typeContenu: x.typeContenu || "dispositif"
       } ) )
     ];
-    traductions = traductions.filter(x => isExpert ? x.avancement === 1 : x.avancement !== 1).sort((a,b)=> b.nombreMots - a.nombreMots);
+    traductions = traductions.filter(x => isExpert ? x.avancement >= 1 : x.avancement < 1).sort((a,b)=> b.nombreMots - a.nombreMots);
     
     const displayedText = (data || []).length === 0 || (this.props.dispositifs || []).length === 0 ? "Chargement" : "Aucun résultat";
     

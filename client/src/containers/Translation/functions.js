@@ -3,7 +3,6 @@ const initializeTimer = function(step = null, action = () => {}) {
   this.mountTime = Date.now();
   const timestep = 10000;
   this.timer = setInterval(() => {
-    console.log(this._isMounted)
     this._isMounted && this.setState({
       time: Date.now() - this.mountTime + this.state.initialTime
     }, ()=>{

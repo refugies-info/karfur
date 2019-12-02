@@ -76,15 +76,15 @@ class AdvancedSearch extends Component {
         dispositifs = filterDoubles.map(x => dispositifs.find(y => y.demarcheId === x || y._id === x));
       }
       dispositifs = dispositifs.map(x => ({...x, nbVues: (this.state.nbVues.find(y=>y._id === x._id) || {}).count }))     //Je rajoute la donnée sur le nombre de vues par dispositif
-        .filter(x => !this.state.pinned.some(y=>y._id===x._id || y===x._id))
+        .filter(x => !this.state.pinned.some(y=> (y && y._id===x._id) || y===x._id))
       this.setState({ dispositifs:dispositifs, showSpinner: false })
     }).catch(()=>this.setState({ showSpinner: false }))
   }
   
   selectTag = (tag = {}) => {
     const tagValue = (filtres.tags.find(x => x.short === tag) || {});
-    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: tagValue.name, short: tagValue.short, active: true} : x)}))
-    this.queryDispositifs({"tags.short": tag})
+    this.setState(pS => ({recherche: pS.recherche.map((x,i)=> i === 0 ? {...x, value: tagValue.name, short: tagValue.short, query: tagValue.name, active: true} : x)}))
+    this.queryDispositifs({"tags.name": tagValue.name})
     // this.props.history.replace("/advanced-search?tag="+tag)
   }
   
@@ -133,9 +133,9 @@ class AdvancedSearch extends Component {
       dispositifs: dispositif.pinned ? prevState.filter(x => x._id !== dispositif._id) : [...prevState,dispositif],
       pinned: dispositif.pinned ? 
         [...this.state.pinned, dispositif] :
-        this.state.pinned.filter(x=> x._id !== dispositif._id)
+        this.state.pinned.filter(x=> x && x._id ? x._id !== dispositif._id : x !== dispositif._id)
     },()=>{
-      user.cookies.parkourPinned=[...new Set(this.state.pinned.map(x => x._id))];
+      user.cookies.parkourPinned=[...new Set(this.state.pinned.map(x => (x && x._id) || x))];
       API.set_user_info(user);
     })
   }
@@ -184,7 +184,7 @@ class AdvancedSearch extends Component {
   render() {
     let {recherche, dispositifs, pinned, showSpinner, activeFiltre, activeTri, displayAll} = this.state;
     const {t, windowWidth, dispositifs: storeDispo} = this.props;
-    const populatedPinned = storeDispo && storeDispo.length > 0 ? pinned.map(x => x._id ? x : (storeDispo.find(y => y._id === x) || {})) : [];
+    const populatedPinned = storeDispo && storeDispo.length > 0 ? (pinned.map(x => ({...(x && x._id ? x : (storeDispo.find(y => y && y._id === x) || {})), pinned: true})) || []) : [];
     const filteredPinned = activeFiltre ? populatedPinned.filter(x => activeFiltre === "Dispositifs" ? x.typeContenu !== "demarche" : x.typeContenu === "demarche") : populatedPinned;
     
     if(recherche[0].active){

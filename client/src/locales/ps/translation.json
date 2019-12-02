@@ -47,6 +47,7 @@
     "mots rédigés": "لغاتونه (کلمی)<br/>ترتیب شوی",
     "minutes passées": "دقیقې<br>تیرشوي",
     "personnes informées": "افراد<br>باخبره",
+    "Espace rédaction": "د تحریر ځای",
     "cherche btn": "د حفظ کولو (ډاونلوډ) لپاره په محتوا کې دغه بټن ولوټوی",
     "Ajouter un membre": "یو غړی اضافه کړئ",
     "Espace structure": "د (ساختار) جوړښت ځای",
@@ -100,7 +101,10 @@
     "commencez à rédiger": "خپل لومړی متن (محتوی) ولیکئ ترڅو حساب نیونکې میټرکارپیل کړي",
     "mots traduits": "ژباړل شوي کلمې",
     "commencez à traduire": "خپل لومړني الفاظ د کاونټر د پیل لپاره وژباړئ",
-    "Modifier le mot de passe": "رمز(پاس ورډ) بدل کړئ"
+    "Modifier le mot de passe": "رمز(پاس ورډ) بدل کړئ",
+    "Merci de donner de votre temps": "ستاسو له وخت او همکاری نه مننه چی د کډوالو په ټولنه کې د ادغام کیدو لپاره مو ورکړی.",
+    "Grâce à vous": "ستاسو د همکاري او مرستي په نتیجه کې به مهاجرین لا نور هم بهتره او ښو معلوماتوته لاس رسي پیدا کړي.",
+    "Merci de participer": "د لا زیاتو کسانو لپاره د معلوماتو په تهیه کولو او برخه اخستلو کې ستاسو نه مننه کوو."
   },
   "QuiSommesNous": {
     "Qui sommes-nous": "موږ څوک یو؟",
@@ -205,7 +209,11 @@
     "très bien": "ډیر ښه",
     "Paris": "پاریس",
     "Lyon": "Lyon لیون",
-    "Nantes": "Nantes نانت"
+    "Nantes": "Nantes نانت",
+    "choisir un thème": "یو موضوع غوره کړه",
+    "ma ville": "زما ښار",
+    "âge": "عمر",
+    "mon niveau": "زما سطح"
   },
   "SearchItem": {
     "Je cherche à": "په لټه ده",
@@ -250,9 +258,17 @@
     "Force": "ځواک",
     "Mot de passe actuel": "اوسنی (پاس ورډ) رمز",
     "Nouveau mot de passe": "نوی رمزد عبور(پاس ورډ)",
-    "Confirmez le nouveau mot de passe": "نوی رمز(پاس ورډ) تایید کړئ"
+    "Confirmez le nouveau mot de passe": "نوی رمز(پاس ورډ) تایید کړئ",
+    "Réinitialisez votre mot de passe": "خپل رمز (پاس ورډ) بیا تازه کړئ",
+    "Renseignez ici le nouveau mot de passe souhaité": "دلته نوی رمز (پاس ورډ) ولیکي",
+    "Chargement des données utilisateur": "د مستخدم معلومات (ډیټا) لوډ کول",
+    "Problème mdp": "درمز (پاس ورډ) په کارولو کې له ستونزی سره مخ شوی. مهرباني وکړی یوځل بیا کوشش وکړئ.",
+    "Revenir à la page de connexion": "د ننوتلو (کونکټ) کیدو صفحې ته راستون شه"
   },
-  "UnauthorizedAccess": {},
+  "UnauthorizedAccess": {
+    "Accès refusé": "لاسرسی رد شو",
+    "Revenir à l'accueil": "اصلي صفحی ته بیرته راستنیدل"
+  },
   "Dispositif": {
     "fiabilite_faible": "د کم اعتبارلرونکي معلومات قبلا ندي تایید کړای شوي",
     "cliquez": "په سوالیه نشان \"؟\" کلیک کړی د لازیاتو معلوماتو لپاره",
@@ -348,7 +364,11 @@
     "J'ai une suggestion !": "زه یو وړاندیز لرم!",
     "Je veux juste vous dire": "زه یوازې غواړم تاسو ته ووایم",
     "réagir": "غبرګون ښودل",
-    "écouter": "اوریدل"
+    "écouter": "اوریدل",
+    "Ajouter un thème": "یوه موضوع اضافه کړئ",
+    "réfugiés": "کډوال (مهاجر)",
+    "Localisation": "موقع",
+    "Tout public": "هرڅوک"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "ایا ته ډاډه یې؟",
@@ -403,6 +423,7 @@
   "Modifier mon profil": "زما پروفایل سمول",
   "Bientôt disponible": "ډیر ژربه ستاسو په خدمت کې وی",
   "Chercher un dispositif": "دمختلفوپروګرامونوپه هکله معلومات ترلاسه کړئ",
+  "Chercher une démarche": "د پروسیجرونو او اجراآتو په هکله نور معلومات ترلاسه کړي",
   "Rejoindre le réseau": "په شبکه کې ګډون وکړئ",
   "Valider": "اعتبار",
   "Contribuer": "ونډه اخستونکی",

@@ -120,7 +120,7 @@
     }
   }
   .card{
-    background-color: none;
+    background-color: initial; 
   }
 
   #contribution{
@@ -326,6 +326,11 @@
         fill:$gris;
       }
     }
+  }
+
+  .flip-horizontal-top {
+    -webkit-animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+            animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
   }
 }
 
