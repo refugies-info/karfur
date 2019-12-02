@@ -23,7 +23,6 @@
   width: 320px;
   height: 90px;
   overflow: visible;
-  pointer-events: auto;
   transform-origin: 50% 50% 0px;
   border-radius: 5px;
   color: white;
