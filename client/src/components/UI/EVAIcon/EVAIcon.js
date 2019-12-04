@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import * as eva from "eva-icons";
 
-import "./styles.css";
-
 const SIZE = {
   SMALL: '12px',
   MEDIUM: '20px',

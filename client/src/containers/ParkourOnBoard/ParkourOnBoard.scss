@@ -18,7 +18,7 @@ $transition-time: 0.5s;
   .card-col{
     max-height: 33%;
     margin-bottom: 1.5rem;
-    scrollbar-width: none;
+    scrollbar-width: 0;
 
     a{
       text-decoration: none;
@@ -32,7 +32,7 @@ $transition-time: 0.5s;
     .custom-card{
       overflow: auto;
       -ms-overflow-style: none;
-      scrollbar-width: none;
+      scrollbar-width: 0;
 
       h3{
         font-size: 19.3943px;

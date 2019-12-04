@@ -98,9 +98,6 @@
       border-color: transparent;
       background-color: transparent;
     }
-    #mainNav .navbar-brand {
-      color: fade(white, 70%);
-    }
     #mainNav .navbar-brand:hover, #mainNav .navbar-brand:focus {
       color: white;
     }
@@ -262,9 +259,6 @@
     margin-bottom: 15px;
     background: -webkit-gradient(linear, right top, left top, from(#7b4397), to(#dc2430));
     background: linear-gradient(to left, #7b4397, #dc2430);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   section.cta {

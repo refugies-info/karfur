@@ -22,19 +22,16 @@ import variables from 'scss/colors.scss';
 import SearchItem from '../AdvancedSearch/SearchItem/SearchItem';
 import { initial_data } from '../AdvancedSearch/data';
 
-class HomePage extends Component {
+export class HomePage extends Component {
   state = {
-    search: [{ type: 'Dispositifs', children: [] }, { type: 'Articles', children: [] }, { type: 'Démarches', children: [] }],
-    value: '',
-    suggestions: [],
     users: [],
   }
   _isMounted = false;
 
   componentDidMount (){
     this._isMounted = true;
-    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this._isMounted && this.setState({users: data.data.data}) );
     window.scrollTo(0, 0);
+    return API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this._isMounted && this.setState({users: data.data.data}) );
   }
 
   componentWillUnmount (){
@@ -54,7 +51,7 @@ class HomePage extends Component {
         <section id="hero">
           <div className="hero-container">
             <h1>{t("Homepage.Construis ta vie en France", "Construire ma vie en France")}</h1>
-            <h5>{t("Homepage.subtitle")}</h5>
+            <h5>{t("Homepage.subtitle", {nombre: (this.props.dispositifs || []).length})}</h5>
             
             <div className="search-row">
               <SearchItem className="on-homepage"

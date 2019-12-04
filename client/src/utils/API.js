@@ -14,7 +14,7 @@ const headers = {
   'cookie-id' : Cookies.get("_ga")
 }
 
-const burl = ""
+const burl = process.env.NODE_ENV === "test" ? "http://localhost:3000" : ""; //Noté explicitement pour les tests, sinon il arrive pas à proxy entre :80 et :3000
 
 axios.withCredentials = true;
 

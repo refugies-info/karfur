@@ -24,3 +24,5 @@ Object.defineProperty(window.document, 'cookie', {
   writable: true,
   value: '_ga=' + process.env.REACT_APP_FAKE_COOKIE
 });
+
+window.scrollTo = () => {};
