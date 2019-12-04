@@ -376,7 +376,7 @@ class Dispositif extends Component {
       }else if(type==='accordion' && !newChild.content){
         newChild={type:'accordion', isFakeContent: true, title:'Un exemple d\'accordéon', placeholder: lorems.sousParagraphe,content: ''};
       }else if(type==='map'){
-        newChild={type:'map', isFakeContent: true, isMapLoaded:false, markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]};
+        newChild={type:'map', isFakeContent: true, isMapLoaded:false, markers: []};
       }else if(type === 'paragraph' && !newChild.content){
         newChild={title:'Un exemple de paragraphe', isFakeContent: true, placeholder: lorems.sousParagraphe,content: '', type:type}
       }else if(type === "etape"){
@@ -393,13 +393,12 @@ class Dispositif extends Component {
         prevState[key].type='cards';
         prevState[key].children=[{type:'card', isFakeContent: true,title:'Important !',titleIcon:'warning',contentTitle: 'Compte bancaire', contentBody:'nécessaire pour recevoir l’indemnité', footer:'Pourquoi ?',footerIcon:'question-mark-circle-outline'}];
       }else if(type==='map'){
-        prevState[key].children=[{type:'map', isFakeContent: true, isMapLoaded:false, markers: [{nom: "Test Paris", ville: "Paris", description: "Antenne locale de Test", latitude: "48.856614", longitude: "2.3522219"}]}];
+        prevState[key].children=[{type:'map', isFakeContent: true, isMapLoaded:false, markers: []}];
       }else{
         prevState[key].children=[{title:'Nouveau sous-paragraphe', type:type,content: lorems.sousParagraphe}];
       }
     }
     uiArray[key].children= [...(uiArray[key].children || []), {...uiElement, accordion: true, varianteSelected: true}];
-    console.log(prevState)
     this.setState({ menu: prevState, uiArray: uiArray }, () => (type === "card" || type==="map") && this.setColors() );
   }
 
