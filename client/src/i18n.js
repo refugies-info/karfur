@@ -15,7 +15,7 @@ i18n
   .init({
     resources,
     
-    debug: true,
+    debug: process.env.NODE_ENV ==="development",
     saveMissing:false,
 
     lng: "fr",
