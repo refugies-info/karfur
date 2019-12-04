@@ -104,6 +104,7 @@
     "sweetalert2": "^8.10.7",
     "url-search-params-polyfill": "^7.0.0",
     "video-react": "^0.14.1",
+    "which": "^2.0.2",
     "zxcvbn": "^4.4.2"
   },
   "scripts": {
