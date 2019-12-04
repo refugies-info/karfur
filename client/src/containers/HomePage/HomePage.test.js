@@ -16,6 +16,13 @@ import API from '../../utils/API';
 const mockStore = configureStore();
 const store = mockStore({});
 
+axios.interceptors.response.use(response => {
+  console.log(response.data.data)
+  return response;
+}, error => {
+  console.log('Error: ', error.message);  
+})
+
 describe('HomePage', () => {
   describe('testing component', function () {
     const wrapper = shallow(<Provider store={store}><HomePage t={k=>k} /></Provider> ).dive().dive();
@@ -81,12 +88,7 @@ describe('HomePage', () => {
     
     it('should receive users from real API', function (done) {
       const wrapper2 = shallow(<Provider store={store}><HomePage t={k=>k} /></Provider> ).dive().dive();
-      axios.interceptors.response.use(response => {
-        console.log(response.data.data)
-        return response;
-      }, error => {
-        console.log('Error: ', error.message);  
-      })
+      
     })
   });
 
