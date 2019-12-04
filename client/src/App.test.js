@@ -1,13 +1,18 @@
 import { expect } from 'chai'
 import React from 'react'
+import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme'
 
 import App from './App'
 
-describe('<App />', () => {
+describe('App', () => {
   it('mounts without crashing', () => {
-    const wrapper = shallow(<App />);
-    wrapper.unmount() 
+    const jsdomScroll = window.scrollTo;  // remember the jsdom alert
+    window.scrollTo = () => {};  // provide an empty implementation for window.alert
+    const div = document.createElement('div');
+    ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
+    window.scrollTo = jsdomScroll;  // restore the jsdom alert
   });
 
   it('should render correctly in "debug" mode', () => {
