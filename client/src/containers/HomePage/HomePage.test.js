@@ -16,12 +16,6 @@ import API from '../../utils/API';
 const mockStore = configureStore();
 const store = mockStore({});
 
-axios.interceptors.response.use(response => {
-  console.log(response.data.data)
-  return response;
-}, error => {
-  console.log('Error: ', error.message);  
-})
 
 describe('HomePage', () => {
   describe('testing component', function () {
@@ -87,39 +81,51 @@ describe('HomePage', () => {
     // });
     
     it('should receive users from real API', function (done) {
-      const wrapper2 = shallow(<Provider store={store}><HomePage t={k=>k} /></Provider> ).dive().dive();
-      
+      axios.interceptors.response.use(response => {
+        const users = response.data.data;
+        console.log(users.length)
+        expect(users).to.be.an('array').that.is.not.empty;
+        expect(users).to.have.lengthOf.above(10);
+        expect(users).to.have.nested.property('0._id');
+        expect(users).to.have.nested.property('0.username');
+        expect(users).to.have.nested.property('0.status');
+        done();
+        return response;
+      }, error => {
+        console.log('Error: ', error.message);  
+      })
+      shallow(<Provider store={store}><HomePage t={k=>k} /></Provider> ).dive().dive(); 
     })
   });
 
-  // describe('mocking API', function () {
-  //   let wrapper;
-  //   beforeEach(async function () {
-  //     moxios.install()
-  //     wrapper = shallow(<Provider store={store}><HomePage t={k=>k} /></Provider> ).dive().dive();
-  //   })
+  describe('mocking API', function () {
+    let wrapper;
+    beforeEach(async function () {
+      moxios.install()
+      wrapper = shallow(<Provider store={store}><HomePage t={k=>k} /></Provider> ).dive().dive();
+    })
 
-  //   afterEach(function () {
-  //     moxios.uninstall()
-  //   })
+    afterEach(function () {
+      moxios.uninstall()
+    })
 
-  //   it('should receive users from mocked API', function (done) {
-  //     const fakeData = [
-  //       { id: 1, username: 'Fred', status: 'Actif' },
-  //       { id: 2, username: 'Wilma', status: 'Actif' }
-  //     ];
-  //     moxios.wait(function () {
-  //       let request = moxios.requests.mostRecent()
-  //       if(request){
-  //         request.respondWith({
-  //           status: 200,
-  //           response: { data: fakeData }
-  //         }).then(function () {
-  //           expect(wrapper.state().users).to.deep.equal(fakeData);
-  //           done()
-  //         })
-  //       }
-  //     })
-  //   })
-  // })
+    it('should receive users from mocked API', function (done) {
+      const fakeData = [
+        { id: 1, username: 'Fred', status: 'Actif' },
+        { id: 2, username: 'Wilma', status: 'Actif' }
+      ];
+      moxios.wait(function () {
+        let request = moxios.requests.mostRecent()
+        if(request){
+          request.respondWith({
+            status: 200,
+            response: { data: fakeData }
+          }).then(function () {
+            expect(wrapper.state().users).to.deep.equal(fakeData);
+            done()
+          })
+        }
+      })
+    })
+  })
 })
