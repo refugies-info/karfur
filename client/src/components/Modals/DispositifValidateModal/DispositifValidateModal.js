@@ -20,7 +20,7 @@ const dispositifValidateModal = (props) => {
         <Input type="textarea" rows={5} value={props.abstract} onChange={props.onChange} id="abstract" placeholder="Résumez votre dispositif en une phrase" />
       </ModalBody>
       <ModalFooter>
-        <span className={"decompte" + (props.abstract.length > 110 ? " text-danger":"")}>{110 - props.abstract.length} sur 110 caractères restants</span>
+        <span className={"decompte" + ((props.abstract || "").length > 110 ? " text-danger":"")}>{110 - (props.abstract || "").length} sur 110 caractères restants</span>
         <FButton name="checkmark" type="validate" onClick={validateAndClose} disabled={!props.abstract || props.abstract === "" || props.abstract.length > 110}>
           Envoyer
         </FButton>

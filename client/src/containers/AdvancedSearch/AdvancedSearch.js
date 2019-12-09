@@ -8,6 +8,7 @@ import _ from "lodash";
 import { NavHashLink } from 'react-router-hash-link';
 import windowSize from 'react-window-size';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 // import Cookies from 'js-cookie';
 
 import SearchItem from './SearchItem/SearchItem';
@@ -23,7 +24,7 @@ import './AdvancedSearch.scss';
 import variables from 'scss/colors.scss';
 
 let user={_id:null, cookies:{}};
-class AdvancedSearch extends Component {
+export class AdvancedSearch extends Component {
   state = {
     showSpinner: false,
     recherche: initial_data.map( x => ({...x, active: false})),
@@ -244,21 +245,23 @@ class AdvancedSearch extends Component {
                     if(dispositif.tags && dispositif.tags.length > 0 && dispositif.tags[0] && dispositif.tags[0].short){ shortTag = (dispositif.tags[0].short || {}).replace(/ /g, "-") }
                     return (
                       <Col xl="3" lg="3" md="4" sm="6" xs="12" className={"card-col puff-in-center " + (dispositif.typeContenu || "dispositif")} key={dispositif._id}>
-                        <CustomCard onClick={() => this.goToDispositif(dispositif)} className={(dispositif.typeContenu === "demarche" ? ("texte-" + shortTag + " bg-light-" + shortTag) : "")}>
-                          <CardBody>
-                            <EVAIcon 
-                              name="bookmark" 
-                              size="xlarge" 
-                              onClick={(e)=>this.pin(e,dispositif)} 
-                              fill={(dispositif.pinned ? variables.noir : variables.noirCD)} 
-                              className={"bookmark-icon" + (dispositif.pinned ? " pinned":"")} 
-                            />
-                            <h5>{dispositif.titreInformatif}</h5>
-                            <p>{dispositif.abstract}</p>
-                          </CardBody>
-                          {dispositif.typeContenu !== "demarche" &&
-                            <CardFooter className={"correct-radius align-right bg-" + shortTag}>{dispositif.titreMarque}</CardFooter>}
-                        </CustomCard>
+                        <NavLink to={'/' + (dispositif.typeContenu || "dispositif") + (dispositif._id ? ('/' + dispositif._id) : '')}>
+                          <CustomCard className={(dispositif.typeContenu === "demarche" ? ("texte-" + shortTag + " bg-light-" + shortTag) : "")}>
+                            <CardBody>
+                              <EVAIcon 
+                                name="bookmark" 
+                                size="xlarge" 
+                                onClick={(e)=>this.pin(e,dispositif)} 
+                                fill={(dispositif.pinned ? variables.noir : variables.noirCD)} 
+                                className={"bookmark-icon" + (dispositif.pinned ? " pinned":"")} 
+                              />
+                              <h5>{dispositif.titreInformatif}</h5>
+                              <p>{dispositif.abstract}</p>
+                            </CardBody>
+                            {dispositif.typeContenu !== "demarche" &&
+                              <CardFooter className={"correct-radius align-right bg-" + shortTag}>{dispositif.titreMarque}</CardFooter>}
+                          </CustomCard>
+                        </NavLink>
                       </Col>
                     )
                   }else{
@@ -321,7 +324,7 @@ class AdvancedSearch extends Component {
   }
 }
 
-const ResponsiveFooter = props => {
+export const ResponsiveFooter = props => {
   const {activeFiltre, activeTri, displayAll, t, show} = props;
   return show && (
     <div className="responsive-footer">

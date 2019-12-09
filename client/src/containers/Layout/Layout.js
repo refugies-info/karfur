@@ -9,10 +9,7 @@ import { connect } from 'react-redux';
 import Cookies from 'js-cookie';
 
 import Toolbar from '../Toolbar/Toolbar';
-// import Footer from '../../components/Navigation/Footer/Footer';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
-import OnBoardingTraducteurModal from '../../components/Modals/OnBoardingTradModal/OnBoardingTraducteurModal'
-// import RightSideDrawer from '../../components/Navigation/SideDrawer/RightSideDrawer/RightSideDrawer'
 import * as actions from '../../Store/actions/index';
 import LanguageModal from '../../components/Modals/LanguageModal/LanguageModal'
 import {readAudio} from './functions';
@@ -21,7 +18,7 @@ import Footer from '../Footer/Footer';
 
 import './Layout.scss';
 
-class Layout extends Component {
+export class Layout extends Component {
   constructor(props) {
     super(props);
     this.readAudio = readAudio.bind(this);
@@ -30,7 +27,6 @@ class Layout extends Component {
   state = {
     showSideDrawer: {left:false,right:false},
     traducteur:false,
-    showOnBoardingTraducteurModal:false,
   }
   audio = new Audio();
   
@@ -69,14 +65,6 @@ class Layout extends Component {
     this.setState( ( prevState ) => {
       return { showSideDrawer: {...this.state.showSideDrawer, [dir]:!prevState.showSideDrawer[dir]} };
     } );
-  }
-
-  devenirTraducteur = () => {
-    this.setState({showOnBoardingTraducteurModal:true})
-  }
-
-  closeOnBoardingTraducteurModal = () => {
-    this.setState({showOnBoardingTraducteurModal:false})
   }
   
   changeLanguage = (lng) => {
@@ -140,10 +128,6 @@ class Layout extends Component {
 
           <Footer />
           
-          <OnBoardingTraducteurModal 
-            show={this.state.showOnBoardingTraducteurModal}
-            closeOnBoardingTraducteurModal={this.closeOnBoardingTraducteurModal} />
-
           <LanguageModal 
             show={this.props.showLangModal} 
             current_language={i18n.language}

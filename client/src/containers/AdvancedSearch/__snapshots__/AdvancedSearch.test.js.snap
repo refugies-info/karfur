@@ -1,0 +1,474 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdvancedSearch should match its reference snapshot 1`] = `
+<div
+  className="animated fadeIn advanced-search"
+>
+  <div
+    className="search-bar"
+  >
+    <withI18nextTranslation(SearchItem)
+      desactiver={[Function]}
+      item={
+        Object {
+          "active": false,
+          "children": Array [
+            Object {
+              "darkColor": "#3E2884",
+              "hoverColor": "#3E2884",
+              "illustrationColor": "#F9AA38",
+              "lightColor": "#F0E8F5",
+              "name": "apprendre le français",
+              "short": "Français",
+            },
+            Object {
+              "darkColor": "#188CC6",
+              "hoverColor": "#188CC6",
+              "illustrationColor": "#F77B0B",
+              "lightColor": "#DDF3FA",
+              "name": "me loger",
+              "short": "Logement",
+            },
+            Object {
+              "darkColor": "#149295",
+              "hoverColor": "#4FD3BD",
+              "illustrationColor": "#DD0539",
+              "lightColor": "#D6EFF4",
+              "name": "trouver un travail",
+              "short": "Insertion pro",
+            },
+            Object {
+              "darkColor": "#137F3A",
+              "hoverColor": "#7DC690",
+              "illustrationColor": "#FC1E73",
+              "lightColor": "#E8F4E9",
+              "name": "apprendre un métier",
+              "short": "Formation pro",
+            },
+            Object {
+              "darkColor": "#307205",
+              "hoverColor": "#ADEA5C",
+              "illustrationColor": "#E561D8",
+              "lightColor": "#E8F7CD",
+              "name": "faire des études",
+              "short": "Études",
+            },
+            Object {
+              "darkColor": "#F97821",
+              "hoverColor": "#F9D1B7",
+              "illustrationColor": "#5435D6",
+              "lightColor": "#FFF0E7",
+              "name": "me déplacer",
+              "short": "Mobilité",
+            },
+            Object {
+              "darkColor": "#0A54BF",
+              "hoverColor": "#FDA8AD",
+              "illustrationColor": "#1FC2C1",
+              "lightColor": "#FFEEEE",
+              "name": "aider une association",
+              "short": "Bénévolat",
+            },
+            Object {
+              "darkColor": "#8E1B5A",
+              "hoverColor": "#FDA5C4",
+              "illustrationColor": "#76D327",
+              "lightColor": "#FFEBF5",
+              "name": "rencontrer des gens",
+              "short": "Rencontre",
+            },
+            Object {
+              "darkColor": "#861B8E",
+              "hoverColor": "#E595F9",
+              "illustrationColor": "#FCBF35",
+              "lightColor": "#F6E6FC",
+              "name": "occuper mon temps libre",
+              "short": "Loisir",
+            },
+            Object {
+              "darkColor": "#ED4C26",
+              "hoverColor": "#FEC396",
+              "illustrationColor": "#1898FC",
+              "lightColor": "#FFF0E7",
+              "name": "découvrir la culture",
+              "short": "Culture",
+            },
+            Object {
+              "darkColor": "#C6093F",
+              "hoverColor": "#F7698E",
+              "illustrationColor": "#1FC2C1",
+              "lightColor": "#FFEEEE",
+              "name": "me soigner",
+              "short": "Santé",
+            },
+          ],
+          "placeholder": "choisir un thème",
+          "query": "Apprendre le français",
+          "queryName": "tags.name",
+          "title": "Je cherche à",
+          "value": null,
+        }
+      }
+      key="0"
+      keyValue={0}
+      selectParam={[Function]}
+    />
+    <withI18nextTranslation(SearchItem)
+      desactiver={[Function]}
+      item={
+        Object {
+          "active": false,
+          "placeholder": "ma ville",
+          "queryName": "localisation",
+          "title": "J'habite à",
+          "value": null,
+        }
+      }
+      key="1"
+      keyValue={1}
+      selectParam={[Function]}
+    />
+    <withI18nextTranslation(SearchItem)
+      desactiver={[Function]}
+      item={
+        Object {
+          "active": false,
+          "children": Array [
+            Object {
+              "bottomValue": 0,
+              "name": "moins de 18 ans",
+              "topValue": 18,
+            },
+            Object {
+              "bottomValue": 18,
+              "name": "entre 18 et 25 ans",
+              "topValue": 25,
+            },
+            Object {
+              "bottomValue": 25,
+              "name": "entre 25 et 56 ans",
+              "topValue": 56,
+            },
+            Object {
+              "bottomValue": 56,
+              "name": "56 ans et plus",
+              "topValue": 120,
+            },
+          ],
+          "placeholder": "âge",
+          "queryName": "audienceAge",
+          "title": "J'ai",
+          "value": null,
+        }
+      }
+      key="2"
+      keyValue={2}
+      selectParam={[Function]}
+    />
+    <withI18nextTranslation(SearchItem)
+      desactiver={[Function]}
+      item={
+        Object {
+          "active": false,
+          "append": "Quel est mon niveau ?",
+          "children": Array [
+            Object {
+              "name": "pas du tout",
+              "query": "Débutant",
+            },
+            Object {
+              "name": "un peu",
+              "query": "Débutant",
+            },
+            Object {
+              "name": "moyennement",
+              "query": "Intermédiaire",
+            },
+            Object {
+              "name": "bien",
+              "query": "Intermédiaire",
+            },
+            Object {
+              "name": "très bien",
+              "query": "Avancé",
+            },
+          ],
+          "placeholder": "mon niveau",
+          "queryName": "niveauFrancais",
+          "title": "Je parle",
+          "title2": "français",
+          "value": null,
+        }
+      }
+      key="3"
+      keyValue={3}
+      selectParam={[Function]}
+    />
+    <ResponsiveFooter
+      activeFiltre=""
+      activeTri=""
+      croissant={true}
+      data={Array []}
+      displayAll={true}
+      dispositifs={Array []}
+      dropdownOpenFiltre={false}
+      dropdownOpenTri={false}
+      filter={Object {}}
+      filter_content={[Function]}
+      nbVues={Array []}
+      order="created_at"
+      pinned={Array []}
+      recherche={
+        Array [
+          Object {
+            "active": false,
+            "children": Array [
+              Object {
+                "darkColor": "#3E2884",
+                "hoverColor": "#3E2884",
+                "illustrationColor": "#F9AA38",
+                "lightColor": "#F0E8F5",
+                "name": "apprendre le français",
+                "short": "Français",
+              },
+              Object {
+                "darkColor": "#188CC6",
+                "hoverColor": "#188CC6",
+                "illustrationColor": "#F77B0B",
+                "lightColor": "#DDF3FA",
+                "name": "me loger",
+                "short": "Logement",
+              },
+              Object {
+                "darkColor": "#149295",
+                "hoverColor": "#4FD3BD",
+                "illustrationColor": "#DD0539",
+                "lightColor": "#D6EFF4",
+                "name": "trouver un travail",
+                "short": "Insertion pro",
+              },
+              Object {
+                "darkColor": "#137F3A",
+                "hoverColor": "#7DC690",
+                "illustrationColor": "#FC1E73",
+                "lightColor": "#E8F4E9",
+                "name": "apprendre un métier",
+                "short": "Formation pro",
+              },
+              Object {
+                "darkColor": "#307205",
+                "hoverColor": "#ADEA5C",
+                "illustrationColor": "#E561D8",
+                "lightColor": "#E8F7CD",
+                "name": "faire des études",
+                "short": "Études",
+              },
+              Object {
+                "darkColor": "#F97821",
+                "hoverColor": "#F9D1B7",
+                "illustrationColor": "#5435D6",
+                "lightColor": "#FFF0E7",
+                "name": "me déplacer",
+                "short": "Mobilité",
+              },
+              Object {
+                "darkColor": "#0A54BF",
+                "hoverColor": "#FDA8AD",
+                "illustrationColor": "#1FC2C1",
+                "lightColor": "#FFEEEE",
+                "name": "aider une association",
+                "short": "Bénévolat",
+              },
+              Object {
+                "darkColor": "#8E1B5A",
+                "hoverColor": "#FDA5C4",
+                "illustrationColor": "#76D327",
+                "lightColor": "#FFEBF5",
+                "name": "rencontrer des gens",
+                "short": "Rencontre",
+              },
+              Object {
+                "darkColor": "#861B8E",
+                "hoverColor": "#E595F9",
+                "illustrationColor": "#FCBF35",
+                "lightColor": "#F6E6FC",
+                "name": "occuper mon temps libre",
+                "short": "Loisir",
+              },
+              Object {
+                "darkColor": "#ED4C26",
+                "hoverColor": "#FEC396",
+                "illustrationColor": "#1898FC",
+                "lightColor": "#FFF0E7",
+                "name": "découvrir la culture",
+                "short": "Culture",
+              },
+              Object {
+                "darkColor": "#C6093F",
+                "hoverColor": "#F7698E",
+                "illustrationColor": "#1FC2C1",
+                "lightColor": "#FFEEEE",
+                "name": "me soigner",
+                "short": "Santé",
+              },
+            ],
+            "placeholder": "choisir un thème",
+            "query": "Apprendre le français",
+            "queryName": "tags.name",
+            "title": "Je cherche à",
+            "value": null,
+          },
+          Object {
+            "active": false,
+            "placeholder": "ma ville",
+            "queryName": "localisation",
+            "title": "J'habite à",
+            "value": null,
+          },
+          Object {
+            "active": false,
+            "children": Array [
+              Object {
+                "bottomValue": 0,
+                "name": "moins de 18 ans",
+                "topValue": 18,
+              },
+              Object {
+                "bottomValue": 18,
+                "name": "entre 18 et 25 ans",
+                "topValue": 25,
+              },
+              Object {
+                "bottomValue": 25,
+                "name": "entre 25 et 56 ans",
+                "topValue": 56,
+              },
+              Object {
+                "bottomValue": 56,
+                "name": "56 ans et plus",
+                "topValue": 120,
+              },
+            ],
+            "placeholder": "âge",
+            "queryName": "audienceAge",
+            "title": "J'ai",
+            "value": null,
+          },
+          Object {
+            "active": false,
+            "append": "Quel est mon niveau ?",
+            "children": Array [
+              Object {
+                "name": "pas du tout",
+                "query": "Débutant",
+              },
+              Object {
+                "name": "un peu",
+                "query": "Débutant",
+              },
+              Object {
+                "name": "moyennement",
+                "query": "Intermédiaire",
+              },
+              Object {
+                "name": "bien",
+                "query": "Intermédiaire",
+              },
+              Object {
+                "name": "très bien",
+                "query": "Avancé",
+              },
+            ],
+            "placeholder": "mon niveau",
+            "queryName": "niveauFrancais",
+            "title": "Je parle",
+            "title2": "français",
+            "value": null,
+          },
+        ]
+      }
+      reorder={[Function]}
+      show={false}
+      showSpinner={true}
+      t={[Function]}
+      toggleDisplayAll={[Function]}
+      toggleDropdownFiltre={[Function]}
+      toggleDropdownTri={[Function]}
+    />
+  </div>
+  <Row
+    className="search-wrapper"
+    tag="div"
+  >
+    <Col
+      className="mt-250 central-col"
+      lg="8"
+      md="8"
+      sm="8"
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xl="8"
+      xs="12"
+    >
+      <div
+        className="results-wrapper"
+      >
+        <Row
+          tag="div"
+        >
+          <Col
+            md="3"
+            sm="6"
+            tag="div"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+            xs="12"
+          >
+            <NavHashLink
+              to="/comment-contribuer#ecrire"
+            >
+              <customCard
+                addcard="true"
+                className="create-card"
+              >
+                <CardBody
+                  tag="div"
+                >
+                  <Spinner
+                    color="success"
+                    tag="div"
+                    type="border"
+                  >
+                    Loading...
+                  </Spinner>
+                </CardBody>
+                <CardFooter
+                  className="align-right"
+                  tag="div"
+                >
+                  Chargement...
+                </CardFooter>
+              </customCard>
+            </NavHashLink>
+          </Col>
+        </Row>
+      </div>
+    </Col>
+  </Row>
+</div>
+`;

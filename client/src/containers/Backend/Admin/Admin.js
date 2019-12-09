@@ -14,7 +14,7 @@ import {fetch_structures} from "../../../Store/actions/index";
 import './Admin.scss';
 import variables from 'scss/colors.scss';
 
-class Admin extends Component {
+export class Admin extends Component {
   state = {
     activeTab: new Array(5).fill('1'),
     orderedLangues : [],

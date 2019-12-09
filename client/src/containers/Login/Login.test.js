@@ -1,5 +1,5 @@
 import React from 'react';
-import UserChange from './UserChange';
+import {Login} from './Login';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
@@ -13,10 +13,11 @@ const defaultProps = {
   location: {},
 }
 
-describe('UserChange', () => {
+describe('Login', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(<Provider store={store}><UserChange {...defaultProps} /></Provider> ).dive().dive();
+    const wrapper = shallow(<Provider store={store}><Login {...defaultProps} /></Provider> ).dive().dive();
     expect(wrapper).is.ok;
+    expect(wrapper.is('div')).to.equal(true);
   });
 })
 
