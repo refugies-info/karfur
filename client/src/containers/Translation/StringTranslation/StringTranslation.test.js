@@ -1,5 +1,5 @@
 import React from 'react';
-import UserChange from './UserChange';
+import {StringTranslation} from './StringTranslation';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
@@ -10,13 +10,18 @@ const store = mockStore({});
 
 const defaultProps = {
   t:k=>k,
-  location: {},
+  langue: {}, 
+  francais: {}, 
+  score: {}, 
+  translated: {},
+  time: 0,
 }
 
-describe('UserChange', () => {
+describe('Login', () => {
   it('renders without crashing', () => {
-    const wrapper = shallow(<Provider store={store}><UserChange {...defaultProps} /></Provider> ).dive().dive();
+    const wrapper = shallow(<Provider store={store}><StringTranslation {...defaultProps} /></Provider> ).dive().dive();
     expect(wrapper).is.ok;
+    expect(wrapper.is('div')).to.equal(true);
   });
 })
 
