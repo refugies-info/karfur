@@ -28,6 +28,7 @@ const mockDispo = {
   sponsors: [],
   tags:[],
   "typeContenu" : "dispositif",
+  status: "Inactif"
 };
 
 const defaultProps = {
@@ -47,10 +48,15 @@ describe('Dispositif', () => {
     db = await connection.db("db");
     const collection = db.collection('dispositifs');
 
+    await collection.findOne({_id: new ObjectId(mockId)});
+    console.log('removing dispo')
     await collection.remove({_id: new ObjectId(mockId)});
-    // console.log(await collection.findOne({_id: new ObjectId(mockId)}))
+    console.log('dispo removed')
+    await collection.findOne({_id: new ObjectId(mockId)});
+    console.log('inserting dispo')
     await collection.insert(mockDispo);
-    // console.log(await collection.findOne({_id: new ObjectId(mockId)}))
+    console.log('dispo inserted')
+    await collection.findOne({_id: new ObjectId(mockId)});
 
     wrapper = shallow(<Provider store={store}><MemoryRouter><Dispositif {...defaultProps} /></MemoryRouter></Provider> ).dive().dive().dive().dive();
   })
