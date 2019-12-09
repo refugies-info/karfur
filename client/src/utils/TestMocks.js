@@ -2,9 +2,10 @@ var localStorageMock = (function() {
   var store = {
     token: process.env.REACT_APP_FAKE_TOKEN
   };
-
+  console.log(process.env.REACT_APP_FAKE_TOKEN)
   return {
     getItem: function(key) {
+      console.log(key, store[key])
       return store[key] || null;
     },
     setItem: function(key, value) {
