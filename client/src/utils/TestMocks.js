@@ -20,6 +20,7 @@ var localStorageMock = (function() {
 Object.defineProperty(window, 'localStorage', {
   value: localStorageMock
 });
+global.localStorageMock = localStorageMock;
 
 Object.defineProperty(window.document, 'cookie', {
   writable: true,
