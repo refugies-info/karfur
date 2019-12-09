@@ -156,7 +156,7 @@ describe('mock async actions', () => {
 
     moxios.wait(function () {
       let request = moxios.requests.mostRecent()
-      console.log(request.config.url)
+      console.log(!moxios.requests.mostRecent().config.url.includes("/dispositifs/get_dispositif") && moxios.requests)
       expect(moxios.requests.mostRecent().config.url).to.contain("/dispositifs/get_dispositif")
       request.respondWith({
         status: 200,
