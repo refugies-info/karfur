@@ -12,7 +12,7 @@ const match = {path: "/dispositif/" + mockId, params:{id: mockId}}
 
 const defaultProps = {
   t:k=>k,
-  location: {search: ""},
+  location: {search: "", pathname: "/dispositif/" + mockId},
   match
 }
 
