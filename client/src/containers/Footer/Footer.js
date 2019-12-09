@@ -13,7 +13,7 @@ import variables from 'scss/colors.scss';
 import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
 import FButton from '../../components/FigmaUI/FButton/FButton';
 
-class Footer extends Component {
+export class Footer extends Component {
   state = {
     email: ""
   }

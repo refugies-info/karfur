@@ -17,7 +17,7 @@ import {initializeTimer} from './functions';
 let last_target=null;
 let letter_pressed=null;
 
-class TranslationHOC extends Component {
+export class TranslationHOC extends Component {
   constructor(props) {
     super(props);
     this.mountTime=0;

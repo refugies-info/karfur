@@ -27,7 +27,7 @@ moment.locale('fr');
 
 const tables = [{name:'actions', component: ActionTable}, {name:'contributions', component: ContribTable}, {name:'members', component: MembersTable}];
 
-class UserDashStruct extends Component {
+export class UserDashStruct extends Component {
   constructor(props) {
     super(props);
     this._isMounted = false;
@@ -58,7 +58,6 @@ class UserDashStruct extends Component {
   componentDidMount() {
     this._isMounted = true;
     let user=this.props.user;
-    console.log(user)
     if(!user.structures || !user.structures.length > 0){ Swal.fire( 'Oh non', "Nous n'avons aucune information sur votre structure d'affiliation, vous allez être redirigé vers la page d'accueil", 'error').then(() => this.props.history.push("/") ); return; }
 
     this.initializeStructure();
