@@ -13,7 +13,7 @@ const headers = {
   'x-access-token' : localStorage.getItem("token") || undefined,
   'cookie-id' : Cookies.get("_ga")
 }
-
+console.log(process.env.NODE_ENV)
 const burl = process.env.NODE_ENV === "test" ? "http://localhost:3000" : ""; //Noté explicitement pour les tests, sinon il arrive pas à proxy entre :80 et :3000
 
 axios.withCredentials = true;

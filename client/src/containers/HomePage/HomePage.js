@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { NavHashLink } from 'react-router-hash-link';
 import { connect } from 'react-redux';
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from 'reactstrap';
-import Swal from 'sweetalert2';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 ////////A enlever si pas utilisé/////////////:
