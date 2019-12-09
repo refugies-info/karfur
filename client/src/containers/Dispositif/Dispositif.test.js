@@ -47,15 +47,17 @@ describe('Dispositif', () => {
     db = await connection.db("db");
     const collection = db.collection('dispositifs');
 
-    await collection.deleteOne({_id: new ObjectId(mockId)});
-    await collection.insertOne(mockDispo);
+    await collection.remove({_id: new ObjectId(mockId)});
+    // console.log(await collection.findOne({_id: new ObjectId(mockId)}))
+    await collection.insert(mockDispo);
+    // console.log(await collection.findOne({_id: new ObjectId(mockId)}))
 
     wrapper = shallow(<Provider store={store}><MemoryRouter><Dispositif {...defaultProps} /></MemoryRouter></Provider> ).dive().dive().dive().dive();
   })
   
   afterAll(async () => {
     const collection = db.collection('dispositifs');
-    await collection.deleteOne({_id: new ObjectId(mockId)});
+    await collection.remove({_id: new ObjectId(mockId)});
     await connection.close();
     await db.close();
   });
