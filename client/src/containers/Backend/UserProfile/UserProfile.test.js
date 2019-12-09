@@ -42,15 +42,17 @@ describe('UserProfile', () => {
     db = await connection.db("db");
     const users = db.collection('users');
 
-    await users.deleteOne({_id: new ObjectId(mockId)});
-    await users.insertOne(mockUser);
+    await users.remove({_id: new ObjectId(mockId)});
+    // console.log(await users.findOne({_id: new ObjectId(mockId)}))
+    await users.insert(mockUser);
+    // console.log(await users.findOne({_id: new ObjectId(mockId)}))
 
     wrapper = shallow(<Provider store={store}><UserProfile {...defaultProps} /></Provider> ).dive().dive();
   })
 
   afterAll(async () => {
     const users = db.collection('users');
-    await users.deleteOne({_id: new ObjectId(mockId)});
+    await users.remove({_id: new ObjectId(mockId)});
     await connection.close();
     await db.close();
   });

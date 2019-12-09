@@ -12,8 +12,8 @@ const match = {path: "/dispositif/" + mockId, params:{id: mockId}}
 
 const defaultProps = {
   t:k=>k,
-  match,
-  location: {search: ""}
+  location: {search: ""},
+  match
 }
 
 describe('TranslationHOC', () => {

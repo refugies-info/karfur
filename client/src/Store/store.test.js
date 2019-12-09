@@ -156,6 +156,8 @@ describe('mock async actions', () => {
 
     moxios.wait(function () {
       let request = moxios.requests.mostRecent()
+      console.log(request.config.url)
+      expect(moxios.requests.mostRecent().config.url).to.contain("/dispositifs/get_dispositif")
       request.respondWith({
         status: 200,
         response: { data: fakeData }
