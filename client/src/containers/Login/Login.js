@@ -22,7 +22,7 @@ import { colorAvancement } from '../../components/Functions/ColorFunctions';
 import './Login.scss';
 import variables from 'scss/colors.scss';
 
-class Login extends Component {
+export class Login extends Component {
   state = {
     username : "",
     password: "",

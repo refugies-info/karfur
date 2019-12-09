@@ -23,6 +23,10 @@ import SearchItem from '../AdvancedSearch/SearchItem/SearchItem';
 import { initial_data } from '../AdvancedSearch/data';
 
 export class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.selectParam = this.selectParam.bind(this); //Placé ici pour être reconnu par les tests unitaires
+  }
   state = {
     users: [],
   }
@@ -38,9 +42,7 @@ export class HomePage extends Component {
     this._isMounted = false;
   }
 
-  selectParam = (_, subitem) => subitem && this.props.history.push({ pathname:"/advanced-search", search: '?tag=' + subitem.short });
-
-  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
+  selectParam(_, subitem){return subitem && this.props.history.push({ pathname:"/advanced-search", search: '?tag=' + subitem.short });}
 
   render() {
     const { t } = this.props;
@@ -77,14 +79,14 @@ export class HomePage extends Component {
               
             <Row className="card-row">
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                <NavLink to="/advanced-search" className="no-decoration">
+                <NavLink to="/advanced-search" className="no-decoration demarche-link">
                   <Card className="demarche-card">
                     <CardHeader>{t("Homepage.À comprendre une démarche", "À comprendre une démarche")}</CardHeader>
                     <CardBody>
                       {/* <span>Je veux comprendre ce que l'administration me demande et bénéficier de mes droits</span> */}
                     </CardBody>
                     <CardFooter>
-                      <FButton type="homebtn" name="search-outline" fill={variables.noir}>
+                      <FButton type="homebtn" name="search-outline" fill={variables.noir} className="demarche-btn">
                         {t("Homepage.Trouver une démarche", "Trouver une démarche")}
                       </FButton>
                     </CardFooter>
@@ -179,9 +181,6 @@ export class HomePage extends Component {
             <h2>{t("Homepage.Explique les mots difficiles", "Explique les mots difficiles")}</h2>
             <p className="texte-normal">{t("Homepage.explication lexique")}</p>
             <span className="texte-normal">{t("Bientôt disponible !", "Bientôt disponible !")}</span>
-            {/*<FButton type="dark" onClick={this.upcoming}>
-              Voir le lexique
-                </FButton>*/}
           </div>
         </section>
         {/* <div>

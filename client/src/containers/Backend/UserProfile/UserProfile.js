@@ -30,7 +30,7 @@ import variables from 'scss/colors.scss';
 
 const anchorOffset = '120';
 
-class UserProfile extends Component {
+export class UserProfile extends Component {
   constructor(props) {
     super(props);
     this._isMounted = false;
@@ -100,7 +100,6 @@ class UserProfile extends Component {
         })
       })
     }
-    console.log(user)
     this.setState({user:user, isMainLoading:false, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
     
     API.get_users().then(data => this._isMounted && this.setState({users: data.data.data}) );
@@ -516,7 +515,7 @@ class UserProfile extends Component {
   }
 }
 
-const PasswordModal = props => {
+export const PasswordModal = props => {
   const password_check = passwdCheck(props.newPassword) || {};
   return (
     <FModal

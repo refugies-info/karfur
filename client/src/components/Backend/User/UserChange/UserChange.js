@@ -14,7 +14,7 @@ import Slider, { createSliderWithTooltip } from 'rc-slider';
 import passwdCheck from "zxcvbn";
 import 'rc-slider/assets/index.css';
 
-import DraggableList from '../../../../components/UI/DraggableList/DraggableList';
+// import DraggableList from '../../../../components/UI/DraggableList/DraggableList';
 import marioProfile from '../../../../assets/mario-profile.jpg';
 import { colorAvancement } from '../../../Functions/ColorFunctions';
 
@@ -25,10 +25,11 @@ const SliderWithTooltip = createSliderWithTooltip(Slider);
 const localeFormatter = (v) => new Intl.NumberFormat().format(v);
 
 const userChange = (props) => {
+  const user = props.user || {}, handleChange = props.handleChange || (() => {});
   const statuts = ['Actif', 'En attente', 'Inactif', 'Exclu']
-  const langues_list=(props.user.selectedLanguages || []).map(function (item) { return item.langueFr; });
-  const imgSrc = (props.user.picture || []).secure_url || marioProfile
-  const password_check = passwdCheck(props.user.password);
+  const imgSrc = (user.picture || []).secure_url || marioProfile
+  const password_check = passwdCheck(user.password || "");
+  // const langues_list=(user.selectedLanguages || []).map(function (item) { return item.langueFr; });
   
   return (
     <Form action="" method="post" encType="multipart/form-data" className="form-horizontal user-change">
@@ -63,8 +64,8 @@ const userChange = (props) => {
             id="username" 
             name="user" 
             placeholder="Nom d'utilisateur"
-            value={props.user.username || ''}
-            onChange = {props.handleChange} />
+            value={user.username || ''}
+            onChange = {handleChange} />
           <FormText color="muted">Par exemple : Soufiane</FormText>
         </Col>
       </FormGroup>
@@ -80,11 +81,11 @@ const userChange = (props) => {
             id="password" 
             name="user" 
             placeholder="Mot de passe"
-            value={props.user.password}
-            onChange = {props.handleChange}
-            disabled={props.user.password === 'Hidden'} />
+            value={user.password}
+            onChange = {handleChange}
+            disabled={user.password === 'Hidden'} />
           <FormText color="muted">Par exemple : motdepasse</FormText>
-          {props.user.password && props.user.password !== 'Hidden' &&
+          {user.password && user.password !== 'Hidden' &&
             <div className="score-wrapper mb-10">
               <span className="mr-10">Force :</span>
               <Progress 
@@ -110,7 +111,7 @@ const userChange = (props) => {
                         name="user" 
                         id={langue._id} 
                         value={langue._id}
-                        checked={(props.user.selectedLanguages || []).find(x => x._id === langue._id) ? true : false}
+                        checked={(user.selectedLanguages || []).find(x => x._id === langue._id) ? true : false}
                         onChange={props.handleCheck} />
                       <Label check className="form-check-label" htmlFor={langue._id}>{langue.langueFr}</Label>
                     </FormGroup>
@@ -145,12 +146,12 @@ const userChange = (props) => {
                 railStyle={{ backgroundColor: 'red', height: 10 }}
                 name="user" 
                 onChange={(value) => props.handleSliderChange(value,'objectifTemps')}
-                value={props.user.objectifTemps}
+                value={user.objectifTemps}
               /> 
               <FormText color="muted">Définissez ici le temps que vous souhaitez accorder à la traduction quotidiennement</FormText>
             </Col>
             <Col>
-              {props.user.objectifTemps || 0} minutes
+              {user.objectifTemps || 0} minutes
             </Col>
           </Row>
         </Col>
@@ -179,18 +180,18 @@ const userChange = (props) => {
                 }}
                 railStyle={{ backgroundColor: 'red', height: 10 }}
                 onChange={(value) => props.handleSliderChange(value,'objectifMots')}
-                value={props.user.objectifMots}
+                value={user.objectifMots}
               />
               <FormText color="muted">Définissez ici le nombre de mots que vous souhaiteriez traduire chaque jour</FormText>
             </Col>
             <Col>
-              {props.user.objectifMots || 0} mots
+              {user.objectifMots || 0} mots
             </Col>
           </Row>
         </Col>
       </FormGroup>
 
-      {langues_list.length>0 && 
+      {/* {langues_list.length>0 && 
         <FormGroup row>
           <Col md="3">
             <Label htmlFor="text-input">Classement des langues</Label>
@@ -202,7 +203,7 @@ const userChange = (props) => {
               {...props}
               />
           </Col>
-        </FormGroup>}
+        </FormGroup>} */}
 
       <FormGroup row>
         <Col md="3">
@@ -215,8 +216,8 @@ const userChange = (props) => {
             name="user" 
             placeholder="Adresse mail" 
             autoComplete="email"
-            onChange={props.handleChange}
-            value={props.user.email || ''} />
+            onChange={handleChange}
+            value={user.email || ''} />
           <FormText className="help-block">Restez informé des dernières informations concernant la traduction</FormText>
         </Col>
       </FormGroup>
@@ -232,8 +233,8 @@ const userChange = (props) => {
               id="phone" 
               name="user" 
               placeholder="Téléphone"
-              value={props.user.phone || ''}
-              onChange = {props.handleChange} />
+              value={user.phone || ''}
+              onChange = {handleChange} />
             <FormText color="muted">Par exemple : 06 11 22 33 44</FormText>
           </Col>
         </FormGroup>}
@@ -249,8 +250,8 @@ const userChange = (props) => {
             id="description" 
             rows="6"
             placeholder="Renseignez une courte description que les autres utilisateurs pourront voir"
-            onChange={props.handleChange}
-            value={props.user.description || ''} />
+            onChange={handleChange}
+            value={user.description || ''} />
         </Col>
       </FormGroup>
 
@@ -294,8 +295,8 @@ const userChange = (props) => {
                 type="select" 
                 id="status" 
                 name="user" 
-                value={props.user.status}
-                onChange = {props.handleChange}  >
+                value={user.status}
+                onChange = {handleChange}  >
                 {statuts.map((statut) =>
                   <option 
                     value={statut}

@@ -52,7 +52,7 @@ const sponsorsData = [];
 const uiElement = {isHover:false, accordion:false, cardDropdown: false, addDropdown:false, varianteSelected: false};
 let user={_id:'', cookies:{}}
 
-class Dispositif extends Component {
+export class Dispositif extends Component {
   constructor(props) {
     super(props);
     this.newRef=React.createRef();
@@ -75,7 +75,6 @@ class Dispositif extends Component {
     sponsors:sponsorsData,
     tags:[],
     mainTag: {darkColor: variables.darkColor, lightColor: variables.lightColor, hoverColor: variables.gris},
-    dateMaj:new Date(),
     
     uiArray:new Array(menu.length).fill(uiElement),
     showModals: showModals,
@@ -148,20 +147,20 @@ class Dispositif extends Component {
     const checkingVariante = _.get(props, "location.state.checkingVariante"), textInput = _.get(props, "location.state.textInput");
     if(itemId){
       this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
-      API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor participants'}).then(data_res => {
-        let dispositif={...data_res.data.data[0]};
-        console.log(dispositif);
+      return API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor participants'}).then(data_res => {
+        let dispositif={...data_res.data.data[0]}; // console.log(dispositif);
+        if(!dispositif || !dispositif._id){this._isMounted = false; return this.props.history.push("/")}
         const disableEdit = dispositif.status !== "Accepté structure" || props.translating
-        if(dispositif.status === "Brouillon"){
+        if(dispositif.status === "Brouillon" && this._isMounted){
           this.initializeTimer(3 * 60 * 1000, ()=>this.valider_dispositif('Brouillon', true) ); }  //Enregistrement automatique du dispositif toutes les 3 minutes 
         this._isMounted && this.setState({
           _id:itemId,
-          menu: dispositif.contenu, 
+          menu: dispositif.contenu || [], 
           content: {titreInformatif:dispositif.titreInformatif, titreMarque: dispositif.titreMarque, abstract: dispositif.abstract, contact: dispositif.contact, externalLink: dispositif.externalLink}, 
           sponsors:dispositif.sponsors,
           tags:dispositif.tags,
           creator:dispositif.creatorId,
-          uiArray: dispositif.contenu.map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: dispositif.status === "Accepté structure"})})}}),
+          uiArray: _.get(dispositif, "contenu", []).map((x) => {return {...uiElement, ...( x.children && {children: new Array(x.children.length).fill({...uiElement, accordion: dispositif.status === "Accepté structure"})})}}),
           dispositif: dispositif,
           isDispositifLoading: false,
           contributeurs: dispositif.participants || [],
@@ -195,7 +194,7 @@ class Dispositif extends Component {
             })
           })
         }
-      }).catch (err => console.log('Error: ', err.message))
+      }).catch (err => {console.log('Error: ', err.message); this._isMounted = false; return this.props.history.push("/");})
     }else if(API.isAuth()){
       this.initializeTimer(3 * 60 * 1000, ()=>this.valider_dispositif('Brouillon', true) ); //Enregistrement automatique du dispositif toutes les 3 minutes
       const menuContenu = typeContenu === "demarche" ? menuDemarche : menu;
@@ -213,9 +212,9 @@ class Dispositif extends Component {
   }
 
   setColors = () => {
-    ["color", "borderColor", "backgroundColor", "fill"].map(s => {
+    return ["color", "borderColor", "backgroundColor", "fill"].map(s => {
       return ["dark", "light"].map(c => {
-        return document.querySelectorAll('.' + s + '-' + c + 'Color').forEach(elem => {
+        return document && document.querySelectorAll('.' + s + '-' + c + 'Color').forEach(elem => {
           elem.style[s] = this.state.mainTag[c + 'Color'];
         });
       })
@@ -917,7 +916,7 @@ class Dispositif extends Component {
                   {(disableEdit || typeContenu !== "demarche") &&
                     <Row>
                       <b className="en-bref mt-10">{t("En bref", "En bref")} </b>
-                      {((this.state.menu.find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
+                      {(((this.state.menu || []).find(x=> x.title==='C\'est pour qui ?') || []).children || []).map((card, key) => {
                         if(card.type==='card'){
                           let texte = card.contentTitle;
                           if(card.title==='Âge requis'){
@@ -1156,38 +1155,40 @@ class Dispositif extends Component {
 
 const calculFiabilite = dispositif => {
   let score = 0;
-  if(dispositif.status ===  "Actif"){score = 1};
-  const nbMoisAvantMaJ = (new Date().getTime() -  new Date(dispositif.updatedAt).getTime()) / (1000 * 3600 * 24 * 30);
-  const nbMoisEntreCreationEtMaj = (new Date(dispositif.updatedAt).getTime() -  new Date(dispositif.created_at).getTime()) / (1000 * 3600 * 24 * 30);
-  const hasSponsor = dispositif.sponsors && dispositif.sponsors.length > 0 && dispositif.sponsors[0] && dispositif.sponsors[0]._id ? true : false;
-  const nbMots = dispositif.nbMots;
-  const nbLangues = Object.keys(dispositif.avancement || {}).length || 1;
-  const nbTags = (dispositif.tags || []).length;
-  const tagAutreExist = (dispositif.tags || []).includes("Autre");
-  const hasExternalLink = dispositif.externalLink ? true : false;
-  // nbSections Seulement pour le calcul 
-  const nbSections = dispositif.contenu.length + dispositif.contenu.reduce((acc, curr) => acc += curr.children && curr.children.length > 1 ? curr.children.length : 0, 0);
-  const nbSectionsSansContenu = (dispositif.contenu.filter(x => (!x.content || x.content === "" || x.content === "null") && (!x.children || x.children.some(y => !y.title || (!y.content && !y.contentTitle) ))) || []).length;
-  const nbFakeContent = (dispositif.contenu.filter(x => x.isFakeContent) || []).length + dispositif.contenu.reduce((acc, curr) => acc += curr.children && curr.children.length > 1 ? (curr.children.filter(x => x.isFakeContent) || []).length : 0, 0)
-  const nbAddedChildren = nbSections - menu.length - menu.reduce((acc, curr) => acc += curr.children && curr.children.length > 1 ? curr.children.length : 0, 0)
-  const hasMap = dispositif.contenu.some(x => x.children && x.children.length > 0 && x.children.some(y => y.type==="map" && y.markers && y.markers.length > 0))
-
-  score = score * (1 - (Math.min(3, nbMoisAvantMaJ) / 3)) //Dernière mise à jour date de moins de 3 mois
-    * ( Math.min(6, nbMoisEntreCreationEtMaj + 1) / 6 )   //Doit avoir été créé au moins 6 mois depuis la dernière mise à jour
-    * (1 - 0.1 * !hasSponsor)                             //10% de pénalité si pas de sponsor
-    * ( Math.min(100, nbMots) / 100 )                     //Au moins 100 mots
-    * ( Math.min(5, nbLangues) / 5 )                      // Doit être traduit en au moins 5 langues
-    * ( Math.max(Math.min(nbTags,2), 1) / 2 )             // Doit avoir au moins 2 tags
-    * (1 - 0.1 * tagAutreExist)                           // 10% de pénalité si le tag "Autres" est mis
-    * (1 + 0.1 * hasExternalLink)                         // 10% de bonus si de lien externe
-    * (1 - nbSectionsSansContenu / menu.length)           // Grosse pénalité si une section n'a pas de contenu dessus
-    * (1 - nbFakeContent / (2 * nbSections))              // Si un contenu est laissé sans modification, on sanctionne à 50%
-    * (1 + Math.min(nbAddedChildren, 30) / (2 * 30))      // On rajoute un bonus jusqu'à 50% si du contenu original est créé
-    * (1 + 0.1 * hasMap);                                 // 10% de bonus si une map est créée
-  // console.log(score, dispositif, nbMoisAvantMaJ, nbMoisEntreCreationEtMaj, 
-  //   hasSponsor, nbMots, nbLangues, nbTags, tagAutreExist, hasExternalLink,
-  //   nbSectionsSansContenu, nbFakeContent, nbAddedChildren, hasMap, nbSections)
-  console.log(score)
+  if(process.env.NODE_ENV !== "test"){
+    if(dispositif.status ===  "Actif"){score = 1};
+    const nbMoisAvantMaJ = (new Date().getTime() -  new Date(dispositif.updatedAt).getTime()) / (1000 * 3600 * 24 * 30);
+    const nbMoisEntreCreationEtMaj = (new Date(dispositif.updatedAt).getTime() -  new Date(dispositif.created_at).getTime()) / (1000 * 3600 * 24 * 30);
+    const hasSponsor = dispositif.sponsors && dispositif.sponsors.length > 0 && dispositif.sponsors[0] && dispositif.sponsors[0]._id ? true : false;
+    const nbMots = dispositif.nbMots;
+    const nbLangues = Object.keys(dispositif.avancement || {}).length || 1;
+    const nbTags = (dispositif.tags || []).length;
+    const tagAutreExist = (dispositif.tags || []).includes("Autre");
+    const hasExternalLink = dispositif.externalLink ? true : false;
+    // nbSections Seulement pour le calcul 
+    const nbSections = _.get(dispositif, "contenu", []).length + _.get(dispositif, "contenu", []).reduce((acc, curr) => acc += curr.children && curr.children.length > 1 ? curr.children.length : 0, 0);
+    const nbSectionsSansContenu = (_.get(dispositif, "contenu", []).filter(x => (!x.content || x.content === "" || x.content === "null") && (!x.children || x.children.some(y => !y.title || (!y.content && !y.contentTitle) ))) || []).length;
+    const nbFakeContent = (_.get(dispositif, "contenu", []).filter(x => x.isFakeContent) || []).length + _.get(dispositif, "contenu", []).reduce((acc, curr) => acc += curr.children && curr.children.length > 1 ? (curr.children.filter(x => x.isFakeContent) || []).length : 0, 0)
+    const nbAddedChildren = nbSections - menu.length - menu.reduce((acc, curr) => acc += curr.children && curr.children.length > 1 ? curr.children.length : 0, 0)
+    const hasMap = _.get(dispositif, "contenu", []).some(x => x.children && x.children.length > 0 && x.children.some(y => y.type==="map" && y.markers && y.markers.length > 0))
+  
+    score = score * (1 - (Math.min(3, nbMoisAvantMaJ) / 3)) //Dernière mise à jour date de moins de 3 mois
+      * ( Math.min(6, nbMoisEntreCreationEtMaj + 1) / 6 )   //Doit avoir été créé au moins 6 mois depuis la dernière mise à jour
+      * (1 - 0.1 * !hasSponsor)                             //10% de pénalité si pas de sponsor
+      * ( Math.min(100, nbMots) / 100 )                     //Au moins 100 mots
+      * ( Math.min(5, nbLangues) / 5 )                      // Doit être traduit en au moins 5 langues
+      * ( Math.max(Math.min(nbTags,2), 1) / 2 )             // Doit avoir au moins 2 tags
+      * (1 - 0.1 * tagAutreExist)                           // 10% de pénalité si le tag "Autres" est mis
+      * (1 + 0.1 * hasExternalLink)                         // 10% de bonus si de lien externe
+      * (1 - nbSectionsSansContenu / menu.length)           // Grosse pénalité si une section n'a pas de contenu dessus
+      * (1 - nbFakeContent / (2 * nbSections))              // Si un contenu est laissé sans modification, on sanctionne à 50%
+      * (1 + Math.min(nbAddedChildren, 30) / (2 * 30))      // On rajoute un bonus jusqu'à 50% si du contenu original est créé
+      * (1 + 0.1 * hasMap);                                 // 10% de bonus si une map est créée
+    // console.log(score, dispositif, nbMoisAvantMaJ, nbMoisEntreCreationEtMaj, 
+    //   hasSponsor, nbMots, nbLangues, nbTags, tagAutreExist, hasExternalLink,
+    //   nbSectionsSansContenu, nbFakeContent, nbAddedChildren, hasMap, nbSections)
+    console.log(score)
+  }
   return score;
   //Nouvelles idées: nombre de suggestions, merci etc
 }

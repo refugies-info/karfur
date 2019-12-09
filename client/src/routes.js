@@ -1,5 +1,4 @@
 import HomePage from './containers/HomePage/HomePage';
-import Forms from './views/Base/Forms';
 import WelcomeParcours from './views/Base/WelcomeParcours';
 import Parcours from './views/Base/Parcours';
 import Dashboard from './containers/Backend/Dashboard/Dashboard';
@@ -33,7 +32,6 @@ import PolitiqueConfidentialite from './containers/PolitiqueConfidentialite/Poli
 const routes = [
   { path: '/', exact: true, name: 'home', restriction:[] },
   { path: '/homepage', name: 'Page d\'accueil', component: HomePage, restriction:[] },
-  { path: '/forms', name: 'Formulaire', component: Forms, restriction:[] },
   { path: '/welcome_parcours', name: 'Parcours d\'accueil', component: WelcomeParcours, restriction:[] },
   { path: '/parcours', name: 'Parcours détaillé', component: Parcours, restriction:[] },
 

@@ -11,7 +11,6 @@ import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/Directi
 import _ from "lodash";
 import 'rc-slider/assets/index.css';
 
-import FeedbackModal from '../../../components/Modals/FeedbackModal/FeedbackModal';
 import Article from '../../Article/Article';
 import API from '../../../utils/API';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
@@ -21,13 +20,8 @@ import marioProfile from '../../../assets/mario-profile.jpg';
 import './StringTranslation.scss';
 import variables from 'scss/colors.scss';
 
-class StringTranslation extends Component {
+export class StringTranslation extends Component {
   state = {
-    feedbackModal:{
-      show:false,
-      title:'',
-      success:false,
-    },
     tooltipOpen: false,
   }
 
@@ -127,11 +121,8 @@ class StringTranslation extends Component {
     this.setState({ tooltipOpen: !this.state.tooltipOpen});
   }
 
-  modalClosed=()=> this.setState({feedbackModal:{...this.state.feedbackModal,show:false}})
-  
   reject_translation = () => {
     const newTrad = { _id: this.props.itemId, status: "Rejetée", };
-    console.log(newTrad);
     API.update_tradForReview(newTrad).then(() => this.props.onSkip())
   }
 
@@ -139,51 +130,9 @@ class StringTranslation extends Component {
     const { langue, francais, isStructure, score, translated, isExpert, time, nbMotsRestants, itemId, autosuggest, traducteur } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
 
-    const feedbackModal = (
-      this.state.feedbackModal.show && 
-        <FeedbackModal 
-          show={this.state.feedbackModal.show}
-          title={this.state.feedbackModal.title}
-          success={this.state.feedbackModal.success}
-          clicked={this.modalClosed}
-          modalClosed={this.modalClosed}
-        />
-    )
-    
     return(
       <div className="animated fadeIn traduction">
         <div className="animated fadeIn traduction-container">
-          {feedbackModal}
-          {/* <Row className="typing-row">
-            <div className="typing-bar">
-              <div className="type-input">
-                <div className="input-wrapper">
-                  <div className="test-input-group">
-                    <ContentEditable
-                      id="test-input" 
-                      className="test-input" 
-                      html={texte_traduit || ""}  // innerHTML of the editable div
-                      placeholder="Commencez votre traduction ici"
-                      disabled={false}       // use true to disable editing
-                      onChange={this.props.handleChangeEnCours} // handle innerHTML change
-                      onKeyPress={this.props.handleKeyPress}
-                    />
-                  </div>
-                </div>
-                <div className="input-wrapper">
-                  <div className="test-prompt">
-                    {(texte_a_traduire || '').split(' ').map((element,key) => {
-                      return (
-                        <span key={key} className="test-word">
-                          {element}
-                        </span> 
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Row> */}
           <h2>Traduction des éléments du site</h2>
           <Row className="translation-row">
             <Col>
@@ -265,7 +214,7 @@ class StringTranslation extends Component {
                         key="target-editor-body"
                         className="body"
                         placeholder="Renseignez votre traduction ici"
-                        html={translated.body} // innerHTML of the editable div
+                        html={translated.body || ""} // innerHTML of the editable div
                         disabled={false}       // isExpert
                         onChange={this.props.handleChange} // handle innerHTML change
                         onSelect={this.onSelect}
