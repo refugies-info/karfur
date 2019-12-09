@@ -22,7 +22,7 @@ import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
-class UserDash extends Component {
+export class UserDash extends Component {
   state={
     showModal:{objectifs:false, traducteur: false, progression:false, defineUser: false}, 
     runJoyRide:false, //penser à le réactiver !!
@@ -42,7 +42,6 @@ class UserDash extends Component {
   componentDidMount() {
     this._isMounted = true;
     let user=this.props.user;
-    console.log(user)
     if(user && user.selectedLanguages && user.selectedLanguages.length > 0){
       API.get_langues({'_id': { $in: user.selectedLanguages}},{avancement: 1},'participants').then(data_langues => {
         console.log(data_langues.data.data)
