@@ -10,7 +10,8 @@
   "scripts": {
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
-    "postinstall": "cd client && npm install --only=dev && npm install && npm run build"
+    "postinstall": "cd client && npm install --only=dev && npm install && npm run build",
+    "test": "cd client && npm run test"
   },
   "dependencies": {
     "@google-cloud/translate": "^2.1.3",
