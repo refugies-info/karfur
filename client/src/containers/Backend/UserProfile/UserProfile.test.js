@@ -18,7 +18,7 @@ const mockId = "a0000000000000000000000a"; //"5cbabcdbcabae0fd31cb13e0"
 const mockUser = {
   _id: new ObjectId(mockId), //"5cbabcdbcabae0fd31cb13e0",
   "username" : "mockUser",
-  "status" : "Actif",
+  "status" : "Inactif",
   "description" : "description",
   "email" : "mockUser@mockUser.fr",
   "cookies" : { },
@@ -42,10 +42,15 @@ describe('UserProfile', () => {
     db = await connection.db("db");
     const users = db.collection('users');
 
+    await users.findOne({_id: new ObjectId(mockId)});
+    console.log('removing mockUser')
     await users.remove({_id: new ObjectId(mockId)});
-    // console.log(await users.findOne({_id: new ObjectId(mockId)}))
+    console.log('mockUser removed')
+    await users.findOne({_id: new ObjectId(mockId)});
+    console.log('inserting mockUser')
     await users.insert(mockUser);
-    // console.log(await users.findOne({_id: new ObjectId(mockId)}))
+    console.log('mockUser inserted')
+    await users.findOne({_id: new ObjectId(mockId)});
 
     wrapper = shallow(<Provider store={store}><UserProfile {...defaultProps} /></Provider> ).dive().dive();
   })
