@@ -112,7 +112,7 @@
   "scripts": {
     "start": "react-app-env start",
     "build": "react-app-env build",
-    "test": "react-app-env test --runInBand",
+    "test": "react-app-env test --runInBand --noSingleRun",
     "eject": "react-scripts eject",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json",
