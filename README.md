@@ -119,7 +119,7 @@ Editor preferences are available in the [editor config](https://github.com/entre
 
 For transparency into our release cycle and in striving to maintain backward compatibility, Refugies.info is maintained under [the Semantic Versioning guidelines](http://semver.org/).
 
-See [the Releases section of our project](https://github.com/entrepreneur-interet-general/karfur/releases) for changelogs for each release version.
+See [the Releases section of our project](https://github.com/entrepreneur-interet-general/karfur/releases) for changelogs for each release version. 
 
 ## Creators
 
