@@ -23,7 +23,7 @@ Refugies.info is a project to offer a better experience to refugees in France as
 ## Demo
 The website is live and availabe at [https://refugies.info](https://refugies.info)
 
-![Homepage record](https://youtu.be/6OV6lmpshTg)
+[![Homepage record](https://img.youtube.com/vi/6OV6lmpshTg/0.jpg)](https://www.youtube.com/watch?v=6OV6lmpshTg)
 
 ## Installation
 
