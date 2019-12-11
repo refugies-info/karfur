@@ -9,7 +9,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git@github.com:Tony4469/karfur.git"
+    "url": "git@github.com:entrepreneur-interet-general/karfur.git"
   },
   "dependencies": {
     "@coreui/coreui": "^2.1.5",
@@ -119,7 +119,7 @@
   },
   "proxy": "http://localhost:8000",
   "bugs": {
-    "url": "https://github.com/Tony4469/karfur/issues"
+    "url": "https://github.com/entrepreneur-interet-general/karfur/issues"
   },
   "eslintConfig": {
     "extends": "react-app"
