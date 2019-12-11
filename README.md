@@ -29,7 +29,7 @@ The website is live and availabe at [https://refugies.info](https://refugies.inf
 ## Installation
 
 ### Prerequisites
-- [MongoDB](https://gist.github.com/nrollr/9f523ae17ecdbb50311980503409aeb3)
+- [MongoDB](https://treehouse.github.io/installation-guides/mac/mongo-mac.html)
 - [Node](https://nodejs.org/en/download/) ^10.0.0
 - [npm](https://nodejs.org/en/download/package-manager/)
 
@@ -52,6 +52,12 @@ PORTIO = 8001
 NODE_ENV = dev
 SECRET = demo
 FS_URL = http://localhost:8000
+```
+
+Then, create another `.env` file in the client sub-directory with at least the following line (values to be changed at your discretion). You can find an example of a complete env configuration in the `example-env-file.env` file in the client folder.
+
+```bash
+REACT_APP_GOOGLE_API_KEY = demo
 ```
 
 ## Usage
