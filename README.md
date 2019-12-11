@@ -105,7 +105,7 @@ In the client directory, the following commands are available
 ## Documentation
 All the backend documentation is available on [Swagger](https://app.swaggerhub.com/apis-docs/DIAIR/Refugies.info/1.0.0)
 
-![Swagger screen record](https://youtu.be/wx0mL7NG9VA)
+[![Swagger screen record](https://img.youtube.com/vi/wx0mL7NG9VA/0.jpg)](https://www.youtube.com/watch?v=wx0mL7NG9VA)
 
 ## Contributing
 
