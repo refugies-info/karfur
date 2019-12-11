@@ -17,13 +17,14 @@ Refugies.info is a project to offer a better experience to refugees in France as
 * [Contributors](#creators)
 * [Community](#community)
 * [License](#license)
+* [Maintenance](#maintenance)
 * [Support Refugies.info's Development](#support-refugies-infos-development)
 * [Extras](#extras)
 
 ## Demo
 The website is live and availabe at [https://refugies.info](https://refugies.info)
 
-[![Homepage record](https://img.youtube.com/vi/6OV6lmpshTg/0.jpg)](https://www.youtube.com/watch?v=6OV6lmpshTg)
+[![Homepage record](https://img.youtube.com/vi/o_qg4pDW0v8/0.jpg)](https://www.youtube.com/watch?v=o_qg4pDW0v8)
 
 ## Installation
 
@@ -145,6 +146,7 @@ See [the Releases section of our project](https://github.com/Tony4469/karfur/rel
 **Emily Reese**, content designer
 
 * <https://www.linkedin.com/in/eclairereese>
+* <https://github.com/emilyreese>
 * <https://twitter.com/eclairereese>
 
 ## Community
@@ -158,6 +160,10 @@ Get updates on Refugies.info's development and chat with the project maintainers
 ## License
 
 Copyright 2019 DIAIR. Code released under [the MIT license](https://github.com/Tony4469/karfur/blob/master/LICENSE.md).
+
+## Maintenance
+
+The project is actively maintained at least until the end of 2022 by the DIAIR, in the French Ministry of Interior.
 
 ## Support Refugies.info's Development
 
