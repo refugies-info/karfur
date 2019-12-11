@@ -1,8 +1,8 @@
 # Refugies.info (formerly Karfu'R)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![License: MIT](https://img.shields.io/badge/Programme-entrepreneur-interet-general-blue.svg)](https://entrepreneur-interet-general.etalab.gouv.fr)
-[![License: MIT](https://img.shields.io/badge/EIG-2019-blueviolet.svg)](https://entrepreneur-interet-general.etalab.gouv.fr/defis.html)
+[![License: MIT](https://img.shields.io/badge/Programme-Entrepreneurs_d'intérêt_général.svg)](https://entrepreneur-interet-general.etalab.gouv.fr)
+[![License: MIT](https://img.shields.io/badge/Promo-2019-blueviolet.svg)](https://entrepreneur-interet-general.etalab.gouv.fr/defis.html)
 [![License: MIT](https://img.shields.io/badge/Défi-KarfuR-success.svg)](https://entrepreneur-interet-general.etalab.gouv.fr/defis/2019/karfur.html)
 
 Refugies.info is a project to offer a better experience to refugees in France as per their integration and their administrative process. Refugies.info is a project hosted by the DIAIR (Direction Interministérielle pour l'Accueil et l'Intégration des Réfugiés), a service of the French Ministry of Interior (Ministère de l'Intérieur).
