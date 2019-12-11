@@ -99,7 +99,7 @@ function get_tradForReview(req, res) {
   }else{populate='';}
 
   if(query.articleId && typeof query.articleId === "string" && query.articleId.includes('struct_')){
-    res.status(204).json({ "text": "Pas de données", "data" : []})
+    res.status(404).json({ "text": "Pas de données", "data" : []})
     return false;
   }
 
@@ -135,7 +135,7 @@ function validate_tradForReview(req, res) {
   if (!req.body || !req.body.articleId || !req.body.translatedText) {
     res.status(400).json({ "text": "Requête invalide" })
   }else if(!((req.user || {}).roles || {}).some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
-    res.status(400).json({ "text": "Token invalide" });
+    res.status(401).json({ "text": "Token invalide" });
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let traductionUser=req.body || {};
@@ -152,7 +152,7 @@ function validate_tradForReview(req, res) {
           if (!err) {
             if(result.body && result.body.constructor === Array){
               if(!_findNodeAndReplace(result.body, traduction.translatedText, traduction.langueCible, traduction.rightId)){
-                res.status(300).json({"text": "Erreur d'insertion"})
+                res.status(501).json({"text": "Erreur d'insertion"})
               }else{
                 //console.log(JSON.stringify(result.body));
                 result.markModified("body");
@@ -175,7 +175,7 @@ function validate_tradForReview(req, res) {
         })
       }, err => {
         console.log(err)
-        res.status(501).json({
+        res.status(500).json({
           "text": "Erreur interne"
         })
       });
@@ -312,12 +312,11 @@ function get_laser(req, res) {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     sentences= req.body.sentences;
     axios.post(burl + "/laser", { sentences: sentences }, {headers: headers}).then(data => {
-        res.status(200).json({
-          "text": "Succès",
-          "data": data.data
-        })
-      }
-    )
+      res.status(200).json({
+        "text": "Succès",
+        "data": data.data
+      })
+    })
   }
 }
 

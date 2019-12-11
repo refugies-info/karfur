@@ -117,20 +117,11 @@ function get_article(req, res) {
 
 function add_traduction(req, res) {
   if (!req.body || !req.body.articleId) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   }else if (!req.body.langueCible) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(401).json({
-      "text": "La langue n'est pas spécifiée"
-    })
+    res.status(401).json({ "text": "La langue n'est pas spécifiée" })
   }else if (!req.body.translatedText) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(401).json({
-      "text": "Pas de contenu de traduction"
-    })
+    res.status(402).json({ "text": "Pas de contenu de traduction" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let locale=req.body.langueCible; //TODO :S'assurer que ce locale est autorisé 
@@ -214,9 +205,7 @@ function add_traduction(req, res) {
 
 function remove_traduction(req, res) {
   if (!req.body || !req.body.query) {
-    res.status(400).json({
-        "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     const {query, locale} = req.body;
