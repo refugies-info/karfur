@@ -28,7 +28,7 @@ The website is live and availabe at [https://refugies.info](https://refugies.inf
 
 ## Installation
 
-## Prerequisites
+### Prerequisites
 - [MongoDB](https://gist.github.com/nrollr/9f523ae17ecdbb50311980503409aeb3)
 - [Node](https://nodejs.org/en/download/) ^10.0.0
 - [npm](https://nodejs.org/en/download/package-manager/)
@@ -77,14 +77,6 @@ $ cd karfur/client
 $ npm install
 # serve with hot reload at localhost:3000.
 $ npm start
-```
-
-You can also build the client for production with the following command :
-``` bash
-# go into client's directory
-$ cd karfur/client
-# build for production with minification
-$ npm run build
 ```
 
 ## Available Commands
