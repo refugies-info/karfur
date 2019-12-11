@@ -1,7 +1,7 @@
 # Refugies.info (formerly Karfu'R)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![License: MIT](https://img.shields.io/badge/Programme-Entrepreneurs_d'intérêt_général.svg)](https://entrepreneur-interet-general.etalab.gouv.fr)
+[![License: MIT](https://img.shields.io/badge/Programme-Entrepreneurs_d'intérêt_général-blue.svg)](https://entrepreneur-interet-general.etalab.gouv.fr)
 [![License: MIT](https://img.shields.io/badge/Promo-2019-blueviolet.svg)](https://entrepreneur-interet-general.etalab.gouv.fr/defis.html)
 [![License: MIT](https://img.shields.io/badge/Défi-KarfuR-success.svg)](https://entrepreneur-interet-general.etalab.gouv.fr/defis/2019/karfur.html)
 
