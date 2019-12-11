@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![License: MIT](https://img.shields.io/badge/Programme-Entrepreneurs_d'intérêt_général-blue.svg)](https://entrepreneur-interet-general.etalab.gouv.fr)
 [![License: MIT](https://img.shields.io/badge/Promo-2019-blueviolet.svg)](https://entrepreneur-interet-general.etalab.gouv.fr/defis.html)
-[![License: MIT](https://img.shields.io/badge/Défi-KarfuR-success.svg)](https://entrepreneur-interet-general.etalab.gouv.fr/defis/2019/karfur.html)
+[![License: MIT](https://img.shields.io/badge/Défi-Karfu'R-success.svg)](https://entrepreneur-interet-general.etalab.gouv.fr/defis/2019/karfur.html)
 
 Refugies.info is a project to offer a better experience to refugees in France as per their integration and their administrative process. Refugies.info is a project hosted by the DIAIR (Direction Interministérielle pour l'Accueil et l'Intégration des Réfugiés), a service of the French Ministry of Interior (Ministère de l'Intérieur).
 
@@ -42,7 +42,7 @@ Please note that you need mongo, the server and the client to run concurrently i
 
 ``` bash
 # clone the repo
-$ git clone https://github.com/Tony4469/karfur.git
+$ git clone https://github.com/entrepreneur-interet-general/karfur.git
 ```
 
 ### Prepare your secret
@@ -111,15 +111,15 @@ In the client directory, the following commands are available
 
 ## Contributing
 
-Please read through our [contributing guidelines](https://github.com/Tony4469/karfur/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
+Please read through our [contributing guidelines](https://github.com/entrepreneur-interet-general/karfur/blob/master/CONTRIBUTING.md). Included are directions for opening issues, coding standards, and notes on development.
 
-Editor preferences are available in the [editor config](https://github.com/Tony4469/karfur/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
+Editor preferences are available in the [editor config](https://github.com/entrepreneur-interet-general/karfur/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
 
 ## Versioning
 
 For transparency into our release cycle and in striving to maintain backward compatibility, Refugies.info is maintained under [the Semantic Versioning guidelines](http://semver.org/).
 
-See [the Releases section of our project](https://github.com/Tony4469/karfur/releases) for changelogs for each release version.
+See [the Releases section of our project](https://github.com/entrepreneur-interet-general/karfur/releases) for changelogs for each release version.
 
 ## Creators
 
@@ -160,7 +160,7 @@ Get updates on Refugies.info's development and chat with the project maintainers
 
 ## License
 
-Copyright 2019 DIAIR. Code released under [the MIT license](https://github.com/Tony4469/karfur/blob/master/LICENSE.md).
+Copyright 2019 DIAIR. Code released under [the MIT license](https://github.com/entrepreneur-interet-general/karfur/blob/master/LICENSE.md).
 
 ## Maintenance
 
@@ -175,4 +175,4 @@ Refugies.info is an MIT licensed open source project and completely free to use.
 * contacts of associations working with refugees, or contact of refugees directly with their agreement
 
 ## Extras
-If you liked this project, please give it a ⭐ in [**GitHub**](https://github.com/Tony4469/karfur).
+If you liked this project, please give it a ⭐ in [**GitHub**](https://github.com/entrepreneur-interet-general/karfur).

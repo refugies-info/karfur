@@ -8,7 +8,7 @@ Following these guidelines helps to communicate that you respect the time of the
 
 ## Using the issue tracker
 
-The [issue tracker](https://github.com/Tony4469/karfur/issues) is the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests) and [submitting pull requests](#pull-requests), but please respect the following restrictions:
+The [issue tracker](https://github.com/entrepreneur-interet-general/karfur/issues) is the preferred channel for [bug reports](#bug-reports), [features requests](#feature-requests) and [submitting pull requests](#pull-requests), but please respect the following restrictions:
 
 * Please **do not** use the issue tracker for personal support requests.
 
@@ -90,7 +90,7 @@ included in the project:
    # Navigate to the newly cloned directory
    cd karfur
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/Tony4469/karfur.git
+   git remote add upstream https://github.com/entrepreneur-interet-general/karfur.git
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
