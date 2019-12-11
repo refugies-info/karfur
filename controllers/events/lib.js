@@ -4,9 +4,7 @@ const User = require('../../schema/schemaUser.js');
 function log_event(req, res) {
   if (!req.body || !req.body.app) {
     //Le cas où la page ne serait pas soumise ou nul
-    res.status(400).json({
-        "text": "Requête invalide"
-    })
+    res.status(400).json({ "text": "Requête invalide" })
   } else {
     var event = req.body
     event.userId=req.userId;
@@ -49,23 +47,10 @@ function get_event(req, res) {
         "text": "Succès",
         "data": result
     })
-  }, function (error) {
-    switch (error) {
-      case 500:
-        res.status(500).json({
-            "text": "Erreur interne"
-        })
-        break;
-      case 404:
-        res.status(404).json({
-            "text": "L'adresse email existe déjà"
-        })
-        break;
-      default:
-        res.status(500).json({
-            "text": "Erreur interne"
-        })
-    }
+  }, function () {
+    res.status(500).json({
+      "text": "Erreur interne"
+    })
   })
 }
 
