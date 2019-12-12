@@ -74,11 +74,6 @@ var dispositifSchema = mongoose.Schema({
 		unique: false,
 		required: false
   },
-  avancement:{
-    type:Number,
-    required:false,
-    unique:false
-  },
   merci:{
     type:Object,
     required:false,

@@ -54,7 +54,7 @@ function login(req, res) {
             }
           })
         }else{
-          res.status(401).json({ "text": "Les mots de passe ne correspondent pas" });
+          res.status(402).json({ "text": "Les mots de passe ne correspondent pas" });
         }
       } else {
         if (user.authenticate(req.body.password)) {
@@ -66,7 +66,7 @@ function login(req, res) {
               });
             }else if(user.authy_id){
               return authy.request_sms(user.authy_id, force=true, function (err_sms, result_sms) {
-                if(err_sms){console.log(err_sms);return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'", data: err_sms });}
+                if(err_sms){console.log(err_sms);return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro", data: err_sms });}
                 return res.status(501).json({ "text": "no code supplied" });
               });
             }else if(req.body.email && req.body.phone){
@@ -213,7 +213,7 @@ function change_password(req, res) {
       } else if( !user.authenticate(newUser.password) ){
         return res.status(401).json({ "text": "Echec d'authentification" })
       }else if( (passwdCheck(newUser.newPassword) || {}).score < 1 ){
-        return res.status(401).json({ "text": "Le mot de passe est trop faible" });
+        return res.status(402).json({ "text": "Le mot de passe est trop faible" });
       } else {
         user.password = passwordHash.generate(newUser.newPassword);
         user.save();
