@@ -43,7 +43,7 @@ describe('UserProfile', () => {
     const users = db.collection('users');
 
     await users.findOne({_id: new ObjectId(mockId)});
-    console.log('removing mockUser') 
+    console.log('removing mockUser');
     await users.remove({_id: new ObjectId(mockId)});
     console.log('mockUser removed')
     await users.findOne({_id: new ObjectId(mockId)});
