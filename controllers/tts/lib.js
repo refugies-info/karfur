@@ -75,7 +75,10 @@ async function get_tts(req, res) {
     let options = textToSpeech(accessToken, text, locale);
 
     rp(options, function (error, response, body) {
-      if(error){console.error('error:', error);} // Print the error if one occurred
+      if(error){console.error('error:', error); return res.status(500).json({
+        "text": "Erreur interne",
+        data: error
+      })} // Print the error if one occurred
       if (response && response.statusCode === 200) {
         res.status(200).json({
           "text": "Succès",
