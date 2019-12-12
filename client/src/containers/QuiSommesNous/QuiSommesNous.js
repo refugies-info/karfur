@@ -181,7 +181,7 @@ class QuiSommesNous extends Component {
                     <span>{t("QuiSommesNous.contributive_1_subheader", "Les valeurs d’ouverture et de transparence sont au coeur du projet Réfugiés.info : le code source du site est entièrement disponible. Un réseau ouvert participe à la conception et conseille l’équipe du projet sur les besoins et les fonctionnalités à développer")}.</span>
                   </CardBody>
                   <CardFooter>
-                    <a href="https://github.com/Tony4469/karfur" className="no-decoration" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/entrepreneur-interet-general/karfur" className="no-decoration" target="_blank" rel="noopener noreferrer">
                       <FButton type="outline-black">
                         {t("QuiSommesNous.Voir le code source", "Voir le code source")}
                       </FButton>
