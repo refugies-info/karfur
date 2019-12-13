@@ -25,8 +25,10 @@ const instance = axios.create();
 instance.defaults.timeout = 12000000;
 
 async function add_tradForReview(req, res) {
-  if (!req.body || !req.body.langueCible || !req.body.translatedText) {
-    res.status(400).json({ "text": "Requête invalide" })
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.langueCible || !req.body.translatedText) {
+    return res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let traduction=req.body;
@@ -92,7 +94,9 @@ async function add_tradForReview(req, res) {
 function get_tradForReview(req, res) {
   new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   let {query, sort, populate, random, locale} = req.body;
-  if(populate && populate.constructor === Object){
+  if (!req.fromSite) {  //On n'autorise pas les populate en API externe
+    populate = '';
+  }else if(populate && populate.constructor === Object){
     populate.select = '-password';
   }else if(populate){
     populate={path:populate, select : '-password'};
@@ -132,7 +136,9 @@ function get_tradForReview(req, res) {
 }
 
 function validate_tradForReview(req, res) {
-  if (!req.body || !req.body.articleId || !req.body.translatedText) {
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.articleId || !req.body.translatedText) {
     res.status(400).json({ "text": "Requête invalide" })
   }else if(!((req.user || {}).roles || {}).some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
     res.status(401).json({ "text": "Token invalide" });
@@ -364,8 +370,10 @@ const _findNodeAndReplace = (initial,translated,locale,id) => {
 }
 
 function update_tradForReview(req, res) {
-  if(!req.user.roles.some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
-    res.status(400).json({ "text": "Requête invalide" });
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if(!req.user.roles.some(x => x.nom === 'ExpertTrad' || x.nom === 'Admin')){
+    return res.status(400).json({ "text": "Requête invalide" });
   }else{
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let translation = req.body;
@@ -387,8 +395,8 @@ function update_tradForReview(req, res) {
   
     find.then(function (result) {
       res.status(200).json({
-          "text": "Succès",
-          "data": result
+        "text": "Succès",
+        "data": result
       })
     }, (e) => _errorHandler(e,res))
   }
