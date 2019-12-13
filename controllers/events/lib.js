@@ -2,8 +2,9 @@ const Event = require('../../schema/schemaEvent.js');
 const User = require('../../schema/schemaUser.js');
 
 function log_event(req, res) {
-  if (!req.body || !req.body.app) {
-    //Le cas où la page ne serait pas soumise ou nul
+  if (!req.fromSite) {
+    return res.status(405).json({ "text": "Requête bloquée par API" })
+  }else if (!req.body || !req.body.app) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     var event = req.body
@@ -26,11 +27,11 @@ function log_event(req, res) {
 }
 
 function get_event(req, res) {
+  if (!req.fromSite) { return res.status(405).json({ "text": "Requête bloquée par API" }) }
   var query = req.body.query;
   var sort = req.body.sort;
   var findEvent = new Promise(function (resolve, reject) {
     Event.find(query).sort(sort).exec(function (err, result) {
-      console.log(err)
       if (err) { reject(500); } 
       else {
         if (result) {
@@ -55,7 +56,8 @@ function get_event(req, res) {
 }
 
 function distinct_count_event(req, res) {
-  var body = req.body;
+  if (!req.fromSite) { return res.status(405).json({ "text": "Requête bloquée par API" }) }
+  const body = req.body;
   Event.find(body.query).distinct(body.distinct).exec(function (err, data) {
     if (err) { res.status(500).json({ "text": "Erreur interne" }) }
     else if(!data) {res.status(404).json({ "text": "Data not found" }) }
@@ -69,6 +71,7 @@ function distinct_count_event(req, res) {
 }
 
 async function distinct_event (req, res) {
+  if (!req.fromSite) { return res.status(405).json({ "text": "Requête bloquée par API" }) }
   const body = req.body;
   const query = body.query || {};
   Event.find(query).distinct(body.distinct).exec(async (err, data) => {
@@ -85,6 +88,7 @@ async function distinct_event (req, res) {
 }
 
 function aggregate_events(req, res) {
+  if (!req.fromSite) { return res.status(405).json({ "text": "Requête bloquée par API" }) }
   var find = new Promise(function (resolve, reject) {
     Event.aggregate(req.body).exec(function (err, result) {
       if (err) {console.log(err);
