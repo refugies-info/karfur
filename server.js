@@ -54,6 +54,7 @@ var io = require('socket.io')(http);
 mongoose.set('debug', false);
 let auth = null;
 let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_PROD_URI; 
+console.log("NODE_ENV : ", NODE_ENV)
 // let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : DB_CONN; //ancienne connexion à Azure
 // auth = {user: USERNAME_DB, password: DB_PW};
 mongoose.connect(db_path, { useNewUrlParser: true }).then(() => { //, { ...(auth && {auth: auth}), useNewUrlParser: true }
