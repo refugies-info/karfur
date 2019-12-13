@@ -218,7 +218,6 @@ export class UserDashStruct extends Component {
             show={this.state.showModal.editMember}
             toggle={()=>this.toggleModal("editMember")}
             user={user}
-            users={this.state.users}
             selected={this.state.selected}
             structure={structure}
             initializeStructure={this.initializeStructure}

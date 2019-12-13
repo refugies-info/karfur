@@ -4,8 +4,10 @@ const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
 
 function set_mail(req, res) {
-  if (!req.body.mail) {
-    res.status(400).json({ "text": "Requête invalide" })
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body.mail) {
+    return res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     const mail = req.body.mail;

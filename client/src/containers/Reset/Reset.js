@@ -24,7 +24,6 @@ class Reset extends Component {
     cpassword: "",
     isLoading: true,
     isError: false,
-    user: null,
     reset_password_token: ""
   }
 
@@ -34,7 +33,7 @@ class Reset extends Component {
     API.get_users( { query: { reset_password_token, reset_password_expires: { $gt: Date.now() } } } ).then(data => {
       const users = data.data.data;
       if(users && users.length === 1){
-        this.setState({isLoading: false, user: users[0], reset_password_token});
+        this.setState({isLoading: false, reset_password_token});
       }else{this.setState({isLoading: false, isError: true,})}
     }).catch(e => {console.log(e); this.setState({isLoading: false, isError: true})})
   }
