@@ -12,7 +12,7 @@ const headers = {
   'Content-Type': 'application/json',
   'x-access-token' : process.env.NODE_ENV === "test" ? process.env.REACT_APP_FAKE_TOKEN : localStorage.getItem("token") || undefined,
   'cookie-id' : Cookies.get("_ga"),
-  'site-secret' : process.env.REACT_APP_SITE_SECRET || ""
+  'site-secret' : process.env.REACT_APP_SITE_SECRET
 }
 
 const burl = process.env.NODE_ENV === "test" ? process.env.REACT_APP_TEST_ENV === "qa" ? "https://agir-qa.herokuapp.com" : "http://localhost:3000" : ""; //Noté explicitement pour les tests, sinon il arrive pas à proxy entre :80 et :3000

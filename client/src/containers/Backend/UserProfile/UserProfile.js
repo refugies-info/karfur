@@ -8,6 +8,7 @@ import windowSize from 'react-window-size';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import passwdCheck from "zxcvbn";
+import _ from "lodash";
 
 import marioProfile from '../../../assets/mario-profile.jpg';
 import API from '../../../utils/API';
