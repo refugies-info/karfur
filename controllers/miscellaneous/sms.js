@@ -2,6 +2,7 @@ const {accountSid, authToken} = process.env;
 const client = require('twilio')(accountSid, authToken);
 
 function send_sms(req, res) {
+  if (!req.fromSite) {  return res.status(405).json({ "text": "Requête bloquée par API" }) } 
   const {number, typeContenu, title, url} = req.body;
   console.log(number, typeContenu, title, url)
   if (!number || !url) { return res.status(400).json({ "text": "Requête invalide" }) }
