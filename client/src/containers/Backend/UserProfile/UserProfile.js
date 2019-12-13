@@ -82,28 +82,28 @@ export class UserProfile extends Component {
     this._isMounted = true;
     const user=this.props.user, userId = this.props.user;
     API.get_tradForReview({query: {'userId': userId}}).then(data => { //console.log(data.data.data);
-      this._isMounted && this.setState({traductions: data.data.data})
+      this._isMounted && this.setState({traductions: _.get(data, "data.data", []) })
     })
     API.get_dispositif({query: {'creatorId': userId, status: {$ne: "Supprimé"}, demarcheId: { $exists: false }}, sort:{updatedAt: -1}}).then(data => { //console.log(data.data.data);
-      this._isMounted && this.setState({contributions: data.data.data, actions: parseActions(data.data.data)})
+      this._isMounted && this.setState({contributions: _.get(data, "data.data", []), actions: parseActions(data.data.data)})
     })
     if(user.structures && user.structures.length > 0){
       this.initializeStructure();
       API.get_dispositif({query: {'mainSponsor': user.structures[0], status: {$in: ["Actif", "Accepté structure", "En attente", "En attente admin"]}, demarcheId: { $exists: false } }, sort:{updatedAt: -1}}).then(data => { //console.log(data.data.data)
-        this._isMounted && this.setState({contributionsStruct: data.data.data, actionsStruct: parseActions(data.data.data)}, () => {
+        this._isMounted && this.setState({contributionsStruct: _.get(data, "data.data", []), actionsStruct: parseActions(data.data.data)}, () => {
           this._isMounted && API.get_tradForReview({query: {type: "dispositif", articleId: {$in: this.state.contributionsStruct.map(x => x._id)} }}).then(data => { //console.log(data.data.data)
-            this._isMounted && this.setState({traductionsStruct: data.data.data})
+            this._isMounted && this.setState({traductionsStruct: _.get(data, "data.data", [])})
           });
           this._isMounted && API.distinct_count_event({distinct: "userId", query: {action: 'readDispositif', label: "dispositifId", value : {$in: this.state.contributionsStruct.map(x => x._id)} } }).then(data => {
-            this._isMounted && this.setState({nbReadStruct: data.data.data})
+            this._isMounted && this.setState({nbReadStruct: _.get(data, "data.data", [])})
           })
         })
       })
     }
     this.setState({user:user, isMainLoading:false, traducteur:user.roles.some(x=>x.nom==="Trad"), contributeur:user.roles.some(x=>x.nom==="Contrib"), isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(false)})
     
-    API.get_users().then(data => this._isMounted && this.setState({users: data.data.data}) );
-    API.get_langues({}).then(data => this._isMounted && this.setState({ langues: data.data.data }))
+    API.get_users().then(data => this._isMounted && this.setState({users: _.get(data, "data.data", [])}) );
+    API.get_langues({}).then(data => this._isMounted && this.setState({ langues: _.get(data, "data.data", []) }))
     this.getProgression();
     window.scrollTo(0, 0);
   }

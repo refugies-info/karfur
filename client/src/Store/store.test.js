@@ -165,7 +165,10 @@ describe('mock async actions', () => {
     })
 
     return store.dispatch(actions.fetch_dispositifs())
-      .then(() => expect(store.getActions()[0]).to.deep.equal(expectedAction) )
+      .then(() =>{ 
+        console.log(store.getActions()[0], expectedAction)
+        expect(store.getActions()[0]).to.deep.equal(expectedAction) 
+      })
   })
 
   it('should mock structures', () => {    
