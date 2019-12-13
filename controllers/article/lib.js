@@ -17,11 +17,10 @@ let elementId=Math.floor(Math.random() * Math.floor(9999999));
 let nombreMots = 0;
 
 function add_article(req, res) {
-  if (!req.body || !req.body.title || !req.body.body) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.title || !req.body.body) {
+    return res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     //On transforme le html en JSON après l'avoir nettoyé
@@ -64,6 +63,9 @@ function get_article(req, res) {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let {query, locale, sort, populate, limit, random} = req.body;
     locale = locale || 'fr';
+    if (!req.fromSite) {  //On n'autorise pas les populate en API externe
+      populate = '';
+    }
     // console.log(query, locale, sort, populate, limit, random)
     let isStructure=false, structId=null;
     if(query._id && query._id.includes('struct_')){
@@ -116,7 +118,9 @@ function get_article(req, res) {
 }
 
 function add_traduction(req, res) {
-  if (!req.body || !req.body.articleId) {
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.articleId) {
     res.status(400).json({ "text": "Requête invalide" })
   }else if (!req.body.langueCible) {
     res.status(401).json({ "text": "La langue n'est pas spécifiée" })
@@ -204,8 +208,10 @@ function add_traduction(req, res) {
 }
 
 function remove_traduction(req, res) {
-  if (!req.body || !req.body.query) {
-    res.status(400).json({ "text": "Requête invalide" })
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.query) {
+    return res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     const {query, locale} = req.body;
