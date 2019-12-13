@@ -43,13 +43,9 @@ describe('UserProfile', () => {
     const users = db.collection('users');
 
     await users.findOne({_id: new ObjectId(mockId)});
-    console.log('removing mockUser');
     await users.remove({_id: new ObjectId(mockId)});
-    console.log('mockUser removed')
     await users.findOne({_id: new ObjectId(mockId)});
-    console.log('inserting mockUser')
     await users.insert(mockUser);
-    console.log('mockUser inserted')
     await users.findOne({_id: new ObjectId(mockId)});
 
     wrapper = shallow(<Provider store={store}><UserProfile {...defaultProps} /></Provider> ).dive().dive();
