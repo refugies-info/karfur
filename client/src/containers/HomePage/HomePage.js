@@ -137,7 +137,7 @@ export class HomePage extends Component {
               </p>
             </div>
             <footer className="footer-section">
-              {t("Homepage.contributeurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Contrib" || y.nom==="ExpertTrad")) || []).length })}{' '}
+              {t("Homepage.contributeurs mobilises", {nombre: (users.filter(x => (x.roles || []).some(y=>y.nom==="Contrib")) || []).length })}{' '}
               <FButton tag={NavHashLink} to="/comment-contribuer#ecrire" type="dark">
                 {t("Homepage.Je contribue", "Je contribue")}
               </FButton>

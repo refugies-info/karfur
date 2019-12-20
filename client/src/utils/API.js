@@ -93,8 +93,8 @@ export default {
   log_event : (event) => {
     return axios.post(burl + '/events/log_event', event, {headers: headers})
   },
-  get_event : (query, sort) => {
-    return axios.post(burl + '/events/get_event', {query: query, sort: sort}, {headers: headers})
+  get_event : (params) => {
+    return axios.post(burl + '/events/get_event', params, {headers: headers})
   },
   distinct_event : (distinct) => {
     return axios.post(burl + '/events/distinct_event', distinct, {headers: headers})
