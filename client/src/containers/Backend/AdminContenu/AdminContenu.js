@@ -12,13 +12,13 @@ import {fetch_dispositifs} from '../../../Store/actions';
 import {deleteContrib} from '../UserProfile/functions';
 import { colorStatut } from '../../../components/Functions/ColorFunctions';
 import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
-import {table_contenu, status_mapping, responsables, internal_actions} from './data';
+import {table_contenu, status_mapping, responsables, internal_actions, status_sort_arr} from './data';
 import { prepareDeleteContrib } from '../AdminContrib/functions';
 import { customCriteres } from '../../Dispositif/MoteurVariantes/data';
+import API from '../../../utils/API';
 
 import './AdminContenu.scss';
 import variables from 'scss/colors.scss';
-import API from '../../../utils/API';
 
 moment.locale('fr');
 
@@ -47,8 +47,10 @@ class AdminContenu extends Component {
           .filter(x => !x.demarcheId)
           .map(x => ({
             ...x, 
+            titreCourt: (x.titreMarque || x.titreInformatif || ""),
             titre: (x.titreMarque || "") + (x.titreMarque && x.titreInformatif ? " - " : "") + (x.titreInformatif || ""),
             structure: _.get(x, "mainSponsor.acronyme", _.get(x, "mainSponsor.nom", "")),
+            structureObj: _.get(x, "mainSponsor", {}),
             expanded: false, 
             type:"parent", 
             tooltip: false,
@@ -58,6 +60,7 @@ class AdminContenu extends Component {
               .map(y => ({
                 ...y, 
                 structure: _.get(y, "mainSponsor.acronyme", _.get(y, "mainSponsor.nom", "")),
+                structureObj: _.get(y, "mainSponsor", {}),
                 tooltip: false,
                 joursDepuis: (new Date().getTime() -  new Date(y.updatedAt).getTime()) / (1000 * 3600 * 24),
                 titre: [
@@ -91,7 +94,11 @@ class AdminContenu extends Component {
   reorder = (key, element) => {
     const croissant = !element.croissant;
     this.setState(pS => ({dispositifs: pS.dispositifs.sort((a,b)=> {
-      const aValue = _.get(a, element.order), bValue = _.get(b, element.order);
+      let aValue = _.get(a, element.order), bValue = _.get(b, element.order);
+      if(element.order === "status"){
+        aValue = _.indexOf(status_sort_arr, aValue);
+        bValue = _.indexOf(status_sort_arr, bValue);
+      }
       return aValue > bValue ? (croissant ? 1 : -1) : aValue < bValue ? (croissant ? -1 : 1) : 0;
     }), headers: pS.headers.map((x,i) => i===key ? {...x, croissant: !x.croissant, active: true} : {...x, active: false})}))
   }
@@ -173,10 +180,10 @@ class AdminContenu extends Component {
                   </td>
                   <td className="align-middle" id={"titre-" + key}>
                     <NavLink to={"/" + (element.typeContenu || "dispositif") + "/"+ element._id}>
-                      {element.titre.substring(0, Math.min((element.titre || "").length, maxDescriptionLength)) + ((element.titre || "").length > maxDescriptionLength ? '...' : '')}
+                      {element.titreCourt.substring(0, Math.min(element.titreCourt.length, maxDescriptionLength)) + (element.titreCourt.length > maxDescriptionLength ? '...' : '')}
                     </NavLink>
                   </td>
-                  <td className="align-middle">
+                  <td className="align-middle cursor-pointer" onClick={() => this.props.onSelect({structure: element.structureObj}, "1")}>
                     {element.structure}
                   </td>
                   <td 
