@@ -12,21 +12,20 @@ const customTabPane = (props) => {
   return(
     <>
       <TabPane tabId="0" className="no-padding">
-        <AdminContenu/>
+        <AdminContenu
+          onSelect={props.onSelect}
+        />
       </TabPane>
       <TabPane tabId="1">
-        <UsersTab {...props}/>
-      </TabPane>
-      <TabPane tabId="2">
-        <LanguesTab {...props} />
-      </TabPane>
-      <TabPane tabId="3">
-        <ThemesTab {...props} />
-      </TabPane>
-      <TabPane tabId="4">
         <StructuresTab {...props} />
       </TabPane>
-      <TabPane tabId="5" className="no-padding">
+      <TabPane tabId="2">
+        <UsersTab {...props}/>
+      </TabPane>
+      <TabPane tabId="3">
+        <LanguesTab {...props} />
+      </TabPane>
+      <TabPane tabId="4" className="no-padding">
         <Dashboard />
       </TabPane>
     </>

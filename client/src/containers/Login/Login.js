@@ -43,11 +43,17 @@ export class Login extends Component {
   }
 
   componentDidMount(){
-    //Vérifier s'il est pas déjà connecté
     const locState = this.props.location.state ;
-    if(locState){ this.setState({traducteur: locState.traducteur, redirectTo: locState.redirectTo || "/"}); }
     const qParam=querySearch(this.props.location.search).redirect;
-    console.log(qParam, decodeURIComponent(qParam))
+    if(API.isAuth()){
+      if(qParam){
+        const redirectTo = decodeURIComponent(qParam);
+        return window.location.assign( redirectTo + (redirectTo.indexOf('?') === -1 ? '?' : '&') + 'ssoToken=' + localStorage.getItem('token') );
+      }else{
+        return this.props.history.push("/")
+      }
+    }
+    if(locState){ this.setState({traducteur: locState.traducteur, redirectTo: locState.redirectTo || "/"}); }
     if(qParam) { this.setState({cannyRedirect: true, redirectTo: decodeURIComponent(qParam) }) }
     window.scrollTo(0, 0);
   }
