@@ -170,6 +170,18 @@ html body{
   .bg-gris{
     background: $gris;
   }
+  .bg-standby{
+    background: $standby;
+  }
+  .bg-focus{
+    background: $focus;
+  }
+  .bg-erreur{
+    background: $erreur;
+  }
+  .bg-error{
+    background: $error;
+  }
 
   .flex-center{
     display: flex;

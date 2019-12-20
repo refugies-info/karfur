@@ -345,6 +345,8 @@ $defaultSize:310px;
 
 .avancement-user-table.table, .avancement-table .table{
   border-style : hidden;
+  color: $noir;
+  font-size: 18px;
   thead{
     font-weight: normal;
     font-size: 16px;
@@ -369,9 +371,7 @@ $defaultSize:310px;
     border-style : hidden;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
     line-height: 23px;
-    color: $noir;
     padding: 10px 20px;
   }
   .voir-plus{
