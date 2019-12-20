@@ -88,6 +88,7 @@ export class Layout extends Component {
 
   render() {
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    
     return (
       <DirectionProvider 
         direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
@@ -150,6 +151,7 @@ const mapStateToProps = (state) => {
     languei18nCode: state.langue.languei18nCode,
     showLangModal: state.langue.showLangModal,
     langues: state.langue.langues,
+    dispositifs: state.dispositif.dispositifs,
   }
 }
 

@@ -16,7 +16,7 @@ import variables from 'scss/colors.scss';
 
 export class Admin extends Component {
   state = {
-    activeTab: new Array(5).fill('1'),
+    activeTab: new Array(6).fill('5'),
     orderedLangues : [],
     roles : [],
     users:[],
@@ -318,6 +318,16 @@ export class Admin extends Component {
             <Nav tabs>
               <NavItem>
                 <NavLink
+                  active={this.state.activeTab[3] === '0'}
+                  onClick={() => { this.toggleTab(3, '0'); }}
+                >
+                  <EVAIcon name="file-add-outline" fill={variables.noir} className="mr-10" />
+                  <span className={this.state.activeTab[3] === '0' ? '' : 'd-none'}>Contenus</span>
+                  {'\u00A0'}<Badge color="dark">{(this.props.dispositifs || []).length}</Badge>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
                   active={this.state.activeTab[3] === '1'}
                   onClick={() => { this.toggleTab(3, '1'); }}
                 >
@@ -338,22 +348,22 @@ export class Admin extends Component {
                   {'\u00A0'}<Badge pill color="warning">{this.state.langues.length}</Badge>
                 </NavLink>
               </NavItem>
-              {/* <NavItem>
-                <NavLink
-                  active={this.state.activeTab[3] === '3'}
-                  onClick={() => { this.toggleTab(3, '3'); }} >
-                    <i className="icon-pie-chart"></i>
-                    <span className={this.state.activeTab[3] === '3' ? '' : 'd-none'}> Thèmes</span>
-                    {'\u00A0'}<Badge pill color="info">{this.state.themes.length}</Badge>
-                </NavLink>
-              </NavItem> */}
               <NavItem>
                 <NavLink
                   active={this.state.activeTab[3] === '4'}
                   onClick={() => { this.toggleTab(3, '4'); }} >
-                    <EVAIcon name="shopping-bag-outline" fill={variables.noir} />
-                    <span className={this.state.activeTab[3] === '4' ? '' : 'd-none'}> Structures</span>
+                    <EVAIcon name="shopping-bag-outline" fill={variables.noir} className="mr-10" />
+                    <span className={this.state.activeTab[3] === '4' ? '' : 'd-none'}>Structures</span>
                     {'\u00A0'}<Badge pill color="danger">{this.state.structures.length}</Badge>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  active={this.state.activeTab[3] === '5'}
+                  onClick={() => { this.toggleTab(3, '5'); }} >
+                    <EVAIcon name="pie-chart-outline" fill={variables.noir} className="mr-10" />
+                    <span className={this.state.activeTab[3] === '5' ? '' : 'd-none'}>Statistiques</span>
+                    {'\u00A0'}
                 </NavLink>
               </NavItem>
             </Nav>
@@ -382,12 +392,18 @@ export class Admin extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    dispositifs: state.dispositif.dispositifs,
+  }
+}
+
 const mapDispatchToProps = {fetch_structures};
 
 export default track({
   page: 'Admin',
 }, { dispatchOnMount: true })(
-  connect(null, mapDispatchToProps)(
+  connect(mapStateToProps, mapDispatchToProps)(
     Admin
   )
 );

@@ -24,6 +24,7 @@ describe('HomePage', () => {
   const wrapper = shallow(<Provider store={store}><HomePage t={k=>k} /></Provider> ).dive().dive();
   
   it('renders without crashing', () => {
+    console.log(wrapper.debug())
     expect(wrapper.is('div')).to.equal(true);
     expect(wrapper.find('h1').text()).to.equal("Homepage.Construis ta vie en France");
   });
@@ -85,6 +86,7 @@ describe('HomePage', () => {
   it('should receive users from real API', function (done) {
     axios.interceptors.response.use(response => {
       const users = response.data.data;
+      console.log(users)
       expect(users).to.be.an('array').that.is.not.empty;
       expect(users).to.have.lengthOf.above(10);
       expect(users).to.have.nested.property('0._id');

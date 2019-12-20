@@ -6,6 +6,7 @@ import track from 'react-tracking';
 import { Spinner } from 'reactstrap';
 import IdleTimer from 'react-idle-timer'
 import './scss/fonts/circular-std/css/circular-std.css';
+import uniqid from 'uniqid';
 
 import Store from './Store/configureStore';
 import PrivateRoute from './components/PrivateRoute';
@@ -52,28 +53,26 @@ const Reset = Loadable({
   loading
 });
 
-// const LiveChat = Loadable({
-//   loader: () => import('./components/UI/LiveChat/LiveChat'),
-//   loading : chargement
-// });
+const mountId = uniqid('mount_')
 
 class App extends Component {
   state = { data: {} }
   idleTimer = null;
 
-  componentDidMount() {    
-    // socket.on('server:event', data => {
-    //   console.log('évènement',data)
-    //   this.setState({ data })
-    // })
-    //On désactive les logs en prod après le 25
-    if(process.env.NODE_ENV !== "development" && new Date() >= new Date("11/25/2019")){
+  componentDidMount() { 
+    //On désactive les logs en prod
+    if(process.env.NODE_ENV !== "development"){
       console.log = function(){};
     }
+
+    //On track le chargement et déchargement de la page
     window.onbeforeunload = function() {
-      this.props.tracking.trackEvent({ action: 'unmount', label: 'App' });
+      this.props.tracking.trackEvent({ action: 'unmount', label: 'App', value: mountId });
       return undefined;
     }.bind(this);
+    this.props.tracking.trackEvent({ action: 'mount', label: 'App', value: mountId });
+    
+    //On charge Crisp
     window.$crisp=[];
     window.CRISP_WEBSITE_ID="74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
     (function(){
@@ -92,9 +91,9 @@ class App extends Component {
   //   return;
   // }
 
-  _onActive = () => this.props.tracking.trackEvent({ action: 'active', label: 'App', value: this.idleTimer.getRemainingTime() });
+  _onActive = () => this.props.tracking.trackEvent({ action: 'active', label: 'App', value: mountId });
 
-  _onIdle = () => this.props.tracking.trackEvent({ action: 'idle', label: 'App', value: this.idleTimer.getLastActiveTime() });
+  _onIdle = () => this.props.tracking.trackEvent({ action: 'idle', label: 'App', value: mountId, time: this.idleTimer.getLastActiveTime() });
 
   // sendMessage = (message,side) => {
   //   socket.emit(side + ':sendMessage', message)
