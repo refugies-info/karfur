@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import _ from "lodash";
 import passwdCheck from "zxcvbn";
+import querySearch from "stringquery";
 
 import API from '../../utils/API';
 import setAuthToken from '../../utils/setAuthToken';
@@ -37,12 +38,17 @@ export class Login extends Component {
     step: 0,
     userExists: false,
     usernameHidden:false,
-    showModal:false
+    showModal:false,
+    cannyRedirect: false
   }
 
   componentDidMount(){
-    let locState = this.props.location.state ;
+    //Vérifier s'il est pas déjà connecté
+    const locState = this.props.location.state ;
     if(locState){ this.setState({traducteur: locState.traducteur, redirectTo: locState.redirectTo || "/"}); }
+    const qParam=querySearch(this.props.location.search).redirect;
+    console.log(qParam, decodeURIComponent(qParam))
+    if(qParam) { this.setState({cannyRedirect: true, redirectTo: decodeURIComponent(qParam) }) }
     window.scrollTo(0, 0);
   }
 
@@ -86,12 +92,21 @@ export class Login extends Component {
         phone: this.state.phone,
       }
       API.login(user).then(data => {
+        const token = data.data.token, {cannyRedirect, redirectTo}= this.state;
         Swal.fire( {title: 'Yay...', text: 'Authentification réussie !', type: 'success', timer: 1500} ).then(()=>{
-          this.props.history.push(this.state.redirectTo)
+          if(cannyRedirect){
+            return window.location.assign(
+              redirectTo + (redirectTo.indexOf('?') === -1 ? '?' : '&') + 'ssoToken=' + token
+            );
+          }else{
+            return this.props.history.push(redirectTo)
+          }
         });
-        localStorage.setItem('token', data.data.token);
-        setAuthToken(data.data.token);
-        this.props.fetch_user();
+        localStorage.setItem('token', token);
+        if(!cannyRedirect){
+          setAuthToken(token);
+          this.props.fetch_user();
+        }
       }).catch(e => {
         if(e.response.status === 501){
           this.setState({showModal: false, step: 2});

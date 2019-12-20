@@ -28,8 +28,8 @@ function log_event(req, res) {
 
 function get_event(req, res) {
   if (!req.fromSite) { return res.status(405).json({ "text": "Requête bloquée par API" }) }
-  var query = req.body.query;
-  var sort = req.body.sort;
+  const {query, sort} = req.body;
+  console.log(query)
   var findEvent = new Promise(function (resolve, reject) {
     Event.find(query).sort(sort).exec(function (err, result) {
       if (err) { reject(500); } 
@@ -45,13 +45,11 @@ function get_event(req, res) {
 
   findEvent.then(function (result) {
     res.status(200).json({
-        "text": "Succès",
-        "data": result
+      "text": "Succès",
+      "data": result
     })
   }, function () {
-    res.status(500).json({
-      "text": "Erreur interne"
-    })
+    res.status(500).json({ "text": "Erreur interne" })
   })
 }
 

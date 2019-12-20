@@ -26,7 +26,9 @@ import {
 } from 'reactstrap';
 import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities';
 import track from 'react-tracking';
-import update from 'react-addons-update'; // ES6
+import moment from 'moment/min/moment-with-locales';
+import { connect } from 'react-redux';
+import ms from 'pretty-ms';
 
 import {
   cardChartData1,
@@ -43,13 +45,16 @@ import {
   sparklineChartOpts,
   mainChart,
   mainChartOpts
-} from './data'
-import DateOffset from '../../../components/Functions/DateOffset'
-import {get_filtered_events} from '../../../components/Functions/APIFunctions'
+} from './data';
+import DateOffset from '../../../components/Functions/DateOffset';
+import {display_traffic, calculate_avg_time, execute_search} from './functions';
 import API from '../../../utils/API';
 import marioProfile from '../../../assets/mario-profile.jpg'
 
 import './Dashboard.scss';
+import { calculFiabilite } from '../../Dispositif/functions';
+
+moment.locale('fr');
 
 const Widget03 = lazy(() => import('../../../components/Widgets/Widget03'));
 
@@ -62,9 +67,16 @@ const brandDanger = getStyle('--danger')
 const eventFields = ["layout", "page", "userId"]
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.calculate_avg_time = calculate_avg_time.bind(this);
+    this.display_traffic = display_traffic.bind(this);
+    this.execute_search = execute_search.bind(this);
+  }
+
   state = {
     dropdownOpen: false,
-    radioSelected: 1,
+    radioSelected: 3,
 
     traffic:[],
     error:false,
@@ -73,100 +85,72 @@ class Dashboard extends Component {
     max_traffic: 0,
     events:{},
     eventValues:{},
+    uniqueUsersDaily: 0,
+    uniqueUsersMonthly: 0,
+    uniqueUsersYearly: 0,
+    onlineUsers: 0,
+    averageTimeOnsite: 0,
+    nbExportsPDF: 0,
+    nbActiveUsers: 0,
+    nbDispositifs: 0,
+    nbDispositifsActifs: 0,
+    nbDemarches: 0,
+    nbDemarchesActives: 0,
+    users: [],
+    avgScore: 0,
+    avancementContenu: 0,
   }
 
   componentDidMount () {
-    var week_lag = DateOffset(new Date(), -2*7);
-    let sort = {
-      created_at: 1
-    }
-    var numElements = 27;
-    let query={}
+    this.display_traffic(-2*7);
 
-    query={
-      app:'App',
-      page: { "$exists": false }, 
-      created_at : {"$gte": week_lag}
-    }
-    this.execute_search(query, sort, numElements, 1);
-
-    query={
-      page:'Dashboard',
-      component: { "$exists": false }, 
-      created_at : {"$gte": week_lag}
-    }
-    this.execute_search(query, sort, numElements, 2);
-
-    query={
-      page:'Chat',
-      component: { "$exists": false }, 
-      created_at : {"$gte": week_lag}
-    }
-    this.execute_search(query, sort, numElements, 3);
-
-    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), -1)}}}).then((data) => {
+    API.distinct_count_event({distinct : 'cookie', query:{created_at : {"$gte":  DateOffset(new Date(), -1)}}}).then((data) => {
       this.setState({uniqueUsersDaily:data.data.data})
     })
-    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), -31)}}}).then((data) => {
+    API.distinct_count_event({distinct : 'cookie', query:{created_at : {"$gte":  DateOffset(new Date(), -31)}}}).then((data) => {
       this.setState({uniqueUsersMonthly:data.data.data})
     })
-    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), -365)}}}).then((data) => {
+    API.distinct_count_event({distinct : 'cookie', query:{created_at : {"$gte":  DateOffset(new Date(), -365)}}}).then((data) => {
       this.setState({uniqueUsersYearly:data.data.data})
+    })
+
+    API.get_event({query:{ action: 'click', label: 'createPdf' }}).then((data) => {
+      this.setState({nbExportsPDF:data.data.data.length})
+    })
+
+    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), -3 * 30)}}}).then((data) => {
+      this.setState({nbActiveUsers:data.data.data})
     })
 
     API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), 0, -1/60)}}}).then((data) => {
       this.setState({onlineUsers:data.data.data})
     })
+
+    API.count_dispositifs({typeContenu:{$ne: "demarche"}}).then(data => this.setState({ nbDispositifs: data.data }) )
+    API.count_dispositifs({typeContenu:{$ne: "demarche"}, status: "Actif"}).then(data => this.setState({ nbDispositifsActifs: data.data }) )
+    API.count_dispositifs({typeContenu:"demarche"}).then(data => this.setState({ nbDemarches: data.data }) )
+    API.count_dispositifs({typeContenu:"demarche", status: "Actif"}).then(data => this.setState({ nbDemarchesActives: data.data }) )
+
+    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
+    
     eventFields.map(x => this._call_distinct_event(x))
+
+    this.calculate_avg_time();
   }
 
-  execute_search = (query, sort, numElements, dataset) =>{
-    get_filtered_events(query, sort, numElements).then(filtered_events => {
-      this.setState({
-        traffic: filtered_events.traffic_data,
-        mainChart: {
-          ...this.state.mainChart,
-          labels: dataset===1 ? filtered_events.date_array : this.state.mainChart.labels,
-          datasets: update(this.state.mainChart.datasets, 
-            dataset===1?
-              {0: {
-                data: {$set: filtered_events.traffic_data},
-                label: {$set: query.app}
-              }} :
-              dataset===2 ?
-                {1: {
-                  data: {$set: filtered_events.traffic_data},
-                  label: {$set: query.page}
-                }} :
-                {2: {data: {$set: filtered_events.traffic_data},
-                label: {$set: query.page}
-              }}) 
-        }
-      })
-
-      if(this.state.max_traffic < filtered_events.max_traffic){
-        this.setState({
-          max_traffic : filtered_events.max_traffic,
-          mainChartOpts:{
-            ...this.state.mainChartOpts,
-            scales: {
-              ...this.state.mainChartOpts.xAxes,
-              yAxes: [
-                {
-                  ticks: {
-                    beginAtZero: true,
-                    maxTicksLimit: 5,
-                    stepSize: Math.ceil(400 / 5),
-                    max: filtered_events.max_traffic,
-                  },
-                }],
-            }
-          }
-        });
-      }
-      return true; 
-    })
-    .catch(err => console.log('Une erreur est survenue :' + err));
+  componentWillReceiveProps(nextProps){
+    if((nextProps.dispositifs || []).length > 0 && nextProps.dispositifs.length !== (this.props.dispositifs || []).length){
+      const avgScore = nextProps.dispositifs.map(x => calculFiabilite(x) ).reduce((acc, curr) => acc += (curr || 0), 0) / nextProps.dispositifs.length;
+      this.setState({avgScore});
+    }
+    if((nextProps.dispositifs || []).length > 0 && (nextProps.langues || []).length > 0 && this.state.avancementContenu === 0 ){
+      const localeArray = (nextProps.langues || []).filter(x => x.avancement >= 0.8).map(x => x.i18nCode);
+      const avancementContenu = nextProps.dispositifs.map(x => x.avancement).reduce((acc, curr) => {
+        localeArray.forEach(x => {acc += (curr[x] || 0)});
+        return acc;
+      } , 0) / (localeArray.length * nextProps.dispositifs.length)
+      this.setState({avancementContenu});
+    }
   }
 
   _call_distinct_event = field => {
@@ -185,8 +169,7 @@ class Dashboard extends Component {
     }}, () => {
       let query = {...this.state.eventValues};
       query.userId = (this.state.events.userId.find(x => x.username === this.state.eventValues.userId ) || {})._id;
-      console.log(query)
-      API.get_event(query).then((data) => {
+      API.get_event({query}).then((data) => {
         console.log(data.data.data)
       })
     })
@@ -198,18 +181,46 @@ class Dashboard extends Component {
     });
   }
 
-  onRadioBtnClick = (radioSelected) => {
+  onRadioBtnClick = (radioSelected, duree) => {
+    this.display_traffic(-1 * duree);
     this.setState({
       radioSelected: radioSelected,
     });
   }
 
+  createCSV = () => {
+    console.log(this.state.mainChart)
+  }
+
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
 
   render() {
-    let {events, eventValues} = this.state;
+    const {events, eventValues, uniqueUsersDaily, uniqueUsersMonthly, 
+      nbExportsPDF, nbActiveUsers, nbDispositifs, nbDispositifsActifs, 
+      nbDemarches, nbDemarchesActives, users, avgScore, 
+      avancementContenu, averageTimeOnsite} = this.state;
+    const {langues} = this.props;
+    const languesActives = (langues || []).filter(x => x.avancement >= 0.8);
     return (
       <div className="dashboard-container animated fadeIn">
+        <div className="unformatted-data mb-10 ml-12">
+          <ul>
+            <li>Nombre d'exports PDF (global) : <b>{nbExportsPDF}</b></li>
+            <li>Nombre d'utilisateurs actifs (3 derniers mois) : <b>{nbActiveUsers}</b></li>
+            <li>Nombre de dispositifs : <b>{nbDispositifs}</b></li>
+            <li>Nombre de dispositifs actifs : <b>{nbDispositifsActifs}</b></li>
+            <li>Nombre de démarches : <b>{nbDemarches}</b></li>
+            <li>Nombre de démarches actives : <b>{nbDemarchesActives}</b></li>
+            <li>Nombre de contributeurs : <b>{(users.filter(x => (x.roles || []).some(y=>y.nom==="Contrib")) || []).length}</b></li>
+            <li>Nombre de traducteurs ou experts : <b>{(users.filter(x => (x.roles || []).some(y=>y.nom==="Trad" || y.nom==="ExpertTrad")) || []).length}</b></li>
+            <li>Nombre total de langues : <b>{(langues || []).length}</b></li>
+            <li>Nombre de langues actives : <b>{languesActives.length}</b></li>
+            <li>Score moyen des contenus : <b>{Math.round(avgScore * 100 * 100, 2)/100 + " %"}</b></li>
+            <li>Pourcentage de traduction du site sur les langues actives  : <b>{Math.round(languesActives.reduce((acc, curr) => acc += (curr.avancement || 0), 0) / (languesActives.length || 1) * 100 * 100) / 100 + " %"}</b></li>
+            <li>Pourcentage de traduction du contenu sur les langues actives  : <b>{Math.round(avancementContenu * 100 * 100, 2)/100 + " %"}</b></li>
+            <li>Temps moyen passé sur le site : <b>{ms(averageTimeOnsite)}</b> - <i>A vérifier</i></li>
+          </ul>
+        </div>
         <Row>
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-info">
@@ -227,8 +238,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </ButtonDropdown>
                 </ButtonGroup>
-                <div className="text-value">{this.state.uniqueUsersDaily}</div>
-                <div>visiteurs uniques aujourd'hui</div>
+                <div className="text-value">{uniqueUsersDaily}</div>
+                <div>visiteur{uniqueUsersDaily > 1 ? "s" : ""} unique{uniqueUsersDaily > 1 ? "s" : ""} aujourd'hui</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Line data={cardChartData2} options={cardChartOpts2} height={70} />
@@ -251,8 +262,8 @@ class Dashboard extends Component {
                     </DropdownMenu>
                   </Dropdown>
                 </ButtonGroup>
-                <div className="text-value">{this.state.uniqueUsersMonthly}</div>
-                <div>visiteurs uniques ce mois</div>
+                <div className="text-value">{uniqueUsersMonthly}</div>
+                <div>visiteur{uniqueUsersMonthly > 1 ? "s" : ""} unique{uniqueUsersMonthly > 1 ? "s" : ""} ce mois</div>
               </CardBody>
               <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
                 <Line data={cardChartData1} options={cardChartOpts1} height={70} />
@@ -276,7 +287,7 @@ class Dashboard extends Component {
                   </Dropdown>
                 </ButtonGroup>
                 <div className="text-value">{this.state.uniqueUsersYearly}</div>
-                <div>visiteurs uniques cette année</div>
+                <div>visiteurs uniques ces 12 derniers mois</div>
               </CardBody>
               <div className="chart-wrapper" style={{ height: '70px' }}>
                 <Line data={cardChartData3} options={cardChartOpts3} height={70} />
@@ -318,12 +329,16 @@ class Dashboard extends Component {
                     <div className="small text-muted">Depuis le {this.state.mainChart.labels[0]} </div>
                   </Col>
                   <Col sm="7" className="d-none d-sm-inline-block">
-                    <Button color="primary" className="float-right"><i className="icon-cloud-download"></i></Button>
+                    <Button color="primary" className="float-right" onClick={this.createCSV}>
+                      <i className="icon-cloud-download"></i>
+                    </Button>
                     <ButtonToolbar className="float-right" aria-label="Toolbar with button groups">
                       <ButtonGroup className="mr-3" aria-label="First group">
-                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(1)} active={this.state.radioSelected === 1}>Day</Button>
-                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(2)} active={this.state.radioSelected === 2}>Month</Button>
-                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(3)} active={this.state.radioSelected === 3}>Year</Button>
+                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(1, 1)} active={this.state.radioSelected === 1}>1 jour</Button>
+                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(2, 7)} active={this.state.radioSelected === 2}>1 semaine</Button>
+                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(3, 14)} active={this.state.radioSelected === 3}>2 semaines</Button>
+                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(4, 31)} active={this.state.radioSelected === 4}>1 mois</Button>
+                        <Button color="outline-secondary" onClick={() => this.onRadioBtnClick(5, 365)} active={this.state.radioSelected === 5}>12 mois</Button>
                       </ButtonGroup>
                     </ButtonToolbar>
                   </Col>
@@ -882,7 +897,15 @@ class Dashboard extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    langues: state.langue.langues,
+    dispositifs: state.dispositif.dispositifs,
+  }
+}
 
 export default track({
   page: 'Dashboard',
-})(Dashboard);
+})(
+  connect(mapStateToProps)(Dashboard)
+);
