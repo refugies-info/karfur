@@ -7,14 +7,12 @@ import DateOffset from '../../../components/Functions/DateOffset';
 
 moment.locale('fr');
 
-let minDate, maxDate;
-
 const display_traffic = function(duree){
   const week_lag = DateOffset(new Date(), duree);
     const sort = {
       created_at: 1
     }
-    const numElements = 27;
+    const numElements = -1 * (duree === 1 ? 24 : duree);
 
     const queries = [
       { 
@@ -38,37 +36,6 @@ const display_traffic = function(duree){
       }
     ]
     this.execute_search(queries, sort, numElements);
-    // let query={}
-
-    // query={ 
-    //   app: "App", 
-    //   action: "mount", 
-    //   cookie: {$exists: true}, 
-    //   created_at : {"$gte": week_lag}, 
-    //   value: {$exists: true} 
-    // }
-    // this.execute_search(query, sort, numElements, 1);
-
-    // query={
-    //   page:'Dispositif',
-    //   component: { "$exists": false }, 
-    //   created_at : {"$gte": week_lag}
-    // }
-    // this.execute_search(query, sort, numElements, 2);
-
-    // query={
-    //   page:'AdvancedSearch',
-    //   component: { "$exists": false }, 
-    //   created_at : {"$gte": week_lag}
-    // }
-    // this.execute_search(query, sort, numElements, 3);
-
-    // query={
-    //   page:'UserProfile',
-    //   component: { "$exists": false }, 
-    //   created_at : {"$gte": week_lag}
-    // }
-    // this.execute_search(query, sort, numElements, 4);
 }
 
 const execute_search = async function(queries, sort, numElements){
@@ -77,12 +44,12 @@ const execute_search = async function(queries, sort, numElements){
   await asyncForEach(queries, async (query) => {
     data.push((await API.get_event({query, sort})).data.data)
   });
-  console.log(data)
-  //On les met sur les mêmes abscisses :
-  let date_min= new Date( Math.min.apply(null, data.map(arr => new Date(_.get(arr, "0.created_at", ""))  ) ) );
-  date_min.setTime(date_min.getTime() - 1);
-  const date_max=new Date( Math.max.apply(null, data.map(arr => new Date(_.get(arr, (arr.length - 1 ) + ".created_at", ""))  ) ) ); 
   
+  //On les met sur les mêmes abscisses :
+  let date_min= new Date( Math.min.apply(null, data.map(arr => new Date(_.get(arr, "0.created_at", null))  ) ) );
+  // date_min.setTime(date_min.getTime() - 1);
+  const date_max=new Date( Math.max.apply(null, data.map(arr => new Date(_.get(arr, (arr.length - 1 ) + ".created_at", null))  ) ) ); 
+  console.log(date_min, date_max)
   let date_array = [],
     traffic_data = new Array(data.length).fill([]),
     dummy_date=null;
@@ -94,13 +61,12 @@ const execute_search = async function(queries, sort, numElements){
       data.forEach((arr, j) => {
         const trafficInWindow = cluster_dates(arr, dummy_date, intermDate)
         traffic_data[j] = [...traffic_data[j], trafficInWindow.length];
-        console.log(i, j, arr.length, trafficInWindow.length, traffic_data)
       })
     }
     dummy_date=intermDate;
   }
 
-  console.log(date_min, date_max, date_array, traffic_data)
+  const max_traffic = Math.max.apply(null, traffic_data.map(arr => Math.max.apply(null, arr))) ;
 
   this.setState(pS => ({
     mainChart: {
@@ -110,79 +76,24 @@ const execute_search = async function(queries, sort, numElements){
         { ...x, data: traffic_data[i], label: queries[i].app || queries[i].page }
       )),
     },
-    max_traffic: Math.max( traffic_data.map(arr => Math.max(arr)) ),
+    max_traffic,
+    mainChartOpts:{
+      ...pS.mainChartOpts,
+      scales: {
+        ...pS.mainChartOpts.xAxes,
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+              maxTicksLimit: 5,
+              stepSize: Math.ceil(400 / 5),
+              max: max_traffic,
+            },
+          }],
+      }
+    }
   }))
-
-  //   if(this.state.max_traffic < filtered_events.max_traffic){
-  //     this.setState({
-  //       max_traffic : filtered_events.max_traffic,
-  //       mainChartOpts:{
-  //         ...this.state.mainChartOpts,
-  //         scales: {
-  //           ...this.state.mainChartOpts.xAxes,
-  //           yAxes: [
-  //             {
-  //               ticks: {
-  //                 beginAtZero: true,
-  //                 maxTicksLimit: 5,
-  //                 stepSize: Math.ceil(400 / 5),
-  //                 max: filtered_events.max_traffic,
-  //               },
-  //             }],
-  //         }
-  //       }
-  //     });
-  //   }
-  //   return true; 
-  // })
-  // .catch(err => console.log('Une erreur est survenue :' + err));
 }
-
-// const execute_search = function(query, sort, numElements, dataset){
-//   get_filtered_events(query, sort, numElements).then(filtered_events => {
-//     console.log(dataset, filtered_events)
-//     this.setState({
-//       traffic: filtered_events.traffic_data,
-//       mainChart: {
-//         ...this.state.mainChart,
-//         ...(dataset===1 && {labels: filtered_events.date_array}),
-//         datasets: update(this.state.mainChart.datasets, 
-//           dataset===1?
-//             {0: {
-//               data: {$set: filtered_events.traffic_data},
-//               label: {$set: query.app}
-//             }} :
-//             {[dataset - 1]: {
-//               data: {$set: filtered_events.traffic_data},
-//               label: {$set: query.page}
-//             }}) 
-//       }
-//     })
-
-//     if(this.state.max_traffic < filtered_events.max_traffic){
-//       this.setState({
-//         max_traffic : filtered_events.max_traffic,
-//         mainChartOpts:{
-//           ...this.state.mainChartOpts,
-//           scales: {
-//             ...this.state.mainChartOpts.xAxes,
-//             yAxes: [
-//               {
-//                 ticks: {
-//                   beginAtZero: true,
-//                   maxTicksLimit: 5,
-//                   stepSize: Math.ceil(400 / 5),
-//                   max: filtered_events.max_traffic,
-//                 },
-//               }],
-//           }
-//         }
-//       });
-//     }
-//     return true; 
-//   })
-//   .catch(err => console.log('Une erreur est survenue :' + err));
-// }
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < (array || []).length; index++) {
@@ -194,41 +105,6 @@ const cluster_dates = (traffic, date_low, date_high) => {
   return traffic.filter(l => {
     return (new Date(l.created_at)).getTime() > date_low.getTime() && (new Date(l.created_at)).getTime()<=date_high.getTime();
   });
-}
-
-const get_filtered_events = (query, sort, numElements) => {
-  return new Promise((resolve, reject) => {
-    API.get_event({query, sort}).then((data) => {
-      let traffic=data.data.data;
-      if(traffic.length>0){
-        let date_min=new Date(traffic[0].created_at) ;
-        date_min.setTime(date_min.getTime() - 1);
-        let date_max=new Date(traffic[traffic.length-1].created_at);
-
-        var date_array = [],
-          traffic_data = [],
-          dummy_date=null;
-        for (var i = 0; i <= numElements; i++) {
-          var intermDate = new Date(date_min.getTime() + i * (date_max.getTime() - date_min.getTime()) / numElements );
-          date_array.push( moment(intermDate).format('DD/MM à HH:mm') );
-
-          if(i>0){
-            let trafficInWindow = cluster_dates(traffic, dummy_date, intermDate)
-            traffic_data.push(trafficInWindow.length);
-          }
-          dummy_date=intermDate;
-        }
-        
-        resolve({
-          traffic_data: traffic_data,
-          date_array : date_array,
-          max_traffic: Math.max(...traffic_data)
-        })
-      }
-    }, () => {
-      reject('Erreur')
-    })
-  })
 }
 
 const calculate_avg_time = async function(){
@@ -300,4 +176,4 @@ const calculate_avg_time = async function(){
   // })
 }
 
-export {calculate_avg_time, display_traffic, execute_search, get_filtered_events};
+export {calculate_avg_time, display_traffic, execute_search};
