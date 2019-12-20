@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col, Input, Modal, ModalBody, ModalFooter, InputGroup, Tooltip, FormGroup, Label } from 'reactstrap';
+import { Row, Col, Input, Modal, ModalBody, ModalFooter, InputGroup, Tooltip, FormGroup, Label, Spinner } from 'reactstrap';
 import Icon from 'react-eva-icons';
 import { connect } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -17,12 +17,16 @@ import variables from 'scss/colors.scss';
 
 class Sponsors extends Component {
   state = {
-    showModals: [{name: "responsabilite", show : false}, {name: "etVous", show: false}, {name: "creation", show: false}, {name: "envoye", show: false}],
+    showModals: [{name: "responsabilite", show : false}, {name: "etVous", show: false}, {name: "creation", show: false}, {name: "envoye", show: false}, {name: "img-modal", show: false}],
     checked: false,
     authorBelongs: false,
     tooltipOpen: false,
     selected:{},
     mesStructures:[],
+    imgData: {},
+    link: '',
+    alt: '',
+    sponsorLoading: false,
 
     structure:{
       nom:'',
@@ -51,10 +55,15 @@ class Sponsors extends Component {
     formData.append(0, event.target.files[0])
 
     API.set_image(formData).then(data_res => {
-      let imgData=data_res.data.data;
-      this.setState({imgData: {src: imgData.secure_url, public_id: imgData.public_id}, sponsorLoading:false})
+      const imgData=data_res.data.data;
+      console.log(imgData)
+      this.setState({imgData: {secure_url: imgData.secure_url, public_id: imgData.public_id, imgId: imgData.imgId}, sponsorLoading:false})
     })
   }
+
+  handleImgChange = (ev) => {
+    this.setState({ [ev.currentTarget.id]: ev.target.value });
+  };
 
   handleChange = ev => this.setState({ structure: { ...this.state.structure, [ev.currentTarget.id]: ev.target.value }});
   handleUserChange = e => this.props.update_user({...this.props.user, [e.target.id]: e.target.value});
@@ -92,16 +101,21 @@ class Sponsors extends Component {
     }
   }
 
-  addSponsor = () => {
-    this.props.addSponsor({...this.state.selected, userBelongs: this.state.authorBelongs})
-    this.toggleModal("envoye");
+  addSponsor = (asAdmin = false) => {
+    if(asAdmin){ //Le cas où on rajoute plus d'un sponsor, en tant qu'admin
+      this.props.addSponsor({ picture: {...this.state.imgData}, link: this.state.link, alt: this.state.alt, asAdmin })
+      this.toggleModal();
+    }else{
+      this.props.addSponsor({...this.state.selected, userBelongs: this.state.authorBelongs})
+      this.toggleModal("envoye");
+    }
   }
 
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore disponible', type: 'error', timer: 1500 })
 
   render(){
-    let {disableEdit, t, sponsors, deleteSponsor, user, structures} = this.props
-    let {showModals, selected, authorBelongs, checked, mesStructures} =  this.state;
+    const {disableEdit, t, sponsors, deleteSponsor, user, structures, admin} = this.props
+    const {showModals, selected, authorBelongs, checked, mesStructures} =  this.state;
     
     const modal = {name: "responsabilite"};
     return (
@@ -124,7 +138,6 @@ class Sponsors extends Component {
                           <EVAIcon name="image-outline" className="not-exist-icon mr-16" size="large" fill={variables.noir} />
                           <span>{(sponsor.acronyme || sponsor.nom) ? ((sponsor.acronyme || "") + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + (sponsor.nom || "")) : (sponsor.alt || "Structure 1")}</span>
                         </div>}
-                        {/* <span className="default-logo">{(sponsor.acronyme || sponsor.nom) ? (sponsor.acronyme + ((sponsor.acronyme && sponsor.nom) ? " - " : "") + sponsor.nom) : sponsor.alt}</span>} */}
                   </a>
                   {key === 0 && sponsor.type !== "Not found" &&
                     <div className="owner-badge">
@@ -140,9 +153,15 @@ class Sponsors extends Component {
             )}
           )}
           
-          {!disableEdit && (!sponsors || sponsors.length === 0) &&
+          {!disableEdit && (!sponsors || sponsors.length === 0 || admin) &&
             <Col>
-              <div className="add-sponsor" onClick={()=>this.toggleModal("responsabilite")}>
+              <div 
+                className="add-sponsor" 
+                onClick={()=> (!sponsors || sponsors.length === 0) ? 
+                  this.toggleModal("responsabilite") : 
+                  (sponsors.length > 0 && admin && this.toggleModal("img-modal"))
+                }
+              >
                 <EVAIcon className="add-sign backgroundColor-darkColor" name="plus-outline" />
                 <span className="add-text color-darkColor">Ajouter une structure</span>
               </div>
@@ -307,6 +326,21 @@ class Sponsors extends Component {
             
           </div>
         </CustomModal>
+        
+        <ImgModal 
+          modal={{name: "img-modal"}}
+          keyValue= {4}
+          showModals={showModals}
+          imgData={this.state.imgData}
+          link={this.state.link}
+          alt={this.state.alt}
+          sponsorLoading={this.state.sponsorLoading}
+          toggleModal={this.toggleModal}
+          toggleTooltip={this.toggleTooltip}
+          handleFileInputChange={this.handleFileInputChange}
+          handleChange = {this.handleImgChange}
+          addSponsor={this.addSponsor}
+        />
       </div>
     )
   }
@@ -325,6 +359,67 @@ const CustomModal = props => (
   </Modal>
 )
 
+const ImgModal = props => (
+  <Modal isOpen={props.showModals[props.keyValue].show} toggle={()=>props.toggleModal(props.modal.name)} className='modal-sponsors'>
+    <div className="form-field inline-div">
+      <span>1. Choix de l’image<sup>*</sup></span>
+      {props.imgData.src ?
+        <div className="image-wrapper">
+          <Input 
+            className="file-input"
+            type="file"
+            id="picture" 
+            name="user" 
+            accept="image/*"
+            onChange = {props.handleFileInputChange} />
+          <img className="sponsor-img" src={props.imgData.src} alt={props.imgData.alt}/>
+          {props.sponsorLoading && 
+            <Spinner color="green" />}
+        </div>
+        :
+        <FButton className="upload-btn" type="theme" name="upload-outline">
+          <Input 
+            className="file-input"
+            type="file"
+            id="picture" 
+            name="user" 
+            accept="image/*"
+            onChange = {props.handleFileInputChange} />
+          <span>Choisir</span>
+          {props.sponsorLoading && 
+            <Spinner color="green" className="ml-10" />}
+        </FButton>}
+    </div>
+    <div className="form-field">
+      <span>2. Lien vers le site de la structure<sup>*</sup></span>
+      <InputGroup>
+        <EVAIcon className="input-icon" name="link-outline" fill={variables.noir}/>
+        <Input id="link" placeholder="https://www.agi-r.fr" value={props.link} onChange={props.handleChange} />
+      </InputGroup>
+    </div>
+    <div className="form-field">
+      <span>
+        3. Texte alternatif à l’image<sup>*</sup>
+        <EVAIcon className="float-right" id="alt-tooltip" name="info" fill={variables.noir} />
+        <Tooltip placement="top" isOpen={props.tooltipOpen} target="alt-tooltip" toggle={props.toggleTooltip}>
+          Ce texte est utile pour les personnes malvoyantes ou en cas de non-chargement de l’image.
+        </Tooltip>
+      </span>
+      <InputGroup>
+        <EVAIcon className="input-icon" name="eye-off-outline" fill={variables.noir}/>
+        <Input id="alt" placeholder="Agi’r" value={props.alt} onChange={props.handleChange} />
+      </InputGroup>
+    </div>
+    <div className="btn-footer">
+      <FButton onClick={props.toggleModal} type="default" className="mr-10">
+        Annuler
+      </FButton>
+      <FButton onClick={() => props.addSponsor(true)} type="validate" name="checkmark-circle-2-outline">
+        Valider
+      </FButton>
+    </div>
+  </Modal>
+)
 
 const mapStateToProps = (state) => {
   return {

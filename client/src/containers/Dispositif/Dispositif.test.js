@@ -30,7 +30,6 @@ const mockDispo = {
   "typeContenu" : "dispositif",
   status: "Inactif"
 };
-console.log("shallow is : ", shallow)
 const defaultProps = {
   t:k=>k,
   match,

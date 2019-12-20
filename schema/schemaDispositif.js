@@ -132,6 +132,14 @@ var dispositifSchema = mongoose.Schema({
 		unique: false,
     required: false
   },
+  responsable: {
+    type: String,
+    enum: ["Hugo", "Simon", "Nour", "Développeur", "Groot", "Starlord"]
+  },
+  internal_action: {
+    type: String,
+    enum: ["Prêt", "Contact", "Relire", "En attente", "Refaire", "URGENT", "Discuter", "Nouveau"]
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
 dispositifSchema.options.autoIndex = false

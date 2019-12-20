@@ -92,9 +92,9 @@ const CreationContent = props => (
               type="select" 
               id="administrateur" 
               name="structure" 
-              value={props.administrateur}
+              value={props.administrateur || ""}
               onChange = {props.handleChange}  >
-              <option value={undefined} key={0}>A définir</option>
+              <option value={""} key={0}>A définir</option>
               {props.users.map((user) =>
                 <option value={user._id} key={user._id}>
                   {user.username}

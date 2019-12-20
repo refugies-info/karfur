@@ -37,6 +37,10 @@ var eventSchema = mongoose.Schema({
 		type: String,
 		required: false
   },
+	time: {
+		type: String,
+		required: false
+  },
 },{ timestamps: { createdAt: 'created_at' }})
 
 module.exports = mongoose.model('Event', eventSchema);
