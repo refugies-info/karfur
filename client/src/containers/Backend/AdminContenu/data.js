@@ -6,7 +6,7 @@ export const table_contenu={
     hideOnPhone: false
    },{
     name: 'Titre',
-    order: 'titre',
+    order: 'titreCourt',
     hideOnPhone: false
    },{
     name: 'Structure',
@@ -82,3 +82,5 @@ export const status_mapping=[
 export const responsables = ["Hugo", "Simon", "Nour", "Développeur", "Groot", "Starlord"];
 
 export const internal_actions = ["Prêt", "Contact", "Relire", "En attente", "Refaire", "URGENT", "Discuter", "Nouveau"];
+
+export const status_sort_arr = ["En attente admin", "En attente", "En attente non prioritaire", "Brouillon", "Accepté structure", "Actif", "Rejeté structure", "Rejeté admin", "Supprimé", "Inactif" ];
