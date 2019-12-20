@@ -43,7 +43,7 @@ export class Toolbar extends React.Component {
   render() {
     const path = this.props.location.pathname || "";
     const { user, contributeur, traducteur, expertTrad, admin, membreStruct, t, windowWidth } = this.props;
-    const afficher_burger = admin && path.includes("/backend") && path.includes("/admin");
+    const afficher_burger = false && admin && path.includes("/backend") && path.includes("/admin"); //Hugo demande de ne plus afficher le burger, temporairement désactivé donc
     const afficher_burger_droite = path.includes("/traduction");
     const userImg = (user.picture || {}).secure_url || marioProfile;
     return(
