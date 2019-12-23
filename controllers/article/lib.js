@@ -202,6 +202,7 @@ function add_traduction(req, res) {
         }else{console.log(err); res.status(400).json({"text": "Erreur d'identification de l'article"})}
       })
     }else{
+      console.log('adding trad for review')
       return traduction.add_tradForReview(req,res)
     } 
   }
