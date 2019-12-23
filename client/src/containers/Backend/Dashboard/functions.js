@@ -49,7 +49,6 @@ const execute_search = async function(queries, sort, numElements){
   let date_min= new Date( Math.min.apply(null, data.map(arr => new Date(_.get(arr, "0.created_at", null))  ) ) );
   // date_min.setTime(date_min.getTime() - 1);
   const date_max=new Date( Math.max.apply(null, data.map(arr => new Date(_.get(arr, (arr.length - 1 ) + ".created_at", null))  ) ) ); 
-  console.log(date_min, date_max)
   let date_array = [],
     traffic_data = new Array(data.length).fill([]),
     dummy_date=null;

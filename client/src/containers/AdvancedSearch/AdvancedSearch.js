@@ -50,7 +50,13 @@ export class AdvancedSearch extends Component {
     window.scrollTo(0, 0);
   }
 
-  queryDispositifs = (query=null) => {
+  componentWillReceiveProps(nextProps){
+    if(nextProps.languei18nCode !== this.props.languei18nCode){
+      this.queryDispositifs(null, nextProps)
+    }
+  }
+
+  queryDispositifs = (query=null, props=this.props) => {
     this.setState({ showSpinner: true })
     query = query || this.state.recherche.filter(x => x.active && x.queryName!=='localisation').map(x => (
       x.queryName === "audienceAge" ? 
@@ -58,7 +64,7 @@ export class AdvancedSearch extends Component {
       {[x.queryName]: x.query}
     )).reduce((acc, curr) => ({...acc, ...curr}),{});
     const localisationSearch = this.state.recherche.find(x => x.queryName === 'localisation' && x.value);
-    API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', ...(!localisationSearch && {demarcheId: { $exists: false }}) }}).then(data_res => {
+    API.get_dispositif({query: {...query, ...this.state.filter, status:'Actif', ...(!localisationSearch && {demarcheId: { $exists: false }}) }, locale: props.languei18nCode}).then(data_res => {
       let dispositifs=data_res.data.data;
       if(query["tags.name"]){       //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
         dispositifs = dispositifs.sort((a,b)=> (a.tags.findIndex(x => x ? x.short === query["tags.name"] : 99) - b.tags.findIndex(x => x ? x.short === query["tags.name"] : 99)))
@@ -374,6 +380,7 @@ export const ResponsiveFooter = props => {
 const mapStateToProps = (state) => {
   return {
     dispositifs: state.dispositif.dispositifs,
+    languei18nCode: state.langue.languei18nCode,
   }
 }
 
