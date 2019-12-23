@@ -329,7 +329,7 @@ class SideTrad extends Component {
 
         <div className="langue-data">
           <i className={'mr-12 flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
-          <strong>Votre traduction en {(langue.langueFr || '').toLowerCase()}</strong>
+          <strong>{isExpert ? "La" : "Votre"} traduction en {(langue.langueFr || '').toLowerCase()}</strong>
           <div className="toolbar-spacer" />
         </div>
         <div className="content-data" id="body_texte_final">
