@@ -6,7 +6,7 @@ var uniqid = require('uniqid');
 const nodemailer = require("nodemailer");
 const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
-const {turnToFr, turnHTMLtoJSON, turnJSONtoHTML} = require('./functions');
+const {turnToLocalized, turnHTMLtoJSON, turnJSONtoHTML} = require('./functions');
 // const gmail_auth = require('./gmail_auth');
 
 //Réactiver ici si besoin
@@ -80,7 +80,8 @@ function get_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
-    let {query, sort, populate, limit, random} = req.body;
+    let {query, sort, populate, limit, random, locale} = req.body;
+    locale = locale || 'fr';
 
     if (!req.fromSite) {  //On n'autorise pas les populate en API externe
       populate = '';
@@ -102,7 +103,9 @@ function get_dispositif(req, res) {
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise.then((result) => {
       [].forEach.call(result, (dispositif) => { 
-        dispositif = turnToFr(dispositif);
+        console.log("before : ", dispositif.titreInformatif)
+        dispositif = turnToLocalized(dispositif, locale);
+        console.log("after : ", dispositif.titreInformatif)
         turnJSONtoHTML(dispositif.contenu);
       });
       res.status(200).json({
