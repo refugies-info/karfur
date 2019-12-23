@@ -131,6 +131,9 @@ export class Dispositif extends Component {
     if(((nextProps.match || {}).params || {}).id !== ((this.props.match || {}).params || {}).id){
       this._isMounted && this._initializeDispositif(nextProps);
     }
+    if(nextProps.languei18nCode !== this.props.languei18nCode){
+      this._isMounted && this._initializeDispositif(nextProps);
+    }
     const userQuery = querySearch(_.get(nextProps, "history.location.search", ""));
     if(userQuery && userQuery.age !== this.state.search.age && userQuery.ville !== this.state.search.ville){
       this._isMounted && this.setState({search: userQuery})
@@ -148,7 +151,7 @@ export class Dispositif extends Component {
     const checkingVariante = _.get(props, "location.state.checkingVariante"), textInput = _.get(props, "location.state.textInput");
     if(itemId){
       this.props.tracking.trackEvent({ action: 'readDispositif', label: "dispositifId", value : itemId });
-      return API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor participants'}).then(data_res => {
+      return API.get_dispositif({query: {_id: itemId},sort: {},populate: 'creatorId mainSponsor participants', locale: props.languei18nCode}).then(data_res => {
         let dispositif={...data_res.data.data[0]}; // console.log(dispositif);
         if(!dispositif || !dispositif._id){this._isMounted = false; return this.props.history.push("/")}
         const disableEdit = dispositif.status !== "Accepté structure" || props.translating
