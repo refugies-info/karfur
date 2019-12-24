@@ -92,9 +92,9 @@ const CreationContent = props => (
               type="select" 
               id="administrateur" 
               name="structure" 
-              value={props.administrateur}
+              value={props.administrateur || ""}
               onChange = {props.handleChange}  >
-              <option value={undefined} key={0}>A définir</option>
+              <option value={""} key={0}>A définir</option>
               {props.users.map((user) =>
                 <option value={user._id} key={user._id}>
                   {user.username}
@@ -163,7 +163,7 @@ const CreationContent = props => (
           <b>Texte alternatif à l’image</b>
           <InputGroup>
             <EVAIcon className="input-icon" name="eye-off-outline" fill={variables.noir}/>
-            <Input id="alt" placeholder="Agi’r" value={props.alt} onChange={props.handleChange} name="structure" />
+            <Input id="alt" placeholder="Agi’r" value={props.alt || ""} onChange={props.handleChange} name="structure" />
           </InputGroup>
         </div>
       </>}

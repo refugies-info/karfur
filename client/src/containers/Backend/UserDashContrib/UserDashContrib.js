@@ -17,7 +17,7 @@ import './UserDashContrib.scss';
 
 moment.locale('fr');
 
-class UserDashContrib extends Component {
+export class UserDashContrib extends Component {
   constructor(props) {
     super(props);
     this._isMounted = false;

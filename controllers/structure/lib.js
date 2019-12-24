@@ -5,7 +5,9 @@ const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
 
 async function add_structure(req, res) {
-  if (!req.body || (!req.body.nom && !req.body._id)) {
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || (!req.body.nom && !req.body._id)) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
@@ -50,7 +52,9 @@ function get_structure(req, res) {
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let {query, sort, populate, limit} = req.body;
-    if(populate && populate.constructor === Object){
+    if (!req.fromSite) {  //On n'autorise pas les populate en API externe
+      populate = '';
+    }else if(populate && populate.constructor === Object){
       populate.select = '-password';
     }else if(populate){
       populate={path:populate, select : '-password'};
@@ -72,8 +76,8 @@ function get_structure(req, res) {
 
     find.then((result) => {
       res.status(200).json({
-          "text": "Succès",
-          "data": result
+        "text": "Succès",
+        "data": result
       })
     }, (error) => {
       switch (error) {

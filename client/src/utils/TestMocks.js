@@ -2,7 +2,6 @@ var localStorageMock = (function() {
   var store = {
     token: process.env.REACT_APP_FAKE_TOKEN
   };
-
   return {
     getItem: function(key) {
       return store[key] || null;
@@ -19,6 +18,7 @@ var localStorageMock = (function() {
 Object.defineProperty(window, 'localStorage', {
   value: localStorageMock
 });
+global.localStorageMock = localStorageMock;
 
 Object.defineProperty(window.document, 'cookie', {
   writable: true,

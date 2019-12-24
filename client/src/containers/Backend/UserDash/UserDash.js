@@ -22,7 +22,7 @@ import variables from 'scss/colors.scss';
 
 moment.locale('fr');
 
-class UserDash extends Component {
+export class UserDash extends Component {
   state={
     showModal:{objectifs:false, traducteur: false, progression:false, defineUser: false}, 
     runJoyRide:false, //penser à le réactiver !!
@@ -42,31 +42,28 @@ class UserDash extends Component {
   componentDidMount() {
     this._isMounted = true;
     let user=this.props.user;
-    console.log(user)
     if(user && user.selectedLanguages && user.selectedLanguages.length > 0){
       API.get_langues({'_id': { $in: user.selectedLanguages}},{avancement: 1},'participants').then(data_langues => {
-        console.log(data_langues.data.data)
         const languesUser = data_langues.data.data;
         this._isMounted && this.setState({languesUser, isMainLoading: false}, () => {
           if(this.props.expertTrad){
-            this._isMounted && API.get_tradForReview({query: {'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"}, sort: {updatedAt: -1}}).then(data => { console.log(data.data.data);
+            this._isMounted && API.get_tradForReview({query: {'langueCible': { $in: this.state.languesUser.map(x => x.i18nCode)}, status: "En attente"}, sort: {updatedAt: -1}}).then(data => {
               this._isMounted && this.setState(pS => ({languesUser: pS.languesUser.map( x => ({...x, nbTrads: ((data.data.data || []).filter(y => y.langueCible === x.i18nCode) || []).length }) ) }))
             })
           }
           if(languesUser.some(x => x.langueBackupId)){
             this._isMounted && API.get_langues({'_id': { $in: languesUser.filter(x => x.langueBackupId).map(x => x.langueBackupId) } }).then(data => {
               const languesToPopulate = data.data.data;
-              this._isMounted && this.setState(pS => ({languesUser : pS.languesUser.map(x => x.langueBackupId ? {...x, langueBackupId: languesToPopulate.find(y => y._id === x.langueBackupId) } : x ) }), ()=> console.log(this.state.languesUser))
+              this._isMounted && this.setState(pS => ({languesUser : pS.languesUser.map(x => x.langueBackupId ? {...x, langueBackupId: languesToPopulate.find(y => y._id === x.langueBackupId) } : x ) }))
             })
           }
         })
       })
-      API.get_progression().then(data_progr => { console.log(data_progr.data.data)
+      API.get_progression().then(data_progr => { //console.log(data_progr.data.data)
         if(data_progr.data.data && data_progr.data.data.length>0)
           this._isMounted && this.setState({progression: data_progr.data.data[0]})
       })
-      console.log(user.traductionsFaites)
-      this._isMounted && API.get_tradForReview({query: {'_id': { $in: user.traductionsFaites}}, sort: {updatedAt: -1}}).then(data => { console.log(data.data.data)
+      this._isMounted && API.get_tradForReview({query: {'_id': { $in: user.traductionsFaites}}, sort: {updatedAt: -1}}).then(data => { //console.log(data.data.data)
         this._isMounted && this.setState({traductionsFaites: data.data.data})
       })
     }else{

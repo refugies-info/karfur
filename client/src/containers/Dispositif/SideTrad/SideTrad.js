@@ -253,11 +253,17 @@ class SideTrad extends Component {
       }
     })
     console.log(traduction)
+<<<<<<< HEAD
     if(traduction.hasBeenSkipped){
       const nbTraduits = this._countContents([traduction.translatedText]);
       const nbInit = (this._countContents(this.props.menu) + pointeurs.length - this.props.menu.length);
       traduction.avancement =  nbTraduits / nbInit;
     }
+=======
+    const nbTraduits = this._countContents([traduction.translatedText]);
+    const nbInit = (this._countContents(this.props.menu) + pointeurs.length - this.props.menu.length);
+    traduction.avancement =  nbTraduits / nbInit;
+>>>>>>> dev
     traduction.title= (this.props.content.titreMarque || "") + (this.props.content.titreMarque && this.props.content.titreInformatif ? " - " : "") + (this.props.content.titreInformatif || "");
 
     if(this.props.isExpert){
@@ -329,7 +335,7 @@ class SideTrad extends Component {
 
         <div className="langue-data">
           <i className={'mr-12 flag-icon flag-icon-' + langue.langueCode} title={langue.langueCode} id={langue.langueCode}></i>
-          <strong>Votre traduction en {(langue.langueFr || '').toLowerCase()}</strong>
+          <strong>{isExpert ? "La" : "Votre"} traduction en {(langue.langueFr || '').toLowerCase()}</strong>
           <div className="toolbar-spacer" />
         </div>
         <div className="content-data" id="body_texte_final">

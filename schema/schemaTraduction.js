@@ -75,7 +75,6 @@ var traductionSchema = mongoose.Schema({
 		unique: false,
 		required: false
   },
-  validatorId: { type: mongoose.Schema.ObjectId, ref: 'User' },
 },{ timestamps: { createdAt: 'created_at' }})
 
 traductionSchema.options.autoIndex = false

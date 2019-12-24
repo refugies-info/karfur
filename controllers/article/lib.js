@@ -17,11 +17,10 @@ let elementId=Math.floor(Math.random() * Math.floor(9999999));
 let nombreMots = 0;
 
 function add_article(req, res) {
-  if (!req.body || !req.body.title || !req.body.body) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.title || !req.body.body) {
+    return res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     //On transforme le html en JSON après l'avoir nettoyé
@@ -64,6 +63,9 @@ function get_article(req, res) {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let {query, locale, sort, populate, limit, random} = req.body;
     locale = locale || 'fr';
+    if (!req.fromSite) {  //On n'autorise pas les populate en API externe
+      populate = '';
+    }
     // console.log(query, locale, sort, populate, limit, random)
     let isStructure=false, structId=null;
     if(query._id && query._id.includes('struct_')){
@@ -116,21 +118,14 @@ function get_article(req, res) {
 }
 
 function add_traduction(req, res) {
-  if (!req.body || !req.body.articleId) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(400).json({
-      "text": "Requête invalide"
-    })
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.articleId) {
+    res.status(400).json({ "text": "Requête invalide" })
   }else if (!req.body.langueCible) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(401).json({
-      "text": "La langue n'est pas spécifiée"
-    })
+    res.status(401).json({ "text": "La langue n'est pas spécifiée" })
   }else if (!req.body.translatedText) {
-    //Le cas où la requête ne serait pas soumise ou nul
-    res.status(401).json({
-      "text": "Pas de contenu de traduction"
-    })
+    res.status(402).json({ "text": "Pas de contenu de traduction" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let locale=req.body.langueCible; //TODO :S'assurer que ce locale est autorisé 
@@ -207,16 +202,17 @@ function add_traduction(req, res) {
         }else{console.log(err); res.status(400).json({"text": "Erreur d'identification de l'article"})}
       })
     }else{
+      console.log('adding trad for review')
       return traduction.add_tradForReview(req,res)
     } 
   }
 }
 
 function remove_traduction(req, res) {
-  if (!req.body || !req.body.query) {
-    res.status(400).json({
-        "text": "Requête invalide"
-    })
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.query) {
+    return res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     const {query, locale} = req.body;

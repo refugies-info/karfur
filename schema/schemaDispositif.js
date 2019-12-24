@@ -74,11 +74,6 @@ var dispositifSchema = mongoose.Schema({
 		unique: false,
 		required: false
   },
-  avancement:{
-    type:Number,
-    required:false,
-    unique:false
-  },
   merci:{
     type:Object,
     required:false,
@@ -136,6 +131,14 @@ var dispositifSchema = mongoose.Schema({
     type: Boolean,
 		unique: false,
     required: false
+  },
+  responsable: {
+    type: String,
+    enum: ["Hugo", "Simon", "Nour", "Développeur", "Groot", "Starlord"]
+  },
+  internal_action: {
+    type: String,
+    enum: ["Prêt", "Contact", "Relire", "En attente", "Refaire", "URGENT", "Discuter", "Nouveau"]
   },
 },{ timestamps: { createdAt: 'created_at' }})
 

@@ -36,7 +36,9 @@ function get_themes(req, res) {
   var sort = req.body.sort;
   var populate = req.body.populate;
   if(populate){
-    if(populate.constructor === Object){
+    if (!req.fromSite) {  //On n'autorise pas les populate en API externe
+      populate = '';
+    }else if(populate.constructor === Object){
       populate.select = '-password';
     }else{
       populate={path:populate, select : '-password'};
