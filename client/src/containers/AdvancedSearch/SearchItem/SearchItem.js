@@ -10,7 +10,11 @@ import EVAIcon from '../../../components/UI/EVAIcon/EVAIcon';
 import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
 
-class SearchItem extends Component {
+export class SearchItem extends Component {
+  constructor(props) {
+    super(props);
+    this.selectParam = this.onPlaceSelected.bind(this); //Placé ici pour être reconnu par les tests unitaires
+  }
   state = {
     dropdownOpen: false,
     isMounted: false,
@@ -21,7 +25,7 @@ class SearchItem extends Component {
     this.setState({isMounted: true})
   }
 
-  onPlaceSelected = (place) => {
+  onPlaceSelected(place){
     this.setState({ville: place.formatted_address });
     this.props.selectParam(this.props.keyValue, place);
   }

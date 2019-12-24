@@ -5,7 +5,6 @@ import { Editor } from 'react-draft-wysiwyg';
 import { Card, CardBody, CardHeader, CardFooter, Button, FormGroup, Input, FormFeedback } from 'reactstrap';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-import SuccessModal from '../../components/Modals/SuccessModal/SuccessModal'
 import API from '../../utils/API';
 
 import './Editeur.css';
@@ -16,7 +15,6 @@ class Editeur extends Component {
   state = {
     contentState: convertFromRaw(content),
     title:'',
-    showModal: false,
     itemId:''
   };
 
@@ -40,7 +38,6 @@ class Editeur extends Component {
     API.add_article(article).then(data_res => {
       console.log(data_res.data.article._id);
       this.setState({
-        showModal:true,
         itemId: data_res.data.article._id
       })
     },function(error){
@@ -51,18 +48,11 @@ class Editeur extends Component {
 
   navigate_to_article = () => {
     this.props.tracking.trackEvent({ action: 'click', label: 'navigate_to_article', value : this.state.itemId });
-    this.setState({showModal:false})
   }
 
   render() {  
     return (
       <div className="animated fadeIn editeur">
-        {this.state.showModal &&
-          <SuccessModal 
-            show={this.state.showModal}
-            clicked={this.navigate_to_article}
-            article_id={this.state.itemId}
-            />}
         <Card className="full-page">
           <CardHeader>
             <FormGroup>

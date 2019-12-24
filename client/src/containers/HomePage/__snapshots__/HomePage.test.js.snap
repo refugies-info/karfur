@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HomePage testing component should match its reference snapshot 1`] = `
+exports[`HomePage should match its reference snapshot 1`] = `
 <div
   className="animated fadeIn homepage"
 >
@@ -182,7 +182,7 @@ exports[`HomePage testing component should match its reference snapshot 1`] = `
           <NavLink
             activeClassName="active"
             aria-current="page"
-            className="no-decoration"
+            className="no-decoration demarche-link"
             to="/advanced-search"
           >
             <Card
@@ -201,6 +201,7 @@ exports[`HomePage testing component should match its reference snapshot 1`] = `
                 tag="div"
               >
                 <FButton
+                  className="demarche-btn"
                   name="search-outline"
                   tag="button"
                   type="homebtn"

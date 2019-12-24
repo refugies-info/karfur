@@ -27,7 +27,7 @@ moment.locale('fr');
 
 const tables = [{name:'actions', component: ActionTable}, {name:'contributions', component: ContribTable}, {name:'members', component: MembersTable}];
 
-class UserDashStruct extends Component {
+export class UserDashStruct extends Component {
   constructor(props) {
     super(props);
     this._isMounted = false;
@@ -58,7 +58,6 @@ class UserDashStruct extends Component {
   componentDidMount() {
     this._isMounted = true;
     let user=this.props.user;
-    console.log(user)
     if(!user.structures || !user.structures.length > 0){ Swal.fire( 'Oh non', "Nous n'avons aucune information sur votre structure d'affiliation, vous allez être redirigé vers la page d'accueil", 'error').then(() => this.props.history.push("/") ); return; }
 
     this.initializeStructure();
@@ -85,7 +84,7 @@ class UserDashStruct extends Component {
     API.get_structure({_id: user.structures[0] }, {}, 'dispositifsAssocies').then(data => { //console.log(data.data.data[0]);
       if(data.data.data && data.data.data.length > 0){
         this.setState({structure:data.data.data[0], isMainLoading:false});
-        API.get_event({created_at : {"$gte": DateOffset(new Date(), 0, 0, -15) }, userId: {$in: ((data.data.data[0] || {}).membres || []).map(x => x.userId)}, action : {$ne: "idle"} }).then(data_res => { 
+        API.get_event({query: {created_at : {"$gte": DateOffset(new Date(), 0, 0, -15) }, userId: {$in: ((data.data.data[0] || {}).membres || []).map(x => x.userId)}, action : {$ne: "idle"} }}).then(data_res => { 
           this.setState(pS=>({structure: {...pS.structure, membres: (pS.structure.membres || []).map(y=> ({...y, connected: (data_res.data.data || []).some(z => z.userId === y.userId)}))   }}) );
         })
       }else{this.setState({structure:{noResults:true}})}
@@ -219,7 +218,6 @@ class UserDashStruct extends Component {
             show={this.state.showModal.editMember}
             toggle={()=>this.toggleModal("editMember")}
             user={user}
-            users={this.state.users}
             selected={this.state.selected}
             structure={structure}
             initializeStructure={this.initializeStructure}

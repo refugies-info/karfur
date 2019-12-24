@@ -5,8 +5,10 @@ const _ = require('lodash');
 
 
 function set_image(req, res) {
-  if (!req.files) {
-    res.status(400).json({ "text": "Requête invalide" })
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.files) {
+    return res.status(400).json({ "text": "Requête invalide" })
   } else {
     const values = Object.values(req.files)
     

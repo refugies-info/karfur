@@ -9,14 +9,12 @@ import EVAIcon from '../../UI/EVAIcon/EVAIcon';
 
 const languageModal = (props) => {
   const {t} = props;
+  // const languages = (props.languages || []).map(x => ({...x, avancement: (x.avancement + dispositifs.find(y =>)) / 2}))
   if(props.show){
     return(
       <Modal isOpen={props.show} toggle={props.toggle} className="language-modal">
         <ModalHeader toggle={props.toggle}>
           <span className="title">{t("Homepage.Choisir une langue", "Choisir une langue")}</span>
-          {/* <NavLink to={{ pathname: '/login', state: {traducteur: true, redirectTo:"/backend/user-dashboard"} }} className="subtitle">
-            Aider à traduire
-          </NavLink> */}
           <div className="sous-titre">{t("Homepage.site dispo", "Réfugiés.info est disponible dans les langues suivantes :")}</div>
         </ModalHeader>
         <ModalBody>

@@ -15,25 +15,9 @@ describe('App', () => {
     window.scrollTo = jsdomScroll;  // restore the jsdom alert
   });
 
-  it('should render correctly in "debug" mode', () => {
-    const component = shallow(<App debug />);
-  });
-
   it('should match its reference snapshot', () => {
     const wrapper = shallow(<App />)
   
     expect(wrapper).to.matchSnapshot()
   })
-
-  // it('renders welcome message', function() {
-  //   const wrapper = shallow(<App />); 
-  //   const welcome = <h1>Bienvenue dans le projet Karfu'R</h1>;
-  //   expect(wrapper.hasClass('hero-container')).to.equal(true);
-  // });
-
-  // it('calls componentDidMount', () => {
-  //   jest.spyOn(App.prototype, 'componentDidMount')
-  //   const wrapper = shallow(<App />)
-  //   expect(App.prototype.componentDidMount.mock.calls.length).to.be(1)
-  // })
 })

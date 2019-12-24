@@ -44,19 +44,6 @@ var audioSchema = mongoose.Schema({
     type: String,
     required: false
   },
-
-	// buffer: {
-	// 	type: Object,
-  //   required: false
-	// },
-	// text: {
-  //   type: String,
-  //   required: false
-  // },
-	// status: {
-	// 	type: String,
-	// 	required: false
-  // },
 },{ timestamps: { createdAt: 'created_at' }})
 
 // audioSchema.plugin(gridStore);
