@@ -99,6 +99,7 @@
     "recorder-js": "^1.0.7",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "signal-exit": "^3.0.2",
     "simple-line-icons": "^2.4.1",
     "socket.io-client": "^2.2.0",
     "stringquery": "^1.0.8",
