@@ -14,9 +14,9 @@ import {fetch_structures} from "../../../Store/actions/index";
 import './Admin.scss';
 import variables from 'scss/colors.scss';
 
-class Admin extends Component {
+export class Admin extends Component {
   state = {
-    activeTab: new Array(5).fill('1'),
+    activeTab: new Array(5).fill('0'),
     orderedLangues : [],
     roles : [],
     users:[],
@@ -124,6 +124,7 @@ class Admin extends Component {
   }
 
   toggleTab(tabPane, tab) {
+    console.log(tabPane, tab)
     const newArray = this.state.activeTab.slice()
     newArray[tabPane] = tab
     this.setState({
@@ -159,7 +160,7 @@ class Admin extends Component {
     })
   }
 
-  onSelect = (item) => {
+  onSelect = (item, switchTo = null) => {
     this.setState(item, ()=> console.log(this.state));
     if(item.user){
       this.setState({
@@ -167,6 +168,7 @@ class Admin extends Component {
         roles:[...this.state.roles.map((el) => { return { ...el, isChecked: item.user.roles.includes(el._id)}})],
       })
     }
+    switchTo && this.toggleTab(3, switchTo);
   }
 
   handleCheck = (event) => {
@@ -204,6 +206,13 @@ class Admin extends Component {
     }
   }
 
+  handleKeyPress = e => {
+    e.preventDefault();
+    if(e.keyCode === 9 && 1 * this.state.activeTab[3] < this.state.activeTab.length - 1){
+      this.toggleTab(3, (1 * this.state.activeTab[3] + 1).toString() )
+    }
+  }
+  
   handleBelongsChange = () => this.setState(pS => ({ structure: {...pS.structure, authorBelongs: !pS.structure.authorBelongs } }));
 
   handleSliderChange = (value, name) => {
@@ -312,18 +321,27 @@ class Admin extends Component {
 
   render() {
     return (
-      <div className="animated fadeIn admin">
+      <div className="animated fadeIn admin" onKeyDown={this.handleKeyPress}>
         <Row>
           <Col>
             <Nav tabs>
               <NavItem>
                 <NavLink
-                  active={this.state.activeTab[3] === '1'}
-                  onClick={() => { this.toggleTab(3, '1'); }}
+                  active={this.state.activeTab[3] === '0'}
+                  onClick={() => { this.toggleTab(3, '0'); }}
                 >
-                  <i className="icon-user"></i>
-                  <span className={this.state.activeTab[3] === '1' ? '' : 'd-none'}> Utilisateurs</span>
-                  {'\u00A0'}<Badge color="success">{this.state.users.length}</Badge>
+                  <EVAIcon name="file-add-outline" fill={variables.noir} className="mr-10" />
+                  <span className={this.state.activeTab[3] === '0' ? '' : 'd-none'}>Contenus</span>
+                  {'\u00A0'}<Badge color="dark">{(this.props.dispositifs || []).length}</Badge>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  active={this.state.activeTab[3] === '1'}
+                  onClick={() => { this.toggleTab(3, '1'); }} >
+                    <EVAIcon name="shopping-bag-outline" fill={variables.noir} className="mr-10" />
+                    <span className={this.state.activeTab[3] === '1' ? '' : 'd-none'}>Structures</span>
+                    {'\u00A0'}<Badge pill color="danger">{this.state.structures.length}</Badge>
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -331,29 +349,30 @@ class Admin extends Component {
                   active={this.state.activeTab[3] === '2'}
                   onClick={() => { this.toggleTab(3, '2'); }}
                 >
+                  <i className="icon-user"></i>
+                  <span className={this.state.activeTab[3] === '2' ? '' : 'd-none'}> Utilisateurs</span>
+                  {'\u00A0'}<Badge color="success">{this.state.users.length}</Badge>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  active={this.state.activeTab[3] === '3'}
+                  onClick={() => { this.toggleTab(3, '3'); }}
+                >
                   <i className="flag-icon flag-icon-fr" title="fr" id="fr"></i>
-                  <span className={this.state.activeTab[3] === '2' ? '' : 'd-none'}> 
+                  <span className={this.state.activeTab[3] === '3' ? '' : 'd-none'}> 
                     Langues
                   </span>
                   {'\u00A0'}<Badge pill color="warning">{this.state.langues.length}</Badge>
                 </NavLink>
               </NavItem>
-              {/* <NavItem>
-                <NavLink
-                  active={this.state.activeTab[3] === '3'}
-                  onClick={() => { this.toggleTab(3, '3'); }} >
-                    <i className="icon-pie-chart"></i>
-                    <span className={this.state.activeTab[3] === '3' ? '' : 'd-none'}> Thèmes</span>
-                    {'\u00A0'}<Badge pill color="info">{this.state.themes.length}</Badge>
-                </NavLink>
-              </NavItem> */}
               <NavItem>
                 <NavLink
                   active={this.state.activeTab[3] === '4'}
                   onClick={() => { this.toggleTab(3, '4'); }} >
-                    <EVAIcon name="shopping-bag-outline" fill={variables.noir} />
-                    <span className={this.state.activeTab[3] === '4' ? '' : 'd-none'}> Structures</span>
-                    {'\u00A0'}<Badge pill color="danger">{this.state.structures.length}</Badge>
+                    <EVAIcon name="pie-chart-outline" fill={variables.noir} className="mr-10" />
+                    <span className={this.state.activeTab[3] === '4' ? '' : 'd-none'}>Statistiques</span>
+                    {'\u00A0'}
                 </NavLink>
               </NavItem>
             </Nav>
@@ -382,12 +401,18 @@ class Admin extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    dispositifs: state.dispositif.dispositifs,
+  }
+}
+
 const mapDispatchToProps = {fetch_structures};
 
 export default track({
   page: 'Admin',
 }, { dispatchOnMount: true })(
-  connect(null, mapDispatchToProps)(
+  connect(mapStateToProps, mapDispatchToProps)(
     Admin
   )
 );

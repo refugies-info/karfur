@@ -54,6 +54,7 @@ var io = require('socket.io')(http);
 mongoose.set('debug', false);
 let auth = null;
 let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : MONGODB_PROD_URI; 
+console.log("NODE_ENV : ", NODE_ENV)
 // let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : DB_CONN; //ancienne connexion à Azure
 // auth = {user: USERNAME_DB, password: DB_PW};
 mongoose.connect(db_path, { useNewUrlParser: true }).then(() => { //, { ...(auth && {auth: auth}), useNewUrlParser: true }
@@ -77,7 +78,7 @@ app.use(formData.parse());
 app.use(cors());
 
 //Définition des CORS
-app.use(function (req, res, next) {
+app.use(function (_, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -85,21 +86,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Note this enable to store user session in memory
-// As a consequence, restarting the node process will wipe all sessions data
-// app.use(session({
-//   store: sessionstore.createSessionStore(),
-//   secret: 'demo secret', // put your own secret
-//   cookie: {},
-//   saveUninitialized: true,
-//   resave: true,
-// }));
+//Checking request origin
+app.use(function (req, _, next) {
+  req.fromSite = req.headers['site-secret'] === process.env.REACT_APP_SITE_SECRET;
+  next();
+});
 
-// app.use((req, res, next) => {
-//   res.locals.user = req.session.user;
-//   res.locals.data = req.session.data;
-//   next();
-// });
 
 //Définition du routeur
 var router = express.Router();

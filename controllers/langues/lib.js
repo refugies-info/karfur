@@ -3,7 +3,9 @@ const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
 
 function create_langues(req, res) {
-  if (!req.body || !req.body.langueFr) {
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.langueFr) {
     res.status(400).json({ "text": "Requête invalide" })
   } else if (!req.user || !req.user.roles.some(x => x.nom === "Admin")) {
     res.status(403).json({ "text": "L'utilisateur n'a pas les droits pour effectuer cette modification" })
@@ -33,7 +35,9 @@ function get_langues(req, res) {
   new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   var {query, sort, populate} = req.body;
   if(populate){
-    if(populate.constructor === Object){
+    if (!req.fromSite) {  //On n'autorise pas les populate en API externe
+      populate = '';
+    }else if(populate.constructor === Object){
       populate.select = '-password';
     }else{
       populate={path:populate, select : '-password'};

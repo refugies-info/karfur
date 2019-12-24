@@ -21,9 +21,9 @@ function login(req, res) {
     }, async (err, user) => {
       if (err) { console.log(err);
         res.status(500).json({ "text": "Erreur interne", data: err });
-      } else if(!user){ //On lui crée un nouveau compte
+      } else if(!user){ //On lui crée un nouveau compte si la demande vient du site seulement
         user = req.body;
-        if(user.cpassword && user.cpassword === user.password){
+        if(req.fromSite && user.cpassword && user.cpassword === user.password){
           if((passwdCheck(user.password) || {}).score < 1){
             return res.status(401).json({ "text": "Le mot de passe est trop faible" });
           }
@@ -53,8 +53,10 @@ function login(req, res) {
               })
             }
           })
+        }else if(!req.fromSite){
+          res.status(403).json({ "text": "Création d'utilisateur impossible par API" });
         }else{
-          res.status(401).json({ "text": "Les mots de passe ne correspondent pas" });
+          res.status(402).json({ "text": "Les mots de passe ne correspondent pas" });
         }
       } else {
         if (user.authenticate(req.body.password)) {
@@ -66,7 +68,7 @@ function login(req, res) {
               });
             }else if(user.authy_id){
               return authy.request_sms(user.authy_id, force=true, function (err_sms, result_sms) {
-                if(err_sms){console.log(err_sms);return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro'", data: err_sms });}
+                if(err_sms){console.log(err_sms);return res.status(204).json({ "text": "Erreur à l'envoi du code à ce numéro", data: err_sms });}
                 return res.status(501).json({ "text": "no code supplied" });
               });
             }else if(req.body.email && req.body.phone){
@@ -213,7 +215,7 @@ function change_password(req, res) {
       } else if( !user.authenticate(newUser.password) ){
         return res.status(401).json({ "text": "Echec d'authentification" })
       }else if( (passwdCheck(newUser.newPassword) || {}).score < 1 ){
-        return res.status(401).json({ "text": "Le mot de passe est trop faible" });
+        return res.status(402).json({ "text": "Le mot de passe est trop faible" });
       } else {
         user.password = passwordHash.generate(newUser.newPassword);
         user.save();
@@ -228,7 +230,9 @@ function change_password(req, res) {
 
 function reset_password(req, res) {
   const {username}=req.body;
-  if (!username) {
+  if (!req.fromSite) {
+    return res.status(405).json({ "text": "Requête bloquée par API" })
+  }else if (!username) {
     return res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({api: arguments.callee.name, action: {username}, userId: _.get(req, "userId"), roles: _.get(req, "user.roles")}).save()
@@ -273,7 +277,9 @@ function reset_password(req, res) {
 
 function set_new_password(req, res) {
   const {newPassword, cpassword, reset_password_token}=req.body;
-  if (!newPassword || !cpassword || !reset_password_token) {
+  if (!req.fromSite) {
+    return res.status(405).json({ "text": "Requête bloquée par API" })
+  }else if (!newPassword || !cpassword || !reset_password_token) {
     return res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
@@ -307,19 +313,22 @@ function set_new_password(req, res) {
 }
 
 function get_users(req, res) {
-  var query = req.body.query;
-  var sort = req.body.sort;
-  var populate = req.body.populate;
-
-  if(populate && populate.constructor === Object){
+  var {query, sort, populate} = req.body;
+  
+  if (!req.fromSite) {  //On n'autorise pas les populate en API externe
+    populate = '';
+  }else if(populate && populate.constructor === Object){
     populate.select = '-password';
   }else if(populate){
     populate={path:populate, select : '-password'};
   }else{populate='';}
   new DBEvent({action: {query, sort, populate}, userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
   
+  const select = ((req.user || {}).roles || []).some(x => x.nom === "Admin") ? undefined : 
+    req.fromSite ? "username roles last_connected email" : "username";
+
   var find = new Promise( (resolve, reject) => {
-    User.find(query).sort(sort).populate(populate).exec(function (err, result) {
+    User.find(query).sort(sort).populate(populate).select(select).exec(function (err, result) {
       if (err) {
         reject(500);
       } else {
@@ -335,7 +344,7 @@ function get_users(req, res) {
   find.then( (result) => {
     if(result){
       result.forEach((item) => {
-        item.password='Hidden';
+        if(item.password){item.password='Hidden';}
       });
     }
 

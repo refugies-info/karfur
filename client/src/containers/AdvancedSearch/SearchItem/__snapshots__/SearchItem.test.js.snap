@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchItem should match its reference snapshot 1`] = `
+<div
+  className="search-col"
+>
+  <span
+    className="mr-10"
+  >
+    SearchItem.Je cherche à
+  </span>
+  <Dropdown
+    active={false}
+    addonType={false}
+    className="display-inline-block"
+    direction="down"
+    inNavbar={false}
+    isOpen={false}
+    nav={false}
+    setActiveFromChild={false}
+    toggle={[Function]}
+  >
+    <DropdownToggle
+      aria-expanded={false}
+      aria-haspopup={true}
+      caret={true}
+      className="search-btn in-header "
+      color="secondary"
+      data-toggle="dropdown"
+      tag="div"
+    >
+      Tags.choisir un thème
+    </DropdownToggle>
+    <DropdownMenu
+      flip={true}
+      tag="div"
+    >
+      <div
+        className="options-wrapper"
+      >
+        <fSearchBtn
+          className="search-options color"
+          color="Français"
+          key="0"
+          onClick={[Function]}
+        >
+          Tags.apprendre le français
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Logement"
+          key="1"
+          onClick={[Function]}
+        >
+          Tags.me loger
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Insertion-pro"
+          key="2"
+          onClick={[Function]}
+        >
+          Tags.trouver un travail
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Formation-pro"
+          key="3"
+          onClick={[Function]}
+        >
+          Tags.apprendre un métier
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Études"
+          key="4"
+          onClick={[Function]}
+        >
+          Tags.faire des études
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Mobilité"
+          key="5"
+          onClick={[Function]}
+        >
+          Tags.me déplacer
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Bénévolat"
+          key="6"
+          onClick={[Function]}
+        >
+          Tags.aider une association
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Rencontre"
+          key="7"
+          onClick={[Function]}
+        >
+          Tags.rencontrer des gens
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Loisir"
+          key="8"
+          onClick={[Function]}
+        >
+          Tags.occuper mon temps libre
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Culture"
+          key="9"
+          onClick={[Function]}
+        >
+          Tags.découvrir la culture
+        </fSearchBtn>
+        <fSearchBtn
+          className="search-options color"
+          color="Santé"
+          key="10"
+          onClick={[Function]}
+        >
+          Tags.me soigner
+        </fSearchBtn>
+      </div>
+    </DropdownMenu>
+  </Dropdown>
+</div>
+`;

@@ -156,6 +156,8 @@ describe('mock async actions', () => {
 
     moxios.wait(function () {
       let request = moxios.requests.mostRecent()
+      console.log(!moxios.requests.mostRecent().config.url.includes("/dispositifs/get_dispositif") && moxios.requests)
+      expect(moxios.requests.mostRecent().config.url).to.contain("/dispositifs/get_dispositif")
       request.respondWith({
         status: 200,
         response: { data: fakeData }
@@ -163,7 +165,10 @@ describe('mock async actions', () => {
     })
 
     return store.dispatch(actions.fetch_dispositifs())
-      .then(() => expect(store.getActions()[0]).to.deep.equal(expectedAction) )
+      .then(() =>{ 
+        console.log(store.getActions(), expectedAction)
+        expect(store.getActions()[0]).to.deep.equal(expectedAction) 
+      })
   })
 
   it('should mock structures', () => {    

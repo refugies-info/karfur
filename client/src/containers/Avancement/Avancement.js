@@ -20,7 +20,7 @@ import variables from 'scss/colors.scss';
 moment.locale('fr');
 
 const jsUcfirst = string => {return string && string.length > 1 && (string.charAt(0).toUpperCase() + string.slice(1, string.length))}
-class Avancement extends Component {
+export class Avancement extends Component {
   state={
     mainView:true,
     title: diffData.all.title,

@@ -6,7 +6,7 @@ var uniqid = require('uniqid');
 const nodemailer = require("nodemailer");
 const DBEvent = require('../../schema/schemaDBEvent.js');
 const _ = require('lodash');
-const {turnToFr, turnHTMLtoJSON, turnJSONtoHTML} = require('./functions');
+const {turnToLocalized, turnHTMLtoJSON, turnJSONtoHTML} = require('./functions');
 // const gmail_auth = require('./gmail_auth');
 
 //Réactiver ici si besoin
@@ -30,8 +30,10 @@ var mailOptions = {
 const url = process.env.NODE_ENV === 'dev' ? "http://localhost:3000/" : process.env.NODE_ENV === 'quality' ? "https://agir-qa.herokuapp.com/" : "https://www.refugies.info/"
 
 function add_dispositif(req, res) {
-  if (!req.body || ((!req.body.titreInformatif) && !req.body.dispositifId)) {
-    res.status(400).json({ "text": "Requête invalide" })
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || ((!req.body.titreInformatif) && !req.body.dispositifId)) {
+    return res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
     let dispositif = req.body;
@@ -46,7 +48,7 @@ function add_dispositif(req, res) {
       promise=new Dispositif(dispositif).save();
     }
 
-    promise.then(data => {
+    return promise.then(data => {
       //Je rajoute le statut de contributeur à l'utilisateur
       if(!dispositif.dispositifId){
         Role.findOne({'nom':'Contrib'}).exec((err, result) => {
@@ -62,13 +64,13 @@ function add_dispositif(req, res) {
 
       _handleMailNotification(data);
 
-      res.status(200).json({
+      return res.status(200).json({
         "text": "Succès",
         "data": data
       })
     }).catch(err => {
       console.log(err);
-      res.status(500).json({"text": "Erreur interne", data: err})
+      return res.status(500).json({"text": "Erreur interne", data: err})
     })
   }
 }
@@ -78,9 +80,12 @@ function get_dispositif(req, res) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
-    let {query, sort, populate, limit, random} = req.body;
+    let {query, sort, populate, limit, random, locale} = req.body;
+    locale = locale || 'fr';
 
-    if(populate && populate.constructor === Object){
+    if (!req.fromSite) {  //On n'autorise pas les populate en API externe
+      populate = '';
+    }else if(populate && populate.constructor === Object){
       populate.select = '-password';
     }else if(populate){
       populate={path:populate, select : '-password'};
@@ -98,7 +103,7 @@ function get_dispositif(req, res) {
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise.then((result) => {
       [].forEach.call(result, (dispositif) => { 
-        dispositif = turnToFr(dispositif);
+        dispositif = turnToLocalized(dispositif, locale);
         turnJSONtoHTML(dispositif.contenu);
       });
       res.status(200).json({
@@ -127,7 +132,9 @@ function get_dispositif(req, res) {
 }
 
 function update_dispositif(req, res) {
-  if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
+  if (!req.fromSite) { 
+    return res.status(405).json({ "text": "Requête bloquée par API" }) 
+  } else if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
     res.status(400).json({ "text": "Requête invalide" })
   } else {
     new DBEvent({action: JSON.stringify(req.body), userId: _.get(req, "userId"), roles: _.get(req, "user.roles"), api: arguments.callee.name}).save()
