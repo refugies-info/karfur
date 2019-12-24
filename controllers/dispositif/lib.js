@@ -103,9 +103,7 @@ function get_dispositif(req, res) {
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise.then((result) => {
       [].forEach.call(result, (dispositif) => { 
-        console.log("before : ", dispositif.titreInformatif)
         dispositif = turnToLocalized(dispositif, locale);
-        console.log("after : ", dispositif.titreInformatif)
         turnJSONtoHTML(dispositif.contenu);
       });
       res.status(200).json({
