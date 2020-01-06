@@ -218,7 +218,7 @@ class Dashboard extends Component {
             <li>Score moyen des contenus : <b>{Math.round(avgScore * 100 * 100, 2)/100 + " %"}</b></li>
             <li>Pourcentage de traduction du site sur les langues actives  : <b>{Math.round(languesActives.reduce((acc, curr) => acc += (curr.avancement || 0), 0) / (languesActives.length || 1) * 100 * 100) / 100 + " %"}</b></li>
             <li>Pourcentage de traduction du contenu sur les langues actives  : <b>{Math.round(avancementContenu * 100 * 100, 2)/100 + " %"}</b></li>
-            <li>Temps moyen passé sur le site : <b>{averageTimeOnsite && ms(averageTimeOnsite || 0)}</b> - <i>A vérifier</i></li>
+            {/* <li>Temps moyen passé sur le site : <b>{averageTimeOnsite && ms(averageTimeOnsite || 0)}</b> - <i>A vérifier</i></li> */}
           </ul>
         </div>
         <Row>
