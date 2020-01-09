@@ -6,7 +6,7 @@ import CreationContent from "../../../../Frontend/Dispositif/CreationContent/Cre
 import './CreationSForm.scss'
 
 const creationTForm = (props) => {
-  let statuts = ['Actif', 'En attente', 'Inactif', 'Supprimé'];
+  const statuts = ['Actif', 'En attente', 'Inactif', 'Supprimé'];
   return(
     <Card>
       <CardHeader className="h1">
