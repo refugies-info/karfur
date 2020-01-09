@@ -124,7 +124,6 @@ export class Admin extends Component {
   }
 
   toggleTab(tabPane, tab) {
-    console.log(tabPane, tab)
     const newArray = this.state.activeTab.slice()
     newArray[tabPane] = tab
     this.setState({
@@ -321,7 +320,7 @@ export class Admin extends Component {
 
   render() {
     return (
-      <div className="animated fadeIn admin" onKeyDown={this.handleKeyPress}>
+      <div className="animated fadeIn admin">
         <Row>
           <Col>
             <Nav tabs>
