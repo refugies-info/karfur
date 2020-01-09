@@ -320,7 +320,7 @@ export class Admin extends Component {
 
   render() {
     return (
-      <div className="animated fadeIn admin">
+      <div className="animated fadeIn admin"> {/* onKeyDown={this.handleKeyPress} -- ne fonctionne pas, désactivé pour l'instant*/}
         <Row>
           <Col>
             <Nav tabs>
