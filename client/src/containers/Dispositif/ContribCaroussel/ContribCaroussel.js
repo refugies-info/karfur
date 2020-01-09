@@ -57,30 +57,32 @@ class ContribCaroussel extends Component {
     const maxL = reduced_contributeurs.length;
     
     const slides = reduced_contributeurs.map((item, key) => {
-      return (
-        <CarouselItem
-          onExiting={this.onExiting}
-          onExited={this.onExited}
-          className="caroussel-item"
-          key={key}
-        >
-          <div className="ligne">
-            {(item || []).map((contrib, subkey) => {
-              let contribImg= (contrib.picture || {}).secure_url || marioProfile;    
-              return (
-                <div className="card-wrapper" key={subkey}>
-                  <Card>
-                    <CardBody>
-                      <img className="people-img isAuthor" src={contribImg} alt="juliette"/>
-                      {contrib.username}
-                    </CardBody>
-                  </Card>
-                </div>
-              )
-            })}
-          </div>
-        </CarouselItem>
-      );
+      if(Array.isArray(item)){
+        return (
+          <CarouselItem
+            onExiting={this.onExiting}
+            onExited={this.onExited}
+            className="caroussel-item"
+            key={key}
+          >
+            <div className="ligne">
+              {(item || []).map((contrib, subkey) => {
+                const contribImg= (contrib.picture || {}).secure_url || marioProfile;    
+                return (
+                  <div className="card-wrapper" key={subkey}>
+                    <Card>
+                      <CardBody>
+                        <img className="people-img isAuthor" src={contribImg} alt="juliette"/>
+                        {contrib.username}
+                      </CardBody>
+                    </Card>
+                  </div>
+                )
+              })}
+            </div>
+          </CarouselItem>
+        );
+      }else{return false}
     });
     
     return(
