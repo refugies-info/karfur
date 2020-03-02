@@ -22,7 +22,13 @@ import { prepareDeleteContrib } from "../AdminContrib/functions";
 import { customCriteres } from "../../Dispositif/MoteurVariantes/data";
 import API from "../../../utils/API";
 import styled from "styled-components";
-import { StyledThead, StyledSort, StyledStatus, StyledTitle, StyledHeader } from "./StyledAdminContenu";
+import {
+  StyledThead,
+  StyledSort,
+  StyledStatus,
+  StyledTitle,
+  StyledHeader
+} from "./StyledAdminContenu";
 import produce from "immer";
 
 import "./AdminContenu.scss";
@@ -41,6 +47,8 @@ class AdminContenu extends Component {
   state = {
     dispositifs: [],
     deleted: false,
+    published: false,
+    draft: false,
     headers: table_contenu.headers
   };
 
@@ -49,8 +57,8 @@ class AdminContenu extends Component {
   }
 
   _initializeContrib = () => {
-    console.log('start fetch disp');
-    API.get_dispositif({ query: {}, populate: "creatorId mainSponsor"}).then(
+    console.log("start fetch disp");
+    API.get_dispositif({ query: {}, populate: "creatorId mainSponsor" }).then(
       data_res => {
         const dispositifs = [...data_res.data.data];
         console.log(dispositifs);
@@ -66,7 +74,7 @@ class AdminContenu extends Component {
                 (x.titreInformatif || ""),
               structure: _.get(
                 x,
-                "mainSponsor.acronyme",
+                "mainSponsor.nom",
                 _.get(x, "mainSponsor.nom", "")
               ),
               structureObj: _.get(x, "mainSponsor", {}),
@@ -82,7 +90,7 @@ class AdminContenu extends Component {
                   ...y,
                   structure: _.get(
                     y,
-                    "mainSponsor.acronyme",
+                    "mainSponsor.nom",
                     _.get(y, "mainSponsor.nom", "")
                   ),
                   structureObj: _.get(y, "mainSponsor", {}),
@@ -250,74 +258,103 @@ class AdminContenu extends Component {
   reorderOnTopPubblish = () => {
     this.setState(
       produce(draft => {
-          draft.dispositifs.sort((a,b) => {
-            if (a.status === 'Actif' && b.status === 'Actif') {
+        draft.published = !this.state.published;
+        if (!this.state.published) {
+          draft.dispositifs.sort((a, b) => {
+            if (a.status === "Actif" && b.status === "Actif") {
               return 0;
-            } else if (a.status === 'Actif' && b.status !== 'Actif') {
+            } else if (a.status === "Actif" && b.status !== "Actif") {
               return -1;
             } else {
               return 1;
             }
           });
+        }
       })
-  );
-
-  }
+    );
+  };
 
   reorderOnTopDraft = () => {
     this.setState(
       produce(draft => {
-          draft.dispositifs.sort((a,b) => {
-            if (a.status === 'Brouillon' && b.status === 'Brouillon') {
+        draft.draft = !this.state.draft;
+        if (!this.state.draft) {
+          draft.dispositifs.sort((a, b) => {
+            if (a.status === "Brouillon" && b.status === "Brouillon") {
               return 0;
-            } else if (a.status === 'Brouillon' && b.status !== 'Brouillon') {
+            } else if (a.status === "Brouillon" && b.status !== "Brouillon") {
               return -1;
             } else {
               return 1;
             }
           });
+        }
       })
-  );
-
-  }
+    );
+  };
 
   reorderOnTopDeleted = () => {
     this.setState(
       produce(draft => {
-          draft.deleted = true;
-          draft.dispositifs.sort((a,b) => {
-            if (a.status === 'Supprimé' && b.status === 'Supprimé') {
+        draft.deleted = !this.state.deleted;
+        if (!this.state.deleted) {
+          draft.dispositifs.sort((a, b) => {
+            if (a.status === "Supprimé" && b.status === "Supprimé") {
               return 0;
-            } else if (a.status === 'Supprimé' && b.status !== 'Supprimé') {
+            } else if (a.status === "Supprimé" && b.status !== "Supprimé") {
               return -1;
             } else {
               return 1;
             }
           });
+        }
       })
-  );
-
-  }
+    );
+  };
 
   render() {
     const { dispositifs, headers } = this.state;
+    console.log(this.state);
+    console.log(dispositifs);
     return (
       <div className="admin-contenu animated fadeIn">
         <StyledHeader>
-        <StyledTitle>
-          Publication des contenus
-        </StyledTitle>
-        <StyledSort>
-          <StyledStatus onClick={this.reorderOnTopPubblish} className={"status-pill bg-" + colorStatut("Publié")}>
-            {"Publié"}
-          </StyledStatus>
-          <StyledStatus onClick={this.reorderOnTopDraft} className={"status-pill bg-" + colorStatut("Brouillon")}>
-            {"Brouillons"}
-          </StyledStatus>
-          <StyledStatus onClick={this.reorderOnTopDeleted} className={"status-pill bg-" + colorStatut("Supprimé")}>
-            {"Supprimé"}
-          </StyledStatus>
-        </StyledSort>
+          <StyledTitle>Publication des contenus</StyledTitle>
+          <StyledSort>
+            <StyledStatus
+              onClick={this.reorderOnTopPubblish}
+              className={
+                "status-pill bg-" +
+                (this.state.published
+                  ? colorStatut("Publié")
+                  : colorStatut("Inactif"))
+              }
+            >
+              {"Publié"}
+            </StyledStatus>
+            <StyledStatus
+              onClick={this.reorderOnTopDraft}
+              className={
+                "status-pill bg-" +
+                (this.state.draft
+                  ? colorStatut("Brouillon")
+                  : colorStatut("Inactif"))
+              }
+            >
+              {"Brouillons"}
+            </StyledStatus>
+            <StyledStatus
+              onClick={this.reorderOnTopDeleted}
+              className={
+                "status-pill bg-" +
+                (this.state.deleted
+                  ? colorStatut("Supprimé")
+                  : colorStatut("Inactif"))
+              }
+            >
+              {"Supprimé"}
+            </StyledStatus>
+          </StyledSort>
         </StyledHeader>
         <Table responsive>
           <thead>
@@ -349,172 +386,177 @@ class AdminContenu extends Component {
               const bgColor =
                 (status_mapping.find(x => x.name === element.status) || {})
                   .color || "";
-              if (element.status === 'Supprimé' && !this.state.deleted) {
-                return
+              if (
+                (element.status === "Supprimé" && !this.state.deleted) ||
+                (element.status === "Actif" && !this.state.published) ||
+                (element.status === "Brouillon" && !this.state.draft)
+              ) {
+                return;
               } else {
-              return (
-                <tr key={key} className={bgColor ? "bg-" + bgColor : ""}>
-                  <td
-                    className="align-middle"
-                    onClick={() =>
-                      (element.children || []).length > 0 &&
-                      this.toggleExpanded(key)
-                    }
-                  >
-                    {(element.children || []).length > 0 && (
-                      <EVAIcon
-                        name={
-                          "chevron-" +
-                          (element.expanded ? "down" : "right") +
-                          "-outline"
+                return (
+                  <tr key={key} className={bgColor ? "bg-" + bgColor : ""}>
+                    <td
+                      className="align-middle"
+                      onClick={() =>
+                        (element.children || []).length > 0 &&
+                        this.toggleExpanded(key)
+                      }
+                    >
+                      {(element.children || []).length > 0 && (
+                        <EVAIcon
+                          name={
+                            "chevron-" +
+                            (element.expanded ? "down" : "right") +
+                            "-outline"
+                          }
+                          fill={variables.noir}
+                          className="mr-10"
+                        />
+                      )}
+                      <span
+                        className={
+                          (element.children || []).length === 0
+                            ? (element.type === "child" ? "super-" : "") +
+                              "decale-gauche"
+                            : ""
                         }
-                        fill={variables.noir}
-                        className="mr-10"
-                      />
-                    )}
-                    <span
-                      className={
-                        (element.children || []).length === 0
-                          ? (element.type === "child" ? "super-" : "") +
-                            "decale-gauche"
-                          : ""
-                      }
-                    >
-                      {element.typeContenu || "dispositif"}
-                    </span>
-                  </td>
-                  <td className="align-middle" id={"titre-" + key}>
-                    <NavLink
-                      to={
-                        "/" +
-                        (element.typeContenu || "dispositif") +
-                        "/" +
-                        element._id
-                      }
-                    >
-                      {element.titreCourt.substring(
-                        0,
-                        Math.min(
-                          element.titreCourt.length,
-                          maxDescriptionLength
+                      >
+                        {element.typeContenu || "dispositif"}
+                      </span>
+                    </td>
+                    <td className="align-middle" id={"titre-" + key}>
+                      <NavLink
+                        to={
+                          "/" +
+                          (element.typeContenu || "dispositif") +
+                          "/" +
+                          element._id
+                        }
+                      >
+                        {element.titreCourt.substring(
+                          0,
+                          Math.min(
+                            element.titreCourt.length,
+                            maxDescriptionLength
+                          )
+                        ) +
+                          (element.titreCourt.length > maxDescriptionLength
+                            ? "..."
+                            : "")}
+                      </NavLink>
+                    </td>
+                    <td
+                      className="align-middle cursor-pointer"
+                      onClick={() =>
+                        this.props.onSelect(
+                          { structure: element.structureObj },
+                          "1"
                         )
-                      ) +
-                        (element.titreCourt.length > maxDescriptionLength
-                          ? "..."
-                          : "")}
-                    </NavLink>
-                  </td>
-                  <td
-                    className="align-middle cursor-pointer"
-                    onClick={() =>
-                      this.props.onSelect(
-                        { structure: element.structureObj },
-                        "1"
-                      )
-                    }
-                  >
-                    {element.structure}
-                  </td>
-                  <td
-                    className={
-                      "align-middle petit-texte depuis color-" +
-                      (element.status === "Actif"
-                        ? "focus"
-                        : element.joursDepuis > 30
-                        ? "rouge"
-                        : element.joursDepuis > 10
-                        ? "orange"
-                        : "vert")
-                    }
-                  >
-                    {element.status === "Actif"
-                      ? "Publié"
-                      : moment(element.updatedAt).fromNow()}
-                  </td>
-                  <td className="align-middle">
-                    <StyledStatus
+                      }
+                    >
+                      {element.structure}
+                    </td>
+                    <td
                       className={
-                        "status-pill bg-" + colorStatut(element.status)
+                        "align-middle petit-texte depuis color-" +
+                        (element.status === "Actif"
+                          ? "focus"
+                          : element.joursDepuis > 30
+                          ? "rouge"
+                          : element.joursDepuis > 10
+                          ? "orange"
+                          : "vert")
                       }
                     >
-                      {element.status}
-                    </StyledStatus>
-                  </td>
-                  <td className="align-middle hideOnPhone">
-                    <Input
-                      type="select"
-                      id="responsable"
-                      value={element.responsable || ""}
-                      onChange={e => this.handleChange(e, key, element)}
-                    >
-                      <option value={""} key={-1}>
-                        Aucun
-                      </option>
-                      {responsables.map((respo, i) => (
-                        <option value={respo} key={i}>
-                          {respo}
+                      {element.status === "Actif"
+                        ? "Publié"
+                        : moment(element.updatedAt).fromNow()}
+                    </td>
+                    <td className="align-middle">
+                      <StyledStatus
+                        className={
+                          "status-pill bg-" + colorStatut(element.status)
+                        }
+                      >
+                        {element.status}
+                      </StyledStatus>
+                    </td>
+                    <td className="align-middle hideOnPhone">
+                      <Input
+                        type="select"
+                        id="responsable"
+                        value={element.responsable || ""}
+                        onChange={e => this.handleChange(e, key, element)}
+                      >
+                        <option value={""} key={-1}>
+                          Aucun
                         </option>
-                      ))}
-                    </Input>
-                  </td>
-                  <td className="align-middle hideOnPhone">
-                    <Input
-                      type="select"
-                      id="internal_action"
-                      value={element.internal_action || ""}
-                      onChange={e => this.handleChange(e, key, element)}
-                    >
-                      <option value={""} key={-1}>
-                        Aucun
-                      </option>
-                      {internal_actions.map((action, i) => (
-                        <option value={action} key={i}>
-                          {action}
+                        {responsables.map((respo, i) => (
+                          <option value={respo} key={i}>
+                            {respo}
+                          </option>
+                        ))}
+                      </Input>
+                    </td>
+                    <td className="align-middle hideOnPhone">
+                      <Input
+                        type="select"
+                        id="internal_action"
+                        value={element.internal_action || ""}
+                        onChange={e => this.handleChange(e, key, element)}
+                      >
+                        <option value={""} key={-1}>
+                          Aucun
                         </option>
-                      ))}
-                    </Input>
-                  </td>
-                  <td className="align-middle hideOnPhone">
-                    {(element.children || []).length || 0}
-                  </td>
-                  <td className="align-middle pointer fit-content">
-                    <FButton
-                      type="error"
-                      name="trash-outline"
-                      onClick={() => this.prepareDeleteContrib(element)}
-                    />
-                  </td>
-                  <td className="align-middle">
-                    <FButton
-                      tag={NavLink}
-                      to={
-                        "/" +
-                        (element.typeContenu || "dispositif") +
-                        "/" +
-                        element._id
-                      }
-                      type="light-action"
-                      name="eye-outline"
-                      fill={variables.noir}
-                    />
-                  </td>
-                  <td className="align-middle">
-                    <FButton
-                      type="validate"
-                      name="checkmark-outline"
-                      fill={variables.noir}
-                      onClick={() => this.update_status(element)}
-                    />
-                  </td>
-                  <Tooltip
-                    target={"titre-" + key}
-                    isOpen={element.tooltip}
-                    toggle={() => this.toggleTooltip(key)}
-                  >
-                    {element.titre}
-                  </Tooltip>
-                </tr>
-              );}
+                        {internal_actions.map((action, i) => (
+                          <option value={action} key={i}>
+                            {action}
+                          </option>
+                        ))}
+                      </Input>
+                    </td>
+                    <td className="align-middle hideOnPhone">
+                      {(element.children || []).length || 0}
+                    </td>
+                    <td className="align-middle pointer fit-content">
+                      <FButton
+                        type="error"
+                        name="trash-outline"
+                        onClick={() => this.prepareDeleteContrib(element)}
+                      />
+                    </td>
+                    <td className="align-middle">
+                      <FButton
+                        tag={NavLink}
+                        to={
+                          "/" +
+                          (element.typeContenu || "dispositif") +
+                          "/" +
+                          element._id
+                        }
+                        type="light-action"
+                        name="eye-outline"
+                        fill={variables.noir}
+                      />
+                    </td>
+                    <td className="align-middle">
+                      <FButton
+                        type="validate"
+                        name="checkmark-outline"
+                        fill={variables.noir}
+                        onClick={() => this.update_status(element)}
+                      />
+                    </td>
+                    <Tooltip
+                      target={"titre-" + key}
+                      isOpen={element.tooltip}
+                      toggle={() => this.toggleTooltip(key)}
+                    >
+                      {element.titre}
+                    </Tooltip>
+                  </tr>
+                );
+              }
             })}
           </tbody>
         </Table>
