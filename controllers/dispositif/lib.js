@@ -106,8 +106,7 @@ function get_dispositif(req, res) {
         { $sample : { size: 1 } }
       ]);
     }else{
-      console.log(query, sort, populate, limit);
-      promise = Dispositif.find(query).sort(sort).populate(populate).limit(limit)//.setOptions({explain: 'executionStats'});
+      promise = Dispositif.find(query).sort(sort).populate(populate).limit(limit).lean();
     }
     //console.log(dispo);
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));

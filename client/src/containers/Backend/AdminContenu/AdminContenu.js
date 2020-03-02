@@ -301,7 +301,6 @@ class AdminContenu extends Component {
 
   render() {
     const { dispositifs, headers } = this.state;
-    console.log(dispositifs);
     return (
       <div className="admin-contenu animated fadeIn">
         <StyledHeader>
