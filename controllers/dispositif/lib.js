@@ -9,20 +9,28 @@ const _ = require('lodash');
 const {turnToLocalized, turnHTMLtoJSON, turnJSONtoHTML} = require('./functions');
 // const gmail_auth = require('./gmail_auth');
 
-//Réactiver ici si besoin
+// const transporter = nodemailer.createTransport({
+//   // service: 'gmail',
+//   host: 'smtp.gmail.com',
+//   port: 465,
+//   secure: true,
+//   auth: {
+//     user: 'diairagir@gmail.com',
+//     pass: process.env.GMAIL_PASS
+//   },
+// });
+
 const transporter = nodemailer.createTransport({
-  // service: 'gmail',
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+  host: 'pro2.mail.ovh.net',
+  port: 587,
   auth: {
-    user: 'diairagir@gmail.com',
-    pass: process.env.GMAIL_PASS
+    user: 'nour@refugies.info',
+    pass: process.env.OVH_PASS
   },
 });
 
 var mailOptions = {
-  from: 'diairagir@gmail.com',
+  from: 'nour@refugies.info',
   to: process.env.NODE_ENV === "dev" ? "souflam007@yahoo.fr" : 'diairagir@gmail.com',
   subject: 'Administration Réfugiés.info'
 };
@@ -98,8 +106,9 @@ function get_dispositif(req, res) {
         { $sample : { size: 1 } }
       ]);
     }else{
-      promise=Dispositif.find(query).sort(sort).populate(populate).limit(limit)//.setOptions({explain: 'executionStats'});
+      promise = Dispositif.find(query).sort(sort).populate(populate).limit(limit).lean();
     }
+    //console.log(dispo);
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise.then((result) => {
       [].forEach.call(result, (dispositif) => { 
