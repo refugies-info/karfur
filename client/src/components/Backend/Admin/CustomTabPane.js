@@ -1,5 +1,5 @@
 import React from 'react';
-import {TabPane} from 'reactstrap';
+import {TabPane, TabContainer} from 'reactstrap';
 
 import UsersTab from './UsersTab/UsersTab';
 import LanguesTab from './LanguesTab/LanguesTab';
