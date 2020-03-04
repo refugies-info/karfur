@@ -79,11 +79,11 @@ const routes = [
   { path: '/backend/admin-contrib', name: 'AdminContrib', component: AdminContrib, restriction:['Admin']},
   { path: '/backend/admin-contenu', name: 'AdminContenu', component: AdminContenu, restriction:['Admin']},
 
-  { path: '/backend/user-dashboard', name: 'UserDash', component: UserDash, restriction:['User','Trad','ExpertTrad','Admin'] },
+  { path: '/backend/user-dashboard', name: 'Votre profil', component: UserDash, restriction:['User','Trad','ExpertTrad','Admin'] },
   { path: '/backend/user-dash-contrib', name: 'UserDashContrib', component: UserDashContrib, restriction:['Contrib','Admin'] },
   { path: '/backend/user-dash-structure', name: 'UserDashStruct', component: UserDashStruct, restriction:['Admin', 'hasStructure'] },
   { path: '/backend/user-form', name: 'UserForm', component: UserForm, restriction:['Trad','ExpertTrad','Admin']},
-  { path: '/backend/user-profile', name: 'UserProfile', component: UserProfile, restriction:['User','Trad','ExpertTrad','Admin'] },
+  { path: '/backend/user-profile', name: 'Profil', component: UserProfile, restriction:['User','Trad','ExpertTrad','Admin'] },
 ];
 
 const simplesRoutes = routes.map( x => ({path: x.path, name: x.name, restriction: x.restriction}))
