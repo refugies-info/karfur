@@ -292,6 +292,8 @@ export class Dispositif extends Component {
                 }
               }
             );
+            console.log(this.state);
+            document.title = this.state.content.titreMarque || this.state.content.titreInformatif ;
           //On va récupérer les vraies données des sponsors
           this._isMounted &&
             API.get_structure({
