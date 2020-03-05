@@ -79,7 +79,7 @@ const routes = [
   { path: '/backend/admin-contrib', name: 'AdminContrib', component: AdminContrib, restriction:['Admin']},
   { path: '/backend/admin-contenu', name: 'AdminContenu', component: AdminContenu, restriction:['Admin']},
 
-  { path: '/backend/user-dashboard', name: 'Votre profil', component: UserDash, restriction:['User','Trad','ExpertTrad','Admin'] },
+  { path: '/backend/user-dashboard', name: 'Espace Traduction', component: UserDash, restriction:['User','Trad','ExpertTrad','Admin'] },
   { path: '/backend/user-dash-contrib', name: 'UserDashContrib', component: UserDashContrib, restriction:['Contrib','Admin'] },
   { path: '/backend/user-dash-structure', name: 'UserDashStruct', component: UserDashStruct, restriction:['Admin', 'hasStructure'] },
   { path: '/backend/user-form', name: 'UserForm', component: UserForm, restriction:['Trad','ExpertTrad','Admin']},
