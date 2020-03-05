@@ -193,6 +193,9 @@ class Sponsors extends Component {
       this.props.addSponsor(this.state.mesStructures.find(x => x.checked));
       this.toggleModal();
     }
+    if (this.props.finalValidation) {
+      this.props.validate();
+    }
   };
 
   addSponsor = (asAdmin = false) => {
@@ -353,9 +356,8 @@ class Sponsors extends Component {
                     ? this.toggleModal("responsabilite")
                     : sponsors.length > 0 &&
                       admin &&
-                      this.toggleModal("img-modal")
-                }
-                }
+                      this.toggleModal("img-modal");
+                }}
               >
                 <EVAIcon
                   className="add-sign backgroundColor-darkColor"
@@ -612,7 +614,12 @@ class Sponsors extends Component {
             <FButton
               type="validate"
               name="checkmark"
-              onClick={() => this.toggleModal("envoye")}
+              onClick={() => {
+                this.toggleModal("envoye");
+                if (this.props.finalValidation) {
+                  this.props.validate();
+                }
+              }}
               className="push-right"
             >
               Ok !
