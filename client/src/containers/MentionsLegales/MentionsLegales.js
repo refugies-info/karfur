@@ -27,9 +27,9 @@ class MentionsLegales extends Component {
 
         <h2>Droit d’accès</h2>
 
-        <p>En application de la loi Informatique et liberté, vous disposez d’un droit d’accès, de rectification, de modification et de suppression concernant des données qui vous concernent personnellement. Ce droit peut être exercé par voie électronique à l’adresse email suivante : <a title="Email" href="mailto:contact@refugies.info">contact@refugies.info</a>
+        <p>En application de la loi Informatique et liberté, vous disposez d’un droit d’accès, de rectification, de modification et de suppression concernant des données qui vous concernent personnellement. Ce droit peut être exercé par voie électronique à l’adresse email suivante : <a title="Email" href="mailto:nour@refugies.info">nour@refugies.info</a>.
 
-        Ou par courrier postal, daté et signé, accompagné d'une copie d’un titre d’identité, à l'adresse suivante :
+        <br>Ou par courrier postal, daté et signé, accompagné d'une copie d’un titre d’identité, à l'adresse suivante :</br>
         <strong>Refugies.info Simon Karleskind / Garance</strong>
         Place Beauvau
         75800 Paris Cedex 08</p>
@@ -44,7 +44,7 @@ class MentionsLegales extends Component {
 
         <p>Tout le contenu de notre site, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos et icônes, sont la propriété exclusive de l'éditeur du site, à l’exception des marques, logos ou contenus appartenant à d’autres organisations.
 
-        Pour toute demande d’autorisation ou d’information, veuillez nous contacter par email : <a title="Email" href="mailto:contact@refugies.info">contact@refugies.info</a>. Des conditions spécifiques sont prévues pour la presse.</p>
+        Pour toute demande d’autorisation ou d’information, veuillez nous contacter par email : <a title="Email" href="mailto:nour@refugies.info">nour@refugies.info</a>. Des conditions spécifiques sont prévues pour la presse.</p>
 
 
         <h2>Hébergeur</h2>
