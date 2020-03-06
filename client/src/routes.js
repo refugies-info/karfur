@@ -31,14 +31,14 @@ import PolitiqueConfidentialite from './containers/PolitiqueConfidentialite/Poli
 
 const routes = [
   { path: '/', exact: true, name: 'home', restriction:[] },
-  { path: '/homepage', name: 'Page d\'accueil', component: HomePage, restriction:[] },
+  { path: '/homepage', name: 'Accueil', component: HomePage, restriction:[] },
   { path: '/welcome_parcours', name: 'Parcours d\'accueil', component: WelcomeParcours, restriction:[] },
   { path: '/parcours', name: 'Parcours détaillé', component: Parcours, restriction:[] },
 
   { path: '/articles', name: 'Articles', component: Articles, restriction:[] },
   { path: '/article/:id', exact: true, name: 'Article', component: Article, restriction:[] },
 
-  { path: '/advanced-search', name: 'Recherche Avancée', component: AdvancedSearch, restriction:[] },
+  { path: '/advanced-search', name: 'Recherche', component: AdvancedSearch, restriction:[] },
   { path: '/qui-sommes-nous', name: 'Qui sommes-nous ?', component: QuiSommesNous, restriction:[] },
   { path: '/comment-contribuer', name: 'Comment contribuer ?', component: CommentContribuer, restriction:[] },
   { path: '/mentions-legales', name: 'Mentions Légales', component: MentionsLegales, restriction:[] },
@@ -73,17 +73,17 @@ const routes = [
 
   { path: '/backend', exact:true, forceShow:true, name: 'Administration', component: Dashboard, restriction:['Admin'] },
   { path: '/backend/admin-dashboard', name: 'Dashboard', component: Dashboard, restriction:['Admin'] },
-  { path: '/backend/admin', name: 'Admin', component: Admin, restriction:['Admin'] },
+  { path: '/backend/admin', name: 'Administration', component: Admin, restriction:['Admin'] },
   { path: '/backend/chat', name: 'Chat', component: Chat, restriction:['Admin'] },
   { path: '/backend/admin-langues', name: 'AdminLangues', component: AdminLangues, restriction:['Admin']},
   { path: '/backend/admin-contrib', name: 'AdminContrib', component: AdminContrib, restriction:['Admin']},
   { path: '/backend/admin-contenu', name: 'AdminContenu', component: AdminContenu, restriction:['Admin']},
 
-  { path: '/backend/user-dashboard', name: 'Espace Traduction', component: UserDash, restriction:['User','Trad','ExpertTrad','Admin'] },
-  { path: '/backend/user-dash-contrib', name: 'UserDashContrib', component: UserDashContrib, restriction:['Contrib','Admin'] },
-  { path: '/backend/user-dash-structure', name: 'UserDashStruct', component: UserDashStruct, restriction:['Admin', 'hasStructure'] },
+  { path: '/backend/user-dashboard', name: 'Espace traduction', component: UserDash, restriction:['User','Trad','ExpertTrad','Admin'] },
+  { path: '/backend/user-dash-contrib', name: 'Espace rédaction', component: UserDashContrib, restriction:['Contrib','Admin'] },
+  { path: '/backend/user-dash-structure', name: 'Ma structure', component: UserDashStruct, restriction:['Admin', 'hasStructure'] },
   { path: '/backend/user-form', name: 'UserForm', component: UserForm, restriction:['Trad','ExpertTrad','Admin']},
-  { path: '/backend/user-profile', name: 'Profil', component: UserProfile, restriction:['User','Trad','ExpertTrad','Admin'] },
+  { path: '/backend/user-profile', name: 'Mon profil', component: UserProfile, restriction:['User','Trad','ExpertTrad','Admin'] },
 ];
 
 const simplesRoutes = routes.map( x => ({path: x.path, name: x.name, restriction: x.restriction}))
