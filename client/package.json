@@ -82,6 +82,7 @@
     "react-messenger-send-to-messenger": "^0.2.0",
     "react-moment": "^0.8.4",
     "react-notifications": "^1.4.3",
+    "react-player": "^1.15.2",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.2",
