@@ -143,7 +143,7 @@ var dispositifSchema = mongoose.Schema({
 },{ timestamps: { createdAt: 'created_at' }})
 
 //mongoose.set('useCreateIndex', true);
-dispositifSchema.options.createIndex = ({updatedAt: -1});
+//dispositifSchema.options.createIndex = ({updatedAt: -1});
 
 // Dispositif.collection.dropIndex('titreInformatif');
 
