@@ -98,6 +98,7 @@ export class Admin extends Component {
   shadowSelectedLanguages=[];
   
   componentDidMount (){
+    document.title = 'Contenus';
      API.get_roles({}).then(data_res => {
       this.setState({
         roles:data_res.data.data.map((el) => { return {...el, isChecked:false}}),
@@ -121,6 +122,20 @@ export class Admin extends Component {
     API.get_structure({},{}, 'createur').then(data_res => {
       this.setState({structures:data_res.data.data})
     })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.activeTab[3] !== this.state.activeTab[3]) {
+      if (this.state.activeTab[3] == 0) {
+        document.title = 'Contenus'
+      } else if (this.state.activeTab[3] == 1) {
+        document.title = 'Structures'
+      } else if (this.state.activeTab[3] == 2) {
+        document.title = 'Utilisateurs'
+      } else if (this.state.activeTab[3] == 3) {
+        document.title = 'Languages'
+      }
+    }
   }
 
   toggleTab(tabPane, tab) {
