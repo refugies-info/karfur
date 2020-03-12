@@ -38,7 +38,9 @@ export class Toolbar extends React.Component {
 
   toggle = () => this.setState((prevState) => ({ dropdownOpen: !prevState.dropdownOpen }));
 
-  navigateTo = route => this.props.history.push(route)
+  navigateTo = route => {
+    this.props.history.push(route)
+  }
 
   render() {
     const path = this.props.location.pathname || "";
@@ -87,7 +89,9 @@ export class Toolbar extends React.Component {
                 <DropdownItem onClick={()=>this.navigateTo("/backend/user-profile")}>{t("Toolbar.Mon profil", "Mon profil")}</DropdownItem>
                 {contributeur && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-contrib")}>{t("Toolbar.Espace rédaction", "Espace rédaction")}</DropdownItem>}
                 {(expertTrad || traducteur) && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dashboard")}>{t("Toolbar.Espace traduction", "Espace traduction")}</DropdownItem>}
-                {membreStruct && <DropdownItem onClick={()=>this.navigateTo("/backend/user-dash-structure")}>{t("Toolbar.Ma structure", "Ma structure")}</DropdownItem>}
+                {membreStruct && <DropdownItem onClick={()=>{
+                  this.navigateTo("/backend/user-dash-structure");
+                  }}>{t("Toolbar.Ma structure", "Ma structure")}</DropdownItem>}
                 {admin && <DropdownItem onClick={()=>this.navigateTo("/backend/admin")}>{t("Toolbar.Administration", "Administration")}</DropdownItem>}
                 <DropdownItem divider />
                 <NavLink to="/" onClick={this.disconnect}>
