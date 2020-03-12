@@ -10,6 +10,10 @@ const Tabs = styled.div`
   justify-content: space-evenly;
 `;
 
+const Tab = styled.button`
+
+`
+
 export const MediaModal = props => {
   return (
     <Modal
