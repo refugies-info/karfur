@@ -56,6 +56,7 @@ export class UserDashStruct extends Component {
   }
 
   componentDidMount() {
+   
     this._isMounted = true;
     let user=this.props.user;
     if(!user.structures || !user.structures.length > 0){ Swal.fire( 'Oh non', "Nous n'avons aucune information sur votre structure d'affiliation, vous allez être redirigé vers la page d'accueil", 'error').then(() => this.props.history.push("/") ); return; }
@@ -73,6 +74,13 @@ export class UserDashStruct extends Component {
       })
     })
     window.scrollTo(0, 0);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.structure !== prevState.structure) { 
+      document.title = this.state.structure.nom;
+    }
+
   }
 
   componentWillUnmount (){
