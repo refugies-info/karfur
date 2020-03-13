@@ -199,9 +199,12 @@ class Sponsors extends Component {
   };
 
   addSponsor = (asAdmin = false) => {
+    console.log("admin:", asAdmin);
     if (asAdmin) {
+      console.log("im admin");
       //Le cas où on rajoute plus d'un sponsor, en tant qu'admin
       if (_.isEmpty(this.props.sponsors) && this.props.finalValidation) {
+        console.log(this.state, 'here1');
         this.props.addSponsor({
           picture: { ...this.state.imgData },
           link: this.state.link,
@@ -211,6 +214,7 @@ class Sponsors extends Component {
         this.toggleModal();
         this.props.validate();
       } else {
+        console.log(this.state, 'hre 2');
         this.props.addSponsor({
           picture: { ...this.state.imgData },
           link: this.state.link,
@@ -239,6 +243,16 @@ class Sponsors extends Component {
     }
   };
 
+  addStructure = () => {
+    console.log(this.state, 'add structure');
+    this.setState({
+      imgData: this.state.selected.picture || {},
+      link: this.state.selected.link || '',
+      alt: '',
+    })
+    this.addSponsor();
+  }
+
   upcoming = () =>
     Swal.fire({
       title: "Oh non!",
@@ -266,6 +280,7 @@ class Sponsors extends Component {
     } = this.state;
 
     const modal = { name: "responsabilite" };
+    console.log(sponsors);
     return (
       <div className="sponsor-footer">
         <h5 className="color-darkColor">
@@ -499,7 +514,7 @@ class Sponsors extends Component {
               type="dark"
               name="paper-plane-outline"
               fill={variables.noir}
-              onClick={this.addSponsor}
+              onClick={this.addStructure}
               className="push-right"
             >
               Valider
