@@ -140,6 +140,11 @@ class Sponsors extends Component {
 
   selectItem = suggestion => {
     this.setState({ selected: suggestion });
+    this.setState({
+      imgData: suggestion.picture || {},
+      link: suggestion.link || '',
+      alt: '',
+    })
     this.toggleModal(suggestion.createNew ? "creation" : "etVous");
   };
 
@@ -243,7 +248,7 @@ class Sponsors extends Component {
     }
   };
 
-  addStructure = () => {
+/*   addStructure = () => {
     console.log(this.state, 'add structure');
     this.setState({
       imgData: this.state.selected.picture || {},
@@ -251,7 +256,7 @@ class Sponsors extends Component {
       alt: '',
     })
     this.addSponsor();
-  }
+  } */
 
   upcoming = () =>
     Swal.fire({
@@ -514,7 +519,7 @@ class Sponsors extends Component {
               type="dark"
               name="paper-plane-outline"
               fill={variables.noir}
-              onClick={this.addStructure}
+              onClick={this.addSponsor}
               className="push-right"
             >
               Valider
