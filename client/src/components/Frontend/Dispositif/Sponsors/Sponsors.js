@@ -89,7 +89,6 @@ class Sponsors extends Component {
 
     API.set_image(formData).then(data_res => {
       const imgData = data_res.data.data;
-      console.log(imgData);
       this.setState({
         imgData: {
           secure_url: imgData.secure_url,
@@ -204,12 +203,9 @@ class Sponsors extends Component {
   };
 
   addSponsor = (asAdmin = false) => {
-    console.log("admin:", asAdmin);
     if (asAdmin) {
-      console.log("im admin");
       //Le cas où on rajoute plus d'un sponsor, en tant qu'admin
       if (_.isEmpty(this.props.sponsors) && this.props.finalValidation) {
-        console.log(this.state, 'here1');
         this.props.addSponsor({
           picture: { ...this.state.imgData },
           link: this.state.link,
@@ -219,7 +215,6 @@ class Sponsors extends Component {
         this.toggleModal();
         this.props.validate();
       } else {
-        console.log(this.state, 'hre 2');
         this.props.addSponsor({
           picture: { ...this.state.imgData },
           link: this.state.link,
@@ -285,7 +280,6 @@ class Sponsors extends Component {
     } = this.state;
 
     const modal = { name: "responsabilite" };
-    console.log(sponsors);
     return (
       <div className="sponsor-footer">
         <h5 className="color-darkColor">

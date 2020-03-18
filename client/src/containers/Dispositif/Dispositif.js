@@ -170,7 +170,7 @@ export class Dispositif extends Component {
     checkingVariante: false,
     printing: false,
     didThank: false,
-    finalValidation: false,
+    finalValidation: false
   };
 
   componentDidMount() {
@@ -225,10 +225,23 @@ export class Dispositif extends Component {
         locale: props.languei18nCode
       })
         .then(data_res => {
-          let dispositif = { ...data_res.data.data[0] }; // console.log(dispositif);
+          let dispositif = { ...data_res.data.data[0] };
           if (!dispositif || !dispositif._id) {
             this._isMounted = false;
             return this.props.history.push("/");
+          }
+          if (
+            dispositif.status !== "Actif" &&
+            !this.props.admin &&
+            !this.props.user.contributions.includes(dispositif._id) &&
+            !this.props.user.structures.includes(dispositif.sponsors[0]._id)
+          ) {
+            if (_.isEmpty(this.props.user)) {
+              return this.props.history.push("/login");
+            } else {
+              this._isMounted = false;
+              return this.props.history.push("/");
+            }
           }
           const disableEdit =
             dispositif.status !== "Accepté structure" || props.translating;
@@ -292,7 +305,9 @@ export class Dispositif extends Component {
                 }
               }
             );
-            document.title = this.state.content.titreMarque || this.state.content.titreInformatif ;
+          document.title =
+            this.state.content.titreMarque ||
+            this.state.content.titreInformatif;
           //On va récupérer les vraies données des sponsors
           this._isMounted &&
             API.get_structure({
@@ -327,6 +342,10 @@ export class Dispositif extends Component {
           }
         })
         .catch(err => {
+          if (_.isEmpty(this.props.user)) {
+            this._isMounted = false;
+            return this.props.history.push("/login");
+          }
           console.log("Error: ", err.message);
           this._isMounted = false;
           return this.props.history.push("/");
@@ -631,6 +650,21 @@ export class Dispositif extends Component {
 
   onEditorStateChange = (editorState, key, subkey = null) => {
     let state = [...this.state.menu];
+    const contentState = editorState.getCurrentContent();
+    const selectionState = editorState.getSelection();
+    const rawContentState = convertToRaw(editorState.getCurrentContent());
+    const markup = convertToHTML(customConvertOption)(
+      editorState.getCurrentContent()
+    );
+    console.log(
+      "Menu State",
+      state,
+      contentState,
+      selectionState,
+      rawContentState,
+      markup,
+      rawContentState.blocks[1].data
+    );
     if (state.length > key) {
       if (subkey !== null && state[key].children.length > subkey) {
         state[key].children[subkey].editorState = editorState;
@@ -833,27 +867,25 @@ export class Dispositif extends Component {
     }));
   toggleDispositifValidateModal = () => {
     if (_.isEmpty(this.state.sponsors)) {
-      console.log(this.sponsors);
-      this.setState({finalValidation: true})
+      this.setState({ finalValidation: true });
       this.sponsors.current.toggleModal("responsabilite");
     } else {
       this.setState(prevState => ({
         showDispositifValidateModal: !prevState.showDispositifValidateModal,
-        finalValidation: false,
+        finalValidation: false
       }));
     }
   };
   toggleDispositifValidateModalFinal = () => {
-      this.setState(prevState => ({
-        showDispositifValidateModal: !prevState.showDispositifValidateModal,
-        finalValidation: false,
-      }));
+    this.setState(prevState => ({
+      showDispositifValidateModal: !prevState.showDispositifValidateModal,
+      finalValidation: false
+    }));
   };
 
   toggleFinalValidation = () => {
-    console.log('tooooooooogle');
-    this.setState({finalValidation: false});
-  }
+    this.setState({ finalValidation: false });
+  };
 
   toggleInputBtnClicked = () =>
     this.setState(prevState => ({
@@ -1318,7 +1350,9 @@ export class Dispositif extends Component {
             x.editorState &&
             x.editorState.getCurrentContent() &&
             x.editorState.getCurrentContent().getPlainText() !== ""
-              ? draftToHtml(convertToRaw(x.editorState.getCurrentContent()))
+              ? convertToHTML(customConvertOption)(
+                  x.editorState.getCurrentContent()
+                )
               : x.content
         },
         ...(inVariante && {
@@ -1333,8 +1367,8 @@ export class Dispositif extends Component {
               y.editorState &&
               y.editorState.getCurrentContent() &&
               y.editorState.getCurrentContent().getPlainText() !== "" && {
-                content: draftToHtml(
-                  convertToRaw(y.editorState.getCurrentContent())
+                content: convertToHTML(customConvertOption)(
+                  y.editorState.getCurrentContent()
                 )
               }),
             ...(inVariante && {
@@ -1357,6 +1391,7 @@ export class Dispositif extends Component {
         this.state.status !== "Brouillon" && { timeSpent: this.state.time }),
       autoSave: auto
     };
+    console.log(dispositif);
     dispositif.mainSponsor = _.get(dispositif, "sponsors.0._id");
     if (dispositif.typeContenu === "dispositif") {
       let cardElement =
@@ -1441,7 +1476,6 @@ export class Dispositif extends Component {
         dispositif.status = "En attente non prioritaire";
       }
     }
-    console.log(dispositif);
     API.add_dispositif(dispositif).then(data => {
       const newDispo = data.data.data;
       if (!auto && this._isMounted) {
@@ -1493,7 +1527,6 @@ export class Dispositif extends Component {
     });
 
   render() {
-    console.log(this.state.finalValidation);
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
@@ -2301,10 +2334,7 @@ const mapDispatchToProps = { fetch_dispositifs, fetch_user };
 export default track({
   page: "Dispositif"
 })(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-    null,
-    {forwardRef: true}
-  )(withTranslation()(windowSize(Dispositif)))
+  connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(
+    withTranslation()(windowSize(Dispositif))
+  )
 );
