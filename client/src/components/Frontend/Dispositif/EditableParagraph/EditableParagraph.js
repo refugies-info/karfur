@@ -8,9 +8,10 @@ import {
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorBlock } from "draft-js";
+import { EditorBlock, AtomicBlockUtils, EditorState } from "draft-js";
 import { Player } from "video-react";
 import { withTranslation } from "react-i18next";
+import insertAtomicBlockWithData from './insertAtomicBlockWithData';
 
 // import Backdrop from '../../../UI/Backdrop/Backdrop';
 import {
@@ -22,13 +23,21 @@ import {
   linkBtn
 } from "../../../../assets/figma"; //videoBtn
 import CustomOption from "./CustomOption/CustomOption";
-import MediaUpload from '../MediaUpload';
+import MediaUpload from "../MediaUpload";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 
 import "./EditableParagraph.scss";
 import variables from "scss/colors.scss";
+
+const styles = {
+  media: {
+  width: '100%',
+  // Fix an issue with Firefox rendering video controls
+  // with 'pre-wrap' white-space
+  whiteSpace: 'initial'
+},}
 
 const MyCustomBlock = props => (
   <div className="bloc-rouge">
@@ -68,6 +77,52 @@ const MyImageBlock = props => {
   }
 };
 
+const MyMediaBlock = props => {
+  const { block, contentState } = props;
+  const entity = contentState.getEntity(block.getEntityAt(0));
+  const data = entity.getData();
+  const type = entity.getType();
+  if (type === "image") {
+    const link = data.imageData.secure_url; 
+    return (
+      <div className="image-wrapper">
+        <img src={data.imageData.secure_url} />
+      </div>
+    );
+  }
+};
+
+const Audio = (props) => {
+  return <audio controls src={props.src} style={styles.media} />;
+};
+
+const Image = (props) => {
+  return <img src={props.src} style={styles.media} />;
+};
+
+const Video = (props) => {
+  return <video controls src={props.src} style={styles.media} />;
+};
+
+const Media = (props) => {
+  const entity = props.contentState.getEntity(
+    props.block.getEntityAt(0)
+  );
+  const {src} = entity.getData();
+  const type = entity.getType();
+
+  let media;
+  if (type === 'audio') {
+    media = <Audio src={src} />;
+  } else if (type === 'image') {
+    media = <Image src={src} />;
+  } else if (type === 'video') {
+    media = <Video src={src} />;
+  }
+
+  return media;
+};
+
 function myBlockRenderer(contentBlock) {
   const type = contentBlock.getType();
   if (type === "header-six") {
@@ -76,7 +131,8 @@ function myBlockRenderer(contentBlock) {
     };
   } else if (type === "atomic") {
     return {
-      component: MyImageBlock
+      component: Media,
+      editable: false,
     };
   }
   return undefined;
@@ -87,7 +143,7 @@ class EditableParagraph extends Component {
     tooltipOpen: false,
     isDropdownOpen: false,
     dropdownColor: new Array(4).fill("#FFFFFF"),
-    modalState: true,
+    modalState: true
   };
 
   toggle = () => this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
@@ -106,6 +162,32 @@ class EditableParagraph extends Component {
         <EVAIcon name="alert-triangle-outline" />
       </div>
     );
+  };
+
+  insertBlock = (type, data) => {
+    const { editorState } = this.props;
+    const contentState = editorState.getCurrentContent();
+    const contentStateWithEntity = contentState.createEntity(
+      type,
+      "IMMUTABLE",
+      {src: data}
+    );
+
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+
+    const newEditorState = EditorState.set(editorState, {
+      currentContent: contentStateWithEntity
+    });
+
+    this.props.onEditorStateChange(
+      AtomicBlockUtils.insertAtomicBlock(
+        newEditorState,
+        entityKey,
+        " ",
+      ),
+      this.props.keyValue,
+      this.props.subkey,
+    )
   };
 
   render() {
@@ -133,9 +215,8 @@ class EditableParagraph extends Component {
             }
             editorState={props.editorState}
             toolbarCustomButtons={[
-              <CustomOption editorState={props.editorState} />,
-              <MediaUpload modalState={this.state.modalState}/>,
-              <CustomOption editorState={props.editorState} />,
+              <MediaUpload modalState={this.state.modalState} insertBlock={this.insertBlock} />,
+              <CustomOption editorState={props.editorState} />
             ]}
             blockRendererFn={myBlockRenderer}
             stripPastedStyles
@@ -143,7 +224,7 @@ class EditableParagraph extends Component {
               locale: this.props.i18n.language
             }}
             toolbar={{
-              options: ["inline", "list", "image", "link"], //, 'embedded'
+              options: ["inline", "list", "link"], //, 'embedded'
               inline: {
                 inDropdown: false,
                 options: ["bold", "italic", "underline"],
@@ -161,20 +242,20 @@ class EditableParagraph extends Component {
                 className: "bloc-gauche-list blc-gh",
                 unordered: { icon: listBtn, className: "list-btn" }
               },
-              /*  image:{
+  /*             image: {
                 className: "bloc-droite-image",
                 icon: imgBtn,
                 urlEnabled: true,
-                uploadEnabled:true,
-                uploadCallback: uploadImageCallBack, 
+                uploadEnabled: true,
+                uploadCallback: uploadImageCallBack,
                 alignmentEnabled: true,
                 alt: { present: true, mandatory: false },
                 previewImage: true
               }, */
-              image: {
+              /*   image: {
                 component: this.Button
                 //uploadCallback: uploadImageCallBack,
-              },
+              }, */
               // embedded:{
               //   className: "bloc-droite-embedded",
               //   icon: videoBtn
@@ -182,7 +263,7 @@ class EditableParagraph extends Component {
               link: {
                 inDropdown: false,
                 options: ["link"],
-                className: "bloc-droite-link blc-dr",
+                className: "bloc-gauche-inline blc-gh",
                 link: { icon: linkBtn, className: "btn-link" },
                 defaultTargetOption: "_blank",
                 showOpenOptionOnHover: true
@@ -337,16 +418,13 @@ const AddModuleBtn = props => {
 
 function uploadImageCallBack(file) {
   return new Promise((resolve, reject) => {
-    console.log(file);
     //On l'envoie ensuite au serveur
     const formData = new FormData();
     formData.append(0, file);
-    console.log(formData);
     API.set_image(formData)
       .then(data_res => {
         let response = data_res.data.data;
         response.link = response.secure_url;
-        console.log(response);
         resolve({ data: response });
       })
       .catch(e => {
