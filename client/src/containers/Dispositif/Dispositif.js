@@ -1325,16 +1325,6 @@ export class Dispositif extends Component {
     });
   };
 
-<<<<<<< HEAD
-  valider_dispositif = (status='En attente', auto=false) => {
-    if(!auto && !this.verifierDemarche()){return};
-    if(auto && this.state.disableEdit){return};
-    this.setState({isDispositifLoading: !auto});
-    let content = {...this.state.content};
-    const uiArray = {...this.state.uiArray}, inVariante= this.state.inVariante;
-    Object.keys(content).map( k => content[k] = h2p(content[k]));
-    if(auto && !Object.keys(content).some(k => content[k] && content[k] !== contenu[k])){return};
-=======
   valider_dispositif = (status = "En attente", auto = false) => {
     if (!auto && !this.verifierDemarche()) {
       return;
@@ -1350,7 +1340,6 @@ export class Dispositif extends Component {
     ) {
       return;
     }
->>>>>>> qa
     let dispositif = {
       ...content,
       contenu: [...this.state.menu].map((x, i) => ({
