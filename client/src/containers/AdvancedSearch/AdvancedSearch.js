@@ -157,8 +157,10 @@ export class AdvancedSearch extends Component {
   }
 
   filter_content = filtre => {
+    console.log('biaaaatch');
     const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
     const activeFiltre = this.state.activeFiltre === filtre.name ? "" : filtre.name;
+    console.log(filter, activeFiltre);
     this.setState({filter, activeFiltre }, () => this.queryDispositifs());
   }
 

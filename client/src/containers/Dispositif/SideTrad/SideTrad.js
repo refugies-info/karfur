@@ -56,6 +56,7 @@ class SideTrad extends Component {
   }
 
   goChange = (isNext=true, fromFn=true) => {
+    console.log('inside go change');
     if(isNext && fromFn){this.setState({hasBeenSkipped: true})}
     const {pointeurs, currIdx, currSubIdx} = this.state;
     if(currIdx > this.props.menu.length - 1){this._endingFeedback(); return;}
@@ -252,9 +253,12 @@ class SideTrad extends Component {
         [node] : value,
       }
     })
-    console.log(traduction)
     const nbTraduits = this._countContents([traduction.translatedText]);
     const nbInit = (this._countContents(this.props.menu) + pointeurs.length - this.props.menu.length);
+    //const nbInit = this._countContents([traduction.initialText]);
+    console.log(this._countContents([traduction.translatedText]), this._countContents(this.props.menu), this._countContents([traduction.initialText]));
+    console.log(nbTraduits, nbInit, traduction);
+    console.log(pointeurs, this.props.menu);
     traduction.avancement =  nbTraduits / nbInit;
     traduction.title= (this.props.content.titreMarque || "") + (this.props.content.titreMarque && this.props.content.titreInformatif ? " - " : "") + (this.props.content.titreInformatif || "");
 
