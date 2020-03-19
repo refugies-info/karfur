@@ -1,7 +1,7 @@
 import React, { Component, Suspense }  from 'react';
 import i18n from '../../i18n';
 import { withTranslation } from 'react-i18next';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import DirectionProvider, { DIRECTIONS } from 'react-with-direction/dist/DirectionProvider';
 import track from 'react-tracking';
 // import { AppAside, AppFooter } from '@coreui/react';
@@ -45,6 +45,13 @@ export class Layout extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.ttsActive !== this.props.ttsActive && !this.props.ttsActive) {
       this.forceStopAudio();
+    }
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      routes.map((item) => {
+        if (item.path === this.props.location.pathname) {
+          document.title = item.name
+        }
+      })
     }
   }
 
@@ -161,6 +168,6 @@ export default track({
         layout: 'Layout',
     }, { dispatchOnMount: true })(
       connect(mapStateToProps, mapDispatchToProps)(
-        withTranslation()(Layout)
+        withRouter(withTranslation()(Layout))
       )
     );

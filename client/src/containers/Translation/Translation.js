@@ -250,10 +250,11 @@ export class TranslationHOC extends Component {
       }
     }
     traduction = {...traduction, ...tradData};
-    console.log(traduction)
+    console.log('we are here baby', traduction, 'we are here baby');
     API.add_traduction(traduction).then((data) => {
       traduction._id = (data.data.data || {})._id;
       this.setState({traduction});
+      console.log(traduction.avancement);
       if(traduction.avancement === 1){
         Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000})
         this._isMounted && this.setState({disableBtn: false});

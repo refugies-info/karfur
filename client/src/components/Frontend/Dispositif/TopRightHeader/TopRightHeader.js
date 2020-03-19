@@ -43,7 +43,7 @@ const topRightHeader = (props) => {
           <CardBody className="telecommande">
             <FSwitch content="Consignes" checked={props.withHelp} onClick={props.toggleHelp} />
             <FButton className="savebtn" type="light-action" name="save-outline" onClick={()=>props.valider_dispositif('Brouillon')}>Brouillon</FButton>
-            <FButton className="validate savebtn" name="checkmark" onClick={props.toggleDispositifValidateModal}>Publier</FButton>
+            <FButton className="validate savebtn" name="checkmark" onClick={props.toggleDispositifValidateModal}>Valider</FButton>
           </CardBody>
           <CardFooter className="helpbtn cursor-pointer" onClick={props.toggleDispositifCreateModal}>
             <EVAIcon className="mr-8" name="question-mark-circle" viewBox="0 0 20 20" />
