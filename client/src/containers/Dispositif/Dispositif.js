@@ -663,7 +663,7 @@ export class Dispositif extends Component {
       selectionState,
       rawContentState,
       markup,
-      rawContentState.blocks[1].data
+      //rawContentState.blocks[1].data
     );
     if (state.length > key) {
       if (subkey !== null && state[key].children.length > subkey) {
