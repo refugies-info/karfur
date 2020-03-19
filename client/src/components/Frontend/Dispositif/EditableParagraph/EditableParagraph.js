@@ -131,8 +131,8 @@ function myBlockRenderer(contentBlock) {
     };
   } else if (type === "atomic") {
     return {
-      component: Media,
-      editable: false,
+      component: MyImageBlock,//Media,
+      //editable: false,
     };
   }
   return undefined;
@@ -215,7 +215,7 @@ class EditableParagraph extends Component {
             }
             editorState={props.editorState}
             toolbarCustomButtons={[
-              <MediaUpload modalState={this.state.modalState} insertBlock={this.insertBlock} />,
+             // <MediaUpload modalState={this.state.modalState} insertBlock={this.insertBlock} />,
               <CustomOption editorState={props.editorState} />
             ]}
             blockRendererFn={myBlockRenderer}
@@ -242,7 +242,7 @@ class EditableParagraph extends Component {
                 className: "bloc-gauche-list blc-gh",
                 unordered: { icon: listBtn, className: "list-btn" }
               },
-  /*             image: {
+              image: {
                 className: "bloc-droite-image",
                 icon: imgBtn,
                 urlEnabled: true,
@@ -251,7 +251,7 @@ class EditableParagraph extends Component {
                 alignmentEnabled: true,
                 alt: { present: true, mandatory: false },
                 previewImage: true
-              }, */
+              },
               /*   image: {
                 component: this.Button
                 //uploadCallback: uploadImageCallBack,
