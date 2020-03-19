@@ -98,6 +98,7 @@ export class Admin extends Component {
   shadowSelectedLanguages=[];
   
   componentDidMount (){
+    document.title = 'Contenus';
      API.get_roles({}).then(data_res => {
       this.setState({
         roles:data_res.data.data.map((el) => { return {...el, isChecked:false}}),
@@ -121,6 +122,20 @@ export class Admin extends Component {
     API.get_structure({},{}, 'createur').then(data_res => {
       this.setState({structures:data_res.data.data})
     })
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.activeTab[3] !== this.state.activeTab[3]) {
+      if (this.state.activeTab[3] == 0) {
+        document.title = 'Contenus'
+      } else if (this.state.activeTab[3] == 1) {
+        document.title = 'Structures'
+      } else if (this.state.activeTab[3] == 2) {
+        document.title = 'Utilisateurs'
+      } else if (this.state.activeTab[3] == 3) {
+        document.title = 'Languages'
+      }
+    }
   }
 
   toggleTab(tabPane, tab) {
@@ -268,7 +283,7 @@ export class Admin extends Component {
     });
   }
 
-/*   preTraitementStruct = () => {
+   preTraitementStruct = () => {
     if(!this.state.structure.nom || !this.state.structure.contact || (!this.state.structure.mail_contact && !this.state.structure.phone_contact)){Swal.fire( {title: 'Oh non!', text: 'Certaines informations sont manquantes', type: 'error', timer: 1500 }); return;}
     let struct = {...this.state.structure};
     let membres = struct.membres || [];
@@ -291,7 +306,7 @@ export class Admin extends Component {
     console.log(this.state.structure)
     this.setState({structure : {...this.state.structure, membres: membres, createur: (this.state.structure.createur || {})._id }}, 
       () => this.onValidate('structure'));
-  } */
+  }
 
   onValidate = (tab) => {
     API['create_'+tab](this.state[tab]).then(data => {
