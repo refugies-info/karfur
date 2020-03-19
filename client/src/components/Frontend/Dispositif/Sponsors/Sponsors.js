@@ -27,7 +27,7 @@ import _ from "lodash";
 
 import "./Sponsors.scss";
 import variables from "scss/colors.scss";
-
+//ch
 class Sponsors extends Component {
   state = {
     showModals: [
