@@ -385,6 +385,7 @@ class SideTrad extends Component {
           x[p] !== "undefined" &&
           x[p] !== "<p>null</p>" &&
           x[p] !== "<p><br></p>" &&
+          x[p] !== "<br>" &&
           type !== "cards" 
         ) {
           nbChamps += 1;
