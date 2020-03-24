@@ -86,7 +86,10 @@
     "membre": "اعضای",
     "notification": "اطلاعیه}}",
     "personne informée": "هیچ کس باخبر",
-    "Mes traductions": "ترجمه های من"
+    "Mes traductions": "ترجمه های من",
+    "Commencer à rédiger": "شروع به نوشتن کنید",
+    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants": "برای بهبود و غنی سازی پلتفرم لطفا محتوی جدید را پیشنهاد دهید و یا به تصحیح و به روزرسانی مطالب موجود کومک و همکاري نماید.",
+    "Ici, vous pourrez accéder à vos contributions": "در اینجا می توانید به مشارکت های خود دسترسی پیدا کنید"
   },
   "UserProfile": {
     "Pseudonyme": "نام مستعار:",
@@ -186,6 +189,7 @@
     "Loisir": "فعالیت های دلپسند دراوقات فراغت",
     "Culture": "فرهنگ",
     "Santé": "صحت",
+    "Autre": "دیگر",
     "apprendre le français": "آموختن زبان فرانسوی",
     "me loger": "جای سکونت پیدا کردن",
     "trouver un travail": "پیدا کردن شغل",
@@ -236,6 +240,7 @@
     "Actif": "فعال",
     "Supprimé": "حذف شده",
     "Supprimée": "حذف کردن",
+    "Rejetée": "رد",
     "Accepté structure": "ساختار پذیرفته شده",
     "En attente admin": "در انتظار مدیر",
     "En attente non prioritaire": "در انتظار بدون اولویت",
@@ -369,7 +374,23 @@
     "Ajouter un thème": "یک موضوع اضافه کنید",
     "réfugiés": "پناهندگان (مهاجرین)",
     "Localisation": "محل (موقع)",
-    "Tout public": "همه"
+    "Tout public": "همه",
+    "Situation familiale": "وضعیت خانواده",
+    "Situation d’hébergement": "وضعیت خانه",
+    "Sexe": "جنس",
+    "Les réfugiés statutaires": "پناهندگان قانونی",
+    "Célibataire": "مجرد",
+    "En concubinage": "در زندگی مشترک با کسي",
+    "Marié": "متزوج (متعاهل)",
+    "Sans enfants": "بدون (اطفال) بچه ها",
+    "Avec enfants": "با اطفال",
+    "Logé": "مستقر در(ساکن در)",
+    "Hébergé": "میزبانی (سکونت دادن)",
+    "Sans-abri": "بی خانمان (بی مسکن)",
+    "Les accompagnants": "همراهان",
+    "Les femmes": "زنان",
+    "Les hommes": "مردها",
+    "Les deux": "آن دو"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "آیا شما مطمئن هستید؟",
@@ -397,7 +418,8 @@
     "Participer à l'évolution de réfugiés-info": "درتکامل وبهبود réfugiés.info سهم بگیرید",
     "Demander des fonctionnalités": "تقاضاکردن امکانات و ممیزات",
     "Le projet": "پروژه",
-    "Vous cherchez ?": "شما در جستجوی چه هستید؟"
+    "Vous cherchez ?": "شما در جستجوی چه هستید؟",
+    "Centre d'aide": "مرکزکومکها"
   },
   "Retour à la recherche": "بازگشت به جستجو",
   "avec": "با",
@@ -447,6 +469,7 @@
   "Qui sommes-nous ?": "ما کی هستیم؟",
   "Comment contribuer ?": "چگونه مشارکت کرد؟",
   "Accessibilité": "دسترس",
+  "Politique de confidentialité": "سیاست رازداری",
   "Mentions légales": "اعلامیه های حقوقی",
   "Dispositif d'accompagnement": "برنامه همراهی و مرافقت",
   "Démarche administrative": "رویکرد اداری",
