@@ -46,10 +46,10 @@ if(process.env.NODE_ENV === 'dev') {
         console.log(await db.collection('dispositifs').insertMany(dispositifs).insertedIds);
       }
 
-      // let isLocaleSuccess=_insertI18nLocales() //depuis le fichier local vers la BDD
-      // let isMergeSuccess=_mergeLocalesFiles() //fusionner en local avec les données de prod
-      // let isDownloadSuccess=_getI18nLocales() //depuis la BDD vers le fichier local
-      // let isAvancementSuccess = _recalculateAvancement(); //Recalcule l'avancement de tous les strings du site
+      //let isLocaleSuccess=_insertI18nLocales() //depuis le fichier local vers la BDD
+      //let isMergeSuccess=_mergeLocalesFiles() //fusionner en local avec les données de prod
+      //let isDownloadSuccess=_getI18nLocales() //depuis la BDD vers le fichier local
+      //let isAvancementSuccess = _recalculateAvancement(); //Recalcule l'avancement de tous les strings du site
     }catch(e){console.log(e)}
   }
 }else{
@@ -161,7 +161,7 @@ const _mergeLocalesFiles = () => {
   const prodJson = require('../client/src/locales/merger/prod.js').prod;
   let nbMots=0;
   let avancement={fr:1};
-  
+  console.log('merge files');
   let tempObj=_mergeNested(localJson.body,prodJson.body,nbMots, avancement);
   nbMots=tempObj.nbMots;
   avancement=tempObj.avancement;
@@ -174,6 +174,7 @@ const _mergeLocalesFiles = () => {
     avancement:avancement,
     canBeUpdated: false
   }
+  console.log('before update');
   Article.findOneAndUpdate(
     {isStructure: true, title: 'Structure du site', status:'Actif', canBeUpdated: true}, 
     localeArticle, 
@@ -185,6 +186,7 @@ const _mergeLocalesFiles = () => {
       }else if(doc){
         console.log('translation data merged with great success');
       }
+      console.log('end');
       return true
     }
   );

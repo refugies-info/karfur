@@ -24,7 +24,9 @@
     "Choisir une langue": "struct_1j03nkztgk2rzdk9o",
     "site dispo": "struct_1j03nkztgk2rzdk9p",
     "langue indispo": "struct_1j03nkztgk2rzdk9q",
-    "Demander": "struct_1j03nkztgk2rzdk9r"
+    "Demander": "struct_1j03nkztgk2rzdk9r",
+    "Covid alert": "struct_sktwi19mhk853n1m6",
+    "Covid link": "struct_sktwi19mhk853n1m7"
   },
   "AdvancedSearch": {
     "A > Z": "struct_9u3tlk22y4326",
@@ -293,9 +295,11 @@
     "Voir le site": "struct_9u3tlk22y437d",
     "Télécharger en PDF": "struct_9u3tlk22y437e",
     "Envoyer par mail": "struct_9u3tlk22y437f",
+    "Envoyer par SMS": "struct_sktwi19mhk853n1m8",
     "Imprimer": "struct_9u3tlk22y437g",
     "Gratuit": "struct_9u3tlk22y437h",
     "Payant": "struct_9u3tlk22y437i",
+    "Tranche d'âge": "struct_sktwi19mhk853n1m9",
     "De": "struct_9u3tlk22y437j",
     "à": "struct_9u3tlk22y437k",
     "ans": "struct_9u3tlk22y437l",
@@ -426,6 +430,7 @@
   "En bref": "struct_9u3tlk22y439k",
   "Dernière mise à jour": "struct_9u3tlk22y439l",
   "Fiabilité de l'information": "struct_9u3tlk22y439m",
+  "Nouveau": "struct_sktwi19mhk853n1ma",
   "Faible": "struct_9u3tlk22y439n",
   "Moyenne": "struct_9u3tlk22y439o",
   "Forte": "struct_9u3tlk22y439p",
