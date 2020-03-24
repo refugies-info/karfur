@@ -86,7 +86,10 @@
     "membre": "member{{s}}",
     "notification": "notification{{s}}",
     "personne informée": "people informed",
-    "Mes traductions": "My translations"
+    "Mes traductions": "My translations",
+    "Commencer à rédiger": "Start writing",
+    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants": "Propose new content to enrich the platform, or help to edit and update existing content",
+    "Ici, vous pourrez accéder à vos contributions": "Here, you'll be able to access your contributions"
   },
   "UserProfile": {
     "Pseudonyme": "Username:",
@@ -186,6 +189,7 @@
     "Loisir": "Leisure",
     "Culture": "Culture",
     "Santé": "Health",
+    "Autre": "Other",
     "apprendre le français": "learn French",
     "me loger": "find housing",
     "trouver un travail": "find a job",
@@ -236,6 +240,7 @@
     "Actif": "Active",
     "Supprimé": "Deleted",
     "Supprimée": "Deleted",
+    "Rejetée": "Rejected",
     "Accepté structure": "Accepted by the organization",
     "En attente admin": "Pending review by admin",
     "En attente non prioritaire": "Pending: non-priority",
@@ -369,7 +374,23 @@
     "Ajouter un thème": "Add a subject",
     "réfugiés": "refugees",
     "Localisation": "Location",
-    "Tout public": "For all"
+    "Tout public": "For all",
+    "Situation familiale": "Family situation",
+    "Situation d’hébergement": "Living situation",
+    "Sexe": "Gender",
+    "Les réfugiés statutaires": "Statutory refugees",
+    "Célibataire": "Single",
+    "En concubinage": "Cohabitation",
+    "Marié": "Married",
+    "Sans enfants": "No children",
+    "Avec enfants": "With children",
+    "Logé": "Housed",
+    "Hébergé": "Housed",
+    "Sans-abri": "Homeless",
+    "Les accompagnants": "Helpers and social workers",
+    "Les femmes": "Women",
+    "Les hommes": "Men",
+    "Les deux": "Both"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Are you sure?",
@@ -397,7 +418,8 @@
     "Participer à l'évolution de réfugiés-info": "Participate in Réfugiés.info's improvement",
     "Demander des fonctionnalités": "Request features",
     "Le projet": "The project",
-    "Vous cherchez ?": "What are you looking for?"
+    "Vous cherchez ?": "What are you looking for?",
+    "Centre d'aide": "Help center"
   },
   "Retour à la recherche": "Back to search",
   "avec": "with",
@@ -447,6 +469,7 @@
   "Qui sommes-nous ?": "Who are we?",
   "Comment contribuer ?": "How will you contribute?",
   "Accessibilité": "Accessibility",
+  "Politique de confidentialité": "Privacy policy",
   "Mentions légales": "Legal terms",
   "Dispositif d'accompagnement": "Helpful programs",
   "Démarche administrative": "Administrative procedures",
