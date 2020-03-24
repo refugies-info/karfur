@@ -91,7 +91,7 @@ export class HomePage extends Component {
     const item = initial_data[0];
     return (
       <div className="animated fadeIn homepage">
-        <section  id="hero">
+        <section id="hero">
           <div className="hero-container">
             {this.state.corona ? (
               <CoronaAlert>
@@ -100,9 +100,7 @@ export class HomePage extends Component {
                 </div>
                 <div style={{ padding: 10 }}>
                   <AlertText>
-                    {
-                      "Réfugiés.info se mobilise pour répondre à vos questions sur le Covid-19 par le livetchat (icône bleue en bas à droite de l’écran)."
-                    }
+                    {t("Homepage.Covid alert")}
                     <br />
                     <Link
                       to={{
@@ -110,9 +108,7 @@ export class HomePage extends Component {
                         search: "?tag=Santé"
                       }}
                     >
-                      <AlertTextLink>
-                        Des fiches dédiées sont aussi disponibles
-                      </AlertTextLink>
+                      <AlertTextLink>{t("Homepage.Covid link")}</AlertTextLink>
                     </Link>
                   </AlertText>
                 </div>
