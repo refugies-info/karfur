@@ -24,7 +24,9 @@
     "Choisir une langue": "یک زبان انتخاب کنید",
     "site dispo": "Réfugiés.info به زبانهای زیر موجود است:",
     "langue indispo": "زبان شما در دسترس نیست؟",
-    "Demander": "پرسیدن"
+    "Demander": "پرسیدن",
+    "Covid alert": "Refugees.info برای پاسخ دادن به سؤالات شما درباره Covid-19 از طریق livetchat (نماد آبی در پایین سمت راست صفحه) بسیج شده است.",
+    "Covid link": "فایل های اختصاصی نیز موجود است"
   },
   "AdvancedSearch": {
     "A > Z": "A > Z",
