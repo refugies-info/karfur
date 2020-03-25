@@ -583,7 +583,7 @@ class SideTrad extends Component {
 
     return (
       <div className="side-trad shadow">
-        {!isExpert && (
+        {!isExpert ? (
           <div className="nav-btns">
             {currIdx !== "titreInformatif" && (
               <FButton
@@ -609,7 +609,20 @@ class SideTrad extends Component {
               />
             </FButton>
           </div>
-        )}
+        ): (
+          <FButton
+          type="light-action"
+          name={"close" + "-outline"}
+          fill={variables.noir}
+          className="mr-10 mt-10"
+          onClick={() =>
+            this._endingFeedback()
+          }
+        >
+          {"Fin de la session"}
+        </FButton>
+        )
+        }
         <div className="langue-data">
           <i className="flag-icon flag-icon-fr mr-12" title="fr" id="fr"></i>
           <strong>Texte français initial</strong>
