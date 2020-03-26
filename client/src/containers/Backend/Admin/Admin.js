@@ -283,7 +283,7 @@ export class Admin extends Component {
     });
   }
 
-/*   preTraitementStruct = () => {
+   preTraitementStruct = () => {
     if(!this.state.structure.nom || !this.state.structure.contact || (!this.state.structure.mail_contact && !this.state.structure.phone_contact)){Swal.fire( {title: 'Oh non!', text: 'Certaines informations sont manquantes', type: 'error', timer: 1500 }); return;}
     let struct = {...this.state.structure};
     let membres = struct.membres || [];
@@ -306,7 +306,7 @@ export class Admin extends Component {
     console.log(this.state.structure)
     this.setState({structure : {...this.state.structure, membres: membres, createur: (this.state.structure.createur || {})._id }}, 
       () => this.onValidate('structure'));
-  } */
+  }
 
   onValidate = (tab) => {
     API['create_'+tab](this.state[tab]).then(data => {

@@ -340,7 +340,7 @@ $imgHeight : 350px;
         border: none;
       }
     }
-    .blc-dr, .rdw-image-wrapper, .rdw-embedded-wrapper{
+    .blc-dr, .blc-gh-media, .rdw-image-wrapper, .rdw-embedded-wrapper{
       background: $darkColor;
       padding:10px;
     }
@@ -358,6 +358,11 @@ $imgHeight : 350px;
       &.bloc-droite-alert{
         border-radius: 0 12px 12px 0;
         padding-left:0;
+        margin-bottom: 6px;
+      }
+    }
+    .blc-gh-media{
+      &.bloc-gauche-media{
         margin-bottom: 6px;
       }
     }

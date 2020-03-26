@@ -86,7 +86,10 @@
     "membre": "ኣባል",
     "notification": "ንሓቤሬታ ዝውክል ምልክታት",
     "personne informée": "ማንም ሰብ ኣይትርድኦን/ወይ ኣይብጽሖን ሓቤሬታ",
-    "Mes traductions": "ኣነ ዝተርገምኩዎም"
+    "Mes traductions": "ኣነ ዝተርገምኩዎም",
+    "Commencer à rédiger": "ምጽሓፍ ጀምር",
+    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants": "ነዚ መደብ ንምምዕባል ኣብዚ ገጽ ናይ ሓቤረታት  ኣብርክቶ ክትገብሩን፣  ወይ ዝኾነ ጌጋ ምስ ዝህሉ ኣብ ጽሑፍ ንምእራም  ክትሳተፉን ትኽእሉ ኢኹም ፤፣",
+    "Ici, vous pourrez accéder à vos contributions": "ኣብዚ ኣብ ምብርካት  ክትሳተፉ ትኽእሉ ኢኹም"
   },
   "UserProfile": {
     "Pseudonyme": "ዝኾነ ስም",
@@ -186,6 +189,7 @@
     "Loisir": "ምዝንጋዕ",
     "Culture": "ባህሊ",
     "Santé": "ጥዕና",
+    "Autre": "ካልእ",
     "apprendre le français": "ትምህርቲ ቓንቓ ፈርንሳይ",
     "me loger": "መቅረቢ",
     "trouver un travail": "ሓደ ስራሕ ምርካብ",
@@ -236,6 +240,7 @@
     "Actif": "ንጡፍ",
     "Supprimé": "መድምሰስ፣ መሰረዚ",
     "Supprimée": "ምስራዝ / ምድምሳስ",
+    "Rejetée": "ምንጻግ",
     "Accepté structure": "ዓይነት ኣወዳድባ ተቀብልነት",
     "En attente admin": "ክፍሊ መጸብዪ ናይ ምስላጥ",
     "En attente non prioritaire": "ን ግዚኡ ምጽባይ ቐዳነት ዘይብሎም",
@@ -369,7 +374,23 @@
     "Ajouter un thème": "ወስኽ ሓደ ዛዕባ",
     "réfugiés": "ዑቕባ ዝረኸቡ",
     "Localisation": "ቦታ",
-    "Tout public": "ኒ ኹሉ ህዝቢ"
+    "Tout public": "ኒ ኹሉ ህዝቢ",
+    "Situation familiale": "ኵነታትት ናይ ስድራ",
+    "Situation d’hébergement": "ኩነታት ናይ መንበሪ",
+    "Sexe": "ጾታ",
+    "Les réfugiés statutaires": "ናይ ዑቕባ ዝረኸቡ",
+    "Célibataire": "ዘይምርዑው/ቲ",
+    "En concubinage": "ምስ ውሽማ ምንባር",
+    "Marié": "በዓል/ቲ ሓዳር",
+    "Sans enfants": "ብዘይ ህጻናት",
+    "Avec enfants": "ምስ ህጻናት",
+    "Logé": "ግዝያዊ መንበሪ",
+    "Hébergé": "ምቕባል ጋሻ",
+    "Sans-abri": "ቤት ኣልቦ",
+    "Les accompagnants": "ተሓጋገዝቲ /ወይ ተሓባበርቲ",
+    "Les femmes": "ደቂ ኣንስቲዮ",
+    "Les hommes": "ደቂ ተባዕትዮ",
+    "Les deux": "ን ኽልተ"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "ርግጽኛ ዲኻ ?",
@@ -397,7 +418,8 @@
     "Participer à l'évolution de réfugiés-info": "ተሳተፍ ንምዕባለ Réfugiés.info",
     "Demander des fonctionnalités": "ኣሰራርሓ ምሕታት",
     "Le projet": "ፕሮጀክት",
-    "Vous cherchez ?": "ዝኾነ ነገር ትድሊ ዲኻ ?"
+    "Vous cherchez ?": "ዝኾነ ነገር ትድሊ ዲኻ ?",
+    "Centre d'aide": "ማእከል መሕገዚ"
   },
   "Retour à la recherche": "በዚ ትምለስ ንምድላይ",
   "avec": "ምስ",
@@ -447,6 +469,7 @@
   "Qui sommes-nous ?": "መን ኢና ንሕና ?",
   "Comment contribuer ?": "ብኸመይ እሳተፍ ንምብርካት",
   "Accessibilité": "መራኸቢ ናይ መእተዊ",
+  "Politique de confidentialité": "ውልቃዊ ፖልቲክ",
   "Mentions légales": "ሕጊዊ ተቐባልነት ምልባስ ",
   "Dispositif d'accompagnement": "ሓገዝ ናይ ምብርካት",
   "Démarche administrative": "ኣስራርሓ ምስላጥ ናይ ቤት ጽሕፈት",
