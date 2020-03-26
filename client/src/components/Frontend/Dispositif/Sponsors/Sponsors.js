@@ -89,7 +89,6 @@ class Sponsors extends Component {
 
     API.set_image(formData).then(data_res => {
       const imgData = data_res.data.data;
-      console.log(imgData);
       this.setState({
         imgData: {
           secure_url: imgData.secure_url,
@@ -140,6 +139,11 @@ class Sponsors extends Component {
 
   selectItem = suggestion => {
     this.setState({ selected: suggestion });
+    this.setState({
+      imgData: suggestion.picture || {},
+      link: suggestion.link || '',
+      alt: '',
+    })
     this.toggleModal(suggestion.createNew ? "creation" : "etVous");
   };
 
@@ -238,6 +242,16 @@ class Sponsors extends Component {
       }
     }
   };
+
+/*   addStructure = () => {
+    console.log(this.state, 'add structure');
+    this.setState({
+      imgData: this.state.selected.picture || {},
+      link: this.state.selected.link || '',
+      alt: '',
+    })
+    this.addSponsor();
+  } */
 
   upcoming = () =>
     Swal.fire({

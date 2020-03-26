@@ -24,7 +24,9 @@
     "Choisir une langue": "ژبه غوره کړئ",
     "site dispo": "Réfugiés.info په لاندې ژبو کې شتون لري:",
     "langue indispo": "ستاسو ژبه فعلا  شتون نه لري؟",
-    "Demander": "تقاضا کول"
+    "Demander": "تقاضا کول",
+    "Covid alert": "ریفیوجزاینفوRéfugiés.info د کوویډ - 19 وبا  په اړه د لایف چاټ livetchat له لارې ستاسو پوښتنو ته ځواب وایی (د سکرین په ښي اړخ کې نیلي عکس).",
+    "Covid link": "اختصاصی معلومات او فایلونه په دی هکله شتون لري"
   },
   "AdvancedSearch": {
     "A > Z": "A &gt; Z له اې نه تر زید",
@@ -85,7 +87,10 @@
     "membre": "غړی",
     "notification": "خبرتیاوې او اطلاعیه",
     "personne informée": "کس باخبره",
-    "Mes traductions": "زما ژباړې"
+    "Mes traductions": "زما ژباړې",
+    "Commencer à rédiger": "لیکل پیل کړئ",
+    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants": "د پلیټفرم د لا بهبود او بهتري په خاطرنوي وړاندیزونه اوپیشنهادونه ورکړي، او  یاهم د موجوده معلوماتو په بهتري او بهبود  کې مرسته وکړئ",
+    "Ici, vous pourrez accéder à vos contributions": "تاسو کولی شئ  په دی ځای کي خپلو شراکتونواوهمکاریو ته لاسرسی ومومئ"
   },
   "UserProfile": {
     "Pseudonyme": "مستعار(یوزر) نوم:",
@@ -185,6 +190,7 @@
     "Loisir": "تفریحي",
     "Culture": "کلتور",
     "Santé": "روغتیا",
+    "Autre": "نور",
     "apprendre le français": "فرانسوي زده کړی",
     "me loger": "استوګنځای پیداکول",
     "trouver un travail": "دنده موندل",
@@ -235,6 +241,7 @@
     "Actif": "فعال",
     "Supprimé": "حذف شوی",
     "Supprimée": "حذف کول",
+    "Rejetée": "رد شوی",
     "Accepté structure": "منل شوی جوړښت (ساختار)",
     "En attente admin": "د اداری د تایید په انتظار کې",
     "En attente non prioritaire": "دا پروګرام تردم ګړی په انتضار کې دی",
@@ -368,7 +375,23 @@
     "Ajouter un thème": "یوه موضوع اضافه کړئ",
     "réfugiés": "کډوال (مهاجر)",
     "Localisation": "موقع",
-    "Tout public": "هرڅوک"
+    "Tout public": "هرڅوک",
+    "Situation familiale": "اجتماعی حالت (مجرد یا متاهل)",
+    "Situation d’hébergement": "د هستوګنې حالت",
+    "Sexe": "جنس",
+    "Les réfugiés statutaires": "قانوني کډوال (د قانونی اسنادو لرونکئ مهاجر)",
+    "Célibataire": "مجرد",
+    "En concubinage": "له یو شخص سره شریک زوند کول په قانون ډول",
+    "Marié": "واده کړی (متزوج)",
+    "Sans enfants": "اطفال نه لرل",
+    "Avec enfants": "له ماشومانو سره",
+    "Logé": "مستقر(د اوسیدا ځای لرل)",
+    "Hébergé": "کورلرل (د اوسیدا ځای لرل)",
+    "Sans-abri": "بې کوره",
+    "Les accompagnants": "ملګري",
+    "Les femmes": "ښځي",
+    "Les hommes": "سړي",
+    "Les deux": "دوه"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "ایا ته ډاډه یې؟",
@@ -396,7 +419,8 @@
     "Participer à l'évolution de réfugiés-info": "دréfugiés.infoپه انکشاف او بهبود کې برخه واخلئ",
     "Demander des fonctionnalités": "د نویو ممیزاتواواپشنونوغوښتنه کول",
     "Le projet": "پروژه",
-    "Vous cherchez ?": "تاسو د څه په لټه کې یاست؟"
+    "Vous cherchez ?": "تاسو د څه په لټه کې یاست؟",
+    "Centre d'aide": "د مرستې مرکز"
   },
   "Retour à la recherche": "بېرته لټون ته",
   "avec": "سره",
@@ -446,6 +470,7 @@
   "Qui sommes-nous ?": "موږ څوک یو؟",
   "Comment contribuer ?": "څنګه ونډه واخلو؟",
   "Accessibilité": "لاسرسي",
+  "Politique de confidentialité": "د رازداري تګلاره (سیاست)",
   "Mentions légales": "قانوني یادښتونه",
   "Dispositif d'accompagnement": "د ملاتړ، همکاری او مرافقت پروګرام",
   "Démarche administrative": "اداري پروسیجر",
