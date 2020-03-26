@@ -21,7 +21,7 @@ const creationTForm = props => {
   const statuts = ["Actif", "En attente", "Inactif", "Supprimé"];
   return (
     <Card>
-      <CardHeader className="h1">
+      <CardHeader  style={{display: 'flex', flexDirection: 'column'}} className="h1">
       
         <strong>
           {props.structure._id

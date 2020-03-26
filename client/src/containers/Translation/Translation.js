@@ -250,10 +250,11 @@ export class TranslationHOC extends Component {
       }
     }
     traduction = {...traduction, ...tradData};
-    console.log(traduction)
+    console.log('we are here baby', traduction, 'we are here baby');
     API.add_traduction(traduction).then((data) => {
       traduction._id = (data.data.data || {})._id;
       this.setState({traduction});
+      console.log(traduction.avancement);
       if(traduction.avancement === 1){
         Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000})
         this._isMounted && this.setState({disableBtn: false});
@@ -266,9 +267,19 @@ export class TranslationHOC extends Component {
     const i18nCode=(this.state.langue || {}).i18nCode, {isExpert, type, langue} = this.state;
     const nom='avancement.'+i18nCode;
     const query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}], status: "Actif"};
+    console.log(query);
     API[isExpert ? "get_tradForReview" : (type==="dispositif" ? "get_dispositif" : "getArticle")]({query: query, locale:i18nCode, random:true, isExpert}).then(data_res => {
       let results=data_res.data.data;
-      if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s\'est produite', type: 'error', timer: 1500})}
+      console.log(results);
+      if(results.length===0){
+        if (isExpert) {
+          this.props.history.push({ 
+            pathname: '/avancement/traductions/' + langue._id,
+          }) 
+        } else {
+        Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s\'est produite', type: 'error', timer: 1500})
+        }
+      }
       else{ clearInterval(this.timer);
         this.props.history.push({ 
           pathname: '/' + (isExpert ? "validation" : "traduction") + '/' + (_.get(results, "0.typeContenu") || type) + '/' + _.get(results, "0._id"), 

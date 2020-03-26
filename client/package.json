@@ -69,6 +69,7 @@
     "react-dependent-script": "^1.1.2",
     "react-dom": "^16.8.0",
     "react-draft-wysiwyg": "^1.13.2",
+    "react-dropzone": "^10.2.1",
     "react-eva-icons": "0.0.7",
     "react-facebook": "^8.0.4",
     "react-google-autocomplete": "^1.1.2",
