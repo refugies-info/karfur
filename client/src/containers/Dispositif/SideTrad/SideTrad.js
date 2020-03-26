@@ -385,8 +385,10 @@ class SideTrad extends Component {
           x[p] !== "undefined" &&
           x[p] !== "<p>null</p>" &&
           x[p] !== "<p><br></p>" &&
+          x[p] !== "<br>" &&
           type !== "cards" 
         ) {
+          console.log(x[p]);
           nbChamps += 1;
         }
       });
@@ -509,12 +511,13 @@ class SideTrad extends Component {
       pointeurs.length -
       this.props.menu.length;
     //const nbInit = this._countContents([traduction.initialText]);
-   /*  console.log(
+    console.log(
       this._countContents([traduction.translatedText]),
       this._countContents(this.props.menu),
       this._countContents([traduction.initialText])
-    ); */
+    );
     traduction.avancement = nbTraduits / nbInit;
+    console.log(traduction.avancement);
     traduction.title =
       (this.props.content.titreMarque || "") +
       (this.props.content.titreMarque && this.props.content.titreInformatif
