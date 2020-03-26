@@ -52,6 +52,7 @@ export class Avancement extends Component {
     traductionsFaites: [],
     waiting: true,
     published: false,
+    review: true,
     traductions: []
   };
 
@@ -225,11 +226,18 @@ export class Avancement extends Component {
       produce(draft => {
         draft.published = !this.state.published;
         if (!this.state.published) {
-          console.log('inside inside');
+          console.log("inside inside");
           draft.traductions.sort((a, b) => {
-            if (a.statusTrad[0] === "Validée" && b.statusTrad[0] === "Validée") {
+            // console.log(a, b);
+            if (
+              a.statusTrad === "Publiées" &&
+              b.statusTrad === "Publiées"
+            ) {
               return 0;
-            } else if (a.statusTrad[0] === "Validée" && b.statusTrad[0] !== "Validée") {
+            } else if (
+              a.statusTrad === "Publiées" &&
+              b.statusTrad !== "Publiées"
+            ) {
               return -1;
             } else {
               return 1;
@@ -246,9 +254,40 @@ export class Avancement extends Component {
         draft.waiting = !this.state.waiting;
         if (!this.state.waiting) {
           draft.traductions.sort((a, b) => {
-            if (a.statusTrad[0] === "En attente" && b.statusTrad[0] === "En attente") {
+            if (
+              a.statusTrad === "En attente" &&
+              b.statusTrad === "En attente"
+            ) {
               return 0;
-            } else if (a.statusTrad[0] === "En attente" && b.statusTrad[0] !== "En attente") {
+            } else if (
+              a.statusTrad === "En attente" &&
+              b.statusTrad !== "En attente"
+            ) {
+              return -1;
+            } else {
+              return 1;
+            }
+          });
+        }
+      })
+    );
+  };
+
+  reorderOnTopReview = () => {
+    this.setState(
+      produce(draft => {
+        draft.review = !this.state.review;
+        if (!this.state.review) {
+          draft.traductions.sort((a, b) => {
+            if (
+              a.statusTrad === "À revoir" &&
+              b.statusTrad === "À revoir"
+            ) {
+              return 0;
+            } else if (
+              a.statusTrad === "À revoir" &&
+              b.statusTrad !== "À revoir"
+            ) {
               return -1;
             } else {
               return 1;
@@ -280,13 +319,18 @@ export class Avancement extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { langue, isExpert, data } = this.state;
+    console.log("langue", langue);
     if (
       prevState.traductionsFaites !== this.state.traductionsFaites ||
       prevState.data !== this.state.data ||
       (!_.isEmpty(this.props.dispositifs) &&
         this.props.dispositifs !== prevProps.dispositifs)
     ) {
-      console.log("inside", this.props.dispositifs);
+      console.log(
+        "inside",
+        this.props.dispositifs,
+        this.state.traductionsFaites
+      );
       let traductions = [
         ...this.props.dispositifs
           .filter(x => x.status === "Actif")
@@ -312,8 +356,25 @@ export class Avancement extends Component {
               .filter(y => {
                 //console.log(y);
                 return y.articleId === x._id;
+                /*      if (y.articleId === x._id && y.status === "Validée" && x.avancement === 1) {
+                  return "À revoir"
+                } else if (y.articleId === x._id && y.status === "Validée" && x.avancement !== 1)  {
+                  return "Publiées"
+                } else if(y.articleId === x._id && y.status === "En attente") {
+                return "En attente";
+                } */
               })
-              .map(z => z.status || -1),
+              .reduce((acc, z, idx, arr) => {
+                if (z.status === "Validée" && x.avancement === 1) {
+                  return "À revoir";
+                } else if (z.status === "Validée" && x.avancement !== 1) {
+                  return "Publiées";
+                } else if (z.status === "En attente") {
+                  return "En attente";
+                } else {
+                  return null;
+                }
+              }, ''),
             created_at: x.created_at,
             updatedAt: x.updatedAt,
             users: [
@@ -375,6 +436,7 @@ export class Avancement extends Component {
         })
         //...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
       ];
+      console.log("those are translations", traductions);
       traductions = traductions.filter(x =>
         isExpert ? x.avancement >= 1 : x.avancement < 1
       );
@@ -514,9 +576,12 @@ export class Avancement extends Component {
         this.state.langue.i18nCode
       ) {
         return traductions.map(element => {
-          if (isExpert && (
-            (element.statusTrad[0] === "Validée" && !this.state.published) ||
-            (element.statusTrad[0] === "En attente" && !this.state.waiting))
+          if (
+            isExpert &&
+            element.statusTrad &&
+            ((element.statusTrad === "Publiées" && !this.state.published) ||
+              (element.statusTrad === "En attente" && !this.state.waiting) ||
+              (element.statusTrad === "À revoir" && !this.state.review))
           ) {
             return;
           }
@@ -576,7 +641,7 @@ export class Avancement extends Component {
                       })}
                   </td>
                   <td className="align-middle">
-                    {element.statusTrad ? element.statusTrad[0] : ""}
+                    {element.statusTrad ? element.statusTrad : ""}
                   </td>
                 </>
               ) : (
@@ -672,6 +737,17 @@ export class Avancement extends Component {
           </Col>
         </Row>
         <Row>
+          <StyledStatus
+            onClick={this.reorderOnTopReview}
+            className={
+              "status-pill bg-" +
+              (this.state.review
+                ? colorStatut("Supprimé")
+                : colorStatut("Inactif"))
+            }
+          >
+            {"À revoir"}
+          </StyledStatus>
           <StyledStatus
             onClick={this.reorderOnTopWaiting}
             className={
