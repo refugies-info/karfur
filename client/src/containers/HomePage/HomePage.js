@@ -28,7 +28,7 @@ const CoronaAlert = styled.div`
   background-color: #ffcecb;
   width: 100%;
   justify-content: center;
-  z-index: 100;
+  padding: 15px;
   top: 0px;
   margin-top: -70px;
 `;
@@ -37,13 +37,22 @@ const AlertText = styled.p`
   color: #f44336;
   font-weight: bold;
   padding: 0px;
+  margin-bottom: 0px;
 `;
 
 const AlertTextLink = styled.p`
   color: #f44336;
   font-weight: bold;
   text-decoration: underline;
+  margin-bottom: 0px;
 `;
+
+const CloseCorona = styled.div`
+  margin-right: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+`;
+
 
 export class HomePage extends Component {
   constructor(props) {
@@ -86,6 +95,7 @@ export class HomePage extends Component {
   };
 
   render() {
+    console.log(this.state.corona);
     const { t } = this.props;
     const { users } = this.state;
     const item = initial_data[0];
@@ -112,12 +122,11 @@ export class HomePage extends Component {
                     </Link>
                   </AlertText>
                 </div>
-                <div
+                <CloseCorona
                   onClick={this.closeCorona}
-                  style={{ right: 20, top: 0 }}
                 >
                   <EVAIcon fill={"#f44336"} name="close-outline" />
-                </div>
+                </CloseCorona>
               </CoronaAlert>
             ) : null}
             <h1>
