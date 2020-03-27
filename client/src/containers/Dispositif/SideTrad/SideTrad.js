@@ -440,6 +440,7 @@ class SideTrad extends Component {
   };
 
   onValidate = async () => {
+    console.log('inside validate')
     if (!this.props.translated.body) {
       Swal.fire({
         title: "Oh non",
@@ -541,8 +542,10 @@ class SideTrad extends Component {
         console.log(data.data.data);
       });
     }
-    this.props.fwdSetState({ traduction }, () =>
-      this.props.isExpert ? false : this.props.valider(this.props.traduction)
+    console.log(traduction);
+    this.props.fwdSetState({ traduction }, () =>{
+      console.log(traduction);
+      return(this.props.isExpert ? false : this.props.valider(this.props.traduction))}
     );
     this.goChange(true, false);
     this.props.fwdSetState({ disableBtn: false });
