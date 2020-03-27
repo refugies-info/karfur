@@ -62,7 +62,7 @@ html body{
     @include media-max("sm-limit") { font-size: 35px; }
   }
   h2{
-    font-weight: bold;
+    font-weight: 600;
     font-size: 40px;
     line-height: 51px;
     @include media-max("sm-limit") { font-size: 27px; }
