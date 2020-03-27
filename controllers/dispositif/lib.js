@@ -49,6 +49,7 @@ function add_dispositif(req, res) {
     if(dispositif.contenu){dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);}
     //Si le dispositif existe déjà on fait juste un update
     if(dispositif.dispositifId){
+      //delocalize we can do it
       promise=Dispositif.findOneAndUpdate({_id: dispositif.dispositifId}, dispositif, { upsert: true , new: true});
     }else{
       dispositif.creatorId = req.userId;
@@ -99,6 +100,7 @@ function get_dispositif(req, res) {
     }else{populate='';}
 
     let promise=null;
+    console.log(query);
     if(random){
       promise=Dispositif.aggregate([
         { $match : query },
@@ -107,10 +109,10 @@ function get_dispositif(req, res) {
     }else{
       promise = Dispositif.find(query).sort(sort).populate(populate).limit(limit).lean();
     }
-    //console.log(dispo);
+    console.log(promise);
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise.then((result) => {
-      [].forEach.call(result, (dispositif) => { 
+      [].forEach.call(result, (dispositif) => {
         dispositif = turnToLocalized(dispositif, locale);
         turnJSONtoHTML(dispositif.contenu);
       });
