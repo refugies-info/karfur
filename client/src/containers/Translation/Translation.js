@@ -230,6 +230,7 @@ export class TranslationHOC extends Component {
   }
 
   valider = (tradData = {}) => {
+    console.log("we are in this translation" ,this.state, tradData)
     this.setState({disableBtn: true});
     let traduction={
       langueCible: this.state.locale,
