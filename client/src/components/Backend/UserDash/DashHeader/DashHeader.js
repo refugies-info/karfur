@@ -81,7 +81,7 @@ const dashHeader = (props) => {
               {moyenneDate ?
                 <Col lg="4" className="struct-indicateurs">
                   <div className="indicateur">
-                    <h4>{moment(moyenneDate).fromNow()}</h4>
+                    <h2>{moment(moyenneDate).fromNow()}</h2>
                     <div>moyenne des dernières intéractions</div>
                   </div>
                 </Col> : false}
