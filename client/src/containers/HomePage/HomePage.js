@@ -114,7 +114,7 @@ export class HomePage extends Component {
                 </div>
                 <div
                   onClick={this.closeCorona}
-                  style={{ paddingLeft: 5, top: 0 }}
+                  style={{ right: 20, top: 0 }}
                 >
                   <EVAIcon fill={"#f44336"} name="close-outline" />
                 </div>

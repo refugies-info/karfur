@@ -107,10 +107,11 @@ function get_dispositif(req, res) {
     }else{
       promise = Dispositif.find(query).sort(sort).populate(populate).limit(limit).lean();
     }
-    //console.log(dispo);
+    console.log(promise);
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise.then((result) => {
-      [].forEach.call(result, (dispositif) => { 
+      [].forEach.call(result, (dispositif) => {
+        console.log(dispositif); 
         dispositif = turnToLocalized(dispositif, locale);
         turnJSONtoHTML(dispositif.contenu);
       });

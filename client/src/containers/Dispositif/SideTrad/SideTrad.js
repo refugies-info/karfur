@@ -556,6 +556,7 @@ class SideTrad extends Component {
       locale: this.props.locale,
       traductions: this.props.traductionsFaites
     };
+    console.log('test:',newTrad);
     API.validate_tradForReview(newTrad).then(data => {
       console.log(data.data.data);
       Swal.fire(
