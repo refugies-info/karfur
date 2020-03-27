@@ -22,6 +22,10 @@ const turnToLocalized = (result, locale) => {
   return result
 }
 
+const turnToDelocalized = () => {
+  
+}
+
 //Dupliqué dans traduction/lib : Node ne semble pas gérer cet export (circulaire)
 const turnHTMLtoJSON = (contenu, nbMots = null) => {
   for (var i = 0; i < contenu.length; i++) {
