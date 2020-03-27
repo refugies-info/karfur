@@ -225,7 +225,9 @@ export class Dispositif extends Component {
         locale: props.languei18nCode
       })
         .then(data_res => {
+          console.log(data_res);
           let dispositif = { ...data_res.data.data[0] };
+          console.log(dispositif);
           if (!dispositif || !dispositif._id) {
             this._isMounted = false;
             return this.props.history.push("/");
@@ -250,6 +252,7 @@ export class Dispositif extends Component {
               this.valider_dispositif("Brouillon", true)
             );
           } //Enregistrement automatique du dispositif toutes les 3 minutes
+          console.log(dispositif);
           this._isMounted &&
             this.setState(
               {
@@ -1546,6 +1549,7 @@ export class Dispositif extends Component {
       didThank,
       dispositif
     } = this.state;
+    console.log(dispositif);
     const etapes_tuto =
       typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
     const moisDepuisCreation =
