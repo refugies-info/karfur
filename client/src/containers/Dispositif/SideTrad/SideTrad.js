@@ -204,9 +204,11 @@ class SideTrad extends Component {
   };
 
   _endingFeedback = () => {
-    if (this.props.isExpert && !this.state.hasBeenSkipped) {
+    console.log('xxxxxxxxxxx this props', this.props, this.state);
+    if (this.props.isExpert && !this.state.hasBeenSkipped && ((this.state.selectedTrad.status === "Validée") || (this.state.selectedTrad.status === "En attente" && this.props.traduction.avancement >= 1))) {
       this._insertTrad(); //On insère cette traduction
-    } else {
+    }
+    else {
       this.props.onSkip();
       this.setState({ ...this.initialState });
     }
@@ -590,6 +592,7 @@ class SideTrad extends Component {
       selectedTrad
     } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
+    console.log('xxxxx in render', this.props, this.state);
 
     return (
       <div className="side-trad shadow">
