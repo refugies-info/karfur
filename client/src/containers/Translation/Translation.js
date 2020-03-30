@@ -99,9 +99,10 @@ export class TranslationHOC extends Component {
       API.get_tradForReview({query: {'articleId':itemId, langueCible: locale, ...(!isExpert && userId && {userId})}, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           const traductions = data_res.data.data; console.log(traductions);
+          console.log(traductions);
           this._isMounted && this.setState({
             traductionsFaites : traductions,
-            ...(!isExpert && userId && {traduction : {
+            ...((isExpert || userId) && {traduction : {
               initialText: _.get(traductions, "0.initialText", {}), 
               translatedText: _.get(traductions, "0.translatedText", {})
             }, autosuggest: false})
@@ -247,7 +248,8 @@ export class TranslationHOC extends Component {
     if(this.state.isExpert){
       traduction={
         ...traduction,
-        translationId:this.state.translationId
+        translationId:this.state.translationId,
+        isExpert: true,
       }
     }
     traduction = {...traduction, ...tradData};
@@ -315,7 +317,8 @@ export class TranslationHOC extends Component {
   
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
-  render(){ 
+  render(){
+    console.log('traduction:',this.state.traduction, this.state);
     if(this.state.type === "dispositif"){
       return(
         <Dispositif 
