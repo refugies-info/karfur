@@ -388,7 +388,7 @@ class SideTrad extends Component {
           x[p] !== "<br>" &&
           type !== "cards" 
         ) {
-          console.log(x[p]);
+         // console.log(x[p]);
           nbChamps += 1;
         }
       });
@@ -505,39 +505,40 @@ class SideTrad extends Component {
         [node]: value
       };
     });
-    console.log(traduction, traduction.translatedText, this.props.menu);
+    //console.log(traduction, traduction.translatedText, this.props.menu);
     const nbTraduits = this._countContents([traduction.translatedText]);
     const nbInit =
       this._countContents(this.props.menu) +
       pointeurs.length -
       this.props.menu.length;
     //const nbInit = this._countContents([traduction.initialText]);
-    console.log(
+    /* console.log(
       this._countContents([traduction.translatedText]),
       this._countContents(this.props.menu),
       this._countContents([traduction.initialText])
-    );
+    ); */
     traduction.avancement = nbTraduits / nbInit;
-    console.log(traduction.avancement);
+    //console.log(traduction.avancement);
     traduction.title =
       (this.props.content.titreMarque || "") +
       (this.props.content.titreMarque && this.props.content.titreInformatif
         ? " - "
         : "") +
       (this.props.content.titreInformatif || "");
-
     if (this.props.isExpert) {
+      console.log('xxxxxxxxxx updated text xxxxxxxxxx', this.state.selectedTrad, traduction );
       const { selectedTrad, currIdx } = this.state;
       let newTrad = {
         _id: selectedTrad._id,
         translatedText: {
-          ...selectedTrad.translatedText,
+          ...traduction.translatedText,
           status: {
             ...(selectedTrad.translatedText.status || {}),
             [currIdx]: "Acceptée"
           }
         }
       };
+      console.log('we are updating the trad', newTrad);
       await API.update_tradForReview(newTrad).then(data => {
         console.log(data.data.data);
       });
@@ -547,17 +548,19 @@ class SideTrad extends Component {
       console.log(traduction);
       return(this.props.isExpert ? false : this.props.valider(this.props.traduction))}
     );
+    console.log('after this');
     this.goChange(true, false);
     this.props.fwdSetState({ disableBtn: false });
   };
 
   _insertTrad = () => {
+    console.log('We are inserting');
     let newTrad = {
       ...this.props.traduction,
       articleId: this.props.itemId,
       type: "dispositif",
       locale: this.props.locale,
-      traductions: this.props.traductionsFaites
+      traductions: this.props.traductionsFaites,
     };
     console.log('test:',newTrad);
     API.validate_tradForReview(newTrad).then(data => {
