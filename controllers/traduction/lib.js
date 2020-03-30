@@ -37,7 +37,12 @@ async function add_tradForReview(req, res) {
       api: arguments.callee.name
     }).save();
     let traduction = req.body;
+    console.log(req.body);
+    //if (!traduction.isExpert) {
     traduction.status = "En attente";
+    //  }
+    if (traduction.isExpert) {
+    }
     let nbMotsTitres = 0;
     nbMotsBody = 0;
     const traductionInitiale = JSON.parse(
@@ -147,6 +152,7 @@ function get_tradForReview(req, res) {
     api: arguments.callee.name
   }).save();
   let { query, sort, populate, random, locale } = req.body;
+  console.log(query);
   if (!req.fromSite) {
     //On n'autorise pas les populate en API externe
     populate = "";
@@ -188,11 +194,13 @@ function get_tradForReview(req, res) {
 
   promise
     .then(results => {
+      console.log(results);
       [].forEach.call(results, result => {
         if (result && result.type === "dispositif" && result.translatedText) {
           turnJSONtoHTML(result.translatedText.contenu);
         }
       });
+      console.log(results);
       res.status(200).json({
         text: "Succès",
         data: results
@@ -227,9 +235,9 @@ function validate_tradForReview(req, res) {
     }).save();
     let traductionUser = req.body || {};
     //Ici il y en a plusieurs: à régler
-    console.log(traductionUser);
+    console.log('xxxxxxxxxx',traductionUser);
     if (traductionUser.type === "dispositif") {
-      (traductionUser.traductions || []).forEach(x => {
+      (traductionUser.traductions || []).slice(0).reverse().map(x => {
         console.log(traductionUser.traductions);
         Traduction.findOneAndUpdate(
           { _id: x._id },
@@ -237,7 +245,7 @@ function validate_tradForReview(req, res) {
           { upsert: true, new: true }
         ).then(() => console.log("updated"));
       });
-      console.log('before insert');
+      console.log("before insert");
       insertInDispositif(res, traductionUser, traductionUser.locale);
     } else {
       Traduction.findOneAndUpdate(
@@ -308,7 +316,13 @@ const insertInDispositif = (res, traduction, locale) => {
           if (!result[x].fr) {
             result[x] = { fr: result[x] };
           }
-          console.log(x, traduction.translatedText, traduction.translatedText[x], result, result[x][locale]);
+          console.log(
+            x,
+            traduction.translatedText,
+            traduction.translatedText[x],
+            result,
+            result[x][locale]
+          );
           result[x][locale] = traduction.translatedText[x];
           result.markModified(x);
         });
@@ -335,7 +349,11 @@ const insertInDispositif = (res, traduction, locale) => {
                 traduction.translatedText.contenu[i].children[j] &&
                 traduction.translatedText.contenu[i].children[j].title
               ) {
-                console.log('check before insertion of childrren:' ,traduction, traduction.translatedText.contenu[i].children[j]);
+                console.log(
+                  "check before insertion of childrren:",
+                  traduction,
+                  traduction.translatedText.contenu[i].children[j]
+                );
                 if (!c.title.fr) {
                   c.title = { fr: c.title };
                 }
@@ -349,7 +367,11 @@ const insertInDispositif = (res, traduction, locale) => {
                 traduction.translatedText.contenu[i].children[j] &&
                 traduction.translatedText.contenu[i].children[j].content
               ) {
-                console.log('check before insertion of childrren:' ,traduction, traduction.translatedText.contenu[i].children[j]);
+                console.log(
+                  "check before insertion of childrren:",
+                  traduction,
+                  traduction.translatedText.contenu[i].children[j]
+                );
                 if (!c.content.fr) {
                   c.content = { fr: c.content };
                 }
@@ -613,7 +635,7 @@ function update_tradForReview(req, res) {
     }).save();
     let translation = req.body;
     translation.validatorId = req.userId;
-
+    console.log('we are updating the mother', translation);
     const find = new Promise(function(resolve, reject) {
       Traduction.findByIdAndUpdate({ _id: translation._id }, translation, {
         new: true
