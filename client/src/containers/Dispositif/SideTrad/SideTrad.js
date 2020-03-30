@@ -769,7 +769,32 @@ class SideTrad extends Component {
         </div>
         <div className="footer-btns">
           {isExpert ? (
-            <div></div>
+           <div>
+           {currIdx !== "titreInformatif" && (
+             <FButton
+               type="outline-black"
+               name="arrow-back-outline"
+               fill={variables.noir}
+               onClick={() => this.goChange(false)}
+               className="mt-10"
+               style={{marginRight: 5}}
+             >
+               {''}
+             </FButton>
+           )}
+           <FButton
+             className="mt-10"
+             type="outline-black"
+             onClick={this.goChange}
+           >
+             {''}
+             <EVAIcon
+               name="arrow-forward-outline"
+               fill={variables.noir}
+               //className="ml-10"
+             />
+           </FButton>
+         </div> 
           ) : (
             <FButton
               type="outline-black"
