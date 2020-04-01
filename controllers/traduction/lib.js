@@ -638,7 +638,8 @@ function update_tradForReview(req, res) {
     console.log('we are updating the mother', translation);
     const find = new Promise(function(resolve, reject) {
       Traduction.findByIdAndUpdate({ _id: translation._id }, translation, {
-        new: true
+        new: true,
+        upsert: true,
       }).exec(function(err, result) {
         if (err) {
           reject(500);
