@@ -45,7 +45,11 @@ class SideTrad extends Component {
     userId: {},
     showModals: {
       rejected: false
-    }
+    },
+    toggle: false,
+    pointersMod: false,
+    contentMod: false,
+    traduction: this.props.traduction,
   };
   initialState = this.state;
 
@@ -60,19 +64,20 @@ class SideTrad extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    if (this.props.traduction !== prevProps.traduction) {
+      this.setState({traduction: this.props.traduction});
+    }
     const { traduction } = this.props;
-    if (
-      prevProps.traduction !== this.state.traductions ||
-      prevState.currIdx !== this.state.currIdx ||
-      prevState.currSubIdx !== this.state.currSubIdx ||
-      prevState.currSubName !== this.state.currSubName
-    ) {
+    if (!this.state.pointersMod) {
       this.state.pointeurs.forEach(x => {
         if (traduction.translatedText[x + "Modified"]) {
           const elems = document.querySelectorAll('div[id="' + x + '"]');
           elems[0].classList.toggle("arevoir", true);
+          this.setState({ pointersMod: true });
         }
       });
+    }
+    if (!this.state.contentMod) {
       traduction.translatedText.contenu.forEach((p, index) => {
         if (p.titleModified) {
         }
@@ -90,10 +95,11 @@ class SideTrad extends Component {
                     : "") +
                   (j !== undefined && j > -1 ? '[data-target="title"]' : "")
               );
-              console.log(elems1)
+              console.log(elems1);
               if (elems1 && elems1[0] && elems1[0].classList) {
-                console.log('############## toggle');
-              elems1[0].classList.toggle("arevoir", true);
+                console.log("############## toggle", elems1[0].classList);
+                elems1[0].classList.toggle("arevoir", true);
+                this.setState({ contentMod: true });
               }
             }
             if (c.contentModified) {
@@ -107,8 +113,9 @@ class SideTrad extends Component {
                   (j !== undefined && j > -1 ? '[data-target="content"]' : "")
               );
               if (elems2 && elems2[0] && elems2[0].classList) {
-              elems2[0].classList.toggle("arevoir", true);
-              } 
+                elems2[0].classList.toggle("arevoir", true);
+                this.setState({ contentMod: true });
+              }
             }
           });
         }
@@ -153,6 +160,54 @@ class SideTrad extends Component {
       if (props.typeContenu === "demarche") {
         this.setState({ pointeurs: ["titreInformatif", "abstract"] });
       }
+      const { traduction } = this.props;
+      /*       this.state.pointeurs.forEach(x => {
+        if (traduction.translatedText[x + "Modified"]) {
+          const elems = document.querySelectorAll('div[id="' + x + '"]');
+          elems[0].classList.toggle("arevoir", true);
+        }
+      });
+      traduction.translatedText.contenu.forEach((p, index) => {
+        if (p.titleModified) {
+        }
+        if (p.contentModified) {
+        }
+        if (p.children && p.children.length > 0) {
+          p.children.forEach((c, j) => {
+            if (c.titleModified) {
+              const elems1 = document.querySelectorAll(
+                'div[id="' +
+                  index +
+                  '"]' +
+                  (j !== undefined && j > -1
+                    ? '[data-subkey="' + j + '"]'
+                    : "") +
+                  (j !== undefined && j > -1 ? '[data-target="title"]' : "")
+              );
+              console.log(elems1, traduction);
+                console.log("############## toggle ###################################################################");
+              if (elems1 && elems1[0]) {
+                console.log("############## toggle ###################################################################");
+                elems1[0].classList.toggle("arevoir", true);
+              }
+            }
+            if (c.contentModified) {
+              const elems2 = document.querySelectorAll(
+                'div[id="' +
+                  index +
+                  '"]' +
+                  (j !== undefined && j > -1
+                    ? '[data-subkey="' + j + '"]'
+                    : "") +
+                  (j !== undefined && j > -1 ? '[data-target="content"]' : "")
+              );
+              if (elems2 && elems2[0]) {
+                elems2[0].classList.toggle("arevoir", true);
+              }
+            }
+          });
+        }
+      }); */
     }
     window.scrollTo(0, 0);
   };
@@ -629,13 +684,38 @@ class SideTrad extends Component {
         this.state.selectedTrad,
         traduction
       );
-      const { selectedTrad, currIdx } = this.state;
-      /* let newTranslatedText = produce(traduction.translatedText, draft => {
+      const { selectedTrad, currIdx, currSubIdx, currSubName } = this.state;
+      console.log(this.state);
+      let newTranslatedText = produce(traduction.translatedText, draft => {
         draft.status[currIdx] = "Acceptée";
-        if (currIdx)
-        draft. 
-      }); */
-      let newTrad = {
+        if (this.state.pointeurs.includes(currIdx)) {
+          draft[currIdx + "Modified"] = false;
+        } else {
+          draft.contenu[currIdx].children[currSubIdx][
+            currSubName + "Modified"
+          ] = false;
+        }
+      });
+      traduction.translatedText = newTranslatedText;
+      const elems1 = document.querySelectorAll(
+        'div[id="' +
+          currIdx +
+          '"]' +
+          (currSubIdx !== undefined && currSubIdx > -1
+            ? '[data-subkey="' + currSubIdx + '"]'
+            : "") +
+          (currSubIdx !== undefined &&
+          currSubIdx > -1 &&
+          currSubName &&
+          currSubName !== ""
+            ? '[data-target="' + currSubName + '"]'
+            : "")
+      );
+      if (elems1 && elems1[0] && elems1[0].classList) {
+        
+        elems1[0].classList.toggle("arevoir", false);
+      }
+      /* let newTrad = {
         _id: selectedTrad._id,
         translatedText: {
           ...traduction.translatedText,
@@ -644,8 +724,17 @@ class SideTrad extends Component {
             [currIdx]: "Acceptée"
           }
         }
+      }; */
+      let newTrad = {
+        _id: selectedTrad._id,
+        translatedText: newTranslatedText
       };
-      console.log("we are updating the trad", newTrad);
+      console.log(
+        "we are updating the trad ####################################################################",
+        newTrad,
+        currIdx,
+        this.state.traduction,
+      );
       await API.update_tradForReview(newTrad).then(data => {
         console.log(data.data.data);
       });
