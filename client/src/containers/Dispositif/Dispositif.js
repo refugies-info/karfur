@@ -665,7 +665,7 @@ export class Dispositif extends Component {
       contentState,
       selectionState,
       rawContentState,
-      markup,
+      markup
       //rawContentState.blocks[1].data
     );
     if (state.length > key) {
@@ -1530,6 +1530,7 @@ export class Dispositif extends Component {
     });
 
   render() {
+    console.log(this.props);
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
@@ -1765,8 +1766,11 @@ export class Dispositif extends Component {
                 )}
               </Row>
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
-                <div className="bloc-titre">
-                  <h1 className={disableEdit ? "" : "editable"}>
+                <div className={"bloc-titre "}>
+                  <h1 className={disableEdit
+                      ? ""
+                      : "editable"}
+                    >
                     <ContentEditable
                       id="titreInformatif"
                       html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
@@ -1783,7 +1787,7 @@ export class Dispositif extends Component {
                     />
                   </h1>
                   {typeContenu === "dispositif" && (
-                    <h2 className="bloc-subtitle">
+                    <h2 className={"bloc-subtitle "}>
                       <span>{t("avec", "avec")}&nbsp;</span>
                       <ContentEditable
                         id="titreMarque"
