@@ -90,6 +90,7 @@ async function add_dispositif(req, res) {
         const originalTrads = {};
         dispositifFr = await turnToLocalizedNew(originalDis, "fr");
         for (let [key, value] of Object.entries(originalDis.avancement)) {
+          console.log(originalDis, key);
           if (key !== "fr") {
             originalTrads[key] = await Traduction.findOne(
               { articleId: originalDis._id, langueCible: key },
