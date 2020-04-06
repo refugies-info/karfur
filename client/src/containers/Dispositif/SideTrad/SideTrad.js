@@ -88,11 +88,16 @@ class SideTrad extends Component {
     if (currIdx !== prevState.currIdx || currSubIdx !== prevState.currSubIdx || currSubName !== prevState.currSubName) {
       if (this.state.pointeurs.includes(currIdx) && this.props.traduction.translatedText[currIdx + "Modified"] === true) {
         this.setState({modified: true});
-      } else if (!this.state.pointeurs.includes(currIdx) && currSubIdx >= 0 && this.props.traduction.translatedText.contenu[currIdx].children[currSubIdx][
+      } else if (!this.state.pointeurs.includes(currIdx) && currSubIdx >= 0 && this.props.traduction.translatedText.contenu[currIdx] && this.props.traduction.translatedText.contenu[currIdx].children[currSubIdx][
         currSubName + "Modified"
       ] === true) {
         this.setState({modified: true});
-      } else {
+      } else if (!this.state.pointeurs.includes(currIdx) && currSubIdx < 0 && this.props.traduction.translatedText.contenu[currIdx] && this.props.traduction.translatedText.contenu[currIdx][
+        currSubName + "Modified"
+      ] === true) {
+        this.setState({modified: true});
+      }
+       else {
         this.setState({modified: false}); 
       } 
     }
@@ -746,7 +751,10 @@ class SideTrad extends Component {
         //draft.status[currIdx] = "Acceptée";
         if (this.state.pointeurs.includes(currIdx)) {
           draft[currIdx + "Modified"] = false;
-        } else {
+        } else if (currSubIdx === -1) {
+          draft.contenu[currIdx][currSubName + "Modified"] = false;
+        } else
+        {
           draft.contenu[currIdx].children[currSubIdx][
             currSubName + "Modified"
           ] = false;
