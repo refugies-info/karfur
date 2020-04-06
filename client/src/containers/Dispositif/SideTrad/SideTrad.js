@@ -30,6 +30,23 @@ import "./SideTrad.scss";
 import variables from "scss/colors.scss";
 import API from "../../../utils/API";
 import produce from "immer";
+import styled from 'styled-components';
+
+const AlertModified = styled.div`
+  height: 40px;
+  border-radius: 0px 0px 12px 12px;
+  display: flex;
+  flex-direction: row;
+  background-color: #fcd497;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+`
+
+const AlertText =styled.div`
+color: orange;
+margin-right: 20px;
+`
 
 class SideTrad extends Component {
   state = {
@@ -51,6 +68,7 @@ class SideTrad extends Component {
     pointersMod: false,
     contentMod: false,
     traduction: this.props.traduction,
+    modified: false,
   };
   initialState = this.state;
 
@@ -65,8 +83,24 @@ class SideTrad extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const { currIdx, currSubIdx, currSubName } = this.state;
+    console.log('indexes ###############################################',currIdx, currSubIdx, currSubName, this.props.traduction.translatedText,this.props.traduction.translatedText.contenu);
+    if (currIdx !== prevState.currIdx || currSubIdx !== prevState.currSubIdx || currSubName !== prevState.currSubName) {
+      if (this.state.pointeurs.includes(currIdx) && this.props.traduction.translatedText[currIdx + "Modified"] === true) {
+        this.setState({modified: true});
+      } else if (!this.state.pointeurs.includes(currIdx) && currSubIdx >= 0 && this.props.traduction.translatedText.contenu[currIdx].children[currSubIdx][
+        currSubName + "Modified"
+      ] === true) {
+        this.setState({modified: true});
+      } else {
+        this.setState({modified: false}); 
+      } 
+    }
     if (this.props.traduction !== prevProps.traduction) {
-      this.setState({traduction: this.props.traduction});
+      if (this.state.pointeurs.includes(currIdx) && this.props.traduction.translatedText[currIdx + "Modified"] == true) {
+        this.setState({modified: true});
+      }
+      this.setState({ traduction: this.props.traduction });
     }
     const { traduction } = this.props;
     if (!this.state.pointersMod) {
@@ -636,7 +670,10 @@ class SideTrad extends Component {
       currSubName = "contentTitle";
     }
     let traduction = { ...this.props.traduction };
-    console.log('##################### convert to raw',convertToRaw(this.props.translated.body.getCurrentContent()));
+    console.log(
+      "##################### convert to raw",
+      convertToRaw(this.props.translated.body.getCurrentContent())
+    );
     ["francais", "translated"].forEach(nom => {
       const initialValue = this.props[nom].body;
       const texte =
@@ -706,7 +743,7 @@ class SideTrad extends Component {
       const { selectedTrad, currIdx, currSubIdx, currSubName } = this.state;
       console.log(this.state);
       let newTranslatedText = produce(traduction.translatedText, draft => {
-        draft.status[currIdx] = "Acceptée";
+        //draft.status[currIdx] = "Acceptée";
         if (this.state.pointeurs.includes(currIdx)) {
           draft[currIdx + "Modified"] = false;
         } else {
@@ -731,7 +768,6 @@ class SideTrad extends Component {
             : "")
       );
       if (elems1 && elems1[0] && elems1[0].classList) {
-        
         elems1[0].classList.toggle("arevoir", false);
       }
       /* let newTrad = {
@@ -752,7 +788,7 @@ class SideTrad extends Component {
         "we are updating the trad ####################################################################",
         newTrad,
         currIdx,
-        this.state.traduction,
+        this.state.traduction
       );
       await API.update_tradForReview(newTrad).then(data => {
         console.log(data.data.data);
@@ -804,12 +840,13 @@ class SideTrad extends Component {
       score,
       userId,
       showModals,
-      selectedTrad
+      selectedTrad,
+      modified,
     } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
     const options = {
-      decodeEntities: true,
-     // transform: this.transform
+      decodeEntities: true
+      // transform: this.transform
     };
     console.log("xxxxx in render", this.props, this.state, translated);
 
@@ -846,7 +883,7 @@ class SideTrad extends Component {
             type="light-action"
             name={"close" + "-outline"}
             fill={variables.noir}
-            className="mr-10"
+            className="mr-10 mb-10"
             onClick={() => this._endingFeedback()}
           >
             {"Fin de la session"}
@@ -878,7 +915,7 @@ class SideTrad extends Component {
           )}
         </div>
         <div
-          className="content-data mb-20"
+          className={modified ? "content-data-french" : "content-data mb-20"}
           id="body_texte_initial"
           ref={initial_text => {
             this.initial_text = initial_text;
@@ -886,7 +923,21 @@ class SideTrad extends Component {
         >
           {ReactHtmlParser((francais || {}).body || "", options)}
         </div>
+        {modified ?
+        <AlertModified>
+        <EVAIcon
+                name="alert-triangle"
+                fill={variables.orange}
+                id="alert-triangle-outline"
+                className={'mr-10'}
+              />
+              <AlertText>
+                Paragraphe modifié
+              </AlertText>
 
+        </AlertModified>
+        : null
+  }
         <div className="langue-data">
           <i
             className={"mr-12 flag-icon flag-icon-" + langue.langueCode}
@@ -1043,17 +1094,31 @@ class SideTrad extends Component {
                 Signaler
               </FButton>
             )}
-            <FButton
-              type="light-action"
-              name={(isExpert ? "close" : "skip-forward") + "-outline"}
-              fill={variables.noir}
-              className="mr-10 mt-10"
-              onClick={() =>
-                isExpert ? this.toggleModal(true, "rejected") : this.goChange()
-              }
-            >
-              {isExpert ? "Refuser" : "Passer"}
-            </FButton>
+            {isExpert ? (
+              <FButton
+                type="outline-black"
+                name="refresh-outline"
+                fill={variables.noir}
+                onClick={this.reset}
+                className="mt-10 mr-10"
+              >
+                Réinitialiser
+              </FButton>
+            ) : (
+              <FButton
+                type="light-action"
+                name={(isExpert ? "close" : "skip-forward") + "-outline"}
+                fill={variables.noir}
+                className="mr-10 mt-10"
+                onClick={() =>
+                  isExpert
+                    ? this.toggleModal(true, "rejected")
+                    : this.goChange()
+                }
+              >
+                {isExpert ? "Refuser" : "Passer"}
+              </FButton>
+            )}
             <FButton
               type="validate"
               name="checkmark-circle-outline"
