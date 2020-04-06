@@ -20,7 +20,8 @@ import {
   italicBtn,
   underBtn,
   listBtn,
-  logo_google
+  logo_google,
+  linkBtn
 } from "../../../assets/figma/index";
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { RejectTradModal } from "../../../components/Modals";
@@ -399,6 +400,20 @@ class SideTrad extends Component {
     }
   };
 
+  /* transform = (node, index) => {
+
+    // return null to block certain elements
+    // don't allow <span> elements
+    if (node.type === 'tag' && node.name === 'a') {
+      return <>
+      <a>
+        {}
+      </a>
+      </>
+      console.log('############################',node);
+    }
+  }
+ */
   checkTranslate = target => {
     const { pointeurs, currIdx, currSubIdx } = this.state;
     const text = this.initial_text.innerHTML,
@@ -462,6 +477,9 @@ class SideTrad extends Component {
         }
       }
     }
+    ///////parse for buttons
+
+    //ReactHtmlParser(oldTrad, {})
     console.log(oldTrad);
     this.setState({ listTrad, score, userId, selectedTrad });
     if (oldTrad && typeof oldTrad === "string") {
@@ -618,6 +636,7 @@ class SideTrad extends Component {
       currSubName = "contentTitle";
     }
     let traduction = { ...this.props.traduction };
+    console.log('##################### convert to raw',convertToRaw(this.props.translated.body.getCurrentContent()));
     ["francais", "translated"].forEach(nom => {
       const initialValue = this.props[nom].body;
       const texte =
@@ -788,6 +807,10 @@ class SideTrad extends Component {
       selectedTrad
     } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
+    const options = {
+      decodeEntities: true,
+     // transform: this.transform
+    };
     console.log("xxxxx in render", this.props, this.state, translated);
 
     return (
@@ -823,7 +846,7 @@ class SideTrad extends Component {
             type="light-action"
             name={"close" + "-outline"}
             fill={variables.noir}
-            className="mr-10 mt-10"
+            className="mr-10"
             onClick={() => this._endingFeedback()}
           >
             {"Fin de la session"}
@@ -861,7 +884,7 @@ class SideTrad extends Component {
             this.initial_text = initial_text;
           }}
         >
-          {ReactHtmlParser((francais || {}).body || "")}
+          {ReactHtmlParser((francais || {}).body || "", options)}
         </div>
 
         <div className="langue-data">
@@ -890,7 +913,7 @@ class SideTrad extends Component {
               editorState={(translated || {}).body}
               toolbarHidden={pointeurs.includes(currIdx)}
               toolbar={{
-                options: ["inline", "list"],
+                options: ["inline", "list", "link"],
                 inline: {
                   inDropdown: false,
                   options: ["bold", "italic", "underline"],
@@ -908,8 +931,16 @@ class SideTrad extends Component {
                 list: {
                   inDropdown: false,
                   options: ["unordered"],
-                  className: "bloc-gauche-list blc-gh",
+                  className: "inline-btn blc-gh",
                   unordered: { icon: listBtn, className: "list-btn" }
+                },
+                link: {
+                  inDropdown: false,
+                  options: ["link"],
+                  className: "bloc-gauche-list blc-gh",
+                  link: { icon: linkBtn, className: "btn-link" },
+                  defaultTargetOption: "_blank",
+                  showOpenOptionOnHover: true
                 }
               }}
             />
