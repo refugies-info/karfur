@@ -20,6 +20,7 @@ const diffData = {
       { name: "Titre du contenu", order: "title" },
       { name: "Mots traduits", order: "nombreMots" },
       { name: "Avancement", order: "avancement" },
+      { name: "Status", order: "statusTrad" },
       { name: "En attente depuis", order: "updatedAt" },
       { name: "" }
     ]
