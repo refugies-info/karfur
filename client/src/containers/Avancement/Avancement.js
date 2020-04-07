@@ -20,13 +20,15 @@ import produce from "immer";
 import "./Avancement.scss";
 import variables from "scss/colors.scss";
 import _ from "lodash";
+import { elementType } from "prop-types";
 
 moment.locale("fr");
 
 export const StyledStatus = styled.button`
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 8px;
   margin: 10px;
+  border: 0px;
   padding: 10px;
 `;
 
@@ -54,7 +56,17 @@ export class Avancement extends Component {
     published: false,
     review: true,
     toTranslate: false,
-    traductions: []
+    traductions: [],
+    dispositif: true,
+    demarche: true,
+    string: true,
+    waitingCount: 0,
+    publishedCount: 0,
+    reviewCount: 0,
+    toTranslateCount: 0,
+    dispositifCount: 0,
+    demarcheCount: 0,
+    stringCount: 0,
   };
 
   async componentDidMount() {
@@ -299,7 +311,10 @@ export class Avancement extends Component {
         draft.toTranslate = !this.state.toTranslate;
         if (!this.state.toTranslate) {
           draft.traductions.sort((a, b) => {
-            if (a.statusTrad === "À traduire" && b.statusTrad === "À traduire") {
+            if (
+              a.statusTrad === "À traduire" &&
+              b.statusTrad === "À traduire"
+            ) {
               return 0;
             } else if (
               a.statusTrad === "À traduire" &&
@@ -315,6 +330,24 @@ export class Avancement extends Component {
     );
   };
 
+  reorderOnTopType = type => {
+    this.setState(
+      produce(draft => {
+        draft[type] = !this.state[type];
+        if (!this.state[type]) {
+          draft.traductions.sort((a, b) => {
+            if (a.typeContenu === type && b.typeContenu === type) {
+              return 0;
+            } else if (a.typeContenu === type && b.typeContenu !== type) {
+              return -1;
+            } else {
+              return 1;
+            }
+          });
+        }
+      })
+    );
+  };
 
   reorder = () => {
     this.setState(
@@ -370,27 +403,27 @@ export class Avancement extends Component {
                   .map(z => z.avancement || -1) || [])
               ) || 0,
             status: x.status,
-            statusTrad: (this.state.traductionsFaites || [])
-              .filter((y, index) => {
-                //console.log(y);
-                return y.articleId === x._id;
-                /*      if (y.articleId === x._id && y.status === "Validée" && x.avancement === 1) {
+            statusTrad:
+              (this.state.traductionsFaites || [])
+                .filter((y, index) => {
+                  //console.log(y);
+                  return y.articleId === x._id;
+                  /*      if (y.articleId === x._id && y.status === "Validée" && x.avancement === 1) {
                   return "À revoir"
                 } else if (y.articleId === x._id && y.status === "Validée" && x.avancement !== 1)  {
                   return "Publiées"
                 } else if(y.articleId === x._id && y.status === "En attente") {
                 return "En attente";
                 } */
-              })
-              .map((z) => {
-                if (z.status === "À revoir") {
-                  console.log('@@@@@@@@@@@@@@@@@@@@@@@',z)
-                  return "À revoir";
-                } else if (z.status === "Validée") {
-                  return "Publiées";
-                } else if (z.status === "En attente") {
-                  return "En attente";
-                }
+                })
+                .map(z => {
+                  if (z.status === "À revoir") {
+                    return "À revoir";
+                  } else if (z.status === "Validée") {
+                    return "Publiées";
+                  } else if (z.status === "En attente") {
+                    return "En attente";
+                  }
                   return "À traduire";
                 })[0] || "À traduire",
             created_at: x.created_at,
@@ -455,10 +488,19 @@ export class Avancement extends Component {
         //...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
       ];
       console.log("those are translations", traductions);
-  /*     traductions = traductions.filter(x =>
+      /*     traductions = traductions.filter(x =>
         isExpert ? x.avancement >= 1 : x.avancement < 1
       ); */
-      this.setState({ traductions });
+      this.setState({
+        traductions,
+        waitingCount: traductions.filter((element) =>{return element.statusTrad === "En attente"}).length,
+        publishedCount:  traductions.filter((element) =>{return element.statusTrad === "Publiées"}).length,
+        reviewCount:  traductions.filter((element) =>{ return element.statusTrad === "À revoir"}).length,
+        toTranslateCount:  traductions.filter((element) =>{return element.statusTrad === "À traduire"}).length,
+        dispositifCount:  traductions.filter((element) =>{return element.typeContenu === "demarche"}).length,
+        demarcheCount:  traductions.filter((element) =>{return element.typeContenu=== "dispositif"}).length,
+        stringCount:  traductions.filter((element) =>{return element.typeContenu === "string"}).length,
+      });
     }
   }
 
@@ -559,7 +601,7 @@ export class Avancement extends Component {
       .sort((a, b) => {
         b[this.state.filterSelected] - a[this.state.filterSelected];
       });*/
-    console.log("this is rendereing", traductions);
+    console.log("this is rendereing", traductions, this.state);
     const displayedText =
       (data || []).length === 0 || (this.props.dispositifs || []).length === 0
         ? "Chargement"
@@ -596,11 +638,30 @@ export class Avancement extends Component {
         return traductions.map(element => {
           if (
             isExpert &&
-            element.statusTrad &&
+            // element.statusTrad &&
             ((element.statusTrad === "Publiées" && !this.state.published) ||
               (element.statusTrad === "En attente" && !this.state.waiting) ||
-              (element.statusTrad === "À revoir" && !this.state.review) || 
-              (element.statusTrad === "À traduire" && !this.state.toTranslate))
+              (element.statusTrad === "À revoir" && !this.state.review) ||
+              (element.statusTrad === "À traduire" &&
+                !this.state.toTranslate) ||
+              (element.typeContenu === "demarche" && !this.state.demarche) ||
+              (element.typeContenu === "dispositif" &&
+                !this.state.dispositif) ||
+              (element.typeContenu === "string" && !this.state.string))
+          ) {
+            return;
+          }
+          if (
+            !isExpert &&
+            (element.statusTrad === "En attente" ||
+              (element.statusTrad === "Publiées" && !this.state.published) ||
+              (element.statusTrad === "À revoir" && !this.state.review) ||
+              (element.statusTrad === "À traduire" &&
+                !this.state.toTranslate) ||
+              (element.typeContenu === "demarche" && !this.state.demarche) ||
+              (element.typeContenu === "dispositif" &&
+                !this.state.dispositif) ||
+              (element.typeContenu === "string" && !this.state.string))
           ) {
             return;
           }
@@ -619,7 +680,7 @@ export class Avancement extends Component {
             <tr
               key={element._id}
               className="avancement-row pointer"
-              onClick={() => this.goToTraduction(element)}
+              onClick={() => !isExpert && element.statusTrad === "Publiées" ? null : this.goToTraduction(element)}
             >
               <td className="align-middle">
                 {element.isStructure ? "Site" : jsUcfirst(element.typeContenu)}
@@ -664,30 +725,37 @@ export class Avancement extends Component {
                   </td>
                 </>
               ) : (
-                <td className="align-middle">
-                  <Row>
-                    <Col>
-                      <Progress
-                        color={colorAvancement(element.avancement)}
-                        value={element.avancement * 100}
-                      />
-                    </Col>
-                    <Col
-                      className={"text-" + colorAvancement(element.avancement)}
-                    >
-                      {element.avancement === 1 ? (
-                        <EVAIcon
-                          name="checkmark-circle-2"
-                          fill={variables.vert}
+                <>
+                  <td className="align-middle">
+                    <Row>
+                      <Col>
+                        <Progress
+                          color={colorAvancement(element.avancement)}
+                          value={element.avancement * 100}
                         />
-                      ) : (
-                        <span>
-                          {Math.round((element.avancement || 0) * 100)} %
-                        </span>
-                      )}
-                    </Col>
-                  </Row>
-                </td>
+                      </Col>
+                      <Col
+                        className={
+                          "text-" + colorAvancement(element.avancement)
+                        }
+                      >
+                        {element.avancement === 1 ? (
+                          <EVAIcon
+                            name="checkmark-circle-2"
+                            fill={variables.vert}
+                          />
+                        ) : (
+                          <span>
+                            {Math.round((element.avancement || 0) * 100)} %
+                          </span>
+                        )}
+                      </Col>
+                    </Row>
+                  </td>
+                  <td className="align-middle">
+                    {element.statusTrad ? element.statusTrad : ""}
+                  </td>
+                </>
               )}
               <td
                 className={
@@ -701,12 +769,15 @@ export class Avancement extends Component {
                 {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
               <td className="align-middle fit-content">
+              {!isExpert && element.statusTrad === "Publiées" ?
+              null :
                 <FButton
                   type="light-action"
                   name="eye-outline"
                   fill={variables.noir}
                   onClick={() => this.goToTraduction(element)}
                 />
+              }
               </td>
             </tr>
           );
@@ -756,49 +827,70 @@ export class Avancement extends Component {
           </Col>
         </Row>
         <Row>
-        <StyledStatus
+          <StyledStatus
             onClick={this.reorderOnTopToTranslate}
             className={
               "status-pill bg-" +
-              (this.state.toTranslate
-                ? "focus"
-                : colorStatut("Inactif"))
+              (this.state.toTranslate ? "focus text-white" : "white")
             }
           >
-            {"À traduire"}
+            {"À traduire (" + this.state.toTranslateCount + ")"}
           </StyledStatus>
           <StyledStatus
             onClick={this.reorderOnTopReview}
             className={
               "status-pill bg-" +
-              (this.state.review
-                ? colorStatut("Supprimé")
-                : colorStatut("Inactif"))
+              (this.state.review ? colorStatut("Supprimé") : "white")
             }
           >
-            {"À revoir"}
+            {"À revoir (" + this.state.reviewCount + ")"}
           </StyledStatus>
-          <StyledStatus
-            onClick={this.reorderOnTopWaiting}
-            className={
-              "status-pill bg-" +
-              (this.state.waiting
-                ? colorStatut("Brouillon")
-                : colorStatut("Inactif"))
-            }
-          >
-            {"En Attente"}
-          </StyledStatus>
+          {isExpert ? (
+            <StyledStatus
+              onClick={this.reorderOnTopWaiting}
+              className={
+                "status-pill bg-" +
+                (this.state.waiting ? colorStatut("Brouillon") : "white")
+              }
+            >
+              {"À valider (" + this.state.waitingCount + ")"}
+            </StyledStatus>
+          ) : null}
           <StyledStatus
             onClick={this.reorderOnTopPubblish}
             className={
               "status-pill bg-" +
-              (this.state.published
-                ? colorStatut("Publié")
-                : colorStatut("Inactif"))
+              (this.state.published ? colorStatut("Publié") : "white")
             }
           >
-            {"Publiées"}
+            {"Publiées (" + this.state.publishedCount + ")"}
+          </StyledStatus>
+          <StyledStatus
+            onClick={() => this.reorderOnTopType("demarche")}
+            className={
+              "status-pill bg-" +
+              (this.state.demarche ? "black text-white" : "white")
+            }
+          >
+            {"Demarches (" + this.state.demarcheCount + ")"}
+          </StyledStatus>
+          <StyledStatus
+            onClick={() => this.reorderOnTopType("dispositif")}
+            className={
+              "status-pill bg-" +
+              (this.state.dispositif ? "black text-white" : "white")
+            }
+          >
+            {"Dispositifs (" + this.state.dispositifCount + ")"}
+          </StyledStatus>
+          <StyledStatus
+            onClick={() => this.reorderOnTopType("string")}
+            className={
+              "status-pill bg-" +
+              (this.state.string ? "black text-white" : "white")
+            }
+          >
+            {"Interface (" + this.state.stringCount + ")"}
           </StyledStatus>
         </Row>
 
