@@ -1127,10 +1127,13 @@ export class Dispositif extends Component {
     }
   };
 
-  addSponsor = sponsor =>
+  addSponsor = sponsor => {
+    console.log('QQQQQQWQWQWQWWEQWEQWEQWEQWEQWEQEW', sponsor);
     this.setState({
       sponsors: [...(this.state.sponsors || []).filter(x => !x.dummy), sponsor]
     });
+  }
+  
   deleteSponsor = key => {
     if (this.state.status === "Accepté structure") {
       Swal.fire({

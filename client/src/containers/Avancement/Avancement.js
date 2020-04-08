@@ -52,7 +52,7 @@ export class Avancement extends Component {
     isLangue: false,
     isExpert: false,
     traductionsFaites: [],
-    waiting: true,
+    waiting: false,
     published: false,
     review: true,
     toTranslate: false,
@@ -66,7 +66,7 @@ export class Avancement extends Component {
     toTranslateCount: 0,
     dispositifCount: 0,
     demarcheCount: 0,
-    stringCount: 0,
+    stringCount: 0
   };
 
   async componentDidMount() {
@@ -368,9 +368,40 @@ export class Avancement extends Component {
     );
   };
 
+  countfilter = (trads, filter) => {
+    var count = 0;
+    for (var i = 0; i < trads.length; ++i) {
+      if (trads[i].statusTrad == filter) {
+        count++;
+      }
+    }
+    return (count);
+  };
+
+  countType = (trads, type) => {
+    var count = 0;
+    for (var i = 0; i < trads.length; ++i) {
+      if (trads[i].typeContenu == type && type !== 'string') {
+        if (this.state.waiting && trads[i].statusTrad === "En attente") {
+          count++;
+        } else if (this.state.published && trads[i].statusTrad === "Publiées" ) {
+          count++
+        } else if (this.state.review && trads[i].statusTrad === "À revoir") {
+          count++
+        } else if (this.state.toTranslate && trads[i].statusTrad === 'À traduire') {
+          count++
+        }
+      } else if (trads[i].typeContenu == type && type == 'string'){
+        count++
+      }
+    }
+    return (count);
+  };
+
   componentDidUpdate(prevProps, prevState) {
     const { langue, isExpert, data } = this.state;
     console.log("langue", langue);
+    let traductions = [];
     if (
       prevState.traductionsFaites !== this.state.traductionsFaites ||
       prevState.data !== this.state.data ||
@@ -382,7 +413,7 @@ export class Avancement extends Component {
         this.props.dispositifs,
         this.state.traductionsFaites
       );
-      let traductions = [
+      traductions = [
         ...this.props.dispositifs
           .filter(x => x.status === "Actif")
           .map(x => ({
@@ -493,14 +524,40 @@ export class Avancement extends Component {
       ); */
       this.setState({
         traductions,
-        waitingCount: traductions.filter((element) =>{return element.statusTrad === "En attente"}).length,
-        publishedCount:  traductions.filter((element) =>{return element.statusTrad === "Publiées"}).length,
-        reviewCount:  traductions.filter((element) =>{ return element.statusTrad === "À revoir"}).length,
-        toTranslateCount:  traductions.filter((element) =>{return element.statusTrad === "À traduire"}).length,
-        dispositifCount:  traductions.filter((element) =>{return element.typeContenu === "dispositif"}).length,
-        demarcheCount:  traductions.filter((element) =>{return element.typeContenu=== "demarche"}).length,
-        stringCount:  traductions.filter((element) =>{return element.typeContenu === "string"}).length,
+        waitingCount: this.countfilter(traductions, "En attente"),
+        publishedCount:this.countfilter(traductions, "Publiées"),
+        reviewCount: this.countfilter(traductions, "À revoir"),
+        toTranslateCount: this.countfilter(traductions, "À traduire"),
+        dispositifCount: this.countType(traductions, "dispositif"),
+        demarcheCount: this.countType(traductions, "demarche"),
+        stringCount: this.countType(traductions, "string"),
       });
+      if (this.countfilter(traductions, "À revoir") == 0) {
+        this.setState({
+          toTranslate: true,
+          review: false,
+        });
+      }
+    }
+    if ((prevState.waiting !== this.state.waiting) ||
+    (prevState.published !== this.state.published) ||
+    (prevState.review !== this.state.review) ||
+    (prevState.toTranslate !== this.state.toTranslate)) {
+      this.setState({
+        waitingCount: this.countfilter(this.state.traductions, "En attente"),
+        publishedCount:this.countfilter(this.state.traductions, "Publiées"),
+        reviewCount: this.countfilter(this.state.traductions, "À revoir"),
+        toTranslateCount: this.countfilter(this.state.traductions, "À traduire"),
+        dispositifCount: this.countType(this.state.traductions, "dispositif"),
+        demarcheCount: this.countType(this.state.traductions, "demarche"),
+        stringCount: this.countType(this.state.traductions, "string"),
+      })
+      if (this.countfilter(traductions, "À revoir") == 0) {
+        this.setState({
+          toTranslate: true,
+          review: false,
+        });
+      }
     }
   }
 
@@ -680,7 +737,11 @@ export class Avancement extends Component {
             <tr
               key={element._id}
               className="avancement-row pointer"
-              onClick={() => !isExpert && element.statusTrad === "Publiées" ? null : this.goToTraduction(element)}
+              onClick={() =>
+                !isExpert && element.statusTrad === "Publiées"
+                  ? null
+                  : this.goToTraduction(element)
+              }
             >
               <td className="align-middle">
                 {element.isStructure ? "Site" : jsUcfirst(element.typeContenu)}
@@ -769,15 +830,14 @@ export class Avancement extends Component {
                 {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
               <td className="align-middle fit-content">
-              {!isExpert && element.statusTrad === "Publiées" ?
-              null :
-                <FButton
-                  type="light-action"
-                  name="eye-outline"
-                  fill={variables.noir}
-                  onClick={() => this.goToTraduction(element)}
-                />
-              }
+                {!isExpert && element.statusTrad === "Publiées" ? null : (
+                  <FButton
+                    type="light-action"
+                    name="eye-outline"
+                    fill={variables.noir}
+                    onClick={() => this.goToTraduction(element)}
+                  />
+                )}
               </td>
             </tr>
           );
