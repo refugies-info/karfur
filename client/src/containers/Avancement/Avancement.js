@@ -497,8 +497,8 @@ export class Avancement extends Component {
         publishedCount:  traductions.filter((element) =>{return element.statusTrad === "Publiées"}).length,
         reviewCount:  traductions.filter((element) =>{ return element.statusTrad === "À revoir"}).length,
         toTranslateCount:  traductions.filter((element) =>{return element.statusTrad === "À traduire"}).length,
-        dispositifCount:  traductions.filter((element) =>{return element.typeContenu === "demarche"}).length,
-        demarcheCount:  traductions.filter((element) =>{return element.typeContenu=== "dispositif"}).length,
+        dispositifCount:  traductions.filter((element) =>{return element.typeContenu === "dispositif"}).length,
+        demarcheCount:  traductions.filter((element) =>{return element.typeContenu=== "demarche"}).length,
         stringCount:  traductions.filter((element) =>{return element.typeContenu === "string"}).length,
       });
     }
