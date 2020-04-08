@@ -872,7 +872,7 @@ export class Avancement extends Component {
               (this.state.demarche ? "black text-white" : "white")
             }
           >
-            {"Demarches (" + this.state.demarcheCount + ")"}
+            {"Démarches (" + this.state.demarcheCount + ")"}
           </StyledStatus>
           <StyledStatus
             onClick={() => this.reorderOnTopType("dispositif")}
