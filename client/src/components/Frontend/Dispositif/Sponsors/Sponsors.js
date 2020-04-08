@@ -138,6 +138,7 @@ class Sponsors extends Component {
     }));
 
   selectItem = suggestion => {
+    console.log('#########################',suggestion);
     this.setState({ selected: suggestion });
     this.setState({
       imgData: suggestion.picture || {},
@@ -207,6 +208,7 @@ class Sponsors extends Component {
       //Le cas où on rajoute plus d'un sponsor, en tant qu'admin
       if (_.isEmpty(this.props.sponsors) && this.props.finalValidation) {
         this.props.addSponsor({
+          ...this.state.selected,
           picture: { ...this.state.imgData },
           link: this.state.link,
           alt: this.state.alt,
@@ -216,6 +218,7 @@ class Sponsors extends Component {
         this.props.validate();
       } else {
         this.props.addSponsor({
+          ...this.state.selected,
           picture: { ...this.state.imgData },
           link: this.state.link,
           alt: this.state.alt,
@@ -233,6 +236,7 @@ class Sponsors extends Component {
         this.props.validate();
       } else {
         this.props.addSponsor({
+          ...this.state.selected,
           picture: { ...this.state.imgData },
           link: this.state.link,
           alt: this.state.alt,
