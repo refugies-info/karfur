@@ -624,10 +624,13 @@ class SideTrad extends Component {
           x[p] !== "undefined" &&
           x[p] !== "<p>null</p>" &&
           x[p] !== "<p><br></p>" &&
+          x[p] !== "<p><br></p>\n" &&
           x[p] !== "<br>" &&
+          x[p] !== "<p></p>\n\n<p></p>\n" &&
           type !== "cards"
         ) {
-          // console.log(x[p]);
+          console.log(x[p] + "<p><br></p>", nbChamps, p);
+          console.log(x[p] == "<p><br></p>\n")
           nbChamps += 1;
         }
       });
@@ -637,9 +640,13 @@ class SideTrad extends Component {
         x.contentTitle &&
         x.contentTitle !== "" &&
         x.contentTitle !== "null" &&
-        x.contentTitle !== "undefined"
+        x.contentTitle !== "undefined" && 
+        x.contentTitle !== "<p>null</p>" &&
+        x.contentTitle !== "<p><br></p>" &&
+        x.contentTitle !== "<br>"
       ) {
         nbChamps += 1;
+        console.log("the beeeeeeeeeeeeeesssssstttttto", nbChamps)
       }
       if (x.contenu && x.contenu.length > 0) {
         nbChamps = this._countContents(x.contenu, nbChamps, x.type);
@@ -835,10 +842,10 @@ class SideTrad extends Component {
     }
     console.log(traduction);
     this.props.fwdSetState({ traduction }, () => {
-      console.log(traduction);
+      console.log(traduction, this.props.traduction, this.props.isExpert);
       return !this.props.isExpert ?
         this.props.valider(this.props.traduction) :
-        this.props.isExpert && !traduction._id ?
+        this.props.isExpert && !this.props.traduction._id && !this.state.selectedTrad._id  ?
         this.props.valider(this.props.traduction) : false
       /* return (this.props.isExpert && traduction._id && traduction == 1)
         ? false
