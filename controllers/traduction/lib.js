@@ -241,7 +241,8 @@ function validate_tradForReview(req, res) {
     //Ici il y en a plusieurs: à régler
     console.log('xxxxxxxxxx',traductionUser);
     if (traductionUser.type === "dispositif") {
-      if (!traductionUser.traductions.lenght) {
+      if (!traductionUser.traductions.length) {
+        console.log("fiiiirst",traductionUser.traductions.length);
         Traduction.findOneAndUpdate(
           { _id: traductionUser._id },
           { status: "Validée", validatorId: req.userId },
@@ -249,7 +250,7 @@ function validate_tradForReview(req, res) {
         ).then(() => console.log("updated"));
       } else {
       (traductionUser.traductions || []).slice(0).reverse().map(x => {
-        console.log(traductionUser.traductions);
+        console.log("secondddd",traductionUser.traductions);
         Traduction.findOneAndUpdate(
           { _id: x._id },
           { status: "Validée", validatorId: req.userId },
