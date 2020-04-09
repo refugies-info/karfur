@@ -39,7 +39,11 @@ async function add_tradForReview(req, res) {
     let traduction = req.body;
     console.log(req.body);
     //if (!traduction.isExpert) {
+    if (traduction.avancement === 1) {
     traduction.status = "En attente";
+    } else if (traduction.avancement < 1) {
+      traduction.status = "À traduire";
+      } 
     //  }
     if (traduction.isExpert) {
     }
@@ -237,6 +241,13 @@ function validate_tradForReview(req, res) {
     //Ici il y en a plusieurs: à régler
     console.log('xxxxxxxxxx',traductionUser);
     if (traductionUser.type === "dispositif") {
+      if (!traductionUser.traductions.lenght) {
+        Traduction.findOneAndUpdate(
+          { _id: traductionUser._id },
+          { status: "Validée", validatorId: req.userId },
+          { upsert: true, new: true }
+        ).then(() => console.log("updated"));
+      } else {
       (traductionUser.traductions || []).slice(0).reverse().map(x => {
         console.log(traductionUser.traductions);
         Traduction.findOneAndUpdate(
@@ -245,6 +256,7 @@ function validate_tradForReview(req, res) {
           { upsert: true, new: true }
         ).then(() => console.log("updated"));
       });
+    }
       console.log("before insert");
       insertInDispositif(res, traductionUser, traductionUser.locale);
     } else {

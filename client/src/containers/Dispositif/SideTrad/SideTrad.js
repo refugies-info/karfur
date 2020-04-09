@@ -30,7 +30,7 @@ import "./SideTrad.scss";
 import variables from "scss/colors.scss";
 import API from "../../../utils/API";
 import produce from "immer";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const AlertModified = styled.div`
   height: 40px;
@@ -41,12 +41,12 @@ const AlertModified = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 20px;
-`
+`;
 
-const AlertText =styled.div`
-color: orange;
-margin-right: 20px;
-`
+const AlertText = styled.div`
+  color: orange;
+  margin-right: 20px;
+`;
 
 class SideTrad extends Component {
   state = {
@@ -68,7 +68,7 @@ class SideTrad extends Component {
     pointersMod: false,
     contentMod: false,
     traduction: this.props.traduction,
-    modified: false,
+    modified: false
   };
   initialState = this.state;
 
@@ -84,26 +84,54 @@ class SideTrad extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { currIdx, currSubIdx, currSubName } = this.state;
-    console.log('indexes ###############################################',currIdx, currSubIdx, currSubName, this.props.traduction.translatedText,this.props.traduction.translatedText.contenu, this.props.traduction);
-    if (currIdx !== prevState.currIdx || currSubIdx !== prevState.currSubIdx || currSubName !== prevState.currSubName) {
-      if (this.state.pointeurs.includes(currIdx) && this.props.traduction.translatedText[currIdx + "Modified"] === true) {
-        this.setState({modified: true});
-      } else if (!this.state.pointeurs.includes(currIdx) && currSubIdx >= 0 && this.props.traduction.translatedText.contenu[currIdx] && this.props.traduction.translatedText.contenu[currIdx].children[currSubIdx][
-        currSubName + "Modified"
-      ] === true) {
-        this.setState({modified: true});
-      } else if (!this.state.pointeurs.includes(currIdx) && currSubIdx < 0 && this.props.traduction.translatedText.contenu[currIdx] && this.props.traduction.translatedText.contenu[currIdx][
-        currSubName + "Modified"
-      ] === true) {
-        this.setState({modified: true});
+    console.log(
+      "indexes ###############################################",
+      currIdx,
+      currSubIdx,
+      currSubName,
+      this.props.traduction.translatedText,
+      this.props.traduction.translatedText.contenu,
+      this.props.traduction
+    );
+    if (
+      currIdx !== prevState.currIdx ||
+      currSubIdx !== prevState.currSubIdx ||
+      currSubName !== prevState.currSubName
+    ) {
+      if (
+        this.state.pointeurs.includes(currIdx) &&
+        this.props.traduction.translatedText[currIdx + "Modified"] === true
+      ) {
+        this.setState({ modified: true });
+      } else if (
+        !this.state.pointeurs.includes(currIdx) &&
+        currSubIdx >= 0 &&
+        this.props.traduction.translatedText.contenu[currIdx] &&
+        this.props.traduction.translatedText.contenu[currIdx].children &&
+        this.props.traduction.translatedText.contenu[currIdx].children[
+          currSubIdx
+        ][currSubName + "Modified"] === true
+      ) {
+        this.setState({ modified: true });
+      } else if (
+        !this.state.pointeurs.includes(currIdx) &&
+        currSubIdx < 0 &&
+        this.props.traduction.translatedText.contenu[currIdx] &&
+        this.props.traduction.translatedText.contenu[currIdx][
+          currSubName + "Modified"
+        ] === true
+      ) {
+        this.setState({ modified: true });
+      } else {
+        this.setState({ modified: false });
       }
-       else {
-        this.setState({modified: false}); 
-      } 
     }
     if (this.props.traduction !== prevProps.traduction) {
-      if (this.state.pointeurs.includes(currIdx) && this.props.traduction.translatedText[currIdx + "Modified"] == true) {
-        this.setState({modified: true});
+      if (
+        this.state.pointeurs.includes(currIdx) &&
+        this.props.traduction.translatedText[currIdx + "Modified"] == true
+      ) {
+        this.setState({ modified: true });
       }
       this.setState({ traduction: this.props.traduction });
     }
@@ -387,7 +415,8 @@ class SideTrad extends Component {
         (this.state.selectedTrad.status === "En attente" &&
           this.props.traduction.avancement >= 1) ||
         (this.state.selectedTrad.status === "À revoir" &&
-          this.props.traduction.avancement >= 1))
+          this.props.traduction.avancement >= 1) ||
+          this.props.traduction.avancement >= 1)
     ) {
       this._insertTrad(); //On insère cette traduction
     } else {
@@ -660,7 +689,7 @@ class SideTrad extends Component {
       });
       return;
     }
-    let { pointeurs, currIdx, currSubIdx, currSubName } = this.state;
+    let { pointeurs, currIdx, currSubIdx, currSubName, selectedTrad } = this.state;
     this.props.fwdSetState({ disableBtn: true });
     const pos = pointeurs.findIndex(x => currIdx === x);
     const node = pos > -1 ? currIdx : "contenu";
@@ -745,7 +774,6 @@ class SideTrad extends Component {
         this.state.selectedTrad,
         traduction
       );
-      const { selectedTrad, currIdx, currSubIdx, currSubName } = this.state;
       console.log(this.state);
       let newTranslatedText = produce(traduction.translatedText, draft => {
         //draft.status[currIdx] = "Acceptée";
@@ -753,8 +781,7 @@ class SideTrad extends Component {
           draft[currIdx + "Modified"] = false;
         } else if (currSubIdx === -1) {
           draft.contenu[currIdx][currSubName + "Modified"] = false;
-        } else
-        {
+        } else {
           draft.contenu[currIdx].children[currSubIdx][
             currSubName + "Modified"
           ] = false;
@@ -789,8 +816,9 @@ class SideTrad extends Component {
         }
       }; */
       let newTrad = {
-        _id: selectedTrad._id,
-        translatedText: newTranslatedText
+        _id: selectedTrad._id || traduction._id,
+        translatedText: newTranslatedText,
+        avancement: traduction.avancement
       };
       console.log(
         "we are updating the trad ####################################################################",
@@ -798,16 +826,23 @@ class SideTrad extends Component {
         currIdx,
         this.state.traduction
       );
-      await API.update_tradForReview(newTrad).then(data => {
-        console.log(data.data.data);
-      });
+      //if (newTrad._id, )
+      if (newTrad._id) {
+        await API.update_tradForReview(newTrad).then(data => {
+          console.log(data.data.data);
+        });
+      }
     }
     console.log(traduction);
     this.props.fwdSetState({ traduction }, () => {
       console.log(traduction);
-      return this.props.isExpert
+      return !this.props.isExpert ?
+        this.props.valider(this.props.traduction) :
+        this.props.isExpert && !traduction._id ?
+        this.props.valider(this.props.traduction) : false
+      /* return (this.props.isExpert && traduction._id && traduction == 1)
         ? false
-        : this.props.valider(this.props.traduction);
+        : this.props.valider(this.props.traduction); */
     });
     console.log("after this");
     this.goChange(true, false);
@@ -849,7 +884,7 @@ class SideTrad extends Component {
       userId,
       showModals,
       selectedTrad,
-      modified,
+      modified
     } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
     const options = {
@@ -931,21 +966,17 @@ class SideTrad extends Component {
         >
           {ReactHtmlParser((francais || {}).body || "", options)}
         </div>
-        {modified ?
-        <AlertModified>
-        <EVAIcon
-                name="alert-triangle"
-                fill={variables.orange}
-                id="alert-triangle-outline"
-                className={'mr-10'}
-              />
-              <AlertText>
-                Paragraphe modifié
-              </AlertText>
-
-        </AlertModified>
-        : null
-  }
+        {modified ? (
+          <AlertModified>
+            <EVAIcon
+              name="alert-triangle"
+              fill={variables.orange}
+              id="alert-triangle-outline"
+              className={"mr-10"}
+            />
+            <AlertText>Paragraphe modifié</AlertText>
+          </AlertModified>
+        ) : null}
         <div className="langue-data">
           <i
             className={"mr-12 flag-icon flag-icon-" + langue.langueCode}
