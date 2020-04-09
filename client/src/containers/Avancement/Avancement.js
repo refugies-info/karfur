@@ -98,6 +98,7 @@ export class Avancement extends Component {
     this._loadArticles(itemId, i18nCode);
     API.get_tradForReview({
       query: { langueCible: i18nCode },
+      sort: {updatedAt: -1},
       populate: "userId"
     }).then(data => {
       //console.log(data.data.data);
@@ -447,10 +448,12 @@ export class Avancement extends Component {
                 return "En attente";
                 } */
                 })
-                .map(z => {
+                .map((z, index) => {
                   if (z.status === "À revoir") {
+                    console.log(index);
                     return "À revoir";
                   } else if (z.status === "Validée") {
+                    console.log(index);
                     return "Publiées";
                   } else if (z.status === "En attente") {
                     return "En attente";
@@ -532,7 +535,7 @@ export class Avancement extends Component {
         demarcheCount: this.countType(traductions, "demarche"),
         stringCount: this.countType(traductions, "string"),
       });
-      if (this.countfilter(traductions, "À revoir") == 0) {
+      if (this.countfilter(traductions, "À revoir") == 0 && this.countfilter(traductions, "À traduire") > 0) {
         this.setState({
           toTranslate: true,
           review: false,
@@ -552,12 +555,12 @@ export class Avancement extends Component {
         demarcheCount: this.countType(this.state.traductions, "demarche"),
         stringCount: this.countType(this.state.traductions, "string"),
       })
-      if (this.countfilter(traductions, "À revoir") == 0) {
+/*       if (this.countfilter(traductions, "À revoir") == 0) {
         this.setState({
           toTranslate: true,
           review: false,
         });
-      }
+      } */
     }
   }
 

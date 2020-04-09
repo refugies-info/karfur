@@ -84,7 +84,7 @@ class SideTrad extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { currIdx, currSubIdx, currSubName } = this.state;
-    console.log('indexes ###############################################',currIdx, currSubIdx, currSubName, this.props.traduction.translatedText,this.props.traduction.translatedText.contenu);
+    console.log('indexes ###############################################',currIdx, currSubIdx, currSubName, this.props.traduction.translatedText,this.props.traduction.translatedText.contenu, this.props.traduction);
     if (currIdx !== prevState.currIdx || currSubIdx !== prevState.currSubIdx || currSubName !== prevState.currSubName) {
       if (this.state.pointeurs.includes(currIdx) && this.props.traduction.translatedText[currIdx + "Modified"] === true) {
         this.setState({modified: true});
