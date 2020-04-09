@@ -39,7 +39,7 @@ const initial_data = [
     children:[
       {
         name: "moins de 18 ans",
-        bottomValue:0,
+        bottomValue:-1,
         topValue:18
       },
       {
