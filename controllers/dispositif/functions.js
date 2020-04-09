@@ -7,32 +7,45 @@ const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
 const markTradModifications = (newD, oldD, trad, locale) => {
   pointeurs.forEach(x => {
     if (JSON.stringify(oldD[x]) !== JSON.stringify(newD[x])) {
-      trad.translatedText[x + 'Modified'] = true;
-      trad.status = 'À revoir';
+      trad.translatedText[x + "Modified"] = true;
+      trad.status = "À revoir";
     }
   });
 
   newD.contenu.forEach((p, index) => {
     if (JSON.stringify(p.title) !== JSON.stringify(oldD.contenu[index].title)) {
-        trad.translatedText.contenu[index].titleModified = true;
-        trad.status = 'À revoir';
+      trad.translatedText.contenu[index].titleModified = true;
+      trad.status = "À revoir";
     }
     if (
       JSON.stringify(p.content) !== JSON.stringify(oldD.contenu[index].content)
     ) {
-        trad.translatedText.contenu[index].contentModified = true;
-        trad.status = 'À revoir';
+      trad.translatedText.contenu[index].contentModified = true;
+      trad.status = "À revoir";
     }
     if (p.children && p.children.length > 0) {
       p.children.forEach((c, j) => {
-        if (JSON.stringify(c.title) !== JSON.stringify(oldD.contenu[index].children[j].title)) {
-            trad.translatedText.contenu[index].children[j].titleModified = true;
-            trad.status = 'À revoir';
+        if (
+          JSON.stringify(c.title) !==
+          JSON.stringify(oldD.contenu[index].children[j].title)
+        ) {
+          trad.translatedText.contenu[index].children[j].titleModified = true;
+          trad.status = "À revoir";
         }
-        if (JSON.stringify(c.content) !== JSON.stringify(oldD.contenu[index].children[j].content)) {
-            trad.translatedText.contenu[index].children[j].contentModified = true;
-            trad.status = 'À revoir';
-          }
+        if (
+          JSON.stringify(c.content) !==
+          JSON.stringify(oldD.contenu[index].children[j].content)
+        ) {
+          trad.translatedText.contenu[index].children[j].contentModified = true;
+          trad.status = "À revoir";
+        }
+        if (
+          JSON.stringify(c.contentTitle) !==
+          JSON.stringify(oldD.contenu[index].children[j].contentTitle)
+        ) {
+          trad.translatedText.contenu[index].children[j].contentTitleModified = true;
+          trad.status = "À revoir";
+        }
       });
     }
   });
@@ -60,6 +73,10 @@ const turnToLocalized = (result, locale) => {
         }
         if (c.content) {
           c.content = c.content[locale] || c.content.fr || c.content;
+        }
+        if (c.contentTitle) {
+          c.contentTitle =
+            c.contentTitle[locale] || c.contentTitle.fr || c.contentTitle;
         }
       });
     }
@@ -90,6 +107,10 @@ const turnToLocalizedNew = (resultObj, locale) => {
         if (c.content) {
           c.content = c.content[locale] || c.content.fr || c.content;
         }
+        if (c.contentTitle) {
+          c.contentTitle =
+            c.contentTitle[locale] || c.contentTitle.fr || c.contentTitle;
+        }
       });
     }
   });
@@ -106,23 +127,23 @@ const turnToLocalizedFaster = (result, locale) => {
 
   const newResult = result.contenu.map(p => {
     if (p.title) {
-       const title = p.title[locale] || p.title.fr || p.title;
+      const title = p.title[locale] || p.title.fr || p.title;
     }
     if (p.content) {
       const content = p.content[locale] || p.content.fr || p.content;
     }
     if (p.children && p.children.length > 0) {
-      const children  = p.children.map((c, j) => {
+      const children = p.children.map((c, j) => {
         if (c.title) {
           const ctitle = c.title[locale] || c.title.fr || c.title;
         }
         if (c.content) {
           const ccontent = c.content[locale] || c.content.fr || c.content;
         }
-        return ({title: ctitle, content: ccontent})
+        return { title: ctitle, content: ccontent };
       });
     }
-    return ({title, content, children });
+    return { title, content, children };
   });
   return newResult;
 };
