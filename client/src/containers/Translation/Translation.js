@@ -99,7 +99,7 @@ export class TranslationHOC extends Component {
       API.get_tradForReview({query: {'articleId':itemId, langueCible: locale, ...(!isExpert && userId && {userId})}, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           const traductions = data_res.data.data; console.log(traductions);
-          console.log(traductions);
+          console.log(traductions, '**********************************tradsssss');
           this._isMounted && this.setState({
             traductionsFaites : traductions,
             ...((isExpert || userId) && {traduction : {
