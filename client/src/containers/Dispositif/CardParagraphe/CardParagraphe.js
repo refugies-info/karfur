@@ -172,6 +172,7 @@ class CardParagraphe extends Component {
         }else{
           texte = subitem.contentTitle;
         }
+        console.log(texte);
         return(
           <ContentEditable
             id={this.props.keyValue}
