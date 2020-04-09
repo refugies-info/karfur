@@ -391,6 +391,24 @@ const insertInDispositif = (res, traduction, locale) => {
                 c.content[locale] =
                   traduction.translatedText.contenu[i].children[j].content;
               }
+              if (
+                c.contentTitle &&
+                traduction.translatedText.contenu[i] &&
+                traduction.translatedText.contenu[i].children &&
+                traduction.translatedText.contenu[i].children[j] &&
+                traduction.translatedText.contenu[i].children[j].contentTitle
+              ) {
+                console.log(
+                  "check before insertion of childrren:",
+                  traduction,
+                  traduction.translatedText.contenu[i].children[j]
+                );
+                if (!c.contentTitle.fr) {
+                  c.contentTitle = { fr: c.contentTitle };
+                }
+                c.contentTitle[locale] =
+                  traduction.translatedText.contenu[i].children[j].contentTitle;
+              }
             });
           }
         });
