@@ -225,7 +225,9 @@ export class Dispositif extends Component {
         locale: props.languei18nCode
       })
         .then(data_res => {
+          console.log(data_res);
           let dispositif = { ...data_res.data.data[0] };
+          console.log(dispositif);
           if (!dispositif || !dispositif._id) {
             this._isMounted = false;
             return this.props.history.push("/");
@@ -250,6 +252,7 @@ export class Dispositif extends Component {
               this.valider_dispositif("Brouillon", true)
             );
           } //Enregistrement automatique du dispositif toutes les 3 minutes
+          console.log(dispositif);
           this._isMounted &&
             this.setState(
               {
@@ -662,7 +665,7 @@ export class Dispositif extends Component {
       contentState,
       selectionState,
       rawContentState,
-      markup,
+      markup
       //rawContentState.blocks[1].data
     );
     if (state.length > key) {
@@ -1124,10 +1127,13 @@ export class Dispositif extends Component {
     }
   };
 
-  addSponsor = sponsor =>
+  addSponsor = sponsor => {
+    console.log('QQQQQQWQWQWQWWEQWEQWEQWEQWEQWEQEW', sponsor);
     this.setState({
       sponsors: [...(this.state.sponsors || []).filter(x => !x.dummy), sponsor]
     });
+  }
+  
   deleteSponsor = key => {
     if (this.state.status === "Accepté structure") {
       Swal.fire({
@@ -1527,6 +1533,7 @@ export class Dispositif extends Component {
     });
 
   render() {
+    console.log(this.props);
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
@@ -1546,6 +1553,7 @@ export class Dispositif extends Component {
       didThank,
       dispositif
     } = this.state;
+    console.log(dispositif);
     const etapes_tuto =
       typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
     const moisDepuisCreation =
@@ -1761,8 +1769,11 @@ export class Dispositif extends Component {
                 )}
               </Row>
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
-                <div className="bloc-titre">
-                  <h1 className={disableEdit ? "" : "editable"}>
+                <div className={"bloc-titre "}>
+                  <h1 className={disableEdit
+                      ? ""
+                      : "editable"}
+                    >
                     <ContentEditable
                       id="titreInformatif"
                       html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
@@ -1779,7 +1790,7 @@ export class Dispositif extends Component {
                     />
                   </h1>
                   {typeContenu === "dispositif" && (
-                    <h2 className="bloc-subtitle">
+                    <h2 className={"bloc-subtitle "}>
                       <span>{t("avec", "avec")}&nbsp;</span>
                       <ContentEditable
                         id="titreMarque"
