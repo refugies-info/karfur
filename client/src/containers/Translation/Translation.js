@@ -128,11 +128,9 @@ export class TranslationHOC extends Component {
   fwdSetState = (fn, cb) => this._isMounted && this.setState(fn, cb);
 
   translate = (text,target,item,toEditor=false) => {
-    console.log("start translate") 
     this.setState({ translated:{ ...this.state.translated, [item]: "" }, autosuggest: true });
     API.get_translation({ q: text, target: target }).then(data => {
-      console.log("getting translate") 
-      if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
+      if(!this.state.translated[item]){
         let value = data.data.replace(/ id='initial_/g,' id=\'target_').replace(/ id="initial_/g,' id="target_') || "";
         value = toEditor ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks)) : value;
         this._isMounted && this.setState({

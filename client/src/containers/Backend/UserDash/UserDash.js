@@ -112,7 +112,7 @@ export class UserDash extends Component {
     this.props.tracking.trackEvent({ action: 'click', label: 'openThemes', value : langue._id });
     this.props.history.push({
       pathname: '/avancement/langue/'+langue._id,
-      state: { langue: langue}
+     // state: { langue: langue}
     })
   }
 
