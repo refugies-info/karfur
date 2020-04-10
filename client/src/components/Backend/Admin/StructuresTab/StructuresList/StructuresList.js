@@ -10,6 +10,7 @@ import {colorStatut} from '../../../../Functions/ColorFunctions'
 import './StructuresList.scss'
 
 const structuresList = (props) => {
+  console.log(props.structures);
   return(
     <Card className="structures-list">
       <CardHeader className="h1">

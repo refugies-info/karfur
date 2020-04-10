@@ -99,9 +99,10 @@ export class TranslationHOC extends Component {
       API.get_tradForReview({query: {'articleId':itemId, langueCible: locale, ...(!isExpert && userId && {userId})}, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
           const traductions = data_res.data.data; console.log(traductions);
+          console.log(traductions, '**********************************tradsssss');
           this._isMounted && this.setState({
             traductionsFaites : traductions,
-            ...(!isExpert && userId && {traduction : {
+            ...((isExpert || userId) && {traduction : {
               initialText: _.get(traductions, "0.initialText", {}), 
               translatedText: _.get(traductions, "0.translatedText", {})
             }, autosuggest: false})
@@ -230,6 +231,7 @@ export class TranslationHOC extends Component {
   }
 
   valider = (tradData = {}) => {
+    console.log("we are in this translation" ,this.state, tradData)
     this.setState({disableBtn: true});
     let traduction={
       langueCible: this.state.locale,
@@ -246,7 +248,8 @@ export class TranslationHOC extends Component {
     if(this.state.isExpert){
       traduction={
         ...traduction,
-        translationId:this.state.translationId
+        translationId:this.state.translationId,
+        isExpert: true,
       }
     }
     traduction = {...traduction, ...tradData};
@@ -254,7 +257,7 @@ export class TranslationHOC extends Component {
     API.add_traduction(traduction).then((data) => {
       traduction._id = (data.data.data || {})._id;
       this.setState({traduction});
-      console.log(traduction.avancement);
+      console.log(traduction.avancement, traduction);
       if(traduction.avancement === 1){
         Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000})
         this._isMounted && this.setState({disableBtn: false});
@@ -267,9 +270,19 @@ export class TranslationHOC extends Component {
     const i18nCode=(this.state.langue || {}).i18nCode, {isExpert, type, langue} = this.state;
     const nom='avancement.'+i18nCode;
     const query ={$or : [{[nom]: {'$lt':1} }, {[nom]: null}, {'avancement': 1}], status: "Actif"};
+    console.log(query);
     API[isExpert ? "get_tradForReview" : (type==="dispositif" ? "get_dispositif" : "getArticle")]({query: query, locale:i18nCode, random:true, isExpert}).then(data_res => {
       let results=data_res.data.data;
-      if(results.length===0){Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s\'est produite', type: 'error', timer: 1500})}
+      console.log(results);
+      if(results.length===0){
+        if (isExpert) {
+          this.props.history.push({ 
+            pathname: '/avancement/traductions/' + langue._id,
+          }) 
+        } else {
+        Swal.fire( {title: 'Oh non', text: 'Aucun résultat n\'a été retourné. 2 possibilités : vous avez traduit tout le contenu disponible, ou une erreur s\'est produite', type: 'error', timer: 1500})
+        }
+      }
       else{ clearInterval(this.timer);
         this.props.history.push({ 
           pathname: '/' + (isExpert ? "validation" : "traduction") + '/' + (_.get(results, "0.typeContenu") || type) + '/' + _.get(results, "0._id"), 
@@ -304,7 +317,8 @@ export class TranslationHOC extends Component {
   
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
-  render(){ 
+  render(){
+    console.log('traduction:',this.state.traduction, this.state);
     if(this.state.type === "dispositif"){
       return(
         <Dispositif 
