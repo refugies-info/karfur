@@ -20,7 +20,8 @@ import {
   italicBtn,
   underBtn,
   listBtn,
-  logo_google
+  logo_google,
+  linkBtn
 } from "../../../assets/figma/index";
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { RejectTradModal } from "../../../components/Modals";
@@ -28,6 +29,24 @@ import { RejectTradModal } from "../../../components/Modals";
 import "./SideTrad.scss";
 import variables from "scss/colors.scss";
 import API from "../../../utils/API";
+import produce from "immer";
+import styled from "styled-components";
+
+const AlertModified = styled.div`
+  height: 40px;
+  border-radius: 0px 0px 12px 12px;
+  display: flex;
+  flex-direction: row;
+  background-color: #fcd497;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+`;
+
+const AlertText = styled.div`
+  color: orange;
+  margin-right: 20px;
+`;
 
 class SideTrad extends Component {
   state = {
@@ -44,7 +63,12 @@ class SideTrad extends Component {
     userId: {},
     showModals: {
       rejected: false
-    }
+    },
+    toggle: false,
+    pointersMod: false,
+    contentMod: false,
+    traduction: this.props.traduction,
+    modified: false
   };
   initialState = this.state;
 
@@ -56,6 +80,137 @@ class SideTrad extends Component {
     ) {
       this._initializeComponent(nextProps);
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { currIdx, currSubIdx, currSubName } = this.state;
+    console.log(
+      "indexes ###############################################",
+      currIdx,
+      currSubIdx,
+      currSubName,
+      this.props.traduction.translatedText,
+      this.props.traduction.translatedText.contenu,
+      this.props.traduction
+    );
+    if (
+      currIdx !== prevState.currIdx ||
+      currSubIdx !== prevState.currSubIdx ||
+      currSubName !== prevState.currSubName
+    ) {
+      if (
+        this.state.pointeurs.includes(currIdx) &&
+        this.props.traduction.translatedText[currIdx + "Modified"] === true
+      ) {
+        this.setState({ modified: true });
+      } else if (
+        !this.state.pointeurs.includes(currIdx) &&
+        currSubIdx >= 0 &&
+        this.props.traduction.translatedText.contenu[currIdx] &&
+        this.props.traduction.translatedText.contenu[currIdx].children &&
+        this.props.traduction.translatedText.contenu[currIdx].children[
+          currSubIdx
+        ][currSubName + "Modified"] === true
+      ) {
+        this.setState({ modified: true });
+      } else if (
+        !this.state.pointeurs.includes(currIdx) &&
+        currSubIdx < 0 &&
+        this.props.traduction.translatedText.contenu[currIdx] &&
+        this.props.traduction.translatedText.contenu[currIdx][
+          currSubName + "Modified"
+        ] === true
+      ) {
+        this.setState({ modified: true });
+      } else {
+        this.setState({ modified: false });
+      }
+    }
+    if (this.props.traduction !== prevProps.traduction) {
+      if (
+        this.state.pointeurs.includes(currIdx) &&
+        this.props.traduction.translatedText[currIdx + "Modified"] == true
+      ) {
+        this.setState({ modified: true });
+      }
+      this.setState({ traduction: this.props.traduction });
+    }
+    const { traduction } = this.props;
+    if (!this.state.pointersMod) {
+      this.state.pointeurs.forEach(x => {
+        if (traduction.translatedText[x + "Modified"]) {
+          const elems = document.querySelectorAll('div[id="' + x + '"]');
+          elems[0].classList.toggle("arevoir", true);
+          this.setState({ pointersMod: true });
+        }
+      });
+    }
+    if (!this.state.contentMod) {
+      traduction.translatedText.contenu.forEach((p, index) => {
+        if (p.titleModified) {
+        }
+        if (p.contentModified) {
+        }
+        if (p.children && p.children.length > 0) {
+          p.children.forEach((c, j) => {
+            if (c.titleModified) {
+              const elems1 = document.querySelectorAll(
+                'div[id="' +
+                  index +
+                  '"]' +
+                  (j !== undefined && j > -1
+                    ? '[data-subkey="' + j + '"]'
+                    : "") +
+                  (j !== undefined && j > -1 ? '[data-target="title"]' : "")
+              );
+              console.log(elems1);
+              if (elems1 && elems1[0] && elems1[0].classList) {
+                console.log("############## toggle", elems1[0].classList);
+                elems1[0].classList.toggle("arevoir", true);
+                this.setState({ contentMod: true });
+              }
+            }
+            if (c.contentModified) {
+              const elems2 = document.querySelectorAll(
+                'div[id="' +
+                  index +
+                  '"]' +
+                  (j !== undefined && j > -1
+                    ? '[data-subkey="' + j + '"]'
+                    : "") +
+                  (j !== undefined && j > -1 ? '[data-target="content"]' : "")
+              );
+              if (elems2 && elems2[0] && elems2[0].classList) {
+                elems2[0].classList.toggle("arevoir", true);
+                this.setState({ contentMod: true });
+              }
+            }
+          });
+        }
+      });
+    }
+    /*       const elems = document.querySelectorAll(
+        'div[id="' +
+          idx +
+          '"]' +
+          (subidx !== undefined && subidx > -1
+            ? '[data-subkey="' + subidx + '"]'
+            : "") +
+          (subidx !== undefined && subidx > -1 && subname && subname !== ""
+            ? '[data-target="' + subname + '"]'
+            : "")
+      );
+      if (elems.length > 0) {
+        const elem = elems[0];
+        elem.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+          inline: "nearest"
+        });
+        elem.classList.toggle("translating"); //On le surligne
+        elem.classList.toggle("arevoir");
+      } 
+    } */
   }
 
   _initializeComponent = async props => {
@@ -73,6 +228,54 @@ class SideTrad extends Component {
       if (props.typeContenu === "demarche") {
         this.setState({ pointeurs: ["titreInformatif", "abstract"] });
       }
+      const { traduction } = this.props;
+      /*       this.state.pointeurs.forEach(x => {
+        if (traduction.translatedText[x + "Modified"]) {
+          const elems = document.querySelectorAll('div[id="' + x + '"]');
+          elems[0].classList.toggle("arevoir", true);
+        }
+      });
+      traduction.translatedText.contenu.forEach((p, index) => {
+        if (p.titleModified) {
+        }
+        if (p.contentModified) {
+        }
+        if (p.children && p.children.length > 0) {
+          p.children.forEach((c, j) => {
+            if (c.titleModified) {
+              const elems1 = document.querySelectorAll(
+                'div[id="' +
+                  index +
+                  '"]' +
+                  (j !== undefined && j > -1
+                    ? '[data-subkey="' + j + '"]'
+                    : "") +
+                  (j !== undefined && j > -1 ? '[data-target="title"]' : "")
+              );
+              console.log(elems1, traduction);
+                console.log("############## toggle ###################################################################");
+              if (elems1 && elems1[0]) {
+                console.log("############## toggle ###################################################################");
+                elems1[0].classList.toggle("arevoir", true);
+              }
+            }
+            if (c.contentModified) {
+              const elems2 = document.querySelectorAll(
+                'div[id="' +
+                  index +
+                  '"]' +
+                  (j !== undefined && j > -1
+                    ? '[data-subkey="' + j + '"]'
+                    : "") +
+                  (j !== undefined && j > -1 ? '[data-target="content"]' : "")
+              );
+              if (elems2 && elems2[0]) {
+                elems2[0].classList.toggle("arevoir", true);
+              }
+            }
+          });
+        }
+      }); */
     }
     window.scrollTo(0, 0);
   };
@@ -204,7 +407,17 @@ class SideTrad extends Component {
   };
 
   _endingFeedback = () => {
-    if (this.props.isExpert && !this.state.hasBeenSkipped) {
+    console.log("xxxxxxxxxxx this props", this.props, this.state);
+    if (
+      this.props.isExpert &&
+      !this.state.hasBeenSkipped &&
+      (this.state.selectedTrad.status === "Validée" ||
+        (this.state.selectedTrad.status === "En attente" &&
+          this.props.traduction.avancement >= 1) ||
+        (this.state.selectedTrad.status === "À revoir" &&
+          this.props.traduction.avancement >= 1) ||
+          this.props.traduction.avancement >= 1)
+    ) {
       this._insertTrad(); //On insère cette traduction
     } else {
       this.props.onSkip();
@@ -213,6 +426,14 @@ class SideTrad extends Component {
   };
 
   _scrollAndHighlight = (idx, subidx = -1, subname = "") => {
+    console.log(
+      "############################################################",
+      idx,
+      subidx,
+      subname,
+      this.state,
+      this.props
+    );
     if (
       subidx > -1 &&
       subname === "content" &&
@@ -247,6 +468,20 @@ class SideTrad extends Component {
     }
   };
 
+  /* transform = (node, index) => {
+
+    // return null to block certain elements
+    // don't allow <span> elements
+    if (node.type === 'tag' && node.name === 'a') {
+      return <>
+      <a>
+        {}
+      </a>
+      </>
+      console.log('############################',node);
+    }
+  }
+ */
   checkTranslate = target => {
     const { pointeurs, currIdx, currSubIdx } = this.state;
     const text = this.initial_text.innerHTML,
@@ -265,7 +500,8 @@ class SideTrad extends Component {
       target,
       item,
       pos,
-      this.props.traduction.translatedText
+      this.props.traduction.translatedText,
+      this.props.translated
     );
     if (isExpert) {
       listTrad = (
@@ -309,6 +545,9 @@ class SideTrad extends Component {
         }
       }
     }
+    ///////parse for buttons
+
+    //ReactHtmlParser(oldTrad, {})
     console.log(oldTrad);
     this.setState({ listTrad, score, userId, selectedTrad });
     if (oldTrad && typeof oldTrad === "string") {
@@ -385,9 +624,13 @@ class SideTrad extends Component {
           x[p] !== "undefined" &&
           x[p] !== "<p>null</p>" &&
           x[p] !== "<p><br></p>" &&
+          x[p] !== "<p><br></p>\n" &&
           x[p] !== "<br>" &&
-          type !== "cards" 
+          x[p] !== "<p></p>\n\n<p></p>\n" &&
+          type !== "cards"
         ) {
+          console.log(x[p] + "<p><br></p>", nbChamps, p);
+          console.log(x[p] == "<p><br></p>\n")
           nbChamps += 1;
         }
       });
@@ -397,9 +640,13 @@ class SideTrad extends Component {
         x.contentTitle &&
         x.contentTitle !== "" &&
         x.contentTitle !== "null" &&
-        x.contentTitle !== "undefined"
+        x.contentTitle !== "undefined" && 
+        x.contentTitle !== "<p>null</p>" &&
+        x.contentTitle !== "<p><br></p>" &&
+        x.contentTitle !== "<br>"
       ) {
         nbChamps += 1;
+        console.log("the beeeeeeeeeeeeeesssssstttttto", nbChamps)
       }
       if (x.contenu && x.contenu.length > 0) {
         nbChamps = this._countContents(x.contenu, nbChamps, x.type);
@@ -439,6 +686,7 @@ class SideTrad extends Component {
   };
 
   onValidate = async () => {
+    console.log("inside validate");
     if (!this.props.translated.body) {
       Swal.fire({
         title: "Oh non",
@@ -448,7 +696,7 @@ class SideTrad extends Component {
       });
       return;
     }
-    let { pointeurs, currIdx, currSubIdx, currSubName } = this.state;
+    let { pointeurs, currIdx, currSubIdx, currSubName, selectedTrad } = this.state;
     this.props.fwdSetState({ disableBtn: true });
     const pos = pointeurs.findIndex(x => currIdx === x);
     const node = pos > -1 ? currIdx : "contenu";
@@ -463,6 +711,10 @@ class SideTrad extends Component {
       currSubName = "contentTitle";
     }
     let traduction = { ...this.props.traduction };
+    console.log(
+      "##################### convert to raw",
+      convertToRaw(this.props.translated.body.getCurrentContent())
+    );
     ["francais", "translated"].forEach(nom => {
       const initialValue = this.props[nom].body;
       const texte =
@@ -503,50 +755,109 @@ class SideTrad extends Component {
         [node]: value
       };
     });
-    console.log(traduction, traduction.translatedText, this.props.menu);
+    //console.log(traduction, traduction.translatedText, this.props.menu);
     const nbTraduits = this._countContents([traduction.translatedText]);
     const nbInit =
       this._countContents(this.props.menu) +
       pointeurs.length -
       this.props.menu.length;
     //const nbInit = this._countContents([traduction.initialText]);
-   /*  console.log(
+    /* console.log(
       this._countContents([traduction.translatedText]),
       this._countContents(this.props.menu),
       this._countContents([traduction.initialText])
     ); */
     traduction.avancement = nbTraduits / nbInit;
+    //console.log(traduction.avancement);
     traduction.title =
       (this.props.content.titreMarque || "") +
       (this.props.content.titreMarque && this.props.content.titreInformatif
         ? " - "
         : "") +
       (this.props.content.titreInformatif || "");
-
     if (this.props.isExpert) {
-      const { selectedTrad, currIdx } = this.state;
-      let newTrad = {
+      console.log(
+        "xxxxxxxxxx updated text xxxxxxxxxx",
+        this.state.selectedTrad,
+        traduction
+      );
+      console.log(this.state);
+      let newTranslatedText = produce(traduction.translatedText, draft => {
+        //draft.status[currIdx] = "Acceptée";
+        if (this.state.pointeurs.includes(currIdx)) {
+          draft[currIdx + "Modified"] = false;
+        } else if (currSubIdx === -1) {
+          draft.contenu[currIdx][currSubName + "Modified"] = false;
+        } else {
+          draft.contenu[currIdx].children[currSubIdx][
+            currSubName + "Modified"
+          ] = false;
+        }
+      });
+      traduction.translatedText = newTranslatedText;
+      const elems1 = document.querySelectorAll(
+        'div[id="' +
+          currIdx +
+          '"]' +
+          (currSubIdx !== undefined && currSubIdx > -1
+            ? '[data-subkey="' + currSubIdx + '"]'
+            : "") +
+          (currSubIdx !== undefined &&
+          currSubIdx > -1 &&
+          currSubName &&
+          currSubName !== ""
+            ? '[data-target="' + currSubName + '"]'
+            : "")
+      );
+      if (elems1 && elems1[0] && elems1[0].classList) {
+        elems1[0].classList.toggle("arevoir", false);
+      }
+      /* let newTrad = {
         _id: selectedTrad._id,
         translatedText: {
-          ...selectedTrad.translatedText,
+          ...traduction.translatedText,
           status: {
             ...(selectedTrad.translatedText.status || {}),
             [currIdx]: "Acceptée"
           }
         }
+      }; */
+      let newTrad = {
+        _id: selectedTrad._id || traduction._id,
+        translatedText: newTranslatedText,
+        avancement: traduction.avancement
       };
-      await API.update_tradForReview(newTrad).then(data => {
-        console.log(data.data.data);
-      });
+      console.log(
+        "we are updating the trad ####################################################################",
+        newTrad,
+        currIdx,
+        this.state.traduction
+      );
+      //if (newTrad._id, )
+      if (newTrad._id) {
+        await API.update_tradForReview(newTrad).then(data => {
+          console.log(data.data.data);
+        });
+      }
     }
-    this.props.fwdSetState({ traduction }, () =>
-      this.props.isExpert ? false : this.props.valider(this.props.traduction)
-    );
+    console.log(traduction);
+    this.props.fwdSetState({ traduction }, () => {
+      console.log(traduction, this.props.traduction, this.props.isExpert);
+      return !this.props.isExpert ?
+        this.props.valider(this.props.traduction) :
+        this.props.isExpert && !this.props.traduction._id && !this.state.selectedTrad._id  ?
+        this.props.valider(this.props.traduction) : false
+      /* return (this.props.isExpert && traduction._id && traduction == 1)
+        ? false
+        : this.props.valider(this.props.traduction); */
+    });
+    console.log("after this");
     this.goChange(true, false);
     this.props.fwdSetState({ disableBtn: false });
   };
 
   _insertTrad = () => {
+    console.log("We are inserting");
     let newTrad = {
       ...this.props.traduction,
       articleId: this.props.itemId,
@@ -554,6 +865,7 @@ class SideTrad extends Component {
       locale: this.props.locale,
       traductions: this.props.traductionsFaites
     };
+    console.log("test:", newTrad);
     API.validate_tradForReview(newTrad).then(data => {
       console.log(data.data.data);
       Swal.fire(
@@ -578,13 +890,19 @@ class SideTrad extends Component {
       score,
       userId,
       showModals,
-      selectedTrad
+      selectedTrad,
+      modified
     } = this.state;
     const isRTL = ["ar", "ps", "fa"].includes(langue.i18nCode);
+    const options = {
+      decodeEntities: true
+      // transform: this.transform
+    };
+    console.log("xxxxx in render", this.props, this.state, translated);
 
     return (
       <div className="side-trad shadow">
-        {!isExpert && (
+        {!isExpert ? (
           <div className="nav-btns">
             {currIdx !== "titreInformatif" && (
               <FButton
@@ -610,6 +928,16 @@ class SideTrad extends Component {
               />
             </FButton>
           </div>
+        ) : (
+          <FButton
+            type="light-action"
+            name={"close" + "-outline"}
+            fill={variables.noir}
+            className="mr-10 mb-10"
+            onClick={() => this._endingFeedback()}
+          >
+            {"Fin de la session"}
+          </FButton>
         )}
         <div className="langue-data">
           <i className="flag-icon flag-icon-fr mr-12" title="fr" id="fr"></i>
@@ -637,15 +965,25 @@ class SideTrad extends Component {
           )}
         </div>
         <div
-          className="content-data mb-20"
+          className={modified ? "content-data-french" : "content-data mb-20"}
           id="body_texte_initial"
           ref={initial_text => {
             this.initial_text = initial_text;
           }}
         >
-          {ReactHtmlParser((francais || {}).body || "")}
+          {ReactHtmlParser((francais || {}).body || "", options)}
         </div>
-
+        {modified ? (
+          <AlertModified>
+            <EVAIcon
+              name="alert-triangle"
+              fill={variables.orange}
+              id="alert-triangle-outline"
+              className={"mr-10"}
+            />
+            <AlertText>Paragraphe modifié</AlertText>
+          </AlertModified>
+        ) : null}
         <div className="langue-data">
           <i
             className={"mr-12 flag-icon flag-icon-" + langue.langueCode}
@@ -672,7 +1010,7 @@ class SideTrad extends Component {
               editorState={(translated || {}).body}
               toolbarHidden={pointeurs.includes(currIdx)}
               toolbar={{
-                options: ["inline", "list"],
+                options: ["inline", "list", "link"],
                 inline: {
                   inDropdown: false,
                   options: ["bold", "italic", "underline"],
@@ -690,8 +1028,16 @@ class SideTrad extends Component {
                 list: {
                   inDropdown: false,
                   options: ["unordered"],
-                  className: "bloc-gauche-list blc-gh",
+                  className: "inline-btn blc-gh",
                   unordered: { icon: listBtn, className: "list-btn" }
+                },
+                link: {
+                  inDropdown: false,
+                  options: ["link"],
+                  className: "bloc-gauche-list blc-gh",
+                  link: { icon: linkBtn, className: "btn-link" },
+                  defaultTargetOption: "_blank",
+                  showOpenOptionOnHover: true
                 }
               }}
             />
@@ -744,7 +1090,32 @@ class SideTrad extends Component {
         </div>
         <div className="footer-btns">
           {isExpert ? (
-            <div></div>
+            <div>
+              {currIdx !== "titreInformatif" && (
+                <FButton
+                  type="outline-black"
+                  name="arrow-back-outline"
+                  fill={variables.noir}
+                  onClick={() => this.goChange(false)}
+                  className="mt-10"
+                  style={{ marginRight: 5 }}
+                >
+                  {""}
+                </FButton>
+              )}
+              <FButton
+                className="mt-10"
+                type="outline-black"
+                onClick={this.goChange}
+              >
+                {""}
+                <EVAIcon
+                  name="arrow-forward-outline"
+                  fill={variables.noir}
+                  //className="ml-10"
+                />
+              </FButton>
+            </div>
           ) : (
             <FButton
               type="outline-black"
@@ -769,17 +1140,31 @@ class SideTrad extends Component {
                 Signaler
               </FButton>
             )}
-            <FButton
-              type="light-action"
-              name={(isExpert ? "close" : "skip-forward") + "-outline"}
-              fill={variables.noir}
-              className="mr-10 mt-10"
-              onClick={() =>
-                isExpert ? this.toggleModal(true, "rejected") : this.goChange()
-              }
-            >
-              {isExpert ? "Refuser" : "Passer"}
-            </FButton>
+            {isExpert ? (
+              <FButton
+                type="outline-black"
+                name="refresh-outline"
+                fill={variables.noir}
+                onClick={this.reset}
+                className="mt-10 mr-10"
+              >
+                Réinitialiser
+              </FButton>
+            ) : (
+              <FButton
+                type="light-action"
+                name={(isExpert ? "close" : "skip-forward") + "-outline"}
+                fill={variables.noir}
+                className="mr-10 mt-10"
+                onClick={() =>
+                  isExpert
+                    ? this.toggleModal(true, "rejected")
+                    : this.goChange()
+                }
+              >
+                {isExpert ? "Refuser" : "Passer"}
+              </FButton>
+            )}
             <FButton
               type="validate"
               name="checkmark-circle-outline"
