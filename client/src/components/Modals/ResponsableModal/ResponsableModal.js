@@ -24,6 +24,7 @@ class ResponsableModal extends Component {
   }
 
   validateModal = async () => {
+    console.log(this.state);
     if(this.state.step === 0){ 
       if(this.state.memberAdded){
         if(!this.props.createur || !this.props.createur._id || !this.props.mainSponsor || !this.props.mainSponsor._id){Swal.fire( {title: 'Oh non!', text: 'Certaines informations sont manquantes', type: 'error', timer: 1500 }); return;}

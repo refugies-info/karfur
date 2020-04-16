@@ -86,6 +86,7 @@ const turnToLocalized = (result, locale) => {
 
 const turnToLocalizedNew = (resultObj, locale) => {
   var result = JSON.parse(JSON.stringify(resultObj));
+  console.log(result, resultObj);
   pointeurs.forEach(x => {
     if (result[x]) {
       result[x] = result[x][locale] || result[x].fr || result[x];
