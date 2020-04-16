@@ -12,7 +12,7 @@ const {
   turnHTMLtoJSON,
   turnJSONtoHTML,
   turnToLocalizedNew,
-  markTradModifications
+  markTradModifications,
 } = require("./functions");
 // const gmail_auth = require('./gmail_auth');
 
@@ -32,8 +32,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   auth: {
     user: "nour@refugies.info",
-    pass: process.env.OVH_PASS
-  }
+    pass: process.env.OVH_PASS,
+  },
 });
 
 var mailOptions = {
@@ -42,7 +42,7 @@ var mailOptions = {
     process.env.NODE_ENV === "dev"
       ? "souflam007@yahoo.fr"
       : "diairagir@gmail.com",
-  subject: "Administration Réfugiés.info"
+  subject: "Administration Réfugiés.info",
 };
 
 const url =
@@ -67,7 +67,7 @@ async function add_dispositif(req, res) {
         action: JSON.stringify(req.body),
         userId: _.get(req, "userId"),
         roles: _.get(req, "user.roles"),
-        api: arguments.callee.name
+        api: arguments.callee.name,
       }).save();
       let dispositif = req.body;
       dispositif.status = dispositif.status || "En attente";
@@ -82,35 +82,38 @@ async function add_dispositif(req, res) {
           dispositif,
           dispositif.dispositifId
         );
-        const newSinModified = await turnToLocalizedNew(dispositif, "fr");
-        console.log("new dispo localized ###############", newSinModified);
-        const originalDis = await Dispositif.findOne({
-          _id: dispositif.dispositifId
-        });
-        const originalTrads = {};
-        dispositifFr = await turnToLocalizedNew(originalDis, "fr");
-        for (let [key, value] of Object.entries(originalDis.avancement)) {
-          console.log(originalDis, key);
-          if (key !== "fr") {
-            originalTrads[key] = await Traduction.findOne(
-              { articleId: originalDis._id, langueCible: key },
-              {},
-              { sort: { updatedAt: -1 } }
-            );
-            originalTrads[key] = markTradModifications(
-              dispositif,
-              dispositifFr,
-              originalTrads[key]
-            );
-            console.log("####### the trad modified", originalTrads[key]);
-            await Traduction.findOneAndUpdate(
-              { _id: originalTrads[key]._id },
-              originalTrads[key],
-              { upsert: true, new: true }
-            );
+        if (dispositif.contenu) {
+          const newSinModified = await turnToLocalizedNew(dispositif, "fr");
+          console.log("new dispo localized ###############", newSinModified);
+          const originalDis = await Dispositif.findOne({
+            _id: dispositif.dispositifId,
+          });
+          const originalTrads = {};
+          dispositifFr = await turnToLocalizedNew(originalDis, "fr");
+          for (let [key, value] of Object.entries(originalDis.avancement)) {
+            console.log(originalDis, key);
+            if (key !== "fr") {
+              originalTrads[key] = await Traduction.findOne(
+                { articleId: originalDis._id, langueCible: key },
+                {},
+                { sort: { updatedAt: -1 } }
+              );
+              console.log("before error");
+              originalTrads[key] = markTradModifications(
+                dispositif,
+                dispositifFr,
+                originalTrads[key]
+              );
+              console.log("####### the trad modified", originalTrads[key]);
+              await Traduction.findOneAndUpdate(
+                { _id: originalTrads[key]._id },
+                originalTrads[key],
+                { upsert: true, new: true }
+              );
+            }
           }
+          dispositif.avancement = originalDis.avancement;
         }
-        dispositif.avancement = originalDis.avancement;
 
         //now I need to save the dispositif and the translation
         dispResult = await Dispositif.findOneAndUpdate(
@@ -131,10 +134,10 @@ async function add_dispositif(req, res) {
             User.findByIdAndUpdate(
               { _id: req.userId },
               {
-                $addToSet: { roles: result._id, contributions: dispResult._id }
+                $addToSet: { roles: result._id, contributions: dispResult._id },
               },
               { new: true },
-              e => {
+              (e) => {
                 if (e) {
                   console.log(e);
                 }
@@ -149,7 +152,7 @@ async function add_dispositif(req, res) {
           { _id: dispositif.mainSponsor },
           { $addToSet: { dispositifsAssocies: dispResult._id } },
           { new: true },
-          e => {
+          (e) => {
             if (e) {
               console.log(e);
             }
@@ -160,7 +163,7 @@ async function add_dispositif(req, res) {
       _handleMailNotification(dispResult);
       return res.status(200).json({
         text: "Succès",
-        data: dispResult
+        data: dispResult,
       });
       //  })
       /* .catch(err => {
@@ -183,7 +186,7 @@ function get_dispositif(req, res) {
       action: JSON.stringify(req.body),
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      api: arguments.callee.name
+      api: arguments.callee.name,
     }).save();
     let { query, sort, populate, limit, random, locale } = req.body;
     locale = locale || "fr";
@@ -204,7 +207,7 @@ function get_dispositif(req, res) {
     if (random) {
       promise = Dispositif.aggregate([
         { $match: query },
-        { $sample: { size: 1 } }
+        { $sample: { size: 1 } },
       ]);
     } else {
       promise = Dispositif.find(query)
@@ -216,32 +219,32 @@ function get_dispositif(req, res) {
     console.log(promise);
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise
-      .then(result => {
-        [].forEach.call(result, dispositif => {
+      .then((result) => {
+        [].forEach.call(result, (dispositif) => {
           dispositif = turnToLocalized(dispositif, locale);
           turnJSONtoHTML(dispositif.contenu);
         });
         res.status(200).json({
           text: "Succès",
-          data: result
+          data: result,
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
         switch (error) {
           case 500:
             res.status(500).json({
-              text: "Erreur interne"
+              text: "Erreur interne",
             });
             break;
           case 404:
             res.status(404).json({
-              text: "Pas de résultat"
+              text: "Pas de résultat",
             });
             break;
           default:
             res.status(500).json({
-              text: "Erreur interne"
+              text: "Erreur interne",
             });
         }
       });
@@ -258,7 +261,7 @@ function update_dispositif(req, res) {
       action: JSON.stringify(req.body),
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      api: arguments.callee.name
+      api: arguments.callee.name,
     }).save();
     let {
       dispositifId,
@@ -281,13 +284,13 @@ function update_dispositif(req, res) {
             ...(req.userId && { userId: req.userId }),
             ...(req.user && {
               username: req.user.username,
-              picture: req.user.picture
+              picture: req.user.picture,
             }),
             ...dispositif,
             createdAt: new Date(),
-            suggestionId: uniqid("feedback_")
-          }
-        }
+            suggestionId: uniqid("feedback_"),
+          },
+        },
       };
     }
     Dispositif.findOneAndUpdate(query, update, { new: true }, (err, data) => {
@@ -297,7 +300,7 @@ function update_dispositif(req, res) {
       } else {
         res.status(200).json({
           text: "Succès",
-          data: data
+          data: data,
         });
       }
     });
@@ -308,29 +311,29 @@ function get_dispo_progression(req, res) {
   new DBEvent({
     userId: _.get(req, "userId"),
     roles: _.get(req, "user.roles"),
-    api: arguments.callee.name
+    api: arguments.callee.name,
   }).save();
   var start = new Date();
   start.setHours(0, 0, 0, 0);
 
-  var find = new Promise(function(resolve, reject) {
+  var find = new Promise(function (resolve, reject) {
     Dispositif.aggregate([
       {
         $match: {
           creatorId: req.userId,
           created_at: { $gte: start },
-          timeSpent: { $ne: null }
-        }
+          timeSpent: { $ne: null },
+        },
       },
       {
         $group: {
           _id: req.userId,
           nbMots: { $sum: "$nbMots" },
           timeSpent: { $sum: "$timeSpent" },
-          count: { $sum: 1 }
-        }
-      }
-    ]).exec(function(err, result) {
+          count: { $sum: 1 },
+        },
+      },
+    ]).exec(function (err, result) {
       if (err) {
         reject(500);
       } else {
@@ -344,13 +347,13 @@ function get_dispo_progression(req, res) {
   });
 
   find.then(
-    function(result) {
+    function (result) {
       res.status(200).json({
         text: "Succès",
-        data: result
+        data: result,
       });
     },
-    e => _errorHandler(e, res)
+    (e) => _errorHandler(e, res)
   );
 }
 
@@ -359,7 +362,7 @@ function count_dispositifs(req, res) {
     action: JSON.stringify(req.body),
     userId: _.get(req, "userId"),
     roles: _.get(req, "user.roles"),
-    api: arguments.callee.name
+    api: arguments.callee.name,
   }).save();
   Dispositif.count(req.body, (err, count) => {
     if (err) {
@@ -374,22 +377,22 @@ const _errorHandler = (error, res) => {
   switch (error) {
     case 500:
       res.status(500).json({
-        text: "Erreur interne"
+        text: "Erreur interne",
       });
       break;
     case 404:
       res.status(404).json({
-        text: "Pas de résultats"
+        text: "Pas de résultats",
       });
       break;
     default:
       res.status(500).json({
-        text: "Erreur interne"
+        text: "Erreur interne",
       });
   }
 };
 
-const _handleMailNotification = dispositif => {
+const _handleMailNotification = (dispositif) => {
   let html = "";
   const status = dispositif.status;
   // ["Actif", "Accepté structure", , "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé"]

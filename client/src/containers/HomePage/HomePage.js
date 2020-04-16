@@ -33,7 +33,7 @@ const CoronaAlert = styled.div`
   margin-top: -70px;
 `;
 
-const AlertText = styled.p`
+const AlertText = styled.div`
   color: #f44336;
   font-weight: bold;
   padding: 0px;
