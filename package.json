@@ -56,6 +56,7 @@
     "prepend-http": "^2.0.0",
     "puppeteer": "^1.14.0",
     "python-shell": "^1.0.7",
+    "react-card-flip": "^1.0.10",
     "react-player": "^1.15.2",
     "react-transition-group": "^1.2.1",
     "readline-sync": "^1.4.9",

@@ -21,6 +21,8 @@ import "./HomePage.scss";
 import variables from "scss/colors.scss";
 import SearchItem from "../AdvancedSearch/SearchItem/SearchItem";
 import { initial_data } from "../AdvancedSearch/data";
+import HomeSearch from "./HomeSearch";
+import CatList from "./CatList";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -53,6 +55,11 @@ const CloseCorona = styled.div`
   cursor: pointer;
 `;
 
+const ThemeButton = styled.button`
+  background-color: blue;
+
+`
+
 
 export class HomePage extends Component {
   constructor(props) {
@@ -61,7 +68,8 @@ export class HomePage extends Component {
   }
   state = {
     users: [],
-    corona: true
+    corona: true,
+    popup: false,
   };
   _isMounted = false;
 
@@ -90,15 +98,20 @@ export class HomePage extends Component {
     );
   }
 
+  togglePopup = () => {
+    this.setState({popup: !this.state.popup})
+  }
+
   closeCorona = () => {
     this.setState({ corona: false });
   };
 
   render() {
-    console.log(this.state.corona);
+    console.log(this.state.corona, item);
     const { t } = this.props;
     const { users } = this.state;
     const item = initial_data[0];
+    console.log(this.state.corona, item);
     return (
       <div className="animated fadeIn homepage">
         <section id="hero">
@@ -142,15 +155,25 @@ export class HomePage extends Component {
             </h5>
 
             <div className="search-row">
-              <SearchItem
-                className="on-homepage"
+              <HomeSearch
+              className="on-homepage"
                 item={item}
                 keyValue={0}
+                togglePopup={this.togglePopup}
                 selectParam={this.selectParam}
-                desactiver={() => {}}
-              />
+                desactiver={() => {}} />
             </div>
           </div>
+          {this.state.popup ?
+          <CatList 
+           className="on-homepage"
+           item={item}
+           keyValue={0}
+           togglePopup={this.togglePopup}
+           selectParam={this.selectParam}
+           desactiver={() => {}} />
+           : null
+          }
           <div className="chevron-wrapper">
             <AnchorLink
               offset="60"
