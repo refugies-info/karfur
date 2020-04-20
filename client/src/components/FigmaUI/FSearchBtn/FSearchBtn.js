@@ -10,6 +10,7 @@ const fSearchBtn = props => {
     e.stopPropagation();
     desactiver();
   }
+  console.log(color);
   return(
     <button className={'search-btn ' + (className || '') + (active ? " active" : "") + (color ? " color bg-"+color : "")}  {...bProps}>
       {props.children}
