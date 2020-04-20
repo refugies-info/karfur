@@ -160,7 +160,7 @@ export class SearchItem extends Component {
                 if (idx === this.state.indexF) {
                   console.log(subi.darkColor);
                   return (
-                    <div
+                    <button
                       onClick={this.open}
                       className={
                         "search-home " +
@@ -174,10 +174,11 @@ export class SearchItem extends Component {
                         flexDirection: "column",
                         borderRadius: 10,
                         padding: 0,
+                        fontWeight: "bold",
                       }}
                     >
                       {t("Tags." + subi.name, subi.name)}
-                    </div>
+                    </button>
                   );
                 }
               })}
@@ -197,7 +198,7 @@ export class SearchItem extends Component {
                 if (idx === this.state.indexB) {
                   console.log(subi.illustrationColor);
                   return (
-                    <div
+                    <button
                       onClick={this.open}
                       className={
                         "search-home " +
@@ -211,17 +212,18 @@ export class SearchItem extends Component {
                         flexDirection: "column",
                         borderRadius: 10,
                         padding: 0,
+                        fontWeight: "bold",
                       }}
                     >
                       {t("Tags." + subi.name, subi.name)}
-                    </div>
+                    </button>
                   );
                 }
               })}
             </BackSide>
           </Flippy>
         ) : (
-          <div
+          <button
             onClick={this.close}
             className={"search-home"}
             style={{
@@ -232,13 +234,14 @@ export class SearchItem extends Component {
               borderRadius: 10,
               padding: 10,
               backgroundColor: variables.grisFonce,
+              fontWeight: "bold",
             }}
           >
             <EVAIcon name="search-outline" size="medium" />
             {item.value
               ? t("Tags." + item.value, item.value)
               : t("Tags." + item.placeholder, item.placeholder)}
-          </div>
+          </button>
         )}
         {/*<Dropdown isOpen={dropdownOpen} toggle={this.toggle} className="display-inline-block">
             <DropdownToggle
