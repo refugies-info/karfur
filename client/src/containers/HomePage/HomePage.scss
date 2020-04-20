@@ -1,18 +1,31 @@
-@import 'src/scss/colors.scss';
-@import 'src/scss/global.scss';
+@import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
-.homepage{
+.homepage {
   flex: 1 1;
   color: $noir;
   background: $gris;
   max-width: 100%;
   //overflow: scroll;
 
-  .link{
+  .search-home {
+    //max-height: 100%;
+    display: flex;
+    flex: 1;
+    margin: 0px;
+    font-size: 20px;
+    //margin-top: 0px;
+    padding: 0px;
+    width: 250px;
+    min-height: 50px;
+    color: white;
+  }
+
+  .link {
     text-decoration: underline;
   }
 
-  section{
+  section {
     min-height: 750px;
     padding-top: 100px;
     padding-bottom: 93px;
@@ -32,52 +45,95 @@
     margin-top: -60px;
     height: 772px;
 
-    .search-col{
+    /*     .search-row-pop{
+      margin: 15px;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255,255, .9);
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
+      border-radius: 12px;
+      width: fit-content; */
+
+    .options-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
+      max-width: 75%;
+      border-radius: 12px;
+      margin: 15px;
+
+      .search-btn {
+        margin: 5px;
+        font-size: 20px;
+      border-radius: 12px;
+      }
+      .advanced-search-btn {
+        margin: 5px;
+        font-size: 20px;
+        color:white;
+        font-weight: bold;
+        padding: 6px 10px;
+      border-radius: 12px;
+        background-color:black; 
+      }
+      .figma-btn {
+      border-radius: 12px;
+      border-width: 1px;
+      border-color: black;
+        margin: 5px;
+      }
+    }
+
+    .search-col {
       padding-left: 20px;
       font-size: 22px;
       font-weight: bold;
       color: $noir;
       display: flex;
       align-items: center;
-      .mr-10{
+      .mr-10 {
         padding-right: 10px;
       }
-      .search-btn{
+      .search-btn {
         font-size: 22px;
-      }
-      .search-options{
-        font-size: 18px;
       }
     }
   }
 
-  .triptique{
+  .triptique {
     padding-top: 50px;
   }
 
-  .hero-container{
+  .hero-container {
     text-align: center;
 
-    h5{
+    h5 {
       margin-top: 10px;
       font-weight: normal;
     }
 
-    .search-row{
+    .search-row {
       margin: 25px auto 0;
-      display:flex;
+      display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255, 255,255, .9);
+      background: rgba(255, 255, 255, 0.9);
       box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
       width: fit-content;
     }
   }
 
-  .search-btn{
-    -webkit-animation: on-homepage 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
-	          animation: on-homepage 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
+  .search-btn {
+    -webkit-animation: on-homepage 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955)
+      infinite both;
+    animation: on-homepage 0.4s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite
+      both;
   }
 
   // .header-anchor{
@@ -89,113 +145,136 @@
   //   position: absolute;
   //   bottom: 100px;
   // }
-  
-  .section-container{
+
+  .section-container {
     width: 100%;
     padding: 0 100px;
     height: 100%;
-    @include media-max("sm-limit") { padding: 0 20px; }
+    @include media-max("sm-limit") {
+      padding: 0 20px;
+    }
 
-    &.half-width{
+    &.half-width {
       width: 50%;
       display: flex;
       flex-direction: column;
-      @include media-max("tablet-down") { width: 100%; }
-      h2{
+      @include media-max("tablet-down") {
+        width: 100%;
+      }
+      h2 {
         margin-bottom: 40px;
       }
 
-      &.right-side{
+      &.right-side {
         margin-left: auto;
-
       }
     }
-    .section-body{
+    .section-body {
       flex: 1 1 auto;
     }
 
-    .footer-section{
+    .footer-section {
       font-size: 18px;
       margin-right: -20px;
     }
   }
-  .card{
-    background-color: initial; 
+  .card {
+    background-color: initial;
   }
 
-  #contribution{
-    background-image: url(../../assets/figma/contribution_illu.svg), url(../../assets/figma/trame_home_bg.svg);
+  #contribution {
+    background-image: url(../../assets/figma/contribution_illu.svg),
+      url(../../assets/figma/trame_home_bg.svg);
     background-size: 65%, cover;
     background-repeat: no-repeat;
     background-position: calc(100% + 20px) calc(100% - 160px), 0;
-    @include media-max("tablet-down") { background-position: calc(100% + 20px) calc(100% - 110px), 0; }
-  }
-  
-  #certifiee{
-    background-image: url(../../assets/figma/certifiee_illu.svg), url(../../assets/figma/trame_home_bg.svg);
-    background-size: 65%, cover;
-    background-repeat: no-repeat, no-repeat;
-    background-position: calc(100% - 60px) calc(100% - 120px),0;
+    @include media-max("tablet-down") {
+      background-position: calc(100% + 20px) calc(100% - 110px), 0;
+    }
   }
 
-  #multilangues{
+  #certifiee {
+    background-image: url(../../assets/figma/certifiee_illu.svg),
+      url(../../assets/figma/trame_home_bg.svg);
+    background-size: 65%, cover;
+    background-repeat: no-repeat, no-repeat;
+    background-position: calc(100% - 60px) calc(100% - 120px), 0;
+  }
+
+  #multilangues {
     background-image: url(../../assets/figma/illustration_Traduction.svg);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: calc(100% - 350px);
-    @include media-max("desktop-down") { background-position: calc(100% - 300px) calc(100% - 60px); }
-    @include media-max("desktop-up") { background-position: calc(100% - 300px) calc(100% - 80px); }
-    @include media-max("tablet-down") { background-position: calc(100% - 240px) calc(100% - 140px); }
-    @include media-max("tablet-up") { background-position: calc(100% - 180px) calc(100% - 140px); }
+    @include media-max("desktop-down") {
+      background-position: calc(100% - 300px) calc(100% - 60px);
+    }
+    @include media-max("desktop-up") {
+      background-position: calc(100% - 300px) calc(100% - 80px);
+    }
+    @include media-max("tablet-down") {
+      background-position: calc(100% - 240px) calc(100% - 140px);
+    }
+    @include media-max("tablet-up") {
+      background-position: calc(100% - 180px) calc(100% - 140px);
+    }
   }
 
-  #explique{
+  #explique {
     background-image: url(../../assets/figma/illustration_Lexique.svg);
     background-size: 70%;
     background-repeat: no-repeat;
     background-position: calc(100% - 300px);
-    @include media-max("desktop-down") { background-position: calc(100% - 300px) calc(100% - 60px); }
-    @include media-max("desktop-up") { background-position: calc(100% - 300px) calc(100% - 80px); }
-    @include media-max("tablet-down") { background-position: calc(100% - 240px) calc(100% - 140px); }
-    @include media-max("tablet-up") { background-position: calc(100% - 180px) calc(100% - 140px); }
+    @include media-max("desktop-down") {
+      background-position: calc(100% - 300px) calc(100% - 60px);
+    }
+    @include media-max("desktop-up") {
+      background-position: calc(100% - 300px) calc(100% - 80px);
+    }
+    @include media-max("tablet-down") {
+      background-position: calc(100% - 240px) calc(100% - 140px);
+    }
+    @include media-max("tablet-up") {
+      background-position: calc(100% - 180px) calc(100% - 140px);
+    }
   }
 
-
-
-  #plan{
-    h2{
+  #plan {
+    h2 {
       margin-bottom: 42px;
     }
-    .card-col{
+    .card-col {
       border-radius: 12px;
-      .card{
+      .card {
         height: 520px;
         border-radius: 12px;
-        border:none;
+        border: none;
         padding: 40px;
 
-        .card-header{
+        .card-header {
           background: transparent;
           border: none;
           font-weight: 900;
           font-size: 32px;
           line-height: 36px;
           height: 100px;
-          padding:0;
-          @include media-max("sm-limit") { font-size: 21px; }
+          padding: 0;
+          @include media-max("sm-limit") {
+            font-size: 21px;
+          }
         }
-        .card-body{
-          padding:0;
+        .card-body {
+          padding: 0;
         }
-        .card-footer{
+        .card-footer {
           background: transparent;
           border: none;
           display: flex;
           justify-content: center;
-          padding:0;
+          padding: 0;
           font-weight: bold;
 
-          .figma-btn{
+          .figma-btn {
             max-width: 100%;
             flex-wrap: wrap;
             text-overflow: ellipsis;
@@ -205,7 +284,7 @@
             min-height: 60px;
             justify-content: center;
           }
-          .homebtn{
+          .homebtn {
             background: rgba(255, 255, 255, 0.95);
             color: $noir;
             transition: all 0.5s ease;
@@ -213,24 +292,24 @@
             box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
             display: flex;
             align-items: center;
-            &:hover{
+            &:hover {
               background: $noir;
               color: $blancSimple;
               box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
-              svg{
+              svg {
                 transition: all 0.5s ease;
                 fill: $blancSimple;
               }
             }
-            &:disabled{
-              svg{
-                fill: $blancSimple
+            &:disabled {
+              svg {
+                fill: $blancSimple;
               }
               background: $grisFonce;
               color: $blancSimple;
-              &:hover{
+              &:hover {
                 background: $grisFonce;
-              };
+              }
             }
           }
         }
@@ -247,15 +326,15 @@
     border-radius: 12px;
     height: 100%;
 
-    .react-autosuggest__container{
-      width:100%;
+    .react-autosuggest__container {
+      width: 100%;
       position: relative;
       flex: 1 1 auto;
       width: 1%;
       height: 100%;
 
-      .react-autosuggest__input{
-        width:100%;
+      .react-autosuggest__input {
+        width: 100%;
         border-radius: 12px;
         border: 0.5px solid $grisFonce;
         height: 100%;
@@ -263,42 +342,42 @@
     }
   }
 
-  .input-group-text{
+  .input-group-text {
     background: $noir;
     border-radius: 0 12px 12px 0;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 16px;
     font-weight: bold;
-    border: 0.5px solid #3C3C3C;
+    border: 0.5px solid #3c3c3c;
     border-left: none;
   }
 
-  .dispo-card{
+  .dispo-card {
     background-image: url(../../assets/figma/illustration_Dispositifs.svg);
     background-size: cover;
   }
 
-  .demarche-card{
+  .demarche-card {
     background-image: url(../../assets/figma/illustration_Demarches.svg);
     background-size: cover;
   }
 
-  .parcours-card{
+  .parcours-card {
     background-image: url(../../assets/figma/illustration_Parcours.svg);
     background-size: cover;
   }
 
-  .chevron-wrapper{
+  .chevron-wrapper {
     flex: 1;
     width: 100%;
     position: relative;
   }
 
-  .background-wrapper{
+  .background-wrapper {
     border-radius: 50%;
     background-color: $noir;
   }
-  .slide-animation{
+  .slide-animation {
     position: absolute;
     width: 48px;
     height: 48px;
@@ -308,71 +387,78 @@
     border-radius: 50%;
     z-index: 1;
     transition: all 0.5s ease;
-    -webkit-animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
-            animation: slide-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) infinite alternate both;
+    -webkit-animation: slide-bottom 2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      infinite alternate both;
+    animation: slide-bottom 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite
+      alternate both;
   }
 
   .bottom-slider {
     position: absolute;
     fill: $blancSimple;
     z-index: 10;
-    svg{
+    svg {
       margin-left: -6px;
       margin-top: -6px;
     }
-    &:hover{
-      svg{
+    &:hover {
+      svg {
         transition: all 0.5s ease;
-        fill:$gris;
+        fill: $gris;
       }
     }
   }
 
-  .flip-horizontal-top {
+  /*   .flip-horizontal-top {
     -webkit-animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
             animation: flip-horizontal-top 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-  }
+  } */
+}
+
+.flip-horizontal-top {
+  -webkit-animation: flip-horizontal-top 3s linear both;
+  animation: flip-horizontal-top 3s linear both;
 }
 
 @-webkit-keyframes slide-bottom {
   0% {
     -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
   }
   100% {
     -webkit-transform: translateY(30px);
-            transform: translateY(30px);
+    transform: translateY(30px);
   }
 }
 
 @keyframes slide-bottom {
   0% {
     -webkit-transform: translateY(0);
-            transform: translateY(0);
+    transform: translateY(0);
   }
   100% {
     -webkit-transform: translateY(30px);
-            transform: translateY(30px);
+    transform: translateY(30px);
   }
 }
 
 @-webkit-keyframes flip-horizontal-top {
   0% {
     -webkit-transform: rotateX(0);
-            transform: rotateX(0);
+    transform: rotateX(0);
   }
   100% {
     -webkit-transform: rotateX(180deg);
-            transform: rotateX(180deg);
+    transform: rotateX(180deg);
   }
 }
 @keyframes flip-horizontal-top {
   0% {
     -webkit-transform: rotateX(0);
-            transform: rotateX(0);
+    transform: rotateX(0);
   }
   100% {
     -webkit-transform: rotateX(180deg);
-            transform: rotateX(180deg);
+    transform: rotateX(180deg);
   }
 }
