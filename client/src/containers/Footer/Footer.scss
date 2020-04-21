@@ -14,10 +14,17 @@
   .lien-footer{
     margin-top: 25px;
     &:first-child{
-      margin-top: 40px;
+      margin-top: 0px;
     }
     &:hover{
       font-weight: bold;
+    }
+  }
+  .lien-footer-disabled{
+    margin-top: 25px;
+    color: #828282;
+    &:first-child{
+      margin-top: 40px;
     }
   }
   .form-group{
