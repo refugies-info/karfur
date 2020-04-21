@@ -36,6 +36,79 @@ export class Footer extends Component {
     return (
       <div className="animated fadeIn footer">
         <Row className="negative-margin">
+          
+          
+          <Col xl="8" lg="8" md="8" sm="12" xs="12" className="right-col mt-10">
+            <Row className="main-row negative-margin">
+              <Col xl="4" lg="4" md="4" sm="4" xs="12" className="mt-10">
+                <h5 className="footer-header">
+                Réfugiés.info est un portail d’information collaboratif porté par la
+                <a 
+                style={{textDecoration: 'underline'}}
+                target="_blank"
+          href="https://accueil-integration-refugies.fr/">
+                {" Délégation interministérielle à l’accueil et l’intégration des réfugiés "}
+                </a>
+                et développé par la
+                <a style={{textDecoration: 'underline'}}
+                target="_blank"
+          href="https://lamednum.coop/">
+                {" Mednum"}
+                </a>
+                </h5>
+              </Col>
+              <Col xl="4" lg="4" md="4" sm="4" xs="12" className="mt-10">
+                <div className="lien-footer">
+                  <NavHashLink to="/qui-sommes-nous#hero">{t("Qui sommes-nous ?", "Qui sommes-nous ?")}</NavHashLink>
+                </div>
+                <div className="lien-footer">
+                  <NavHashLink to="/comment-contribuer#hero">{t("Comment contribuer ?", "Comment contribuer ?")}</NavHashLink>
+                </div>
+                <div className="lien-footer">
+                  <NavLink to="/politique-de-confidentialite">{t("Politique de confidentialité", "Politique de confidentialité")}</NavLink>
+                </div>
+                <div className="lien-footer">
+                  <NavLink to="/mentions-legales">{t("Mentions légales", "Mentions légales")}</NavLink>
+                </div>
+              </Col>
+              <Col xl="4" lg="4" md="4" sm="4" xs="12" className="mt-10">
+                <div className="lien-footer">
+                  <NavLink to="/advanced-search">
+                    {t("Dispositif d'accompagnement", "Rechercher de l'information")}
+                  </NavLink>
+                </div>
+                <div className="lien-footer">
+                  <a onClick={() => window.$crisp.push(['do', 'chat:open'])}>
+                    {t("Démarche administrative", "Contacter l'èquipe")}
+                    </a>
+                </div>
+                <div className="lien-footer-disabled">
+                    {t("Parcours personnalisé", "Créer un parcours d'intégration")}
+                </div>
+                <div className="lien-footer-disabled">
+                    {t("Lexique", "Consulter le lexique")}
+                </div>
+              </Col>
+            </Row>
+            {/*<Row className="social-custom-buttons-row">
+              <Col lg="4">
+                <FButton disabled onClick={this.upcoming} type="light-action" name="twitter-outline" fill={variables.noir}>
+                  Nous suivre sur Twitter
+                </FButton>
+              </Col>
+              <Col lg="4">
+                <FButton disabled onClick={this.upcoming} type="light-action" name="facebook-outline" fill={variables.noir}>
+                  Suivre sur Facebook
+                </FButton>
+              </Col>
+              <Col lg="4">
+                <FButton disabled onClick={this.upcoming} type="light-action" name="message-circle-outline" fill={variables.noir}>
+                  Suivre sur Whatsapp
+                </FButton>
+              </Col>
+    </Row>*/}
+    
+          </Col>
           <Col xl="4" lg="4" md="4" sm="12" xs="12" className="mt-10">
             <Form onSubmit={this.sendMail}>
               <FormGroup>
@@ -47,9 +120,9 @@ export class Footer extends Component {
                     value={this.state.email}
                     onChange={this.onChange}
                     id="emailNewsletter" 
-                    placeholder={t("Footer.Je m'abonne à la newsletter", "Je m'abonne à la newsletter")} />
+                    placeholder={t("Footer.Je m'abonne à la newsletter", "S'inscrire à la lettre d'information")} />
                   <InputGroupAddon addonType="append" className="icon-append" onClick={this.sendMail}>
-                    <EVAIcon name='at-outline' fill={variables.noir} />
+                    <EVAIcon name='paper-plane-outline' fill={variables.noir} />
                   </InputGroupAddon>
                 </div>
               </FormGroup>
@@ -72,69 +145,6 @@ export class Footer extends Component {
                 {t("Footer.Centre d'aide", "Centre d'aide")}
               </FButton>
             </div>
-          </Col>
-          <Col xl="8" lg="8" md="8" sm="12" xs="12" className="right-col mt-10">
-            <Row className="main-row negative-margin">
-              <Col xl="4" lg="4" md="4" sm="4" xs="12" className="mt-10">
-                <h5 className="footer-header">
-                  {t("Footer.Le projet", "Le projet")}
-                </h5>
-                <div className="lien-footer">
-                  <NavHashLink to="/qui-sommes-nous#hero">{t("Qui sommes-nous ?", "Qui sommes-nous ?")}</NavHashLink>
-                </div>
-                <div className="lien-footer">
-                  <NavHashLink to="/comment-contribuer#hero">{t("Comment contribuer ?", "Comment contribuer ?")}</NavHashLink>
-                </div>
-                <div className="lien-footer">
-                  <NavLink to="/politique-de-confidentialite">{t("Politique de confidentialité", "Politique de confidentialité")}</NavLink>
-                </div>
-                <div className="lien-footer">
-                  <NavLink to="/mentions-legales">{t("Mentions légales", "Mentions légales")}</NavLink>
-                </div>
-              </Col>
-              <Col xl="8" lg="8" md="8" sm="8" xs="12" className="mt-10">
-                <h5 className="footer-header">
-                  {t("Footer.Vous cherchez ?", "Vous cherchez ?")}
-                </h5>
-                <div className="lien-footer">
-                  <NavLink to="/advanced-search">
-                    {t("Dispositif d'accompagnement", "Dispositif d'accompagnement")}
-                  </NavLink>
-                </div>
-                <div className="lien-footer">
-                  <NavHashLink to="/homepage#plan" smooth>
-                    {t("Démarche administrative", "Démarche administrative")}
-                  </NavHashLink>
-                </div>
-                <div className="lien-footer">
-                  <NavHashLink to="/homepage#plan" smooth>
-                    {t("Parcours personnalisé", "Parcours personnalisé")}
-                  </NavHashLink>
-                </div>
-                <div className="lien-footer">
-                  <NavHashLink to="/homepage#explique">
-                    {t("Lexique", "Lexique")}
-                  </NavHashLink>
-                </div>
-              </Col>
-            </Row>
-            {/*<Row className="social-custom-buttons-row">
-              <Col lg="4">
-                <FButton disabled onClick={this.upcoming} type="light-action" name="twitter-outline" fill={variables.noir}>
-                  Nous suivre sur Twitter
-                </FButton>
-              </Col>
-              <Col lg="4">
-                <FButton disabled onClick={this.upcoming} type="light-action" name="facebook-outline" fill={variables.noir}>
-                  Suivre sur Facebook
-                </FButton>
-              </Col>
-              <Col lg="4">
-                <FButton disabled onClick={this.upcoming} type="light-action" name="message-circle-outline" fill={variables.noir}>
-                  Suivre sur Whatsapp
-                </FButton>
-              </Col>
-    </Row>*/}
           </Col>
         </Row>
       </div>
