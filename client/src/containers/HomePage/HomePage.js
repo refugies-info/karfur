@@ -198,7 +198,10 @@ export class HomePage extends Component {
             <Row className="card-row">
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
                 <NavLink
-                  to="/advanced-search"
+                  to={{
+                    pathname: "/advanced-search",
+                    search: "?filter=" + "demarche"
+                  }}
                   className="no-decoration demarche-link"
                 >
                   <Card className="demarche-card">
@@ -228,7 +231,10 @@ export class HomePage extends Component {
                 </NavLink>
               </Col>
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                <NavLink to="/advanced-search" className="no-decoration">
+                <NavLink to={{
+                    pathname: "/advanced-search",
+                    search: "?filter=" + "dispositif"
+                  }} className="no-decoration">
                   <Card className="dispo-card">
                     <CardHeader>
                       {t(
