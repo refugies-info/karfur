@@ -25,7 +25,7 @@
     "site dispo": "Réfugiés.info متوفّر باللغات التالية :",
     "langue indispo": "لغتك غير متوفرة ؟",
     "Demander": "اطلب",
-    "Covid alert": "Réfugiés.info يجيب على أسئلتكم حول الكوفيدـ19 عبر التواصل المباشر/لايف تشات (الأيقونة الزّرقاء في أسفل يمين الشاشة).", 
+    "Covid alert": "Réfugiés.info يجيب على أسئلتكم حول الكوفيدـ19 عبر التواصل المباشر/لايف تشات (الأيقونة الزّرقاء في أسفل يمين الشاشة).",
     "Covid link": "انظروا إلى المحتوى المخصص المتوفّر هنا"
   },
   "AdvancedSearch": {
@@ -88,7 +88,10 @@
     "membre": "أعضاء",
     "notification": "إشعارات",
     "personne informée": "شخصاً أُخبِر",
-    "Mes traductions": "ترجماتي"
+    "Mes traductions": "ترجماتي",
+    "Commencer à rédiger": "ابدأ الكتابة",
+    "Proposez de nouveaux contenus pour enrichir la plateforme, ou aider à corriger et à tenir à jour les contenus existants": "اقترح محتوى جديد لإثراء الموقع، أو ساعد في تصحيح وتحديث المحتوى الحالي",
+    "Ici, vous pourrez accéder à vos contributions": "هنا يمكنك رؤية مشاركاتك"
   },
   "UserProfile": {
     "Pseudonyme": "اسم مستعار",
@@ -188,6 +191,7 @@
     "Loisir": "تسلية",
     "Culture": "ثقافة",
     "Santé": "الصحة",
+    "Autre": "آخَر",
     "apprendre le français": "تعلم الفرنسية",
     "me loger": "التسكين",
     "trouver un travail": "العثور على عمل",
@@ -238,6 +242,7 @@
     "Actif": "نشط",
     "Supprimé": "محذوف",
     "Supprimée": "محذوفة",
+    "Rejetée": "رُفِضَتْ",
     "Accepté structure": "هيئة مقبولة",
     "En attente admin": "بانتظار المسؤول",
     "En attente non prioritaire": "في الانتظار الغير أولي",
@@ -371,7 +376,23 @@
     "Ajouter un thème": "اختر موضوعاً",
     "réfugiés": "لاجئون",
     "Localisation": "موقع",
-    "Tout public": "كلّ الأشخاص"
+    "Tout public": "كلّ الأشخاص",
+    "Situation familiale": "الحالة العائليّة",
+    "Situation d’hébergement": "حالة السكن",
+    "Sexe": "الجنس",
+    "Les réfugiés statutaires": "اللاجئوون القانونيون",
+    "Célibataire": "أعزب",
+    "En concubinage": "معاشرة",
+    "Marié": "متزوّج",
+    "Sans enfants": "بدون أطفال",
+    "Avec enfants": "مع أطفال",
+    "Logé": "مُسكَّنْ",
+    "Hébergé": "مُستضاف",
+    "Sans-abri": "دون ملجأ",
+    "Les accompagnants": "المرافقون",
+    "Les femmes": "النساء",
+    "Les hommes": "الرجال",
+    "Les deux": "الاثنين"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "هل انت متأكد ؟",
@@ -399,7 +420,8 @@
     "Participer à l'évolution de réfugiés-info": "المساهمة في تطور réfugiés.info",
     "Demander des fonctionnalités": "طلب الميّزات",
     "Le projet": "المشروع",
-    "Vous cherchez ?": "تبحث عن ؟"
+    "Vous cherchez ?": "تبحث عن ؟",
+    "Centre d'aide": "مركز المساعدة"
   },
   "Retour à la recherche": "العودة إلى البحث",
   "avec": "مع",
@@ -449,6 +471,7 @@
   "Qui sommes-nous ?": "من نحن ؟",
   "Comment contribuer ?": "كيفية المساهمة ؟",
   "Accessibilité": "إمكانية الوصول",
+  "Politique de confidentialité": "سياسة الخصوصية",
   "Mentions légales": "إشعارات قانونية",
   "Dispositif d'accompagnement": "برنامج مرافقة",
   "Démarche administrative": "معاملة إدارية",
