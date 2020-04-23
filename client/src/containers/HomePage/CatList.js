@@ -13,6 +13,9 @@ import Flippy, { FrontSide, BackSide } from "react-flippy";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import { NavLink } from "react-router-dom";
 import variables from "scss/colors.scss";
+import icons from "../../assets/streamline";
+import Streamline from "../../assets/streamline";
+
 
 //import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
@@ -89,6 +92,9 @@ class CatList extends Component {
               className={"search-options color" + (subi.short ? "" : " full")}
               color={(subi.short || "").replace(/ /g, "-")}
             >
+              {subi.icon ?
+              <Streamline name={subi.icon} stroke={'white'} width={22} height={22}/>
+              : null}
               {t("Tags." + subi.name, subi.name)}
             </FSearchBtn>
           );

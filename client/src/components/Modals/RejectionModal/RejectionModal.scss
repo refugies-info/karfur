@@ -21,12 +21,14 @@
     .modal-body{
       padding: 0;
 
-      .responsable-img{
-        margin: 50px 0 30px 80px;
+      .inspection-img{
+        margin: 50px 0px 30px 50px;
       }
-
       .texte-vert{
         color: $vert;
+      }
+      .texte-rouge{
+        color: $rouge;
       }
       .creator-wrapper{
         display: flex;

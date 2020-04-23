@@ -41,6 +41,8 @@ import vueParkourPerso from './vueParkourPerso.png';
 import equipe from './equipe.png';
 import diairMinInt from './diairMinInt.png';
 import DGEF from './DGEF.png';
+import rejectionFiche from './rejectionFiche.svg';
+import responsableFiche from './responsableFiche.svg';
 
 export {
   FemmeCurly,
@@ -85,5 +87,7 @@ export {
   vueParkourPerso,
   equipe,
   diairMinInt,
-  DGEF
+  DGEF,
+  rejectionFiche,
+  responsableFiche,
 }
