@@ -6,9 +6,11 @@
   color: $noir;
   background: $gris;
   max-width: 100%;
+  outline: none ;
   //overflow: scroll;
 
   .search-home {
+  outline: none ;
     //max-height: 100%;
     display: flex;
     flex: 1;
@@ -16,9 +18,10 @@
     font-size: 20px;
     //margin-top: 0px;
     padding: 0px;
-    width: 250px;
+    width: 280px;
     min-height: 50px;
     color: white;
+    border: none;
   }
 
   .link {
@@ -61,8 +64,7 @@
       align-items: center;
       justify-content: center;
       padding: 5px;
-      background: rgba(255, 255, 255, 0.9);
-      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
+      //box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
       max-width: 75%;
       border-radius: 12px;
       margin: 15px;
@@ -76,7 +78,7 @@
         margin: 5px;
         font-size: 20px;
         color:white;
-        font-weight: bold;
+        font-weight: 600;
         padding: 6px 10px;
       border-radius: 12px;
         background-color:black; 
@@ -92,7 +94,7 @@
     .search-col {
       padding-left: 20px;
       font-size: 22px;
-      font-weight: bold;
+      font-weight: 600;
       color: $noir;
       display: flex;
       align-items: center;
