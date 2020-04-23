@@ -10,6 +10,7 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import ReactCardFlip from "react-card-flip";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import variables from "scss/colors.scss";
+import Streamline from "../../assets/streamline";
 
 //import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
@@ -143,7 +144,7 @@ export class SearchItem extends Component {
             ref={(r) => (this.flippy = r)} // to use toggle method like this.flippy.toggle()
             // if you pass isFlipped prop component will be controlled component.
             // and other props, which will go to div
-            style={{ width: "250px", height: "50px" }} /// these are optional style, it is not necessary
+            style={{ width: "280px", height: "50px" }} /// these are optional style, it is not necessary
           >
             <FrontSide
               style={{
@@ -151,7 +152,7 @@ export class SearchItem extends Component {
                 alignItems: "center",
                 justifyContent: "center",
                 flexDirection: "column",
-                width: "250px",
+                width: "280px",
                 height: "50px",
                 borderRadius: 10,
               }}
@@ -171,12 +172,17 @@ export class SearchItem extends Component {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        flexDirection: "column",
+                        flexDirection: "row",
                         borderRadius: 10,
                         padding: 0,
-                        fontWeight: "bold",
+                        fontWeight: 600,
                       }}
                     >
+                       {subi.icon ?
+              <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
+              <Streamline name={subi.icon} stroke={'white'} width={22} height={22}/>
+              </div>
+              : null}
                       {t("Tags." + subi.name, subi.name)}
                     </button>
                   );
@@ -189,7 +195,7 @@ export class SearchItem extends Component {
                 alignItems: "center",
                 justifyContent: "center",
                 flexDirection: "column",
-                width: "250px",
+                width: "280px",
                 height: "50px",
                 borderRadius: 10,
               }}
@@ -198,6 +204,7 @@ export class SearchItem extends Component {
                 if (idx === this.state.indexB) {
                   console.log(subi.illustrationColor);
                   return (
+                    
                     <button
                       onClick={this.open}
                       className={
@@ -209,12 +216,17 @@ export class SearchItem extends Component {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        flexDirection: "column",
+                        flexDirection: "row",
                         borderRadius: 10,
                         padding: 0,
-                        fontWeight: "bold",
+                        fontWeight: 600,
                       }}
                     >
+                      {subi.icon ?
+              <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
+              <Streamline name={subi.icon} stroke={'white'} width={22} height={22}/>
+              </div>
+              : null}
                       {t("Tags." + subi.name, subi.name)}
                     </button>
                   );
@@ -232,12 +244,11 @@ export class SearchItem extends Component {
               justifyContent: "space-evenly",
               flexDirection: "row",
               borderRadius: 10,
-              padding: 10,
               backgroundColor: variables.grisFonce,
-              fontWeight: "bold",
+              fontWeight: "600",
             }}
           >
-            <EVAIcon name="search-outline" size="medium" />
+            <Streamline name="search" width={20} height={20} />
             {item.value
               ? t("Tags." + item.value, item.value)
               : t("Tags." + item.placeholder, item.placeholder)}

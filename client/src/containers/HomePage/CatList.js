@@ -20,20 +20,10 @@ import Streamline from "../../assets/streamline";
 //import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
 
-const ThemeButton = styled.div`
-  display: block;
-  background-color: blue;
-  position: absolute;
-  border-radius: 10px;
-  text-align: center;
-`;
-
-const ThemeButtonR = styled.div`
-  display: block;
-  background-color: red;
-  position: absolute;
-  border-radius: 10px;
-  text-align: center;
+const InnerButton = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 class CatList extends Component {
@@ -92,11 +82,15 @@ class CatList extends Component {
               className={"search-options color" + (subi.short ? "" : " full")}
               color={(subi.short || "").replace(/ /g, "-")}
             >
+              <InnerButton>
               {subi.icon ?
+              <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
               <Streamline name={subi.icon} stroke={'white'} width={22} height={22}/>
+              </div>
               : null}
               {t("Tags." + subi.name, subi.name)}
-            </FSearchBtn>
+              </InnerButton>
+             </FSearchBtn>
           );
         })}
         <a
@@ -104,6 +98,14 @@ class CatList extends Component {
           href="https://soliguide.fr/"
           className={"search-options advanced-search-btn  bg-noir"}
         >
+          <InnerButton>
+              {subi.icon ?
+              <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
+              <Streamline name={subi.icon} stroke={'white'} width={22} height={22}/>
+              </div>
+              : null}
+              {t("Tags." + subi.name, subi.name)}
+              </InnerButton>
           manger, me doucher...
         </a>
         <FButton
