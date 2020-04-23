@@ -14,7 +14,7 @@ const topRightHeader = (props) => {
         <CardBody className="backgroundColor-lightColor">
           <span className="validate-header">Souhaitez-vous récupérer ce contenu ?</span>
           <FButton type="validate" className="mt-10 full-width" onClick={()=>props.toggleModal(true, "responsable")}>Oui</FButton>
-          <FButton type="error" className="mt-10 full-width" onClick={()=>props.update_status("Rejeté structure")}>Non</FButton>
+          <FButton type="error" className="mt-10 full-width" onClick={()=>props.toggleModal(true, "rejection")}>Non</FButton>
         </CardBody>
         <CardFooter className="color-darkColor cursor-pointer" onClick={props.toggleDispositifCreateModal}>
           <EVAIcon className="mr-8" name="question-mark-circle" viewBox="0 0 20 20" size="medium" />

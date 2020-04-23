@@ -14,6 +14,7 @@ import ObjectifsModal from './ObjectifsModal/ObjectifsModal'
 import ContributeurModal from './ContributeurModal/ContributeurModal'
 import TraducteurModal from './TraducteurModal/TraducteurModal';
 import ResponsableModal from './ResponsableModal/ResponsableModal';
+import RejectionModal from './RejectionModal/RejectionModal';
 import AddMemberModal from './AddMemberModal/AddMemberModal';
 import EditMemberModal from './EditMemberModal/EditMemberModal';
 import RejectTradModal from './RejectTradModal/RejectTradModal';
@@ -39,6 +40,7 @@ export {
   ContributeurModal,
   TraducteurModal,
   ResponsableModal,
+  RejectionModal,
   AddMemberModal,
   EditMemberModal,
   RejectTradModal,
