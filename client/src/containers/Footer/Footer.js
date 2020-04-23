@@ -42,18 +42,18 @@ export class Footer extends Component {
             <Row className="main-row negative-margin">
               <Col xl="4" lg="4" md="4" sm="4" xs="12" className="mt-10">
                 <h5 className="footer-header">
-                Réfugiés.info est un portail d’information collaboratif porté par la
+                {"Réfugiés.info est un portail d’information collaboratif porté par la "}
                 <a 
                 style={{textDecoration: 'underline'}}
                 target="_blank"
           href="https://accueil-integration-refugies.fr/">
-                {" Délégation interministérielle à l’accueil et l’intégration des réfugiés "}
+                {"Délégation interministérielle à l’accueil et l’intégration des réfugiés"}
                 </a>
-                et développé par la
+                {" et développé par la "}
                 <a style={{textDecoration: 'underline'}}
                 target="_blank"
           href="https://lamednum.coop/">
-                {" Mednum"}
+                {"Mednum"}
                 </a>
                 </h5>
               </Col>

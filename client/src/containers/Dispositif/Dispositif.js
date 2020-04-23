@@ -41,7 +41,8 @@ import {
   MerciModal,
   EnConstructionModal,
   ResponsableModal,
-  VarianteCreateModal
+  VarianteCreateModal,
+  RejectionModal,
 } from "../../components/Modals/index";
 import SVGIcon from "../../components/UI/SVGIcon/SVGIcon";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
@@ -2232,6 +2233,16 @@ export class Dispositif extends Component {
             <ResponsableModal
               name="responsable"
               show={showModals.responsable}
+              toggleModal={this.toggleModal}
+              createur={this.state.creator}
+              mainSponsor={this.state.mainSponsor}
+              editDispositif={this.editDispositif}
+              update_status={this.update_status}
+              sponsors={this.state.sponsors}
+            />
+            <RejectionModal
+              name="rejection"
+              show={showModals.rejection}
               toggleModal={this.toggleModal}
               createur={this.state.creator}
               mainSponsor={this.state.mainSponsor}

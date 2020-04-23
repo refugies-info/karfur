@@ -7,6 +7,9 @@
   color: #FFFFFF;
   @include media-max("tablet-up") { padding: 60px 60px; }
   @include media-max("phone-down") { padding: 60px 30px; }
+  .footer-header{
+    line-height: 32px;
+  }
 
   .ligne-footer{
     margin-top: 20px;
@@ -99,6 +102,7 @@
 
     .footer-header h5{
       margin-bottom: 1rem;
+      line-height: 50px !important;
     }
     }
   }
