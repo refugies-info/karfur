@@ -87,6 +87,7 @@
     "react-notifications": "^1.4.3",
     "react-player": "^1.15.2",
     "react-redux": "^6.0.1",
+    "react-ripples": "^2.2.1",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.2",
     "react-scripts": "^2.1.5",

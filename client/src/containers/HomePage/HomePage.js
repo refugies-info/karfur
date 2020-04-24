@@ -57,9 +57,7 @@ const CloseCorona = styled.div`
 
 const ThemeButton = styled.button`
   background-color: blue;
-
-`
-
+`;
 
 export class HomePage extends Component {
   constructor(props) {
@@ -70,6 +68,7 @@ export class HomePage extends Component {
     users: [],
     corona: true,
     popup: false,
+    overlay: false,
   };
   _isMounted = false;
 
@@ -78,9 +77,9 @@ export class HomePage extends Component {
     window.scrollTo(0, 0);
     return API.get_users({
       query: { status: "Actif" },
-      populate: "roles"
+      populate: "roles",
     }).then(
-      data => this._isMounted && this.setState({ users: data.data.data })
+      (data) => this._isMounted && this.setState({ users: data.data.data })
     );
   }
 
@@ -93,17 +92,21 @@ export class HomePage extends Component {
       subitem &&
       this.props.history.push({
         pathname: "/advanced-search",
-        search: "?tag=" + subitem.short
+        search: "?tag=" + subitem.short,
       })
     );
   }
 
   togglePopup = () => {
-    this.setState({popup: !this.state.popup})
-  }
+    this.setState({ popup: !this.state.popup });
+  };
 
   closeCorona = () => {
     this.setState({ corona: false });
+  };
+
+  toggleOverlay = () => {
+    this.setState({ overlay: !this.state.overlay });
   };
 
   render() {
@@ -114,6 +117,7 @@ export class HomePage extends Component {
     console.log(this.state.corona, item);
     return (
       <div className="animated fadeIn homepage">
+        {this.state.overlay ? <div className="overlay" /> : null}
         <section id="hero">
           <div className="hero-container">
             {this.state.corona ? (
@@ -128,16 +132,14 @@ export class HomePage extends Component {
                     <Link
                       to={{
                         pathname: "/advanced-search",
-                        search: "?tag=Santé"
+                        search: "?tag=Santé",
                       }}
                     >
                       <AlertTextLink>{t("Homepage.Covid link")}</AlertTextLink>
                     </Link>
                   </AlertText>
                 </div>
-                <CloseCorona
-                  onClick={this.closeCorona}
-                >
+                <CloseCorona onClick={this.closeCorona}>
                   <EVAIcon fill={"#f44336"} name="close-outline" />
                 </CloseCorona>
               </CoronaAlert>
@@ -150,30 +152,32 @@ export class HomePage extends Component {
             </h1>
             <h5>
               {t("Homepage.subtitle", {
-                nombre: (this.props.dispositifs || []).length
+                nombre: (this.props.dispositifs || []).length,
               })}
             </h5>
 
             <div className="search-row">
               <HomeSearch
-              className="on-homepage"
+                className="on-homepage"
                 item={item}
                 keyValue={0}
                 togglePopup={this.togglePopup}
                 selectParam={this.selectParam}
-                desactiver={() => {}} />
+                desactiver={() => {}}
+                toggleOverlay={this.toggleOverlay}
+              />
             </div>
           </div>
-          {this.state.popup ?
-          <CatList 
-           className="on-homepage"
-           item={item}
-           keyValue={0}
-           togglePopup={this.togglePopup}
-           selectParam={this.selectParam}
-           desactiver={() => {}} />
-           : null
-          }
+          {this.state.popup ? (
+            <CatList
+              className="on-homepage"
+              item={item}
+              keyValue={0}
+              togglePopup={this.togglePopup}
+              selectParam={this.selectParam}
+              desactiver={() => {}}
+            />
+          ) : null}
           <div className="chevron-wrapper">
             <AnchorLink
               offset="60"
@@ -200,7 +204,7 @@ export class HomePage extends Component {
                 <NavLink
                   to={{
                     pathname: "/advanced-search",
-                    search: "?filter=" + "demarche"
+                    search: "?filter=" + "demarche",
                   }}
                   className="no-decoration demarche-link"
                 >
@@ -231,10 +235,13 @@ export class HomePage extends Component {
                 </NavLink>
               </Col>
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                <NavLink to={{
+                <NavLink
+                  to={{
                     pathname: "/advanced-search",
-                    search: "?filter=" + "dispositif"
-                  }} className="no-decoration">
+                    search: "?filter=" + "dispositif",
+                  }}
+                  className="no-decoration"
+                >
                   <Card className="dispo-card">
                     <CardHeader>
                       {t(
@@ -302,10 +309,10 @@ export class HomePage extends Component {
             <footer className="footer-section">
               {t("Homepage.contributeurs mobilises", {
                 nombre: (
-                  users.filter(x =>
-                    (x.roles || []).some(y => y && y.nom === "Contrib")
+                  users.filter((x) =>
+                    (x.roles || []).some((y) => y && y.nom === "Contrib")
                   ) || []
-                ).length
+                ).length,
               })}{" "}
               <FButton
                 tag={NavHashLink}
@@ -330,12 +337,12 @@ export class HomePage extends Component {
             <footer className="footer-section">
               {t("Homepage.traducteurs mobilises", {
                 nombre: (
-                  users.filter(x =>
+                  users.filter((x) =>
                     (x.roles || []).some(
-                      y => y.nom === "Trad" || y.nom === "ExpertTrad"
+                      (y) => y.nom === "Trad" || y.nom === "ExpertTrad"
                     )
                   ) || []
-                ).length
+                ).length,
               })}{" "}
               <FButton
                 tag={NavHashLink}
@@ -417,15 +424,15 @@ export class HomePage extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
-    dispositifs: state.dispositif.dispositifs
+    dispositifs: state.dispositif.dispositifs,
   };
 };
 
 const mapDispatchToProps = { toggle_lang_modal };
 
 export default track({
-  page: "HomePage"
+  page: "HomePage",
 })(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HomePage)));

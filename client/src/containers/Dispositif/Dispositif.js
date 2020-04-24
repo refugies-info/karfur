@@ -1994,17 +1994,16 @@ export class Dispositif extends Component {
                       </span>
                       <span
                         className={
-                          "fiabilite color-" +
-                          (moisDepuisCreation <= nbMoisNouveau
+                          "fiabilite color-vert"}>
+                   {/*       (moisDepuisCreation <= nbMoisNouveau
                             ? "focus"
                             : fiabilite > 0.2
                             ? "vert"
                             : fiabilite > 0.1
                             ? "orange"
-                            : "rouge")
-                        }
-                      >
-                        {t(
+                            : "rouge")  */}
+
+           {/*              {t(
                           moisDepuisCreation <= nbMoisNouveau
                             ? "Nouveau"
                             : fiabilite > 0.2
@@ -2019,9 +2018,10 @@ export class Dispositif extends Component {
                             : fiabilite > 0.1
                             ? "Moyenne"
                             : "Faible"
-                        )}
+                        )} */}
+                        {t('Nouveau')}
                       </span>
-                      {fiabilite ? (
+                      {!fiabilite ? (
                         <>
                           <EVAIcon
                             className="question-bloc ml-8"

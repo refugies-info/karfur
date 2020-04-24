@@ -2,6 +2,7 @@ import React from 'react';
 
 import './FSearchBtn.scss';
 import EVAIcon from '../../UI/EVAIcon/EVAIcon';
+import Ripples from 'react-ripples';
 
 const fSearchBtn = props => {
   let {className, desactiver, active, color, ...bProps}= props;
