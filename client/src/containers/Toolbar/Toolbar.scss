@@ -17,6 +17,19 @@
   color: $noir;
   @include media-max("desktop-up") { padding: 0 10px; }
 
+  .advanced-search-btn-menu {
+    border-width: 0;
+    outline: none;
+    font-size: 20px;
+    color: white;
+    margin-right: 10px;
+    font-weight: 600;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 12px;
+    background-color: black;
+  }
+
   nav {
     height: 100%;
   }
