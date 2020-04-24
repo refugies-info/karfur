@@ -6,11 +6,21 @@
   color: $noir;
   background: $gris;
   max-width: 100%;
-  outline: none ;
+  outline: none;
+  z-index: 1;
   //overflow: scroll;
+  .overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.5);
+  }
 
   .search-home {
-  outline: none ;
+    outline: none;
     //max-height: 100%;
     display: flex;
     flex: 1;
@@ -68,25 +78,36 @@
       max-width: 75%;
       border-radius: 12px;
       margin: 15px;
-
+      z-index: 4;
       .search-btn {
         margin: 5px;
         font-size: 20px;
-      border-radius: 12px;
+        border-radius: 12px;
       }
       .advanced-search-btn {
         margin: 5px;
         font-size: 20px;
-        color:white;
+        color: white;
         font-weight: 600;
-        padding: 6px 10px;
-      border-radius: 12px;
-        background-color:black; 
+        padding: 10px 10px;
+        border-radius: 12px;
+        background-color: black;
+      }
+      .advanced-search-btn-menu {
+        border-width: 0;
+        outline: none;
+        margin: 5px;
+        font-size: 20px;
+        color: black;
+        font-weight: 600;
+        padding: 10px 10px;
+        border-radius: 12px;
+        background-color: white;
       }
       .figma-btn {
-      border-radius: 12px;
-      border-width: 1px;
-      border-color: black;
+        border-radius: 12px;
+        border-width: 1px;
+        border-color: black;
         margin: 5px;
       }
     }
@@ -98,8 +119,10 @@
       color: $noir;
       display: flex;
       align-items: center;
+        z-index: 4;
       .mr-10 {
         padding-right: 10px;
+        z-index: 4;
       }
       .search-btn {
         font-size: 22px;
@@ -120,14 +143,16 @@
     }
 
     .search-row {
+      position: relative;
       margin: 25px auto 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 1);
       box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.25);
       border-radius: 12px;
       width: fit-content;
+      z-index: 5;
     }
   }
 
