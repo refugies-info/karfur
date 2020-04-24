@@ -112,7 +112,7 @@ class CatList extends Component {
         >
           <InnerButton>
               <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
-              <Streamline name={'menu'} stroke={'black'} width={22} height={22}/>
+                <Streamline name={'menu'} stroke={'black'} />
               </div>
               {t("Toolbar.Tout voir", "Tout voir")}
               </InnerButton>
