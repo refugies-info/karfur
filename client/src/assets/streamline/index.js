@@ -33,7 +33,7 @@ const Streamline = ({ name = "house", ...props }) => {
       return <Bus {...props} />;
     case "triumph":
       return <Triumph {...props} />;
-    case "heartbeat":
+    case "heartBeat":
       return <HeartBeat {...props} />;
     case "couple":
       return <Couple {...props} />;

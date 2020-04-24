@@ -244,14 +244,16 @@ export class SearchItem extends Component {
             style={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "space-evenly",
+              justifyContent: "center",
               flexDirection: "row",
               borderRadius: 10,
               backgroundColor: variables.grisFonce,
               fontWeight: "600",
             }}
           >
+              <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
             <Streamline name="search" width={20} height={20} />
+              </div>
             {item.value
               ? t("Tags." + item.value, item.value)
               : t("Tags." + item.placeholder, item.placeholder)}
