@@ -78,7 +78,8 @@ const filtres = {
     {short: "Rencontre", icon: "couple",name: "rencontrer des gens", darkColor: "#8E1B5A", lightColor: "#FFEBF5", hoverColor: "#FDA5C4", illustrationColor: "#76D327"}, 
     {short: "Loisir", icon: "soccer",name: "occuper mon temps libre", darkColor: "#861B8E", lightColor: "#F6E6FC", hoverColor: "#E595F9", illustrationColor: "#FCBF35"}, 
     {short: "Culture", icon: "triumph",name: "découvrir la culture", darkColor: "#ED4C26", lightColor: "#FFF0E7", hoverColor: "#FEC396", illustrationColor: "#1898FC"}, 
-    {short: "Santé", icon: "heartBeat",name: "me soigner", darkColor: "#C6093F", lightColor: "#FFEEEE", hoverColor: "#F7698E", illustrationColor: "#1FC2C1"}
+    {short: "Santé", icon: "heartBeat",name: "me soigner", darkColor: "#C6093F", lightColor: "#FFEEEE", hoverColor: "#F7698E", illustrationColor: "#1FC2C1"},
+    {short: "Administratif", icon: "office",name: "gérer mes papiers", darkColor: "#443023", lightColor: "#EAE2E1", hoverColor: "#fcb21c", illustrationColor: "#1FC2C1"},
   ],
 };
 

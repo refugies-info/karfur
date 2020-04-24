@@ -17,6 +17,7 @@ import icons from "../../assets/streamline";
 import Streamline from "../../assets/streamline";
 
 
+
 //import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
 
@@ -99,25 +100,23 @@ class CatList extends Component {
           className={"search-options advanced-search-btn  bg-noir"}
         >
           <InnerButton>
-              {subi.icon ?
               <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
-              <Streamline name={subi.icon} stroke={'white'} width={22} height={22}/>
+              <Streamline name={'message'} stroke={'white'} width={22} height={22}/>
               </div>
-              : null}
-              {t("Tags." + subi.name, subi.name)}
-              </InnerButton>
           manger, me doucher...
+              </InnerButton>
         </a>
-        <FButton
-          type="light"
-          name="grid"
-          className="mr-10 rsz"
-          tag={NavLink}
-          to="/advanced-search"
-          fill="black"
+        <button
+          onClick={() => {this.props.history.push('/advanced-search')}}
+          className={"search-options advanced-search-btn-menu  bg-blanc"}
         >
-          {t("Toolbar.Tout voir", "Tout voir")}
-        </FButton>
+          <InnerButton>
+              <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
+              <Streamline name={'menu'} stroke={'black'} width={22} height={22}/>
+              </div>
+              {t("Toolbar.Tout voir", "Tout voir")}
+              </InnerButton>
+        </button>
       </div>
     );
   }

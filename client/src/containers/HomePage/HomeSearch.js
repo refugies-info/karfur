@@ -11,7 +11,7 @@ import ReactCardFlip from "react-card-flip";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import variables from "scss/colors.scss";
 import Streamline from "../../assets/streamline";
-
+import Ripples from 'react-ripples';
 //import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
 
@@ -119,12 +119,14 @@ export class SearchItem extends Component {
     e.preventDefault();
     this.setState({ flip: false });
     this.props.togglePopup();
+    this.props.toggleOverlay();
   };
 
   close = (e) => {
     e.preventDefault();
     this.setState({ flip: true });
     this.props.togglePopup();
+    this.props.toggleOverlay();
   };
 
   render() {
@@ -235,6 +237,7 @@ export class SearchItem extends Component {
             </BackSide>
           </Flippy>
         ) : (
+          <Ripples>
           <button
             onClick={this.close}
             className={"search-home"}
@@ -253,6 +256,7 @@ export class SearchItem extends Component {
               ? t("Tags." + item.value, item.value)
               : t("Tags." + item.placeholder, item.placeholder)}
           </button>
+          </Ripples>
         )}
         {/*<Dropdown isOpen={dropdownOpen} toggle={this.toggle} className="display-inline-block">
             <DropdownToggle

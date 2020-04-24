@@ -11,6 +11,8 @@ import Soccer from './Soccer';
 import Flag from './Flag';
 import Office from './Office';
 import Search from './Search';
+import Message from './Message';
+import Menu from './Menu';
 
 import { withTheme } from "styled-components";
 import React from "react";
@@ -43,6 +45,10 @@ const Streamline = ({ name = "house", ...props }) => {
       return <Office {...props} />;
     case "search":
       return <Search {...props} />;
+    case "message":
+      return <Message {...props}/>
+    case "menu":
+      return <Menu {...props}/>
     default:
       return <House {...props} />;
   }
