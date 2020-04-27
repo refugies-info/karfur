@@ -59,7 +59,7 @@ export class SearchItem extends Component {
         }, 1000);
       }
       // this.setState({indexF: this.state.indexF + 2})
-    }, 2000);
+    }, 1500);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -76,7 +76,7 @@ export class SearchItem extends Component {
             // do second thing
           }, 1000);
         }
-      }, 2000);
+      }, 1500);
     }
     if (
       this.state.flip === true &&
@@ -95,7 +95,7 @@ export class SearchItem extends Component {
             // do second thing
           }, 1000);
         }
-      }, 2000);
+      }, 1500);
     }
   }
 
