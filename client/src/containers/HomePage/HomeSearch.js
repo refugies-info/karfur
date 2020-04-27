@@ -117,7 +117,11 @@ export class SearchItem extends Component {
 
   open = (e) => {
     e.preventDefault();
+    if (this.state.flip) {
     this.setState({ flip: false });
+    } else {
+      this.setState({ flip: true }); 
+    }
     this.props.togglePopup();
     this.props.toggleOverlay();
   };
@@ -135,7 +139,7 @@ export class SearchItem extends Component {
     console.log(this.state, item);
 
     return (
-      <button onClick={this.open} className="search-col">
+      <button onClick={this.open} className={'search-col'}>
         <span className="mr-10">
           {t("SearchItem." + item.title, item.title)}
         </span>
