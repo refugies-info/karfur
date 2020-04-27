@@ -135,7 +135,7 @@ export class SearchItem extends Component {
     console.log(this.state, item);
 
     return (
-      <div className="search-col">
+      <button onClick={this.open} className="search-col">
         <span className="mr-10">
           {t("SearchItem." + item.title, item.title)}
         </span>
@@ -293,7 +293,7 @@ export class SearchItem extends Component {
             {t("SearchItem." + item.title2, item.title2)}
           </span>
         )}
-      </div>
+      </button>
     );
   }
 }
