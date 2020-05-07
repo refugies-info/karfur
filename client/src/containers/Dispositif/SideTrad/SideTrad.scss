@@ -1,7 +1,7 @@
 @import 'src/scss/colors.scss';
 
 .side-trad{
-  background: rgba(242, 242, 242, 0.8);
+  background: rgba(242, 242, 242, 1);
   padding: 20px 20px 60px;
   position: fixed;
   width: 33%;
@@ -36,10 +36,21 @@
     margin-left: auto;
   }
   .content-data-french{
-    min-height:180px;
-    border-radius: 12px 12px 0px 0px;
+   // min-height:180px;
+    border-radius: 12px 12px 12px 12px;
     padding: 20px;
+    margin-bottom: 20px;
     position: relative;
+    &.no-margin-modified{
+      margin-bottom: 0px;
+      background-color: #fcd497 !important;
+    border-radius: 12px 12px 0px 0px;
+    }
+    &.no-margin-validated{
+      margin-bottom: 0px;
+      background-color: #def6c2 !important;
+    border-radius: 12px 12px 0px 0px;
+    }
     &#body_texte_initial{
       background-color: #D2EDFC;
     }
@@ -72,9 +83,13 @@
   }
   .content-data{
     min-height:200px;
-    border-radius: 12px 12px;
+    border-radius: 12px 12px 12px 12px;
     padding: 20px;
     position: relative;
+    &.editor-validated {
+      background-color:  #def6c2 !important;
+    }
+
 
     &#body_texte_initial{
       background-color: #D2EDFC;
@@ -98,6 +113,9 @@
           padding: 0;
           margin-top: -16px;
           flex: 1;
+          &.editor-validated {
+            background-color:  #def6c2 !important;
+          }
         }
         .toolbar-editeur{
           right: -25px;
@@ -106,6 +124,11 @@
       }
     }
   }
+
+  .notrounded{
+    border-radius: 12px 12px 0px 0px;
+  }
+
   .footer-btns{
     display: flex;
     justify-content: space-between;
@@ -152,16 +175,47 @@
     margin-top: -12px;
 
     .score{
+      display: flex;
+      flex: 1;
       font-weight: bold;
+    }
+
+    .proposition{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex: 1;
+      font-weight: bold;
+      border: 0.5px solid $noir;
+      border-radius: 0px 0px 12px 0px;
+      padding: 20px 12px 8px;
+      color: #909090;
+      height: 80px;
+    }
+
+    .propositions{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex: 1;
+      font-weight: bold;
+      border: 0.5px solid $noir;
+      border-radius: 0px 0px 12px 0px;
+      padding: 20px 12px 8px;
+      color: #909090;
+      height: 80px;
     }
     .texte-vert{
       color: #8BC34A;
     }
     .trad-info{
+      display: flex;
+      flex: 1;
       background: $noir;
       color: #FFFFFF;
-      border-radius: 0px 0px 12px 12px;
+      border-radius: 0px 0px 0px 12px;
       padding: 20px 12px 8px;
+      height: 80px;
     }
   }  
 

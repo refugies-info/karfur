@@ -55,6 +55,7 @@ import { fetch_dispositifs, fetch_user } from "../../Store/actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import SideTrad from "./SideTrad/SideTrad";
+import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
 import { readAudio } from "../Layout/functions";
 import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
@@ -226,9 +227,7 @@ export class Dispositif extends Component {
         locale: props.languei18nCode
       })
         .then(data_res => {
-          console.log(data_res);
           let dispositif = { ...data_res.data.data[0] };
-          console.log(dispositif);
           if (!dispositif || !dispositif._id) {
             this._isMounted = false;
             return this.props.history.push("/");
@@ -253,7 +252,6 @@ export class Dispositif extends Component {
               this.valider_dispositif("Brouillon", true)
             );
           } //Enregistrement automatique du dispositif toutes les 3 minutes
-          console.log(dispositif);
           this._isMounted &&
             this.setState(
               {
@@ -613,7 +611,6 @@ export class Dispositif extends Component {
             : key === 1
             ? "card-col col-lg-4"
             : undefined;
-        console.log(target);
         let parentNode = document.getElementsByClassName(target)[0];
         if (subkey && parentNode) {
           parentNode
@@ -642,7 +639,6 @@ export class Dispositif extends Component {
       } catch (e) {
         console.log(e);
       }
-      console.log(key, seuil_tuto);
       this.setState({
         stepIndex: key + seuil_tuto,
         runJoyRide: true,
@@ -659,15 +655,6 @@ export class Dispositif extends Component {
     const rawContentState = convertToRaw(editorState.getCurrentContent());
     const markup = convertToHTML(customConvertOption)(
       editorState.getCurrentContent()
-    );
-    console.log(
-      "Menu State",
-      state,
-      contentState,
-      selectionState,
-      rawContentState,
-      markup
-      //rawContentState.blocks[1].data
     );
     if (state.length > key) {
       if (subkey !== null && state[key].children.length > subkey) {
@@ -1129,7 +1116,6 @@ export class Dispositif extends Component {
   };
 
   addSponsor = sponsor => {
-    console.log('QQQQQQWQWQWQWWEQWEQWEQWEQWEQWEQEW', sponsor);
     this.setState({
       sponsors: [...(this.state.sponsors || []).filter(x => !x.dummy), sponsor]
     });
@@ -1398,7 +1384,6 @@ export class Dispositif extends Component {
         this.state.status !== "Brouillon" && { timeSpent: this.state.time }),
       autoSave: auto
     };
-    console.log(dispositif);
     dispositif.mainSponsor = _.get(dispositif, "sponsors.0._id");
     if (dispositif.typeContenu === "dispositif") {
       let cardElement =
@@ -1458,7 +1443,6 @@ export class Dispositif extends Component {
           "Accepté structure"
         ].includes(this.state.status)
       ) {
-        console.log("un cas qui justifie ici :", this.state.status, status);
         dispositif.status = this.state.status;
       } else if (dispositif.sponsors && dispositif.sponsors.length > 0) {
         //Je vais chercher les membres de cette structure
@@ -1534,7 +1518,6 @@ export class Dispositif extends Component {
     });
 
   render() {
-    console.log(this.props);
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
@@ -1554,7 +1537,6 @@ export class Dispositif extends Component {
       didThank,
       dispositif
     } = this.state;
-    console.log(dispositif);
     const etapes_tuto =
       typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
     const moisDepuisCreation =
@@ -1674,6 +1656,7 @@ export class Dispositif extends Component {
         <Row className="main-row">
           {translating && (
             <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
+              {!this.props.isExpert ?
               <SideTrad
                 menu={this.state.menu}
                 content={this.state.content}
@@ -1681,6 +1664,15 @@ export class Dispositif extends Component {
                 typeContenu={typeContenu}
                 {...this.props}
               />
+              :
+              <ExpertSideTrad
+              menu={this.state.menu}
+              content={this.state.content}
+              updateUIArray={this.updateUIArray}
+              typeContenu={typeContenu}
+              {...this.props}
+            />
+  }
             </Col>
           )}
           <Col
