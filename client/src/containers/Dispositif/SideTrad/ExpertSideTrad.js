@@ -109,14 +109,13 @@ class SideTrad extends Component {
       availableListTrad,
       modifiedNew,
     } = this.state;
-
+ 
     if (
       currIdx !== prevState.currIdx ||
       currSubIdx !== prevState.currSubIdx ||
       currSubName !== prevState.currSubName
     ) {
-      this.setState({ propositionIndex: 0, modifiedNew: false });
-      if (availableListTrad.length > 0) {
+      if ((!isExpert || isExpert === undefined) && availableListTrad.length > 0) {
         this.setState({ validated: true });
       } else {
         this.setState({ validated: false });
@@ -131,9 +130,6 @@ class SideTrad extends Component {
         currSubIdx >= 0 &&
         this.props.traduction.translatedText.contenu[currIdx] &&
         this.props.traduction.translatedText.contenu[currIdx].children &&
-        this.props.traduction.translatedText.contenu[currIdx].children[
-          currSubIdx
-        ] &&
         this.props.traduction.translatedText.contenu[currIdx].children[
           currSubIdx
         ][currSubName + "Modified"] === true
@@ -153,7 +149,7 @@ class SideTrad extends Component {
       }
     }
     if (this.props.traduction !== prevProps.traduction) {
-      if (availableListTrad.length > 0) {
+      if (!isExpert && availableListTrad.length > 0) {
         this.setState({ validated: true });
       } else {
         this.setState({ validated: false });
@@ -246,7 +242,6 @@ class SideTrad extends Component {
     }
     const { pointeurs, currIdx, currSubIdx } = this.state;
     if (currIdx > this.props.menu.length - 1) {
-      console.log("inside here ending");
       this._endingFeedback();
       return;
     }
@@ -259,7 +254,6 @@ class SideTrad extends Component {
         currSubIdx === -1 &&
         this.state.currSubName === "content")
     ) {
-      console.log("inside here 1");
       this.setState(
         {
           currIdx:
@@ -279,7 +273,6 @@ class SideTrad extends Component {
         }
       );
     } else {
-      console.log("inside here 2");
       let idx = -1,
         subidx = -1,
         subname = "";
@@ -290,7 +283,6 @@ class SideTrad extends Component {
           currSubIdx === -1 &&
           this.state.currSubName === "content")
       ) {
-        console.log("inside here 3 - 1");
         idx = isNext ? 0 : pointeurs[pointeurs.length - 1];
         subidx = -1;
         subname = "content";
@@ -299,7 +291,6 @@ class SideTrad extends Component {
         currSubIdx === -1 &&
         this.state.currSubName === "title"
       ) {
-        console.log("inside here 3 - 2");
         idx = currIdx - 1;
         subidx = _.get(this.props, "menu." + idx + ".children", []).length - 1;
         subname = "content";
@@ -308,15 +299,12 @@ class SideTrad extends Component {
           (!this.props.menu[currIdx].children ||
             currSubIdx >= this.props.menu[currIdx].children.length - 1) &&
           this.state.currSubName === "content") ||
-        this.state.currSubName === "contentTitle" ||
         (!isNext && currSubIdx <= 0 && this.state.currSubName === "title")
       ) {
-        console.log("inside here 3 - 1");
         idx = currIdx + (isNext ? 1 : 0);
         subidx = -1;
         subname = "content";
       } else {
-        console.log("inside here 3");
         idx = currIdx;
         if (this.state.currSubName === "title") {
           subidx = currSubIdx + (isNext ? 0 : -1);
@@ -334,14 +322,11 @@ class SideTrad extends Component {
             this._endingFeedback();
             return;
           } else if (subidx > -1 && this.props.menu[idx].type === "cards") {
-            console.log("we are in the cards");
             if (
               this.props.menu[idx].children[subidx][subname] === "Important !"
             ) {
-              console.log("we are in the cards");
               subname = "contentTitle";
               value = this.props.menu[idx].children[subidx].contentTitle;
-              this.setState({ currSubName: subname });
             }
           } else {
             value =
@@ -360,7 +345,6 @@ class SideTrad extends Component {
             return;
           }
           this._scrollAndHighlight(idx, subidx, subname);
-          console.log(value);
           this.props.fwdSetState(
             () => ({ francais: { body: value } }),
             () => this.checkTranslate(this.props.locale)
@@ -371,8 +355,21 @@ class SideTrad extends Component {
   };
 
   _endingFeedback = () => {
-    this.props.onSkip();
-    this.setState({ ...this.initialState });
+    if (
+      this.props.isExpert &&
+      !this.state.hasBeenSkipped &&
+      (this.state.selectedTrad.status === "Validée" ||
+        (this.state.selectedTrad.status === "En attente" &&
+          this.props.traduction.avancement >= 1) ||
+        (this.state.selectedTrad.status === "À revoir" &&
+          this.props.traduction.avancement >= 1) ||
+        this.props.traduction.avancement >= 1)
+    ) {
+      this._insertTrad(); //On insère cette traduction
+    } else {
+      this.props.onSkip();
+      this.setState({ ...this.initialState });
+    }
   };
 
   _scrollAndHighlight = (idx, subidx = -1, subname = "") => {
@@ -424,8 +421,7 @@ class SideTrad extends Component {
   }
  */
   checkTranslate = (target) => {
-    const { pointeurs, currIdx, currSubIdx, currSubName } = this.state;
-    console.log(pointeurs, currSubIdx, currIdx, currSubName);
+    const { pointeurs, currIdx, currSubIdx } = this.state;
     const text = this.initial_text.innerHTML,
       item = "body";
     //On vérifie si une traduction n'a pas déjà été validée
@@ -464,26 +460,18 @@ class SideTrad extends Component {
         return sugg;
       }
     });
-    if (availableListTrad.length > 0) {
-      this.setState({ validated: true });
-    } else {
-      this.setState({ validated: false });
+    if (listTrad && listTrad.length > 0) {
+      oldTrad = listTrad[0].value;
+      score = listTrad[0].score;
+      userId = listTrad[0].userId;
+      selectedTrad = listTrad[0];
+      listTrad.shift();
     }
-    console.log(listTrad);
-    if (availableListTrad && availableListTrad.length > 0) {
-      oldTrad = availableListTrad[0].value;
-      score = availableListTrad[0].score;
-      userId = availableListTrad[0].userId;
-      selectedTrad = availableListTrad[0];
-      availableListTrad.shift();
-    }
-    console.log(listTrad);
     ///////parse for buttons
 
     //ReactHtmlParser(oldTrad, {})
     this.setState({ listTrad, score, userId, selectedTrad, availableListTrad });
     if (oldTrad && typeof oldTrad === "string") {
-      console.log("inside the string old trad");
       this.props.fwdSetState({
         autosuggest: false,
         translated: {
@@ -506,7 +494,6 @@ class SideTrad extends Component {
   };
 
   selectTranslation = (sugg) => {
-    console.log(sugg);
     const listTrad = (
       (
         (this.props.traductionsFaites || []).map((x) => ({
@@ -660,9 +647,6 @@ class SideTrad extends Component {
       currSubIdx,
       currSubName,
       selectedTrad,
-      userId,
-      listTrad,
-      availableListTrad
     } = this.state;
     this.props.fwdSetState({ disableBtn: true });
     const pos = pointeurs.findIndex((x) => currIdx === x);
@@ -678,15 +662,6 @@ class SideTrad extends Component {
       currSubName = "contentTitle";
     }
     let traduction = { ...this.props.traduction };
-    console.log(traduction, this.state, this.props);
-    const userTrad = availableListTrad.find(trad => trad.userId._id === this.props.user._id);
-    console.log(userTrad)
-    if (userTrad) {
-      traduction = userTrad;
-    } else {
-      traduction = {initialText:{ contenu: new Array(this.props.menu.length).fill(false) }, translatedText:{ contenu: new Array(this.props.menu.length).fill(false) }};
-    }
-    //the god function
     ["francais", "translated"].forEach((nom) => {
       const initialValue = this.props[nom].body;
       const texte =
@@ -696,7 +671,7 @@ class SideTrad extends Component {
       const value =
         pos > -1
           ? h2p(texte)
-          : traduction[
+          : this.props.traduction[
               (nom === "francais" ? "initial" : "translated") + "Text"
             ].contenu.map((x, i) =>
               i === currIdx
@@ -720,9 +695,8 @@ class SideTrad extends Component {
                     }
                 : x
             );
-      console.log(value, texte);
       traduction[(nom === "francais" ? "initial" : "translated") + "Text"] = {
-        ...traduction[
+        ...this.props.traduction[
           (nom === "francais" ? "initial" : "translated") + "Text"
         ],
         [node]: value,
@@ -741,24 +715,71 @@ class SideTrad extends Component {
         ? " - "
         : "") +
       (this.props.content.titreInformatif || "");
-    console.log(traduction);
-    //if (newTrad._id, )
-    if (userTrad && userTrad._id) {
+    if (this.props.isExpert) {
+      let newTranslatedText = produce(traduction.translatedText, (draft) => {
+        //draft.status[currIdx] = "Acceptée";
+        if (this.state.pointeurs.includes(currIdx)) {
+          draft[currIdx + "Modified"] = false;
+        } else if (currSubIdx === -1) {
+          draft.contenu[currIdx][currSubName + "Modified"] = false;
+        } else {
+          draft.contenu[currIdx].children[currSubIdx][
+            currSubName + "Modified"
+          ] = false;
+        }
+      });
+      traduction.translatedText = newTranslatedText;
+      const elems1 = document.querySelectorAll(
+        'div[id="' +
+          currIdx +
+          '"]' +
+          (currSubIdx !== undefined && currSubIdx > -1
+            ? '[data-subkey="' + currSubIdx + '"]'
+            : "") +
+          (currSubIdx !== undefined &&
+          currSubIdx > -1 &&
+          currSubName &&
+          currSubName !== ""
+            ? '[data-target="' + currSubName + '"]'
+            : "")
+      );
+      if (elems1 && elems1[0] && elems1[0].classList) {
+        elems1[0].classList.toggle("arevoir", false);
+      }
+      /* let newTrad = {
+        _id: selectedTrad._id,
+        translatedText: {
+          ...traduction.translatedText,
+          status: {
+            ...(selectedTrad.translatedText.status || {}),
+            [currIdx]: "Acceptée"
+          }
+        }
+      }; */
       let newTrad = {
-        _id: userTrad._id,
-        translatedText: traduction.translatedText,
+        _id: selectedTrad._id || traduction._id,
+        translatedText: newTranslatedText,
         avancement: traduction.avancement,
       };
-      console.log(newTrad);
-      await API.update_tradForReview(newTrad).then((data) => {
-        console.log(data, "updated trad");
-      });
-    } else {
-      this.props.fwdSetState({ traduction }, () => {
-        console.log(traduction);
-        this.props.valider(this.props.traduction);
-      });
+      //if (newTrad._id, )
+      if (newTrad._id) {
+        await API.update_tradForReview(newTrad).then((data) => {
+          console.log(data, 'updated trad')
+        });
+      }
     }
+    this.props.fwdSetState({ traduction }, () => {
+      return !this.props.isExpert
+        ? this.props.valider(this.props.traduction)
+        : this.props.isExpert &&
+          !this.props.traduction._id &&
+          !this.state.selectedTrad._id
+        ? this.props.valider(this.props.traduction)
+        : false;
+      /* return (this.props.isExpert && traduction._id && traduction == 1)
+        ? false
+        : this.props.valider(this.props.traduction); */
+    });
     this.goChange(true, false);
     this.props.fwdSetState({ disableBtn: false });
   };
@@ -783,7 +804,6 @@ class SideTrad extends Component {
   };
 
   render() {
-    console.log(this.props, this.state);
     const langue = this.props.langue || {};
     const { francais, translated, isExpert, autosuggest } = this.props; //disableBtn
     const {
@@ -808,7 +828,33 @@ class SideTrad extends Component {
 
     return (
       <div className="side-trad shadow">
-        <div className="nav-btns">
+        {!isExpert ? (
+          <div className="nav-btns">
+            {currIdx !== "titreInformatif" && (
+              <FButton
+                type="outline-black"
+                name="arrow-back-outline"
+                fill={variables.noir}
+                onClick={() => this.goChange(false)}
+                className="mt-10"
+              >
+                Paragraphe précédent
+              </FButton>
+            )}
+            <FButton
+              className="margin-left-auto mt-10"
+              type="light-action"
+              onClick={this.goChange}
+            >
+              Paragraphe suivant
+              <EVAIcon
+                name="arrow-forward-outline"
+                fill={variables.noir}
+                className="ml-10"
+              />
+            </FButton>
+          </div>
+        ) : (
           <FButton
             type="light-action"
             name={"close" + "-outline"}
@@ -818,7 +864,7 @@ class SideTrad extends Component {
           >
             {"Fin de la session"}
           </FButton>
-        </div>
+        )}
         <div className="langue-data">
           <i className="flag-icon flag-icon-fr mr-12" title="fr" id="fr"></i>
           <strong>Texte français initial</strong>
@@ -848,7 +894,7 @@ class SideTrad extends Component {
           className={
             modified
               ? "content-data-french no-margin-modified"
-              : validated && !modified
+              : !isExpert && validated && !modified
               ? "content-data-french no-margin-validated"
               : "content-data-french"
           }
@@ -869,7 +915,7 @@ class SideTrad extends Component {
             />
             <AlertText type={"modified"}>Paragraphe modifié</AlertText>
           </AlertModified>
-        ) : validated ? (
+        ) : !isExpert && validated ? (
           <AlertModified type={"validated"}>
             <EVAIcon
               name="checkmark-circle-2"
@@ -887,7 +933,8 @@ class SideTrad extends Component {
             id={langue.langueCode}
           ></i>
           <strong>
-            {"Votre"} traduction en {(langue.langueFr || "").toLowerCase()}
+            {isExpert ? "La" : "Votre"} traduction en{" "}
+            {(langue.langueFr || "").toLowerCase()}
           </strong>
         </div>
         <div
@@ -988,11 +1035,7 @@ class SideTrad extends Component {
               </Tooltip>
             </div>
            */}
-          {userId &&
-          userId.username &&
-          !modified &&
-          !modifiedNew &&
-          this.state.availableListTrad.length > 0 ? (
+          {userId && userId.username && !modified && !modifiedNew ? (
             <>
               <div className="trad-info">
                 <img
@@ -1063,9 +1106,9 @@ class SideTrad extends Component {
                   className="profile-img-pin mr-10"
                   alt="profile"
                 />
-                <span>{this.props.user.username}</span>
-              </div>
-              <div className="proposition">Ma nouvelle proposition</div>
+                <span>{userId.username}</span>
+                </div>
+                <div className="proposition">Ma nouvelle proposition</div>
             </>
           ) : null}
         </div>
@@ -1095,9 +1138,40 @@ class SideTrad extends Component {
                 //className="ml-10"
               />
             </FButton>
+            {isExpert ? (
+              <FButton
+                type="outline-black"
+                name="refresh-outline"
+                fill={variables.noir}
+                onClick={this.reset}
+                className="mt-10 ml-10"
+              />
+            ) : null}
           </div>
           <div className="right-footer">
-            {validated && !modified && !modifiedNew ? (
+            {false && isExpert && (
+              <FButton
+                type="outline-black"
+                name="flag-outline"
+                onClick={this.signaler}
+                disabled={!(translated || {}).body}
+                fill={variables.noir}
+                className="mr-10 mt-10"
+              >
+                Signaler
+              </FButton>
+            )}
+            {isExpert ? (
+              <FButton
+                type="help"
+                name="slash-outline"
+                fill={variables.noir}
+                onClick={this.resetToEmpty}
+                className="mt-10 mr-10"
+              >
+                Effacer
+              </FButton>
+            ) : validated && !modified && !modifiedNew ? (
               <FButton
                 type="outline-black"
                 name={"edit-outline"}
@@ -1128,31 +1202,17 @@ class SideTrad extends Component {
                 Réinitialiser
               </FButton>
             )}
-            {validated && !modified && !modifiedNew ? (
-              <FButton
-                type="validate"
-                name="arrow-forward-outline"
-                onClick={this.goChange}
-                disabled={!(translated || {}).body}
-                className="mt-10 mr-10"
-              >
-                {" "}
-                {/* || disableBtn */}
-                Suivant
-              </FButton>
-            ) : (
-              <FButton
-                type="validate"
-                name="checkmark-circle-outline"
-                onClick={this.onValidate}
-                disabled={!(translated || {}).body}
-                className="mt-10 mr-10"
-              >
-                {" "}
-                {/* || disableBtn */}
-                Valider
-              </FButton>
-            )}
+            <FButton
+              type="validate"
+              name="checkmark-circle-outline"
+              onClick={this.onValidate}
+              disabled={!(translated || {}).body}
+              className="mt-10 mr-10"
+            >
+              {" "}
+              {/* || disableBtn */}
+              Valider
+            </FButton>
           </div>
         </div>
         {/* {listTrad.length > 0 && (

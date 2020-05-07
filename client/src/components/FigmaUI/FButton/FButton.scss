@@ -8,7 +8,7 @@ body .figma-btn{
   font-size: 16px;
   line-height: 20px;
   border-radius: 12px;
-  min-height: 40px;
+  //min-height: 40px;
   padding: 10px 15px;
   cursor: pointer;
   border: 0.5px solid transparent;
@@ -134,7 +134,7 @@ body .figma-btn{
   
   // Fill-Light
   &.light-action{
-    min-width: 40px;
+    //min-width: 40px;
     color: $noir;
     background: $blancSimple;
     svg{
@@ -155,6 +155,15 @@ body .figma-btn{
         fill: #FFFFFF;
       }
     }
+  }
+
+  &.small-figma{
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    margin-top: 0px;
+    justify-content: center;
+    align-items: center;
   }
 
   // Le bouton "merci" dans dispositif

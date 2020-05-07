@@ -96,10 +96,10 @@ export class TranslationHOC extends Component {
     const type = (props.match.path || "").includes("dispositif") || (props.match.path || "").includes("demarche") ? "dispositif" : "string";
     this.setState({ type, itemId, locale, isExpert, langueBackupId });
     if(itemId && type==="dispositif"){
-      API.get_tradForReview({query: {'articleId':itemId, langueCible: locale, ...(!isExpert && userId && {userId})}, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
+      //...(!isExpert && userId && {userId})
+      API.get_tradForReview({query: {'articleId':itemId, langueCible: locale }, sort: {updatedAt: -1}, populate: 'userId'}).then(data_res => {
         if(data_res.data.data && data_res.data.data.constructor === Array && data_res.data.data.length > 0){
-          const traductions = data_res.data.data; console.log(traductions);
-          console.log(traductions, '**********************************tradsssss');
+          const traductions = data_res.data.data;
           this._isMounted && this.setState({
             traductionsFaites : traductions,
             ...((isExpert || userId) && {traduction : {
@@ -141,7 +141,6 @@ export class TranslationHOC extends Component {
         }, ()=> console.log("setting translate", this.state.translated) )//, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
       }
     }).catch((err)=>{ console.log('error : ', err);
-      console.log("catching translate") 
       if(!this.state.translated[item] && h2p(this.state.francais[item]) === h2p(text)){
         let value = this.state.francais[item] || "";
         value = toEditor ? EditorState.createWithContent(ContentState.createFromBlockArray(htmlToDraft(value).contentBlocks)) : value;
@@ -229,8 +228,8 @@ export class TranslationHOC extends Component {
   }
 
   valider = (tradData = {}) => {
-    console.log("we are in this translation" ,this.state, tradData)
     this.setState({disableBtn: true});
+    console.log(this.state);
     let traduction={
       langueCible: this.state.locale,
       articleId: this.state.jsonId || this.state.itemId,
@@ -250,12 +249,12 @@ export class TranslationHOC extends Component {
         isExpert: true,
       }
     }
+    console.log(traduction);
     traduction = {...traduction, ...tradData};
-    console.log('we are here baby', traduction, 'we are here baby');
+    console.log(traduction);
     API.add_traduction(traduction).then((data) => {
       traduction._id = (data.data.data || {})._id;
       this.setState({traduction});
-      console.log(traduction.avancement, traduction);
       if(traduction.avancement === 1){
         Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000})
         this._isMounted && this.setState({disableBtn: false});
@@ -316,7 +315,6 @@ export class TranslationHOC extends Component {
   upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
 
   render(){
-    console.log('traduction:',this.state.traduction, this.state);
     if(this.state.type === "dispositif"){
       return(
         <Dispositif 
