@@ -469,15 +469,15 @@ class SideTrad extends Component {
     } else {
       this.setState({ validated: false });
     }
-    console.log(listTrad);
+    console.log(listTrad, availableListTrad);
     if (availableListTrad && availableListTrad.length > 0) {
       oldTrad = availableListTrad[0].value;
       score = availableListTrad[0].score;
       userId = availableListTrad[0].userId;
       selectedTrad = availableListTrad[0];
-      availableListTrad.shift();
+      //availableListTrad.shift();
     }
-    console.log(listTrad);
+    console.log(listTrad, availableListTrad);
     ///////parse for buttons
 
     //ReactHtmlParser(oldTrad, {})
@@ -541,13 +541,7 @@ class SideTrad extends Component {
     this.setState((prevState) => ({
       tooltipScoreOpen: !prevState.tooltipScoreOpen,
     }));
-  reset = () =>
-    this.props.translate(
-      this.initial_text.innerHTML,
-      this.props.locale,
-      "body",
-      true
-    );
+
 
   resetToEmpty = () => {
     this.props.fwdSetState({
@@ -569,6 +563,9 @@ class SideTrad extends Component {
     );
 
   modifyNew = () => {
+    if (this.state.modifiedNew) {
+      this.checkTranslate();
+    }
     this.setState({ modifiedNew: !this.state.modifiedNew });
   };
 
@@ -679,10 +676,10 @@ class SideTrad extends Component {
     }
     let traduction = { ...this.props.traduction };
     console.log(traduction, this.state, this.props);
-    const userTrad = availableListTrad.find(trad => trad.userId._id === this.props.user._id);
+    const userTrad = listTrad.find(trad => trad.userId._id === this.props.user._id);
     console.log(userTrad)
     if (userTrad) {
-      traduction = userTrad;
+      traduction = {...userTrad};
     } else {
       traduction = {initialText:{ contenu: new Array(this.props.menu.length).fill(false) }, translatedText:{ contenu: new Array(this.props.menu.length).fill(false) }};
     }
