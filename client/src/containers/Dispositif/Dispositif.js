@@ -1537,6 +1537,7 @@ export class Dispositif extends Component {
       didThank,
       dispositif
     } = this.state;
+    //console.log(dispositif);
     const etapes_tuto =
       typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
     const moisDepuisCreation =

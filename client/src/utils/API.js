@@ -116,6 +116,7 @@ export default {
     return axios.post(burl + '/article/get_article', params, {headers: headers})
   },
   add_traduction : query => {
+    console.log(query);
     return axios.post(burl + '/article/add_traduction', query, {headers: headers})
   },
   get_traduction : (query, sort, populate) => {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactHtmlParser from "react-html-parser";
-import { Spinner, Tooltip, ListGroup, ListGroupItem, Progress } from "reactstrap";
+import { Spinner, Tooltip, ListGroup, ListGroupItem } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import { Editor } from "react-draft-wysiwyg";
@@ -25,7 +25,6 @@ import {
 } from "../../../assets/figma/index";
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { RejectTradModal } from "../../../components/Modals";
-import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 
 import "./SideTrad.scss";
 import variables from "scss/colors.scss";
@@ -88,37 +87,16 @@ class SideTrad extends Component {
     validated: false,
     modifiedNew: false,
     propositionIndex: 0,
-    avancementCount: 0,
-    nextIndex: 0,
-    validatedCounter: 0,
-    topIndex: 0,
-    initialize: false,
-    initializeTrad: false,
-    referenceId: null,
-    referenceTrad: null,
-    avancement: 0,
   };
   initialState = this.state;
 
-  /*  componentDidMount() {
-      this._initializeComponent();
-
-  } */
-
   componentWillReceiveProps(nextProps) {
     if (
-      this.state.initialize == false &&
-      nextProps.content.titreInformatif !== this.props.content.titreInformatif
-    ) {
-      this._initializeComponent(nextProps);
-      this.setState({ initialize: true });
-    }
-    if (
-      this.state.initializeTrad == false &&
+      nextProps.content.titreInformatif !==
+        this.props.content.titreInformatif ||
       nextProps.traductionsFaites !== this.props.traductionsFaites
     ) {
       this._initializeComponent(nextProps);
-      this.setState({ initializeTrad: true });
     }
   }
 
@@ -131,23 +109,17 @@ class SideTrad extends Component {
       availableListTrad,
       modifiedNew,
     } = this.state;
-
+ 
     if (
       currIdx !== prevState.currIdx ||
       currSubIdx !== prevState.currSubIdx ||
       currSubName !== prevState.currSubName
     ) {
-      this.setState({ propositionIndex: 0 });
-      if (
-        availableListTrad.length > 0 &&
-        availableListTrad.find(
-          (trad) => trad.userId._id === this.props.user._id
-        )
-      ) {
+/*       if ((!isExpert || isExpert === undefined) && availableListTrad.length > 0) {
         this.setState({ validated: true });
       } else {
         this.setState({ validated: false });
-      }
+      } */
       if (
         this.state.pointeurs.includes(currIdx) &&
         this.props.traduction.translatedText[currIdx + "Modified"] === true
@@ -158,9 +130,6 @@ class SideTrad extends Component {
         currSubIdx >= 0 &&
         this.props.traduction.translatedText.contenu[currIdx] &&
         this.props.traduction.translatedText.contenu[currIdx].children &&
-        this.props.traduction.translatedText.contenu[currIdx].children[
-          currSubIdx
-        ] &&
         this.props.traduction.translatedText.contenu[currIdx].children[
           currSubIdx
         ][currSubName + "Modified"] === true
@@ -180,16 +149,11 @@ class SideTrad extends Component {
       }
     }
     if (this.props.traduction !== prevProps.traduction) {
-      if (
-        availableListTrad.length > 0 &&
-        availableListTrad.find(
-          (trad) => trad.userId._id === this.props.user._id
-        )
-      ) {
+    /*   if (!isExpert && availableListTrad.length > 0) {
         this.setState({ validated: true });
       } else {
         this.setState({ validated: false });
-      }
+      } */
       if (
         this.state.pointeurs.includes(currIdx) &&
         this.props.traduction.translatedText[currIdx + "Modified"] == true
@@ -253,72 +217,29 @@ class SideTrad extends Component {
   }
 
   _initializeComponent = async (props) => {
-    console.log('Initialize');
-    if (props.traductionsFaites.length > 0) {
-      let trad = props.traductionsFaites.find((trad) => {
-        console.log(trad.status);
-        return (
-          trad.status === "En attente" ||
-          trad.status === "À revoir" ||
-          trad.status === "Validée"
-        );
-      });
-      console.log(trad);
-      if (trad) {
-        this.setState({ referenceId: trad._id, referenceTrad: trad });
-      }
-    }
-    const { idx, subidx, subname } = this.state;
     if (
       props.content &&
       props.content.titreInformatif !== "Titre informatif" &&
       props.fwdSetState &&
       props.translate
     ) {
-      if (this.state.currIdx === "titreInformatif") {
-        console.log("initialize the highlight and scroll");
-        this._scrollAndHighlight("titreInformatif");
-        props.fwdSetState(
-          () => ({ francais: { body: props.content.titreInformatif } }),
-          () => this.checkTranslate(props.locale)
-        );
-      } else {
-        this._scrollAndHighlight(idx, subidx, subname);
-        props.fwdSetState(
-          () => {},
-          () => this.checkTranslate(props.locale)
-        );
-        //this.checkTranslate(props.locale)
-      }
+      props.fwdSetState(
+        () => ({ francais: { body: props.content.titreInformatif } }),
+        () => this.checkTranslate(props.locale)
+      );
+      this._scrollAndHighlight("titreInformatif");
       if (props.typeContenu === "demarche") {
         this.setState({ pointeurs: ["titreInformatif", "abstract"] });
       }
       const { traduction } = this.props;
     }
+    window.scrollTo(0, 0);
   };
 
-  goChange = async (isNext = true, fromFn = true) => {
-    await this.props.getTrads();
-    console.log("goChange");
+  goChange = (isNext = true, fromFn = true) => {
     if (isNext && fromFn) {
       this.setState({ hasBeenSkipped: true });
     }
-    /*  let nextIndex = { ...this.state.nextIndex };
-
-    if (isNext) {
-      nextIndex += 1;
-      this.setState({
-        nextIndex,
-        topIndex:
-          nextIndex > this.state.topIndex ? nextIndex : this.state.topIndex,
-      });
-      if (nextIndex > this.state.topIndex) {
-        this.setState({ validatedCount: this.state.validatedCount + 1 });
-      }
-    } else {
-      nextIndex -= 1;
-      this.setState({ nextIndex });
-    } */
     const { pointeurs, currIdx, currSubIdx } = this.state;
     if (currIdx > this.props.menu.length - 1) {
       this._endingFeedback();
@@ -378,7 +299,6 @@ class SideTrad extends Component {
           (!this.props.menu[currIdx].children ||
             currSubIdx >= this.props.menu[currIdx].children.length - 1) &&
           this.state.currSubName === "content") ||
-        this.state.currSubName === "contentTitle" ||
         (!isNext && currSubIdx <= 0 && this.state.currSubName === "title")
       ) {
         idx = currIdx + (isNext ? 1 : 0);
@@ -407,7 +327,6 @@ class SideTrad extends Component {
             ) {
               subname = "contentTitle";
               value = this.props.menu[idx].children[subidx].contentTitle;
-              this.setState({ currSubName: subname });
             }
           } else {
             value =
@@ -438,7 +357,12 @@ class SideTrad extends Component {
   _endingFeedback = () => {
     if (
       this.props.isExpert &&
+      !this.state.hasBeenSkipped &&
       (this.state.selectedTrad.status === "Validée" ||
+        (this.state.selectedTrad.status === "En attente" &&
+          this.props.traduction.avancement >= 1) ||
+        (this.state.selectedTrad.status === "À revoir" &&
+          this.props.traduction.avancement >= 1) ||
         this.props.traduction.avancement >= 1)
     ) {
       this._insertTrad(); //On insère cette traduction
@@ -449,7 +373,6 @@ class SideTrad extends Component {
   };
 
   _scrollAndHighlight = (idx, subidx = -1, subname = "") => {
-    console.log("scroll and highlight");
     if (
       subidx > -1 &&
       subname === "content" &&
@@ -473,7 +396,6 @@ class SideTrad extends Component {
           ? '[data-target="' + subname + '"]'
           : "")
     );
-    console.log("#####################", elems);
     if (elems.length > 0) {
       const elem = elems[0];
       elem.scrollIntoView({
@@ -499,8 +421,7 @@ class SideTrad extends Component {
   }
  */
   checkTranslate = (target) => {
-    const { pointeurs, currIdx, currSubIdx, currSubName } = this.state;
-    //console.log(pointeurs, currSubIdx, currIdx, currSubName);
+    const { pointeurs, currIdx, currSubIdx } = this.state;
     const text = this.initial_text.innerHTML,
       item = "body";
     //On vérifie si une traduction n'a pas déjà été validée
@@ -539,33 +460,17 @@ class SideTrad extends Component {
         return sugg;
       }
     });
-    const userTrad = listTrad.find(
-      (trad) => trad.userId._id === this.props.user._id
-    );
-    if (userTrad) {
-      this.setState({ avancement: userTrad.avancement });
+    if (listTrad && listTrad.length > 0) {
+      oldTrad = listTrad[0].value;
+      score = listTrad[0].score;
+      userId = listTrad[0].userId;
+      selectedTrad = listTrad[0];
+      listTrad.shift();
     }
-    if (
-      availableListTrad.length > 0 &&
-      availableListTrad.find((trad) => trad.userId._id === this.props.user._id)
-    ) {
-      this.setState({ validated: true });
-    } else {
-      this.setState({ validated: false });
-    }
-    if (availableListTrad && availableListTrad.length > 0) {
-      oldTrad = availableListTrad[0].value;
-      score = availableListTrad[0].score;
-      userId = availableListTrad[0].userId;
-      selectedTrad = availableListTrad[0];
-      //availableListTrad.shift();
-    }
-    // console.log(listTrad, availableListTrad);
     ///////parse for buttons
 
     //ReactHtmlParser(oldTrad, {})
     this.setState({ listTrad, score, userId, selectedTrad, availableListTrad });
-    // console.log(oldTrad);
     if (oldTrad && typeof oldTrad === "string") {
       this.props.fwdSetState({
         autosuggest: false,
@@ -623,6 +528,13 @@ class SideTrad extends Component {
     this.setState((prevState) => ({
       tooltipScoreOpen: !prevState.tooltipScoreOpen,
     }));
+  reset = () =>
+    this.props.translate(
+      this.initial_text.innerHTML,
+      this.props.locale,
+      "body",
+      true
+    );
 
   resetToEmpty = () => {
     this.props.fwdSetState({
@@ -644,9 +556,6 @@ class SideTrad extends Component {
     );
 
   modifyNew = () => {
-    if (this.state.modifiedNew) {
-      this.checkTranslate();
-    }
     this.setState({ modifiedNew: !this.state.modifiedNew });
   };
 
@@ -738,21 +647,7 @@ class SideTrad extends Component {
       currSubIdx,
       currSubName,
       selectedTrad,
-      userId,
-      listTrad,
-      availableListTrad,
     } = this.state;
-    let avancementCount = this.state.avancementCount;
-    if (
-      !availableListTrad.length ||
-      (availableListTrad.length &&
-        !availableListTrad.find(
-          (trad) => trad.userId._id === this.props.user._id
-        ))
-    ) {
-      avancementCount = this.state.avancementCount + 1;
-      this.setState({ avancementCount });
-    }
     this.props.fwdSetState({ disableBtn: true });
     const pos = pointeurs.findIndex((x) => currIdx === x);
     const node = pos > -1 ? currIdx : "contenu";
@@ -767,22 +662,7 @@ class SideTrad extends Component {
       currSubName = "contentTitle";
     }
     let traduction = { ...this.props.traduction };
-    const userTrad = listTrad.find(
-      (trad) => trad.userId._id === this.props.user._id
-    );
-    if (userTrad) {
-      traduction = { ...userTrad };
-    } else {
-      traduction = {
-        initialText: { contenu: new Array(this.props.menu.length).fill(false) },
-        translatedText: {
-          contenu: new Array(this.props.menu.length).fill(false),
-        },
-        status: this.state.referenceTrad ? this.state.referenceTrad.status : 'À Traduire',
-      };
-    }
-    //the god function
-    ["translated"].forEach((nom) => {
+    ["francais", "translated"].forEach((nom) => {
       const initialValue = this.props[nom].body;
       const texte =
         nom === "francais"
@@ -791,7 +671,7 @@ class SideTrad extends Component {
       const value =
         pos > -1
           ? h2p(texte)
-          : traduction[
+          : this.props.traduction[
               (nom === "francais" ? "initial" : "translated") + "Text"
             ].contenu.map((x, i) =>
               i === currIdx
@@ -816,73 +696,57 @@ class SideTrad extends Component {
                 : x
             );
       traduction[(nom === "francais" ? "initial" : "translated") + "Text"] = {
-        ...traduction[(nom === "francais" ? "initial" : "translated") + "Text"],
+        ...this.props.traduction[
+          (nom === "francais" ? "initial" : "translated") + "Text"
+        ],
         [node]: value,
       };
     });
-    // const nbTraduits = this._countContents([traduction.translatedText]);
+    const nbTraduits = this._countContents([traduction.translatedText]);
     const nbInit =
       this._countContents(this.props.menu) +
       pointeurs.length -
       this.props.menu.length;
     //const nbInit = this._countContents([traduction.initialText]);
-    if (listTrad.length > 0) {
-      const oldCount = userTrad ? userTrad.avancement * nbInit : 0;
-      if (this.state.modifiedNew) {
-        traduction.avancement = oldCount / nbInit;
-        this.setState({ modifiedNew: false });
-      } else {
-        traduction.avancement = (oldCount + 1) / nbInit;
-      }
-      console.log(traduction.avancement, avancementCount, oldCount, nbInit);
-    } else {
-      traduction.avancement = avancementCount / nbInit;
-      console.log(traduction.avancement, avancementCount, nbInit);
-    }
+    traduction.avancement = nbTraduits / nbInit;
     traduction.title =
       (this.props.content.titreMarque || "") +
       (this.props.content.titreMarque && this.props.content.titreInformatif
         ? " - "
         : "") +
       (this.props.content.titreInformatif || "");
-    console.log(
-      "avancement: ##########################",
-      traduction,
-      traduction.avancement
-    );
-
-    //if this is the expert
-    let newTranslatedText = produce(traduction.translatedText, (draft) => {
-      //draft.status[currIdx] = "Acceptée";
-      if (this.state.pointeurs.includes(currIdx)) {
-        draft[currIdx + "Modified"] = false;
-      } else if (currSubIdx === -1) {
-        draft.contenu[currIdx][currSubName + "Modified"] = false;
-      } else {
-        draft.contenu[currIdx].children[currSubIdx][
-          currSubName + "Modified"
-        ] = false;
+    if (this.props.isExpert) {
+      let newTranslatedText = produce(traduction.translatedText, (draft) => {
+        //draft.status[currIdx] = "Acceptée";
+        if (this.state.pointeurs.includes(currIdx)) {
+          draft[currIdx + "Modified"] = false;
+        } else if (currSubIdx === -1) {
+          draft.contenu[currIdx][currSubName + "Modified"] = false;
+        } else {
+          draft.contenu[currIdx].children[currSubIdx][
+            currSubName + "Modified"
+          ] = false;
+        }
+      });
+      traduction.translatedText = newTranslatedText;
+      const elems1 = document.querySelectorAll(
+        'div[id="' +
+          currIdx +
+          '"]' +
+          (currSubIdx !== undefined && currSubIdx > -1
+            ? '[data-subkey="' + currSubIdx + '"]'
+            : "") +
+          (currSubIdx !== undefined &&
+          currSubIdx > -1 &&
+          currSubName &&
+          currSubName !== ""
+            ? '[data-target="' + currSubName + '"]'
+            : "")
+      );
+      if (elems1 && elems1[0] && elems1[0].classList) {
+        elems1[0].classList.toggle("arevoir", false);
       }
-    });
-    traduction.translatedText = newTranslatedText;
-    const elems1 = document.querySelectorAll(
-      'div[id="' +
-        currIdx +
-        '"]' +
-        (currSubIdx !== undefined && currSubIdx > -1
-          ? '[data-subkey="' + currSubIdx + '"]'
-          : "") +
-        (currSubIdx !== undefined &&
-        currSubIdx > -1 &&
-        currSubName &&
-        currSubName !== ""
-          ? '[data-target="' + currSubName + '"]'
-          : "")
-    );
-    if (elems1 && elems1[0] && elems1[0].classList) {
-      elems1[0].classList.toggle("arevoir", false);
-    }
-    /* let newTrad = {
+      /* let newTrad = {
         _id: selectedTrad._id,
         translatedText: {
           ...traduction.translatedText,
@@ -892,7 +756,7 @@ class SideTrad extends Component {
           }
         }
       }; */
-    /*  let newTrad = {
+      let newTrad = {
         _id: selectedTrad._id || traduction._id,
         translatedText: newTranslatedText,
         avancement: traduction.avancement,
@@ -902,31 +766,20 @@ class SideTrad extends Component {
         await API.update_tradForReview(newTrad).then((data) => {
           console.log(data, 'updated trad')
         });
-      } */
-
-    //if (newTrad._id, )
-    if (userTrad && userTrad._id) {
-      let newTrad = {
-        _id: userTrad._id,
-        translatedText: traduction.translatedText,
-        avancement: traduction.avancement,
-      };
-      this.props.fwdSetState({ newTrad }, () => {});
-      await this.props.valider(newTrad);
-      console.log(newTrad);
-      /*   await API.update_tradForReview(newTrad).then((data) => {
-        console.log(data, "updated trad");
-        if(newTrad.avancement >= 1){
-          Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000});
-          this.props.onSkip();
-        }
-      }); */
-    } else {
-      this.props.fwdSetState({ traduction }, () => {
-        console.log(traduction);
-      });
-      await this.props.valider(traduction);
+      }
     }
+    this.props.fwdSetState({ traduction }, () => {
+      return !this.props.isExpert
+        ? this.props.valider(this.props.traduction)
+        : this.props.isExpert &&
+          !this.props.traduction._id &&
+          !this.state.selectedTrad._id
+        ? this.props.valider(this.props.traduction)
+        : false;
+      /* return (this.props.isExpert && traduction._id && traduction == 1)
+        ? false
+        : this.props.valider(this.props.traduction); */
+    });
     this.goChange(true, false);
     this.props.fwdSetState({ disableBtn: false });
   };
@@ -951,7 +804,7 @@ class SideTrad extends Component {
   };
 
   render() {
-    console.log(this.props, this.state, this.state.avancementCount, this.props.traduction, this.state.currIdx, this.state.availableListTrad);
+      console.log(this.state, this.props);
     const langue = this.props.langue || {};
     const { francais, translated, isExpert, autosuggest } = this.props; //disableBtn
     const {
@@ -976,7 +829,33 @@ class SideTrad extends Component {
 
     return (
       <div className="side-trad shadow">
-        <div className="nav-btns">
+        {!isExpert ? (
+          <div className="nav-btns">
+            {currIdx !== "titreInformatif" && (
+              <FButton
+                type="outline-black"
+                name="arrow-back-outline"
+                fill={variables.noir}
+                onClick={() => this.goChange(false)}
+                className="mt-10"
+              >
+                Paragraphe précédent
+              </FButton>
+            )}
+            <FButton
+              className="margin-left-auto mt-10"
+              type="light-action"
+              onClick={this.goChange}
+            >
+              Paragraphe suivant
+              <EVAIcon
+                name="arrow-forward-outline"
+                fill={variables.noir}
+                className="ml-10"
+              />
+            </FButton>
+          </div>
+        ) : (
           <FButton
             type="light-action"
             name={"close" + "-outline"}
@@ -986,21 +865,7 @@ class SideTrad extends Component {
           >
             {"Fin de la session"}
           </FButton>
-          <Progress
-            style={{height: 10, width: '30%', alignSelf: 'center'}}
-              color={colorAvancement(this.state.avancement)}
-              value={this.state.avancement * 100}
-            />
-            <div style={{alignItems: 'center', justifyContent: 'center', alignSelf: 'center'}}>
-            <div className={"text-" + colorAvancement(this.state.avancement)}>
-              {this.state.avancement === 1 ? (
-                <EVAIcon name="checkmark-circle-2" fill={variables.vert} />
-              ) : (
-                <span>{Math.round((this.state.avancement || 0) * 100)} %</span>
-              )}
-            </div>
-          </div> 
-        </div>
+        )}
         <div className="langue-data">
           <i className="flag-icon flag-icon-fr mr-12" title="fr" id="fr"></i>
           <strong>Texte français initial</strong>
@@ -1030,7 +895,7 @@ class SideTrad extends Component {
           className={
             modified
               ? "content-data-french no-margin-modified"
-              : validated && !modified
+              : !isExpert && validated && !modified
               ? "content-data-french no-margin-validated"
               : "content-data-french"
           }
@@ -1051,7 +916,7 @@ class SideTrad extends Component {
             />
             <AlertText type={"modified"}>Paragraphe modifié</AlertText>
           </AlertModified>
-        ) : validated ? (
+        ) : !isExpert && validated ? (
           <AlertModified type={"validated"}>
             <EVAIcon
               name="checkmark-circle-2"
@@ -1059,7 +924,7 @@ class SideTrad extends Component {
               id="alert-triangle-outline"
               className={"mr-10"}
             />
-            <AlertText type={"validated"}>Déjà validé</AlertText>
+            <AlertText type={"validated"}>Déjà traduit</AlertText>
           </AlertModified>
         ) : null}
         <div className="langue-data">
@@ -1069,7 +934,8 @@ class SideTrad extends Component {
             id={langue.langueCode}
           ></i>
           <strong>
-            {"La"} traduction en {(langue.langueFr || "").toLowerCase()}
+            {isExpert ? "La" : "Votre"} traduction en{" "}
+            {(langue.langueFr || "").toLowerCase()}
           </strong>
         </div>
         <div
@@ -1170,11 +1036,7 @@ class SideTrad extends Component {
               </Tooltip>
             </div>
            */}
-          {userId &&
-          userId.username &&
-          !modified &&
-          !modifiedNew &&
-          this.state.availableListTrad.length > 0 ? (
+          {userId && userId.username && !modified && !modifiedNew ? (
             <>
               <div className="trad-info">
                 <img
@@ -1245,9 +1107,9 @@ class SideTrad extends Component {
                   className="profile-img-pin mr-10"
                   alt="profile"
                 />
-                <span>{this.props.user.username}</span>
-              </div>
-              <div className="proposition">Ma nouvelle proposition</div>
+                <span>{userId.username}</span>
+                </div>
+                <div className="proposition">Ma nouvelle proposition</div>
             </>
           ) : null}
         </div>
@@ -1277,16 +1139,40 @@ class SideTrad extends Component {
                 //className="ml-10"
               />
             </FButton>
-            <FButton
-              type="outline-black"
-              name="refresh-outline"
-              fill={variables.noir}
-              onClick={this.reset}
-              className="mt-10 ml-10"
-            />
+            {isExpert ? (
+              <FButton
+                type="outline-black"
+                name="refresh-outline"
+                fill={variables.noir}
+                onClick={this.reset}
+                className="mt-10 ml-10"
+              />
+            ) : null}
           </div>
           <div className="right-footer">
-            {validated && !modified && !modifiedNew ? (
+            {false && isExpert && (
+              <FButton
+                type="outline-black"
+                name="flag-outline"
+                onClick={this.signaler}
+                disabled={!(translated || {}).body}
+                fill={variables.noir}
+                className="mr-10 mt-10"
+              >
+                Signaler
+              </FButton>
+            )}
+            {isExpert ? (
+              <FButton
+                type="help"
+                name="slash-outline"
+                fill={variables.noir}
+                onClick={this.resetToEmpty}
+                className="mt-10 mr-10"
+              >
+                Effacer
+              </FButton>
+            ) : validated && !modified && !modifiedNew ? (
               <FButton
                 type="outline-black"
                 name={"edit-outline"}
@@ -1308,40 +1194,26 @@ class SideTrad extends Component {
               </FButton>
             ) : (
               <FButton
-                type="help"
-                name="slash-outline"
+                type="outline-black"
+                name="refresh-outline"
                 fill={variables.noir}
-                onClick={this.resetToEmpty}
+                onClick={this.reset}
                 className="mt-10 mr-10"
               >
-                Effacer
+                Réinitialiser
               </FButton>
             )}
-            {validated && !modified && !modifiedNew ? (
-              <FButton
-                type="validate"
-                name="arrow-forward-outline"
-                onClick={this.goChange}
-                disabled={!(translated || {}).body}
-                className="mt-10 mr-10"
-              >
-                {" "}
-                {/* || disableBtn */}
-                Suivant
-              </FButton>
-            ) : (
-              <FButton
-                type="validate"
-                name="checkmark-circle-outline"
-                onClick={this.onValidate}
-                disabled={!(translated || {}).body}
-                className="mt-10 mr-10"
-              >
-                {" "}
-                {/* || disableBtn */}
-                Valider
-              </FButton>
-            )}
+            <FButton
+              type="validate"
+              name="checkmark-circle-outline"
+              onClick={this.onValidate}
+              disabled={!(translated || {}).body}
+              className="mt-10 mr-10"
+            >
+              {" "}
+              {/* || disableBtn */}
+              Valider
+            </FButton>
           </div>
         </div>
         {/* {listTrad.length > 0 && (
