@@ -81,9 +81,12 @@ export class UserDashStruct extends Component {
     suggestion: {},
     traductions: [],
     nbRead: 0,
-    selectedStructure:  this.props.location.state && this.props.location.state.admin
-    ? this.props.location.state.structure
-    : this.props.user.structures ? this.props.user.structures[0] : null
+    selectedStructure:
+      this.props.location.state && this.props.location.state.admin
+        ? this.props.location.state.structure
+        : this.props.user.structures
+        ? this.props.user.structures[0]
+        : null
   };
 
   componentDidMount() {
@@ -156,7 +159,6 @@ export class UserDashStruct extends Component {
       document.title = this.state.structure.nom;
     }
     if (this.props.location.state !== prevProps.location.state) {
-      
     }
   }
 
@@ -166,7 +168,7 @@ export class UserDashStruct extends Component {
 
   initializeStructure = () => {
     const user = this.props.user;
-/*     let selectedStructure =
+    /*     let selectedStructure =
       this.props.location.state && this.props.location.state.admin
         ? this.props.location.state.structure
         : user.structures[0];
@@ -435,4 +437,9 @@ const mapDispatchToProps = { fetch_dispositifs };
 
 export default track({
   page: "UserDashStruct"
-})(connect(mapStateToProps, mapDispatchToProps)(windowSize(UserDashStruct)));
+})(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(windowSize(UserDashStruct))
+);

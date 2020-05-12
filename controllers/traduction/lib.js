@@ -326,7 +326,6 @@ function validate_tradForReview(req, res) {
 }
 
 const insertInDispositif = (res, traduction, locale) => {
-  console.log(res, traduction, locale);
   return Dispositif.findOne({ _id: traduction.articleId }).exec(
     (err, result) => {
       if (!err && result) {
@@ -337,13 +336,7 @@ const insertInDispositif = (res, traduction, locale) => {
           if (!result[x].fr) {
             result[x] = { fr: result[x] };
           }
-          console.log(
-            x,
-            traduction.translatedText,
-            traduction.translatedText[x],
-            result,
-            result[x][locale]
-          );
+
           result[x][locale] = traduction.translatedText[x];
           result.markModified(x);
         });
@@ -434,6 +427,8 @@ const insertInDispositif = (res, traduction, locale) => {
             ...(traduction.traductions || []).map((x) => (x.userId || {})._id),
           ]),
         ];
+
+        // TO DO : drop duplicates on participants
         if (result.avancement === 1) {
           result.avancement = { fr: 1 };
         }

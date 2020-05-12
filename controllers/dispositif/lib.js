@@ -206,7 +206,6 @@ function get_dispositif(req, res) {
     }
 
     let promise = null;
-    console.log(query);
     if (random) {
       promise = Dispositif.aggregate([
         { $match: query },
