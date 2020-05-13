@@ -55,6 +55,8 @@ const AlertModified = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 12px;
 `;
 
 const AlertText = styled.div`
@@ -67,6 +69,8 @@ const AlertText = styled.div`
       ? "black"
       : "#ffffff"};
   margin-right: 20px;
+  font-weight: 600;
+  font-size: 12px;
 `;
 
 class SideTrad extends Component {
@@ -77,11 +81,9 @@ class SideTrad extends Component {
     currSubName: "content",
     hasBeenSkipped: false,
     tooltipOpen: false,
-    tooltipScoreOpen: false,
     listTrad: [],
     availableListTrad: [],
     selectedTrad: {},
-    score: 0,
     userId: {},
     showModals: {
       rejected: false,
@@ -454,31 +456,26 @@ class SideTrad extends Component {
       { isExpert, traductionsFaites } = this.props;
     let oldTrad = "",
       listTrad = [],
-      score = 0,
       userId = {},
       selectedTrad = {};
     listTrad = (
       (traductionsFaites || []).map((x) => {
-        let newValue = x.translatedText || {},
-          scoreArr = {};
+        let newValue = x.translatedText || {};
         if (pos > -1) {
-          scoreArr = _.get(newValue, "scoreHeaders." + currIdx, {});
           newValue = newValue[currIdx];
         } else {
           newValue = newValue.contenu[currIdx];
           if (currSubIdx > -1 && newValue && newValue.children) {
             newValue = newValue.children[currSubIdx];
           }
-          scoreArr = newValue["score" + this.state.currSubName] || {};
           newValue = newValue[this.state.currSubName];
         }
         return {
           value: newValue,
-          score: _.get(scoreArr, "cosine.0.0", 0),
           ...x,
         };
       }) || []
-    ).sort((a, b) => b.score - a.score);
+    );
     let availableListTrad = listTrad.filter((sugg, key) => {
       let valeur = h2p(sugg.value || "");
       if (valeur && valeur !== "" && valeur !== false) {
@@ -495,7 +492,6 @@ class SideTrad extends Component {
     }
     if (availableListTrad && availableListTrad.length > 0) {
       oldTrad = availableListTrad[0].value;
-      score = availableListTrad[0].score;
       userId = availableListTrad[0].userId;
       selectedTrad = availableListTrad[0];
       //availableListTrad.shift();
@@ -504,7 +500,7 @@ class SideTrad extends Component {
     ///////parse for buttons
 
     //ReactHtmlParser(oldTrad, {})
-    this.setState({ listTrad, score, userId, selectedTrad, availableListTrad });
+    this.setState({ listTrad, userId, selectedTrad, availableListTrad });
     // console.log(oldTrad);
     if (oldTrad && typeof oldTrad === "string") {
       this.props.fwdSetState({
@@ -533,18 +529,13 @@ class SideTrad extends Component {
       (
         (this.props.traductionsFaites || []).map((x) => ({
           value: (x.translatedText || {})[this.state.currIdx],
-          score: _.get(
-            x,
-            "translatedText.scoreHeaders." + this.state.currIdx + ".cosine.0.0"
-          ),
           ...x,
         })) || []
       ).filter((x) => x._id !== sugg._id) || []
-    ).sort((a, b) => b.score - a.score);
-    const score = sugg.score,
-      userId = sugg.userId,
+    )
+      const userId = sugg.userId,
       selectedTrad = sugg;
-    this.setState({ listTrad, score, userId, selectedTrad });
+    this.setState({ listTrad, userId, selectedTrad });
     this.props.fwdSetState({
       translated: {
         ...this.props.translated,
@@ -559,10 +550,6 @@ class SideTrad extends Component {
 
   toggleTooltip = () =>
     this.setState((prevState) => ({ tooltipOpen: !prevState.tooltipOpen }));
-  toggleTooltipScore = () =>
-    this.setState((prevState) => ({
-      tooltipScoreOpen: !prevState.tooltipScoreOpen,
-    }));
 
   resetToEmpty = () => {
     this.props.fwdSetState({
@@ -638,13 +625,11 @@ class SideTrad extends Component {
 
   removeTranslation = (translation) => {
     let listTrad = this.state.listTrad.filter((x) => x._id !== translation._id),
-      score = 0,
       userId = {},
       selectedTrad = {},
       oldTrad = "";
     if (listTrad && listTrad.length > 0) {
       oldTrad = listTrad[0].value;
-      score = listTrad[0].score;
       userId = listTrad[0].userId;
       selectedTrad = listTrad[0];
       listTrad.shift();
@@ -659,7 +644,7 @@ class SideTrad extends Component {
         },
       });
     }
-    this.setState({ listTrad, score, userId, selectedTrad });
+    this.setState({ listTrad, userId, selectedTrad });
   };
 
   onValidate = async () =>{
@@ -864,7 +849,6 @@ class SideTrad extends Component {
       currSubIdx,
       currSubName,
       listTrad,
-      score,
       userId,
       showModals,
       selectedTrad,
@@ -953,7 +937,7 @@ class SideTrad extends Component {
               name="alert-triangle"
               fill={variables.orange}
               id="alert-triangle-outline"
-              className={"mr-10"}
+              className={"mr-10 mb-1"}
             />
             <AlertText type={"modified"}>Paragraphe modifié</AlertText>
           </AlertModified>
@@ -963,7 +947,7 @@ class SideTrad extends Component {
               name="checkmark-circle-2"
               fill={"#4caf50"}
               id="alert-triangle-outline"
-              className={"mr-10"}
+              className={"mr-10 mb-1"}
             />
             <AlertText type={"validated"}>Déjà traduit</AlertText>
           </AlertModified>
@@ -1218,37 +1202,6 @@ class SideTrad extends Component {
             )}
           </div>
         </div>
-        {/* {listTrad.length > 0 && (
-          <div className="other-propositions">
-            <h5 className="title-props">Autres propositions possibles</h5>
-            <ListGroup>
-              {listTrad.map((sugg, key) => {
-                let valeur = h2p(sugg.value || "");
-                valeur =
-                  valeur.slice(0, 35) + (valeur.length > 35 ? "..." : "");
-                if (valeur && valeur !== "") {
-                  return (
-                    <ListGroupItem
-                      tag="button"
-                      action
-                      key={key}
-                      onClick={() => this.selectTranslation(sugg)}
-                    >
-                      {valeur}
-                      {sugg.score && sugg.score !== 0 && sugg.score !== "0" && (
-                        <b className="score">
-                          {Math.round((sugg.score || 0) * 100)} %
-                        </b>
-                      )}
-                    </ListGroupItem>
-                  );
-                } else {
-                  return false;
-                }
-              })}
-            </ListGroup>
-          </div>
-        )} */}
 
         <RejectTradModal
           name="rejected"
@@ -1264,18 +1217,6 @@ class SideTrad extends Component {
       </div>
     );
   }
-}
-
-{
-  /* <FButton
-type="outline-black"
-name="refresh-outline"
-fill={variables.noir}
-onClick={this.reset}
-className="mt-10 mr-10"
->
-Réinitialiser
-</FButton> */
 }
 
 const ConditionalSpinner = (props) => {
