@@ -51,6 +51,23 @@ const AlertModified = styled.div`
   margin-bottom: 20px;
 `;
 
+const AlertExpert = styled.div`
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  background-color: ${(props) =>
+    props.type === "modified"
+      ? "#fcd497"
+      : props.type === "validated"
+      ? "#def6c2"
+      : props.type === "abstract"
+      ? "#f9ef99"
+      : "#ffffff"};
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 12px;
+`;
+
 const AlertText = styled.div`
   color: ${(props) =>
     props.type === "modified"
@@ -399,6 +416,7 @@ class SideTrad extends Component {
         { currIdx: idx, currSubIdx: subidx, currSubName: subname },
         () => {
           let value = "";
+          console.log('before ending feedback', idx, this.props.menu.length);
           if (idx > this.props.menu.length - 1) {
             this._endingFeedback();
             return;
@@ -436,14 +454,14 @@ class SideTrad extends Component {
     }
   };
 
-  _endingFeedback = () => {
+  _endingFeedback = (newTrad) => {
     console.log('inside ending feedback', this.props.traduction);
     if (
       this.props.isExpert &&
       (this.state.selectedTrad.status === "Validée" ||
         this.state.avancement >= 1)
     ) {
-      this._insertTrad(); //On insère cette traduction
+      this._insertTrad(newTrad); //On insère cette traduction
     } else {
       this.props.onSkip();
       this.setState({ ...this.initialState });
@@ -916,15 +934,18 @@ class SideTrad extends Component {
         avancement: traduction.avancement,
       };
       this.props.fwdSetState({ newTrad }, () => {});
-      await this.props.valider(newTrad);
+      //await this.props.valider(newTrad);
       console.log(newTrad);
-      /*   await API.update_tradForReview(newTrad).then((data) => {
+      if (traduction.avancement >= 1 && userTrad.status === 'En attente') {
+        this._endingFeedback(newTrad);
+      }
+     await API.update_tradForReview(newTrad).then((data) => {
         console.log(data, "updated trad");
         if(newTrad.avancement >= 1){
           Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000});
           this.props.onSkip();
         }
-      }); */
+      });
     } else {
       this.props.fwdSetState({ traduction }, () => {
         console.log(traduction);
@@ -935,8 +956,11 @@ class SideTrad extends Component {
     this.props.fwdSetState({ disableBtn: false });
   };
 
-  _insertTrad = () => {
+  _insertTrad = async (trad) => {
     console.log('Insert trad');
+    if (trad) {
+      await API.update_tradForReview(trad);
+    }
     let newTrad = {
       ...this.props.traduction,
       articleId: this.props.itemId,
@@ -944,7 +968,7 @@ class SideTrad extends Component {
       locale: this.props.locale,
       traductions: this.props.traductionsFaites,
     };
-    API.validate_tradForReview(newTrad).then((data) => {
+    await API.validate_tradForReview(newTrad).then((data) => {
       Swal.fire(
         "Yay...",
         "Ce dispositif est maintenant intégralement validé et disponible à la lecture",
@@ -981,7 +1005,7 @@ class SideTrad extends Component {
 
     return (
       <div className="side-trad shadow">
-        <div className="nav-btns">
+         <div className="nav-btns">
           <FButton
             type="light-action"
             name={"close" + "-outline"}
@@ -991,8 +1015,9 @@ class SideTrad extends Component {
           >
             {"Fin de la session"}
           </FButton>
-          <Progress
-            style={{height: 10, width: '30%', alignSelf: 'center'}}
+          <div style={{display: 'flex', flex: 1, justifyContent: 'flex-end'}}>
+            <Progress
+            style={{height: 10, width: '50%', marginLeft: 20, marginRight: 20 ,alignSelf: 'center'}}
               color={colorAvancement(this.state.avancement)}
               value={this.state.avancement * 100}
             />
@@ -1005,20 +1030,21 @@ class SideTrad extends Component {
               )}
             </div>
           </div> 
+          </div>
         </div>
         <div className="langue-data">
           <i className="flag-icon flag-icon-fr mr-12" title="fr" id="fr"></i>
           <strong>Texte français initial</strong>
           {currIdx === "abstract" && (
             <div className="align-right">
-              <b>Résumé</b>
+              {/* <b>Résumé</b>
               <EVAIcon
                 className="ml-10"
                 name="info"
                 fill={variables.noir}
                 id="eva-icon-info"
-              />
-              <Tooltip
+              /> */}
+              {/* <Tooltip
                 placement="top"
                 offset="0px, 8px"
                 isOpen={this.state.tooltipOpen}
@@ -1027,12 +1053,14 @@ class SideTrad extends Component {
               >
                 Ce paragraphe de résumé apparaît dans les résultats de
                 recherche. Il n'est pas visible sur la page.
-              </Tooltip>
+              </Tooltip> */}
             </div>
           )}
         </div>
         <div
           className={
+            (this.state.currIdx === 'abstract') ?
+            "content-data-french no-margin-abstract" :
             modified
               ? "content-data-french no-margin-modified"
               : validated && !modified
@@ -1046,7 +1074,28 @@ class SideTrad extends Component {
         >
           {ReactHtmlParser((francais || {}).body || "", options)}
         </div>
-        {modified ? (
+        {this.state.currIdx === 'abstract' ?
+        (
+          <AlertModified type={"abstract"}>
+            <EVAIcon
+              name="info"
+              fill={variables.noir}
+              id="alert-info"
+              className={"mr-10"}
+            />
+            <Tooltip
+                placement="top"
+                offset="0px, 8px"
+                isOpen={this.state.tooltipOpen}
+                target="alert-info"
+                toggle={this.toggleTooltip}
+              >
+                Ce résumé est visible dans les résultats de
+                recherche.
+              </Tooltip>
+            <AlertText type={"abstract"}>Résumé de la fiche</AlertText>
+          </AlertModified>
+        ) : modified ? (
           <AlertModified type={"modified"}>
             <EVAIcon
               name="alert-triangle"
@@ -1080,12 +1129,14 @@ class SideTrad extends Component {
         <div
           className={
             userId && userId.username && validated && !modified && !modifiedNew
-              ? "content-data notrounded editor-validated"
+              ? "content-data notrounded no-margin-validated"
               : userId &&
                 userId.username &&
                 validated &&
                 !modified &&
                 modifiedNew
+              ? "content-data notrounded"
+              : this.state.availableListTrad.length > 0
               ? "content-data notrounded"
               : "content-data"
           }
@@ -1149,32 +1200,19 @@ class SideTrad extends Component {
             </div>
           )}
         </div>
+        {validated && !modifiedNew ? 
+        <AlertExpert type={"validated"}>
+            <EVAIcon
+              name="checkmark-circle-2"
+              fill={"#4caf50"}
+              id="alert-triangle-outline"
+              className={"mr-10"}
+            />
+            <AlertText type={"validated"}>Proposition retenue</AlertText>
+          </AlertExpert>
+          : null
+  }
         <div className="expert-bloc">
-          {/* 
-                     <div className="score">
-              Score de qualité :{" "}
-              <span className="texte-vert">
-                {Math.round((score || 0) * 100)} %
-              </span>
-              <EVAIcon
-                className="ml-10"
-                name="info"
-                fill={variables.noir}
-                id="eva-icon-score"
-              />
-              <Tooltip
-                placement="top"
-                offset="0px, 8px"
-                isOpen={this.state.tooltipScoreOpen}
-                target="eva-icon-score"
-                toggle={this.toggleTooltipScore}
-              >
-                Ce score de qualité est généré à partir d'un algorithme de
-                traduction, il vous conseille quant à la qualité de la
-                traduction. Vous pouvez l'ignorer s'il vous induit en erreur.
-              </Tooltip>
-            </div>
-           */}
           {userId &&
           userId.username &&
           !modifiedNew &&
@@ -1189,9 +1227,9 @@ class SideTrad extends Component {
                 <span>{userId.username}</span>
               </div>
               {this.state.availableListTrad.length === 1 ? (
-                <div className="proposition">Proposition unique</div>
+                <div className={validated ? "propositions no-margin-validated" : "propositions"}>Proposition unique</div>
               ) : (
-                <div className="propositions">
+                <div className={validated ? "propositions no-margin-validated" : "propositions"}>
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     <div>
                       {this.state.propositionIndex +
@@ -1205,7 +1243,7 @@ class SideTrad extends Component {
                     <FButton
                       type="light-action"
                       name="arrow-ios-back-outline"
-                      fill={variables.noir}
+                      fill={variables.blanc}
                       onClick={() =>
                         this.nextProposition(
                           this.state.propositionIndex === 0
@@ -1233,7 +1271,7 @@ class SideTrad extends Component {
                       {""}
                       <EVAIcon
                         name="arrow-ios-forward-outline"
-                        fill={variables.noir}
+                        fill={"white"}
                         //className="ml-10"
                       />
                     </FButton>

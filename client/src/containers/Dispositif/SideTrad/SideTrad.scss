@@ -1,13 +1,17 @@
 @import 'src/scss/colors.scss';
 
 .side-trad{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: rgba(242, 242, 242, 1);
-  padding: 20px 20px 60px;
+  padding: 20px 20px 80px;
+  margin-bottom: 20px;
   position: fixed;
   width: 33%;
-  max-height: calc(100% - 56px);
-  overflow: scroll;
+  min-width: 450px;
   z-index:3;
+  overflow: auto;
 
   .shadow {
     -webkit-box-shadow: 4px 40px rgba(0, 0, 0, 0.25);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
@@ -36,7 +40,9 @@
     margin-left: auto;
   }
   .content-data-french{
-   // min-height:180px;
+   // min-height:300px;
+   overflow: scroll;
+  // display: flex;
     border-radius: 12px 12px 12px 12px;
     padding: 20px;
     margin-bottom: 20px;
@@ -44,6 +50,11 @@
     &.no-margin-modified{
       margin-bottom: 0px;
       background-color: #fcd497 !important;
+    border-radius: 12px 12px 0px 0px;
+    }
+    &.no-margin-abstract{
+      margin-bottom: 0px;
+      background-color: #f9ef99 !important;
     border-radius: 12px 12px 0px 0px;
     }
     &.no-margin-validated{
@@ -82,10 +93,19 @@
     }
   }
   .content-data{
-    min-height:200px;
+    overflow: auto;
+    display: flex;
+    height: 100%;
+    min-height: 180px;
+    flex: 1;
     border-radius: 12px 12px 12px 12px;
     padding: 20px;
     position: relative;
+      border: 0.5px solid $noir;
+    &.no-margin-validated{
+      background-color: #def6c2 !important;
+      border: none;
+    }
     &.editor-validated {
       background-color:  #def6c2 !important;
     }
@@ -96,7 +116,6 @@
     }
     &#body_texte_final{
       background: #FFFFFF;
-      border: 0.5px solid $noir;
       display: flex;
       flex-direction: column;
       .body{
@@ -204,12 +223,17 @@
       padding: 20px 12px 8px;
       color: #909090;
       height: 80px;
+      &.no-margin-validated{
+        background-color: white;
+        border: none;
+      }
     }
     .texte-vert{
       color: #8BC34A;
     }
     .trad-info{
       display: flex;
+      align-items: center;
       flex: 1;
       background: $noir;
       color: #FFFFFF;
