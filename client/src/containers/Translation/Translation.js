@@ -292,6 +292,7 @@ export class TranslationHOC extends Component {
   };
 
   handleClickText = (e, initial, target) => {
+    console.log('inside the click next');
     try {
       if (last_target) {
         document

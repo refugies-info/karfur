@@ -253,7 +253,7 @@ class SideTrad extends Component {
   }
 
   _initializeComponent = async (props) => {
-    console.log('Initialize');
+    console.log('Initialize component');
     if (props.traductionsFaites.length > 0) {
       let trad = props.traductionsFaites.find((trad) => {
         console.log(trad.status);
@@ -298,8 +298,8 @@ class SideTrad extends Component {
   };
 
   goChange = async (isNext = true, fromFn = true) => {
-    await this.props.getTrads();
     console.log("goChange");
+    await this.props.getTrads();
     if (isNext && fromFn) {
       this.setState({ hasBeenSkipped: true });
     }
@@ -320,6 +320,7 @@ class SideTrad extends Component {
       this.setState({ nextIndex });
     } */
     const { pointeurs, currIdx, currSubIdx } = this.state;
+    console.log('#################',currIdx, this.props.menu.length);
     if (currIdx > this.props.menu.length - 1) {
       this._endingFeedback();
       return;
@@ -436,10 +437,11 @@ class SideTrad extends Component {
   };
 
   _endingFeedback = () => {
+    console.log('inside ending feedback', this.props.traduction);
     if (
       this.props.isExpert &&
       (this.state.selectedTrad.status === "Validée" ||
-        this.props.traduction.avancement >= 1)
+        this.state.avancement >= 1)
     ) {
       this._insertTrad(); //On insère cette traduction
     } else {
@@ -473,9 +475,9 @@ class SideTrad extends Component {
           ? '[data-target="' + subname + '"]'
           : "")
     );
-    console.log("#####################", elems);
     if (elems.length > 0) {
       const elem = elems[0];
+    console.log("#####################", elem);
       elem.scrollIntoView({
         behavior: "smooth",
         block: "end",
@@ -499,6 +501,7 @@ class SideTrad extends Component {
   }
  */
   checkTranslate = (target) => {
+    console.log('Check translate');
     const { pointeurs, currIdx, currSubIdx, currSubName } = this.state;
     //console.log(pointeurs, currSubIdx, currIdx, currSubName);
     const text = this.initial_text.innerHTML,
@@ -723,6 +726,7 @@ class SideTrad extends Component {
   };
 
   onValidate = async () => {
+    console.log('On validate');
     if (!this.props.translated.body) {
       Swal.fire({
         title: "Oh non",
@@ -932,6 +936,7 @@ class SideTrad extends Component {
   };
 
   _insertTrad = () => {
+    console.log('Insert trad');
     let newTrad = {
       ...this.props.traduction,
       articleId: this.props.itemId,
@@ -1172,7 +1177,6 @@ class SideTrad extends Component {
            */}
           {userId &&
           userId.username &&
-          !modified &&
           !modifiedNew &&
           this.state.availableListTrad.length > 0 ? (
             <>
