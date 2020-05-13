@@ -19,6 +19,10 @@ html body{
         margin-left: 0;
         @include media-max("phone-down") { &.rsz{margin-right: 1px*$i/2; }}
       }
+      .mb-#{$i} {
+        margin-bottom: 1px*$i;
+        @include media-max("phone-down") { &.rsz{margin-bottom: 1px*$i/2; }}
+      }
     } 
   }
 }

@@ -11,7 +11,11 @@
   width: 33%;
   min-width: 450px;
   z-index:3;
-  overflow: auto;
+
+  .flag-margin {
+    margin-left: 10 !important;
+    margin-bottom: 10 !important;
+  }
 
   .shadow {
     -webkit-box-shadow: 4px 40px rgba(0, 0, 0, 0.25);  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
@@ -24,13 +28,12 @@
     justify-content: space-between;
     margin-bottom: 25px;
     flex-wrap: wrap;
-    margin-top: -10px;
   }
   .langue-data{
-    margin-bottom: 15px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    margin-bottom: 10px;
   }
   .toolbar-spacer{
     width: 175px;
@@ -40,8 +43,9 @@
     margin-left: auto;
   }
   .content-data-french{
-   // min-height:300px;
+   min-height:50px;
    overflow: scroll;
+   z-index: 3;
   // display: flex;
     border-radius: 12px 12px 12px 12px;
     padding: 20px;
@@ -191,7 +195,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: -12px;
 
     .score{
       display: flex;
@@ -201,28 +204,34 @@
 
     .proposition{
       display: flex;
-      justify-content: space-evenly;
+      justify-content: flex-start;
       align-items: center;
       flex: 1;
       font-weight: bold;
       border: 0.5px solid $noir;
+      border-width: 0px 0.5px 0.5px 0.5px;
       border-radius: 0px 0px 12px 0px;
-      padding: 20px 12px 8px;
+      padding: 10px;
       color: #909090;
-      height: 80px;
+      height: 60px;
+      &.no-margin-validated{
+        background-color: white;
+        border: none;
+      }
     }
 
     .propositions{
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
       align-items: center;
       flex: 1;
       font-weight: bold;
       border: 0.5px solid $noir;
+      border-width: 0px 0.5px 0.5px 0.5px;
       border-radius: 0px 0px 12px 0px;
-      padding: 20px 12px 8px;
+      padding: 10px;
       color: #909090;
-      height: 80px;
+      height: 60px;
       &.no-margin-validated{
         background-color: white;
         border: none;
@@ -238,8 +247,10 @@
       background: $noir;
       color: #FFFFFF;
       border-radius: 0px 0px 0px 12px;
-      padding: 20px 12px 8px;
-      height: 80px;
+      padding: 10px;
+      height: 60px;
+      font-weight: 600;
+      font-size: 16;
     }
   }  
 
