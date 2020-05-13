@@ -16,6 +16,7 @@ import variables from "../Dispositif.scss";
 
 import "./ContribCaroussel.scss";
 import Icon from "react-eva-icons/dist/Icon";
+import _ from "lodash";
 
 class ContribCaroussel extends Component {
   state = {
@@ -56,20 +57,33 @@ class ContribCaroussel extends Component {
       (((width - 2 * 10) * 7) / 12 - 2 * (15 + 20)) / (140 + 20)
     );
 
-    // reduced_contributeurs is an array of multiple arrays containing maximum nbCards contributeurs
-    const reduced_contributeurs = (contributeurs || []).reduce(
+    // there may be duplicates in db in Dispositif.participants
+    const deduplicatedContributors = _.uniqBy(contributeurs, "username");
+
+    // reducedContributors is an array of multiple arrays containing maximum nbCards contributeurs
+    const reducedContributors = (deduplicatedContributors || []).reduce(
       (acc, curr, i) => {
-        if (i > 0 && i % nbCards === 0 && i !== contributeurs.length - 1) {
+        if (
+          i > 0 &&
+          i % nbCards === 0 &&
+          i !== deduplicatedContributors.length - 1
+        ) {
           return {
             currGrp: [curr],
             groupedData: [...acc.groupedData, acc.currGrp],
           };
-        } else if (i % nbCards !== 0 && i === contributeurs.length - 1) {
+        } else if (
+          i % nbCards !== 0 &&
+          i === deduplicatedContributors.length - 1
+        ) {
           return {
             groupedData: [...acc.groupedData, [...acc.currGrp, curr]],
             currGrp: [],
           };
-        } else if (i % nbCards === 0 && i === contributeurs.length - 1) {
+        } else if (
+          i % nbCards === 0 &&
+          i === deduplicatedContributors.length - 1
+        ) {
           return {
             groupedData: [...acc.groupedData, ...acc.currGrp, [curr]],
             currGrp: [],
@@ -82,9 +96,9 @@ class ContribCaroussel extends Component {
       },
       { currGrp: [], groupedData: [] }
     ).groupedData;
-    const maxL = reduced_contributeurs.length;
+    const maxL = reducedContributors.length;
 
-    const slides = reduced_contributeurs.map((item, key) => {
+    const slides = reducedContributors.map((item, key) => {
       if (Array.isArray(item)) {
         return (
           <CarouselItem
@@ -126,7 +140,7 @@ class ContribCaroussel extends Component {
           <Col lg="auto" className="people-subheader">
             <h5>{t("Dispositif.Contributeurs", "Contributeurs mobilisés")}</h5>
             <sup>
-              <Badge color="light">{contributeurs.length}</Badge>
+              <Badge color="light">{deduplicatedContributors.length}</Badge>
             </sup>
             <span>
               {t(
