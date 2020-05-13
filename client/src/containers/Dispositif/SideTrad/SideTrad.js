@@ -362,6 +362,7 @@ class SideTrad extends Component {
       this.setState(
         { currIdx: idx, currSubIdx: subidx, currSubName: subname },
         () => {
+          console.log('before ending feedback', idx, this.props.menu.length);
           let value = "";
           if (idx > this.props.menu.length - 1) {
             this._endingFeedback();
@@ -889,8 +890,9 @@ class SideTrad extends Component {
           >
             {"Fin de la session"}
           </FButton>
+          <div style={{display: 'flex', flex: 1, justifyContent: 'flex-end'}}>
             <Progress
-            style={{height: 10, width: '30%', alignSelf: 'center'}}
+            style={{height: 10, width: '50%', marginLeft: 20, marginRight: 20 ,alignSelf: 'center'}}
               color={colorAvancement(this.state.avancement)}
               value={this.state.avancement * 100}
             />
@@ -903,6 +905,7 @@ class SideTrad extends Component {
               )}
             </div>
           </div> 
+          </div>
         </div>
         <div className="langue-data">
           <i className="flag-icon flag-icon-fr mr-12" title="fr" id="fr"></i>
@@ -1048,31 +1051,6 @@ class SideTrad extends Component {
           )}
         </div>
         <div className="expert-bloc">
-          {/* 
-                     <div className="score">
-              Score de qualité :{" "}
-              <span className="texte-vert">
-                {Math.round((score || 0) * 100)} %
-              </span>
-              <EVAIcon
-                className="ml-10"
-                name="info"
-                fill={variables.noir}
-                id="eva-icon-score"
-              />
-              <Tooltip
-                placement="top"
-                offset="0px, 8px"
-                isOpen={this.state.tooltipScoreOpen}
-                target="eva-icon-score"
-                toggle={this.toggleTooltipScore}
-              >
-                Ce score de qualité est généré à partir d'un algorithme de
-                traduction, il vous conseille quant à la qualité de la
-                traduction. Vous pouvez l'ignorer s'il vous induit en erreur.
-              </Tooltip>
-            </div>
-           */}
           {userId &&
           userId.username &&
           !modified &&
@@ -1085,7 +1063,7 @@ class SideTrad extends Component {
                   className="profile-img-pin mr-10"
                   alt="profile"
                 />
-                <span>{userId.username}</span>
+                <span style={{textAlign: 'center', display: 'flex', alignItems: 'center'}}>{userId.username}</span>
               </div>
               {this.state.availableListTrad.length === 1 ? (
                 <div className="proposition">Proposition unique</div>
@@ -1104,7 +1082,7 @@ class SideTrad extends Component {
                     <FButton
                       type="light-action"
                       name="arrow-ios-back-outline"
-                      fill={variables.noir}
+                      fill={variables.blanc}
                       onClick={() =>
                         this.nextProposition(
                           this.state.propositionIndex === 0
@@ -1132,7 +1110,7 @@ class SideTrad extends Component {
                       {""}
                       <EVAIcon
                         name="arrow-ios-forward-outline"
-                        fill={variables.noir}
+                        fill={variables.blanc}
                         //className="ml-10"
                       />
                     </FButton>
