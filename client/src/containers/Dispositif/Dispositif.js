@@ -280,7 +280,10 @@ export class Dispositif extends Component {
                 }),
                 dispositif: dispositif,
                 isDispositifLoading: false,
-                contributeurs: dispositif.participants || [],
+                contributeurs: this.computeContributors(
+                  dispositif.participants,
+                  dispositif.creatorId
+                ),
                 mainTag:
                   dispositif.tags && dispositif.tags.length > 0
                     ? filtres.tags.find(
@@ -1319,6 +1322,14 @@ export class Dispositif extends Component {
         this.props.history.push("/backend/user-dash-structure");
       }
     });
+  };
+
+  computeContributors = (translators, creator) => {
+    if (translators) {
+      translators.push(creator);
+      return translators;
+    }
+    return [creator];
   };
 
   valider_dispositif = (status = "En attente", auto = false) => {
