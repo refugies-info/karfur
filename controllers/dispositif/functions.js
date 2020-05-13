@@ -5,7 +5,7 @@ const { sanitizeOptions } = require("../article/data");
 const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
 
 const markTradModifications = (newD, oldD, trad, locale) => {
-  pointeurs.forEach(x => {
+  pointeurs.forEach((x) => {
     if (JSON.stringify(oldD[x]) !== JSON.stringify(newD[x])) {
       trad.translatedText[x + "Modified"] = true;
       trad.status = "À revoir";
@@ -43,7 +43,9 @@ const markTradModifications = (newD, oldD, trad, locale) => {
           JSON.stringify(c.contentTitle) !==
           JSON.stringify(oldD.contenu[index].children[j].contentTitle)
         ) {
-          trad.translatedText.contenu[index].children[j].contentTitleModified = true;
+          trad.translatedText.contenu[index].children[
+            j
+          ].contentTitleModified = true;
           trad.status = "À revoir";
         }
       });
@@ -53,13 +55,13 @@ const markTradModifications = (newD, oldD, trad, locale) => {
 };
 
 const turnToLocalized = (result, locale) => {
-  pointeurs.forEach(x => {
+  pointeurs.forEach((x) => {
     if (result[x]) {
       result[x] = result[x][locale] || result[x].fr || result[x];
     }
   });
 
-  result.contenu.forEach(p => {
+  result.contenu.forEach((p) => {
     if (p.title) {
       p.title = p.title[locale] || p.title.fr || p.title;
     }
@@ -87,13 +89,13 @@ const turnToLocalized = (result, locale) => {
 const turnToLocalizedNew = (resultObj, locale) => {
   var result = JSON.parse(JSON.stringify(resultObj));
   console.log(result, resultObj);
-  pointeurs.forEach(x => {
+  pointeurs.forEach((x) => {
     if (result[x]) {
       result[x] = result[x][locale] || result[x].fr || result[x];
     }
   });
 
-  result.contenu.forEach(p => {
+  result.contenu.forEach((p) => {
     if (p.title) {
       p.title = p.title[locale] || p.title.fr || p.title;
     }
@@ -120,13 +122,13 @@ const turnToLocalizedNew = (resultObj, locale) => {
 
 const turnToLocalizedFaster = (result, locale) => {
   var clonedResult = { ...result };
-  pointeurs.map(x => {
+  pointeurs.map((x) => {
     if (result[x]) {
       result[x] = result[x][locale] || result[x].fr || result[x];
     }
   });
 
-  const newResult = result.contenu.map(p => {
+  const newResult = result.contenu.map((p) => {
     if (p.title) {
       const title = p.title[locale] || p.title.fr || p.title;
     }
@@ -154,14 +156,16 @@ const turnToDelocalized = () => {};
 //Dupliqué dans traduction/lib : Node ne semble pas gérer cet export (circulaire)
 const turnHTMLtoJSON = (contenu, nbMots = null) => {
   for (var i = 0; i < contenu.length; i++) {
-    let html = contenu[i].content;
-    nbMots += (html || "").trim().split(/\s+/).length;
-    let safeHTML = sanitizeHtml(html, sanitizeOptions); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
-    let jsonBody = himalaya.parse(safeHTML, {
-      ...himalaya.parseDefaults,
-      includePositions: false
-    });
-    contenu[i].content = jsonBody;
+    if (contenu[i].content) {
+      let html = contenu[i].content;
+      nbMots += (html || "").trim().split(/\s+/).length;
+      let safeHTML = sanitizeHtml(html, sanitizeOptions); //Pour l'instant j'autorise tous les tags, il faudra voir plus finement ce qui peut descendre de l'éditeur et restreindre à ça
+      let jsonBody = himalaya.parse(safeHTML, {
+        ...himalaya.parseDefaults,
+        includePositions: false,
+      });
+      contenu[i].content = jsonBody;
+    }
 
     if ((contenu[i].children || []).length > 0) {
       nbMots = turnHTMLtoJSON(contenu[i].children, nbMots);
@@ -171,7 +175,7 @@ const turnHTMLtoJSON = (contenu, nbMots = null) => {
 };
 
 //Dupliqué dans traduction/lib : Node ne semble pas gérer cet export (circulaire)
-const turnJSONtoHTML = contenu => {
+const turnJSONtoHTML = (contenu) => {
   if (contenu) {
     for (var i = 0; i < contenu.length; i++) {
       if (

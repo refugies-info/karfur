@@ -14,7 +14,7 @@ const _ = require("lodash");
 const { turnHTMLtoJSON, turnJSONtoHTML } = require("../dispositif/functions");
 
 const headers = {
-  "Content-Type": "application/json"
+  "Content-Type": "application/json",
 };
 
 let burl = "https://laser-agir.herokuapp.com";
@@ -34,17 +34,18 @@ async function add_tradForReview(req, res) {
       action: JSON.stringify(req.body),
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      api: arguments.callee.name
+      api: arguments.callee.name,
     }).save();
     let traduction = req.body;
     console.log(req.body);
-    //if (!traduction.isExpert) {
-    if (traduction.avancement === 1) {
-    traduction.status = "En attente";
-    } else if (traduction.avancement < 1) {
-      traduction.status = "À traduire";
-      } 
-    //  }
+    if (traduction.avancement >= 1) {
+      traduction.status = "En attente";
+    }
+    if (!traduction.isExpert) {
+      if (traduction.avancement < 1) {
+        traduction.status = "À traduire";
+      }
+    }
     if (traduction.isExpert) {
     }
     let nbMotsTitres = 0;
@@ -56,7 +57,9 @@ async function add_tradForReview(req, res) {
 
     if (traduction.translatedText.contenu) {
       //le cas des dispositifs
+      console.log("before func", traduction);
       traduction.nbMots = turnHTMLtoJSON(traduction.translatedText.contenu);
+      console.log("after funct", traduction);
     } else {
       let html = traduction.translatedText.body || traduction.translatedText;
       let safeHTML = sanitizeHtml(html, sanitizeOptions); //On nettoie le html
@@ -71,7 +74,7 @@ async function add_tradForReview(req, res) {
       if (!traduction.isStructure) {
         let jsonBody = himalaya.parse(safeHTML, {
           ...himalaya.parseDefaults,
-          includePositions: true
+          includePositions: true,
         });
         traduction.translatedText = traduction.translatedText.body
           ? { ...traduction.translatedText, body: jsonBody }
@@ -80,7 +83,7 @@ async function add_tradForReview(req, res) {
         traduction = {
           ...traduction,
           jsonId: traduction.articleId,
-          articleId: traduction.id
+          articleId: traduction.id,
         };
         delete traduction.id;
       }
@@ -105,7 +108,9 @@ async function add_tradForReview(req, res) {
       }
       traduction.nbMots = nbMotsBody + nbMotsTitres;
     }
+
     traduction.userId = req.userId;
+    console.log("traduction before update", traduction);
 
     if (traduction._id) {
       promise = Traduction.findOneAndUpdate(
@@ -117,18 +122,19 @@ async function add_tradForReview(req, res) {
       promise = new Traduction(traduction).save();
     }
     promise
-      .then(data => {
+      .then((data) => {
         if (req.userId) {
           User.findByIdAndUpdate(
             { _id: req.userId },
             {
               $addToSet: {
                 traductionsFaites: data._id,
-                roles: ((req.roles || []).find(x => x.nom === "Trad") || {})._id
-              }
+                roles: ((req.roles || []).find((x) => x.nom === "Trad") || {})
+                  ._id,
+              },
             },
             { new: true },
-            e => {
+            (e) => {
               if (e) {
                 console.log(e);
               }
@@ -137,11 +143,11 @@ async function add_tradForReview(req, res) {
         }
         res.status(200).json({
           text: "Succès",
-          data: data
+          data: data,
         });
-        calculateScores(data, traductionInitiale); //On recalcule les scores de la traduction
+        //calculateScores(data, traductionInitiale); //On recalcule les scores de la traduction
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         res.status(500).json({ text: "Erreur interne" });
       });
@@ -153,7 +159,7 @@ function get_tradForReview(req, res) {
     action: JSON.stringify(req.body),
     userId: _.get(req, "userId"),
     roles: _.get(req, "user.roles"),
-    api: arguments.callee.name
+    api: arguments.callee.name,
   }).save();
   let { query, sort, populate, random, locale } = req.body;
   console.log(query);
@@ -185,21 +191,19 @@ function get_tradForReview(req, res) {
           status: "En attente",
           type: "string",
           langueCible: locale,
-          avancement: 1
-        }
+          avancement: 1,
+        },
       },
-      { $sample: { size: 1 } }
+      { $sample: { size: 1 } },
     ]);
   } else {
-    promise = Traduction.find(query)
-      .sort(sort)
-      .populate(populate);
+    promise = Traduction.find(query).sort(sort).populate(populate);
   }
 
   promise
-    .then(results => {
+    .then((results) => {
       console.log(results);
-      [].forEach.call(results, result => {
+      [].forEach.call(results, (result) => {
         if (result && result.type === "dispositif" && result.translatedText) {
           turnJSONtoHTML(result.translatedText.contenu);
         }
@@ -207,14 +211,14 @@ function get_tradForReview(req, res) {
       console.log(results);
       res.status(200).json({
         text: "Succès",
-        data: results
+        data: results,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       res.status(500).json({
         text: "Erreur interne",
-        error: err
+        error: err,
       });
     });
 }
@@ -226,7 +230,7 @@ function validate_tradForReview(req, res) {
     res.status(400).json({ text: "Requête invalide" });
   } else if (
     !((req.user || {}).roles || {}).some(
-      x => x.nom === "ExpertTrad" || x.nom === "Admin"
+      (x) => x.nom === "ExpertTrad" || x.nom === "Admin"
     )
   ) {
     res.status(401).json({ text: "Token invalide" });
@@ -235,29 +239,32 @@ function validate_tradForReview(req, res) {
       action: JSON.stringify(req.body),
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      api: arguments.callee.name
+      api: arguments.callee.name,
     }).save();
     let traductionUser = req.body || {};
     //Ici il y en a plusieurs: à régler
-    console.log('xxxxxxxxxx',traductionUser);
+    console.log("xxxxxxxxxx", traductionUser);
     if (traductionUser.type === "dispositif") {
       if (!traductionUser.traductions.length) {
-        console.log("fiiiirst",traductionUser.traductions.length);
+        console.log("fiiiirst", traductionUser.traductions.length);
         Traduction.findOneAndUpdate(
           { _id: traductionUser._id },
           { status: "Validée", validatorId: req.userId },
           { upsert: true, new: true }
         ).then(() => console.log("updated"));
       } else {
-      (traductionUser.traductions || []).slice(0).reverse().map(x => {
-        console.log("secondddd",traductionUser.traductions);
-        Traduction.findOneAndUpdate(
-          { _id: x._id },
-          { status: "Validée", validatorId: req.userId },
-          { upsert: true, new: true }
-        ).then(() => console.log("updated"));
-      });
-    }
+        (traductionUser.traductions || [])
+          .slice(0)
+          .reverse()
+          .map((x) => {
+            console.log("secondddd", traductionUser.traductions);
+            Traduction.findOneAndUpdate(
+              { _id: x._id },
+              { status: "Validée", validatorId: req.userId },
+              { upsert: true, new: true }
+            ).then(() => console.log("updated"));
+          });
+      }
       console.log("before insert");
       insertInDispositif(res, traductionUser, traductionUser.locale);
     } else {
@@ -266,7 +273,7 @@ function validate_tradForReview(req, res) {
         { status: "Validée", validatorId: req.userId },
         { upsert: true, new: true }
       ).then(
-        data_traduction => {
+        (data_traduction) => {
           let traduction = data_traduction;
           Article.findOne({ _id: traduction.articleId }).exec((err, result) => {
             if (!err) {
@@ -292,7 +299,7 @@ function validate_tradForReview(req, res) {
                       res.status(200).json({
                         text: "Succès",
                         data: article_saved,
-                        data_traduction: data_traduction
+                        data_traduction: data_traduction,
                       });
                     }
                   });
@@ -306,10 +313,10 @@ function validate_tradForReview(req, res) {
             }
           });
         },
-        err => {
+        (err) => {
           console.log(err);
           res.status(500).json({
-            text: "Erreur interne"
+            text: "Erreur interne",
           });
         }
       );
@@ -322,7 +329,7 @@ const insertInDispositif = (res, traduction, locale) => {
   return Dispositif.findOne({ _id: traduction.articleId }).exec(
     (err, result) => {
       if (!err && result) {
-        pointeurs.forEach(x => {
+        pointeurs.forEach((x) => {
           if (!result[x] || !traduction.translatedText[x]) {
             return;
           }
@@ -417,21 +424,21 @@ const insertInDispositif = (res, traduction, locale) => {
         result.traductions = [
           ...new Set([
             ...(result.traductions || []),
-            ...(traduction.traductions || []).map(x => x._id)
-          ])
+            ...(traduction.traductions || []).map((x) => x._id),
+          ]),
         ];
         result.participants = [
           ...new Set([
             ...(result.participants || []),
-            ...(traduction.traductions || []).map(x => (x.userId || {})._id)
-          ])
+            ...(traduction.traductions || []).map((x) => (x.userId || {})._id),
+          ]),
         ];
         if (result.avancement === 1) {
           result.avancement = { fr: 1 };
         }
         result.avancement = {
           ...result.avancement,
-          [locale]: 1
+          [locale]: 1,
         };
         return result.save((err, data) => {
           if (err) {
@@ -441,7 +448,7 @@ const insertInDispositif = (res, traduction, locale) => {
             console.log("succes");
             res.status(200).json({
               text: "Succès",
-              data: data
+              data: data,
             });
           }
           return res;
@@ -456,9 +463,9 @@ const insertInDispositif = (res, traduction, locale) => {
 };
 
 const recalculate_all = () => {
-  Traduction.find({}).exec(function(err, result) {
+  Traduction.find({}).exec(function (err, result) {
     if (!err && result) {
-      result.forEach(x => {
+      result.forEach((x) => {
         let traductionInitiale = { ...x.translatedText };
         traductionInitiale.contenu = turnJSONtoHTML(
           traductionInitiale.contenu || traductionInitiale.body
@@ -475,7 +482,7 @@ async function calculateScores(data, traductionInitiale) {
   let newTrad = {
     _id: data._id,
     initialText: data.initialText,
-    translatedText: { ...data.translatedText }
+    translatedText: { ...data.translatedText },
   };
   if (!data || !data.initialText) {
     console.log("pas de data.initialText");
@@ -489,17 +496,17 @@ async function calculateScores(data, traductionInitiale) {
   if (data.type === "string") {
     const sentences = [
       [h2p(traductionInitiale.body), data.langueCible],
-      [h2p(data.initialText.body), "fr"]
+      [h2p(data.initialText.body), "fr"],
     ];
     newTrad.translatedText.scoreBody = await getScore(sentences);
   } else {
     const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
     newTrad.translatedText.scoreHeaders = {};
-    await asyncForEach(pointeurs, async x => {
+    await asyncForEach(pointeurs, async (x) => {
       if (traductionInitiale[x]) {
         const sentences = [
           [h2p(traductionInitiale[x]), data.langueCible],
-          [h2p(data.initialText[x]), "fr"]
+          [h2p(data.initialText[x]), "fr"],
         ];
         newTrad.translatedText.scoreHeaders[x] = await getScore(sentences);
       }
@@ -509,7 +516,7 @@ async function calculateScores(data, traductionInitiale) {
         if (x.content && x.content !== "") {
           const sentences = [
             [h2p(x.content), data.langueCible],
-            [h2p(data.initialText.contenu[i].content), "fr"]
+            [h2p(data.initialText.contenu[i].content), "fr"],
           ];
           newTrad.translatedText.contenu[i].scoreContent = await getScore(
             sentences
@@ -520,7 +527,7 @@ async function calculateScores(data, traductionInitiale) {
             if (y.content && y.content !== "") {
               const sentences = [
                 [h2p(y.content), data.langueCible],
-                [h2p(data.initialText.contenu[i].children[j].content), "fr"]
+                [h2p(data.initialText.contenu[i].children[j].content), "fr"],
               ];
               newTrad.translatedText.contenu[i].children[
                 j
@@ -529,7 +536,7 @@ async function calculateScores(data, traductionInitiale) {
             if (y.title && y.title !== "") {
               const sentences = [
                 [h2p(y.title), data.langueCible],
-                [h2p(data.initialText.contenu[i].children[j].title), "fr"]
+                [h2p(data.initialText.contenu[i].children[j].title), "fr"],
               ];
               newTrad.translatedText.contenu[i].children[
                 j
@@ -542,19 +549,19 @@ async function calculateScores(data, traductionInitiale) {
   }
   return Traduction.findOneAndUpdate({ _id: newTrad._id }, newTrad, {
     upsert: true,
-    new: true
+    new: true,
   })
-    .then(d => console.log("succes : ", d._id))
-    .catch(e => console.log(e));
+    .then((d) => console.log("succes : ", d._id))
+    .catch((e) => console.log(e));
 }
 
 function getScore(sentences) {
   return instance
     .post(burl + "/laser", { sentences: sentences }, { headers: headers })
-    .then(data => {
+    .then((data) => {
       return JSON.parse(data.data);
     })
-    .catch(e =>
+    .catch((e) =>
       console.log(
         (e.config || {}).data,
         (e.response || {}).status,
@@ -578,15 +585,15 @@ function get_laser(req, res) {
       action: JSON.stringify(req.body),
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      api: arguments.callee.name
+      api: arguments.callee.name,
     }).save();
     sentences = req.body.sentences;
     axios
       .post(burl + "/laser", { sentences: sentences }, { headers: headers })
-      .then(data => {
+      .then((data) => {
         res.status(200).json({
           text: "Succès",
-          data: data.data
+          data: data.data,
         });
       });
   }
@@ -600,7 +607,7 @@ function get_xlm(req, res) {
       action: JSON.stringify(req.body),
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      api: arguments.callee.name
+      api: arguments.callee.name,
     }).save();
     burl = "https://xlm-agir.herokuapp.com";
     if (process.env.NODE_ENV === "dev") {
@@ -609,10 +616,10 @@ function get_xlm(req, res) {
     sentences = req.body.sentences;
     axios
       .post(burl + "/xlm", { sentences: sentences }, { headers: headers })
-      .then(data => {
+      .then((data) => {
         res.status(200).json({
           text: "Succès",
-          data: data.data
+          data: data.data,
         });
       });
   }
@@ -654,7 +661,9 @@ function update_tradForReview(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (
-    !req.user.roles.some(x => x.nom === "ExpertTrad" || x.nom === "Admin")
+    !req.user.roles.some(
+      (x) => x.nom === "ExpertTrad" || x.nom === "Admin" || x.nom === "Trad"
+    )
   ) {
     return res.status(400).json({ text: "Requête invalide" });
   } else {
@@ -662,16 +671,16 @@ function update_tradForReview(req, res) {
       action: JSON.stringify(req.body),
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      api: arguments.callee.name
+      api: arguments.callee.name,
     }).save();
     let translation = req.body;
     translation.validatorId = req.userId;
-    console.log('we are updating the mother', translation);
-    const find = new Promise(function(resolve, reject) {
+    console.log("we are updating the mother", translation);
+    const find = new Promise(function (resolve, reject) {
       Traduction.findByIdAndUpdate({ _id: translation._id }, translation, {
         new: true,
         upsert: true,
-      }).exec(function(err, result) {
+      }).exec(function (err, result) {
         if (err) {
           reject(500);
         } else {
@@ -685,13 +694,13 @@ function update_tradForReview(req, res) {
     });
 
     find.then(
-      function(result) {
+      function (result) {
         res.status(200).json({
           text: "Succès",
-          data: result
+          data: result,
         });
       },
-      e => _errorHandler(e, res)
+      (e) => _errorHandler(e, res)
     );
   }
 }
@@ -700,29 +709,29 @@ function get_progression(req, res) {
   new DBEvent({
     userId: _.get(req, "userId"),
     roles: _.get(req, "user.roles"),
-    api: arguments.callee.name
+    api: arguments.callee.name,
   }).save();
   var start = new Date();
   start.setHours(0, 0, 0, 0);
 
-  var find = new Promise(function(resolve, reject) {
+  var find = new Promise(function (resolve, reject) {
     Traduction.aggregate([
       {
         $match: {
           userId: req.userId,
           //  'created_at': {$gte: start},
-          timeSpent: { $ne: null }
-        }
+          timeSpent: { $ne: null },
+        },
       },
       {
         $group: {
           _id: req.userId,
           nbMots: { $sum: "$nbMots" },
           timeSpent: { $sum: "$timeSpent" },
-          count: { $sum: 1 }
-        }
-      }
-    ]).exec(function(err, result) {
+          count: { $sum: 1 },
+        },
+      },
+    ]).exec(function (err, result) {
       if (err) {
         reject(500);
       } else {
@@ -736,13 +745,13 @@ function get_progression(req, res) {
   });
 
   find.then(
-    function(result) {
+    function (result) {
       res.status(200).json({
         text: "Succès",
-        data: result
+        data: result,
       });
     },
-    e => _errorHandler(e, res)
+    (e) => _errorHandler(e, res)
   );
 }
 
@@ -750,23 +759,23 @@ const _errorHandler = (error, res) => {
   switch (error) {
     case 500:
       res.status(500).json({
-        text: "Erreur interne"
+        text: "Erreur interne",
       });
       break;
     case 404:
       res.status(404).json({
-        text: "Pas de résultats"
+        text: "Pas de résultats",
       });
       break;
     default:
       res.status(500).json({
-        text: "Erreur interne"
+        text: "Erreur interne",
       });
   }
 };
 
 const updateRoles = () => {
-  Langue.find().exec(function(err, result) {
+  Langue.find().exec(function (err, result) {
     if (err) {
       console.log(err);
     } else {
@@ -774,14 +783,14 @@ const updateRoles = () => {
         Role.findOne({ nom: "Trad" }).exec((err_role, result_role) => {
           console.log("result_role._id", result_role._id);
           if (!err_role && result_role) {
-            result.forEach(x => {
+            result.forEach((x) => {
               const traducteurs = x.participants;
-              traducteurs.forEach(y => {
+              traducteurs.forEach((y) => {
                 User.findByIdAndUpdate(
                   { _id: y },
                   { $addToSet: { roles: result_role._id } },
                   { new: true },
-                  e => {
+                  (e) => {
                     if (e) {
                       console.log(e);
                     }
