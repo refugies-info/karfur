@@ -468,7 +468,9 @@ class SideTrad extends Component {
           if (currSubIdx > -1 && newValue && newValue.children) {
             newValue = newValue.children[currSubIdx];
           }
+          if (newValue) {
           newValue = newValue[this.state.currSubName];
+          }
         }
         return {
           value: newValue,
@@ -478,7 +480,7 @@ class SideTrad extends Component {
     );
     let availableListTrad = listTrad.filter((sugg, key) => {
       let valeur = h2p(sugg.value || "");
-      if (valeur && valeur !== "" && valeur !== false) {
+      if (valeur && valeur !== "" && valeur !== false && valeur !== false) {
         return sugg;
       }
     });
