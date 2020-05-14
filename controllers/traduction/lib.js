@@ -421,14 +421,16 @@ const insertInDispositif = (res, traduction, locale) => {
             ...(traduction.traductions || []).map((x) => x._id),
           ]),
         ];
-        result.participants = [
-          ...new Set([
-            ...(result.participants || []),
-            ...(traduction.traductions || []).map((x) => (x.userId || {})._id),
-          ]),
-        ];
 
-        // TO DO : drop duplicates on participants
+        const participantsToAdd = traduction.traductions
+          ? traduction.traductions.map((x) => (x.userId || {})._id)
+          : [];
+
+        const participants = (result.participants || [])
+          .concat(participantsToAdd)
+          .map((x) => x.toString());
+        const deduplicatedParticipants = _.uniq(participants);
+        result.participants = deduplicatedParticipants;
         if (result.avancement === 1) {
           result.avancement = { fr: 1 };
         }
@@ -436,6 +438,7 @@ const insertInDispositif = (res, traduction, locale) => {
           ...result.avancement,
           [locale]: 1,
         };
+
         return result.save((err, data) => {
           if (err) {
             console.log(err);
