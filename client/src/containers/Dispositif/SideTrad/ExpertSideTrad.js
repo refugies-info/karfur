@@ -566,7 +566,11 @@ class SideTrad extends Component {
       (trad) => trad.userId._id === this.props.user._id
     );
     if (userTrad) {
-      this.setState({ avancement: userTrad.avancement });
+      this.setState({ avancement: 
+        this._countValidated([userTrad.translatedText])/
+        (this._countContents(this.props.menu) +
+        pointeurs.length -
+        this.props.menu.length)});
     }
     if (
       availableListTrad.length > 0 &&
@@ -709,6 +713,49 @@ class SideTrad extends Component {
     return nbChamps;
   };
 
+  _countValidated = (obj, nbChamps = 0, type = null) => {
+    obj.forEach((x) => {
+      [...this.state.pointeurs, "title", "content"].forEach((p) => {
+        if (
+          x[p] &&
+          x[p] !== "" &&
+          x[p] !== "null" &&
+          x[p] !== "undefined" &&
+          x[p] !== "<p>null</p>" &&
+          x[p] !== "<p><br></p>" &&
+          x[p] !== "<p><br></p>\n" &&
+          x[p] !== "<br>" &&
+          x[p] !== "<p></p>\n\n<p></p>\n" &&
+          type !== "cards" &&
+          !x[p + "Modified"] 
+        ) {
+          nbChamps += 1;
+        }
+      });
+      if (
+        type === "cards" &&
+        (x.title === "Important !" || !x.title) &&
+        x.contentTitle &&
+        x.contentTitle !== "" &&
+        x.contentTitle !== "null" &&
+        x.contentTitle !== "undefined" &&
+        x.contentTitle !== "<p>null</p>" &&
+        x.contentTitle !== "<p><br></p>" &&
+        x.contentTitle !== "<br>" &&
+        !x["contentTitleModified"] 
+      ) {
+        nbChamps += 1;
+      }
+      if (x.contenu && x.contenu.length > 0) {
+        nbChamps = this._countValidated(x.contenu, nbChamps, x.type);
+      }
+      if (x.children && x.children.length > 0) {
+        nbChamps = this._countValidated(x.children, nbChamps, x.type);
+      }
+    });
+    return nbChamps;
+  };
+
   removeTranslation = (translation) => {
     let listTrad = this.state.listTrad.filter((x) => x._id !== translation._id),
       userId = {},
@@ -839,12 +886,14 @@ class SideTrad extends Component {
       this.props.menu.length;
     //const nbInit = this._countContents([traduction.initialText]);
     if (listTrad.length > 0) {
+     let nbValidated = this._countValidated([userTrad.translatedText]);
+     console.log('##############', nbValidated);
       const oldCount = userTrad ? userTrad.avancement * nbInit : 0;
       if (this.state.modifiedNew) {
-        traduction.avancement = oldCount / nbInit;
+        traduction.avancement = nbValidated / nbInit;
         this.setState({ modifiedNew: false });
       } else {
-        traduction.avancement = (oldCount + 1) / nbInit;
+        traduction.avancement = (nbValidated + 1) / nbInit;
       }
       console.log(traduction.avancement, avancementCount, oldCount, nbInit);
     } else {
@@ -1190,7 +1239,7 @@ class SideTrad extends Component {
             </div>
           )}
         </div>
-        {validated && !modifiedNew ? 
+        {validated && !modifiedNew && !modified ? 
         <AlertExpert type={"validated"}>
             <EVAIcon
               name="checkmark-circle-2"
