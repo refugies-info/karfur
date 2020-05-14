@@ -459,7 +459,7 @@ class SideTrad extends Component {
     if (
       this.props.isExpert &&
       (this.state.selectedTrad.status === "Validée" ||
-        this.state.avancement >= 1 || newTrad.avancement >= 1)
+        this.state.avancement >= 1 || (newTrad && newTrad.avancement >= 1))
     ) {
       this._insertTrad(newTrad); //On insère cette traduction
     } else {
@@ -886,7 +886,7 @@ class SideTrad extends Component {
       this.props.menu.length;
     //const nbInit = this._countContents([traduction.initialText]);
     if (listTrad.length > 0) {
-     let nbValidated = this._countValidated([userTrad.translatedText]);
+     let nbValidated = userTrad ? this._countValidated([userTrad.translatedText]) : 0;
      console.log('##############', nbValidated);
       const oldCount = userTrad ? userTrad.avancement * nbInit : 0;
       if (this.state.modifiedNew) {
