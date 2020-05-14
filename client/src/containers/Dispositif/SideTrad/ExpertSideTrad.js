@@ -533,24 +533,32 @@ class SideTrad extends Component {
       selectedTrad = {};
     listTrad = (
       (traductionsFaites || []).map((x) => {
+        console.log(x);
         let newValue = x.translatedText || {};
         if (pos > -1) {
           newValue = newValue[currIdx];
         } else {
+          console.log(newValue, currIdx, currSubIdx);
           newValue = newValue.contenu[currIdx];
+          console.log(newValue);
           if (currSubIdx > -1 && newValue && newValue.children) {
             newValue = newValue.children[currSubIdx];
           }
+          console.log(newValue);
+          if (newValue) {
           newValue = newValue[this.state.currSubName];
+          }
+          console.log(newValue);
         }
         return {
           value: newValue,
           ...x,
         };
       }) || []);
+      console.log(listTrad);
     let availableListTrad = listTrad.filter((sugg, key) => {
       let valeur = h2p(sugg.value || "");
-      if (valeur && valeur !== "" && valeur !== false) {
+      if (valeur && valeur !== "" && valeur !== false && valeur !== 'undefined') {
         return sugg;
       }
     });
