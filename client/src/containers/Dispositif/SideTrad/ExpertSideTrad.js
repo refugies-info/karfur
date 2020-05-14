@@ -459,7 +459,7 @@ class SideTrad extends Component {
     if (
       this.props.isExpert &&
       (this.state.selectedTrad.status === "Validée" ||
-        this.state.avancement >= 1)
+        this.state.avancement >= 1 || newTrad.avancement >= 1)
     ) {
       this._insertTrad(newTrad); //On insère cette traduction
     } else {
@@ -790,7 +790,7 @@ class SideTrad extends Component {
         translatedText: {
           contenu: new Array(this.props.menu.length).fill(false),
         },
-        status: this.state.referenceTrad ? this.state.referenceTrad.status : 'À Traduire',
+        status: this.state.referenceTrad ? this.state.referenceTrad.status : 'À traduire',
       };
     }
     //the god function
@@ -926,8 +926,9 @@ class SideTrad extends Component {
       this.props.fwdSetState({ newTrad }, () => {});
       //await this.props.valider(newTrad);
       console.log(newTrad);
-      if (traduction.avancement >= 1 && userTrad.status === 'En attente') {
+      if (newTrad.avancement >= 1) {
         this._endingFeedback(newTrad);
+        return;
       }
      await API.update_tradForReview(newTrad).then((data) => {
         console.log(data, "updated trad");
