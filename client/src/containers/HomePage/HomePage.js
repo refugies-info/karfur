@@ -110,11 +110,9 @@ export class HomePage extends Component {
   };
 
   render() {
-    console.log(this.state.corona, item);
     const { t } = this.props;
     const { users } = this.state;
     const item = initial_data[0];
-    console.log(this.state.corona, item);
     return (
       <div className="animated fadeIn homepage">
         {this.state.overlay ? <div className="overlay" /> : null}

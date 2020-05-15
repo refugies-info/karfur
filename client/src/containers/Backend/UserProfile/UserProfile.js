@@ -11,7 +11,7 @@ import {
   Input,
   ModalBody,
   ModalFooter,
-  Progress
+  Progress,
 } from "reactstrap";
 import Swal from "sweetalert2";
 import h2p from "html2plaintext";
@@ -29,7 +29,7 @@ import {
   TradTable,
   ContribTable,
   FavoriTable,
-  StructureCard
+  StructureCard,
 } from "../../../components/Backend/UserProfile";
 import {
   ThanksModal,
@@ -37,7 +37,7 @@ import {
   ObjectifsModal,
   TraducteurModal,
   AddMemberModal,
-  Modal as FModal
+  Modal as FModal,
 } from "../../../components/Modals";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import ModifyProfile from "../../../components/Backend/UserProfile/ModifyProfile/ModifyProfile";
@@ -49,14 +49,14 @@ import {
   avancement_contrib,
   avancement_actions,
   avancement_favoris,
-  data_structure
+  data_structure,
 } from "./data";
 import {
   showSuggestion,
   archiveSuggestion,
   parseActions,
   deleteContrib,
-  getProgression
+  getProgression,
 } from "./functions";
 import { fetch_user, fetch_dispositifs } from "../../../Store/actions";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
@@ -93,7 +93,7 @@ export class UserProfile extends Component {
       devenirContributeur: false,
       devenirTraducteur: false,
       addMember: false,
-      password: false
+      password: false,
     },
     showSections: { traductions: true, contributions: true },
     user: {},
@@ -115,7 +115,7 @@ export class UserProfile extends Component {
     progression: {
       timeSpent: 0,
       nbMots: 0,
-      nbMotsContrib: 0
+      nbMotsContrib: 0,
     },
     tempImg: null,
     isMainLoading: true,
@@ -125,14 +125,14 @@ export class UserProfile extends Component {
     newPassword: "",
     cpassword: "",
     passwordVisible: false,
-    nbReadStruct: 0
+    nbReadStruct: 0,
   };
 
   componentDidMount() {
     this._isMounted = true;
     const user = this.props.user,
       userId = this.props.user;
-    API.get_tradForReview({ query: { userId: userId } }).then(data => {
+    API.get_tradForReview({ query: { userId: userId } }).then((data) => {
       this._isMounted &&
         this.setState({ traductions: _.get(data, "data.data", []) });
     });
@@ -140,14 +140,14 @@ export class UserProfile extends Component {
       query: {
         creatorId: userId,
         status: { $ne: "Supprimé" },
-        demarcheId: { $exists: false }
+        demarcheId: { $exists: false },
       },
-      sort: { updatedAt: -1 }
-    }).then(data => {
+      sort: { updatedAt: -1 },
+    }).then((data) => {
       this._isMounted &&
         this.setState({
           contributions: _.get(data, "data.data", []),
-          actions: parseActions(data.data.data)
+          actions: parseActions(data.data.data),
         });
     });
     if (user.structures && user.structures.length > 0) {
@@ -160,19 +160,18 @@ export class UserProfile extends Component {
               "Actif",
               "Accepté structure",
               "En attente",
-              "En attente admin"
-            ]
+              "En attente admin",
+            ],
           },
-          demarcheId: { $exists: false }
+          demarcheId: { $exists: false },
         },
-        sort: { updatedAt: -1 }
-      }).then(data => {
-        //console.log(data.data.data)
+        sort: { updatedAt: -1 },
+      }).then((data) => {
         this._isMounted &&
           this.setState(
             {
               contributionsStruct: _.get(data, "data.data", []),
-              actionsStruct: parseActions(data.data.data)
+              actionsStruct: parseActions(data.data.data),
             },
             () => {
               this._isMounted &&
@@ -180,13 +179,13 @@ export class UserProfile extends Component {
                   query: {
                     type: "dispositif",
                     articleId: {
-                      $in: this.state.contributionsStruct.map(x => x._id)
-                    }
-                  }
-                }).then(data => {
+                      $in: this.state.contributionsStruct.map((x) => x._id),
+                    },
+                  },
+                }).then((data) => {
                   this._isMounted &&
                     this.setState({
-                      traductionsStruct: _.get(data, "data.data", [])
+                      traductionsStruct: _.get(data, "data.data", []),
                     });
                 });
               this._isMounted &&
@@ -196,13 +195,13 @@ export class UserProfile extends Component {
                     action: "readDispositif",
                     label: "dispositifId",
                     value: {
-                      $in: this.state.contributionsStruct.map(x => x._id)
-                    }
-                  }
-                }).then(data => {
+                      $in: this.state.contributionsStruct.map((x) => x._id),
+                    },
+                  },
+                }).then((data) => {
                   this._isMounted &&
                     this.setState({
-                      nbReadStruct: _.get(data, "data.data", [])
+                      nbReadStruct: _.get(data, "data.data", []),
                     });
                 });
             }
@@ -212,20 +211,20 @@ export class UserProfile extends Component {
     this.setState({
       user: user,
       isMainLoading: false,
-      traducteur: user.roles.some(x => x.nom === "Trad"),
-      contributeur: user.roles.some(x => x.nom === "Contrib"),
+      traducteur: user.roles.some((x) => x.nom === "Trad"),
+      contributeur: user.roles.some((x) => x.nom === "Contrib"),
       isDropdownOpen: new Array((user.selectedLanguages || []).length).fill(
         false
-      )
+      ),
     });
 
     API.get_users().then(
-      data =>
+      (data) =>
         this._isMounted &&
         this.setState({ users: _.get(data, "data.data", []) })
     );
     API.get_langues({}).then(
-      data =>
+      (data) =>
         this._isMounted &&
         this.setState({ langues: _.get(data, "data.data", []) })
     );
@@ -243,61 +242,61 @@ export class UserProfile extends Component {
       { _id: user.structures[0] },
       {},
       "dispositifsAssocies"
-    ).then(data => {
+    ).then((data) => {
       this._isMounted && this.setState({ structure: data.data.data[0] });
     });
   };
 
-  toggleModal = modal => {
+  toggleModal = (modal) => {
     this.props.tracking.trackEvent({
       action: "toggleModal",
       label: modal,
-      value: !this.state.showModal[modal]
+      value: !this.state.showModal[modal],
     });
     this.setState({
       showModal: {
         ...this.state.showModal,
-        [modal]: !this.state.showModal[modal]
+        [modal]: !this.state.showModal[modal],
       },
       password: "",
       newPassword: "",
       cpassword: "",
-      passwordVisible: false
+      passwordVisible: false,
     });
   };
   togglePasswordVisibility = () =>
-    this.setState(pS => ({ passwordVisible: !pS.passwordVisible }));
+    this.setState((pS) => ({ passwordVisible: !pS.passwordVisible }));
 
-  toggleSection = section => {
+  toggleSection = (section) => {
     this.props.tracking.trackEvent({
       action: "toggleSection",
       label: section,
-      value: !this.state.showSections[section]
+      value: !this.state.showSections[section],
     });
     this.setState({
       showSections: {
         ...this.state.showSections,
-        [section]: !this.state.showSections[section]
-      }
+        [section]: !this.state.showSections[section],
+      },
     });
   };
 
   toggleEditing = () => this.setState({ editing: !this.state.editing });
 
-  handleChange = ev =>
+  handleChange = (ev) =>
     this.setState({
       user: {
         ...this.state.user,
         [ev.currentTarget.id]:
           ev.currentTarget.id === "description"
             ? ev.target.value.slice(0, 120)
-            : ev.target.value
-      }
+            : ev.target.value,
+      },
     });
-  handlePasswordChange = ev =>
+  handlePasswordChange = (ev) =>
     this.setState({ [ev.currentTarget.id]: ev.target.value });
 
-  handleFileInputChange = event => {
+  handleFileInputChange = (event) => {
     this.setState({ uploading: true });
     let file = event.target.files[0];
 
@@ -313,26 +312,26 @@ export class UserProfile extends Component {
     //On l'envoie ensuite au serveur
     const formData = new FormData();
     formData.append(0, file);
-    API.set_image(formData).then(data_res => {
+    API.set_image(formData).then((data_res) => {
       this._isMounted &&
         this.setState({
           user: {
             ...this.state.user,
-            picture: data_res.data.data
+            picture: data_res.data.data,
           },
           uploading: false,
-          tempImg: null
+          tempImg: null,
         });
     });
   };
 
-  removeBookmark = key => {
+  removeBookmark = (key) => {
     let user = { ...this.state.user };
     user.cookies.dispositifsPinned =
       key === "all"
         ? []
-        : user.cookies.dispositifsPinned.filter(x => x._id !== key);
-    API.set_user_info(user).then(data => {
+        : user.cookies.dispositifsPinned.filter((x) => x._id !== key);
+    API.set_user_info(user).then((data) => {
       this._isMounted && this.setState({ user: data.data.data });
     });
   };
@@ -344,7 +343,7 @@ export class UserProfile extends Component {
         title: "Oops...",
         text: "Le mot de passe initial n'est pas renseigné !",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
     if (!newPassword || newPassword.length === 0) {
@@ -352,7 +351,7 @@ export class UserProfile extends Component {
         title: "Oops...",
         text: "Le nouveau mot de passe n'est pas renseigné !",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
     if (!cpassword || cpassword.length === 0) {
@@ -360,7 +359,7 @@ export class UserProfile extends Component {
         title: "Oops...",
         text: "Le nouveau mot de passe n'est pas confirmé !",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
     if (newPassword !== cpassword) {
@@ -368,7 +367,7 @@ export class UserProfile extends Component {
         title: "Oops...",
         text: "Les mots de passes ne correspondent pas !",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
     if ((passwdCheck(newPassword) || {}).score < 1) {
@@ -376,20 +375,20 @@ export class UserProfile extends Component {
         title: "Oops...",
         text: "Le mot de passe est trop faible",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
     const newUser = { password, newPassword, cpassword };
     API.change_password({
       query: { _id: user._id, username: user.username },
-      newUser
-    }).then(data => {
+      newUser,
+    }).then((data) => {
       if (this._isMounted) {
         Swal.fire({
           title: "Yay...",
           text: "Mise à jour réussie !",
           type: "success",
-          timer: 1500
+          timer: 1500,
         });
         localStorage.setItem("token", data.data.token);
         setAuthToken(data.data.token);
@@ -399,15 +398,15 @@ export class UserProfile extends Component {
     });
   };
 
-  validateObjectifs = newUser => {
+  validateObjectifs = (newUser) => {
     newUser = { _id: this.state.user._id, ...newUser };
-    API.set_user_info(newUser).then(data => {
+    API.set_user_info(newUser).then((data) => {
       if (this._isMounted) {
         Swal.fire({
           title: "Yay...",
           text: "Vos objectifs ont bien été enregistrés",
           type: "success",
-          timer: 1500
+          timer: 1500,
         });
         this.setState({ user: data.data.data });
         this.toggleModal("objectifs");
@@ -423,16 +422,16 @@ export class UserProfile extends Component {
       selectedLanguages: [...new Set(user.selectedLanguages)],
       email: h2p(user.email),
       description: h2p(user.description),
-      picture: user.picture
+      picture: user.picture,
     };
-    API.set_user_info(newUser).then(data => {
+    API.set_user_info(newUser).then((data) => {
       if (this._isMounted) {
         this.props.fetch_user();
         Swal.fire({
           title: "Yay...",
           text: "Votre profil a bien été enregistré",
           type: "success",
-          timer: 1500
+          timer: 1500,
         });
         this.setState({ editing: false, user: data.data.data });
       }
@@ -444,7 +443,7 @@ export class UserProfile extends Component {
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore activée",
       type: "error",
-      timer: 1500
+      timer: 1500,
     });
 
   render() {
@@ -465,13 +464,16 @@ export class UserProfile extends Component {
       cpassword,
       passwordVisible,
       nbReadStruct,
-      traductionsStruct
+      traductionsStruct,
     } = this.state;
     const { t, dispositifs } = this.props;
     const favorisId = (user.cookies || {}).dispositifsPinned || [];
     const favoris =
       dispositifs &&
-      favorisId.map(x => ({ ...x, ...dispositifs.find(y => y._id === x._id) }));
+      favorisId.map((x) => ({
+        ...x,
+        ...dispositifs.find((y) => y._id === x._id),
+      }));
 
     const imgSrc =
       this.state.tempImg ||
@@ -1003,7 +1005,7 @@ export class UserProfile extends Component {
   }
 }
 
-export const PasswordModal = props => {
+export const PasswordModal = (props) => {
   const password_check = passwdCheck(props.newPassword) || {};
   return (
     <FModal
@@ -1101,18 +1103,18 @@ export const PasswordModal = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     userId: state.user.userId,
-    dispositifs: state.dispositif.dispositifs
+    dispositifs: state.dispositif.dispositifs,
   };
 };
 
 const mapDispatchToProps = { fetch_user, fetch_dispositifs };
 
 export default track({
-  page: "UserProfile"
+  page: "UserProfile",
 })(
   connect(
     mapStateToProps,
