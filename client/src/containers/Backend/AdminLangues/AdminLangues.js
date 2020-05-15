@@ -102,7 +102,6 @@ class AdminLangues extends Component {
     }).then(
       (data_res) => {
         if (data_res.data.data.length > 0) {
-          console.log(data_res.data.data);
           let traductions = data_res.data.data.map((x) => {
             return {
               ...x,

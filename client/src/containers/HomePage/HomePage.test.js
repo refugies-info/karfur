@@ -22,14 +22,13 @@ const history = createBrowserHistory();
 describe("HomePage", () => {
   const wrapper = shallow(
     <Provider store={store}>
-      <HomePage t={k => k} />
+      <HomePage t={(k) => k} />
     </Provider>
   )
     .dive()
     .dive();
 
   it("renders without crashing", () => {
-    console.log(wrapper.debug());
     expect(wrapper.is("div")).to.equal(true);
     expect(wrapper.find("h1").text()).to.equal(
       "Homepage.Construis ta vie en France"
@@ -40,7 +39,7 @@ describe("HomePage", () => {
     sinon.spy(HomePage.prototype, "componentDidMount");
     shallow(
       <Provider store={store}>
-        <HomePage t={k => k} />
+        <HomePage t={(k) => k} />
       </Provider>
     )
       .dive()
@@ -67,7 +66,7 @@ describe("HomePage", () => {
   it("renders children when passed in", () => {
     const wrapper = shallow(
       <Provider store={store}>
-        <HomePage t={k => k}>
+        <HomePage t={(k) => k}>
           <div className="unique" />
         </HomePage>
       </Provider>
@@ -107,11 +106,10 @@ describe("HomePage", () => {
     expect(wrapper.find(".bottom-slider")).to.have.lengthOf(1);
   });
 
-  it("should receive users from real API", function(done) {
+  it("should receive users from real API", function (done) {
     axios.interceptors.response.use(
-      response => {
+      (response) => {
         const users = response.data.data;
-        console.log(users);
         expect(users).to.be.an("array");
         expect(users).to.have.lengthOf.above(10);
         expect(users).to.have.nested.property("0._id");
@@ -120,13 +118,13 @@ describe("HomePage", () => {
         done();
         return response;
       },
-      error => {
+      (error) => {
         console.log("Error: ", error.message);
       }
     );
     shallow(
       <Provider store={store}>
-        <HomePage t={k => k} />
+        <HomePage t={(k) => k} />
       </Provider>
     )
       .dive()
@@ -137,7 +135,7 @@ describe("HomePage", () => {
     const mounted = mount(
       <MemoryRouter>
         <I18nextProvider i18n={i18n}>
-          <HomePage t={k => k} history={history} />
+          <HomePage t={(k) => k} history={history} />
         </I18nextProvider>
       </MemoryRouter>
     )
@@ -153,7 +151,7 @@ describe("HomePage", () => {
     const mounted = mount(
       <MemoryRouter>
         <I18nextProvider i18n={i18n}>
-          <HomePage t={k => k} history={history} />
+          <HomePage t={(k) => k} history={history} />
         </I18nextProvider>
       </MemoryRouter>
     );
@@ -173,7 +171,7 @@ describe("HomePage", () => {
     const mounted = mount(
       <MemoryRouter>
         <I18nextProvider i18n={i18n}>
-          <HomePage t={k => k} history={history} />
+          <HomePage t={(k) => k} history={history} />
         </I18nextProvider>
       </MemoryRouter>
     );

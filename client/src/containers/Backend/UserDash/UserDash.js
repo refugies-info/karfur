@@ -28,7 +28,7 @@ export class UserDash extends Component {
       objectifs: false,
       traducteur: false,
       progression: false,
-      defineUser: false
+      defineUser: false,
     },
     runJoyRide: false, //penser à le réactiver !!
     user: {},
@@ -36,11 +36,11 @@ export class UserDash extends Component {
     traductionsFaites: [],
     progression: {
       timeSpent: 0,
-      nbMots: 0
+      nbMots: 0,
     },
     isMainLoading: true,
     showSections: { traductions: true },
-    tradsForReview: []
+    tradsForReview: [],
   };
   _isMounted = false;
 
@@ -52,7 +52,7 @@ export class UserDash extends Component {
         { _id: { $in: user.selectedLanguages } },
         { avancement: 1 },
         "participants"
-      ).then(data_langues => {
+      ).then((data_langues) => {
         const languesUser = data_langues.data.data;
         this._isMounted &&
           this.setState({ languesUser, isMainLoading: false }, () => {
@@ -61,53 +61,53 @@ export class UserDash extends Component {
                 API.get_tradForReview({
                   query: {
                     langueCible: {
-                      $in: this.state.languesUser.map(x => x.i18nCode)
+                      $in: this.state.languesUser.map((x) => x.i18nCode),
                     },
-                    status: "En attente"
+                    status: "En attente",
                   },
-                  sort: { updatedAt: -1 }
-                }).then(data => {
+                  sort: { updatedAt: -1 },
+                }).then((data) => {
                   this._isMounted &&
-                    this.setState(pS => ({
-                      languesUser: pS.languesUser.map(x => ({
+                    this.setState((pS) => ({
+                      languesUser: pS.languesUser.map((x) => ({
                         ...x,
                         nbTrads: (
                           (data.data.data || []).filter(
-                            y => y.langueCible === x.i18nCode
+                            (y) => y.langueCible === x.i18nCode
                           ) || []
-                        ).length
-                      }))
+                        ).length,
+                      })),
                     }));
                 });
             }
-            if (languesUser.some(x => x.langueBackupId)) {
+            if (languesUser.some((x) => x.langueBackupId)) {
               this._isMounted &&
                 API.get_langues({
                   _id: {
                     $in: languesUser
-                      .filter(x => x.langueBackupId)
-                      .map(x => x.langueBackupId)
-                  }
-                }).then(data => {
+                      .filter((x) => x.langueBackupId)
+                      .map((x) => x.langueBackupId),
+                  },
+                }).then((data) => {
                   const languesToPopulate = data.data.data;
                   this._isMounted &&
-                    this.setState(pS => ({
-                      languesUser: pS.languesUser.map(x =>
+                    this.setState((pS) => ({
+                      languesUser: pS.languesUser.map((x) =>
                         x.langueBackupId
                           ? {
                               ...x,
                               langueBackupId: languesToPopulate.find(
-                                y => y._id === x.langueBackupId
-                              )
+                                (y) => y._id === x.langueBackupId
+                              ),
                             }
                           : x
-                      )
+                      ),
                     }));
                 });
             }
           });
       });
-      API.get_progression().then(data_progr => {
+      API.get_progression().then((data_progr) => {
         //console.log(data_progr.data.data)
         if (data_progr.data.data && data_progr.data.data.length > 0)
           this._isMounted &&
@@ -116,8 +116,8 @@ export class UserDash extends Component {
       this._isMounted &&
         API.get_tradForReview({
           query: { _id: { $in: user.traductionsFaites } },
-          sort: { updatedAt: -1 }
-        }).then(data => {
+          sort: { updatedAt: -1 },
+        }).then((data) => {
           //console.log(data.data.data)
           this._isMounted &&
             this.setState({ traductionsFaites: data.data.data });
@@ -125,7 +125,7 @@ export class UserDash extends Component {
     } else {
       this.setState({
         isMainLoading: false,
-        showModal: { ...this.state.showModal, defineUser: true }
+        showModal: { ...this.state.showModal, defineUser: true },
       });
     }
     this.setState({ user });
@@ -136,11 +136,11 @@ export class UserDash extends Component {
     this._isMounted = false;
   }
 
-  toggleModal = modal => {
+  toggleModal = (modal) => {
     this.props.tracking.trackEvent({
       action: "toggleModal",
       label: modal,
-      value: !this.state.showModal[modal]
+      value: !this.state.showModal[modal],
     });
     if (
       modal === "defineUser" &&
@@ -151,25 +151,25 @@ export class UserDash extends Component {
       this.triggerConfirmationRedirect();
     } else {
       this.setState(
-        pS => ({
-          showModal: { ...pS.showModal, [modal]: !pS.showModal[modal] }
+        (pS) => ({
+          showModal: { ...pS.showModal, [modal]: !pS.showModal[modal] },
         }),
         () => console.log(this.state)
       );
     }
   };
 
-  toggleSection = section => {
+  toggleSection = (section) => {
     this.props.tracking.trackEvent({
       action: "toggleSection",
       label: section,
-      value: !this.state.showSections[section]
+      value: !this.state.showSections[section],
     });
     this.setState({
       showSections: {
         ...this.state.showSections,
-        [section]: !this.state.showSections[section]
-      }
+        [section]: !this.state.showSections[section],
+      },
     });
   };
 
@@ -183,42 +183,41 @@ export class UserDash extends Component {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       cancelButtonText: "Aller à l'accueil",
-      confirmButtonText: "Je veux continuer"
-    }).then(result => {
+      confirmButtonText: "Je veux continuer",
+    }).then((result) => {
       if (!result.value) {
         this.props.history.push("/");
       }
     });
   };
 
-  openThemes = langue => {
+  openThemes = (langue) => {
     this.props.tracking.trackEvent({
       action: "click",
       label: "openThemes",
-      value: langue._id
+      value: langue._id,
     });
     this.props.history.push({
-      pathname: "/avancement/langue/" + langue._id
+      pathname: "/avancement/langue/" + langue._id,
       // state: { langue: langue}
     });
   };
 
-  openTraductions = langue => {
+  openTraductions = (langue) => {
     this.props.tracking.trackEvent({
       action: "click",
       label: "openTraductions",
-      value: langue._id
+      value: langue._id,
     });
-    console.log(langue);
     this.props.history.push({
       pathname: "/avancement/traductions/" + langue._id,
-      state: { langue: langue }
+      state: { langue: langue },
     });
   };
 
   quickAccess = (langue = null) => {
     if (!langue && this.state.languesUser.length > 0) {
-      langue = this.state.languesUser.find(x => x.langueCode !== "fr");
+      langue = this.state.languesUser.find((x) => x.langueCode !== "fr");
     }
     if (!langue) {
       return false;
@@ -227,20 +226,20 @@ export class UserDash extends Component {
     let nom = "avancement." + i18nCode;
     let query = { $or: [{ [nom]: { $lt: 1 } }, { [nom]: null }] };
     API.getArticle({ query: query, locale: i18nCode, random: true }).then(
-      data_res => {
+      (data_res) => {
         let articles = data_res.data.data;
         if (articles.length === 0) {
           Swal.fire({
             title: "Oh non",
             text: "Aucun résultat n'a été retourné, veuillez rééssayer",
             type: "error",
-            timer: 1500
+            timer: 1500,
           });
         } else {
           this.props.history.push({
             pathname: "/traduction/" + articles[0]._id,
             search: "?id=" + langue._id,
-            state: { langue: langue }
+            state: { langue: langue },
           });
         }
       }
@@ -252,26 +251,26 @@ export class UserDash extends Component {
     this.props.history.push("/backend/user-form");
   };
 
-  setUser = user => {
+  setUser = (user) => {
     API.get_langues(
       { _id: { $in: user.selectedLanguages } },
       {},
       "participants"
-    ).then(data_langues => {
+    ).then((data_langues) => {
       this._isMounted &&
         this.setState({ user, languesUser: data_langues.data.data });
       this.toggleModal("defineUser");
     });
   };
 
-  validateObjectifs = newUser => {
+  validateObjectifs = (newUser) => {
     newUser = { _id: this.state.user._id, ...newUser };
-    API.set_user_info(newUser).then(data => {
+    API.set_user_info(newUser).then((data) => {
       Swal.fire({
         title: "Yay...",
         text: "Vos objectifs ont bien été enregistrés",
         type: "success",
-        timer: 1500
+        timer: 1500,
       });
       this._isMounted && this.setState({ user: data.data.data });
       this.toggleModal("objectifs");
@@ -283,7 +282,7 @@ export class UserDash extends Component {
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore activée",
       type: "error",
-      timer: 1500
+      timer: 1500,
     });
 
   render() {
@@ -291,7 +290,7 @@ export class UserDash extends Component {
       languesUser,
       traductionsFaites,
       isMainLoading,
-      showSections
+      showSections,
     } = this.state;
     return (
       <div className="animated fadeIn user-dash">
@@ -421,7 +420,7 @@ export class UserDash extends Component {
 }
 
 const buttonTraductions = (element, user, openThemes, openTraductions) =>
-  (user.roles || []).find(x => x && x.nom === "ExpertTrad") ? (
+  (user.roles || []).find((x) => x && x.nom === "ExpertTrad") ? (
     element.nbTrads > 0 ? (
       <FButton
         type="dark"
@@ -445,14 +444,14 @@ const buttonTraductions = (element, user, openThemes, openTraductions) =>
     </FButton>
   );
 
-const ProgressionTraduction = props => {
+const ProgressionTraduction = (props) => {
   const hasLangues = (props.dataArray || []).length > 0;
   const dataArray = hasLangues
     ? props.dataArray
     : new Array(5).fill({
         langueFr: "Français",
         langueCode: "fr",
-        avancement: 1
+        avancement: 1,
       });
   let data = props.limit ? dataArray.slice(0, props.limit) : dataArray;
   let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false);
@@ -530,7 +529,7 @@ const ProgressionTraduction = props => {
                     </b>
                     {(element.participants || [])
                       .slice(0, 5)
-                      .map(participant => {
+                      .map((participant) => {
                         return (
                           <img
                             key={participant._id}
@@ -581,14 +580,14 @@ const ProgressionTraduction = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     langues: state.langue.langues,
     user: state.user.user,
-    expertTrad: state.user.expertTrad
+    expertTrad: state.user.expertTrad,
   };
 };
 
 export default track({
-  page: "UserDash"
+  page: "UserDash",
 })(connect(mapStateToProps)(UserDash));

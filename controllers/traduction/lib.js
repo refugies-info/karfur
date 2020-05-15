@@ -37,7 +37,6 @@ async function add_tradForReview(req, res) {
       api: arguments.callee.name,
     }).save();
     let traduction = req.body;
-    console.log(req.body);
     if (traduction.avancement >= 1) {
       traduction.status = "En attente";
       await Traduction.updateMany({articleId: traduction.articleId, langueCible: traduction.langueCible }, {status: 'En attente'}, { upsert: false });

@@ -31,7 +31,7 @@ export class Admin extends Component {
       picture: {
         imgId: "",
         public_id: "",
-        secure_url: ""
+        secure_url: "",
       },
       username: "",
       password: "",
@@ -43,7 +43,7 @@ export class Admin extends Component {
       objectifMots: 600,
       roles: [],
       _id: undefined,
-      status: "Actif"
+      status: "Actif",
     },
 
     langue: {
@@ -56,7 +56,7 @@ export class Admin extends Component {
       _id: undefined,
       status: "Active",
       avancement: 0,
-      participants: []
+      participants: [],
     },
 
     theme: {
@@ -68,7 +68,7 @@ export class Admin extends Component {
       status: "Actif",
       avancement: 0,
       participants: [],
-      articles: []
+      articles: [],
     },
 
     structure: {
@@ -83,7 +83,7 @@ export class Admin extends Component {
       picture: {
         imgId: "",
         public_id: "",
-        secure_url: ""
+        secure_url: "",
       },
       siren: "",
       siret: "",
@@ -91,41 +91,41 @@ export class Admin extends Component {
       mail_generique: "",
       createur: {},
       administrateur: undefined,
-      alt: ""
-    }
+      alt: "",
+    },
   };
   initial_state = { ...this.state };
   shadowSelectedLanguages = [];
 
   componentDidMount() {
     document.title = "Contenus";
-    API.get_roles({}).then(data_res => {
+    API.get_roles({}).then((data_res) => {
       this.setState({
-        roles: data_res.data.data.map(el => {
+        roles: data_res.data.data.map((el) => {
           return { ...el, isChecked: false };
-        })
+        }),
       });
     });
 
-    API.get_users({ sort: { username: 1 } }).then(data_res => {
+    API.get_users({ sort: { username: 1 } }).then((data_res) => {
       this.setState({ users: data_res.data.data });
     });
 
-    API.get_langues({}).then(data_res => {
+    API.get_langues({}).then((data_res) => {
       this.setState({
         langues: data_res.data.data
-          .filter(el => el.langueFr !== "Français")
-          .map(el => {
+          .filter((el) => el.langueFr !== "Français")
+          .map((el) => {
             return { ...el, isChecked: false };
-          })
+          }),
       });
     });
 
-    API.get_themes({}).then(data_res => {
+    API.get_themes({}).then((data_res) => {
       this.setState({ themes: data_res.data.data });
     });
 
-    API.get_structure({}, {}, "createur").then(data_res => {
+    API.get_structure({}, {}, "createur").then((data_res) => {
       this.setState({ structures: data_res.data.data });
     });
   }
@@ -148,37 +148,36 @@ export class Admin extends Component {
     const newArray = this.state.activeTab.slice();
     newArray[tabPane] = tab;
     this.setState({
-      activeTab: newArray
+      activeTab: newArray,
     });
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: {
         ...this.state[event.target.name],
         [event.target.id
           .replace("B|><", "")
           .replace("T|=R", "")
-          .replace("K//R", "")]: event.target.value
-      }
+          .replace("K//R", "")]: event.target.value,
+      },
     });
   };
 
-  handleFileInputChange = event => {
+  handleFileInputChange = (event) => {
     const name = event.currentTarget.name;
     this.setState({ uploading: true });
     const formData = new FormData();
     formData.append(0, event.target.files[0]);
 
-    API.set_image(formData).then(data_res => {
+    API.set_image(formData).then((data_res) => {
       let imgData = data_res.data.data;
-      console.log(this.state.uploading);
       this.setState({
         [name]: {
           ...this.state[name],
-          picture: imgData
+          picture: imgData,
         },
-        uploading: false
+        uploading: false,
       });
     });
   };
@@ -188,31 +187,33 @@ export class Admin extends Component {
     if (item.user) {
       this.setState({
         langues: [
-          ...this.state.langues.map(el => {
+          ...this.state.langues.map((el) => {
             return {
               ...el,
-              isChecked: item.user.selectedLanguages.find(x => x._id === el._id)
+              isChecked: item.user.selectedLanguages.find(
+                (x) => x._id === el._id
+              )
                 ? true
-                : false
+                : false,
             };
-          })
+          }),
         ],
         roles: [
-          ...this.state.roles.map(el => {
+          ...this.state.roles.map((el) => {
             return { ...el, isChecked: item.user.roles.includes(el._id) };
-          })
-        ]
+          }),
+        ],
       });
     }
     switchTo && this.toggleTab(3, switchTo);
   };
 
-  handleCheck = event => {
+  handleCheck = (event) => {
     if (event.target.className.includes("langue")) {
       let languesCopy = [...this.state.langues];
       let changedLangue =
         languesCopy[
-          this.state.langues.findIndex(obj => obj._id === event.target.id)
+          this.state.langues.findIndex((obj) => obj._id === event.target.id)
         ];
       changedLangue.isChecked = event.target.checked;
       let oldSelectedLanguages = [...this.state.user.selectedLanguages];
@@ -222,19 +223,19 @@ export class Admin extends Component {
           ...this.state.user,
           selectedLanguages: event.target.checked
             ? [...oldSelectedLanguages, changedLangue]
-            : oldSelectedLanguages.filter(obj => obj._id !== event.target.id)
-        }
+            : oldSelectedLanguages.filter((obj) => obj._id !== event.target.id),
+        },
       });
       this.shadowSelectedLanguages = event.target.checked
         ? [...this.shadowSelectedLanguages, changedLangue]
         : this.shadowSelectedLanguages.filter(
-            obj => obj._id !== event.target.id
+            (obj) => obj._id !== event.target.id
           );
     } else {
       let roleCopy = [...this.state.roles];
       let changedRole =
         roleCopy[
-          this.state.roles.findIndex(obj => obj._id === event.target.id)
+          this.state.roles.findIndex((obj) => obj._id === event.target.id)
         ];
       changedRole.isChecked = event.target.checked;
       let oldRoles = [...this.state.user.roles];
@@ -244,13 +245,13 @@ export class Admin extends Component {
           ...this.state.user,
           roles: event.target.checked
             ? [...oldRoles, event.target.id]
-            : oldRoles.filter(obj => obj !== event.target.id)
-        }
+            : oldRoles.filter((obj) => obj !== event.target.id),
+        },
       });
     }
   };
 
-  handleKeyPress = e => {
+  handleKeyPress = (e) => {
     e.preventDefault();
     if (
       e.keyCode === 9 &&
@@ -261,22 +262,25 @@ export class Admin extends Component {
   };
 
   handleBelongsChange = () =>
-    this.setState(pS => ({
-      structure: { ...pS.structure, authorBelongs: !pS.structure.authorBelongs }
+    this.setState((pS) => ({
+      structure: {
+        ...pS.structure,
+        authorBelongs: !pS.structure.authorBelongs,
+      },
     }));
 
   handleSliderChange = (value, name) => {
     this.setState({
       user: {
         ...this.state.user,
-        [name]: value
-      }
+        [name]: value,
+      },
     });
   };
 
-  handleDraggableListChange = value => {
+  handleDraggableListChange = (value) => {
     let newOrder = [];
-    value.forEach(item => {
+    value.forEach((item) => {
       newOrder.push({ ...this.state.user.selectedLanguages[item] });
     });
     this.shadowSelectedLanguages = newOrder;
@@ -284,7 +288,7 @@ export class Admin extends Component {
 
   reorder = (table, order = "username") => {
     const croissant = order === this.state.order ? !this.state.croissant : true;
-    this.setState(pS => ({
+    this.setState((pS) => ({
       [table]: pS[table].sort((a, b) => {
         const aValue = _.get(a, order),
           bValue = _.get(b, order);
@@ -299,7 +303,7 @@ export class Admin extends Component {
           : 0;
       }),
       order: order,
-      croissant: croissant
+      croissant: croissant,
     }));
   };
 
@@ -313,7 +317,7 @@ export class Admin extends Component {
         title: "Oops...",
         text: "Aucun nom d'utilisateur n'est renseigné !",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
     if (user.password.length === 0) {
@@ -321,20 +325,20 @@ export class Admin extends Component {
         title: "Oops...",
         text: "Aucun mot de passe n'est renseigné !",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
     }
     if (user.selectedLanguages.length > 0) {
       user.selectedLanguages = [
-        ...user.selectedLanguages.map(el => {
+        ...user.selectedLanguages.map((el) => {
           return {
             _id: el._id,
             i18nCode: el.i18nCode,
             langueCode: el.langueCode,
             langueFr: el.langueFr,
-            langueLoc: el.langueLoc
+            langueLoc: el.langueLoc,
           };
-        })
+        }),
       ];
     }
     if (!user._id) {
@@ -343,26 +347,26 @@ export class Admin extends Component {
           title: "Oops...",
           text: "Le mot de passe est trop faible",
           type: "error",
-          timer: 1500
+          timer: 1500,
         });
       }
       API.login({ ...user, cpassword: user.password }).then(
-        data => {
+        (data) => {
           let newUser = data.data.data;
           newUser.password = "Hidden";
           this.setState({
             users: [...this.state.users, newUser],
-            user: this.initial_state.user
+            user: this.initial_state.user,
           });
         },
-        error => {
+        (error) => {
           console.log(error);
           return;
         }
       );
     } else {
       API.set_user_info(user).then(
-        data => {
+        (data) => {
           let newUser = data.data.data;
           if (!newUser) {
             return;
@@ -370,11 +374,11 @@ export class Admin extends Component {
           newUser.password = "Hidden";
           let usersCopy = [...this.state.users];
           usersCopy[
-            this.state.users.findIndex(obj => obj._id === newUser._id)
+            this.state.users.findIndex((obj) => obj._id === newUser._id)
           ] = newUser;
           this.setState({ users: usersCopy, user: this.initial_state.user });
         },
-        error => {
+        (error) => {
           console.log(error);
           return;
         }
@@ -382,15 +386,15 @@ export class Admin extends Component {
     }
     this.setState({
       langues: [
-        ...this.state.langues.map(el => {
+        ...this.state.langues.map((el) => {
           return { ...el, isChecked: false };
-        })
+        }),
       ],
       roles: [
-        ...this.state.roles.map(el => {
+        ...this.state.roles.map((el) => {
           return { ...el, isChecked: false };
-        })
-      ]
+        }),
+      ],
     });
   };
 
@@ -405,125 +409,124 @@ export class Admin extends Component {
         title: "Oh non!",
         text: "Certaines informations sont manquantes",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
       return;
     }
     let struct = { ...this.state.structure };
     let membres = struct.membres || [];
     if (struct.administrateur === struct.createur._id) {
-      membres = membres.some(x => x.userId === struct.createur._id)
-        ? membres.map(x =>
+      membres = membres.some((x) => x.userId === struct.createur._id)
+        ? membres.map((x) =>
             x.userId === struct.createur._id
               ? { ...x, roles: ["createur", "administrateur"] }
               : {
                   ...x,
-                  roles: (x.roles || []).filter(z => z !== "administrateur")
+                  roles: (x.roles || []).filter((z) => z !== "administrateur"),
                 }
           )
         : [
-            ...membres.map(y => ({
+            ...membres.map((y) => ({
               ...y,
-              roles: y.roles.filter(z => z !== "administrateur")
+              roles: y.roles.filter((z) => z !== "administrateur"),
             })),
             {
               userId: struct.createur._id,
               roles: ["createur", "administrateur"],
-              added_at: new Date()
-            }
+              added_at: new Date(),
+            },
           ];
     } else if (struct.authorBelongs) {
-      membres = membres.some(x => x.userId === struct.createur._id)
-        ? membres.map(x =>
+      membres = membres.some((x) => x.userId === struct.createur._id)
+        ? membres.map((x) =>
             x.userId === struct.createur._id
               ? { ...x, roles: ["createur", "contributeur"] }
               : {
                   ...x,
-                  roles: (x.roles || []).filter(z => z !== "administrateur")
+                  roles: (x.roles || []).filter((z) => z !== "administrateur"),
                 }
           )
         : [
-            ...membres.map(y => ({
+            ...membres.map((y) => ({
               ...y,
-              roles: y.roles.filter(z => z !== "administrateur")
+              roles: y.roles.filter((z) => z !== "administrateur"),
             })),
             {
               userId: struct.createur._id,
               roles: ["createur", "contributeur"],
-              added_at: new Date()
-            }
+              added_at: new Date(),
+            },
           ];
-      membres = membres.some(x => x.userId === struct.administrateur)
-        ? membres.map(x =>
+      membres = membres.some((x) => x.userId === struct.administrateur)
+        ? membres.map((x) =>
             x.userId === struct.administrateur
               ? { ...x, roles: ["administrateur"] }
               : {
                   ...x,
-                  roles: (x.roles || []).filter(z => z !== "administrateur")
+                  roles: (x.roles || []).filter((z) => z !== "administrateur"),
                 }
           )
         : [
-            ...membres.map(y => ({
+            ...membres.map((y) => ({
               ...y,
-              roles: y.roles.filter(z => z !== "administrateur")
+              roles: y.roles.filter((z) => z !== "administrateur"),
             })),
             {
               userId: struct.administrateur,
               roles: ["administrateur"],
-              added_at: new Date()
-            }
+              added_at: new Date(),
+            },
           ];
     } else {
-      membres = membres.some(x => x.userId === struct.administrateur)
-        ? membres.map(x =>
+      membres = membres.some((x) => x.userId === struct.administrateur)
+        ? membres.map((x) =>
             x.userId === struct.administrateur
               ? { ...x, roles: ["administrateur"] }
               : {
                   ...x,
-                  roles: (x.roles || []).filter(z => z !== "administrateur")
+                  roles: (x.roles || []).filter((z) => z !== "administrateur"),
                 }
           )
         : [
-            ...membres.map(y => ({
+            ...membres.map((y) => ({
               ...y,
-              roles: y.roles.filter(z => z !== "administrateur")
+              roles: y.roles.filter((z) => z !== "administrateur"),
             })),
             {
               userId: struct.administrateur,
               roles: ["administrateur"],
-              added_at: new Date()
-            }
+              added_at: new Date(),
+            },
           ];
     }
-    console.log(this.state.structure);
     this.setState(
       {
         structure: {
           ...this.state.structure,
           membres: membres,
-          createur: (this.state.structure.createur || {})._id
-        }
+          createur: (this.state.structure.createur || {})._id,
+        },
       },
       () => this.onValidate("structure")
     );
   };
 
-  onValidate = tab => {
-    API["create_" + tab](this.state[tab]).then(data => {
+  onValidate = (tab) => {
+    API["create_" + tab](this.state[tab]).then((data) => {
       let newItem = data.data.data;
       if (this.state.theme._id) {
         let itemsCopy = [...this.state[tab + "s"]];
         itemsCopy[
-          this.state[tab + "s"].findIndex(obj => obj._id === newItem._id)
+          this.state[tab + "s"].findIndex((obj) => obj._id === newItem._id)
         ] = newItem;
         this.setState({ [tab + "s"]: itemsCopy });
       } else {
         this.setState({
           [tab + "s"]: this.state[tab]._id
-            ? this.state[tab + "s"].map(x =>
+            ? this.state[tab + "s"].map((x) =>
                 x._id === this.state[tab]._id ? newItem : x
               )
-            : [...this.state[tab + "s"], newItem]
+            : [...this.state[tab + "s"], newItem],
         });
       }
       this.setState({ [tab]: this.initial_state[tab] });
@@ -533,19 +536,19 @@ export class Admin extends Component {
     });
   };
 
-  onCancel = tab => {
+  onCancel = (tab) => {
     this.setState({
       [tab]: this.initial_state[tab],
       langues: [
-        ...this.state.langues.map(el => {
+        ...this.state.langues.map((el) => {
           return { ...el, isChecked: false };
-        })
+        }),
       ],
       roles: [
-        ...this.state.roles.map(el => {
+        ...this.state.roles.map((el) => {
           return { ...el, isChecked: false };
-        })
-      ]
+        }),
+      ],
     });
   };
 
@@ -687,9 +690,9 @@ export class Admin extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    dispositifs: state.dispositif.dispositifs
+    dispositifs: state.dispositif.dispositifs,
   };
 };
 
@@ -697,12 +700,7 @@ const mapDispatchToProps = { fetch_structures };
 
 export default track(
   {
-    page: "Admin"
+    page: "Admin",
   },
   { dispatchOnMount: true }
-)(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Admin)
-);
+)(connect(mapStateToProps, mapDispatchToProps)(Admin));
