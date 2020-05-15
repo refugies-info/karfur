@@ -1073,27 +1073,6 @@ class SideTrad extends Component {
         <div className="langue-data">
           <h5>Texte français initial</h5>
           <i className="flag-icon flag-icon-fr mr-12 ml-12 mb-8 flag-margin" title="fr" id="fr"></i>
-          {currIdx === "abstract" && (
-            <div className="align-right">
-              {/* <b>Résumé</b>
-              <EVAIcon
-                className="ml-10"
-                name="info"
-                fill={variables.noir}
-                id="eva-icon-info"
-              /> */}
-              {/* <Tooltip
-                placement="top"
-                offset="0px, 8px"
-                isOpen={this.state.tooltipOpen}
-                target="eva-icon-info"
-                toggle={this.toggleTooltip}
-              >
-                Ce paragraphe de résumé apparaît dans les résultats de
-                recherche. Il n'est pas visible sur la page.
-              </Tooltip> */}
-            </div>
-          )}
         </div>
         <div
           className={
