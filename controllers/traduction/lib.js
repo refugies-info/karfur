@@ -414,22 +414,34 @@ const insertInDispositif = (res, traduction, locale) => {
         });
         result.markModified("contenu");
 
-        result.traductions = [
-          ...new Set([
-            ...(result.traductions || []),
-            ...(traduction.traductions || []).map((x) => x._id),
-          ]),
-        ];
+        const translationsToAdd = traduction.traductions
+          ? traduction.traductions.map((x) => x._id)
+          : [];
+
+        const translations = (result.traductions || []).concat(
+          translationsToAdd
+        );
+
+        const deduplicatedTranslations = deduplicateArrayOfObjectIds(
+          translations
+        );
+
+        result.traductions = deduplicatedTranslations;
 
         const participantsToAdd = traduction.traductions
           ? traduction.traductions.map((x) => (x.userId || {})._id)
           : [];
 
-        const participants = (result.participants || [])
-          .concat(participantsToAdd)
-          .map((x) => x.toString());
-        const deduplicatedParticipants = _.uniq(participants);
+        const participants = (result.participants || []).concat(
+          participantsToAdd
+        );
+
+        const deduplicatedParticipants = deduplicateArrayOfObjectIds(
+          participants
+        );
+
         result.participants = deduplicatedParticipants;
+
         if (result.avancement === 1) {
           result.avancement = { fr: 1 };
         }
@@ -459,6 +471,10 @@ const insertInDispositif = (res, traduction, locale) => {
     }
   );
 };
+
+// we have to convert objectId to string to compare it with other strings
+const deduplicateArrayOfObjectIds = (arrayOfObjectIds) =>
+  _.uniq(arrayOfObjectIds.map((x) => x.toString()));
 
 const recalculate_all = () => {
   Traduction.find({}).exec(function (err, result) {
