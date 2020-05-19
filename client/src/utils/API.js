@@ -258,6 +258,11 @@ export default {
       headers: headers
     });
   },
+  delete_trads: query => {
+    return axios.post(burl + "/traduction/delete_trads", query, {
+      headers: headers
+    });
+  },
   get_progression: query => {
     return axios.post(burl + "/traduction/get_progression", query, {
       headers: headers

@@ -894,32 +894,13 @@ class SideTrad extends Component {
           </div>
         </div>
         <div className="langue-data">
-          <i className="flag-icon flag-icon-fr mr-12" title="fr" id="fr"></i>
-          <strong>Texte français initial</strong>
-          {currIdx === "abstract" && (
-            <div className="align-right">
-              <b>Résumé</b>
-              <EVAIcon
-                className="ml-10"
-                name="info"
-                fill={variables.noir}
-                id="eva-icon-info"
-              />
-              <Tooltip
-                placement="top"
-                offset="0px, 8px"
-                isOpen={this.state.tooltipOpen}
-                target="eva-icon-info"
-                toggle={this.toggleTooltip}
-              >
-                Ce paragraphe de résumé apparaît dans les résultats de
-                recherche. Il n'est pas visible sur la page.
-              </Tooltip>
-            </div>
-          )}
+          <h5>Texte français initial</h5>
+          <i className="flag-icon flag-icon-fr mr-12 ml-12 mb-8 flag-margin" title="fr" id="fr"></i>
         </div>
         <div
           className={
+            (this.state.currIdx === 'abstract') ?
+            "content-data-french no-margin-abstract" :
             modified
               ? "content-data-french no-margin-modified"
               : validated && !modified
@@ -933,7 +914,29 @@ class SideTrad extends Component {
         >
           {ReactHtmlParser((francais || {}).body || "", options)}
         </div>
-        {modified ? (
+        {this.state.currIdx === 'abstract' ?
+        (
+          <AlertModified type={"abstract"}>
+            <EVAIcon
+              name="info"
+              fill={variables.noir}
+              id="alert-info"
+              className={"mr-10 mb-1"}
+            />
+            <Tooltip
+                placement="top"
+                offset="0px, 8px"
+                isOpen={this.state.tooltipOpen}
+                target="alert-info"
+                toggle={this.toggleTooltip}
+              >
+                Ce résumé est visible dans les résultats de
+                recherche.
+              </Tooltip>
+            <AlertText type={"abstract"}>Résumé de la fiche</AlertText>
+          </AlertModified>
+        ) :
+        modified ? (
           <AlertModified type={"modified"}>
             <EVAIcon
               name="alert-triangle"
@@ -955,14 +958,15 @@ class SideTrad extends Component {
           </AlertModified>
         ) : null}
         <div className="langue-data">
+          
+          <h5>
+            Traduction en {(langue.langueFr || "").toLowerCase()}
+          </h5>
           <i
-            className={"mr-12 flag-icon flag-icon-" + langue.langueCode}
+            className={"mr-12 ml-12 mb-8 flag-icon flag-margin flag-icon-" + langue.langueCode}
             title={langue.langueCode}
             id={langue.langueCode}
           ></i>
-          <strong>
-            {"Votre"} traduction en {(langue.langueFr || "").toLowerCase()}
-          </strong>
         </div>
         <div
           className={
@@ -978,24 +982,23 @@ class SideTrad extends Component {
           }
           id="body_texte_final"
         >
-          <ConditionalSpinner show={!(translated || {}).body} />
+         {/*  <ConditionalSpinner show={!(translated || {}).body} />
           <DirectionProvider
             direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}
-          >
+          > */}
             <Editor
               toolbarClassName="toolbar-editeur"
-              editorClassName={
-                validated && !modifiedNew && !modified
+              editorClassName={validated && !modifiedNew && !modified
                   ? "editor-editeur editor-validated"
                   : "editor-editeur"
               }
               readOnly={validated && !modifiedNew && !modified ? true : false}
               //onContentStateChange={}
-              wrapperClassName="wrapper-editeur editeur-sidebar editor-validated"
+              wrapperClassName="wrapper-editeur editeur-sidebar"
               placeholder="Renseignez votre traduction ici"
               onEditorStateChange={this.props.onEditorStateChange}
               editorState={(translated || {}).body}
-              toolbarHidden={pointeurs.includes(currIdx)}
+             //toolbarHidden={pointeurs.includes(currIdx)}
               toolbar={{
                 options: ["inline", "list", "link"],
                 inline: {
@@ -1028,7 +1031,6 @@ class SideTrad extends Component {
                 },
               }}
             />
-          </DirectionProvider>
           {autosuggest && (
             <div className="google-suggest">
               Suggestion par{" "}
