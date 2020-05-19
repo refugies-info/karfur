@@ -11,8 +11,15 @@ const markTradModifications = (newD, oldD, trad, locale) => {
       trad.status = "À revoir";
     }
   });
-
   newD.contenu.forEach((p, index) => {
+    if (
+      !oldD.contenu[index].children ||
+      !trad.translatedText.contenu[index].children ||
+      !trad.translatedText.contenu[index]
+    ) {
+      trad.status = "À revoir";
+      return;
+    }
     if (JSON.stringify(p.title) !== JSON.stringify(oldD.contenu[index].title)) {
       trad.translatedText.contenu[index].titleModified = true;
       trad.status = "À revoir";
@@ -23,8 +30,17 @@ const markTradModifications = (newD, oldD, trad, locale) => {
       trad.translatedText.contenu[index].contentModified = true;
       trad.status = "À revoir";
     }
+
     if (p.children && p.children.length > 0) {
       p.children.forEach((c, j) => {
+        if (
+          !oldD.contenu[index].children[j] ||
+          !trad.translatedText.contenu[index].children[j]
+        ) {
+          trad.status = "À revoir";
+          return;
+        }
+
         if (
           JSON.stringify(c.title) !==
           JSON.stringify(oldD.contenu[index].children[j].title)
@@ -32,14 +48,16 @@ const markTradModifications = (newD, oldD, trad, locale) => {
           trad.translatedText.contenu[index].children[j].titleModified = true;
           trad.status = "À revoir";
         }
+
         if (
           c.type != "card" &&
           JSON.stringify(c.content) !==
-          JSON.stringify(oldD.contenu[index].children[j].content)
+            JSON.stringify(oldD.contenu[index].children[j].content)
         ) {
           trad.translatedText.contenu[index].children[j].contentModified = true;
           trad.status = "À revoir";
         }
+
         if (
           JSON.stringify(c.contentTitle) !==
           JSON.stringify(oldD.contenu[index].children[j].contentTitle)
@@ -89,7 +107,6 @@ const turnToLocalized = (result, locale) => {
 
 const turnToLocalizedNew = (resultObj, locale) => {
   var result = JSON.parse(JSON.stringify(resultObj));
-  console.log(result, resultObj);
   pointeurs.forEach((x) => {
     if (result[x]) {
       result[x] = result[x][locale] || result[x].fr || result[x];
