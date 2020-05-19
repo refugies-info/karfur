@@ -33,6 +33,7 @@ const markTradModifications = (newD, oldD, trad, locale) => {
           trad.status = "À revoir";
         }
         if (
+          c.type != "card" &&
           JSON.stringify(c.content) !==
           JSON.stringify(oldD.contenu[index].children[j].content)
         ) {
