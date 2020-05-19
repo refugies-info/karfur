@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { Col, Row, Progress, Table } from "reactstrap";
+import { Col, Row, Progress, Table, Input } from "reactstrap";
 import moment from "moment/min/moment-with-locales";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -32,7 +32,16 @@ export const StyledStatus = styled.button`
   padding: 10px;
 `;
 
-const jsUcfirst = string => {
+export const StyledInput = styled.input`
+  font-weight: bold;
+  border-radius: 8px;
+  margin: 10px;
+  border: 0px;
+  padding: 10px;
+  border: 0.5px solid gray;
+`;
+
+const jsUcfirst = (string) => {
   return (
     string &&
     string.length > 1 &&
@@ -57,6 +66,7 @@ export class Avancement extends Component {
     review: true,
     toTranslate: false,
     traductions: [],
+    unfiltered: [],
     dispositif: true,
     demarche: true,
     string: true,
@@ -66,7 +76,8 @@ export class Avancement extends Component {
     toTranslateCount: 0,
     dispositifCount: 0,
     demarcheCount: 0,
-    stringCount: 0
+    stringCount: 0,
+    ascending: false,
   };
 
   async componentDidMount() {
@@ -86,7 +97,7 @@ export class Avancement extends Component {
             diffData.traducteur.title +
             " : " +
             this.props.location.state.langue.langueFr,
-          headers: diffData.traducteur.headers
+          headers: diffData.traducteur.headers,
         });
         i18nCode = this.props.location.state.langue.i18nCode;
       } else {
@@ -98,9 +109,9 @@ export class Avancement extends Component {
     this._loadArticles(itemId, i18nCode);
     API.get_tradForReview({
       query: { langueCible: i18nCode },
-      sort: {updatedAt: -1},
-      populate: "userId"
-    }).then(data => {
+      sort: { updatedAt: -1 },
+      populate: "userId",
+    }).then((data) => {
       //console.log(data.data.data);
       this.setState({ traductionsFaites: data.data.data });
       console.log(data.data.data);
@@ -117,7 +128,7 @@ export class Avancement extends Component {
         let nom = "avancement." + i18nCode;
         query = { $or: [{ [nom]: { $lt: 1 } }, { [nom]: null }] };
       }
-      API.get_article(query, i18nCode).then(data_res => {
+      API.get_article(query, i18nCode).then((data_res) => {
         const articles = data_res.data.data;
         this.setState({ data: articles });
       });
@@ -137,7 +148,7 @@ export class Avancement extends Component {
         this.setState({
           langue: langue,
           title: diffData.traducteur.title + " : " + langue.langueFr,
-          headers: diffData[isExpert ? "expert" : "traducteur"].headers
+          headers: diffData[isExpert ? "expert" : "traducteur"].headers,
         });
         return langue.i18nCode;
       }
@@ -145,7 +156,7 @@ export class Avancement extends Component {
     return false;
   };
 
-  _loadTraductions = langue => {
+  _loadTraductions = (langue) => {
     // if(langue.i18nCode){
     //   API.get_tradForReview({query: {'langueCible':langue.i18nCode, 'status' : 'En attente'},populate: 'articleId userId'}).then(data_res => {
     //     let articles=data_res.data.data;
@@ -157,29 +168,29 @@ export class Avancement extends Component {
   };
 
   _loadThemes = () => {
-    API.get_themes({}).then(data_res => {
+    API.get_themes({}).then((data_res) => {
       let themes = data_res.data.data;
       let reduced_themes = themes.reduce(
         (acc, curr, i) => {
           if (i > 0 && i % 3 === 0 && i !== themes.length - 1) {
             return {
               currGrp: [curr],
-              groupedData: [...acc.groupedData, acc.currGrp]
+              groupedData: [...acc.groupedData, acc.currGrp],
             };
           } else if (i % 3 !== 0 && i === themes.length - 1) {
             return {
               groupedData: [...acc.groupedData, [...acc.currGrp, curr]],
-              currGrp: []
+              currGrp: [],
             };
           } else if (i % 3 === 0 && i === themes.length - 1) {
             return {
               groupedData: [...acc.groupedData, acc.currGrp, [curr]],
-              currGrp: []
+              currGrp: [],
             };
           }
           return {
             currGrp: [...acc.currGrp, curr],
-            groupedData: acc.groupedData
+            groupedData: acc.groupedData,
           };
         },
         { currGrp: [], groupedData: [] }
@@ -214,7 +225,7 @@ export class Avancement extends Component {
     this.setState({ activeIndex: nextIndex });
   };
 
-  goToTraduction = element => {
+  goToTraduction = (element) => {
     this.props.history.push({
       pathname:
         (this.state.isExpert ? "/validation" : "/traduction") +
@@ -223,7 +234,7 @@ export class Avancement extends Component {
         "/" +
         element._id,
       search: "?id=" + this.state.langue._id,
-      state: { langue: this.state.langue }
+      state: { langue: this.state.langue },
     });
   };
 
@@ -232,12 +243,12 @@ export class Avancement extends Component {
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore activée",
       type: "error",
-      timer: 1500
+      timer: 1500,
     });
 
   reorderOnTopPubblish = () => {
     this.setState(
-      produce(draft => {
+      produce((draft) => {
         draft.published = !this.state.published;
         if (!this.state.published) {
           console.log("inside inside");
@@ -261,7 +272,7 @@ export class Avancement extends Component {
 
   reorderOnTopWaiting = () => {
     this.setState(
-      produce(draft => {
+      produce((draft) => {
         draft.waiting = !this.state.waiting;
         if (!this.state.waiting) {
           draft.traductions.sort((a, b) => {
@@ -286,7 +297,7 @@ export class Avancement extends Component {
 
   reorderOnTopReview = () => {
     this.setState(
-      produce(draft => {
+      produce((draft) => {
         draft.review = !this.state.review;
         if (!this.state.review) {
           draft.traductions.sort((a, b) => {
@@ -308,7 +319,7 @@ export class Avancement extends Component {
 
   reorderOnTopToTranslate = () => {
     this.setState(
-      produce(draft => {
+      produce((draft) => {
         draft.toTranslate = !this.state.toTranslate;
         if (!this.state.toTranslate) {
           draft.traductions.sort((a, b) => {
@@ -331,9 +342,9 @@ export class Avancement extends Component {
     );
   };
 
-  reorderOnTopType = type => {
+  reorderOnTopType = (type) => {
     this.setState(
-      produce(draft => {
+      produce((draft) => {
         draft[type] = !this.state[type];
         if (!this.state[type]) {
           draft.traductions.sort((a, b) => {
@@ -350,16 +361,32 @@ export class Avancement extends Component {
     );
   };
 
-  reorder = () => {
+  reorder = (key, element) => {
+    console.log(key, element);
+    console.log(this.state.traductions);
     this.setState(
-      produce(draft => {
-        draft.draft = !this.state.draft;
-        if (!this.state.draft) {
+      produce((draft) => {
+        draft.ascending = !this.state.ascending;
+        if (element.order == "title") {
           draft.traductions.sort((a, b) => {
-            if (a.status === "Brouillon" && b.status === "Brouillon") {
-              return 0;
-            } else if (a.status === "Brouillon" && b.status !== "Brouillon") {
-              return -1;
+            if (
+              a[element.order].toUpperCase() >= b[element.order].toUpperCase()
+            ) {
+              return this.state.ascending ? 0 : -1;
+            } else if (
+              a[element.order].toUpperCase() < b[element.order].toUpperCase()
+            ) {
+              return this.state.ascending ? -1 : 0;
+            } else {
+              return 1;
+            }
+          });
+        } else {
+          draft.traductions.sort((a, b) => {
+            if (a[element.order] >= b[element.order]) {
+              return this.state.ascending ? 0 : -1;
+            } else if (a[element.order] < b[element.order]) {
+              return this.state.ascending ? -1 : 0;
             } else {
               return 1;
             }
@@ -376,27 +403,30 @@ export class Avancement extends Component {
         count++;
       }
     }
-    return (count);
+    return count;
   };
 
   countType = (trads, type) => {
     var count = 0;
     for (var i = 0; i < trads.length; ++i) {
-      if (trads[i].typeContenu == type && type !== 'string') {
+      if (trads[i].typeContenu == type && type !== "string") {
         if (this.state.waiting && trads[i].statusTrad === "En attente") {
           count++;
-        } else if (this.state.published && trads[i].statusTrad === "Publiées" ) {
-          count++
+        } else if (this.state.published && trads[i].statusTrad === "Publiées") {
+          count++;
         } else if (this.state.review && trads[i].statusTrad === "À revoir") {
-          count++
-        } else if (this.state.toTranslate && trads[i].statusTrad === 'À traduire') {
-          count++
+          count++;
+        } else if (
+          this.state.toTranslate &&
+          trads[i].statusTrad === "À traduire"
+        ) {
+          count++;
         }
-      } else if (trads[i].typeContenu == type && type == 'string'){
-        count++
+      } else if (trads[i].typeContenu == type && type == "string") {
+        count++;
       }
     }
-    return (count);
+    return count;
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -416,8 +446,8 @@ export class Avancement extends Component {
       );
       traductions = [
         ...this.props.dispositifs
-          .filter(x => x.status === "Actif")
-          .map(x => ({
+          .filter((x) => x.status === "Actif")
+          .map((x) => ({
             _id: x._id,
             title:
               (x.titreMarque || "") +
@@ -428,11 +458,11 @@ export class Avancement extends Component {
               Math.max(
                 0,
                 ...((this.state.traductionsFaites || [])
-                  .filter(y => {
+                  .filter((y) => {
                     //console.log(y);
                     return y.articleId === x._id;
                   })
-                  .map(z => z.avancement || -1) || [])
+                  .map((z) => z.avancement || -1) || [])
               ) || 0,
             status: x.status,
             statusTrad:
@@ -465,23 +495,23 @@ export class Avancement extends Component {
             users: [
               ...new Set(
                 (this.state.traductionsFaites || [])
-                  .filter(y => y.articleId === x._id)
-                  .map(z => (z.userId || {})._id) || []
-              )
-            ].map(id => ({
+                  .filter((y) => y.articleId === x._id)
+                  .map((z) => (z.userId || {})._id) || []
+              ),
+            ].map((id) => ({
               _id: id,
               picture:
                 (
                   (
                     (this.state.traductionsFaites || []).find(
-                      t => (t.userId || {})._id === id
+                      (t) => (t.userId || {})._id === id
                     ) || {}
                   ).userId || {}
-                ).picture || {}
+                ).picture || {},
             })),
-            typeContenu: x.typeContenu || "dispositif"
+            typeContenu: x.typeContenu || "dispositif",
           })),
-        ...data.map(x => {
+        ...data.map((x) => {
           // console.log(x, (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id), (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => (z.avancement || -1)))
           return {
             ...x,
@@ -489,36 +519,36 @@ export class Avancement extends Component {
               Math.max(
                 0,
                 ...((this.state.traductionsFaites || [])
-                  .filter(y => y.jsonId === x._id)
-                  .map(z => z.avancement || -1) || [])
+                  .filter((y) => y.jsonId === x._id)
+                  .map((z) => z.avancement || -1) || [])
               ) || 0,
             users: [
               ...new Set(
                 (this.state.traductionsFaites || [])
-                  .filter(y => y.jsonId === x._id)
-                  .map(z => (z.userId || {})._id) || []
-              )
-            ].map(id => ({
+                  .filter((y) => y.jsonId === x._id)
+                  .map((z) => (z.userId || {})._id) || []
+              ),
+            ].map((id) => ({
               _id: id,
               picture:
                 (
                   (
                     (this.state.traductionsFaites || []).find(
-                      t => (t.userId || {})._id === id
+                      (t) => (t.userId || {})._id === id
                     ) || {}
                   ).userId || {}
-                ).picture || {}
+                ).picture || {},
             })),
             typeContenu: "string",
             _id: isExpert
               ? (
                   (this.state.traductionsFaites || []).find(
-                    y => y.jsonId === x._id && y.avancement === 1
+                    (y) => y.jsonId === x._id && y.avancement === 1
                   ) || {}
                 )._id
-              : x._id
+              : x._id,
           };
-        })
+        }),
         //...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
       ];
       console.log("those are translations", traductions);
@@ -527,35 +557,44 @@ export class Avancement extends Component {
       ); */
       this.setState({
         traductions,
+        unfiltered: traductions,
         waitingCount: this.countfilter(traductions, "En attente"),
-        publishedCount:this.countfilter(traductions, "Publiées"),
+        publishedCount: this.countfilter(traductions, "Publiées"),
         reviewCount: this.countfilter(traductions, "À revoir"),
         toTranslateCount: this.countfilter(traductions, "À traduire"),
         dispositifCount: this.countType(traductions, "dispositif"),
         demarcheCount: this.countType(traductions, "demarche"),
         stringCount: this.countType(traductions, "string"),
       });
-      if (this.countfilter(traductions, "À revoir") == 0 && this.countfilter(traductions, "À traduire") > 0) {
+      if (
+        this.countfilter(traductions, "À revoir") == 0 &&
+        this.countfilter(traductions, "À traduire") > 0
+      ) {
         this.setState({
           toTranslate: true,
           review: false,
         });
       }
     }
-    if ((prevState.waiting !== this.state.waiting) ||
-    (prevState.published !== this.state.published) ||
-    (prevState.review !== this.state.review) ||
-    (prevState.toTranslate !== this.state.toTranslate)) {
+    if (
+      prevState.waiting !== this.state.waiting ||
+      prevState.published !== this.state.published ||
+      prevState.review !== this.state.review ||
+      prevState.toTranslate !== this.state.toTranslate
+    ) {
       this.setState({
         waitingCount: this.countfilter(this.state.traductions, "En attente"),
-        publishedCount:this.countfilter(this.state.traductions, "Publiées"),
+        publishedCount: this.countfilter(this.state.traductions, "Publiées"),
         reviewCount: this.countfilter(this.state.traductions, "À revoir"),
-        toTranslateCount: this.countfilter(this.state.traductions, "À traduire"),
+        toTranslateCount: this.countfilter(
+          this.state.traductions,
+          "À traduire"
+        ),
         dispositifCount: this.countType(this.state.traductions, "dispositif"),
         demarcheCount: this.countType(this.state.traductions, "demarche"),
         stringCount: this.countType(this.state.traductions, "string"),
-      })
-/*       if (this.countfilter(traductions, "À revoir") == 0) {
+      });
+      /*       if (this.countfilter(traductions, "À revoir") == 0) {
         this.setState({
           toTranslate: true,
           review: false,
@@ -564,138 +603,56 @@ export class Avancement extends Component {
     }
   }
 
-  render() {
-    const { langue, isExpert, data, traductions } = this.state;
+  handleChange = (e) => {
+    // Variable to hold the original version of the list
+    let currentList = [];
+    // Variable to hold the filtered list before putting into state
+    let newList = [];
 
-    /*  let traductions = [
-      ...data.map(x => {
-        // console.log(x, (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id), (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => (z.avancement || -1)))
-        return {
-          ...x,
-          avancement:
-            Math.max(
-              0,
-              ...((this.state.traductionsFaites || [])
-                .filter(y => y.jsonId === x._id)
-                .map(z => z.avancement || -1) || [])
-            ) || 0,
-          users: [
-            ...new Set(
-              (this.state.traductionsFaites || [])
-                .filter(y => y.jsonId === x._id)
-                .map(z => (z.userId || {})._id) || []
-            )
-          ].map(id => ({
-            _id: id,
-            picture:
-              (
-                (
-                  (this.state.traductionsFaites || []).find(
-                    t => (t.userId || {})._id === id
-                  ) || {}
-                ).userId || {}
-              ).picture || {}
-          })),
-          typeContenu: "string",
-          _id: isExpert
-            ? (
-                (this.state.traductionsFaites || []).find(
-                  y => y.jsonId === x._id && y.avancement === 1
-                ) || {}
-              )._id
-            : x._id
-        };
-      }),
-      //...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
-      ...this.props.dispositifs
-        .filter(x => x.status === "Actif")
-        .map(x => ({
-          _id: x._id,
-          title:
-            (x.titreMarque || "") +
-            (x.titreMarque && x.titreInformatif ? " - " : "") +
-            (x.titreInformatif || ""),
-          nombreMots: x.nbMots,
-          avancement:
-            Math.max(
-              0,
-              ...((this.state.traductionsFaites || [])
-                .filter(y => {
-                  //console.log(y);
-                  return y.articleId === x._id;
-                })
-                .map(z => z.avancement || -1) || [])
-            ) || 0,
-          status: x.status,
-          statusTrad: (this.state.traductionsFaites || [])
-            .filter(y => {
-              //console.log(y);
-              return y.articleId === x._id;
-            })
-            .map(z => z.status || -1),
-          created_at: x.created_at,
-          updatedAt: x.updatedAt,
-          users: [
-            ...new Set(
-              (this.state.traductionsFaites || [])
-                .filter(y => y.articleId === x._id)
-                .map(z => (z.userId || {})._id) || []
-            )
-          ].map(id => ({
-            _id: id,
-            picture:
-              (
-                (
-                  (this.state.traductionsFaites || []).find(
-                    t => (t.userId || {})._id === id
-                  ) || {}
-                ).userId || {}
-              ).picture || {}
-          })),
-          typeContenu: x.typeContenu || "dispositif"
-        }))
-    ]; */
-    /* console.log(traductions);
-    traductions = traductions
-      .filter(x => (isExpert ? x.avancement >= 1 : x.avancement < 1))
-      .sort((a, b) => {
-        b[this.state.filterSelected] - a[this.state.filterSelected];
-      });*/
+    // If the search bar isn't empty
+    if (e.target.value !== "") {
+      // Assign the original list to currentList
+      currentList = this.state.unfiltered;
+
+      // Use .filter() to determine which items should be displayed
+      // based on the search terms
+      newList = currentList.filter((item) => {
+        // change current item to lowercase
+        const lc = item.title.toLowerCase();
+        // change search term to lowercase
+        const filter = e.target.value.toLowerCase();
+        // check to see if the current list item includes the search term
+        // If it does, it will be added to newList. Using lowercase eliminates
+        // issues with capitalization in search terms and search content
+        return lc.includes(filter);
+      });
+    } else {
+      // If the search bar is empty, set newList to original task list
+      newList = this.state.unfiltered;
+    }
+    // Set the filtered state based on what our rules added to newList
+    this.setState({
+      traductions: newList,
+    });
+  }
+
+  render() {
+    const { langue, isExpert, data, traductions, unfiltered } = this.state;
+
     console.log("this is rendereing", traductions, this.state);
     const displayedText =
       (data || []).length === 0 || (this.props.dispositifs || []).length === 0
         ? "Chargement"
         : "Aucun résultat";
 
-    /* if (
-      (data || []).length > 0 &&
-      (this.props.dispositifs || []).length > 0 &&
-      traductions.length === 0 &&
-      (!isExpert || (this.state.traductionsFaites || []).length > 0)
-    ) {
-      console.log(
-        isExpert,
-        this.state.traductionsFaites,
-        data,
-        this.props.dispositifs,
-        traductions.length
-      );
-      Swal.fire({
-        title: "Oh non!",
-        text:
-          "Il semblerait qu'il n'y ait aucun élément à " +
-          (isExpert ? "valider" : "traduire"),
-        type: "error",
-        timer: 1500
-      });
-    } */
+
     const AvancementData = () => {
       if (
         this.props.match.params.id &&
         traductions.length > 0 &&
         this.state.langue.i18nCode
       ) {
-        return traductions.map(element => {
+        return traductions.map((element) => {
           if (
             isExpert &&
             // element.statusTrad &&
@@ -726,7 +683,7 @@ export class Avancement extends Component {
             return;
           }
           const joursDepuis =
-            (new Date().getTime() - new Date(element.updatedAt).getTime()) /
+            (new Date().getTime() - new Date(element.created_at).getTime()) /
             (1000 * 3600 * 24);
           const titre =
             (element.title || {}).fr ||
@@ -747,10 +704,31 @@ export class Avancement extends Component {
               }
             >
               <td className="align-middle">
-                {element.isStructure ? "Site" : jsUcfirst(element.typeContenu)}
+                {titre.slice(0, 30) + (titre.length > 30 ? "..." : "")}
               </td>
               <td className="align-middle">
-                {titre.slice(0, 30) + (titre.length > 30 ? "..." : "")}
+                <Row>
+                  <Col>
+                    <Progress
+                      color={colorAvancement(element.avancement)}
+                      value={element.avancement * 100}
+                    />
+                  </Col>
+                  <Col
+                    className={"text-" + colorAvancement(element.avancement)}
+                  >
+                    {element.avancement === 1 ? (
+                      <EVAIcon
+                        name="checkmark-circle-2"
+                        fill={variables.vert}
+                      />
+                    ) : (
+                      <span>
+                        {Math.round((element.avancement || 0) * 100)} %
+                      </span>
+                    )}
+                  </Col>
+                </Row>
               </td>
               <td
                 className={
@@ -758,78 +736,29 @@ export class Avancement extends Component {
                   (element.nombreMots > 100 ? "alert" : "success")
                 }
               >
-                {(isExpert
-                  ? ""
-                  : Math.round(
-                      (element.nombreMots || 0) * (element.avancement || 0)
-                    ) + " / ") + element.nombreMots}
+                {Math.round(
+                  (element.nombreMots || 0) * (element.avancement || 0)
+                ) +
+                  " / " +
+                  element.nombreMots}
               </td>
-              {isExpert ? (
-                <>
-                  <td className="align-middle">
-                    {element.users &&
-                      element.users.map(participant => {
-                        return (
-                          <img
-                            key={participant._id}
-                            src={
-                              participant.picture &&
-                              participant.picture.secure_url
-                                ? participant.picture.secure_url
-                                : marioProfile
-                            }
-                            className="profile-img-pin img-circle mr-10"
-                            alt="random profiles"
-                          />
-                        );
-                      })}
-                  </td>
-                  <td className="align-middle">
-                    {element.statusTrad ? element.statusTrad : ""}
-                  </td>
-                </>
-              ) : (
-                <>
-                  <td className="align-middle">
-                    <Row>
-                      <Col>
-                        <Progress
-                          color={colorAvancement(element.avancement)}
-                          value={element.avancement * 100}
-                        />
-                      </Col>
-                      <Col
-                        className={
-                          "text-" + colorAvancement(element.avancement)
-                        }
-                      >
-                        {element.avancement === 1 ? (
-                          <EVAIcon
-                            name="checkmark-circle-2"
-                            fill={variables.vert}
-                          />
-                        ) : (
-                          <span>
-                            {Math.round((element.avancement || 0) * 100)} %
-                          </span>
-                        )}
-                      </Col>
-                    </Row>
-                  </td>
-                  <td className="align-middle">
-                    {element.statusTrad ? element.statusTrad : ""}
-                  </td>
-                </>
-              )}
+
               <td
                 className={
                   "align-middle depuis " +
                   (joursDepuis > 3 ? "alert" : "success")
                 }
               >
-                {moment(element.updatedAt).fromNow()}
+                {moment(element.created_at).fromNow(true)}
+              </td>
+              <td className="align-middle">
+                {element.statusTrad ? element.statusTrad : ""}
+              </td>
+              <td className="align-middle">
+                {element.isStructure ? "Site" : jsUcfirst(element.typeContenu)}
               </td>
               <td className="align-middle fit-content">
+              {moment(element.updatedAt).format('YYYY/MM/DD H:mm')}
                 {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
               <td className="align-middle fit-content">
@@ -838,7 +767,7 @@ export class Avancement extends Component {
                     type="light-action"
                     name="eye-outline"
                     fill={variables.noir}
-                    onClick={() => this.goToTraduction(element)}
+                    onClick={() => API.delete_trads()}
                   />
                 )}
               </td>
@@ -955,6 +884,7 @@ export class Avancement extends Component {
           >
             {"Interface (" + this.state.stringCount + ")"}
           </StyledStatus>
+          <StyledInput type="text" name="search" id="avancement-search" placeholder="Rechercher un contenu" onChange={this.handleChange} />
         </Row>
 
         {/*<Row className="avancement-header">
@@ -1009,12 +939,12 @@ export class Avancement extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    dispositifs: state.dispositif.dispositifs
+    dispositifs: state.dispositif.dispositifs,
   };
 };
 
 export default track({
-  page: "Avancement"
+  page: "Avancement",
 })(connect(mapStateToProps)(withTranslation()(Avancement)));

@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: rgba(242, 242, 242, 1);
+  background: #f2f2f2;
   padding: 20px 20px 80px;
   margin-bottom: 20px;
   position: fixed;
@@ -92,18 +92,20 @@
         .toolbar-editeur{
           right: -25px;
           top: -75px;
+          //z-index: 5;
         }
       }
     }
   }
   .content-data{
-    overflow: auto;
+   // overflow: auto;
     display: flex;
+    position: relative;
     height: 100%;
     min-height: 180px;
     flex: 1;
     border-radius: 12px 12px 12px 12px;
-    padding: 20px;
+    padding: 0px 0px 0px 20px;
     position: relative;
       border: 0.5px solid $noir;
     &.no-margin-validated{
@@ -114,11 +116,13 @@
       background-color:  #def6c2 !important;
     }
 
-
+/* 
     &#body_texte_initial{
       background-color: #D2EDFC;
-    }
+    } */
     &#body_texte_final{
+      overflow: visible;
+      //position: relative;
       background: #FFFFFF;
       display: flex;
       flex-direction: column;
@@ -127,22 +131,32 @@
         background: transparent;
       }
       .editeur-sidebar{
+        // position: relative;
+        overflow: scroll;
         border: none;
         border-radius: 0;
         flex: 1;
         display: flex;
         flex-direction: column;
+        padding: 0;
         .editor-editeur{
+          display: flex;
+          //position: relative;
           padding: 0;
-          margin-top: -16px;
+          margin-top: 40px;
           flex: 1;
           &.editor-validated {
             background-color:  #def6c2 !important;
           }
         }
         .toolbar-editeur{
-          right: -25px;
-          top: -75px;
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-start;
+          position: absolute;
+          z-index: 1000;
+         right: 5px;
+          top: -7px;
         }
       }
     }

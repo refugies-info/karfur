@@ -13,33 +13,39 @@ const diffData = {
   traducteur: {
     title: "Avancement de ",
     headers: [
+      { name: "Titre", order: "title" },
+      { name: "Progression", order: "avancement" },
+      { name: "Mots", order: "nombreMots" },
+      { name: "Depuis", order: "created_at" },
+      { name: "Statut"},
       {
-        name: "Type de contenu",
-        order: "typeContenu"
+        name: "Type",
       },
-      { name: "Titre du contenu", order: "title" },
-      { name: "Mots traduits", order: "nombreMots" },
-      { name: "Avancement", order: "avancement" },
-      { name: "Status", order: "statusTrad" },
-      { name: "En attente depuis", order: "updatedAt" },
+      {
+        name: "Dernière trad",
+        order: "updatedAt"
+      },
       { name: "" }
     ]
   },
   expert: {
     title: "Avancement de ",
     headers: [
+      { name: "Titre", order: "title" },
+      { name: "Progression", order: "avancement" },
+      { name: "Mots", order: "nombreMots" },
+      { name: "Depuis", order: "created_at" },
+      { name: "Statut"},
       {
-        name: "Type de contenu",
-        order: "typeContenu"
+        name: "Type",
       },
-      { name: "Titre du contenu", order: "title" },
-      { name: "Nombre de mots", order: "nombreMots" },
-      { name: "Traducteurs", order: "users" },
-      { name: "Status", order: "statusTrad" },
-      { name: "En attente depuis", order: "updatedAt" },
+      {
+        name: "Dernière trad",
+        order: "updatedAt"
+      },
       { name: "" }
     ]
-  }
+  },
 };
 
 export { diffData };

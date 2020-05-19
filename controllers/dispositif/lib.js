@@ -104,6 +104,9 @@ async function add_dispositif(req, res) {
                 dispositifFr,
                 originalTrads[key]
               );
+              if (originalTrads[key].status == 'À revoir') {
+                await Traduction.updateMany({articleId: originalDis._id, langueCible: key }, {status: 'À revoir'}, { upsert: false });
+              }
               console.log("####### the trad modified", originalTrads[key]);
               await Traduction.findOneAndUpdate(
                 { _id: originalTrads[key]._id },
