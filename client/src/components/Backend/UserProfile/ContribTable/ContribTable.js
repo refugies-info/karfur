@@ -61,6 +61,10 @@ const contribTable = (props) => {
             (element.titreMarque || "") +
             (element.titreMarque && element.titreInformatif ? " - " : "") +
             (element.titreInformatif || "");
+          const deduplicatedParticipants = element.participants
+            ? _.uniqBy(element.participants, "username")
+            : [];
+
           return (
             <tr
               key={key}
@@ -86,20 +90,21 @@ const contribTable = (props) => {
                 </div>
               </td>
               <td className="align-middle hideOnPhone">
-                {element.participants && element.participants.map((participant, key) => {
-                  return ( 
-                    <img
-                      key={key} 
+                {deduplicatedParticipants &&
+                  deduplicatedParticipants.map((participant, key) => {
+                    return (
+                      <img
+                        key={key}
                         src={
                           participant.picture
                             ? participant.picture.secure_url
                             : marioProfile
                         }
-                      className="profile-img-pin img-circle"
-                      alt="random profiles"
-                    />
-                  );
-                })}
+                        className="profile-img-pin img-circle"
+                        alt="random profiles"
+                      />
+                    );
+                  })}
               </td>
               <td className="align-middle pointer fit-content">
                 {(props.type !== "user" ||
@@ -151,7 +156,7 @@ const contribTable = (props) => {
       </tbody>
     </Table>
   );
-  
+
   let show = true;
   const onAnimationEnd = (e) => (show = false);
 
@@ -221,7 +226,7 @@ const contribTable = (props) => {
             </Col>
           )}
         </Row>
-  
+
         <div className="tableau">
           {table}
 
@@ -255,7 +260,7 @@ const contribTable = (props) => {
     return table;
   } else {
     return false;
-}
+  }
 };
 
 export default withTranslation()(contribTable);
