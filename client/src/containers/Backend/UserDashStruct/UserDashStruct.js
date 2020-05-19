@@ -114,6 +114,7 @@ export class UserDashStruct extends Component {
         demarcheId: { $exists: false },
       },
       sort: { updatedAt: -1 },
+      populate: "participants",
     }).then((data) => {
       this._isMounted &&
         this.setState(
