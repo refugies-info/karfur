@@ -982,16 +982,15 @@ class SideTrad extends Component {
           }
           id="body_texte_final"
         >
-          <ConditionalSpinner show={!(translated || {}).body} />
+         {/*  <ConditionalSpinner show={!(translated || {}).body} />
           <DirectionProvider
             direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}
-          >
+          > */}
             <Editor
               toolbarClassName="toolbar-editeur"
-              editorClassName={"editor-editeur"
-               /*  validated && !modifiedNew && !modified
+              editorClassName={validated && !modifiedNew && !modified
                   ? "editor-editeur editor-validated"
-                  : "editor-editeur" */
+                  : "editor-editeur"
               }
               readOnly={validated && !modifiedNew && !modified ? true : false}
               //onContentStateChange={}
@@ -1032,7 +1031,6 @@ class SideTrad extends Component {
                 },
               }}
             />
-          </DirectionProvider>
           {autosuggest && (
             <div className="google-suggest">
               Suggestion par{" "}

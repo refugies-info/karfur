@@ -1161,9 +1161,6 @@ class SideTrad extends Component {
           id="body_texte_final"
         >
           <ConditionalSpinner show={!(translated || {}).body} />
-          <DirectionProvider
-            direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}
-          >
             <Editor
               toolbarClassName="toolbar-editeur"
               editorClassName={
@@ -1173,7 +1170,7 @@ class SideTrad extends Component {
               }
               readOnly={validated && !modifiedNew && !modified ? true : false}
               //onContentStateChange={}
-              wrapperClassName="wrapper-editeur editeur-sidebar editor-validated"
+              wrapperClassName="wrapper-editeur editeur-sidebar"
               placeholder="Renseignez votre traduction ici"
               onEditorStateChange={this.props.onEditorStateChange}
               editorState={(translated || {}).body}
@@ -1210,7 +1207,6 @@ class SideTrad extends Component {
                 },
               }}
             />
-          </DirectionProvider>
           {autosuggest && (
             <div className="google-suggest">
               Suggestion par{" "}

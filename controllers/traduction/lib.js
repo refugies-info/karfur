@@ -40,6 +40,7 @@ async function add_tradForReview(req, res) {
     console.log(req.body);
     if (traduction.avancement >= 1) {
       traduction.status = "En attente";
+      await Traduction.updateMany({articleId: traduction.articleId, langueCible: traduction.langueCible }, {status: 'En attente'}, { upsert: false });
     }
     if (!traduction.isExpert) {
       if (traduction.avancement < 1) {
@@ -807,6 +808,17 @@ const updateRoles = () => {
   });
 };
 
+async function delete_trads(req, res) {
+  console.log(req);
+  if (!req.fromSite) {
+    return res.status(405).json({ text: "Requête bloquée par API" });
+  } else if (!req.body) {
+    return res.status(400).json({ text: "Requête invalide" });
+  } else {
+    console.log(req.body);
+  };
+}
+
 //On exporte notre fonction
 exports.add_tradForReview = add_tradForReview;
 exports.get_tradForReview = get_tradForReview;
@@ -815,3 +827,4 @@ exports.update_tradForReview = update_tradForReview;
 exports.get_progression = get_progression;
 exports.get_xlm = get_xlm;
 exports.get_laser = get_laser;
+exports.delete_trads = delete_trads;
