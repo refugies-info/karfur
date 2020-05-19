@@ -14,8 +14,8 @@ const markTradModifications = (newD, oldD, trad, locale) => {
   newD.contenu.forEach((p, index) => {
     if (
       !oldD.contenu[index].children ||
-      !trad.translatedText.contenu[index].children ||
-      !trad.translatedText.contenu[index]
+      !trad.translatedText.contenu[index] ||
+      !trad.translatedText.contenu[index].children
     ) {
       trad.status = "À revoir";
       return;
@@ -33,6 +33,7 @@ const markTradModifications = (newD, oldD, trad, locale) => {
 
     if (p.children && p.children.length > 0) {
       p.children.forEach((c, j) => {
+        // a new children has been added or the new children has been modified before beeing translated
         if (
           !oldD.contenu[index].children[j] ||
           !trad.translatedText.contenu[index].children[j]
