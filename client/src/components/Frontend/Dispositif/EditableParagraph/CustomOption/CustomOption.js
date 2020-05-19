@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import { EditorState, convertToRaw,convertFromRaw } from 'draft-js';
-import EVAIcon from '../../../../UI/EVAIcon/EVAIcon';
-import { convertFromHTML } from 'draft-convert';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
+import EVAIcon from "../../../../UI/EVAIcon/EVAIcon";
+import { convertFromHTML } from "draft-convert";
 
 class CustomOption extends Component {
   static propTypes = {
@@ -10,13 +10,13 @@ class CustomOption extends Component {
     editorState: PropTypes.object,
   };
 
-  toggleBold= () => {
+  toggleBold = () => {
     const { editorState, onChange } = this.props;
     // const newState = RichUtils.toggleBlockType(
     //   editorState,
     //   "unstyled"
     // );
-    const selection=editorState.getSelection();
+    const selection = editorState.getSelection();
     // selection.isCollapsed = ()=>true;
     // const contentState = Modifier.insertText(
     //   newState.getCurrentContent(),
@@ -46,34 +46,41 @@ class CustomOption extends Component {
 
     // const newHTMLContent = "<h6>Bon à savoir<p>" + selectedText + "</p></h6>";
     const newHTMLContent = "<h6>" + selectedText + "</h6>";
-    const newDraftContent =  convertFromHTML(newHTMLContent);
+    const newDraftContent = convertFromHTML(newHTMLContent);
 
     const rawContent = convertToRaw(currentContent);
     const newRawContent = convertToRaw(newDraftContent) || {};
-    const newDraftArray = {...rawContent, blocks: rawContent.blocks.reduce((acc, curr) => [...acc, ...(curr.key === startKey ? (newRawContent.blocks.map(y => ({
-      ...y, 
-      // inlineStyles:[
-      //   {
-      //     label: 'Redacted',
-      //     type: 'REDACTED',
-      //     style: {
-      //         backgroundColor: 'red',
-      //     },
-      //   }
-      // ], 
-      // inlineStyleRanges: [
-      //   {
-      //     "offset": 2,
-      //     "length": 9,
-      //     "style": "ITALIC"
-      //   }
-      // ] 
-    })) || []) : [curr]) ] , [])     }
+    const newDraftArray = {
+      ...rawContent,
+      blocks: rawContent.blocks.reduce(
+        (acc, curr) => [
+          ...acc,
+          ...(curr.key === startKey
+            ? newRawContent.blocks.map((y) => ({
+                ...y,
+                // inlineStyles:[
+                //   {
+                //     label: 'Redacted',
+                //     type: 'REDACTED',
+                //     style: {
+                //         backgroundColor: 'red',
+                //     },
+                //   }
+                // ],
+                // inlineStyleRanges: [
+                //   {
+                //     "offset": 2,
+                //     "length": 9,
+                //     "style": "ITALIC"
+                //   }
+                // ]
+              })) || []
+            : [curr]),
+        ],
+        []
+      ),
+    };
     const newContentState = convertFromRaw(newDraftArray);
-    // console.log(draftToHtml(convertToRaw(newDraftContent)))
-    // console.log(draftToHtml(convertToRaw(this.props.editorState.getCurrentContent())), newDraftContent)
-
-    // console.log(convertToRaw(currentContent), Map(htmlToDraft(newHTMLContent).contentBlocks), selection, currentContent.getBlockForKey(startKey))
 
     // const trucmuche = Modifier.mergeBlockData(
     //   currentContent,
@@ -81,15 +88,11 @@ class CustomOption extends Component {
     //   Map(htmlToDraft("test").contentBlocks)
     // );
 
-    // console.log(convertToRaw(editorState.getCurrentContent()), htmlToDraft(newHTMLContent).contentBlocks)
-    // // const contentState = currentContent.replaceEntityData(
-    // //   currentContent.getLastCreatedEntityKey(),
-    // //   htmlToDraft(newHTMLContent).contentBlocks
-    // // );
-    // console.log(convertToRaw(trucmuche))
     if (editorState) {
       // onChange(newState);
-      onChange(EditorState.push(editorState, newContentState, 'insert-characters'));
+      onChange(
+        EditorState.push(editorState, newContentState, "insert-characters")
+      );
     }
   };
 
@@ -101,26 +104,5 @@ class CustomOption extends Component {
     );
   }
 }
-
-
-
-// addStar = () => {
-//   const { editorState, onChange } = this.props;
-//   const contentState = Modifier.replaceText(
-//     editorState.getCurrentContent(),
-//     editorState.getSelection(),
-//     '⭐',
-//     editorState.getCurrentInlineStyle(),
-//   );
-//   onChange(EditorState.push(editorState, contentState, 'insert-characters'));
-// };
-
-// render() {
-//   return (
-//     <div onClick={this.addStar} className="bloc-droite-alert blc-dr">
-//       <EVAIcon name="alert-triangle-outline" />
-//     </div>
-//   );
-// }
 
 export default CustomOption;

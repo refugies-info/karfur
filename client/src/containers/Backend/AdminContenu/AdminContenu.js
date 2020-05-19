@@ -16,7 +16,7 @@ import {
   status_mapping,
   responsables,
   internal_actions,
-  status_sort_arr
+  status_sort_arr,
 } from "./data";
 import { prepareDeleteContrib } from "../AdminContrib/functions";
 import { customCriteres } from "../../Dispositif/MoteurVariantes/data";
@@ -27,7 +27,7 @@ import {
   StyledSort,
   StyledStatus,
   StyledTitle,
-  StyledHeader
+  StyledHeader,
 } from "./StyledAdminContenu";
 import produce from "immer";
 
@@ -49,7 +49,7 @@ class AdminContenu extends Component {
     deleted: false,
     published: false,
     draft: false,
-    headers: table_contenu.headers
+    headers: table_contenu.headers,
   };
 
   componentDidMount() {
@@ -57,15 +57,13 @@ class AdminContenu extends Component {
   }
 
   _initializeContrib = () => {
-    console.log("start fetch disp");
     API.get_dispositif({ query: {}, populate: "creatorId mainSponsor" }).then(
-      data_res => {
+      (data_res) => {
         const dispositifs = [...data_res.data.data];
-        console.log(dispositifs);
         this.setState({
           dispositifs: dispositifs
-            .filter(x => !x.demarcheId)
-            .map(x => ({
+            .filter((x) => !x.demarcheId)
+            .map((x) => ({
               ...x,
               titreCourt: x.titreMarque || x.titreInformatif || "",
               titre:
@@ -85,8 +83,8 @@ class AdminContenu extends Component {
                 (new Date().getTime() - new Date(x.updatedAt).getTime()) /
                 (1000 * 3600 * 24),
               children: dispositifs
-                .filter(y => y.demarcheId === x._id)
-                .map(y => ({
+                .filter((y) => y.demarcheId === x._id)
+                .map((y) => ({
                   ...y,
                   structure: _.get(
                     y,
@@ -102,7 +100,7 @@ class AdminContenu extends Component {
                     y.titreInformatif,
                     "-",
                     y.variantes
-                      .map(z =>
+                      .map((z) =>
                         [
                           "(",
                           ...(z.ageTitle
@@ -117,7 +115,7 @@ class AdminContenu extends Component {
                                     : z.contentTitle === "Moins de ** ans"
                                     ? "Moins de " + z.topValue + " ans"
                                     : "Plus de " + z.bottomValue + " ans") +
-                                  ", "
+                                  ", ",
                               ]
                             : []),
                           ...(z.villes
@@ -126,7 +124,7 @@ class AdminContenu extends Component {
                                   (z.villes.length > 1
                                     ? z.villes.length + " villes"
                                     : z.villes[0].formatted_address) +
-                                  ", "
+                                  ", ",
                               ]
                             : []),
                           customCriteres
@@ -142,34 +140,34 @@ class AdminContenu extends Component {
                               ""
                             )
                             .slice(0, -2),
-                          ")"
+                          ")",
                         ].join(" ")
                       )
-                      .join(" ou ")
-                  ].join(" ")
-                }))
-            }))
+                      .join(" ou "),
+                  ].join(" "),
+                })),
+            })),
         });
       }
     );
   };
 
-  toggleExpanded = idx => {
+  toggleExpanded = (idx) => {
     let dispositifs = [...this.state.dispositifs]
       .map((x, i) =>
         i === idx
           ? [
               { ...x, expanded: !x.expanded },
               ...(!x.expanded
-                ? x.children.map(y => ({ ...y, type: "child", children: [] }))
-                : [])
+                ? x.children.map((y) => ({ ...y, type: "child", children: [] }))
+                : []),
             ]
           : [x]
       )
       .reduce((a, b) => a.concat(b), []);
     if (this.state.dispositifs[idx].expanded) {
       dispositifs = dispositifs.filter(
-        x => x.demarcheId !== this.state.dispositifs[idx]._id
+        (x) => x.demarcheId !== this.state.dispositifs[idx]._id
       );
     }
     this.setState({ dispositifs });
@@ -177,7 +175,7 @@ class AdminContenu extends Component {
 
   reorder = (key, element) => {
     const croissant = !element.croissant;
-    this.setState(pS => ({
+    this.setState((pS) => ({
       dispositifs: pS.dispositifs.sort((a, b) => {
         let aValue = _.get(a, element.order),
           bValue = _.get(b, element.order);
@@ -199,15 +197,15 @@ class AdminContenu extends Component {
         i === key
           ? { ...x, croissant: !x.croissant, active: true }
           : { ...x, active: false }
-      )
+      ),
     }));
   };
 
-  toggleTooltip = idx =>
-    this.setState(pS => ({
+  toggleTooltip = (idx) =>
+    this.setState((pS) => ({
       dispositifs: pS.dispositifs.map((x, i) =>
         i === idx ? { ...x, tooltip: !x.tooltip } : x
-      )
+      ),
     }));
 
   handleChange = (e, idx, dispositif) => {
@@ -215,13 +213,13 @@ class AdminContenu extends Component {
     const newDispositif = {
       [target.id]: target.value,
       dispositifId: dispositif._id,
-      status: dispositif.status
+      status: dispositif.status,
     };
     API.add_dispositif(newDispositif);
-    this.setState(pS => ({
+    this.setState((pS) => ({
       dispositifs: pS.dispositifs.map((x, i) =>
         i === idx ? { ...x, [target.id]: target.value } : x
-      )
+      ),
     }));
   };
 
@@ -241,15 +239,15 @@ class AdminContenu extends Component {
         confirmButtonColor: variables.rouge,
         cancelButtonColor: variables.vert,
         confirmButtonText: "Oui, le valider",
-        cancelButtonText: "Annuler"
+        cancelButtonText: "Annuler",
       });
     }
     if (question.value) {
       API.add_dispositif(newDispositif).then(() => {
-        this.setState(pS => ({
-          dispositifs: pS.dispositifs.map(x =>
+        this.setState((pS) => ({
+          dispositifs: pS.dispositifs.map((x) =>
             x._id === dispositif._id ? { ...x, status: status } : x
-          )
+          ),
         }));
       });
     }
@@ -257,7 +255,7 @@ class AdminContenu extends Component {
 
   reorderOnTopPubblish = () => {
     this.setState(
-      produce(draft => {
+      produce((draft) => {
         draft.published = !this.state.published;
         if (!this.state.published) {
           draft.dispositifs.sort((a, b) => {
@@ -276,7 +274,7 @@ class AdminContenu extends Component {
 
   reorderOnTopDraft = () => {
     this.setState(
-      produce(draft => {
+      produce((draft) => {
         draft.draft = !this.state.draft;
         if (!this.state.draft) {
           draft.dispositifs.sort((a, b) => {
@@ -295,7 +293,7 @@ class AdminContenu extends Component {
 
   reorderOnTopDeleted = () => {
     this.setState(
-      produce(draft => {
+      produce((draft) => {
         draft.deleted = !this.state.deleted;
         if (!this.state.deleted) {
           draft.dispositifs.sort((a, b) => {
@@ -382,7 +380,7 @@ class AdminContenu extends Component {
           <tbody>
             {dispositifs.map((element, key) => {
               const bgColor =
-                (status_mapping.find(x => x.name === element.status) || {})
+                (status_mapping.find((x) => x.name === element.status) || {})
                   .color || "";
               if (
                 (element.status === "Supprimé" && !this.state.deleted) ||
@@ -484,7 +482,7 @@ class AdminContenu extends Component {
                         type="select"
                         id="responsable"
                         value={element.responsable || ""}
-                        onChange={e => this.handleChange(e, key, element)}
+                        onChange={(e) => this.handleChange(e, key, element)}
                       >
                         <option value={""} key={-1}>
                           Aucun
@@ -501,7 +499,7 @@ class AdminContenu extends Component {
                         type="select"
                         id="internal_action"
                         value={element.internal_action || ""}
-                        onChange={e => this.handleChange(e, key, element)}
+                        onChange={(e) => this.handleChange(e, key, element)}
                       >
                         <option value={""} key={-1}>
                           Aucun
@@ -563,14 +561,14 @@ class AdminContenu extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    structures: state.structure.structures
+    structures: state.structure.structures,
   };
 };
 
 const mapDispatchToProps = { fetch_dispositifs };
 
 export default track({
-  page: "AdminContenu"
+  page: "AdminContenu",
 })(connect(mapStateToProps, mapDispatchToProps)(AdminContenu));

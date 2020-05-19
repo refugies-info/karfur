@@ -91,7 +91,6 @@ class CatList extends Component {
   render() {
     const { t, item, keyValue } = this.props;
     const { dropdownOpen, isMounted, ville } = this.state;
-    console.log(this.state, item);
 
     return (
       <motion.ul
@@ -142,10 +141,7 @@ class CatList extends Component {
           className={"search-options  advanced-search-a bg-noir"}
           variants={itemanim}
         >
-          <a
-            target="_blank"
-            href="https://soliguide.fr/"
-          >
+          <a target="_blank" href="https://soliguide.fr/">
             <InnerButton>
               <div
                 style={{

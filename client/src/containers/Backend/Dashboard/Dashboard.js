@@ -170,7 +170,6 @@ class Dashboard extends Component {
       let query = {...this.state.eventValues};
       query.userId = (this.state.events.userId.find(x => x.username === this.state.eventValues.userId ) || {})._id;
       API.get_event({query}).then((data) => {
-        console.log(data.data.data)
       })
     })
   }
@@ -189,7 +188,6 @@ class Dashboard extends Component {
   }
 
   createCSV = () => {
-    console.log(this.state.mainChart)
   }
 
   loading = () => <div className="animated fadeIn pt-1 text-center">Loading...</div>
