@@ -29,7 +29,7 @@ export class UserDashContrib extends Component {
       objectifs: false,
       contributions: false,
       progression: false,
-      defineUser: false
+      defineUser: false,
     },
     user: {},
     langues: [],
@@ -37,32 +37,33 @@ export class UserDashContrib extends Component {
     contributions: [],
     progression: {
       timeSpent: 0,
-      nbMots: 0
+      nbMots: 0,
     },
-    isMainLoading: true
+    isMainLoading: true,
   };
 
   componentDidMount() {
     this._isMounted = true;
-    API.get_user_info().then(data_res => {
+    API.get_user_info().then((data_res) => {
       let user = data_res.data.data;
       this._isMounted &&
         API.get_dispositif({
           query: {
             creatorId: user._id,
             status: { $ne: "Supprimé" },
-            demarcheId: { $exists: false }
+            demarcheId: { $exists: false },
           },
-          sort: { updatedAt: -1 }
-        }).then(data => {
+          sort: { updatedAt: -1 },
+          populate: "participants",
+        }).then((data) => {
           this._isMounted &&
             this.setState({
               contributions: data.data.data,
-              isMainLoading: false
+              isMainLoading: false,
             });
         });
       this._isMounted &&
-        API.get_progression().then(data_progr => {
+        API.get_progression().then((data_progr) => {
           if (data_progr.data.data && data_progr.data.data.length > 0)
             this._isMounted &&
               this.setState({ progression: data_progr.data.data[0] });
@@ -70,7 +71,7 @@ export class UserDashContrib extends Component {
       this._isMounted &&
         this.setState({
           user: user,
-          contributeur: user.roles.some(x => x.nom === "Contrib")
+          contributeur: user.roles.some((x) => x.nom === "Contrib"),
         });
     });
     window.scrollTo(0, 0);
@@ -80,38 +81,38 @@ export class UserDashContrib extends Component {
     this._isMounted = false;
   }
 
-  toggleModal = modal => {
+  toggleModal = (modal) => {
     this.props.tracking.trackEvent({
       action: "toggleModal",
       label: modal,
-      value: !this.state.showModal[modal]
+      value: !this.state.showModal[modal],
     });
     this.setState(
       {
         showModal: {
           ...this.state.showModal,
-          [modal]: !this.state.showModal[modal]
-        }
+          [modal]: !this.state.showModal[modal],
+        },
       },
       () => console.log(this.state)
     );
   };
 
-  setUser = user => {
+  setUser = (user) => {
     // API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
     //   this.setState({user, langues: data_langues.data.data});
     this.toggleModal("defineUser");
     // })
   };
 
-  validateObjectifs = newUser => {
+  validateObjectifs = (newUser) => {
     newUser = { _id: this.state.user._id, ...newUser };
-    API.set_user_info(newUser).then(data => {
+    API.set_user_info(newUser).then((data) => {
       Swal.fire({
         title: "Yay...",
         text: "Vos objectifs ont bien été enregistrés",
         type: "success",
-        timer: 1500
+        timer: 1500,
       });
       this.setState({ user: data.data.data });
       this.toggleModal("objectifs");
@@ -123,7 +124,7 @@ export class UserDashContrib extends Component {
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore activée",
       type: "error",
-      timer: 1500
+      timer: 1500,
     });
 
   render() {
@@ -216,20 +217,15 @@ export class UserDashContrib extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user.user,
-    userId: state.user.userId
+    userId: state.user.userId,
   };
 };
 
 const mapDispatchToProps = { fetch_dispositifs };
 
 export default track({
-  page: "UserDashContrib"
-})(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(UserDashContrib)
-);
+  page: "UserDashContrib",
+})(connect(mapStateToProps, mapDispatchToProps)(UserDashContrib));
