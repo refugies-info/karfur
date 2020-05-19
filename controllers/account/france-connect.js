@@ -1,19 +1,18 @@
-const querystring = require('querystring');
+const querystring = require("querystring");
 
-const httpClient = require('../../utils/httpClient');
-const config = require('../../utils/config');
-const getAuthorizationUrlForAuthentication = require('../../utils/utils').getAuthorizationUrlForAuthentication;
-const getLogoutUrl = require('../../utils/utils').getLogoutUrl;
-const getAcrFromIdToken = require('../../utils/utils').getAcrFromIdToken;
+const httpClient = require("../../utils/httpClient");
+const config = require("../../utils/config");
+const getAuthorizationUrlForAuthentication = require("../../utils/utils")
+  .getAuthorizationUrlForAuthentication;
+const getLogoutUrl = require("../../utils/utils").getLogoutUrl;
+const getAcrFromIdToken = require("../../utils/utils").getAcrFromIdToken;
 
 function FClogin(req, res) {
-  res.redirect(getAuthorizationUrlForAuthentication(req.body.eidasLevel))
-  console.log(getAuthorizationUrlForAuthentication(req.body.eidasLevel));
+  res.redirect(getAuthorizationUrlForAuthentication(req.body.eidasLevel));
 }
 
 function FClogout(req, res) {
   res.redirect(getLogoutUrl(req.session.idToken));
-  console.log(getLogoutUrl(req.session.idToken));
 }
 
 /**
@@ -22,15 +21,13 @@ function FClogout(req, res) {
  */
 const oauthLoginCallback = async (req, res, next) => {
   // check if the mandatory Authorization code is there
-  console.log('dans le redirect')
   if (!req.query.code) {
     return res.sendStatus(400);
   }
-  console.log('ok le redirect')
   try {
     // Set request params
     const body = {
-      grant_type: 'authorization_code',
+      grant_type: "authorization_code",
       redirect_uri: `${config.FS_URL}${config.LOGIN_CALLBACK_FS_PATH}`,
       client_id: config.AUTHENTICATION_CLIENT_ID,
       client_secret: config.AUTHENTICATION_CLIENT_SECRET,
@@ -38,9 +35,11 @@ const oauthLoginCallback = async (req, res, next) => {
     };
 
     // Request access token.
-    const { data: { access_token: accessToken, id_token: idToken } } = await httpClient({
-      method: 'POST',
-      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+    const {
+      data: { access_token: accessToken, id_token: idToken },
+    } = await httpClient({
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
       data: querystring.stringify(body),
       url: `${config.FC_URL}${config.TOKEN_FC_PATH}`,
     });
@@ -51,7 +50,7 @@ const oauthLoginCallback = async (req, res, next) => {
 
     // Request user data
     const { data: user } = await httpClient({
-      method: 'GET',
+      method: "GET",
       headers: { Authorization: `Bearer ${accessToken}` },
       url: `${config.FC_URL}${config.USERINFO_FC_PATH}`,
     });
@@ -62,27 +61,19 @@ const oauthLoginCallback = async (req, res, next) => {
     req.session.context = { acr: getAcrFromIdToken(idToken) };
     req.session.idToken = idToken;
 
-    return res.redirect('/user');
+    return res.redirect("/user");
   } catch (error) {
     return next(error);
   }
 };
 
-const getUser = (req, res) => {
-  console.log('dans get user', {
-      user: req.session.user,
-      data: JSON.stringify(req.session.user, null, 2),
-      context: JSON.stringify(req.session.context, null, 2),
-      dataLink: 'https://github.com/france-connect/identity-provider-example/blob/master/database.csv',
-    })
-} 
+const getUser = (req, res) => {};
 
 const oauthLogoutCallback = (req, res) => {
-  console.log('logging out')
   // Empty session
   req.session.destroy();
 
-  return res.redirect('/');
+  return res.redirect("/");
 };
 
 exports.FClogin = FClogin;

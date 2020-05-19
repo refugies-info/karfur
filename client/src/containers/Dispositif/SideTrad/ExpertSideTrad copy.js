@@ -109,13 +109,13 @@ class SideTrad extends Component {
       availableListTrad,
       modifiedNew,
     } = this.state;
- 
+
     if (
       currIdx !== prevState.currIdx ||
       currSubIdx !== prevState.currSubIdx ||
       currSubName !== prevState.currSubName
     ) {
-/*       if ((!isExpert || isExpert === undefined) && availableListTrad.length > 0) {
+      /*       if ((!isExpert || isExpert === undefined) && availableListTrad.length > 0) {
         this.setState({ validated: true });
       } else {
         this.setState({ validated: false });
@@ -149,7 +149,7 @@ class SideTrad extends Component {
       }
     }
     if (this.props.traduction !== prevProps.traduction) {
-    /*   if (!isExpert && availableListTrad.length > 0) {
+      /*   if (!isExpert && availableListTrad.length > 0) {
         this.setState({ validated: true });
       } else {
         this.setState({ validated: false });
@@ -763,9 +763,7 @@ class SideTrad extends Component {
       };
       //if (newTrad._id, )
       if (newTrad._id) {
-        await API.update_tradForReview(newTrad).then((data) => {
-          console.log(data, 'updated trad')
-        });
+        await API.update_tradForReview(newTrad).then((data) => {});
       }
     }
     this.props.fwdSetState({ traduction }, () => {
@@ -804,7 +802,6 @@ class SideTrad extends Component {
   };
 
   render() {
-      console.log(this.state, this.props);
     const langue = this.props.langue || {};
     const { francais, translated, isExpert, autosuggest } = this.props; //disableBtn
     const {
@@ -1108,8 +1105,8 @@ class SideTrad extends Component {
                   alt="profile"
                 />
                 <span>{userId.username}</span>
-                </div>
-                <div className="proposition">Ma nouvelle proposition</div>
+              </div>
+              <div className="proposition">Ma nouvelle proposition</div>
             </>
           ) : null}
         </div>

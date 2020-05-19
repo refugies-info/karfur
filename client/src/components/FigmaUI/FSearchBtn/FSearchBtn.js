@@ -1,24 +1,36 @@
-import React from 'react';
+import React from "react";
 
-import './FSearchBtn.scss';
-import EVAIcon from '../../UI/EVAIcon/EVAIcon';
-import Ripples from 'react-ripples';
+import "./FSearchBtn.scss";
+import EVAIcon from "../../UI/EVAIcon/EVAIcon";
+import Ripples from "react-ripples";
 
-const fSearchBtn = props => {
-  let {className, desactiver, active, color, ...bProps}= props;
+const fSearchBtn = (props) => {
+  let { className, desactiver, active, color, ...bProps } = props;
 
-  let onCrossClick = e => {
+  let onCrossClick = (e) => {
     e.stopPropagation();
     desactiver();
-  }
-  console.log(color);
-  return(
-    <button className={'search-btn ' + (className || '') + (active ? " active" : "") + (color ? " color bg-"+color : "")}  {...bProps}>
+  };
+  return (
+    <button
+      className={
+        "search-btn " +
+        (className || "") +
+        (active ? " active" : "") +
+        (color ? " color bg-" + color : "")
+      }
+      {...bProps}
+    >
       {props.children}
-      {active && 
-        <EVAIcon className="ml-10" name="close-outline" onClick={onCrossClick} />}
+      {active && (
+        <EVAIcon
+          className="ml-10"
+          name="close-outline"
+          onClick={onCrossClick}
+        />
+      )}
     </button>
-  )
+  );
 };
 // style={{backgroundColor: color, border: "none"}}
 export default fSearchBtn;
