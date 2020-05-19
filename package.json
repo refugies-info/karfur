@@ -44,6 +44,7 @@
     "is-plain-obj": "^1.1.0",
     "is-stream": "^1.1.0",
     "jwt-simple": "^0.5.5",
+    "lodash": "^4.17.15",
     "lodash.castarray": "^4.4.0",
     "lodash.isempty": "^4.4.0",
     "messaging-api-messenger": "^0.7.16",
