@@ -393,6 +393,13 @@ export class TranslationHOC extends Component {
     const i18nCode = (this.state.langue || {}).i18nCode,
       { isExpert, type, langue } = this.state;
     const nom = "avancement." + i18nCode;
+    if (!isExpert) {
+      this.props.history.push({
+        pathname: "/avancement/traductions/" + langue._id,
+      }); 
+      return;
+    }
+
     const query = {
       $or: [{ [nom]: { $lt: 1 } }, { [nom]: null }, { avancement: 1 }],
       status: "Actif",
@@ -406,6 +413,11 @@ export class TranslationHOC extends Component {
     ]({ query: query, locale: i18nCode, random: true, isExpert })
       .then((data_res) => {
         let results = data_res.data.data;
+       /*  if (!isExpert) {
+          this.props.history.push({
+            pathname: "/avancement/traductions/" + langue._id,
+          }); 
+        } */
         if (results.length === 0) {
           this.props.history.push({
               pathname: "/avancement/traductions/" + langue._id,
