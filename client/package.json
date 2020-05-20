@@ -127,7 +127,8 @@
     "test": "react-app-env test --runInBand --noSingleRun",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "test:types" : "tsc --noEmit"
   },
   "proxy": "http://localhost:8000",
   "bugs": {
