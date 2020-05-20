@@ -407,10 +407,11 @@ export class TranslationHOC extends Component {
       .then((data_res) => {
         let results = data_res.data.data;
         if (results.length === 0) {
-          if (isExpert) {
-            this.props.history.push({
+          this.props.history.push({
               pathname: "/avancement/traductions/" + langue._id,
             });
+          /* if (isExpert) {
+            
           } else {
             Swal.fire({
               title: "Oh non",
@@ -419,7 +420,7 @@ export class TranslationHOC extends Component {
               type: "error",
               timer: 1500,
             });
-          }
+          } */
         } else {
           clearInterval(this.timer);
           this.props.history.push({
