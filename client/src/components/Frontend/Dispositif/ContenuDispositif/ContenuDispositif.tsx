@@ -6,8 +6,10 @@ import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import QuickToolbar from "../../../../containers/Dispositif/QuickToolbar/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
 
+// @ts-ignore
 const contenuDispositif = (props) => {
   const { t, disableEdit, inVariante } = props;
+  // @ts-ignore
   return props.menu.map((item, key) => {
     const newDisableEdit =
       disableEdit ||
