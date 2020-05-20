@@ -968,6 +968,9 @@ class SideTrad extends Component {
             id={langue.langueCode}
           ></i>
         </div>
+        <DirectionProvider
+            direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}
+          >
         <div
           className={
             userId && userId.username && validated && !modified && !modifiedNew
@@ -982,10 +985,8 @@ class SideTrad extends Component {
           }
           id="body_texte_final"
         >
-         {/*  <ConditionalSpinner show={!(translated || {}).body} />
-          <DirectionProvider
-            direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}
-          > */}
+        <ConditionalSpinner show={!(translated || {}).body} />
+       
             <Editor
               toolbarClassName="toolbar-editeur"
               editorClassName={validated && !modifiedNew && !modified
@@ -1038,6 +1039,7 @@ class SideTrad extends Component {
             </div>
           )}
         </div>
+        </DirectionProvider>
         <div className="expert-bloc">
           {userId &&
           userId.username &&

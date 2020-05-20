@@ -120,7 +120,6 @@ export class TranslationHOC extends Component {
         sort: { updatedAt: -1 },
         populate: "userId",
       }).then((data_res) => {
-        console.log(data_res);
         if (
           data_res.data.data &&
           data_res.data.data.constructor === Array &&
@@ -192,7 +191,6 @@ export class TranslationHOC extends Component {
   fwdSetState = (fn, cb) => this._isMounted && this.setState(fn, cb);
 
   translate = (text, target, item, toEditor = false) => {
-    console.log(text, target);
     this.setState({
       translated: { ...this.state.translated, [item]: "" },
       autosuggest: true,
@@ -257,9 +255,7 @@ export class TranslationHOC extends Component {
         let result = JSON.parse(data.data.data) || {};
         if (result && result.cosine && result.cosine.length > 0) {
           this._isMounted && this.setState({ score: result.cosine[0] });
-          console.log(result.cosine[0], result.distances, result.time);
         } else {
-          console.log(result);
         }
       } catch (e) {
         console.log(e);
@@ -292,7 +288,6 @@ export class TranslationHOC extends Component {
   };
 
   handleClickText = (e, initial, target) => {
-    console.log('inside the click next');
     try {
       if (last_target) {
         document
@@ -376,10 +371,8 @@ export class TranslationHOC extends Component {
         isExpert: true,
       };
     }
-    console.log(traduction, tradData);
     traduction = { ...traduction, ...tradData };
     const data = await API.add_traduction(traduction);
-    console.log(traduction.avancement);
     traduction._id = (data.data.data || {})._id;
     this.setState({ traduction });
     await this.get_trads();
@@ -413,12 +406,12 @@ export class TranslationHOC extends Component {
     ]({ query: query, locale: i18nCode, random: true, isExpert })
       .then((data_res) => {
         let results = data_res.data.data;
-        console.log(results);
         if (results.length === 0) {
-          if (isExpert) {
-            this.props.history.push({
+          this.props.history.push({
               pathname: "/avancement/traductions/" + langue._id,
             });
+          /* if (isExpert) {
+            
           } else {
             Swal.fire({
               title: "Oh non",
@@ -427,7 +420,7 @@ export class TranslationHOC extends Component {
               type: "error",
               timer: 1500,
             });
-          }
+          } */
         } else {
           clearInterval(this.timer);
           this.props.history.push({

@@ -11,27 +11,27 @@ import windowSize from "react-window-size";
 import {
   avancement_actions,
   avancement_contributions,
-  avancement_members
+  avancement_members,
 } from "./data";
 import API from "../../../utils/API";
 import DashHeader from "../../../components/Backend/UserDash/DashHeader/DashHeader";
 import {
   MembersTable,
   ActionTable,
-  ContribTable
+  ContribTable,
 } from "../../../components/Backend/UserProfile";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import {
   AddMemberModal,
   EditMemberModal,
-  SuggestionModal
+  SuggestionModal,
 } from "../../../components/Modals";
 import {
   showSuggestion,
   archiveSuggestion,
   parseActions,
-  deleteContrib
+  deleteContrib,
 } from "../UserProfile/functions";
 import { selectItem, editMember, addMember } from "./functions";
 import DateOffset from "../../../components/Functions/DateOffset";
@@ -45,7 +45,7 @@ moment.locale("fr");
 const tables = [
   { name: "actions", component: ActionTable },
   { name: "contributions", component: ContribTable },
-  { name: "members", component: MembersTable }
+  { name: "members", component: MembersTable },
 ];
 
 export class UserDashStruct extends Component {
@@ -67,7 +67,7 @@ export class UserDashStruct extends Component {
       members: false,
       addMember: false,
       editMember: false,
-      suggestion: false
+      suggestion: false,
     },
     isMainLoading: true,
     showSections: { contributions: true },
@@ -81,17 +81,17 @@ export class UserDashStruct extends Component {
     suggestion: {},
     traductions: [],
     nbRead: 0,
-    selectedStructure:  this.props.location.state && this.props.location.state.admin
-    ? this.props.location.state.structure
-    : this.props.user.structures ? this.props.user.structures[0] : null
+    selectedStructure:
+      this.props.location.state && this.props.location.state.admin
+        ? this.props.location.state.structure
+        : this.props.user.structures
+        ? this.props.user.structures[0]
+        : null,
   };
 
   componentDidMount() {
-    console.log(this.props.location.state, this.props.user.structures);
-
     this._isMounted = true;
     let user = this.props.user;
-    console.log(user.structures);
     if (!this.state.selectedStructure) {
       Swal.fire(
         "Oh non",
@@ -103,34 +103,35 @@ export class UserDashStruct extends Component {
 
     this.initializeStructure();
     API.get_users({ query: { status: "Actif" } }).then(
-      data => this._isMounted && this.setState({ users: data.data.data })
+      (data) => this._isMounted && this.setState({ users: data.data.data })
     );
     API.get_dispositif({
       query: {
         mainSponsor: this.state.selectedStructure,
         status: {
-          $in: ["Actif", "Accepté structure", "En attente", "En attente admin"]
+          $in: ["Actif", "Accepté structure", "En attente", "En attente admin"],
         },
-        demarcheId: { $exists: false }
+        demarcheId: { $exists: false },
       },
-      sort: { updatedAt: -1 }
-    }).then(data => {
-      console.log(data.data.data);
+      sort: { updatedAt: -1 },
+      populate: "participants",
+    }).then((data) => {
       this._isMounted &&
         this.setState(
           {
             contributions: data.data.data,
-            actions: parseActions(data.data.data)
+            actions: parseActions(data.data.data),
           },
           () => {
             this._isMounted &&
               API.get_tradForReview({
                 query: {
                   type: "dispositif",
-                  articleId: { $in: this.state.contributions.map(x => x._id) }
-                }
-              }).then(data => {
-                //console.log(data.data.data)
+                  articleId: {
+                    $in: this.state.contributions.map((x) => x._id),
+                  },
+                },
+              }).then((data) => {
                 this._isMounted &&
                   this.setState({ traductions: data.data.data });
               });
@@ -140,9 +141,9 @@ export class UserDashStruct extends Component {
                 query: {
                   action: "readDispositif",
                   label: "dispositifId",
-                  value: { $in: this.state.contributions.map(x => x._id) }
-                }
-              }).then(data => {
+                  value: { $in: this.state.contributions.map((x) => x._id) },
+                },
+              }).then((data) => {
                 this._isMounted && this.setState({ nbRead: data.data.data });
               });
           }
@@ -156,7 +157,6 @@ export class UserDashStruct extends Component {
       document.title = this.state.structure.nom;
     }
     if (this.props.location.state !== prevProps.location.state) {
-      
     }
   }
 
@@ -166,7 +166,7 @@ export class UserDashStruct extends Component {
 
   initializeStructure = () => {
     const user = this.props.user;
-/*     let selectedStructure =
+    /*     let selectedStructure =
       this.props.location.state && this.props.location.state.admin
         ? this.props.location.state.structure
         : user.structures[0];
@@ -175,29 +175,30 @@ export class UserDashStruct extends Component {
       { _id: this.state.selectedStructure },
       {},
       "dispositifsAssocies"
-    ).then(data => {
-      //console.log(data.data.data[0]);
+    ).then((data) => {
       if (data.data.data && data.data.data.length > 0) {
         this.setState({ structure: data.data.data[0], isMainLoading: false });
         API.get_event({
           query: {
             created_at: { $gte: DateOffset(new Date(), 0, 0, -15) },
             userId: {
-              $in: ((data.data.data[0] || {}).membres || []).map(x => x.userId)
+              $in: ((data.data.data[0] || {}).membres || []).map(
+                (x) => x.userId
+              ),
             },
-            action: { $ne: "idle" }
-          }
-        }).then(data_res => {
-          this.setState(pS => ({
+            action: { $ne: "idle" },
+          },
+        }).then((data_res) => {
+          this.setState((pS) => ({
             structure: {
               ...pS.structure,
-              membres: (pS.structure.membres || []).map(y => ({
+              membres: (pS.structure.membres || []).map((y) => ({
                 ...y,
                 connected: (data_res.data.data || []).some(
-                  z => z.userId === y.userId
-                )
-              }))
-            }
+                  (z) => z.userId === y.userId
+                ),
+              })),
+            },
           }));
         });
       } else {
@@ -206,28 +207,28 @@ export class UserDashStruct extends Component {
     });
   };
 
-  toggleModal = modal => {
+  toggleModal = (modal) => {
     this.props.tracking.trackEvent({
       action: "toggleModal",
       label: modal,
-      value: !this.state.showModal[modal]
+      value: !this.state.showModal[modal],
     });
-    this.setState(pS => ({
-      showModal: { ...pS.showModal, [modal]: !pS.showModal[modal] }
+    this.setState((pS) => ({
+      showModal: { ...pS.showModal, [modal]: !pS.showModal[modal] },
     }));
   };
 
-  toggleSection = section => {
+  toggleSection = (section) => {
     this.props.tracking.trackEvent({
       action: "toggleSection",
       label: section,
-      value: !this.state.showSections[section]
+      value: !this.state.showSections[section],
     });
     this.setState({
       showSections: {
         ...this.state.showSections,
-        [section]: !this.state.showSections[section]
-      }
+        [section]: !this.state.showSections[section],
+      },
     });
   };
 
@@ -236,7 +237,7 @@ export class UserDashStruct extends Component {
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore activée",
       type: "error",
-      timer: 1500
+      timer: 1500,
     });
 
   render() {
@@ -246,7 +247,7 @@ export class UserDashStruct extends Component {
       contributions,
       structure,
       users,
-      nbRead
+      nbRead,
     } = this.state;
     const { user } = this.props;
 
@@ -255,7 +256,7 @@ export class UserDashStruct extends Component {
     } else {
       const members = structure.membres;
       const enAttente = (structure.dispositifsAssocies || []).filter(
-        x => x.status === "En attente"
+        (x) => x.status === "En attente"
       );
       return (
         <div className="animated fadeIn user-dash-struct">
@@ -273,7 +274,7 @@ export class UserDashStruct extends Component {
           />
 
           {enAttente.length > 0 &&
-            enAttente.map(element => (
+            enAttente.map((element) => (
               <div className="nouveau-contenu mt-12 mb-12" key={element._id}>
                 <div className="left-side">
                   <EVAIcon
@@ -299,7 +300,7 @@ export class UserDashStruct extends Component {
                         (element.typeContenu || "dispositif") +
                         "/" +
                         element._id,
-                      state: { structure: structure }
+                      state: { structure: structure },
                     }}
                     type="light-action"
                     name="eye-outline"
@@ -423,16 +424,16 @@ export class UserDashStruct extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     langues: state.langue.langues,
     user: state.user.user,
-    expertTrad: state.user.expertTrad
+    expertTrad: state.user.expertTrad,
   };
 };
 
 const mapDispatchToProps = { fetch_dispositifs };
 
 export default track({
-  page: "UserDashStruct"
+  page: "UserDashStruct",
 })(connect(mapStateToProps, mapDispatchToProps)(windowSize(UserDashStruct)));

@@ -1002,7 +1002,7 @@ class SideTrad extends Component {
       await API.update_tradForReview(trad);
     }
     let newTrad = {
-      ...this.props.traduction,
+      ...trad,
       articleId: this.props.itemId,
       type: "dispositif",
       locale: this.props.locale,
@@ -1144,6 +1144,9 @@ class SideTrad extends Component {
             id={langue.langueCode}
           ></i>
         </div>
+        <DirectionProvider
+            direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}
+          >
         <div
           className={
             userId && userId.username && validated && !modified && !modifiedNew
@@ -1214,6 +1217,7 @@ class SideTrad extends Component {
             </div>
           )}
         </div>
+        </DirectionProvider>
         {validated && !modifiedNew && !modified ? 
         <AlertExpert type={"validated"}>
             <EVAIcon

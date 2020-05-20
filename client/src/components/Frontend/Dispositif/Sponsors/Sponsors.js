@@ -10,7 +10,7 @@ import {
   Tooltip,
   FormGroup,
   Label,
-  Spinner
+  Spinner,
 } from "reactstrap";
 import Icon from "react-eva-icons";
 import { connect } from "react-redux";
@@ -35,7 +35,7 @@ class Sponsors extends Component {
       { name: "etVous", show: false },
       { name: "creation", show: false },
       { name: "envoye", show: false },
-      { name: "img-modal", show: false }
+      { name: "img-modal", show: false },
     ],
     checked: false,
     authorBelongs: false,
@@ -54,8 +54,8 @@ class Sponsors extends Component {
       contact: "",
       mail_contact: "",
       phone_contact: "",
-      authorBelongs: false
-    }
+      authorBelongs: false,
+    },
   };
 
   componentWillReceiveProps(nextProps) {
@@ -65,86 +65,89 @@ class Sponsors extends Component {
       nextProps.structures.length > 0
     ) {
       const mesStructures = (
-        nextProps.structures.filter(x =>
-          (x.membres || []).some(y => y.userId === nextProps.user._id)
+        nextProps.structures.filter((x) =>
+          (x.membres || []).some((y) => y.userId === nextProps.user._id)
         ) || []
-      ).map(x => ({ ...x, checked: false }));
+      ).map((x) => ({ ...x, checked: false }));
       this.setState({ mesStructures });
     }
   }
 
-  toggleModal = name =>
-    this.setState(pS => ({
-      showModals: pS.showModals.map(x => ({
+  toggleModal = (name) =>
+    this.setState((pS) => ({
+      showModals: pS.showModals.map((x) => ({
         ...x,
-        show: x.name === name ? !x.show : false
-      }))
+        show: x.name === name ? !x.show : false,
+      })),
     }));
-  toggleTooltip = () => this.setState(pS => ({ tooltipOpen: !pS.tooltipOpen }));
+  toggleTooltip = () =>
+    this.setState((pS) => ({ tooltipOpen: !pS.tooltipOpen }));
 
-  handleFileInputChange = event => {
+  handleFileInputChange = (event) => {
     this.setState({ sponsorLoading: true });
     const formData = new FormData();
     formData.append(0, event.target.files[0]);
 
-    API.set_image(formData).then(data_res => {
+    API.set_image(formData).then((data_res) => {
       const imgData = data_res.data.data;
       this.setState({
         imgData: {
           secure_url: imgData.secure_url,
           public_id: imgData.public_id,
-          imgId: imgData.imgId
+          imgId: imgData.imgId,
         },
-        sponsorLoading: false
+        sponsorLoading: false,
       });
     });
   };
 
-  handleImgChange = ev => {
+  handleImgChange = (ev) => {
     this.setState({ [ev.currentTarget.id]: ev.target.value });
   };
 
-  handleChange = ev =>
+  handleChange = (ev) =>
     this.setState({
       structure: {
         ...this.state.structure,
-        [ev.currentTarget.id]: ev.target.value
-      }
+        [ev.currentTarget.id]: ev.target.value,
+      },
     });
-  handleUserChange = e =>
+  handleUserChange = (e) =>
     this.props.update_user({
       ...this.props.user,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
 
   handleCheckChange = () =>
-    this.setState(pS => ({
+    this.setState((pS) => ({
       checked: !pS.checked,
-      mesStructures: pS.mesStructures.map(x => ({ ...x, checked: false }))
+      mesStructures: pS.mesStructures.map((x) => ({ ...x, checked: false })),
     }));
   handleBelongsChange = () =>
-    this.setState(pS => ({
-      structure: { ...pS.structure, authorBelongs: !pS.structure.authorBelongs }
+    this.setState((pS) => ({
+      structure: {
+        ...pS.structure,
+        authorBelongs: !pS.structure.authorBelongs,
+      },
     }));
   handleBelongsSChange = () =>
-    this.setState(pS => ({ authorBelongs: !pS.authorBelongs }));
-  handleStructChange = id =>
-    this.setState(pS => ({
-      mesStructures: pS.mesStructures.map(x => ({
+    this.setState((pS) => ({ authorBelongs: !pS.authorBelongs }));
+  handleStructChange = (id) =>
+    this.setState((pS) => ({
+      mesStructures: pS.mesStructures.map((x) => ({
         ...x,
-        checked: x._id === id ? !x.checked : false
+        checked: x._id === id ? !x.checked : false,
       })),
-      checked: false
+      checked: false,
     }));
 
-  selectItem = suggestion => {
-    console.log('#########################',suggestion);
+  selectItem = (suggestion) => {
     this.setState({ selected: suggestion });
     this.setState({
       imgData: suggestion.picture || {},
-      link: suggestion.link || '',
-      alt: '',
-    })
+      link: suggestion.link || "",
+      alt: "",
+    });
     this.toggleModal(suggestion.createNew ? "creation" : "etVous");
   };
 
@@ -159,7 +162,7 @@ class Sponsors extends Component {
         title: "Oh non!",
         text: "Certaines informations sont manquantes",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
       return;
     }
@@ -171,14 +174,14 @@ class Sponsors extends Component {
         "contact",
         "mail_contact",
         "phone_contact",
-        "authorBelongs"
+        "authorBelongs",
       ];
-    fields.forEach(x =>
+    fields.forEach((x) =>
       this.state.structure[x] !== ""
         ? (structure[x] = this.state.structure[x])
         : false
     );
-    API.create_structure(structure).then(data => {
+    API.create_structure(structure).then((data) => {
       this.props.addSponsor(data.data.data);
       this.toggleModal("envoye");
     });
@@ -194,8 +197,8 @@ class Sponsors extends Component {
       );
       this.toggleModal();
       API.set_user_info(userInfo);
-    } else if (this.state.mesStructures.some(x => x.checked)) {
-      this.props.addSponsor(this.state.mesStructures.find(x => x.checked));
+    } else if (this.state.mesStructures.some((x) => x.checked)) {
+      this.props.addSponsor(this.state.mesStructures.find((x) => x.checked));
       this.toggleModal();
     }
     if (this.props.finalValidation) {
@@ -212,7 +215,7 @@ class Sponsors extends Component {
           picture: { ...this.state.imgData },
           link: this.state.link,
           alt: this.state.alt,
-          asAdmin
+          asAdmin,
         });
         this.toggleModal();
         this.props.validate();
@@ -222,7 +225,7 @@ class Sponsors extends Component {
           picture: { ...this.state.imgData },
           link: this.state.link,
           alt: this.state.alt,
-          asAdmin
+          asAdmin,
         });
         this.toggleModal();
       }
@@ -230,7 +233,7 @@ class Sponsors extends Component {
       if (_.isEmpty(this.props.sponsors) && this.props.finalValidation) {
         this.props.addSponsor({
           ...this.state.selected,
-          userBelongs: this.state.authorBelongs
+          userBelongs: this.state.authorBelongs,
         });
         this.toggleModal("envoye");
         this.props.validate();
@@ -240,14 +243,14 @@ class Sponsors extends Component {
           picture: { ...this.state.imgData },
           link: this.state.link,
           alt: this.state.alt,
-          asAdmin
+          asAdmin,
         });
         this.toggleModal();
       }
     }
   };
 
-/*   addStructure = () => {
+  /*   addStructure = () => {
     console.log(this.state, 'add structure');
     this.setState({
       imgData: this.state.selected.picture || {},
@@ -262,7 +265,7 @@ class Sponsors extends Component {
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore disponible",
       type: "error",
-      timer: 1500
+      timer: 1500,
     });
 
   render() {
@@ -273,14 +276,14 @@ class Sponsors extends Component {
       deleteSponsor,
       user,
       structures,
-      admin
+      admin,
     } = this.props;
     const {
       showModals,
       selected,
       authorBelongs,
       checked,
-      mesStructures
+      mesStructures,
     } = this.state;
 
     const modal = { name: "responsabilite" };
@@ -402,7 +405,7 @@ class Sponsors extends Component {
               fill={variables.noir}
               disabled={
                 (!checked || (!user.email && !user.phone)) &&
-                !mesStructures.some(x => x.checked)
+                !mesStructures.some((x) => x.checked)
               }
               onClick={this.validerRespo}
               className="push-right"
@@ -439,8 +442,8 @@ class Sponsors extends Component {
             className="search-bar inner-addon right-addon"
             placeholder="Rechercher ou créer une structure"
             array={[
-              ...structures.filter(x => x.status === "Actif"),
-              { createNew: true }
+              ...structures.filter((x) => x.status === "Actif"),
+              { createNew: true },
             ]}
             createNewCta="Créer une nouvelle structure"
             selectItem={this.selectItem}
@@ -738,7 +741,7 @@ class Sponsors extends Component {
   }
 }
 
-const CustomModal = props => (
+const CustomModal = (props) => (
   <Modal
     isOpen={props.showModals[props.keyValue].show}
     toggle={() => props.toggleModal(props.modal.name)}
@@ -756,7 +759,7 @@ const CustomModal = props => (
   </Modal>
 );
 
-const ImgModal = props => (
+const ImgModal = (props) => (
   <Modal
     isOpen={props.showModals[props.keyValue].show}
     toggle={() => props.toggleModal(props.modal.name)}
@@ -864,16 +867,16 @@ const ImgModal = props => (
   </Modal>
 );
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     hasStructure: state.user.hasStructure,
-    structures: state.structure.structures
+    structures: state.structure.structures,
   };
 };
 
 const mapDispatchToProps = { update_user };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
-  forwardRef: true
+  forwardRef: true,
 })(Sponsors);
