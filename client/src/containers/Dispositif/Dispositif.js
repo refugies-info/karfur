@@ -12,7 +12,6 @@ import {
   convertFromRaw,
   ContentState,
 } from "draft-js";
-import draftToHtml from "draftjs-to-html";
 import { savePDF } from "@progress/kendo-react-pdf";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
