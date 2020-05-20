@@ -33,7 +33,6 @@ class ResponsableModal extends Component {
   };
 
   validateModal = async () => {
-    console.log(this.state);
     if (this.state.step === 0) {
       if (this.state.memberAdded) {
         if (

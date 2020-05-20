@@ -1,119 +1,175 @@
-import React, {Component} from 'react';
-import { Modal, ModalBody, ModalFooter, ListGroup, ListGroupItem } from 'reactstrap';
-import Swal from 'sweetalert2';
+import React, { Component } from "react";
+import {
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ListGroup,
+  ListGroupItem,
+} from "reactstrap";
+import Swal from "sweetalert2";
 
-import FButton from '../../FigmaUI/FButton/FButton';
-import EVAIcon from '../../UI/EVAIcon/EVAIcon';
-import API from '../../../utils/API';
-import marioProfile from '../../../assets/mario-profile.jpg';
+import FButton from "../../FigmaUI/FButton/FButton";
+import EVAIcon from "../../UI/EVAIcon/EVAIcon";
+import API from "../../../utils/API";
+import marioProfile from "../../../assets/mario-profile.jpg";
 
-import './RejectTradModal.scss';
-import variables from 'scss/colors.scss';
+import "./RejectTradModal.scss";
+import variables from "scss/colors.scss";
 
-const reasons = [{
-  text: "Le vocabulaire est trop complexe"
-},{
-  text: "La modification induit un contresens"
-},{
-  text: "L’information proposée est fausse "
-},{
-  text: "L’information proposée est obsolète"
-}];
+const reasons = [
+  {
+    text: "Le vocabulaire est trop complexe",
+  },
+  {
+    text: "La modification induit un contresens",
+  },
+  {
+    text: "L’information proposée est fausse ",
+  },
+  {
+    text: "L’information proposée est obsolète",
+  },
+];
 
 class RejectTradModal extends Component {
-  state={
+  state = {
     clicked: new Array(5).fill(false),
-    message: '',
-  }
+    message: "",
+  };
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps(nextProps) {
     // if(nextProps.selected && nextProps.selected.structRole){
     //   this.setState({roles: roles.map(x => ({...x, checked: nextProps.selected.structRole === x.role}))})
     // }
   }
-  
-  selectReason = idx => this.setState(pS => ({clicked: pS.clicked.map((x,i) => i===idx ? !x : false)}));
-  handleChange = e => this.setState({message: e.target.value});
+
+  selectReason = (idx) =>
+    this.setState((pS) => ({
+      clicked: pS.clicked.map((x, i) => (i === idx ? !x : false)),
+    }));
+  handleChange = (e) => this.setState({ message: e.target.value });
 
   onReject = () => {
-    console.log('rejected', this.props);
-    const {clicked, message} = this.state, {selectedTrad, currIdx} = this.props;
-    if(!clicked.includes(true)){Swal.fire( {title:'Oh non', text:'Aucune option n\'a été sélectionnée, veuillez rééssayer', type:'error', timer: 1500}); return;}
-    const selectedR = clicked.findIndex(x => x===true);
+    const { clicked, message } = this.state,
+      { selectedTrad, currIdx } = this.props;
+    if (!clicked.includes(true)) {
+      Swal.fire({
+        title: "Oh non",
+        text: "Aucune option n'a été sélectionnée, veuillez rééssayer",
+        type: "error",
+        timer: 1500,
+      });
+      return;
+    }
+    const selectedR = clicked.findIndex((x) => x === true);
     const newTrad = {
-      _id: selectedTrad._id, 
+      _id: selectedTrad._id,
       translatedText: {
         ...selectedTrad.translatedText,
-        status:{
+        status: {
           ...(selectedTrad.translatedText.status || {}),
-          [currIdx]: "Rejetée"
+          [currIdx]: "Rejetée",
         },
-        feedbacks:{
+        feedbacks: {
           ...(selectedTrad.translatedText.feedback || {}),
-          [currIdx]: [message && message !== "" ? message : reasons[selectedR].text]
-        }
-      }
-    }
-    console.log(newTrad);
-    API.update_tradForReview(newTrad).then(data => {
-      console.log(data.data.data);
-      this.props.removeTranslation(selectedTrad)
+          [currIdx]: [
+            message && message !== "" ? message : reasons[selectedR].text,
+          ],
+        },
+      },
+    };
+    API.update_tradForReview(newTrad).then((data) => {
+      this.props.removeTranslation(selectedTrad);
       this.props.toggle();
-    })
-  }
-    
-  render(){
-    const {show, toggle, userId} = this.props;
-    const {clicked, message} = this.state;
-    return(
+    });
+  };
+
+  render() {
+    const { show, toggle, userId } = this.props;
+    const { clicked, message } = this.state;
+    return (
       <Modal isOpen={show} toggle={toggle} className="reject-trad-modal">
         {/* <ModalHeader toggle={toggle}>
           {selection ? "Droits d’édition" : "Confirmation"}
         </ModalHeader> */}
         <ModalBody>
-          <h5>Refusé</h5>{' '}
+          <h5>Refusé</h5>{" "}
           <span>Choisissez une raison ou rédigez un message :</span>
-
           <ListGroup>
             {reasons.map((r, key) => (
-              <ListGroupItem tag="button" action key={key} onClick={() => this.selectReason(key)} active={clicked[key]}>
-                <EVAIcon name={"radio-button-" + (clicked[key] ? "on" : "off")} fill={variables.noir} className="mr-10" />
+              <ListGroupItem
+                tag="button"
+                action
+                key={key}
+                onClick={() => this.selectReason(key)}
+                active={clicked[key]}
+              >
+                <EVAIcon
+                  name={"radio-button-" + (clicked[key] ? "on" : "off")}
+                  fill={variables.noir}
+                  className="mr-10"
+                />
                 {r.text}
               </ListGroupItem>
             ))}
-            <ListGroupItem tag="button" action key={reasons.length} onClick={() => this.selectReason(reasons.length)} active={clicked[reasons.length]}>
-              <EVAIcon name={"radio-button-" + (clicked[reasons.length] ? "on" : "off")} fill={variables.noir} className="mr-10" />
-              <span>Message personnalisé à : </span> 
-              <img src={(userId.picture || {}).secure_url || marioProfile} className="profile-img-pin mr-10" alt="profile" />
+            <ListGroupItem
+              tag="button"
+              action
+              key={reasons.length}
+              onClick={() => this.selectReason(reasons.length)}
+              active={clicked[reasons.length]}
+            >
+              <EVAIcon
+                name={
+                  "radio-button-" + (clicked[reasons.length] ? "on" : "off")
+                }
+                fill={variables.noir}
+                className="mr-10"
+              />
+              <span>Message personnalisé à : </span>
+              <img
+                src={(userId.picture || {}).secure_url || marioProfile}
+                className="profile-img-pin mr-10"
+                alt="profile"
+              />
               <b>{userId.username}</b>
             </ListGroupItem>
           </ListGroup>
-
-          {clicked[reasons.length] &&
-            <textarea 
-              id="message" 
-              name="message" 
-              rows="7" 
-              cols="33" 
+          {clicked[reasons.length] && (
+            <textarea
+              id="message"
+              name="message"
+              rows="7"
+              cols="33"
               value={message}
               onChange={this.handleChange}
-              placeholder="Message personnalisé" /> }
+              placeholder="Message personnalisé"
+            />
+          )}
         </ModalBody>
         <ModalFooter>
-        <div className="footer-btns">
-          {/* <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(this.props.translated || {}).body} fill={variables.noir} className="mr-10">
+          <div className="footer-btns">
+            {/* <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(this.props.translated || {}).body} fill={variables.noir} className="mr-10">
             Signaler
           </FButton> */}
-          <FButton type="light-action" className="mr-10" onClick={toggle}>
-            Annuler
-          </FButton>
-          <FButton type="validate" name="checkmark-circle-outline" onClick={this.onReject} disabled={!clicked.includes(true) || (clicked[reasons.length] && (!message || message === ""))}>
-            Envoyer
-          </FButton>
-        </div>
+            <FButton type="light-action" className="mr-10" onClick={toggle}>
+              Annuler
+            </FButton>
+            <FButton
+              type="validate"
+              name="checkmark-circle-outline"
+              onClick={this.onReject}
+              disabled={
+                !clicked.includes(true) ||
+                (clicked[reasons.length] && (!message || message === ""))
+              }
+            >
+              Envoyer
+            </FButton>
+          </div>
         </ModalFooter>
       </Modal>
-    )
+    );
   }
 }
 

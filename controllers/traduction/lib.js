@@ -37,7 +37,6 @@ async function add_tradForReview(req, res) {
       api: arguments.callee.name,
     }).save();
     let traduction = req.body;
-    console.log(req.body);
     if (traduction.avancement >= 1) {
       traduction.status = "En attente";
       await Traduction.updateMany({articleId: traduction.articleId, langueCible: traduction.langueCible }, {status: 'En attente'}, { upsert: false });
@@ -326,7 +325,6 @@ function validate_tradForReview(req, res) {
 }
 
 const insertInDispositif = (res, traduction, locale) => {
-  console.log(res, traduction, locale);
   return Dispositif.findOne({ _id: traduction.articleId }).exec(
     (err, result) => {
       if (!err && result) {
@@ -337,13 +335,7 @@ const insertInDispositif = (res, traduction, locale) => {
           if (!result[x].fr) {
             result[x] = { fr: result[x] };
           }
-          console.log(
-            x,
-            traduction.translatedText,
-            traduction.translatedText[x],
-            result,
-            result[x][locale]
-          );
+
           result[x][locale] = traduction.translatedText[x];
           result.markModified(x);
         });
@@ -422,18 +414,34 @@ const insertInDispositif = (res, traduction, locale) => {
         });
         result.markModified("contenu");
 
-        result.traductions = [
-          ...new Set([
-            ...(result.traductions || []),
-            ...(traduction.traductions || []).map((x) => x._id),
-          ]),
-        ];
-        result.participants = [
-          ...new Set([
-            ...(result.participants || []),
-            ...(traduction.traductions || []).map((x) => (x.userId || {})._id),
-          ]),
-        ];
+        const translationsToAdd = traduction.traductions
+          ? traduction.traductions.map((x) => x._id)
+          : [];
+
+        const translations = (result.traductions || []).concat(
+          translationsToAdd
+        );
+
+        const deduplicatedTranslations = deduplicateArrayOfObjectIds(
+          translations
+        );
+
+        result.traductions = deduplicatedTranslations;
+
+        const participantsToAdd = traduction.traductions
+          ? traduction.traductions.map((x) => (x.userId || {})._id)
+          : [];
+
+        const participants = (result.participants || []).concat(
+          participantsToAdd
+        );
+
+        const deduplicatedParticipants = deduplicateArrayOfObjectIds(
+          participants
+        );
+
+        result.participants = deduplicatedParticipants;
+
         if (result.avancement === 1) {
           result.avancement = { fr: 1 };
         }
@@ -441,6 +449,7 @@ const insertInDispositif = (res, traduction, locale) => {
           ...result.avancement,
           [locale]: 1,
         };
+
         return result.save((err, data) => {
           if (err) {
             console.log(err);
@@ -462,6 +471,10 @@ const insertInDispositif = (res, traduction, locale) => {
     }
   );
 };
+
+// we have to convert objectId to string to compare it with other strings
+const deduplicateArrayOfObjectIds = (arrayOfObjectIds) =>
+  _.uniq(arrayOfObjectIds.map((x) => x.toString()));
 
 const recalculate_all = () => {
   Traduction.find({}).exec(function (err, result) {

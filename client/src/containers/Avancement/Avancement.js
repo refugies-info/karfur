@@ -112,9 +112,7 @@ export class Avancement extends Component {
       sort: { updatedAt: -1 },
       populate: "userId",
     }).then((data) => {
-      //console.log(data.data.data);
       this.setState({ traductionsFaites: data.data.data });
-      console.log(data.data.data);
     });
     // this._loadThemes();
     this.setState({ itemId, isExpert, isLangue });
@@ -161,7 +159,6 @@ export class Avancement extends Component {
     //   API.get_tradForReview({query: {'langueCible':langue.i18nCode, 'status' : 'En attente'},populate: 'articleId userId'}).then(data_res => {
     //     let articles=data_res.data.data;
     //     articles=articles.map(x => {return {_id:x._id,title:x.initialText.title,nombreMots:x.nbMots,avancement:{[langue.i18nCode]:1}, status:x.status, articleId:(x.articleId || {})._id, created_at:x.created_at, user:x.userId, type: "string"}});
-    //     console.log(articles)
     //     this.setState({data:articles});
     //   })
     // }
@@ -251,9 +248,7 @@ export class Avancement extends Component {
       produce((draft) => {
         draft.published = !this.state.published;
         if (!this.state.published) {
-          console.log("inside inside");
           draft.traductions.sort((a, b) => {
-            // console.log(a, b);
             if (a.statusTrad === "Publiées" && b.statusTrad === "Publiées") {
               return 0;
             } else if (
@@ -431,7 +426,6 @@ export class Avancement extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { langue, isExpert, data } = this.state;
-    console.log("langue", langue);
     let traductions = [];
     if (
       prevState.traductionsFaites !== this.state.traductionsFaites ||
@@ -439,11 +433,6 @@ export class Avancement extends Component {
       (!_.isEmpty(this.props.dispositifs) &&
         this.props.dispositifs !== prevProps.dispositifs)
     ) {
-      console.log(
-        "inside",
-        this.props.dispositifs,
-        this.state.traductionsFaites
-      );
       traductions = [
         ...this.props.dispositifs
           .filter((x) => x.status === "Actif")
@@ -459,7 +448,6 @@ export class Avancement extends Component {
                 0,
                 ...((this.state.traductionsFaites || [])
                   .filter((y) => {
-                    //console.log(y);
                     return y.articleId === x._id;
                   })
                   .map((z) => z.avancement || -1) || [])
@@ -468,7 +456,6 @@ export class Avancement extends Component {
             statusTrad:
               (this.state.traductionsFaites || [])
                 .filter((y, index) => {
-                  //console.log(y);
                   return y.articleId === x._id;
                   /*      if (y.articleId === x._id && y.status === "Validée" && x.avancement === 1) {
                   return "À revoir"
@@ -480,10 +467,8 @@ export class Avancement extends Component {
                 })
                 .map((z, index) => {
                   if (z.status === "À revoir") {
-                    console.log(index);
                     return "À revoir";
                   } else if (z.status === "Validée") {
-                    console.log(index);
                     return "Publiées";
                   } else if (z.status === "En attente") {
                     return "En attente";
@@ -512,7 +497,6 @@ export class Avancement extends Component {
             typeContenu: x.typeContenu || "dispositif",
           })),
         ...data.map((x) => {
-          // console.log(x, (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id), (this.state.traductionsFaites || []).filter(y => y.jsonId === x._id).map(z => (z.avancement || -1)))
           return {
             ...x,
             avancement:
@@ -551,7 +535,6 @@ export class Avancement extends Component {
         }),
         //...this.props.dispositifs.filter(x => x.status === "Actif" && (x.avancement || {})[this.state.langue.i18nCode] !== 1).map(x => ( {
       ];
-      console.log("those are translations", traductions);
       /*     traductions = traductions.filter(x =>
         isExpert ? x.avancement >= 1 : x.avancement < 1
       ); */
@@ -634,17 +617,15 @@ export class Avancement extends Component {
     this.setState({
       traductions: newList,
     });
-  }
+  };
 
   render() {
     const { langue, isExpert, data, traductions, unfiltered } = this.state;
 
-    console.log("this is rendereing", traductions, this.state);
     const displayedText =
       (data || []).length === 0 || (this.props.dispositifs || []).length === 0
         ? "Chargement"
         : "Aucun résultat";
-
 
     const AvancementData = () => {
       if (
@@ -742,7 +723,6 @@ export class Avancement extends Component {
                   " / " +
                   element.nombreMots}
               </td>
-
               <td
                 className={
                   "align-middle depuis " +
@@ -758,7 +738,7 @@ export class Avancement extends Component {
                 {element.isStructure ? "Site" : jsUcfirst(element.typeContenu)}
               </td>
               <td className="align-middle fit-content">
-              {moment(element.updatedAt).format('YYYY/MM/DD H:mm')}
+                {moment(element.updatedAt).format("YYYY/MM/DD H:mm")}
                 {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
               <td className="align-middle fit-content">
@@ -884,7 +864,13 @@ export class Avancement extends Component {
           >
             {"Interface (" + this.state.stringCount + ")"}
           </StyledStatus>
-          <StyledInput type="text" name="search" id="avancement-search" placeholder="Rechercher un contenu" onChange={this.handleChange} />
+          <StyledInput
+            type="text"
+            name="search"
+            id="avancement-search"
+            placeholder="Rechercher un contenu"
+            onChange={this.handleChange}
+          />
         </Row>
 
         {/*<Row className="avancement-header">

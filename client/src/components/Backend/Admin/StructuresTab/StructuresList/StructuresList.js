@@ -1,17 +1,11 @@
-import React from 'react';
-import {
-  Badge,
-  Card,
-  CardBody,
-  CardHeader,
-  Table} from 'reactstrap';
+import React from "react";
+import { Badge, Card, CardBody, CardHeader, Table } from "reactstrap";
 
-import {colorStatut} from '../../../../Functions/ColorFunctions'
-import './StructuresList.scss'
+import { colorStatut } from "../../../../Functions/ColorFunctions";
+import "./StructuresList.scss";
 
 const structuresList = (props) => {
-  console.log(props.structures);
-  return(
+  return (
     <Card className="structures-list">
       <CardHeader className="h1">
         <strong>Liste des structures</strong>
@@ -28,20 +22,40 @@ const structuresList = (props) => {
             </tr>
           </thead>
           <tbody>
-            {props.structures.map((structure) =>
-              <tr key={structure._id} onClick={() => props.onSelect({structure : {...props.initial_state.structure, ...structure}})}>
-                <td><img className="sponsor-img" src={(structure.picture || {}).secure_url} alt={structure.acronyme}/></td>
+            {props.structures.map((structure) => (
+              <tr
+                key={structure._id}
+                onClick={() =>
+                  props.onSelect({
+                    structure: {
+                      ...props.initial_state.structure,
+                      ...structure,
+                    },
+                  })
+                }
+              >
+                <td>
+                  <img
+                    className="sponsor-img"
+                    src={(structure.picture || {}).secure_url}
+                    alt={structure.acronyme}
+                  />
+                </td>
                 <td>{structure.acronyme}</td>
                 <th scope="row">{structure.nom}</th>
                 <td>{(structure.membres || []).length}</td>
-                <td><Badge color={colorStatut(structure.status)}>{structure.status}</Badge></td>
+                <td>
+                  <Badge color={colorStatut(structure.status)}>
+                    {structure.status}
+                  </Badge>
+                </td>
               </tr>
-            )}
+            ))}
           </tbody>
         </Table>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 export default structuresList;
