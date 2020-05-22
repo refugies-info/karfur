@@ -36,8 +36,8 @@ const {
   DB_CONN,
   USERNAME_DB,
   DB_PW,
-  MONGODB_URI,
-  MONGODB_PROD_URI
+  MONGODB_PROD_URI,
+  MONGODB_QA_URI
 } = process.env;
 
 let scraper;
@@ -62,7 +62,7 @@ var io = require("socket.io")(http);
 //Connexion à la base de donnée
 mongoose.set("debug", false);
 let auth = null;
-let db_path = NODE_ENV === "dev" ? "mongodb://localhost/db" : MONGODB_PROD_URI;
+let db_path = NODE_ENV === "dev" ? "mongodb://localhost/db" : NODE_ENV === "quality" ? MONGODB_QA_URI : MONGODB_PROD_URI;
 console.log("NODE_ENV : ", NODE_ENV);
 // let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : DB_CONN; //ancienne connexion à Azure
 // auth = {user: USERNAME_DB, password: DB_PW};
