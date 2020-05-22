@@ -104,7 +104,15 @@ const contenuDispositif = (props) => {
                     show={props.uiArray[key].isHover}
                     keyValue={key}
                     item={item}
-                    {...props}
+                    handleContentClick={props.handleContentClick}
+                    disableEdit={newDisableEdit}
+                    tracking={props.tracking}
+                    toggleModal={props.toggleModal}
+                    readAudio={props.readAudio}
+                    subkey={props.subkey}
+                    t={props.t}
+                    removeItem={props.removeItem}
+                    ttsActive={props.ttsActive}
                   />
                 </Col>
               )}
