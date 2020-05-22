@@ -24,7 +24,7 @@ import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import SearchBar from "../UI/SearchBar/SearchBar";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import { fetch_user } from "../../services/actions";
+import { fetch_user } from "../../services/User/user.actions";
 import { breakpoints } from "utils/breakpoints.js";
 import styled from "styled-components";
 import Streamline from "../../assets/streamline";

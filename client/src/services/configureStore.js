@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 import langueReducer from "./Reducers/langueReducer";
 import dispositifReducer from "./Reducers/dispositifReducer";
 import structureReducer from "./Reducers/structureReducer";
-import userReducer from "./Reducers/userReducer";
+import userReducer from "./User/user.reducer";
 import ttsReducer from "./Reducers/ttsReducer";
 
 const rootReducer = combineReducers({

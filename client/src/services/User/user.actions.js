@@ -1,9 +1,10 @@
-import * as actionTypes from "./actionTypes";
+import { SET_USER, UPDATE_USER } from "./user.actionTypes";
+
 import API from "../../utils/API";
 
 const set_user = (value) => {
   return {
-    type: actionTypes.SET_USER,
+    type: SET_USER,
     value: value,
   };
 };
@@ -21,6 +22,6 @@ export const fetch_user = () => {
 };
 
 export const update_user = (value) => ({
-  type: actionTypes.UPDATE_USER,
+  type: UPDATE_USER,
   value: value,
 });
