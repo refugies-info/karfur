@@ -12,7 +12,7 @@ import API from "../../utils/API";
 import setAuthToken from "../../utils/setAuthToken";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import FInput from "../../components/FigmaUI/FInput/FInput";
-import { fetch_user } from "../../services/actions";
+import { fetch_user } from "../../services/User/user.actions";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 
 import "./Reset.scss";

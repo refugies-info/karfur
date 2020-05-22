@@ -1,5 +1,4 @@
-// Store/Reducers/langueReducer.js
-import * as actions from "../actions/actionTypes";
+import { SET_USER, UPDATE_USER } from "./user.actionTypes";
 import { updateObject } from "../utility";
 
 //A changer, c'est juste pour l'exemple
@@ -14,7 +13,7 @@ const initialState = {
 
 function userReducer(state = initialState, action) {
   switch (action.type) {
-    case actions.SET_USER:
+    case SET_USER:
       return updateObject(state, {
         user: action.value,
         userId: (action.value || {})._id,
@@ -34,7 +33,7 @@ function userReducer(state = initialState, action) {
           (x) => x.nom === "hasStructure"
         ),
       });
-    case actions.UPDATE_USER:
+    case UPDATE_USER:
       return updateObject(state, { user: action.value });
     default:
       return state;

@@ -7,6 +7,3 @@ export const TOGGLE_SPINNER = "TOGGLE_SPINNER";
 export const SET_LANGUES = "SET_LANGUES";
 export const SET_DISPOSITIFS = "SET_DISPOSITIFS";
 export const SET_STRUCTURES = "SET_STRUCTURES";
-
-export const SET_USER = "SET_USER";
-export const UPDATE_USER = "UPDATE_USER";
