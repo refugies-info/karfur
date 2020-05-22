@@ -7,7 +7,7 @@ import moment from "moment/min/moment-with-locales";
 import _ from "lodash";
 import Swal from "sweetalert2";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { fetch_dispositifs } from "../../../Store/actions";
+import { fetch_dispositifs } from "../../../services/actions";
 import { deleteContrib } from "../UserProfile/functions";
 import { colorStatut } from "../../../components/Functions/ColorFunctions";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";

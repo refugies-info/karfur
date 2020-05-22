@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import * as actions from "../../Store/actions/index";
+import * as actions from "../../services/actions/index";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";
 import routes from "../../routes";
