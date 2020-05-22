@@ -22,7 +22,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import SearchBar from "../../../../containers/UI/SearchBar/SearchBar";
 import { sentIllu } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
-import { update_user } from "../../../../services/actions/index";
+import { updateUserActionCreator } from "../../../../services/User/user.actions";
 import _ from "lodash";
 
 import "./Sponsors.scss";
@@ -113,7 +113,7 @@ class Sponsors extends Component {
       },
     });
   handleUserChange = (e) =>
-    this.props.update_user({
+    this.props.updateUserActionCreator({
       ...this.props.user,
       [e.target.id]: e.target.value,
     });
@@ -875,7 +875,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { update_user };
+const mapDispatchToProps = { updateUserActionCreator };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   forwardRef: true,

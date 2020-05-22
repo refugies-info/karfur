@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import API from "../utils/API";
 import UnauthorizedAccess from "./Navigation/UnauthorizedAccess/UnauthorizedAccess";
-import * as actions from "../services/actions/index";
+import { fetch_user } from "../services/User/user.actions";
 
 const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
   const { user, fetch_user } = rest;
@@ -69,6 +69,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = actions;
+const mapDispatchToProps = { fetch_user };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);

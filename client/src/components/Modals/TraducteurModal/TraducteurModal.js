@@ -17,7 +17,7 @@ import FButton from "../../FigmaUI/FButton/FButton";
 
 // import DraggableList from '../../UI/DraggableList/DraggableList';
 import API from "../../../utils/API";
-import { fetch_user } from "../../../services/actions";
+import { fetch_user } from "../../../services/User/user.actions";
 
 import "./TraducteurModal.scss";
 

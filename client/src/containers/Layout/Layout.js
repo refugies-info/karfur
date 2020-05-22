@@ -12,7 +12,14 @@ import Cookies from "js-cookie";
 
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import * as actions from "../../services/actions/index";
+import {
+  fetch_structures,
+  fetch_langues,
+  fetch_dispositifs,
+  toggle_lang_modal,
+  toggle_langue,
+} from "../../services/actions/index";
+import { fetch_user } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";
 import routes from "../../routes";
@@ -189,7 +196,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = actions;
+const mapDispatchToProps = {
+  fetch_structures,
+  fetch_langues,
+  fetch_dispositifs,
+  fetch_user,
+  toggle_lang_modal,
+  toggle_langue,
+};
 
 export default track(
   {
