@@ -1,1 +1,2 @@
 // example file
+export {};
