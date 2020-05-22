@@ -1,19 +1,28 @@
 // Store/configureStore.js
 
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
+import thunk from "redux-thunk";
 
-import langueReducer from './Reducers/langueReducer';
-import dispositifReducer from './Reducers/dispositifReducer';
-import structureReducer from './Reducers/structureReducer';
-import userReducer from './Reducers/userReducer';
-import ttsReducer from './Reducers/ttsReducer';
+import langueReducer from "./Reducers/langueReducer";
+import dispositifReducer from "./Reducers/dispositifReducer";
+import structureReducer from "./Reducers/structureReducer";
+import userReducer from "./Reducers/userReducer";
+import ttsReducer from "./Reducers/ttsReducer";
 
-const rootReducer = combineReducers({langue: langueReducer, dispositif: dispositifReducer, user: userReducer, tts: ttsReducer, structure: structureReducer})
+const rootReducer = combineReducers({
+  langue: langueReducer,
+  dispositif: dispositifReducer,
+  user: userReducer,
+  tts: ttsReducer,
+  structure: structureReducer,
+});
 
 export default createStore(
-  rootReducer, 
+  rootReducer,
   compose(
     applyMiddleware(thunk),
-    (window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) || compose
-  ))
+    (window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__()) ||
+      compose
+  )
+);
