@@ -1,18 +1,39 @@
 import React, { Component } from "react";
-import track from "react-tracking";
+
 import { Card, CardBody, Row, Col, Tooltip, Button } from "reactstrap";
-import { connect } from "react-redux";
 import h2p from "html2plaintext";
-import { withTranslation } from "react-i18next";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import * as actions from "../../../Store/actions/actionTypes";
 
 import "./QuickToolbar.scss";
+// @ts-ignore : issue with ts and .scss files
 import variables from "../Dispositif.scss"; //A changer
+import { Props } from "./QuickToolbar.container";
 
-class QuickToolbar extends Component {
-  state = {
+interface StateType {
+  fill: boolean[];
+  tooltipOpen: boolean[];
+  isDropdownOpen: boolean;
+  dropdownColor: string[];
+}
+
+export interface PropsBeforeInjection {
+  tracking: any;
+  disableEdit: boolean;
+  toggleModal: (arg1: boolean, arg2: string) => void;
+  readAudio: (arg1: any, arg2: string, arg3: any, arg4: boolean) => void;
+  item: any;
+  subkey: number;
+  handleContentClick: (arg1: any, arg2: boolean, arg3: number) => void;
+  keyValue: any;
+  show: boolean;
+  removeItem: (arg1: number, arg2: number) => void;
+  t: any;
+  ttsActive: any;
+}
+
+export class QuickToolbar extends Component<Props, StateType> {
+  state: StateType = {
     fill: new Array(4).fill(false),
     tooltipOpen: new Array(4).fill(false),
     isDropdownOpen: false,
@@ -20,13 +41,15 @@ class QuickToolbar extends Component {
   };
 
   _hoverOn = (key) =>
-    this.setState((prevState) => ({
+    this.setState((prevState: StateType) => ({
       fill: prevState.fill.map((_, i) => key === i),
     }));
   _hoverOff = () =>
-    this.setState((prevState) => ({ fill: prevState.fill.map(() => false) }));
-  toggleTooltip = (key, e) => {
-    this.setState((prevState) => ({
+    this.setState((prevState: StateType) => ({
+      fill: prevState.fill.map(() => false),
+    }));
+  toggleTooltip = (key) => {
+    this.setState((prevState: StateType) => ({
       tooltipOpen: prevState.tooltipOpen.map((x, i) =>
         key === i ? !x : false
       ),
@@ -34,7 +57,7 @@ class QuickToolbar extends Component {
   };
   toggle = () => this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   toggleColor = (key, hover) =>
-    this.setState((prevState) => ({
+    this.setState((prevState: StateType) => ({
       dropdownColor: prevState.dropdownColor.map((x, i) =>
         i === key ? (hover ? "#3D3D3D" : "#FFFFFF") : "#FFFFFF"
       ),
@@ -116,7 +139,7 @@ class QuickToolbar extends Component {
                       placement="top"
                       isOpen={this.state.tooltipOpen[0]}
                       target="eva-icon-0"
-                      toggle={(e) => this.toggleTooltip(0, e)}
+                      toggle={() => this.toggleTooltip(0)}
                     >
                       {t("Dispositif.réagir", "réagir")}
                     </Tooltip>
@@ -250,24 +273,3 @@ class QuickToolbar extends Component {
     }
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    ttsActive: state.tts.ttsActive,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleAudio: () => dispatch({ type: actions.TOGGLE_TTS }),
-  };
-};
-
-export default track(
-  {
-    layout: "QuickToolbar",
-  },
-  { dispatchOnMount: false }
-)(
-  connect(mapStateToProps, mapDispatchToProps)(withTranslation()(QuickToolbar))
-);
