@@ -11,7 +11,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 // import Notifications from '../../components/UI/Notifications/Notifications';
 // import SendToMessenger from './SendToMessenger';
 // import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
-import { toggle_lang_modal } from "../../Store/actions/index";
+import { toggle_lang_modal } from "../../services/actions/index";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import API from "../../utils/API";

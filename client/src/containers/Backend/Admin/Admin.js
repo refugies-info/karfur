@@ -9,7 +9,7 @@ import passwdCheck from "zxcvbn";
 import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
 import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import { fetch_structures } from "../../../Store/actions/index";
+import { fetch_structures } from "../../../services/actions/index";
 
 import "./Admin.scss";
 import variables from "scss/colors.scss";

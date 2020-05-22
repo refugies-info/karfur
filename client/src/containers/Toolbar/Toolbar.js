@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import windowSize from "react-window-size";
 
-import { toggle_lang_modal } from "../../Store/actions/index";
+import { toggle_lang_modal } from "../../services/actions/index";
 // import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
 import DrawerToggle from "../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle";
 import API from "../../utils/API";
@@ -24,10 +24,10 @@ import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import SearchBar from "../UI/SearchBar/SearchBar";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import { fetch_user } from "../../Store/actions";
+import { fetch_user } from "../../services/actions";
 import { breakpoints } from "utils/breakpoints.js";
-import styled from 'styled-components';
-import Streamline from '../../assets/streamline';
+import styled from "styled-components";
+import Streamline from "../../assets/streamline";
 
 import "./Toolbar.scss";
 import variables from "scss/colors.scss";

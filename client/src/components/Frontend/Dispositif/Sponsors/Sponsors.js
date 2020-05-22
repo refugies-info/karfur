@@ -22,7 +22,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import SearchBar from "../../../../containers/UI/SearchBar/SearchBar";
 import { sentIllu } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
-import { update_user } from "../../../../Store/actions/index";
+import { update_user } from "../../../../services/actions/index";
 import _ from "lodash";
 
 import "./Sponsors.scss";

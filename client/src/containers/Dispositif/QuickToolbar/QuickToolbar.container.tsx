@@ -2,7 +2,7 @@ import track from "react-tracking";
 import { connect } from "react-redux";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { compose } from "recompose";
-import * as actions from "../../../Store/actions/actionTypes";
+import * as actions from "../../../services/actions/actionTypes";
 import { PropsBeforeInjection, QuickToolbar } from "./QuickToolbar.component";
 
 // TO DO : type state with RootState : type of root reducer

@@ -58,7 +58,7 @@ import {
   deleteContrib,
   getProgression,
 } from "./functions";
-import { fetch_user, fetch_dispositifs } from "../../../Store/actions";
+import { fetch_user, fetch_dispositifs } from "../../../services/actions";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 import setAuthToken from "../../../utils/setAuthToken";
