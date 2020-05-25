@@ -1,14 +1,65 @@
-import React from "react";
+import React, { BlockquoteHTMLAttributes, FunctionComponent } from "react";
 import { Col, Row } from "reactstrap";
-import { withTranslation } from "react-i18next";
-
+import { Props } from "./ContenuDispositif.container";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
-import QuickToolbar from "../../../../containers/Dispositif/QuickToolbar/QuickToolbar";
+import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
 
-const contenuDispositif = (props) => {
+interface UiObject {
+  accordion: boolean;
+  addDropdown: boolean;
+  cardDropdown: boolean;
+  isHover: boolean;
+  varianteSelected: boolean;
+}
+
+interface Children {
+  content: string;
+  editable: boolean;
+  isFakeContent: boolean;
+  title: string;
+  type: string;
+}
+interface Section {
+  type: string;
+  title: string;
+  editable: boolean;
+  content: string | null;
+  children: Children[];
+}
+export interface PropsBeforeInjection {
+  updateUIArray: (
+    key: number,
+    arg: null,
+    variante: string,
+    option?: boolean
+  ) => void;
+  handleContentClick: () => void;
+  handleMenuChange: () => void;
+  onEditorStateChange: () => void;
+  addItem: () => void;
+  // not sure it is boolean
+  sideView: boolean;
+  typeContenu: string;
+  uiArray: UiObject[];
+  t: any;
+  disableEdit: boolean;
+  inVariante: boolean;
+  menu: Section[];
+  tracking: any;
+  toggleModal: any;
+  readAudio: any;
+  subkey: any;
+  show: any;
+  tts: any;
+  removeItem: any;
+  ttsActive: any;
+  filtres: any;
+}
+
+export const contenuDispositif = (props: Props) => {
   const { t, disableEdit, inVariante } = props;
-  return props.menu.map((item, key) => {
+  return props.menu.map((item: Section, key: number) => {
     const newDisableEdit =
       disableEdit ||
       (props.typeContenu === "demarche" &&
@@ -102,14 +153,20 @@ const contenuDispositif = (props) => {
                     show={props.uiArray[key].isHover}
                     keyValue={key}
                     item={item}
-                    {...props}
+                    handleContentClick={props.handleContentClick}
+                    disableEdit={newDisableEdit}
+                    tracking={props.tracking}
+                    toggleModal={props.toggleModal}
+                    readAudio={props.readAudio}
+                    subkey={props.subkey}
+                    t={props.t}
+                    removeItem={props.removeItem}
+                    ttsActive={props.ttsActive}
                   />
                 </Col>
               )}
           </Row>
-
           <ContenuParagraphe item={item} keyValue={key} {...props} />
-
           <button className="anchor" id={"item-" + key}>
             {item.title}
           </button>
@@ -120,5 +177,3 @@ const contenuDispositif = (props) => {
     }
   });
 };
-
-export default withTranslation()(contenuDispositif);
