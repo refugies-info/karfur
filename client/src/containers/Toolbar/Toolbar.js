@@ -70,7 +70,8 @@ export class Toolbar extends React.Component {
     const afficher_burger =
       false && admin && path.includes("/backend") && path.includes("/admin"); //Hugo demande de ne plus afficher le burger, temporairement désactivé donc
     const afficher_burger_droite = path.includes("/traduction");
-    const userImg = (user.picture || {}).secure_url || marioProfile;
+    const userImg =
+      user && user.picture ? user.picture.secure_url : marioProfile;
     return (
       <header className="Toolbar">
         <div className="left_buttons">
