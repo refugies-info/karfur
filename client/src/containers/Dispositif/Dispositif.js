@@ -12,7 +12,6 @@ import {
   convertFromRaw,
   ContentState,
 } from "draft-js";
-import draftToHtml from "draftjs-to-html";
 import { savePDF } from "@progress/kendo-react-pdf";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
@@ -31,7 +30,7 @@ import "../../../node_modules/video-react/dist/video-react.css";
 
 import API from "../../utils/API";
 import Sponsors from "../../components/Frontend/Dispositif/Sponsors/Sponsors";
-import ContenuDispositif from "../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif";
+import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuDispositif";
 import {
   ReagirModal,
   BookmarkedModal,
@@ -2098,6 +2097,13 @@ export class Dispositif extends Component {
                   toggleModal={this.toggleModal}
                   deleteCard={this.deleteCard}
                   addItem={this.addItem}
+                  sideView={this.state.sideView}
+                  typeContenu={this.state.typeContenu}
+                  uiArray={this.state.uiArray}
+                  t={this.state.t}
+                  disableEdit={this.state.disableEdit}
+                  inVariante={this.state.inVariante}
+                  menu={this.state.menu}
                   removeItem={this.removeItem}
                   changeTitle={this.changeCardTitle}
                   disableIsMapLoaded={this.disableIsMapLoaded}
@@ -2107,10 +2113,10 @@ export class Dispositif extends Component {
                   toggleFree={this.toggleFree}
                   setMarkers={this.setMarkers}
                   filtres={filtres}
-                  sideView={translating}
                   readAudio={this.readAudio}
                   demarcheSteps={demarcheSteps}
                   upcoming={this.upcoming}
+                  // TO DO : remove spread state
                   {...this.state}
                 />
 

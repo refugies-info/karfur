@@ -40,7 +40,7 @@ var mailOptions = {
   from: "nour@refugies.info",
   to:
     process.env.NODE_ENV === "dev"
-      ? "souflam007@yahoo.fr"
+      ? "agathe.kieny@lamednum.coop"
       : "diairagir@gmail.com",
   subject: "Administration Réfugiés.info",
 };
@@ -104,8 +104,12 @@ async function add_dispositif(req, res) {
                 dispositifFr,
                 originalTrads[key]
               );
-              if (originalTrads[key].status == 'À revoir') {
-                await Traduction.updateMany({articleId: originalDis._id, langueCible: key }, {status: 'À revoir'}, { upsert: false });
+              if (originalTrads[key].status == "À revoir") {
+                await Traduction.updateMany(
+                  { articleId: originalDis._id, langueCible: key },
+                  { status: "À revoir" },
+                  { upsert: false }
+                );
               }
               console.log("####### the trad modified", originalTrads[key]);
               await Traduction.findOneAndUpdate(
