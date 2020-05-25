@@ -457,8 +457,8 @@ class SideTrad extends Component {
   };
 
   _endingFeedback = (newTrad) => {
-    console.log('inside ending feedback', this.props.traduction);
     if (
+      newTrad &&
       this.props.isExpert &&
       (this.state.selectedTrad.status === "Validée" ||
         this.state.avancement >= 1 || (newTrad && newTrad.avancement >= 1))
@@ -999,7 +999,6 @@ class SideTrad extends Component {
   };
 
   _insertTrad = async (trad) => {
-    console.log('Insert trad');
     if (trad) {
       await API.update_tradForReview(trad);
     }
