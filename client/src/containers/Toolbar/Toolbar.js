@@ -24,7 +24,7 @@ import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import SearchBar from "../UI/SearchBar/SearchBar";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import { fetch_user } from "../../services/User/user.actions";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { breakpoints } from "utils/breakpoints.js";
 import styled from "styled-components";
 import Streamline from "../../assets/streamline";
@@ -45,7 +45,7 @@ export class Toolbar extends React.Component {
 
   disconnect = () => {
     API.logout();
-    this.props.fetch_user();
+    this.props.fetchUser();
   };
 
   toggle = () =>
@@ -229,7 +229,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { toggle_lang_modal, fetch_user };
+const mapDispatchToProps = {
+  toggle_lang_modal,
+  fetchUser: fetchUserActionCreator,
+};
 
 export default track({
   component: "Toolbar",

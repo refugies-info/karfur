@@ -17,7 +17,7 @@ import FButton from "../../FigmaUI/FButton/FButton";
 
 // import DraggableList from '../../UI/DraggableList/DraggableList';
 import API from "../../../utils/API";
-import { fetch_user } from "../../../services/User/user.actions";
+import { fetchUserActionCreator } from "../../../services/User/user.actions";
 
 import "./TraducteurModal.scss";
 
@@ -90,7 +90,7 @@ class TraducteurModal extends Component {
       if (!userRes) {
         return;
       }
-      this.props.fetch_user().then(() => {
+      this.props.fetchUser().then(() => {
         this.setState({ spinner: false });
         if (this.props.redirect) {
           this.props.history.push({
@@ -166,7 +166,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetch_user };
+const mapDispatchToProps = { fetchUser: fetchUserActionCreator };
 
 export default withRouter(
   withTranslation()(

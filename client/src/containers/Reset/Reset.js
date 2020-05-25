@@ -12,7 +12,7 @@ import API from "../../utils/API";
 import setAuthToken from "../../utils/setAuthToken";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import FInput from "../../components/FigmaUI/FInput/FInput";
-import { fetch_user } from "../../services/User/user.actions";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 
 import "./Reset.scss";
@@ -98,7 +98,7 @@ class Reset extends Component {
         });
         localStorage.setItem("token", data.data.token);
         setAuthToken(data.data.token);
-        this.props.fetch_user();
+        this.props.fetchUser();
       })
       .catch((e) => console.log(e.response));
   };
@@ -258,7 +258,7 @@ class Reset extends Component {
   }
 }
 
-const mapDispatchToProps = { fetch_user };
+const mapDispatchToProps = { fetchUser: fetchUserActionCreator };
 
 export default track(
   {

@@ -19,7 +19,7 @@ import {
   toggle_lang_modal,
   toggle_langue,
 } from "../../services/actions/index";
-import { fetch_user } from "../../services/User/user.actions";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";
 import routes from "../../routes";
@@ -40,17 +40,17 @@ export class Layout extends Component {
   audio = new Audio();
 
   componentDidMount() {
-    this.props.fetch_user();
-    this.props.fetch_dispositifs();
-    this.props.fetch_structures();
-    this.props.fetch_langues().then(() => {
-      let languei18nCode = Cookies.get("languei18nCode");
-      if (languei18nCode && languei18nCode !== "fr") {
-        this.changeLanguage(languei18nCode);
-      } else if (!languei18nCode) {
-        this.props.toggle_lang_modal();
-      }
-    });
+    this.props.fetchUser();
+    // this.props.fetch_dispositifs();
+    // this.props.fetch_structures();
+    // this.props.fetch_langues().then(() => {
+    //   let languei18nCode = Cookies.get("languei18nCode");
+    //   if (languei18nCode && languei18nCode !== "fr") {
+    //     this.changeLanguage(languei18nCode);
+    //   } else if (!languei18nCode) {
+    //     this.props.toggle_lang_modal();
+    //   }
+    // });
     window.scrollTo(0, 0);
   }
 
@@ -200,7 +200,7 @@ const mapDispatchToProps = {
   fetch_structures,
   fetch_langues,
   fetch_dispositifs,
-  fetch_user,
+  fetchUser: fetchUserActionCreator,
   toggle_lang_modal,
   toggle_langue,
 };

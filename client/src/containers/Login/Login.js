@@ -24,7 +24,7 @@ import setAuthToken from "../../utils/setAuthToken";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../components/FigmaUI/FInput/FInput";
-import { fetch_user } from "../../services/User/user.actions";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import Modal from "../../components/Modals/Modal";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 
@@ -178,7 +178,7 @@ export class Login extends Component {
           localStorage.setItem("token", token);
           if (!cannyRedirect) {
             setAuthToken(token);
-            this.props.fetch_user();
+            this.props.fetchUser();
           }
         })
         .catch((e) => {
@@ -521,7 +521,7 @@ const InfoModal = (props) => (
   </Modal>
 );
 
-const mapDispatchToProps = { fetch_user };
+const mapDispatchToProps = { fetchUser: fetchUserActionCreator };
 
 export default track(
   {
