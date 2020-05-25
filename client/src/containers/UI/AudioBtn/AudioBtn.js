@@ -7,7 +7,7 @@ import _ from "lodash";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
-import * as actions from "../../../services/actions/actionTypes";
+import { TOGGLE_TTS } from "../../../services/Tts/tts.actionTypes";
 
 import "./AudioBtn.scss";
 import variables from "scss/colors.scss";
@@ -56,7 +56,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleAudio: () => dispatch({ type: actions.TOGGLE_TTS }),
+    toggleAudio: () => dispatch({ type: TOGGLE_TTS }),
   };
 };
 

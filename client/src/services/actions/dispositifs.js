@@ -1,9 +1,9 @@
-import * as actionTypes from "./actionTypes";
+import { SET_DISPOSITIFS } from "../Dispositifs/dispositifs.actionTypes";
 import API from "../../utils/API";
 
 const set_dispositifs = (value) => {
   return {
-    type: actionTypes.SET_DISPOSITIFS,
+    type: SET_DISPOSITIFS,
     value: value,
   };
 };

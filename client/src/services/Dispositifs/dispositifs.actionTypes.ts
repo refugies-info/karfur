@@ -1,2 +1,1 @@
-// example file
-export {};
+export const SET_DISPOSITIFS = "SET_DISPOSITIFS";
