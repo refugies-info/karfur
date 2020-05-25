@@ -395,9 +395,8 @@ class SideTrad extends Component {
         (isNext &&
           (!this.props.menu[currIdx].children ||
             currSubIdx >= this.props.menu[currIdx].children.length - 1) &&
-          this.state.currSubName === "content") ||
-        this.state.currSubName === "contentTitle" ||
-        (!isNext && currSubIdx <= 0 && this.state.currSubName === "title")
+          (this.state.currSubName === "content" || this.state.currSubName === "contentTitle")) ||
+        (!isNext && currSubIdx <= 0 && (this.state.currSubName === "title" || this.state.currSubName === "contentTitle"))
       ) {
         idx = currIdx + (isNext ? 1 : 0);
         subidx = -1;
@@ -407,6 +406,9 @@ class SideTrad extends Component {
         if (this.state.currSubName === "title") {
           subidx = currSubIdx + (isNext ? 0 : -1);
           subname = "content";
+        } else if (this.state.currSubName === "contentTitle"){
+          subidx = currSubIdx + (isNext ? 1 : -1);
+          subname = "contentTitle";
         } else {
           subidx = currSubIdx + (isNext ? 1 : 0);
           subname = "title";
@@ -422,7 +424,7 @@ class SideTrad extends Component {
             return;
           } else if (subidx > -1 && this.props.menu[idx].type === "cards") {
             if (
-              this.props.menu[idx].children[subidx][subname] === "Important !"
+              this.props.menu[idx].children[subidx].title === "Important !"
             ) {
               subname = "contentTitle";
               value = this.props.menu[idx].children[subidx].contentTitle;
