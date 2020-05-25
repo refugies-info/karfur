@@ -3,7 +3,7 @@ import { Col, Row, Collapse } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
-import QuickToolbar from "../../../../containers/Dispositif/QuickToolbar/QuickToolbar";
+import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import CardParagraphe, {
   PlusCard,
 } from "../../../../containers/Dispositif/CardParagraphe/CardParagraphe";
