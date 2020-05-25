@@ -152,7 +152,7 @@
     "@types/lodash": "^4.14.151",
     "@types/moment": "^2.13.0",
     "@types/react": "^16.9.35",
-    "@types/react-redux": "^7.1.8",
+    "@types/react-redux": "^7.1.9",
     "@types/react-tracking": "^7.0.2",
     "@types/react-window-size": "^1.2.0",
     "@types/reactstrap": "^8.4.2",
