@@ -19,11 +19,11 @@ function login(req, res) {
       api: arguments.callee.name,
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      action: { username: req.body.username }
+      action: { username: req.body.username },
     }).save();
     User.findOne(
       {
-        username: req.body.username
+        username: req.body.username,
       },
       async (err, user) => {
         if (err) {
@@ -46,19 +46,19 @@ function login(req, res) {
             if (
               user.roles &&
               user.roles.length > 0 &&
-              req.user.roles.some(x => x.nom === "Admin")
+              req.user.roles.some((x) => x.nom === "Admin")
             ) {
               user.roles = [
                 ...new Set([
                   ...user.roles,
-                  req.roles.find(x => x.nom === "User")._id
-                ])
+                  req.roles.find((x) => x.nom === "User")._id,
+                ]),
               ];
             } else if (user.traducteur) {
-              user.roles = [req.roles.find(x => x.nom === "Trad")._id];
+              user.roles = [req.roles.find((x) => x.nom === "Trad")._id];
               delete user.traducteur;
             } else {
-              user.roles = [req.roles.find(x => x.nom === "User")._id];
+              user.roles = [req.roles.find((x) => x.nom === "User")._id];
             }
             _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
             user.status = "Actif";
@@ -73,7 +73,7 @@ function login(req, res) {
                 res.status(200).json({
                   text: "Succès",
                   token: user.getToken(),
-                  data: user
+                  data: user,
                 });
               }
             });
@@ -90,21 +90,20 @@ function login(req, res) {
           if (user.authenticate(req.body.password)) {
             if (
               (user.roles || []).some(
-                x => x && x.equals(req.roles.find(x => x.nom === "Admin")._id)
+                (x) =>
+                  x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
               )
             ) {
               if (user.authy_id && req.body.code) {
-                return authy.verify(user.authy_id, req.body.code, function(
+                return authy.verify(user.authy_id, req.body.code, function (
                   err,
                   result
                 ) {
                   if (err || !result) {
-                    return res
-                      .status(204)
-                      .json({
-                        text: "Erreur à la vérification du code",
-                        data: err
-                      });
+                    return res.status(204).json({
+                      text: "Erreur à la vérification du code",
+                      data: err,
+                    });
                   }
                   return proceed_with_login(req, res, user);
                 });
@@ -112,15 +111,13 @@ function login(req, res) {
                 return authy.request_sms(
                   user.authy_id,
                   (force = true),
-                  function(err_sms, result_sms) {
+                  function (err_sms, result_sms) {
                     if (err_sms) {
                       console.log(err_sms);
-                      return res
-                        .status(204)
-                        .json({
-                          text: "Erreur à l'envoi du code à ce numéro",
-                          data: err_sms
-                        });
+                      return res.status(204).json({
+                        text: "Erreur à l'envoi du code à ce numéro",
+                        data: err_sms,
+                      });
                     }
                     return res.status(501).json({ text: "no code supplied" });
                   }
@@ -130,24 +127,20 @@ function login(req, res) {
                   req.body.email,
                   req.body.phone,
                   "33",
-                  function(err, result) {
+                  function (err, result) {
                     if (err) {
-                      return res
-                        .status(204)
-                        .json({
-                          text: "Erreur à la création du compte authy",
-                          data: err
-                        });
+                      return res.status(204).json({
+                        text: "Erreur à la création du compte authy",
+                        data: err,
+                      });
                     }
                     const authy_id = result.user.id;
-                    authy.request_sms(authy_id, function(err_sms, result_sms) {
+                    authy.request_sms(authy_id, function (err_sms, result_sms) {
                       if (err_sms) {
-                        res
-                          .status(204)
-                          .json({
-                            text: "Erreur à l'envoi du code à ce numéro'",
-                            data: err_sms
-                          });
+                        res.status(204).json({
+                          text: "Erreur à l'envoi du code à ce numéro'",
+                          data: err_sms,
+                        });
                         return;
                       }
                     });
@@ -160,13 +153,11 @@ function login(req, res) {
                   }
                 );
               } else {
-                return res
-                  .status(502)
-                  .json({
-                    text: "no authy_id",
-                    phone: user.phone,
-                    email: user.email
-                  });
+                return res.status(502).json({
+                  text: "no authy_id",
+                  phone: user.phone,
+                  email: user.email,
+                });
               }
             }
             return proceed_with_login(req, res, user);
@@ -179,32 +170,32 @@ function login(req, res) {
   }
 }
 
-const proceed_with_login = function(req, res, user) {
+const proceed_with_login = function (req, res, user) {
   //On change les infos de l'utilisateur
   if (req.body.traducteur) {
     user.roles = [
       ...new Set([
         ...(user.roles || []),
-        req.roles.find(x => x.nom === "Trad")._id
-      ])
+        req.roles.find((x) => x.nom === "Trad")._id,
+      ]),
     ];
   }
   user.last_connected = new Date();
   user.save();
   res.status(200).json({
     token: user.getToken(),
-    text: "Authentification réussi"
+    text: "Authentification réussi",
   });
 };
 
-const _checkAndNotifyAdmin = async function(
+const _checkAndNotifyAdmin = async function (
   user,
   roles,
   requestingUser,
   isNew = true
 ) {
-  const adminId = roles.find(x => x.nom === "Admin")._id;
-  if (user.roles && user.roles.some(x => adminId.equals(x))) {
+  const adminId = roles.find((x) => x.nom === "Admin")._id;
+  if (user.roles && user.roles.some((x) => adminId.equals(x))) {
     if (!isNew) {
       //Si l'utilisateur existe déjà, je vérifie qu'il n'avait pas déjà ce rôle pour pas spammer à chaque modif de l'utilisateur
       const currUser = await User.findOne({ _id: user._id });
@@ -252,11 +243,11 @@ function checkUserExists(req, res) {
       api: arguments.callee.name,
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      action: { username: req.body.username }
+      action: { username: req.body.username },
     }).save();
     User.findOne(
       {
-        username: req.body.username //.toLowerCase()
+        username: req.body.username, //.toLowerCase()
       },
       (err, user) => {
         if (err) {
@@ -285,11 +276,11 @@ function set_user_info(req, res) {
       api: arguments.callee.name,
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      action: user
+      action: user,
     }).save();
 
     //Si l'utilisateur n'est pas admin je vérifie qu'il ne se modifie que lui-même
-    let isAdmin = req.user.roles.find(x => x.nom === "Admin");
+    let isAdmin = req.user.roles.find((x) => x.nom === "Admin");
     if (!isAdmin && !req.user._id.equals(user._id)) {
       res.status(401).json({ text: "Token invalide" });
       return false;
@@ -300,17 +291,17 @@ function set_user_info(req, res) {
     if (user.traducteur) {
       user = {
         ...user,
-        $addToSet: { roles: req.roles.find(x => x.nom === "Trad")._id }
+        $addToSet: { roles: req.roles.find((x) => x.nom === "Trad")._id },
       };
       delete user.traducteur;
     }
     User.findByIdAndUpdate(
       {
-        _id: user._id
+        _id: user._id,
       },
       user,
       { new: true },
-      function(error, result) {
+      function (error, result) {
         if (error) {
           console.log(error);
           res.status(500).json({ text: "Erreur interne", error: error });
@@ -320,7 +311,7 @@ function set_user_info(req, res) {
           populateLanguages(user);
           res.status(200).json({
             data: result,
-            text: "Mise à jour réussie"
+            text: "Mise à jour réussie",
           });
         }
       }
@@ -350,7 +341,7 @@ function change_password(req, res) {
       api: arguments.callee.name,
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      action: { username: query.username }
+      action: { username: query.username },
     }).save();
     User.findOne(query, (err, user) => {
       if (err) {
@@ -368,7 +359,7 @@ function change_password(req, res) {
         user.save();
         res.status(200).json({
           token: user.getToken(),
-          text: "Authentification réussi"
+          text: "Authentification réussi",
         });
       }
     });
@@ -386,11 +377,11 @@ function reset_password(req, res) {
       api: arguments.callee.name,
       action: { username },
       userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles")
+      roles: _.get(req, "user.roles"),
     }).save();
     return User.findOne(
       {
-        username
+        username,
       },
       async (err, user) => {
         if (err) {
@@ -399,27 +390,23 @@ function reset_password(req, res) {
         } else if (!user) {
           return res.status(404).json({ text: "L'utilisateur n'existe pas" });
         } else if (!user.email) {
-          return res
-            .status(403)
-            .json({
-              text:
-                "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi."
-            });
+          return res.status(403).json({
+            text:
+              "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+          });
         } else {
           if (
             (user.roles || []).some(
-              x => x && x.equals(req.roles.find(x => x.nom === "Admin")._id)
+              (x) => x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
             )
           ) {
             //L'admin ne peut pas le faire comme ça
-            return res
-              .status(401)
-              .json({
-                text:
-                  "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site"
-              });
+            return res.status(401).json({
+              text:
+                "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
+            });
           }
-          crypto.randomBytes(20, function(errb, buffer) {
+          crypto.randomBytes(20, function (errb, buffer) {
             if (errb) {
               return res.status(422).json({ message: errb });
             }
@@ -427,7 +414,7 @@ function reset_password(req, res) {
             user
               .updateOne({
                 reset_password_token: token,
-                reset_password_expires: Date.now() + 1 * 60 * 60 * 1000
+                reset_password_expires: Date.now() + 1 * 60 * 60 * 1000,
               })
               .exec();
             const newUrl = url + "reset/" + token;
@@ -470,12 +457,12 @@ function set_new_password(req, res) {
     new DBEvent({
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      api: arguments.callee.name
+      api: arguments.callee.name,
     }).save();
     return User.findOne(
       {
         reset_password_token,
-        reset_password_expires: { $gt: Date.now() }
+        reset_password_expires: { $gt: Date.now() },
       },
       async (err, user) => {
         if (err) {
@@ -484,25 +471,21 @@ function set_new_password(req, res) {
         } else if (!user) {
           return res.status(404).json({ text: "L'utilisateur n'existe pas" });
         } else if (!user.email) {
-          return res
-            .status(403)
-            .json({
-              text:
-                "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi."
-            });
+          return res.status(403).json({
+            text:
+              "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+          });
         } else {
           if (
             (user.roles || []).some(
-              x => x && x.equals(req.roles.find(x => x.nom === "Admin")._id)
+              (x) => x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
             )
           ) {
             //L'admin ne peut pas le faire comme ça
-            return res
-              .status(401)
-              .json({
-                text:
-                  "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site"
-              });
+            return res.status(401).json({
+              text:
+                "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
+            });
           }
           if (newPassword !== cpassword) {
             return res
@@ -519,7 +502,7 @@ function set_new_password(req, res) {
           user.save();
           res.status(200).json({
             token: user.getToken(),
-            text: "Authentification réussi"
+            text: "Authentification réussi",
           });
         }
       }
@@ -544,10 +527,10 @@ function get_users(req, res) {
     action: { query, sort, populate },
     userId: _.get(req, "userId"),
     roles: _.get(req, "user.roles"),
-    api: arguments.callee.name
+    api: arguments.callee.name,
   }).save();
 
-  const select = ((req.user || {}).roles || []).some(x => x.nom === "Admin")
+  const select = ((req.user || {}).roles || []).some((x) => x.nom === "Admin")
     ? undefined
     : req.fromSite
     ? "username roles last_connected email"
@@ -558,7 +541,7 @@ function get_users(req, res) {
       .sort(sort)
       .populate(populate)
       .select(select)
-      .exec(function(err, result) {
+      .exec(function (err, result) {
         if (err) {
           reject(500);
         } else {
@@ -572,9 +555,9 @@ function get_users(req, res) {
   });
 
   find.then(
-    result => {
+    (result) => {
       if (result) {
-        result.forEach(item => {
+        result.forEach((item) => {
           if (item.password) {
             item.password = "Hidden";
           }
@@ -583,24 +566,24 @@ function get_users(req, res) {
 
       res.status(200).json({
         text: "Succès",
-        data: result
+        data: result,
       });
     },
-    error => {
+    (error) => {
       switch (error) {
         case 500:
           res.status(500).json({
-            text: "Erreur interne"
+            text: "Erreur interne",
           });
           break;
         case 404:
           res.status(404).json({
-            text: "Pas de résultats"
+            text: "Pas de résultats",
           });
           break;
         default:
           res.status(500).json({
-            text: "Erreur interne"
+            text: "Erreur interne",
           });
       }
     }
@@ -608,31 +591,32 @@ function get_users(req, res) {
 }
 
 function get_user_info(req, res) {
+  console.log("get_user_info", req);
   new DBEvent({
     userId: _.get(req, "userId"),
     roles: _.get(req, "user.roles"),
-    api: arguments.callee.name
+    api: arguments.callee.name,
   }).save();
   res.status(200).json({
     text: "Succès",
-    data: req.user
+    data: req.user,
   });
 }
 
-const populateLanguages = user => {
+const populateLanguages = (user) => {
   if (
     user.selectedLanguages &&
     user.selectedLanguages.constructor === Array &&
     user.selectedLanguages.length > 0
   ) {
-    user.selectedLanguages.forEach(langue => {
+    user.selectedLanguages.forEach((langue) => {
       Langue.findOne({ _id: langue._id }).exec((err, result) => {
         if (!err) {
           if (!result.participants) {
             result.participants = [user._id];
             result.save();
           } else if (
-            !result.participants.some(participant =>
+            !result.participants.some((participant) =>
               participant.equals(user._id)
             )
           ) {
@@ -648,17 +632,17 @@ const populateLanguages = user => {
     //Je vérifie maintenant s'il n'était pas inscrit dans d'autres langues à tort:
     Langue.find({ participants: user._id }).exec((err, results) => {
       if (!err) {
-        results.forEach(result => {
+        results.forEach((result) => {
           if (
-            result.participants.some(participant =>
+            result.participants.some((participant) =>
               participant.equals(user._id)
             )
           ) {
-            if (!user.selectedLanguages.some(x => x._id == result._id)) {
+            if (!user.selectedLanguages.some((x) => x._id == result._id)) {
               Langue.update(
                 { _id: result._id },
                 { $pull: { participants: user._id } }
-              ).exec(err => {
+              ).exec((err) => {
                 if (err) {
                   console.log(err);
                 }
@@ -684,7 +668,7 @@ function signup(req, res) {
       action: { username: user.username },
       userId: _.get(req, "userId"),
       roles: _.get(req, "user.roles"),
-      api: arguments.callee.name
+      api: arguments.callee.name,
     }).save();
     if (user.password) {
       if ((passwdCheck(user.password) || {}).score < 1) {
@@ -695,12 +679,12 @@ function signup(req, res) {
       user.password = passwordHash.generate(user.password);
     }
 
-    const find = new Promise(function(resolve, reject) {
+    const find = new Promise(function (resolve, reject) {
       User.findOne(
         {
-          username: user.username
+          username: user.username,
         },
-        function(err, result) {
+        function (err, result) {
           if (err) {
             reject(500);
           } else {
@@ -715,9 +699,9 @@ function signup(req, res) {
     });
 
     find.then(
-      function() {
+      function () {
         if (user.traducteur) {
-          user.roles = [req.roles.find(x => x.nom === "Trad")._id];
+          user.roles = [req.roles.find((x) => x.nom === "Trad")._id];
           delete user.traducteur;
         }
         user.status = "Actif";
@@ -727,11 +711,11 @@ function signup(req, res) {
           user.roles = (result || {})._id;
 
           var _u = new User(user);
-          _u.save(function(err, user) {
+          _u.save(function (err, user) {
             if (err) {
               console.log(err);
               res.status(500).json({
-                text: "Erreur interne"
+                text: "Erreur interne",
               });
             } else {
               //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
@@ -741,28 +725,28 @@ function signup(req, res) {
               res.status(200).json({
                 text: "Succès",
                 token: user.getToken(),
-                data: user
+                data: user,
               });
             }
           });
         });
       },
-      function(error) {
+      function (error) {
         console.log(error);
         switch (error) {
           case 500:
             res.status(500).json({
-              text: "Erreur interne"
+              text: "Erreur interne",
             });
             break;
           case 204:
             res.status(404).json({
-              text: "Le nom d'utilisateur existe déjà"
+              text: "Le nom d'utilisateur existe déjà",
             });
             break;
           default:
             res.status(500).json({
-              text: "Erreur interne"
+              text: "Erreur interne",
             });
         }
       }
