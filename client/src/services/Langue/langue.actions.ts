@@ -1,2 +1,3 @@
 // example file
-export {};
+
+export type LangueActions = any;

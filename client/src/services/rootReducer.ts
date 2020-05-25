@@ -1,5 +1,5 @@
 import { combineReducers, Action } from "redux";
-import langueReducer from "./Reducers/langueReducer";
+import { langueReducer, LangueState } from "./Langue/langue.reducer";
 import {
   dispositifReducer,
   DispositifState,
@@ -9,7 +9,6 @@ import { userReducer, UserState } from "./User/user.reducer";
 import { ttsReducer, TtsState } from "./Tts/tts.reducer";
 
 // TO DO type correctly when refacto stores
-type LangueState = any;
 type StructureState = any;
 
 export interface RootState {
