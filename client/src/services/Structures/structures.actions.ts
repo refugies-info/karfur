@@ -1,2 +1,2 @@
 // example file
-export {};
+export type StructureActions = any;
