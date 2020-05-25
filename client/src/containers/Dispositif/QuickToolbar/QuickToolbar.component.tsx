@@ -29,7 +29,7 @@ export interface PropsBeforeInjection {
   show: boolean;
   removeItem: (arg1: number, arg2: number) => void;
   t: any;
-  ttsActive: any;
+  ttsActive: boolean;
 }
 
 export class QuickToolbar extends Component<Props, StateType> {
