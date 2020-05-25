@@ -59,7 +59,7 @@ import {
   getProgression,
 } from "./functions";
 import { fetch_dispositifs } from "../../../services/actions";
-import { fetch_user } from "../../../services/User/user.actions";
+import { fetchUserActionCreator } from "../../../services/User/user.actions";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 import setAuthToken from "../../../utils/setAuthToken";
@@ -394,7 +394,7 @@ export class UserProfile extends Component {
         });
         localStorage.setItem("token", data.data.token);
         setAuthToken(data.data.token);
-        this.props.fetch_user();
+        this.props.fetchUser();
         this.toggleModal("password");
       }
     });
@@ -428,7 +428,7 @@ export class UserProfile extends Component {
     };
     API.set_user_info(newUser).then((data) => {
       if (this._isMounted) {
-        this.props.fetch_user();
+        this.props.fetchUser();
         Swal.fire({
           title: "Yay...",
           text: "Votre profil a bien été enregistré",
@@ -1113,7 +1113,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetch_user, fetch_dispositifs };
+const mapDispatchToProps = {
+  fetchUser: fetchUserActionCreator,
+  fetch_dispositifs,
+};
 
 export default track({
   page: "UserProfile",

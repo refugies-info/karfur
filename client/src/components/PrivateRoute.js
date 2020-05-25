@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 
 import API from "../utils/API";
 import UnauthorizedAccess from "./Navigation/UnauthorizedAccess/UnauthorizedAccess";
-import { fetch_user } from "../services/User/user.actions";
+import { fetchUserActionCreator } from "../services/User/user.actions";
 
 const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
-  const { user, fetch_user } = rest;
+  const { user, fetchUser } = rest;
   return (
     <Route
       {...rest}
@@ -40,7 +40,7 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
             route.restriction.length > 0
           ) {
             if (!user || !user.roles) {
-              fetch_user();
+              fetchUser();
             }
             const roles = (user && user.roles) || [];
             const isAuthorized =
@@ -69,6 +69,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetch_user };
+const mapDispatchToProps = { fetchUser: fetchUserActionCreator };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);
