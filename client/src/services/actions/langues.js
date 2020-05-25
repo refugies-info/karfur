@@ -1,9 +1,13 @@
-import * as actionTypes from "./actionTypes";
+import {
+  SET_LANGUES,
+  TOGGLE_LANG_MODAL,
+  TOGGLE_LANGUE,
+} from "../Langue/langue.actionTypes";
 import API from "../../utils/API";
 
 const set_langues = (value) => {
   return {
-    type: actionTypes.SET_LANGUES,
+    type: SET_LANGUES,
     value: value,
   };
 };
@@ -17,9 +21,9 @@ export const fetch_langues = () => {
 };
 
 export const toggle_lang_modal = () => ({
-  type: actionTypes.TOGGLE_LANG_MODAL,
+  type: TOGGLE_LANG_MODAL,
 });
 export const toggle_langue = (value) => ({
-  type: actionTypes.TOGGLE_LANGUE,
+  type: TOGGLE_LANGUE,
   value: value,
 });

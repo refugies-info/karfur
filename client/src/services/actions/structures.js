@@ -1,9 +1,9 @@
-import * as actionTypes from "./actionTypes";
+import { SET_STRUCTURES } from "../Structures/structures.actionTypes";
 import API from "../../utils/API";
 
 const set_structures = (value) => {
   return {
-    type: actionTypes.SET_STRUCTURES,
+    type: SET_STRUCTURES,
     value: value,
   };
 };

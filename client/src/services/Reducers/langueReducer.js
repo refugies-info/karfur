@@ -1,7 +1,11 @@
 // Store/Reducers/langueReducer.js
 import Cookies from "js-cookie";
 
-import * as actions from "../actions/actionTypes";
+import {
+  TOGGLE_LANGUE,
+  TOGGLE_LANG_MODAL,
+  SET_LANGUES,
+} from "../Langue/langue.actionTypes";
 import { updateObject } from "../utility";
 
 //A changer, c'est juste pour l'exemple
@@ -13,12 +17,12 @@ const initialState = {
 
 function langueReducer(state = initialState, action) {
   switch (action.type) {
-    case actions.TOGGLE_LANGUE:
+    case TOGGLE_LANGUE:
       Cookies.set("languei18nCode", action.value);
       return updateObject(state, { languei18nCode: action.value });
-    case actions.TOGGLE_LANG_MODAL:
+    case TOGGLE_LANG_MODAL:
       return updateObject(state, { showLangModal: !state.showLangModal });
-    case actions.SET_LANGUES:
+    case SET_LANGUES:
       return updateObject(state, { langues: action.value });
     default:
       return state;

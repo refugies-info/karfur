@@ -1,7 +1,7 @@
-import * as actionTypes from "./actionTypes";
+import { TOGGLE_TTS, TOGGLE_SPINNER } from "../Tts/tts.actionTypes";
 
-export const toggleTTS = () => ({ type: actionTypes.TOGGLE_TTS });
+export const toggleTTS = () => ({ type: TOGGLE_TTS });
 export const toggleSpinner = (value) => ({
-  type: actionTypes.TOGGLE_SPINNER,
+  type: TOGGLE_SPINNER,
   value: value,
 });

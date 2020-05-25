@@ -1,2 +1,1 @@
-// example file
-export {};
+export const SET_STRUCTURES = "SET_STRUCTURES";
