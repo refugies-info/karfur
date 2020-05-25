@@ -384,7 +384,7 @@ export class Avancement extends Component {
             } else if (a[element.order] < b[element.order]) {
               return this.state.ascending ? -1 : 0;
             } else {
-              return 1;
+              return -1;
             }
           });
         }
