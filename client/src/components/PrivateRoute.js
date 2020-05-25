@@ -42,7 +42,7 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
             if (!user || !user.roles) {
               fetch_user();
             }
-            const roles = user.roles || [];
+            const roles = (user && user.roles) || [];
             const isAuthorized =
               roles.filter((x) => route.restriction.includes(x.nom)).length > 0;
             if (isAuthorized) {

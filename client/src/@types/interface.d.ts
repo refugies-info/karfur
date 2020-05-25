@@ -54,4 +54,5 @@ export interface User {
   last_connected?: Moment;
   updatedAt: Moment;
   created_at: Moment;
+  _id: ObjectId;
 }
