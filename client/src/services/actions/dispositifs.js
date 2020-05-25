@@ -1,4 +1,4 @@
-import { SET_DISPOSITIFS } from "../Dispositifs/dispositifs.actionTypes";
+import { SET_DISPOSITIFS } from "../Dispositif/dispositif.actionTypes";
 import API from "../../utils/API";
 
 const set_dispositifs = (value) => {

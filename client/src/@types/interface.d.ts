@@ -56,3 +56,7 @@ export interface User {
   created_at: Moment;
   _id: ObjectId;
 }
+
+export interface Dispositif {
+  _id: ObjectId;
+}
