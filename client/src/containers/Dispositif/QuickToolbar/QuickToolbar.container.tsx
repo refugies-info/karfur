@@ -13,7 +13,7 @@ const mapStateToProps = (state: RootState) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
     toggleAudio: () => dispatch({ type: actions.TOGGLE_TTS }),
   };
