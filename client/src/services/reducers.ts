@@ -1,13 +1,11 @@
-import { createStore, applyMiddleware, combineReducers, compose } from "redux";
-import thunk from "redux-thunk";
-
+import { combineReducers, Action } from "redux";
 import langueReducer from "./Reducers/langueReducer";
 import dispositifReducer from "./Reducers/dispositifReducer";
 import structureReducer from "./Reducers/structureReducer";
 import userReducer from "./User/user.reducer";
 import ttsReducer from "./Reducers/ttsReducer";
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   langue: langueReducer,
   dispositif: dispositifReducer,
   user: userReducer,
@@ -15,12 +13,7 @@ const rootReducer = combineReducers({
   structure: structureReducer,
 });
 
-export default createStore(
-  rootReducer,
-  compose(
-    applyMiddleware(thunk),
-    (window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__()) ||
-      compose
-  )
-);
+type RootReducer = ReturnType<typeof appReducer>;
+
+export const rootReducer = (state: any, action: Action): RootReducer =>
+  appReducer(state, action);
