@@ -1,4 +1,3 @@
-import { SET_USER, UPDATE_USER } from "./user.actionTypes";
 import { updateObject } from "../utility";
 import { User, Role } from "../../@types/interface";
 import { createReducer } from "typesafe-actions";
