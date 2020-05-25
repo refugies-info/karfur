@@ -4,12 +4,12 @@ import {
   dispositifReducer,
   DispositifState,
 } from "./Dispositif/dispositif.reducer";
-import structureReducer from "./Reducers/structureReducer";
+import {
+  structureReducer,
+  StructureState,
+} from "./Structures/structures.reducer";
 import { userReducer, UserState } from "./User/user.reducer";
 import { ttsReducer, TtsState } from "./Tts/tts.reducer";
-
-// TO DO type correctly when refacto stores
-type StructureState = any;
 
 export interface RootState {
   user: UserState;

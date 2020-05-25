@@ -60,3 +60,7 @@ export interface User {
 export interface Dispositif {
   _id: ObjectId;
 }
+
+export interface Structure {
+  _id: ObjectId;
+}
