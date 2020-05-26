@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import FButton from "../FButton/FButton";
 
-import { toggle_lang_modal } from "../../../services/actions/index";
+import { toggleLangueModalActionCreator } from "../../../services/Langue/langue.actions";
 
 import "./LanguageBtn.scss";
 
@@ -17,7 +17,7 @@ const languageBtn = (props) => {
     <FButton
       type="outline-black"
       className="language-btn mr-10"
-      onClick={props.toggle_lang_modal}
+      onClick={props.toggleLangueModal}
     >
       <i
         className={"flag-icon flag-icon-" + langueCode}
@@ -40,7 +40,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { toggle_lang_modal };
+const mapDispatchToProps = {
+  toggleLangueModal: toggleLangueModalActionCreator,
+};
 
 export default withTranslation()(
   connect(mapStateToProps, mapDispatchToProps)(languageBtn)

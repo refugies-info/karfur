@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import windowSize from "react-window-size";
 
-import { toggle_lang_modal } from "../../services/actions/index";
+import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 // import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
 import DrawerToggle from "../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle";
 import API from "../../utils/API";
@@ -230,7 +230,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  toggle_lang_modal,
+  toggleLangueModal: toggleLangueModalActionCreator,
   fetchUser: fetchUserActionCreator,
 };
 
