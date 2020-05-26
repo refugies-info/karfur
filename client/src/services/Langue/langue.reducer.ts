@@ -1,9 +1,8 @@
-// Store/Reducers/langueReducer.js
 import Cookies from "js-cookie";
 import { updateObject } from "../utility";
 import { Language } from "../../@types/interface";
 import { LangueActions } from "./langue.actions";
-import { createReducer, action } from "typesafe-actions";
+import { createReducer } from "typesafe-actions";
 
 export interface LangueState {
   langues: Language[];

@@ -4,7 +4,6 @@ import {
   TOGGLE_LANGUE,
   FETCH_LANGUES,
 } from "../Langue/langue.actionTypes";
-import API from "../../utils/API";
 import { action, ActionType } from "typesafe-actions";
 import { Language } from "../../@types/interface";
 
