@@ -50,7 +50,8 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
 import BandeauEdition from "../../components/Frontend/Dispositif/BandeauEdition/BandeauEdition";
 import TopRightHeader from "../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader";
-import { fetch_dispositifs, fetch_user } from "../../Store/actions";
+import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import SideTrad from "./SideTrad/SideTrad";
@@ -1008,7 +1009,7 @@ export class Dispositif extends Component {
         ];
       }
       API.set_user_info(user).then(() => {
-        this.props.fetch_user();
+        this.props.fetchUser();
         this._isMounted &&
           this.setState((pS) => ({
             showSpinnerBookmark: false,
@@ -1311,7 +1312,7 @@ export class Dispositif extends Component {
       dispositifId: this.state._id,
     };
     API.add_dispositif(dispositif).then((data) => {
-      this.props.fetch_dispositifs();
+      this.props.fetchDispositifs();
       this._isMounted &&
         this.setState({
           status: status,
@@ -1488,8 +1489,8 @@ export class Dispositif extends Component {
       const newDispo = data.data.data;
       if (!auto && this._isMounted) {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
-          this.props.fetch_user();
-          this.props.fetch_dispositifs();
+          this.props.fetchUser();
+          this.props.fetchDispositifs();
           this.setState(
             {
               disableEdit: [
@@ -2362,7 +2363,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetch_dispositifs, fetch_user };
+const mapDispatchToProps = {
+  fetchDispositifs: fetchDispositifsActionCreator,
+  fetchUser: fetchUserActionCreator,
+};
 
 export default track({
   page: "Dispositif",
