@@ -50,7 +50,7 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
 import BandeauEdition from "../../components/Frontend/Dispositif/BandeauEdition/BandeauEdition";
 import TopRightHeader from "../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader";
-import { fetch_dispositifs } from "../../services/actions";
+import { fetch_dispositifs } from "../../services/Dispositif/dispositif.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
 import FButton from "../../components/FigmaUI/FButton/FButton";

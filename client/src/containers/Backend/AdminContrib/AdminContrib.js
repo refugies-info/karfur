@@ -16,7 +16,7 @@ import moment from "moment/min/moment-with-locales";
 
 import API from "../../../utils/API";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { fetch_dispositifs } from "../../../services/actions";
+import { fetch_dispositifs } from "../../../services/Dispositif/dispositif.actions";
 import { deleteContrib } from "../UserProfile/functions";
 import { prepareDeleteContrib } from "./functions";
 
