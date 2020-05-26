@@ -3,22 +3,14 @@ import {
   fetchUserActionCreator,
   updateUserActionCreator,
 } from "../user.actions";
-import moment from "moment";
-import { ObjectId } from "mongodb";
 import { SET_USER, FETCH_USER, UPDATE_USER } from "../user.actionTypes";
+import { testUser } from "../../../__fixtures__/user";
 
 describe("[Actions] User", () => {
-  const date = moment("2019-05-01 12:00:00");
-  const user = {
-    username: "test",
-    updatedAt: date,
-    created_at: date,
-    _id: new ObjectId("testObjectId"),
-  };
   it("should return a SET_USER action with correct payload", () => {
-    expect(setUserActionCreator(user)).toEqual({
+    expect(setUserActionCreator(testUser)).toEqual({
       type: SET_USER,
-      payload: user,
+      payload: testUser,
     });
   });
 
@@ -29,9 +21,9 @@ describe("[Actions] User", () => {
   });
 
   it("should return a UPDATE_USER action with correct payload", () => {
-    expect(updateUserActionCreator(user)).toEqual({
+    expect(updateUserActionCreator(testUser)).toEqual({
       type: UPDATE_USER,
-      payload: user,
+      payload: testUser,
     });
   });
 });
