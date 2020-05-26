@@ -1,6 +1,5 @@
 import { SET_USER, UPDATE_USER, FETCH_USER } from "./user.actionTypes";
-import API from "../../utils/API";
-import { RequestReturn, User } from "../../@types/interface";
+import { User } from "../../@types/interface";
 import { ActionType, action } from "typesafe-actions";
 
 export const setUserActionCreator = (value: User | null) =>
