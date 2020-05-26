@@ -11,7 +11,7 @@ import { ObjectifsModal, ContributeurModal } from "../../../components/Modals";
 import { ContribTable } from "../../../components/Backend/UserProfile";
 import { avancement_contrib } from "../UserProfile/data";
 import { deleteContrib } from "../UserProfile/functions";
-import { fetch_dispositifs } from "../../../services/Dispositif/dispositif.actions";
+import { fetchDispositifsActionCreator } from "../../../services/Dispositif/dispositif.actions";
 
 import "./UserDashContrib.scss";
 
@@ -224,7 +224,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetch_dispositifs };
+const mapDispatchToProps = { fetchDispositifs: fetchDispositifsActionCreator };
 
 export default track({
   page: "UserDashContrib",

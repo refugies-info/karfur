@@ -50,7 +50,7 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
 import BandeauEdition from "../../components/Frontend/Dispositif/BandeauEdition/BandeauEdition";
 import TopRightHeader from "../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader";
-import { fetch_dispositifs } from "../../services/Dispositif/dispositif.actions";
+import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
 import FButton from "../../components/FigmaUI/FButton/FButton";
@@ -1312,7 +1312,7 @@ export class Dispositif extends Component {
       dispositifId: this.state._id,
     };
     API.add_dispositif(dispositif).then((data) => {
-      this.props.fetch_dispositifs();
+      this.props.fetchDispositifs();
       this._isMounted &&
         this.setState({
           status: status,
@@ -1490,7 +1490,7 @@ export class Dispositif extends Component {
       if (!auto && this._isMounted) {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
           this.props.fetchUser();
-          this.props.fetch_dispositifs();
+          this.props.fetchDispositifs();
           this.setState(
             {
               disableEdit: [
@@ -2364,7 +2364,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  fetch_dispositifs,
+  fetchDispositifs: fetchDispositifsActionCreator,
   fetchUser: fetchUserActionCreator,
 };
 

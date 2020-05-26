@@ -16,7 +16,7 @@ import moment from "moment/min/moment-with-locales";
 
 import API from "../../../utils/API";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { fetch_dispositifs } from "../../../services/Dispositif/dispositif.actions";
+import { fetchDispositifsActionCreator } from "../../../services/Dispositif/dispositif.actions";
 import { deleteContrib } from "../UserProfile/functions";
 import { prepareDeleteContrib } from "./functions";
 
@@ -98,7 +98,7 @@ class AdminContrib extends Component {
     }
     if (question.value) {
       API.add_dispositif(newDispositif).then(() => {
-        this.props.fetch_dispositifs();
+        this.props.fetchDispositifs();
         this.setState((pS) => ({
           dispositifs: pS.dispositifs.map((x) =>
             x._id === dispositif._id ? { ...x, status: status } : x
@@ -248,7 +248,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetch_dispositifs };
+const mapDispatchToProps = { fetchDispositifs: fetchDispositifsActionCreator };
 
 export default track({
   page: "AdminContrib",
