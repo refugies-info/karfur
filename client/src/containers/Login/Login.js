@@ -7,7 +7,7 @@ import {
   Form,
   ModalBody,
   ModalFooter,
-  Progress
+  Progress,
 } from "reactstrap";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
@@ -24,7 +24,7 @@ import setAuthToken from "../../utils/setAuthToken";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../components/FigmaUI/FInput/FInput";
-import { fetch_user } from "../../Store/actions";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import Modal from "../../components/Modals/Modal";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 
@@ -47,7 +47,7 @@ export class Login extends Component {
     userExists: false,
     usernameHidden: false,
     showModal: false,
-    cannyRedirect: false
+    cannyRedirect: false,
   };
 
   componentDidMount() {
@@ -69,37 +69,37 @@ export class Login extends Component {
     if (locState) {
       this.setState({
         traducteur: locState.traducteur,
-        redirectTo: locState.redirectTo || "/"
+        redirectTo: locState.redirectTo || "/",
       });
     }
     if (qParam) {
       this.setState({
         cannyRedirect: true,
-        redirectTo: decodeURIComponent(qParam)
+        redirectTo: decodeURIComponent(qParam),
       });
     }
     window.scrollTo(0, 0);
   }
 
   togglePasswordVisibility = () =>
-    this.setState(pS => ({ passwordVisible: !pS.passwordVisible }));
-  toggleModal = () => this.setState(pS => ({ showModal: !pS.showModal }));
+    this.setState((pS) => ({ passwordVisible: !pS.passwordVisible }));
+  toggleModal = () => this.setState((pS) => ({ showModal: !pS.showModal }));
 
   goBack = () =>
     this.setState({ step: 0, userExists: false, password: "", cpassword: "" });
 
   resetPassword = () => {
-    API.reset_password({ username: this.state.username }).then(data => {
+    API.reset_password({ username: this.state.username }).then((data) => {
       Swal.fire({
         title: "Yay...",
         text:
           "Le mot de passe de récupération a été envoyé à l'adresse mail renseignée lors de la création du compte",
-        type: "success"
+        type: "success",
       });
     });
   };
 
-  send = e => {
+  send = (e) => {
     e.preventDefault();
     if (this.state.step === 0) {
       if (this.state.username.length === 0) {
@@ -107,11 +107,11 @@ export class Login extends Component {
           title: "Oops...",
           text: "Aucun nom d'utilisateur n'est renseigné !",
           type: "error",
-          timer: 1500
+          timer: 1500,
         });
         return;
       }
-      API.checkUserExists({ username: this.state.username }).then(data => {
+      API.checkUserExists({ username: this.state.username }).then((data) => {
         this.setState({ userExists: data.status === 200, step: 1 });
       });
     } else {
@@ -120,7 +120,7 @@ export class Login extends Component {
           title: "Oops...",
           text: "Aucun mot de passe n'est renseigné !",
           type: "error",
-          timer: 1500
+          timer: 1500,
         });
       }
       if (
@@ -131,7 +131,7 @@ export class Login extends Component {
           title: "Oops...",
           text: "Les mots de passes ne correspondent pas !",
           type: "error",
-          timer: 1500
+          timer: 1500,
         });
       }
       if (
@@ -142,7 +142,7 @@ export class Login extends Component {
           title: "Oops...",
           text: "Le mot de passe est trop faible",
           type: "error",
-          timer: 1500
+          timer: 1500,
         });
       }
       const user = {
@@ -152,17 +152,17 @@ export class Login extends Component {
         traducteur: this.state.traducteur,
         code: this.state.code,
         email: this.state.email,
-        phone: this.state.phone
+        phone: this.state.phone,
       };
       API.login(user)
-        .then(data => {
+        .then((data) => {
           const token = data.data.token,
             { cannyRedirect, redirectTo } = this.state;
           Swal.fire({
             title: "Yay...",
             text: "Authentification réussie !",
             type: "success",
-            timer: 1500
+            timer: 1500,
           }).then(() => {
             if (cannyRedirect) {
               return window.location.assign(
@@ -178,17 +178,17 @@ export class Login extends Component {
           localStorage.setItem("token", token);
           if (!cannyRedirect) {
             setAuthToken(token);
-            this.props.fetch_user();
+            this.props.fetchUser();
           }
         })
-        .catch(e => {
+        .catch((e) => {
           if (e.response.status === 501) {
             this.setState({ showModal: false, step: 2 });
           } else if (e.response.status === 502) {
             this.setState({
               showModal: true,
               phone: _.get(e, "response.data.phone", ""),
-              email: _.get(e, "response.data.email", "")
+              email: _.get(e, "response.data.email", ""),
             });
           } else {
             console.log(e.response);
@@ -197,7 +197,7 @@ export class Login extends Component {
     }
   };
 
-  handleChange = event =>
+  handleChange = (event) =>
     this.setState({ [event.target.id]: event.target.value });
 
   upcoming = () =>
@@ -205,7 +205,7 @@ export class Login extends Component {
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore disponible",
       type: "error",
-      timer: 1500
+      timer: 1500,
     });
 
   render() {
@@ -217,7 +217,7 @@ export class Login extends Component {
       code,
       showModal,
       email,
-      phone
+      phone,
     } = this.state;
     const { t } = this.props;
     return (
@@ -359,7 +359,7 @@ export class Login extends Component {
   }
 }
 
-const UsernameField = props => (
+const UsernameField = (props) => (
   <div key="username-field">
     <FInput
       prepend
@@ -384,7 +384,7 @@ const UsernameField = props => (
   </div>
 );
 
-const PasswordField = props => {
+const PasswordField = (props) => {
   const password_check = passwdCheck(props.value);
   return (
     <>
@@ -418,7 +418,7 @@ const PasswordField = props => {
   );
 };
 
-const PasswordFooter = props => (
+const PasswordFooter = (props) => (
   <div className="footer-buttons">
     {props.userExists && (
       <Button
@@ -442,7 +442,7 @@ const PasswordFooter = props => (
   </div>
 );
 
-const RegisterHeader = props => (
+const RegisterHeader = (props) => (
   <Card
     className="card-login header-card cursor-pointer"
     onClick={props.goBack}
@@ -460,7 +460,7 @@ const RegisterHeader = props => (
   </Card>
 );
 
-const CodeField = props => (
+const CodeField = (props) => (
   <div key="code-field">
     <FInput
       prepend
@@ -484,7 +484,7 @@ const CodeField = props => (
   </div>
 );
 
-const InfoModal = props => (
+const InfoModal = (props) => (
   <Modal
     className="info-modal"
     modalHeader="Vos informations de compte"
@@ -521,16 +521,11 @@ const InfoModal = props => (
   </Modal>
 );
 
-const mapDispatchToProps = { fetch_user };
+const mapDispatchToProps = { fetchUser: fetchUserActionCreator };
 
 export default track(
   {
-    page: "Login"
+    page: "Login",
   },
   { dispatchOnMount: true }
-)(
-  connect(
-    null,
-    mapDispatchToProps
-  )(withTranslation()(Login))
-);
+)(connect(null, mapDispatchToProps)(withTranslation()(Login)));

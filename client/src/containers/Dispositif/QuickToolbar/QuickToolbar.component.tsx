@@ -29,7 +29,7 @@ export interface PropsBeforeInjection {
   show: boolean;
   removeItem: (arg1: number, arg2: number) => void;
   t: any;
-  ttsActive: any;
+  ttsActive: boolean;
 }
 
 export class QuickToolbar extends Component<Props, StateType> {
@@ -40,7 +40,7 @@ export class QuickToolbar extends Component<Props, StateType> {
     dropdownColor: new Array(4).fill("#FFFFFF"),
   };
 
-  _hoverOn = (key) =>
+  _hoverOn = (key: number) =>
     this.setState((prevState: StateType) => ({
       fill: prevState.fill.map((_, i) => key === i),
     }));
@@ -48,7 +48,7 @@ export class QuickToolbar extends Component<Props, StateType> {
     this.setState((prevState: StateType) => ({
       fill: prevState.fill.map(() => false),
     }));
-  toggleTooltip = (key) => {
+  toggleTooltip = (key: number) => {
     this.setState((prevState: StateType) => ({
       tooltipOpen: prevState.tooltipOpen.map((x, i) =>
         key === i ? !x : false
@@ -56,14 +56,14 @@ export class QuickToolbar extends Component<Props, StateType> {
     }));
   };
   toggle = () => this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
-  toggleColor = (key, hover) =>
+  toggleColor = (key: number, hover: string) =>
     this.setState((prevState: StateType) => ({
       dropdownColor: prevState.dropdownColor.map((x, i) =>
         i === key ? (hover ? "#3D3D3D" : "#FFFFFF") : "#FFFFFF"
       ),
     }));
 
-  _onClick = (id) => {
+  _onClick = (id: number) => {
     this.props.tracking.trackEvent({
       action: "click",
       label: "btn click",
