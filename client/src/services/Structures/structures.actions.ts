@@ -1,23 +1,18 @@
-import { SET_STRUCTURES } from "../Structures/structures.actionTypes";
-import API from "../../utils/API";
+import {
+  SET_STRUCTURES,
+  FETCH_STRUCTURES,
+} from "../Structures/structures.actionTypes";
 import { Structure } from "../../@types/interface";
 import { action, ActionType } from "typesafe-actions";
 
-const setStructureActionCreator = (value: Structure[]) =>
+export const setStructuresActionCreator = (value: Structure[]) =>
   action(SET_STRUCTURES, value);
 
-// TO DO saga
-export const fetch_structures = () => {
-  return (dispatch: any) => {
-    return API.get_structure({ status: "Actif" }).then((data: any) => {
-      return dispatch(setStructureActionCreator(data.data.data));
-    });
-  };
-};
+export const fetchStructuresActionCreator = () => action(FETCH_STRUCTURES);
 
 const actions = {
-  setStructureActionCreator,
-  fetch_structures,
+  setStructuresActionCreator,
+  fetchStructuresActionCreator,
 };
 
 export type StructureActions = ActionType<typeof actions>;

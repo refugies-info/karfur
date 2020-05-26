@@ -9,7 +9,7 @@ import passwdCheck from "zxcvbn";
 import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
 import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import { fetch_structures } from "../../../services/Structures/structures.actions";
+import { fetchStructuresActionCreator } from "../../../services/Structures/structures.actions";
 
 import "./Admin.scss";
 import variables from "scss/colors.scss";
@@ -531,7 +531,7 @@ export class Admin extends Component {
       }
       this.setState({ [tab]: this.initial_state[tab] });
       if (tab === "structure") {
-        this.props.fetch_structures();
+        this.props.fetchStructures();
       }
     });
   };
@@ -696,7 +696,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetch_structures };
+const mapDispatchToProps = { fetchStructures: fetchStructuresActionCreator };
 
 export default track(
   {

@@ -18,7 +18,7 @@ import {
   toggle_lang_modal,
   toggle_langue,
 } from "../../services/actions/index";
-import { fetch_structures } from "../../services/Structures/structures.actions";
+import { fetchStructuresActionCreator } from "../../services/Structures/structures.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";
@@ -42,7 +42,7 @@ export class Layout extends Component {
   componentDidMount() {
     this.props.fetchUser();
     // this.props.fetch_dispositifs();
-    // this.props.fetch_structures();
+    this.props.fetchStructures();
     // this.props.fetch_langues().then(() => {
     //   let languei18nCode = Cookies.get("languei18nCode");
     //   if (languei18nCode && languei18nCode !== "fr") {
@@ -197,7 +197,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  fetch_structures,
+  fetchStructures: fetchStructuresActionCreator,
   fetch_langues,
   fetch_dispositifs,
   fetchUser: fetchUserActionCreator,
