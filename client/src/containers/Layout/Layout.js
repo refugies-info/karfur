@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import { fetch_dispositifs } from "../../services/Dispositif/dispositif.actions";
+import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
 import {
   fetchLanguesActionCreator,
   toggleLangueModalActionCreator,
@@ -41,8 +41,8 @@ export class Layout extends Component {
 
   componentDidMount() {
     this.props.fetchUser();
-    // this.props.fetch_dispositifs();
     this.props.fetchStructures();
+    this.props.fetchDispositifs();
     this.props.fetchLangues();
     let languei18nCode = Cookies.get("languei18nCode");
     if (languei18nCode && languei18nCode !== "fr") {
@@ -199,7 +199,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   fetchStructures: fetchStructuresActionCreator,
   fetchLangues: fetchLanguesActionCreator,
-  fetch_dispositifs,
+  fetchDispositifs: fetchDispositifsActionCreator,
   fetchUser: fetchUserActionCreator,
   toggleLangueModal: toggleLangueModalActionCreator,
   toggleLangue: toggleLangueActionCreator,
