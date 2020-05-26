@@ -12,12 +12,12 @@ import Cookies from "js-cookie";
 
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
+import { fetch_dispositifs } from "../../services/actions/index";
 import {
   fetch_langues,
-  fetch_dispositifs,
-  toggle_lang_modal,
-  toggle_langue,
-} from "../../services/actions/index";
+  toggleLangueModalActionCreator,
+  toggleLangueActionCreator,
+} from "../../services/Langue/langue.actions";
 import { fetchStructuresActionCreator } from "../../services/Structures/structures.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
@@ -48,7 +48,7 @@ export class Layout extends Component {
     //   if (languei18nCode && languei18nCode !== "fr") {
     //     this.changeLanguage(languei18nCode);
     //   } else if (!languei18nCode) {
-    //     this.props.toggle_lang_modal();
+    //     this.props.toggleLangueModal();
     //   }
     // });
     window.scrollTo(0, 0);
@@ -104,14 +104,14 @@ export class Layout extends Component {
       label: "changeLanguage",
       value: lng,
     });
-    this.props.toggle_langue(lng);
+    this.props.toggleLangue(lng);
     if (this.props.i18n.getResourceBundle(lng, "translation")) {
       this.props.i18n.changeLanguage(lng);
     } else {
       console.log("Resource not found in i18next.");
     }
     if (this.props.showLangModal) {
-      this.props.toggle_lang_modal();
+      this.props.toggleLangueModal();
     }
   };
 
@@ -173,7 +173,7 @@ export class Layout extends Component {
           <LanguageModal
             show={this.props.showLangModal}
             current_language={i18n.language}
-            toggle={this.props.toggle_lang_modal}
+            toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
             languages={{
               ...this.props.langues.filter((x) => x.avancement >= 0.8),
@@ -201,8 +201,8 @@ const mapDispatchToProps = {
   fetch_langues,
   fetch_dispositifs,
   fetchUser: fetchUserActionCreator,
-  toggle_lang_modal,
-  toggle_langue,
+  toggleLangueModal: toggleLangueModalActionCreator,
+  toggleLangue: toggleLangueActionCreator,
 };
 
 export default track(
