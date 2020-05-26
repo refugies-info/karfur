@@ -12,7 +12,14 @@ import Cookies from "js-cookie";
 
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import * as actions from "../../Store/actions/index";
+import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
+import {
+  fetchLanguesActionCreator,
+  toggleLangueModalActionCreator,
+  toggleLangueActionCreator,
+} from "../../services/Langue/langue.actions";
+import { fetchStructuresActionCreator } from "../../services/Structures/structures.actions";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";
 import routes from "../../routes";
@@ -33,17 +40,17 @@ export class Layout extends Component {
   audio = new Audio();
 
   componentDidMount() {
-    this.props.fetch_user();
-    this.props.fetch_dispositifs();
-    this.props.fetch_structures();
-    this.props.fetch_langues().then(() => {
-      let languei18nCode = Cookies.get("languei18nCode");
-      if (languei18nCode && languei18nCode !== "fr") {
-        this.changeLanguage(languei18nCode);
-      } else if (!languei18nCode) {
-        this.props.toggle_lang_modal();
-      }
-    });
+    this.props.fetchUser();
+    this.props.fetchStructures();
+    this.props.fetchDispositifs();
+    this.props.fetchLangues();
+    let languei18nCode = Cookies.get("languei18nCode");
+    if (languei18nCode && languei18nCode !== "fr") {
+      this.changeLanguage(languei18nCode);
+    } else if (!languei18nCode) {
+      this.props.toggleLangueModal();
+    }
+
     window.scrollTo(0, 0);
   }
 
@@ -97,14 +104,14 @@ export class Layout extends Component {
       label: "changeLanguage",
       value: lng,
     });
-    this.props.toggle_langue(lng);
+    this.props.toggleLangue(lng);
     if (this.props.i18n.getResourceBundle(lng, "translation")) {
       this.props.i18n.changeLanguage(lng);
     } else {
       console.log("Resource not found in i18next.");
     }
     if (this.props.showLangModal) {
-      this.props.toggle_lang_modal();
+      this.props.toggleLangueModal();
     }
   };
 
@@ -166,7 +173,7 @@ export class Layout extends Component {
           <LanguageModal
             show={this.props.showLangModal}
             current_language={i18n.language}
-            toggle={this.props.toggle_lang_modal}
+            toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
             languages={{
               ...this.props.langues.filter((x) => x.avancement >= 0.8),
@@ -189,7 +196,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = actions;
+const mapDispatchToProps = {
+  fetchStructures: fetchStructuresActionCreator,
+  fetchLangues: fetchLanguesActionCreator,
+  fetchDispositifs: fetchDispositifsActionCreator,
+  fetchUser: fetchUserActionCreator,
+  toggleLangueModal: toggleLangueModalActionCreator,
+  toggleLangue: toggleLangueActionCreator,
+};
 
 export default track(
   {

@@ -1,0 +1,4 @@
+export const TOGGLE_LANGUE = "TOGGLE_LANGUE";
+export const TOGGLE_LANG_MODAL = "TOGGLE_LANG_MODAL";
+export const SET_LANGUES = "SET_LANGUES";
+export const FETCH_LANGUES = "FETCH_LANGUES";
