@@ -14,7 +14,7 @@ import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 import { fetch_dispositifs } from "../../services/actions/index";
 import {
-  fetch_langues,
+  fetchLanguesActionCreator,
   toggleLangueModalActionCreator,
   toggleLangueActionCreator,
 } from "../../services/Langue/langue.actions";
@@ -43,14 +43,14 @@ export class Layout extends Component {
     this.props.fetchUser();
     // this.props.fetch_dispositifs();
     this.props.fetchStructures();
-    // this.props.fetch_langues().then(() => {
-    //   let languei18nCode = Cookies.get("languei18nCode");
-    //   if (languei18nCode && languei18nCode !== "fr") {
-    //     this.changeLanguage(languei18nCode);
-    //   } else if (!languei18nCode) {
-    //     this.props.toggleLangueModal();
-    //   }
-    // });
+    this.props.fetchLangues();
+    let languei18nCode = Cookies.get("languei18nCode");
+    if (languei18nCode && languei18nCode !== "fr") {
+      this.changeLanguage(languei18nCode);
+    } else if (!languei18nCode) {
+      this.props.toggleLangueModal();
+    }
+
     window.scrollTo(0, 0);
   }
 
@@ -198,7 +198,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   fetchStructures: fetchStructuresActionCreator,
-  fetch_langues,
+  fetchLangues: fetchLanguesActionCreator,
   fetch_dispositifs,
   fetchUser: fetchUserActionCreator,
   toggleLangueModal: toggleLangueModalActionCreator,
