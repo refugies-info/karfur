@@ -14,6 +14,6 @@ export const structureReducer = createReducer<StructureState, StructureActions>(
   initialStructureState,
   {
     SET_STRUCTURES: (state, action) =>
-      updateObject(state, { structures: action.value }),
+      updateObject(state, { structures: action.payload }),
   }
 );

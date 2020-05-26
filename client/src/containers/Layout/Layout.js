@@ -13,12 +13,12 @@ import Cookies from "js-cookie";
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
 import {
-  fetch_structures,
   fetch_langues,
   fetch_dispositifs,
   toggle_lang_modal,
   toggle_langue,
 } from "../../services/actions/index";
+import { fetch_structures } from "../../services/Structures/structures.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";
