@@ -61,7 +61,7 @@ const parseActions = (dispositifs) => {
 
 const deleteContrib = function (dispositif, type, callback = () => {}) {
   API.add_dispositif(dispositif).then(() => {
-    this.props.fetch_dispositifs();
+    this.props.fetchDispositifs();
     if (type) {
       const query =
         type === "user"

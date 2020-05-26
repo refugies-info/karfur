@@ -13,7 +13,7 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import windowSize from "react-window-size";
 
-import { toggle_lang_modal } from "../../Store/actions/index";
+import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 // import NavigationItems from '../../components/Navigation/NavigationItems/NavigationItems';
 import DrawerToggle from "../../components/Navigation/SideDrawer/DrawerToggle/DrawerToggle";
 import API from "../../utils/API";
@@ -24,10 +24,10 @@ import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import SearchBar from "../UI/SearchBar/SearchBar";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import { fetch_user } from "../../Store/actions";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { breakpoints } from "utils/breakpoints.js";
-import styled from 'styled-components';
-import Streamline from '../../assets/streamline';
+import styled from "styled-components";
+import Streamline from "../../assets/streamline";
 
 import "./Toolbar.scss";
 import variables from "scss/colors.scss";
@@ -45,7 +45,7 @@ export class Toolbar extends React.Component {
 
   disconnect = () => {
     API.logout();
-    this.props.fetch_user();
+    this.props.fetchUser();
   };
 
   toggle = () =>
@@ -70,7 +70,8 @@ export class Toolbar extends React.Component {
     const afficher_burger =
       false && admin && path.includes("/backend") && path.includes("/admin"); //Hugo demande de ne plus afficher le burger, temporairement désactivé donc
     const afficher_burger_droite = path.includes("/traduction");
-    const userImg = (user.picture || {}).secure_url || marioProfile;
+    const userImg =
+      user && user.picture ? user.picture.secure_url : marioProfile;
     return (
       <header className="Toolbar">
         <div className="left_buttons">
@@ -228,7 +229,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { toggle_lang_modal, fetch_user };
+const mapDispatchToProps = {
+  toggleLangueModal: toggleLangueModalActionCreator,
+  fetchUser: fetchUserActionCreator,
+};
 
 export default track({
   component: "Toolbar",

@@ -2,20 +2,19 @@ import track from "react-tracking";
 import { connect } from "react-redux";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { compose } from "recompose";
-import * as actions from "../../../Store/actions/actionTypes";
+import { TOGGLE_TTS } from "../../../services/Tts/tts.actionTypes";
 import { PropsBeforeInjection, QuickToolbar } from "./QuickToolbar.component";
+import { RootState } from "../../../services/rootReducer";
 
-// TO DO : type state with RootState : type of root reducer
-type RootState = any;
 const mapStateToProps = (state: RootState) => {
   return {
     ttsActive: state.tts.ttsActive,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    toggleAudio: () => dispatch({ type: actions.TOGGLE_TTS }),
+    toggleAudio: () => dispatch({ type: TOGGLE_TTS }),
   };
 };
 
