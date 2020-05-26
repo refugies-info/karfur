@@ -34,5 +34,5 @@ export const QuickToolbarContainer = compose<Props, PropsBeforeInjection>(
     mapStateToProps,
     mapDispatchToProps
   ),
-  withTranslation
+  withTranslation()
 )(QuickToolbar);
