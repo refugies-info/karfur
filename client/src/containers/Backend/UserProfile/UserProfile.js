@@ -58,7 +58,7 @@ import {
   deleteContrib,
   getProgression,
 } from "./functions";
-import { fetch_dispositifs } from "../../../services/actions";
+import { fetch_dispositifs } from "../../../services/Dispositif/dispositif.actions";
 import { fetchUserActionCreator } from "../../../services/User/user.actions";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";

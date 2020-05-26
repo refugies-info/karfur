@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import { fetch_dispositifs } from "../../services/actions/index";
+import { fetch_dispositifs } from "../../services/Dispositif/dispositif.actions";
 import {
   fetchLanguesActionCreator,
   toggleLangueModalActionCreator,
