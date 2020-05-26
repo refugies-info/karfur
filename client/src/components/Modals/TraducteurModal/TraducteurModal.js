@@ -90,17 +90,16 @@ class TraducteurModal extends Component {
       if (!userRes) {
         return;
       }
-      this.props.fetchUser().then(() => {
-        this.setState({ spinner: false });
-        if (this.props.redirect) {
-          this.props.history.push({
-            pathname: "/backend/user-dashboard",
-            state: { user: userRes },
-          });
-        } else if (this.props.setUser) {
-          this.props.setUser(userRes);
-        }
-      });
+      this.props.fetchUser();
+      this.setState({ spinner: false });
+      if (this.props.redirect) {
+        this.props.history.push({
+          pathname: "/backend/user-dashboard",
+          state: { user: userRes },
+        });
+      } else if (this.props.setUser) {
+        this.props.setUser(userRes);
+      }
     });
   };
 
