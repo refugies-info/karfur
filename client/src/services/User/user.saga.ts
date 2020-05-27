@@ -2,9 +2,12 @@ import { SagaIterator } from "redux-saga";
 import { takeLatest, put, call } from "redux-saga/effects";
 import { FETCH_USER } from "./user.actionTypes";
 import API from "../../utils/API";
-import { setUserActionCreator } from "./user.actions";
+import { setUserActionCreator, fetchUserActionCreator } from "./user.actions";
+import { push, go, replace } from "connected-react-router";
 
-export function* fetchUser(): SagaIterator {
+export function* fetchUser(
+  action: ReturnType<typeof fetchUserActionCreator>
+): SagaIterator {
   try {
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
@@ -12,6 +15,15 @@ export function* fetchUser(): SagaIterator {
       yield put(setUserActionCreator(data.data.data));
     } else {
       yield put(setUserActionCreator(null));
+    }
+
+    if (action.payload && action.payload.shouldRedirect) {
+      yield put(
+        push({
+          pathname: "/backend/user-dashboard",
+          state: { user: action.payload.user },
+        })
+      );
     }
   } catch (error) {
     console.log("Error while fetching user", { error });

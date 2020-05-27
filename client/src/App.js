@@ -16,6 +16,8 @@ import "./i18n";
 
 import "react-notifications/src/notifications.scss";
 import "./App.scss";
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "./services/configureStore";
 
 const loading = () => (
   <div className="spinner-container">
@@ -130,7 +132,7 @@ class App extends Component {
           // debounce={250}
           timeout={1000 * 60 * 5}
         />
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/login" name="Login Page" component={Login} />
             <Route
@@ -154,7 +156,8 @@ class App extends Component {
               socketFn={this.socketFn}
             />
           </Switch>
-        </BrowserRouter>
+        </ConnectedRouter>
+
         {/* <LiveChat socket = { socket } 
                   socketFn = { this.socketFn } />  */}
       </Provider>
