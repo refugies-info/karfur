@@ -10,6 +10,7 @@ import {
 } from "./Structures/structures.reducer";
 import { userReducer, UserState } from "./User/user.reducer";
 import { ttsReducer, TtsState } from "./Tts/tts.reducer";
+import { connectRouter } from "connected-react-router";
 
 export interface RootState {
   user: UserState;
@@ -18,17 +19,12 @@ export interface RootState {
   tts: TtsState;
   structure: StructureState;
 }
-const appReducer = combineReducers({
-  langue: langueReducer,
-  dispositif: dispositifReducer,
-  user: userReducer,
-  tts: ttsReducer,
-  structure: structureReducer,
-});
-
-type RootReducer = ReturnType<typeof appReducer>;
-
-export const rootReducer = (
-  state: RootState | undefined,
-  action: Action
-): RootReducer => appReducer(state, action);
+export const appReducer = (history: any) =>
+  combineReducers({
+    router: connectRouter(history),
+    langue: langueReducer,
+    dispositif: dispositifReducer,
+    user: userReducer,
+    tts: ttsReducer,
+    structure: structureReducer,
+  });
