@@ -10,7 +10,6 @@ export const updateUserActionCreator = (value: User) =>
 
 export const fetchUserActionCreator = (value?: {
   shouldRedirect: boolean;
-  shouldSetUser: boolean;
   user: User;
 }) => action(FETCH_USER, value);
 

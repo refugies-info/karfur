@@ -13,7 +13,7 @@ export interface UserState {
   membreStruct: boolean;
   userId: ObjectId | "";
 }
-const initialUserState: UserState = {
+export const initialUserState: UserState = {
   user: null,
   admin: false,
   traducteur: false,

@@ -91,8 +91,7 @@ class TraducteurModal extends Component {
         return;
       }
       const shouldRedirect = !!this.props.redirect;
-      const shouldSetUser = !!this.props.setUser;
-      this.props.fetchUser({ shouldRedirect, shouldSetUser, user: userRes });
+      this.props.fetchUser({ shouldRedirect, user: userRes });
       this.setState({ spinner: false });
       if (!this.props.redirect && this.props.setUser) {
         this.props.setUser(userRes);
