@@ -12,14 +12,14 @@ const markTradModifications = (newD, oldD, trad, locale) => {
     }
   });
   newD.contenu.forEach((p, index) => {
-    if (
+ /*    if (
       !oldD.contenu[index].children ||
       !trad.translatedText.contenu[index] ||
       !trad.translatedText.contenu[index].children
     ) {
       trad.status = "À revoir";
       return;
-    }
+    } */
     if (JSON.stringify(p.title) !== JSON.stringify(oldD.contenu[index].title)) {
       trad.translatedText.contenu[index].titleModified = true;
       trad.status = "À revoir";
@@ -34,13 +34,13 @@ const markTradModifications = (newD, oldD, trad, locale) => {
     if (p.children && p.children.length > 0) {
       p.children.forEach((c, j) => {
         // a new children has been added or the new children has been modified before beeing translated
-        if (
+   /*      if (
           !oldD.contenu[index].children[j] ||
           !trad.translatedText.contenu[index].children[j]
         ) {
           trad.status = "À revoir";
           return;
-        }
+        } */
 
         if (
           JSON.stringify(c.title) !==

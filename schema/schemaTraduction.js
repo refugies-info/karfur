@@ -79,6 +79,10 @@ var traductionSchema = mongoose.Schema(
       type: Number,
       unique: false,
       required: false
+    },
+    isExpert: {
+      type: Boolean,
+      required: false
     }
   },
   { timestamps: { createdAt: "created_at" } }
