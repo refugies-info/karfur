@@ -90,14 +90,11 @@ class TraducteurModal extends Component {
       if (!userRes) {
         return;
       }
-      this.props.fetchUser();
+      const shouldRedirect = !!this.props.redirect;
+      const shouldSetUser = !!this.props.setUser;
+      this.props.fetchUser({ shouldRedirect, shouldSetUser, user: userRes });
       this.setState({ spinner: false });
-      if (this.props.redirect) {
-        this.props.history.push({
-          pathname: "/backend/user-dashboard",
-          state: { user: userRes },
-        });
-      } else if (this.props.setUser) {
+      if (!this.props.redirect && this.props.setUser) {
         this.props.setUser(userRes);
       }
     });
@@ -165,7 +162,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetchUser: fetchUserActionCreator };
+const mapDispatchToProps = {
+  fetchUser: fetchUserActionCreator,
+};
 
 export default withRouter(
   withTranslation()(
