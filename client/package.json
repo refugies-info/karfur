@@ -132,7 +132,8 @@
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json",
     "cypress:open": "cypress open",
-    "test:types": "tsc --noEmit"
+    "test:types": "tsc --noEmit",
+    "test:unit": "jest"
   },
   "proxy": "http://localhost:8000",
   "bugs": {
@@ -152,6 +153,7 @@
     "@types/draft-convert": "^2.1.1",
     "@types/history": "^4.7.6",
     "@types/html-to-draftjs": "^1.4.0",
+    "@types/jest": "^25.2.3",
     "@types/js-cookie": "^2.2.6",
     "@types/lodash": "^4.14.151",
     "@types/moment": "^2.13.0",
@@ -178,9 +180,11 @@
     "nightwatch": "^1.0.19",
     "react-test-renderer": "^16.7.0",
     "redux-mock-store": "^1.5.3",
+    "redux-saga-test-plan": "^4.0.0-rc.3",
     "selenium-server-standalone-jar": "^3.141.5",
     "sinon": "^7.2.3",
     "sinon-chai": "^3.3.0",
+    "ts-jest": "^26.0.0",
     "typescript": "^3.9.2"
   }
 }

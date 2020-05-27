@@ -3,7 +3,7 @@ import { takeLatest, put, call } from "redux-saga/effects";
 import { FETCH_USER } from "./user.actionTypes";
 import API from "../../utils/API";
 import { setUserActionCreator, fetchUserActionCreator } from "./user.actions";
-import { push, go, replace } from "connected-react-router";
+import { push } from "connected-react-router";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
