@@ -126,13 +126,21 @@ export class TranslationHOC extends Component {
           data_res.data.data.length > 0
         ) {
           const traductions = data_res.data.data;
+          const traduction = traductions.find(
+            (trad) => trad.userId._id === trad.validatorId
+          )
+          console.log(traduction);
           this._isMounted &&
             this.setState({
               traductionsFaites: traductions,
               ...((isExpert || userId) && {
                 traduction: {
                   initialText: _.get(traductions, "0.initialText", {}),
-                  translatedText: _.get(traductions, "0.translatedText", {}),
+                  translatedText: (isExpert && traductions.find(
+                    (trad) => trad.userId._id === this.props.userId
+                  )) ? _.get(traductions.find(
+                    (trad) => trad.userId._id === this.props.userId
+                  ), ['translatedText']) : traduction ? traduction.translatedText :_.get(traductions, "0.translatedText", {}),
                 },
                 autosuggest: false,
               }),
@@ -155,12 +163,22 @@ export class TranslationHOC extends Component {
         data_res.data.data.length > 0
       ) {
         const traductions = data_res.data.data;
+        const traduction = traductions.find(
+          (trad) => trad.userId._id === trad.validatorId
+        )
         this.setState({
           traductionsFaites: traductions,
-          /*  ...((isExpert || userId) && {traduction : {
-            initialText: _.get(traductions, "0.initialText", {}), 
-            translatedText: _.get(traductions, "0.translatedText", {})
-          }, autosuggest: false}) */
+          ...((isExpert || userId) && {
+            traduction: {
+              initialText: _.get(traductions, "0.initialText", {}),
+              translatedText: (isExpert && traductions.find(
+                (trad) => trad.userId._id === this.props.userId
+              )) ? _.get(traductions.find(
+                (trad) => trad.userId._id === this.props.userId
+              ), ['translatedText']) : traduction ? traduction.translatedText :_.get(traductions, "0.translatedText", {}),
+            },
+            autosuggest: false,
+          }),
         });
       }
     });

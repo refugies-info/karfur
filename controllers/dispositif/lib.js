@@ -93,30 +93,36 @@ async function add_dispositif(req, res) {
           for (let [key, value] of Object.entries(originalDis.avancement)) {
             console.log(originalDis, key);
             if (key !== "fr") {
-              originalTrads[key] = await Traduction.findOne(
-                { articleId: originalDis._id, langueCible: key },
+              originalTrads[key] = await Traduction.find(
+                {
+                  articleId: originalDis._id,
+                  langueCible: key,
+                  isExpert: true,
+                },
                 {},
                 { sort: { updatedAt: -1 } }
               );
-              console.log("before error");
-              originalTrads[key] = markTradModifications(
-                dispositif,
-                dispositifFr,
-                originalTrads[key]
-              );
-              if (originalTrads[key].status == "À revoir") {
-                await Traduction.updateMany(
-                  { articleId: originalDis._id, langueCible: key },
-                  { status: "À revoir" },
-                  { upsert: false }
+              console.log("original trads", originalDis, originalTrads[key]);
+              for (let tradExpert of originalTrads[key]) {
+                tradExpert = markTradModifications(
+                  dispositif,
+                  dispositifFr,
+                  tradExpert
+                );
+                if (tradExpert.status == "À revoir") {
+                  await Traduction.updateMany(
+                    { articleId: originalDis._id, langueCible: key },
+                    { status: "À revoir" },
+                    { upsert: false }
+                  );
+                }
+                console.log("####### the trad modified", originalTrads[key]);
+                await Traduction.findOneAndUpdate(
+                  { _id: tradExpert._id },
+                  tradExpert,
+                  { upsert: true, new: true }
                 );
               }
-              console.log("####### the trad modified", originalTrads[key]);
-              await Traduction.findOneAndUpdate(
-                { _id: originalTrads[key]._id },
-                originalTrads[key],
-                { upsert: true, new: true }
-              );
             }
           }
           dispositif.avancement = originalDis.avancement;
