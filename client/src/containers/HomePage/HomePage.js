@@ -11,7 +11,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 // import Notifications from '../../components/UI/Notifications/Notifications';
 // import SendToMessenger from './SendToMessenger';
 // import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
-import { toggle_lang_modal } from "../../Store/actions/index";
+import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import API from "../../utils/API";
@@ -429,7 +429,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { toggle_lang_modal };
+const mapDispatchToProps = {
+  toggleLangueModal: toggleLangueModalActionCreator,
+};
 
 export default track({
   page: "HomePage",
