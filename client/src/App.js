@@ -8,7 +8,7 @@ import IdleTimer from "react-idle-timer";
 import "./scss/fonts/circular-std/css/circular-std.css";
 import uniqid from "uniqid";
 
-import Store from "./Store/configureStore";
+import { store } from "./services/configureStore";
 import PrivateRoute from "./components/PrivateRoute";
 import { socket } from "./utils/API";
 import { dispatch } from "./tracking/dispatch";
@@ -118,7 +118,7 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={Store}>
+      <Provider store={store}>
         <IdleTimer
           ref={(ref) => {
             this.idleTimer = ref;
