@@ -220,7 +220,9 @@ class SideTrad extends Component {
       this.state.pointeurs.forEach((x) => {
         if (traduction.translatedText[x + "Modified"]) {
           const elems = document.querySelectorAll('div[id="' + x + '"]');
+          if (elems[0]) {
           elems[0].classList.toggle("arevoir", true);
+          }
           this.setState({ pointersMod: true });
         }
       });
@@ -973,6 +975,7 @@ class SideTrad extends Component {
         _id: userTrad._id,
         translatedText: traduction.translatedText,
         avancement: traduction.avancement,
+        isExpert: true,
       };
       this.props.fwdSetState({ newTrad }, () => {});
       //await this.props.valider(newTrad);
@@ -1008,6 +1011,7 @@ class SideTrad extends Component {
       type: "dispositif",
       locale: this.props.locale,
       traductions: this.props.traductionsFaites,
+      isExpert: true,
     };
     await API.validate_tradForReview(newTrad).then((data) => {
       Swal.fire(
@@ -1077,7 +1081,10 @@ class SideTrad extends Component {
         </div>
         <div
           className={
-            (this.state.currIdx === 'abstract') ?
+            (this.state.currIdx === 'abstract' && modified)
+            ? "content-data-french no-margin-modified" :
+            this.state.currIdx === 'abstract'
+            ?
             "content-data-french no-margin-abstract" :
             modified
               ? "content-data-french no-margin-modified"
@@ -1094,7 +1101,7 @@ class SideTrad extends Component {
         </div>
         {this.state.currIdx === 'abstract' ?
         (
-          <AlertModified type={"abstract"}>
+          <AlertModified type={modified ? "modified" : "abstract"}>
             <EVAIcon
               name="info"
               fill={variables.noir}
@@ -1111,7 +1118,7 @@ class SideTrad extends Component {
                 Ce résumé est visible dans les résultats de
                 recherche.
               </Tooltip>
-            <AlertText type={"abstract"}>Résumé de la fiche</AlertText>
+            <AlertText type={modified ? "modified" : "abstract"}>{!modified ? 'Résumé de la fiche' : "Résumé de la fiche modifié"}</AlertText>
           </AlertModified>
         ) : modified ? (
           <AlertModified type={"modified"}>
