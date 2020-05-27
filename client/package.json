@@ -133,7 +133,7 @@
     "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json",
     "cypress:open": "cypress open",
     "test:types": "tsc --noEmit",
-    "test:unit": "jest "
+    "test:unit": "jest"
   },
   "proxy": "http://localhost:8000",
   "bugs": {
