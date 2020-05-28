@@ -1536,6 +1536,7 @@ export class Dispositif extends Component {
     });
 
   render() {
+    console.log("Dispositif test logs qa");
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
