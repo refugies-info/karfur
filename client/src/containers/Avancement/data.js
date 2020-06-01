@@ -7,8 +7,8 @@ const diffData = {
       "Mots traduits",
       "Avancement",
       "En attente depuis",
-      ""
-    ]
+      "",
+    ],
   },
   traducteur: {
     title: "Avancement de ",
@@ -17,16 +17,16 @@ const diffData = {
       { name: "Progression", order: "avancement" },
       { name: "Mots", order: "nombreMots" },
       { name: "Depuis", order: "created_at" },
-      { name: "Statut"},
+      { name: "Statut" },
       {
         name: "Type",
       },
       {
         name: "Dernière trad",
-        order: "updatedAt"
+        order: "updatedAt",
       },
-      { name: "" }
-    ]
+      { name: "" },
+    ],
   },
   expert: {
     title: "Avancement de ",
@@ -35,16 +35,16 @@ const diffData = {
       { name: "Progression", order: "avancement" },
       { name: "Mots", order: "nombreMots" },
       { name: "Depuis", order: "created_at" },
-      { name: "Statut"},
+      { name: "Statut" },
       {
         name: "Type",
       },
       {
         name: "Dernière trad",
-        order: "updatedAt"
+        order: "updatedAt",
       },
-      { name: "" }
-    ]
+      { name: "" },
+    ],
   },
 };
 

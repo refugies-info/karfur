@@ -11,9 +11,9 @@ const steps = [
     placement: "center",
     locale: {
       skip: "Passer",
-      next: "Suivant"
+      next: "Suivant",
     },
-    target: "body"
+    target: "body",
   },
   {
     title: "Ma photo",
@@ -24,8 +24,8 @@ const steps = [
     locale: {
       skip: "Passer",
       next: "Suivant",
-      back: "Précédant"
-    }
+      back: "Précédant",
+    },
   },
   {
     title: "Ma progression",
@@ -37,9 +37,9 @@ const steps = [
       skip: "Passer",
       next: "Suivant",
       back: "Précédant",
-      last: "Terminer"
-    }
-  }
+      last: "Terminer",
+    },
+  },
 ];
 
 const avancement_langue = {
@@ -50,15 +50,15 @@ const avancement_langue = {
     "Progression",
     "Langue",
     "Ils rédigent avec moi",
-    ""
+    "",
   ],
-  hideOnPhone: [false, false, true, false, true, false]
+  hideOnPhone: [false, false, true, false, true, false],
 };
 
 const avancement_data = {
   title: "Mes langues",
   headers: ["Langue", "Progression", "Traducteurs mobilisés", ""],
-  hideOnPhone: [false, true, true, false]
+  hideOnPhone: [false, true, true, false],
 };
 
 export { steps, avancement_langue, avancement_data };
