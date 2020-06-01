@@ -50,3 +50,4 @@ token.json
 /client/.env
 /client/.jest
 /client/coverage
+.eslintcache
