@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { mapToCssModules } from 'reactstrap/lib/utils';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { mapToCssModules } from "reactstrap/lib/utils";
 
 const propTypes = {
   children: PropTypes.node,
@@ -11,32 +11,43 @@ const propTypes = {
 };
 
 const defaultProps = {
-  dataBox: () => ({ variant: 'facebook', friends: '-', feeds: '-' }),
+  dataBox: () => ({ variant: "facebook", friends: "-", feeds: "-" }),
 };
 
 class Widget03 extends Component {
   render() {
-
     // eslint-disable-next-line
-    const { children, className, cssModule, dataBox, ...attributes } = this.props;
+    const {
+      children,
+      className,
+      cssModule,
+      dataBox,
+      ...attributes
+    } = this.props;
 
     // demo purposes only
     const data = dataBox();
     const variant = data.variant;
 
-    if (!variant || ['facebook', 'twitter', 'linkedin', 'google-plus'].indexOf(variant) < 0) {
-      return (null);
+    if (
+      !variant ||
+      ["facebook", "twitter", "linkedin", "google-plus"].indexOf(variant) < 0
+    ) {
+      return null;
     }
 
-    const back = 'bg-' + variant;
-    const icon = 'fa fa-' + variant;
+    const back = "bg-" + variant;
+    const icon = "fa fa-" + variant;
     const keys = Object.keys(data);
     const vals = Object.values(data);
 
-    const classCard = 'brand-card';
+    const classCard = "brand-card";
     const classCardHeader = classNames(`${classCard}-header`, back);
     const classCardBody = classNames(`${classCard}-body`);
-    const classes = mapToCssModules(classNames(classCard, className), cssModule);
+    const classes = mapToCssModules(
+      classNames(classCard, className),
+      cssModule
+    );
 
     return (
       <div className={classes}>
