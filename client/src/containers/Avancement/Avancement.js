@@ -78,7 +78,7 @@ export class Avancement extends Component {
     demarcheCount: 0,
     stringCount: 0,
     ascending: false,
-    research: '',
+    research: "",
   };
 
   async componentDidMount() {
@@ -445,23 +445,26 @@ export class Avancement extends Component {
               (x.titreMarque && x.titreInformatif ? " - " : "") +
               (x.titreInformatif || ""),
             nombreMots: x.nbMots,
-            avancement: isExpert ?
-            Math.max(
-              0,
-              ...((this.state.traductionsFaites || [])
-                .filter((y) => {
-                  return (y.articleId === x._id && y.userId._id === this.props.userId);
-                })
-                .map((z) => z.avancement || -1) || [])
-            ) :
-              Math.max(
-                0,
-                ...((this.state.traductionsFaites || [])
-                  .filter((y) => {
-                    return y.articleId === x._id;
-                  })
-                  .map((z) => z.avancement || -1) || [])
-              ),
+            avancement: isExpert
+              ? Math.max(
+                  0,
+                  ...((this.state.traductionsFaites || [])
+                    .filter((y) => {
+                      return (
+                        y.articleId === x._id &&
+                        y.userId._id === this.props.userId
+                      );
+                    })
+                    .map((z) => z.avancement || -1) || [])
+                )
+              : Math.max(
+                  0,
+                  ...((this.state.traductionsFaites || [])
+                    .filter((y) => {
+                      return y.articleId === x._id;
+                    })
+                    .map((z) => z.avancement || -1) || [])
+                ),
             status: x.status,
             statusTrad:
               (this.state.traductionsFaites || [])
@@ -486,9 +489,12 @@ export class Avancement extends Component {
                   return "À traduire";
                 })[0] || "À traduire",
             created_at: x.created_at,
-            updatedAt: this.state.traductionsFaites.find(y => y.articleId === x._id) ?
-            this.state.traductionsFaites.find(y => y.articleId === x._id).updatedAt :
-            false,
+            updatedAt: this.state.traductionsFaites.find(
+              (y) => y.articleId === x._id
+            )
+              ? this.state.traductionsFaites.find((y) => y.articleId === x._id)
+                  .updatedAt
+              : false,
             users: [
               ...new Set(
                 (this.state.traductionsFaites || [])
@@ -600,7 +606,7 @@ export class Avancement extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({research: e.target.value});
+    this.setState({ research: e.target.value });
     // Variable to hold the original version of the list
     let currentList = [];
     // Variable to hold the filtered list before putting into state
@@ -752,7 +758,9 @@ export class Avancement extends Component {
                 {element.isStructure ? "Site" : jsUcfirst(element.typeContenu)}
               </td>
               <td className="align-middle fit-content">
-                {element.updatedAt ? moment(element.updatedAt).format("YYYY/MM/DD H:mm") : "Pas encore traduite"}
+                {element.updatedAt
+                  ? moment(element.updatedAt).format("YYYY/MM/DD H:mm")
+                  : "Pas encore traduite"}
                 {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
               <td className="align-middle fit-content">
