@@ -1,6 +1,6 @@
 const etapes = [
-  {titre: "Sélectionnez les paragraphes à modifier"},
-  {titre: "Créez votre  variante"},
-]
+  { titre: "Sélectionnez les paragraphes à modifier" },
+  { titre: "Créez votre  variante" },
+];
 
-export {etapes};
+export { etapes };

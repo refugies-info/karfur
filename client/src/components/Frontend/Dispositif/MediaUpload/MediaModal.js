@@ -13,7 +13,7 @@ const Tabs = styled.div`
   justify-content: space-between;
 `;
 
-const getColor = props => {
+const getColor = (props) => {
   if (props.isDragAccept) {
     return "#00e676";
   }
@@ -34,7 +34,7 @@ const Container = styled.div`
   padding: 20px;
   border-width: 2px;
   border-radius: 2px;
-  border-color: ${props => getColor(props)};
+  border-color: ${(props) => getColor(props)};
   border-style: dashed;
   background-color: #fafafa;
   color: #bdbdbd;
@@ -60,30 +60,30 @@ class MediaModal extends Component {
     };
   }
 
-  onSelect = name => {
+  onSelect = (name) => {
     this.setState({ selectedTab: name });
   };
 
   validate = () => {
-    this.props.insertBlock('image', this.state.image.secure_url);
-    this.props.toggle()
-  }
+    this.props.insertBlock("image", this.state.image.secure_url);
+    this.props.toggle();
+  };
 
   uploadImageCallBack(file) {
     return new Promise((resolve, reject) => {
-      this.setState({loading: true})
+      this.setState({ loading: true });
       //On l'envoie ensuite au serveur
       const formData = new FormData();
       formData.append(0, file);
       API.set_image(formData)
-        .then(data_res => {
+        .then((data_res) => {
           let response = data_res.data.data;
           response.link = response.secure_url;
-          this.setState({loading: false});
+          this.setState({ loading: false });
           resolve({ data: response });
         })
-        .catch(e => {
-          this.setState({loading: false});
+        .catch((e) => {
+          this.setState({ loading: false });
           console.log(e);
           reject(e);
         });
@@ -122,14 +122,16 @@ class MediaModal extends Component {
           <Dropzone
             onDrop={async (acceptedFiles) => {
               this.setState({
-                image: acceptedFiles.map(file =>
+                image: acceptedFiles.map((file) =>
                   Object.assign(file, {
-                    preview: URL.createObjectURL(file)
+                    preview: URL.createObjectURL(file),
                   })
-                )
+                ),
               });
-              const imageData = await this.uploadImageCallBack(acceptedFiles[0]);
-              this.setState({image: imageData.data});
+              const imageData = await this.uploadImageCallBack(
+                acceptedFiles[0]
+              );
+              this.setState({ image: imageData.data });
             }}
             accept={"image/jpeg, image/png"}
           >
@@ -138,14 +140,14 @@ class MediaModal extends Component {
               getInputProps,
               isDragActive,
               isDragAccept,
-              isDragReject
+              isDragReject,
             }) => (
               <section>
                 <Container
                   {...getRootProps({
                     isDragActive,
                     isDragAccept,
-                    isDragReject
+                    isDragReject,
                   })}
                 >
                   <input {...getInputProps()} />
