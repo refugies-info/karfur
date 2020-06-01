@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Row,
   Col,
@@ -8,49 +8,56 @@ import {
   Input,
   Label,
   Spinner,
-  Progress
-} from 'reactstrap';
-import Slider, { createSliderWithTooltip } from 'rc-slider';
+  Progress,
+} from "reactstrap";
+import Slider, { createSliderWithTooltip } from "rc-slider";
 import passwdCheck from "zxcvbn";
-import 'rc-slider/assets/index.css';
+import "rc-slider/assets/index.css";
 
 // import DraggableList from '../../../../components/UI/DraggableList/DraggableList';
-import marioProfile from '../../../../assets/mario-profile.jpg';
-import { colorAvancement } from '../../../Functions/ColorFunctions';
+import marioProfile from "../../../../assets/mario-profile.jpg";
+import { colorAvancement } from "../../../Functions/ColorFunctions";
 
-import './UserChange.scss'
+import "./UserChange.scss";
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
 const localeFormatter = (v) => new Intl.NumberFormat().format(v);
 
 const userChange = (props) => {
-  const user = props.user || {}, handleChange = props.handleChange || (() => {});
-  const statuts = ['Actif', 'En attente', 'Inactif', 'Exclu']
-  const imgSrc = (user.picture || []).secure_url || marioProfile
+  const user = props.user || {},
+    handleChange = props.handleChange || (() => {});
+  const statuts = ["Actif", "En attente", "Inactif", "Exclu"];
+  const imgSrc = (user.picture || []).secure_url || marioProfile;
   const password_check = passwdCheck(user.password || "");
   // const langues_list=(user.selectedLanguages || []).map(function (item) { return item.langueFr; });
-  
+
   return (
-    <Form action="" method="post" encType="multipart/form-data" className="form-horizontal user-change">
+    <Form
+      action=""
+      method="post"
+      encType="multipart/form-data"
+      className="form-horizontal user-change"
+    >
       <FormGroup row>
         <Col md="3">
           <Label>Photo de profil</Label>
         </Col>
         <Col xs="12" md="9">
-          <div className="profile-header-container">   
+          <div className="profile-header-container">
             <div className="rank-label-container">
               <ProfilePic uploading={props.uploading} imgSrc={imgSrc} />
-              <Input 
+              <Input
                 className="file-input"
                 type="file"
-                id="picture" 
-                name="user" 
+                id="picture"
+                name="user"
                 accept="image/*"
-                onChange = {props.handleFileInputChange} />
+                onChange={props.handleFileInputChange}
+              />
               <span className="label label-default rank-label">Editer</span>
             </div>
-          </div> 
+          </div>
         </Col>
       </FormGroup>
 
@@ -59,134 +66,171 @@ const userChange = (props) => {
           <Label>Nom d'utilisateur</Label>
         </Col>
         <Col xs="12" md="9">
-          <Input 
-            type="text" 
-            id="username" 
-            name="user" 
+          <Input
+            type="text"
+            id="username"
+            name="user"
             placeholder="Nom d'utilisateur"
-            value={user.username || ''}
-            onChange = {handleChange} />
+            value={user.username || ""}
+            onChange={handleChange}
+          />
           <FormText color="muted">Par exemple : Soufiane</FormText>
         </Col>
       </FormGroup>
 
-      {props.isAdmin &&
-      <FormGroup row>
-        <Col md="3">
-          <Label htmlFor="password">Mot de passe</Label>
-        </Col>
-        <Col xs="12" md="9">
-          <Input 
-            type="password" 
-            id="password" 
-            name="user" 
-            placeholder="Mot de passe"
-            value={user.password}
-            onChange = {handleChange}
-            disabled={user.password === 'Hidden'} />
-          <FormText color="muted">Par exemple : motdepasse</FormText>
-          {user.password && user.password !== 'Hidden' &&
-            <div className="score-wrapper mb-10">
-              <span className="mr-10">Force :</span>
-              <Progress 
-                color={colorAvancement(password_check.score/4)} 
-                value={(0.1+(password_check.score/4))*100/1.1} 
-              />
-            </div>}
-        </Col>
-      </FormGroup>}
+      {props.isAdmin && (
+        <FormGroup row>
+          <Col md="3">
+            <Label htmlFor="password">Mot de passe</Label>
+          </Col>
+          <Col xs="12" md="9">
+            <Input
+              type="password"
+              id="password"
+              name="user"
+              placeholder="Mot de passe"
+              value={user.password}
+              onChange={handleChange}
+              disabled={user.password === "Hidden"}
+            />
+            <FormText color="muted">Par exemple : motdepasse</FormText>
+            {user.password && user.password !== "Hidden" && (
+              <div className="score-wrapper mb-10">
+                <span className="mr-10">Force :</span>
+                <Progress
+                  color={colorAvancement(password_check.score / 4)}
+                  value={((0.1 + password_check.score / 4) * 100) / 1.1}
+                />
+              </div>
+            )}
+          </Col>
+        </FormGroup>
+      )}
 
       <FormGroup row>
-        <Col md="3"><Label>Langues de travail</Label></Col>
+        <Col md="3">
+          <Label>Langues de travail</Label>
+        </Col>
 
         <Col xs="12" md="9">
           <Row>
             {(props.langues || []).map((langue, key) => {
               return (
                 <Col md="3" key={key}>
-                    <FormGroup check className="checkbox">
-                      <Input 
-                        className="form-check-input langue" 
-                        type="checkbox" 
-                        name="user" 
-                        id={langue._id} 
-                        value={langue._id}
-                        checked={(user.selectedLanguages || []).find(x => x._id === langue._id) ? true : false}
-                        onChange={props.handleCheck} />
-                      <Label check className="form-check-label" htmlFor={langue._id}>{langue.langueFr}</Label>
-                    </FormGroup>
+                  <FormGroup check className="checkbox">
+                    <Input
+                      className="form-check-input langue"
+                      type="checkbox"
+                      name="user"
+                      id={langue._id}
+                      value={langue._id}
+                      checked={
+                        (user.selectedLanguages || []).find(
+                          (x) => x._id === langue._id
+                        )
+                          ? true
+                          : false
+                      }
+                      onChange={props.handleCheck}
+                    />
+                    <Label
+                      check
+                      className="form-check-label"
+                      htmlFor={langue._id}
+                    >
+                      {langue.langueFr}
+                    </Label>
+                  </FormGroup>
                 </Col>
-              )}
-            )}
+              );
+            })}
           </Row>
         </Col>
       </FormGroup>
 
       <FormGroup row>
         <Col md="3">
-          <Label htmlFor="text-input">Votre objectif quotidien en minutes</Label>
+          <Label htmlFor="text-input">
+            Votre objectif quotidien en minutes
+          </Label>
         </Col>
         <Col xs="12" md="9">
           <Row>
             <Col md="9">
-              <SliderWithTooltip 
+              <SliderWithTooltip
                 min={0}
                 max={90}
                 step={10}
                 tipFormatter={localeFormatter}
-                trackStyle={{ background: 'linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)', height: 10 }}
+                trackStyle={{
+                  background:
+                    "linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)",
+                  height: 10,
+                }}
                 handleStyle={{
-                  borderColor: 'blue',
+                  borderColor: "blue",
                   height: 20,
                   width: 20,
                   marginLeft: -14,
                   marginTop: -5,
-                  backgroundColor: 'blue',
+                  backgroundColor: "blue",
                 }}
-                railStyle={{ backgroundColor: 'red', height: 10 }}
-                name="user" 
-                onChange={(value) => props.handleSliderChange(value,'objectifTemps')}
+                railStyle={{ backgroundColor: "red", height: 10 }}
+                name="user"
+                onChange={(value) =>
+                  props.handleSliderChange(value, "objectifTemps")
+                }
                 value={user.objectifTemps}
-              /> 
-              <FormText color="muted">Définissez ici le temps que vous souhaitez accorder à la traduction quotidiennement</FormText>
+              />
+              <FormText color="muted">
+                Définissez ici le temps que vous souhaitez accorder à la
+                traduction quotidiennement
+              </FormText>
             </Col>
-            <Col>
-              {user.objectifTemps || 0} minutes
-            </Col>
+            <Col>{user.objectifTemps || 0} minutes</Col>
           </Row>
         </Col>
       </FormGroup>
 
       <FormGroup row>
         <Col md="3">
-          <Label htmlFor="text-input">Votre objectif quotidien en mots traduits</Label>
+          <Label htmlFor="text-input">
+            Votre objectif quotidien en mots traduits
+          </Label>
         </Col>
         <Col xs="12" md="9">
           <Row>
             <Col md="9">
-              <SliderWithTooltip 
+              <SliderWithTooltip
                 min={0}
                 max={2000}
                 step={200}
                 tipFormatter={localeFormatter}
-                trackStyle={{ background: 'linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)', height: 10 }}
+                trackStyle={{
+                  background:
+                    "linear-gradient(135deg, #5ee7df 0%, #b490ca 100%)",
+                  height: 10,
+                }}
                 handleStyle={{
-                  borderColor: 'blue',
+                  borderColor: "blue",
                   height: 20,
                   width: 20,
                   marginLeft: -14,
                   marginTop: -5,
-                  backgroundColor: 'blue',
+                  backgroundColor: "blue",
                 }}
-                railStyle={{ backgroundColor: 'red', height: 10 }}
-                onChange={(value) => props.handleSliderChange(value,'objectifMots')}
+                railStyle={{ backgroundColor: "red", height: 10 }}
+                onChange={(value) =>
+                  props.handleSliderChange(value, "objectifMots")
+                }
                 value={user.objectifMots}
               />
-              <FormText color="muted">Définissez ici le nombre de mots que vous souhaiteriez traduire chaque jour</FormText>
+              <FormText color="muted">
+                Définissez ici le nombre de mots que vous souhaiteriez traduire
+                chaque jour
+              </FormText>
             </Col>
-            <Col>
-              {user.objectifMots || 0} mots
-            </Col>
+            <Col>{user.objectifMots || 0} mots</Col>
           </Row>
         </Col>
       </FormGroup>
@@ -210,53 +254,58 @@ const userChange = (props) => {
           <Label htmlFor="email">Adresse email</Label>
         </Col>
         <Col xs="12" md="9">
-          <Input 
-            type="email" 
-            id="email" 
-            name="user" 
-            placeholder="Adresse mail" 
+          <Input
+            type="email"
+            id="email"
+            name="user"
+            placeholder="Adresse mail"
             autoComplete="email"
             onChange={handleChange}
-            value={user.email || ''} />
-          <FormText className="help-block">Restez informé des dernières informations concernant la traduction</FormText>
+            value={user.email || ""}
+          />
+          <FormText className="help-block">
+            Restez informé des dernières informations concernant la traduction
+          </FormText>
         </Col>
       </FormGroup>
-      
-      {(props.roles || []).some(x => x.nom==="Admin" && x.isChecked) && 
+
+      {(props.roles || []).some((x) => x.nom === "Admin" && x.isChecked) && (
         <FormGroup row>
           <Col md="3">
             <Label>Numéro de téléphone</Label>
           </Col>
           <Col xs="12" md="9">
-            <Input 
-              type="phone" 
-              id="phone" 
-              name="user" 
+            <Input
+              type="phone"
+              id="phone"
+              name="user"
               placeholder="Téléphone"
-              value={user.phone || ''}
-              onChange = {handleChange} />
+              value={user.phone || ""}
+              onChange={handleChange}
+            />
             <FormText color="muted">Par exemple : 06 11 22 33 44</FormText>
           </Col>
-        </FormGroup>}
+        </FormGroup>
+      )}
 
       <FormGroup row>
         <Col md="3">
           <Label htmlFor="description">Description</Label>
         </Col>
         <Col xs="12" md="9">
-          <Input 
-            type="textarea" 
-            name="user"  
-            id="description" 
+          <Input
+            type="textarea"
+            name="user"
+            id="description"
             rows="6"
             placeholder="Renseignez une courte description que les autres utilisateurs pourront voir"
             onChange={handleChange}
-            value={user.description || ''} />
+            value={user.description || ""}
+          />
         </Col>
       </FormGroup>
 
-
-      {props.isAdmin && 
+      {props.isAdmin && (
         <>
           <FormGroup row>
             <Col md="3">
@@ -268,20 +317,27 @@ const userChange = (props) => {
                 {(props.roles || []).map((role, key) => {
                   return (
                     <Col xs="9" md="6" key={key}>
-                        <FormGroup check className="checkbox">
-                          <Input 
-                            className="form-check-input role" 
-                            type="checkbox" 
-                            name="user" 
-                            id={role._id} 
-                            value={role._id}
-                            checked={role.isChecked}
-                            onChange={props.handleCheck} />
-                          <Label check className="form-check-label" htmlFor={role._id}>{role.nomPublique}</Label>
-                        </FormGroup>
+                      <FormGroup check className="checkbox">
+                        <Input
+                          className="form-check-input role"
+                          type="checkbox"
+                          name="user"
+                          id={role._id}
+                          value={role._id}
+                          checked={role.isChecked}
+                          onChange={props.handleCheck}
+                        />
+                        <Label
+                          check
+                          className="form-check-label"
+                          htmlFor={role._id}
+                        >
+                          {role.nomPublique}
+                        </Label>
+                      </FormGroup>
                     </Col>
-                  )}
-                )}
+                  );
+                })}
               </Row>
             </Col>
           </FormGroup>
@@ -291,34 +347,33 @@ const userChange = (props) => {
               <Label htmlFor="status">Statut</Label>
             </Col>
             <Col xs="12" md="9">
-              <Input 
-                type="select" 
-                id="status" 
-                name="user" 
+              <Input
+                type="select"
+                id="status"
+                name="user"
                 value={user.status}
-                onChange = {handleChange}  >
-                {statuts.map((statut) =>
-                  <option 
-                    value={statut}
-                    key={statut}>
+                onChange={handleChange}
+              >
+                {statuts.map((statut) => (
+                  <option value={statut} key={statut}>
                     {statut}
                   </option>
-                )}
+                ))}
               </Input>
             </Col>
           </FormGroup>
         </>
-      }
+      )}
     </Form>
-  )
-}
+  );
+};
 
-const ProfilePic = props => {
-  if(props.uploading){
-    return <Spinner color="dark" className="fadeIn fadeOut" />
-  }else{
-    return <img className="img-circle" src={props.imgSrc} alt="profile"/>
+const ProfilePic = (props) => {
+  if (props.uploading) {
+    return <Spinner color="dark" className="fadeIn fadeOut" />;
+  } else {
+    return <img className="img-circle" src={props.imgSrc} alt="profile" />;
   }
-}
+};
 
 export default userChange;

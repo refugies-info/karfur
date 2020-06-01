@@ -4,14 +4,14 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Tooltip
+  Tooltip,
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorBlock, AtomicBlockUtils, EditorState } from "draft-js";
 import { Player } from "video-react";
 import { withTranslation } from "react-i18next";
-import insertAtomicBlockWithData from './insertAtomicBlockWithData';
+import insertAtomicBlockWithData from "./insertAtomicBlockWithData";
 
 // import Backdrop from '../../../UI/Backdrop/Backdrop';
 import {
@@ -20,7 +20,7 @@ import {
   underBtn,
   listBtn,
   imgBtn,
-  linkBtn
+  linkBtn,
 } from "../../../../assets/figma"; //videoBtn
 import CustomOption from "./CustomOption/CustomOption";
 import MediaUpload from "../MediaUpload";
@@ -33,13 +33,14 @@ import variables from "scss/colors.scss";
 
 const styles = {
   media: {
-  width: '100%',
-  // Fix an issue with Firefox rendering video controls
-  // with 'pre-wrap' white-space
-  whiteSpace: 'initial'
-},}
+    width: "100%",
+    // Fix an issue with Firefox rendering video controls
+    // with 'pre-wrap' white-space
+    whiteSpace: "initial",
+  },
+};
 
-const MyCustomBlock = props => (
+const MyCustomBlock = (props) => (
   <div className="bloc-rouge">
     <div className="icon-left-side">
       <EVAIcon
@@ -55,7 +56,7 @@ const MyCustomBlock = props => (
   </div>
 );
 
-const MyImageBlock = props => {
+const MyImageBlock = (props) => {
   const { block, contentState } = props;
   if (block.getEntityAt(0)) {
     const data = contentState.getEntity(block.getEntityAt(0)).getData();
@@ -77,13 +78,13 @@ const MyImageBlock = props => {
   }
 };
 
-const MyMediaBlock = props => {
+const MyMediaBlock = (props) => {
   const { block, contentState } = props;
   const entity = contentState.getEntity(block.getEntityAt(0));
   const data = entity.getData();
   const type = entity.getType();
   if (type === "image") {
-    const link = data.imageData.secure_url; 
+    const link = data.imageData.secure_url;
     return (
       <div className="image-wrapper">
         <img src={data.imageData.secure_url} />
@@ -105,18 +106,16 @@ const Video = (props) => {
 };
 
 const Media = (props) => {
-  const entity = props.contentState.getEntity(
-    props.block.getEntityAt(0)
-  );
-  const {src} = entity.getData();
+  const entity = props.contentState.getEntity(props.block.getEntityAt(0));
+  const { src } = entity.getData();
   const type = entity.getType();
 
   let media;
-  if (type === 'audio') {
+  if (type === "audio") {
     media = <Audio src={src} />;
-  } else if (type === 'image') {
+  } else if (type === "image") {
     media = <Image src={src} />;
-  } else if (type === 'video') {
+  } else if (type === "video") {
     media = <Video src={src} />;
   }
 
@@ -127,11 +126,11 @@ function myBlockRenderer(contentBlock) {
   const type = contentBlock.getType();
   if (type === "header-six") {
     return {
-      component: MyCustomBlock
+      component: MyCustomBlock,
     };
   } else if (type === "atomic") {
     return {
-      component: MyImageBlock,//Media,
+      component: MyImageBlock, //Media,
       //editable: false,
     };
   }
@@ -143,17 +142,17 @@ class EditableParagraph extends Component {
     tooltipOpen: false,
     isDropdownOpen: false,
     dropdownColor: new Array(4).fill("#FFFFFF"),
-    modalState: true
+    modalState: true,
   };
 
   toggle = () => this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   toggleTooltip = () =>
-    this.setState(prevState => ({ tooltipOpen: !prevState.tooltipOpen }));
+    this.setState((prevState) => ({ tooltipOpen: !prevState.tooltipOpen }));
   toggleColor = (key, hover) =>
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       dropdownColor: prevState.dropdownColor.map((_, i) =>
         i === key ? (hover ? variables.noir : "#FFFFFF") : "#FFFFFF"
-      )
+      ),
     }));
 
   Button = () => {
@@ -170,24 +169,20 @@ class EditableParagraph extends Component {
     const contentStateWithEntity = contentState.createEntity(
       type,
       "IMMUTABLE",
-      {src: data}
+      { src: data }
     );
 
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
     const newEditorState = EditorState.set(editorState, {
-      currentContent: contentStateWithEntity
+      currentContent: contentStateWithEntity,
     });
 
     this.props.onEditorStateChange(
-      AtomicBlockUtils.insertAtomicBlock(
-        newEditorState,
-        entityKey,
-        " ",
-      ),
+      AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, " "),
       this.props.keyValue,
-      this.props.subkey,
-    )
+      this.props.subkey
+    );
   };
 
   render() {
@@ -206,7 +201,7 @@ class EditableParagraph extends Component {
               "wrapper-editeur editeur-" + props.keyValue + "-" + props.subkey
             }
             placeholder={props.placeholder}
-            onEditorStateChange={editorState =>
+            onEditorStateChange={(editorState) =>
               props.onEditorStateChange(
                 editorState,
                 props.keyValue,
@@ -215,13 +210,13 @@ class EditableParagraph extends Component {
             }
             editorState={props.editorState}
             toolbarCustomButtons={[
-             // <MediaUpload modalState={this.state.modalState} insertBlock={this.insertBlock} />,
-              <CustomOption editorState={props.editorState} />
+              // <MediaUpload modalState={this.state.modalState} insertBlock={this.insertBlock} />,
+              <CustomOption editorState={props.editorState} />,
             ]}
             blockRendererFn={myBlockRenderer}
             stripPastedStyles
             localization={{
-              locale: this.props.i18n.language
+              locale: this.props.i18n.language,
             }}
             toolbar={{
               options: ["inline", "list", "link"], //, 'embedded'
@@ -233,14 +228,14 @@ class EditableParagraph extends Component {
                 italic: { icon: italicBtn, className: "inline-btn btn-italic" },
                 underline: {
                   icon: underBtn,
-                  className: "inline-btn btn-underline"
-                }
+                  className: "inline-btn btn-underline",
+                },
               },
               list: {
                 inDropdown: false,
                 options: ["unordered"],
                 className: "bloc-gauche-list blc-gh",
-                unordered: { icon: listBtn, className: "list-btn" }
+                unordered: { icon: listBtn, className: "list-btn" },
               },
               image: {
                 className: "bloc-droite-image",
@@ -250,7 +245,7 @@ class EditableParagraph extends Component {
                 uploadCallback: uploadImageCallBack,
                 alignmentEnabled: true,
                 alt: { present: true, mandatory: false },
-                previewImage: true
+                previewImage: true,
               },
               /*   image: {
                 component: this.Button
@@ -266,8 +261,8 @@ class EditableParagraph extends Component {
                 className: "bloc-gauche-inline blc-gh",
                 link: { icon: linkBtn, className: "btn-link" },
                 defaultTargetOption: "_blank",
-                showOpenOptionOnHover: true
-              }
+                showOpenOptionOnHover: true,
+              },
             }}
           />
           <AddModuleBtn
@@ -320,7 +315,7 @@ class EditableParagraph extends Component {
   }
 }
 
-const AddModuleBtn = props => {
+const AddModuleBtn = (props) => {
   if (props.type !== "etape") {
     return (
       <div className="plus-wrapper">
@@ -422,12 +417,12 @@ function uploadImageCallBack(file) {
     const formData = new FormData();
     formData.append(0, file);
     API.set_image(formData)
-      .then(data_res => {
+      .then((data_res) => {
         let response = data_res.data.data;
         response.link = response.secure_url;
         resolve({ data: response });
       })
-      .catch(e => {
+      .catch((e) => {
         console.log(e);
         reject(e);
       });
