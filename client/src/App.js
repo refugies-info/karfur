@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { datadogLogs } from "@datadog/browser-logs";
 import Loadable from "react-loadable";
 import { Provider } from "react-redux";
 import track from "react-tracking";
@@ -66,7 +67,7 @@ class App extends Component {
 
   componentDidMount() {
     //On désactive les logs en prod
-    if (process.env.NODE_ENV !== "development") {
+    if (process.env.NODE_ENV === "production") {
       console.log = function () {};
     }
 

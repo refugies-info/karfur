@@ -66,6 +66,7 @@ import setAuthToken from "../../../utils/setAuthToken";
 
 import "./UserProfile.scss";
 import variables from "scss/colors.scss";
+import { logger } from "../../../logger";
 
 const anchorOffset = "120";
 
@@ -449,6 +450,12 @@ export class UserProfile extends Component {
     });
 
   render() {
+    logger.info("profile page", {
+      user:
+        this.state.user && this.state.user.username
+          ? this.state.user.username
+          : "no user",
+    });
     const {
       traducteur,
       contributeur,
