@@ -1,0 +1,34 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "no-debugger": "warn",
+    "no-else-return": "error",
+    "no-console": "error",
+    "no-unused-expressions": "error",
+    "no-unused-vars": "error",
+    "no-use-before-define": "error",
+    "@typescript-eslint/no-unused-vars": "off",
+    "quotes": ["error", "double"],
+    "object-shorthand": "off",
+    "@typescript-eslint/ban-ts-comment": "off"
+  }
+}
