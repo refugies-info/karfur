@@ -1,6 +1,6 @@
 import { datadogLogs } from "@datadog/browser-logs";
 
-if (process.env.NODE_ENV === "quality") {
+if (process.env.REACT_APP_ENV === "quality") {
   datadogLogs.init({
     clientToken: process.env.REACT_APP_DATADOG_TOKEN,
     datacenter: "eu",
@@ -10,7 +10,8 @@ if (process.env.NODE_ENV === "quality") {
 }
 export class logger {
   static info = (message, data) => {
-    if (process.env.NODE_ENV === "quality") {
+    console.log("react", process.env.REACT_APP_ENV);
+    if (process.env.REACT_APP_ENV === "quality") {
       datadogLogs.logger.log(message, data, "info");
       return;
     }
@@ -19,7 +20,7 @@ export class logger {
   };
 
   static warn = (message, data) => {
-    if (process.env.NODE_ENV === "quality") {
+    if (process.env.REACT_APP_ENV === "quality") {
       datadogLogs.logger.log(message, data, "warn");
       return;
     }
@@ -28,7 +29,7 @@ export class logger {
   };
 
   static error = (message, data) => {
-    if (process.env.NODE_ENV === "quality") {
+    if (process.env.REACT_APP_ENV === "quality") {
       datadogLogs.logger.log(message, data, "error");
       return;
     }
