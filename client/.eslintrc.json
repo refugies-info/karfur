@@ -3,12 +3,7 @@
     "node": true,
     "es6": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "extends": ["plugin:react/recommended"],
 
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -23,12 +18,15 @@
     "no-debugger": "warn",
     "no-else-return": "error",
     "no-console": "error",
-    "no-unused-expressions": "error",
-    "no-unused-vars": "error",
+    "no-unused-expressions": "off",
+    "no-unused-vars": "off",
     "no-use-before-define": "error",
-    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
     "quotes": ["error", "double"],
     "object-shorthand": "off",
-    "@typescript-eslint/ban-ts-comment": "off"
+    "@typescript-eslint/ban-ts-comment": "off",
+    "react/prop-types": "off",
+    "react/no-unescaped-entities": "off",
+    "react/no-unknown-property": "off"
   }
 }
