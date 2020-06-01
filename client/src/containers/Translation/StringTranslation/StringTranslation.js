@@ -75,6 +75,7 @@ export class StringTranslation extends Component {
         }
       });
     }
+    // eslint-disable-next-line
     if (!itemId || !locale) {
     } else if (!isExpert) {
       this.setState({
