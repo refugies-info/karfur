@@ -116,7 +116,7 @@ let styles = StyleSheet.create({
     fontWeight: 700,
     marginRight: "10px",
     fontSize: "1.2rem",
-    fontFamily: '"Source Sans Pro",Helvetica,Arial,sans-serif',
+    fontFamily: "\"Source Sans Pro\",Helvetica,Arial,sans-serif",
     textTransform: "uppercase",
     cursor: "pointer",
     backgroundColor: "transparent",

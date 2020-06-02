@@ -12,9 +12,9 @@ const themesList = (props) => {
         .themeNom;
     } else if (theme.themeIsUnder) {
       return "A définir !";
-    } else {
+    } 
       return "Aucune";
-    }
+    
   };
   return (
     <Card className="themes-list">

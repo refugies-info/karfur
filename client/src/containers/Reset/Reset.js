@@ -158,7 +158,7 @@ class Reset extends Component {
           </FButton>
         </div>
       );
-    } else {
+    } 
       const password_check = newPassword && passwdCheck(newPassword);
       return (
         <div className="app flex-row align-items-center reset">
@@ -254,7 +254,7 @@ class Reset extends Component {
           </div>
         </div>
       );
-    }
+    
   }
 }
 

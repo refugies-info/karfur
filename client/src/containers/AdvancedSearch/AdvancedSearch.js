@@ -519,9 +519,9 @@ export class AdvancedSearch extends Component {
                         </NavLink>
                       </Col>
                     );
-                  } else {
+                  } 
                     return false;
-                  }
+                  
                 })}
                 {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
                   <Col

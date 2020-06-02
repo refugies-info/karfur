@@ -11,9 +11,9 @@ const languesList = (props) => {
         .langueFr;
     } else if (langue.langueIsDialect) {
       return "A définir !";
-    } else {
+    } 
       return "Aucune";
-    }
+    
   };
   return (
     <Card className="langues-list">

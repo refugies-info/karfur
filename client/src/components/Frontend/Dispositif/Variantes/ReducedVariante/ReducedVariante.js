@@ -105,13 +105,13 @@ const reducedVariante = (props) => {
                 </div>
               </div>
             );
-          } else {
+          } 
             return false;
-          }
+          
         })}
       </div>
     );
-  } else {
+  } 
     return (
       <div
         className={"plus-col" + (props.disabled ? " disabled" : "")}
@@ -125,7 +125,7 @@ const reducedVariante = (props) => {
         </div>
       </div>
     );
-  }
+  
 };
 
 export default withTranslation()(reducedVariante);

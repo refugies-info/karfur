@@ -107,9 +107,9 @@ const switchVariante = async function () {
         ) {
           demarchesEligibles = [...demarchesEligibles, demarche];
           return true;
-        } else {
+        } 
           return false;
-        }
+        
       });
     });
   }
@@ -190,9 +190,9 @@ const check_place = function (
       });
     } else if (place_id) {
       return this._isMounted && setTimeout(this.switchVariante, 1000);
-    } else {
+    } 
       resolve(false);
-    }
+    
   });
 };
 

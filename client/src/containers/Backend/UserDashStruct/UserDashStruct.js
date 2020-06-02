@@ -253,7 +253,7 @@ export class UserDashStruct extends Component {
 
     if (!structure || structure.noResults) {
       return <Redirect to="/backend/user-profile" />;
-    } else {
+    } 
       const members = structure.membres;
       const enAttente = (structure.dispositifsAssocies || []).filter(
         (x) => x.status === "En attente"
@@ -420,7 +420,7 @@ export class UserDashStruct extends Component {
           )}
         </div>
       );
-    }
+    
   }
 }
 

@@ -26,7 +26,7 @@ class MoteurVariantes extends Component {
           search={search}
         />
       );
-    } else {
+    } 
       return (
         <div className="moteur-variantes" id="moteur-variantes">
           <div className="dashed-panel" />
@@ -74,7 +74,7 @@ class MoteurVariantes extends Component {
           </div>
         </div>
       );
-    }
+    
   }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const femmeCurly = ({width, height, fill, ...props}) => (
   <svg {...props} width={width || "250"} height={height || "296"} viewBox={"0 0 " + (width || "250") + " " + (height || "296")} fill="none" xmlns="http://www.w3.org/2000/svg">

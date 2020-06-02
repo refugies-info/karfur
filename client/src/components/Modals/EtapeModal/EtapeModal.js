@@ -136,9 +136,9 @@ class EtapeModal extends Component {
                         </Label>
                       </ListGroupItem>
                     );
-                  } else {
+                  } 
                     return false;
-                  }
+                  
                 })}
               </ListGroup>
             </>

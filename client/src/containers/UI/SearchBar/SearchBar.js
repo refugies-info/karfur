@@ -129,7 +129,7 @@ export class SearchBar extends React.Component {
             </span>
           </span>
         );
-      } else {
+      } 
         const firstPart = isArray
           ? structures
             ? suggestion.acronyme
@@ -175,7 +175,7 @@ export class SearchBar extends React.Component {
             )}
           </span>
         );
-      }
+      
     };
 
     const inputProps = {

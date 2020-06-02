@@ -20,9 +20,9 @@ const mapComponent = compose(
       "https://maps.googleapis.com/maps/api/js?key=" +
       process.env.REACT_APP_GOOGLE_API_KEY +
       "&v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `470px`, width: "100%" }} />,
-    mapElement: <div style={{ height: `100%`, width: "100%" }} />,
+    loadingElement: <div style={{ height: "100%" }} />,
+    containerElement: <div style={{ height: "470px", width: "100%" }} />,
+    mapElement: <div style={{ height: "100%", width: "100%" }} />,
   }),
   withScriptjs,
   withGoogleMap
@@ -87,9 +87,9 @@ const mapComponent = compose(
               </Marker>
             </React.Fragment>
           );
-        } else {
+        } 
           return false;
-        }
+        
       })}
   </GoogleMap>
 ));

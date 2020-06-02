@@ -258,9 +258,9 @@ const contribTable = (props) => {
     );
   } else if (show) {
     return table;
-  } else {
+  } 
     return false;
-  }
+  
 };
 
 export default withTranslation()(contribTable);

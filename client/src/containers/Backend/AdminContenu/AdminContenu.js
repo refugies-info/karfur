@@ -263,9 +263,9 @@ class AdminContenu extends Component {
               return 0;
             } else if (a.status === "Actif" && b.status !== "Actif") {
               return -1;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         }
       })
@@ -282,9 +282,9 @@ class AdminContenu extends Component {
               return 0;
             } else if (a.status === "Brouillon" && b.status !== "Brouillon") {
               return -1;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         }
       })
@@ -301,9 +301,9 @@ class AdminContenu extends Component {
               return 0;
             } else if (a.status === "Supprimé" && b.status !== "Supprimé") {
               return -1;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         }
       })
@@ -388,7 +388,7 @@ class AdminContenu extends Component {
                 (element.status === "Brouillon" && !this.state.draft)
               ) {
                 return;
-              } else {
+              } 
                 return (
                   <tr key={key} className={bgColor ? "bg-" + bgColor : ""}>
                     <td
@@ -552,7 +552,7 @@ class AdminContenu extends Component {
                     </Tooltip>
                   </tr>
                 );
-              }
+              
             })}
           </tbody>
         </Table>

@@ -84,7 +84,7 @@ const languageModal = (props) => {
                     </Row>
                   </ListGroupItem>
                 );
-              } else {
+              } 
                 const isSelected =
                   props.languages[element].i18nCode === props.current_language;
                 return (
@@ -149,15 +149,15 @@ const languageModal = (props) => {
                     </Row>
                   </ListGroupItem>
                 );
-              }
+              
             })}
           </ListGroup>
         </ModalBody>
       </Modal>
     );
-  } else {
+  } 
     return false;
-  }
+  
 };
 
 export default withTranslation()(languageModal);

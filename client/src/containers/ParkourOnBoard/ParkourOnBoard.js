@@ -210,9 +210,9 @@ class ParkourOnBoard extends Component {
             />
           </div>
         );
-      } else {
+      } 
         return false;
-      }
+      
     };
 
     return (
@@ -339,9 +339,9 @@ class ParkourOnBoard extends Component {
                         </NavLink>
                       </Col>
                     );
-                  } else {
+                  } 
                     return false;
-                  }
+                  
                 })}
               <Col xs="12" sm="6" md="3" className="card-col">
                 <NavLink to={"/dispositif"}>

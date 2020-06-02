@@ -135,7 +135,7 @@ const dashHeader = (props) => {
           </Col>
         </Row>
       );
-    } else {
+    } 
       return (
         <Row className="header-indicateurs">
           <Col lg="4" md="12" sm="12" xs="12">
@@ -175,7 +175,7 @@ const dashHeader = (props) => {
           </Col>
         </Row>
       );
-    }
+    
   };
   return (
     <div className="dash-header">

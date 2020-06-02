@@ -64,13 +64,13 @@ class OnBoardingTraducteurModal extends Component {
             Continuer
           </Button>
         );
-      } else {
+      } 
         return (
           <Button color="success" onClick={this.startOnBoarding}>
             Terminer
           </Button>
         );
-      }
+      
     };
 
     return (

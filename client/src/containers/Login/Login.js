@@ -62,9 +62,9 @@ export class Login extends Component {
             "ssoToken=" +
             localStorage.getItem("token")
         );
-      } else {
+      } 
         return this.props.history.push("/");
-      }
+      
     }
     if (locState) {
       this.setState({
@@ -171,9 +171,9 @@ export class Login extends Component {
                   "ssoToken=" +
                   token
               );
-            } else {
+            } 
               return this.props.history.push(redirectTo);
-            }
+            
           });
           localStorage.setItem("token", token);
           if (!cannyRedirect) {

@@ -152,9 +152,9 @@ const membersTable = (props) => {
         <div className="tableau">{table}</div>
       </div>
     );
-  } else {
+  } 
     return table;
-  }
+  
 };
 
 export default membersTable;
