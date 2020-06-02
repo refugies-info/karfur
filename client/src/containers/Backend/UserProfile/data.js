@@ -84,6 +84,7 @@ const avancement_contrib = {
 const avancement_actions = {
   title: "Notifications",
   headers: [
+    // eslint-disable-next-line react/jsx-key
     <EVAIcon name="bell-outline" fill={variables.noir} />,
     "Titre",
     "Mon rôle",
@@ -98,6 +99,7 @@ const avancement_actions = {
 const avancement_favoris = {
   title: "Favoris",
   headers: [
+    // eslint-disable-next-line react/jsx-key
     <EVAIcon name="bookmark" fill={variables.noir} />,
     "Titre",
     "Thèmes",

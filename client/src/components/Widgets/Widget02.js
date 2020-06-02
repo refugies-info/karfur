@@ -37,7 +37,6 @@ class Widget02 extends Component {
       color,
       footer,
       link,
-      children,
       variant,
       ...attributes
     } = this.props;

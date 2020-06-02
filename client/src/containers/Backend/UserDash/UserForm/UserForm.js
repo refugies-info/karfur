@@ -180,7 +180,7 @@ class UserForm extends Component {
     });
   };
 
-  onCancel = (tab) => {
+  onCancel = () => {
     this.setState({
       ...this.initial_state,
     });

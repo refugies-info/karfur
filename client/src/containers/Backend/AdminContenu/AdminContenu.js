@@ -21,9 +21,7 @@ import {
 import { prepareDeleteContrib } from "../AdminContrib/functions";
 import { customCriteres } from "../../Dispositif/MoteurVariantes/data";
 import API from "../../../utils/API";
-import styled from "styled-components";
 import {
-  StyledThead,
   StyledSort,
   StyledStatus,
   StyledTitle,
@@ -263,9 +261,8 @@ class AdminContenu extends Component {
               return 0;
             } else if (a.status === "Actif" && b.status !== "Actif") {
               return -1;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         }
       })
@@ -282,9 +279,8 @@ class AdminContenu extends Component {
               return 0;
             } else if (a.status === "Brouillon" && b.status !== "Brouillon") {
               return -1;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         }
       })
@@ -301,9 +297,8 @@ class AdminContenu extends Component {
               return 0;
             } else if (a.status === "Supprimé" && b.status !== "Supprimé") {
               return -1;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         }
       })
@@ -388,171 +383,170 @@ class AdminContenu extends Component {
                 (element.status === "Brouillon" && !this.state.draft)
               ) {
                 return;
-              } 
-                return (
-                  <tr key={key} className={bgColor ? "bg-" + bgColor : ""}>
-                    <td
-                      className="align-middle"
-                      onClick={() =>
-                        (element.children || []).length > 0 &&
-                        this.toggleExpanded(key)
-                      }
-                    >
-                      {(element.children || []).length > 0 && (
-                        <EVAIcon
-                          name={
-                            "chevron-" +
-                            (element.expanded ? "down" : "right") +
-                            "-outline"
-                          }
-                          fill={variables.noir}
-                          className="mr-10"
-                        />
-                      )}
-                      <span
-                        className={
-                          (element.children || []).length === 0
-                            ? (element.type === "child" ? "super-" : "") +
-                              "decale-gauche"
-                            : ""
+              }
+              return (
+                <tr key={key} className={bgColor ? "bg-" + bgColor : ""}>
+                  <td
+                    className="align-middle"
+                    onClick={() =>
+                      (element.children || []).length > 0 &&
+                      this.toggleExpanded(key)
+                    }
+                  >
+                    {(element.children || []).length > 0 && (
+                      <EVAIcon
+                        name={
+                          "chevron-" +
+                          (element.expanded ? "down" : "right") +
+                          "-outline"
                         }
-                      >
-                        {element.typeContenu || "dispositif"}
-                      </span>
-                    </td>
-                    <td className="align-middle" id={"titre-" + key}>
-                      <NavLink
-                        to={
-                          "/" +
-                          (element.typeContenu || "dispositif") +
-                          "/" +
-                          element._id
-                        }
-                      >
-                        {element.titreCourt.substring(
-                          0,
-                          Math.min(
-                            element.titreCourt.length,
-                            maxDescriptionLength
-                          )
-                        ) +
-                          (element.titreCourt.length > maxDescriptionLength
-                            ? "..."
-                            : "")}
-                      </NavLink>
-                    </td>
-                    <td
-                      className="align-middle cursor-pointer"
-                      onClick={() =>
-                        this.props.onSelect(
-                          { structure: element.structureObj },
-                          "1"
-                        )
-                      }
-                    >
-                      {element.structure}
-                    </td>
-                    <td
+                        fill={variables.noir}
+                        className="mr-10"
+                      />
+                    )}
+                    <span
                       className={
-                        "align-middle petit-texte depuis color-" +
-                        (element.status === "Actif"
-                          ? "focus"
-                          : element.joursDepuis > 30
-                          ? "rouge"
-                          : element.joursDepuis > 10
-                          ? "orange"
-                          : "vert")
+                        (element.children || []).length === 0
+                          ? (element.type === "child" ? "super-" : "") +
+                            "decale-gauche"
+                          : ""
                       }
                     >
-                      {element.status === "Actif"
-                        ? "Publié"
-                        : moment(element.updatedAt).fromNow()}
-                    </td>
-                    <td className="align-middle">
-                      <StyledStatus
-                        className={
-                          "status-pill bg-" + colorStatut(element.status)
-                        }
-                      >
-                        {element.status}
-                      </StyledStatus>
-                    </td>
-                    <td className="align-middle hideOnPhone">
-                      <Input
-                        type="select"
-                        id="responsable"
-                        value={element.responsable || ""}
-                        onChange={(e) => this.handleChange(e, key, element)}
-                      >
-                        <option value={""} key={-1}>
-                          Aucun
-                        </option>
-                        {responsables.map((respo, i) => (
-                          <option value={respo} key={i}>
-                            {respo}
-                          </option>
-                        ))}
-                      </Input>
-                    </td>
-                    <td className="align-middle hideOnPhone">
-                      <Input
-                        type="select"
-                        id="internal_action"
-                        value={element.internal_action || ""}
-                        onChange={(e) => this.handleChange(e, key, element)}
-                      >
-                        <option value={""} key={-1}>
-                          Aucun
-                        </option>
-                        {internal_actions.map((action, i) => (
-                          <option value={action} key={i}>
-                            {action}
-                          </option>
-                        ))}
-                      </Input>
-                    </td>
-                    <td className="align-middle hideOnPhone">
-                      {(element.children || []).length || 0}
-                    </td>
-                    <td className="align-middle pointer fit-content">
-                      <FButton
-                        type="error"
-                        name="trash-outline"
-                        onClick={() => this.prepareDeleteContrib(element)}
-                      />
-                    </td>
-                    <td className="align-middle">
-                      <FButton
-                        tag={NavLink}
-                        to={
-                          "/" +
-                          (element.typeContenu || "dispositif") +
-                          "/" +
-                          element._id
-                        }
-                        type="light-action"
-                        name="eye-outline"
-                        fill={variables.noir}
-                      />
-                    </td>
-                    <td className="align-middle">
-                      <FButton
-                        type="validate"
-                        name="checkmark-outline"
-                        fill={variables.noir}
-                        onClick={() => this.update_status(element)}
-                      />
-                    </td>
-                    <Tooltip
-                      target={"titre-" + key}
-                      isOpen={element.tooltip}
-                      toggle={() => this.toggleTooltip(key)}
+                      {element.typeContenu || "dispositif"}
+                    </span>
+                  </td>
+                  <td className="align-middle" id={"titre-" + key}>
+                    <NavLink
+                      to={
+                        "/" +
+                        (element.typeContenu || "dispositif") +
+                        "/" +
+                        element._id
+                      }
                     >
-                      {element.titre}
-                    </Tooltip>
-                  </tr>
-                );
-              
+                      {element.titreCourt.substring(
+                        0,
+                        Math.min(
+                          element.titreCourt.length,
+                          maxDescriptionLength
+                        )
+                      ) +
+                        (element.titreCourt.length > maxDescriptionLength
+                          ? "..."
+                          : "")}
+                    </NavLink>
+                  </td>
+                  <td
+                    className="align-middle cursor-pointer"
+                    onClick={() =>
+                      this.props.onSelect(
+                        { structure: element.structureObj },
+                        "1"
+                      )
+                    }
+                  >
+                    {element.structure}
+                  </td>
+                  <td
+                    className={
+                      "align-middle petit-texte depuis color-" +
+                      (element.status === "Actif"
+                        ? "focus"
+                        : element.joursDepuis > 30
+                        ? "rouge"
+                        : element.joursDepuis > 10
+                        ? "orange"
+                        : "vert")
+                    }
+                  >
+                    {element.status === "Actif"
+                      ? "Publié"
+                      : moment(element.updatedAt).fromNow()}
+                  </td>
+                  <td className="align-middle">
+                    <StyledStatus
+                      className={
+                        "status-pill bg-" + colorStatut(element.status)
+                      }
+                    >
+                      {element.status}
+                    </StyledStatus>
+                  </td>
+                  <td className="align-middle hideOnPhone">
+                    <Input
+                      type="select"
+                      id="responsable"
+                      value={element.responsable || ""}
+                      onChange={(e) => this.handleChange(e, key, element)}
+                    >
+                      <option value={""} key={-1}>
+                        Aucun
+                      </option>
+                      {responsables.map((respo, i) => (
+                        <option value={respo} key={i}>
+                          {respo}
+                        </option>
+                      ))}
+                    </Input>
+                  </td>
+                  <td className="align-middle hideOnPhone">
+                    <Input
+                      type="select"
+                      id="internal_action"
+                      value={element.internal_action || ""}
+                      onChange={(e) => this.handleChange(e, key, element)}
+                    >
+                      <option value={""} key={-1}>
+                        Aucun
+                      </option>
+                      {internal_actions.map((action, i) => (
+                        <option value={action} key={i}>
+                          {action}
+                        </option>
+                      ))}
+                    </Input>
+                  </td>
+                  <td className="align-middle hideOnPhone">
+                    {(element.children || []).length || 0}
+                  </td>
+                  <td className="align-middle pointer fit-content">
+                    <FButton
+                      type="error"
+                      name="trash-outline"
+                      onClick={() => this.prepareDeleteContrib(element)}
+                    />
+                  </td>
+                  <td className="align-middle">
+                    <FButton
+                      tag={NavLink}
+                      to={
+                        "/" +
+                        (element.typeContenu || "dispositif") +
+                        "/" +
+                        element._id
+                      }
+                      type="light-action"
+                      name="eye-outline"
+                      fill={variables.noir}
+                    />
+                  </td>
+                  <td className="align-middle">
+                    <FButton
+                      type="validate"
+                      name="checkmark-outline"
+                      fill={variables.noir}
+                      onClick={() => this.update_status(element)}
+                    />
+                  </td>
+                  <Tooltip
+                    target={"titre-" + key}
+                    isOpen={element.tooltip}
+                    toggle={() => this.toggleTooltip(key)}
+                  >
+                    {element.titre}
+                  </Tooltip>
+                </tr>
+              );
             })}
           </tbody>
         </Table>

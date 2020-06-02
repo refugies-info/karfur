@@ -131,7 +131,7 @@ class Article extends Component {
   make_tag_editable = (html) => {
     if (html && html.children) {
       try {
-        [].forEach.call(html.children, (el, i) => {
+        [].forEach.call(html.children, (el) => {
           if (el.hasChildNodes() && el.children.length > 1) {
             this.make_tag_editable(el);
           } else if (el.innerText !== "" && el.innerText !== " ") {
@@ -204,6 +204,7 @@ class Article extends Component {
     try {
       this.setState({
         id_array: Array.from({ length: newId }, (v, k) => k + 1),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         tooltipOpen: Array.from({ length: newId }, (v, k) => false),
       });
     } catch (e) {

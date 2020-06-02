@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import track from "react-tracking";

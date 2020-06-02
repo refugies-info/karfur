@@ -16,12 +16,12 @@ const defaultProps = {
 
 class Widget03 extends Component {
   render() {
-    // eslint-disable-next-line
     const {
       children,
       className,
       cssModule,
       dataBox,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       ...attributes
     } = this.props;
 

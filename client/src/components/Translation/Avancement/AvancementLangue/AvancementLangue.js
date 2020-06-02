@@ -16,7 +16,7 @@ export default function AvancementLangue(props) {
       data={props.data}
       switchView={props.switchView}
     >
-      {props.data.map((element, key) => {
+      {props.data.map((element) => {
         return (
           <tr
             key={element._id}

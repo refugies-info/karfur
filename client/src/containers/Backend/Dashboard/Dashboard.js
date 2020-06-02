@@ -28,8 +28,6 @@ import { getStyle } from "@coreui/coreui/dist/js/coreui-utilities";
 import track from "react-tracking";
 import moment from "moment/min/moment-with-locales";
 import { connect } from "react-redux";
-import ms from "pretty-ms";
-
 import {
   cardChartData1,
   cardChartOpts1,
@@ -170,7 +168,7 @@ class Dashboard extends Component {
     }}, () => {
       let query = {...this.state.eventValues};
       query.userId = (this.state.events.userId.find(x => x.username === this.state.eventValues.userId ) || {})._id;
-      API.get_event({query}).then((data) => {
+      API.get_event({query}).then(() => {
       })
     })
   }
@@ -197,7 +195,7 @@ class Dashboard extends Component {
     const {events, eventValues, uniqueUsersDaily, uniqueUsersMonthly, 
       nbExportsPDF, nbActiveUsers, nbDispositifs, nbDispositifsActifs, 
       nbDemarches, nbDemarchesActives, users, avgScore, 
-      avancementContenu, averageTimeOnsite} = this.state;
+      avancementContenu} = this.state;
     const {langues} = this.props;
     const languesActives = (langues || []).filter(x => x.avancement >= 0.8);
     return (
