@@ -722,7 +722,9 @@ class SideTrad extends Component {
                 ? currSubIdx > -1
                   ? {
                       ...x,
-                      children: (
+                      children: (x.children && (x.children.length === currSubIdx)) ?
+                      [...x.children, {[currSubName]: texte}] :
+                      (
                         x.children ||
                         new Array(
                           this.props.menu[currIdx].children.length
