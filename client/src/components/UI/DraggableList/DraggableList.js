@@ -57,6 +57,7 @@ const DraggableList = ({ items, maxLength, ...props }) => {
               (y, s) => `translate3d(0,${y}px,0) scale(${s})`
             ),
           }}
+          // eslint-disable-next-line react/no-children-prop
           children={items[i]}
         />
       ))}

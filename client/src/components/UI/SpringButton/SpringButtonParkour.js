@@ -8,6 +8,7 @@ export default function SpringButtonParkour(props) {
   const [open, set] = useState(true);
 
   const springRef = useRef();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { size, opacity, ...rest } = useSpring({
     ref: springRef,
     config: config.stiff,

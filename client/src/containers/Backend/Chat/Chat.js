@@ -22,6 +22,7 @@ export class Chat extends React.Component {
       data: { text: "" },
     },
   };
+  // eslint-disable-next-line react/no-deprecated
   componentWillMount = () => {
     document.body.style.background = "#7F7FD5";
     document.body.style.background =

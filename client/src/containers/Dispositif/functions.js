@@ -114,6 +114,7 @@ const switchVariante = async function () {
       });
     });
   }
+  // eslint-disable-next-line no-use-before-define
   const filter_place = await check_place(
     place_id,
     demarchesEligibles,

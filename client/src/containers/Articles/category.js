@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React from "react";
 import { StyleSheet, css } from "aphrodite";
 import { Link } from "react-router-dom";
@@ -66,7 +67,8 @@ let styles = StyleSheet.create({
     fontWeight: 700,
     lineHeight: "1.1",
     bottom: 0,
-    fontFamily: "\"Source Sans Pro\",Helvetica,Arial,sans-serif",
+    // eslint-disable-next-line quotes
+    fontFamily: '"Source Sans Pro",Helvetica,Arial,sans-serif',
     marginBottom: 0,
   },
 });

@@ -14,6 +14,7 @@ export default function SpringButton(props) {
   const [open, set] = useState(false);
 
   const springRef = useRef();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { width, height, opacity, ...rest } = useSpring({
     ref: springRef,
     config: config.stiff,

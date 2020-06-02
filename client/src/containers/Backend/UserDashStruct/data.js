@@ -101,6 +101,7 @@ export const steps = [
 export const avancement_actions = {
   title: "Notifications",
   headers: [
+    // eslint-disable-next-line react/jsx-key
     <EVAIcon name="bell-outline" fill={variables.noir} />,
     "Titre",
     "Mon rôle",

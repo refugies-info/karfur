@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { Col, Row, Progress, Table, Input } from "reactstrap";
+import { Col, Row, Progress, Table } from "reactstrap";
 import moment from "moment/min/moment-with-locales";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -12,7 +12,6 @@ import { colorStatut } from "../../components/Functions/ColorFunctions";
 import API from "../../utils/API";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import { diffData } from "./data";
-import marioProfile from "../../assets/mario-profile.jpg";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import produce from "immer";
@@ -20,7 +19,6 @@ import produce from "immer";
 import "./Avancement.scss";
 import variables from "scss/colors.scss";
 import _ from "lodash";
-import { elementType } from "prop-types";
 
 moment.locale("fr");
 
@@ -155,7 +153,7 @@ export class Avancement extends Component {
     return false;
   };
 
-  _loadTraductions = (langue) => {
+  _loadTraductions = () => {
     // if(langue.i18nCode){
     //   API.get_tradForReview({query: {'langueCible':langue.i18nCode, 'status' : 'En attente'},populate: 'articleId userId'}).then(data_res => {
     //     let articles=data_res.data.data;
@@ -460,7 +458,7 @@ export class Avancement extends Component {
             status: x.status,
             statusTrad:
               (this.state.traductionsFaites || [])
-                .filter((y, index) => {
+                .filter((y) => {
                   return y.articleId === x._id;
                   /*      if (y.articleId === x._id && y.status === "Validée" && x.avancement === 1) {
                   return "À revoir"
@@ -470,7 +468,7 @@ export class Avancement extends Component {
                 return "En attente";
                 } */
                 })
-                .map((z, index) => {
+                .map((z) => {
                   if (z.status === "À revoir") {
                     return "À revoir";
                   } else if (z.status === "Validée") {
@@ -632,7 +630,7 @@ export class Avancement extends Component {
   };
 
   render() {
-    const { langue, isExpert, data, traductions, unfiltered } = this.state;
+    const { langue, isExpert, data, traductions } = this.state;
 
     const displayedText =
       (data || []).length === 0 || (this.props.dispositifs || []).length === 0

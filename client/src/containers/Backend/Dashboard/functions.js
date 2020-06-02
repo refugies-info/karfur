@@ -1,5 +1,4 @@
 import moment from "moment/min/moment-with-locales";
-import update from "react-addons-update"; // ES6
 import _ from "lodash";
 
 import API from "../../../utils/API";
@@ -39,6 +38,21 @@ const display_traffic = function (duree) {
     },
   ];
   this.execute_search(queries, sort, numElements);
+};
+
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < (array || []).length; index++) {
+    await callback(array[index], index, array);
+  }
+}
+
+const cluster_dates = (traffic, date_low, date_high) => {
+  return traffic.filter((l) => {
+    return (
+      new Date(l.created_at).getTime() > date_low.getTime() &&
+      new Date(l.created_at).getTime() <= date_high.getTime()
+    );
+  });
 };
 
 const execute_search = async function (queries, sort, numElements) {
@@ -116,21 +130,6 @@ const execute_search = async function (queries, sort, numElements) {
       },
     },
   }));
-};
-
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < (array || []).length; index++) {
-    await callback(array[index], index, array);
-  }
-}
-
-const cluster_dates = (traffic, date_low, date_high) => {
-  return traffic.filter((l) => {
-    return (
-      new Date(l.created_at).getTime() > date_low.getTime() &&
-      new Date(l.created_at).getTime() <= date_high.getTime()
-    );
-  });
 };
 
 const calculate_avg_time = async function () {
