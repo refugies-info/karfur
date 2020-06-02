@@ -4,6 +4,7 @@ import track from "react-tracking";
 import { Col, Row, Modal, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import ContentEditable from "react-contenteditable";
+import { logger } from "../../logger";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import htmlToDraft from "html-to-draftjs";
 import {
@@ -1536,6 +1537,14 @@ export class Dispositif extends Component {
     });
 
   render() {
+    logger.info("Dispositif test log info ", {
+      titreInformatif:
+        this.state.dispositif && this.state.dispositif.titreInformatif
+          ? this.state.dispositif.titreInformatif
+          : "pas de titre",
+    });
+    logger.warn("Dispositif test log warn");
+    logger.error("Dispositif test log error");
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
