@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   Card,
@@ -6,44 +6,49 @@ import {
   CardFooter,
   CardHeader,
   Col,
-  Row} from 'reactstrap';
+  Row,
+} from "reactstrap";
 
-import UserChange from '../../../User/UserChange/UserChange'
-import './CreationUForm.css'
+import UserChange from "../../../User/UserChange/UserChange";
+import "./CreationUForm.css";
 
 const creationUForm = (props) => {
-  return(
+  return (
     <Card>
       <CardHeader className="h1">
-        {props.user._id ? 'Modifier un utilisateur' : 'Ajouter un nouvel utilisateur'}
+        {props.user._id
+          ? "Modifier un utilisateur"
+          : "Ajouter un nouvel utilisateur"}
       </CardHeader>
       <CardBody>
-        <UserChange {...props}/>
+        <UserChange {...props} />
       </CardBody>
       <CardFooter>
         <Row>
           <Col>
-            <Button 
-              color="success" 
-              size="lg" 
+            <Button
+              color="success"
+              size="lg"
               block
-              onClick={props.validateUser} >
+              onClick={props.validateUser}
+            >
               Valider
             </Button>
           </Col>
           <Col>
-            <Button 
-              color="danger" 
-              size="lg" 
+            <Button
+              color="danger"
+              size="lg"
               block
-              onClick={()=>props.onCancel('user')}>
+              onClick={() => props.onCancel("user")}
+            >
               Annuler
             </Button>
           </Col>
         </Row>
       </CardFooter>
     </Card>
-  )
-}
+  );
+};
 
 export default creationUForm;

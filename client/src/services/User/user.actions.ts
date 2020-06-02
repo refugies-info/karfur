@@ -8,7 +8,10 @@ export const setUserActionCreator = (value: User | null) =>
 export const updateUserActionCreator = (value: User) =>
   action(UPDATE_USER, value);
 
-export const fetchUserActionCreator = () => action(FETCH_USER);
+export const fetchUserActionCreator = (value?: {
+  shouldRedirect: boolean;
+  user: User;
+}) => action(FETCH_USER, value);
 
 const actions = {
   setUserActionCreator,
