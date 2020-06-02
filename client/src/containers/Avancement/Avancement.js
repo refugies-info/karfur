@@ -354,7 +354,7 @@ export class Avancement extends Component {
     this.setState(
       produce((draft) => {
         draft.ascending = !this.state.ascending;
-        if (element.order == "title") {
+        if (element.order === "title") {
           draft.traductions.sort((a, b) => {
             if (
               a[element.order].toUpperCase() >= b[element.order].toUpperCase()
@@ -384,7 +384,7 @@ export class Avancement extends Component {
   countfilter = (trads, filter) => {
     var count = 0;
     for (var i = 0; i < trads.length; ++i) {
-      if (trads[i].statusTrad == filter) {
+      if (trads[i].statusTrad === filter) {
         count++;
       }
     }
@@ -394,7 +394,7 @@ export class Avancement extends Component {
   countType = (trads, type) => {
     var count = 0;
     for (var i = 0; i < trads.length; ++i) {
-      if (trads[i].typeContenu == type && type !== "string") {
+      if (trads[i].typeContenu === type && type !== "string") {
         if (this.state.waiting && trads[i].statusTrad === "En attente") {
           count++;
         } else if (this.state.published && trads[i].statusTrad === "Publiées") {
@@ -407,7 +407,7 @@ export class Avancement extends Component {
         ) {
           count++;
         }
-      } else if (trads[i].typeContenu == type && type == "string") {
+      } else if (trads[i].typeContenu === type && type === "string") {
         count++;
       }
     }
@@ -558,7 +558,7 @@ export class Avancement extends Component {
         stringCount: this.countType(traductions, "string"),
       });
       if (
-        this.countfilter(traductions, "À revoir") == 0 &&
+        this.countfilter(traductions, "À revoir") === 0 &&
         this.countfilter(traductions, "À traduire") > 0
       ) {
         this.setState({
