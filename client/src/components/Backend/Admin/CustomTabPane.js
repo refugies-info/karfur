@@ -1,9 +1,8 @@
 import React from "react";
-import { TabPane, TabContainer } from "reactstrap";
+import { TabPane } from "reactstrap";
 
 import UsersTab from "./UsersTab/UsersTab";
 import LanguesTab from "./LanguesTab/LanguesTab";
-import ThemesTab from "./ThemesTab/ThemesTab";
 import StructuresTab from "./StructuresTab/StructuresTab";
 import AdminContenu from "../../../containers/Backend/AdminContenu/AdminContenu";
 import Dashboard from "../../../containers/Backend/Dashboard/Dashboard";

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import track from "react-tracking";
-import { Col, Row, Button, Card, CardBody, CardFooter } from "reactstrap";
+import { Col, Row, CardBody, CardFooter } from "reactstrap";
 
 import illu from "../../assets/illu-je suis-3e1dc23707.svg";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";

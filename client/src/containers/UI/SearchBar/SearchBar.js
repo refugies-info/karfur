@@ -26,6 +26,20 @@ const getSuggestionValue = (suggestion, isArray = false, structures = false) =>
         (suggestion.email || "")
     : suggestion.titreMarque || suggestion.titreInformatif; // + (suggestion.titreMarque && suggestion.titreInformatif ? " - " : "") + suggestion.titreInformatif;
 
+const removeAccents = (str = "") => {
+  var accents =
+    "ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž";
+  var accentsOut =
+    "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
+  str = str.split("");
+  var i, x;
+  for (i = 0; i < str.length; i++) {
+    if ((x = accents.indexOf(str[i])) !== -1) {
+      str[i] = accentsOut[x];
+    }
+  }
+  return str.join("");
+};
 export class SearchBar extends React.Component {
   state = {
     showSearch: true,
@@ -129,53 +143,52 @@ export class SearchBar extends React.Component {
             </span>
           </span>
         );
-      } 
-        const firstPart = isArray
-          ? structures
-            ? suggestion.acronyme
-            : suggestion.username
-          : suggestion.titreMarque;
-        const secondPart = isArray
-          ? structures
-            ? suggestion.nom
-            : suggestion.email
-          : suggestion.titreInformatif;
-        const suggestionText =
-          (firstPart || "") +
-          (firstPart && secondPart ? " - " : "") +
-          (secondPart || "");
-        const matches = AutosuggestHighlightMatch(
-          suggestionText,
-          query + " " + query
-        );
-        const parts = AutosuggestHighlightParse(suggestionText, matches);
-        return (
-          <span className="suggestion-content">
-            {isArray && suggestion.picture && suggestion.picture.secure_url && (
-              <img
-                src={suggestion.picture.secure_url}
-                className="selection-logo mr-10"
-                alt="logo"
-              />
-            )}
-            <span className="name">
-              {parts.map((part, index) => {
-                const className = part.highlight ? "highlight" : null;
-                return (
-                  <span className={className} key={index}>
-                    {part.text}
-                  </span>
-                );
-              })}
-            </span>
-            {withEye && (
-              <span className="oeil-btn">
-                <EVAIcon name="eye-outline" fill={variables.noir} />
-              </span>
-            )}
+      }
+      const firstPart = isArray
+        ? structures
+          ? suggestion.acronyme
+          : suggestion.username
+        : suggestion.titreMarque;
+      const secondPart = isArray
+        ? structures
+          ? suggestion.nom
+          : suggestion.email
+        : suggestion.titreInformatif;
+      const suggestionText =
+        (firstPart || "") +
+        (firstPart && secondPart ? " - " : "") +
+        (secondPart || "");
+      const matches = AutosuggestHighlightMatch(
+        suggestionText,
+        query + " " + query
+      );
+      const parts = AutosuggestHighlightParse(suggestionText, matches);
+      return (
+        <span className="suggestion-content">
+          {isArray && suggestion.picture && suggestion.picture.secure_url && (
+            <img
+              src={suggestion.picture.secure_url}
+              className="selection-logo mr-10"
+              alt="logo"
+            />
+          )}
+          <span className="name">
+            {parts.map((part, index) => {
+              const className = part.highlight ? "highlight" : null;
+              return (
+                <span className={className} key={index}>
+                  {part.text}
+                </span>
+              );
+            })}
           </span>
-        );
-      
+          {withEye && (
+            <span className="oeil-btn">
+              <EVAIcon name="eye-outline" fill={variables.noir} />
+            </span>
+          )}
+        </span>
+      );
     };
 
     const inputProps = {
@@ -222,21 +235,6 @@ export class SearchBar extends React.Component {
     );
   }
 }
-
-const removeAccents = (str = "") => {
-  var accents =
-    "ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž";
-  var accentsOut =
-    "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
-  str = str.split("");
-  var i, x;
-  for (i = 0; i < str.length; i++) {
-    if ((x = accents.indexOf(str[i])) !== -1) {
-      str[i] = accentsOut[x];
-    }
-  }
-  return str.join("");
-};
 
 const mapStateToProps = (state) => {
   return {

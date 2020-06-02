@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { datadogLogs } from "@datadog/browser-logs";
 
 if (process.env.REACT_APP_ENV === "quality") {
