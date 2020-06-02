@@ -26,6 +26,7 @@ export function* fetchUser(
       );
     }
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log("Error while fetching user", { error });
     yield put(setUserActionCreator(null));
   }

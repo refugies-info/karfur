@@ -1,22 +1,8 @@
 import React, { Component } from "react";
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  FormGroup,
-  Label,
-  Input,
-} from "reactstrap";
-import Swal from "sweetalert2";
-import _ from "lodash";
-
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import FButton from "../../FigmaUI/FButton/FButton";
-import API from "../../../utils/API";
 import { rejectionFiche } from "../../../assets/figma";
-
 import "./RejectionModal.scss";
-import variables from "scss/colors.scss";
 
 class RejectionModal extends Component {
   state = {
@@ -38,16 +24,7 @@ class RejectionModal extends Component {
   };
 
   render() {
-    const {
-      show,
-      name,
-      toggleModal,
-      createur,
-      mainSponsor,
-      sponsors,
-    } = this.props;
-    const { memberAdded, step } = this.state;
-    const userBelongs = _.get(sponsors, "0.userBelongs");
+    const { show, name, toggleModal } = this.props;
     return (
       <Modal
         isOpen={show}

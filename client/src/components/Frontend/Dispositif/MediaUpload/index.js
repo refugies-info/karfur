@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-import { convertFromHTML } from "draft-convert";
 import MediaModal from "./MediaModal";
 
 class MediaUpload extends Component {
@@ -9,17 +7,20 @@ class MediaUpload extends Component {
     super(props);
     this.state = {
       modalState: true,
-      selectedCourseId: null
+      selectedCourseId: null,
     };
   }
 
   toggleModal = () => {
-      this.setState({modalState: !this.state.modalState})
-  }
+    this.setState({ modalState: !this.state.modalState });
+  };
 
   render() {
     return (
-      <div className="blc-gh-media bloc-gauche-media" onClick={this.toggleModal}>
+      <div
+        className="blc-gh-media bloc-gauche-media"
+        onClick={this.toggleModal}
+      >
         <EVAIcon name="image-outline" />
         <MediaModal
           modalState={this.state.modalState}

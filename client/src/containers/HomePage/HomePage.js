@@ -6,11 +6,6 @@ import { NavHashLink } from "react-router-hash-link";
 import { connect } from "react-redux";
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from "reactstrap";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-
-////////A enlever si pas utilisé/////////////:
-// import Notifications from '../../components/UI/Notifications/Notifications';
-// import SendToMessenger from './SendToMessenger';
-// import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
 import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
@@ -19,7 +14,6 @@ import styled from "styled-components";
 
 import "./HomePage.scss";
 import variables from "scss/colors.scss";
-import SearchItem from "../AdvancedSearch/SearchItem/SearchItem";
 import { initial_data } from "../AdvancedSearch/data";
 import HomeSearch from "./HomeSearch";
 import CatList from "./CatList";
@@ -53,10 +47,6 @@ const CloseCorona = styled.div`
   margin-right: 10px;
   margin-top: 10px;
   cursor: pointer;
-`;
-
-const ThemeButton = styled.button`
-  background-color: blue;
 `;
 
 export class HomePage extends Component {

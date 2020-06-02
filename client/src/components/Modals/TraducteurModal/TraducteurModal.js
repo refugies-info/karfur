@@ -28,6 +28,7 @@ class TraducteurModal extends Component {
   };
   shadowSelectedLanguages = [];
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.user &&

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Bus = ({width = 22, height = 22, stroke = 'white'}) => (
+const Bus = ({width = 22, height = 22, stroke = "white"}) => (
     <svg width={width} height={height} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M5.375 17.79V19.0934C5.375 19.7837 5.93464 20.3434 6.625 20.3434C7.31536 20.3434 7.875 19.7837 7.875 19.0934V17.8434" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M16.625 17.79V19.0934C16.625 19.7837 16.0654 20.3434 15.375 20.3434C14.6846 20.3434 14.125 19.7837 14.125 19.0934V17.8434" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

@@ -47,6 +47,7 @@ class Reset extends Component {
         }
       })
       .catch((e) => {
+        // eslint-disable-next-line no-console
         console.log(e);
         this.setState({ isLoading: false, isError: true });
       });
@@ -100,6 +101,7 @@ class Reset extends Component {
         setAuthToken(data.data.token);
         this.props.fetchUser();
       })
+      // eslint-disable-next-line no-console
       .catch((e) => console.log(e.response));
   };
 
@@ -158,103 +160,100 @@ class Reset extends Component {
           </FButton>
         </div>
       );
-    } else {
-      const password_check = newPassword && passwdCheck(newPassword);
-      return (
-        <div className="app flex-row align-items-center reset">
-          <div className="login-wrapper">
-            <Card className="card-login main-card">
-              <CardBody>
-                <Form onSubmit={this.send}>
-                  <h5>
-                    {t(
-                      "Login.Réinitialisez votre mot de passe",
-                      "Réinitialisez votre mot de passe"
-                    )}
-                  </h5>
-                  <div className="texte-small mb-12">
-                    {t(
-                      "Login.Renseignez ici le nouveau mot de passe souhaité",
-                      "Renseignez ici le nouveau mot de passe souhaité"
-                    )}
-                  </div>
-                  <FInput
-                    prepend
-                    append
-                    autoFocus
-                    prependName="lock-outline"
-                    appendName={
-                      passwordVisible ? "eye-off-2-outline" : "eye-outline"
-                    }
-                    type={passwordVisible ? "text" : "password"}
-                    inputClassName="password-input"
-                    onAppendClick={this.togglePasswordVisibility}
-                    id="newPassword"
-                    placeholder={t(
-                      "Login.Nouveau mot de passe",
-                      "Nouveau mot de passe"
-                    )}
-                    autoComplete="new-password"
-                    value={newPassword}
-                    onChange={this.handleChange}
-                  />
-                  {newPassword && password_check && (
-                    <div className="score-wrapper mb-10">
-                      <span className="mr-10">
-                        {t("Login.Force", "Force")} :
-                      </span>
-                      <Progress
-                        color={colorAvancement(password_check.score / 4)}
-                        value={((0.1 + password_check.score / 4) * 100) / 1.1}
-                      />
-                    </div>
-                  )}
-                  <FInput
-                    prepend
-                    append
-                    prependName="lock-outline"
-                    appendName={
-                      passwordVisible ? "eye-off-2-outline" : "eye-outline"
-                    }
-                    inputClassName="password-input"
-                    type={passwordVisible ? "text" : "password"}
-                    onAppendClick={this.togglePasswordVisibility}
-                    id="cpassword"
-                    placeholder={t(
-                      "Login.Confirmez le nouveau mot de passe",
-                      "Confirmez le nouveau mot de passe"
-                    )}
-                    autoComplete="cpassword"
-                    value={cpassword}
-                    onChange={this.handleChange}
-                  />
-                  <div className="footer-buttons">
-                    <FButton
-                      type="dark"
-                      name="log-in"
-                      color="dark"
-                      className="connect-btn"
-                      disabled={!newPassword}
-                    >
-                      {t("Valider", "Valider")}
-                    </FButton>
-                  </div>
-                </Form>
-              </CardBody>
-            </Card>
-            <NavLink to="/">
-              <FButton
-                type="outline"
-                name="corner-up-left-outline"
-                className="retour-btn"
-              >
-                {t("Login.Retour à l'accueil", "Retour à l'accueil")}
-              </FButton>
-            </NavLink>
-          </div>
-        </div>
-      );
     }
+    const password_check = newPassword && passwdCheck(newPassword);
+    return (
+      <div className="app flex-row align-items-center reset">
+        <div className="login-wrapper">
+          <Card className="card-login main-card">
+            <CardBody>
+              <Form onSubmit={this.send}>
+                <h5>
+                  {t(
+                    "Login.Réinitialisez votre mot de passe",
+                    "Réinitialisez votre mot de passe"
+                  )}
+                </h5>
+                <div className="texte-small mb-12">
+                  {t(
+                    "Login.Renseignez ici le nouveau mot de passe souhaité",
+                    "Renseignez ici le nouveau mot de passe souhaité"
+                  )}
+                </div>
+                <FInput
+                  prepend
+                  append
+                  autoFocus
+                  prependName="lock-outline"
+                  appendName={
+                    passwordVisible ? "eye-off-2-outline" : "eye-outline"
+                  }
+                  type={passwordVisible ? "text" : "password"}
+                  inputClassName="password-input"
+                  onAppendClick={this.togglePasswordVisibility}
+                  id="newPassword"
+                  placeholder={t(
+                    "Login.Nouveau mot de passe",
+                    "Nouveau mot de passe"
+                  )}
+                  autoComplete="new-password"
+                  value={newPassword}
+                  onChange={this.handleChange}
+                />
+                {newPassword && password_check && (
+                  <div className="score-wrapper mb-10">
+                    <span className="mr-10">{t("Login.Force", "Force")} :</span>
+                    <Progress
+                      color={colorAvancement(password_check.score / 4)}
+                      value={((0.1 + password_check.score / 4) * 100) / 1.1}
+                    />
+                  </div>
+                )}
+                <FInput
+                  prepend
+                  append
+                  prependName="lock-outline"
+                  appendName={
+                    passwordVisible ? "eye-off-2-outline" : "eye-outline"
+                  }
+                  inputClassName="password-input"
+                  type={passwordVisible ? "text" : "password"}
+                  onAppendClick={this.togglePasswordVisibility}
+                  id="cpassword"
+                  placeholder={t(
+                    "Login.Confirmez le nouveau mot de passe",
+                    "Confirmez le nouveau mot de passe"
+                  )}
+                  autoComplete="cpassword"
+                  value={cpassword}
+                  onChange={this.handleChange}
+                />
+                <div className="footer-buttons">
+                  <FButton
+                    type="dark"
+                    name="log-in"
+                    color="dark"
+                    className="connect-btn"
+                    disabled={!newPassword}
+                  >
+                    {t("Valider", "Valider")}
+                  </FButton>
+                </div>
+              </Form>
+            </CardBody>
+          </Card>
+          <NavLink to="/">
+            <FButton
+              type="outline"
+              name="corner-up-left-outline"
+              className="retour-btn"
+            >
+              {t("Login.Retour à l'accueil", "Retour à l'accueil")}
+            </FButton>
+          </NavLink>
+        </div>
+      </div>
+    );
   }
 }
 
