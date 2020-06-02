@@ -714,6 +714,7 @@ class SideTrad extends Component {
         nbChamps = this._countContents(x.children, nbChamps, x.type);
       }
     });
+    console.log(nbChamps);
     return nbChamps;
   };
 
@@ -861,7 +862,9 @@ class SideTrad extends Component {
                 ? currSubIdx > -1
                   ? {
                       ...x,
-                      children: (
+                      children: (x.children && (x.children.length === currSubIdx)) ?
+                      [...x.children, {[currSubName]: texte}] :
+                      (
                         x.children ||
                         new Array(
                           this.props.menu[currIdx].children.length
@@ -891,7 +894,7 @@ class SideTrad extends Component {
     //const nbInit = this._countContents([traduction.initialText]);
     if (listTrad.length > 0) {
      let nbValidated = userTrad ? this._countValidated([userTrad.translatedText]) : 0;
-     console.log('##############', nbValidated);
+     console.log('##############', nbValidated, nbInit);
       const oldCount = userTrad ? userTrad.avancement * nbInit : 0;
       if (this.state.modifiedNew) {
         traduction.avancement = nbValidated / nbInit;
@@ -923,7 +926,7 @@ class SideTrad extends Component {
         draft[currIdx + "Modified"] = false;
       } else if (currSubIdx === -1) {
         draft.contenu[currIdx][currSubName + "Modified"] = false;
-      } else {
+      } else if (draft.contenu[currIdx].children && draft.contenu[currIdx].children[currSubIdx]){
         draft.contenu[currIdx].children[currSubIdx][
           currSubName + "Modified"
         ] = false;
