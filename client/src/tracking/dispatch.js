@@ -12,10 +12,11 @@ export const dispatch = (data) => {
   data.cookie = Cookies.get("_ga");
   // console.log('dispatching : ', data);
   API.log_event(data).then(
-    function (data_res) {
+    function (data) {
       pushtoDataLayer(data);
     },
     function (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
       return;
     }
