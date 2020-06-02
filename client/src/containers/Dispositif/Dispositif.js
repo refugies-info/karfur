@@ -181,6 +181,7 @@ export class Dispositif extends Component {
     this._initializeDispositif(this.props);
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (
       ((nextProps.match || {}).params || {}).id !==
@@ -241,6 +242,7 @@ export class Dispositif extends Component {
           ) {
             if (_.isEmpty(this.props.user)) {
               return this.props.history.push("/login");
+              // eslint-disable-next-line no-else-return
             } else {
               this._isMounted = false;
               return this.props.history.push("/");
@@ -352,6 +354,7 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/login");
           }
+          // eslint-disable-next-line no-console
           console.log("Error: ", err.message);
           this._isMounted = false;
           return this.props.history.push("/");
@@ -595,6 +598,7 @@ export class Dispositif extends Component {
           resolve();
         })
       );
+      // eslint-disable-next-line no-else-return
     } else {
       return new Promise((r) => r());
     }
@@ -641,6 +645,7 @@ export class Dispositif extends Component {
           });
         }
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
       this.setState({
@@ -654,12 +659,7 @@ export class Dispositif extends Component {
 
   onEditorStateChange = (editorState, key, subkey = null) => {
     let state = [...this.state.menu];
-    const contentState = editorState.getCurrentContent();
-    const selectionState = editorState.getSelection();
-    const rawContentState = convertToRaw(editorState.getCurrentContent());
-    const markup = convertToHTML(customConvertOption)(
-      editorState.getCurrentContent()
-    );
+
     if (state.length > key) {
       if (subkey !== null && state[key].children.length > subkey) {
         state[key].children[subkey].editorState = editorState;
@@ -1020,7 +1020,7 @@ export class Dispositif extends Component {
           }));
       });
     } else {
-      this.setState((pS) => ({
+      this.setState(() => ({
         showBookmarkModal: false,
         isAuth: false,
       }));
@@ -1244,6 +1244,7 @@ export class Dispositif extends Component {
     // });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   editDispositif = (_ = null, disableEdit = false) =>
     this.setState(
       (pS) => ({
@@ -1282,7 +1283,7 @@ export class Dispositif extends Component {
       type: "push",
       ...(this.state.suggestion && { suggestion: h2p(this.state.suggestion) }),
     };
-    API.update_dispositif(dispositif).then((data) => {
+    API.update_dispositif(dispositif).then(() => {
       if (
         (modalName === "reaction" || fieldName === "merci") &&
         this._isMounted
@@ -1312,7 +1313,7 @@ export class Dispositif extends Component {
       status: status,
       dispositifId: this.state._id,
     };
-    API.add_dispositif(dispositif).then((data) => {
+    API.add_dispositif(dispositif).then(() => {
       this.props.fetchDispositifs();
       this._isMounted &&
         this.setState({
@@ -1512,12 +1513,14 @@ export class Dispositif extends Component {
         });
       } else if (this._isMounted) {
         NotificationManager.success(
+          // eslint-disable-next-line quotes
           'Retrouvez votre contribution dans votre page "Mon profil"',
           "Enregistrement automatique",
           5000,
           () => {
             Swal.fire(
               "Enregistrement automatique",
+              // eslint-disable-next-line quotes
               'Retrouvez votre contribution dans votre page "Mon profil"',
               "success"
             );
@@ -1638,9 +1641,8 @@ export class Dispositif extends Component {
             />
           </div>
         );
-      } else {
-        return false;
       }
+      return false;
     };
 
     return (
@@ -1715,6 +1717,7 @@ export class Dispositif extends Component {
               style={
                 mainTag &&
                 mainTag.short && {
+                  // eslint-disable-next-line no-use-before-define
                   backgroundImage: `url(${bgImage(mainTag.short)})`,
                 }
               }
@@ -1922,9 +1925,8 @@ export class Dispositif extends Component {
                               </div>
                             </div>
                           );
-                        } else {
-                          return false;
                         }
+                        return false;
                       })}
                     </Row>
                   )}
