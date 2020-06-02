@@ -67,6 +67,7 @@ export class Layout extends Component {
     }
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.ttsActive !== this.props.ttsActive && !nextProps.ttsActive) {
       this.forceStopAudio();
@@ -108,6 +109,7 @@ export class Layout extends Component {
     if (this.props.i18n.getResourceBundle(lng, "translation")) {
       this.props.i18n.changeLanguage(lng);
     } else {
+      // eslint-disable-next-line no-console
       console.log("Resource not found in i18next.");
     }
     if (this.props.showLangModal) {

@@ -14,7 +14,6 @@ import Search from "./Search";
 import Message from "./Message";
 import Menu from "./Menu";
 
-import { withTheme } from "styled-components";
 import React from "react";
 
 const Streamline = ({ name = "house", ...props }) => {

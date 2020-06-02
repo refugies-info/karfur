@@ -62,9 +62,8 @@ export class Login extends Component {
             "ssoToken=" +
             localStorage.getItem("token")
         );
-      } 
-        return this.props.history.push("/");
-      
+      }
+      return this.props.history.push("/");
     }
     if (locState) {
       this.setState({
@@ -89,7 +88,7 @@ export class Login extends Component {
     this.setState({ step: 0, userExists: false, password: "", cpassword: "" });
 
   resetPassword = () => {
-    API.reset_password({ username: this.state.username }).then((data) => {
+    API.reset_password({ username: this.state.username }).then(() => {
       Swal.fire({
         title: "Yay...",
         text:
@@ -171,9 +170,8 @@ export class Login extends Component {
                   "ssoToken=" +
                   token
               );
-            } 
-              return this.props.history.push(redirectTo);
-            
+            }
+            return this.props.history.push(redirectTo);
           });
           localStorage.setItem("token", token);
           if (!cannyRedirect) {
@@ -191,6 +189,7 @@ export class Login extends Component {
               email: _.get(e, "response.data.email", ""),
             });
           } else {
+            // eslint-disable-next-line no-console
             console.log(e.response);
           }
         });

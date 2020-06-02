@@ -60,6 +60,7 @@ class ParkourPerso extends Component {
         );
       },
       function (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }
@@ -81,6 +82,7 @@ class ParkourPerso extends Component {
         );
       },
       function (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }
@@ -128,6 +130,7 @@ class ParkourPerso extends Component {
           );
         },
         function (error) {
+          // eslint-disable-next-line no-console
           console.log(error);
           return;
         }
