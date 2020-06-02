@@ -1,7 +1,7 @@
-import React from 'react';
-import Dashboard from './Dashboard';
-import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import React from "react";
+import Dashboard from "./Dashboard";
+import { expect } from "chai";
+import { shallow } from "enzyme";
 
 // it('renders without crashing', () => {
 //   const div = document.createElement('div');

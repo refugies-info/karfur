@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import track from 'react-tracking';
+import React, { PureComponent } from "react";
+import track from "react-tracking";
 
 class SendToMessenger extends PureComponent {
   componentDidUpdate() {
@@ -33,5 +33,5 @@ class SendToMessenger extends PureComponent {
 }
 
 export default track({
-    page: 'SendToMessenger',
-  })(SendToMessenger);
+  page: "SendToMessenger",
+})(SendToMessenger);

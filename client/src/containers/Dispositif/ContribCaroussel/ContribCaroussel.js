@@ -129,9 +129,9 @@ class ContribCaroussel extends Component {
             </div>
           </CarouselItem>
         );
-      } else {
+      } 
         return false;
-      }
+      
     });
 
     return (

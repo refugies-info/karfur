@@ -30,7 +30,7 @@ const addMember = function () {
       },
     },
   };
-  API.create_structure(structure).then((data) => {
+  API.create_structure(structure).then(() => {
     this.initializeStructure();
     Swal.fire({
       title: "Yay...",

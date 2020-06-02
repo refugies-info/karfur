@@ -10,7 +10,7 @@ export interface TtsState {
 const initialTtsState: TtsState = { ttsActive: false, showAudioSpinner: false };
 
 export const ttsReducer = createReducer<TtsState, TtsActions>(initialTtsState, {
-  TOGGLE_TTS: (state, action) =>
+  TOGGLE_TTS: (state) =>
     updateObject(state, {
       ttsActive: !state.ttsActive,
       showAudioSpinner: false,

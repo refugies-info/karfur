@@ -1,12 +1,12 @@
-import React from 'react';
-import {Col, Row} from 'reactstrap';
+import React from "react";
+import { Col, Row } from "reactstrap";
 
-import CreationTForm from './CreationTForm/CreationTForm'
-import ThemesList from './ThemesList/ThemesList'
-import './ThemesTab.scss'
+import CreationTForm from "./CreationTForm/CreationTForm";
+import ThemesList from "./ThemesList/ThemesList";
+import "./ThemesTab.scss";
 
 const themesTab = (props) => {
-  return(
+  return (
     <Row className="themes-tab">
       <Col xs="12" md="6">
         <CreationTForm {...props} />
@@ -15,7 +15,7 @@ const themesTab = (props) => {
         <ThemesList {...props} />
       </Col>
     </Row>
-  )
-}
+  );
+};
 
 export default themesTab;

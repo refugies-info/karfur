@@ -4,26 +4,22 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Tooltip
+  Tooltip,
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorBlock, AtomicBlockUtils, EditorState } from "draft-js";
 import { Player } from "video-react";
 import { withTranslation } from "react-i18next";
-import insertAtomicBlockWithData from './insertAtomicBlockWithData';
-
-// import Backdrop from '../../../UI/Backdrop/Backdrop';
 import {
   boldBtn,
   italicBtn,
   underBtn,
   listBtn,
   imgBtn,
-  linkBtn
+  linkBtn,
 } from "../../../../assets/figma"; //videoBtn
 import CustomOption from "./CustomOption/CustomOption";
-import MediaUpload from "../MediaUpload";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
@@ -31,15 +27,16 @@ import API from "../../../../utils/API";
 import "./EditableParagraph.scss";
 import variables from "scss/colors.scss";
 
-const styles = {
-  media: {
-  width: '100%',
-  // Fix an issue with Firefox rendering video controls
-  // with 'pre-wrap' white-space
-  whiteSpace: 'initial'
-},}
+// const styles = {
+//   media: {
+//     width: "100%",
+//     // Fix an issue with Firefox rendering video controls
+//     // with 'pre-wrap' white-space
+//     whiteSpace: "initial",
+//   },
+// };
 
-const MyCustomBlock = props => (
+const MyCustomBlock = (props) => (
   <div className="bloc-rouge">
     <div className="icon-left-side">
       <EVAIcon
@@ -55,7 +52,7 @@ const MyCustomBlock = props => (
   </div>
 );
 
-const MyImageBlock = props => {
+const MyImageBlock = (props) => {
   const { block, contentState } = props;
   if (block.getEntityAt(0)) {
     const data = contentState.getEntity(block.getEntityAt(0)).getData();
@@ -65,73 +62,74 @@ const MyImageBlock = props => {
           <img {...data} alt={(data || {}).alt} />
         </div>
       );
-    } else {
-      return (
-        <div className="video-wrapper">
-          <Player playsInline {...data} />
-        </div>
-      );
     }
-  } else {
-    return false;
-  }
-};
-
-const MyMediaBlock = props => {
-  const { block, contentState } = props;
-  const entity = contentState.getEntity(block.getEntityAt(0));
-  const data = entity.getData();
-  const type = entity.getType();
-  if (type === "image") {
-    const link = data.imageData.secure_url; 
     return (
-      <div className="image-wrapper">
-        <img src={data.imageData.secure_url} />
+      <div className="video-wrapper">
+        <Player playsInline {...data} />
       </div>
     );
   }
+  return false;
 };
 
-const Audio = (props) => {
-  return <audio controls src={props.src} style={styles.media} />;
-};
+// not used anymore ?
+// const Audio = (props) => {
+//   return <audio controls src={props.src} style={styles.media} />;
+// };
 
-const Image = (props) => {
-  return <img src={props.src} style={styles.media} />;
-};
+// const Image = (props) => {
+//   return <img src={props.src} style={styles.media} />;
+// };
 
-const Video = (props) => {
-  return <video controls src={props.src} style={styles.media} />;
-};
+// const Video = (props) => {
+//   return <video controls src={props.src} style={styles.media} />;
+// };
 
-const Media = (props) => {
-  const entity = props.contentState.getEntity(
-    props.block.getEntityAt(0)
-  );
-  const {src} = entity.getData();
-  const type = entity.getType();
+// const Media = (props) => {
+//   const entity = props.contentState.getEntity(props.block.getEntityAt(0));
+//   const { src } = entity.getData();
+//   const type = entity.getType();
 
-  let media;
-  if (type === 'audio') {
-    media = <Audio src={src} />;
-  } else if (type === 'image') {
-    media = <Image src={src} />;
-  } else if (type === 'video') {
-    media = <Video src={src} />;
-  }
+//   let media;
+//   if (type === "audio") {
+//     media = <Audio src={src} />;
+//   } else if (type === "image") {
+//     media = <Image src={src} />;
+//   } else if (type === "video") {
+//     media = <Video src={src} />;
+//   }
 
-  return media;
-};
+//   return media;
+// };
+
+function uploadImageCallBack(file) {
+  return new Promise((resolve, reject) => {
+    //On l'envoie ensuite au serveur
+    const formData = new FormData();
+    formData.append(0, file);
+    API.set_image(formData)
+      .then((data_res) => {
+        let response = data_res.data.data;
+        response.link = response.secure_url;
+        resolve({ data: response });
+      })
+      .catch((e) => {
+        // eslint-disable-next-line no-console
+        console.log(e);
+        reject(e);
+      });
+  });
+}
 
 function myBlockRenderer(contentBlock) {
   const type = contentBlock.getType();
   if (type === "header-six") {
     return {
-      component: MyCustomBlock
+      component: MyCustomBlock,
     };
   } else if (type === "atomic") {
     return {
-      component: MyImageBlock,//Media,
+      component: MyImageBlock, //Media,
       //editable: false,
     };
   }
@@ -143,17 +141,17 @@ class EditableParagraph extends Component {
     tooltipOpen: false,
     isDropdownOpen: false,
     dropdownColor: new Array(4).fill("#FFFFFF"),
-    modalState: true
+    modalState: true,
   };
 
   toggle = () => this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   toggleTooltip = () =>
-    this.setState(prevState => ({ tooltipOpen: !prevState.tooltipOpen }));
+    this.setState((prevState) => ({ tooltipOpen: !prevState.tooltipOpen }));
   toggleColor = (key, hover) =>
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       dropdownColor: prevState.dropdownColor.map((_, i) =>
         i === key ? (hover ? variables.noir : "#FFFFFF") : "#FFFFFF"
-      )
+      ),
     }));
 
   Button = () => {
@@ -170,24 +168,20 @@ class EditableParagraph extends Component {
     const contentStateWithEntity = contentState.createEntity(
       type,
       "IMMUTABLE",
-      {src: data}
+      { src: data }
     );
 
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
     const newEditorState = EditorState.set(editorState, {
-      currentContent: contentStateWithEntity
+      currentContent: contentStateWithEntity,
     });
 
     this.props.onEditorStateChange(
-      AtomicBlockUtils.insertAtomicBlock(
-        newEditorState,
-        entityKey,
-        " ",
-      ),
+      AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, " "),
       this.props.keyValue,
-      this.props.subkey,
-    )
+      this.props.subkey
+    );
   };
 
   render() {
@@ -206,7 +200,7 @@ class EditableParagraph extends Component {
               "wrapper-editeur editeur-" + props.keyValue + "-" + props.subkey
             }
             placeholder={props.placeholder}
-            onEditorStateChange={editorState =>
+            onEditorStateChange={(editorState) =>
               props.onEditorStateChange(
                 editorState,
                 props.keyValue,
@@ -215,13 +209,14 @@ class EditableParagraph extends Component {
             }
             editorState={props.editorState}
             toolbarCustomButtons={[
-             // <MediaUpload modalState={this.state.modalState} insertBlock={this.insertBlock} />,
-              <CustomOption editorState={props.editorState} />
+              // <MediaUpload modalState={this.state.modalState} insertBlock={this.insertBlock} />,
+              // eslint-disable-next-line react/jsx-key
+              <CustomOption editorState={props.editorState} />,
             ]}
             blockRendererFn={myBlockRenderer}
             stripPastedStyles
             localization={{
-              locale: this.props.i18n.language
+              locale: this.props.i18n.language,
             }}
             toolbar={{
               options: ["inline", "list", "link"], //, 'embedded'
@@ -233,14 +228,14 @@ class EditableParagraph extends Component {
                 italic: { icon: italicBtn, className: "inline-btn btn-italic" },
                 underline: {
                   icon: underBtn,
-                  className: "inline-btn btn-underline"
-                }
+                  className: "inline-btn btn-underline",
+                },
               },
               list: {
                 inDropdown: false,
                 options: ["unordered"],
                 className: "bloc-gauche-list blc-gh",
-                unordered: { icon: listBtn, className: "list-btn" }
+                unordered: { icon: listBtn, className: "list-btn" },
               },
               image: {
                 className: "bloc-droite-image",
@@ -250,7 +245,7 @@ class EditableParagraph extends Component {
                 uploadCallback: uploadImageCallBack,
                 alignmentEnabled: true,
                 alt: { present: true, mandatory: false },
-                previewImage: true
+                previewImage: true,
               },
               /*   image: {
                 component: this.Button
@@ -266,8 +261,8 @@ class EditableParagraph extends Component {
                 className: "bloc-gauche-inline blc-gh",
                 link: { icon: linkBtn, className: "btn-link" },
                 defaultTargetOption: "_blank",
-                showOpenOptionOnHover: true
-              }
+                showOpenOptionOnHover: true,
+              },
             }}
           />
           <AddModuleBtn
@@ -314,13 +309,12 @@ class EditableParagraph extends Component {
           )}
         </>
       );
-    } else {
-      return false;
     }
+    return false;
   }
 }
 
-const AddModuleBtn = props => {
+const AddModuleBtn = (props) => {
   if (props.type !== "etape") {
     return (
       <div className="plus-wrapper">
@@ -411,27 +405,8 @@ const AddModuleBtn = props => {
         </Tooltip>
       </div>
     );
-  } else {
-    return false;
   }
+  return false;
 };
-
-function uploadImageCallBack(file) {
-  return new Promise((resolve, reject) => {
-    //On l'envoie ensuite au serveur
-    const formData = new FormData();
-    formData.append(0, file);
-    API.set_image(formData)
-      .then(data_res => {
-        let response = data_res.data.data;
-        response.link = response.secure_url;
-        resolve({ data: response });
-      })
-      .catch(e => {
-        console.log(e);
-        reject(e);
-      });
-  });
-}
 
 export default withTranslation()(EditableParagraph);

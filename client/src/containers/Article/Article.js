@@ -41,6 +41,7 @@ class Article extends Component {
     this._loadArticle();
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     this.setState({ loading: true });
     this._loadArticle(nextProps.languei18nCode, true, nextProps);
@@ -112,6 +113,7 @@ class Article extends Component {
           }
         },
         (error) => {
+          // eslint-disable-next-line no-console
           console.log(error);
           return;
         }
@@ -129,7 +131,7 @@ class Article extends Component {
   make_tag_editable = (html) => {
     if (html && html.children) {
       try {
-        [].forEach.call(html.children, (el, i) => {
+        [].forEach.call(html.children, (el) => {
           if (el.hasChildNodes() && el.children.length > 1) {
             this.make_tag_editable(el);
           } else if (el.innerText !== "" && el.innerText !== " ") {
@@ -143,6 +145,7 @@ class Article extends Component {
           }
         });
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
     }
@@ -201,9 +204,11 @@ class Article extends Component {
     try {
       this.setState({
         id_array: Array.from({ length: newId }, (v, k) => k + 1),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         tooltipOpen: Array.from({ length: newId }, (v, k) => false),
       });
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };
@@ -269,6 +274,7 @@ class Article extends Component {
           }
         });
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
     }
@@ -313,10 +319,11 @@ class Article extends Component {
       chemin: this.state.chemin,
     };
     API.add_tradForReview(traduction).then(
-      (data_res) => {
+      () => {
         this.modalClosed();
       },
       (error) => {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }
@@ -351,12 +358,12 @@ class Article extends Component {
             <Spinner color="success" className="fadeIn fadeOut" />
           </div>
         );
-      } else {
-        return (
-          <div id="rendered-article" onClick={(e) => this.openEditModal(e)}>
-            {ReactHtmlParser(this.state.translated.body)}
+      }
+      return (
+        <div id="rendered-article" onClick={(e) => this.openEditModal(e)}>
+          {ReactHtmlParser(this.state.translated.body)}
 
-            {/* {this.state.id_array.map((element) => {
+          {/* {this.state.id_array.map((element) => {
               return (
                 <Tooltip 
                   placement="top" 
@@ -368,9 +375,8 @@ class Article extends Component {
                 </Tooltip>
               );
             })} */}
-          </div>
-        );
-      }
+        </div>
+      );
     };
 
     return (

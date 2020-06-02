@@ -12,6 +12,7 @@ export function* fetchDispositifs(): SagaIterator {
     });
     yield put(setDispositifsActionsCreator(data.data.data));
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log("Error while fetching dispositifs", { error });
     yield put(setDispositifsActionsCreator([]));
   }

@@ -37,12 +37,6 @@ class RejectTradModal extends Component {
     message: "",
   };
 
-  componentWillReceiveProps(nextProps) {
-    // if(nextProps.selected && nextProps.selected.structRole){
-    //   this.setState({roles: roles.map(x => ({...x, checked: nextProps.selected.structRole === x.role}))})
-    // }
-  }
-
   selectReason = (idx) =>
     this.setState((pS) => ({
       clicked: pS.clicked.map((x, i) => (i === idx ? !x : false)),
@@ -78,7 +72,7 @@ class RejectTradModal extends Component {
         },
       },
     };
-    API.update_tradForReview(newTrad).then((data) => {
+    API.update_tradForReview(newTrad).then(() => {
       this.props.removeTranslation(selectedTrad);
       this.props.toggle();
     });

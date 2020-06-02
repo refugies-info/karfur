@@ -25,6 +25,7 @@ class UserVariantes extends Component {
     this.setState({ isMounted: true });
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.search) {
       if (nextProps.search.age && nextProps.search.age !== this.state.age) {
@@ -179,9 +180,8 @@ class UserVariantes extends Component {
           </div>
         </div>
       );
-    } else {
-      return false;
     }
+    return false;
   }
 }
 
