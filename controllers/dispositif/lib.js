@@ -13,6 +13,8 @@ const {
   turnJSONtoHTML,
   turnToLocalizedNew,
   markTradModifications,
+  countContents,
+  countValidated,
 } = require("./functions");
 // const gmail_auth = require('./gmail_auth');
 
@@ -110,9 +112,15 @@ async function add_dispositif(req, res) {
                   tradExpert
                 );
                 if (tradExpert.status == "À revoir") {
+                  console.log(dispositif.contenu);
+                  const contentsTotal = countContents(dispositif.contenu) - 5;
+                  const validatedTotal = countValidated([tradExpert.translatedText]);
+                  console.log(contentsTotal, validatedTotal);
+                  const newAvancement = validatedTotal / contentsTotal;
+                  tradExpert.avancement = newAvancement;
                   await Traduction.updateMany(
                     { articleId: originalDis._id, langueCible: key },
-                    { status: "À revoir" },
+                    { status: "À revoir", avancement: newAvancement },
                     { upsert: false }
                   );
                 }

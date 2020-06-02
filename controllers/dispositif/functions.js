@@ -11,67 +11,155 @@ const markTradModifications = (newD, oldD, trad, locale) => {
       trad.status = "À revoir";
     }
   });
-  newD.contenu.forEach((p, index) => {
- /*    if (
-      !oldD.contenu[index].children ||
-      !trad.translatedText.contenu[index] ||
-      !trad.translatedText.contenu[index].children
-    ) {
-      trad.status = "À revoir";
-      return;
-    } */
-    if (JSON.stringify(p.title) !== JSON.stringify(oldD.contenu[index].title)) {
+  oldD.contenu.forEach((p, index) => {
+    if (JSON.stringify(p.title) !== JSON.stringify(newD.contenu[index].title)) {
       trad.translatedText.contenu[index].titleModified = true;
       trad.status = "À revoir";
     }
     if (
-      JSON.stringify(p.content) !== JSON.stringify(oldD.contenu[index].content)
+      JSON.stringify(p.content) !== JSON.stringify(newD.contenu[index].content)
     ) {
       trad.translatedText.contenu[index].contentModified = true;
       trad.status = "À revoir";
     }
-
+    if (p.children !== newD.contenu[index].children || (p.children && (p.children.length !== newD.contenu[index].children.length))) {
+      trad.status = "À revoir";
+    }
     if (p.children && p.children.length > 0) {
       p.children.forEach((c, j) => {
-        // a new children has been added or the new children has been modified before beeing translated
-   /*      if (
-          !oldD.contenu[index].children[j] ||
-          !trad.translatedText.contenu[index].children[j]
-        ) {
-          trad.status = "À revoir";
-          return;
-        } */
-
-        if (
-          JSON.stringify(c.title) !==
-          JSON.stringify(oldD.contenu[index].children[j].title)
-        ) {
-          trad.translatedText.contenu[index].children[j].titleModified = true;
+        if (!newD.contenu[index].children) {
+          delete trad.translatedText.contenu[index].children; 
           trad.status = "À revoir";
         }
-
-        if (
-          c.type != "card" &&
-          JSON.stringify(c.content) !==
-            JSON.stringify(oldD.contenu[index].children[j].content)
-        ) {
-          trad.translatedText.contenu[index].children[j].contentModified = true;
+        else if (!newD.contenu[index].children[j]) {
+          trad.translatedText.contenu[index].children.splice(j, 1); 
           trad.status = "À revoir";
-        }
+        } else {
+          if (
+            JSON.stringify(c.title) !==
+            JSON.stringify(newD.contenu[index].children[j].title)
+          ) {
+            trad.translatedText.contenu[index].children[j].titleModified = true;
+            trad.status = "À revoir";
+          }
 
-        if (
-          JSON.stringify(c.contentTitle) !==
-          JSON.stringify(oldD.contenu[index].children[j].contentTitle)
-        ) {
-          trad.translatedText.contenu[index].children[
-            j
-          ].contentTitleModified = true;
-          trad.status = "À revoir";
+          if (
+            c.type != "card" &&
+            JSON.stringify(c.content) !==
+              JSON.stringify(newD.contenu[index].children[j].content)
+          ) {
+            trad.translatedText.contenu[index].children[
+              j
+            ].contentModified = true;
+            trad.status = "À revoir";
+          }
+
+          if (
+            JSON.stringify(c.contentTitle) !==
+            JSON.stringify(newD.contenu[index].children[j].contentTitle)
+          ) {
+            trad.translatedText.contenu[index].children[
+              j
+            ].contentTitleModified = true;
+            trad.status = "À revoir";
+          }
         }
       });
     }
   });
   return trad;
+};
+
+const countContents = (obj, nbChamps = 0, type = null) => {
+  obj.forEach((x) => {
+    ["titreInformatif", "titreMarque", "abstract", "title", "content"].forEach((p) => {
+      if (
+        x[p] &&
+        x[p] !== "" &&
+        x[p] !== "null" &&
+        x[p] !== "undefined" &&
+        x[p] !== undefined &&
+        x[p] !== null &&
+        x[p] !== "<p>null</p>" &&
+        x[p] !== "<p><br></p>" &&
+        x[p] !== "<p><br></p>\n" &&
+        x[p] !== "<br>" &&
+        x[p] !== "<p></p>\n\n<p></p>\n" &&
+        type !== "cards"
+      ) {
+        nbChamps += 1;
+      }
+    });
+    if (
+      type === "cards" &&
+      (x.title === "Important !" || !x.title) &&
+      x.contentTitle &&
+      x.contentTitle !== "" &&
+      x.contentTitle !== undefined &&
+      x.contentTitle !== null &&
+      x.contentTitle !== "null" &&
+      x.contentTitle !== "undefined" &&
+      x.contentTitle !== "<p>null</p>" &&
+      x.contentTitle !== "<p><br></p>" &&
+      x.contentTitle !== "<br>"
+    ) {
+      nbChamps += 1;
+    }
+    if (x.contenu && x.contenu.length > 0) {
+      nbChamps = countContents(x.contenu, nbChamps, x.type);
+    }
+    if (x.children && x.children.length > 0) {
+      nbChamps = countContents(x.children, nbChamps, x.type);
+    }
+  });
+  return nbChamps;
+};
+
+const countValidated = (obj, nbChamps = 0, type = null) => {
+  obj.forEach((x) => {
+    ["titreInformatif", "titreMarque", "abstract", "title", "content"].forEach((p) => {
+      if (
+        x[p] &&
+        x[p] !== "" &&
+        x[p] !== "null" &&
+        x[p] !== "undefined" &&
+        x[p] !== undefined &&
+        x[p] !== null &&
+        x[p] !== "<p>null</p>" &&
+        x[p] !== "<p><br></p>" &&
+        x[p] !== "<p><br></p>\n" &&
+        x[p] !== "<br>" &&
+        x[p] !== "<p></p>\n\n<p></p>\n" &&
+        type !== "cards" &&
+        !x[p + "Modified"] 
+      ) {
+        nbChamps += 1;
+      }
+    });
+    if (
+      type === "cards" &&
+      (x.title === "Important !" || !x.title) &&
+      x.contentTitle &&
+      x.contentTitle !== "" &&
+      x.contentTitle !== undefined &&
+      x.contentTitle !== null &&
+      x.contentTitle !== "null" &&
+      x.contentTitle !== "undefined" &&
+      x.contentTitle !== "<p>null</p>" &&
+      x.contentTitle !== "<p><br></p>" &&
+      x.contentTitle !== "<br>" &&
+      !x["contentTitleModified"] 
+    ) {
+      nbChamps += 1;
+    }
+    if (x.contenu && x.contenu.length > 0) {
+      nbChamps = countValidated(x.contenu, nbChamps, x.type);
+    }
+    if (x.children && x.children.length > 0) {
+      nbChamps = countValidated(x.children, nbChamps, x.type);
+    }
+  });
+  return nbChamps;
 };
 
 const turnToLocalized = (result, locale) => {
@@ -215,5 +303,7 @@ const turnJSONtoHTML = (contenu) => {
 exports.turnToLocalized = turnToLocalized;
 exports.turnToLocalizedNew = turnToLocalizedNew;
 exports.markTradModifications = markTradModifications;
+exports.countContents = countContents;
+exports.countValidated = countValidated;
 exports.turnHTMLtoJSON = turnHTMLtoJSON;
 exports.turnJSONtoHTML = turnJSONtoHTML;
