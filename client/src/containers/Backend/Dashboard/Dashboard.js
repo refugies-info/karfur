@@ -138,6 +138,7 @@ class Dashboard extends Component {
     this.calculate_avg_time();
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps){
     if((nextProps.dispositifs || []).length > 0 && nextProps.dispositifs.length !== (this.props.dispositifs || []).length){
       const avgScore = nextProps.dispositifs.map(x => calculFiabilite(x) ).reduce((acc, curr) => acc += (curr || 0), 0) / nextProps.dispositifs.length;

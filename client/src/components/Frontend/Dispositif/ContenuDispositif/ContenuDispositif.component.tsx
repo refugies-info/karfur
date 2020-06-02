@@ -1,4 +1,4 @@
-import React, { BlockquoteHTMLAttributes, FunctionComponent } from "react";
+import React from "react";
 import { Col, Row } from "reactstrap";
 import { Props } from "./ContenuDispositif.container";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
@@ -172,8 +172,7 @@ export const contenuDispositif = (props: Props) => {
           </button>
         </div>
       );
-    } 
-      return false;
-    
+    }
+    return false;
   });
 };

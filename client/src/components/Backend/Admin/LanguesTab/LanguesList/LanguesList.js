@@ -11,9 +11,8 @@ const languesList = (props) => {
         .langueFr;
     } else if (langue.langueIsDialect) {
       return "A définir !";
-    } 
-      return "Aucune";
-    
+    }
+    return "Aucune";
   };
   return (
     <Card className="langues-list">
@@ -32,7 +31,7 @@ const languesList = (props) => {
             </tr>
           </thead>
           <tbody>
-            {props.langues.map((langue, index) => (
+            {props.langues.map((langue) => (
               <tr
                 key={langue._id.toString()}
                 onClick={() => props.onSelect({ langue: langue })}

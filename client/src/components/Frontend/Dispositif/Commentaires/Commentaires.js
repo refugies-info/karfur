@@ -1,6 +1,6 @@
 import React from "react";
 
-const commentaires = (props) => {
+const commentaires = () => {
   return (
     <>
       <hr />

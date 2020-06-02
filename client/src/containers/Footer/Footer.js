@@ -41,7 +41,7 @@ export class Footer extends Component {
         });
         this.setState({ email: "" });
       })
-      .catch((e) =>
+      .catch(() =>
         Swal.fire("Oh non...", "Une erreur s'est produite", "error")
       );
   };
