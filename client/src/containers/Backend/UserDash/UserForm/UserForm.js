@@ -43,6 +43,7 @@ class UserForm extends Component {
           this.setState({ user: this.initial_state.user });
         },
         (error) => {
+          // eslint-disable-next-line no-console
           console.log(error);
           return;
         }
@@ -64,6 +65,7 @@ class UserForm extends Component {
         });
       },
       (error) => {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }
@@ -96,6 +98,7 @@ class UserForm extends Component {
         });
       },
       (error) => {
+        // eslint-disable-next-line no-console
         console.log(error);
         this.setState({ uploading: false });
         return;

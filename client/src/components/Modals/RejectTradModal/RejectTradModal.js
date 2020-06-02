@@ -72,7 +72,7 @@ class RejectTradModal extends Component {
         },
       },
     };
-    API.update_tradForReview(newTrad).then((data) => {
+    API.update_tradForReview(newTrad).then(() => {
       this.props.removeTranslation(selectedTrad);
       this.props.toggle();
     });

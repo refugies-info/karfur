@@ -257,9 +257,8 @@ export class Avancement extends Component {
               b.statusTrad !== "Publiées"
             ) {
               return -1;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         }
       })
@@ -282,9 +281,8 @@ export class Avancement extends Component {
               b.statusTrad !== "En attente"
             ) {
               return -1;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         }
       })
@@ -304,9 +302,8 @@ export class Avancement extends Component {
               b.statusTrad !== "À revoir"
             ) {
               return -1;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         }
       })
@@ -329,9 +326,8 @@ export class Avancement extends Component {
               b.statusTrad !== "À traduire"
             ) {
               return -1;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         }
       })
@@ -348,9 +344,8 @@ export class Avancement extends Component {
               return 0;
             } else if (a.typeContenu === type && b.typeContenu !== type) {
               return -1;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         }
       })
@@ -358,8 +353,6 @@ export class Avancement extends Component {
   };
 
   reorder = (key, element) => {
-    console.log(key, element);
-    console.log(this.state.traductions);
     this.setState(
       produce((draft) => {
         draft.ascending = !this.state.ascending;
@@ -373,9 +366,8 @@ export class Avancement extends Component {
               a[element.order].toUpperCase() < b[element.order].toUpperCase()
             ) {
               return this.state.ascending ? -1 : 0;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         } else {
           draft.traductions.sort((a, b) => {
@@ -383,9 +375,8 @@ export class Avancement extends Component {
               return this.state.ascending ? 0 : -1;
             } else if (a[element.order] < b[element.order]) {
               return this.state.ascending ? -1 : 0;
-            } 
-              return 1;
-            
+            }
+            return 1;
           });
         }
       })
@@ -426,7 +417,8 @@ export class Avancement extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const { langue, isExpert, data } = this.state;
+    const { isExpert, data } = this.state;
+    // eslint-disable-next-line no-console
     console.log(this.props, this.state);
     let traductions = [];
     if (
@@ -776,18 +768,17 @@ export class Avancement extends Component {
             </tr>
           );
         });
-      } 
-        return (
-          <tr>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-          </tr>
-        );
-      
+      }
+      return (
+        <tr>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+        </tr>
+      );
     };
 
     return (
