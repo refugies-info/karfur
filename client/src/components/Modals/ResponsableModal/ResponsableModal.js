@@ -9,14 +9,10 @@ import {
   Input,
 } from "reactstrap";
 import Swal from "sweetalert2";
-import _ from "lodash";
-
 import FButton from "../../FigmaUI/FButton/FButton";
 import API from "../../../utils/API";
 import { inspection, responsableFiche } from "../../../assets/figma";
-
 import "./ResponsableModal.scss";
-import variables from "scss/colors.scss";
 
 class ResponsableModal extends Component {
   state = {
@@ -69,16 +65,8 @@ class ResponsableModal extends Component {
   };
 
   render() {
-    const {
-      show,
-      name,
-      toggleModal,
-      createur,
-      mainSponsor,
-      sponsors,
-    } = this.props;
+    const { show, name, toggleModal, createur } = this.props;
     const { memberAdded, step } = this.state;
-    const userBelongs = _.get(sponsors, "0.userBelongs");
     return (
       <Modal
         isOpen={show}

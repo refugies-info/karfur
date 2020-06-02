@@ -183,7 +183,7 @@ export class Admin extends Component {
   };
 
   onSelect = (item, switchTo = null) => {
-    this.setState(item, () => console.log(this.state));
+    this.setState(item);
     if (item.user) {
       this.setState({
         langues: [
@@ -360,6 +360,7 @@ export class Admin extends Component {
           });
         },
         (error) => {
+          // eslint-disable-next-line no-console
           console.log(error);
           return;
         }
@@ -379,6 +380,7 @@ export class Admin extends Component {
           this.setState({ users: usersCopy, user: this.initial_state.user });
         },
         (error) => {
+          // eslint-disable-next-line no-console
           console.log(error);
           return;
         }

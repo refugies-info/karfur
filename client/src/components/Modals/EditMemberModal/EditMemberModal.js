@@ -138,7 +138,7 @@ class EditMemberModal extends Component {
           $set: { "membres.$.roles": [selectedRole] },
         };
       }
-      API.create_structure(structure).then((data) => {
+      API.create_structure(structure).then(() => {
         Swal.fire({
           title: "Yay...",
           text: "La mise à jour a bien été effectuée, merci",

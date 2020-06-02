@@ -37,6 +37,7 @@ class RightSideDrawer extends React.Component {
         locale = this.props.location.state.langue.i18nCode;
         this.setState({ locale: locale });
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
       urlId = pathData.params.id;

@@ -113,6 +113,7 @@ class Article extends Component {
           }
         },
         (error) => {
+          // eslint-disable-next-line no-console
           console.log(error);
           return;
         }
@@ -144,6 +145,7 @@ class Article extends Component {
           }
         });
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
     }
@@ -205,6 +207,7 @@ class Article extends Component {
         tooltipOpen: Array.from({ length: newId }, (v, k) => false),
       });
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };
@@ -270,6 +273,7 @@ class Article extends Component {
           }
         });
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
     }
@@ -314,10 +318,11 @@ class Article extends Component {
       chemin: this.state.chemin,
     };
     API.add_tradForReview(traduction).then(
-      (data_res) => {
+      () => {
         this.modalClosed();
       },
       (error) => {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }
