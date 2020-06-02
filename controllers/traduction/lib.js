@@ -40,7 +40,14 @@ async function add_tradForReview(req, res) {
     console.log(traduction);
     if (traduction.avancement >= 1) {
       traduction.status = "En attente";
-      await Traduction.updateMany({articleId: traduction.articleId, langueCible: traduction.langueCible }, {status: 'En attente'}, { upsert: false });
+      await Traduction.updateMany(
+        {
+          articleId: traduction.articleId,
+          langueCible: traduction.langueCible,
+        },
+        { status: "En attente" },
+        { upsert: false }
+      );
     }
     if (!traduction.isExpert) {
       if (traduction.avancement < 1) {
@@ -828,9 +835,19 @@ async function delete_trads(req, res) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (!req.body) {
     return res.status(400).json({ text: "Requête invalide" });
+  } else if (
+    !req.user.roles.some(
+      (x) => x.nom === "Admin"
+    )
+  ) {
+    return res.status(400).json({ text: "Requête invalide" });
   } else {
     console.log(req.body);
-  };
+    await Traduction.deleteMany(
+      { articleId: req.body.articleId, langueCible: req.body.langueCible },
+    );
+    res.status(200);
+  }
 }
 
 //On exporte notre fonction
