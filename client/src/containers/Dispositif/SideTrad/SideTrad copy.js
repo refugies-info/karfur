@@ -284,7 +284,7 @@ class SideTrad extends Component {
       this.setState({ hasBeenSkipped: true });
     }
     const { pointeurs, currIdx, currSubIdx } = this.state;
-    console.log("###########################",currIdx, this.props.menu);
+    console.log("###########################", currIdx, this.props.menu);
     if (currIdx > this.props.menu.length - 1) {
       this._endingFeedback();
       return;
@@ -437,13 +437,13 @@ class SideTrad extends Component {
         behavior: "smooth",
         block: "end",
         inline: "nearest",
-      });;
+      });
       elem.classList.toggle("translating"); //On le surligne
     }
   };
 
   checkTranslate = (target) => {
-    console.log('check translate');
+    console.log("check translate");
     const { pointeurs, currIdx, currSubIdx, currSubName } = this.state;
     //console.log(pointeurs, currSubIdx, currIdx, currSubName);
     const text = this.initial_text.innerHTML,
@@ -661,7 +661,7 @@ class SideTrad extends Component {
     this.setState({ listTrad, score, userId, selectedTrad });
   };
 
-  onValidate = async () =>{
+  onValidate = async () => {
     console.log("On Validate");
     if (!this.props.translated.body) {
       Swal.fire({
@@ -889,12 +889,18 @@ class SideTrad extends Component {
           >
             {"Fin de la session"}
           </FButton>
-            <Progress
-            style={{height: 10, width: '30%', alignSelf: 'center'}}
-              color={colorAvancement(this.state.avancement)}
-              value={this.state.avancement * 100}
-            />
-            <div style={{alignItems: 'center', justifyContent: 'center', alignSelf: 'center'}}>
+          <Progress
+            style={{ height: 10, width: "30%", alignSelf: "center" }}
+            color={colorAvancement(this.state.avancement)}
+            value={this.state.avancement * 100}
+          />
+          <div
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              alignSelf: "center",
+            }}
+          >
             <div className={"text-" + colorAvancement(this.state.avancement)}>
               {this.state.avancement === 1 ? (
                 <EVAIcon name="checkmark-circle-2" fill={variables.vert} />
@@ -902,7 +908,7 @@ class SideTrad extends Component {
                 <span>{Math.round((this.state.avancement || 0) * 100)} %</span>
               )}
             </div>
-          </div> 
+          </div>
         </div>
         <div className="langue-data">
           <i className="flag-icon flag-icon-fr mr-12" title="fr" id="fr"></i>

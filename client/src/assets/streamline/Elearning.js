@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Elearning = ({width = 22, height = 22, stroke = 'white'}) => (
+const Elearning = ({width = 22, height = 22, stroke = "white"}) => (
 <svg
   xmlns="http://www.w3.org/2000/svg"
   version="1.1"

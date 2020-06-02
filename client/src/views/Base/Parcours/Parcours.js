@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import VisibilitySensor from "react-visibility-sensor";
-import track from 'react-tracking';
-import liste_parcours from './data';
+import track from "react-tracking";
+import liste_parcours from "./data";
 
-import './Parcours.css';
+import "./Parcours.css";
 
 class Parcours extends Component {
-  render() {  
+  render() {
     return (
       <div className="parcours animated fadeIn">
         <section className="intro">
@@ -16,19 +16,20 @@ class Parcours extends Component {
         </section>
         <section className="timeline" id="parcours">
           <ul>
-            {liste_parcours.map((element,key) => {
+            {liste_parcours.map((element, key) => {
               return (
                 <VisibilitySensor key={key}>
                   {({ isVisible }) => {
                     return (
-                      <li className={isVisible ? 'in-view' : undefined}>
+                      <li className={isVisible ? "in-view" : undefined}>
                         <div>
                           <time>{element.titre}</time> {element.description}
                         </div>
                       </li>
                     );
                   }}
-                </VisibilitySensor> );
+                </VisibilitySensor>
+              );
             })}
           </ul>
         </section>
@@ -37,6 +38,9 @@ class Parcours extends Component {
   }
 }
 
-export default track({
-  page: 'Parcours',
-}, { dispatchOnMount: true })(Parcours);
+export default track(
+  {
+    page: "Parcours",
+  },
+  { dispatchOnMount: true }
+)(Parcours);

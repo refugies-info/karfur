@@ -13,7 +13,7 @@ function getAudioStream() {
   // with getUserMedia as it would overwrite existing properties.
   // Here, we will just add the getUserMedia property if it's missing.
   if (navigator.mediaDevices.getUserMedia === undefined) {
-    navigator.mediaDevices.getUserMedia = function(constraints) {
+    navigator.mediaDevices.getUserMedia = function (constraints) {
       // First get ahold of the legacy getUserMedia, if present
       var getUserMedia =
         navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
@@ -22,12 +22,12 @@ function getAudioStream() {
       // to keep a consistent interface
       if (!getUserMedia) {
         return Promise.reject(
-          new Error('getUserMedia is not implemented in this browser')
+          new Error("getUserMedia is not implemented in this browser")
         );
       }
 
       // Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
-      return new Promise(function(resolve, reject) {
+      return new Promise(function (resolve, reject) {
         getUserMedia.call(navigator, constraints, resolve, reject);
       });
     };
@@ -98,10 +98,10 @@ function encodeWAV(samples) {
   const buffer = new ArrayBuffer(44 + samples.length * 2);
   const view = new DataView(buffer);
 
-  writeString(view, 0, 'RIFF');
+  writeString(view, 0, "RIFF");
   view.setUint32(4, 32 + samples.length * 2, true);
-  writeString(view, 8, 'WAVE');
-  writeString(view, 12, 'fmt ');
+  writeString(view, 8, "WAVE");
+  writeString(view, 12, "fmt ");
   view.setUint32(16, 16, true);
   view.setUint16(20, 1, true);
   view.setUint16(22, 1, true);
@@ -109,7 +109,7 @@ function encodeWAV(samples) {
   view.setUint32(28, recordSampleRate * 2, true);
   view.setUint16(32, 2, true);
   view.setUint16(34, 16, true);
-  writeString(view, 36, 'data');
+  writeString(view, 36, "data");
   view.setUint32(40, samples.length * 2, true);
   floatTo16BitPCM(view, 44, samples);
 
@@ -125,7 +125,7 @@ function exportBuffer(recBuffer) {
   //const downsampledBuffer = downsampleBuffer(recBuffer, 16000);
   const encodedWav = encodeWAV(recBuffer);
   const audioBlob = new Blob([encodedWav], {
-    type: 'application/octet-stream'
+    type: "application/octet-stream",
   });
 
   return audioBlob;

@@ -23,7 +23,7 @@ const archiveSuggestion = function (suggestion) {
     fieldName: suggestion.action,
     type: "pull",
   };
-  API.update_dispositif(dispositif).then((data) => {
+  API.update_dispositif(dispositif).then(() => {
     this.setState({
       actions: this.state.actions.filter(
         (x) => x.suggestionId !== suggestion.suggestionId

@@ -13,6 +13,7 @@ export function* fetchLangues(): SagaIterator {
     );
     yield put(setLanguesActionCreator(data.data.data));
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log("Error while fetching langues", { error });
     yield put(setLanguesActionCreator([]));
   }

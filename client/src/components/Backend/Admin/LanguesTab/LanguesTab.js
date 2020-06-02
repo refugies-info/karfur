@@ -1,12 +1,12 @@
-import React from 'react';
-import {Col, Row} from 'reactstrap';
+import React from "react";
+import { Col, Row } from "reactstrap";
 
-import CreationLForm from './CreationLForm/CreationLForm'
-import LanguesList from './LanguesList/LanguesList'
-import './LanguesTab.scss'
+import CreationLForm from "./CreationLForm/CreationLForm";
+import LanguesList from "./LanguesList/LanguesList";
+import "./LanguesTab.scss";
 
 const languesTab = (props) => {
-  return(
+  return (
     <Row className="langues-tab">
       <Col xs="12" md="6">
         <CreationLForm {...props} />
@@ -15,7 +15,7 @@ const languesTab = (props) => {
         <LanguesList {...props} />
       </Col>
     </Row>
-  )
-}
+  );
+};
 
 export default languesTab;

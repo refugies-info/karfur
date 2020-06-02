@@ -16,6 +16,7 @@ const initializeTimer = function (step = null, action = () => {}) {
             this.state.time % step < timestep
           ) {
             action();
+            // eslint-disable-next-line no-console
             console.log("autosave");
           }
         }

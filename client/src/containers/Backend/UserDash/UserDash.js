@@ -150,12 +150,9 @@ export class UserDash extends Component {
     ) {
       this.triggerConfirmationRedirect();
     } else {
-      this.setState(
-        (pS) => ({
-          showModal: { ...pS.showModal, [modal]: !pS.showModal[modal] },
-        }),
-        () => console.log(this.state)
-      );
+      this.setState((pS) => ({
+        showModal: { ...pS.showModal, [modal]: !pS.showModal[modal] },
+      }));
     }
   };
 

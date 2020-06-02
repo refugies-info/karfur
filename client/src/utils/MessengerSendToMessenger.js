@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class MessengerSendToMessenger extends Component {
   static propTypes = {
@@ -11,28 +11,28 @@ export default class MessengerSendToMessenger extends Component {
     size: PropTypes.string,
     enforceLogin: PropTypes.bool,
     ctaText: PropTypes.oneOf([
-      'GET_THIS_IN_MESSENGER',
-      'RECEIVE_THIS_IN_MESSENGER',
-      'SEND_THIS_TO_ME',
-      'GET_CUSTOMER_ASSISTANCE',
-      'GET_CUSTOMER_SERVICE',
-      'GET_SUPPORT',
-      'LET_US_CHAT',
-      'SEND_ME_MESSAGES',
-      'ALERT_ME_IN_MESSENGER',
-      'SEND_ME_UPDATES',
-      'MESSAGE_ME',
-      'LET_ME_KNOW',
-      'KEEP_ME_UPDATED',
-      'TELL_ME_MORE',
-      'SUBSCRIBE_IN_MESSENGER',
-      'SUBSCRIBE_TO_UPDATES',
-      'GET_MESSAGES',
-      'SUBSCRIBE',
-      'GET_STARTED_IN_MESSENGER',
-      'LEARN_MORE_IN_MESSENGER',
-      'GET_STARTED',
-      'SEND_TO_MESSENGER',
+      "GET_THIS_IN_MESSENGER",
+      "RECEIVE_THIS_IN_MESSENGER",
+      "SEND_THIS_TO_ME",
+      "GET_CUSTOMER_ASSISTANCE",
+      "GET_CUSTOMER_SERVICE",
+      "GET_SUPPORT",
+      "LET_US_CHAT",
+      "SEND_ME_MESSAGES",
+      "ALERT_ME_IN_MESSENGER",
+      "SEND_ME_UPDATES",
+      "MESSAGE_ME",
+      "LET_ME_KNOW",
+      "KEEP_ME_UPDATED",
+      "TELL_ME_MORE",
+      "SUBSCRIBE_IN_MESSENGER",
+      "SUBSCRIBE_TO_UPDATES",
+      "GET_MESSAGES",
+      "SUBSCRIBE",
+      "GET_STARTED_IN_MESSENGER",
+      "LEARN_MORE_IN_MESSENGER",
+      "GET_STARTED",
+      "SEND_TO_MESSENGER",
     ]),
     autoLogAppEvents: PropTypes.bool,
     xfbml: PropTypes.bool,
@@ -43,19 +43,19 @@ export default class MessengerSendToMessenger extends Component {
 
   static defaultProps = {
     dataRef: undefined,
-    color: 'blue',
-    size: 'large',
+    color: "blue",
+    size: "large",
     enforceLogin: false,
     ctaText: undefined,
     autoLogAppEvents: true,
     xfbml: true,
-    version: '3.3',
-    language: 'fr_FR',
+    version: "3.3",
+    language: "fr_FR",
     debug: false,
   };
 
   componentDidMount() {
-    if (document.getElementById('facebook-jssdk')) {
+    if (document.getElementById("facebook-jssdk")) {
       return;
     }
     this.setFbAsyncInit();
@@ -77,7 +77,7 @@ export default class MessengerSendToMessenger extends Component {
   loadSdkAsynchronously() {
     const { language, debug } = this.props;
     /* eslint-disable */
-    (function(d, s, id) {
+    (function (d, s, id) {
       var js,
         fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {
@@ -86,10 +86,10 @@ export default class MessengerSendToMessenger extends Component {
       js = d.createElement(s);
       js.id = id;
       js.src = `https://connect.facebook.net/${language}/sdk${
-        debug ? '/debug' : ''
+        debug ? "/debug" : ""
       }.js`;
       fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
+    })(document, "script", "facebook-jssdk");
     /* eslint-enable */
   }
 
@@ -105,10 +105,10 @@ export default class MessengerSendToMessenger extends Component {
     } = this.props;
 
     const dataRefAttribute =
-      dataRef !== undefined ? `data-ref="${dataRef}"` : '';
+      dataRef !== undefined ? `data-ref="${dataRef}"` : "";
 
     const ctaTextAttribute =
-      ctaText !== undefined ? `cta_text="${ctaText}"` : '';
+      ctaText !== undefined ? `cta_text="${ctaText}"` : "";
 
     return {
       __html: `<div

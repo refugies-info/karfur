@@ -49,15 +49,15 @@ const PrivateRoute = ({ component: Component, socket, socketFn, ...rest }) => {
               return (
                 <Component {...props} socket={socket} socketFn={socketFn} />
               );
-            } else {
+            } 
               return <UnauthorizedAccess />;
-            }
-          } else {
+            
+          } 
             return <Component {...props} socket={socket} socketFn={socketFn} />;
-          }
-        } else {
+          
+        } 
           return <Component {...props} socket={socket} socketFn={socketFn} />;
-        }
+        
       }}
     />
   );

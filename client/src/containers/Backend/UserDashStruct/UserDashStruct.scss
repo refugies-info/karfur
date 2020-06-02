@@ -1,15 +1,15 @@
-@import 'src/scss/colors.scss';
-@import 'src/scss/global.scss';
+@import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
-.user-dash-struct{
+.user-dash-struct {
   padding: 30px;
-  position:relative;
+  position: relative;
   background: $gris;
   flex: 1 1;
   max-width: 100%;
   //overflow: scroll;
-  
-  .nouveau-contenu{
+
+  .nouveau-contenu {
     background: $attention;
     border-radius: 12px;
     display: flex;
@@ -18,34 +18,35 @@
     margin-right: -15px;
     margin-left: -15px;
 
-    .left-side, .middle-side{
+    .left-side,
+    .middle-side {
       padding: 10px;
     }
 
-    .middle-side{
+    .middle-side {
       color: $rouge;
     }
   }
 
-  .role-btn{
+  .role-btn {
     border-radius: 6px;
     height: 50px;
-    .edit-icon{
+    .edit-icon {
       display: none;
     }
-    &:hover .edit-icon{
+    &:hover .edit-icon {
       display: inline;
     }
   }
 
-  .tableau-header{
+  .tableau-header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
-  @include media-max("desktop-up") { 
-    .hideOnPhone{
-      display:none;
+  @include media-max("desktop-up") {
+    .hideOnPhone {
+      display: none;
     }
   }
 }
