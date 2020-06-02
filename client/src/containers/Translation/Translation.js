@@ -106,7 +106,7 @@ export class TranslationHOC extends Component {
     }
     const { locale, langueBackupId } = await this._setLangue(props),
       userId = props.userId;
-    const isExpert = this.props.expertTrad;
+    const isExpert = this.props.isExpert;
     const type =
       (props.match.path || "").includes("dispositif") ||
       (props.match.path || "").includes("demarche")
@@ -413,7 +413,7 @@ export class TranslationHOC extends Component {
     const nom = "avancement." + i18nCode;
     if (!isExpert) {
       this.props.history.push({
-        pathname: "/avancement/traductions/" + langue._id,
+        pathname: "/avancement/langues/" + langue._id,
       }); 
       return;
     }
