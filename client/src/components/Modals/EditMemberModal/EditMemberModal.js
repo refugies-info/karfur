@@ -25,6 +25,7 @@ class EditMemberModal extends Component {
     selection: true,
   };
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.selected && nextProps.selected.structRole) {
       this.setState({

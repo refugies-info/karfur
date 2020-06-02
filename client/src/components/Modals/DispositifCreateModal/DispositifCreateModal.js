@@ -14,6 +14,7 @@ class DispositifCreateModal extends Component {
     stepIdx: 0,
   };
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.show !== this.props.show && this.state.stepIdx !== 0) {
       this.setState({ stepIdx: 0 });

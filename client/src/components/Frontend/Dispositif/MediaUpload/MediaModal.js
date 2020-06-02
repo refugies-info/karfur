@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Input } from "reactstrap";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import styled from "styled-components";
 import Tab from "./StyledTab";
@@ -84,6 +84,7 @@ class MediaModal extends Component {
         })
         .catch((e) => {
           this.setState({ loading: false });
+          // eslint-disable-next-line no-console
           console.log(e);
           reject(e);
         });

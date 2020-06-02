@@ -64,6 +64,7 @@ class Editeur extends Component {
         });
       },
       function (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }

@@ -54,7 +54,8 @@ class MapParagraphe extends PureComponent {
           false
         ),
       };
-    } return null;
+    }
+    return null;
   }
 
   componentDidUpdate() {
@@ -113,7 +114,7 @@ class MapParagraphe extends PureComponent {
     });
   };
 
-  handleMarkerClick = (e, marker, key) => {
+  handleMarkerClick = (e, marker) => {
     this.setState({
       showSidebar: true,
       markerInfo: this.state.markerInfo.map((x) =>
@@ -181,6 +182,7 @@ class MapParagraphe extends PureComponent {
       });
     }
   };
+  // eslint-disable-next-line no-console
   handleError = (e) => console.log(e);
 
   handleMarkerChange = (e, idx) =>

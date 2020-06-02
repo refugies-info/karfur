@@ -29,7 +29,7 @@ class EtapeModal extends Component {
     const newLength = _.get(this.props, "subitem.papiers", []).length;
     this.setState({ checked: new Array(newLength).fill(false) });
   }
-
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     const newLength = _.get(nextProps, "subitem.papiers", []).length;
     if (newLength !== this.state.checked.length) {
@@ -136,9 +136,8 @@ class EtapeModal extends Component {
                         </Label>
                       </ListGroupItem>
                     );
-                  } 
-                    return false;
-                  
+                  }
+                  return false;
                 })}
               </ListGroup>
             </>

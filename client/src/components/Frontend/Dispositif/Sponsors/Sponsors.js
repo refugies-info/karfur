@@ -58,6 +58,7 @@ class Sponsors extends Component {
     },
   };
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (
       nextProps.user &&
@@ -421,7 +422,7 @@ class Sponsors extends Component {
           </p>
 
           {mesStructures.length > 0 &&
-            mesStructures.map((struct, key) => (
+            mesStructures.map((struct) => (
               <FormGroup check className="ma-structure mb-10" key={struct._id}>
                 <Label check>
                   <Input

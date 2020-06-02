@@ -176,15 +176,12 @@ class UneVariante extends Component {
 
   changeAge = (e, isBottom = true) => {
     e.persist();
-    this.setState(
-      (pS) => ({
-        [isBottom ? "bottomValue" : "topValue"]: parseInt(
-          ((e.target || {}).value || "").replace(/\D/g, "")
-        ),
-        validatedRow: pS.validatedRow.map((x, i) => (i === 1 ? true : x)),
-      }),
-      () => console.log(this.state.bottomValue)
-    );
+    this.setState((pS) => ({
+      [isBottom ? "bottomValue" : "topValue"]: parseInt(
+        ((e.target || {}).value || "").replace(/\D/g, "")
+      ),
+      validatedRow: pS.validatedRow.map((x, i) => (i === 1 ? true : x)),
+    }));
   };
 
   addCritere = () =>
@@ -480,33 +477,32 @@ class UneVariante extends Component {
                   </div>
                 </Col>
               );
-            } 
-              return (
-                <Col lg={inVariante ? "0" : "3"} className="moteur-col" key={i}>
-                  <div className="col-header">
-                    Cas #{i + 1}
-                    {variantes && variantes.length > i && variantes[i] && (
-                      <EVAIcon
-                        onClick={() => this.supprimer_cas(i)}
-                        className="delete-icon cursor-pointer"
-                        name="close-circle"
-                        fill={variables.error}
-                        size="xlarge"
-                      />
-                    )}
-                  </div>
-                  <div className="col-body with-header">
-                    <ReducedVariante
-                      variantes={variantes}
-                      direction="column"
-                      activeIdx={i}
-                      toggleCas={() => this.toggleCas(i)}
-                      disabled={!validatedRow.includes(true)}
+            }
+            return (
+              <Col lg={inVariante ? "0" : "3"} className="moteur-col" key={i}>
+                <div className="col-header">
+                  Cas #{i + 1}
+                  {variantes && variantes.length > i && variantes[i] && (
+                    <EVAIcon
+                      onClick={() => this.supprimer_cas(i)}
+                      className="delete-icon cursor-pointer"
+                      name="close-circle"
+                      fill={variables.error}
+                      size="xlarge"
                     />
-                  </div>
-                </Col>
-              );
-            
+                  )}
+                </div>
+                <div className="col-body with-header">
+                  <ReducedVariante
+                    variantes={variantes}
+                    direction="column"
+                    activeIdx={i}
+                    toggleCas={() => this.toggleCas(i)}
+                    disabled={!validatedRow.includes(true)}
+                  />
+                </div>
+              </Col>
+            );
           })}
         </div>
 

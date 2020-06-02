@@ -73,6 +73,7 @@ export class TranslationHOC extends Component {
     window.scrollTo(0, 0);
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
       this._initializeComponent(nextProps);
@@ -83,7 +84,7 @@ export class TranslationHOC extends Component {
     this._isMounted = false;
     clearInterval(this.timer);
   }
-
+  // eslint-disable-next-line react/no-deprecated
   componentWillUpdate(_, nextState) {
     if (nextState.translated.body !== this.state.translated.body) {
       this.setState({

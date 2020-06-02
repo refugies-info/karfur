@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-import { convertFromHTML } from "draft-convert";
 import MediaModal from "./MediaModal";
 
 class MediaUpload extends Component {

@@ -26,6 +26,7 @@ class Tags extends Component {
     }
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.tags && nextProps.tags !== this.props.tags) {
       this.setState({
@@ -119,9 +120,8 @@ class Tags extends Component {
                 )}
               </ButtonDropdown>
             );
-          } 
-            return false;
-          
+          }
+          return false;
         })}
         {!this.props.disableEdit && (this.props.tags || []).length < 3 && (
           <Button className="plus-button ml-10" onClick={this.addTag}>

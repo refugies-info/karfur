@@ -159,7 +159,7 @@ class Dispositifs extends Component {
 
         <section id="menu_dispo">
           <Row className="align-items-center themes">
-            {tags.map((tag, key) => (
+            {tags.map((tag) => (
               <Col
                 lg="auto"
                 sm="auto"

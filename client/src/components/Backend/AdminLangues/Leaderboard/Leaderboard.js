@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader } from "reactstrap";
 
 import "./Leaderboard.scss";
 
-const leaderboard = (props) => {
+const leaderboard = () => {
   return (
     <Card className="leaderboard">
       <CardHeader className="custom-card-header">

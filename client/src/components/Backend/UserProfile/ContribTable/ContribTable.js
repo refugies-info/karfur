@@ -158,7 +158,7 @@ const contribTable = (props) => {
   );
 
   let show = true;
-  const onAnimationEnd = (e) => (show = false);
+  const onAnimationEnd = () => (show = false);
 
   const onBtnClick = () => {
     // if(props.overlayRedirect){
@@ -258,9 +258,8 @@ const contribTable = (props) => {
     );
   } else if (show) {
     return table;
-  } 
-    return false;
-  
+  }
+  return false;
 };
 
 export default withTranslation()(contribTable);

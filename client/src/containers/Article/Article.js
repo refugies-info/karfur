@@ -41,6 +41,7 @@ class Article extends Component {
     this._loadArticle();
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     this.setState({ loading: true });
     this._loadArticle(nextProps.languei18nCode, true, nextProps);
@@ -351,12 +352,12 @@ class Article extends Component {
             <Spinner color="success" className="fadeIn fadeOut" />
           </div>
         );
-      } 
-        return (
-          <div id="rendered-article" onClick={(e) => this.openEditModal(e)}>
-            {ReactHtmlParser(this.state.translated.body)}
+      }
+      return (
+        <div id="rendered-article" onClick={(e) => this.openEditModal(e)}>
+          {ReactHtmlParser(this.state.translated.body)}
 
-            {/* {this.state.id_array.map((element) => {
+          {/* {this.state.id_array.map((element) => {
               return (
                 <Tooltip 
                   placement="top" 
@@ -368,9 +369,8 @@ class Article extends Component {
                 </Tooltip>
               );
             })} */}
-          </div>
-        );
-      
+        </div>
+      );
     };
 
     return (
