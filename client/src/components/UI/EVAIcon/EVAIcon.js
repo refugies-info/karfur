@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import * as eva from "eva-icons";
 
 const SIZE = {
-  SMALL: '12px',
-  MEDIUM: '20px',
-  LARGE: '24px',
-  XLARGE: '30px',
-  HERO: '60px',
+  SMALL: "12px",
+  MEDIUM: "20px",
+  LARGE: "24px",
+  XLARGE: "30px",
+  HERO: "60px",
 };
 
 class EVAIcon extends Component {
-
   componentDidMount() {
     this.setupEvaIcons();
   }
@@ -22,10 +21,7 @@ class EVAIcon extends Component {
   }
 
   setupEvaIcons() {
-    const {
-      fill,
-      size,
-    } = this.props;
+    const { fill, size } = this.props;
 
     const dims = this.updateDims(size);
 
@@ -40,15 +36,15 @@ class EVAIcon extends Component {
 
   updateDims(size) {
     switch (size) {
-      case 'small':
+      case "small":
         return SIZE.SMALL;
-      case 'medium':
-        return SIZE.MEDIUM;  
-      case 'large':
+      case "medium":
+        return SIZE.MEDIUM;
+      case "large":
         return SIZE.LARGE;
-      case 'xlarge':
+      case "xlarge":
         return SIZE.XLARGE;
-      case 'hero':
+      case "hero":
         return SIZE.HERO;
       default:
         return SIZE.MEDIUM;
@@ -56,18 +52,13 @@ class EVAIcon extends Component {
   }
 
   render() {
-    const {
-      name,
-      fill,
-      size,
-      ...props
-    } = this.props;
+    const { name, fill, size, ...props } = this.props;
 
     const dims = this.updateDims(size);
-    
+
     const icon = (
       <span key={this.props.name} {...props}>
-        <i 
+        <i
           data-eva={name}
           data-eva-fill={fill}
           data-eva-height={dims}
@@ -75,8 +66,8 @@ class EVAIcon extends Component {
         />
       </span>
     );
-    
-    return(icon);
+
+    return icon;
   }
 }
 
@@ -87,9 +78,9 @@ EVAIcon.propTypes = {
 };
 
 EVAIcon.defaultProps = {
-  fill: '#fff',
-  name: '',
-  size: 'medium',
+  fill: "#fff",
+  name: "",
+  size: "medium",
 };
 
 export default EVAIcon;

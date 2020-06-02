@@ -48,6 +48,7 @@ class EtapeParagraphe extends Component {
     showModal: false,
   };
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     const { isOptionSelected } = this.state;
     if (

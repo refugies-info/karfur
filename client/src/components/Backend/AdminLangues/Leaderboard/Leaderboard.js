@@ -1,19 +1,19 @@
-import React from 'react';
-import {Card, CardBody, CardHeader } from 'reactstrap';
+import React from "react";
+import { Card, CardBody, CardHeader } from "reactstrap";
 
-import './Leaderboard.scss'
+import "./Leaderboard.scss";
 
-const leaderboard = (props) => {
-  return(
+const leaderboard = () => {
+  return (
     <Card className="leaderboard">
       <CardHeader className="custom-card-header">
-        <i className="icon-trophy icons font-2xl mt-4"></i> 
+        <i className="icon-trophy icons font-2xl mt-4"></i>
         Leaderboard
         <small>Nombre de mots traduits</small>
       </CardHeader>
       <CardBody className="no-padding">
         <ol>
-          <li value= "6">
+          <li value="6">
             <mark>Soufiane</mark>
             <small>400</small>
           </li>
@@ -36,7 +36,7 @@ const leaderboard = (props) => {
         </ol>
       </CardBody>
     </Card>
-  )
-}
+  );
+};
 
 export default leaderboard;

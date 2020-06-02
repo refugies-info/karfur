@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Measure = ({width = 22, height = 22, stroke = 'white'}) => (
+const Measure = ({width = 22, height = 22, stroke = "white"}) => (
 <svg width={width} height={height} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M18.2284 20.383L15.7617 18.9222C15.3188 18.6066 15.0949 18.066 15.185 17.5297V16.0097L14.2634 15.0872C14.0291 14.8534 13.912 14.5268 13.9442 14.1974C13.9765 13.8679 14.1548 13.5703 14.43 13.3864V13.3864C14.8684 13.0947 15.4517 13.1525 15.8242 13.5247L17.1242 14.8255" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M15.3931 8.83301L18.8614 11.9022C19.3157 12.5383 19.5599 13.3005 19.5597 14.0822V15.8997C19.5598 16.4217 19.7672 16.9223 20.1364 17.2913L20.3747 17.5297" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

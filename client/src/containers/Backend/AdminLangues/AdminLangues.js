@@ -74,6 +74,7 @@ class AdminLangues extends Component {
         });
       },
       (error) => {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }
@@ -90,6 +91,7 @@ class AdminLangues extends Component {
         });
       },
       (error) => {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }
@@ -125,6 +127,7 @@ class AdminLangues extends Component {
         }
       },
       (error) => {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }
@@ -147,10 +150,11 @@ class AdminLangues extends Component {
 
   onValidate = () => {
     API.validate_tradForReview(this.state.currentTraduction).then(
-      (data_res) => {
+      () => {
         this.onPass();
       },
       (error) => {
+        // eslint-disable-next-line no-console
         console.log(error);
         return;
       }
@@ -178,6 +182,7 @@ class AdminLangues extends Component {
         },
       });
     } else {
+      // eslint-disable-next-line no-console
       console.log("no index");
     }
   };

@@ -137,9 +137,9 @@ class CardParagraphe extends Component {
     const jsUcfirst = (string, title) => {
       if (title === "Public visé" && string && string.length > 1) {
         return string.charAt(0).toUpperCase() + string.slice(1);
-      } else {
+      } 
         return string;
-      }
+      
     };
 
     const cardTitles = [
@@ -324,7 +324,7 @@ class CardParagraphe extends Component {
             )}
           </>
         );
-      } else {
+      } 
         let texte;
         if (subitem.title === "Âge requis") {
           texte =
@@ -374,7 +374,7 @@ class CardParagraphe extends Component {
             onMouseUp={this.emptyPlaceholder}
           />
         );
-      }
+      
     };
 
     const cardHeaderContent = (subitem) => {
@@ -396,7 +396,7 @@ class CardParagraphe extends Component {
             </span>
           </>
         );
-      } else {
+      } 
         return (
           <ButtonDropdown
             isOpen={this.state.isDropdownOpen}
@@ -434,7 +434,7 @@ class CardParagraphe extends Component {
             </DropdownMenu>
           </ButtonDropdown>
         );
-      }
+      
     };
 
     const cardFooterContent = (subitem) => {
@@ -451,9 +451,9 @@ class CardParagraphe extends Component {
               onChange={this.props.handleMenuChange} // handle innerHTML change
             />
           );
-        } else {
+        } 
           return false;
-        }
+        
       } else if (this.props.subitem.footerHref && disableEdit) {
         return (
           <FButton
@@ -465,9 +465,9 @@ class CardParagraphe extends Component {
               t("Dispositif." + subitem.footer, subitem.footer)}
           </FButton>
         );
-      } else {
+      } 
         return false;
-      }
+      
     };
 
     return (

@@ -7,7 +7,7 @@ const StyledButton = styled.button`
   border-radius: 5px;
   padding: 5px;
   margin: 5px;
-  background-color: ${props => (props.selected ? "black" : "#f2f2f2")};
+  background-color: ${(props) => (props.selected ? "black" : "#f2f2f2")};
   border-width: 0;
   font-weight: bold;
   flex-grow: 1;
@@ -20,15 +20,15 @@ const StyledText = styled.p`
   align-self: center;
   margin-bottom: 0;
   margin: 10px;
-  color: ${props => (props.selected ? "white" : "black")};
+  color: ${(props) => (props.selected ? "white" : "black")};
 `;
 
 const StyledTab = ({ ...props }) => {
-  return(
-  <StyledButton {...props}>
-    <EVAIcon name={props.icon} fill={'#bdbdbd'} />
-    <StyledText {...props}>{props.title}</StyledText>
-  </StyledButton>
+  return (
+    <StyledButton {...props}>
+      <EVAIcon name={props.icon} fill={"#bdbdbd"} />
+      <StyledText {...props}>{props.title}</StyledText>
+    </StyledButton>
   );
 };
 

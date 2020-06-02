@@ -9,6 +9,7 @@ export function* fetchStructures(): SagaIterator {
     const data = yield call(API.get_structure, { status: "Actif" });
     yield put(setStructuresActionCreator(data.data.data));
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log("Error while fetching structures", { error });
     yield put(setStructuresActionCreator([]));
   }

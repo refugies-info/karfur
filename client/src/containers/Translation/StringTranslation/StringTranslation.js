@@ -33,6 +33,7 @@ export class StringTranslation extends Component {
     }
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.itemId !== this.props.itemId) {
       this._initializeComponent(nextProps);
@@ -75,6 +76,7 @@ export class StringTranslation extends Component {
         }
       });
     }
+    // eslint-disable-next-line
     if (!itemId || !locale) {
     } else if (!isExpert) {
       this.setState({
@@ -392,9 +394,8 @@ const ConditionalSpinner = (props) => {
         <Spinner color="success" className="fadeIn fadeOut" />
       </div>
     );
-  } else {
-    return false;
   }
+  return false;
 };
 
 export default track({

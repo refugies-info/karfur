@@ -1,11 +1,11 @@
-@import 'src/scss/global.scss';
-@import 'src/scss/colors.scss';
+@import "src/scss/global.scss";
+@import "src/scss/colors.scss";
 
-.advanced-search{
-  background: #E5E5E5;
+.advanced-search {
+  background: #e5e5e5;
   flex: 1 1;
 
-  .search-bar{
+  .search-bar {
     background: $noir3;
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
     position: fixed;
@@ -15,23 +15,29 @@
     display: flex;
     justify-content: center;
     z-index: 3;
-    @include media-max("sm-limit") { font-size: 12px; }
+    @include media-max("sm-limit") {
+      font-size: 12px;
+    }
   }
-  .search-wrapper{
+  .search-wrapper {
     max-width: 100%;
   }
-  .mt-250{
+  .mt-250 {
     margin-top: 180px;
-    @include media-max("desktop-up") { margin-top: 300px; }
-    @include media-max("sm-limit") { margin-top: 350px; }
+    @include media-max("desktop-up") {
+      margin-top: 300px;
+    }
+    @include media-max("sm-limit") {
+      margin-top: 350px;
+    }
   }
-  .central-col{
+  .central-col {
     position: relative;
   }
-  .close-arrow{
+  .close-arrow {
     cursor: pointer;
   }
-  .responsive-footer{
+  .responsive-footer {
     z-index: 2;
     position: absolute;
     bottom: -45px;
@@ -41,121 +47,121 @@
     justify-content: space-between;
     // align-items: center;
   }
-  .options-dropdown{
+  .options-dropdown {
     background: $grisFonce;
     border-radius: 50%;
     width: 45px;
     height: 45px;
-    .btn > span{
+    .btn > span {
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    &.active{
+    &.active {
       background: $noir;
     }
   }
 
-  .side-col{
+  .side-col {
     display: flex;
     justify-content: center;
 
-    .right-side{
+    .right-side {
       font-size: 18px;
       max-width: 100%;
     }
 
-    .side-options{
+    .side-options {
       color: $grisFonce;
       font-size: 18px;
       line-height: 26px;
       cursor: pointer;
-      .side-option{
-        &.right{
+      .side-option {
+        &.right {
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
         }
-        &:hover{
+        &:hover {
           color: $noir;
         }
-        &.active{
+        &.active {
           color: $noir;
           font-weight: bold;
         }
       }
     }
   }
-  .side-option.dropdown-item.active{
+  .side-option.dropdown-item.active {
     color: $noir;
     font-weight: bold;
     background-color: transparent;
   }
-  .results-wrapper{
-    .row{
+  .results-wrapper {
+    .row {
       margin: 0 -10px;
     }
-    .card-col{
+    .card-col {
       padding: 0 10px;
     }
   }
 
-  .bookmark-icon{
+  .bookmark-icon {
     position: absolute;
     opacity: 0;
     top: -8px;
     right: 5px;
-    &:active{
-      svg{
+    &:active {
+      svg {
         fill: $noir;
       }
     }
-    &:hover{
-      svg{
+    &:hover {
+      svg {
         fill: $noir;
       }
     }
-    &:focus{
-      svg{
+    &:focus {
+      svg {
         fill: $noir;
       }
     }
   }
 
-  .pinned{
+  .pinned {
     opacity: 1;
-    svg{
+    svg {
       fill: $validationHover;
     }
   }
 
-  p{
+  p {
     margin-bottom: 0;
     line-height: 20px;
   }
 
-  .card{
-    border:none;
+  .card {
+    border: none;
     border-radius: 12px;
     height: 250px;
     cursor: pointer;
-    &:hover{
-      .bookmark-icon{
+    &:hover {
+      .bookmark-icon {
         opacity: 1;
       }
     }
-    .card-body{
+    .card-body {
       //overflow: scroll;
     }
   }
 
-  .card-col{
-    .card{
-      border:none;
+  .card-col {
+    .card {
+      border: none;
       border-radius: 12px;
     }
 
-    .card-body{
+    .card-body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -165,37 +171,41 @@
     }
   }
 
-  .card-col, .no-result-card, .create-card{
-    .card-body{
+  .card-col,
+  .no-result-card,
+  .create-card {
+    .card-body {
       -ms-overflow-style: none;
       scrollbar-width: 0;
     }
     ::-webkit-scrollbar {
       display: none;
-      width: 0px;  /* remove scrollbar space */
-      background: transparent;  /* optional: just make scrollbar invisible */
+      width: 0px; /* remove scrollbar space */
+      background: transparent; /* optional: just make scrollbar invisible */
     }
   }
-  .no-result{
-    .no-result-card{
-      cursor : pointer;
+  .no-result {
+    .no-result-card {
+      cursor: pointer;
       border-radius: 12px;
       font-size: 16px;
       line-height: 21px;
       height: 250px;
       scrollbar-width: 0;
       border: none;
-      background: #FFFFFF;
+      background: #ffffff;
 
-      @include media-max("desktop-up") { font-size: 12px; }
-      color: $noir; 
+      @include media-max("desktop-up") {
+        font-size: 12px;
+      }
+      color: $noir;
     }
     ::-webkit-scrollbar {
       display: none;
-      width: 0px;  /* remove scrollbar space */
-      background: transparent;  /* optional: just make scrollbar invisible */
+      width: 0px; /* remove scrollbar space */
+      background: transparent; /* optional: just make scrollbar invisible */
     }
-    .card-body{
+    .card-body {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -206,16 +216,16 @@
     }
   }
 
-  .card-footer{
+  .card-footer {
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-    border:none;
+    border: none;
     text-align: right;
     color: $blancSimple;
-    &.bg-null{
+    &.bg-null {
       background-color: $noir;
     }
-    &.correct-radius{
+    &.correct-radius {
       border-bottom-right-radius: 12px;
       border-bottom-left-radius: 12px;
     }

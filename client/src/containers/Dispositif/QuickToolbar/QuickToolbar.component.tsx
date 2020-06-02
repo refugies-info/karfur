@@ -196,7 +196,7 @@ export class QuickToolbar extends Component<Props, StateType> {
             </CardBody>
           </Card>
         );
-      } else {
+      } 
         return false;
         // return(
         //   <Card className="quick-toolbar">
@@ -267,9 +267,9 @@ export class QuickToolbar extends Component<Props, StateType> {
         //     </CardBody>
         //   </Card>
         // )
-      }
-    } else {
+      
+    } 
       return null;
-    }
+    
   }
 }

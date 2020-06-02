@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Soccer = ({width = 23, height = 23, stroke = 'white'}) => (
+const Soccer = ({width = 23, height = 23, stroke = "white"}) => (
 <svg width={width} height={height} viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.625 1.625C6.10215 1.625 1.625 6.10215 1.625 11.625C1.625 17.1478 6.10215 21.625 11.625 21.625C17.1478 21.625 21.625 17.1478 21.625 11.625C21.625 8.97284 20.5714 6.4293 18.6961 4.55393C16.8207 2.67857 14.2772 1.625 11.625 1.625Z" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M8.86477 15.8506L7.16699 10.6061L11.6248 7.36523L16.0825 10.6061L14.3848 15.8506H8.86477V15.8506Z" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

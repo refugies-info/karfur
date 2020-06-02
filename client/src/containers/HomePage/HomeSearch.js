@@ -1,35 +1,9 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
-import ReactDependentScript from "react-dependent-script";
-import Autocomplete from "react-google-autocomplete";
-import styled from "styled-components";
-
-import FSearchBtn from "../../components/FigmaUI/FSearchBtn/FSearchBtn";
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import ReactCardFlip from "react-card-flip";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import variables from "scss/colors.scss";
 import Streamline from "../../assets/streamline";
 import Ripples from "react-ripples";
-//import "./SearchItem.scss";
-// import variables from 'scss/colors.scss';
-
-const ThemeButton = styled.div`
-  display: block;
-  background-color: blue;
-  position: absolute;
-  border-radius: 10px;
-  text-align: center;
-`;
-
-const ThemeButtonR = styled.div`
-  display: block;
-  background-color: red;
-  position: absolute;
-  border-radius: 10px;
-  text-align: center;
-`;
 
 export class SearchItem extends Component {
   constructor(props) {
@@ -134,8 +108,7 @@ export class SearchItem extends Component {
   };
 
   render() {
-    const { t, item, keyValue } = this.props;
-    const { dropdownOpen, isMounted, ville } = this.state;
+    const { t, item } = this.props;
 
     return (
       <button onClick={this.open} className={"search-col"}>

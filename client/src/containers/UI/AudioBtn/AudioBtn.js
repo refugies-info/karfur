@@ -44,9 +44,9 @@ class AudioBtn extends Component {
           )}
         </div>
       );
-    } else {
+    } 
       return false;
-    }
+    
   }
 }
 

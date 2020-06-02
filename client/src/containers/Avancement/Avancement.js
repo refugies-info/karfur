@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { Col, Row, Progress, Table, Input } from "reactstrap";
+import { Col, Row, Progress, Table } from "reactstrap";
 import moment from "moment/min/moment-with-locales";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -12,7 +12,6 @@ import { colorStatut } from "../../components/Functions/ColorFunctions";
 import API from "../../utils/API";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import { diffData } from "./data";
-import marioProfile from "../../assets/mario-profile.jpg";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import produce from "immer";
@@ -20,7 +19,6 @@ import produce from "immer";
 import "./Avancement.scss";
 import variables from "scss/colors.scss";
 import _ from "lodash";
-import { elementType } from "prop-types";
 
 moment.locale("fr");
 
@@ -78,7 +76,7 @@ export class Avancement extends Component {
     demarcheCount: 0,
     stringCount: 0,
     ascending: false,
-    research: '',
+    research: "",
   };
 
   async componentDidMount() {
@@ -155,7 +153,7 @@ export class Avancement extends Component {
     return false;
   };
 
-  _loadTraductions = (langue) => {
+  _loadTraductions = () => {
     // if(langue.i18nCode){
     //   API.get_tradForReview({query: {'langueCible':langue.i18nCode, 'status' : 'En attente'},populate: 'articleId userId'}).then(data_res => {
     //     let articles=data_res.data.data;
@@ -257,9 +255,8 @@ export class Avancement extends Component {
               b.statusTrad !== "Publiées"
             ) {
               return -1;
-            } else {
-              return 1;
             }
+            return 1;
           });
         }
       })
@@ -282,9 +279,8 @@ export class Avancement extends Component {
               b.statusTrad !== "En attente"
             ) {
               return -1;
-            } else {
-              return 1;
             }
+            return 1;
           });
         }
       })
@@ -304,9 +300,8 @@ export class Avancement extends Component {
               b.statusTrad !== "À revoir"
             ) {
               return -1;
-            } else {
-              return 1;
             }
+            return 1;
           });
         }
       })
@@ -329,9 +324,8 @@ export class Avancement extends Component {
               b.statusTrad !== "À traduire"
             ) {
               return -1;
-            } else {
-              return 1;
             }
+            return 1;
           });
         }
       })
@@ -348,9 +342,8 @@ export class Avancement extends Component {
               return 0;
             } else if (a.typeContenu === type && b.typeContenu !== type) {
               return -1;
-            } else {
-              return 1;
             }
+            return 1;
           });
         }
       })
@@ -358,12 +351,10 @@ export class Avancement extends Component {
   };
 
   reorder = (key, element) => {
-    console.log(key, element);
-    console.log(this.state.traductions);
     this.setState(
       produce((draft) => {
         draft.ascending = !this.state.ascending;
-        if (element.order == "title") {
+        if (element.order === "title") {
           draft.traductions.sort((a, b) => {
             if (
               a[element.order].toUpperCase() >= b[element.order].toUpperCase()
@@ -373,9 +364,8 @@ export class Avancement extends Component {
               a[element.order].toUpperCase() < b[element.order].toUpperCase()
             ) {
               return this.state.ascending ? -1 : 0;
-            } else {
-              return 1;
             }
+            return 1;
           });
         } else {
           draft.traductions.sort((a, b) => {
@@ -383,9 +373,8 @@ export class Avancement extends Component {
               return this.state.ascending ? 0 : -1;
             } else if (a[element.order] < b[element.order]) {
               return this.state.ascending ? -1 : 0;
-            } else {
-              return -1;
             }
+            return -1;
           });
         }
       })
@@ -395,7 +384,7 @@ export class Avancement extends Component {
   countfilter = (trads, filter) => {
     var count = 0;
     for (var i = 0; i < trads.length; ++i) {
-      if (trads[i].statusTrad == filter) {
+      if (trads[i].statusTrad === filter) {
         count++;
       }
     }
@@ -405,7 +394,7 @@ export class Avancement extends Component {
   countType = (trads, type) => {
     var count = 0;
     for (var i = 0; i < trads.length; ++i) {
-      if (trads[i].typeContenu == type && type !== "string") {
+      if (trads[i].typeContenu === type && type !== "string") {
         if (this.state.waiting && trads[i].statusTrad === "En attente") {
           count++;
         } else if (this.state.published && trads[i].statusTrad === "Publiées") {
@@ -418,7 +407,7 @@ export class Avancement extends Component {
         ) {
           count++;
         }
-      } else if (trads[i].typeContenu == type && type == "string") {
+      } else if (trads[i].typeContenu === type && type === "string") {
         count++;
       }
     }
@@ -426,7 +415,8 @@ export class Avancement extends Component {
   };
 
   componentDidUpdate(prevProps, prevState) {
-    const { langue, isExpert, data } = this.state;
+    const { isExpert, data } = this.state;
+    // eslint-disable-next-line no-console
     console.log(this.props, this.state);
     let traductions = [];
     if (
@@ -445,27 +435,30 @@ export class Avancement extends Component {
               (x.titreMarque && x.titreInformatif ? " - " : "") +
               (x.titreInformatif || ""),
             nombreMots: x.nbMots,
-            avancement: isExpert ?
-            Math.max(
-              0,
-              ...((this.state.traductionsFaites || [])
-                .filter((y) => {
-                  return (y.articleId === x._id && y.userId._id === this.props.userId);
-                })
-                .map((z) => z.avancement || -1) || [])
-            ) :
-              Math.max(
-                0,
-                ...((this.state.traductionsFaites || [])
-                  .filter((y) => {
-                    return y.articleId === x._id;
-                  })
-                  .map((z) => z.avancement || -1) || [])
-              ),
+            avancement: isExpert
+              ? Math.max(
+                  0,
+                  ...((this.state.traductionsFaites || [])
+                    .filter((y) => {
+                      return (
+                        y.articleId === x._id &&
+                        y.userId._id === this.props.userId
+                      );
+                    })
+                    .map((z) => z.avancement || -1) || [])
+                )
+              : Math.max(
+                  0,
+                  ...((this.state.traductionsFaites || [])
+                    .filter((y) => {
+                      return y.articleId === x._id;
+                    })
+                    .map((z) => z.avancement || -1) || [])
+                ),
             status: x.status,
             statusTrad:
               (this.state.traductionsFaites || [])
-                .filter((y, index) => {
+                .filter((y) => {
                   return y.articleId === x._id;
                   /*      if (y.articleId === x._id && y.status === "Validée" && x.avancement === 1) {
                   return "À revoir"
@@ -475,7 +468,7 @@ export class Avancement extends Component {
                 return "En attente";
                 } */
                 })
-                .map((z, index) => {
+                .map((z) => {
                   if (z.status === "À revoir") {
                     return "À revoir";
                   } else if (z.status === "Validée") {
@@ -486,9 +479,12 @@ export class Avancement extends Component {
                   return "À traduire";
                 })[0] || "À traduire",
             created_at: x.created_at,
-            updatedAt: this.state.traductionsFaites.find(y => y.articleId === x._id) ?
-            this.state.traductionsFaites.find(y => y.articleId === x._id).updatedAt :
-            false,
+            updatedAt: this.state.traductionsFaites.find(
+              (y) => y.articleId === x._id
+            )
+              ? this.state.traductionsFaites.find((y) => y.articleId === x._id)
+                  .updatedAt
+              : false,
             users: [
               ...new Set(
                 (this.state.traductionsFaites || [])
@@ -562,7 +558,7 @@ export class Avancement extends Component {
         stringCount: this.countType(traductions, "string"),
       });
       if (
-        this.countfilter(traductions, "À revoir") == 0 &&
+        this.countfilter(traductions, "À revoir") === 0 &&
         this.countfilter(traductions, "À traduire") > 0
       ) {
         this.setState({
@@ -600,7 +596,7 @@ export class Avancement extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({research: e.target.value});
+    this.setState({ research: e.target.value });
     // Variable to hold the original version of the list
     let currentList = [];
     // Variable to hold the filtered list before putting into state
@@ -634,7 +630,7 @@ export class Avancement extends Component {
   };
 
   render() {
-    const { langue, isExpert, data, traductions, unfiltered } = this.state;
+    const { langue, isExpert, data, traductions } = this.state;
 
     const displayedText =
       (data || []).length === 0 || (this.props.dispositifs || []).length === 0
@@ -752,7 +748,9 @@ export class Avancement extends Component {
                 {element.isStructure ? "Site" : jsUcfirst(element.typeContenu)}
               </td>
               <td className="align-middle fit-content">
-                {element.updatedAt ? moment(element.updatedAt).format("YYYY/MM/DD H:mm") : "Pas encore traduite"}
+                {element.updatedAt
+                  ? moment(element.updatedAt).format("YYYY/MM/DD H:mm")
+                  : "Pas encore traduite"}
                 {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
               <td className="align-middle fit-content">
@@ -768,18 +766,17 @@ export class Avancement extends Component {
             </tr>
           );
         });
-      } else {
-        return (
-          <tr>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-            <td>{displayedText}</td>
-          </tr>
-        );
       }
+      return (
+        <tr>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+          <td>{displayedText}</td>
+        </tr>
+      );
     };
 
     return (
