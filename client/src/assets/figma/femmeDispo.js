@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const femmeDispo = ({width, height, fill, ...props}) => (
   <svg {...props} width={width || "300"} height={height || "420"} viewBox={"0 0 " + (width || "300") + " " + (height || "420")} fill="none" xmlns="http://www.w3.org/2000/svg">

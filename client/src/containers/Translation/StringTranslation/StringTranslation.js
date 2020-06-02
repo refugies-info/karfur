@@ -393,9 +393,9 @@ const ConditionalSpinner = (props) => {
         <Spinner color="success" className="fadeIn fadeOut" />
       </div>
     );
-  } else {
+  } 
     return false;
-  }
+  
 };
 
 export default track({

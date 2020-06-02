@@ -77,7 +77,7 @@ const topRightHeader = (props) => {
         </div>
       </Col>
     );
-  } else {
+  } 
     return (
       <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
         <Card>
@@ -117,7 +117,7 @@ const topRightHeader = (props) => {
         </Card>
       </Col>
     );
-  }
+  
 };
 
 export default topRightHeader;

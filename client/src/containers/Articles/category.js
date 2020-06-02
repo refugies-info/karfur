@@ -66,7 +66,7 @@ let styles = StyleSheet.create({
     fontWeight: 700,
     lineHeight: "1.1",
     bottom: 0,
-    fontFamily: '"Source Sans Pro",Helvetica,Arial,sans-serif',
+    fontFamily: "\"Source Sans Pro\",Helvetica,Arial,sans-serif",
     marginBottom: 0,
   },
 });

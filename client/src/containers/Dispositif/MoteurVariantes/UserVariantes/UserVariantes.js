@@ -179,9 +179,9 @@ class UserVariantes extends Component {
           </div>
         </div>
       );
-    } else {
+    } 
       return false;
-    }
+    
   }
 }
 

@@ -351,7 +351,7 @@ class Article extends Component {
             <Spinner color="success" className="fadeIn fadeOut" />
           </div>
         );
-      } else {
+      } 
         return (
           <div id="rendered-article" onClick={(e) => this.openEditModal(e)}>
             {ReactHtmlParser(this.state.translated.body)}
@@ -370,7 +370,7 @@ class Article extends Component {
             })} */}
           </div>
         );
-      }
+      
     };
 
     return (

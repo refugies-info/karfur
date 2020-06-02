@@ -78,7 +78,7 @@ const bandeauEdition = (props) => {
         </div>
       </div>
     );
-  } else {
+  } 
     return (
       <div className="bandeau-edition">
         <div className="dashed-panel no-radius" />
@@ -154,7 +154,7 @@ const bandeauEdition = (props) => {
         </div>
       </div>
     );
-  }
+  
 };
 
 export default bandeauEdition;

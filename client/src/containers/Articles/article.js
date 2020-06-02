@@ -49,7 +49,7 @@ let styles = StyleSheet.create({
     color: "#333337",
     fontSize: "2.4rem",
     marginTop: 0,
-    fontFamily: '"Source Sans Pro",Helvetica,Arial,sans-serif',
+    fontFamily: "\"Source Sans Pro\",Helvetica,Arial,sans-serif",
     fontWeight: 700,
     marginBottom: "10px",
     lineHeight: "1.1",
@@ -61,7 +61,7 @@ let styles = StyleSheet.create({
   },
   p: {
     margin: "0 0 10px",
-    fontFamily: '"Droid Serif",serif',
+    fontFamily: "\"Droid Serif\",serif",
     fontSize: "1.6rem",
     "@media (min-width: 992px)": {
       fontSize: "1.8rem",

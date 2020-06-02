@@ -163,9 +163,9 @@ const favoriTable = (props) => {
         </div>
       </div>
     );
-  } else {
+  } 
     return table;
-  }
+  
 };
 
 export default withTranslation()(favoriTable);

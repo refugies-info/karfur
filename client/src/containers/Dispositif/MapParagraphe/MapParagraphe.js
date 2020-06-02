@@ -54,7 +54,7 @@ class MapParagraphe extends PureComponent {
           false
         ),
       };
-    } else return null;
+    } return null;
   }
 
   componentDidUpdate() {

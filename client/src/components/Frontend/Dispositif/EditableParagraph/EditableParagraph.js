@@ -66,16 +66,16 @@ const MyImageBlock = (props) => {
           <img {...data} alt={(data || {}).alt} />
         </div>
       );
-    } else {
+    } 
       return (
         <div className="video-wrapper">
           <Player playsInline {...data} />
         </div>
       );
-    }
-  } else {
+    
+  } 
     return false;
-  }
+  
 };
 
 const MyMediaBlock = (props) => {
@@ -309,9 +309,9 @@ class EditableParagraph extends Component {
           )}
         </>
       );
-    } else {
+    } 
       return false;
-    }
+    
   }
 }
 
@@ -406,9 +406,9 @@ const AddModuleBtn = (props) => {
         </Tooltip>
       </div>
     );
-  } else {
+  } 
     return false;
-  }
+  
 };
 
 function uploadImageCallBack(file) {

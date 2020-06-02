@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const manLab = ({width, height, fill, ...props}) => (
   <svg {...props} width={width || "300"} height={height || "334"} viewBox={"0 0 " + (width || "300") + " " + (height || "334")} fill="none" xmlns="http://www.w3.org/2000/svg">

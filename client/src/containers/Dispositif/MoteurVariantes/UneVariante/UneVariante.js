@@ -480,7 +480,7 @@ class UneVariante extends Component {
                   </div>
                 </Col>
               );
-            } else {
+            } 
               return (
                 <Col lg={inVariante ? "0" : "3"} className="moteur-col" key={i}>
                   <div className="col-header">
@@ -506,7 +506,7 @@ class UneVariante extends Component {
                   </div>
                 </Col>
               );
-            }
+            
           })}
         </div>
 

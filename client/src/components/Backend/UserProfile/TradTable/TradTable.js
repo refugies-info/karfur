@@ -37,9 +37,9 @@ const tradTable = (props) => {
           <span>{langue.langueLoc}</span>
         </>
       );
-    } else {
+    } 
       return false;
-    }
+    
   };
   let table = (
     <Table responsive className="avancement-user-table">
@@ -293,9 +293,9 @@ const tradTable = (props) => {
     );
   } else if (show) {
     return table;
-  } else {
+  } 
     return false;
-  }
+  
 };
 
 export default withTranslation()(tradTable);

@@ -172,8 +172,8 @@ export const contenuDispositif = (props: Props) => {
           </button>
         </div>
       );
-    } else {
+    } 
       return false;
-    }
+    
   });
 };

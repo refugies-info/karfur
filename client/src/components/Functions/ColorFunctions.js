@@ -5,9 +5,9 @@ const colorAvancement = (avancement) => {
     return "info";
   } else if (avancement > 0.25) {
     return "warning";
-  } else {
+  } 
     return "danger";
-  }
+  
 };
 
 const fColorAvancement = (avancement) => {
@@ -17,9 +17,9 @@ const fColorAvancement = (avancement) => {
     return "jaune";
   } else if (avancement > 0.2) {
     return "orange";
-  } else {
+  } 
     return "rouge";
-  }
+  
 };
 
 const colorStatut = (avancement) => {
@@ -38,9 +38,9 @@ const colorStatut = (avancement) => {
     avancement === "Brouillon"
   ) {
     return "warning";
-  } else {
+  } 
     return "success";
-  }
+  
 };
 
 const randomColor = () => {

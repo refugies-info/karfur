@@ -176,9 +176,9 @@ const actionTable = (props) => {
         </div>
       </div>
     );
-  } else {
+  } 
     return table;
-  }
+  
 };
 
 export default withTranslation()(actionTable);

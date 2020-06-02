@@ -257,9 +257,9 @@ export class Avancement extends Component {
               b.statusTrad !== "Publiées"
             ) {
               return -1;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         }
       })
@@ -282,9 +282,9 @@ export class Avancement extends Component {
               b.statusTrad !== "En attente"
             ) {
               return -1;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         }
       })
@@ -304,9 +304,9 @@ export class Avancement extends Component {
               b.statusTrad !== "À revoir"
             ) {
               return -1;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         }
       })
@@ -329,9 +329,9 @@ export class Avancement extends Component {
               b.statusTrad !== "À traduire"
             ) {
               return -1;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         }
       })
@@ -348,9 +348,9 @@ export class Avancement extends Component {
               return 0;
             } else if (a.typeContenu === type && b.typeContenu !== type) {
               return -1;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         }
       })
@@ -373,9 +373,9 @@ export class Avancement extends Component {
               a[element.order].toUpperCase() < b[element.order].toUpperCase()
             ) {
               return this.state.ascending ? -1 : 0;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         } else {
           draft.traductions.sort((a, b) => {
@@ -383,9 +383,9 @@ export class Avancement extends Component {
               return this.state.ascending ? 0 : -1;
             } else if (a[element.order] < b[element.order]) {
               return this.state.ascending ? -1 : 0;
-            } else {
+            } 
               return 1;
-            }
+            
           });
         }
       })
@@ -776,7 +776,7 @@ export class Avancement extends Component {
             </tr>
           );
         });
-      } else {
+      } 
         return (
           <tr>
             <td>{displayedText}</td>
@@ -787,7 +787,7 @@ export class Avancement extends Component {
             <td>{displayedText}</td>
           </tr>
         );
-      }
+      
     };
 
     return (

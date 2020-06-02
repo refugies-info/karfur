@@ -371,9 +371,9 @@ const userChange = (props) => {
 const ProfilePic = (props) => {
   if (props.uploading) {
     return <Spinner color="dark" className="fadeIn fadeOut" />;
-  } else {
+  } 
     return <img className="img-circle" src={props.imgSrc} alt="profile" />;
-  }
+  
 };
 
 export default userChange;

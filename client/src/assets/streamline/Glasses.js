@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Glasses = ({width = 22, height = 22, stroke = 'white'}) => (
+const Glasses = ({width = 22, height = 22, stroke = "white"}) => (
 <svg width={width} height={height} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M11 20.3758L3.685 17.5924C3.20198 17.436 2.87486 16.986 2.875 16.4783V10.3758C2.875 10.0006 3.05463 9.64818 3.35817 9.42774C3.6617 9.2073 4.05244 9.14554 4.40917 9.2616L11 11.8099V20.3758Z" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M18.315 17.5924L11 20.3758V11.8099L17.5908 9.2616C17.9476 9.14554 18.3383 9.2073 18.6418 9.42774C18.9454 9.64818 19.125 10.0006 19.125 10.3758V16.4783C19.1251 16.986 18.798 17.436 18.315 17.5924V17.5924Z" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
