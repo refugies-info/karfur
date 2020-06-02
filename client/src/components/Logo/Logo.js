@@ -1,9 +1,9 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-import { logo_header } from '../../assets/figma';
+import { logo_header } from "../../assets/figma";
 
-import './Logo.scss';
+import "./Logo.scss";
 
 const logo = () => (
   <NavLink to="/" className="logo mr-10">

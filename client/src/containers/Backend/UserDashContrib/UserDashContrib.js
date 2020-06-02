@@ -87,18 +87,15 @@ export class UserDashContrib extends Component {
       label: modal,
       value: !this.state.showModal[modal],
     });
-    this.setState(
-      {
-        showModal: {
-          ...this.state.showModal,
-          [modal]: !this.state.showModal[modal],
-        },
+    this.setState({
+      showModal: {
+        ...this.state.showModal,
+        [modal]: !this.state.showModal[modal],
       },
-      () => console.log(this.state)
-    );
+    });
   };
 
-  setUser = (user) => {
+  setUser = () => {
     // API.get_langues({'_id': { $in: user.selectedLanguages}},{},'participants').then(data_langues => {
     //   this.setState({user, langues: data_langues.data.data});
     this.toggleModal("defineUser");

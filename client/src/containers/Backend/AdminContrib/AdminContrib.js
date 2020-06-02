@@ -61,6 +61,7 @@ class AdminContrib extends Component {
     this._initializeContrib();
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _initializeContrib = (_) => {
     API.get_dispositif({
       query: { status: { $in: reviews_data.map((x) => x.value) } },

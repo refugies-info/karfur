@@ -73,6 +73,7 @@ export class TranslationHOC extends Component {
     window.scrollTo(0, 0);
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
       this._initializeComponent(nextProps);
@@ -83,7 +84,7 @@ export class TranslationHOC extends Component {
     this._isMounted = false;
     clearInterval(this.timer);
   }
-
+  // eslint-disable-next-line react/no-deprecated
   componentWillUpdate(_, nextState) {
     if (nextState.translated.body !== this.state.translated.body) {
       this.setState({
@@ -128,7 +129,7 @@ export class TranslationHOC extends Component {
           const traductions = data_res.data.data;
           const traduction = traductions.find(
             (trad) => trad.userId._id === trad.validatorId
-          )
+          );
           console.log(traduction);
           this._isMounted &&
             this.setState({
@@ -136,11 +137,20 @@ export class TranslationHOC extends Component {
               ...((isExpert || userId) && {
                 traduction: {
                   initialText: _.get(traductions, "0.initialText", {}),
-                  translatedText: (isExpert && traductions.find(
-                    (trad) => trad.userId._id === this.props.userId
-                  )) ? _.get(traductions.find(
-                    (trad) => trad.userId._id === this.props.userId
-                  ), ['translatedText']) : traduction ? traduction.translatedText :_.get(traductions, "0.translatedText", {}),
+                  translatedText:
+                    isExpert &&
+                    traductions.find(
+                      (trad) => trad.userId._id === this.props.userId
+                    )
+                      ? _.get(
+                          traductions.find(
+                            (trad) => trad.userId._id === this.props.userId
+                          ),
+                          ["translatedText"]
+                        )
+                      : traduction
+                      ? traduction.translatedText
+                      : _.get(traductions, "0.translatedText", {}),
                 },
                 autosuggest: false,
               }),
@@ -165,17 +175,26 @@ export class TranslationHOC extends Component {
         const traductions = data_res.data.data;
         const traduction = traductions.find(
           (trad) => trad.userId._id === trad.validatorId
-        )
+        );
         this.setState({
           traductionsFaites: traductions,
           ...((isExpert || userId) && {
             traduction: {
               initialText: _.get(traductions, "0.initialText", {}),
-              translatedText: (isExpert && traductions.find(
-                (trad) => trad.userId._id === this.props.userId
-              )) ? _.get(traductions.find(
-                (trad) => trad.userId._id === this.props.userId
-              ), ['translatedText']) : traduction ? traduction.translatedText :_.get(traductions, "0.translatedText", {}),
+              translatedText:
+                isExpert &&
+                traductions.find(
+                  (trad) => trad.userId._id === this.props.userId
+                )
+                  ? _.get(
+                      traductions.find(
+                        (trad) => trad.userId._id === this.props.userId
+                      ),
+                      ["translatedText"]
+                    )
+                  : traduction
+                  ? traduction.translatedText
+                  : _.get(traductions, "0.translatedText", {}),
             },
             autosuggest: false,
           }),
@@ -432,15 +451,15 @@ export class TranslationHOC extends Component {
     ]({ query: query, locale: i18nCode, random: true, isExpert })
       .then((data_res) => {
         let results = data_res.data.data;
-       /*  if (!isExpert) {
+        /*  if (!isExpert) {
           this.props.history.push({
             pathname: "/avancement/traductions/" + langue._id,
           }); 
         } */
         if (results.length === 0) {
           this.props.history.push({
-              pathname: "/avancement/traductions/" + langue._id,
-            });
+            pathname: "/avancement/traductions/" + langue._id,
+          });
           /* if (isExpert) {
             
           } else {
@@ -552,7 +571,7 @@ export class TranslationHOC extends Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.user.userId,
-    isExpert: state.user.expertTrad
+    isExpert: state.user.expertTrad,
   };
 };
 

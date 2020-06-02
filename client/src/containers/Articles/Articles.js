@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import track from "react-tracking";
@@ -116,6 +117,7 @@ let styles = StyleSheet.create({
     fontWeight: 700,
     marginRight: "10px",
     fontSize: "1.2rem",
+    // eslint-disable-next-line quotes
     fontFamily: '"Source Sans Pro",Helvetica,Arial,sans-serif',
     textTransform: "uppercase",
     cursor: "pointer",

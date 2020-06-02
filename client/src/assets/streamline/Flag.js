@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Flag = ({width = 20, height = 22, stroke = 'white'}) => (
+const Flag = ({width = 20, height = 22, stroke = "white"}) => (
     <svg width={width} height={height} viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M16.1108 17.2109L11.71 18.0909" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
 <path d="M12.2227 13.1526L10.1668 14.0001C9.50395 14.2627 8.75182 13.9572 8.45965 13.3069C8.16747 12.6565 8.43865 11.8914 9.07518 11.5701L11.1343 10.5701C11.5869 10.3442 12.1123 10.3141 12.5877 10.4868L16.346 11.9251" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

@@ -7,7 +7,7 @@ import { withTranslation } from "react-i18next";
 import marioProfile from "../../../../assets/mario-profile.jpg";
 import {
   colorAvancement,
-  colorStatut
+  colorStatut,
 } from "../../../Functions/ColorFunctions";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { fakeTraduction } from "../../../../containers/Backend/UserProfile/data";
@@ -15,7 +15,7 @@ import { fakeTraduction } from "../../../../containers/Backend/UserProfile/data"
 import variables from "scss/colors.scss";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
-const tradTable = props => {
+const tradTable = (props) => {
   const { t } = props;
   const traducteur = (props.dataArray || []).length > 0;
   const dataArray = traducteur
@@ -24,8 +24,8 @@ const tradTable = props => {
   let data = props.limit ? dataArray.slice(0, props.limit) : dataArray;
   let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false);
 
-  const langueItem = i18nCode => {
-    let langue = props.langues.find(x => x.i18nCode === i18nCode);
+  const langueItem = (i18nCode) => {
+    let langue = props.langues.find((x) => x.i18nCode === i18nCode);
     if (langue && langue.langueCode && langue.langueFr) {
       return (
         <>
@@ -37,9 +37,9 @@ const tradTable = props => {
           <span>{langue.langueLoc}</span>
         </>
       );
-    } else {
+    } 
       return false;
-    }
+    
   };
   let table = (
     <Table responsive className="avancement-user-table">
@@ -70,14 +70,14 @@ const tradTable = props => {
                     "?id=" +
                     (
                       (props.langues || []).find(
-                        x => x.i18nCode === element.langueCible
+                        (x) => x.i18nCode === element.langueCible
                       ) || {}
                     )._id,
                   state: {
                     langue: (props.langues || []).find(
-                      x => x.i18nCode === element.langueCible
-                    )
-                  }
+                      (x) => x.i18nCode === element.langueCible
+                    ),
+                  },
                 })
               }
             >
@@ -122,7 +122,7 @@ const tradTable = props => {
               </td>
               <td className="align-middle hideOnPhone">
                 {element.participants &&
-                  element.participants.map(participant => (
+                  element.participants.map((participant) => (
                     <img
                       key={participant._id}
                       src={
@@ -148,14 +148,14 @@ const tradTable = props => {
                       "?id=" +
                       (
                         (props.langues || []).find(
-                          x => x.i18nCode === element.langueCible
+                          (x) => x.i18nCode === element.langueCible
                         ) || {}
                       )._id,
                     state: {
                       langue: (props.langues || []).find(
-                        x => x.i18nCode === element.langueCible
-                      )
-                    }
+                        (x) => x.i18nCode === element.langueCible
+                      ),
+                    },
                   }}
                   type="light-action"
                   name="eye-outline"
@@ -219,7 +219,7 @@ const tradTable = props => {
                   <span
                     className="texte-small ml-10"
                     dangerouslySetInnerHTML={{
-                      __html: t("Tables.mots rédigés", "mots<br/>rédigés")
+                      __html: t("Tables.mots rédigés", "mots<br/>rédigés"),
                     }}
                   />
                 </div>
@@ -228,7 +228,10 @@ const tradTable = props => {
                   <span
                     className="texte-small ml-10"
                     dangerouslySetInnerHTML={{
-                      __html: t("Tables.minutes passées", "minutes<br/>passées")
+                      __html: t(
+                        "Tables.minutes passées",
+                        "minutes<br/>passées"
+                      ),
                     }}
                   />
                 </div>
@@ -240,7 +243,7 @@ const tradTable = props => {
                       __html: t(
                         "Tables.personnes informées",
                         "personnes<br/>informées"
-                      )
+                      ),
                     }}
                   />
                 </div>
@@ -290,9 +293,9 @@ const tradTable = props => {
     );
   } else if (show) {
     return table;
-  } else {
+  } 
     return false;
-  }
+  
 };
 
 export default withTranslation()(tradTable);

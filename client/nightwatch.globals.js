@@ -1,6 +1,6 @@
 module.exports = {
   timeout: 1000,
-  url:'http://localhost:3000/homepage',
+  url:"http://localhost:3000/homepage",
 
   // Abord all on test fail
   abortOnAssertionFailure: true,

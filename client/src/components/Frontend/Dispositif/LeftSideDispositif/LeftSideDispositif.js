@@ -1,77 +1,138 @@
-import React from 'react';
-import { ListGroup, ListGroupItem, Spinner, InputGroup, Input } from 'reactstrap';
-import Scrollspy from 'react-scrollspy';
-import ReactToPrint from 'react-to-print';
-import { withTranslation } from 'react-i18next';
+import React from "react";
+import {
+  ListGroup,
+  ListGroupItem,
+  Spinner,
+  InputGroup,
+  Input,
+} from "reactstrap";
+import Scrollspy from "react-scrollspy";
+import ReactToPrint from "react-to-print";
+import { withTranslation } from "react-i18next";
 
-import EVAIcon from '../../../UI/EVAIcon/EVAIcon';
-import FButton from '../../../FigmaUI/FButton/FButton';
+import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
+import FButton from "../../../FigmaUI/FButton/FButton";
 
-import variables from 'scss/colors.scss';
+import variables from "scss/colors.scss";
 
 const leftSideDispositif = (props) => {
-  const {t} = props;
-  const onLinkClicked = props.disableEdit ? (()=> props.content.externalLink  && window.open( (props.content.externalLink.includes("http") ? "" : "http://") + props.content.externalLink, "_blank")) : props.toggleInputBtnClicked ;
-  return(
+  const { t } = props;
+  const onLinkClicked = props.disableEdit
+    ? () =>
+        props.content.externalLink &&
+        window.open(
+          (props.content.externalLink.includes("http") ? "" : "http://") +
+            props.content.externalLink,
+          "_blank"
+        )
+    : props.toggleInputBtnClicked;
+  return (
     <div className="sticky-affix">
       <ListGroup className="list-group-flush">
-        <Scrollspy 
-          items={props.menu.map((_,key) => 'item-'+key) }
+        <Scrollspy
+          items={props.menu.map((_, key) => "item-" + key)}
           currentClassName="active"
           onUpdate={props.handleScrollSpy}
-          offset={-60}>
+          offset={-60}
+        >
           {props.menu.map((item, key) => {
-            return ( 
+            return (
               <div key={key} className="list-item-wrapper">
                 <ListGroupItem
-                  action 
-                  tag="a" 
+                  action
+                  tag="a"
                   data-toggle="list"
-                  href={'#item-head-' + key} 
+                  href={"#item-head-" + key}
                 >
                   {item.title && t("Dispositif." + item.title, item.title)}
                 </ListGroupItem>
               </div>
-            )}
-          )}
+            );
+          })}
         </Scrollspy>
       </ListGroup>
 
       <div className="print-buttons">
-        {props.typeContenu !== "demarche" && 
+        {props.typeContenu !== "demarche" && (
           <div className="link-wrapper" id="input-btn">
-            {props.inputBtnClicked ?
+            {props.inputBtnClicked ? (
               <InputGroup className="input-btn">
-                <EVAIcon className="link-icon" name="link-outline" fill={variables.grisFonce}/>
-                <Input value={props.content.externalLink} onChange={props.handleChange} placeholder="Lien vers votre site" id="externalLink" />
-                <EVAIcon onClick={onLinkClicked} className="check-icon" name="checkmark-circle-2" fill={variables.grisFonce}/>
+                <EVAIcon
+                  className="link-icon"
+                  name="link-outline"
+                  fill={variables.grisFonce}
+                />
+                <Input
+                  value={props.content.externalLink}
+                  onChange={props.handleChange}
+                  placeholder="Lien vers votre site"
+                  id="externalLink"
+                />
+                <EVAIcon
+                  onClick={onLinkClicked}
+                  className="check-icon"
+                  name="checkmark-circle-2"
+                  fill={variables.grisFonce}
+                />
               </InputGroup>
-              :
-              <FButton type="theme" name="external-link-outline" onClick={onLinkClicked}>
+            ) : (
+              <FButton
+                type="theme"
+                name="external-link-outline"
+                onClick={onLinkClicked}
+              >
                 {t("Dispositif.Voir le site", "Voir le site")}
-              </FButton>}
-          </div>}
-        {props.disableEdit && <>
-          <FButton type="light-action" onClick={props.createPdf} name="download-outline">
-            {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
-            {props.showSpinner && <Spinner color="light" className="ml-8 small-spinner" />}
-          </FButton>
-          <FButton type="light-action" href={"mailto:mail@example.org?subject=Dispositif" + ((props.content && props.content.titreMarque) ? (' - ' + props.content.titreMarque) : '') + "&body=Le dispositif est disponible dans votre dossier téléchargement"} onClick={props.createPdf} name="paper-plane-outline">
-            {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
-          </FButton>
-          <FButton type="light-action" onClick={props.send_sms} name="smartphone-outline">
-            {t("Dispositif.Envoyer par SMS", "Envoyer par SMS")}
-          </FButton>
-          <ReactToPrint
-            trigger={() => 
-              <FButton type="light-action" name="printer-outline">
-                {t("Dispositif.Imprimer", "Imprimer")}
-              </FButton>}
-            content={() => props.newRef.current} /> </>}
-          {/* onBeforePrint={props.openAllAccordions} /> */}
+              </FButton>
+            )}
+          </div>
+        )}
+        {props.disableEdit && (
+          <>
+            <FButton
+              type="light-action"
+              onClick={props.createPdf}
+              name="download-outline"
+            >
+              {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
+              {props.showSpinner && (
+                <Spinner color="light" className="ml-8 small-spinner" />
+              )}
+            </FButton>
+            <FButton
+              type="light-action"
+              href={
+                "mailto:mail@example.org?subject=Dispositif" +
+                (props.content && props.content.titreMarque
+                  ? " - " + props.content.titreMarque
+                  : "") +
+                "&body=Le dispositif est disponible dans votre dossier téléchargement"
+              }
+              onClick={props.createPdf}
+              name="paper-plane-outline"
+            >
+              {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
+            </FButton>
+            <FButton
+              type="light-action"
+              onClick={props.send_sms}
+              name="smartphone-outline"
+            >
+              {t("Dispositif.Envoyer par SMS", "Envoyer par SMS")}
+            </FButton>
+            <ReactToPrint
+              trigger={() => (
+                <FButton type="light-action" name="printer-outline">
+                  {t("Dispositif.Imprimer", "Imprimer")}
+                </FButton>
+              )}
+              content={() => props.newRef.current}
+            />{" "}
+          </>
+        )}
+        {/* onBeforePrint={props.openAllAccordions} /> */}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default withTranslation()(leftSideDispositif);

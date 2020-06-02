@@ -132,13 +132,13 @@ export class Admin extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.activeTab[3] !== this.state.activeTab[3]) {
-      if (this.state.activeTab[3] == 0) {
+      if (this.state.activeTab[3] === 0) {
         document.title = "Contenus";
-      } else if (this.state.activeTab[3] == 1) {
+      } else if (this.state.activeTab[3] === 1) {
         document.title = "Structures";
-      } else if (this.state.activeTab[3] == 2) {
+      } else if (this.state.activeTab[3] === 2) {
         document.title = "Utilisateurs";
-      } else if (this.state.activeTab[3] == 3) {
+      } else if (this.state.activeTab[3] === 3) {
         document.title = "Languages";
       }
     }
@@ -183,7 +183,7 @@ export class Admin extends Component {
   };
 
   onSelect = (item, switchTo = null) => {
-    this.setState(item, () => console.log(this.state));
+    this.setState(item);
     if (item.user) {
       this.setState({
         langues: [
@@ -360,6 +360,7 @@ export class Admin extends Component {
           });
         },
         (error) => {
+          // eslint-disable-next-line no-console
           console.log(error);
           return;
         }
@@ -379,6 +380,7 @@ export class Admin extends Component {
           this.setState({ users: usersCopy, user: this.initial_state.user });
         },
         (error) => {
+          // eslint-disable-next-line no-console
           console.log(error);
           return;
         }

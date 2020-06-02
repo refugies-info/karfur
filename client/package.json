@@ -112,7 +112,8 @@
     "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json",
     "cypress:open": "cypress open",
     "test:types": "tsc --noEmit",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "test:lint": "eslint . --ext ts,tsx,js --quiet --cache"
   },
   "proxy": "http://localhost:8000",
   "bugs": {
@@ -139,6 +140,8 @@
     "@types/react-tracking": "^7.0.2",
     "@types/reactstrap": "^8.4.2",
     "@types/recompose": "^0.30.7",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
     "chai": "^4.2.0",
     "chai-enzyme": "^1.0.0-beta.0",
     "chai-jest-diff": "^1.0.2",
@@ -148,6 +151,7 @@
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.0",
     "enzyme-to-json": "^3.3.5",
+    "eslint-plugin-react": "^7.20.0",
     "geckodriver": "^1.19.1",
     "lolex": "^5.1.1",
     "nightwatch": "^1.0.19",
