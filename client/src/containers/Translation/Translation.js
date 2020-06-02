@@ -106,7 +106,7 @@ export class TranslationHOC extends Component {
     }
     const { locale, langueBackupId } = await this._setLangue(props),
       userId = props.userId;
-    const isExpert = props.location.pathname.includes("/validation");
+    const isExpert = this.props.expertTrad;
     const type =
       (props.match.path || "").includes("dispositif") ||
       (props.match.path || "").includes("demarche")
@@ -551,6 +551,7 @@ export class TranslationHOC extends Component {
 const mapStateToProps = (state) => {
   return {
     userId: state.user.userId,
+    isExpert: state.user.expertTrad
   };
 };
 
