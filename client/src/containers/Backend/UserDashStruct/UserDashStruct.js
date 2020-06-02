@@ -91,7 +91,6 @@ export class UserDashStruct extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    let user = this.props.user;
     if (!this.state.selectedStructure) {
       Swal.fire(
         "Oh non",
@@ -165,7 +164,6 @@ export class UserDashStruct extends Component {
   }
 
   initializeStructure = () => {
-    const user = this.props.user;
     /*     let selectedStructure =
       this.props.location.state && this.props.location.state.admin
         ? this.props.location.state.structure
@@ -253,174 +251,173 @@ export class UserDashStruct extends Component {
 
     if (!structure || structure.noResults) {
       return <Redirect to="/backend/user-profile" />;
-    } else {
-      const members = structure.membres;
-      const enAttente = (structure.dispositifsAssocies || []).filter(
-        (x) => x.status === "En attente"
-      );
-      return (
-        <div className="animated fadeIn user-dash-struct">
-          <DashHeader
-            isStructure
-            title="Votre structure"
-            // ctaText="Gérer mon rôle"
-            structure={structure}
-            traductions={this.state.traductions}
-            actions={this.state.actions}
-            nbRead={nbRead}
-            user={user}
-            toggle={this.toggleModal}
-            upcoming={this.upcoming}
-          />
+    }
+    const members = structure.membres;
+    const enAttente = (structure.dispositifsAssocies || []).filter(
+      (x) => x.status === "En attente"
+    );
+    return (
+      <div className="animated fadeIn user-dash-struct">
+        <DashHeader
+          isStructure
+          title="Votre structure"
+          // ctaText="Gérer mon rôle"
+          structure={structure}
+          traductions={this.state.traductions}
+          actions={this.state.actions}
+          nbRead={nbRead}
+          user={user}
+          toggle={this.toggleModal}
+          upcoming={this.upcoming}
+        />
 
-          {enAttente.length > 0 &&
-            enAttente.map((element) => (
-              <div className="nouveau-contenu mt-12 mb-12" key={element._id}>
-                <div className="left-side">
-                  <EVAIcon
-                    name="alert-triangle"
-                    fill={variables.noir}
-                    className="mr-10"
-                  />
-                  <b>Un nouveau contenu a été attribué à votre structure !</b>
-                </div>
-                <div className="middle-side">
-                  <b>
-                    {element.created_at
-                      ? moment(element.created_at).fromNow()
-                      : ""}
-                  </b>
-                </div>
-                <div className="right-side">
-                  <FButton
-                    tag={NavLink}
-                    to={{
-                      pathname:
-                        "/" +
-                        (element.typeContenu || "dispositif") +
-                        "/" +
-                        element._id,
-                      state: { structure: structure },
-                    }}
-                    type="light-action"
-                    name="eye-outline"
-                    fill={variables.noir}
-                  >
-                    Voir le contenu
-                  </FButton>
-                </div>
-              </div>
-            ))}
-
-          <ActionTable
-            dataArray={actions}
-            toggleModal={this.toggleModal}
-            showSuggestion={this.showSuggestion}
-            upcoming={this.upcoming}
-            archive={this.archiveSuggestion}
-            limit={5}
-            {...avancement_actions}
-          />
-
-          <ContribTable
-            type="structure"
-            dataArray={contributions}
-            user={user}
-            toggleModal={this.toggleModal}
-            toggleSection={this.toggleSection}
-            windowWidth={this.props.windowWidth}
-            limit={5}
-            hide={false}
-            overlayTitle="Rédigez des nouveaux contenus"
-            overlaySpan="Réfugiés-info est une plateforme contributive, vous pouvez participer à son enrichissement"
-            overlayBtn="Découvrir comment contribuer"
-            overlayRedirect={false}
-            history={this.props.history}
-            deleteContrib={this.deleteContrib}
-            {...avancement_contributions}
-          />
-
-          <MembersTable
-            dataArray={members}
-            toggleModal={this.toggleModal}
-            removeBookmark={this.removeBookmark}
-            editMember={this.editMember}
-            upcoming={this.upcoming}
-            history={this.props.history}
-            user={user}
-            users={users}
-            structure={structure}
-            limit={5}
-            {...avancement_members}
-          />
-
-          {tables.map((table, key) => {
-            const TagName = table.component;
-            let avancement =
-              key === 0
-                ? avancement_actions
-                : key === 1
-                ? avancement_contributions
-                : avancement_members;
-            return (
-              <Modal
-                isOpen={this.state.showModal[table.name]}
-                toggle={() => this.toggleModal(table.name)}
-                className="modal-plus"
-                key={key}
-              >
-                <TagName
-                  type="structure"
-                  dataArray={eval(table.name)}
-                  user={user}
-                  upcoming={this.upcoming}
-                  showSuggestion={this.showSuggestion}
-                  archive={this.archiveSuggestion}
-                  editMember={this.editMember}
-                  history={this.props.history}
-                  users={users}
-                  deleteContrib={this.deleteContrib}
-                  {...avancement}
+        {enAttente.length > 0 &&
+          enAttente.map((element) => (
+            <div className="nouveau-contenu mt-12 mb-12" key={element._id}>
+              <div className="left-side">
+                <EVAIcon
+                  name="alert-triangle"
+                  fill={variables.noir}
+                  className="mr-10"
                 />
-              </Modal>
-            );
-          })}
-
-          <AddMemberModal
-            show={this.state.showModal.addMember}
-            toggle={() => this.toggleModal("addMember")}
-            users={this.state.users}
-            selectItem={this.selectItem}
-            addMember={this.addMember}
-            selected={this.state.selected}
-          />
-
-          <EditMemberModal
-            show={this.state.showModal.editMember}
-            toggle={() => this.toggleModal("editMember")}
-            user={user}
-            selected={this.state.selected}
-            structure={structure}
-            initializeStructure={this.initializeStructure}
-          />
-
-          <SuggestionModal
-            suggestion={this.state.suggestion}
-            show={this.state.showModal.suggestion}
-            toggle={() => this.toggleModal("suggestion")}
-          />
-
-          {isMainLoading && (
-            <div className="ecran-protection no-main">
-              <div className="content-wrapper">
-                <h1 className="mb-3">Chargement...</h1>
-                <Spinner color="success" />
+                <b>Un nouveau contenu a été attribué à votre structure !</b>
+              </div>
+              <div className="middle-side">
+                <b>
+                  {element.created_at
+                    ? moment(element.created_at).fromNow()
+                    : ""}
+                </b>
+              </div>
+              <div className="right-side">
+                <FButton
+                  tag={NavLink}
+                  to={{
+                    pathname:
+                      "/" +
+                      (element.typeContenu || "dispositif") +
+                      "/" +
+                      element._id,
+                    state: { structure: structure },
+                  }}
+                  type="light-action"
+                  name="eye-outline"
+                  fill={variables.noir}
+                >
+                  Voir le contenu
+                </FButton>
               </div>
             </div>
-          )}
-        </div>
-      );
-    }
+          ))}
+
+        <ActionTable
+          dataArray={actions}
+          toggleModal={this.toggleModal}
+          showSuggestion={this.showSuggestion}
+          upcoming={this.upcoming}
+          archive={this.archiveSuggestion}
+          limit={5}
+          {...avancement_actions}
+        />
+
+        <ContribTable
+          type="structure"
+          dataArray={contributions}
+          user={user}
+          toggleModal={this.toggleModal}
+          toggleSection={this.toggleSection}
+          windowWidth={this.props.windowWidth}
+          limit={5}
+          hide={false}
+          overlayTitle="Rédigez des nouveaux contenus"
+          overlaySpan="Réfugiés-info est une plateforme contributive, vous pouvez participer à son enrichissement"
+          overlayBtn="Découvrir comment contribuer"
+          overlayRedirect={false}
+          history={this.props.history}
+          deleteContrib={this.deleteContrib}
+          {...avancement_contributions}
+        />
+
+        <MembersTable
+          dataArray={members}
+          toggleModal={this.toggleModal}
+          removeBookmark={this.removeBookmark}
+          editMember={this.editMember}
+          upcoming={this.upcoming}
+          history={this.props.history}
+          user={user}
+          users={users}
+          structure={structure}
+          limit={5}
+          {...avancement_members}
+        />
+
+        {tables.map((table, key) => {
+          const TagName = table.component;
+          let avancement =
+            key === 0
+              ? avancement_actions
+              : key === 1
+              ? avancement_contributions
+              : avancement_members;
+          return (
+            <Modal
+              isOpen={this.state.showModal[table.name]}
+              toggle={() => this.toggleModal(table.name)}
+              className="modal-plus"
+              key={key}
+            >
+              <TagName
+                type="structure"
+                dataArray={eval(table.name)}
+                user={user}
+                upcoming={this.upcoming}
+                showSuggestion={this.showSuggestion}
+                archive={this.archiveSuggestion}
+                editMember={this.editMember}
+                history={this.props.history}
+                users={users}
+                deleteContrib={this.deleteContrib}
+                {...avancement}
+              />
+            </Modal>
+          );
+        })}
+
+        <AddMemberModal
+          show={this.state.showModal.addMember}
+          toggle={() => this.toggleModal("addMember")}
+          users={this.state.users}
+          selectItem={this.selectItem}
+          addMember={this.addMember}
+          selected={this.state.selected}
+        />
+
+        <EditMemberModal
+          show={this.state.showModal.editMember}
+          toggle={() => this.toggleModal("editMember")}
+          user={user}
+          selected={this.state.selected}
+          structure={structure}
+          initializeStructure={this.initializeStructure}
+        />
+
+        <SuggestionModal
+          suggestion={this.state.suggestion}
+          show={this.state.showModal.suggestion}
+          toggle={() => this.toggleModal("suggestion")}
+        />
+
+        {isMainLoading && (
+          <div className="ecran-protection no-main">
+            <div className="content-wrapper">
+              <h1 className="mb-3">Chargement...</h1>
+              <Spinner color="success" />
+            </div>
+          </div>
+        )}
+      </div>
+    );
   }
 }
 

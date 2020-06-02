@@ -1,5 +1,5 @@
-import React, { Component, lazy, Suspense } from 'react';
-import { Bar, Line } from 'react-chartjs-2';
+import React, { Component, lazy, Suspense } from "react";
+import { Bar, Line } from "react-chartjs-2";
 import {
   Badge,
   Button,
@@ -23,13 +23,11 @@ import {
   Progress,
   Row,
   Table
-} from 'reactstrap';
-import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities';
-import track from 'react-tracking';
-import moment from 'moment/min/moment-with-locales';
-import { connect } from 'react-redux';
-import ms from 'pretty-ms';
-
+} from "reactstrap";
+import { getStyle } from "@coreui/coreui/dist/js/coreui-utilities";
+import track from "react-tracking";
+import moment from "moment/min/moment-with-locales";
+import { connect } from "react-redux";
 import {
   cardChartData1,
   cardChartOpts1,
@@ -45,24 +43,24 @@ import {
   sparklineChartOpts,
   mainChart,
   mainChartOpts
-} from './data';
-import DateOffset from '../../../components/Functions/DateOffset';
-import {display_traffic, calculate_avg_time, execute_search} from './functions';
-import API from '../../../utils/API';
-import marioProfile from '../../../assets/mario-profile.jpg'
+} from "./data";
+import DateOffset from "../../../components/Functions/DateOffset";
+import {display_traffic, calculate_avg_time, execute_search} from "./functions";
+import API from "../../../utils/API";
+import marioProfile from "../../../assets/mario-profile.jpg"
 
-import './Dashboard.scss';
-import { calculFiabilite } from '../../Dispositif/functions';
+import "./Dashboard.scss";
+import { calculFiabilite } from "../../Dispositif/functions";
 
-moment.locale('fr');
+moment.locale("fr");
 
-const Widget03 = lazy(() => import('../../../components/Widgets/Widget03'));
+const Widget03 = lazy(() => import("../../../components/Widgets/Widget03"));
 
-const brandPrimary = getStyle('--primary')
-const brandSuccess = getStyle('--success')
+const brandPrimary = getStyle("--primary")
+const brandSuccess = getStyle("--success")
 //const brandInfo = getStyle('--info')
-const brandWarning = getStyle('--warning')
-const brandDanger = getStyle('--danger')
+const brandWarning = getStyle("--warning")
+const brandDanger = getStyle("--danger")
 
 const eventFields = ["layout", "page", "userId"]
 
@@ -104,25 +102,25 @@ class Dashboard extends Component {
   componentDidMount () {
     this.display_traffic(-2*7);
 
-    API.distinct_count_event({distinct : 'cookie', query:{created_at : {"$gte":  DateOffset(new Date(), -1)}}}).then((data) => {
+    API.distinct_count_event({distinct : "cookie", query:{created_at : {"$gte":  DateOffset(new Date(), -1)}}}).then((data) => {
       this.setState({uniqueUsersDaily:data.data.data})
     })
-    API.distinct_count_event({distinct : 'cookie', query:{created_at : {"$gte":  DateOffset(new Date(), -31)}}}).then((data) => {
+    API.distinct_count_event({distinct : "cookie", query:{created_at : {"$gte":  DateOffset(new Date(), -31)}}}).then((data) => {
       this.setState({uniqueUsersMonthly:data.data.data})
     })
-    API.distinct_count_event({distinct : 'cookie', query:{created_at : {"$gte":  DateOffset(new Date(), -365)}}}).then((data) => {
+    API.distinct_count_event({distinct : "cookie", query:{created_at : {"$gte":  DateOffset(new Date(), -365)}}}).then((data) => {
       this.setState({uniqueUsersYearly:data.data.data})
     })
 
-    API.get_event({query:{ action: 'click', label: 'createPdf' }}).then((data) => {
+    API.get_event({query:{ action: "click", label: "createPdf" }}).then((data) => {
       this.setState({nbExportsPDF:data.data.data.length})
     })
 
-    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), -3 * 30)}}}).then((data) => {
+    API.distinct_count_event({distinct : "userId", query:{created_at : {"$gte":  DateOffset(new Date(), -3 * 30)}}}).then((data) => {
       this.setState({nbActiveUsers:data.data.data})
     })
 
-    API.distinct_count_event({distinct : 'userId', query:{created_at : {"$gte":  DateOffset(new Date(), 0, -1/60)}}}).then((data) => {
+    API.distinct_count_event({distinct : "userId", query:{created_at : {"$gte":  DateOffset(new Date(), 0, -1/60)}}}).then((data) => {
       this.setState({onlineUsers:data.data.data})
     })
 
@@ -131,13 +129,14 @@ class Dashboard extends Component {
     API.count_dispositifs({typeContenu:"demarche"}).then(data => this.setState({ nbDemarches: data.data }) )
     API.count_dispositifs({typeContenu:"demarche", status: "Actif"}).then(data => this.setState({ nbDemarchesActives: data.data }) )
 
-    API.get_users({query: {status: "Actif"}, populate: 'roles'}).then(data => this.setState({users: data.data.data}) );
+    API.get_users({query: {status: "Actif"}, populate: "roles"}).then(data => this.setState({users: data.data.data}) );
     
     eventFields.map(x => this._call_distinct_event(x))
 
     this.calculate_avg_time();
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps){
     if((nextProps.dispositifs || []).length > 0 && nextProps.dispositifs.length !== (this.props.dispositifs || []).length){
       const avgScore = nextProps.dispositifs.map(x => calculFiabilite(x) ).reduce((acc, curr) => acc += (curr || 0), 0) / nextProps.dispositifs.length;
@@ -169,7 +168,7 @@ class Dashboard extends Component {
     }}, () => {
       let query = {...this.state.eventValues};
       query.userId = (this.state.events.userId.find(x => x.username === this.state.eventValues.userId ) || {})._id;
-      API.get_event({query}).then((data) => {
+      API.get_event({query}).then(() => {
       })
     })
   }
@@ -196,7 +195,7 @@ class Dashboard extends Component {
     const {events, eventValues, uniqueUsersDaily, uniqueUsersMonthly, 
       nbExportsPDF, nbActiveUsers, nbDispositifs, nbDispositifsActifs, 
       nbDemarches, nbDemarchesActives, users, avgScore, 
-      avancementContenu, averageTimeOnsite} = this.state;
+      avancementContenu} = this.state;
     const {langues} = this.props;
     const languesActives = (langues || []).filter(x => x.avancement >= 0.8);
     return (
@@ -239,7 +238,7 @@ class Dashboard extends Component {
                 <div className="text-value">{uniqueUsersDaily}</div>
                 <div>visiteur{uniqueUsersDaily > 1 ? "s" : ""} unique{uniqueUsersDaily > 1 ? "s" : ""} aujourd'hui</div>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
+              <div className="chart-wrapper mx-3" style={{ height: "70px" }}>
                 <Line data={cardChartData2} options={cardChartOpts2} height={70} />
               </div>
             </Card>
@@ -263,7 +262,7 @@ class Dashboard extends Component {
                 <div className="text-value">{uniqueUsersMonthly}</div>
                 <div>visiteur{uniqueUsersMonthly > 1 ? "s" : ""} unique{uniqueUsersMonthly > 1 ? "s" : ""} ce mois</div>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
+              <div className="chart-wrapper mx-3" style={{ height: "70px" }}>
                 <Line data={cardChartData1} options={cardChartOpts1} height={70} />
               </div>
             </Card>
@@ -287,7 +286,7 @@ class Dashboard extends Component {
                 <div className="text-value">{this.state.uniqueUsersYearly}</div>
                 <div>visiteurs uniques ces 12 derniers mois</div>
               </CardBody>
-              <div className="chart-wrapper" style={{ height: '70px' }}>
+              <div className="chart-wrapper" style={{ height: "70px" }}>
                 <Line data={cardChartData3} options={cardChartOpts3} height={70} />
               </div>
             </Card>
@@ -311,7 +310,7 @@ class Dashboard extends Component {
                 <div className="text-value">{this.state.onlineUsers}</div>
                 <div>utilisateurs en ligne</div>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
+              <div className="chart-wrapper mx-3" style={{ height: "70px" }}>
                 <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
               </div>
             </Card>
@@ -341,7 +340,7 @@ class Dashboard extends Component {
                     </ButtonToolbar>
                   </Col>
                 </Row>
-                <div className="chart-wrapper" style={{ height: 300 + 'px', marginTop: 40 + 'px' }}>
+                <div className="chart-wrapper" style={{ height: 300 + "px", marginTop: 40 + "px" }}>
                   <Line data={this.state.mainChart} options={this.state.mainChartOpts} height={300} />
                 </div>
               </CardBody>
@@ -411,7 +410,7 @@ class Dashboard extends Component {
         <Row>
           <Col xs="6" sm="6" lg="3">
             <Suspense fallback={this.loading()}>
-              <Widget03 dataBox={() => ({ variant: 'facebook', friends: '89k', feeds: '459' })} >
+              <Widget03 dataBox={() => ({ variant: "facebook", friends: "89k", feeds: "459" })} >
                 <div className="chart-wrapper">
                   <Line data={makeSocialBoxData(0)} options={socialChartOpts} height={90} />
                 </div>
@@ -421,7 +420,7 @@ class Dashboard extends Component {
 
           <Col xs="6" sm="6" lg="3">
             <Suspense fallback={this.loading()}>
-              <Widget03 dataBox={() => ({ variant: 'twitter', followers: '973k', tweets: '1.792' })} >
+              <Widget03 dataBox={() => ({ variant: "twitter", followers: "973k", tweets: "1.792" })} >
                 <div className="chart-wrapper">
                   <Line data={makeSocialBoxData(1)} options={socialChartOpts} height={90} />
                 </div>
@@ -431,7 +430,7 @@ class Dashboard extends Component {
 
           <Col xs="6" sm="6" lg="3">
             <Suspense fallback={this.loading()}>
-              <Widget03 dataBox={() => ({ variant: 'linkedin', contacts: '500+', feeds: '292' })} >
+              <Widget03 dataBox={() => ({ variant: "linkedin", contacts: "500+", feeds: "292" })} >
                 <div className="chart-wrapper">
                   <Line data={makeSocialBoxData(2)} options={socialChartOpts} height={90} />
                 </div>
@@ -441,7 +440,7 @@ class Dashboard extends Component {
 
           <Col xs="6" sm="6" lg="3">
             <Suspense fallback={this.loading()}>
-              <Widget03 dataBox={() => ({ variant: 'google-plus', followers: '894', circles: '92' })} >
+              <Widget03 dataBox={() => ({ variant: "google-plus", followers: "894", circles: "92" })} >
                 <div className="chart-wrapper">
                   <Line data={makeSocialBoxData(3)} options={socialChartOpts} height={90} />
                 </div>
@@ -454,7 +453,7 @@ class Dashboard extends Component {
           <Col>
             <Card>
               <CardHeader>
-                Traffic {' & '} Sales
+                Traffic {" & "} Sales
               </CardHeader>
               <CardBody>
                 <Row>
@@ -702,7 +701,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="success" value="50" />
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-cc-mastercard" style={{ fontSize: 24 + 'px' }}></i>
+                      <i className="fa fa-cc-mastercard" style={{ fontSize: 24 + "px" }}></i>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -738,7 +737,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="info" value="10" />
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-cc-visa" style={{ fontSize: 24 + 'px' }}></i>
+                      <i className="fa fa-cc-visa" style={{ fontSize: 24 + "px" }}></i>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -773,7 +772,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="warning" value="74" />
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-cc-stripe" style={{ fontSize: 24 + 'px' }}></i>
+                      <i className="fa fa-cc-stripe" style={{ fontSize: 24 + "px" }}></i>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -808,7 +807,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="danger" value="98" />
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-paypal" style={{ fontSize: 24 + 'px' }}></i>
+                      <i className="fa fa-paypal" style={{ fontSize: 24 + "px" }}></i>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -843,7 +842,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="info" value="22" />
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-google-wallet" style={{ fontSize: 24 + 'px' }}></i>
+                      <i className="fa fa-google-wallet" style={{ fontSize: 24 + "px" }}></i>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -878,7 +877,7 @@ class Dashboard extends Component {
                       <Progress className="progress-xs" color="success" value="43" />
                     </td>
                     <td className="text-center">
-                      <i className="fa fa-cc-amex" style={{ fontSize: 24 + 'px' }}></i>
+                      <i className="fa fa-cc-amex" style={{ fontSize: 24 + "px" }}></i>
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -903,7 +902,7 @@ const mapStateToProps = (state) => {
 }
 
 export default track({
-  page: 'Dashboard',
+  page: "Dashboard",
 })(
   connect(mapStateToProps)(Dashboard)
 );

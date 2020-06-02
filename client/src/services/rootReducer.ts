@@ -1,4 +1,4 @@
-import { combineReducers, Action } from "redux";
+import { combineReducers } from "redux";
 import { langueReducer, LangueState } from "./Langue/langue.reducer";
 import {
   dispositifReducer,

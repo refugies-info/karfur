@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import React, { Component } from "react";
 
 export const StyledThead = styled.thead`
   flex: 1;

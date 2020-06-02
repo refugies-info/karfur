@@ -69,6 +69,7 @@ export class AdvancedSearch extends Component {
     window.scrollTo(0, 0);
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.languei18nCode !== this.props.languei18nCode) {
       this.queryDispositifs(null, nextProps);
@@ -519,9 +520,8 @@ export class AdvancedSearch extends Component {
                         </NavLink>
                       </Col>
                     );
-                  } else {
-                    return false;
                   }
+                  return false;
                 })}
                 {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
                   <Col

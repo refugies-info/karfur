@@ -25,7 +25,7 @@ export const langueReducer = createReducer<LangueState, LangueActions>(
       Cookies.set("languei18nCode", action.payload);
       return updateObject(state, { languei18nCode: action.payload });
     },
-    TOGGLE_LANG_MODAL: (state, action) =>
+    TOGGLE_LANG_MODAL: (state) =>
       updateObject(state, { showLangModal: !state.showLangModal }),
     SET_LANGUES: (state, action) =>
       updateObject(state, { langues: action.payload }),

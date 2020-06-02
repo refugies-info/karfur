@@ -1,15 +1,23 @@
-import React, {Component} from 'react';
-import lottie from 'lottie-web';
-import { Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import lottie from "lottie-web";
+import {
+  Row,
+  Col,
+  Button,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
+import { withRouter } from "react-router-dom";
 
-import {onboarding} from './data'
-import './OnBoardingTraducteurModal.scss';
+import { onboarding } from "./data";
+import "./OnBoardingTraducteurModal.scss";
 
 class OnBoardingTraducteurModal extends Component {
   state = {
-    onboardingNumber:0
-  }
+    onboardingNumber: 0,
+  };
 
   componentDidMount() {
     this.changeLottieAnimation();
@@ -20,49 +28,61 @@ class OnBoardingTraducteurModal extends Component {
   }
 
   continue = () => {
-    this.setState(prevState => (
-      {onboardingNumber : prevState.onboardingNumber +1}
-    ), () => this.changeLottieAnimation())
-  }
+    this.setState(
+      (prevState) => ({ onboardingNumber: prevState.onboardingNumber + 1 }),
+      () => this.changeLottieAnimation()
+    );
+  };
 
   startOnBoarding = () => {
-    this.props.history.push({ 
-      pathname: '/login',
-      state: {traducteur: true, redirectTo:"/backend/user-dashboard"}
-    }); 
-  }
+    this.props.history.push({
+      pathname: "/login",
+      state: { traducteur: true, redirectTo: "/backend/user-dashboard" },
+    });
+  };
 
   changeLottieAnimation = () => {
-    if(this.props.show){
-      if(this.state.onboardingNumber>0) {
-        lottie.destroy()
+    if (this.props.show) {
+      if (this.state.onboardingNumber > 0) {
+        lottie.destroy();
       }
       lottie.loadAnimation({
-        container: document.getElementById('svgContainer'), // the dom element that will contain the animation
-        renderer: 'svg',
+        container: document.getElementById("svgContainer"), // the dom element that will contain the animation
+        renderer: "svg",
         loop: true,
         autoplay: true,
-        path: onboarding[this.state.onboardingNumber].animation
+        path: onboarding[this.state.onboardingNumber].animation,
       });
     }
-  }
+  };
 
-  render () {
+  render() {
     let SuccessButton = () => {
-      if(this.state.onboardingNumber < onboarding.length-1){
-        return <Button color="success" onClick={this.continue}>Continuer</Button>
-      }else{
+      if (this.state.onboardingNumber < onboarding.length - 1) {
         return (
-          <Button color="success" onClick={this.startOnBoarding}>Terminer</Button>
-        )
-      }
-    }
+          <Button color="success" onClick={this.continue}>
+            Continuer
+          </Button>
+        );
+      } 
+        return (
+          <Button color="success" onClick={this.startOnBoarding}>
+            Terminer
+          </Button>
+        );
+      
+    };
 
     return (
-      <Modal isOpen={this.props.show} toggle={this.props.closeOnBoardingTraducteurModal} className='modal-lg on-boarding-trad-modal'>
-        <ModalHeader 
+      <Modal
+        isOpen={this.props.show}
+        toggle={this.props.closeOnBoardingTraducteurModal}
+        className="modal-lg on-boarding-trad-modal"
+      >
+        <ModalHeader
           toggle={this.props.closeOnBoardingTraducteurModal}
-          className='modal-primary'>
+          className="modal-primary"
+        >
           {onboarding[this.state.onboardingNumber].title}
         </ModalHeader>
         <ModalBody>
@@ -72,25 +92,30 @@ class OnBoardingTraducteurModal extends Component {
             </Col>
 
             <Col className="align-self-center">
+              <p>{onboarding[this.state.onboardingNumber].content}</p>
               <p>
-                {onboarding[this.state.onboardingNumber].content}
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
               </p>
             </Col>
           </Row>
         </ModalBody>
         <ModalFooter>
-          <Button color="light" onClick={this.props.closeOnBoardingTraducteurModal}>Annuler</Button>
+          <Button
+            color="light"
+            onClick={this.props.closeOnBoardingTraducteurModal}
+          >
+            Annuler
+          </Button>
           <SuccessButton />
         </ModalFooter>
       </Modal>
-    )
+    );
   }
 }
 

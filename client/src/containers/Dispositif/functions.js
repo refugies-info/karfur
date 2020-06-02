@@ -23,7 +23,9 @@ const initializeVariantes = function (itemId) {
         const allDemarches = [...data_res.data.data];
         this._isMounted && this.setState({ allDemarches });
       })
-      .catch((e) => console.log(e));
+      .catch((
+        e // eslint-disable-next-line no-console
+      ) => console.log(e));
 };
 
 const initializeInfoCards = function () {
@@ -107,12 +109,12 @@ const switchVariante = async function () {
         ) {
           demarchesEligibles = [...demarchesEligibles, demarche];
           return true;
-        } else {
-          return false;
         }
+        return false;
       });
     });
   }
+  // eslint-disable-next-line no-use-before-define
   const filter_place = await check_place(
     place_id,
     demarchesEligibles,
@@ -190,9 +192,8 @@ const check_place = function (
       });
     } else if (place_id) {
       return this._isMounted && setTimeout(this.switchVariante, 1000);
-    } else {
-      resolve(false);
     }
+    resolve(false);
   });
 };
 
@@ -289,7 +290,9 @@ const deleteVariante = function (idx) {
       variantes: pS.variantes.filter((_, i) => i !== idx),
       isVarianteValidated: pS.variantes.length > 1,
     }),
-    () => console.log(this.state.variantes)
+    () =>
+      // eslint-disable-next-line no-console
+      console.log(this.state.variantes)
   );
 };
 

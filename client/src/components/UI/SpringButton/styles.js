@@ -1,5 +1,5 @@
-import { animated } from 'react-spring'
-import styled  from 'styled-components'
+import { animated } from "react-spring";
+import styled from "styled-components";
 
 const Container = styled(animated.div)`
   position: relative;
@@ -11,8 +11,8 @@ const Container = styled(animated.div)`
   cursor: pointer;
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.05);
   will-change: width, height;
-  margin:auto;
-`
+  margin: auto;
+`;
 
 const Item = styled(animated.div)`
   width: width;
@@ -22,6 +22,6 @@ const Item = styled(animated.div)`
   will-change: transform, opacity;
   text-align: center;
   vertical-align: middle;
-`
+`;
 
-export { Container, Item }
+export { Container, Item };
