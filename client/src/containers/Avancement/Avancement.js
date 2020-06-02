@@ -92,6 +92,7 @@ export class Avancement extends Component {
         this.props.location.state.langue &&
         this.props.location.state.langue.i18nCode
       ) {
+        console.log(this.props.location.state);
         this.setState({
           langue: this.props.location.state.langue,
           title:
@@ -648,6 +649,7 @@ export class Avancement extends Component {
         this.state.langue.i18nCode
       ) {
         return traductions.map((element) => {
+          console.log(element);
           if (
             isExpert &&
             // element.statusTrad &&
@@ -755,15 +757,19 @@ export class Avancement extends Component {
                 {element.updatedAt ? moment(element.updatedAt).format("YYYY/MM/DD H:mm") : "Pas encore traduite"}
                 {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
-              <td className="align-middle fit-content">
-                {!isExpert && element.statusTrad === "Publiées" ? null : (
+              <td className="align-middle fit-content elevated-button">
+                {this.props.isAdmin ? (
                   <FButton
                     type="light-action"
-                    name="eye-outline"
+                    name="trash-2"
                     fill={variables.noir}
-                    onClick={() => API.delete_trads()}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      API.delete_trads({articleId: element._id,  langueCible: this.state.langue.i18nCode });
+                      window.location.reload();
+                    }}
                   />
-                )}
+                ) : null} 
               </td>
             </tr>
           );
@@ -943,6 +949,7 @@ const mapStateToProps = (state) => {
   return {
     dispositifs: state.dispositif.dispositifs,
     userId: state.user.userId,
+    isAdmin: state.user.admin,
   };
 };
 

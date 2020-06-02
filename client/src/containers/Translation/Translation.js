@@ -413,7 +413,8 @@ export class TranslationHOC extends Component {
     const nom = "avancement." + i18nCode;
     if (!isExpert) {
       this.props.history.push({
-        pathname: "/avancement/langues/" + langue._id,
+        pathname: "/avancement/langue/" + langue._id,
+        state: { langue: langue },
       }); 
       return;
     }
