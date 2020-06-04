@@ -23,18 +23,18 @@ yarn-debug.log*
 yarn-error.log*
 
 #Ajouts:
-/config
-/private
+/server/src/config/
+/server/src/private/
+**/node_modules/**
 .env
 /db-backup
-/client/node_modules
 /client/nw/screens
 /client/nw/reports
 /client/nw/logs
 /client//.pnp
 /client/.pnp.js
-/client//coverage
-/client//build
+/client/coverage
+/client/build
 /client/.DS_Store
 /client/.env.local
 /client/.env.development.local
@@ -51,3 +51,4 @@ token.json
 /client/.jest
 /client/coverage
 .eslintcache
+/server/dist
