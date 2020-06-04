@@ -436,7 +436,14 @@ export class Avancement extends Component {
               (x.titreMarque && x.titreInformatif ? " - " : "") +
               (x.titreInformatif || ""),
             nombreMots: x.nbMots,
-            avancement: isExpert
+            avancement: (isExpert || (this.state.traductionsFaites || [])
+            .filter((y) => {
+              return (
+                y.articleId === x._id &&
+                y.userId._id === this.props.userId &&
+                y.status === 'À revoir'
+              );
+            }).length > 0)
               ? Math.max(
                   0,
                   ...((this.state.traductionsFaites || [])
@@ -448,7 +455,26 @@ export class Avancement extends Component {
                     })
                     .map((z) => z.avancement || -1) || [])
                 )
-              : Math.max(
+              : (this.state.traductionsFaites || [])
+              .filter((y) => {
+                return (
+                  y.articleId === x._id &&
+                  y.status === 'À revoir'
+                );
+              }).length > 0 ?
+              Math.max(
+                0,
+                ...((this.state.traductionsFaites || [])
+                  .filter((y) => {
+                    return (
+                      y.articleId === x._id &&
+                      y.userId._id === y.validatorId
+                    );
+                  })
+                  .map((z) => z.avancement || -1) || [])
+              ) 
+              :
+              Math.max(
                   0,
                   ...((this.state.traductionsFaites || [])
                     .filter((y) => {
@@ -645,7 +671,6 @@ export class Avancement extends Component {
         this.state.langue.i18nCode
       ) {
         return traductions.map((element) => {
-          console.log(element);
           if (
             isExpert &&
             // element.statusTrad &&

@@ -38,7 +38,7 @@ async function add_tradForReview(req, res) {
     }).save();
     let traduction = req.body;
     console.log(traduction);
-    if (traduction.avancement >= 1) {
+    if (traduction.avancement >= 1 && traduction.status !== 'À revoir') {
       traduction.status = "En attente";
       await Traduction.updateMany(
         {
@@ -50,7 +50,7 @@ async function add_tradForReview(req, res) {
       );
     }
     if (!traduction.isExpert) {
-      if (traduction.avancement < 1) {
+      if (traduction.avancement < 1 && traduction.status !== 'À revoir') {
         traduction.status = "À traduire";
       }
     }

@@ -238,6 +238,15 @@ class SideTrad extends Component {
         if (p.titleModified) {
         }
         if (p.contentModified) {
+          const elems1 = document.querySelectorAll(
+            'div[id="' +
+              index +
+              '"]'
+          );
+          if (elems1 && elems1[0] && elems1[0].classList) {
+            elems1[0].classList.toggle("arevoir", true);
+            this.setState({ contentMod: true });
+          }
         }
         if (p.children && p.children.length > 0) {
           p.children.forEach((c, j) => {

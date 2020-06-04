@@ -409,6 +409,7 @@ export class TranslationHOC extends Component {
       };
     }
     traduction = { ...traduction, ...tradData };
+    console.log(traduction, tradData);
     const data = await API.add_traduction(traduction);
     traduction._id = (data.data.data || {})._id;
     this.setState({ traduction });
