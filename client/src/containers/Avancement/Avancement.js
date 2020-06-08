@@ -47,7 +47,10 @@ const jsUcfirst = (string) => {
   );
 };
 export class Avancement extends Component {
-  state = {
+  constructor(props) {
+    super(props);
+    console.log(props.isExpert);
+  this.state = {
     mainView: true,
     title: diffData.all.title,
     headers: diffData.all.headers,
@@ -57,12 +60,12 @@ export class Avancement extends Component {
     themes: [],
     itemId: null,
     isLangue: false,
-    isExpert: false,
+    isExpert: props.isExpert,
     traductionsFaites: [],
     waiting: false,
     published: false,
-    review: true,
-    toTranslate: false,
+    review: props.isExpert,
+    toTranslate: !props.isExpert,
     traductions: [],
     unfiltered: [],
     dispositif: true,
@@ -78,6 +81,7 @@ export class Avancement extends Component {
     ascending: false,
     research: "",
   };
+}
 
   async componentDidMount() {
     let itemId = this.props.match.params.id;
@@ -584,15 +588,16 @@ export class Avancement extends Component {
         demarcheCount: this.countType(traductions, "demarche"),
         stringCount: this.countType(traductions, "string"),
       });
-      if (
+    /*   if (
         this.countfilter(traductions, "À revoir") === 0 &&
         this.countfilter(traductions, "À traduire") > 0
       ) {
+        console.log(this.countfilter(traductions, "À traduire"), this.countfilter(traductions, "À revoir"), traductions)
         this.setState({
           toTranslate: true,
           review: false,
         });
-      }
+      } */
     }
     if (
       prevState.waiting !== this.state.waiting ||
@@ -613,6 +618,16 @@ export class Avancement extends Component {
         demarcheCount: this.countType(this.state.traductions, "demarche"),
         stringCount: this.countType(this.state.traductions, "string"),
       });
+      if (
+        this.countfilter(traductions, "À revoir") === 0 &&
+        this.countfilter(traductions, "À traduire") > 0
+      ) {
+        console.log(this.countfilter(traductions, "À traduire"), this.countfilter(traductions, "À revoir"), traductions)
+        this.setState({
+          toTranslate: true,
+          review: false,
+        });
+      }
       /*       if (this.countfilter(traductions, "À revoir") == 0) {
         this.setState({
           toTranslate: true,
@@ -972,6 +987,7 @@ const mapStateToProps = (state) => {
     dispositifs: state.dispositif.dispositifs,
     userId: state.user.userId,
     isAdmin: state.user.admin,
+    isExpert: state.user.expertTrad,
   };
 };
 
