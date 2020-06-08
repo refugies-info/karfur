@@ -1,11 +1,11 @@
-import React from 'react';
-import track from 'react-tracking';
+import React from "react";
+import track from "react-tracking";
 
-import data from './data';
-import SpringButton from '../../../components/UI/SpringButton/SpringButton'
+import data from "./data";
+import SpringButton from "../../../components/UI/SpringButton/SpringButton";
 
-import './WelcomeParcours.scss';
-import demoScreen from '../../../assets/Virtual-Assistant-single.png';
+import "./WelcomeParcours.scss";
+import demoScreen from "../../../assets/Virtual-Assistant-single.png";
 
 function WelcomeParcours() {
   return (
@@ -15,8 +15,13 @@ function WelcomeParcours() {
           <div className="row h-100">
             <div className="col-lg-7 my-auto">
               <div className="header-content mx-auto">
-                <h1 className="mb-5">Bienvenue dans votre parcours personnalisé d'intégration</h1>
-                <a href="#situation" className="btn btn-outline btn-xl js-scroll-trigger fullWidth">
+                <h1 className="mb-5">
+                  Bienvenue dans votre parcours personnalisé d'intégration
+                </h1>
+                <a
+                  href="#situation"
+                  className="btn btn-outline btn-xl js-scroll-trigger fullWidth"
+                >
                   Commencer maintenant
                 </a>
                 <hr />
@@ -34,13 +39,19 @@ function WelcomeParcours() {
         <div className="container">
           <div className="row">
             <div className="col-md-8 mx-auto">
-              <h2 className="section-heading">Quelle est votre situation actuelle ?</h2>
-              <p>Nous accompagnons les réfugiés depuis leur arrivée en France jusqu'à leur intégration</p>
+              <h2 className="section-heading">
+                Quelle est votre situation actuelle ?
+              </h2>
+              <p>
+                Nous accompagnons les réfugiés depuis leur arrivée en France
+                jusqu'à leur intégration
+              </p>
               <div className="choice-buttons">
-                {data.map((mon_element) => {return (
-                  <SpringButton key={mon_element.id} element={mon_element} />
-                  )}
-                )}
+                {data.map((mon_element) => {
+                  return (
+                    <SpringButton key={mon_element.id} element={mon_element} />
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -51,7 +62,10 @@ function WelcomeParcours() {
         <div className="container">
           <div className="section-heading text-center">
             <h2>Un parcours continu et ininterrompu</h2>
-            <p className="text-muted">Nous travaillons main dans la main avec les associations pour vous assurer le meilleur suivi possible</p>
+            <p className="text-muted">
+              Nous travaillons main dans la main avec les associations pour vous
+              assurer le meilleur suivi possible
+            </p>
             <hr />
           </div>
           <div className="row">
@@ -62,8 +76,7 @@ function WelcomeParcours() {
                     <div className="screen">
                       <img src={demoScreen} className="img-fluid" alt="" />
                     </div>
-                    <div className="button">
-                    </div>
+                    <div className="button"></div>
                   </div>
                 </div>
               </div>
@@ -75,14 +88,20 @@ function WelcomeParcours() {
                     <div className="feature-item">
                       <i className="icon-screen-smartphone text-primary"></i>
                       <h3>Device Mockups</h3>
-                      <p className="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
+                      <p className="text-muted">
+                        Ready to use HTML/CSS device mockups, no Photoshop
+                        required!
+                      </p>
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="feature-item">
                       <i className="icon-camera text-primary"></i>
                       <h3>Flexible Use</h3>
-                      <p className="text-muted">Put an image, video, animation, or anything else in the screen!</p>
+                      <p className="text-muted">
+                        Put an image, video, animation, or anything else in the
+                        screen!
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -91,14 +110,20 @@ function WelcomeParcours() {
                     <div className="feature-item">
                       <i className="icon-present text-primary"></i>
                       <h3>Free to Use</h3>
-                      <p className="text-muted">As always, this theme is free to download and use for any purpose!</p>
+                      <p className="text-muted">
+                        As always, this theme is free to download and use for
+                        any purpose!
+                      </p>
                     </div>
                   </div>
                   <div className="col-lg-6">
                     <div className="feature-item">
                       <i className="icon-lock-open text-primary"></i>
                       <h3>Open Source</h3>
-                      <p className="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
+                      <p className="text-muted">
+                        Since this theme is MIT licensed, you can use it
+                        commercially!
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -111,8 +136,17 @@ function WelcomeParcours() {
       <section className="cta">
         <div className="cta-content">
           <div className="container">
-            <h2>Stop waiting.<br />Start building.</h2>
-            <a href="#contact" className="btn btn-outline btn-xl js-scroll-trigger">Let's Get Started!</a>
+            <h2>
+              Stop waiting.
+              <br />
+              Start building.
+            </h2>
+            <a
+              href="#contact"
+              className="btn btn-outline btn-xl js-scroll-trigger"
+            >
+              Let's Get Started!
+            </a>
           </div>
         </div>
         <div className="overlay"></div>
@@ -120,9 +154,11 @@ function WelcomeParcours() {
 
       <section className="contact bg-primary" id="contact">
         <div className="container">
-          <h2>We
+          <h2>
+            We
             <i className="fa fa-heart"></i>
-            new friends!</h2>
+            new friends!
+          </h2>
           <ul className="list-inline list-social">
             <li className="list-inline-item social-twitter">
               <a href="/">
@@ -163,6 +199,9 @@ function WelcomeParcours() {
   );
 }
 
-export default track({
-  page: 'WelcomeParcours',
-}, { dispatchOnMount: true })(WelcomeParcours);
+export default track(
+  {
+    page: "WelcomeParcours",
+  },
+  { dispatchOnMount: true }
+)(WelcomeParcours);

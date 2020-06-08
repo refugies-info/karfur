@@ -13,6 +13,8 @@ const {
   turnJSONtoHTML,
   turnToLocalizedNew,
   markTradModifications,
+  countContents,
+  countValidated,
 } = require("./functions");
 // const gmail_auth = require('./gmail_auth');
 
@@ -40,7 +42,7 @@ var mailOptions = {
   from: "nour@refugies.info",
   to:
     process.env.NODE_ENV === "dev"
-      ? "souflam007@yahoo.fr"
+      ? "agathe.kieny@lamednum.coop"
       : "diairagir@gmail.com",
   subject: "Administration Réfugiés.info",
 };
@@ -93,23 +95,42 @@ async function add_dispositif(req, res) {
           for (let [key, value] of Object.entries(originalDis.avancement)) {
             console.log(originalDis, key);
             if (key !== "fr") {
-              originalTrads[key] = await Traduction.findOne(
-                { articleId: originalDis._id, langueCible: key },
+              originalTrads[key] = await Traduction.find(
+                {
+                  articleId: originalDis._id,
+                  langueCible: key,
+                  isExpert: true,
+                },
                 {},
                 { sort: { updatedAt: -1 } }
               );
-              console.log("before error");
-              originalTrads[key] = markTradModifications(
-                dispositif,
-                dispositifFr,
-                originalTrads[key]
-              );
-              console.log("####### the trad modified", originalTrads[key]);
-              await Traduction.findOneAndUpdate(
-                { _id: originalTrads[key]._id },
-                originalTrads[key],
-                { upsert: true, new: true }
-              );
+              console.log("original trads", originalDis, originalTrads[key]);
+              for (let tradExpert of originalTrads[key]) {
+                tradExpert = markTradModifications(
+                  dispositif,
+                  dispositifFr,
+                  tradExpert
+                );
+                if (tradExpert.status == "À revoir") {
+                  console.log(dispositif.contenu);
+                  const contentsTotal = countContents(dispositif.contenu) - 5;
+                  const validatedTotal = countValidated([tradExpert.translatedText]);
+                  console.log(contentsTotal, validatedTotal);
+                  const newAvancement = validatedTotal / contentsTotal;
+                  tradExpert.avancement = newAvancement;
+                  await Traduction.updateMany(
+                    { articleId: originalDis._id, langueCible: key },
+                    { status: "À revoir", avancement: newAvancement },
+                    { upsert: false }
+                  );
+                }
+                console.log("####### the trad modified", originalTrads[key]);
+                await Traduction.findOneAndUpdate(
+                  { _id: tradExpert._id },
+                  tradExpert,
+                  { upsert: true, new: true }
+                );
+              }
             }
           }
           dispositif.avancement = originalDis.avancement;
@@ -203,7 +224,6 @@ function get_dispositif(req, res) {
     }
 
     let promise = null;
-    console.log(query);
     if (random) {
       promise = Dispositif.aggregate([
         { $match: query },

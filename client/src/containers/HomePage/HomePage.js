@@ -6,12 +6,7 @@ import { NavHashLink } from "react-router-hash-link";
 import { connect } from "react-redux";
 import { Row, Col, Card, CardHeader, CardBody, CardFooter } from "reactstrap";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-
-////////A enlever si pas utilisé/////////////:
-// import Notifications from '../../components/UI/Notifications/Notifications';
-// import SendToMessenger from './SendToMessenger';
-// import MessengerSendToMessenger from '../../utils/MessengerSendToMessenger';
-import { toggle_lang_modal } from "../../Store/actions/index";
+import { toggleLangueModalActionCreator } from "../../services/Langue/langue.actions";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import API from "../../utils/API";
@@ -19,7 +14,6 @@ import styled from "styled-components";
 
 import "./HomePage.scss";
 import variables from "scss/colors.scss";
-import SearchItem from "../AdvancedSearch/SearchItem/SearchItem";
 import { initial_data } from "../AdvancedSearch/data";
 import HomeSearch from "./HomeSearch";
 import CatList from "./CatList";
@@ -53,10 +47,6 @@ const CloseCorona = styled.div`
   margin-right: 10px;
   margin-top: 10px;
   cursor: pointer;
-`;
-
-const ThemeButton = styled.button`
-  background-color: blue;
 `;
 
 export class HomePage extends Component {
@@ -110,11 +100,9 @@ export class HomePage extends Component {
   };
 
   render() {
-    console.log(this.state.corona, item);
     const { t } = this.props;
     const { users } = this.state;
     const item = initial_data[0];
-    console.log(this.state.corona, item);
     return (
       <div className="animated fadeIn homepage">
         {this.state.overlay ? <div className="overlay" /> : null}
@@ -431,7 +419,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { toggle_lang_modal };
+const mapDispatchToProps = {
+  toggleLangueModal: toggleLangueModalActionCreator,
+};
 
 export default track({
   page: "HomePage",

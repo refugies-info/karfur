@@ -59,15 +59,17 @@ export class AdvancedSearch extends Component {
     if (tag) {
       this.selectTag(decodeURIComponent(tag));
     } else if (filter) {
-      this.filter_content(filter === 'dispositif' ? filtres_contenu[0] : filtres_contenu[1])
-    } else
-    {
+      this.filter_content(
+        filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
+      );
+    } else {
       this.queryDispositifs();
     }
     this._initializeEvents();
     window.scrollTo(0, 0);
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.languei18nCode !== this.props.languei18nCode) {
       this.queryDispositifs(null, nextProps);
@@ -261,7 +263,6 @@ export class AdvancedSearch extends Component {
   };
 
   reorder = (tri) => {
-    console.log(tri, this.state.dispositifs);
     const order = tri.value,
       croissant = order === this.state.order ? !this.state.croissant : true;
     this.setState((pS) => ({
@@ -285,11 +286,9 @@ export class AdvancedSearch extends Component {
   };
 
   filter_content = (filtre) => {
-    console.log(filtre);
     const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
     const activeFiltre =
       this.state.activeFiltre === filtre.name ? "" : filtre.name;
-    console.log(filter, activeFiltre);
     this.setState({ filter, activeFiltre }, () => this.queryDispositifs());
   };
 
@@ -521,9 +520,8 @@ export class AdvancedSearch extends Component {
                         </NavLink>
                       </Col>
                     );
-                  } else {
-                    return false;
                   }
+                  return false;
                 })}
                 {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
                   <Col

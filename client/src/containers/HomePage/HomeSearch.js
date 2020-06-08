@@ -1,35 +1,9 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
-import ReactDependentScript from "react-dependent-script";
-import Autocomplete from "react-google-autocomplete";
-import styled from "styled-components";
-
-import FSearchBtn from "../../components/FigmaUI/FSearchBtn/FSearchBtn";
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import ReactCardFlip from "react-card-flip";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
 import variables from "scss/colors.scss";
 import Streamline from "../../assets/streamline";
-import Ripples from 'react-ripples';
-//import "./SearchItem.scss";
-// import variables from 'scss/colors.scss';
-
-const ThemeButton = styled.div`
-  display: block;
-  background-color: blue;
-  position: absolute;
-  border-radius: 10px;
-  text-align: center;
-`;
-
-const ThemeButtonR = styled.div`
-  display: block;
-  background-color: red;
-  position: absolute;
-  border-radius: 10px;
-  text-align: center;
-`;
+import Ripples from "react-ripples";
 
 export class SearchItem extends Component {
   constructor(props) {
@@ -118,9 +92,9 @@ export class SearchItem extends Component {
   open = (e) => {
     e.preventDefault();
     if (this.state.flip) {
-    this.setState({ flip: false });
+      this.setState({ flip: false });
     } else {
-      this.setState({ flip: true }); 
+      this.setState({ flip: true });
     }
     this.props.togglePopup();
     this.props.toggleOverlay();
@@ -134,12 +108,10 @@ export class SearchItem extends Component {
   };
 
   render() {
-    const { t, item, keyValue } = this.props;
-    const { dropdownOpen, isMounted, ville } = this.state;
-    console.log(this.state, item);
+    const { t, item } = this.props;
 
     return (
-      <button onClick={this.open} className={'search-col'}>
+      <button onClick={this.open} className={"search-col"}>
         <span className="mr-10">
           {t("SearchItem." + item.title, item.title)}
         </span>
@@ -165,7 +137,6 @@ export class SearchItem extends Component {
             >
               {item.children.map((subi, idx) => {
                 if (idx === this.state.indexF) {
-                  console.log(subi.darkColor);
                   return (
                     <button
                       onClick={this.open}
@@ -184,11 +155,23 @@ export class SearchItem extends Component {
                         fontWeight: 600,
                       }}
                     >
-                       {subi.icon ?
-              <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
-              <Streamline name={subi.icon} stroke={'white'} width={22} height={22}/>
-              </div>
-              : null}
+                      {subi.icon ? (
+                        <div
+                          style={{
+                            display: "flex",
+                            marginRight: 10,
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Streamline
+                            name={subi.icon}
+                            stroke={"white"}
+                            width={22}
+                            height={22}
+                          />
+                        </div>
+                      ) : null}
                       {t("Tags." + subi.name, subi.name)}
                     </button>
                   );
@@ -208,9 +191,7 @@ export class SearchItem extends Component {
             >
               {item.children.map((subi, idx) => {
                 if (idx === this.state.indexB) {
-                  console.log(subi.illustrationColor);
                   return (
-                    
                     <button
                       onClick={this.open}
                       className={
@@ -228,11 +209,23 @@ export class SearchItem extends Component {
                         fontWeight: 600,
                       }}
                     >
-                      {subi.icon ?
-              <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
-              <Streamline name={subi.icon} stroke={'white'} width={22} height={22}/>
-              </div>
-              : null}
+                      {subi.icon ? (
+                        <div
+                          style={{
+                            display: "flex",
+                            marginRight: 10,
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Streamline
+                            name={subi.icon}
+                            stroke={"white"}
+                            width={22}
+                            height={22}
+                          />
+                        </div>
+                      ) : null}
                       {t("Tags." + subi.name, subi.name)}
                     </button>
                   );
@@ -242,26 +235,33 @@ export class SearchItem extends Component {
           </Flippy>
         ) : (
           <Ripples>
-          <button
-            onClick={this.close}
-            className={"search-home"}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "row",
-              borderRadius: 10,
-              backgroundColor: variables.grisFonce,
-              fontWeight: "600",
-            }}
-          >
-              <div style={{display: 'flex',marginRight: 10, justifyContent: 'center', alignItems: 'center'}}>
-            <Streamline name="search" width={20} height={20} />
+            <button
+              onClick={this.close}
+              className={"search-home"}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "row",
+                borderRadius: 10,
+                backgroundColor: variables.grisFonce,
+                fontWeight: "600",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  marginRight: 10,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Streamline name="search" width={20} height={20} />
               </div>
-            {item.value
-              ? t("Tags." + item.value, item.value)
-              : t("Tags." + item.placeholder, item.placeholder)}
-          </button>
+              {item.value
+                ? t("Tags." + item.value, item.value)
+                : t("Tags." + item.placeholder, item.placeholder)}
+            </button>
           </Ripples>
         )}
         {/*<Dropdown isOpen={dropdownOpen} toggle={this.toggle} className="display-inline-block">

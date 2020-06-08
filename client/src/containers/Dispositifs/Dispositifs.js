@@ -1,72 +1,110 @@
-import React, { Component, Suspense } from 'react';
-import { withTranslation } from 'react-i18next';
-import track from 'react-tracking';
-import { Col, Row, Button, Collapse, CardBody, CardFooter, Spinner } from 'reactstrap';
-import Swal from 'sweetalert2';
+import React, { Component, Suspense } from "react";
+import { withTranslation } from "react-i18next";
+import track from "react-tracking";
+import {
+  Col,
+  Row,
+  Button,
+  Collapse,
+  CardBody,
+  CardFooter,
+  Spinner,
+} from "reactstrap";
+import Swal from "sweetalert2";
 import querySearch from "stringquery";
 
-import {randomColor} from '../../components/Functions/ColorFunctions'
-import API from '../../utils/API';
-import {FemmeDispo, HommeDispo} from '../../assets/figma'
-import CustomCard from '../../components/UI/CustomCard/CustomCard';
-import {filtres} from '../Dispositif/data';
-import EVAIcon from '../../components/UI/EVAIcon/EVAIcon';
-import SearchBar from '../UI/SearchBar/SearchBar';
+import { randomColor } from "../../components/Functions/ColorFunctions";
+import API from "../../utils/API";
+import { FemmeDispo, HommeDispo } from "../../assets/figma";
+import CustomCard from "../../components/UI/CustomCard/CustomCard";
+import { filtres } from "../Dispositif/data";
+import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
+import SearchBar from "../UI/SearchBar/SearchBar";
 
-import './Dispositifs.scss';
+import "./Dispositifs.scss";
 
-const loading = () => <div className="animated fadeIn pt-1 text-center">Chargement...</div>
+const loading = () => (
+  <div className="animated fadeIn pt-1 text-center">Chargement...</div>
+);
 
-const ParkourOnBoard = React.lazy(() => import('../ParkourOnBoard/ParkourOnBoard'));
+const ParkourOnBoard = React.lazy(() =>
+  import("../ParkourOnBoard/ParkourOnBoard")
+);
 
 class Dispositifs extends Component {
   state = {
-    dispositifs:[],
-    dispositif:{},
-    showModal:false,
-    showSearch:false,
-    showSpinner:true,
-    tags: filtres.tags.map(x => ({...x, active: false})),
-    color: null
-  }
+    dispositifs: [],
+    dispositif: {},
+    showModal: false,
+    showSearch: false,
+    showSpinner: true,
+    tags: filtres.tags.map((x) => ({ ...x, active: false })),
+    color: null,
+  };
 
-  componentDidMount (){
-    let tag=querySearch(this.props.location.search).tag;
-    if(tag) { this.selectTag(decodeURIComponent(tag)) } else { this.queryDispositifs() }
+  componentDidMount() {
+    let tag = querySearch(this.props.location.search).tag;
+    if (tag) {
+      this.selectTag(decodeURIComponent(tag));
+    } else {
+      this.queryDispositifs();
+    }
     window.scrollTo(0, 0);
   }
 
-  queryDispositifs = query => {
-    this.setState({ showSpinner: true })
-    API.get_dispositif({query: {...query, status:'Actif'}}).then(data_res => {
-      let dispositifs=data_res.data.data
-      this.setState({ dispositifs:dispositifs, showSpinner: false })
-    }).catch(()=>this.setState({ showSpinner: false }))
-  }
-  
-  selectTag = tag => {
-    this.setState({tags: this.state.tags.map(x => (x.name===tag ? {...x, active: true} : {...x, active: false})), color: tag.color})
-    this.queryDispositifs({tags: tag})
-    this.props.history.replace("/dispositifs?tag="+tag)
-  }
+  queryDispositifs = (query) => {
+    this.setState({ showSpinner: true });
+    API.get_dispositif({ query: { ...query, status: "Actif" } })
+      .then((data_res) => {
+        let dispositifs = data_res.data.data;
+        this.setState({ dispositifs: dispositifs, showSpinner: false });
+      })
+      .catch(() => this.setState({ showSpinner: false }));
+  };
+
+  selectTag = (tag) => {
+    this.setState({
+      tags: this.state.tags.map((x) =>
+        x.name === tag ? { ...x, active: true } : { ...x, active: false }
+      ),
+      color: tag.color,
+    });
+    this.queryDispositifs({ tags: tag });
+    this.props.history.replace("/dispositifs?tag=" + tag);
+  };
 
   _toggleModal = (show, dispositif = {}) => {
-    this.setState({showModal:show, dispositif:dispositif})
-  }
+    this.setState({ showModal: show, dispositif: dispositif });
+  };
 
-  _toggleSearch = () => this.setState(prevState=>{return {showSearch:!prevState.showSearch}})
+  _toggleSearch = () =>
+    this.setState((prevState) => {
+      return { showSearch: !prevState.showSearch };
+    });
 
-  goToDispositif = (dispositif={}, fromAutoSuggest=false) => {
-    this.props.tracking.trackEvent({ action: 'click', label: 'goToDispositif' + (fromAutoSuggest ? ' - fromAutoSuggest' : ''), value : dispositif._id });
-    this.props.history.push('/dispositif' + (dispositif._id ? ('/' + dispositif._id) : ''))
-  }
+  goToDispositif = (dispositif = {}, fromAutoSuggest = false) => {
+    this.props.tracking.trackEvent({
+      action: "click",
+      label: "goToDispositif" + (fromAutoSuggest ? " - fromAutoSuggest" : ""),
+      value: dispositif._id,
+    });
+    this.props.history.push(
+      "/dispositif" + (dispositif._id ? "/" + dispositif._id : "")
+    );
+  };
 
-  upcoming = () => Swal.fire( {title: 'Oh non!', text: 'Cette fonctionnalité n\'est pas encore activée', type: 'error', timer: 1500 })
+  upcoming = () =>
+    Swal.fire({
+      title: "Oh non!",
+      text: "Cette fonctionnalité n'est pas encore activée",
+      type: "error",
+      timer: 1500,
+    });
 
   render() {
     const { t } = this.props;
-    let {showSpinner, tags, color} = this.state;
-    
+    let { showSpinner, tags, color } = this.state;
+
     return (
       <div className="animated fadeIn dispositifs">
         <section id="hero">
@@ -74,12 +112,15 @@ class Dispositifs extends Component {
             <Row className="full-width hero-content">
               <FemmeDispo className="img-header img-femme" alt="femme" />
               <Col lg="6" md="8" sm="10" xs="12" className="header">
-                <h1 className="text-white">{t('Dispositifs.Header')}</h1>
-                <h2>{t('Dispositifs.Subheader')}</h2>
-                
+                <h1 className="text-white">{t("Dispositifs.Header")}</h1>
+                <h2>{t("Dispositifs.Subheader")}</h2>
+
                 <div className="input-group md-form form-sm form-1 pl-0 search-bar inner-addon right-addon">
                   <SearchBar />
-                  <i className="fa fa-search text-grey search-btn" aria-hidden="true"></i>
+                  <i
+                    className="fa fa-search text-grey search-btn"
+                    aria-hidden="true"
+                  ></i>
                 </div>
               </Col>
               <HommeDispo className="img-header img-homme" alt="homme" />
@@ -94,26 +135,61 @@ class Dispositifs extends Component {
               <ParkourOnBoard />
             </Suspense>
           </Collapse>
-          <Button className="btn-toggle-search" color="dark" onClick={this._toggleSearch} style={{ marginBottom: '1rem' }}>
+          <Button
+            className="btn-toggle-search"
+            color="dark"
+            onClick={this._toggleSearch}
+            style={{ marginBottom: "1rem" }}
+          >
             <h3>
-              {this.state.showSearch ? t("Masquer la recherche avancée") : t("Afficher la recherche avancée")} &nbsp;&nbsp;
-              <EVAIcon name={"chevron-" + (this.state.showSearch ? "up" : "down") + "-outline"} />
+              {this.state.showSearch
+                ? t("Masquer la recherche avancée")
+                : t("Afficher la recherche avancée")}{" "}
+              &nbsp;&nbsp;
+              <EVAIcon
+                name={
+                  "chevron-" +
+                  (this.state.showSearch ? "up" : "down") +
+                  "-outline"
+                }
+              />
             </h3>
           </Button>
         </section>
 
         <section id="menu_dispo">
           <Row className="align-items-center themes">
-            {tags.map((tag, key) =>(
-              <Col lg="auto" sm="auto" md="auto" xl className="mb-3 mb-xl-0" key={tag.name}>
-                <Button block outline={!tag.active} color={tag.color} onClick={()=>this.selectTag(tag.name)}>
+            {tags.map((tag) => (
+              <Col
+                lg="auto"
+                sm="auto"
+                md="auto"
+                xl
+                className="mb-3 mb-xl-0"
+                key={tag.name}
+              >
+                <Button
+                  block
+                  outline={!tag.active}
+                  color={tag.color}
+                  onClick={() => this.selectTag(tag.name)}
+                >
                   {t("Tags." + tag.name)}
                 </Button>
               </Col>
             ))}
             <Col lg="auto" sm="auto" md="auto" xl className="mb-3 mb-xl-0">
-              <span className="toggler active" data-toggle="grid"><span className="fa fa-th-large" /></span>
-              <span className="toggler" data-toggle="list" onClick={this.upcoming}><span className="fa fa-th-list" /></span>{/*  or use entypo library from weloveicons */}
+              <span className="toggler active" data-toggle="grid">
+                <span className="fa fa-th-large" />
+              </span>
+              <span
+                className="toggler"
+                data-toggle="list"
+                onClick={this.upcoming}
+              >
+                <span className="fa fa-th-list" />
+              </span>
+              {/*  or use entypo library from weloveicons */}
             </Col>
           </Row>
           <Row>
@@ -125,20 +201,28 @@ class Dispositifs extends Component {
                       <h5>{dispositif.titreInformatif}</h5>
                       <p>{dispositif.abstract}</p>
                     </CardBody>
-                    <CardFooter className={"align-right bg-"+ (color || randomColor())}>{dispositif.titreMarque}</CardFooter>
+                    <CardFooter
+                      className={"align-right bg-" + (color || randomColor())}
+                    >
+                      {dispositif.titreMarque}
+                    </CardFooter>
                   </CustomCard>
                 </Col>
-              )}
-            )}
+              );
+            })}
             <Col xs="12" sm="6" md="3">
               <CustomCard addcard="true" onClick={this.goToDispositif}>
                 <CardBody>
-                  {showSpinner ?
-                    <Spinner color="success" /> : 
-                    <span className="add-sign">+</span> }
+                  {showSpinner ? (
+                    <Spinner color="success" />
+                  ) : (
+                    <span className="add-sign">+</span>
+                  )}
                 </CardBody>
                 <CardFooter className="align-right bg-secondary text-white">
-                  {showSpinner ? "Chargement..." : "Créer un nouveau dispositif"}
+                  {showSpinner
+                    ? "Chargement..."
+                    : "Créer un nouveau dispositif"}
                 </CardFooter>
               </CustomCard>
             </Col>
@@ -156,13 +240,10 @@ class Dispositifs extends Component {
           </footer>
         </Modal> */}
       </div>
-    )
+    );
   }
 }
 
 export default track({
-    page: 'Dispositifs',
-  })(
-    withTranslation()(Dispositifs)
-  );
-
+  page: "Dispositifs",
+})(withTranslation()(Dispositifs));

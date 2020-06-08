@@ -48,3 +48,6 @@ token.json
 /controllers/dispositif/gmail_auth.js
 /client/brouillon.js
 /client/.env
+/client/.jest
+/client/coverage
+.eslintcache

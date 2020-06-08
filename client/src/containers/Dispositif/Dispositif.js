@@ -4,15 +4,15 @@ import track from "react-tracking";
 import { Col, Row, Modal, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import ContentEditable from "react-contenteditable";
+import { logger } from "../../logger";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import htmlToDraft from "html-to-draftjs";
 import {
   EditorState,
   convertToRaw,
   convertFromRaw,
-  ContentState
+  ContentState,
 } from "draft-js";
-import draftToHtml from "draftjs-to-html";
 import { savePDF } from "@progress/kendo-react-pdf";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
@@ -25,13 +25,13 @@ import { convertToHTML } from "draft-convert";
 import windowSize from "react-window-size";
 import {
   NotificationContainer,
-  NotificationManager
+  NotificationManager,
 } from "react-notifications";
 import "../../../node_modules/video-react/dist/video-react.css";
 
 import API from "../../utils/API";
 import Sponsors from "../../components/Frontend/Dispositif/Sponsors/Sponsors";
-import ContenuDispositif from "../../components/Frontend/Dispositif/ContenuDispositif/ContenuDispositif";
+import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuDispositif";
 import {
   ReagirModal,
   BookmarkedModal,
@@ -51,10 +51,12 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
 import BandeauEdition from "../../components/Frontend/Dispositif/BandeauEdition/BandeauEdition";
 import TopRightHeader from "../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader";
-import { fetch_dispositifs, fetch_user } from "../../Store/actions";
+import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import SideTrad from "./SideTrad/SideTrad";
+import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
 import { readAudio } from "../Layout/functions";
 import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
@@ -70,7 +72,7 @@ import {
   menuDemarche,
   demarcheSteps,
   tutoStepsDemarche,
-  customConvertOption
+  customConvertOption,
 } from "./data";
 import {
   switchVariante,
@@ -79,7 +81,7 @@ import {
   verifierDemarche,
   validateVariante,
   deleteVariante,
-  calculFiabilite
+  calculFiabilite,
 } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
 
@@ -94,7 +96,7 @@ const uiElement = {
   accordion: false,
   cardDropdown: false,
   addDropdown: false,
-  varianteSelected: false
+  varianteSelected: false,
 };
 let user = { _id: "", cookies: {} };
 const nbMoisNouveau = 1;
@@ -125,7 +127,7 @@ export class Dispositif extends Component {
     mainTag: {
       darkColor: variables.darkColor,
       lightColor: variables.lightColor,
-      hoverColor: variables.gris
+      hoverColor: variables.gris,
     },
 
     uiArray: new Array(menu.length).fill(uiElement),
@@ -171,7 +173,7 @@ export class Dispositif extends Component {
     checkingVariante: false,
     printing: false,
     didThank: false,
-    finalValidation: false
+    finalValidation: false,
   };
 
   componentDidMount() {
@@ -179,6 +181,7 @@ export class Dispositif extends Component {
     this._initializeDispositif(this.props);
   }
 
+  // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (
       ((nextProps.match || {}).params || {}).id !==
@@ -206,7 +209,7 @@ export class Dispositif extends Component {
     clearInterval(this.timer);
   }
 
-  _initializeDispositif = props => {
+  _initializeDispositif = (props) => {
     const itemId = props.match && props.match.params && props.match.params.id;
     const typeContenu = (props.match.path || "").includes("demarche")
       ? "demarche"
@@ -217,18 +220,16 @@ export class Dispositif extends Component {
       this.props.tracking.trackEvent({
         action: "readDispositif",
         label: "dispositifId",
-        value: itemId
+        value: itemId,
       });
       return API.get_dispositif({
         query: { _id: itemId },
         sort: {},
         populate: "creatorId mainSponsor participants",
-        locale: props.languei18nCode
+        locale: props.languei18nCode,
       })
-        .then(data_res => {
-          console.log(data_res);
+        .then((data_res) => {
           let dispositif = { ...data_res.data.data[0] };
-          console.log(dispositif);
           if (!dispositif || !dispositif._id) {
             this._isMounted = false;
             return this.props.history.push("/");
@@ -241,6 +242,7 @@ export class Dispositif extends Component {
           ) {
             if (_.isEmpty(this.props.user)) {
               return this.props.history.push("/login");
+              // eslint-disable-next-line no-else-return
             } else {
               this._isMounted = false;
               return this.props.history.push("/");
@@ -253,7 +255,6 @@ export class Dispositif extends Component {
               this.valider_dispositif("Brouillon", true)
             );
           } //Enregistrement automatique du dispositif toutes les 3 minutes
-          console.log(dispositif);
           this._isMounted &&
             this.setState(
               {
@@ -264,29 +265,32 @@ export class Dispositif extends Component {
                   titreMarque: dispositif.titreMarque,
                   abstract: dispositif.abstract,
                   contact: dispositif.contact,
-                  externalLink: dispositif.externalLink
+                  externalLink: dispositif.externalLink,
                 },
                 sponsors: dispositif.sponsors,
                 tags: dispositif.tags,
                 creator: dispositif.creatorId,
-                uiArray: _.get(dispositif, "contenu", []).map(x => {
+                uiArray: _.get(dispositif, "contenu", []).map((x) => {
                   return {
                     ...uiElement,
                     ...(x.children && {
                       children: new Array(x.children.length).fill({
                         ...uiElement,
-                        accordion: dispositif.status === "Accepté structure"
-                      })
-                    })
+                        accordion: dispositif.status === "Accepté structure",
+                      }),
+                    }),
                   };
                 }),
                 dispositif: dispositif,
                 isDispositifLoading: false,
-                contributeurs: dispositif.participants || [],
+                contributeurs: this.computeContributors(
+                  dispositif.participants,
+                  dispositif.creatorId
+                ),
                 mainTag:
                   dispositif.tags && dispositif.tags.length > 0
                     ? filtres.tags.find(
-                        x => x && x.name === (dispositif.tags[0] || {}).name
+                        (x) => x && x.name === (dispositif.tags[0] || {}).name
                       ) || {}
                     : {},
                 mainSponsor: dispositif.mainSponsor,
@@ -297,8 +301,8 @@ export class Dispositif extends Component {
                 typeContenu,
                 checkingVariante,
                 ...(dispositif.status === "Brouillon" && {
-                  initialTime: dispositif.timeSpent
-                })
+                  initialTime: dispositif.timeSpent,
+                }),
               },
               () => {
                 if (typeContenu === "demarche") {
@@ -316,40 +320,41 @@ export class Dispositif extends Component {
           this._isMounted &&
             API.get_structure({
               _id: {
-                $in: _.get(dispositif, "sponsors", []).map(s => s && s._id)
-              }
-            }).then(data => {
+                $in: _.get(dispositif, "sponsors", []).map((s) => s && s._id),
+              },
+            }).then((data) => {
               this._isMounted &&
                 data.data.data &&
                 data.data.data.length > 0 &&
-                this.setState(pS => ({
+                this.setState((pS) => ({
                   sponsors: [
                     ...data.data.data,
-                    ...pS.sponsors.filter(x => x.asAdmin)
-                  ]
+                    ...pS.sponsors.filter((x) => x.asAdmin),
+                  ],
                 }));
             });
           //On récupère les données de l'utilisateur
           if (this._isMounted && API.isAuth()) {
             this._isMounted &&
-              API.get_user_info().then(data_res => {
+              API.get_user_info().then((data_res) => {
                 let u = data_res.data.data;
                 user = { _id: u._id, cookies: u.cookies || {} };
                 this._isMounted &&
                   this.setState({
                     pinned: (user.cookies.dispositifsPinned || []).some(
-                      x => x._id === itemId
+                      (x) => x._id === itemId
                     ),
-                    isAuthor: u._id === (dispositif.creatorId || {})._id
+                    isAuthor: u._id === (dispositif.creatorId || {})._id,
                   });
               });
           }
         })
-        .catch(err => {
+        .catch((err) => {
           if (_.isEmpty(this.props.user)) {
             this._isMounted = false;
             return this.props.history.push("/login");
           }
+          // eslint-disable-next-line no-console
           console.log("Error: ", err.message);
           this._isMounted = false;
           return this.props.history.push("/");
@@ -362,20 +367,20 @@ export class Dispositif extends Component {
       this.setState(
         {
           disableEdit: false,
-          uiArray: menuContenu.map(x => {
+          uiArray: menuContenu.map((x) => {
             return {
               ...uiElement,
               ...(x.children && {
                 children: new Array(x.children.length).fill({
                   ...uiElement,
-                  accordion: true
-                })
-              })
+                  accordion: true,
+                }),
+              }),
             };
           }),
           showDispositifCreateModal: process.env.NODE_ENV !== "development", //A modifier avant la mise en prod
           isDispositifLoading: false,
-          menu: menuContenu.map(x => {
+          menu: menuContenu.map((x) => {
             return {
               ...x,
               type: x.type || "paragraphe",
@@ -384,33 +389,33 @@ export class Dispositif extends Component {
               content: x.type ? null : x.content,
               editorState: EditorState.createWithContent(
                 ContentState.createFromBlockArray(htmlToDraft("").contentBlocks)
-              )
+              ),
             };
           }),
           typeContenu,
           ...(textInput && {
-            content: { ...contenu, titreInformatif: textInput }
-          })
+            content: { ...contenu, titreInformatif: textInput },
+          }),
         },
         () => this.setColors()
       );
     } else {
       props.history.push({
         pathname: "/login",
-        state: { redirectTo: "/dispositif" }
+        state: { redirectTo: "/dispositif" },
       });
     }
     window.scrollTo(0, 0);
   };
 
   setColors = () => {
-    return ["color", "borderColor", "backgroundColor", "fill"].map(s => {
-      return ["dark", "light"].map(c => {
+    return ["color", "borderColor", "backgroundColor", "fill"].map((s) => {
+      return ["dark", "light"].map((c) => {
         return (
           document &&
           document
             .querySelectorAll("." + s + "-" + c + "Color")
-            .forEach(elem => {
+            .forEach((elem) => {
               elem.style[s] = this.state.mainTag[c + "Color"];
             })
         );
@@ -418,7 +423,7 @@ export class Dispositif extends Component {
     });
   };
 
-  onInputClicked = ev => {
+  onInputClicked = (ev) => {
     const id = ev.currentTarget.id;
     if (
       !this.state.disableEdit &&
@@ -431,12 +436,12 @@ export class Dispositif extends Component {
     }
   };
 
-  handleChange = ev => {
+  handleChange = (ev) => {
     this.setState({
       content: {
         ...this.state.content,
-        [ev.currentTarget.id]: ev.target.value
-      }
+        [ev.currentTarget.id]: ev.target.value,
+      },
     });
   };
 
@@ -454,7 +459,7 @@ export class Dispositif extends Component {
     }
   };
 
-  handleModalChange = ev =>
+  handleModalChange = (ev) =>
     this.setState({ [ev.currentTarget.id]: ev.target.value });
 
   disableIsMapLoaded = (key, subkey) => {
@@ -479,7 +484,7 @@ export class Dispositif extends Component {
       ...(!node.dataset.subkey && {
         [(node.dataset || {}).target || "content"]:
           value || (value === null && ev.target.value),
-        isFakeContent: false
+        isFakeContent: false,
       }),
       ...(node.dataset.subkey &&
         state[node.id].children &&
@@ -490,11 +495,11 @@ export class Dispositif extends Component {
               ...(subidx === parseInt(node.dataset.subkey) && {
                 [node.dataset.target || "content"]:
                   value || (value === null && ev.target.value),
-                isFakeContent: false
-              })
+                isFakeContent: false,
+              }),
             };
-          })
-        })
+          }),
+        }),
     };
     return this.setState({ menu: state });
   };
@@ -512,7 +517,7 @@ export class Dispositif extends Component {
         ))
     ) {
       if (editable) {
-        state = state.map(x => ({
+        state = state.map((x) => ({
           ...x,
           editable: false,
           ...(x.editable &&
@@ -521,10 +526,10 @@ export class Dispositif extends Component {
             x.editorState.getCurrentContent().getPlainText() !== "" && {
               content: convertToHTML(customConvertOption)(
                 x.editorState.getCurrentContent()
-              )
+              ),
             }),
           ...(x.children && {
-            children: x.children.map(y => ({
+            children: x.children.map((y) => ({
               ...y,
               ...(y.editable &&
                 y.editorState &&
@@ -532,11 +537,11 @@ export class Dispositif extends Component {
                 y.editorState.getCurrentContent().getPlainText() !== "" && {
                   content: convertToHTML(customConvertOption)(
                     y.editorState.getCurrentContent()
-                  )
+                  ),
                 }),
-              editable: false
-            }))
-          }) //draftToHtml(convertToRaw(y.editorState.getCurrentContent()))
+              editable: false,
+            })),
+          }), //draftToHtml(convertToRaw(y.editorState.getCurrentContent()))
         }));
       }
       let right_node = state[key];
@@ -555,7 +560,7 @@ export class Dispositif extends Component {
         );
         const rawContentState = convertToRaw(contentState) || {};
         const rawBlocks = rawContentState.blocks || [];
-        const textPosition = rawBlocks.findIndex(x =>
+        const textPosition = rawBlocks.findIndex((x) =>
           (x.text || "").includes("Bon à savoir :")
         );
         const newRawBlocks = rawBlocks.filter(
@@ -563,15 +568,15 @@ export class Dispositif extends Component {
         );
         const newRawContentState = {
           ...rawContentState,
-          blocks: newRawBlocks.map(x =>
+          blocks: newRawBlocks.map((x) =>
             x.text.includes("Bon à savoir :")
               ? {
                   ...x,
                   text: x.text.replace("Bon à savoir :", ""),
-                  type: "header-six"
+                  type: "header-six",
                 }
               : x
-          )
+          ),
         };
         const newContentState = convertFromRaw(newRawContentState);
         right_node.editorState = EditorState.createWithContent(newContentState);
@@ -587,14 +592,15 @@ export class Dispositif extends Component {
       if (right_node.type === "accordion") {
         this.updateUIArray(key, subkey, "accordion", true);
       }
-      return new Promise(resolve =>
+      return new Promise((resolve) =>
         this.setState({ menu: state }, () => {
           this.updateUI(key, subkey, editable);
           resolve();
         })
       );
+      // eslint-disable-next-line no-else-return
     } else {
-      return new Promise(r => r());
+      return new Promise((r) => r());
     }
   };
 
@@ -613,7 +619,6 @@ export class Dispositif extends Component {
             : key === 1
             ? "card-col col-lg-4"
             : undefined;
-        console.log(target);
         let parentNode = document.getElementsByClassName(target)[0];
         if (subkey && parentNode) {
           parentNode
@@ -628,47 +633,33 @@ export class Dispositif extends Component {
                 "public-DraftEditorPlaceholder-inner"
               )[0] || {}
             ).offsetHeight + "px";
-          this.setState(pS => ({
-            joyRideWidth: parentNode.offsetWidth || pS.joyRideWidth
+          this.setState((pS) => ({
+            joyRideWidth: parentNode.offsetWidth || pS.joyRideWidth,
           }));
         }
         if (parentNode) {
           parentNode.scrollIntoView({
             behavior: "smooth",
             block: "end",
-            inline: "nearest"
+            inline: "nearest",
           });
         }
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
-      console.log(key, seuil_tuto);
       this.setState({
         stepIndex: key + seuil_tuto,
         runJoyRide: true,
         disableOverlay: true,
-        inputBtnClicked: false
+        inputBtnClicked: false,
       });
     }
   };
 
   onEditorStateChange = (editorState, key, subkey = null) => {
     let state = [...this.state.menu];
-    const contentState = editorState.getCurrentContent();
-    const selectionState = editorState.getSelection();
-    const rawContentState = convertToRaw(editorState.getCurrentContent());
-    const markup = convertToHTML(customConvertOption)(
-      editorState.getCurrentContent()
-    );
-    console.log(
-      "Menu State",
-      state,
-      contentState,
-      selectionState,
-      rawContentState,
-      markup
-      //rawContentState.blocks[1].data
-    );
+
     if (state.length > key) {
       if (subkey !== null && state[key].children.length > subkey) {
         state[key].children[subkey].editorState = editorState;
@@ -696,10 +687,10 @@ export class Dispositif extends Component {
             return {
               ...y,
               ...((subidx === subkey && idx === key && { [node]: value }) ||
-                (updateOthers && { [node]: false }))
+                (updateOthers && { [node]: false })),
             };
-          })
-        })
+          }),
+        }),
       };
     });
     this.setState({ uiArray: uiArray, tKeyValue: key, tSubkey: subkey });
@@ -710,7 +701,7 @@ export class Dispositif extends Component {
     let uiArray = [...this.state.uiArray];
     if (prevState[key].children && prevState[key].children.length > 0) {
       let newChild = {
-        ...prevState[key].children[prevState[key].children.length - 1]
+        ...prevState[key].children[prevState[key].children.length - 1],
       };
       if (type === "card" && newChild.type !== "card") {
         prevState[key].type = "cards";
@@ -722,7 +713,7 @@ export class Dispositif extends Component {
           contentTitle: "Compte bancaire",
           contentBody: "nécessaire pour recevoir l’indemnité",
           footer: "Pourquoi ?",
-          footerIcon: "question-mark-circle-outline"
+          footerIcon: "question-mark-circle-outline",
         };
       } else if (type === "accordion" && !newChild.content) {
         newChild = {
@@ -730,14 +721,14 @@ export class Dispositif extends Component {
           isFakeContent: true,
           title: "Un exemple d'accordéon",
           placeholder: lorems.sousParagraphe,
-          content: ""
+          content: "",
         };
       } else if (type === "map") {
         newChild = {
           type: "map",
           isFakeContent: true,
           isMapLoaded: false,
-          markers: []
+          markers: [],
         };
       } else if (type === "paragraph" && !newChild.content) {
         newChild = {
@@ -745,7 +736,7 @@ export class Dispositif extends Component {
           isFakeContent: true,
           placeholder: lorems.sousParagraphe,
           content: "",
-          type: type
+          type: type,
         };
       } else if (type === "etape") {
         newChild = {
@@ -755,7 +746,7 @@ export class Dispositif extends Component {
           timeStepDuree: "minutes",
           delai: "00",
           timeStepDelai: "minutes",
-          option: {}
+          option: {},
         };
       }
       newChild.type = type;
@@ -776,26 +767,26 @@ export class Dispositif extends Component {
             contentTitle: "Compte bancaire",
             contentBody: "nécessaire pour recevoir l’indemnité",
             footer: "Pourquoi ?",
-            footerIcon: "question-mark-circle-outline"
-          }
+            footerIcon: "question-mark-circle-outline",
+          },
         ];
       } else if (type === "map") {
         prevState[key].children = [
-          { type: "map", isFakeContent: true, isMapLoaded: false, markers: [] }
+          { type: "map", isFakeContent: true, isMapLoaded: false, markers: [] },
         ];
       } else {
         prevState[key].children = [
           {
             title: "Nouveau sous-paragraphe",
             type: type,
-            content: lorems.sousParagraphe
-          }
+            content: lorems.sousParagraphe,
+          },
         ];
       }
     }
     uiArray[key].children = [
       ...(uiArray[key].children || []),
-      { ...uiElement, accordion: true, varianteSelected: true }
+      { ...uiElement, accordion: true, varianteSelected: true },
     ];
     this.setState(
       { menu: prevState, uiArray: uiArray },
@@ -828,7 +819,7 @@ export class Dispositif extends Component {
       (x, index) => index !== subkey
     );
     this.setState({
-      menu: prevState
+      menu: prevState,
     });
   };
 
@@ -836,19 +827,19 @@ export class Dispositif extends Component {
     this.props.tracking.trackEvent({
       action: "toggleModal",
       label: name,
-      value: show
+      value: show,
     });
     if (name === "merci" && this.state.showModals.merci) {
       Swal.fire({
         title: "Yay...",
         text: "Votre suggestion a bien été enregistrée, merci",
         type: "success",
-        timer: 1500
+        timer: 1500,
       });
     }
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       showModals: { ...prevState.showModals, [name]: show },
-      suggestion: ""
+      suggestion: "",
     }));
   };
 
@@ -856,34 +847,34 @@ export class Dispositif extends Component {
     this.props.tracking.trackEvent({
       action: "toggleTooltip",
       label: "tooltipOpen",
-      value: !this.state.tooltipOpen
+      value: !this.state.tooltipOpen,
     });
     this.setState({ tooltipOpen: !this.state.tooltipOpen });
   };
 
   toggleBookmarkModal = () =>
-    this.setState(prevState => ({
-      showBookmarkModal: !prevState.showBookmarkModal
+    this.setState((prevState) => ({
+      showBookmarkModal: !prevState.showBookmarkModal,
     }));
   toggleDispositifCreateModal = () =>
-    this.setState(prevState => ({
-      showDispositifCreateModal: !prevState.showDispositifCreateModal
+    this.setState((prevState) => ({
+      showDispositifCreateModal: !prevState.showDispositifCreateModal,
     }));
   toggleDispositifValidateModal = () => {
     if (_.isEmpty(this.state.sponsors)) {
       this.setState({ finalValidation: true });
       this.sponsors.current.toggleModal("responsabilite");
     } else {
-      this.setState(prevState => ({
+      this.setState((prevState) => ({
         showDispositifValidateModal: !prevState.showDispositifValidateModal,
-        finalValidation: false
+        finalValidation: false,
       }));
     }
   };
   toggleDispositifValidateModalFinal = () => {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       showDispositifValidateModal: !prevState.showDispositifValidateModal,
-      finalValidation: false
+      finalValidation: false,
     }));
   };
 
@@ -892,19 +883,19 @@ export class Dispositif extends Component {
   };
 
   toggleInputBtnClicked = () =>
-    this.setState(prevState => ({
-      inputBtnClicked: !prevState.inputBtnClicked
+    this.setState((prevState) => ({
+      inputBtnClicked: !prevState.inputBtnClicked,
     }));
   toggleCheckingVariante = () =>
-    this.setState(pS => ({ checkingVariante: !pS.checkingVariante }));
+    this.setState((pS) => ({ checkingVariante: !pS.checkingVariante }));
   toggleInVariante = () =>
-    this.setState(pS => ({
+    this.setState((pS) => ({
       inVariante: !pS.inVariante,
       ...(!pS.inVariante &&
         pS.disableEdit && {
           checkingVariante: false,
-          showModals: { ...this.state.showModals, variante: true }
-        })
+          showModals: { ...this.state.showModals, variante: true },
+        }),
     }));
 
   toggleNiveau = (nv, key, subkey) => {
@@ -913,8 +904,8 @@ export class Dispositif extends Component {
       key + ".children." + subkey + ".niveaux",
       []
     );
-    niveaux = niveaux.some(x => x === nv)
-      ? niveaux.filter(x => x !== nv)
+    niveaux = niveaux.some((x) => x === nv)
+      ? niveaux.filter((x) => x !== nv)
       : [...niveaux, nv];
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
@@ -923,10 +914,10 @@ export class Dispositif extends Component {
               ...x,
               children: x.children.map((y, ix) =>
                 ix === subkey ? { ...y, niveaux: niveaux } : y
-              )
+              ),
             }
           : x
-      )
+      ),
     });
   };
 
@@ -940,10 +931,10 @@ export class Dispositif extends Component {
                 ix === subkey
                   ? { ...y, free: !y.free, isFakeContent: false }
                   : y
-              )
+              ),
             }
           : x
-      )
+      ),
     });
   changePrice = (e, key, subkey) =>
     this.setState({
@@ -955,10 +946,10 @@ export class Dispositif extends Component {
                 ix === subkey
                   ? { ...y, price: e.target.value, isFakeContent: false }
                   : y
-              )
+              ),
             }
           : x
-      )
+      ),
     });
   changeAge = (e, key, subkey, isBottom = true) =>
     this.setState({
@@ -973,13 +964,13 @@ export class Dispositif extends Component {
                       [isBottom ? "bottomValue" : "topValue"]: (
                         e.target.value || ""
                       ).replace(/\D/g, ""),
-                      isFakeContent: false
+                      isFakeContent: false,
                     }
                   : y
-              )
+              ),
             }
           : x
-      )
+      ),
     });
   setMarkers = (markers, key, subkey) =>
     this.setState({
@@ -991,10 +982,10 @@ export class Dispositif extends Component {
                 ix === subkey
                   ? { ...y, markers: markers, isFakeContent: false }
                   : y
-              )
+              ),
             }
           : x
-      )
+      ),
     });
 
   startFirstJoyRide = () =>
@@ -1003,35 +994,35 @@ export class Dispositif extends Component {
     this.setState({ runJoyRide: true, stepIndex: idx });
 
   toggleHelp = () =>
-    this.setState(prevState => ({ withHelp: !prevState.withHelp }));
+    this.setState((prevState) => ({ withHelp: !prevState.withHelp }));
 
   bookmarkDispositif = () => {
     this.setState({ showSpinnerBookmark: true });
     if (API.isAuth()) {
       if (this.state.pinned) {
         user.cookies.dispositifsPinned = user.cookies.dispositifsPinned.filter(
-          x => x._id !== this.state.dispositif._id
+          (x) => x._id !== this.state.dispositif._id
         );
       } else {
         user.cookies.dispositifsPinned = [
           ...(user.cookies.dispositifsPinned || []),
-          { _id: this.state._id, datePin: new Date() }
+          { _id: this.state._id, datePin: new Date() },
         ];
       }
       API.set_user_info(user).then(() => {
-        this.props.fetch_user();
+        this.props.fetchUser();
         this._isMounted &&
-          this.setState(pS => ({
+          this.setState((pS) => ({
             showSpinnerBookmark: false,
             showBookmarkModal: !pS.pinned,
             pinned: !pS.pinned,
-            isAuth: true
+            isAuth: true,
           }));
       });
     } else {
-      this.setState(pS => ({
+      this.setState(() => ({
         showBookmarkModal: false,
-        isAuth: false
+        isAuth: false,
       }));
     }
   };
@@ -1041,8 +1032,8 @@ export class Dispositif extends Component {
     if (node === "title") {
       prevState[key].children[subkey] = [
         ...menu[1].children,
-        importantCard
-      ].find(x => x.title === value);
+        importantCard,
+      ].find((x) => x.title === value);
     } else {
       prevState[key].children[subkey][node] = value;
     }
@@ -1054,8 +1045,8 @@ export class Dispositif extends Component {
       {
         tags: this.state.tags.map((x, i) => (i === key ? value : x)),
         ...(key === 0 && {
-          mainTag: filtres.tags.find(x => x.short === value.short)
-        })
+          mainTag: filtres.tags.find((x) => x.short === value.short),
+        }),
       },
       () => {
         if (key === 0) {
@@ -1066,10 +1057,10 @@ export class Dispositif extends Component {
   };
 
   addTag = () => this.setState({ tags: [...(this.state.tags || []), "Autre"] });
-  deleteTag = idx =>
+  deleteTag = (idx) =>
     this.setState({ tags: [...this.state.tags].filter((_, i) => i !== idx) });
 
-  handleJoyrideCallback = data => {
+  handleJoyrideCallback = (data) => {
     const { action, index, type, lifecycle, status } = data;
     const etapes_tuto =
       this.state.typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
@@ -1100,7 +1091,7 @@ export class Dispositif extends Component {
       this.setState({
         stepIndex,
         disableOverlay: index > trigger_lower,
-        inputBtnClicked
+        inputBtnClicked,
       });
       if (
         this.state.withHelp &&
@@ -1116,37 +1107,39 @@ export class Dispositif extends Component {
         cible.scrollIntoView({
           behavior: "smooth",
           block: "end",
-          inline: "nearest"
+          inline: "nearest",
         });
       }
     }
   };
 
-  handleFirstJoyrideCallback = data => {
+  handleFirstJoyrideCallback = (data) => {
     if ([STATUS.FINISHED, STATUS.SKIPPED].includes(data.status)) {
       this.setState({ runJoyRide: true, runFirstJoyRide: false });
     }
   };
 
-  addSponsor = sponsor => {
-    console.log('QQQQQQWQWQWQWWEQWEQWEQWEQWEQWEQEW', sponsor);
+  addSponsor = (sponsor) => {
     this.setState({
-      sponsors: [...(this.state.sponsors || []).filter(x => !x.dummy), sponsor]
+      sponsors: [
+        ...(this.state.sponsors || []).filter((x) => !x.dummy),
+        sponsor,
+      ],
     });
-  }
-  
-  deleteSponsor = key => {
+  };
+
+  deleteSponsor = (key) => {
     if (this.state.status === "Accepté structure") {
       Swal.fire({
         title: "Oh non!",
         text: "Vous ne pouvez plus supprimer de structures partenaires",
         type: "error",
-        timer: 1500
+        timer: 1500,
       });
       return;
     }
     this.setState({
-      sponsors: (this.state.sponsors || []).filter((_, i) => i !== key)
+      sponsors: (this.state.sponsors || []).filter((_, i) => i !== key),
     });
   };
 
@@ -1161,37 +1154,37 @@ export class Dispositif extends Component {
       input: "tel",
       inputPlaceholder: "0633445566",
       inputAttributes: {
-        autocomplete: "on"
+        autocomplete: "on",
       },
       showCancelButton: true,
       confirmButtonText: "Envoyer",
       cancelButtonText: "Annuler",
       showLoaderOnConfirm: true,
-      preConfirm: number => {
+      preConfirm: (number) => {
         return API.send_sms({
           number,
           typeContenu: this.state.typeContenu,
           url: window.location.href,
-          title: this.state.content.titreInformatif
+          title: this.state.content.titreInformatif,
         })
-          .then(response => {
+          .then((response) => {
             if (!response.status === 200) {
               throw new Error(response.statusText);
             }
             return response.data;
           })
-          .catch(error => {
+          .catch((error) => {
             Swal.showValidationMessage(`Echec d'envoi: ${error}`);
           });
       },
-      allowOutsideClick: () => !Swal.isLoading()
-    }).then(result => {
+      allowOutsideClick: () => !Swal.isLoading(),
+    }).then((result) => {
       if (result.value) {
         Swal.fire({
           title: "Yay...",
           text: "Votre message a bien été envoyé, merci",
           type: "success",
-          timer: 1500
+          timer: 1500,
         });
       }
     });
@@ -1199,14 +1192,14 @@ export class Dispositif extends Component {
   createPdf = () => {
     this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
     let uiArray = [...this.state.uiArray];
-    uiArray = uiArray.map(x => ({
+    uiArray = uiArray.map((x) => ({
       ...x,
       accordion: true,
       ...(x.children && {
-        children: x.children.map(y => {
+        children: x.children.map((y) => {
           return { ...y, accordion: true };
-        })
-      })
+        }),
+      }),
     }));
     this.setState({ uiArray: uiArray, showSpinnerPrint: true }, () => {
       setTimeout(() => {
@@ -1228,8 +1221,8 @@ export class Dispositif extends Component {
                   top: "2cm",
                   left: "1.5cm",
                   right: "1.5cm",
-                  bottom: "2cm"
-                }
+                  bottom: "2cm",
+                },
               },
               this._isMounted &&
                 setTimeout(() => {
@@ -1251,14 +1244,15 @@ export class Dispositif extends Component {
     // });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   editDispositif = (_ = null, disableEdit = false) =>
     this.setState(
-      pS => ({
+      (pS) => ({
         disableEdit: disableEdit,
         uiArray: pS.menu.map((x, i) => ({
           ...uiElement,
           ...(pS.uiArray.length > i && {
-            varianteSelected: pS.uiArray[i].varianteSelected
+            varianteSelected: pS.uiArray[i].varianteSelected,
           }),
           ...(x.children && {
             children: x.children.map((_, j) => ({
@@ -1267,12 +1261,12 @@ export class Dispositif extends Component {
                 pS.uiArray[i] &&
                 pS.uiArray[i].children &&
                 pS.uiArray[i].children.length > j && {
-                  varianteSelected: pS.uiArray[i].children[j].varianteSelected
+                  varianteSelected: pS.uiArray[i].children[j].varianteSelected,
                 }),
-              accordion: !disableEdit
-            }))
-          })
-        }))
+              accordion: !disableEdit,
+            })),
+          }),
+        })),
       }),
       () => this.setColors()
     );
@@ -1287,9 +1281,9 @@ export class Dispositif extends Component {
       subkey: this.state.tSubkey,
       fieldName: fieldName,
       type: "push",
-      ...(this.state.suggestion && { suggestion: h2p(this.state.suggestion) })
+      ...(this.state.suggestion && { suggestion: h2p(this.state.suggestion) }),
     };
-    API.update_dispositif(dispositif).then(data => {
+    API.update_dispositif(dispositif).then(() => {
       if (
         (modalName === "reaction" || fieldName === "merci") &&
         this._isMounted
@@ -1298,7 +1292,7 @@ export class Dispositif extends Component {
           title: "Yay...",
           text: "Votre réaction a bien été enregistrée, merci",
           type: "success",
-          timer: 1500
+          timer: 1500,
         });
         fieldName === "merci" && this.setState({ didThank: true });
       } else if (API.isAuth() && fieldName !== "merci" && this._isMounted) {
@@ -1306,7 +1300,7 @@ export class Dispositif extends Component {
           title: "Yay...",
           text: "Votre suggestion a bien été enregistrée, merci",
           type: "success",
-          timer: 1500
+          timer: 1500,
         });
       } else if (this._isMounted) {
         this.toggleModal(true, "merci");
@@ -1314,22 +1308,30 @@ export class Dispositif extends Component {
     });
   };
 
-  update_status = status => {
+  update_status = (status) => {
     let dispositif = {
       status: status,
-      dispositifId: this.state._id
+      dispositifId: this.state._id,
     };
-    API.add_dispositif(dispositif).then(data => {
-      this.props.fetch_dispositifs();
+    API.add_dispositif(dispositif).then(() => {
+      this.props.fetchDispositifs();
       this._isMounted &&
         this.setState({
           status: status,
-          disableEdit: status !== "Accepté structure"
+          disableEdit: status !== "Accepté structure",
         });
       if (status === "Rejeté structure") {
         this.props.history.push("/backend/user-dash-structure");
       }
     });
+  };
+
+  computeContributors = (translators, creator) => {
+    if (translators) {
+      translators.push(creator);
+      return translators;
+    }
+    return [creator];
   };
 
   valider_dispositif = (status = "En attente", auto = false) => {
@@ -1340,10 +1342,10 @@ export class Dispositif extends Component {
     let content = { ...this.state.content };
     const uiArray = { ...this.state.uiArray },
       inVariante = this.state.inVariante;
-    Object.keys(content).map(k => (content[k] = h2p(content[k])));
+    Object.keys(content).map((k) => (content[k] = h2p(content[k])));
     if (
       auto &&
-      !Object.keys(content).some(k => content[k] && content[k] !== contenu[k])
+      !Object.keys(content).some((k) => content[k] && content[k] !== contenu[k])
     ) {
       return;
     }
@@ -1360,10 +1362,10 @@ export class Dispositif extends Component {
               ? convertToHTML(customConvertOption)(
                   x.editorState.getCurrentContent()
                 )
-              : x.content
+              : x.content,
         },
         ...(inVariante && {
-          isVariante: _.get(uiArray, `${i}.varianteSelected`)
+          isVariante: _.get(uiArray, `${i}.varianteSelected`),
         }),
         editable: false,
         type: x.type,
@@ -1376,17 +1378,17 @@ export class Dispositif extends Component {
               y.editorState.getCurrentContent().getPlainText() !== "" && {
                 content: convertToHTML(customConvertOption)(
                   y.editorState.getCurrentContent()
-                )
+                ),
               }),
             ...(inVariante && {
-              isVariante: _.get(uiArray, `${i}.children.${j}.varianteSelected`)
+              isVariante: _.get(uiArray, `${i}.children.${j}.varianteSelected`),
             }),
             editable: false,
-            ...(y.title && { title: h2p(y.title) })
-          }))
-        })
+            ...(y.title && { title: h2p(y.title) }),
+          })),
+        }),
       })),
-      sponsors: (this.state.sponsors || []).filter(x => !x.dummy),
+      sponsors: (this.state.sponsors || []).filter((x) => !x.dummy),
       tags: this.state.tags,
       avancement: 1,
       status: status,
@@ -1396,51 +1398,50 @@ export class Dispositif extends Component {
         : { dispositifId: this.state._id }),
       ...(!this.state._id &&
         this.state.status !== "Brouillon" && { timeSpent: this.state.time }),
-      autoSave: auto
+      autoSave: auto,
     };
-    console.log(dispositif);
     dispositif.mainSponsor = _.get(dispositif, "sponsors.0._id");
     if (dispositif.typeContenu === "dispositif") {
       let cardElement =
-        (this.state.menu.find(x => x.title === "C'est pour qui ?") || [])
+        (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
           .children || [];
-      dispositif.audience = cardElement.some(x => x.title === "Public visé")
+      dispositif.audience = cardElement.some((x) => x.title === "Public visé")
         ? cardElement
-            .filter(x => x.title === "Public visé")
-            .map(x => x.contentTitle)
+            .filter((x) => x.title === "Public visé")
+            .map((x) => x.contentTitle)
         : filtres.audience;
-      dispositif.audienceAge = cardElement.some(x => x.title === "Âge requis")
+      dispositif.audienceAge = cardElement.some((x) => x.title === "Âge requis")
         ? cardElement
-            .filter(x => x.title === "Âge requis")
-            .map(x => ({
+            .filter((x) => x.title === "Âge requis")
+            .map((x) => ({
               contentTitle: x.contentTitle,
               bottomValue: x.bottomValue,
-              topValue: x.topValue
+              topValue: x.topValue,
             }))
         : [{ contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 }];
       dispositif.niveauFrancais = cardElement.some(
-        x => x.title === "Niveau de français"
+        (x) => x.title === "Niveau de français"
       )
         ? cardElement
-            .filter(x => x.title === "Niveau de français")
-            .map(x => x.contentTitle)
+            .filter((x) => x.title === "Niveau de français")
+            .map((x) => x.contentTitle)
         : filtres.niveauFrancais;
       dispositif.cecrlFrancais = cardElement.some(
-        x => x.title === "Niveau de français"
+        (x) => x.title === "Niveau de français"
       )
         ? [
             ...new Set(
               cardElement
-                .filter(x => x.title === "Niveau de français")
-                .map(x => x.niveaux)
+                .filter((x) => x.title === "Niveau de français")
+                .map((x) => x.niveaux)
                 .reduce((acc, curr) => [...acc, ...curr])
-            )
+            ),
           ]
         : [];
       dispositif.isFree = cardElement.some(
-        x => x.title === "Combien ça coûte ?"
+        (x) => x.title === "Combien ça coûte ?"
       )
-        ? cardElement.find(x => x.title === "Combien ça coûte ?").free
+        ? cardElement.find((x) => x.title === "Combien ça coûte ?").free
         : true;
     } else {
       dispositif.variantes = this.state.variantes;
@@ -1455,27 +1456,30 @@ export class Dispositif extends Component {
           "",
           "En attente non prioritaire",
           "Brouillon",
-          "Accepté structure"
+          "Accepté structure",
         ].includes(this.state.status)
       ) {
-        console.log("un cas qui justifie ici :", this.state.status, status);
         dispositif.status = this.state.status;
       } else if (dispositif.sponsors && dispositif.sponsors.length > 0) {
         //Je vais chercher les membres de cette structure
         const sponsors = _.get(dispositif, "sponsors.0", {});
         const currSponsor = this.props.structures.find(
-          x => x._id === sponsors._id
+          (x) => x._id === sponsors._id
         );
         //Si l'auteur appartient à la structure principale je la fait passer directe en validation
         const membre = currSponsor
           ? (currSponsor.membres || []).find(
-              x => x.userId === this.props.userId
+              (x) => x.userId === this.props.userId
             )
-          : (sponsors.membres || []).find(x => x.userId === this.props.userId);
+          : (sponsors.membres || []).find(
+              (x) => x.userId === this.props.userId
+            );
         if (
           membre &&
           membre.roles &&
-          membre.roles.some(x => x === "administrateur" || x === "contributeur")
+          membre.roles.some(
+            (x) => x === "administrateur" || x === "contributeur"
+          )
         ) {
           dispositif.status = "En attente admin";
         }
@@ -1483,12 +1487,12 @@ export class Dispositif extends Component {
         dispositif.status = "En attente non prioritaire";
       }
     }
-    API.add_dispositif(dispositif).then(data => {
+    API.add_dispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
       if (!auto && this._isMounted) {
         Swal.fire("Yay...", "Enregistrement réussi !", "success").then(() => {
-          this.props.fetch_user();
-          this.props.fetch_dispositifs();
+          this.props.fetchUser();
+          this.props.fetchDispositifs();
           this.setState(
             {
               disableEdit: [
@@ -1496,9 +1500,9 @@ export class Dispositif extends Component {
                 "En attente",
                 "Brouillon",
                 "En attente non prioritaire",
-                "Actif"
+                "Actif",
               ].includes(status),
-              isDispositifLoading: false
+              isDispositifLoading: false,
             },
             () => {
               this.props.history.push(
@@ -1509,12 +1513,14 @@ export class Dispositif extends Component {
         });
       } else if (this._isMounted) {
         NotificationManager.success(
+          // eslint-disable-next-line quotes
           'Retrouvez votre contribution dans votre page "Mon profil"',
           "Enregistrement automatique",
           5000,
           () => {
             Swal.fire(
               "Enregistrement automatique",
+              // eslint-disable-next-line quotes
               'Retrouvez votre contribution dans votre page "Mon profil"',
               "success"
             );
@@ -1530,11 +1536,18 @@ export class Dispositif extends Component {
       title: "Oh non!",
       text: "Cette fonctionnalité n'est pas encore disponible",
       type: "error",
-      timer: 1500
+      timer: 1500,
     });
 
   render() {
-    console.log(this.props);
+    logger.info("Dispositif test log info ", {
+      titreInformatif:
+        this.state.dispositif && this.state.dispositif.titreInformatif
+          ? this.state.dispositif.titreInformatif
+          : "pas de titre",
+    });
+    logger.warn("Dispositif test log warn");
+    logger.error("Dispositif test log error");
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
@@ -1552,9 +1565,8 @@ export class Dispositif extends Component {
       checkingVariante,
       printing,
       didThank,
-      dispositif
+      dispositif,
     } = this.state;
-    console.log(dispositif);
     const etapes_tuto =
       typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
     const moisDepuisCreation =
@@ -1568,7 +1580,7 @@ export class Dispositif extends Component {
       primaryProps,
       tooltipProps,
       closeProps,
-      isLastStep
+      isLastStep,
     }) => {
       if (step) {
         return (
@@ -1577,7 +1589,7 @@ export class Dispositif extends Component {
             className="tooltip-wrapper custom-tooltip"
             style={{
               width: joyRideWidth + "px",
-              /*backgroundColor: mainTag.darkColor,*/ marginRight: "40px"
+              /*backgroundColor: mainTag.darkColor,*/ marginRight: "40px",
             }}
             {...tooltipProps}
           >
@@ -1598,7 +1610,7 @@ export class Dispositif extends Component {
               </ul>
               {index > 0 && (
                 <FButton
-                  onMouseEnter={e => e.target.focus()}
+                  onMouseEnter={(e) => e.target.focus()}
                   type="pill"
                   className="mr-10"
                   name="arrow-back-outline"
@@ -1606,7 +1618,7 @@ export class Dispositif extends Component {
                   {...backProps}
                 />
               )}
-              <FButton onMouseEnter={e => e.target.focus()} {...primaryProps}>
+              <FButton onMouseEnter={(e) => e.target.focus()} {...primaryProps}>
                 {isLastStep ? (
                   <span>Terminer</span>
                 ) : (
@@ -1622,16 +1634,15 @@ export class Dispositif extends Component {
               </FButton>
             </div>
             <EVAIcon
-              onMouseEnter={e => e.currentTarget.focus()}
+              onMouseEnter={(e) => e.currentTarget.focus()}
               {...closeProps}
               name="close-outline"
               className="close-icon"
             />
           </div>
         );
-      } else {
-        return false;
       }
+      return false;
     };
 
     return (
@@ -1664,8 +1675,8 @@ export class Dispositif extends Component {
           debug={false}
           styles={{
             options: {
-              arrowColor: mainTag.darkColor
-            }
+              arrowColor: mainTag.darkColor,
+            },
           }}
           joyRideWidth={joyRideWidth}
           mainTag={mainTag}
@@ -1674,13 +1685,23 @@ export class Dispositif extends Component {
         <Row className="main-row">
           {translating && (
             <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
-              <SideTrad
-                menu={this.state.menu}
-                content={this.state.content}
-                updateUIArray={this.updateUIArray}
-                typeContenu={typeContenu}
-                {...this.props}
-              />
+              {!this.props.isExpert ? (
+                <SideTrad
+                  menu={this.state.menu}
+                  content={this.state.content}
+                  updateUIArray={this.updateUIArray}
+                  typeContenu={typeContenu}
+                  {...this.props}
+                />
+              ) : (
+                <ExpertSideTrad
+                  menu={this.state.menu}
+                  content={this.state.content}
+                  updateUIArray={this.updateUIArray}
+                  typeContenu={typeContenu}
+                  {...this.props}
+                />
+              )}
             </Col>
           )}
           <Col
@@ -1696,7 +1717,8 @@ export class Dispositif extends Component {
               style={
                 mainTag &&
                 mainTag.short && {
-                  backgroundImage: `url(${bgImage(mainTag.short)})`
+                  // eslint-disable-next-line no-use-before-define
+                  backgroundImage: `url(${bgImage(mainTag.short)})`,
                 }
               }
             >
@@ -1771,23 +1793,20 @@ export class Dispositif extends Component {
               </Row>
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
                 <div className={"bloc-titre "}>
-                  <h1 className={disableEdit
-                      ? ""
-                      : "editable"}
-                    >
+                  <h1 className={disableEdit ? "" : "editable"}>
                     <ContentEditable
                       id="titreInformatif"
                       html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
                       disabled={disableEdit || inVariante}
-                      onClick={e => {
+                      onClick={(e) => {
                         if (!disableEdit && !inVariante) {
                           this.startJoyRide();
                           this.onInputClicked(e);
                         }
                       }}
                       onChange={this.handleChange}
-                      onMouseEnter={e => e.target.focus()}
-                      onKeyPress={e => this.handleKeyPress(e, 0)}
+                      onMouseEnter={(e) => e.target.focus()}
+                      onKeyPress={(e) => this.handleKeyPress(e, 0)}
                     />
                   </h1>
                   {typeContenu === "dispositif" && (
@@ -1797,14 +1816,14 @@ export class Dispositif extends Component {
                         id="titreMarque"
                         html={this.state.content.titreMarque || ""} // innerHTML of the editable div
                         disabled={this.state.disableEdit}
-                        onClick={e => {
+                        onClick={(e) => {
                           this.startJoyRide(1);
                           this.onInputClicked(e);
                         }}
                         onChange={this.handleChange}
                         onKeyDown={this.onInputClicked}
-                        onMouseEnter={e => e.target.focus()}
-                        onKeyPress={e => this.handleKeyPress(e, 1)}
+                        onMouseEnter={(e) => e.target.focus()}
+                        onKeyPress={(e) => this.handleKeyPress(e, 1)}
                       />
                     </h2>
                   )}
@@ -1823,7 +1842,7 @@ export class Dispositif extends Component {
                       {(
                         (
                           (this.state.menu || []).find(
-                            x => x.title === "C'est pour qui ?"
+                            (x) => x.title === "C'est pour qui ?"
                           ) || []
                         ).children || []
                       ).map((card, key) => {
@@ -1859,7 +1878,7 @@ export class Dispositif extends Component {
                             [
                               "Niveau de français",
                               "Justificatif demandé",
-                              "Public visé"
+                              "Public visé",
                             ].includes(card.title)
                           ) {
                             texte =
@@ -1906,9 +1925,8 @@ export class Dispositif extends Component {
                               </div>
                             </div>
                           );
-                        } else {
-                          return false;
                         }
+                        return false;
                       })}
                     </Row>
                   )}
@@ -1992,10 +2010,8 @@ export class Dispositif extends Component {
                         )}{" "}
                         :&nbsp;
                       </span>
-                      <span
-                        className={
-                          "fiabilite color-vert"}>
-                   {/*       (moisDepuisCreation <= nbMoisNouveau
+                      <span className={"fiabilite color-vert"}>
+                        {/*       (moisDepuisCreation <= nbMoisNouveau
                             ? "focus"
                             : fiabilite > 0.2
                             ? "vert"
@@ -2003,7 +2019,7 @@ export class Dispositif extends Component {
                             ? "orange"
                             : "rouge")  */}
 
-           {/*              {t(
+                        {/*              {t(
                           moisDepuisCreation <= nbMoisNouveau
                             ? "Nouveau"
                             : fiabilite > 0.2
@@ -2019,7 +2035,7 @@ export class Dispositif extends Component {
                             ? "Moyenne"
                             : "Faible"
                         )} */}
-                        {t('Nouveau')}
+                        {t("Nouveau")}
                       </span>
                       {!fiabilite ? (
                         <>
@@ -2053,7 +2069,7 @@ export class Dispositif extends Component {
                                 __html: t(
                                   "Dispositif.fiabilite_faible",
                                   "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant"
-                                )
+                                ),
                               }}
                             />
                             {t(
@@ -2093,6 +2109,13 @@ export class Dispositif extends Component {
                   toggleModal={this.toggleModal}
                   deleteCard={this.deleteCard}
                   addItem={this.addItem}
+                  sideView={this.state.sideView}
+                  typeContenu={this.state.typeContenu}
+                  uiArray={this.state.uiArray}
+                  t={this.state.t}
+                  disableEdit={this.state.disableEdit}
+                  inVariante={this.state.inVariante}
+                  menu={this.state.menu}
                   removeItem={this.removeItem}
                   changeTitle={this.changeCardTitle}
                   disableIsMapLoaded={this.disableIsMapLoaded}
@@ -2102,10 +2125,10 @@ export class Dispositif extends Component {
                   toggleFree={this.toggleFree}
                   setMarkers={this.setMarkers}
                   filtres={filtres}
-                  sideView={translating}
                   readAudio={this.readAudio}
                   demarcheSteps={demarcheSteps}
                   upcoming={this.upcoming}
+                  // TO DO : remove spread state
                   {...this.state}
                 />
 
@@ -2341,20 +2364,23 @@ function bgImage(short) {
   return imageUrl;
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
     user: state.user.user,
     userId: state.user.userId,
     admin: state.user.admin,
-    structures: state.structure.structures
+    structures: state.structure.structures,
   };
 };
 
-const mapDispatchToProps = { fetch_dispositifs, fetch_user };
+const mapDispatchToProps = {
+  fetchDispositifs: fetchDispositifsActionCreator,
+  fetchUser: fetchUserActionCreator,
+};
 
 export default track({
-  page: "Dispositif"
+  page: "Dispositif",
 })(
   connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(
     withTranslation()(windowSize(Dispositif))

@@ -1,19 +1,19 @@
-import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
-import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities'
+import { CustomTooltips } from "@coreui/coreui-plugin-chartjs-custom-tooltips";
+import { getStyle } from "@coreui/coreui/dist/js/coreui-utilities";
 
-const brandPrimary = getStyle('--primary')
-const brandSuccess = getStyle('--success')
-const brandInfo = getStyle('--info')
-const brandDanger = getStyle('--danger')
+const brandPrimary = getStyle("--primary");
+const brandSuccess = getStyle("--success");
+const brandInfo = getStyle("--info");
+const brandDanger = getStyle("--danger");
 
 // Card Chart 1
 const cardChartData1 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: 'My First dataset',
+      label: "My First dataset",
       backgroundColor: brandPrimary,
-      borderColor: 'rgba(255,255,255,.55)',
+      borderColor: "rgba(255,255,255,.55)",
       data: [65, 59, 84, 84, 51, 55, 40],
     },
   ],
@@ -22,7 +22,7 @@ const cardChartData1 = {
 const cardChartOpts1 = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   maintainAspectRatio: false,
   legend: {
@@ -32,15 +32,15 @@ const cardChartOpts1 = {
     xAxes: [
       {
         gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent',
+          color: "transparent",
+          zeroLineColor: "transparent",
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent',
+          fontColor: "transparent",
         },
-
-      }],
+      },
+    ],
     yAxes: [
       {
         display: false,
@@ -49,7 +49,8 @@ const cardChartOpts1 = {
           min: Math.min.apply(Math, cardChartData1.datasets[0].data) - 5,
           max: Math.max.apply(Math, cardChartData1.datasets[0].data) + 5,
         },
-      }],
+      },
+    ],
   },
   elements: {
     line: {
@@ -60,18 +61,17 @@ const cardChartOpts1 = {
       hitRadius: 10,
       hoverRadius: 4,
     },
-  }
-}
-
+  },
+};
 
 // Card Chart 2
 const cardChartData2 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: 'My First dataset',
+      label: "My First dataset",
       backgroundColor: brandInfo,
-      borderColor: 'rgba(255,255,255,.55)',
+      borderColor: "rgba(255,255,255,.55)",
       data: [1, 18, 9, 17, 34, 22, 11],
     },
   ],
@@ -80,7 +80,7 @@ const cardChartData2 = {
 const cardChartOpts2 = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   maintainAspectRatio: false,
   legend: {
@@ -90,15 +90,15 @@ const cardChartOpts2 = {
     xAxes: [
       {
         gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent',
+          color: "transparent",
+          zeroLineColor: "transparent",
         },
         ticks: {
           fontSize: 2,
-          fontColor: 'transparent',
+          fontColor: "transparent",
         },
-
-      }],
+      },
+    ],
     yAxes: [
       {
         display: false,
@@ -107,7 +107,8 @@ const cardChartOpts2 = {
           min: Math.min.apply(Math, cardChartData2.datasets[0].data) - 5,
           max: Math.max.apply(Math, cardChartData2.datasets[0].data) + 5,
         },
-      }],
+      },
+    ],
   },
   elements: {
     line: {
@@ -124,12 +125,12 @@ const cardChartOpts2 = {
 
 // Card Chart 3
 const cardChartData3 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
+      label: "My First dataset",
+      backgroundColor: "rgba(255,255,255,.2)",
+      borderColor: "rgba(255,255,255,.55)",
       data: [78, 81, 80, 45, 34, 12, 40],
     },
   ],
@@ -138,7 +139,7 @@ const cardChartData3 = {
 const cardChartOpts3 = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   maintainAspectRatio: false,
   legend: {
@@ -148,11 +149,13 @@ const cardChartOpts3 = {
     xAxes: [
       {
         display: false,
-      }],
+      },
+    ],
     yAxes: [
       {
         display: false,
-      }],
+      },
+    ],
   },
   elements: {
     line: {
@@ -168,12 +171,12 @@ const cardChartOpts3 = {
 
 // Card Chart 4
 const cardChartData4 = {
-  labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
+  labels: ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.3)',
-      borderColor: 'transparent',
+      label: "My First dataset",
+      backgroundColor: "rgba(255,255,255,.3)",
+      borderColor: "transparent",
       data: [78, 81, 80, 45, 34, 12, 40, 75, 34, 89, 32, 68, 54, 72, 18, 98],
     },
   ],
@@ -182,7 +185,7 @@ const cardChartData4 = {
 const cardChartOpts4 = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   maintainAspectRatio: false,
   legend: {
@@ -193,31 +196,33 @@ const cardChartOpts4 = {
       {
         display: false,
         barPercentage: 0.6,
-      }],
+      },
+    ],
     yAxes: [
       {
         display: false,
-      }],
+      },
+    ],
   },
 };
 
 // Social Box Chart
 const socialBoxData = [
-  { data: [65, 59, 84, 84, 51, 55, 40], label: 'facebook' },
-  { data: [1, 13, 9, 17, 34, 41, 38], label: 'twitter' },
-  { data: [78, 81, 80, 45, 34, 12, 40], label: 'linkedin' },
-  { data: [35, 23, 56, 22, 97, 23, 64], label: 'google' },
+  { data: [65, 59, 84, 84, 51, 55, 40], label: "facebook" },
+  { data: [1, 13, 9, 17, 34, 41, 38], label: "twitter" },
+  { data: [78, 81, 80, 45, 34, 12, 40], label: "linkedin" },
+  { data: [35, 23, 56, 22, 97, 23, 64], label: "google" },
 ];
 
 const makeSocialBoxData = (dataSetNo) => {
   const dataset = socialBoxData[dataSetNo];
   const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
       {
-        backgroundColor: 'rgba(255,255,255,.1)',
-        borderColor: 'rgba(255,255,255,.55)',
-        pointHoverBackgroundColor: '#fff',
+        backgroundColor: "rgba(255,255,255,.1)",
+        borderColor: "rgba(255,255,255,.55)",
+        pointHoverBackgroundColor: "#fff",
         borderWidth: 2,
         data: dataset.data,
         label: dataset.label,
@@ -230,7 +235,7 @@ const makeSocialBoxData = (dataSetNo) => {
 const socialChartOpts = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   responsive: true,
   maintainAspectRatio: false,
@@ -241,11 +246,13 @@ const socialChartOpts = {
     xAxes: [
       {
         display: false,
-      }],
+      },
+    ],
     yAxes: [
       {
         display: false,
-      }],
+      },
+    ],
   },
   elements: {
     point: {
@@ -261,38 +268,46 @@ const socialChartOpts = {
 const sparkLineChartData = [
   {
     data: [35, 23, 56, 22, 97, 23, 64],
-    label: 'New Clients',
+    label: "New Clients",
   },
   {
     data: [65, 59, 84, 84, 51, 55, 40],
-    label: 'Recurring Clients',
+    label: "Recurring Clients",
   },
   {
     data: [35, 23, 56, 22, 97, 23, 64],
-    label: 'Pageviews',
+    label: "Pageviews",
   },
   {
     data: [65, 59, 84, 84, 51, 55, 40],
-    label: 'Organic',
+    label: "Organic",
   },
   {
     data: [78, 81, 80, 45, 34, 12, 40],
-    label: 'CTR',
+    label: "CTR",
   },
   {
     data: [1, 13, 9, 17, 34, 41, 38],
-    label: 'Bounce Rate',
+    label: "Bounce Rate",
   },
 ];
 
 const makeSparkLineData = (dataSetNo, variant) => {
   const dataset = sparkLineChartData[dataSetNo];
   const data = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    labels: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
     datasets: [
       {
-        backgroundColor: 'transparent',
-        borderColor: variant ? variant : '#c2cfd6',
+        backgroundColor: "transparent",
+        borderColor: variant ? variant : "#c2cfd6",
         data: dataset.data,
         label: dataset.label,
       },
@@ -304,7 +319,7 @@ const makeSparkLineData = (dataSetNo, variant) => {
 const sparklineChartOpts = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
   },
   responsive: true,
   maintainAspectRatio: true,
@@ -312,11 +327,13 @@ const sparklineChartOpts = {
     xAxes: [
       {
         display: false,
-      }],
+      },
+    ],
     yAxes: [
       {
         display: false,
-      }],
+      },
+    ],
   },
   elements: {
     line: {
@@ -353,37 +370,66 @@ for (var i = 0; i <= elements; i++) {
 }
 
 const mainChart = {
-  labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+  labels: [
+    "Mo",
+    "Tu",
+    "We",
+    "Th",
+    "Fr",
+    "Sa",
+    "Su",
+    "Mo",
+    "Tu",
+    "We",
+    "Th",
+    "Fr",
+    "Sa",
+    "Su",
+    "Mo",
+    "Tu",
+    "We",
+    "Th",
+    "Fr",
+    "Sa",
+    "Su",
+    "Mo",
+    "Tu",
+    "We",
+    "Th",
+    "Fr",
+    "Sa",
+    "Su",
+  ],
   datasets: [
     {
-      label: 'My First dataset',
+      label: "My First dataset",
       // backgroundColor: hexToRgba(brandInfo, 10),
       borderColor: brandInfo,
-      pointHoverBackgroundColor: '#fff',
+      pointHoverBackgroundColor: "#fff",
       borderWidth: 2,
       data: data1,
     },
     {
-      label: 'My Second dataset',
-      backgroundColor: 'transparent',
+      label: "My Second dataset",
+      backgroundColor: "transparent",
       borderColor: brandSuccess,
-      pointHoverBackgroundColor: '#fff',
+      pointHoverBackgroundColor: "#fff",
       borderWidth: 2,
       data: data2,
     },
     {
-      label: 'My Third dataset',
-      backgroundColor: 'transparent',
+      label: "My Third dataset",
+      backgroundColor: "transparent",
       borderColor: brandDanger,
-      pointHoverBackgroundColor: '#fff',
+      pointHoverBackgroundColor: "#fff",
       borderWidth: 1,
       data: data3,
     },
     {
-      label: 'My Fourth dataset',
-      backgroundColor: 'transparent',
-      borderColor: 'black',
-      pointHoverBackgroundColor: '#fff',
+      label: "My Fourth dataset",
+      backgroundColor: "transparent",
+      borderColor: "black",
+      pointHoverBackgroundColor: "#fff",
       borderWidth: 1,
       data: data3,
     },
@@ -395,13 +441,16 @@ const mainChartOpts = {
     enabled: false,
     custom: CustomTooltips,
     intersect: true,
-    mode: 'index',
-    position: 'nearest',
+    mode: "index",
+    position: "nearest",
     callbacks: {
-      labelColor: function(tooltipItem, chart) {
-        return { backgroundColor: chart.data.datasets[tooltipItem.datasetIndex].borderColor }
-      }
-    }
+      labelColor: function (tooltipItem, chart) {
+        return {
+          backgroundColor:
+            chart.data.datasets[tooltipItem.datasetIndex].borderColor,
+        };
+      },
+    },
   },
   maintainAspectRatio: false,
   legend: {
@@ -416,7 +465,8 @@ const mainChartOpts = {
         gridLines: {
           drawOnChartArea: false,
         },
-      }],
+      },
+    ],
     yAxes: [
       {
         ticks: {
@@ -425,7 +475,8 @@ const mainChartOpts = {
           stepSize: Math.ceil(250 / 5),
           max: 250,
         },
-      }],
+      },
+    ],
   },
   elements: {
     point: {
@@ -436,7 +487,6 @@ const mainChartOpts = {
     },
   },
 };
-
 
 export {
   cardChartData1,
@@ -452,5 +502,5 @@ export {
   makeSparkLineData,
   sparklineChartOpts,
   mainChart,
-  mainChartOpts
-}
+  mainChartOpts,
+};

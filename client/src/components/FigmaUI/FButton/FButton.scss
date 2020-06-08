@@ -1,15 +1,15 @@
-@import 'src/scss/colors.scss';
-@import 'src/scss/global.scss';
+@import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
 // Base de la structure des boutons du design system
 
-body .figma-btn{
+body .figma-btn {
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
   border-radius: 12px;
-  min-height: 40px;
-  padding: 10px 15px;
+  //min-height: 40px;
+  padding: 15px;
   cursor: pointer;
   border: 0.5px solid transparent;
   color: $noir;
@@ -18,76 +18,79 @@ body .figma-btn{
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  @include media-max("sm-limit") { font-size: 11px; }
-  
+  @include media-max("sm-limit") {
+    font-size: 11px;
+  }
+
   // Ici on précise le comportement des icônes avec svg et fill
 
-  &.default svg{
-    fill:$noir;
+  &.default svg {
+    fill: $noir;
   }
-  &:hover{
+  &:hover {
     transition: all 0.5s ease;
-    svg{
+    svg {
       fill: $noir;
     }
   }
-  &:not(.theme){
+  &:not(.theme) {
     &:hover {
       color: $noir;
     }
-    &:active{
+    &:active {
       background: $noirCD;
       color: $noir;
     }
 
     // Ici on précise le comportement du focus, il s'applique sur toutes les variantes
-    &:focus{
+    &:focus {
       color: $blancSimple;
       background: $focus;
-      outline:0;
+      outline: 0;
       border: 0.5px solid transparent;
-      svg{
-        fill : $blancSimple;
+      svg {
+        fill: $blancSimple;
       }
     }
 
     // Ici on précise le comportement "disabled"
-    &:disabled, &.disabled{
+    &:disabled,
+    &.disabled {
       background: $gris;
       color: $grisFonce;
       cursor: not-allowed;
-      svg{
-        fill:$grisFonce;
+      svg {
+        fill: $grisFonce;
       }
-      &:hover{
+      &:hover {
         background-color: $gris;
         color: $grisFonce;
-        svg{
+        svg {
           fill: $grisFonce;
         }
       }
     }
   }
 
-// Fill-Dark
-  &.dark{
+  // Fill-Dark
+  &.dark {
     background: $noir;
-    color: #FFFFFF;
-    svg{
+    color: #ffffff;
+    svg {
       fill: $blancSimple;
     }
-    &:hover{
+    &:hover {
       transition: all 0.5s ease;
       background: #000000;
-      color: #FFFFFF;
-      svg{
+      color: #ffffff;
+      svg {
         fill: $blancSimple;
       }
     }
-    &:not(:disabled):not(.disabled):active{
+    &:not(:disabled):not(.disabled):active {
       background: #000000;
-      color: #FFFFFF;
-      svg{
+      color: #ffffff;
+      svg {
         fill: $blancSimple;
       }
     }
@@ -95,85 +98,95 @@ body .figma-btn{
 
   // Validate
 
-  &.validate{
+  &.validate {
     background: $vert;
     color: $blancSimple;
-    svg{
+    svg {
       fill: $blancSimple;
     }
-    &:not(:disabled):not(.disabled):hover{
+    &:not(:disabled):not(.disabled):hover {
       transition: all 0.5s ease;
       background: $vertFonce;
       color: $blancSimple;
       box-shadow: none;
-      svg{
+      svg {
         fill: $blancSimple;
       }
-    } 
-    &:not(:disabled):not(.disabled):active{
+    }
+    &:not(:disabled):not(.disabled):active {
       box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       background: $vert;
     }
   }
 
   // Bouton d'erreur
-  &.error{
+  &.error {
     background: $error;
     color: $blancSimple;
-    &:hover{
+    &:hover {
       background: $rouge;
       color: $blancSimple;
-      svg{
+      svg {
         fill: $blancSimple;
       }
-    } 
-    &:not(:disabled):not(.disabled):active{
+    }
+    &:not(:disabled):not(.disabled):active {
       background: $error;
     }
   }
-  
+
   // Fill-Light
-  &.light-action{
-    min-width: 40px;
+  &.light-action {
+    //min-width: 40px;
     color: $noir;
     background: $blancSimple;
-    svg{
+    svg {
       fill: $noir;
     }
-    &:not(:disabled):hover{
+    &:not(:disabled):hover {
       background: $noir;
       box-shadow: none;
       color: $blancSimple;
-      svg{
+      svg {
         fill: $blancSimple;
       }
     }
-    &:not(:disabled):not(.disabled):active{
+    &:not(:disabled):not(.disabled):active {
       background: $noir;
-      color: #FFFFFF;
-      svg{
-        fill: #FFFFFF;
+      color: #ffffff;
+      svg {
+        fill: #ffffff;
       }
     }
   }
 
+  &.small-figma {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    margin-top: 0px;
+    justify-content: center;
+    align-items: center;
+    background-color: #cdcdcd;
+  }
+
   // Le bouton "merci" dans dispositif
-  &.thanks{
+  &.thanks {
     background: transparent;
     color: $grisFonce;
     border: 0.5px solid $grisFonce;
     padding: 15px 20px;
-    &:hover{
+    &:hover {
       background: $validationDefault;
       color: $blancSimple;
       border: 0.5px solid $validationDefault;
     }
-    &:active{
+    &:active {
       background: $validationHover;
       color: $blancSimple;
       border: 0.5px solid $validationHover;
     }
-    &.clicked{
+    &.clicked {
       background: $validationHover;
       color: $blancSimple;
       border: 0.5px solid $validationHover;
@@ -181,121 +194,122 @@ body .figma-btn{
   }
 
   // Utilisé lorsqu'un bouton utilise la couleur de thème de façon dynamique dans le JS
-  &.theme{
+  &.theme {
     background: $noir;
     color: $blanc;
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
-    svg{
+    svg {
       fill: $blanc;
     }
-    &:hover{
+    &:hover {
       box-shadow: none;
     }
   }
 
   // Outline-Light
-  &.outline{
-    border: 0.5px solid #FFFFFF;
+  &.outline {
+    border: 0.5px solid #ffffff;
     background: transparent;
-    color: #FFFFFF;
+    color: #ffffff;
     transition: all 0.2s ease;
-    &:hover{
+    &:hover {
       color: $noir;
       border-color: $blancSimple;
       background: $blancSimple;
-      svg{
+      svg {
         fill: $noir;
       }
     }
-
-  } 
+  }
 
   // Outline-Dark
-  &.outline-black{
+  &.outline-black {
     border: 0.5px solid $noir;
     background: transparent;
     color: $noir;
     transition: all 0.4s ease;
-    svg{
+    svg {
       fill: $noir;
     }
-    &:hover{
+    &:hover {
       border-color: $noir;
       background: $noir;
       color: $blancSimple;
-      svg{
+      svg {
         fill: $blancSimple;
       }
     }
   }
 
   // La version sans texte, notamment utilisée dans l'univers profil pour les tables
-  &.pill{
+  &.pill {
     border-radius: 12px;
     height: auto;
-    svg{
+    svg {
       fill: $blanc;
     }
-    &:hover, &:not(:disabled):not(.disabled):active, &:focus{
+    &:hover,
+    &:not(:disabled):not(.disabled):active,
+    &:focus {
       background: $blanc;
-      svg{
+      svg {
         fill: $noir;
       }
     }
   }
 
-  &.pill{
-    border: 0.5px solid #FFFFFF;
+  &.pill {
+    border: 0.5px solid #ffffff;
     background: transparent;
-    color: #FFFFFF;
+    color: #ffffff;
     transition: all 0.2s ease;
-    &:hover{
+    &:hover {
       border-color: #000000;
     }
-    &:active{
+    &:active {
       background: transparent;
     }
-    &:focus{
+    &:focus {
       background: transparent;
     }
 
-    &.pill-dark{
+    &.pill-dark {
       border-color: $noir;
       color: $noir;
-      svg{
+      svg {
         fill: $noir;
       }
-      &:hover{
+      &:hover {
         background-color: #000000;
-        svg{
-          fill: $blanc;}
-
+        svg {
+          fill: $blanc;
+        }
       }
     }
   }
 
   // Les gros boutons de la page d'accueil
-  &.hero{
+  &.hero {
     height: 60px;
     padding: 10px 20px;
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   }
 
   // Bouton Aide ou J'ai besoin d'aide
-  &.help{
+  &.help {
     background: $erreur;
     color: $error;
-    svg{
+    svg {
       fill: $error;
     }
-    &:hover{
+    &:hover {
       background: $error;
       color: $blancSimple;
-      svg{
+      svg {
         fill: $blancSimple;
       }
-    } 
-    &:not(:disabled):not(.disabled):active{
+    }
+    &:not(:disabled):not(.disabled):active {
       background: $erreur;
     }
   }
