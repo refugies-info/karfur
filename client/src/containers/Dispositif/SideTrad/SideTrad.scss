@@ -11,6 +11,7 @@
   width: 33%;
   min-width: 450px;
   z-index:3;
+  overflow: auto;
 
   .flag-margin {
     margin-left: 10 !important;
@@ -156,6 +157,15 @@
           position: absolute;
           z-index: 1000;
          right: 5px;
+          top: -7px;
+        }
+        .toolbar-editeur-droite{
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          position: absolute;
+          z-index: 1000;
+         left: 5px;
           top: -7px;
         }
       }
