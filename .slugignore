@@ -1,3 +1,3 @@
-**/build
-client/build
-/client/build
+**/build/static
+client/build/static
+/client/build/static
