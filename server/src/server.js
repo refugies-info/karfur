@@ -89,7 +89,7 @@ var urlencodedParser = bodyParser.urlencoded({
   limit: "50mb",
 });
 app.use(compression());
-app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static(path.join(__dirname, "../../client", "build")));
 app.use(urlencodedParser);
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(formData.parse());
@@ -184,6 +184,6 @@ var ioport = process.env.PORTIO;
 io.listen(ioport, () => console.log(`Listening on port ${port}`));
 var port = process.env.PORT;
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "../../client", "build", "index.html"));
 });
 app.listen(port, () => console.log(`Listening on port ${port}`));
