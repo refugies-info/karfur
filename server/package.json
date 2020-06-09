@@ -8,7 +8,8 @@
   "license": "MIT",
   "main": "server.js",
   "scripts": {
-    "start": "tsc && node dist/server.js",
+    "start": "node dist/server.js",
+    "tsc": "tsc",
     "heroku-postbuild": "cd ../client && npm install --only=dev && npm install && npm run build",
     "test": "cd ../client && npm run test",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
