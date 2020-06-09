@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === "dev") {
   config = require("../../config/config");
 }
 
-check = (req, res, next) => {
+const check = (req, res, next) => {
   let token = req.headers["authorization"] || req.headers["x-access-token"];
 
   if (!token || token === null || token === undefined || token === "undefined")
@@ -43,7 +43,7 @@ check = (req, res, next) => {
     });
 };
 
-getId = (req, res, next) => {
+const getId = (req, res, next) => {
   let token = req.headers["authorization"] || req.headers["x-access-token"];
 
   req.userId = undefined;
@@ -71,7 +71,7 @@ getId = (req, res, next) => {
   }
 };
 
-getRoles = (req, res, next) => {
+const getRoles = (req, res, next) => {
   Role.find({}).exec(function (err, roles) {
     if (err) console.log(err);
     req.roles = roles;
