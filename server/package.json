@@ -48,7 +48,6 @@
     "parse-json": "^4.0.0",
     "password-hash": "^1.2.2",
     "prepend-http": "^2.0.0",
-    "puppeteer": "^1.14.0",
     "react-card-flip": "^1.0.10",
     "react-player": "^1.15.2",
     "react-transition-group": "^1.2.1",

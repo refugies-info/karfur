@@ -148,7 +148,6 @@
     "chai-enzyme": "^1.0.0-beta.0",
     "chai-jest-diff": "^1.0.2",
     "chai-jest-snapshot": "^2.0.0",
-    "chromedriver": "^2.46.0",
     "dirty-chai": "^2.0.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.0",
