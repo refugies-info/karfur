@@ -1,89 +1,88 @@
 const mongoose = require("mongoose");
-const User = require("./schemaUser");
 
 var traductionSchema = mongoose.Schema(
   {
     langueCible: {
       type: String,
       unique: false,
-      required: true
+      required: true,
     },
     translatedText: {
       type: Object,
       unique: false,
-      required: true
+      required: true,
     },
     initialText: {
       type: Object,
       unique: false,
-      required: false
+      required: false,
     },
     initialTranslatedText: {
       type: Object,
       unique: false,
-      required: false
+      required: false,
     },
     userId: { type: mongoose.Schema.ObjectId, ref: "User" },
     validatorId: { type: mongoose.Schema.ObjectId, ref: "User" },
     articleId: {
       type: mongoose.Schema.ObjectId,
       ref: "Article",
-      required: true
+      required: true,
     },
     status: {
       type: String,
       unique: false,
-      required: false
+      required: false,
     },
     path: {
       type: Object,
       unique: false,
-      required: false
+      required: false,
     },
     rightId: {
       type: String,
       unique: false,
-      required: false
+      required: false,
     },
     timeSpent: {
       type: Number,
       unique: false,
-      required: false
+      required: false,
     },
     nbMots: {
       type: Number,
       unique: false,
-      required: false
+      required: false,
     },
     jsonId: {
       type: String,
       unique: false,
-      required: false
+      required: false,
     },
     avancement: {
       type: Number,
       unique: false,
-      required: false
+      required: false,
     },
     type: {
       type: String,
       unique: false,
-      required: false
+      required: false,
     },
     title: {
       type: String,
       unique: false,
-      required: false
+      required: false,
     },
     score: {
       type: Number,
       unique: false,
-      required: false
+      required: false,
     },
     isExpert: {
       type: Boolean,
-      required: false
-    }
+      required: false,
+    },
   },
   { timestamps: { createdAt: "created_at" } }
 );
