@@ -55,32 +55,32 @@ function get_role(req, res) {
 }
 
 //Cette fonction n'est pas exportée, utilisée en interne uniquement
-function set_role(req, res) {
-  if (!req.body || !req.body.nom) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
-    var role = req.body;
-    var _u = new Role(role);
-    _u.save(function (err, data) {
-      if (err) {
-        res.status(500).json({
-          text: "Erreur interne",
-        });
-      } else {
-        res.status(200).json({
-          text: "Succès",
-          data: data,
-        });
-      }
-    });
-  }
-}
+// function set_role(req, res) {
+//   if (!req.body || !req.body.nom) {
+//     res.status(400).json({ text: "Requête invalide" });
+//   } else {
+//     new DBEvent({
+//       action: JSON.stringify(req.body),
+//       userId: _.get(req, "userId"),
+//       roles: _.get(req, "user.roles"),
+//       api: arguments.callee.name,
+//     }).save();
+//     var role = req.body;
+//     var _u = new Role(role);
+//     _u.save(function (err, data) {
+//       if (err) {
+//         res.status(500).json({
+//           text: "Erreur interne",
+//         });
+//       } else {
+//         res.status(200).json({
+//           text: "Succès",
+//           data: data,
+//         });
+//       }
+//     });
+//   }
+// }
 
 //On exporte notre fonction
 exports.get_role = get_role;
