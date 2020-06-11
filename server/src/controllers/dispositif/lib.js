@@ -64,139 +64,122 @@ async function add_dispositif(req, res) {
       (!req.body.titreInformatif && !req.body.dispositifId)
     ) {
       return res.status(400).json({ text: "Requête invalide" });
-    } else {
-      new DBEvent({
-        action: JSON.stringify(req.body),
-        userId: _.get(req, "userId"),
-        roles: _.get(req, "user.roles"),
-        api: arguments.callee.name,
-      }).save();
-      let dispositif = req.body;
-      dispositif.status = dispositif.status || "En attente";
+    }
+    new DBEvent({
+      action: JSON.stringify(req.body),
+      userId: _.get(req, "userId"),
+      roles: _.get(req, "user.roles"),
+      api: arguments.callee.name,
+    }).save();
+    let dispositif = req.body;
+    dispositif.status = dispositif.status || "En attente";
+    if (dispositif.contenu) {
+      dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);
+    }
+    //Si le dispositif existe déjà on fait juste un update
+    if (dispositif.dispositifId) {
+      //delocalize we can do it
+
       if (dispositif.contenu) {
-        dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);
-      }
-      //Si le dispositif existe déjà on fait juste un update
-      if (dispositif.dispositifId) {
-        //delocalize we can do it
-        console.log(
-          "new dispo ###############",
-          dispositif,
-          dispositif.dispositifId
-        );
-        if (dispositif.contenu) {
-          const newSinModified = await turnToLocalizedNew(dispositif, "fr");
-          console.log("new dispo localized ###############", newSinModified);
-          const originalDis = await Dispositif.findOne({
-            _id: dispositif.dispositifId,
-          });
-          const originalTrads = {};
-          dispositifFr = await turnToLocalizedNew(originalDis, "fr");
-          for (let [key, value] of Object.entries(originalDis.avancement)) {
-            console.log(originalDis, key);
-            if (key !== "fr") {
-              originalTrads[key] = await Traduction.find(
-                {
-                  articleId: originalDis._id,
-                  langueCible: key,
-                  isExpert: true,
-                },
-                {},
-                { sort: { updatedAt: -1 } }
-              );
-              console.log("original trads", originalDis, originalTrads[key]);
-              for (let tradExpert of originalTrads[key]) {
-                tradExpert = markTradModifications(
-                  dispositif,
-                  dispositifFr,
-                  tradExpert
-                );
-                if (tradExpert.status == "À revoir") {
-                  console.log(dispositif.contenu);
-                  const contentsTotal = countContents(dispositif.contenu) - 5;
-                  const validatedTotal = countValidated([
-                    tradExpert.translatedText,
-                  ]);
-                  console.log(contentsTotal, validatedTotal);
-                  const newAvancement = validatedTotal / contentsTotal;
-                  tradExpert.avancement = newAvancement;
-                  await Traduction.updateMany(
-                    { articleId: originalDis._id, langueCible: key },
-                    { status: "À revoir", avancement: newAvancement },
-                    { upsert: false }
-                  );
-                }
-                console.log("####### the trad modified", originalTrads[key]);
-                await Traduction.findOneAndUpdate(
-                  { _id: tradExpert._id },
-                  tradExpert,
-                  { upsert: true, new: true }
-                );
-              }
-            }
-          }
-          dispositif.avancement = originalDis.avancement;
-        }
-
-        //now I need to save the dispositif and the translation
-        dispResult = await Dispositif.findOneAndUpdate(
-          { _id: dispositif.dispositifId },
-          dispositif,
-          { upsert: true, new: true }
-        );
-      } else {
-        dispositif.creatorId = req.userId;
-        dispResult = await new Dispositif(dispositif).save();
-      }
-
-      /*     return promise.then(data => {
-      //Je rajoute le statut de contributeur à l'utilisateur */
-      if (!dispositif.dispositifId) {
-        await Role.findOne({ nom: "Contrib" }).exec((err, result) => {
-          if (!err && result && req.userId) {
-            User.findByIdAndUpdate(
-              { _id: req.userId },
-              {
-                $addToSet: { roles: result._id, contributions: dispResult._id },
-              },
-              { new: true },
-              (e) => {
-                if (e) {
-                  console.log(e);
-                }
-              }
-            );
-          }
+        const originalDis = await Dispositif.findOne({
+          _id: dispositif.dispositifId,
         });
-      }
-      //J'associe la structure principale à ce dispositif
-      if (dispositif.mainSponsor) {
-        await Structure.findByIdAndUpdate(
-          { _id: dispositif.mainSponsor },
-          { $addToSet: { dispositifsAssocies: dispResult._id } },
-          { new: true },
-          (e) => {
-            if (e) {
-              console.log(e);
+        const originalTrads = {};
+        // eslint-disable-next-line no-undef
+        dispositifFr = await turnToLocalizedNew(originalDis, "fr");
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        for (let [key, value] of Object.entries(originalDis.avancement)) {
+          if (key !== "fr") {
+            originalTrads[key] = await Traduction.find(
+              {
+                articleId: originalDis._id,
+                langueCible: key,
+                isExpert: true,
+              },
+              {},
+              { sort: { updatedAt: -1 } }
+            );
+            for (let tradExpert of originalTrads[key]) {
+              tradExpert = markTradModifications(
+                dispositif,
+                // eslint-disable-next-line no-undef
+                dispositifFr,
+                tradExpert
+              );
+              if (tradExpert.status === "À revoir") {
+                const contentsTotal = countContents(dispositif.contenu) - 5;
+                const validatedTotal = countValidated([
+                  tradExpert.translatedText,
+                ]);
+                const newAvancement = validatedTotal / contentsTotal;
+                tradExpert.avancement = newAvancement;
+                await Traduction.updateMany(
+                  { articleId: originalDis._id, langueCible: key },
+                  { status: "À revoir", avancement: newAvancement },
+                  { upsert: false }
+                );
+              }
+              await Traduction.findOneAndUpdate(
+                { _id: tradExpert._id },
+                tradExpert,
+                { upsert: true, new: true }
+              );
             }
           }
-        );
+        }
+        dispositif.avancement = originalDis.avancement;
       }
 
-      _handleMailNotification(dispResult);
-      return res.status(200).json({
-        text: "Succès",
-        data: dispResult,
+      //now I need to save the dispositif and the translation
+      dispResult = await Dispositif.findOneAndUpdate(
+        { _id: dispositif.dispositifId },
+        dispositif,
+        { upsert: true, new: true }
+      );
+    } else {
+      dispositif.creatorId = req.userId;
+      dispResult = await new Dispositif(dispositif).save();
+    }
+
+    /*     return promise.then(data => {
+      //Je rajoute le statut de contributeur à l'utilisateur */
+    if (!dispositif.dispositifId) {
+      await Role.findOne({ nom: "Contrib" }).exec((err, result) => {
+        if (!err && result && req.userId) {
+          User.findByIdAndUpdate(
+            { _id: req.userId },
+            {
+              $addToSet: { roles: result._id, contributions: dispResult._id },
+            },
+            { new: true },
+            () => {}
+          );
+        }
       });
-      //  })
-      /* .catch(err => {
+    }
+    //J'associe la structure principale à ce dispositif
+    if (dispositif.mainSponsor) {
+      await Structure.findByIdAndUpdate(
+        { _id: dispositif.mainSponsor },
+        { $addToSet: { dispositifsAssocies: dispResult._id } },
+        { new: true },
+        () => {}
+      );
+    }
+
+    // eslint-disable-next-line no-use-before-define
+    _handleMailNotification(dispResult);
+    return res.status(200).json({
+      text: "Succès",
+      data: dispResult,
+    });
+    //  })
+    /* .catch(err => {
       console.log(err);
       return res.status(500).json({"text": "Erreur interne", data: err})
     }) */
-      // }
-    }
+    // }
   } catch (err) {
-    console.log(err);
     return res.status(500).json({ text: "Erreur interne", data: err });
   }
 }
@@ -238,7 +221,6 @@ function get_dispositif(req, res) {
         .limit(limit)
         .lean();
     }
-    console.log(promise);
     // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
     promise
       .then((result) => {
@@ -252,7 +234,6 @@ function get_dispositif(req, res) {
         });
       })
       .catch(function (error) {
-        console.log(error);
         switch (error) {
           case 500:
             res.status(500).json({
@@ -318,7 +299,6 @@ function update_dispositif(req, res) {
     Dispositif.findOneAndUpdate(query, update, { new: true }, (err, data) => {
       if (err) {
         res.status(404).json({ text: "Pas de résultat", error: err });
-        console.log(err);
       } else {
         res.status(200).json({
           text: "Succès",
@@ -375,6 +355,7 @@ function get_dispo_progression(req, res) {
         data: result,
       });
     },
+    // eslint-disable-next-line no-use-before-define
     (e) => _errorHandler(e, res)
   );
 }
@@ -459,8 +440,10 @@ const _handleMailNotification = (dispositif) => {
       status;
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       } else {
+        // eslint-disable-next-line no-console
         console.log("Email sent: " + info.response);
       }
     });

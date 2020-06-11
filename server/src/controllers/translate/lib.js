@@ -43,6 +43,7 @@ function get_translation(req, res) {
         res.send(translation);
       })
       .catch((err) => {
+        // eslint-disable-next-line no-console
         console.error("erreur de traduction : " + err);
         res.status(500).json({ text: "Erreur interne", err: err });
       });

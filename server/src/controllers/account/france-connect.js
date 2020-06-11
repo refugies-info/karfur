@@ -67,6 +67,7 @@ const oauthLoginCallback = async (req, res, next) => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getUser = (req, res) => {};
 
 const oauthLogoutCallback = (req, res) => {

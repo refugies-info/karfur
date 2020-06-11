@@ -4,6 +4,7 @@ const { sanitizeOptions } = require("../article/data");
 
 const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const markTradModifications = (newD, oldD, trad, locale) => {
   pointeurs.forEach((x) => {
     if (JSON.stringify(oldD[x]) !== JSON.stringify(newD[x])) {
@@ -22,17 +23,19 @@ const markTradModifications = (newD, oldD, trad, locale) => {
       trad.translatedText.contenu[index].contentModified = true;
       trad.status = "À revoir";
     }
-    if (p.children !== newD.contenu[index].children || (p.children && (p.children.length !== newD.contenu[index].children.length))) {
+    if (
+      p.children !== newD.contenu[index].children ||
+      (p.children && p.children.length !== newD.contenu[index].children.length)
+    ) {
       trad.status = "À revoir";
     }
     if (p.children && p.children.length > 0) {
       p.children.forEach((c, j) => {
         if (!newD.contenu[index].children) {
-          delete trad.translatedText.contenu[index].children; 
+          delete trad.translatedText.contenu[index].children;
           trad.status = "À revoir";
-        }
-        else if (!newD.contenu[index].children[j]) {
-          trad.translatedText.contenu[index].children.splice(j, 1); 
+        } else if (!newD.contenu[index].children[j]) {
+          trad.translatedText.contenu[index].children.splice(j, 1);
           trad.status = "À revoir";
         } else {
           if (
@@ -72,24 +75,26 @@ const markTradModifications = (newD, oldD, trad, locale) => {
 
 const countContents = (obj, nbChamps = 0, type = null) => {
   obj.forEach((x) => {
-    ["titreInformatif", "titreMarque", "abstract", "title", "content"].forEach((p) => {
-      if (
-        x[p] &&
-        x[p] !== "" &&
-        x[p] !== "null" &&
-        x[p] !== "undefined" &&
-        x[p] !== undefined &&
-        x[p] !== null &&
-        x[p] !== "<p>null</p>" &&
-        x[p] !== "<p><br></p>" &&
-        x[p] !== "<p><br></p>\n" &&
-        x[p] !== "<br>" &&
-        x[p] !== "<p></p>\n\n<p></p>\n" &&
-        type !== "cards"
-      ) {
-        nbChamps += 1;
+    ["titreInformatif", "titreMarque", "abstract", "title", "content"].forEach(
+      (p) => {
+        if (
+          x[p] &&
+          x[p] !== "" &&
+          x[p] !== "null" &&
+          x[p] !== "undefined" &&
+          x[p] !== undefined &&
+          x[p] !== null &&
+          x[p] !== "<p>null</p>" &&
+          x[p] !== "<p><br></p>" &&
+          x[p] !== "<p><br></p>\n" &&
+          x[p] !== "<br>" &&
+          x[p] !== "<p></p>\n\n<p></p>\n" &&
+          type !== "cards"
+        ) {
+          nbChamps += 1;
+        }
       }
-    });
+    );
     if (
       type === "cards" &&
       (x.title === "Important !" || !x.title) &&
@@ -117,25 +122,27 @@ const countContents = (obj, nbChamps = 0, type = null) => {
 
 const countValidated = (obj, nbChamps = 0, type = null) => {
   obj.forEach((x) => {
-    ["titreInformatif", "titreMarque", "abstract", "title", "content"].forEach((p) => {
-      if (
-        x[p] &&
-        x[p] !== "" &&
-        x[p] !== "null" &&
-        x[p] !== "undefined" &&
-        x[p] !== undefined &&
-        x[p] !== null &&
-        x[p] !== "<p>null</p>" &&
-        x[p] !== "<p><br></p>" &&
-        x[p] !== "<p><br></p>\n" &&
-        x[p] !== "<br>" &&
-        x[p] !== "<p></p>\n\n<p></p>\n" &&
-        type !== "cards" &&
-        !x[p + "Modified"] 
-      ) {
-        nbChamps += 1;
+    ["titreInformatif", "titreMarque", "abstract", "title", "content"].forEach(
+      (p) => {
+        if (
+          x[p] &&
+          x[p] !== "" &&
+          x[p] !== "null" &&
+          x[p] !== "undefined" &&
+          x[p] !== undefined &&
+          x[p] !== null &&
+          x[p] !== "<p>null</p>" &&
+          x[p] !== "<p><br></p>" &&
+          x[p] !== "<p><br></p>\n" &&
+          x[p] !== "<br>" &&
+          x[p] !== "<p></p>\n\n<p></p>\n" &&
+          type !== "cards" &&
+          !x[p + "Modified"]
+        ) {
+          nbChamps += 1;
+        }
       }
-    });
+    );
     if (
       type === "cards" &&
       (x.title === "Important !" || !x.title) &&
@@ -148,7 +155,7 @@ const countValidated = (obj, nbChamps = 0, type = null) => {
       x.contentTitle !== "<p>null</p>" &&
       x.contentTitle !== "<p><br></p>" &&
       x.contentTitle !== "<br>" &&
-      !x["contentTitleModified"] 
+      !x["contentTitleModified"]
     ) {
       nbChamps += 1;
     }

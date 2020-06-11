@@ -21,45 +21,44 @@ function add_article(req, res) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (!req.body || !req.body.title || !req.body.body) {
     return res.status(400).json({ text: "Requête invalide" });
-  } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
-    //On transforme le html en JSON après l'avoir nettoyé
-    let draft = req.body.body;
-    let html = draft.blocks ? draftToHtml(draft) : draft;
-    let safeHTML = sanitizeHtml(html, sanitizeOptions);
-    let jsonBody = himalaya.parse(safeHTML, {
-      ...himalaya.parseDefaults,
-      includePositions: false,
-    });
-
-    make_nodes_unique_and_local(jsonBody, uniqid("initial_"));
-
-    var article = {
-      title: { fr: sanitizeHtml(req.body.title, sanitizeOptions) },
-      body: jsonBody,
-      nombreMots: nombreMots,
-      avancement: { fr: 1 },
-      status: "Actif",
-    };
-    //On l'insère
-    var _u = new Article(article);
-    _u.save((err, article_saved) => {
-      if (err) {
-        console.log(err);
-        res.status(500).json({ text: "Erreur interne" });
-      } else {
-        res.status(200).json({
-          text: "Succès",
-          article: article_saved,
-        });
-      }
-    });
   }
+  new DBEvent({
+    action: JSON.stringify(req.body),
+    userId: _.get(req, "userId"),
+    roles: _.get(req, "user.roles"),
+    api: arguments.callee.name,
+  }).save();
+  //On transforme le html en JSON après l'avoir nettoyé
+  let draft = req.body.body;
+  let html = draft.blocks ? draftToHtml(draft) : draft;
+  let safeHTML = sanitizeHtml(html, sanitizeOptions);
+  let jsonBody = himalaya.parse(safeHTML, {
+    ...himalaya.parseDefaults,
+    includePositions: false,
+  });
+
+  // eslint-disable-next-line no-use-before-define
+  make_nodes_unique_and_local(jsonBody, uniqid("initial_"));
+
+  var article = {
+    title: { fr: sanitizeHtml(req.body.title, sanitizeOptions) },
+    body: jsonBody,
+    nombreMots: nombreMots,
+    avancement: { fr: 1 },
+    status: "Actif",
+  };
+  //On l'insère
+  var _u = new Article(article);
+  _u.save((err, article_saved) => {
+    if (err) {
+      res.status(500).json({ text: "Erreur interne" });
+    } else {
+      res.status(200).json({
+        text: "Succès",
+        article: article_saved,
+      });
+    }
+  });
 }
 
 function get_article(req, res) {
@@ -99,8 +98,10 @@ function get_article(req, res) {
     promise
       .then(async (result) => {
         let structureArr = [];
+        // eslint-disable-next-line no-use-before-define
         await asyncForEach(result, async (article, i) => {
           if (article.isStructure) {
+            // eslint-disable-next-line no-undef
             structureArr = _createFromNested(
               article.body,
               locale,
@@ -142,6 +143,7 @@ function get_article(req, res) {
             }
             result.splice(i, 1);
           } else {
+            // eslint-disable-next-line no-use-before-define
             returnLocalizedContent(article.body, locale);
             article.title = article.title[locale] || article.title.fr;
             article.avancement =
@@ -154,7 +156,6 @@ function get_article(req, res) {
         });
       })
       .catch((err) => {
-        console.log(err);
         res.status(500).json({
           text: "Erreur interne",
           error: err,
@@ -190,6 +191,7 @@ function add_traduction(req, res) {
           { new: true },
           (e) => {
             if (e) {
+              // eslint-disable-next-line no-console
               console.log(e);
             }
           }
@@ -202,8 +204,8 @@ function add_traduction(req, res) {
       req.body.type !== "dispositif" &&
       req.user.roles.find((x) => x.nom === "Admin" || x.nom === "ExpertTrad") &&
       (req.body.avancement === 1 ||
-        req.body.avancement == undefined ||
-        req.body.avancement == null) &&
+        req.body.avancement === undefined ||
+        req.body.avancement === null) &&
       req.body.translationId
     ) {
       let traductionItem = req.body;
@@ -228,6 +230,7 @@ function add_traduction(req, res) {
       Article.findOne({ _id: traductionItem.articleId }).exec((err, result) => {
         if (!err && result) {
           let succes = true;
+          // eslint-disable-next-line no-undef
           avancement = { value: 1 };
           if (
             result.title &&
@@ -248,41 +251,45 @@ function add_traduction(req, res) {
             let errArr = [];
             if (!traductionItem.isStructure) {
               if (
+                // eslint-disable-next-line no-use-before-define
                 addTranslationRestructure(result, jsonBody, locale, errArr) ||
                 (errArr.length > 0 &&
+                  // eslint-disable-next-line no-use-before-define
                   _dealWithErrors(result, jsonBody, locale, errArr))
               ) {
                 result.markModified("body");
               } else {
                 succes = false;
-                console.log("erreur 1");
               }
             } else {
+              // eslint-disable-next-line no-undef
               avancement = {
                 value:
                   (result.avancement[locale] || 0) * (result.nombreMots || 0),
               };
               if (
+                // eslint-disable-next-line no-use-before-define
                 _insertStructTranslation(
                   result.body,
                   traductionItem.translatedText.body,
                   locale,
                   traductionItem.jsonId,
+                  // eslint-disable-next-line no-undef
                   avancement
                 )
               ) {
                 result.markModified("body");
+                // eslint-disable-next-line no-undef
                 if (avancement.value && result.nombreMots > 0) {
+                  // eslint-disable-next-line no-undef
                   avancement.value = avancement.value / result.nombreMots;
                 }
               } else {
                 succes = false;
-                console.log("erreur 2");
               }
             }
           } else {
             succes = false;
-            console.log("erreur 3");
           }
           if (req.body.translationId) {
             result.traductions = [
@@ -300,15 +307,16 @@ function add_traduction(req, res) {
           if (succes) {
             result.avancement = {
               ...result.avancement,
+              // eslint-disable-next-line no-undef
               [locale]: avancement.value,
             };
             result.markModified("avancement");
             result.save((err, article_saved) => {
               if (err) {
-                console.log(err);
                 res.status(500).json({ text: "Erreur interne" });
               } else {
                 //En non-bloquant maintenant, je vais aller mettre à jour l'avancement de la langue cible
+                // eslint-disable-next-line no-use-before-define
                 _updateAvancement(locale);
                 res.status(200).json({
                   text: "Succès",
@@ -317,13 +325,13 @@ function add_traduction(req, res) {
               }
             });
           } else {
+            // eslint-disable-next-line no-console
             console.log("Erreur à l'enregistrement");
             res
               .status(402)
               .json({ text: "Erreur d'enregistrement des modifications" });
           }
         } else {
-          console.log(err);
           res
             .status(400)
             .json({ text: "Erreur d'identification de l'article" });
@@ -340,76 +348,77 @@ function remove_traduction(req, res) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (!req.body || !req.body.query) {
     return res.status(400).json({ text: "Requête invalide" });
-  } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
-    const { query, locale } = req.body;
-    if (locale === "fr") {
-      res.status(401).json({ text: "Suppression impossible" });
-      return false;
-    }
-    var find = new Promise(function (resolve, reject) {
-      Article.find(query).exec(function (err, result) {
-        if (err) {
-          reject(500);
+  }
+  new DBEvent({
+    action: JSON.stringify(req.body),
+    userId: _.get(req, "userId"),
+    roles: _.get(req, "user.roles"),
+    api: arguments.callee.name,
+  }).save();
+  const { query, locale } = req.body;
+  if (locale === "fr") {
+    res.status(401).json({ text: "Suppression impossible" });
+    return false;
+  }
+  var find = new Promise(function (resolve, reject) {
+    Article.find(query).exec(function (err, result) {
+      if (err) {
+        reject(500);
+      } else {
+        if (result) {
+          resolve(result);
         } else {
-          if (result) {
-            resolve(result);
-          } else {
-            reject(404);
-          }
-        }
-      });
-    });
-
-    find.then(
-      function (result) {
-        delete result[0].title[locale];
-        result[0].markModified("title");
-        delete result[0].avancement[locale];
-        result[0].markModified("avancement");
-        _removeLocale({ children: result[0] }, locale);
-        result[0].markModified("body");
-        result[0].save((err, article_saved) => {
-          if (err) {
-            console.log(err);
-            res.status(500).json({ text: "Erreur interne" });
-          } else {
-            console.log("suppression de la traduction réussi");
-            res.status(200).json({
-              text: "Succès",
-              data: article_saved,
-            });
-          }
-        });
-      },
-      function (error) {
-        switch (error) {
-          case 500:
-            res.status(500).json({
-              text: "Erreur interne",
-            });
-            break;
-          case 404:
-            res.status(404).json({
-              text: "Pas de résultat",
-            });
-            break;
-          default:
-            res.status(500).json({
-              text: "Erreur interne",
-            });
+          reject(404);
         }
       }
-    );
-  }
+    });
+  });
+
+  find.then(
+    function (result) {
+      delete result[0].title[locale];
+      result[0].markModified("title");
+      delete result[0].avancement[locale];
+      result[0].markModified("avancement");
+      // eslint-disable-next-line no-use-before-define
+      _removeLocale({ children: result[0] }, locale);
+      result[0].markModified("body");
+      result[0].save((err, article_saved) => {
+        if (err) {
+          res.status(500).json({ text: "Erreur interne" });
+        } else {
+          // eslint-disable-next-line no-console
+          console.log("suppression de la traduction réussi");
+          res.status(200).json({
+            text: "Succès",
+            data: article_saved,
+          });
+        }
+      });
+    },
+    function (error) {
+      switch (error) {
+        case 500:
+          res.status(500).json({
+            text: "Erreur interne",
+          });
+          break;
+        case 404:
+          res.status(404).json({
+            text: "Pas de résultat",
+          });
+          break;
+        default:
+          res.status(500).json({
+            text: "Erreur interne",
+          });
+      }
+    }
+  );
 }
 
 const make_nodes_unique_and_local = (object, uid) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   [].forEach.call(object, (el, i) => {
     if (el.attributes) {
       el.attributes.push({ key: "id", value: uid + "_" + elementId });
@@ -426,6 +435,7 @@ const make_nodes_unique_and_local = (object, uid) => {
 };
 
 const returnLocalizedContent = (object, locale) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   [].forEach.call(object, (el, i) => {
     if (el.content) {
       el.content = el.content[locale] || el.content.fr;
@@ -460,7 +470,9 @@ const addTranslationRestructure = (
           let translatedJSON = translated.children
             ? translated
             : { children: translated };
+          // eslint-disable-next-line no-use-before-define
           let right_node = _findId(translatedJSON, id);
+          // eslint-disable-next-line no-use-before-define
           if (!_correctNodewithLocale(right_node, node, id, locale, i, errArr))
             isSucces = false;
         }
@@ -583,9 +595,9 @@ const _correctNodewithLocale = (
       }
     }
     //Je réconcilie les espaces au début et à la fin :
+    // eslint-disable-next-line no-use-before-define
     _reconcilieEspaces(node, locale);
   } else {
-    console.log("nok : " + id);
     return false;
   }
   return true;
@@ -631,6 +643,7 @@ const _reconcilieEspaces = (node, locale) => {
           node.content[locale].length - 1
         );
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   }
@@ -639,10 +652,10 @@ const _reconcilieEspaces = (node, locale) => {
 const _dealWithErrors = (initial, translated, locale, errArr) => {
   //On va d'abord compter le nombre de noeuds qui ont pas été insérés dans l'article en français
   let failArr = [];
+  // eslint-disable-next-line no-use-before-define
   let nbFailed = _countFailedInserts({ children: translated }, 0, failArr);
 
   if (nbFailed === 0) {
-    console.log("Tout a été insére, je m'embête pas");
     return true;
   } else if (nbFailed === 1 && errArr.length === 1) {
     try {
@@ -657,16 +670,10 @@ const _dealWithErrors = (initial, translated, locale, errArr) => {
         return true;
       }
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
-  } else {
-    console.log(JSON.stringify(initial));
-    console.log(JSON.stringify(failArr));
-    console.log(JSON.stringify(errArr));
-    console.log("cas compliqué : " + nbFailed + ", " + errArr.length);
-    console.log(JSON.stringify(translated));
   }
-  console.log("le traitement des erreur a échoué");
   return false;
 };
 
@@ -741,23 +748,23 @@ const _updateAvancement = (locale) => {
     },
   ]).exec(function (err, result) {
     if (err || !result || result.length === 0 || !result[0].nbMots) {
+      // eslint-disable-next-line no-console
       console.log(
         "erreur à la récupération des données d'avancement dans la traduction"
       );
     } else {
       let resultat = { ...result[0] };
       let newAvancement = resultat.sommeprod / resultat.nbMots;
-      console.log(newAvancement);
       if (
         newAvancement > 1 ||
         newAvancement < 0 ||
         Number.isNaN(newAvancement)
       ) {
-        console.log("avancement déconnant : " + newAvancement);
         return false;
       }
       Langue.findOne({ i18nCode: locale }).exec((err, resultLangue) => {
         if (err || !resultLangue) {
+          // eslint-disable-next-line no-console
           console.log(
             "erreur à la mise à jour de l'avancement de la langue cible"
           );
@@ -770,6 +777,7 @@ const _updateAvancement = (locale) => {
   });
 };
 
+// eslint-disable-next-line no-undef
 _createFromNested = (
   structJson,
   locale,
@@ -811,6 +819,7 @@ _createFromNested = (
     } else if (structJson.constructor === Object) {
       path.push(key);
       // console.log(locale, query, status, created_at, articles, path)
+      // eslint-disable-next-line no-undef
       articles = _createFromNested(
         structJson[key],
         locale,

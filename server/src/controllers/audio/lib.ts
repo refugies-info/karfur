@@ -1,7 +1,5 @@
-import AudioS from "../../schema/schemaAudio.js";
+import Audio from "../../schema/schemaAudio.js";
 import cloudinary from "cloudinary";
-
-const recordSampleRate = 44100;
 
 // we do not call functions set_audio and get_audio from front (hidden in RecordAudio.js)
 function set_audio(req: any, res: any) {
@@ -10,9 +8,6 @@ function set_audio(req: any, res: any) {
       text: "Requête invalide",
     });
   } else {
-    let audio = req.body;
-    console.log(req.body, req.files);
-
     const values = Object.values(req.files);
     // @ts-ignore
     const originalFilename = values[0] ? values[0].originalFilename : null;
@@ -40,7 +35,7 @@ function set_audio(req: any, res: any) {
             url: data.url,
             version: data.version,
           };
-          var _u = new AudioS(audio);
+          var _u = new Audio(audio);
           // @ts-ignore
           _u.save((err, data) => {
             if (err) {
@@ -65,6 +60,7 @@ function set_audio(req: any, res: any) {
           });
         }
       })
+      // eslint-disable-next-line no-console
       .catch((e) => console.log(e));
 
     // var _u = new Audio(audio);
@@ -87,7 +83,6 @@ function set_audio(req: any, res: any) {
 
 // @ts-ignore
 function get_audio(req, res) {
-  console.log("get_audio");
   // @ts-ignore
   var query = req.body;
   var find = new Promise(function (resolve, reject) {

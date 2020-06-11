@@ -1,5 +1,6 @@
 const Channel = require("../../schema/schemaChannel.js");
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function add_channel(req, res, io) {
   if (!req.body || !req.body.itemId || !req.body.itemName) {
     //Le cas où la requête ne serait pas soumise ou nul
@@ -52,7 +53,7 @@ function add_channel(req, res, io) {
         if (result) {
           result.messages = [...result.messages, newMessage];
           result.markModified("messages");
-          if (!result.users.find((x) => x == req.userId)) {
+          if (!result.users.find((x) => x === req.userId)) {
             result.users = [...result.users, req.userId];
             result.markModified("users");
           }
@@ -68,13 +69,12 @@ function add_channel(req, res, io) {
         }
         _u.save(function (err, data) {
           if (err) {
-            console.log(err);
             res.status(500).json({
               text: "Erreur interne",
             });
           } else {
             data.messages = data.messages.map((x) => {
-              return { ...x, isMe: x.from.userId == req.userId };
+              return { ...x, isMe: x.from.userId === req.userId };
             });
             res.status(200).json({
               text: "Succès",
@@ -83,6 +83,7 @@ function add_channel(req, res, io) {
           }
         });
       },
+      // eslint-disable-next-line no-use-before-define
       (e) => _errorHandler(e, res)
     );
   }
@@ -121,7 +122,7 @@ function get_channel(req, res) {
     function (result) {
       [].forEach.call(result, (channel) => {
         channel.messages = channel.messages.map((x) => {
-          return { ...x, isMe: x.from.userId == req.userId };
+          return { ...x, isMe: x.from.userId === req.userId };
         });
       });
       res.status(200).json({
@@ -129,6 +130,7 @@ function get_channel(req, res) {
         data: result,
       });
     },
+    // eslint-disable-next-line no-use-before-define
     (e) => _errorHandler(e, res)
   );
 }

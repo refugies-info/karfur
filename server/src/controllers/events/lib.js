@@ -31,7 +31,6 @@ function get_event(req, res) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   }
   const { query, sort } = req.body;
-  console.log(query);
   var findEvent = new Promise(function (resolve, reject) {
     Event.find(query)
       .sort(sort)
@@ -114,7 +113,6 @@ function aggregate_events(req, res) {
   var find = new Promise(function (resolve, reject) {
     Event.aggregate(req.body).exec(function (err, result) {
       if (err) {
-        console.log(err);
         reject(500);
       } else {
         if (result) {
@@ -133,12 +131,12 @@ function aggregate_events(req, res) {
         data: result,
       });
     },
+    // eslint-disable-next-line no-use-before-define
     (e) => _errorHandler(e, res)
   );
 }
 
 const _errorHandler = (error, res) => {
-  console.log("error events : ", error);
   switch (error) {
     case 500:
       res.status(500).json({

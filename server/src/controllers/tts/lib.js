@@ -28,7 +28,7 @@ function getAccessToken(subscriptionKey) {
 // You can also change the voice and output formats. See:
 // https://docs.microsoft.com/azure/cognitive-services/speech-service/language-support#text-to-speech
 function textToSpeech(accessToken, text, locale = "fr-fr") {
-  reader =
+  const reader =
     (voices.find((x) => x.locale === locale) || {}).name ||
     "Microsoft Server Speech Text to Speech Voice (fr-FR, Julie, Apollo)";
 
@@ -85,6 +85,7 @@ async function get_tts(req, res) {
 
     rp(options, function (error, response, body) {
       if (error) {
+        // eslint-disable-next-line no-console
         console.error("error:", error);
         return res.status(500).json({
           text: "Erreur interne",
@@ -97,6 +98,7 @@ async function get_tts(req, res) {
           data: body,
         });
       } else {
+        // eslint-disable-next-line no-console
         console.log(response.statusCode);
       }
     });
