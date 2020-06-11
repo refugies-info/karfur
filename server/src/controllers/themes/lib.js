@@ -23,13 +23,12 @@ function create_theme(req, res) {
     }
     promise
       .then((data) => {
-        console.log(data);
         res.status(200).json({
           text: "Succès",
           data: data,
         });
       })
-      .catch((err) => {
+      .catch(() => {
         res.status(500).json({
           text: "Erreur interne",
         });

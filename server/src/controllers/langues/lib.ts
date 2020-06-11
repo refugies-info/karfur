@@ -42,7 +42,6 @@ function create_langues(req, res) {
       })
       // @ts-ignore
       .catch((err) => {
-        console.log(err);
         res.status(500).json({
           text: "Erreur interne",
           data: err,
@@ -83,7 +82,6 @@ function get_langues(req: RequestFromClient, res: Res) {
       // @ts-ignore
       .exec(function (err, result) {
         if (err) {
-          console.log(err);
           reject(500);
         } else {
           if (result) {
@@ -103,7 +101,6 @@ function get_langues(req: RequestFromClient, res: Res) {
       });
     },
     function (error) {
-      console.log(error);
       switch (error) {
         case 500:
           res.status(500).json({

@@ -32,13 +32,13 @@ async function add_structure(req, res) {
         ((r.membres || []).find((x) => req.userId.equals(x.userId)) || {})
           .roles || []
       ).includes("contributeur");
-      console.log(isAdmin, isContributeur, req.userId, structure);
       if (
         isAdmin ||
         (isContributeur &&
           !JSON.stringify(structure).includes("administrateur"))
       ) {
         //Soit l'auteur est admin soit il est contributeur et modifie les droits d'un membre seul
+        // eslint-disable-next-line no-undef
         promise = Structure.findOneAndUpdate(
           {
             _id: structure._id,
@@ -55,9 +55,11 @@ async function add_structure(req, res) {
     } else {
       structure.createur = req.userId;
       structure.status = structure.status || "En attente";
+      // eslint-disable-next-line no-undef
       promise = new Structure(structure).save();
     }
 
+    // eslint-disable-next-line no-undef
     promise
       .then((data) => {
         //J'ajoute cette structure à l'utilisateur
@@ -68,11 +70,7 @@ async function add_structure(req, res) {
                 { _id: x.userId },
                 { $addToSet: { roles: result._id, structures: data._id } },
                 { upsert: true, new: true },
-                (e) => {
-                  if (e) {
-                    console.log(e);
-                  }
-                }
+                () => {}
               )
             );
           }
@@ -83,7 +81,6 @@ async function add_structure(req, res) {
         });
       })
       .catch((err) => {
-        console.log(err);
         res.status(500).json({ text: "Erreur interne", data: err });
       });
   }

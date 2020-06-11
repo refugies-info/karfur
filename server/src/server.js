@@ -10,8 +10,6 @@ const formData = require("express-form-data");
 const path = require("path");
 const compression = require("compression");
 const startup = require("./startup/startup");
-const DBEvent = require("./schema/schemaDBEvent.js");
-const _ = require("lodash");
 // const scanner = require('./i18nscanner.js'); // Si besoin de lancer une extraction des strings manquantes en traduction
 
 // var log = console.log;
@@ -33,18 +31,15 @@ const {
   CLOUD_NAME,
   API_KEY,
   API_SECRET,
-  DB_CONN,
-  USERNAME_DB,
-  DB_PW,
   MONGODB_PROD_URI,
   MONGODB_QA_URI,
 } = process.env;
 
-let scraper;
 if (NODE_ENV === "dev") {
+  // eslint-disable-next-line no-console
   console.log("dev environment");
-  //scraper = require('./scraper/puppeter');
 } else {
+  // eslint-disable-next-line no-console
   console.log(NODE_ENV + " environment");
 }
 
@@ -61,26 +56,24 @@ var io = require("socket.io")(http);
 
 //Connexion à la base de donnée
 mongoose.set("debug", false);
-let auth = null;
 let db_path =
   NODE_ENV === "dev"
     ? "mongodb://localhost/db"
     : NODE_ENV === "quality"
     ? MONGODB_QA_URI
     : MONGODB_PROD_URI;
+// eslint-disable-next-line no-console
 console.log("NODE_ENV : ", NODE_ENV);
-// let db_path = NODE_ENV === 'dev' ? 'mongodb://localhost/db' : DB_CONN; //ancienne connexion à Azure
-// auth = {user: USERNAME_DB, password: DB_PW};
 mongoose
   .connect(db_path, { useNewUrlParser: true })
   .then(() => {
-    //, { ...(auth && {auth: auth}), useNewUrlParser: true }
+    // eslint-disable-next-line no-console
     console.log("Connected to mongoDB");
     startup.run(mongoose.connection.db); //A décommenter pour initialiser la base de données
   })
   .catch((e) => {
-    console.log("Error while DB connecting");
-    console.log(e);
+    // eslint-disable-next-line no-console
+    console.log("Error while DB connecting", { error: e });
   });
 
 //Body Parser
@@ -158,32 +151,39 @@ require(__dirname + "/controllers/miscellaneousController")(router);
 
 //Partie dédiée à la messagerie instantanée
 io.on("connection", function (socket) {
+  // eslint-disable-next-line no-console
   console.log("user connected");
   socket.on("subscribeToChat", function () {
+    // eslint-disable-next-line no-console
     console.log("user subscribed");
   });
   socket.on("client:sendMessage", function (msg) {
     if (msg && msg.data && msg.data.text) {
+      // eslint-disable-next-line no-console
       console.log("message utilisateur : " + msg.data.text);
     }
     io.emit("MessageSent", msg);
   });
   socket.on("agent:sendMessage", function (msg) {
     if (msg && msg.data && msg.data.text) {
+      // eslint-disable-next-line no-console
       console.log("message agent : " + msg.data.text);
     }
     io.emit("MessageSent", msg);
   });
   socket.on("disconnect", function () {
+    // eslint-disable-next-line no-console
     console.log("user disconnected");
   });
 });
 
 //Définition et mise en place du port d'écoute
 var ioport = process.env.PORTIO;
+// eslint-disable-next-line no-use-before-define, no-console
 io.listen(ioport, () => console.log(`Listening on port ${port}`));
 var port = process.env.PORT;
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../client", "build", "index.html"));
 });
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Listening on port ${port}`));
