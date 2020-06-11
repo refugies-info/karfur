@@ -27,7 +27,6 @@ function login(req, res) {
       },
       async (err, user) => {
         if (err) {
-          console.log(err);
           res.status(500).json({ text: "Erreur interne", data: err });
         } else if (!user) {
           //On lui crée un nouveau compte si la demande vient du site seulement
@@ -60,6 +59,7 @@ function login(req, res) {
             } else {
               user.roles = [req.roles.find((x) => x.nom === "User")._id];
             }
+            // eslint-disable-next-line no-use-before-define
             _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
             user.status = "Actif";
             user.last_connected = new Date();
@@ -69,6 +69,7 @@ function login(req, res) {
                 res.status(500).json({ text: "Erreur interne" });
               } else {
                 //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
+                // eslint-disable-next-line no-use-before-define
                 populateLanguages(user);
                 res.status(200).json({
                   text: "Succès",
@@ -105,15 +106,17 @@ function login(req, res) {
                       data: err,
                     });
                   }
+                  // eslint-disable-next-line no-use-before-define
                   return proceed_with_login(req, res, user);
                 });
               } else if (user.authy_id) {
                 return authy.request_sms(
                   user.authy_id,
+                  // eslint-disable-next-line no-undef
                   (force = true),
+                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
                   function (err_sms, result_sms) {
                     if (err_sms) {
-                      console.log(err_sms);
                       return res.status(204).json({
                         text: "Erreur à l'envoi du code à ce numéro",
                         data: err_sms,
@@ -135,6 +138,7 @@ function login(req, res) {
                       });
                     }
                     const authy_id = result.user.id;
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
                     authy.request_sms(authy_id, function (err_sms, result_sms) {
                       if (err_sms) {
                         res.status(204).json({
@@ -152,18 +156,17 @@ function login(req, res) {
                     return res.status(501).json({ text: "no code supplied" });
                   }
                 );
-              } else {
-                return res.status(502).json({
-                  text: "no authy_id",
-                  phone: user.phone,
-                  email: user.email,
-                });
               }
+              return res.status(502).json({
+                text: "no authy_id",
+                phone: user.phone,
+                email: user.email,
+              });
             }
+            // eslint-disable-next-line no-use-before-define
             return proceed_with_login(req, res, user);
-          } else {
-            res.status(401).json({ text: "Mot de passe incorrect" });
           }
+          res.status(401).json({ text: "Mot de passe incorrect" });
         }
       }
     );
@@ -227,8 +230,10 @@ const _checkAndNotifyAdmin = async function (
       "Nouvel administrateur Réfugiés.info - " + user.username;
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       } else {
+        // eslint-disable-next-line no-console
         console.log("Email sent: " + info.response);
       }
     });
@@ -303,11 +308,11 @@ function set_user_info(req, res) {
       { new: true },
       function (error, result) {
         if (error) {
-          console.log(error);
           res.status(500).json({ text: "Erreur interne", error: error });
         } else {
           //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
           //Je le fais en non bloquant, il faut pas que ça renvoie une erreur à l'enregistrement
+          // eslint-disable-next-line no-use-before-define
           populateLanguages(user);
           res.status(200).json({
             data: result,
@@ -329,7 +334,7 @@ function change_password(req, res) {
   ) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-    if (query._id != req.user._id) {
+    if (query._id !== req.user._id) {
       return res.status(401).json({ text: "Token invalide" });
     }
     if (newUser.newPassword !== newUser.cpassword) {
@@ -354,14 +359,13 @@ function change_password(req, res) {
         return res
           .status(402)
           .json({ text: "Le mot de passe est trop faible" });
-      } else {
-        user.password = passwordHash.generate(newUser.newPassword);
-        user.save();
-        res.status(200).json({
-          token: user.getToken(),
-          text: "Authentification réussi",
-        });
       }
+      user.password = passwordHash.generate(newUser.newPassword);
+      user.save();
+      res.status(200).json({
+        token: user.getToken(),
+        text: "Authentification réussi",
+      });
     });
   }
 }
@@ -372,79 +376,78 @@ function reset_password(req, res) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (!username) {
     return res.status(400).json({ text: "Requête invalide" });
-  } else {
-    new DBEvent({
-      api: arguments.callee.name,
-      action: { username },
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-    }).save();
-    return User.findOne(
-      {
-        username,
-      },
-      async (err, user) => {
-        if (err) {
-          console.log(err);
-          return res.status(500).json({ text: "Erreur interne", data: err });
-        } else if (!user) {
-          return res.status(404).json({ text: "L'utilisateur n'existe pas" });
-        } else if (!user.email) {
-          return res.status(403).json({
-            text:
-              "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
-          });
-        } else {
-          if (
-            (user.roles || []).some(
-              (x) => x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
-            )
-          ) {
-            //L'admin ne peut pas le faire comme ça
-            return res.status(401).json({
-              text:
-                "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
-            });
-          }
-          crypto.randomBytes(20, function (errb, buffer) {
-            if (errb) {
-              return res.status(422).json({ message: errb });
-            }
-            const token = buffer.toString("hex");
-            user
-              .updateOne({
-                reset_password_token: token,
-                reset_password_expires: Date.now() + 1 * 60 * 60 * 1000,
-              })
-              .exec();
-            const newUrl = url + "reset/" + token;
-
-            let html = "<p>Bonjour " + username + ",</p>";
-            html +=
-              "<p>Vous avez demandé à réinitialiser votre mot de passe sur la plateforme 'Réfugiés.info'</p>";
-            html +=
-              "<p>Pour ce faire, merci de cliquer sur le lien ci-dessous ou de le copier-coller dans votre navigateur</p>";
-            html += "<a href=" + newUrl + ">" + newUrl + "</a>";
-            html += "<p>A bientôt,</p>";
-            html += "<p>Les administrateurs de Réfugiés.info</p>";
-
-            mailOptions.html = html;
-            mailOptions.subject =
-              "Réfugiés.info - réinitialisation du mot de passe";
-            mailOptions.to = user.email;
-            transporter.sendMail(mailOptions, (error, info) => {
-              if (error) {
-                console.log(error);
-              } else {
-                console.log("Email sent: " + info.response);
-              }
-            });
-            return res.status(200).json({ text: "Envoi réussi" });
-          });
-        }
-      }
-    );
   }
+  new DBEvent({
+    api: arguments.callee.name,
+    action: { username },
+    userId: _.get(req, "userId"),
+    roles: _.get(req, "user.roles"),
+  }).save();
+  return User.findOne(
+    {
+      username,
+    },
+    async (err, user) => {
+      if (err) {
+        return res.status(500).json({ text: "Erreur interne", data: err });
+      } else if (!user) {
+        return res.status(404).json({ text: "L'utilisateur n'existe pas" });
+      } else if (!user.email) {
+        return res.status(403).json({
+          text:
+            "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+        });
+      }
+      if (
+        (user.roles || []).some(
+          (x) => x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
+        )
+      ) {
+        //L'admin ne peut pas le faire comme ça
+        return res.status(401).json({
+          text:
+            "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
+        });
+      }
+      crypto.randomBytes(20, function (errb, buffer) {
+        if (errb) {
+          return res.status(422).json({ message: errb });
+        }
+        const token = buffer.toString("hex");
+        user
+          .updateOne({
+            reset_password_token: token,
+            reset_password_expires: Date.now() + 1 * 60 * 60 * 1000,
+          })
+          .exec();
+        const newUrl = url + "reset/" + token;
+
+        let html = "<p>Bonjour " + username + ",</p>";
+        html +=
+          "<p>Vous avez demandé à réinitialiser votre mot de passe sur la plateforme 'Réfugiés.info'</p>";
+        html +=
+          "<p>Pour ce faire, merci de cliquer sur le lien ci-dessous ou de le copier-coller dans votre navigateur</p>";
+        html += "<a href=" + newUrl + ">" + newUrl + "</a>";
+        html += "<p>A bientôt,</p>";
+        html += "<p>Les administrateurs de Réfugiés.info</p>";
+
+        mailOptions.html = html;
+        mailOptions.subject =
+          "Réfugiés.info - réinitialisation du mot de passe";
+        mailOptions.to = user.email;
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            // eslint-disable-next-line no-console
+            console.log(error);
+          } else {
+            // eslint-disable-next-line no-console
+            console.log("Email sent: " + info.response);
+          }
+        });
+        return res.status(200).json({ text: "Envoi réussi" });
+      });
+    }
+  );
 }
 
 function set_new_password(req, res) {
@@ -453,61 +456,58 @@ function set_new_password(req, res) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (!newPassword || !cpassword || !reset_password_token) {
     return res.status(400).json({ text: "Requête invalide" });
-  } else {
-    new DBEvent({
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
-    return User.findOne(
-      {
-        reset_password_token,
-        reset_password_expires: { $gt: Date.now() },
-      },
-      async (err, user) => {
-        if (err) {
-          console.log(err);
-          return res.status(500).json({ text: "Erreur interne", data: err });
-        } else if (!user) {
-          return res.status(404).json({ text: "L'utilisateur n'existe pas" });
-        } else if (!user.email) {
-          return res.status(403).json({
-            text:
-              "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
-          });
-        } else {
-          if (
-            (user.roles || []).some(
-              (x) => x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
-            )
-          ) {
-            //L'admin ne peut pas le faire comme ça
-            return res.status(401).json({
-              text:
-                "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
-            });
-          }
-          if (newPassword !== cpassword) {
-            return res
-              .status(400)
-              .json({ text: "Les mots de passe ne correspondent pas" });
-          } else if ((passwdCheck(newPassword) || {}).score < 1) {
-            return res
-              .status(401)
-              .json({ text: "Le mot de passe est trop faible" });
-          }
-          user.password = passwordHash.generate(newPassword);
-          user.reset_password_token = undefined;
-          user.reset_password_expires = undefined;
-          user.save();
-          res.status(200).json({
-            token: user.getToken(),
-            text: "Authentification réussi",
-          });
-        }
-      }
-    );
   }
+  new DBEvent({
+    userId: _.get(req, "userId"),
+    roles: _.get(req, "user.roles"),
+    api: arguments.callee.name,
+  }).save();
+  return User.findOne(
+    {
+      reset_password_token,
+      reset_password_expires: { $gt: Date.now() },
+    },
+    async (err, user) => {
+      if (err) {
+        return res.status(500).json({ text: "Erreur interne", data: err });
+      } else if (!user) {
+        return res.status(404).json({ text: "L'utilisateur n'existe pas" });
+      } else if (!user.email) {
+        return res.status(403).json({
+          text:
+            "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+        });
+      }
+      if (
+        (user.roles || []).some(
+          (x) => x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
+        )
+      ) {
+        //L'admin ne peut pas le faire comme ça
+        return res.status(401).json({
+          text:
+            "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
+        });
+      }
+      if (newPassword !== cpassword) {
+        return res
+          .status(400)
+          .json({ text: "Les mots de passe ne correspondent pas" });
+      } else if ((passwdCheck(newPassword) || {}).score < 1) {
+        return res
+          .status(401)
+          .json({ text: "Le mot de passe est trop faible" });
+      }
+      user.password = passwordHash.generate(newPassword);
+      user.reset_password_token = undefined;
+      user.reset_password_expires = undefined;
+      user.save();
+      res.status(200).json({
+        token: user.getToken(),
+        text: "Authentification réussi",
+      });
+    }
+  );
 }
 
 function get_users(req, res) {
@@ -591,7 +591,6 @@ function get_users(req, res) {
 }
 
 function get_user_info(req, res) {
-  console.log("get_user_info", req);
   new DBEvent({
     userId: _.get(req, "userId"),
     roles: _.get(req, "user.roles"),
@@ -624,6 +623,7 @@ const populateLanguages = (user) => {
             result.save();
           }
         } else {
+          // eslint-disable-next-line no-console
           console.log(err);
         }
       });
@@ -638,12 +638,13 @@ const populateLanguages = (user) => {
               participant.equals(user._id)
             )
           ) {
-            if (!user.selectedLanguages.some((x) => x._id == result._id)) {
+            if (!user.selectedLanguages.some((x) => x._id === result._id)) {
               Langue.update(
                 { _id: result._id },
                 { $pull: { participants: user._id } }
               ).exec((err) => {
                 if (err) {
+                  // eslint-disable-next-line no-console
                   console.log(err);
                 }
               });
@@ -651,6 +652,7 @@ const populateLanguages = (user) => {
           }
         });
       } else {
+        // eslint-disable-next-line no-console
         console.log(err);
       }
     });
@@ -713,7 +715,6 @@ function signup(req, res) {
           var _u = new User(user);
           _u.save(function (err, user) {
             if (err) {
-              console.log(err);
               res.status(500).json({
                 text: "Erreur interne",
               });
@@ -732,7 +733,6 @@ function signup(req, res) {
         });
       },
       function (error) {
-        console.log(error);
         switch (error) {
           case 500:
             res.status(500).json({

@@ -73,6 +73,7 @@ const getId = (req, res, next) => {
 
 const getRoles = (req, res, next) => {
   Role.find({}).exec(function (err, roles) {
+    // eslint-disable-next-line no-console
     if (err) console.log(err);
     req.roles = roles;
     next();

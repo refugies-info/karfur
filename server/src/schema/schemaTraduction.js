@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const User = require("./schemaUser");
 
 var traductionSchema = mongoose.Schema(
   {
