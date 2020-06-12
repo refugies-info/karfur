@@ -47,7 +47,7 @@ token.json
 /controllers/dispositif/gmail_auth.js
 /client/brouillon.js
 /client/.env
-/client/.jest
+**/.jest
 /client/coverage
 .eslintcache
 /server/dist
