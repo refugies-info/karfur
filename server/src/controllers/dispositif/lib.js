@@ -16,6 +16,8 @@ const {
   countContents,
   countValidated,
 } = require("./functions");
+const logger = require("../../logger");
+
 // const gmail_auth = require('./gmail_auth');
 
 // const transporter = nodemailer.createTransport({
@@ -188,6 +190,7 @@ function get_dispositif(req, res) {
   if (!req.body || !req.body.query) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
+    logger.info("Calling get dispositif");
     new DBEvent({
       action: JSON.stringify(req.body),
       userId: _.get(req, "userId"),
