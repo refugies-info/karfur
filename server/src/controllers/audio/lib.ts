@@ -2,7 +2,7 @@ import Audio from "../../schema/schemaAudio.js";
 import cloudinary from "cloudinary";
 
 // we do not call functions set_audio and get_audio from front (hidden in RecordAudio.js)
-function set_audio(req: any, res: any) {
+export const set_audio = async (req: any, res: any) => {
   if (!req.body) {
     res.status(400).json({
       text: "Requête invalide",
@@ -19,49 +19,50 @@ function set_audio(req: any, res: any) {
       })
     );
 
-    Promise.all(promises)
-      .then((results) => {
-        let data = results[0];
-        if (data) {
-          let audio = {
-            resource_type: data.resource_type,
-            bytes: data.bytes,
-            type: data.type,
-            etag: data.etag,
-            original_filename: originalFilename,
-            public_id: data.public_id,
-            secure_url: data.secure_url,
-            signature: data.signature,
-            url: data.url,
-            version: data.version,
-          };
-          var _u = new Audio(audio);
+    try {
+      const results = await Promise.all(promises);
+      let data = results[0];
+      if (data) {
+        let audio = {
+          resource_type: data.resource_type,
+          bytes: data.bytes,
+          type: data.type,
+          etag: data.etag,
+          original_filename: originalFilename,
+          public_id: data.public_id,
+          secure_url: data.secure_url,
+          signature: data.signature,
+          url: data.url,
+          version: data.version,
+        };
+        var _u = new Audio(audio);
+
+        try {
           // @ts-ignore
-          _u.save((err, data) => {
-            if (err) {
-              res.status(500).json({
-                text: "Erreur interne",
-                error: err,
-              });
-            } else {
-              res.status(200).json({
-                text: "Succès",
-                data: {
-                  audioId: data._id,
-                  public_id: data.public_id,
-                  secure_url: data.secure_url,
-                },
-              });
-            }
+          const data = await _u.save();
+          res.status(200).json({
+            text: "Succès",
+            data: {
+              audioId: data._id,
+              public_id: data.public_id,
+              secure_url: data.secure_url,
+            },
           });
-        } else {
-          res.status(401).json({
-            text: "Pas de résultats à l'enregistrement",
+        } catch (error) {
+          res.status(500).json({
+            text: "Erreur interne",
+            error,
           });
         }
-      })
+      } else {
+        res.status(401).json({
+          text: "Pas de résultats à l'enregistrement",
+        });
+      }
+    } catch (e) {
       // eslint-disable-next-line no-console
-      .catch((e) => console.log(e));
+      console.log(e);
+    }
 
     // var _u = new Audio(audio);
 
@@ -79,7 +80,7 @@ function set_audio(req: any, res: any) {
     //   }
     // })
   }
-}
+};
 
 // @ts-ignore
 function get_audio(req, res) {
@@ -129,5 +130,4 @@ function get_audio(req, res) {
 }
 
 //On exporte notre fonction
-exports.set_audio = set_audio;
 exports.get_audio = get_audio;

@@ -13,7 +13,8 @@
     "heroku-postbuild": "cd ../client && npm install --only=dev && npm install && npm run build",
     "test": "cd ../client && npm run test",
     "test:lint": "eslint . --ext ts,tsx,js --quiet --cache",
-    "test:types": "tsc --noEmit"
+    "test:types": "tsc --noEmit",
+    "test:unit": "jest"
   },
   "dependencies": {
     "@google-cloud/translate": "^2.1.3",
@@ -68,11 +69,14 @@
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.0",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
     "eslint": "^7.1.0",
     "i18next-scanner": "^2.9.2",
+    "jest": "^26.0.1",
     "nodemon": "^2.0.2",
+    "ts-jest": "^26.1.0",
     "tsconfig-paths": "^3.9.0"
   },
   "engines": {
