@@ -12,7 +12,8 @@
     "target": "es6",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "types": ["node", "jest"]
   },
   "exclude": ["node_modules", "dist"]
 }
