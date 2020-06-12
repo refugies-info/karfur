@@ -1,4 +1,5 @@
 module.exports = {
+  preset: "ts-jest",
   moduleFileExtensions: ["ts", "tsx", "js"],
   transform: {
     "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
