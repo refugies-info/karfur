@@ -191,7 +191,6 @@ function get_dispositif(req, res) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
     logger.info("Calling get dispositif");
-    console.log("Calling get dispositif console");
     new DBEvent({
       action: JSON.stringify(req.body),
       userId: _.get(req, "userId"),
