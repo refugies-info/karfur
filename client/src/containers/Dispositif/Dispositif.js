@@ -4,7 +4,6 @@ import track from "react-tracking";
 import { Col, Row, Modal, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import ContentEditable from "react-contenteditable";
-import { logger } from "../../logger";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import htmlToDraft from "html-to-draftjs";
 import {
@@ -216,12 +215,17 @@ export class Dispositif extends Component {
       : "dispositif";
     const checkingVariante = _.get(props, "location.state.checkingVariante"),
       textInput = _.get(props, "location.state.textInput");
+
+    // if an itemId is present : initialize dispositif lecture or dispositif modification
+    // if no itemId and user logged in : initialize new dispo creation
+    // if no itemId and user not logged in : redirect to login page
     if (itemId) {
       this.props.tracking.trackEvent({
         action: "readDispositif",
         label: "dispositifId",
         value: itemId,
       });
+      // TO DO : store dispo in redux : how ? new store selected dispo or update just this dispo with required info ?
       return API.get_dispositif({
         query: { _id: itemId },
         sort: {},
@@ -234,6 +238,7 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/");
           }
+          // case dispositif not active and user neither admin nor contributor nor in structure
           if (
             dispositif.status !== "Actif" &&
             !this.props.admin &&
@@ -242,14 +247,13 @@ export class Dispositif extends Component {
           ) {
             if (_.isEmpty(this.props.user)) {
               return this.props.history.push("/login");
-              // eslint-disable-next-line no-else-return
-            } else {
-              this._isMounted = false;
-              return this.props.history.push("/");
             }
+            this._isMounted = false;
+            return this.props.history.push("/");
           }
           const disableEdit =
             dispositif.status !== "Accepté structure" || props.translating;
+
           if (dispositif.status === "Brouillon" && this._isMounted) {
             this.initializeTimer(3 * 60 * 1000, () =>
               this.valider_dispositif("Brouillon", true)
@@ -336,6 +340,7 @@ export class Dispositif extends Component {
           //On récupère les données de l'utilisateur
           if (this._isMounted && API.isAuth()) {
             this._isMounted &&
+              // TO DO not necessary to call api, these info are stored in redux
               API.get_user_info().then((data_res) => {
                 let u = data_res.data.data;
                 user = { _id: u._id, cookies: u.cookies || {} };
@@ -360,6 +365,7 @@ export class Dispositif extends Component {
           return this.props.history.push("/");
         });
     } else if (API.isAuth()) {
+      // initialize the creation of a new dispositif if user is logged in
       this.initializeTimer(3 * 60 * 1000, () =>
         this.valider_dispositif("Brouillon", true)
       ); //Enregistrement automatique du dispositif toutes les 3 minutes
@@ -1540,14 +1546,6 @@ export class Dispositif extends Component {
     });
 
   render() {
-    logger.info("Dispositif test log info ", {
-      titreInformatif:
-        this.state.dispositif && this.state.dispositif.titreInformatif
-          ? this.state.dispositif.titreInformatif
-          : "pas de titre",
-    });
-    logger.warn("Dispositif test log warn");
-    logger.error("Dispositif test log error");
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
@@ -1567,6 +1565,7 @@ export class Dispositif extends Component {
       didThank,
       dispositif,
     } = this.state;
+
     const etapes_tuto =
       typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
     const moisDepuisCreation =
