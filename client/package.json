@@ -109,7 +109,7 @@
   "scripts": {
     "start": "react-app-env start",
     "build": "react-app-env build",
-    "test": "react-app-env test --runInBand --noSingleRun",
+    "test": "npm run test:unit && npm run test:lint && npm run test:types",
     "test-with-coverage": "jest --coverage && cat ./coverage/lcov.info | codacy-coverage",
     "nwtest": "node_modules/nightwatch/bin/nightwatch -c nightwatch.json",
     "cypress:open": "cypress open",
