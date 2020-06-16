@@ -85,6 +85,7 @@ import {
 import { breakpoints } from "utils/breakpoints.js";
 
 import variables from "scss/colors.scss";
+import { fetchSelectedDispositifActionCreator } from "../../services/SelectedDispositif/selectedDispositif.actions";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -177,6 +178,7 @@ export class Dispositif extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    this.props.fetchUser();
     this._initializeDispositif(this.props);
   }
 
@@ -225,6 +227,12 @@ export class Dispositif extends Component {
         label: "dispositifId",
         value: itemId,
       });
+
+      this.props.fetchSelectedDispositif({
+        selectedDispositifId: itemId,
+        locale: props.languei18nCode,
+      });
+
       // TO DO : store dispo in redux : how ? new store selected dispo or update just this dispo with required info ?
       return API.get_dispositif({
         query: { _id: itemId },
@@ -1027,6 +1035,7 @@ export class Dispositif extends Component {
       });
     } else {
       this.setState(() => ({
+        showSpinnerBookmark: false,
         showBookmarkModal: false,
         isAuth: false,
       }));
@@ -1321,6 +1330,7 @@ export class Dispositif extends Component {
     };
     API.add_dispositif(dispositif).then(() => {
       this.props.fetchDispositifs();
+      this.props.fetchSelectedDispositif(this.state._id);
       this._isMounted &&
         this.setState({
           status: status,
@@ -1763,17 +1773,12 @@ export class Dispositif extends Component {
                   </Col>
                 )}
                 {!inVariante && (
+                  // top right part of dispositif (3 different designs : create/modify, read, sponsor gets the dispositif "En attente")
                   <TopRightHeader
-                    validateStructure={false}
                     disableEdit={this.state.disableEdit}
                     withHelp={this.state.withHelp}
                     showSpinnerBookmark={this.state.showSpinnerBookmark}
                     pinned={this.state.pinned}
-                    isAuthor={this.state.isAuthor}
-                    status={this.state.status}
-                    mainSponsor={this.state.mainSponsor}
-                    userId={this.props.userId}
-                    update_status={this.update_status}
                     bookmarkDispositif={this.bookmarkDispositif}
                     toggleHelp={this.toggleHelp}
                     toggleModal={this.toggleModal}
@@ -1785,7 +1790,6 @@ export class Dispositif extends Component {
                     toggleDispositifCreateModal={
                       this.toggleDispositifCreateModal
                     }
-                    admin={this.props.admin}
                     translating={translating}
                   />
                 )}
@@ -2376,6 +2380,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   fetchDispositifs: fetchDispositifsActionCreator,
   fetchUser: fetchUserActionCreator,
+  fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
 };
 
 export default track({
