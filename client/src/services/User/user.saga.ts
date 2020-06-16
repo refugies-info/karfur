@@ -4,6 +4,7 @@ import { FETCH_USER } from "./user.actionTypes";
 import API from "../../utils/API";
 import { setUserActionCreator, fetchUserActionCreator } from "./user.actions";
 import { push } from "connected-react-router";
+import { logger } from "../../logger";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
@@ -26,8 +27,7 @@ export function* fetchUser(
       );
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log("Error while fetching user", { error });
+    logger.error("Error while fetching user", { error });
     yield put(setUserActionCreator(null));
   }
 }

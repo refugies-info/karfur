@@ -57,8 +57,58 @@ export interface User {
   _id: ObjectId;
 }
 
+export interface DispositifContent {
+  type: string;
+  title: string;
+  editable: boolean;
+  content: string;
+  children?: DispositifContent[];
+}
+
 export interface Dispositif {
   _id: ObjectId;
+  abstract: string;
+  audience: string[];
+  audienceAge: {
+    bottomValue: number;
+    contentTitle: string;
+    topValue: number;
+  }[];
+  autoSave: boolean;
+  avancement: Record<string, number>;
+  bravo: {
+    createdAt: Moment;
+    keyValue: number;
+    subkey: number;
+    suggestionId: string;
+  }[];
+  contact: string;
+  contenu: DispositifContent[];
+  created_at: Moment;
+  creatorId: User;
+  externalLink: string;
+  mainSponsor: Structure;
+  merci: { createdAt: Moment; keyValue: number; subkey: null | number }[];
+  nbMots: number;
+  niveauFrancais: string[];
+  participants: User[];
+  signalements: any[];
+  sponsors: Structure[];
+  status: string;
+  suggestions: any[];
+  tags: {
+    darkColor: string;
+    hoverColor: string;
+    illustrationColor: string;
+    lightColor: string;
+    name: string;
+    short: string;
+  }[];
+  titreInformatif: string;
+  titreMarque: string;
+  traductions: ObjectId[];
+  typeContenu: "dispositif" | "demarche";
+  updatedAt: Moment;
 }
 
 export interface Structure {

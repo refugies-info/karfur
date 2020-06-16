@@ -11,6 +11,14 @@ import {
 import { userReducer, UserState } from "./User/user.reducer";
 import { ttsReducer, TtsState } from "./Tts/tts.reducer";
 import { connectRouter } from "connected-react-router";
+import {
+  SelectedDispositifState,
+  selectedDispositifReducer,
+} from "./SelectedDispositif/selectedDispositif.reducer";
+import {
+  LoadingStatusState,
+  loadingStatusReducer,
+} from "./LoadingStatus/loadingStatus.reducer";
 
 export interface RootState {
   user: UserState;
@@ -18,6 +26,8 @@ export interface RootState {
   dispositif: DispositifState;
   tts: TtsState;
   structure: StructureState;
+  selectedDispositif: SelectedDispositifState;
+  loadingStatus: LoadingStatusState;
 }
 export const appReducer = (history: any) =>
   combineReducers({
@@ -27,4 +37,6 @@ export const appReducer = (history: any) =>
     user: userReducer,
     tts: ttsReducer,
     structure: structureReducer,
+    selectedDispositif: selectedDispositifReducer,
+    loadingStatus: loadingStatusReducer,
   });
