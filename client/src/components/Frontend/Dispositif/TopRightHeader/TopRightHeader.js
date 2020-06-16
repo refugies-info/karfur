@@ -1,62 +1,99 @@
 import React from "react";
 import { Col, Card, CardBody, CardFooter, Spinner } from "reactstrap";
-
+import { connect } from "react-redux";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../FigmaUI/FSwitch/FSwitch";
 import FButton from "../../../FigmaUI/FButton/FButton";
 
-const topRightHeader = (props) => {
-  const userIsSponsor = (
-    (
-      ((props.mainSponsor || {}).membres || []).find(
-        (x) => x.userId === props.userId
-      ) || {}
-    ).roles || []
-  ).some((y) => y === "administrateur" || y === "contributeur");
+class topRightHeader extends React.Component {
+  /**
+   * props explanations :
+   * disableEdit = true --> lecture, disableEdit = false --> edit or creation
+   * withHelp =true --> activate help, false --> desactivate
+   * showSpinnerBookmark : boolean : deal with spinner when add a favorite
+   * bookmarkDispositif : called when adding a new favorite
+   * pinned : boolean, bookmark empty or not
+   * toggleHelp : add or remove help
+   * toggleModal : toggle modal to accept or not content (for a sponsor and status 'En attente')
+   * toggleDispositifValidateModal : toggle modal to attach dispositif to structure
+   * editDispositif  : when click on pen button to modify dispositif
+   * valider_dispositif : used to validate dispositif in Brouillon state
+   * toggleDispositifCreateModal : toggle modal to explain how to write when clicking on 'Besoin d'aide'
+   * translating
+   */
 
-  if (props.status === "En attente" && userIsSponsor) {
-    return (
-      <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
-        <Card>
-          <CardBody className="backgroundColor-lightColor">
-            <span className="validate-header">
-              Souhaitez-vous récupérer ce contenu ?
-            </span>
-            <FButton
-              type="validate"
-              className="mt-10 full-width"
-              onClick={() => props.toggleModal(true, "responsable")}
+  render() {
+    const props = this.props;
+
+    const isAuthor =
+      this.props.user &&
+      this.props.selectedDispositif &&
+      this.props.selectedDispositif.creatorId
+        ? this.props.user._id ===
+          (this.props.selectedDispositif.creatorId || {})._id
+        : false;
+
+    const userIsSponsor =
+      this.props.user && this.props.selectedDispositif
+        ? (
+            (
+              (
+                (this.props.selectedDispositif.mainSponsor || {}).membres || []
+              ).find((x) => x.userId === this.props.user._id) || {}
+            ).roles || []
+          ).some((y) => y === "administrateur" || y === "contributeur")
+        : false;
+
+    // user can validate a dispositif if he is admin or contributor of the mainsponsor of the dispositif
+    if (
+      this.props.selectedDispositif &&
+      this.props.selectedDispositif.status === "En attente" &&
+      userIsSponsor
+    ) {
+      // top right part of dispositif when user is sponsor and dispo is 'En attente'
+      return (
+        <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
+          <Card>
+            <CardBody className="backgroundColor-lightColor">
+              <span className="validate-header">
+                Souhaitez-vous récupérer ce contenu ?
+              </span>
+              <FButton
+                type="validate"
+                className="mt-10 full-width"
+                onClick={() => props.toggleModal(true, "responsable")}
+              >
+                Oui
+              </FButton>
+              <FButton
+                type="error"
+                className="mt-10 full-width"
+                onClick={() => props.toggleModal(true, "rejection")}
+              >
+                Non
+              </FButton>
+            </CardBody>
+            <CardFooter
+              className="color-darkColor cursor-pointer"
+              onClick={props.toggleDispositifCreateModal}
             >
-              Oui
-            </FButton>
-            <FButton
-              type="error"
-              className="mt-10 full-width"
-              onClick={() => props.toggleModal(true, "rejection")}
-            >
-              Non
-            </FButton>
-          </CardBody>
-          <CardFooter
-            className="color-darkColor cursor-pointer"
-            onClick={props.toggleDispositifCreateModal}
-          >
-            <EVAIcon
-              className="mr-8"
-              name="question-mark-circle"
-              viewBox="0 0 20 20"
-              size="medium"
-            />
-            Besoin d'aide ?
-          </CardFooter>
-        </Card>
-      </Col>
-    );
-  } else if (props.disableEdit) {
-    return (
-      <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
-        {!props.translating &&
-          (props.isAuthor || props.admin || userIsSponsor) && (
+              <EVAIcon
+                className="mr-8"
+                name="question-mark-circle"
+                viewBox="0 0 20 20"
+                size="medium"
+              />
+              Besoin d'aide ?
+            </CardFooter>
+          </Card>
+        </Col>
+      );
+    } else if (props.disableEdit) {
+      // when props.disableEdit = true, favorite button and modify button (if user authorized)
+      // user can modify a dispositif if he is admin or contributor of the mainsponsor of the dispositif OR if he is admin OR if he is author
+      return (
+        <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
+          {!props.translating && (isAuthor || props.admin || userIsSponsor) && (
             <div
               className="top-icon-wrapper mr-10"
               onClick={props.editDispositif}
@@ -64,20 +101,21 @@ const topRightHeader = (props) => {
               <EVAIcon name="edit-outline" fill="#3D3D3D" id="editBtn" />
             </div>
           )}
-        <div className="top-icon-wrapper" onClick={props.bookmarkDispositif}>
-          {props.showSpinnerBookmark ? (
-            <Spinner color="success" />
-          ) : (
-            <EVAIcon
-              name={"bookmark" + (props.pinned ? "" : "-outline")}
-              fill={"#3D3D3D"}
-              id="bookmarkBtn"
-            />
-          )}
-        </div>
-      </Col>
-    );
-  } 
+          <div className="top-icon-wrapper" onClick={props.bookmarkDispositif}>
+            {props.showSpinnerBookmark ? (
+              <Spinner color="success" />
+            ) : (
+              <EVAIcon
+                name={"bookmark" + (props.pinned ? "" : "-outline")}
+                fill={"#3D3D3D"}
+                id="bookmarkBtn"
+              />
+            )}
+          </div>
+        </Col>
+      );
+    }
+    // when creating or modifying a dispositif or demarche
     return (
       <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
         <Card>
@@ -117,7 +155,15 @@ const topRightHeader = (props) => {
         </Card>
       </Col>
     );
-  
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user,
+    admin: state.user.admin,
+    selectedDispositif: state.selectedDispositif,
+  };
 };
 
-export default topRightHeader;
+export default connect(mapStateToProps)(topRightHeader);
