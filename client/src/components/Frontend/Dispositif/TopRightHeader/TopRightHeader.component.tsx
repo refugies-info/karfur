@@ -1,11 +1,26 @@
 import React from "react";
 import { Col, Card, CardBody, CardFooter, Spinner } from "reactstrap";
-import { connect } from "react-redux";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../FigmaUI/FSwitch/FSwitch";
 import FButton from "../../../FigmaUI/FButton/FButton";
+import { Props } from "./TopRightHeader.container";
 
-class topRightHeader extends React.Component {
+export interface PropsBeforeInjection {
+  disableEdit: boolean;
+  withHelp: boolean;
+  showSpinnerBookmark: boolean;
+  bookmarkDispositif: () => void;
+  pinned: boolean;
+  toggleHelp: () => void;
+  toggleModal: (arg1: boolean, arg2: string) => void;
+  toggleDispositifValidateModal: () => void;
+  editDispositif: () => void;
+  valider_dispositif: (arg1: string) => void;
+  toggleDispositifCreateModal: () => void;
+  translating: boolean;
+}
+
+export class TopRightHeader extends React.Component<Props> {
   /**
    * props explanations :
    * disableEdit = true --> lecture, disableEdit = false --> edit or creation
@@ -37,9 +52,9 @@ class topRightHeader extends React.Component {
       this.props.user && this.props.selectedDispositif
         ? (
             (
-              (
-                (this.props.selectedDispositif.mainSponsor || {}).membres || []
-              ).find((x) => x.userId === this.props.user._id) || {}
+              ((this.props.selectedDispositif.mainSponsor || {}).membres || [])
+                // @ts-ignore
+                .find((x) => x.userId === this.props.user._id) || {}
             ).roles || []
           ).some((y) => y === "administrateur" || y === "contributeur")
         : false;
@@ -157,13 +172,3 @@ class topRightHeader extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.user.user,
-    admin: state.user.admin,
-    selectedDispositif: state.selectedDispositif,
-  };
-};
-
-export default connect(mapStateToProps)(topRightHeader);
