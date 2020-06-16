@@ -49,7 +49,7 @@ import Tags from "./Tags/Tags";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
 import BandeauEdition from "../../components/Frontend/Dispositif/BandeauEdition/BandeauEdition";
-import TopRightHeader from "../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader";
+import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
 import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
@@ -228,12 +228,12 @@ export class Dispositif extends Component {
         value: itemId,
       });
 
+      // work in progress : store dispo in redux and in state. the goal is not to have dispo in state anymore
       this.props.fetchSelectedDispositif({
         selectedDispositifId: itemId,
         locale: props.languei18nCode,
       });
 
-      // TO DO : store dispo in redux : how ? new store selected dispo or update just this dispo with required info ?
       return API.get_dispositif({
         query: { _id: itemId },
         sort: {},

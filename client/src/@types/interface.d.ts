@@ -117,4 +117,5 @@ export interface Dispositif {
 
 export interface Structure {
   _id: ObjectId;
+  membres: { userId: ObjectId; roles: string[] }[];
 }
