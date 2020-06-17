@@ -48,4 +48,38 @@ export const selectedDispositifReducer = createReducer<
         }
       ),
     }),
+  // @ts-ignore
+  UPDATE_UI_ARRAY: (state, action) =>
+    updateObject(state, {
+      ...state,
+      uiArray:
+        state &&
+        state.uiArray &&
+        state.uiArray.map((x: any, idx: any) => {
+          return {
+            ...x,
+            ...((action.payload.subkey === null &&
+              idx === action.payload.key && {
+                [action.payload.node]: action.payload.value,
+              }) ||
+              (action.payload.updateOthers && {
+                [action.payload.node]: false,
+              })),
+            ...(x.children && {
+              children: x.children.map((y: any, subidx: any) => {
+                return {
+                  ...y,
+                  ...((subidx === action.payload.subkey &&
+                    idx === action.payload.key && {
+                      [action.payload.node]: action.payload.value,
+                    }) ||
+                    (action.payload.updateOthers && {
+                      [action.payload.node]: false,
+                    })),
+                };
+              }),
+            }),
+          };
+        }),
+    }),
 });

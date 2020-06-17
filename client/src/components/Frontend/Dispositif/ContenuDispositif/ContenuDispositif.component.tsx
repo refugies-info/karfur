@@ -78,6 +78,7 @@ export const contenuDispositif = (props: Props) => {
             disableEdit &&
             item.content !== null &&
             item.content !== "null" && (
+              // selection of parts to modify when creating a variante of a demarche
               <Col className={"variante-radio" + (key !== 0 ? " mt-20" : "")}>
                 <div
                   className="radio-btn"
