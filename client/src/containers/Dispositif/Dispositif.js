@@ -88,6 +88,7 @@ import variables from "scss/colors.scss";
 import {
   fetchSelectedDispositifActionCreator,
   updateUiArrayActionCreator,
+  updateSelectedDispositifActionCreator,
 } from "../../services/SelectedDispositif/selectedDispositif.actions";
 // var opentype = require('opentype.js');
 
@@ -441,6 +442,10 @@ export class Dispositif extends Component {
   };
 
   onInputClicked = (ev) => {
+    // when clicking on titreInformatif or titreMarque (name of asso)
+    // if titre informatif is 'Titre informatif' we store "" instead of titre informatif
+    // same for titre marque
+
     const id = ev.currentTarget.id;
     if (
       !this.state.disableEdit &&
@@ -454,6 +459,11 @@ export class Dispositif extends Component {
   };
 
   handleChange = (ev) => {
+    // update selected dispositif in redux
+    this.props.updateSelectedDispositif({
+      [ev.currentTarget.id]: ev.target.value,
+    });
+    // TO DO : remove this set state when all infos are taken from store
     this.setState({
       content: {
         ...this.state.content,
@@ -1782,6 +1792,8 @@ export class Dispositif extends Component {
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
                 <div className={"bloc-titre "}>
                   <h1 className={disableEdit ? "" : "editable"}>
+                    {
+                      // Display and edition of titreInformatif
                     <ContentEditable
                       id="titreInformatif"
                       html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
@@ -1796,10 +1808,13 @@ export class Dispositif extends Component {
                       onMouseEnter={(e) => e.target.focus()}
                       onKeyPress={(e) => this.handleKeyPress(e, 0)}
                     />
+                    }
                   </h1>
                   {typeContenu === "dispositif" && (
                     <h2 className={"bloc-subtitle "}>
                       <span>{t("avec", "avec")}&nbsp;</span>
+                      {
+                        // Display and edition of titreMarque
                       <ContentEditable
                         id="titreMarque"
                         html={this.state.content.titreMarque || ""} // innerHTML of the editable div
@@ -1813,6 +1828,7 @@ export class Dispositif extends Component {
                         onMouseEnter={(e) => e.target.focus()}
                         onKeyPress={(e) => this.handleKeyPress(e, 1)}
                       />
+                      }
                     </h2>
                   )}
                 </div>

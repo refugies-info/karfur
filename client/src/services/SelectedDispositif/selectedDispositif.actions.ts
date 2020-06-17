@@ -2,6 +2,7 @@ import {
   FETCH_SELECTED_DISPOSITIF,
   SET_SELECTED_DISPOSITIF,
   UPDATE_UI_ARRAY,
+  UPDATE_SELECTED_DISPOSITIF,
 } from "./selectedDispositif.actionTypes";
 import { action, ActionType } from "typesafe-actions";
 import { Dispositif } from "../../@types/interface";
@@ -22,9 +23,15 @@ export const updateUiArrayActionCreator = (value: {
   updateOthers: boolean;
 }) => action(UPDATE_UI_ARRAY, value);
 
+export const updateSelectedDispositifActionCreator = (
+  value: Partial<Dispositif>
+) => action(UPDATE_SELECTED_DISPOSITIF, value);
+
 const actions = {
   fetchSelectedDispositifActionCreator,
   setSelectedDispositifActionCreator,
+  updateUiArrayActionCreator,
+  updateSelectedDispositifActionCreator,
 };
 
 export type SelectedDispositifActions = ActionType<typeof actions>;

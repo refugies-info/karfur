@@ -48,10 +48,8 @@ export const selectedDispositifReducer = createReducer<
         }
       ),
     }),
-  // @ts-ignore
   UPDATE_UI_ARRAY: (state, action) =>
     updateObject(state, {
-      ...state,
       uiArray:
         state &&
         state.uiArray &&
@@ -82,4 +80,6 @@ export const selectedDispositifReducer = createReducer<
           };
         }),
     }),
+  UPDATE_SELECTED_DISPOSITIF: (state, action) =>
+    updateObject(state, { ...action.payload }),
 });
