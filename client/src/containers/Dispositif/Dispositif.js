@@ -90,6 +90,7 @@ import {
   updateUiArrayActionCreator,
   updateSelectedDispositifActionCreator,
 } from "../../services/SelectedDispositif/selectedDispositif.actions";
+import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -1794,20 +1795,20 @@ export class Dispositif extends Component {
                   <h1 className={disableEdit ? "" : "editable"}>
                     {
                       // Display and edition of titreInformatif
-                    <ContentEditable
-                      id="titreInformatif"
-                      html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
-                      disabled={disableEdit || inVariante}
-                      onClick={(e) => {
-                        if (!disableEdit && !inVariante) {
-                          this.startJoyRide();
-                          this.onInputClicked(e);
-                        }
-                      }}
-                      onChange={this.handleChange}
-                      onMouseEnter={(e) => e.target.focus()}
-                      onKeyPress={(e) => this.handleKeyPress(e, 0)}
-                    />
+                      <ContentEditable
+                        id="titreInformatif"
+                        html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
+                        disabled={disableEdit || inVariante}
+                        onClick={(e) => {
+                          if (!disableEdit && !inVariante) {
+                            this.startJoyRide();
+                            this.onInputClicked(e);
+                          }
+                        }}
+                        onChange={this.handleChange}
+                        onMouseEnter={(e) => e.target.focus()}
+                        onKeyPress={(e) => this.handleKeyPress(e, 0)}
+                      />
                     }
                   </h1>
                   {typeContenu === "dispositif" && (
@@ -1815,19 +1816,19 @@ export class Dispositif extends Component {
                       <span>{t("avec", "avec")}&nbsp;</span>
                       {
                         // Display and edition of titreMarque
-                      <ContentEditable
-                        id="titreMarque"
-                        html={this.state.content.titreMarque || ""} // innerHTML of the editable div
-                        disabled={this.state.disableEdit}
-                        onClick={(e) => {
-                          this.startJoyRide(1);
-                          this.onInputClicked(e);
-                        }}
-                        onChange={this.handleChange}
-                        onKeyDown={this.onInputClicked}
-                        onMouseEnter={(e) => e.target.focus()}
-                        onKeyPress={(e) => this.handleKeyPress(e, 1)}
-                      />
+                        <ContentEditable
+                          id="titreMarque"
+                          html={this.state.content.titreMarque || ""} // innerHTML of the editable div
+                          disabled={this.state.disableEdit}
+                          onClick={(e) => {
+                            this.startJoyRide(1);
+                            this.onInputClicked(e);
+                          }}
+                          onChange={this.handleChange}
+                          onKeyDown={this.onInputClicked}
+                          onMouseEnter={(e) => e.target.focus()}
+                          onKeyPress={(e) => this.handleKeyPress(e, 1)}
+                        />
                       }
                     </h2>
                   )}
@@ -1838,102 +1839,12 @@ export class Dispositif extends Component {
             {!inVariante && (
               <Row className="tags-row backgroundColor-darkColor">
                 <Col lg="8" md="8" sm="8" xs="8" className="col right-bar">
-                  {(disableEdit || typeContenu !== "demarche") && (
-                    <Row>
-                      <b className="en-bref mt-10">
-                        {t("En bref", "En bref")}{" "}
-                      </b>
-                      {(
-                        (
-                          (this.state.menu || []).find(
-                            (x) => x.title === "C'est pour qui ?"
-                          ) || []
-                        ).children || []
-                      ).map((card, key) => {
-                        if (
-                          card.type === "card" &&
-                          card.title !== "Important !"
-                        ) {
-                          let texte = card.contentTitle;
-                          if (card.title === "Âge requis") {
-                            texte =
-                              card.contentTitle === "De ** à ** ans"
-                                ? t("Dispositif.De", "De") +
-                                  " " +
-                                  card.bottomValue +
-                                  " " +
-                                  t("Dispositif.à", "à") +
-                                  " " +
-                                  card.topValue +
-                                  " " +
-                                  t("Dispositif.ans", "ans")
-                                : card.contentTitle === "Moins de ** ans"
-                                ? t("Dispositif.Moins de", "Moins de") +
-                                  " " +
-                                  card.topValue +
-                                  " " +
-                                  t("Dispositif.ans", "ans")
-                                : t("Dispositif.Plus de", "Plus de") +
-                                  " " +
-                                  card.bottomValue +
-                                  " " +
-                                  t("Dispositif.ans", "ans");
-                          } else if (
-                            [
-                              "Niveau de français",
-                              "Justificatif demandé",
-                              "Public visé",
-                            ].includes(card.title)
-                          ) {
-                            texte =
-                              card.contentTitle &&
-                              t(
-                                "Dispositif." + card.contentTitle,
-                                card.contentTitle
-                              );
-                          } else if (card.title === "Combien ça coûte ?") {
-                            texte = card.free
-                              ? t("Dispositif.Gratuit", "Gratuit")
-                              : card.price +
-                                " € " +
-                                t(
-                                  "Dispositif." + card.contentTitle,
-                                  card.contentTitle
-                                );
-                          }
-                          return (
-                            <div className="tag-wrapper ml-15" key={key}>
-                              <div className="tag-item">
-                                <a
-                                  href={"#item-head-1"}
-                                  className="no-decoration"
-                                >
-                                  {card.typeIcon === "eva" ? (
-                                    <EVAIcon
-                                      name={card.titleIcon}
-                                      fill="#FFFFFF"
-                                      className="mr-10"
-                                    />
-                                  ) : (
-                                    <SVGIcon
-                                      fill="#FFFFFF"
-                                      width="20"
-                                      height="20"
-                                      viewBox="0 0 25 25"
-                                      name={card.titleIcon}
-                                      className="mr-10"
-                                    />
-                                  )}
-                                  <span>{h2p(texte)}</span>
-                                </a>
-                              </div>
-                            </div>
-                          );
-                        }
-                        return false;
-                      })}
-                    </Row>
-                  )}
+                  {
+                    // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
+                    (disableEdit || typeContenu !== "demarche") && (
+                      <EnBrefBanner menu={this.state.menu} />
+                    )
+                  }
                 </Col>
                 <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
                   <Tags
@@ -2383,6 +2294,7 @@ const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
   fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
   updateUiArray: updateUiArrayActionCreator,
+  updateSelectedDispositif: updateSelectedDispositifActionCreator,
 };
 
 export default track({
