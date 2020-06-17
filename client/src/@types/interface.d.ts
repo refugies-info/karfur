@@ -63,10 +63,17 @@ export interface DispositifContent {
   editable: boolean;
   content: string;
   children?: DispositifContent[];
-  isFakeContent?: boolean;
   placeholder?: string;
   tutoriel?: Record<string, string>;
   target?: string;
+  contentTitle?: string;
+  isFakeContent?: boolean;
+  titleIcon?: string;
+  typeIcon?: string;
+  bottomValue?: number;
+  topValue?: number;
+  free?: boolean;
+  price?: number;
 }
 
 export interface Dispositif {
