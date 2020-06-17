@@ -85,7 +85,10 @@ import {
 import { breakpoints } from "utils/breakpoints.js";
 
 import variables from "scss/colors.scss";
-import { fetchSelectedDispositifActionCreator } from "../../services/SelectedDispositif/selectedDispositif.actions";
+import {
+  fetchSelectedDispositifActionCreator,
+  updateUiArrayActionCreator,
+} from "../../services/SelectedDispositif/selectedDispositif.actions";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -707,6 +710,9 @@ export class Dispositif extends Component {
         }),
       };
     });
+
+    // update uiarray in store redux
+    this.props.updateUiArray({ subkey, key, node, value, updateOthers });
     this.setState({ uiArray: uiArray, tKeyValue: key, tSubkey: subkey });
   };
 
@@ -1732,17 +1738,14 @@ export class Dispositif extends Component {
               }
             >
               {(inVariante || checkingVariante) && (
+                // yellow banner in top of a demarche to create a variante
+                // To see this component, create a new demarche then select an existing demarche
                 <BandeauEdition
-                  menu={this.state.menu}
-                  uiArray={this.state.uiArray}
                   withHelp={withHelp}
                   disableEdit={disableEdit}
                   checkingVariante={checkingVariante}
                   editDispositif={this.editDispositif}
                   upcoming={this.upcoming}
-                  toggleDispositifValidateModal={
-                    this.toggleDispositifValidateModal
-                  }
                   valider_dispositif={this.valider_dispositif}
                   toggleHelp={this.toggleHelp}
                   toggleCheckingVariante={this.toggleCheckingVariante}
@@ -2381,6 +2384,7 @@ const mapDispatchToProps = {
   fetchDispositifs: fetchDispositifsActionCreator,
   fetchUser: fetchUserActionCreator,
   fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
+  updateUiArray: updateUiArrayActionCreator,
 };
 
 export default track({
