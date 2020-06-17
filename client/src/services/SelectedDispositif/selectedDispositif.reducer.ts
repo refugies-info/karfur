@@ -10,7 +10,7 @@ interface UiElement {
   cardDropdown: boolean;
   addDropdown: boolean;
   varianteSelected: boolean;
-  children?: UiElement;
+  children?: UiElement[];
 }
 
 export type SelectedDispositifState = Dispositif & {

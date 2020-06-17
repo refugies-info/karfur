@@ -48,7 +48,7 @@ import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Comm
 import Tags from "./Tags/Tags";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
-import BandeauEdition from "../../components/Frontend/Dispositif/BandeauEdition/BandeauEdition";
+import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
 import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";

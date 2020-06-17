@@ -1,19 +1,28 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { etapes } from "./data";
 import FSwitch from "../../../FigmaUI/FSwitch/FSwitch";
-
 import "./BandeauEdition.scss";
+// @ts-ignore
 import variables from "scss/colors.scss";
-import { connect } from "react-redux";
+import { Props } from "./BandeauEdition.container";
 
-class bandeauEdition extends React.Component {
+export interface PropsBeforeInjection {
+  withHelp: boolean;
+  disableEdit: boolean;
+  checkingVariante: boolean;
+  inVariante: boolean;
+  editDispositif: (arg1: null, arg2: boolean) => void;
+  upcoming: () => void;
+  valider_dispositif: () => void;
+  toggleHelp: () => void;
+  toggleCheckingVariante: () => void;
+  toggleInVariante: () => void;
+}
+export class BandeauEdition extends React.Component<Props> {
   /**
    * explanations of props :
-   * menu : redux
-   * uiArray : TO DO take it from redux
    * withHelp : activate or not help
    * disableEdit
    * checkingVariante, inVariante : on this page either checkingVariante or inVariante is true. if checkingVariante, ask if want to create a variante, if inVariante, select what to modify
@@ -57,6 +66,7 @@ class bandeauEdition extends React.Component {
       );
     const step = props.disableEdit ? 0 : 1;
     if (props.checkingVariante) {
+      // yellow banner asking if user wants to create a new variante
       return (
         <div className="bandeau-edition">
           <div className="dashed-panel no-radius" />
@@ -96,6 +106,7 @@ class bandeauEdition extends React.Component {
         </div>
       );
     }
+    // yellow banner when user is selecting which part of the demarche he wants to change
     return (
       <div className="bandeau-edition">
         <div className="dashed-panel no-radius" />
@@ -173,11 +184,3 @@ class bandeauEdition extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  menu: (!!state.selectedDispositif && state.selectedDispositif.contenu) || [],
-  uiArray:
-    (!!state.selectedDispositif && state.selectedDispositif.uiArray) || [],
-});
-
-export default connect(mapStateToProps)(bandeauEdition);
