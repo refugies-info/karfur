@@ -83,7 +83,7 @@ import {
   calculFiabilite,
 } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
-
+import { BackButton } from "../../components/Frontend/Dispositif/BackButton";
 import variables from "scss/colors.scss";
 import {
   fetchSelectedDispositifActionCreator,
@@ -1755,25 +1755,7 @@ export class Dispositif extends Component {
 
               <Row className="header-row">
                 {windowWidth >= breakpoints.smLimit && (
-                  <Col
-                    xl="6"
-                    lg="6"
-                    md="6"
-                    sm="6"
-                    xs="12"
-                    className="top-left"
-                    onClick={this.goBack}
-                  >
-                    <FButton
-                      type="light-action"
-                      name="arrow-back"
-                      className="btn-retour"
-                    >
-                      <span>
-                        {t("Retour à la recherche", "Retour à la recherche")}
-                      </span>
-                    </FButton>
-                  </Col>
+                  <BackButton goBack={this.goBack} />
                 )}
                 {!inVariante && (
                   // top right part of dispositif (3 different designs : create/modify, read, sponsor gets the dispositif "En attente")
