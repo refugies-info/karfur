@@ -27,7 +27,6 @@ import {
   NotificationManager,
 } from "react-notifications";
 import "../../../node_modules/video-react/dist/video-react.css";
-
 import API from "../../utils/API";
 import Sponsors from "../../components/Frontend/Dispositif/Sponsors/Sponsors";
 import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuDispositif";
@@ -1179,47 +1178,6 @@ export class Dispositif extends Component {
     this.props.history.push("/advanced-search");
   };
 
-  send_sms = () =>
-    Swal.fire({
-      title: "Veuillez renseigner votre numéro de téléphone",
-      input: "tel",
-      inputPlaceholder: "0633445566",
-      inputAttributes: {
-        autocomplete: "on",
-      },
-      showCancelButton: true,
-      confirmButtonText: "Envoyer",
-      cancelButtonText: "Annuler",
-      showLoaderOnConfirm: true,
-      preConfirm: (number) => {
-        return API.send_sms({
-          number,
-          typeContenu: this.state.typeContenu,
-          url: window.location.href,
-          title: this.state.content.titreInformatif,
-        })
-          .then((response) => {
-            if (!response.status === 200) {
-              throw new Error(response.statusText);
-            }
-            return response.data;
-          })
-          .catch((error) => {
-            Swal.showValidationMessage(`Echec d'envoi: ${error}`);
-          });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          title: "Yay...",
-          text: "Votre message a bien été envoyé, merci",
-          type: "success",
-          timer: 1500,
-        });
-      }
-    });
-
   createPdf = () => {
     this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
     let uiArray = [...this.state.uiArray];
@@ -1886,7 +1844,6 @@ export class Dispositif extends Component {
                       newRef={this.newRef}
                       handleChange={this.handleChange}
                       typeContenu={typeContenu}
-                      send_sms={this.send_sms}
                     />
                   }
                 </Col>
