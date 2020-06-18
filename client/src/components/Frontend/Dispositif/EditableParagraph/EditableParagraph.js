@@ -8,7 +8,7 @@ import {
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorBlock, AtomicBlockUtils, EditorState } from "draft-js";
+import { EditorBlock } from "draft-js";
 import { Player } from "video-react";
 import { withTranslation } from "react-i18next";
 import {
@@ -137,6 +137,7 @@ function myBlockRenderer(contentBlock) {
 }
 
 class EditableParagraph extends Component {
+  // this component may have a props placeholder (from component contenuParagraphe )
   state = {
     tooltipOpen: false,
     isDropdownOpen: false,
@@ -162,27 +163,28 @@ class EditableParagraph extends Component {
     );
   };
 
-  insertBlock = (type, data) => {
-    const { editorState } = this.props;
-    const contentState = editorState.getCurrentContent();
-    const contentStateWithEntity = contentState.createEntity(
-      type,
-      "IMMUTABLE",
-      { src: data }
-    );
+  // used in Media upload which is commented
+  // insertBlock = (type, data) => {
+  //   const { editorState } = this.props;
+  //   const contentState = editorState.getCurrentContent();
+  //   const contentStateWithEntity = contentState.createEntity(
+  //     type,
+  //     "IMMUTABLE",
+  //     { src: data }
+  //   );
 
-    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+  //   const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
 
-    const newEditorState = EditorState.set(editorState, {
-      currentContent: contentStateWithEntity,
-    });
+  //   const newEditorState = EditorState.set(editorState, {
+  //     currentContent: contentStateWithEntity,
+  //   });
 
-    this.props.onEditorStateChange(
-      AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, " "),
-      this.props.keyValue,
-      this.props.subkey
-    );
-  };
+  //   this.props.onEditorStateChange(
+  //     AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, " "),
+  //     this.props.keyValue,
+  //     this.props.subkey
+  //   );
+  // };
 
   render() {
     const props = this.props;
@@ -272,7 +274,10 @@ class EditableParagraph extends Component {
             toggle={this.toggle}
             toggleColor={this.toggleColor}
             toggleTooltip={this.toggleTooltip}
-            {...this.props}
+            type={this.props.type}
+            addItem={this.props.addItem}
+            keyValue={this.props.keyValue}
+            subkey={this.props.subkey}
           />
         </>
       );
@@ -304,7 +309,10 @@ class EditableParagraph extends Component {
               toggle={this.toggle}
               toggleColor={this.toggleColor}
               toggleTooltip={this.toggleTooltip}
-              {...this.props}
+              type={this.props.type}
+              addItem={this.props.addItem}
+              keyValue={this.props.keyValue}
+              subkey={this.props.subkey}
             />
           )}
         </>
