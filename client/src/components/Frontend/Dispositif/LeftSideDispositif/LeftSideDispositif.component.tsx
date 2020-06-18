@@ -8,18 +8,46 @@ import {
 } from "reactstrap";
 import Scrollspy from "react-scrollspy";
 import ReactToPrint from "react-to-print";
-import { withTranslation } from "react-i18next";
 
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
-
+// @ts-ignore
 import variables from "scss/colors.scss";
+import { Props } from "./LeftSideDispositif.container";
+import { DispositifContent } from "../../../../@types/interface";
 
-const leftSideDispositif = (props) => {
+export interface PropsBeforeInjection {
+  t: any;
+  menu: DispositifContent[];
+  showSpinner: boolean;
+  content: {
+    titreInformatif: string;
+    titreMarque: string;
+    abstract: string;
+    contact: string;
+    externalLink: string;
+  };
+  inputBtnClicked: boolean;
+  disableEdit: boolean;
+  toggleInputBtnClicked: () => void;
+  handleScrollSpy: () => void;
+  createPdf: () => void;
+  newRef: any;
+  handleChange: () => void;
+  typeContenu: string;
+  send_sms: () => void;
+}
+
+export const LeftSideDispositif = (props: Props) => {
   const { t } = props;
+
+  // when clicking on 'Voir le site'
+  // if lecture mode : navigate to the link
+  // if edition mode : modify the link
   const onLinkClicked = props.disableEdit
     ? () =>
         props.content.externalLink &&
+        // @ts-ignore
         window.open(
           (props.content.externalLink.includes("http") ? "" : "http://") +
             props.content.externalLink,
@@ -27,6 +55,7 @@ const leftSideDispositif = (props) => {
         )
     : props.toggleInputBtnClicked;
   return (
+    // left part of a demarche or dispositif to navigate to sections
     <div className="sticky-affix">
       <ListGroup className="list-group-flush">
         <Scrollspy
@@ -129,10 +158,7 @@ const leftSideDispositif = (props) => {
             />{" "}
           </>
         )}
-        {/* onBeforePrint={props.openAllAccordions} /> */}
       </div>
     </div>
   );
 };
-
-export default withTranslation()(leftSideDispositif);

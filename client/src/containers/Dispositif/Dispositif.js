@@ -46,7 +46,7 @@ import {
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import { Tags } from "./Tags";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
+import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
 import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
@@ -1847,14 +1847,17 @@ export class Dispositif extends Component {
                   }
                 </Col>
                 <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
-                  <Tags
-                    tags={this.state.tags}
-                    disableEdit={this.state.disableEdit}
-                    changeTag={this.changeTag}
-                    addTag={this.addTag}
-                    deleteTag={this.deleteTag}
-                    history={this.props.history}
-                  />
+                  {
+                    // Tags on the right of a dispositif or a demarche
+                    <Tags
+                      tags={this.state.tags}
+                      disableEdit={this.state.disableEdit}
+                      changeTag={this.changeTag}
+                      addTag={this.addTag}
+                      deleteTag={this.deleteTag}
+                      history={this.props.history}
+                    />
+                  }
                 </Col>
               </Row>
             )}
@@ -1869,21 +1872,23 @@ export class Dispositif extends Component {
                   xs="12"
                   className="left-side-col pt-40"
                 >
-                  <LeftSideDispositif
-                    menu={this.state.menu}
-                    accordion={this.state.accordion}
-                    showSpinner={this.state.showSpinnerPrint}
-                    content={this.state.content}
-                    inputBtnClicked={this.state.inputBtnClicked}
-                    disableEdit={this.state.disableEdit}
-                    toggleInputBtnClicked={this.toggleInputBtnClicked}
-                    handleScrollSpy={this.handleScrollSpy}
-                    createPdf={this.createPdf}
-                    newRef={this.newRef}
-                    handleChange={this.handleChange}
-                    typeContenu={typeContenu}
-                    send_sms={this.send_sms}
-                  />
+                  {
+                    // left part of the dispositif/demarche to navigate in sections, go to external website, download in pdf, send by mail, by sms and print
+                    <LeftSideDispositif
+                      menu={this.state.menu}
+                      showSpinner={this.state.showSpinnerPrint}
+                      content={this.state.content}
+                      inputBtnClicked={this.state.inputBtnClicked}
+                      disableEdit={this.state.disableEdit}
+                      toggleInputBtnClicked={this.toggleInputBtnClicked}
+                      handleScrollSpy={this.handleScrollSpy}
+                      createPdf={this.createPdf}
+                      newRef={this.newRef}
+                      handleChange={this.handleChange}
+                      typeContenu={typeContenu}
+                      send_sms={this.send_sms}
+                    />
+                  }
                 </Col>
               )}
               {inVariante && disableEdit && (
