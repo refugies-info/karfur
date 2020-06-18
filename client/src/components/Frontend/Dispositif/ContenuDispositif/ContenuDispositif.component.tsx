@@ -129,12 +129,14 @@ export const contenuDispositif = (props: Props) => {
                   handleContentClick={props.handleContentClick}
                   disableEdit={newDisableEdit}
                   addItem={props.addItem}
-                  editable={item.editable}
                   subkey={props.subkey}
+                  editable={item.editable}
                   type={item.type}
                   placeholder={item.placeholder}
                   target={item.target}
                   content={item.content}
+                  // @ts-ignore
+                  editorState={item.editorState}
                 />
               )}
             </Col>

@@ -43,7 +43,6 @@ import {
   VarianteCreateModal,
   RejectionModal,
 } from "../../components/Modals/index";
-import SVGIcon from "../../components/UI/SVGIcon/SVGIcon";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import Tags from "./Tags/Tags";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
@@ -1842,6 +1841,7 @@ export class Dispositif extends Component {
                   {
                     // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
                     (disableEdit || typeContenu !== "demarche") && (
+                      // TO DO : connect component to store when store updated after changing infocards
                       <EnBrefBanner menu={this.state.menu} />
                     )
                   }
