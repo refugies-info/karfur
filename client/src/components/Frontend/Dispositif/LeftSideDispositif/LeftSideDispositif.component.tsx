@@ -15,6 +15,8 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import variables from "scss/colors.scss";
 import { Props } from "./LeftSideDispositif.container";
 import { DispositifContent } from "../../../../@types/interface";
+import API from "../../../../utils/API";
+import Swal from "sweetalert2";
 
 export interface PropsBeforeInjection {
   t: any;
@@ -35,8 +37,48 @@ export interface PropsBeforeInjection {
   newRef: any;
   handleChange: () => void;
   typeContenu: string;
-  send_sms: () => void;
 }
+const send_sms = (typeContenu: string, titreInformatif: string) =>
+  Swal.fire({
+    title: "Veuillez renseigner votre numéro de téléphone",
+    input: "tel",
+    inputPlaceholder: "0633445566",
+    inputAttributes: {
+      autocomplete: "on",
+    },
+    showCancelButton: true,
+    confirmButtonText: "Envoyer",
+    cancelButtonText: "Annuler",
+    showLoaderOnConfirm: true,
+    preConfirm: (number: number) => {
+      return API.send_sms({
+        number,
+        typeContenu,
+        // @ts-ignore
+        url: window.location.href,
+        title: titreInformatif,
+      })
+        .then((response: { status: number; statusText: string; data: any }) => {
+          if (response.status !== 200) {
+            throw new Error(response.statusText);
+          }
+          return response.data;
+        })
+        .catch((error: Error) => {
+          Swal.showValidationMessage(`Echec d'envoi: ${error}`);
+        });
+    },
+    allowOutsideClick: () => !Swal.isLoading(),
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire({
+        title: "Yay...",
+        text: "Votre message a bien été envoyé, merci",
+        type: "success",
+        timer: 1500,
+      });
+    }
+  });
 
 export const LeftSideDispositif = (props: Props) => {
   const { t } = props;
@@ -143,7 +185,9 @@ export const LeftSideDispositif = (props: Props) => {
             </FButton>
             <FButton
               type="light-action"
-              onClick={props.send_sms}
+              onClick={() =>
+                send_sms(props.typeContenu, props.content.titreInformatif)
+              }
               name="smartphone-outline"
             >
               {t("Dispositif.Envoyer par SMS", "Envoyer par SMS")}
