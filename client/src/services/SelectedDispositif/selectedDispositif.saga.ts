@@ -10,11 +10,17 @@ import { FETCH_SELECTED_DISPOSITIF } from "./selectedDispositif.actionTypes";
 import { push } from "connected-react-router";
 import { userSelector } from "../User/user.selectors";
 import _ from "lodash";
+import {
+  startLoading,
+  LoadingStatusKey,
+  finishLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 
 export function* fetchSelectedDispositif(
   action: ReturnType<typeof fetchSelectedDispositifActionCreator>
 ): SagaIterator {
   try {
+    yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));
     const { selectedDispositifId, locale } = action.payload;
     const data = yield call(API.get_dispositif, {
       query: { _id: selectedDispositifId },
@@ -42,6 +48,8 @@ export function* fetchSelectedDispositif(
       }
       yield put(push("/"));
     }
+
+    yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));
   } catch (error) {
     logger.error("Error while fetching selected dispositif", {
       dispositifId: action.payload.selectedDispositifId,
