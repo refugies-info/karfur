@@ -44,7 +44,7 @@ import {
   RejectionModal,
 } from "../../components/Modals/index";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
-import Tags from "./Tags/Tags";
+import { Tags } from "./Tags";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
@@ -1849,7 +1849,6 @@ export class Dispositif extends Component {
                 <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
                   <Tags
                     tags={this.state.tags}
-                    filtres={filtres.tags}
                     disableEdit={this.state.disableEdit}
                     changeTag={this.changeTag}
                     addTag={this.addTag}
