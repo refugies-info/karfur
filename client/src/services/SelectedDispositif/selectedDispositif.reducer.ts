@@ -1,4 +1,4 @@
-import { createReducer } from "typesafe-actions";
+import { createReducer, action } from "typesafe-actions";
 import { SelectedDispositifActions } from "./selectedDispositif.actions";
 import { updateObject } from "../utility";
 import _ from "lodash";
@@ -82,4 +82,8 @@ export const selectedDispositifReducer = createReducer<
     }),
   UPDATE_SELECTED_DISPOSITIF: (state, action) =>
     updateObject(state, { ...action.payload }),
+  DELETE_TAG: (state, action) =>
+    updateObject(state, {
+      tags: state ? state.tags.filter((_, i) => i !== action.payload) : [],
+    }),
 });
