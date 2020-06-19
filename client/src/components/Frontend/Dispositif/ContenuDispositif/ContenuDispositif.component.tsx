@@ -4,6 +4,7 @@ import { Props } from "./ContenuDispositif.container";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
+import { DispositifContent } from "../../../../@types/interface";
 
 interface UiObject {
   accordion: boolean;
@@ -13,20 +14,6 @@ interface UiObject {
   varianteSelected: boolean;
 }
 
-interface Children {
-  content: string;
-  editable: boolean;
-  isFakeContent: boolean;
-  title: string;
-  type: string;
-}
-interface Section {
-  type: string;
-  title: string;
-  editable: boolean;
-  content: string | null;
-  children: Children[];
-}
 export interface PropsBeforeInjection {
   updateUIArray: (
     key: number,
@@ -45,7 +32,7 @@ export interface PropsBeforeInjection {
   t: any;
   disableEdit: boolean;
   inVariante: boolean;
-  menu: Section[];
+  menu: DispositifContent[];
   tracking: any;
   toggleModal: any;
   readAudio: any;
@@ -59,7 +46,7 @@ export interface PropsBeforeInjection {
 
 export const contenuDispositif = (props: Props) => {
   const { t, disableEdit, inVariante } = props;
-  return props.menu.map((item: Section, key: number) => {
+  return props.menu.map((item: DispositifContent, key: number) => {
     const newDisableEdit =
       disableEdit ||
       (props.typeContenu === "demarche" &&
@@ -91,6 +78,7 @@ export const contenuDispositif = (props: Props) => {
             disableEdit &&
             item.content !== null &&
             item.content !== "null" && (
+              // selection of parts to modify when creating a variante of a demarche
               <Col className={"variante-radio" + (key !== 0 ? " mt-20" : "")}>
                 <div
                   className="radio-btn"
@@ -141,7 +129,14 @@ export const contenuDispositif = (props: Props) => {
                   handleContentClick={props.handleContentClick}
                   disableEdit={newDisableEdit}
                   addItem={props.addItem}
-                  {...item}
+                  subkey={props.subkey}
+                  editable={item.editable}
+                  type={item.type}
+                  placeholder={item.placeholder}
+                  target={item.target}
+                  content={item.content}
+                  // @ts-ignore
+                  editorState={item.editorState}
                 />
               )}
             </Col>

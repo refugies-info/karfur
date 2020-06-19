@@ -1,11 +1,10 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
-.bookmark-modal.modal-dialog{
-  width:400px;
+.bookmark-modal.modal-dialog {
+  width: 400px;
   max-width: 90vw;
-  font-family: CircularStd;
 
-  .modal-content{
+  .modal-content {
     background: $gris;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
     border-radius: 12px;
@@ -13,35 +12,35 @@
     line-height: 23px;
     border: none;
 
-    .modal-header{
-      border:none;
-      padding:30px 30px 0;
+    .modal-header {
+      border: none;
+      padding: 30px 30px 0;
 
-      .modal-title{
+      .modal-title {
         font-size: 40px;
         line-height: 51px;
-        font-weight:600;
-        background:inherit;
-    
-        .bookmark-icon{
+        font-weight: 600;
+        background: inherit;
+
+        .bookmark-icon {
           line-height: 20px;
           padding: 10px;
           border-radius: 50%;
-          background: #FFFFFF;
+          background: #ffffff;
           width: fit-content;
           margin-bottom: 20px;
         }
       }
     }
-    .modal-body{
-      padding:30px;
-      a{
-        font-weight:600;
-        color:inherit;
+    .modal-body {
+      padding: 30px;
+      a {
+        font-weight: 600;
+        color: inherit;
       }
     }
-    .modal-footer{
-      border:none;
+    .modal-footer {
+      border: none;
     }
   }
 }

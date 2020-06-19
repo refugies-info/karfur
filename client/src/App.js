@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import track from "react-tracking";
 import { Spinner } from "reactstrap";
 import IdleTimer from "react-idle-timer";
-import "./scss/fonts/circular-std/css/circular-std.css";
 import uniqid from "uniqid";
 
 import { store } from "./services/configureStore";

@@ -3,6 +3,7 @@ import { takeLatest, put, call } from "redux-saga/effects";
 import API from "../../utils/API";
 import { FETCH_DISPOSITIFS } from "./dispositif.actionTypes";
 import { setDispositifsActionsCreator } from "./dispositif.actions";
+import { logger } from "../../logger";
 
 export function* fetchDispositifs(): SagaIterator {
   try {
@@ -12,8 +13,7 @@ export function* fetchDispositifs(): SagaIterator {
     });
     yield put(setDispositifsActionsCreator(data.data.data));
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log("Error while fetching dispositifs", { error });
+    logger.error("Error while fetching dispositifs", { error });
     yield put(setDispositifsActionsCreator([]));
   }
 }

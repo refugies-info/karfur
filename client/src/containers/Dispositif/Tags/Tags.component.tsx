@@ -6,16 +6,31 @@ import {
   DropdownItem,
   Button,
 } from "reactstrap";
-import { withTranslation } from "react-i18next";
+import { filtres } from "../data";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./Tags.scss";
+// @ts-ignore
 import variables from "scss/colors.scss";
+import { Props } from "./Tags.container";
+import { Tag } from "../../../@types/interface";
 
-class Tags extends Component {
+export interface PropsBeforeInjection {
+  tags: Tag[];
+  disableEdit: boolean;
+  changeTag: (arg1: number, arg2: Tag) => void;
+  addTag: () => void;
+  deleteTag: (idx: number) => void;
+  history: any;
+  t: any;
+}
+
+export class Tags extends Component<Props> {
   state = {
-    isDropdownOpen: new Array(this.props.tags.length).fill(false),
+    isDropdownOpen: new Array(
+      this.props.tags ? this.props.tags.length : 0
+    ).fill(false),
   };
 
   componentDidMount() {
@@ -27,7 +42,7 @@ class Tags extends Component {
   }
 
   // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: Props) {
     if (nextProps.tags && nextProps.tags !== this.props.tags) {
       this.setState({
         isDropdownOpen: new Array(nextProps.tags.length).fill(false),
@@ -35,7 +50,7 @@ class Tags extends Component {
     }
   }
 
-  toggleDropdown = (e, key, tag) => {
+  toggleDropdown = (key: number, tag: Tag) => {
     if (this.props.disableEdit) {
       this.props.history.push({
         pathname: "/advanced-search",
@@ -55,7 +70,7 @@ class Tags extends Component {
     this.props.addTag();
   };
 
-  removeTag = (idx) => {
+  removeTag = (idx: number) => {
     this.setState({
       isDropdownOpen: [...this.state.isDropdownOpen].filter(
         (_, i) => i !== idx
@@ -68,14 +83,14 @@ class Tags extends Component {
     const { t } = this.props;
     return (
       <div className="tags" id="tags">
-        {(this.props.tags || []).map((tag, key) => {
+        {(this.props.tags || []).map((tag: Tag, key: number) => {
           if (tag) {
             return (
               <ButtonDropdown
                 isOpen={
                   !this.props.disableEdit && this.state.isDropdownOpen[key]
                 }
-                toggle={(e) => this.toggleDropdown(e, key, tag)}
+                toggle={() => this.toggleDropdown(key, tag)}
                 className="tags-dropdown"
                 key={key}
               >
@@ -87,18 +102,21 @@ class Tags extends Component {
                     )}
                 </DropdownToggle>
                 <DropdownMenu>
-                  {this.props.filtres.map((e, i) => {
+                  {filtres.tags.map((e, i) => {
                     return (
                       <DropdownItem
                         className="dropdown-custom"
                         onMouseOver={(ev) =>
+                          // @ts-ignore
                           (ev.target.style.backgroundColor = e.darkColor)
                         }
                         onMouseOut={(ev) =>
+                          // @ts-ignore
                           (ev.target.style.backgroundColor = "#FFFFFF")
                         }
                         onClick={() => this.props.changeTag(key, e)}
                         key={i}
+                        // @ts-ignore
                         id={i}
                       >
                         {e && t("Tags." + e.short || e.name, e.short || e.name)}
@@ -137,5 +155,3 @@ class Tags extends Component {
     );
   }
 }
-
-export default withTranslation()(Tags);
