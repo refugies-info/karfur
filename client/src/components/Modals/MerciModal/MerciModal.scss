@@ -1,46 +1,45 @@
-.modal-merci .modal-content{
+.modal-merci .modal-content {
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(123.26deg, #3D3D3D 6.51%, #000000 96.1%);
-  border: 1px solid #3D3D3D;
+  background: linear-gradient(123.26deg, #3d3d3d 6.51%, #000000 96.1%);
+  border: 1px solid #3d3d3d;
   box-sizing: border-box;
   border-radius: 8px;
-  color: #FFFFFF;
-  font-family: CircularStd;
-  padding:30px;
+  color: #ffffff;
+  padding: 30px;
 
-  .modal-header{
-    border:none;
-    h5.modal-title{
-      display:flex;
+  .modal-header {
+    border: none;
+    h5.modal-title {
+      display: flex;
       align-items: center;
       font-weight: bold;
       font-size: 40px;
       line-height: 51px;
-      i{
-        margin-right:10px;
+      i {
+        margin-right: 10px;
       }
     }
   }
-  .modal-body{
-    input{
-      background: #FFFFFF;
-      border: 1px solid #ECEBED;
+  .modal-body {
+    input {
+      background: #ffffff;
+      border: 1px solid #ecebed;
       box-sizing: border-box;
       border-radius: 6px;
-      height:60px;
+      height: 60px;
     }
-    .no-decoration{
-      color:inherit;
+    .no-decoration {
+      color: inherit;
       text-decoration: underline;
     }
   }
-  .modal-footer{
-    border:none;
-    .send-btn{
+  .modal-footer {
+    border: none;
+    .send-btn {
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      background: #FBFBFB;
+      background: #fbfbfb;
       border-radius: 12px;
-      color:#3D3D3D;
+      color: #3d3d3d;
       font-weight: 600;
     }
   }
