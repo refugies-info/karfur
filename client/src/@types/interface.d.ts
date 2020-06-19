@@ -76,6 +76,14 @@ export interface DispositifContent {
   price?: number;
 }
 
+export interface Tag {
+  darkColor: string;
+  hoverColor: string;
+  illustrationColor: string;
+  lightColor: string;
+  name: string;
+  short: string;
+}
 export interface Dispositif {
   _id: ObjectId;
   abstract: string;
@@ -107,14 +115,7 @@ export interface Dispositif {
   sponsors: Structure[];
   status: string;
   suggestions: any[];
-  tags: {
-    darkColor: string;
-    hoverColor: string;
-    illustrationColor: string;
-    lightColor: string;
-    name: string;
-    short: string;
-  }[];
+  tags: Tag[];
   titreInformatif: string;
   titreMarque: string;
   traductions: ObjectId[];
