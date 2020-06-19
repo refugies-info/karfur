@@ -1,114 +1,112 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
-.quick-toolbar.card{
+.quick-toolbar.card {
   width: fit-content;
   background: transparent;
-  top: 50%; 
+  top: 50%;
   transform: translateY(-50%);
   border-radius: 8px;
   border: none;
   z-index: 4;
 
-  .card-body{
+  .card-body {
     align-items: center;
     padding: 0;
     background: transparent;
 
-    .col-btn{
-      padding:0 5px 5px 0;
+    .col-btn {
+      padding: 0 5px 5px 0;
     }
 
-    .btn-pill{
+    .btn-pill {
       width: 50px;
       height: 50px;
       border-radius: 50%;
-      border:none;
+      border: none;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .first-row .btn-pill{
+    .first-row .btn-pill {
       background-color: $lightColor;
     }
-    .second-row .btn-pill{
+    .second-row .btn-pill {
       background-color: $darkColor;
     }
 
-    div[class^="col-lg"]{
+    div[class^="col-lg"] {
       padding: 0 4px 0 4px;
       width: fit-content;
       margin-right: auto;
       margin-left: auto;
     }
   }
-  .custom-eva-size{
-    .dropdown{ 
-      .btn{
-        padding:0;
-        background:none;
-        border:none;
+  .custom-eva-size {
+    .dropdown {
+      .btn {
+        padding: 0;
+        background: none;
+        border: none;
 
-        .icon-toolbar{
+        .icon-toolbar {
           margin-top: -8px;
         }
       }
-      .dropdown-menu{
-        background: #3D3D3D;
+      .dropdown-menu {
+        background: #3d3d3d;
         border-radius: 8px;
 
-        .dropdown-item{
+        .dropdown-item {
           font-size: 14px;
-          color: #FFFFFF;
-          display:flex;
+          color: #ffffff;
+          display: flex;
           padding-right: 15px;
           padding-left: 15px;
-          &:hover{
-            background-color:#E5E5E5;
-            color:#3D3D3D;
+          &:hover {
+            background-color: #e5e5e5;
+            color: #3d3d3d;
           }
-          i{
-            margin-left:0;
+          i {
+            margin-left: 0;
           }
-          svg{
-            margin-right:10px;
+          svg {
+            margin-right: 10px;
           }
         }
       }
     }
-  } 
+  }
 }
 
-.tooltip.show{
-
-  .tooltip-inner{
-    background: #3D3D3D;
+.tooltip.show {
+  .tooltip-inner {
+    background: #3d3d3d;
     border-radius: 8px;
-    font-family: CircularStd;
     font-size: 14px;
     line-height: 18px;
   }
-  .arrow::before{
-    border-top-color: #3D3D3D;
+  .arrow::before {
+    border-top-color: #3d3d3d;
   }
 }
 
-.tooltip.show.light-back{ 
-  .tooltip-inner{
+.tooltip.show.light-back {
+  .tooltip-inner {
     background: $lightColor;
     color: $darkColor;
   }
-  .arrow:before{
+  .arrow:before {
     border-top-color: $lightColor;
     border-bottom-color: $lightColor;
   }
 }
 
-.tooltip.show.dark-back{ 
-  .tooltip-inner{
+.tooltip.show.dark-back {
+  .tooltip-inner {
     background: $darkColor;
   }
-  .arrow:before{
+  .arrow:before {
     border-top-color: $darkColor;
     border-bottom-color: $darkColor;
   }
