@@ -1862,6 +1862,8 @@ export class Dispositif extends Component {
                 className="pt-40 col-middle"
               >
                 {disableEdit && !inVariante && (
+                  // Part about liability of the info
+                  // don't understand what the tooltip does
                   <Row className="fiabilite-row">
                     <Col
                       lg="auto"
@@ -1962,6 +1964,9 @@ export class Dispositif extends Component {
                 )}
 
                 {typeContenu === "demarche" && !(disableEdit && inVariante) && (
+                  // MoteurVariantes displayed when creating a variante of a demarche or reading a variante or modifying a variante
+                  // in more details, it is displayed when asking 'is it the demarche you are looking for?' and at step 2 (but not at step 1) of variante creation or when reading a demarche
+                  // at step 1 of variante creation, disableEdit and inVariante are true, what is displayed is in contenuDispositif (with radio-buttons)
                   <MoteurVariantes
                     itemId={this.state._id}
                     disableEdit={disableEdit}
