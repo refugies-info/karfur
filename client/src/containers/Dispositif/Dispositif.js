@@ -89,7 +89,7 @@ import {
   updateSelectedDispositifActionCreator,
 } from "../../services/SelectedDispositif/selectedDispositif.actions";
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
-import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter ";
+import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
