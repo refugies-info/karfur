@@ -27,7 +27,6 @@ import {
   NotificationManager,
 } from "react-notifications";
 import "../../../node_modules/video-react/dist/video-react.css";
-
 import API from "../../utils/API";
 import Sponsors from "../../components/Frontend/Dispositif/Sponsors/Sponsors";
 import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuDispositif";
@@ -44,9 +43,9 @@ import {
   RejectionModal,
 } from "../../components/Modals/index";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
-import Tags from "./Tags/Tags";
+import { Tags } from "./Tags";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
+import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
 import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
@@ -90,6 +89,7 @@ import {
   updateSelectedDispositifActionCreator,
 } from "../../services/SelectedDispositif/selectedDispositif.actions";
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
+import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter ";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -1179,47 +1179,6 @@ export class Dispositif extends Component {
     this.props.history.push("/advanced-search");
   };
 
-  send_sms = () =>
-    Swal.fire({
-      title: "Veuillez renseigner votre numéro de téléphone",
-      input: "tel",
-      inputPlaceholder: "0633445566",
-      inputAttributes: {
-        autocomplete: "on",
-      },
-      showCancelButton: true,
-      confirmButtonText: "Envoyer",
-      cancelButtonText: "Annuler",
-      showLoaderOnConfirm: true,
-      preConfirm: (number) => {
-        return API.send_sms({
-          number,
-          typeContenu: this.state.typeContenu,
-          url: window.location.href,
-          title: this.state.content.titreInformatif,
-        })
-          .then((response) => {
-            if (!response.status === 200) {
-              throw new Error(response.statusText);
-            }
-            return response.data;
-          })
-          .catch((error) => {
-            Swal.showValidationMessage(`Echec d'envoi: ${error}`);
-          });
-      },
-      allowOutsideClick: () => !Swal.isLoading(),
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire({
-          title: "Yay...",
-          text: "Votre message a bien été envoyé, merci",
-          type: "success",
-          timer: 1500,
-        });
-      }
-    });
-
   createPdf = () => {
     this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
     let uiArray = [...this.state.uiArray];
@@ -1847,15 +1806,17 @@ export class Dispositif extends Component {
                   }
                 </Col>
                 <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
-                  <Tags
-                    tags={this.state.tags}
-                    filtres={filtres.tags}
-                    disableEdit={this.state.disableEdit}
-                    changeTag={this.changeTag}
-                    addTag={this.addTag}
-                    deleteTag={this.deleteTag}
-                    history={this.props.history}
-                  />
+                  {
+                    // Tags on the right of a dispositif or a demarche
+                    <Tags
+                      tags={this.state.tags}
+                      disableEdit={this.state.disableEdit}
+                      changeTag={this.changeTag}
+                      addTag={this.addTag}
+                      deleteTag={this.deleteTag}
+                      history={this.props.history}
+                    />
+                  }
                 </Col>
               </Row>
             )}
@@ -1870,21 +1831,22 @@ export class Dispositif extends Component {
                   xs="12"
                   className="left-side-col pt-40"
                 >
-                  <LeftSideDispositif
-                    menu={this.state.menu}
-                    accordion={this.state.accordion}
-                    showSpinner={this.state.showSpinnerPrint}
-                    content={this.state.content}
-                    inputBtnClicked={this.state.inputBtnClicked}
-                    disableEdit={this.state.disableEdit}
-                    toggleInputBtnClicked={this.toggleInputBtnClicked}
-                    handleScrollSpy={this.handleScrollSpy}
-                    createPdf={this.createPdf}
-                    newRef={this.newRef}
-                    handleChange={this.handleChange}
-                    typeContenu={typeContenu}
-                    send_sms={this.send_sms}
-                  />
+                  {
+                    // left part of the dispositif/demarche to navigate in sections, go to external website, download in pdf, send by mail, by sms and print
+                    <LeftSideDispositif
+                      menu={this.state.menu}
+                      showSpinner={this.state.showSpinnerPrint}
+                      content={this.state.content}
+                      inputBtnClicked={this.state.inputBtnClicked}
+                      disableEdit={this.state.disableEdit}
+                      toggleInputBtnClicked={this.toggleInputBtnClicked}
+                      handleScrollSpy={this.handleScrollSpy}
+                      createPdf={this.createPdf}
+                      newRef={this.newRef}
+                      handleChange={this.handleChange}
+                      typeContenu={typeContenu}
+                    />
+                  }
                 </Col>
               )}
               {inVariante && disableEdit && (
@@ -1901,6 +1863,8 @@ export class Dispositif extends Component {
                 className="pt-40 col-middle"
               >
                 {disableEdit && !inVariante && (
+                  // Part about liability of the info
+                  // don't understand what the tooltip does
                   <Row className="fiabilite-row">
                     <Col
                       lg="auto"
@@ -2001,6 +1965,9 @@ export class Dispositif extends Component {
                 )}
 
                 {typeContenu === "demarche" && !(disableEdit && inVariante) && (
+                  // MoteurVariantes displayed when creating a variante of a demarche or reading a variante or modifying a variante
+                  // in more details, it is displayed when asking 'is it the demarche you are looking for?' and at step 2 (but not at step 1) of variante creation or when reading a demarche
+                  // at step 1 of variante creation, disableEdit and inVariante are true, what is displayed is in contenuDispositif (with radio-buttons)
                   <MoteurVariantes
                     itemId={this.state._id}
                     disableEdit={disableEdit}
@@ -2050,31 +2017,10 @@ export class Dispositif extends Component {
                 {this.state.disableEdit && !inVariante && (
                   <>
                     {!printing && (
-                      <div className="feedback-footer">
-                        <div>
-                          <h5 className="color-darkColor">
-                            {t(
-                              "Dispositif.informations_utiles",
-                              "Vous avez trouvé des informations utiles ?"
-                            )}
-                          </h5>
-                          <span className="color-darkColor">
-                            {t(
-                              "Dispositif.remerciez",
-                              "Remerciez les contributeurs qui les ont rédigé pour vous"
-                            )}
-                            &nbsp;:
-                          </span>
-                        </div>
-                        <div>
-                          <FButton
-                            className={"thanks" + (didThank ? " clicked" : "")}
-                            onClick={() => this.pushReaction(null, "merci")}
-                          >
-                            {t("Merci", "Merci")}
-                          </FButton>
-                        </div>
-                      </div>
+                      <FeedbackFooter
+                        pushReaction={this.pushReaction}
+                        didThank={didThank}
+                      />
                     )}
                     {!printing && (
                       <div className="discussion-footer backgroundColor-darkColor">
@@ -2089,8 +2035,8 @@ export class Dispositif extends Component {
                         <ContribCaroussel
                           contributeurs={this.state.contributeurs}
                         />
-
-                        {!this.state.disableEdit && (
+                        {/* {// add contributors : desactivated 
+                        !this.state.disableEdit  && (
                           <div className="ecran-protection">
                             <div className="content-wrapper">
                               <Icon
@@ -2110,7 +2056,7 @@ export class Dispositif extends Component {
                               </span>
                             </div>
                           </div>
-                        )}
+                        )} */}
                       </div>
                     )}
                   </>
