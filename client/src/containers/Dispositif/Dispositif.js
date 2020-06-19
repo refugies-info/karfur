@@ -89,6 +89,7 @@ import {
   updateSelectedDispositifActionCreator,
 } from "../../services/SelectedDispositif/selectedDispositif.actions";
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
+import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter ";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -2016,31 +2017,10 @@ export class Dispositif extends Component {
                 {this.state.disableEdit && !inVariante && (
                   <>
                     {!printing && (
-                      <div className="feedback-footer">
-                        <div>
-                          <h5 className="color-darkColor">
-                            {t(
-                              "Dispositif.informations_utiles",
-                              "Vous avez trouvé des informations utiles ?"
-                            )}
-                          </h5>
-                          <span className="color-darkColor">
-                            {t(
-                              "Dispositif.remerciez",
-                              "Remerciez les contributeurs qui les ont rédigé pour vous"
-                            )}
-                            &nbsp;:
-                          </span>
-                        </div>
-                        <div>
-                          <FButton
-                            className={"thanks" + (didThank ? " clicked" : "")}
-                            onClick={() => this.pushReaction(null, "merci")}
-                          >
-                            {t("Merci", "Merci")}
-                          </FButton>
-                        </div>
-                      </div>
+                      <FeedbackFooter
+                        pushReaction={this.pushReaction}
+                        didThank={didThank}
+                      />
                     )}
                     {!printing && (
                       <div className="discussion-footer backgroundColor-darkColor">
@@ -2055,8 +2035,8 @@ export class Dispositif extends Component {
                         <ContribCaroussel
                           contributeurs={this.state.contributeurs}
                         />
-
-                        {!this.state.disableEdit && (
+                        {/* {// add contributors : desactivated 
+                        !this.state.disableEdit  && (
                           <div className="ecran-protection">
                             <div className="content-wrapper">
                               <Icon
@@ -2076,7 +2056,7 @@ export class Dispositif extends Component {
                               </span>
                             </div>
                           </div>
-                        )}
+                        )} */}
                       </div>
                     )}
                   </>
