@@ -4,7 +4,6 @@ import track from "react-tracking";
 import { Col, Row, Modal, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import ContentEditable from "react-contenteditable";
-import { logger } from "../../logger";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import htmlToDraft from "html-to-draftjs";
 import {
@@ -44,13 +43,12 @@ import {
   VarianteCreateModal,
   RejectionModal,
 } from "../../components/Modals/index";
-import SVGIcon from "../../components/UI/SVGIcon/SVGIcon";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import Tags from "./Tags/Tags";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import LeftSideDispositif from "../../components/Frontend/Dispositif/LeftSideDispositif/LeftSideDispositif";
-import BandeauEdition from "../../components/Frontend/Dispositif/BandeauEdition/BandeauEdition";
-import TopRightHeader from "../../components/Frontend/Dispositif/TopRightHeader/TopRightHeader";
+import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
+import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
 import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
@@ -84,8 +82,14 @@ import {
   calculFiabilite,
 } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
-
+import { BackButton } from "../../components/Frontend/Dispositif/BackButton";
 import variables from "scss/colors.scss";
+import {
+  fetchSelectedDispositifActionCreator,
+  updateUiArrayActionCreator,
+  updateSelectedDispositifActionCreator,
+} from "../../services/SelectedDispositif/selectedDispositif.actions";
+import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -178,6 +182,7 @@ export class Dispositif extends Component {
 
   componentDidMount() {
     this._isMounted = true;
+    this.props.fetchUser();
     this._initializeDispositif(this.props);
   }
 
@@ -216,12 +221,23 @@ export class Dispositif extends Component {
       : "dispositif";
     const checkingVariante = _.get(props, "location.state.checkingVariante"),
       textInput = _.get(props, "location.state.textInput");
+
+    // if an itemId is present : initialize dispositif lecture or dispositif modification
+    // if no itemId and user logged in : initialize new dispo creation
+    // if no itemId and user not logged in : redirect to login page
     if (itemId) {
       this.props.tracking.trackEvent({
         action: "readDispositif",
         label: "dispositifId",
         value: itemId,
       });
+
+      // work in progress : store dispo in redux and in state. the goal is not to have dispo in state anymore
+      this.props.fetchSelectedDispositif({
+        selectedDispositifId: itemId,
+        locale: props.languei18nCode,
+      });
+
       return API.get_dispositif({
         query: { _id: itemId },
         sort: {},
@@ -234,6 +250,7 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/");
           }
+          // case dispositif not active and user neither admin nor contributor nor in structure
           if (
             dispositif.status !== "Actif" &&
             !this.props.admin &&
@@ -242,14 +259,13 @@ export class Dispositif extends Component {
           ) {
             if (_.isEmpty(this.props.user)) {
               return this.props.history.push("/login");
-              // eslint-disable-next-line no-else-return
-            } else {
-              this._isMounted = false;
-              return this.props.history.push("/");
             }
+            this._isMounted = false;
+            return this.props.history.push("/");
           }
           const disableEdit =
             dispositif.status !== "Accepté structure" || props.translating;
+
           if (dispositif.status === "Brouillon" && this._isMounted) {
             this.initializeTimer(3 * 60 * 1000, () =>
               this.valider_dispositif("Brouillon", true)
@@ -336,6 +352,7 @@ export class Dispositif extends Component {
           //On récupère les données de l'utilisateur
           if (this._isMounted && API.isAuth()) {
             this._isMounted &&
+              // TO DO not necessary to call api, these info are stored in redux
               API.get_user_info().then((data_res) => {
                 let u = data_res.data.data;
                 user = { _id: u._id, cookies: u.cookies || {} };
@@ -360,6 +377,7 @@ export class Dispositif extends Component {
           return this.props.history.push("/");
         });
     } else if (API.isAuth()) {
+      // initialize the creation of a new dispositif if user is logged in
       this.initializeTimer(3 * 60 * 1000, () =>
         this.valider_dispositif("Brouillon", true)
       ); //Enregistrement automatique du dispositif toutes les 3 minutes
@@ -424,6 +442,10 @@ export class Dispositif extends Component {
   };
 
   onInputClicked = (ev) => {
+    // when clicking on titreInformatif or titreMarque (name of asso)
+    // if titre informatif is 'Titre informatif' we store "" instead of titre informatif
+    // same for titre marque
+
     const id = ev.currentTarget.id;
     if (
       !this.state.disableEdit &&
@@ -437,6 +459,11 @@ export class Dispositif extends Component {
   };
 
   handleChange = (ev) => {
+    // update selected dispositif in redux
+    this.props.updateSelectedDispositif({
+      [ev.currentTarget.id]: ev.target.value,
+    });
+    // TO DO : remove this set state when all infos are taken from store
     this.setState({
       content: {
         ...this.state.content,
@@ -693,6 +720,9 @@ export class Dispositif extends Component {
         }),
       };
     });
+
+    // update uiarray in store redux
+    this.props.updateUiArray({ subkey, key, node, value, updateOthers });
     this.setState({ uiArray: uiArray, tKeyValue: key, tSubkey: subkey });
   };
 
@@ -1021,6 +1051,7 @@ export class Dispositif extends Component {
       });
     } else {
       this.setState(() => ({
+        showSpinnerBookmark: false,
         showBookmarkModal: false,
         isAuth: false,
       }));
@@ -1315,6 +1346,7 @@ export class Dispositif extends Component {
     };
     API.add_dispositif(dispositif).then(() => {
       this.props.fetchDispositifs();
+      this.props.fetchSelectedDispositif(this.state._id);
       this._isMounted &&
         this.setState({
           status: status,
@@ -1540,14 +1572,6 @@ export class Dispositif extends Component {
     });
 
   render() {
-    logger.info("Dispositif test log info ", {
-      titreInformatif:
-        this.state.dispositif && this.state.dispositif.titreInformatif
-          ? this.state.dispositif.titreInformatif
-          : "pas de titre",
-    });
-    logger.warn("Dispositif test log warn");
-    logger.error("Dispositif test log error");
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
@@ -1567,6 +1591,7 @@ export class Dispositif extends Component {
       didThank,
       dispositif,
     } = this.state;
+
     const etapes_tuto =
       typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
     const moisDepuisCreation =
@@ -1723,17 +1748,14 @@ export class Dispositif extends Component {
               }
             >
               {(inVariante || checkingVariante) && (
+                // yellow banner in top of a demarche to create a variante
+                // To see this component, create a new demarche then select an existing demarche
                 <BandeauEdition
-                  menu={this.state.menu}
-                  uiArray={this.state.uiArray}
                   withHelp={withHelp}
                   disableEdit={disableEdit}
                   checkingVariante={checkingVariante}
                   editDispositif={this.editDispositif}
                   upcoming={this.upcoming}
-                  toggleDispositifValidateModal={
-                    this.toggleDispositifValidateModal
-                  }
                   valider_dispositif={this.valider_dispositif}
                   toggleHelp={this.toggleHelp}
                   toggleCheckingVariante={this.toggleCheckingVariante}
@@ -1743,38 +1765,15 @@ export class Dispositif extends Component {
 
               <Row className="header-row">
                 {windowWidth >= breakpoints.smLimit && (
-                  <Col
-                    xl="6"
-                    lg="6"
-                    md="6"
-                    sm="6"
-                    xs="12"
-                    className="top-left"
-                    onClick={this.goBack}
-                  >
-                    <FButton
-                      type="light-action"
-                      name="arrow-back"
-                      className="btn-retour"
-                    >
-                      <span>
-                        {t("Retour à la recherche", "Retour à la recherche")}
-                      </span>
-                    </FButton>
-                  </Col>
+                  <BackButton goBack={this.goBack} />
                 )}
                 {!inVariante && (
+                  // top right part of dispositif (3 different designs : create/modify, read, sponsor gets the dispositif "En attente")
                   <TopRightHeader
-                    validateStructure={false}
                     disableEdit={this.state.disableEdit}
                     withHelp={this.state.withHelp}
                     showSpinnerBookmark={this.state.showSpinnerBookmark}
                     pinned={this.state.pinned}
-                    isAuthor={this.state.isAuthor}
-                    status={this.state.status}
-                    mainSponsor={this.state.mainSponsor}
-                    userId={this.props.userId}
-                    update_status={this.update_status}
                     bookmarkDispositif={this.bookmarkDispositif}
                     toggleHelp={this.toggleHelp}
                     toggleModal={this.toggleModal}
@@ -1786,7 +1785,6 @@ export class Dispositif extends Component {
                     toggleDispositifCreateModal={
                       this.toggleDispositifCreateModal
                     }
-                    admin={this.props.admin}
                     translating={translating}
                   />
                 )}
@@ -1794,37 +1792,43 @@ export class Dispositif extends Component {
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
                 <div className={"bloc-titre "}>
                   <h1 className={disableEdit ? "" : "editable"}>
-                    <ContentEditable
-                      id="titreInformatif"
-                      html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
-                      disabled={disableEdit || inVariante}
-                      onClick={(e) => {
-                        if (!disableEdit && !inVariante) {
-                          this.startJoyRide();
-                          this.onInputClicked(e);
-                        }
-                      }}
-                      onChange={this.handleChange}
-                      onMouseEnter={(e) => e.target.focus()}
-                      onKeyPress={(e) => this.handleKeyPress(e, 0)}
-                    />
+                    {
+                      // Display and edition of titreInformatif
+                      <ContentEditable
+                        id="titreInformatif"
+                        html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
+                        disabled={disableEdit || inVariante}
+                        onClick={(e) => {
+                          if (!disableEdit && !inVariante) {
+                            this.startJoyRide();
+                            this.onInputClicked(e);
+                          }
+                        }}
+                        onChange={this.handleChange}
+                        onMouseEnter={(e) => e.target.focus()}
+                        onKeyPress={(e) => this.handleKeyPress(e, 0)}
+                      />
+                    }
                   </h1>
                   {typeContenu === "dispositif" && (
                     <h2 className={"bloc-subtitle "}>
                       <span>{t("avec", "avec")}&nbsp;</span>
-                      <ContentEditable
-                        id="titreMarque"
-                        html={this.state.content.titreMarque || ""} // innerHTML of the editable div
-                        disabled={this.state.disableEdit}
-                        onClick={(e) => {
-                          this.startJoyRide(1);
-                          this.onInputClicked(e);
-                        }}
-                        onChange={this.handleChange}
-                        onKeyDown={this.onInputClicked}
-                        onMouseEnter={(e) => e.target.focus()}
-                        onKeyPress={(e) => this.handleKeyPress(e, 1)}
-                      />
+                      {
+                        // Display and edition of titreMarque
+                        <ContentEditable
+                          id="titreMarque"
+                          html={this.state.content.titreMarque || ""} // innerHTML of the editable div
+                          disabled={this.state.disableEdit}
+                          onClick={(e) => {
+                            this.startJoyRide(1);
+                            this.onInputClicked(e);
+                          }}
+                          onChange={this.handleChange}
+                          onKeyDown={this.onInputClicked}
+                          onMouseEnter={(e) => e.target.focus()}
+                          onKeyPress={(e) => this.handleKeyPress(e, 1)}
+                        />
+                      }
                     </h2>
                   )}
                 </div>
@@ -1834,102 +1838,13 @@ export class Dispositif extends Component {
             {!inVariante && (
               <Row className="tags-row backgroundColor-darkColor">
                 <Col lg="8" md="8" sm="8" xs="8" className="col right-bar">
-                  {(disableEdit || typeContenu !== "demarche") && (
-                    <Row>
-                      <b className="en-bref mt-10">
-                        {t("En bref", "En bref")}{" "}
-                      </b>
-                      {(
-                        (
-                          (this.state.menu || []).find(
-                            (x) => x.title === "C'est pour qui ?"
-                          ) || []
-                        ).children || []
-                      ).map((card, key) => {
-                        if (
-                          card.type === "card" &&
-                          card.title !== "Important !"
-                        ) {
-                          let texte = card.contentTitle;
-                          if (card.title === "Âge requis") {
-                            texte =
-                              card.contentTitle === "De ** à ** ans"
-                                ? t("Dispositif.De", "De") +
-                                  " " +
-                                  card.bottomValue +
-                                  " " +
-                                  t("Dispositif.à", "à") +
-                                  " " +
-                                  card.topValue +
-                                  " " +
-                                  t("Dispositif.ans", "ans")
-                                : card.contentTitle === "Moins de ** ans"
-                                ? t("Dispositif.Moins de", "Moins de") +
-                                  " " +
-                                  card.topValue +
-                                  " " +
-                                  t("Dispositif.ans", "ans")
-                                : t("Dispositif.Plus de", "Plus de") +
-                                  " " +
-                                  card.bottomValue +
-                                  " " +
-                                  t("Dispositif.ans", "ans");
-                          } else if (
-                            [
-                              "Niveau de français",
-                              "Justificatif demandé",
-                              "Public visé",
-                            ].includes(card.title)
-                          ) {
-                            texte =
-                              card.contentTitle &&
-                              t(
-                                "Dispositif." + card.contentTitle,
-                                card.contentTitle
-                              );
-                          } else if (card.title === "Combien ça coûte ?") {
-                            texte = card.free
-                              ? t("Dispositif.Gratuit", "Gratuit")
-                              : card.price +
-                                " € " +
-                                t(
-                                  "Dispositif." + card.contentTitle,
-                                  card.contentTitle
-                                );
-                          }
-                          return (
-                            <div className="tag-wrapper ml-15" key={key}>
-                              <div className="tag-item">
-                                <a
-                                  href={"#item-head-1"}
-                                  className="no-decoration"
-                                >
-                                  {card.typeIcon === "eva" ? (
-                                    <EVAIcon
-                                      name={card.titleIcon}
-                                      fill="#FFFFFF"
-                                      className="mr-10"
-                                    />
-                                  ) : (
-                                    <SVGIcon
-                                      fill="#FFFFFF"
-                                      width="20"
-                                      height="20"
-                                      viewBox="0 0 25 25"
-                                      name={card.titleIcon}
-                                      className="mr-10"
-                                    />
-                                  )}
-                                  <span>{h2p(texte)}</span>
-                                </a>
-                              </div>
-                            </div>
-                          );
-                        }
-                        return false;
-                      })}
-                    </Row>
-                  )}
+                  {
+                    // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
+                    (disableEdit || typeContenu !== "demarche") && (
+                      // TO DO : connect component to store when store updated after changing infocards
+                      <EnBrefBanner menu={this.state.menu} />
+                    )
+                  }
                 </Col>
                 <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
                   <Tags
@@ -2377,6 +2292,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   fetchDispositifs: fetchDispositifsActionCreator,
   fetchUser: fetchUserActionCreator,
+  fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
+  updateUiArray: updateUiArrayActionCreator,
+  updateSelectedDispositif: updateSelectedDispositifActionCreator,
 };
 
 export default track({
