@@ -59,92 +59,90 @@ class AdminContenu extends Component {
       (data_res) => {
         const dispositifs = [...data_res.data.data];
         this.setState({
-          dispositifs: dispositifs
-            .filter((x) => !x.demarcheId)
-            .map((x) => ({
-              ...x,
-              titreCourt: x.titreMarque || x.titreInformatif || "",
-              titre:
-                (x.titreMarque || "") +
-                (x.titreMarque && x.titreInformatif ? " - " : "") +
-                (x.titreInformatif || ""),
-              structure: _.get(
-                x,
-                "mainSponsor.nom",
-                _.get(x, "mainSponsor.nom", "")
-              ),
-              structureObj: _.get(x, "mainSponsor", {}),
-              expanded: false,
-              type: "parent",
-              tooltip: false,
-              joursDepuis:
-                (new Date().getTime() - new Date(x.updatedAt).getTime()) /
-                (1000 * 3600 * 24),
-              children: dispositifs
-                .filter((y) => y.demarcheId === x._id)
-                .map((y) => ({
-                  ...y,
-                  structure: _.get(
-                    y,
-                    "mainSponsor.nom",
-                    _.get(y, "mainSponsor.nom", "")
-                  ),
-                  structureObj: _.get(y, "mainSponsor", {}),
-                  tooltip: false,
-                  joursDepuis:
-                    (new Date().getTime() - new Date(y.updatedAt).getTime()) /
-                    (1000 * 3600 * 24),
-                  titre: [
-                    y.titreInformatif,
-                    "-",
-                    y.variantes
-                      .map((z) =>
-                        [
-                          "(",
-                          ...(z.ageTitle
-                            ? [
-                                "Âge : " +
-                                  (z.ageTitle === "De ** à ** ans"
-                                    ? "De " +
-                                      z.bottomValue +
-                                      " à " +
-                                      z.topValue +
-                                      " ans"
-                                    : z.contentTitle === "Moins de ** ans"
-                                    ? "Moins de " + z.topValue + " ans"
-                                    : "Plus de " + z.bottomValue + " ans") +
-                                  ", ",
-                              ]
-                            : []),
-                          ...(z.villes
-                            ? [
-                                "Localisation : " +
-                                  (z.villes.length > 1
-                                    ? z.villes.length + " villes"
-                                    : z.villes[0].formatted_address) +
-                                  ", ",
-                              ]
-                            : []),
-                          customCriteres
-                            .reduce(
-                              (acc, curr) =>
-                                (acc +=
-                                  curr.query && z[curr.query]
-                                    ? curr.texte +
-                                      " : " +
-                                      z[curr.query].join(" ou ") +
-                                      ", "
-                                    : ""),
-                              ""
-                            )
-                            .slice(0, -2),
-                          ")",
-                        ].join(" ")
-                      )
-                      .join(" ou "),
-                  ].join(" "),
-                })),
-            })),
+          dispositifs: dispositifs.map((x) => ({
+            ...x,
+            titreCourt: x.titreMarque || x.titreInformatif || "",
+            titre:
+              (x.titreMarque || "") +
+              (x.titreMarque && x.titreInformatif ? " - " : "") +
+              (x.titreInformatif || ""),
+            structure: _.get(
+              x,
+              "mainSponsor.nom",
+              _.get(x, "mainSponsor.nom", "")
+            ),
+            structureObj: _.get(x, "mainSponsor", {}),
+            expanded: false,
+            type: "parent",
+            tooltip: false,
+            joursDepuis:
+              (new Date().getTime() - new Date(x.updatedAt).getTime()) /
+              (1000 * 3600 * 24),
+            children: dispositifs
+              .filter((y) => y.demarcheId === x._id)
+              .map((y) => ({
+                ...y,
+                structure: _.get(
+                  y,
+                  "mainSponsor.nom",
+                  _.get(y, "mainSponsor.nom", "")
+                ),
+                structureObj: _.get(y, "mainSponsor", {}),
+                tooltip: false,
+                joursDepuis:
+                  (new Date().getTime() - new Date(y.updatedAt).getTime()) /
+                  (1000 * 3600 * 24),
+                titre: [
+                  y.titreInformatif,
+                  "-",
+                  y.variantes
+                    .map((z) =>
+                      [
+                        "(",
+                        ...(z.ageTitle
+                          ? [
+                              "Âge : " +
+                                (z.ageTitle === "De ** à ** ans"
+                                  ? "De " +
+                                    z.bottomValue +
+                                    " à " +
+                                    z.topValue +
+                                    " ans"
+                                  : z.contentTitle === "Moins de ** ans"
+                                  ? "Moins de " + z.topValue + " ans"
+                                  : "Plus de " + z.bottomValue + " ans") +
+                                ", ",
+                            ]
+                          : []),
+                        ...(z.villes
+                          ? [
+                              "Localisation : " +
+                                (z.villes.length > 1
+                                  ? z.villes.length + " villes"
+                                  : z.villes[0].formatted_address) +
+                                ", ",
+                            ]
+                          : []),
+                        customCriteres
+                          .reduce(
+                            (acc, curr) =>
+                              (acc +=
+                                curr.query && z[curr.query]
+                                  ? curr.texte +
+                                    " : " +
+                                    z[curr.query].join(" ou ") +
+                                    ", "
+                                  : ""),
+                            ""
+                          )
+                          .slice(0, -2),
+                        ")",
+                      ].join(" ")
+                    )
+                    .join(" ou "),
+                ].join(" "),
+              })),
+          })),
         });
       }
     );
