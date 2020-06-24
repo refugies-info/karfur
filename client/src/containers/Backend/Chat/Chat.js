@@ -114,6 +114,7 @@ export class Chat extends React.Component {
   };
 
   render() {
+    console.log("chat");
     this.toggleMenu = () => {
       if (this.state.attachedClasses.length === 1) {
         this.setState({ attachedClasses: ["action_menu", "display"] });
