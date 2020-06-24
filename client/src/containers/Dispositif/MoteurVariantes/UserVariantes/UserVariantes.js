@@ -11,6 +11,7 @@ import FButton from "../../../../components/FigmaUI/FButton/FButton";
 
 import "./UserVariantes.scss";
 import variables from "scss/colors.scss";
+import { logger } from "../../../../logger";
 
 class UserVariantes extends Component {
   state = {
@@ -58,16 +59,21 @@ class UserVariantes extends Component {
 
   render() {
     const { t, allDemarches, variantes } = this.props;
+    logger.info("UserVariantes - allDemarches", allDemarches);
     const { age, ville, isMounted } = this.state;
     const currCities = variantes.reduce(
       (acc, curr) => [...acc, ...(curr.villes || []).map((x) => x.place_id)],
       []
     );
-    const hasCityVar = allDemarches.some((d) =>
-      d.variantes.some((va) =>
-        va.villes.some((vi) => !currCities.includes(vi.place_id))
-      )
-    );
+    const hasCityVar =
+      allDemarches.length > 0
+        ? allDemarches.some((d) =>
+            d.variantes.some((va) =>
+              va.villes.some((vi) => !currCities.includes(vi.place_id))
+            )
+          )
+        : false;
+
     const currAges = variantes.reduce(
       (acc, curr) => [
         ...acc,
@@ -75,15 +81,19 @@ class UserVariantes extends Component {
       ],
       []
     );
-    const hasAgesVar = allDemarches.some((d) =>
-      d.variantes.some(
-        (va) =>
-          !currAges.some(
-            (c) =>
-              c.bottomValue === va.bottomValue && c.topValue === va.topValue
+    const hasAgesVar =
+      allDemarches.length > 0
+        ? allDemarches.some((d) =>
+            d.variantes.some(
+              (va) =>
+                !currAges.some(
+                  (c) =>
+                    c.bottomValue === va.bottomValue &&
+                    c.topValue === va.topValue
+                )
+            )
           )
-      )
-    );
+        : false;
 
     if (hasAgesVar || hasCityVar) {
       return (

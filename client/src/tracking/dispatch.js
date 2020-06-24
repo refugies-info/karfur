@@ -10,7 +10,6 @@ const pushtoDataLayer = (data) => {
 // or enhance with API-provided data first
 export const dispatch = (data) => {
   data.cookie = Cookies.get("_ga");
-  // console.log('dispatching : ', data);
   API.log_event(data).then(
     function (data) {
       pushtoDataLayer(data);
