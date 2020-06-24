@@ -1,6 +1,5 @@
 import HomePage from "./containers/HomePage/HomePage";
 import WelcomeParcours from "./views/Base/WelcomeParcours";
-import Parcours from "./views/Base/Parcours";
 import Dashboard from "./containers/Backend/Dashboard/Dashboard";
 import Admin from "./containers/Backend/Admin/Admin";
 import UserDash from "./containers/Backend/UserDash/UserDash";
@@ -36,12 +35,6 @@ const routes = [
     path: "/welcome_parcours",
     name: "Parcours d'accueil",
     component: WelcomeParcours,
-    restriction: [],
-  },
-  {
-    path: "/parcours",
-    name: "Parcours détaillé",
-    component: Parcours,
     restriction: [],
   },
 
