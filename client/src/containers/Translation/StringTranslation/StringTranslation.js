@@ -86,7 +86,7 @@ export class StringTranslation extends Component {
     }
   };
 
-  _getArticle = (itemId, isExpert = false) => {
+  _getArticle = (itemId) => {
     API.get_article({ _id: itemId }).then((data_res) => {
       if (
         data_res.data.data.constructor === Array &&

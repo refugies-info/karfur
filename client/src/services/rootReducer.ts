@@ -9,6 +9,7 @@ import {
   StructureState,
 } from "./Structures/structures.reducer";
 import { userReducer, UserState } from "./User/user.reducer";
+import { translationReducer, TranslationState } from "./Translation/translation.reducer";
 import { ttsReducer, TtsState } from "./Tts/tts.reducer";
 import { connectRouter } from "connected-react-router";
 import {
@@ -28,6 +29,7 @@ export interface RootState {
   structure: StructureState;
   selectedDispositif: SelectedDispositifState;
   loadingStatus: LoadingStatusState;
+  translation: TranslationState;
 }
 export const appReducer = (history: any) =>
   combineReducers({
@@ -39,4 +41,5 @@ export const appReducer = (history: any) =>
     structure: structureReducer,
     selectedDispositif: selectedDispositifReducer,
     loadingStatus: loadingStatusReducer,
+    translation: translationReducer
   });
