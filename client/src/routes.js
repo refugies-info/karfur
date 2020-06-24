@@ -9,8 +9,6 @@ import UserProfile from "./containers/Backend/UserProfile/UserProfile";
 import AdminLangues from "./containers/Backend/AdminLangues/AdminLangues";
 
 import Chat from "./containers/Backend/Chat/Chat";
-import Articles from "./containers/Articles/Articles";
-import Article from "./containers/Article/Article";
 import Dispositifs from "./containers/Dispositifs/Dispositifs";
 import Dispositif from "./containers/Dispositif/Dispositif";
 import ParkourOnBoard from "./containers/ParkourOnBoard/ParkourOnBoard";
@@ -30,14 +28,6 @@ import PolitiqueConfidentialite from "./containers/PolitiqueConfidentialite/Poli
 const routes = [
   { path: "/", exact: true, name: "home", restriction: [] },
   { path: "/homepage", name: "Accueil", component: HomePage, restriction: [] },
-  { path: "/articles", name: "Articles", component: Articles, restriction: [] },
-  {
-    path: "/article/:id",
-    exact: true,
-    name: "Article",
-    component: Article,
-    restriction: [],
-  },
 
   {
     path: "/advanced-search",
