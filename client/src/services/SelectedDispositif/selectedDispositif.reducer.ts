@@ -1,4 +1,4 @@
-import { createReducer, action } from "typesafe-actions";
+import { createReducer } from "typesafe-actions";
 import { SelectedDispositifActions } from "./selectedDispositif.actions";
 import { updateObject } from "../utility";
 import _ from "lodash";

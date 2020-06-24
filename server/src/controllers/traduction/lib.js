@@ -29,6 +29,7 @@ async function add_tradForReview(req, res) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (!req.body || !req.body.langueCible || !req.body.translatedText) {
     return res.status(400).json({ text: "Requête invalide" });
+      // eslint-disable-next-line
   } else {
     new DBEvent({
       action: JSON.stringify(req.body),
