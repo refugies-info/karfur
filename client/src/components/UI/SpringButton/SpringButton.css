@@ -137,9 +137,6 @@
   padding-top: 150px;
   padding-bottom: 100px;
   color: white;
-  background: url("../../../assets/bg-pattern.png"), #7b4397;
-  background: url("../../../assets/bg-pattern.png"), -webkit-gradient(linear, right top, left top, from(#7b4397), to(#dc2430));
-  background: url("../../../assets/bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
 }
 
 header.masthead .header-content {
@@ -269,7 +266,6 @@ section.features .feature-item i {
 .welcome_parcours section.cta {
   position: relative;
   padding: 250px 0;
-  background-image: url("../../../assets/bg-cta.jpg");
   background-position: center;
   background-size: cover;
 }
