@@ -11,9 +11,6 @@ import AdminLangues from "./containers/Backend/AdminLangues/AdminLangues";
 import Chat from "./containers/Backend/Chat/Chat";
 import Dispositifs from "./containers/Dispositifs/Dispositifs";
 import Dispositif from "./containers/Dispositif/Dispositif";
-import ParkourOnBoard from "./containers/ParkourOnBoard/ParkourOnBoard";
-import ParkourPerso from "./containers/ParkourPerso/ParkourPerso";
-import Editeur from "./containers/Editeur/Editeur";
 import Avancement from "./containers/Avancement/Avancement";
 import Translation from "./containers/Translation/Translation";
 import RecordAudio from "./containers/RecordAudio/RecordAudio";
@@ -96,20 +93,6 @@ const routes = [
     restriction: [],
   },
 
-  {
-    path: "/parcours-on-board",
-    name: "Parcours On Board",
-    component: ParkourOnBoard,
-    restriction: [],
-  },
-  {
-    path: "/parcours-perso",
-    name: "Parcours perso",
-    component: ParkourPerso,
-    restriction: [],
-  },
-
-  { path: "/editeur", name: "Editeur", component: Editeur, restriction: [] },
   {
     path: "/avancement/traductions/:id",
     exact: true,
