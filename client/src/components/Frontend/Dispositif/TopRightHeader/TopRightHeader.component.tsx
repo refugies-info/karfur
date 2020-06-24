@@ -18,6 +18,7 @@ export interface PropsBeforeInjection {
   valider_dispositif: (arg1: string) => void;
   toggleDispositifCreateModal: () => void;
   translating: boolean;
+  status: string;
 }
 
 export class TopRightHeader extends React.Component<Props> {
@@ -35,6 +36,7 @@ export class TopRightHeader extends React.Component<Props> {
    * valider_dispositif : used to validate dispositif in Brouillon state
    * toggleDispositifCreateModal : toggle modal to explain how to write when clicking on 'Besoin d'aide'
    * translating
+   * status: status of the content
    */
 
   render() {
@@ -60,11 +62,7 @@ export class TopRightHeader extends React.Component<Props> {
         : false;
 
     // user can validate a dispositif if he is admin or contributor of the mainsponsor of the dispositif
-    if (
-      this.props.selectedDispositif &&
-      this.props.selectedDispositif.status === "En attente" &&
-      userIsSponsor
-    ) {
+    if (props.status === "En attente" && userIsSponsor) {
       // top right part of dispositif when user is sponsor and dispo is 'En attente'
       return (
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">

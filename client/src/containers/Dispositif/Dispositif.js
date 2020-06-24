@@ -1745,6 +1745,7 @@ export class Dispositif extends Component {
                       this.toggleDispositifCreateModal
                     }
                     translating={translating}
+                    status={this.state.status}
                   />
                 )}
               </Row>
