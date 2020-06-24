@@ -15,7 +15,6 @@ import {
 import { savePDF } from "@progress/kendo-react-pdf";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
-import Icon from "react-eva-icons";
 import h2p from "html2plaintext";
 import ReactJoyride, { ACTIONS, EVENTS, STATUS } from "react-joyride";
 import _ from "lodash";

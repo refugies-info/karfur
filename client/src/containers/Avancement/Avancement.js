@@ -49,7 +49,6 @@ const jsUcfirst = (string) => {
 export class Avancement extends Component {
   constructor(props) {
     super(props);
-    console.log(props.isExpert);
   this.state = {
     mainView: true,
     title: diffData.all.title,
@@ -94,7 +93,6 @@ export class Avancement extends Component {
         this.props.location.state.langue &&
         this.props.location.state.langue.i18nCode
       ) {
-        console.log(this.props.location.state);
         this.setState({
           langue: this.props.location.state.langue,
           title:
@@ -445,7 +443,7 @@ export class Avancement extends Component {
               return (
                 y.articleId === x._id &&
                 y.userId._id === this.props.userId &&
-                y.status === 'À revoir'
+                y.status === "À revoir"
               );
             }).length > 0)
               ? Math.max(
@@ -463,7 +461,7 @@ export class Avancement extends Component {
               .filter((y) => {
                 return (
                   y.articleId === x._id &&
-                  y.status === 'À revoir'
+                  y.status === "À revoir"
                 );
               }).length > 0 ?
               Math.max(
@@ -622,7 +620,6 @@ export class Avancement extends Component {
         this.countfilter(traductions, "À revoir") === 0 &&
         this.countfilter(traductions, "À traduire") > 0
       ) {
-        console.log(this.countfilter(traductions, "À traduire"), this.countfilter(traductions, "À revoir"), traductions)
         this.setState({
           toTranslate: true,
           review: false,

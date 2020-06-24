@@ -41,7 +41,6 @@ yarn-error.log*
 /client/.env.production.local
 *.orig
 .idea/
-.vscode/
 credentials.json
 token.json
 /controllers/dispositif/gmail_auth.js

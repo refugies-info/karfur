@@ -5,6 +5,7 @@ import structuresSaga from "./Structures/structures.saga";
 import langueSaga from "./Langue/langue.saga";
 import dispositifsSaga from "./Dispositif/dispositif.saga";
 import selectedDispositifSaga from "./SelectedDispositif/selectedDispositif.saga";
+import translationsSaga from "./Translation/translation.saga";
 
 export function* rootSaga(): SagaIterator {
   yield fork(userSaga);
@@ -12,4 +13,5 @@ export function* rootSaga(): SagaIterator {
   yield fork(langueSaga);
   yield fork(dispositifsSaga);
   yield fork(selectedDispositifSaga);
+  yield fork(translationsSaga);
 }

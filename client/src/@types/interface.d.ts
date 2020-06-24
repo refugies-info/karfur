@@ -127,3 +127,17 @@ export interface Structure {
   _id: ObjectId;
   membres: { userId: ObjectId; roles: string[] }[];
 }
+
+export interface Translation {
+  _id?: ObjectId;
+  initialText?: object;
+  translatedText?: object;
+  langueCible?: string,
+  articleId?: ObjectId,
+  timeSpent?: string,
+  isStructure?: boolean,
+  avancement?: number,
+  type?: string,
+  validatorId?: ObjectId,
+  isExpert?: boolean,
+}
