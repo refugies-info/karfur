@@ -1,5 +1,4 @@
 import HomePage from "./containers/HomePage/HomePage";
-import WelcomeParcours from "./views/Base/WelcomeParcours";
 import Dashboard from "./containers/Backend/Dashboard/Dashboard";
 import Admin from "./containers/Backend/Admin/Admin";
 import UserDash from "./containers/Backend/UserDash/UserDash";
@@ -31,13 +30,6 @@ import PolitiqueConfidentialite from "./containers/PolitiqueConfidentialite/Poli
 const routes = [
   { path: "/", exact: true, name: "home", restriction: [] },
   { path: "/homepage", name: "Accueil", component: HomePage, restriction: [] },
-  {
-    path: "/welcome_parcours",
-    name: "Parcours d'accueil",
-    component: WelcomeParcours,
-    restriction: [],
-  },
-
   { path: "/articles", name: "Articles", component: Articles, restriction: [] },
   {
     path: "/article/:id",
