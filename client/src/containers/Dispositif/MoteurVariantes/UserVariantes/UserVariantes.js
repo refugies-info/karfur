@@ -63,11 +63,19 @@ class UserVariantes extends Component {
       (acc, curr) => [...acc, ...(curr.villes || []).map((x) => x.place_id)],
       []
     );
-    const hasCityVar = allDemarches.some((d) =>
-      d.variantes.some((va) =>
-        va.villes.some((vi) => !currCities.includes(vi.place_id))
-      )
-    );
+    const hasCityVar =
+      allDemarches.length > 0
+        ? allDemarches.some((d) =>
+            d.variantes
+              ? d.variantes.some((va) =>
+                  va.villes
+                    ? va.villes.some((vi) => !currCities.includes(vi.place_id))
+                    : false
+                )
+              : false
+          )
+        : false;
+
     const currAges = variantes.reduce(
       (acc, curr) => [
         ...acc,
@@ -75,15 +83,22 @@ class UserVariantes extends Component {
       ],
       []
     );
-    const hasAgesVar = allDemarches.some((d) =>
-      d.variantes.some(
-        (va) =>
-          !currAges.some(
-            (c) =>
-              c.bottomValue === va.bottomValue && c.topValue === va.topValue
+    const hasAgesVar =
+      allDemarches.length > 0
+        ? allDemarches.some((d) =>
+            d.variantes
+              ? d.variantes.some((va) =>
+                  currAges
+                    ? !currAges.some(
+                        (c) =>
+                          c.bottomValue === va.bottomValue &&
+                          c.topValue === va.topValue
+                      )
+                    : false
+                )
+              : false
           )
-      )
-    );
+        : false;
 
     if (hasAgesVar || hasCityVar) {
       return (
