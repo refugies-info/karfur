@@ -38,6 +38,7 @@ const InnerButton = styled.div`
   align-items: center;
 `;
 
+// top banner
 export class Toolbar extends React.Component {
   state = {
     dropdownOpen: false,
