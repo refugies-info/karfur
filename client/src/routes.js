@@ -7,7 +7,6 @@ import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
 import UserForm from "./containers/Backend/UserDash/UserForm/UserForm";
 import UserProfile from "./containers/Backend/UserProfile/UserProfile";
 import AdminLangues from "./containers/Backend/AdminLangues/AdminLangues";
-import Dispositifs from "./containers/Dispositifs/Dispositifs";
 import Dispositif from "./containers/Dispositif/Dispositif";
 import Avancement from "./containers/Avancement/Avancement";
 import Translation from "./containers/Translation/Translation";
@@ -52,13 +51,6 @@ const routes = [
     path: "/politique-de-confidentialite",
     name: "Politique de confidentialité",
     component: PolitiqueConfidentialite,
-    restriction: [],
-  },
-
-  {
-    path: "/dispositifs",
-    name: "Rechercher un dispositif",
-    component: Dispositifs,
     restriction: [],
   },
   {
