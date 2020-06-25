@@ -24,6 +24,7 @@ import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";
 import routes from "../../routes";
 import Footer from "../Footer/Footer";
+import { toggleSpinner } from "../../services/Tts/tts.actions";
 
 import "./Layout.scss";
 
@@ -205,6 +206,7 @@ const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
   toggleLangueModal: toggleLangueModalActionCreator,
   toggleLangue: toggleLangueActionCreator,
+  toggleSpinner,
 };
 
 export default track(
