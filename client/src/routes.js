@@ -7,8 +7,6 @@ import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
 import UserForm from "./containers/Backend/UserDash/UserForm/UserForm";
 import UserProfile from "./containers/Backend/UserProfile/UserProfile";
 import AdminLangues from "./containers/Backend/AdminLangues/AdminLangues";
-
-import Chat from "./containers/Backend/Chat/Chat";
 import Dispositifs from "./containers/Dispositifs/Dispositifs";
 import Dispositif from "./containers/Dispositif/Dispositif";
 import Avancement from "./containers/Avancement/Avancement";
@@ -204,12 +202,6 @@ const routes = [
     path: "/backend/admin",
     name: "Administration",
     component: Admin,
-    restriction: ["Admin"],
-  },
-  {
-    path: "/backend/chat",
-    name: "Chat",
-    component: Chat,
     restriction: ["Admin"],
   },
   {
