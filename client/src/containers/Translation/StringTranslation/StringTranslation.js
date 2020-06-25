@@ -173,7 +173,6 @@ export class StringTranslation extends Component {
       isExpert,
       time,
       nbMotsRestants,
-      itemId,
       autosuggest,
       traducteur,
     } = this.props;
