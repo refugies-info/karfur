@@ -1,6 +1,4 @@
 import HomePage from "./containers/HomePage/HomePage";
-import WelcomeParcours from "./views/Base/WelcomeParcours";
-import Parcours from "./views/Base/Parcours";
 import Dashboard from "./containers/Backend/Dashboard/Dashboard";
 import Admin from "./containers/Backend/Admin/Admin";
 import UserDash from "./containers/Backend/UserDash/UserDash";
@@ -9,15 +7,7 @@ import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
 import UserForm from "./containers/Backend/UserDash/UserForm/UserForm";
 import UserProfile from "./containers/Backend/UserProfile/UserProfile";
 import AdminLangues from "./containers/Backend/AdminLangues/AdminLangues";
-
-import Chat from "./containers/Backend/Chat/Chat";
-import Articles from "./containers/Articles/Articles";
-import Article from "./containers/Article/Article";
-import Dispositifs from "./containers/Dispositifs/Dispositifs";
 import Dispositif from "./containers/Dispositif/Dispositif";
-import ParkourOnBoard from "./containers/ParkourOnBoard/ParkourOnBoard";
-import ParkourPerso from "./containers/ParkourPerso/ParkourPerso";
-import Editeur from "./containers/Editeur/Editeur";
 import Avancement from "./containers/Avancement/Avancement";
 import Translation from "./containers/Translation/Translation";
 import RecordAudio from "./containers/RecordAudio/RecordAudio";
@@ -32,27 +22,6 @@ import PolitiqueConfidentialite from "./containers/PolitiqueConfidentialite/Poli
 const routes = [
   { path: "/", exact: true, name: "home", restriction: [] },
   { path: "/homepage", name: "Accueil", component: HomePage, restriction: [] },
-  {
-    path: "/welcome_parcours",
-    name: "Parcours d'accueil",
-    component: WelcomeParcours,
-    restriction: [],
-  },
-  {
-    path: "/parcours",
-    name: "Parcours détaillé",
-    component: Parcours,
-    restriction: [],
-  },
-
-  { path: "/articles", name: "Articles", component: Articles, restriction: [] },
-  {
-    path: "/article/:id",
-    exact: true,
-    name: "Article",
-    component: Article,
-    restriction: [],
-  },
 
   {
     path: "/advanced-search",
@@ -82,13 +51,6 @@ const routes = [
     path: "/politique-de-confidentialite",
     name: "Politique de confidentialité",
     component: PolitiqueConfidentialite,
-    restriction: [],
-  },
-
-  {
-    path: "/dispositifs",
-    name: "Rechercher un dispositif",
-    component: Dispositifs,
     restriction: [],
   },
   {
@@ -121,20 +83,6 @@ const routes = [
     restriction: [],
   },
 
-  {
-    path: "/parcours-on-board",
-    name: "Parcours On Board",
-    component: ParkourOnBoard,
-    restriction: [],
-  },
-  {
-    path: "/parcours-perso",
-    name: "Parcours perso",
-    component: ParkourPerso,
-    restriction: [],
-  },
-
-  { path: "/editeur", name: "Editeur", component: Editeur, restriction: [] },
   {
     path: "/avancement/traductions/:id",
     exact: true,
@@ -246,12 +194,6 @@ const routes = [
     path: "/backend/admin",
     name: "Administration",
     component: Admin,
-    restriction: ["Admin"],
-  },
-  {
-    path: "/backend/chat",
-    name: "Chat",
-    component: Chat,
     restriction: ["Admin"],
   },
   {
