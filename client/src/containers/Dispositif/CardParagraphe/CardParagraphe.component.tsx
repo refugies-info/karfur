@@ -14,19 +14,21 @@ import {
   ListGroupItem,
   Modal,
   Input,
-  Tooltip,
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
-import { withTranslation } from "react-i18next";
 
 import SVGIcon from "../../../components/UI/SVGIcon/SVGIcon";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
 
 import "./CardParagraphe.scss";
+// @ts-ignore
 import variables from "scss/colors.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { Props } from "./CardParagraphe.container";
+import { DispositifContent } from "../../../@types/interface";
+import { filtres } from "../data";
 
 const list_papiers = [
   { name: "Titre de séjour" },
@@ -44,8 +46,46 @@ const frequencesPay = [
   "par heure",
 ];
 
-class CardParagraphe extends Component {
-  state = {
+// difficult to type
+type Element = any;
+
+interface Content {
+  abstract: string;
+  contact: string;
+  externalLink: string;
+  titreInformatif: string;
+  titreMarque: string;
+}
+
+export interface PropsBeforeInjection {
+  subkey: number;
+  subitem: DispositifContent;
+  disableEdit: boolean;
+  changeTitle: (arg1: number, arg2: number, arg3: string, arg4: string) => void;
+  handleMenuChange: (arg1: any) => void;
+  filtres: typeof filtres;
+  changeAge: (arg1: any, arg2: number, arg3: number, arg4: boolean) => void;
+  toggleFree: (arg1: number, arg2: number) => void;
+  changePrice: (arg1: any, arg2: number, arg3: number) => void;
+  updateUIArray: (arg1: number, arg2: number, arg3: string) => void;
+  toggleNiveau: (arg1: string, arg2: number, arg3: number) => void;
+  deleteCard: (arg1: number, arg2: number) => void;
+  content: Content;
+  keyValue: number;
+  t: any;
+}
+type StateType = {
+  showModal: boolean;
+  isDropdownOpen: boolean;
+  isOptionsOpen: boolean;
+  isModalDropdownOpen: boolean[];
+  papiers: typeof papiers;
+  showNiveaux: boolean;
+  tooltipOpen: boolean;
+};
+
+export class CardParagraphe extends Component<Props> {
+  state: StateType = {
     showModal: false,
     isDropdownOpen: false,
     isOptionsOpen: false,
@@ -55,14 +95,14 @@ class CardParagraphe extends Component {
     tooltipOpen: false,
   };
 
-  editCard = () => this.toggleModal(true, "pieces");
-
-  toggleModal = (show) => this.setState({ showModal: show });
+  toggleModal = (show: boolean) => this.setState({ showModal: show });
   toggleNiveaux = () => this.setState({ showNiveaux: !this.state.showNiveaux });
   toggleTooltip = () =>
-    this.setState((prevState) => ({ tooltipOpen: !prevState.tooltipOpen }));
+    this.setState((prevState: StateType) => ({
+      tooltipOpen: !prevState.tooltipOpen,
+    }));
 
-  toggleDropdown = (e) => {
+  toggleDropdown = (e: Element) => {
     if (this.state.isDropdownOpen && e.currentTarget.id) {
       this.props.changeTitle(
         this.props.keyValue,
@@ -74,14 +114,14 @@ class CardParagraphe extends Component {
     this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   };
 
-  toggleModalDropdown = (idx) =>
+  toggleModalDropdown = (idx: number) =>
     this.setState({
       isModalDropdownOpen: this.state.isModalDropdownOpen.map((x, i) =>
         i === idx ? !x : x
       ),
     });
 
-  setPapier = (idx, y) =>
+  setPapier = (idx: number, y: number) =>
     this.setState({
       papiers: this.state.papiers.map((x, i) =>
         i === idx ? list_papiers[y] : x
@@ -92,11 +132,11 @@ class CardParagraphe extends Component {
       papiers: [...this.state.papiers, { name: "Titre de séjour" }],
       isModalDropdownOpen: [...this.state.isModalDropdownOpen, false],
     });
-  removePiece = (idx) =>
+  removePiece = (idx: number) =>
     this.setState({
       papiers: [...this.state.papiers].filter((_, key) => key !== idx),
     });
-  emptyPlaceholder = (e) => {
+  emptyPlaceholder = (e: Element) => {
     if (!this.props.disableEdit && (this.props.subitem || {}).isFakeContent) {
       this.props.handleMenuChange({
         currentTarget: e.currentTarget,
@@ -105,7 +145,7 @@ class CardParagraphe extends Component {
     }
   };
 
-  toggleOptions = (e) => {
+  toggleOptions = (e: Element) => {
     if (this.state.isOptionsOpen && e.currentTarget.id) {
       this.props.changeTitle(
         this.props.keyValue,
@@ -119,6 +159,7 @@ class CardParagraphe extends Component {
 
   footerClicked = () => {
     if (this.props.subitem.footerHref) {
+      // @ts-ignore
       window.open(this.props.subitem.footerHref, "_blank");
     } else {
       Swal.fire({
@@ -131,15 +172,14 @@ class CardParagraphe extends Component {
   };
 
   render() {
-    const { subitem, subkey, filtres, disableEdit, t } = this.props;
+    const { subitem, subkey, disableEdit, t } = this.props;
     const { showNiveaux } = this.state;
 
-    const jsUcfirst = (string, title) => {
+    const jsUcfirst = (string: string, title: string) => {
       if (title === "Public visé" && string && string.length > 1) {
         return string.charAt(0).toUpperCase() + string.slice(1);
-      } 
-        return string;
-      
+      }
+      return string;
     };
 
     const cardTitles = [
@@ -164,8 +204,10 @@ class CardParagraphe extends Component {
       { title: "Important !", titleIcon: "warning" },
     ];
 
-    const contentTitle = (subitem) => {
+    const contentTitle = (subitem: DispositifContent) => {
       let cardTitle = cardTitles.find((x) => x.title === subitem.title);
+      // edition mode of cards with options
+      // for example Public visé, Age requis, Durée, Niveau de français, justificatif demandé
       if (
         cardTitle &&
         cardTitle.options &&
@@ -173,8 +215,11 @@ class CardParagraphe extends Component {
         !disableEdit
       ) {
         if (
+          !subitem.contentTitle ||
           !cardTitle.options.some(
-            (x) => x.toUpperCase() === subitem.contentTitle.toUpperCase()
+            (x: string) =>
+              // @ts-ignore : check if subitem.contentTitle is undefined already done
+              x.toUpperCase() === subitem.contentTitle.toUpperCase()
           )
         ) {
           subitem.contentTitle = cardTitle.options[0];
@@ -188,6 +233,7 @@ class CardParagraphe extends Component {
           >
             <DropdownToggle caret={!disableEdit}>
               {subitem.title === "Âge requis" ? (
+                // case Age Requis
                 <span>
                   {subitem.contentTitle.split("**").map((x, i, arr) => (
                     <React.Fragment key={i}>
@@ -240,16 +286,18 @@ class CardParagraphe extends Component {
               )}
             </DropdownToggle>
             <DropdownMenu>
-              {cardTitle.options.map((option, key) => {
+              {cardTitle.options.map((option, key: number) => {
                 return (
+                  //@ts-ignore
                   <DropdownItem key={key} id={key}>
-                    {jsUcfirst(option, cardTitle.title)}
+                    {cardTitle ? jsUcfirst(option, cardTitle.title) : ""}
                   </DropdownItem>
                 );
               })}
             </DropdownMenu>
           </ButtonDropdown>
         );
+        // case infocard Combien ça coute (lecture and edition)
       } else if (subitem.title === "Combien ça coûte ?") {
         return (
           <>
@@ -314,6 +362,7 @@ class CardParagraphe extends Component {
                   </DropdownToggle>
                   <DropdownMenu>
                     {frequencesPay.map((f, key) => (
+                      //@ts-ignore
                       <DropdownItem key={key} id={key}>
                         {f}
                       </DropdownItem>
@@ -324,60 +373,66 @@ class CardParagraphe extends Component {
             )}
           </>
         );
-      } 
-        let texte;
-        if (subitem.title === "Âge requis") {
-          texte =
-            subitem.contentTitle === "De ** à ** ans"
-              ? t("Dispositif.De", "De") +
-                " " +
-                subitem.bottomValue +
-                " " +
-                t("Dispositif.à", "à") +
-                " " +
-                subitem.topValue +
-                " " +
-                t("Dispositif.ans", "ans")
-              : subitem.contentTitle === "Moins de ** ans"
-              ? t("Dispositif.Moins de", "Moins de") +
-                " " +
-                subitem.topValue +
-                " " +
-                t("Dispositif.ans", "ans")
-              : t("Dispositif.Plus de", "Plus de") +
-                " " +
-                subitem.bottomValue +
-                " " +
-                t("Dispositif.ans", "ans");
-        } else if (subitem.title === "Combien ça coûte ?") {
-          texte = subitem.free
-            ? t("Dispositif.gratuit", "gratuit")
-            : subitem.price +
-              " € " +
-              t("Dispositif." + subitem.contentTitle, subitem.contentTitle);
-        } else if (cardTitle && cardTitle.options) {
-          texte =
-            subitem.contentTitle &&
+      }
+
+      let texte;
+      if (subitem.title === "Âge requis") {
+        texte =
+          subitem.contentTitle === "De ** à ** ans"
+            ? t("Dispositif.De", "De") +
+              " " +
+              subitem.bottomValue +
+              " " +
+              t("Dispositif.à", "à") +
+              " " +
+              subitem.topValue +
+              " " +
+              t("Dispositif.ans", "ans")
+            : subitem.contentTitle === "Moins de ** ans"
+            ? t("Dispositif.Moins de", "Moins de") +
+              " " +
+              subitem.topValue +
+              " " +
+              t("Dispositif.ans", "ans")
+            : t("Dispositif.Plus de", "Plus de") +
+              " " +
+              subitem.bottomValue +
+              " " +
+              t("Dispositif.ans", "ans");
+      } else if (subitem.title === "Combien ça coûte ?") {
+        texte = subitem.free
+          ? t("Dispositif.gratuit", "gratuit")
+          : subitem.price +
+            " € " +
             t("Dispositif." + subitem.contentTitle, subitem.contentTitle);
-        } else {
-          texte = subitem.contentTitle;
-        }
-        return (
-          <ContentEditable
-            id={this.props.keyValue}
-            className="card-input"
-            data-subkey={subkey}
-            data-target="contentTitle"
-            html={texte} // innerHTML of the editable div
-            disabled={this.props.disableEdit} // use true to disable editing
-            onChange={this.props.handleMenuChange} // handle innerHTML change
-            onMouseUp={this.emptyPlaceholder}
-          />
+      } else if (cardTitle && cardTitle.options) {
+        texte = jsUcfirst(
+          t("Dispositif." + subitem.contentTitle, subitem.contentTitle),
+          cardTitle.title
         );
-      
+      } else {
+        texte = subitem.contentTitle;
+      }
+
+      // display infocards (except combien ça coute)
+      // edition of infocards Important
+      return (
+        <ContentEditable
+          //@ts-ignore
+          id={this.props.keyValue}
+          className="card-input"
+          data-subkey={subkey}
+          data-target="contentTitle"
+          html={texte} // innerHTML of the editable div
+          disabled={this.props.disableEdit} // use true to disable editing
+          onChange={this.props.handleMenuChange} // handle innerHTML change
+          onMouseUp={this.emptyPlaceholder}
+        />
+      );
     };
 
-    const cardHeaderContent = (subitem) => {
+    const cardHeaderContent = (subitem: DispositifContent) => {
+      // in lecture mode, display title and icon
       if (this.props.disableEdit) {
         return (
           <>
@@ -396,12 +451,15 @@ class CardParagraphe extends Component {
             </span>
           </>
         );
-      } 
-        return (
-          <ButtonDropdown
-            isOpen={this.state.isDropdownOpen}
-            toggle={this.toggleDropdown}
-          >
+      }
+      // in edition mode
+      return (
+        <ButtonDropdown
+          isOpen={this.state.isDropdownOpen}
+          toggle={this.toggleDropdown}
+        >
+          {
+            // title and icon
             <DropdownToggle
               caret={!this.props.disableEdit}
               className="header-value"
@@ -418,11 +476,15 @@ class CardParagraphe extends Component {
               )}
               <span className="header-content">{subitem.title}</span>
             </DropdownToggle>
-            <DropdownMenu>
-              {cardTitles.map((cardTitle, key) => {
+          }
+          <DropdownMenu>
+            {
+              // drop down with the list of possible info cards
+              cardTitles.map((cardTitle, key) => {
                 return (
                   <DropdownItem
                     key={key}
+                    // @ts-ignore
                     id={key}
                     data-titleicon={cardTitle.titleIcon}
                   >
@@ -430,31 +492,16 @@ class CardParagraphe extends Component {
                     <span className="header-content">{cardTitle.title}</span>
                   </DropdownItem>
                 );
-              })}
-            </DropdownMenu>
-          </ButtonDropdown>
-        );
-      
+              })
+            }
+          </DropdownMenu>
+        </ButtonDropdown>
+      );
     };
 
-    const cardFooterContent = (subitem) => {
-      if (subitem.footerType === "text") {
-        if (subitem.footer !== "Ajouter un message complémentaire") {
-          return (
-            <ContentEditable
-              id={this.props.keyValue}
-              className="footer-input"
-              data-subkey={subkey}
-              data-target="footer"
-              html={subitem.footer} // innerHTML of the editable div
-              disabled={this.props.disableEdit} // use true to disable editing
-              onChange={this.props.handleMenuChange} // handle innerHTML change
-            />
-          );
-        } 
-          return false;
-        
-      } else if (this.props.subitem.footerHref && disableEdit) {
+    const cardFooterContent = (subitem: DispositifContent) => {
+      // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
+      if (this.props.subitem.footerHref && disableEdit) {
         return (
           <FButton
             type="light-action"
@@ -465,11 +512,11 @@ class CardParagraphe extends Component {
               t("Dispositif." + subitem.footer, subitem.footer)}
           </FButton>
         );
-      } 
-        return false;
-      
+      }
+      return false;
     };
 
+    // returns infocards using components defined above, mainly header, content and title
     return (
       <>
         <Col
@@ -503,12 +550,13 @@ class CardParagraphe extends Component {
               </span>
               {subitem.title === "Niveau de français" &&
                 (showNiveaux || (subitem.niveaux || []).length > 0 ? (
+                  // info card Niveau de francais, selection of level in edit mode
                   <div className="niveaux-wrapper">
                     {niveaux.map((nv, key) => (
                       <button
                         key={key}
                         className={
-                          (subitem.niveaux || []).some((x) => x === nv)
+                          (subitem.niveaux || []).some((x: string) => x === nv)
                             ? "active"
                             : ""
                         }
@@ -526,6 +574,7 @@ class CardParagraphe extends Component {
                     ))}
                   </div>
                 ) : (
+                  // in edit mode, chose to precise the level of french
                   !this.props.disableEdit && (
                     <u className="cursor-pointer" onClick={this.toggleNiveaux}>
                       Préciser
@@ -533,47 +582,30 @@ class CardParagraphe extends Component {
                   )
                 ))}
             </CardBody>
-            <CardFooter>{cardFooterContent(subitem)}</CardFooter>
-
-            {!this.props.disableEdit && (
-              <div className="card-icons">
-                <div
-                  onClick={() =>
-                    this.props.deleteCard(this.props.keyValue, subkey)
-                  }
-                >
-                  <EVAIcon
-                    size="xlarge"
-                    name="close-circle"
-                    fill={variables.noirCD}
-                    className="delete-icon"
-                  />
-                </div>
-              </div>
-            )}
-          </Card>
-
-          {/* temporairement désactivés à la demande d'hugo mais je sens que ça va revenir */}
-          <Tooltip
-            className="card-tooltip backgroundColor-darkColor"
-            isOpen={
-              false &&
-              (subitem.tooltipHeader || subitem.tooltipContent) &&
-              !this.props.disableEdit &&
-              this.props.withHelp &&
-              this.state.tooltipOpen
+            {
+              // footer for card Niveau de français to assess level in a website
+              <CardFooter>{cardFooterContent(subitem)}</CardFooter>
             }
-            target={"info-card-" + this.props.keyValue + "-" + subkey}
-            toggle={this.toggleTooltip}
-          >
-            <div className="tooltip-header">
-              <b>{subitem.tooltipHeader}</b>
-            </div>
-            <div className="tooltip-content">{subitem.tooltipContent}</div>
-            <div className="tooltip-footer">
-              <u>{subitem.tooltipFooter}</u>
-            </div>
-          </Tooltip>
+            {
+              // deletion of an infocard in edit mode
+              !this.props.disableEdit && (
+                <div className="card-icons">
+                  <div
+                    onClick={() =>
+                      this.props.deleteCard(this.props.keyValue, subkey)
+                    }
+                  >
+                    <EVAIcon
+                      size="xlarge"
+                      name="close-circle"
+                      fill={variables.noirCD}
+                      className="delete-icon"
+                    />
+                  </div>
+                </div>
+              )
+            }
+          </Card>
         </Col>
 
         <Modal
@@ -635,7 +667,12 @@ class CardParagraphe extends Component {
   }
 }
 
-const PlusCard = (props) => {
+interface PlusCardProps {
+  addItem: (arg1: number, arg2: string) => void;
+  keyValue: number;
+}
+
+const PlusCard = (props: PlusCardProps) => {
   return (
     <Col xl="4" lg="6" md="6" sm="12" xs="12" className="card-col">
       <Card
@@ -654,5 +691,3 @@ const PlusCard = (props) => {
 };
 
 export { PlusCard };
-
-export default withTranslation()(CardParagraphe);
