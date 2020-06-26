@@ -624,10 +624,8 @@ export class Dispositif extends Component {
           resolve();
         })
       );
-      // eslint-disable-next-line no-else-return
-    } else {
-      return new Promise((r) => r());
     }
+    return new Promise((r) => r());
   };
 
   updateUI = (key, subkey, editable) => {
@@ -1260,7 +1258,9 @@ export class Dispositif extends Component {
       () => this.setColors()
     );
 
+  // save reaction and display modal of success
   pushReaction = (modalName = null, fieldName) => {
+    // for a "Merci" modalName is null and fieldName is merci
     if (modalName) {
       this.toggleModal(false, modalName);
     }
@@ -1272,6 +1272,7 @@ export class Dispositif extends Component {
       type: "push",
       ...(this.state.suggestion && { suggestion: h2p(this.state.suggestion) }),
     };
+
     API.update_dispositif(dispositif).then(() => {
       if (
         (modalName === "reaction" || fieldName === "merci") &&

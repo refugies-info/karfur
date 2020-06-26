@@ -206,18 +206,21 @@ const contenuParagraphe = (props) => {
                           "heading" + props.keyValue + "-" + subkey
                         }
                       >
-                        <EditableParagraph
-                          keyValue={props.keyValue}
-                          subkey={subkey}
-                          target="content"
-                          handleMenuChange={props.handleMenuChange}
-                          onEditorStateChange={props.onEditorStateChange}
-                          handleContentClick={props.handleContentClick}
-                          disableEdit={newDisableEdit}
-                          tutoriel={item.tutoriel}
-                          addItem={props.addItem}
-                          {...subitem}
-                        />
+                        {
+                          // display and edition of content
+                          <EditableParagraph
+                            keyValue={props.keyValue}
+                            subkey={subkey}
+                            target="content"
+                            handleMenuChange={props.handleMenuChange}
+                            onEditorStateChange={props.onEditorStateChange}
+                            handleContentClick={props.handleContentClick}
+                            disableEdit={newDisableEdit}
+                            tutoriel={item.tutoriel}
+                            addItem={props.addItem}
+                            {...subitem}
+                          />
+                        }
                       </Collapse>
                     </Col>
                     {!props.sideView && !props.inVariante && newDisableEdit && (

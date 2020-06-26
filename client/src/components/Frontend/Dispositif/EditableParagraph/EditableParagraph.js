@@ -136,6 +136,7 @@ function myBlockRenderer(contentBlock) {
   return undefined;
 }
 
+// EditableParagraph deals with content (and not children of items) in lecture and edition mode
 class EditableParagraph extends Component {
   // this component may have a props placeholder (from component contenuParagraphe )
   state = {
