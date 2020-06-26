@@ -4,9 +4,10 @@ import ContentEditable from "react-contenteditable";
 
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
-import CardParagraphe, {
+import {
+  CardParagraphe,
   PlusCard,
-} from "../../../../containers/Dispositif/CardParagraphe/CardParagraphe";
+} from "../../../../containers/Dispositif/CardParagraphe";
 import MapParagraphe from "../../../../containers/Dispositif/MapParagraphe/MapParagraphe";
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
@@ -68,12 +69,19 @@ const contenuParagraphe = (props) => {
               )}
               {subitem.type === "card" ? (
                 <CardParagraphe
-                  key={subkey}
                   subkey={subkey}
                   subitem={subitem}
-                  tutoriel={item.tutoriel}
                   disableEdit={newDisableEdit}
-                  {...bprops}
+                  changeTitle={bprops.changeTitle}
+                  handleMenuChange={bprops.handleMenuChange}
+                  changeAge={bprops.changeAge}
+                  toggleFree={bprops.toggleFree}
+                  changePrice={bprops.changePrice}
+                  updateUIArray={bprops.updateUIArray}
+                  toggleNiveau={bprops.toggleNiveau}
+                  deleteCard={bprops.deleteCard}
+                  content={bprops.content}
+                  keyValue={bprops.keyValue}
                 />
               ) : subitem.type === "map" ? (
                 <MapParagraphe

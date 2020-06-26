@@ -17,15 +17,18 @@ import {
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
-import { withTranslation } from "react-i18next";
 
 import SVGIcon from "../../../components/UI/SVGIcon/SVGIcon";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
 
 import "./CardParagraphe.scss";
+// @ts-ignore
 import variables from "scss/colors.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { Props } from "./CardParagraphe.container";
+import { DispositifContent } from "../../../@types/interface";
+import { filtres } from "../data";
 
 const list_papiers = [
   { name: "Titre de séjour" },
@@ -43,8 +46,46 @@ const frequencesPay = [
   "par heure",
 ];
 
-class CardParagraphe extends Component {
-  state = {
+// difficult to type
+type Element = any;
+
+interface Content {
+  abstract: string;
+  contact: string;
+  externalLink: string;
+  titreInformatif: string;
+  titreMarque: string;
+}
+
+export interface PropsBeforeInjection {
+  subkey: number;
+  subitem: DispositifContent;
+  disableEdit: boolean;
+  changeTitle: (arg1: number, arg2: number, arg3: string, arg4: string) => void;
+  handleMenuChange: (arg1: any) => void;
+  filtres: typeof filtres;
+  changeAge: (arg1: any, arg2: number, arg3: number, arg4: boolean) => void;
+  toggleFree: (arg1: number, arg2: number) => void;
+  changePrice: (arg1: any, arg2: number, arg3: number) => void;
+  updateUIArray: (arg1: number, arg2: number, arg3: string) => void;
+  toggleNiveau: (arg1: string, arg2: number, arg3: number) => void;
+  deleteCard: (arg1: number, arg2: number) => void;
+  content: Content;
+  keyValue: number;
+  t: any;
+}
+type StateType = {
+  showModal: boolean;
+  isDropdownOpen: boolean;
+  isOptionsOpen: boolean;
+  isModalDropdownOpen: boolean[];
+  papiers: typeof papiers;
+  showNiveaux: boolean;
+  tooltipOpen: boolean;
+};
+
+export class CardParagraphe extends Component<Props> {
+  state: StateType = {
     showModal: false,
     isDropdownOpen: false,
     isOptionsOpen: false,
@@ -54,14 +95,14 @@ class CardParagraphe extends Component {
     tooltipOpen: false,
   };
 
-  editCard = () => this.toggleModal(true, "pieces");
-
-  toggleModal = (show) => this.setState({ showModal: show });
+  toggleModal = (show: boolean) => this.setState({ showModal: show });
   toggleNiveaux = () => this.setState({ showNiveaux: !this.state.showNiveaux });
   toggleTooltip = () =>
-    this.setState((prevState) => ({ tooltipOpen: !prevState.tooltipOpen }));
+    this.setState((prevState: StateType) => ({
+      tooltipOpen: !prevState.tooltipOpen,
+    }));
 
-  toggleDropdown = (e) => {
+  toggleDropdown = (e: Element) => {
     if (this.state.isDropdownOpen && e.currentTarget.id) {
       this.props.changeTitle(
         this.props.keyValue,
@@ -73,14 +114,14 @@ class CardParagraphe extends Component {
     this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   };
 
-  toggleModalDropdown = (idx) =>
+  toggleModalDropdown = (idx: number) =>
     this.setState({
       isModalDropdownOpen: this.state.isModalDropdownOpen.map((x, i) =>
         i === idx ? !x : x
       ),
     });
 
-  setPapier = (idx, y) =>
+  setPapier = (idx: number, y: number) =>
     this.setState({
       papiers: this.state.papiers.map((x, i) =>
         i === idx ? list_papiers[y] : x
@@ -91,11 +132,11 @@ class CardParagraphe extends Component {
       papiers: [...this.state.papiers, { name: "Titre de séjour" }],
       isModalDropdownOpen: [...this.state.isModalDropdownOpen, false],
     });
-  removePiece = (idx) =>
+  removePiece = (idx: number) =>
     this.setState({
       papiers: [...this.state.papiers].filter((_, key) => key !== idx),
     });
-  emptyPlaceholder = (e) => {
+  emptyPlaceholder = (e: Element) => {
     if (!this.props.disableEdit && (this.props.subitem || {}).isFakeContent) {
       this.props.handleMenuChange({
         currentTarget: e.currentTarget,
@@ -104,7 +145,7 @@ class CardParagraphe extends Component {
     }
   };
 
-  toggleOptions = (e) => {
+  toggleOptions = (e: Element) => {
     if (this.state.isOptionsOpen && e.currentTarget.id) {
       this.props.changeTitle(
         this.props.keyValue,
@@ -118,6 +159,7 @@ class CardParagraphe extends Component {
 
   footerClicked = () => {
     if (this.props.subitem.footerHref) {
+      // @ts-ignore
       window.open(this.props.subitem.footerHref, "_blank");
     } else {
       Swal.fire({
@@ -130,10 +172,10 @@ class CardParagraphe extends Component {
   };
 
   render() {
-    const { subitem, subkey, filtres, disableEdit, t } = this.props;
+    const { subitem, subkey, disableEdit, t } = this.props;
     const { showNiveaux } = this.state;
 
-    const jsUcfirst = (string, title) => {
+    const jsUcfirst = (string: string, title: string) => {
       if (title === "Public visé" && string && string.length > 1) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       }
@@ -162,7 +204,7 @@ class CardParagraphe extends Component {
       { title: "Important !", titleIcon: "warning" },
     ];
 
-    const contentTitle = (subitem) => {
+    const contentTitle = (subitem: DispositifContent) => {
       let cardTitle = cardTitles.find((x) => x.title === subitem.title);
       // edition mode of cards with options
       // for example Public visé, Age requis, Durée, Niveau de français, justificatif demandé
@@ -173,8 +215,11 @@ class CardParagraphe extends Component {
         !disableEdit
       ) {
         if (
+          !subitem.contentTitle ||
           !cardTitle.options.some(
-            (x) => x.toUpperCase() === subitem.contentTitle.toUpperCase()
+            (x: string) =>
+              // @ts-ignore : check if subitem.contentTitle is undefined already done
+              x.toUpperCase() === subitem.contentTitle.toUpperCase()
           )
         ) {
           subitem.contentTitle = cardTitle.options[0];
@@ -241,10 +286,11 @@ class CardParagraphe extends Component {
               )}
             </DropdownToggle>
             <DropdownMenu>
-              {cardTitle.options.map((option, key) => {
+              {cardTitle.options.map((option, key: number) => {
                 return (
+                  //@ts-ignore
                   <DropdownItem key={key} id={key}>
-                    {jsUcfirst(option, cardTitle.title)}
+                    {cardTitle ? jsUcfirst(option, cardTitle.title) : ""}
                   </DropdownItem>
                 );
               })}
@@ -316,6 +362,7 @@ class CardParagraphe extends Component {
                   </DropdownToggle>
                   <DropdownMenu>
                     {frequencesPay.map((f, key) => (
+                      //@ts-ignore
                       <DropdownItem key={key} id={key}>
                         {f}
                       </DropdownItem>
@@ -371,6 +418,7 @@ class CardParagraphe extends Component {
       // edition of infocards Important
       return (
         <ContentEditable
+          //@ts-ignore
           id={this.props.keyValue}
           className="card-input"
           data-subkey={subkey}
@@ -383,7 +431,7 @@ class CardParagraphe extends Component {
       );
     };
 
-    const cardHeaderContent = (subitem) => {
+    const cardHeaderContent = (subitem: DispositifContent) => {
       // in lecture mode, display title and icon
       if (this.props.disableEdit) {
         return (
@@ -436,6 +484,7 @@ class CardParagraphe extends Component {
                 return (
                   <DropdownItem
                     key={key}
+                    // @ts-ignore
                     id={key}
                     data-titleicon={cardTitle.titleIcon}
                   >
@@ -450,7 +499,7 @@ class CardParagraphe extends Component {
       );
     };
 
-    const cardFooterContent = (subitem) => {
+    const cardFooterContent = (subitem: DispositifContent) => {
       // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
       if (this.props.subitem.footerHref && disableEdit) {
         return (
@@ -507,7 +556,7 @@ class CardParagraphe extends Component {
                       <button
                         key={key}
                         className={
-                          (subitem.niveaux || []).some((x) => x === nv)
+                          (subitem.niveaux || []).some((x: string) => x === nv)
                             ? "active"
                             : ""
                         }
@@ -618,7 +667,12 @@ class CardParagraphe extends Component {
   }
 }
 
-const PlusCard = (props) => {
+interface PlusCardProps {
+  addItem: (arg1: number, arg2: string) => void;
+  keyValue: number;
+}
+
+const PlusCard = (props: PlusCardProps) => {
   return (
     <Col xl="4" lg="6" md="6" sm="12" xs="12" className="card-col">
       <Card
@@ -637,5 +691,3 @@ const PlusCard = (props) => {
 };
 
 export { PlusCard };
-
-export default withTranslation()(CardParagraphe);
