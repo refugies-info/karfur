@@ -12,6 +12,7 @@ import DirectionProvider, {
   DIRECTIONS,
 } from "react-with-direction/dist/DirectionProvider";
 import _ from "lodash";
+import moment from "moment";
 
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -115,19 +116,23 @@ class SideTrad extends Component {
     referenceId: null,
     referenceTrad: null,
     avancement: 0,
+    startingTime: null,
+    endingTime: null,
+    initializeUpdate: true,
   };
   initialState = this.state;
 
-  /*  componentDidMount() {
-      this._initializeComponent();
-
-  } */
+  componentDidMount() {
+    this.setState({ startingTime: moment() });
+  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
+    //update when receiving api's return, working with sagas
     if (
       this.props.translations !== nextProps.translations &&
       nextProps.translations
     ) {
+      console.log("inside componenet will receive props");
       const { translations } = nextProps;
       if (translations.length) {
         const userTrad = translations.find(
@@ -144,7 +149,9 @@ class SideTrad extends Component {
         }
       }
       this.props.fwdSetState({ disableBtn: false });
-      this.goChange(true, false);
+      if (this.state.initialize) {
+        this.goChange(true, false);
+      }
     }
     if (
       this.props.translation !== nextProps.translation &&
@@ -184,7 +191,7 @@ class SideTrad extends Component {
       currSubIdx !== prevState.currSubIdx ||
       currSubName !== prevState.currSubName
     ) {
-      this.setState({ propositionIndex: 0 });
+      this.setState({ propositionIndex: 0, startingTime: moment() });
       if (
         availableListTrad.length > 0 &&
         availableListTrad.find(
@@ -838,6 +845,16 @@ class SideTrad extends Component {
       });
       return;
     }
+    let timeSpent = 0;
+    if (this.state.startingTime) {
+      timeSpent = this.state.startingTime.diff(moment());
+      console.log(timeSpent, moment.duration(timeSpent).asSeconds());
+    }
+    let textString = this.props.translated.body
+      .getCurrentContent()
+      .getPlainText();
+    let wordsCount = textString.split(" ").length;
+
     let {
       pointeurs,
       currIdx,
@@ -997,6 +1014,8 @@ class SideTrad extends Component {
         translatedText: traduction.translatedText,
         avancement: traduction.avancement,
         isExpert: true,
+        wordsCount,
+        timeSpent,
       };
       this.props.fwdSetState({ newTrad }, () => {});
       if (newTrad.avancement >= 1) {
@@ -1009,6 +1028,8 @@ class SideTrad extends Component {
         // eslint-disable-next-line
         console.log(traduction);
       });
+      traduction.wordsCount = wordsCount;
+      traduction.timeSpent = timeSpent;
       await this.props.valider(traduction);
     }
     /* this.goChange(true, false);
