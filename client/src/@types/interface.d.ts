@@ -74,6 +74,11 @@ export interface DispositifContent {
   topValue?: number;
   free?: boolean;
   price?: number;
+  footerHref?: string;
+  footerIcon?: string;
+  footer?: string;
+  niveaux?: string[];
+  contentBody?: string;
 }
 
 export interface Tag {
@@ -132,12 +137,12 @@ export interface Translation {
   _id?: ObjectId;
   initialText?: object;
   translatedText?: object;
-  langueCible?: string,
-  articleId?: ObjectId,
-  timeSpent?: string,
-  isStructure?: boolean,
-  avancement?: number,
-  type?: string,
-  validatorId?: ObjectId,
-  isExpert?: boolean,
+  langueCible?: string;
+  articleId?: ObjectId;
+  timeSpent?: string;
+  isStructure?: boolean;
+  avancement?: number;
+  type?: string;
+  validatorId?: ObjectId;
+  isExpert?: boolean;
 }

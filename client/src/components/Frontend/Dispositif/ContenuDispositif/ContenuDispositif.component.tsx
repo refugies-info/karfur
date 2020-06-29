@@ -44,14 +44,24 @@ export interface PropsBeforeInjection {
   filtres: any;
 }
 
+/**
+ *
+ * @param props
+ * disableEdit : true in lecture mode and false when editing
+ */
+
 export const contenuDispositif = (props: Props) => {
   const { t, disableEdit, inVariante } = props;
+
+  // props.menu is an array of the different sections (for example for a dispositif it is C'est quoi, C'est pour qui, Pourquoi c'est intéressant and Comment je m'engage)
   return props.menu.map((item: DispositifContent, key: number) => {
+    // TO DO : check the second constraint
     const newDisableEdit =
       disableEdit ||
       (props.typeContenu === "demarche" &&
         inVariante &&
         !props.uiArray[key].varianteSelected);
+
     if (
       (newDisableEdit && !inVariante) ||
       props.typeContenu !== "demarche" ||
@@ -119,49 +129,61 @@ export const contenuDispositif = (props: Props) => {
                   "contenu-title color-darkColor" + (key !== 0 ? " mt-20" : "")
                 }
               >
+                {
+                  // display title of dispositif
+                }
                 {item.title && t("Dispositif." + item.title, item.title)}
               </h3>
-              {item.content !== null && item.content !== "null" && (
-                <EditableParagraph
-                  keyValue={key}
-                  handleMenuChange={props.handleMenuChange}
-                  onEditorStateChange={props.onEditorStateChange}
-                  handleContentClick={props.handleContentClick}
-                  disableEdit={newDisableEdit}
-                  addItem={props.addItem}
-                  subkey={props.subkey}
-                  editable={item.editable}
-                  type={item.type}
-                  placeholder={item.placeholder}
-                  target={item.target}
-                  content={item.content}
-                  // @ts-ignore
-                  editorState={item.editorState}
-                />
-              )}
+              {
+                // EditableParagraph displays content (but not children) in lecture mode and deal with edition in edition mode
+                item.content !== null && item.content !== "null" && (
+                  <EditableParagraph
+                    keyValue={key}
+                    handleMenuChange={props.handleMenuChange}
+                    onEditorStateChange={props.onEditorStateChange}
+                    handleContentClick={props.handleContentClick}
+                    disableEdit={newDisableEdit}
+                    addItem={props.addItem}
+                    subkey={props.subkey}
+                    editable={item.editable}
+                    type={item.type}
+                    placeholder={item.placeholder}
+                    target={item.target}
+                    content={item.content}
+                    // @ts-ignore
+                    editorState={item.editorState}
+                  />
+                )
+              }
             </Col>
             {!props.sideView &&
               !props.inVariante &&
               props.uiArray[key].isHover && (
                 <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
-                  <QuickToolbar
-                    show={props.uiArray[key].isHover}
-                    keyValue={key}
-                    item={item}
-                    handleContentClick={props.handleContentClick}
-                    disableEdit={newDisableEdit}
-                    tracking={props.tracking}
-                    toggleModal={props.toggleModal}
-                    readAudio={props.readAudio}
-                    subkey={props.subkey}
-                    t={props.t}
-                    removeItem={props.removeItem}
-                    ttsActive={props.ttsActive}
-                  />
+                  {
+                    // on the right, contains reaction and reading
+                    <QuickToolbar
+                      show={props.uiArray[key].isHover}
+                      keyValue={key}
+                      item={item}
+                      handleContentClick={props.handleContentClick}
+                      disableEdit={newDisableEdit}
+                      tracking={props.tracking}
+                      toggleModal={props.toggleModal}
+                      readAudio={props.readAudio}
+                      subkey={props.subkey}
+                      t={props.t}
+                      removeItem={props.removeItem}
+                      ttsActive={props.ttsActive}
+                    />
+                  }
                 </Col>
               )}
           </Row>
-          <ContenuParagraphe item={item} keyValue={key} {...props} />
+          {
+            // lecture and edition of childrens and info cards
+            <ContenuParagraphe item={item} keyValue={key} {...props} />
+          }
           <button className="anchor" id={"item-" + key}>
             {item.title}
           </button>
