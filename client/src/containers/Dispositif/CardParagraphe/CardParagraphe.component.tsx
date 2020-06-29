@@ -41,9 +41,10 @@ const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 const frequencesPay = [
   "une seule fois ",
   "à chaque fois",
-  "par mois",
-  "par semaine",
   "par heure",
+  "par semaine",
+  "par mois",
+  "par an",
 ];
 
 // difficult to type
