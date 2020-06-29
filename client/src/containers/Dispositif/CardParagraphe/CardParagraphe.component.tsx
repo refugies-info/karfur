@@ -196,11 +196,7 @@ export class CardParagraphe extends Component<Props> {
         options: filtres.niveauFrancais,
       },
       { title: "Combien ça coûte ?", titleIcon: "pricetags-outline" },
-      {
-        title: "Justificatif demandé",
-        titleIcon: "papiers",
-        options: filtres.justificatifs,
-      },
+
       { title: "Important !", titleIcon: "warning" },
     ];
 
