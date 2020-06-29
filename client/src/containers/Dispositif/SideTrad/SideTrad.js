@@ -25,6 +25,7 @@ import {
 } from "../../../assets/figma/index";
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { RejectTradModal } from "../../../components/Modals";
+import moment from 'moment';
 
 import "./SideTrad.scss";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
@@ -97,13 +98,15 @@ class SideTrad extends Component {
     initialize: false,
     initializeTrad: false,
     avancement: 0,
+    startingTime: null,
+    endingTime: null
   };
   initialState = this.state;
 
-  /*  componentDidMount() {
-      this._initializeComponent();
+  componentDidMount() {
+    this.setState({startingTime: moment()});
 
-  } */
+}
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (
@@ -164,7 +167,7 @@ class SideTrad extends Component {
       currSubIdx !== prevState.currSubIdx ||
       currSubName !== prevState.currSubName
     ) {
-      this.setState({ propositionIndex: 0 });
+      this.setState({ propositionIndex: 0, startingTime: moment() });
 
       if (availableListTrad.length > 0) {
         this.setState({ validated: true });
@@ -709,6 +712,7 @@ class SideTrad extends Component {
   };
 
   onValidate = async () => {
+    console.log(this.props.translated.body);
     if (!this.props.translated.body) {
       Swal.fire({
         title: "Oh non",
@@ -718,6 +722,15 @@ class SideTrad extends Component {
       });
       return;
     }
+    let timeSpent = 0;
+    if (this.state.startingTime) {
+      timeSpent = this.state.startingTime.diff(moment());
+      console.log(timeSpent, moment.duration(timeSpent).asSeconds());
+    }
+    let textString = this.props.translated.body
+      .getCurrentContent()
+      .getPlainText();
+    let wordsCount = textString.split(" ").length;
     let {
       pointeurs,
       currIdx,
@@ -889,27 +902,10 @@ class SideTrad extends Component {
         // eslint-disable-next-line
         console.log(traduction);
       });
+      traduction.wordsCount = wordsCount;
+      traduction.timeSpent = timeSpent;
       await this.props.valider(traduction);
     }
-  };
-
-  _insertTrad = () => {
-    let newTrad = {
-      ...this.props.traduction,
-      articleId: this.props.itemId,
-      type: "dispositif",
-      locale: this.props.locale,
-      traductions: this.props.traductionsFaites,
-    };
-    API.validate_tradForReview(newTrad).then(() => {
-      Swal.fire(
-        "Yay...",
-        "Ce dispositif est maintenant intégralement validé et disponible à la lecture",
-        "success"
-      ).then(() => {
-        this.props.onSkip();
-      });
-    });
   };
 
   render() {
