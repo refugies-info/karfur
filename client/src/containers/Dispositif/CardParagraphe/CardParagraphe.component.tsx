@@ -28,7 +28,7 @@ import variables from "scss/colors.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent } from "../../../@types/interface";
-import { filtres } from "../data";
+import { filtres, cardTitles } from "../data";
 
 const list_papiers = [
   { name: "Titre de séjour" },
@@ -74,6 +74,7 @@ export interface PropsBeforeInjection {
   content: Content;
   keyValue: number;
   t: any;
+  cards: string[];
 }
 type StateType = {
   showModal: boolean;
@@ -175,7 +176,6 @@ export class CardParagraphe extends Component<Props> {
   render() {
     const { subitem, subkey, disableEdit, t } = this.props;
     const { showNiveaux } = this.state;
-
     const jsUcfirst = (string: string, title: string) => {
       if (title === "Public visé" && string && string.length > 1) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -183,28 +183,15 @@ export class CardParagraphe extends Component<Props> {
       return string;
     };
 
-    const cardTitles = [
-      { title: "Public visé", titleIcon: "papiers", options: filtres.audience },
-      {
-        title: "Âge requis",
-        titleIcon: "calendar",
-        options: filtres.audienceAge,
-      }, //["0-18","18-25","25-56","56-120"]
-      { title: "Durée", titleIcon: "clock-outline" },
-      {
-        title: "Niveau de français",
-        titleIcon: "frBubble",
-        options: filtres.niveauFrancais,
-      },
-      { title: "Combien ça coûte ?", titleIcon: "pricetags-outline" },
-
-      { title: "Important !", titleIcon: "warning" },
-    ];
+    // filter cards to have maximum one infocard by category
+    const availableCardTitles = cardTitles.filter(
+      (x) => !this.props.cards.includes(x.title)
+    );
 
     const contentTitle = (subitem: DispositifContent) => {
       let cardTitle = cardTitles.find((x) => x.title === subitem.title);
       // edition mode of cards with options
-      // for example Public visé, Age requis, Durée, Niveau de français, justificatif demandé
+      // for example Public visé, Age requis, Durée, Niveau de français
       if (
         cardTitle &&
         cardTitle.options &&
@@ -477,7 +464,7 @@ export class CardParagraphe extends Component<Props> {
           <DropdownMenu>
             {
               // drop down with the list of possible info cards
-              cardTitles.map((cardTitle, key) => {
+              availableCardTitles.map((cardTitle, key) => {
                 return (
                   <DropdownItem
                     key={key}
@@ -665,16 +652,22 @@ export class CardParagraphe extends Component<Props> {
 }
 
 interface PlusCardProps {
-  addItem: (arg1: number, arg2: string) => void;
+  addItem: (arg1: number, arg2: string, arg3?: string | null) => void;
   keyValue: number;
+  cards: string[];
 }
 
 const PlusCard = (props: PlusCardProps) => {
+  const availableCardTitles = cardTitles.filter(
+    (x) => !props.cards.includes(x.title)
+  );
+  const nextTitle =
+    availableCardTitles.length > 0 ? availableCardTitles[0].title : "";
   return (
     <Col xl="4" lg="6" md="6" sm="12" xs="12" className="card-col">
       <Card
         className="add-card"
-        onClick={() => props.addItem(props.keyValue, "card")}
+        onClick={() => props.addItem(props.keyValue, "card", nextTitle)}
       >
         <CardHeader className="backgroundColor-darkColor">
           Ajouter un item
