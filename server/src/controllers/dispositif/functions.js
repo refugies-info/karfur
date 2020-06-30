@@ -13,9 +13,6 @@ const markTradModifications = (newD, oldD, trad, locale) => {
     }
   });
   oldD.contenu.forEach((p, index) => {
-    if (!trad.translatedText.contenu[index]) {
-      return;
-    }
     if (JSON.stringify(p.title) !== JSON.stringify(newD.contenu[index].title)) {
       trad.translatedText.contenu[index].titleModified = true;
       trad.status = "À revoir";
@@ -39,14 +36,19 @@ const markTradModifications = (newD, oldD, trad, locale) => {
         if (!newD.contenu[index].children) {
           delete trad.translatedText.contenu[index].children;
           trad.status = "À revoir";
-        } else if (!newD.contenu[index].children[j]) {
+        } else if (
+          !newD.contenu[index].children[j] &&
+          trad.translatedText.contenu[index] &&
+          trad.translatedText.contenu[index].children
+        ) {
           trad.translatedText.contenu[index].children.splice(j, 1);
           trad.status = "À revoir";
         } else {
           if (
-            c.type !== "card" &&
             JSON.stringify(c.title) !==
-              JSON.stringify(newD.contenu[index].children[j].title)
+              JSON.stringify(newD.contenu[index].children[j].title) &&
+            trad.translatedText.contenu[index] &&
+            trad.translatedText.contenu[index].children
           ) {
             trad.translatedText.contenu[index].children[j].titleModified = true;
             trad.status = "À revoir";
@@ -64,9 +66,10 @@ const markTradModifications = (newD, oldD, trad, locale) => {
           }
 
           if (
-            c.type !== "card" &&
             JSON.stringify(c.contentTitle) !==
-              JSON.stringify(newD.contenu[index].children[j].contentTitle)
+              JSON.stringify(newD.contenu[index].children[j].contentTitle) &&
+            trad.translatedText.contenu[index] &&
+            trad.translatedText.contenu[index].children
           ) {
             trad.translatedText.contenu[index].children[
               j
