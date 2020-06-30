@@ -1,123 +1,132 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
-
-
-.cards.row{
+.cards.row {
   padding: 0 40px;
-  .card-col{ 
+  .card-col {
     padding: 0 0 0 10px;
-    margin-top:40px;
+    margin-top: 40px;
 
-    .card{
+    .card {
       margin-top: -40px;
       min-height: 230px;
       border-radius: 12px;
-      border:none;
+      border: none;
       height: 300px;
       background-color: $noirCD;
 
-      &.Public-visé{
-        background-image: url(../../../assets/figma/InfoCard/infocard_Public.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
+      &.Public-visé {
+        background-image: url(../../../assets/figma/InfoCard/infocard_Public.svg),
+          url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
         background-position: calc(100% - 20px) calc(100% + 25px), center;
       }
-      
-      &.Âge-requis{
-        background-image: url(../../../assets/figma/InfoCard/infocard_Age.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
+
+      &.Âge-requis {
+        background-image: url(../../../assets/figma/InfoCard/infocard_Age.svg),
+          url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
         background-position: calc(100% - 20px) calc(100% + 10px), center;
       }
-      
-      &.Durée{
-        background-image: url(../../../assets/figma/InfoCard/infocard_Durée.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
+
+      &.Durée {
+        background-image: url(../../../assets/figma/InfoCard/infocard_Durée.svg),
+          url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
         background-position: calc(100% - 30px) calc(100% + 0px), center;
       }
-      
-      &.Niveau-de-français{
-        background-image: url(../../../assets/figma/InfoCard/infocard_Français.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
+
+      &.Niveau-de-français {
+        background-image: url(../../../assets/figma/InfoCard/infocard_Français.svg),
+          url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
         background-position: calc(100% - 30px) calc(100% + 0px), center;
       }
-      
-      &.Combien-ça-coûte{
-        background-image: url(../../../assets/figma/InfoCard/infocard_Prix.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
+
+      &.Combien-ça-coûte {
+        background-image: url(../../../assets/figma/InfoCard/infocard_Prix.svg),
+          url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 70%, cover;
         background-repeat: no-repeat, no-repeat;
         background-position: calc(100% - 0px) calc(100% + 0px), center;
       }
-      
-      &.Justificatif-demandé{
-        background-image: url(../../../assets/figma/InfoCard/infocard_Papiers.svg), url(../../../assets/figma/InfoCard/bg-infocard.svg);
+
+      &.Justificatif-demandé {
+        background-image: url(../../../assets/figma/InfoCard/infocard_Papiers.svg),
+          url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
         background-position: calc(100% - 60px) calc(100% + 0px), center;
       }
 
-      &.make-it-red{
-        background: $rouge;
+      &.make-it-red {
+        background-image: url(../../../assets/figma/InfoCard/infocard_Important.svg),
+          url(../../../assets/figma/InfoCard/bg-infocard.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
       }
-      
-      .card-header{
+
+      .card-header {
         display: inline-flex;
         align-items: center;
         background-color: $darkColor;
         border: none;
         border-radius: 12px 12px 0 0;
-        color: #FFFFFF;
+        color: #ffffff;
         padding: 10px 15px;
 
-        .header-content{
+        .header-content {
           margin-left: 10px;
         }
-        .form-control{
-          background-color:inherit;
+        .form-control {
+          background-color: inherit;
         }
-        .btn-group{
+        .btn-group {
           width: 100%;
-          .header-value{
+          .header-value {
             background-color: inherit;
             color: inherit;
             border: none;
             width: 100%;
             text-align: initial;
-            padding:0;
+            padding: 0;
           }
         }
       }
-    
-      .card-body{
+
+      .card-body {
         padding-bottom: 12px;
         line-height: 20px;
         color: $noir;
-  
-        .card-custom-title{
-          .card-input{
+
+        .card-custom-title {
+          .card-input {
             font-size: 24px;
             font-weight: 600;
             border-radius: 6px;
             line-height: 38px;
           }
         }
-  
-        .content-title{
-          .dropdown-toggle.btn, .btn{
+
+        .content-title {
+          .dropdown-toggle.btn,
+          .btn {
             color: inherit;
             background-color: inherit;
             border-color: inherit;
             font-weight: inherit;
             font-size: inherit;
-            border:none;
-            padding:0;
+            border: none;
+            padding: 0;
             white-space: normal;
           }
         }
-  
-        .age-input{
+
+        .age-input {
           font-weight: 500;
           font-size: 24px;
           line-height: 40px;
@@ -130,31 +139,32 @@
           color: $noir;
           height: 40px;
           background-color: $jauneClair;
-          &:active, &:focus{
+          &:active,
+          &:focus {
             background-color: $gris;
           }
         }
-        
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-          -webkit-appearance: none; 
-          margin: 0; 
+
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
         }
 
-        .price-details{
+        .price-details {
           display: inline-flex;
           align-items: center;
           justify-content: space-between;
         }
-  
-        .price-frequency{
+
+        .price-frequency {
           font-weight: normal;
           font-size: 16px;
           margin-left: 10px;
         }
-        .niveaux-wrapper{
+        .niveaux-wrapper {
           margin-top: -5px;
-          button{
+          button {
             border: 0.5px solid $noirCD;
             border-radius: 6px;
             padding: 5px;
@@ -164,122 +174,122 @@
             margin-top: 5px;
             font-weight: bold;
             font-size: 16px;
-            &:hover:not(:disabled){
+            &:hover:not(:disabled) {
               border-color: $darkColor;
               color: $darkColor;
-              background: #FFFFFF;
+              background: #ffffff;
             }
-            &.active{
-              color: #FFFFFF;
+            &.active {
+              color: #ffffff;
               background-color: $darkColor;
-              border:none;
-              outline:none;
+              border: none;
+              outline: none;
             }
-            &:focus{
-              outline:none;
+            &:focus {
+              outline: none;
             }
           }
         }
       }
-      .card-footer{
+      .card-footer {
         background: transparent;
         border-radius: 0 0 12px 12px;
-        border:none;
-  
-        .btn{
+        border: none;
+
+        .btn {
           border-radius: 12px;
           font-size: 16px;
           font-weight: bold;
         }
-        .footer-content{
+        .footer-content {
           margin-left: 8px;
         }
-        .footer-input{
+        .footer-input {
           font-style: italic;
           font-size: 16px;
           opacity: 0.6;
-          color: #FFFFFF;
+          color: #ffffff;
           background: transparent;
         }
       }
-  
-      &.add-card{
-        background-color: rgba(0,0,0,0.05);
+
+      &.add-card {
+        background-color: rgba(0, 0, 0, 0.05);
         text-align: center;
-        &:hover{
-          background-color: rgba(0,0,0,0.1);
-          .add-sign{
-            opacity:1;
-            font-size:90px;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.1);
+          .add-sign {
+            opacity: 1;
+            font-size: 90px;
             -webkit-transition: opacity 0.4s ease, font-size 0.4s ease;
             -moz-transition: opacity 0.4s ease, font-size 0.4s ease;
             -o-transition: opacity 0.4s ease, font-size 0.4s ease;
             transition: opacity 0.4s ease, font-size 0.4s ease;
           }
         }
-        .add-sign{
-          font-size:60px;
-          font-weight:bold;
-          opacity: .5;
+        .add-sign {
+          font-size: 60px;
+          font-weight: bold;
+          opacity: 0.5;
         }
-        .card-body{
+        .card-body {
           display: flex;
           justify-content: center;
           align-items: center;
-          color: hsl(0,0%,20%);
+          color: hsl(0, 0%, 20%);
         }
       }
-      .card-icons{
+      .card-icons {
         position: absolute;
         top: -15px;
         right: -15px;
         cursor: pointer;
-        svg{
+        svg {
           fill: $error;
         }
-        &:hover{
-          svg{
+        &:hover {
+          svg {
             fill: $noir;
           }
         }
       }
-      &:hover .card-icons{
+      &:hover .card-icons {
         display: inherit;
       }
     }
   }
-} 
-.tooltip.show{
+}
+.tooltip.show {
   opacity: 1;
 }
-.tooltip.show .tooltip-inner{
-  background:$noir;
+.tooltip.show .tooltip-inner {
+  background: $noir;
   opacity: 1;
   padding: 20px;
   text-align: left;
   max-width: 260px;
-  .arrow{
-    border-top-color: $noir; 
+  .arrow {
+    border-top-color: $noir;
   }
 }
 
-.bs-tooltip-bottom .arrow::before, .bs-tooltip-auto[x-placement^="bottom"] .arrow::before{
+.bs-tooltip-bottom .arrow::before,
+.bs-tooltip-auto[x-placement^="bottom"] .arrow::before {
   border-bottom-color: $noir;
 }
 
-.card-tooltip{
- 
-  .tooltip-header{
+.card-tooltip {
+  .tooltip-header {
     margin-bottom: 15px;
   }
-  .tooltip-footer{
+  .tooltip-footer {
     margin-top: 15px;
   }
 }
-.modal-pieces .modal-content{
-  background: #3D3D3D;
-  border-color: #3D3D3D;
-  mix-blend-mode: normal;/* Shadow autour */
+.modal-pieces .modal-content {
+  background: #3d3d3d;
+  border-color: #3d3d3d;
+  mix-blend-mode: normal; /* Shadow autour */
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   border: none;
@@ -287,35 +297,35 @@
   font-weight: normal;
   font-size: 18px;
   line-height: 23px;
-  color: #FFFFFF;
-  padding:20px;
+  color: #ffffff;
+  padding: 20px;
 
-  h1{
+  h1 {
     font-size: 40px;
     line-height: 51px;
   }
-  .subtitle{
+  .subtitle {
     font-style: italic;
   }
-  .list-group-item{
+  .list-group-item {
     background: inherit;
     color: inherit;
-    padding:20px;
+    padding: 20px;
   }
 
-  .papiers-toggle-btn{
-    width:100%;
+  .papiers-toggle-btn {
+    width: 100%;
     text-align: left;
     padding: 0;
     background: inherit;
     border: none;
-    &::after{
+    &::after {
       position: absolute;
       right: 0;
       top: 8px;
     }
   }
-  .btn-moins{
+  .btn-moins {
     position: absolute;
     right: -30px;
     top: 20px;
