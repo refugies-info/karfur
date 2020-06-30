@@ -250,7 +250,8 @@ export class TranslationHOC extends Component {
                 )
               )
             : value;
-          this._isMounted &&
+          console.log(item);
+          this._isMounted && item &&
             this.setState(
               {
                 translated: {
@@ -394,6 +395,7 @@ export class TranslationHOC extends Component {
   };
 
   valider = async (tradData = {}) => {
+    console.log('validation')
     this.setState({ disableBtn: true });
     let traduction = {
       langueCible: this.state.locale,
@@ -414,12 +416,13 @@ export class TranslationHOC extends Component {
       };
     }
     traduction = { ...traduction, ...tradData };
+    console.log('validation trad', traduction);
 
     //const data = await API.add_traduction(traduction);
     await this.props.addTranslation(traduction);
     //traduction._id = (data.data.data || {})._id;
     this.setState({ traduction });
-    await this.get_trads();
+    //await this.get_trads();
     if (traduction.avancement >= 1) {
       Swal.fire({
         title: "Yay...",

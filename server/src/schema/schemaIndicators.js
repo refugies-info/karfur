@@ -4,18 +4,20 @@ var indicatorSchema = mongoose.Schema(
   {
     language: {
       type: String,
-      required: true,
+      required: true
     },
-    nombreMots: {
+    wordsCount: {
       type: Number,
     },
     dispositifId: {
-      type: { type: mongoose.Schema.ObjectId, ref: "Dispositif" },
-      required: true,
+      type: mongoose.Schema.ObjectId,
+      ref: "Dispositif",
+      required: true
     },
     userId: {
-      type: { type: mongoose.Schema.ObjectId, ref: "User" },
-      required: true,
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+      rrequired: true
     },
     timeSpent: {
       type: Number,

@@ -118,7 +118,7 @@ class SideTrad extends Component {
     avancement: 0,
     startingTime: null,
     endingTime: null,
-    initializeUpdate: true,
+    validerInit: false,
   };
   initialState = this.state;
 
@@ -126,13 +126,13 @@ class SideTrad extends Component {
     this.setState({ startingTime: moment() });
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+/*   UNSAFE_componentWillReceiveProps(nextProps) {
     //update when receiving api's return, working with sagas
     if (
       this.props.translations !== nextProps.translations &&
       nextProps.translations
     ) {
-      console.log("inside componenet will receive props");
+      console.log("inside componenet will receive props", this.props.translations , nextProps.translations );
       const { translations } = nextProps;
       if (translations.length) {
         const userTrad = translations.find(
@@ -150,6 +150,7 @@ class SideTrad extends Component {
       }
       this.props.fwdSetState({ disableBtn: false });
       if (this.state.initialize) {
+        console.log('wrong here');
         this.goChange(true, false);
       }
     }
@@ -182,9 +183,65 @@ class SideTrad extends Component {
       this.setState({ initializeTrad: true });
     }
   }
-
+ */
   componentDidUpdate(prevProps, prevState) {
     const { currIdx, currSubIdx, currSubName, availableListTrad } = this.state;
+    if (
+      this.state.initialize === false &&
+      prevProps.content.titreInformatif !== this.props.content.titreInformatif
+    ) {
+      this._initializeComponent(this.props);
+      this.setState({ initialize: true });
+    }
+    if (
+      this.state.initializeTrad === false &&
+      prevProps.traductionsFaites !== this.props.traductionsFaites
+    ) {
+      this._initializeComponent(this.props);
+      this.setState({ initializeTrad: true });
+    } 
+    if (
+      this.props.translations !== prevProps.translations &&
+      this.props.translations
+    ) {
+      console.log("inside componenet will receive props", this.props.translations , prevProps.translations, this.state, this.props );
+      const {translations}  = this.props;
+      var userTrad = null;
+      if (translations.length) {
+        userTrad = translations.find(
+          (trad) => trad.userId._id === this.props.user._id
+        );
+        if (userTrad) {
+          this.setState({
+            avancement:
+              this._countValidated([userTrad.translatedText]) /
+              (this._countContents(this.props.menu) +
+                this.state.pointeurs.length -
+                this.props.menu.length),
+          });
+        }
+      }
+      this.props.fwdSetState({ disableBtn: false });
+      if ((this.state.initialize && currIdx !== "titreInformatif") || (this.state.initialize && currIdx === "titreInformatif" && this.state.validerInit)) {
+        console.log('wrong here');
+        this.goChange(true, false);
+      }
+    }
+    if (
+      this.props.translation !== prevProps.translation &&
+      this.props.translation
+    ) {
+      if (this.props.translation.avancement >= 1) {
+        Swal.fire({
+          title: "Yay...",
+          text: "La traduction a bien été enregistrée",
+          type: "success",
+          timer: 1000,
+        });
+        this.props.onSkip();
+      }
+    }
+ 
 
     if (
       currIdx !== prevState.currIdx ||
@@ -836,6 +893,9 @@ class SideTrad extends Component {
   };
 
   onValidate = async () => {
+    if (this.state.currIdx === 'titreInformatif') {
+      this.setState({validerInit: true})
+    }
     if (!this.props.translated.body) {
       Swal.fire({
         title: "Oh non",
@@ -847,7 +907,7 @@ class SideTrad extends Component {
     }
     let timeSpent = 0;
     if (this.state.startingTime) {
-      timeSpent = this.state.startingTime.diff(moment());
+      timeSpent = this.state.startingTime.diff(moment()) * -1;
       console.log(timeSpent, moment.duration(timeSpent).asSeconds());
     }
     let textString = this.props.translated.body
@@ -1015,7 +1075,9 @@ class SideTrad extends Component {
         avancement: traduction.avancement,
         isExpert: true,
         wordsCount,
-        timeSpent,
+        timeSpent: timeSpent,
+        articleId: this.props.itemId,
+        language: this.props.langue.langueCode
       };
       this.props.fwdSetState({ newTrad }, () => {});
       if (newTrad.avancement >= 1) {
@@ -1079,6 +1141,7 @@ class SideTrad extends Component {
       decodeEntities: true,
       // transform: this.transform
     };
+    console.log(this.state, this.props);
 
     return (
       <div className="side-trad shadow">
