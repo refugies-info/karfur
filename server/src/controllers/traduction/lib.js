@@ -1,5 +1,6 @@
 const Traduction = require("../../schema/schemaTraduction.js");
 const Article = require("../../schema/schemaArticle.js");
+const Indicator = require("../../schema/schemaIndicators");
 const Dispositif = require("../../schema/schemaDispositif.js");
 const Langue = require("../../schema/schemaLangue.js");
 const Role = require("../../schema/schemaRole.js");
@@ -29,7 +30,7 @@ async function add_tradForReview(req, res) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   } else if (!req.body || !req.body.langueCible || !req.body.translatedText) {
     return res.status(400).json({ text: "Requête invalide" });
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   } else {
     new DBEvent({
       action: JSON.stringify(req.body),
@@ -39,6 +40,21 @@ async function add_tradForReview(req, res) {
     }).save();
     let traduction = req.body;
     console.log(traduction);
+    const {
+      wordsCount,
+      timeSpent,
+      langueCible,
+      articleId,
+      userId,
+    } = traduction;
+    new Indicator({
+      userId: req.userId,
+      dispositifId: articleId,
+      language: langueCible,
+      timeSpent,
+      wordsCount,
+    }).save();
+
     if (traduction.avancement >= 1 && traduction.status !== "À revoir") {
       traduction.status = "En attente";
       await Traduction.updateMany(
@@ -698,7 +714,18 @@ function update_tradForReview(req, res) {
     }).save();
     let translation = req.body;
     translation.validatorId = req.userId;
+
     console.log("we are updating the mother", translation);
+    const { wordsCount, timeSpent, language, articleId, userId } = translation;
+
+    new Indicator({
+      userId: req.userId,
+      dispositifId: articleId,
+      language,
+      timeSpent,
+      wordsCount,
+    }).save();
+
     const find = new Promise(function (resolve, reject) {
       Traduction.findByIdAndUpdate({ _id: translation._id }, translation, {
         new: true,
@@ -728,14 +755,90 @@ function update_tradForReview(req, res) {
   }
 }
 
-function get_progression(req, res) {
+async function get_progression(req, res) {
+  try {
   new DBEvent({
     userId: _.get(req, "userId"),
     roles: _.get(req, "user.roles"),
     api: arguments.callee.name,
   }).save();
   var start = new Date();
-  start.setHours(0, 0, 0, 0);
+  var end3 = new Date();
+  var end6 = new Date();
+  var end12 = new Date();
+  end3.setMonth(end3.getMonth() - 3);
+  end6.setMonth(end6.getMonth() - 6);
+  end12.setMonth(end12.getMonth() - 12);
+  //start.setHours(0, 0, 0, 0);
+
+  let threeMonthsIndicator = await Indicator.aggregate([
+    {
+      $match: {
+        userId: req.body.userId || req.userId,
+        createdAt: { $gte: end3, $lt: start },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        wordsCount: { $sum: "$wordsCount" },
+        timeSpent: { $sum: "$timeSpent" },
+      },
+    },
+  ]);
+
+  let sixMonthsIndicator = await Indicator.aggregate([
+    {
+      $match: {
+        userId: req.body.userId || req.userId,
+        createdAt: { $gte: end6, $lt: start },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        wordsCount: { $sum: "$wordsCount" },
+        timeSpent: { $sum: "$timeSpent" },
+      },
+    },
+  ]);
+
+  let twelveMonthsIndicator = await Indicator.aggregate([
+    {
+      $match: {
+        userId: req.body.userId || req.userId,
+        createdAt: { $gte: end12, $lt: start },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        wordsCount: { $sum: "$wordsCount" },
+        timeSpent: { $sum: "$timeSpent" },
+      },
+    },
+  ]);
+
+  let totalIndicator = await Indicator.aggregate([
+    {
+      $match: {
+        userId: req.body.userId || req.userId,
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        wordsCount: { $sum: "$wordsCount" },
+        timeSpent: { $sum: "$timeSpent" },
+      },
+    },
+  ]);
+
+  console.log(twelveMonthsIndicator, sixMonthsIndicator, threeMonthsIndicator, totalIndicator);
+  res.send({twelveMonthsIndicator, sixMonthsIndicator, threeMonthsIndicator, totalIndicator});
+} catch (e) {
+  res.status(500).json({ text: "Erreur interne", err: e });
+}
 
   var find = new Promise(function (resolve, reject) {
     Traduction.aggregate([
