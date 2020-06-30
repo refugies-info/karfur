@@ -726,22 +726,29 @@ export class Dispositif extends Component {
   addItem = (key, type = "paragraphe", subkey = null) => {
     let prevState = [...this.state.menu];
     let uiArray = [...this.state.uiArray];
+    const importantCard = {
+      type: "card",
+      isFakeContent: true,
+      title: "Important !",
+      titleIcon: "warning",
+      contentTitle: "Compte bancaire",
+      contentBody: "nécessaire pour recevoir l’indemnité",
+      footer: "Pourquoi ?",
+      footerIcon: "question-mark-circle-outline",
+    };
     if (prevState[key].children && prevState[key].children.length > 0) {
       let newChild = {
         ...prevState[key].children[prevState[key].children.length - 1],
       };
       if (type === "card" && newChild.type !== "card") {
         prevState[key].type = "cards";
-        newChild = {
-          type: "card",
-          isFakeContent: true,
-          title: "Important !",
-          titleIcon: "warning",
-          contentTitle: "Compte bancaire",
-          contentBody: "nécessaire pour recevoir l’indemnité",
-          footer: "Pourquoi ?",
-          footerIcon: "question-mark-circle-outline",
-        };
+        newChild = importantCard;
+      } else if (type === "card") {
+        // the new child is an infocard which title is subkey (a title that is not already displayed)
+        newChild =
+          menu[1].children.filter((x) => x.title === subkey).length > 0
+            ? menu[1].children.filter((x) => x.title === subkey)[0]
+            : importantCard;
       } else if (type === "accordion" && !newChild.content) {
         newChild = {
           type: "accordion",
