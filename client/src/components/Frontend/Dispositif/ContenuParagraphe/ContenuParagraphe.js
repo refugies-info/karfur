@@ -321,8 +321,7 @@ const contenuParagraphe = (props) => {
       {!props.disableEdit &&
         item.type === "cards" &&
         item.children &&
-        item.children.length > 0 &&
-        item.children[0].type === "card" &&
+        item.title === "C'est pour qui ?" &&
         // when all types of incards are displayed we do not want to add more
         cards.length < cardTitles.length && (
           <PlusCard
