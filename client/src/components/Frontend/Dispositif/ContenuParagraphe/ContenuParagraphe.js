@@ -13,6 +13,7 @@ import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/E
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 import variables from "scss/colors.scss";
+import { cardTitles } from "../../../../containers/Dispositif/data";
 
 const contenuParagraphe = (props) => {
   const { disableEdit, ...bprops } = props;
@@ -23,6 +24,10 @@ const contenuParagraphe = (props) => {
     props.uiArray[key].children.length > subkey &&
     props.uiArray[key].children[subkey] &&
     props.uiArray[key].children[subkey][node];
+  const cards = item.children
+    ? item.children.filter((x) => x.type === "card").map((x) => x.title)
+    : [];
+
   return (
     <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
       {item.children &&
@@ -82,6 +87,7 @@ const contenuParagraphe = (props) => {
                   deleteCard={bprops.deleteCard}
                   content={bprops.content}
                   keyValue={bprops.keyValue}
+                  cards={cards}
                 />
               ) : subitem.type === "map" ? (
                 <MapParagraphe
@@ -316,7 +322,15 @@ const contenuParagraphe = (props) => {
         item.type === "cards" &&
         item.children &&
         item.children.length > 0 &&
-        item.children[0].type === "card" && <PlusCard {...props} />}
+        item.children[0].type === "card" &&
+        // when all types of incards are displayed we do not want to add more
+        cards.length < cardTitles.length && (
+          <PlusCard
+            addItem={props.addItem}
+            keyValue={props.keyValue}
+            cards={cards}
+          />
+        )}
     </div>
   );
 };
