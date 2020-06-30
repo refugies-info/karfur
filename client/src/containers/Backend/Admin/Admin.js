@@ -130,7 +130,11 @@ export class Admin extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps, prevState) {
+    if ((prevState.user !== this.state.user) && this.state.user._id) {
+      let progression = await API.get_progression({userId: this.state.user._id})
+      console.log(progression);
+    }
     if (prevState.activeTab[3] !== this.state.activeTab[3]) {
       if (this.state.activeTab[3] === 0) {
         document.title = "Contenus";

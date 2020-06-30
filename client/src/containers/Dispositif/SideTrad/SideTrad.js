@@ -99,7 +99,8 @@ class SideTrad extends Component {
     initializeTrad: false,
     avancement: 0,
     startingTime: null,
-    endingTime: null
+    endingTime: null,
+    validerInit: false
   };
   initialState = this.state;
 
@@ -108,7 +109,7 @@ class SideTrad extends Component {
 
 }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+/*   UNSAFE_componentWillReceiveProps(nextProps) {
     if (
       this.props.translations !== nextProps.translations &&
       nextProps.translations
@@ -146,7 +147,7 @@ class SideTrad extends Component {
       this._initializeComponent(nextProps);
       this.setState({ initializeTrad: true });
     }
-  }
+  } */
 
   componentDidUpdate(prevProps, prevState) {
     const {
@@ -156,6 +157,47 @@ class SideTrad extends Component {
       availableListTrad,
       listTrad,
     } = this.state;
+    if (
+      this.props.translations !== prevProps.translations &&
+      this.props.translations
+    ) {
+      console.log("inside componenet will receive props", this.props.translations , prevProps.translations, this.state, this.props );
+      const { translations } = this.props;
+      if (translations.length) {
+        const userTrad = translations.find(
+          (trad) => trad.userId._id === this.props.user._id
+        );
+        const expertTrad = translations.find(
+          (trad) => trad.userId._id === trad.validatorId
+        );
+        if (userTrad && userTrad.status === "À revoir") {
+          this.setState({ avancement: userTrad.avancement });
+        } else if (expertTrad && expertTrad.status === "À revoir") {
+          this.setState({ avancement: expertTrad.avancement });
+        } else {
+          this.setState({ avancement: translations[0].avancement });
+        }
+      }
+      this.props.fwdSetState({ disableBtn: false });
+      if ((this.state.initialize && currIdx !== "titreInformatif") || (this.state.initialize && currIdx === "titreInformatif" && this.state.validerInit)) {
+        console.log('wrong here');
+        this.goChange(true, false);
+      }
+    }
+    if (
+      this.state.initialize === false &&
+      prevProps.content.titreInformatif !== this.props.content.titreInformatif
+    ) {
+      this._initializeComponent(this.props);
+      this.setState({ initialize: true });
+    }
+    if (
+      this.state.initializeTrad === false &&
+      prevProps.traductionsFaites !== this.props.traductionsFaites
+    ) {
+      this._initializeComponent(this.props);
+      this.setState({ initializeTrad: true });
+    }
     const expertTrad = listTrad.length
       ? listTrad.find((trad) => trad.userId._id === trad.validatorId)
       : null;
@@ -712,7 +754,9 @@ class SideTrad extends Component {
   };
 
   onValidate = async () => {
-    console.log(this.props.translated.body);
+    if (this.state.currIdx === 'titreInformatif') {
+      this.setState({validerInit: true})
+    }
     if (!this.props.translated.body) {
       Swal.fire({
         title: "Oh non",
@@ -724,7 +768,7 @@ class SideTrad extends Component {
     }
     let timeSpent = 0;
     if (this.state.startingTime) {
-      timeSpent = this.state.startingTime.diff(moment());
+      timeSpent = this.state.startingTime.diff(moment()) * -1;
       console.log(timeSpent, moment.duration(timeSpent).asSeconds());
     }
     let textString = this.props.translated.body
