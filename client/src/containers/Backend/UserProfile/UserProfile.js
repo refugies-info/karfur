@@ -231,7 +231,12 @@ export class UserProfile extends Component {
         this._isMounted &&
         this.setState({ langues: _.get(data, "data.data", []) })
     );
-    this.getProgression();
+    API.get_progression().then((data_progr) => {
+      console.log(data_progr.data.totalIndicator)
+      if (data_progr.data.totalIndicator.length > 0)
+        this._isMounted &&
+          this.setState({ progression: data_progr.data.totalIndicator[0] });
+    });
     window.scrollTo(0, 0);
   }
 
@@ -766,18 +771,18 @@ export class UserProfile extends Component {
                       xs="12"
                       className={
                         "obj-col obj-third" +
-                        (this.state.progression.nbMots > 0 ? " active" : "")
+                        (this.state.progression.wordsCount > 0 ? " active" : "")
                       }
                     >
                       <AnchorLink href="#mes-traductions" offset={anchorOffset}>
                         <h1 className="title text-big">
-                          {this.state.progression.nbMots || 0}
+                          {this.state.progression.wordsCount || 0}
                         </h1>
                         <h6 className="subtitle">
                           {t("UserProfile.mots traduits", "mots traduits")}
                         </h6>
                         <span className="content texte-small">
-                          {this.state.progression.nbMots > 0
+                          {this.state.progression.wordsCount > 0
                             ? t(
                                 "UserProfile.Merci de participer",
                                 "Merci de participer à rendre accessible l’information au plus grand nombre"
@@ -852,7 +857,7 @@ export class UserProfile extends Component {
             overlayRedirect={false}
             history={this.props.history}
             windowWidth={this.props.windowWidth}
-            motsRediges={this.state.progression.nbMots}
+            motsRediges={this.state.progression.wordsCount}
             minutesPassees={Math.floor(
               this.state.progression.timeSpent / 1000 / 60
             )}

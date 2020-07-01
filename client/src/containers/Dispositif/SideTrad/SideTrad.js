@@ -938,6 +938,8 @@ class SideTrad extends Component {
         translatedText: traduction.translatedText,
         avancement: traduction.avancement,
         status: userTrad.status,
+        wordsCount,
+        timeSpent,
       };
       this.props.fwdSetState({ newTrad }, () => {});
       await this.props.valider(newTrad);
