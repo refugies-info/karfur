@@ -213,40 +213,7 @@ const tradTable = (props) => {
           </Col>
           {props.displayIndicators && traducteur && (
             <Col className="d-flex tableau-header">
-              <div className="full-width equi-reparti">
-                <div className="d-flex left-element">
-                  <h4>{props.motsRediges}</h4>
-                  <span
-                    className="texte-small ml-10"
-                    dangerouslySetInnerHTML={{
-                      __html: t("Tables.mots rédigés", "mots<br/>rédigés"),
-                    }}
-                  />
-                </div>
-                <div className="d-flex middle-element">
-                  <h4>34</h4>
-                  <span
-                    className="texte-small ml-10"
-                    dangerouslySetInnerHTML={{
-                      __html: t(
-                        "Tables.minutes passées",
-                        "minutes<br/>passées"
-                      ),
-                    }}
-                  />
-                </div>
-                <div className="d-flex right-element">
-                  <h4>22</h4>
-                  <span
-                    className="texte-small ml-10"
-                    dangerouslySetInnerHTML={{
-                      __html: t(
-                        "Tables.personnes informées",
-                        "personnes<br/>informées"
-                      ),
-                    }}
-                  />
-                </div>
+              <div style={{position: 'absolute', right: 20}}>
                 <FButton
                   tag={NavLink}
                   to="/backend/user-dashboard"

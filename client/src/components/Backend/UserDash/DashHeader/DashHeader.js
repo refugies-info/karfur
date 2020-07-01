@@ -139,16 +139,6 @@ const dashHeader = (props) => {
       return (
         <Row className="header-indicateurs">
           <Col lg="4" md="12" sm="12" xs="12">
-            <div className="inner-indicator first-indicator">
-              <h3 className="right-side">12</h3>
-              <div className="left-side">
-                <b className="mot-indicateur">utilisateurs</b> ont profité de
-                vos contenus cette semaine. <br />
-                <i>Ça fait plaisir !</i>
-              </div>
-            </div>
-          </Col>
-          <Col lg="4" md="12" sm="12" xs="12">
             <div className="inner-indicator second-indicator">
               <h3 className="right-side">
                 {props.motsRediges || 0}{" "}
@@ -167,7 +157,7 @@ const dashHeader = (props) => {
                 <span className="gris">/ {props.objectifTemps || 0}</span>
               </h3>
               <div className="left-side">
-                <b className="mot-indicateur">heures</b> dédiées à l'accueil des
+                <b className="mot-indicateur">minutes</b> dédiés à l'accueil des
                 personnes réfugiés. <br />
                 <i>Merci !</i>
               </div>
