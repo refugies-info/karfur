@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { connect } from "react-redux";
 import _ from "lodash";
 import passwdCheck from "zxcvbn";
+import produce from "immer";
 
 import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
 import API from "../../../utils/API";
@@ -44,6 +45,7 @@ export class Admin extends Component {
       roles: [],
       _id: undefined,
       status: "Actif",
+      progression: null,
     },
 
     langue: {
@@ -131,8 +133,15 @@ export class Admin extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    if ((prevState.user !== this.state.user) && this.state.user._id) {
+    if (this.state.user && (prevState.user._id !== this.state.user._id) && this.state.user._id) {
+      console.log(prevState.user, this.state.user);
       let progression = await API.get_progression({userId: this.state.user._id})
+      this.setState(
+        produce((draft) => {
+          draft.user.progression = progression.data;
+          return
+        })
+      );
       console.log(progression);
     }
     if (prevState.activeTab[3] !== this.state.activeTab[3]) {
@@ -186,7 +195,8 @@ export class Admin extends Component {
     });
   };
 
-  onSelect = (item, switchTo = null) => {
+  onSelect =  async (item, switchTo = null) => {
+    console.log(item);
     this.setState(item);
     if (item.user) {
       this.setState({
