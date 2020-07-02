@@ -13,9 +13,11 @@
 // ie fixes
 @import "ie-fix";
 
+@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 // custom fonts
 html,
 body,
 #root {
-  font-family: "Helvetica Neue", "Noto Sans";
+  font-family: "Gothic A1", "Noto Sans";
 }
