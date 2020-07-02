@@ -277,7 +277,6 @@ class Sponsors extends Component {
       deleteSponsor,
       user,
       structures,
-      admin,
     } = this.props;
     const {
       showModals,
@@ -295,80 +294,84 @@ class Sponsors extends Component {
         </h5>
         <Row className="sponsor-images">
           {sponsors &&
-            sponsors.map((sponsor, key) => {
-              return (
-                <Col key={key} className="sponsor-col">
-                  <div className="image-wrapper">
-                    <a
-                      href={
-                        ((sponsor.link || "").includes("http")
-                          ? ""
-                          : "http://") + sponsor.link
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {sponsor.picture && sponsor.picture.secure_url ? (
-                        <img
-                          className="sponsor-img"
-                          src={sponsor.picture.secure_url}
-                          alt={sponsor.alt}
-                        />
-                      ) : sponsor.type === "Not found" ? (
-                        <div className="not-found-wrapper">
-                          <EVAIcon
-                            name="question-mark-circle"
-                            className="not-found-icon"
-                            size="large"
+            _.uniqBy(sponsors, (sponsor) => sponsor.picture.secure_url).map(
+              (sponsor, key) => {
+                return (
+                  <Col key={key} className="sponsor-col">
+                    <div className="image-wrapper">
+                      <a
+                        href={
+                          ((sponsor.link || "").includes("http")
+                            ? ""
+                            : "http://") + sponsor.link
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {sponsor.picture && sponsor.picture.secure_url ? (
+                          <img
+                            className="sponsor-img"
+                            src={sponsor.picture.secure_url}
+                            alt={sponsor.alt}
                           />
-                          <span>
-                            Structure responsable
-                            <br />
-                            non-identifiée
-                          </span>
-                        </div>
-                      ) : (
-                        <div className="not-exist-wrapper">
-                          <EVAIcon
-                            name="image-outline"
-                            className="not-exist-icon mr-16"
-                            size="large"
-                            fill={variables.noir}
-                          />
-                          <span>
-                            {sponsor.acronyme || sponsor.nom
-                              ? (sponsor.acronyme || "") +
-                                (sponsor.acronyme && sponsor.nom ? " - " : "") +
-                                (sponsor.nom || "")
-                              : sponsor.alt || "Structure 1"}
-                          </span>
+                        ) : sponsor.type === "Not found" ? (
+                          <div className="not-found-wrapper">
+                            <EVAIcon
+                              name="question-mark-circle"
+                              className="not-found-icon"
+                              size="large"
+                            />
+                            <span>
+                              Structure responsable
+                              <br />
+                              non-identifiée
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="not-exist-wrapper">
+                            <EVAIcon
+                              name="image-outline"
+                              className="not-exist-icon mr-16"
+                              size="large"
+                              fill={variables.noir}
+                            />
+                            <span>
+                              {sponsor.acronyme || sponsor.nom
+                                ? (sponsor.acronyme || "") +
+                                  (sponsor.acronyme && sponsor.nom
+                                    ? " - "
+                                    : "") +
+                                  (sponsor.nom || "")
+                                : sponsor.alt || "Structure 1"}
+                            </span>
+                          </div>
+                        )}
+                      </a>
+                      {key === 0 && sponsor.type !== "Not found" && (
+                        <div className="owner-badge">
+                          <EVAIcon name="shield" className="mr-10" />
+                          Responsable
                         </div>
                       )}
-                    </a>
-                    {key === 0 && sponsor.type !== "Not found" && (
-                      <div className="owner-badge">
-                        <EVAIcon name="shield" className="mr-10" />
-                        Responsable
-                      </div>
-                    )}
-                    {!disableEdit && (
-                      <div
-                        className="delete-icon"
-                        onClick={() => deleteSponsor(key)}
-                      >
-                        <Icon
-                          name="minus-circle"
-                          fill={variables.darkColor}
-                          size="xlarge"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </Col>
-              );
-            })}
+                      {!disableEdit && (
+                        <div
+                          className="delete-icon"
+                          onClick={() => deleteSponsor(key)}
+                        >
+                          <Icon
+                            name="minus-circle"
+                            fill={variables.darkColor}
+                            size="xlarge"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </Col>
+                );
+              }
+            )}
 
-          {!disableEdit && (!sponsors || sponsors.length === 0 || admin) && (
+          {!disableEdit && (
             <Col>
               <div
                 className="add-sponsor"
@@ -376,9 +379,7 @@ class Sponsors extends Component {
                   this.props.toggleFinalValidation();
                   !sponsors || sponsors.length === 0
                     ? this.toggleModal("responsabilite")
-                    : sponsors.length > 0 &&
-                      admin &&
-                      this.toggleModal("img-modal");
+                    : sponsors.length > 0 && this.toggleModal("img-modal");
                 }}
               >
                 <EVAIcon
