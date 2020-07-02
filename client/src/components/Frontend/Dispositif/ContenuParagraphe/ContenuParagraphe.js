@@ -27,7 +27,6 @@ const contenuParagraphe = (props) => {
   const cards = item.children
     ? item.children.filter((x) => x.type === "card").map((x) => x.title)
     : [];
-
   return (
     <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
       {item.children &&
@@ -88,6 +87,7 @@ const contenuParagraphe = (props) => {
                   content={bprops.content}
                   keyValue={bprops.keyValue}
                   cards={cards}
+                  mainTag={bprops.mainTag}
                 />
               ) : subitem.type === "map" ? (
                 <MapParagraphe

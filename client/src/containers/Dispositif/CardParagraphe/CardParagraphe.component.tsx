@@ -27,8 +27,9 @@ import "./CardParagraphe.scss";
 import variables from "scss/colors.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./CardParagraphe.container";
-import { DispositifContent } from "../../../@types/interface";
+import { DispositifContent, Tag } from "../../../@types/interface";
 import { filtres, cardTitles } from "../data";
+import _ from "lodash";
 
 const list_papiers = [
   { name: "Titre de séjour" },
@@ -75,6 +76,7 @@ export interface PropsBeforeInjection {
   keyValue: number;
   t: any;
   cards: string[];
+  mainTag: Tag;
 }
 type StateType = {
   showModal: boolean;
@@ -483,6 +485,18 @@ export class CardParagraphe extends Component<Props> {
       );
     };
 
+    const computeCardClassName = () => {
+      const safeMainTag =
+        _.isEmpty(this.props.mainTag) || !this.props.mainTag.short
+          ? "basic"
+          : this.props.mainTag.short.replace(/ /g, "-");
+      return (
+        subitem.title.replace(/ /g, "-").replace("-?", "").replace("-!", "") +
+        "-" +
+        safeMainTag
+      );
+    };
+
     const cardFooterContent = (subitem: DispositifContent) => {
       // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
       if (this.props.subitem.footerHref && disableEdit) {
@@ -514,14 +528,7 @@ export class CardParagraphe extends Component<Props> {
           }
         >
           <Card
-            className={
-              (subitem.title === "Important !" ? "make-it-red" : "regular") +
-              " " +
-              subitem.title
-                .replace(/ /g, "-")
-                .replace("-?", "")
-                .replace("-!", "")
-            }
+            className={computeCardClassName()}
             id={"info-card-" + this.props.keyValue + "-" + subkey}
           >
             <CardHeader className="backgroundColor-darkColor">
