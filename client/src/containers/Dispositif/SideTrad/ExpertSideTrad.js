@@ -186,6 +186,7 @@ class SideTrad extends Component {
  */
   componentDidUpdate(prevProps, prevState) {
     const { currIdx, currSubIdx, currSubName, availableListTrad } = this.state;
+      this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
     if (
       this.state.initialize === false &&
       prevProps.content.titreInformatif !== this.props.content.titreInformatif
@@ -204,7 +205,6 @@ class SideTrad extends Component {
       this.props.translations !== prevProps.translations &&
       this.props.translations
     ) {
-      console.log("inside componenet will receive props", this.props.translations , prevProps.translations, this.state, this.props );
       const {translations}  = this.props;
       var userTrad = null;
       if (translations.length) {
@@ -223,7 +223,6 @@ class SideTrad extends Component {
       }
       this.props.fwdSetState({ disableBtn: false });
       if ((this.state.initialize && currIdx !== "titreInformatif") || (this.state.initialize && currIdx === "titreInformatif" && this.state.validerInit)) {
-        console.log('wrong here');
         this.goChange(true, false);
       }
     }
@@ -248,6 +247,7 @@ class SideTrad extends Component {
       currSubIdx !== prevState.currSubIdx ||
       currSubName !== prevState.currSubName
     ) {
+      
       this.setState({ propositionIndex: 0, startingTime: moment() });
       if (
         availableListTrad.length > 0 &&
@@ -473,7 +473,7 @@ class SideTrad extends Component {
               this.checkTranslate(this.props.locale);
             }
           );
-          this._scrollAndHighlight(this.state.currIdx);
+           //this._scrollAndHighlight(this.state.currIdx);
         }
       );
     } else {
@@ -554,7 +554,6 @@ class SideTrad extends Component {
             this.goChange(isNext, false);
             return;
           }
-          this._scrollAndHighlight(idx, subidx, subname);
           this.props.fwdSetState(
             () => ({ francais: { body: value } }),
             () => this.checkTranslate(this.props.locale)
@@ -611,7 +610,7 @@ class SideTrad extends Component {
       const elem = elems[0];
       elem.scrollIntoView({
         behavior: "smooth",
-        block: "end",
+        block: "center",
         inline: "nearest",
       });
       elem.classList.toggle("translating"); //On le surligne
@@ -699,12 +698,10 @@ class SideTrad extends Component {
       selectedTrad = availableListTrad[0];
       //availableListTrad.shift();
     }
-    // console.log(listTrad, availableListTrad);
     ///////parse for buttons
 
     //ReactHtmlParser(oldTrad, {})
     this.setState({ listTrad, userId, selectedTrad, availableListTrad });
-    // console.log(oldTrad);
     if (oldTrad && typeof oldTrad === "string") {
       this.props.fwdSetState({
         autosuggest: false,
@@ -908,7 +905,6 @@ class SideTrad extends Component {
     let timeSpent = 0;
     if (this.state.startingTime) {
       timeSpent = this.state.startingTime.diff(moment()) * -1;
-      console.log(timeSpent, moment.duration(timeSpent).asSeconds());
     }
     let textString = this.props.translated.body
       .getCurrentContent()
@@ -1141,7 +1137,6 @@ class SideTrad extends Component {
       decodeEntities: true,
       // transform: this.transform
     };
-    console.log(this.state, this.props);
 
     return (
       <div className="side-trad shadow">
@@ -1474,7 +1469,8 @@ class SideTrad extends Component {
             <FButton
               className="mt-10"
               type="outline-black"
-              onClick={this.goChange}
+              onClick={() => {
+                this.goChange()}}
             >
               {""}
               <EVAIcon
@@ -1527,7 +1523,8 @@ class SideTrad extends Component {
               <FButton
                 type="validate"
                 name="arrow-forward-outline"
-                onClick={this.goChange}
+                onClick={() => {
+                  this.goChange()}}
                 disabled={!(translated || {}).body}
                 className="mt-10 mr-10"
               >
