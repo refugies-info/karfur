@@ -523,7 +523,6 @@ export class CardParagraphe extends Component<Props> {
                 .replace("-!", "")
             }
             id={"info-card-" + this.props.keyValue + "-" + subkey}
-            //style={subitem.title && {backgroundImage: `url(${bgImage(subitem.title)})`}}
           >
             <CardHeader className="backgroundColor-darkColor">
               {cardHeaderContent(subitem)}

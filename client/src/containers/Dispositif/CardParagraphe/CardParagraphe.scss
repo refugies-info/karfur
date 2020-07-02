@@ -23,7 +23,7 @@
       }
 
       &.Âge-requis {
-        background-image: url(../../../assets/figma/InfoCard/infocard_Age.svg),
+        background-image: url(../../../assets/figma/InfoCard/infocard_Age_requis.svg),
           url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
@@ -43,7 +43,7 @@
           url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
-        background-position: calc(100% - 30px) calc(100% + 0px), center;
+        background-position: calc(100% - 30px) calc(100% - 30px), center;
       }
 
       &.Combien-ça-coûte {
@@ -67,7 +67,7 @@
           url(../../../assets/figma/InfoCard/bg-infocard.svg);
         background-size: 80%, cover;
         background-repeat: no-repeat, no-repeat;
-        background-position: calc(100% - 60px) calc(100% + 0px), center;
+        background-position: calc(100% - 30px) calc(100% + 50px), center;
       }
 
       .card-header {
@@ -108,7 +108,7 @@
             font-size: 24px;
             font-weight: 600;
             border-radius: 6px;
-            line-height: 38px;
+            line-height: 28px;
           }
         }
 
