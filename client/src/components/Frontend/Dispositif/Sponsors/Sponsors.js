@@ -277,7 +277,6 @@ class Sponsors extends Component {
       deleteSponsor,
       user,
       structures,
-      admin,
     } = this.props;
     const {
       showModals,
@@ -368,7 +367,7 @@ class Sponsors extends Component {
               );
             })}
 
-          {!disableEdit && (!sponsors || sponsors.length === 0 || admin) && (
+          {!disableEdit && (
             <Col>
               <div
                 className="add-sponsor"
@@ -376,9 +375,7 @@ class Sponsors extends Component {
                   this.props.toggleFinalValidation();
                   !sponsors || sponsors.length === 0
                     ? this.toggleModal("responsabilite")
-                    : sponsors.length > 0 &&
-                      admin &&
-                      this.toggleModal("img-modal");
+                    : sponsors.length > 0 && this.toggleModal("img-modal");
                 }}
               >
                 <EVAIcon
