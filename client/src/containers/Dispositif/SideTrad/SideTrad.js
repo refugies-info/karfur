@@ -157,11 +157,12 @@ class SideTrad extends Component {
       availableListTrad,
       listTrad,
     } = this.state;
+    
+      this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
     if (
       this.props.translations !== prevProps.translations &&
       this.props.translations
     ) {
-      console.log("inside componenet will receive props", this.props.translations , prevProps.translations, this.state, this.props );
       const { translations } = this.props;
       if (translations.length) {
         const userTrad = translations.find(
@@ -180,8 +181,7 @@ class SideTrad extends Component {
       }
       this.props.fwdSetState({ disableBtn: false });
       if ((this.state.initialize && currIdx !== "titreInformatif") || (this.state.initialize && currIdx === "titreInformatif" && this.state.validerInit)) {
-        console.log('wrong here');
-        this.goChange(true, false);
+        this.goChange();
       }
     }
     if (
@@ -421,7 +421,7 @@ class SideTrad extends Component {
               this.checkTranslate(this.props.locale);
             }
           );
-          this._scrollAndHighlight(this.state.currIdx);
+          //this._scrollAndHighlight(this.state.currIdx);
         }
       );
     } else {
@@ -502,7 +502,7 @@ class SideTrad extends Component {
             this.goChange(isNext, false);
             return;
           }
-          this._scrollAndHighlight(idx, subidx, subname);
+          //this._scrollAndHighlight(idx, subidx, subname);
           this.props.fwdSetState(
             () => ({ francais: { body: value } }),
             () => this.checkTranslate(this.props.locale)
@@ -539,8 +539,7 @@ class SideTrad extends Component {
         (subidx !== undefined && subidx > -1
           ? // eslint-disable-next-line
             '[data-subkey="' + subidx + '"]'
-          : // eslint-disable-next-line
-            "") +
+          : "") +
         (subidx !== undefined && subidx > -1 && subname && subname !== ""
           ? // eslint-disable-next-line
             '[data-target="' + subname + '"]'
@@ -550,7 +549,7 @@ class SideTrad extends Component {
       const elem = elems[0];
       elem.scrollIntoView({
         behavior: "smooth",
-        block: "end",
+        block: "center",
         inline: "nearest",
       });
       elem.classList.toggle("translating"); //On le surligne
@@ -769,7 +768,6 @@ class SideTrad extends Component {
     let timeSpent = 0;
     if (this.state.startingTime) {
       timeSpent = this.state.startingTime.diff(moment()) * -1;
-      console.log(timeSpent, moment.duration(timeSpent).asSeconds());
     }
     let textString = this.props.translated.body
       .getCurrentContent()
