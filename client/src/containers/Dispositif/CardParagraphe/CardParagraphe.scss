@@ -62,13 +62,13 @@
         background-position: calc(100% - 20px) calc(100% + 25px), center;
       }
 
-      // &.Public-visé-Logement {
-      //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Logement.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 25px), center;
-      // }
+      &.Public-visé-Logement {
+        background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Logement.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 25px), center;
+      }
 
       // &.Public-visé-Mobilité {
       //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Mobilité.svg),
@@ -78,13 +78,13 @@
       //   background-position: calc(100% - 20px) calc(100% + 25px), center;
       // }
 
-      // &.Public-visé-Insertion-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Insertion-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 25px), center;
-      // }
+      &.Public-visé-Insertion-pro {
+        background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Insertion-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 25px), center;
+      }
 
       &.Public-visé-Études {
         background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Etudes.svg),
@@ -166,13 +166,13 @@
         background-position: calc(100% - 20px) calc(100% + 10px), center;
       }
 
-      // &.Âge-requis-Logement {
-      //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Logement.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 10px), center;
-      // }
+      &.Âge-requis-Logement {
+        background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Logement.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
+      }
 
       // &.Âge-requis-Mobilité {
       //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Mobilité.svg),
@@ -182,13 +182,13 @@
       //   background-position: calc(100% - 20px) calc(100% + 10px), center;
       // }
 
-      // &.Âge-requis-Insertion-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Insertion-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 10px), center;
-      // }
+      &.Âge-requis-Insertion-pro {
+        background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Insertion-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
+      }
 
       &.Âge-requis-Études {
         background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Etudes.svg),
@@ -270,13 +270,13 @@
         background-position: calc(100% - 30px) calc(100% + 0px), center;
       }
 
-      // &.Durée-Logement {
-      //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Logement.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 0px), center;
-      // }
+      &.Durée-Logement {
+        background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Logement.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
+      }
 
       // &.Durée-Mobilité {
       //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Mobilité.svg),
@@ -286,13 +286,13 @@
       //   background-position: calc(100% - 30px) calc(100% + 0px), center;
       // }
 
-      // &.Durée-Insertion-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Insertion-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 0px), center;
-      // }
+      &.Durée-Insertion-pro {
+        background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Insertion-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
+      }
 
       &.Durée-Études {
         background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Etudes.svg),
@@ -374,13 +374,13 @@
         background-position: calc(100% - 30px) calc(100% - 30px), center;
       }
 
-      // &.Niveau-de-français-Logement {
-      //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Logement.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% - 30px), center;
-      // }
+      &.Niveau-de-français-Logement {
+        background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Logement.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% - 30px), center;
+      }
 
       // &.Niveau-de-français-Mobilité {
       //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Mobilité.svg),
@@ -390,13 +390,13 @@
       //   background-position: calc(100% - 30px) calc(100% - 30px), center;
       // }
 
-      // &.Niveau-de-français-Insertion-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Insertion-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% - 30px), center;
-      // }
+      &.Niveau-de-français-Insertion-pro {
+        background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Insertion-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% - 30px), center;
+      }
 
       &.Niveau-de-français-Études {
         background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Etudes.svg),
@@ -478,13 +478,13 @@
         background-position: calc(100% - 0px) calc(100% + 0px), center;
       }
 
-      // &.Combien-ça-coûte-Logement {
-      //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Logement.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
-      //   background-size: 70%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 0px) calc(100% + 0px), center;
-      // }
+      &.Combien-ça-coûte-Logement {
+        background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Logement.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+        background-size: 70%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 0px) calc(100% + 0px), center;
+      }
 
       // &.Combien-ça-coûte-Mobilité {
       //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Mobilité.svg),
@@ -494,13 +494,13 @@
       //   background-position: calc(100% - 0px) calc(100% + 0px), center;
       // }
 
-      // &.Combien-ça-coûte-Insertion-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Insertion-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
-      //   background-size: 70%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 0px) calc(100% + 0px), center;
-      // }
+      &.Combien-ça-coûte-Insertion-pro {
+        background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Insertion-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+        background-size: 70%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 0px) calc(100% + 0px), center;
+      }
 
       &.Combien-ça-coûte-Études {
         background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Etudes.svg),
@@ -582,13 +582,13 @@
         background-position: calc(100% - 60px) calc(100% + 0px), center;
       }
 
-      // &.Justificatif-demandé-Logement {
-      //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Logement.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 60px) calc(100% + 0px), center;
-      // }
+      &.Justificatif-demandé-Logement {
+        background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Logement.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
+      }
 
       // &.Justificatif-demandé-Mobilité {
       //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Mobilité.svg),
@@ -598,13 +598,13 @@
       //   background-position: calc(100% - 60px) calc(100% + 0px), center;
       // }
 
-      // &.Justificatif-demandé-Insertion-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Insertion-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 60px) calc(100% + 0px), center;
-      // }
+      &.Justificatif-demandé-Insertion-pro {
+        background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Insertion-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
+      }
 
       &.Justificatif-demandé-Études {
         background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Etudes.svg),
@@ -686,13 +686,13 @@
         background-position: calc(100% - 30px) calc(100% + 50px), center;
       }
 
-      // &.Important-Logement {
-      //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Logement.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 50px), center;
-      // }
+      &.Important-Logement {
+        background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Logement.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 50px), center;
+      }
 
       // &.Important-Mobilité {
       //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Mobilité.svg),
@@ -702,13 +702,13 @@
       //   background-position: calc(100% - 30px) calc(100% + 50px), center;
       // }
 
-      // &.Important-Insertion-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Insertion-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 50px), center;
-      // }
+      &.Important-Insertion-pro {
+        background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Insertion-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 50px), center;
+      }
 
       &.Important-Études {
         background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Etudes.svg),
