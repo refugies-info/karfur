@@ -27,10 +27,9 @@ import variables from "scss/colors.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "../../../@types/interface";
-import { filtres, cardTitles, streamlineIconCorrespondency } from "../data";
+import { filtres, cardTitles } from "../data";
 import _ from "lodash";
-// @ts-ignore
-import StreamlineIcon from "@streamlinehq/streamline-icons-react";
+import { infoCardIcon } from "../../../components/Icon/Icon";
 
 const list_papiers = [
   { name: "Titre de séjour" },
@@ -416,25 +415,6 @@ export class CardParagraphe extends Component<Props> {
           onMouseUp={this.emptyPlaceholder}
         />
       );
-    };
-
-    const infoCardIcon = (iconTitle: string | undefined, color?: string) => {
-      const defaultIcon = streamlineIconCorrespondency[0].streamlineIcon;
-      let iconType = defaultIcon;
-      if (iconTitle) {
-        const correspondingElement = _.find(
-          streamlineIconCorrespondency,
-          (element) => element.titleIcon === iconTitle
-        );
-        if (correspondingElement) {
-          iconType = correspondingElement.streamlineIcon;
-        }
-      }
-
-      if (color) {
-        return <StreamlineIcon icon={iconType} stroke={color} size="18" />;
-      }
-      return <StreamlineIcon icon={iconType} size="18" />;
     };
 
     const cardHeaderContent = (subitem: DispositifContent) => {
