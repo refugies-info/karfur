@@ -28,8 +28,10 @@ import variables from "scss/colors.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "../../../@types/interface";
-import { filtres, cardTitles } from "../data";
+import { filtres, cardTitles, streamlineIconCorrespondency } from "../data";
 import _ from "lodash";
+// @ts-ignore
+import StreamlineIcon from "@streamlinehq/streamline-icons-react";
 
 const list_papiers = [
   { name: "Titre de séjour" },
@@ -417,12 +419,32 @@ export class CardParagraphe extends Component<Props> {
       );
     };
 
+    const infoCardIcon = (iconTitle: string | undefined) => {
+      console.log("streamlineIconCorrespondency", streamlineIconCorrespondency);
+      let iconType;
+      const defaultIcon = streamlineIconCorrespondency[0].streamlineIcon;
+      if (!iconTitle) {
+        iconType = defaultIcon;
+      } else {
+        const correspondingElement = _.find(
+          streamlineIconCorrespondency,
+          (element) => element.titleIcon === iconTitle
+        );
+        iconType = !!correspondingElement
+          ? // @ts-ignore
+            correspondingElement.streamlineIcon
+          : defaultIcon;
+      }
+      return <StreamlineIcon icon={iconType} stroke="#FFFFFF" size="18" />;
+    };
+
     const cardHeaderContent = (subitem: DispositifContent) => {
+      console.log("subitem", subitem);
       // in lecture mode, display title and icon or in edition when all types of infocard are already displayed
       if (this.props.disableEdit || availableCardTitles.length === 0) {
         return (
           <>
-            {subitem.typeIcon === "eva" ? (
+            {/* {subitem.typeIcon === "eva" ? (
               <EVAIcon name={subitem.titleIcon} fill="#FFFFFF" />
             ) : (
               <SVGIcon
@@ -431,7 +453,8 @@ export class CardParagraphe extends Component<Props> {
                 width="20"
                 height="20"
               />
-            )}
+            )} */}
+            {infoCardIcon(subitem.titleIcon)}
             <span className="header-content">
               {subitem.title && t("Dispositif." + subitem.title, subitem.title)}
             </span>
