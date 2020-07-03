@@ -22,13 +22,13 @@
         background-position: calc(100% - 20px) calc(100% + 25px), center;
       }
 
-      // &.Public-visé-Français {
-      //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Français.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 25px), center;
-      // }
+      &.Public-visé-Français {
+        background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Français.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 25px), center;
+      }
 
       // &.Public-visé-Formation-pro {
       //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Formation-pro.svg),
@@ -54,13 +54,13 @@
       //   background-position: calc(100% - 20px) calc(100% + 25px), center;
       // }
 
-      // &.Public-visé-Administratif {
-      //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Administratif.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 25px), center;
-      // }
+      &.Public-visé-Administratif {
+        background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Administratif.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 25px), center;
+      }
 
       // &.Public-visé-Logement {
       //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Logement.svg),
@@ -126,13 +126,13 @@
         background-position: calc(100% - 20px) calc(100% + 10px), center;
       }
 
-      // &.Âge-requis-Français {
-      //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Français.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 10px), center;
-      // }
+      &.Âge-requis-Français {
+        background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Français.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
+      }
 
       // &.Âge-requis-Formation-pro {
       //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Formation-pro.svg),
@@ -158,13 +158,13 @@
       //   background-position: calc(100% - 20px) calc(100% + 10px), center;
       // }
 
-      // &.Âge-requis-Administratif {
-      //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Administratif.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 10px), center;
-      // }
+      &.Âge-requis-Administratif {
+        background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Administratif.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
+      }
 
       // &.Âge-requis-Logement {
       //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Logement.svg),
@@ -230,13 +230,13 @@
         background-position: calc(100% - 30px) calc(100% + 0px), center;
       }
 
-      // &.Durée-Français {
-      //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Français.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 0px), center;
-      // }
+      &.Durée-Français {
+        background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Français.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
+      }
 
       // &.Durée-Formation-pro {
       //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Formation-pro.svg),
@@ -262,13 +262,13 @@
       //   background-position: calc(100% - 30px) calc(100% + 0px), center;
       // }
 
-      // &.Durée-Administratif {
-      //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Administratif.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 0px), center;
-      // }
+      &.Durée-Administratif {
+        background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Administratif.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
+      }
 
       // &.Durée-Logement {
       //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Logement.svg),
@@ -334,13 +334,13 @@
         background-position: calc(100% - 30px) calc(100% - 30px), center;
       }
 
-      // &.Niveau-de-français-Français {
-      //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Français.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% - 30px), center;
-      // }
+      &.Niveau-de-français-Français {
+        background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Français.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% - 30px), center;
+      }
 
       // &.Niveau-de-français-Formation-pro {
       //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Formation-pro.svg),
@@ -366,13 +366,13 @@
       //   background-position: calc(100% - 30px) calc(100% - 30px), center;
       // }
 
-      // &.Niveau-de-français-Administratif {
-      //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Administratif.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% - 30px), center;
-      // }
+      &.Niveau-de-français-Administratif {
+        background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Administratif.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% - 30px), center;
+      }
 
       // &.Niveau-de-français-Logement {
       //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Logement.svg),
@@ -438,13 +438,13 @@
         background-position: calc(100% - 0px) calc(100% + 0px), center;
       }
 
-      // &.Combien-ça-coûte-Français {
-      //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Français.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard.svg);
-      //   background-size: 70%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 0px) calc(100% + 0px), center;
-      // }
+      &.Combien-ça-coûte-Français {
+        background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Français.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+        background-size: 70%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 0px) calc(100% + 0px), center;
+      }
 
       // &.Combien-ça-coûte-Formation-pro {
       //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Formation-pro.svg),
@@ -470,13 +470,13 @@
       //   background-position: calc(100% - 0px) calc(100% + 0px), center;
       // }
 
-      // &.Combien-ça-coûte-Administratif {
-      //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Administratif.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
-      //   background-size: 70%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 0px) calc(100% + 0px), center;
-      // }
+      &.Combien-ça-coûte-Administratif {
+        background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Administratif.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+        background-size: 70%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 0px) calc(100% + 0px), center;
+      }
 
       // &.Combien-ça-coûte-Logement {
       //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Logement.svg),
@@ -542,13 +542,13 @@
         background-position: calc(100% - 60px) calc(100% + 0px), center;
       }
 
-      // &.Justificatif-demandé-Français {
-      //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Français.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 60px) calc(100% + 0px), center;
-      // }
+      &.Justificatif-demandé-Français {
+        background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Français.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
+      }
 
       // &.Justificatif-demandé-Formation-pro {
       //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Formation-pro.svg),
@@ -574,13 +574,13 @@
       //   background-position: calc(100% - 60px) calc(100% + 0px), center;
       // }
 
-      // &.Justificatif-demandé-Administratif {
-      //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Administratif.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 60px) calc(100% + 0px), center;
-      // }
+      &.Justificatif-demandé-Administratif {
+        background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Administratif.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
+      }
 
       // &.Justificatif-demandé-Logement {
       //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Logement.svg),
@@ -678,13 +678,13 @@
       //   background-position: calc(100% - 30px) calc(100% + 50px), center;
       // }
 
-      // &.Important-Administratif {
-      //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Administratif.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 50px), center;
-      // }
+      &.Important-Administratif {
+        background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Administratif.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 50px), center;
+      }
 
       // &.Important-Logement {
       //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Logement.svg),
