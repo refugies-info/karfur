@@ -38,21 +38,21 @@
         background-position: calc(100% - 20px) calc(100% + 25px), center;
       }
 
-      // &.Public-visé-Santé {
-      //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Santé.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 25px), center;
-      // }
+      &.Public-visé-Santé {
+        background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Santé.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 25px), center;
+      }
 
-      // &.Public-visé-Rencontre {
-      //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Rencontre.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 25px), center;
-      // }
+      &.Public-visé-Rencontre {
+        background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Rencontre.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 25px), center;
+      }
 
       &.Public-visé-Administratif {
         background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Administratif.svg),
@@ -142,21 +142,21 @@
         background-position: calc(100% - 20px) calc(100% + 10px), center;
       }
 
-      // &.Âge-requis-Santé {
-      //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Santé.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 10px), center;
-      // }
+      &.Âge-requis-Santé {
+        background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Santé.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
+      }
 
-      // &.Âge-requis-Rencontre {
-      //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Rencontre.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 10px), center;
-      // }
+      &.Âge-requis-Rencontre {
+        background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Rencontre.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
+      }
 
       &.Âge-requis-Administratif {
         background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Administratif.svg),
@@ -246,21 +246,21 @@
         background-position: calc(100% - 30px) calc(100% + 0px), center;
       }
 
-      // &.Durée-Santé {
-      //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Santé.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 0px), center;
-      // }
+      &.Durée-Santé {
+        background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Santé.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
+      }
 
-      // &.Durée-Rencontre {
-      //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Rencontre.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 0px), center;
-      // }
+      &.Durée-Rencontre {
+        background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Rencontre.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
+      }
 
       &.Durée-Administratif {
         background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Administratif.svg),
@@ -350,21 +350,21 @@
         background-position: calc(100% - 30px) calc(100% - 30px), center;
       }
 
-      // &.Niveau-de-français-Santé {
-      //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Santé.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% - 30px), center;
-      // }
+      &.Niveau-de-français-Santé {
+        background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Santé.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% - 30px), center;
+      }
 
-      // &.Niveau-de-français-Rencontre {
-      //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Rencontre.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% - 30px), center;
-      // }
+      &.Niveau-de-français-Rencontre {
+        background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Rencontre.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% - 30px), center;
+      }
 
       &.Niveau-de-français-Administratif {
         background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Administratif.svg),
@@ -454,21 +454,21 @@
         background-position: calc(100% - 0px) calc(100% + 0px), center;
       }
 
-      // &.Combien-ça-coûte-Santé {
-      //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Santé.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
-      //   background-size: 70%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 0px) calc(100% + 0px), center;
-      // }
+      &.Combien-ça-coûte-Santé {
+        background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Santé.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+        background-size: 70%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 0px) calc(100% + 0px), center;
+      }
 
-      // &.Combien-ça-coûte-Rencontre {
-      //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Rencontre.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
-      //   background-size: 70%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 0px) calc(100% + 0px), center;
-      // }
+      &.Combien-ça-coûte-Rencontre {
+        background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Rencontre.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+        background-size: 70%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 0px) calc(100% + 0px), center;
+      }
 
       &.Combien-ça-coûte-Administratif {
         background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Administratif.svg),
@@ -558,21 +558,21 @@
         background-position: calc(100% - 60px) calc(100% + 0px), center;
       }
 
-      // &.Justificatif-demandé-Santé {
-      //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Santé.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 60px) calc(100% + 0px), center;
-      // }
+      &.Justificatif-demandé-Santé {
+        background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Santé.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
+      }
 
-      // &.Justificatif-demandé-Rencontre {
-      //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Rencontre.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 60px) calc(100% + 0px), center;
-      // }
+      &.Justificatif-demandé-Rencontre {
+        background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Rencontre.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
+      }
 
       &.Justificatif-demandé-Administratif {
         background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Administratif.svg),
@@ -662,21 +662,21 @@
         background-position: calc(100% - 30px) calc(100% + 50px), center;
       }
 
-      // &.Important-Santé {
-      //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Santé.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 50px), center;
-      // }
+      &.Important-Santé {
+        background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Santé.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 50px), center;
+      }
 
-      // &.Important-Rencontre {
-      //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Rencontre.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 50px), center;
-      // }
+      &.Important-Rencontre {
+        background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Rencontre.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 50px), center;
+      }
 
       &.Important-Administratif {
         background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Administratif.svg),
