@@ -104,6 +104,7 @@ const uiElement = {
 let user = { _id: "", cookies: {} };
 const nbMoisNouveau = 1;
 
+const MAX_NUMBER_CHARACTERS_INFOCARD = 40;
 export class Dispositif extends Component {
   constructor(props) {
     super(props);
@@ -520,13 +521,21 @@ export class Dispositif extends Component {
               ...y,
               ...(subidx === parseInt(node.dataset.subkey) && {
                 [node.dataset.target || "content"]:
-                  value || (value === null && ev.target.value),
+                  value ||
+                  // in infocards we want to limit the number of caracters
+                  (value === null && y.type === "card"
+                    ? ev.target.value.substring(
+                        0,
+                        MAX_NUMBER_CHARACTERS_INFOCARD
+                      )
+                    : ev.target.value),
                 isFakeContent: false,
               }),
             };
           }),
         }),
     };
+
     return this.setState({ menu: state });
   };
 
