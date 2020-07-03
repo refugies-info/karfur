@@ -418,8 +418,8 @@ export class CardParagraphe extends Component<Props> {
     };
 
     const cardHeaderContent = (subitem: DispositifContent) => {
-      // in lecture mode, display title and icon
-      if (this.props.disableEdit) {
+      // in lecture mode, display title and icon or in edition when all types of infocard are already displayed
+      if (this.props.disableEdit || availableCardTitles.length === 0) {
         return (
           <>
             {subitem.typeIcon === "eva" ? (
@@ -481,6 +481,7 @@ export class CardParagraphe extends Component<Props> {
               })
             }
           </DropdownMenu>
+          )
         </ButtonDropdown>
       );
     };
