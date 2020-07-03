@@ -386,7 +386,7 @@ const cardTitles = [
   { title: "Public visé", titleIcon: "papiers", options: filtres.audience },
   {
     title: "Âge requis",
-    titleIcon: "calendar",
+    titleIcon: "calendar-outline",
     options: filtres.audienceAge,
   }, //["0-18","18-25","25-56","56-120"]
   { title: "Durée", titleIcon: "clock-outline" },
@@ -397,7 +397,7 @@ const cardTitles = [
   },
   { title: "Combien ça coûte ?", titleIcon: "pricetags-outline" },
 
-  { title: "Important !", titleIcon: "warning" },
+  { title: "Important !", titleIcon: "alert-triangle-outline" },
 ];
 
 const onBoardSteps = [
