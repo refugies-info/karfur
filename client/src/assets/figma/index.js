@@ -30,7 +30,6 @@ import dispo_trip_1 from "./dispo_trip_1.svg";
 import logo_google from "./logo_google.svg";
 import logo_header from "./logo_header.svg";
 import juliette from "./juliette.png";
-import hugo from "./hugo.png";
 import concordia from "./concordia.png";
 import ligueEnseignement from "./ligueEnseignement.png";
 import minInt from "./minInt.png";
@@ -76,7 +75,6 @@ export {
   logo_google,
   logo_header,
   juliette,
-  hugo,
   concordia,
   ligueEnseignement,
   minInt,
