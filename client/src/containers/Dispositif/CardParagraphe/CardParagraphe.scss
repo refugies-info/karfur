@@ -30,13 +30,13 @@
         background-position: calc(100% - 20px) calc(100% + 25px), center;
       }
 
-      // &.Public-visé-Formation-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Formation-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 25px), center;
-      // }
+      &.Public-visé-Formation-pro {
+        background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Formation-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 25px), center;
+      }
 
       // &.Public-visé-Santé {
       //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Santé.svg),
@@ -86,13 +86,13 @@
       //   background-position: calc(100% - 20px) calc(100% + 25px), center;
       // }
 
-      // &.Public-visé-Études {
-      //   background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Études.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Études.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 25px), center;
-      // }
+      &.Public-visé-Études {
+        background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Etudes.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 25px), center;
+      }
 
       &.Public-visé-Bénévolat {
         background-image: url(../../../assets/figma/InfoCard/Public/infocard_Public_Bénévolat.svg),
@@ -134,13 +134,13 @@
         background-position: calc(100% - 20px) calc(100% + 10px), center;
       }
 
-      // &.Âge-requis-Formation-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Formation-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 10px), center;
-      // }
+      &.Âge-requis-Formation-pro {
+        background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Formation-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
+      }
 
       // &.Âge-requis-Santé {
       //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Santé.svg),
@@ -190,13 +190,13 @@
       //   background-position: calc(100% - 20px) calc(100% + 10px), center;
       // }
 
-      // &.Âge-requis-Études {
-      //   background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Études.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Études.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 20px) calc(100% + 10px), center;
-      // }
+      &.Âge-requis-Études {
+        background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Etudes.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) calc(100% + 10px), center;
+      }
 
       &.Âge-requis-Bénévolat {
         background-image: url(../../../assets/figma/InfoCard/Age_requis/infocard_Age_requis_Bénévolat.svg),
@@ -238,13 +238,13 @@
         background-position: calc(100% - 30px) calc(100% + 0px), center;
       }
 
-      // &.Durée-Formation-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Formation-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 0px), center;
-      // }
+      &.Durée-Formation-pro {
+        background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Formation-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
+      }
 
       // &.Durée-Santé {
       //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Santé.svg),
@@ -294,13 +294,13 @@
       //   background-position: calc(100% - 30px) calc(100% + 0px), center;
       // }
 
-      // &.Durée-Études {
-      //   background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Études.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Études.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 0px), center;
-      // }
+      &.Durée-Études {
+        background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Etudes.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 0px), center;
+      }
 
       &.Durée-Bénévolat {
         background-image: url(../../../assets/figma/InfoCard/Duree/infocard_Durée_Bénévolat.svg),
@@ -342,13 +342,13 @@
         background-position: calc(100% - 30px) calc(100% - 30px), center;
       }
 
-      // &.Niveau-de-français-Formation-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Formation-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% - 30px), center;
-      // }
+      &.Niveau-de-français-Formation-pro {
+        background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Formation-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% - 30px), center;
+      }
 
       // &.Niveau-de-français-Santé {
       //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Santé.svg),
@@ -398,13 +398,13 @@
       //   background-position: calc(100% - 30px) calc(100% - 30px), center;
       // }
 
-      // &.Niveau-de-français-Études {
-      //   background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Études.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Études.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% - 30px), center;
-      // }
+      &.Niveau-de-français-Études {
+        background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Etudes.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% - 30px), center;
+      }
 
       &.Niveau-de-français-Bénévolat {
         background-image: url(../../../assets/figma/InfoCard/Francais/infocard_Français_Bénévolat.svg),
@@ -446,13 +446,13 @@
         background-position: calc(100% - 0px) calc(100% + 0px), center;
       }
 
-      // &.Combien-ça-coûte-Formation-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Formation-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
-      //   background-size: 70%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 0px) calc(100% + 0px), center;
-      // }
+      &.Combien-ça-coûte-Formation-pro {
+        background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Formation-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+        background-size: 70%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 0px) calc(100% + 0px), center;
+      }
 
       // &.Combien-ça-coûte-Santé {
       //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Santé.svg),
@@ -502,13 +502,13 @@
       //   background-position: calc(100% - 0px) calc(100% + 0px), center;
       // }
 
-      // &.Combien-ça-coûte-Études {
-      //   background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Études.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Études.svg);
-      //   background-size: 70%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 0px) calc(100% + 0px), center;
-      // }
+      &.Combien-ça-coûte-Études {
+        background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Etudes.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+        background-size: 70%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 0px) calc(100% + 0px), center;
+      }
 
       &.Combien-ça-coûte-Bénévolat {
         background-image: url(../../../assets/figma/InfoCard/Prix/infocard_Prix_Bénévolat.svg),
@@ -550,13 +550,13 @@
         background-position: calc(100% - 60px) calc(100% + 0px), center;
       }
 
-      // &.Justificatif-demandé-Formation-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Formation-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 60px) calc(100% + 0px), center;
-      // }
+      &.Justificatif-demandé-Formation-pro {
+        background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Formation-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
+      }
 
       // &.Justificatif-demandé-Santé {
       //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Santé.svg),
@@ -606,13 +606,13 @@
       //   background-position: calc(100% - 60px) calc(100% + 0px), center;
       // }
 
-      // &.Justificatif-demandé-Études {
-      //   background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Études.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Études.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 60px) calc(100% + 0px), center;
-      // }
+      &.Justificatif-demandé-Études {
+        background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Etudes.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 60px) calc(100% + 0px), center;
+      }
 
       &.Justificatif-demandé-Bénévolat {
         background-image: url(../../../assets/figma/InfoCard/Papiers/infocard_Papiers_Bénévolat.svg),
@@ -654,13 +654,13 @@
         background-position: calc(100% - 30px) calc(100% + 50px), center;
       }
 
-      // &.Important-Formation-pro {
-      //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Formation-pro.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 50px), center;
-      // }
+      &.Important-Formation-pro {
+        background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Formation-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 50px), center;
+      }
 
       // &.Important-Santé {
       //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Santé.svg),
@@ -710,13 +710,13 @@
       //   background-position: calc(100% - 30px) calc(100% + 50px), center;
       // }
 
-      // &.Important-Études {
-      //   background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Études.svg),
-      //     url(../../../assets/figma/InfoCard/background/bg-infocard_Études.svg);
-      //   background-size: 80%, cover;
-      //   background-repeat: no-repeat, no-repeat;
-      //   background-position: calc(100% - 30px) calc(100% + 50px), center;
-      // }
+      &.Important-Études {
+        background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Etudes.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 30px) calc(100% + 50px), center;
+      }
 
       &.Important-Bénévolat {
         background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Bénévolat.svg),
