@@ -107,7 +107,7 @@ const countContents = (obj, nbChamps = 0, type = null) => {
     );
     if (
       type === "cards" &&
-      (x.title === "Important !" || !x.title) &&
+      (x.title === "Important !" || x.title === "Durée" || !x.title) &&
       x.contentTitle &&
       x.contentTitle !== "" &&
       x.contentTitle !== undefined &&
@@ -155,7 +155,7 @@ const countValidated = (obj, nbChamps = 0, type = null) => {
     );
     if (
       type === "cards" &&
-      (x.title === "Important !" || !x.title) &&
+      (x.title === "Important !" || x.title === "Durée" || !x.title) &&
       x.contentTitle &&
       x.contentTitle !== "" &&
       x.contentTitle !== undefined &&
