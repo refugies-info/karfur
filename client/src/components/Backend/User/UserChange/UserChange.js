@@ -13,7 +13,7 @@ import {
 import Slider, { createSliderWithTooltip } from "rc-slider";
 import passwdCheck from "zxcvbn";
 import "rc-slider/assets/index.css";
-import moment from 'moment';
+import moment from "moment";
 
 // import DraggableList from '../../../../components/UI/DraggableList/DraggableList';
 import marioProfile from "../../../../assets/mario-profile.jpg";
@@ -26,7 +26,6 @@ const SliderWithTooltip = createSliderWithTooltip(Slider);
 const localeFormatter = (v) => new Intl.NumberFormat().format(v);
 
 const userChange = (props) => {
-  console.log(props.user)
   const user = props.user || {},
     handleChange = props.handleChange || (() => {});
   const statuts = ["Actif", "En attente", "Inactif", "Exclu"];
@@ -365,7 +364,7 @@ const userChange = (props) => {
             </Col>
           </FormGroup>
           {props.user ?
-          <div style={{flexDirection: 'row', position: 'flex', flex: 1, justifyContent: 'flex-start'}}>
+          <div style={{flexDirection: "row", position: "flex", flex: 1, justifyContent: "flex-start"}}>
             <p>Temps Passé 3 mois (En minutes):</p>
           <p>{(props.user.progression && (props.user.progression.threeMonthsIndicator.length > 0)) ?  parseFloat(moment.duration(props.user.progression.threeMonthsIndicator[0].timeSpent).asMinutes()).toFixed(2) : 0}</p>
             <p>Nombre Mots 3 mois:</p>

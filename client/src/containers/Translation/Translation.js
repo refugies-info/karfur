@@ -250,7 +250,6 @@ export class TranslationHOC extends Component {
                 )
               )
             : value;
-          console.log(item);
           this._isMounted && item &&
             this.setState(
               {
@@ -395,7 +394,6 @@ export class TranslationHOC extends Component {
   };
 
   valider = async (tradData = {}) => {
-    console.log('validation')
     this.setState({ disableBtn: true });
     let traduction = {
       langueCible: this.state.locale,
@@ -416,7 +414,6 @@ export class TranslationHOC extends Component {
       };
     }
     traduction = { ...traduction, ...tradData };
-    console.log('validation trad', traduction);
 
     //const data = await API.add_traduction(traduction);
     await this.props.addTranslation(traduction);

@@ -213,7 +213,7 @@ const tradTable = (props) => {
           </Col>
           {props.displayIndicators && traducteur && (
             <Col className="d-flex tableau-header">
-              <div style={{position: 'absolute', right: 20}}>
+              <div style={{position: "absolute", right: 20}}>
                 <FButton
                   tag={NavLink}
                   to="/backend/user-dashboard"
