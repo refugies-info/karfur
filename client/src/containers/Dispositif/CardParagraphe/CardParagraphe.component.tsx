@@ -18,7 +18,6 @@ import {
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
 
-import SVGIcon from "../../../components/UI/SVGIcon/SVGIcon";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
 
@@ -30,6 +29,7 @@ import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "../../../@types/interface";
 import { filtres, cardTitles } from "../data";
 import _ from "lodash";
+import { infoCardIcon } from "../../../components/Icon/Icon";
 
 const list_papiers = [
   { name: "Titre de séjour" },
@@ -418,20 +418,11 @@ export class CardParagraphe extends Component<Props> {
     };
 
     const cardHeaderContent = (subitem: DispositifContent) => {
-      // in lecture mode, display title and icon
-      if (this.props.disableEdit) {
+      // in lecture mode, display title and icon or in edition when all types of infocard are already displayed
+      if (this.props.disableEdit || availableCardTitles.length === 0) {
         return (
           <>
-            {subitem.typeIcon === "eva" ? (
-              <EVAIcon name={subitem.titleIcon} fill="#FFFFFF" />
-            ) : (
-              <SVGIcon
-                name={subitem.titleIcon}
-                fill="#FFFFFF"
-                width="20"
-                height="20"
-              />
-            )}
+            {infoCardIcon(subitem.titleIcon, "#FFFFFF")}
             <span className="header-content">
               {subitem.title && t("Dispositif." + subitem.title, subitem.title)}
             </span>
@@ -450,17 +441,10 @@ export class CardParagraphe extends Component<Props> {
               caret={!this.props.disableEdit}
               className="header-value"
             >
-              {subitem.typeIcon === "eva" ? (
-                <EVAIcon name={subitem.titleIcon} fill="#FFFFFF" />
-              ) : (
-                <SVGIcon
-                  name={subitem.titleIcon}
-                  fill="#FFFFFF"
-                  width="20"
-                  height="20"
-                />
-              )}
-              <span className="header-content">{subitem.title}</span>
+              <div className="icon-title">
+                {infoCardIcon(subitem.titleIcon, "#FFFFFF")}
+                <span className="header-content">{subitem.title}</span>
+              </div>
             </DropdownToggle>
           }
           <DropdownMenu>
@@ -472,10 +456,11 @@ export class CardParagraphe extends Component<Props> {
                     key={key}
                     // @ts-ignore
                     id={key}
-                    data-titleicon={cardTitle.titleIcon}
                   >
-                    <SVGIcon name={cardTitle.titleIcon} />
-                    <span className="header-content">{cardTitle.title}</span>
+                    <div className="icon-title">
+                      {infoCardIcon(cardTitle.titleIcon)}
+                      <span className="header-content">{cardTitle.title}</span>
+                    </div>
                   </DropdownItem>
                 );
               })
