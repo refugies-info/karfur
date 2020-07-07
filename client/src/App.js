@@ -157,9 +157,6 @@ class App extends Component {
             />
           </Switch>
         </ConnectedRouter>
-
-        {/* <LiveChat socket = { socket } 
-                  socketFn = { this.socketFn } />  */}
       </Provider>
     );
   }

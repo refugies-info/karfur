@@ -11,6 +11,7 @@
 @import "./scss/common.scss";
 @import "./scss/colors.scss";
 @import "./scss/rtl-handler.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 $theme-list: (
   Français #37277c #f0e8f5 #ada8d4,
@@ -29,7 +30,7 @@ $theme-list: (
 
 html head,
 html body {
-  font-family: "Helvetica Neue", "Noto Sans";
+  font-family: "Roboto", "Noto Sans";
   color: #3d3d3d;
   height: 100%;
   min-height: 100vh;

@@ -4,14 +4,16 @@ import ContentEditable from "react-contenteditable";
 
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
-import CardParagraphe, {
+import {
+  CardParagraphe,
   PlusCard,
-} from "../../../../containers/Dispositif/CardParagraphe/CardParagraphe";
+} from "../../../../containers/Dispositif/CardParagraphe";
 import MapParagraphe from "../../../../containers/Dispositif/MapParagraphe/MapParagraphe";
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 import variables from "scss/colors.scss";
+import { cardTitles } from "../../../../containers/Dispositif/data";
 
 const contenuParagraphe = (props) => {
   const { disableEdit, ...bprops } = props;
@@ -22,6 +24,9 @@ const contenuParagraphe = (props) => {
     props.uiArray[key].children.length > subkey &&
     props.uiArray[key].children[subkey] &&
     props.uiArray[key].children[subkey][node];
+  const cards = item.children
+    ? item.children.filter((x) => x.type === "card").map((x) => x.title)
+    : [];
   return (
     <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
       {item.children &&
@@ -68,12 +73,21 @@ const contenuParagraphe = (props) => {
               )}
               {subitem.type === "card" ? (
                 <CardParagraphe
-                  key={subkey}
                   subkey={subkey}
                   subitem={subitem}
-                  tutoriel={item.tutoriel}
                   disableEdit={newDisableEdit}
-                  {...bprops}
+                  changeTitle={bprops.changeTitle}
+                  handleMenuChange={bprops.handleMenuChange}
+                  changeAge={bprops.changeAge}
+                  toggleFree={bprops.toggleFree}
+                  changePrice={bprops.changePrice}
+                  updateUIArray={bprops.updateUIArray}
+                  toggleNiveau={bprops.toggleNiveau}
+                  deleteCard={bprops.deleteCard}
+                  content={bprops.content}
+                  keyValue={bprops.keyValue}
+                  cards={cards}
+                  mainTag={bprops.mainTag}
                 />
               ) : subitem.type === "map" ? (
                 <MapParagraphe
@@ -206,18 +220,21 @@ const contenuParagraphe = (props) => {
                           "heading" + props.keyValue + "-" + subkey
                         }
                       >
-                        <EditableParagraph
-                          keyValue={props.keyValue}
-                          subkey={subkey}
-                          target="content"
-                          handleMenuChange={props.handleMenuChange}
-                          onEditorStateChange={props.onEditorStateChange}
-                          handleContentClick={props.handleContentClick}
-                          disableEdit={newDisableEdit}
-                          tutoriel={item.tutoriel}
-                          addItem={props.addItem}
-                          {...subitem}
-                        />
+                        {
+                          // display and edition of content
+                          <EditableParagraph
+                            keyValue={props.keyValue}
+                            subkey={subkey}
+                            target="content"
+                            handleMenuChange={props.handleMenuChange}
+                            onEditorStateChange={props.onEditorStateChange}
+                            handleContentClick={props.handleContentClick}
+                            disableEdit={newDisableEdit}
+                            tutoriel={item.tutoriel}
+                            addItem={props.addItem}
+                            {...subitem}
+                          />
+                        }
                       </Collapse>
                     </Col>
                     {!props.sideView && !props.inVariante && newDisableEdit && (
@@ -304,8 +321,15 @@ const contenuParagraphe = (props) => {
       {!props.disableEdit &&
         item.type === "cards" &&
         item.children &&
-        item.children.length > 0 &&
-        item.children[0].type === "card" && <PlusCard {...props} />}
+        item.title === "C'est pour qui ?" &&
+        // when all types of incards are displayed we do not want to add more
+        cards.length < cardTitles.length && (
+          <PlusCard
+            addItem={props.addItem}
+            keyValue={props.keyValue}
+            cards={cards}
+          />
+        )}
     </div>
   );
 };

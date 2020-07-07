@@ -13,7 +13,6 @@ import DirectionProvider, {
 import _ from "lodash";
 import "rc-slider/assets/index.css";
 
-import Article from "../../Article/Article";
 import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
@@ -86,7 +85,7 @@ export class StringTranslation extends Component {
     }
   };
 
-  _getArticle = (itemId, isExpert = false) => {
+  _getArticle = (itemId) => {
     API.get_article({ _id: itemId }).then((data_res) => {
       if (
         data_res.data.data.constructor === Array &&
@@ -174,7 +173,6 @@ export class StringTranslation extends Component {
       isExpert,
       time,
       nbMotsRestants,
-      itemId,
       autosuggest,
       traducteur,
     } = this.props;
@@ -377,11 +375,6 @@ export class StringTranslation extends Component {
             </Col>
           </Row>
         </div>
-        <Row className="article-container" id="article-container">
-          {false && itemId && !isExpert && !isStructure && (
-            <Article id={itemId} francais={francais} translated={translated} />
-          )}
-        </Row>
       </div>
     );
   }

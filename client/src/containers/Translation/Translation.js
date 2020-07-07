@@ -7,12 +7,14 @@ import { EditorState, ContentState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
 import { connect } from "react-redux";
 import _ from "lodash";
+import produce from "immer";
 
 import API from "../../utils/API";
 import StringTranslation from "./StringTranslation/StringTranslation";
 import Dispositif from "../Dispositif/Dispositif";
 import { menu } from "../Dispositif/data";
 import { initializeTimer } from "./functions";
+import { fetchTranslationsActionCreator, addTradActionCreator } from "../../services/Translation/translation.actions";
 
 let last_target = null;
 let letter_pressed = null;
@@ -73,6 +75,44 @@ export class TranslationHOC extends Component {
     window.scrollTo(0, 0);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.translations !== this.props.translations) {
+      const { isExpert, userId } = this.props;
+      const traductions = this.props.translations;
+
+      const traduction = traductions.find(
+        (trad) => trad.userId._id === trad.validatorId
+      );
+      this.setState({
+        traductionsFaites: traductions,
+        traduction: {
+          initialText: _.get(traductions, "0.initialText", {}),
+          translatedText:
+            isExpert && traductions.find((trad) => trad.userId._id === userId)
+              ? _.get(
+                  traductions.find((trad) => trad.userId._id === userId),
+                  ["translatedText"]
+                )
+              : traduction
+              ? traduction.translatedText
+              : _.get(traductions, "0.translatedText", {}),
+        },
+        autosuggest: false,
+      });
+    }
+
+    if (
+      prevProps.translation !== this.props.translation &&
+      this.props.translation._id
+    ) {
+      this.setState(
+        produce((draft) => {
+          draft.traduction._id = this.props.translation._id;
+        })
+      );
+    }
+  }
+
   // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
     if (nextProps.match.params.id !== this.props.match.params.id) {
@@ -103,10 +143,10 @@ export class TranslationHOC extends Component {
     try {
       itemId = props.match.params.id;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
-    const { locale, langueBackupId } = await this._setLangue(props),
-      userId = props.userId;
+    const { locale, langueBackupId } = await this._setLangue(props);
     const isExpert = this.props.isExpert;
     const type =
       (props.match.path || "").includes("dispositif") ||
@@ -116,53 +156,15 @@ export class TranslationHOC extends Component {
     this.setState({ type, itemId, locale, isExpert, langueBackupId });
     if (itemId && type === "dispositif") {
       //...(!isExpert && userId && {userId})
-      API.get_tradForReview({
-        query: { articleId: itemId, langueCible: locale },
-        sort: { updatedAt: -1 },
-        populate: "userId",
-      }).then((data_res) => {
-        if (
-          data_res.data.data &&
-          data_res.data.data.constructor === Array &&
-          data_res.data.data.length > 0
-        ) {
-          const traductions = data_res.data.data;
-          const traduction = traductions.find(
-            (trad) => trad.userId._id === trad.validatorId
-          );
-          console.log(traduction);
-          this._isMounted &&
-            this.setState({
-              traductionsFaites: traductions,
-              ...((isExpert || userId) && {
-                traduction: {
-                  initialText: _.get(traductions, "0.initialText", {}),
-                  translatedText:
-                    isExpert &&
-                    traductions.find(
-                      (trad) => trad.userId._id === this.props.userId
-                    )
-                      ? _.get(
-                          traductions.find(
-                            (trad) => trad.userId._id === this.props.userId
-                          ),
-                          ["translatedText"]
-                        )
-                      : traduction
-                      ? traduction.translatedText
-                      : _.get(traductions, "0.translatedText", {}),
-                },
-                autosuggest: false,
-              }),
-            });
-        }
-      });
+      this.props.fetchTranslations(itemId, locale);
     }
   };
 
   get_trads = () => {
-    const { itemId, locale, isExpert, userId } = this.state;
-    return API.get_tradForReview({
+    const { itemId, locale} = this.state;
+    this.props.fetchTranslations(itemId, locale);
+
+    /* return API.get_tradForReview({
       query: { articleId: itemId, langueCible: locale },
       sort: { updatedAt: -1 },
       populate: "userId",
@@ -200,7 +202,7 @@ export class TranslationHOC extends Component {
           }),
         });
       }
-    });
+    }); */
   };
 
   _setLangue = async (props) => {
@@ -214,6 +216,7 @@ export class TranslationHOC extends Component {
           await API.get_langues({ _id: params.id }, {}, "langueBackupId")
         ).data.data[0];
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
       }
     }
@@ -238,6 +241,7 @@ export class TranslationHOC extends Component {
           let value =
             data.data
               .replace(/ id='initial_/g, " id='target_")
+              // eslint-disable-next-line
               .replace(/ id="initial_/g, ' id="target_') || "";
           value = toEditor
             ? EditorState.createWithContent(
@@ -246,7 +250,8 @@ export class TranslationHOC extends Component {
                 )
               )
             : value;
-          this._isMounted &&
+          console.log(item);
+          this._isMounted && item &&
             this.setState(
               {
                 translated: {
@@ -254,11 +259,11 @@ export class TranslationHOC extends Component {
                   [item]: value,
                 },
               },
-              () => console.log("setting translate", this.state.translated)
             ); //, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
         }
       })
       .catch((err) => {
+        // eslint-disable-next-line no-console
         console.log("error : ", err);
         if (
           !this.state.translated[item] &&
@@ -280,7 +285,6 @@ export class TranslationHOC extends Component {
                   [item]: value,
                 },
               },
-              () => console.log("setting translate", this.state.translated)
             );
         }
       });
@@ -295,6 +299,7 @@ export class TranslationHOC extends Component {
         } else {
         }
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
     });
@@ -339,6 +344,7 @@ export class TranslationHOC extends Component {
           .classList.add("temporarily_highlight");
       }
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   };
@@ -389,6 +395,7 @@ export class TranslationHOC extends Component {
   };
 
   valider = async (tradData = {}) => {
+    console.log('validation')
     this.setState({ disableBtn: true });
     let traduction = {
       langueCible: this.state.locale,
@@ -409,11 +416,13 @@ export class TranslationHOC extends Component {
       };
     }
     traduction = { ...traduction, ...tradData };
-    console.log(traduction, tradData);
-    const data = await API.add_traduction(traduction);
-    traduction._id = (data.data.data || {})._id;
+    console.log('validation trad', traduction);
+
+    //const data = await API.add_traduction(traduction);
+    await this.props.addTranslation(traduction);
+    //traduction._id = (data.data.data || {})._id;
     this.setState({ traduction });
-    await this.get_trads();
+    //await this.get_trads();
     if (traduction.avancement >= 1) {
       Swal.fire({
         title: "Yay...",
@@ -435,7 +444,7 @@ export class TranslationHOC extends Component {
       this.props.history.push({
         pathname: "/avancement/langue/" + langue._id,
         state: { langue: langue },
-      }); 
+      });
       return;
     }
 
@@ -563,8 +572,9 @@ export class TranslationHOC extends Component {
           {...this.state}
         />
       );
+      // eslint-disable-next-line
     } else {
-      return false;
+    return false
     }
   }
 }
@@ -573,7 +583,14 @@ const mapStateToProps = (state) => {
   return {
     userId: state.user.userId,
     isExpert: state.user.expertTrad,
+    translations: state.translation.translations,
+    translation: state.translation.translation,
   };
 };
 
-export default connect(mapStateToProps)(TranslationHOC);
+const mapDispatchToProps = {
+  fetchTranslations: fetchTranslationsActionCreator,
+  addTranslation: addTradActionCreator,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TranslationHOC);

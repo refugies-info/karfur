@@ -277,7 +277,6 @@ class Sponsors extends Component {
       deleteSponsor,
       user,
       structures,
-      admin,
     } = this.props;
     const {
       showModals,
@@ -287,6 +286,14 @@ class Sponsors extends Component {
       mesStructures,
     } = this.state;
 
+    const sponsorsWithoutPicture = sponsors.filter(
+      (sponsor) => !sponsor.picture
+    );
+    const sponsorsWithPicture = sponsors.filter((sponsor) => !!sponsor.picture);
+
+    const deduplicatedSponsors = sponsorsWithoutPicture.concat(
+      _.uniqBy(sponsorsWithPicture, (sponsor) => sponsor.picture.secure_url)
+    );
     const modal = { name: "responsabilite" };
     return (
       <div className="sponsor-footer">
@@ -295,7 +302,7 @@ class Sponsors extends Component {
         </h5>
         <Row className="sponsor-images">
           {sponsors &&
-            sponsors.map((sponsor, key) => {
+            deduplicatedSponsors.map((sponsor, key) => {
               return (
                 <Col key={key} className="sponsor-col">
                   <div className="image-wrapper">
@@ -368,7 +375,7 @@ class Sponsors extends Component {
               );
             })}
 
-          {!disableEdit && (!sponsors || sponsors.length === 0 || admin) && (
+          {!disableEdit && (
             <Col>
               <div
                 className="add-sponsor"
@@ -376,9 +383,7 @@ class Sponsors extends Component {
                   this.props.toggleFinalValidation();
                   !sponsors || sponsors.length === 0
                     ? this.toggleModal("responsabilite")
-                    : sponsors.length > 0 &&
-                      admin &&
-                      this.toggleModal("img-modal");
+                    : sponsors.length > 0 && this.toggleModal("img-modal");
                 }}
               >
                 <EVAIcon

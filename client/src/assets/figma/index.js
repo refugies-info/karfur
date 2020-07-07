@@ -30,14 +30,12 @@ import dispo_trip_1 from "./dispo_trip_1.svg";
 import logo_google from "./logo_google.svg";
 import logo_header from "./logo_header.svg";
 import juliette from "./juliette.png";
-import hugo from "./hugo.png";
 import concordia from "./concordia.png";
 import ligueEnseignement from "./ligueEnseignement.png";
 import minInt from "./minInt.png";
 import serviceCivique from "./serviceCivique.png";
 import solidariteJeunesse from "./solidariteJeunesse.png";
 import diair from "./Diair.png";
-import vueParkourPerso from "./vueParkourPerso.png";
 import equipe from "./equipe.png";
 import diairMinInt from "./diairMinInt.png";
 import DGEF from "./DGEF.png";
@@ -77,14 +75,12 @@ export {
   logo_google,
   logo_header,
   juliette,
-  hugo,
   concordia,
   ligueEnseignement,
   minInt,
   serviceCivique,
   solidariteJeunesse,
   diair,
-  vueParkourPerso,
   equipe,
   diairMinInt,
   DGEF,

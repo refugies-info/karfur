@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import ReactHtmlParser from "react-html-parser";
-import {
-  Spinner,
-  Tooltip,
-  ListGroup,
-  ListGroupItem,
-  Progress,
-} from "reactstrap";
+import { Spinner, Tooltip, Progress } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import { Editor } from "react-draft-wysiwyg";
@@ -31,6 +25,7 @@ import {
 } from "../../../assets/figma/index";
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { RejectTradModal } from "../../../components/Modals";
+import moment from 'moment';
 
 import "./SideTrad.scss";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
@@ -103,41 +98,106 @@ class SideTrad extends Component {
     initialize: false,
     initializeTrad: false,
     avancement: 0,
+    startingTime: null,
+    endingTime: null,
+    validerInit: false
   };
   initialState = this.state;
 
-  /*  componentDidMount() {
-      this._initializeComponent();
+  componentDidMount() {
+    this.setState({startingTime: moment()});
 
-  } */
+}
 
-  componentWillReceiveProps(nextProps) {
+/*   UNSAFE_componentWillReceiveProps(nextProps) {
     if (
-      this.state.initialize == false &&
+      this.props.translations !== nextProps.translations &&
+      nextProps.translations
+    ) {
+      const { translations } = nextProps;
+      if (translations.length) {
+        const userTrad = translations.find(
+          (trad) => trad.userId._id === this.props.user._id
+        );
+        const expertTrad = translations.find(
+          (trad) => trad.userId._id === trad.validatorId
+        );
+        if (userTrad && userTrad.status === "À revoir") {
+          this.setState({ avancement: userTrad.avancement });
+        } else if (expertTrad && expertTrad.status === "À revoir") {
+          this.setState({ avancement: expertTrad.avancement });
+        } else {
+          this.setState({ avancement: translations[0].avancement });
+        }
+      }
+      this.props.fwdSetState({ disableBtn: false });
+      this.goChange(true, false);
+    }
+    if (
+      this.state.initialize === false &&
       nextProps.content.titreInformatif !== this.props.content.titreInformatif
     ) {
       this._initializeComponent(nextProps);
       this.setState({ initialize: true });
     }
     if (
-      this.state.initializeTrad == false &&
+      this.state.initializeTrad === false &&
       nextProps.traductionsFaites !== this.props.traductionsFaites
     ) {
       this._initializeComponent(nextProps);
       this.setState({ initializeTrad: true });
     }
-  }
+  } */
 
   componentDidUpdate(prevProps, prevState) {
     const {
       currIdx,
       currSubIdx,
       currSubName,
-      isExpert,
       availableListTrad,
-      modifiedNew,
       listTrad,
     } = this.state;
+    
+      this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
+    if (
+      this.props.translations !== prevProps.translations &&
+      this.props.translations
+    ) {
+      const { translations } = this.props;
+      if (translations.length) {
+        const userTrad = translations.find(
+          (trad) => trad.userId._id === this.props.user._id
+        );
+        const expertTrad = translations.find(
+          (trad) => trad.userId._id === trad.validatorId
+        );
+        if (userTrad && userTrad.status === "À revoir") {
+          this.setState({ avancement: userTrad.avancement });
+        } else if (expertTrad && expertTrad.status === "À revoir") {
+          this.setState({ avancement: expertTrad.avancement });
+        } else {
+          this.setState({ avancement: translations[0].avancement });
+        }
+      }
+      this.props.fwdSetState({ disableBtn: false });
+      if ((this.state.initialize && currIdx !== "titreInformatif") || (this.state.initialize && currIdx === "titreInformatif" && this.state.validerInit)) {
+        this.goChange();
+      }
+    }
+    if (
+      this.state.initialize === false &&
+      prevProps.content.titreInformatif !== this.props.content.titreInformatif
+    ) {
+      this._initializeComponent(this.props);
+      this.setState({ initialize: true });
+    }
+    if (
+      this.state.initializeTrad === false &&
+      prevProps.traductionsFaites !== this.props.traductionsFaites
+    ) {
+      this._initializeComponent(this.props);
+      this.setState({ initializeTrad: true });
+    }
     const expertTrad = listTrad.length
       ? listTrad.find((trad) => trad.userId._id === trad.validatorId)
       : null;
@@ -149,7 +209,7 @@ class SideTrad extends Component {
       currSubIdx !== prevState.currSubIdx ||
       currSubName !== prevState.currSubName
     ) {
-      this.setState({ propositionIndex: 0 });
+      this.setState({ propositionIndex: 0, startingTime: moment() });
 
       if (availableListTrad.length > 0) {
         this.setState({ validated: true });
@@ -216,9 +276,11 @@ class SideTrad extends Component {
       if (
         this.state.pointeurs.includes(currIdx) &&
         ((expertTrad &&
-        expertTrad.translatedText[currIdx + "Modified"] == true) || this.props.traduction.translatedText[currIdx + "Modified"] === true) &&
+          expertTrad.translatedText[currIdx + "Modified"] === true) ||
+          this.props.traduction.translatedText[currIdx + "Modified"] ===
+            true) &&
         ((userTrad &&
-          userTrad.translatedText[currIdx + "Modified"] == undefined) ||
+          userTrad.translatedText[currIdx + "Modified"] === undefined) ||
           !userTrad)
       ) {
         this.setState({ modified: true });
@@ -229,8 +291,11 @@ class SideTrad extends Component {
     if (!this.state.pointersMod) {
       this.state.pointeurs.forEach((x) => {
         if (traduction.translatedText[x + "Modified"]) {
+          // eslint-disable-next-line
           const elems = document.querySelectorAll('div[id="' + x + '"]');
-          elems[0].classList.toggle("arevoir", true);
+          if (elems[0]) {
+            elems[0].classList.toggle("arevoir", true);
+          }
           this.setState({ pointersMod: true });
         }
       });
@@ -240,6 +305,7 @@ class SideTrad extends Component {
         if (p.titleModified) {
         }
         if (p.contentModified) {
+          // eslint-disable-next-line
           const elems1 = document.querySelectorAll('div[id="' + index + '"]');
           if (elems1 && elems1[0] && elems1[0].classList) {
             elems1[0].classList.toggle("arevoir", true);
@@ -250,12 +316,17 @@ class SideTrad extends Component {
           p.children.forEach((c, j) => {
             if (c.titleModified) {
               const elems1 = document.querySelectorAll(
+                // eslint-disable-next-line
                 'div[id="' +
                   index +
+                  // eslint-disable-next-line
                   '"]' +
                   (j !== undefined && j > -1
-                    ? '[data-subkey="' + j + '"]'
-                    : "") +
+                    ? // eslint-disable-next-line
+                      '[data-subkey="' + j + '"]'
+                    : // eslint-disable-next-line
+                      "") +
+                  // eslint-disable-next-line
                   (j !== undefined && j > -1 ? '[data-target="title"]' : "")
               );
               if (elems1 && elems1[0] && elems1[0].classList) {
@@ -265,12 +336,17 @@ class SideTrad extends Component {
             }
             if (c.contentModified) {
               const elems2 = document.querySelectorAll(
+                // eslint-disable-next-line
                 'div[id="' +
                   index +
+                  // eslint-disable-next-line
                   '"]' +
                   (j !== undefined && j > -1
-                    ? '[data-subkey="' + j + '"]'
-                    : "") +
+                    ? // eslint-disable-next-line
+                      '[data-subkey="' + j + '"]'
+                    : // eslint-disable-next-line
+                      "") +
+                  // eslint-disable-next-line
                   (j !== undefined && j > -1 ? '[data-target="content"]' : "")
               );
               if (elems2 && elems2[0] && elems2[0].classList) {
@@ -304,17 +380,15 @@ class SideTrad extends Component {
           () => {},
           () => this.checkTranslate(props.locale)
         );
-        //this.checkTranslate(props.locale)
       }
       if (props.typeContenu === "demarche") {
         this.setState({ pointeurs: ["titreInformatif", "abstract"] });
       }
-      const { traduction } = this.props;
     }
   };
 
   goChange = async (isNext = true, fromFn = true) => {
-    await this.props.getTrads();
+    //await this.props.getTrads();
     if (isNext && fromFn) {
       this.setState({ hasBeenSkipped: true });
     }
@@ -347,7 +421,7 @@ class SideTrad extends Component {
               this.checkTranslate(this.props.locale);
             }
           );
-          this._scrollAndHighlight(this.state.currIdx);
+          //this._scrollAndHighlight(this.state.currIdx);
         }
       );
     } else {
@@ -407,7 +481,7 @@ class SideTrad extends Component {
             this._endingFeedback();
             return;
           } else if (subidx > -1 && this.props.menu[idx].type === "cards") {
-            if (this.props.menu[idx].children[subidx].title === "Important !") {
+            if (this.props.menu[idx].children[subidx].title === "Important !" || this.props.menu[idx].children[subidx].title === 'Durée') {
               subname = "contentTitle";
               value = this.props.menu[idx].children[subidx].contentTitle;
               this.setState({ currSubName: subname });
@@ -428,7 +502,7 @@ class SideTrad extends Component {
             this.goChange(isNext, false);
             return;
           }
-          this._scrollAndHighlight(idx, subidx, subname);
+          //this._scrollAndHighlight(idx, subidx, subname);
           this.props.fwdSetState(
             () => ({ francais: { body: value } }),
             () => this.checkTranslate(this.props.locale)
@@ -457,21 +531,25 @@ class SideTrad extends Component {
       x.classList.remove("translating");
     }); //On enlève le surlignage des anciens éléments
     const elems = document.querySelectorAll(
+      // eslint-disable-next-line
       'div[id="' +
         idx +
+        // eslint-disable-next-line
         '"]' +
         (subidx !== undefined && subidx > -1
-          ? '[data-subkey="' + subidx + '"]'
+          ? // eslint-disable-next-line
+            '[data-subkey="' + subidx + '"]'
           : "") +
         (subidx !== undefined && subidx > -1 && subname && subname !== ""
-          ? '[data-target="' + subname + '"]'
+          ? // eslint-disable-next-line
+            '[data-target="' + subname + '"]'
           : "")
     );
     if (elems.length > 0) {
       const elem = elems[0];
       elem.scrollIntoView({
         behavior: "smooth",
-        block: "end",
+        block: "center",
         inline: "nearest",
       });
       elem.classList.toggle("translating"); //On le surligne
@@ -479,13 +557,13 @@ class SideTrad extends Component {
   };
 
   checkTranslate = (target) => {
-    const { pointeurs, currIdx, currSubIdx, currSubName } = this.state;
+    const { pointeurs, currIdx, currSubIdx } = this.state;
     //console.log(pointeurs, currSubIdx, currIdx, currSubName);
     const text = this.initial_text.innerHTML,
       item = "body";
     //On vérifie si une traduction n'a pas déjà été validée
     const pos = pointeurs.findIndex((x) => currIdx === x),
-      { isExpert, traductionsFaites } = this.props;
+      { traductionsFaites } = this.props;
     let oldTrad = "",
       listTrad = [],
       userId = {},
@@ -509,7 +587,7 @@ class SideTrad extends Component {
           ...x,
         };
       }) || [];
-    let availableListTrad = listTrad.filter((sugg, key) => {
+    let availableListTrad = listTrad.filter((sugg) => {
       let valeur = h2p(sugg.value || "");
       if (valeur && valeur !== "" && valeur !== false && valeur !== false) {
         return sugg;
@@ -520,31 +598,16 @@ class SideTrad extends Component {
     } else {
       this.setState({ validated: false });
     }
-    if (listTrad.length) {
-      const userTrad = listTrad.find(
-        (trad) => trad.userId._id === this.props.user._id
-      );
-      const expertTrad = listTrad.find((trad) => trad.userId._id === trad.validatorId);
-      if (userTrad && userTrad.status === "À revoir") {
-        this.setState({ avancement: userTrad.avancement });
-      } else if (expertTrad && expertTrad.status === "À revoir") {
-        this.setState({ avancement: expertTrad.avancement });
-      } else {
-        this.setState({ avancement: listTrad[0].avancement });
-      }
-    }
+
     if (availableListTrad && availableListTrad.length > 0) {
       oldTrad = availableListTrad[0].value;
       userId = availableListTrad[0].userId;
       selectedTrad = availableListTrad[0];
-      //availableListTrad.shift();
     }
-    // console.log(listTrad, availableListTrad);
     ///////parse for buttons
 
     //ReactHtmlParser(oldTrad, {})
     this.setState({ listTrad, userId, selectedTrad, availableListTrad });
-    // console.log(oldTrad);
     if (oldTrad && typeof oldTrad === "string") {
       this.props.fwdSetState({
         autosuggest: false,
@@ -644,7 +707,7 @@ class SideTrad extends Component {
       });
       if (
         type === "cards" &&
-        (x.title === "Important !" || !x.title) &&
+        (x.title === "Important !" || x.title === "Durée" || !x.title) &&
         x.contentTitle &&
         x.contentTitle !== "" &&
         x.contentTitle !== "null" &&
@@ -690,6 +753,9 @@ class SideTrad extends Component {
   };
 
   onValidate = async () => {
+    if (this.state.currIdx === 'titreInformatif') {
+      this.setState({validerInit: true})
+    }
     if (!this.props.translated.body) {
       Swal.fire({
         title: "Oh non",
@@ -699,13 +765,19 @@ class SideTrad extends Component {
       });
       return;
     }
+    let timeSpent = 0;
+    if (this.state.startingTime) {
+      timeSpent = this.state.startingTime.diff(moment()) * -1;
+    }
+    let textString = this.props.translated.body
+      .getCurrentContent()
+      .getPlainText();
+    let wordsCount = textString.split(" ").length;
     let {
       pointeurs,
       currIdx,
       currSubIdx,
       currSubName,
-      selectedTrad,
-      userId,
       listTrad,
       availableListTrad,
     } = this.state;
@@ -801,8 +873,7 @@ class SideTrad extends Component {
       let oldCount = listTrad[0].avancement * nbInit;
       if (userTrad && userTrad.status === "À revoir") {
         oldCount = userTrad.avancement * nbInit;
-      }
-      else if (expertTrad && expertTrad.status === "À revoir") {
+      } else if (expertTrad && expertTrad.status === "À revoir") {
         oldCount = expertTrad.avancement * nbInit;
       }
       if (this.state.modifiedNew) {
@@ -839,77 +910,56 @@ class SideTrad extends Component {
       traduction.translatedText = newTranslatedText;
     }
     const elems1 = document.querySelectorAll(
+      // eslint-disable-next-line
       'div[id="' +
         currIdx +
+        // eslint-disable-next-line
         '"]' +
         (currSubIdx !== undefined && currSubIdx > -1
-          ? '[data-subkey="' + currSubIdx + '"]'
+          ? // eslint-disable-next-line
+            '[data-subkey="' + currSubIdx + '"]'
           : "") +
         (currSubIdx !== undefined &&
         currSubIdx > -1 &&
         currSubName &&
         currSubName !== ""
-          ? '[data-target="' + currSubName + '"]'
+          ? // eslint-disable-next-line
+            '[data-target="' + currSubName + '"]'
           : "")
     );
     if (elems1 && elems1[0] && elems1[0].classList) {
       elems1[0].classList.toggle("arevoir", false);
     }
-    //if (newTrad._id, )
     if (userTrad && userTrad._id) {
       let newTrad = {
         _id: userTrad._id,
         translatedText: traduction.translatedText,
         avancement: traduction.avancement,
         status: userTrad.status,
+        wordsCount,
+        timeSpent,
       };
       this.props.fwdSetState({ newTrad }, () => {});
       await this.props.valider(newTrad);
-      /*   await API.update_tradForReview(newTrad).then((data) => {
-        console.log(data, "updated trad");
-        if(newTrad.avancement >= 1){
-          Swal.fire({title: 'Yay...', text: 'La traduction a bien été enregistrée', type: 'success', timer: 1000});
-          this.props.onSkip();
-        }
-      }); */
     } else {
       this.props.fwdSetState({ traduction }, () => {
+        // eslint-disable-next-line
         console.log(traduction);
       });
+      traduction.wordsCount = wordsCount;
+      traduction.timeSpent = timeSpent;
       await this.props.valider(traduction);
     }
-    this.goChange(true, false);
-    this.props.fwdSetState({ disableBtn: false });
-  };
-
-  _insertTrad = () => {
-    let newTrad = {
-      ...this.props.traduction,
-      articleId: this.props.itemId,
-      type: "dispositif",
-      locale: this.props.locale,
-      traductions: this.props.traductionsFaites,
-    };
-    API.validate_tradForReview(newTrad).then((data) => {
-      Swal.fire(
-        "Yay...",
-        "Ce dispositif est maintenant intégralement validé et disponible à la lecture",
-        "success"
-      ).then(() => {
-        this.props.onSkip();
-      });
-    });
   };
 
   render() {
     const langue = this.props.langue || {};
-    const { francais, translated, isExpert, autosuggest } = this.props; //disableBtn
+    const { francais, translated, autosuggest } = this.props; //disableBtn
     const {
       pointeurs,
       currIdx,
       currSubIdx,
       currSubName,
-      listTrad,
       userId,
       showModals,
       selectedTrad,
@@ -976,7 +1026,9 @@ class SideTrad extends Component {
         </div>
         <div
           className={
-            this.state.currIdx === "abstract"
+            this.state.currIdx === "abstract" && modified
+              ? "content-data-french no-margin-modified"
+              : this.state.currIdx === "abstract"
               ? "content-data-french no-margin-abstract"
               : modified
               ? "content-data-french no-margin-modified"
@@ -992,7 +1044,7 @@ class SideTrad extends Component {
           {ReactHtmlParser((francais || {}).body || "", options)}
         </div>
         {this.state.currIdx === "abstract" ? (
-          <AlertModified type={"abstract"}>
+          <AlertModified type={modified ? "modified" : "abstract"}>
             <EVAIcon
               name="info"
               fill={variables.noir}
@@ -1008,7 +1060,9 @@ class SideTrad extends Component {
             >
               Ce résumé est visible dans les résultats de recherche.
             </Tooltip>
-            <AlertText type={"abstract"}>Résumé de la fiche</AlertText>
+            <AlertText type={modified ? "modified" : "abstract"}>
+              {!modified ? "Résumé de la fiche" : "Résumé de la fiche modifié"}
+            </AlertText>
           </AlertModified>
         ) : modified ? (
           <AlertModified type={"modified"}>
@@ -1064,7 +1118,11 @@ class SideTrad extends Component {
             <ConditionalSpinner show={!(translated || {}).body} />
 
             <Editor
-              toolbarClassName={isRTL ? "toolbar-editeur": "toolbar-editeur toolbar-editeur-droite"}
+              toolbarClassName={
+                isRTL
+                  ? "toolbar-editeur"
+                  : "toolbar-editeur toolbar-editeur-droite"
+              }
               editorClassName={
                 validated && !modifiedNew && !modified
                   ? "editor-editeur editor-validated"
@@ -1317,6 +1375,7 @@ const ConditionalSpinner = (props) => {
         <Spinner color="success" className="fadeIn fadeOut" />
       </div>
     );
+    // eslint-disable-next-line
   } else {
     return false;
   }
@@ -1325,6 +1384,8 @@ const ConditionalSpinner = (props) => {
 const mapStateToProps = (state) => {
   return {
     langues: state.langue.langues,
+    translation: state.translation.translation,
+    translations: state.translation.translations,
   };
 };
 

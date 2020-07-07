@@ -20,7 +20,6 @@ import querySearch from "stringquery";
 
 import API from "../../utils/API";
 import setAuthToken from "../../utils/setAuthToken";
-// import FCBtn from '../../assets/FCboutons-10.png';
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../components/FigmaUI/FInput/FInput";
@@ -306,34 +305,6 @@ export class Login extends Component {
               </Form>
             </CardBody>
           </Card>
-          {/* <Card className="card-login">
-            <CardBody>
-              <div className="alt-login">
-                <form action="/user/FClogin" method="post">
-                  <div className="field">
-                    <label className="label">
-                        Niveau eIDAS
-                        <span
-                          className="has-text-info tooltip is-tooltip-multiline"
-                          data-tooltip="Vous pouvez dès à présent tester les identités de niveau faible (eidas1), substantiel (eidas2) et fort (eidas3) sur l'environnement de qualification. En production, vous n'aurez cependant accès pour l'instant qu'à des identités de niveau faible (eidas1)." >
-                            (info)
-                        </span>
-                    </label>
-                    <div className="select">
-                      <select name="eidasLevel">
-                        <option value="eidas1">Défaut : Faible (eidas1)</option>
-                        <option value="eidas2">Substantiel (eidas2)</option>
-                        <option value="eidas3">Fort (eidas3)</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="field">
-                    <input type="image" src={FCBtn} alt="Soumettre"/>
-                  </div>
-                </form>
-              </div>
-            </CardBody>
-          </Card> */}
           <NavLink to="/">
             <FButton
               type="outline"

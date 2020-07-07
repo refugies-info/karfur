@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import ReactHtmlParser from "react-html-parser";
-import {
-  Spinner,
-  Tooltip,
-  ListGroup,
-  ListGroupItem,
-  Progress,
-} from "reactstrap";
+import { Spinner, Tooltip, Progress } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import { Editor } from "react-draft-wysiwyg";
@@ -18,6 +12,7 @@ import DirectionProvider, {
   DIRECTIONS,
 } from "react-with-direction/dist/DirectionProvider";
 import _ from "lodash";
+import moment from "moment";
 
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -38,6 +33,7 @@ import variables from "scss/colors.scss";
 import API from "../../../utils/API";
 import produce from "immer";
 import styled from "styled-components";
+import { updateTradActionCreator } from "../../../services/Translation/translation.actions";
 
 const AlertModified = styled.div`
   height: 40px;
@@ -120,47 +116,139 @@ class SideTrad extends Component {
     referenceId: null,
     referenceTrad: null,
     avancement: 0,
+    startingTime: null,
+    endingTime: null,
+    validerInit: false,
   };
   initialState = this.state;
 
-  /*  componentDidMount() {
-      this._initializeComponent();
+  componentDidMount() {
+    this.setState({ startingTime: moment() });
+  }
 
-  } */
-
-  componentWillReceiveProps(nextProps) {
+/*   UNSAFE_componentWillReceiveProps(nextProps) {
+    //update when receiving api's return, working with sagas
     if (
-      this.state.initialize == false &&
+      this.props.translations !== nextProps.translations &&
+      nextProps.translations
+    ) {
+      console.log("inside componenet will receive props", this.props.translations , nextProps.translations );
+      const { translations } = nextProps;
+      if (translations.length) {
+        const userTrad = translations.find(
+          (trad) => trad.userId._id === this.props.user._id
+        );
+        if (userTrad) {
+          this.setState({
+            avancement:
+              this._countValidated([userTrad.translatedText]) /
+              (this._countContents(this.props.menu) +
+                this.state.pointeurs.length -
+                this.props.menu.length),
+          });
+        }
+      }
+      this.props.fwdSetState({ disableBtn: false });
+      if (this.state.initialize) {
+        console.log('wrong here');
+        this.goChange(true, false);
+      }
+    }
+    if (
+      this.props.translation !== nextProps.translation &&
+      nextProps.translation
+    ) {
+      if (nextProps.translation.avancement >= 1) {
+        Swal.fire({
+          title: "Yay...",
+          text: "La traduction a bien été enregistrée",
+          type: "success",
+          timer: 1000,
+        });
+        this.props.onSkip();
+      }
+    }
+    if (
+      this.state.initialize === false &&
       nextProps.content.titreInformatif !== this.props.content.titreInformatif
     ) {
       this._initializeComponent(nextProps);
       this.setState({ initialize: true });
     }
     if (
-      this.state.initializeTrad == false &&
+      this.state.initializeTrad === false &&
       nextProps.traductionsFaites !== this.props.traductionsFaites
     ) {
       this._initializeComponent(nextProps);
       this.setState({ initializeTrad: true });
     }
   }
-
+ */
   componentDidUpdate(prevProps, prevState) {
-    const {
-      currIdx,
-      currSubIdx,
-      currSubName,
-      isExpert,
-      availableListTrad,
-      modifiedNew,
-    } = this.state;
+    const { currIdx, currSubIdx, currSubName, availableListTrad } = this.state;
+      this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
+    if (
+      this.state.initialize === false &&
+      prevProps.content.titreInformatif !== this.props.content.titreInformatif
+    ) {
+      this._initializeComponent(this.props);
+      this.setState({ initialize: true });
+    }
+    if (
+      this.state.initializeTrad === false &&
+      prevProps.traductionsFaites !== this.props.traductionsFaites
+    ) {
+      this._initializeComponent(this.props);
+      this.setState({ initializeTrad: true });
+    } 
+    if (
+      this.props.translations !== prevProps.translations &&
+      this.props.translations
+    ) {
+      const {translations}  = this.props;
+      var userTrad = null;
+      if (translations.length) {
+        userTrad = translations.find(
+          (trad) => trad.userId._id === this.props.user._id
+        );
+        if (userTrad) {
+          this.setState({
+            avancement:
+              this._countValidated([userTrad.translatedText]) /
+              (this._countContents(this.props.menu) +
+                this.state.pointeurs.length -
+                this.props.menu.length),
+          });
+        }
+      }
+      this.props.fwdSetState({ disableBtn: false });
+      if ((this.state.initialize && currIdx !== "titreInformatif") || (this.state.initialize && currIdx === "titreInformatif" && this.state.validerInit)) {
+        this.goChange(true, false);
+      }
+    }
+    if (
+      this.props.translation !== prevProps.translation &&
+      this.props.translation
+    ) {
+      if (this.props.translation.avancement >= 1) {
+        Swal.fire({
+          title: "Yay...",
+          text: "La traduction a bien été enregistrée",
+          type: "success",
+          timer: 1000,
+        });
+        this.props.onSkip();
+      }
+    }
+ 
 
     if (
       currIdx !== prevState.currIdx ||
       currSubIdx !== prevState.currSubIdx ||
       currSubName !== prevState.currSubName
     ) {
-      this.setState({ propositionIndex: 0 });
+      
+      this.setState({ propositionIndex: 0, startingTime: moment() });
       if (
         availableListTrad.length > 0 &&
         availableListTrad.find(
@@ -215,7 +303,7 @@ class SideTrad extends Component {
       }
       if (
         this.state.pointeurs.includes(currIdx) &&
-        this.props.traduction.translatedText[currIdx + "Modified"] == true
+        this.props.traduction.translatedText[currIdx + "Modified"] === true
       ) {
         this.setState({ modified: true });
       }
@@ -225,6 +313,7 @@ class SideTrad extends Component {
     if (!this.state.pointersMod) {
       this.state.pointeurs.forEach((x) => {
         if (traduction.translatedText[x + "Modified"]) {
+          // eslint-disable-next-line
           const elems = document.querySelectorAll('div[id="' + x + '"]');
           if (elems[0]) {
             elems[0].classList.toggle("arevoir", true);
@@ -239,8 +328,10 @@ class SideTrad extends Component {
         }
         if (p.contentModified) {
           const elems1 = document.querySelectorAll(
+            // eslint-disable-next-line
             'div[id="' +
               index +
+              // eslint-disable-next-line
               '"]'
           );
           if (elems1 && elems1[0] && elems1[0].classList) {
@@ -252,12 +343,16 @@ class SideTrad extends Component {
           p.children.forEach((c, j) => {
             if (c.titleModified) {
               const elems1 = document.querySelectorAll(
+                // eslint-disable-next-line
                 'div[id="' +
                   index +
+                  // eslint-disable-next-line
                   '"]' +
                   (j !== undefined && j > -1
-                    ? '[data-subkey="' + j + '"]'
+                    ? // eslint-disable-next-line
+                      '[data-subkey="' + j + '"]'
                     : "") +
+                  // eslint-disable-next-line
                   (j !== undefined && j > -1 ? '[data-target="title"]' : "")
               );
               if (elems1 && elems1[0] && elems1[0].classList) {
@@ -267,12 +362,16 @@ class SideTrad extends Component {
             }
             if (c.contentModified) {
               const elems2 = document.querySelectorAll(
+                // eslint-disable-next-line
                 'div[id="' +
                   index +
+                  // eslint-disable-next-line
                   '"]' +
                   (j !== undefined && j > -1
-                    ? '[data-subkey="' + j + '"]'
+                    ? // eslint-disable-next-line
+                      '[data-subkey="' + j + '"]'
                     : "") +
+                  // eslint-disable-next-line
                   (j !== undefined && j > -1 ? '[data-target="content"]' : "")
               );
               if (elems2 && elems2[0] && elems2[0].classList) {
@@ -318,17 +417,14 @@ class SideTrad extends Component {
           () => {},
           () => this.checkTranslate(props.locale)
         );
-        //this.checkTranslate(props.locale)
       }
       if (props.typeContenu === "demarche") {
         this.setState({ pointeurs: ["titreInformatif", "abstract"] });
       }
-      const { traduction } = this.props;
     }
   };
 
   goChange = async (isNext = true, fromFn = true) => {
-    await this.props.getTrads();
     if (isNext && fromFn) {
       this.setState({ hasBeenSkipped: true });
     }
@@ -377,7 +473,7 @@ class SideTrad extends Component {
               this.checkTranslate(this.props.locale);
             }
           );
-          this._scrollAndHighlight(this.state.currIdx);
+           //this._scrollAndHighlight(this.state.currIdx);
         }
       );
     } else {
@@ -437,7 +533,7 @@ class SideTrad extends Component {
             this._endingFeedback();
             return;
           } else if (subidx > -1 && this.props.menu[idx].type === "cards") {
-            if (this.props.menu[idx].children[subidx].title === "Important !") {
+            if (this.props.menu[idx].children[subidx].title === "Important !" || this.props.menu[idx].children[subidx].title === 'Durée') {
               subname = "contentTitle";
               value = this.props.menu[idx].children[subidx].contentTitle;
               this.setState({ currSubName: subname });
@@ -458,7 +554,6 @@ class SideTrad extends Component {
             this.goChange(isNext, false);
             return;
           }
-          this._scrollAndHighlight(idx, subidx, subname);
           this.props.fwdSetState(
             () => ({ francais: { body: value } }),
             () => this.checkTranslate(this.props.locale)
@@ -497,21 +592,25 @@ class SideTrad extends Component {
       x.classList.remove("translating");
     }); //On enlève le surlignage des anciens éléments
     const elems = document.querySelectorAll(
+      // eslint-disable-next-line
       'div[id="' +
         idx +
+        // eslint-disable-next-line
         '"]' +
         (subidx !== undefined && subidx > -1
-          ? '[data-subkey="' + subidx + '"]'
+          ? // eslint-disable-next-line
+            '[data-subkey="' + subidx + '"]'
           : "") +
         (subidx !== undefined && subidx > -1 && subname && subname !== ""
-          ? '[data-target="' + subname + '"]'
+          ? // eslint-disable-next-line
+            '[data-target="' + subname + '"]'
           : "")
     );
     if (elems.length > 0) {
       const elem = elems[0];
       elem.scrollIntoView({
         behavior: "smooth",
-        block: "end",
+        block: "center",
         inline: "nearest",
       });
       elem.classList.toggle("translating"); //On le surligne
@@ -532,13 +631,13 @@ class SideTrad extends Component {
   }
  */
   checkTranslate = (target) => {
-    const { pointeurs, currIdx, currSubIdx, currSubName } = this.state;
+    const { pointeurs, currIdx, currSubIdx } = this.state;
     //console.log(pointeurs, currSubIdx, currIdx, currSubName);
     const text = this.initial_text.innerHTML,
       item = "body";
     //On vérifie si une traduction n'a pas déjà été validée
     const pos = pointeurs.findIndex((x) => currIdx === x),
-      { isExpert, traductionsFaites } = this.props;
+      { traductionsFaites } = this.props;
     let oldTrad = "",
       listTrad = [],
       userId = {},
@@ -562,7 +661,7 @@ class SideTrad extends Component {
           ...x,
         };
       }) || [];
-    let availableListTrad = listTrad.filter((sugg, key) => {
+    let availableListTrad = listTrad.filter((sugg) => {
       let valeur = h2p(sugg.value || "");
       if (
         valeur &&
@@ -599,12 +698,10 @@ class SideTrad extends Component {
       selectedTrad = availableListTrad[0];
       //availableListTrad.shift();
     }
-    // console.log(listTrad, availableListTrad);
     ///////parse for buttons
 
     //ReactHtmlParser(oldTrad, {})
     this.setState({ listTrad, userId, selectedTrad, availableListTrad });
-    // console.log(oldTrad);
     if (oldTrad && typeof oldTrad === "string") {
       this.props.fwdSetState({
         autosuggest: false,
@@ -704,7 +801,7 @@ class SideTrad extends Component {
       });
       if (
         type === "cards" &&
-        (x.title === "Important !" || !x.title) &&
+        (x.title === "Important !" || x.title === "Durée" || !x.title) &&
         x.contentTitle &&
         x.contentTitle !== "" &&
         x.contentTitle !== "null" &&
@@ -746,7 +843,7 @@ class SideTrad extends Component {
       });
       if (
         type === "cards" &&
-        (x.title === "Important !" || !x.title) &&
+        (x.title === "Important !" || x.title === "Durée" || !x.title) &&
         x.contentTitle &&
         x.contentTitle !== "" &&
         x.contentTitle !== "null" &&
@@ -793,6 +890,9 @@ class SideTrad extends Component {
   };
 
   onValidate = async () => {
+    if (this.state.currIdx === 'titreInformatif') {
+      this.setState({validerInit: true})
+    }
     if (!this.props.translated.body) {
       Swal.fire({
         title: "Oh non",
@@ -802,13 +902,20 @@ class SideTrad extends Component {
       });
       return;
     }
+    let timeSpent = 0;
+    if (this.state.startingTime) {
+      timeSpent = this.state.startingTime.diff(moment()) * -1;
+    }
+    let textString = this.props.translated.body
+      .getCurrentContent()
+      .getPlainText();
+    let wordsCount = textString.split(" ").length;
+
     let {
       pointeurs,
       currIdx,
       currSubIdx,
       currSubName,
-      selectedTrad,
-      userId,
       listTrad,
       availableListTrad,
     } = this.state;
@@ -897,17 +1004,14 @@ class SideTrad extends Component {
         [node]: value,
       };
     });
-    // const nbTraduits = this._countContents([traduction.translatedText]);
     const nbInit =
       this._countContents(this.props.menu) +
       pointeurs.length -
       this.props.menu.length;
-    //const nbInit = this._countContents([traduction.initialText]);
     if (listTrad.length > 0) {
       let nbValidated = userTrad
         ? this._countValidated([userTrad.translatedText])
         : 0;
-      const oldCount = userTrad ? userTrad.avancement * nbInit : 0;
       if (this.state.modifiedNew) {
         traduction.avancement = nbValidated / nbInit;
         this.setState({ modifiedNew: false });
@@ -924,9 +1028,7 @@ class SideTrad extends Component {
         : "") +
       (this.props.content.titreInformatif || "");
 
-    //if this is the expert
     let newTranslatedText = produce(traduction.translatedText, (draft) => {
-      //draft.status[currIdx] = "Acceptée";
       if (this.state.pointeurs.includes(currIdx)) {
         draft[currIdx + "Modified"] = false;
       } else if (currSubIdx === -1) {
@@ -942,77 +1044,54 @@ class SideTrad extends Component {
     });
     traduction.translatedText = newTranslatedText;
     const elems1 = document.querySelectorAll(
+      // eslint-disable-next-line
       'div[id="' +
         currIdx +
+        // eslint-disable-next-line
         '"]' +
         (currSubIdx !== undefined && currSubIdx > -1
-          ? '[data-subkey="' + currSubIdx + '"]'
+          ? // eslint-disable-next-line
+            '[data-subkey="' + currSubIdx + '"]'
           : "") +
         (currSubIdx !== undefined &&
         currSubIdx > -1 &&
         currSubName &&
         currSubName !== ""
-          ? '[data-target="' + currSubName + '"]'
+          ? // eslint-disable-next-line
+            '[data-target="' + currSubName + '"]'
           : "")
     );
     if (elems1 && elems1[0] && elems1[0].classList) {
       elems1[0].classList.toggle("arevoir", false);
     }
-    /* let newTrad = {
-        _id: selectedTrad._id,
-        translatedText: {
-          ...traduction.translatedText,
-          status: {
-            ...(selectedTrad.translatedText.status || {}),
-            [currIdx]: "Acceptée"
-          }
-        }
-      }; */
-    /*  let newTrad = {
-        _id: selectedTrad._id || traduction._id,
-        translatedText: newTranslatedText,
-        avancement: traduction.avancement,
-      };
-      //if (newTrad._id, )
-      if (newTrad._id) {
-        await API.update_tradForReview(newTrad).then((data) => {
-          console.log(data, 'updated trad')
-        });
-      } */
-
-    //if (newTrad._id, )
     if (userTrad && userTrad._id) {
       let newTrad = {
         _id: userTrad._id,
         translatedText: traduction.translatedText,
         avancement: traduction.avancement,
         isExpert: true,
+        wordsCount,
+        timeSpent: timeSpent,
+        articleId: this.props.itemId,
+        language: this.props.langue.langueCode
       };
       this.props.fwdSetState({ newTrad }, () => {});
-      //await this.props.valider(newTrad);
       if (newTrad.avancement >= 1) {
         this._endingFeedback(newTrad);
         return;
       }
-      await API.update_tradForReview(newTrad).then((data) => {
-        if (newTrad.avancement >= 1) {
-          Swal.fire({
-            title: "Yay...",
-            text: "La traduction a bien été enregistrée",
-            type: "success",
-            timer: 1000,
-          });
-          this.props.onSkip();
-        }
-      });
+      this.props.updateTranslation(newTrad);
     } else {
       this.props.fwdSetState({ traduction }, () => {
+        // eslint-disable-next-line
         console.log(traduction);
       });
+      traduction.wordsCount = wordsCount;
+      traduction.timeSpent = timeSpent;
       await this.props.valider(traduction);
     }
-    this.goChange(true, false);
-    this.props.fwdSetState({ disableBtn: false });
+    /* this.goChange(true, false);
+    this.props.fwdSetState({ disableBtn: false }); */
   };
 
   _insertTrad = async (trad) => {
@@ -1027,7 +1106,7 @@ class SideTrad extends Component {
       traductions: this.props.traductionsFaites,
       isExpert: true,
     };
-    await API.validate_tradForReview(newTrad).then((data) => {
+    await API.validate_tradForReview(newTrad).then(() => {
       Swal.fire(
         "Yay...",
         "Ce dispositif est maintenant intégralement validé et disponible à la lecture",
@@ -1040,13 +1119,12 @@ class SideTrad extends Component {
 
   render() {
     const langue = this.props.langue || {};
-    const { francais, translated, isExpert, autosuggest } = this.props; //disableBtn
+    const { francais, translated, autosuggest } = this.props; //disableBtn
     const {
       pointeurs,
       currIdx,
       currSubIdx,
       currSubName,
-      listTrad,
       userId,
       showModals,
       selectedTrad,
@@ -1205,7 +1283,11 @@ class SideTrad extends Component {
           >
             <ConditionalSpinner show={!(translated || {}).body} />
             <Editor
-              toolbarClassName={isRTL ? "toolbar-editeur": "toolbar-editeur toolbar-editeur-droite"}
+              toolbarClassName={
+                isRTL
+                  ? "toolbar-editeur"
+                  : "toolbar-editeur toolbar-editeur-droite"
+              }
               editorClassName={
                 validated && !modifiedNew && !modified
                   ? "editor-editeur editor-validated"
@@ -1387,7 +1469,8 @@ class SideTrad extends Component {
             <FButton
               className="mt-10"
               type="outline-black"
-              onClick={this.goChange}
+              onClick={() => {
+                this.goChange()}}
             >
               {""}
               <EVAIcon
@@ -1440,7 +1523,8 @@ class SideTrad extends Component {
               <FButton
                 type="validate"
                 name="arrow-forward-outline"
-                onClick={this.goChange}
+                onClick={() => {
+                  this.goChange()}}
                 disabled={!(translated || {}).body}
                 className="mt-10 mr-10"
               >
@@ -1480,18 +1564,6 @@ class SideTrad extends Component {
   }
 }
 
-{
-  /* <FButton
-type="outline-black"
-name="refresh-outline"
-fill={variables.noir}
-onClick={this.reset}
-className="mt-10 mr-10"
->
-Réinitialiser
-</FButton> */
-}
-
 const ConditionalSpinner = (props) => {
   if (props.show) {
     return (
@@ -1499,15 +1571,22 @@ const ConditionalSpinner = (props) => {
         <Spinner color="success" className="fadeIn fadeOut" />
       </div>
     );
+    // eslint-disable-next-line
   } else {
     return false;
   }
 };
 
+const mapDispatchToProps = {
+  updateTranslation: updateTradActionCreator,
+};
+
 const mapStateToProps = (state) => {
   return {
     langues: state.langue.langues,
+    translation: state.translation.translation,
+    translations: state.translation.translations,
   };
 };
 
-export default connect(mapStateToProps)(SideTrad);
+export default connect(mapStateToProps, mapDispatchToProps)(SideTrad);

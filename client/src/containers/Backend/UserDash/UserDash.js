@@ -108,10 +108,10 @@ export class UserDash extends Component {
           });
       });
       API.get_progression().then((data_progr) => {
-        //console.log(data_progr.data.data)
-        if (data_progr.data.data && data_progr.data.data.length > 0)
+        console.log(data_progr.data.totalIndicator)
+        if (data_progr.data.totalIndicator.length > 0)
           this._isMounted &&
-            this.setState({ progression: data_progr.data.data[0] });
+            this.setState({ progression: data_progr.data.totalIndicator[0] });
       });
       this._isMounted &&
         API.get_tradForReview({
@@ -304,7 +304,7 @@ export class UserDash extends Component {
           traducteur
           title="Espace traduction"
           ctaText="Mes objectifs"
-          motsRediges={this.state.progression.nbMots}
+          motsRediges={this.state.progression.wordsCount}
           minutesPassees={Math.floor(
             this.state.progression.timeSpent / 1000 / 60
           )}
@@ -314,7 +314,7 @@ export class UserDash extends Component {
           objectifTemps={this.state.user.objectifTemps}
           motsRestants={Math.max(
             0,
-            this.state.user.objectifMots - this.state.progression.nbMots
+            this.state.user.objectifMots - this.state.progression.wordsCount
           )} //inutilisé pour l'instant mais je sans que Hugo va le rajouter bientôt
           minutesRestantes={Math.max(
             0,
@@ -350,7 +350,7 @@ export class UserDash extends Component {
             overlayRedirect={false}
             history={this.props.history}
             windowWidth={this.props.windowWidth}
-            motsRediges={this.state.progression.nbMots}
+            motsRediges={this.state.progression.wordsCount}
             minutesPassees={Math.floor(
               this.state.progression.timeSpent / 1000 / 60
             )}

@@ -68,6 +68,11 @@ class EtapeParagraphe extends Component {
         value4,
         texte,
       } = nextProps.subitem.option;
+      const subItemPapiers = (nextProps.subitem || {}).papiers || [];
+      const isPapiersDropdownOpen =
+        subItemPapiers.length > 0
+          ? new Array(subItemPapiers.length).fill(false)
+          : [false];
       this.setState((pS) => ({
         checked,
         value1,
@@ -75,9 +80,7 @@ class EtapeParagraphe extends Component {
         value3,
         value4,
         texte,
-        isPapiersDropdownOpen: new Array(
-          ((nextProps.subitem || {}).papiers || []).length
-        ).fill(false),
+        isPapiersDropdownOpen,
         isOptionSelected: true,
         selectedOption: nextProps.subitem.option,
         options: pS.options.map((x) => ({ ...x, selected: x.texte === texte })),
@@ -104,6 +107,7 @@ class EtapeParagraphe extends Component {
         i === idx ? !x : x
       ),
     }));
+
   handleCheck = () =>
     this.setState((pS) => ({
       checked: !pS.checked,
@@ -227,7 +231,6 @@ class EtapeParagraphe extends Component {
       tooltipOpen,
       showModal,
     } = this.state;
-
     const safeUiArray = (key, subkey, node) =>
       uiArray[key] &&
       uiArray[key].children &&

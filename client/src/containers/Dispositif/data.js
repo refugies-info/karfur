@@ -119,15 +119,6 @@ const menu = [
         tooltipContent:
           "Précisez si l’accès à votre dispositif est gratuit ou s’il existe des frais d’inscription, ou des coûts récurrent.\nPensez à expliquer la raison du coût en message complémentaire.",
       },
-      {
-        type: "card",
-        isFakeContent: true,
-        title: "Justificatif demandé",
-        titleIcon: "papiers",
-        contentTitle: "Titre de séjour",
-        footer: "Voir un exemple",
-        footerIcon: "eye-outline",
-      },
     ],
   },
   {
@@ -384,6 +375,24 @@ const filtres = {
     },
   ],
 };
+
+const cardTitles = [
+  { title: "Public visé", titleIcon: "papiers", options: filtres.audience },
+  {
+    title: "Âge requis",
+    titleIcon: "calendar",
+    options: filtres.audienceAge,
+  }, //["0-18","18-25","25-56","56-120"]
+  { title: "Durée", titleIcon: "clock-outline" },
+  {
+    title: "Niveau de français",
+    titleIcon: "frBubble",
+    options: filtres.niveauFrancais,
+  },
+  { title: "Combien ça coûte ?", titleIcon: "pricetags-outline" },
+
+  { title: "Important !", titleIcon: "warning" },
+];
 
 const onBoardSteps = [
   {
@@ -792,4 +801,5 @@ export {
   tutoStepsDemarche,
   customConvertOption,
   google_localities,
+  cardTitles,
 };
