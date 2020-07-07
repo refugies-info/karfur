@@ -533,7 +533,7 @@ class SideTrad extends Component {
             this._endingFeedback();
             return;
           } else if (subidx > -1 && this.props.menu[idx].type === "cards") {
-            if (this.props.menu[idx].children[subidx].title === "Important !") {
+            if (this.props.menu[idx].children[subidx].title === "Important !" || this.props.menu[idx].children[subidx].title === 'Durée') {
               subname = "contentTitle";
               value = this.props.menu[idx].children[subidx].contentTitle;
               this.setState({ currSubName: subname });
@@ -801,7 +801,7 @@ class SideTrad extends Component {
       });
       if (
         type === "cards" &&
-        (x.title === "Important !" || !x.title) &&
+        (x.title === "Important !" || x.title === "Durée" || !x.title) &&
         x.contentTitle &&
         x.contentTitle !== "" &&
         x.contentTitle !== "null" &&
@@ -843,7 +843,7 @@ class SideTrad extends Component {
       });
       if (
         type === "cards" &&
-        (x.title === "Important !" || !x.title) &&
+        (x.title === "Important !" || x.title === "Durée" || !x.title) &&
         x.contentTitle &&
         x.contentTitle !== "" &&
         x.contentTitle !== "null" &&
