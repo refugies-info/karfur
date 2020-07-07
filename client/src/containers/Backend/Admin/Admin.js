@@ -134,7 +134,6 @@ export class Admin extends Component {
 
   async componentDidUpdate(prevProps, prevState) {
     if (this.state.user && (prevState.user._id !== this.state.user._id) && this.state.user._id) {
-      console.log(prevState.user, this.state.user);
       let progression = await API.get_progression({userId: this.state.user._id})
       this.setState(
         produce((draft) => {
@@ -142,7 +141,6 @@ export class Admin extends Component {
           return
         })
       );
-      console.log(progression);
     }
     if (prevState.activeTab[3] !== this.state.activeTab[3]) {
       if (this.state.activeTab[3] === 0) {
@@ -196,7 +194,6 @@ export class Admin extends Component {
   };
 
   onSelect =  async (item, switchTo = null) => {
-    console.log(item);
     this.setState(item);
     if (item.user) {
       this.setState({

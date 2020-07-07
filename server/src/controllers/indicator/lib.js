@@ -1,4 +1,3 @@
-const _ = require("lodash");
 
 function get_indicator(req, res) {
   if (!req.body || !req.body.q) {

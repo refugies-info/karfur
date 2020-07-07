@@ -25,12 +25,11 @@ import {
 } from "../../../assets/figma/index";
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { RejectTradModal } from "../../../components/Modals";
-import moment from 'moment';
+import moment from "moment";
 
 import "./SideTrad.scss";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 import variables from "scss/colors.scss";
-import API from "../../../utils/API";
 import produce from "immer";
 import styled from "styled-components";
 
@@ -481,7 +480,7 @@ class SideTrad extends Component {
             this._endingFeedback();
             return;
           } else if (subidx > -1 && this.props.menu[idx].type === "cards") {
-            if (this.props.menu[idx].children[subidx].title === "Important !" || this.props.menu[idx].children[subidx].title === 'Durée') {
+            if (this.props.menu[idx].children[subidx].title === "Important !" || this.props.menu[idx].children[subidx].title === "Durée") {
               subname = "contentTitle";
               value = this.props.menu[idx].children[subidx].contentTitle;
               this.setState({ currSubName: subname });
@@ -753,7 +752,7 @@ class SideTrad extends Component {
   };
 
   onValidate = async () => {
-    if (this.state.currIdx === 'titreInformatif') {
+    if (this.state.currIdx === "titreInformatif") {
       this.setState({validerInit: true})
     }
     if (!this.props.translated.body) {
