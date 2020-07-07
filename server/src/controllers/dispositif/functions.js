@@ -194,7 +194,7 @@ const turnToLocalized = (result, locale) => {
       p.content = p.content[locale] || p.content.fr || p.content;
     }
     if (p.children && p.children.length > 0) {
-      p.children.forEach((c, j) => {
+      p.children.forEach((c) => {
         if (c.title) {
           c.title = c.title[locale] || c.title.fr || c.title;
         }
@@ -227,7 +227,7 @@ const turnToLocalizedNew = (resultObj, locale) => {
       p.content = p.content[locale] || p.content.fr || p.content;
     }
     if (p.children && p.children.length > 0) {
-      p.children.forEach((c, j) => {
+      p.children.forEach((c) => {
         if (c.title) {
           c.title = c.title[locale] || c.title.fr || c.title;
         }
@@ -243,39 +243,6 @@ const turnToLocalizedNew = (resultObj, locale) => {
   });
   return result;
 };
-
-const turnToLocalizedFaster = (result, locale) => {
-  var clonedResult = { ...result };
-  pointeurs.map((x) => {
-    if (result[x]) {
-      result[x] = result[x][locale] || result[x].fr || result[x];
-    }
-  });
-
-  const newResult = result.contenu.map((p) => {
-    if (p.title) {
-      const title = p.title[locale] || p.title.fr || p.title;
-    }
-    if (p.content) {
-      const content = p.content[locale] || p.content.fr || p.content;
-    }
-    if (p.children && p.children.length > 0) {
-      const children = p.children.map((c, j) => {
-        if (c.title) {
-          const ctitle = c.title[locale] || c.title.fr || c.title;
-        }
-        if (c.content) {
-          const ccontent = c.content[locale] || c.content.fr || c.content;
-        }
-        return { title: ctitle, content: ccontent };
-      });
-    }
-    return { title, content, children };
-  });
-  return newResult;
-};
-
-const turnToDelocalized = () => {};
 
 //Dupliqué dans traduction/lib : Node ne semble pas gérer cet export (circulaire)
 const turnHTMLtoJSON = (contenu, nbMots = 0) => {
