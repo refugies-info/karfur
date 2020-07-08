@@ -33,6 +33,7 @@ yarn-error.log*
 /client/nw/logs
 /client//.pnp
 /client/.pnp.js
+/client/.npmrc
 /client/coverage
 /client/.DS_Store
 /client/.env.local

@@ -9,22 +9,23 @@ Refugies.info is a project to offer a better experience to refugees in France as
 
 ## Table of Contents
 
-* [Demo](#demo)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Documentation](#documentation)
-* [Available Commands](#available-commands)
-* [Contributing](#contributing)
-* [Versioning](#versioning)
-* [Creators](#creators)
-* [Contributors](#creators)
-* [Community](#community)
-* [License](#license)
-* [Maintenance](#maintenance)
-* [Support Refugies.info's Development](#support-refugies-infos-development)
-* [Extras](#extras)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Documentation](#documentation)
+- [Available Commands](#available-commands)
+- [Contributing](#contributing)
+- [Versioning](#versioning)
+- [Creators](#creators)
+- [Contributors](#creators)
+- [Community](#community)
+- [License](#license)
+- [Maintenance](#maintenance)
+- [Support Refugies.info's Development](#support-refugies-infos-development)
+- [Extras](#extras)
 
 ## Demo
+
 The website is live and availabe at [https://refugies.info](https://refugies.info)
 
 [![Homepage record](https://img.youtube.com/vi/o_qg4pDW0v8/0.jpg)](https://www.youtube.com/watch?v=o_qg4pDW0v8)
@@ -32,6 +33,7 @@ The website is live and availabe at [https://refugies.info](https://refugies.inf
 ## Installation
 
 ### Prerequisites
+
 - [MongoDB](https://treehouse.github.io/installation-guides/mac/mongo-mac.html)
 - [Node](https://nodejs.org/en/download/) ^10.0.0
 - [npm](https://nodejs.org/en/download/package-manager/)
@@ -40,7 +42,7 @@ Please note that you need mongo, the server and the client to run concurrently i
 
 ### Clone repo
 
-``` bash
+```bash
 # clone the repo
 $ git clone https://github.com/entrepreneur-interet-general/karfur.git
 ```
@@ -66,11 +68,14 @@ REACT_APP_GOOGLE_API_KEY = demo
 ## Usage
 
 Launch a mongodb instance
-``` bash
+
+```bash
 $ mongod
 ```
+
 Open a new terminal tab and launch the server in the karfur directory
-``` bash
+
+```bash
 # go into app's directory
 $ cd karfur
 # install app's dependencies
@@ -78,8 +83,10 @@ $ npm install
 # serve at localhost:8000.
 $ npm start
 ```
+
 Open a new terminal tab and launch the client in the karfur/client directory
-``` bash
+
+```bash
 # go into client's directory
 $ cd karfur/client
 # install client's dependencies
@@ -89,6 +96,7 @@ $ npm start
 ```
 
 ## Documentation
+
 All the backend documentation is available on [Swagger](https://app.swaggerhub.com/apis-docs/DIAIR/Refugies.info/1.0.0)
 
 [![Swagger screen record](https://img.youtube.com/vi/wx0mL7NG9VA/0.jpg)](https://www.youtube.com/watch?v=wx0mL7NG9VA)
@@ -119,36 +127,36 @@ Editor preferences are available in the [editor config](https://github.com/entre
 
 For transparency into our release cycle and in striving to maintain backward compatibility, Refugies.info is maintained under [the Semantic Versioning guidelines](http://semver.org/).
 
-See [the Releases section of our project](https://github.com/entrepreneur-interet-general/karfur/releases) for changelogs for each release version. 
+See [the Releases section of our project](https://github.com/entrepreneur-interet-general/karfur/releases) for changelogs for each release version.
 
 ## Creators
 
 **Soufiane Lamrissi**, web developer
 
-* <https://github.com/Tony4469>
-* <https://www.linkedin.com/in/soufiane-lamrissi-15b79261/>
-* <https://twitter.com/Wriri>
+- <https://github.com/Tony4469>
+- <https://www.linkedin.com/in/soufiane-lamrissi-15b79261/>
+- <https://twitter.com/Wriri>
 
 **Hugo Stephan**, designer
 
-* <https://hugostephan.com>
-* <https://twitter.com/hugostephan>
+- <https://hugostephan.com>
+- <https://twitter.com/hugostephan>
 
 ## Contributors
 
 **Nour Allazkani**, business developer
 
-* <https://www.linkedin.com/in/nour-allazkani-782404140>
+- <https://www.linkedin.com/in/nour-allazkani-782404140>
 
 **Chloé Vermeulin**, computer graphics designer
 
-* <https://www.linkedin.com/in/chlo%C3%A9-vermeulin-a3773069>
+- <https://www.linkedin.com/in/chlo%C3%A9-vermeulin-a3773069>
 
 **Emily Reese**, content designer
 
-* <https://www.linkedin.com/in/eclairereese>
-* <https://github.com/emilyreese>
-* <https://twitter.com/eclairereese>
+- <https://www.linkedin.com/in/eclairereese>
+- <https://github.com/emilyreese>
+- <https://twitter.com/eclairereese>
 
 ## Community
 
@@ -162,6 +170,8 @@ Get updates on Refugies.info's development and chat with the project maintainers
 
 Copyright 2019 DIAIR. Code released under [the MIT license](https://github.com/entrepreneur-interet-general/karfur/blob/master/LICENSE.md).
 
+All the [Streamline Icons](https://streamlineicons.com/) are copyrighted and the property of Webalys LLC and can be used only in the context of this particuliar open source project. We - [Délégétation interministérielle à l’accueil et l’intégration des réfugiés](https://accueil-integration-refugies.fr/) own a premium license authorizing us to use up to 100 icons on our websites. More information can be found [here](https://www.notion.so/Premium-License-19ab1e1b9ebb4244b4a4e5c0062d4443).
+
 ## Maintenance
 
 The project is actively maintained at least until the end of 2022 by the DIAIR, in the French Ministry of Interior.
@@ -169,10 +179,12 @@ The project is actively maintained at least until the end of 2022 by the DIAIR, 
 ## Support Refugies.info's Development
 
 Refugies.info is an MIT licensed open source project and completely free to use. However, we are a small team . You can support development by offering :
-* data science services
-* translation services
-* design services (UX/UI)
-* contacts of associations working with refugees, or contact of refugees directly with their agreement
+
+- data science services
+- translation services
+- design services (UX/UI)
+- contacts of associations working with refugees, or contact of refugees directly with their agreement
 
 ## Extras
+
 If you liked this project, please give it a ⭐ in [**GitHub**](https://github.com/entrepreneur-interet-general/karfur).
