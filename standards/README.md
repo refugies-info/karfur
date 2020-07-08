@@ -72,12 +72,15 @@ const Title = styled.h1`
 ```
 
 Create a <Wrapper> react component that renders a section with some padding and a papayawhip background
+```
 const Wrapper = styled.section`
   padding: 4em;
   background: papayawhip;
 `;
+```
 
 Use them like any other React component – except they're styled!
+```
 function Button() {
   return (
     <Wrapper>
@@ -88,6 +91,7 @@ function Button() {
     </Wrapper>
   );
 }
+```
 
 You can see an example of  a  simple static component in /karfur/client/src/components/Frontend/Dispositif/MediaUpload/StyledTab.js
 Or an example of a styled-component declared within a much complex component in /karfur/client/src/containers/Dispositif/SideTrad/ExpertSideTrad.js
