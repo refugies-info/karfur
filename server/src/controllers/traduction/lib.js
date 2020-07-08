@@ -10,7 +10,6 @@ var himalaya = require("himalaya");
 var h2p = require("html2plaintext");
 const axios = require("axios");
 const sanitizeOptions = require("../article/lib.js").sanitizeOptions;
-const DBEvent = require("../../schema/schemaDBEvent.js");
 const _ = require("lodash");
 const { turnHTMLtoJSON, turnJSONtoHTML } = require("../dispositif/functions");
 const mongoose = require("mongoose");
@@ -240,12 +239,6 @@ async function add_tradForReview(req, res) {
     return res.status(400).json({ text: "Requête invalide" });
     // eslint-disable-next-line
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
     let traduction = req.body;
     const {
       wordsCount,
@@ -381,12 +374,7 @@ async function add_tradForReview(req, res) {
 }
 
 function get_tradForReview(req, res) {
-  new DBEvent({
-    action: JSON.stringify(req.body),
-    userId: _.get(req, "userId"),
-    roles: _.get(req, "user.roles"),
-    api: arguments.callee.name,
-  }).save();
+
   let { query, sort, populate, random, locale } = req.body;
   if (!req.fromSite) {
     //On n'autorise pas les populate en API externe
@@ -459,12 +447,7 @@ async function validate_tradForReview(req, res) {
   ) {
     res.status(401).json({ text: "Token invalide" });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+
     let traductionUser = req.body || {};
     //Ici il y en a plusieurs: à régler
     if (traductionUser.type === "dispositif") {
@@ -663,12 +646,7 @@ function get_laser(req, res) {
   if (!req.body || !req.body.sentences) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+ 
     let sentences = req.body.sentences;
     axios
       .post(burl + "/laser", { sentences: sentences }, { headers: headers })
@@ -685,12 +663,7 @@ function get_xlm(req, res) {
   if (!req.body || !req.body.sentences) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+;
     burl = "https://xlm-agir.herokuapp.com";
     if (process.env.NODE_ENV === "dev") {
       burl = "http://localhost:5002";
@@ -719,12 +692,7 @@ function update_tradForReview(req, res) {
     return res.status(400).json({ text: "Requête invalide" });
         // eslint-disable-next-line
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+;
     let translation = req.body;
     translation.validatorId = req.userId;
 
@@ -769,11 +737,7 @@ function update_tradForReview(req, res) {
 
 async function get_progression(req, res) {
   try {
-    new DBEvent({
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+
     var start = new Date();
     var end3 = new Date();
     var end6 = new Date();

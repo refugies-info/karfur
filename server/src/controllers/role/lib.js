@@ -1,14 +1,8 @@
 const Role = require("../../schema/schemaRole.js");
-const DBEvent = require("../../schema/schemaDBEvent.js");
 const _ = require("lodash");
 
 function get_role(req, res) {
-  new DBEvent({
-    action: JSON.stringify(req.body),
-    userId: _.get(req, "userId"),
-    roles: _.get(req, "user.roles"),
-    api: arguments.callee.name,
-  }).save();
+;
   const { query, sort } = req.body;
   var findRole = new Promise(function (resolve, reject) {
     Role.find(query)

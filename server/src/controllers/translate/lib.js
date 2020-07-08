@@ -1,5 +1,4 @@
 const { Translate } = require("@google-cloud/translate");
-const DBEvent = require("../../schema/schemaDBEvent.js");
 const _ = require("lodash");
 const projectId = "traduction-1551702821050";
 
@@ -27,12 +26,7 @@ function get_translation(req, res) {
   if (!req.body || !req.body.q) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+;
     var q = req.body.q;
     var target = req.body.target;
 

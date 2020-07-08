@@ -7,7 +7,6 @@ const rp = require("request-promise");
 const xmlbuilder = require("xmlbuilder");
 const voices = require("./voices").data;
 
-const DBEvent = require("../../schema/schemaDBEvent.js");
 const _ = require("lodash");
 
 // Gets an access token.
@@ -66,12 +65,7 @@ async function get_tts(req, res) {
   if (!req.body || !req.body.text) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+
     var text = req.body.text;
     var locale = req.body.locale;
 

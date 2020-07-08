@@ -1,7 +1,6 @@
 const Structure = require("../../schema/schemaStructure.js");
 const User = require("../../schema/schemaUser.js");
 const Role = require("../../schema/schemaRole.js");
-const DBEvent = require("../../schema/schemaDBEvent.js");
 const _ = require("lodash");
 
 async function add_structure(req, res) {
@@ -10,12 +9,7 @@ async function add_structure(req, res) {
   } else if (!req.body || (!req.body.nom && !req.body._id)) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+
     let { membreId, ...structure } = req.body;
 
     if (structure._id) {
@@ -90,12 +84,7 @@ function get_structure(req, res) {
   if (!req.body || !req.body.query) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+
     let { query, sort, populate, limit } = req.body;
     if (!req.fromSite) {
       //On n'autorise pas les populate en API externe
