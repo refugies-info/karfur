@@ -9,8 +9,6 @@ const sanitizeHtml = require("sanitize-html");
 const himalaya = require("himalaya");
 const uniqid = require("uniqid");
 const h2p = require("html2plaintext");
-const DBEvent = require("../../schema/schemaDBEvent.js");
-const _ = require("lodash");
 const { sanitizeOptions } = require("./data");
 
 let elementId = Math.floor(Math.random() * Math.floor(9999999));
@@ -22,12 +20,7 @@ function add_article(req, res) {
   } else if (!req.body || !req.body.title || !req.body.body) {
     return res.status(400).json({ text: "Requête invalide" });
   }
-  new DBEvent({
-    action: JSON.stringify(req.body),
-    userId: _.get(req, "userId"),
-    roles: _.get(req, "user.roles"),
-    api: arguments.callee.name,
-  }).save();
+
   //On transforme le html en JSON après l'avoir nettoyé
   let draft = req.body.body;
   let html = draft.blocks ? draftToHtml(draft) : draft;
@@ -67,12 +60,7 @@ function get_article(req, res) {
       text: "Requête invalide",
     });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+
     let { query, locale, sort, populate, limit, random } = req.body;
     locale = locale || "fr";
     if (!req.fromSite) {
@@ -174,12 +162,7 @@ function add_traduction(req, res) {
   } else if (!req.body.translatedText) {
     res.status(402).json({ text: "Pas de contenu de traduction" });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+
     let locale = req.body.langueCible; //TODO :S'assurer que ce locale est autorisé
 
     //On lui donne le rôle de traducteur
@@ -349,12 +332,6 @@ function remove_traduction(req, res) {
   } else if (!req.body || !req.body.query) {
     return res.status(400).json({ text: "Requête invalide" });
   }
-  new DBEvent({
-    action: JSON.stringify(req.body),
-    userId: _.get(req, "userId"),
-    roles: _.get(req, "user.roles"),
-    api: arguments.callee.name,
-  }).save();
   const { query, locale } = req.body;
   if (locale === "fr") {
     res.status(401).json({ text: "Suppression impossible" });

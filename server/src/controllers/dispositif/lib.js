@@ -5,8 +5,7 @@ const Traduction = require("../../schema/schemaTraduction");
 const Structure = require("../../schema/schemaStructure.js");
 var uniqid = require("uniqid");
 const nodemailer = require("nodemailer");
-const DBEvent = require("../../schema/schemaDBEvent.js");
-const _ = require("lodash");
+
 const {
   turnToLocalized,
   turnHTMLtoJSON,
@@ -67,12 +66,7 @@ async function add_dispositif(req, res) {
     ) {
       return res.status(400).json({ text: "Requête invalide" });
     }
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+
     let dispositif = req.body;
     dispositif.status = dispositif.status || "En attente";
     if (dispositif.contenu) {
@@ -191,12 +185,6 @@ function get_dispositif(req, res) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
     logger.info("Calling get dispositif");
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
     let { query, sort, populate, limit, random, locale } = req.body;
     locale = locale || "fr";
 
@@ -263,12 +251,7 @@ function update_dispositif(req, res) {
   } else if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-    new DBEvent({
-      action: JSON.stringify(req.body),
-      userId: _.get(req, "userId"),
-      roles: _.get(req, "user.roles"),
-      api: arguments.callee.name,
-    }).save();
+
     let {
       dispositifId,
       fieldName,
@@ -313,11 +296,7 @@ function update_dispositif(req, res) {
 }
 
 function get_dispo_progression(req, res) {
-  new DBEvent({
-    userId: _.get(req, "userId"),
-    roles: _.get(req, "user.roles"),
-    api: arguments.callee.name,
-  }).save();
+
   var start = new Date();
   start.setHours(0, 0, 0, 0);
 
@@ -364,12 +343,7 @@ function get_dispo_progression(req, res) {
 }
 
 function count_dispositifs(req, res) {
-  new DBEvent({
-    action: JSON.stringify(req.body),
-    userId: _.get(req, "userId"),
-    roles: _.get(req, "user.roles"),
-    api: arguments.callee.name,
-  }).save();
+
   Dispositif.count(req.body, (err, count) => {
     if (err) {
       res.status(404).json({ text: "Pas de résultat" });
