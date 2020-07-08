@@ -58,12 +58,13 @@ styled-components allows you to write actual CSS inside your JavaScript, enablin
 
 styled-components
 
-Below creates two styled react components (<Title>, <Wrapper>) and renders them as children of the <Header> component:
+Below creates two styled react components (Title, Wrapper) and renders them as children of the Header component:
+```
 import React from 'react';
 import styled from 'styled-components';
 
-Create a <Title> react component that renders an h1 which is centered, palevioletred and sized at 1.5em
-```
+//Create a <Title> react component that renders an h1 which is centered, palevioletred and sized at 1.5em
+
 const Title = styled.h1`
   font-size: 1.5em;
   text-align: center;
