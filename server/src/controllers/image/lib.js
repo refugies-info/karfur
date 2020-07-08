@@ -1,6 +1,5 @@
 const Image = require("../../schema/schemaImage.js");
 const cloudinary = require("cloudinary");
-const _ = require("lodash");
 
 function set_image(req, res) {
   if (!req.fromSite) {

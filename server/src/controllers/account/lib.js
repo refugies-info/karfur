@@ -6,7 +6,6 @@ const authy = require("authy")(process.env.ACCOUNT_SECURITY_API_KEY);
 const passwdCheck = require("zxcvbn");
 const crypto = require("crypto");
 let { transporter, mailOptions, url } = require("../dispositif/lib.js");
-const _ = require("lodash");
 
 //Cette fonction est appelée quand tout utilisateur cherche à se connecter ou créer un compte
 function login(req, res) {

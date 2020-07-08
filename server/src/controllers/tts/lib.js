@@ -7,7 +7,6 @@ const rp = require("request-promise");
 const xmlbuilder = require("xmlbuilder");
 const voices = require("./voices").data;
 
-const _ = require("lodash");
 
 // Gets an access token.
 let subscriptionKey, accessToken;

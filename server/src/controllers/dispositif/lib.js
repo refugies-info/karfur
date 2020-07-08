@@ -6,7 +6,6 @@ const Structure = require("../../schema/schemaStructure.js");
 var uniqid = require("uniqid");
 const nodemailer = require("nodemailer");
 
-const _ = require("lodash");
 const {
   turnToLocalized,
   turnHTMLtoJSON,
@@ -186,7 +185,6 @@ function get_dispositif(req, res) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
     logger.info("Calling get dispositif");
-;
     let { query, sort, populate, limit, random, locale } = req.body;
     locale = locale || "fr";
 

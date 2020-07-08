@@ -1,7 +1,6 @@
 const Structure = require("../../schema/schemaStructure.js");
 const User = require("../../schema/schemaUser.js");
 const Role = require("../../schema/schemaRole.js");
-const _ = require("lodash");
 
 async function add_structure(req, res) {
   if (!req.fromSite) {

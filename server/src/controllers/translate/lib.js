@@ -1,5 +1,4 @@
 const { Translate } = require("@google-cloud/translate");
-const _ = require("lodash");
 const projectId = "traduction-1551702821050";
 
 const translate = new Translate({
@@ -26,7 +25,6 @@ function get_translation(req, res) {
   if (!req.body || !req.body.q) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-;
     var q = req.body.q;
     var target = req.body.target;
 

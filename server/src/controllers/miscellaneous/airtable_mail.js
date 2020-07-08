@@ -2,7 +2,6 @@ var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
   process.env.airtableBase
 );
-const _ = require("lodash");
 
 function set_mail(req, res) {
   if (!req.fromSite) {

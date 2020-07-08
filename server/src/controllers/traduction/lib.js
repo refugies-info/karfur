@@ -663,7 +663,6 @@ function get_xlm(req, res) {
   if (!req.body || !req.body.sentences) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-;
     burl = "https://xlm-agir.herokuapp.com";
     if (process.env.NODE_ENV === "dev") {
       burl = "http://localhost:5002";
@@ -692,7 +691,6 @@ function update_tradForReview(req, res) {
     return res.status(400).json({ text: "Requête invalide" });
         // eslint-disable-next-line
   } else {
-;
     let translation = req.body;
     translation.validatorId = req.userId;
 

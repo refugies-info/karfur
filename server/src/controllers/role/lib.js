@@ -1,8 +1,6 @@
 const Role = require("../../schema/schemaRole.js");
-const _ = require("lodash");
 
 function get_role(req, res) {
-;
   const { query, sort } = req.body;
   var findRole = new Promise(function (resolve, reject) {
     Role.find(query)

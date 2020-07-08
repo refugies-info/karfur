@@ -9,7 +9,6 @@ const sanitizeHtml = require("sanitize-html");
 const himalaya = require("himalaya");
 const uniqid = require("uniqid");
 const h2p = require("html2plaintext");
-const _ = require("lodash");
 const { sanitizeOptions } = require("./data");
 
 let elementId = Math.floor(Math.random() * Math.floor(9999999));
@@ -333,7 +332,6 @@ function remove_traduction(req, res) {
   } else if (!req.body || !req.body.query) {
     return res.status(400).json({ text: "Requête invalide" });
   }
-;
   const { query, locale } = req.body;
   if (locale === "fr") {
     res.status(401).json({ text: "Suppression impossible" });
