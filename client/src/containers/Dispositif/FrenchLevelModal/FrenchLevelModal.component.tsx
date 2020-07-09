@@ -11,6 +11,7 @@ import FButton from "../../../components/FigmaUI/FButton/FButton";
 export interface PropsBeforeInjection {
   show: boolean;
   disableEdit: boolean;
+  hideModal: () => void;
 }
 
 const StyledMainTitle = styled.p`
@@ -142,7 +143,7 @@ export const FrenchLevelModalComponent = (props: PropsBeforeInjection) => {
   return (
     <Modal isOpen={props.show} className="modal-french-level" size="lg">
       {" "}
-      <IconContainer>
+      <IconContainer onClick={props.hideModal}>
         <Icon name="close-outline" fill="#3D3D3D" size="large" />
       </IconContainer>
       <MainContainer>
@@ -181,6 +182,7 @@ export const FrenchLevelModalComponent = (props: PropsBeforeInjection) => {
             type="help"
             name="question-mark-circle"
             className="validate-button"
+            href="https://help.refugies.info/fr/"
           >
             <ButtonText>J'ai besoin d'aide</ButtonText>
           </FButton>
@@ -190,7 +192,7 @@ export const FrenchLevelModalComponent = (props: PropsBeforeInjection) => {
                 marginRight: 10,
               }}
             >
-              <FButton type="outline-black">
+              <FButton type="outline-black" onClick={props.hideModal}>
                 <ButtonText>Annuler</ButtonText>
               </FButton>
             </div>

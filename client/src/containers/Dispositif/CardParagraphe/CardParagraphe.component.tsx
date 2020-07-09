@@ -553,6 +553,7 @@ export class CardParagraphe extends Component<Props> {
         <FrenchLevelModal
           show={this.state.showFrenchLevelModal}
           disableEdit={false}
+          hideModal={() => this.toggleFrenchLevelModal(false)}
         />
       </>
     );
