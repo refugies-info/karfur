@@ -108,7 +108,6 @@ export class UserDash extends Component {
           });
       });
       API.get_progression().then((data_progr) => {
-        console.log(data_progr.data.totalIndicator)
         if (data_progr.data.totalIndicator.length > 0)
           this._isMounted &&
             this.setState({ progression: data_progr.data.totalIndicator[0] });
@@ -194,9 +193,17 @@ export class UserDash extends Component {
       label: "openThemes",
       value: langue._id,
     });
+    // Do not pass to big arguments in state otherwise it generates an error on firefox
+    // only pass in state what is needed
     this.props.history.push({
       pathname: "/avancement/langue/" + langue._id,
-      // state: { langue: langue}
+      state: {
+        langue: {
+          _id: langue._id,
+          i18nCode: langue.i18nCode,
+          langueFr: langue.langueFr,
+        },
+      },
     });
   };
 
@@ -206,41 +213,19 @@ export class UserDash extends Component {
       label: "openTraductions",
       value: langue._id,
     });
+
+    // Do not pass to big arguments in state otherwise it generates an error on firefox
+    // only pass in state what is needed
     this.props.history.push({
       pathname: "/avancement/traductions/" + langue._id,
-      state: { langue: langue },
+      state: {
+        langue: {
+          _id: langue._id,
+          i18nCode: langue.i18nCode,
+          langueFr: langue.langueFr,
+        },
+      },
     });
-  };
-
-  quickAccess = (langue = null) => {
-    if (!langue && this.state.languesUser.length > 0) {
-      langue = this.state.languesUser.find((x) => x.langueCode !== "fr");
-    }
-    if (!langue) {
-      return false;
-    }
-    let i18nCode = langue.i18nCode;
-    let nom = "avancement." + i18nCode;
-    let query = { $or: [{ [nom]: { $lt: 1 } }, { [nom]: null }] };
-    API.getArticle({ query: query, locale: i18nCode, random: true }).then(
-      (data_res) => {
-        let articles = data_res.data.data;
-        if (articles.length === 0) {
-          Swal.fire({
-            title: "Oh non",
-            text: "Aucun résultat n'a été retourné, veuillez rééssayer",
-            type: "error",
-            timer: 1500,
-          });
-        } else {
-          this.props.history.push({
-            pathname: "/traduction/" + articles[0]._id,
-            search: "?id=" + langue._id,
-            state: { langue: langue },
-          });
-        }
-      }
-    );
   };
 
   editProfile = () => {

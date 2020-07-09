@@ -1,5 +1,11 @@
 import React from "react";
 import { Player } from "video-react";
+import { Alerts } from "@streamlinehq/streamline-regular/lib/interface-essential";
+import { Conversation } from "@streamlinehq/streamline-regular/lib/messages-chat-smileys";
+import { GeometricFullBodySingleUserActionsNeutral } from "@streamlinehq/streamline-regular/lib/users";
+import { Time } from "@streamlinehq/streamline-regular/lib/interface-essential";
+import { Currencies } from "@streamlinehq/streamline-regular/lib/money-payments-finance";
+import { Family } from "@streamlinehq/streamline-regular/lib/family-babies-kids";
 
 const contenu = {
   titreInformatif: "Titre informatif",
@@ -380,7 +386,7 @@ const cardTitles = [
   { title: "Public visé", titleIcon: "papiers", options: filtres.audience },
   {
     title: "Âge requis",
-    titleIcon: "calendar",
+    titleIcon: "calendar-outline",
     options: filtres.audienceAge,
   }, //["0-18","18-25","25-56","56-120"]
   { title: "Durée", titleIcon: "clock-outline" },
@@ -391,7 +397,7 @@ const cardTitles = [
   },
   { title: "Combien ça coûte ?", titleIcon: "pricetags-outline" },
 
-  { title: "Important !", titleIcon: "warning" },
+  { title: "Important !", titleIcon: "alert-triangle-outline" },
 ];
 
 const onBoardSteps = [
@@ -787,6 +793,22 @@ const google_localities = [
   "neighborhood",
 ];
 
+const streamlineIconCorrespondency = [
+  { titleIcon: "alert-triangle-outline", streamlineIcon: Alerts.AlertTriangle },
+  {
+    titleIcon: "papiers",
+    streamlineIcon:
+      GeometricFullBodySingleUserActionsNeutral.SingleNeutralActionsCheck2,
+  },
+  { titleIcon: "calendar-outline", streamlineIcon: Family.FamilyChild },
+  { titleIcon: "clock-outline", streamlineIcon: Time.TimeClockCircle1 },
+  { titleIcon: "frBubble", streamlineIcon: Conversation.ConversationChat1 },
+  {
+    titleIcon: "pricetags-outline",
+    streamlineIcon: Currencies.CurrencyEuroCircle,
+  },
+];
+
 export {
   contenu,
   lorems,
@@ -802,4 +824,5 @@ export {
   customConvertOption,
   google_localities,
   cardTitles,
+  streamlineIconCorrespondency,
 };

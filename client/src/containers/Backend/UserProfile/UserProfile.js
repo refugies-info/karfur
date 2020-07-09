@@ -232,7 +232,6 @@ export class UserProfile extends Component {
         this.setState({ langues: _.get(data, "data.data", []) })
     );
     API.get_progression().then((data_progr) => {
-      console.log(data_progr.data.totalIndicator)
       if (data_progr.data.totalIndicator.length > 0)
         this._isMounted &&
           this.setState({ progression: data_progr.data.totalIndicator[0] });

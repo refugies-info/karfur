@@ -55,6 +55,8 @@ import marioProfile from "../../../assets/mario-profile.jpg";
 
 import "./Dashboard.scss";
 import { calculFiabilite } from "../../Dispositif/functions";
+import { filtres } from "../../Dispositif/data";
+import _ from "lodash";
 
 moment.locale("fr");
 
@@ -67,6 +69,69 @@ const brandWarning = getStyle("--warning");
 const brandDanger = getStyle("--danger");
 
 const eventFields = ["layout", "page", "userId"];
+
+const targetByTag = [
+  {
+    name: "apprendre le français",
+    targetDispositif: 12,
+    targetDemarche: 0,
+  },
+  {
+    name: "gérer mes papiers",
+    targetDispositif: 4,
+    targetDemarche: 12,
+  },
+  {
+    name: "me loger",
+    targetDemarche: 2,
+    targetDispositif: 4,
+  },
+  {
+    name: "me déplacer",
+    targetDemarche: 4,
+    targetDispositif: 4,
+  },
+  {
+    name: "trouver un travail",
+    targetDemarche: 8,
+    targetDispositif: 12,
+  },
+  {
+    name: "me soigner",
+    targetDemarche: 4,
+    targetDispositif: 8,
+  },
+  {
+    name: "apprendre un métier",
+    targetDemarche: 4,
+    targetDispositif: 12,
+  },
+  {
+    name: "faire des études",
+    targetDemarche: 4,
+    targetDispositif: 4,
+  },
+  {
+    name: "aider une association",
+    targetDemarche: 0,
+    targetDispositif: 12,
+  },
+  {
+    name: "rencontrer des gens",
+    targetDemarche: 0,
+    targetDispositif: 8,
+  },
+  {
+    name: "occuper mon temps libre",
+    targetDemarche: 0,
+    targetDispositif: 4,
+  },
+  {
+    name: "découvrir la culture",
+    targetDemarche: 0,
+    targetDispositif: 4,
+  },
+];
 
 class Dashboard extends Component {
   constructor(props) {
@@ -101,6 +166,8 @@ class Dashboard extends Component {
     users: [],
     avgScore: 0,
     avancementContenu: 0,
+    nbDispositifsByMainTag: {},
+    nbDemarchesByMainTag: {},
   };
 
   componentDidMount() {
@@ -164,6 +231,35 @@ class Dashboard extends Component {
       query: { status: "Actif" },
       populate: "roles",
     }).then((data) => this.setState({ users: data.data.data }));
+
+    filtres.tags.map((tag) => {
+      API.count_dispositifs({
+        "tags.0.name": tag.name,
+        status: "Actif",
+        typeContenu: "dispositif",
+      }).then((data) => {
+        this.setState({
+          nbDispositifsByMainTag: {
+            ...this.state.nbDispositifsByMainTag,
+            [tag.name]: data.data,
+          },
+        });
+      });
+
+      API.count_dispositifs({
+        "tags.0.name": tag.name,
+        status: "Actif",
+        typeContenu: "demarche",
+        demarcheId: { $exists: false },
+      }).then((data) => {
+        this.setState({
+          nbDemarchesByMainTag: {
+            ...this.state.nbDemarchesByMainTag,
+            [tag.name]: data.data,
+          },
+        });
+      });
+    });
 
     eventFields.map((x) => this._call_distinct_event(x));
 
@@ -352,7 +448,41 @@ class Dashboard extends Component {
               Pourcentage de traduction du contenu sur les langues actives :{" "}
               <b>{Math.round(avancementContenu * 100 * 100, 2) / 100 + " %"}</b>
             </li>
-            {/* <li>Temps moyen passé sur le site : <b>{averageTimeOnsite && ms(averageTimeOnsite || 0)}</b> - <i>A vérifier</i></li> */}
+            {Object.keys(this.state.nbDispositifsByMainTag).map((tag, key) => {
+              const targetTag = _.find(targetByTag, { name: tag });
+              const targetDispo =
+                targetTag && targetTag.targetDispositif
+                  ? targetTag.targetDispositif
+                  : 0;
+
+              const targetDemarche =
+                targetTag && targetTag.targetDemarche
+                  ? targetTag.targetDemarche
+                  : 0;
+              const currentValueDispositif = this.state.nbDispositifsByMainTag[
+                tag
+              ]
+                ? this.state.nbDispositifsByMainTag[tag]
+                : 0;
+
+              const currentValueDemarche = this.state.nbDemarchesByMainTag[tag]
+                ? this.state.nbDemarchesByMainTag[tag]
+                : 0;
+              const colorDispo =
+                currentValueDispositif < targetDispo ? "red" : "green";
+              const colorDemarche =
+                currentValueDemarche < targetDemarche ? "red" : "green";
+              return (
+                <li key={key}>
+                  Nombre de dispositifs/démarches avec tag principal{" "}
+                  <b>{tag}</b> (vs objectif) :{" "}
+                  <b style={{ color: colorDispo }}>{currentValueDispositif}</b>
+                  {""}/{targetDispo} -{" "}
+                  <b style={{ color: colorDemarche }}>{currentValueDemarche}</b>
+                  {""}/{targetDemarche}
+                </li>
+              );
+            })}
           </ul>
         </div>
         <Row>
