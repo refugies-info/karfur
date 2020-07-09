@@ -1,7 +1,5 @@
 import Langue from "../../schema/schemaLangue.js";
 import { RequestFromClient, Res } from "../../types/interface";
-import Traduction from "../../schema/schemaTraduction.js";
-import Dispositif from "../../schema/schemaDispositif.js";
 
 // create_langues not used
 // @ts-ignore
@@ -52,7 +50,7 @@ function create_langues(req, res) {
   }
 }
 
-async function get_langues(req: RequestFromClient, res: Res) {
+function get_langues(req: RequestFromClient, res: Res) {
   // remove this call because it generates an error with typescript
   // new DBEvent({
   //   action: JSON.stringify(req.body),
@@ -76,31 +74,51 @@ async function get_langues(req: RequestFromClient, res: Res) {
   } else {
     populate = "";
   }
-  try {
-    var findLangue = await Langue.find(query)
+
+  var findLangue = new Promise(function (resolve, reject) {
+    Langue.find(query)
       .sort(sort)
       .populate(populate)
       // @ts-ignore
-      .exec();
-    var totalCount = await Dispositif.count({ status: "Actif" });
-    if (findLangue.length > 0) {
-      for (var i = 0; i < findLangue.length; i++) {
-        var langue = findLangue[i];
-        var pubTrads = await Traduction.distinct("articleId", {
-          langueCible: langue.i18nCode,
-          status: "Validée",
-        });
-        var pubTradsCount = pubTrads.length;
-        findLangue[i].avancement = pubTradsCount / totalCount;
+      .exec(function (err, result) {
+        if (err) {
+          reject(500);
+        } else {
+          if (result) {
+            resolve(result);
+          } else {
+            reject(404);
+          }
+        }
+      });
+  });
+
+  findLangue.then(
+    function (result) {
+      res.status(200).json({
+        text: "Succès",
+        data: result,
+      });
+    },
+    function (error) {
+      switch (error) {
+        case 500:
+          res.status(500).json({
+            text: "Erreur interne",
+          });
+          break;
+        case 404:
+          res.status(404).json({
+            text: "Pas de résultats",
+          });
+          break;
+        default:
+          res.status(500).json({
+            text: "Erreur interne",
+          });
       }
     }
-    res.status(200).json({
-      text: "Succès",
-      data: findLangue,
-    });
-  } catch (e) {
-    res.status(500).json({ text: "Erreur interne", err: e });
-  }
+  );
 }
 
 //On exporte notre fonction
