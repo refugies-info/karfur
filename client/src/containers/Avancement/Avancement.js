@@ -49,38 +49,38 @@ const jsUcfirst = (string) => {
 export class Avancement extends Component {
   constructor(props) {
     super(props);
-  this.state = {
-    mainView: true,
-    title: diffData.all.title,
-    headers: diffData.all.headers,
+    this.state = {
+      mainView: true,
+      title: diffData.all.title,
+      headers: diffData.all.headers,
 
-    langue: {},
-    data: [],
-    themes: [],
-    itemId: null,
-    isLangue: false,
-    isExpert: props.isExpert,
-    traductionsFaites: [],
-    waiting: false,
-    published: false,
-    review: props.isExpert,
-    toTranslate: !props.isExpert,
-    traductions: [],
-    unfiltered: [],
-    dispositif: true,
-    demarche: true,
-    string: true,
-    waitingCount: 0,
-    publishedCount: 0,
-    reviewCount: 0,
-    toTranslateCount: 0,
-    dispositifCount: 0,
-    demarcheCount: 0,
-    stringCount: 0,
-    ascending: false,
-    research: "",
-  };
-}
+      langue: {},
+      data: [],
+      themes: [],
+      itemId: null,
+      isLangue: false,
+      isExpert: props.isExpert,
+      traductionsFaites: [],
+      waiting: false,
+      published: false,
+      review: props.isExpert,
+      toTranslate: !props.isExpert,
+      traductions: [],
+      unfiltered: [],
+      dispositif: true,
+      demarche: true,
+      string: true,
+      waitingCount: 0,
+      publishedCount: 0,
+      reviewCount: 0,
+      toTranslateCount: 0,
+      dispositifCount: 0,
+      demarcheCount: 0,
+      stringCount: 0,
+      ascending: false,
+      research: "",
+    };
+  }
 
   async componentDidMount() {
     let itemId = this.props.match.params.id;
@@ -233,7 +233,6 @@ export class Avancement extends Component {
         "/" +
         element._id,
       search: "?id=" + this.state.langue._id,
-      state: { langue: this.state.langue },
     });
   };
 
@@ -438,52 +437,48 @@ export class Avancement extends Component {
               (x.titreMarque && x.titreInformatif ? " - " : "") +
               (x.titreInformatif || ""),
             nombreMots: x.nbMots,
-            avancement: (isExpert || (this.state.traductionsFaites || [])
-            .filter((y) => {
-              return (
-                y.articleId === x._id &&
-                y.userId._id === this.props.userId &&
-                y.status === "À revoir"
-              );
-            }).length > 0)
-              ? Math.max(
-                  0,
-                  ...((this.state.traductionsFaites || [])
-                    .filter((y) => {
-                      return (
-                        y.articleId === x._id &&
-                        y.userId._id === this.props.userId
-                      );
-                    })
-                    .map((z) => z.avancement || -1) || [])
-                )
-              : (this.state.traductionsFaites || [])
-              .filter((y) => {
+            avancement:
+              isExpert ||
+              (this.state.traductionsFaites || []).filter((y) => {
                 return (
                   y.articleId === x._id &&
+                  y.userId._id === this.props.userId &&
                   y.status === "À revoir"
                 );
-              }).length > 0 ?
-              Math.max(
-                0,
-                ...((this.state.traductionsFaites || [])
-                  .filter((y) => {
-                    return (
-                      y.articleId === x._id &&
-                      y.userId._id === y.validatorId
-                    );
-                  })
-                  .map((z) => z.avancement || -1) || [])
-              ) 
-              :
-              Math.max(
-                  0,
-                  ...((this.state.traductionsFaites || [])
-                    .filter((y) => {
-                      return y.articleId === x._id;
-                    })
-                    .map((z) => z.avancement || -1) || [])
-                ),
+              }).length > 0
+                ? Math.max(
+                    0,
+                    ...((this.state.traductionsFaites || [])
+                      .filter((y) => {
+                        return (
+                          y.articleId === x._id &&
+                          y.userId._id === this.props.userId
+                        );
+                      })
+                      .map((z) => z.avancement || -1) || [])
+                  )
+                : (this.state.traductionsFaites || []).filter((y) => {
+                    return y.articleId === x._id && y.status === "À revoir";
+                  }).length > 0
+                ? Math.max(
+                    0,
+                    ...((this.state.traductionsFaites || [])
+                      .filter((y) => {
+                        return (
+                          y.articleId === x._id &&
+                          y.userId._id === y.validatorId
+                        );
+                      })
+                      .map((z) => z.avancement || -1) || [])
+                  )
+                : Math.max(
+                    0,
+                    ...((this.state.traductionsFaites || [])
+                      .filter((y) => {
+                        return y.articleId === x._id;
+                      })
+                      .map((z) => z.avancement || -1) || [])
+                  ),
             status: x.status,
             statusTrad:
               (this.state.traductionsFaites || [])
@@ -586,7 +581,7 @@ export class Avancement extends Component {
         demarcheCount: this.countType(traductions, "demarche"),
         stringCount: this.countType(traductions, "string"),
       });
-    /*   if (
+      /*   if (
         this.countfilter(traductions, "À revoir") === 0 &&
         this.countfilter(traductions, "À traduire") > 0
       ) {
@@ -811,14 +806,16 @@ export class Avancement extends Component {
                         cancelButtonText: "Annuler",
                       }).then((result) => {
                         if (result.value) {
-                          API.delete_trads({articleId: element._id,  langueCible: this.state.langue.i18nCode });
+                          API.delete_trads({
+                            articleId: element._id,
+                            langueCible: this.state.langue.i18nCode,
+                          });
                           window.location.reload();
                         }
                       });
-                      
                     }}
                   />
-                ) : null} 
+                ) : null}
               </td>
             </tr>
           );

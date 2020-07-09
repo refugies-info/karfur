@@ -14,7 +14,10 @@ import StringTranslation from "./StringTranslation/StringTranslation";
 import Dispositif from "../Dispositif/Dispositif";
 import { menu } from "../Dispositif/data";
 import { initializeTimer } from "./functions";
-import { fetchTranslationsActionCreator, addTradActionCreator } from "../../services/Translation/translation.actions";
+import {
+  fetchTranslationsActionCreator,
+  addTradActionCreator,
+} from "../../services/Translation/translation.actions";
 
 let last_target = null;
 let letter_pressed = null;
@@ -161,7 +164,7 @@ export class TranslationHOC extends Component {
   };
 
   get_trads = () => {
-    const { itemId, locale} = this.state;
+    const { itemId, locale } = this.state;
     this.props.fetchTranslations(itemId, locale);
 
     /* return API.get_tradForReview({
@@ -250,15 +253,14 @@ export class TranslationHOC extends Component {
                 )
               )
             : value;
-          this._isMounted && item &&
-            this.setState(
-              {
-                translated: {
-                  ...this.state.translated,
-                  [item]: value,
-                },
+          this._isMounted &&
+            item &&
+            this.setState({
+              translated: {
+                ...this.state.translated,
+                [item]: value,
               },
-            ); //, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
+            }); //, () => this.get_xlm([[h2p(this.state.translated.body), this.state.locale], [this.state.francais.body, 'fr']]) );
         }
       })
       .catch((err) => {
@@ -277,14 +279,12 @@ export class TranslationHOC extends Component {
               )
             : value;
           this._isMounted &&
-            this.setState(
-              {
-                translated: {
-                  ...this.state.translated,
-                  [item]: value,
-                },
+            this.setState({
+              translated: {
+                ...this.state.translated,
+                [item]: value,
               },
-            );
+            });
         }
       });
   };
@@ -571,7 +571,7 @@ export class TranslationHOC extends Component {
       );
       // eslint-disable-next-line
     } else {
-    return false
+      return false;
     }
   }
 }
