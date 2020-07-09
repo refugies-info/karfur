@@ -6,13 +6,9 @@ import {
   CardHeader,
   CardFooter,
   ButtonDropdown,
-  Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  ListGroup,
-  ListGroupItem,
-  Modal,
   Input,
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
@@ -30,13 +26,7 @@ import { DispositifContent, Tag } from "../../../@types/interface";
 import { filtres, cardTitles } from "../data";
 import _ from "lodash";
 import { infoCardIcon } from "../../../components/Icon/Icon";
-
-const list_papiers = [
-  { name: "Titre de séjour" },
-  { name: "Contrat d'intégration républicaine (CIR)" },
-];
-
-const papiers = [...list_papiers];
+import { FrenchLevelModal } from "../FrenchLevelModal";
 
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 const frequencesPay = [
@@ -79,27 +69,22 @@ export interface PropsBeforeInjection {
   mainTag: Tag;
 }
 type StateType = {
-  showModal: boolean;
   isDropdownOpen: boolean;
   isOptionsOpen: boolean;
-  isModalDropdownOpen: boolean[];
-  papiers: typeof papiers;
   showNiveaux: boolean;
   tooltipOpen: boolean;
+  showFrenchLevelModal: boolean;
 };
 
 export class CardParagraphe extends Component<Props> {
   state: StateType = {
-    showModal: false,
     isDropdownOpen: false,
     isOptionsOpen: false,
-    isModalDropdownOpen: new Array(2).fill(false),
-    papiers: papiers,
     showNiveaux: false,
     tooltipOpen: false,
+    showFrenchLevelModal: false,
   };
 
-  toggleModal = (show: boolean) => this.setState({ showModal: show });
   toggleNiveaux = () => this.setState({ showNiveaux: !this.state.showNiveaux });
   toggleTooltip = () =>
     this.setState((prevState: StateType) => ({
@@ -118,28 +103,6 @@ export class CardParagraphe extends Component<Props> {
     this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   };
 
-  toggleModalDropdown = (idx: number) =>
-    this.setState({
-      isModalDropdownOpen: this.state.isModalDropdownOpen.map((x, i) =>
-        i === idx ? !x : x
-      ),
-    });
-
-  setPapier = (idx: number, y: number) =>
-    this.setState({
-      papiers: this.state.papiers.map((x, i) =>
-        i === idx ? list_papiers[y] : x
-      ),
-    });
-  addPiece = () =>
-    this.setState({
-      papiers: [...this.state.papiers, { name: "Titre de séjour" }],
-      isModalDropdownOpen: [...this.state.isModalDropdownOpen, false],
-    });
-  removePiece = (idx: number) =>
-    this.setState({
-      papiers: [...this.state.papiers].filter((_, key) => key !== idx),
-    });
   emptyPlaceholder = (e: Element) => {
     if (!this.props.disableEdit && (this.props.subitem || {}).isFakeContent) {
       this.props.handleMenuChange({
@@ -148,6 +111,8 @@ export class CardParagraphe extends Component<Props> {
       });
     }
   };
+  toggleFrenchLevelModal = (show: boolean) =>
+    this.setState({ showFrenchLevelModal: show });
 
   toggleOptions = (e: Element) => {
     if (this.state.isOptionsOpen && e.currentTarget.id) {
@@ -551,7 +516,10 @@ export class CardParagraphe extends Component<Props> {
                 ) : (
                   // in edit mode, chose to precise the level of french
                   !this.props.disableEdit && (
-                    <u className="cursor-pointer" onClick={this.toggleNiveaux}>
+                    <u
+                      className="cursor-pointer"
+                      onClick={() => this.toggleFrenchLevelModal(true)}
+                    >
                       Préciser
                     </u>
                   )
@@ -582,61 +550,10 @@ export class CardParagraphe extends Component<Props> {
             }
           </Card>
         </Col>
-
-        <Modal
-          isOpen={this.state.showModal}
-          toggle={() => this.toggleModal(false)}
-          className="modal-pieces"
-        >
-          <h1>Pièces demandées</h1>
-          <p className="subtitle">
-            Voici les pièces requises pour participer au dispositif{" "}
-            {this.props.content.titreMarque}
-          </p>
-          <ListGroup flush>
-            {this.state.papiers.map((element, idx) => (
-              <ListGroupItem action key={idx}>
-                <Dropdown
-                  isOpen={
-                    !this.props.disableEdit &&
-                    this.state.isModalDropdownOpen[idx]
-                  }
-                  toggle={() => this.toggleModalDropdown(idx)}
-                >
-                  {!this.props.disableEdit && (
-                    <EVAIcon
-                      name="close-circle"
-                      onClick={() => this.removePiece(idx)}
-                      className="btn-moins"
-                    />
-                  )}
-                  <DropdownToggle
-                    caret={!this.props.disableEdit}
-                    className="papiers-toggle-btn"
-                  >
-                    <h6>{element.name}</h6>
-                    <u>Comment obtenir cette pièce ?</u>
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    {list_papiers.map((papier, y) => (
-                      <DropdownItem
-                        key={y}
-                        onClick={() => this.setPapier(idx, y)}
-                      >
-                        {papier.name}
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-              </ListGroupItem>
-            ))}
-            {!this.props.disableEdit && (
-              <ListGroupItem action onClick={this.addPiece}>
-                <h6>Ajouter une pièce supplémentaire</h6>
-              </ListGroupItem>
-            )}
-          </ListGroup>
-        </Modal>
+        <FrenchLevelModal
+          show={this.state.showFrenchLevelModal}
+          disableEdit={false}
+        />
       </>
     );
   }
