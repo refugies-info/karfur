@@ -800,8 +800,22 @@ export class Avancement extends Component {
                     fill={variables.noir}
                     onClick={(e) => {
                       e.stopPropagation();
-                      API.delete_trads({articleId: element._id,  langueCible: this.state.langue.i18nCode });
-                      window.location.reload();
+                      Swal.fire({
+                        title: "Êtes-vous sûr ?",
+                        text: "La suppression des traductions est irréversible",
+                        type: "question",
+                        showCancelButton: true,
+                        confirmButtonColor: variables.rouge,
+                        cancelButtonColor: variables.vert,
+                        confirmButtonText: "Oui, les supprimer",
+                        cancelButtonText: "Annuler",
+                      }).then((result) => {
+                        if (result.value) {
+                          API.delete_trads({articleId: element._id,  langueCible: this.state.langue.i18nCode });
+                          window.location.reload();
+                        }
+                      });
+                      
                     }}
                   />
                 ) : null} 
