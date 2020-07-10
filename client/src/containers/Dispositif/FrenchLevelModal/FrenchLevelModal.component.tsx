@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import "./FrenchLevelModal.scss";
 // @ts-ignore
@@ -7,17 +7,21 @@ import styled from "styled-components";
 import Icon from "react-eva-icons";
 import { FrenchLevelButton } from "./FrenchLevelButton/FrenchLevelButton";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { Props } from "./FrenchLevelModal.container";
 
 export interface PropsBeforeInjection {
   show: boolean;
   disableEdit: boolean;
   hideModal: () => void;
+  selectedLevels: string[] | undefined;
+  validateLevels: (arg: string[]) => void;
 }
 
 const StyledMainTitle = styled.p`
   font-weight: bold;
   font-size: 40px;
   line-height: 51px;
+  margin-bottom: 40px;
 `;
 
 const IconContainer = styled.div`
@@ -44,7 +48,7 @@ const StyledTitle = styled.p`
 const SectionContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   align-items: center;
   justify-content: flex-start;
 `;
@@ -52,6 +56,7 @@ const SectionContainer = styled.div`
 const StyledDescription = styled.p`
   font-size: 12px;
   line-height: 15px;
+  margin: 0;
 `;
 
 const StyledButton = styled.div`
@@ -81,11 +86,19 @@ const StyledButtonGroupContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 40px;
 `;
 
 const StyledRightButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+const LevelSourceText = styled.div`
+  margin: 0;
+  padding-top: 10px;
+  font-size: 12px;
+  line-height: 15px;
 `;
 
 const data = [
@@ -132,76 +145,119 @@ besoins concrets.`,
   },
 ];
 interface StateType {
-  isSelected: boolean;
+  selectedLevels: string[];
 }
 
-export const FrenchLevelModalComponent = (props: PropsBeforeInjection) => {
-  const state: StateType = {
-    isSelected: false,
+export class FrenchLevelModalComponent extends Component<Props> {
+  state: StateType = {
+    selectedLevels: this.props.selectedLevels || [],
   };
 
-  return (
-    <Modal isOpen={props.show} className="modal-french-level" size="lg">
-      {" "}
-      <IconContainer onClick={props.hideModal}>
-        <Icon name="close-outline" fill="#3D3D3D" size="large" />
-      </IconContainer>
-      <MainContainer>
-        <StyledMainTitle>Niveau de langue souhaité</StyledMainTitle>
-        {data.map((element, key) => (
-          <SectionContainer key={key}>
-            <FrenchLevelButtonContainer>
-              <FrenchLevelButton
-                isSelected={false}
-                isHover={false}
-                frenchLevel={element.level}
-              />
-            </FrenchLevelButtonContainer>
-            <StyledDescriptionContainer>
-              <StyledTitle {...state}>{element.title} </StyledTitle>
-              <StyledDescription>
-                {element.description}{" "}
-                <a
-                  style={{ textDecoration: "underline" }}
-                  target="_blank"
-                  href={element.linkToKnowMore}
-                >
-                  {"En savoir plus"}
-                </a>
-              </StyledDescription>
-            </StyledDescriptionContainer>
-            {props.disableEdit && (
-              <StyledButtonContainer>
-                <StyledButton />
-              </StyledButtonContainer>
-            )}
-          </SectionContainer>
-        ))}
-        <StyledButtonGroupContainer>
-          <FButton
-            type="help"
-            name="question-mark-circle"
-            className="validate-button"
-            href="https://help.refugies.info/fr/"
-          >
-            <ButtonText>J'ai besoin d'aide</ButtonText>
-          </FButton>
-          <StyledRightButtonGroup>
-            <div
-              style={{
-                marginRight: 10,
-              }}
+  updateSelectedLevels = (level: string) => {
+    const selectedLevels = this.state.selectedLevels;
+    const selectedLevelsUpdated = selectedLevels.some((x) => x === level)
+      ? selectedLevels.filter((x) => x !== level)
+      : [...selectedLevels, level];
+
+    this.setState({
+      selectedLevels: selectedLevelsUpdated,
+    });
+  };
+
+  onValidate = () => {
+    this.props.validateLevels(this.state.selectedLevels);
+    this.props.hideModal();
+  };
+
+  render() {
+    return (
+      <Modal isOpen={this.props.show} className="modal-french-level" size="lg">
+        {" "}
+        <IconContainer onClick={this.props.hideModal}>
+          <Icon name="close-outline" fill="#3D3D3D" size="large" />
+        </IconContainer>
+        <MainContainer>
+          <StyledMainTitle>Niveau de langue souhaité</StyledMainTitle>
+          {data.map((element, key) => {
+            const isSelected = this.state.selectedLevels
+              ? this.state.selectedLevels.includes(element.level)
+              : false;
+            return (
+              <SectionContainer key={key}>
+                <FrenchLevelButtonContainer>
+                  <FrenchLevelButton
+                    isSelected={isSelected}
+                    isHover={false}
+                    frenchLevel={element.level}
+                    onClick={this.updateSelectedLevels}
+                  />
+                </FrenchLevelButtonContainer>
+                <StyledDescriptionContainer>
+                  <StyledTitle isSelected={isSelected}>
+                    {element.title}{" "}
+                  </StyledTitle>
+                  <StyledDescription>
+                    {element.description}{" "}
+                    <a
+                      style={{ textDecoration: "underline" }}
+                      target="_blank"
+                      href={element.linkToKnowMore}
+                    >
+                      {"En savoir plus"}
+                    </a>
+                  </StyledDescription>
+                </StyledDescriptionContainer>
+                {this.props.disableEdit && (
+                  <StyledButtonContainer>
+                    <StyledButton />
+                  </StyledButtonContainer>
+                )}
+              </SectionContainer>
+            );
+          })}
+          <LevelSourceText>
+            Ces niveaux sont issus du{" "}
+            <a
+              style={{ textDecoration: "underline" }}
+              target="_blank"
+              href={
+                "https://www.coe.int/fr/web/common-european-framework-reference-languages"
+              }
             >
-              <FButton type="outline-black" onClick={props.hideModal}>
-                <ButtonText>Annuler</ButtonText>
-              </FButton>
-            </div>
-            <FButton type="validate" name="checkmark">
-              <ButtonText>Valider</ButtonText>
+              {"Cadre européen commun de référence pour les langues"}
+            </a>{" "}
+            (CECR).
+          </LevelSourceText>
+          <StyledButtonGroupContainer>
+            <FButton
+              type="help"
+              name="question-mark-circle"
+              className="validate-button"
+              href="https://help.refugies.info/fr/"
+            >
+              <ButtonText>J'ai besoin d'aide</ButtonText>
             </FButton>
-          </StyledRightButtonGroup>
-        </StyledButtonGroupContainer>
-      </MainContainer>
-    </Modal>
-  );
-};
+            <StyledRightButtonGroup>
+              <div
+                style={{
+                  marginRight: 10,
+                }}
+              >
+                <FButton type="outline-black" onClick={this.props.hideModal}>
+                  <ButtonText>Annuler</ButtonText>
+                </FButton>
+              </div>
+              <FButton
+                type="validate"
+                name="checkmark"
+                onClick={this.onValidate}
+              >
+                <ButtonText>Valider</ButtonText>
+              </FButton>
+            </StyledRightButtonGroup>
+          </StyledButtonGroupContainer>
+        </MainContainer>
+      </Modal>
+    );
+  }
+}

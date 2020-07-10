@@ -13,7 +13,8 @@ import {
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
-
+// @ts-ignore
+import styled from "styled-components";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
 
@@ -49,6 +50,12 @@ interface Content {
   titreMarque: string;
 }
 
+const ButtonText = styled.p`
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+`;
+
 export interface PropsBeforeInjection {
   subkey: number;
   subitem: DispositifContent;
@@ -60,7 +67,7 @@ export interface PropsBeforeInjection {
   toggleFree: (arg1: number, arg2: number) => void;
   changePrice: (arg1: any, arg2: number, arg3: number) => void;
   updateUIArray: (arg1: number, arg2: number, arg3: string) => void;
-  toggleNiveau: (arg1: string, arg2: number, arg3: number) => void;
+  toggleNiveau: (arg1: string[], arg2: number, arg3: number) => void;
   deleteCard: (arg1: number, arg2: number) => void;
   content: Content;
   keyValue: number;
@@ -86,6 +93,14 @@ export class CardParagraphe extends Component<Props> {
   };
 
   toggleNiveaux = () => this.setState({ showNiveaux: !this.state.showNiveaux });
+
+  validateLevels = (selectedLevels: string[]) => {
+    this.props.toggleNiveau(
+      selectedLevels,
+      this.props.keyValue,
+      this.props.subkey
+    );
+  };
   toggleTooltip = () =>
     this.setState((prevState: StateType) => ({
       tooltipOpen: !prevState.tooltipOpen,
@@ -449,7 +464,7 @@ export class CardParagraphe extends Component<Props> {
 
     const cardFooterContent = (subitem: DispositifContent) => {
       // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
-      if (this.props.subitem.footerHref && disableEdit) {
+      if (subitem.footerHref && disableEdit) {
         return (
           <FButton
             type="light-action"
@@ -458,6 +473,18 @@ export class CardParagraphe extends Component<Props> {
           >
             {subitem.footer &&
               t("Dispositif." + subitem.footer, subitem.footer)}
+          </FButton>
+        );
+      }
+
+      if (!disableEdit && subitem.title === "Niveau de français") {
+        return (
+          <FButton
+            type="precision"
+            name="plus-circle-outline"
+            onClick={() => this.toggleFrenchLevelModal(true)}
+          >
+            <ButtonText>Préciser le niveau</ButtonText>
           </FButton>
         );
       }
@@ -489,41 +516,21 @@ export class CardParagraphe extends Component<Props> {
                 {contentTitle(subitem)}
               </span>
               {subitem.title === "Niveau de français" &&
-                (showNiveaux || (subitem.niveaux || []).length > 0 ? (
-                  // info card Niveau de francais, selection of level in edit mode
-                  <div className="niveaux-wrapper">
-                    {niveaux.map((nv, key) => (
-                      <button
-                        key={key}
-                        className={
+                (showNiveaux ||
+                  ((subitem.niveaux || []).length > 0 && (
+                    // info card Niveau de francais, selection of level in edit mode
+                    <div className="niveaux-wrapper">
+                      {niveaux
+                        .filter((nv) =>
                           (subitem.niveaux || []).some((x: string) => x === nv)
-                            ? "active"
-                            : ""
-                        }
-                        disabled={this.props.disableEdit}
-                        onClick={() =>
-                          this.props.toggleNiveau(
-                            nv,
-                            this.props.keyValue,
-                            this.props.subkey
-                          )
-                        }
-                      >
-                        {nv}
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  // in edit mode, chose to precise the level of french
-                  !this.props.disableEdit && (
-                    <u
-                      className="cursor-pointer"
-                      onClick={() => this.toggleFrenchLevelModal(true)}
-                    >
-                      Préciser
-                    </u>
-                  )
-                ))}
+                        )
+                        .map((nv, key) => (
+                          <button key={key} className={"active"}>
+                            {nv}
+                          </button>
+                        ))}
+                    </div>
+                  )))}
             </CardBody>
             {
               // footer for card Niveau de français to assess level in a website
@@ -554,6 +561,8 @@ export class CardParagraphe extends Component<Props> {
           show={this.state.showFrenchLevelModal}
           disableEdit={false}
           hideModal={() => this.toggleFrenchLevelModal(false)}
+          selectedLevels={subitem.niveaux}
+          validateLevels={this.validateLevels}
         />
       </>
     );

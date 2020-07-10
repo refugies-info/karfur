@@ -941,22 +941,14 @@ export class Dispositif extends Component {
         }),
     }));
 
-  toggleNiveau = (nv, key, subkey) => {
-    let niveaux = _.get(
-      this.state.menu,
-      key + ".children." + subkey + ".niveaux",
-      []
-    );
-    niveaux = niveaux.some((x) => x === nv)
-      ? niveaux.filter((x) => x !== nv)
-      : [...niveaux, nv];
+  toggleNiveau = (selectedLevels, key, subkey) => {
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
         i === key
           ? {
               ...x,
               children: x.children.map((y, ix) =>
-                ix === subkey ? { ...y, niveaux: niveaux } : y
+                ix === subkey ? { ...y, niveaux: selectedLevels } : y
               ),
             }
           : x

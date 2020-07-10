@@ -6,6 +6,7 @@ interface PropsType {
   isHover: boolean;
   isSelected: boolean;
   frenchLevel: string;
+  onClick: (arg1: string) => void;
 }
 
 const StyledContainer = styled.div`
@@ -33,7 +34,7 @@ const StyledText = styled.div`
 `;
 
 export const FrenchLevelButton = (props: PropsType) => (
-  <StyledContainer {...props}>
+  <StyledContainer {...props} onClick={() => props.onClick(props.frenchLevel)}>
     <StyledText {...props}>{props.frenchLevel}</StyledText>
   </StyledContainer>
 );
