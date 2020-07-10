@@ -1,11 +1,11 @@
 import React from "react";
 import { Player } from "video-react";
-import { Alerts } from "@streamlinehq/streamline-regular/lib/interface-essential";
-import { Conversation } from "@streamlinehq/streamline-regular/lib/messages-chat-smileys";
-import { GeometricFullBodySingleUserActionsNeutral } from "@streamlinehq/streamline-regular/lib/users";
-import { Time } from "@streamlinehq/streamline-regular/lib/interface-essential";
-import { Currencies } from "@streamlinehq/streamline-regular/lib/money-payments-finance";
-import { Family } from "@streamlinehq/streamline-regular/lib/family-babies-kids";
+// import { Alerts } from "@streamlinehq/streamline-regular/lib/interface-essential";
+// import { Conversation } from "@streamlinehq/streamline-regular/lib/messages-chat-smileys";
+// import { GeometricFullBodySingleUserActionsNeutral } from "@streamlinehq/streamline-regular/lib/users";
+// import { Time } from "@streamlinehq/streamline-regular/lib/interface-essential";
+// import { Currencies } from "@streamlinehq/streamline-regular/lib/money-payments-finance";
+// import { Family } from "@streamlinehq/streamline-regular/lib/family-babies-kids";
 
 const contenu = {
   titreInformatif: "Titre informatif",
@@ -793,19 +793,42 @@ const google_localities = [
   "neighborhood",
 ];
 
+// to use when streamline icon is installed
+// const streamlineIconCorrespondency = [
+//   { titleIcon: "alert-triangle-outline", streamlineIcon: Alerts.AlertTriangle },
+//   {
+//     titleIcon: "papiers",
+//     streamlineIcon:
+//       GeometricFullBodySingleUserActionsNeutral.SingleNeutralActionsCheck2,
+//     evaIcon: "person-outline",
+//   },
+//   { titleIcon: "calendar-outline", streamlineIcon: Family.FamilyChild },
+//   { titleIcon: "clock-outline", streamlineIcon: Time.TimeClockCircle1 },
+//   {
+//     titleIcon: "frBubble",
+//     streamlineIcon: Conversation.ConversationChat1,
+//     evaIcon: "message-circle-outline",
+//   },
+//   {
+//     titleIcon: "pricetags-outline",
+//     streamlineIcon: Currencies.CurrencyEuroCircle,
+//   },
+// ];
+
 const streamlineIconCorrespondency = [
-  { titleIcon: "alert-triangle-outline", streamlineIcon: Alerts.AlertTriangle },
+  { titleIcon: "alert-triangle-outline" },
   {
     titleIcon: "papiers",
-    streamlineIcon:
-      GeometricFullBodySingleUserActionsNeutral.SingleNeutralActionsCheck2,
+    evaIcon: "person-outline",
   },
-  { titleIcon: "calendar-outline", streamlineIcon: Family.FamilyChild },
-  { titleIcon: "clock-outline", streamlineIcon: Time.TimeClockCircle1 },
-  { titleIcon: "frBubble", streamlineIcon: Conversation.ConversationChat1 },
+  { titleIcon: "calendar-outline" },
+  { titleIcon: "clock-outline" },
+  {
+    titleIcon: "frBubble",
+    evaIcon: "message-circle-outline",
+  },
   {
     titleIcon: "pricetags-outline",
-    streamlineIcon: Currencies.CurrencyEuroCircle,
   },
 ];
 
