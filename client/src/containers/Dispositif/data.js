@@ -103,8 +103,6 @@ const menu = [
         niveaux: [],
         footer: "Évaluer mon niveau",
         footerIcon: "bar-chart-outline",
-        footerHref:
-          "https://savoirs.rfi.fr/fr/testez-votre-niveau-de-fran%C3%87ais",
         tooltipHeader: "Niveau de français requis",
         tooltipContent:
           "Indiquez un niveau généraliste et précisez si besoin le niveau CECR demandé (A1,A2, etc.).",

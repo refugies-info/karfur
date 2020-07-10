@@ -141,10 +141,10 @@ export class CardParagraphe extends Component<Props> {
     this.setState({ isOptionsOpen: !this.state.isOptionsOpen });
   };
 
-  footerClicked = () => {
-    if (this.props.subitem.footerHref) {
-      // @ts-ignore
-      window.open(this.props.subitem.footerHref, "_blank");
+  footerClicked = (subitem: DispositifContent) => {
+    // the only infocard with footerHref is 'Niveaux de français'
+    if (subitem.title === "Niveau de français") {
+      this.toggleFrenchLevelModal(true);
     } else {
       Swal.fire({
         title: "Oh non!",
@@ -464,12 +464,12 @@ export class CardParagraphe extends Component<Props> {
 
     const cardFooterContent = (subitem: DispositifContent) => {
       // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
-      if (subitem.footerHref && disableEdit) {
+      if (subitem.title === "Niveau de français" && disableEdit) {
         return (
           <FButton
             type="light-action"
             name={subitem.footerIcon}
-            onClick={this.footerClicked}
+            onClick={() => this.footerClicked(subitem)}
           >
             {subitem.footer &&
               t("Dispositif." + subitem.footer, subitem.footer)}
@@ -559,7 +559,7 @@ export class CardParagraphe extends Component<Props> {
         </Col>
         <FrenchLevelModal
           show={this.state.showFrenchLevelModal}
-          disableEdit={false}
+          disableEdit={this.props.disableEdit}
           hideModal={() => this.toggleFrenchLevelModal(false)}
           selectedLevels={subitem.niveaux}
           validateLevels={this.validateLevels}

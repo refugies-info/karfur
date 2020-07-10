@@ -110,6 +110,8 @@ quotidiennes avec des phrases très simples pour satisfaire des
 besoins concrets.`,
     linkToKnowMore:
       "https://www.france-terre-asile.org/images/stories/publications/Diel%20kits/Kit_%C3%A9valuation_linguistique/Fiche_m%C3%A9mo_niveau_A1.pdf",
+    linkToMakeTheTest:
+      "https://savoirs.rfi.fr/fr/apprendre-enseigner/langue-francaise/test-de-placement-ndeg2-a1/1",
   },
 
   {
@@ -119,6 +121,8 @@ besoins concrets.`,
       "Je peux comprendre des phrases isolées et des expressions en relation avec mon environnement immédiat : famille, travail, école. Je peux parler de sujets familiers.",
     linkToKnowMore:
       "https://www.france-terre-asile.org/images/stories/publications/Diel%20kits/Kit_%C3%A9valuation_linguistique/Fiche_m%C3%A9mo_niveau_A2.pdf",
+    linkToMakeTheTest:
+      "https://savoirs.rfi.fr/fr/apprendre-enseigner/langue-francaise/test-de-placement-ndeg2-a2/1",
   },
   {
     level: "B1",
@@ -127,6 +131,8 @@ besoins concrets.`,
       "Je peux comprendre les points essentiels d’un message quand un langage clair et standard est utilisé. Je peux communiquer dans la plupart des situations rencontrées en voyage. Je peux raconter un événement, une expérience.",
     linkToKnowMore:
       "https://www.france-terre-asile.org/images/stories/publications/Diel%20kits/Kit_%C3%A9valuation_linguistique/Fiche_m%C3%A9mo_niveau_B1.pdf",
+    linkToMakeTheTest:
+      "https://savoirs.rfi.fr/fr/apprendre-enseigner/langue-francaise/test-de-placement-ndeg2-b1/1",
   },
   {
     level: "B2",
@@ -135,6 +141,8 @@ besoins concrets.`,
       "Je peux comprendre le contenu essentiel de messages complexes sur des sujets concrets ou abstraits. Je communique avec aisance avec un locuteur natif et je m'exprime de façon claire et détaillée sur une grande gamme de sujets.",
     linkToKnowMore:
       "https://www.france-terre-asile.org/images/stories/publications/Diel%20kits/Kit_%C3%A9valuation_linguistique/Fiche_m%C3%A9mo_niveau_B2.pdf",
+    linkToMakeTheTest:
+      "https://savoirs.rfi.fr/fr/apprendre-enseigner/langue-francaise/test-de-placement-ndeg2-b2/1",
   },
   {
     level: "C1",
@@ -207,9 +215,15 @@ export class FrenchLevelModalComponent extends Component<Props> {
                     </a>
                   </StyledDescription>
                 </StyledDescriptionContainer>
-                {this.props.disableEdit && (
+                {this.props.disableEdit && element.linkToMakeTheTest && (
                   <StyledButtonContainer>
-                    <StyledButton />
+                    <FButton
+                      type="dark"
+                      name="external-link"
+                      href={element.linkToMakeTheTest}
+                    >
+                      <ButtonText>Faire le test</ButtonText>
+                    </FButton>{" "}
                   </StyledButtonContainer>
                 )}
               </SectionContainer>
@@ -228,34 +242,36 @@ export class FrenchLevelModalComponent extends Component<Props> {
             </a>{" "}
             (CECR).
           </LevelSourceText>
-          <StyledButtonGroupContainer>
-            <FButton
-              type="help"
-              name="question-mark-circle"
-              className="validate-button"
-              href="https://help.refugies.info/fr/"
-            >
-              <ButtonText>J'ai besoin d'aide</ButtonText>
-            </FButton>
-            <StyledRightButtonGroup>
-              <div
-                style={{
-                  marginRight: 10,
-                }}
-              >
-                <FButton type="outline-black" onClick={this.props.hideModal}>
-                  <ButtonText>Annuler</ButtonText>
-                </FButton>
-              </div>
+          {!this.props.disableEdit && (
+            <StyledButtonGroupContainer>
               <FButton
-                type="validate"
-                name="checkmark"
-                onClick={this.onValidate}
+                type="help"
+                name="question-mark-circle"
+                className="validate-button"
+                href="https://help.refugies.info/fr/"
               >
-                <ButtonText>Valider</ButtonText>
+                <ButtonText>J'ai besoin d'aide</ButtonText>
               </FButton>
-            </StyledRightButtonGroup>
-          </StyledButtonGroupContainer>
+              <StyledRightButtonGroup>
+                <div
+                  style={{
+                    marginRight: 10,
+                  }}
+                >
+                  <FButton type="outline-black" onClick={this.props.hideModal}>
+                    <ButtonText>Annuler</ButtonText>
+                  </FButton>
+                </div>
+                <FButton
+                  type="validate"
+                  name="checkmark"
+                  onClick={this.onValidate}
+                >
+                  <ButtonText>Valider</ButtonText>
+                </FButton>
+              </StyledRightButtonGroup>
+            </StyledButtonGroupContainer>
+          )}
         </MainContainer>
       </Modal>
     );
