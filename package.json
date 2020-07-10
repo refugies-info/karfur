@@ -10,7 +10,7 @@
   "scripts": {
     "start": "cd server && npm start",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
-    "postinstall": "cd server && npm install && npm run tsc && cd .. && cd client && npm install --only=dev && npm install && npm run build",
+    "postinstall": "cd server && npm install && npm run tsc && cd .. && cd client && npm install --only=prod  && npm run build",
     "test": "cd client && npm run test && cd ../server && npm run test",
     "test:lint": "cd client && npm run test:lint && cd ../server && npm run test:lint",
     "test:types": "cd client && npm run test:types && cd ../server && npm run test:types",
