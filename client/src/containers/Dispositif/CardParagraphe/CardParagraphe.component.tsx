@@ -519,13 +519,16 @@ export class CardParagraphe extends Component<Props> {
                 (showNiveaux ||
                   ((subitem.niveaux || []).length > 0 && (
                     // info card Niveau de francais, selection of level in edit mode
-                    <div className="niveaux-wrapper">
+                    <div className="color-darkColor  niveaux-wrapper">
                       {niveaux
                         .filter((nv) =>
                           (subitem.niveaux || []).some((x: string) => x === nv)
                         )
                         .map((nv, key) => (
-                          <button key={key} className={"active"}>
+                          <button
+                            key={key}
+                            className={"backgroundColor-darkColor active"}
+                          >
                             {nv}
                           </button>
                         ))}
@@ -557,13 +560,16 @@ export class CardParagraphe extends Component<Props> {
             }
           </Card>
         </Col>
-        <FrenchLevelModal
-          show={this.state.showFrenchLevelModal}
-          disableEdit={this.props.disableEdit}
-          hideModal={() => this.toggleFrenchLevelModal(false)}
-          selectedLevels={subitem.niveaux}
-          validateLevels={this.validateLevels}
-        />
+        {
+          <FrenchLevelModal
+            show={this.state.showFrenchLevelModal}
+            disableEdit={this.props.disableEdit}
+            hideModal={() => this.toggleFrenchLevelModal(false)}
+            selectedLevels={subitem.niveaux}
+            validateLevels={this.validateLevels}
+            t={this.props.t}
+          />
+        }
       </>
     );
   }

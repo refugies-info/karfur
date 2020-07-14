@@ -7,6 +7,7 @@ interface PropsType {
   isSelected: boolean;
   frenchLevel: string;
   onClick: (arg1: string) => void;
+  disableEdit: boolean;
 }
 
 const StyledContainer = styled.div`
@@ -22,6 +23,8 @@ const StyledContainer = styled.div`
   align-items: center;
   background-color: ${(props: PropsType) =>
     props.isSelected ? "#4CAF50" : props.isHover ? "black" : "white"};
+  cursor: ${(props: PropsType) => (props.disableEdit ? "default" : "pointer")};
+
 `;
 
 const StyledText = styled.div`
@@ -33,8 +36,16 @@ const StyledText = styled.div`
     props.isSelected || props.isHover ? "white" : "black"};
 `;
 
-export const FrenchLevelButton = (props: PropsType) => (
-  <StyledContainer {...props} onClick={() => props.onClick(props.frenchLevel)}>
-    <StyledText {...props}>{props.frenchLevel}</StyledText>
-  </StyledContainer>
-);
+export const FrenchLevelButton = (props: PropsType) =>
+  props.disableEdit ? (
+    <StyledContainer {...props}>
+      <StyledText {...props}>{props.frenchLevel}</StyledText>
+    </StyledContainer>
+  ) : (
+    <StyledContainer
+      {...props}
+      onClick={() => props.onClick(props.frenchLevel)}
+    >
+      <StyledText {...props}>{props.frenchLevel}</StyledText>
+    </StyledContainer>
+  );

@@ -15,6 +15,7 @@ export interface PropsBeforeInjection {
   hideModal: () => void;
   selectedLevels: string[] | undefined;
   validateLevels: (arg: string[]) => void;
+  t: any;
 }
 
 const StyledMainTitle = styled.p`
@@ -30,6 +31,7 @@ const IconContainer = styled.div`
   height: 20px;
   right: 20px;
   top: 20px;
+  cursor: pointer;
 `;
 
 const MainContainer = styled.div`
@@ -57,12 +59,6 @@ const StyledDescription = styled.p`
   font-size: 12px;
   line-height: 15px;
   margin: 0;
-`;
-
-const StyledButton = styled.div`
-  width: 146px;
-  height: 50px;
-  background-color: black;
 `;
 
 const StyledDescriptionContainer = styled.div`
@@ -185,7 +181,12 @@ export class FrenchLevelModalComponent extends Component<Props> {
           <Icon name="close-outline" fill="#3D3D3D" size="large" />
         </IconContainer>
         <MainContainer>
-          <StyledMainTitle>Niveau de langue souhaité</StyledMainTitle>
+          <StyledMainTitle>
+            {this.props.t(
+              "ModaleNiveauDeFrançais.Niveau de langue",
+              "Niveau de langue"
+            )}
+          </StyledMainTitle>
           {data.map((element, key) => {
             const isSelected = this.state.selectedLevels
               ? this.state.selectedLevels.includes(element.level)
@@ -198,20 +199,29 @@ export class FrenchLevelModalComponent extends Component<Props> {
                     isHover={false}
                     frenchLevel={element.level}
                     onClick={this.updateSelectedLevels}
+                    disableEdit={this.props.disableEdit}
                   />
                 </FrenchLevelButtonContainer>
                 <StyledDescriptionContainer>
                   <StyledTitle isSelected={isSelected}>
-                    {element.title}{" "}
+                    {this.props.t(
+                      "ModaleNiveauDeFrançais." + element.title + ".title",
+                      element.title
+                    )}
                   </StyledTitle>
                   <StyledDescription>
-                    {element.description}{" "}
+                    {this.props.t(
+                      "ModaleNiveauDeFrançais." +
+                        element.title +
+                        ".description",
+                      element.description
+                    )}{" "}
                     <a
                       style={{ textDecoration: "underline" }}
                       target="_blank"
                       href={element.linkToKnowMore}
                     >
-                      {"En savoir plus"}
+                      {this.props.t("ModaleNiveauDeFrançais.En savoir plus")}
                     </a>
                   </StyledDescription>
                 </StyledDescriptionContainer>
@@ -222,7 +232,12 @@ export class FrenchLevelModalComponent extends Component<Props> {
                       name="external-link"
                       href={element.linkToMakeTheTest}
                     >
-                      <ButtonText>Faire le test</ButtonText>
+                      <ButtonText>
+                        {this.props.t(
+                          "ModaleNiveauDeFrançais.Faire le test",
+                          "Faire le test"
+                        )}
+                      </ButtonText>
                     </FButton>{" "}
                   </StyledButtonContainer>
                 )}
@@ -230,7 +245,10 @@ export class FrenchLevelModalComponent extends Component<Props> {
             );
           })}
           <LevelSourceText>
-            Ces niveaux sont issus du{" "}
+            {this.props.t(
+              "ModaleNiveauDeFrançais.Ces niveaux sont issus du",
+              "Ces niveaux sont issus du"
+            )}{" "}
             <a
               style={{ textDecoration: "underline" }}
               target="_blank"
