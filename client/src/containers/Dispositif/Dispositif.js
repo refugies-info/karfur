@@ -1353,7 +1353,8 @@ export class Dispositif extends Component {
     }
     let dispositif = {
       ...content,
-      contenu: [...this.state.menu].map((x, i) => ({
+      contenu: [...this.state.menu].map((x, i) => {
+        return({
         title: x.title,
         ...{
           content:
@@ -1372,8 +1373,11 @@ export class Dispositif extends Component {
         editable: false,
         type: x.type,
         ...(x.children && {
-          children: x.children.map((y, j) => ({
-            ...y,
+          children: x.children.map((y, j) => {
+            // eslint-disable-next-line 
+            const {editorState, ...noEditor} = y;
+            return({
+              ...noEditor,
             ...(y.editable &&
               y.editorState &&
               y.editorState.getCurrentContent() &&
@@ -1387,9 +1391,9 @@ export class Dispositif extends Component {
             }),
             editable: false,
             ...(y.title && { title: h2p(y.title) }),
-          })),
+          })}),
         }),
-      })),
+      })}),
       sponsors: (this.state.sponsors || []).filter((x) => !x.dummy),
       tags: this.state.tags,
       avancement: 1,
