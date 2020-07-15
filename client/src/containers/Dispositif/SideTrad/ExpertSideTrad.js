@@ -909,7 +909,7 @@ class SideTrad extends Component {
     let textString = this.props.translated.body
       .getCurrentContent()
       .getPlainText();
-    let wordsCount = textString.split(" ").length;
+    let wordsCount = textString.split(" ").filter(function(n) { return n != "" }).length;
 
     let {
       pointeurs,
