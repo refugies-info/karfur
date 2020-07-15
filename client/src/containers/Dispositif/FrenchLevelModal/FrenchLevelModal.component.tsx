@@ -22,7 +22,7 @@ const StyledMainTitle = styled.p`
   font-weight: bold;
   font-size: 40px;
   line-height: 51px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 const IconContainer = styled.div`
@@ -40,8 +40,8 @@ const MainContainer = styled.div`
 
 const StyledTitle = styled.p`
   font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
+  font-size: 22px;
+  line-height: 28px;
   margin: 0;
   margin-bottom: 6px;
   color: ${(state: any) => (state.isSelected ? "#4CAF50" : "black")};
@@ -50,14 +50,14 @@ const StyledTitle = styled.p`
 const SectionContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   align-items: center;
   justify-content: flex-start;
 `;
 
 const StyledDescription = styled.p`
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 16px;
+  line-height: 21px;
   margin: 0;
 `;
 
@@ -82,7 +82,7 @@ const StyledButtonGroupContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 20px;
 `;
 
 const StyledRightButtonGroup = styled.div`
@@ -92,9 +92,8 @@ const StyledRightButtonGroup = styled.div`
 
 const LevelSourceText = styled.div`
   margin: 0;
-  padding-top: 10px;
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 16px;
+  line-height: 21px;
 `;
 
 const data = [
@@ -122,7 +121,7 @@ besoins concrets.`,
   },
   {
     level: "B1",
-    title: "Je peux communiquer dans un environnement francophone",
+    title: "Je communique avec des francophones",
     description:
       "Je peux comprendre les points essentiels d’un message quand un langage clair et standard est utilisé. Je peux communiquer dans la plupart des situations rencontrées en voyage. Je peux raconter un événement, une expérience.",
     linkToKnowMore:
@@ -231,6 +230,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                       type="dark"
                       name="external-link"
                       href={element.linkToMakeTheTest}
+                      target="_blank"
                     >
                       <ButtonText>
                         {this.props.t(

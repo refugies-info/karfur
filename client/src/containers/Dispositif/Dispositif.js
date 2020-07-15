@@ -942,18 +942,21 @@ export class Dispositif extends Component {
     }));
 
   toggleNiveau = (selectedLevels, key, subkey) => {
-    this.setState({
-      menu: [...this.state.menu].map((x, i) =>
-        i === key
-          ? {
-              ...x,
-              children: x.children.map((y, ix) =>
-                ix === subkey ? { ...y, niveaux: selectedLevels } : y
-              ),
-            }
-          : x
-      ),
-    });
+    this.setState(
+      {
+        menu: [...this.state.menu].map((x, i) =>
+          i === key
+            ? {
+                ...x,
+                children: x.children.map((y, ix) =>
+                  ix === subkey ? { ...y, niveaux: selectedLevels } : y
+                ),
+              }
+            : x
+        ),
+      },
+      () => this.setColors()
+    );
   };
 
   toggleFree = (key, subkey) =>

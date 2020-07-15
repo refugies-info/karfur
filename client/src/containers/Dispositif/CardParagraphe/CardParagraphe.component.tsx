@@ -519,7 +519,7 @@ export class CardParagraphe extends Component<Props> {
                 (showNiveaux ||
                   ((subitem.niveaux || []).length > 0 && (
                     // info card Niveau de francais, selection of level in edit mode
-                    <div className="color-darkColor  niveaux-wrapper">
+                    <div className="color-darkColor niveaux-wrapper">
                       {niveaux
                         .filter((nv) =>
                           (subitem.niveaux || []).some((x: string) => x === nv)
