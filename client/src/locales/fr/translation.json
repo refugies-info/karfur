@@ -484,5 +484,31 @@
   "Connexion": "Connexion",
   "Envoyer": "Envoyer",
   "Lexique": "Consulter le lexique",
-  "Changer": "Changer"
+  "Changer": "Changer",
+  "ModaleNiveauDeFrançais": {
+    "Niveau de langue": "Niveau de langue souhaité",
+    "Faire le test": "Faire le test",
+    "Ces niveaux sont issus du": "Ces niveaux sont issus du",
+    "Je découvre le français": {
+      "title": "Je découvre le français",
+      "description": "Je peux comprendre et utiliser des expressions familières et quotidiennes avec des phrases très simples pour satisfaire des besoins concrets."
+    },
+    "En savoir plus": "En savoir plus",
+    "Je comprends des messages simples": {
+      "title": "Je comprends des messages simples",
+      "description": "Je peux comprendre des phrases isolées et des expressions en relation avec mon environnement immédiat : famille, travail, école. Je peux parler de sujets familiers."
+    },
+    "Je communique avec des francophones": {
+      "title": "Je communique avec des francophones",
+      "description": "Je peux comprendre les points essentiels d’un message quand un langage clair et standard est utilisé. Je peux communiquer dans la plupart des situations rencontrées en voyage. Je peux raconter un événement, une expérience."
+    },
+    "Je communique avec aisance": {
+      "title": "Je communique avec aisance",
+      "description": "Je peux comprendre le contenu essentiel de messages complexes sur des sujets concrets ou abstraits. Je communique avec aisance avec un locuteur natif et je m'exprime de façon claire et détaillée sur une grande gamme de sujets."
+    },
+    "Je communique avec grande aisance": {
+      "title": "Je communique avec grande aisance",
+      "description": "Pratiquement aucune difficulté particulière."
+    }
+  }
 }
