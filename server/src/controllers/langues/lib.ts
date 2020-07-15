@@ -95,7 +95,6 @@ async function get_langues(req: RequestFromClient, res: Res) {
         findLangue[i].avancementTrad = pubTradsCount / totalCount;
       }
     }
-    console.log(findLangue);
     res.status(200).json({
       text: "Succès",
       data: findLangue,
