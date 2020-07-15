@@ -941,27 +941,22 @@ export class Dispositif extends Component {
         }),
     }));
 
-  toggleNiveau = (nv, key, subkey) => {
-    let niveaux = _.get(
-      this.state.menu,
-      key + ".children." + subkey + ".niveaux",
-      []
+  toggleNiveau = (selectedLevels, key, subkey) => {
+    this.setState(
+      {
+        menu: [...this.state.menu].map((x, i) =>
+          i === key
+            ? {
+                ...x,
+                children: x.children.map((y, ix) =>
+                  ix === subkey ? { ...y, niveaux: selectedLevels } : y
+                ),
+              }
+            : x
+        ),
+      },
+      () => this.setColors()
     );
-    niveaux = niveaux.some((x) => x === nv)
-      ? niveaux.filter((x) => x !== nv)
-      : [...niveaux, nv];
-    this.setState({
-      menu: [...this.state.menu].map((x, i) =>
-        i === key
-          ? {
-              ...x,
-              children: x.children.map((y, ix) =>
-                ix === subkey ? { ...y, niveaux: niveaux } : y
-              ),
-            }
-          : x
-      ),
-    });
   };
 
   toggleFree = (key, subkey) =>

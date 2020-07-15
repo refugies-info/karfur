@@ -313,4 +313,12 @@ body .figma-btn {
       background: $erreur;
     }
   }
+
+  &.precision {
+    background: $attention;
+    color: $darkColor;
+    svg {
+      fill: $darkColor;
+    }
+  }
 }
