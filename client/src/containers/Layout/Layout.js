@@ -179,7 +179,7 @@ export class Layout extends Component {
             toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
             languages={{
-              ...this.props.langues.filter((x) => x.avancement >= 0),
+              ...this.props.langues.filter((x) => x.avancement >= 0.5),
               unavailable: { unavailable: true },
             }}
           />
