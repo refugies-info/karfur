@@ -476,12 +476,12 @@ const ProgressionTraduction = (props) => {
                 <tr
                   key={element._id || key}
                   onClick={() =>
-                    element.avancement !== 1 &&
+                    element.avancementTrad !== 1 &&
                     (props.isExpert
                       ? props.openTraductions(element)
                       : props.openThemes(element))
                   }
-                  className={element.avancement === 1 ? "terminee" : ""}
+                  className={element.avancementTrad === 1 ? "terminee" : ""}
                 >
                   <td className="align-middle">
                     <i
@@ -497,23 +497,23 @@ const ProgressionTraduction = (props) => {
                     <Row>
                       <Col>
                         <Progress
-                          color={colorAvancement(element.avancement)}
-                          value={element.avancement * 100}
+                          color={colorAvancement(element.avancementTrad)}
+                          value={element.avancementTrad * 100}
                         />
                       </Col>
                       <Col
                         className={
-                          "text-" + colorAvancement(element.avancement)
+                          "text-" + colorAvancement(element.avancementTrad)
                         }
                       >
-                        {element.avancement === 1 ? (
+                        {element.avancementTrad === 1 ? (
                           <EVAIcon
                             name="checkmark-circle-2"
                             fill={variables.vert}
                           />
                         ) : (
                           <span>
-                            {Math.round((element.avancement || 0) * 100)} %
+                            {Math.round((element.avancementTrad || 0) * 100)} %
                           </span>
                         )}
                       </Col>
@@ -542,7 +542,7 @@ const ProgressionTraduction = (props) => {
                     {(element.participants || []).length > 5 && " ..."}
                   </td>
                   <td className="align-middle fit-content">
-                    {element.avancement !== 1 &&
+                    {element.avancementTrad !== 1 &&
                       buttonTraductions(
                         element,
                         props.user,

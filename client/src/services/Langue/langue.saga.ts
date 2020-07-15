@@ -11,6 +11,7 @@ export function* fetchLangues(): SagaIterator {
       {},
       { avancement: -1, langueFr: 1 }
     );
+    console.log(data);
     yield put(setLanguesActionCreator(data.data.data));
   } catch (error) {
     // eslint-disable-next-line no-console

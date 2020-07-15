@@ -18,6 +18,7 @@ import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 const languageModal = (props) => {
   const { t } = props;
+  console.log(props.languages);
   // const languages = (props.languages || []).map(x => ({...x, avancement: (x.avancement + dispositifs.find(y =>)) / 2}))
   if (props.show) {
     return (

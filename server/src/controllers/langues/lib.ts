@@ -80,6 +80,7 @@ async function get_langues(req: RequestFromClient, res: Res) {
     var findLangue = await Langue.find(query)
       .sort(sort)
       .populate(populate)
+      .lean()
       // @ts-ignore
       .exec();
     var totalCount = await Dispositif.count({ status: "Actif" });
@@ -91,9 +92,10 @@ async function get_langues(req: RequestFromClient, res: Res) {
           status: "Validée",
         });
         var pubTradsCount = pubTrads.length;
-        findLangue[i].avancement = pubTradsCount / totalCount;
+        findLangue[i].avancementTrad = pubTradsCount / totalCount;
       }
     }
+    console.log(findLangue);
     res.status(200).json({
       text: "Succès",
       data: findLangue,
