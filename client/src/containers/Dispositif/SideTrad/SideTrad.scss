@@ -3,10 +3,10 @@
 .side-trad{
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 93vh;
   background: #f2f2f2;
-  padding: 20px 20px 80px;
-  margin-bottom: 20px;
+  padding: 20px 20px 20px 20px;
+  margin-bottom: 100px;
   position: fixed;
   width: 33%;
   min-width: 450px;
@@ -44,7 +44,7 @@
     margin-left: auto;
   }
   .content-data-french{
-   min-height:50px;
+   min-height:100px;
    overflow: scroll;
    z-index: 3;
   // display: flex;
@@ -99,10 +99,8 @@
     }
   }
   .content-data{
-   // overflow: auto;
     display: flex;
     position: relative;
-    height: 100%;
     min-height: 180px;
     flex: 1;
     border-radius: 12px 12px 12px 12px;
@@ -117,12 +115,9 @@
       background-color:  #def6c2 !important;
     }
 
-/* 
-    &#body_texte_initial{
-      background-color: #D2EDFC;
-    } */
+
     &#body_texte_final{
-      overflow: visible;
+      overflow: hidden;
       //position: relative;
       background: #FFFFFF;
       display: flex;
@@ -132,8 +127,8 @@
         background: transparent;
       }
       .editeur-sidebar{
-        // position: relative;
-        overflow: scroll;
+        position: relative;
+        //overflow: scroll;
         border: none;
         border-radius: 0;
         flex: 1;
@@ -142,7 +137,7 @@
         padding: 0;
         .editor-editeur{
           display: flex;
-          //position: relative;
+          position: relative;
           padding: 0;
           margin-top: 40px;
           flex: 1;
@@ -180,7 +175,8 @@
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
+    margin-bottom: 100px;
 
     .right-footer{
       display: flex;
