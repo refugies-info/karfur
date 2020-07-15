@@ -267,6 +267,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                 name="question-mark-circle"
                 className="validate-button"
                 href="https://help.refugies.info/fr/"
+                target="_blank"
               >
                 <ButtonText>J'ai besoin d'aide</ButtonText>
               </FButton>
@@ -284,6 +285,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                   type="validate"
                   name="checkmark"
                   onClick={this.onValidate}
+                  disabled={this.state.selectedLevels.length === 0}
                 >
                   <ButtonText>Valider</ButtonText>
                 </FButton>
