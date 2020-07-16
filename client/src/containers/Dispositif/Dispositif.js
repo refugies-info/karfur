@@ -1354,46 +1354,51 @@ export class Dispositif extends Component {
     let dispositif = {
       ...content,
       contenu: [...this.state.menu].map((x, i) => {
-        return({
-        title: x.title,
-        ...{
-          content:
-            x.editable &&
-            x.editorState &&
-            x.editorState.getCurrentContent() &&
-            x.editorState.getCurrentContent().getPlainText() !== ""
-              ? convertToHTML(customConvertOption)(
-                  x.editorState.getCurrentContent()
-                )
-              : x.content,
-        },
-        ...(inVariante && {
-          isVariante: _.get(uiArray, `${i}.varianteSelected`),
-        }),
-        editable: false,
-        type: x.type,
-        ...(x.children && {
-          children: x.children.map((y, j) => {
-            // eslint-disable-next-line 
-            const {editorState, ...noEditor} = y;
-            return({
-              ...noEditor,
-            ...(y.editable &&
-              y.editorState &&
-              y.editorState.getCurrentContent() &&
-              y.editorState.getCurrentContent().getPlainText() !== "" && {
-                content: convertToHTML(customConvertOption)(
-                  y.editorState.getCurrentContent()
-                ),
-              }),
-            ...(inVariante && {
-              isVariante: _.get(uiArray, `${i}.children.${j}.varianteSelected`),
+        return {
+          title: x.title,
+          ...{
+            content:
+              x.editable &&
+              x.editorState &&
+              x.editorState.getCurrentContent() &&
+              x.editorState.getCurrentContent().getPlainText() !== ""
+                ? convertToHTML(customConvertOption)(
+                    x.editorState.getCurrentContent()
+                  )
+                : x.content,
+          },
+          ...(inVariante && {
+            isVariante: _.get(uiArray, `${i}.varianteSelected`),
+          }),
+          editable: false,
+          type: x.type,
+          ...(x.children && {
+            children: x.children.map((y, j) => {
+              // eslint-disable-next-line
+              const { editorState, ...noEditor } = y;
+              return {
+                ...noEditor,
+                ...(y.editable &&
+                  y.editorState &&
+                  y.editorState.getCurrentContent() &&
+                  y.editorState.getCurrentContent().getPlainText() !== "" && {
+                    content: convertToHTML(customConvertOption)(
+                      y.editorState.getCurrentContent()
+                    ),
+                  }),
+                ...(inVariante && {
+                  isVariante: _.get(
+                    uiArray,
+                    `${i}.children.${j}.varianteSelected`
+                  ),
+                }),
+                editable: false,
+                ...(y.title && { title: h2p(y.title) }),
+              };
             }),
-            editable: false,
-            ...(y.title && { title: h2p(y.title) }),
-          })}),
-        }),
-      })}),
+          }),
+        };
+      }),
       sponsors: (this.state.sponsors || []).filter((x) => !x.dummy),
       tags: this.state.tags,
       avancement: 1,

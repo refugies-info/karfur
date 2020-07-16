@@ -79,6 +79,7 @@ export interface DispositifContent {
   footer?: string;
   niveaux?: string[];
   contentBody?: string;
+  ageTitle?: string;
 }
 
 export interface Tag {
