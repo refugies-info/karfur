@@ -155,6 +155,44 @@ export class CardParagraphe extends Component<Props> {
     }
   };
 
+  getTextForAgeInfocard = (
+    ageRange: string | undefined,
+    bottomValue: number | undefined,
+    topValue: number | undefined
+  ) => {
+    if (ageRange === "De ** à ** ans") {
+      return (
+        this.props.t("Dispositif.De", "De") +
+        " " +
+        bottomValue +
+        " " +
+        this.props.t("Dispositif.à", "à") +
+        " " +
+        topValue +
+        " " +
+        this.props.t("Dispositif.ans", "ans")
+      );
+    }
+
+    if (ageRange === "Moins de ** ans") {
+      return (
+        this.props.t("Dispositif.Moins de", "Moins de") +
+        " " +
+        topValue +
+        " " +
+        this.props.t("Dispositif.ans", "ans")
+      );
+    }
+
+    return (
+      this.props.t("Dispositif.Plus de", "Plus de") +
+      " " +
+      bottomValue +
+      " " +
+      this.props.t("Dispositif.ans", "ans")
+    );
+  };
+
   render() {
     const { subitem, subkey, disableEdit, t } = this.props;
     const { showNiveaux } = this.state;
@@ -230,7 +268,7 @@ export class CardParagraphe extends Component<Props> {
                               this.props.keyValue,
                               this.props.subkey,
                               (arr[0] === "De " && i === 0) ||
-                                arr[0] === "Plus de"
+                                arr[0] === "Plus de "
                             )
                           }
                         />
@@ -343,28 +381,19 @@ export class CardParagraphe extends Component<Props> {
 
       let texte;
       if (subitem.title === "Âge requis") {
-        texte =
-          subitem.contentTitle === "De ** à ** ans"
-            ? t("Dispositif.De", "De") +
-              " " +
-              subitem.bottomValue +
-              " " +
-              t("Dispositif.à", "à") +
-              " " +
-              subitem.topValue +
-              " " +
-              t("Dispositif.ans", "ans")
-            : subitem.contentTitle === "Moins de ** ans"
-            ? t("Dispositif.Moins de", "Moins de") +
-              " " +
-              subitem.topValue +
-              " " +
-              t("Dispositif.ans", "ans")
-            : t("Dispositif.Plus de", "Plus de") +
-              " " +
-              subitem.bottomValue +
-              " " +
-              t("Dispositif.ans", "ans");
+        if (subitem.ageTitle) {
+          texte = this.getTextForAgeInfocard(
+            subitem.ageTitle,
+            subitem.bottomValue,
+            subitem.topValue
+          );
+        } else {
+          texte = this.getTextForAgeInfocard(
+            subitem.contentTitle,
+            subitem.bottomValue,
+            subitem.topValue
+          );
+        }
       } else if (subitem.title === "Combien ça coûte ?") {
         texte = subitem.free
           ? t("Dispositif.gratuit", "gratuit")
