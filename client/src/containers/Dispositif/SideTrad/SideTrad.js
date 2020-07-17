@@ -694,10 +694,13 @@ class SideTrad extends Component {
           x[p] !== "" &&
           x[p] !== "null" &&
           x[p] !== "undefined" &&
+          x[p] !== undefined &&
+          x[p] !== null &&
           x[p] !== "<p>null</p>" &&
           x[p] !== "<p><br></p>" &&
           x[p] !== "<p><br></p>\n" &&
           x[p] !== "<br>" &&
+          x[p] !== "<p></p><figure> </figure><p><br></p>" &&
           x[p] !== "<p></p>\n\n<p></p>\n" &&
           type !== "cards"
         ) {
@@ -709,6 +712,8 @@ class SideTrad extends Component {
         (x.title === "Important !" || x.title === "Durée" || !x.title) &&
         x.contentTitle &&
         x.contentTitle !== "" &&
+        x.contentTitle !== undefined &&
+        x.contentTitle !== null &&
         x.contentTitle !== "null" &&
         x.contentTitle !== "undefined" &&
         x.contentTitle !== "<p>null</p>" &&

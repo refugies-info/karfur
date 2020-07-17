@@ -103,7 +103,7 @@ async function add_dispositif(req, res) {
                 tradExpert
               );
               if (tradExpert.status === "À revoir") {
-                const contentsTotal = countContents(dispositif.contenu) - 5;
+                const contentsTotal = countContents(dispositif.contenu) + 3 - 4;
                 const validatedTotal = countValidated([
                   tradExpert.translatedText,
                 ]);
