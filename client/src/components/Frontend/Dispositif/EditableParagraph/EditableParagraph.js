@@ -1,11 +1,4 @@
 import React, { Component } from "react";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Tooltip,
-} from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorBlock } from "draft-js";
@@ -268,18 +261,20 @@ class EditableParagraph extends Component {
               },
             }}
           />
-          <AddModuleBtn
-            isDropdownOpen={this.state.isDropdownOpen}
-            dropdownColor={this.state.dropdownColor}
-            tooltipOpen={this.state.tooltipOpen}
-            toggle={this.toggle}
-            toggleColor={this.toggleColor}
-            toggleTooltip={this.toggleTooltip}
-            type={this.props.type}
-            addItem={this.props.addItem}
-            keyValue={this.props.keyValue}
-            subkey={this.props.subkey}
-          />
+          {this.props.keyValue !== 0 ? (
+            <AddModuleBtn
+              isDropdownOpen={this.state.isDropdownOpen}
+              dropdownColor={this.state.dropdownColor}
+              tooltipOpen={this.state.tooltipOpen}
+              toggle={this.toggle}
+              toggleColor={this.toggleColor}
+              toggleTooltip={this.toggleTooltip}
+              type={this.props.type}
+              addItem={this.props.addItem}
+              keyValue={this.props.keyValue}
+              subkey={this.props.subkey}
+            />
+          ) : null}
         </>
       );
     } else if (typeof props.content === "string") {
@@ -302,7 +297,7 @@ class EditableParagraph extends Component {
               )
             }
           />
-          {!props.disableEdit && (
+          {!props.disableEdit && this.props.keyValue !== 0 && (
             <AddModuleBtn
               isDropdownOpen={this.state.isDropdownOpen}
               dropdownColor={this.state.dropdownColor}
@@ -327,91 +322,16 @@ const AddModuleBtn = (props) => {
   if (props.type !== "etape") {
     return (
       <div className="plus-wrapper">
-        <Dropdown isOpen={props.isDropdownOpen} toggle={props.toggle}>
-          <DropdownToggle
-            tag="span"
-            onClick={props.toggle}
-            data-toggle="dropdown"
-            aria-expanded={props.isDropdownOpen}
-            id="add-module-btn"
-          >
-            <FButton type="dark" name="plus-circle-outline" className="mt-10">
-              Ajouter un module
-            </FButton>
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem
-              onClick={() =>
-                props.addItem(props.keyValue, "paragraph", props.subkey)
-              }
-              id="paragraph"
-              onMouseEnter={() => props.toggleColor(0, true)}
-              onMouseLeave={() => props.toggleColor(0, false)}
-            >
-              <EVAIcon
-                name="menu-outline"
-                fill={props.dropdownColor[0]}
-                id="0"
-              />
-              Paragraphe
-            </DropdownItem>
-            <DropdownItem
-              onClick={() => props.addItem(props.keyValue, "map", props.subkey)}
-              id="map"
-              onMouseEnter={() => props.toggleColor(2, true)}
-              onMouseLeave={() => props.toggleColor(2, false)}
-            >
-              <EVAIcon
-                name="pin-outline"
-                fill={props.dropdownColor[2]}
-                id="2"
-              />
-              Carte
-            </DropdownItem>
-            <DropdownItem
-              onClick={() =>
-                props.addItem(props.keyValue, "accordion", props.subkey)
-              }
-              id="accordion"
-              onMouseEnter={() => props.toggleColor(3, true)}
-              onMouseLeave={() => props.toggleColor(3, false)}
-            >
-              <EVAIcon
-                name="list-outline"
-                fill={props.dropdownColor[3]}
-                id="3"
-              />
-              Accordéon
-            </DropdownItem>
-            {props.typeContenu === "demarche" && (
-              <DropdownItem
-                onClick={() =>
-                  props.addItem(props.keyValue, "etape", props.subkey)
-                }
-                id="etape"
-                onMouseEnter={() => props.toggleColor(4, true)}
-                onMouseLeave={() => props.toggleColor(4, false)}
-              >
-                <EVAIcon
-                  name="list-outline"
-                  fill={props.dropdownColor[4]}
-                  id="4"
-                />
-                Etape
-              </DropdownItem>
-            )}
-          </DropdownMenu>
-        </Dropdown>
-
-        <Tooltip
-          placement="top"
-          offset="0px, 8px"
-          isOpen={props.tooltipOpen}
-          target="add-module-btn"
-          toggle={props.toggleTooltip}
+        <FButton
+          onClick={() =>
+            props.addItem(props.keyValue, "accordion", props.subkey)
+          }
+          type="dark"
+          name="plus-circle-outline"
+          className="mt-10"
         >
-          ajouter
-        </Tooltip>
+          Ajouter un accordéon
+        </FButton>
       </div>
     );
   }
