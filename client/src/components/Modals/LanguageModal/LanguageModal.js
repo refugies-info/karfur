@@ -15,6 +15,7 @@ import { colorAvancement } from "../../Functions/ColorFunctions";
 import "./LanguageModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
+import { Event, initGA } from "../../../tracking/dispatch";
 
 const languageModal = (props) => {
   const { t } = props;
@@ -84,80 +85,84 @@ const languageModal = (props) => {
                     </Row>
                   </ListGroupItem>
                 );
-              } 
-                const isSelected =
-                  props.languages[element].i18nCode === props.current_language;
-                return (
-                  <ListGroupItem
-                    action
-                    key={props.languages[element]._id}
-                    disabled={!props.languages[element].avancement}
-                    onClick={() =>
-                      props.changeLanguage(props.languages[element].i18nCode)
-                    }
-                    className={isSelected ? "active" : ""}
-                  >
-                    <Row>
-                      <Col xl="1" lg="1" md="1" sm="1" xs="1">
-                        <i
-                          className={
-                            "flag-icon flag-icon-" +
-                            props.languages[element].langueCode
-                          }
-                          title={props.languages[element].langueCode}
-                          id={props.languages[element].langueCode}
-                        ></i>
-                      </Col>
-                      <Col xl="5" lg="5" md="5" sm="5" xs="5">
-                        <span>
-                          <b>{props.languages[element].langueFr}</b> -{" "}
-                          {props.languages[element].langueLoc}
-                        </span>
-                      </Col>
-                      <Col
-                        xl="5"
-                        lg="5"
-                        md="5"
-                        sm="5"
-                        xs="5"
-                        className="progress-col"
-                      >
-                        <Progress
-                          color={colorAvancement(
-                            props.languages[element].avancement
-                          )}
-                          value={props.languages[element].avancement * 100}
-                        />
-                        {/* <span>{Math.round(props.languages[element].avancement*100 || 0,0) + ' %'}</span> */}
-                      </Col>
-                      <Col
-                        xl="1"
-                        lg="1"
-                        md="1"
-                        sm="1"
-                        xs="1"
-                        className="icon-col"
-                      >
-                        {isSelected && (
-                          <EVAIcon
-                            name="checkmark-circle-2"
-                            fill="#FFFFFF"
-                            size="large"
-                          />
+              }
+              const isSelected =
+                props.languages[element].i18nCode === props.current_language;
+              return (
+                <ListGroupItem
+                  action
+                  key={props.languages[element]._id}
+                  disabled={!props.languages[element].avancement}
+                  onClick={() => {
+                    initGA();
+                    Event(
+                      "CHANGE_LANGUAGE",
+                      props.languages[element].i18nCode,
+                      "label"
+                    );
+                    props.changeLanguage(props.languages[element].i18nCode);
+                  }}
+                  className={isSelected ? "active" : ""}
+                >
+                  <Row>
+                    <Col xl="1" lg="1" md="1" sm="1" xs="1">
+                      <i
+                        className={
+                          "flag-icon flag-icon-" +
+                          props.languages[element].langueCode
+                        }
+                        title={props.languages[element].langueCode}
+                        id={props.languages[element].langueCode}
+                      ></i>
+                    </Col>
+                    <Col xl="5" lg="5" md="5" sm="5" xs="5">
+                      <span>
+                        <b>{props.languages[element].langueFr}</b> -{" "}
+                        {props.languages[element].langueLoc}
+                      </span>
+                    </Col>
+                    <Col
+                      xl="5"
+                      lg="5"
+                      md="5"
+                      sm="5"
+                      xs="5"
+                      className="progress-col"
+                    >
+                      <Progress
+                        color={colorAvancement(
+                          props.languages[element].avancement
                         )}
-                      </Col>
-                    </Row>
-                  </ListGroupItem>
-                );
-              
+                        value={props.languages[element].avancement * 100}
+                      />
+                      {/* <span>{Math.round(props.languages[element].avancement*100 || 0,0) + ' %'}</span> */}
+                    </Col>
+                    <Col
+                      xl="1"
+                      lg="1"
+                      md="1"
+                      sm="1"
+                      xs="1"
+                      className="icon-col"
+                    >
+                      {isSelected && (
+                        <EVAIcon
+                          name="checkmark-circle-2"
+                          fill="#FFFFFF"
+                          size="large"
+                        />
+                      )}
+                    </Col>
+                  </Row>
+                </ListGroupItem>
+              );
             })}
           </ListGroup>
         </ModalBody>
       </Modal>
     );
-  } 
-    return false;
-  
+  }
+  return false;
 };
 
 export default withTranslation()(languageModal);

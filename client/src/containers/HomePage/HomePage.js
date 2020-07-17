@@ -17,6 +17,7 @@ import variables from "scss/colors.scss";
 import { initial_data } from "../AdvancedSearch/data";
 import HomeSearch from "./HomeSearch";
 import CatList from "./CatList";
+import { initGA, PageView } from "../../tracking/dispatch";
 
 const CoronaAlert = styled.div`
   display: flex;
@@ -63,6 +64,8 @@ export class HomePage extends Component {
   _isMounted = false;
 
   componentDidMount() {
+    initGA();
+    PageView();
     this._isMounted = true;
     window.scrollTo(0, 0);
     return API.get_users({

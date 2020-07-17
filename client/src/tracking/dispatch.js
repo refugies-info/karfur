@@ -1,6 +1,8 @@
 import Cookies from "js-cookie";
+import ReactGA from "react-ga";
 
 import API from "../utils/API";
+import { logger } from "../logger";
 
 // checks dataLayer[] to be available and pushes data to it
 const pushtoDataLayer = (data) => {
@@ -20,4 +22,37 @@ export const dispatch = (data) => {
       return;
     }
   );
+};
+
+export const initGA = () => {
+  if (process.env.REACT_APP_ENV === "development") {
+    return;
+  }
+  const trackingId = process.env.REACT_APP_GOOGLE_ANALYTICS;
+  ReactGA.initialize(trackingId);
+};
+
+export const PageView = () => {
+  if (process.env.REACT_APP_ENV === "development") {
+    return;
+  }
+  ReactGA.pageview(window.location.pathname + window.location.search);
+};
+
+/**
+ * Event - Add custom tracking event.
+ * @param {string} category
+ * @param {string} action
+ * @param {string} label
+ */
+export const Event = (category, action, label) => {
+  if (process.env.REACT_APP_ENV === "development") {
+    return;
+  }
+  logger.info("send event to ga");
+  ReactGA.event({
+    category: category,
+    action: action,
+    label: label,
+  });
 };
