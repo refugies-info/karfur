@@ -10,7 +10,6 @@ import Swal from "sweetalert2";
 import API from "../../utils/API";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import SVGIcon from "../../components/UI/SVGIcon/SVGIcon";
-import { fColorAvancement } from "../../components/Functions/ColorFunctions";
 import { image_corriger } from "../../assets/figma";
 import { CheckDemarcheModal } from "../../components/Modals";
 
@@ -204,7 +203,7 @@ class CommentContribuer extends Component {
                     )}
                   </CardBody>
                   <CardFooter>
-                    <span>{t("Printemps 2020", "Printemps 2020")}</span>
+                    <span>{t("Bientôt disponible", "Bientôt disponible")}</span>
                   </CardFooter>
                 </Card>
               </Col>
@@ -283,8 +282,27 @@ class CommentContribuer extends Component {
                       className="langue-col"
                       key={langue._id}
                     >
-                      <NavLink to="/backend/user-dashboard">
-                        <div className="langue-item">
+                      {langue.avancement ? (
+                        <NavLink to="/backend/user-dashboard">
+                          <div className="langue-item-available">
+                            <h5>
+                              <i
+                                className={
+                                  "mr-20 flag-icon flag-icon-" +
+                                  langue.langueCode
+                                }
+                                title={langue.langueCode}
+                              />
+                              {langue.langueFr}
+
+                              <span className={"float-right color-vert"}>
+                                {Math.round(langue.avancement * 100, 0) + " %"}
+                              </span>
+                            </h5>
+                          </div>
+                        </NavLink>
+                      ) : (
+                        <div className="langue-item-non-available">
                           <h5>
                             <i
                               className={
@@ -293,18 +311,13 @@ class CommentContribuer extends Component {
                               title={langue.langueCode}
                             />
                             {langue.langueFr}
-                            <span
-                              className={
-                                "float-right color-" +
-                                fColorAvancement(langue.avancement)
-                              }
-                            >
-                              {Math.round((langue.avancement || 0) * 100, 0) +
-                                " %"}
+
+                            <span className={"float-right text-soon"}>
+                              Prochainement
                             </span>
                           </h5>
                         </div>
-                      </NavLink>
+                      )}
                     </Col>
                   ))}
                 </Row>
@@ -355,29 +368,6 @@ class CommentContribuer extends Component {
                 </Row>
                 <Row>
                   <Col xl="2" lg="2" md="2" sm="2" xs="2">
-                    <div className="toolbar-icon-wrapper dark">
-                      <EVAIcon name="edit-outline" />
-                    </div>
-                  </Col>
-                  <Col xl="10" lg="10" md="10" sm="10" xs="10">
-                    <div className="texte-normal">
-                      <b>
-                        {t(
-                          "CommentContribuer.Suggestion de formulation",
-                          "Suggestion de formulation"
-                        )}
-                      </b>
-                    </div>
-                    <span className="texte-gris">
-                      {t(
-                        "CommentContribuer.Proposez directement",
-                        "Proposez directement une reformulation ou un ajout au texte pour aider les responsables"
-                      )}
-                    </span>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xl="2" lg="2" md="2" sm="2" xs="2">
                     <div className="toolbar-icon-wrapper">
                       <EVAIcon name="volume-up-outline" fill={variables.noir} />
                     </div>
@@ -395,29 +385,6 @@ class CommentContribuer extends Component {
                       {t(
                         "CommentContribuer.Écoutez ou faites écouter",
                         "Écoutez ou faites écouter les informations écrites de la plateforme"
-                      )}
-                    </span>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xl="2" lg="2" md="2" sm="2" xs="2">
-                    <div className="toolbar-icon-wrapper dark">
-                      <SVGIcon name="translate" fill="#FFFFFF" />
-                    </div>
-                  </Col>
-                  <Col xl="10" lg="10" md="10" sm="10" xs="10">
-                    <div className="texte-normal">
-                      <b>
-                        {t(
-                          "CommentContribuer.Traduction directe",
-                          "Traduction directe"
-                        )}
-                      </b>
-                    </div>
-                    <span className="texte-gris">
-                      {t(
-                        "CommentContribuer.paragraphe pas accessible",
-                        "Ce paragraphe n'est pas accessible dans une langue que vous maîtrisez ? Aidez-nous à le traduire !"
                       )}
                     </span>
                   </Col>
