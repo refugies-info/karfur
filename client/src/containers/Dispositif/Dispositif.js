@@ -30,7 +30,6 @@ import API from "../../utils/API";
 import Sponsors from "../../components/Frontend/Dispositif/Sponsors/Sponsors";
 import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuDispositif";
 import {
-  ReagirModal,
   BookmarkedModal,
   DispositifCreateModal,
   DispositifValidateModal,
@@ -2110,12 +2109,6 @@ export class Dispositif extends Component {
               />
             </Row>
 
-            <ReagirModal
-              name="reaction"
-              show={showModals.reaction}
-              toggleModal={this.toggleModal}
-              onValidate={this.pushReaction}
-            />
             <SuggererModal
               showModals={showModals}
               toggleModal={this.toggleModal}
