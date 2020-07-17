@@ -133,12 +133,18 @@ export class Admin extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    if (this.state.user && (prevState.user._id !== this.state.user._id) && this.state.user._id) {
-      let progression = await API.get_progression({userId: this.state.user._id})
+    if (
+      this.state.user &&
+      prevState.user._id !== this.state.user._id &&
+      this.state.user._id
+    ) {
+      let progression = await API.get_progression({
+        userId: this.state.user._id,
+      });
       this.setState(
         produce((draft) => {
           draft.user.progression = progression.data;
-          return
+          return;
         })
       );
     }
@@ -193,7 +199,7 @@ export class Admin extends Component {
     });
   };
 
-  onSelect =  async (item, switchTo = null) => {
+  onSelect = async (item, switchTo = null) => {
     this.setState(item);
     if (item.user) {
       this.setState({

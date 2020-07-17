@@ -117,7 +117,6 @@ export class UserDash extends Component {
           query: { _id: { $in: user.traductionsFaites } },
           sort: { updatedAt: -1 },
         }).then((data) => {
-          //console.log(data.data.data)
           this._isMounted &&
             this.setState({ traductionsFaites: data.data.data });
         });
