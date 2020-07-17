@@ -101,7 +101,6 @@ const uiElement = {
   varianteSelected: false,
 };
 let user = { _id: "", cookies: {} };
-const nbMoisNouveau = 1;
 
 const MAX_NUMBER_CHARACTERS_INFOCARD = 40;
 export class Dispositif extends Component {
@@ -1562,19 +1561,14 @@ export class Dispositif extends Component {
       withHelp,
       disableEdit,
       mainTag,
-      fiabilite,
       inVariante,
       checkingVariante,
       printing,
       didThank,
-      dispositif,
     } = this.state;
 
     const etapes_tuto =
       typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
-    const moisDepuisCreation =
-      (new Date().getTime() - new Date(dispositif.created_at).getTime()) /
-      (1000 * 3600 * 24 * 30);
 
     const Tooltip = ({
       index,
@@ -1883,8 +1877,7 @@ export class Dispositif extends Component {
                 className="pt-40 col-middle"
               >
                 {disableEdit && !inVariante && (
-                  // Part about liability of the info
-                  // don't understand what the tooltip does
+                  // Part about last update
                   <Row className="fiabilite-row">
                     <Col
                       lg="auto"
@@ -1900,86 +1893,6 @@ export class Dispositif extends Component {
                           _.get(this.state, "dispositif.updatedAt", 0)
                         ).format("ll")}
                       </span>
-                    </Col>
-                    <Col className="col">
-                      <span>
-                        {t(
-                          "Fiabilité de l'information",
-                          "Fiabilité de l'information"
-                        )}{" "}
-                        :&nbsp;
-                      </span>
-                      <span className={"fiabilite color-vert"}>
-                        {/*       (moisDepuisCreation <= nbMoisNouveau
-                            ? "focus"
-                            : fiabilite > 0.2
-                            ? "vert"
-                            : fiabilite > 0.1
-                            ? "orange"
-                            : "rouge")  */}
-
-                        {/*              {t(
-                          moisDepuisCreation <= nbMoisNouveau
-                            ? "Nouveau"
-                            : fiabilite > 0.2
-                            ? "Forte"
-                            : fiabilite > 0.1
-                            ? "Moyenne"
-                            : "Faible",
-                          moisDepuisCreation <= nbMoisNouveau
-                            ? "Nouveau"
-                            : fiabilite > 0.2
-                            ? "Forte"
-                            : fiabilite > 0.1
-                            ? "Moyenne"
-                            : "Faible"
-                        )} */}
-                        {t("Nouveau")}
-                      </span>
-                      {!fiabilite ? (
-                        <>
-                          <EVAIcon
-                            className="question-bloc ml-8"
-                            id="question-bloc"
-                            name="question-mark-circle"
-                            fill={
-                              variables[
-                                moisDepuisCreation <= nbMoisNouveau
-                                  ? "focus"
-                                  : fiabilite > 0.2
-                                  ? "validationHover"
-                                  : fiabilite > 0.1
-                                  ? "orange"
-                                  : "error"
-                              ]
-                            }
-                            onClick={() => this.toggleModal(true, "fiabilite")}
-                          />
-                          <Tooltip
-                            placement="top"
-                            isOpen={this.state.tooltipOpen}
-                            target="question-bloc"
-                            toggle={this.toggleTooltip}
-                            onClick={() => this.toggleModal(true, "fiabilite")}
-                          >
-                            <span
-                              className="texte-small ml-10"
-                              dangerouslySetInnerHTML={{
-                                __html: t(
-                                  "Dispositif.fiabilite_faible",
-                                  "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant"
-                                ),
-                              }}
-                            />
-                            {t(
-                              "Dispositif.cliquez",
-                              "Cliquez sur le '?' pour en savoir plus"
-                            )}
-                          </Tooltip>{" "}
-                        </>
-                      ) : (
-                        false
-                      )}
                     </Col>
                   </Row>
                 )}
