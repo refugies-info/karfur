@@ -25,7 +25,8 @@ export const dispatch = (data) => {
 };
 
 export const initGA = () => {
-  if (process.env.REACT_APP_ENV === "development") {
+  if (process.env.REACT_APP_ENV !== "production") {
+    logger.info("do not init ga");
     return;
   }
   const trackingId = process.env.REACT_APP_GOOGLE_ANALYTICS;
@@ -33,7 +34,8 @@ export const initGA = () => {
 };
 
 export const PageView = () => {
-  if (process.env.REACT_APP_ENV === "development") {
+  if (process.env.REACT_APP_ENV !== "production") {
+    logger.info("do not send page view to ga");
     return;
   }
   ReactGA.pageview(window.location.pathname + window.location.search);
@@ -46,7 +48,8 @@ export const PageView = () => {
  * @param {string} label
  */
 export const Event = (category, action, label) => {
-  if (process.env.REACT_APP_ENV === "development") {
+  if (process.env.REACT_APP_ENV !== "production") {
+    logger.info("do not send event to ga");
     return;
   }
   logger.info("send event to ga");
