@@ -99,6 +99,7 @@ const countContents = (obj, nbChamps = 0, type = null) => {
           x[p] !== "<p><br></p>\n" &&
           x[p] !== "<br>" &&
           x[p] !== "<p></p>\n\n<p></p>\n" &&
+          x[p] !== "<p></p><figure> </figure><p><br></p>" &&
           type !== "cards"
         ) {
           nbChamps += 1;
