@@ -17,13 +17,6 @@ function create_langues(req, res) {
         "L'utilisateur n'a pas les droits pour effectuer cette modification",
     });
   } else {
-    // remove this call because it generates an error with typescript
-    // new DBEvent({
-    //   action: JSON.stringify(req.body),
-    //   userId: _.get(req, "userId"),
-    //   roles: _.get(req, "user.roles"),
-    //   api: arguments.callee.name,
-    // }).save();
     var langue = req.body,
       promise;
     if (langue._id) {
@@ -53,14 +46,6 @@ function create_langues(req, res) {
 }
 
 async function get_langues(req: RequestFromClient, res: Res) {
-  // remove this call because it generates an error with typescript
-  // new DBEvent({
-  //   action: JSON.stringify(req.body),
-  //   userId: _.get(req, "userId"),
-  //   roles: _.get(req, "user.roles"),
-  //   api: arguments.callee.name,
-  // }).save();
-
   var { query, sort, populate } = req.body;
   if (populate) {
     if (!req.fromSite) {

@@ -17,6 +17,7 @@ import "./UserDashContrib.scss";
 
 moment.locale("fr");
 
+// Mes fiches
 export class UserDashContrib extends Component {
   constructor(props) {
     super(props);
@@ -130,8 +131,7 @@ export class UserDashContrib extends Component {
       <div className="animated fadeIn user-dash-contrib">
         <DashHeader
           contributeur
-          title="Espace rédaction"
-          ctaText="Mes objectifs"
+          title="Mes fiches"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(
             this.state.progression.timeSpent / 1000 / 60
@@ -166,6 +166,7 @@ export class UserDashContrib extends Component {
             history={this.props.history}
             displayIndicators={false}
             deleteContrib={this.deleteContrib}
+            hideTitle={true}
             {...avancement_contrib}
           />
         </Row>
