@@ -132,7 +132,6 @@ export class UserDashContrib extends Component {
         <DashHeader
           contributeur
           title="Mes fiches"
-          ctaText="Mes objectifs"
           motsRediges={this.state.progression.nbMots}
           minutesPassees={Math.floor(
             this.state.progression.timeSpent / 1000 / 60

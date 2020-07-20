@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import {
   Row,
   Col,
-  Label,
-  Input,
   Modal,
   ModalHeader,
   ModalBody,
@@ -72,7 +70,7 @@ class ObjectifsModal extends Component {
   };
 
   render() {
-    let { objectifs, notifyObjectifs } = this.state;
+    let { objectifs } = this.state;
     let { contributeur } = this.props;
     const statut = contributeur ? "Rédacteur" : "Traducteur";
     return (
@@ -153,15 +151,6 @@ class ObjectifsModal extends Component {
           </div>
         </ModalBody>
         <ModalFooter>
-          <Label check>
-            <Input
-              type="checkbox"
-              checked={notifyObjectifs}
-              onChange={this.handleCheckChange}
-            />{" "}
-            Je souhaite être notifié par email si je ne parviens pas à tenir mes
-            objectifs hebdomadaires.
-          </Label>
           <FButton
             type="validate"
             name="checkmark-circle-outline"

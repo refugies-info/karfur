@@ -22,7 +22,7 @@ import variables from "scss/colors.scss";
 
 moment.locale("fr");
 
-// Espace traduction
+// Espace traduction ou Mes traductions
 export class UserDash extends Component {
   state = {
     showModal: {
