@@ -88,6 +88,7 @@ import {
 } from "../../services/SelectedDispositif/selectedDispositif.actions";
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
+import { initGA, Event } from "../../tracking/dispatch";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -1187,6 +1188,8 @@ export class Dispositif extends Component {
 
   createPdf = () => {
     this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
+    initGA();
+    Event("EXPORT_PDF", this.props.languei18nCode, "label");
     let uiArray = [...this.state.uiArray];
     uiArray = uiArray.map((x) => ({
       ...x,
@@ -1229,15 +1232,6 @@ export class Dispositif extends Component {
         );
       }, 3000);
     });
-
-    // opentype.load("https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans.ttf", function(err, font) {
-    //   if (err) { alert('Font could not be loaded: ' + err);
-    //   } else {
-    //     var ctx = document.getElementById('dispositif').getContext('2d');
-    //     var path = font.getPath('Hello, World!', 0, 150, 72);
-    //     path.draw(ctx);
-    //   }
-    // });
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
