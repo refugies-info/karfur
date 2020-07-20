@@ -4,9 +4,7 @@ import Admin from "./containers/Backend/Admin/Admin";
 import UserDash from "./containers/Backend/UserDash/UserDash";
 import UserDashContrib from "./containers/Backend/UserDashContrib/UserDashContrib";
 import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
-import UserForm from "./containers/Backend/UserDash/UserForm/UserForm";
 import UserProfile from "./containers/Backend/UserProfile/UserProfile";
-import AdminLangues from "./containers/Backend/AdminLangues/AdminLangues";
 import Dispositif from "./containers/Dispositif/Dispositif";
 import Avancement from "./containers/Avancement/Avancement";
 import Translation from "./containers/Translation/Translation";
@@ -14,7 +12,6 @@ import RecordAudio from "./containers/RecordAudio/RecordAudio";
 import AdvancedSearch from "./containers/AdvancedSearch/AdvancedSearch";
 import QuiSommesNous from "./containers/QuiSommesNous/QuiSommesNous";
 import CommentContribuer from "./containers/CommentContribuer/CommentContribuer";
-import AdminContrib from "./containers/Backend/AdminContrib/AdminContrib";
 import AdminContenu from "./containers/Backend/AdminContenu/AdminContenu";
 import MentionsLegales from "./containers/MentionsLegales/MentionsLegales";
 import PolitiqueConfidentialite from "./containers/PolitiqueConfidentialite/PolitiqueConfidentialite";
@@ -197,24 +194,11 @@ const routes = [
     restriction: ["Admin"],
   },
   {
-    path: "/backend/admin-langues",
-    name: "AdminLangues",
-    component: AdminLangues,
-    restriction: ["Admin"],
-  },
-  {
-    path: "/backend/admin-contrib",
-    name: "AdminContrib",
-    component: AdminContrib,
-    restriction: ["Admin"],
-  },
-  {
     path: "/backend/admin-contenu",
     name: "AdminContenu",
     component: AdminContenu,
     restriction: ["Admin"],
   },
-
   {
     path: "/backend/user-dashboard",
     name: "Espace traduction",
@@ -238,12 +222,6 @@ const routes = [
     name: "Structure selectionnée",
     component: UserDashStruct,
     restriction: ["Admin"],
-  },
-  {
-    path: "/backend/user-form",
-    name: "UserForm",
-    component: UserForm,
-    restriction: ["Trad", "ExpertTrad", "Admin"],
   },
   {
     path: "/backend/user-profile",
