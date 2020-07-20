@@ -20,7 +20,7 @@ const dashHeader = (props) => {
       ) || {}
     ).roles || [];
   let role = roles.includes("administrateur")
-    ? "administrateur"
+    ? "responsable"
     : roles.includes("createur")
     ? "créateur"
     : roles.includes("contributeur")
@@ -37,11 +37,6 @@ const dashHeader = (props) => {
             .filter((x) => x)
         ),
       ].length;
-      const sommeDates = (structure.dispositifsAssocies || [])
-        .map((x) => x.updatedAt)
-        .reduce((acc, curr) => (acc += moment(curr)), 0);
-      const moyenneDate =
-        sommeDates / (structure.dispositifsAssocies || []).length;
       return (
         <Row className="header-structure">
           <Col xl="6" lg="6" md="12" sm="12" xs="12" className="mt-10">
@@ -57,9 +52,7 @@ const dashHeader = (props) => {
               </Col>
               <Col lg="6" md="6" sm="6" xs="6" className="right-side">
                 <h5>{structure.nom}</h5>
-                {/* <FButton type="dark" name="edit-outline" className="bottom-btn">
-                  Modifier
-                </FButton> */}
+                <b className="role">Vous êtes {role}</b>
               </Col>
             </Row>
           </Col>
@@ -112,60 +105,40 @@ const dashHeader = (props) => {
                   <div>notification{props.actions.length > 1 ? "s" : ""}</div>
                 </div>
               </Col>
-              <Col lg="4" className="struct-indicateurs">
-                <div className="indicateur">
-                  <h2>{props.nbRead}</h2>
-                  <div>
-                    personne{props.nbRead > 1 ? "s" : ""} informée
-                    {props.nbRead > 1 ? "s" : ""}
-                  </div>
-                </div>
-              </Col>
-              {moyenneDate ? (
-                <Col lg="4" className="struct-indicateurs">
-                  <div className="indicateur">
-                    <h2>{"0"}</h2>
-                    <div>indicateur à venir</div>
-                  </div>
-                </Col>
-              ) : (
-                false
-              )}
             </Row>
           </Col>
         </Row>
       );
-    } 
-      return (
-        <Row className="header-indicateurs">
-          <Col lg="4" md="12" sm="12" xs="12">
-            <div className="inner-indicator second-indicator">
-              <h3 className="right-side">
-                {props.motsRediges || 0}{" "}
-                <span className="gris">/ {props.objectifMots || 0}</span>
-              </h3>
-              <div className="left-side">
-                <b className="mot-indicateur">mots</b> traduits pour atteindre
-                votre objectif. <i>Courage !</i>
-              </div>
+    }
+    return (
+      <Row className="header-indicateurs">
+        <Col lg="4" md="12" sm="12" xs="12">
+          <div className="inner-indicator second-indicator">
+            <h3 className="right-side">
+              {props.motsRediges || 0}{" "}
+              <span className="gris">/ {props.objectifMots || 0}</span>
+            </h3>
+            <div className="left-side">
+              <b className="mot-indicateur">mots</b> traduits pour atteindre
+              votre objectif. <i>Courage !</i>
             </div>
-          </Col>
-          <Col lg="4" md="12" sm="12" xs="12">
-            <div className="inner-indicator third-indicator">
-              <h3 className="right-side">
-                {props.minutesPassees || 0}{" "}
-                <span className="gris">/ {props.objectifTemps || 0}</span>
-              </h3>
-              <div className="left-side">
-                <b className="mot-indicateur">minutes</b> dédiés à l'accueil des
-                personnes réfugiés. <br />
-                <i>Merci !</i>
-              </div>
+          </div>
+        </Col>
+        <Col lg="4" md="12" sm="12" xs="12">
+          <div className="inner-indicator third-indicator">
+            <h3 className="right-side">
+              {props.minutesPassees || 0}{" "}
+              <span className="gris">/ {props.objectifTemps || 0}</span>
+            </h3>
+            <div className="left-side">
+              <b className="mot-indicateur">minutes</b> dédiés à l'accueil des
+              personnes réfugiés. <br />
+              <i>Merci !</i>
             </div>
-          </Col>
-        </Row>
-      );
-    
+          </div>
+        </Col>
+      </Row>
+    );
   };
   return (
     <div className="dash-header">
@@ -223,7 +196,8 @@ const dashHeader = (props) => {
           )}
         </Col>
       </Row>
-      <IndicateursBloc {...props} />
+      {(props.title === "Mes traductions" ||
+        props.title === "Votre structure") && <IndicateursBloc {...props} />}
     </div>
   );
 };

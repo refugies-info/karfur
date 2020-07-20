@@ -154,14 +154,14 @@ export class Toolbar extends React.Component {
                       this.navigateTo("/backend/user-dash-contrib")
                     }
                   >
-                    {t("Toolbar.Espace rédaction", "Espace rédaction")}
+                    {t("Toolbar.Mes fiches", "Mes fiches")}
                   </DropdownItem>
                 )}
                 {(expertTrad || traducteur) && (
                   <DropdownItem
                     onClick={() => this.navigateTo("/backend/user-dashboard")}
                   >
-                    {t("Toolbar.Espace traduction", "Espace traduction")}
+                    {t("Toolbar.Mes traductions", "Mes traductions")}
                   </DropdownItem>
                 )}
                 {membreStruct && (

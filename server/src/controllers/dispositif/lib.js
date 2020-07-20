@@ -55,6 +55,7 @@ const url =
     ? "https://agir-qa.herokuapp.com/"
     : "https://www.refugies.info/";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function patch_dispositifs(req, res) {
   logger.info("Patch dispositifs");
   try {
@@ -459,7 +460,6 @@ exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;
 exports.get_dispo_progression = get_dispo_progression;
-exports.patch_dispositifs = patch_dispositifs;
 
 //Utilisés dans d'autres controllers :
 exports.transporter = transporter;
