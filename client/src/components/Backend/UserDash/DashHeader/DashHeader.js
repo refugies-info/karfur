@@ -20,7 +20,7 @@ const dashHeader = (props) => {
       ) || {}
     ).roles || [];
   let role = roles.includes("administrateur")
-    ? "administrateur"
+    ? "responsable"
     : roles.includes("createur")
     ? "créateur"
     : roles.includes("contributeur")
@@ -37,11 +37,6 @@ const dashHeader = (props) => {
             .filter((x) => x)
         ),
       ].length;
-      const sommeDates = (structure.dispositifsAssocies || [])
-        .map((x) => x.updatedAt)
-        .reduce((acc, curr) => (acc += moment(curr)), 0);
-      const moyenneDate =
-        sommeDates / (structure.dispositifsAssocies || []).length;
       return (
         <Row className="header-structure">
           <Col xl="6" lg="6" md="12" sm="12" xs="12" className="mt-10">
@@ -57,9 +52,7 @@ const dashHeader = (props) => {
               </Col>
               <Col lg="6" md="6" sm="6" xs="6" className="right-side">
                 <h5>{structure.nom}</h5>
-                {/* <FButton type="dark" name="edit-outline" className="bottom-btn">
-                  Modifier
-                </FButton> */}
+                <b className="role">Vous êtes {role}</b>
               </Col>
             </Row>
           </Col>
