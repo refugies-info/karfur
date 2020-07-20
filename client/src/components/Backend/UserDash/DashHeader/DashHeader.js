@@ -112,25 +112,6 @@ const dashHeader = (props) => {
                   <div>notification{props.actions.length > 1 ? "s" : ""}</div>
                 </div>
               </Col>
-              <Col lg="4" className="struct-indicateurs">
-                <div className="indicateur">
-                  <h2>{props.nbRead}</h2>
-                  <div>
-                    personne{props.nbRead > 1 ? "s" : ""} informée
-                    {props.nbRead > 1 ? "s" : ""}
-                  </div>
-                </div>
-              </Col>
-              {moyenneDate ? (
-                <Col lg="4" className="struct-indicateurs">
-                  <div className="indicateur">
-                    <h2>{"0"}</h2>
-                    <div>indicateur à venir</div>
-                  </div>
-                </Col>
-              ) : (
-                false
-              )}
             </Row>
           </Col>
         </Row>
@@ -222,7 +203,8 @@ const dashHeader = (props) => {
           )}
         </Col>
       </Row>
-      {props.title === "Mes traductions" && <IndicateursBloc {...props} />}
+      {(props.title === "Mes traductions" ||
+        props.title === "Votre structure") && <IndicateursBloc {...props} />}
     </div>
   );
 };

@@ -81,7 +81,6 @@ export class UserDashStruct extends Component {
     selected: {},
     suggestion: {},
     traductions: [],
-    nbRead: 0,
     selectedStructure:
       this.props.location.state && this.props.location.state.admin
         ? this.props.location.state.structure
@@ -134,17 +133,6 @@ export class UserDashStruct extends Component {
               }).then((data) => {
                 this._isMounted &&
                   this.setState({ traductions: data.data.data });
-              });
-            this._isMounted &&
-              API.distinct_count_event({
-                distinct: "userId",
-                query: {
-                  action: "readDispositif",
-                  label: "dispositifId",
-                  value: { $in: this.state.contributions.map((x) => x._id) },
-                },
-              }).then((data) => {
-                this._isMounted && this.setState({ nbRead: data.data.data });
               });
           }
         );
@@ -246,7 +234,6 @@ export class UserDashStruct extends Component {
       contributions,
       structure,
       users,
-      nbRead,
     } = this.state;
     const { user } = this.props;
 
@@ -266,7 +253,6 @@ export class UserDashStruct extends Component {
           structure={structure}
           traductions={this.state.traductions}
           actions={this.state.actions}
-          nbRead={nbRead}
           user={user}
           toggle={this.toggleModal}
           upcoming={this.upcoming}
