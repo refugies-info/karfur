@@ -30,7 +30,6 @@ import API from "../../utils/API";
 import Sponsors from "../../components/Frontend/Dispositif/Sponsors/Sponsors";
 import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuDispositif";
 import {
-  ReagirModal,
   BookmarkedModal,
   DispositifCreateModal,
   DispositifValidateModal,
@@ -102,7 +101,6 @@ const uiElement = {
   varianteSelected: false,
 };
 let user = { _id: "", cookies: {} };
-const nbMoisNouveau = 1;
 
 const MAX_NUMBER_CHARACTERS_INFOCARD = 40;
 export class Dispositif extends Component {
@@ -941,27 +939,22 @@ export class Dispositif extends Component {
         }),
     }));
 
-  toggleNiveau = (nv, key, subkey) => {
-    let niveaux = _.get(
-      this.state.menu,
-      key + ".children." + subkey + ".niveaux",
-      []
+  toggleNiveau = (selectedLevels, key, subkey) => {
+    this.setState(
+      {
+        menu: [...this.state.menu].map((x, i) =>
+          i === key
+            ? {
+                ...x,
+                children: x.children.map((y, ix) =>
+                  ix === subkey ? { ...y, niveaux: selectedLevels } : y
+                ),
+              }
+            : x
+        ),
+      },
+      () => this.setColors()
     );
-    niveaux = niveaux.some((x) => x === nv)
-      ? niveaux.filter((x) => x !== nv)
-      : [...niveaux, nv];
-    this.setState({
-      menu: [...this.state.menu].map((x, i) =>
-        i === key
-          ? {
-              ...x,
-              children: x.children.map((y, ix) =>
-                ix === subkey ? { ...y, niveaux: niveaux } : y
-              ),
-            }
-          : x
-      ),
-    });
   };
 
   toggleFree = (key, subkey) =>
@@ -1358,43 +1351,52 @@ export class Dispositif extends Component {
     }
     let dispositif = {
       ...content,
-      contenu: [...this.state.menu].map((x, i) => ({
-        title: x.title,
-        ...{
-          content:
-            x.editable &&
-            x.editorState &&
-            x.editorState.getCurrentContent() &&
-            x.editorState.getCurrentContent().getPlainText() !== ""
-              ? convertToHTML(customConvertOption)(
-                  x.editorState.getCurrentContent()
-                )
-              : x.content,
-        },
-        ...(inVariante && {
-          isVariante: _.get(uiArray, `${i}.varianteSelected`),
-        }),
-        editable: false,
-        type: x.type,
-        ...(x.children && {
-          children: x.children.map((y, j) => ({
-            ...y,
-            ...(y.editable &&
-              y.editorState &&
-              y.editorState.getCurrentContent() &&
-              y.editorState.getCurrentContent().getPlainText() !== "" && {
-                content: convertToHTML(customConvertOption)(
-                  y.editorState.getCurrentContent()
-                ),
-              }),
-            ...(inVariante && {
-              isVariante: _.get(uiArray, `${i}.children.${j}.varianteSelected`),
+      contenu: [...this.state.menu].map((x, i) => {
+        return {
+          title: x.title,
+          ...{
+            content:
+              x.editable &&
+              x.editorState &&
+              x.editorState.getCurrentContent() &&
+              x.editorState.getCurrentContent().getPlainText() !== ""
+                ? convertToHTML(customConvertOption)(
+                    x.editorState.getCurrentContent()
+                  )
+                : x.content,
+          },
+          ...(inVariante && {
+            isVariante: _.get(uiArray, `${i}.varianteSelected`),
+          }),
+          editable: false,
+          type: x.type,
+          ...(x.children && {
+            children: x.children.map((y, j) => {
+              // eslint-disable-next-line
+              const { editorState, ...noEditor } = y;
+              return {
+                ...noEditor,
+                ...(y.editable &&
+                  y.editorState &&
+                  y.editorState.getCurrentContent() &&
+                  y.editorState.getCurrentContent().getPlainText() !== "" && {
+                    content: convertToHTML(customConvertOption)(
+                      y.editorState.getCurrentContent()
+                    ),
+                  }),
+                ...(inVariante && {
+                  isVariante: _.get(
+                    uiArray,
+                    `${i}.children.${j}.varianteSelected`
+                  ),
+                }),
+                editable: false,
+                ...(y.title && { title: h2p(y.title) }),
+              };
             }),
-            editable: false,
-            ...(y.title && { title: h2p(y.title) }),
-          })),
-        }),
-      })),
+          }),
+        };
+      }),
       sponsors: (this.state.sponsors || []).filter((x) => !x.dummy),
       tags: this.state.tags,
       avancement: 1,
@@ -1559,19 +1561,14 @@ export class Dispositif extends Component {
       withHelp,
       disableEdit,
       mainTag,
-      fiabilite,
       inVariante,
       checkingVariante,
       printing,
       didThank,
-      dispositif,
     } = this.state;
 
     const etapes_tuto =
       typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
-    const moisDepuisCreation =
-      (new Date().getTime() - new Date(dispositif.created_at).getTime()) /
-      (1000 * 3600 * 24 * 30);
 
     const Tooltip = ({
       index,
@@ -1880,8 +1877,7 @@ export class Dispositif extends Component {
                 className="pt-40 col-middle"
               >
                 {disableEdit && !inVariante && (
-                  // Part about liability of the info
-                  // don't understand what the tooltip does
+                  // Part about last update
                   <Row className="fiabilite-row">
                     <Col
                       lg="auto"
@@ -1897,86 +1893,6 @@ export class Dispositif extends Component {
                           _.get(this.state, "dispositif.updatedAt", 0)
                         ).format("ll")}
                       </span>
-                    </Col>
-                    <Col className="col">
-                      <span>
-                        {t(
-                          "Fiabilité de l'information",
-                          "Fiabilité de l'information"
-                        )}{" "}
-                        :&nbsp;
-                      </span>
-                      <span className={"fiabilite color-vert"}>
-                        {/*       (moisDepuisCreation <= nbMoisNouveau
-                            ? "focus"
-                            : fiabilite > 0.2
-                            ? "vert"
-                            : fiabilite > 0.1
-                            ? "orange"
-                            : "rouge")  */}
-
-                        {/*              {t(
-                          moisDepuisCreation <= nbMoisNouveau
-                            ? "Nouveau"
-                            : fiabilite > 0.2
-                            ? "Forte"
-                            : fiabilite > 0.1
-                            ? "Moyenne"
-                            : "Faible",
-                          moisDepuisCreation <= nbMoisNouveau
-                            ? "Nouveau"
-                            : fiabilite > 0.2
-                            ? "Forte"
-                            : fiabilite > 0.1
-                            ? "Moyenne"
-                            : "Faible"
-                        )} */}
-                        {t("Nouveau")}
-                      </span>
-                      {!fiabilite ? (
-                        <>
-                          <EVAIcon
-                            className="question-bloc ml-8"
-                            id="question-bloc"
-                            name="question-mark-circle"
-                            fill={
-                              variables[
-                                moisDepuisCreation <= nbMoisNouveau
-                                  ? "focus"
-                                  : fiabilite > 0.2
-                                  ? "validationHover"
-                                  : fiabilite > 0.1
-                                  ? "orange"
-                                  : "error"
-                              ]
-                            }
-                            onClick={() => this.toggleModal(true, "fiabilite")}
-                          />
-                          <Tooltip
-                            placement="top"
-                            isOpen={this.state.tooltipOpen}
-                            target="question-bloc"
-                            toggle={this.toggleTooltip}
-                            onClick={() => this.toggleModal(true, "fiabilite")}
-                          >
-                            <span
-                              className="texte-small ml-10"
-                              dangerouslySetInnerHTML={{
-                                __html: t(
-                                  "Dispositif.fiabilite_faible",
-                                  "Une information avec une <b>faible</b> fiabilité n'a pas été vérifiée auparavant"
-                                ),
-                              }}
-                            />
-                            {t(
-                              "Dispositif.cliquez",
-                              "Cliquez sur le '?' pour en savoir plus"
-                            )}
-                          </Tooltip>{" "}
-                        </>
-                      ) : (
-                        false
-                      )}
                     </Col>
                   </Row>
                 )}
@@ -2106,12 +2022,6 @@ export class Dispositif extends Component {
               />
             </Row>
 
-            <ReagirModal
-              name="reaction"
-              show={showModals.reaction}
-              toggleModal={this.toggleModal}
-              onValidate={this.pushReaction}
-            />
             <SuggererModal
               showModals={showModals}
               toggleModal={this.toggleModal}

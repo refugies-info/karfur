@@ -6,18 +6,15 @@ import {
   CardHeader,
   CardFooter,
   ButtonDropdown,
-  Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  ListGroup,
-  ListGroupItem,
-  Modal,
   Input,
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
-
+// @ts-ignore
+import styled from "styled-components";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
 
@@ -30,13 +27,7 @@ import { DispositifContent, Tag } from "../../../@types/interface";
 import { filtres, cardTitles } from "../data";
 import _ from "lodash";
 import { infoCardIcon } from "../../../components/Icon/Icon";
-
-const list_papiers = [
-  { name: "Titre de séjour" },
-  { name: "Contrat d'intégration républicaine (CIR)" },
-];
-
-const papiers = [...list_papiers];
+import { FrenchLevelModal } from "../FrenchLevelModal";
 
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 const frequencesPay = [
@@ -59,6 +50,12 @@ interface Content {
   titreMarque: string;
 }
 
+const ButtonText = styled.p`
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+`;
+
 export interface PropsBeforeInjection {
   subkey: number;
   subitem: DispositifContent;
@@ -70,7 +67,7 @@ export interface PropsBeforeInjection {
   toggleFree: (arg1: number, arg2: number) => void;
   changePrice: (arg1: any, arg2: number, arg3: number) => void;
   updateUIArray: (arg1: number, arg2: number, arg3: string) => void;
-  toggleNiveau: (arg1: string, arg2: number, arg3: number) => void;
+  toggleNiveau: (arg1: string[], arg2: number, arg3: number) => void;
   deleteCard: (arg1: number, arg2: number) => void;
   content: Content;
   keyValue: number;
@@ -79,28 +76,31 @@ export interface PropsBeforeInjection {
   mainTag: Tag;
 }
 type StateType = {
-  showModal: boolean;
   isDropdownOpen: boolean;
   isOptionsOpen: boolean;
-  isModalDropdownOpen: boolean[];
-  papiers: typeof papiers;
   showNiveaux: boolean;
   tooltipOpen: boolean;
+  showFrenchLevelModal: boolean;
 };
 
 export class CardParagraphe extends Component<Props> {
   state: StateType = {
-    showModal: false,
     isDropdownOpen: false,
     isOptionsOpen: false,
-    isModalDropdownOpen: new Array(2).fill(false),
-    papiers: papiers,
     showNiveaux: false,
     tooltipOpen: false,
+    showFrenchLevelModal: false,
   };
 
-  toggleModal = (show: boolean) => this.setState({ showModal: show });
   toggleNiveaux = () => this.setState({ showNiveaux: !this.state.showNiveaux });
+
+  validateLevels = (selectedLevels: string[]) => {
+    this.props.toggleNiveau(
+      selectedLevels,
+      this.props.keyValue,
+      this.props.subkey
+    );
+  };
   toggleTooltip = () =>
     this.setState((prevState: StateType) => ({
       tooltipOpen: !prevState.tooltipOpen,
@@ -118,28 +118,6 @@ export class CardParagraphe extends Component<Props> {
     this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   };
 
-  toggleModalDropdown = (idx: number) =>
-    this.setState({
-      isModalDropdownOpen: this.state.isModalDropdownOpen.map((x, i) =>
-        i === idx ? !x : x
-      ),
-    });
-
-  setPapier = (idx: number, y: number) =>
-    this.setState({
-      papiers: this.state.papiers.map((x, i) =>
-        i === idx ? list_papiers[y] : x
-      ),
-    });
-  addPiece = () =>
-    this.setState({
-      papiers: [...this.state.papiers, { name: "Titre de séjour" }],
-      isModalDropdownOpen: [...this.state.isModalDropdownOpen, false],
-    });
-  removePiece = (idx: number) =>
-    this.setState({
-      papiers: [...this.state.papiers].filter((_, key) => key !== idx),
-    });
   emptyPlaceholder = (e: Element) => {
     if (!this.props.disableEdit && (this.props.subitem || {}).isFakeContent) {
       this.props.handleMenuChange({
@@ -148,6 +126,8 @@ export class CardParagraphe extends Component<Props> {
       });
     }
   };
+  toggleFrenchLevelModal = (show: boolean) =>
+    this.setState({ showFrenchLevelModal: show });
 
   toggleOptions = (e: Element) => {
     if (this.state.isOptionsOpen && e.currentTarget.id) {
@@ -161,10 +141,10 @@ export class CardParagraphe extends Component<Props> {
     this.setState({ isOptionsOpen: !this.state.isOptionsOpen });
   };
 
-  footerClicked = () => {
-    if (this.props.subitem.footerHref) {
-      // @ts-ignore
-      window.open(this.props.subitem.footerHref, "_blank");
+  footerClicked = (subitem: DispositifContent) => {
+    // the only infocard with footerHref is 'Niveaux de français'
+    if (subitem.title === "Niveau de français") {
+      this.toggleFrenchLevelModal(true);
     } else {
       Swal.fire({
         title: "Oh non!",
@@ -173,6 +153,44 @@ export class CardParagraphe extends Component<Props> {
         timer: 1500,
       });
     }
+  };
+
+  getTextForAgeInfocard = (
+    ageRange: string | undefined,
+    bottomValue: number | undefined,
+    topValue: number | undefined
+  ) => {
+    if (ageRange === "De ** à ** ans") {
+      return (
+        this.props.t("Dispositif.De", "De") +
+        " " +
+        bottomValue +
+        " " +
+        this.props.t("Dispositif.à", "à") +
+        " " +
+        topValue +
+        " " +
+        this.props.t("Dispositif.ans", "ans")
+      );
+    }
+
+    if (ageRange === "Moins de ** ans") {
+      return (
+        this.props.t("Dispositif.Moins de", "Moins de") +
+        " " +
+        topValue +
+        " " +
+        this.props.t("Dispositif.ans", "ans")
+      );
+    }
+
+    return (
+      this.props.t("Dispositif.Plus de", "Plus de") +
+      " " +
+      bottomValue +
+      " " +
+      this.props.t("Dispositif.ans", "ans")
+    );
   };
 
   render() {
@@ -250,7 +268,7 @@ export class CardParagraphe extends Component<Props> {
                               this.props.keyValue,
                               this.props.subkey,
                               (arr[0] === "De " && i === 0) ||
-                                arr[0] === "Plus de"
+                                arr[0] === "Plus de "
                             )
                           }
                         />
@@ -363,28 +381,19 @@ export class CardParagraphe extends Component<Props> {
 
       let texte;
       if (subitem.title === "Âge requis") {
-        texte =
-          subitem.contentTitle === "De ** à ** ans"
-            ? t("Dispositif.De", "De") +
-              " " +
-              subitem.bottomValue +
-              " " +
-              t("Dispositif.à", "à") +
-              " " +
-              subitem.topValue +
-              " " +
-              t("Dispositif.ans", "ans")
-            : subitem.contentTitle === "Moins de ** ans"
-            ? t("Dispositif.Moins de", "Moins de") +
-              " " +
-              subitem.topValue +
-              " " +
-              t("Dispositif.ans", "ans")
-            : t("Dispositif.Plus de", "Plus de") +
-              " " +
-              subitem.bottomValue +
-              " " +
-              t("Dispositif.ans", "ans");
+        if (subitem.ageTitle) {
+          texte = this.getTextForAgeInfocard(
+            subitem.ageTitle,
+            subitem.bottomValue,
+            subitem.topValue
+          );
+        } else {
+          texte = this.getTextForAgeInfocard(
+            subitem.contentTitle,
+            subitem.bottomValue,
+            subitem.topValue
+          );
+        }
       } else if (subitem.title === "Combien ça coûte ?") {
         texte = subitem.free
           ? t("Dispositif.gratuit", "gratuit")
@@ -484,15 +493,27 @@ export class CardParagraphe extends Component<Props> {
 
     const cardFooterContent = (subitem: DispositifContent) => {
       // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
-      if (this.props.subitem.footerHref && disableEdit) {
+      if (subitem.title === "Niveau de français" && disableEdit) {
         return (
           <FButton
             type="light-action"
             name={subitem.footerIcon}
-            onClick={this.footerClicked}
+            onClick={() => this.footerClicked(subitem)}
           >
             {subitem.footer &&
               t("Dispositif." + subitem.footer, subitem.footer)}
+          </FButton>
+        );
+      }
+
+      if (!disableEdit && subitem.title === "Niveau de français") {
+        return (
+          <FButton
+            type="precision"
+            name="plus-circle-outline"
+            onClick={() => this.toggleFrenchLevelModal(true)}
+          >
+            <ButtonText>Préciser le niveau</ButtonText>
           </FButton>
         );
       }
@@ -524,38 +545,24 @@ export class CardParagraphe extends Component<Props> {
                 {contentTitle(subitem)}
               </span>
               {subitem.title === "Niveau de français" &&
-                (showNiveaux || (subitem.niveaux || []).length > 0 ? (
-                  // info card Niveau de francais, selection of level in edit mode
-                  <div className="niveaux-wrapper">
-                    {niveaux.map((nv, key) => (
-                      <button
-                        key={key}
-                        className={
+                (showNiveaux ||
+                  ((subitem.niveaux || []).length > 0 && (
+                    // info card Niveau de francais, selection of level in edit mode
+                    <div className="color-darkColor niveaux-wrapper">
+                      {niveaux
+                        .filter((nv) =>
                           (subitem.niveaux || []).some((x: string) => x === nv)
-                            ? "active"
-                            : ""
-                        }
-                        disabled={this.props.disableEdit}
-                        onClick={() =>
-                          this.props.toggleNiveau(
-                            nv,
-                            this.props.keyValue,
-                            this.props.subkey
-                          )
-                        }
-                      >
-                        {nv}
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  // in edit mode, chose to precise the level of french
-                  !this.props.disableEdit && (
-                    <u className="cursor-pointer" onClick={this.toggleNiveaux}>
-                      Préciser
-                    </u>
-                  )
-                ))}
+                        )
+                        .map((nv, key) => (
+                          <button
+                            key={key}
+                            className={"backgroundColor-darkColor active"}
+                          >
+                            {nv}
+                          </button>
+                        ))}
+                    </div>
+                  )))}
             </CardBody>
             {
               // footer for card Niveau de français to assess level in a website
@@ -582,61 +589,16 @@ export class CardParagraphe extends Component<Props> {
             }
           </Card>
         </Col>
-
-        <Modal
-          isOpen={this.state.showModal}
-          toggle={() => this.toggleModal(false)}
-          className="modal-pieces"
-        >
-          <h1>Pièces demandées</h1>
-          <p className="subtitle">
-            Voici les pièces requises pour participer au dispositif{" "}
-            {this.props.content.titreMarque}
-          </p>
-          <ListGroup flush>
-            {this.state.papiers.map((element, idx) => (
-              <ListGroupItem action key={idx}>
-                <Dropdown
-                  isOpen={
-                    !this.props.disableEdit &&
-                    this.state.isModalDropdownOpen[idx]
-                  }
-                  toggle={() => this.toggleModalDropdown(idx)}
-                >
-                  {!this.props.disableEdit && (
-                    <EVAIcon
-                      name="close-circle"
-                      onClick={() => this.removePiece(idx)}
-                      className="btn-moins"
-                    />
-                  )}
-                  <DropdownToggle
-                    caret={!this.props.disableEdit}
-                    className="papiers-toggle-btn"
-                  >
-                    <h6>{element.name}</h6>
-                    <u>Comment obtenir cette pièce ?</u>
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    {list_papiers.map((papier, y) => (
-                      <DropdownItem
-                        key={y}
-                        onClick={() => this.setPapier(idx, y)}
-                      >
-                        {papier.name}
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </Dropdown>
-              </ListGroupItem>
-            ))}
-            {!this.props.disableEdit && (
-              <ListGroupItem action onClick={this.addPiece}>
-                <h6>Ajouter une pièce supplémentaire</h6>
-              </ListGroupItem>
-            )}
-          </ListGroup>
-        </Modal>
+        {
+          <FrenchLevelModal
+            show={this.state.showFrenchLevelModal}
+            disableEdit={this.props.disableEdit}
+            hideModal={() => this.toggleFrenchLevelModal(false)}
+            selectedLevels={subitem.niveaux}
+            validateLevels={this.validateLevels}
+            t={this.props.t}
+          />
+        }
       </>
     );
   }

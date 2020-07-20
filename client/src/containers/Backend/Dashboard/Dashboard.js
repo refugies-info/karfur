@@ -483,6 +483,16 @@ class Dashboard extends Component {
                 </li>
               );
             })}
+            {langues
+              .filter(
+                (langue) => langue.avancement > 0.8 && langue.i18nCode !== "fr"
+              )
+              .map((langue, key) => (
+                <li key={key}>
+                  Pourcentage traduction contenu en <b>{langue.langueFr}</b> :{" "}
+                  {Math.round(langue.avancementTrad * 100)}%{" "}
+                </li>
+              ))}
           </ul>
         </div>
         <Row>

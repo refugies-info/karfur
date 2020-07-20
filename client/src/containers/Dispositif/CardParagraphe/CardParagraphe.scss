@@ -849,6 +849,7 @@
         }
         .niveaux-wrapper {
           margin-top: -5px;
+
           button {
             border: 0.5px solid $noirCD;
             border-radius: 6px;
@@ -859,16 +860,13 @@
             margin-top: 5px;
             font-weight: bold;
             font-size: 16px;
-            &:hover:not(:disabled) {
-              border-color: $darkColor;
-              color: $darkColor;
-              background: #ffffff;
-            }
+
             &.active {
               color: #ffffff;
-              background-color: $darkColor;
+              background-color: inherit;
               border: none;
               outline: none;
+              cursor: default;
             }
             &:focus {
               outline: none;

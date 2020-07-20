@@ -5,7 +5,6 @@ import EnConstructionModal from "./EnConstructionModal/EnConstructionModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import MapModal from "./MapModal/MapModal";
 import MerciModal from "./MerciModal/MerciModal";
-import ReagirModal from "./ReagirModal/ReagirModal";
 import SuggererModal from "./SuggererModal/SuggererModal";
 import ThanksModal from "./ThanksModal/ThanksModal";
 import TranslationModal from "./TranslationModal/TranslationModal";
@@ -31,7 +30,6 @@ export {
   LanguageModal,
   MapModal,
   MerciModal,
-  ReagirModal,
   SuggererModal,
   ThanksModal,
   TranslationModal,

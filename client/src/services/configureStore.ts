@@ -4,8 +4,15 @@ import { sagaMiddleware, middlewares } from "./middlewares";
 import { rootSaga } from "./sagas";
 import { createBrowserHistory } from "history";
 import { routerMiddleware } from "connected-react-router";
+import ReactGA from "react-ga";
 
 export const history = createBrowserHistory();
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+history.listen((location, action) => {
+  ReactGA.pageview(location.pathname + location.search);
+});
+
 const reactRouterMiddleware = routerMiddleware(history);
 
 // @ts-ignore

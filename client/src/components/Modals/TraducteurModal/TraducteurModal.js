@@ -47,9 +47,10 @@ class TraducteurModal extends Component {
   }
 
   handleCheck = (e, key) => {
+    // we have to check === key+1 because we remove french from list which has the first index
     this.setState((prevState) => ({
       langues: prevState.langues.map((x, i) =>
-        i === key ? { ...x, checked: !x.checked } : x
+        i === key + 1 ? { ...x, checked: !x.checked } : x
       ),
     }));
   };
@@ -103,34 +104,39 @@ class TraducteurModal extends Component {
   render() {
     const { show, toggle } = this.props;
     const { langues } = this.state;
-    // let langues_list = langues.filter(x => x.checked).map(x => x.langueFr);
-
     return (
       <Modal isOpen={show} toggle={toggle} className="modal-traducteur">
         <ModalHeader toggle={toggle}>C'est parti !</ModalHeader>
         <ModalBody>
           <h5>Quelles sont vos langues de travail ?</h5>
           <FormGroup row>
-            {(langues || []).map((langue, key) => (
-              <Col lg="3" key={key}>
-                <FormGroup check>
-                  <Input
-                    className="form-check-input langue"
-                    type="checkbox"
-                    id={langue._id}
-                    checked={langue.checked}
-                    onChange={(e) => this.handleCheck(e, key)}
-                  />
-                  <Label
-                    check
-                    className="form-check-label"
-                    htmlFor={langue._id}
-                  >
-                    {langue.langueFr}
-                  </Label>
-                </FormGroup>
-              </Col>
-            ))}
+            {(langues || [])
+              .filter(
+                (langue) =>
+                  (langue.avancement > 0.8) & (langue.i18nCode !== "fr")
+              )
+              .map((langue, key) => {
+                return (
+                  <Col lg="3" key={key}>
+                    <FormGroup check>
+                      <Input
+                        className="form-check-input langue"
+                        type="checkbox"
+                        id={langue._id}
+                        checked={langue.checked}
+                        onChange={(e) => this.handleCheck(e, key)}
+                      />
+                      <Label
+                        check
+                        className="form-check-label"
+                        htmlFor={langue._id}
+                      >
+                        {langue.langueFr}
+                      </Label>
+                    </FormGroup>
+                  </Col>
+                );
+              })}
           </FormGroup>
 
           {/* {langues_list.length>0 && 
