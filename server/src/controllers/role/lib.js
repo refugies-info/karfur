@@ -51,12 +51,6 @@ function get_role(req, res) {
 //   if (!req.body || !req.body.nom) {
 //     res.status(400).json({ text: "Requête invalide" });
 //   } else {
-//     new DBEvent({
-//       action: JSON.stringify(req.body),
-//       userId: _.get(req, "userId"),
-//       roles: _.get(req, "user.roles"),
-//       api: arguments.callee.name,
-//     }).save();
 //     var role = req.body;
 //     var _u = new Role(role);
 //     _u.save(function (err, data) {
