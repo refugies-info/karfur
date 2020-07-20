@@ -22,6 +22,7 @@ import variables from "scss/colors.scss";
 
 moment.locale("fr");
 
+// Espace traduction
 export class UserDash extends Component {
   state = {
     showModal: {
@@ -286,7 +287,7 @@ export class UserDash extends Component {
 
         <DashHeader
           traducteur
-          title="Espace traduction"
+          title="Mes traductions"
           ctaText="Mes objectifs"
           motsRediges={this.state.progression.wordsCount}
           minutesPassees={Math.floor(

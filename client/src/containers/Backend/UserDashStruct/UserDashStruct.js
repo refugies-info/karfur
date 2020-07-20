@@ -48,6 +48,7 @@ const tables = [
   { name: "members", component: MembersTable },
 ];
 
+// Ma structure
 export class UserDashStruct extends Component {
   constructor(props) {
     super(props);
