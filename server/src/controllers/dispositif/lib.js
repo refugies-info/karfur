@@ -55,6 +55,32 @@ const url =
     ? "https://agir-qa.herokuapp.com/"
     : "https://www.refugies.info/";
 
+async function patch_dispositifs() {
+  logger.info("Patch dispositifs");
+  try {
+    var all = await Dispositif.find().lean();
+    for (var i = 0; i < all.length; ++i) {
+      if (all[i].contenu && all[i].contenu.length) {
+        for (var x = 0; x < all[i].contenu.length; ++x) {
+          if (all[i].contenu[x].children && all[i].contenu[x].children.length) {
+            for (var y = 0; y < all[i].contenu[x].children.length; ++y) {
+              if (all[i].contenu[x].children[y].editorState) {
+                delete all[i].contenu[x].children[y].editorState;
+              }
+            }
+          }
+        }
+      }
+      await Dispositif.findOneAndUpdate({ _id: all[i]._id }, all[i], {
+        upsert: true,
+        new: true,
+      });
+    }
+  } catch (e) {
+    logger.error("Error while patching dispositifs", { error: e });
+  }
+}
+
 async function add_dispositif(req, res) {
   try {
     var dispResult = {};
@@ -66,6 +92,8 @@ async function add_dispositif(req, res) {
     ) {
       return res.status(400).json({ text: "Requête invalide" });
     }
+
+    await patch_dispositifs();
 
     let dispositif = req.body;
     dispositif.status = dispositif.status || "En attente";
@@ -251,7 +279,6 @@ function update_dispositif(req, res) {
   } else if (!req.body || !req.body.dispositifId || !req.body.fieldName) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-
     let {
       dispositifId,
       fieldName,
@@ -296,7 +323,6 @@ function update_dispositif(req, res) {
 }
 
 function get_dispo_progression(req, res) {
-
   var start = new Date();
   start.setHours(0, 0, 0, 0);
 
@@ -343,7 +369,6 @@ function get_dispo_progression(req, res) {
 }
 
 function count_dispositifs(req, res) {
-
   Dispositif.count(req.body, (err, count) => {
     if (err) {
       res.status(404).json({ text: "Pas de résultat" });
