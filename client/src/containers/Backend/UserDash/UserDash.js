@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import track from "react-tracking";
 import { Col, Row, Progress, Table, Modal, Spinner } from "reactstrap";
-import ReactJoyride from "react-joyride";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import Icon from "react-eva-icons";
 import { connect } from "react-redux";
 
 import marioProfile from "../../../assets/mario-profile.jpg";
-import { steps, avancement_langue, avancement_data } from "./data";
+import { avancement_langue, avancement_data } from "./data";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 import API from "../../../utils/API";
 import DashHeader from "../../../components/Backend/UserDash/DashHeader/DashHeader";
@@ -276,15 +275,6 @@ export class UserDash extends Component {
     } = this.state;
     return (
       <div className="animated fadeIn user-dash">
-        <ReactJoyride
-          continuous
-          steps={steps}
-          run={this.state.runJoyRide}
-          scrollToFirstStep
-          showProgress
-          showSkipButton
-        />
-
         <DashHeader
           traducteur
           title="Mes traductions"
