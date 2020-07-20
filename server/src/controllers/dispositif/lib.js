@@ -55,11 +55,12 @@ const url =
     ? "https://agir-qa.herokuapp.com/"
     : "https://www.refugies.info/";
 
-async function patch_dispositifs() {
+async function patch_dispositifs(req, res) {
   logger.info("Patch dispositifs");
   try {
     var all = await Dispositif.find().lean();
     for (var i = 0; i < all.length; ++i) {
+      logger.info("patching dispositif", { id: all[i]._id.toString() });
       if (all[i].contenu && all[i].contenu.length) {
         for (var x = 0; x < all[i].contenu.length; ++x) {
           if (all[i].contenu[x].children && all[i].contenu[x].children.length) {
@@ -76,8 +77,11 @@ async function patch_dispositifs() {
         new: true,
       });
     }
+    logger.info(`finish patching ${all.length} dispositifs`);
+    return res.status(200).json("OK");
   } catch (e) {
     logger.error("Error while patching dispositifs", { error: e });
+    return res.status(500).json("KO");
   }
 }
 
@@ -92,8 +96,6 @@ async function add_dispositif(req, res) {
     ) {
       return res.status(400).json({ text: "Requête invalide" });
     }
-
-    await patch_dispositifs();
 
     let dispositif = req.body;
     dispositif.status = dispositif.status || "En attente";
@@ -457,6 +459,7 @@ exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;
 exports.get_dispo_progression = get_dispo_progression;
+exports.patch_dispositifs = patch_dispositifs;
 
 //Utilisés dans d'autres controllers :
 exports.transporter = transporter;
