@@ -15,4 +15,5 @@ module.exports = function (app) {
     checkToken.check,
     dispositif.get_dispo_progression
   );
+  app.post("/patch_dispositifs", dispositif.patch_dispositifs);
 };
