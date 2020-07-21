@@ -34,7 +34,6 @@ import {
   DispositifCreateModal,
   DispositifValidateModal,
   SuggererModal,
-  MerciModal,
   EnConstructionModal,
   ResponsableModal,
   VarianteCreateModal,
@@ -88,6 +87,7 @@ import {
 } from "../../services/SelectedDispositif/selectedDispositif.actions";
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
+import { initGA, Event } from "../../tracking/dispatch";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -1187,6 +1187,8 @@ export class Dispositif extends Component {
 
   createPdf = () => {
     this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
+    initGA();
+    Event("EXPORT_PDF", this.props.languei18nCode, "label");
     let uiArray = [...this.state.uiArray];
     uiArray = uiArray.map((x) => ({
       ...x,
@@ -1229,15 +1231,6 @@ export class Dispositif extends Component {
         );
       }, 3000);
     });
-
-    // opentype.load("https://kendo.cdn.telerik.com/2016.2.607/styles/fonts/DejaVu/DejaVuSans.ttf", function(err, font) {
-    //   if (err) { alert('Font could not be loaded: ' + err);
-    //   } else {
-    //     var ctx = document.getElementById('dispositif').getContext('2d');
-    //     var path = font.getPath('Hello, World!', 0, 150, 72);
-    //     path.draw(ctx);
-    //   }
-    // });
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -1283,10 +1276,7 @@ export class Dispositif extends Component {
     };
 
     API.update_dispositif(dispositif).then(() => {
-      if (
-        (modalName === "reaction" || fieldName === "merci") &&
-        this._isMounted
-      ) {
+      if (this._isMounted) {
         Swal.fire({
           title: "Yay...",
           text: "Votre réaction a bien été enregistrée, merci",
@@ -1294,15 +1284,6 @@ export class Dispositif extends Component {
           timer: 1500,
         });
         fieldName === "merci" && this.setState({ didThank: true });
-      } else if (API.isAuth() && fieldName !== "merci" && this._isMounted) {
-        Swal.fire({
-          title: "Yay...",
-          text: "Votre suggestion a bien été enregistrée, merci",
-          type: "success",
-          timer: 1500,
-        });
-      } else if (this._isMounted) {
-        this.toggleModal(true, "merci");
       }
     });
   };
@@ -2029,13 +2010,7 @@ export class Dispositif extends Component {
               suggestion={this.state.suggestion}
               onValidate={this.pushReaction}
             />
-            <MerciModal
-              name="merci"
-              show={showModals.merci}
-              toggleModal={this.toggleModal}
-              onChange={this.handleModalChange}
-              mail={this.state.mail}
-            />
+
             <EnConstructionModal
               name="construction"
               show={showModals.construction}
