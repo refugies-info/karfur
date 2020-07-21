@@ -105,24 +105,26 @@ export class TopRightHeader extends React.Component<Props> {
       // when props.disableEdit = true, favorite button and modify button (if user authorized)
       // user can modify a dispositif if he is admin or contributor of the mainsponsor of the dispositif OR if he is admin OR if he is author
       return (
-        <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
+        <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right-edition">
           {!props.translating && (isAuthor || props.admin || userIsSponsor) && (
-            <div
-              className="top-icon-wrapper mr-10"
+            <FButton
+              className="dark"
+              name="edit-outline"
               onClick={props.editDispositif}
             >
-              <EVAIcon name="edit-outline" fill="#3D3D3D" id="editBtn" />
-            </div>
+              Modifier la fiche
+            </FButton>
           )}
           <div className="top-icon-wrapper" onClick={props.bookmarkDispositif}>
             {props.showSpinnerBookmark ? (
               <Spinner color="success" />
             ) : (
-              <EVAIcon
+              <FButton
+                className="default"
                 name={"bookmark" + (props.pinned ? "" : "-outline")}
-                fill={"#3D3D3D"}
-                id="bookmarkBtn"
-              />
+              >
+                {props.pinned ? "Enlever des favoris" : "Ajouter aux favoris"}
+              </FButton>
             )}
           </div>
         </Col>

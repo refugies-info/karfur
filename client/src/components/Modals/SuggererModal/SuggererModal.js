@@ -14,19 +14,10 @@ import "./SuggererModal.scss";
 
 const suggererModal = (props) => {
   const { t, showModals } = props;
-  const isOpen =
-    showModals.suggerer || showModals.question || showModals.signaler;
+  const isOpen = showModals.suggerer;
   let name = "suggerer",
     fieldName = "suggestions";
-  if (isOpen) {
-    if (showModals.question) {
-      name = "question";
-      fieldName = "questions";
-    } else if (showModals.signaler) {
-      name = "signaler";
-      fieldName = "signalements";
-    }
-  }
+
   return (
     <Modal
       isOpen={isOpen}
