@@ -391,35 +391,6 @@ class QuiSommesNous extends Component {
             </Row>
           </div>
         </section>
-
-        {/*<section id="partenaires">
-          <div className="section-container">
-            <h2>Partenaires</h2>
-
-            <h3>Institutionnels</h3>
-            <Row className="partner-row">
-              <Col lg="2"/>
-              <Col lg="3" className="partner-col d-flex justify-content-center">
-                <img className="partner-img" src={diair} alt="logo DIAIR" />
-              </Col>
-              <Col lg="1"/>
-              <Col lg="4" className="partner-col">
-                La Diair est à l’origine de la création du projet et héberge actuellement l’équipe projet. 
-              </Col>
-            </Row>
-            {/* <Row className="partner-row">
-              <Col lg="2"/>
-              <Col lg="3" className="partner-col d-flex justify-content-center">
-                <img className="partner-img" src={DGEF} alt="logo DGEF" />
-              </Col>
-              <Col lg="1"/>
-              <Col lg="4" className="partner-col">
-                La Diair est à l’origine de la création du projet et héberge actuellement l’équipe projet. 
-              </Col>
-            </Row>
-            <h3>Associatifs</h3>
-          </div>
-        </section>*/}
       </div>
     );
   }
