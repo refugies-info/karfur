@@ -5,6 +5,10 @@
   margin-right:-10px;
   outline: none;
   z-index: 10;
+  justify-content: 'center';
+  align-items: 'center';
+  display: flex;
+
 
   .tags-dropdown{
     margin-left:10px;
@@ -54,7 +58,7 @@
   .plus-button{
     background:$jauneClair;
     border-radius: 12px;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 16px;
     line-height: 20px;
     color: $noir;
@@ -62,7 +66,15 @@
     padding:10px;
     margin-top:10px;
     svg{
+      margin-right:10px;
       fill: $noir;
+    }
+
+    &.icon{
+      svg{
+        fill: $noir;
+      margin-right:2px;
+      }
     }
 
     i{

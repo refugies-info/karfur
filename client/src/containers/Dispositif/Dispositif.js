@@ -39,6 +39,7 @@ import {
   ResponsableModal,
   VarianteCreateModal,
   RejectionModal,
+  TagsModal
 } from "../../components/Modals/index";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import { Tags } from "./Tags";
@@ -55,6 +56,7 @@ import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
 import { readAudio } from "../Layout/functions";
 import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
+import { initial_data } from "../AdvancedSearch/data";
 import {
   contenu,
   lorems,
@@ -143,6 +145,7 @@ export class Dispositif extends Component {
     isAuth: false,
     showDispositifCreateModal: false,
     showDispositifValidateModal: false,
+    showTagsModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
     suggestion: "",
@@ -902,6 +905,10 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({
       showDispositifCreateModal: !prevState.showDispositifCreateModal,
     }));
+  toggleTagsModal = () =>
+    this.setState((prevState) => ({
+      showTagsModal: !prevState.showTagsModal,
+    }));
   toggleDispositifValidateModal = () => {
     if (_.isEmpty(this.state.sponsors)) {
       this.setState({ finalValidation: true });
@@ -1094,7 +1101,17 @@ export class Dispositif extends Component {
     );
   };
 
-  addTag = () => this.setState({ tags: [...(this.state.tags || []), "Autre"] });
+  addTag = (tags) => {
+    this.setState({ tags: tags })};
+
+  validateTags = (tags) => {
+    this.setState({ tags: tags, mainTag: tags[0] }, () => this.setColors())
+    
+  };
+
+    openTag = (tags) => {
+      this.setState({ showTagsModal: true })};
+
   deleteTag = (idx) =>
     this.setState({ tags: [...this.state.tags].filter((_, i) => i !== idx) });
 
@@ -1821,6 +1838,7 @@ export class Dispositif extends Component {
                       disableEdit={this.state.disableEdit}
                       changeTag={this.changeTag}
                       addTag={this.addTag}
+                      openTag={this.openTag}
                       deleteTag={this.deleteTag}
                       history={this.props.history}
                     />
@@ -2114,6 +2132,13 @@ export class Dispositif extends Component {
               abstract={this.state.content.abstract}
               onChange={this.handleChange}
               validate={this.valider_dispositif}
+            />
+            <TagsModal
+              validate={this.validateTags}
+              categories={filtres.tags}
+              show={this.state.showTagsModal}
+              toggle={this.toggleTagsModal}
+              onChange={this.handleChange}
             />
             <VarianteCreateModal
               titreInformatif={this.state.content.titreInformatif}

@@ -21,6 +21,7 @@ import CheckDemarcheModal from "./CheckDemarcheModal/CheckDemarcheModal";
 import VarianteCreateModal from "./VarianteCreateModal/VarianteCreateModal";
 import EtapeModal from "./EtapeModal/EtapeModal";
 import Modal from "./Modal";
+import TagsModal from "./TagsModal/TagsModal";
 
 export {
   BookmarkedModal,
@@ -45,5 +46,6 @@ export {
   CheckDemarcheModal,
   VarianteCreateModal,
   EtapeModal,
+  TagsModal,
   Modal,
 };

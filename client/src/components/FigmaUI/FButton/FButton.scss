@@ -23,7 +23,19 @@ body .figma-btn {
   }
 
   // Ici on précise le comportement des icônes avec svg et fill
-
+  &.tuto {
+    color: $blancSimple;
+    background: $focus;
+    outline: 0;
+    border: 0.5px solid transparent;
+    &:hover {
+      background: $blancSimple;
+      color: $blancSimple;
+      svg {
+        fill: $blancSimple;
+      }
+    }
+  }
   &.default svg {
     fill: $noir;
   }
