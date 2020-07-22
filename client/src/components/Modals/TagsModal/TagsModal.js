@@ -17,7 +17,6 @@ import variables from "scss/colors.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 import "./TagsModal.scss";
-import { filtres } from "../../../containers/Dispositif/data";
 
 const Title = styled.p`
   align-self: center;
@@ -62,7 +61,7 @@ const Step = ({...props}) => {
 
 const StyledSub = ({ ...props }) => {
   return (
-    <div  style={{marginTop: 20, marginBottom: 20, flexDirection: 'row', display: 'flex', alignItems: 'center'}} {...props}>
+    <div  style={{marginTop: 20, marginBottom: 20, flexDirection: "row", display: "flex", alignItems: "center"}} {...props}>
       <Step done={props.done}>
         {props.step}
       </Step>
@@ -136,7 +135,7 @@ export class dispositifValidateModal extends Component {
             subtitle={
               "Ce thème catégorise votre fiche pour le moteur de recherche"
             }
-            step={'1'}
+            step={"1"}
             done={this.state.tag1 ? true : false}
           />
           {this.props.categories.map((subi, idx) => {
@@ -185,7 +184,7 @@ export class dispositifValidateModal extends Component {
             subtitle={
               "Ces thèmes secondaires permettent de compléter le référencement"
             }
-            step={'2'}
+            step={"2"}
             done={(this.state.tag2 || this.state.tag3) || this.state.noTag ? true : false}
           />
           {this.props.categories.map((subi, idx) => {

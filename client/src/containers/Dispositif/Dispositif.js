@@ -56,7 +56,6 @@ import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
 import { readAudio } from "../Layout/functions";
 import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
-import { initial_data } from "../AdvancedSearch/data";
 import {
   contenu,
   lorems,
@@ -1109,7 +1108,7 @@ export class Dispositif extends Component {
     
   };
 
-    openTag = (tags) => {
+    openTag = () => {
       this.setState({ showTagsModal: true })};
 
   deleteTag = (idx) =>

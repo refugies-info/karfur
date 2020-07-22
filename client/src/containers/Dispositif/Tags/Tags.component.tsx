@@ -1,20 +1,14 @@
 import React, { Component } from "react";
 import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   Button,
 } from "reactstrap";
 import { filtres } from "../data";
 
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import TagButton from "../../../components/FigmaUI/TagButton/TagButton";
 import Streamline from "../../../assets/streamline";
 
 import "./Tags.scss";
 // @ts-ignore
-import variables from "scss/colors.scss";
 import { Props } from "./Tags.container";
 import { Tag } from "../../../@types/interface";
 import styled from "styled-components";
@@ -93,15 +87,13 @@ export class Tags extends Component<Props> {
 
   render() {
     const { t } = this.props;
-    console.log(this.props.tags);
     return (
       <div className="tags" id="tags">
         {(this.props.tags || []).map((tag: Tag, key: number) => {
-          console.log(tag);
           if (tag) {
             var tagIcon = filtres.tags.find((elem) => elem.name === tag.name)
             return (
-              <div style={{alignSelf: 'flex-end'}}>
+              <div style={{alignSelf: "flex-end"}}>
               <TagButton
                 key={key}
                 className={"mr-10 color" + (tag.short ? "" : " full")}
@@ -130,6 +122,7 @@ export class Tags extends Component<Props> {
               </TagButton>
               </div>
             );
+            // eslint-disable-next-line
           } else {
             return false;
           }
