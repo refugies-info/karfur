@@ -13,6 +13,7 @@ import Office from "./Office";
 import Search from "./Search";
 import Message from "./Message";
 import Menu from "./Menu";
+import Tag from "./Tag";
 
 import React from "react";
 
@@ -48,6 +49,8 @@ const Streamline = ({ name = "house", ...props }) => {
       return <Message {...props} />;
     case "menu":
       return <Menu {...props} />;
+    case "tag":
+      return <Tag {...props} />;
     default:
       return <House {...props} />;
   }

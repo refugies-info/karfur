@@ -1,26 +1,32 @@
 import React, { Component } from "react";
 import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   Button,
 } from "reactstrap";
 import { filtres } from "../data";
 
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import TagButton from "../../../components/FigmaUI/TagButton/TagButton";
+import Streamline from "../../../assets/streamline";
 
 import "./Tags.scss";
 // @ts-ignore
-import variables from "scss/colors.scss";
 import { Props } from "./Tags.container";
 import { Tag } from "../../../@types/interface";
+import styled from "styled-components";
+
+const InnerButton = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  line-height: 20px;
+`;
 
 export interface PropsBeforeInjection {
   tags: Tag[];
   disableEdit: boolean;
   changeTag: (arg1: number, arg2: Tag) => void;
-  addTag: () => void;
+  addTag: (tags: Tag[]) => void;
+  openTag: () => void;
   deleteTag: (idx: number) => void;
   history: any;
   t: any;
@@ -67,7 +73,7 @@ export class Tags extends Component<Props> {
 
   addTag = () => {
     this.setState({ isDropdownOpen: [...this.state.isDropdownOpen, false] });
-    this.props.addTag();
+    // this.props.addTag(this.props.tags);
   };
 
   removeTag = (idx: number) => {
@@ -85,72 +91,57 @@ export class Tags extends Component<Props> {
       <div className="tags" id="tags">
         {(this.props.tags || []).map((tag: Tag, key: number) => {
           if (tag) {
+            var tagIcon = filtres.tags.find((elem) => elem.name === tag.name)
             return (
-              <ButtonDropdown
-                isOpen={
-                  !this.props.disableEdit && this.state.isDropdownOpen[key]
-                }
-                toggle={() => this.toggleDropdown(key, tag)}
-                className="tags-dropdown"
+              <div style={{alignSelf: "flex-end"}}>
+              <TagButton
                 key={key}
+                className={"mr-10 color" + (tag.short ? "" : " full")}
+                color={(tag.short || "").replace(/ /g, "-")}
               >
-                <DropdownToggle caret={!this.props.disableEdit}>
-                  {tag &&
-                    t(
-                      "Tags." + (tag.short || tag.name || tag),
-                      tag.short || tag.name || tag
-                    )}
-                </DropdownToggle>
-                <DropdownMenu>
-                  {filtres.tags.map((e, i) => {
-                    return (
-                      <DropdownItem
-                        className="dropdown-custom"
-                        onMouseOver={(ev) =>
-                          // @ts-ignore
-                          (ev.target.style.backgroundColor = e.darkColor)
-                        }
-                        onMouseOut={(ev) =>
-                          // @ts-ignore
-                          (ev.target.style.backgroundColor = "#FFFFFF")
-                        }
-                        onClick={() => this.props.changeTag(key, e)}
-                        key={i}
-                        // @ts-ignore
-                        id={i}
-                      >
-                        {e && t("Tags." + e.short || e.name, e.short || e.name)}
-                      </DropdownItem>
-                    );
-                  })}
-                </DropdownMenu>
-                {!this.props.disableEdit && (
-                  <div className="tags-icons">
-                    <div onClick={() => this.removeTag(key)}>
-                      <EVAIcon
-                        name="close-circle"
-                        fill={variables.error}
-                        className="delete-icon"
-                        size="xlarge"
+                <InnerButton>
+                  {tagIcon ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        marginRight: 10,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Streamline
+                        name={tagIcon.icon}
+                        stroke={"white"}
+                        width={20}
+                        height={20}
                       />
                     </div>
-                  </div>
-                )}
-              </ButtonDropdown>
+                  ) : null}
+                  {tag.short}
+                </InnerButton>
+              </TagButton>
+              </div>
             );
+            // eslint-disable-next-line
+          } else {
+            return false;
           }
-          return false;
         })}
-        {!this.props.disableEdit && (this.props.tags || []).length < 3 && (
-          <Button className="plus-button ml-10" onClick={this.addTag}>
-            <EVAIcon
-              className="mr-10"
-              name="plus-circle-outline"
-              fill="#CDCDCD"
-            />
-            {t("Dispositif.Ajouter un thème", "Ajouter un thème")}
+        {!this.props.disableEdit && (this.props.tags || []).length > 0 ? 
+        (
+          <Button
+            className="plus-button ml-10 icon"
+            onClick={this.props.openTag}
+          >
+            <Streamline name={"tag"} width={22} height={22} />
           </Button>
-        )}
+        ) : !this.props.disableEdit && (this.props.tags || []).length < 1 ? 
+        (
+          <Button className="plus-button ml-10" onClick={this.props.openTag}>
+            <Streamline name={"tag"} width={22} height={22} />
+            {t("Dispositif.Ajouter un tag", "Ajouter un tag")}
+          </Button>
+        ) : null}
       </div>
     );
   }
