@@ -86,7 +86,6 @@ export class Tags extends Component<Props> {
   };
 
   render() {
-    const { t } = this.props;
     return (
       <div className="tags" id="tags">
         {(this.props.tags || []).map((tag: Tag, key: number) => {
@@ -139,7 +138,7 @@ export class Tags extends Component<Props> {
         (
           <Button className="plus-button ml-10" onClick={this.props.openTag}>
             <Streamline name={"tag"} width={22} height={22} />
-            {t("Dispositif.Ajouter un tag", "Ajouter un tag")}
+            {"Choisir les thèmes"}
           </Button>
         ) : null}
       </div>

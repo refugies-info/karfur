@@ -2134,6 +2134,7 @@ export class Dispositif extends Component {
               validate={this.valider_dispositif}
             />
             <TagsModal
+              tags={this.state.tags}
               validate={this.validateTags}
               categories={filtres.tags}
               show={this.state.showTagsModal}
