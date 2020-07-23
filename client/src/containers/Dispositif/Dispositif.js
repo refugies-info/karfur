@@ -132,6 +132,7 @@ export class Dispositif extends Component {
       darkColor: variables.darkColor,
       lightColor: variables.lightColor,
       hoverColor: variables.gris,
+      short: "ioImage" 
     },
 
     uiArray: new Array(menu.length).fill(uiElement),
@@ -2164,10 +2165,17 @@ export class Dispositif extends Component {
 }
 
 function bgImage(short) {
+  if (short === "noImage") {
+    const imageUrl = require("../../assets/figma/placeholder_no_theme" +
+    ".svg"); 
+  return imageUrl;
+  //eslint-disable-next-line
+  } else {
   const imageUrl = require("../../assets/figma/illustration_" +
     short.split(" ").join("-") +
     ".svg"); //illustration_
   return imageUrl;
+  }
 }
 
 const mapStateToProps = (state) => {
