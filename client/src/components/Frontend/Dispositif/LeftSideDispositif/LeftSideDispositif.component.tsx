@@ -122,7 +122,6 @@ export const LeftSideDispositif = (props: Props) => {
           })}
         </Scrollspy>
       </ListGroup>
-
       <div className="print-buttons">
         {props.typeContenu !== "demarche" && (
           <div className="link-wrapper" id="input-btn">
