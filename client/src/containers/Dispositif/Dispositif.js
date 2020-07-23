@@ -38,7 +38,7 @@ import {
   ResponsableModal,
   VarianteCreateModal,
   RejectionModal,
-  TagsModal
+  TagsModal,
 } from "../../components/Modals/index";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import { Tags } from "./Tags";
@@ -131,7 +131,7 @@ export class Dispositif extends Component {
       darkColor: variables.darkColor,
       lightColor: variables.lightColor,
       hoverColor: variables.gris,
-      short: "noImage" 
+      short: "noImage",
     },
 
     uiArray: new Array(menu.length).fill(uiElement),
@@ -553,32 +553,48 @@ export class Dispositif extends Component {
         ))
     ) {
       if (editable) {
-        state = state.map((x) => ({
-          ...x,
-          editable: false,
-          ...(x.editable &&
-            x.editorState &&
-            x.editorState.getCurrentContent() &&
-            x.editorState.getCurrentContent().getPlainText() !== "" && {
-              content: convertToHTML(customConvertOption)(
-                x.editorState.getCurrentContent()
-              ),
+        state = state.map((x) => {
+          const hasNewContent =
+            x.editable && x.editorState && x.editorState.getCurrentContent();
+          // if user removed text with store empty string without html balise (so that it works with translation)
+          const content =
+            hasNewContent &&
+            x.editorState.getCurrentContent().getPlainText() !== ""
+              ? convertToHTML(customConvertOption)(
+                  x.editorState.getCurrentContent()
+                )
+              : "";
+          return {
+            ...x,
+            editable: false,
+            ...(hasNewContent && {
+              content,
             }),
-          ...(x.children && {
-            children: x.children.map((y) => ({
-              ...y,
-              ...(y.editable &&
-                y.editorState &&
-                y.editorState.getCurrentContent() &&
-                y.editorState.getCurrentContent().getPlainText() !== "" && {
-                  content: convertToHTML(customConvertOption)(
-                    y.editorState.getCurrentContent()
-                  ),
-                }),
-              editable: false,
-            })),
-          }), //draftToHtml(convertToRaw(y.editorState.getCurrentContent()))
-        }));
+            ...(x.children && {
+              children: x.children.map((y) => {
+                const hasNewContent =
+                  y.editable &&
+                  y.editorState &&
+                  y.editorState.getCurrentContent();
+                // if user removed text with store empty string without html balise (so that it works with translation)
+                const content =
+                  hasNewContent &&
+                  y.editorState.getCurrentContent().getPlainText() !== ""
+                    ? convertToHTML(customConvertOption)(
+                        y.editorState.getCurrentContent()
+                      )
+                    : "";
+                return {
+                  ...y,
+                  ...(hasNewContent && {
+                    content,
+                  }),
+                  editable: false,
+                };
+              }),
+            }), //draftToHtml(convertToRaw(y.editorState.getCurrentContent()))
+          };
+        });
       }
       let right_node = state[key];
       if (subkey !== undefined && state[key].children.length > subkey) {
@@ -1101,15 +1117,16 @@ export class Dispositif extends Component {
   };
 
   addTag = (tags) => {
-    this.setState({ tags: tags })};
-
-  validateTags = (tags) => {
-    this.setState({ tags: tags, mainTag: tags[0] }, () => this.setColors())
-    
+    this.setState({ tags: tags });
   };
 
-    openTag = () => {
-      this.setState({ showTagsModal: true })};
+  validateTags = (tags) => {
+    this.setState({ tags: tags, mainTag: tags[0] }, () => this.setColors());
+  };
+
+  openTag = () => {
+    this.setState({ showTagsModal: true });
+  };
 
   deleteTag = (idx) =>
     this.setState({ tags: [...this.state.tags].filter((_, i) => i !== idx) });
@@ -1350,18 +1367,21 @@ export class Dispositif extends Component {
     let dispositif = {
       ...content,
       contenu: [...this.state.menu].map((x, i) => {
+        const hasNewContent =
+          x.editable && x.editorState && x.editorState.getCurrentContent();
+        // if user removed text with store empty string without html balise (so that it works with translation)
+
+        const content =
+          hasNewContent &&
+          x.editorState.getCurrentContent().getPlainText() !== ""
+            ? convertToHTML(customConvertOption)(
+                x.editorState.getCurrentContent()
+              )
+            : "";
         return {
           title: x.title,
           ...{
-            content:
-              x.editable &&
-              x.editorState &&
-              x.editorState.getCurrentContent() &&
-              x.editorState.getCurrentContent().getPlainText() !== ""
-                ? convertToHTML(customConvertOption)(
-                    x.editorState.getCurrentContent()
-                  )
-                : x.content,
+            content: hasNewContent ? content : x.content,
           },
           ...(inVariante && {
             isVariante: _.get(uiArray, `${i}.varianteSelected`),
@@ -1372,16 +1392,22 @@ export class Dispositif extends Component {
             children: x.children.map((y, j) => {
               // eslint-disable-next-line
               const { editorState, ...noEditor } = y;
+              const hasNewContent =
+                y.editable &&
+                y.editorState &&
+                y.editorState.getCurrentContent();
+              // if user removed text with store empty string without html balise (so that it works with translation)
+
+              const content =
+                hasNewContent &&
+                y.editorState.getCurrentContent().getPlainText() !== ""
+                  ? convertToHTML(customConvertOption)(
+                      y.editorState.getCurrentContent()
+                    )
+                  : "";
               return {
                 ...noEditor,
-                ...(y.editable &&
-                  y.editorState &&
-                  y.editorState.getCurrentContent() &&
-                  y.editorState.getCurrentContent().getPlainText() !== "" && {
-                    content: convertToHTML(customConvertOption)(
-                      y.editorState.getCurrentContent()
-                    ),
-                  }),
+                ...(hasNewContent && { content }),
                 ...(inVariante && {
                   isVariante: _.get(
                     uiArray,
@@ -2115,6 +2141,7 @@ export class Dispositif extends Component {
               validate={this.valider_dispositif}
             />
             <TagsModal
+              tags={this.state.tags}
               validate={this.validateTags}
               categories={filtres.tags}
               show={this.state.showTagsModal}
@@ -2148,14 +2175,14 @@ export class Dispositif extends Component {
 function bgImage(short) {
   if (short === "noImage") {
     const imageUrl = require("../../assets/figma/placeholder_no_theme" +
-    ".svg"); 
-  return imageUrl;
-  //eslint-disable-next-line
+      ".svg");
+    return imageUrl;
+    //eslint-disable-next-line
   } else {
-  const imageUrl = require("../../assets/figma/illustration_" +
-    short.split(" ").join("-") +
-    ".svg"); //illustration_
-  return imageUrl;
+    const imageUrl = require("../../assets/figma/illustration_" +
+      short.split(" ").join("-") +
+      ".svg"); //illustration_
+    return imageUrl;
   }
 }
 

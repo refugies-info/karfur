@@ -152,7 +152,6 @@ const dashHeader = (props) => {
           </h2>
         </Col>
         <Col className="tableau-header align-right">
-          {props.structure && <b className="role">Vous êtes {role}</b>}
           <FButton
             tag={"a"}
             href="https://help.refugies.info/fr/"

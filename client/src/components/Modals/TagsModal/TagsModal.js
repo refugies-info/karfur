@@ -88,6 +88,25 @@ export class dispositifValidateModal extends Component {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.tags !== prevProps.tags) {
+      if (this.props.tags.length > 0) {
+        if (this.props.tags[0]) {
+          this.setState({tag1: this.props.tags[0]})
+        }
+        if (this.props.tags[1]) {
+          this.setState({tag2: this.props.tags[1]})
+        }
+        if (this.props.tags[2]) {
+          this.setState({tag3: this.props.tags[2]})
+        }
+        if (!this.props.tags[1] && !this.props.tags[2]) {
+          this.setState({noTag: true})
+        }
+      }
+    }
+  }
+
   selectTag1 = (subi) => {
     if (this.state.tag1 && this.state.tag1.short === subi.short) {
       this.setState({ tag1: null });
@@ -131,7 +150,7 @@ export class dispositifValidateModal extends Component {
   };
 
   handleCheckboxChange = (event) =>
-    this.setState({ noTag: event.target.checked });
+    this.setState({ noTag: event.target.checked, tag2: null, tag3: null });
 
   validateAndClose = () => {
     this.props.validate([this.state.tag1, this.state.tag2, this.state.tag3]);
@@ -292,10 +311,10 @@ export class dispositifValidateModal extends Component {
               </TagButton>
             );
           })}
-          <div style={{backgroundColor: (this.state.noTag ? "#def6c2" : "#f2f2f2"), borderRadius: 10, padding: 2, paddingTop: 18, marginTop: 30, paddingLeft: 10}}>
-          <label class="container">
-            <input onClick={this.handleCheckboxChange} type="checkbox" checked={this.state.noTag} />
-            <span class="checkmark"></span>
+          <div style={{backgroundColor: (this.state.noTag ? "#def6c2" : "#f2f2f2"), borderRadius: 10, padding: 2, paddingTop: 18, marginTop: 30, paddingLeft: 14}}>
+          <label className="container">
+            <input onChange={this.handleCheckboxChange} type="checkbox" checked={this.state.noTag} />
+            <span className="checkmark"></span>
           </label>
           <p style={{marginLeft: 30, fontSize: 14}}>
           Je ne souhaite pas ajouter de thèmes supplémentaires
