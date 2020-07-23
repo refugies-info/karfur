@@ -131,7 +131,7 @@ export class Dispositif extends Component {
       darkColor: variables.darkColor,
       lightColor: variables.lightColor,
       hoverColor: variables.gris,
-      short: "ioImage" 
+      short: "noImage" 
     },
 
     uiArray: new Array(menu.length).fill(uiElement),
