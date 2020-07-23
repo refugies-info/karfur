@@ -4,13 +4,11 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Input,
-  FormGroup,
-  Label,
 } from "reactstrap";
 import styled from "styled-components";
 import TagButton from "../../FigmaUI/TagButton/TagButton";
 import Streamline from "../../../assets/streamline";
+import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { withTranslation } from "react-i18next";
 import variables from "scss/colors.scss";
 
@@ -29,7 +27,7 @@ const Title = styled.p`
 const Subtitle = styled.p`
   align-self: center;
   margin-bottom: 0;
-  font-size: 15px  !important;
+  font-size: 15px !important;
   color: ${(props) => (props.selected ? "white" : "black")};
 `;
 const InnerButton = styled.div`
@@ -39,35 +37,40 @@ const InnerButton = styled.div`
 `;
 
 const Sphere = styled.div`
- width: 40px;
- height: 40px;
- border-radius: 20px;
- background-color: ${(props) => (props.done ? "#4caf50" : "#443023")};
- margin-right: 10px;
- justify-content: center;
- display: flex;
- align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: ${(props) => (props.done ? "#4caf50" : "#443023")};
+  margin-right: 10px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 `;
 
-const Step = ({...props}) => {
-  return(
-  <Sphere done={props.done}>
-    <Title selected>
-      {props.children}
-      </Title>
-  </Sphere>
-  )
-}
+const Step = ({ ...props }) => {
+  return (
+    <Sphere done={props.done}>
+      <Title selected>{props.children}</Title>
+    </Sphere>
+  );
+};
 
 const StyledSub = ({ ...props }) => {
   return (
-    <div  style={{marginTop: 20, marginBottom: 20, flexDirection: "row", display: "flex", alignItems: "center"}} {...props}>
-      <Step done={props.done}>
-        {props.step}
-      </Step>
+    <div
+      style={{
+        marginTop: 30,
+        marginBottom: 20,
+        flexDirection: "row",
+        display: "flex",
+        alignItems: "center",
+      }}
+      {...props}
+    >
+      <Step done={props.done}>{props.step}</Step>
       <div>
-      <Title>{props.title}</Title>
-      <Subtitle>{props.subtitle}</Subtitle>
+        <Title>{props.title}</Title>
+        <Subtitle>{props.subtitle}</Subtitle>
       </div>
     </div>
   );
@@ -86,7 +89,17 @@ export class dispositifValidateModal extends Component {
   }
 
   selectTag1 = (subi) => {
-    this.setState({ tag1: subi });
+    if (this.state.tag1 && this.state.tag1.short === subi.short) {
+      this.setState({ tag1: null });
+    } else {
+      this.setState({ tag1: subi });
+    }
+    if (subi === this.state.tag2) {
+      this.setState({ tag2: null });
+    }
+    if (subi === this.state.tag3) {
+      this.setState({ tag3: null });
+    }
     //this.props.selectParam(this.props.keyValue, subi);
     //this.toggle();
   };
@@ -116,6 +129,9 @@ export class dispositifValidateModal extends Component {
     //this.props.selectParam(this.props.keyValue, subi);
     //this.toggle();
   };
+
+  handleCheckboxChange = (event) =>
+    this.setState({ noTag: event.target.checked });
 
   validateAndClose = () => {
     this.props.validate([this.state.tag1, this.state.tag2, this.state.tag3]);
@@ -175,6 +191,14 @@ export class dispositifValidateModal extends Component {
                     </div>
                   ) : null}
                   {subi.short}
+                  {this.state.tag1 && this.state.tag1.short === subi.short ? (
+                    <EVAIcon
+                      onClick={() => {}}
+                      name="close-outline"
+                      fill={"white"}
+                      className="sort-btn ml-2"
+                    />
+                  ) : null}
                 </InnerButton>
               </TagButton>
             );
@@ -185,29 +209,53 @@ export class dispositifValidateModal extends Component {
               "Ces thèmes secondaires permettent de compléter le référencement"
             }
             step={"2"}
-            done={(this.state.tag2 || this.state.tag3) || this.state.noTag ? true : false}
+            done={
+              this.state.tag2 || this.state.tag3 || this.state.noTag
+                ? true
+                : false
+            }
           />
           {this.props.categories.map((subi, idx) => {
             return (
               <TagButton
                 key={idx}
-                onClick={() => this.selectTag2(subi)}
+                onClick={() =>
+                  this.state.tag1 && subi.short === this.state.tag1.short
+                    ? null
+                    : this.selectTag2(subi)
+                }
                 className={
                   this.state.tag1 === subi.short
                     ? "mr-10  mt-10 color" + (subi.short ? "" : " full")
                     : "mr-10 mt-10 color bg-dark-gris"
                 }
                 color={
-                  (this.state.tag2 && this.state.tag2.short === subi.short) ||
-                  (this.state.tag3 && this.state.tag3.short === subi.short) ||
-                  (!this.state.tag2 && !this.state.tag3 && !this.state.noTag)
+                  this.state.tag1 && subi.short === this.state.tag1.short
+                    ? null
+                    : (this.state.tag2 &&
+                        this.state.tag2.short === subi.short) ||
+                      (this.state.tag3 &&
+                        this.state.tag3.short === subi.short) ||
+                      (!this.state.tag2 && this.state.tag3) ||
+                      (this.state.tag2 && !this.state.tag3) ||
+                      (!this.state.tag2 &&
+                        !this.state.tag3 &&
+                        !this.state.noTag)
                     ? (subi.short || "").replace(/ /g, "-")
                     : null
                 }
                 lighter={
-                  (this.state.tag2 && subi.short === this.state.tag2.short) ||
-                  (this.state.tag3 && this.state.tag3.short === subi.short) ||
-                  (!this.state.noTag && !this.state.tag3 && !this.state.tag2)
+                  this.state.tag1 && subi.short === this.state.tag1.short
+                    ? false
+                    : (!this.state.noTag &&
+                        !this.state.tag3 &&
+                        !this.state.tag2) ||
+                      (!this.state.tag3 &&
+                        this.state.tag2 &&
+                        this.state.tag2.short !== subi.short) ||
+                      (this.state.tag3 &&
+                        !this.state.tag2 &&
+                        this.state.tag3.short !== subi.short)
                     ? true
                     : false
                 }
@@ -231,35 +279,44 @@ export class dispositifValidateModal extends Component {
                     </div>
                   ) : null}
                   {subi.short}
+                  {(this.state.tag2 && this.state.tag2.short === subi.short) ||
+                  (this.state.tag3 && this.state.tag3.short === subi.short) ? (
+                    <EVAIcon
+                      onClick={() => {}}
+                      name="close-outline"
+                      fill={"white"}
+                      className="sort-btn ml-2"
+                    />
+                  ) : null}
                 </InnerButton>
               </TagButton>
             );
           })}
-          <FormGroup check className="case-cochee mt-10">
-            <Label check>
-              <Input
-                type="checkbox"
-                checked={this.state.noTag}
-                onChange={this.tagCheck}
-              />{" "}
-              Je ne souhaite pas ajouter de thèmes supplémentaires
-            </Label>
-          </FormGroup>
+          <div style={{backgroundColor: (this.state.noTag ? "#def6c2" : "#f2f2f2"), borderRadius: 10, padding: 2, paddingTop: 18, marginTop: 30, paddingLeft: 10}}>
+          <label class="container">
+            <input onClick={this.handleCheckboxChange} type="checkbox" checked={this.state.noTag} />
+            <span class="checkmark"></span>
+          </label>
+          <p style={{marginLeft: 30, fontSize: 14}}>
+          Je ne souhaite pas ajouter de thèmes supplémentaires
+          </p>
+          </div>
         </ModalBody>
-        <ModalFooter>
-          <FButton
-            tag={"a"}
-            href="https://help.refugies.info/fr/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="footer-btn"
-            type="help"
-            name="question-mark-circle-outline"
-            fill={variables.noir}
-          >
-            {"Centre d'aide"}
-          </FButton>
-          <FButton
+        <ModalFooter style={{ justifyContent: "space-between" }}>
+          <div style={{ justifyContent: "flex-start", display: "flex" }}>
+            <FButton
+              tag={"a"}
+              href="https://help.refugies.info/fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-btn"
+              type="help"
+              name="question-mark-circle-outline"
+              fill={variables.noir}
+            >
+              {"Centre d'aide"}
+            </FButton>
+            <FButton
               type="tuto"
               name={"play-circle-outline"}
               className="ml-10"
@@ -267,29 +324,32 @@ export class dispositifValidateModal extends Component {
             >
               Tutoriel
             </FButton>
-          <FButton
-            type="outline-black"
-            name="arrow-back"
-            fill={variables.noir}
-            className="mr-10"
-            onClick={() => this.props.toggle()}
-          >
-            Retour
-          </FButton>
-          <FButton
-            name="checkmark"
-            type="validate"
-            onClick={this.validateAndClose}
-            disabled={
-              !this.state.tag1 ||
-              (this.state.tag1 &&
-                !this.state.tag2 &&
-                !this.state.tag3 &&
-                !this.state.noTag)
-            }
-          >
-            Valider
-          </FButton>
+          </div>
+          <div style={{ justifyContent: "flex-end", display: "flex" }}>
+            <FButton
+              type="outline-black"
+              name="arrow-back"
+              fill={variables.noir}
+              className="mr-10"
+              onClick={() => this.props.toggle()}
+            >
+              Retour
+            </FButton>
+            <FButton
+              name="checkmark"
+              type="validate"
+              onClick={this.validateAndClose}
+              disabled={
+                !this.state.tag1 ||
+                (this.state.tag1 &&
+                  !this.state.tag2 &&
+                  !this.state.tag3 &&
+                  !this.state.noTag)
+              }
+            >
+              Valider
+            </FButton>
+          </div>
         </ModalFooter>
       </Modal>
     );

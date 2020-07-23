@@ -1,6 +1,7 @@
 @import 'src/scss/colors.scss';
 
 .search-btn{
+  outline:none;
   justify-content: center;
   align-items: center;
   background: $grisFonce;
@@ -14,7 +15,7 @@
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 
   &.lighter{
-    filter:saturate(80%) opacity(80%) brightness(130%); 
+    filter:saturate(80%) opacity(50%) brightness(110%); 
   }
 
   &:hover{
@@ -26,15 +27,15 @@
 
   }
   &:focus{
-    outline: none;
+    outline: 0;
     color: #FFFFFF;
-    border: 0.5px solid #2D9CDB;
+   // border: 0.5px solid #2D9CDB;
   }
 
   &.full{
     background: transparent;
     color: #FFFFFF;
-    border: 0.5px solid #FFFFFF;
+   // border: 0.5px solid #FFFFFF;
     &:hover{
       color: $noir;
       background: #FFFFFF;
