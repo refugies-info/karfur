@@ -228,6 +228,9 @@ $imgHeight: 350px;
     }
   }
 
+  .list-group-flush ul {
+    padding-left: 0px;
+  }
   .list-group.list-group-flush .list-group {
     padding-left: 30px;
     border: none;
@@ -255,7 +258,7 @@ $imgHeight: 350px;
     .sticky-affix {
       position: sticky;
       position: -webkit-sticky;
-      top: 60px;
+      top: 90px;
       display: flex;
       flex-wrap: wrap;
       max-width: 100%;
