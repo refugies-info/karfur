@@ -1,70 +1,72 @@
-@import 'src/scss/colors.scss';
-@import 'src/scss/global.scss';
+@import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
-$taille:60px;
-$tailleBig:80px;
+$taille: 60px;
+$tailleBig: 80px;
 
-.sponsor-footer{
+.sponsor-footer {
   color: $darkColor;
-  background: #FFFFFF;
+  background: #ffffff;
   padding: 20px 40px;
-  @include media-max("lg-limit") { width: 116% }
+  @include media-max("lg-limit") {
+    width: 116%;
+  }
 
-  h5{
+  h5 {
     margin-bottom: 20px;
     font-weight: bold;
   }
 
-  .col{
-    display:flex;
+  .col {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    img{
+    img {
       height: fit-content;
     }
   }
 
-  .image-wrapper{
-    position:relative;
+  .image-wrapper {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin: 40px 20px;
-    .sponsor-img{
+    .sponsor-img {
       //max-width:64px;
-      max-height:80px;
-      &:hover{
+      max-height: 80px;
+      &:hover {
         filter: grayscale(1);
         cursor: pointer;
       }
     }
-    .delete-icon{
+    .delete-icon {
       position: absolute;
       top: -15px;
       right: -15px;
-      display:none;
+      display: none;
     }
-    &:hover .delete-icon{
+    &:hover .delete-icon {
       display: inherit;
     }
   }
 
-  .add-sponsor{
+  .add-sponsor {
     cursor: pointer;
     background: $jauneClair;
     border-radius: 12px;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    height:$taille;
-    position:relative;
+    height: $taille;
+    position: relative;
     padding: 20px;
-    &:hover{
+    &:hover {
       cursor: pointer;
       background-color: $gris;
     }
-    .add-sign{
+    .add-sign {
       border-radius: 50%;
       padding: 10px;
       margin-right: 10px;
@@ -73,55 +75,46 @@ $tailleBig:80px;
       height: 40px;
     }
 
-    .add-text{
+    .add-text {
       font-weight: bold;
       font-size: 16px;
     }
   }
 
-  .default-logo{
+  .default-logo {
     font-family: monospace;
     font-size: 18px;
   }
 
-  .owner-badge{
+  .owner-badge {
     background: $noirCD;
     border-radius: 12px;
     padding: 10px;
-    color: #FFFFFF;
+    color: #ffffff;
     align-self: flex-end;
     margin-top: 10px;
     width: fit-content;
     margin-left: auto;
   }
-  .not-found-wrapper{
+  .not-found-wrapper {
     background: $noirCD;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     padding: 10px;
     padding-left: 40px;
     position: relative;
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: bold;
 
-    .not-found-icon{
+    .not-found-icon {
       position: absolute;
-      top:10px;
-      left:10px;
+      top: 10px;
+      left: 10px;
     }
-  }
-
-  .not-exist-wrapper{
-    background: $gris;
-    border-radius: 12px;
-    font-weight: bold;
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
   }
 }
 
-.modal.show .modal-dialog.modal-structure{
+.modal.show .modal-dialog.modal-structure {
   overflow: scroll;
   max-height: 100vh;
   width: 650px;
@@ -129,34 +122,36 @@ $tailleBig:80px;
   background: $blanc;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
-  @include media-max("tablet-up") { max-width: 100%; }
+  @include media-max("tablet-up") {
+    max-width: 100%;
+  }
 
-  .center-text{
+  .center-text {
     text-align: center;
   }
 
-  .modal-content{
+  .modal-content {
     background: transparent;
-    padding:20px;
-    border:none;
+    padding: 20px;
+    border: none;
   }
-  .modal-footer{
+  .modal-footer {
     background: transparent;
     justify-content: space-between;
-    border:none;
+    border: none;
   }
 
-  .case-cochee{
+  .case-cochee {
     color: $grisFonce;
     text-align: right;
   }
 
-  .warning-bloc{
+  .warning-bloc {
     border-radius: 12px;
     padding: 10px 20px 10px 60px;
     position: relative;
 
-    .info-icon{
+    .info-icon {
       position: absolute;
       left: 20px;
       top: 50%;
@@ -164,29 +159,29 @@ $tailleBig:80px;
     }
   }
 
-  .envoye-content{
+  .envoye-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    .illu{
+    .illu {
       margin: 30px;
     }
-    h5{
+    h5 {
       color: $validationHover;
     }
   }
 
-  .form-field{
-    .input-group{
+  .form-field {
+    .input-group {
       margin-top: 10px;
-      input{
+      input {
         border-radius: 12px;
         border: none;
         padding: 10px 10px 10px 40px;
       }
-      .input-icon{
+      .input-icon {
         position: absolute;
         top: 8px;
         left: 10px;
@@ -196,59 +191,59 @@ $tailleBig:80px;
     }
   }
 
-  .selection-wrapper{
+  .selection-wrapper {
     border-radius: 12px;
     padding: 10px 20px;
 
-    .selection-logo{
+    .selection-logo {
       max-width: 40px;
       max-height: 40px;
     }
   }
 
-  .author-choice{
+  .author-choice {
     padding: 10px 20px 10px 40px;
     border: 0.5px solid $noir;
     border-radius: 12px;
     width: fit-content;
   }
 
-  .ma-structure{
+  .ma-structure {
     padding: 10px 10px 10px 30px;
     border: 0.5px solid $noir;
     border-radius: 12px;
   }
-  .push-right{
+  .push-right {
     margin-left: auto;
   }
 }
 
-.modal-sponsors .modal-content{
+.modal-sponsors .modal-content {
   background: $gris;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   padding: 40px;
 
-  .form-field{
+  .form-field {
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 16px;
     color: $noir;
 
-    &.inline-div{
+    &.inline-div {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 20px;
     }
-    .input-group{
+    .input-group {
       margin-top: 10px;
-      input{
+      input {
         border-radius: 12px;
         border: none;
         padding: 10px 10px 10px 40px;
       }
-      .input-icon{
+      .input-icon {
         position: absolute;
         top: 8px;
         left: 10px;
@@ -257,23 +252,23 @@ $tailleBig:80px;
       }
     }
 
-    .image-wrapper{
-      position:relative;
-      .sponsor-img{
+    .image-wrapper {
+      position: relative;
+      .sponsor-img {
         max-height: 40px;
         max-width: 110px;
       }
     }
   }
-  .btn-footer{
+  .btn-footer {
+    margin-left: 0px;
     margin-top: 10px;
-    margin-left: auto;
   }
-  .upload-btn{
+  .upload-btn {
     position: relative;
   }
-  [type=file] {
-    z-index:2;
+  [type="file"] {
+    z-index: 2;
     cursor: pointer;
     display: block;
     font-size: 999px;

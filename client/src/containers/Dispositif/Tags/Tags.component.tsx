@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import {
-  Button,
-} from "reactstrap";
+import { Button } from "reactstrap";
 import { filtres } from "../data";
 
 import TagButton from "../../../components/FigmaUI/TagButton/TagButton";
@@ -90,35 +88,35 @@ export class Tags extends Component<Props> {
       <div className="tags" id="tags">
         {(this.props.tags || []).map((tag: Tag, key: number) => {
           if (tag) {
-            var tagIcon = filtres.tags.find((elem) => elem.name === tag.name)
+            var tagIcon = filtres.tags.find((elem) => elem.name === tag.name);
             return (
-              <div style={{alignSelf: "flex-end"}}>
-              <TagButton
-                key={key}
-                className={"mr-10 color" + (tag.short ? "" : " full")}
-                color={(tag.short || "").replace(/ /g, "-")}
-              >
-                <InnerButton>
-                  {tagIcon ? (
-                    <div
-                      style={{
-                        display: "flex",
-                        marginRight: 10,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Streamline
-                        name={tagIcon.icon}
-                        stroke={"white"}
-                        width={20}
-                        height={20}
-                      />
-                    </div>
-                  ) : null}
-                  {tag.short}
-                </InnerButton>
-              </TagButton>
+              <div style={{ alignSelf: "flex-end" }}>
+                <TagButton
+                  key={key}
+                  className={"mr-10 color" + (tag.short ? "" : " full")}
+                  color={(tag.short || "").replace(/ /g, "-")}
+                >
+                  <InnerButton>
+                    {tagIcon ? (
+                      <div
+                        style={{
+                          display: "flex",
+                          marginRight: 10,
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Streamline
+                          name={tagIcon.icon}
+                          stroke={"white"}
+                          width={20}
+                          height={20}
+                        />
+                      </div>
+                    ) : null}
+                    {tag.short}
+                  </InnerButton>
+                </TagButton>
               </div>
             );
             // eslint-disable-next-line
@@ -126,16 +124,14 @@ export class Tags extends Component<Props> {
             return false;
           }
         })}
-        {!this.props.disableEdit && (this.props.tags || []).length > 0 ? 
-        (
+        {!this.props.disableEdit && (this.props.tags || []).length > 0 ? (
           <Button
             className="plus-button ml-10 icon"
             onClick={this.props.openTag}
           >
             <Streamline name={"tag"} width={22} height={22} />
           </Button>
-        ) : !this.props.disableEdit && (this.props.tags || []).length < 1 ? 
-        (
+        ) : !this.props.disableEdit && (this.props.tags || []).length < 1 ? (
           <Button className="plus-button ml-10" onClick={this.props.openTag}>
             <Streamline name={"tag"} width={22} height={22} />
             {"Choisir les thèmes"}

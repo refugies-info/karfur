@@ -22,20 +22,6 @@ body .figma-btn {
     font-size: 11px;
   }
 
-  // Ici on précise le comportement des icônes avec svg et fill
-  &.tuto {
-    color: $blancSimple;
-    background: $focus;
-    outline: 0;
-    border: 0.5px solid transparent;
-    &:hover {
-      background: $blancSimple;
-      color: $blancSimple;
-      svg {
-        fill: $blancSimple;
-      }
-    }
-  }
   &.default svg {
     fill: $noir;
   }
@@ -322,6 +308,27 @@ body .figma-btn {
     }
     &:not(:disabled):not(.disabled):active {
       background: $erreur;
+    }
+  }
+
+  // Ici on précise le comportement des icônes avec svg et fill
+  &.tuto {
+    background: $focus;
+    color: $blancSimple;
+    outline: 0;
+    border: 0.5px solid transparent;
+    svg {
+      fill: $blancSimple;
+    }
+    &:hover {
+      background: #d2edfc;
+      color: $focus;
+      svg {
+        fill: $focus;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      background: $focus;
     }
   }
 

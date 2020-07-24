@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "reactstrap";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import styled from "styled-components";
 import TagButton from "../../FigmaUI/TagButton/TagButton";
 import Streamline from "../../../assets/streamline";
@@ -40,7 +35,7 @@ const Sphere = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  background-color: ${(props) => (props.done ? "#4caf50" : "#443023")};
+  background-color: ${(props) => (props.done ? "#4caf50" : "#212121")};
   margin-right: 10px;
   justify-content: center;
   display: flex;
@@ -92,16 +87,16 @@ export class dispositifValidateModal extends Component {
     if (this.props.tags !== prevProps.tags) {
       if (this.props.tags.length > 0) {
         if (this.props.tags[0]) {
-          this.setState({tag1: this.props.tags[0]})
+          this.setState({ tag1: this.props.tags[0] });
         }
         if (this.props.tags[1]) {
-          this.setState({tag2: this.props.tags[1]})
+          this.setState({ tag2: this.props.tags[1] });
         }
         if (this.props.tags[2]) {
-          this.setState({tag3: this.props.tags[2]})
+          this.setState({ tag3: this.props.tags[2] });
         }
         if (!this.props.tags[1] && !this.props.tags[2]) {
-          this.setState({noTag: true})
+          this.setState({ noTag: true });
         }
       }
     }
@@ -311,14 +306,27 @@ export class dispositifValidateModal extends Component {
               </TagButton>
             );
           })}
-          <div style={{backgroundColor: (this.state.noTag ? "#def6c2" : "#f2f2f2"), borderRadius: 10, padding: 2, paddingTop: 18, marginTop: 30, paddingLeft: 14}}>
-          <label className="container">
-            <input onChange={this.handleCheckboxChange} type="checkbox" checked={this.state.noTag} />
-            <span className="checkmark"></span>
-          </label>
-          <p style={{marginLeft: 30, fontSize: 14}}>
-          Je ne souhaite pas ajouter de thèmes supplémentaires
-          </p>
+          <div
+            style={{
+              backgroundColor: this.state.noTag ? "#def6c2" : "#f2f2f2",
+              borderRadius: 10,
+              padding: 2,
+              paddingTop: 18,
+              marginTop: 30,
+              paddingLeft: 14,
+            }}
+          >
+            <label className="container">
+              <input
+                onChange={this.handleCheckboxChange}
+                type="checkbox"
+                checked={this.state.noTag}
+              />
+              <span className="checkmark"></span>
+            </label>
+            <p style={{ marginLeft: 30, fontSize: 14 }}>
+              Je ne souhaite pas ajouter de thèmes supplémentaires
+            </p>
           </div>
         </ModalBody>
         <ModalFooter style={{ justifyContent: "space-between" }}>
@@ -339,7 +347,9 @@ export class dispositifValidateModal extends Component {
               type="tuto"
               name={"play-circle-outline"}
               className="ml-10"
-              onClick={() => {this.props.openTuto()}}
+              onClick={() => {
+                this.props.openTuto();
+              }}
             >
               Tutoriel
             </FButton>
