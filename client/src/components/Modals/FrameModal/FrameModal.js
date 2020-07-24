@@ -28,7 +28,7 @@ export class FrameModal extends Component {
               alignSelf: "center",
               width: "100%",
               height: 500,
-              border: "1px solid black",
+              border: "1px solid #C4C4C4",
             }}
             allowFullScreen
             src="https://help.refugies.info/fr/article/comment-creer-une-page-dispositif-d82wz7/reader/"
