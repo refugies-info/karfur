@@ -732,6 +732,7 @@ class Sponsors extends Component {
           handleFileInputChange={this.handleFileInputChange}
           handleChange={this.handleImgChange}
           addSponsor={this.addSponsor}
+          tooltipOpen={this.state.tooltipOpen}
         />
       </div>
     );
@@ -810,7 +811,7 @@ const ImgModal = (props) => (
         />
         <Input
           id="link"
-          placeholder="https://www.agi-r.fr"
+          placeholder="https://www.réfugiés.info"
           value={props.link}
           onChange={props.handleChange}
         />
@@ -843,22 +844,22 @@ const ImgModal = (props) => (
         />
         <Input
           id="alt"
-          placeholder="Agi’r"
+          placeholder="Réfugiés.info"
           value={props.alt}
           onChange={props.handleChange}
         />
       </InputGroup>
     </div>
     <div className="btn-footer">
-      <FButton onClick={props.toggleModal} type="default" className="mr-10">
-        Annuler
-      </FButton>
       <FButton
         onClick={() => props.addSponsor(true)}
         type="validate"
         name="checkmark-circle-2-outline"
       >
         Valider
+      </FButton>
+      <FButton onClick={props.toggleModal} type="default" className="ml-10">
+        Annuler
       </FButton>
     </div>
   </Modal>
