@@ -39,6 +39,7 @@ import {
   VarianteCreateModal,
   RejectionModal,
   TagsModal,
+  FrameModal,
 } from "../../components/Modals/index";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import { Tags } from "./Tags";
@@ -145,6 +146,7 @@ export class Dispositif extends Component {
     showDispositifCreateModal: false,
     showDispositifValidateModal: false,
     showTagsModal: false,
+    showFrameModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
     suggestion: "",
@@ -923,6 +925,16 @@ export class Dispositif extends Component {
   toggleTagsModal = () =>
     this.setState((prevState) => ({
       showTagsModal: !prevState.showTagsModal,
+    }));
+  openTuto = () => {
+    this.setState((prevState) => ({
+      showTagsModal: !prevState.showTagsModal,
+      showFrameModal: !prevState.showFrameModal,
+    }));
+  };
+  toggleFrameModal = () =>
+    this.setState((prevState) => ({
+      showFrameModal: !prevState.showFrameModal,
     }));
   toggleDispositifValidateModal = () => {
     if (_.isEmpty(this.state.sponsors)) {
@@ -2147,6 +2159,13 @@ export class Dispositif extends Component {
               show={this.state.showTagsModal}
               toggle={this.toggleTagsModal}
               onChange={this.handleChange}
+              openTuto={this.openTuto}
+            />
+            <FrameModal
+              show={this.state.showFrameModal}
+              toggle={this.toggleFrameModal}
+              onChange={this.handleChange}
+              openTuto={this.openTuto}
             />
             <VarianteCreateModal
               titreInformatif={this.state.content.titreInformatif}
