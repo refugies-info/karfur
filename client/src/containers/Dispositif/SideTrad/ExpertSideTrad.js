@@ -184,6 +184,7 @@ class SideTrad extends Component {
     }
   }
  */
+//similar to the function in SideTrad.js 
   componentDidUpdate(prevProps, prevState) {
     const { currIdx, currSubIdx, currSubName, availableListTrad } = this.state;
     this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
@@ -394,6 +395,7 @@ class SideTrad extends Component {
     }
   }
 
+//similar to the function in SideTrad.js 
   _initializeComponent = async (props) => {
     if (props.traductionsFaites.length > 0) {
       let trad = props.traductionsFaites.find((trad) => {
@@ -433,6 +435,7 @@ class SideTrad extends Component {
     }
   };
 
+//similar to the function in SideTrad.js 
   goChange = async (isNext = true, fromFn = true) => {
     if (isNext && fromFn) {
       this.setState({ hasBeenSkipped: true });
@@ -575,6 +578,7 @@ class SideTrad extends Component {
     }
   };
 
+// this differs from SideTrad.js because we call insertTrad and send the translation to the backend to be inserted in the dispositif and be pubblished
   _endingFeedback = (newTrad) => {
     if (
       newTrad &&

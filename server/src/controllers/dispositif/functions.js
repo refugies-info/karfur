@@ -4,8 +4,12 @@ const { sanitizeOptions } = require("../article/data");
 
 const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
 
+/* We mark the changes with the new update dispositif,
+by comparing the old french text (oldD) with new one (newD) and then for validated translation (trad) we mark the modified section
+and if one of the sections is changed we change the status to "À revoir"*/
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const markTradModifications = (newD, oldD, trad, locale) => {
+  //We mark the titreInformatif, Marque, and Abstract
   pointeurs.forEach((x) => {
     if (JSON.stringify(oldD[x]) !== JSON.stringify(newD[x])) {
       trad.translatedText[x + "Modified"] = true;
@@ -13,11 +17,12 @@ const markTradModifications = (newD, oldD, trad, locale) => {
     }
   });
   oldD.contenu.forEach((p, index) => {
+    //we mark the titles of the content sections
     if (JSON.stringify(p.title) !== JSON.stringify(newD.contenu[index].title)) {
       trad.translatedText.contenu[index].titleModified = true;
       trad.status = "À revoir";
     }
-
+    //we mark the content in the 4 content sections
     if (
       JSON.stringify(p.content) !== JSON.stringify(newD.contenu[index].content)
     ) {
@@ -31,6 +36,7 @@ const markTradModifications = (newD, oldD, trad, locale) => {
     ) {
       trad.status = "À revoir";
     }
+    //we mark the title and content for every child of each section
     if (p.children && p.children.length > 0) {
       p.children.forEach((c, j) => {
         if (!newD.contenu[index].children) {
@@ -64,7 +70,7 @@ const markTradModifications = (newD, oldD, trad, locale) => {
             ].contentModified = true;
             trad.status = "À revoir";
           }
-
+//we mark the infocards (contentTitle)
           if (
             JSON.stringify(c.contentTitle) !==
               JSON.stringify(newD.contenu[index].children[j].contentTitle) &&
@@ -83,10 +89,13 @@ const markTradModifications = (newD, oldD, trad, locale) => {
   return trad;
 };
 
+
+//we count the number of paragraphs/titles/sections with in the document and if the paragraph is malformed or undefined we skip it
 const countContents = (obj, nbChamps = 0, type = null) => {
   obj.forEach((x) => {
     ["titreInformatif", "titreMarque", "abstract", "title", "content"].forEach(
       (p) => {
+        //for each malformed type we skip, this is where bugged translations are solved to avoid % of validation problems
         if (
           x[p] &&
           x[p] !== "" &&
@@ -106,6 +115,8 @@ const countContents = (obj, nbChamps = 0, type = null) => {
         }
       }
     );
+    
+        //same as before but for infocards
     if (
       type === "cards" &&
       (x.title === "Important !" || x.title === "Durée" || !x.title) &&
@@ -131,6 +142,7 @@ const countContents = (obj, nbChamps = 0, type = null) => {
   return nbChamps;
 };
 
+//we count the number of paragraphs/titles/sections validated with in the document and if the paragraph is malformed or undefined we skip it
 const countValidated = (obj, nbChamps = 0, type = null) => {
   obj.forEach((x) => {
     ["titreInformatif", "titreMarque", "abstract", "title", "content"].forEach(
@@ -212,6 +224,7 @@ const turnToLocalized = (result, locale) => {
   return result;
 };
 
+// we get the specific language key we need by making a copy
 const turnToLocalizedNew = (resultObj, locale) => {
   var result = JSON.parse(JSON.stringify(resultObj));
   pointeurs.forEach((x) => {
