@@ -361,21 +361,22 @@ export class Avancement extends Component {
             if (
               a[element.order].toUpperCase() >= b[element.order].toUpperCase()
             ) {
-              return this.state.ascending ? 0 : -1;
+              return this.state.ascending ? 1 : -1;
             } else if (
               a[element.order].toUpperCase() < b[element.order].toUpperCase()
             ) {
-              return this.state.ascending ? -1 : 0;
+              return this.state.ascending ? -1 : 1;
             }
             return 1;
           });
         } else {
           draft.traductions.sort((a, b) => {
             if (a[element.order] >= b[element.order]) {
-              return this.state.ascending ? 0 : -1;
+              return this.state.ascending ? 1 : -1;
             } else if (a[element.order] < b[element.order]) {
-              return this.state.ascending ? -1 : 0;
+              return this.state.ascending ? -1 : 1;
             }
+
             return -1;
           });
         }
@@ -418,8 +419,6 @@ export class Avancement extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { isExpert, data } = this.state;
-    // eslint-disable-next-line no-console
-    console.log(this.props, this.state);
     let traductions = [];
     if (
       prevState.traductionsFaites !== this.state.traductionsFaites ||
@@ -950,26 +949,30 @@ export class Avancement extends Component {
           <Table responsive className="avancement-user-table">
             <thead>
               <tr>
-                {this.state.headers.map((element, key) => (
-                  <th
-                    key={key}
-                    className={
-                      (element.active ? "texte-bold" : "") +
-                      (element.hideOnPhone ? " hideOnPhone" : "") +
-                      " cursor-pointer"
-                    }
-                    onClick={() => this.reorder(key, element)}
-                  >
-                    {element.name}
-                    {element.order && (
-                      <EVAIcon
-                        name={"chevron-" + (element.croissant ? "up" : "down")}
-                        fill={variables.noir}
-                        className="sort-btn"
-                      />
-                    )}
-                  </th>
-                ))}
+                {this.state.headers.map((element, key) => {
+                  return (
+                    <th
+                      key={key}
+                      className={
+                        (element.active ? "texte-bold" : "") +
+                        (element.hideOnPhone ? " hideOnPhone" : "") +
+                        " cursor-pointer"
+                      }
+                      onClick={() => this.reorder(key, element)}
+                    >
+                      {element.name}
+                      {element.order && (
+                        <EVAIcon
+                          name={
+                            "chevron-" + (element.croissant ? "up" : "down")
+                          }
+                          fill={variables.noir}
+                          className="sort-btn"
+                        />
+                      )}
+                    </th>
+                  );
+                })}
               </tr>
             </thead>
             <tbody>

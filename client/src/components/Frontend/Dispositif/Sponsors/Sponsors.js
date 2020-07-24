@@ -27,6 +27,7 @@ import _ from "lodash";
 
 import "./Sponsors.scss";
 import variables from "scss/colors.scss";
+import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
 
 class Sponsors extends Component {
   state = {
@@ -335,21 +336,11 @@ class Sponsors extends Component {
                           </span>
                         </div>
                       ) : (
-                        <div className="not-exist-wrapper">
-                          <EVAIcon
-                            name="image-outline"
-                            className="not-exist-icon mr-16"
-                            size="large"
-                            fill={variables.noir}
-                          />
-                          <span>
-                            {sponsor.acronyme || sponsor.nom
-                              ? (sponsor.acronyme || "") +
-                                (sponsor.acronyme && sponsor.nom ? " - " : "") +
-                                (sponsor.nom || "")
-                              : sponsor.alt || "Structure 1"}
-                          </span>
-                        </div>
+                        <NoSponsorImage
+                          nom={sponsor.nom}
+                          acronyme={sponsor.acronyme}
+                          alt={sponsor.alt}
+                        />
                       )}
                     </a>
                     {key === 0 && sponsor.type !== "Not found" && (
@@ -741,6 +732,7 @@ class Sponsors extends Component {
           handleFileInputChange={this.handleFileInputChange}
           handleChange={this.handleImgChange}
           addSponsor={this.addSponsor}
+          tooltipOpen={this.state.tooltipOpen}
         />
       </div>
     );
@@ -819,7 +811,7 @@ const ImgModal = (props) => (
         />
         <Input
           id="link"
-          placeholder="https://www.agi-r.fr"
+          placeholder="https://www.réfugiés.info"
           value={props.link}
           onChange={props.handleChange}
         />
@@ -852,22 +844,22 @@ const ImgModal = (props) => (
         />
         <Input
           id="alt"
-          placeholder="Agi’r"
+          placeholder="Réfugiés.info"
           value={props.alt}
           onChange={props.handleChange}
         />
       </InputGroup>
     </div>
     <div className="btn-footer">
-      <FButton onClick={props.toggleModal} type="default" className="mr-10">
-        Annuler
-      </FButton>
       <FButton
         onClick={() => props.addSponsor(true)}
         type="validate"
         name="checkmark-circle-2-outline"
       >
         Valider
+      </FButton>
+      <FButton onClick={props.toggleModal} type="default" className="ml-10">
+        Annuler
       </FButton>
     </div>
   </Modal>

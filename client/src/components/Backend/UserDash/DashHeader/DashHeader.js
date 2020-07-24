@@ -6,9 +6,9 @@ import { withTranslation } from "react-i18next";
 import { NavHashLink } from "react-router-hash-link";
 
 import FButton from "../../../FigmaUI/FButton/FButton";
-import { diairMinInt } from "../../../../assets/figma";
 
 import "./DashHeader.scss";
+import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
 
 moment.locale("fr");
 
@@ -43,11 +43,19 @@ const dashHeader = (props) => {
             <Row className="titre-structure">
               <Col lg="6" md="6" sm="6" xs="6" className="img-wrapper-col">
                 <div className="img-wrapper">
-                  <img
-                    src={(structure.picture || {}).secure_url || diairMinInt}
-                    className="logo-img"
-                    alt="logo-img"
-                  />
+                  {structure.picture && structure.picture.secure_url ? (
+                    <img
+                      src={structure.picture.secure_url}
+                      className="logo-img"
+                      alt="logo-img"
+                    />
+                  ) : (
+                    <NoSponsorImage
+                      acronyme={structure.acronyme}
+                      nom={structure.nom}
+                      alt={structure.alt}
+                    />
+                  )}
                 </div>
               </Col>
               <Col lg="6" md="6" sm="6" xs="6" className="right-side">

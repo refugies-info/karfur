@@ -15,7 +15,6 @@ import logo_google from "./logo_google.svg";
 import logo_header from "./logo_header.svg";
 import minInt from "./minInt.png";
 import equipe from "./equipe.png";
-import diairMinInt from "./diairMinInt.png";
 import responsableFiche from "./responsableFiche.svg";
 import rejectionFiche from "./rejectionFiche.svg";
 
@@ -37,7 +36,6 @@ export {
   logo_header,
   minInt,
   equipe,
-  diairMinInt,
   rejectionFiche,
   responsableFiche,
 };
