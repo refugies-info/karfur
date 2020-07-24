@@ -18,9 +18,10 @@ import { withTranslation } from "react-i18next";
 import windowSize from "react-window-size";
 
 import FButton from "../../../FigmaUI/FButton/FButton";
-import { diairMinInt, countrySide } from "../../../../assets/figma";
+import { countrySide } from "../../../../assets/figma";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import { breakpoints } from "utils/breakpoints.js";
+import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
 
 import "./StructureCard.scss";
 import variables from "scss/colors.scss";
@@ -56,12 +57,12 @@ class StructureCard extends Component {
       windowWidth,
       traductions,
     } = this.props;
-    const actionTypes = [
-      ...new Set((actions || []).map((x) => x.action)),
-    ].map((a) => ({
-      type: a,
-      actions: (actions || []).filter((y) => y.action === a) || [],
-    }));
+    const actionTypes = [...new Set((actions || []).map((x) => x.action))].map(
+      (a) => ({
+        type: a,
+        actions: (actions || []).filter((y) => y.action === a) || [],
+      })
+    );
     const nbTraducteurs = [
       ...new Set(
         (traductions || [])
@@ -129,11 +130,19 @@ class StructureCard extends Component {
               <div className="left-side">
                 <div className="logo-bloc">
                   <div className="img-wrapper">
-                    <img
-                      src={(structure.picture || {}).secure_url || diairMinInt}
-                      className="logo-img"
-                      alt="logo de la structure"
-                    />
+                    {structure.picture && structure.picture.secure_url ? (
+                      <img
+                        src={structure.picture.secure_url}
+                        className="logo-img"
+                        alt="logo de la structure"
+                      />
+                    ) : (
+                      <NoSponsorImage
+                        acronyme={structure.acronyme}
+                        nom={structure.nom}
+                        alt={structure.alt}
+                      />
+                    )}
                   </div>
                   <div className="logo-footer">
                     <b>{structure.nom}</b>

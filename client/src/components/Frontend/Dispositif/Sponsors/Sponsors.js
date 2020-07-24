@@ -27,6 +27,7 @@ import _ from "lodash";
 
 import "./Sponsors.scss";
 import variables from "scss/colors.scss";
+import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
 
 class Sponsors extends Component {
   state = {
@@ -335,21 +336,11 @@ class Sponsors extends Component {
                           </span>
                         </div>
                       ) : (
-                        <div className="not-exist-wrapper">
-                          <EVAIcon
-                            name="image-outline"
-                            className="not-exist-icon mr-16"
-                            size="large"
-                            fill={variables.noir}
-                          />
-                          <span>
-                            {sponsor.acronyme || sponsor.nom
-                              ? (sponsor.acronyme || "") +
-                                (sponsor.acronyme && sponsor.nom ? " - " : "") +
-                                (sponsor.nom || "")
-                              : sponsor.alt || "Structure 1"}
-                          </span>
-                        </div>
+                        <NoSponsorImage
+                          nom={sponsor.nom}
+                          acronyme={sponsor.acronyme}
+                          alt={sponsor.alt}
+                        />
                       )}
                     </a>
                     {key === 0 && sponsor.type !== "Not found" && (
