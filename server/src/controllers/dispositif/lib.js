@@ -54,7 +54,7 @@ const url =
     : process.env.NODE_ENV === "quality"
     ? "https://agir-qa.herokuapp.com/"
     : "https://www.refugies.info/";
-
+//Function to patch dispositifs that had EditorState object saved in DB causing great size problem
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function patch_dispositifs(req, res) {
   logger.info("Patch dispositifs");
@@ -85,7 +85,10 @@ async function patch_dispositifs(req, res) {
     return res.status(500).json("KO");
   }
 }
-
+/* 
+concerning the Translation: this function is called when a pubblished dispositif is modified, in this case we need to unpublish the translations and 
+propose in the "À revoir" section so that the changed fields can be translated again
+*/
 async function add_dispositif(req, res) {
   try {
     var dispResult = {};
@@ -105,18 +108,20 @@ async function add_dispositif(req, res) {
     }
     //Si le dispositif existe déjà on fait juste un update
     if (dispositif.dispositifId) {
-      //delocalize we can do it
+      //if the dispositif exists it means that it has been changed so we have to update all trads to reflect the changes
 
       if (dispositif.contenu) {
         const originalDis = await Dispositif.findOne({
           _id: dispositif.dispositifId,
         });
         const originalTrads = {};
+        // We fetch the French key to know the original text, turnToLocalized takes a dispositif with multiple translated language keys and returns one specified language 
         // eslint-disable-next-line no-undef
         dispositifFr = await turnToLocalizedNew(originalDis, "fr");
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (let [key, value] of Object.entries(originalDis.avancement)) {
           if (key !== "fr") {
+            //we put the different translations before the update in an object by key
             originalTrads[key] = await Traduction.find(
               {
                 articleId: originalDis._id,
@@ -127,12 +132,15 @@ async function add_dispositif(req, res) {
               { sort: { updatedAt: -1 } }
             );
             for (let tradExpert of originalTrads[key]) {
+         /*   now we compare the old french version of the dispositif with new updated one,
+           and for every change we mark the paragraph/title/etc. within the translation so that we can propose it and highlight it in the 'à revoir' section  */
               tradExpert = markTradModifications(
                 dispositif,
                 // eslint-disable-next-line no-undef
                 dispositifFr,
                 tradExpert
               );
+              // we update the percentage of the translation done after the modified fields if status is 'À revoir' (so the original version in french as been modified)
               if (tradExpert.status === "À revoir") {
                 const contentsTotal = countContents(dispositif.contenu) + 3 - 4;
                 const validatedTotal = countValidated([
@@ -140,12 +148,14 @@ async function add_dispositif(req, res) {
                 ]);
                 const newAvancement = validatedTotal / contentsTotal;
                 tradExpert.avancement = newAvancement;
+                //we update all possible translations standing with the new percentage
                 await Traduction.updateMany(
                   { articleId: originalDis._id, langueCible: key },
                   { status: "À revoir", avancement: newAvancement },
                   { upsert: false }
                 );
               }
+              //we update the expert trad with the new modified trad
               await Traduction.findOneAndUpdate(
                 { _id: tradExpert._id },
                 tradExpert,

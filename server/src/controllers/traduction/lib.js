@@ -97,6 +97,8 @@ const _findNodeAndReplace = (initial, translated, locale, id) => {
   return true;
 };
 
+//We insert the information of the validated translation inside the dispositif document
+//The way it works is by creating a key for each translation in every part of the dispositif, so this is why we create a 'fr' key and move the original text of the dispositif to that.
 const insertInDispositif = (res, traduction, locale) => {
   return Dispositif.findOne({ _id: traduction.articleId }).exec(
     (err, result) => {
@@ -232,6 +234,8 @@ const insertInDispositif = (res, traduction, locale) => {
   );
 };
 
+//we add a translation document, everytime a title or paragraph is translated
+
 async function add_tradForReview(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
@@ -246,6 +250,7 @@ async function add_tradForReview(req, res) {
       langueCible,
       articleId,
     } = traduction;
+    //We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
     new Indicator({
       userId: req.userId,
       dispositifId: articleId,
@@ -254,6 +259,7 @@ async function add_tradForReview(req, res) {
       wordsCount,
     }).save();
 
+    //we assign a status depending on wheter the translator is expert or not, and whether the translation has been completed at 100% or not
     if (traduction.avancement >= 1 && traduction.status !== "À revoir") {
       traduction.status = "En attente";
       await Traduction.updateMany(
@@ -328,7 +334,7 @@ async function add_tradForReview(req, res) {
 
     traduction.userId = req.userId;
     let promise;
-
+    // if the translation exists we update it, if not we create a new one and the we update the User document by adding the reference of the translation done
     if (traduction._id) {
       promise = Traduction.findOneAndUpdate(
         { _id: traduction._id },
@@ -373,6 +379,7 @@ async function add_tradForReview(req, res) {
   }
 }
 
+//We retrieve the list of translations
 function get_tradForReview(req, res) {
 
   let { query, sort, populate, random, locale } = req.body;
@@ -435,6 +442,7 @@ function get_tradForReview(req, res) {
     });
 }
 
+//This function validates the final translation and call a function to save the content in the dispositif
 async function validate_tradForReview(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
@@ -450,6 +458,7 @@ async function validate_tradForReview(req, res) {
 
     let traductionUser = req.body || {};
     //Ici il y en a plusieurs: à régler
+    // We update the translation for the expert, by changing the status to validated
     if (traductionUser.type === "dispositif") {
       if (!traductionUser.traductions.length) {
         Traduction.findOneAndUpdate(
@@ -471,6 +480,7 @@ async function validate_tradForReview(req, res) {
             ).then(() => console.log("updated"));
           });
       }
+      // We delete all translations that are not from experts, since now we only need one official validated version
       await Traduction.deleteMany(
         { 
           articleId: req.body.articleId,
@@ -478,8 +488,10 @@ async function validate_tradForReview(req, res) {
           isExpert: {$ne: true},
         }
       );
+      // !IMPORTANT We insert the validated translation in the dispositif
       insertInDispositif(res, traductionUser, traductionUser.locale);
     } else {
+      //Validating a translation in case it's an article
       Traduction.findOneAndUpdate(
         { _id: traductionUser._id },
         { status: "Validée", validatorId: req.userId },
@@ -679,7 +691,7 @@ function get_xlm(req, res) {
   }
 }
 
-
+//We update the trad for the expert in case it already exists
 function update_tradForReview(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
@@ -696,6 +708,7 @@ function update_tradForReview(req, res) {
 
     const { wordsCount, timeSpent, language, articleId } = translation;
 
+    //We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
     new Indicator({
       userId: req.userId,
       dispositifId: articleId,
@@ -733,6 +746,7 @@ function update_tradForReview(req, res) {
   }
 }
 
+//Fetching the progression from the indicators collection
 async function get_progression(req, res) {
   try {
 
@@ -740,11 +754,13 @@ async function get_progression(req, res) {
     var end3 = new Date();
     var end6 = new Date();
     var end12 = new Date();
+    //we define the different time periods 3/6/12 months
     end3.setMonth(end3.getMonth() - 3);
     end6.setMonth(end6.getMonth() - 6);
     end12.setMonth(end12.getMonth() - 12);
     //start.setHours(0, 0, 0, 0);
 
+    //we aggregate the number of words and time spent in these periods
     let threeMonthsIndicator = await Indicator.aggregate([
       {
         $match: {
@@ -793,6 +809,7 @@ async function get_progression(req, res) {
       },
     ]);
 
+    //we do the total aggregation
     let totalIndicator = await Indicator.aggregate([
       {
         $match: {
@@ -854,6 +871,7 @@ async function get_progression(req, res) {
   });
 }; */
 
+//call to delete the trads for a specific dispositif and language, only available for admin
 async function delete_trads(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });

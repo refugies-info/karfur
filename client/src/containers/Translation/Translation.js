@@ -393,6 +393,7 @@ export class TranslationHOC extends Component {
     letter_pressed = event.key;
   };
 
+  //the trad is validated
   valider = async (tradData = {}) => {
     this.setState({ disableBtn: true });
     let traduction = {
@@ -416,10 +417,12 @@ export class TranslationHOC extends Component {
     traduction = { ...traduction, ...tradData };
 
     //const data = await API.add_traduction(traduction);
+    //sent to the backend to save the trad
     await this.props.addTranslation(traduction);
     //traduction._id = (data.data.data || {})._id;
     this.setState({ traduction });
     //await this.get_trads();
+    //if trad is done with 100% the sweet alert is sent  and we go back to the list of translations
     if (traduction.avancement >= 1) {
       Swal.fire({
         title: "Yay...",
@@ -433,6 +436,7 @@ export class TranslationHOC extends Component {
     //catch(()=> this.setState({disableBtn: false}))
   };
 
+  //gose back to the list of translations
   onSkip = () => {
     const i18nCode = (this.state.langue || {}).i18nCode,
       { isExpert, type, langue } = this.state;
