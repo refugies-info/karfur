@@ -31,12 +31,12 @@ export class FrameModal extends Component {
               border: "1px solid #C4C4C4",
             }}
             allowFullScreen
-            src="https://help.refugies.info/fr/article/comment-creer-une-page-dispositif-d82wz7/reader/"
+            src="https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq/reader/"
           />
         </ModalBody>
         <ModalFooter style={{ justifyContent: "space-between", marginTop: 50 }}>
           <FButton
-            href="https://help.refugies.info/fr/article/comment-creer-une-page-dispositif-d82wz7/"
+            href="https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq"
             type="dark"
             name="expand-outline"
             fill={variables.noir}
