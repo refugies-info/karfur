@@ -502,10 +502,12 @@ $imgHeight: 350px;
   }
 
   .tags-row {
-    padding: 15px 60px;
+    padding-right: 60px;
+    padding-left: 60px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background: $darkColor;
     margin-right: 0;
-    margin-top: -10px;
     .dropdown-menu.show {
       border-radius: 12px;
       border: none;
@@ -534,7 +536,6 @@ $imgHeight: 350px;
       line-height: normal;
       color: #ffffff;
       height: 40px;
-      margin-top: 10px;
       width: fit-content;
       display: flex;
       align-items: center;
