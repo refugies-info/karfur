@@ -9,6 +9,7 @@ import {
   ModalFooter,
   Progress,
 } from "reactstrap";
+import i18n from "../../i18n";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
@@ -17,7 +18,8 @@ import { withTranslation } from "react-i18next";
 import _ from "lodash";
 import passwdCheck from "zxcvbn";
 import querySearch from "stringquery";
-
+import { Link } from "react-router-dom";
+import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 import API from "../../utils/API";
 import setAuthToken from "../../utils/setAuthToken";
 import FButton from "../../components/FigmaUI/FButton/FButton";
@@ -26,10 +28,63 @@ import FInput from "../../components/FigmaUI/FInput/FInput";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import Modal from "../../components/Modals/Modal";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
+import styled from "styled-components";
+import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 
 import "./Login.scss";
 import variables from "scss/colors.scss";
+import {
+  fetchLanguesActionCreator,
+  toggleLangueActionCreator,
+  toggleLangueModalActionCreator,
+} from "../../services/Langue/langue.actions";
 
+const StyledHeader = styled.div`
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  color: #0421b1;
+  margin-top: 64px;
+`;
+
+const StyledEnterPseudo = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+`;
+
+const MainContainer = styled.div`
+  background: #cdcdcd;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+`;
+
+const ContentContainer = styled.div`
+  padding-top: 100px;
+`;
+
+const NoAccountContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  line-height: 20px;
+  color: #828282;
+  margin-top: 64px;
+`;
+
+const PseudoForgottenContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  line-height: 20px;
+  color: #828282;
+  margin-top: 16px;
+  font-weight: bold;
+`;
 export class Login extends Component {
   state = {
     username: "",
@@ -50,6 +105,7 @@ export class Login extends Component {
   };
 
   componentDidMount() {
+    this.props.fetchLangues();
     const locState = this.props.location.state;
     const qParam = querySearch(this.props.location.search).redirect;
     if (API.isAuth()) {
@@ -95,6 +151,19 @@ export class Login extends Component {
         type: "success",
       });
     });
+  };
+
+  changeLanguage = (lng) => {
+    this.props.toggleLangue(lng);
+    if (this.props.i18n.getResourceBundle(lng, "translation")) {
+      this.props.i18n.changeLanguage(lng);
+    } else {
+      // eslint-disable-next-line no-console
+      console.log("Resource not found in i18next.");
+    }
+    if (this.props.showLangModal) {
+      this.props.toggleLangueModal();
+    }
   };
 
   send = (e) => {
@@ -219,118 +288,220 @@ export class Login extends Component {
     } = this.state;
     const { t } = this.props;
     return (
-      <div className="app flex-row align-items-center login">
-        <div className="login-wrapper">
-          {step === 1 && !userExists && (
-            <RegisterHeader goBack={this.goBack} t={t} />
-          )}
-          <Card className="card-login main-card">
-            <CardBody>
-              <Form onSubmit={this.send}>
-                <h5>
-                  {step === 0 || userExists
-                    ? t("Login.Se connecter", "Se connecter")
-                    : step === 1
-                    ? t("Login.Se créer un compte", "Se créer un compte")
-                    : "Votre code de confirmation"}
-                </h5>
-                <div className="texte-small mb-12">
-                  {step === 0
-                    ? t("Login.Ou se créer un compte", "Ou se créer un compte")
-                    : userExists && step === 1
-                    ? t(
-                        "Login.Content de vous revoir !",
-                        "Content de vous revoir !"
-                      )
-                    : step === 1
-                    ? t("Login.Pas besoin d’email", "Pas besoin d’email")
-                    : "Nous vous avons envoyé un SMS à votre numéro"}
-                </div>
-                <CSSTransition
-                  in={true}
-                  appear={true}
-                  timeout={600}
-                  classNames="example"
-                >
-                  {step === 0 ? (
-                    <UsernameField
-                      value={username}
-                      onChange={this.handleChange}
-                      step={step}
-                      key="username-field"
-                      t={t}
-                    />
-                  ) : step === 1 ? (
-                    <>
-                      <PasswordField
-                        id="password"
-                        placeholder="Mot de passe"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                        passwordVisible={passwordVisible}
-                        onClick={this.togglePasswordVisibility}
-                        userExists={userExists}
-                        t={t}
-                      />
-                      {step === 1 && !userExists && (
-                        <PasswordField
-                          id="cpassword"
-                          placeholder="Confirmez le mot de passe"
-                          value={this.state.cpassword}
-                          onChange={this.handleChange}
-                          passwordVisible={passwordVisible}
-                          onClick={this.togglePasswordVisibility}
-                          t={t}
-                        />
-                      )}
-                    </>
-                  ) : (
-                    <CodeField
-                      value={code}
-                      onChange={this.handleChange}
-                      key="code-field"
-                    />
-                  )}
-                </CSSTransition>
-
-                {step === 1 && (
-                  <PasswordFooter
-                    value={this.state.password}
-                    upcoming={this.upcoming}
-                    t={t}
-                    userExists={userExists}
-                    resetPassword={this.resetPassword}
-                  />
-                )}
-              </Form>
-            </CardBody>
-          </Card>
-          <NavLink to="/">
+      <div className="app">
+        <MainContainer>
+          <ContentContainer>
+            <NavLink to="/">
+              <FButton
+                type="light-action"
+                name="arrow-back-outline"
+                className="mr-10"
+              >
+                {t("Login.Retour", "Retour")}
+              </FButton>
+            </NavLink>
+            <LanguageBtn />
             <FButton
-              type="outline"
-              name="corner-up-left-outline"
-              className="retour-btn"
+              tag={"a"}
+              href="https://help.refugies.info/fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-btn"
+              type="help"
+              name="question-mark-circle-outline"
+              fill={variables.noir}
             >
-              {t("Login.Retour à l'accueil", "Retour à l'accueil")}
+              {t("Login.Centre d'aide", "Centre d'aide")}
             </FButton>
-          </NavLink>
-        </div>
-
-        <InfoModal
-          show={showModal}
-          email={email}
-          phone={phone}
-          toggle={this.toggleModal}
-          send={this.send}
-          onChange={this.handleChange}
-        />
+            <StyledHeader>
+              {t("Login.Content de vous revoir !", "Content de vous revoir !")}
+            </StyledHeader>
+            <StyledEnterPseudo>
+              {t("Login.Entrez votre pseudonyme", "Entrez votre pseudonyme")}
+            </StyledEnterPseudo>
+            <div
+              style={{
+                flexDirection: "row",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <UsernameField
+                value={username}
+                onChange={this.handleChange}
+                step={step}
+                key="username-field"
+                t={t}
+              />
+              <div style={{ marginLeft: "10px" }}>
+                <FButton
+                  type="grey"
+                  name="arrow-forward-outline"
+                  disabled={!username}
+                >
+                  {t("Suivant", "Suivant")}
+                </FButton>
+              </div>
+            </div>
+            <NoAccountContainer>
+              {t("Pas encore de compte ?", "Pas encore de compte ?")}
+              <Link
+                to={{
+                  pathname: "/register",
+                }}
+              >
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                    marginLeft: "5px",
+                  }}
+                >
+                  {t("Créer un compte", "Créer un compte")}
+                </div>
+              </Link>
+            </NoAccountContainer>
+            <PseudoForgottenContainer>
+              {t("Pseudonyme oublié ?", "Pseudonyme oublié ?")}
+              <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    textDecoration: "underline",
+                    marginLeft: "5px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {t("Contactez le support", "Contactez le support")}
+                </div>
+              </a>
+            </PseudoForgottenContainer>
+          </ContentContainer>
+          <LanguageModal
+            show={this.props.showLangModal}
+            current_language={i18n.language}
+            toggle={this.props.toggleLangueModal}
+            changeLanguage={this.changeLanguage}
+            languages={{
+              ...this.props.langues.filter((x) => x.avancement >= 0.5),
+              unavailable: { unavailable: true },
+            }}
+          />
+        </MainContainer>
       </div>
     );
   }
 }
 
+// <div className="app flex-row align-items-center login">
+//         <div className="login-wrapper">
+//           {step === 1 && !userExists && (
+//             <RegisterHeader goBack={this.goBack} t={t} />
+//           )}
+//           <Card className="card-login main-card">
+//             <CardBody>
+//               <Form onSubmit={this.send}>
+//                 <h5>
+//                   {step === 0 || userExists
+//                     ? t("Login.Se connecter", "Se connecter")
+//                     : step === 1
+//                     ? t("Login.Se créer un compte", "Se créer un compte")
+//                     : "Votre code de confirmation"}
+//                 </h5>
+//                 <div className="texte-small mb-12">
+//                   {step === 0
+//                     ? t("Login.Ou se créer un compte", "Ou se créer un compte")
+//                     : userExists && step === 1
+//                     ? t(
+//                         "Login.Content de vous revoir !",
+//                         "Content de vous revoir !"
+//                       )
+//                     : step === 1
+//                     ? t("Login.Pas besoin d’email", "Pas besoin d’email")
+//                     : "Nous vous avons envoyé un SMS à votre numéro"}
+//                 </div>
+//                 <CSSTransition
+//                   in={true}
+//                   appear={true}
+//                   timeout={600}
+//                   classNames="example"
+//                 >
+//                   {step === 0 ? (
+//                     <UsernameField
+//                       value={username}
+//                       onChange={this.handleChange}
+//                       step={step}
+//                       key="username-field"
+//                       t={t}
+//                     />
+//                   ) : step === 1 ? (
+//                     <>
+//                       <PasswordField
+//                         id="password"
+//                         placeholder="Mot de passe"
+//                         value={this.state.password}
+//                         onChange={this.handleChange}
+//                         passwordVisible={passwordVisible}
+//                         onClick={this.togglePasswordVisibility}
+//                         userExists={userExists}
+//                         t={t}
+//                       />
+//                       {step === 1 && !userExists && (
+//                         <PasswordField
+//                           id="cpassword"
+//                           placeholder="Confirmez le mot de passe"
+//                           value={this.state.cpassword}
+//                           onChange={this.handleChange}
+//                           passwordVisible={passwordVisible}
+//                           onClick={this.togglePasswordVisibility}
+//                           t={t}
+//                         />
+//                       )}
+//                     </>
+//                   ) : (
+//                     <CodeField
+//                       value={code}
+//                       onChange={this.handleChange}
+//                       key="code-field"
+//                     />
+//                   )}
+//                 </CSSTransition>
+
+//                 {step === 1 && (
+//                   <PasswordFooter
+//                     value={this.state.password}
+//                     upcoming={this.upcoming}
+//                     t={t}
+//                     userExists={userExists}
+//                     resetPassword={this.resetPassword}
+//                   />
+//                 )}
+//               </Form>
+//             </CardBody>
+//           </Card>
+//           <NavLink to="/">
+//             <FButton
+//               type="outline"
+//               name="corner-up-left-outline"
+//               className="retour-btn"
+//             >
+//               {t("Login.Retour à l'accueil", "Retour à l'accueil")}
+//             </FButton>
+//           </NavLink>
+//         </div>
+
+//         <InfoModal
+//           show={showModal}
+//           email={email}
+//           phone={phone}
+//           toggle={this.toggleModal}
+//           send={this.send}
+//           onChange={this.handleChange}
+//         />
+//       </div>
+
 const UsernameField = (props) => (
-  <div key="username-field">
+  <div key="username-field" style={{ marginTop: "10px" }}>
     <FInput
       prepend
       prependName="person-outline"
@@ -340,17 +511,6 @@ const UsernameField = (props) => (
       placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
       autoComplete="username"
     />
-    <div className="footer-buttons">
-      <FButton
-        type="dark"
-        name="arrow-forward-outline"
-        color="dark"
-        className="connect-btn"
-        disabled={!props.value}
-      >
-        {props.t("Suivant", "Suivant")}
-      </FButton>
-    </div>
   </div>
 );
 
@@ -491,11 +651,23 @@ const InfoModal = (props) => (
   </Modal>
 );
 
-const mapDispatchToProps = { fetchUser: fetchUserActionCreator };
+const mapDispatchToProps = {
+  fetchUser: fetchUserActionCreator,
+  fetchLangues: fetchLanguesActionCreator,
+  toggleLangue: toggleLangueActionCreator,
+  toggleLangueModal: toggleLangueModalActionCreator,
+};
+const mapStateToProps = (state) => {
+  return {
+    languei18nCode: state.langue.languei18nCode,
+    showLangModal: state.langue.showLangModal,
+    langues: state.langue.langues,
+  };
+};
 
 export default track(
   {
     page: "Login",
   },
   { dispatchOnMount: true }
-)(connect(null, mapDispatchToProps)(withTranslation()(Login)));
+)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Login)));

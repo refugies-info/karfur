@@ -94,6 +94,20 @@ body .figma-btn {
     }
   }
 
+  &.grey {
+    background: #828282;
+    color: $blancSimple;
+
+    &:hover {
+      background: #828282;
+      color: $blancSimple;
+
+      svg {
+        fill: $blancSimple;
+      }
+    }
+  }
+
   // Validate
 
   &.validate {
