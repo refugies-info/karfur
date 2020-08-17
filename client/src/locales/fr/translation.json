@@ -253,15 +253,14 @@
     "Inactif": "Inactif"
   },
   "Login": {
-    "Pseudonyme": "Pseudonyme",
+    "Pseudonyme": "Votre pseudonyme",
     "Retour à l'accueil": "Retour à l'accueil",
     "Ou se créer un compte": "Ou se créer un compte",
     "Se connecter": "Se connecter",
     "Content de vous revoir !": "Content de vous revoir !",
-    "Mot de passe": "Mot de passe",
     "Se créer un compte": "Se créer un compte",
     "Pas besoin d’email": "Pas besoin d’email",
-    "Mot de passe oublié ?": "Mot de passe oublié ?",
+    "Mot de passe oublié ?": "J'ai oublié mon mot de passe",
     "no-account": "Il n'existe pas de compte à ce nom",
     "Confirmez le mot de passe": "Confirmez le mot de passe",
     "Force": "Force",
@@ -272,7 +271,25 @@
     "Renseignez ici le nouveau mot de passe souhaité": "Renseignez ici le nouveau mot de passe souhaité",
     "Chargement des données utilisateur": "Chargement des données utilisateur",
     "Problème mdp": "Un problème est survenu au moment de réinitialiser le mot de passe. Merci d'essayer à nouveau",
-    "Revenir à la page de connexion": "Revenir à la page de connexion"
+    "Revenir à la page de connexion": "Revenir à la page de connexion",
+    "Entrez votre pseudonyme": "Entrez votre pseudonyme",
+    "Retour": "Retour",
+    "Pas encore de compte ?": "Pas encore de compte ? ",
+    "Créer un compte": " Créer un compte",
+    "Pseudonyme oublié ?": "Pseudonyme oublié ?",
+    "Contactez le support": "Contactez le support",
+    "Centre d'aide": "Centre d'aide",
+    "Mot de passe": "Mot de passe",
+    "Bonjour": "Bonjour ",
+    "Entrez votre mot de passe": "Entrez votre mot de passe",
+    "Oups,": "Oups,",
+    "Pas de compte": "il n'existe pas de compte à ce nom.",
+    "Mauvais mot de passe": "Erreur, mauvais mot de passe : ",
+    "Reessayez": "réessayez !",
+    "Impossible de réinitialiser": "Impossible de réinitialiser",
+    "Reset password message": "Attention, si vous n'avez pas configuré d'email, vous ne pourrez pas réinitialiser votre mot de passe.",
+    "Réinitialisation du mot de passe": "Un lien de réinitialisation a été envoyé",
+    "Réinitialisation texte": "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",
@@ -417,7 +434,8 @@
     "Ma structure": "Ma structure",
     "Administration": "Administration",
     "Se déconnecter": "Se déconnecter",
-    "Connexion": "Connexion"
+    "Connexion": "Connexion",
+    "Inscription": "Inscription"
   },
   "Footer": {
     "Je m'abonne à la newsletter": "S'inscrire à la lettre d'information",

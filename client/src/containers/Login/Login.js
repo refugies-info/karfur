@@ -9,6 +9,7 @@ import {
   ModalFooter,
   Progress,
 } from "reactstrap";
+import i18n from "../../i18n";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
@@ -17,7 +18,8 @@ import { withTranslation } from "react-i18next";
 import _ from "lodash";
 import passwdCheck from "zxcvbn";
 import querySearch from "stringquery";
-
+import { Link } from "react-router-dom";
+import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 import API from "../../utils/API";
 import setAuthToken from "../../utils/setAuthToken";
 import FButton from "../../components/FigmaUI/FButton/FButton";
@@ -26,10 +28,95 @@ import FInput from "../../components/FigmaUI/FInput/FInput";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import Modal from "../../components/Modals/Modal";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
+import styled from "styled-components";
+import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 
 import "./Login.scss";
 import variables from "scss/colors.scss";
+import {
+  fetchLanguesActionCreator,
+  toggleLangueActionCreator,
+  toggleLangueModalActionCreator,
+} from "../../services/Langue/langue.actions";
 
+const StyledHeader = styled.div`
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  color: #0421b1;
+  margin-top: 64px;
+`;
+
+const StyledEnterValue = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+`;
+
+const MainContainer = styled.div`
+  background: #cdcdcd;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+`;
+
+const ContentContainer = styled.div`
+  padding-top: 100px;
+`;
+
+const NoAccountContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  line-height: 20px;
+  color: #828282;
+  margin-top: 64px;
+`;
+
+const PseudoForgottenContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-size: 16px;
+  line-height: 20px;
+  color: #828282;
+  margin-top: 16px;
+  font-weight: bold;
+`;
+
+const PasswordForgottenLink = styled.div`
+  color: #828282;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+`;
+
+const ErrorMessageContainer = styled.div`
+  color: #e8140f;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 16px;
+`;
+
+const NoEmailRelatedContainer = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #f44336;
+  margin-top: 64px;
+  margin-bottom: 64px;
+`;
+
+const EmailRelatedContainer = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+`;
 export class Login extends Component {
   state = {
     username: "",
@@ -46,36 +133,40 @@ export class Login extends Component {
     userExists: false,
     usernameHidden: false,
     showModal: false,
-    cannyRedirect: false,
+    noUserError: false,
+    wrongPasswordError: false,
+    resetPasswordNotPossible: false,
+    resetPasswordPossible: false,
   };
 
   componentDidMount() {
-    const locState = this.props.location.state;
-    const qParam = querySearch(this.props.location.search).redirect;
+    this.props.fetchLangues();
+    // const locState = this.props.location.state;
+    // const qParam = querySearch(this.props.location.search).redirect;
     if (API.isAuth()) {
-      if (qParam) {
-        const redirectTo = decodeURIComponent(qParam);
-        return window.location.assign(
-          redirectTo +
-            (redirectTo.indexOf("?") === -1 ? "?" : "&") +
-            "ssoToken=" +
-            localStorage.getItem("token")
-        );
-      }
+      // if (qParam) {
+      //   const redirectTo = decodeURIComponent(qParam);
+      //   return window.location.assign(
+      //     redirectTo +
+      //       (redirectTo.indexOf("?") === -1 ? "?" : "&") +
+      //       "ssoToken=" +
+      //       localStorage.getItem("token")
+      //   );
+      // }
       return this.props.history.push("/");
     }
-    if (locState) {
-      this.setState({
-        traducteur: locState.traducteur,
-        redirectTo: locState.redirectTo || "/",
-      });
-    }
-    if (qParam) {
-      this.setState({
-        cannyRedirect: true,
-        redirectTo: decodeURIComponent(qParam),
-      });
-    }
+    // if (locState) {
+    //   this.setState({
+    //     traducteur: locState.traducteur,
+    //     redirectTo: locState.redirectTo || "/",
+    //   });
+    // }
+    // if (qParam) {
+    //   this.setState({
+    //     cannyRedirect: true,
+    //     redirectTo: decodeURIComponent(qParam),
+    //   });
+    // }
     window.scrollTo(0, 0);
   }
 
@@ -87,18 +178,34 @@ export class Login extends Component {
     this.setState({ step: 0, userExists: false, password: "", cpassword: "" });
 
   resetPassword = () => {
-    API.reset_password({ username: this.state.username }).then(() => {
-      Swal.fire({
-        title: "Yay...",
-        text:
-          "Le mot de passe de récupération a été envoyé à l'adresse mail renseignée lors de la création du compte",
-        type: "success",
+    API.reset_password({ username: this.state.username })
+      .then((data) => {
+        this.setState({ resetPasswordPossible: true, email: data.data.data });
+      })
+      .catch((e) => {
+        if (e.response.status === 403) {
+          this.setState({ resetPasswordNotPossible: true });
+        }
       });
-    });
+  };
+
+  changeLanguage = (lng) => {
+    this.props.toggleLangue(lng);
+    if (this.props.i18n.getResourceBundle(lng, "translation")) {
+      this.props.i18n.changeLanguage(lng);
+    } else {
+      // eslint-disable-next-line no-console
+      console.log("Resource not found in i18next.");
+    }
+    if (this.props.showLangModal) {
+      this.props.toggleLangueModal();
+    }
   };
 
   send = (e) => {
     e.preventDefault();
+
+    // validate pseudo
     if (this.state.step === 0) {
       if (this.state.username.length === 0) {
         Swal.fire({
@@ -110,9 +217,22 @@ export class Login extends Component {
         return;
       }
       API.checkUserExists({ username: this.state.username }).then((data) => {
-        this.setState({ userExists: data.status === 200, step: 1 });
+        const userExists = data.status === 200;
+        // if user, go to next step (password)
+        if (userExists) {
+          this.setState({
+            userExists,
+            step: 1,
+          });
+        } else {
+          // if no user: display error
+          this.setState({
+            noUserError: !userExists,
+          });
+        }
       });
     } else {
+      // password check
       if (this.state.password.length === 0) {
         return Swal.fire({
           title: "Oops...",
@@ -121,28 +241,30 @@ export class Login extends Component {
           timer: 1500,
         });
       }
-      if (
-        !this.state.userExists &&
-        this.state.password !== this.state.cpassword
-      ) {
-        return Swal.fire({
-          title: "Oops...",
-          text: "Les mots de passes ne correspondent pas !",
-          type: "error",
-          timer: 1500,
-        });
-      }
-      if (
-        !this.state.userExists &&
-        (passwdCheck(this.state.password) || {}).score < 1
-      ) {
-        return Swal.fire({
-          title: "Oops...",
-          text: "Le mot de passe est trop faible",
-          type: "error",
-          timer: 1500,
-        });
-      }
+
+      // creation compte
+      // if (
+      //   !this.state.userExists &&
+      //   this.state.password !== this.state.cpassword
+      // ) {
+      //   return Swal.fire({
+      //     title: "Oops...",
+      //     text: "Les mots de passes ne correspondent pas !",
+      //     type: "error",
+      //     timer: 1500,
+      //   });
+      // }
+      // if (
+      //   !this.state.userExists &&
+      //   (passwdCheck(this.state.password) || {}).score < 1
+      // ) {
+      //   return Swal.fire({
+      //     title: "Oops...",
+      //     text: "Le mot de passe est trop faible",
+      //     type: "error",
+      //     timer: 1500,
+      //   });
+      // }
       const user = {
         username: this.state.username,
         password: this.state.password,
@@ -155,28 +277,18 @@ export class Login extends Component {
       API.login(user)
         .then((data) => {
           const token = data.data.token,
-            { cannyRedirect, redirectTo } = this.state;
+            { redirectTo } = this.state;
           Swal.fire({
             title: "Yay...",
             text: "Authentification réussie !",
             type: "success",
             timer: 1500,
           }).then(() => {
-            if (cannyRedirect) {
-              return window.location.assign(
-                redirectTo +
-                  (redirectTo.indexOf("?") === -1 ? "?" : "&") +
-                  "ssoToken=" +
-                  token
-              );
-            }
             return this.props.history.push(redirectTo);
           });
           localStorage.setItem("token", token);
-          if (!cannyRedirect) {
-            setAuthToken(token);
-            this.props.fetchUser();
-          }
+          setAuthToken(token);
+          this.props.fetchUser();
         })
         .catch((e) => {
           if (e.response.status === 501) {
@@ -187,9 +299,8 @@ export class Login extends Component {
               phone: _.get(e, "response.data.phone", ""),
               email: _.get(e, "response.data.email", ""),
             });
-          } else {
-            // eslint-disable-next-line no-console
-            console.log(e.response);
+          } else if (e.response.status === 401) {
+            this.setState({ wrongPasswordError: true });
           }
         });
     }
@@ -198,13 +309,43 @@ export class Login extends Component {
   handleChange = (event) =>
     this.setState({ [event.target.id]: event.target.value });
 
-  upcoming = () =>
-    Swal.fire({
-      title: "Oh non!",
-      text: "Cette fonctionnalité n'est pas encore disponible",
-      type: "error",
-      timer: 1500,
-    });
+  getHeaderText = () => {
+    if (this.state.step === 0) {
+      return this.props.t(
+        "Login.Content de vous revoir !",
+        "Content de vous revoir !"
+      );
+    }
+    if (this.state.resetPasswordNotPossible) {
+      return this.props.t(
+        "Login.Impossible de réinitialiser",
+        "Impossible de réinitialiser"
+      );
+    }
+
+    if (this.state.resetPasswordPossible) {
+      return this.props.t(
+        "Login.Réinitialisation du mot de passe",
+        "Un lien de réinitialisation a été envoyé"
+      );
+    }
+    if (this.state.step === 1) {
+      return this.props.t("Login.Bonjour", "Bonjour ") + this.state.username;
+    }
+  };
+
+  getHashedEmail = () => {
+    const splittedEmailArray = this.state.email.split("@");
+    if (splittedEmailArray.length === 2) {
+      const prefixEmail = splittedEmailArray[0];
+      const suffixEmail = splittedEmailArray[1];
+      const hashLength =
+        prefixEmail.length - 2 > 0 ? prefixEmail.length - 2 : 0;
+      const hashedPrefix = prefixEmail.substring(0, 2) + "*".repeat(hashLength);
+      return hashedPrefix + "@" + suffixEmail;
+    }
+    return "";
+  };
 
   render() {
     const {
@@ -219,163 +360,396 @@ export class Login extends Component {
     } = this.state;
     const { t } = this.props;
     return (
-      <div className="app flex-row align-items-center login">
-        <div className="login-wrapper">
-          {step === 1 && !userExists && (
-            <RegisterHeader goBack={this.goBack} t={t} />
-          )}
-          <Card className="card-login main-card">
-            <CardBody>
-              <Form onSubmit={this.send}>
-                <h5>
-                  {step === 0 || userExists
-                    ? t("Login.Se connecter", "Se connecter")
-                    : step === 1
-                    ? t("Login.Se créer un compte", "Se créer un compte")
-                    : "Votre code de confirmation"}
-                </h5>
-                <div className="texte-small mb-12">
-                  {step === 0
-                    ? t("Login.Ou se créer un compte", "Ou se créer un compte")
-                    : userExists && step === 1
-                    ? t(
-                        "Login.Content de vous revoir !",
-                        "Content de vous revoir !"
-                      )
-                    : step === 1
-                    ? t("Login.Pas besoin d’email", "Pas besoin d’email")
-                    : "Nous vous avons envoyé un SMS à votre numéro"}
-                </div>
-                <CSSTransition
-                  in={true}
-                  appear={true}
-                  timeout={600}
-                  classNames="example"
+      <div className="app">
+        <MainContainer>
+          <ContentContainer>
+            <NavLink to="/">
+              <FButton
+                type="light-action"
+                name="arrow-back-outline"
+                className="mr-10"
+              >
+                {t("Login.Retour", "Retour")}
+              </FButton>
+            </NavLink>
+            <LanguageBtn />
+            <FButton
+              tag={"a"}
+              href="https://help.refugies.info/fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-btn"
+              type="help"
+              name="question-mark-circle-outline"
+              fill={variables.noir}
+            >
+              {t("Login.Centre d'aide", "Centre d'aide")}
+            </FButton>
+            <StyledHeader>{this.getHeaderText()}</StyledHeader>
+            {this.state.resetPasswordNotPossible && (
+              <NoEmailRelatedContainer>
+                {t(
+                  "Login.Pas email",
+                  "Il n'y a pas d'email rattaché à ce pseudonyme."
+                )}
+              </NoEmailRelatedContainer>
+            )}
+
+            {this.state.resetPasswordPossible && (
+              <>
+                <EmailRelatedContainer>
+                  {t(
+                    "Login.Lien réinitialisation",
+                    "Un lien de réinitialisation a été envoyé à "
+                  ) +
+                    this.getHashedEmail() +
+                    "."}
+                </EmailRelatedContainer>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                    lineHeight: "20px",
+                    marginBottom: "64px",
+                  }}
                 >
-                  {step === 0 ? (
-                    <UsernameField
-                      value={username}
-                      onChange={this.handleChange}
-                      step={step}
-                      key="username-field"
-                      t={t}
-                    />
-                  ) : step === 1 ? (
-                    <>
+                  {t(
+                    "Login.Réinitialisation texte",
+                    "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?"
+                  )}
+                </div>
+              </>
+            )}
+            {!this.state.resetPasswordNotPossible &&
+              !this.state.resetPasswordPossible && (
+                <>
+                  <StyledEnterValue>
+                    {step === 0
+                      ? t(
+                          "Login.Entrez votre pseudonyme",
+                          "Entrez votre pseudonyme"
+                        )
+                      : t(
+                          "Login.Entrez votre mot de passe",
+                          "Entrez votre mot de passe"
+                        )}
+                  </StyledEnterValue>
+                  <Form onSubmit={this.send}>
+                    {step === 0 ? (
+                      <UsernameField
+                        value={username}
+                        onChange={this.handleChange}
+                        step={step}
+                        key="username-field"
+                        t={t}
+                        noUserError={this.state.noUserError}
+                      />
+                    ) : (
                       <PasswordField
                         id="password"
-                        placeholder="Mot de passe"
                         value={this.state.password}
                         onChange={this.handleChange}
                         passwordVisible={passwordVisible}
                         onClick={this.togglePasswordVisibility}
                         userExists={userExists}
                         t={t}
+                        wrongPasswordError={this.state.wrongPasswordError}
                       />
-                      {step === 1 && !userExists && (
-                        <PasswordField
-                          id="cpassword"
-                          placeholder="Confirmez le mot de passe"
-                          value={this.state.cpassword}
-                          onChange={this.handleChange}
-                          passwordVisible={passwordVisible}
-                          onClick={this.togglePasswordVisibility}
-                          t={t}
-                        />
-                      )}
-                    </>
-                  ) : (
-                    <CodeField
-                      value={code}
-                      onChange={this.handleChange}
-                      key="code-field"
-                    />
-                  )}
-                </CSSTransition>
-
-                {step === 1 && (
-                  <PasswordFooter
-                    value={this.state.password}
-                    upcoming={this.upcoming}
-                    t={t}
-                    userExists={userExists}
-                    resetPassword={this.resetPassword}
-                  />
-                )}
-              </Form>
-            </CardBody>
-          </Card>
-          <NavLink to="/">
-            <FButton
-              type="outline"
-              name="corner-up-left-outline"
-              className="retour-btn"
-            >
-              {t("Login.Retour à l'accueil", "Retour à l'accueil")}
-            </FButton>
-          </NavLink>
-        </div>
-
-        <InfoModal
-          show={showModal}
-          email={email}
-          phone={phone}
-          toggle={this.toggleModal}
-          send={this.send}
-          onChange={this.handleChange}
-        />
+                    )}
+                  </Form>
+                </>
+              )}
+            <Footer
+              step={step}
+              t={t}
+              resetPassword={this.resetPassword}
+              resetPasswordNotPossible={this.state.resetPasswordNotPossible}
+              resetPasswordPossible={this.state.resetPasswordPossible}
+            />
+          </ContentContainer>
+          <LanguageModal
+            show={this.props.showLangModal}
+            current_language={i18n.language}
+            toggle={this.props.toggleLangueModal}
+            changeLanguage={this.changeLanguage}
+            languages={{
+              ...this.props.langues.filter((x) => x.avancement >= 0.5),
+              unavailable: { unavailable: true },
+            }}
+          />
+        </MainContainer>
       </div>
     );
   }
 }
 
-const UsernameField = (props) => (
-  <div key="username-field">
-    <FInput
-      prepend
-      prependName="person-outline"
-      {...props}
-      id="username"
-      type="username"
-      placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
-      autoComplete="username"
-    />
-    <div className="footer-buttons">
-      <FButton
-        type="dark"
-        name="arrow-forward-outline"
-        color="dark"
-        className="connect-btn"
-        disabled={!props.value}
-      >
-        {props.t("Suivant", "Suivant")}
-      </FButton>
+const ResetPasswordMessage = styled.div`
+  font-size: 16px;
+  line-height: 20px;
+  color: #828282;
+  margin-bottom: 16px;
+`;
+
+const ContactSupport = (props) => (
+  <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
+    <div
+      style={{
+        fontWeight: "bold",
+        textDecoration: "underline",
+        cursor: "pointer",
+        color: "#828282",
+      }}
+    >
+      {props.t("Contactez le support", "Contactez le support")}
     </div>
-  </div>
+  </a>
+);
+const Footer = (props) => {
+  if (props.resetPasswordNotPossible) {
+    return (
+      <>
+        <ResetPasswordMessage>
+          {props.t(
+            "Login.Reset password message",
+            "Attention, si vous n'avez pas configuré d'email, vous ne pourrez pas réinitialiser votre mot de passe."
+          )}
+        </ResetPasswordMessage>
+        <ContactSupport t={props.t} />
+      </>
+    );
+  }
+
+  if (props.resetPasswordPossible) {
+    return <ContactSupport t={props.t} />;
+  }
+
+  return props.step === 0 ? (
+    <PseudoFooter t={props.t} />
+  ) : (
+    <PasswordFooter t={props.t} resetPassword={props.resetPassword} />
+  );
+};
+// <div className="app flex-row align-items-center login">
+//         <div className="login-wrapper">
+//           {step === 1 && !userExists && (
+//             <RegisterHeader goBack={this.goBack} t={t} />
+//           )}
+//           <Card className="card-login main-card">
+//             <CardBody>
+//               <Form onSubmit={this.send}>
+//                 <h5>
+//                   {step === 0 || userExists
+//                     ? t("Login.Se connecter", "Se connecter")
+//                     : step === 1
+//                     ? t("Login.Se créer un compte", "Se créer un compte")
+//                     : "Votre code de confirmation"}
+//                 </h5>
+//                 <div className="texte-small mb-12">
+//                   {step === 0
+//                     ? t("Login.Ou se créer un compte", "Ou se créer un compte")
+//                     : userExists && step === 1
+//                     ? t(
+//                         "Login.Content de vous revoir !",
+//                         "Content de vous revoir !"
+//                       )
+//                     : step === 1
+//                     ? t("Login.Pas besoin d’email", "Pas besoin d’email")
+//                     : "Nous vous avons envoyé un SMS à votre numéro"}
+//                 </div>
+//                 <CSSTransition
+//                   in={true}
+//                   appear={true}
+//                   timeout={600}
+//                   classNames="example"
+//                 >
+//                   {step === 0 ? (
+//                     <UsernameField
+//                       value={username}
+//                       onChange={this.handleChange}
+//                       step={step}
+//                       key="username-field"
+//                       t={t}
+//                     />
+//                   ) : step === 1 ? (
+//                     <>
+//                       <PasswordField
+//                         id="password"
+//                         placeholder="Mot de passe"
+//                         value={this.state.password}
+//                         onChange={this.handleChange}
+//                         passwordVisible={passwordVisible}
+//                         onClick={this.togglePasswordVisibility}
+//                         userExists={userExists}
+//                         t={t}
+//                       />
+//                       {step === 1 && !userExists && (
+//                         <PasswordField
+//                           id="cpassword"
+//                           placeholder="Confirmez le mot de passe"
+//                           value={this.state.cpassword}
+//                           onChange={this.handleChange}
+//                           passwordVisible={passwordVisible}
+//                           onClick={this.togglePasswordVisibility}
+//                           t={t}
+//                         />
+//                       )}
+//                     </>
+//                   ) : (
+//                     <CodeField
+//                       value={code}
+//                       onChange={this.handleChange}
+//                       key="code-field"
+//                     />
+//                   )}
+//                 </CSSTransition>
+
+//                 {step === 1 && (
+//                   <PasswordFooter
+//                     value={this.state.password}
+//                     upcoming={this.upcoming}
+//                     t={t}
+//                     userExists={userExists}
+//                     resetPassword={this.resetPassword}
+//                   />
+//                 )}
+//               </Form>
+//             </CardBody>
+//           </Card>
+//           <NavLink to="/">
+//             <FButton
+//               type="outline"
+//               name="corner-up-left-outline"
+//               className="retour-btn"
+//             >
+//               {t("Login.Retour à l'accueil", "Retour à l'accueil")}
+//             </FButton>
+//           </NavLink>
+//         </div>
+
+//         <InfoModal
+//           show={showModal}
+//           email={email}
+//           phone={phone}
+//           toggle={this.toggleModal}
+//           send={this.send}
+//           onChange={this.handleChange}
+//         />
+//       </div>
+
+const PseudoFooter = (props) => (
+  <>
+    <NoAccountContainer>
+      {props.t("Pas encore de compte ?", "Pas encore de compte ?")}
+      <Link
+        to={{
+          pathname: "/register",
+        }}
+      >
+        <div
+          style={{
+            fontWeight: "bold",
+            textDecoration: "underline",
+            marginLeft: "5px",
+          }}
+        >
+          {props.t("Créer un compte", "Créer un compte")}
+        </div>
+      </Link>
+    </NoAccountContainer>
+    <PseudoForgottenContainer>
+      <div style={{ marginRight: "5px" }}>
+        {props.t("Pseudonyme oublié ?", "Pseudonyme oublié ?")}{" "}
+      </div>
+      <ContactSupport t={props.t} />
+    </PseudoForgottenContainer>{" "}
+  </>
+);
+
+const UsernameField = (props) => (
+  <>
+    <div
+      key="username-field"
+      style={{
+        flexDirection: "row",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <div style={{ marginTop: "10px" }}>
+        <FInput
+          prepend
+          prependName="person-outline"
+          id="username"
+          type="username"
+          placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
+          autoComplete="username"
+          error={props.noUserError}
+          {...props}
+        />
+      </div>
+      <div style={{ marginLeft: "10px" }}>
+        <FButton
+          type="grey"
+          name="arrow-forward-outline"
+          disabled={!props.value}
+        >
+          {props.t("Suivant", "Suivant")}
+        </FButton>
+      </div>
+    </div>
+    {props.noUserError && (
+      <ErrorMessageContainer>
+        <b>{props.t("Login.Oups,", "Oups,")}</b>{" "}
+        {props.t(
+          "Login.Pas de compte",
+          `il n'existe pas de compte à
+  ce nom.`
+        )}
+      </ErrorMessageContainer>
+    )}
+  </>
 );
 
 const PasswordField = (props) => {
-  const password_check = passwdCheck(props.value);
+  // const password_check = passwdCheck(props.value);
   return (
     <>
-      <FInput
-        prepend
-        append
-        autoFocus={props.id === "password"}
-        prependName="lock-outline"
-        appendName={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"}
-        inputClassName="password-input"
-        onAppendClick={props.onClick}
-        {...props}
-        type={props.passwordVisible ? "text" : "password"}
-        id={props.id}
-        placeholder={
-          props.placeholder &&
-          props.t("Login." + props.placeholder, props.placeholder)
-        }
-        autoComplete="new-password"
-      />
-      {props.id === "password" && !props.userExists && props.value && (
+      <div
+        style={{
+          flexDirection: "row",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ marginTop: "10px" }}>
+          <FInput
+            prepend
+            append
+            autoFocus={props.id === "password"}
+            prependName="lock-outline"
+            appendName={
+              props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
+            }
+            inputClassName="password-input"
+            onAppendClick={props.onClick}
+            {...props}
+            type={props.passwordVisible ? "text" : "password"}
+            id={props.id}
+            placeholder={props.t("Login.Mot de passe", "Mot de passe")}
+            autoComplete="new-password"
+          />
+        </div>
+        <div style={{ marginLeft: "10px" }}>
+          <FButton
+            type="validate"
+            name="checkmark-outline"
+            disabled={!props.value}
+          >
+            {props.t("Valider", "Valider")}
+          </FButton>
+        </div>
+
+        {/* {props.id === "password" && !props.userExists && props.value && (
         <div className="score-wrapper mb-10">
           <span className="mr-10">{props.t("Login.Force", "Force")} :</span>
           <Progress
@@ -383,32 +757,33 @@ const PasswordField = (props) => {
             value={((0.1 + password_check.score / 4) * 100) / 1.1}
           />
         </div>
+      )} */}
+      </div>
+      {props.wrongPasswordError && (
+        <ErrorMessageContainer>
+          {props.t(
+            "Login.Mauvais mot de passe",
+            "Erreur, mauvais mot de passe : "
+          )}
+          <b>{props.t("Login.Reessayez", "réessayez !")}</b>
+        </ErrorMessageContainer>
       )}
     </>
   );
 };
 
 const PasswordFooter = (props) => (
-  <div className="footer-buttons">
-    {props.userExists && (
-      <Button
-        type="button"
-        color="transparent"
-        className="mr-10 password-btn"
-        onClick={props.resetPassword}
-      >
-        <u>{props.t("Login.Mot de passe oublié ?", "Mot de passe oublié ?")}</u>
-      </Button>
-    )}
-    <FButton
-      type="dark"
-      name="log-in"
-      color="dark"
-      className="connect-btn"
-      disabled={!props.value}
-    >
-      {props.t("Connexion", "Connexion")}
-    </FButton>
+  <div style={{ marginTop: "64px" }}>
+    <PasswordForgottenLink>
+      <div onClick={props.resetPassword}>
+        <u>
+          {props.t(
+            "Login.Mot de passe oublié ?",
+            "J'ai oublié mon mot de passe"
+          )}
+        </u>
+      </div>
+    </PasswordForgottenLink>
   </div>
 );
 
@@ -491,11 +866,23 @@ const InfoModal = (props) => (
   </Modal>
 );
 
-const mapDispatchToProps = { fetchUser: fetchUserActionCreator };
+const mapDispatchToProps = {
+  fetchUser: fetchUserActionCreator,
+  fetchLangues: fetchLanguesActionCreator,
+  toggleLangue: toggleLangueActionCreator,
+  toggleLangueModal: toggleLangueModalActionCreator,
+};
+const mapStateToProps = (state) => {
+  return {
+    languei18nCode: state.langue.languei18nCode,
+    showLangModal: state.langue.showLangModal,
+    langues: state.langue.langues,
+  };
+};
 
 export default track(
   {
     page: "Login",
   },
   { dispatchOnMount: true }
-)(connect(null, mapDispatchToProps)(withTranslation()(Login)));
+)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Login)));

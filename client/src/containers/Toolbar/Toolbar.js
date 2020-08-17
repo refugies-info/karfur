@@ -196,13 +196,16 @@ export class Toolbar extends React.Component {
               }}
             >
               <FButton
-                type="outline-black"
-                className="connect-btn"
-                name={windowWidth < breakpoints.tabletUp && "log-in-outline"}
-                fill={variables.noir}
+                type="signup"
+                name={"person-add-outline"}
+                className="mr-10"
               >
                 {windowWidth >= breakpoints.tabletUp &&
-                  t("Toolbar.Connexion", "Connexion")}
+                  t("Toolbar.Inscription", "Inscription")}
+              </FButton>
+
+              <FButton type="login" name={"log-in-outline"}>
+                {t("Toolbar.Connexion", "Connexion")}
               </FButton>
             </NavLink>
           )}
