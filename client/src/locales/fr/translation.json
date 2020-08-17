@@ -286,7 +286,10 @@
     "Pas de compte": "il n'existe pas de compte à ce nom.",
     "Mauvais mot de passe": "Erreur, mauvais mot de passe : ",
     "Reessayez": "réessayez !",
-    "Impossible de réinitialiser": "Impossible de réinitialiser"
+    "Impossible de réinitialiser": "Impossible de réinitialiser",
+    "Reset password message": "Attention, si vous n'avez pas configuré d'email, vous ne pourrez pas réinitialiser votre mot de passe.",
+    "Réinitialisation du mot de passe": "Un lien de réinitialisation a été envoyé",
+    "Réinitialisation texte": "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",

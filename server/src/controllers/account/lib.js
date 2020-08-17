@@ -422,7 +422,7 @@ function reset_password(req, res) {
             console.log("Email sent: " + info.response);
           }
         });
-        return res.status(200).json({ text: "Envoi réussi" });
+        return res.status(200).json({ text: "Envoi réussi", data: user.email });
       });
     }
   );

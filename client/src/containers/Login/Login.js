@@ -100,6 +100,23 @@ const ErrorMessageContainer = styled.div`
   line-height: 20px;
   margin-top: 16px;
 `;
+
+const NoEmailRelatedContainer = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  color: #f44336;
+  margin-top: 64px;
+  margin-bottom: 64px;
+`;
+
+const EmailRelatedContainer = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+`;
 export class Login extends Component {
   state = {
     username: "",
@@ -119,6 +136,7 @@ export class Login extends Component {
     noUserError: false,
     wrongPasswordError: false,
     resetPasswordNotPossible: false,
+    resetPasswordPossible: false,
   };
 
   componentDidMount() {
@@ -161,13 +179,8 @@ export class Login extends Component {
 
   resetPassword = () => {
     API.reset_password({ username: this.state.username })
-      .then(() => {
-        Swal.fire({
-          title: "Yay...",
-          text:
-            "Le mot de passe de récupération a été envoyé à l'adresse mail renseignée lors de la création du compte",
-          type: "success",
-        });
+      .then((data) => {
+        this.setState({ resetPasswordPossible: true, email: data.data.data });
       })
       .catch((e) => {
         if (e.response.status === 403) {
@@ -309,9 +322,29 @@ export class Login extends Component {
         "Impossible de réinitialiser"
       );
     }
+
+    if (this.state.resetPasswordPossible) {
+      return this.props.t(
+        "Login.Réinitialisation du mot de passe",
+        "Un lien de réinitialisation a été envoyé"
+      );
+    }
     if (this.state.step === 1) {
       return this.props.t("Login.Bonjour", "Bonjour ") + this.state.username;
     }
+  };
+
+  getHashedEmail = () => {
+    const splittedEmailArray = this.state.email.split("@");
+    if (splittedEmailArray.length === 2) {
+      const prefixEmail = splittedEmailArray[0];
+      const suffixEmail = splittedEmailArray[1];
+      const hashLength =
+        prefixEmail.length - 2 > 0 ? prefixEmail.length - 2 : 0;
+      const hashedPrefix = prefixEmail.substring(0, 2) + "*".repeat(hashLength);
+      return hashedPrefix + "@" + suffixEmail;
+    }
+    return "";
   };
 
   render() {
@@ -353,42 +386,86 @@ export class Login extends Component {
               {t("Login.Centre d'aide", "Centre d'aide")}
             </FButton>
             <StyledHeader>{this.getHeaderText()}</StyledHeader>
-            <StyledEnterValue>
-              {step === 0
-                ? t("Login.Entrez votre pseudonyme", "Entrez votre pseudonyme")
-                : t(
-                    "Login.Entrez votre mot de passe",
-                    "Entrez votre mot de passe"
-                  )}
-            </StyledEnterValue>
-            <Form onSubmit={this.send}>
-              {step === 0 ? (
-                <UsernameField
-                  value={username}
-                  onChange={this.handleChange}
-                  step={step}
-                  key="username-field"
-                  t={t}
-                  noUserError={this.state.noUserError}
-                />
-              ) : (
-                <PasswordField
-                  id="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                  passwordVisible={passwordVisible}
-                  onClick={this.togglePasswordVisibility}
-                  userExists={userExists}
-                  t={t}
-                  wrongPasswordError={this.state.wrongPasswordError}
-                />
-              )}
-            </Form>
-            {step === 0 ? (
-              <PseudoFooter t={t} />
-            ) : (
-              <PasswordFooter t={t} resetPassword={this.resetPassword} />
+            {this.state.resetPasswordNotPossible && (
+              <NoEmailRelatedContainer>
+                {t(
+                  "Login.Pas email",
+                  "Il n'y a pas d'email rattaché à ce pseudonyme."
+                )}
+              </NoEmailRelatedContainer>
             )}
+
+            {this.state.resetPasswordPossible && (
+              <>
+                <EmailRelatedContainer>
+                  {t(
+                    "Login.Lien réinitialisation",
+                    "Un lien de réinitialisation a été envoyé à "
+                  ) +
+                    this.getHashedEmail() +
+                    "."}
+                </EmailRelatedContainer>
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                    lineHeight: "20px",
+                    marginBottom: "64px",
+                  }}
+                >
+                  {t(
+                    "Login.Réinitialisation texte",
+                    "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?"
+                  )}
+                </div>
+              </>
+            )}
+            {!this.state.resetPasswordNotPossible &&
+              !this.state.resetPasswordPossible && (
+                <>
+                  <StyledEnterValue>
+                    {step === 0
+                      ? t(
+                          "Login.Entrez votre pseudonyme",
+                          "Entrez votre pseudonyme"
+                        )
+                      : t(
+                          "Login.Entrez votre mot de passe",
+                          "Entrez votre mot de passe"
+                        )}
+                  </StyledEnterValue>
+                  <Form onSubmit={this.send}>
+                    {step === 0 ? (
+                      <UsernameField
+                        value={username}
+                        onChange={this.handleChange}
+                        step={step}
+                        key="username-field"
+                        t={t}
+                        noUserError={this.state.noUserError}
+                      />
+                    ) : (
+                      <PasswordField
+                        id="password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        passwordVisible={passwordVisible}
+                        onClick={this.togglePasswordVisibility}
+                        userExists={userExists}
+                        t={t}
+                        wrongPasswordError={this.state.wrongPasswordError}
+                      />
+                    )}
+                  </Form>
+                </>
+              )}
+            <Footer
+              step={step}
+              t={t}
+              resetPassword={this.resetPassword}
+              resetPasswordNotPossible={this.state.resetPasswordNotPossible}
+              resetPasswordPossible={this.state.resetPasswordPossible}
+            />
           </ContentContainer>
           <LanguageModal
             show={this.props.showLangModal}
@@ -406,6 +483,52 @@ export class Login extends Component {
   }
 }
 
+const ResetPasswordMessage = styled.div`
+  font-size: 16px;
+  line-height: 20px;
+  color: #828282;
+  margin-bottom: 16px;
+`;
+
+const ContactSupport = (props) => (
+  <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
+    <div
+      style={{
+        fontWeight: "bold",
+        textDecoration: "underline",
+        cursor: "pointer",
+        color: "#828282",
+      }}
+    >
+      {props.t("Contactez le support", "Contactez le support")}
+    </div>
+  </a>
+);
+const Footer = (props) => {
+  if (props.resetPasswordNotPossible) {
+    return (
+      <>
+        <ResetPasswordMessage>
+          {props.t(
+            "Login.Reset password message",
+            "Attention, si vous n'avez pas configuré d'email, vous ne pourrez pas réinitialiser votre mot de passe."
+          )}
+        </ResetPasswordMessage>
+        <ContactSupport t={props.t} />
+      </>
+    );
+  }
+
+  if (props.resetPasswordPossible) {
+    return <ContactSupport t={props.t} />;
+  }
+
+  return props.step === 0 ? (
+    <PseudoFooter t={props.t} />
+  ) : (
+    <PasswordFooter t={props.t} resetPassword={props.resetPassword} />
+  );
+};
 // <div className="app flex-row align-items-center login">
 //         <div className="login-wrapper">
 //           {step === 1 && !userExists && (
@@ -534,19 +657,10 @@ const PseudoFooter = (props) => (
       </Link>
     </NoAccountContainer>
     <PseudoForgottenContainer>
-      {props.t("Pseudonyme oublié ?", "Pseudonyme oublié ?")}
-      <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
-        <div
-          style={{
-            fontWeight: "bold",
-            textDecoration: "underline",
-            marginLeft: "5px",
-            cursor: "pointer",
-          }}
-        >
-          {props.t("Contactez le support", "Contactez le support")}
-        </div>
-      </a>
+      <div style={{ marginRight: "5px" }}>
+        {props.t("Pseudonyme oublié ?", "Pseudonyme oublié ?")}{" "}
+      </div>
+      <ContactSupport t={props.t} />
     </PseudoForgottenContainer>{" "}
   </>
 );
