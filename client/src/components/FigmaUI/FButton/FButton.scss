@@ -117,6 +117,38 @@ body .figma-btn {
     }
   }
 
+  &.login {
+    background: #0421b1;
+    color: $blancSimple;
+    svg {
+      fill: $blancSimple;
+    }
+    &:hover {
+      background: $blancSimple;
+      color: #0421b1;
+      border-color: #0421b1;
+      svg {
+        fill: #0421b1;
+      }
+    }
+  }
+
+  &.signup {
+    background: $blancSimple;
+    color: #0421b1;
+    border-color: #0421b1;
+    svg {
+      fill: #0421b1;
+    }
+    &:hover {
+      background: #0421b1;
+      color: $blancSimple;
+      svg {
+        fill: $blancSimple;
+      }
+    }
+  }
+
   // Bouton d'erreur
   &.error {
     background: $error;
