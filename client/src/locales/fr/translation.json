@@ -258,10 +258,9 @@
     "Ou se créer un compte": "Ou se créer un compte",
     "Se connecter": "Se connecter",
     "Content de vous revoir !": "Content de vous revoir !",
-    "Mot de passe": "Mot de passe",
     "Se créer un compte": "Se créer un compte",
     "Pas besoin d’email": "Pas besoin d’email",
-    "Mot de passe oublié ?": "Mot de passe oublié ?",
+    "Mot de passe oublié ?": "J'ai oublié mon mot de passe",
     "no-account": "Il n'existe pas de compte à ce nom",
     "Confirmez le mot de passe": "Confirmez le mot de passe",
     "Force": "Force",
@@ -279,7 +278,10 @@
     "Créer un compte": " Créer un compte",
     "Pseudonyme oublié ?": "Pseudonyme oublié ?",
     "Contactez le support": "Contactez le support",
-    "Centre d'aide": "Centre d'aide"
+    "Centre d'aide": "Centre d'aide",
+    "Votre mot de passe": "Votre mot de passe",
+    "Bonjour": "Bonjour ",
+    "Entrez votre mot de passe": "Entrez votre mot de passe"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",

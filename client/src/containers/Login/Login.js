@@ -47,7 +47,7 @@ const StyledHeader = styled.div`
   margin-top: 64px;
 `;
 
-const StyledEnterPseudo = styled.div`
+const StyledEnterValue = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
@@ -85,6 +85,14 @@ const PseudoForgottenContainer = styled.div`
   margin-top: 16px;
   font-weight: bold;
 `;
+
+const PasswordForgottenLink = styled.div`
+  color: #828282;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+`;
 export class Login extends Component {
   state = {
     username: "",
@@ -106,32 +114,32 @@ export class Login extends Component {
 
   componentDidMount() {
     this.props.fetchLangues();
-    const locState = this.props.location.state;
-    const qParam = querySearch(this.props.location.search).redirect;
+    // const locState = this.props.location.state;
+    // const qParam = querySearch(this.props.location.search).redirect;
     if (API.isAuth()) {
-      if (qParam) {
-        const redirectTo = decodeURIComponent(qParam);
-        return window.location.assign(
-          redirectTo +
-            (redirectTo.indexOf("?") === -1 ? "?" : "&") +
-            "ssoToken=" +
-            localStorage.getItem("token")
-        );
-      }
+      // if (qParam) {
+      //   const redirectTo = decodeURIComponent(qParam);
+      //   return window.location.assign(
+      //     redirectTo +
+      //       (redirectTo.indexOf("?") === -1 ? "?" : "&") +
+      //       "ssoToken=" +
+      //       localStorage.getItem("token")
+      //   );
+      // }
       return this.props.history.push("/");
     }
-    if (locState) {
-      this.setState({
-        traducteur: locState.traducteur,
-        redirectTo: locState.redirectTo || "/",
-      });
-    }
-    if (qParam) {
-      this.setState({
-        cannyRedirect: true,
-        redirectTo: decodeURIComponent(qParam),
-      });
-    }
+    // if (locState) {
+    //   this.setState({
+    //     traducteur: locState.traducteur,
+    //     redirectTo: locState.redirectTo || "/",
+    //   });
+    // }
+    // if (qParam) {
+    //   this.setState({
+    //     cannyRedirect: true,
+    //     redirectTo: decodeURIComponent(qParam),
+    //   });
+    // }
     window.scrollTo(0, 0);
   }
 
@@ -168,6 +176,8 @@ export class Login extends Component {
 
   send = (e) => {
     e.preventDefault();
+
+    // validate pseudo
     if (this.state.step === 0) {
       if (this.state.username.length === 0) {
         Swal.fire({
@@ -182,6 +192,7 @@ export class Login extends Component {
         this.setState({ userExists: data.status === 200, step: 1 });
       });
     } else {
+      // password check
       if (this.state.password.length === 0) {
         return Swal.fire({
           title: "Oops...",
@@ -190,28 +201,30 @@ export class Login extends Component {
           timer: 1500,
         });
       }
-      if (
-        !this.state.userExists &&
-        this.state.password !== this.state.cpassword
-      ) {
-        return Swal.fire({
-          title: "Oops...",
-          text: "Les mots de passes ne correspondent pas !",
-          type: "error",
-          timer: 1500,
-        });
-      }
-      if (
-        !this.state.userExists &&
-        (passwdCheck(this.state.password) || {}).score < 1
-      ) {
-        return Swal.fire({
-          title: "Oops...",
-          text: "Le mot de passe est trop faible",
-          type: "error",
-          timer: 1500,
-        });
-      }
+
+      // creation compte
+      // if (
+      //   !this.state.userExists &&
+      //   this.state.password !== this.state.cpassword
+      // ) {
+      //   return Swal.fire({
+      //     title: "Oops...",
+      //     text: "Les mots de passes ne correspondent pas !",
+      //     type: "error",
+      //     timer: 1500,
+      //   });
+      // }
+      // if (
+      //   !this.state.userExists &&
+      //   (passwdCheck(this.state.password) || {}).score < 1
+      // ) {
+      //   return Swal.fire({
+      //     title: "Oops...",
+      //     text: "Le mot de passe est trop faible",
+      //     type: "error",
+      //     timer: 1500,
+      //   });
+      // }
       const user = {
         username: this.state.username,
         password: this.state.password,
@@ -224,28 +237,18 @@ export class Login extends Component {
       API.login(user)
         .then((data) => {
           const token = data.data.token,
-            { cannyRedirect, redirectTo } = this.state;
+            { redirectTo } = this.state;
           Swal.fire({
             title: "Yay...",
             text: "Authentification réussie !",
             type: "success",
             timer: 1500,
           }).then(() => {
-            if (cannyRedirect) {
-              return window.location.assign(
-                redirectTo +
-                  (redirectTo.indexOf("?") === -1 ? "?" : "&") +
-                  "ssoToken=" +
-                  token
-              );
-            }
             return this.props.history.push(redirectTo);
           });
           localStorage.setItem("token", token);
-          if (!cannyRedirect) {
-            setAuthToken(token);
-            this.props.fetchUser();
-          }
+          setAuthToken(token);
+          this.props.fetchUser();
         })
         .catch((e) => {
           if (e.response.status === 501) {
@@ -313,69 +316,99 @@ export class Login extends Component {
             >
               {t("Login.Centre d'aide", "Centre d'aide")}
             </FButton>
-            <StyledHeader>
-              {t("Login.Content de vous revoir !", "Content de vous revoir !")}
-            </StyledHeader>
-            <StyledEnterPseudo>
-              {t("Login.Entrez votre pseudonyme", "Entrez votre pseudonyme")}
-            </StyledEnterPseudo>
-            <div
-              style={{
-                flexDirection: "row",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <UsernameField
-                value={username}
-                onChange={this.handleChange}
-                step={step}
-                key="username-field"
-                t={t}
-              />
-              <div style={{ marginLeft: "10px" }}>
-                <FButton
-                  type="grey"
-                  name="arrow-forward-outline"
-                  disabled={!username}
-                >
-                  {t("Suivant", "Suivant")}
-                </FButton>
-              </div>
-            </div>
-            <NoAccountContainer>
-              {t("Pas encore de compte ?", "Pas encore de compte ?")}
-              <Link
-                to={{
-                  pathname: "/register",
-                }}
-              >
-                <div
-                  style={{
-                    fontWeight: "bold",
-                    textDecoration: "underline",
-                    marginLeft: "5px",
-                  }}
-                >
-                  {t("Créer un compte", "Créer un compte")}
+            <Form onSubmit={this.send}>
+              <StyledHeader>
+                {step === 0
+                  ? t(
+                      "Login.Content de vous revoir !",
+                      "Content de vous revoir !"
+                    )
+                  : t("Login.Bonjour", "Bonjour ") + username}
+              </StyledHeader>
+              <StyledEnterValue>
+                {step === 0
+                  ? t(
+                      "Login.Entrez votre pseudonyme",
+                      "Entrez votre pseudonyme"
+                    )
+                  : t(
+                      "Login.Entrez votre mot de passe",
+                      "Entrez votre mot de passe"
+                    )}
+              </StyledEnterValue>
+
+              {step === 0 ? (
+                <UsernameField
+                  value={username}
+                  onChange={this.handleChange}
+                  step={step}
+                  key="username-field"
+                  t={t}
+                />
+              ) : (
+                <>
+                  <PasswordField
+                    id="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    passwordVisible={passwordVisible}
+                    onClick={this.togglePasswordVisibility}
+                    userExists={userExists}
+                    t={t}
+                  />
+                </>
+              )}
+              {step === 0 ? (
+                <>
+                  <NoAccountContainer>
+                    {t("Pas encore de compte ?", "Pas encore de compte ?")}
+                    <Link
+                      to={{
+                        pathname: "/register",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontWeight: "bold",
+                          textDecoration: "underline",
+                          marginLeft: "5px",
+                        }}
+                      >
+                        {t("Créer un compte", "Créer un compte")}
+                      </div>
+                    </Link>
+                  </NoAccountContainer>
+                  <PseudoForgottenContainer>
+                    {t("Pseudonyme oublié ?", "Pseudonyme oublié ?")}
+                    <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
+                      <div
+                        style={{
+                          fontWeight: "bold",
+                          textDecoration: "underline",
+                          marginLeft: "5px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {t("Contactez le support", "Contactez le support")}
+                      </div>
+                    </a>
+                  </PseudoForgottenContainer>{" "}
+                </>
+              ) : (
+                <div style={{ marginTop: "64px" }}>
+                  <PasswordForgottenLink>
+                    <div onClick={this.resetPassword}>
+                      <u>
+                        {t(
+                          "Login.Mot de passe oublié ?",
+                          "J'ai oublié mon mot de passe"
+                        )}
+                      </u>
+                    </div>
+                  </PasswordForgottenLink>
                 </div>
-              </Link>
-            </NoAccountContainer>
-            <PseudoForgottenContainer>
-              {t("Pseudonyme oublié ?", "Pseudonyme oublié ?")}
-              <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
-                <div
-                  style={{
-                    fontWeight: "bold",
-                    textDecoration: "underline",
-                    marginLeft: "5px",
-                    cursor: "pointer",
-                  }}
-                >
-                  {t("Contactez le support", "Contactez le support")}
-                </div>
-              </a>
-            </PseudoForgottenContainer>
+              )}
+            </Form>
           </ContentContainer>
           <LanguageModal
             show={this.props.showLangModal}
@@ -501,41 +534,74 @@ export class Login extends Component {
 //       </div>
 
 const UsernameField = (props) => (
-  <div key="username-field" style={{ marginTop: "10px" }}>
-    <FInput
-      prepend
-      prependName="person-outline"
-      {...props}
-      id="username"
-      type="username"
-      placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
-      autoComplete="username"
-    />
+  <div
+    key="username-field"
+    style={{
+      flexDirection: "row",
+      display: "flex",
+      alignItems: "center",
+    }}
+  >
+    <div style={{ marginTop: "10px" }}>
+      <FInput
+        prepend
+        prependName="person-outline"
+        {...props}
+        id="username"
+        type="username"
+        placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
+        autoComplete="username"
+      />
+    </div>
+    <div style={{ marginLeft: "10px" }}>
+      <FButton type="grey" name="arrow-forward-outline" disabled={!props.value}>
+        {props.t("Suivant", "Suivant")}
+      </FButton>
+    </div>
   </div>
 );
 
 const PasswordField = (props) => {
-  const password_check = passwdCheck(props.value);
+  // const password_check = passwdCheck(props.value);
   return (
-    <>
-      <FInput
-        prepend
-        append
-        autoFocus={props.id === "password"}
-        prependName="lock-outline"
-        appendName={props.passwordVisible ? "eye-off-2-outline" : "eye-outline"}
-        inputClassName="password-input"
-        onAppendClick={props.onClick}
-        {...props}
-        type={props.passwordVisible ? "text" : "password"}
-        id={props.id}
-        placeholder={
-          props.placeholder &&
-          props.t("Login." + props.placeholder, props.placeholder)
-        }
-        autoComplete="new-password"
-      />
-      {props.id === "password" && !props.userExists && props.value && (
+    <div
+      style={{
+        flexDirection: "row",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <div style={{ marginTop: "10px" }}>
+        <FInput
+          prepend
+          append
+          autoFocus={props.id === "password"}
+          prependName="lock-outline"
+          appendName={
+            props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
+          }
+          inputClassName="password-input"
+          onAppendClick={props.onClick}
+          {...props}
+          type={props.passwordVisible ? "text" : "password"}
+          id={props.id}
+          placeholder={props.t(
+            "Login. Votre mot de passe",
+            "Votre mot de passe"
+          )}
+          autoComplete="new-password"
+        />
+      </div>
+      <div style={{ marginLeft: "10px" }}>
+        <FButton
+          type="validate"
+          name="checkmark-outline"
+          disabled={!props.value}
+        >
+          {props.t("Valider", "Valider")}
+        </FButton>
+      </div>
+      {/* {props.id === "password" && !props.userExists && props.value && (
         <div className="score-wrapper mb-10">
           <span className="mr-10">{props.t("Login.Force", "Force")} :</span>
           <Progress
@@ -543,8 +609,8 @@ const PasswordField = (props) => {
             value={((0.1 + password_check.score / 4) * 100) / 1.1}
           />
         </div>
-      )}
-    </>
+      )} */}
+    </div>
   );
 };
 

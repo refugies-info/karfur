@@ -7,13 +7,70 @@ const passwdCheck = require("zxcvbn");
 const crypto = require("crypto");
 let { transporter, mailOptions, url } = require("../dispositif/lib.js");
 
+// //On lui crée un nouveau compte si la demande vient du site seulement
+// user = req.body;
+// if (
+//   req.fromSite &&
+//   user.cpassword &&
+//   user.cpassword === user.password
+// ) {
+//   if ((passwdCheck(user.password) || {}).score < 1) {
+//     return res
+//       .status(401)
+//       .json({ text: "Le mot de passe est trop faible" });
+//   }
+//   user.password = passwordHash.generate(user.password);
+//   if (
+//     user.roles &&
+//     user.roles.length > 0 &&
+//     req.user.roles.some((x) => x.nom === "Admin")
+//   ) {
+//     user.roles = [
+//       ...new Set([
+//         ...user.roles,
+//         req.roles.find((x) => x.nom === "User")._id,
+//       ]),
+//     ];
+//   } else if (user.traducteur) {
+//     user.roles = [req.roles.find((x) => x.nom === "Trad")._id];
+//     delete user.traducteur;
+//   } else {
+//     user.roles = [req.roles.find((x) => x.nom === "User")._id];
+//   }
+//   // eslint-disable-next-line no-use-before-define
+//   _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
+//   user.status = "Actif";
+//   user.last_connected = new Date();
+//   var _u = new User(user);
+//   _u.save((err, user) => {
+//     if (err) {
+//       res.status(500).json({ text: "Erreur interne" });
+//     } else {
+//       //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
+//       // eslint-disable-next-line no-use-before-define
+//       populateLanguages(user);
+//       res.status(200).json({
+//         text: "Succès",
+//         token: user.getToken(),
+//         data: user,
+//       });
+//     }
+//   });
+// } else if (!req.fromSite) {
+//   res
+//     .status(403)
+//     .json({ text: "Création d'utilisateur impossible par API" });
+// } else {
+//   res
+//     .status(402)
+//     .json({ text: "Les mots de passe ne correspondent pas" });
+// }
 //Cette fonction est appelée quand tout utilisateur cherche à se connecter ou créer un compte
 function login(req, res) {
   if (!req.body.username || !req.body.password) {
     //Le cas où le username ou bien le password ne serait pas soumis ou nul
     res.status(400).json({ text: "Requête invalide" });
   } else {
-
     User.findOne(
       {
         username: req.body.username,
@@ -22,64 +79,9 @@ function login(req, res) {
         if (err) {
           res.status(500).json({ text: "Erreur interne", data: err });
         } else if (!user) {
-          //On lui crée un nouveau compte si la demande vient du site seulement
-          user = req.body;
-          if (
-            req.fromSite &&
-            user.cpassword &&
-            user.cpassword === user.password
-          ) {
-            if ((passwdCheck(user.password) || {}).score < 1) {
-              return res
-                .status(401)
-                .json({ text: "Le mot de passe est trop faible" });
-            }
-            user.password = passwordHash.generate(user.password);
-            if (
-              user.roles &&
-              user.roles.length > 0 &&
-              req.user.roles.some((x) => x.nom === "Admin")
-            ) {
-              user.roles = [
-                ...new Set([
-                  ...user.roles,
-                  req.roles.find((x) => x.nom === "User")._id,
-                ]),
-              ];
-            } else if (user.traducteur) {
-              user.roles = [req.roles.find((x) => x.nom === "Trad")._id];
-              delete user.traducteur;
-            } else {
-              user.roles = [req.roles.find((x) => x.nom === "User")._id];
-            }
-            // eslint-disable-next-line no-use-before-define
-            _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
-            user.status = "Actif";
-            user.last_connected = new Date();
-            var _u = new User(user);
-            _u.save((err, user) => {
-              if (err) {
-                res.status(500).json({ text: "Erreur interne" });
-              } else {
-                //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
-                // eslint-disable-next-line no-use-before-define
-                populateLanguages(user);
-                res.status(200).json({
-                  text: "Succès",
-                  token: user.getToken(),
-                  data: user,
-                });
-              }
-            });
-          } else if (!req.fromSite) {
-            res
-              .status(403)
-              .json({ text: "Création d'utilisateur impossible par API" });
-          } else {
-            res
-              .status(402)
-              .json({ text: "Les mots de passe ne correspondent pas" });
-          }
+          res
+            .status(400)
+            .json({ text: "Pas d'utilisateur avec ce pseudonyme" });
         } else {
           if (user.authenticate(req.body.password)) {
             if (
@@ -88,7 +90,9 @@ function login(req, res) {
                   x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
               )
             ) {
+              // user admin
               if (user.authy_id && req.body.code) {
+                // code provided : check if code is correct
                 return authy.verify(user.authy_id, req.body.code, function (
                   err,
                   result
@@ -103,6 +107,7 @@ function login(req, res) {
                   return proceed_with_login(req, res, user);
                 });
               } else if (user.authy_id) {
+                // no code provided : send sms with code
                 return authy.request_sms(
                   user.authy_id,
                   // eslint-disable-next-line no-undef
@@ -119,6 +124,7 @@ function login(req, res) {
                   }
                 );
               } else if (req.body.email && req.body.phone) {
+                // creation of admin user
                 return authy.register_user(
                   req.body.email,
                   req.body.phone,
@@ -491,7 +497,6 @@ function get_users(req, res) {
     populate = "";
   }
 
-
   const select = ((req.user || {}).roles || []).some((x) => x.nom === "Admin")
     ? undefined
     : req.fromSite
@@ -553,7 +558,6 @@ function get_users(req, res) {
 }
 
 function get_user_info(req, res) {
- 
   res.status(200).json({
     text: "Succès",
     data: req.user,
