@@ -285,7 +285,8 @@
     "Oups,": "Oups,",
     "Pas de compte": "il n'existe pas de compte à ce nom.",
     "Mauvais mot de passe": "Erreur, mauvais mot de passe : ",
-    "Reessayez": "réessayez !"
+    "Reessayez": "réessayez !",
+    "Impossible de réinitialiser": "Impossible de réinitialiser"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",

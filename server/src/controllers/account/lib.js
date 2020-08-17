@@ -373,6 +373,7 @@ function reset_password(req, res) {
         return res.status(403).json({
           text:
             "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+          data: "no-alert",
         });
       }
       if (

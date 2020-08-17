@@ -118,6 +118,7 @@ export class Login extends Component {
     showModal: false,
     noUserError: false,
     wrongPasswordError: false,
+    resetPasswordNotPossible: false,
   };
 
   componentDidMount() {
@@ -159,14 +160,20 @@ export class Login extends Component {
     this.setState({ step: 0, userExists: false, password: "", cpassword: "" });
 
   resetPassword = () => {
-    API.reset_password({ username: this.state.username }).then(() => {
-      Swal.fire({
-        title: "Yay...",
-        text:
-          "Le mot de passe de récupération a été envoyé à l'adresse mail renseignée lors de la création du compte",
-        type: "success",
+    API.reset_password({ username: this.state.username })
+      .then(() => {
+        Swal.fire({
+          title: "Yay...",
+          text:
+            "Le mot de passe de récupération a été envoyé à l'adresse mail renseignée lors de la création du compte",
+          type: "success",
+        });
+      })
+      .catch((e) => {
+        if (e.response.status === 403) {
+          this.setState({ resetPasswordNotPossible: true });
+        }
       });
-    });
   };
 
   changeLanguage = (lng) => {
@@ -289,13 +296,23 @@ export class Login extends Component {
   handleChange = (event) =>
     this.setState({ [event.target.id]: event.target.value });
 
-  upcoming = () =>
-    Swal.fire({
-      title: "Oh non!",
-      text: "Cette fonctionnalité n'est pas encore disponible",
-      type: "error",
-      timer: 1500,
-    });
+  getHeaderText = () => {
+    if (this.state.step === 0) {
+      return this.props.t(
+        "Login.Content de vous revoir !",
+        "Content de vous revoir !"
+      );
+    }
+    if (this.state.resetPasswordNotPossible) {
+      return this.props.t(
+        "Login.Impossible de réinitialiser",
+        "Impossible de réinitialiser"
+      );
+    }
+    if (this.state.step === 1) {
+      return this.props.t("Login.Bonjour", "Bonjour ") + this.state.username;
+    }
+  };
 
   render() {
     const {
@@ -335,121 +352,43 @@ export class Login extends Component {
             >
               {t("Login.Centre d'aide", "Centre d'aide")}
             </FButton>
+            <StyledHeader>{this.getHeaderText()}</StyledHeader>
+            <StyledEnterValue>
+              {step === 0
+                ? t("Login.Entrez votre pseudonyme", "Entrez votre pseudonyme")
+                : t(
+                    "Login.Entrez votre mot de passe",
+                    "Entrez votre mot de passe"
+                  )}
+            </StyledEnterValue>
             <Form onSubmit={this.send}>
-              <StyledHeader>
-                {step === 0
-                  ? t(
-                      "Login.Content de vous revoir !",
-                      "Content de vous revoir !"
-                    )
-                  : t("Login.Bonjour", "Bonjour ") + username}
-              </StyledHeader>
-              <StyledEnterValue>
-                {step === 0
-                  ? t(
-                      "Login.Entrez votre pseudonyme",
-                      "Entrez votre pseudonyme"
-                    )
-                  : t(
-                      "Login.Entrez votre mot de passe",
-                      "Entrez votre mot de passe"
-                    )}
-              </StyledEnterValue>
-
               {step === 0 ? (
-                <>
-                  <UsernameField
-                    value={username}
-                    onChange={this.handleChange}
-                    step={step}
-                    key="username-field"
-                    t={t}
-                    noUserError={this.state.noUserError}
-                  />
-                  {this.state.noUserError && (
-                    <ErrorMessageContainer>
-                      <b>{t("Login.Oups,", "Oups,")}</b>{" "}
-                      {t(
-                        "Login.Pas de compte",
-                        `il n'existe pas de compte à
-                      ce nom.`
-                      )}
-                    </ErrorMessageContainer>
-                  )}
-                </>
+                <UsernameField
+                  value={username}
+                  onChange={this.handleChange}
+                  step={step}
+                  key="username-field"
+                  t={t}
+                  noUserError={this.state.noUserError}
+                />
               ) : (
-                <>
-                  <PasswordField
-                    id="password"
-                    value={this.state.password}
-                    onChange={this.handleChange}
-                    passwordVisible={passwordVisible}
-                    onClick={this.togglePasswordVisibility}
-                    userExists={userExists}
-                    t={t}
-                  />
-                  {this.state.wrongPasswordError && (
-                    <ErrorMessageContainer>
-                      {t(
-                        "Login.Mauvais mot de passe",
-                        "Erreur, mauvais mot de passe : "
-                      )}
-                      <b>{t("Login.Reessayez", "réessayez !")}</b>
-                    </ErrorMessageContainer>
-                  )}
-                </>
-              )}
-              {step === 0 ? (
-                <>
-                  <NoAccountContainer>
-                    {t("Pas encore de compte ?", "Pas encore de compte ?")}
-                    <Link
-                      to={{
-                        pathname: "/register",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontWeight: "bold",
-                          textDecoration: "underline",
-                          marginLeft: "5px",
-                        }}
-                      >
-                        {t("Créer un compte", "Créer un compte")}
-                      </div>
-                    </Link>
-                  </NoAccountContainer>
-                  <PseudoForgottenContainer>
-                    {t("Pseudonyme oublié ?", "Pseudonyme oublié ?")}
-                    <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
-                      <div
-                        style={{
-                          fontWeight: "bold",
-                          textDecoration: "underline",
-                          marginLeft: "5px",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {t("Contactez le support", "Contactez le support")}
-                      </div>
-                    </a>
-                  </PseudoForgottenContainer>{" "}
-                </>
-              ) : (
-                <div style={{ marginTop: "64px" }}>
-                  <PasswordForgottenLink>
-                    <div onClick={this.resetPassword}>
-                      <u>
-                        {t(
-                          "Login.Mot de passe oublié ?",
-                          "J'ai oublié mon mot de passe"
-                        )}
-                      </u>
-                    </div>
-                  </PasswordForgottenLink>
-                </div>
+                <PasswordField
+                  id="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  passwordVisible={passwordVisible}
+                  onClick={this.togglePasswordVisibility}
+                  userExists={userExists}
+                  t={t}
+                  wrongPasswordError={this.state.wrongPasswordError}
+                />
               )}
             </Form>
+            {step === 0 ? (
+              <PseudoFooter t={t} />
+            ) : (
+              <PasswordFooter t={t} resetPassword={this.resetPassword} />
+            )}
           </ContentContainer>
           <LanguageModal
             show={this.props.showLangModal}
@@ -574,39 +513,48 @@ export class Login extends Component {
 //         />
 //       </div>
 
-const UsernameField = (props) => (
-  <div
-    key="username-field"
-    style={{
-      flexDirection: "row",
-      display: "flex",
-      alignItems: "center",
-    }}
-  >
-    <div style={{ marginTop: "10px" }}>
-      <FInput
-        prepend
-        prependName="person-outline"
-        id="username"
-        type="username"
-        placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
-        autoComplete="username"
-        error={props.noUserError}
-        {...props}
-      />
-    </div>
-    <div style={{ marginLeft: "10px" }}>
-      <FButton type="grey" name="arrow-forward-outline" disabled={!props.value}>
-        {props.t("Suivant", "Suivant")}
-      </FButton>
-    </div>
-  </div>
+const PseudoFooter = (props) => (
+  <>
+    <NoAccountContainer>
+      {props.t("Pas encore de compte ?", "Pas encore de compte ?")}
+      <Link
+        to={{
+          pathname: "/register",
+        }}
+      >
+        <div
+          style={{
+            fontWeight: "bold",
+            textDecoration: "underline",
+            marginLeft: "5px",
+          }}
+        >
+          {props.t("Créer un compte", "Créer un compte")}
+        </div>
+      </Link>
+    </NoAccountContainer>
+    <PseudoForgottenContainer>
+      {props.t("Pseudonyme oublié ?", "Pseudonyme oublié ?")}
+      <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
+        <div
+          style={{
+            fontWeight: "bold",
+            textDecoration: "underline",
+            marginLeft: "5px",
+            cursor: "pointer",
+          }}
+        >
+          {props.t("Contactez le support", "Contactez le support")}
+        </div>
+      </a>
+    </PseudoForgottenContainer>{" "}
+  </>
 );
 
-const PasswordField = (props) => {
-  // const password_check = passwdCheck(props.value);
-  return (
+const UsernameField = (props) => (
+  <>
     <div
+      key="username-field"
       style={{
         flexDirection: "row",
         display: "flex",
@@ -616,31 +564,78 @@ const PasswordField = (props) => {
       <div style={{ marginTop: "10px" }}>
         <FInput
           prepend
-          append
-          autoFocus={props.id === "password"}
-          prependName="lock-outline"
-          appendName={
-            props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
-          }
-          inputClassName="password-input"
-          onAppendClick={props.onClick}
+          prependName="person-outline"
+          id="username"
+          type="username"
+          placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
+          autoComplete="username"
+          error={props.noUserError}
           {...props}
-          type={props.passwordVisible ? "text" : "password"}
-          id={props.id}
-          placeholder={props.t("Login.Mot de passe", "Mot de passe")}
-          autoComplete="new-password"
         />
       </div>
       <div style={{ marginLeft: "10px" }}>
         <FButton
-          type="validate"
-          name="checkmark-outline"
+          type="grey"
+          name="arrow-forward-outline"
           disabled={!props.value}
         >
-          {props.t("Valider", "Valider")}
+          {props.t("Suivant", "Suivant")}
         </FButton>
       </div>
-      {/* {props.id === "password" && !props.userExists && props.value && (
+    </div>
+    {props.noUserError && (
+      <ErrorMessageContainer>
+        <b>{props.t("Login.Oups,", "Oups,")}</b>{" "}
+        {props.t(
+          "Login.Pas de compte",
+          `il n'existe pas de compte à
+  ce nom.`
+        )}
+      </ErrorMessageContainer>
+    )}
+  </>
+);
+
+const PasswordField = (props) => {
+  // const password_check = passwdCheck(props.value);
+  return (
+    <>
+      <div
+        style={{
+          flexDirection: "row",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ marginTop: "10px" }}>
+          <FInput
+            prepend
+            append
+            autoFocus={props.id === "password"}
+            prependName="lock-outline"
+            appendName={
+              props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
+            }
+            inputClassName="password-input"
+            onAppendClick={props.onClick}
+            {...props}
+            type={props.passwordVisible ? "text" : "password"}
+            id={props.id}
+            placeholder={props.t("Login.Mot de passe", "Mot de passe")}
+            autoComplete="new-password"
+          />
+        </div>
+        <div style={{ marginLeft: "10px" }}>
+          <FButton
+            type="validate"
+            name="checkmark-outline"
+            disabled={!props.value}
+          >
+            {props.t("Valider", "Valider")}
+          </FButton>
+        </div>
+
+        {/* {props.id === "password" && !props.userExists && props.value && (
         <div className="score-wrapper mb-10">
           <span className="mr-10">{props.t("Login.Force", "Force")} :</span>
           <Progress
@@ -649,31 +644,32 @@ const PasswordField = (props) => {
           />
         </div>
       )} */}
-    </div>
+      </div>
+      {props.wrongPasswordError && (
+        <ErrorMessageContainer>
+          {props.t(
+            "Login.Mauvais mot de passe",
+            "Erreur, mauvais mot de passe : "
+          )}
+          <b>{props.t("Login.Reessayez", "réessayez !")}</b>
+        </ErrorMessageContainer>
+      )}
+    </>
   );
 };
 
 const PasswordFooter = (props) => (
-  <div className="footer-buttons">
-    {props.userExists && (
-      <Button
-        type="button"
-        color="transparent"
-        className="mr-10 password-btn"
-        onClick={props.resetPassword}
-      >
-        <u>{props.t("Login.Mot de passe oublié ?", "Mot de passe oublié ?")}</u>
-      </Button>
-    )}
-    <FButton
-      type="dark"
-      name="log-in"
-      color="dark"
-      className="connect-btn"
-      disabled={!props.value}
-    >
-      {props.t("Connexion", "Connexion")}
-    </FButton>
+  <div style={{ marginTop: "64px" }}>
+    <PasswordForgottenLink>
+      <div onClick={props.resetPassword}>
+        <u>
+          {props.t(
+            "Login.Mot de passe oublié ?",
+            "J'ai oublié mon mot de passe"
+          )}
+        </u>
+      </div>
+    </PasswordForgottenLink>
   </div>
 );
 
