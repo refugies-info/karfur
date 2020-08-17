@@ -279,9 +279,13 @@
     "Pseudonyme oublié ?": "Pseudonyme oublié ?",
     "Contactez le support": "Contactez le support",
     "Centre d'aide": "Centre d'aide",
-    "Votre mot de passe": "Votre mot de passe",
+    "Mot de passe": "Mot de passe",
     "Bonjour": "Bonjour ",
-    "Entrez votre mot de passe": "Entrez votre mot de passe"
+    "Entrez votre mot de passe": "Entrez votre mot de passe",
+    "Oups,": "Oups,",
+    "Pas de compte": "il n'existe pas de compte à ce nom.",
+    "Mauvais mot de passe": "Erreur, mauvais mot de passe : ",
+    "Reessayez": "réessayez !"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",

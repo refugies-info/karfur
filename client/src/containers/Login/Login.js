@@ -93,6 +93,13 @@ const PasswordForgottenLink = styled.div`
   font-size: 16px;
   line-height: 20px;
 `;
+
+const ErrorMessageContainer = styled.div`
+  color: #e8140f;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 16px;
+`;
 export class Login extends Component {
   state = {
     username: "",
@@ -109,7 +116,8 @@ export class Login extends Component {
     userExists: false,
     usernameHidden: false,
     showModal: false,
-    cannyRedirect: false,
+    noUserError: false,
+    wrongPasswordError: false,
   };
 
   componentDidMount() {
@@ -189,7 +197,19 @@ export class Login extends Component {
         return;
       }
       API.checkUserExists({ username: this.state.username }).then((data) => {
-        this.setState({ userExists: data.status === 200, step: 1 });
+        const userExists = data.status === 200;
+        // if user, go to next step (password)
+        if (userExists) {
+          this.setState({
+            userExists,
+            step: 1,
+          });
+        } else {
+          // if no user: display error
+          this.setState({
+            noUserError: !userExists,
+          });
+        }
       });
     } else {
       // password check
@@ -259,9 +279,8 @@ export class Login extends Component {
               phone: _.get(e, "response.data.phone", ""),
               email: _.get(e, "response.data.email", ""),
             });
-          } else {
-            // eslint-disable-next-line no-console
-            console.log(e.response);
+          } else if (e.response.status === 401) {
+            this.setState({ wrongPasswordError: true });
           }
         });
     }
@@ -338,13 +357,26 @@ export class Login extends Component {
               </StyledEnterValue>
 
               {step === 0 ? (
-                <UsernameField
-                  value={username}
-                  onChange={this.handleChange}
-                  step={step}
-                  key="username-field"
-                  t={t}
-                />
+                <>
+                  <UsernameField
+                    value={username}
+                    onChange={this.handleChange}
+                    step={step}
+                    key="username-field"
+                    t={t}
+                    noUserError={this.state.noUserError}
+                  />
+                  {this.state.noUserError && (
+                    <ErrorMessageContainer>
+                      <b>{t("Login.Oups,", "Oups,")}</b>{" "}
+                      {t(
+                        "Login.Pas de compte",
+                        `il n'existe pas de compte à
+                      ce nom.`
+                      )}
+                    </ErrorMessageContainer>
+                  )}
+                </>
               ) : (
                 <>
                   <PasswordField
@@ -356,6 +388,15 @@ export class Login extends Component {
                     userExists={userExists}
                     t={t}
                   />
+                  {this.state.wrongPasswordError && (
+                    <ErrorMessageContainer>
+                      {t(
+                        "Login.Mauvais mot de passe",
+                        "Erreur, mauvais mot de passe : "
+                      )}
+                      <b>{t("Login.Reessayez", "réessayez !")}</b>
+                    </ErrorMessageContainer>
+                  )}
                 </>
               )}
               {step === 0 ? (
@@ -546,11 +587,12 @@ const UsernameField = (props) => (
       <FInput
         prepend
         prependName="person-outline"
-        {...props}
         id="username"
         type="username"
         placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
         autoComplete="username"
+        error={props.noUserError}
+        {...props}
       />
     </div>
     <div style={{ marginLeft: "10px" }}>
@@ -585,10 +627,7 @@ const PasswordField = (props) => {
           {...props}
           type={props.passwordVisible ? "text" : "password"}
           id={props.id}
-          placeholder={props.t(
-            "Login. Votre mot de passe",
-            "Votre mot de passe"
-          )}
+          placeholder={props.t("Login.Mot de passe", "Mot de passe")}
           autoComplete="new-password"
         />
       </div>
