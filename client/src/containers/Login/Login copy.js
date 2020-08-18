@@ -1,21 +1,37 @@
 import React, { Component } from "react";
 import track from "react-tracking";
-import { Form } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  Form,
+  ModalBody,
+  ModalFooter,
+  Progress,
+} from "reactstrap";
 import i18n from "../../i18n";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
+import { CSSTransition } from "react-transition-group";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
+import _ from "lodash";
+import passwdCheck from "zxcvbn";
+import querySearch from "stringquery";
 import { Link } from "react-router-dom";
 import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 import API from "../../utils/API";
 import setAuthToken from "../../utils/setAuthToken";
 import FButton from "../../components/FigmaUI/FButton/FButton";
+import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../components/FigmaUI/FInput/FInput";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
+import Modal from "../../components/Modals/Modal";
+import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import styled from "styled-components";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 
+import "./Login.scss";
 import variables from "scss/colors.scss";
 import {
   fetchLanguesActionCreator,
@@ -40,6 +56,7 @@ const StyledEnterValue = styled.div`
 `;
 
 const MainContainer = styled.div`
+  background: #cdcdcd;
   display: flex;
   align-items: center;
   flex: 1;
@@ -89,7 +106,7 @@ const NoEmailRelatedContainer = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  color: #e8140f;
+  color: #f44336;
   margin-top: 64px;
   margin-bottom: 64px;
 `;
@@ -101,43 +118,21 @@ const EmailRelatedContainer = styled.div`
   margin-top: 64px;
   margin-bottom: 16px;
 `;
-
-const GoBackButton = (props) => {
-  if (props.step === 0) {
-    return (
-      <NavLink to="/">
-        <FButton
-          type="light-action"
-          name="arrow-back-outline"
-          className="mr-10"
-        >
-          {props.t("Login.Retour", "Retour")}
-        </FButton>
-      </NavLink>
-    );
-  }
-
-  return (
-    <FButton
-      type="light-action"
-      name="arrow-back-outline"
-      className="mr-10"
-      onClick={props.goBack}
-    >
-      {props.t("Login.Retour", "Retour")}
-    </FButton>
-  );
-};
-
 export class Login extends Component {
   state = {
     username: "",
     password: "",
+    cpassword: "",
     code: "",
     email: "",
     phone: "",
+    authy_id: "",
+    traducteur: false,
     passwordVisible: false,
+    redirectTo: "/",
     step: 0,
+    userExists: false,
+    usernameHidden: false,
     noUserError: false,
     wrongPasswordError: false,
     resetPasswordNotPossible: false,
@@ -149,9 +144,32 @@ export class Login extends Component {
 
   componentDidMount() {
     this.props.fetchLangues();
+    // const locState = this.props.location.state;
+    // const qParam = querySearch(this.props.location.search).redirect;
     if (API.isAuth()) {
+      // if (qParam) {
+      //   const redirectTo = decodeURIComponent(qParam);
+      //   return window.location.assign(
+      //     redirectTo +
+      //       (redirectTo.indexOf("?") === -1 ? "?" : "&") +
+      //       "ssoToken=" +
+      //       localStorage.getItem("token")
+      //   );
+      // }
       return this.props.history.push("/");
     }
+    // if (locState) {
+    //   this.setState({
+    //     traducteur: locState.traducteur,
+    //     redirectTo: locState.redirectTo || "/",
+    //   });
+    // }
+    // if (qParam) {
+    //   this.setState({
+    //     cannyRedirect: true,
+    //     redirectTo: decodeURIComponent(qParam),
+    //   });
+    // }
     window.scrollTo(0, 0);
   }
 
@@ -159,17 +177,7 @@ export class Login extends Component {
     this.setState((pS) => ({ passwordVisible: !pS.passwordVisible }));
 
   goBack = () =>
-    this.setState({
-      step: 0,
-      password: "",
-      cpassword: "",
-      wrongPasswordError: false,
-      resetPasswordNotPossible: false,
-      resetPasswordPossible: false,
-      wrongAdminCodeError: false,
-      unexpectedError: false,
-      newAdminWithoutPhoneOrEmail: false,
-    });
+    this.setState({ step: 0, userExists: false, password: "", cpassword: "" });
 
   resetPassword = () => {
     API.reset_password({ username: this.state.username })
@@ -197,7 +205,7 @@ export class Login extends Component {
   };
 
   /**
-   * Errors returned by login route
+   * Errors returned by login
    * 400 : invalid request, no user with this pseudo
    * 500 : internal error
    * 401 : wrong password
@@ -212,21 +220,23 @@ export class Login extends Component {
     const user = {
       username: this.state.username,
       password: this.state.password,
+      cpassword: this.state.cpassword,
+      traducteur: this.state.traducteur,
       code: this.state.code,
       email: this.state.email,
       phone: this.state.phone,
     };
     API.login(user)
       .then((data) => {
-        const token = data.data.token;
-
+        const token = data.data.token,
+          { redirectTo } = this.state;
         Swal.fire({
           title: "Yay...",
           text: "Authentification réussie !",
           type: "success",
           timer: 1500,
         }).then(() => {
-          return this.props.history.push("/");
+          return this.props.history.push(redirectTo);
         });
         localStorage.setItem("token", token);
         setAuthToken(token);
@@ -270,6 +280,7 @@ export class Login extends Component {
         // if user, go to next step (password)
         if (userExists) {
           this.setState({
+            userExists,
             step: 1,
           });
         } else {
@@ -289,6 +300,30 @@ export class Login extends Component {
           timer: 1500,
         });
       }
+
+      // creation compte
+      // if (
+      //   !this.state.userExists &&
+      //   this.state.password !== this.state.cpassword
+      // ) {
+      //   return Swal.fire({
+      //     title: "Oops...",
+      //     text: "Les mots de passes ne correspondent pas !",
+      //     type: "error",
+      //     timer: 1500,
+      //   });
+      // }
+      // if (
+      //   !this.state.userExists &&
+      //   (passwdCheck(this.state.password) || {}).score < 1
+      // ) {
+      //   return Swal.fire({
+      //     title: "Oops...",
+      //     text: "Le mot de passe est trop faible",
+      //     type: "error",
+      //     timer: 1500,
+      //   });
+      // }
       this.login();
     }
   };
@@ -324,9 +359,7 @@ export class Login extends Component {
       );
     }
     if (this.state.step === 1) {
-      return (
-        this.props.t("Login.Bonjour", "Bonjour ") + this.state.username + " !"
-      );
+      return this.props.t("Login.Bonjour", "Bonjour ") + this.state.username;
     }
 
     if (this.state.step === 2) {
@@ -384,24 +417,25 @@ export class Login extends Component {
       passwordVisible,
       username,
       step,
+      userExists,
       code,
       email,
       phone,
-      resetPasswordNotPossible,
-      resetPasswordPossible,
-      noUserError,
-      newAdminWithoutPhoneOrEmail,
-      password,
-      wrongAdminCodeError,
-      wrongPasswordError,
-      unexpectedError,
     } = this.state;
     const { t } = this.props;
     return (
       <div className="app">
         <MainContainer>
           <ContentContainer>
-            <GoBackButton step={step} goBack={this.goBack} t={t} />
+            <NavLink to="/">
+              <FButton
+                type="light-action"
+                name="arrow-back-outline"
+                className="mr-10"
+              >
+                {t("Login.Retour", "Retour")}
+              </FButton>
+            </NavLink>
             <LanguageBtn />
             <FButton
               tag={"a"}
@@ -416,15 +450,16 @@ export class Login extends Component {
               {t("Login.Centre d'aide", "Centre d'aide")}
             </FButton>
             <StyledHeader>{this.getHeaderText()}</StyledHeader>
-            {resetPasswordNotPossible && (
+            {this.state.resetPasswordNotPossible && (
               <NoEmailRelatedContainer>
                 {t(
                   "Login.Pas email",
-                  "Il n'y a pas d'email associé à ce pseudonyme."
+                  "Il n'y a pas d'email rattaché à ce pseudonyme."
                 )}
               </NoEmailRelatedContainer>
             )}
-            {resetPasswordPossible && (
+
+            {this.state.resetPasswordPossible && (
               <>
                 <EmailRelatedContainer>
                   {t(
@@ -449,58 +484,62 @@ export class Login extends Component {
                 </div>
               </>
             )}
-            {!resetPasswordNotPossible && !resetPasswordPossible && (
-              <>
-                <StyledEnterValue>{this.getSubtitle()}</StyledEnterValue>
-                <Form onSubmit={this.send}>
-                  {step === 0 ? (
-                    <UsernameField
-                      value={username}
-                      onChange={this.handleChange}
-                      step={step}
-                      key="username-field"
-                      t={t}
-                      noUserError={noUserError}
-                    />
-                  ) : newAdminWithoutPhoneOrEmail ? (
-                    <PhoneAndEmailFields
-                      t={t}
-                      {...this.props}
-                      onChange={this.handleChange}
-                      phone={phone}
-                      email={email}
-                    />
-                  ) : step === 1 ? (
-                    <PasswordField
-                      id="password"
-                      value={password}
-                      onChange={this.handleChange}
-                      passwordVisible={passwordVisible}
-                      onClick={this.togglePasswordVisibility}
-                      t={t}
-                      wrongPasswordError={wrongPasswordError}
-                    />
-                  ) : (
-                    <CodeField
-                      value={code}
-                      onChange={this.handleChange}
-                      key="code-field"
-                      t={t}
-                      wrongAdminCodeError={wrongAdminCodeError}
-                    />
-                  )}
-                </Form>
-              </>
-            )}
+            {!this.state.resetPasswordNotPossible &&
+              !this.state.resetPasswordPossible && (
+                <>
+                  <StyledEnterValue>{this.getSubtitle()}</StyledEnterValue>
+                  <Form onSubmit={this.send}>
+                    {step === 0 ? (
+                      <UsernameField
+                        value={username}
+                        onChange={this.handleChange}
+                        step={step}
+                        key="username-field"
+                        t={t}
+                        noUserError={this.state.noUserError}
+                      />
+                    ) : this.state.newAdminWithoutPhoneOrEmail ? (
+                      <PhoneAndEmailFields
+                        t={t}
+                        {...this.props}
+                        onChange={this.handleChange}
+                        phone={phone}
+                        email={email}
+                      />
+                    ) : step === 1 ? (
+                      <PasswordField
+                        id="password"
+                        value={this.state.password}
+                        onChange={this.handleChange}
+                        passwordVisible={passwordVisible}
+                        onClick={this.togglePasswordVisibility}
+                        userExists={userExists}
+                        t={t}
+                        wrongPasswordError={this.state.wrongPasswordError}
+                      />
+                    ) : (
+                      <CodeField
+                        value={code}
+                        onChange={this.handleChange}
+                        key="code-field"
+                        t={t}
+                        wrongAdminCodeError={this.state.wrongAdminCodeError}
+                      />
+                    )}
+                  </Form>
+                </>
+              )}
             <Footer
               step={step}
               t={t}
               resetPassword={this.resetPassword}
-              resetPasswordNotPossible={resetPasswordNotPossible}
-              resetPasswordPossible={resetPasswordPossible}
+              resetPasswordNotPossible={this.state.resetPasswordNotPossible}
+              resetPasswordPossible={this.state.resetPasswordPossible}
               login={this.login}
-              unexpectedError={unexpectedError}
-              newAdminWithoutPhoneOrEmail={newAdminWithoutPhoneOrEmail}
+              unexpectedError={this.state.unexpectedError}
+              newAdminWithoutPhoneOrEmail={
+                this.state.newAdminWithoutPhoneOrEmail
+              }
             />
           </ContentContainer>
           <LanguageModal
@@ -536,7 +575,7 @@ const ContactSupport = (props) => (
         color: "#828282",
       }}
     >
-      {props.t("Login.Contactez le support", "Contactez le support")}
+      {props.t("Contactez le support", "Contactez le support")}
     </div>
   </a>
 );
@@ -588,6 +627,112 @@ const Footer = (props) => {
   }
   return false;
 };
+// <div className="app flex-row align-items-center login">
+//         <div className="login-wrapper">
+//           {step === 1 && !userExists && (
+//             <RegisterHeader goBack={this.goBack} t={t} />
+//           )}
+//           <Card className="card-login main-card">
+//             <CardBody>
+//               <Form onSubmit={this.send}>
+//                 <h5>
+//                   {step === 0 || userExists
+//                     ? t("Login.Se connecter", "Se connecter")
+//                     : step === 1
+//                     ? t("Login.Se créer un compte", "Se créer un compte")
+//                     : "Votre code de confirmation"}
+//                 </h5>
+//                 <div className="texte-small mb-12">
+//                   {step === 0
+//                     ? t("Login.Ou se créer un compte", "Ou se créer un compte")
+//                     : userExists && step === 1
+//                     ? t(
+//                         "Login.Content de vous revoir !",
+//                         "Content de vous revoir !"
+//                       )
+//                     : step === 1
+//                     ? t("Login.Pas besoin d’email", "Pas besoin d’email")
+//                     : "Nous vous avons envoyé un SMS à votre numéro"}
+//                 </div>
+//                 <CSSTransition
+//                   in={true}
+//                   appear={true}
+//                   timeout={600}
+//                   classNames="example"
+//                 >
+//                   {step === 0 ? (
+//                     <UsernameField
+//                       value={username}
+//                       onChange={this.handleChange}
+//                       step={step}
+//                       key="username-field"
+//                       t={t}
+//                     />
+//                   ) : step === 1 ? (
+//                     <>
+//                       <PasswordField
+//                         id="password"
+//                         placeholder="Mot de passe"
+//                         value={this.state.password}
+//                         onChange={this.handleChange}
+//                         passwordVisible={passwordVisible}
+//                         onClick={this.togglePasswordVisibility}
+//                         userExists={userExists}
+//                         t={t}
+//                       />
+//                       {step === 1 && !userExists && (
+//                         <PasswordField
+//                           id="cpassword"
+//                           placeholder="Confirmez le mot de passe"
+//                           value={this.state.cpassword}
+//                           onChange={this.handleChange}
+//                           passwordVisible={passwordVisible}
+//                           onClick={this.togglePasswordVisibility}
+//                           t={t}
+//                         />
+//                       )}
+//                     </>
+//                   ) : (
+//                     <CodeField
+//                       value={code}
+//                       onChange={this.handleChange}
+//                       key="code-field"
+//                     />
+//                   )}
+//                 </CSSTransition>
+
+//                 {step === 1 && (
+//                   <PasswordFooter
+//                     value={this.state.password}
+//                     upcoming={this.upcoming}
+//                     t={t}
+//                     userExists={userExists}
+//                     resetPassword={this.resetPassword}
+//                   />
+//                 )}
+//               </Form>
+//             </CardBody>
+//           </Card>
+//           <NavLink to="/">
+//             <FButton
+//               type="outline"
+//               name="corner-up-left-outline"
+//               className="retour-btn"
+//             >
+//               {t("Login.Retour à l'accueil", "Retour à l'accueil")}
+//             </FButton>
+//           </NavLink>
+//         </div>
+
+//         <InfoModal
+//           show={showModal}
+//           email={email}
+//           phone={phone}
+//           toggle={this.toggleModal}
+//           send={this.send}
+//           onChange={this.handleChange}
+//         />
+//       </div>
 
 const PhoneAndEmailFields = (props) => (
   <>
@@ -622,7 +767,7 @@ const PhoneAndEmailFields = (props) => (
 const PseudoFooter = (props) => (
   <>
     <NoAccountContainer>
-      {props.t("Login.Pas encore de compte ?", "Pas encore de compte ?")}
+      {props.t("Pas encore de compte ?", "Pas encore de compte ?")}
       <Link
         to={{
           pathname: "/register",
@@ -635,13 +780,13 @@ const PseudoFooter = (props) => (
             marginLeft: "5px",
           }}
         >
-          {props.t("Login.Créez un compte", "Créez un compte")}
+          {props.t("Créez un compte", "Créez un compte")}
         </div>
       </Link>
     </NoAccountContainer>
     <PseudoForgottenContainer>
       <div style={{ marginRight: "5px" }}>
-        {props.t("Login.Pseudonyme oublié ?", "Pseudonyme oublié ?")}{" "}
+        {props.t("Pseudonyme oublié ?", "Pseudonyme oublié ?")}{" "}
       </div>
       <ContactSupport t={props.t} />
     </PseudoForgottenContainer>{" "}
@@ -737,54 +882,67 @@ const CodeField = (props) => (
   </>
 );
 
-const PasswordField = (props) => (
-  <>
-    <div
-      style={{
-        flexDirection: "row",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <div style={{ marginTop: "10px" }}>
-        <FInput
-          prepend
-          append
-          autoFocus={props.id === "password"}
-          prependName="lock-outline"
-          appendName={
-            props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
-          }
-          inputClassName="password-input"
-          onAppendClick={props.onClick}
-          {...props}
-          type={props.passwordVisible ? "text" : "password"}
-          id={props.id}
-          placeholder={props.t("Login.Mot de passe", "Mot de passe")}
-          autoComplete="new-password"
-        />
+const PasswordField = (props) => {
+  // const password_check = passwdCheck(props.value);
+  return (
+    <>
+      <div
+        style={{
+          flexDirection: "row",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ marginTop: "10px" }}>
+          <FInput
+            prepend
+            append
+            autoFocus={props.id === "password"}
+            prependName="lock-outline"
+            appendName={
+              props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
+            }
+            inputClassName="password-input"
+            onAppendClick={props.onClick}
+            {...props}
+            type={props.passwordVisible ? "text" : "password"}
+            id={props.id}
+            placeholder={props.t("Login.Mot de passe", "Mot de passe")}
+            autoComplete="new-password"
+          />
+        </div>
+        <div style={{ marginLeft: "10px" }}>
+          <FButton
+            type="validate"
+            name="checkmark-outline"
+            disabled={!props.value}
+          >
+            {props.t("Valider", "Valider")}
+          </FButton>
+        </div>
+
+        {/* {props.id === "password" && !props.userExists && props.value && (
+        <div className="score-wrapper mb-10">
+          <span className="mr-10">{props.t("Login.Force", "Force")} :</span>
+          <Progress
+            color={colorAvancement(password_check.score / 4)}
+            value={((0.1 + password_check.score / 4) * 100) / 1.1}
+          />
+        </div>
+      )} */}
       </div>
-      <div style={{ marginLeft: "10px" }}>
-        <FButton
-          type="validate"
-          name="checkmark-outline"
-          disabled={!props.value}
-        >
-          {props.t("Valider", "Valider")}
-        </FButton>
-      </div>
-    </div>
-    {props.wrongPasswordError && (
-      <ErrorMessageContainer>
-        {props.t(
-          "Login.Mauvais mot de passe",
-          "Erreur, mauvais mot de passe : "
-        )}
-        <b>{props.t("Login.Reessayez", "réessayez !")}</b>
-      </ErrorMessageContainer>
-    )}
-  </>
-);
+      {props.wrongPasswordError && (
+        <ErrorMessageContainer>
+          {props.t(
+            "Login.Mauvais mot de passe",
+            "Erreur, mauvais mot de passe : "
+          )}
+          <b>{props.t("Login.Reessayez", "réessayez !")}</b>
+        </ErrorMessageContainer>
+      )}
+    </>
+  );
+};
 
 const PasswordFooter = (props) => (
   <FooterLink>
@@ -794,6 +952,61 @@ const PasswordFooter = (props) => (
       </u>
     </div>
   </FooterLink>
+);
+
+const RegisterHeader = (props) => (
+  <Card
+    className="card-login header-card cursor-pointer"
+    onClick={props.goBack}
+  >
+    <CardBody>
+      <EVAIcon
+        name="corner-up-left-outline"
+        fill={variables.noir}
+        className="mr-20"
+      />
+      <span>
+        {props.t("Login.no-account", "Il n'existe pas de compte à ce nom")}.{" "}
+      </span>
+    </CardBody>
+  </Card>
+);
+
+const InfoModal = (props) => (
+  <Modal
+    className="info-modal"
+    modalHeader="Vos informations de compte"
+    {...props}
+  >
+    <ModalBody>
+      <FInput
+        prepend
+        prependName="at-outline"
+        value={props.email}
+        {...props}
+        id="email"
+        type="email"
+        placeholder="Email"
+      />
+      <FInput
+        prepend
+        prependName="phone-call-outline"
+        value={props.phone}
+        {...props}
+        id="phone"
+        type="phone"
+        placeholder="Téléphone : 06 11 22 33 44"
+      />
+    </ModalBody>
+    <ModalFooter>
+      <FButton type="light-action" onClick={props.toggle} className="mr-10">
+        Annuler
+      </FButton>
+      <FButton type="validate" name="checkmark" onClick={props.send}>
+        Valider
+      </FButton>
+    </ModalFooter>
+  </Modal>
 );
 
 const mapDispatchToProps = {

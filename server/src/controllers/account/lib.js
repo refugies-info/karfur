@@ -6,6 +6,7 @@ const authy = require("authy")(process.env.ACCOUNT_SECURITY_API_KEY);
 const passwdCheck = require("zxcvbn");
 const crypto = require("crypto");
 let { transporter, mailOptions, url } = require("../dispositif/lib.js");
+const logger = require("../../logger");
 
 // //On lui crée un nouveau compte si la demande vient du site seulement
 // user = req.body;
@@ -65,112 +66,175 @@ let { transporter, mailOptions, url } = require("../dispositif/lib.js");
 //     .status(402)
 //     .json({ text: "Les mots de passe ne correspondent pas" });
 // }
+
+/**
+ * Errors returned by login
+ * 400 : invalid request, no user with this pseudo
+ * 500 : internal error
+ * 401 : wrong password
+ * 402 : wrong code (admin)
+ * 404 : error sending code (admin), error creating admin account
+ * 501 : no code provided (admin)
+ * 200 : authentification succeeded
+ * 502 : new admin without phone number or email
+ */
+
 //Cette fonction est appelée quand tout utilisateur cherche à se connecter ou créer un compte
 function login(req, res) {
   if (!req.body.username || !req.body.password) {
     //Le cas où le username ou bien le password ne serait pas soumis ou nul
     res.status(400).json({ text: "Requête invalide" });
   } else {
+    logger.info("[Login] login attempt", {
+      username: req.body && req.body.username,
+    });
     User.findOne(
       {
         username: req.body.username,
       },
       async (err, user) => {
         if (err) {
+          logger.error("[Login] internal error", { err });
           res.status(500).json({ text: "Erreur interne", data: err });
         } else if (!user) {
+          logger.error("[Login] no user with this pseudo", {
+            username: req.body && req.body.username,
+          });
           res
             .status(400)
             .json({ text: "Pas d'utilisateur avec ce pseudonyme" });
         } else {
           if (user.authenticate(req.body.password)) {
+            logger.info("[Login] password correct for user", {
+              username: req.body && req.body.username,
+            });
+            // check if user is admin
             if (
               (user.roles || []).some(
                 (x) =>
                   x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
               )
             ) {
-              // user admin
-              if (user.authy_id && req.body.code) {
-                // code provided : check if code is correct
-                return authy.verify(user.authy_id, req.body.code, function (
-                  err,
-                  result
-                ) {
-                  if (err || !result) {
-                    return res.status(204).json({
-                      text: "Erreur à la vérification du code",
-                      data: err,
-                    });
-                  }
-                  // eslint-disable-next-line no-use-before-define
-                  return proceed_with_login(req, res, user);
-                });
-              } else if (user.authy_id) {
-                // no code provided : send sms with code
-                return authy.request_sms(
-                  user.authy_id,
-                  // eslint-disable-next-line no-undef
-                  (force = true),
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                  function (err_sms, result_sms) {
-                    if (err_sms) {
-                      return res.status(204).json({
-                        text: "Erreur à l'envoi du code à ce numéro",
-                        data: err_sms,
-                      });
-                    }
-                    return res.status(501).json({ text: "no code supplied" });
-                  }
-                );
-              } else if (req.body.email && req.body.phone) {
-                // creation of admin user
-                return authy.register_user(
-                  req.body.email,
-                  req.body.phone,
-                  "33",
-                  function (err, result) {
-                    if (err) {
-                      return res.status(204).json({
-                        text: "Erreur à la création du compte authy",
-                        data: err,
-                      });
-                    }
-                    const authy_id = result.user.id;
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    authy.request_sms(authy_id, function (err_sms, result_sms) {
-                      if (err_sms) {
-                        res.status(204).json({
-                          text: "Erreur à l'envoi du code à ce numéro'",
-                          data: err_sms,
-                        });
-                        return;
-                      }
-                    });
-                    //On enregistre aussi son identifiant pour la suite
-                    user.authy_id = authy_id;
-                    user.phone = req.body.phone;
-                    user.email = req.body.email;
-                    user.save();
-                    return res.status(501).json({ text: "no code supplied" });
-                  }
-                );
-              }
-              return res.status(502).json({
-                text: "no authy_id",
-                phone: user.phone,
-                email: user.email,
-              });
+              // eslint-disable-next-line no-use-before-define
+              return adminLogin(req, res, user);
             }
             // eslint-disable-next-line no-use-before-define
             return proceed_with_login(req, res, user);
           }
+          logger.error("[Login] incorrect password", {
+            username: req.body && req.body.username,
+          });
           res.status(401).json({ text: "Mot de passe incorrect" });
         }
       }
     );
   }
 }
+
+const adminLogin = function (req, res, user) {
+  logger.info("[Login] admin user", {
+    username: req.body && req.body.username,
+  });
+  // user admin
+  if (user.authy_id && req.body.code) {
+    logger.info("[Login] admin user with a code provided", {
+      username: req.body && req.body.username,
+    });
+    // code provided : check if code is correct
+    return authy.verify(user.authy_id, req.body.code, function (err, result) {
+      if (err || !result) {
+        logger.error("[Login] error while verifying admin code", {
+          username: req.body && req.body.username,
+        });
+        return res.status(402).json({
+          text: "Erreur à la vérification du code",
+          data: "no-alert",
+        });
+      }
+      logger.info("[Login] admin user, code provided is correct", {
+        username: req.body && req.body.username,
+      });
+      // eslint-disable-next-line no-use-before-define
+      return proceed_with_login(req, res, user);
+    });
+  } else if (user.authy_id) {
+    logger.info("[Login] admin user without a code provided", {
+      username: req.body && req.body.username,
+    });
+    // no code provided : send sms with code
+    return authy.request_sms(
+      user.authy_id,
+      // eslint-disable-next-line no-undef
+      (force = true),
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      function (err_sms, result_sms) {
+        if (err_sms) {
+          logger.error("[Login] error while sending sms for admin", {
+            username: req.body && req.body.username,
+            error: err_sms,
+          });
+          return res.status(404).json({
+            text: "Erreur à l'envoi du code à ce numéro",
+            data: err_sms,
+          });
+        }
+        logger.info("[Login] admin, sms successfully sent to user", {
+          username: req.body && req.body.username,
+        });
+        return res.status(501).json({ text: "no code supplied" });
+      }
+    );
+  } else if (req.body.email && req.body.phone) {
+    logger.info("[Login] new admin user", {
+      username: req.body && req.body.username,
+    });
+    // creation of admin user
+    return authy.register_user(req.body.email, req.body.phone, "33", function (
+      err,
+      result
+    ) {
+      if (err) {
+        logger.error(
+          "[Login] error while creating a new admin account for user",
+          { username: req.body && req.body.username }
+        );
+        return res.status(404).json({
+          text: "Erreur à la création du compte authy",
+          data: err,
+        });
+      }
+      const authy_id = result.user.id;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      authy.request_sms(authy_id, function (err_sms, result_sms) {
+        if (err_sms) {
+          logger.error(
+            "[Login] error while sending a sms to the new admin account for user",
+            { username: req.body && req.body.username }
+          );
+          res.status(404).json({
+            text: "Erreur à l'envoi du code à ce numéro'",
+            data: err_sms,
+          });
+          return;
+        }
+      });
+      logger.info("[Login] new admin user, sms successfully sent", {
+        username: req.body && req.body.username,
+      });
+      //On enregistre aussi son identifiant pour la suite
+      user.authy_id = authy_id;
+      user.phone = req.body.phone;
+      user.email = req.body.email;
+      user.save();
+      return res.status(501).json({ text: "no code supplied" });
+    });
+  }
+  return res.status(502).json({
+    text: "no authy_id",
+    phone: user.phone,
+    email: user.email,
+  });
+};
 
 const proceed_with_login = function (req, res, user) {
   //On change les infos de l'utilisateur

@@ -189,25 +189,31 @@ export class Toolbar extends React.Component {
               </DropdownMenu>
             </ButtonDropdown>
           ) : (
-            <NavLink
-              to={{
-                pathname: "/login",
-                state: { redirectTo: "/backend/user-profile" },
-              }}
-            >
-              <FButton
-                type="signup"
-                name={"person-add-outline"}
-                className="mr-10"
+            <>
+              <NavLink
+                to={{
+                  pathname: "/register",
+                }}
               >
-                {windowWidth >= breakpoints.tabletUp &&
-                  t("Toolbar.Inscription", "Inscription")}
-              </FButton>
-
-              <FButton type="login" name={"log-in-outline"}>
-                {t("Toolbar.Connexion", "Connexion")}
-              </FButton>
-            </NavLink>
+                <FButton
+                  type="signup"
+                  name={"person-add-outline"}
+                  className="mr-10"
+                >
+                  {windowWidth >= breakpoints.tabletUp &&
+                    t("Toolbar.Inscription", "Inscription")}
+                </FButton>
+              </NavLink>
+              <NavLink
+                to={{
+                  pathname: "/login",
+                }}
+              >
+                <FButton type="login" name={"log-in-outline"}>
+                  {t("Toolbar.Connexion", "Connexion")}
+                </FButton>
+              </NavLink>
+            </>
           )}
         </div>
 
