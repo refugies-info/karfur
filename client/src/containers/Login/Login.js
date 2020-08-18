@@ -139,6 +139,7 @@ export class Login extends Component {
     resetPasswordPossible: false,
     wrongAdminCodeError: false,
     unexpectedError: false,
+    newAdminWithoutPhoneOrEmail: false,
   };
 
   componentDidMount() {
@@ -212,6 +213,7 @@ export class Login extends Component {
    * 404 : error sending code (admin), error creating admin account
    * 501 : no code provided (admin)
    * 200 : authentification succeeded
+   * 502 : new admin without phone number or email
    */
 
   login = () => {
@@ -226,7 +228,6 @@ export class Login extends Component {
     };
     API.login(user)
       .then((data) => {
-        console.log("login data", data);
         const token = data.data.token,
           { redirectTo } = this.state;
         Swal.fire({
@@ -244,12 +245,16 @@ export class Login extends Component {
       .catch((e) => {
         // status 501 corresponds to an admin connecting (before entering the code)
         if (e.response.status === 501) {
-          this.setState({ step: 2 });
+          this.setState({ step: 2, newAdminWithoutPhoneOrEmail: false });
           // status 401 corresponds to wrong password
         } else if (e.response.status === 401) {
-          this.setState({ wrongPasswordError: true });
+          this.setState({
+            wrongPasswordError: true,
+          });
         } else if (e.response.status === 402) {
           this.setState({ wrongAdminCodeError: true });
+        } else if (e.response.status === 502) {
+          this.setState({ newAdminWithoutPhoneOrEmail: true });
         } else {
           this.setState({ unexpectedError: true });
         }
@@ -333,6 +338,13 @@ export class Login extends Component {
         "Content de vous revoir !"
       );
     }
+
+    if (this.state.newAdminWithoutPhoneOrEmail) {
+      return this.props.t(
+        "Login.Nouvel administrateur",
+        "Nouvel administrateur"
+      );
+    }
     if (this.state.resetPasswordNotPossible) {
       return this.props.t(
         "Login.Impossible de réinitialiser",
@@ -376,6 +388,13 @@ export class Login extends Component {
       return this.props.t(
         "Login.Entrez votre pseudonyme",
         "Entrez votre pseudonyme"
+      );
+    }
+
+    if (this.state.newAdminWithoutPhoneOrEmail) {
+      return this.props.t(
+        "Login.Entrez votre numéro et votre email",
+        "Entrez votre numéro et votre email"
       );
     }
     if (this.state.step === 1) {
@@ -479,6 +498,14 @@ export class Login extends Component {
                         t={t}
                         noUserError={this.state.noUserError}
                       />
+                    ) : this.state.newAdminWithoutPhoneOrEmail ? (
+                      <PhoneAndEmailFields
+                        t={t}
+                        {...this.props}
+                        onChange={this.handleChange}
+                        phone={phone}
+                        email={email}
+                      />
                     ) : step === 1 ? (
                       <PasswordField
                         id="password"
@@ -510,6 +537,9 @@ export class Login extends Component {
               resetPasswordPossible={this.state.resetPasswordPossible}
               login={this.login}
               unexpectedError={this.state.unexpectedError}
+              newAdminWithoutPhoneOrEmail={
+                this.state.newAdminWithoutPhoneOrEmail
+              }
             />
           </ContentContainer>
           <LanguageModal
@@ -582,7 +612,7 @@ const Footer = (props) => {
     return <PseudoFooter t={props.t} />;
   }
 
-  if (props.step === 1) {
+  if (props.step === 1 && !props.newAdminWithoutPhoneOrEmail) {
     return <PasswordFooter t={props.t} resetPassword={props.resetPassword} />;
   }
 
@@ -595,6 +625,7 @@ const Footer = (props) => {
       </FooterLink>
     );
   }
+  return false;
 };
 // <div className="app flex-row align-items-center login">
 //         <div className="login-wrapper">
@@ -702,6 +733,36 @@ const Footer = (props) => {
 //           onChange={this.handleChange}
 //         />
 //       </div>
+
+const PhoneAndEmailFields = (props) => (
+  <>
+    <FInput
+      prepend
+      prependName="at-outline"
+      value={props.email}
+      {...props}
+      id="email"
+      type="email"
+      placeholder={props.t("Login.Entrez votre email", "Entrez votre email")}
+    />
+    <FInput
+      prepend
+      prependName="smartphone-outline"
+      value={props.phone}
+      {...props}
+      id="phone"
+      type="phone"
+      placeholder={props.t("Login.Entrez votre numéro", "Entrez votre numéro")}
+    />
+    <FButton
+      type="grey"
+      name="arrow-forward-outline"
+      disabled={!props.phone || !props.email}
+    >
+      {props.t("Suivant", "Suivant")}
+    </FButton>
+  </>
+);
 
 const PseudoFooter = (props) => (
   <>

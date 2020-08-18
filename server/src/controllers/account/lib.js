@@ -76,6 +76,7 @@ const logger = require("../../logger");
  * 404 : error sending code (admin), error creating admin account
  * 501 : no code provided (admin)
  * 200 : authentification succeeded
+ * 502 : new admin without phone number or email
  */
 
 //Cette fonction est appelée quand tout utilisateur cherche à se connecter ou créer un compte
@@ -228,6 +229,11 @@ const adminLogin = function (req, res, user) {
       return res.status(501).json({ text: "no code supplied" });
     });
   }
+  return res.status(502).json({
+    text: "no authy_id",
+    phone: user.phone,
+    email: user.email,
+  });
 };
 
 const proceed_with_login = function (req, res, user) {

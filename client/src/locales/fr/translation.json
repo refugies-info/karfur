@@ -295,7 +295,11 @@
     "Entrez votre code": "Entrez votre code",
     "Renvoyer le code": "Renvoyer le code",
     "Le code saisi n'est pas le bon.": "Le code saisi n'est pas le bon.",
-    "Une erreur est survenue. Veuillez réessayer.": "Une erreur est survenue. Veuillez réessayer."
+    "Une erreur est survenue. Veuillez réessayer.": "Une erreur est survenue. Veuillez réessayer.",
+    "Nouvel administrateur": "Nouvel administrateur",
+    "Entrez votre numéro et votre email": "Entrez votre numéro et votre email",
+    "Entrez votre email": "Entrez votre email",
+    "Entrez votre numéro": "Entrez votre numéro"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",
