@@ -16,7 +16,6 @@ import { fetchUserActionCreator } from "../../services/User/user.actions";
 import styled from "styled-components";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 
-import "./Login.scss";
 import variables from "scss/colors.scss";
 import {
   fetchLanguesActionCreator,
@@ -41,7 +40,6 @@ const StyledEnterValue = styled.div`
 `;
 
 const MainContainer = styled.div`
-  background: #cdcdcd;
   display: flex;
   align-items: center;
   flex: 1;
