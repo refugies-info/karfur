@@ -50,13 +50,13 @@ const ContentContainer = styled.div`
   padding-top: 100px;
 `;
 
-const NoAccountContainer = styled.div`
+const AlreadyAccountContainer = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 16px;
   line-height: 20px;
   color: #828282;
-  margin-top: 64px;
+  margin-top: 16px;
 `;
 
 const PseudoForgottenContainer = styled.div`
@@ -129,7 +129,7 @@ const GoBackButton = (props) => {
   );
 };
 
-export class Login extends Component {
+export class Register extends Component {
   state = {
     username: "",
     password: "",
@@ -140,11 +140,9 @@ export class Login extends Component {
     step: 0,
     noUserError: false,
     wrongPasswordError: false,
-    resetPasswordNotPossible: false,
-    resetPasswordPossible: false,
     wrongAdminCodeError: false,
     unexpectedError: false,
-    newAdminWithoutPhoneOrEmail: false,
+    pseudoAlreadyTaken: false,
   };
 
   componentDidMount() {
@@ -158,19 +156,13 @@ export class Login extends Component {
   togglePasswordVisibility = () =>
     this.setState((pS) => ({ passwordVisible: !pS.passwordVisible }));
 
-  goBack = () => this.setState({ step: 0, password: "", cpassword: "" });
-
-  resetPassword = () => {
-    API.reset_password({ username: this.state.username })
-      .then((data) => {
-        this.setState({ resetPasswordPossible: true, email: data.data.data });
-      })
-      .catch((e) => {
-        if (e.response.status === 403) {
-          this.setState({ resetPasswordNotPossible: true });
-        }
-      });
-  };
+  goBack = () =>
+    this.setState({
+      step: 0,
+      password: "",
+      cpassword: "",
+      pseudoAlreadyTaken: false,
+    });
 
   changeLanguage = (lng) => {
     this.props.toggleLangue(lng);
@@ -222,18 +214,12 @@ export class Login extends Component {
         this.props.fetchUser();
       })
       .catch((e) => {
-        // status 501 corresponds to an admin connecting (before entering the code)
-        if (e.response.status === 501) {
-          this.setState({ step: 2, newAdminWithoutPhoneOrEmail: false });
-          // status 401 corresponds to wrong password
-        } else if (e.response.status === 401) {
+        if (e.response.status === 401) {
           this.setState({
             wrongPasswordError: true,
           });
         } else if (e.response.status === 402) {
           this.setState({ wrongAdminCodeError: true });
-        } else if (e.response.status === 502) {
-          this.setState({ newAdminWithoutPhoneOrEmail: true });
         } else {
           this.setState({ unexpectedError: true });
         }
@@ -259,12 +245,12 @@ export class Login extends Component {
         // if user, go to next step (password)
         if (userExists) {
           this.setState({
-            step: 1,
+            pseudoAlreadyTaken: true,
           });
         } else {
           // if no user: display error
           this.setState({
-            noUserError: !userExists,
+            step: 1,
           });
         }
       });
@@ -293,27 +279,12 @@ export class Login extends Component {
       );
     }
 
-    if (this.state.newAdminWithoutPhoneOrEmail) {
-      return this.props.t(
-        "Login.Nouvel administrateur",
-        "Nouvel administrateur"
-      );
-    }
-    if (this.state.resetPasswordNotPossible) {
-      return this.props.t(
-        "Login.Impossible de réinitialiser",
-        "Impossible de réinitialiser"
-      );
-    }
-
-    if (this.state.resetPasswordPossible) {
-      return this.props.t(
-        "Login.Réinitialisation du mot de passe",
-        "Un lien de réinitialisation a été envoyé"
-      );
-    }
     if (this.state.step === 1) {
-      return this.props.t("Login.Bonjour", "Bonjour ") + this.state.username;
+      return (
+        this.props.t("Register.Bienvenue", "Bienvenue ") +
+        this.state.username +
+        " !"
+      );
     }
 
     if (this.state.step === 2) {
@@ -324,19 +295,6 @@ export class Login extends Component {
     }
   };
 
-  getHashedEmail = () => {
-    const splittedEmailArray = this.state.email.split("@");
-    if (splittedEmailArray.length === 2) {
-      const prefixEmail = splittedEmailArray[0];
-      const suffixEmail = splittedEmailArray[1];
-      const hashLength =
-        prefixEmail.length - 2 > 0 ? prefixEmail.length - 2 : 0;
-      const hashedPrefix = prefixEmail.substring(0, 2) + "*".repeat(hashLength);
-      return hashedPrefix + "@" + suffixEmail;
-    }
-    return "";
-  };
-
   getSubtitle = () => {
     if (this.state.step === 0) {
       return this.props.t(
@@ -345,16 +303,10 @@ export class Login extends Component {
       );
     }
 
-    if (this.state.newAdminWithoutPhoneOrEmail) {
-      return this.props.t(
-        "Login.Entrez votre numéro et votre email",
-        "Entrez votre numéro et votre email"
-      );
-    }
     if (this.state.step === 1) {
       return this.props.t(
-        "Login.Entrez votre mot de passe",
-        "Entrez votre mot de passe"
+        "Register.Choisissez un mot de passe",
+        "Choisissez un mot de passe"
       );
     }
 
@@ -374,14 +326,12 @@ export class Login extends Component {
       code,
       email,
       phone,
-      resetPasswordNotPossible,
-      resetPasswordPossible,
       noUserError,
-      newAdminWithoutPhoneOrEmail,
       password,
       wrongAdminCodeError,
       wrongPasswordError,
       unexpectedError,
+      pseudoAlreadyTaken,
     } = this.state;
     const { t } = this.props;
     return (
@@ -405,15 +355,28 @@ export class Login extends Component {
             <StyledHeader>{this.getHeaderText()}</StyledHeader>
             <StyledEnterValue>{this.getSubtitle()}</StyledEnterValue>
             <Form onSubmit={this.send}>
-              <UsernameField
-                value={username}
-                onChange={this.handleChange}
-                step={step}
-                key="username-field"
-                t={t}
-                noUserError={noUserError}
-              />
+              {step === 0 ? (
+                <UsernameField
+                  value={username}
+                  onChange={this.handleChange}
+                  step={step}
+                  key="username-field"
+                  t={t}
+                  pseudoAlreadyTaken={pseudoAlreadyTaken}
+                />
+              ) : (
+                <PasswordField
+                  id="password"
+                  value={password}
+                  onChange={this.handleChange}
+                  passwordVisible={passwordVisible}
+                  onClick={this.togglePasswordVisibility}
+                  t={t}
+                  wrongPasswordError={wrongPasswordError}
+                />
+              )}
             </Form>
+            <Footer step={step} t={t} />
             <Gauge step={step} />
           </ContentContainer>
           <LanguageModal
@@ -464,30 +427,9 @@ const Footer = (props) => {
       </ErrorMessageContainer>
     );
   }
-  if (props.resetPasswordNotPossible) {
-    return (
-      <>
-        <ResetPasswordMessage>
-          {props.t(
-            "Login.Reset password message",
-            "Attention, si vous n'avez pas configuré d'email, vous ne pourrez pas réinitialiser votre mot de passe."
-          )}
-        </ResetPasswordMessage>
-        <ContactSupport t={props.t} />
-      </>
-    );
-  }
-
-  if (props.resetPasswordPossible) {
-    return <ContactSupport t={props.t} />;
-  }
 
   if (props.step === 0) {
     return <PseudoFooter t={props.t} />;
-  }
-
-  if (props.step === 1 && !props.newAdminWithoutPhoneOrEmail) {
-    return <PasswordFooter t={props.t} resetPassword={props.resetPassword} />;
   }
 
   if (props.step === 2) {
@@ -503,32 +445,24 @@ const Footer = (props) => {
 };
 
 const PseudoFooter = (props) => (
-  <>
-    <NoAccountContainer>
-      {props.t("Login.Pas encore de compte ?", "Pas encore de compte ?")}
-      <Link
-        to={{
-          pathname: "/register",
+  <AlreadyAccountContainer>
+    {props.t("Register.Déjà un compte ?", "Déjà un compte ?")}
+    <Link
+      to={{
+        pathname: "/login",
+      }}
+    >
+      <div
+        style={{
+          fontWeight: "bold",
+          textDecoration: "underline",
+          marginLeft: "5px",
         }}
       >
-        <div
-          style={{
-            fontWeight: "bold",
-            textDecoration: "underline",
-            marginLeft: "5px",
-          }}
-        >
-          {props.t("Login.Créez un compte", "Créez un compte")}
-        </div>
-      </Link>
-    </NoAccountContainer>
-    <PseudoForgottenContainer>
-      <div style={{ marginRight: "5px" }}>
-        {props.t("Login.Pseudonyme oublié ?", "Pseudonyme oublié ?")}{" "}
+        {props.t("Register.Se connecter", "Se connecter")}
       </div>
-      <ContactSupport t={props.t} />
-    </PseudoForgottenContainer>{" "}
-  </>
+    </Link>
+  </AlreadyAccountContainer>
 );
 
 const PseudoPrecisions = styled.div`
@@ -573,8 +507,8 @@ const UsernameField = (props) => (
     <PseudoPrecisions>
       <div>
         {props.t(
-          "Register.Ce pseudonyme apparaitra sur les fiches auxquelles vous allez contribuer.",
-          "Ce pseudonyme apparaitra sur les fiches auxquelles vous allez contribuer."
+          "Register.Pseudo usage",
+          "Ce pseudonyme apparaîtra sur les fiches auxquelles vous allez contribuer."
         )}
       </div>
       <div>
@@ -582,58 +516,14 @@ const UsernameField = (props) => (
       </div>
     </PseudoPrecisions>
 
-    {props.noUserError && (
-      <ErrorMessageContainer>
-        <b>{props.t("Login.Oups,", "Oups,")}</b>{" "}
-        {props.t(
-          "Login.Pas de compte",
-          `il n'existe pas de compte à
-  ce nom.`
-        )}
-      </ErrorMessageContainer>
-    )}
-  </>
-);
-
-const CodeField = (props) => (
-  <>
-    <div
-      key="code-field"
-      style={{
-        flexDirection: "row",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <div style={{ marginTop: "10px" }}>
-        <FInput
-          prepend
-          prependName="lock-outline"
-          {...props}
-          id="code"
-          type="number"
-          placeholder={props.t("Login.Entrez votre code", "Entrez votre code")}
-          error={props.wrongAdminCodeError}
-        />
-      </div>
-      <div style={{ marginLeft: "10px" }}>
-        <FButton
-          type="validate"
-          name="checkmark-outline"
-          disabled={!props.value}
-        >
-          {props.t("Valider", "Valider")}
-        </FButton>
-      </div>
-    </div>
-    {props.wrongAdminCodeError && (
+    {props.pseudoAlreadyTaken && (
       <ErrorMessageContainer>
         <b>
           {props.t(
-            "Login.Le code saisi n'est pas le bon.",
-            "Le code saisi n'est pas le bon."
+            "Register.Oups, ce pseudonyme existe déjà.",
+            "Oups, ce pseudonyme existe déjà."
           )}
-        </b>
+        </b>{" "}
       </ErrorMessageContainer>
     )}
   </>
@@ -717,4 +607,4 @@ export default track(
     page: "Login",
   },
   { dispatchOnMount: true }
-)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Login)));
+)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Register)));

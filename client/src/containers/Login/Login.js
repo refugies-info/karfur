@@ -158,7 +158,18 @@ export class Login extends Component {
   togglePasswordVisibility = () =>
     this.setState((pS) => ({ passwordVisible: !pS.passwordVisible }));
 
-  goBack = () => this.setState({ step: 0, password: "", cpassword: "" });
+  goBack = () =>
+    this.setState({
+      step: 0,
+      password: "",
+      cpassword: "",
+      wrongPasswordError: false,
+      resetPasswordNotPossible: false,
+      resetPasswordPossible: false,
+      wrongAdminCodeError: false,
+      unexpectedError: false,
+      newAdminWithoutPhoneOrEmail: false,
+    });
 
   resetPassword = () => {
     API.reset_password({ username: this.state.username })
@@ -313,7 +324,9 @@ export class Login extends Component {
       );
     }
     if (this.state.step === 1) {
-      return this.props.t("Login.Bonjour", "Bonjour ") + this.state.username;
+      return (
+        this.props.t("Login.Bonjour", "Bonjour ") + this.state.username + " !"
+      );
     }
 
     if (this.state.step === 2) {
