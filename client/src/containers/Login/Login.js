@@ -86,12 +86,13 @@ const PseudoForgottenContainer = styled.div`
   font-weight: bold;
 `;
 
-const PasswordForgottenLink = styled.div`
+const FooterLink = styled.div`
   color: #828282;
   cursor: pointer;
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
+  margin-top: 64px;
 `;
 
 const ErrorMessageContainer = styled.div`
@@ -132,11 +133,12 @@ export class Login extends Component {
     step: 0,
     userExists: false,
     usernameHidden: false,
-    showModal: false,
     noUserError: false,
     wrongPasswordError: false,
     resetPasswordNotPossible: false,
     resetPasswordPossible: false,
+    wrongAdminCodeError: false,
+    unexpectedError: false,
   };
 
   componentDidMount() {
@@ -172,7 +174,6 @@ export class Login extends Component {
 
   togglePasswordVisibility = () =>
     this.setState((pS) => ({ passwordVisible: !pS.passwordVisible }));
-  toggleModal = () => this.setState((pS) => ({ showModal: !pS.showModal }));
 
   goBack = () =>
     this.setState({ step: 0, userExists: false, password: "", cpassword: "" });
@@ -200,6 +201,59 @@ export class Login extends Component {
     if (this.props.showLangModal) {
       this.props.toggleLangueModal();
     }
+  };
+
+  /**
+   * Errors returned by login
+   * 400 : invalid request, no user with this pseudo
+   * 500 : internal error
+   * 401 : wrong password
+   * 402 : wrong code (admin)
+   * 404 : error sending code (admin), error creating admin account
+   * 501 : no code provided (admin)
+   * 200 : authentification succeeded
+   */
+
+  login = () => {
+    const user = {
+      username: this.state.username,
+      password: this.state.password,
+      cpassword: this.state.cpassword,
+      traducteur: this.state.traducteur,
+      code: this.state.code,
+      email: this.state.email,
+      phone: this.state.phone,
+    };
+    API.login(user)
+      .then((data) => {
+        console.log("login data", data);
+        const token = data.data.token,
+          { redirectTo } = this.state;
+        Swal.fire({
+          title: "Yay...",
+          text: "Authentification réussie !",
+          type: "success",
+          timer: 1500,
+        }).then(() => {
+          return this.props.history.push(redirectTo);
+        });
+        localStorage.setItem("token", token);
+        setAuthToken(token);
+        this.props.fetchUser();
+      })
+      .catch((e) => {
+        // status 501 corresponds to an admin connecting (before entering the code)
+        if (e.response.status === 501) {
+          this.setState({ step: 2 });
+          // status 401 corresponds to wrong password
+        } else if (e.response.status === 401) {
+          this.setState({ wrongPasswordError: true });
+        } else if (e.response.status === 402) {
+          this.setState({ wrongAdminCodeError: true });
+        } else {
+          this.setState({ unexpectedError: true });
+        }
+      });
   };
 
   send = (e) => {
@@ -265,44 +319,7 @@ export class Login extends Component {
       //     timer: 1500,
       //   });
       // }
-      const user = {
-        username: this.state.username,
-        password: this.state.password,
-        cpassword: this.state.cpassword,
-        traducteur: this.state.traducteur,
-        code: this.state.code,
-        email: this.state.email,
-        phone: this.state.phone,
-      };
-      API.login(user)
-        .then((data) => {
-          const token = data.data.token,
-            { redirectTo } = this.state;
-          Swal.fire({
-            title: "Yay...",
-            text: "Authentification réussie !",
-            type: "success",
-            timer: 1500,
-          }).then(() => {
-            return this.props.history.push(redirectTo);
-          });
-          localStorage.setItem("token", token);
-          setAuthToken(token);
-          this.props.fetchUser();
-        })
-        .catch((e) => {
-          if (e.response.status === 501) {
-            this.setState({ showModal: false, step: 2 });
-          } else if (e.response.status === 502) {
-            this.setState({
-              showModal: true,
-              phone: _.get(e, "response.data.phone", ""),
-              email: _.get(e, "response.data.email", ""),
-            });
-          } else if (e.response.status === 401) {
-            this.setState({ wrongPasswordError: true });
-          }
-        });
+      this.login();
     }
   };
 
@@ -332,6 +349,13 @@ export class Login extends Component {
     if (this.state.step === 1) {
       return this.props.t("Login.Bonjour", "Bonjour ") + this.state.username;
     }
+
+    if (this.state.step === 2) {
+      return this.props.t(
+        "Login.Double authentification",
+        "Double authentification "
+      );
+    }
   };
 
   getHashedEmail = () => {
@@ -347,6 +371,28 @@ export class Login extends Component {
     return "";
   };
 
+  getSubtitle = () => {
+    if (this.state.step === 0) {
+      return this.props.t(
+        "Login.Entrez votre pseudonyme",
+        "Entrez votre pseudonyme"
+      );
+    }
+    if (this.state.step === 1) {
+      return this.props.t(
+        "Login.Entrez votre mot de passe",
+        "Entrez votre mot de passe"
+      );
+    }
+
+    if (this.state.step === 2) {
+      return this.props.t(
+        "Login.Un code vous a été envoyé par sms sur votre mobile.",
+        "Un code vous a été envoyé par sms sur votre mobile."
+      );
+    }
+  };
+
   render() {
     const {
       passwordVisible,
@@ -354,7 +400,6 @@ export class Login extends Component {
       step,
       userExists,
       code,
-      showModal,
       email,
       phone,
     } = this.state;
@@ -423,17 +468,7 @@ export class Login extends Component {
             {!this.state.resetPasswordNotPossible &&
               !this.state.resetPasswordPossible && (
                 <>
-                  <StyledEnterValue>
-                    {step === 0
-                      ? t(
-                          "Login.Entrez votre pseudonyme",
-                          "Entrez votre pseudonyme"
-                        )
-                      : t(
-                          "Login.Entrez votre mot de passe",
-                          "Entrez votre mot de passe"
-                        )}
-                  </StyledEnterValue>
+                  <StyledEnterValue>{this.getSubtitle()}</StyledEnterValue>
                   <Form onSubmit={this.send}>
                     {step === 0 ? (
                       <UsernameField
@@ -444,7 +479,7 @@ export class Login extends Component {
                         t={t}
                         noUserError={this.state.noUserError}
                       />
-                    ) : (
+                    ) : step === 1 ? (
                       <PasswordField
                         id="password"
                         value={this.state.password}
@@ -454,6 +489,14 @@ export class Login extends Component {
                         userExists={userExists}
                         t={t}
                         wrongPasswordError={this.state.wrongPasswordError}
+                      />
+                    ) : (
+                      <CodeField
+                        value={code}
+                        onChange={this.handleChange}
+                        key="code-field"
+                        t={t}
+                        wrongAdminCodeError={this.state.wrongAdminCodeError}
                       />
                     )}
                   </Form>
@@ -465,6 +508,8 @@ export class Login extends Component {
               resetPassword={this.resetPassword}
               resetPasswordNotPossible={this.state.resetPasswordNotPossible}
               resetPasswordPossible={this.state.resetPasswordPossible}
+              login={this.login}
+              unexpectedError={this.state.unexpectedError}
             />
           </ContentContainer>
           <LanguageModal
@@ -505,6 +550,16 @@ const ContactSupport = (props) => (
   </a>
 );
 const Footer = (props) => {
+  if (props.unexpectedError) {
+    return (
+      <ErrorMessageContainer>
+        {props.t(
+          "Login.Une erreur est survenue. Veuillez réessayer.",
+          "Une erreur est survenue. Veuillez réessayer."
+        )}
+      </ErrorMessageContainer>
+    );
+  }
   if (props.resetPasswordNotPossible) {
     return (
       <>
@@ -523,11 +578,23 @@ const Footer = (props) => {
     return <ContactSupport t={props.t} />;
   }
 
-  return props.step === 0 ? (
-    <PseudoFooter t={props.t} />
-  ) : (
-    <PasswordFooter t={props.t} resetPassword={props.resetPassword} />
-  );
+  if (props.step === 0) {
+    return <PseudoFooter t={props.t} />;
+  }
+
+  if (props.step === 1) {
+    return <PasswordFooter t={props.t} resetPassword={props.resetPassword} />;
+  }
+
+  if (props.step === 2) {
+    return (
+      <FooterLink>
+        <div onClick={props.login}>
+          <u>{props.t("Login.Renvoyer le code", "Renvoyer le code")}</u>
+        </div>
+      </FooterLink>
+    );
+  }
 };
 // <div className="app flex-row align-items-center login">
 //         <div className="login-wrapper">
@@ -652,7 +719,7 @@ const PseudoFooter = (props) => (
             marginLeft: "5px",
           }}
         >
-          {props.t("Créer un compte", "Créer un compte")}
+          {props.t("Créez un compte", "Créez un compte")}
         </div>
       </Link>
     </NoAccountContainer>
@@ -705,6 +772,50 @@ const UsernameField = (props) => (
           `il n'existe pas de compte à
   ce nom.`
         )}
+      </ErrorMessageContainer>
+    )}
+  </>
+);
+
+const CodeField = (props) => (
+  <>
+    <div
+      key="code-field"
+      style={{
+        flexDirection: "row",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <div style={{ marginTop: "10px" }}>
+        <FInput
+          prepend
+          prependName="lock-outline"
+          {...props}
+          id="code"
+          type="number"
+          placeholder={props.t("Login.Entrez votre code", "Entrez votre code")}
+          error={props.wrongAdminCodeError}
+        />
+      </div>
+      <div style={{ marginLeft: "10px" }}>
+        <FButton
+          type="validate"
+          name="checkmark-outline"
+          disabled={!props.value}
+        >
+          {props.t("Valider", "Valider")}
+        </FButton>
+      </div>
+    </div>
+    {props.wrongAdminCodeError && (
+      <ErrorMessageContainer>
+        <b>
+          {props.t(
+            "Login.Le code saisi n'est pas le bon.",
+            "Le code saisi n'est pas le bon."
+          )}
+        </b>
       </ErrorMessageContainer>
     )}
   </>
@@ -773,18 +884,13 @@ const PasswordField = (props) => {
 };
 
 const PasswordFooter = (props) => (
-  <div style={{ marginTop: "64px" }}>
-    <PasswordForgottenLink>
-      <div onClick={props.resetPassword}>
-        <u>
-          {props.t(
-            "Login.Mot de passe oublié ?",
-            "J'ai oublié mon mot de passe"
-          )}
-        </u>
-      </div>
-    </PasswordForgottenLink>
-  </div>
+  <FooterLink>
+    <div onClick={props.resetPassword}>
+      <u>
+        {props.t("Login.Mot de passe oublié ?", "J'ai oublié mon mot de passe")}
+      </u>
+    </div>
+  </FooterLink>
 );
 
 const RegisterHeader = (props) => (
@@ -803,30 +909,6 @@ const RegisterHeader = (props) => (
       </span>
     </CardBody>
   </Card>
-);
-
-const CodeField = (props) => (
-  <div key="code-field">
-    <FInput
-      prepend
-      prependName="lock-outline"
-      {...props}
-      id="code"
-      type="number"
-      placeholder="code"
-    />
-    <div className="footer-buttons">
-      <FButton
-        type="dark"
-        name="arrow-forward-outline"
-        color="dark"
-        className="connect-btn"
-        disabled={!props.value}
-      >
-        Valider
-      </FButton>
-    </div>
-  </div>
 );
 
 const InfoModal = (props) => (

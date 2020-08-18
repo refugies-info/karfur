@@ -275,7 +275,7 @@
     "Entrez votre pseudonyme": "Entrez votre pseudonyme",
     "Retour": "Retour",
     "Pas encore de compte ?": "Pas encore de compte ? ",
-    "Créer un compte": " Créer un compte",
+    "Créez un compte": " Créez un compte",
     "Pseudonyme oublié ?": "Pseudonyme oublié ?",
     "Contactez le support": "Contactez le support",
     "Centre d'aide": "Centre d'aide",
@@ -289,7 +289,13 @@
     "Impossible de réinitialiser": "Impossible de réinitialiser",
     "Reset password message": "Attention, si vous n'avez pas configuré d'email, vous ne pourrez pas réinitialiser votre mot de passe.",
     "Réinitialisation du mot de passe": "Un lien de réinitialisation a été envoyé",
-    "Réinitialisation texte": "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?"
+    "Réinitialisation texte": "Vous n'avez rien reçu ? Avez-vous vérifié dans vos spams ?",
+    "Double authentification": "Double authentification",
+    "Un code vous a été envoyé par sms sur votre mobile.": "Un code vous a été envoyé par sms sur votre mobile.",
+    "Entrez votre code": "Entrez votre code",
+    "Renvoyer le code": "Renvoyer le code",
+    "Le code saisi n'est pas le bon.": "Le code saisi n'est pas le bon.",
+    "Une erreur est survenue. Veuillez réessayer.": "Une erreur est survenue. Veuillez réessayer."
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",
