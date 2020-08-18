@@ -299,7 +299,8 @@
     "Nouvel administrateur": "Nouvel administrateur",
     "Entrez votre numéro et votre email": "Entrez votre numéro et votre email",
     "Entrez votre email": "Entrez votre email",
-    "Entrez votre numéro": "Entrez votre numéro"
+    "Entrez votre numéro": "Entrez votre numéro",
+    "Pas email": "Il n'y a pas d'email associé à ce pseudonyme."
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",
