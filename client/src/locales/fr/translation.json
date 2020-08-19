@@ -255,11 +255,7 @@
   "Login": {
     "Pseudonyme": "Votre pseudonyme",
     "Retour à l'accueil": "Retour à l'accueil",
-    "Ou se créer un compte": "Ou se créer un compte",
-    "Se connecter": "Se connecter",
     "Content de vous revoir !": "Content de vous revoir !",
-    "Se créer un compte": "Se créer un compte",
-    "Pas besoin d’email": "Pas besoin d’email",
     "Mot de passe oublié ?": "J'ai oublié mon mot de passe",
     "no-account": "Il n'existe pas de compte à ce nom",
     "Confirmez le mot de passe": "Confirmez le mot de passe",
@@ -273,7 +269,6 @@
     "Problème mdp": "Un problème est survenu au moment de réinitialiser le mot de passe. Merci d'essayer à nouveau",
     "Revenir à la page de connexion": "Revenir à la page de connexion",
     "Entrez votre pseudonyme": "Entrez votre pseudonyme",
-    "Retour": "Retour",
     "Pas encore de compte ?": "Pas encore de compte ? ",
     "Créez un compte": " Créez un compte",
     "Pseudonyme oublié ?": "Pseudonyme oublié ?",
@@ -301,7 +296,7 @@
     "Entrez votre email": "Entrez votre email",
     "Entrez votre numéro": "Entrez votre numéro",
     "Pas email": "Il n'y a pas d'email associé à ce pseudonyme.",
-    "Créer un nouveau compte": "Créer un nouveau compte",
+
     "Choisissez un pseudonyme": "Choisissez un pseudonyme"
   },
   "Register": {
@@ -319,7 +314,10 @@
     "Faible": "Faible",
     "Fort": "Fort",
     "Moyen": "Moyen",
-    "Mot de passe trop faible": "Oups, votre mot de passe est trop faible."
+    "Mot de passe trop faible": "Oups, votre mot de passe est trop faible.",
+    "Ceci n'est pas un email,": "Ceci n'est pas un email,",
+    "vérifiez l'orthographe.": "vérifiez l'orthographe.",
+    "Créer un nouveau compte": "Créer un nouveau compte"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",

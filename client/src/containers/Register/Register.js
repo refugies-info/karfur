@@ -78,7 +78,7 @@ const GoBackButton = (props) => {
           name="arrow-back-outline"
           className="mr-10"
         >
-          {props.t("Login.Retour", "Retour")}
+          {props.t("Retour", "Retour")}
         </FButton>
       </NavLink>
     );
@@ -91,7 +91,7 @@ const GoBackButton = (props) => {
       className="mr-10"
       onClick={props.goBack}
     >
-      {props.t("Login.Retour", "Retour")}
+      {props.t("Retour", "Retour")}
     </FButton>
   );
 };
@@ -102,7 +102,7 @@ export class Register extends Component {
     password: "",
     email: "",
     passwordVisible: false,
-    step: 2,
+    step: 0,
     weakPasswordError: false,
     unexpectedError: false,
     pseudoAlreadyTaken: false,
@@ -161,7 +161,9 @@ export class Register extends Component {
     API.login(user)
       .then((data) => {
         const token = data.data.token;
-
+        logger.info("[Register] user successfully registered", {
+          username: user.username,
+        });
         Swal.fire({
           title: "Yay...",
           text: "Authentification réussie !",
@@ -175,6 +177,10 @@ export class Register extends Component {
         this.props.fetchUser();
       })
       .catch((e) => {
+        logger.error("[Register] error while registering", {
+          username: user.username,
+          error: e,
+        });
         if (e.response.status === 401) {
           this.setState({
             weakPasswordError: true,
@@ -237,6 +243,10 @@ export class Register extends Component {
       this.setState({ step: 2 });
     } else if (this.state.step === 2) {
       if (this.state.email) {
+        logger.info("[Register] checking email", {
+          username: this.state.username,
+          email: this.state.email,
+        });
         // if there is an email, check that the string is an email
         const regex = /^\S+@\S+\.\S+$/;
         const isEmail = !!this.state.email.match(regex);
@@ -262,7 +272,7 @@ export class Register extends Component {
   getHeaderText = () => {
     if (this.state.step === 0) {
       return this.props.t(
-        "Login.Créer un nouveau compte",
+        "Register.Créer un nouveau compte",
         "Créer un nouveau compte"
       );
     }
@@ -313,6 +323,7 @@ export class Register extends Component {
       weakPasswordError,
       unexpectedError,
       pseudoAlreadyTaken,
+      notEmailError,
     } = this.state;
     const { t } = this.props;
     return (
@@ -361,6 +372,7 @@ export class Register extends Component {
                   value={email}
                   onChange={this.handleChange}
                   t={t}
+                  notEmailError={notEmailError}
                 />
               )}
             </Form>
@@ -385,6 +397,20 @@ export class Register extends Component {
                     </FButton>
                   </div>
                 </div>
+                {this.state.notEmailError && (
+                  <ErrorMessageContainer>
+                    <b>
+                      {t(
+                        "Register.Ceci n'est pas un email,",
+                        "Ceci n'est pas un email,"
+                      )}
+                    </b>{" "}
+                    {t(
+                      "Register.vérifiez l'orthographe.",
+                      "vérifiez l'orthographe."
+                    )}
+                  </ErrorMessageContainer>
+                )}
                 <EmailPrecisions>
                   {t(
                     "Register.Email infos",
@@ -468,6 +494,8 @@ const EmailField = (props) => (
       id="email"
       type="email"
       placeholder={props.t("Register.Votre email", "Votre email")}
+      error={props.notEmailError}
+      errorIcon="at"
     />
   </>
 );
@@ -497,6 +525,7 @@ const UsernameField = (props) => (
           placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
           autoComplete="username"
           error={props.pseudoAlreadyTaken}
+          errorIcon="person"
           {...props}
         />
       </div>

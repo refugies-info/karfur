@@ -108,9 +108,6 @@ function login(req, res) {
           logger.error("[Login] internal error", { err });
           res.status(500).json({ text: "Erreur interne", data: err });
         } else if (!user) {
-          logger.error("[Login] no user with this pseudo", {
-            username: req.body && req.body.username,
-          });
           return register(req, res);
         } else {
           if (user.authenticate(req.body.password)) {
