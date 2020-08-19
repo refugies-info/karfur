@@ -22,6 +22,7 @@ import {
   toggleLangueActionCreator,
   toggleLangueModalActionCreator,
 } from "../../services/Langue/langue.actions";
+import img from "../../assets/login_background.svg";
 
 const StyledHeader = styled.div`
   font-weight: 500;
@@ -44,6 +45,8 @@ const MainContainer = styled.div`
   align-items: center;
   flex: 1;
   flex-direction: column;
+  background-image: url(${img});
+  background-color: #fbfbfb;
 `;
 
 const ContentContainer = styled.div`

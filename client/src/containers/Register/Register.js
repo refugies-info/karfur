@@ -25,6 +25,7 @@ import {
 import { logger } from "../../logger";
 import passwdCheck from "zxcvbn";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
+import img from "../../assets/login_background.svg";
 
 const StyledHeader = styled.div`
   font-weight: 500;
@@ -47,6 +48,8 @@ const MainContainer = styled.div`
   align-items: center;
   flex: 1;
   flex-direction: column;
+  background-image: url(${img});
+  background-color: #fbfbfb;
 `;
 
 const ContentContainer = styled.div`
