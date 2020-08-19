@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, ModalBody, ModalFooter } from "reactstrap";
+import { Modal } from "reactstrap";
 import { withTranslation } from "react-i18next";
 import variables from "scss/colors.scss";
 
@@ -20,21 +20,17 @@ export class FrameModal extends Component {
       <Modal
         isOpen={this.props.show}
         toggle={this.props.toggle}
-        className="dispositif-validate-modal"
+        className="frame"
       >
-        <ModalBody>
-          <iframe
-            style={{
-              alignSelf: "center",
-              width: "100%",
-              height: 500,
-              border: "1px solid #C4C4C4",
-            }}
-            allowFullScreen
-            src="https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq/reader/"
-          />
-        </ModalBody>
-        <ModalFooter style={{ justifyContent: "space-between", marginTop: 50 }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            margin: "40px",
+            background: "#FBFBFB",
+          }}
+        >
           <FButton
             href="https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq"
             type="dark"
@@ -55,7 +51,21 @@ export class FrameModal extends Component {
           >
             Compris !
           </FButton>
-        </ModalFooter>
+        </div>
+        <div
+          style={{ width: "100%", height: "2px", backgroundColor: "#828282" }}
+        />
+        <iframe
+          style={{
+            alignSelf: "center",
+            width: "100%",
+            height: 500,
+            border: "1px solid #FBFBFB",
+            borderRadius: "0px 0px 12px 12px",
+          }}
+          allowFullScreen
+          src="https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq/reader/"
+        />
       </Modal>
     );
   }
