@@ -52,7 +52,7 @@ const FInput = (props) => {
     <InputGroup className="mb-10 figma-input-group">
       {props.prepend && (
         <InputGroupAddon addonType="prepend" className="icon-prepend">
-          <EVAIcon name={props.prependName} fill="#F44336" />
+          <EVAIcon name={props.errorIcon || props.prependName} fill="#F44336" />
         </InputGroupAddon>
       )}
       <Input

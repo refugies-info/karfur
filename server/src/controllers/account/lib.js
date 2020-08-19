@@ -8,64 +8,75 @@ const crypto = require("crypto");
 let { transporter, mailOptions, url } = require("../dispositif/lib.js");
 const logger = require("../../logger");
 
-// //On lui crée un nouveau compte si la demande vient du site seulement
-// user = req.body;
-// if (
-//   req.fromSite &&
-//   user.cpassword &&
-//   user.cpassword === user.password
-// ) {
-//   if ((passwdCheck(user.password) || {}).score < 1) {
-//     return res
-//       .status(401)
-//       .json({ text: "Le mot de passe est trop faible" });
-//   }
-//   user.password = passwordHash.generate(user.password);
-//   if (
-//     user.roles &&
-//     user.roles.length > 0 &&
-//     req.user.roles.some((x) => x.nom === "Admin")
-//   ) {
-//     user.roles = [
-//       ...new Set([
-//         ...user.roles,
-//         req.roles.find((x) => x.nom === "User")._id,
-//       ]),
-//     ];
-//   } else if (user.traducteur) {
-//     user.roles = [req.roles.find((x) => x.nom === "Trad")._id];
-//     delete user.traducteur;
-//   } else {
-//     user.roles = [req.roles.find((x) => x.nom === "User")._id];
-//   }
-//   // eslint-disable-next-line no-use-before-define
-//   _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
-//   user.status = "Actif";
-//   user.last_connected = new Date();
-//   var _u = new User(user);
-//   _u.save((err, user) => {
-//     if (err) {
-//       res.status(500).json({ text: "Erreur interne" });
-//     } else {
-//       //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
-//       // eslint-disable-next-line no-use-before-define
-//       populateLanguages(user);
-//       res.status(200).json({
-//         text: "Succès",
-//         token: user.getToken(),
-//         data: user,
-//       });
-//     }
-//   });
-// } else if (!req.fromSite) {
-//   res
-//     .status(403)
-//     .json({ text: "Création d'utilisateur impossible par API" });
-// } else {
-//   res
-//     .status(402)
-//     .json({ text: "Les mots de passe ne correspondent pas" });
-// }
+/**
+ * Codes returned by register
+ * 401 : weak password
+ * 403 : user creation not possible from api
+ * 500 : internal error
+ * 200: ok
+ */
+function register(req, res) {
+  if (!req.fromSite) {
+    res.status(403).json({ text: "Création d'utilisateur impossible par API" });
+  } else {
+    //On lui crée un nouveau compte si la demande vient du site seulement
+    const user = req.body;
+    logger.info("[Register] register attempt", { username: user.username });
+    if (req.fromSite && user.username && user.password) {
+      if ((passwdCheck(user.password) || {}).score < 1) {
+        logger.error("[Register] register failed, password too weak", {
+          username: user.username,
+        });
+        return res
+          .status(401)
+          .json({ text: "Le mot de passe est trop faible" });
+      }
+      user.password = passwordHash.generate(user.password);
+      if (
+        user.roles &&
+        user.roles.length > 0 &&
+        req.user.roles.some((x) => x.nom === "Admin")
+      ) {
+        user.roles = [
+          ...new Set([
+            ...user.roles,
+            req.roles.find((x) => x.nom === "User")._id,
+          ]),
+        ];
+      } else if (user.traducteur) {
+        user.roles = [req.roles.find((x) => x.nom === "Trad")._id];
+        delete user.traducteur;
+      } else {
+        user.roles = [req.roles.find((x) => x.nom === "User")._id];
+      }
+      // eslint-disable-next-line no-use-before-define
+      _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
+      user.status = "Actif";
+      user.last_connected = new Date();
+      var _u = new User(user);
+      _u.save((err, user) => {
+        if (err) {
+          logger.error("[Register] register failed, unexpected error", {
+            username: user.username,
+          });
+          res.status(500).json({ text: "Erreur interne" });
+        } else {
+          logger.info("[Register] successfully registered a new user", {
+            username: user.username,
+          });
+          //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
+          // eslint-disable-next-line no-use-before-define
+          populateLanguages(user);
+          res.status(200).json({
+            text: "Succès",
+            token: user.getToken(),
+            data: user,
+          });
+        }
+      });
+    }
+  }
+}
 
 /**
  * Errors returned by login
@@ -97,12 +108,7 @@ function login(req, res) {
           logger.error("[Login] internal error", { err });
           res.status(500).json({ text: "Erreur interne", data: err });
         } else if (!user) {
-          logger.error("[Login] no user with this pseudo", {
-            username: req.body && req.body.username,
-          });
-          res
-            .status(400)
-            .json({ text: "Pas d'utilisateur avec ce pseudonyme" });
+          return register(req, res);
         } else {
           if (user.authenticate(req.body.password)) {
             logger.info("[Login] password correct for user", {

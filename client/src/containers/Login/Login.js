@@ -111,7 +111,7 @@ const GoBackButton = (props) => {
           name="arrow-back-outline"
           className="mr-10"
         >
-          {props.t("Login.Retour", "Retour")}
+          {props.t("Retour", "Retour")}
         </FButton>
       </NavLink>
     );
@@ -124,7 +124,7 @@ const GoBackButton = (props) => {
       className="mr-10"
       onClick={props.goBack}
     >
-      {props.t("Login.Retour", "Retour")}
+      {props.t("Retour", "Retour")}
     </FButton>
   );
 };
@@ -162,7 +162,6 @@ export class Login extends Component {
     this.setState({
       step: 0,
       password: "",
-      cpassword: "",
       wrongPasswordError: false,
       resetPasswordNotPossible: false,
       resetPasswordPossible: false,
@@ -566,7 +565,18 @@ const Footer = (props) => {
   }
 
   if (props.resetPasswordPossible) {
-    return <ContactSupport t={props.t} />;
+    return (
+      <>
+        <FooterLink>
+          <div onClick={props.resetPassword}>
+            <u>{props.t("Login.Renvoyer le lien", "Renvoyer le lien")}</u>
+          </div>
+        </FooterLink>
+        <div style={{ marginTop: "16px" }}>
+          <ContactSupport t={props.t} />
+        </div>
+      </>
+    );
   }
 
   if (props.step === 0) {
@@ -667,6 +677,7 @@ const UsernameField = (props) => (
           placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
           autoComplete="username"
           error={props.noUserError}
+          errorIcon="person"
           {...props}
         />
       </div>
@@ -712,6 +723,7 @@ const CodeField = (props) => (
           type="number"
           placeholder={props.t("Login.Entrez votre code", "Entrez votre code")}
           error={props.wrongAdminCodeError}
+          errorIcon="lock"
         />
       </div>
       <div style={{ marginLeft: "10px" }}>
@@ -762,6 +774,8 @@ const PasswordField = (props) => (
           id={props.id}
           placeholder={props.t("Login.Mot de passe", "Mot de passe")}
           autoComplete="new-password"
+          error={props.wrongPasswordError}
+          errorIcon="lock"
         />
       </div>
       <div style={{ marginLeft: "10px" }}>

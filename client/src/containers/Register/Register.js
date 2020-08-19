@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import track from "react-tracking";
-import { Form } from "reactstrap";
+import { Form, Progress } from "reactstrap";
 import i18n from "../../i18n";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
@@ -22,6 +22,9 @@ import {
   toggleLangueActionCreator,
   toggleLangueModalActionCreator,
 } from "../../services/Langue/langue.actions";
+import { logger } from "../../logger";
+import passwdCheck from "zxcvbn";
+import { colorAvancement } from "../../components/Functions/ColorFunctions";
 
 const StyledHeader = styled.div`
   font-weight: 500;
@@ -59,47 +62,11 @@ const AlreadyAccountContainer = styled.div`
   margin-top: 16px;
 `;
 
-const PseudoForgottenContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-  margin-top: 16px;
-  font-weight: bold;
-`;
-
-const FooterLink = styled.div`
-  color: #828282;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 64px;
-`;
-
 const ErrorMessageContainer = styled.div`
   color: #e8140f;
   font-size: 16px;
   line-height: 20px;
   margin-top: 16px;
-`;
-
-const NoEmailRelatedContainer = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #e8140f;
-  margin-top: 64px;
-  margin-bottom: 64px;
-`;
-
-const EmailRelatedContainer = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 64px;
-  margin-bottom: 16px;
 `;
 
 const GoBackButton = (props) => {
@@ -111,7 +78,7 @@ const GoBackButton = (props) => {
           name="arrow-back-outline"
           className="mr-10"
         >
-          {props.t("Login.Retour", "Retour")}
+          {props.t("Retour", "Retour")}
         </FButton>
       </NavLink>
     );
@@ -124,7 +91,7 @@ const GoBackButton = (props) => {
       className="mr-10"
       onClick={props.goBack}
     >
-      {props.t("Login.Retour", "Retour")}
+      {props.t("Retour", "Retour")}
     </FButton>
   );
 };
@@ -133,16 +100,13 @@ export class Register extends Component {
   state = {
     username: "",
     password: "",
-    code: "",
     email: "",
-    phone: "",
     passwordVisible: false,
     step: 0,
-    noUserError: false,
-    wrongPasswordError: false,
-    wrongAdminCodeError: false,
+    weakPasswordError: false,
     unexpectedError: false,
     pseudoAlreadyTaken: false,
+    notEmailError: false,
   };
 
   componentDidMount() {
@@ -160,7 +124,6 @@ export class Register extends Component {
     this.setState({
       step: 0,
       password: "",
-      cpassword: "",
       pseudoAlreadyTaken: false,
     });
 
@@ -178,29 +141,29 @@ export class Register extends Component {
   };
 
   /**
-   * Errors returned by login route
-   * 400 : invalid request, no user with this pseudo
+   * Codes returned by login when register
+   * 401 : weak password
+   * 403 : user creation not possible from api
    * 500 : internal error
-   * 401 : wrong password
-   * 402 : wrong code (admin)
-   * 404 : error sending code (admin), error creating admin account
-   * 501 : no code provided (admin)
-   * 200 : authentification succeeded
-   * 502 : new admin without phone number or email
+   * 200: ok
    */
 
   login = () => {
     const user = {
       username: this.state.username,
       password: this.state.password,
-      code: this.state.code,
       email: this.state.email,
-      phone: this.state.phone,
     };
+    logger.info("[Register] register attempt for user", {
+      username: user.username,
+      email: user.email,
+    });
     API.login(user)
       .then((data) => {
         const token = data.data.token;
-
+        logger.info("[Register] user successfully registered", {
+          username: user.username,
+        });
         Swal.fire({
           title: "Yay...",
           text: "Authentification réussie !",
@@ -214,12 +177,15 @@ export class Register extends Component {
         this.props.fetchUser();
       })
       .catch((e) => {
+        logger.error("[Register] error while registering", {
+          username: user.username,
+          error: e,
+        });
         if (e.response.status === 401) {
           this.setState({
-            wrongPasswordError: true,
+            weakPasswordError: true,
+            step: 1,
           });
-        } else if (e.response.status === 402) {
-          this.setState({ wrongAdminCodeError: true });
         } else {
           this.setState({ unexpectedError: true });
         }
@@ -241,20 +207,29 @@ export class Register extends Component {
         return;
       }
       API.checkUserExists({ username: this.state.username }).then((data) => {
+        logger.info("[Register] check if pseudo already exists", {
+          username: this.state.username,
+        });
         const userExists = data.status === 200;
         // if user, go to next step (password)
         if (userExists) {
+          logger.info("[Register] pseudo already exists", {
+            username: this.state.username,
+          });
           this.setState({
             pseudoAlreadyTaken: true,
           });
         } else {
+          logger.info("[Register] pseudo available", {
+            username: this.state.username,
+          });
           // if no user: display error
           this.setState({
             step: 1,
           });
         }
       });
-    } else {
+    } else if (this.state.step === 1) {
       // password check
       if (this.state.password.length === 0) {
         return Swal.fire({
@@ -264,8 +239,31 @@ export class Register extends Component {
           timer: 1500,
         });
       }
+
+      this.setState({ step: 2 });
+    } else if (this.state.step === 2) {
+      if (this.state.email) {
+        logger.info("[Register] checking email", {
+          username: this.state.username,
+          email: this.state.email,
+        });
+        // if there is an email, check that the string is an email
+        const regex = /^\S+@\S+\.\S+$/;
+        const isEmail = !!this.state.email.match(regex);
+        if (isEmail) {
+          this.login();
+        } else {
+          this.setState({ notEmailError: true });
+        }
+      }
+    } else {
       this.login();
     }
+  };
+
+  onLaterClick = () => {
+    this.setState({ email: "" });
+    this.login();
   };
 
   handleChange = (event) =>
@@ -274,7 +272,7 @@ export class Register extends Component {
   getHeaderText = () => {
     if (this.state.step === 0) {
       return this.props.t(
-        "Login.Créer un nouveau compte",
+        "Register.Créer un nouveau compte",
         "Créer un nouveau compte"
       );
     }
@@ -288,10 +286,7 @@ export class Register extends Component {
     }
 
     if (this.state.step === 2) {
-      return this.props.t(
-        "Login.Double authentification",
-        "Double authentification "
-      );
+      return this.props.t("Register.Dernière étape", "Une dernière étape !");
     }
   };
 
@@ -312,8 +307,8 @@ export class Register extends Component {
 
     if (this.state.step === 2) {
       return this.props.t(
-        "Login.Un code vous a été envoyé par sms sur votre mobile.",
-        "Un code vous a été envoyé par sms sur votre mobile."
+        "Register.Renseignez votre adresse email",
+        "Renseignez votre adresse email"
       );
     }
   };
@@ -323,15 +318,12 @@ export class Register extends Component {
       passwordVisible,
       username,
       step,
-      code,
       email,
-      phone,
-      noUserError,
       password,
-      wrongAdminCodeError,
-      wrongPasswordError,
+      weakPasswordError,
       unexpectedError,
       pseudoAlreadyTaken,
+      notEmailError,
     } = this.state;
     const { t } = this.props;
     return (
@@ -364,7 +356,7 @@ export class Register extends Component {
                   t={t}
                   pseudoAlreadyTaken={pseudoAlreadyTaken}
                 />
-              ) : (
+              ) : step === 1 ? (
                 <PasswordField
                   id="password"
                   value={password}
@@ -372,11 +364,62 @@ export class Register extends Component {
                   passwordVisible={passwordVisible}
                   onClick={this.togglePasswordVisibility}
                   t={t}
-                  wrongPasswordError={wrongPasswordError}
+                  weakPasswordError={weakPasswordError}
+                />
+              ) : (
+                <EmailField
+                  id="email"
+                  value={email}
+                  onChange={this.handleChange}
+                  t={t}
+                  notEmailError={notEmailError}
                 />
               )}
             </Form>
-            <Footer step={step} t={t} />
+            {step === 2 && (
+              <>
+                <div style={{ display: "flex", flexDirection: "row" }}>
+                  <FButton
+                    type="validate"
+                    name="checkmark-outline"
+                    disabled={!email}
+                    onClick={this.send}
+                  >
+                    {t("Valider", "Valider")}
+                  </FButton>
+                  <div style={{ marginLeft: "8px" }}>
+                    <FButton
+                      type="default"
+                      name="arrowhead-right-outline"
+                      onClick={this.onLaterClick}
+                    >
+                      {t("Plus tard", "Plus tard")}
+                    </FButton>
+                  </div>
+                </div>
+                {this.state.notEmailError && (
+                  <ErrorMessageContainer>
+                    <b>
+                      {t(
+                        "Register.Ceci n'est pas un email,",
+                        "Ceci n'est pas un email,"
+                      )}
+                    </b>{" "}
+                    {t(
+                      "Register.vérifiez l'orthographe.",
+                      "vérifiez l'orthographe."
+                    )}
+                  </ErrorMessageContainer>
+                )}
+                <EmailPrecisions>
+                  {t(
+                    "Register.Email infos",
+                    "Nécessaire pour réinitialiser votre mot de passe en cas d'oubli."
+                  )}
+                </EmailPrecisions>{" "}
+              </>
+            )}
+            <Footer step={step} t={t} unexpectedError={unexpectedError} />
             <Gauge step={step} />
           </ContentContainer>
           <LanguageModal
@@ -395,27 +438,6 @@ export class Register extends Component {
   }
 }
 
-const ResetPasswordMessage = styled.div`
-  font-size: 16px;
-  line-height: 20px;
-  color: #828282;
-  margin-bottom: 16px;
-`;
-
-const ContactSupport = (props) => (
-  <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
-    <div
-      style={{
-        fontWeight: "bold",
-        textDecoration: "underline",
-        cursor: "pointer",
-        color: "#828282",
-      }}
-    >
-      {props.t("Login.Contactez le support", "Contactez le support")}
-    </div>
-  </a>
-);
 const Footer = (props) => {
   if (props.unexpectedError) {
     return (
@@ -432,15 +454,6 @@ const Footer = (props) => {
     return <PseudoFooter t={props.t} />;
   }
 
-  if (props.step === 2) {
-    return (
-      <FooterLink>
-        <div onClick={props.login}>
-          <u>{props.t("Login.Renvoyer le code", "Renvoyer le code")}</u>
-        </div>
-      </FooterLink>
-    );
-  }
   return false;
 };
 
@@ -465,13 +478,34 @@ const PseudoFooter = (props) => (
   </AlreadyAccountContainer>
 );
 
+const EmailPrecisions = styled.div`
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 16px;
+`;
+
+const EmailField = (props) => (
+  <>
+    <FInput
+      prepend
+      prependName="at-outline"
+      value={props.value}
+      {...props}
+      id="email"
+      type="email"
+      placeholder={props.t("Register.Votre email", "Votre email")}
+      error={props.notEmailError}
+      errorIcon="at"
+    />
+  </>
+);
+
 const PseudoPrecisions = styled.div`
   font-size: 12px;
   line-height: 15px;
   color: #828282;
   margin-top: 16px;
 `;
-
 const UsernameField = (props) => (
   <>
     <div
@@ -490,7 +524,8 @@ const UsernameField = (props) => (
           type="username"
           placeholder={props.t("Login.Pseudonyme", "Pseudonyme")}
           autoComplete="username"
-          error={props.noUserError}
+          error={props.pseudoAlreadyTaken}
+          errorIcon="person"
           {...props}
         />
       </div>
@@ -529,64 +564,105 @@ const UsernameField = (props) => (
   </>
 );
 
-const PasswordField = (props) => (
-  <>
-    <div
-      style={{
-        flexDirection: "row",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <div style={{ marginTop: "10px" }}>
-        <FInput
-          prepend
-          append
-          autoFocus={props.id === "password"}
-          prependName="lock-outline"
-          appendName={
-            props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
-          }
-          inputClassName="password-input"
-          onAppendClick={props.onClick}
-          {...props}
-          type={props.passwordVisible ? "text" : "password"}
-          id={props.id}
-          placeholder={props.t("Login.Mot de passe", "Mot de passe")}
-          autoComplete="new-password"
-        />
-      </div>
-      <div style={{ marginLeft: "10px" }}>
-        <FButton
-          type="validate"
-          name="checkmark-outline"
-          disabled={!props.value}
-        >
-          {props.t("Valider", "Valider")}
-        </FButton>
-      </div>
-    </div>
-    {props.wrongPasswordError && (
-      <ErrorMessageContainer>
-        {props.t(
-          "Login.Mauvais mot de passe",
-          "Erreur, mauvais mot de passe : "
-        )}
-        <b>{props.t("Login.Reessayez", "réessayez !")}</b>
-      </ErrorMessageContainer>
-    )}
-  </>
-);
+const ProgressContainer = styled.div`
+  width: 30%;
+  margin-right: 16px;
+`;
 
-const PasswordFooter = (props) => (
-  <FooterLink>
-    <div onClick={props.resetPassword}>
-      <u>
-        {props.t("Login.Mot de passe oublié ?", "J'ai oublié mon mot de passe")}
-      </u>
-    </div>
-  </FooterLink>
-);
+const StrenghText = styled.div`
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+`;
+
+const getStrength = (score) => {
+  if (score > 0.75) {
+    return "Fort";
+  } else if (score > 0.25) {
+    return "Moyen";
+  }
+
+  return "Faible";
+};
+
+const PasswordField = (props) => {
+  // from 0 to 4, 4 is very strong
+  const passwordScore = passwdCheck(props.value).score;
+  return (
+    <>
+      <div
+        style={{
+          flexDirection: "row",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ marginTop: "10px" }}>
+          <FInput
+            prepend
+            append
+            autoFocus={props.id === "password"}
+            prependName="lock-outline"
+            appendName={
+              props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
+            }
+            inputClassName="password-input"
+            onAppendClick={props.onClick}
+            {...props}
+            type={props.passwordVisible ? "text" : "password"}
+            id={props.id}
+            placeholder={props.t("Login.Mot de passe", "Mot de passe")}
+            autoComplete="new-password"
+          />
+        </div>
+        <div style={{ marginLeft: "10px" }}>
+          <FButton
+            type="grey"
+            name="checkmark-outline"
+            disabled={passwordScore < 1}
+          >
+            {props.t("Suivant", "Suivant")}
+          </FButton>
+        </div>
+      </div>
+      {props.value && (
+        <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: "16px",
+            }}
+          >
+            <ProgressContainer>
+              <Progress
+                color={colorAvancement(passwordScore / 4)}
+                value={((0.1 + passwordScore / 4) * 100) / 1.1}
+              />
+            </ProgressContainer>
+            <StrenghText>
+              {props.t(
+                "Register." + getStrength(passwordScore / 4),
+                getStrength(passwordScore / 4)
+              )}
+            </StrenghText>
+          </div>
+        </>
+      )}
+      {((props.value && passwordScore < 1) || props.weakPasswordError) && (
+        <ErrorMessageContainer>
+          <b>
+            {props.t(
+              "Register.Mot de passe trop faible",
+              "Oups, votre mot de passe est trop faible."
+            )}
+          </b>
+        </ErrorMessageContainer>
+      )}
+    </>
+  );
+};
 
 const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
