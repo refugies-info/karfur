@@ -39,8 +39,7 @@ axios.interceptors.request.use(
       footer: "<i>" + error.message + "</i>",
       timer: 1500,
     });
-    // eslint-disable-next-line no-console
-    console.log(error.response.data, error.response.status, error.message);
+
     return Promise.reject(error);
   }
 );
@@ -52,23 +51,18 @@ axios.interceptors.response.use(
   },
   (error) => {
     if (error.response && error.response.status < 500) {
-      Swal.fire({
-        type: "error",
-        title: "Oops...",
-        text: (error.response.data || {}).text || "",
-        footer: "<i>" + error.message + "</i>",
-        timer: 1500,
-      });
+      if (error.response.data.data !== "no-alert") {
+        Swal.fire({
+          type: "error",
+          title: "Oops...",
+          text: (error.response.data || {}).text || "",
+          footer: "<i>" + error.message + "</i>",
+          timer: 1500,
+        });
+      }
     } else if (axios.isCancel(error)) {
       // eslint-disable-next-line no-console
       console.log("Error: ", error.message);
-    } else {
-      // eslint-disable-next-line no-console
-      console.log(
-        (error.response || {}).data,
-        (error.response || {}).status,
-        error.message
-      );
     }
     return Promise.reject(error);
   }
