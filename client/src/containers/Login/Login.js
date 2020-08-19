@@ -162,7 +162,6 @@ export class Login extends Component {
     this.setState({
       step: 0,
       password: "",
-      cpassword: "",
       wrongPasswordError: false,
       resetPasswordNotPossible: false,
       resetPasswordPossible: false,

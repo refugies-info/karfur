@@ -311,7 +311,15 @@
     "Déjà un compte ?": "Déjà un compte ?",
     "Se connecter": "Se connecter",
     "Bienvenue": "Bienvenue ",
-    "Choisissez un mot de passe": "Choisissez un mot de passe"
+    "Choisissez un mot de passe": "Choisissez un mot de passe",
+    "Dernière étape": "Une dernière étape !",
+    "Renseignez votre adresse email": "Renseignez votre adresse email",
+    "Votre email": "Votre email",
+    "Email infos": "Nécessaire pour réinitialiser votre mot de passe en cas d'oubli.",
+    "Faible": "Faible",
+    "Fort": "Fort",
+    "Moyen": "Moyen",
+    "Mot de passe trop faible": "Oups, votre mot de passe est trop faible."
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Accès refusé",
@@ -496,6 +504,7 @@
   "Chercher une démarche": "Explorer les démarches",
   "Rejoindre le réseau": "Rejoindre le réseau",
   "Valider": "Valider",
+  "Plus tard": "Plus tard",
   "Contribuer": "Contribuer",
   "secondes": "secondes",
   "minutes": "minutes",
