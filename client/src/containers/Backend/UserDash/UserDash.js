@@ -30,7 +30,6 @@ export class UserDash extends Component {
       progression: false,
       defineUser: false,
     },
-    runJoyRide: false, //penser à le réactiver !!
     user: {},
     languesUser: [],
     traductionsFaites: [],

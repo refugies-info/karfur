@@ -16,7 +16,6 @@ import { savePDF } from "@progress/kendo-react-pdf";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import h2p from "html2plaintext";
-import ReactJoyride, { ACTIONS, EVENTS, STATUS } from "react-joyride";
 import _ from "lodash";
 import querySearch from "stringquery";
 import { convertToHTML } from "draft-convert";
@@ -43,14 +42,12 @@ import {
 } from "../../components/Modals/index";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import { Tags } from "./Tags";
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
 import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
-import FButton from "../../components/FigmaUI/FButton/FButton";
 import SideTrad from "./SideTrad/SideTrad";
 import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
@@ -62,12 +59,10 @@ import {
   menu,
   filtres,
   onBoardSteps,
-  tutoSteps,
   importantCard,
   showModals,
   menuDemarche,
   demarcheSteps,
-  tutoStepsDemarche,
   customConvertOption,
 } from "./data";
 import {
@@ -158,11 +153,6 @@ export class Dispositif extends Component {
     isDispositifLoading: true,
     contributeurs: [],
     withHelp: process.env.NODE_ENV !== "development",
-    runFirstJoyRide: false,
-    runJoyRide: false,
-    stepIndex: 0,
-    disableOverlay: false,
-    joyRideWidth: 800,
     inputBtnClicked: false,
     mainSponsor: {},
     status: "",
@@ -478,7 +468,6 @@ export class Dispositif extends Component {
   handleKeyPress = (ev, index) => {
     if (ev.key === "Enter") {
       ev.preventDefault();
-      this.setState({ stepIndex: index + 1 });
       if (
         index === 0 &&
         this.state.content.titreMarque === contenu.titreMarque
@@ -685,9 +674,6 @@ export class Dispositif extends Component {
                 "public-DraftEditorPlaceholder-inner"
               )[0] || {}
             ).offsetHeight + "px";
-          this.setState((pS) => ({
-            joyRideWidth: parentNode.offsetWidth || pS.joyRideWidth,
-          }));
         }
         if (parentNode) {
           parentNode.scrollIntoView({
@@ -701,9 +687,6 @@ export class Dispositif extends Component {
         console.log(e);
       }
       this.setState({
-        stepIndex: key + seuil_tuto,
-        runJoyRide: true,
-        disableOverlay: true,
         inputBtnClicked: false,
       });
     }
@@ -1059,11 +1042,6 @@ export class Dispositif extends Component {
       ),
     });
 
-  startFirstJoyRide = () =>
-    this.setState({ showDispositifCreateModal: false, runJoyRide: true });
-  startJoyRide = (idx = 0) =>
-    this.setState({ runJoyRide: true, stepIndex: idx });
-
   toggleHelp = () =>
     this.setState((prevState) => ({ withHelp: !prevState.withHelp }));
 
@@ -1142,65 +1120,6 @@ export class Dispositif extends Component {
 
   deleteTag = (idx) =>
     this.setState({ tags: [...this.state.tags].filter((_, i) => i !== idx) });
-
-  handleJoyrideCallback = (data) => {
-    const { action, index, type, lifecycle, status } = data;
-    const etapes_tuto =
-      this.state.typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
-    const trigger_lower = this.state.typeContenu === "demarche" ? 2 : 3,
-      trigger_upper = this.state.typeContenu === "demarche" ? 5 : 7;
-    if (
-      [STATUS.FINISHED, STATUS.SKIPPED].includes(status) ||
-      (action === ACTIONS.CLOSE && type === EVENTS.STEP_AFTER)
-    ) {
-      this.setState({ runJoyRide: false, disableOverlay: false });
-    } else if (
-      ((action === ACTIONS.NEXT && index >= trigger_lower) ||
-        index > trigger_lower + 1) &&
-      index < trigger_upper &&
-      type === EVENTS.STEP_AFTER &&
-      lifecycle === "complete"
-    ) {
-      let key = index - trigger_lower + (action === ACTIONS.PREV ? -2 : 0);
-      if (this.state.typeContenu === "demarche" && key === 1) {
-        key = 2;
-      }
-      this.handleContentClick(key, true, key > 1 ? 0 : undefined);
-    } else if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
-      const stepIndex = index + (action === ACTIONS.PREV ? -1 : 1);
-      const inputBtnClicked =
-        (action === ACTIONS.NEXT && index === 2) ||
-        (action === ACTIONS.PREV && index === 4);
-      this.setState({
-        stepIndex,
-        disableOverlay: index > trigger_lower,
-        inputBtnClicked,
-      });
-      if (
-        this.state.withHelp &&
-        etapes_tuto[stepIndex] &&
-        etapes_tuto[stepIndex].target &&
-        etapes_tuto[stepIndex].target.includes("#") &&
-        document.getElementById(etapes_tuto[stepIndex].target.replace("#", ""))
-      ) {
-        const cible = document.getElementById(
-          etapes_tuto[stepIndex].target.replace("#", "")
-        );
-        cible.focus();
-        cible.scrollIntoView({
-          behavior: "smooth",
-          block: "end",
-          inline: "nearest",
-        });
-      }
-    }
-  };
-
-  handleFirstJoyrideCallback = (data) => {
-    if ([STATUS.FINISHED, STATUS.SKIPPED].includes(data.status)) {
-      this.setState({ runJoyRide: true, runFirstJoyRide: false });
-    }
-  };
 
   addSponsor = (sponsor) => {
     this.setState({
@@ -1590,10 +1509,6 @@ export class Dispositif extends Component {
       showModals,
       isDispositifLoading,
       typeContenu,
-      runJoyRide,
-      stepIndex,
-      disableOverlay,
-      joyRideWidth,
       withHelp,
       disableEdit,
       mainTag,
@@ -1602,81 +1517,6 @@ export class Dispositif extends Component {
       printing,
       didThank,
     } = this.state;
-
-    const etapes_tuto =
-      typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
-
-    const Tooltip = ({
-      index,
-      step,
-      backProps,
-      primaryProps,
-      tooltipProps,
-      closeProps,
-      isLastStep,
-    }) => {
-      if (step) {
-        return (
-          <div
-            key="JoyrideTooltip"
-            className="tooltip-wrapper custom-tooltip"
-            style={{
-              width: joyRideWidth + "px",
-              /*backgroundColor: mainTag.darkColor,*/ marginRight: "40px",
-            }}
-            {...tooltipProps}
-          >
-            <div className="tooltipContainer">
-              <b>{step.title}</b> : {step.content}
-            </div>
-            <div className="tooltipFooter">
-              <ul className="nav nav-tabs" role="tablist">
-                {etapes_tuto.map((_, idx) => (
-                  <li
-                    role="presentation"
-                    className={idx <= stepIndex ? "active" : "disabled"}
-                    key={idx}
-                  >
-                    <span className="round-tab" />
-                  </li>
-                ))}
-              </ul>
-              {index > 0 && (
-                <FButton
-                  onMouseEnter={(e) => e.target.focus()}
-                  type="pill"
-                  className="mr-10"
-                  name="arrow-back-outline"
-                  fill="#FFFFFF"
-                  {...backProps}
-                />
-              )}
-              <FButton onMouseEnter={(e) => e.target.focus()} {...primaryProps}>
-                {isLastStep ? (
-                  <span>Terminer</span>
-                ) : (
-                  <span>
-                    Suivant
-                    <EVAIcon
-                      name="arrow-forward-outline"
-                      fill={variables.grisFonce}
-                      className="ml-10"
-                    />
-                  </span>
-                )}
-              </FButton>
-            </div>
-            <EVAIcon
-              onMouseEnter={(e) => e.currentTarget.focus()}
-              {...closeProps}
-              name="close-outline"
-              className="close-icon"
-            />
-          </div>
-        );
-      }
-      return false;
-    };
 
     return (
       <div
@@ -1693,28 +1533,6 @@ export class Dispositif extends Component {
         }
         ref={this.newRef}
       >
-        {/* Second guided tour */}
-        <ReactJoyride
-          continuous
-          steps={etapes_tuto}
-          run={!disableEdit && withHelp && runJoyRide}
-          showProgress
-          disableOverlay={disableOverlay}
-          disableOverlayClose={true}
-          spotlightClicks={true}
-          callback={this.handleJoyrideCallback}
-          stepIndex={stepIndex}
-          tooltipComponent={Tooltip}
-          debug={false}
-          styles={{
-            options: {
-              arrowColor: mainTag.darkColor,
-            },
-          }}
-          joyRideWidth={joyRideWidth}
-          mainTag={mainTag}
-        />
-
         <Row className="main-row">
           {translating && (
             <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
@@ -1809,7 +1627,6 @@ export class Dispositif extends Component {
                         disabled={disableEdit || inVariante}
                         onClick={(e) => {
                           if (!disableEdit && !inVariante) {
-                            this.startJoyRide();
                             this.onInputClicked(e);
                           }
                         }}
@@ -1829,7 +1646,6 @@ export class Dispositif extends Component {
                           html={this.state.content.titreMarque || ""} // innerHTML of the editable div
                           disabled={this.state.disableEdit}
                           onClick={(e) => {
-                            this.startJoyRide(1);
                             this.onInputClicked(e);
                           }}
                           onChange={this.handleChange}
@@ -2142,7 +1958,6 @@ export class Dispositif extends Component {
               show={this.state.showDispositifCreateModal}
               toggle={this.toggleDispositifCreateModal}
               typeContenu={typeContenu}
-              startFirstJoyRide={this.startFirstJoyRide}
               onBoardSteps={onBoardSteps}
             />
             <DispositifValidateModal

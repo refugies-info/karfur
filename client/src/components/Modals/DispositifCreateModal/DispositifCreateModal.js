@@ -25,7 +25,7 @@ class DispositifCreateModal extends Component {
     this.setState((pS) => ({ stepIdx: pS.stepIdx + (next ? 1 : -1) }));
 
   render() {
-    const { toggle, startFirstJoyRide, onBoardSteps, typeContenu } = this.props;
+    const { toggle, onBoardSteps, typeContenu } = this.props;
     const { stepIdx } = this.state;
     return (
       <Modal
@@ -146,11 +146,7 @@ class DispositifCreateModal extends Component {
               />
             )}
             {stepIdx === onBoardSteps.length - 1 ? (
-              <FButton
-                type="validate"
-                name="checkmark"
-                onClick={startFirstJoyRide}
-              >
+              <FButton type="validate" name="checkmark">
                 Démarrer
               </FButton>
             ) : (
