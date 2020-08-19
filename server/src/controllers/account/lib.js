@@ -6,6 +6,89 @@ const authy = require("authy")(process.env.ACCOUNT_SECURITY_API_KEY);
 const passwdCheck = require("zxcvbn");
 const crypto = require("crypto");
 let { transporter, mailOptions, url } = require("../dispositif/lib.js");
+const logger = require("../../logger");
+
+/**
+ * Codes returned by register
+ * 401 : weak password
+ * 403 : user creation not possible from api
+ * 500 : internal error
+ * 200: ok
+ */
+function register(req, res) {
+  if (!req.fromSite) {
+    res.status(403).json({ text: "Création d'utilisateur impossible par API" });
+  } else {
+    //On lui crée un nouveau compte si la demande vient du site seulement
+    const user = req.body;
+    logger.info("[Register] register attempt", { username: user.username });
+    if (req.fromSite && user.username && user.password) {
+      if ((passwdCheck(user.password) || {}).score < 1) {
+        logger.error("[Register] register failed, password too weak", {
+          username: user.username,
+        });
+        return res
+          .status(401)
+          .json({ text: "Le mot de passe est trop faible" });
+      }
+      user.password = passwordHash.generate(user.password);
+      if (
+        user.roles &&
+        user.roles.length > 0 &&
+        req.user.roles.some((x) => x.nom === "Admin")
+      ) {
+        user.roles = [
+          ...new Set([
+            ...user.roles,
+            req.roles.find((x) => x.nom === "User")._id,
+          ]),
+        ];
+      } else if (user.traducteur) {
+        user.roles = [req.roles.find((x) => x.nom === "Trad")._id];
+        delete user.traducteur;
+      } else {
+        user.roles = [req.roles.find((x) => x.nom === "User")._id];
+      }
+      // eslint-disable-next-line no-use-before-define
+      _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
+      user.status = "Actif";
+      user.last_connected = new Date();
+      var _u = new User(user);
+      _u.save((err, user) => {
+        if (err) {
+          logger.error("[Register] register failed, unexpected error", {
+            username: user.username,
+          });
+          res.status(500).json({ text: "Erreur interne" });
+        } else {
+          logger.info("[Register] successfully registered a new user", {
+            username: user.username,
+          });
+          //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
+          // eslint-disable-next-line no-use-before-define
+          populateLanguages(user);
+          res.status(200).json({
+            text: "Succès",
+            token: user.getToken(),
+            data: user,
+          });
+        }
+      });
+    }
+  }
+}
+
+/**
+ * Errors returned by login
+ * 400 : invalid request, no user with this pseudo
+ * 500 : internal error
+ * 401 : wrong password
+ * 402 : wrong code (admin)
+ * 404 : error sending code (admin), error creating admin account
+ * 501 : no code provided (admin)
+ * 200 : authentification succeeded
+ * 502 : new admin without phone number or email
+ */
 
 //Cette fonction est appelée quand tout utilisateur cherche à se connecter ou créer un compte
 function login(req, res) {
@@ -13,158 +96,151 @@ function login(req, res) {
     //Le cas où le username ou bien le password ne serait pas soumis ou nul
     res.status(400).json({ text: "Requête invalide" });
   } else {
-
+    logger.info("[Login] login attempt", {
+      username: req.body && req.body.username,
+    });
     User.findOne(
       {
         username: req.body.username,
       },
       async (err, user) => {
         if (err) {
+          logger.error("[Login] internal error", { err });
           res.status(500).json({ text: "Erreur interne", data: err });
         } else if (!user) {
-          //On lui crée un nouveau compte si la demande vient du site seulement
-          user = req.body;
-          if (
-            req.fromSite &&
-            user.cpassword &&
-            user.cpassword === user.password
-          ) {
-            if ((passwdCheck(user.password) || {}).score < 1) {
-              return res
-                .status(401)
-                .json({ text: "Le mot de passe est trop faible" });
-            }
-            user.password = passwordHash.generate(user.password);
-            if (
-              user.roles &&
-              user.roles.length > 0 &&
-              req.user.roles.some((x) => x.nom === "Admin")
-            ) {
-              user.roles = [
-                ...new Set([
-                  ...user.roles,
-                  req.roles.find((x) => x.nom === "User")._id,
-                ]),
-              ];
-            } else if (user.traducteur) {
-              user.roles = [req.roles.find((x) => x.nom === "Trad")._id];
-              delete user.traducteur;
-            } else {
-              user.roles = [req.roles.find((x) => x.nom === "User")._id];
-            }
-            // eslint-disable-next-line no-use-before-define
-            _checkAndNotifyAdmin(user, req.roles, req.user); //Si on lui donne un role admin, je notifie tous les autres admin
-            user.status = "Actif";
-            user.last_connected = new Date();
-            var _u = new User(user);
-            _u.save((err, user) => {
-              if (err) {
-                res.status(500).json({ text: "Erreur interne" });
-              } else {
-                //Si on a des données sur les langues j'alimente aussi les utilisateurs de la langue
-                // eslint-disable-next-line no-use-before-define
-                populateLanguages(user);
-                res.status(200).json({
-                  text: "Succès",
-                  token: user.getToken(),
-                  data: user,
-                });
-              }
-            });
-          } else if (!req.fromSite) {
-            res
-              .status(403)
-              .json({ text: "Création d'utilisateur impossible par API" });
-          } else {
-            res
-              .status(402)
-              .json({ text: "Les mots de passe ne correspondent pas" });
-          }
+          return register(req, res);
         } else {
           if (user.authenticate(req.body.password)) {
+            logger.info("[Login] password correct for user", {
+              username: req.body && req.body.username,
+            });
+            // check if user is admin
             if (
               (user.roles || []).some(
                 (x) =>
                   x && x.equals(req.roles.find((x) => x.nom === "Admin")._id)
               )
             ) {
-              if (user.authy_id && req.body.code) {
-                return authy.verify(user.authy_id, req.body.code, function (
-                  err,
-                  result
-                ) {
-                  if (err || !result) {
-                    return res.status(204).json({
-                      text: "Erreur à la vérification du code",
-                      data: err,
-                    });
-                  }
-                  // eslint-disable-next-line no-use-before-define
-                  return proceed_with_login(req, res, user);
-                });
-              } else if (user.authy_id) {
-                return authy.request_sms(
-                  user.authy_id,
-                  // eslint-disable-next-line no-undef
-                  (force = true),
-                  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                  function (err_sms, result_sms) {
-                    if (err_sms) {
-                      return res.status(204).json({
-                        text: "Erreur à l'envoi du code à ce numéro",
-                        data: err_sms,
-                      });
-                    }
-                    return res.status(501).json({ text: "no code supplied" });
-                  }
-                );
-              } else if (req.body.email && req.body.phone) {
-                return authy.register_user(
-                  req.body.email,
-                  req.body.phone,
-                  "33",
-                  function (err, result) {
-                    if (err) {
-                      return res.status(204).json({
-                        text: "Erreur à la création du compte authy",
-                        data: err,
-                      });
-                    }
-                    const authy_id = result.user.id;
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    authy.request_sms(authy_id, function (err_sms, result_sms) {
-                      if (err_sms) {
-                        res.status(204).json({
-                          text: "Erreur à l'envoi du code à ce numéro'",
-                          data: err_sms,
-                        });
-                        return;
-                      }
-                    });
-                    //On enregistre aussi son identifiant pour la suite
-                    user.authy_id = authy_id;
-                    user.phone = req.body.phone;
-                    user.email = req.body.email;
-                    user.save();
-                    return res.status(501).json({ text: "no code supplied" });
-                  }
-                );
-              }
-              return res.status(502).json({
-                text: "no authy_id",
-                phone: user.phone,
-                email: user.email,
-              });
+              // eslint-disable-next-line no-use-before-define
+              return adminLogin(req, res, user);
             }
             // eslint-disable-next-line no-use-before-define
             return proceed_with_login(req, res, user);
           }
+          logger.error("[Login] incorrect password", {
+            username: req.body && req.body.username,
+          });
           res.status(401).json({ text: "Mot de passe incorrect" });
         }
       }
     );
   }
 }
+
+const adminLogin = function (req, res, user) {
+  logger.info("[Login] admin user", {
+    username: req.body && req.body.username,
+  });
+  // user admin
+  if (user.authy_id && req.body.code) {
+    logger.info("[Login] admin user with a code provided", {
+      username: req.body && req.body.username,
+    });
+    // code provided : check if code is correct
+    return authy.verify(user.authy_id, req.body.code, function (err, result) {
+      if (err || !result) {
+        logger.error("[Login] error while verifying admin code", {
+          username: req.body && req.body.username,
+        });
+        return res.status(402).json({
+          text: "Erreur à la vérification du code",
+          data: "no-alert",
+        });
+      }
+      logger.info("[Login] admin user, code provided is correct", {
+        username: req.body && req.body.username,
+      });
+      // eslint-disable-next-line no-use-before-define
+      return proceed_with_login(req, res, user);
+    });
+  } else if (user.authy_id) {
+    logger.info("[Login] admin user without a code provided", {
+      username: req.body && req.body.username,
+    });
+    // no code provided : send sms with code
+    return authy.request_sms(
+      user.authy_id,
+      // eslint-disable-next-line no-undef
+      (force = true),
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      function (err_sms, result_sms) {
+        if (err_sms) {
+          logger.error("[Login] error while sending sms for admin", {
+            username: req.body && req.body.username,
+            error: err_sms,
+          });
+          return res.status(404).json({
+            text: "Erreur à l'envoi du code à ce numéro",
+            data: err_sms,
+          });
+        }
+        logger.info("[Login] admin, sms successfully sent to user", {
+          username: req.body && req.body.username,
+        });
+        return res.status(501).json({ text: "no code supplied" });
+      }
+    );
+  } else if (req.body.email && req.body.phone) {
+    logger.info("[Login] new admin user", {
+      username: req.body && req.body.username,
+    });
+    // creation of admin user
+    return authy.register_user(req.body.email, req.body.phone, "33", function (
+      err,
+      result
+    ) {
+      if (err) {
+        logger.error(
+          "[Login] error while creating a new admin account for user",
+          { username: req.body && req.body.username }
+        );
+        return res.status(404).json({
+          text: "Erreur à la création du compte authy",
+          data: err,
+        });
+      }
+      const authy_id = result.user.id;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      authy.request_sms(authy_id, function (err_sms, result_sms) {
+        if (err_sms) {
+          logger.error(
+            "[Login] error while sending a sms to the new admin account for user",
+            { username: req.body && req.body.username }
+          );
+          res.status(404).json({
+            text: "Erreur à l'envoi du code à ce numéro'",
+            data: err_sms,
+          });
+          return;
+        }
+      });
+      logger.info("[Login] new admin user, sms successfully sent", {
+        username: req.body && req.body.username,
+      });
+      //On enregistre aussi son identifiant pour la suite
+      user.authy_id = authy_id;
+      user.phone = req.body.phone;
+      user.email = req.body.email;
+      user.save();
+      return res.status(501).json({ text: "no code supplied" });
+    });
+  }
+  return res.status(502).json({
+    text: "no authy_id",
+    phone: user.phone,
+    email: user.email,
+  });
+};
 
 const proceed_with_login = function (req, res, user) {
   //On change les infos de l'utilisateur
@@ -367,6 +443,7 @@ function reset_password(req, res) {
         return res.status(403).json({
           text:
             "Aucune adresse mail n'est associée à ce compte. Il n'est pas possible de récupérer le mot de passe ainsi.",
+          data: "no-alert",
         });
       }
       if (
@@ -415,7 +492,7 @@ function reset_password(req, res) {
             console.log("Email sent: " + info.response);
           }
         });
-        return res.status(200).json({ text: "Envoi réussi" });
+        return res.status(200).json({ text: "Envoi réussi", data: user.email });
       });
     }
   );
@@ -491,7 +568,6 @@ function get_users(req, res) {
     populate = "";
   }
 
-
   const select = ((req.user || {}).roles || []).some((x) => x.nom === "Admin")
     ? undefined
     : req.fromSite
@@ -553,7 +629,6 @@ function get_users(req, res) {
 }
 
 function get_user_info(req, res) {
- 
   res.status(200).json({
     text: "Succès",
     data: req.user,

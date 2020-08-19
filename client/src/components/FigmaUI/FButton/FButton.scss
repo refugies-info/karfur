@@ -70,6 +70,22 @@ body .figma-btn {
     }
   }
 
+  &.white {
+    background: $blancSimple;
+    color: $noir;
+    svg {
+      fill: $noir;
+    }
+    &:hover {
+      transition: all 0.5s ease;
+      background: $noir;
+      color: $blancSimple;
+      svg {
+        fill: $blancSimple;
+      }
+    }
+  }
+
   // Fill-Dark
   &.dark {
     background: $noir;
@@ -88,6 +104,20 @@ body .figma-btn {
     &:not(:disabled):not(.disabled):active {
       background: #000000;
       color: #ffffff;
+      svg {
+        fill: $blancSimple;
+      }
+    }
+  }
+
+  &.grey {
+    background: #828282;
+    color: $blancSimple;
+
+    &:hover {
+      background: #828282;
+      color: $blancSimple;
+
       svg {
         fill: $blancSimple;
       }
@@ -114,6 +144,37 @@ body .figma-btn {
     &:not(:disabled):not(.disabled):active {
       box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       background: $vert;
+    }
+  }
+
+  &.login {
+    background: #0421b1;
+    color: $blancSimple;
+    svg {
+      fill: $blancSimple;
+    }
+    &:hover {
+      background: $blancSimple;
+      color: #0421b1;
+      border-color: #0421b1;
+      svg {
+        fill: #0421b1;
+      }
+    }
+  }
+
+  &.signup {
+    background: $blancSimple;
+    color: #0421b1;
+    svg {
+      fill: #0421b1;
+    }
+    &:hover {
+      background: #0421b1;
+      color: $blancSimple;
+      svg {
+        fill: $blancSimple;
+      }
     }
   }
 
