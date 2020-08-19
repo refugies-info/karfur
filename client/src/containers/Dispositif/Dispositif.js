@@ -40,6 +40,7 @@ import {
   TagsModal,
   FrameModal,
 } from "../../components/Modals/index";
+import FButton from "../../components/FigmaUI/FButton/FButton";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import { Tags } from "./Tags";
 import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
@@ -141,7 +142,7 @@ export class Dispositif extends Component {
     showDispositifCreateModal: false,
     showDispositifValidateModal: false,
     showTagsModal: false,
-    showFrameModal: false,
+    showTutorielModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
     suggestion: "",
@@ -171,6 +172,7 @@ export class Dispositif extends Component {
     printing: false,
     didThank: false,
     finalValidation: false,
+    tutorielUrl: "",
   };
 
   componentDidMount() {
@@ -909,15 +911,11 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({
       showTagsModal: !prevState.showTagsModal,
     }));
-  openTuto = () => {
+
+  toggleTutorielModal = (url) =>
     this.setState((prevState) => ({
-      showTagsModal: !prevState.showTagsModal,
-      showFrameModal: !prevState.showFrameModal,
-    }));
-  };
-  toggleFrameModal = () =>
-    this.setState((prevState) => ({
-      showFrameModal: !prevState.showFrameModal,
+      showTutorielModal: !prevState.showTutorielModal,
+      tutorielUrl: url,
     }));
   toggleDispositifValidateModal = () => {
     if (_.isEmpty(this.state.sponsors)) {
@@ -1588,7 +1586,6 @@ export class Dispositif extends Component {
                   toggleInVariante={this.toggleInVariante}
                 />
               )}
-
               <Row className="header-row">
                 {windowWidth >= breakpoints.smLimit && (
                   <BackButton goBack={this.goBack} />
@@ -1618,44 +1615,63 @@ export class Dispositif extends Component {
               </Row>
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
                 <div className={"bloc-titre "}>
-                  <h1 className={disableEdit ? "" : "editable"}>
-                    {
-                      // Display and edition of titreInformatif
-                      <ContentEditable
-                        id="titreInformatif"
-                        html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
-                        disabled={disableEdit || inVariante}
-                        onClick={(e) => {
-                          if (!disableEdit && !inVariante) {
-                            this.onInputClicked(e);
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <div>
+                      <h1 className={disableEdit ? "" : "editable"}>
+                        {
+                          // Display and edition of titreInformatif
+                          <ContentEditable
+                            id="titreInformatif"
+                            html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
+                            disabled={disableEdit || inVariante}
+                            onClick={(e) => {
+                              if (!disableEdit && !inVariante) {
+                                this.onInputClicked(e);
+                              }
+                            }}
+                            onChange={this.handleChange}
+                            onMouseEnter={(e) => e.target.focus()}
+                            onKeyPress={(e) => this.handleKeyPress(e, 0)}
+                          />
+                        }
+                      </h1>
+                      {typeContenu === "dispositif" && (
+                        <h2 className={"bloc-subtitle "}>
+                          <span>{t("avec", "avec")}&nbsp;</span>
+                          {
+                            // Display and edition of titreMarque
+                            <ContentEditable
+                              id="titreMarque"
+                              html={this.state.content.titreMarque || ""} // innerHTML of the editable div
+                              disabled={this.state.disableEdit}
+                              onClick={(e) => {
+                                this.onInputClicked(e);
+                              }}
+                              onChange={this.handleChange}
+                              onKeyDown={this.onInputClicked}
+                              onMouseEnter={(e) => e.target.focus()}
+                              onKeyPress={(e) => this.handleKeyPress(e, 1)}
+                            />
                           }
-                        }}
-                        onChange={this.handleChange}
-                        onMouseEnter={(e) => e.target.focus()}
-                        onKeyPress={(e) => this.handleKeyPress(e, 0)}
-                      />
-                    }
-                  </h1>
-                  {typeContenu === "dispositif" && (
-                    <h2 className={"bloc-subtitle "}>
-                      <span>{t("avec", "avec")}&nbsp;</span>
-                      {
-                        // Display and edition of titreMarque
-                        <ContentEditable
-                          id="titreMarque"
-                          html={this.state.content.titreMarque || ""} // innerHTML of the editable div
-                          disabled={this.state.disableEdit}
-                          onClick={(e) => {
-                            this.onInputClicked(e);
-                          }}
-                          onChange={this.handleChange}
-                          onKeyDown={this.onInputClicked}
-                          onMouseEnter={(e) => e.target.focus()}
-                          onKeyPress={(e) => this.handleKeyPress(e, 1)}
-                        />
-                      }
-                    </h2>
-                  )}
+                        </h2>
+                      )}
+                    </div>
+                    <div style={{ marginTop: "16px" }}>
+                      <FButton
+                        type="tuto"
+                        name={"play-circle-outline"}
+                        className="ml-10"
+                        onClick={() => this.toggleTutorielModal("titre")}
+                      >
+                        Tutoriel
+                      </FButton>
+                    </div>
+                  </div>
                 </div>
               </Col>
             </section>
@@ -1973,14 +1989,12 @@ export class Dispositif extends Component {
               categories={filtres.tags}
               show={this.state.showTagsModal}
               toggle={this.toggleTagsModal}
-              onChange={this.handleChange}
-              openTuto={this.openTuto}
+              toggleTutorielModal={this.toggleTutorielModal}
             />
             <FrameModal
-              show={this.state.showFrameModal}
-              toggle={this.toggleFrameModal}
-              onChange={this.handleChange}
-              openTuto={this.openTuto}
+              show={this.state.showTutorielModal}
+              toggle={this.toggleTutorielModal}
+              url={this.state.tutorielUrl}
             />
             <VarianteCreateModal
               titreInformatif={this.state.content.titreInformatif}

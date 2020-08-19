@@ -16,6 +16,9 @@ export class FrameModal extends Component {
   }
 
   render() {
+    console.log("url", this.props.url);
+    const defaultUrl =
+      "https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq";
     return (
       <Modal
         isOpen={this.props.show}
@@ -32,7 +35,8 @@ export class FrameModal extends Component {
           }}
         >
           <FButton
-            href="https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq"
+            // href="https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq"
+            href={this.props.url || defaultUrl}
             type="dark"
             name="expand-outline"
             fill={variables.noir}
@@ -45,9 +49,7 @@ export class FrameModal extends Component {
             type="tuto"
             name={"checkmark"}
             className="ml-10"
-            onClick={() => {
-              this.props.openTuto();
-            }}
+            onClick={this.props.toggle}
           >
             Compris !
           </FButton>
@@ -64,7 +66,9 @@ export class FrameModal extends Component {
             borderRadius: "0px 0px 12px 12px",
           }}
           allowFullScreen
-          src="https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq/reader/"
+          src={
+            "https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq/reader/"
+          }
         />
       </Modal>
     );
