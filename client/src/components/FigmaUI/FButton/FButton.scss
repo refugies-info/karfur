@@ -70,6 +70,22 @@ body .figma-btn {
     }
   }
 
+  &.white {
+    background: $blancSimple;
+    color: $noir;
+    svg {
+      fill: $noir;
+    }
+    &:hover {
+      transition: all 0.5s ease;
+      background: $noir;
+      color: $blancSimple;
+      svg {
+        fill: $blancSimple;
+      }
+    }
+  }
+
   // Fill-Dark
   &.dark {
     background: $noir;
@@ -150,7 +166,6 @@ body .figma-btn {
   &.signup {
     background: $blancSimple;
     color: #0421b1;
-    border-color: #0421b1;
     svg {
       fill: #0421b1;
     }
