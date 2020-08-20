@@ -244,7 +244,11 @@ class MapParagraphe extends PureComponent {
     const { markers, markerInfo } = this.state;
     const { t, disableEdit } = this.props;
     return (
-      <div className="map-paragraphe" id="map-paragraphe">
+      <div
+        className="map-paragraphe"
+        id="map-paragraphe"
+        onMouseEnter={() => this.props.updateUIArray(-5)}
+      >
         <div className="where-header backgroundColor-darkColor">
           <div
             style={{

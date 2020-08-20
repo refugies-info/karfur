@@ -39,6 +39,7 @@ export interface PropsBeforeInjection {
   typeContenu: string;
   toggleTutorielModal: (arg: string) => void;
   displayTuto: boolean;
+  updateUIArray: (arg: number) => void;
 }
 const send_sms = (typeContenu: string, titreInformatif: string) =>
   Swal.fire({
@@ -148,7 +149,10 @@ export const LeftSideDispositif = (props: Props) => {
                 />
               </InputGroup>
             ) : (
-              <div style={{ display: "flex", flexDirection: "row" }}>
+              <div
+                style={{ display: "flex", flexDirection: "row" }}
+                onMouseEnter={() => props.updateUIArray(-2)}
+              >
                 <FButton
                   type="theme"
                   name="external-link-outline"

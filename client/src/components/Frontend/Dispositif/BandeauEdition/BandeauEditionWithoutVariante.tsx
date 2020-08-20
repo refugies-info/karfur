@@ -9,6 +9,7 @@ interface Props {
   displayTuto: boolean;
   toggleDispositifValidateModal: () => void;
   toggleDraftModal: () => void;
+  tKeyValue: number;
 }
 
 const ContentTypeContainer = styled.div`
@@ -36,7 +37,6 @@ const InfoText = styled.div`
   font-size: 22px;
   line-height: 28px;
   margin-left: 15px;
-  margin-right: 8px;
 `;
 
 const YellowText = styled.div`
@@ -45,6 +45,7 @@ const YellowText = styled.div`
   font-size: 22px;
   line-height: 28px;
   padding: 8px;
+  margin-left: 8px;
 `;
 
 const FirstGroupContainer = styled.div`
@@ -59,43 +60,113 @@ const SecondGroupContainer = styled.div`
   align-items: center;
 `;
 
-export const BandeauEditionWithoutVariante = (props: Props) => (
-  <div className="bandeau-edition">
-    <div className="dashed-panel no-radius" />
-    <MainContainer>
-      <FirstGroupContainer>
-        <ContentTypeContainer>
-          {jsUcfirst(props.typeContenu)}
-        </ContentTypeContainer>
-        <InfoText>Pour démarrer, cliquez sur les zones surlignées en</InfoText>
-        <YellowText>jaune.</YellowText>
-      </FirstGroupContainer>
-      <SecondGroupContainer>
-        <FButton
-          type="tuto"
-          name={props.displayTuto ? "eye-off-outline" : "eye-outline"}
-          className="mr-10"
-          onClick={props.toggleTutoriel}
-        >
-          Tutoriel
-        </FButton>
-        <FButton
-          type="light-action"
-          name="save-outline"
-          className="mr-10"
-          onClick={props.toggleDraftModal}
-        >
-          Sauvegarder
-        </FButton>
-        <FButton
-          className="mr-15"
-          type="validate"
-          name="checkmark-outline"
-          onClick={props.toggleDispositifValidateModal}
-        >
-          Valider
-        </FButton>
-      </SecondGroupContainer>
-    </MainContainer>
-  </div>
-);
+const DescriptionText = styled.div`
+  font-size: 16px;
+  line-height: 20px;
+  margin-left: 15px;
+`;
+
+const getInfoText = (step: number, displayTuto: boolean) => {
+  const initialText = {
+    title: "Pour démarrer, cliquez sur les zones surlignées en",
+    subtitle: "",
+  };
+
+  if (step === -1 || !displayTuto) return initialText;
+  if (step === -4)
+    return {
+      title: "Titre informatif",
+      subtitle:
+        "Rédigez une courte phrase qui décrit l'action principale de votre dispositif.",
+    };
+  if (step === 1)
+    return {
+      title: "Critères d'accès",
+      subtitle:
+        "Configurez les critères et conditions d'accès à votre dispositif.",
+    };
+  if (step === -3)
+    return {
+      title: "Nom du dispositif",
+      subtitle: "Comment s'appelle votre dispositif ?",
+    };
+
+  if (step === 3)
+    return {
+      title: "Inscription et engagement",
+      subtitle: "Décrivez chaque étape pour rejoindre votre dispositif.",
+    };
+
+  if (step === -2)
+    return {
+      title: "Site internet",
+      subtitle: "Ajoutez un lien vers votre site ou une page web utile.",
+    };
+  if (step === 2)
+    return {
+      title: "Détails et arguments",
+      subtitle:
+        "Rédigez plusieurs arguments pour valoriser l'intérêt de votre dispositif.",
+    };
+  if (step === -5)
+    return {
+      title: "Points de contact",
+      subtitle: "Précisez les modalités d'accueil d'un ou plusieurs lieux.",
+    };
+
+  if (step === 0)
+    return {
+      title: "Résumé",
+      subtitle: "Expliquez votre dispositif en deux paragraphes synthétiques.",
+    };
+
+  return initialText;
+};
+export const BandeauEditionWithoutVariante = (props: Props) => {
+  const { title, subtitle } = getInfoText(props.tKeyValue, props.displayTuto);
+  return (
+    <div className="bandeau-edition">
+      <div className="dashed-panel no-radius" />
+      <MainContainer>
+        <FirstGroupContainer>
+          <ContentTypeContainer>
+            {jsUcfirst(props.typeContenu)}
+          </ContentTypeContainer>
+          <InfoText>{title}</InfoText>
+          {props.tKeyValue !== -1 && props.displayTuto && (
+            <DescriptionText>{subtitle}</DescriptionText>
+          )}
+          {(props.tKeyValue === -1 || !props.displayTuto) && (
+            <YellowText>jaune.</YellowText>
+          )}
+        </FirstGroupContainer>
+        <SecondGroupContainer>
+          <FButton
+            type="tuto"
+            name={props.displayTuto ? "eye-off-outline" : "eye-outline"}
+            className="mr-10"
+            onClick={props.toggleTutoriel}
+          >
+            Tutoriel
+          </FButton>
+          <FButton
+            type="light-action"
+            name="save-outline"
+            className="mr-10"
+            onClick={props.toggleDraftModal}
+          >
+            Sauvegarder
+          </FButton>
+          <FButton
+            className="mr-15"
+            type="validate"
+            name="checkmark-outline"
+            onClick={props.toggleDispositifValidateModal}
+          >
+            Valider
+          </FButton>
+        </SecondGroupContainer>
+      </MainContainer>
+    </div>
+  );
+};

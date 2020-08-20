@@ -1603,6 +1603,7 @@ export class Dispositif extends Component {
                     this.toggleDispositifValidateModal
                   }
                   toggleDraftModal={this.toggleDraftModal}
+                  tKeyValue={this.state.tKeyValue}
                 />
               )}
               <Row className="header-row">
@@ -1655,7 +1656,10 @@ export class Dispositif extends Component {
                               }
                             }}
                             onChange={this.handleChange}
-                            onMouseEnter={(e) => e.target.focus()}
+                            onMouseEnter={(e) => {
+                              this.updateUIArray(-4);
+                              e.target.focus();
+                            }}
                             onKeyPress={(e) => this.handleKeyPress(e, 0)}
                           />
                         }
@@ -1674,7 +1678,10 @@ export class Dispositif extends Component {
                               }}
                               onChange={this.handleChange}
                               onKeyDown={this.onInputClicked}
-                              onMouseEnter={(e) => e.target.focus()}
+                              onMouseEnter={(e) => {
+                                this.updateUIArray(-3);
+                                e.target.focus();
+                              }}
                               onKeyPress={(e) => this.handleKeyPress(e, 1)}
                             />
                           }
@@ -1756,6 +1763,7 @@ export class Dispositif extends Component {
                       typeContenu={typeContenu}
                       toggleTutorielModal={this.toggleTutorielModal}
                       displayTuto={this.state.displayTuto}
+                      updateUIArray={this.updateUIArray}
                     />
                   }
                 </Col>

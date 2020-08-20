@@ -25,6 +25,7 @@ export interface PropsBeforeInjection {
   displayTuto: boolean;
   toggleDispositifValidateModal: () => void;
   toggleDraftModal: () => void;
+  tKeyValue: number;
 }
 export class BandeauEdition extends React.Component<Props> {
   /**
@@ -125,6 +126,7 @@ export class BandeauEdition extends React.Component<Props> {
           displayTuto={props.displayTuto}
           toggleDispositifValidateModal={props.toggleDispositifValidateModal}
           toggleDraftModal={props.toggleDraftModal}
+          tKeyValue={props.tKeyValue}
         />
       );
     }
