@@ -265,7 +265,7 @@ class MapParagraphe extends PureComponent {
                 :{" "}
               </b>
             </div>
-            {!this.props.disableEdit && (
+            {!this.props.disableEdit && this.props.displayTuto && (
               <FButton
                 type="tuto"
                 name={"play-circle-outline"}

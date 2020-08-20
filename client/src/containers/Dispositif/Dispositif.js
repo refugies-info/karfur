@@ -173,6 +173,7 @@ export class Dispositif extends Component {
     didThank: false,
     finalValidation: false,
     tutorielSection: "",
+    displayTuto: true,
   };
 
   componentDidMount() {
@@ -916,6 +917,10 @@ export class Dispositif extends Component {
       showTutorielModal: !prevState.showTutorielModal,
       tutorielSection: section,
     }));
+
+  toggleTutoriel = () =>
+    this.setState((prevState) => ({ displayTuto: !prevState.displayTuto }));
+
   toggleDispositifValidateModal = () => {
     if (_.isEmpty(this.state.sponsors)) {
       this.setState({ finalValidation: true });
@@ -1514,7 +1519,6 @@ export class Dispositif extends Component {
       printing,
       didThank,
     } = this.state;
-
     return (
       <div
         id="dispositif"
@@ -1570,7 +1574,9 @@ export class Dispositif extends Component {
                 }
               }
             >
-              {(inVariante || checkingVariante) && (
+              {(inVariante ||
+                checkingVariante ||
+                typeContenu === "dispositif") && (
                 // yellow banner in top of a demarche to create a variante
                 // To see this component, create a new demarche then select an existing demarche
                 <BandeauEdition
@@ -1583,13 +1589,16 @@ export class Dispositif extends Component {
                   toggleHelp={this.toggleHelp}
                   toggleCheckingVariante={this.toggleCheckingVariante}
                   toggleInVariante={this.toggleInVariante}
+                  typeContenu={typeContenu}
+                  toggleTutoriel={this.toggleTutoriel}
+                  displayTuto={this.state.displayTuto}
                 />
               )}
               <Row className="header-row">
                 {windowWidth >= breakpoints.smLimit && (
                   <BackButton goBack={this.goBack} />
                 )}
-                {!inVariante && (
+                {!inVariante && typeContenu !== "dispositif" && (
                   // top right part of dispositif (3 different designs : create/modify, read, sponsor gets the dispositif "En attente")
                   <TopRightHeader
                     disableEdit={this.state.disableEdit}
@@ -1660,18 +1669,20 @@ export class Dispositif extends Component {
                         </h2>
                       )}
                     </div>
-                    {!this.state.disableEdit && typeContenu === "dispositif" && (
-                      <div style={{ marginTop: "16px" }}>
-                        <FButton
-                          type="tuto"
-                          name={"play-circle-outline"}
-                          className="ml-10"
-                          onClick={() => this.toggleTutorielModal("Titre")}
-                        >
-                          Tutoriel
-                        </FButton>
-                      </div>
-                    )}
+                    {!this.state.disableEdit &&
+                      typeContenu === "dispositif" &&
+                      this.state.displayTuto && (
+                        <div style={{ marginTop: "16px" }}>
+                          <FButton
+                            type="tuto"
+                            name={"play-circle-outline"}
+                            className="ml-10"
+                            onClick={() => this.toggleTutorielModal("Titre")}
+                          >
+                            Tutoriel
+                          </FButton>
+                        </div>
+                      )}
                   </div>
                 </div>
               </Col>
@@ -1700,6 +1711,7 @@ export class Dispositif extends Component {
                       deleteTag={this.deleteTag}
                       history={this.props.history}
                       toggleTutorielModal={this.toggleTutorielModal}
+                      displayTuto={this.state.displayTuto}
                     />
                   }
                 </Col>
@@ -1731,6 +1743,7 @@ export class Dispositif extends Component {
                       handleChange={this.handleChange}
                       typeContenu={typeContenu}
                       toggleTutorielModal={this.toggleTutorielModal}
+                      displayTuto={this.state.displayTuto}
                     />
                   }
                 </Col>
@@ -1816,6 +1829,7 @@ export class Dispositif extends Component {
                   demarcheSteps={demarcheSteps}
                   upcoming={this.upcoming}
                   toggleTutorielModal={this.toggleTutorielModal}
+                  displayTuto={this.state.displayTuto}
                   // TO DO : remove spread state
                   {...this.state}
                 />
@@ -1880,6 +1894,7 @@ export class Dispositif extends Component {
                   finalValidation={this.state.finalValidation}
                   toggleFinalValidation={this.toggleFinalValidation}
                   toggleTutorielModal={this.toggleTutorielModal}
+                  displayTuto={this.state.displayTuto}
                 />
 
                 {false && <Commentaires />}

@@ -38,6 +38,7 @@ export interface PropsBeforeInjection {
   handleChange: () => void;
   typeContenu: string;
   toggleTutorielModal: (arg: string) => void;
+  displayTuto: boolean;
 }
 const send_sms = (typeContenu: string, titreInformatif: string) =>
   Swal.fire({
@@ -155,7 +156,7 @@ export const LeftSideDispositif = (props: Props) => {
                 >
                   {t("Dispositif.Voir le site", "Voir le site")}
                 </FButton>
-                {!props.disableEdit && (
+                {!props.disableEdit && props.displayTuto && (
                   <FButton
                     type="tuto"
                     name={"play-circle-outline"}

@@ -308,7 +308,7 @@ class Sponsors extends Component {
           <h5 className="color-darkColor">
             {t("Dispositif.Structures", "Structures partenaires")}
           </h5>
-          {!disableEdit && (
+          {!disableEdit && this.props.displayTuto && (
             <FButton
               type="tuto"
               name={"play-circle-outline"}

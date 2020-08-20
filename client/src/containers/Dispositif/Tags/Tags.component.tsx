@@ -30,6 +30,7 @@ export interface PropsBeforeInjection {
   history: any;
   t: any;
   toggleTutorielModal: (arg: string) => void;
+  displayTuto: boolean;
 }
 
 export class Tags extends Component<Props> {
@@ -139,7 +140,7 @@ export class Tags extends Component<Props> {
             {"Choisir les thèmes"}
           </Button>
         ) : null}
-        {!this.props.disableEdit && (
+        {!this.props.disableEdit && this.props.displayTuto && (
           <div style={{ marginLeft: "8px", marginTop: "10px" }}>
             <FButton
               type="tuto"
