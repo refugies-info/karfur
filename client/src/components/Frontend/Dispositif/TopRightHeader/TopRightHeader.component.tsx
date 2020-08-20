@@ -18,6 +18,7 @@ export interface PropsBeforeInjection {
   toggleDispositifCreateModal: () => void;
   translating: boolean;
   status: string;
+  typeContenu: "dispositif" | "demarche";
 }
 
 export class TopRightHeader extends React.Component<Props> {
@@ -129,40 +130,44 @@ export class TopRightHeader extends React.Component<Props> {
         </Col>
       );
     }
-    // when creating or modifying a dispositif or demarche
-    return (
-      <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
-        <Card>
-          <CardBody className="telecommande">
-            <FButton
-              className="savebtn"
-              type="light-action"
-              name="save-outline"
-              onClick={() => props.valider_dispositif("Brouillon")}
+    // the new header for dispositif is bandeaueditionwithoutvariante
+    if (props.typeContenu !== "dispositif") {
+      // when creating or modifying a dispositif or demarche
+      return (
+        <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
+          <Card>
+            <CardBody className="telecommande">
+              <FButton
+                className="savebtn"
+                type="light-action"
+                name="save-outline"
+                onClick={() => props.valider_dispositif("Brouillon")}
+              >
+                Brouillon
+              </FButton>
+              <FButton
+                className="validate savebtn"
+                name="checkmark"
+                onClick={props.toggleDispositifValidateModal}
+              >
+                Valider
+              </FButton>
+            </CardBody>
+            <CardFooter
+              className="helpbtn cursor-pointer"
+              onClick={props.toggleDispositifCreateModal}
             >
-              Brouillon
-            </FButton>
-            <FButton
-              className="validate savebtn"
-              name="checkmark"
-              onClick={props.toggleDispositifValidateModal}
-            >
-              Valider
-            </FButton>
-          </CardBody>
-          <CardFooter
-            className="helpbtn cursor-pointer"
-            onClick={props.toggleDispositifCreateModal}
-          >
-            <EVAIcon
-              className="mr-8"
-              name="question-mark-circle"
-              viewBox="0 0 20 20"
-            />
-            Besoin d'aide ?
-          </CardFooter>
-        </Card>
-      </Col>
-    );
+              <EVAIcon
+                className="mr-8"
+                name="question-mark-circle"
+                viewBox="0 0 20 20"
+              />
+              Besoin d'aide ?
+            </CardFooter>
+          </Card>
+        </Col>
+      );
+    }
+    return false;
   }
 }

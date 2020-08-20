@@ -39,6 +39,7 @@ import {
   RejectionModal,
   TagsModal,
   FrameModal,
+  DraftModal,
 } from "../../components/Modals/index";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
@@ -143,6 +144,7 @@ export class Dispositif extends Component {
     showDispositifValidateModal: false,
     showTagsModal: false,
     showTutorielModal: false,
+    showDraftModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
     suggestion: "",
@@ -918,6 +920,11 @@ export class Dispositif extends Component {
       tutorielSection: section,
     }));
 
+  toggleDraftModal = () =>
+    this.setState((prevState) => ({
+      showDraftModal: !prevState.showDraftModal,
+    }));
+
   toggleTutoriel = () =>
     this.setState((prevState) => ({ displayTuto: !prevState.displayTuto }));
 
@@ -1576,7 +1583,7 @@ export class Dispositif extends Component {
             >
               {(inVariante ||
                 checkingVariante ||
-                typeContenu === "dispositif") && (
+                (typeContenu === "dispositif" && !disableEdit)) && (
                 // yellow banner in top of a demarche to create a variante
                 // To see this component, create a new demarche then select an existing demarche
                 <BandeauEdition
@@ -1592,13 +1599,17 @@ export class Dispositif extends Component {
                   typeContenu={typeContenu}
                   toggleTutoriel={this.toggleTutoriel}
                   displayTuto={this.state.displayTuto}
+                  toggleDispositifValidateModal={
+                    this.toggleDispositifValidateModal
+                  }
+                  toggleDraftModal={this.toggleDraftModal}
                 />
               )}
               <Row className="header-row">
                 {windowWidth >= breakpoints.smLimit && (
                   <BackButton goBack={this.goBack} />
                 )}
-                {!inVariante && typeContenu !== "dispositif" && (
+                {!inVariante && (
                   // top right part of dispositif (3 different designs : create/modify, read, sponsor gets the dispositif "En attente")
                   <TopRightHeader
                     disableEdit={this.state.disableEdit}
@@ -1618,6 +1629,7 @@ export class Dispositif extends Component {
                     }
                     translating={translating}
                     status={this.state.status}
+                    typeContenu={typeContenu}
                   />
                 )}
               </Row>
@@ -2021,6 +2033,14 @@ export class Dispositif extends Component {
               show={showModals.variante}
               toggle={() => this.toggleModal(false, "variante")}
               upcoming={this.upcoming}
+            />
+            <DraftModal
+              show={this.state.showDraftModal}
+              toggle={this.toggleDraftModal}
+              valider_dispositif={this.valider_dispositif}
+              navigateToProfilePage={() =>
+                this.props.history.push("/backend/user-profile")
+              }
             />
 
             <NotificationContainer />

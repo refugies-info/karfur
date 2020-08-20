@@ -23,6 +23,8 @@ export interface PropsBeforeInjection {
   typeContenu: "dispositif" | "demarche";
   toggleTutoriel: () => void;
   displayTuto: boolean;
+  toggleDispositifValidateModal: () => void;
+  toggleDraftModal: () => void;
 }
 export class BandeauEdition extends React.Component<Props> {
   /**
@@ -121,6 +123,8 @@ export class BandeauEdition extends React.Component<Props> {
           typeContenu={props.typeContenu}
           toggleTutoriel={props.toggleTutoriel}
           displayTuto={props.displayTuto}
+          toggleDispositifValidateModal={props.toggleDispositifValidateModal}
+          toggleDraftModal={props.toggleDraftModal}
         />
       );
     }

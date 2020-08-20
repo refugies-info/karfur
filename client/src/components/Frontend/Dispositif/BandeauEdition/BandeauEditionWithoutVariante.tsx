@@ -7,6 +7,8 @@ interface Props {
   typeContenu: string;
   toggleTutoriel: () => void;
   displayTuto: boolean;
+  toggleDispositifValidateModal: () => void;
+  toggleDraftModal: () => void;
 }
 
 const ContentTypeContainer = styled.div`
@@ -81,7 +83,7 @@ export const BandeauEditionWithoutVariante = (props: Props) => (
           type="light-action"
           name="save-outline"
           className="mr-10"
-          //   onClick={() => props.valider_dispositif("Brouillon")}
+          onClick={props.toggleDraftModal}
         >
           Sauvegarder
         </FButton>
@@ -89,7 +91,7 @@ export const BandeauEditionWithoutVariante = (props: Props) => (
           className="mr-15"
           type="validate"
           name="checkmark-outline"
-          // onClick={this.send}
+          onClick={props.toggleDispositifValidateModal}
         >
           Valider
         </FButton>

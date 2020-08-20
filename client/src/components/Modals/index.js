@@ -22,6 +22,7 @@ import EtapeModal from "./EtapeModal/EtapeModal";
 import Modal from "./Modal";
 import TagsModal from "./TagsModal/TagsModal";
 import FrameModal from "./FrameModal/FrameModal";
+import { DraftModal } from "./DraftModal/DraftModal";
 
 export {
   BookmarkedModal,
@@ -48,4 +49,5 @@ export {
   TagsModal,
   FrameModal,
   Modal,
+  DraftModal,
 };
