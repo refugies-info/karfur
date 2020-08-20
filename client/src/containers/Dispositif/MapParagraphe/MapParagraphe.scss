@@ -1,54 +1,54 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
-.map-paragraphe{
+.map-paragraphe {
   margin-top: 20px;
   margin-bottom: 20px;
 
-  .where-header{
+  .where-header {
     background: $darkColor;
     border-radius: 0px 12px 0px 0px;
     padding: 10px;
-    color: #FFFFFF;
+    color: #ffffff;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     position: relative;
 
-    .btn-group{
+    .btn-group {
       max-width: 100%;
     }
-    .dropdown-menu.show{
-      width:100%;
+    .dropdown-menu.show {
+      width: 100%;
     }
-    .dropdown-btn{
-      background: #FFFFFF;
+    .dropdown-btn {
+      background: #ffffff;
       border: 0.5px solid $grisFonce;
       border-radius: 12px;
       font-weight: bold;
-      width:390px;
+      width: 390px;
       height: 40px;
       text-align: left;
       max-width: 100%;
 
-      &:after{
+      &:after {
         position: absolute;
-        right:10px;
+        right: 10px;
         top: 50%;
       }
     }
   }
 
-  .map-content{
+  .map-content {
     display: flex;
     flex-direction: row;
-    overflow:hidden;
+    overflow: hidden;
     height: 470px;
 
-    .inner-container{
+    .inner-container {
       flex: 1;
     }
-    .right-menu{
+    .right-menu {
       width: 400px;
       max-width: 50%;
       background: $gris;
@@ -56,46 +56,48 @@
       padding: 20px 40px;
       transform: width 0.45;
       overflow: scroll;
-      &.flip-out-ver-right{
+      &.flip-out-ver-right {
         width: 0;
-        padding:0;
+        padding: 0;
 
-        .marker-input, label, .validate-btn{
+        .marker-input,
+        label,
+        .validate-btn {
           width: 0;
           padding: 0;
-          margin:0;
+          margin: 0;
           min-width: 0;
         }
       }
 
-      label{
+      label {
         font-size: 12px;
         color: $grisFonce;
         margin-bottom: 0;
       }
-      .marker-input{
+      .marker-input {
         font-size: 18px;
         color: $darkColor;
-        &.no-highlight{
+        &.no-highlight {
           background: transparent;
         }
-        &.isTitle{
+        &.isTitle {
           font-weight: bold;
           font-size: 24px;
         }
       }
-      .validate-btn{
+      .validate-btn {
         position: sticky;
         bottom: 20px;
         left: 200px;
       }
     }
 
-    .places-wrapper{
+    .places-wrapper {
       position: relative;
     }
-    
-    .places-input{
+
+    .places-input {
       box-sizing: border-box;
       border: none;
       width: 330px;
@@ -109,7 +111,7 @@
       text-overflow: ellipsis;
     }
 
-    .places-icon{
+    .places-icon {
       position: absolute;
       right: 10px;
       top: 40px;
@@ -117,7 +119,7 @@
     }
   }
 
-  .remove-btn{
+  .remove-btn {
     position: absolute;
     top: -15px;
     right: -15px;
@@ -126,37 +128,42 @@
 }
 
 .slide-in-blurred-right {
-	-webkit-animation: slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-    -moz-animation : slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-      -ms-animation: slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
-	        animation: slide-in-blurred-right 0.5s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+  -webkit-animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1)
+    both;
+  -moz-animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1)
+    both;
+  -ms-animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
+  animation: slide-in-blurred-right 0.5s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 
 .flip-out-ver-right {
-  -webkit-animation: flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-    -moz-animation : flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-      -ms-animation: flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-	        animation: flip-out-ver-right 0.45s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  -webkit-animation: flip-out-ver-right 0.45s
+    cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  -moz-animation: flip-out-ver-right 0.45s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  -ms-animation: flip-out-ver-right 0.45s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    both;
+  animation: flip-out-ver-right 0.45s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 
 @-webkit-keyframes slide-in-blurred-right {
   0% {
     -webkit-transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
-            transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+    transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
     -webkit-transform-origin: 0% 50%;
-            transform-origin: 0% 50%;
+    transform-origin: 0% 50%;
     -webkit-filter: blur(40px);
-            filter: blur(40px);
+    filter: blur(40px);
     opacity: 0;
     flex: 0;
   }
   100% {
     -webkit-transform: translateX(0) scaleY(1) scaleX(1);
-            transform: translateX(0) scaleY(1) scaleX(1);
+    transform: translateX(0) scaleY(1) scaleX(1);
     -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
     -webkit-filter: blur(0);
-            filter: blur(0);
+    filter: blur(0);
     opacity: 1;
     flex: 1;
   }
@@ -164,21 +171,21 @@
 @-moz-keyframes slide-in-blurred-right {
   0% {
     -webkit-transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
-            transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+    transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
     -webkit-transform-origin: 0% 50%;
-            transform-origin: 0% 50%;
+    transform-origin: 0% 50%;
     -webkit-filter: blur(40px);
-            filter: blur(40px);
+    filter: blur(40px);
     opacity: 0;
     flex: 0;
   }
   100% {
     -webkit-transform: translateX(0) scaleY(1) scaleX(1);
-            transform: translateX(0) scaleY(1) scaleX(1);
+    transform: translateX(0) scaleY(1) scaleX(1);
     -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
     -webkit-filter: blur(0);
-            filter: blur(0);
+    filter: blur(0);
     opacity: 1;
     flex: 1;
   }
@@ -186,21 +193,21 @@
 @keyframes slide-in-blurred-right {
   0% {
     -webkit-transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
-            transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
+    transform: translateX(1000px) scaleX(2.5) scaleY(0.2);
     -webkit-transform-origin: 0% 50%;
-            transform-origin: 0% 50%;
+    transform-origin: 0% 50%;
     -webkit-filter: blur(40px);
-            filter: blur(40px);
+    filter: blur(40px);
     opacity: 0;
     flex: 0;
   }
   100% {
     -webkit-transform: translateX(0) scaleY(1) scaleX(1);
-            transform: translateX(0) scaleY(1) scaleX(1);
+    transform: translateX(0) scaleY(1) scaleX(1);
     -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
     -webkit-filter: blur(0);
-            filter: blur(0);
+    filter: blur(0);
     opacity: 1;
     flex: 1;
   }
@@ -209,13 +216,13 @@
 @-webkit-keyframes flip-out-ver-right {
   0% {
     -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
     opacity: 1;
     flex: 1;
   }
   100% {
     -webkit-transform: rotateY(70deg);
-            transform: rotateY(70deg);
+    transform: rotateY(70deg);
     opacity: 0;
     flex: 0;
   }
@@ -223,13 +230,13 @@
 @-moz-keyframes flip-out-ver-right {
   0% {
     -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
     opacity: 1;
     flex: 1;
   }
   100% {
     -webkit-transform: rotateY(70deg);
-            transform: rotateY(70deg);
+    transform: rotateY(70deg);
     opacity: 0;
     flex: 0;
   }
@@ -237,13 +244,13 @@
 @keyframes flip-out-ver-right {
   0% {
     -webkit-transform: rotateY(0);
-            transform: rotateY(0);
+    transform: rotateY(0);
     opacity: 1;
     flex: 1;
   }
   100% {
     -webkit-transform: rotateY(70deg);
-            transform: rotateY(70deg);
+    transform: rotateY(70deg);
     opacity: 0;
     flex: 0;
   }

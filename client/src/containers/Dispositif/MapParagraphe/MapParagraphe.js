@@ -246,15 +246,34 @@ class MapParagraphe extends PureComponent {
     return (
       <div className="map-paragraphe" id="map-paragraphe">
         <div className="where-header backgroundColor-darkColor">
-          <div>
-            <EVAIcon name="pin-outline" className="mr-10" />
-            <b>
-              {t(
-                "Dispositif.Trouver un interlocuteur",
-                "Trouver un interlocuteur"
-              )}{" "}
-              :{" "}
-            </b>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              flex: 1,
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <EVAIcon name="pin-outline" className="mr-10" />
+              <b>
+                {t(
+                  "Dispositif.Trouver un interlocuteur",
+                  "Trouver un interlocuteur"
+                )}{" "}
+                :{" "}
+              </b>
+            </div>
+            {!this.props.disableEdit && (
+              <FButton
+                type="tuto"
+                name={"play-circle-outline"}
+                onClick={() => this.props.toggleTutorielModal("Map")}
+              >
+                Tutoriel
+              </FButton>
+            )}
           </div>
           {markers.length > 0 && (
             <ButtonDropdown
