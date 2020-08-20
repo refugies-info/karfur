@@ -1661,16 +1661,18 @@ export class Dispositif extends Component {
                         </h2>
                       )}
                     </div>
-                    <div style={{ marginTop: "16px" }}>
-                      <FButton
-                        type="tuto"
-                        name={"play-circle-outline"}
-                        className="ml-10"
-                        onClick={() => this.toggleTutorielModal("Titre")}
-                      >
-                        Tutoriel
-                      </FButton>
-                    </div>
+                    {!this.state.disableEdit && typeContenu === "dispositif" && (
+                      <div style={{ marginTop: "16px" }}>
+                        <FButton
+                          type="tuto"
+                          name={"play-circle-outline"}
+                          className="ml-10"
+                          onClick={() => this.toggleTutorielModal("Titre")}
+                        >
+                          Tutoriel
+                        </FButton>
+                      </div>
+                    )}
                   </div>
                 </div>
               </Col>
@@ -1812,6 +1814,7 @@ export class Dispositif extends Component {
                   readAudio={this.readAudio}
                   demarcheSteps={demarcheSteps}
                   upcoming={this.upcoming}
+                  toggleTutorielModal={this.toggleTutorielModal}
                   // TO DO : remove spread state
                   {...this.state}
                 />
