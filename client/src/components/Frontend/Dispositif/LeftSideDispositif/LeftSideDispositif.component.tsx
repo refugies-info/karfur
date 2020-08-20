@@ -37,6 +37,7 @@ export interface PropsBeforeInjection {
   newRef: any;
   handleChange: () => void;
   typeContenu: string;
+  toggleTutorielModal: (arg: string) => void;
 }
 const send_sms = (typeContenu: string, titreInformatif: string) =>
   Swal.fire({
@@ -146,13 +147,23 @@ export const LeftSideDispositif = (props: Props) => {
                 />
               </InputGroup>
             ) : (
-              <FButton
-                type="theme"
-                name="external-link-outline"
-                onClick={onLinkClicked}
-              >
-                {t("Dispositif.Voir le site", "Voir le site")}
-              </FButton>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <FButton
+                  type="theme"
+                  name="external-link-outline"
+                  onClick={onLinkClicked}
+                >
+                  {t("Dispositif.Voir le site", "Voir le site")}
+                </FButton>
+                {!props.disableEdit && (
+                  <FButton
+                    type="tuto"
+                    name={"play-circle-outline"}
+                    className="ml-8"
+                    onClick={() => props.toggleTutorielModal("WebsiteLink")}
+                  />
+                )}
+              </div>
             )}
           </div>
         )}

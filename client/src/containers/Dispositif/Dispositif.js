@@ -653,7 +653,6 @@ export class Dispositif extends Component {
       (subkey === undefined || (subkey === 0 && key > 1)) &&
       this.state.withHelp
     ) {
-      const seuil_tuto = this.state.typeContenu === "demarche" ? 3 : 4;
       try {
         //On place le curseur à l'intérieur du wysiwyg et on ajuste la hauteur
         const target =
@@ -1731,6 +1730,7 @@ export class Dispositif extends Component {
                       newRef={this.newRef}
                       handleChange={this.handleChange}
                       typeContenu={typeContenu}
+                      toggleTutorielModal={this.toggleTutorielModal}
                     />
                   }
                 </Col>

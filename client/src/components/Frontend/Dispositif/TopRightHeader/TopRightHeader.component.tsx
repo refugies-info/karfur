@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Card, CardBody, CardFooter, Spinner } from "reactstrap";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-import FSwitch from "../../../FigmaUI/FSwitch/FSwitch";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { Props } from "./TopRightHeader.container";
 

@@ -39,4 +39,9 @@ export const sectionUrlCorrespondencies = [
     tutoUrl:
       "https://help.refugies.info/fr/article/definir-une-structure-responsable-et-des-partenaires-creer-une-fiche-dispositif-810-5qxsto",
   },
+  {
+    section: "WebsiteLink",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/ajouter-un-lien-vers-votre-site-creer-une-fiche-dispositif-910-edwpwk",
+  },
 ];
