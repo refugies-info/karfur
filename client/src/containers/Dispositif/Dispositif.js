@@ -172,7 +172,7 @@ export class Dispositif extends Component {
     printing: false,
     didThank: false,
     finalValidation: false,
-    tutorielUrl: "",
+    tutorielSection: "",
   };
 
   componentDidMount() {
@@ -912,10 +912,10 @@ export class Dispositif extends Component {
       showTagsModal: !prevState.showTagsModal,
     }));
 
-  toggleTutorielModal = (url) =>
+  toggleTutorielModal = (section) =>
     this.setState((prevState) => ({
       showTutorielModal: !prevState.showTutorielModal,
-      tutorielUrl: url,
+      tutorielSection: section,
     }));
   toggleDispositifValidateModal = () => {
     if (_.isEmpty(this.state.sponsors)) {
@@ -1666,7 +1666,7 @@ export class Dispositif extends Component {
                         type="tuto"
                         name={"play-circle-outline"}
                         className="ml-10"
-                        onClick={() => this.toggleTutorielModal("titre")}
+                        onClick={() => this.toggleTutorielModal("Titre")}
                       >
                         Tutoriel
                       </FButton>
@@ -1994,7 +1994,7 @@ export class Dispositif extends Component {
             <FrameModal
               show={this.state.showTutorielModal}
               toggle={this.toggleTutorielModal}
-              url={this.state.tutorielUrl}
+              section={this.state.tutorielSection}
             />
             <VarianteCreateModal
               titreInformatif={this.state.content.titreInformatif}

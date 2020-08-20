@@ -347,7 +347,7 @@ export class dispositifValidateModal extends Component {
               type="tuto"
               name={"play-circle-outline"}
               className="ml-10"
-              onClick={this.props.toggleTutorielModal}
+              onClick={() => this.props.toggleTutorielModal("Tags")}
             >
               Tutoriel
             </FButton>

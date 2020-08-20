@@ -135,11 +135,6 @@ export class TopRightHeader extends React.Component<Props> {
       <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
         <Card>
           <CardBody className="telecommande">
-            <FSwitch
-              content="Consignes"
-              checked={props.withHelp}
-              onClick={props.toggleHelp}
-            />
             <FButton
               className="savebtn"
               type="light-action"
