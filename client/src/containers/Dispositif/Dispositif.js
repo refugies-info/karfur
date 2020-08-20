@@ -2014,6 +2014,9 @@ export class Dispositif extends Component {
               abstract={this.state.content.abstract}
               onChange={this.handleChange}
               validate={this.valider_dispositif}
+              toggleTutorielModal={this.toggleTutorielModal}
+              tags={this.state.tags}
+              sponsors={this.state.sponsors}
             />
             <TagsModal
               tags={this.state.tags}

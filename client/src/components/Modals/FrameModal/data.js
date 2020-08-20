@@ -44,4 +44,9 @@ export const sectionUrlCorrespondencies = [
     tutoUrl:
       "https://help.refugies.info/fr/article/ajouter-un-lien-vers-votre-site-creer-une-fiche-dispositif-910-edwpwk",
   },
+  {
+    section: "Description",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/rediger-une-phrase-explicative-creer-une-fiche-dispositif-1010-19fqwus",
+  },
 ];
