@@ -34,4 +34,9 @@ export const sectionUrlCorrespondencies = [
     tutoUrl:
       "https://help.refugies.info/fr/article/localiser-votre-dispositif-creer-une-fiche-dispositif-710-81ce2s",
   },
+  {
+    section: "Sponsors",
+    tutoUrl:
+      "https://help.refugies.info/fr/article/definir-une-structure-responsable-et-des-partenaires-creer-une-fiche-dispositif-810-5qxsto",
+  },
 ];

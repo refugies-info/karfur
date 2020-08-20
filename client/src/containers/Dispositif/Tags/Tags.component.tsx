@@ -10,6 +10,7 @@ import "./Tags.scss";
 import { Props } from "./Tags.container";
 import { Tag } from "../../../@types/interface";
 import styled from "styled-components";
+import FButton from "../../../components/FigmaUI/FButton/FButton";
 
 const InnerButton = styled.div`
   display: flex;
@@ -28,6 +29,7 @@ export interface PropsBeforeInjection {
   deleteTag: (idx: number) => void;
   history: any;
   t: any;
+  toggleTutorielModal: (arg: string) => void;
 }
 
 export class Tags extends Component<Props> {
@@ -137,6 +139,15 @@ export class Tags extends Component<Props> {
             {"Choisir les thèmes"}
           </Button>
         ) : null}
+        {!this.props.disableEdit && (
+          <div style={{ marginLeft: "8px", marginTop: "10px" }}>
+            <FButton
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() => this.props.toggleTutorielModal("Tags")}
+            />
+          </div>
+        )}
       </div>
     );
   }

@@ -1700,6 +1700,7 @@ export class Dispositif extends Component {
                       openTag={this.openTag}
                       deleteTag={this.deleteTag}
                       history={this.props.history}
+                      toggleTutorielModal={this.toggleTutorielModal}
                     />
                   }
                 </Col>
@@ -1878,6 +1879,7 @@ export class Dispositif extends Component {
                   t={t}
                   finalValidation={this.state.finalValidation}
                   toggleFinalValidation={this.toggleFinalValidation}
+                  toggleTutorielModal={this.toggleTutorielModal}
                 />
 
                 {false && <Commentaires />}
