@@ -1514,7 +1514,7 @@ export class Dispositif extends Component {
     });
 
   render() {
-    console.log("test4");
+    console.log("test p");
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
