@@ -31,6 +31,7 @@ import Streamline from "../../assets/streamline";
 
 import "./Toolbar.scss";
 import variables from "scss/colors.scss";
+import { logger } from "../../logger";
 
 const InnerButton = styled.div`
   display: flex;
@@ -199,6 +200,7 @@ export class Toolbar extends React.Component {
                   type="signup"
                   name={"person-add-outline"}
                   className="mr-10"
+                  onClick={() => logger.info("Click on Inscription")}
                 >
                   {windowWidth >= breakpoints.tabletUp &&
                     t("Toolbar.Inscription", "Inscription")}
