@@ -31,6 +31,7 @@ import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuD
 import {
   BookmarkedModal,
   DispositifCreateModal,
+  DemarcheCreateModal,
   DispositifValidateModal,
   SuggererModal,
   EnConstructionModal,
@@ -394,7 +395,7 @@ export class Dispositif extends Component {
               }),
             };
           }),
-          showDispositifCreateModal: process.env.NODE_ENV !== "development", //A modifier avant la mise en prod
+          showDispositifCreateModal: true, //A modifier avant la mise en prod
           isDispositifLoading: false,
           menu: menuContenu.map((x) => {
             return {
@@ -2010,12 +2011,14 @@ export class Dispositif extends Component {
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}
             />
-            <DispositifCreateModal
-              show={this.state.showDispositifCreateModal}
-              toggle={this.toggleDispositifCreateModal}
-              typeContenu={typeContenu}
-              onBoardSteps={onBoardSteps}
-            />
+            {typeContenu === "demarche" && (
+              <DemarcheCreateModal
+                show={this.state.showDispositifCreateModal}
+                toggle={this.toggleDispositifCreateModal}
+                typeContenu={typeContenu}
+                onBoardSteps={onBoardSteps}
+              />
+            )}
             <DispositifValidateModal
               show={this.state.showDispositifValidateModal}
               toggle={this.toggleDispositifValidateModal}

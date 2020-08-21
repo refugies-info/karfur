@@ -1,5 +1,5 @@
 import BookmarkedModal from "./BookmarkedModal/BookmarkedModal";
-import DispositifCreateModal from "./DispositifCreateModal/DispositifCreateModal";
+import DemarcheCreateModal from "./DemarcheCreateModal/DemarcheCreateModal";
 import DispositifValidateModal from "./DispositifValidateModal/DispositifValidateModal";
 import EnConstructionModal from "./EnConstructionModal/EnConstructionModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
@@ -26,7 +26,7 @@ import { DraftModal } from "./DraftModal/DraftModal";
 
 export {
   BookmarkedModal,
-  DispositifCreateModal,
+  DemarcheCreateModal,
   DispositifValidateModal,
   EnConstructionModal,
   LanguageModal,
