@@ -98,6 +98,11 @@ export class DispositifCreateModal extends Component<Props, StateType> {
     if (this.state.step < 3) return "Suivant " + this.state.step + "/3";
     return "C'est parti !";
   };
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.show !== this.props.show && this.state.step !== 1) {
+      this.setState({ step: 1 });
+    }
+  }
   render() {
     const { step } = this.state;
     return (

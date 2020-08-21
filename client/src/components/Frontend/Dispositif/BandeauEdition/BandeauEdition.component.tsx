@@ -26,6 +26,7 @@ export interface PropsBeforeInjection {
   toggleDispositifValidateModal: () => void;
   toggleDraftModal: () => void;
   tKeyValue: number;
+  toggleDispositifCreateModal: () => void;
 }
 export class BandeauEdition extends React.Component<Props> {
   /**
@@ -127,6 +128,7 @@ export class BandeauEdition extends React.Component<Props> {
           toggleDispositifValidateModal={props.toggleDispositifValidateModal}
           toggleDraftModal={props.toggleDraftModal}
           tKeyValue={props.tKeyValue}
+          toggleDispositifCreateModal={props.toggleDispositifCreateModal}
         />
       );
     }

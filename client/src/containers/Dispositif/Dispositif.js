@@ -1605,6 +1605,7 @@ export class Dispositif extends Component {
                   }
                   toggleDraftModal={this.toggleDraftModal}
                   tKeyValue={this.state.tKeyValue}
+                  toggleDispositifCreateModal={this.toggleDispositifCreateModal}
                 />
               )}
               <Row className="header-row">

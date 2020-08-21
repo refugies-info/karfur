@@ -10,6 +10,7 @@ interface Props {
   toggleDispositifValidateModal: () => void;
   toggleDraftModal: () => void;
   tKeyValue: number;
+  toggleDispositifCreateModal: () => void;
 }
 
 const ContentTypeContainer = styled.div`
@@ -46,6 +47,7 @@ const YellowText = styled.div`
   line-height: 28px;
   padding: 8px;
   margin-left: 8px;
+  margin-right: 15px;
 `;
 
 const FirstGroupContainer = styled.div`
@@ -64,6 +66,17 @@ const DescriptionText = styled.div`
   font-size: 16px;
   line-height: 20px;
   margin-left: 15px;
+`;
+
+const EndDescription = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+const KnowMore = styled.div`
+  font-size: 16px;
+  line-height: 20px;
+  cursor: pointer;
 `;
 
 const getInfoText = (step: number, displayTuto: boolean) => {
@@ -137,7 +150,12 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
             <DescriptionText>{subtitle}</DescriptionText>
           )}
           {(props.tKeyValue === -1 || !props.displayTuto) && (
-            <YellowText>jaune.</YellowText>
+            <EndDescription>
+              <YellowText>jaune.</YellowText>
+              <KnowMore onClick={props.toggleDispositifCreateModal}>
+                <u>En savoir plus</u>
+              </KnowMore>
+            </EndDescription>
           )}
         </FirstGroupContainer>
         <SecondGroupContainer>
