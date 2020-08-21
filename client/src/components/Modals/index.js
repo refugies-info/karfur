@@ -23,10 +23,12 @@ import Modal from "./Modal";
 import TagsModal from "./TagsModal/TagsModal";
 import FrameModal from "./FrameModal/FrameModal";
 import { DraftModal } from "./DraftModal/DraftModal";
+import { DispositifCreateModal } from "./DispositifCreateModal/DispositifCreateModal";
 
 export {
   BookmarkedModal,
   DemarcheCreateModal,
+  DispositifCreateModal,
   DispositifValidateModal,
   EnConstructionModal,
   LanguageModal,

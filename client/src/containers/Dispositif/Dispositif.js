@@ -2019,6 +2019,13 @@ export class Dispositif extends Component {
                 onBoardSteps={onBoardSteps}
               />
             )}
+            {typeContenu === "dispositif" && (
+              <DispositifCreateModal
+                show={this.state.showDispositifCreateModal}
+                toggle={this.toggleDispositifCreateModal}
+                typeContenu={typeContenu}
+              />
+            )}
             <DispositifValidateModal
               show={this.state.showDispositifValidateModal}
               toggle={this.toggleDispositifValidateModal}

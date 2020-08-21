@@ -11,7 +11,6 @@ interface Props {
   toggle: () => void;
   show: boolean;
   valider_dispositif: (arg: string) => void;
-  history: any;
   navigateToProfilePage: () => void;
 }
 
