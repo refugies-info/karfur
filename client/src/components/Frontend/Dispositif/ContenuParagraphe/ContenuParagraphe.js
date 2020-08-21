@@ -94,7 +94,6 @@ const contenuParagraphe = (props) => {
                   key={subkey}
                   subkey={subkey}
                   subitem={subitem}
-                  tutoriel={item.tutoriel}
                   disableEdit={newDisableEdit}
                   {...bprops}
                 />

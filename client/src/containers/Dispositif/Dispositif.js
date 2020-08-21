@@ -16,7 +16,6 @@ import { savePDF } from "@progress/kendo-react-pdf";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import h2p from "html2plaintext";
-import ReactJoyride, { ACTIONS, EVENTS, STATUS } from "react-joyride";
 import _ from "lodash";
 import querySearch from "stringquery";
 import { convertToHTML } from "draft-convert";
@@ -32,6 +31,7 @@ import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuD
 import {
   BookmarkedModal,
   DispositifCreateModal,
+  DemarcheCreateModal,
   DispositifValidateModal,
   SuggererModal,
   EnConstructionModal,
@@ -40,17 +40,17 @@ import {
   RejectionModal,
   TagsModal,
   FrameModal,
+  DraftModal,
 } from "../../components/Modals/index";
+import FButton from "../../components/FigmaUI/FButton/FButton";
 import Commentaires from "../../components/Frontend/Dispositif/Commentaires/Commentaires";
 import { Tags } from "./Tags";
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
 import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
-import FButton from "../../components/FigmaUI/FButton/FButton";
 import SideTrad from "./SideTrad/SideTrad";
 import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
@@ -62,12 +62,10 @@ import {
   menu,
   filtres,
   onBoardSteps,
-  tutoSteps,
   importantCard,
   showModals,
   menuDemarche,
   demarcheSteps,
-  tutoStepsDemarche,
   customConvertOption,
 } from "./data";
 import {
@@ -146,7 +144,8 @@ export class Dispositif extends Component {
     showDispositifCreateModal: false,
     showDispositifValidateModal: false,
     showTagsModal: false,
-    showFrameModal: false,
+    showTutorielModal: false,
+    showDraftModal: false,
     showSpinnerPrint: false,
     showSpinnerBookmark: false,
     suggestion: "",
@@ -158,11 +157,6 @@ export class Dispositif extends Component {
     isDispositifLoading: true,
     contributeurs: [],
     withHelp: process.env.NODE_ENV !== "development",
-    runFirstJoyRide: false,
-    runJoyRide: false,
-    stepIndex: 0,
-    disableOverlay: false,
-    joyRideWidth: 800,
     inputBtnClicked: false,
     mainSponsor: {},
     status: "",
@@ -181,6 +175,8 @@ export class Dispositif extends Component {
     printing: false,
     didThank: false,
     finalValidation: false,
+    tutorielSection: "",
+    displayTuto: true,
   };
 
   componentDidMount() {
@@ -399,7 +395,7 @@ export class Dispositif extends Component {
               }),
             };
           }),
-          showDispositifCreateModal: process.env.NODE_ENV !== "development", //A modifier avant la mise en prod
+          showDispositifCreateModal: true, //A modifier avant la mise en prod
           isDispositifLoading: false,
           menu: menuContenu.map((x) => {
             return {
@@ -478,7 +474,6 @@ export class Dispositif extends Component {
   handleKeyPress = (ev, index) => {
     if (ev.key === "Enter") {
       ev.preventDefault();
-      this.setState({ stepIndex: index + 1 });
       if (
         index === 0 &&
         this.state.content.titreMarque === contenu.titreMarque
@@ -662,7 +657,6 @@ export class Dispositif extends Component {
       (subkey === undefined || (subkey === 0 && key > 1)) &&
       this.state.withHelp
     ) {
-      const seuil_tuto = this.state.typeContenu === "demarche" ? 3 : 4;
       try {
         //On place le curseur à l'intérieur du wysiwyg et on ajuste la hauteur
         const target =
@@ -685,9 +679,6 @@ export class Dispositif extends Component {
                 "public-DraftEditorPlaceholder-inner"
               )[0] || {}
             ).offsetHeight + "px";
-          this.setState((pS) => ({
-            joyRideWidth: parentNode.offsetWidth || pS.joyRideWidth,
-          }));
         }
         if (parentNode) {
           parentNode.scrollIntoView({
@@ -701,9 +692,6 @@ export class Dispositif extends Component {
         console.log(e);
       }
       this.setState({
-        stepIndex: key + seuil_tuto,
-        runJoyRide: true,
-        disableOverlay: true,
         inputBtnClicked: false,
       });
     }
@@ -926,16 +914,21 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({
       showTagsModal: !prevState.showTagsModal,
     }));
-  openTuto = () => {
+
+  toggleTutorielModal = (section) =>
     this.setState((prevState) => ({
-      showTagsModal: !prevState.showTagsModal,
-      showFrameModal: !prevState.showFrameModal,
+      showTutorielModal: !prevState.showTutorielModal,
+      tutorielSection: section,
     }));
-  };
-  toggleFrameModal = () =>
+
+  toggleDraftModal = () =>
     this.setState((prevState) => ({
-      showFrameModal: !prevState.showFrameModal,
+      showDraftModal: !prevState.showDraftModal,
     }));
+
+  toggleTutoriel = () =>
+    this.setState((prevState) => ({ displayTuto: !prevState.displayTuto }));
+
   toggleDispositifValidateModal = () => {
     if (_.isEmpty(this.state.sponsors)) {
       this.setState({ finalValidation: true });
@@ -1059,11 +1052,6 @@ export class Dispositif extends Component {
       ),
     });
 
-  startFirstJoyRide = () =>
-    this.setState({ showDispositifCreateModal: false, runJoyRide: true });
-  startJoyRide = (idx = 0) =>
-    this.setState({ runJoyRide: true, stepIndex: idx });
-
   toggleHelp = () =>
     this.setState((prevState) => ({ withHelp: !prevState.withHelp }));
 
@@ -1142,65 +1130,6 @@ export class Dispositif extends Component {
 
   deleteTag = (idx) =>
     this.setState({ tags: [...this.state.tags].filter((_, i) => i !== idx) });
-
-  handleJoyrideCallback = (data) => {
-    const { action, index, type, lifecycle, status } = data;
-    const etapes_tuto =
-      this.state.typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
-    const trigger_lower = this.state.typeContenu === "demarche" ? 2 : 3,
-      trigger_upper = this.state.typeContenu === "demarche" ? 5 : 7;
-    if (
-      [STATUS.FINISHED, STATUS.SKIPPED].includes(status) ||
-      (action === ACTIONS.CLOSE && type === EVENTS.STEP_AFTER)
-    ) {
-      this.setState({ runJoyRide: false, disableOverlay: false });
-    } else if (
-      ((action === ACTIONS.NEXT && index >= trigger_lower) ||
-        index > trigger_lower + 1) &&
-      index < trigger_upper &&
-      type === EVENTS.STEP_AFTER &&
-      lifecycle === "complete"
-    ) {
-      let key = index - trigger_lower + (action === ACTIONS.PREV ? -2 : 0);
-      if (this.state.typeContenu === "demarche" && key === 1) {
-        key = 2;
-      }
-      this.handleContentClick(key, true, key > 1 ? 0 : undefined);
-    } else if ([EVENTS.STEP_AFTER, EVENTS.TARGET_NOT_FOUND].includes(type)) {
-      const stepIndex = index + (action === ACTIONS.PREV ? -1 : 1);
-      const inputBtnClicked =
-        (action === ACTIONS.NEXT && index === 2) ||
-        (action === ACTIONS.PREV && index === 4);
-      this.setState({
-        stepIndex,
-        disableOverlay: index > trigger_lower,
-        inputBtnClicked,
-      });
-      if (
-        this.state.withHelp &&
-        etapes_tuto[stepIndex] &&
-        etapes_tuto[stepIndex].target &&
-        etapes_tuto[stepIndex].target.includes("#") &&
-        document.getElementById(etapes_tuto[stepIndex].target.replace("#", ""))
-      ) {
-        const cible = document.getElementById(
-          etapes_tuto[stepIndex].target.replace("#", "")
-        );
-        cible.focus();
-        cible.scrollIntoView({
-          behavior: "smooth",
-          block: "end",
-          inline: "nearest",
-        });
-      }
-    }
-  };
-
-  handleFirstJoyrideCallback = (data) => {
-    if ([STATUS.FINISHED, STATUS.SKIPPED].includes(data.status)) {
-      this.setState({ runJoyRide: true, runFirstJoyRide: false });
-    }
-  };
 
   addSponsor = (sponsor) => {
     this.setState({
@@ -1590,10 +1519,6 @@ export class Dispositif extends Component {
       showModals,
       isDispositifLoading,
       typeContenu,
-      runJoyRide,
-      stepIndex,
-      disableOverlay,
-      joyRideWidth,
       withHelp,
       disableEdit,
       mainTag,
@@ -1602,82 +1527,6 @@ export class Dispositif extends Component {
       printing,
       didThank,
     } = this.state;
-
-    const etapes_tuto =
-      typeContenu === "demarche" ? tutoStepsDemarche : tutoSteps;
-
-    const Tooltip = ({
-      index,
-      step,
-      backProps,
-      primaryProps,
-      tooltipProps,
-      closeProps,
-      isLastStep,
-    }) => {
-      if (step) {
-        return (
-          <div
-            key="JoyrideTooltip"
-            className="tooltip-wrapper custom-tooltip"
-            style={{
-              width: joyRideWidth + "px",
-              /*backgroundColor: mainTag.darkColor,*/ marginRight: "40px",
-            }}
-            {...tooltipProps}
-          >
-            <div className="tooltipContainer">
-              <b>{step.title}</b> : {step.content}
-            </div>
-            <div className="tooltipFooter">
-              <ul className="nav nav-tabs" role="tablist">
-                {etapes_tuto.map((_, idx) => (
-                  <li
-                    role="presentation"
-                    className={idx <= stepIndex ? "active" : "disabled"}
-                    key={idx}
-                  >
-                    <span className="round-tab" />
-                  </li>
-                ))}
-              </ul>
-              {index > 0 && (
-                <FButton
-                  onMouseEnter={(e) => e.target.focus()}
-                  type="pill"
-                  className="mr-10"
-                  name="arrow-back-outline"
-                  fill="#FFFFFF"
-                  {...backProps}
-                />
-              )}
-              <FButton onMouseEnter={(e) => e.target.focus()} {...primaryProps}>
-                {isLastStep ? (
-                  <span>Terminer</span>
-                ) : (
-                  <span>
-                    Suivant
-                    <EVAIcon
-                      name="arrow-forward-outline"
-                      fill={variables.grisFonce}
-                      className="ml-10"
-                    />
-                  </span>
-                )}
-              </FButton>
-            </div>
-            <EVAIcon
-              onMouseEnter={(e) => e.currentTarget.focus()}
-              {...closeProps}
-              name="close-outline"
-              className="close-icon"
-            />
-          </div>
-        );
-      }
-      return false;
-    };
-
     return (
       <div
         id="dispositif"
@@ -1693,28 +1542,6 @@ export class Dispositif extends Component {
         }
         ref={this.newRef}
       >
-        {/* Second guided tour */}
-        <ReactJoyride
-          continuous
-          steps={etapes_tuto}
-          run={!disableEdit && withHelp && runJoyRide}
-          showProgress
-          disableOverlay={disableOverlay}
-          disableOverlayClose={true}
-          spotlightClicks={true}
-          callback={this.handleJoyrideCallback}
-          stepIndex={stepIndex}
-          tooltipComponent={Tooltip}
-          debug={false}
-          styles={{
-            options: {
-              arrowColor: mainTag.darkColor,
-            },
-          }}
-          joyRideWidth={joyRideWidth}
-          mainTag={mainTag}
-        />
-
         <Row className="main-row">
           {translating && (
             <Col xl="4" lg="4" md="4" sm="4" xs="4" className="side-col">
@@ -1755,7 +1582,9 @@ export class Dispositif extends Component {
                 }
               }
             >
-              {(inVariante || checkingVariante) && (
+              {(inVariante ||
+                checkingVariante ||
+                (typeContenu === "dispositif" && !disableEdit)) && (
                 // yellow banner in top of a demarche to create a variante
                 // To see this component, create a new demarche then select an existing demarche
                 <BandeauEdition
@@ -1768,9 +1597,17 @@ export class Dispositif extends Component {
                   toggleHelp={this.toggleHelp}
                   toggleCheckingVariante={this.toggleCheckingVariante}
                   toggleInVariante={this.toggleInVariante}
+                  typeContenu={typeContenu}
+                  toggleTutoriel={this.toggleTutoriel}
+                  displayTuto={this.state.displayTuto}
+                  toggleDispositifValidateModal={
+                    this.toggleDispositifValidateModal
+                  }
+                  toggleDraftModal={this.toggleDraftModal}
+                  tKeyValue={this.state.tKeyValue}
+                  toggleDispositifCreateModal={this.toggleDispositifCreateModal}
                 />
               )}
-
               <Row className="header-row">
                 {windowWidth >= breakpoints.smLimit && (
                   <BackButton goBack={this.goBack} />
@@ -1795,51 +1632,79 @@ export class Dispositif extends Component {
                     }
                     translating={translating}
                     status={this.state.status}
+                    typeContenu={typeContenu}
                   />
                 )}
               </Row>
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
                 <div className={"bloc-titre "}>
-                  <h1 className={disableEdit ? "" : "editable"}>
-                    {
-                      // Display and edition of titreInformatif
-                      <ContentEditable
-                        id="titreInformatif"
-                        html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
-                        disabled={disableEdit || inVariante}
-                        onClick={(e) => {
-                          if (!disableEdit && !inVariante) {
-                            this.startJoyRide();
-                            this.onInputClicked(e);
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                    }}
+                  >
+                    <div>
+                      <h1 className={disableEdit ? "" : "editable"}>
+                        {
+                          // Display and edition of titreInformatif
+                          <ContentEditable
+                            id="titreInformatif"
+                            html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
+                            disabled={disableEdit || inVariante}
+                            onClick={(e) => {
+                              if (!disableEdit && !inVariante) {
+                                this.onInputClicked(e);
+                              }
+                            }}
+                            onChange={this.handleChange}
+                            onMouseEnter={(e) => {
+                              this.updateUIArray(-4);
+                              e.target.focus();
+                            }}
+                            onKeyPress={(e) => this.handleKeyPress(e, 0)}
+                          />
+                        }
+                      </h1>
+                      {typeContenu === "dispositif" && (
+                        <h2 className={"bloc-subtitle "}>
+                          <span>{t("avec", "avec")}&nbsp;</span>
+                          {
+                            // Display and edition of titreMarque
+                            <ContentEditable
+                              id="titreMarque"
+                              html={this.state.content.titreMarque || ""} // innerHTML of the editable div
+                              disabled={this.state.disableEdit}
+                              onClick={(e) => {
+                                this.onInputClicked(e);
+                              }}
+                              onChange={this.handleChange}
+                              onKeyDown={this.onInputClicked}
+                              onMouseEnter={(e) => {
+                                this.updateUIArray(-3);
+                                e.target.focus();
+                              }}
+                              onKeyPress={(e) => this.handleKeyPress(e, 1)}
+                            />
                           }
-                        }}
-                        onChange={this.handleChange}
-                        onMouseEnter={(e) => e.target.focus()}
-                        onKeyPress={(e) => this.handleKeyPress(e, 0)}
-                      />
-                    }
-                  </h1>
-                  {typeContenu === "dispositif" && (
-                    <h2 className={"bloc-subtitle "}>
-                      <span>{t("avec", "avec")}&nbsp;</span>
-                      {
-                        // Display and edition of titreMarque
-                        <ContentEditable
-                          id="titreMarque"
-                          html={this.state.content.titreMarque || ""} // innerHTML of the editable div
-                          disabled={this.state.disableEdit}
-                          onClick={(e) => {
-                            this.startJoyRide(1);
-                            this.onInputClicked(e);
-                          }}
-                          onChange={this.handleChange}
-                          onKeyDown={this.onInputClicked}
-                          onMouseEnter={(e) => e.target.focus()}
-                          onKeyPress={(e) => this.handleKeyPress(e, 1)}
-                        />
-                      }
-                    </h2>
-                  )}
+                        </h2>
+                      )}
+                    </div>
+                    {!this.state.disableEdit &&
+                      typeContenu === "dispositif" &&
+                      this.state.displayTuto && (
+                        <div style={{ marginTop: "16px" }}>
+                          <FButton
+                            type="tuto"
+                            name={"play-circle-outline"}
+                            className="ml-10"
+                            onClick={() => this.toggleTutorielModal("Titre")}
+                          >
+                            Tutoriel
+                          </FButton>
+                        </div>
+                      )}
+                  </div>
                 </div>
               </Col>
             </section>
@@ -1866,6 +1731,8 @@ export class Dispositif extends Component {
                       openTag={this.openTag}
                       deleteTag={this.deleteTag}
                       history={this.props.history}
+                      toggleTutorielModal={this.toggleTutorielModal}
+                      displayTuto={this.state.displayTuto}
                     />
                   }
                 </Col>
@@ -1896,6 +1763,9 @@ export class Dispositif extends Component {
                       newRef={this.newRef}
                       handleChange={this.handleChange}
                       typeContenu={typeContenu}
+                      toggleTutorielModal={this.toggleTutorielModal}
+                      displayTuto={this.state.displayTuto}
+                      updateUIArray={this.updateUIArray}
                     />
                   }
                 </Col>
@@ -1980,6 +1850,8 @@ export class Dispositif extends Component {
                   readAudio={this.readAudio}
                   demarcheSteps={demarcheSteps}
                   upcoming={this.upcoming}
+                  toggleTutorielModal={this.toggleTutorielModal}
+                  displayTuto={this.state.displayTuto}
                   // TO DO : remove spread state
                   {...this.state}
                 />
@@ -2043,6 +1915,8 @@ export class Dispositif extends Component {
                   t={t}
                   finalValidation={this.state.finalValidation}
                   toggleFinalValidation={this.toggleFinalValidation}
+                  toggleTutorielModal={this.toggleTutorielModal}
+                  displayTuto={this.state.displayTuto}
                 />
 
                 {false && <Commentaires />}
@@ -2138,19 +2012,34 @@ export class Dispositif extends Component {
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}
             />
-            <DispositifCreateModal
-              show={this.state.showDispositifCreateModal}
-              toggle={this.toggleDispositifCreateModal}
-              typeContenu={typeContenu}
-              startFirstJoyRide={this.startFirstJoyRide}
-              onBoardSteps={onBoardSteps}
-            />
+            {typeContenu === "demarche" && (
+              <DemarcheCreateModal
+                show={this.state.showDispositifCreateModal}
+                toggle={this.toggleDispositifCreateModal}
+                typeContenu={typeContenu}
+                onBoardSteps={onBoardSteps}
+              />
+            )}
+            {typeContenu === "dispositif" && (
+              <DispositifCreateModal
+                show={this.state.showDispositifCreateModal}
+                toggle={this.toggleDispositifCreateModal}
+                typeContenu={typeContenu}
+              />
+            )}
             <DispositifValidateModal
               show={this.state.showDispositifValidateModal}
               toggle={this.toggleDispositifValidateModal}
               abstract={this.state.content.abstract}
               onChange={this.handleChange}
               validate={this.valider_dispositif}
+              toggleTutorielModal={this.toggleTutorielModal}
+              tags={this.state.tags}
+              sponsors={this.state.sponsors}
+              toggleTagsModal={this.toggleTagsModal}
+              toggleSponsorModal={() =>
+                this.sponsors.current.toggleModal("responsabilite")
+              }
             />
             <TagsModal
               tags={this.state.tags}
@@ -2158,20 +2047,26 @@ export class Dispositif extends Component {
               categories={filtres.tags}
               show={this.state.showTagsModal}
               toggle={this.toggleTagsModal}
-              onChange={this.handleChange}
-              openTuto={this.openTuto}
+              toggleTutorielModal={this.toggleTutorielModal}
             />
             <FrameModal
-              show={this.state.showFrameModal}
-              toggle={this.toggleFrameModal}
-              onChange={this.handleChange}
-              openTuto={this.openTuto}
+              show={this.state.showTutorielModal}
+              toggle={this.toggleTutorielModal}
+              section={this.state.tutorielSection}
             />
             <VarianteCreateModal
               titreInformatif={this.state.content.titreInformatif}
               show={showModals.variante}
               toggle={() => this.toggleModal(false, "variante")}
               upcoming={this.upcoming}
+            />
+            <DraftModal
+              show={this.state.showDraftModal}
+              toggle={this.toggleDraftModal}
+              valider_dispositif={this.valider_dispositif}
+              navigateToProfilePage={() =>
+                this.props.history.push("/backend/user-profile")
+              }
             />
 
             <NotificationContainer />

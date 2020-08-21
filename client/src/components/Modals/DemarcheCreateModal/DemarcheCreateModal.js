@@ -6,10 +6,10 @@ import { interieur_2, interieur_3, interieur_4 } from "../../../assets/figma";
 import FButton from "../../FigmaUI/FButton/FButton";
 import Modal from "../Modal";
 
-import "./DispositifCreateModal.scss";
+import "./DemarcheCreateModal.scss";
 import variables from "scss/colors.scss";
 
-class DispositifCreateModal extends Component {
+class DemarcheCreateModal extends Component {
   state = {
     stepIdx: 0,
   };
@@ -25,7 +25,7 @@ class DispositifCreateModal extends Component {
     this.setState((pS) => ({ stepIdx: pS.stepIdx + (next ? 1 : -1) }));
 
   render() {
-    const { toggle, startFirstJoyRide, onBoardSteps, typeContenu } = this.props;
+    const { toggle, onBoardSteps, typeContenu } = this.props;
     const { stepIdx } = this.state;
     return (
       <Modal
@@ -149,7 +149,7 @@ class DispositifCreateModal extends Component {
               <FButton
                 type="validate"
                 name="checkmark"
-                onClick={startFirstJoyRide}
+                onClick={this.props.toggle}
               >
                 Démarrer
               </FButton>
@@ -168,4 +168,4 @@ class DispositifCreateModal extends Component {
   }
 }
 
-export default DispositifCreateModal;
+export default DemarcheCreateModal;
