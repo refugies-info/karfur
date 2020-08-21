@@ -724,8 +724,8 @@ class Sponsors extends Component {
                 </h5>
                 <div className="contenu mb-10">
                   <b>
-                    L’équipe Agi’r va prendre contact avec vous sous 7 jours
-                    pour vérifier vos informations.
+                    L’équipe Réfugiés.info va prendre contact avec vous sous 7
+                    jours pour vérifier vos informations.
                   </b>
                 </div>
                 <div className="contenu">
