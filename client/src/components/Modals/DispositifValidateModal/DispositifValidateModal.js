@@ -14,6 +14,7 @@ const CheckContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  cursor: ${(props) => (props.missingElement ? "pointer" : "default")};
 `;
 
 const Title = styled.div`
@@ -26,8 +27,32 @@ const Title = styled.div`
 const getTitle = (section) =>
   section === "tags" ? "Choix des thèmes" : "Structure responsable";
 
+const onCheckContainerClick = (
+  section,
+  toggleTagsModal,
+  toggleSponsorModal,
+  missingElement
+) => {
+  if (!missingElement) {
+    return;
+  }
+  if (section === "tags") {
+    return toggleTagsModal();
+  }
+  return toggleSponsorModal();
+};
 const Check = (props) => (
-  <CheckContainer missingElement={props.missingElement}>
+  <CheckContainer
+    missingElement={props.missingElement}
+    onClick={() =>
+      onCheckContainerClick(
+        props.section,
+        props.toggleTagsModal,
+        props.toggleSponsorModal,
+        props.missingElement
+      )
+    }
+  >
     <Title missingElement={props.missingElement}>
       {getTitle(props.section)}
     </Title>
@@ -50,10 +75,17 @@ const dispositifValidateModal = (props) => {
     >
       <ModalHeader toggle={props.toggle}>Vous y êtes presque !</ModalHeader>
       <ModalBody>
-        <Check section="tags" missingElement={props.tags.length === 0} />
+        <Check
+          section="tags"
+          missingElement={props.tags.length === 0}
+          toggleTagsModal={props.toggleTagsModal}
+          toggleSponsorModal={props.toggleSponsorModal}
+        />
         <Check
           section="structure"
           missingElement={props.sponsors.length === 0}
+          toggleTagsModal={props.toggleTagsModal}
+          toggleSponsorModal={props.toggleSponsorModal}
         />
 
         <p>
@@ -113,7 +145,7 @@ const dispositifValidateModal = (props) => {
         </div>
         <div>
           <FButton
-            type="white"
+            type="outline-black"
             name={"arrow-back"}
             className="mr-8"
             onClick={props.toggle}

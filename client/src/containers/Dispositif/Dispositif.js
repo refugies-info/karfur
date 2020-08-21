@@ -2036,6 +2036,10 @@ export class Dispositif extends Component {
               toggleTutorielModal={this.toggleTutorielModal}
               tags={this.state.tags}
               sponsors={this.state.sponsors}
+              toggleTagsModal={this.toggleTagsModal}
+              toggleSponsorModal={() =>
+                this.sponsors.current.toggleModal("responsabilite")
+              }
             />
             <TagsModal
               tags={this.state.tags}

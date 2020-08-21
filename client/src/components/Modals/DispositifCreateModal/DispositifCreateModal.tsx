@@ -40,7 +40,7 @@ const ButtonsContainer = styled.div`
 const TypeContenuContainer = styled.div`
   background: #ffffff;
   border-radius: 12px;
-  padding: 8px;
+  padding: 8px 16px;
   margin-left: 13px;
   font-weight: bold;
   font-size: 40px;

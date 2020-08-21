@@ -121,7 +121,7 @@ export const DraftModal = (props: Props) => (
       </InfosContainer>
       <ButtonsContainer>
         <FButton
-          type="white"
+          type="outline-black"
           name="log-out-outline"
           className="mr-8"
           onClick={() => {
