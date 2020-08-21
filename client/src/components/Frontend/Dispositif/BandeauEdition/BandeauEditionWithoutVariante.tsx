@@ -23,7 +23,7 @@ const ContentTypeContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  background: #edebeb;
+  background: ${(props) => (props.yellow ? "#f9ef99" : "#edebeb")}
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: row;
@@ -127,7 +127,7 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
   return (
     <div className="bandeau-edition">
       <div className="dashed-panel no-radius" />
-      <MainContainer>
+      <MainContainer yellow={props.displayTuto && props.tKeyValue !== -1}>
         <FirstGroupContainer>
           <ContentTypeContainer>
             {jsUcfirst(props.typeContenu)}

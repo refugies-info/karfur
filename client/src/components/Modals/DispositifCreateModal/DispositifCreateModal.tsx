@@ -88,10 +88,10 @@ interface StateType {
 export class DispositifCreateModal extends Component<Props, StateType> {
   state: StateType = { step: 1 };
   changeStep = (next = true) => {
-    if (this.state.step < 3) {
-      return this.setState((pS) => ({ step: pS.step + (next ? 1 : -1) }));
+    if (this.state.step === 3 && next) {
+      return this.props.toggle();
     }
-    this.props.toggle();
+    return this.setState((pS) => ({ step: pS.step + (next ? 1 : -1) }));
   };
 
   getButtonText = () => {
