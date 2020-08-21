@@ -298,9 +298,26 @@ class Sponsors extends Component {
     const modal = { name: "responsabilite" };
     return (
       <div className="sponsor-footer">
-        <h5 className="color-darkColor">
-          {t("Dispositif.Structures", "Structures partenaires")}
-        </h5>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <h5 className="color-darkColor">
+            {t("Dispositif.Structures", "Structures partenaires")}
+          </h5>
+          {!disableEdit && this.props.displayTuto && (
+            <FButton
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() => this.props.toggleTutorielModal("Sponsors")}
+            >
+              Tutoriel
+            </FButton>
+          )}
+        </div>
         <Row className="sponsor-images">
           {sponsors &&
             deduplicatedSponsors.map((sponsor, key) => {

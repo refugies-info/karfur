@@ -347,9 +347,7 @@ export class dispositifValidateModal extends Component {
               type="tuto"
               name={"play-circle-outline"}
               className="ml-10"
-              onClick={() => {
-                this.props.openTuto();
-              }}
+              onClick={() => this.props.toggleTutorielModal("Tags")}
             >
               Tutoriel
             </FButton>
@@ -360,7 +358,7 @@ export class dispositifValidateModal extends Component {
               name="arrow-back"
               fill={variables.noir}
               className="mr-10"
-              onClick={() => this.props.toggle()}
+              onClick={this.props.toggle}
             >
               Retour
             </FButton>

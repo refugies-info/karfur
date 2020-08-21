@@ -20,6 +20,7 @@
         font-size: 40px;
         line-height: 51px;
       }
+      margin-bottom: 24px;
     }
     .modal-body {
       padding: 0;
@@ -37,6 +38,10 @@
       margin-top: 20px;
       border: none;
       padding: 0;
+      justify-content: space-between;
+    }
+    .decompte {
+      margin-top: 16px;
     }
   }
 }
