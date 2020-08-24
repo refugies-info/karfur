@@ -40,7 +40,7 @@ const contenuParagraphe = (props) => {
           return (
             <div
               className={
-                "sous-contenu-wrapper" +
+                "sous-contenu-wrapper" + (subitem.type === "map" ? " sous-contenu-map" : "")+
                 (item.type === "cards" ? " sous-contenu-cards" : "") +
                 (props.inVariante && disableEdit
                   ? " in-variante" +
