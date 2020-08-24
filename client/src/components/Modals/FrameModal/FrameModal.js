@@ -46,8 +46,11 @@ export class FrameModal extends Component {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            margin: "40px",
+            padding: "40px",
             background: "#FBFBFB",
+            filter: "drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.15))",
+            borderTopLeftRadius: "12px",
+            borderTopRightRadius: "12px",
           }}
         >
           <FButton
