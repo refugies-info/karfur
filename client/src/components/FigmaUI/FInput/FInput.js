@@ -31,6 +31,7 @@ const FInput = (props) => {
           className={[
             props.inputClassName,
             props.prepend ? "has-prepend" : "",
+            props.newSize ? "new-size" : "",
           ].join(" ")}
         />
         {props.append && (

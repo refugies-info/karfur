@@ -612,6 +612,7 @@ const PhoneAndEmailFields = (props) => (
       id="email"
       type="email"
       placeholder={props.t("Login.Entrez votre email", "Entrez votre email")}
+      newSize
     />
     <FInput
       prepend
@@ -621,6 +622,7 @@ const PhoneAndEmailFields = (props) => (
       id="phone"
       type="phone"
       placeholder={props.t("Login.Entrez votre numéro", "Entrez votre numéro")}
+      newSize
     />
     <FButton
       type="grey"
@@ -628,6 +630,7 @@ const PhoneAndEmailFields = (props) => (
       disabled={!props.phone || !props.email}
     >
       {props.t("Suivant", "Suivant")}
+      newSize
     </FButton>
   </>
 );
@@ -681,6 +684,7 @@ const UsernameField = (props) => (
           autoComplete="username"
           error={props.noUserError}
           errorIcon="person"
+          newSize
           {...props}
         />
       </div>
@@ -727,6 +731,7 @@ const CodeField = (props) => (
           placeholder={props.t("Login.Entrez votre code", "Entrez votre code")}
           error={props.wrongAdminCodeError}
           errorIcon="lock"
+          newSize
         />
       </div>
       <div style={{ marginLeft: "10px" }}>
@@ -779,6 +784,7 @@ const PasswordField = (props) => (
           autoComplete="new-password"
           error={props.wrongPasswordError}
           errorIcon="lock"
+          newSize
         />
       </div>
       <div style={{ marginLeft: "10px" }}>

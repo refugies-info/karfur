@@ -499,13 +499,14 @@ const EmailField = (props) => (
       placeholder={props.t("Register.Votre email", "Votre email")}
       error={props.notEmailError}
       errorIcon="at"
+      newSize
     />
   </>
 );
 
 const PseudoPrecisions = styled.div`
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 16px;
+  line-height: 20px;
   color: #828282;
   margin-top: 16px;
 `;
@@ -529,6 +530,7 @@ const UsernameField = (props) => (
           autoComplete="username"
           error={props.pseudoAlreadyTaken}
           errorIcon="person"
+          newSize
           {...props}
         />
       </div>
@@ -616,6 +618,7 @@ const PasswordField = (props) => {
             id={props.id}
             placeholder={props.t("Login.Mot de passe", "Mot de passe")}
             autoComplete="new-password"
+            newSize
           />
         </div>
         <div style={{ marginLeft: "10px" }}>

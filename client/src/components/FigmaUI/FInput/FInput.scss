@@ -32,6 +32,10 @@ $borderRadius: 12px;
     }
     &.has-prepend {
       padding-left: 50px;
+
+      &.new-size {
+        height: 52px;
+      }
     }
     &:hover {
       background: $gris;
