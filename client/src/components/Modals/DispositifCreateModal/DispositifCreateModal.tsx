@@ -10,6 +10,7 @@ interface Props {
   toggle: () => void;
   show: boolean;
   typeContenu: string;
+  navigateToCommentContribuer: () => void;
 }
 const IconContainer = styled.div`
   position: absolute;
@@ -152,9 +153,12 @@ export class DispositifCreateModal extends Component<Props, StateType> {
             <FButton
               type="outline-black"
               name="log-out-outline"
-              onClick={this.props.toggle}
+              onClick={() => {
+                this.props.toggle();
+                this.props.navigateToCommentContribuer();
+              }}
             >
-              Quitter
+              Quitter l'éditeur
             </FButton>
             <div>
               {step > 1 && (

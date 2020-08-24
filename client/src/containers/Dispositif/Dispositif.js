@@ -2025,6 +2025,9 @@ export class Dispositif extends Component {
                 show={this.state.showDispositifCreateModal}
                 toggle={this.toggleDispositifCreateModal}
                 typeContenu={typeContenu}
+                navigateToCommentContribuer={() =>
+                  this.props.history.push("/comment-contribuer")
+                }
               />
             )}
             <DispositifValidateModal
