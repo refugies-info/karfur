@@ -1,15 +1,15 @@
-.text-center{
-  text-align:center;
+.text-center {
+  text-align: center;
 }
 
-@media (min-width: 992px){
+@media (min-width: 992px) {
   .header-fixed .app-body {
     margin-top: 55px;
   }
 }
 
-@media (min-width: 992px){
-  .aside-menu-lg-show.aside-menu-fixed .Content{
+@media (min-width: 992px) {
+  .aside-menu-lg-show.aside-menu-fixed .Content {
     margin-right: 250px;
   }
 }
@@ -19,14 +19,14 @@ div.app-body {
   flex-direction: row;
   flex-grow: 1;
   overflow: initial;
-  @media (max-width: 991.98px){
+  @media (max-width: 991.98px) {
     margin-top: 0;
   }
 
   .Content {
-    margin-top: 60px;
-    margin-left:0px;
-    margin-right:0px;
+    margin-top: 75px;
+    margin-left: 0px;
+    margin-right: 0px;
     min-height: 100vh;
     height: 100%;
     flex: 1;
@@ -40,7 +40,7 @@ div.app-body {
     border-radius: 27px;
   }
 
-  .rank-label-container [type=file] {
+  .rank-label-container [type="file"] {
     cursor: inherit;
     display: block;
     font-size: 999px;
@@ -54,9 +54,7 @@ div.app-body {
     top: 0;
   }
 
-  .rank-label-container [type=file] {
+  .rank-label-container [type="file"] {
     cursor: pointer;
   }
 }
-
-

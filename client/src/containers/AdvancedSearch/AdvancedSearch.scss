@@ -15,6 +15,7 @@
     display: flex;
     justify-content: center;
     z-index: 3;
+    margin-top: 15px;
     @include media-max("sm-limit") {
       font-size: 12px;
     }
