@@ -835,24 +835,28 @@ const ImgModal = (props) => (
       </InputGroup>
     </div>
     <div className="form-field">
-      <span>
-        3. Texte alternatif à l’image<sup>*</sup>
-        <EVAIcon
-          className="float-right"
-          id="alt-tooltip"
-          name="info"
-          fill={variables.noir}
-        />
-        <Tooltip
-          placement="top"
-          isOpen={props.tooltipOpen}
-          target="alt-tooltip"
-          toggle={props.toggleTooltip}
-        >
-          Ce texte est utile pour les personnes malvoyantes ou en cas de
-          non-chargement de l’image.
-        </Tooltip>
-      </span>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "row",
+          alignItems: "center",
+        }}
+      >
+        <span>
+          3. Texte alternatif à l’image<sup>*</sup>
+        </span>
+        <div style={{ marginLeft: "5px", marginBottom: "2px" }}>
+          <EVAIcon id="alt-tooltip" name="info" fill={variables.noir} />
+          <Tooltip
+            isOpen={props.tooltipOpen}
+            target="alt-tooltip"
+            toggle={props.toggleTooltip}
+          >
+            Ce texte est utile pour les personnes malvoyantes ou en cas de
+            non-chargement de l’image.
+          </Tooltip>
+        </div>
+      </div>
       <InputGroup>
         <EVAIcon
           className="input-icon"
