@@ -51,15 +51,14 @@ export class FrameModal extends Component {
           }}
         >
           <FButton
-            // href="https://help.refugies.info/fr/article/choisir-les-themes-creer-une-fiche-dispositif-210-rkbgfq"
             href={tutoUrl}
             type="dark"
-            name="expand-outline"
+            name="external-link"
             fill={variables.noir}
             className="mr-10"
             target="_blank"
           >
-            Voir en entier
+            Voir dans le centre d'aide
           </FButton>
           <FButton
             type="tuto"
@@ -70,9 +69,6 @@ export class FrameModal extends Component {
             Compris !
           </FButton>
         </div>
-        <div
-          style={{ width: "100%", height: "2px", backgroundColor: "#828282" }}
-        />
         <iframe
           style={{
             alignSelf: "center",
