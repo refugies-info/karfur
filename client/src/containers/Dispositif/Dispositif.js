@@ -1711,7 +1711,7 @@ export class Dispositif extends Component {
 
             {!inVariante && (
               <Row className="tags-row backgroundColor-darkColor">
-                <Col lg="8" md="8" sm="8" xs="8" className="col right-bar">
+                <Col style={{display: "flex", alignItems: "center"}} lg="8" md="8" sm="8" xs="8" className="col right-bar">
                   {
                     // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
                     (disableEdit || typeContenu !== "demarche") && (

@@ -17,6 +17,7 @@ const InnerButton = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 16px;
+  padding: 5px;
   line-height: 20px;
 `;
 
@@ -93,11 +94,12 @@ export class Tags extends Component<Props> {
           if (tag) {
             var tagIcon = filtres.tags.find((elem) => elem.name === tag.name);
             return (
-              <div style={{ alignSelf: "flex-end" }}>
+              <div>
                 <TagButton
                   key={key}
                   className={"mr-10 color" + (tag.short ? "" : " full")}
                   color={(tag.short || "").replace(/ /g, "-")}
+                  noHover
                 >
                   <InnerButton>
                     {tagIcon ? (
@@ -132,7 +134,7 @@ export class Tags extends Component<Props> {
             className="plus-button ml-10 icon"
             onClick={this.props.openTag}
           >
-            <Streamline name={"tag"} width={22} height={22} />
+            <Streamline name={"tag"} width={26} height={26} />
           </Button>
         ) : !this.props.disableEdit && (this.props.tags || []).length < 1 ? (
           <Button className="plus-button ml-10" onClick={this.props.openTag}>
@@ -141,7 +143,7 @@ export class Tags extends Component<Props> {
           </Button>
         ) : null}
         {!this.props.disableEdit && this.props.displayTuto && (
-          <div style={{ marginLeft: "8px", marginTop: "10px" }}>
+          <div style={{ marginLeft: "8px"}}>
             <FButton
               type="tuto"
               name={"play-circle-outline"}
