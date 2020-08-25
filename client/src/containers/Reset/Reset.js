@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import track from "react-tracking";
-import { Card, CardBody, Form, Progress } from "reactstrap";
+import { Form, Progress } from "reactstrap";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
@@ -14,20 +14,68 @@ import FButton from "../../components/FigmaUI/FButton/FButton";
 import FInput from "../../components/FigmaUI/FInput/FInput";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
+import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
+import i18n from "../../i18n";
+
+import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 
 import "./Reset.scss";
 import variables from "scss/colors.scss";
+import styled from "styled-components";
+import img from "../../assets/login_background.svg";
+import {
+  fetchLanguesActionCreator,
+  toggleLangueActionCreator,
+  toggleLangueModalActionCreator,
+} from "../../services/Langue/langue.actions";
+
+const StyledHeader = styled.div`
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  color: #0421b1;
+  margin-top: 64px;
+`;
+
+const StyledEnterValue = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+`;
+
+const MainContainer = styled.div`
+  display: flex;
+  align-items: center;
+  flex: 1;
+  flex-direction: column;
+  background-image: url(${img});
+  background-color: #fbfbfb;
+`;
+
+const ContentContainer = styled.div`
+  padding-top: 100px;
+`;
+
+const ErrorMessageContainer = styled.div`
+  color: #e8140f;
+  font-size: 16px;
+  line-height: 20px;
+  margin-top: 16px;
+`;
 
 class Reset extends Component {
   state = {
     newPassword: "",
-    cpassword: "",
     isLoading: true,
     isError: false,
     reset_password_token: "",
   };
 
   componentDidMount() {
+    this.props.fetchLangues();
+
     const reset_password_token = _.get(this.props, "match.params.id");
     if (!reset_password_token) {
       return this.setState({ isLoading: false, isError: true });
@@ -46,9 +94,7 @@ class Reset extends Component {
           this.setState({ isLoading: false, isError: true });
         }
       })
-      .catch((e) => {
-        // eslint-disable-next-line no-console
-        console.log(e);
+      .catch(() => {
         this.setState({ isLoading: false, isError: true });
       });
   }
@@ -66,14 +112,7 @@ class Reset extends Component {
         timer: 1500,
       });
     }
-    if (this.state.newPassword !== this.state.cpassword) {
-      return Swal.fire({
-        title: "Oops...",
-        text: "Les mots de passes ne correspondent pas !",
-        type: "error",
-        timer: 1500,
-      });
-    }
+
     if ((passwdCheck(this.state.newPassword) || {}).score < 1) {
       return Swal.fire({
         title: "Oops...",
@@ -84,7 +123,6 @@ class Reset extends Component {
     }
     const user = {
       newPassword: this.state.newPassword,
-      cpassword: this.state.cpassword,
       reset_password_token: this.state.reset_password_token,
     };
     API.set_new_password(user)
@@ -108,22 +146,21 @@ class Reset extends Component {
   handleChange = (event) =>
     this.setState({ [event.target.id]: event.target.value });
 
-  upcoming = () =>
-    Swal.fire({
-      title: "Oh non!",
-      text: "Cette fonctionnalité n'est pas encore disponible",
-      type: "error",
-      timer: 1500,
-    });
+  changeLanguage = (lng) => {
+    this.props.toggleLangue(lng);
+    if (this.props.i18n.getResourceBundle(lng, "translation")) {
+      this.props.i18n.changeLanguage(lng);
+    } else {
+      // eslint-disable-next-line no-console
+      console.log("Resource not found in i18next.");
+    }
+    if (this.props.showLangModal) {
+      this.props.toggleLangueModal();
+    }
+  };
 
   render() {
-    const {
-      passwordVisible,
-      newPassword,
-      cpassword,
-      isLoading,
-      isError,
-    } = this.state;
+    const { passwordVisible, newPassword, isLoading, isError } = this.state;
     const { t } = this.props;
     if (isLoading) {
       return (
@@ -161,107 +198,184 @@ class Reset extends Component {
         </div>
       );
     }
-    const password_check = newPassword && passwdCheck(newPassword);
+
     return (
-      <div className="app flex-row align-items-center reset">
-        <div className="login-wrapper">
-          <Card className="card-login main-card">
-            <CardBody>
-              <Form onSubmit={this.send}>
-                <h5>
-                  {t(
-                    "Login.Réinitialisez votre mot de passe",
-                    "Réinitialisez votre mot de passe"
-                  )}
-                </h5>
-                <div className="texte-small mb-12">
-                  {t(
-                    "Login.Renseignez ici le nouveau mot de passe souhaité",
-                    "Renseignez ici le nouveau mot de passe souhaité"
-                  )}
-                </div>
-                <FInput
-                  prepend
-                  append
-                  autoFocus
-                  prependName="lock-outline"
-                  appendName={
-                    passwordVisible ? "eye-off-2-outline" : "eye-outline"
-                  }
-                  type={passwordVisible ? "text" : "password"}
-                  inputClassName="password-input"
-                  onAppendClick={this.togglePasswordVisibility}
-                  id="newPassword"
-                  placeholder={t(
-                    "Login.Nouveau mot de passe",
-                    "Nouveau mot de passe"
-                  )}
-                  autoComplete="new-password"
-                  value={newPassword}
-                  onChange={this.handleChange}
-                />
-                {newPassword && password_check && (
-                  <div className="score-wrapper mb-10">
-                    <span className="mr-10">{t("Login.Force", "Force")} :</span>
-                    <Progress
-                      color={colorAvancement(password_check.score / 4)}
-                      value={((0.1 + password_check.score / 4) * 100) / 1.1}
-                    />
-                  </div>
-                )}
-                <FInput
-                  prepend
-                  append
-                  prependName="lock-outline"
-                  appendName={
-                    passwordVisible ? "eye-off-2-outline" : "eye-outline"
-                  }
-                  inputClassName="password-input"
-                  type={passwordVisible ? "text" : "password"}
-                  onAppendClick={this.togglePasswordVisibility}
-                  id="cpassword"
-                  placeholder={t(
-                    "Login.Confirmez le nouveau mot de passe",
-                    "Confirmez le nouveau mot de passe"
-                  )}
-                  autoComplete="cpassword"
-                  value={cpassword}
-                  onChange={this.handleChange}
-                />
-                <div className="footer-buttons">
-                  <FButton
-                    type="dark"
-                    name="log-in"
-                    color="dark"
-                    className="connect-btn"
-                    disabled={!newPassword}
-                  >
-                    {t("Valider", "Valider")}
-                  </FButton>
-                </div>
-              </Form>
-            </CardBody>
-          </Card>
-          <NavLink to="/">
+      <div className="app">
+        <MainContainer>
+          <ContentContainer>
+            {/* <GoBackButton step={step} goBack={this.goBack} t={t} /> */}
+            <LanguageBtn />
             <FButton
-              type="outline"
-              name="corner-up-left-outline"
-              className="retour-btn"
+              tag={"a"}
+              href="https://help.refugies.info/fr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-btn"
+              type="help"
+              name="question-mark-circle-outline"
+              fill={variables.noir}
             >
-              {t("Login.Retour à l'accueil", "Retour à l'accueil")}
+              {t("Login.Centre d'aide", "Centre d'aide")}
             </FButton>
-          </NavLink>
-        </div>
+            <StyledHeader>
+              {this.props.t(
+                "Reset.Réinitialisation du mot de passe",
+                "Réinitialisation du mot de passe"
+              )}
+            </StyledHeader>
+            <StyledEnterValue>
+              {this.props.t(
+                "Reset.Entrez votre nouveau mot de passe",
+                "Entrez votre nouveau mot de passe"
+              )}
+            </StyledEnterValue>
+            <Form onSubmit={this.send}>
+              <PasswordField
+                id="newPassword"
+                value={newPassword}
+                onChange={this.handleChange}
+                passwordVisible={passwordVisible}
+                onClick={this.togglePasswordVisibility}
+                t={t}
+                weakPasswordError={null}
+              />
+            </Form>
+          </ContentContainer>
+          <LanguageModal
+            show={this.props.showLangModal}
+            current_language={i18n.language}
+            toggle={this.props.toggleLangueModal}
+            changeLanguage={this.changeLanguage}
+            languages={{
+              ...this.props.langues.filter((x) => x.avancement >= 0.5),
+              unavailable: { unavailable: true },
+            }}
+          />
+        </MainContainer>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = { fetchUser: fetchUserActionCreator };
+const ProgressContainer = styled.div`
+  width: 30%;
+  margin-right: 16px;
+`;
+
+const StrenghText = styled.div`
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+`;
+
+const getStrength = (score) => {
+  if (score > 0.75) {
+    return "Fort";
+  } else if (score > 0.25) {
+    return "Moyen";
+  }
+
+  return "Faible";
+};
+
+const PasswordField = (props) => {
+  // from 0 to 4, 4 is very strong
+  const passwordScore = passwdCheck(props.value).score;
+  return (
+    <>
+      <div
+        style={{
+          flexDirection: "row",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ marginTop: "10px" }}>
+          <FInput
+            prepend
+            append
+            autoFocus={props.id === "password"}
+            prependName="lock-outline"
+            appendName={
+              props.passwordVisible ? "eye-off-2-outline" : "eye-outline"
+            }
+            inputClassName="password-input"
+            onAppendClick={props.onClick}
+            {...props}
+            type={props.passwordVisible ? "text" : "password"}
+            id={props.id}
+            placeholder={props.t("Login.Mot de passe", "Mot de passe")}
+            autoComplete="new-password"
+            newSize
+          />
+        </div>
+        <div style={{ marginLeft: "10px" }}>
+          <FButton
+            type="validate-light"
+            name="checkmark-outline"
+            disabled={passwordScore < 1}
+          >
+            {props.t("Valider", "Valider")}
+          </FButton>
+        </div>
+      </div>
+      {props.value && (
+        <>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: "16px",
+            }}
+          >
+            <ProgressContainer>
+              <Progress
+                color={colorAvancement(passwordScore / 4)}
+                value={((0.1 + passwordScore / 4) * 100) / 1.1}
+              />
+            </ProgressContainer>
+            <StrenghText>
+              {props.t(
+                "Register." + getStrength(passwordScore / 4),
+                getStrength(passwordScore / 4)
+              )}
+            </StrenghText>
+          </div>
+        </>
+      )}
+      {((props.value && passwordScore < 1) || props.weakPasswordError) && (
+        <ErrorMessageContainer>
+          <b>
+            {props.t(
+              "Register.Mot de passe trop faible",
+              "Oups, votre mot de passe est trop faible."
+            )}
+          </b>
+        </ErrorMessageContainer>
+      )}
+    </>
+  );
+};
+
+const mapDispatchToProps = {
+  fetchUser: fetchUserActionCreator,
+  fetchLangues: fetchLanguesActionCreator,
+  toggleLangue: toggleLangueActionCreator,
+  toggleLangueModal: toggleLangueModalActionCreator,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    languei18nCode: state.langue.languei18nCode,
+    showLangModal: state.langue.showLangModal,
+    langues: state.langue.langues,
+  };
+};
 
 export default track(
   {
     page: "Reset",
   },
   { dispatchOnMount: true }
-)(connect(null, mapDispatchToProps)(withTranslation()(Reset)));
+)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Reset)));

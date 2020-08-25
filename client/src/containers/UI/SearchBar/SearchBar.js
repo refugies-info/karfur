@@ -128,7 +128,7 @@ export class SearchBar extends React.Component {
 
   render() {
     const { isArray, structures, createNewCta, withEye, t } = this.props;
-    const { isFocused, value } = this.state;
+    const { value } = this.state;
 
     const renderSuggestion = (suggestion, { query }) => {
       if (suggestion.createNew) {
@@ -221,7 +221,7 @@ export class SearchBar extends React.Component {
           inputProps={inputProps}
           onSuggestionSelected={this.onSuggestionSelected}
         />
-        {this.props.loupe && !isFocused && (
+        {this.props.loupe && (
           <i className="fa fa-search text-grey loupe-btn" aria-hidden="true" />
         )}
         {this.props.validate && (

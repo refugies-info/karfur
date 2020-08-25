@@ -45,6 +45,7 @@ export interface PropsBeforeInjection {
   filtres: any;
   toggleTutorielModal: (arg: string) => void;
   displayTuto: boolean;
+  addMapBtn: boolean;
 }
 
 /**
@@ -208,9 +209,9 @@ export const contenuDispositif = (props: Props) => {
             // lecture and edition of childrens and info cards
             <ContenuParagraphe item={item} keyValue={key} {...props} />
           }
-          <button className="anchor" id={"item-" + key}>
+{/*           <button className="anchor" id={"item-" + key}>
             {item.title}
-          </button>
+          </button> */}
         </div>
       );
     }

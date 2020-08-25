@@ -612,6 +612,7 @@ const PhoneAndEmailFields = (props) => (
       id="email"
       type="email"
       placeholder={props.t("Login.Entrez votre email", "Entrez votre email")}
+      newSize
     />
     <FInput
       prepend
@@ -621,13 +622,15 @@ const PhoneAndEmailFields = (props) => (
       id="phone"
       type="phone"
       placeholder={props.t("Login.Entrez votre numéro", "Entrez votre numéro")}
+      newSize
     />
     <FButton
-      type="grey"
+      type="validate-light"
       name="arrow-forward-outline"
       disabled={!props.phone || !props.email}
     >
       {props.t("Suivant", "Suivant")}
+      newSize
     </FButton>
   </>
 );
@@ -681,12 +684,13 @@ const UsernameField = (props) => (
           autoComplete="username"
           error={props.noUserError}
           errorIcon="person"
+          newSize
           {...props}
         />
       </div>
       <div style={{ marginLeft: "10px" }}>
         <FButton
-          type="grey"
+          type="validate-light"
           name="arrow-forward-outline"
           disabled={!props.value}
         >
@@ -727,11 +731,12 @@ const CodeField = (props) => (
           placeholder={props.t("Login.Entrez votre code", "Entrez votre code")}
           error={props.wrongAdminCodeError}
           errorIcon="lock"
+          newSize
         />
       </div>
       <div style={{ marginLeft: "10px" }}>
         <FButton
-          type="validate"
+          type="validate-light"
           name="checkmark-outline"
           disabled={!props.value}
         >
@@ -779,11 +784,12 @@ const PasswordField = (props) => (
           autoComplete="new-password"
           error={props.wrongPasswordError}
           errorIcon="lock"
+          newSize
         />
       </div>
       <div style={{ marginLeft: "10px" }}>
         <FButton
-          type="validate"
+          type="validate-light"
           name="checkmark-outline"
           disabled={!props.value}
         >
