@@ -11,10 +11,20 @@ import {
 import MapParagraphe from "../../../../containers/Dispositif/MapParagraphe/MapParagraphe";
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
-import FButton from "../../../FigmaUI/FButton/FButton";
+import TagButton from "../../../FigmaUI/TagButton/TagButton";
 
 import variables from "scss/colors.scss";
 import { cardTitles } from "../../../../containers/Dispositif/data";
+import styled from "styled-components";
+
+const InnerButton = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  padding: 5px;
+  line-height: 20px;
+`;
 
 const contenuParagraphe = (props) => {
   const { disableEdit, ...bprops } = props;
@@ -40,7 +50,8 @@ const contenuParagraphe = (props) => {
           return (
             <div
               className={
-                "sous-contenu-wrapper" + (subitem.type === "map" ? " sous-contenu-map" : "")+
+                "sous-contenu-wrapper" +
+                (subitem.type === "map" ? " sous-contenu-map" : "") +
                 (item.type === "cards" ? " sous-contenu-cards" : "") +
                 (props.inVariante && disableEdit
                   ? " in-variante" +
@@ -316,10 +327,11 @@ const contenuParagraphe = (props) => {
                 </div>
               )}
               {props.addMapBtn && props.keyValue === 3 && !props.disableEdit ? (
-                <AddModuleBtn
-                  addItem={props.addItem}
-                  subkey={item.children ? item.children.length : 0}
-                />
+                <AddMoudleBtnTag
+                addItem={props.addItem}
+                subkey={item.children ? item.children.length : 0}
+                tag={props.mainTag}
+              />
               ) : null}
             </div>
           );
@@ -341,17 +353,32 @@ const contenuParagraphe = (props) => {
   );
 };
 
-const AddModuleBtn = (props) => {
+const AddMoudleBtnTag = (props) => {
   return (
-    <div className="plus-wrapper ml-15">
-      <FButton
+    <div className={"ml-15 mt-10 mb-10"}>
+      <TagButton
+        className={"mr-10 color" + (props.tag.short ? "" : " full")}
+        color={props.tag.short === "noImage" ? "dark" : (props.tag.short || "").replace(/ /g, "-")}
         onClick={() => props.addItem(3, "map", props.subkey)}
-        type="dark"
-        name="plus-circle-outline"
-        className="mt-10"
       >
-        Ajouter un point de contacte
-      </FButton>
+        <InnerButton>
+            <div
+              style={{
+                display: "flex",
+                marginRight: 10,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <EVAIcon
+                className="delete-icon cursor-pointer"
+                name="pin-outline"
+                fill={variables.blanc}
+              />
+            </div>
+          {"Ajouter une carte interactive"}
+        </InnerButton>
+      </TagButton>
     </div>
   );
 };

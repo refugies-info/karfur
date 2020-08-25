@@ -1,10 +1,4 @@
 import React, { PureComponent } from "react";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
 import _ from "lodash";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
@@ -261,7 +255,7 @@ class MapParagraphe extends PureComponent {
               alignItems: "center",
             }}
           >
-            <div>
+            <div style={{marginLeft: 30}}>
               <EVAIcon name="pin-outline" className="mr-10" />
               <b>
                 {t(
@@ -281,31 +275,6 @@ class MapParagraphe extends PureComponent {
               </FButton>
             )}
           </div>
-          {markers.length > 0 && (
-            <ButtonDropdown
-              isOpen={this.state.isDropdownOpen}
-              toggle={this.toggleDropdown}
-              className="content-title"
-            >
-              <DropdownToggle
-                caret
-                color="transparent"
-                className="dropdown-btn"
-              >
-                <span>{this.state.dropdownValue}</span>
-              </DropdownToggle>
-              <DropdownMenu>
-                {markers.map((marker, key) => (
-                  <DropdownItem
-                    key={key}
-                    onClick={() => this.selectLocation(key)}
-                  >
-                    {marker.name}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </ButtonDropdown>
-          )}
           {!disableEdit && (
             <EVAIcon
               onClick={() =>
