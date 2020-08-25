@@ -7,6 +7,9 @@ import "./DraftModal.scss";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import FButton from "../../FigmaUI/FButton/FButton";
 
+import imageGreen from "../../../assets/illu_bonasavoir.svg";
+import imageViolet from "../../../assets/illu_pasdepanique.svg";
+
 interface Props {
   toggle: () => void;
   show: boolean;
@@ -40,37 +43,58 @@ const InfosContainer = styled.div`
   margin-bottom: 32px;
 `;
 
-const InfoContainer = styled.div`
+const InfoContainerLeft = styled.div`
   background: #ffffff;
   border-radius: 12px;
   padding: 16px;
+  width: 280px;
+  background-image: url(${imageViolet});
+`;
+
+const InfoContainerRight = styled.div`
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  width: 280px;
+  background-image: url(${imageGreen});
 `;
 
 const Title = styled.div`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  color: #828282;
+  color: ${(props) => props.color};
 `;
 
 const SubTitle = styled.div`
   font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  margin-top: 56px;
+  font-size: 18px;
+  line-height: 23px;
+  margin-top: 190px;
 `;
 
 const InfoFooter = styled.div`
   display: flex;
   flex-direction: row;
-  background: #f2f2f2;
-  border-radius: 6px;
+  background: #ffffff;
   font-weight: bold;
-  font-size: 22px;
-  line-height: 28px;
-  color: #0421b1;
+  font-size: 18px;
+  line-height: 23px;
   margin-top: 8px;
   padding: 8px;
+  width: 212px;
+`;
+
+const InfoFooterRight = styled.div`
+  display: flex;
+  flex-direction: row;
+  background: #ffffff;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  margin-top: 8px;
+  padding: 8px;
+  width: 136px;
 `;
 
 const ButtonsContainer = styled.div`
@@ -83,17 +107,39 @@ interface InfoProps {
   subTitle: string;
   footer: string;
   footerIcon: string;
+  color: string;
 }
 
-const Info = (props: InfoProps) => (
-  <InfoContainer>
-    <Title>{props.title}</Title>
+const InfoLeft = (props: InfoProps) => (
+  <InfoContainerLeft>
+    <Title color={props.color}>{props.title}</Title>
     <SubTitle>{props.subTitle}</SubTitle>
     <InfoFooter>
-      <EVAIcon name={props.footerIcon} fill={"#0421B1"} className="mr-8" />
-      {props.footer}
+      <EVAIcon
+        size={10}
+        name={props.footerIcon}
+        fill={props.color}
+        className="mr-8"
+      />
+      <div style={{ color: props.color }}>{props.footer}</div>
     </InfoFooter>
-  </InfoContainer>
+  </InfoContainerLeft>
+);
+
+const InfoRight = (props: InfoProps) => (
+  <InfoContainerRight>
+    <Title color={props.color}>{props.title}</Title>
+    <SubTitle>{props.subTitle}</SubTitle>
+    <InfoFooterRight>
+      <EVAIcon
+        size={10}
+        name={props.footerIcon}
+        fill={props.color}
+        className="mr-8"
+      />
+      <div style={{ color: props.color }}>{props.footer}</div>
+    </InfoFooterRight>
+  </InfoContainerRight>
 );
 
 export const DraftModal = (props: Props) => (
@@ -105,18 +151,20 @@ export const DraftModal = (props: Props) => (
       <Header>Sauvegarder</Header>
       <InfosContainer>
         <div style={{ marginRight: "8px" }}>
-          <Info
+          <InfoLeft
             title="Pas de panique !"
-            subTitle="Votre fiche est sauvegardée automatiquement :"
+            subTitle="Votre fiche est sauvegardée automatiquement"
             footer="toutes les 3 minutes"
             footerIcon="clock-outline"
+            color="#3D2884"
           />
         </div>
-        <Info
+        <InfoRight
           title="Bon à savoir"
-          subTitle="Une fois sauvegardée, votre fiche est visible dans l'espace :"
+          subTitle="Une fois sauvegardée, votre fiche est visible dans l'espace"
           footer="Mes fiches"
           footerIcon="file-text-outline"
+          color="#149193"
         />
       </InfosContainer>
       <ButtonsContainer>
