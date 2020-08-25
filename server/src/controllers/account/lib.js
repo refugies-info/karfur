@@ -391,7 +391,7 @@ function change_password(req, res) {
   ) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-    if (query._id !== req.user._id) {
+    if (query._id.toString() !== req.user._id.toString()) {
       return res.status(401).json({ text: "Token invalide" });
     }
     if (newUser.newPassword !== newUser.cpassword) {
@@ -499,10 +499,10 @@ function reset_password(req, res) {
 }
 
 function set_new_password(req, res) {
-  const { newPassword, cpassword, reset_password_token } = req.body;
+  const { newPassword, reset_password_token } = req.body;
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!newPassword || !cpassword || !reset_password_token) {
+  } else if (!newPassword || !reset_password_token) {
     return res.status(400).json({ text: "Requête invalide" });
   }
 
@@ -533,11 +533,7 @@ function set_new_password(req, res) {
             "Cet utilisateur n'est pas autorisé à modifier son mot de passe ainsi, merci de contacter l'administrateur du site",
         });
       }
-      if (newPassword !== cpassword) {
-        return res
-          .status(400)
-          .json({ text: "Les mots de passe ne correspondent pas" });
-      } else if ((passwdCheck(newPassword) || {}).score < 1) {
+      if ((passwdCheck(newPassword) || {}).score < 1) {
         return res
           .status(401)
           .json({ text: "Le mot de passe est trop faible" });
