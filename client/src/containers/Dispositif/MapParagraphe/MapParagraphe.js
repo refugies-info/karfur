@@ -29,7 +29,7 @@ class MapParagraphe extends PureComponent {
     dropdownValue: _.get(this.props.subitem.markers, "0.ville"),
     zoom: 5,
     center: { lat: 48.856614, lng: 2.3522219 },
-    selectedMarker: -1,
+    selectedMarker: 0,
     showModal: false,
     showSidebar: false,
     markerInfo: markerInfo,
@@ -186,12 +186,13 @@ class MapParagraphe extends PureComponent {
   // eslint-disable-next-line no-console
   handleError = (e) => console.log(e);
 
-  handleMarkerChange = (e, idx) =>
+  handleMarkerChange = (e, idx) => {
     this.setState({
       markerInfo: this.state.markerInfo.map((x, i) =>
         i === idx ? { ...x, value: e.target.value } : x
       ),
     });
+  }
 
   validateMarker = () => {
     if (
@@ -347,9 +348,9 @@ class MapParagraphe extends PureComponent {
               else if (
                 ((key === 5 &&
                 (field.value === "00 11 22 33 44" ||
-                  field.value === "Non renseigné")) ||
+                  field.value === "Non renseigné" || field.value === "")) ||
                   (key === 4 && (field.value === "ajouter@votreemail.fr" ||
-                  field.value === "Non renseigné"))) && disableEdit
+                  field.value === "Non renseigné" || field.value === ""))) && disableEdit
               ) {
                 return (
                   <React.Fragment key={key}>
