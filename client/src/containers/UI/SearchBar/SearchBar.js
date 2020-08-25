@@ -128,7 +128,7 @@ export class SearchBar extends React.Component {
 
   render() {
     const { isArray, structures, createNewCta, withEye, t } = this.props;
-    const { isFocused, value } = this.state;
+    const { value } = this.state;
 
     const renderSuggestion = (suggestion, { query }) => {
       if (suggestion.createNew) {
