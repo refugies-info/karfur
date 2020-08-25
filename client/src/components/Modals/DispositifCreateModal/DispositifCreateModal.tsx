@@ -145,9 +145,20 @@ export class DispositifCreateModal extends Component<Props, StateType> {
             </div>
           )}
           <VideoContainer>
-            <FButton type="tuto" name={"play-circle-outline"}>
+            {/* <FButton type="tuto" name={"play-circle-outline"}>
               Découvrir en vidéo
             </FButton>
+             */}
+            <div
+              style={{
+                fontWeight: "bold",
+                fontSize: "22px",
+                lineHeight: "28px",
+                color: "#5e5e5e",
+              }}
+            >
+              Bientôt disponible
+            </div>
           </VideoContainer>
           <ButtonsContainer>
             <FButton
