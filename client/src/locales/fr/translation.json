@@ -299,6 +299,10 @@
 
     "Choisissez un pseudonyme": "Choisissez un pseudonyme"
   },
+  "Reset": {
+    "Entrez votre nouveau mot de passe": "Entrez votre nouveau mot de passe",
+    "Réinitialisation du mot de passe": "Réinitialisation du mot de passe"
+  },
   "Register": {
     "Pseudo usage": "Ce pseudonyme apparaîtra sur les fiches auxquelles vous allez contribuer.",
     "Exemples": "Exemples : Guillaume Dupont, Nora78",
