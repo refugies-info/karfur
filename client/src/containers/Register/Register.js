@@ -383,7 +383,7 @@ export class Register extends Component {
               <>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <FButton
-                    type="validate"
+                    type="validate-light"
                     name="checkmark-outline"
                     disabled={!email}
                     onClick={this.send}
@@ -536,7 +536,7 @@ const UsernameField = (props) => (
       </div>
       <div style={{ marginLeft: "10px" }}>
         <FButton
-          type="grey"
+          type="validate-light"
           name="arrow-forward-outline"
           disabled={!props.value}
         >
@@ -623,7 +623,7 @@ const PasswordField = (props) => {
         </div>
         <div style={{ marginLeft: "10px" }}>
           <FButton
-            type="grey"
+            type="validate-light"
             name="checkmark-outline"
             disabled={passwordScore < 1}
           >

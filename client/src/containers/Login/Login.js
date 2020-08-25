@@ -625,7 +625,7 @@ const PhoneAndEmailFields = (props) => (
       newSize
     />
     <FButton
-      type="grey"
+      type="validate-light"
       name="arrow-forward-outline"
       disabled={!props.phone || !props.email}
     >
@@ -690,7 +690,7 @@ const UsernameField = (props) => (
       </div>
       <div style={{ marginLeft: "10px" }}>
         <FButton
-          type="grey"
+          type="validate-light"
           name="arrow-forward-outline"
           disabled={!props.value}
         >
@@ -736,7 +736,7 @@ const CodeField = (props) => (
       </div>
       <div style={{ marginLeft: "10px" }}>
         <FButton
-          type="validate"
+          type="validate-light"
           name="checkmark-outline"
           disabled={!props.value}
         >
@@ -789,7 +789,7 @@ const PasswordField = (props) => (
       </div>
       <div style={{ marginLeft: "10px" }}>
         <FButton
-          type="validate"
+          type="validate-light"
           name="checkmark-outline"
           disabled={!props.value}
         >

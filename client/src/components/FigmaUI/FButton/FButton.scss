@@ -110,14 +110,37 @@ body .figma-btn {
     }
   }
 
-  &.grey {
-    background: #828282;
+  &.validate-light {
+    background: $vert;
     color: $blancSimple;
+    svg {
+      fill: $blancSimple;
+    }
+    &:not(:disabled):not(.disabled):hover {
+      transition: all 0.5s ease;
+      background: $vertFonce;
+      color: $blancSimple;
+      box-shadow: none;
+      svg {
+        fill: $blancSimple;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+      background: $vert;
+    }
 
-    &:hover {
+    &:disabled {
       background: #828282;
       color: $blancSimple;
 
+      &:hover {
+        background-color: #828282;
+        color: $blancSimple;
+        svg {
+          fill: $blancSimple;
+        }
+      }
       svg {
         fill: $blancSimple;
       }
