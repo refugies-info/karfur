@@ -53,7 +53,7 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 41px;
+  margin-bottom: ${(props) => (props.step === 2 ? "33px" : "41px")};
 `;
 
 const Subtitle = styled.div`
@@ -116,7 +116,7 @@ export class DispositifCreateModal extends Component<Props, StateType> {
           <IconContainer onClick={this.props.toggle}>
             <Icon name="close-outline" fill="#3D3D3D" size="large" />
           </IconContainer>
-          <HeaderContainer>
+          <HeaderContainer step={this.state.step}>
             <Header>Nouvelle fiche</Header>
             <div>
               <TypeContenuContainer>
