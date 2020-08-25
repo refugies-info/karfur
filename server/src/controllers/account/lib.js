@@ -472,16 +472,16 @@ function reset_password(req, res) {
 
         let html = "<p>Bonjour " + username + ",</p>";
         html +=
-          "<p>Vous avez demandé à réinitialiser votre mot de passe sur la plateforme 'Réfugiés.info'</p>";
-        html +=
-          "<p>Pour ce faire, merci de cliquer sur le lien ci-dessous ou de le copier-coller dans votre navigateur</p>";
+          "<p>Vous avez demandé à réinitialiser votre mot de passe sur la plateforme <a href=" +
+          url +
+          "><b>Réfugiés.info</b>.</a> </p>";
+        html += "<p>Merci de cliquer sur le lien ci-dessous :</p>";
         html += "<a href=" + newUrl + ">" + newUrl + "</a>";
-        html += "<p>A bientôt,</p>";
-        html += "<p>Les administrateurs de Réfugiés.info</p>";
+        html += "<p>À bientôt,</p>";
+        html += "<p>L'équipe Réfugiés.info</p>";
 
         mailOptions.html = html;
-        mailOptions.subject =
-          "Réfugiés.info - réinitialisation du mot de passe";
+        mailOptions.subject = "Réinitialisation de votre mot de passe";
         mailOptions.to = user.email;
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {

@@ -383,7 +383,7 @@ export class Register extends Component {
               <>
                 <div style={{ display: "flex", flexDirection: "row" }}>
                   <FButton
-                    type="validate"
+                    type="validate-light"
                     name="checkmark-outline"
                     disabled={!email}
                     onClick={this.send}
@@ -499,13 +499,14 @@ const EmailField = (props) => (
       placeholder={props.t("Register.Votre email", "Votre email")}
       error={props.notEmailError}
       errorIcon="at"
+      newSize
     />
   </>
 );
 
 const PseudoPrecisions = styled.div`
-  font-size: 12px;
-  line-height: 15px;
+  font-size: 16px;
+  line-height: 20px;
   color: #828282;
   margin-top: 16px;
 `;
@@ -529,12 +530,13 @@ const UsernameField = (props) => (
           autoComplete="username"
           error={props.pseudoAlreadyTaken}
           errorIcon="person"
+          newSize
           {...props}
         />
       </div>
       <div style={{ marginLeft: "10px" }}>
         <FButton
-          type="grey"
+          type="validate-light"
           name="arrow-forward-outline"
           disabled={!props.value}
         >
@@ -616,11 +618,12 @@ const PasswordField = (props) => {
             id={props.id}
             placeholder={props.t("Login.Mot de passe", "Mot de passe")}
             autoComplete="new-password"
+            newSize
           />
         </div>
         <div style={{ marginLeft: "10px" }}>
           <FButton
-            type="grey"
+            type="validate-light"
             name="checkmark-outline"
             disabled={passwordScore < 1}
           >
