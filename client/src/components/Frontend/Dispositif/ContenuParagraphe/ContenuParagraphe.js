@@ -326,7 +326,7 @@ const contenuParagraphe = (props) => {
                   </Row>
                 </div>
               )}
-              {props.addMapBtn && props.keyValue === 3 && !props.disableEdit ? (
+              {props.addMapBtn && props.keyValue === 3 && !props.disableEdit && !(props.typeContenu === "demarche") ? (
                 <AddMoudleBtnTag
                 addItem={props.addItem}
                 subkey={item.children ? item.children.length : 0}
