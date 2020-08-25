@@ -469,6 +469,9 @@ $imgHeight: 350px;
   .sous-contenu-wrapper {
     padding: 0 40px;
   }
+  .sous-contenu-wrapper.sous-contenu-map {
+    padding: 0;
+  }
   .sous-contenu-wrapper.sous-contenu-cards {
     flex: 0 0 33%;
     padding: 0;

@@ -45,6 +45,7 @@ export interface PropsBeforeInjection {
   filtres: any;
   toggleTutorielModal: (arg: string) => void;
   displayTuto: boolean;
+  addMapBtn: boolean;
 }
 
 /**

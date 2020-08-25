@@ -11,6 +11,7 @@ import {
 import MapParagraphe from "../../../../containers/Dispositif/MapParagraphe/MapParagraphe";
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
+import FButton from "../../../FigmaUI/FButton/FButton";
 
 import variables from "scss/colors.scss";
 import { cardTitles } from "../../../../containers/Dispositif/data";
@@ -39,7 +40,7 @@ const contenuParagraphe = (props) => {
           return (
             <div
               className={
-                "sous-contenu-wrapper" +
+                "sous-contenu-wrapper" + (subitem.type === "map" ? " sous-contenu-map" : "")+
                 (item.type === "cards" ? " sous-contenu-cards" : "") +
                 (props.inVariante && disableEdit
                   ? " in-variante" +
@@ -314,9 +315,16 @@ const contenuParagraphe = (props) => {
                   </Row>
                 </div>
               )}
+              {props.addMapBtn && props.keyValue === 3 && !props.disableEdit ? (
+                <AddModuleBtn
+                  addItem={props.addItem}
+                  subkey={item.children ? item.children.length : 0}
+                />
+              ) : null}
             </div>
           );
         })}
+
       {!props.disableEdit &&
         item.type === "cards" &&
         item.children &&
@@ -329,6 +337,21 @@ const contenuParagraphe = (props) => {
             cards={cards}
           />
         )}
+    </div>
+  );
+};
+
+const AddModuleBtn = (props) => {
+  return (
+    <div className="plus-wrapper ml-15">
+      <FButton
+        onClick={() => props.addItem(3, "map", props.subkey)}
+        type="dark"
+        name="plus-circle-outline"
+        className="mt-10"
+      >
+        Ajouter un point de contacte
+      </FButton>
     </div>
   );
 };

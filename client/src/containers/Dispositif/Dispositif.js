@@ -177,6 +177,7 @@ export class Dispositif extends Component {
     finalValidation: false,
     tutorielSection: "",
     displayTuto: true,
+    addMapBtn: true,
   };
 
   componentDidMount() {
@@ -739,6 +740,10 @@ export class Dispositif extends Component {
     this.setState({ uiArray: uiArray, tKeyValue: key, tSubkey: subkey });
   };
 
+  showMapButton = (show) => {
+    this.setState({addMapBtn: show})
+  }
+
   addItem = (key, type = "paragraphe", subkey = null) => {
     let prevState = [...this.state.menu];
     let uiArray = [...this.state.uiArray];
@@ -780,6 +785,7 @@ export class Dispositif extends Component {
           isMapLoaded: false,
           markers: [],
         };
+        this.setState({addMapBtn: false});
       } else if (type === "paragraph" && !newChild.content) {
         newChild = {
           title: "Un exemple de paragraphe",
@@ -863,7 +869,10 @@ export class Dispositif extends Component {
     this.setState({ menu: prevState });
   };
 
-  deleteCard = (key, subkey) => {
+  deleteCard = (key, subkey, type) => {
+    if (type === "map") {
+      this.setState({addMapBtn: true});
+    }
     const prevState = [...this.state.menu];
     prevState[key].children = prevState[key].children.filter(
       (x, index) => index !== subkey
@@ -1824,6 +1833,7 @@ export class Dispositif extends Component {
                 )}
 
                 <ContenuDispositif
+                  showMapButton={this.showMapButton}
                   updateUIArray={this.updateUIArray}
                   handleContentClick={this.handleContentClick}
                   handleMenuChange={this.handleMenuChange}
@@ -1852,6 +1862,7 @@ export class Dispositif extends Component {
                   upcoming={this.upcoming}
                   toggleTutorielModal={this.toggleTutorielModal}
                   displayTuto={this.state.displayTuto}
+                  addMapBtn={this.state.addMapBtn}
                   // TO DO : remove spread state
                   {...this.state}
                 />

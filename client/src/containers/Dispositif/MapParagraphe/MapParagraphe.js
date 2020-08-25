@@ -40,6 +40,7 @@ class MapParagraphe extends PureComponent {
     if (!this.props.disableEdit && !this.props.subitem.isMapLoaded) {
       // this.setState({showModal:true})
     }
+    this.props.showMapButton(false);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -206,7 +207,7 @@ class MapParagraphe extends PureComponent {
       });
       return;
     }
-    if (
+/*     if (
       (!this.state.markerInfo[4].value ||
         this.state.markerInfo[4].value === "ajouter@votreemail.fr") &&
       (!this.state.markerInfo[5].value ||
@@ -220,7 +221,7 @@ class MapParagraphe extends PureComponent {
         timer: 1500,
       });
       return;
-    }
+    } */
     let markers = [...this.state.markers];
     markers[this.state.selectedMarker] = {
       ...markers[this.state.selectedMarker],
@@ -307,7 +308,7 @@ class MapParagraphe extends PureComponent {
           {!disableEdit && (
             <EVAIcon
               onClick={() =>
-                this.props.deleteCard(this.props.keyValue, this.props.subkey)
+                this.props.deleteCard(this.props.keyValue, this.props.subkey, "map")
               }
               name="close-circle"
               fill={variables.error}
@@ -340,22 +341,51 @@ class MapParagraphe extends PureComponent {
             }
           >
             {markerInfo.map((field, key) => {
-              return (
-                <React.Fragment key={key}>
-                  <label>
-                    {t("Dispositif." + field.label, field.label)}
-                    {field.mandatory && <sup>*</sup>}
-                  </label>
-                  <ContentEditable
-                    html={field.value || ""}
-                    disabled={disableEdit}
-                    onChange={(e) => this.handleMarkerChange(e, key)}
-                    className={
-                      "marker-input color-darkColor " + field.customClass
-                    }
-                  />
-                </React.Fragment>
-              );
+              if (key === 3 && (field.value === "Saisir des informations complémentaires si besoin" || field.value === "") && disableEdit) {
+                return
+              }
+              else if (
+                ((key === 5 &&
+                (field.value === "00 11 22 33 44" ||
+                  field.value === "Non renseigné")) ||
+                  (key === 4 && (field.value === "ajouter@votreemail.fr" ||
+                  field.value === "Non renseigné"))) && disableEdit
+              ) {
+                return (
+                  <React.Fragment key={key}>
+                    <label>
+                      {t("Dispositif." + field.label, field.label)}
+                      {field.mandatory && <sup>*</sup>}
+                    </label>
+                    <ContentEditable
+                      html={"Non renseigné" || ""}
+                      disabled={disableEdit}
+                      onChange={(e) => this.handleMarkerChange(e, key)}
+                      className={
+                        "marker-input color-darkColor " + field.customClass
+                      }
+                    />
+                  </React.Fragment>
+                );
+  // eslint-disable-next-line
+              } else {
+                return (
+                  <React.Fragment key={key}>
+                    <label>
+                      {t("Dispositif." + field.label, field.label)}
+                      {field.mandatory && <sup>*</sup>}
+                    </label>
+                    <ContentEditable
+                      html={field.value || ""}
+                      disabled={disableEdit}
+                      onChange={(e) => this.handleMarkerChange(e, key)}
+                      className={
+                        "marker-input color-darkColor " + field.customClass
+                      }
+                    />
+                  </React.Fragment>
+                );
+              }
             })}
             {!disableEdit && (
               <FButton
