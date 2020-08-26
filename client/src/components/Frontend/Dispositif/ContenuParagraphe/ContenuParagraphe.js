@@ -42,6 +42,7 @@ const contenuParagraphe = (props) => {
     <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
       {item.children &&
         item.children.map((subitem, subkey) => {
+          const childrenLength = item.children.length;
           const newDisableEdit =
             disableEdit ||
             (props.typeContenu === "demarche" &&
@@ -51,7 +52,7 @@ const contenuParagraphe = (props) => {
             <div
               className={
                 "sous-contenu-wrapper" +
-                (subitem.type === "map" ? " sous-contenu-map" : "") +
+                (subitem.type === "map" ? " sous-contenu-map" : (item.title === "Comment je m'engage ?" && childrenLength === (subkey + 1)) ? " mb-15" : "") +
                 (item.type === "cards" ? " sous-contenu-cards" : "") +
                 (props.inVariante && disableEdit
                   ? " in-variante" +
