@@ -69,7 +69,7 @@ const VideoContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  margin-top:  ${(props) => (props.step === 2 ? "32px" : "40px")}
   margin-bottom: 82px;
 `;
 const YellowText = styled.div`
@@ -144,7 +144,7 @@ export class DispositifCreateModal extends Component<Props, StateType> {
               <Subtitle>pour écrire.</Subtitle>
             </div>
           )}
-          <VideoContainer>
+          <VideoContainer step={this.state.step}>
             {/* <FButton type="tuto" name={"play-circle-outline"}>
               Découvrir en vidéo
             </FButton>
