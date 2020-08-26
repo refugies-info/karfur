@@ -5,6 +5,7 @@ import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
 import { DispositifContent } from "../../../../@types/interface";
+import FButton from "../../../FigmaUI/FButton/FButton";
 
 interface UiObject {
   accordion: boolean;
@@ -42,6 +43,9 @@ export interface PropsBeforeInjection {
   removeItem: any;
   ttsActive: any;
   filtres: any;
+  toggleTutorielModal: (arg: string) => void;
+  displayTuto: boolean;
+  addMapBtn: boolean;
 }
 
 /**
@@ -124,16 +128,37 @@ export const contenuDispositif = (props: Props) => {
               <button className="anchor" id={"item-head-" + key}>
                 {item.title}
               </button>
-              <h3
-                className={
-                  "contenu-title color-darkColor" + (key !== 0 ? " mt-20" : "")
-                }
-              >
-                {
-                  // display title of dispositif
-                }
-                {item.title && t("Dispositif." + item.title, item.title)}
-              </h3>
+              <div style={{ display: "flex", flexDirection: "row" }}>
+                <h3
+                  className={
+                    "contenu-title color-darkColor" +
+                    (key !== 0 ? " mt-20" : "")
+                  }
+                >
+                  {
+                    // display title of dispositif
+                  }
+                  {item.title && t("Dispositif." + item.title, item.title)}
+                </h3>
+                {!disableEdit &&
+                  props.typeContenu === "dispositif" &&
+                  props.displayTuto && (
+                    <div
+                      style={{
+                        marginTop: key !== 0 ? "40px" : "0px",
+                        marginLeft: "18px",
+                      }}
+                    >
+                      <FButton
+                        type="tuto"
+                        name={"play-circle-outline"}
+                        onClick={() => props.toggleTutorielModal(item.title)}
+                      >
+                        Tutoriel
+                      </FButton>
+                    </div>
+                  )}
+              </div>
               {
                 // EditableParagraph displays content (but not children) in lecture mode and deal with edition in edition mode
                 item.content !== null && item.content !== "null" && (
@@ -184,9 +209,9 @@ export const contenuDispositif = (props: Props) => {
             // lecture and edition of childrens and info cards
             <ContenuParagraphe item={item} keyValue={key} {...props} />
           }
-          <button className="anchor" id={"item-" + key}>
+{/*           <button className="anchor" id={"item-" + key}>
             {item.title}
-          </button>
+          </button> */}
         </div>
       );
     }

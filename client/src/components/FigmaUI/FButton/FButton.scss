@@ -22,8 +22,6 @@ body .figma-btn {
     font-size: 11px;
   }
 
-  // Ici on précise le comportement des icônes avec svg et fill
-
   &.default svg {
     fill: $noir;
   }
@@ -42,15 +40,16 @@ body .figma-btn {
       color: $noir;
     }
 
-    // Ici on précise le comportement du focus, il s'applique sur toutes les variantes
+    // // Ici on précise le comportement du focus, il s'applique sur toutes les variantes
+    // on enleve le focus state bleu pour linstant
     &:focus {
-      color: $blancSimple;
-      background: $focus;
+      // color: $blancSimple;
+      // background: $focus;
       outline: 0;
       border: 0.5px solid transparent;
-      svg {
-        fill: $blancSimple;
-      }
+      // svg {
+      //   fill: $blancSimple;
+      // }
     }
 
     // Ici on précise le comportement "disabled"
@@ -68,6 +67,22 @@ body .figma-btn {
         svg {
           fill: $grisFonce;
         }
+      }
+    }
+  }
+
+  &.white {
+    background: $blancSimple;
+    color: $noir;
+    svg {
+      fill: $noir;
+    }
+    &:hover {
+      transition: all 0.5s ease;
+      background: $noir;
+      color: $blancSimple;
+      svg {
+        fill: $blancSimple;
       }
     }
   }
@@ -96,6 +111,43 @@ body .figma-btn {
     }
   }
 
+  &.validate-light {
+    background: $vert;
+    color: $blancSimple;
+    svg {
+      fill: $blancSimple;
+    }
+    &:not(:disabled):not(.disabled):hover {
+      transition: all 0.5s ease;
+      background: $vertFonce;
+      color: $blancSimple;
+      box-shadow: none;
+      svg {
+        fill: $blancSimple;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
+      background: $vert;
+    }
+
+    &:disabled {
+      background: #828282;
+      color: $blancSimple;
+
+      &:hover {
+        background-color: #828282;
+        color: $blancSimple;
+        svg {
+          fill: $blancSimple;
+        }
+      }
+      svg {
+        fill: $blancSimple;
+      }
+    }
+  }
+
   // Validate
 
   &.validate {
@@ -116,6 +168,37 @@ body .figma-btn {
     &:not(:disabled):not(.disabled):active {
       box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
       background: $vert;
+    }
+  }
+
+  &.login {
+    background: #0421b1;
+    color: $blancSimple;
+    svg {
+      fill: $blancSimple;
+    }
+    &:hover {
+      background: $blancSimple;
+      color: #0421b1;
+      border-color: #0421b1;
+      svg {
+        fill: #0421b1;
+      }
+    }
+  }
+
+  &.signup {
+    background: $blancSimple;
+    color: #0421b1;
+    svg {
+      fill: #0421b1;
+    }
+    &:hover {
+      background: #0421b1;
+      color: $blancSimple;
+      svg {
+        fill: $blancSimple;
+      }
     }
   }
 
@@ -197,7 +280,6 @@ body .figma-btn {
   &.theme {
     background: $noir;
     color: $blanc;
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
     svg {
       fill: $blanc;
     }
@@ -311,6 +393,27 @@ body .figma-btn {
     }
     &:not(:disabled):not(.disabled):active {
       background: $erreur;
+    }
+  }
+
+  // Ici on précise le comportement des icônes avec svg et fill
+  &.tuto {
+    background: $focus;
+    color: $blancSimple;
+    outline: 0;
+    border: 0.5px solid transparent;
+    svg {
+      fill: $blancSimple;
+    }
+    &:hover {
+      background: #d2edfc;
+      color: $focus;
+      svg {
+        fill: $focus;
+      }
+    }
+    &:not(:disabled):not(.disabled):active {
+      background: $focus;
     }
   }
 

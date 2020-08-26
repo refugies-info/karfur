@@ -285,7 +285,13 @@ class EditableParagraph extends Component {
             data-subkey={props.subkey}
             data-target={props.target}
             className="animated fadeIn"
-            html={props.content || ""} // innerHTML of the editable div
+            html={
+              props.content ||
+              props.t(
+                "Dispositif.Rien à afficher",
+                "Cet élément est vide, il n'y a rien à afficher"
+              )
+            } // innerHTML of the editable div
             placeholder={props.placeholder}
             disabled={props.disableEdit} // use true to disable editing
             onChange={props.handleMenuChange} // handle innerHTML change

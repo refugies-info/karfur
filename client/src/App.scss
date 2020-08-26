@@ -20,7 +20,7 @@ $theme-list: (
   Formation-pro #095411 #e8f4e9 #7dc690,
   Études #378e04 #e8f7cd #adea5c,
   Mobilité #ea6206 #fff0e7 #f9d1b7,
-  Bénévolat #0A54BF#FFEEEE #FDA8AD,
+  Bénévolat #0A54BF#FFEEEE #fda8ad,
   Rencontre #a50455 #ffebf5 #fda5c4,
   Loisir #ab2dc1 #f6e6fc #e595f9,
   Culture #ce310d #fff0e7 #fec396,
@@ -187,6 +187,9 @@ html body {
   .bg-gris {
     background: $gris;
   }
+  .bg-dark-gris {
+    background: $grisFonce;
+  }
   .bg-standby {
     background: $standby;
   }
@@ -242,5 +245,10 @@ html body {
     .texte-light-#{nth($value, 1)} {
       color: nth($value, 2);
     }
+  }
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }

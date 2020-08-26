@@ -1,40 +1,53 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
 $placeholderColor: $noir;
 $borderRadius: 12px;
 
-.figma-input-group{
-  .icon-prepend{
+.figma-input-group {
+  .icon-prepend {
     position: absolute;
     z-index: 10;
     top: 50%;
     transform: translateY(-50%);
-    left:20px;
+    left: 15px;
   }
-  .icon-append{
+  .icon-append {
     position: absolute;
     z-index: 10;
     top: 50%;
     transform: translateY(-50%);
-    right:20px;
+    right: 15px;
     cursor: pointer;
   }
-  input, textarea{
-    background: #FFFFFF;
+  input,
+  textarea {
+    background: #ffffff;
     border-radius: $borderRadius;
     border: 0.5px solid $noir;
     color: $noir;
     outline: none;
-    &.has-prepend{
-      padding-left: 50px;
+
+    &.error {
+      border: 0.5px solid $error;
     }
-    &:hover{
+    &.has-prepend {
+      padding-left: 45px;
+
+      &.new-size {
+        height: 52px;
+      }
+    }
+    &:hover {
       background: $gris;
       border: 0.5px solid $noir;
     }
-    &:focus::-webkit-input-placeholder { color:$grisFonce; }
-    &:focus:-moz-placeholder { color:$grisFonce; }
-    &:focus { 
+    &:focus::-webkit-input-placeholder {
+      color: $grisFonce;
+    }
+    &:focus:-moz-placeholder {
+      color: $grisFonce;
+    }
+    &:focus {
       box-shadow: none;
       background: $blanc;
     }

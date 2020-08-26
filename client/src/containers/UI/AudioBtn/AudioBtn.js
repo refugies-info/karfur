@@ -34,14 +34,16 @@ class AudioBtn extends Component {
           onClick={this.toggleAudio}
         >
           {showAudioSpinner ? (
-            <Spinner color="light" className="audio-spinner" />
+            <Spinner color="light" className="audio-spinner ml-15" />
           ) : (
             <EVAIcon
               name={"volume-up" + (ttsActive ? "" : "-outline")}
               fill={ttsActive ? "#FFFFFF" : variables.noir}
               id="audioBtn"
+              className="ml-15"
             />
           )}
+          <div className="ecouter-text">Écouter</div>
         </div>
       );
     }

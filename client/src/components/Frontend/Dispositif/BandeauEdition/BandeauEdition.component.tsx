@@ -7,6 +7,7 @@ import "./BandeauEdition.scss";
 // @ts-ignore
 import variables from "scss/colors.scss";
 import { Props } from "./BandeauEdition.container";
+import { BandeauEditionWithoutVariante } from "./BandeauEditionWithoutVariante";
 
 export interface PropsBeforeInjection {
   withHelp: boolean;
@@ -19,6 +20,13 @@ export interface PropsBeforeInjection {
   toggleHelp: () => void;
   toggleCheckingVariante: () => void;
   toggleInVariante: () => void;
+  typeContenu: "dispositif" | "demarche";
+  toggleTutoriel: () => void;
+  displayTuto: boolean;
+  toggleDispositifValidateModal: () => void;
+  toggleDraftModal: () => void;
+  tKeyValue: number;
+  toggleDispositifCreateModal: () => void;
 }
 export class BandeauEdition extends React.Component<Props> {
   /**
@@ -106,6 +114,25 @@ export class BandeauEdition extends React.Component<Props> {
         </div>
       );
     }
+
+    if (
+      !props.checkingVariante &&
+      !props.inVariante &&
+      props.typeContenu === "dispositif"
+    ) {
+      return (
+        <BandeauEditionWithoutVariante
+          typeContenu={props.typeContenu}
+          toggleTutoriel={props.toggleTutoriel}
+          displayTuto={props.displayTuto}
+          toggleDispositifValidateModal={props.toggleDispositifValidateModal}
+          toggleDraftModal={props.toggleDraftModal}
+          tKeyValue={props.tKeyValue}
+          toggleDispositifCreateModal={props.toggleDispositifCreateModal}
+        />
+      );
+    }
+
     // yellow banner when user is selecting which part of the demarche he wants to change
     return (
       <div className="bandeau-edition">

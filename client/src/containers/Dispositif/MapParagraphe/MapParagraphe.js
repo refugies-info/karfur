@@ -1,10 +1,4 @@
 import React, { PureComponent } from "react";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
 import _ from "lodash";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
@@ -29,7 +23,7 @@ class MapParagraphe extends PureComponent {
     dropdownValue: _.get(this.props.subitem.markers, "0.ville"),
     zoom: 5,
     center: { lat: 48.856614, lng: 2.3522219 },
-    selectedMarker: -1,
+    selectedMarker: 0,
     showModal: false,
     showSidebar: false,
     markerInfo: markerInfo,
@@ -40,6 +34,7 @@ class MapParagraphe extends PureComponent {
     if (!this.props.disableEdit && !this.props.subitem.isMapLoaded) {
       // this.setState({showModal:true})
     }
+    this.props.showMapButton(false);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -185,12 +180,13 @@ class MapParagraphe extends PureComponent {
   // eslint-disable-next-line no-console
   handleError = (e) => console.log(e);
 
-  handleMarkerChange = (e, idx) =>
+  handleMarkerChange = (e, idx) => {
     this.setState({
       markerInfo: this.state.markerInfo.map((x, i) =>
         i === idx ? { ...x, value: e.target.value } : x
       ),
     });
+  }
 
   validateMarker = () => {
     if (
@@ -206,7 +202,7 @@ class MapParagraphe extends PureComponent {
       });
       return;
     }
-    if (
+/*     if (
       (!this.state.markerInfo[4].value ||
         this.state.markerInfo[4].value === "ajouter@votreemail.fr") &&
       (!this.state.markerInfo[5].value ||
@@ -220,7 +216,7 @@ class MapParagraphe extends PureComponent {
         timer: 1500,
       });
       return;
-    }
+    } */
     let markers = [...this.state.markers];
     markers[this.state.selectedMarker] = {
       ...markers[this.state.selectedMarker],
@@ -244,47 +240,45 @@ class MapParagraphe extends PureComponent {
     const { markers, markerInfo } = this.state;
     const { t, disableEdit } = this.props;
     return (
-      <div className="map-paragraphe" id="map-paragraphe">
+      <div
+        className="map-paragraphe"
+        id="map-paragraphe"
+        onMouseEnter={() => this.props.updateUIArray(-5)}
+      >
         <div className="where-header backgroundColor-darkColor">
-          <div>
-            <EVAIcon name="pin-outline" className="mr-10" />
-            <b>
-              {t(
-                "Dispositif.Trouver un interlocuteur",
-                "Trouver un interlocuteur"
-              )}{" "}
-              :{" "}
-            </b>
-          </div>
-          {markers.length > 0 && (
-            <ButtonDropdown
-              isOpen={this.state.isDropdownOpen}
-              toggle={this.toggleDropdown}
-              className="content-title"
-            >
-              <DropdownToggle
-                caret
-                color="transparent"
-                className="dropdown-btn"
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              flex: 1,
+              alignItems: "center",
+            }}
+          >
+            <div style={{marginLeft: 30}}>
+              <EVAIcon name="pin-outline" className="mr-10" />
+              <b>
+                {t(
+                  "Dispositif.Trouver un interlocuteur",
+                  "Trouver un interlocuteur"
+                )}{" "}
+                :{" "}
+              </b>
+            </div>
+            {!this.props.disableEdit && this.props.displayTuto && (
+              <FButton
+                type="tuto"
+                name={"play-circle-outline"}
+                onClick={() => this.props.toggleTutorielModal("Map")}
               >
-                <span>{this.state.dropdownValue}</span>
-              </DropdownToggle>
-              <DropdownMenu>
-                {markers.map((marker, key) => (
-                  <DropdownItem
-                    key={key}
-                    onClick={() => this.selectLocation(key)}
-                  >
-                    {marker.name}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </ButtonDropdown>
-          )}
+                Tutoriel
+              </FButton>
+            )}
+          </div>
           {!disableEdit && (
             <EVAIcon
               onClick={() =>
-                this.props.deleteCard(this.props.keyValue, this.props.subkey)
+                this.props.deleteCard(this.props.keyValue, this.props.subkey, "map")
               }
               name="close-circle"
               fill={variables.error}
@@ -317,22 +311,51 @@ class MapParagraphe extends PureComponent {
             }
           >
             {markerInfo.map((field, key) => {
-              return (
-                <React.Fragment key={key}>
-                  <label>
-                    {t("Dispositif." + field.label, field.label)}
-                    {field.mandatory && <sup>*</sup>}
-                  </label>
-                  <ContentEditable
-                    html={field.value || ""}
-                    disabled={disableEdit}
-                    onChange={(e) => this.handleMarkerChange(e, key)}
-                    className={
-                      "marker-input color-darkColor " + field.customClass
-                    }
-                  />
-                </React.Fragment>
-              );
+              if (key === 3 && (field.value === "Saisir des informations complémentaires si besoin" || field.value === "") && disableEdit) {
+                return
+              }
+              else if (
+                ((key === 5 &&
+                (field.value === "00 11 22 33 44" ||
+                  field.value === "Non renseigné" || field.value === "")) ||
+                  (key === 4 && (field.value === "ajouter@votreemail.fr" ||
+                  field.value === "Non renseigné" || field.value === ""))) && disableEdit
+              ) {
+                return (
+                  <React.Fragment key={key}>
+                    <label>
+                      {t("Dispositif." + field.label, field.label)}
+                      {field.mandatory && <sup>*</sup>}
+                    </label>
+                    <ContentEditable
+                      html={"Non renseigné" || ""}
+                      disabled={disableEdit}
+                      onChange={(e) => this.handleMarkerChange(e, key)}
+                      className={
+                        "marker-input color-darkColor " + field.customClass
+                      }
+                    />
+                  </React.Fragment>
+                );
+  // eslint-disable-next-line
+              } else {
+                return (
+                  <React.Fragment key={key}>
+                    <label>
+                      {t("Dispositif." + field.label, field.label)}
+                      {field.mandatory && <sup>*</sup>}
+                    </label>
+                    <ContentEditable
+                      html={field.value || ""}
+                      disabled={disableEdit}
+                      onChange={(e) => this.handleMarkerChange(e, key)}
+                      className={
+                        "marker-input color-darkColor " + field.customClass
+                      }
+                    />
+                  </React.Fragment>
+                );
+              }
             })}
             {!disableEdit && (
               <FButton

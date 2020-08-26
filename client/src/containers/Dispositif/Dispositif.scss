@@ -18,7 +18,7 @@ $imgHeight: 350px;
   }
 
   .banniere-dispo {
-    margin-top: -60px;
+    margin-top: -75px;
     padding-top: 60px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -161,29 +161,25 @@ $imgHeight: 350px;
         .audio-icon-wrapper {
           z-index: 3;
         }
+      }
+
+      .top-right-edition {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        font-weight: bold;
+        color: "red";
+
         .top-icon-wrapper {
-          position: relative;
-          width: 40px;
-          height: 40px;
-          box-sizing: border-box;
-          border-radius: 50%;
-          cursor: pointer;
-          user-select: none;
-          transition: all 0.2s ease;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          z-index: 3;
-          background: #f2f2f2;
-          box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
+          padding-top: 10px;
         }
       }
     }
   }
   .tags-bloc {
-    margin-top: 10px;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     padding-right: 0;
     padding-left: 0;
   }
@@ -231,6 +227,9 @@ $imgHeight: 350px;
     }
   }
 
+  .list-group-flush ul {
+    padding-left: 0px;
+  }
   .list-group.list-group-flush .list-group {
     padding-left: 30px;
     border: none;
@@ -258,7 +257,7 @@ $imgHeight: 350px;
     .sticky-affix {
       position: sticky;
       position: -webkit-sticky;
-      top: 60px;
+      top: 90px;
       display: flex;
       flex-wrap: wrap;
       max-width: 100%;
@@ -410,10 +409,10 @@ $imgHeight: 350px;
   h3.contenu-title {
     line-height: normal;
     color: $darkColor;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
   .mt-20 {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   .contenu {
@@ -470,6 +469,9 @@ $imgHeight: 350px;
   .sous-contenu-wrapper {
     padding: 0 40px;
   }
+  .sous-contenu-wrapper.sous-contenu-map {
+    padding: 0;
+  }
   .sous-contenu-wrapper.sous-contenu-cards {
     flex: 0 0 33%;
     padding: 0;
@@ -502,10 +504,12 @@ $imgHeight: 350px;
   }
 
   .tags-row {
-    padding: 15px 60px;
+    padding-right: 60px;
+    padding-left: 60px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     background: $darkColor;
     margin-right: 0;
-    margin-top: -10px;
     .dropdown-menu.show {
       border-radius: 12px;
       border: none;
@@ -534,7 +538,6 @@ $imgHeight: 350px;
       line-height: normal;
       color: #ffffff;
       height: 40px;
-      margin-top: 10px;
       width: fit-content;
       display: flex;
       align-items: center;
@@ -592,7 +595,7 @@ $imgHeight: 350px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 20px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
 
@@ -693,7 +696,6 @@ $imgHeight: 350px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 120px;
     padding: 35px 40px;
     font-size: 18px;
     @include media-max("lg-limit") {

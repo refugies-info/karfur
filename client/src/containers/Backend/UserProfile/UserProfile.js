@@ -594,22 +594,6 @@ export class UserProfile extends Component {
               </span>
             </AnchorLink>
           )}
-          {false && (
-            <AnchorLink
-              href="#mes-contributions"
-              offset={anchorOffset}
-              className="header-anchor d-inline-flex justify-content-center align-items-center"
-            >
-              <EVAIcon
-                name="message-circle-outline"
-                fill={variables.noir}
-                className="header-icon"
-              />{" "}
-              <span className="hideOnPhone">
-                {t("Tables.Messages", "Messages")}
-              </span>
-            </AnchorLink>
-          )}
         </div>
 
         <div className="profile-content" id="mon-profil">

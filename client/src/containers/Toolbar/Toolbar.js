@@ -31,6 +31,7 @@ import Streamline from "../../assets/streamline";
 
 import "./Toolbar.scss";
 import variables from "scss/colors.scss";
+import { logger } from "../../logger";
 
 const InnerButton = styled.div`
   display: flex;
@@ -154,14 +155,14 @@ export class Toolbar extends React.Component {
                       this.navigateTo("/backend/user-dash-contrib")
                     }
                   >
-                    {t("Toolbar.Espace rédaction", "Espace rédaction")}
+                    {t("Toolbar.Mes fiches", "Mes fiches")}
                   </DropdownItem>
                 )}
                 {(expertTrad || traducteur) && (
                   <DropdownItem
                     onClick={() => this.navigateTo("/backend/user-dashboard")}
                   >
-                    {t("Toolbar.Espace traduction", "Espace traduction")}
+                    {t("Toolbar.Mes traductions", "Mes traductions")}
                   </DropdownItem>
                 )}
                 {membreStruct && (
@@ -189,22 +190,32 @@ export class Toolbar extends React.Component {
               </DropdownMenu>
             </ButtonDropdown>
           ) : (
-            <NavLink
-              to={{
-                pathname: "/login",
-                state: { redirectTo: "/backend/user-profile" },
-              }}
-            >
-              <FButton
-                type="outline-black"
-                className="connect-btn"
-                name={windowWidth < breakpoints.tabletUp && "log-in-outline"}
-                fill={variables.noir}
+            <>
+              <NavLink
+                to={{
+                  pathname: "/register",
+                }}
               >
-                {windowWidth >= breakpoints.tabletUp &&
-                  t("Toolbar.Connexion", "Connexion")}
-              </FButton>
-            </NavLink>
+                <FButton
+                  type="signup"
+                  name={"person-add-outline"}
+                  className="mr-10"
+                  onClick={() => logger.info("Click on Inscription")}
+                >
+                  {windowWidth >= breakpoints.tabletUp &&
+                    t("Toolbar.Inscription", "Inscription")}
+                </FButton>
+              </NavLink>
+              <NavLink
+                to={{
+                  pathname: "/login",
+                }}
+              >
+                <FButton type="login" name={"log-in-outline"}>
+                  {t("Toolbar.Connexion", "Connexion")}
+                </FButton>
+              </NavLink>
+            </>
           )}
         </div>
 

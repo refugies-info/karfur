@@ -15,7 +15,7 @@ const languageBtn = (props) => {
 
   return (
     <FButton
-      type="outline-black"
+      type="white"
       className="language-btn mr-10"
       onClick={props.toggleLangueModal}
     >

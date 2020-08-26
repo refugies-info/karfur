@@ -27,6 +27,7 @@ import _ from "lodash";
 
 import "./Sponsors.scss";
 import variables from "scss/colors.scss";
+import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
 
 class Sponsors extends Component {
   state = {
@@ -297,9 +298,26 @@ class Sponsors extends Component {
     const modal = { name: "responsabilite" };
     return (
       <div className="sponsor-footer">
-        <h5 className="color-darkColor">
-          {t("Dispositif.Structures", "Structures partenaires")}
-        </h5>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <h5 className="color-darkColor">
+            {t("Dispositif.Structures", "Structures partenaires")}
+          </h5>
+          {!disableEdit && this.props.displayTuto && (
+            <FButton
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={() => this.props.toggleTutorielModal("Sponsors")}
+            >
+              Tutoriel
+            </FButton>
+          )}
+        </div>
         <Row className="sponsor-images">
           {sponsors &&
             deduplicatedSponsors.map((sponsor, key) => {
@@ -335,21 +353,11 @@ class Sponsors extends Component {
                           </span>
                         </div>
                       ) : (
-                        <div className="not-exist-wrapper">
-                          <EVAIcon
-                            name="image-outline"
-                            className="not-exist-icon mr-16"
-                            size="large"
-                            fill={variables.noir}
-                          />
-                          <span>
-                            {sponsor.acronyme || sponsor.nom
-                              ? (sponsor.acronyme || "") +
-                                (sponsor.acronyme && sponsor.nom ? " - " : "") +
-                                (sponsor.nom || "")
-                              : sponsor.alt || "Structure 1"}
-                          </span>
-                        </div>
+                        <NoSponsorImage
+                          nom={sponsor.nom}
+                          acronyme={sponsor.acronyme}
+                          alt={sponsor.alt}
+                        />
                       )}
                     </a>
                     {key === 0 && sponsor.type !== "Not found" && (
@@ -716,8 +724,8 @@ class Sponsors extends Component {
                 </h5>
                 <div className="contenu mb-10">
                   <b>
-                    L’équipe Agi’r va prendre contact avec vous sous 7 jours
-                    pour vérifier vos informations.
+                    L’équipe Réfugiés.info va prendre contact avec vous sous 7
+                    jours pour vérifier vos informations.
                   </b>
                 </div>
                 <div className="contenu">
@@ -741,6 +749,7 @@ class Sponsors extends Component {
           handleFileInputChange={this.handleFileInputChange}
           handleChange={this.handleImgChange}
           addSponsor={this.addSponsor}
+          tooltipOpen={this.state.tooltipOpen}
         />
       </div>
     );
@@ -819,31 +828,35 @@ const ImgModal = (props) => (
         />
         <Input
           id="link"
-          placeholder="https://www.agi-r.fr"
+          placeholder="https://www.réfugiés.info"
           value={props.link}
           onChange={props.handleChange}
         />
       </InputGroup>
     </div>
     <div className="form-field">
-      <span>
-        3. Texte alternatif à l’image<sup>*</sup>
-        <EVAIcon
-          className="float-right"
-          id="alt-tooltip"
-          name="info"
-          fill={variables.noir}
-        />
-        <Tooltip
-          placement="top"
-          isOpen={props.tooltipOpen}
-          target="alt-tooltip"
-          toggle={props.toggleTooltip}
-        >
-          Ce texte est utile pour les personnes malvoyantes ou en cas de
-          non-chargement de l’image.
-        </Tooltip>
-      </span>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "row",
+          alignItems: "center",
+        }}
+      >
+        <span>
+          3. Texte alternatif à l’image<sup>*</sup>
+        </span>
+        <div style={{ marginLeft: "5px", marginBottom: "2px" }}>
+          <EVAIcon id="alt-tooltip" name="info" fill={variables.noir} />
+          <Tooltip
+            isOpen={props.tooltipOpen}
+            target="alt-tooltip"
+            toggle={props.toggleTooltip}
+          >
+            Ce texte est utile pour les personnes malvoyantes ou en cas de
+            non-chargement de l’image.
+          </Tooltip>
+        </div>
+      </div>
       <InputGroup>
         <EVAIcon
           className="input-icon"
@@ -852,22 +865,22 @@ const ImgModal = (props) => (
         />
         <Input
           id="alt"
-          placeholder="Agi’r"
+          placeholder="Réfugiés.info"
           value={props.alt}
           onChange={props.handleChange}
         />
       </InputGroup>
     </div>
     <div className="btn-footer">
-      <FButton onClick={props.toggleModal} type="default" className="mr-10">
-        Annuler
-      </FButton>
       <FButton
         onClick={() => props.addSponsor(true)}
         type="validate"
         name="checkmark-circle-2-outline"
       >
         Valider
+      </FButton>
+      <FButton onClick={props.toggleModal} type="default" className="ml-10">
+        Annuler
       </FButton>
     </div>
   </Modal>

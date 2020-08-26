@@ -175,12 +175,14 @@ const contribTable = (props) => {
         onAnimationEnd={onAnimationEnd}
       >
         <Row>
-          <Col>
-            <h1>{t("Tables." + props.title, props.title)}</h1>
-          </Col>
+          {!props.hideTitle && (
+            <Col>
+              <h1>{t("Tables." + props.title, props.title)}</h1>
+            </Col>
+          )}
           {props.displayIndicators && contributeur && (
             <Col className="d-flex tableau-header">
-              <div style={{position: "absolute", right: 20}}>
+              <div style={{ position: "absolute", right: 20 }}>
                 <FButton
                   tag={NavLink}
                   to="/backend/user-dash-contrib"

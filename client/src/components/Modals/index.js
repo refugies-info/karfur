@@ -1,10 +1,9 @@
 import BookmarkedModal from "./BookmarkedModal/BookmarkedModal";
-import DispositifCreateModal from "./DispositifCreateModal/DispositifCreateModal";
+import DemarcheCreateModal from "./DemarcheCreateModal/DemarcheCreateModal";
 import DispositifValidateModal from "./DispositifValidateModal/DispositifValidateModal";
 import EnConstructionModal from "./EnConstructionModal/EnConstructionModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import MapModal from "./MapModal/MapModal";
-import MerciModal from "./MerciModal/MerciModal";
 import SuggererModal from "./SuggererModal/SuggererModal";
 import ThanksModal from "./ThanksModal/ThanksModal";
 import TranslationModal from "./TranslationModal/TranslationModal";
@@ -21,15 +20,19 @@ import CheckDemarcheModal from "./CheckDemarcheModal/CheckDemarcheModal";
 import VarianteCreateModal from "./VarianteCreateModal/VarianteCreateModal";
 import EtapeModal from "./EtapeModal/EtapeModal";
 import Modal from "./Modal";
+import TagsModal from "./TagsModal/TagsModal";
+import FrameModal from "./FrameModal/FrameModal";
+import { DraftModal } from "./DraftModal/DraftModal";
+import { DispositifCreateModal } from "./DispositifCreateModal/DispositifCreateModal";
 
 export {
   BookmarkedModal,
+  DemarcheCreateModal,
   DispositifCreateModal,
   DispositifValidateModal,
   EnConstructionModal,
   LanguageModal,
   MapModal,
-  MerciModal,
   SuggererModal,
   ThanksModal,
   TranslationModal,
@@ -45,5 +48,8 @@ export {
   CheckDemarcheModal,
   VarianteCreateModal,
   EtapeModal,
+  TagsModal,
+  FrameModal,
   Modal,
+  DraftModal,
 };

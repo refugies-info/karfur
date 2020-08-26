@@ -156,12 +156,13 @@ class SideTrad extends Component {
       availableListTrad,
       listTrad,
     } = this.state;
-    
+  //we highlight the new section and scroll
       this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
     if (
       this.props.translations !== prevProps.translations &&
       this.props.translations
     ) {
+      //we update the trad info like the % everythime we have a new update
       const { translations } = this.props;
       if (translations.length) {
         const userTrad = translations.find(
@@ -203,6 +204,7 @@ class SideTrad extends Component {
     const userTrad = listTrad.length
       ? listTrad.find((trad) => trad.userId._id === this.props.user._id)
       : null;
+      //we update the highlight and modified fields to change the color styles to show if a field has been modified/translated
     if (
       currIdx !== prevState.currIdx ||
       currSubIdx !== prevState.currSubIdx ||
@@ -386,7 +388,9 @@ class SideTrad extends Component {
     }
   };
 
+  //Called everytime we change section to update the index and the content we are translating, at the end we call checlTranslate which takes care of sending the translation to google
   goChange = async (isNext = true, fromFn = true) => {
+    
     //await this.props.getTrads();
     if (isNext && fromFn) {
       this.setState({ hasBeenSkipped: true });
@@ -511,11 +515,13 @@ class SideTrad extends Component {
     }
   };
 
+  //when ending the translation by clicking the top left corner
   _endingFeedback = () => {
     this.props.onSkip();
     this.setState({ ...this.initialState });
   };
 
+  //scroll and highlight
   _scrollAndHighlight = (idx, subidx = -1, subname = "") => {
     if (
       subidx > -1 &&
@@ -555,6 +561,7 @@ class SideTrad extends Component {
     }
   };
 
+  //
   checkTranslate = (target) => {
     const { pointeurs, currIdx, currSubIdx } = this.state;
     //console.log(pointeurs, currSubIdx, currIdx, currSubName);
@@ -629,6 +636,7 @@ class SideTrad extends Component {
     this.selectTranslation(this.state.availableListTrad[index]);
   };
 
+  //selecting an alternative translation within the choices available
   selectTranslation = (sugg) => {
     const listTrad =
       (
@@ -756,6 +764,7 @@ class SideTrad extends Component {
     this.setState({ listTrad, userId, selectedTrad });
   };
 
+  //The validation function when we validate a section
   onValidate = async () => {
     if (this.state.currIdx === "titreInformatif") {
       this.setState({validerInit: true})
@@ -770,12 +779,14 @@ class SideTrad extends Component {
       return;
     }
     let timeSpent = 0;
+    //calculating the time spent in the translation for one section
     if (this.state.startingTime) {
       timeSpent = this.state.startingTime.diff(moment()) * -1;
     }
     let textString = this.props.translated.body
       .getCurrentContent()
       .getPlainText();
+      //calculating the words translated in a section
     let wordsCount = textString.split(" ").length;
     let {
       pointeurs,
@@ -823,7 +834,7 @@ class SideTrad extends Component {
         traduction.status = "À revoir";
       }
     }
-    //the god function
+    //the map the object from the editor so that we can convert it to text and save it in the right spot within the translation
     ["translated"].forEach((nom) => {
       const initialValue = this.props[nom].body;
       const texte =
@@ -873,6 +884,7 @@ class SideTrad extends Component {
       pointeurs.length -
       this.props.menu.length;
     //const nbInit = this._countContents([traduction.initialText]);
+    //we calculate the % of advancement
     if (listTrad.length > 0) {
       let oldCount = listTrad[0].avancement * nbInit;
       if (userTrad && userTrad.status === "À revoir") {
@@ -895,6 +907,7 @@ class SideTrad extends Component {
         ? " - "
         : "") +
       (this.props.content.titreInformatif || "");
+      //we change the modified fields if we translated a section that was modified in french
     if (traduction.status === "À revoir") {
       let newTranslatedText = produce(traduction.translatedText, (draft) => {
         //draft.status[currIdx] = "Acceptée";
@@ -934,6 +947,7 @@ class SideTrad extends Component {
     if (elems1 && elems1[0] && elems1[0].classList) {
       elems1[0].classList.toggle("arevoir", false);
     }
+    //if the trad for the user exists we update the existing one
     if (userTrad && userTrad._id) {
       let newTrad = {
         _id: userTrad._id,
@@ -946,6 +960,7 @@ class SideTrad extends Component {
       this.props.fwdSetState({ newTrad }, () => {});
       await this.props.valider(newTrad);
     } else {
+    //if the trad for the user doesn't exists we create a new one
       this.props.fwdSetState({ traduction }, () => {
         // eslint-disable-next-line
         console.log(traduction);

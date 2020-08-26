@@ -1,5 +1,5 @@
-@import 'src/scss/colors.scss';
-@import 'src/scss/global.scss';
+@import "src/scss/colors.scss";
+@import "src/scss/global.scss";
 
 .react-autosuggest__container {
   position: relative;
@@ -13,11 +13,15 @@
     font-size: 16px;
     border: 1px solid #aaa;
     border-radius: 4px;
-    &:hover{
+    &:hover {
       box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
     }
-    &:focus::-webkit-input-placeholder { color:transparent; }
-    &:focus:-moz-placeholder { color:transparent; }
+    &:focus::-webkit-input-placeholder {
+      color: transparent;
+    }
+    &:focus:-moz-placeholder {
+      color: transparent;
+    }
   }
 
   .react-autosuggest__input--focused {
@@ -43,7 +47,7 @@
     z-index: 2;
     //overflow: scroll;
     border-radius: 12px;
-    border:none;
+    border: none;
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
   }
 
@@ -52,7 +56,7 @@
     padding: 0;
     list-style-type: none;
     overflow: scroll;
-    height:300px;
+    height: 300px;
     max-height: 100%;
     text-align: left;
     background-color: $gris;
@@ -91,80 +95,89 @@
     color: #120000;
   }
 
-  .plus-btn{
+  .plus-btn {
     padding: 12px;
     background: $grisFonce;
     border-radius: 1000px;
     display: inline-block;
     line-height: 18px;
-  }  
+  }
 }
 
-.search-bar{
+.search-bar {
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  @include media-max("phone-down") { display: none; }
+  @include media-max("phone-down") {
+    display: none;
+  }
 
-  .react-autosuggest__container input{
-    background:transparent;
-    border: 0.5px solid $noir;
+  .react-autosuggest__container input {
+    background: $blancSimple;
+    border: 0.5px solid $blancSimple;
     border-radius: 12px;
     padding-right: 42px;
     padding-left: 15px;
     font-size: 16px;
     font-weight: 400;
     height: 40px;
-    width:100%;
-    &:hover{
+    width: 100%;
+    &:hover {
       background-color: $gris;
     }
-    &:focus::-webkit-input-placeholder { color:transparent; }
-    &:focus:-moz-placeholder { color:transparent; }
+    &:focus::-webkit-input-placeholder {
+      color: transparent;
+    }
+    &:focus:-moz-placeholder {
+      color: transparent;
+    }
 
-    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: $noir;
       opacity: 1; /* Firefox */
     }
-    
-    &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
       color: $noir;
     }
-    
-    &::-ms-input-placeholder { /* Microsoft Edge */
+
+    &::-ms-input-placeholder {
+      /* Microsoft Edge */
       color: $noir;
     }
   }
 
-  .loupe-btn{
+  .loupe-btn {
     position: absolute;
     padding: 10px;
     right: 5px;
     font-size: 24px;
     transform: matrix(-1, 0, 0, 1, 0, 0) translateY(-50%);
     color: $noir;
-    top: 20px;
+    top: 25px;
 
-    &.icon-only{
+    &.icon-only {
       position: relative;
       right: 0;
       transform: matrix(-1, 0, 0, 1, 0, 0);
     }
-    &:hover{
-      color: rgba(0, 0, 0, 0.1)
+    &:hover {
+      color: rgba(0, 0, 0, 0.1);
     }
-    &:active{
-      display:none;
+    &:active {
+      display: none;
     }
-    &:focus{
-      display:none;
+    &:focus {
+      display: none;
     }
   }
 
-  &.isArray{
+  &.isArray {
     .react-autosuggest__suggestions-container--open {
       background: transparent;
-      box-shadow:none;
+      box-shadow: none;
       border-radius: 12px;
       position: relative;
       top: 0;
@@ -178,24 +191,24 @@
       background: $blancSimple;
       border-radius: 12px;
       margin-top: 10px;
-      &:hover{
+      &:hover {
         background: $validation;
       }
     }
-    .name{
+    .name {
       color: $grisFonce;
     }
-    .selection-logo{
+    .selection-logo {
       max-width: 40px;
       max-height: 40px;
     }
   }
-  .suggestion-content{
+  .suggestion-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .oeil-btn{
+  .oeil-btn {
     padding: 10px;
     background: $gris;
     border-radius: 10px;

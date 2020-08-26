@@ -89,6 +89,7 @@ export interface Tag {
   lightColor: string;
   name: string;
   short: string;
+  icon: string;
 }
 export interface Dispositif {
   _id: ObjectId;

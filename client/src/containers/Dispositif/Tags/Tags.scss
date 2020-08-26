@@ -1,39 +1,42 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
-.tags{
-  margin-top:-10px;
-  margin-right:-10px;
+.tags {
+  //margin-top: -10px;
+  //margin-right: -10px;
   outline: none;
   z-index: 10;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 
-  .tags-dropdown{
-    margin-left:10px;
+  .tags-dropdown {
+    margin-left: 10px;
     background: transparent;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #ffffff;
     box-sizing: border-box;
     border-radius: 12px;
-    color: #FFFFFF;
-    margin-top:10px;
-    &:hover{
+    color: #ffffff;
+   // margin-top: 10px;
+    &:hover {
       background: #ffffff;
       color: $noir;
     }
 
-    .dropdown-custom{
-      &:hover{
+    .dropdown-custom {
+      &:hover {
         color: $blancSimple;
       }
     }
-    
-    .btn{
+
+    .btn {
       background: transparent;
       font-weight: bold;
       font-size: 16px;
       line-height: 20px;
-      border:none;
-      color:inherit;
-      padding:10px;
-   
+      border: none;
+      color: inherit;
+      padding: 10px;
+
       &:focus {
         background: transparent;
       }
@@ -45,35 +48,44 @@
         outline: none;
       }
     }
-    &:hover{
+    &:hover {
       background: #ffffff;
       color: $noir;
     }
   }
 
-  .plus-button{
-    background:$jauneClair;
+  .plus-button {
+    background: $jauneClair;
     border-radius: 12px;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 16px;
     line-height: 20px;
     color: $noir;
-    border:none;
-    padding:10px;
-    margin-top:10px;
-    svg{
+    border: none;
+    padding: 10px;
+    //margin-top: 10px;
+    height: 50px;
+    svg {
+      margin-right: 10px;
       fill: $noir;
     }
 
-    i{
-      margin-right:10px;
+    &.icon {
+      svg {
+        fill: $noir;
+        margin-right: 2px;
+      }
     }
-    &:hover{
+
+    i {
+      margin-right: 10px;
+    }
+    &:hover {
       background-color: $gris;
     }
   }
 
-  .tags-icons{
+  .tags-icons {
     position: absolute;
     right: -16px;
     top: -16px;
