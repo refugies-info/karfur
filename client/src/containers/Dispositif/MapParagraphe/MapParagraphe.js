@@ -186,7 +186,7 @@ class MapParagraphe extends PureComponent {
         i === idx ? { ...x, value: e.target.value } : x
       ),
     });
-  }
+  };
 
   validateMarker = () => {
     if (
@@ -202,7 +202,7 @@ class MapParagraphe extends PureComponent {
       });
       return;
     }
-/*     if (
+    /*     if (
       (!this.state.markerInfo[4].value ||
         this.state.markerInfo[4].value === "ajouter@votreemail.fr") &&
       (!this.state.markerInfo[5].value ||
@@ -255,7 +255,7 @@ class MapParagraphe extends PureComponent {
               alignItems: "center",
             }}
           >
-            <div style={{marginLeft: 30}}>
+            <div style={{ marginLeft: 30 }}>
               <EVAIcon name="pin-outline" className="mr-10" />
               <b>
                 {t(
@@ -278,7 +278,11 @@ class MapParagraphe extends PureComponent {
           {!disableEdit && (
             <EVAIcon
               onClick={() =>
-                this.props.deleteCard(this.props.keyValue, this.props.subkey, "map")
+                this.props.deleteCard(
+                  this.props.keyValue,
+                  this.props.subkey,
+                  "map"
+                )
               }
               name="close-circle"
               fill={variables.error}
@@ -311,15 +315,24 @@ class MapParagraphe extends PureComponent {
             }
           >
             {markerInfo.map((field, key) => {
-              if (key === 3 && (field.value === "Saisir des informations complémentaires si besoin" || field.value === "") && disableEdit) {
-                return
-              }
-              else if (
+              if (
+                key === 3 &&
+                (field.value ===
+                  "Saisir des informations complémentaires si besoin" ||
+                  field.value === "") &&
+                disableEdit
+              ) {
+                return;
+              } else if (
                 ((key === 5 &&
-                (field.value === "00 11 22 33 44" ||
-                  field.value === "Non renseigné" || field.value === "")) ||
-                  (key === 4 && (field.value === "ajouter@votreemail.fr" ||
-                  field.value === "Non renseigné" || field.value === ""))) && disableEdit
+                  (field.value === "00 11 22 33 44" ||
+                    field.value === "Non renseigné" ||
+                    field.value === "")) ||
+                  (key === 4 &&
+                    (field.value === "ajouter@votreemail.fr" ||
+                      field.value === "Non renseigné" ||
+                      field.value === ""))) &&
+                disableEdit
               ) {
                 return (
                   <React.Fragment key={key}>
@@ -337,7 +350,7 @@ class MapParagraphe extends PureComponent {
                     />
                   </React.Fragment>
                 );
-  // eslint-disable-next-line
+                // eslint-disable-next-line
               } else {
                 return (
                   <React.Fragment key={key}>

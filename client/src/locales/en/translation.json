@@ -177,8 +177,6 @@
     "Header": "Build your life in France",
     "Subheader": "Here, you can discover how to access social aid, find a job, find French classes"
   },
-  "Masquer la recherche avancée": "Hide advanced search",
-  "Afficher la recherche avancée": "Show advanced search",
   "Tags": {
     "Français": "French",
     "Logement": "Housing",
@@ -254,12 +252,7 @@
   "Login": {
     "Pseudonyme": "Username",
     "Retour à l'accueil": "Back to homepage",
-    "Ou se créer un compte": "Or create an account",
-    "Se connecter": "Sign in",
     "Content de vous revoir !": "Happy to see you again!",
-    "Mot de passe": "Password",
-    "Se créer un compte": "Create an account",
-    "Pas besoin d’email": "No need for email",
     "Mot de passe oublié ?": "Forgot your password?",
     "no-account": "No account exists for this name",
     "Confirmez le mot de passe": "Confirm password",
@@ -271,7 +264,8 @@
     "Renseignez ici le nouveau mot de passe souhaité": "Fill in the new password of your choice here",
     "Chargement des données utilisateur": "Loading user data",
     "Problème mdp": "A problem occurred while resetting your password. Please try again.",
-    "Revenir à la page de connexion": "Return to the sign-in page"
+    "Revenir à la page de connexion": "Return to the sign-in page",
+    "Mot de passe": "Password"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Access denied",
@@ -392,7 +386,11 @@
     "Les accompagnants": "Helpers and social workers",
     "Les femmes": "Women",
     "Les hommes": "Men",
-    "Les deux": "Both"
+    "Les deux": "Both",
+    "Dernière mise à jour": "Last update",
+    "En bref": "In short",
+    "avec": "with",
+    "Merci": "Thank you!"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Are you sure?",
@@ -408,8 +406,6 @@
     "Accueil": "Home",
     "Tout voir": "See all",
     "Mon profil": "My profile",
-    "Espace rédaction": "Writing area",
-    "Espace traduction": "Translation area",
     "Ma structure": "Organization area",
     "Administration": "Administration",
     "Se déconnecter": "Sign out",
@@ -424,17 +420,6 @@
     "Centre d'aide": "Help center"
   },
   "Retour à la recherche": "Back to search",
-  "avec": "with",
-  "En bref": "In short",
-  "Dernière mise à jour": "Last update",
-  "Fiabilité de l'information": "Reliability of information",
-  "Faible": "Low",
-  "Moyenne": "Average",
-  "Forte": "Strong",
-  "Contributeurs": "Contributors",
-  "Traducteurs": "Translators",
-  "Merci": "Thank you!",
-  "Bravo": "Bravo!",
   "ou": "or",
   "Bientôt disponible !": "Coming soon",
   "En savoir plus": "Learn more",
@@ -451,6 +436,7 @@
   "Chercher une démarche": "Explore processes",
   "Rejoindre le réseau": "Join the network",
   "Valider": "Validate",
+  "Plus tard": "Later",
   "Contribuer": "Contribute",
   "secondes": "seconds",
   "minutes": "minutes",
