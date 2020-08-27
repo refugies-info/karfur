@@ -220,7 +220,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                       target="_blank"
                       href={element.linkToKnowMore}
                     >
-                      {this.props.t("ModaleNiveauDeFrançais.En savoir plus")}
+                      {this.props.t("En savoir plus", "En savoir plus")}
                     </a>
                   </StyledDescription>
                 </StyledDescriptionContainer>
