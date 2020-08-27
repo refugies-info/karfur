@@ -392,7 +392,16 @@
     "Les accompagnants": "همراهان",
     "Les femmes": "زنان",
     "Les hommes": "مردها",
-    "Les deux": "آن دو"
+    "Les deux": "آن دو",
+    "avec": "با",
+    "En bref": "به اختصار",
+    "Dernière mise à jour": "آخرین آپدیت و بروزرسانی",
+    "Fiabilité de l'information": "دقیق و معتبربودن معلومات",
+    "Faible": "ضعیف",
+    "Moyenne": "متوسط",
+    "Forte": "قوی",
+    "Traducteurs": "ترجمانان",
+    "Merci": "تشکر"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "آیا شما مطمئن هستید؟",
@@ -424,16 +433,7 @@
     "Centre d'aide": "مرکزکومکها"
   },
   "Retour à la recherche": "بازگشت به جستجو",
-  "avec": "با",
-  "En bref": "به اختصار",
-  "Dernière mise à jour": "آخرین آپدیت و بروزرسانی",
-  "Fiabilité de l'information": "دقیق و معتبربودن معلومات",
-  "Faible": "ضعیف",
-  "Moyenne": "متوسط",
-  "Forte": "قوی",
-  "Contributeurs": "مشارکت کنندگان",
-  "Traducteurs": "ترجمانان",
-  "Merci": "تشکر",
+
   "Bravo": "افرین!",
   "ou": "یا",
   "Bientôt disponible !": "به زودی دردسترس شما!",

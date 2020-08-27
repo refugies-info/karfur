@@ -177,8 +177,6 @@
     "Header": "Construire sa vie en France",
     "Subheader": "Ici, vous pourrez comprendre comment ouvrir vos droits sociaux, trouver un emploi, trouver des cours de français"
   },
-  "Masquer la recherche avancée": "Masquer la recherche avancée",
-  "Afficher la recherche avancée": "Afficher la recherche avancée",
   "Tags": {
     "Français": "Français",
     "Logement": "Logement",
@@ -445,7 +443,11 @@
     "Les femmes": "Les femmes",
     "Les hommes": "Les hommes",
     "Les deux": "Les deux",
-    "Rien à afficher": "Cet élément est vide, il n'y a rien à afficher."
+    "Rien à afficher": "Cet élément est vide, il n'y a rien à afficher.",
+    "Dernière mise à jour": "Dernière mise à jour",
+    "En bref": "En bref",
+    "avec": "avec",
+    "Merci": "Merci !"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",
@@ -474,22 +476,11 @@
     "Participer à l'évolution de réfugiés-info": "Participer à l'évolution de réfugiés.info",
     "Demander des fonctionnalités": "Demander des fonctionnalités",
     "Le projet": "Le projet",
+
     "Vous cherchez ?": "Vous cherchez ?",
     "Centre d'aide": "Support et centre d'aide"
   },
   "Retour à la recherche": "Retour à la recherche",
-  "avec": "avec",
-  "En bref": "En bref",
-  "Dernière mise à jour": "Dernière mise à jour",
-  "Fiabilité de l'information": "Fiabilité de l'information",
-  "Nouveau": "Nouveau",
-  "Faible": "Faible",
-  "Moyenne": "Moyenne",
-  "Forte": "Forte",
-  "Contributeurs": "Contributeurs",
-  "Traducteurs": "Traducteurs",
-  "Merci": "Merci !",
-  "Bravo": "Bravo !",
   "ou": "ou",
   "Bientôt disponible !": "Bientôt disponible !",
   "En savoir plus": "En savoir plus",

@@ -392,7 +392,16 @@
     "Les accompagnants": "ተሓጋገዝቲ /ወይ ተሓባበርቲ",
     "Les femmes": "ደቂ ኣንስቲዮ",
     "Les hommes": "ደቂ ተባዕትዮ",
-    "Les deux": "ን ኽልተ"
+    "Les deux": "ን ኽልተ",
+    "avec": "ምስ",
+    "En bref": "ብ ሕጽር ዝበለ",
+    "Dernière mise à jour": "መጨርሽታ ጊዜ ምሕዳስ",
+    "Fiabilité de l'information": "ምርግጋጽ ናይ ሓቤሬታ",
+    "Faible": "ጉድለት",
+    "Moyenne": "ማእከላይ",
+    "Forte": "ሓያል",
+    "Traducteurs": "ኣስትርጎምቲ",
+    "Merci": "የቕነልና"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "ርግጽኛ ዲኻ ?",
@@ -424,16 +433,7 @@
     "Centre d'aide": "ማእከል መሕገዚ"
   },
   "Retour à la recherche": "በዚ ትምለስ ንምድላይ",
-  "avec": "ምስ",
-  "En bref": "ብ ሕጽር ዝበለ",
-  "Dernière mise à jour": "መጨርሽታ ጊዜ ምሕዳስ",
-  "Fiabilité de l'information": "ምርግጋጽ ናይ ሓቤሬታ",
-  "Faible": "ጉድለት",
-  "Moyenne": "ማእከላይ",
-  "Forte": "ሓያል",
-  "Contributeurs": "ኣበርካቶ/ከቲ",
-  "Traducteurs": "ኣስትርጎምቲ",
-  "Merci": "የቕነልና",
+
   "Bravo": "ንፉዕ!",
   "ou": "ኣብይ",
   "Bientôt disponible !": "ኣብ ቀጻሊ ድልው",

@@ -392,7 +392,17 @@
     "Les accompagnants": "ملګري",
     "Les femmes": "ښځي",
     "Les hommes": "سړي",
-    "Les deux": "دوه"
+    "Les deux": "دوه",
+    "avec": "سره",
+    "En bref": "په لنډ ډول",
+    "Dernière mise à jour": "وروستی او تازه معلومات (اپډیت)",
+    "Fiabilité de l'information": "د معلوماتو اعتبار",
+    "Faible": "کمزوری",
+    "Moyenne": "په اوسط ډول",
+    "Forte": "قوي",
+    "Contributeurs": "ونډه اخستونکي",
+    "Traducteurs": "ژباړونکي",
+    "Merci": "مننه!"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "ایا ته ډاډه یې؟",
@@ -424,16 +434,7 @@
     "Centre d'aide": "د مرستې مرکز"
   },
   "Retour à la recherche": "بېرته لټون ته",
-  "avec": "سره",
-  "En bref": "په لنډ ډول",
-  "Dernière mise à jour": "وروستی او تازه معلومات (اپډیت)",
-  "Fiabilité de l'information": "د معلوماتو اعتبار",
-  "Faible": "کمزوری",
-  "Moyenne": "په اوسط ډول",
-  "Forte": "قوي",
-  "Contributeurs": "ونډه اخستونکي",
-  "Traducteurs": "ژباړونکي",
-  "Merci": "مننه!",
+
   "Bravo": "شاباش (براوو)!",
   "ou": "یا",
   "Bientôt disponible !": "ډیر ژربه ستاسو په خدمت کي وي!",

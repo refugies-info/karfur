@@ -392,7 +392,16 @@
     "Les accompagnants": "Helpers and social workers",
     "Les femmes": "Women",
     "Les hommes": "Men",
-    "Les deux": "Both"
+    "Les deux": "Both",
+    "avec": "with",
+    "En bref": "In short",
+    "Dernière mise à jour": "Last update",
+    "Fiabilité de l'information": "Reliability of information",
+    "Faible": "Low",
+    "Moyenne": "Average",
+    "Forte": "Strong",
+    "Traducteurs": "Translators",
+    "Merci": "Thank you!"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Are you sure?",
@@ -424,16 +433,7 @@
     "Centre d'aide": "Help center"
   },
   "Retour à la recherche": "Back to search",
-  "avec": "with",
-  "En bref": "In short",
-  "Dernière mise à jour": "Last update",
-  "Fiabilité de l'information": "Reliability of information",
-  "Faible": "Low",
-  "Moyenne": "Average",
-  "Forte": "Strong",
-  "Contributeurs": "Contributors",
-  "Traducteurs": "Translators",
-  "Merci": "Thank you!",
+
   "Bravo": "Bravo!",
   "ou": "or",
   "Bientôt disponible !": "Coming soon",

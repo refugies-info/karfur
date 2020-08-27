@@ -390,7 +390,16 @@
     "Les accompagnants": "Сопровождающие",
     "Les femmes": "Женщины",
     "Les hommes": "Мужчины",
-    "Les deux": "Женщины и мужчины"
+    "Les deux": "Женщины и мужчины",
+    "avec": "с",
+    "En bref": "Основное",
+    "Dernière mise à jour": "Последнее обновление",
+    "Fiabilité de l'information": "Надежность информации",
+    "Faible": "Низкий",
+    "Moyenne": "Средний",
+    "Forte": "Высокий",
+    "Traducteurs": "Переводчики",
+    "Merci": "Спасибо!"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Вы уверены?",
@@ -422,16 +431,7 @@
     "Centre d'aide": "Помощь"
   },
   "Retour à la recherche": "Вернуться к поиску",
-  "avec": "с",
-  "En bref": "Основное",
-  "Dernière mise à jour": "Последнее обновление",
-  "Fiabilité de l'information": "Надежность информации",
-  "Faible": "Низкий",
-  "Moyenne": "Средний",
-  "Forte": "Высокий",
-  "Contributeurs": "Авторы",
-  "Traducteurs": "Переводчики",
-  "Merci": "Спасибо!",
+
   "Bravo": "Браво!",
   "ou": "или",
   "Bientôt disponible !": "Будет доступно в ближайшее время!",
