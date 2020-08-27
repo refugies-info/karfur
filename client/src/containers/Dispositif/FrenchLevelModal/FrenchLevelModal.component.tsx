@@ -204,7 +204,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                 <StyledDescriptionContainer>
                   <StyledTitle isSelected={isSelected}>
                     {this.props.t(
-                      "ModaleNiveauDeFrançais." + element.title + ".title",
+                      "ModaleNiveauDeFrançais." + element.title + " title",
                       element.title
                     )}
                   </StyledTitle>
@@ -212,7 +212,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                     {this.props.t(
                       "ModaleNiveauDeFrançais." +
                         element.title +
-                        ".description",
+                        " description",
                       element.description
                     )}{" "}
                     <a
