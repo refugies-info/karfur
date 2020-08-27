@@ -4,10 +4,10 @@ const Papa = require("papaparse");
 const convertJsonToCsv = (langue) => {
   // import french
   const jsonFrench = JSON.parse(
-    fs.readFileSync("./fr/translation.json").toString()
+    fs.readFileSync("../fr/translation.json").toString()
   );
   const jsonLangue = JSON.parse(
-    fs.readFileSync("./" + langue + "/translation.json").toString()
+    fs.readFileSync("../" + langue + "/translation.json").toString()
   );
   const titleArrayFrench = Object.keys(jsonFrench);
   // console.log("Nombre de titres en francais", titleArrayFrench.length);
@@ -48,7 +48,7 @@ const convertJsonToCsv = (langue) => {
     output.filter((trad) => trad[langue]).length
   );
   const csv = Papa.unparse(output);
-  const path = "./traductions" + langue + ".csv";
+  const path = "./csvBeforeTrad/traductions" + langue + ".csv";
   fs.writeFileSync(path, csv);
 };
 
