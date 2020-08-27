@@ -177,8 +177,6 @@
     "Header": "Construire sa vie en France",
     "Subheader": "Ici, vous pourrez comprendre comment ouvrir vos droits sociaux, trouver un emploi, trouver des cours de français"
   },
-  "Masquer la recherche avancée": "Masquer la recherche avancée",
-  "Afficher la recherche avancée": "Afficher la recherche avancée",
   "Tags": {
     "Français": "Français",
     "Logement": "Logement",
@@ -445,7 +443,11 @@
     "Les femmes": "Les femmes",
     "Les hommes": "Les hommes",
     "Les deux": "Les deux",
-    "Rien à afficher": "Cet élément est vide, il n'y a rien à afficher."
+    "Rien à afficher": "Cet élément est vide, il n'y a rien à afficher.",
+    "Dernière mise à jour": "Dernière mise à jour",
+    "En bref": "En bref",
+    "avec": "avec",
+    "Merci": "Merci !"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",
@@ -474,22 +476,11 @@
     "Participer à l'évolution de réfugiés-info": "Participer à l'évolution de réfugiés.info",
     "Demander des fonctionnalités": "Demander des fonctionnalités",
     "Le projet": "Le projet",
+
     "Vous cherchez ?": "Vous cherchez ?",
     "Centre d'aide": "Support et centre d'aide"
   },
   "Retour à la recherche": "Retour à la recherche",
-  "avec": "avec",
-  "En bref": "En bref",
-  "Dernière mise à jour": "Dernière mise à jour",
-  "Fiabilité de l'information": "Fiabilité de l'information",
-  "Nouveau": "Nouveau",
-  "Faible": "Faible",
-  "Moyenne": "Moyenne",
-  "Forte": "Forte",
-  "Contributeurs": "Contributeurs",
-  "Traducteurs": "Traducteurs",
-  "Merci": "Merci !",
-  "Bravo": "Bravo !",
   "ou": "ou",
   "Bientôt disponible !": "Bientôt disponible !",
   "En savoir plus": "En savoir plus",
@@ -541,26 +532,15 @@
     "Niveau de langue": "Niveau de langue souhaité",
     "Faire le test": "Faire le test",
     "Ces niveaux sont issus du": "Ces niveaux sont issus du",
-    "Je découvre le français": {
-      "title": "Je découvre le français",
-      "description": "Je peux comprendre et utiliser des expressions familières et quotidiennes avec des phrases très simples pour satisfaire des besoins concrets."
-    },
-    "En savoir plus": "En savoir plus",
-    "Je comprends des messages simples": {
-      "title": "Je comprends des messages simples",
-      "description": "Je peux comprendre des phrases isolées et des expressions en relation avec mon environnement immédiat : famille, travail, école. Je peux parler de sujets familiers."
-    },
-    "Je communique avec des francophones": {
-      "title": "Je communique avec des francophones",
-      "description": "Je peux comprendre les points essentiels d’un message quand un langage clair et standard est utilisé. Je peux communiquer dans la plupart des situations rencontrées en voyage. Je peux raconter un événement, une expérience."
-    },
-    "Je communique avec aisance": {
-      "title": "Je communique avec aisance",
-      "description": "Je peux comprendre le contenu essentiel de messages complexes sur des sujets concrets ou abstraits. Je communique avec aisance avec un locuteur natif et je m'exprime de façon claire et détaillée sur une grande gamme de sujets."
-    },
-    "Je communique avec grande aisance": {
-      "title": "Je communique avec grande aisance",
-      "description": "Pratiquement aucune difficulté particulière."
-    }
+    "Je découvre le français title": "Je découvre le français",
+    "Je découvre le français description": "Je peux comprendre et utiliser des expressions familières et quotidiennes avec des phrases très simples pour satisfaire des besoins concrets.",
+    "Je comprends des messages simples title": "Je comprends des messages simples",
+    "Je comprends des messages simples description": "Je peux comprendre des phrases isolées et des expressions en relation avec mon environnement immédiat : famille, travail, école. Je peux parler de sujets familiers.",
+    "Je communique avec des francophones title": "Je communique avec des francophones",
+    "Je communique avec des francophones description": "Je peux comprendre les points essentiels d’un message quand un langage clair et standard est utilisé. Je peux communiquer dans la plupart des situations rencontrées en voyage. Je peux raconter un événement, une expérience.",
+    "Je communique avec aisance title": "Je communique avec aisance",
+    "Je communique avec aisance description": "Je peux comprendre le contenu essentiel de messages complexes sur des sujets concrets ou abstraits. Je communique avec aisance avec un locuteur natif et je m'exprime de façon claire et détaillée sur une grande gamme de sujets.",
+    "Je communique avec grande aisance title": "Je communique avec grande aisance",
+    "Je communique avec grande aisance description": "Pratiquement aucune difficulté particulière."
   }
 }

@@ -32,7 +32,7 @@ export const FeedbackFooter = (props: Props) => {
           className={"thanks" + (didThank ? " clicked" : "")}
           onClick={() => pushReaction(null, "merci")}
         >
-          {t("Merci", "Merci")}
+          {t("DispositifMerci", "Merci")}
         </FButton>
       </div>
     </div>

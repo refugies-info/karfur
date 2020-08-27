@@ -22,7 +22,7 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
     rightSection && rightSection.children ? rightSection.children : [];
   return (
     <Row>
-      <b className="en-bref">{props.t("En bref", "En bref")} </b>
+      <b className="en-bref">{props.t("Dispositif.En bref", "En bref")} </b>
       {childrenArray.map((card: DispositifContent, key: number) => {
         // selected card, not Important
         if (
