@@ -1,0 +1,32 @@
+const csv = require("csvtojson");
+const fs = require("fs");
+
+const csvPath = "./traductionsti-ER.csv";
+// langues : en, ar, fa, ps, ru, ti-ER
+const language = "ti-ER";
+
+const convertCsvToJson = async () => {
+  const jsonArray = await csv().fromFile(csvPath);
+  console.log(`Nombre de lignes pour la langue ${language},`, jsonArray.length);
+  const finalJson = {};
+  jsonArray.forEach((trad) => {
+    if (!trad[language]) return;
+    if (!trad.key) {
+      finalJson[trad.title] = trad[language];
+      return;
+    }
+    finalJson[trad.title] = {
+      ...finalJson[trad.title],
+      [trad.key]: trad[language],
+    };
+  });
+
+  const stringify = JSON.stringify(finalJson);
+  fs.writeFileSync("./" + language + "/translation.json", stringify);
+};
+
+const main = async () => {
+  await convertCsvToJson();
+};
+
+main();
