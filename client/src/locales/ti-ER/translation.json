@@ -140,7 +140,7 @@
     "contributive_2_header": "መርየት ኣብ ምእዛዝ",
     "contributive_2_subheader": "እቶም ተሳተፍቲ ወይ ሰራሕተኛታት ኣሳለጥቲ ናይቲ ከባቢ ዘለኩሞ ዚያዳ ኣፍልጦ ዘለዎም መታን ክሕግዝኩም ፣ ንዝያዳ ሓቤሬታ መታን ክዓቢ፣ ከም ኡውን Réfugies.infoንኹሉ መሰረታዊ ብቅዓት ዘለዎ ሊስት ከቅርብልኩም ኢዮም ፣፣",
     "contributive_3_header": "ን ን እሽተይ ኣበርክቶ ምዕዛዝ/ ምትዕብባይ",
-    "contributive_3_subheader": "ን ኹሉ ሰብ ነናቱ ኣማራጺ ምሃብን ምቅላልን ኣብ ምብርካት ናይዚ መድረኽ ፣ እዚ ዌብ ሳይት ልክዕ ከም Wikipédia, ኮይኑ ፍልይ ዝበለ ኣማራጺ ሓድሽ ኣሰራርሓ ን ስዴኛታት ሓተትቲ ዑቕባ ኽሕግዝ ዝኽእል መደብ ኢዩ ፣ Réfugies.info "
+    "contributive_3_subheader": "ን ኹሉ ሰብ ነናቱ ኣማራጺ ምሃብን ምቅላልን ኣብ ምብርካት ናይዚ መድረኽ ፣ እዚ ዌብ ሳይት ልክዕ ከም Wikipédia, ኮይኑ ፍልይ ዝበለ ኣማራጺ ሓድሽ ኣሰራርሓ ን ስዴኛታት ሓተትቲ ዑቕባ ኽሕግዝ ዝኽእል መደብ ኢዩ ፣ Réfugies.info"
   },
   "CommentContribuer": {
     "Comment contribuer": "ብኸመይ ተበርክት",
@@ -177,8 +177,6 @@
     "Header": "ምምስራት ሂወትካ ኣብ ሃገረ ፍርናስ",
     "Subheader": "ኣብዚ ክትርድኡ ኢኹም ከምይ ጌርኩም መሰልኩም ናይ ሕብረተ ሰብ ትረክቡ ፣ ስራሕ ከመይ ጌርኩም ትረክቡ ፣ ከመይ ጌርኩም ትምህርቲ ቃንቃ ፈረንሳይ ትርክቡ"
   },
-  "Masquer la recherche avancée": "ሸፍኖ እቲ መድልይ ቀጽል",
-  "Afficher la recherche avancée": "ሊስት ናይ መድለይ ናይ ዝሓለፈ",
   "Tags": {
     "Français": "ፈረንሳይ",
     "Logement": "መንበሪ ገዛ",
@@ -254,12 +252,7 @@
   "Login": {
     "Pseudonyme": "ናይ ብራዒ ስም / ጸሓፍቲ ዝጠቀምዎ ሳጋ",
     "Retour à l'accueil": "ምምላስ ናብ መቀበሊ ",
-    "Ou se créer un compte": "ኣበይ ነውጽእ ሓድሽ ሕሳብ ናይ ኣድረስ",
-    "Se connecter": "መተሓሓዚ መስመር",
     "Content de vous revoir !": "ንዓኹም ን ኽርኢ ሕጉስ ኢየ !",
-    "Mot de passe": "ፓስ ዎርድ ወይ ኮድ",
-    "Se créer un compte": "ሓድሽ ኣካውንቲ ንምክፋት",
-    "Pas besoin d’email": "ኢመይል ኣይድለካን ኢዩ",
     "Mot de passe oublié ?": "ናተይ ኮድ ረስዔዮ",
     "no-account": "በዚ ሽም ዝኾነ ኣክውንቲ የለን",
     "Confirmez le mot de passe": "ድጎሞ ነቲ ዝነበረ ፓስዎርድ",
@@ -271,7 +264,8 @@
     "Renseignez ici le nouveau mot de passe souhaité": "ኣብዚ ኣረጋግጽ እቲ ትደሊዮ  ዝነበረካ ሓድሽ  ኮድ  ወይ ፓስዎርድ",
     "Chargement des données utilisateur": "ኣብ ጥቕሚ ክውዕሉ ዝኽእሉ ምላእ",
     "Problème mdp": "ኣብ ዝሓለፈ ካልኣይ ክትፍትን ከለኻ በቲ ናይ ቅድም ፓስ ዎርድ የሽግሩ ነሮም ፣ ሕጂ ግን ኽትፍትን ከለኻ ብካልእ ሓድሽ ፓስ ዎርድ ጌርካ ፈትን፣   የቐነልና ብ ምፍታንካ",
-    "Revenir à la page de connexion": "ምምጻእ ናብቲ  ገጽ ናይ መመዝገቢ"
+    "Revenir à la page de connexion": "ምምጻእ ናብቲ  ገጽ ናይ መመዝገቢ",
+    "Mot de passe": "ፓስ ዎርድ ወይ ኮድ"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "ኣብ  ምንጻግ በጺሑ",
@@ -393,14 +387,9 @@
     "Les femmes": "ደቂ ኣንስቲዮ",
     "Les hommes": "ደቂ ተባዕትዮ",
     "Les deux": "ን ኽልተ",
-    "avec": "ምስ",
-    "En bref": "ብ ሕጽር ዝበለ",
     "Dernière mise à jour": "መጨርሽታ ጊዜ ምሕዳስ",
-    "Fiabilité de l'information": "ምርግጋጽ ናይ ሓቤሬታ",
-    "Faible": "ጉድለት",
-    "Moyenne": "ማእከላይ",
-    "Forte": "ሓያል",
-    "Traducteurs": "ኣስትርጎምቲ",
+    "En bref": "ብ ሕጽር ዝበለ",
+    "avec": "ምስ",
     "Merci": "የቕነልና"
   },
   "CheckDemarche": {
@@ -417,8 +406,6 @@
     "Accueil": "መቀበሊ",
     "Tout voir": "ን ኹሉ ምርኣይ",
     "Mon profil": "መእተዊ መፍትሕ ናተይ ናይ ፕሮፋይል",
-    "Espace rédaction": "ምስንዳኣዊ ቦታ",
-    "Espace traduction": "ቦታ ናይ ትርጉም",
     "Ma structure": "ኣቃውማ ናተይ",
     "Administration": "ምምሕዳር",
     "Se déconnecter": "መውጽኢ ",
@@ -433,8 +420,6 @@
     "Centre d'aide": "ማእከል መሕገዚ"
   },
   "Retour à la recherche": "በዚ ትምለስ ንምድላይ",
-
-  "Bravo": "ንፉዕ!",
   "ou": "ኣብይ",
   "Bientôt disponible !": "ኣብ ቀጻሊ ድልው",
   "En savoir plus": "ተወሳኺ ሪእይቶ",

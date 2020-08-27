@@ -177,8 +177,6 @@
     "Header": "زندگی خود را در فرانسه بسازید",
     "Subheader": "در اینجا شما میتوانید که چگونه حقوق اجتماعی خود را بفهمید، شغلی را پیدا کنید و کلاسهای زبان فرنسوی را پیدا کنید."
   },
-  "Masquer la recherche avancée": "جستجوی پیشرفته را پنهان کنید.",
-  "Afficher la recherche avancée": "نشان دادن جستجوی پیشرفته",
   "Tags": {
     "Français": "فرانسوی",
     "Logement": "مسکن",
@@ -254,12 +252,7 @@
   "Login": {
     "Pseudonyme": "اسم مستعار",
     "Retour à l'accueil": "بازگشت به صفحه اصلی",
-    "Ou se créer un compte": "یک حساب کاربری را باز کنید",
-    "Se connecter": "ورود به سیستم",
     "Content de vous revoir !": "خوشحالم که دوباره شما را می بینم!",
-    "Mot de passe": "رمز عبور",
-    "Se créer un compte": "یک اکونت برای خودبسازید",
-    "Pas besoin d’email": "نیازی به ایمیل ندارید",
     "Mot de passe oublié ?": "رمز عبور را فراموش کرده اید؟",
     "no-account": "هیچ حسابی با این نام وجود ندارد",
     "Confirmez le mot de passe": "رمز عبور (پاس ورد) را تأیید کنید",
@@ -271,7 +264,8 @@
     "Renseignez ici le nouveau mot de passe souhaité": "کلمه عبور جدید را اینجا وارد کنید",
     "Chargement des données utilisateur": "بارگیری داده های کاربر",
     "Problème mdp": "اگردر تنظیم رمز عبور (پاس ورد) مشکلی روبرو شدید، لطفا دوباره کوشش کنید.",
-    "Revenir à la page de connexion": "بازگشت به صفحه ورود"
+    "Revenir à la page de connexion": "بازگشت به صفحه ورود",
+    "Mot de passe": "رمز عبور"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "دسترسی رد شد",
@@ -393,14 +387,9 @@
     "Les femmes": "زنان",
     "Les hommes": "مردها",
     "Les deux": "آن دو",
-    "avec": "با",
-    "En bref": "به اختصار",
     "Dernière mise à jour": "آخرین آپدیت و بروزرسانی",
-    "Fiabilité de l'information": "دقیق و معتبربودن معلومات",
-    "Faible": "ضعیف",
-    "Moyenne": "متوسط",
-    "Forte": "قوی",
-    "Traducteurs": "ترجمانان",
+    "En bref": "به اختصار",
+    "avec": "با",
     "Merci": "تشکر"
   },
   "CheckDemarche": {
@@ -417,8 +406,6 @@
     "Accueil": "استقبال",
     "Tout voir": "دیدن همه",
     "Mon profil": "پروفایل من",
-    "Espace rédaction": "جای نوشتن",
-    "Espace traduction": "جای ترجمه",
     "Ma structure": "ساختار من",
     "Administration": "مدیریت",
     "Se déconnecter": "از سیستم خارج شوید",
@@ -433,8 +420,6 @@
     "Centre d'aide": "مرکزکومکها"
   },
   "Retour à la recherche": "بازگشت به جستجو",
-
-  "Bravo": "افرین!",
   "ou": "یا",
   "Bientôt disponible !": "به زودی دردسترس شما!",
   "En savoir plus": "بیشتر بدانید",

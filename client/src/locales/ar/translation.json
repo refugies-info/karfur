@@ -19,7 +19,7 @@
     "Je contribue": "أريد المساهمة",
     "Je traduis": "أريد الترجمة",
     "Construis ta vie en France": "بناء حياتك في فرنسا",
-    "Explique les mots difficiles": "يفسّر Réfugiés.info  الكلمات الصعبة",
+    "Explique les mots difficiles": "يفسّر Réfugiés.info الكلمات الصعبة",
     "Trouver une démarche": "العثور على معاملة",
     "Choisir une langue": "اختر لغة",
     "site dispo": "Réfugiés.info متوفّر باللغات التالية :",
@@ -101,7 +101,7 @@
     "Traducteur": "مترجم",
     "Contributeur": "مساهم",
     "Utilisateur": "مستخدم",
-    "minutes données": "دقائق مقضيّة ",
+    "minutes données": "دقائق مقضيّة",
     "commencez à contribuer": "ابدأ في المساهمة لبدء العدّاد",
     "mots écrits": "كلمات مكتوبة",
     "commencez à rédiger": "ابدأ بكتابة محتوياتك الأولى لبدء العداد",
@@ -177,8 +177,6 @@
     "Header": "بناء حياتك في فرنسا",
     "Subheader": "هنا يمكنكم فهم كيفية الحصول على حقوقكم الاجتماعية، أو العثور على وظيفة أو دروس لغة فرنسية"
   },
-  "Masquer la recherche avancée": "إخفاء البحث المتقدم",
-  "Afficher la recherche avancée": "أظهر البحث المتقدم",
   "Tags": {
     "Français": "الفرنسية",
     "Logement": "إسكان",
@@ -254,12 +252,7 @@
   "Login": {
     "Pseudonyme": "اسم مستعار",
     "Retour à l'accueil": "عودة إلى الصفحة الرئيسية",
-    "Ou se créer un compte": "أو أنشئ حساب",
-    "Se connecter": "تسجيل الدخول",
     "Content de vous revoir !": "مسرور لرؤيتك مرة أخرى !",
-    "Mot de passe": "كلمة السر",
-    "Se créer un compte": "إنشاء حساب",
-    "Pas besoin d’email": "لا حاجة لبريد إلكتروني",
     "Mot de passe oublié ?": "نسيت كلمة المرور؟",
     "no-account": "لا يوجد حساب بهذا الاسم",
     "Confirmez le mot de passe": "أكّد كلمة المرور",
@@ -271,7 +264,8 @@
     "Renseignez ici le nouveau mot de passe souhaité": "إملأ كلمة المرور الجديدة هنا",
     "Chargement des données utilisateur": "تحميل بيانات المستخدم",
     "Problème mdp": "حدثت مشكلة أثناء إعادة تعيين كلمة المرور. شكراً للمحاولة مرة أخرى",
-    "Revenir à la page de connexion": "العودة إلى صفحة تسجيل الدخول"
+    "Revenir à la page de connexion": "العودة إلى صفحة تسجيل الدخول",
+    "Mot de passe": "كلمة السر"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "الوصول مرفوض",
@@ -393,14 +387,9 @@
     "Les femmes": "النساء",
     "Les hommes": "الرجال",
     "Les deux": "الاثنين",
-    "avec": "مع",
-    "En bref": "باختصار",
     "Dernière mise à jour": "آخر تحديث",
-    "Fiabilité de l'information": "موثوقيّة المعلومات",
-    "Faible": "منخفض",
-    "Moyenne": "متوسط",
-    "Forte": "عالية",
-    "Traducteurs": "مترجمون",
+    "En bref": "باختصار",
+    "avec": "مع",
     "Merci": "شكراً !"
   },
   "CheckDemarche": {
@@ -417,8 +406,6 @@
     "Accueil": "الصفحة الرئيسية",
     "Tout voir": "أظهر الكلّ",
     "Mon profil": "ملفي الشّخصي",
-    "Espace rédaction": "مكان الكتابة",
-    "Espace traduction": "مكان الترجمة",
     "Ma structure": "هيئتي",
     "Administration": "إدارة",
     "Se déconnecter": "تسجيل الخروج",
@@ -433,8 +420,6 @@
     "Centre d'aide": "مركز المساعدة"
   },
   "Retour à la recherche": "العودة إلى البحث",
-
-  "Bravo": "أحسنت !",
   "ou": "أو",
   "Bientôt disponible !": "متاح قريباً !",
   "En savoir plus": "اقرأ المزيد",

@@ -175,8 +175,6 @@
     "Header": "Построй свою жизнь во Франции",
     "Subheader": "Здесь вы сможете разобраться как получить доступ к вашим социальным правам, найти работу, а также найти курсы французского языка"
   },
-  "Masquer la recherche avancée": "Скрыть расширенный поиск",
-  "Afficher la recherche avancée": "Показать расширенный поиск",
   "Tags": {
     "Français": "Французский",
     "Logement": "Жилье",
@@ -252,12 +250,7 @@
   "Login": {
     "Pseudonyme": "Имя пользователя",
     "Retour à l'accueil": "Вернуться на главную",
-    "Ou se créer un compte": "Или создать учетную запись",
-    "Se connecter": "Войти в систему",
     "Content de vous revoir !": "Рады вас видеть снова!",
-    "Mot de passe": "Пароль",
-    "Se créer un compte": "Создать аккаунт",
-    "Pas besoin d’email": "Электронная почта не требуется",
     "Mot de passe oublié ?": "Забыли пароль?",
     "no-account": "Пользователь с таким именем не существует",
     "Confirmez le mot de passe": "Подтвердите пароль",
@@ -269,7 +262,8 @@
     "Renseignez ici le nouveau mot de passe souhaité": "Введите новый пароль здесь",
     "Chargement des données utilisateur": "Загрузка пользовательских данных",
     "Problème mdp": "При сбросе пароля возникла проблема. Пожалуйста, попробуйте еще раз.",
-    "Revenir à la page de connexion": "Вернуться на страницу авторизации"
+    "Revenir à la page de connexion": "Вернуться на страницу авторизации",
+    "Mot de passe": "Пароль"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "Доступ запрещен",
@@ -391,14 +385,9 @@
     "Les femmes": "Женщины",
     "Les hommes": "Мужчины",
     "Les deux": "Женщины и мужчины",
-    "avec": "с",
-    "En bref": "Основное",
     "Dernière mise à jour": "Последнее обновление",
-    "Fiabilité de l'information": "Надежность информации",
-    "Faible": "Низкий",
-    "Moyenne": "Средний",
-    "Forte": "Высокий",
-    "Traducteurs": "Переводчики",
+    "En bref": "Основное",
+    "avec": "с",
     "Merci": "Спасибо!"
   },
   "CheckDemarche": {
@@ -415,8 +404,6 @@
     "Accueil": "Главная",
     "Tout voir": "Смотреть все",
     "Mon profil": "Мой профиль",
-    "Espace rédaction": "Область редактирования",
-    "Espace traduction": "Раздел переводов",
     "Ma structure": "Моя организация",
     "Administration": "Админ",
     "Se déconnecter": "Выйти",
@@ -431,8 +418,6 @@
     "Centre d'aide": "Помощь"
   },
   "Retour à la recherche": "Вернуться к поиску",
-
-  "Bravo": "Браво!",
   "ou": "или",
   "Bientôt disponible !": "Будет доступно в ближайшее время!",
   "En savoir plus": "Узнать больше",
