@@ -15,7 +15,68 @@ import { CheckDemarcheModal } from "../../components/Modals";
 
 import "./CommentContribuer.scss";
 import variables from "scss/colors.scss";
+import styled from "styled-components";
+import HeaderBackgroungImage from "../../assets/comment-contribuer/CommentContribuer-header.svg";
 
+const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(${HeaderBackgroungImage});
+  margin-top: -75px;
+  width: 100%;
+  height: 720px;
+`;
+
+const HeaderText = styled.div`
+  font-weight: bold;
+  font-size: 52px;
+  line-height: 66px;
+  color: #ffffff;
+  margin-top: 191px;
+  margin-bottom: 72px;
+`;
+
+const CardContainer = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction:column
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top:10px;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 51px;
+  cursor:pointer;
+&:hover {
+  border: 4px solid #212121;
+}
+`;
+
+const IconContainer = styled.div`
+  align-self: flex-end;
+  margin: 0px;
+  padding: 0px;
+`;
+
+const HeaderCard = (props) => (
+  <CardContainer>
+    <IconContainer>
+      <EVAIcon name={props.iconName} size="xlarge" fill="#212121" />
+    </IconContainer>
+    {props.title}
+  </CardContainer>
+);
+
+const HeaderCardsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 class CommentContribuer extends Component {
   state = {
     showModals: { checkDemarche: false },
@@ -57,15 +118,23 @@ class CommentContribuer extends Component {
     return (
       <div className="animated fadeIn comment-contribuer texte-small">
         <section id="hero">
-          <div className="hero-container">
-            <h1>
+          <HeaderContainer>
+            <HeaderText>
               {t(
                 "CommentContribuer.Comment contribuer",
                 "Comment contribuer ?"
               )}
-            </h1>
-            <div className="cartes-row">
-              <div className="cartes-wrapper">
+            </HeaderText>
+            <HeaderCardsContainer>
+              <div style={{ marginRight: "48px" }}>
+                <HeaderCard title="écrire" iconName="edit-outline" />
+              </div>
+              <div style={{ marginRight: "48px" }}>
+                <HeaderCard title="traduire" iconName="edit-outline" />
+              </div>
+              <HeaderCard title="corriger" iconName="done-all-outline" />
+
+              {/* <div className="cartes-wrapper">
                 <AnchorLink offset="60" href="#ecrire">
                   <div className="carte-contrib">
                     <EVAIcon
@@ -104,12 +173,12 @@ class CommentContribuer extends Component {
                     </h3>
                   </div>
                 </AnchorLink>
-              </div>
-            </div>
-          </div>
+              </div> */}
+            </HeaderCardsContainer>
+          </HeaderContainer>
         </section>
 
-        <section id="ecrire">
+        {/* <section id="ecrire">
           <div className="section-container">
             <div className="section-header">
               <h2>{t("CommentContribuer.Écrire", "Écrire")}</h2>
@@ -405,7 +474,7 @@ class CommentContribuer extends Component {
           show={showModals.checkDemarche}
           toggle={() => this.toggleModal(false, "checkDemarche")}
           upcoming={this.upcoming}
-        />
+        /> */}
       </div>
     );
   }
