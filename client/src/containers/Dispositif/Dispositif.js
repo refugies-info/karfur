@@ -183,7 +183,8 @@ export class Dispositif extends Component {
   componentDidMount() {
     this._isMounted = true;
     this.props.fetchUser();
-    this._initializeDispositif(this.props);
+    this.checkUserFetchedAndInitialize();
+    // this._initializeDispositif(this.props);
   }
 
   // eslint-disable-next-line react/no-deprecated
@@ -213,6 +214,14 @@ export class Dispositif extends Component {
     this._isMounted = false;
     clearInterval(this.timer);
   }
+
+  checkUserFetchedAndInitialize = () => {
+    if (this.props.userFetched) {
+      this._initializeDispositif(this.props);
+    } else {
+      setTimeout(this.checkUserFetchedAndInitialize, 100); // check again in a 100 ms
+    }
+  };
 
   _initializeDispositif = (props) => {
     const itemId = props.match && props.match.params && props.match.params.id;
@@ -250,6 +259,7 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/");
           }
+
           // case dispositif not active and user neither admin nor contributor nor in structure
           if (
             dispositif.status !== "Actif" &&
@@ -258,8 +268,20 @@ export class Dispositif extends Component {
             !this.props.user.structures.includes(dispositif.sponsors[0]._id)
           ) {
             if (_.isEmpty(this.props.user)) {
+              Swal.fire({
+                title: "Erreur",
+                text: "Accès non authorisé",
+                type: "error",
+                timer: 1200,
+              });
               return this.props.history.push("/login");
             }
+            Swal.fire({
+              title: "Erreur",
+              text: "Accès non authorisé",
+              type: "error",
+              timer: 1200,
+            });
             this._isMounted = false;
             return this.props.history.push("/");
           }
@@ -368,9 +390,21 @@ export class Dispositif extends Component {
         })
         .catch((err) => {
           if (_.isEmpty(this.props.user)) {
+            Swal.fire({
+              title: "Erreur",
+              text: "Accès non authorisé",
+              type: "error",
+              timer: 1200,
+            });
             this._isMounted = false;
             return this.props.history.push("/login");
           }
+          Swal.fire({
+            title: "Erreur",
+            text: "Accès non authorisé",
+            type: "error",
+            timer: 1200,
+          });
           // eslint-disable-next-line no-console
           console.log("Error: ", err.message);
           this._isMounted = false;
@@ -2091,6 +2125,7 @@ const mapStateToProps = (state) => {
     userId: state.user.userId,
     admin: state.user.admin,
     structures: state.structure.structures,
+    userFetched: state.user.userFetched,
   };
 };
 
