@@ -12,6 +12,7 @@ export interface UserState {
   contributeur: boolean;
   membreStruct: boolean;
   userId: ObjectId | "";
+  userFetched: boolean;
 }
 export const initialUserState: UserState = {
   user: null,
@@ -21,6 +22,7 @@ export const initialUserState: UserState = {
   contributeur: false,
   membreStruct: false,
   userId: "",
+  userFetched: false,
 };
 
 export const userReducer = createReducer<UserState, UserActions>(
@@ -28,6 +30,7 @@ export const userReducer = createReducer<UserState, UserActions>(
   {
     SET_USER: (state, action) =>
       updateObject(state, {
+        userFetched: true,
         user: action.payload,
         userId: action.payload ? action.payload._id : "",
         admin:
@@ -52,6 +55,6 @@ export const userReducer = createReducer<UserState, UserActions>(
             : false,
       }),
     UPDATE_USER: (state, action) =>
-      updateObject(state, { user: action.payload }),
+      updateObject(state, { user: action.payload, userFetched: true }),
   }
 );

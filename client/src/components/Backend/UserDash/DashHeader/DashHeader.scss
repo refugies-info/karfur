@@ -60,11 +60,6 @@ $normalSize: 18px;
         @include media-max("lg-limit") {
           margin-left: 0;
         }
-        .mot-indicateur {
-          background: $gradiantSplash;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
 
         .right-side {
           font-weight: 600;
@@ -74,9 +69,7 @@ $normalSize: 18px;
           padding: 10px;
           margin-bottom: 0px;
           line-height: 55px;
-          background: $gradiantSplash;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
+
           @include media-max("desktop-down") {
             font-size: $h1Size * 4 / 5;
           }
