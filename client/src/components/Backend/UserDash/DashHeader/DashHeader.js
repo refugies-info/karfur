@@ -127,8 +127,8 @@ const dashHeader = (props) => {
               <span className="gris">/ {props.objectifMots || 0}</span>
             </h3>
             <div className="left-side">
-              <b className="mot-indicateur">mots</b> traduits pour atteindre
-              votre objectif. <i>Courage !</i>
+              <b>mots</b> traduits pour atteindre votre objectif.{" "}
+              <i>Courage !</i>
             </div>
           </div>
         </Col>
@@ -139,8 +139,7 @@ const dashHeader = (props) => {
               <span className="gris">/ {props.objectifTemps || 0}</span>
             </h3>
             <div className="left-side">
-              <b className="mot-indicateur">minutes</b> dédiés à l'accueil des
-              personnes réfugiés. <br />
+              <b>minutes</b> dédiés à l'accueil des personnes réfugiés. <br />
               <i>Merci !</i>
             </div>
           </div>
