@@ -101,7 +101,7 @@ const contribTable = (props) => {
                             : marioProfile
                         }
                         className="profile-img-pin img-circle"
-                        alt="random profiles"
+                        alt="Image manquante"
                       />
                     );
                   })}

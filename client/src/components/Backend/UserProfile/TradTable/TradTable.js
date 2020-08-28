@@ -37,9 +37,8 @@ const tradTable = (props) => {
           <span>{langue.langueLoc}</span>
         </>
       );
-    } 
-      return false;
-    
+    }
+    return false;
   };
   let table = (
     <Table responsive className="avancement-user-table">
@@ -131,7 +130,7 @@ const tradTable = (props) => {
                           : marioProfile
                       }
                       className="profile-img-pin img-circle"
-                      alt="random profiles"
+                      alt="Image manquante"
                     />
                   ))}
               </td>
@@ -213,7 +212,7 @@ const tradTable = (props) => {
           </Col>
           {props.displayIndicators && traducteur && (
             <Col className="d-flex tableau-header">
-              <div style={{position: "absolute", right: 20}}>
+              <div style={{ position: "absolute", right: 20 }}>
                 <FButton
                   tag={NavLink}
                   to="/backend/user-dashboard"
@@ -260,9 +259,8 @@ const tradTable = (props) => {
     );
   } else if (show) {
     return table;
-  } 
-    return false;
-  
+  }
+  return false;
 };
 
 export default withTranslation()(tradTable);
