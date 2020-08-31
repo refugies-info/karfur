@@ -171,7 +171,21 @@
     "Ajouter dispositif cardbody": "Rédigez la fiche pratique d'un dispositif d'accompagnement pour que les personnes réfugiées soient pleinement informées et puissent s'y engager.",
     "Expliquer démarche cardbody": "Rédigez la fiche pratique d'une démarche administrative qui détaille, étape par étape, les actions à mener pour la réussir.",
     "Ajouter définition cardbody": "Enrichissez le lexique collaboratif pour que tout le monde comprenne mieux les mots de l’intégration.",
-    "Créer parcours cardbody": "Vous avez un objectif ? On vous liste les étapes à franchir pour l’atteindre dans notre moteur de parcours d’intégration."
+    "Créer parcours cardbody": "Vous avez un objectif ? On vous liste les étapes à franchir pour l’atteindre dans notre moteur de parcours d’intégration.",
+    "Redaction": "Rédiger de nouveaux contenus",
+    "Rédiger une fiche": "Rédiger une fiche",
+    "Dispositif": "Dispositif",
+    "DispostifDescription": "Programme, atelier, formation, cours en ligne, permanence d’accueil ou tout autre dispositif directement accessible par les personnes réfugiées.",
+    "minutes": "minutes",
+    "Démarche": "Démarche",
+    "DemarcheDescription": "Expliquez une démarche administrative étape par étape pour faciliter son accès et sa compréhension par les personnes réfugiées.",
+    "Organisation": "Organisation",
+    "Recenser": "Recenser une",
+    "Ajouter un mot au": "Ajouter un mot au",
+    "Lexique": "Lexique",
+    "StructureDescription": "Complétez l’annuaire de l’intégration pour faciliter la prise de contact entre acteurs et l’accès aux interlocuteurs pour les personnes réfugiées.",
+    "LexiqueDescription": "Expliquez les mots difficiles de l’administration et de l’intégration pour faciliter la compréhension pour les personnes réfugiées.",
+    "Prochainement": "Prochainement"
   },
   "Dispositifs": {
     "Header": "Construire sa vie en France",

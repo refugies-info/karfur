@@ -13,11 +13,21 @@ import SVGIcon from "../../components/UI/SVGIcon/SVGIcon";
 import { image_corriger } from "../../assets/figma";
 import { CheckDemarcheModal } from "../../components/Modals";
 
-import "./CommentContribuer.scss";
 import variables from "scss/colors.scss";
 import styled from "styled-components";
 import HeaderBackgroungImage from "../../assets/comment-contribuer/CommentContribuer-header.svg";
+import BackgroundDispositif from "../../assets/comment-contribuer/CommentContribuer-background_orange.svg";
+import { ReactComponent as DispositifImage } from "../../assets/comment-contribuer/CommentContribuer-dispositif.svg";
+import BackgroundDemarche from "../../assets/comment-contribuer/CommentContribuer-background_rouge.svg";
+import { ReactComponent as DemarcheImage } from "../../assets/comment-contribuer/CommentContribuer-demarche.svg";
+import BackgroundStructure from "../../assets/comment-contribuer/CommentContribuer-background_violet.svg";
+import { ReactComponent as StructureImage } from "../../assets/comment-contribuer/CommentContribuer-structure.svg";
+import BackgroundLexique from "../../assets/comment-contribuer/CommentContribuer-background_bleu.svg";
+import { ReactComponent as LexiqueImage } from "../../assets/comment-contribuer/CommentContribuer-lexique.svg";
 
+const MainContainer = styled.div`
+  flex: 1;
+`;
 const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -53,9 +63,22 @@ const CardContainer = styled.div`
   font-size: 40px;
   line-height: 51px;
   cursor:pointer;
+  border: 4px solid #ffffff;
+
 &:hover {
   border: 4px solid #212121;
 }
+`;
+
+const RedactionContainer = styled.div`
+  padding-top: 48px;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  padding-left: 120px;
+  padding-right: 120px;
+  background: #ffffff;
+  padding-bottom: 106px;
 `;
 
 const IconContainer = styled.div`
@@ -64,10 +87,21 @@ const IconContainer = styled.div`
   padding: 0px;
 `;
 
+const RedactionCardsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 48px;
+  justify-content: space-between;
+`;
+
 const HeaderCard = (props) => (
   <CardContainer>
     <IconContainer>
-      <EVAIcon name={props.iconName} size="xlarge" fill="#212121" />
+      {props.eva ? (
+        <EVAIcon name={props.iconName} size="xlarge" fill="#212121" />
+      ) : (
+        <SVGIcon name="translate" fill="#212121" width="40px" height="40px" />
+      )}
     </IconContainer>
     {props.title}
   </CardContainer>
@@ -77,6 +111,257 @@ const HeaderCardsContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+const DispoCardContainer = styled.div`
+  background-image: url(${BackgroundDispositif});
+  background-repeat: no-repeat;
+  height: 480px;
+  width: 283px;
+  border-radius: 12px;
+  padding: 24px;
+  padding-bottom: 12px;
+  border: 4px solid #ffffff;
+  cursor: pointer;
+  &:hover {
+    border: 4px solid #f9aa75;
+  }
+  position: relative;
+`;
+
+const DemarcheCardContainer = styled.div`
+  background-image: url(${BackgroundDemarche});
+  background-repeat: no-repeat;
+  height: 480px;
+  width: 283px;
+  border-radius: 12px;
+  padding: 24px;
+  padding-bottom: 12px;
+
+  border: 4px solid #ffffff;
+  cursor: pointer;
+  &:hover {
+    border: 4px solid #de6b8a;
+  }
+  position: relative;
+`;
+
+const StructureCardContainer = styled.div`
+  background-image: url(${BackgroundStructure});
+  background-repeat: no-repeat;
+  height: 480px;
+  width: 283px;
+  border-radius: 12px;
+  padding: 24px;
+  padding-bottom: 12px;
+
+  border: 4px solid #ffffff;
+  cursor: not-allowed;
+  position: relative;
+`;
+
+const LexiqueCardContainer = styled.div`
+  background-image: url(${BackgroundLexique});
+  background-repeat: no-repeat;
+  height: 480px;
+  width: 283px;
+  border-radius: 12px;
+  padding: 24px;
+  padding-bottom: 12px;
+
+  border: 4px solid #ffffff;
+  cursor: not-allowed;
+  position: relative;
+`;
+
+const TitleContainer = styled.div`
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 16px;
+`;
+
+const TitleFramed = styled.div`
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: #fbfbfb;
+  background: #212121;
+  padding: 4px 8px;
+  width: ${(props) => props.width};
+  margin-top: 4px;
+`;
+const DescriptionText = styled.div`
+  font-size: 18px;
+  line-height: 23px;
+  margin-top: 16px;
+`;
+
+const TimeContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  position: absolute;
+  bottom: 12px;
+`;
+
+const DispositifCard = (props) => (
+  <DispoCardContainer>
+    <DispositifImage />
+    <div
+      style={{
+        display: "flex",
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <div>
+        <TitleContainer>
+          {props.t("CommentContribuer.Rédiger une fiche", "Rédiger une fiche")}
+        </TitleContainer>
+        <TitleFramed width={"113px"}>
+          {props.t("CommentContribuer.Dispositif", "Dispositif")}
+        </TitleFramed>
+        <DescriptionText>
+          {props.t(
+            "CommentContribuer.DispositifDescription",
+            `Programme, atelier, formation, cours en ligne, permanence d’accueil ou
+      tout autre dispositif directement accessible par les personnes réfugiées.`
+          )}
+        </DescriptionText>
+      </div>
+      <TimeContainer>
+        <EVAIcon
+          name="clock-outline"
+          fill="#000000"
+          size="10"
+          className="mr-10"
+        />
+        {"~ 20 "}
+        {props.t("CommentContribuer.minutes", "minutes")}
+      </TimeContainer>
+    </div>
+  </DispoCardContainer>
+);
+
+const StructureCard = (props) => (
+  <StructureCardContainer>
+    <StructureImage />
+    <div
+      style={{
+        display: "flex",
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <div>
+        <TitleContainer>
+          {props.t("CommentContribuer.Recenser", "Recenser une")}
+        </TitleContainer>
+        <TitleFramed width={"148px"}>
+          {props.t("CommentContribuer.Organisation", "Organisation")}
+        </TitleFramed>
+        <DescriptionText>
+          {props.t(
+            "CommentContribuer.StructureDescription",
+            "Complétez l’annuaire de l’intégration pour faciliter la prise de contact entre acteurs et l’accès aux interlocuteurs pour les personnes réfugiées."
+          )}
+        </DescriptionText>
+      </div>
+      <TimeContainer>
+        <EVAIcon
+          name="sun-outline"
+          fill="#000000"
+          size="10"
+          className="mr-10"
+        />
+        {props.t("CommentContribuer.Bientôt disponible", "Bientôt disponible")}
+      </TimeContainer>
+    </div>
+  </StructureCardContainer>
+);
+
+const DemarcheCard = (props) => (
+  <DemarcheCardContainer>
+    <DemarcheImage />
+    <div
+      style={{
+        display: "flex",
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <div>
+        <TitleContainer>
+          {props.t("CommentContribuer.Rédiger une fiche", "Rédiger une fiche")}
+        </TitleContainer>
+        <TitleFramed width={"122px"}>
+          {props.t("CommentContribuer.Démarche", "Démarche")}
+        </TitleFramed>
+        <DescriptionText>
+          {props.t(
+            "CommentContribuer.DemarcheDescription",
+            "Expliquez une démarche administrative étape par étape pour faciliter son accès et sa compréhension par les personnes réfugiées."
+          )}
+        </DescriptionText>
+      </div>
+      <TimeContainer>
+        <EVAIcon
+          name="clock-outline"
+          fill="#000000"
+          size="10"
+          className="mr-10"
+        />
+        {"~ 40 "}
+        {props.t("CommentContribuer.minutes", "minutes")}
+      </TimeContainer>
+    </div>
+  </DemarcheCardContainer>
+);
+
+const LexiqueCard = (props) => (
+  <LexiqueCardContainer>
+    <LexiqueImage />
+    <div
+      style={{
+        display: "flex",
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+    >
+      <div>
+        <TitleContainer>
+          {props.t("CommentContribuer.Ajouter un mot au", "Ajouter un mot au")}
+        </TitleContainer>
+        <TitleFramed width={"97px"}>
+          {props.t("CommentContribuer.Lexique", "Lexique")}
+        </TitleFramed>
+        <DescriptionText>
+          {props.t(
+            "CommentContribuer.LexiqueDescription",
+            "Expliquez les mots difficiles de l’administration et de l’intégration pour faciliter la compréhension pour les personnes réfugiées."
+          )}
+        </DescriptionText>
+      </div>
+
+      <TimeContainer>
+        <EVAIcon
+          name="calendar-outline"
+          fill="#000000"
+          size="10"
+          className="mr-10"
+        />
+        {props.t("CommentContribuer.Prochainement", "Prochainement")}
+      </TimeContainer>
+    </div>
+  </LexiqueCardContainer>
+);
+
 class CommentContribuer extends Component {
   state = {
     showModals: { checkDemarche: false },
@@ -116,68 +401,41 @@ class CommentContribuer extends Component {
     const { t, langues } = this.props;
     const { showModals, users } = this.state;
     return (
-      <div className="animated fadeIn comment-contribuer texte-small">
-        <section id="hero">
-          <HeaderContainer>
-            <HeaderText>
-              {t(
-                "CommentContribuer.Comment contribuer",
-                "Comment contribuer ?"
-              )}
-            </HeaderText>
-            <HeaderCardsContainer>
-              <div style={{ marginRight: "48px" }}>
-                <HeaderCard title="écrire" iconName="edit-outline" />
-              </div>
-              <div style={{ marginRight: "48px" }}>
-                <HeaderCard title="traduire" iconName="edit-outline" />
-              </div>
-              <HeaderCard title="corriger" iconName="done-all-outline" />
+      <MainContainer>
+        <HeaderContainer>
+          <HeaderText>
+            {t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}
+          </HeaderText>
+          <HeaderCardsContainer>
+            <div style={{ marginRight: "48px" }}>
+              <AnchorLink offset="60" href="#ecrire">
+                <HeaderCard title="écrire" iconName="edit-outline" eva={true} />
+              </AnchorLink>
+            </div>
+            <div style={{ marginRight: "48px" }}>
+              <HeaderCard title="traduire" iconName="edit-outline" />
+            </div>
+            <HeaderCard
+              title="corriger"
+              iconName="done-all-outline"
+              eva={true}
+            />
+          </HeaderCardsContainer>
+        </HeaderContainer>
+        <RedactionContainer id="ecrire">
+          {t("CommentContribuer.Redaction", "Rédiger de nouveaux contenus")}
+          <RedactionCardsContainer>
+            <NavLink to="/dispositif" className="no-decoration">
+              <DispositifCard t={t} />
+            </NavLink>
+            <NavLink to="/demarche" className="no-decoration">
+              <DemarcheCard t={t} />
+            </NavLink>
 
-              {/* <div className="cartes-wrapper">
-                <AnchorLink offset="60" href="#ecrire">
-                  <div className="carte-contrib">
-                    <EVAIcon
-                      name="edit-outline"
-                      className="carte-icon"
-                      size="xlarge"
-                    />
-                    <h3 className="texte-footer">
-                      {t("CommentContribuer.écrire", "écrire")}
-                    </h3>
-                  </div>
-                </AnchorLink>
-                <AnchorLink offset="60" href="#traduire">
-                  <div className="carte-contrib">
-                    <SVGIcon
-                      name="translate"
-                      fill="#FFFFFF"
-                      className="carte-icon"
-                      width="30px"
-                      height="30px"
-                    />
-                    <h3 className="texte-footer">
-                      {t("CommentContribuer.traduire", "traduire")}
-                    </h3>
-                  </div>
-                </AnchorLink>
-                <AnchorLink offset="60" href="#corriger">
-                  <div className="carte-contrib">
-                    <EVAIcon
-                      name="done-all"
-                      className="carte-icon"
-                      size="xlarge"
-                    />
-                    <h3 className="texte-footer">
-                      {t("CommentContribuer.corriger", "corriger")}
-                    </h3>
-                  </div>
-                </AnchorLink>
-              </div> */}
-            </HeaderCardsContainer>
-          </HeaderContainer>
-        </section>
-
+            <StructureCard t={t} />
+            <LexiqueCard t={t} />
+          </RedactionCardsContainer>
+        </RedactionContainer>
         {/* <section id="ecrire">
           <div className="section-container">
             <div className="section-header">
@@ -475,7 +733,7 @@ class CommentContribuer extends Component {
           toggle={() => this.toggleModal(false, "checkDemarche")}
           upcoming={this.upcoming}
         /> */}
-      </div>
+      </MainContainer>
     );
   }
 }
