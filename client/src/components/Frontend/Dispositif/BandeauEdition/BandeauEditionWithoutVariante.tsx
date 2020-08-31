@@ -4,6 +4,7 @@ import { jsUcfirst } from "../../../../lib";
 import FButton from "../../../FigmaUI/FButton/FButton";
 
 interface Props {
+  visible: boolean;
   typeContenu: string;
   toggleTutoriel: () => void;
   displayTuto: boolean;
@@ -24,7 +25,7 @@ const ContentTypeContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-  background: ${(props) => (props.yellow ? "#f9ef99" : "#edebeb")}
+  background: ${(props) => (props.yellow ? "#f9ef99" : "#edebeb")};
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: row;
@@ -138,9 +139,9 @@ const getInfoText = (step: number, displayTuto: boolean) => {
 export const BandeauEditionWithoutVariante = (props: Props) => {
   const { title, subtitle } = getInfoText(props.tKeyValue, props.displayTuto);
   return (
-    <div className="bandeau-edition">
+    <div className={"bandeau-edition" + (props.visible ? "" : " go-to-top")}>
       <div className="dashed-panel no-radius" />
-      <MainContainer yellow={props.displayTuto && props.tKeyValue !== -1}>
+      <MainContainer visible={props.visible} yellow={props.displayTuto && props.tKeyValue !== -1}>
         <FirstGroupContainer>
           <ContentTypeContainer>
             {jsUcfirst(props.typeContenu)}
