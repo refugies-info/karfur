@@ -744,7 +744,7 @@ const customConvertOption = {
     }
   },
   entityToHTML: (entity, originalText) => {
-    if (entity.type === "link" || entity.type === "LINK") {
+     if (entity.type === "link" || entity.type === "LINK") {
       return (
         <a
           href={entity.data.url}

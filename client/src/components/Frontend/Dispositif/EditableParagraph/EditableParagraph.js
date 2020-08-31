@@ -256,7 +256,6 @@ class EditableParagraph extends Component {
                 options: ["link"],
                 className: "bloc-gauche-inline blc-gh",
                 link: { icon: linkBtn, className: "btn-link" },
-                defaultTargetOption: "_blank",
                 showOpenOptionOnHover: true,
               },
             }}
