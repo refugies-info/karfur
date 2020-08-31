@@ -1,5 +1,6 @@
 import React from "react";
 import { Player } from "video-react";
+import h2p from "html2plaintext"
 // import { Alerts } from "@streamlinehq/streamline-regular/lib/interface-essential";
 // import { Conversation } from "@streamlinehq/streamline-regular/lib/messages-chat-smileys";
 // import { GeometricFullBodySingleUserActionsNeutral } from "@streamlinehq/streamline-regular/lib/users";
@@ -752,7 +753,7 @@ const customConvertOption = {
           rel="noopener noreferrer"
           className="edited-btn"
         >
-          {originalText}
+          { h2p(originalText)}
         </a>
       );
     } else if (entity.type === "image" || entity.type === "IMAGE") {
