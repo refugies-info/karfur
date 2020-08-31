@@ -429,6 +429,12 @@ $imgHeight: 350px;
   .contenu-wrapper {
     position: relative;
 
+    li {
+      margin-bottom: 27px;
+      line-height: 27px;
+      font-size: 18px;
+    }
+
     .relative-position {
       position: relative;
     }
