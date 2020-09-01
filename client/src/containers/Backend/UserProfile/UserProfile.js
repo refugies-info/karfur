@@ -128,9 +128,12 @@ export class UserProfile extends Component {
     cpassword: "",
     passwordVisible: false,
     nbReadStruct: 0,
+    visible: true,
+    scroll: false,
   };
 
   componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
     this._isMounted = true;
     const user = this.props.user,
       userId = this.props.user;
@@ -240,8 +243,21 @@ export class UserProfile extends Component {
   }
 
   componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
     this._isMounted = false;
   }
+
+  handleScroll = () => {
+    // const { prevScrollpos } = this.state;
+
+    const currentScrollPos = window.pageYOffset;
+    const visible = currentScrollPos < 70;
+
+    this.setState({
+      //prevScrollpos: currentScrollPos,
+      visible,
+    });
+  };
 
   initializeStructure = () => {
     const user = this.props.user;
@@ -495,7 +511,7 @@ export class UserProfile extends Component {
     // let nbReactions = contributions.map(dispo => ((dispo.merci || []).length + (dispo.bravo || []).length)).reduce((a,b) => a + b, 0);
     return (
       <div className="animated fadeIn user-profile">
-        <div className="profile-header">
+        <div className={"profile-header" + (this.state.visible ? "" : " profile-header-hidden")}>
           <AnchorLink
             href="#mon-profil"
             offset={anchorOffset}

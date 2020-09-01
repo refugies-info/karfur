@@ -11,8 +11,11 @@ $defaultSize: 310px;
   flex: 1 1;
   max-width: 100%;
   //overflow: scroll;
-
+  .profile-header-hidden {
+    top: 0px !important;
+}
   .profile-header {
+    transition: top 0.6s;
     height: 75px;
     width: 100%;
     display: flex;

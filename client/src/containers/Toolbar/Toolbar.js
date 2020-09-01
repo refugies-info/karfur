@@ -62,7 +62,7 @@ export class Toolbar extends React.Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
-    if (this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche")) {
+    if (this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche") || this.props.location.pathname.includes("user-profile")) {
       this.setState({scroll: true})
     }
   }
@@ -73,7 +73,7 @@ export class Toolbar extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      if (this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche")) {
+      if (this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche") || this.props.location.pathname.includes("user-profile")) {
         this.setState({scroll: true})
       } else {
       this.setState({scroll: false})
