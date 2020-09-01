@@ -185,7 +185,9 @@
     "Lexique": "Lexique",
     "StructureDescription": "Complétez l’annuaire de l’intégration pour faciliter la prise de contact entre acteurs et l’accès aux interlocuteurs pour les personnes réfugiées.",
     "LexiqueDescription": "Expliquez les mots difficiles de l’administration et de l’intégration pour faciliter la compréhension pour les personnes réfugiées.",
-    "Prochainement": "Prochainement"
+    "Prochainement": "Prochainement",
+    "Traduction": "Traduire pour rendre accessible",
+    "TraductionReseau": "Vous parlez une autre langue ? Rejoignez un réseau de :"
   },
   "Dispositifs": {
     "Header": "Construire sa vie en France",

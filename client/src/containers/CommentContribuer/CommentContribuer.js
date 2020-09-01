@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import { Row, Col, Card, CardHeader, CardFooter, CardBody } from "reactstrap";
+import {
+  Row,
+  Col,
+  Card,
+  CardHeader,
+  CardFooter,
+  CardBody,
+  Progress,
+} from "reactstrap";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
@@ -24,6 +32,10 @@ import BackgroundStructure from "../../assets/comment-contribuer/CommentContribu
 import { ReactComponent as StructureImage } from "../../assets/comment-contribuer/CommentContribuer-structure.svg";
 import BackgroundLexique from "../../assets/comment-contribuer/CommentContribuer-background_bleu.svg";
 import { ReactComponent as LexiqueImage } from "../../assets/comment-contribuer/CommentContribuer-lexique.svg";
+import BackgroundTraduction from "../../assets/comment-contribuer/CommentContribuer_backgroundTraduction.svg";
+import { ReactComponent as TradImage } from "../../assets/comment-contribuer/CommentContribuer_imageTrad.svg";
+import { colorAvancement } from "../../components/Functions/ColorFunctions";
+import { Avancement } from "../Avancement/Avancement";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -79,6 +91,19 @@ const RedactionContainer = styled.div`
   padding-right: 120px;
   background: #ffffff;
   padding-bottom: 106px;
+  height: 720px;
+`;
+
+const TraductionContainer = styled.div`
+  height: 720px;
+  background-image: url(${BackgroundTraduction});
+  padding-top: 48px;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  padding-right: 120px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const IconContainer = styled.div`
@@ -204,6 +229,37 @@ const TimeContainer = styled.div`
   line-height: 20px;
   position: absolute;
   bottom: 12px;
+`;
+
+const TradContentContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const LanguagesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TradHeaderContainer = styled.div`
+  font-style: normal;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  margin-top: 62px;
+  margin-bottom: 16px;
+`;
+
+const NumbersContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const LanguesCardsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 32px;
 `;
 
 const DispositifCard = (props) => (
@@ -389,6 +445,11 @@ class CommentContribuer extends Component {
       showModals: { ...prevState.showModals, [name]: show },
     }));
 
+  getActiveLangues = () =>
+    this.props.langues.filter(
+      (langue) => langue.avancement > 0 && langue.langueCode !== "fr"
+    );
+
   upcoming = () =>
     Swal.fire({
       title: "Oh non!",
@@ -397,9 +458,29 @@ class CommentContribuer extends Component {
       timer: 1500,
     });
 
+  getNumberOfTraducteursAndExperts = () => {
+    const nbTrad = (
+      this.state.users.filter((x) =>
+        (x.roles || []).some((y) => y.nom === "Trad")
+      ) || []
+    ).length;
+
+    const nbExperts = (
+      this.state.users.filter((x) =>
+        (x.roles || []).some((y) => y.nom === "ExpertTrad")
+      ) || []
+    ).length;
+
+    return { nbTrad, nbExperts };
+  };
+
   render() {
     const { t, langues } = this.props;
     const { showModals, users } = this.state;
+
+    const { nbTrad, nbExperts } = this.getNumberOfTraducteursAndExperts();
+    const activeLangues = this.getActiveLangues();
+    console.log("active", activeLangues);
     return (
       <MainContainer>
         <HeaderContainer>
@@ -413,7 +494,9 @@ class CommentContribuer extends Component {
               </AnchorLink>
             </div>
             <div style={{ marginRight: "48px" }}>
-              <HeaderCard title="traduire" iconName="edit-outline" />
+              <AnchorLink offset="60" href="#traduire">
+                <HeaderCard title="traduire" iconName="edit-outline" />
+              </AnchorLink>
             </div>
             <HeaderCard
               title="corriger"
@@ -436,6 +519,67 @@ class CommentContribuer extends Component {
             <LexiqueCard t={t} />
           </RedactionCardsContainer>
         </RedactionContainer>
+        <TraductionContainer id="traduire">
+          <div style={{ marginLeft: "120px" }}>
+            {t(
+              "CommentContribuer.Traduction",
+              "Traduire pour rendre accessible"
+            )}
+          </div>
+          <TradContentContainer>
+            <TradImage />
+            <LanguagesContainer>
+              <TradHeaderContainer>
+                {t(
+                  "CommentContribuer.TraductionReseau",
+                  "Vous parlez une autre langue ? Rejoignez un réseau de :"
+                )}
+              </TradHeaderContainer>
+              <NumbersContainer>
+                <NumberTraduction
+                  amount={nbTrad}
+                  text={"traducteurs actifs"}
+                  width={181}
+                />
+                <NumberTraduction
+                  amount={nbExperts}
+                  text={"experts en traduction"}
+                  width={326}
+                />
+              </NumbersContainer>
+              <LanguesCardsContainer>
+                <Langue
+                  langue={activeLangues[0] || {}}
+                  key={activeLangues[0] && activeLangues[0].i18nCode}
+                />
+                <Langue
+                  langue={activeLangues[1] || {}}
+                  key={activeLangues[1] && activeLangues[1].i18nCode}
+                />
+              </LanguesCardsContainer>
+              <LanguesCardsContainer>
+                <Langue
+                  langue={activeLangues[2] || {}}
+                  key={activeLangues[2] && activeLangues[2].i18nCode}
+                />
+                <Langue
+                  langue={activeLangues[3] || {}}
+                  key={activeLangues[3] ? activeLangues[3].i18nCode : ""}
+                />
+              </LanguesCardsContainer>
+              <LanguesCardsContainer>
+                <Langue
+                  langue={activeLangues[4] || {}}
+                  key={activeLangues[4] && activeLangues[4].i18nCode}
+                />
+                <Langue
+                  langue={activeLangues[5] || {}}
+                  key={activeLangues[5] ? activeLangues[5].i18nCode : ""}
+                />
+              </LanguesCardsContainer>
+            </LanguagesContainer>
+          </TradContentContainer>
+        </TraductionContainer>
         {/* <section id="ecrire">
           <div className="section-container">
             <div className="section-header">
@@ -737,6 +881,84 @@ class CommentContribuer extends Component {
     );
   }
 }
+const NumberTraductionContainer = styled.div`
+  background: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  align-items: center;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  width: ${(props) => props.width};
+  margin-right: 32px;
+`;
+
+const NumberContainer = styled.div`
+  background: #212121;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 51px;
+  padding: 8px 16px;
+  margin-right: 8px;
+`;
+
+const NumberTraduction = (props) => (
+  <NumberTraductionContainer width={props.width}>
+    <NumberContainer>{props.amount}</NumberContainer>
+    {props.text}
+  </NumberTraductionContainer>
+);
+
+const LangueContainer = styled.div`
+  background: #fbfbfb;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  padding: 24px;
+  margin-right: 32px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  align-items: center;
+  width: 340px;
+`;
+
+const ProgressContainer = styled.div`
+  width: 100px;
+  margin-left: 24px;
+  margin-right: 8px;
+`;
+const AvancementContainer = styled.div`
+  color: ${(props) => props.color};
+`;
+const Langue = (props) => (
+  <NavLink to="/backend/user-dashboard">
+    <LangueContainer>
+      <div style={{ marginRight: "16px" }}>
+        <i
+          title={props.langue.langueCode}
+          className={" flag-icon flag-icon-" + props.langue.langueCode}
+        />
+      </div>
+      {props.langue.langueFr}
+      <ProgressContainer>
+        <Progress
+          color={colorAvancement(props.langue.avancementTrad)}
+          value={props.langue.avancementTrad * 100}
+        />
+      </ProgressContainer>
+      <AvancementContainer
+        className={"text-" + colorAvancement(props.langue.avancementTrad)}
+      >
+        {Math.round((props.langue.avancementTrad || 0) * 100)}%
+      </AvancementContainer>
+    </LangueContainer>
+  </NavLink>
+);
 
 const mapStateToProps = (state) => {
   return {
