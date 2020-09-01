@@ -9,6 +9,8 @@ import variables from "scss/colors.scss";
 import { Props } from "./BandeauEdition.container";
 import { BandeauEditionWithoutVariante } from "./BandeauEditionWithoutVariante";
 
+declare const window: any;
+
 export interface PropsBeforeInjection {
   withHelp: boolean;
   disableEdit: boolean;
@@ -28,7 +30,7 @@ export interface PropsBeforeInjection {
   tKeyValue: number;
   toggleDispositifCreateModal: () => void;
 }
-export class BandeauEdition extends React.Component<Props> {
+export class BandeauEdition extends React.Component<Props, {scroll: boolean, visible: boolean}> {
   /**
    * explanations of props :
    * withHelp : activate or not help
@@ -41,6 +43,36 @@ export class BandeauEdition extends React.Component<Props> {
    * toggleCheckingVariante
    * toggleInVariante
    */
+  constructor(props: any) {
+    super(props);
+
+    this.state = {
+      //prevScrollpos: window.pageYOffset,
+      visible: true,
+      scroll: false
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+  
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+  
+  handleScroll = () => {
+   // const { prevScrollpos } = this.state;
+  
+    const currentScrollPos = window.pageYOffset;
+    const visible = currentScrollPos < 70;
+  
+    this.setState({
+      //prevScrollpos: currentScrollPos,
+      visible
+    });
+  };
+
   render() {
     const props = this.props;
     //Il faut virer tous les paragraphes de la section "C'est pour qui"
@@ -122,6 +154,7 @@ export class BandeauEdition extends React.Component<Props> {
     ) {
       return (
         <BandeauEditionWithoutVariante
+          visible={this.state.visible}
           typeContenu={props.typeContenu}
           toggleTutoriel={props.toggleTutoriel}
           displayTuto={props.displayTuto}

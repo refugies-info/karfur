@@ -6,7 +6,9 @@
   position: fixed;
   width: 100%;
   z-index: 15;
+  transition: top 0.6s;
   margin-top: 15px;
+  top: 60px;
   h5 {
     margin-bottom: 0;
   }
@@ -27,4 +29,8 @@
     display: flex;
     align-items: center;
   }
+}
+
+.go-to-top {
+  top: -15px !important;
 }
