@@ -92,7 +92,7 @@ export class Footer extends Component {
                   </NavHashLink>
                 </div>
                 <div className="lien-footer">
-                  <NavHashLink to="/comment-contribuer#hero">
+                  <NavHashLink to="/comment-contribuer">
                     {t("Comment contribuer ?", "Comment contribuer ?")}
                   </NavHashLink>
                 </div>
