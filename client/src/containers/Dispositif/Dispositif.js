@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import track from "react-tracking";
-import { Col, Row, Modal, Spinner } from "reactstrap";
+import { Col, Row, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import ContentEditable from "react-contenteditable";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -183,7 +183,8 @@ export class Dispositif extends Component {
   componentDidMount() {
     this._isMounted = true;
     this.props.fetchUser();
-    this._initializeDispositif(this.props);
+    this.checkUserFetchedAndInitialize();
+    // this._initializeDispositif(this.props);
   }
 
   // eslint-disable-next-line react/no-deprecated
@@ -213,6 +214,14 @@ export class Dispositif extends Component {
     this._isMounted = false;
     clearInterval(this.timer);
   }
+
+  checkUserFetchedAndInitialize = () => {
+    if (this.props.userFetched) {
+      this._initializeDispositif(this.props);
+    } else {
+      setTimeout(this.checkUserFetchedAndInitialize, 100); // check again in a 100 ms
+    }
+  };
 
   _initializeDispositif = (props) => {
     const itemId = props.match && props.match.params && props.match.params.id;
@@ -250,6 +259,7 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/");
           }
+
           // case dispositif not active and user neither admin nor contributor nor in structure
           if (
             dispositif.status !== "Actif" &&
@@ -258,8 +268,20 @@ export class Dispositif extends Component {
             !this.props.user.structures.includes(dispositif.sponsors[0]._id)
           ) {
             if (_.isEmpty(this.props.user)) {
+              Swal.fire({
+                title: "Erreur",
+                text: "Accès non authorisé",
+                type: "error",
+                timer: 1200,
+              });
               return this.props.history.push("/login");
             }
+            Swal.fire({
+              title: "Erreur",
+              text: "Accès non authorisé",
+              type: "error",
+              timer: 1200,
+            });
             this._isMounted = false;
             return this.props.history.push("/");
           }
@@ -368,9 +390,21 @@ export class Dispositif extends Component {
         })
         .catch((err) => {
           if (_.isEmpty(this.props.user)) {
+            Swal.fire({
+              title: "Erreur",
+              text: "Accès non authorisé",
+              type: "error",
+              timer: 1200,
+            });
             this._isMounted = false;
             return this.props.history.push("/login");
           }
+          Swal.fire({
+            title: "Erreur",
+            text: "Accès non authorisé",
+            type: "error",
+            timer: 1200,
+          });
           // eslint-disable-next-line no-console
           console.log("Error: ", err.message);
           this._isMounted = false;
@@ -741,8 +775,8 @@ export class Dispositif extends Component {
   };
 
   showMapButton = (show) => {
-    this.setState({addMapBtn: show})
-  }
+    this.setState({ addMapBtn: show });
+  };
 
   addItem = (key, type = "paragraphe", subkey = null) => {
     let prevState = [...this.state.menu];
@@ -785,7 +819,7 @@ export class Dispositif extends Component {
           isMapLoaded: false,
           markers: [],
         };
-        this.setState({addMapBtn: false});
+        this.setState({ addMapBtn: false });
       } else if (type === "paragraph" && !newChild.content) {
         newChild = {
           title: "Un exemple de paragraphe",
@@ -871,7 +905,7 @@ export class Dispositif extends Component {
 
   deleteCard = (key, subkey, type) => {
     if (type === "map") {
-      this.setState({addMapBtn: true});
+      this.setState({ addMapBtn: true });
     }
     const prevState = [...this.state.menu];
     prevState[key].children = prevState[key].children.filter(
@@ -1677,7 +1711,7 @@ export class Dispositif extends Component {
                       </h1>
                       {typeContenu === "dispositif" && (
                         <h2 className={"bloc-subtitle "}>
-                          <span>{t("avec", "avec")}&nbsp;</span>
+                          <span>{t("Dispositif.avec", "avec")}&nbsp;</span>
                           {
                             // Display and edition of titreMarque
                             <ContentEditable
@@ -1720,7 +1754,14 @@ export class Dispositif extends Component {
 
             {!inVariante && (
               <Row className="tags-row backgroundColor-darkColor">
-                <Col style={{display: "flex", alignItems: "center"}} lg="8" md="8" sm="8" xs="8" className="col right-bar">
+                <Col
+                  style={{ display: "flex", alignItems: "center" }}
+                  lg="8"
+                  md="8"
+                  sm="8"
+                  xs="8"
+                  className="col right-bar"
+                >
                   {
                     // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
                     (disableEdit || typeContenu !== "demarche") && (
@@ -1802,7 +1843,10 @@ export class Dispositif extends Component {
                       xs="auto"
                       className="col align-right"
                     >
-                      {t("Dernière mise à jour", "Dernière mise à jour")}{" "}
+                      {t(
+                        "Dispositif.Dernière mise à jour",
+                        "Dernière mise à jour"
+                      )}{" "}
                       :&nbsp;
                       <span className="date-maj">
                         {moment(
@@ -1978,46 +2022,6 @@ export class Dispositif extends Component {
               sponsors={this.state.sponsors}
             />
 
-            <Modal
-              isOpen={this.state.showModals.fiabilite}
-              toggle={() => this.toggleModal(false, "fiabilite")}
-              className="modal-fiabilite"
-            >
-              <h1>{t("Dispositif.fiabilite", "Fiabilité de l’information")}</h1>
-              <div className="liste-fiabilite">
-                <Row>
-                  <Col lg="4" className="make-it-red">
-                    {t("Faible")}
-                  </Col>
-                  <Col lg="8">
-                    L’information a été rédigée par un contributeur qui n’est
-                    pas directement responsable et n’a pas été validée par
-                    l’autorité compétente.
-                  </Col>
-                </Row>
-                <Row>
-                  <Col lg="4" className="make-it-orange">
-                    {t("Moyenne")}
-                  </Col>
-                  <Col lg="8">
-                    L’information a été rédigée par un contributeur qui n’est
-                    pas directement responsable et n’a pas été validée par
-                    l’autorité compétente.
-                  </Col>
-                </Row>
-                <Row>
-                  <Col lg="4" className="make-it-green">
-                    {t("Forte")}
-                  </Col>
-                  <Col lg="8">
-                    L’information a été rédigée par un contributeur qui n’est
-                    pas directement responsable et n’a pas été validée par
-                    l’autorité compétente.
-                  </Col>
-                </Row>
-              </div>
-            </Modal>
-
             <BookmarkedModal
               success={this.state.isAuth}
               show={this.state.showBookmarkModal}
@@ -2121,6 +2125,7 @@ const mapStateToProps = (state) => {
     userId: state.user.userId,
     admin: state.user.admin,
     structures: state.structure.structures,
+    userFetched: state.user.userFetched,
   };
 };
 

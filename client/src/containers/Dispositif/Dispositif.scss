@@ -319,17 +319,10 @@ $imgHeight: 350px;
 
   .rdw-link-decorator-wrapper,
   .edited-btn {
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    border-radius: 12px;
-    background: $blanc;
+    text-decoration: underline;
     cursor: pointer;
-    &:hover {
-      background: $noir3;
-      box-shadow: none;
-    }
-    a {
-      cursor: pointer;
+    a:link {
+      color: blue;
     }
   }
 
@@ -417,6 +410,8 @@ $imgHeight: 350px;
 
   .contenu {
     padding: 0 40px 0 0;
+    font-size: 18px;
+    line-height: 27px;
     .display-inline-block {
       display: inline-block;
     }
@@ -435,6 +430,12 @@ $imgHeight: 350px;
 
   .contenu-wrapper {
     position: relative;
+
+    li {
+      margin-bottom: 27px;
+      line-height: 27px;
+      font-size: 18px;
+    }
 
     .relative-position {
       position: relative;

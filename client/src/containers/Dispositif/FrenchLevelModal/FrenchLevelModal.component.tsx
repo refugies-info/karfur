@@ -204,7 +204,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                 <StyledDescriptionContainer>
                   <StyledTitle isSelected={isSelected}>
                     {this.props.t(
-                      "ModaleNiveauDeFrançais." + element.title + ".title",
+                      "ModaleNiveauDeFrançais." + element.title + " title",
                       element.title
                     )}
                   </StyledTitle>
@@ -212,7 +212,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                     {this.props.t(
                       "ModaleNiveauDeFrançais." +
                         element.title +
-                        ".description",
+                        " description",
                       element.description
                     )}{" "}
                     <a
@@ -220,7 +220,7 @@ export class FrenchLevelModalComponent extends Component<Props> {
                       target="_blank"
                       href={element.linkToKnowMore}
                     >
-                      {this.props.t("ModaleNiveauDeFrançais.En savoir plus")}
+                      {this.props.t("En savoir plus", "En savoir plus")}
                     </a>
                   </StyledDescription>
                 </StyledDescriptionContainer>

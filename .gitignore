@@ -51,3 +51,5 @@ token.json
 /client/coverage
 .eslintcache
 /server/dist
+/client/src/locales/interfaceTranslation/csvBeforeTrad
+/client/src/locales/interfaceTranslation/csvAfterTrad

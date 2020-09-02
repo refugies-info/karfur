@@ -37,11 +37,12 @@ export function* fetchSelectedDispositif(
     }
 
     const user = yield select(userSelector);
+
     if (
       dispositif.status !== "Actif" &&
       !user.admin &&
-      !user.contributions.includes(dispositif._id) &&
-      !user.structures.includes(dispositif.sponsors[0]._id)
+      !user.user.contributions.includes(dispositif._id) &&
+      !user.user.structures.includes(dispositif.sponsors[0]._id)
     ) {
       if (_.isEmpty(user)) {
         yield put(push("/login"));

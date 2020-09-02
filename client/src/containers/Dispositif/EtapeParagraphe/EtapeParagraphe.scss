@@ -1,65 +1,65 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
-.etape{
-  .etape-title{
+.etape {
+  .etape-title {
     display: inline-block;
   }
-  .delete-icon{
+  .delete-icon {
     position: absolute;
     right: -15px;
     top: -15px;
   }
-  .etapes-data{
+  .etapes-data {
     display: inline-flex;
     justify-content: space-between;
-    &.editing{ 
+    &.editing {
       cursor: pointer;
-      .etape-data{
+      .etape-data {
         background: $attention;
       }
     }
   }
-  .etape-data{
+  .etape-data {
     border-right: 1px solid $grisFonce;
     color: $grisFonce;
     padding: 10px;
-    &:last-child{
-      border:none;
+    &:last-child {
+      border: none;
     }
   }
-  .bloc-configuration{
+  .bloc-configuration {
     background: $attention;
     border-radius: 12px;
     padding: 20px;
     margin-top: 20px;
 
-    .row-config{
+    .row-config {
       background: $blanc;
       border-radius: 12px;
       padding: 10px;
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      &.direction-colonne{
+      &.direction-colonne {
         flex-direction: column;
         align-items: flex-start;
       }
-      &.validated{
+      &.validated {
         background: $validation;
-        .col-config.active{
+        .col-config.active {
           background: $validationDefault;
-          color: #FFFFFF;
-          border:none;
-          svg{
-            fill: #FFFFFF;
+          color: #ffffff;
+          border: none;
+          svg {
+            fill: #ffffff;
           }
         }
       }
     }
-    .options-wrapper{
+    .options-wrapper {
       display: flex;
     }
-    .col-config{
+    .col-config {
       background: $gris;
       border: 0.5px solid $gris;
       border-radius: 12px;
@@ -67,88 +67,90 @@
       font-weight: bold;
       cursor: pointer;
 
-      &.active{
+      &.active {
         background: $noir;
         border: 0.5px solid $noir;
-        color: #FFFFFF;
-        svg{
-          fill: #FFFFFF;
+        color: #ffffff;
+        svg {
+          fill: #ffffff;
         }
       }
     }
-    .etape-dropdown{
+    .etape-dropdown {
       display: block;
     }
-    .negative-padding{
+    .negative-padding {
       padding-bottom: 0;
 
-      .etape-dropdown{
+      .etape-dropdown {
         display: block;
         margin-bottom: 10px;
       }
     }
-    .etape-input{
+    .etape-input {
       width: 60px;
       text-align: center;
       margin-left: 10px;
     }
-    .etape-input, .etape-dropdown .dropdown-toggle{
+    .etape-input,
+    .etape-dropdown .dropdown-toggle {
       padding: 10px;
       background: $gris;
       border-radius: 12px;
-      border:none;
+      border: none;
       color: $grisFonce;
-      &.docs-dropdown{
+      &.docs-dropdown {
         padding-left: 0;
       }
     }
-    .etape-dropdown .dropdown-menu{
+    .etape-dropdown .dropdown-menu {
       max-height: 60vh;
       overflow: scroll;
     }
-    .form-group{
+    .form-group {
       display: flex;
       flex-wrap: wrap;
-      margin-left:-15px;
-      margin-right:-15px;
+      margin-left: -15px;
+      margin-right: -15px;
     }
-    label{
+    label {
       font-weight: bold;
     }
-    .figma-input-group input, .figma-input-group textarea{
+    .figma-input-group input,
+    .figma-input-group textarea {
       border: none;
     }
-    .no-info{
+    .no-info {
       color: $grisFonce;
-      label{
+      label {
         font-weight: normal;
       }
     }
-    .footer-form{
+    .footer-form {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .plus-btn-docs{
+    .plus-btn-docs {
       background: $grisFonce;
       padding: 10px;
       border-radius: 12px 0px 0px 12px;
       margin-right: 10px;
     }
-    .idx-docs{
+    .idx-docs {
       background: $noir;
-      color: #FFFFFF;
+      color: #ffffff;
       padding: 10px;
       border-radius: 12px 0px 0px 12px;
       margin-right: 10px;
     }
-    .footer-btns{
+    .footer-btns {
       display: flex;
       justify-content: space-between;
     }
   }
 
-  .realisation-wrapper{
+  .realisation-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -157,12 +159,12 @@
     border-radius: 12px;
     margin-bottom: 20px;
 
-    .real-btns .figma-btn{
+    .real-btns .figma-btn {
       padding: 20px;
     }
   }
 
-  .feedback-wrapper{
+  .feedback-wrapper {
     margin-bottom: 10px;
     background: $gris;
     border-radius: 12px;

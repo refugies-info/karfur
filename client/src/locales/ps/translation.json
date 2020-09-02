@@ -177,8 +177,6 @@
     "Header": "خپل ژوند په فرانسه کې جوړ کړئ",
     "Subheader": "دلته به تاسو پوه شئ چې څنګه خپل ټولنیزوحقوقو ته لاس رسې پیدا کړی، دنده ومومئ اود فرانسوي ژبی کورسونه پیداکړي"
   },
-  "Masquer la recherche avancée": "پرمختللې لټون خاموش کړئ",
-  "Afficher la recherche avancée": "پرمختللې لټون وښایاست",
   "Tags": {
     "Français": "فرانسوی",
     "Logement": "استوګنځای",
@@ -254,12 +252,7 @@
   "Login": {
     "Pseudonyme": "مستعارنوم (یوزرنیم)",
     "Retour à l'accueil": "کور پاڼي ته بیرته راګرځیدل",
-    "Ou se créer un compte": "یا یو حساب (اکاونټ) جوړ کړئ",
-    "Se connecter": "ننوتل (کونکټ کیدل)",
     "Content de vous revoir !": "خشحاله یو چی تاسو بیا ګورو!",
-    "Mot de passe": "رمز(پاس ورډ)",
-    "Se créer un compte": "شخصی حساب (اکونټ) جوړ کړئ",
-    "Pas besoin d’email": "بریښنالیک ته اړتیا نشته",
     "Mot de passe oublié ?": "رمز(پاس ورډ) مو هیر شوی؟",
     "no-account": "پدې نوم هیڅ حساب نشته",
     "Confirmez le mot de passe": "رمز(پاس ورډ) تایید کړئ",
@@ -271,7 +264,8 @@
     "Renseignez ici le nouveau mot de passe souhaité": "دلته نوی رمز (پاس ورډ) ولیکي",
     "Chargement des données utilisateur": "د مستخدم معلومات (ډیټا) لوډ کول",
     "Problème mdp": "درمز (پاس ورډ) په کارولو کې له ستونزی سره مخ شوی. مهرباني وکړی یوځل بیا کوشش وکړئ.",
-    "Revenir à la page de connexion": "د ننوتلو (کونکټ) کیدو صفحې ته راستون شه"
+    "Revenir à la page de connexion": "د ننوتلو (کونکټ) کیدو صفحې ته راستون شه",
+    "Mot de passe": "رمز(پاس ورډ)"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "لاسرسی رد شو",
@@ -392,7 +386,11 @@
     "Les accompagnants": "ملګري",
     "Les femmes": "ښځي",
     "Les hommes": "سړي",
-    "Les deux": "دوه"
+    "Les deux": "دوه",
+    "Dernière mise à jour": "وروستی او تازه معلومات (اپډیت)",
+    "En bref": "په لنډ ډول",
+    "avec": "سره",
+    "Merci": "مننه!"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "ایا ته ډاډه یې؟",
@@ -408,8 +406,6 @@
     "Accueil": "ښه راغلاست (استقبال)",
     "Tout voir": "ټول وګوری",
     "Mon profil": "زما پروفایل",
-    "Espace rédaction": "د لیکلواو تحریر ځای",
-    "Espace traduction": "د ژباړې ساحه",
     "Ma structure": "زما جوړښت (ساختار)",
     "Administration": "اداره",
     "Se déconnecter": "وتل (ډیسکونکټ کیدل)",
@@ -424,17 +420,6 @@
     "Centre d'aide": "د مرستې مرکز"
   },
   "Retour à la recherche": "بېرته لټون ته",
-  "avec": "سره",
-  "En bref": "په لنډ ډول",
-  "Dernière mise à jour": "وروستی او تازه معلومات (اپډیت)",
-  "Fiabilité de l'information": "د معلوماتو اعتبار",
-  "Faible": "کمزوری",
-  "Moyenne": "په اوسط ډول",
-  "Forte": "قوي",
-  "Contributeurs": "ونډه اخستونکي",
-  "Traducteurs": "ژباړونکي",
-  "Merci": "مننه!",
-  "Bravo": "شاباش (براوو)!",
   "ou": "یا",
   "Bientôt disponible !": "ډیر ژربه ستاسو په خدمت کي وي!",
   "En savoir plus": "دلازیاتو معلوماتولپاره",
