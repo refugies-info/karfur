@@ -5,7 +5,7 @@ const passwordHash = require("password-hash");
 const authy = require("authy")(process.env.ACCOUNT_SECURITY_API_KEY);
 const passwdCheck = require("zxcvbn");
 const crypto = require("crypto");
-let { transporter, mailOptions, url } = require("../dispositif/lib.js");
+let { transporter, url } = require("../dispositif/lib.js");
 const logger = require("../../logger");
 
 /**
@@ -294,9 +294,16 @@ const _checkAndNotifyAdmin = async function (
     html += "<p>A bientôt,</p>";
     html += "<p>Soufiane, admin Réfugiés.info</p>";
 
-    mailOptions.html = html;
-    mailOptions.subject =
-      "Nouvel administrateur Réfugiés.info - " + user.username;
+    const mailOptions = {
+      from: "nour@refugies.info",
+      to:
+        process.env.NODE_ENV === "dev"
+          ? "agathe.kieny@lamednum.coop"
+          : "diairagir@gmail.com",
+      subject: "Nouvel administrateur Réfugiés.info - " + user.username,
+      html,
+    };
+
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         // eslint-disable-next-line no-console
@@ -423,6 +430,7 @@ function change_password(req, res) {
 }
 
 function reset_password(req, res) {
+  logger.info("Reset password");
   const { username } = req.body;
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
@@ -480,9 +488,13 @@ function reset_password(req, res) {
         html += "<p>À bientôt,</p>";
         html += "<p>L'équipe Réfugiés.info</p>";
 
-        mailOptions.html = html;
-        mailOptions.subject = "Réinitialisation de votre mot de passe";
-        mailOptions.to = user.email;
+        const mailOptions = {
+          from: "nour@refugies.info",
+          subject: "Réinitialisation de votre mot de passe",
+          html,
+          to: user.email,
+        };
+
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
             // eslint-disable-next-line no-console

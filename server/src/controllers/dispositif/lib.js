@@ -39,15 +39,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-var mailOptions = {
-  from: "nour@refugies.info",
-  to:
-    process.env.NODE_ENV === "dev"
-      ? "agathe.kieny@lamednum.coop"
-      : "diairagir@gmail.com",
-  subject: "Administration Réfugiés.info",
-};
-
 const url =
   process.env.NODE_ENV === "dev"
     ? "http://localhost:3000/"
@@ -447,12 +438,20 @@ const _handleMailNotification = (dispositif) => {
       "<p>A bientôt,</p>" +
       "<p>Soufiane, webmestre (who says that ?!) Réfugiés.info</p>";
 
-    mailOptions.html = html;
-    mailOptions.subject =
-      "Administration Réfugiés.info - " +
-      dispositif.titreInformatif +
-      " - " +
-      status;
+    const mailOptions = {
+      from: "nour@refugies.info",
+      to:
+        process.env.NODE_ENV === "dev"
+          ? "agathe.kieny@lamednum.coop"
+          : "diairagir@gmail.com",
+      subject:
+        "Administration Réfugiés.info - " +
+        dispositif.titreInformatif +
+        " - " +
+        status,
+      html: html,
+    };
+
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         // eslint-disable-next-line no-console
@@ -473,5 +472,4 @@ exports.get_dispo_progression = get_dispo_progression;
 
 //Utilisés dans d'autres controllers :
 exports.transporter = transporter;
-exports.mailOptions = mailOptions;
 exports.url = url;
