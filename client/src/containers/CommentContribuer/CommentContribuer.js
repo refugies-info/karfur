@@ -2,26 +2,13 @@ import React, { Component } from "react";
 import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import {
-  Row,
-  Col,
-  Card,
-  CardHeader,
-  CardFooter,
-  CardBody,
-  Progress,
-} from "reactstrap";
+import { Progress } from "reactstrap";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { connect } from "react-redux";
-import Swal from "sweetalert2";
 
 import API from "../../utils/API";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import SVGIcon from "../../components/UI/SVGIcon/SVGIcon";
-import { image_corriger } from "../../assets/figma";
-import { CheckDemarcheModal } from "../../components/Modals";
-
-import variables from "scss/colors.scss";
 import styled from "styled-components";
 import HeaderBackgroungImage from "../../assets/comment-contribuer/CommentContribuer-header.svg";
 import BackgroundDispositif from "../../assets/comment-contribuer/CommentContribuer-background_orange.svg";
@@ -35,7 +22,8 @@ import { ReactComponent as LexiqueImage } from "../../assets/comment-contribuer/
 import BackgroundTraduction from "../../assets/comment-contribuer/CommentContribuer_backgroundTraduction.svg";
 import { ReactComponent as TradImage } from "../../assets/comment-contribuer/CommentContribuer_imageTrad.svg";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
-import { Avancement } from "../Avancement/Avancement";
+import { ReactComponent as PapillonViolet } from "../../assets/comment-contribuer/CommentContribuer-papillon_violet.svg";
+import { ReactComponent as PapillonRose } from "../../assets/comment-contribuer/CommentContribuer-papillon_rose.svg";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -262,6 +250,27 @@ const LanguesCardsContainer = styled.div`
   margin-top: 32px;
 `;
 
+const CorrectionContainer = styled.div`
+  height: 880px;
+  padding-left: 120px;
+  padding-right: 120px;
+  background: #ffffff;
+  padding-top: 48px;
+  position: relative;
+`;
+const CorrectionHeader = styled.div`
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+`;
+
+const CorrectionContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 80px;
+  width: 380px;
+`;
+
 const DispositifCard = (props) => (
   <DispoCardContainer>
     <DispositifImage />
@@ -334,7 +343,7 @@ const StructureCard = (props) => (
           size="10"
           className="mr-10"
         />
-        {props.t("CommentContribuer.Bientôt disponible", "Bientôt disponible")}
+        {props.t("Bientôt disponible", "Bientôt disponible")}
       </TimeContainer>
     </div>
   </StructureCardContainer>
@@ -450,14 +459,6 @@ class CommentContribuer extends Component {
       (langue) => langue.avancement > 0 && langue.langueCode !== "fr"
     );
 
-  upcoming = () =>
-    Swal.fire({
-      title: "Oh non!",
-      text: "Cette fonctionnalité n'est pas encore disponible",
-      type: "error",
-      timer: 1500,
-    });
-
   getNumberOfTraducteursAndExperts = () => {
     const nbTrad = (
       this.state.users.filter((x) =>
@@ -475,12 +476,10 @@ class CommentContribuer extends Component {
   };
 
   render() {
-    const { t, langues } = this.props;
-    const { showModals, users } = this.state;
+    const { t } = this.props;
 
     const { nbTrad, nbExperts } = this.getNumberOfTraducteursAndExperts();
     const activeLangues = this.getActiveLangues();
-    console.log("active", activeLangues);
     return (
       <MainContainer>
         <HeaderContainer>
@@ -490,19 +489,28 @@ class CommentContribuer extends Component {
           <HeaderCardsContainer>
             <div style={{ marginRight: "48px" }}>
               <AnchorLink offset="60" href="#ecrire">
-                <HeaderCard title="écrire" iconName="edit-outline" eva={true} />
+                <HeaderCard
+                  title={t("CommentContribuer.écrire", "écrire")}
+                  iconName="edit-outline"
+                  eva={true}
+                />
               </AnchorLink>
             </div>
             <div style={{ marginRight: "48px" }}>
               <AnchorLink offset="60" href="#traduire">
-                <HeaderCard title="traduire" iconName="edit-outline" />
+                <HeaderCard
+                  title={t("CommentContribuer.traduire", "traduire")}
+                  iconName="edit-outline"
+                />
               </AnchorLink>
             </div>
-            <HeaderCard
-              title="corriger"
-              iconName="done-all-outline"
-              eva={true}
-            />
+            <AnchorLink offset="60" href="#corriger">
+              <HeaderCard
+                title={t("CommentContribuer.corriger", "corriger")}
+                iconName="done-all-outline"
+                eva={true}
+              />
+            </AnchorLink>
           </HeaderCardsContainer>
         </HeaderContainer>
         <RedactionContainer id="ecrire">
@@ -580,303 +588,82 @@ class CommentContribuer extends Component {
             </LanguagesContainer>
           </TradContentContainer>
         </TraductionContainer>
-        {/* <section id="ecrire">
-          <div className="section-container">
-            <div className="section-header">
-              <h2>{t("CommentContribuer.Écrire", "Écrire")}</h2>
-              <h5>
-                {t(
-                  "CommentContribuer.Partageons l-information",
-                  "Partageons l’information !"
-                )}
-              </h5>
+        <CorrectionContainer id="corriger">
+          <CorrectionHeader>
+            {t(
+              "CommentContribuer.Corriger",
+              "Corriger et enrichir l'information"
+            )}
+          </CorrectionHeader>
+          <CorrectionContentContainer>
+            <RoundIcon
+              iconName={"message-circle-outline"}
+              iconColor="#212121"
+            />
+            <div
+              style={{
+                fontWeight: "bold",
+                fontSize: "22px",
+                lineHeight: "28px",
+                marginTop: "16px",
+                marginBottom: "16px",
+              }}
+            >
+              {t(
+                "CommentContribuer.Commentaires ciblés",
+                "Commentaires ciblés"
+              )}
             </div>
-
-            <Row className="cards-row">
-              <Col xl="3" lg="3" md="6" sm="12" xs="12" className="card-col">
-                <NavLink to="/dispositif" className="no-decoration">
-                  <Card className="dispositif-card">
-                    <CardHeader>
-                      {t(
-                        "CommentContribuer.Ajouter un dispositif",
-                        "Ajouter un dispositif d'accompagnement"
-                      )}
-                    </CardHeader>
-                    <CardBody>
-                      {t(
-                        "CommentContribuer.Ajouter dispositif cardbody",
-                        "Rédigez la fiche pratique d'un dispositif d'accompagnement pour que les personnes réfugiées soient pleinement informées et puissent s'y engager."
-                      )}
-                    </CardBody>
-                    <CardFooter>
-                      <EVAIcon name="clock-outline" className="clock-icon" />
-                      <span className="float-right">
-                        ~ 20 {t("minutes", "minutes")}
-                      </span>
-                    </CardFooter>
-                  </Card>
-                </NavLink>
-              </Col>
-              <Col xl="3" lg="3" md="6" sm="12" xs="12" className="card-col">
-                <Card
-                  className="cursor-pointer demarche-card"
-                  onClick={() => this.toggleModal(true, "checkDemarche")}
-                >
-                  <CardHeader>
-                    {t(
-                      "CommentContribuer.Expliquer une démarche administrative",
-                      "Expliquer une démarche administrative"
-                    )}
-                  </CardHeader>
-                  <CardBody>
-                    {t(
-                      "CommentContribuer.Expliquer démarche cardbody",
-                      "Rédigez la fiche pratique d'une démarche administrative qui détaille, étape par étape, les actions à mener pour la réussir."
-                    )}
-                  </CardBody>
-                  <CardFooter>
-                    <EVAIcon name="clock-outline" className="clock-icon" />
-                    <span>~ 20 {t("minutes", "minutes")}</span>
-                  </CardFooter>
-                </Card>
-              </Col>
-              <Col xl="3" lg="3" md="6" sm="12" xs="12" className="card-col">
-                <Card className="cursor-pointer" onClick={this.upcoming}>
-                  <CardHeader>
-                    {t(
-                      "CommentContribuer.Ajouter une définition",
-                      "Ajouter une définition"
-                    )}
-                  </CardHeader>
-                  <CardBody>
-                    {t(
-                      "CommentContribuer.Ajouter définition cardbody",
-                      "Enrichissez le lexique collaboratif pour que tout le monde comprenne mieux les mots de l’intégration."
-                    )}
-                  </CardBody>
-                  <CardFooter>
-                    <span>{t("Bientôt disponible", "Bientôt disponible")}</span>
-                  </CardFooter>
-                </Card>
-              </Col>
-              <Col xl="3" lg="3" md="6" sm="12" xs="12" className="card-col">
-                <Card className="cursor-pointer" onClick={this.upcoming}>
-                  <CardHeader>
-                    {t(
-                      "CommentContribuer.Créer un parcours",
-                      "Créer un parcours"
-                    )}
-                  </CardHeader>
-                  <CardBody>
-                    {t(
-                      "CommentContribuer.Créer parcours cardbody",
-                      "Vous avez un objectif ? On vous liste les étapes à franchir pour l’atteindre dans notre moteur de parcours d’intégration."
-                    )}
-                  </CardBody>
-                  <CardFooter>
-                    <span>{t("Bientôt disponible", "Bientôt disponible")}</span>
-                  </CardFooter>
-                </Card>
-              </Col>
-            </Row>
+            <div
+              style={{
+                fontWeight: "normal",
+                fontSize: "16px",
+                lineHeight: "20px",
+                marginBottom: "32px",
+              }}
+            >
+              {t(
+                "CommentContribuer.Commentaires ciblés explications",
+                "Un paragraphe est erroné ? Réagissez directement au niveau du paragraphe. Pas besoin de compte. Cherchez l’icône ci-dessus en passant votre souris sur le paragraphe à corriger."
+              )}
+            </div>
+            <RoundIcon iconName={"edit-outline"} iconColor="#828282" />
+            <div
+              style={{
+                fontWeight: "bold",
+                fontSize: "22px",
+                lineHeight: "28px",
+                marginTop: "16px",
+                marginBottom: "16px",
+                color: "#828282",
+              }}
+            >
+              {t(
+                "CommentContribuer.Suggestion",
+                "Suggestion de modification (prochainement)"
+              )}
+            </div>
+            <div
+              style={{
+                fontWeight: "normal",
+                fontSize: "16px",
+                lineHeight: "20px",
+                marginBottom: "32px",
+              }}
+            >
+              {t(
+                "CommentContribuer.Suggestion explications",
+                "Proposez une nouvelle formulation d’un paragraphe pour faciliter la tâche des responsables de la fiche. Les fiches seront ainsi écrites à plusieurs mains !"
+              )}
+            </div>
+          </CorrectionContentContainer>
+          <div style={{ position: "absolute", left: "992px", top: "328px" }}>
+            <PapillonRose />
           </div>
-        </section>
-
-        <section id="traduire">
-          <div className="section-container">
-            <div className="section-header">
-              <h2>{t("CommentContribuer.Traduire", "Traduire")}</h2>
-              <h5>
-                {t(
-                  "CommentContribuer.Rendons l-information accessible",
-                  "Rendons l’information accessible à tous !"
-                )}
-              </h5>
-            </div>
-
-            <div className="trad-layout">
-              <div className="left-side">
-                <h5>
-                  {t(
-                    "CommentContribuer.Autre langue",
-                    "Vous parlez une autre langue ? Rejoignez-nous !"
-                  )}
-                </h5>
-                <div className="data">
-                  <div className="left-data">
-                    <h3>
-                      {
-                        (
-                          users.filter((x) =>
-                            (x.roles || []).some((y) => y.nom === "Trad")
-                          ) || []
-                        ).length
-                      }
-                    </h3>
-                  </div>
-                  <h5 className="right-data">
-                    {t(
-                      "CommentContribuer.traducteurs actifs",
-                      "traducteurs actifs"
-                    )}
-                  </h5>
-                </div>
-                <div className="data">
-                  <div className="left-data">
-                    <h3>
-                      {
-                        (
-                          users.filter((x) =>
-                            (x.roles || []).some((y) => y.nom === "ExpertTrad")
-                          ) || []
-                        ).length
-                      }
-                    </h3>
-                  </div>
-                  <h5 className="right-data">
-                    {t(
-                      "CommentContribuer.experts en traduction",
-                      "experts en traduction"
-                    )}
-                  </h5>
-                </div>
-              </div>
-              <div className="right-side">
-                <Row className="langues-wrapper">
-                  {langues.map((langue) => (
-                    <Col
-                      xl="4"
-                      lg="4"
-                      md="4"
-                      sm="4"
-                      xs="4"
-                      className="langue-col"
-                      key={langue._id}
-                    >
-                      {langue.avancement ? (
-                        <NavLink to="/backend/user-dashboard">
-                          <div className="langue-item-available">
-                            <h5>
-                              <i
-                                className={
-                                  "mr-20 flag-icon flag-icon-" +
-                                  langue.langueCode
-                                }
-                                title={langue.langueCode}
-                              />
-                              {langue.langueFr}
-
-                              <span className={"float-right color-vert"}>
-                                {Math.round(langue.avancement * 100, 0) + " %"}
-                              </span>
-                            </h5>
-                          </div>
-                        </NavLink>
-                      ) : (
-                        <div className="langue-item-non-available">
-                          <h5>
-                            <i
-                              className={
-                                "mr-20 flag-icon flag-icon-" + langue.langueCode
-                              }
-                              title={langue.langueCode}
-                            />
-                            {langue.langueFr}
-
-                            <span className={"float-right text-soon"}>
-                              Prochainement
-                            </span>
-                          </h5>
-                        </div>
-                      )}
-                    </Col>
-                  ))}
-                </Row>
-              </div>
-            </div>
+          <div style={{ position: "absolute", left: "556px", top: "0px" }}>
+            <PapillonViolet />
           </div>
-        </section>
-
-        <section id="corriger">
-          <div className="section-container">
-            <div className="section-header">
-              <h2>{t("CommentContribuer.Corriger", "Corriger")}</h2>
-              <h5>
-                {t(
-                  "CommentContribuer.information juste",
-                  "Maintenons une information juste et à jour !"
-                )}
-              </h5>
-            </div>
-
-            <div className="correct-layout">
-              <div className="left-side">
-                <Row>
-                  <Col xl="2" lg="2" md="2" sm="2" xs="2">
-                    <div className="toolbar-icon-wrapper">
-                      <EVAIcon
-                        name="message-circle-outline"
-                        fill={variables.noir}
-                      />
-                    </div>
-                  </Col>
-                  <Col xl="10" lg="10" md="10" sm="10" xs="10">
-                    <div className="texte-normal">
-                      <b>
-                        {t(
-                          "CommentContribuer.Commentaire ciblé",
-                          "Commentaire ciblé"
-                        )}
-                      </b>
-                    </div>
-                    <span className="texte-gris">
-                      {t(
-                        "CommentContribuer.paragraphe erroné",
-                        "Un paragraphe est erroné ? Dites-le-nous !"
-                      )}
-                    </span>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xl="2" lg="2" md="2" sm="2" xs="2">
-                    <div className="toolbar-icon-wrapper">
-                      <EVAIcon name="volume-up-outline" fill={variables.noir} />
-                    </div>
-                  </Col>
-                  <Col xl="10" lg="10" md="10" sm="10" xs="10">
-                    <div className="texte-normal">
-                      <b>
-                        {t(
-                          "CommentContribuer.Écoute du texte",
-                          "Écoute du texte"
-                        )}
-                      </b>
-                    </div>
-                    <span className="texte-gris">
-                      {t(
-                        "CommentContribuer.Écoutez ou faites écouter",
-                        "Écoutez ou faites écouter les informations écrites de la plateforme"
-                      )}
-                    </span>
-                  </Col>
-                </Row>
-              </div>
-              <div className="right-side">
-                <img
-                  src={image_corriger}
-                  className="image_corriger"
-                  alt="corriger"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <CheckDemarcheModal
-          show={showModals.checkDemarche}
-          toggle={() => this.toggleModal(false, "checkDemarche")}
-          upcoming={this.upcoming}
-        /> */}
+        </CorrectionContainer>
       </MainContainer>
     );
   }
@@ -925,6 +712,11 @@ const LangueContainer = styled.div`
   line-height: 28px;
   align-items: center;
   width: 340px;
+  border: 2px solid #fbfbfb;
+
+  &:hover {
+    border: 2px solid #212121;
+  }
 `;
 
 const ProgressContainer = styled.div`
@@ -960,6 +752,21 @@ const Langue = (props) => (
   </NavLink>
 );
 
+const RoundIconContainer = styled.div`
+  width: 60px;
+  height: 60px;
+  background: #f2f2f2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const RoundIcon = (props) => (
+  <RoundIconContainer>
+    <EVAIcon name={props.iconName} fill={props.iconColor} size="xlarge" />
+  </RoundIconContainer>
+);
 const mapStateToProps = (state) => {
   return {
     langues: state.langue.langues,
