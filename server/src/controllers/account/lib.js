@@ -5,8 +5,24 @@ const passwordHash = require("password-hash");
 const authy = require("authy")(process.env.ACCOUNT_SECURITY_API_KEY);
 const passwdCheck = require("zxcvbn");
 const crypto = require("crypto");
-let { transporter, url } = require("../dispositif/lib.js");
 const logger = require("../../logger");
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  host: "pro2.mail.ovh.net",
+  port: 587,
+  auth: {
+    user: "nour@refugies.info",
+    pass: process.env.OVH_PASS,
+  },
+});
+
+const url =
+  process.env.NODE_ENV === "dev"
+    ? "http://localhost:3000/"
+    : process.env.NODE_ENV === "quality"
+    ? "https://agir-qa.herokuapp.com/"
+    : "https://www.refugies.info/";
 
 /**
  * Codes returned by register

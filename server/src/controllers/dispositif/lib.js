@@ -4,7 +4,6 @@ const User = require("../../schema/schemaUser.js");
 const Traduction = require("../../schema/schemaTraduction");
 const Structure = require("../../schema/schemaStructure.js");
 var uniqid = require("uniqid");
-const nodemailer = require("nodemailer");
 
 const {
   turnToLocalized,
@@ -30,21 +29,6 @@ const logger = require("../../logger");
 //   },
 // });
 
-const transporter = nodemailer.createTransport({
-  host: "pro2.mail.ovh.net",
-  port: 587,
-  auth: {
-    user: "nour@refugies.info",
-    pass: process.env.OVH_PASS,
-  },
-});
-
-const url =
-  process.env.NODE_ENV === "dev"
-    ? "http://localhost:3000/"
-    : process.env.NODE_ENV === "quality"
-    ? "https://agir-qa.herokuapp.com/"
-    : "https://www.refugies.info/";
 //Function to patch dispositifs that had EditorState object saved in DB causing great size problem
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function patch_dispositifs(req, res) {
@@ -195,8 +179,6 @@ async function add_dispositif(req, res) {
       );
     }
 
-    // eslint-disable-next-line no-use-before-define
-    _handleMailNotification(dispResult);
     return res.status(200).json({
       text: "Succès",
       data: dispResult,
@@ -401,75 +383,9 @@ const _errorHandler = (error, res) => {
   }
 };
 
-const _handleMailNotification = (dispositif) => {
-  let html = "";
-  const status = dispositif.status;
-  // ["Actif", "Accepté structure", , "Brouillon", "Rejeté structure", "Rejeté admin", "Inactif", "Supprimé"]
-  if (
-    ["En attente", "En attente admin", "En attente non prioritaire"].includes(
-      status
-    )
-  ) {
-    html = "<p>Bonjour,</p>";
-
-    if (
-      ["En attente", "En attente admin", "En attente non prioritaire"].includes(
-        status
-      )
-    ) {
-      html +=
-        "<p>Un nouveau contenu (" +
-        dispositif.typeContenu +
-        ") est '<b>" +
-        status +
-        " de validation</b>' sur la plateforme Réfugiés.info (environnement : '" +
-        process.env.NODE_ENV +
-        "')</p>" +
-        "<p><a href=" +
-        url +
-        (dispositif.typeContenu || "dispositif") +
-        "/" +
-        dispositif._id +
-        ">Cliquez ici</a> pour accéder au contenu, ou accédez <a href=" +
-        url +
-        "backend/admin-contrib>à la page d'administration</a>.</p>";
-    }
-    html +=
-      "<p>A bientôt,</p>" +
-      "<p>Soufiane, webmestre (who says that ?!) Réfugiés.info</p>";
-
-    const mailOptions = {
-      from: "nour@refugies.info",
-      to:
-        process.env.NODE_ENV === "dev"
-          ? "agathe.kieny@lamednum.coop"
-          : "diairagir@gmail.com",
-      subject:
-        "Administration Réfugiés.info - " +
-        dispositif.titreInformatif +
-        " - " +
-        status,
-      html: html,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      } else {
-        // eslint-disable-next-line no-console
-        console.log("Email sent: " + info.response);
-      }
-    });
-  }
-};
 //On exporte notre fonction
 exports.add_dispositif = add_dispositif;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;
 exports.get_dispo_progression = get_dispo_progression;
-
-//Utilisés dans d'autres controllers :
-exports.transporter = transporter;
-exports.url = url;
