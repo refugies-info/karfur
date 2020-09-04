@@ -13,6 +13,7 @@ import HeaderBackgroungImage from "../../assets/qui-sommes-nous/QuiSommesNous_he
 import styled from "styled-components";
 
 import { Mission } from "./components/Mission";
+import { Problematic } from "./components/Problematic";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -66,7 +67,6 @@ const NavBarText = styled.div`
 `;
 
 const SectionHeader = styled.div`
-  margin-top: 48px;
   text-align: center;
   font-weight: 500;
   font-size: 32px;
@@ -76,6 +76,27 @@ const SectionHeader = styled.div`
 
 const MissionContainer = styled.div`
   height: 720px;
+  padding-top: 48px;
+`;
+const TeamContainer = styled.div`
+  height: 720px;
+  background: #f2f2f2;
+  padding-top: 48px;
+`;
+const ProblematicContainer = styled.div`
+  height: 720px;
+  padding-top: 48px;
+  background: linear-gradient(105.8deg, #ffffff -3.98%, #f2f2f2 115.05%);
+`;
+const ContributionContainer = styled.div`
+  height: 720px;
+  padding-top: 48px;
+  background: linear-gradient(105.8deg, #ffffff -3.98%, #f2f2f2 115.05%);
+`;
+
+const PartnersContainer = styled.div`
+  height: 720px;
+  padding-top: 48px;
 `;
 class QuiSommesNous extends Component {
   state = {
@@ -125,15 +146,15 @@ class QuiSommesNous extends Component {
           <AnchorLink offset="60" href="#mission">
             <NavBarText>{t("QuiSommesNous.Missions", "Missions")}</NavBarText>
           </AnchorLink>
-          <AnchorLink offset="60" href="#ecrire">
+          <AnchorLink offset="60" href="#equipe">
             <NavBarText>{t("QuiSommesNous.Équipe", "Équipe")}</NavBarText>
           </AnchorLink>
-          <AnchorLink offset="60" href="#ecrire">
+          <AnchorLink offset="60" href="#problematic">
             <NavBarText>
               {t("QuiSommesNous.Problématiques", "Problématiques")}
             </NavBarText>
           </AnchorLink>
-          <AnchorLink offset="60" href="#ecrire">
+          <AnchorLink offset="60" href="#contribution">
             <NavBarText>
               {t(
                 "QuiSommesNous.Approche contributive",
@@ -141,9 +162,8 @@ class QuiSommesNous extends Component {
               )}
             </NavBarText>
           </AnchorLink>
-          <AnchorLink offset="60" href="#ecrire">
+          <AnchorLink offset="60" href="#partners">
             <NavBarText>
-              {" "}
               {t("QuiSommesNous.Partenaires", "Partenaires")}
             </NavBarText>
           </AnchorLink>
@@ -154,6 +174,25 @@ class QuiSommesNous extends Component {
           </SectionHeader>
           <Mission t={t} />
         </MissionContainer>
+        <TeamContainer id="equipe">
+          <SectionHeader>{t("QuiSommesNous.Équipe", "Équipe")}</SectionHeader>
+        </TeamContainer>
+        <ProblematicContainer id="problematic">
+          <SectionHeader>
+            {t("QuiSommesNous.Problématiques", "Problématiques")}
+          </SectionHeader>
+          <Problematic t={t} />
+        </ProblematicContainer>
+        <ContributionContainer id="contribution">
+          <SectionHeader>
+            {t("QuiSommesNous.Approche contributive", "Approche contributive")}
+          </SectionHeader>
+        </ContributionContainer>
+        <PartnersContainer id="partners">
+          <SectionHeader>
+            {t("QuiSommesNous.Partenaires", "Partenaires")}
+          </SectionHeader>
+        </PartnersContainer>
       </MainContainer>
     );
   }
