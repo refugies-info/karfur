@@ -126,7 +126,7 @@
     "Mon engagement": "Mon engagement",
     "Mon rôle": "Mon rôle",
     "Mes outils": "Mes outils",
-    "Problématique": "Problématique",
+    "Problématiques": "Problématiques",
     "problem_1_header": "Comprendre le statut de réfugié",
     "problem_1_subheader": "Mieux comprendre c'est déjà mieux accueillir. Migrant, demandeur d'asile ou réfugié ne désignent pas les mêmes réalités. Réfugiés.info s'adresse aux réfugiés statutaires, c'est-à-dire aux personnes à qui la France accorde une protection internationale car leur vie est menacée dans leur pays d'origine",
     "problem_2_header": "Une information cryptée, dispersée et périssable",
@@ -142,7 +142,15 @@
     "contributive_3_header": "Favoriser le micro-engagement",
     "contributive_3_subheader": "En donnant à chacun la possibilité d’être facilement acteur et contributeur de la plateforme, à l’instar de Wikipédia, Réfugiés.info favorise de nouvelles formes de micro-engagement permettant à de nouveaux publics de s’engager pour une cause de solidarité, en faveur des réfugiés",
     "subheader1": "Réfugiés.info est un projet collaboratif",
-    "subheader2": "porté par la Diair et développé par la Mednum"
+    "subheader2": "porté par la Diair et développé par la Mednum",
+    "Partenaires": "Partenaires",
+    "recenser": "Recenser les dispositifs d’accompagnement",
+    "recenser-description": "De nombreux dispositifs émergent en France pour accueillir et accompagner les personnes réfugiées. Ces actions souffrent parfois d’un manque de visibilité et ne profitent pas au plus grand nombre. Réfugiés.info a pour mission de recenser, de rendre visible et de rendre accessible ces nombreuses initiatives.",
+    "vulgariser": "Vulgariser et traduire les démarches administratives",
+    "vulgariser-description": "Dès la protection internationale obtenue, les personnes réfugiées entrent dans le droit commun ce qui déclenche de nombreuses démarches administratives. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches et rassemble des bénévoles pour les traduire dans les principales langues de l'intégration.",
+    "parcours": "Créer des parcours personnalisés d’intégration",
+    "parcours-description": "Obtenir l’asile, c’est surtout reconstruire. Un chez soi, un réseau, une vocation. Le déracinement a souvent brouillé les repères, les ambitions, les objectifs. Réfugiés.info propose un outil structurant l’action et permettant aux réfugiés d’atteindre plus vite et plus sereinement ses objectifs de vie.",
+    "disponible prochainement": "Disponible prochainement"
   },
   "CommentContribuer": {
     "Comment contribuer": "Comment contribuer ?",

@@ -12,8 +12,11 @@ import { membres } from "./data";
 import HeaderBackgroungImage from "../../assets/qui-sommes-nous/QuiSommesNous_header.svg";
 import styled from "styled-components";
 
+import { Mission } from "./components/Mission";
+
 const MainContainer = styled.div`
   flex: 1;
+  background: #ffffff;
 `;
 const HeaderContainer = styled.div`
   display: flex;
@@ -39,6 +42,40 @@ const HeaderTextContainer = styled.div`
   background: #ffffff;
   padding: 8px;
   margin-bottom: 4px;
+`;
+
+const NavBarContainer = styled.div`
+  height: 64px;
+  background: #f2f2f2;
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+`;
+
+const NavBarText = styled.div`
+  font-size: 16px;
+  line-height: 20px;
+  padding: 22px;
+  height: 100%;
+
+  &:hover {
+    background: #212121;
+    color: #f2f2f2;
+  }
+`;
+
+const SectionHeader = styled.div`
+  margin-top: 48px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  margin-bottom: 48px;
+`;
+
+const MissionContainer = styled.div`
+  height: 720px;
 `;
 class QuiSommesNous extends Component {
   state = {
@@ -84,6 +121,39 @@ class QuiSommesNous extends Component {
             </SubHeaderText>
           </HeaderTextContainer>
         </HeaderContainer>
+        <NavBarContainer>
+          <AnchorLink offset="60" href="#mission">
+            <NavBarText>{t("QuiSommesNous.Missions", "Missions")}</NavBarText>
+          </AnchorLink>
+          <AnchorLink offset="60" href="#ecrire">
+            <NavBarText>{t("QuiSommesNous.Équipe", "Équipe")}</NavBarText>
+          </AnchorLink>
+          <AnchorLink offset="60" href="#ecrire">
+            <NavBarText>
+              {t("QuiSommesNous.Problématiques", "Problématiques")}
+            </NavBarText>
+          </AnchorLink>
+          <AnchorLink offset="60" href="#ecrire">
+            <NavBarText>
+              {t(
+                "QuiSommesNous.Approche contributive",
+                "Approche contributive"
+              )}
+            </NavBarText>
+          </AnchorLink>
+          <AnchorLink offset="60" href="#ecrire">
+            <NavBarText>
+              {" "}
+              {t("QuiSommesNous.Partenaires", "Partenaires")}
+            </NavBarText>
+          </AnchorLink>
+        </NavBarContainer>
+        <MissionContainer id="mission">
+          <SectionHeader>
+            {t("QuiSommesNous.Missions", "Missions")}
+          </SectionHeader>
+          <Mission t={t} />
+        </MissionContainer>
       </MainContainer>
     );
   }
