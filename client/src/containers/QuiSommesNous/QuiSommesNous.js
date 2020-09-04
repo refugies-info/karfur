@@ -15,6 +15,8 @@ import styled from "styled-components";
 import { Mission } from "./components/Mission";
 import { Problematic } from "./components/Problematic";
 
+import { Contribution } from "./components/Contribution";
+
 const MainContainer = styled.div`
   flex: 1;
   background: #ffffff;
@@ -187,6 +189,7 @@ class QuiSommesNous extends Component {
           <SectionHeader>
             {t("QuiSommesNous.Approche contributive", "Approche contributive")}
           </SectionHeader>
+          <Contribution t={t} />
         </ContributionContainer>
         <PartnersContainer id="partners">
           <SectionHeader>

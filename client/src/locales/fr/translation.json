@@ -134,8 +134,8 @@
     "problem_3_header2": "Éviter les ruptures d’accompagnement",
     "problem_3_subheader2": "Déménagement, changement de projet de vie... À chaque nouvel interlocuteur, il faut souvent tout reprendre de zéro. Réfugiés.info envisage de proposer aux réfugiés de se créer un parcours personnel qu’ils peuvent partager facilement avec leurs aidants.",
     "Approche contributive": "Approche contributive",
-    "contributive_1_header": "Un projet entièrement ouvert",
-    "contributive_1_subheader": "Les valeurs d’ouverture et de transparence sont au coeur du projet Réfugiés.info : le code source du site est entièrement disponible. Un réseau ouvert participe à la conception et conseille l’équipe du projet sur les besoins et les fonctionnalités à développer",
+    "contributive_1_header2": "Vers un État plus ouvert",
+    "contributive_1_subheader": "Les valeurs d’ouverture et de transparence sont au coeur du projet Réfugiés.info : le code source du site est entièrement disponible. Un réseau ouvert participe à la conception et conseille l’équipe du projet sur les besoins et les fonctionnalités à développer.",
     "Voir le code source": "Voir le code source",
     "contributive_2_header": "Le terrain aux commandes",
     "contributive_2_subheader": "Seuls les acteurs locaux sont capables de recenser efficacement les actions et de nourrir une base de connaissance commune. Ainsi Réfugiés.info permet à chaque territoire de recenser et de valoriser ses initiatives tout en découvrant de nouvelles",
@@ -150,7 +150,8 @@
     "vulgariser-description": "Dès la protection internationale obtenue, les personnes réfugiées entrent dans le droit commun ce qui déclenche de nombreuses démarches administratives. Réfugiés.info publie des fiches pratiques pour vulgariser ces démarches et rassemble des bénévoles pour les traduire dans les principales langues de l'intégration.",
     "parcours": "Créer des parcours personnalisés d’intégration",
     "parcours-description": "Obtenir l’asile, c’est surtout reconstruire. Un chez soi, un réseau, une vocation. Le déracinement a souvent brouillé les repères, les ambitions, les objectifs. Réfugiés.info propose un outil structurant l’action et permettant aux réfugiés d’atteindre plus vite et plus sereinement ses objectifs de vie.",
-    "disponible prochainement": "Disponible prochainement"
+    "disponible prochainement": "Disponible prochainement",
+    "réseau": "Rejoindre le réseau des contributeurs"
   },
   "CommentContribuer": {
     "Comment contribuer": "Comment contribuer ?",
