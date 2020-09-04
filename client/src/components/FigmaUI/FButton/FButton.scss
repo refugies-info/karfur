@@ -436,6 +436,10 @@ body .figma-btn {
       background: #ffffff;
       border: 1px solid #000000;
       color: $noir;
+
+      svg {
+        fill: $noir;
+      }
     }
   }
 }

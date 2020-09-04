@@ -22,9 +22,9 @@ class QuiSommesNous extends Component {
     window.scrollTo(0, 0);
   }
 
-  _onSelectMembre = (membre) =>
+  onSelectMembre = (membre) =>
     this.setState({ sideVisible: true, membre: membre });
-  _closeSide = () => this.setState({ sideVisible: false });
+  closeSide = () => this.setState({ sideVisible: false });
 
   render() {
     const { membre, sideVisible } = this.state;

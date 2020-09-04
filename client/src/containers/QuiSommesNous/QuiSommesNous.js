@@ -14,8 +14,9 @@ import styled from "styled-components";
 
 import { Mission } from "./components/Mission";
 import { Problematic } from "./components/Problematic";
-
 import { Contribution } from "./components/Contribution";
+import { Team } from "./components/Team";
+import { MemberDetails } from "./components/MemberDetails";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -81,9 +82,10 @@ const MissionContainer = styled.div`
   padding-top: 48px;
 `;
 const TeamContainer = styled.div`
-  height: 720px;
+  height: 850px;
   background: #f2f2f2;
   padding-top: 48px;
+  position: relative;
 `;
 const ProblematicContainer = styled.div`
   height: 720px;
@@ -110,9 +112,14 @@ class QuiSommesNous extends Component {
     window.scrollTo(0, 0);
   }
 
-  _onSelectMembre = (membre) =>
+  onSelectMembre = (membre) =>
     this.setState({ sideVisible: true, membre: membre });
-  _closeSide = () => this.setState({ sideVisible: false });
+
+  closeSide = () => {
+    if (this.state.sideVisible) {
+      this.setState({ sideVisible: false });
+    }
+  };
 
   render() {
     const { membre, sideVisible } = this.state;
@@ -176,8 +183,16 @@ class QuiSommesNous extends Component {
           </SectionHeader>
           <Mission t={t} />
         </MissionContainer>
-        <TeamContainer id="equipe">
+        <TeamContainer id="equipe" onClick={this.closeSide}>
           <SectionHeader>{t("QuiSommesNous.Équipe", "Équipe")}</SectionHeader>
+          <Team
+            t={t}
+            sideVisible={sideVisible}
+            membre={membre}
+            closeSide={this.closeSide}
+            onMemberCardClick={this.onSelectMembre}
+          />
+          <MemberDetails isOpened={sideVisible} membreName={membre} />
         </TeamContainer>
         <ProblematicContainer id="problematic">
           <SectionHeader>

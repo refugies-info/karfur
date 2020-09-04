@@ -1,61 +1,119 @@
-const membres = [
+export const membres = [
   {
-    firstName: "Hugo",
-    name: "Hugo Stéphan",
-    statut: "Designer d’intérêt général",
+    name: "Alain Régnier",
+    roleShort: "Mentor",
+    roleName:
+      "Préfet, délégué interministériel à l’accueil et l’intégration des réfugiés ",
     engagement:
-      "Le projet Réfugiés.info est une formidable opportunité pour mettre le numérique au service d’un public et non l’inverse. La complexité des situations individuelles doit être étudiée afin de proposer un service correspondant aux usages des personnes réfugiés. Impressionné par la vitalité et la détermination du tissu associatif mobilisé pour accueillir les réfugiés, j'ai hâte de proposer un outil pour valoriser les nombreuses initiatives présentes dans tous les territoires.",
+      "Le Gouvernement m'a confié la mission d'animer et de piloter la politique d'accueil et d'intégration des réfugiés en me nommant délégué interministériel. J'ai souhaité, dès le début, explorer l'usage du numérique pour répondre à des problématiques fortes. La question de l'accès à l'information est centrale et doit être adressée. Réfugiés.info explique non seulement les dispositifs d'accompagnements et les démarches administratives en plusieurs langues mais il permet aux acteurs du territoire de partager cette information. Engagé depuis le début de ma carrière sur les grands enjeux de société, je suis convaincu que Réfugiés.info incarne une nouvelle forme de service au public.",
     role:
-      "Concevoir une expérience de service réussie répondant aux besoins réels des personnes réfugiées. Être capable de piloter le projet dans des délais réduits.",
-    outils: "Figma, Mural, Slack, Typeform, Canny, Zenkit, Drive",
-    portfolio: "hugostephan.com",
-    twitter: "@HugoStephan",
-    linkedin: "https://linkedin.com/in/hugo-stephan/",
+      "Nommé Délégué interministériel à l'accueil et à l'intégration des réfugiés en janvier 2018, j'anime et pilote cette politique publique. Pour ce faire, je m'appuie sur la stratégie nationale d'accueil et d'intégration des réfugiés qui définit plusieurs axes majeurs à développer. Ma mission s'attache à améliorer la vie quotidienne des personnes réfugiées et à changer les regards que peuvent porter les Français sur les migrations.",
+    linkedin:
+      "https://www.linkedin.com/in/alain-regnier-5aa3b5102/?originalSubdomain=fr",
+    color: "#DDF2F9",
+    borderColor: "#88C6E3",
+    textColor: "#168CC6",
   },
+
   {
-    firstName: "Chloé",
-    name: "Chloé Vermeulin",
-    statut: "Designer spécialisée en Innovation Sociale",
-    engagement:
-      "Mon travail vise à favoriser l’accomplissement personnel des individus et à améliorer la cohésion sociale. Je suis convaincue qu’en mettant en place des outils facilitant l’information et le dialogue entre les différents acteurs de l’accueil migratoire et les réfugiés nous pouvons faciliter leur intégration et améliorer le vivre-ensemble, c’est là le sens de mon engagement sur le projet Réfugiés.info.",
-    role:
-      "Je travaille sur l’identité visuelle de la plateforme et produis des illustrations visant à faciliter la navigation et la compréhension de ses contenus ainsi qu’à l’humaniser en tenant compte de la pluralité de culture des utilisateurs.",
-    outils: "Suite adobe, Contrast, Figma, Mural, Slack, Drive",
-    linkedin: "https://www.linkedin.com/in/chlo%C3%A9-vermeulin-a3773069/",
-  },
-  {
-    firstName: "Simon",
     name: "Simon Karleskind",
-    statut: "Chef de projet",
+    roleName: "Chef de projet",
     engagement:
       "L’accès à l’information est un des enjeux majeurs adressés à la fonction publique. L’ensemble des personnes vivant en France doivent pouvoir connaître simplement leurs droits et devoirs. Les personnes réfugiées, particulièrement vulnérables de par leur exil, leur maîtrise du français et leur parcours administratif appellent toute notre attention. Réfugiés.info sera une des pierres d’une intégration réussie en France.",
     role:
-      "Directeur de cabinet du Délégué interministériel pour l’accueil et l’intégration des réfugiés, je suis cofondateur de son laboratoire d’innovation publique, le Lab’r, qui héberge le projet Réfugiés.info pour lequel je suis mentor opérationnel.",
+      "Conseiller du Délégué interministériel pour l’accueil et l’intégration des réfugiés, je suis cofondateur de son laboratoire d’innovation publique, le Lab’r, qui héberge le projet Réfugiés.info dont j’assure la chefferie de projet.",
     outils: "Mural, R, Zenkit, Overleaf, LaTeX, Canny, Airtable, Slack, Drive",
     linkedin: "https://www.linkedin.com/in/simon-karleskind/",
+    color: "#F2F9E5",
+    borderColor: "#AFE868",
+    textColor: "#388E05",
   },
+
   {
-    firstName: "Nour",
     name: "Nour Allazkani",
-    statut: "Ambassadeur du projet Réfugiés.info",
+    roleName: "Ambassadeur",
     engagement:
       "Le projet Réfugiés.info est une opportunité pour mettre le numérique au service d’un public, et non l’inverse. La complexité des situations individuelles doit être étudiée afin de proposer un service correspondant aux usages spécifiques des personnes réfugiés. Impressionné par la vitalité et la détermination du tissu associatif mobilisé pour accueillir les réfugiés, j'espère proposer un outil pour valoriser les nombreuses initiatives présentes dans tous les territoires.",
     role:
-      "Créer, animer et étendre le réseau des partenaires de la plateforme pour la faire connaître et s’assurer qu’elle répond toujours au besoin. Représenter le projet lors d’interventions publiques et faire remonter les besoins à l’équipe de développement. ",
+      "Créer, animer et étendre le réseau des partenaires de la plateforme pour la faire connaître et s’assurer qu’elle répond toujours au besoin. Représenter le projet lors d’interventions publiques et faire remonter les besoins à l’équipe de développement. Structurer la recherche de financement et la pérénnisation du projet.",
     outils: "Airtable, Mural, Slack, Drive",
+    linkedin: "https://www.linkedin.com/in/nour-allazkani-782404140/",
+    color: "#FFEAF4",
+    borderColor: "#DB8EEF",
+    textColor: "#600566",
+  },
+
+  {
+    name: "Agathe Kieny",
+    roleName: "Développeuse",
+    engagement:
+      "Grâce à Réfugiés.info, je souhaite faciliter l’intégration des personnes réfugiées en France et leur permettre d’accéder à leurs droits. Ce projet collaboratif met en valeur l’incroyable tissu associatif et l’engagement de nombreux travailleurs sociaux et bénévoles sur tout le territoire français.",
+    role:
+      "Développer de nouvelles fonctionnalités sur la plateforme. Améliorer les fonctionnalités existantes pour que l’expérience des utilisateurs soit la meilleure possible. Assurer la disponibilité et la fluidité de la plateforme.",
+    outils: "React, Node, MongoDB, Github",
+    color: "#F9E8E8",
+    borderColor: "#EF9887",
+    textColor: "#E22D05",
+    linkedin: "https://www.linkedin.com/in/agathe-kieny-976720ab/",
+  },
+
+  {
+    name: "Hugo Stéphan",
+    roleName: "Designer",
+    engagement:
+      "Le projet Réfugiés.info est une opportunité de mettre le numérique au service d’un public et non l’inverse. La complexité des situations individuelles doit être étudiée afin de proposer un service correspondant aux usages spécifiques des personnes réfugiées. Impressionné par la vitalité et la détermination du tissu associatif mobilisé pour accueillir les réfugiés, je m’efforce de concevoir un outil ouvert et performant pour structurer et valoriser ces nombreuses initiatives présentes dans tous les territoires.",
+    role:
+      "Je suis en charge de la recherche utilisateur, de la coconception des fonctionnalités, de design des interfaces. Je pilote également l’évolution de l’identité visuelle et anime la communauté des contributeurs.",
+    outils:
+      "Figma, Mural, Miro, Slack, Readymag, Typeform, Canny, Google Drive",
+    portfolio: "https://hugostephan.com",
+    twitter: "https://twitter.com/HugoStephan",
+    linkedin: "https://linkedin.com/in/hugo-stephan/",
+    color: "#FFEDED",
+    borderColor: "#DE6B8A",
+    textColor: "#C60A3F",
+  },
+
+  {
+    name: "Chloé Vermeulin",
+    roleName: "Designer",
+    engagement:
+      "Mon travail vise à favoriser l’accomplissement personnel des individus et à améliorer la cohésion sociale. Pour cela, je conçois des outils, des dispositifs et des services favorisant la compréhension réciproque et l’empowerment. Je suis convaincue qu’en mettant en place des outils facilitant l’information et le dialogue entre les différents acteurs de l’accueil migratoire et les réfugiés nous pouvons faciliter leur intégration et améliorer le vivre-ensemble, c’est là le sens de mon engagement sur le projet Réfugiés.info.",
+    role:
+      "Je travaille sur l’identité visuelle de la plateforme et produis des illustrations visant à faciliter la navigation et la compréhension de ses contenus ainsi qu’à l’humaniser en tenant compte de la pluralité de culture des utilisateurs.",
+    outils:
+      "Suite adobe, Contrast, Figma, Mural, Slack, Drive... Outils de création graphique et de dessin vectoriel, outils de contrôle colorimétrique adapté aux problématiques de malvoyance, outils de mapping et de gestion de projet",
+    linkedin: "https://www.linkedin.com/in/chlo%C3%A9-vermeulin-a3773069/",
+    color: "#FCF4EF",
+    borderColor: "#F9AA75",
+    textColor: "#EA6005",
   },
   {
-    firstName: "Soufiane",
-    name: "Soufiane Lamrissi",
-    statut: "Développeur d'Intérêt Général",
+    name: "Ana Mylonas",
+    roleShort: "Content manager",
+    roleName: "Responsable éditorial et support",
     engagement:
-      "Le projet Réfugiés.info est une opportunité pour mettre le numérique au service d’un public, et non l’inverse. La complexité des situations individuelles doit être étudiée afin de proposer un service correspondant aux usages spécifiques des personnes réfugiés. Impressionné par la vitalité et la détermination du tissu associatif mobilisé pour accueillir les réfugiés, je souhaite apporter un outil ouvert et performant pour structurer et valoriser les nombreuses initiatives présentes dans tous les territoires.",
+      "Mon objectif est de faire le lien entre les individus et ainsi favoriser le dialogue social entre les acteurs de l’intégration. Faire partie de l’équipe Réfugiés.info, c’est avant tout apprendre à construire un écosystème solidaire et autonome. Être à l’écoute des acteurs de terrain et découvrir des initiatives locales sont autant d’actions qui, selon moi, favorisent le développement d’une société sociale pérenne.",
     role:
-      "Concevoir une expérience de service réussie et répondant aux besoins réels des personnes réfugiées. Livrer un prototype utilisable, démontrant tout le potentiel d’une plateforme numérique sur la problématique de l’accueil et de l’intégration.",
-    outils: "React, Node, Mongo, Express",
-    twitter: "@Wriri",
-    linkedin: "https://www.linkedin.com/in/soufiane-lamrissi-15b79261/",
+      "Mon travail au sein de la plateforme consiste à accompagner les contributeurs dans l’édition et la gestion de leur espace. En tant que « responsable éditoriale », je suis chargée de rendre le contenu de notre plateforme lisible par le plus grande nombre.",
+    outils: "Suite adobe, Contrast, Figma, Mural, Slack, Drive",
+    linkedin: "https://www.linkedin.com/in/ana-mylonas-scpobx/",
+    color: "#EEF8FF",
+    borderColor: "#88C6E3",
+    textColor: "#0A54BF",
+  },
+
+  {
+    name: "Luca Mazzi",
+    roleName: "Développeur",
+    engagement:
+      "Dans un contexte où l’immigration est au centre des problématiques sociales, et avec des prospectives de flux migratoires sans précédent, il est nécessaire trouver des solutions concrètes pour favoriser l’intégration et l’inclusion des réfugiés dans le tissus social et administratif français. Réfugies.info est un projet numérique qui, grace à une approche moderne et en s’appuyant sur les dernières technologies web, donne l'opportunité à tout le monde de contribuer de manière directe et tangible à la distribution et à la traduction des informations administratives en plusieurs langues. Je crois profondément qu’en utilisant les derniers avancements technologiques nous permettrons aux réfugiés de prendre connaissance et d’accéder aux opportunités proposées par de nombreuses associations en France.",
+    role:
+      "Je m’occupe de la programmation informatique de la plateforme et de l'implémentation des nouvelles fonctionnalités choisies par l’équipe de Réfugiés.info. Mon objectif c’est de trouver les meilleures solutions techniques pour améliorer l’experience des utilisateurs.",
+    outils: "React.js, Javascript, MongoDB, Node.js, Express, Typescript",
+    linkedin: "https://www.linkedin.com/in/lmazzi/",
+    color: "#EDFDF9",
+    borderColor: "#4FD3BC",
+    textColor: "#26A8A5",
   },
 ];
-
-export { membres };
