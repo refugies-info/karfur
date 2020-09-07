@@ -144,8 +144,12 @@ export class dispositifValidateModal extends Component {
     //this.toggle();
   };
 
-  handleCheckboxChange = (event) =>
-    this.setState({ noTag: event.target.checked, tag2: null, tag3: null });
+  handleCheckboxChange = () =>
+    this.setState((prevState) => ({
+      noTag: !prevState.noTag,
+      tag2: null,
+      tag3: null,
+    }));
 
   validateAndClose = () => {
     this.props.validate([this.state.tag1, this.state.tag2, this.state.tag3]);
@@ -314,7 +318,9 @@ export class dispositifValidateModal extends Component {
               paddingTop: 18,
               marginTop: 30,
               paddingLeft: 14,
+              cursor: "pointer",
             }}
+            onClick={this.handleCheckboxChange}
           >
             <label className="container">
               <input

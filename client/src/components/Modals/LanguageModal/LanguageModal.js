@@ -18,6 +18,12 @@ import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { Event, initGA } from "../../../tracking/dispatch";
 
 const languageModal = (props) => {
+  const getAvancementTrad = (element) => {
+    if (props.languages[element].i18nCode === "fr") return 1;
+
+    return props.languages[element].avancementTrad;
+  };
+
   const { t } = props;
   // const languages = (props.languages || []).map(x => ({...x, avancement: (x.avancement + dispositifs.find(y =>)) / 2}))
   if (props.show) {
@@ -130,12 +136,21 @@ const languageModal = (props) => {
                       className="progress-col"
                     >
                       <Progress
-                        color={colorAvancement(
-                          props.languages[element].avancement
-                        )}
-                        value={props.languages[element].avancement * 100}
+                        color={colorAvancement(getAvancementTrad(element))}
+                        value={getAvancementTrad(element) * 100}
                       />
-                      {/* <span>{Math.round(props.languages[element].avancement*100 || 0,0) + ' %'}</span> */}
+                      <span
+                        className={
+                          "text-" + colorAvancement(getAvancementTrad(element))
+                        }
+                      >
+                        <b>
+                          {Math.round(
+                            getAvancementTrad(element) * 100 || 0,
+                            0
+                          ) + " %"}
+                        </b>
+                      </span>
                     </Col>
                     <Col
                       xl="1"
