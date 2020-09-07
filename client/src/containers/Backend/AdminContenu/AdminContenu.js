@@ -31,7 +31,6 @@ import produce from "immer";
 
 import "./AdminContenu.scss";
 import variables from "scss/colors.scss";
-import { cps } from "redux-saga/effects";
 
 moment.locale("fr");
 const prioritaryStatus = [
