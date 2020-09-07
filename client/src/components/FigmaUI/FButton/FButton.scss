@@ -424,4 +424,22 @@ body .figma-btn {
       fill: $darkColor;
     }
   }
+
+  &.fill-dark {
+    background: $noir;
+    color: $blancSimple;
+    svg {
+      fill: $blancSimple;
+    }
+
+    &:hover {
+      background: #ffffff;
+      border: 1px solid #000000;
+      color: $noir;
+
+      svg {
+        fill: $noir;
+      }
+    }
+  }
 }

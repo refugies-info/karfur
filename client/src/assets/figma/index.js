@@ -13,7 +13,6 @@ import interieur_4 from "./interieur_4.svg";
 import logo_google from "./logo_google.svg";
 import logo_header from "./logo_header.svg";
 import minInt from "./minInt.png";
-import equipe from "./equipe.png";
 import responsableFiche from "./responsableFiche.svg";
 import rejectionFiche from "./rejectionFiche.svg";
 
@@ -33,7 +32,6 @@ export {
   logo_google,
   logo_header,
   minInt,
-  equipe,
   rejectionFiche,
   responsableFiche,
 };

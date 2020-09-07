@@ -27,6 +27,7 @@ import { ReactComponent as PapillonRose } from "../../assets/comment-contribuer/
 
 const MainContainer = styled.div`
   flex: 1;
+  background: #ffffff;
 `;
 const HeaderContainer = styled.div`
   display: flex;
