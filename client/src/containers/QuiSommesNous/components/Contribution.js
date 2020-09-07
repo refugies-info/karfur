@@ -35,13 +35,6 @@ const ContributionDetailDescription = styled.div`
   margin-bottom: 32px;
 `;
 
-const FooterText = styled.div`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  margin-top: 24px;
-`;
-
 const TextContainer = styled.div`
   position: absolute;
   top: 210px;

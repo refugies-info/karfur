@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { membres } from "../data";
 import _ from "lodash";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { colorStatut } from "../../../components/Functions/ColorFunctions";
 
 const MainContainerLeft = styled.div`
   width: 600px;

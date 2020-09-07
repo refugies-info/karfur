@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import track from "react-tracking";
 import { withTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
-import { Row, Col, Card, CardHeader, CardBody, CardFooter } from "reactstrap";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-
-import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import FButton from "../../components/FigmaUI/FButton/FButton";
-import { equipe } from "../../assets/figma/index";
-import { membres } from "./data";
 import HeaderBackgroungImage from "../../assets/qui-sommes-nous/QuiSommesNous_header.svg";
 import styled from "styled-components";
 
