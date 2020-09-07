@@ -17,6 +17,7 @@ import { Problematic } from "./components/Problematic";
 import { Contribution } from "./components/Contribution";
 import { Team } from "./components/Team";
 import { MemberDetails } from "./components/MemberDetails";
+import { Partners } from "./components/Partners";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -99,8 +100,10 @@ const ContributionContainer = styled.div`
 `;
 
 const PartnersContainer = styled.div`
-  height: 720px;
+  height: 1020px;
   padding-top: 48px;
+  padding-left: 120px;
+  padding-right: 32px;
 `;
 class QuiSommesNous extends Component {
   state = {
@@ -210,6 +213,7 @@ class QuiSommesNous extends Component {
           <SectionHeader>
             {t("QuiSommesNous.Partenaires", "Partenaires")}
           </SectionHeader>
+          <Partners t={t} />
         </PartnersContainer>
       </MainContainer>
     );
