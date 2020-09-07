@@ -545,16 +545,20 @@ class CommentContribuer extends Component {
                 )}
               </TradHeaderContainer>
               <NumbersContainer>
-                <NumberTraduction
-                  amount={nbTrad}
-                  text={"traducteurs actifs"}
-                  width={181}
-                />
-                <NumberTraduction
-                  amount={nbExperts}
-                  text={"experts en traduction"}
-                  width={326}
-                />
+                <NavLink to="/backend/user-dashboard">
+                  <NumberTraduction
+                    amount={nbTrad}
+                    text={"traducteurs actifs"}
+                    width={181}
+                  />
+                </NavLink>
+                <NavLink to="/backend/user-dashboard">
+                  <NumberTraduction
+                    amount={nbExperts}
+                    text={"experts en traduction"}
+                    width={326}
+                  />
+                </NavLink>
               </NumbersContainer>
               <LanguesCardsContainer>
                 <Langue
