@@ -32,6 +32,7 @@ export interface PropsBeforeInjection {
   t: any;
   toggleTutorielModal: (arg: string) => void;
   displayTuto: boolean;
+  updateUIArray: (arg: number) => void;
 }
 
 export class Tags extends Component<Props> {
@@ -100,6 +101,7 @@ export class Tags extends Component<Props> {
                   className={"mr-10 color" + (tag.short ? "" : " full")}
                   color={(tag.short || "").replace(/ /g, "-")}
                   noHover
+                  onMouseEnter={() => this.props.updateUIArray(-6)}
                 >
                   <InnerButton>
                     {tagIcon ? (
@@ -133,17 +135,25 @@ export class Tags extends Component<Props> {
           <Button
             className="plus-button ml-10 icon"
             onClick={this.props.openTag}
+            onMouseEnter={() => this.props.updateUIArray(-6)}
           >
             <Streamline name={"tag"} width={26} height={26} />
           </Button>
         ) : !this.props.disableEdit && (this.props.tags || []).length < 1 ? (
-          <Button className="plus-button ml-10" onClick={this.props.openTag}>
+          <Button
+            className="plus-button ml-10"
+            onClick={this.props.openTag}
+            onMouseEnter={() => this.props.updateUIArray(-6)}
+          >
             <Streamline name={"tag"} width={22} height={22} />
             {"Choisir les thèmes"}
           </Button>
         ) : null}
         {!this.props.disableEdit && this.props.displayTuto && (
-          <div style={{ marginLeft: "8px"}}>
+          <div
+            style={{ marginLeft: "8px" }}
+            onMouseEnter={() => this.props.updateUIArray(-6)}
+          >
             <FButton
               type="tuto"
               name={"play-circle-outline"}

@@ -58,7 +58,6 @@ import { readAudio } from "../Layout/functions";
 import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
 import {
   contenu,
-  lorems,
   menu,
   filtres,
   onBoardSteps,
@@ -181,6 +180,10 @@ export class Dispositif extends Component {
   };
 
   componentDidMount() {
+    this.props.history.push({
+      state: {
+      },
+    });
     this._isMounted = true;
     this.props.fetchUser();
     this.checkUserFetchedAndInitialize();
@@ -437,7 +440,6 @@ export class Dispositif extends Component {
               ...x,
               type: x.type || "paragraphe",
               isFakeContent: true,
-              placeholder: (x.tutoriel || {}).contenu,
               content: x.type ? null : x.content,
               editorState: EditorState.createWithContent(
                 ContentState.createFromBlockArray(htmlToDraft("").contentBlocks)
@@ -808,8 +810,6 @@ export class Dispositif extends Component {
         newChild = {
           type: "accordion",
           isFakeContent: true,
-          title: "Un exemple d'accordéon",
-          placeholder: lorems.sousParagraphe,
           content: "",
         };
       } else if (type === "map") {
@@ -824,7 +824,6 @@ export class Dispositif extends Component {
         newChild = {
           title: "Un exemple de paragraphe",
           isFakeContent: true,
-          placeholder: lorems.sousParagraphe,
           content: "",
           type: type,
         };
@@ -869,7 +868,6 @@ export class Dispositif extends Component {
           {
             title: "Nouveau sous-paragraphe",
             type: type,
-            content: lorems.sousParagraphe,
           },
         ];
       }
@@ -1204,8 +1202,8 @@ export class Dispositif extends Component {
   };
 
   closePdf = () => {
-    this.setState({ showSpinnerPrint: false, printing: false }); 
-  }
+    this.setState({ showSpinnerPrint: false, printing: false });
+  };
 
   createPdf = () => {
     this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
@@ -1221,14 +1219,14 @@ export class Dispositif extends Component {
         }),
       }),
     }));
-    this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true })
-           /*  this.html2canvas(document.getElementById('contenu-0')).then((canvas) => {
+    this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true });
+    /*  this.html2canvas(document.getElementById('contenu-0')).then((canvas) => {
               const imgData = canvas.toDataURL("image/png");
               const pdf = new jsPDF();
               pdf.addImage(imgData, "PNG", 0, 0);
               pdf.save("download.pdf");
             }) */
-          /*             savePDF(
+    /*             savePDF(
               this.newRef.current,
               {
                 fileName:
@@ -1254,7 +1252,12 @@ export class Dispositif extends Component {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  editDispositif = (_ = null, disableEdit = false) =>
+  editDispositif = (_ = null, disableEdit = false) => {
+  this.props.history.push({
+    state: {
+      editable: true,
+    },
+  });
     this.setState(
       (pS) => ({
         disableEdit: disableEdit,
@@ -1279,6 +1282,7 @@ export class Dispositif extends Component {
       }),
       () => this.setColors()
     );
+  }
 
   // save reaction and display modal of success
   pushReaction = (modalName = null, fieldName) => {
@@ -1582,10 +1586,10 @@ export class Dispositif extends Component {
             ? " edition-mode"
             : translating
             ? " side-view-mode"
-            : (printing && isRTL)
+            : printing && isRTL
             ? " printing-mode print-rtl"
-            : (printing && !isRTL) ?
-            " printing-mode" 
+            : printing && !isRTL
+            ? " printing-mode"
             : " reading-mode")
         }
         ref={this.newRef}
@@ -1788,6 +1792,7 @@ export class Dispositif extends Component {
                       history={this.props.history}
                       toggleTutorielModal={this.toggleTutorielModal}
                       displayTuto={this.state.displayTuto}
+                      updateUIArray={this.updateUIArray}
                     />
                   }
                 </Col>
@@ -1979,6 +1984,7 @@ export class Dispositif extends Component {
                   toggleFinalValidation={this.toggleFinalValidation}
                   toggleTutorielModal={this.toggleTutorielModal}
                   displayTuto={this.state.displayTuto}
+                  updateUIArray={this.updateUIArray}
                 />
 
                 {false && <Commentaires />}
