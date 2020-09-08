@@ -30,7 +30,10 @@ export interface PropsBeforeInjection {
   tKeyValue: number;
   toggleDispositifCreateModal: () => void;
 }
-export class BandeauEdition extends React.Component<Props, {scroll: boolean, visible: boolean}> {
+export class BandeauEdition extends React.Component<
+  Props,
+  { scroll: boolean; visible: boolean }
+> {
   /**
    * explanations of props :
    * withHelp : activate or not help
@@ -49,27 +52,24 @@ export class BandeauEdition extends React.Component<Props, {scroll: boolean, vis
     this.state = {
       //prevScrollpos: window.pageYOffset,
       visible: true,
-      scroll: false
+      scroll: false,
     };
   }
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
-  
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
-  
+
   handleScroll = () => {
-   // const { prevScrollpos } = this.state;
-  
     const currentScrollPos = window.pageYOffset;
     const visible = currentScrollPos < 70;
-  
+
     this.setState({
-      //prevScrollpos: currentScrollPos,
-      visible
+      visible,
     });
   };
 

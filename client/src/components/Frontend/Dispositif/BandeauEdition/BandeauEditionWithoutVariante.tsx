@@ -141,7 +141,7 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
   return (
     <div className={"bandeau-edition" + (props.visible ? "" : " go-to-top")}>
       <div className="dashed-panel no-radius" />
-      <MainContainer visible={props.visible} yellow={props.displayTuto && props.tKeyValue !== -1}>
+      <MainContainer yellow={props.displayTuto && props.tKeyValue !== -1}>
         <FirstGroupContainer>
           <ContentTypeContainer>
             {jsUcfirst(props.typeContenu)}

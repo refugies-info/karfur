@@ -52,7 +52,12 @@ const contenuParagraphe = (props) => {
             <div
               className={
                 "sous-contenu-wrapper" +
-                (subitem.type === "map" ? " sous-contenu-map" : (item.title === "Comment je m'engage ?" && childrenLength === (subkey + 1)) ? " mb-15" : "") +
+                (subitem.type === "map"
+                  ? " sous-contenu-map"
+                  : item.title === "Comment je m'engage ?" &&
+                    childrenLength === subkey + 1
+                  ? " mb-15"
+                  : "") +
                 (item.type === "cards" ? " sous-contenu-cards" : "") +
                 (props.inVariante && disableEdit
                   ? " in-variante" +
@@ -186,6 +191,7 @@ const contenuParagraphe = (props) => {
                                 onMouseUp={(e) =>
                                   !newDisableEdit && e.stopPropagation()
                                 }
+                                placeholder={"Titre à remplacer"}
                               />
                             </span>
                             {newDisableEdit && (
@@ -327,12 +333,15 @@ const contenuParagraphe = (props) => {
                   </Row>
                 </div>
               )}
-              {props.addMapBtn && props.keyValue === 3 && !props.disableEdit && !(props.typeContenu === "demarche") ? (
+              {props.addMapBtn &&
+              props.keyValue === 3 &&
+              !props.disableEdit &&
+              !(props.typeContenu === "demarche") ? (
                 <AddMoudleBtnTag
-                addItem={props.addItem}
-                subkey={item.children ? item.children.length : 0}
-                tag={props.mainTag}
-              />
+                  addItem={props.addItem}
+                  subkey={item.children ? item.children.length : 0}
+                  tag={props.mainTag}
+                />
               ) : null}
             </div>
           );
@@ -359,24 +368,28 @@ const AddMoudleBtnTag = (props) => {
     <div className={"ml-15 mt-10 mb-10"}>
       <TagButton
         className={"mr-10 color" + (props.tag.short ? "" : " full")}
-        color={props.tag.short === "noImage" ? "dark" : (props.tag.short || "").replace(/ /g, "-")}
+        color={
+          props.tag.short === "noImage"
+            ? "dark"
+            : (props.tag.short || "").replace(/ /g, "-")
+        }
         onClick={() => props.addItem(3, "map", props.subkey)}
       >
         <InnerButton>
-            <div
-              style={{
-                display: "flex",
-                marginRight: 10,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <EVAIcon
-                className="delete-icon cursor-pointer"
-                name="pin-outline"
-                fill={variables.blanc}
-              />
-            </div>
+          <div
+            style={{
+              display: "flex",
+              marginRight: 10,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <EVAIcon
+              className="delete-icon cursor-pointer"
+              name="pin-outline"
+              fill={variables.blanc}
+            />
+          </div>
           {"Ajouter une carte interactive"}
         </InnerButton>
       </TagButton>

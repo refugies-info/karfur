@@ -28,6 +28,7 @@ export const Team = (props) => (
         color={membre.color}
         borderColor={membre.borderColor}
         onMemberCardClick={props.onMemberCardClick}
+        membreSelected={props.membre === membre.name && props.sideVisible}
       />
     ))}
   </TeamContainer>
@@ -41,7 +42,10 @@ const MemberCardContainer = styled.div`
   background: ${(props) => props.background};
   position: relative;
   cursor: pointer;
-  border: 4px solid #f2f2f2;
+  border-width: 4px;
+  border-style: solid;
+  border-color: ${(props) =>
+    props.membreSelected ? props.borderColor : "#f2f2f2"};
   &:hover {
     border-width: 4px;
     border-style: solid;
@@ -94,6 +98,7 @@ const MemberCard = (props) => (
     background={props.color}
     borderColor={props.borderColor}
     onClick={() => props.onMemberCardClick(props.name)}
+    membreSelected={props.membreSelected}
   >
     <ImageContainer>
       <img

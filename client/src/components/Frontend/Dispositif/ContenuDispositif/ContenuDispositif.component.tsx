@@ -145,7 +145,7 @@ export const contenuDispositif = (props: Props) => {
                   props.displayTuto && (
                     <div
                       style={{
-                        marginTop: key !== 0 ? "40px" : "0px",
+                        marginTop: key !== 0 ? "20px" : "0px",
                         marginLeft: "18px",
                       }}
                     >
@@ -209,7 +209,7 @@ export const contenuDispositif = (props: Props) => {
             // lecture and edition of childrens and info cards
             <ContenuParagraphe item={item} keyValue={key} {...props} />
           }
-{/*           <button className="anchor" id={"item-" + key}>
+          {/*           <button className="anchor" id={"item-" + key}>
             {item.title}
           </button> */}
         </div>
