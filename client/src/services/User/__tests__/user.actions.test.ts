@@ -5,7 +5,6 @@ import {
 } from "../user.actions";
 import { SET_USER, FETCH_USER, UPDATE_USER } from "../user.actionTypes";
 import { testUser } from "../../../__fixtures__/user";
-import "babel-polyfill"
 
 describe("[Actions] User", () => {
   it("should return a SET_USER action with correct payload", () => {
