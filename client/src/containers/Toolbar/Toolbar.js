@@ -41,13 +41,12 @@ const InnerButton = styled.div`
 
 // top banner
 export class Toolbar extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
       visible: true,
-      scroll: false
+      scroll: false,
     };
   }
 
@@ -62,21 +61,31 @@ export class Toolbar extends React.Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
-    if (this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche") || this.props.location.pathname.includes("user-profile")) {
-      this.setState({scroll: true})
+    if (
+      this.props.location.pathname.includes("dispositif") ||
+      this.props.location.pathname.includes("demarche") ||
+      this.props.location.pathname.includes("user-profile") ||
+      this.props.location.pathname.includes("qui-sommes-nous")
+    ) {
+      this.setState({ scroll: true });
     }
   }
-  
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      if (this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche") || this.props.location.pathname.includes("user-profile")) {
-        this.setState({scroll: true})
+      if (
+        this.props.location.pathname.includes("dispositif") ||
+        this.props.location.pathname.includes("demarche") ||
+        this.props.location.pathname.includes("user-profile") ||
+        this.props.location.pathname.includes("qui-sommes-nous")
+      ) {
+        this.setState({ scroll: true });
       } else {
-      this.setState({scroll: false})
+        this.setState({ scroll: false });
       }
     }
   }
@@ -89,13 +98,12 @@ export class Toolbar extends React.Component {
   };
 
   handleScroll = () => {
-  
     const currentScrollPos = window.pageYOffset;
     //const visible = prevScrollpos > currentScrollPos;
     const visible = currentScrollPos < 70;
-  
+
     this.setState({
-      visible
+      visible,
     });
   };
 
@@ -117,7 +125,12 @@ export class Toolbar extends React.Component {
     const userImg =
       user && user.picture ? user.picture.secure_url : marioProfile;
     return (
-      <header className={"Toolbar" + ((this.state.visible || !this.state.scroll) ? "" : " toolbar-hidden")}>
+      <header
+        className={
+          "Toolbar" +
+          (this.state.visible || !this.state.scroll ? "" : " toolbar-hidden")
+        }
+      >
         <div className="left_buttons">
           {afficher_burger && (
             <DrawerToggle

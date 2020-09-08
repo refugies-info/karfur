@@ -67,7 +67,7 @@ export const MemberDetails = (props) => {
 
   if (!props.isOpened) return false;
 
-  if ([0, 1, 4, 5].includes(index))
+  if ([2, 3, 6, 7].includes(index))
     return (
       <MainContainerLeft backgroundColor={membre.color}>
         <NameContainer textColor={membre.textColor}>
