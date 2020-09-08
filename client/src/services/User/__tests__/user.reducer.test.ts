@@ -2,6 +2,7 @@ import { userReducer, initialUserState } from "../user.reducer";
 import { setUserActionCreator, updateUserActionCreator } from "../user.actions";
 import { testUser, testUserWithRoles } from "../../../__fixtures__/user";
 import { ObjectId } from "mongodb";
+import "babel-polyfill"
 
 describe("[Reducer] user", () => {
   const expectedResult = {

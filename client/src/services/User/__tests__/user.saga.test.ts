@@ -5,6 +5,7 @@ import API from "../../../utils/API";
 import { setUserActionCreator } from "../user.actions";
 import { testUser } from "../../../__fixtures__/user";
 import { push } from "connected-react-router";
+import "babel-polyfill"
 
 describe("[Saga] User", () => {
   describe("pilot", () => {
