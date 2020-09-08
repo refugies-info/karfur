@@ -15,7 +15,7 @@
     "test:lint": "cd client && npm run test:lint && cd ../server && npm run test:lint",
     "test:types": "cd client && npm run test:types && cd ../server && npm run test:types",
     "test:unit": "cd client && npm run test:unit && cd ../server && npm run test:unit",
-    "install:client": "cd client && npm install",
+    "install:client": "cd client && npm install --no-optional",
     "install:server": "cd server && npm install"
   },
   "dependencies": {
