@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import {
   ListGroup,
@@ -18,6 +19,7 @@ import { DispositifContent } from "../../../../@types/interface";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
 
+
 export interface PropsBeforeInjection {
   t: any;
   menu: DispositifContent[];
@@ -34,6 +36,7 @@ export interface PropsBeforeInjection {
   toggleInputBtnClicked: () => void;
   handleScrollSpy: () => void;
   createPdf: () => void;
+  closePdf: () => void;
   newRef: any;
   handleChange: () => void;
   typeContenu: string;
@@ -174,9 +177,16 @@ export const LeftSideDispositif = (props: Props) => {
         )}
         {props.disableEdit && (
           <>
+           <ReactToPrint
+              onBeforeGetContent={async () => {
+                await props.createPdf();
+              }}
+              onAfterPrint={() => {
+                props.closePdf()
+              }}
+              trigger={() => (
             <FButton
               type="light-action"
-              onClick={props.createPdf}
               name="download-outline"
             >
               {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
@@ -184,6 +194,9 @@ export const LeftSideDispositif = (props: Props) => {
                 <Spinner color="light" className="ml-8 small-spinner" />
               )}
             </FButton>
+             )}
+             content={() => props.newRef.current}
+           />
             <FButton
               type="light-action"
               href={
@@ -208,6 +221,12 @@ export const LeftSideDispositif = (props: Props) => {
               {t("Dispositif.Envoyer par SMS", "Envoyer par SMS")}
             </FButton>
             <ReactToPrint
+              onBeforeGetContent={async () => {
+                await props.createPdf();
+              }}
+              onAfterPrint={() => {
+                props.closePdf()
+              }}
               trigger={() => (
                 <FButton type="light-action" name="printer-outline">
                   {t("Dispositif.Imprimer", "Imprimer")}
