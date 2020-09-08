@@ -134,6 +134,19 @@ const getInfoText = (step: number, displayTuto: boolean) => {
       subtitle: "Expliquez votre dispositif en deux paragraphes synthétiques.",
     };
 
+  if (step === -6)
+    return {
+      title: "Thèmes",
+      subtitle: "Choisissez jusqu'à trois thèmes décrivant votre dispositif.",
+    };
+
+  if (step === -7)
+    return {
+      title: "Partenaires",
+      subtitle:
+        "Indiquez la structure responsable du dispositif ainsi que d'éventuelles structures associées.",
+    };
+
   return initialText;
 };
 export const BandeauEditionWithoutVariante = (props: Props) => {

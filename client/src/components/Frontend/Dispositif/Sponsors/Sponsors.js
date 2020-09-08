@@ -297,7 +297,10 @@ class Sponsors extends Component {
     );
     const modal = { name: "responsabilite" };
     return (
-      <div className="sponsor-footer">
+      <div
+        className="sponsor-footer"
+        onMouseEnter={() => this.props.updateUIArray(-7)}
+      >
         <div
           style={{
             display: "flex",
