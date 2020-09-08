@@ -101,7 +101,7 @@ const PartnersContainer = styled.div`
 class QuiSommesNous extends Component {
   state = {
     sideVisible: false,
-    membre: {},
+    membre: null,
   };
 
   componentDidMount() {
