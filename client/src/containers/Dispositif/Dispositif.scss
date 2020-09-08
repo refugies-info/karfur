@@ -647,6 +647,11 @@ $imgHeight: 350px;
         border: 2px solid #ffffff;
         box-sizing: border-box;
       }
+      [contenteditable="true"]:empty:before {
+        content: attr(placeholder);
+        display: block;
+        color: #828282;
+      }
     }
 
     .contenu-accordeon {

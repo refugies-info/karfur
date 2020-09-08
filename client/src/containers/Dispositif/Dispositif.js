@@ -806,7 +806,6 @@ export class Dispositif extends Component {
         newChild = {
           type: "accordion",
           isFakeContent: true,
-          title: "Un exemple d'accordéon",
           content: "",
         };
       } else if (type === "map") {

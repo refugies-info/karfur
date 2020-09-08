@@ -107,7 +107,6 @@ const menu = [
     children: [
       {
         isFakeContent: true,
-        title: "Titre d'accordéon à remplacer",
         type: "accordion",
         content: "",
       },
@@ -121,7 +120,6 @@ const menu = [
       {
         type: "accordion",
         isFakeContent: true,
-        title: "Titre d'accordéon à remplacer",
         content: "",
       },
       { type: "map", isFakeContent: true, isMapLoaded: true, markers: [] },
