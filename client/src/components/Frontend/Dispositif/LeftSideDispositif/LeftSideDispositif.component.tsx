@@ -19,7 +19,6 @@ import { DispositifContent } from "../../../../@types/interface";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
 
-
 export interface PropsBeforeInjection {
   t: any;
   menu: DispositifContent[];
@@ -177,26 +176,23 @@ export const LeftSideDispositif = (props: Props) => {
         )}
         {props.disableEdit && (
           <>
-           <ReactToPrint
+            <ReactToPrint
               onBeforeGetContent={async () => {
                 await props.createPdf();
               }}
               onAfterPrint={() => {
-                props.closePdf()
+                props.closePdf();
               }}
               trigger={() => (
-            <FButton
-              type="light-action"
-              name="download-outline"
-            >
-              {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
-              {props.showSpinner && (
-                <Spinner color="light" className="ml-8 small-spinner" />
+                <FButton type="light-action" name="download-outline">
+                  {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
+                  {props.showSpinner && (
+                    <Spinner color="light" className="ml-8 small-spinner" />
+                  )}
+                </FButton>
               )}
-            </FButton>
-             )}
-             content={() => props.newRef.current}
-           />
+              content={() => props.newRef.current}
+            />
             <FButton
               type="light-action"
               href={
@@ -225,7 +221,7 @@ export const LeftSideDispositif = (props: Props) => {
                 await props.createPdf();
               }}
               onAfterPrint={() => {
-                props.closePdf()
+                props.closePdf();
               }}
               trigger={() => (
                 <FButton type="light-action" name="printer-outline">

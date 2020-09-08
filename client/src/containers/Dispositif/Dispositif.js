@@ -1202,8 +1202,8 @@ export class Dispositif extends Component {
   };
 
   closePdf = () => {
-    this.setState({ showSpinnerPrint: false, printing: false }); 
-  }
+    this.setState({ showSpinnerPrint: false, printing: false });
+  };
 
   createPdf = () => {
     this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
@@ -1219,14 +1219,14 @@ export class Dispositif extends Component {
         }),
       }),
     }));
-    this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true })
-           /*  this.html2canvas(document.getElementById('contenu-0')).then((canvas) => {
+    this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true });
+    /*  this.html2canvas(document.getElementById('contenu-0')).then((canvas) => {
               const imgData = canvas.toDataURL("image/png");
               const pdf = new jsPDF();
               pdf.addImage(imgData, "PNG", 0, 0);
               pdf.save("download.pdf");
             }) */
-          /*             savePDF(
+    /*             savePDF(
               this.newRef.current,
               {
                 fileName:
@@ -1586,10 +1586,10 @@ export class Dispositif extends Component {
             ? " edition-mode"
             : translating
             ? " side-view-mode"
-            : (printing && isRTL)
+            : printing && isRTL
             ? " printing-mode print-rtl"
-            : (printing && !isRTL) ?
-            " printing-mode" 
+            : printing && !isRTL
+            ? " printing-mode"
             : " reading-mode")
         }
         ref={this.newRef}
@@ -1792,6 +1792,7 @@ export class Dispositif extends Component {
                       history={this.props.history}
                       toggleTutorielModal={this.toggleTutorielModal}
                       displayTuto={this.state.displayTuto}
+                      updateUIArray={this.updateUIArray}
                     />
                   }
                 </Col>
@@ -1983,6 +1984,7 @@ export class Dispositif extends Component {
                   toggleFinalValidation={this.toggleFinalValidation}
                   toggleTutorielModal={this.toggleTutorielModal}
                   displayTuto={this.state.displayTuto}
+                  updateUIArray={this.updateUIArray}
                 />
 
                 {false && <Commentaires />}
