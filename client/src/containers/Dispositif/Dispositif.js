@@ -181,8 +181,7 @@ export class Dispositif extends Component {
 
   componentDidMount() {
     this.props.history.push({
-      state: {
-      },
+      state: {},
     });
     this._isMounted = true;
     this.props.fetchUser();
@@ -717,13 +716,15 @@ export class Dispositif extends Component {
               )[0] || {}
             ).offsetHeight + "px";
         }
-        if (parentNode) {
-          parentNode.scrollIntoView({
-            behavior: "smooth",
-            block: "end",
-            inline: "nearest",
-          });
-        }
+
+        // test remove this part
+        // if (parentNode) {
+        //   parentNode.scrollIntoView({
+        //     behavior: "smooth",
+        //     block: "end",
+        //     inline: "nearest",
+        //   });
+        // }
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log(e);
@@ -1253,11 +1254,11 @@ export class Dispositif extends Component {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   editDispositif = (_ = null, disableEdit = false) => {
-  this.props.history.push({
-    state: {
-      editable: true,
-    },
-  });
+    this.props.history.push({
+      state: {
+        editable: true,
+      },
+    });
     this.setState(
       (pS) => ({
         disableEdit: disableEdit,
@@ -1282,7 +1283,7 @@ export class Dispositif extends Component {
       }),
       () => this.setColors()
     );
-  }
+  };
 
   // save reaction and display modal of success
   pushReaction = (modalName = null, fieldName) => {
