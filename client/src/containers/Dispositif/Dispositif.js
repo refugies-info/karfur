@@ -58,7 +58,6 @@ import { readAudio } from "../Layout/functions";
 import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
 import {
   contenu,
-  lorems,
   menu,
   filtres,
   onBoardSteps,
@@ -437,7 +436,6 @@ export class Dispositif extends Component {
               ...x,
               type: x.type || "paragraphe",
               isFakeContent: true,
-              placeholder: (x.tutoriel || {}).contenu,
               content: x.type ? null : x.content,
               editorState: EditorState.createWithContent(
                 ContentState.createFromBlockArray(htmlToDraft("").contentBlocks)
@@ -808,8 +806,6 @@ export class Dispositif extends Component {
         newChild = {
           type: "accordion",
           isFakeContent: true,
-          title: "Un exemple d'accordéon",
-          placeholder: lorems.sousParagraphe,
           content: "",
         };
       } else if (type === "map") {
@@ -824,7 +820,6 @@ export class Dispositif extends Component {
         newChild = {
           title: "Un exemple de paragraphe",
           isFakeContent: true,
-          placeholder: lorems.sousParagraphe,
           content: "",
           type: type,
         };
@@ -869,7 +864,6 @@ export class Dispositif extends Component {
           {
             title: "Nouveau sous-paragraphe",
             type: type,
-            content: lorems.sousParagraphe,
           },
         ];
       }
