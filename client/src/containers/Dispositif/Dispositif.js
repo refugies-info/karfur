@@ -12,7 +12,7 @@ import {
   convertFromRaw,
   ContentState,
 } from "draft-js";
-import { savePDF } from "@progress/kendo-react-pdf";
+import i18n from "../../i18n";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import h2p from "html2plaintext";
@@ -1203,6 +1203,10 @@ export class Dispositif extends Component {
     this.props.history.push("/advanced-search");
   };
 
+  closePdf = () => {
+    this.setState({ showSpinnerPrint: false, printing: false }); 
+  }
+
   createPdf = () => {
     this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
     initGA();
@@ -1217,13 +1221,14 @@ export class Dispositif extends Component {
         }),
       }),
     }));
-    this.setState({ uiArray: uiArray, showSpinnerPrint: true }, () => {
-      setTimeout(() => {
-        this.setState(
-          { printing: true },
-          () =>
-            this._isMounted &&
-            savePDF(
+    this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true })
+           /*  this.html2canvas(document.getElementById('contenu-0')).then((canvas) => {
+              const imgData = canvas.toDataURL("image/png");
+              const pdf = new jsPDF();
+              pdf.addImage(imgData, "PNG", 0, 0);
+              pdf.save("download.pdf");
+            }) */
+          /*             savePDF(
               this.newRef.current,
               {
                 fileName:
@@ -1245,10 +1250,7 @@ export class Dispositif extends Component {
                   this._isMounted &&
                     this.setState({ showSpinnerPrint: false, printing: false });
                 }, 3000)
-            )
-        );
-      }, 3000);
-    });
+            ) */
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -1557,6 +1559,7 @@ export class Dispositif extends Component {
     });
 
   render() {
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
@@ -1579,8 +1582,10 @@ export class Dispositif extends Component {
             ? " edition-mode"
             : translating
             ? " side-view-mode"
-            : printing
-            ? " printing-mode"
+            : (printing && isRTL)
+            ? " printing-mode print-rtl"
+            : (printing && !isRTL) ?
+            " printing-mode" 
             : " reading-mode")
         }
         ref={this.newRef}
@@ -1810,6 +1815,7 @@ export class Dispositif extends Component {
                       toggleInputBtnClicked={this.toggleInputBtnClicked}
                       handleScrollSpy={this.handleScrollSpy}
                       createPdf={this.createPdf}
+                      closePdf={this.closePdf}
                       newRef={this.newRef}
                       handleChange={this.handleChange}
                       typeContenu={typeContenu}
@@ -1832,6 +1838,7 @@ export class Dispositif extends Component {
                 sm={translating || printing ? "12" : "10"}
                 xs={translating || printing ? "12" : "10"}
                 className="pt-40 col-middle"
+                id={"pageContent"}
               >
                 {disableEdit && !inVariante && (
                   // Part about last update
