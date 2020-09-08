@@ -62,7 +62,7 @@ export class Toolbar extends React.Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
-    if (this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche") || this.props.location.pathname.includes("user-profile")) {
+    if ((this.props.location.pathname.includes("dispositif") && this.props.location.state && this.props.location.state.editable) || (this.props.location.pathname.includes("demarche") && this.props.location.state && this.props.location.state.editable) || this.props.location.pathname.includes("user-profile")) {
       this.setState({scroll: true})
     }
   }
@@ -72,8 +72,8 @@ export class Toolbar extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      if (this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche") || this.props.location.pathname.includes("user-profile")) {
+    if ((this.props.location.pathname !== prevProps.location.pathname) || ((this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche")) &&  (this.props.location.state !== prevProps.location.state)) ) {
+      if ((this.props.location.pathname.includes("dispositif") && this.props.location.state && this.props.location.state.editable) || (this.props.location.pathname.includes("demarche") && this.props.location.state && this.props.location.state.editable) || this.props.location.pathname.includes("user-profile")) {
         this.setState({scroll: true})
       } else {
       this.setState({scroll: false})
@@ -117,7 +117,7 @@ export class Toolbar extends React.Component {
     const userImg =
       user && user.picture ? user.picture.secure_url : marioProfile;
     return (
-      <header className={"Toolbar" + ((this.state.visible || !this.state.scroll) ? "" : " toolbar-hidden")}>
+      <header className={"Toolbar" + ((this.state.visible || !this.state.scroll ) ? "" : " toolbar-hidden")}>
         <div className="left_buttons">
           {afficher_burger && (
             <DrawerToggle

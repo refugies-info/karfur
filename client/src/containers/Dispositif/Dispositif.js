@@ -181,6 +181,10 @@ export class Dispositif extends Component {
   };
 
   componentDidMount() {
+    this.props.history.push({
+      state: {
+      },
+    });
     this._isMounted = true;
     this.props.fetchUser();
     this.checkUserFetchedAndInitialize();
@@ -1254,7 +1258,12 @@ export class Dispositif extends Component {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  editDispositif = (_ = null, disableEdit = false) =>
+  editDispositif = (_ = null, disableEdit = false) => {
+  this.props.history.push({
+    state: {
+      editable: true,
+    },
+  });
     this.setState(
       (pS) => ({
         disableEdit: disableEdit,
@@ -1279,6 +1288,7 @@ export class Dispositif extends Component {
       }),
       () => this.setColors()
     );
+  }
 
   // save reaction and display modal of success
   pushReaction = (modalName = null, fieldName) => {
