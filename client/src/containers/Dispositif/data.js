@@ -1,6 +1,6 @@
 import React from "react";
 import { Player } from "video-react";
-import h2p from "html2plaintext"
+import h2p from "html2plaintext";
 // import { Alerts } from "@streamlinehq/streamline-regular/lib/interface-essential";
 // import { Conversation } from "@streamlinehq/streamline-regular/lib/messages-chat-smileys";
 // import { GeometricFullBodySingleUserActionsNeutral } from "@streamlinehq/streamline-regular/lib/users";
@@ -42,21 +42,12 @@ const menu = [
   {
     title: "C'est quoi ?",
     content: "",
-    tutoriel: {
-      titre: "« C’est quoi ? » : Résumé de votre dispositif",
-      contenu:
-        "Il s'agit d'une synthèse en deux paragraphes maximum de l’ensemble de la fiche du dispositif. La lecture de cette section doit être auto-suffisante. Il est conseillé de rédiger cette section en dernier après les sections ultérieures.",
-    },
   },
   {
     title: "C'est pour qui ?",
     type: "cards",
     content: null,
-    tutoriel: {
-      titre: "« C’est pour qui ? » :  les pré-requis pour rejoindre",
-      contenu:
-        "Cette section précise les caractéristiques du public cible et les pré-requis éventuels pour s’engager dans le dispositif. Vous pouvez mobiliser les catégories suivantes à votre guise : \n> Le statut demandé ? Réfugié, demandeurs d’asiles, primo-arrivants… \n> L’âge ; \n> Le niveau de français \n> La durée sur laquelle engage le dispositif ; \n> Des alertes spécifiques (par exemple : avoir un compte bancaire).",
-    },
+
     children: [
       {
         type: "card",
@@ -77,9 +68,6 @@ const menu = [
         contentTitle: "De ** à ** ans",
         bottomValue: 18,
         topValue: 56,
-        contentBody: "30 ans pour les personnes en situations de handicap",
-        footer: "Ajouter un message complémentaire",
-        footerType: "text",
       },
       {
         type: "card",
@@ -88,12 +76,6 @@ const menu = [
         titleIcon: "clock-outline",
         typeIcon: "eva",
         contentTitle: "6 à 12 mois",
-        contentBody: "en fonction de ce qui est convenu sur votre contrat",
-        footer: "Ajouter un message complémentaire",
-        footerType: "text",
-        tooltipHeader: "Durée du dispositif",
-        tooltipContent:
-          "Indiquez un intervalle ou une durée fixe ou supprimez la carte si elle n’est pas pertinente.",
       },
       {
         type: "card",
@@ -104,9 +86,6 @@ const menu = [
         niveaux: [],
         footer: "Évaluer mon niveau",
         footerIcon: "bar-chart-outline",
-        tooltipHeader: "Niveau de français requis",
-        tooltipContent:
-          "Indiquez un niveau généraliste et précisez si besoin le niveau CECR demandé (A1,A2, etc.).",
         tooltipFooter: "En savoir plus",
       },
       {
@@ -118,28 +97,18 @@ const menu = [
         free: true,
         price: 0,
         contentTitle: "une seule fois",
-        footer: "Ajouter un message complémentaire",
-        footerType: "text",
-        tooltipHeader: "Combien ça coûte ?",
-        tooltipContent:
-          "Précisez si l’accès à votre dispositif est gratuit ou s’il existe des frais d’inscription, ou des coûts récurrent.\nPensez à expliquer la raison du coût en message complémentaire.",
       },
     ],
   },
   {
     title: "Pourquoi c'est intéressant ?",
     content: null,
-    tutoriel: {
-      titre: "Les arguments principaux pour votre dispositif",
-      contenu:
-        "Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.",
-    },
+
     children: [
       {
         isFakeContent: true,
         title: "Titre d'accordéon à remplacer",
         type: "accordion",
-        placeholder: lorems.sousParagraphe,
         content: "",
       },
     ],
@@ -147,17 +116,12 @@ const menu = [
   {
     title: "Comment je m'engage ?",
     content: null,
-    tutoriel: {
-      titre: "Les arguments principaux pour votre dispositif",
-      contenu:
-        "Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.",
-    },
+
     children: [
       {
         type: "accordion",
         isFakeContent: true,
         title: "Titre d'accordéon à remplacer",
-        placeholder: lorems.sousParagraphe,
         content: "",
       },
       { type: "map", isFakeContent: true, isMapLoaded: true, markers: [] },
@@ -745,7 +709,7 @@ const customConvertOption = {
     }
   },
   entityToHTML: (entity, originalText) => {
-     if (entity.type === "link" || entity.type === "LINK") {
+    if (entity.type === "link" || entity.type === "LINK") {
       return (
         <a
           href={entity.data.url}
@@ -753,7 +717,7 @@ const customConvertOption = {
           rel="noopener noreferrer"
           className="edited-btn"
         >
-          { h2p(originalText)}
+          {h2p(originalText)}
         </a>
       );
     } else if (entity.type === "image" || entity.type === "IMAGE") {
