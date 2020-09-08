@@ -23,6 +23,14 @@ div.app-body {
     margin-top: 0;
   }
 
+  &.pdf-print {
+    @media print {
+      html, body {
+        direction: rtl;
+      }
+    }
+  }
+
   .Content {
     margin-top: 75px;
     margin-left: 0px;

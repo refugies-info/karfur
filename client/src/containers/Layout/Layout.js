@@ -137,7 +137,7 @@ export class Layout extends Component {
           <Suspense fallback={this.loading()}>
             <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
           </Suspense>
-          <div className="app-body">
+          <div className={"app-body"}>
             <SideDrawer
               side="left"
               open={this.state.showSideDrawer.left}

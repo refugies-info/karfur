@@ -4,6 +4,12 @@
 $imgWidth: 300px;
 $imgHeight: 350px;
 
+@media print {
+  .print-rtl {
+    direction: rtl;
+  }
+}
+
 .dispositif.vue {
   flex: 1 1;
   position: relative;
@@ -16,6 +22,10 @@ $imgHeight: 350px;
     width: 0px; /* remove scrollbar space */
     background: transparent; /* optional: just make scrollbar invisible */
   }
+
+  .print-rtl{
+        direction: rtl;
+    }
 
   .banniere-dispo {
     margin-top: -75px;
@@ -745,6 +755,10 @@ $imgHeight: 350px;
     @include media-max("lg-limit") {
       width: 116%;
     }
+  }
+
+  .print-rtl {
+    direction: rtl;
   }
 
   .print-buttons {
