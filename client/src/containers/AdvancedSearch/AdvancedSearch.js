@@ -528,12 +528,21 @@ export class AdvancedSearch extends Component {
                                 }
                               >
                                 {iconTag ? (
+                                  <div
+                                  style={{
+                                    width: 50,
+                                    display: "flex",
+                                    justifyContent: "flex-start",
+                                    alignItems: "flex-start"
+                                  }}
+                                >
                                   <Streamline
                                     name={iconTag.icon}
                                     stroke={"white"}
                                     width={22}
                                     height={22}
                                   />
+                                  </div>
                                 ) : null}
                                 {dispositif.titreMarque}
                               </CardFooter>
