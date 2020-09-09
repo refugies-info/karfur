@@ -571,7 +571,7 @@ export class AdvancedSearch extends Component {
                 )}
                 <Col xs="12" sm="6" md="3">
                   <NavHashLink to="/comment-contribuer#ecrire">
-                    <CustomCard addcard="true" className="create-card">
+                    <CustomCard addcard="true" className="create-card border-none">
                       <CardBody>
                         {showSpinner ? (
                           <Spinner color="success" />
