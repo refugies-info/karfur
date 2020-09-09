@@ -326,6 +326,11 @@ export class AdvancedSearch extends Component {
       ...(subitem.topValue && { topValue: subitem.topValue }),
     };
     this.setState({ recherche: recherche }, () => this.queryDispositifs());
+    if (subitem && subitem.short) {
+      this.props.history.push({
+        search: "?tag=" + subitem.short,
+      });
+    }
   };
 
   desactiver = (key) =>
@@ -524,16 +529,27 @@ export class AdvancedSearch extends Component {
                             {dispositif.typeContenu !== "demarche" && (
                               <CardFooter
                                 className={
-                                  "correct-radius align-right bg-" + shortTag + (iconTag ? "" : " no-icon")
+                                  "correct-radius align-right bg-" +
+                                  shortTag +
+                                  (iconTag ? "" : " no-icon")
                                 }
                               >
                                 {iconTag ? (
-                                  <Streamline
-                                    name={iconTag.icon}
-                                    stroke={"white"}
-                                    width={22}
-                                    height={22}
-                                  />
+                                  <div
+                                    style={{
+                                      width: 50,
+                                      display: "flex",
+                                      justifyContent: "flex-start",
+                                      alignItems: "flex-start",
+                                    }}
+                                  >
+                                    <Streamline
+                                      name={iconTag.icon}
+                                      stroke={"white"}
+                                      width={22}
+                                      height={22}
+                                    />
+                                  </div>
                                 ) : null}
                                 {dispositif.titreMarque}
                               </CardFooter>
@@ -571,7 +587,10 @@ export class AdvancedSearch extends Component {
                 )}
                 <Col xs="12" sm="6" md="3">
                   <NavHashLink to="/comment-contribuer#ecrire">
-                    <CustomCard addcard="true" className="create-card">
+                    <CustomCard
+                      addcard="true"
+                      className="create-card border-none"
+                    >
                       <CardBody>
                         {showSpinner ? (
                           <Spinner color="success" />
