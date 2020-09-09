@@ -13,22 +13,25 @@ $placeholderColor: $blanc;
   .dropdown-menu.show{
     display: flex;
     box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.2);
-    background: $noir;
+    background: $blanc;
     border-radius: 12px;
-    padding: 8px;
-    max-width: 770px;
+    padding: 10px;
     z-index: 3;
-    // flex-wrap: wrap;
+    //flex-wrap: wrap;
+    flex-direction: row;
   }
 
   .options-wrapper{
     margin-top:-10px;
-    margin-bottom: -15px;
-    max-height: 50vh;
-    overflow: scroll;
+    flex-direction: row;
+    display: flex;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none;
-    &::-webkit-scrollbar { width: 0 !important }
+    //&::-webkit-scrollbar { width: 0 !important }
+    &.query-tags{
+    flex-wrap: wrap;
+    min-width: 700px;
+    }
   }
   .search-options{
     outline: none;
