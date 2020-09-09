@@ -485,8 +485,8 @@ export class AdvancedSearch extends Component {
                           <CustomCard
                             className={
                               dispositif.typeContenu === "demarche"
-                                ? "texte-" + shortTag + " bg-light-" + shortTag
-                                : ""
+                                ? "texte-" + shortTag + " bg-light-" + shortTag + " border-" + shortTag
+                                : "border-none"
                             }
                           >
                             <CardBody>

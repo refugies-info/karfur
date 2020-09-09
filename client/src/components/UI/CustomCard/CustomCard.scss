@@ -3,6 +3,11 @@
 
 .card{
   margin-bottom: 15px;
+  border-width: 1.5px;
+}
+
+.border-none{
+  border: none;
 }
 
 .puff-in-center {
@@ -16,7 +21,7 @@
   line-height: 21px;
   height:250px;
   scrollbar-width: 0;
-  border: none;
+  //border: none;
   //background: #FFFFFF;
 
   @include media-max("desktop-up") { font-size: 12px; }
