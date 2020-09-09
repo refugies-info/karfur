@@ -223,12 +223,17 @@
     border: none;
     text-align: right;
     color: $blancSimple;
+    display: flex;
+    justify-content: space-between;
     &.bg-null {
       background-color: $noir;
     }
     &.correct-radius {
       border-bottom-right-radius: 12px;
       border-bottom-left-radius: 12px;
+    }
+    &.no-icon {
+      justify-content: flex-end; 
     }
   }
 }
