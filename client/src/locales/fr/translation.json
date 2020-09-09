@@ -23,8 +23,7 @@
     "Trouver une démarche": "Trouver une démarche",
     "Choisir une langue": "Choisir une langue",
     "site dispo": "Réfugiés.info est disponible dans les langues suivantes :",
-    "langue indispo": "Votre langue n’est pas disponible ?",
-    "Demander": "Demander",
+    "traduire": "Aidez-nous à traduire !",
     "Covid alert": "Réfugiés.info se mobilise pour répondre à vos questions sur le Covid-19 par le livetchat (icône bleue en bas à droite de l’écran).",
     "Covid link": "Des fiches dédiées sont aussi disponibles"
   },
@@ -408,7 +407,6 @@
     "Numéro à appeler": "Numéro à appeler",
     "Ton courrier doit être adressé à": "Votre courrier doit être adressé à",
     "Ce que tu dois faire": "Ce que vous devez faire",
-    "izok": "Est-ce que ça s’est bien passé comme on a dit ?",
     "Titre du lieu": "Titre du lieu",
     "Adresse": "Adresse",
     "Ville": "Ville",
@@ -428,7 +426,6 @@
     "En savoir plus": "En savoir plus",
     "Tiennent la page": "Tiennent la page à jour et répondent à vos questions",
     "Évaluer mon niveau": "Évaluer mon niveau",
-    "Nous vous écoutons": "Nous vous écoutons :",
     "Réagir": "Réagir",
     "J'ai une question": "J'ai une question",
     "J'ai une suggestion !": "J'ai une suggestion !",
@@ -459,7 +456,9 @@
     "Dernière mise à jour": "Dernière mise à jour",
     "En bref": "En bref",
     "avec": "avec",
-    "Merci": "Merci !"
+    "Merci": "Merci !",
+    "Envoyer une réaction": "Envoyer une réaction",
+    "Dites nous ce que vous pensez": "Dites nous ce que vous pensez :"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",

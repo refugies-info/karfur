@@ -4,10 +4,10 @@ import DispositifValidateModal from "./DispositifValidateModal/DispositifValidat
 import EnConstructionModal from "./EnConstructionModal/EnConstructionModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
 import MapModal from "./MapModal/MapModal";
-import SuggererModal from "./SuggererModal/SuggererModal";
+import ReactionModal from "./ReactionModal/ReactionModal";
 import ThanksModal from "./ThanksModal/ThanksModal";
 import TranslationModal from "./TranslationModal/TranslationModal";
-import SuggestionModal from "./SuggestionModal/SuggestionModal";
+import ReactionLectureModal from "./ReactionLectureModal/ReactionLectureModal";
 import ObjectifsModal from "./ObjectifsModal/ObjectifsModal";
 import ContributeurModal from "./ContributeurModal/ContributeurModal";
 import TraducteurModal from "./TraducteurModal/TraducteurModal";
@@ -33,10 +33,10 @@ export {
   EnConstructionModal,
   LanguageModal,
   MapModal,
-  SuggererModal,
+  ReactionModal,
   ThanksModal,
   TranslationModal,
-  SuggestionModal,
+  ReactionLectureModal,
   ObjectifsModal,
   ContributeurModal,
   TraducteurModal,
