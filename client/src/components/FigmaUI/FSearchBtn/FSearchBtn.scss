@@ -36,6 +36,14 @@
       background: #FFFFFF;
     }
   }
+  &.filter{
+    background: black;
+    color: #FFFFFF;
+    //border: 0.5px solid #FFFFFF;
+    &:hover{
+      filter:brightness(80%);
+    }
+  }
   &.color{
     color: #FFFFFF;
     &:hover{

@@ -29,6 +29,7 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { filtres } from "../Dispositif/data";
 import { filtres_contenu, tris } from "./data";
 import { breakpoints } from "utils/breakpoints.js";
+import Streamline from "../../assets/streamline";
 
 import "./AdvancedSearch.scss";
 import variables from "scss/colors.scss";
@@ -451,6 +452,8 @@ export class AdvancedSearch extends Component {
                 {[...filteredPinned, ...dispositifs].map((dispositif) => {
                   if (!dispositif.hidden) {
                     let shortTag = null;
+                    let shortTagFull = null;
+                    let iconTag = null;
                     if (
                       dispositif.tags &&
                       dispositif.tags.length > 0 &&
@@ -460,6 +463,12 @@ export class AdvancedSearch extends Component {
                       shortTag = (dispositif.tags[0].short || {}).replace(
                         / /g,
                         "-"
+                      );
+                      shortTagFull = dispositif.tags[0].short;
+                    }
+                    if (shortTagFull) {
+                      iconTag = filtres.tags.find(
+                        (tag) => tag.short === shortTagFull
                       );
                     }
                     return (
@@ -485,8 +494,13 @@ export class AdvancedSearch extends Component {
                           <CustomCard
                             className={
                               dispositif.typeContenu === "demarche"
-                                ? "texte-" + shortTag + " bg-light-" + shortTag
-                                : ""
+                                ? "texte-" +
+                                  shortTag +
+                                  " bg-light-" +
+                                  shortTag +
+                                  " border-" +
+                                  shortTag
+                                : "border-none"
                             }
                           >
                             <CardBody>
@@ -510,9 +524,17 @@ export class AdvancedSearch extends Component {
                             {dispositif.typeContenu !== "demarche" && (
                               <CardFooter
                                 className={
-                                  "correct-radius align-right bg-" + shortTag
+                                  "correct-radius align-right bg-" + shortTag + (iconTag ? "" : " no-icon")
                                 }
                               >
+                                {iconTag ? (
+                                  <Streamline
+                                    name={iconTag.icon}
+                                    stroke={"white"}
+                                    width={22}
+                                    height={22}
+                                  />
+                                ) : null}
                                 {dispositif.titreMarque}
                               </CardFooter>
                             )}
