@@ -125,14 +125,14 @@ export class SearchItem extends Component {
               )}
             </DropdownToggle>
             <DropdownMenu>
-              <div className="options-wrapper">
+              <div className={"options-wrapper" + (item.queryName === "tags.name" ? " query-tags" : "")}>
                 {item.children.map((subi, idx) => {
                   return (
                     <FSearchBtn
                       key={idx}
                       onClick={() => this.selectOption(subi)}
                       className={
-                        "search-options color" + (subi.short ? "" : " full")
+                        "search-options color" + (subi.short ? "" : " filter")
                       }
                       color={(subi.short || "").replace(/ /g, "-")}
                     >
