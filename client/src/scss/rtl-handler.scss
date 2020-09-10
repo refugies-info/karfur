@@ -1,8 +1,9 @@
 html body div[dir="rtl"] {
   text-align: right;
 
-  .homepage{
-    #contribution, #certifiee{
+  .homepage {
+    #contribution,
+    #certifiee {
       background-position: 0 100%, 0;
     }
     .section-container .footer-section {
@@ -10,21 +11,22 @@ html body div[dir="rtl"] {
       margin-left: -20px;
     }
   }
-  .dispositif.vue{
+  .dispositif.vue {
     .people-footer .people-header .navigate-btns {
       justify-content: flex-start;
       direction: ltr;
     }
-    &.reading-mode .contenu.isHovered{
+    &.reading-mode .contenu.isHovered {
       border-right: none;
       border-left: 4px solid $darkColor;
-      &:after, &:before {
+      &:after,
+      &:before {
         right: 100%;
         left: 0;
       }
       &:before {
         border-right-color: inherit;
-        border-left-color: #FFFFFF;
+        border-left-color: #ffffff;
       }
     }
     .contenu-wrapper .toolbar-col {
@@ -35,7 +37,7 @@ html body div[dir="rtl"] {
     }
   }
   .structure-card {
-    .main-card{
+    .main-card {
       .middle-side {
         margin-right: 0;
         margin-left: 21px;
@@ -48,7 +50,7 @@ html body div[dir="rtl"] {
   }
 }
 html body {
-  .dispositif.vue  div[dir="rtl"] .toolbar-editeur{
+  .dispositif.vue div[dir="rtl"] .toolbar-editeur {
     .blc-gh.bloc-gauche-list {
       border-radius: 12px 0 0 12px;
       padding-right: 0;

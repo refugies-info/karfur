@@ -8,6 +8,7 @@ import {
   DropdownMenu,
   DropdownToggle,
 } from "reactstrap";
+import i18n from "../../i18n";
 import { AppAsideToggler } from "@coreui/react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
@@ -61,11 +62,19 @@ export class Toolbar extends React.Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
-    if ((this.props.location.pathname.includes("dispositif") && this.props.location.state && this.props.location.state.editable) ||
-    (this.props.location.pathname.includes("demarche") && this.props.location.state && this.props.location.state.editable) ||
-    this.props.location.pathname.includes("user-profile") || this.props.location.pathname.includes("qui-sommes-nous") ||
-    this.props.location.pathname === "/dispositif" || this.props.location.pathname === "/demarche") {
-      this.setState({scroll: true})
+    if (
+      (this.props.location.pathname.includes("dispositif") &&
+        this.props.location.state &&
+        this.props.location.state.editable) ||
+      (this.props.location.pathname.includes("demarche") &&
+        this.props.location.state &&
+        this.props.location.state.editable) ||
+      this.props.location.pathname.includes("user-profile") ||
+      this.props.location.pathname.includes("qui-sommes-nous") ||
+      this.props.location.pathname === "/dispositif" ||
+      this.props.location.pathname === "/demarche"
+    ) {
+      this.setState({ scroll: true });
     }
   }
 
@@ -74,12 +83,25 @@ export class Toolbar extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if ((this.props.location.pathname !== prevProps.location.pathname) || ((this.props.location.pathname.includes("dispositif") || this.props.location.pathname.includes("demarche")) &&  (this.props.location.state !== prevProps.location.state)) ) {
-      if ((this.props.location.pathname.includes("dispositif") && this.props.location.state && this.props.location.state.editable) ||
-      (this.props.location.pathname.includes("demarche") && this.props.location.state && this.props.location.state.editable) ||
-      this.props.location.pathname.includes("user-profile") || this.props.location.pathname.includes("qui-sommes-nous") ||
-      this.props.location.pathname === "/dispositif" || this.props.location.pathname === "/demarche") {
-        this.setState({scroll: true})
+    if (
+      this.props.location.pathname !== prevProps.location.pathname ||
+      ((this.props.location.pathname.includes("dispositif") ||
+        this.props.location.pathname.includes("demarche")) &&
+        this.props.location.state !== prevProps.location.state)
+    ) {
+      if (
+        (this.props.location.pathname.includes("dispositif") &&
+          this.props.location.state &&
+          this.props.location.state.editable) ||
+        (this.props.location.pathname.includes("demarche") &&
+          this.props.location.state &&
+          this.props.location.state.editable) ||
+        this.props.location.pathname.includes("user-profile") ||
+        this.props.location.pathname.includes("qui-sommes-nous") ||
+        this.props.location.pathname === "/dispositif" ||
+        this.props.location.pathname === "/demarche"
+      ) {
+        this.setState({ scroll: true });
       } else {
         this.setState({ scroll: false });
       }
@@ -120,8 +142,16 @@ export class Toolbar extends React.Component {
     const afficher_burger_droite = path.includes("/traduction");
     const userImg =
       user && user.picture ? user.picture.secure_url : marioProfile;
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+
     return (
-      <header className={"Toolbar" + ((this.state.visible || !this.state.scroll ) ? "" : " toolbar-hidden")}>
+      <header
+        className={
+          "Toolbar" +
+          (this.state.visible || !this.state.scroll ? "" : " toolbar-hidden") +
+          (isRTL ? " isRTL" : "")
+        }
+      >
         <div className="left_buttons">
           {afficher_burger && (
             <DrawerToggle
@@ -129,7 +159,7 @@ export class Toolbar extends React.Component {
               clicked={() => this.props.drawerToggleClicked("left")}
             />
           )}
-          <Logo reduced={windowWidth < breakpoints.phoneDown} />
+          <Logo reduced={windowWidth < breakpoints.phoneDown} isRTL={isRTL} />
           {path !== "/" &&
             path !== "/homepage" &&
             windowWidth >= breakpoints.phoneDown && (
@@ -162,9 +192,13 @@ export class Toolbar extends React.Component {
             onClick={() => {
               this.props.history.push("/advanced-search");
             }}
-            className={"advanced-search-btn-menu"}
+            className={
+              isRTL
+                ? "advanced-search-btn-menu-rtl"
+                : "advanced-search-btn-menu"
+            }
           >
-            <InnerButton>
+            <InnerButton isRTL={isRTL}>
               <div
                 style={{
                   display: "flex",
