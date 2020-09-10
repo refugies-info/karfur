@@ -159,7 +159,7 @@ export class Toolbar extends React.Component {
               clicked={() => this.props.drawerToggleClicked("left")}
             />
           )}
-          <Logo reduced={windowWidth < breakpoints.phoneDown} />
+          <Logo reduced={windowWidth < breakpoints.phoneDown} isRTL={isRTL} />
           {path !== "/" &&
             path !== "/homepage" &&
             windowWidth >= breakpoints.phoneDown && (
