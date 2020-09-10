@@ -186,6 +186,7 @@ export class Dispositif extends Component {
     this._isMounted = true;
     this.props.fetchUser();
     this.checkUserFetchedAndInitialize();
+    window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
   }
 
