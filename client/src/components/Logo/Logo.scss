@@ -1,15 +1,26 @@
-@import 'src/scss/global.scss';
+@import "src/scss/global.scss";
 
 .logo {
-  font-weight: 800;
-  font-size: 22px;
   margin: auto;
   text-decoration: none;
-  color:inherit;
-  @include media-max("phone-down") { font-size: 18px; }
+  color: inherit;
+  @include media-max("phone-down") {
+    font-size: 18px;
+  }
 
-  .logo-img{
-    width:230px;
-    @include media-max("tablet-up") { width:100px; }
+  .logo-img {
+    height: 30px;
+    @include media-max("tablet-up") {
+      width: 100px;
+    }
+    margin-right: 16px;
+  }
+
+  .logo-img-rtl {
+    height: 30px;
+    @include media-max("tablet-up") {
+      width: 100px;
+    }
+    margin-right: 16px;
   }
 }

@@ -15,6 +15,8 @@ import logo_header from "./logo_header.svg";
 import minInt from "./minInt.png";
 import responsableFiche from "./responsableFiche.svg";
 import rejectionFiche from "./rejectionFiche.svg";
+import beta from "./beta.svg";
+import logoRI from "./logoRI.svg";
 
 export {
   boldBtn,
@@ -34,4 +36,6 @@ export {
   minInt,
   rejectionFiche,
   responsableFiche,
+  beta,
+  logoRI,
 };

@@ -186,6 +186,7 @@ export class Dispositif extends Component {
     this._isMounted = true;
     this.props.fetchUser();
     this.checkUserFetchedAndInitialize();
+    window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
   }
 
@@ -739,12 +740,19 @@ export class Dispositif extends Component {
     let state = [...this.state.menu];
 
     if (state.length > key) {
+      const content =
+        editorState.getCurrentContent().getPlainText() !== ""
+          ? convertToHTML(customConvertOption)(editorState.getCurrentContent())
+          : "";
+
       if (subkey !== null && state[key].children.length > subkey) {
         state[key].children[subkey].editorState = editorState;
         state[key].children[subkey].isFakeContent = false;
+        state[key].children[subkey].content = content;
       } else {
         state[key].editorState = editorState;
         state[key].isFakeContent = false;
+        state[key].content = content;
       }
       this.setState({ menu: state });
     }
@@ -1578,6 +1586,7 @@ export class Dispositif extends Component {
       printing,
       didThank,
     } = this.state;
+
     return (
       <div
         id="dispositif"
