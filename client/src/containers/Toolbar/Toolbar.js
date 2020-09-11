@@ -199,16 +199,29 @@ export class Toolbar extends React.Component {
             }
           >
             <InnerButton isRTL={isRTL}>
-              <div
-                style={{
-                  display: "flex",
-                  marginRight: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Streamline name={"menu"} stroke={"white"} />
-              </div>
+              {!isRTL ? (
+                <div
+                  style={{
+                    display: "flex",
+                    marginRight: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Streamline name={"menu"} stroke={"white"} />
+                </div>
+              ) : (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginLeft: 10,
+                  }}
+                >
+                  <Streamline name={"menu"} stroke={"white"} />
+                </div>
+              )}
               {t("Toolbar.Tout voir", "Tout voir")}
             </InnerButton>
           </button>

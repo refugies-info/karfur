@@ -1,6 +1,7 @@
 const Structure = require("../../schema/schemaStructure.js");
 const User = require("../../schema/schemaUser.js");
 const Role = require("../../schema/schemaRole.js");
+const logger = require("../../logger");
 
 async function add_structure(req, res) {
   if (!req.fromSite) {
@@ -8,8 +9,7 @@ async function add_structure(req, res) {
   } else if (!req.body || (!req.body.nom && !req.body._id)) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-
-    let { membreId, ...structure } = req.body;
+    let { membreId, deleteUserFromStructure, userId, ...structure } = req.body;
 
     if (structure._id) {
       //Il faut avoir soit un rôle admin soit être admin de la structure
@@ -30,6 +30,11 @@ async function add_structure(req, res) {
         (isContributeur &&
           !JSON.stringify(structure).includes("administrateur"))
       ) {
+        logger.info("[create-structure] updating stucture", {
+          structureId: structure.id,
+          membreId,
+          structure,
+        });
         //Soit l'auteur est admin soit il est contributeur et modifie les droits d'un membre seul
         // eslint-disable-next-line no-undef
         promise = Structure.findOneAndUpdate(
@@ -58,14 +63,43 @@ async function add_structure(req, res) {
         //J'ajoute cette structure à l'utilisateur
         Role.findOne({ nom: "hasStructure" }).exec((err, result) => {
           if (!err && result && req.userId) {
-            (data.membres || []).forEach((x) =>
+            if (!deleteUserFromStructure) {
+              logger.info(
+                "[create_structure] update roles hasStructure of membres"
+              );
+              (data.membres || []).forEach((x) => {
+                logger.info(
+                  "[create_structure] update role hasStructure and structure of membre",
+                  { membreId: x.userId }
+                );
+
+                User.findByIdAndUpdate(
+                  { _id: x.userId },
+                  { $addToSet: { roles: result._id, structures: data._id } },
+                  { upsert: true, new: true },
+                  () => {}
+                );
+              });
+            } else {
+              logger.info(
+                "[create_structure] delete role hasStructure and structure of membre",
+                { membreId: userId }
+              );
               User.findByIdAndUpdate(
-                { _id: x.userId },
-                { $addToSet: { roles: result._id, structures: data._id } },
+                { _id: userId },
+                { $pull: { roles: result._id, structures: structure._id } },
                 { upsert: true, new: true },
                 () => {}
               )
-            );
+                .then(() =>
+                  logger.info("[create_structure] successfully modified user", {
+                    membreId: userId,
+                  })
+                )
+                .catch(() =>
+                  logger.error("[create_structure] error while modifying user")
+                );
+            }
           }
         });
         res.status(200).json({
@@ -83,7 +117,6 @@ function get_structure(req, res) {
   if (!req.body || !req.body.query) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-
     let { query, sort, populate, limit } = req.body;
     if (!req.fromSite) {
       //On n'autorise pas les populate en API externe
