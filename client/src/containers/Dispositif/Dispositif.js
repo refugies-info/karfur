@@ -1785,7 +1785,7 @@ export class Dispositif extends Component {
                     // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
                     (disableEdit || typeContenu !== "demarche") && (
                       // TO DO : connect component to store when store updated after changing infocards
-                      <EnBrefBanner menu={this.state.menu} />
+                      <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
                     )
                   }
                 </Col>
@@ -1803,6 +1803,7 @@ export class Dispositif extends Component {
                       toggleTutorielModal={this.toggleTutorielModal}
                       displayTuto={this.state.displayTuto}
                       updateUIArray={this.updateUIArray}
+                      isRTL={isRTL}
                     />
                   }
                 </Col>

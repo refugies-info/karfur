@@ -33,6 +33,7 @@ export interface PropsBeforeInjection {
   toggleTutorielModal: (arg: string) => void;
   displayTuto: boolean;
   updateUIArray: (arg: number) => void;
+  isRTL: boolean;
 }
 
 export class Tags extends Component<Props> {
@@ -105,21 +106,39 @@ export class Tags extends Component<Props> {
                 >
                   <InnerButton>
                     {tagIcon ? (
-                      <div
-                        style={{
-                          display: "flex",
-                          marginRight: 10,
-                          justifyContent: "center",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Streamline
-                          name={tagIcon.icon}
-                          stroke={"white"}
-                          width={20}
-                          height={20}
-                        />
-                      </div>
+                      !this.props.isRTL ? (
+                        <div
+                          style={{
+                            display: "flex",
+                            marginRight: 10,
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Streamline
+                            name={tagIcon.icon}
+                            stroke={"white"}
+                            width={20}
+                            height={20}
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          style={{
+                            display: "flex",
+                            marginLeft: 10,
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Streamline
+                            name={tagIcon.icon}
+                            stroke={"white"}
+                            width={20}
+                            height={20}
+                          />
+                        </div>
+                      )
                     ) : null}
                     {tag.short}
                   </InnerButton>

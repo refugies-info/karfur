@@ -23,9 +23,9 @@ $imgHeight: 350px;
     background: transparent; /* optional: just make scrollbar invisible */
   }
 
-  .print-rtl{
-        direction: rtl;
-    }
+  .print-rtl {
+    direction: rtl;
+  }
 
   .banniere-dispo {
     margin-top: -75px;
@@ -565,6 +565,10 @@ $imgHeight: 350px;
 
           .text-span {
             margin-left: 8px;
+          }
+
+          .text-span-rtl {
+            margin-right: 8px;
           }
         }
       }
