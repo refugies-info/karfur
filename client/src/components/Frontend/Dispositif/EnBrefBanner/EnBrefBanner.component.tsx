@@ -9,6 +9,7 @@ import { jsUcfirst } from "../../../../lib";
 export interface PropsBeforeInjection {
   t: any;
   menu: DispositifContent[];
+  isRTL: boolean;
 }
 
 export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
@@ -77,7 +78,11 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
               <div className="tag-item">
                 <a href={"#item-head-1"} className="no-decoration">
                   {infoCardIcon(card.titleIcon, "#FFFFFF")}
-                  <span className="text-span">{jsUcfirst(h2p(texte))}</span>
+                  <span
+                    className={!props.isRTL ? "text-span" : "text-span-rtl"}
+                  >
+                    {jsUcfirst(h2p(texte))}
+                  </span>
                 </a>
               </div>
             </div>
