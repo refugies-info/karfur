@@ -319,7 +319,7 @@ export class AdvancedSearch extends Component {
     recherche[key] = {
       ...recherche[key],
       value: subitem.name || subitem.formatted_address,
-      query: subitem.query || subitem.address_components || subitem.name,
+      query: subitem.query || subitem.address_components || (key !== 3 ? subitem.name : undefined),
       active: true,
       ...(subitem.short && { short: subitem.short }),
       ...(subitem.bottomValue && { bottomValue: subitem.bottomValue }),

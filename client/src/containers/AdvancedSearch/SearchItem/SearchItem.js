@@ -5,6 +5,7 @@ import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 //import Autocomplete from "react-google-autocomplete";
 
 import FSearchBtn from "../../../components/FigmaUI/FSearchBtn/FSearchBtn";
+import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./SearchItem.scss";
@@ -149,6 +150,23 @@ export class SearchItem extends Component {
                       }
                       color={(subi.short || "").replace(/ /g, "-")}
                     >
+                      {subi.icon ?
+                      <div
+                      style={{
+                        display: "flex",
+                        marginRight: 10,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Streamline
+                        name={subi.icon}
+                        stroke={"white"}
+                        width={22}
+                        height={22}
+                      />
+                    </div> : null
+                }
                       {t("Tags." + subi.name, subi.name)}
                     </FSearchBtn>
                   );

@@ -35,6 +35,8 @@ $placeholderColor: $blanc;
   }
   .search-options{
     outline: none;
+    flex-direction: row;
+    display: flex;
     white-space: nowrap;
     overflow: visible;
     margin-top:10px;
