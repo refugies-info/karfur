@@ -69,23 +69,19 @@ const initial_data = [
     children: [
       {
         name: "pas du tout",
-        query: "Débutant",
+        query: { $nin: [ "Débutant", "Intermédiaire","Avancé" ]},
       },
       {
         name: "un peu",
-        query: "Débutant",
+        query: { $nin: [ "Intermédiaire","Avancé" ]},
       },
       {
         name: "moyennement",
-        query: "Intermédiaire",
+        query: { $nin: [ "Avancé" ]},
       },
       {
         name: "bien",
-        query: "Intermédiaire",
-      },
-      {
-        name: "très bien",
-        query: "Avancé",
+        query: undefined,
       },
     ],
   },

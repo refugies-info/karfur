@@ -212,7 +212,6 @@ function get_dispositif(req, res) {
     } else {
       populate = "";
     }
-
     let promise = null;
     if (random) {
       promise = Dispositif.aggregate([
