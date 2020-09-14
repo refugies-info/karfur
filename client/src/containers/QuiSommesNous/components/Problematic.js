@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as StatusImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_réfugiés.svg";
-import { ReactComponent as InfoImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_information.svg";
+// import { ReactComponent as InfoImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_information.svg";
+import InfoImage from "../../../assets/qui-sommes-nous/QuiSommesNous_information.png";
+
 import { ReactComponent as AccompagnementImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_accompagnement.svg";
 
 const ProblematicContentContainer = styled.div`
@@ -67,7 +69,8 @@ const Statut = (props) => (
 
 const Information = (props) => (
   <ProblematicDetailContainer>
-    <InfoImage />
+    {/* <InfoImage /> */}
+    <img src={InfoImage} />
     <TextContainer>
       <ProblematicDetailTitle>
         {props.t(

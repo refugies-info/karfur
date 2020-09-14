@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { ReactComponent as Code } from "../../../assets/qui-sommes-nous/QuiSommesNous_code.svg";
+// import { ReactComponent as Code } from "../../../assets/qui-sommes-nous/QuiSommesNous_code.svg";
 import { ReactComponent as Terrain } from "../../../assets/qui-sommes-nous/QuiSommesNous_terrain.svg";
-import { ReactComponent as Engagement } from "../../../assets/qui-sommes-nous/QuiSommesNous_engagement.svg";
+// import { ReactComponent as Engagement } from "../../../assets/qui-sommes-nous/QuiSommesNous_engagement.svg";
 import { NavLink } from "react-router-dom";
+import Engagement from "../../../assets/qui-sommes-nous/QuiSommesNous_engagement.png";
+import Code from "../../../assets/qui-sommes-nous/QuiSommesNous_code.png";
 
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 
@@ -49,7 +51,10 @@ export const Contribution = (props) => (
 
 const ContributionCode = (props) => (
   <ContributionDetailContainer>
-    <Code />
+    {/* <Code /> */}
+    <div>
+      <img src={Code} />
+    </div>
     <TextContainer>
       <ContributionDetailTitle>
         {props.t(
@@ -111,7 +116,8 @@ const ContributionTerrain = (props) => (
 
 const ContributionEngagement = (props) => (
   <ContributionDetailContainer>
-    <Engagement />
+    {/* <Engagement /> */}
+    <img src={Engagement} />
     <TextContainer>
       <ContributionDetailTitle>
         {props.t(
