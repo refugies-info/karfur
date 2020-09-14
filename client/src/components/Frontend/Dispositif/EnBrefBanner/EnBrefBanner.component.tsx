@@ -15,6 +15,44 @@ export interface PropsBeforeInjection {
 export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
   // display En Bref and a summary of infocards
 
+  const getTextForAgeInfocard = (
+    ageRange: string | undefined,
+    bottomValue: number | undefined,
+    topValue: number | undefined
+  ) => {
+    if (ageRange === "De ** à ** ans") {
+      return (
+        props.t("Dispositif.De", "De") +
+        " " +
+        bottomValue +
+        " " +
+        props.t("Dispositif.à", "à") +
+        " " +
+        topValue +
+        " " +
+        props.t("Dispositif.ans", "ans")
+      );
+    }
+
+    if (ageRange === "Moins de ** ans") {
+      return (
+        props.t("Dispositif.Moins de", "Moins de") +
+        " " +
+        topValue +
+        " " +
+        props.t("Dispositif.ans", "ans")
+      );
+    }
+
+    return (
+      props.t("Dispositif.Plus de", "Plus de") +
+      " " +
+      bottomValue +
+      " " +
+      props.t("Dispositif.ans", "ans")
+    );
+  };
+
   const rightSection = (props.menu || []).find(
     (x: DispositifContent) => x.title === "C'est pour qui ?"
   );
@@ -34,28 +72,19 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
           let texte = card.contentTitle;
           // reformat text of cards age
           if (card.title === "Âge requis") {
-            texte =
-              card.contentTitle === "De ** à ** ans"
-                ? props.t("Dispositif.De", "De") +
-                  " " +
-                  card.bottomValue +
-                  " " +
-                  props.t("Dispositif.à", "à") +
-                  " " +
-                  card.topValue +
-                  " " +
-                  props.t("Dispositif.ans", "ans")
-                : card.contentTitle === "Moins de ** ans"
-                ? props.t("Dispositif.Moins de", "Moins de") +
-                  " " +
-                  card.topValue +
-                  " " +
-                  props.t("Dispositif.ans", "ans")
-                : props.t("Dispositif.Plus de", "Plus de") +
-                  " " +
-                  card.bottomValue +
-                  " " +
-                  props.t("Dispositif.ans", "ans");
+            if (card.ageTitle) {
+              texte = getTextForAgeInfocard(
+                card.ageTitle,
+                card.bottomValue,
+                card.topValue
+              );
+            } else {
+              texte = getTextForAgeInfocard(
+                card.contentTitle,
+                card.bottomValue,
+                card.topValue
+              );
+            }
           } else if (
             [
               "Niveau de français",

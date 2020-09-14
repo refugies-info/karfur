@@ -63,6 +63,23 @@ export class QuickToolbar extends Component<Props, StateType> {
       ),
     }));
 
+  getSectionTitleInCorrectLanguage = (title: string) => {
+    if (
+      [
+        "C'est quoi ?",
+        "C'est pour qui ?",
+        "Pourquoi c'est intéressant ?",
+        "Comment je m'engage ?",
+        "La démarche par étapes",
+        "Et après ?",
+      ].includes(title)
+    ) {
+      return this.props.t(`Dispositif.${title}`);
+    }
+
+    return title;
+  };
+
   _onClick = (id: number) => {
     if (this.props.disableEdit) {
       if (id === 0) {
@@ -81,9 +98,15 @@ export class QuickToolbar extends Component<Props, StateType> {
         node &&
           node.title &&
           this.props.readAudio(
-            h2p(node.title),
-            "fr-fr",
-            () => this.props.readAudio(h2p(node.content), "fr-fr", null, true),
+            h2p(this.getSectionTitleInCorrectLanguage(node.title)),
+            this.props.activeLangue,
+            () =>
+              this.props.readAudio(
+                h2p(node.content),
+                this.props.activeLangue,
+                null,
+                true
+              ),
             true
           );
       }
@@ -102,7 +125,9 @@ export class QuickToolbar extends Component<Props, StateType> {
 
   render() {
     const { t, show, disableEdit } = this.props;
-
+    const showLanguageButton = ["fr", "en", "ar"].includes(
+      this.props.activeLangue
+    );
     if (show) {
       if (disableEdit) {
         return (
@@ -136,35 +161,37 @@ export class QuickToolbar extends Component<Props, StateType> {
                     </Tooltip>
                   </Button>
                 </Col>
-                <Col lg="6" md="6" sm="12" xs="12" className="col-btn">
-                  <Button
-                    className="btn-pill"
-                    id="eva-icon-1"
-                    onMouseEnter={() => this._hoverOn(1)}
-                    onMouseLeave={this._hoverOff}
-                    onClick={() => this._onClick(1)}
-                  >
-                    <EVAIcon
-                      name={
-                        "volume-up" +
-                        (this.state.fill[1] || this.props.ttsActive
-                          ? ""
-                          : "-outline")
-                      }
-                      fill={variables.darkColor}
-                      className="icon-toolbar"
-                    />
-                    <Tooltip
-                      className="dark-back"
-                      placement="top"
-                      isOpen={this.state.tooltipOpen[1]}
-                      target="eva-icon-1"
-                      toggle={() => this.toggleTooltip(1)}
+                {showLanguageButton && (
+                  <Col lg="6" md="6" sm="12" xs="12" className="col-btn">
+                    <Button
+                      className="btn-pill"
+                      id="eva-icon-1"
+                      onMouseEnter={() => this._hoverOn(1)}
+                      onMouseLeave={this._hoverOff}
+                      onClick={() => this._onClick(1)}
                     >
-                      {t("Dispositif.écouter", "écouter")}
-                    </Tooltip>
-                  </Button>
-                </Col>
+                      <EVAIcon
+                        name={
+                          "volume-up" +
+                          (this.state.fill[1] || this.props.ttsActive
+                            ? ""
+                            : "-outline")
+                        }
+                        fill={variables.darkColor}
+                        className="icon-toolbar"
+                      />
+                      <Tooltip
+                        className="dark-back"
+                        placement="top"
+                        isOpen={this.state.tooltipOpen[1]}
+                        target="eva-icon-1"
+                        toggle={() => this.toggleTooltip(1)}
+                      >
+                        {t("Dispositif.écouter", "écouter")}
+                      </Tooltip>
+                    </Button>
+                  </Col>
+                )}
               </Row>
             </CardBody>
           </Card>
