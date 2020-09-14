@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as DispoImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_dispositif.svg";
-import { ReactComponent as DemarcheImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_demarche.svg";
+// import { ReactComponent as DemarcheImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_demarche.svg";
+import DemarcheImage from "../../../assets/qui-sommes-nous/QuiSommesNous_demarche.png";
+
 import { ReactComponent as ParcoursImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_parcours.svg";
 import { NavLink } from "react-router-dom";
 
@@ -72,7 +74,10 @@ const MissionDispositif = (props) => (
 
 const MissionDemarche = (props) => (
   <MissionDetailContainer>
-    <DemarcheImage />
+    {/* <DemarcheImage /> */}
+    <div>
+      <img src={DemarcheImage} />
+    </div>
     <MissionDetailTitle>
       {props.t(
         "QuiSommesNous.vulgariser",

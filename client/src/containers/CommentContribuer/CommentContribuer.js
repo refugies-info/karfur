@@ -12,13 +12,21 @@ import SVGIcon from "../../components/UI/SVGIcon/SVGIcon";
 import styled from "styled-components";
 import HeaderBackgroungImage from "../../assets/comment-contribuer/CommentContribuer-header.svg";
 import BackgroundDispositif from "../../assets/comment-contribuer/CommentContribuer-background_orange.svg";
-import { ReactComponent as DispositifImage } from "../../assets/comment-contribuer/CommentContribuer-dispositif.svg";
+// import { ReactComponent as DispositifImage } from "../../assets/comment-contribuer/CommentContribuer-dispositif.svg";
+import DispositifImage from "../../assets/comment-contribuer/CommentContribuer-dispositif.png";
+
 import BackgroundDemarche from "../../assets/comment-contribuer/CommentContribuer-background_rouge.svg";
-import { ReactComponent as DemarcheImage } from "../../assets/comment-contribuer/CommentContribuer-demarche.svg";
+// import { ReactComponent as DemarcheImage } from "../../assets/comment-contribuer/CommentContribuer-demarche.svg";
+import DemarcheImage from "../../assets/comment-contribuer/CommentContribuer-demarche.png";
+
 import BackgroundStructure from "../../assets/comment-contribuer/CommentContribuer-background_violet.svg";
-import { ReactComponent as StructureImage } from "../../assets/comment-contribuer/CommentContribuer-structure.svg";
+// import { ReactComponent as StructureImage } from "../../assets/comment-contribuer/CommentContribuer-structure.svg";
+import StructureImage from "../../assets/comment-contribuer/CommentContribuer-structure.png";
+
 import BackgroundLexique from "../../assets/comment-contribuer/CommentContribuer-background_bleu.svg";
-import { ReactComponent as LexiqueImage } from "../../assets/comment-contribuer/CommentContribuer-lexique.svg";
+// import { ReactComponent as LexiqueImage } from "../../assets/comment-contribuer/CommentContribuer-lexique.svg";
+import LexiqueImage from "../../assets/comment-contribuer/CommentContribuer-lexique.png";
+
 import BackgroundTraduction from "../../assets/comment-contribuer/CommentContribuer_backgroundTraduction.svg";
 import { ReactComponent as TradImage } from "../../assets/comment-contribuer/CommentContribuer_imageTrad.svg";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
@@ -282,7 +290,8 @@ const TraduireAnchor = styled.div`
 
 const DispositifCard = (props) => (
   <DispoCardContainer>
-    <DispositifImage />
+    {/* <DispositifImage /> */}
+    <img src={DispositifImage} />
     <div
       style={{
         display: "flex",
@@ -322,7 +331,8 @@ const DispositifCard = (props) => (
 
 const StructureCard = (props) => (
   <StructureCardContainer>
-    <StructureImage />
+    {/* <StructureImage /> */}
+    <img src={StructureImage} />
     <div
       style={{
         display: "flex",
@@ -360,7 +370,8 @@ const StructureCard = (props) => (
 
 const DemarcheCard = (props) => (
   <DemarcheCardContainer>
-    <DemarcheImage />
+    {/* <DemarcheImage /> */}
+    <img src={DemarcheImage} />
     <div
       style={{
         display: "flex",
@@ -399,7 +410,8 @@ const DemarcheCard = (props) => (
 
 const LexiqueCard = (props) => (
   <LexiqueCardContainer>
-    <LexiqueImage />
+    {/* <LexiqueImage /> */}
+    <img src={LexiqueImage} />
     <div
       style={{
         display: "flex",
