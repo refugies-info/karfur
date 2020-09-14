@@ -6,7 +6,7 @@ const readAudio = function (
   callback = null,
   inDispositif = false
 ) {
-  if (!text) return true;
+  if (!text || text === "null") return true;
   !inDispositif && this.props.toggleSpinner(true);
   API.cancel_tts_subscription();
   return API.get_tts({ text, locale })

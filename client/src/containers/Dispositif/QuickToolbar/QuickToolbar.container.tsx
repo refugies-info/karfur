@@ -8,6 +8,7 @@ import { RootState } from "../../../services/rootReducer";
 const mapStateToProps = (state: RootState) => {
   return {
     ttsActive: state.tts.ttsActive,
+    activeLangue: state.langue.languei18nCode,
   };
 };
 
