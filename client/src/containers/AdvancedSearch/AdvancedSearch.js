@@ -658,11 +658,13 @@ export class AdvancedSearch extends Component {
                         key={dispositif._id}
                       >
                         <NavLink
-                          to={
+                          to={{
+                            pathname:
                             "/" +
                             (dispositif.typeContenu || "dispositif") +
-                            (dispositif._id ? "/" + dispositif._id : "")
-                          }
+                            (dispositif._id ? "/" + dispositif._id : ""),
+                            state: {previousRoute: "advanced-search"}
+                          }}
                         >
                           <CustomCard
                             className={
