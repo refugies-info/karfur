@@ -1207,7 +1207,7 @@ export class Dispositif extends Component {
 
   goBack = () => {
     this.props.tracking.trackEvent({ action: "click", label: "goBack" });
-    this.props.history.push("/advanced-search");
+    this.props.history.go(-2);
   };
 
   closePdf = () => {
