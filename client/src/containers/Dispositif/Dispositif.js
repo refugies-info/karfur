@@ -180,9 +180,9 @@ export class Dispositif extends Component {
   };
 
   componentDidMount() {
-    this.props.history.push({
+/*     this.props.history.push({
       state: {},
-    });
+    }); */
     this._isMounted = true;
     this.props.fetchUser();
     this.checkUserFetchedAndInitialize();
@@ -1207,7 +1207,15 @@ export class Dispositif extends Component {
 
   goBack = () => {
     this.props.tracking.trackEvent({ action: "click", label: "goBack" });
-    this.props.history.go(-2);
+    if (
+      this.props.location.state &&
+      this.props.location.state.previousRoute &&
+      this.props.location.state.previousRoute === "advanced-search"
+    ) {
+      this.props.history.go(-1);
+    } else {
+      this.props.history.push({pathname: "/advanced-search"})
+    }
   };
 
   closePdf = () => {
