@@ -26,7 +26,12 @@
           line-height: 20px;
           padding: 10px;
           border-radius: 50%;
-          background: #ffffff;
+          &.success{
+          background: #4caf50;
+          }
+          &.oups{
+            background:#0421b1; 
+          }
           width: fit-content;
           margin-bottom: 20px;
         }
