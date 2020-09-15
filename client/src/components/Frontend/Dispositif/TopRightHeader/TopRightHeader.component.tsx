@@ -50,14 +50,15 @@ export class TopRightHeader extends React.Component<Props> {
           (this.props.selectedDispositif.creatorId || {})._id
         : false;
 
-    const dispositifIsPublishedOrEnAttenteAdmin =
+    const dispositifIsPublishedOrEnAttenteAdminOrAccepted =
       this.props.selectedDispositif &&
       (this.props.selectedDispositif.status === "Actif" ||
-        this.props.selectedDispositif.status === "En attente admin");
+        this.props.selectedDispositif.status === "En attente admin" ||
+        this.props.selectedDispositif.status === "Accepté structure");
 
     // if user is author and dispo is not en attente admin or published, user can modify it
     const userIsAuthorAndCanModify =
-      isAuthor && !dispositifIsPublishedOrEnAttenteAdmin;
+      isAuthor && !dispositifIsPublishedOrEnAttenteAdminOrAccepted;
 
     // there are 3 roles in a structure : admin = responsable, contributeur : can modify dispositifs of the structure, membre : cannot modify
     const userIsSponsor =
