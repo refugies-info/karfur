@@ -54,8 +54,8 @@ const StyledSub = ({ ...props }) => {
   return (
     <div
       style={{
-        marginTop: 30,
-        marginBottom: 20,
+        marginTop: 20,
+        marginBottom: 10,
         flexDirection: "row",
         display: "flex",
         alignItems: "center",
@@ -160,7 +160,7 @@ export class dispositifValidateModal extends Component {
       <Modal
         isOpen={this.props.show}
         toggle={this.props.toggle}
-        className="dispositif-validate-modal"
+        className="tags-modal"
       >
         <ModalHeader toggle={this.props.toggle}>Choix des thèmes</ModalHeader>
         <ModalBody>

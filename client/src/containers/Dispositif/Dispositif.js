@@ -288,8 +288,8 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/");
           }
-          const disableEdit =
-            dispositif.status !== "Accepté structure" || props.translating;
+
+          const disableEdit = true;
 
           if (dispositif.status === "Brouillon" && this._isMounted) {
             this.initializeTimer(3 * 60 * 1000, () =>
@@ -1348,7 +1348,11 @@ export class Dispositif extends Component {
     return [creator];
   };
 
-  valider_dispositif = (status = "En attente", auto = false) => {
+  valider_dispositif = (
+    status = "En attente",
+    auto = false,
+    sauvegarde = false
+  ) => {
     if (!auto && !this.verifierDemarche()) {
       return;
     }
@@ -1511,7 +1515,8 @@ export class Dispositif extends Component {
           membre.roles &&
           membre.roles.some(
             (x) => x === "administrateur" || x === "contributeur"
-          )
+          ) &&
+          !sauvegarde
         ) {
           dispositif.status = "En attente admin";
         }
@@ -1586,7 +1591,6 @@ export class Dispositif extends Component {
       printing,
       didThank,
     } = this.state;
-
     return (
       <div
         id="dispositif"
@@ -2109,6 +2113,7 @@ export class Dispositif extends Component {
               navigateToProfilePage={() =>
                 this.props.history.push("/backend/user-profile")
               }
+              status={this.state.status}
             />
 
             <NotificationContainer />
