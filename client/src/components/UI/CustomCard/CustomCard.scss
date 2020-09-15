@@ -21,8 +21,7 @@
   line-height: 21px;
   height:250px;
   scrollbar-width: 0;
-  //border: none;
-  //background: #FFFFFF;
+  border-width: 2px !important;
 
   @include media-max("desktop-up") { font-size: 12px; }
 
