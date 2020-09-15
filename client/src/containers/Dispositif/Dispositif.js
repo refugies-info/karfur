@@ -1131,7 +1131,7 @@ export class Dispositif extends Component {
     } else {
       this.setState(() => ({
         showSpinnerBookmark: false,
-        showBookmarkModal: false,
+        showBookmarkModal: true,
         isAuth: false,
       }));
     }
@@ -2051,6 +2051,7 @@ export class Dispositif extends Component {
             />
 
             <BookmarkedModal
+              t={this.props.t}
               success={this.state.isAuth}
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}

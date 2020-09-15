@@ -85,7 +85,7 @@ export class HomePage extends Component {
       subitem &&
       this.props.history.push({
         pathname: "/advanced-search",
-        search: "?tag=" + subitem.short,
+        search: "?tag=" + subitem.name,
       })
     );
   }
