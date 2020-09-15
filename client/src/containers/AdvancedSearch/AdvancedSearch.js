@@ -340,7 +340,7 @@ export class AdvancedSearch extends Component {
         let u = data_res.data.data;
         user = { _id: u._id, cookies: u.cookies || {} };
         this.setState({
-          pinned: user.cookies.dispositifsPinned.map((x) => x._id)  || [],
+          pinned: user.cookies.dispositifsPinned ? user.cookies.dispositifsPinned.map((x) => x._id) : [],
           dispositifs: [...this.state.dispositifs].filter(
             (x) =>
               !(user.cookies.parkourPinned || []).find(
@@ -409,7 +409,7 @@ export class AdvancedSearch extends Component {
           ...new Set(this.state.pinned.map((x) => (x && x._id) || x)),
         ];
         user.cookies.dispositifsPinned = user.cookies.parkourPinned.map((parkourId) => {
-          if (user.cookies.dispositifsPinned.find((dispPinned) => parkourId ===dispPinned._id)) {
+          if (user.cookies.dispositifsPinned && user.cookies.dispositifsPinned.find((dispPinned) => parkourId ===dispPinned._id)) {
             return user.cookies.dispositifsPinned.find((dispPinned) => parkourId ===dispPinned._id)
           }
           return { _id: parkourId, datePin: new Date() }
