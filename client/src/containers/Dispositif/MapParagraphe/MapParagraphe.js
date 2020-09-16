@@ -241,7 +241,7 @@ class MapParagraphe extends PureComponent {
     const { t, disableEdit } = this.props;
     return (
       <div
-        className="map-paragraphe page-break"
+        className="map-paragraphe"
         id="map-paragraphe"
         onMouseEnter={() => this.props.updateUIArray(-5)}
       >

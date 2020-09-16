@@ -9,6 +9,7 @@ import {
   PlusCard,
 } from "../../../../containers/Dispositif/CardParagraphe";
 import MapParagraphe from "../../../../containers/Dispositif/MapParagraphe/MapParagraphe";
+import MapParagraphePrint from "../../../../containers/Dispositif/MapParagraphe/MapParagraphePrint";
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import TagButton from "../../../FigmaUI/TagButton/TagButton";
@@ -39,7 +40,7 @@ const contenuParagraphe = (props) => {
     ? item.children.filter((x) => x.type === "card").map((x) => x.title)
     : [];
   return (
-    <div className={item.type === "cards" ? "row cards print-rtl" : "sous-paragraphe print-rtl"}>
+    <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
       {item.children &&
         item.children.map((subitem, subkey) => {
           const childrenLength = item.children.length;
@@ -107,8 +108,16 @@ const contenuParagraphe = (props) => {
                   cards={cards}
                   mainTag={bprops.mainTag}
                 />
-              ) : subitem.type === "map" ? (
+              ) : subitem.type === "map" && !bprops.printing ? (
                 <MapParagraphe
+                  key={subkey}
+                  subkey={subkey}
+                  subitem={subitem}
+                  disableEdit={newDisableEdit}
+                  {...bprops}
+                />
+              ) : subitem.type === "map" && bprops.printing ? (
+                <MapParagraphePrint
                   key={subkey}
                   subkey={subkey}
                   subitem={subitem}
