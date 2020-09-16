@@ -1941,6 +1941,7 @@ export class Dispositif extends Component {
                   toggleTutorielModal={this.toggleTutorielModal}
                   displayTuto={this.state.displayTuto}
                   addMapBtn={this.state.addMapBtn}
+                  printing={printing}
                   // TO DO : remove spread state
                   {...this.state}
                 />
