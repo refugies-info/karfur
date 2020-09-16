@@ -4,9 +4,14 @@
 $imgWidth: 300px;
 $imgHeight: 350px;
 
+
 @media print {
   .print-rtl {
     direction: rtl;
+  }
+  .page-break {
+    display: block;
+    page-break-before: always;
   }
 }
 
@@ -23,9 +28,13 @@ $imgHeight: 350px;
     background: transparent; /* optional: just make scrollbar invisible */
   }
 
-  .print-rtl {
-    direction: rtl;
+  &.printing-mode {
+    padding: 50px;
   }
+
+/*   .print-rtl {
+    direction: rtl;
+  } */
 
   .banniere-dispo {
     margin-top: -75px;
@@ -766,9 +775,9 @@ $imgHeight: 350px;
     }
   }
 
-  .print-rtl {
+/*   .print-rtl {
     direction: rtl;
-  }
+  } */
 
   .print-buttons {
     display: flex;

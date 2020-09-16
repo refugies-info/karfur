@@ -88,6 +88,7 @@ export const contenuDispositif = (props: Props) => {
           }
           id={"contenu-" + key}
         >
+          {(key === 1 || key === 3) ? <div className="page-break" /> : null}
           {inVariante &&
             disableEdit &&
             item.content !== null &&
