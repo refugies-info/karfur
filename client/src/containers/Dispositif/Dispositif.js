@@ -1910,7 +1910,6 @@ export class Dispositif extends Component {
                     search={this.state.search}
                   />
                 )}
-
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
                   updateUIArray={this.updateUIArray}
@@ -1962,7 +1961,7 @@ export class Dispositif extends Component {
                         </span>
                       </div>
                     )}
-                    {this.state.contributeurs.length > 0 && (
+                    {this.state.contributeurs.length > 0 && !printing && (
                       <div className="bottom-wrapper">
                         <ContribCaroussel
                           contributeurs={this.state.contributeurs}

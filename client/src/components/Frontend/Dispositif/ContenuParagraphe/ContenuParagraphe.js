@@ -39,7 +39,7 @@ const contenuParagraphe = (props) => {
     ? item.children.filter((x) => x.type === "card").map((x) => x.title)
     : [];
   return (
-    <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
+    <div className={item.type === "cards" ? "row cards print-rtl" : "sous-paragraphe print-rtl"}>
       {item.children &&
         item.children.map((subitem, subkey) => {
           const childrenLength = item.children.length;
