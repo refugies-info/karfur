@@ -286,10 +286,12 @@ class EditableParagraph extends Component {
             className="animated fadeIn"
             html={
               props.content ||
-              props.t(
-                "Dispositif.Rien à afficher",
-                "Cet élément est vide, il n'y a rien à afficher"
-              )
+              "<p>" +
+                props.t(
+                  "Dispositif.Rien à afficher",
+                  "Cet élément est vide, il n'y a rien à afficher"
+                ) +
+                "</p>"
             } // innerHTML of the editable div
             placeholder={props.placeholder}
             disabled={props.disableEdit} // use true to disable editing
