@@ -15,7 +15,6 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 import variables from "scss/colors.scss";
 import { cardTitles } from "../../../../containers/Dispositif/data";
-import styled from "styled-components";
 import FButton from "../../../FigmaUI/FButton/FButton";
 
 const contenuParagraphe = (props) => {

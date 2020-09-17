@@ -326,14 +326,14 @@ class EditableParagraph extends Component {
 const AddModuleBtn = (props) => {
   if (props.type !== "etape") {
     return (
-      <div className="plus-wrapper">
+      <div className="plus-wrapper" style={{ marginBottom: "24px" }}>
         <FButton
           onClick={() =>
             props.addItem(props.keyValue, "accordion", props.subkey)
           }
           type="dark"
           name="plus-circle-outline"
-          className="mt-10"
+          className="mt-10 mb-10"
         >
           Ajouter un accordéon
         </FButton>
