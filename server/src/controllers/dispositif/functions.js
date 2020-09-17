@@ -1,6 +1,7 @@
 const himalaya = require("himalaya");
 const sanitizeHtml = require("sanitize-html");
 const { sanitizeOptions } = require("../article/data");
+const _ = require("lodash");
 
 const pointeurs = ["titreInformatif", "titreMarque", "abstract"];
 
@@ -70,7 +71,7 @@ const markTradModifications = (newD, oldD, trad, locale) => {
             ].contentModified = true;
             trad.status = "À revoir";
           }
-//we mark the infocards (contentTitle)
+          //we mark the infocards (contentTitle)
           if (
             JSON.stringify(c.contentTitle) !==
               JSON.stringify(newD.contenu[index].children[j].contentTitle) &&
@@ -88,7 +89,6 @@ const markTradModifications = (newD, oldD, trad, locale) => {
   });
   return trad;
 };
-
 
 //we count the number of paragraphs/titles/sections with in the document and if the paragraph is malformed or undefined we skip it
 const countContents = (obj, nbChamps = 0, type = null) => {
@@ -115,8 +115,8 @@ const countContents = (obj, nbChamps = 0, type = null) => {
         }
       }
     );
-    
-        //same as before but for infocards
+
+    //same as before but for infocards
     if (
       type === "cards" &&
       (x.title === "Important !" || x.title === "Durée" || !x.title) &&
@@ -269,7 +269,21 @@ const turnHTMLtoJSON = (contenu, nbMots = 0) => {
         ...himalaya.parseDefaults,
         includePositions: false,
       });
-      contenu[i].content = jsonBody;
+
+      // filter empty paragraphs because it breaks translation
+      const jsonBodyFiltered = _.filter(
+        jsonBody,
+        (element) =>
+          !(
+            element.type === "element" &&
+            element.tagName === "p" &&
+            element.attributes &&
+            element.attributes.length === 0 &&
+            element.children &&
+            element.children.length === 0
+          )
+      );
+      contenu[i].content = jsonBodyFiltered;
     }
 
     if ((contenu[i].children || []).length > 0) {
