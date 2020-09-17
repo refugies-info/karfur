@@ -417,6 +417,17 @@ body .figma-btn {
     }
   }
 
+  &.edit {
+    background: #f9ef99;
+    color: $noir;
+    svg {
+      fill: $noir;
+    }
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
   &.precision {
     background: $attention;
     color: $darkColor;
