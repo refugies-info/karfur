@@ -286,10 +286,12 @@ class EditableParagraph extends Component {
             className="animated fadeIn"
             html={
               props.content ||
-              props.t(
-                "Dispositif.Rien à afficher",
-                "Cet élément est vide, il n'y a rien à afficher"
-              )
+              "<p>" +
+                props.t(
+                  "Dispositif.Rien à afficher",
+                  "Cet élément est vide, il n'y a rien à afficher"
+                ) +
+                "</p>"
             } // innerHTML of the editable div
             placeholder={props.placeholder}
             disabled={props.disableEdit} // use true to disable editing
@@ -326,14 +328,14 @@ class EditableParagraph extends Component {
 const AddModuleBtn = (props) => {
   if (props.type !== "etape") {
     return (
-      <div className="plus-wrapper">
+      <div className="plus-wrapper" style={{ marginBottom: "24px" }}>
         <FButton
           onClick={() =>
             props.addItem(props.keyValue, "accordion", props.subkey)
           }
           type="dark"
           name="plus-circle-outline"
-          className="mt-10"
+          className="mt-10 mb-10"
         >
           Ajouter un accordéon
         </FButton>

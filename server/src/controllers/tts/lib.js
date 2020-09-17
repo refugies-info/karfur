@@ -7,7 +7,6 @@ const rp = require("request-promise");
 const xmlbuilder = require("xmlbuilder");
 const voices = require("./voices").data;
 
-
 // Gets an access token.
 let subscriptionKey, accessToken;
 function getAccessToken(subscriptionKey) {
@@ -29,7 +28,6 @@ function textToSpeech(accessToken, text, locale = "fr-fr") {
   const reader =
     (voices.find((x) => x.locale === locale) || {}).name ||
     "Microsoft Server Speech Text to Speech Voice (fr-FR, Julie, Apollo)";
-
   // Create the SSML request.
   let xml_body = xmlbuilder
     .create("speak")
@@ -64,7 +62,6 @@ async function get_tts(req, res) {
   if (!req.body || !req.body.text) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
-
     var text = req.body.text;
     var locale = req.body.locale;
 

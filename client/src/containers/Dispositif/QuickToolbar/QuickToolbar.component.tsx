@@ -125,7 +125,7 @@ export class QuickToolbar extends Component<Props, StateType> {
 
   render() {
     const { t, show, disableEdit } = this.props;
-    const showLanguageButton = ["fr", "en", "ar"].includes(
+    const showLanguageButton = ["fr", "en", "ar", "ru"].includes(
       this.props.activeLangue
     );
     if (show) {
