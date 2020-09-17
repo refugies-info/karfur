@@ -27,7 +27,7 @@ class AudioBtn extends Component {
 
   render() {
     const { showAudioSpinner, ttsActive } = this.props;
-    if (["fr", "en", "ar"].includes(_.get(this.props, "i18n.language"))) {
+    if (["fr", "en", "ar", "ru"].includes(_.get(this.props, "i18n.language"))) {
       return (
         <div
           className={"audio-icon-wrapper mr-10" + (ttsActive ? " pressed" : "")}

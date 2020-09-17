@@ -231,7 +231,7 @@ exports.data = [
     name: "Microsoft Server Speech Text to Speech Voice (fr-CA, HarmonieRUS)",
   },
   {
-    locale: "fr-CH",
+    locale: "fr-S",
     langue: "French (Switzerland)",
     gender: "Male",
     name: "Microsoft Server Speech Text to Speech Voice (fr-CH, Guillaume)",
@@ -392,13 +392,13 @@ exports.data = [
     name: "Microsoft Server Speech Text to Speech Voice (ro-RO, Andrei)",
   },
   {
-    locale: "ru-RU",
+    locale: "ru-Ru",
     langue: "Russian",
     gender: "Female",
     name: "Microsoft Server Speech Text to Speech Voice (ru-RU, Irina, Apollo)",
   },
   {
-    locale: "ru-RU2",
+    locale: "ru",
     langue: "Russian",
     gender: "Male",
     name: "Microsoft Server Speech Text to Speech Voice (ru-RU, Pavel, Apollo)",

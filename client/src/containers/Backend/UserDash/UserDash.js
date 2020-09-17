@@ -305,6 +305,7 @@ export class UserDash extends Component {
             openThemes={this.openThemes}
             openTraductions={this.openTraductions}
             limit={5}
+            toggleModal={this.toggleModal}
             {...avancement_data}
           />
         </Row>
@@ -424,7 +425,7 @@ const ProgressionTraduction = (props) => {
         langueCode: "fr",
         avancement: 1,
       });
-  let data = props.limit ? dataArray.slice(0, props.limit) : dataArray;
+  let data = dataArray;
   let hideOnPhone = props.hideOnPhone || new Array(props.headers).fill(false);
 
   return (
@@ -528,7 +529,7 @@ const ProgressionTraduction = (props) => {
                 </tr>
               );
             })}
-            {props.limit && dataArray.length > 5 && (
+            {props.limit && dataArray.length > 6 && (
               <tr>
                 <td
                   colSpan="6"

@@ -155,13 +155,24 @@ export const LeftSideDispositif = (props: Props) => {
                 style={{ display: "flex", flexDirection: "row" }}
                 onMouseEnter={() => props.updateUIArray(-2)}
               >
-                <FButton
-                  type="theme"
-                  name="external-link-outline"
-                  onClick={onLinkClicked}
-                >
-                  {t("Dispositif.Voir le site", "Voir le site")}
-                </FButton>
+                {props.disableEdit && (
+                  <FButton
+                    type={"theme"}
+                    name="external-link-outline"
+                    onClick={onLinkClicked}
+                  >
+                    {t("Dispositif.Voir le site", "Voir le site")}
+                  </FButton>
+                )}
+                {!props.disableEdit && (
+                  <FButton
+                    type={"edit"}
+                    name="external-link-outline"
+                    onClick={onLinkClicked}
+                  >
+                    {t("Dispositif.Voir le site", "Voir le site")}
+                  </FButton>
+                )}
                 {!props.disableEdit && props.displayTuto && (
                   <FButton
                     type="tuto"
