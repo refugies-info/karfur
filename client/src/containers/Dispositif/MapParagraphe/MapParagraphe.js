@@ -8,7 +8,7 @@ import MapComponent from "../../../components/Frontend/Dispositif/MapComponent/M
 import MapModal from "../../../components/Modals/MapModal/MapModal";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import { markerInfo } from "./data";
+import { markerInfo, markerInfoPlaceholders } from "./data";
 
 import "./MapParagraphe.scss";
 import variables from "scss/colors.scss";
@@ -85,8 +85,8 @@ class MapParagraphe extends PureComponent {
       place_id: place.place_id,
     };
     const nextCenter = _.get(nextMarker, "position", this.state.center);
-
     let tempMarkerInfo = [...this.state.markerInfo];
+
     if (nextMarker.name) {
       _.set(tempMarkerInfo, "0.value", nextMarker.name);
     }
@@ -95,7 +95,6 @@ class MapParagraphe extends PureComponent {
     if (nextMarker.formatted_phone_number) {
       _.set(tempMarkerInfo, "5.value", nextMarker.formatted_phone_number);
     }
-
     this.setState({
       center: nextCenter,
       markers: [...this.state.markers, nextMarker],
@@ -315,6 +314,10 @@ class MapParagraphe extends PureComponent {
             }
           >
             {markerInfo.map((field, key) => {
+              const placeholder = _.find(
+                markerInfoPlaceholders,
+                (category) => category.id === field.id
+              ).placeholder;
               if (
                 key === 3 &&
                 (field.value ===
@@ -347,6 +350,7 @@ class MapParagraphe extends PureComponent {
                       className={
                         "marker-input color-darkColor " + field.customClass
                       }
+                      placeholder="test"
                     />
                   </React.Fragment>
                 );
@@ -365,6 +369,7 @@ class MapParagraphe extends PureComponent {
                       className={
                         "marker-input color-darkColor " + field.customClass
                       }
+                      placeholder={placeholder}
                     />
                   </React.Fragment>
                 );

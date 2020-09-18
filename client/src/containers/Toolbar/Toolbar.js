@@ -183,10 +183,12 @@ export class Toolbar extends React.Component {
           <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
           {/* <NavigationItems /> */}
 
-          <SearchBar
-            loupe
-            className="search-bar inner-addon right-addon mr-10 rsz"
-          />
+          {i18n.language === "fr" && (
+            <SearchBar
+              loupe
+              className="search-bar inner-addon right-addon mr-10 rsz"
+            />
+          )}
 
           <button
             onClick={() => {
