@@ -6,7 +6,6 @@ import {
   Row,
   CardBody,
   CardFooter,
-  Spinner,
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -14,11 +13,13 @@ import {
 } from "reactstrap";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
+import qs from "query-string";
 import _ from "lodash";
-import { NavHashLink } from "react-router-hash-link";
 import windowSize from "react-window-size";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
+import styled from "styled-components";
+import produce from "immer";
 // import Cookies from 'js-cookie';
 
 import SearchItem from "./SearchItem/SearchItem";
@@ -29,9 +30,56 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { filtres } from "../Dispositif/data";
 import { filtres_contenu, tris } from "./data";
 import { breakpoints } from "utils/breakpoints.js";
+import Streamline from "../../assets/streamline";
+import FButton from "../../components/FigmaUI/FButton/FButton";
+import NoResultsBackgroundImage from "../../assets/no_results.svg";
+import { BookmarkedModal } from "../../components/Modals/index";
+import { fetchUserActionCreator } from "../../services/User/user.actions";
 
 import "./AdvancedSearch.scss";
 import variables from "scss/colors.scss";
+
+const NoResultsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const NoResults = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(${NoResultsBackgroundImage});
+  min-width: 254px;
+  height: 180px;
+  margin-right: 75px;
+`;
+
+const NoResultsTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const NoResultsButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const NoResultsTitle = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  margin-bottom: 24px !important;
+`;
+
+const NoResultsText = styled.p`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px !important;
+  margin-bottom: 24px !important;
+  max-width: 520px;
+`;
 
 let user = { _id: null, cookies: {} };
 export class AdvancedSearch extends Component {
@@ -50,14 +98,58 @@ export class AdvancedSearch extends Component {
     displayAll: true,
     dropdownOpenTri: false,
     dropdownOpenFiltre: false,
+    showBookmarkModal: false,
   };
 
   componentDidMount() {
     this.retrieveCookies();
     let tag = querySearch(this.props.location.search).tag;
+    let bottomValue = querySearch(this.props.location.search).bottomValue;
+    let topValue = querySearch(this.props.location.search).topValue;
+    let niveauFrancais = querySearch(this.props.location.search).niveauFrancais;
+    let niveauFrancaisObj = this.state.recherche[3].children.find(
+      (elem) => elem.name === decodeURIComponent(niveauFrancais)
+    );
     let filter = querySearch(this.props.location.search).filter;
-    if (tag) {
-      this.selectTag(decodeURIComponent(tag));
+    if (tag || bottomValue || topValue || niveauFrancais) {
+      this.setState(
+        produce((draft) => {
+          if (tag) {
+            draft.recherche[0].query = decodeURIComponent(tag);
+            draft.recherche[0].value = decodeURIComponent(tag);
+            draft.recherche[0].active = true;
+            draft.recherche[0].short =
+              filtres.tag &&
+              filtres.tags.find((x) => x.name === decodeURIComponent(tag))
+                .short;
+          }
+          if (topValue && bottomValue) {
+            draft.recherche[2].value = initial_data[2].children.find(
+              (item) => item.topValue === parseInt(topValue, 10)
+            ).name;
+            draft.recherche[2].query = draft.recherche[2].value;
+            draft.recherche[2].active = true;
+          }
+          if (niveauFrancais) {
+            draft.recherche[3].name = decodeURIComponent(niveauFrancais);
+            draft.recherche[3].value = decodeURIComponent(niveauFrancais);
+            draft.recherche[3].query = niveauFrancaisObj.query;
+            draft.recherche[3].active = true;
+          }
+        }),
+        () =>
+          this.queryDispositifs({
+            "tags.name": tag ? decodeURIComponent(tag) : "",
+            "audienceAge.bottomValue": topValue
+              ? { $lt: parseInt(topValue, 10) }
+              : "",
+            "audienceAge.topValue": bottomValue
+              ? { $gt: parseInt(bottomValue, 10) }
+              : "",
+            niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
+          })
+      );
+      //this.selectTag(decodeURIComponent(tag));
     } else if (filter) {
       this.filter_content(
         filter === "dispositif" ? filtres_contenu[0] : filtres_contenu[1]
@@ -76,10 +168,15 @@ export class AdvancedSearch extends Component {
     }
   }
 
-  queryDispositifs = (query = null, props = this.props) => {
+  queryDispositifs = (Nquery = null, props = this.props) => {
     this.setState({ showSpinner: true });
-    query =
-      query ||
+    if (Nquery) {
+      Object.keys(Nquery).forEach((key) =>
+        Nquery[key] === "" ? delete Nquery[key] : {}
+      );
+    }
+    let query =
+      Nquery ||
       this.state.recherche
         .filter((x) => x.active && x.queryName !== "localisation")
         .map((x) =>
@@ -94,6 +191,40 @@ export class AdvancedSearch extends Component {
     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
     );
+    if (!Nquery) {
+      let newQueryParam = {
+        tag: query["tags.name"] ? query["tags.name"] : undefined,
+        bottomValue: query["audienceAge.bottomValue"]
+          ? this.state.recherche[2].bottomValue
+          : undefined,
+        topValue: query["audienceAge.topValue"]
+          ? this.state.recherche[2].topValue
+          : undefined,
+        niveauFrancais: query["niveauFrancais"]
+          ? this.state.recherche[3].value
+          : undefined,
+      };
+
+      Object.keys(newQueryParam).forEach((key) =>
+        newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
+      );
+
+      this.props.history.push({
+        search: qs.stringify(newQueryParam),
+      });
+    }
+
+    /*     (query["tags.name"] ? `?tag=${this.state.recherche[0].short}` : "") +
+    (query["audienceAge.bottomValue"]
+      ? `?bottomValue=${this.state.recherche[2].bottomValue}`
+      : "") +
+    (query["audienceAge.topValue"]
+      ? `?topValue=${this.state.recherche[2].topValue}`
+      : "") +
+    (query["niveauFrancais"]
+      ? `?niveauFrancais=${this.state.recherche[3].value}`
+      : ""), */
+
     API.get_dispositif({
       query: {
         ...query,
@@ -140,18 +271,11 @@ export class AdvancedSearch extends Component {
             dispositifs.find((y) => y.demarcheId === x || y._id === x)
           );
         }
-        dispositifs = dispositifs
-          .map((x) => ({
-            ...x,
-            nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {})
-              .count,
-          })) //Je rajoute la donnée sur le nombre de vues par dispositif
-          .filter(
-            (x) =>
-              !this.state.pinned.some(
-                (y) => (y && y._id === x._id) || y === x._id
-              )
-          );
+        dispositifs = dispositifs.map((x) => ({
+          ...x,
+          nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
+        })); //Je rajoute la donnée sur le nombre de vues par dispositif
+
         this.setState({ dispositifs: dispositifs, showSpinner: false });
       })
       .catch(() => this.setState({ showSpinner: false }));
@@ -210,7 +334,9 @@ export class AdvancedSearch extends Component {
         let u = data_res.data.data;
         user = { _id: u._id, cookies: u.cookies || {} };
         this.setState({
-          pinned: user.cookies.parkourPinned || [],
+          pinned: user.cookies.dispositifsPinned
+            ? user.cookies.dispositifsPinned.map((x) => x._id)
+            : [],
           dispositifs: [...this.state.dispositifs].filter(
             (x) =>
               !(user.cookies.parkourPinned || []).find(
@@ -237,29 +363,76 @@ export class AdvancedSearch extends Component {
     }
   };
 
+  restart = () => {
+    this.setState(
+      { recherche: initial_data.map((x) => ({ ...x, active: false })) },
+      () => this.queryDispositifs()
+    );
+  };
+
+  writeNew = () => {
+    if (this.props.user) {
+      this.props.history.push({
+        pathname: "/comment-contribuer",
+      });
+    } else {
+      this.props.history.push({
+        pathname: "/login",
+      });
+    }
+  };
+
   pin = (e, dispositif) => {
     e.preventDefault();
     e.stopPropagation();
-    dispositif.pinned = !dispositif.pinned;
-    let prevState = [...this.state.dispositifs];
-    this.setState(
-      {
-        dispositifs: dispositif.pinned
-          ? prevState.filter((x) => x._id !== dispositif._id)
-          : [...prevState, dispositif],
-        pinned: dispositif.pinned
-          ? [...this.state.pinned, dispositif]
-          : this.state.pinned.filter((x) =>
-              x && x._id ? x._id !== dispositif._id : x !== dispositif._id
-            ),
-      },
-      () => {
-        user.cookies.parkourPinned = [
-          ...new Set(this.state.pinned.map((x) => (x && x._id) || x)),
-        ];
-        API.set_user_info(user);
-      }
-    );
+    if (API.isAuth()) {
+      dispositif.pinned = !dispositif.pinned;
+      let prevState = [...this.state.dispositifs];
+      const isDispositifPinned =
+        this.state.pinned.includes(dispositif._id) ||
+        this.state.pinned.filter(
+          (pinnedDispostif) =>
+            pinnedDispostif && pinnedDispostif._id === dispositif._id
+        ).length > 0;
+      this.setState(
+        {
+          pinned: dispositif.pinned
+            ? [...this.state.pinned, dispositif]
+            : this.state.pinned.filter((x) =>
+                x && x._id ? x._id !== dispositif._id : x !== dispositif._id
+              ),
+          showBookmarkModal:
+            !isDispositifPinned && !prevState.showBookmarkModal,
+        },
+        () => {
+          user.cookies.parkourPinned = [
+            ...new Set(this.state.pinned.map((x) => (x && x._id) || x)),
+          ];
+          user.cookies.dispositifsPinned = user.cookies.parkourPinned.map(
+            (parkourId) => {
+              if (
+                user.cookies.dispositifsPinned &&
+                user.cookies.dispositifsPinned.find(
+                  (dispPinned) => parkourId === dispPinned._id
+                )
+              ) {
+                return user.cookies.dispositifsPinned.find(
+                  (dispPinned) => parkourId === dispPinned._id
+                );
+              }
+              return { _id: parkourId, datePin: new Date() };
+            }
+          );
+          API.set_user_info(user).then(() => {
+            this.props.fetchUser();
+          });
+        }
+      );
+    } else {
+      this.setState(() => ({
+        showBookmarkModal: true,
+      }));
+    }
   };
 
   reorder = (tri) => {
@@ -318,7 +491,10 @@ export class AdvancedSearch extends Component {
     recherche[key] = {
       ...recherche[key],
       value: subitem.name || subitem.formatted_address,
-      query: subitem.query || subitem.address_components || subitem.name,
+      query:
+        subitem.query ||
+        subitem.address_components ||
+        (key !== 3 ? subitem.name : undefined),
       active: true,
       ...(subitem.short && { short: subitem.short }),
       ...(subitem.bottomValue && { bottomValue: subitem.bottomValue }),
@@ -342,6 +518,10 @@ export class AdvancedSearch extends Component {
     this.setState((pS) => ({ dropdownOpenTri: !pS.dropdownOpenTri }));
   toggleDropdownFiltre = () =>
     this.setState((pS) => ({ dropdownOpenFiltre: !pS.dropdownOpenFiltre }));
+  toggleBookmarkModal = () =>
+    this.setState((prevState) => ({
+      showBookmarkModal: !prevState.showBookmarkModal,
+    }));
 
   render() {
     let {
@@ -353,23 +533,8 @@ export class AdvancedSearch extends Component {
       activeTri,
       displayAll,
     } = this.state;
+    // eslint-disable-next-line
     const { t, windowWidth, dispositifs: storeDispo } = this.props;
-    const populatedPinned =
-      storeDispo && storeDispo.length > 0
-        ? pinned.map((x) => ({
-            ...(x && x._id
-              ? x
-              : storeDispo.find((y) => y && y._id === x) || {}),
-            pinned: true,
-          })) || []
-        : [];
-    const filteredPinned = activeFiltre
-      ? populatedPinned.filter((x) =>
-          activeFiltre === "Dispositifs"
-            ? x.typeContenu !== "demarche"
-            : x.typeContenu === "demarche"
-        )
-      : populatedPinned;
 
     if (recherche[0].active) {
       dispositifs = dispositifs.sort((a, b) =>
@@ -380,6 +545,7 @@ export class AdvancedSearch extends Component {
           : 0
       );
     }
+
     return (
       <div className="animated fadeIn advanced-search">
         <div className="search-bar">
@@ -448,9 +614,19 @@ export class AdvancedSearch extends Component {
           >
             <div className="results-wrapper">
               <Row>
-                {[...filteredPinned, ...dispositifs].map((dispositif) => {
+                {[...dispositifs].map((dispositif) => {
+                  const pinned =
+                    this.state.pinned.includes(dispositif._id) ||
+                    this.state.pinned.filter(
+                      (pinnedDispostif) =>
+                        pinnedDispostif &&
+                        pinnedDispostif._id === dispositif._id
+                    ).length > 0;
+
                   if (!dispositif.hidden) {
                     let shortTag = null;
+                    let shortTagFull = null;
+                    let iconTag = null;
                     if (
                       dispositif.tags &&
                       dispositif.tags.length > 0 &&
@@ -460,6 +636,12 @@ export class AdvancedSearch extends Component {
                       shortTag = (dispositif.tags[0].short || {}).replace(
                         / /g,
                         "-"
+                      );
+                      shortTagFull = dispositif.tags[0].short;
+                    }
+                    if (shortTagFull) {
+                      iconTag = filtres.tags.find(
+                        (tag) => tag.short === shortTagFull
                       );
                     }
                     return (
@@ -476,17 +658,24 @@ export class AdvancedSearch extends Component {
                         key={dispositif._id}
                       >
                         <NavLink
-                          to={
+                          to={{
+                            pathname:
                             "/" +
                             (dispositif.typeContenu || "dispositif") +
-                            (dispositif._id ? "/" + dispositif._id : "")
-                          }
+                            (dispositif._id ? "/" + dispositif._id : ""),
+                            state: {previousRoute: "advanced-search"}
+                          }}
                         >
                           <CustomCard
                             className={
                               dispositif.typeContenu === "demarche"
-                                ? "texte-" + shortTag + " bg-light-" + shortTag
-                                : ""
+                                ? "texte-" +
+                                  shortTag +
+                                  " bg-light-" +
+                                  shortTag +
+                                  " border-" +
+                                  shortTag
+                                : "border-none"
                             }
                           >
                             <CardBody>
@@ -495,13 +684,10 @@ export class AdvancedSearch extends Component {
                                 size="xlarge"
                                 onClick={(e) => this.pin(e, dispositif)}
                                 fill={
-                                  dispositif.pinned
-                                    ? variables.noir
-                                    : variables.noirCD
+                                  pinned ? variables.noir : variables.noirCD
                                 }
                                 className={
-                                  "bookmark-icon" +
-                                  (dispositif.pinned ? " pinned" : "")
+                                  "bookmark-icon" + (pinned ? " pinned" : "")
                                 }
                               />
                               <h5>{dispositif.titreInformatif}</h5>
@@ -510,9 +696,28 @@ export class AdvancedSearch extends Component {
                             {dispositif.typeContenu !== "demarche" && (
                               <CardFooter
                                 className={
-                                  "correct-radius align-right bg-" + shortTag
+                                  "correct-radius align-right bg-" +
+                                  shortTag +
+                                  (iconTag ? "" : " no-icon")
                                 }
                               >
+                                {iconTag ? (
+                                  <div
+                                    style={{
+                                      width: 50,
+                                      display: "flex",
+                                      justifyContent: "flex-start",
+                                      alignItems: "flex-start",
+                                    }}
+                                  >
+                                    <Streamline
+                                      name={iconTag.icon}
+                                      stroke={"white"}
+                                      width={22}
+                                      height={22}
+                                    />
+                                  </div>
+                                ) : null}
                                 {dispositif.titreMarque}
                               </CardFooter>
                             )}
@@ -524,32 +729,52 @@ export class AdvancedSearch extends Component {
                   return false;
                 })}
                 {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
-                  <Col
+                  /*             <Col
                     xs="12"
                     sm="6"
                     md="3"
                     className="no-result"
                     onClick={() => this.selectTag()}
-                  >
-                    <CustomCard className="no-result-card">
-                      <CardBody>
-                        <h5>{t("Aucun résultat", "Aucun résultat")}</h5>
-                        <p>
-                          {t(
-                            "AdvancedSearch.Elargir recherche",
-                            "Essayez d’élargir votre recherche en désactivant certains filtres"
-                          )}{" "}
-                        </p>
-                      </CardBody>
-                      <CardFooter className="align-right">
-                        {t("AdvancedSearch.Oups", "Oups !")}...
-                      </CardFooter>
-                    </CustomCard>
-                  </Col>
+                  > */
+                  <NoResultsContainer>
+                    <NoResults />
+                    <NoResultsTextContainer>
+                      <NoResultsTitle>
+                        {t("Aucun résultat", "Aucun résultat")}
+                      </NoResultsTitle>
+                      <NoResultsText>
+                        {t(
+                          "AdvancedSearch.Elargir recherche",
+                          "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères."
+                        )}{" "}
+                      </NoResultsText>
+                      <NoResultsButtonsContainer>
+                        <FButton
+                          type="dark"
+                          name="refresh-outline"
+                          className="mr-10"
+                          onClick={this.restart}
+                        >
+                          Recommencer
+                        </FButton>
+                        <FButton
+                          type="white"
+                          name="file-add-outline"
+                          onClick={this.writeNew}
+                        >
+                          Rédiger une nouvelle fiche
+                        </FButton>
+                      </NoResultsButtonsContainer>
+                    </NoResultsTextContainer>
+                  </NoResultsContainer>
+                  //  </Col>
                 )}
-                <Col xs="12" sm="6" md="3">
+                {/*      <Col xs="12" sm="6" md="3">
                   <NavHashLink to="/comment-contribuer#ecrire">
-                    <CustomCard addcard="true" className="create-card">
+                    <CustomCard
+                      addcard="true"
+                      className="create-card border-none"
+                    >
                       <CardBody>
                         {showSpinner ? (
                           <Spinner color="success" />
@@ -567,7 +792,7 @@ export class AdvancedSearch extends Component {
                       </CardFooter>
                     </CustomCard>
                   </NavHashLink>
-                </Col>
+                </Col> */}
               </Row>
             </div>
           </Col>
@@ -605,6 +830,12 @@ export class AdvancedSearch extends Component {
             </Col>
           )}
         </Row>
+        <BookmarkedModal
+          t={this.props.t}
+          success={this.props.user ? true : false}
+          show={this.state.showBookmarkModal}
+          toggle={this.toggleBookmarkModal}
+        />
       </div>
     );
   }
@@ -679,9 +910,21 @@ const mapStateToProps = (state) => {
   return {
     dispositifs: state.dispositif.dispositifs,
     languei18nCode: state.langue.languei18nCode,
+    user: state.user.user,
   };
+};
+
+const mapDispatchToProps = {
+  fetchUser: fetchUserActionCreator,
 };
 
 export default track({
   page: "AdvancedSearch",
-})(connect(mapStateToProps)(withTranslation()(windowSize(AdvancedSearch))));
+})(
+  withRouter(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(withTranslation()(windowSize(AdvancedSearch)))
+  )
+);

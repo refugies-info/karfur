@@ -135,9 +135,9 @@ export class Layout extends Component {
       <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
         <div onMouseOver={this.toggleHover}>
           <Suspense fallback={this.loading()}>
-            <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
+            <Toolbar {...this.props} drawerToggleClicked={this.sideDrawerToggleHandler} />
           </Suspense>
-          <div className="app-body">
+          <div className={"app-body"}>
             <SideDrawer
               side="left"
               open={this.state.showSideDrawer.left}

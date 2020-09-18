@@ -50,6 +50,17 @@ export class TopRightHeader extends React.Component<Props> {
           (this.props.selectedDispositif.creatorId || {})._id
         : false;
 
+    const dispositifIsPublishedOrEnAttenteAdminOrAccepted =
+      this.props.selectedDispositif &&
+      (this.props.selectedDispositif.status === "Actif" ||
+        this.props.selectedDispositif.status === "En attente admin" ||
+        this.props.selectedDispositif.status === "Accepté structure");
+
+    // if user is author and dispo is not en attente admin or published, user can modify it
+    const userIsAuthorAndCanModify =
+      isAuthor && !dispositifIsPublishedOrEnAttenteAdminOrAccepted;
+
+    // there are 3 roles in a structure : admin = responsable, contributeur : can modify dispositifs of the structure, membre : cannot modify
     const userIsSponsor =
       this.props.user && this.props.selectedDispositif
         ? (
@@ -103,18 +114,20 @@ export class TopRightHeader extends React.Component<Props> {
       );
     } else if (props.disableEdit) {
       // when props.disableEdit = true, favorite button and modify button (if user authorized)
-      // user can modify a dispositif if he is admin or contributor of the mainsponsor of the dispositif OR if he is admin OR if he is author
+      // user can modify a dispositif if he is admin or contributor of the mainsponsor of the dispositif OR if he is admin
+      // 110920 : remove the possibility for the author to modify the dispositif.
       return (
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right-edition">
-          {!props.translating && (isAuthor || props.admin || userIsSponsor) && (
-            <FButton
-              className="dark"
-              name="edit-outline"
-              onClick={props.editDispositif}
-            >
-              Modifier la fiche
-            </FButton>
-          )}
+          {!props.translating &&
+            (userIsAuthorAndCanModify || props.admin || userIsSponsor) && (
+              <FButton
+                className="dark"
+                name="edit-outline"
+                onClick={props.editDispositif}
+              >
+                Modifier la fiche
+              </FButton>
+            )}
           <div className="top-icon-wrapper" onClick={props.bookmarkDispositif}>
             {props.showSpinnerBookmark ? (
               <Spinner color="success" />

@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
-import ReactDependentScript from "react-dependent-script";
-import Autocomplete from "react-google-autocomplete";
+//import ReactDependentScript from "react-dependent-script";
+//import Autocomplete from "react-google-autocomplete";
 
 import FSearchBtn from "../../../components/FigmaUI/FSearchBtn/FSearchBtn";
+import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./SearchItem.scss";
@@ -26,7 +27,7 @@ export class SearchItem extends Component {
   }
 
   onPlaceSelected(place) {
-    this.setState({ ville: place.formatted_address });
+    //this.setState({ ville: place.formatted_address });
     this.props.selectParam(this.props.keyValue, place);
   }
 
@@ -44,7 +45,7 @@ export class SearchItem extends Component {
 
   render() {
     const { t, item, keyValue } = this.props;
-    const { dropdownOpen, isMounted, ville } = this.state;
+    const { dropdownOpen, isMounted } = this.state;
 
     return (
       <div className="search-col">
@@ -53,28 +54,36 @@ export class SearchItem extends Component {
         </span>
         {item.queryName === "localisation" ? (
           isMounted && (
-            <ReactDependentScript
+/*             <ReactDependentScript
               loadingComponent={<div>Chargement de Google Maps...</div>}
               scripts={[
                 "https://maps.googleapis.com/maps/api/js?key=" +
                   process.env.REACT_APP_GOOGLE_API_KEY +
                   "&v=3.exp&libraries=places&language=fr&region=FR",
               ]}
-            >
+            > */
               <div className="position-relative">
-                <Autocomplete
+                <div
                   className={
-                    "search-btn in-header search-autocomplete " +
+                    "search-btn disabled in-header search-autocomplete " +
                     (item.active ? "active" : "")
                   }
-                  placeholder={item.placeholder}
+                >
+                  {"Bientôt disponible"}
+                </div>
+                {/*                 <Autocomplete
+                  className={
+                    "search-btn disabled in-header search-autocomplete " +
+                    (item.active ? "active" : "")
+                  }
+                  placeholder={"Bientôt disponible"}
                   id="ville"
-                  value={ville}
-                  onChange={this.handleChange}
-                  onPlaceSelected={this.onPlaceSelected}
+                  //value={ville}
+                  //onChange={this.handleChange}
+                  //onPlaceSelected={this.onPlaceSelected}
                   types={["(regions)"]}
                   componentRestrictions={{ country: "fr" }}
-                />
+                /> */}
                 {item.active && (
                   <EVAIcon
                     name="close-circle"
@@ -88,7 +97,7 @@ export class SearchItem extends Component {
                   />
                 )}
               </div>
-            </ReactDependentScript>
+            //</ReactDependentScript>
           )
         ) : (
           <Dropdown
@@ -125,17 +134,39 @@ export class SearchItem extends Component {
               )}
             </DropdownToggle>
             <DropdownMenu>
-              <div className="options-wrapper">
+              <div
+                className={
+                  "options-wrapper" +
+                  (item.queryName === "tags.name" ? " query-tags" : "")
+                }
+              >
                 {item.children.map((subi, idx) => {
                   return (
                     <FSearchBtn
                       key={idx}
                       onClick={() => this.selectOption(subi)}
                       className={
-                        "search-options color" + (subi.short ? "" : " full")
+                        "search-options color" + (subi.short ? "" : " filter")
                       }
                       color={(subi.short || "").replace(/ /g, "-")}
                     >
+                      {subi.icon ?
+                      <div
+                      style={{
+                        display: "flex",
+                        marginRight: 10,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Streamline
+                        name={subi.icon}
+                        stroke={"white"}
+                        width={22}
+                        height={22}
+                      />
+                    </div> : null
+                }
                       {t("Tags." + subi.name, subi.name)}
                     </FSearchBtn>
                   );

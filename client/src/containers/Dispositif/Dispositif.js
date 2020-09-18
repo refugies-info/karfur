@@ -12,7 +12,7 @@ import {
   convertFromRaw,
   ContentState,
 } from "draft-js";
-import { savePDF } from "@progress/kendo-react-pdf";
+import i18n from "../../i18n";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import h2p from "html2plaintext";
@@ -33,7 +33,7 @@ import {
   DispositifCreateModal,
   DemarcheCreateModal,
   DispositifValidateModal,
-  SuggererModal,
+  ReactionModal,
   EnConstructionModal,
   ResponsableModal,
   VarianteCreateModal,
@@ -58,7 +58,6 @@ import { readAudio } from "../Layout/functions";
 import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
 import {
   contenu,
-  lorems,
   menu,
   filtres,
   onBoardSteps,
@@ -181,9 +180,13 @@ export class Dispositif extends Component {
   };
 
   componentDidMount() {
+/*     this.props.history.push({
+      state: {},
+    }); */
     this._isMounted = true;
     this.props.fetchUser();
     this.checkUserFetchedAndInitialize();
+    window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
   }
 
@@ -285,8 +288,8 @@ export class Dispositif extends Component {
             this._isMounted = false;
             return this.props.history.push("/");
           }
-          const disableEdit =
-            dispositif.status !== "Accepté structure" || props.translating;
+
+          const disableEdit = true;
 
           if (dispositif.status === "Brouillon" && this._isMounted) {
             this.initializeTimer(3 * 60 * 1000, () =>
@@ -437,7 +440,6 @@ export class Dispositif extends Component {
               ...x,
               type: x.type || "paragraphe",
               isFakeContent: true,
-              placeholder: (x.tutoriel || {}).contenu,
               content: x.type ? null : x.content,
               editorState: EditorState.createWithContent(
                 ContentState.createFromBlockArray(htmlToDraft("").contentBlocks)
@@ -715,13 +717,15 @@ export class Dispositif extends Component {
               )[0] || {}
             ).offsetHeight + "px";
         }
-        if (parentNode) {
-          parentNode.scrollIntoView({
-            behavior: "smooth",
-            block: "end",
-            inline: "nearest",
-          });
-        }
+
+        // test remove this part
+        // if (parentNode) {
+        //   parentNode.scrollIntoView({
+        //     behavior: "smooth",
+        //     block: "end",
+        //     inline: "nearest",
+        //   });
+        // }
       } catch (e) {
         // eslint-disable-next-line no-console
         console.log(e);
@@ -736,12 +740,19 @@ export class Dispositif extends Component {
     let state = [...this.state.menu];
 
     if (state.length > key) {
+      const content =
+        editorState.getCurrentContent().getPlainText() !== ""
+          ? convertToHTML(customConvertOption)(editorState.getCurrentContent())
+          : "";
+
       if (subkey !== null && state[key].children.length > subkey) {
         state[key].children[subkey].editorState = editorState;
         state[key].children[subkey].isFakeContent = false;
+        state[key].children[subkey].content = content;
       } else {
         state[key].editorState = editorState;
         state[key].isFakeContent = false;
+        state[key].content = content;
       }
       this.setState({ menu: state });
     }
@@ -808,8 +819,6 @@ export class Dispositif extends Component {
         newChild = {
           type: "accordion",
           isFakeContent: true,
-          title: "Un exemple d'accordéon",
-          placeholder: lorems.sousParagraphe,
           content: "",
         };
       } else if (type === "map") {
@@ -824,7 +833,6 @@ export class Dispositif extends Component {
         newChild = {
           title: "Un exemple de paragraphe",
           isFakeContent: true,
-          placeholder: lorems.sousParagraphe,
           content: "",
           type: type,
         };
@@ -869,7 +877,6 @@ export class Dispositif extends Component {
           {
             title: "Nouveau sous-paragraphe",
             type: type,
-            content: lorems.sousParagraphe,
           },
         ];
       }
@@ -1124,7 +1131,7 @@ export class Dispositif extends Component {
     } else {
       this.setState(() => ({
         showSpinnerBookmark: false,
-        showBookmarkModal: false,
+        showBookmarkModal: true,
         isAuth: false,
       }));
     }
@@ -1200,7 +1207,19 @@ export class Dispositif extends Component {
 
   goBack = () => {
     this.props.tracking.trackEvent({ action: "click", label: "goBack" });
-    this.props.history.push("/advanced-search");
+    if (
+      this.props.location.state &&
+      this.props.location.state.previousRoute &&
+      this.props.location.state.previousRoute === "advanced-search"
+    ) {
+      this.props.history.go(-1);
+    } else {
+      this.props.history.push({pathname: "/advanced-search"})
+    }
+  };
+
+  closePdf = () => {
+    this.setState({ showSpinnerPrint: false, printing: false });
   };
 
   createPdf = () => {
@@ -1217,13 +1236,14 @@ export class Dispositif extends Component {
         }),
       }),
     }));
-    this.setState({ uiArray: uiArray, showSpinnerPrint: true }, () => {
-      setTimeout(() => {
-        this.setState(
-          { printing: true },
-          () =>
-            this._isMounted &&
-            savePDF(
+    this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true });
+    /*  this.html2canvas(document.getElementById('contenu-0')).then((canvas) => {
+              const imgData = canvas.toDataURL("image/png");
+              const pdf = new jsPDF();
+              pdf.addImage(imgData, "PNG", 0, 0);
+              pdf.save("download.pdf");
+            }) */
+    /*             savePDF(
               this.newRef.current,
               {
                 fileName:
@@ -1245,14 +1265,16 @@ export class Dispositif extends Component {
                   this._isMounted &&
                     this.setState({ showSpinnerPrint: false, printing: false });
                 }, 3000)
-            )
-        );
-      }, 3000);
-    });
+            ) */
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  editDispositif = (_ = null, disableEdit = false) =>
+  editDispositif = (_ = null, disableEdit = false) => {
+    this.props.history.push({
+      state: {
+        editable: true,
+      },
+    });
     this.setState(
       (pS) => ({
         disableEdit: disableEdit,
@@ -1277,6 +1299,7 @@ export class Dispositif extends Component {
       }),
       () => this.setColors()
     );
+  };
 
   // save reaction and display modal of success
   pushReaction = (modalName = null, fieldName) => {
@@ -1333,7 +1356,11 @@ export class Dispositif extends Component {
     return [creator];
   };
 
-  valider_dispositif = (status = "En attente", auto = false) => {
+  valider_dispositif = (
+    status = "En attente",
+    auto = false,
+    sauvegarde = false
+  ) => {
     if (!auto && !this.verifierDemarche()) {
       return;
     }
@@ -1496,7 +1523,8 @@ export class Dispositif extends Component {
           membre.roles &&
           membre.roles.some(
             (x) => x === "administrateur" || x === "contributeur"
-          )
+          ) &&
+          !sauvegarde
         ) {
           dispositif.status = "En attente admin";
         }
@@ -1557,6 +1585,7 @@ export class Dispositif extends Component {
     });
 
   render() {
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     const { t, translating, windowWidth } = this.props;
     const {
       showModals,
@@ -1579,7 +1608,9 @@ export class Dispositif extends Component {
             ? " edition-mode"
             : translating
             ? " side-view-mode"
-            : printing
+            : printing && isRTL
+            ? " printing-mode print-rtl"
+            : printing && !isRTL
             ? " printing-mode"
             : " reading-mode")
         }
@@ -1766,7 +1797,7 @@ export class Dispositif extends Component {
                     // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
                     (disableEdit || typeContenu !== "demarche") && (
                       // TO DO : connect component to store when store updated after changing infocards
-                      <EnBrefBanner menu={this.state.menu} />
+                      <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
                     )
                   }
                 </Col>
@@ -1783,6 +1814,8 @@ export class Dispositif extends Component {
                       history={this.props.history}
                       toggleTutorielModal={this.toggleTutorielModal}
                       displayTuto={this.state.displayTuto}
+                      updateUIArray={this.updateUIArray}
+                      isRTL={isRTL}
                     />
                   }
                 </Col>
@@ -1810,6 +1843,7 @@ export class Dispositif extends Component {
                       toggleInputBtnClicked={this.toggleInputBtnClicked}
                       handleScrollSpy={this.handleScrollSpy}
                       createPdf={this.createPdf}
+                      closePdf={this.closePdf}
                       newRef={this.newRef}
                       handleChange={this.handleChange}
                       typeContenu={typeContenu}
@@ -1832,6 +1866,7 @@ export class Dispositif extends Component {
                 sm={translating || printing ? "12" : "10"}
                 xs={translating || printing ? "12" : "10"}
                 className="pt-40 col-middle"
+                id={"pageContent"}
               >
                 {disableEdit && !inVariante && (
                   // Part about last update
@@ -1875,7 +1910,6 @@ export class Dispositif extends Component {
                     search={this.state.search}
                   />
                 )}
-
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
                   updateUIArray={this.updateUIArray}
@@ -1907,6 +1941,7 @@ export class Dispositif extends Component {
                   toggleTutorielModal={this.toggleTutorielModal}
                   displayTuto={this.state.displayTuto}
                   addMapBtn={this.state.addMapBtn}
+                  printing={printing}
                   // TO DO : remove spread state
                   {...this.state}
                 />
@@ -1927,7 +1962,7 @@ export class Dispositif extends Component {
                         </span>
                       </div>
                     )}
-                    {this.state.contributeurs.length > 0 && (
+                    {this.state.contributeurs.length > 0 && !printing && (
                       <div className="bottom-wrapper">
                         <ContribCaroussel
                           contributeurs={this.state.contributeurs}
@@ -1972,6 +2007,7 @@ export class Dispositif extends Component {
                   toggleFinalValidation={this.toggleFinalValidation}
                   toggleTutorielModal={this.toggleTutorielModal}
                   displayTuto={this.state.displayTuto}
+                  updateUIArray={this.updateUIArray}
                 />
 
                 {false && <Commentaires />}
@@ -1988,7 +2024,7 @@ export class Dispositif extends Component {
               />
             </Row>
 
-            <SuggererModal
+            <ReactionModal
               showModals={showModals}
               toggleModal={this.toggleModal}
               onChange={this.handleModalChange}
@@ -2023,6 +2059,7 @@ export class Dispositif extends Component {
             />
 
             <BookmarkedModal
+              t={this.props.t}
               success={this.state.isAuth}
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}
@@ -2085,6 +2122,7 @@ export class Dispositif extends Component {
               navigateToProfilePage={() =>
                 this.props.history.push("/backend/user-profile")
               }
+              status={this.state.status}
             />
 
             <NotificationContainer />

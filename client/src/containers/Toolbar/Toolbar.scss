@@ -39,6 +39,20 @@
     background-color: black;
   }
 
+  .advanced-search-btn-menu-rtl {
+    border-width: 0;
+    outline: none;
+    font-size: 16px;
+    color: white;
+    margin-right: 10px;
+    font-weight: 600;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 12px;
+    background-color: black;
+    margin-left: 16px;
+  }
+
   nav {
     height: 100%;
   }
@@ -150,7 +164,15 @@
 }
 
 .toolbar-hidden {
-    top: -100px !important;
+  top: -100px !important;
+}
+
+.isRTL {
+  background: linear-gradient(
+    267.06deg,
+    #ffffff 13.69%,
+    rgba(255, 255, 255, 0) 31.19%
+  );
 }
 
 .Toolbar .dropdown-toggle.btn.btn-transparent:after {

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import {
   ListGroup,
@@ -34,6 +35,7 @@ export interface PropsBeforeInjection {
   toggleInputBtnClicked: () => void;
   handleScrollSpy: () => void;
   createPdf: () => void;
+  closePdf: () => void;
   newRef: any;
   handleChange: () => void;
   typeContenu: string;
@@ -153,13 +155,24 @@ export const LeftSideDispositif = (props: Props) => {
                 style={{ display: "flex", flexDirection: "row" }}
                 onMouseEnter={() => props.updateUIArray(-2)}
               >
-                <FButton
-                  type="theme"
-                  name="external-link-outline"
-                  onClick={onLinkClicked}
-                >
-                  {t("Dispositif.Voir le site", "Voir le site")}
-                </FButton>
+                {props.disableEdit && (
+                  <FButton
+                    type={"theme"}
+                    name="external-link-outline"
+                    onClick={onLinkClicked}
+                  >
+                    {t("Dispositif.Voir le site", "Voir le site")}
+                  </FButton>
+                )}
+                {!props.disableEdit && (
+                  <FButton
+                    type={"edit"}
+                    name="external-link-outline"
+                    onClick={onLinkClicked}
+                  >
+                    {t("Dispositif.Voir le site", "Voir le site")}
+                  </FButton>
+                )}
                 {!props.disableEdit && props.displayTuto && (
                   <FButton
                     type="tuto"
@@ -174,16 +187,23 @@ export const LeftSideDispositif = (props: Props) => {
         )}
         {props.disableEdit && (
           <>
-            <FButton
-              type="light-action"
-              onClick={props.createPdf}
-              name="download-outline"
-            >
-              {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
-              {props.showSpinner && (
-                <Spinner color="light" className="ml-8 small-spinner" />
+            <ReactToPrint
+              onBeforeGetContent={async () => {
+                await props.createPdf();
+              }}
+              onAfterPrint={() => {
+                props.closePdf();
+              }}
+              trigger={() => (
+                <FButton type="light-action" name="download-outline">
+                  {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}
+                  {props.showSpinner && (
+                    <Spinner color="light" className="ml-8 small-spinner" />
+                  )}
+                </FButton>
               )}
-            </FButton>
+              content={() => props.newRef.current}
+            />
             <FButton
               type="light-action"
               href={
@@ -208,6 +228,12 @@ export const LeftSideDispositif = (props: Props) => {
               {t("Dispositif.Envoyer par SMS", "Envoyer par SMS")}
             </FButton>
             <ReactToPrint
+              onBeforeGetContent={async () => {
+                await props.createPdf();
+              }}
+              onAfterPrint={() => {
+                props.closePdf();
+              }}
               trigger={() => (
                 <FButton type="light-action" name="printer-outline">
                   {t("Dispositif.Imprimer", "Imprimer")}

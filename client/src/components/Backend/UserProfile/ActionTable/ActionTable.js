@@ -100,14 +100,11 @@ const actionTable = (props) => {
               >
                 <FButton
                   type="light-action"
-                  name="archive-outline"
+                  name="trash-2-outline"
                   fill={variables.noir}
                 />
               </td>
-              <td
-                className="align-middle pointer fit-content"
-                onClick={() => props.showSuggestion(element)}
-              >
+              <td className="align-middle pointer fit-content">
                 <FButton
                   type="light-action"
                   name="eye-outline"
@@ -168,7 +165,7 @@ const actionTable = (props) => {
                     "Tables.no worries",
                     "Ne vous inquiétez pas, ça ne va pas tarder"
                   )}
-                  ... ;)
+                  {"."}
                 </div>
               </div>
             </div>
@@ -176,9 +173,8 @@ const actionTable = (props) => {
         </div>
       </div>
     );
-  } 
-    return table;
-  
+  }
+  return table;
 };
 
 export default withTranslation()(actionTable);

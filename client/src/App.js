@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
-import Loadable from "react-loadable";
 import { Provider } from "react-redux";
 import track from "react-tracking";
 import { Spinner } from "reactstrap";
@@ -23,39 +22,60 @@ const loading = () => (
     <Spinner color="success" className="waiting-spinner" />
   </div>
 );
-// const chargement = () => <div>Chargement</div>
 
-// Containers
-const Layout = Loadable({
-  loader: () => import("./containers/Layout/Layout"),
-  loading,
-});
+const LayoutComponent = React.lazy(() => import("./containers/Layout/Layout"));
 
-// Pages
-const Login = Loadable({
-  loader: () => import("./containers/Login/Login"),
-  loading,
-});
+const Layout = props => (
+  <React.Suspense fallback={loading()}>
+    <LayoutComponent {...props} />
+  </React.Suspense>
+);
 
-const Register = Loadable({
-  loader: () => import("./containers/Register/Register"),
-  loading,
-});
 
-const Page404 = Loadable({
-  loader: () => import("./views/Pages/Page404"),
-  loading,
-});
+const LoginComponent = React.lazy(() => import("./containers/Login/Login"));
 
-const Page500 = Loadable({
-  loader: () => import("./views/Pages/Page500"),
-  loading,
-});
+const Login = props => (
+  <React.Suspense fallback={loading()}>
+    <LoginComponent {...props} />
+  </React.Suspense>
+);
 
-const Reset = Loadable({
-  loader: () => import("./containers/Reset/Reset"),
-  loading,
-});
+
+const RegisterComponent = React.lazy(() => import("./containers/Register/Register"));
+
+const Register = props => (
+  <React.Suspense fallback={loading()}>
+    <RegisterComponent {...props} />
+  </React.Suspense>
+);
+
+
+
+const Page404Component = React.lazy(() => import("./views/Pages/Page404"));
+
+const Page404 = props => (
+  <React.Suspense fallback={loading()}>
+    <Page404Component {...props} />
+  </React.Suspense>
+);
+
+
+const Page500Component = React.lazy(() => import("./views/Pages/Page500"));
+
+const Page500 = props => (
+  <React.Suspense fallback={loading()}>
+    <Page500Component {...props} />
+  </React.Suspense>
+);
+
+
+const ResetComponent = React.lazy(() => import("./containers/Reset/Reset"));
+
+const Reset = props => (
+  <React.Suspense fallback={loading()}>
+    <ResetComponent {...props} />
+  </React.Suspense>
+);
 
 const mountId = uniqid("mount_");
 

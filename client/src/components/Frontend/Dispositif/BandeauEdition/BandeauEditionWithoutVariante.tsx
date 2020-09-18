@@ -134,6 +134,19 @@ const getInfoText = (step: number, displayTuto: boolean) => {
       subtitle: "Expliquez votre dispositif en deux paragraphes synthétiques.",
     };
 
+  if (step === -6)
+    return {
+      title: "Thèmes",
+      subtitle: "Choisissez jusqu'à trois thèmes décrivant votre dispositif.",
+    };
+
+  if (step === -7)
+    return {
+      title: "Partenaires",
+      subtitle:
+        "Indiquez la structure responsable du dispositif ainsi que d'éventuelles structures associées.",
+    };
+
   return initialText;
 };
 export const BandeauEditionWithoutVariante = (props: Props) => {
@@ -141,7 +154,7 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
   return (
     <div className={"bandeau-edition" + (props.visible ? "" : " go-to-top")}>
       <div className="dashed-panel no-radius" />
-      <MainContainer visible={props.visible} yellow={props.displayTuto && props.tKeyValue !== -1}>
+      <MainContainer yellow={props.displayTuto && props.tKeyValue !== -1}>
         <FirstGroupContainer>
           <ContentTypeContainer>
             {jsUcfirst(props.typeContenu)}

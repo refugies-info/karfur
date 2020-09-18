@@ -11,6 +11,7 @@ import {
 } from "reactstrap";
 import { withTranslation } from "react-i18next";
 import { colorAvancement } from "../../Functions/ColorFunctions";
+import { NavHashLink } from "react-router-hash-link";
 
 import "./LanguageModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
@@ -18,6 +19,12 @@ import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { Event, initGA } from "../../../tracking/dispatch";
 
 const languageModal = (props) => {
+  const getAvancementTrad = (element) => {
+    if (props.languages[element].i18nCode === "fr") return 1;
+
+    return props.languages[element].avancementTrad;
+  };
+
   const { t } = props;
   // const languages = (props.languages || []).map(x => ({...x, avancement: (x.avancement + dispositifs.find(y =>)) / 2}))
   if (props.show) {
@@ -58,10 +65,7 @@ const languageModal = (props) => {
                         className="vertical-center"
                       >
                         <b>
-                          {t(
-                            "Homepage.langue indispo",
-                            "Votre langue n’est pas disponible ?"
-                          )}
+                          {t("Homepage.traduire", "Aidez-nous à traduire !")}
                         </b>
                       </Col>
                       <Col
@@ -73,13 +77,12 @@ const languageModal = (props) => {
                         className="button-col"
                       >
                         <FButton
-                          tag={"a"}
-                          href="https://refugies.canny.io/"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          tag={NavHashLink}
+                          to="/comment-contribuer#traduire"
+                          onClick={props.toggle}
                           type="outline"
                         >
-                          {t("Homepage.Demander", "Demander")}
+                          {t("Homepage.Je traduis", "Je traduis")}
                         </FButton>
                       </Col>
                     </Row>
@@ -130,12 +133,21 @@ const languageModal = (props) => {
                       className="progress-col"
                     >
                       <Progress
-                        color={colorAvancement(
-                          props.languages[element].avancement
-                        )}
-                        value={props.languages[element].avancement * 100}
+                        color={colorAvancement(getAvancementTrad(element))}
+                        value={getAvancementTrad(element) * 100}
                       />
-                      {/* <span>{Math.round(props.languages[element].avancement*100 || 0,0) + ' %'}</span> */}
+                      <span
+                        className={
+                          "text-" + colorAvancement(getAvancementTrad(element))
+                        }
+                      >
+                        <b>
+                          {Math.round(
+                            getAvancementTrad(element) * 100 || 0,
+                            0
+                          ) + " %"}
+                        </b>
+                      </span>
                     </Col>
                     <Col
                       xl="1"

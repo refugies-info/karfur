@@ -87,12 +87,12 @@ export class Footer extends Component {
               </Col>
               <Col xl="4" lg="4" md="4" sm="4" xs="12" className="mt-10">
                 <div className="lien-footer">
-                  <NavHashLink to="/qui-sommes-nous#hero">
+                  <NavHashLink to="/qui-sommes-nous">
                     {t("Qui sommes-nous ?", "Qui sommes-nous ?")}
                   </NavHashLink>
                 </div>
                 <div className="lien-footer">
-                  <NavHashLink to="/comment-contribuer#hero">
+                  <NavHashLink to="/comment-contribuer">
                     {t("Comment contribuer ?", "Comment contribuer ?")}
                   </NavHashLink>
                 </div>

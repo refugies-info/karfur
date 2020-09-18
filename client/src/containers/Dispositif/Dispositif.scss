@@ -4,6 +4,17 @@
 $imgWidth: 300px;
 $imgHeight: 350px;
 
+
+@media print {
+  .print-rtl {
+    direction: rtl;
+  }
+  .page-break {
+    display: block;
+    page-break-before: always;
+  }
+}
+
 .dispositif.vue {
   flex: 1 1;
   position: relative;
@@ -16,6 +27,14 @@ $imgHeight: 350px;
     width: 0px; /* remove scrollbar space */
     background: transparent; /* optional: just make scrollbar invisible */
   }
+
+  &.printing-mode {
+    padding: 50px;
+  }
+
+/*   .print-rtl {
+    direction: rtl;
+  } */
 
   .banniere-dispo {
     margin-top: -75px;
@@ -556,6 +575,10 @@ $imgHeight: 350px;
           .text-span {
             margin-left: 8px;
           }
+
+          .text-span-rtl {
+            margin-right: 8px;
+          }
         }
       }
     }
@@ -646,6 +669,11 @@ $imgHeight: 350px;
       .accordion-expand {
         border: 2px solid #ffffff;
         box-sizing: border-box;
+      }
+      [contenteditable="true"]:empty:before {
+        content: attr(placeholder);
+        display: block;
+        color: #828282;
       }
     }
 
@@ -746,6 +774,10 @@ $imgHeight: 350px;
       width: 116%;
     }
   }
+
+/*   .print-rtl {
+    direction: rtl;
+  } */
 
   .print-buttons {
     display: flex;

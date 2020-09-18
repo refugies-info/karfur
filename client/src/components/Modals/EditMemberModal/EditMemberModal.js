@@ -128,6 +128,8 @@ class EditMemberModal extends Component {
         structure = {
           _id: this.props.structure._id,
           $pull: { membres: { userId: this.props.selected._id } },
+          deleteUserFromStructure: true,
+          userId: this.props.selected._id,
         };
       } else if (
         ["membre", "contributeur", "administrateur"].includes(selectedRole)

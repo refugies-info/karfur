@@ -417,11 +417,40 @@ body .figma-btn {
     }
   }
 
+  &.edit {
+    background: #f9ef99;
+    color: $noir;
+    svg {
+      fill: $noir;
+    }
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
   &.precision {
     background: $attention;
     color: $darkColor;
     svg {
       fill: $darkColor;
+    }
+  }
+
+  &.fill-dark {
+    background: $noir;
+    color: $blancSimple;
+    svg {
+      fill: $blancSimple;
+    }
+
+    &:hover {
+      background: #ffffff;
+      border: 1px solid #000000;
+      color: $noir;
+
+      svg {
+        fill: $noir;
+      }
     }
   }
 }
