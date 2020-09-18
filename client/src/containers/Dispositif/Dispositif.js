@@ -180,7 +180,7 @@ export class Dispositif extends Component {
   };
 
   componentDidMount() {
-/*     this.props.history.push({
+    /*     this.props.history.push({
       state: {},
     }); */
     this._isMounted = true;
@@ -744,7 +744,6 @@ export class Dispositif extends Component {
         editorState.getCurrentContent().getPlainText() !== ""
           ? convertToHTML(customConvertOption)(editorState.getCurrentContent())
           : "";
-
       if (subkey !== null && state[key].children.length > subkey) {
         state[key].children[subkey].editorState = editorState;
         state[key].children[subkey].isFakeContent = false;
@@ -1214,7 +1213,7 @@ export class Dispositif extends Component {
     ) {
       this.props.history.go(-1);
     } else {
-      this.props.history.push({pathname: "/advanced-search"})
+      this.props.history.push({ pathname: "/advanced-search" });
     }
   };
 

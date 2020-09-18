@@ -79,6 +79,7 @@ async function add_dispositif(req, res) {
     let dispositif = req.body;
     dispositif.status = dispositif.status || "En attente";
     if (dispositif.contenu) {
+      // transform dispositif.contenu in json
       dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);
     }
     //Si le dispositif existe déjà on fait juste un update
@@ -93,6 +94,7 @@ async function add_dispositif(req, res) {
         // We fetch the French key to know the original text, turnToLocalized takes a dispositif with multiple translated language keys and returns one specified language
         // eslint-disable-next-line no-undef
         dispositifFr = await turnToLocalizedNew(originalDis, "fr");
+
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (let [key, value] of Object.entries(originalDis.avancement)) {
           if (key !== "fr") {
