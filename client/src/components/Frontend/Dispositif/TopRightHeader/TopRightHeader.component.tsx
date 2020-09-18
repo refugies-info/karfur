@@ -19,6 +19,7 @@ export interface PropsBeforeInjection {
   translating: boolean;
   status: string;
   typeContenu: "dispositif" | "demarche";
+  langue: string;
 }
 
 export class TopRightHeader extends React.Component<Props> {
@@ -41,7 +42,6 @@ export class TopRightHeader extends React.Component<Props> {
 
   render() {
     const props = this.props;
-
     const isAuthor =
       this.props.user &&
       this.props.selectedDispositif &&
@@ -115,10 +115,12 @@ export class TopRightHeader extends React.Component<Props> {
     } else if (props.disableEdit) {
       // when props.disableEdit = true, favorite button and modify button (if user authorized)
       // user can modify a dispositif if he is admin or contributor of the mainsponsor of the dispositif OR if he is admin
-      // 110920 : remove the possibility for the author to modify the dispositif.
+      // 160920 : or autor but not when dispo if pubié, en attente admin or accepté structure
+      // when site is not in french, cannot modify the text
       return (
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right-edition">
           {!props.translating &&
+            props.langue === "fr" &&
             (userIsAuthorAndCanModify || props.admin || userIsSponsor) && (
               <FButton
                 className="dark"

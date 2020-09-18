@@ -1706,6 +1706,7 @@ export class Dispositif extends Component {
                     translating={translating}
                     status={this.state.status}
                     typeContenu={typeContenu}
+                    langue={i18n.language}
                   />
                 )}
               </Row>
