@@ -4,7 +4,6 @@
 $imgWidth: 300px;
 $imgHeight: 350px;
 
-
 @media print {
   .print-rtl {
     direction: rtl;
@@ -32,7 +31,7 @@ $imgHeight: 350px;
     padding: 50px;
   }
 
-/*   .print-rtl {
+  /*   .print-rtl {
     direction: rtl;
   } */
 
@@ -775,7 +774,7 @@ $imgHeight: 350px;
     }
   }
 
-/*   .print-rtl {
+  /*   .print-rtl {
     direction: rtl;
   } */
 
@@ -885,6 +884,9 @@ $imgHeight: 350px;
     outline: none;
     min-height: 38px;
     padding-right: 40px;
+    padding-left: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 
   h1 div[contenteditable="true"] {
