@@ -32,6 +32,7 @@ import { filtres_contenu, tris } from "./data";
 import { breakpoints } from "utils/breakpoints.js";
 import Streamline from "../../assets/streamline";
 import FButton from "../../components/FigmaUI/FButton/FButton";
+import TagButton from "../../components/FigmaUI/TagButton/TagButton";
 import NoResultsBackgroundImage from "../../assets/no_results.svg";
 import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
@@ -81,6 +82,54 @@ const NoResultsText = styled.p`
   max-width: 520px;
 `;
 
+const SearchToggle = styled.div`
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18px;
+  border: 0.5px solid;
+  border-color: ${(props) => (props.visible ? "transparent" : "black")};
+  background-color: ${(props) => (props.visible ? "#828282" : "white")};
+  align-self: center;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(80%);
+  }
+`;
+
+const FilterBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #828282;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  border-radius: 0px 0px 8px 8px;
+  padding: 5px 0px;
+  width: 80%;
+  display: flex;
+  z-index: 2;
+  top: ${(props) =>
+    props.visibleTop && props.visibleSearch
+      ? "160px"
+      : !props.visibleTop && props.visibleSearch
+      ? "88px"
+      : props.visibleTop && !props.visibleSearch
+      ? "88px"
+      : "-15px"};
+  transition: top 0.6s;
+  height: 80px;
+`;
+
+const FilterTitle = styled.p`
+  size: 18px;
+  font-weight: bold;
+  color: white;
+`;
+
 let user = { _id: null, cookies: {} };
 export class AdvancedSearch extends Component {
   state = {
@@ -99,15 +148,28 @@ export class AdvancedSearch extends Component {
     dropdownOpenTri: false,
     dropdownOpenFiltre: false,
     showBookmarkModal: false,
+    searchToggleVisible: true,
+    visible: true,
+  };
+
+  handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    //const visible = prevScrollpos > currentScrollPos;
+    const visible = currentScrollPos < 70;
+
+    this.setState({
+      visible,
+    });
   };
 
   componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
     this.retrieveCookies();
     let tag = querySearch(this.props.location.search).tag;
     let bottomValue = querySearch(this.props.location.search).bottomValue;
     let topValue = querySearch(this.props.location.search).topValue;
     let niveauFrancais = querySearch(this.props.location.search).niveauFrancais;
-    let niveauFrancaisObj = this.state.recherche[3].children.find(
+    let niveauFrancaisObj = this.state.recherche[2].children.find(
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
@@ -124,17 +186,17 @@ export class AdvancedSearch extends Component {
                 .short;
           }
           if (topValue && bottomValue) {
-            draft.recherche[2].value = initial_data[2].children.find(
+            draft.recherche[1].value = initial_data[2].children.find(
               (item) => item.topValue === parseInt(topValue, 10)
             ).name;
-            draft.recherche[2].query = draft.recherche[2].value;
-            draft.recherche[2].active = true;
+            draft.recherche[1].query = draft.recherche[2].value;
+            draft.recherche[1].active = true;
           }
           if (niveauFrancais) {
-            draft.recherche[3].name = decodeURIComponent(niveauFrancais);
-            draft.recherche[3].value = decodeURIComponent(niveauFrancais);
-            draft.recherche[3].query = niveauFrancaisObj.query;
-            draft.recherche[3].active = true;
+            draft.recherche[2].name = decodeURIComponent(niveauFrancais);
+            draft.recherche[2].value = decodeURIComponent(niveauFrancais);
+            draft.recherche[2].query = niveauFrancaisObj.query;
+            draft.recherche[2].active = true;
           }
         }),
         () =>
@@ -159,6 +221,10 @@ export class AdvancedSearch extends Component {
     }
     this._initializeEvents();
     window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   // eslint-disable-next-line react/no-deprecated
@@ -195,13 +261,13 @@ export class AdvancedSearch extends Component {
       let newQueryParam = {
         tag: query["tags.name"] ? query["tags.name"] : undefined,
         bottomValue: query["audienceAge.bottomValue"]
-          ? this.state.recherche[2].bottomValue
+          ? this.state.recherche[1].bottomValue
           : undefined,
         topValue: query["audienceAge.topValue"]
-          ? this.state.recherche[2].topValue
+          ? this.state.recherche[1].topValue
           : undefined,
         niveauFrancais: query["niveauFrancais"]
-          ? this.state.recherche[3].value
+          ? this.state.recherche[2].value
           : undefined,
       };
 
@@ -522,6 +588,8 @@ export class AdvancedSearch extends Component {
     this.setState((prevState) => ({
       showBookmarkModal: !prevState.showBookmarkModal,
     }));
+  toggleSearch = () =>
+    this.setState({ searchToggleVisible: !this.state.searchToggleVisible });
 
   render() {
     let {
@@ -548,7 +616,11 @@ export class AdvancedSearch extends Component {
 
     return (
       <div className="animated fadeIn advanced-search">
-        <div className="search-bar">
+        <div
+          className={
+            "search-bar" + (this.state.visible ? "" : " search-bar-hidden")
+          }
+        >
           {recherche
             .filter((_, i) => displayAll || i === 0)
             .map((d, i) => (
@@ -560,6 +632,19 @@ export class AdvancedSearch extends Component {
                 desactiver={this.desactiver}
               />
             ))}
+          <SearchToggle
+            onClick={this.toggleSearch}
+            visible={this.state.searchToggleVisible}
+          >
+            {this.state.searchToggleVisible ? (
+              <EVAIcon name="arrow-ios-upward-outline" fill={variables.blanc} />
+            ) : (
+              <EVAIcon
+                name="arrow-ios-downward-outline"
+                fill={variables.noir}
+              />
+            )}
+          </SearchToggle>
           <ResponsiveFooter
             {...this.state}
             show={windowWidth < breakpoints.smLimit}
@@ -571,8 +656,30 @@ export class AdvancedSearch extends Component {
             t={t}
           />
         </div>
+        <FilterBar
+          visibleTop={this.state.visible}
+          visibleSearch={this.state.searchToggleVisible}
+        >
+          <FilterTitle>Filtrer Par</FilterTitle>
+          {filtres_contenu.map((filtre, idx) => (
+            <TagButton filter onClick={() => this.filter_content(filtre)}>
+              {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
+            </TagButton>
+          ))}
+          <TagButton filter>{"Traduction"}</TagButton>
+          <FilterTitle>Trier Par</FilterTitle>
+          {tris.map((tri, idx) => (
+            <TagButton filter onClick={() => this.reorder(tri)}>
+              {t("AdvancedSearch." + tri.name, tri.name)}
+            </TagButton>
+          ))}
+          <FilterTitle>résultats</FilterTitle>
+          <FButton type="white" name="file-add-outline" onClick={this.writeNew}>
+            Rédiger
+          </FButton>
+        </FilterBar>
         <Row className="search-wrapper">
-          {windowWidth >= breakpoints.smLimit && (
+          {/* {windowWidth >= breakpoints.smLimit && (
             <Col xl="2" lg="2" md="2" sm="2" xs="2" className="mt-250 side-col">
               {windowWidth >= breakpoints.desktopUp && (
                 <EVAIcon
@@ -603,7 +710,7 @@ export class AdvancedSearch extends Component {
                 </div>
               </div>
             </Col>
-          )}
+          )} */}
           <Col
             xl="8"
             lg="8"
@@ -660,10 +767,10 @@ export class AdvancedSearch extends Component {
                         <NavLink
                           to={{
                             pathname:
-                            "/" +
-                            (dispositif.typeContenu || "dispositif") +
-                            (dispositif._id ? "/" + dispositif._id : ""),
-                            state: {previousRoute: "advanced-search"}
+                              "/" +
+                              (dispositif.typeContenu || "dispositif") +
+                              (dispositif._id ? "/" + dispositif._id : ""),
+                            state: { previousRoute: "advanced-search" },
                           }}
                         >
                           <CustomCard
@@ -796,7 +903,7 @@ export class AdvancedSearch extends Component {
               </Row>
             </div>
           </Col>
-          {windowWidth >= breakpoints.smLimit && (
+          {/*           {windowWidth >= breakpoints.smLimit && (
             <Col xl="2" lg="2" md="2" sm="2" xs="2" className="mt-250 side-col">
               {windowWidth >= breakpoints.desktopUp && (
                 <EVAIcon
@@ -828,7 +935,7 @@ export class AdvancedSearch extends Component {
                 </div>
               </div>
             </Col>
-          )}
+          )} */}
         </Row>
         <BookmarkedModal
           t={this.props.t}

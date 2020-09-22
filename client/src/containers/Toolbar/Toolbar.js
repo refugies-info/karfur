@@ -70,6 +70,7 @@ export class Toolbar extends React.Component {
         this.props.location.state &&
         this.props.location.state.editable) ||
       this.props.location.pathname.includes("user-profile") ||
+      this.props.location.pathname.includes("advanced-search") ||
       this.props.location.pathname.includes("qui-sommes-nous") ||
       this.props.location.pathname === "/dispositif" ||
       this.props.location.pathname === "/demarche"

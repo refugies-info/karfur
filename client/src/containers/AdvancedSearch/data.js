@@ -25,12 +25,7 @@ const initial_data = [
     queryName: "tags.name",
     children: filtres.tags,
   },
-  {
-    title: "J'habite à",
-    value: null,
-    placeholder: "ma ville",
-    queryName: "localisation",
-  },
+
   {
     title: "J'ai",
     value: null,
@@ -85,6 +80,12 @@ const initial_data = [
       },
     ],
   },
+  {
+    title: "J'habite à",
+    value: null,
+    placeholder: "ma ville",
+    queryName: "localisation",
+  },
 ];
 
 const filtres_contenu = [
@@ -98,9 +99,10 @@ const filtres_contenu = [
 ];
 
 const tris = [
-  { name: "A > Z", value: "titreInformatif" },
+ // { name: "A > Z", value: "titreInformatif" },
   { name: "Derniers ajouts", value: "created_at" },
   { name: "Les plus visités", value: "nbVues" },
+  { name: "Par thème", value: "titreInformatif" },
 ];
 
 export { initial_data, filtres_contenu, tris };
