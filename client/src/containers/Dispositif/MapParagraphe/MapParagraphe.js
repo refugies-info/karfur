@@ -92,9 +92,7 @@ class MapParagraphe extends PureComponent {
     }
     _.set(tempMarkerInfo, "1.value", nextMarker.address);
     _.set(tempMarkerInfo, "2.value", nextMarker.vicinity);
-    if (nextMarker.formatted_phone_number) {
-      _.set(tempMarkerInfo, "5.value", nextMarker.formatted_phone_number);
-    }
+
     this.setState({
       center: nextCenter,
       markers: [...this.state.markers, nextMarker],
