@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment/min/moment-with-locales";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
@@ -139,19 +138,4 @@ export const fakeContribution = {
   avancement: 1,
   status: "Brouillon",
   creatorId: "unidentifiantquelconque",
-};
-
-export const fakeMembre = {
-  _id: "unidentifiantquelconque",
-  username: "Simon Karleskind",
-  picture: {
-    imgId: "5ced0172d97ab7f4c6714879",
-    public_id: "pictures/zgjpujxzk9kxoqylt93n",
-    secure_url:
-      "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1559036274/pictures/zgjpujxzk9kxoqylt93n.jpg",
-  },
-  role: "Contributeur",
-  last_connected: moment().add(-1, "month"),
-  created_at: moment().add(-3, "month"),
-  nb_contenu: 3,
 };
