@@ -138,8 +138,8 @@ export class AdvancedSearch extends Component {
     dispositifs: [],
     nbVues: [],
     pinned: [],
-    activeFiltre: "",
-    activeTri: "",
+    //activeFiltre: "",
+    //activeTri: "",
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
@@ -597,8 +597,8 @@ export class AdvancedSearch extends Component {
       dispositifs,
       pinned,
       showSpinner,
-      activeFiltre,
-      activeTri,
+      //activeFiltre,
+      //activeTri,
       displayAll,
     } = this.state;
     // eslint-disable-next-line
@@ -662,14 +662,14 @@ export class AdvancedSearch extends Component {
         >
           <FilterTitle>Filtrer Par</FilterTitle>
           {filtres_contenu.map((filtre, idx) => (
-            <TagButton filter onClick={() => this.filter_content(filtre)}>
+            <TagButton key={idx} filter onClick={() => this.filter_content(filtre)}>
               {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
             </TagButton>
           ))}
           <TagButton filter>{"Traduction"}</TagButton>
           <FilterTitle>Trier Par</FilterTitle>
           {tris.map((tri, idx) => (
-            <TagButton filter onClick={() => this.reorder(tri)}>
+            <TagButton key={idx} filter onClick={() => this.reorder(tri)}>
               {t("AdvancedSearch." + tri.name, tri.name)}
             </TagButton>
           ))}
