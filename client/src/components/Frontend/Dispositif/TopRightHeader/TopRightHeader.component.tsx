@@ -73,7 +73,7 @@ export class TopRightHeader extends React.Component<Props> {
         : false;
 
     // user can validate a dispositif if he is admin or contributor of the mainsponsor of the dispositif
-    if (props.status === "En attente" && userIsSponsor) {
+    if (props.status === "En attente" && (userIsSponsor || props.admin)) {
       // top right part of dispositif when user is sponsor and dispo is 'En attente'
       return (
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">

@@ -1518,11 +1518,12 @@ export class Dispositif extends Component {
               (x) => x.userId === this.props.userId
             );
         if (
-          membre &&
-          membre.roles &&
-          membre.roles.some(
-            (x) => x === "administrateur" || x === "contributeur"
-          ) &&
+          ((membre &&
+            membre.roles &&
+            membre.roles.some(
+              (x) => x === "administrateur" || x === "contributeur"
+            )) ||
+            this.props.admin) &&
           !sauvegarde
         ) {
           dispositif.status = "En attente admin";
