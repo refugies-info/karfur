@@ -175,11 +175,11 @@ export class SearchItem extends Component {
             </DropdownMenu>
           </Dropdown>
         )}
-        {item.title2 && (
+        {/* {item.title2 && (
           <span className="ml-10">
             {t("SearchItem." + item.title2, item.title2)}
           </span>
-        )}
+        )} */}
       </div>
     );
   }
