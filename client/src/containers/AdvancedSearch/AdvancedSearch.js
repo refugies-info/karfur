@@ -181,7 +181,7 @@ export class AdvancedSearch extends Component {
             draft.recherche[0].value = decodeURIComponent(tag);
             draft.recherche[0].active = true;
             draft.recherche[0].short =
-              filtres.tag &&
+              filtres.tags &&
               filtres.tags.find((x) => x.name === decodeURIComponent(tag))
                 .short;
           }
