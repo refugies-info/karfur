@@ -1,7 +1,7 @@
 const csv = require("csvtojson");
 const fs = require("fs");
 
-const csvPath = "./csvAfterTrad/Traduction-";
+const csvPath = "./csvAfterTrad/traductions";
 
 const convertCsvToJson = async (language) => {
   const jsonArray = await csv().fromFile(csvPath + language + ".csv");
@@ -29,7 +29,10 @@ const convertCsvToJson = async (language) => {
 
 const main = async () => {
   // langues : en, ar, fa, ps, ru, ti-ER
+  await convertCsvToJson("ar");
+  await convertCsvToJson("ru");
   await convertCsvToJson("en");
+  await convertCsvToJson("ti-ER");
 };
 
 main();
