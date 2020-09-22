@@ -29,7 +29,7 @@ import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { filtres } from "../Dispositif/data";
 import { filtres_contenu, tris } from "./data";
-import { breakpoints } from "utils/breakpoints.js";
+//import { breakpoints } from "utils/breakpoints.js";
 import Streamline from "../../assets/streamline";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import TagButton from "../../components/FigmaUI/TagButton/TagButton";
@@ -114,11 +114,11 @@ const FilterBar = styled.div`
   z-index: 2;
   top: ${(props) =>
     props.visibleTop && props.visibleSearch
-      ? "160px"
+      ? "150px"
       : !props.visibleTop && props.visibleSearch
-      ? "88px"
+      ? "75px"
       : props.visibleTop && !props.visibleSearch
-      ? "88px"
+      ? "75px"
       : "-15px"};
   transition: top 0.6s;
   height: 80px;
@@ -152,18 +152,11 @@ export class AdvancedSearch extends Component {
     visible: true,
   };
 
-  handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
-    //const visible = prevScrollpos > currentScrollPos;
-    const visible = currentScrollPos < 70;
 
-    this.setState({
-      visible,
-    });
-  };
 
   componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("scroll", this.handleScrolling);
+    this._isMounted = true
     this.retrieveCookies();
     let tag = querySearch(this.props.location.search).tag;
     let bottomValue = querySearch(this.props.location.search).bottomValue;
@@ -186,10 +179,10 @@ export class AdvancedSearch extends Component {
                 .short;
           }
           if (topValue && bottomValue) {
-            draft.recherche[1].value = initial_data[2].children.find(
+            draft.recherche[1].value = initial_data[1].children.find(
               (item) => item.topValue === parseInt(topValue, 10)
             ).name;
-            draft.recherche[1].query = draft.recherche[2].value;
+            draft.recherche[1].query = draft.recherche[1].value;
             draft.recherche[1].active = true;
           }
           if (niveauFrancais) {
@@ -220,11 +213,12 @@ export class AdvancedSearch extends Component {
       this.queryDispositifs();
     }
     this._initializeEvents();
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("scroll", this.handleScrolling);
+    this._isMounted = false
   }
 
   // eslint-disable-next-line react/no-deprecated
@@ -233,6 +227,16 @@ export class AdvancedSearch extends Component {
       this.queryDispositifs(null, nextProps);
     }
   }
+
+  handleScrolling = () => {
+    const currentScrollPos = window.pageYOffset;
+    //const visible = prevScrollpos > currentScrollPos;
+    const visible = currentScrollPos < 70;
+
+    this.setState({
+      visible,
+    });
+  }; 
 
   queryDispositifs = (Nquery = null, props = this.props) => {
     this.setState({ showSpinner: true });
@@ -588,8 +592,8 @@ export class AdvancedSearch extends Component {
     this.setState((prevState) => ({
       showBookmarkModal: !prevState.showBookmarkModal,
     }));
-  toggleSearch = () =>
-    this.setState({ searchToggleVisible: !this.state.searchToggleVisible });
+  toggleSearch = () => {
+    this.setState({ searchToggleVisible: !this.state.searchToggleVisible })};
 
   render() {
     let {
@@ -603,7 +607,7 @@ export class AdvancedSearch extends Component {
     } = this.state;
     // eslint-disable-next-line
     const { t, windowWidth, dispositifs: storeDispo } = this.props;
-
+/* 
     if (recherche[0].active) {
       dispositifs = dispositifs.sort((a, b) =>
         _.get(a, "tags.0.name", {}) === recherche[0].query
@@ -612,7 +616,7 @@ export class AdvancedSearch extends Component {
           ? 1
           : 0
       );
-    }
+    } */
 
     return (
       <div className="animated fadeIn advanced-search">
@@ -633,7 +637,7 @@ export class AdvancedSearch extends Component {
               />
             ))}
           <SearchToggle
-            onClick={this.toggleSearch}
+            onClick={() => this.toggleSearch()}
             visible={this.state.searchToggleVisible}
           >
             {this.state.searchToggleVisible ? (
@@ -647,7 +651,7 @@ export class AdvancedSearch extends Component {
           </SearchToggle>
           <ResponsiveFooter
             {...this.state}
-            show={windowWidth < breakpoints.smLimit}
+            show={false}
             toggleDropdownTri={this.toggleDropdownTri}
             toggleDropdownFiltre={this.toggleDropdownFiltre}
             reorder={this.reorder}
@@ -656,7 +660,7 @@ export class AdvancedSearch extends Component {
             t={t}
           />
         </div>
-        <FilterBar
+         <FilterBar
           visibleTop={this.state.visible}
           visibleSearch={this.state.searchToggleVisible}
         >
@@ -666,7 +670,6 @@ export class AdvancedSearch extends Component {
               {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
             </TagButton>
           ))}
-          <TagButton filter>{"Traduction"}</TagButton>
           <FilterTitle>Trier Par</FilterTitle>
           {tris.map((tri, idx) => (
             <TagButton key={idx} filter onClick={() => this.reorder(tri)}>
@@ -677,7 +680,7 @@ export class AdvancedSearch extends Component {
           <FButton type="white" name="file-add-outline" onClick={this.writeNew}>
             Rédiger
           </FButton>
-        </FilterBar>
+        </FilterBar> 
         <Row className="search-wrapper">
           {/* {windowWidth >= breakpoints.smLimit && (
             <Col xl="2" lg="2" md="2" sm="2" xs="2" className="mt-250 side-col">
@@ -717,7 +720,7 @@ export class AdvancedSearch extends Component {
             md="8"
             sm="8"
             xs="12"
-            className="mt-250 central-col"
+            className="mt-250"
           >
             <div className="results-wrapper">
               <Row>

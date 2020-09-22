@@ -65,7 +65,7 @@ export class SearchItem extends Component {
               <div className="position-relative">
                 <div
                   className={
-                    "search-btn disabled in-header search-autocomplete " +
+                    "search-btn search-filter disabled in-header search-autocomplete " +
                     (item.active ? "active" : "")
                   }
                 >
@@ -84,7 +84,7 @@ export class SearchItem extends Component {
                   types={["(regions)"]}
                   componentRestrictions={{ country: "fr" }}
                 /> */}
-                {item.active && (
+                {item.active &&  (
                   <EVAIcon
                     name="close-circle"
                     size="xlarge"
@@ -106,32 +106,58 @@ export class SearchItem extends Component {
             className="display-inline-block"
           >
             <DropdownToggle
-              caret
+              caret={false}
               tag="div"
-              data-toggle="dropdown"
+              //data-toggle="none"
+              aria-haspopup={false}
               aria-expanded={dropdownOpen}
               className={
-                "search-btn in-header " +
+                "search-btn in-header search-filter " +
                 (item.short && item.active
                   ? "bg-" + item.short.split(" ").join("-")
                   : "") +
                 (!item.short && item.active ? "active" : "")
               }
             >
+                {item.active && item.placeholder === "choisir un thème" && (
+                 <div
+                 style={{
+                   display: "flex",
+                   marginRight: 10,
+                   justifyContent: "center",
+                   alignItems: "center",
+                 }}
+               >
+                 <Streamline
+                   name={item.icon}
+                   stroke={"white"}
+                   width={22}
+                   height={22}
+                 />
+               </div>
+              ) }
               {item.value
                 ? t("Tags." + item.value, item.value)
                 : t("Tags." + item.placeholder, item.placeholder)}
-              {item.active && (
+              {item.active ? (
                 <EVAIcon
-                  name="close-circle"
-                  size="xlarge"
-                  className="close-icon"
+                  name="close-outline"
+                  size="large"
+                  className="ml-10"
                   onClick={(e) => {
                     e.stopPropagation();
                     this.props.desactiver(keyValue);
                   }}
                 />
-              )}
+              ) :  <EVAIcon
+              name="arrow-ios-downward-outline"
+              size="large"
+              onClick={(e) => {
+                e.stopPropagation();
+                this.toggle();
+              }}
+            />
+              }
             </DropdownToggle>
             <DropdownMenu>
               <div

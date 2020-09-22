@@ -20,7 +20,7 @@ const initial_data = [
   {
     title: "Je cherche à",
     value: null,
-    placeholder: "choisir un thème",
+    placeholder: "thème",
     query: "Apprendre le français",
     queryName: "tags.name",
     children: filtres.tags,
@@ -102,7 +102,7 @@ const tris = [
  // { name: "A > Z", value: "titreInformatif" },
   { name: "Derniers ajouts", value: "created_at" },
   { name: "Les plus visités", value: "nbVues" },
-  { name: "Par thème", value: "titreInformatif" },
+  //{ name: "Par thème", value: "titreInformatif" },
 ];
 
 export { initial_data, filtres_contenu, tris };
