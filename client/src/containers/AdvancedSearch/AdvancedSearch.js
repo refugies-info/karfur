@@ -4,8 +4,6 @@ import track from "react-tracking";
 import {
   Col,
   Row,
-  CardBody,
-  CardFooter,
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -17,20 +15,19 @@ import qs from "query-string";
 import _ from "lodash";
 import windowSize from "react-window-size";
 import { connect } from "react-redux";
-import { NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import produce from "immer";
 // import Cookies from 'js-cookie';
 
+import i18n from "../../i18n"
 import SearchItem from "./SearchItem/SearchItem";
+import SearchResultCard from "./SearchResultCard";
 import API from "../../utils/API";
 import { initial_data } from "./data";
-import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { filtres } from "../Dispositif/data";
 import { filtres_contenu, tris } from "./data";
-//import { breakpoints } from "utils/breakpoints.js";
-import Streamline from "../../assets/streamline";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import TagButton from "../../components/FigmaUI/TagButton/TagButton";
 import NoResultsBackgroundImage from "../../assets/no_results.svg";
@@ -621,6 +618,7 @@ export class AdvancedSearch extends Component {
     } = this.state;
     // eslint-disable-next-line
     const { t, windowWidth, dispositifs: storeDispo } = this.props;
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language)
 /* 
     if (recherche[0].active) {
       dispositifs = dispositifs.sort((a, b) =>
@@ -678,57 +676,25 @@ export class AdvancedSearch extends Component {
           visibleTop={this.state.visible}
           visibleSearch={this.state.searchToggleVisible}
         >
-          <FilterTitle>Filtrer Par</FilterTitle>
+          <FilterTitle>{t("AdvancedSearch.Filtrer par", "Filtrer par :")}</FilterTitle>
           {filtres_contenu.map((filtre, idx) => {
             return (
             <TagButton active={(filtre.name === activeFiltre)} desactiver={this.desactiverFiltre} key={idx}  filter onClick={() => this.filter_content(filtre)}>
               {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
             </TagButton>
           )})}
-          <FilterTitle>Trier Par</FilterTitle>
+          <FilterTitle>{t("AdvancedSearch.Trier par", "Trier par :")}</FilterTitle>
           {tris.map((tri, idx) => (
             <TagButton active={(tri.name === activeTri)} desactiver={this.desactiverTri} key={idx} filter onClick={() => this.reorder(tri)}>
               {t("AdvancedSearch." + tri.name, tri.name)}
             </TagButton>
           ))}
-          <FilterTitle> {this.state.countShow + "/" + this.props.dispositifs.length + " résultats"}</FilterTitle>
-          <FButton type="white" name="file-add-outline" onClick={this.writeNew}>
-            Rédiger
+          <FilterTitle> {this.state.countShow + "/" + this.props.dispositifs.length + " " + t("AdvancedSearch.résultats", "résultats")}</FilterTitle>
+          <FButton className={isRTL ? "ml-10" : ""} type="white" name="file-add-outline" onClick={this.writeNew}>
+          {t("AdvancedSearch.Rédiger", "Rédiger")}
           </FButton>
         </FilterBar> 
         <Row className="search-wrapper">
-          {/* {windowWidth >= breakpoints.smLimit && (
-            <Col xl="2" lg="2" md="2" sm="2" xs="2" className="mt-250 side-col">
-              {windowWidth >= breakpoints.desktopUp && (
-                <EVAIcon
-                  name="options-2-outline"
-                  fill={variables.noir}
-                  className="mr-12"
-                />
-              )}
-              <div className="right-side">
-                {windowWidth >= breakpoints.desktopUp ? (
-                  <b>{t("AdvancedSearch.Trier par", "Trier par :")}</b>
-                ) : (
-                  <EVAIcon name="options-2-outline" fill={variables.noir} />
-                )}
-                <div className="mt-10 side-options">
-                  {tris.map((tri, idx) => (
-                    <div
-                      key={idx}
-                      className={
-                        "side-option" +
-                        (tri.name === activeTri ? " active" : "")
-                      }
-                      onClick={() => this.reorder(tri)}
-                    >
-                      {t("AdvancedSearch." + tri.name, tri.name)}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Col>
-          )} */}
           <Col
             xl="8"
             lg="8"
@@ -739,119 +705,8 @@ export class AdvancedSearch extends Component {
           >
             <div className="results-wrapper">
               <Row>
-                {[...dispositifs].map((dispositif) => {
-                  const pinned =
-                    this.state.pinned.includes(dispositif._id) ||
-                    this.state.pinned.filter(
-                      (pinnedDispostif) =>
-                        pinnedDispostif &&
-                        pinnedDispostif._id === dispositif._id
-                    ).length > 0;
-
-                  if (!dispositif.hidden) {
-                    let shortTag = null;
-                    let shortTagFull = null;
-                    let iconTag = null;
-                    if (
-                      dispositif.tags &&
-                      dispositif.tags.length > 0 &&
-                      dispositif.tags[0] &&
-                      dispositif.tags[0].short
-                    ) {
-                      shortTag = (dispositif.tags[0].short || {}).replace(
-                        / /g,
-                        "-"
-                      );
-                      shortTagFull = dispositif.tags[0].short;
-                    }
-                    if (shortTagFull) {
-                      iconTag = filtres.tags.find(
-                        (tag) => tag.short === shortTagFull
-                      );
-                    }
-                    return (
-                      <Col
-                        xl="3"
-                        lg="3"
-                        md="4"
-                        sm="6"
-                        xs="12"
-                        className={
-                          "card-col puff-in-center " +
-                          (dispositif.typeContenu || "dispositif")
-                        }
-                        key={dispositif._id}
-                      >
-                        <NavLink
-                          to={{
-                            pathname:
-                              "/" +
-                              (dispositif.typeContenu || "dispositif") +
-                              (dispositif._id ? "/" + dispositif._id : ""),
-                            state: { previousRoute: "advanced-search" },
-                          }}
-                        >
-                          <CustomCard
-                            className={
-                              dispositif.typeContenu === "demarche"
-                                ? "texte-" +
-                                  shortTag +
-                                  " bg-light-" +
-                                  shortTag +
-                                  " border-" +
-                                  shortTag
-                                : "border-none"
-                            }
-                          >
-                            <CardBody>
-                              <EVAIcon
-                                name="bookmark"
-                                size="xlarge"
-                                onClick={(e) => this.pin(e, dispositif)}
-                                fill={
-                                  pinned ? variables.noir : variables.noirCD
-                                }
-                                className={
-                                  "bookmark-icon" + (pinned ? " pinned" : "")
-                                }
-                              />
-                              <h5>{dispositif.titreInformatif}</h5>
-                              <p>{dispositif.abstract}</p>
-                            </CardBody>
-                            {dispositif.typeContenu !== "demarche" && (
-                              <CardFooter
-                                className={
-                                  "correct-radius align-right bg-" +
-                                  shortTag +
-                                  (iconTag ? "" : " no-icon")
-                                }
-                              >
-                                {iconTag ? (
-                                  <div
-                                    style={{
-                                      width: 50,
-                                      display: "flex",
-                                      justifyContent: "flex-start",
-                                      alignItems: "flex-start",
-                                    }}
-                                  >
-                                    <Streamline
-                                      name={iconTag.icon}
-                                      stroke={"white"}
-                                      width={22}
-                                      height={22}
-                                    />
-                                  </div>
-                                ) : null}
-                                {dispositif.titreMarque}
-                              </CardFooter>
-                            )}
-                          </CustomCard>
-                        </NavLink>
-                      </Col>
-                    );
-                  }
-                  return false;
+                {dispositifs.map((dispositif, index) => {
+                  return(<SearchResultCard key={index} pin={this.pin} pinnedList={this.state.pinned} dispositif={dispositif} />)
                 })}
                 {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
                   /*             <Col
@@ -894,66 +749,9 @@ export class AdvancedSearch extends Component {
                   </NoResultsContainer>
                   //  </Col>
                 )}
-                {/*      <Col xs="12" sm="6" md="3">
-                  <NavHashLink to="/comment-contribuer#ecrire">
-                    <CustomCard
-                      addcard="true"
-                      className="create-card border-none"
-                    >
-                      <CardBody>
-                        {showSpinner ? (
-                          <Spinner color="success" />
-                        ) : (
-                          <span className="add-sign">+</span>
-                        )}
-                      </CardBody>
-                      <CardFooter className="align-right">
-                        {showSpinner
-                          ? t("Chargement", "Chargement") + "..."
-                          : t(
-                              "AdvancedSearch.Créer une fiche",
-                              "Créer une fiche"
-                            )}
-                      </CardFooter>
-                    </CustomCard>
-                  </NavHashLink>
-                </Col> */}
               </Row>
             </div>
           </Col>
-          {/*           {windowWidth >= breakpoints.smLimit && (
-            <Col xl="2" lg="2" md="2" sm="2" xs="2" className="mt-250 side-col">
-              {windowWidth >= breakpoints.desktopUp && (
-                <EVAIcon
-                  name="funnel-outline"
-                  fill={variables.noir}
-                  className="mr-12"
-                />
-              )}
-              <div className="right-side">
-                {windowWidth >= breakpoints.desktopUp ? (
-                  <b>{t("AdvancedSearch.Filtrer par", "Filtrer par :")}</b>
-                ) : (
-                  <EVAIcon name="funnel-outline" fill={variables.noir} />
-                )}
-                <div className="mt-10 side-options">
-                  {filtres_contenu.map((filtre, idx) => (
-                    <div
-                      key={idx}
-                      className={
-                        "side-option right" +
-                        (filtre.name === activeFiltre ? " active" : "")
-                      }
-                      onClick={() => this.filter_content(filtre)}
-                    >
-                      {filtre.name &&
-                        t("AdvancedSearch." + filtre.name, filtre.name)}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Col>
-          )} */}
         </Row>
         <BookmarkedModal
           t={this.props.t}
