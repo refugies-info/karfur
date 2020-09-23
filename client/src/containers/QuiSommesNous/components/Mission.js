@@ -12,12 +12,14 @@ import FButton from "../../../components/FigmaUI/FButton/FButton";
 const MissionContentContainer = styled.div`
   display: flex;
   flex-direction: row;
+  padding-left: 120px;
+  padding-right: 120px;
+  justify-content: space-between;
 `;
 
 const MissionDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 120px;
   width: 320px;
 `;
 

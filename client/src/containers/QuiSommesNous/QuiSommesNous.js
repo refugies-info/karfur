@@ -11,6 +11,7 @@ import { Contribution } from "./components/Contribution";
 import { Team } from "./components/Team";
 import { MemberDetails } from "./components/MemberDetails";
 import { Partners } from "./components/Partners";
+import i18n from "../../i18n";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -154,6 +155,8 @@ class QuiSommesNous extends Component {
   render() {
     const { membre, sideVisible } = this.state;
     const { t } = this.props;
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+
     return (
       <MainContainer>
         <HeaderContainer>
@@ -225,7 +228,7 @@ class QuiSommesNous extends Component {
           <SectionHeader>
             {t("QuiSommesNous.Missions", "Missions")}
           </SectionHeader>
-          <Mission t={t} />
+          <Mission t={t} isRTL={isRTL} />
         </MissionContainer>
         <TeamContainer id="equipe" onClick={this.closeSide}>
           <SectionHeader>{t("QuiSommesNous.Équipe", "Équipe")}</SectionHeader>
