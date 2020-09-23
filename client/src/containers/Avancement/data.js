@@ -32,7 +32,9 @@ const diffData = {
     title: "Avancement de ",
     headers: [
       { name: "Titre", order: "title" },
-      { name: "Progression", order: "avancement" },
+      { name: "Progression trad", order: "avancementTrad" },
+
+      { name: "Progression expert", order: "avancement" },
       { name: "Mots", order: "nombreMots" },
       { name: "Depuis", order: "created_at" },
       { name: "Statut" },
