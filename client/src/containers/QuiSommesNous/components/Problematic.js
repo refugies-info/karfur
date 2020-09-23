@@ -9,12 +9,14 @@ import { ReactComponent as AccompagnementImage } from "../../../assets/qui-somme
 const ProblematicContentContainer = styled.div`
   display: flex;
   flex-direction: row;
+  padding-left: 120px;
+  padding-right: 120px;
+  justify-content: space-between;
 `;
 
 const ProblematicDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 120px;
   width: 320px;
   position: relative;
 `;

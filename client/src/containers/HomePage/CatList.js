@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import styled from "styled-components";
 import { withRouter } from "react-router-dom";
-
+import i18n from "../../i18n";
 import FSearchBtn from "../../components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "../../assets/streamline";
 import { motion } from "framer-motion";
@@ -10,6 +10,14 @@ import { motion } from "framer-motion";
 const InnerButton = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+
+const IconContainer = styled.div`
+  display: flex;
+  margin-right: ${(props) => (props.isRTL ? "0px" : "10px")};
+  margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
+  justify-content: center;
   align-items: center;
 `;
 
@@ -75,6 +83,7 @@ class CatList extends Component {
 
   render() {
     const { t, item } = this.props;
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
     return (
       <motion.ul
@@ -98,21 +107,14 @@ class CatList extends Component {
               >
                 <InnerButton>
                   {subi.icon ? (
-                    <div
-                      style={{
-                        display: "flex",
-                        marginRight: 10,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
+                    <IconContainer isRTL={isRTL}>
                       <Streamline
                         name={subi.icon}
                         stroke={"white"}
                         width={22}
                         height={22}
                       />
-                    </div>
+                    </IconContainer>
                   ) : null}
                   {t("Tags." + subi.name, subi.name)}
                 </InnerButton>
@@ -127,22 +129,15 @@ class CatList extends Component {
         >
           <a target="_blank" href="https://soliguide.fr/">
             <InnerButton>
-              <div
-                style={{
-                  display: "flex",
-                  marginRight: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <IconContainer isRTL={isRTL}>
                 <Streamline
                   name={"message"}
                   stroke={"white"}
                   width={22}
                   height={22}
                 />
-              </div>
-              manger, me doucher...
+              </IconContainer>
+              {t("manger, me doucher", "manger, me doucher...")}
             </InnerButton>
           </a>
         </motion.li>
@@ -154,16 +149,9 @@ class CatList extends Component {
             className={"search-options advanced-search-btn-menu  bg-blanc"}
           >
             <InnerButton>
-              <div
-                style={{
-                  display: "flex",
-                  marginRight: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <IconContainer isRTL={isRTL}>
                 <Streamline name={"menu"} stroke={"black"} />
-              </div>
+              </IconContainer>
               {t("Toolbar.Tout voir", "Tout voir")}
             </InnerButton>
           </button>
