@@ -103,7 +103,7 @@ const FilterBar = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   background-color: #828282;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   position: fixed;
@@ -128,6 +128,7 @@ const FilterTitle = styled.p`
   size: 18px;
   font-weight: bold;
   color: white;
+  margin-right: 10px;
 `;
 
 let user = { _id: null, cookies: {} };
@@ -138,8 +139,8 @@ export class AdvancedSearch extends Component {
     dispositifs: [],
     nbVues: [],
     pinned: [],
-    //activeFiltre: "",
-    //activeTri: "",
+    activeFiltre: "",
+    activeTri: "",
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
@@ -150,6 +151,8 @@ export class AdvancedSearch extends Component {
     showBookmarkModal: false,
     searchToggleVisible: true,
     visible: true,
+    countTotal: 0,
+    countShow: 0,
   };
 
 
@@ -258,9 +261,9 @@ export class AdvancedSearch extends Component {
             : { [x.queryName]: x.query }
         )
         .reduce((acc, curr) => ({ ...acc, ...curr }), {});
-    const localisationSearch = this.state.recherche.find(
+/*     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
-    );
+    ) */;
     if (!Nquery) {
       let newQueryParam = {
         tag: query["tags.name"] ? query["tags.name"] : undefined,
@@ -300,12 +303,15 @@ export class AdvancedSearch extends Component {
         ...query,
         ...this.state.filter,
         status: "Actif",
-        ...(!localisationSearch && { demarcheId: { $exists: false } }),
       },
-      locale: props.languei18nCode,
+        demarcheId: { $exists: false },
+        locale: props.languei18nCode,
     })
       .then((data_res) => {
         let dispositifs = data_res.data.data;
+
+        this.setState({countTotal: dispositifs.length});
+
         if (query["tags.name"]) {
           //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
           dispositifs = dispositifs.sort(
@@ -316,7 +322,7 @@ export class AdvancedSearch extends Component {
               b.tags.findIndex((x) => (x ? x.short === query["tags.name"] : 99))
           );
         }
-        if (localisationSearch) {
+/*         if (localisationSearch) {
           //On applique le filtre géographique maintenant
           dispositifs = dispositifs.filter(
             (x) =>
@@ -340,13 +346,13 @@ export class AdvancedSearch extends Component {
           dispositifs = filterDoubles.map((x) =>
             dispositifs.find((y) => y.demarcheId === x || y._id === x)
           );
-        }
+        } */
         dispositifs = dispositifs.map((x) => ({
           ...x,
           nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
 
-        this.setState({ dispositifs: dispositifs, showSpinner: false });
+        this.setState({ dispositifs: dispositifs, showSpinner: false, countShow: dispositifs.length });
       })
       .catch(() => this.setState({ showSpinner: false }));
   };
@@ -573,6 +579,14 @@ export class AdvancedSearch extends Component {
     this.setState({ recherche: recherche }, () => this.queryDispositifs());
   };
 
+  desactiverTri = () => {
+    this.setState({activeTri: ""},  () => this.queryDispositifs())
+  }
+
+  desactiverFiltre = () => {
+    this.setState({activeFiltre: "", filter: {}},  () => this.queryDispositifs())
+  }
+
   desactiver = (key) =>
     this.setState(
       {
@@ -601,8 +615,8 @@ export class AdvancedSearch extends Component {
       dispositifs,
       pinned,
       showSpinner,
-      //activeFiltre,
-      //activeTri,
+      activeFiltre,
+      activeTri,
       displayAll,
     } = this.state;
     // eslint-disable-next-line
@@ -665,18 +679,19 @@ export class AdvancedSearch extends Component {
           visibleSearch={this.state.searchToggleVisible}
         >
           <FilterTitle>Filtrer Par</FilterTitle>
-          {filtres_contenu.map((filtre, idx) => (
-            <TagButton key={idx} filter onClick={() => this.filter_content(filtre)}>
+          {filtres_contenu.map((filtre, idx) => {
+            return (
+            <TagButton active={(filtre.name === activeFiltre)} desactiver={this.desactiverFiltre} key={idx}  filter onClick={() => this.filter_content(filtre)}>
               {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
             </TagButton>
-          ))}
+          )})}
           <FilterTitle>Trier Par</FilterTitle>
           {tris.map((tri, idx) => (
-            <TagButton key={idx} filter onClick={() => this.reorder(tri)}>
+            <TagButton active={(tri.name === activeTri)} desactiver={this.desactiverTri} key={idx} filter onClick={() => this.reorder(tri)}>
               {t("AdvancedSearch." + tri.name, tri.name)}
             </TagButton>
           ))}
-          <FilterTitle>résultats</FilterTitle>
+          <FilterTitle> {this.state.countShow + "/" + this.props.dispositifs.length + " résultats"}</FilterTitle>
           <FButton type="white" name="file-add-outline" onClick={this.writeNew}>
             Rédiger
           </FButton>

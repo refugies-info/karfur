@@ -102,7 +102,7 @@ const tris = [
  // { name: "A > Z", value: "titreInformatif" },
   { name: "Derniers ajouts", value: "created_at" },
   { name: "Les plus visités", value: "nbVues" },
-  //{ name: "Par thème", value: "titreInformatif" },
+  { name: "Par thème", value: "" },
 ];
 
 export { initial_data, filtres_contenu, tris };

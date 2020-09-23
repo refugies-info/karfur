@@ -24,7 +24,8 @@ const fSearchBtn = (props) => {
       {props.children}
       {active && (
         <EVAIcon
-          className="ml-10"
+          className={"ml-10"}
+          fill={filter ? "black" : ""}
           name="close-outline"
           onClick={onCrossClick}
         />
