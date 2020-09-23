@@ -43,7 +43,9 @@ class AudioBtn extends Component {
               className="ml-15"
             />
           )}
-          <div className="ecouter-text">Écouter</div>
+          <div className="ecouter-text">
+            {this.props.t("Écouter", "Écouter")}
+          </div>
         </div>
       );
     }
