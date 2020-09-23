@@ -4,7 +4,16 @@ import Flippy, { FrontSide, BackSide } from "react-flippy";
 import variables from "scss/colors.scss";
 import Streamline from "../../assets/streamline";
 import Ripples from "react-ripples";
+import i18n from "../../i18n";
+import styled from "styled-components";
 
+const IconContainer = styled.div`
+  display: flex;
+  margin-right: ${(props) => (props.isRTL ? "0px" : "10px")};
+  margin-left: ${(props) => (props.isRTL ? "10px" : "0px")};
+  justify-content: center;
+  align-items: center;
+`;
 export class SearchItem extends Component {
   constructor(props) {
     super(props);
@@ -109,6 +118,7 @@ export class SearchItem extends Component {
 
   render() {
     const { t, item } = this.props;
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
     return (
       <button onClick={this.open} className={"search-col"}>
@@ -156,21 +166,14 @@ export class SearchItem extends Component {
                       }}
                     >
                       {subi.icon ? (
-                        <div
-                          style={{
-                            display: "flex",
-                            marginRight: 10,
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
+                        <IconContainer isRTL={isRTL}>
                           <Streamline
                             name={subi.icon}
                             stroke={"white"}
                             width={22}
                             height={22}
                           />
-                        </div>
+                        </IconContainer>
                       ) : null}
                       {t("Tags." + subi.name, subi.name)}
                     </button>
@@ -210,21 +213,14 @@ export class SearchItem extends Component {
                       }}
                     >
                       {subi.icon ? (
-                        <div
-                          style={{
-                            display: "flex",
-                            marginRight: 10,
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
+                        <IconContainer isRTL={isRTL}>
                           <Streamline
                             name={subi.icon}
                             stroke={"white"}
                             width={22}
                             height={22}
                           />
-                        </div>
+                        </IconContainer>
                       ) : null}
                       {t("Tags." + subi.name, subi.name)}
                     </button>
@@ -248,16 +244,9 @@ export class SearchItem extends Component {
                 fontWeight: "600",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  marginRight: 10,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
+              <IconContainer isRTL={isRTL}>
                 <Streamline name="search" width={20} height={20} />
-              </div>
+              </IconContainer>
               {item.value
                 ? t("Tags." + item.value, item.value)
                 : t("Tags." + item.placeholder, item.placeholder)}

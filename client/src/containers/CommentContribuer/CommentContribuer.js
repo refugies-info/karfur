@@ -32,6 +32,7 @@ import { ReactComponent as TradImage } from "../../assets/comment-contribuer/Com
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import { ReactComponent as PapillonViolet } from "../../assets/comment-contribuer/CommentContribuer-papillon_violet.svg";
 import { ReactComponent as PapillonRose } from "../../assets/comment-contribuer/CommentContribuer-papillon_rose.svg";
+import i18n from "../../i18n";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -62,21 +63,21 @@ const CardContainer = styled.div`
   background-color: #ffffff;
   border-radius: 12px;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: space-between;
   padding-bottom: 20px;
   padding-right: 20px;
   padding-left: 20px;
-  padding-top:10px;
+  padding-top: 10px;
   font-weight: bold;
   font-size: 40px;
   line-height: 51px;
-  cursor:pointer;
+  cursor: pointer;
   border: 4px solid #ffffff;
 
-&:hover {
-  border: 4px solid #212121;
-}
+  &:hover {
+    border: 4px solid #212121;
+  }
 `;
 
 const RedactionContainer = styled.div`
@@ -98,7 +99,8 @@ const TraductionContainer = styled.div`
   font-weight: 500;
   font-size: 32px;
   line-height: 40px;
-  padding-right: 120px;
+  padding-right: ${(props) => (props.isRTL ? "0px" : "120px")};
+  padding-left: ${(props) => (props.isRTL ? "120px" : "0px")};
   display: flex;
   flex-direction: column;
 `;
@@ -501,6 +503,7 @@ class CommentContribuer extends Component {
 
     const { nbTrad, nbExperts } = this.getNumberOfTraducteursAndExperts();
     const activeLangues = this.getActiveLangues();
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     return (
       <MainContainer>
         <HeaderContainer>
@@ -508,7 +511,7 @@ class CommentContribuer extends Component {
             {t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}
           </HeaderText>
           <HeaderCardsContainer>
-            <div style={{ marginRight: "48px" }}>
+            <div style={{ marginRight: isRTL ? "0px" : "48px" }}>
               <AnchorLink offset="60" href="#ecrire-card">
                 <HeaderCard
                   title={t("CommentContribuer.écrire", "écrire")}
@@ -526,11 +529,13 @@ class CommentContribuer extends Component {
               </AnchorLink>
             </div>
             <AnchorLink offset="60" href="#corriger">
-              <HeaderCard
-                title={t("CommentContribuer.corriger", "corriger")}
-                iconName="done-all-outline"
-                eva={true}
-              />
+              <div style={{ marginRight: isRTL ? "48px" : "0px" }}>
+                <HeaderCard
+                  title={t("CommentContribuer.corriger", "corriger")}
+                  iconName="done-all-outline"
+                  eva={true}
+                />
+              </div>
             </AnchorLink>
           </HeaderCardsContainer>
           <EcrireAnchor id="ecrire" />
@@ -550,8 +555,13 @@ class CommentContribuer extends Component {
           </RedactionCardsContainer>
           <TraduireAnchor id="traduire" />
         </RedactionContainer>
-        <TraductionContainer id="traduire-card">
-          <div style={{ marginLeft: "120px" }}>
+        <TraductionContainer id="traduire-card" isRTL={isRTL}>
+          <div
+            style={{
+              marginLeft: isRTL ? "0px" : "120px",
+              marginRight: isRTL ? "120px" : "0px",
+            }}
+          >
             {t(
               "CommentContribuer.Traduction",
               "Traduire pour rendre accessible"
@@ -570,15 +580,23 @@ class CommentContribuer extends Component {
                 <NavLink to="/backend/user-dashboard">
                   <NumberTraduction
                     amount={nbTrad}
-                    text={"traducteurs actifs"}
+                    text={t(
+                      "CommentContribuer.traducteurs actifs",
+                      "traducteurs actifs"
+                    )}
+                    isRTL={isRTL}
                     width={181}
                   />
                 </NavLink>
                 <NavLink to="/backend/user-dashboard">
                   <NumberTraduction
                     amount={nbExperts}
-                    text={"experts en traduction"}
+                    text={t(
+                      "CommentContribuer.experts en traduction",
+                      "experts en traduction"
+                    )}
                     width={326}
+                    isRTL={isRTL}
                   />
                 </NavLink>
               </NumbersContainer>
@@ -586,30 +604,36 @@ class CommentContribuer extends Component {
                 <Langue
                   langue={activeLangues[0] || {}}
                   key={activeLangues[0] && activeLangues[0].i18nCode}
+                  isRTL={isRTL}
                 />
                 <Langue
                   langue={activeLangues[1] || {}}
                   key={activeLangues[1] && activeLangues[1].i18nCode}
+                  isRTL={isRTL}
                 />
               </LanguesCardsContainer>
               <LanguesCardsContainer>
                 <Langue
                   langue={activeLangues[2] || {}}
                   key={activeLangues[2] && activeLangues[2].i18nCode}
+                  isRTL={isRTL}
                 />
                 <Langue
                   langue={activeLangues[3] || {}}
                   key={activeLangues[3] ? activeLangues[3].i18nCode : ""}
+                  isRTL={isRTL}
                 />
               </LanguesCardsContainer>
               <LanguesCardsContainer>
                 <Langue
                   langue={activeLangues[4] || {}}
                   key={activeLangues[4] && activeLangues[4].i18nCode}
+                  isRTL={isRTL}
                 />
                 <Langue
                   langue={activeLangues[5] || {}}
                   key={activeLangues[5] ? activeLangues[5].i18nCode : ""}
+                  isRTL={isRTL}
                 />
               </LanguesCardsContainer>
             </LanguagesContainer>
@@ -684,10 +708,25 @@ class CommentContribuer extends Component {
               )}
             </div>
           </CorrectionContentContainer>
-          <div style={{ position: "absolute", left: "992px", top: "328px" }}>
+          <div
+            style={{
+              position: "absolute",
+              right: isRTL && "992px",
+              top: "328px",
+              left: !isRTL && "992px",
+            }}
+          >
             <PapillonRose />
           </div>
-          <div style={{ position: "absolute", left: "556px", top: "0px" }}>
+
+          <div
+            style={{
+              position: "absolute",
+              left: !isRTL && "556px",
+              top: "0px",
+              right: isRTL && "556px",
+            }}
+          >
             <PapillonViolet />
           </div>
         </CorrectionContainer>
@@ -717,12 +756,13 @@ const NumberContainer = styled.div`
   font-size: 40px;
   line-height: 51px;
   padding: 8px 16px;
-  margin-right: 8px;
+  margin-right: ${(props) => (props.isRTL ? "0px" : "8px")};
+  margin-left: ${(props) => (props.isRTL ? "8px" : "0px")};
 `;
 
 const NumberTraduction = (props) => (
   <NumberTraductionContainer width={props.width}>
-    <NumberContainer>{props.amount}</NumberContainer>
+    <NumberContainer isRTL={props.isRTL}>{props.amount}</NumberContainer>
     {props.text}
   </NumberTraductionContainer>
 );
@@ -748,8 +788,8 @@ const LangueContainer = styled.div`
 
 const ProgressContainer = styled.div`
   width: 100px;
-  margin-left: 24px;
-  margin-right: 8px;
+  margin-left: ${(props) => (props.isRTL ? "8px" : "24px")};
+  margin-right: ${(props) => (props.isRTL ? "24px" : "8px")};
 `;
 const AvancementContainer = styled.div`
   color: ${(props) => props.color};
@@ -757,14 +797,19 @@ const AvancementContainer = styled.div`
 const Langue = (props) => (
   <NavLink to="/backend/user-dashboard">
     <LangueContainer>
-      <div style={{ marginRight: "16px" }}>
+      <div
+        style={{
+          marginRight: props.isRTL ? "0px" : "16px",
+          marginLeft: props.isRTL ? "16px" : "0px",
+        }}
+      >
         <i
           title={props.langue.langueCode}
           className={" flag-icon flag-icon-" + props.langue.langueCode}
         />
       </div>
       {props.langue.langueFr}
-      <ProgressContainer>
+      <ProgressContainer isRTL={props.isRTL}>
         <Progress
           color={colorAvancement(props.langue.avancementTrad)}
           value={props.langue.avancementTrad * 100}
