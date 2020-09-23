@@ -8,6 +8,12 @@ $placeholderColor: $blanc;
   justify-content: center;
   align-items: center;
 
+  .search-filter{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   padding: 12px; 
+  }
 
 
   .dropdown-menu.show{
@@ -59,7 +65,6 @@ $placeholderColor: $blanc;
   }
 
   .search-autocomplete{
-    width: 200px;
     text-align: center;
     &::-webkit-input-placeholder {
       color: $placeholderColor;

@@ -104,6 +104,7 @@
 }
 
 .filter-btn{
+  margin-right: 10px;
   outline:none;
   justify-content: center;
   align-items: center;
@@ -119,9 +120,13 @@
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 
   &:not(:disabled):not(.disabled):active, &.active{
-    color: #FFFFFF;
-    background: $noir;
+    color: black !important;
+    font-weight: 500;
+    background: #FFFFFF;
 
+  }
+  &.active-icon{
+    color: black !important; 
   }
   &:focus{
     outline: 0;
