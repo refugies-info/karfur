@@ -36,7 +36,10 @@
     "Démarches": "Démarches",
     "Créer une fiche": "Créer une fiche",
     "Elargir recherche": "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères.",
-    "Oups": "Oups !"
+    "Oups": "Oups !",
+    "Rédiger": "Rédiger",
+    "Par thème": "Par thème",
+    "résultats": "résultats"
   },
   "Tables": {
     "Propriétaire": "Propriétaire",
@@ -241,7 +244,8 @@
     "Je parle": "Je parle",
     "mon niveau": "mon niveau",
     "Je suis": "Je suis",
-    "français": "français"
+    "français": "français",
+    "bientot disponible": "Bientôt disponible"
   },
   "Status": {
     "En attente": "En attente",

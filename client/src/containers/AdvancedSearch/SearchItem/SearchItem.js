@@ -69,7 +69,7 @@ export class SearchItem extends Component {
                     (item.active ? "active" : "")
                   }
                 >
-                  {"Bientôt disponible"}
+                  {t("SearchItem.bientot disponible", "Bientôt disponible")}
                 </div>
                 {/*                 <Autocomplete
                   className={
