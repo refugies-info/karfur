@@ -7,6 +7,7 @@ const logger = require("../../logger");
 const addDispositifInContenusAirtable = (title, link, tagsList) => {
   logger.info("[addDispositifInContenusAirtable] adding a new line", {
     title,
+    tagsList,
   });
 
   base("CONTENUS").create(
@@ -62,11 +63,14 @@ const addTraductionDispositifInContenusAirtable = ({ id, trad }, locale) => {
       formattedLocale,
     }
   );
-  trad.push(formattedLocale);
+
+  if (trad) {
+    trad.push(formattedLocale);
+  }
   base("CONTENUS").update([
     {
       id,
-      fields: { "Traduits ?": trad },
+      fields: { "Traduits ?": trad || [formattedLocale] },
     },
   ]);
 };
@@ -78,12 +82,22 @@ const addOrUpdateDispositifInContenusAirtable = async (
   tags,
   locale
 ) => {
+  if (process.env.NODE_ENV === "dev") {
+    logger.info(
+      "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
+      { env: process.env.NODE_ENV }
+    );
+    return;
+  }
+
   const title = titreMarque + " - " + titleInformatif;
   logger.info("[addOrUpdateDispositifInContenusAirtable] received a new line", {
     title,
   });
   const link = "https://www.refugies.info/dispositif/" + id;
-  const tagsList = tags ? tags.map((tag) => tag && tag.short) : [];
+  const tagsList = tags
+    ? tags.filter((tag) => !!tag).map((tag) => tag.short)
+    : [];
   const formula = "({Réfugiés.info} ='" + link + "')";
   const recordsList = [];
   base("CONTENUS")
