@@ -60,7 +60,6 @@ function get_article(req, res) {
       text: "Requête invalide",
     });
   } else {
-
     let { query, locale, sort, populate, limit, random } = req.body;
     locale = locale || "fr";
     if (!req.fromSite) {
@@ -162,7 +161,6 @@ function add_traduction(req, res) {
   } else if (!req.body.translatedText) {
     res.status(402).json({ text: "Pas de contenu de traduction" });
   } else {
-
     let locale = req.body.langueCible; //TODO :S'assurer que ce locale est autorisé
 
     //On lui donne le rôle de traducteur
