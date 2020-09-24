@@ -498,7 +498,6 @@ async function validate_tradForReview(req, res) {
       });
       // !IMPORTANT We insert the validated translation in the dispositif
       insertInDispositif(res, traductionUser, traductionUser.locale);
-      console.log("has validated ", traductionUser.locale);
     } else {
       //Validating a translation in case it's an article
       Traduction.findOneAndUpdate(

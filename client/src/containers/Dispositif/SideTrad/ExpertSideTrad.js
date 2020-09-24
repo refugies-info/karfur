@@ -184,7 +184,7 @@ class SideTrad extends Component {
     }
   }
  */
-//similar to the function in SideTrad.js 
+  //similar to the function in SideTrad.js
   componentDidUpdate(prevProps, prevState) {
     const { currIdx, currSubIdx, currSubName, availableListTrad } = this.state;
     this._scrollAndHighlight(currIdx, currSubIdx, currSubName);
@@ -208,7 +208,7 @@ class SideTrad extends Component {
     ) {
       const { translations } = this.props;
       var userTrad = null;
-      
+
       if (translations.length) {
         const userTrads = translations.filter(
           (trad) => trad.userId._id === this.props.user._id
@@ -395,7 +395,7 @@ class SideTrad extends Component {
     }
   }
 
-//similar to the function in SideTrad.js 
+  //similar to the function in SideTrad.js
   _initializeComponent = async (props) => {
     if (props.traductionsFaites.length > 0) {
       let trad = props.traductionsFaites.find((trad) => {
@@ -435,7 +435,7 @@ class SideTrad extends Component {
     }
   };
 
-//similar to the function in SideTrad.js 
+  //similar to the function in SideTrad.js
   goChange = async (isNext = true, fromFn = true) => {
     if (isNext && fromFn) {
       this.setState({ hasBeenSkipped: true });
@@ -578,7 +578,7 @@ class SideTrad extends Component {
     }
   };
 
-// this differs from SideTrad.js because we call insertTrad and send the translation to the backend to be inserted in the dispositif and be pubblished
+  // this differs from SideTrad.js because we call insertTrad and send the translation to the backend to be inserted in the dispositif and be pubblished
   _endingFeedback = (newTrad) => {
     if (
       newTrad &&
@@ -1147,11 +1147,14 @@ class SideTrad extends Component {
       isExpert: true,
     };
     await API.validate_tradForReview(newTrad).then(() => {
-      Swal.fire(
-        "Yay...",
-        "Ce dispositif est maintenant intégralement validé et disponible à la lecture",
-        "success"
-      ).then(() => {
+      Swal.fire({
+        title: "Yay...",
+        text:
+          "Ce dispositif est maintenant intégralement validé et disponible à la lecture. Voir le questionnaire",
+        type: "success",
+        footer:
+          "<a target='_blank' href='https://airtable.com/shrISR1hRbTBX2pb7'>Répondre au questionnaire</a>",
+      }).then(() => {
         this.props.onSkip();
       });
     });
