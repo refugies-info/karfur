@@ -462,7 +462,9 @@
     "avec": "avec",
     "Merci": "Merci !",
     "Envoyer une réaction": "Envoyer une réaction",
-    "Dites nous ce que vous pensez": "Dites nous ce que vous pensez :"
+    "Dites nous ce que vous pensez": "Dites nous ce que vous pensez :",
+    "Enlever des favoris": "Enlever des favoris",
+    "Ajouter aux favoris": "Ajouter aux favoris"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",

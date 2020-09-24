@@ -20,6 +20,7 @@ export interface PropsBeforeInjection {
   status: string;
   typeContenu: "dispositif" | "demarche";
   langue: string;
+  t: any;
 }
 
 export class TopRightHeader extends React.Component<Props> {
@@ -138,7 +139,15 @@ export class TopRightHeader extends React.Component<Props> {
                 className="default"
                 name={"bookmark" + (props.pinned ? "" : "-outline")}
               >
-                {props.pinned ? "Enlever des favoris" : "Ajouter aux favoris"}
+                {props.pinned
+                  ? props.t(
+                      "Dispositif.Enlever des favoris",
+                      "Enlever des favoris"
+                    )
+                  : props.t(
+                      "Dispositif.Ajouter aux favoris",
+                      "Ajouter aux favoris"
+                    )}
               </FButton>
             )}
           </div>

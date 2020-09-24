@@ -64,15 +64,15 @@ const initial_data = [
     children: [
       {
         name: "pas du tout",
-        query: { $nin: [ "Débutant", "Intermédiaire","Avancé" ]},
+        query: { $nin: ["Débutant", "Intermédiaire", "Avancé"] },
       },
       {
         name: "un peu",
-        query: { $nin: [ "Intermédiaire","Avancé" ]},
+        query: { $nin: ["Intermédiaire", "Avancé"] },
       },
       {
         name: "moyennement",
-        query: { $nin: [ "Avancé" ]},
+        query: { $nin: ["Avancé"] },
       },
       {
         name: "bien",
@@ -99,7 +99,7 @@ const filtres_contenu = [
 ];
 
 const tris = [
- // { name: "A > Z", value: "titreInformatif" },
+  // { name: "A > Z", value: "titreInformatif" },
   { name: "Derniers ajouts", value: "created_at" },
   { name: "Les plus visités", value: "nbVues" },
   { name: "Par thème", value: "" },

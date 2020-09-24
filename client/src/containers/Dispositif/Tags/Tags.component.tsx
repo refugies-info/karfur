@@ -140,7 +140,7 @@ export class Tags extends Component<Props> {
                         </div>
                       )
                     ) : null}
-                    {tag.short}
+                    {this.props.t("Tags." + tag.short)}
                   </InnerButton>
                 </TagButton>
               </div>
