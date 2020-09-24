@@ -36,7 +36,10 @@
     "Démarches": "معاملات",
     "Créer une fiche": "إنشاء ملفّ",
     "Elargir recherche": "حاول توسيع بحثك بتعطيل بعض الفلاتر",
-    "Oups": "أوبس !"
+    "Oups": "أوبس !",
+    "Rédiger": "إنشاء",
+    "Par thème": "حسب الموضوع",
+    "résultats": "نتيجة"
   },
   "Tables": {
     "Propriétaire": "مالك",
@@ -241,7 +244,8 @@
     "Je parle": "أتكلم",
     "mon niveau": "مستواي",
     "Je suis": "أنا أكون",
-    "français": "الفرنسية"
+    "français": "الفرنسية",
+    "bientot disponible": "متاحٌ قريباً"
   },
   "Status": {
     "En attente": "في الانتظار",
@@ -550,5 +554,7 @@
     "Je communique avec aisance description": "يمكنك فهم المحتوى الرئيسي لرسائل صعبة الفهم والمعقدة المتعلقة بمواضيع محددة.\nتواصل بسهولة مع متحدث محلي وعبر بطريقة واضحة ومفصلة عن مجموعة واسعة من الموضوعات. ",
     "Je communique avec grande aisance title": "تواصل بسهولة كبيرة.",
     "Je communique avec grande aisance description": "عمليا لا توجد صعوبات محددة."
-  }
+  },
+  "Écouter": "استَمعُ",
+  "manger, me doucher": "آكلُ، استحمُّ..."
 }
