@@ -1708,6 +1708,7 @@ export class Dispositif extends Component {
                     status={this.state.status}
                     typeContenu={typeContenu}
                     langue={i18n.language}
+                    t={t}
                   />
                 )}
               </Row>
@@ -1817,6 +1818,7 @@ export class Dispositif extends Component {
                       displayTuto={this.state.displayTuto}
                       updateUIArray={this.updateUIArray}
                       isRTL={isRTL}
+                      t={t}
                     />
                   }
                 </Col>

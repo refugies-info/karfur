@@ -10,7 +10,6 @@
     "contributeurs mobilises": "Already {{nombre}} engaged contributors:",
     "contributive": "Réfugiés.info is open to contribution",
     "contributive subheader": "Like Wikipedia, Réfugiés.info is a platform that gathers practical information. Help complete the site by writing new pages yourself or suggesting changes to existing ones.",
-    "Super recherche": "Advanced search",
     "Vous cherchez ?": "What are you looking to do?",
     "À comprendre une démarche": "Understand administrative processes",
     "A apprendre": "Discover helpful programs",
@@ -37,7 +36,10 @@
     "Démarches": "Processes",
     "Créer une fiche": "Create a page",
     "Elargir recherche": "Try to broaden your search by disabling some filters",
-    "Oups": "Oops!"
+    "Oups": "Oops!",
+    "Rédiger": "write",
+    "Par thème": "By topic",
+    "résultats": "results"
   },
   "Tables": {
     "Propriétaire": "Owner",
@@ -230,7 +232,7 @@
     "ma ville": "my city",
     "âge": "age",
     "mon niveau": "my level",
-    "gérer mes papiers": "Manage my paperwork"
+    "gérer mes papiers": "manage my paperwork"
   },
   "SearchItem": {
     "Je cherche à": "I'm looking to",
@@ -242,7 +244,8 @@
     "Je parle": "I speak",
     "mon niveau": "my level",
     "Je suis": "I am",
-    "français": "French"
+    "français": "French",
+    "bientot disponible": "Available soon"
   },
   "Status": {
     "En attente": "Pending",
@@ -551,5 +554,7 @@
     "Je communique avec aisance description": "I can understand the main content of complex messages on both concrete and abstract topics. I can communicate with ease with a native speaker and express myself clearly and comprehensively on a wide range of subjects.",
     "Je communique avec grande aisance title": "I communicate with ease",
     "Je communique avec grande aisance description": "Practically no difficulties."
-  }
+  },
+  "Écouter": "Listen",
+  "manger, me doucher": "eating, showering..."
 }
