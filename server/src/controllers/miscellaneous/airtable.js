@@ -33,18 +33,50 @@ const addDispositifInContenusAirtable = (title, link, tagsList) => {
   );
 };
 
-const updateDispositifInContenusAirtable = (recordId) => {
-  logger.info("[updateDispositifInContenusAirtable] update line for record", {
-    recordId,
-  });
+const removeTraductionDispositifInContenusAirtable = (recordId) => {
+  logger.info(
+    "[removeTraductionDispositifInContenusAirtable] update line for record",
+    {
+      recordId,
+    }
+  );
   base("CONTENUS").update([{ id: recordId, fields: { "Traduits ?": [] } }]);
+};
+
+const getFormattedLocale = (locale) => {
+  if (locale === "en") return "Anglais";
+  if (locale === "ar") return "Arabe";
+  if (locale === "ru") return "Russe";
+  if (locale === "ti-ER") return "Tigrynia";
+  if (locale === "ps") return "Pachto";
+  if (locale === "fa") return "Persan";
+  return "locale not found";
+};
+const addTraductionDispositifInContenusAirtable = ({ id, trad }, locale) => {
+  const formattedLocale = getFormattedLocale(locale);
+  logger.info(
+    "[addTraductionDispositifInContenusAirtable] update line for record and locale",
+    {
+      id,
+      locale,
+      formattedLocale,
+    }
+  );
+  trad.push(formattedLocale);
+  base("CONTENUS").update([
+    {
+      id,
+      fields: { "Traduits ?": trad },
+    },
+  ]);
 };
 
 const addOrUpdateDispositifInContenusAirtable = async (
   titleInformatif,
   titreMarque,
   id,
-  tags
+  tags,
+  locale
 ) => {
   const title = titreMarque + " - " + titleInformatif;
   logger.info("[addOrUpdateDispositifInContenusAirtable] received a new line", {
@@ -71,17 +103,29 @@ const addOrUpdateDispositifInContenusAirtable = async (
           "[addOrUpdateDispositifInContenusAirtable] retrieved dispositif",
           { recordId: record.id, title: record.get("Title") }
         );
-        recordsList.push(record.id);
+        recordsList.push({ id: record.id, trad: record.get("Traduits ?") });
       });
       if (recordsList.length === 0) {
         logger.info(
           "[addOrUpdateDispositifInContenusAirtable] no dispositif with the link exists in table contenu",
           { link }
         );
+        if (locale) {
+          logger.info(
+            "[addOrUpdateDispositifInContenusAirtable] no locale so we don't do anything",
+            { link }
+          );
+          return;
+        }
         addDispositifInContenusAirtable(title, link, tagsList);
         return;
       }
-      updateDispositifInContenusAirtable(recordsList[0]);
+      if (!locale) {
+        // no locale and a record with the link ==> dispositif modified in french
+        removeTraductionDispositifInContenusAirtable(recordsList[0].id);
+        return;
+      }
+      addTraductionDispositifInContenusAirtable(recordsList[0], locale);
     });
 };
 

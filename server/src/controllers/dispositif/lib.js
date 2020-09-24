@@ -168,12 +168,17 @@ async function add_dispositif(req, res) {
         logger.info("[add_dispositif] dispositif is Actif", {
           dispositifId: dispResult._id,
         });
-        await addOrUpdateDispositifInContenusAirtable(
-          dispResult.titreInformatif,
-          dispResult.titreMarque,
-          dispResult.dispositifId || dispResult._id,
-          dispResult.tags
-        );
+        try {
+          await addOrUpdateDispositifInContenusAirtable(
+            dispResult.titreInformatif,
+            dispResult.titreMarque,
+            dispResult.dispositifId || dispResult._id,
+            dispResult.tags,
+            null
+          );
+        } catch (error) {
+          logger.error("error while updating contenu in airtable", { error });
+        }
       }
     } else {
       logger.info("[add_dispositif] creating a new dispositif", {

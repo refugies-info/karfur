@@ -13,6 +13,10 @@ const sanitizeOptions = require("../article/lib.js").sanitizeOptions;
 const _ = require("lodash");
 const { turnHTMLtoJSON, turnJSONtoHTML } = require("../dispositif/functions");
 const mongoose = require("mongoose");
+const {
+  addOrUpdateDispositifInContenusAirtable,
+} = require("../miscellaneous/airtable");
+const logger = require("../../logger");
 
 const headers = {
   "Content-Type": "application/json",
@@ -44,7 +48,6 @@ const deduplicateArrayOfObjectIds = (arrayOfObjectIds) =>
 }; */
 // recalculate_all();
 
-
 const _errorHandler = (error, res) => {
   switch (error) {
     case 500:
@@ -63,7 +66,6 @@ const _errorHandler = (error, res) => {
       });
   }
 };
-
 
 const _findNodeAndReplace = (initial, translated, locale, id) => {
   let children = initial.children || initial || [];
@@ -84,7 +86,7 @@ const _findNodeAndReplace = (initial, translated, locale, id) => {
           node.children[0].content[locale] =
             translated[0].children[0].children[0].content;
           return true;
-        // eslint-disable-next-line
+          // eslint-disable-next-line
         } else {
           return false;
         }
@@ -220,6 +222,21 @@ const insertInDispositif = (res, traduction, locale) => {
               text: "Succès",
               data: data,
             });
+            try {
+              if (result.typeContenu === "dispositif") {
+                addOrUpdateDispositifInContenusAirtable(
+                  "",
+                  "",
+                  result.id,
+                  [],
+                  locale
+                );
+              }
+            } catch (error) {
+              logger.error("error while updating contenu in airtable", {
+                error,
+              });
+            }
           }
           return res;
         });
@@ -244,12 +261,7 @@ async function add_tradForReview(req, res) {
     // eslint-disable-next-line
   } else {
     let traduction = req.body;
-    const {
-      wordsCount,
-      timeSpent,
-      langueCible,
-      articleId,
-    } = traduction;
+    const { wordsCount, timeSpent, langueCible, articleId } = traduction;
     //We save a new indicator document to know the number of words translated and the time spent, this is needed for stats in the front
     new Indicator({
       userId: req.userId,
@@ -381,7 +393,6 @@ async function add_tradForReview(req, res) {
 
 //We retrieve the list of translations
 function get_tradForReview(req, res) {
-
   let { query, sort, populate, random, locale } = req.body;
   if (!req.fromSite) {
     //On n'autorise pas les populate en API externe
@@ -455,7 +466,6 @@ async function validate_tradForReview(req, res) {
   ) {
     res.status(401).json({ text: "Token invalide" });
   } else {
-
     let traductionUser = req.body || {};
     //Ici il y en a plusieurs: à régler
     // We update the translation for the expert, by changing the status to validated
@@ -481,15 +491,14 @@ async function validate_tradForReview(req, res) {
           });
       }
       // We delete all translations that are not from experts, since now we only need one official validated version
-      await Traduction.deleteMany(
-        { 
-          articleId: req.body.articleId,
-          langueCible: req.body.locale,
-          isExpert: {$ne: true},
-        }
-      );
+      await Traduction.deleteMany({
+        articleId: req.body.articleId,
+        langueCible: req.body.locale,
+        isExpert: { $ne: true },
+      });
       // !IMPORTANT We insert the validated translation in the dispositif
       insertInDispositif(res, traductionUser, traductionUser.locale);
+      console.log("has validated ", traductionUser.locale);
     } else {
       //Validating a translation in case it's an article
       Traduction.findOneAndUpdate(
@@ -549,10 +558,6 @@ async function validate_tradForReview(req, res) {
     }
   }
 }
-
-
-
-
 
 /* async function calculateScores(data, traductionInitiale) {
   let newTrad = {
@@ -658,7 +663,6 @@ function get_laser(req, res) {
   if (!req.body || !req.body.sentences) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
- 
     let sentences = req.body.sentences;
     axios
       .post(burl + "/laser", { sentences: sentences }, { headers: headers })
@@ -701,7 +705,7 @@ function update_tradForReview(req, res) {
     )
   ) {
     return res.status(400).json({ text: "Requête invalide" });
-        // eslint-disable-next-line
+    // eslint-disable-next-line
   } else {
     let translation = req.body;
     translation.validatorId = req.userId;
@@ -749,7 +753,6 @@ function update_tradForReview(req, res) {
 //Fetching the progression from the indicators collection
 async function get_progression(req, res) {
   try {
-
     var start = new Date();
     var end3 = new Date();
     var end6 = new Date();
@@ -836,7 +839,6 @@ async function get_progression(req, res) {
   }
 }
 
-
 /* const updateRoles = () => {
   Langue.find().exec(function (err, result) {
     if (err) {
@@ -879,7 +881,7 @@ async function delete_trads(req, res) {
     return res.status(400).json({ text: "Requête invalide" });
   } else if (!req.user.roles.some((x) => x.nom === "Admin")) {
     return res.status(400).json({ text: "Requête invalide" });
-        // eslint-disable-next-line
+    // eslint-disable-next-line
   } else {
     await Traduction.deleteMany({
       articleId: req.body.articleId,
