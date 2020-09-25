@@ -128,7 +128,7 @@ function get_structure(req, res) {
     } else {
       populate = "";
     }
-
+    logger.info("[get_structure] get structure", { query });
     var find = new Promise((resolve, reject) => {
       Structure.find(query)
         .sort(sort)
