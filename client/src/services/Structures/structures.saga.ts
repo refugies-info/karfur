@@ -13,6 +13,11 @@ import {
   updateUserStructureActionCreator,
 } from "./structures.actions";
 import { logger } from "../../logger";
+import {
+  startLoading,
+  LoadingStatusKey,
+  finishLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 
 export function* fetchStructures(): SagaIterator {
   try {
@@ -28,11 +33,13 @@ export function* fetchUserStructure(
   action: ReturnType<typeof fetchUserStructureActionCreator>
 ): SagaIterator {
   try {
+    yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId } = action.payload;
-    const data = yield call(API.get_structure, { _id: structureId }, {});
+    const data = yield call(API.get_structure, { _id: structureId });
     yield put(setUserStructureActionCreator(data.data.data[0]));
     logger.info("[fetchUserStructure] successfully fetched user structure");
+    yield put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
   } catch (error) {
     logger.error("[fetchUserStructure] error while fetching user structure", {
       error,
@@ -44,13 +51,13 @@ export function* updateUserStructure(
   action: ReturnType<typeof updateUserStructureActionCreator>
 ): SagaIterator {
   try {
-    logger.info("[fetchUserStructure] updating user structure");
-    // const { structureId } = action.payload;
-    // const data = yield call(API.get_structure, { _id: structureId }, {});
-    // yield put(setUserStructureActionCreator(data.data.data[0]));
-    logger.info("[fetchUserStructure] successfully fetched user structure");
+    logger.info("[updateUserStructure] updating user structure");
+    const { structure } = action.payload;
+    const data = yield call(API.create_structure, { structure });
+    yield put(setUserStructureActionCreator(data.data.data[0]));
+    logger.info("[updateUserStructure] successfully updated user structure");
   } catch (error) {
-    logger.error("[fetchUserStructure] error while updating user structure", {
+    logger.error("[updateUserStructure] error while updating user structure", {
       error,
     });
   }

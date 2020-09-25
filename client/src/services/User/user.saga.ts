@@ -6,11 +6,17 @@ import { setUserActionCreator, fetchUserActionCreator } from "./user.actions";
 import { push } from "connected-react-router";
 import { logger } from "../../logger";
 import { fetchUserStructureActionCreator } from "../Structures/structures.actions";
+import {
+  startLoading,
+  LoadingStatusKey,
+  finishLoading,
+} from "../LoadingStatus/loadingStatus.actions";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
 ): SagaIterator {
   try {
+    yield put(startLoading(LoadingStatusKey.FETCH_USER));
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
       const data = yield call(API.get_user_info);
@@ -25,6 +31,7 @@ export function* fetchUser(
     } else {
       yield put(setUserActionCreator(null));
     }
+    yield put(finishLoading(LoadingStatusKey.FETCH_USER));
 
     if (action.payload && action.payload.shouldRedirect) {
       yield put(
