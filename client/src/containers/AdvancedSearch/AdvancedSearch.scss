@@ -27,12 +27,13 @@
     }
   }
   .search-wrapper {
-    max-width: 100%;
+    //max-width: 100%;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
   }
   .mt-250 {
-    margin-top: 180px;
+    margin-top: 200px;
     @include media-max("desktop-up") {
       margin-top: 300px;
     }
@@ -244,5 +245,13 @@
       justify-content: flex-end; 
     }
   }
+}
+.grid-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+.grid-list {
+  grid-template-columns: repeat( 5, minmax(260px, 300px) );
 }
 

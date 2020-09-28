@@ -3,17 +3,17 @@ import { NavLink, withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { filtres } from "../Dispositif/data";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";
-import { Col, CardBody, CardFooter } from "reactstrap";
+import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import variables from "scss/colors.scss"
+import variables from "scss/colors.scss";
 import Streamline from "../../assets/streamline";
 import "./AdvancedSearch.scss";
 
 const CardText = styled.p`
   font-weight: 14px;
-`
+`;
 
-const SearchResultCard = ({ pin, pinnedList, dispositif }) => {
+const SearchResultCard = ({ pin, pinnedList, dispositif}) => {
   const pinned =
     pinnedList.includes(dispositif._id) ||
     pinnedList.filter(
@@ -37,82 +37,77 @@ const SearchResultCard = ({ pin, pinnedList, dispositif }) => {
     if (shortTagFull) {
       iconTag = filtres.tags.find((tag) => tag.short === shortTagFull);
     }
+
     return (
-            <Col
-              xl="3"
-              lg="3"
-              md="4"
-              sm="6"
-              xs="12"
-              className={
-                "card-col puff-in-center " +
-                (dispositif.typeContenu || "dispositif")
-              }
-              key={dispositif._id}
-            >
-      <NavLink
-        to={{
-          pathname:
-            "/" +
-            (dispositif.typeContenu || "dispositif") +
-            (dispositif._id ? "/" + dispositif._id : ""),
-          state: { previousRoute: "advanced-search" },
-        }}
+      <div
+        className={
+          "card-col puff-in-center " + (dispositif.typeContenu || "dispositif")
+        }
+        key={dispositif._id}
       >
-        <CustomCard
-          className={
-            dispositif.typeContenu === "demarche"
-              ? "texte-" +
-                shortTag +
-                " bg-light-" +
-                shortTag +
-                " border-" +
-                shortTag
-              : "border-none"
-          }
+        <NavLink
+          to={{
+            pathname:
+              "/" +
+              (dispositif.typeContenu || "dispositif") +
+              (dispositif._id ? "/" + dispositif._id : ""),
+            state: { previousRoute: "advanced-search" },
+          }}
         >
-          <CardBody>
-            <EVAIcon
-              name="bookmark"
-              size="xlarge"
-              onClick={(e) => pin(e, dispositif)}
-              fill={pinned ? variables.noir : variables.noirCD}
-              className={"bookmark-icon" + (pinned ? " pinned" : "")}
-            />
-            <h5>{dispositif.titreInformatif}</h5>
-            <CardText>{dispositif.abstract}</CardText>
-          </CardBody>
-          {dispositif.typeContenu !== "demarche" && (
-            <CardFooter
-              className={
-                "correct-radius align-right bg-" +
-                shortTag +
-                (iconTag ? "" : " no-icon")
-              }
-            >
-              {iconTag ? (
-                <div
-                  style={{
-                    width: 50,
-                    display: "flex",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <Streamline
-                    name={iconTag.icon}
-                    stroke={"white"}
-                    width={22}
-                    height={22}
-                  />
-                </div>
-              ) : null}
-              {dispositif.titreMarque}
-            </CardFooter>
-          )}
-        </CustomCard>
-      </NavLink>
-      </Col>
+          <CustomCard
+            className={
+              dispositif.typeContenu === "demarche"
+                ? "texte-" +
+                  shortTag +
+                  " bg-light-" +
+                  shortTag +
+                  " border-" +
+                  shortTag
+                : "border-none"
+            }
+          >
+            <CardBody>
+              <EVAIcon
+                name="bookmark"
+                size="xlarge"
+                onClick={(e) => pin(e, dispositif)}
+                fill={pinned ? variables.noir : variables.noirCD}
+                className={"bookmark-icon" + (pinned ? " pinned" : "")}
+              />
+              <h5>{dispositif.titreInformatif}</h5>
+              <CardText>{dispositif.abstract}</CardText>
+            </CardBody>
+            {dispositif.typeContenu !== "demarche" && (
+              <CardFooter
+                className={
+                  "correct-radius align-right bg-" +
+                  shortTag +
+                  (iconTag ? "" : " no-icon")
+                }
+              >
+                {iconTag ? (
+                  <div
+                    style={{
+                      width: 50,
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "flex-start",
+                    }}
+                  >
+                    <Streamline
+                      name={iconTag.icon}
+                      stroke={"white"}
+                      width={22}
+                      height={22}
+                    />
+                  </div>
+                ) : null}
+                {dispositif.titreMarque}
+              </CardFooter>
+            )}
+          </CustomCard>
+        </NavLink>
+      </div>
     );
   }
   return false;

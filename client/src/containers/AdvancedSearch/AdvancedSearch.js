@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import track from "react-tracking";
 import {
-  Col,
-  Row,
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -299,7 +297,7 @@ export class AdvancedSearch extends Component {
 
         if (query["tags.name"]) {
           //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
-/*           dispositifs = dispositifs.sort(
+          /*           dispositifs = dispositifs.sort(
             (a, b) =>
               a.tags.findIndex((x) =>
                 x ? x.short === query["tags.name"] : 99
@@ -307,12 +305,12 @@ export class AdvancedSearch extends Component {
               b.tags.findIndex((x) => (x ? x.short === query["tags.name"] : 99))
           ); */
           dispositifs = dispositifs.sort((a, b) =>
-          _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
-            ? -1
-            : _.get(b, "tags.0.name", {}) === this.state.recherche[0].query
-            ? 1
-            : 0
-        );
+            _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
+              ? -1
+              : _.get(b, "tags.0.name", {}) === this.state.recherche[0].query
+              ? 1
+              : 0
+          );
         } else {
           dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
         }
@@ -330,7 +328,7 @@ export class AdvancedSearch extends Component {
               }),
             };
           });
-         
+
           this.setState({ themesObject: themesObject });
           //console.log(themesObject);
         }
@@ -715,65 +713,61 @@ export class AdvancedSearch extends Component {
             {t("AdvancedSearch.Rédiger", "Rédiger")}
           </FButton>
         </FilterBar>
-        <Row className="search-wrapper">
-          <Col xl="8" lg="8" md="8" sm="8" xs="12" className="mt-250">
-            <div className="results-wrapper">
-              <Row>
-                {dispositifs.map((dispositif, index) => {
-                  return (
-                    <SearchResultCard
-                      key={index}
-                      pin={this.pin}
-                      pinnedList={this.state.pinned}
-                      dispositif={dispositif}
-                    />
-                  );
-                })}
-                {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
-                  /*             <Col
+        <div className="mt-250 search-wrapper">
+          <div class="grid-list grid-container">
+            {dispositifs.map((dispositif, index) => {
+              return (
+                <SearchResultCard
+                  key={index}
+                  pin={this.pin}
+                  pinnedList={this.state.pinned}
+                  dispositif={dispositif}
+                />
+              );
+            })}
+            {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
+              /*             <Col
                     xs="12"
                     sm="6"
                     md="3"
                     className="no-result"
                     onClick={() => this.selectTag()}
                   > */
-                  <NoResultsContainer>
-                    <NoResults />
-                    <NoResultsTextContainer>
-                      <NoResultsTitle>
-                        {t("Aucun résultat", "Aucun résultat")}
-                      </NoResultsTitle>
-                      <NoResultsText>
-                        {t(
-                          "AdvancedSearch.Elargir recherche",
-                          "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères."
-                        )}{" "}
-                      </NoResultsText>
-                      <NoResultsButtonsContainer>
-                        <FButton
-                          type="dark"
-                          name="refresh-outline"
-                          className="mr-10"
-                          onClick={this.restart}
-                        >
-                          Recommencer
-                        </FButton>
-                        <FButton
-                          type="white"
-                          name="file-add-outline"
-                          onClick={this.writeNew}
-                        >
-                          Rédiger une nouvelle fiche
-                        </FButton>
-                      </NoResultsButtonsContainer>
-                    </NoResultsTextContainer>
-                  </NoResultsContainer>
-                  //  </Col>
-                )}
-              </Row>
-            </div>
-          </Col>
-        </Row>
+              <NoResultsContainer>
+                <NoResults />
+                <NoResultsTextContainer>
+                  <NoResultsTitle>
+                    {t("Aucun résultat", "Aucun résultat")}
+                  </NoResultsTitle>
+                  <NoResultsText>
+                    {t(
+                      "AdvancedSearch.Elargir recherche",
+                      "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères."
+                    )}{" "}
+                  </NoResultsText>
+                  <NoResultsButtonsContainer>
+                    <FButton
+                      type="dark"
+                      name="refresh-outline"
+                      className="mr-10"
+                      onClick={this.restart}
+                    >
+                      Recommencer
+                    </FButton>
+                    <FButton
+                      type="white"
+                      name="file-add-outline"
+                      onClick={this.writeNew}
+                    >
+                      Rédiger une nouvelle fiche
+                    </FButton>
+                  </NoResultsButtonsContainer>
+                </NoResultsTextContainer>
+              </NoResultsContainer>
+              //  </Col>
+            )}
+          </div>
+        </div>
         <BookmarkedModal
           t={this.props.t}
           success={this.props.user ? true : false}
