@@ -8,6 +8,15 @@ $placeholderColor: $blanc;
   justify-content: center;
   align-items: center;
 
+  .search-title{
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .search-btn {
+    font-size: 22px;
+  }
+
   .search-filter{
    display: flex;
    flex-direction: row;

@@ -57,7 +57,7 @@ const initial_data = [
   {
     title: "Je parle",
     value: null,
-    placeholder: "mon niveau",
+    placeholder: "niveau de français",
     title2: "français",
     queryName: "niveauFrancais",
     append: "Quel est mon niveau ?",
@@ -102,7 +102,7 @@ const tris = [
  // { name: "A > Z", value: "titreInformatif" },
   { name: "Derniers ajouts", value: "created_at" },
   { name: "Les plus visités", value: "nbVues" },
-  { name: "Par thème", value: "" },
+  { name: "Par thème" },
 ];
 
 export { initial_data, filtres_contenu, tris };

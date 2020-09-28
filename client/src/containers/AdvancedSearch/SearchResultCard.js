@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
+import styled from "styled-components";
 import { filtres } from "../Dispositif/data";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import { Col, CardBody, CardFooter } from "reactstrap";
@@ -7,6 +8,10 @@ import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import variables from "scss/colors.scss"
 import Streamline from "../../assets/streamline";
 import "./AdvancedSearch.scss";
+
+const CardText = styled.p`
+  font-weight: 14px;
+`
 
 const SearchResultCard = ({ pin, pinnedList, dispositif }) => {
   const pinned =
@@ -75,7 +80,7 @@ const SearchResultCard = ({ pin, pinnedList, dispositif }) => {
               className={"bookmark-icon" + (pinned ? " pinned" : "")}
             />
             <h5>{dispositif.titreInformatif}</h5>
-            <p>{dispositif.abstract}</p>
+            <CardText>{dispositif.abstract}</CardText>
           </CardBody>
           {dispositif.typeContenu !== "demarche" && (
             <CardFooter

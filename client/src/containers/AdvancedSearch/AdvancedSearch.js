@@ -20,7 +20,7 @@ import styled from "styled-components";
 import produce from "immer";
 // import Cookies from 'js-cookie';
 
-import i18n from "../../i18n"
+import i18n from "../../i18n";
 import SearchItem from "./SearchItem/SearchItem";
 import SearchResultCard from "./SearchResultCard";
 import API from "../../utils/API";
@@ -104,19 +104,18 @@ const FilterBar = styled.div`
   background-color: #828282;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   position: fixed;
-  border-radius: 0px 0px 8px 8px;
-  padding: 5px 0px;
-  width: 80%;
+  border-radius: 8px;
+  padding: 5px 16px;
   display: flex;
   z-index: 2;
   top: ${(props) =>
     props.visibleTop && props.visibleSearch
-      ? "150px"
+      ? "172px"
       : !props.visibleTop && props.visibleSearch
-      ? "75px"
+      ? "88px"
       : props.visibleTop && !props.visibleSearch
-      ? "75px"
-      : "-15px"};
+      ? "88px"
+      : "-24px"};
   transition: top 0.6s;
   height: 80px;
 `;
@@ -137,7 +136,7 @@ export class AdvancedSearch extends Component {
     nbVues: [],
     pinned: [],
     activeFiltre: "",
-    activeTri: "",
+    activeTri: "Par thème",
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
@@ -150,13 +149,12 @@ export class AdvancedSearch extends Component {
     visible: true,
     countTotal: 0,
     countShow: 0,
+    themesObject: [],
   };
-
-
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScrolling);
-    this._isMounted = true
+    this._isMounted = true;
     this.retrieveCookies();
     let tag = querySearch(this.props.location.search).tag;
     let bottomValue = querySearch(this.props.location.search).bottomValue;
@@ -218,7 +216,7 @@ export class AdvancedSearch extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScrolling);
-    this._isMounted = false
+    this._isMounted = false;
   }
 
   // eslint-disable-next-line react/no-deprecated
@@ -236,7 +234,7 @@ export class AdvancedSearch extends Component {
     this.setState({
       visible,
     });
-  }; 
+  };
 
   queryDispositifs = (Nquery = null, props = this.props) => {
     this.setState({ showSpinner: true });
@@ -258,10 +256,11 @@ export class AdvancedSearch extends Component {
             : { [x.queryName]: x.query }
         )
         .reduce((acc, curr) => ({ ...acc, ...curr }), {});
-/*     const localisationSearch = this.state.recherche.find(
+    /*     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
-    ) */;
-    if (!Nquery) {
+    ) */ if (
+      !Nquery
+    ) {
       let newQueryParam = {
         tag: query["tags.name"] ? query["tags.name"] : undefined,
         bottomValue: query["audienceAge.bottomValue"]
@@ -284,72 +283,63 @@ export class AdvancedSearch extends Component {
       });
     }
 
-    /*     (query["tags.name"] ? `?tag=${this.state.recherche[0].short}` : "") +
-    (query["audienceAge.bottomValue"]
-      ? `?bottomValue=${this.state.recherche[2].bottomValue}`
-      : "") +
-    (query["audienceAge.topValue"]
-      ? `?topValue=${this.state.recherche[2].topValue}`
-      : "") +
-    (query["niveauFrancais"]
-      ? `?niveauFrancais=${this.state.recherche[3].value}`
-      : ""), */
-
     API.get_dispositif({
       query: {
         ...query,
         ...this.state.filter,
         status: "Actif",
       },
-        demarcheId: { $exists: false },
-        locale: props.languei18nCode,
+      demarcheId: { $exists: false },
+      locale: props.languei18nCode,
     })
       .then((data_res) => {
         let dispositifs = data_res.data.data;
 
-        this.setState({countTotal: dispositifs.length});
+        this.setState({ countTotal: dispositifs.length });
 
         if (query["tags.name"]) {
           //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
-          dispositifs = dispositifs.sort(
+/*           dispositifs = dispositifs.sort(
             (a, b) =>
               a.tags.findIndex((x) =>
                 x ? x.short === query["tags.name"] : 99
               ) -
               b.tags.findIndex((x) => (x ? x.short === query["tags.name"] : 99))
-          );
+          ); */
+          dispositifs = dispositifs.sort((a, b) =>
+          _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
+            ? -1
+            : _.get(b, "tags.0.name", {}) === this.state.recherche[0].query
+            ? 1
+            : 0
+        );
+        } else {
+          dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
         }
-/*         if (localisationSearch) {
-          //On applique le filtre géographique maintenant
-          dispositifs = dispositifs.filter(
-            (x) =>
-              x.typeContenu !== "demarche" ||
-              !(x.variantes || []).some((y) => y.villes) ||
-              x.variantes.some((y) =>
-                y.villes.some(
-                  (z) =>
-                    !z.address_components.some(
-                      (ad) =>
-                        !localisationSearch.query.some(
-                          (lq) => lq.long_name === ad.long_name
-                        ) //On compare seulement les noms, il faudrait idéalement rajouter le type aussi mais la comparaison des Arrays me paraît lourde
-                    )
-                )
-              )
-          );
-          const filterDoubles = [
-            ...new Set(dispositifs.map((x) => x.demarcheId || x._id)),
-          ]; //Je vire les doublons créés par les variantes
-          dispositifs = filterDoubles.map((x) =>
-            dispositifs.find((y) => y.demarcheId === x || y._id === x)
-          );
-        } */
         dispositifs = dispositifs.map((x) => ({
           ...x,
           nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
+        if (this.state.activeTri === "Par thème") {
+          const themesObject = filtres.tags.map((tag) => {
+            return {
+              [tag.short]: dispositifs.filter((elem) => {
+                if (elem.tags[0]) {
+                  return elem.tags[0].short === tag.short;
+                }
+              }),
+            };
+          });
+         
+          this.setState({ themesObject: themesObject });
+          //console.log(themesObject);
+        }
 
-        this.setState({ dispositifs: dispositifs, showSpinner: false, countShow: dispositifs.length });
+        this.setState({
+          dispositifs: dispositifs,
+          showSpinner: false,
+          countShow: dispositifs.length,
+        });
       })
       .catch(() => this.setState({ showSpinner: false }));
   };
@@ -370,7 +360,6 @@ export class AdvancedSearch extends Component {
       ),
     }));
     this.queryDispositifs({ "tags.name": tagValue.name });
-    // this.props.history.replace("/advanced-search?tag="+tag)
   };
 
   _initializeEvents = () => {
@@ -577,12 +566,14 @@ export class AdvancedSearch extends Component {
   };
 
   desactiverTri = () => {
-    this.setState({activeTri: ""},  () => this.queryDispositifs())
-  }
+    this.setState({ activeTri: "" }, () => this.queryDispositifs());
+  };
 
   desactiverFiltre = () => {
-    this.setState({activeFiltre: "", filter: {}},  () => this.queryDispositifs())
-  }
+    this.setState({ activeFiltre: "", filter: {} }, () =>
+      this.queryDispositifs()
+    );
+  };
 
   desactiver = (key) =>
     this.setState(
@@ -604,7 +595,8 @@ export class AdvancedSearch extends Component {
       showBookmarkModal: !prevState.showBookmarkModal,
     }));
   toggleSearch = () => {
-    this.setState({ searchToggleVisible: !this.state.searchToggleVisible })};
+    this.setState({ searchToggleVisible: !this.state.searchToggleVisible });
+  };
 
   render() {
     let {
@@ -618,8 +610,8 @@ export class AdvancedSearch extends Component {
     } = this.state;
     // eslint-disable-next-line
     const { t, windowWidth, dispositifs: storeDispo } = this.props;
-    const isRTL = ["ar", "ps", "fa"].includes(i18n.language)
-/* 
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    /* 
     if (recherche[0].active) {
       dispositifs = dispositifs.sort((a, b) =>
         _.get(a, "tags.0.name", {}) === recherche[0].query
@@ -672,41 +664,70 @@ export class AdvancedSearch extends Component {
             t={t}
           />
         </div>
-         <FilterBar
+        <FilterBar
           visibleTop={this.state.visible}
           visibleSearch={this.state.searchToggleVisible}
         >
-          <FilterTitle>{t("AdvancedSearch.Filtrer par", "Filtrer par :")}</FilterTitle>
+          <FilterTitle>
+            {t("AdvancedSearch.Filtrer par.", "Filtrer par")}
+          </FilterTitle>
           {filtres_contenu.map((filtre, idx) => {
             return (
-            <TagButton active={(filtre.name === activeFiltre)} desactiver={this.desactiverFiltre} key={idx}  filter onClick={() => this.filter_content(filtre)}>
-              {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
-            </TagButton>
-          )})}
-          <FilterTitle>{t("AdvancedSearch.Trier par", "Trier par :")}</FilterTitle>
+              <TagButton
+                active={filtre.name === activeFiltre}
+                desactiver={this.desactiverFiltre}
+                key={idx}
+                filter
+                onClick={() => this.filter_content(filtre)}
+              >
+                {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
+              </TagButton>
+            );
+          })}
+          <FilterTitle>
+            {t("AdvancedSearch.Trier par.", "Trier par")}
+          </FilterTitle>
           {tris.map((tri, idx) => (
-            <TagButton active={(tri.name === activeTri)} desactiver={this.desactiverTri} key={idx} filter onClick={() => this.reorder(tri)}>
+            <TagButton
+              active={tri.name === activeTri}
+              desactiver={this.desactiverTri}
+              key={idx}
+              filter
+              onClick={() => this.reorder(tri)}
+            >
               {t("AdvancedSearch." + tri.name, tri.name)}
             </TagButton>
           ))}
-          <FilterTitle> {this.state.countShow + "/" + this.props.dispositifs.length + " " + t("AdvancedSearch.résultats", "résultats")}</FilterTitle>
-          <FButton className={isRTL ? "ml-10" : ""} type="white" name="file-add-outline" onClick={this.writeNew}>
-          {t("AdvancedSearch.Rédiger", "Rédiger")}
-          </FButton>
-        </FilterBar> 
-        <Row className="search-wrapper">
-          <Col
-            xl="8"
-            lg="8"
-            md="8"
-            sm="8"
-            xs="12"
-            className="mt-250"
+          <FilterTitle>
+            {" "}
+            {this.state.countShow +
+              "/" +
+              this.props.dispositifs.length +
+              " " +
+              t("AdvancedSearch.résultats", "résultats")}
+          </FilterTitle>
+          <FButton
+            className={isRTL ? "ml-10" : ""}
+            type="white"
+            name="file-add-outline"
+            onClick={this.writeNew}
           >
+            {t("AdvancedSearch.Rédiger", "Rédiger")}
+          </FButton>
+        </FilterBar>
+        <Row className="search-wrapper">
+          <Col xl="8" lg="8" md="8" sm="8" xs="12" className="mt-250">
             <div className="results-wrapper">
               <Row>
                 {dispositifs.map((dispositif, index) => {
-                  return(<SearchResultCard key={index} pin={this.pin} pinnedList={this.state.pinned} dispositif={dispositif} />)
+                  return (
+                    <SearchResultCard
+                      key={index}
+                      pin={this.pin}
+                      pinnedList={this.state.pinned}
+                      dispositif={dispositif}
+                    />
+                  );
                 })}
                 {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
                   /*             <Col

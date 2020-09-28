@@ -33,6 +33,8 @@
     "Les plus visités": "Les plus visités",
     "Trier par": "Trier par :",
     "Filtrer par": "Filtrer par :",
+    "Trier par.": "Trier par",
+    "Filtrer par.": "Filtrer par",
     "Dispositifs": "Dispositifs",
     "Démarches": "Démarches",
     "Créer une fiche": "Créer une fiche",
@@ -246,7 +248,8 @@
     "mon niveau": "mon niveau",
     "Je suis": "Je suis",
     "français": "français",
-    "bientot disponible": "Bientôt disponible"
+    "bientot disponible": "Bientôt disponible",
+    "niveau de français": "niveau de français"
   },
   "Status": {
     "En attente": "En attente",
