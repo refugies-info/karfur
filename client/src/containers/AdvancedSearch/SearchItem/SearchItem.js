@@ -49,7 +49,7 @@ export class SearchItem extends Component {
 
     return (
       <div className="search-col">
-        <span className="mr-10">
+        <span className="mr-10 search-title">
           {t("SearchItem." + item.title, item.title)}
         </span>
         {item.queryName === "localisation" ? (
@@ -119,7 +119,7 @@ export class SearchItem extends Component {
                 (!item.short && item.active ? "active" : "")
               }
             >
-                {item.active && item.placeholder === "choisir un thème" && (
+                {item.active && item.placeholder === "thème" && (
                  <div
                  style={{
                    display: "flex",
