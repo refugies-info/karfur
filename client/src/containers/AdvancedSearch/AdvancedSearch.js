@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import track from "react-tracking";
 import {
-  Col,
-  Row,
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -104,19 +102,18 @@ const FilterBar = styled.div`
   background-color: #828282;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   position: fixed;
-  border-radius: 0px 0px 8px 8px;
-  padding: 5px 0px;
-  width: 80%;
+  border-radius: 8px;
+  padding: 5px 16px;
   display: flex;
   z-index: 2;
   top: ${(props) =>
     props.visibleTop && props.visibleSearch
-      ? "150px"
+      ? "172px"
       : !props.visibleTop && props.visibleSearch
-      ? "75px"
+      ? "88px"
       : props.visibleTop && !props.visibleSearch
-      ? "75px"
-      : "-15px"};
+      ? "88px"
+      : "-24px"};
   transition: top 0.6s;
   height: 80px;
 `;
@@ -137,7 +134,7 @@ export class AdvancedSearch extends Component {
     nbVues: [],
     pinned: [],
     activeFiltre: "",
-    activeTri: "",
+    activeTri: "Par thème",
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
@@ -150,6 +147,7 @@ export class AdvancedSearch extends Component {
     visible: true,
     countTotal: 0,
     countShow: 0,
+    themesObject: [],
   };
 
   componentDidMount() {
@@ -283,17 +281,6 @@ export class AdvancedSearch extends Component {
       });
     }
 
-    /*     (query["tags.name"] ? `?tag=${this.state.recherche[0].short}` : "") +
-    (query["audienceAge.bottomValue"]
-      ? `?bottomValue=${this.state.recherche[2].bottomValue}`
-      : "") +
-    (query["audienceAge.topValue"]
-      ? `?topValue=${this.state.recherche[2].topValue}`
-      : "") +
-    (query["niveauFrancais"]
-      ? `?niveauFrancais=${this.state.recherche[3].value}`
-      : ""), */
-
     API.get_dispositif({
       query: {
         ...query,
@@ -310,43 +297,41 @@ export class AdvancedSearch extends Component {
 
         if (query["tags.name"]) {
           //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
-          dispositifs = dispositifs.sort(
+          /*           dispositifs = dispositifs.sort(
             (a, b) =>
               a.tags.findIndex((x) =>
                 x ? x.short === query["tags.name"] : 99
               ) -
               b.tags.findIndex((x) => (x ? x.short === query["tags.name"] : 99))
+          ); */
+          dispositifs = dispositifs.sort((a, b) =>
+            _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
+              ? -1
+              : _.get(b, "tags.0.name", {}) === this.state.recherche[0].query
+              ? 1
+              : 0
           );
+        } else {
+          dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
         }
-        /*         if (localisationSearch) {
-          //On applique le filtre géographique maintenant
-          dispositifs = dispositifs.filter(
-            (x) =>
-              x.typeContenu !== "demarche" ||
-              !(x.variantes || []).some((y) => y.villes) ||
-              x.variantes.some((y) =>
-                y.villes.some(
-                  (z) =>
-                    !z.address_components.some(
-                      (ad) =>
-                        !localisationSearch.query.some(
-                          (lq) => lq.long_name === ad.long_name
-                        ) //On compare seulement les noms, il faudrait idéalement rajouter le type aussi mais la comparaison des Arrays me paraît lourde
-                    )
-                )
-              )
-          );
-          const filterDoubles = [
-            ...new Set(dispositifs.map((x) => x.demarcheId || x._id)),
-          ]; //Je vire les doublons créés par les variantes
-          dispositifs = filterDoubles.map((x) =>
-            dispositifs.find((y) => y.demarcheId === x || y._id === x)
-          );
-        } */
         dispositifs = dispositifs.map((x) => ({
           ...x,
           nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
+        if (this.state.activeTri === "Par thème") {
+          const themesObject = filtres.tags.map((tag) => {
+            return {
+              [tag.short]: dispositifs.filter((elem) => {
+                if (elem.tags[0]) {
+                  return elem.tags[0].short === tag.short;
+                }
+              }),
+            };
+          });
+
+          this.setState({ themesObject: themesObject });
+          //console.log(themesObject);
+        }
 
         this.setState({
           dispositifs: dispositifs,
@@ -373,7 +358,6 @@ export class AdvancedSearch extends Component {
       ),
     }));
     this.queryDispositifs({ "tags.name": tagValue.name });
-    // this.props.history.replace("/advanced-search?tag="+tag)
   };
 
   _initializeEvents = () => {
@@ -683,7 +667,7 @@ export class AdvancedSearch extends Component {
           visibleSearch={this.state.searchToggleVisible}
         >
           <FilterTitle>
-            {t("AdvancedSearch.Filtrer par", "Filtrer par :")}
+            {t("AdvancedSearch.Filtrer par.", "Filtrer par")}
           </FilterTitle>
           {filtres_contenu.map((filtre, idx) => {
             return (
@@ -699,7 +683,7 @@ export class AdvancedSearch extends Component {
             );
           })}
           <FilterTitle>
-            {t("AdvancedSearch.Trier par", "Trier par :")}
+            {t("AdvancedSearch.Trier par.", "Trier par")}
           </FilterTitle>
           {tris.map((tri, idx) => (
             <TagButton
@@ -729,65 +713,61 @@ export class AdvancedSearch extends Component {
             {t("AdvancedSearch.Rédiger", "Rédiger")}
           </FButton>
         </FilterBar>
-        <Row className="search-wrapper">
-          <Col xl="8" lg="8" md="8" sm="8" xs="12" className="mt-250">
-            <div className="results-wrapper">
-              <Row>
-                {dispositifs.map((dispositif, index) => {
-                  return (
-                    <SearchResultCard
-                      key={index}
-                      pin={this.pin}
-                      pinnedList={this.state.pinned}
-                      dispositif={dispositif}
-                    />
-                  );
-                })}
-                {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
-                  /*             <Col
+        <div className="mt-250 search-wrapper">
+          <div class="grid-list grid-container">
+            {dispositifs.map((dispositif, index) => {
+              return (
+                <SearchResultCard
+                  key={index}
+                  pin={this.pin}
+                  pinnedList={this.state.pinned}
+                  dispositif={dispositif}
+                />
+              );
+            })}
+            {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
+              /*             <Col
                     xs="12"
                     sm="6"
                     md="3"
                     className="no-result"
                     onClick={() => this.selectTag()}
                   > */
-                  <NoResultsContainer>
-                    <NoResults />
-                    <NoResultsTextContainer>
-                      <NoResultsTitle>
-                        {t("Aucun résultat", "Aucun résultat")}
-                      </NoResultsTitle>
-                      <NoResultsText>
-                        {t(
-                          "AdvancedSearch.Elargir recherche",
-                          "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères."
-                        )}{" "}
-                      </NoResultsText>
-                      <NoResultsButtonsContainer>
-                        <FButton
-                          type="dark"
-                          name="refresh-outline"
-                          className="mr-10"
-                          onClick={this.restart}
-                        >
-                          Recommencer
-                        </FButton>
-                        <FButton
-                          type="white"
-                          name="file-add-outline"
-                          onClick={this.writeNew}
-                        >
-                          Rédiger une nouvelle fiche
-                        </FButton>
-                      </NoResultsButtonsContainer>
-                    </NoResultsTextContainer>
-                  </NoResultsContainer>
-                  //  </Col>
-                )}
-              </Row>
-            </div>
-          </Col>
-        </Row>
+              <NoResultsContainer>
+                <NoResults />
+                <NoResultsTextContainer>
+                  <NoResultsTitle>
+                    {t("Aucun résultat", "Aucun résultat")}
+                  </NoResultsTitle>
+                  <NoResultsText>
+                    {t(
+                      "AdvancedSearch.Elargir recherche",
+                      "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères."
+                    )}{" "}
+                  </NoResultsText>
+                  <NoResultsButtonsContainer>
+                    <FButton
+                      type="dark"
+                      name="refresh-outline"
+                      className="mr-10"
+                      onClick={this.restart}
+                    >
+                      Recommencer
+                    </FButton>
+                    <FButton
+                      type="white"
+                      name="file-add-outline"
+                      onClick={this.writeNew}
+                    >
+                      Rédiger une nouvelle fiche
+                    </FButton>
+                  </NoResultsButtonsContainer>
+                </NoResultsTextContainer>
+              </NoResultsContainer>
+              //  </Col>
+            )}
+          </div>
+        </div>
         <BookmarkedModal
           t={this.props.t}
           success={this.props.user ? true : false}

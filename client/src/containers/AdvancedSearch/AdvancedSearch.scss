@@ -11,29 +11,29 @@
     background: #ffffff;
     box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
     position: fixed;
-    padding: 5px 0px;
+    padding: 8px 16px;
     top: 60px;
-    width: 80%;
     display: flex;
     justify-content: center;
     z-index: 3;
-    border-radius: 0px 0px 8px 8px;
-    margin-top: 15px;
+    border-radius: 8px;
+    margin-top: 24px;
     transition: top 0.6s;
     @include media-max("sm-limit") {
       font-size: 12px;
     }
     &.search-bar-hidden {
-      top: -15px !important;
+      top: -24px !important;
     }
   }
   .search-wrapper {
-    max-width: 100%;
+    //max-width: 100%;
     display: flex;
     justify-content: center;
+    align-items: flex-start;
   }
   .mt-250 {
-    margin-top: 180px;
+    margin-top: 200px;
     @include media-max("desktop-up") {
       margin-top: 300px;
     }
@@ -165,6 +165,8 @@
     .card {
       //border: none;
       border-radius: 12px;
+      width: 252px;
+      height: 252px;
     }
 
     .card-body {
@@ -243,5 +245,13 @@
       justify-content: flex-end; 
     }
   }
+}
+.grid-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+.grid-list {
+  grid-template-columns: repeat( 5, minmax(260px, 300px) );
 }
 
