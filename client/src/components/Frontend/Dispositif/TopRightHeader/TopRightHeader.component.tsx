@@ -20,6 +20,7 @@ export interface PropsBeforeInjection {
   status: string;
   typeContenu: "dispositif" | "demarche";
   langue: string;
+  t: any;
 }
 
 export class TopRightHeader extends React.Component<Props> {
@@ -73,7 +74,7 @@ export class TopRightHeader extends React.Component<Props> {
         : false;
 
     // user can validate a dispositif if he is admin or contributor of the mainsponsor of the dispositif
-    if (props.status === "En attente" && userIsSponsor) {
+    if (props.status === "En attente" && (userIsSponsor || props.admin)) {
       // top right part of dispositif when user is sponsor and dispo is 'En attente'
       return (
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
@@ -138,7 +139,15 @@ export class TopRightHeader extends React.Component<Props> {
                 className="default"
                 name={"bookmark" + (props.pinned ? "" : "-outline")}
               >
-                {props.pinned ? "Enlever des favoris" : "Ajouter aux favoris"}
+                {props.pinned
+                  ? props.t(
+                      "Dispositif.Enlever des favoris",
+                      "Enlever des favoris"
+                    )
+                  : props.t(
+                      "Dispositif.Ajouter aux favoris",
+                      "Ajouter aux favoris"
+                    )}
               </FButton>
             )}
           </div>

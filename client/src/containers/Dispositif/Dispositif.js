@@ -1518,11 +1518,12 @@ export class Dispositif extends Component {
               (x) => x.userId === this.props.userId
             );
         if (
-          membre &&
-          membre.roles &&
-          membre.roles.some(
-            (x) => x === "administrateur" || x === "contributeur"
-          ) &&
+          ((membre &&
+            membre.roles &&
+            membre.roles.some(
+              (x) => x === "administrateur" || x === "contributeur"
+            )) ||
+            this.props.admin) &&
           !sauvegarde
         ) {
           dispositif.status = "En attente admin";
@@ -1707,6 +1708,7 @@ export class Dispositif extends Component {
                     status={this.state.status}
                     typeContenu={typeContenu}
                     langue={i18n.language}
+                    t={t}
                   />
                 )}
               </Row>
@@ -1816,6 +1818,7 @@ export class Dispositif extends Component {
                       displayTuto={this.state.displayTuto}
                       updateUIArray={this.updateUIArray}
                       isRTL={isRTL}
+                      t={t}
                     />
                   }
                 </Col>
