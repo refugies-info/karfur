@@ -133,6 +133,24 @@ export interface Dispositif {
 export interface Structure {
   _id: ObjectId;
   membres: { userId: ObjectId; roles: string[] }[];
+  acronyme: string;
+  administrateur: ObjectId;
+  adresse: string;
+  authorBelongs: boolean;
+  contact: string;
+  created_at: Moment;
+  createur: ObjectId;
+  dispositifsAssocies: ObjectId[];
+  link: string;
+  mail_contact: string;
+  mail_generique: string;
+  nom: string;
+  phone_contact: string;
+  picture: object;
+  siren: string;
+  siret: string;
+  status: string;
+  updatedAt: Moment;
 }
 
 export interface Translation {
