@@ -5,7 +5,10 @@ import {
   AnnuaireCreateComponent,
 } from "./AnnuaireCreate.component";
 import { RootState } from "../../../services/rootReducer";
-import { updateUserStructureActionCreator } from "../../../services/Structures/structures.actions";
+import {
+  updateUserStructureActionCreator,
+  setUserStructureActionCreator,
+} from "../../../services/Structures/structures.actions";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { fetchUserActionCreator } from "../../../services/User/user.actions";
 
@@ -24,6 +27,7 @@ const mapStateToProps = (state: RootState) => {
 const mapDispatchToProps = {
   updateStructure: updateUserStructureActionCreator,
   fetchUser: fetchUserActionCreator,
+  setStructure: setUserStructureActionCreator,
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;

@@ -3,10 +3,8 @@ import styled from "styled-components";
 import { colors } from "./data";
 
 const MainContainer = styled.div`
-  margin-top: 64px;
   display: flex;
   flex-direction: row;
-  flex: 1;
   align-items: center;
 `;
 

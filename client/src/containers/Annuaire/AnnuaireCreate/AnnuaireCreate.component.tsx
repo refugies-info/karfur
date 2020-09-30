@@ -3,6 +3,7 @@ import { Props } from "./AnnuaireCreate.container";
 import styled from "styled-components";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { AnnuaireGauge } from "./AnnuaireGauge/AnnuaireGauge";
+import { Step1 } from "./components/Step1";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -56,6 +57,7 @@ const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
+  margin-top: 112px;
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
   const checkUserIsContribOrRespo = () => {
@@ -76,6 +78,17 @@ export const AnnuaireCreateComponent = (props: Props) => {
     }
   };
 
+  const getStepDesciption = () => {
+    if (step === 1) return "Vérification de l'identité de votre structure";
+    if (step === 2) return "Sites et réseaux";
+    if (step === 3) return "Thèmes et activités";
+    if (step === 4) return "Contacts et info pratique";
+    if (step === 5) return "Description";
+    if (step > 5) return "Bien joué !";
+    return "";
+  };
+  const [step, setStep] = useState(1);
+
   useEffect(() => {
     if (props.isLoading === false) {
       return checkUserIsContribOrRespo();
@@ -90,9 +103,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
       <LeftContainer>
         <div>
           <LeftTitleContainer>Annuaire</LeftTitleContainer>
-          <StepDescription>
-            Vérification de l'identité de votre structure
-          </StepDescription>
+          <StepDescription>{getStepDesciption()}</StepDescription>
         </div>
         <ButtonContainer>
           <FButton
@@ -101,7 +112,12 @@ export const AnnuaireCreateComponent = (props: Props) => {
             className="mr-12"
             // onClick={() => this.props.toggleTutorielModal("Tags")}
           />
-          <FButton type={"white"} name="close-outline" className="ml-12">
+          <FButton
+            type={"white"}
+            name="close-outline"
+            className="ml-12"
+            onClick={() => props.history.push("/backend/user-dash-structure")}
+          >
             Quitter
           </FButton>
 
@@ -109,13 +125,15 @@ export const AnnuaireCreateComponent = (props: Props) => {
             type={"validate"}
             name="arrow-forward-outline"
             className="ml-12"
+            onClick={() => setStep(step + 1)}
           >
             Suivant
           </FButton>
         </ButtonContainer>
       </LeftContainer>
       <RightContainer>
-        <AnnuaireGauge step={1} />
+        <AnnuaireGauge step={step} />
+        <Step1 structure={props.structure} setStructure={props.setStructure} />
       </RightContainer>
     </MainContainer>
   );
