@@ -85,10 +85,10 @@ const MissionContainer = styled.div`
   padding-top: 48px;
 `;
 const TeamContainer = styled.div`
-  height: 850px;
   background: #f2f2f2;
   padding-top: 48px;
   position: relative;
+  padding-bottom: 30px;
 `;
 const ProblematicContainer = styled.div`
   height: 720px;
