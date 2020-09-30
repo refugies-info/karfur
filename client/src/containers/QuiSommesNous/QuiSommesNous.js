@@ -102,7 +102,6 @@ const ContributionContainer = styled.div`
 `;
 
 const PartnersContainer = styled.div`
-  height: 1020px;
   padding-top: 48px;
   padding-left: 120px;
   padding-right: 32px;
