@@ -32,8 +32,8 @@
     "Les plus visités": "Les plus visités",
     "Trier par": "Trier par :",
     "Filtrer par": "Filtrer par :",
-    "Trier par.": "Trier par",
-    "Filtrer par.": "Filtrer par",
+    "Trier par n": "Trier par",
+    "Filtrer par n": "Filtrer par",
     "Dispositifs": "Dispositifs",
     "Démarches": "Démarches",
     "Créer une fiche": "Créer une fiche",
@@ -41,7 +41,8 @@
     "Oups": "Oups !",
     "Rédiger": "Rédiger",
     "Par thème": "Par thème",
-    "résultats": "résultats"
+    "résultats": "résultats",
+    "Voir les fiches": "Voir toutes les fiches"
   },
   "Tables": {
     "Propriétaire": "Propriétaire",
@@ -233,6 +234,7 @@
     "choisir un thème": "choisir un thème",
     "ma ville": "ma ville",
     "âge": "âge",
+    "niveau de français": "niveau de français",
     "mon niveau": "mon niveau",
     "gérer mes papiers": "gérer mes papiers",
     "thème": "thème"
@@ -248,8 +250,7 @@
     "mon niveau": "mon niveau",
     "Je suis": "Je suis",
     "français": "français",
-    "bientot disponible": "Bientôt disponible",
-    "niveau de français": "niveau de français"
+    "bientot disponible": "Bientôt disponible"
   },
   "Status": {
     "En attente": "En attente",

@@ -13,7 +13,11 @@ const CardText = styled.p`
   font-weight: 14px;
 `;
 
-const SearchResultCard = ({ pin, pinnedList, dispositif}) => {
+const SearchResultCard = ({ pin, pinnedList, dispositif, themeList}) => {
+
+  if (themeList) {
+    return
+  }
   const pinned =
     pinnedList.includes(dispositif._id) ||
     pinnedList.filter(
