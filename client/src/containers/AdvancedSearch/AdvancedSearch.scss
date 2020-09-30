@@ -27,18 +27,18 @@
     }
   }
   .search-wrapper {
-    //max-width: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
   }
   .mt-250 {
-    margin-top: 200px;
+    padding-top: 200px;
     @include media-max("desktop-up") {
-      margin-top: 300px;
+      padding-top: 300px;
     }
     @include media-max("sm-limit") {
-      margin-top: 350px;
+      padding-top: 350px;
     }
   }
   .close-arrow {
@@ -250,6 +250,7 @@
   display: grid;
   justify-content: center;
   align-content: center;
+  width: 100%;
 }
 .grid-list {
   grid-template-columns: repeat( 5, minmax(260px, 300px) );

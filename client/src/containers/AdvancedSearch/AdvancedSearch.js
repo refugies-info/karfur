@@ -19,8 +19,10 @@ import produce from "immer";
 // import Cookies from 'js-cookie';
 
 import i18n from "../../i18n";
+import Streamline from "../../assets/streamline";
 import SearchItem from "./SearchItem/SearchItem";
 import SearchResultCard from "./SearchResultCard";
+import SeeMoreCard from "./SeeMoreCard";
 import API from "../../utils/API";
 import { initial_data } from "./data";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
@@ -58,6 +60,38 @@ const NoResultsTextContainer = styled.div`
 const NoResultsButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+const ThemeContainer = styled.div`
+  width: 100%;
+  background-color: ${(props) => props.color};
+  padding: 0px 68px 48px 68px;
+`;
+
+const ThemeHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 48px 0px 48px 0px;
+`;
+
+const ThemeHeaderTitle = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  text-transform: capitalize;
+  color: ${(props) => props.color};
+`;
+
+const ThemeListContainer = styled.div`
+  display: grid;
+  justify-content: start;
+  align-content: start;
+  width: 100%;
+  grid-template-columns: repeat(5, minmax(260px, 300px));
+  background-color: ${(props) => props.color};
 `;
 
 const NoResultsTitle = styled.p`
@@ -118,6 +152,24 @@ const FilterBar = styled.div`
   height: 80px;
 `;
 
+const ThemeButton = styled.div`
+  background-color: ${(props) => props.color};
+  display: flex;
+  flex-direction: row;
+  padding: 12px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  margin-left: ${props => props.ml ? "8px" : "0px"};
+`;
+const ThemeText = styled.p`
+  color: white;
+  font-size: 18px;
+  margin-left: 8px;
+  font-weight: 700;
+`;
+
 const FilterTitle = styled.p`
   size: 18px;
   font-weight: bold;
@@ -148,6 +200,9 @@ export class AdvancedSearch extends Component {
     countTotal: 0,
     countShow: 0,
     themesObject: [],
+    principalThemeList: [],
+    secondaryThemeList: [],
+    selectedTag: null,
   };
 
   componentDidMount() {
@@ -166,6 +221,8 @@ export class AdvancedSearch extends Component {
       this.setState(
         produce((draft) => {
           if (tag) {
+            const tagValue = filtres.tags.find((x) => x.name === decodeURIComponent(tag))
+            draft.selectedTag = tagValue;
             draft.recherche[0].query = decodeURIComponent(tag);
             draft.recherche[0].value = decodeURIComponent(tag);
             draft.recherche[0].active = true;
@@ -187,6 +244,7 @@ export class AdvancedSearch extends Component {
             draft.recherche[2].query = niveauFrancaisObj.query;
             draft.recherche[2].active = true;
           }
+          draft.activeTri = "";
         }),
         () =>
           this.queryDispositifs({
@@ -328,9 +386,27 @@ export class AdvancedSearch extends Component {
               }),
             };
           });
-
           this.setState({ themesObject: themesObject });
           //console.log(themesObject);
+        }
+        if (this.state.recherche[0] && this.state.recherche[0].value) {
+          var principalThemeList = dispositifs.filter((elem) => {
+            if (elem.tags[0]) {
+              return elem.tags[0].short === this.state.recherche[0].short;
+            }
+          });
+          var secondaryThemeList = dispositifs.filter((elem) => {
+            if (elem.tags.length > 0) {
+              for (const [index] of elem.tags.entries()) {
+                if (
+                  index !== 0 &&
+                  elem.tags[index].short === this.state.recherche[0].short
+                )
+                  return true;
+              }
+            }
+          });
+          this.setState({ principalThemeList, secondaryThemeList });
         }
 
         this.setState({
@@ -356,6 +432,7 @@ export class AdvancedSearch extends Component {
             }
           : x
       ),
+      selectedTag: tagValue,
     }));
     this.queryDispositifs({ "tags.name": tagValue.name });
   };
@@ -496,33 +573,43 @@ export class AdvancedSearch extends Component {
   };
 
   reorder = (tri) => {
-    const order = tri.value,
-      croissant = order === this.state.order ? !this.state.croissant : true;
-    this.setState((pS) => ({
-      dispositifs: pS.dispositifs.sort((a, b) => {
-        const aValue = _.get(a, order),
-          bValue = _.get(b, order);
-        return aValue > bValue
-          ? croissant
-            ? 1
-            : -1
-          : aValue < bValue
-          ? croissant
-            ? -1
-            : 1
-          : 0;
-      }),
-      order: tri.value,
-      activeTri: tri.name,
-      croissant: croissant,
-    }));
+    if (tri.name === "Par thème") {
+      this.setState({ activeTri: tri.name }, () => this.queryDispositifs());
+    } else {
+      const order = tri.value,
+        croissant = order === this.state.order ? !this.state.croissant : true;
+      this.setState((pS) => ({
+        dispositifs: pS.dispositifs.sort((a, b) => {
+          const aValue = _.get(a, order),
+            bValue = _.get(b, order);
+          return aValue > bValue
+            ? croissant
+              ? 1
+              : -1
+            : aValue < bValue
+            ? croissant
+              ? -1
+              : 1
+            : 0;
+        }),
+        order: tri.value,
+        activeTri: tri.name,
+        croissant: croissant,
+      }));
+    }
   };
 
   filter_content = (filtre) => {
     const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
     const activeFiltre =
       this.state.activeFiltre === filtre.name ? "" : filtre.name;
-    this.setState({ filter, activeFiltre }, () => this.queryDispositifs());
+    this.setState(
+      {
+        filter,
+        activeFiltre /* activeTri: this.state.activeTri === "Par thème" ? "" : this.state.activeTri */,
+      },
+      () => this.queryDispositifs()
+    );
   };
 
   goToDispositif = (dispositif = {}, fromAutoSuggest = false) => {
@@ -605,6 +692,7 @@ export class AdvancedSearch extends Component {
       activeFiltre,
       activeTri,
       displayAll,
+      selectedTag
     } = this.state;
     // eslint-disable-next-line
     const { t, windowWidth, dispositifs: storeDispo } = this.props;
@@ -667,7 +755,7 @@ export class AdvancedSearch extends Component {
           visibleSearch={this.state.searchToggleVisible}
         >
           <FilterTitle>
-            {t("AdvancedSearch.Filtrer par.", "Filtrer par")}
+            {t("AdvancedSearch.Filtrer par n", "Filtrer par")}
           </FilterTitle>
           {filtres_contenu.map((filtre, idx) => {
             return (
@@ -683,7 +771,7 @@ export class AdvancedSearch extends Component {
             );
           })}
           <FilterTitle>
-            {t("AdvancedSearch.Trier par.", "Trier par")}
+            {t("AdvancedSearch.Trier par n", "Trier par")}
           </FilterTitle>
           {tris.map((tri, idx) => (
             <TagButton
@@ -713,60 +801,167 @@ export class AdvancedSearch extends Component {
             {t("AdvancedSearch.Rédiger", "Rédiger")}
           </FButton>
         </FilterBar>
-        <div className="mt-250 search-wrapper">
-          <div class="grid-list grid-container">
-            {dispositifs.map((dispositif, index) => {
-              return (
-                <SearchResultCard
-                  key={index}
-                  pin={this.pin}
-                  pinnedList={this.state.pinned}
-                  dispositif={dispositif}
-                />
-              );
-            })}
-            {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
-              /*             <Col
+        <div
+          className={"mt-250 search-wrapper"}
+          style={{
+            backgroundColor:
+              this.state.activeTri === "Par thème" ? "#f1e8f5" : "#e4e5e6",
+          }}
+        >
+          {this.state.activeTri === "Par thème" ? (
+            <div style={{ width: "100%" }}>
+              {this.state.themesObject.map((theme, index) => {
+                var themeKey = Object.keys(theme);
+                var selectedTheme = filtres.tags.find(
+                  (elem) => elem.short === themeKey[0]
+                );
+                return (
+                  <ThemeContainer key={index} color={selectedTheme.lightColor}>
+                    <ThemeHeader>
+                      <ThemeButton color={selectedTheme.darkColor}>
+                        <Streamline
+                          name={selectedTheme.icon}
+                          stroke={"white"}
+                          width={22}
+                          height={22}
+                        />
+                        <ThemeText>{selectedTheme.short}</ThemeText>
+                      </ThemeButton>
+                      <ThemeHeaderTitle color={selectedTheme.darkColor}>
+                        {selectedTheme.name}
+                      </ThemeHeaderTitle>
+                    </ThemeHeader>
+                    <ThemeListContainer>
+                      {theme[themeKey]
+                        .filter((card, indexCard) => indexCard < 4)
+                        .map((cardFiltered, indexCardFiltered) => {
+                          return (
+                            <SearchResultCard
+                              key={indexCardFiltered}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={cardFiltered}
+                            />
+                          );
+                        })}
+                      <SeeMoreCard theme={selectedTheme} />
+                    </ThemeListContainer>
+                  </ThemeContainer>
+                );
+              })}
+            </div>
+          ) : this.state.activeTri !== "Par thème" &&
+            this.state.recherche[0] &&
+            this.state.recherche[0].value ? (
+            <ThemeContainer>
+              <ThemeHeader>
+                <ThemeHeaderTitle color={"#828282"}>
+                  {"fiches avec le thème"}
+               </ThemeHeaderTitle>
+                <ThemeButton ml color={selectedTag ? selectedTag.darkColor : null}>
+                  <Streamline
+                    name={selectedTag ? selectedTag.icon : null}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                  <ThemeText>{selectedTag ? selectedTag.short : null}</ThemeText>
+                </ThemeButton>
+              </ThemeHeader>
+              <ThemeListContainer>
+                {this.state.principalThemeList.map((dispositif, index) => {
+                  return (
+                    <SearchResultCard
+                      key={index}
+                      pin={this.pin}
+                      pinnedList={this.state.pinned}
+                      dispositif={dispositif}
+                    />
+                  );
+                })}
+              </ThemeListContainer>
+              <ThemeHeader>
+                <ThemeHeaderTitle color={"#828282"}>
+                  {"autres fiches avec le thème"}
+                </ThemeHeaderTitle>
+                <ThemeButton ml color={selectedTag ? selectedTag.darkColor : null}>
+                  <Streamline
+                    name={selectedTag ? selectedTag.icon : null}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                  <ThemeText>{selectedTag ? selectedTag.short : null}</ThemeText>
+                </ThemeButton>
+              </ThemeHeader>
+              <ThemeListContainer>
+                {this.state.secondaryThemeList.map((dispositif, index) => {
+                  return (
+                    <SearchResultCard
+                      key={index}
+                      pin={this.pin}
+                      pinnedList={this.state.pinned}
+                      dispositif={dispositif}
+                    />
+                  );
+                })}
+              </ThemeListContainer>
+            </ThemeContainer>
+          ) : (
+            <div className="grid-list grid-container">
+              {dispositifs.map((dispositif, index) => {
+                return (
+                  <SearchResultCard
+                    key={index}
+                    pin={this.pin}
+                    pinnedList={this.state.pinned}
+                    dispositif={dispositif}
+                  />
+                );
+              })}
+              {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
+                /*             <Col
                     xs="12"
                     sm="6"
                     md="3"
                     className="no-result"
                     onClick={() => this.selectTag()}
                   > */
-              <NoResultsContainer>
-                <NoResults />
-                <NoResultsTextContainer>
-                  <NoResultsTitle>
-                    {t("Aucun résultat", "Aucun résultat")}
-                  </NoResultsTitle>
-                  <NoResultsText>
-                    {t(
-                      "AdvancedSearch.Elargir recherche",
-                      "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères."
-                    )}{" "}
-                  </NoResultsText>
-                  <NoResultsButtonsContainer>
-                    <FButton
-                      type="dark"
-                      name="refresh-outline"
-                      className="mr-10"
-                      onClick={this.restart}
-                    >
-                      Recommencer
-                    </FButton>
-                    <FButton
-                      type="white"
-                      name="file-add-outline"
-                      onClick={this.writeNew}
-                    >
-                      Rédiger une nouvelle fiche
-                    </FButton>
-                  </NoResultsButtonsContainer>
-                </NoResultsTextContainer>
-              </NoResultsContainer>
-              //  </Col>
-            )}
-          </div>
+                <NoResultsContainer>
+                  <NoResults />
+                  <NoResultsTextContainer>
+                    <NoResultsTitle>
+                      {t("Aucun résultat", "Aucun résultat")}
+                    </NoResultsTitle>
+                    <NoResultsText>
+                      {t(
+                        "AdvancedSearch.Elargir recherche",
+                        "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères."
+                      )}{" "}
+                    </NoResultsText>
+                    <NoResultsButtonsContainer>
+                      <FButton
+                        type="dark"
+                        name="refresh-outline"
+                        className="mr-10"
+                        onClick={this.restart}
+                      >
+                        Recommencer
+                      </FButton>
+                      <FButton
+                        type="white"
+                        name="file-add-outline"
+                        onClick={this.writeNew}
+                      >
+                        Rédiger une nouvelle fiche
+                      </FButton>
+                    </NoResultsButtonsContainer>
+                  </NoResultsTextContainer>
+                </NoResultsContainer>
+                //  </Col>
+              )}
+            </div>
+          )}
         </div>
         <BookmarkedModal
           t={this.props.t}
