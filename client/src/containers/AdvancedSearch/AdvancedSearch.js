@@ -23,6 +23,7 @@ import Streamline from "../../assets/streamline";
 import SearchItem from "./SearchItem/SearchItem";
 import SearchResultCard from "./SearchResultCard";
 import SeeMoreCard from "./SeeMoreCard";
+import NoResultPlaceholder from "./NoResultPlaceholder";
 import API from "../../utils/API";
 import { initial_data } from "./data";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
@@ -30,37 +31,11 @@ import { filtres } from "../Dispositif/data";
 import { filtres_contenu, tris } from "./data";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import TagButton from "../../components/FigmaUI/TagButton/TagButton";
-import NoResultsBackgroundImage from "../../assets/no_results.svg";
 import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 
 import "./AdvancedSearch.scss";
 import variables from "scss/colors.scss";
-
-const NoResultsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const NoResults = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: url(${NoResultsBackgroundImage});
-  min-width: 254px;
-  height: 180px;
-  margin-right: 75px;
-`;
-
-const NoResultsTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const NoResultsButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
 
 const ThemeContainer = styled.div`
   width: 100%;
@@ -81,7 +56,6 @@ const ThemeHeaderTitle = styled.p`
   font-weight: 500;
   font-size: 32px;
   line-height: 40px;
-  text-transform: capitalize;
   color: ${(props) => props.color};
 `;
 
@@ -92,23 +66,6 @@ const ThemeListContainer = styled.div`
   width: 100%;
   grid-template-columns: repeat(5, minmax(260px, 300px));
   background-color: ${(props) => props.color};
-`;
-
-const NoResultsTitle = styled.p`
-  font-style: normal;
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 40px;
-  margin-bottom: 24px !important;
-`;
-
-const NoResultsText = styled.p`
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 23px !important;
-  margin-bottom: 24px !important;
-  max-width: 520px;
 `;
 
 const SearchToggle = styled.div`
@@ -161,7 +118,7 @@ const ThemeButton = styled.div`
   justify-content: center;
   align-items: center;
   margin-right: 20px;
-  margin-left: ${props => props.ml ? "8px" : "0px"};
+  margin-left: ${(props) => (props.ml ? "8px" : "0px")};
 `;
 const ThemeText = styled.p`
   color: white;
@@ -221,7 +178,9 @@ export class AdvancedSearch extends Component {
       this.setState(
         produce((draft) => {
           if (tag) {
-            const tagValue = filtres.tags.find((x) => x.name === decodeURIComponent(tag))
+            const tagValue = filtres.tags.find(
+              (x) => x.name === decodeURIComponent(tag)
+            );
             draft.selectedTag = tagValue;
             draft.recherche[0].query = decodeURIComponent(tag);
             draft.recherche[0].value = decodeURIComponent(tag);
@@ -574,7 +533,15 @@ export class AdvancedSearch extends Component {
 
   reorder = (tri) => {
     if (tri.name === "Par thème") {
-      this.setState({ activeTri: tri.name }, () => this.queryDispositifs());
+      this.setState(
+        {
+          activeTri: tri.name,
+          recherche: this.state.recherche.map((x, i) =>
+            i === 0 ? initial_data[i] : x
+          ),
+        },
+        () => this.queryDispositifs()
+      );
     } else {
       const order = tri.value,
         croissant = order === this.state.order ? !this.state.croissant : true;
@@ -612,6 +579,10 @@ export class AdvancedSearch extends Component {
     );
   };
 
+  seeMore = (selectedTheme) => {
+    this.selectParam(0, selectedTheme);
+  }
+
   goToDispositif = (dispositif = {}, fromAutoSuggest = false) => {
     this.props.tracking.trackEvent({
       action: "click",
@@ -647,7 +618,15 @@ export class AdvancedSearch extends Component {
       ...(subitem.bottomValue && { bottomValue: subitem.bottomValue }),
       ...(subitem.topValue && { topValue: subitem.topValue }),
     };
-    this.setState({ recherche: recherche }, () => this.queryDispositifs());
+    this.setState(
+      {
+        recherche: recherche,
+        selectedTag: key === 0 ? subitem : this.state.selectedTag,
+        activeTri:
+          this.state.activeTri === "Par thème" ? "" : this.state.activeTri,
+      },
+      () => this.queryDispositifs()
+    );
   };
 
   desactiverTri = () => {
@@ -692,7 +671,7 @@ export class AdvancedSearch extends Component {
       activeFiltre,
       activeTri,
       displayAll,
-      selectedTag
+      selectedTag,
     } = this.state;
     // eslint-disable-next-line
     const { t, windowWidth, dispositifs: storeDispo } = this.props;
@@ -828,7 +807,7 @@ export class AdvancedSearch extends Component {
                         <ThemeText>{selectedTheme.short}</ThemeText>
                       </ThemeButton>
                       <ThemeHeaderTitle color={selectedTheme.darkColor}>
-                        {selectedTheme.name}
+                        {selectedTheme.name[0].toUpperCase() + selectedTheme.name.slice(1)}
                       </ThemeHeaderTitle>
                     </ThemeHeader>
                     <ThemeListContainer>
@@ -844,7 +823,7 @@ export class AdvancedSearch extends Component {
                             />
                           );
                         })}
-                      <SeeMoreCard theme={selectedTheme} />
+                      <SeeMoreCard seeMore={() => this.seeMore(selectedTheme)} theme={selectedTheme} />
                     </ThemeListContainer>
                   </ThemeContainer>
                 );
@@ -856,20 +835,25 @@ export class AdvancedSearch extends Component {
             <ThemeContainer>
               <ThemeHeader>
                 <ThemeHeaderTitle color={"#828282"}>
-                  {"fiches avec le thème"}
-               </ThemeHeaderTitle>
-                <ThemeButton ml color={selectedTag ? selectedTag.darkColor : null}>
+                  {("fiches avec le thème")[0].toUpperCase() + ("fiches avec le thème").slice(1)}
+                </ThemeHeaderTitle>
+                <ThemeButton
+                  ml
+                  color={selectedTag ? selectedTag.darkColor : null}
+                >
                   <Streamline
                     name={selectedTag ? selectedTag.icon : null}
                     stroke={"white"}
                     width={22}
                     height={22}
                   />
-                  <ThemeText>{selectedTag ? selectedTag.short : null}</ThemeText>
+                  <ThemeText>
+                    {selectedTag ? selectedTag.short : null}
+                  </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
               <ThemeListContainer>
-                {this.state.principalThemeList.map((dispositif, index) => {
+                {this.state.principalThemeList.length > 0 ? this.state.principalThemeList.map((dispositif, index) => {
                   return (
                     <SearchResultCard
                       key={index}
@@ -878,24 +862,29 @@ export class AdvancedSearch extends Component {
                       dispositif={dispositif}
                     />
                   );
-                })}
+                }) : <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>}
               </ThemeListContainer>
               <ThemeHeader>
                 <ThemeHeaderTitle color={"#828282"}>
-                  {"autres fiches avec le thème"}
+                  {("autres fiches avec le thème")[0].toUpperCase() + ("autres fiches avec le thème").slice(1)}
                 </ThemeHeaderTitle>
-                <ThemeButton ml color={selectedTag ? selectedTag.darkColor : null}>
+                <ThemeButton
+                  ml
+                  color={selectedTag ? selectedTag.darkColor : null}
+                >
                   <Streamline
                     name={selectedTag ? selectedTag.icon : null}
                     stroke={"white"}
                     width={22}
                     height={22}
                   />
-                  <ThemeText>{selectedTag ? selectedTag.short : null}</ThemeText>
+                  <ThemeText>
+                    {selectedTag ? selectedTag.short : null}
+                  </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
               <ThemeListContainer>
-                {this.state.secondaryThemeList.map((dispositif, index) => {
+                {this.state.secondaryThemeList.length > 0 ? this.state.secondaryThemeList.map((dispositif, index) => {
                   return (
                     <SearchResultCard
                       key={index}
@@ -904,7 +893,7 @@ export class AdvancedSearch extends Component {
                       dispositif={dispositif}
                     />
                   );
-                })}
+                }): <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>}
               </ThemeListContainer>
             </ThemeContainer>
           ) : (
@@ -927,37 +916,7 @@ export class AdvancedSearch extends Component {
                     className="no-result"
                     onClick={() => this.selectTag()}
                   > */
-                <NoResultsContainer>
-                  <NoResults />
-                  <NoResultsTextContainer>
-                    <NoResultsTitle>
-                      {t("Aucun résultat", "Aucun résultat")}
-                    </NoResultsTitle>
-                    <NoResultsText>
-                      {t(
-                        "AdvancedSearch.Elargir recherche",
-                        "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères."
-                      )}{" "}
-                    </NoResultsText>
-                    <NoResultsButtonsContainer>
-                      <FButton
-                        type="dark"
-                        name="refresh-outline"
-                        className="mr-10"
-                        onClick={this.restart}
-                      >
-                        Recommencer
-                      </FButton>
-                      <FButton
-                        type="white"
-                        name="file-add-outline"
-                        onClick={this.writeNew}
-                      >
-                        Rédiger une nouvelle fiche
-                      </FButton>
-                    </NoResultsButtonsContainer>
-                  </NoResultsTextContainer>
-                </NoResultsContainer>
+                  <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>
                 //  </Col>
               )}
             </div>
