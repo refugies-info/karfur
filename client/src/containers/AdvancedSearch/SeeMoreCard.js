@@ -32,16 +32,16 @@ const SeeMoreText = styled.p`
   font-weight: 700;
 `
 
-const SeeMoreCard = ({ theme, t }) => {
+const SeeMoreCard = ({ theme, t, seeMore }) => {
   return (
     <div
       className={
         "card-col puff-in-center dispositif"
       }
     >
-      <CustomCard className={"border-none"}>
+      <CustomCard onClick={seeMore} className={"border-none"}>
         <CardBody>
-          <CardText color={theme.darkColor}>{t("Voir les fiches", "Voir toutes les fiches")}</CardText>
+          <CardText color={theme.darkColor}>{t("AdvancedSearch.Voir les fiches", "Voir toutes les fiches")}</CardText>
           <SeeMoreButton color={theme.darkColor}>
           <EVAIcon name="expand-outline" fill={variables.blanc} />
             <SeeMoreText>
