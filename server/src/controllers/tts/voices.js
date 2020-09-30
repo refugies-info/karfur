@@ -392,13 +392,13 @@ exports.data = [
     name: "Microsoft Server Speech Text to Speech Voice (ro-RO, Andrei)",
   },
   {
-    locale: "ru-Ru",
+    locale: "ru",
     langue: "Russian",
     gender: "Female",
     name: "Microsoft Server Speech Text to Speech Voice (ru-RU, Irina, Apollo)",
   },
   {
-    locale: "ru",
+    locale: "ru-RU",
     langue: "Russian",
     gender: "Male",
     name: "Microsoft Server Speech Text to Speech Voice (ru-RU, Pavel, Apollo)",
