@@ -34,14 +34,16 @@ const addDispositifInContenusAirtable = (title, link, tagsList) => {
   );
 };
 
-const removeTraductionDispositifInContenusAirtable = (recordId) => {
+const removeTraductionDispositifInContenusAirtable = (recordId, title) => {
   logger.info(
     "[removeTraductionDispositifInContenusAirtable] update line for record",
     {
       recordId,
     }
   );
-  base("CONTENUS").update([{ id: recordId, fields: { "Traduits ?": [] } }]);
+  base("CONTENUS").update([
+    { id: recordId, fields: { Titre: title, "Traduits ?": [] } },
+  ]);
 };
 
 const getFormattedLocale = (locale) => {
@@ -87,6 +89,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
       "[addOrUpdateDispositifInContenusAirtable] env is not production, do not send content to airtable",
       { env: process.env.NODE_ENV }
     );
+
     return;
   }
 
@@ -136,7 +139,7 @@ const addOrUpdateDispositifInContenusAirtable = async (
       }
       if (!locale) {
         // no locale and a record with the link ==> dispositif modified in french
-        removeTraductionDispositifInContenusAirtable(recordsList[0].id);
+        removeTraductionDispositifInContenusAirtable(recordsList[0].id, title);
         return;
       }
       addTraductionDispositifInContenusAirtable(recordsList[0], locale);
