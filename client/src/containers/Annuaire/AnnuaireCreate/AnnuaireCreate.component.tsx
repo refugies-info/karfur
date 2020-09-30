@@ -60,6 +60,8 @@ const RightContainer = styled.div`
   margin-top: 112px;
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
+  const [step, setStep] = useState(1);
+
   const checkUserIsContribOrRespo = () => {
     const structureMembers = props.structure ? props.structure.membres : [];
     const userInStructure = structureMembers.filter(
@@ -87,7 +89,6 @@ export const AnnuaireCreateComponent = (props: Props) => {
     if (step > 5) return "Bien joué !";
     return "";
   };
-  const [step, setStep] = useState(1);
 
   useEffect(() => {
     if (props.isLoading === false) {

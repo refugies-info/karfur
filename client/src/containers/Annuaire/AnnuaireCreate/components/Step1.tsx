@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import FInput from "../../../../components/FigmaUI/FInput/FInput";
 import { Structure } from "../../../../@types/interface";
