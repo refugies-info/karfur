@@ -146,13 +146,18 @@ export interface Structure {
   mail_generique: string;
   nom: string;
   phone_contact: string;
-  picture: object;
   siren: string;
   siret: string;
   status: string;
   updatedAt: Moment;
+  picture: Picture;
 }
 
+export interface Picture {
+  imgId: string | null;
+  public_id: string | null;
+  secure_url: string | null;
+}
 export interface Translation {
   _id?: ObjectId;
   initialText?: object;
