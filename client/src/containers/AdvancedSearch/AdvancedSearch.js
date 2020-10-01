@@ -365,12 +365,12 @@ export class AdvancedSearch extends Component {
             }
           });
           logger.info("principal theme didn't fail",principalThemeList);
-          var secondaryThemeList = dispositifs.filter((elem) => {
-            if (elem.tags && elem.tags.length > 0) {
-              for (var index = 1; index < elem.tags.length; index++) {
+          var secondaryThemeList = dispositifs.filter((element) => {
+            if (element.tags && element.tags.length > 0) {
+              for (var index = 1; index < element.tags.length; index++) {
                 if (
-                  index !== 0 &&
-                  elem.tags[index].short === this.state.recherche[0].short
+                  index !== 0 && element.tags[index] &&
+                  element.tags[index].short === this.state.recherche[0].short
                 )
                   return true;
               }
