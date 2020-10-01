@@ -360,13 +360,14 @@ export class AdvancedSearch extends Component {
         try {
         if (this.state.recherche[0] && this.state.recherche[0].value) {
           var principalThemeList = dispositifs.filter((elem) => {
-            if (elem.tags[0]) {
+            if (elem.tags && elem.tags[0]) {
               return elem.tags[0].short === this.state.recherche[0].short;
             }
           });
+          logger.info("principal theme didn't fail",principalThemeList);
           var secondaryThemeList = dispositifs.filter((elem) => {
-            if (elem.tags.length > 0) {
-              for (const [index] of elem.tags.entries()) {
+            if (elem.tags && elem.tags.length > 0) {
+              for (var index = 1; index < elem.tags.length; index++) {
                 if (
                   index !== 0 &&
                   elem.tags[index].short === this.state.recherche[0].short
