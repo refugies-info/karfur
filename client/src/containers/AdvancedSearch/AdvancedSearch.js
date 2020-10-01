@@ -34,6 +34,7 @@ import FButton from "../../components/FigmaUI/FButton/FButton";
 import TagButton from "../../components/FigmaUI/TagButton/TagButton";
 import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
+import { logger } from "../../logger";
 
 import "./AdvancedSearch.scss";
 import variables from "scss/colors.scss";
@@ -298,7 +299,7 @@ export class AdvancedSearch extends Component {
         search: qs.stringify(newQueryParam),
       });
     }
-    console.log(props.languei18nCode)
+    logger.info( "langue",props.languei18nCode)
     API.get_dispositif({
       query: {
         ...query,
@@ -310,7 +311,7 @@ export class AdvancedSearch extends Component {
     })
       .then((data_res) => {
         let dispositifs = data_res.data.data;
-        console.log(dispositifs);
+        logger.info("response api",dispositifs);
 
         this.setState({ countTotal: dispositifs.length });
 
@@ -348,9 +349,9 @@ export class AdvancedSearch extends Component {
             };
           });
           this.setState({ themesObject: themesObject });
-          //console.log(themesObject);
+          //logger.info(themesObject);
         }
-        console.log(this.state.recherche)
+        logger.info("recherche state before dividing into 2 themes",this.state.recherche)
         if (this.state.recherche[0] && this.state.recherche[0].value) {
           var principalThemeList = dispositifs.filter((elem) => {
             if (elem.tags[0]) {
@@ -368,10 +369,11 @@ export class AdvancedSearch extends Component {
               }
             }
           });
-          console.log(principalThemeList, secondaryThemeList);
+          logger.info("principal theme",principalThemeList);
+          logger.info("secondary theme", secondaryThemeList);
           this.setState({ principalThemeList, secondaryThemeList });
         }
-        console.log(dispositifs)
+        logger.info("dispsitifs before setting state",dispositifs)
         this.setState({
           dispositifs: dispositifs,
           showSpinner: false,
@@ -379,7 +381,7 @@ export class AdvancedSearch extends Component {
         });
       })
       .catch((e) => {
-        console.log(e);
+        logger.info("log error in api",e);
         this.setState({ showSpinner: false })
     });
   };
@@ -612,7 +614,8 @@ export class AdvancedSearch extends Component {
     });
 
   selectParam = (key, subitem) => {
-    console.log(key, subitem);
+    logger.info("Subtitem in select param", subitem);
+    logger.info("Key in select param",key);
     let recherche = [...this.state.recherche];
     recherche[key] = {
       ...recherche[key],
