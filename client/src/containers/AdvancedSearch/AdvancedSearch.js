@@ -235,9 +235,9 @@ export class AdvancedSearch extends Component {
   }
 
   // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.languei18nCode !== this.props.languei18nCode) {
-      this.queryDispositifs(null, nextProps);
+  componentDidUpdate(prevProps) {
+    if (prevProps.languei18nCode !== this.props.languei18nCode) {
+      this.queryDispositifs(null, this.props);
     }
   }
 
@@ -277,7 +277,7 @@ export class AdvancedSearch extends Component {
       !Nquery
     ) {
       let newQueryParam = {
-        tag: query["tags.name"] ? query["tags.name"] : undefined,
+        tag: query["tags.name"] ? decodeURIComponent(query["tags.name"]) : undefined,
         bottomValue: query["audienceAge.bottomValue"]
           ? this.state.recherche[1].bottomValue
           : undefined,
@@ -297,7 +297,6 @@ export class AdvancedSearch extends Component {
         search: qs.stringify(newQueryParam),
       });
     }
-
     API.get_dispositif({
       query: {
         ...query,
@@ -346,20 +345,19 @@ export class AdvancedSearch extends Component {
             };
           });
           this.setState({ themesObject: themesObject });
-          //console.log(themesObject);
         }
         if (this.state.recherche[0] && this.state.recherche[0].value) {
           var principalThemeList = dispositifs.filter((elem) => {
-            if (elem.tags[0]) {
+            if (elem.tags && elem.tags[0]) {
               return elem.tags[0].short === this.state.recherche[0].short;
             }
           });
-          var secondaryThemeList = dispositifs.filter((elem) => {
-            if (elem.tags.length > 0) {
-              for (const [index] of elem.tags.entries()) {
+          var secondaryThemeList = dispositifs.filter((element) => {
+            if (element.tags && element.tags.length > 0) {
+              for (var index = 1; index < element.tags.length; index++) {
                 if (
-                  index !== 0 &&
-                  elem.tags[index].short === this.state.recherche[0].short
+                  index !== 0 && element.tags[index] &&
+                  element.tags[index].short === this.state.recherche[0].short
                 )
                   return true;
               }
@@ -367,14 +365,15 @@ export class AdvancedSearch extends Component {
           });
           this.setState({ principalThemeList, secondaryThemeList });
         }
-
         this.setState({
           dispositifs: dispositifs,
           showSpinner: false,
           countShow: dispositifs.length,
         });
       })
-      .catch(() => this.setState({ showSpinner: false }));
+      .catch(() => {
+        this.setState({ showSpinner: false })
+    });
   };
 
   selectTag = (tag = {}) => {
@@ -676,6 +675,7 @@ export class AdvancedSearch extends Component {
     // eslint-disable-next-line
     const { t, windowWidth, dispositifs: storeDispo } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    //console.log(i18n.language);
     /* 
     if (recherche[0].active) {
       dispositifs = dispositifs.sort((a, b) =>
