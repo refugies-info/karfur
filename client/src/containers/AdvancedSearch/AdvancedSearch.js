@@ -357,6 +357,7 @@ export class AdvancedSearch extends Component {
           //logger.info(themesObject);
         }
         logger.info("recherche state before dividing into 2 themes",this.state.recherche)
+        try {
         if (this.state.recherche[0] && this.state.recherche[0].value) {
           var principalThemeList = dispositifs.filter((elem) => {
             if (elem.tags[0]) {
@@ -378,6 +379,9 @@ export class AdvancedSearch extends Component {
           logger.info("secondary theme", secondaryThemeList);
           this.setState({ principalThemeList, secondaryThemeList });
         }
+      } catch (err) {
+        logger.error("error in filtering the 2", err);
+      }
         logger.info("dispsitifs before setting state",dispositifs)
         this.setState({
           dispositifs: dispositifs,
@@ -387,7 +391,7 @@ export class AdvancedSearch extends Component {
       })
       .catch((e) => {
         console.log(e)
-        logger.info("log error in api",e);
+        logger.error("log error in api",e);
         this.setState({ showSpinner: false })
     });
   };

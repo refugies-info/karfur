@@ -13,6 +13,7 @@ export class logger {
   static info = (message, data) => {
     console.log("react", process.env.REACT_APP_ENV);
     if (process.env.REACT_APP_ENV === "quality") {
+    console.log(message, data);
       datadogLogs.logger.log(message, data, "info");
       return;
     }
