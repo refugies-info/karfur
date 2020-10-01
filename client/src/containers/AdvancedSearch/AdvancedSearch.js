@@ -278,8 +278,9 @@ export class AdvancedSearch extends Component {
     ) */ if (
       !Nquery
     ) {
+      console.log("inside new query");
       let newQueryParam = {
-        tag: query["tags.name"] ? query["tags.name"] : undefined,
+        tag: query["tags.name"] ? decodeURIComponent(query["tags.name"]) : undefined,
         bottomValue: query["audienceAge.bottomValue"]
           ? this.state.recherche[1].bottomValue
           : undefined,
@@ -290,6 +291,7 @@ export class AdvancedSearch extends Component {
           ? this.state.recherche[2].value
           : undefined,
       };
+      console.log(newQueryParam);
 
       Object.keys(newQueryParam).forEach((key) =>
         newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
@@ -300,6 +302,8 @@ export class AdvancedSearch extends Component {
       });
     }
     logger.info( "langue",props.languei18nCode)
+    console.log(query);
+    logger.info("query", query);
     API.get_dispositif({
       query: {
         ...query,
@@ -312,6 +316,7 @@ export class AdvancedSearch extends Component {
       .then((data_res) => {
         let dispositifs = data_res.data.data;
         logger.info("response api",dispositifs);
+        console.log("response api",dispositifs);
 
         this.setState({ countTotal: dispositifs.length });
 
@@ -381,6 +386,7 @@ export class AdvancedSearch extends Component {
         });
       })
       .catch((e) => {
+        console.log(e)
         logger.info("log error in api",e);
         this.setState({ showSpinner: false })
     });
