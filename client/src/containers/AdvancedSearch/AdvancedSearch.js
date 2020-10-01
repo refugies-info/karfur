@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import track from "react-tracking";
@@ -297,7 +298,7 @@ export class AdvancedSearch extends Component {
         search: qs.stringify(newQueryParam),
       });
     }
-
+    console.log(props.languei18nCode)
     API.get_dispositif({
       query: {
         ...query,
@@ -309,6 +310,7 @@ export class AdvancedSearch extends Component {
     })
       .then((data_res) => {
         let dispositifs = data_res.data.data;
+        console.log(dispositifs);
 
         this.setState({ countTotal: dispositifs.length });
 
@@ -348,6 +350,7 @@ export class AdvancedSearch extends Component {
           this.setState({ themesObject: themesObject });
           //console.log(themesObject);
         }
+        console.log(this.state.recherche)
         if (this.state.recherche[0] && this.state.recherche[0].value) {
           var principalThemeList = dispositifs.filter((elem) => {
             if (elem.tags[0]) {
@@ -365,16 +368,20 @@ export class AdvancedSearch extends Component {
               }
             }
           });
+          console.log(principalThemeList, secondaryThemeList);
           this.setState({ principalThemeList, secondaryThemeList });
         }
-
+        console.log(dispositifs)
         this.setState({
           dispositifs: dispositifs,
           showSpinner: false,
           countShow: dispositifs.length,
         });
       })
-      .catch(() => this.setState({ showSpinner: false }));
+      .catch((e) => {
+        console.log(e);
+        this.setState({ showSpinner: false })
+    });
   };
 
   selectTag = (tag = {}) => {
@@ -605,6 +612,7 @@ export class AdvancedSearch extends Component {
     });
 
   selectParam = (key, subitem) => {
+    console.log(key, subitem);
     let recherche = [...this.state.recherche];
     recherche[key] = {
       ...recherche[key],
@@ -676,6 +684,7 @@ export class AdvancedSearch extends Component {
     // eslint-disable-next-line
     const { t, windowWidth, dispositifs: storeDispo } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    //console.log(i18n.language);
     /* 
     if (recherche[0].active) {
       dispositifs = dispositifs.sort((a, b) =>
