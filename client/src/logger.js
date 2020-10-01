@@ -14,7 +14,7 @@ export class logger {
     console.log("react", process.env.REACT_APP_ENV);
     if (process.env.REACT_APP_ENV === "quality") {
     console.log(message, data);
-      datadogLogs.logger.log(message, data, "info");
+      datadogLogs.logger.debug(message, data, "info");
       return;
     }
 

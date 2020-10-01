@@ -21,7 +21,7 @@ const initial_data = [
     title: "Je cherche à",
     value: null,
     placeholder: "thème",
-    query: "Apprendre le français",
+    query: "apprendre le français",
     queryName: "tags.name",
     children: filtres.tags,
   },

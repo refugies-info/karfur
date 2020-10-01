@@ -237,9 +237,9 @@ export class AdvancedSearch extends Component {
   }
 
   // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.languei18nCode !== this.props.languei18nCode) {
-      this.queryDispositifs(null, nextProps);
+  componentDidUpdate(prevProps) {
+    if (prevProps.languei18nCode !== this.props.languei18nCode) {
+      this.queryDispositifs(null, this.props);
     }
   }
 
