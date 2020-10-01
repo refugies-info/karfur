@@ -96,6 +96,11 @@ export const AnnuaireCreateComponent = (props: Props) => {
     }
   });
 
+  const onStepValidate = () => {
+    props.updateStructure();
+    setStep(step + 1);
+  };
+
   if (props.isLoading) {
     return <div>isLoading</div>;
   }
@@ -126,7 +131,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
             type={"validate"}
             name="arrow-forward-outline"
             className="ml-12"
-            onClick={() => setStep(step + 1)}
+            onClick={onStepValidate}
           >
             Suivant
           </FButton>

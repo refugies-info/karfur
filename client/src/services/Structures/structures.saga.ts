@@ -1,5 +1,5 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
+import { takeLatest, put, call, select } from "redux-saga/effects";
 import API from "../../utils/API";
 import {
   FETCH_STRUCTURES,
@@ -18,6 +18,7 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
+import { userStructureSelector } from "./structures.selectors";
 
 export function* fetchStructures(): SagaIterator {
   try {
@@ -47,13 +48,15 @@ export function* fetchUserStructure(
   }
 }
 
-export function* updateUserStructure(
-  action: ReturnType<typeof updateUserStructureActionCreator>
-): SagaIterator {
+export function* updateUserStructure(): SagaIterator {
   try {
     logger.info("[updateUserStructure] updating user structure");
-    const { structure } = action.payload;
-    const data = yield call(API.create_structure, { structure });
+    const structure = yield select(userStructureSelector);
+    if (!structure) {
+      logger.info("[updateUserStructure] no structure to update");
+      return;
+    }
+    const data = yield call(API.create_structure, structure);
     yield put(setUserStructureActionCreator(data.data.data[0]));
     logger.info("[updateUserStructure] successfully updated user structure");
   } catch (error) {

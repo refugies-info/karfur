@@ -20,9 +20,8 @@ export const fetchUserStructureActionCreator = (value: {
   structureId: string | null;
 }) => action(FETCH_USER_STRUCTURE, value);
 
-export const updateUserStructureActionCreator = (value: {
-  structure: Structure;
-}) => action(UPDATE_USER_STRUCTURE, value);
+export const updateUserStructureActionCreator = () =>
+  action(UPDATE_USER_STRUCTURE);
 
 const actions = {
   setStructuresActionCreator,
