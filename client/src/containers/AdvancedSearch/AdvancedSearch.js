@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import track from "react-tracking";
@@ -34,7 +33,6 @@ import FButton from "../../components/FigmaUI/FButton/FButton";
 import TagButton from "../../components/FigmaUI/TagButton/TagButton";
 import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
-import { logger } from "../../logger";
 
 import "./AdvancedSearch.scss";
 import variables from "scss/colors.scss";
@@ -278,7 +276,6 @@ export class AdvancedSearch extends Component {
     ) */ if (
       !Nquery
     ) {
-      console.log("inside new query");
       let newQueryParam = {
         tag: query["tags.name"] ? decodeURIComponent(query["tags.name"]) : undefined,
         bottomValue: query["audienceAge.bottomValue"]
@@ -291,7 +288,6 @@ export class AdvancedSearch extends Component {
           ? this.state.recherche[2].value
           : undefined,
       };
-      console.log(newQueryParam);
 
       Object.keys(newQueryParam).forEach((key) =>
         newQueryParam[key] === undefined ? delete newQueryParam[key] : {}
@@ -301,9 +297,6 @@ export class AdvancedSearch extends Component {
         search: qs.stringify(newQueryParam),
       });
     }
-    logger.info( "langue",props.languei18nCode)
-    console.log(query);
-    logger.info("query", query);
     API.get_dispositif({
       query: {
         ...query,
@@ -315,8 +308,6 @@ export class AdvancedSearch extends Component {
     })
       .then((data_res) => {
         let dispositifs = data_res.data.data;
-        logger.info("response api",dispositifs);
-        console.log("response api",dispositifs);
 
         this.setState({ countTotal: dispositifs.length });
 
@@ -354,17 +345,13 @@ export class AdvancedSearch extends Component {
             };
           });
           this.setState({ themesObject: themesObject });
-          //logger.info(themesObject);
         }
-        logger.info("recherche state before dividing into 2 themes",this.state.recherche)
-        try {
         if (this.state.recherche[0] && this.state.recherche[0].value) {
           var principalThemeList = dispositifs.filter((elem) => {
             if (elem.tags && elem.tags[0]) {
               return elem.tags[0].short === this.state.recherche[0].short;
             }
           });
-          logger.info("principal theme didn't fail",principalThemeList);
           var secondaryThemeList = dispositifs.filter((element) => {
             if (element.tags && element.tags.length > 0) {
               for (var index = 1; index < element.tags.length; index++) {
@@ -376,23 +363,15 @@ export class AdvancedSearch extends Component {
               }
             }
           });
-          logger.info("principal theme",principalThemeList);
-          logger.info("secondary theme", secondaryThemeList);
           this.setState({ principalThemeList, secondaryThemeList });
         }
-      } catch (err) {
-        logger.error("error in filtering the 2", err);
-      }
-        logger.info("dispsitifs before setting state",dispositifs)
         this.setState({
           dispositifs: dispositifs,
           showSpinner: false,
           countShow: dispositifs.length,
         });
       })
-      .catch((e) => {
-        console.log(e)
-        logger.error("log error in api",e);
+      .catch(() => {
         this.setState({ showSpinner: false })
     });
   };
@@ -625,8 +604,6 @@ export class AdvancedSearch extends Component {
     });
 
   selectParam = (key, subitem) => {
-    logger.info("Subtitem in select param", subitem);
-    logger.info("Key in select param",key);
     let recherche = [...this.state.recherche];
     recherche[key] = {
       ...recherche[key],
