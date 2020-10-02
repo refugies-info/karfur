@@ -151,6 +151,11 @@ export interface Structure {
   status: string;
   updatedAt: Moment;
   picture: Picture;
+  structureTypes: string[];
+  websites: string[];
+  facebook: string;
+  linkedin: string;
+  twitter: string;
 }
 
 export interface Picture {

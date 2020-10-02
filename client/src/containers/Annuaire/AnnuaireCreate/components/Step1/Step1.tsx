@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import FInput from "../../../../components/FigmaUI/FInput/FInput";
-import { Structure } from "../../../../@types/interface";
+import FInput from "../../../../../components/FigmaUI/FInput/FInput";
+import { Structure } from "../../../../../@types/interface";
 import "./Step1.scss";
-import PlaceholderLogo from "../../../../assets/Placeholder_logo.png";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import PlaceholderLogo from "../../../../../assets/Placeholder_logo.png";
+import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { Input, Spinner } from "reactstrap";
-import API from "../../../../utils/API";
+import API from "../../../../../utils/API";
 
 const Title = styled.div`
   font-weight: bold;
@@ -85,7 +85,6 @@ export const Step1 = (props: Props) => {
       >
         <FInput
           id="nom"
-          placeholder={"test"}
           value={props.structure && props.structure.nom}
           onChange={onChange}
           newSize={true}
@@ -95,7 +94,6 @@ export const Step1 = (props: Props) => {
       <div style={{ marginBottom: "16px", width: "200px" }}>
         <FInput
           id="acronyme"
-          placeholder={"test"}
           value={props.structure && props.structure.acronyme}
           onChange={onChange}
           newSize={true}

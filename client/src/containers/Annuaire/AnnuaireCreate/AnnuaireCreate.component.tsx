@@ -3,7 +3,8 @@ import { Props } from "./AnnuaireCreate.container";
 import styled from "styled-components";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { AnnuaireGauge } from "./AnnuaireGauge/AnnuaireGauge";
-import { Step1 } from "./components/Step1";
+import { Step1 } from "./components/Step1/Step1";
+import { Step2 } from "./components/Step2/Step2";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -60,7 +61,7 @@ const RightContainer = styled.div`
   margin-top: 112px;
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
 
   const checkUserIsContribOrRespo = () => {
     const structureMembers = props.structure ? props.structure.membres : [];
@@ -139,7 +140,18 @@ export const AnnuaireCreateComponent = (props: Props) => {
       </LeftContainer>
       <RightContainer>
         <AnnuaireGauge step={step} />
-        <Step1 structure={props.structure} setStructure={props.setStructure} />
+        {step === 1 && (
+          <Step1
+            structure={props.structure}
+            setStructure={props.setStructure}
+          />
+        )}
+        {step === 2 && (
+          <Step2
+            structure={props.structure}
+            setStructure={props.setStructure}
+          />
+        )}
       </RightContainer>
     </MainContainer>
   );

@@ -10,7 +10,6 @@ import {
   setStructuresActionCreator,
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
-  updateUserStructureActionCreator,
 } from "./structures.actions";
 import { logger } from "../../logger";
 import {
@@ -57,7 +56,7 @@ export function* updateUserStructure(): SagaIterator {
       return;
     }
     const data = yield call(API.create_structure, structure);
-    yield put(setUserStructureActionCreator(data.data.data[0]));
+    yield put(setUserStructureActionCreator(data.data.data));
     logger.info("[updateUserStructure] successfully updated user structure");
   } catch (error) {
     logger.error("[updateUserStructure] error while updating user structure", {

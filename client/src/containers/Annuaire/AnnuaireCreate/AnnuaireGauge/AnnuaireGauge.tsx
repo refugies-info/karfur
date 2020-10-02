@@ -19,10 +19,9 @@ const StickLine = styled.div`
 
 const StepContainer = styled.div`
   background: #ffffff;
-  border-width: 3px;
+  border-width: ${(props) => (props.selected ? "3px" : "0px")};
   border-style: solid;
-  border-color: ${(props) =>
-    props.filled || props.selected ? props.colorFilled : props.colorToDo};
+  border-color: ${(props) => (props.selected ? props.colorFilled : "none")};
   border-radius: 50%;
   height: 32px;
   width: 32px;
