@@ -30,9 +30,20 @@ const SelectedContainer = styled.div`
   padding: 15px;
   width: fit-content;
   heigth: 50px;
-  margin-right: 8px;
+  margin-bottom: 8px;
   display: flex;
   flex-direction: row;
+`;
+
+const DeleteIconContainer = styled.div`
+  background: #212121;
+  height: 50px;
+  width: 50px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;
 
 interface Props {
@@ -40,20 +51,60 @@ interface Props {
   setStructure: (arg: any) => void;
 }
 
-const AddButton = (props: { onClick: Function }) => (
-  <FButton name="plus-circle-outline" type="dark" onClick={props.onClick}>
-    Ajouter un type
+const AddButton = (props: {
+  onClick: Function;
+  type: "site" | "type" | "second site";
+  disabled?: boolean;
+}) => (
+  <FButton
+    name="plus-circle-outline"
+    type="dark"
+    onClick={props.onClick}
+    disabled={props.disabled}
+  >
+    {`Ajouter un ${props.type}`}
   </FButton>
 );
 
 export const Step2 = (props: Props) => {
-  const onChange = (e: any) =>
-    props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [show1WebsiteInput, setshow1WebsiteInput] = useState(false);
+  const [show2WebsiteInput, setshow2WebsiteInput] = useState(false);
 
-  //   const websites = props.structure ? props.structure.websites : [];
+  const websites = props.structure ? props.structure.websites : [];
 
   const toggleDropDown = () => setDropdownOpen((prevState) => !prevState);
+  const toggle1WebSiteInput = () =>
+    setshow1WebsiteInput((prevState) => !prevState);
+
+  const toggle2WebSiteInput = () =>
+    setshow2WebsiteInput((prevState) => !prevState);
+
+  const getWebsites = (
+    previousWebsites: string[],
+    id: string,
+    value: string
+  ) => {
+    if (id === "website0") {
+      if (
+        !previousWebsites ||
+        previousWebsites.length === 0 ||
+        !previousWebsites[1]
+      ) {
+        return [value];
+      }
+      return [value, previousWebsites[1]];
+    }
+    return [previousWebsites[0], value];
+  };
+
+  const onWebsiteChange = (e: any) => {
+    const websites = props.structure
+      ? getWebsites(props.structure.websites, e.target.id, e.target.value)
+      : [];
+    props.setStructure({ ...props.structure, websites });
+  };
+
   const onDropdownElementClick = (element: string) => {
     const structureTypes = props.structure
       ? !props.structure.structureTypes
@@ -79,6 +130,20 @@ export const Step2 = (props: Props) => {
       : true
   );
 
+  const getUpdatedWebsites = (websites: string[], index: number) => {
+    return websites.filter((website) => website !== websites[index]);
+  };
+
+  const removeWebsite = (index: number) => {
+    const updatedWebsites =
+      props.structure && props.structure.websites
+        ? getUpdatedWebsites(props.structure.websites, index)
+        : [];
+    props.setStructure({ ...props.structure, websites: updatedWebsites });
+    if (index === 0) setshow1WebsiteInput(false);
+    if (index === 1) setshow2WebsiteInput(false);
+  };
+
   return (
     <MainContainer className="step2">
       <Title>Type de structure</Title>
@@ -87,9 +152,8 @@ export const Step2 = (props: Props) => {
           marginBottom: "16px",
         }}
       >
-        {/* <StructureTypeContainer> */}
         {props.structure && props.structure.structureTypes.length > 0 && (
-          <div style={{ display: "flex", flexDirection: "row" }}>
+          <>
             <SelectedContainer>
               {props.structure.structureTypes[0]}
               <div style={{ cursor: "pointer" }}>
@@ -107,7 +171,7 @@ export const Step2 = (props: Props) => {
             </SelectedContainer>
             {props.structure.structureTypes.length === 1 ? (
               <div>
-                <AddButton onClick={toggleDropDown} />
+                <AddButton onClick={toggleDropDown} type="type" />
                 {dropdownOpen && (
                   <CustomDropDown
                     elementList={availableStructureTypes}
@@ -132,13 +196,13 @@ export const Step2 = (props: Props) => {
                 </div>
               </SelectedContainer>
             )}
-          </div>
+          </>
         )}
         {props.structure &&
           (!props.structure.structureTypes ||
             props.structure.structureTypes.length === 0) && (
             <>
-              <AddButton onClick={toggleDropDown} />
+              <AddButton onClick={toggleDropDown} type="type" />
               {dropdownOpen && (
                 <CustomDropDown
                   elementList={availableStructureTypes}
@@ -147,30 +211,68 @@ export const Step2 = (props: Props) => {
               )}
             </>
           )}
-        {/* </StructureTypeContainer> */}
-
-        {/* <ButtonDropdown
-          isOpen={dropdownOpen}
-          toggle={toggle}
-          className="type-dropdown"
-        >
-          <DropdownToggle caret>Association</DropdownToggle>
-          <DropdownMenu>
-            {StructureTypes.map((structureType) => (
-              <DropdownItem>{structureType}</DropdownItem>
-            ))}
-          </DropdownMenu>
-        </ButtonDropdown> */}
       </div>
       <Title>Site internet de votre structure</Title>
-      <div style={{ marginBottom: "16px", width: "200px" }}>
-        {/* {has0Website && <AddWebsiteButton/>} */}
-        <FInput
-          id="website"
-          value={props.structure && props.structure.websites}
-          onChange={onChange}
-          newSize={true}
-        />
+      <div style={{ marginBottom: "16px" }}>
+        {(websites.length > 0 || show1WebsiteInput) && (
+          <>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <div
+                style={{
+                  width: "300px",
+                  marginRight: "4px",
+                }}
+              >
+                <FInput
+                  id="website0"
+                  value={websites && websites[0]}
+                  onChange={onWebsiteChange}
+                  newSize={true}
+                  placeholder="Votre site internet"
+                />
+              </div>
+              <DeleteIconContainer onClick={() => removeWebsite(0)}>
+                <EVAIcon size="medium" name="close-outline" fill={"#ffffff"} />
+              </DeleteIconContainer>
+            </div>
+            {websites.length < 2 && !show2WebsiteInput && (
+              <AddButton
+                type="second site"
+                onClick={toggle2WebSiteInput}
+                disabled={!websites[0]}
+              />
+            )}
+          </>
+        )}
+        {(websites.length === 2 || show2WebsiteInput) && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <div style={{ width: "300px", marginRight: "4px" }}>
+              <FInput
+                id="website1"
+                value={websites && websites[1]}
+                onChange={onWebsiteChange}
+                newSize={true}
+                placeholder="Votre site internet"
+              />
+            </div>
+            <DeleteIconContainer onClick={() => removeWebsite(1)}>
+              <EVAIcon size="medium" name="close-outline" fill={"#ffffff"} />
+            </DeleteIconContainer>
+          </div>
+        )}
+        {websites.length === 0 && !show1WebsiteInput && (
+          <AddButton type="site" onClick={toggle1WebSiteInput} />
+        )}
       </div>
       <Title>Profil Twitter</Title>
       <Title>Page Facebook</Title>
