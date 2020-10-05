@@ -13,9 +13,17 @@ $placeholderColor: $blanc;
     font-weight: bold;
     white-space: nowrap;
   }
+  .search-title-small{
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
 
   .search-btn {
     font-size: 22px;
+  }
+  .search-btn-small {
+    font-size: 18px;
   }
 
   .search-filter{
