@@ -16,6 +16,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import produce from "immer";
+import withSizes from "react-sizes";
 // import Cookies from 'js-cookie';
 
 import i18n from "../../i18n";
@@ -63,7 +64,7 @@ const ThemeListContainer = styled.div`
   display: grid;
   justify-content: start;
   align-content: start;
-  grid-template-columns: repeat(5, minmax(260px, 300px));
+  grid-template-columns: ${(props) => `repeat(${props.columns || 5}, minmax(260px, 300px))`};
   background-color: ${(props) => props.color};
 `;
 
@@ -93,18 +94,18 @@ const FilterBar = styled.div`
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   position: fixed;
   border-radius: 12px;
-  padding: 5px 16px 0px;
+  padding: 13px 16px 0px;
   margin-left: 68px;
   display: flex;
   z-index: 2;
   top: ${(props) =>
     props.visibleTop && props.visibleSearch
-      ? "172px"
+      ? "164px"
       : !props.visibleTop && props.visibleSearch
-      ? "88px"
+      ? "95px"
       : props.visibleTop && !props.visibleSearch
-      ? "88px"
-      : "-24px"};
+      ? "95px"
+      : "16px"};
   transition: top 0.6s;
   height: 80px;
 `;
@@ -673,7 +674,7 @@ export class AdvancedSearch extends Component {
       selectedTag,
     } = this.state;
     // eslint-disable-next-line
-    const { t, windowWidth, dispositifs: storeDispo } = this.props;
+    const { t, windowWidth, dispositifs: storeDispo, isMobile, isDesktop, isSmallDesktop, isTablet } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     //console.log(i18n.language);
     /* 
@@ -698,6 +699,7 @@ export class AdvancedSearch extends Component {
             .filter((_, i) => displayAll || i === 0)
             .map((d, i) => (
               <SearchItem
+                isDesktop={isDesktop}
                 key={i}
                 item={d}
                 keyValue={i}
@@ -796,7 +798,7 @@ export class AdvancedSearch extends Component {
                   (elem) => elem.short === themeKey[0]
                 );
                 return (
-                  <ThemeContainer key={index} color={selectedTheme.lightColor}>
+                  <ThemeContainer  key={index} color={selectedTheme.lightColor}>
                     <ThemeHeader>
                       <ThemeButton color={selectedTheme.darkColor}>
                         <Streamline
@@ -811,7 +813,7 @@ export class AdvancedSearch extends Component {
                         {selectedTheme.name[0].toUpperCase() + selectedTheme.name.slice(1)}
                       </ThemeHeaderTitle>
                     </ThemeHeader>
-                    <ThemeListContainer>
+                    <ThemeListContainer columns={isDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
                       {theme[themeKey]
                         .filter((card, indexCard) => indexCard < 4)
                         .map((cardFiltered, indexCardFiltered) => {
@@ -853,7 +855,7 @@ export class AdvancedSearch extends Component {
                   </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
-              <ThemeListContainer>
+              <ThemeListContainer columns={isDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
                 {this.state.principalThemeList.length > 0 ? this.state.principalThemeList.map((dispositif, index) => {
                   return (
                     <SearchResultCard
@@ -884,7 +886,7 @@ export class AdvancedSearch extends Component {
                   </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
-              <ThemeListContainer>
+              <ThemeListContainer columns={isDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
                 {this.state.secondaryThemeList.length > 0 ? this.state.secondaryThemeList.map((dispositif, index) => {
                   return (
                     <SearchResultCard
@@ -898,7 +900,8 @@ export class AdvancedSearch extends Component {
               </ThemeListContainer>
             </ThemeContainer>
           ) : (
-            <div className="grid-list grid-container">
+            <ThemeContainer>
+            <ThemeListContainer columns={isDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
               {dispositifs.map((dispositif, index) => {
                 return (
                   <SearchResultCard
@@ -920,7 +923,8 @@ export class AdvancedSearch extends Component {
                   <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>
                 //  </Col>
               )}
-            </div>
+            </ThemeListContainer>
+            </ThemeContainer>
           )}
         </div>
         <BookmarkedModal
@@ -1011,6 +1015,13 @@ const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
 };
 
+const mapSizesToProps = ({ width }) => ({
+  isMobile: width < 850,
+  isTablet: width >= 850 && width < 1100,
+  isSmallDesktop: width >= 1100 && width < 1400,
+  isDesktop: width >= 1400,
+})
+
 export default track({
   page: "AdvancedSearch",
 })(
@@ -1018,6 +1029,6 @@ export default track({
     connect(
       mapStateToProps,
       mapDispatchToProps
-    )(withTranslation()(windowSize(AdvancedSearch)))
+    )(withSizes(mapSizesToProps)(withTranslation()(windowSize(AdvancedSearch))))
   )
 );
