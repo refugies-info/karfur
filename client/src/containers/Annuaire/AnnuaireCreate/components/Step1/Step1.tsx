@@ -91,12 +91,13 @@ export const Step1 = (props: Props) => {
         />
       </div>
       <Title>Acronyme</Title>
-      <div style={{ marginBottom: "16px", width: "200px" }}>
+      <div style={{ marginBottom: "16px", width: "240px" }}>
         <FInput
           id="acronyme"
           value={props.structure && props.structure.acronyme}
           onChange={onChange}
           newSize={true}
+          placeholder="L'acronyme de votre structure"
         />
       </div>
       <Title>Logo</Title>

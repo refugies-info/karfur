@@ -61,7 +61,7 @@ const RightContainer = styled.div`
   margin-top: 112px;
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
 
   const checkUserIsContribOrRespo = () => {
     const structureMembers = props.structure ? props.structure.membres : [];

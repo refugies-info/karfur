@@ -144,6 +144,9 @@ export const Step2 = (props: Props) => {
     if (index === 1) setshow2WebsiteInput(false);
   };
 
+  const onChange = (e: any) =>
+    props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
+
   return (
     <MainContainer className="step2">
       <Title>Type de structure</Title>
@@ -275,8 +278,50 @@ export const Step2 = (props: Props) => {
         )}
       </div>
       <Title>Profil Twitter</Title>
+      <div
+        style={{
+          marginBottom: "16px",
+          width: "240px",
+        }}
+      >
+        <FInput
+          id="twitter"
+          value={props.structure && props.structure.twitter}
+          onChange={onChange}
+          newSize={true}
+          placeholder="Votre twitter"
+        />
+      </div>
       <Title>Page Facebook</Title>
+      <div
+        style={{
+          marginBottom: "16px",
+          width: "240px",
+        }}
+      >
+        <FInput
+          id="facebook"
+          value={props.structure && props.structure.facebook}
+          onChange={onChange}
+          newSize={true}
+          placeholder="Votre page Facebook"
+        />
+      </div>
       <Title>Profil Linkedin</Title>
+      <div
+        style={{
+          marginBottom: "16px",
+          width: "240px",
+        }}
+      >
+        <FInput
+          id="linkedin"
+          value={props.structure && props.structure.linkedin}
+          onChange={onChange}
+          newSize={true}
+          placeholder="Votre profil Linkedin"
+        />
+      </div>
     </MainContainer>
   );
 };
