@@ -40,6 +40,9 @@ div.app-body {
     flex: 1;
     min-width: 0;
     display: flex;
+    &.advanced-search {
+      margin-top: 0;
+    }
   }
 
   //global style

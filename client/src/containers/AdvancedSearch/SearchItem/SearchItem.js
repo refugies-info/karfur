@@ -152,6 +152,7 @@ export class SearchItem extends Component {
               ) :  <EVAIcon
               name="arrow-ios-downward-outline"
               size="large"
+              className="ml-8"
               onClick={(e) => {
                 e.stopPropagation();
                 this.toggle();
