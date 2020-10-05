@@ -16,7 +16,7 @@
     display: flex;
     justify-content: center;
     z-index: 3;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-top: 24px;
     transition: top 0.6s;
     @include media-max("sm-limit") {
@@ -33,12 +33,12 @@
     align-items: flex-start;
   }
   .mt-250 {
-    padding-top: 200px;
+    padding-top: 275px;
     @include media-max("desktop-up") {
-      padding-top: 300px;
+      padding-top: 375px;
     }
     @include media-max("sm-limit") {
-      padding-top: 350px;
+      padding-top: 425px;
     }
   }
   .close-arrow {

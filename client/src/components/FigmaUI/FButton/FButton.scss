@@ -22,6 +22,10 @@ body .figma-btn {
     font-size: 11px;
   }
 
+  &.filter-fbutton {
+    padding: 8px;;
+  }
+
   &.default svg {
     fill: $noir;
   }

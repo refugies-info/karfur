@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { filtres } from "../Dispositif/data";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";
@@ -13,10 +13,9 @@ const CardText = styled.p`
   font-weight: 14px;
 `;
 
-const SearchResultCard = ({ pin, pinnedList, dispositif, themeList}) => {
-
+const SearchResultCard = ({ pin, pinnedList, dispositif, themeList, history }) => {
   if (themeList) {
-    return
+    return;
   }
   const pinned =
     pinnedList.includes(dispositif._id) ||
@@ -49,16 +48,16 @@ const SearchResultCard = ({ pin, pinnedList, dispositif, themeList}) => {
         }
         key={dispositif._id}
       >
-        <NavLink
-          to={{
-            pathname:
-              "/" +
-              (dispositif.typeContenu || "dispositif") +
-              (dispositif._id ? "/" + dispositif._id : ""),
-            state: { previousRoute: "advanced-search" },
-          }}
-        >
           <CustomCard
+            onClick={() => {
+              history.push({
+                pathname:
+                  "/" +
+                  (dispositif.typeContenu || "dispositif") +
+                  (dispositif._id ? "/" + dispositif._id : ""),
+                state: { previousRoute: "advanced-search" },
+              });
+            }}
             className={
               dispositif.typeContenu === "demarche"
                 ? "texte-" +
@@ -110,7 +109,6 @@ const SearchResultCard = ({ pin, pinnedList, dispositif, themeList}) => {
               </CardFooter>
             )}
           </CustomCard>
-        </NavLink>
       </div>
     );
   }
