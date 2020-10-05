@@ -40,7 +40,7 @@ import variables from "scss/colors.scss";
 const ThemeContainer = styled.div`
   width: 100%;
   background-color: ${(props) => props.color};
-  padding: 0px 68px 48px 68px;
+  padding: 24px 68px 48px 68px;
 `;
 
 const ThemeHeader = styled.div`
@@ -63,7 +63,6 @@ const ThemeListContainer = styled.div`
   display: grid;
   justify-content: start;
   align-content: start;
-  width: 100%;
   grid-template-columns: repeat(5, minmax(260px, 300px));
   background-color: ${(props) => props.color};
 `;
@@ -94,7 +93,8 @@ const FilterBar = styled.div`
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   position: fixed;
   border-radius: 12px;
-  padding: 5px 16px;
+  padding: 5px 16px 0px;
+  margin-left: 68px;
   display: flex;
   z-index: 2;
   top: ${(props) =>
