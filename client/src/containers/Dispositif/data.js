@@ -307,7 +307,7 @@ const filtres = {
       icon: "flag",
       name: "aider une association",
       darkColor: "#0A54BF",
-      lightColor: "#FFEEEE",
+      lightColor: "#EEF8FF",
       hoverColor: "#FDA8AD",
       illustrationColor: "#1FC2C1",
     },
