@@ -36,7 +36,10 @@
     "Démarches": "ዝቕጽል",
     "Créer une fiche": "ሓደ ገጽ ፍጠር",
     "Elargir recherche": "ናይ ምድልይካ ክእለትካ  ኣዕብዮ ፣ ነቶም ዘይንጥፉ ሓደ ሓደ መሰኻኹቲ ነገራት",
-    "Oups": "ኣብ ጌጋ ዝጥቀሙላ ቃል ልክዕ ከም ፣ ( ኦው)"
+    "Oups": "ኣብ ጌጋ ዝጥቀሙላ ቃል ልክዕ ከም ፣ ( ኦው)",
+    "Rédiger": "ምጽሓፍ",
+    "Par thème": "ቴማ\\ ኣርእስቲ",
+    "résultats": "ውጽኢት"
   },
   "Tables": {
     "Propriétaire": "ወናኒ",
@@ -168,7 +171,19 @@
     "minutes": "ደቂቕ",
     "Démarche": "ምስላጥ",
     "DemarcheDescription": "በብደረጅኡ  ጌርካ\\ኪ ግለጽ\\ጺ መታን ስደተኛታት ብቅልል ዝበለ መንገዲ ክርድኡ\\ኣ ፤፣",
-    "Corriger": "ምእራም"
+    "Organisation": "ማሕበር",
+    "Recenser": "ቆጸራ ንሓንቲ",
+    "Ajouter un mot au": "ናብ እ'ዚ ሓደ ቃል ወስኽ\\ኺ",
+    "Lexique": "ቃል",
+    "StructureDescription": "ኣብዚ ዓምዲ  ዓመታዊ ምላእ\\ኢ ንምውህሃድን ንምቃላልን ኣብ ምዝርራብ ምስ ኣበርከቲ ተሓጋገዝቲን ምስ ስደቴኛታትን ናይ ዑቕባ ዝወሰዱ  መታን ክጠቅም ፤፣",
+    "LexiqueDescription": "ኣብ ምስላጥ ናይ ቤት ጽሕፈታት ንምግላጽ ከቢድ ዝኾነ ቓል ሓብር መታን ንስዴተኛታት ብቐሊል ኣብ ምርዳእን ምውህሃድን ኣብ መዓልታዊ ናብራ ክሕግዝን ከቃልልን ፤፣",
+    "Prochainement": "ኣብ ዝቅጽል",
+    "Traduction": "ተርጉም\\ሚ  መታን ናብ ክሉ ክብጻ''ሕ ፤፣",
+    "TraductionReseau": "ካልእ ቃንቃ ትዛረብ\\ቢ እንተ ኮንካ\\ኪ?  ናብዚ መስመርና ሰዓበና ፤፣",
+    "Corriger": "ምእራም",
+    "Commentaires ciblés explications": "ሓደ ዓንቀጽ ካብዚ ናይዚ ገጽ ሕጡብ ጽሑፍ  ጌጋ ኣሎ ዲዩ ? ጌጋ እንተ ኣሎ ግዜ ከይወሰድካ\\ኪ ብቀጥታ መኣረምታ ክትገብር\\ሪ ኣለካ\\ኪ ፤፣",
+    "Suggestion": "ኣብ ዝቅጽል ርእይቶ ናይ መኣረምታ",
+    "Suggestion explications": "ሓደ ሓድሽ ፎርም ናይ ሕጡብ ጽሑፍ ኣቅርብ\\ቢ  ንኩሉ ኣብርከቲ መታን ክጥዕምን ክቃለልን ፣፤ እዚ ዓምዲ ሕጡብ ናይ ጽሑፍ ብቡዙሓት ተፈላለዩ ሰባት ክጽሓፍ ኢዩ ፤፣"
   },
   "Dispositifs": {
     "Header": "ምምስራት ሂወትካ ኣብ ሃገረ ፍርናስ",
@@ -186,6 +201,7 @@
     "Loisir": "ምዝንጋዕ",
     "Culture": "ባህሊ",
     "Santé": "ጥዕና",
+    "Administratif": "ቤት ጽሕፈታት",
     "Autre": "ካልእ",
     "apprendre le français": "ትምህርቲ ቓንቓ ፈርንሳይ",
     "me loger": "መቅረቢ",
@@ -215,7 +231,9 @@
     "choisir un thème": "ሓደ  ኣርእስቲ ምረጽ",
     "ma ville": "ናተይ ከተማ",
     "âge": "ዕድመ",
-    "mon niveau": "ናተይ  ደረጃ"
+    "mon niveau": "ናተይ  ደረጃ",
+    "gérer mes papiers": "ባዕለይ የሳልጥ ኣብ ወረቃቕተይ",
+    "thème": "ኣርእስቲ"
   },
   "SearchItem": {
     "Je cherche à": "ኣብዚ እደሊ",
@@ -227,7 +245,8 @@
     "Je parle": "እዛረብ",
     "mon niveau": "ናተይ ደርጃ",
     "Je suis": "ኣነ",
-    "français": "ፈረንሳይ"
+    "français": "ፈረንሳይ",
+    "bientot disponible": "ኣብ ቀጻሊ ክህልው ኢዩ"
   },
   "Status": {
     "En attente": "መጻንሒ",
@@ -262,7 +281,59 @@
     "Chargement des données utilisateur": "ኣብ ጥቕሚ ክውዕሉ ዝኽእሉ ምላእ",
     "Problème mdp": "ኣብ ዝሓለፈ ካልኣይ ክትፍትን ከለኻ በቲ ናይ ቅድም ፓስ ዎርድ የሽግሩ ነሮም ፣ ሕጂ ግን ኽትፍትን ከለኻ ብካልእ ሓድሽ ፓስ ዎርድ ጌርካ ፈትን፣   የቐነልና ብ ምፍታንካ",
     "Revenir à la page de connexion": "ምምጻእ ናብቲ  ገጽ ናይ መመዝገቢ",
-    "Mot de passe": "ፓስ ዎርድ ወይ ኮድ"
+    "Entrez votre pseudonyme": "ስም ጸሓፍ\\ፊ",
+    "Pas encore de compte ?": "ሕሳብ ናይ ኣካውንቲ ንግዚኡ የለን",
+    "Créez un compte": "ሓደ ኣካውንቲ ወይ ሕሳብ ክፈት\\ቲ",
+    "Pseudonyme oublié ?": "ናይ ናተይ ረስዔዮ ?",
+    "Contactez le support": "ምስ ተሓጋገዝቲ ርክብ ግበር\\ሪ",
+    "Centre d'aide": "ማእከል ናይ ሓገዝ",
+    "Mot de passe": "ፓስ ዎርድ ወይ ኮድ",
+    "Bonjour": "ሰላም",
+    "Entrez votre mot de passe": "ፓስ ዎርድ ወይ ኮድ የእትው\\ዊ",
+    "Oups,": "ኦው",
+    "Pas de compte": "ብስመይ ኣክውንቲ ወይ  ሕሳብ የለን",
+    "Mauvais mot de passe": "ጌጋ ፓስ ዎርድ ወይ ኮድ መእትው\\ዊ",
+    "Reessayez": "ፈትን\\ኒ ካልኣይ ግዜ",
+    "Impossible de réinitialiser": "ንምሕዳስ ብፍጹም ኣይክውንን ኢዩ",
+    "Reset password message": "ኣስተውዕል\\ሊ ኮድ ብኢመይል እንተ ዘይምጽካ\\ኪ ነቲ  ኢመይልካ\\ኪ ከተሕድስ\\ሲ ኣይትክእል\\ሊን ኢኻ\\ኺ፤፣",
+    "Réinitialisation du mot de passe": "ንኢመይል ንምሓዳስ ኣብ ኢመይልካ\\ኪ  ሓደ ኮድ በጽሑካ\\ኪ ኣሎ",
+    "Réinitialisation texte": "ወልሓንቲ  እንተ ዘይብጽሑካ\\ኪ ኣብ ስፓም ናትካ\\ኪ ኣረጋግጽ",
+    "Double authentification": "ዳብል መረጋገጺ",
+    "Un code vous a été envoyé par sms sur votre mobile.": "ሓደ ኮድ ኣብ ሞባይል ናትካ\\ኪ ብ ኤስ ኤም ኤስ ተላእኩ ኣሎ",
+    "Entrez votre code": "ፓስ ዎርድ ወይ ኮድ የእትው\\ዊ",
+    "Renvoyer le code": "ፓስ ዎርድ ወይ ኮድ ካልኣይ ግዜ ክልኣክ እዩ",
+    "Le code saisi n'est pas le bon.": "ፓስ ዎርድ ወይ ኮድ  ቅኑዕ ኣይኮነን",
+    "Une erreur est survenue. Veuillez réessayer.": "ብጌጋ ተላእኩ ኣሎ ፓስ ዎርድ ወይ ኮድ ፈትን ካልኣይ ግዜ",
+    "Nouvel administrateur": "ሓድሽ ምምሕዳር",
+    "Entrez votre numéro et votre email": "ኢመይል ወይ ቁጽሪ ተሌፎን ናትካ\\ኪ የእትው\\ዊ",
+    "Entrez votre email": "ኢመይል ናትካ\\ኪ የእትው\\ዊ",
+    "Entrez votre numéro": "ቁጽሪ ተሌፎን ናትካ\\ኪ የእትው\\ዊ",
+    "Pas email": "ምስ ናትካ\\ኪ ስም ዝዛመድ ኢመይል ኣደረስ የለን",
+    "Choisissez un pseudonyme": "ሓድሽ ናይ ብርዒ ስም ጸሓፍ"
+  },
+  "Reset": {
+    "Entrez votre nouveau mot de passe": "ሓድሽ ፓስ ዎርድ ወይ ኮድ የእትው\\ዊ",
+    "Réinitialisation du mot de passe": "ድግም\\ሚ ነቲ  ፓስ ዎርድ ወይ ኮድ የእትው\\ዊ"
+  },
+  "Register": {
+    "Pseudo usage": "እዚ ስም  ኣብቲ ፎርም  ኣብርክቶ ትገብር\\ሉ\\ላ ቦታ  ክወጽእ ኢዩ፤፣",
+    "Exemples": "ን ኣብነት ጉልያም ዱ ፖ,ኖራ78",
+    "Oups, ce pseudo existe déjà.": "ኦው  እዚ ስም ናይ ኣካውንቲ ኔሩ ቅድሚ ሕጂ",
+    "Déjà un compte ?": "ካልእ ኣክውንቲ ወይ ሕሳብ ኣለካ\\ኪ ድዩ ?",
+    "Se connecter": "ኣብ መስመር ምእታው",
+    "Bienvenue": "እንቃዕ ብደሓን መጻኹም\\ኽን",
+    "Choisissez un mot de passe": "ፓስ ወርድ\\ ኮድ ምረጽ\\ጺ",
+    "Dernière étape": "ናይ መጨረሽታ ደረጃ",
+    "Renseignez votre adresse email": "ኢመልካ\\ኪ ምኻኑ ኣረጋግጽ\\ጺ",
+    "Votre email": "ኢመይልካ\\ኪ",
+    "Email infos": "ፓስ ወርድ ወይ ኮድ ናትካ'ኪ ምዓቃቡ ኣገዳሲ ኢዩ ኣብ ዝኾነ ግዜ ምስ ዝጠፍእ",
+    "Faible": "ብጣዕሚ ሓያል",
+    "Fort": "ሓያል",
+    "Moyen": "ደሓን",
+    "Mot de passe trop faible": "ኦው ናትካ\\ኪ ኮድ ወይ ፓስ ወርድ ብጣዕሚ ድኹም ኢዩ",
+    "Ceci n'est pas un email,": "እዚ ኢመይል ኣይኮነን",
+    "vérifiez l'orthographe.": "ኣብ ፊደል ኣረጋግጽ\\ጺ",
+    "Créer un nouveau compte": "ሓድሽ ሕሳብ ናይ ኣካውንቲ ኣውጽእ\\ኢ፤፣"
   },
   "UnauthorizedAccess": {
     "Accès refusé": "ኣብ  ምንጻግ በጺሑ",
@@ -286,6 +357,7 @@
     "Voir le site": "ኣብ ዌብ ሳይት ተዓዘብ",
     "Télécharger en PDF": "ፔዲፍ መውረዲ",
     "Envoyer par mail": "ብ ኢመይል ለኣኮ",
+    "Envoyer par SMS": "ብ ኤስ ኤም ኤስ \\ ብመሰጅ  ክልኣኸልካ\\ኪ ኢዩ ፤፣",
     "Imprimer": "ምሕታም ወረቐት",
     "Gratuit": "ነጻ",
     "Payant": "መኽፈሊ",
@@ -389,7 +461,9 @@
     "avec": "ምስ",
     "Merci": "የቕነልና",
     "Envoyer une réaction": "ሓንቲ ግብረ መልሲ ጸሓፍ",
-    "Dites nous ce que vous pensez": "ሓሳብካ ግለጸልና"
+    "Dites nous ce que vous pensez": "ሓሳብካ ግለጸልና",
+    "Enlever des favoris": "ካብቶም  ምልክት ናይ ፋቮሪ\\ምርጫ  ኣውጽ\\ጺ\\ያ ፤፣",
+    "Ajouter aux favoris": "ካብቶም  ምልክት ፋቮሪ\\ምርጫ  ወስኽ\\ኺ፤፣"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "ርግጽኛ ዲኻ ?",
@@ -472,11 +546,18 @@
   "ModaleNiveauDeFrançais": {
     "Niveau de langue": "ምምናይ ካልእ ቃንቃ",
     "Faire le test": "ፈተና ምግባር",
+    "Ces niveaux sont issus du": "ካብዚ'ም ደረጀታት ኢዮም ወጺዮም ፤፣",
     "Je découvre le français title": "ሌላ ምስ ቃንቃ ፈረንሳይ",
     "Je découvre le français description": "ብቅልል  ዝበለ ምስላታትን ቃላትን ሓሳባትን ኣብ ገዛ ምስ ስድራ ይኹን ኣብ ደገ ዝዝረብ ኣብ መዓልታዊ ናብራና ንጥቀመሎም  ቃላት ኣገደስትን ኣድለይትን ዝኾኑ ሓሳባት  ክርዳእ ይኽእል፤፣",
     "Je comprends des messages simples title": "ቀለልቲ ዝኾኑ መልእኽቲ ክርዳእ ይኽእል",
+    "Je comprends des messages simples description": "ንሓሳባትን ምስላታትን ምስ ኣብ ከባቢየ ዘለው ክራኸብ እንከለኹ ብቐጥታ ፈላሊየ ክርድኦም ይኽእል ፣  ስድራ ፣  ስራሕ ፣ ትምህርቲ፣ ከምኡ''ውን ብዛዕባ ኣርእስቲ ናይ ስድራ ክዛረብ ይኽእል  ኢየ፤፣",
     "Je communique avec des francophones title": "ምስ  ቃንቃ ፈረንሳይ ዝዛረቡ ሰባት ክረዳዳእ ይኽእል ፤፣",
+    "Je communique avec des francophones description": "ሓደ መልእኽቲ ንጹርን ኣብ ደሓን ዝኾነ ደረጃ እንተ ኮይኑ ፣ ነቶም ኣገድስቲ  ዝኾኑ ትሕዝቶ  ነጥብታት ብቀሊል ክርዳእ ይኽእል ፤፣ ንኣብነት ኣብ መንገሻ ናይ ዝኾነ ኣጋጣሚ ካብ ተምክሮይ ከዕልል ይኽእል ፤፣",
     "Je communique avec aisance title": "ምስ ተሓጋገዝቲ ኣሲሳታንስ ክዘራረብ ይኽእል ፤፣",
+    "Je communique avec aisance description": "መልእኽቲ ናይ ሓንቲ ትሕዝቶ ከቢድ ይኹን ወይ ፎኪስ  ኣብ ተጨብጥቲ ን ረቂቅትን   ንጽባቀ ሓሳብት ስሚዕት ዝገልጽ ሓሳባት ናይ ቃል ፣ ፤  ምስ ካልእ ሰብ  ኣብ ኣገድስቲ ነጥባታትን ኣርእስትን ብንጹር  ክዛረብን ብስፍሕ ዝበለ ሓሳበይ ኣዳቂቐ ክገልጽ ይኽእል፤፣",
+    "Je communique avec grande aisance title": "ብቀሊልን ብሰፊሕን ክረዳዳእ ይኽእል፤፣",
     "Je communique avec grande aisance description": "ኣብ ምትግባር ክብድ ዝበለ ወልሓደ ጸገም የለን"
-  }
+  },
+  "Écouter": "ምስማዕ",
+  "manger, me doucher": "ምብላዕ ፣ ነብስይ ምሕጻብ"
 }
