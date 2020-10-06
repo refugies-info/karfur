@@ -180,7 +180,7 @@ export class Dispositif extends Component {
   };
 
   componentDidMount() {
-/*     this.props.history.push({
+    /*     this.props.history.push({
       state: {},
     }); */
     this._isMounted = true;
@@ -744,7 +744,6 @@ export class Dispositif extends Component {
         editorState.getCurrentContent().getPlainText() !== ""
           ? convertToHTML(customConvertOption)(editorState.getCurrentContent())
           : "";
-
       if (subkey !== null && state[key].children.length > subkey) {
         state[key].children[subkey].editorState = editorState;
         state[key].children[subkey].isFakeContent = false;
@@ -1214,7 +1213,7 @@ export class Dispositif extends Component {
     ) {
       this.props.history.go(-1);
     } else {
-      this.props.history.push({pathname: "/advanced-search"})
+      this.props.history.push({ pathname: "/advanced-search" });
     }
   };
 
@@ -1519,11 +1518,12 @@ export class Dispositif extends Component {
               (x) => x.userId === this.props.userId
             );
         if (
-          membre &&
-          membre.roles &&
-          membre.roles.some(
-            (x) => x === "administrateur" || x === "contributeur"
-          ) &&
+          ((membre &&
+            membre.roles &&
+            membre.roles.some(
+              (x) => x === "administrateur" || x === "contributeur"
+            )) ||
+            this.props.admin) &&
           !sauvegarde
         ) {
           dispositif.status = "En attente admin";
@@ -1707,6 +1707,8 @@ export class Dispositif extends Component {
                     translating={translating}
                     status={this.state.status}
                     typeContenu={typeContenu}
+                    langue={i18n.language}
+                    t={t}
                   />
                 )}
               </Row>
@@ -1816,6 +1818,7 @@ export class Dispositif extends Component {
                       displayTuto={this.state.displayTuto}
                       updateUIArray={this.updateUIArray}
                       isRTL={isRTL}
+                      t={t}
                     />
                   }
                 </Col>

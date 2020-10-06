@@ -11,6 +11,7 @@ import { Contribution } from "./components/Contribution";
 import { Team } from "./components/Team";
 import { MemberDetails } from "./components/MemberDetails";
 import { Partners } from "./components/Partners";
+import i18n from "../../i18n";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -84,10 +85,10 @@ const MissionContainer = styled.div`
   padding-top: 48px;
 `;
 const TeamContainer = styled.div`
-  height: 850px;
   background: #f2f2f2;
   padding-top: 48px;
   position: relative;
+  padding-bottom: 30px;
 `;
 const ProblematicContainer = styled.div`
   height: 720px;
@@ -101,7 +102,6 @@ const ContributionContainer = styled.div`
 `;
 
 const PartnersContainer = styled.div`
-  height: 1020px;
   padding-top: 48px;
   padding-left: 120px;
   padding-right: 32px;
@@ -154,6 +154,8 @@ class QuiSommesNous extends Component {
   render() {
     const { membre, sideVisible } = this.state;
     const { t } = this.props;
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+
     return (
       <MainContainer>
         <HeaderContainer>
@@ -225,7 +227,7 @@ class QuiSommesNous extends Component {
           <SectionHeader>
             {t("QuiSommesNous.Missions", "Missions")}
           </SectionHeader>
-          <Mission t={t} />
+          <Mission t={t} isRTL={isRTL} />
         </MissionContainer>
         <TeamContainer id="equipe" onClick={this.closeSide}>
           <SectionHeader>{t("QuiSommesNous.Équipe", "Équipe")}</SectionHeader>

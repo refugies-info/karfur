@@ -102,3 +102,52 @@
     }
   }
 }
+
+.filter-btn{
+  margin-right: 10px;
+  outline:none;
+  justify-content: center;
+  align-items: center;
+  background: $grisFonce;
+  border-radius: 12px;
+  border: 1px solid white;
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+
+  &:not(:disabled):not(.disabled):active, &.active{
+    color: black !important;
+    font-weight: 500;
+    background: #FFFFFF;
+
+  }
+  &.active-icon{
+    color: black !important; 
+  }
+  &:focus{
+    outline: 0;
+    color: #FFFFFF;
+   // border: 0.5px solid #2D9CDB;
+  }
+
+  &.full{
+    background: transparent;
+    color: #FFFFFF;
+   // border: 0.5px solid #FFFFFF;
+  }
+  &.color{
+    color: #FFFFFF;
+  }
+  &.in-header{
+    padding: 20px;
+    color: $blanc;
+    border-radius: 12px;
+    &:after{
+      margin-left: 13px;
+    }
+  }
+}

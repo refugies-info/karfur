@@ -8,6 +8,30 @@ $placeholderColor: $blanc;
   justify-content: center;
   align-items: center;
 
+  .search-title{
+    font-size: 22px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .search-title-small{
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  .search-btn {
+    font-size: 22px;
+  }
+  .search-btn-small {
+    font-size: 18px;
+  }
+
+  .search-filter{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   padding: 12px; 
+  }
 
 
   .dropdown-menu.show{
@@ -59,7 +83,6 @@ $placeholderColor: $blanc;
   }
 
   .search-autocomplete{
-    width: 200px;
     text-align: center;
     &::-webkit-input-placeholder {
       color: $placeholderColor;

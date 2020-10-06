@@ -7,12 +7,12 @@
 }
 
 .border-none{
-  border: none;
+  border: none !important;
 }
 
-.puff-in-center {
+/* .puff-in-center {
   padding-right: 0px;
-}
+} */
 
 .custom-card.card{
   cursor : pointer;
@@ -21,7 +21,7 @@
   line-height: 21px;
   height:250px;
   scrollbar-width: 0;
-  border-width: 2px !important;
+  border-width: 3px !important;
 
   @include media-max("desktop-up") { font-size: 12px; }
 

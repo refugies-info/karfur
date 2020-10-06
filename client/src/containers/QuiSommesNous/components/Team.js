@@ -10,6 +10,7 @@ import Luca from "../../../assets/qui-sommes-nous/Luca.png";
 import Ana from "../../../assets/qui-sommes-nous/Ana.png";
 import Hugo from "../../../assets/qui-sommes-nous/Hugo.png";
 import Chloé from "../../../assets/qui-sommes-nous/Chloé.png";
+import { Col, Row } from "reactstrap";
 
 const TeamContainer = styled.div`
   display: flex;
@@ -20,17 +21,19 @@ const TeamContainer = styled.div`
 `;
 export const Team = (props) => (
   <TeamContainer>
-    {membres.map((membre) => (
-      <MemberCard
-        name={membre.name}
-        key={membre.name}
-        role={membre.roleShort || membre.roleName}
-        color={membre.color}
-        borderColor={membre.borderColor}
-        onMemberCardClick={props.onMemberCardClick}
-        membreSelected={props.membre === membre.name && props.sideVisible}
-      />
-    ))}
+    <Row>
+      {membres.map((membre) => (
+        <MemberCard
+          name={membre.name}
+          key={membre.name}
+          role={membre.roleShort || membre.roleName}
+          color={membre.color}
+          borderColor={membre.borderColor}
+          onMemberCardClick={props.onMemberCardClick}
+          membreSelected={props.membre === membre.name && props.sideVisible}
+        />
+      ))}
+    </Row>
   </TeamContainer>
 );
 
@@ -94,20 +97,22 @@ const getImage = (name) => {
 };
 
 const MemberCard = (props) => (
-  <MemberCardContainer
-    background={props.color}
-    borderColor={props.borderColor}
-    onClick={() => props.onMemberCardClick(props.name)}
-    membreSelected={props.membreSelected}
-  >
-    <ImageContainer>
-      <img
-        src={getImage(props.name)}
-        //   onClick={this._closeSide}
-        alt={props.name}
-      />
-    </ImageContainer>
-    <NameContainer>{props.name}</NameContainer>
-    <RoleContainer>{props.role}</RoleContainer>
-  </MemberCardContainer>
+  <Col xl="3" lg="4" md="4" sm="6" xs="12">
+    <MemberCardContainer
+      background={props.color}
+      borderColor={props.borderColor}
+      onClick={() => props.onMemberCardClick(props.name)}
+      membreSelected={props.membreSelected}
+    >
+      <ImageContainer>
+        <img
+          src={getImage(props.name)}
+          //   onClick={this._closeSide}
+          alt={props.name}
+        />
+      </ImageContainer>
+      <NameContainer>{props.name}</NameContainer>
+      <RoleContainer>{props.role}</RoleContainer>
+    </MemberCardContainer>
+  </Col>
 );

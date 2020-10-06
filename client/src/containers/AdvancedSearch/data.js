@@ -20,17 +20,12 @@ const initial_data = [
   {
     title: "Je cherche à",
     value: null,
-    placeholder: "choisir un thème",
-    query: "Apprendre le français",
+    placeholder: "thème",
+    query: "apprendre le français",
     queryName: "tags.name",
     children: filtres.tags,
   },
-  {
-    title: "J'habite à",
-    value: null,
-    placeholder: "ma ville",
-    queryName: "localisation",
-  },
+
   {
     title: "J'ai",
     value: null,
@@ -62,28 +57,34 @@ const initial_data = [
   {
     title: "Je parle",
     value: null,
-    placeholder: "mon niveau",
+    placeholder: "niveau de français",
     title2: "français",
     queryName: "niveauFrancais",
     append: "Quel est mon niveau ?",
     children: [
       {
         name: "pas du tout",
-        query: { $nin: [ "Débutant", "Intermédiaire","Avancé" ]},
+        query: { $nin: ["Débutant", "Intermédiaire", "Avancé"] },
       },
       {
         name: "un peu",
-        query: { $nin: [ "Intermédiaire","Avancé" ]},
+        query: { $nin: ["Intermédiaire", "Avancé"] },
       },
       {
         name: "moyennement",
-        query: { $nin: [ "Avancé" ]},
+        query: { $nin: ["Avancé"] },
       },
       {
         name: "bien",
         query: undefined,
       },
     ],
+  },
+  {
+    title: "J'habite à",
+    value: null,
+    placeholder: "ma ville",
+    queryName: "localisation",
   },
 ];
 
@@ -98,9 +99,10 @@ const filtres_contenu = [
 ];
 
 const tris = [
-  { name: "A > Z", value: "titreInformatif" },
+  // { name: "A > Z", value: "titreInformatif" },
   { name: "Derniers ajouts", value: "created_at" },
   { name: "Les plus visités", value: "nbVues" },
+  { name: "Par thème" },
 ];
 
 export { initial_data, filtres_contenu, tris };

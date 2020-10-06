@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import track from "react-tracking";
 import {
-  Col,
-  Row,
-  CardBody,
-  CardFooter,
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -17,68 +13,126 @@ import qs from "query-string";
 import _ from "lodash";
 import windowSize from "react-window-size";
 import { connect } from "react-redux";
-import { NavLink, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import produce from "immer";
+import withSizes from "react-sizes";
 // import Cookies from 'js-cookie';
 
+import i18n from "../../i18n";
+import Streamline from "../../assets/streamline";
 import SearchItem from "./SearchItem/SearchItem";
+import SearchResultCard from "./SearchResultCard";
+import SeeMoreCard from "./SeeMoreCard";
+import NoResultPlaceholder from "./NoResultPlaceholder";
 import API from "../../utils/API";
 import { initial_data } from "./data";
-import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { filtres } from "../Dispositif/data";
 import { filtres_contenu, tris } from "./data";
-import { breakpoints } from "utils/breakpoints.js";
-import Streamline from "../../assets/streamline";
 import FButton from "../../components/FigmaUI/FButton/FButton";
-import NoResultsBackgroundImage from "../../assets/no_results.svg";
+import TagButton from "../../components/FigmaUI/TagButton/TagButton";
 import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 
 import "./AdvancedSearch.scss";
 import variables from "scss/colors.scss";
 
-const NoResultsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+const ThemeContainer = styled.div`
+  width: 100%;
+  background-color: ${(props) => props.color};
+  padding: 24px 68px 48px 68px;
 `;
 
-const NoResults = styled.div`
+const ThemeHeader = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  background-image: url(${NoResultsBackgroundImage});
-  min-width: 254px;
-  height: 180px;
-  margin-right: 75px;
+  padding: 48px 0px 48px 0px;
 `;
 
-const NoResultsTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const NoResultsButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const NoResultsTitle = styled.p`
+const ThemeHeaderTitle = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 32px;
   line-height: 40px;
-  margin-bottom: 24px !important;
+  color: ${(props) => props.color};
 `;
 
-const NoResultsText = styled.p`
-  font-style: normal;
-  font-weight: normal;
+const ThemeListContainer = styled.div`
+  display: grid;
+  justify-content: start;
+  align-content: start;
+  grid-template-columns: ${(props) => `repeat(${props.columns || 5}, minmax(260px, 300px))`};
+  background-color: ${(props) => props.color};
+`;
+
+const SearchToggle = styled.div`
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18px;
+  border: 0.5px solid;
+  border-color: ${(props) => (props.visible ? "transparent" : "black")};
+  background-color: ${(props) => (props.visible ? "#828282" : "white")};
+  align-self: center;
+  cursor: pointer;
+  &:hover {
+    filter: brightness(80%);
+  }
+`;
+
+const FilterBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #828282;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  border-radius: 12px;
+  padding: 13px 16px 0px;
+  margin-left: 68px;
+  display: flex;
+  z-index: 2;
+  top: ${(props) =>
+    props.visibleTop && props.visibleSearch
+      ? "164px"
+      : !props.visibleTop && props.visibleSearch
+      ? "95px"
+      : props.visibleTop && !props.visibleSearch
+      ? "95px"
+      : "16px"};
+  transition: top 0.6s;
+  height: 80px;
+`;
+
+const ThemeButton = styled.div`
+  background-color: ${(props) => props.color};
+  display: flex;
+  flex-direction: row;
+  padding: 12px;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  margin-left: ${(props) => (props.ml ? "8px" : "0px")};
+`;
+const ThemeText = styled.p`
+  color: white;
   font-size: 18px;
-  line-height: 23px !important;
-  margin-bottom: 24px !important;
-  max-width: 520px;
+  margin-left: 8px;
+  font-weight: 700;
+`;
+
+const FilterTitle = styled.p`
+  size: 18px;
+  font-weight: bold;
+  color: white;
+  margin-right: 10px;
 `;
 
 let user = { _id: null, cookies: {} };
@@ -90,7 +144,7 @@ export class AdvancedSearch extends Component {
     nbVues: [],
     pinned: [],
     activeFiltre: "",
-    activeTri: "",
+    activeTri: "Par thème",
     data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
     order: "created_at",
     croissant: true,
@@ -99,15 +153,25 @@ export class AdvancedSearch extends Component {
     dropdownOpenTri: false,
     dropdownOpenFiltre: false,
     showBookmarkModal: false,
+    searchToggleVisible: true,
+    visible: true,
+    countTotal: 0,
+    countShow: 0,
+    themesObject: [],
+    principalThemeList: [],
+    secondaryThemeList: [],
+    selectedTag: null,
   };
 
   componentDidMount() {
+    window.addEventListener("scroll", this.handleScrolling);
+    this._isMounted = true;
     this.retrieveCookies();
     let tag = querySearch(this.props.location.search).tag;
     let bottomValue = querySearch(this.props.location.search).bottomValue;
     let topValue = querySearch(this.props.location.search).topValue;
     let niveauFrancais = querySearch(this.props.location.search).niveauFrancais;
-    let niveauFrancaisObj = this.state.recherche[3].children.find(
+    let niveauFrancaisObj = this.state.recherche[2].children.find(
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
@@ -115,27 +179,32 @@ export class AdvancedSearch extends Component {
       this.setState(
         produce((draft) => {
           if (tag) {
+            const tagValue = filtres.tags.find(
+              (x) => x.name === decodeURIComponent(tag)
+            );
+            draft.selectedTag = tagValue;
             draft.recherche[0].query = decodeURIComponent(tag);
             draft.recherche[0].value = decodeURIComponent(tag);
             draft.recherche[0].active = true;
             draft.recherche[0].short =
-              filtres.tag &&
+              filtres.tags &&
               filtres.tags.find((x) => x.name === decodeURIComponent(tag))
                 .short;
           }
           if (topValue && bottomValue) {
-            draft.recherche[2].value = initial_data[2].children.find(
+            draft.recherche[1].value = initial_data[1].children.find(
               (item) => item.topValue === parseInt(topValue, 10)
             ).name;
-            draft.recherche[2].query = draft.recherche[2].value;
-            draft.recherche[2].active = true;
+            draft.recherche[1].query = draft.recherche[1].value;
+            draft.recherche[1].active = true;
           }
           if (niveauFrancais) {
-            draft.recherche[3].name = decodeURIComponent(niveauFrancais);
-            draft.recherche[3].value = decodeURIComponent(niveauFrancais);
-            draft.recherche[3].query = niveauFrancaisObj.query;
-            draft.recherche[3].active = true;
+            draft.recherche[2].name = decodeURIComponent(niveauFrancais);
+            draft.recherche[2].value = decodeURIComponent(niveauFrancais);
+            draft.recherche[2].query = niveauFrancaisObj.query;
+            draft.recherche[2].active = true;
           }
+          draft.activeTri = "";
         }),
         () =>
           this.queryDispositifs({
@@ -158,15 +227,30 @@ export class AdvancedSearch extends Component {
       this.queryDispositifs();
     }
     this._initializeEvents();
-    window.scrollTo(0, 0);
+    //window.scrollTo(0, 0);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScrolling);
+    this._isMounted = false;
   }
 
   // eslint-disable-next-line react/no-deprecated
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.languei18nCode !== this.props.languei18nCode) {
-      this.queryDispositifs(null, nextProps);
+  componentDidUpdate(prevProps) {
+    if (prevProps.languei18nCode !== this.props.languei18nCode) {
+      this.queryDispositifs(null, this.props);
     }
   }
+
+  handleScrolling = () => {
+    const currentScrollPos = window.pageYOffset;
+    //const visible = prevScrollpos > currentScrollPos;
+    const visible = currentScrollPos < 70;
+
+    this.setState({
+      visible,
+    });
+  };
 
   queryDispositifs = (Nquery = null, props = this.props) => {
     this.setState({ showSpinner: true });
@@ -188,20 +272,21 @@ export class AdvancedSearch extends Component {
             : { [x.queryName]: x.query }
         )
         .reduce((acc, curr) => ({ ...acc, ...curr }), {});
-    const localisationSearch = this.state.recherche.find(
+    /*     const localisationSearch = this.state.recherche.find(
       (x) => x.queryName === "localisation" && x.value
-    );
-    if (!Nquery) {
+    ) */ if (
+      !Nquery
+    ) {
       let newQueryParam = {
-        tag: query["tags.name"] ? query["tags.name"] : undefined,
+        tag: query["tags.name"] ? decodeURIComponent(query["tags.name"]) : undefined,
         bottomValue: query["audienceAge.bottomValue"]
-          ? this.state.recherche[2].bottomValue
+          ? this.state.recherche[1].bottomValue
           : undefined,
         topValue: query["audienceAge.topValue"]
-          ? this.state.recherche[2].topValue
+          ? this.state.recherche[1].topValue
           : undefined,
         niveauFrancais: query["niveauFrancais"]
-          ? this.state.recherche[3].value
+          ? this.state.recherche[2].value
           : undefined,
       };
 
@@ -213,72 +298,83 @@ export class AdvancedSearch extends Component {
         search: qs.stringify(newQueryParam),
       });
     }
-
-    /*     (query["tags.name"] ? `?tag=${this.state.recherche[0].short}` : "") +
-    (query["audienceAge.bottomValue"]
-      ? `?bottomValue=${this.state.recherche[2].bottomValue}`
-      : "") +
-    (query["audienceAge.topValue"]
-      ? `?topValue=${this.state.recherche[2].topValue}`
-      : "") +
-    (query["niveauFrancais"]
-      ? `?niveauFrancais=${this.state.recherche[3].value}`
-      : ""), */
-
     API.get_dispositif({
       query: {
         ...query,
         ...this.state.filter,
         status: "Actif",
-        ...(!localisationSearch && { demarcheId: { $exists: false } }),
       },
+      demarcheId: { $exists: false },
       locale: props.languei18nCode,
     })
       .then((data_res) => {
         let dispositifs = data_res.data.data;
+
+        this.setState({ countTotal: dispositifs.length });
+
         if (query["tags.name"]) {
           //On réarrange les résultats pour avoir les dispositifs dont le tag est le principal en premier
-          dispositifs = dispositifs.sort(
+          /*           dispositifs = dispositifs.sort(
             (a, b) =>
               a.tags.findIndex((x) =>
                 x ? x.short === query["tags.name"] : 99
               ) -
               b.tags.findIndex((x) => (x ? x.short === query["tags.name"] : 99))
+          ); */
+          dispositifs = dispositifs.sort((a, b) =>
+            _.get(a, "tags.0.name", {}) === this.state.recherche[0].query
+              ? -1
+              : _.get(b, "tags.0.name", {}) === this.state.recherche[0].query
+              ? 1
+              : 0
           );
-        }
-        if (localisationSearch) {
-          //On applique le filtre géographique maintenant
-          dispositifs = dispositifs.filter(
-            (x) =>
-              x.typeContenu !== "demarche" ||
-              !(x.variantes || []).some((y) => y.villes) ||
-              x.variantes.some((y) =>
-                y.villes.some(
-                  (z) =>
-                    !z.address_components.some(
-                      (ad) =>
-                        !localisationSearch.query.some(
-                          (lq) => lq.long_name === ad.long_name
-                        ) //On compare seulement les noms, il faudrait idéalement rajouter le type aussi mais la comparaison des Arrays me paraît lourde
-                    )
-                )
-              )
-          );
-          const filterDoubles = [
-            ...new Set(dispositifs.map((x) => x.demarcheId || x._id)),
-          ]; //Je vire les doublons créés par les variantes
-          dispositifs = filterDoubles.map((x) =>
-            dispositifs.find((y) => y.demarcheId === x || y._id === x)
-          );
+        } else {
+          dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
         }
         dispositifs = dispositifs.map((x) => ({
           ...x,
           nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
-
-        this.setState({ dispositifs: dispositifs, showSpinner: false });
+        if (this.state.activeTri === "Par thème") {
+          const themesObject = filtres.tags.map((tag) => {
+            return {
+              [tag.short]: dispositifs.filter((elem) => {
+                if (elem.tags[0]) {
+                  return elem.tags[0].short === tag.short;
+                }
+              }),
+            };
+          });
+          this.setState({ themesObject: themesObject });
+        }
+        if (this.state.recherche[0] && this.state.recherche[0].value) {
+          var principalThemeList = dispositifs.filter((elem) => {
+            if (elem.tags && elem.tags[0]) {
+              return elem.tags[0].short === this.state.recherche[0].short;
+            }
+          });
+          var secondaryThemeList = dispositifs.filter((element) => {
+            if (element.tags && element.tags.length > 0) {
+              for (var index = 1; index < element.tags.length; index++) {
+                if (
+                  index !== 0 && element.tags[index] &&
+                  element.tags[index].short === this.state.recherche[0].short
+                )
+                  return true;
+              }
+            }
+          });
+          this.setState({ principalThemeList, secondaryThemeList });
+        }
+        this.setState({
+          dispositifs: dispositifs,
+          showSpinner: false,
+          countShow: dispositifs.length,
+        });
       })
-      .catch(() => this.setState({ showSpinner: false }));
+      .catch(() => {
+        this.setState({ showSpinner: false })
+    });
   };
 
   selectTag = (tag = {}) => {
@@ -295,9 +391,9 @@ export class AdvancedSearch extends Component {
             }
           : x
       ),
+      selectedTag: tagValue,
     }));
     this.queryDispositifs({ "tags.name": tagValue.name });
-    // this.props.history.replace("/advanced-search?tag="+tag)
   };
 
   _initializeEvents = () => {
@@ -436,34 +532,56 @@ export class AdvancedSearch extends Component {
   };
 
   reorder = (tri) => {
-    const order = tri.value,
-      croissant = order === this.state.order ? !this.state.croissant : true;
-    this.setState((pS) => ({
-      dispositifs: pS.dispositifs.sort((a, b) => {
-        const aValue = _.get(a, order),
-          bValue = _.get(b, order);
-        return aValue > bValue
-          ? croissant
-            ? 1
-            : -1
-          : aValue < bValue
-          ? croissant
-            ? -1
-            : 1
-          : 0;
-      }),
-      order: tri.value,
-      activeTri: tri.name,
-      croissant: croissant,
-    }));
+    if (tri.name === "Par thème") {
+      this.setState(
+        {
+          activeTri: tri.name,
+          recherche: this.state.recherche.map((x, i) =>
+            i === 0 ? initial_data[i] : x
+          ),
+        },
+        () => this.queryDispositifs()
+      );
+    } else {
+      const order = tri.value,
+        croissant = order === this.state.order ? !this.state.croissant : true;
+      this.setState((pS) => ({
+        dispositifs: pS.dispositifs.sort((a, b) => {
+          const aValue = _.get(a, order),
+            bValue = _.get(b, order);
+          return aValue > bValue
+            ? croissant
+              ? 1
+              : -1
+            : aValue < bValue
+            ? croissant
+              ? -1
+              : 1
+            : 0;
+        }),
+        order: tri.value,
+        activeTri: tri.name,
+        croissant: croissant,
+      }));
+    }
   };
 
   filter_content = (filtre) => {
     const filter = this.state.activeFiltre === filtre.name ? {} : filtre.query;
     const activeFiltre =
       this.state.activeFiltre === filtre.name ? "" : filtre.name;
-    this.setState({ filter, activeFiltre }, () => this.queryDispositifs());
+    this.setState(
+      {
+        filter,
+        activeFiltre /* activeTri: this.state.activeTri === "Par thème" ? "" : this.state.activeTri */,
+      },
+      () => this.queryDispositifs()
+    );
   };
+
+  seeMore = (selectedTheme) => {
+    this.selectParam(0, selectedTheme);
+  }
 
   goToDispositif = (dispositif = {}, fromAutoSuggest = false) => {
     this.props.tracking.trackEvent({
@@ -500,7 +618,25 @@ export class AdvancedSearch extends Component {
       ...(subitem.bottomValue && { bottomValue: subitem.bottomValue }),
       ...(subitem.topValue && { topValue: subitem.topValue }),
     };
-    this.setState({ recherche: recherche }, () => this.queryDispositifs());
+    this.setState(
+      {
+        recherche: recherche,
+        selectedTag: key === 0 ? subitem : this.state.selectedTag,
+        activeTri:
+          this.state.activeTri === "Par thème" ? "" : this.state.activeTri,
+      },
+      () => this.queryDispositifs()
+    );
+  };
+
+  desactiverTri = () => {
+    this.setState({ activeTri: "" }, () => this.queryDispositifs());
+  };
+
+  desactiverFiltre = () => {
+    this.setState({ activeFiltre: "", filter: {} }, () =>
+      this.queryDispositifs()
+    );
   };
 
   desactiver = (key) =>
@@ -522,6 +658,9 @@ export class AdvancedSearch extends Component {
     this.setState((prevState) => ({
       showBookmarkModal: !prevState.showBookmarkModal,
     }));
+  toggleSearch = () => {
+    this.setState({ searchToggleVisible: !this.state.searchToggleVisible });
+  };
 
   render() {
     let {
@@ -532,10 +671,13 @@ export class AdvancedSearch extends Component {
       activeFiltre,
       activeTri,
       displayAll,
+      selectedTag,
     } = this.state;
     // eslint-disable-next-line
-    const { t, windowWidth, dispositifs: storeDispo } = this.props;
-
+    const { t, windowWidth, dispositifs: storeDispo, isMobile, isDesktop, isSmallDesktop, isTablet, isBigDesktop } = this.props;
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    //console.log(i18n.language);
+    /* 
     if (recherche[0].active) {
       dispositifs = dispositifs.sort((a, b) =>
         _.get(a, "tags.0.name", {}) === recherche[0].query
@@ -544,15 +686,20 @@ export class AdvancedSearch extends Component {
           ? 1
           : 0
       );
-    }
+    } */
 
     return (
       <div className="animated fadeIn advanced-search">
-        <div className="search-bar">
+        <div
+          className={
+            "search-bar" + (this.state.visible ? "" : " search-bar-hidden")
+          }
+        >
           {recherche
             .filter((_, i) => displayAll || i === 0)
             .map((d, i) => (
               <SearchItem
+                isBigDesktop={isBigDesktop}
                 key={i}
                 item={d}
                 keyValue={i}
@@ -560,9 +707,22 @@ export class AdvancedSearch extends Component {
                 desactiver={this.desactiver}
               />
             ))}
+          <SearchToggle
+            onClick={() => this.toggleSearch()}
+            visible={this.state.searchToggleVisible}
+          >
+            {this.state.searchToggleVisible ? (
+              <EVAIcon name="arrow-ios-upward-outline" fill={variables.blanc} />
+            ) : (
+              <EVAIcon
+                name="arrow-ios-downward-outline"
+                fill={variables.noir}
+              />
+            )}
+          </SearchToggle>
           <ResponsiveFooter
             {...this.state}
-            show={windowWidth < breakpoints.smLimit}
+            show={false}
             toggleDropdownTri={this.toggleDropdownTri}
             toggleDropdownFiltre={this.toggleDropdownFiltre}
             reorder={this.reorder}
@@ -571,265 +731,202 @@ export class AdvancedSearch extends Component {
             t={t}
           />
         </div>
-        <Row className="search-wrapper">
-          {windowWidth >= breakpoints.smLimit && (
-            <Col xl="2" lg="2" md="2" sm="2" xs="2" className="mt-250 side-col">
-              {windowWidth >= breakpoints.desktopUp && (
-                <EVAIcon
-                  name="options-2-outline"
-                  fill={variables.noir}
-                  className="mr-12"
-                />
-              )}
-              <div className="right-side">
-                {windowWidth >= breakpoints.desktopUp ? (
-                  <b>{t("AdvancedSearch.Trier par", "Trier par :")}</b>
-                ) : (
-                  <EVAIcon name="options-2-outline" fill={variables.noir} />
-                )}
-                <div className="mt-10 side-options">
-                  {tris.map((tri, idx) => (
-                    <div
-                      key={idx}
-                      className={
-                        "side-option" +
-                        (tri.name === activeTri ? " active" : "")
-                      }
-                      onClick={() => this.reorder(tri)}
-                    >
-                      {t("AdvancedSearch." + tri.name, tri.name)}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Col>
-          )}
-          <Col
-            xl="8"
-            lg="8"
-            md="8"
-            sm="8"
-            xs="12"
-            className="mt-250 central-col"
+        <FilterBar
+          visibleTop={this.state.visible}
+          visibleSearch={this.state.searchToggleVisible}
+        >
+          <FilterTitle>
+            {t("AdvancedSearch.Filtrer par n", "Filtrer par")}
+          </FilterTitle>
+          {filtres_contenu.map((filtre, idx) => {
+            return (
+              <TagButton
+                active={filtre.name === activeFiltre}
+                desactiver={this.desactiverFiltre}
+                key={idx}
+                filter
+                onClick={() => this.filter_content(filtre)}
+              >
+                {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
+              </TagButton>
+            );
+          })}
+          <FilterTitle>
+            {t("AdvancedSearch.Trier par n", "Trier par")}
+          </FilterTitle>
+          {tris.map((tri, idx) => (
+            <TagButton
+              active={tri.name === activeTri}
+              desactiver={this.desactiverTri}
+              key={idx}
+              filter
+              onClick={() => this.reorder(tri)}
+            >
+              {t("AdvancedSearch." + tri.name, tri.name)}
+            </TagButton>
+          ))}
+          <FilterTitle>
+            {" "}
+            {this.state.countShow +
+              "/" +
+              this.props.dispositifs.length +
+              " " +
+              t("AdvancedSearch.résultats", "résultats")}
+          </FilterTitle>
+          <FButton
+            className={isRTL ? "ml-10" : ""}
+            type="white"
+            name="file-add-outline"
+            onClick={this.writeNew}
+            filter
           >
-            <div className="results-wrapper">
-              <Row>
-                {[...dispositifs].map((dispositif) => {
-                  const pinned =
-                    this.state.pinned.includes(dispositif._id) ||
-                    this.state.pinned.filter(
-                      (pinnedDispostif) =>
-                        pinnedDispostif &&
-                        pinnedDispostif._id === dispositif._id
-                    ).length > 0;
-
-                  if (!dispositif.hidden) {
-                    let shortTag = null;
-                    let shortTagFull = null;
-                    let iconTag = null;
-                    if (
-                      dispositif.tags &&
-                      dispositif.tags.length > 0 &&
-                      dispositif.tags[0] &&
-                      dispositif.tags[0].short
-                    ) {
-                      shortTag = (dispositif.tags[0].short || {}).replace(
-                        / /g,
-                        "-"
-                      );
-                      shortTagFull = dispositif.tags[0].short;
-                    }
-                    if (shortTagFull) {
-                      iconTag = filtres.tags.find(
-                        (tag) => tag.short === shortTagFull
-                      );
-                    }
-                    return (
-                      <Col
-                        xl="3"
-                        lg="3"
-                        md="4"
-                        sm="6"
-                        xs="12"
-                        className={
-                          "card-col puff-in-center " +
-                          (dispositif.typeContenu || "dispositif")
-                        }
-                        key={dispositif._id}
-                      >
-                        <NavLink
-                          to={{
-                            pathname:
-                            "/" +
-                            (dispositif.typeContenu || "dispositif") +
-                            (dispositif._id ? "/" + dispositif._id : ""),
-                            state: {previousRoute: "advanced-search"}
-                          }}
-                        >
-                          <CustomCard
-                            className={
-                              dispositif.typeContenu === "demarche"
-                                ? "texte-" +
-                                  shortTag +
-                                  " bg-light-" +
-                                  shortTag +
-                                  " border-" +
-                                  shortTag
-                                : "border-none"
-                            }
-                          >
-                            <CardBody>
-                              <EVAIcon
-                                name="bookmark"
-                                size="xlarge"
-                                onClick={(e) => this.pin(e, dispositif)}
-                                fill={
-                                  pinned ? variables.noir : variables.noirCD
-                                }
-                                className={
-                                  "bookmark-icon" + (pinned ? " pinned" : "")
-                                }
-                              />
-                              <h5>{dispositif.titreInformatif}</h5>
-                              <p>{dispositif.abstract}</p>
-                            </CardBody>
-                            {dispositif.typeContenu !== "demarche" && (
-                              <CardFooter
-                                className={
-                                  "correct-radius align-right bg-" +
-                                  shortTag +
-                                  (iconTag ? "" : " no-icon")
-                                }
-                              >
-                                {iconTag ? (
-                                  <div
-                                    style={{
-                                      width: 50,
-                                      display: "flex",
-                                      justifyContent: "flex-start",
-                                      alignItems: "flex-start",
-                                    }}
-                                  >
-                                    <Streamline
-                                      name={iconTag.icon}
-                                      stroke={"white"}
-                                      width={22}
-                                      height={22}
-                                    />
-                                  </div>
-                                ) : null}
-                                {dispositif.titreMarque}
-                              </CardFooter>
-                            )}
-                          </CustomCard>
-                        </NavLink>
-                      </Col>
-                    );
-                  }
-                  return false;
-                })}
-                {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
-                  /*             <Col
+            {t("AdvancedSearch.Rédiger", "Rédiger")}
+          </FButton>
+        </FilterBar>
+        <div
+          className={"mt-250 search-wrapper"}
+          style={{
+            backgroundColor:
+              this.state.activeTri === "Par thème" ? "#f1e8f5" : "#e4e5e6",
+          }}
+        >
+          {this.state.activeTri === "Par thème" ? (
+            <div style={{ width: "100%" }}>
+              {this.state.themesObject.map((theme, index) => {
+                var themeKey = Object.keys(theme);
+                var selectedTheme = filtres.tags.find(
+                  (elem) => elem.short === themeKey[0]
+                );
+                return (
+                  <ThemeContainer  key={index} color={selectedTheme.lightColor}>
+                    <ThemeHeader>
+                      <ThemeButton color={selectedTheme.darkColor}>
+                        <Streamline
+                          name={selectedTheme.icon}
+                          stroke={"white"}
+                          width={22}
+                          height={22}
+                        />
+                        <ThemeText>{selectedTheme.short}</ThemeText>
+                      </ThemeButton>
+                      <ThemeHeaderTitle color={selectedTheme.darkColor}>
+                        {selectedTheme.name[0].toUpperCase() + selectedTheme.name.slice(1)}
+                      </ThemeHeaderTitle>
+                    </ThemeHeader>
+                    <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
+                      {theme[themeKey]
+                        .filter((card, indexCard) => indexCard < 4)
+                        .map((cardFiltered, indexCardFiltered) => {
+                          return (
+                            <SearchResultCard
+                              key={indexCardFiltered}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={cardFiltered}
+                            />
+                          );
+                        })}
+                      <SeeMoreCard seeMore={() => this.seeMore(selectedTheme)} theme={selectedTheme} />
+                    </ThemeListContainer>
+                  </ThemeContainer>
+                );
+              })}
+            </div>
+          ) : this.state.activeTri !== "Par thème" &&
+            this.state.recherche[0] &&
+            this.state.recherche[0].value ? (
+            <ThemeContainer>
+              <ThemeHeader>
+                <ThemeHeaderTitle color={"#828282"}>
+                  {("fiches avec le thème")[0].toUpperCase() + ("fiches avec le thème").slice(1)}
+                </ThemeHeaderTitle>
+                <ThemeButton
+                  ml
+                  color={selectedTag ? selectedTag.darkColor : null}
+                >
+                  <Streamline
+                    name={selectedTag ? selectedTag.icon : null}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                  <ThemeText>
+                    {selectedTag ? selectedTag.short : null}
+                  </ThemeText>
+                </ThemeButton>
+              </ThemeHeader>
+              <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
+                {this.state.principalThemeList.length > 0 ? this.state.principalThemeList.map((dispositif, index) => {
+                  return (
+                    <SearchResultCard
+                      key={index}
+                      pin={this.pin}
+                      pinnedList={this.state.pinned}
+                      dispositif={dispositif}
+                    />
+                  );
+                }) : <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>}
+              </ThemeListContainer>
+              <ThemeHeader>
+                <ThemeHeaderTitle color={"#828282"}>
+                  {("autres fiches avec le thème")[0].toUpperCase() + ("autres fiches avec le thème").slice(1)}
+                </ThemeHeaderTitle>
+                <ThemeButton
+                  ml
+                  color={selectedTag ? selectedTag.darkColor : null}
+                >
+                  <Streamline
+                    name={selectedTag ? selectedTag.icon : null}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                  <ThemeText>
+                    {selectedTag ? selectedTag.short : null}
+                  </ThemeText>
+                </ThemeButton>
+              </ThemeHeader>
+              <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
+                {this.state.secondaryThemeList.length > 0 ? this.state.secondaryThemeList.map((dispositif, index) => {
+                  return (
+                    <SearchResultCard
+                      key={index}
+                      pin={this.pin}
+                      pinnedList={this.state.pinned}
+                      dispositif={dispositif}
+                    />
+                  );
+                }): <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>}
+              </ThemeListContainer>
+            </ThemeContainer>
+          ) : (
+            <ThemeContainer>
+            <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
+              {dispositifs.map((dispositif, index) => {
+                return (
+                  <SearchResultCard
+                    key={index}
+                    pin={this.pin}
+                    pinnedList={this.state.pinned}
+                    dispositif={dispositif}
+                  />
+                );
+              })}
+              {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
+                /*             <Col
                     xs="12"
                     sm="6"
                     md="3"
                     className="no-result"
                     onClick={() => this.selectTag()}
                   > */
-                  <NoResultsContainer>
-                    <NoResults />
-                    <NoResultsTextContainer>
-                      <NoResultsTitle>
-                        {t("Aucun résultat", "Aucun résultat")}
-                      </NoResultsTitle>
-                      <NoResultsText>
-                        {t(
-                          "AdvancedSearch.Elargir recherche",
-                          "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères."
-                        )}{" "}
-                      </NoResultsText>
-                      <NoResultsButtonsContainer>
-                        <FButton
-                          type="dark"
-                          name="refresh-outline"
-                          className="mr-10"
-                          onClick={this.restart}
-                        >
-                          Recommencer
-                        </FButton>
-                        <FButton
-                          type="white"
-                          name="file-add-outline"
-                          onClick={this.writeNew}
-                        >
-                          Rédiger une nouvelle fiche
-                        </FButton>
-                      </NoResultsButtonsContainer>
-                    </NoResultsTextContainer>
-                  </NoResultsContainer>
-                  //  </Col>
-                )}
-                {/*      <Col xs="12" sm="6" md="3">
-                  <NavHashLink to="/comment-contribuer#ecrire">
-                    <CustomCard
-                      addcard="true"
-                      className="create-card border-none"
-                    >
-                      <CardBody>
-                        {showSpinner ? (
-                          <Spinner color="success" />
-                        ) : (
-                          <span className="add-sign">+</span>
-                        )}
-                      </CardBody>
-                      <CardFooter className="align-right">
-                        {showSpinner
-                          ? t("Chargement", "Chargement") + "..."
-                          : t(
-                              "AdvancedSearch.Créer une fiche",
-                              "Créer une fiche"
-                            )}
-                      </CardFooter>
-                    </CustomCard>
-                  </NavHashLink>
-                </Col> */}
-              </Row>
-            </div>
-          </Col>
-          {windowWidth >= breakpoints.smLimit && (
-            <Col xl="2" lg="2" md="2" sm="2" xs="2" className="mt-250 side-col">
-              {windowWidth >= breakpoints.desktopUp && (
-                <EVAIcon
-                  name="funnel-outline"
-                  fill={variables.noir}
-                  className="mr-12"
-                />
+                  <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>
+                //  </Col>
               )}
-              <div className="right-side">
-                {windowWidth >= breakpoints.desktopUp ? (
-                  <b>{t("AdvancedSearch.Filtrer par", "Filtrer par :")}</b>
-                ) : (
-                  <EVAIcon name="funnel-outline" fill={variables.noir} />
-                )}
-                <div className="mt-10 side-options">
-                  {filtres_contenu.map((filtre, idx) => (
-                    <div
-                      key={idx}
-                      className={
-                        "side-option right" +
-                        (filtre.name === activeFiltre ? " active" : "")
-                      }
-                      onClick={() => this.filter_content(filtre)}
-                    >
-                      {filtre.name &&
-                        t("AdvancedSearch." + filtre.name, filtre.name)}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Col>
+            </ThemeListContainer>
+            </ThemeContainer>
           )}
-        </Row>
+        </div>
         <BookmarkedModal
           t={this.props.t}
           success={this.props.user ? true : false}
@@ -918,6 +1015,14 @@ const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
 };
 
+const mapSizesToProps = ({ width }) => ({
+  isMobile: width < 850,
+  isTablet: width >= 850 && width < 1100,
+  isSmallDesktop: width >= 1100 && width < 1400,
+  isDesktop: width >= 1400 && width < 1565,
+  isBigDesktop: width >= 1565,
+})
+
 export default track({
   page: "AdvancedSearch",
 })(
@@ -925,6 +1030,6 @@ export default track({
     connect(
       mapStateToProps,
       mapDispatchToProps
-    )(withTranslation()(windowSize(AdvancedSearch)))
+    )(withSizes(mapSizesToProps)(withTranslation()(windowSize(AdvancedSearch))))
   )
 );

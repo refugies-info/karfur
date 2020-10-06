@@ -70,6 +70,7 @@ export class Toolbar extends React.Component {
         this.props.location.state &&
         this.props.location.state.editable) ||
       this.props.location.pathname.includes("user-profile") ||
+      this.props.location.pathname.includes("advanced-search") ||
       this.props.location.pathname.includes("qui-sommes-nous") ||
       this.props.location.pathname === "/dispositif" ||
       this.props.location.pathname === "/demarche"
@@ -97,6 +98,7 @@ export class Toolbar extends React.Component {
           this.props.location.state &&
           this.props.location.state.editable) ||
         this.props.location.pathname.includes("user-profile") ||
+        this.props.location.pathname.includes("advanced-search") ||
         this.props.location.pathname.includes("qui-sommes-nous") ||
         this.props.location.pathname === "/dispositif" ||
         this.props.location.pathname === "/demarche"
@@ -183,10 +185,12 @@ export class Toolbar extends React.Component {
           <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
           {/* <NavigationItems /> */}
 
-          <SearchBar
-            loupe
-            className="search-bar inner-addon right-addon mr-10 rsz"
-          />
+          {i18n.language === "fr" && (
+            <SearchBar
+              loupe
+              className="search-bar inner-addon right-addon mr-10 rsz"
+            />
+          )}
 
           <button
             onClick={() => {

@@ -478,6 +478,16 @@ export class Avancement extends Component {
                       })
                       .map((z) => z.avancement || -1) || [])
                   ),
+
+            avancementTrad: Math.max(
+              0,
+              ...((this.state.traductionsFaites || [])
+                .filter((y) => {
+                  return y.articleId === x._id;
+                })
+                .map((z) => z.avancement || -1) || [])
+            ),
+
             status: x.status,
             statusTrad:
               (this.state.traductionsFaites || [])
@@ -717,6 +727,7 @@ export class Avancement extends Component {
               (element.titreMarque && element.titreInformatif ? " - " : "") +
               (element.titreInformatif || "") ||
             "";
+
           return (
             <tr
               key={element._id}
@@ -730,6 +741,37 @@ export class Avancement extends Component {
               <td className="align-middle">
                 {titre.slice(0, 30) + (titre.length > 30 ? "..." : "")}
               </td>
+              {isExpert &&
+                (element.statusTrad === "À traduire" ? (
+                  <td className="align-middle">
+                    <Row>
+                      <Col>
+                        <Progress
+                          color={colorAvancement(element.avancementTrad)}
+                          value={element.avancementTrad * 100}
+                        />
+                      </Col>
+                      <Col
+                        className={
+                          "text-" + colorAvancement(element.avancementTrad)
+                        }
+                      >
+                        {element.avancementTrad === 1 ? (
+                          <EVAIcon
+                            name="checkmark-circle-2"
+                            fill={variables.vert}
+                          />
+                        ) : (
+                          <span>
+                            {Math.round((element.avancementTrad || 0) * 100)} %
+                          </span>
+                        )}
+                      </Col>
+                    </Row>
+                  </td>
+                ) : (
+                  "--"
+                ))}
               <td className="align-middle">
                 <Row>
                   <Col>

@@ -10,7 +10,6 @@
     "contributeurs mobilises": "Déjà {{nombre}} contributeurs et contributrices engagés :",
     "contributive": "Réfugiés.info est ouvert à la contribution",
     "contributive subheader": "Un peu comme Wikipédia, réfugiés.info est un outil simple pour réunir de l'information pratique. Participez à l'enrichissement du site en rédigeant vous-même de nouvelles fiches. Vous pouvez également suggérer des modifications sur les fiches existantes.",
-    "Super recherche": "Super recherche",
     "Vous cherchez ?": "Je cherche à :",
     "À comprendre une démarche": "Comprendre une démarche administrative",
     "A apprendre": "Rejoindre un dispositif d'accompagnement",
@@ -33,11 +32,17 @@
     "Les plus visités": "Les plus visités",
     "Trier par": "Trier par :",
     "Filtrer par": "Filtrer par :",
+    "Trier par n": "Trier par",
+    "Filtrer par n": "Filtrer par",
     "Dispositifs": "Dispositifs",
     "Démarches": "Démarches",
     "Créer une fiche": "Créer une fiche",
     "Elargir recherche": "Il n’existe aucune fiche correspondant aux critères sélectionnés. Essayez d’élargir votre recherche en retirant des critères.",
-    "Oups": "Oups !"
+    "Oups": "Oups !",
+    "Rédiger": "Rédiger",
+    "Par thème": "Par thème",
+    "résultats": "résultats",
+    "Voir les fiches": "Voir toutes les fiches"
   },
   "Tables": {
     "Propriétaire": "Propriétaire",
@@ -229,8 +234,10 @@
     "choisir un thème": "choisir un thème",
     "ma ville": "ma ville",
     "âge": "âge",
+    "niveau de français": "niveau de français",
     "mon niveau": "mon niveau",
-    "gérer mes papiers": "gérer mes papiers"
+    "gérer mes papiers": "gérer mes papiers",
+    "thème": "thème"
   },
   "SearchItem": {
     "Je cherche à": "Je cherche à",
@@ -242,7 +249,8 @@
     "Je parle": "Je parle",
     "mon niveau": "mon niveau",
     "Je suis": "Je suis",
-    "français": "français"
+    "français": "français",
+    "bientot disponible": "Bientôt disponible"
   },
   "Status": {
     "En attente": "En attente",
@@ -458,7 +466,9 @@
     "avec": "avec",
     "Merci": "Merci !",
     "Envoyer une réaction": "Envoyer une réaction",
-    "Dites nous ce que vous pensez": "Dites nous ce que vous pensez :"
+    "Dites nous ce que vous pensez": "Dites nous ce que vous pensez :",
+    "Enlever des favoris": "Enlever des favoris",
+    "Ajouter aux favoris": "Ajouter aux favoris"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Êtes-vous sûr ?",
@@ -553,5 +563,7 @@
     "Je communique avec aisance description": "Je peux comprendre le contenu essentiel de messages complexes sur des sujets concrets ou abstraits. Je communique avec aisance avec un locuteur natif et je m'exprime de façon claire et détaillée sur une grande gamme de sujets.",
     "Je communique avec grande aisance title": "Je communique avec grande aisance",
     "Je communique avec grande aisance description": "Pratiquement aucune difficulté particulière."
-  }
+  },
+  "Écouter": "Écouter",
+  "manger, me doucher": "manger, me doucher..."
 }

@@ -4,7 +4,7 @@ import "./TagButton.scss";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 const fSearchBtn = (props) => {
-  let { className, desactiver, active, color, lighter, noHover, ...bProps } = props;
+  let { className, desactiver, active, color, lighter, noHover, filter, ...bProps } = props;
 
   let onCrossClick = (e) => {
     e.stopPropagation();
@@ -13,7 +13,7 @@ const fSearchBtn = (props) => {
   return (
     <button
       className={
-        (noHover ? "static-btn " : "search-btn ") +
+        (noHover ? "static-btn " : filter ? "filter-btn" : "search-btn ") +
         (className || "") +
         (active ? " active" : "") +
         (color ? " color bg-" + color : "") +
@@ -24,7 +24,8 @@ const fSearchBtn = (props) => {
       {props.children}
       {active && (
         <EVAIcon
-          className="ml-10"
+          className={"ml-10"}
+          fill={filter ? "black" : ""}
           name="close-outline"
           onClick={onCrossClick}
         />

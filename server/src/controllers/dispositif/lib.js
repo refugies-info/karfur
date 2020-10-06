@@ -4,6 +4,9 @@ const User = require("../../schema/schemaUser.js");
 const Traduction = require("../../schema/schemaTraduction");
 const Structure = require("../../schema/schemaStructure.js");
 var uniqid = require("uniqid");
+const {
+  addOrUpdateDispositifInContenusAirtable,
+} = require("../miscellaneous/airtable.js");
 
 const {
   turnToLocalized,
@@ -75,14 +78,21 @@ async function add_dispositif(req, res) {
     ) {
       return res.status(400).json({ text: "Requête invalide" });
     }
-
     let dispositif = req.body;
+    logger.info("[add_dispositif] received a dispositif", {
+      dispositifId: dispositif.dispositifId,
+    });
     dispositif.status = dispositif.status || "En attente";
     if (dispositif.contenu) {
+      // transform dispositif.contenu in json
       dispositif.nbMots = turnHTMLtoJSON(dispositif.contenu);
     }
     //Si le dispositif existe déjà on fait juste un update
     if (dispositif.dispositifId) {
+      logger.info("[add_dispositif] updating a dispositif", {
+        dispositifId: dispositif.dispositifId,
+      });
+
       //if the dispositif exists it means that it has been changed so we have to update all trads to reflect the changes
 
       if (dispositif.contenu) {
@@ -93,6 +103,7 @@ async function add_dispositif(req, res) {
         // We fetch the French key to know the original text, turnToLocalized takes a dispositif with multiple translated language keys and returns one specified language
         // eslint-disable-next-line no-undef
         dispositifFr = await turnToLocalizedNew(originalDis, "fr");
+
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         for (let [key, value] of Object.entries(originalDis.avancement)) {
           if (key !== "fr") {
@@ -148,7 +159,31 @@ async function add_dispositif(req, res) {
         dispositif,
         { upsert: true, new: true }
       );
+
+      // when publish or modify a dispositif, update table in airtable to follow the traduction
+      if (
+        dispResult.status === "Actif" &&
+        dispResult.typeContenu === "dispositif"
+      ) {
+        logger.info("[add_dispositif] dispositif is Actif", {
+          dispositifId: dispResult._id,
+        });
+        try {
+          await addOrUpdateDispositifInContenusAirtable(
+            dispResult.titreInformatif,
+            dispResult.titreMarque,
+            dispResult.dispositifId || dispResult._id,
+            dispResult.tags,
+            null
+          );
+        } catch (error) {
+          logger.error("error while updating contenu in airtable", { error });
+        }
+      }
     } else {
+      logger.info("[add_dispositif] creating a new dispositif", {
+        title: dispositif.titreInformatif,
+      });
       dispositif.creatorId = req.userId;
       dispResult = await new Dispositif(dispositif).save();
     }

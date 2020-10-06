@@ -144,7 +144,7 @@ export class Layout extends Component {
               closed={() => this.sideDrawerClosedHandler("left")}
             />
 
-            <main className="Content">
+            <main className={"Content" + (this.props.location && this.props.location.pathname.includes("/advanced-search") ? " advanced-search" : "")}>
               {this.props.children}
               <>
                 <Switch>

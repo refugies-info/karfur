@@ -90,6 +90,12 @@
         bottom: 20px;
         left: 200px;
       }
+
+      [contenteditable="true"]:empty:before {
+        content: attr(placeholder);
+        display: block;
+        color: #828282;
+      }
     }
 
     .places-wrapper {

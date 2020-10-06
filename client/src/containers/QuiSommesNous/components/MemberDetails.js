@@ -13,6 +13,8 @@ const MainContainerLeft = styled.div`
   top: 0px;
   left: 0px;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const MainContainerRight = styled.div`
