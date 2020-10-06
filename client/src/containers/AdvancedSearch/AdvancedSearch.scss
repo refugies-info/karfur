@@ -6,7 +6,6 @@
   flex: 1 1;
   display: flex;
   justify-content: flex-start;
-  overflow: scroll;
   width: 100%;
 
   .search-bar {
@@ -256,7 +255,6 @@
   align-content: center;
   //width: 100%;
   padding-left: 24px;
-  overflow-x: scroll;
 }
 .grid-list {
   grid-template-columns: repeat(5, minmax(260px, 300px));

@@ -44,12 +44,12 @@ export class SearchItem extends Component {
   };
 
   render() {
-    const { t, item, keyValue, isDesktop } = this.props;
+    const { t, item, keyValue, isBigDesktop } = this.props;
     const { dropdownOpen, isMounted } = this.state;
 
     return (
       <div className="search-col">
-        <span className={"mr-10 " + (isDesktop ? "search-title" : "search-title-small")}>
+        <span className={"mr-10 " + (isBigDesktop ? "search-title" : "search-title-small")}>
           {t("SearchItem." + item.title, item.title)}
         </span>
         {item.queryName === "localisation" ? (
@@ -66,7 +66,7 @@ export class SearchItem extends Component {
                 <div
                   className={
                     "search-filter disabled in-header search-autocomplete search-btn " +
-                    (item.active ? "active " : "") + (isDesktop ? "" : "search-btn-small")
+                    (item.active ? "active " : "") + (isBigDesktop ? "" : "search-btn-small")
                   }
                 >
                   {t("SearchItem.bientot disponible", "Bientôt disponible")}
@@ -117,7 +117,7 @@ export class SearchItem extends Component {
                   ? "bg-" + item.short.split(" ").join("-")
                   : "") +
                 (!item.short && item.active ? "active " : "") +
-                (isDesktop ? "" : " search-btn-small")
+                (isBigDesktop ? "" : " search-btn-small")
               }
             >
                 {item.active && item.placeholder === "thème" && (
