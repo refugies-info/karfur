@@ -232,7 +232,8 @@
     "ma ville": "مدينتي",
     "âge": "عمر",
     "mon niveau": "مستواي",
-    "gérer mes papiers": "ادارة أوراقي"
+    "gérer mes papiers": "ادارة أوراقي",
+    "thème": "الموضوع"
   },
   "SearchItem": {
     "Je cherche à": "أبحث عن",
@@ -460,7 +461,9 @@
     "avec": "مع",
     "Merci": "شكراً !",
     "Envoyer une réaction": "ارسل رأيك",
-    "Dites nous ce que vous pensez": "أخبرنا ماذا تعتقد"
+    "Dites nous ce que vous pensez": "أخبرنا ماذا تعتقد",
+    "Enlever des favoris": "إزالة من المفضّلة",
+    "Ajouter aux favoris": "إضافة إلى المفضّلة"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "هل انت متأكد ؟",
