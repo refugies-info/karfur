@@ -674,7 +674,7 @@ export class AdvancedSearch extends Component {
       selectedTag,
     } = this.state;
     // eslint-disable-next-line
-    const { t, windowWidth, dispositifs: storeDispo, isMobile, isDesktop, isSmallDesktop, isTablet } = this.props;
+    const { t, windowWidth, dispositifs: storeDispo, isMobile, isDesktop, isSmallDesktop, isTablet, isBigDesktop } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     //console.log(i18n.language);
     /* 
@@ -699,7 +699,7 @@ export class AdvancedSearch extends Component {
             .filter((_, i) => displayAll || i === 0)
             .map((d, i) => (
               <SearchItem
-                isDesktop={isDesktop}
+                isBigDesktop={isBigDesktop}
                 key={i}
                 item={d}
                 keyValue={i}
@@ -813,7 +813,7 @@ export class AdvancedSearch extends Component {
                         {selectedTheme.name[0].toUpperCase() + selectedTheme.name.slice(1)}
                       </ThemeHeaderTitle>
                     </ThemeHeader>
-                    <ThemeListContainer columns={isDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
+                    <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
                       {theme[themeKey]
                         .filter((card, indexCard) => indexCard < 4)
                         .map((cardFiltered, indexCardFiltered) => {
@@ -855,7 +855,7 @@ export class AdvancedSearch extends Component {
                   </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
-              <ThemeListContainer columns={isDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
+              <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
                 {this.state.principalThemeList.length > 0 ? this.state.principalThemeList.map((dispositif, index) => {
                   return (
                     <SearchResultCard
@@ -886,7 +886,7 @@ export class AdvancedSearch extends Component {
                   </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
-              <ThemeListContainer columns={isDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
+              <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
                 {this.state.secondaryThemeList.length > 0 ? this.state.secondaryThemeList.map((dispositif, index) => {
                   return (
                     <SearchResultCard
@@ -901,7 +901,7 @@ export class AdvancedSearch extends Component {
             </ThemeContainer>
           ) : (
             <ThemeContainer>
-            <ThemeListContainer columns={isDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
+            <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
               {dispositifs.map((dispositif, index) => {
                 return (
                   <SearchResultCard
@@ -1019,7 +1019,8 @@ const mapSizesToProps = ({ width }) => ({
   isMobile: width < 850,
   isTablet: width >= 850 && width < 1100,
   isSmallDesktop: width >= 1100 && width < 1400,
-  isDesktop: width >= 1400,
+  isDesktop: width >= 1400 && width < 1565,
+  isBigDesktop: width >= 1565,
 })
 
 export default track({
