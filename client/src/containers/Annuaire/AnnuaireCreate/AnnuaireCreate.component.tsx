@@ -6,6 +6,7 @@ import { AnnuaireGauge } from "./AnnuaireGauge/AnnuaireGauge";
 import { Step1 } from "./components/Step1/Step1";
 import { Step2 } from "./components/Step2/Step2";
 import { Step3 } from "./components/Step3/Step3";
+import { Step4 } from "./components/Step4/Step4";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -155,6 +156,13 @@ export const AnnuaireCreateComponent = (props: Props) => {
         )}
         {step === 3 && (
           <Step3
+            structure={props.structure}
+            setStructure={props.setStructure}
+          />
+        )}
+
+        {step === 4 && (
+          <Step4
             structure={props.structure}
             setStructure={props.setStructure}
           />

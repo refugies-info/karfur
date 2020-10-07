@@ -39,7 +39,6 @@ const modifyStructure = async (
     logger.info("[modifyStructure] updating stucture", {
       structureId: structure.id,
       membreId,
-      structure,
     });
     const updatedStructure = await Structure.findOneAndUpdate(
       {

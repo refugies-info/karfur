@@ -15,7 +15,6 @@ const HelpContainer = styled.div`
   background: #2d9cdb;
   border-radius: 12px;
   width: 800px;
-  height: 136px;
   margin-top: 24px;
   padding: 16px;
   margin-bottom: 24px;
