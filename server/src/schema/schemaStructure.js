@@ -83,6 +83,10 @@ var structureSchema = mongoose.Schema(
     facebook: { type: String, unique: false, required: false },
     linkedin: { type: String, unique: false, required: false },
     activities: { type: Array, unique: false, required: false },
+    departments: { type: Array, unique: false, required: false },
+    phonePublic: { type: String, unique: false, required: false },
+    adressPublic: { type: String, unique: false, required: false },
+    openingHours: { type: Array, unique: false, required: false },
   },
   { timestamps: { createdAt: "created_at" } }
 );

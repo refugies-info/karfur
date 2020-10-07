@@ -157,6 +157,10 @@ export interface Structure {
   linkedin: string;
   twitter: string;
   activities: string[];
+  departments: string[];
+  phonePublic: string;
+  adressPublic: string;
+  openingHours: string[];
 }
 
 export interface Picture {
