@@ -6,6 +6,7 @@ import _ from "lodash";
 import { filtres } from "../../../../Dispositif/data";
 import { jsUcfirst } from "../../../../../lib";
 import { ActivityCard } from "../ActivityCard/ActivityCard";
+import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 
 const MainContainer = styled.div``;
 const HelpContainer = styled.div`
@@ -18,6 +19,7 @@ const HelpContainer = styled.div`
   margin-top: 24px;
   padding: 16px;
   margin-bottom: 24px;
+  position: relative;
 `;
 const HelpHeader = styled.div`
   font-weight: bold;
@@ -55,29 +57,69 @@ const ActivityCardsContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
 `;
+
+const IconContainer = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+`;
 interface Props {
   structure: Structure | null;
   setStructure: (arg: any) => void;
 }
 
 export const Step3 = (props: Props) => {
+  const [showHelp, setShowHelp] = useState(true);
   const groupedActivities = _.groupBy(activities, (activity) => activity.tag);
-  console.log("test");
+
+  const getUpdatedActivities = (selectedActivity: string) => {
+    if (!props.structure) return [];
+
+    if (!props.structure.activities) return [selectedActivity];
+
+    const removeActivity =
+      props.structure.activities.filter(
+        (activity) => activity === selectedActivity
+      ).length > 0;
+
+    if (removeActivity)
+      return props.structure.activities.filter(
+        (activity) => activity !== selectedActivity
+      );
+
+    return props.structure.activities.concat([selectedActivity]);
+  };
+
+  const selectActivity = (selectedActivity: string) => {
+    props.setStructure({
+      ...props.structure,
+      activities: getUpdatedActivities(selectedActivity),
+    });
+  };
+
   return (
     <MainContainer>
-      <HelpContainer>
-        <HelpHeader>Comment ça marche ?</HelpHeader>
-        <HelpDescription>
-          <>
-            Choisissez les <b> thèmes </b> correspondant à votre structure puis
-            précisez quelles <b> activités </b> vous proposez au sein des thèmes
-            choisis.
-            <br />
-            L’utilisateur pourra ainsi connaître et reconnaître les activités
-            liées à l’intégration des personnes réfugiés.
-          </>
-        </HelpDescription>
-      </HelpContainer>
+      {showHelp ? (
+        <HelpContainer>
+          <IconContainer onClick={() => setShowHelp(false)}>
+            <EVAIcon name="close" />
+          </IconContainer>
+          <HelpHeader>Comment ça marche ?</HelpHeader>
+          <HelpDescription>
+            <>
+              Choisissez les <b> thèmes </b> correspondant à votre structure
+              puis précisez quelles <b> activités </b> vous proposez au sein des
+              thèmes choisis.
+              <br />
+              L’utilisateur pourra ainsi connaître et reconnaître les activités
+              liées à l’intégration des personnes réfugiés.
+            </>
+          </HelpDescription>
+        </HelpContainer>
+      ) : (
+        <div style={{ marginTop: "24px" }} />
+      )}
       {Object.keys(groupedActivities).map((activity) => {
         const correspondingTag = filtres.tags.filter(
           (tag) => tag.short === activity
@@ -97,7 +139,19 @@ export const Step3 = (props: Props) => {
             </div>
             <ActivityCardsContainer>
               {correspondingActivities.map((detailedActivity) => (
-                <ActivityCard activity={detailedActivity.activity} />
+                <ActivityCard
+                  activity={detailedActivity.activity}
+                  darkColor={correspondingTag[0].darkColor}
+                  lightColor={correspondingTag[0].lightColor}
+                  selectActivity={selectActivity}
+                  isSelected={
+                    props.structure && props.structure.activities
+                      ? props.structure.activities.includes(
+                          detailedActivity.activity
+                        )
+                      : false
+                  }
+                />
               ))}
             </ActivityCardsContainer>
           </TagActivity>

@@ -156,6 +156,7 @@ export interface Structure {
   facebook: string;
   linkedin: string;
   twitter: string;
+  activities: string[];
 }
 
 export interface Picture {

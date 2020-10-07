@@ -26,7 +26,7 @@ const StepContainer = styled.div`
   height: 32px;
   width: 32px;
   margin-right: 8px;
-  margin-left: 8px;
+  margin-left: ${(props) => (props.value === 1 ? "0px" : "8px")};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,6 +57,7 @@ const Step = (props: {
     selected={props.selected}
     colorFilled={props.colorFilled}
     colorToDo={props.colorToDo}
+    value={props.value}
   >
     <StepText
       filled={props.filled}

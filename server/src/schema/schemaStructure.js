@@ -82,6 +82,7 @@ var structureSchema = mongoose.Schema(
     twitter: { type: String, unique: false, required: false },
     facebook: { type: String, unique: false, required: false },
     linkedin: { type: String, unique: false, required: false },
+    activities: { type: Array, unique: false, required: false },
   },
   { timestamps: { createdAt: "created_at" } }
 );

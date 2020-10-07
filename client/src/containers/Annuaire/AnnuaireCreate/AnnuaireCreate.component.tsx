@@ -11,7 +11,7 @@ export interface PropsBeforeInjection {
   history: any;
 }
 const MainContainer = styled.div`
-  background: #e5e5e5;
+  background: #fbfbfb;
   display: flex;
   flex: 1;
   margin-top: -75px;
