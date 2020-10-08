@@ -138,6 +138,14 @@ const LanguageText = styled.span`
   font-weight: 400;
 `;
 
+const LanguageTextFilter = styled.span`
+  color: black;
+  font-size: 16px;
+  margin-right: 0px;
+  margin-left: 8px;
+  font-weight: 700;
+`;
+
 const FilterTitle = styled.p`
   size: 18px;
   font-weight: bold;
@@ -172,6 +180,7 @@ export class AdvancedSearch extends Component {
     secondaryThemeList: [],
     selectedTag: null,
     nonTranslated: [],
+    filterLanguage: "",
   };
 
   componentDidMount() {
@@ -249,7 +258,7 @@ export class AdvancedSearch extends Component {
   // eslint-disable-next-line react/no-deprecated
   componentDidUpdate(prevProps) {
     if (prevProps.languei18nCode !== this.props.languei18nCode) {
-      this.queryDispositifs(null, this.props);
+      this.setState({filterLanguage: "", activeFiltre: this.state.activeFiltre === "traduction" ? "" : this.state.activeFiltre}, () => this.queryDispositifs(null, this.props))
     }
   }
 
@@ -349,11 +358,15 @@ export class AdvancedSearch extends Component {
           nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
 
-        if (props.languei18nCode !== "fr") {
+        if (props.languei18nCode !== "fr" || this.state.filterLanguage !== "") {
           var nonTranslated = dispositifs.filter((dispo) => {
             if (
               typeof dispo.avancement === "object" &&
-              dispo.avancement[props.languei18nCode]
+              dispo.avancement[
+                props.languei18nCode !== "fr"
+                  ? props.languei18nCode
+                  : this.state.filterLanguage.i18nCode
+              ]
             ) {
               return false;
             }
@@ -363,7 +376,11 @@ export class AdvancedSearch extends Component {
           dispositifs = dispositifs.filter((dispo) => {
             if (
               typeof dispo.avancement === "object" &&
-              dispo.avancement[props.languei18nCode]
+              dispo.avancement[
+                props.languei18nCode !== "fr"
+                  ? props.languei18nCode
+                  : this.state.filterLanguage.i18nCode
+              ]
             ) {
               return true;
             }
@@ -610,6 +627,7 @@ export class AdvancedSearch extends Component {
         filter,
         activeFiltre /* activeTri: this.state.activeTri === "Par thème" ? "" : this.state.activeTri */,
         languageDropdown: false,
+        filterLanguage: "",
       },
       () => this.queryDispositifs()
     );
@@ -671,7 +689,12 @@ export class AdvancedSearch extends Component {
 
   desactiverFiltre = () => {
     this.setState(
-      { activeFiltre: "", filter: {}, languageDropdown: false },
+      {
+        activeFiltre: "",
+        filter: {},
+        languageDropdown: false,
+        filterLanguage: "",
+      },
       () => this.queryDispositifs()
     );
   };
@@ -703,6 +726,12 @@ export class AdvancedSearch extends Component {
     this.setState({ activeFiltre: "traduction", languageDropdown: true });
   };
 
+  selectLanguage = (language) => {
+    this.setState({ filterLanguage: language, languageDropdown: false }, () =>
+      this.queryDispositifs()
+    );
+  };
+
   render() {
     let {
       recherche,
@@ -713,6 +742,7 @@ export class AdvancedSearch extends Component {
       activeTri,
       displayAll,
       selectedTag,
+      filterLanguage
     } = this.state;
     // eslint-disable-next-line
     const {
@@ -805,45 +835,66 @@ export class AdvancedSearch extends Component {
               </TagButton>
             );
           })}
-          <TagButton
-            active={"traduction" === activeFiltre}
-            desactiver={this.desactiverFiltre}
-            filter
-            id={"Tooltip-1"}
-            onClick={() => this.openLDropdown()}
-          >
-            {t("AdvancedSearch.Traduction")}
-          </TagButton>
-          <Tooltip
-            placement={"bottom"}
-            isOpen={this.state.languageDropdown}
-            target={"Tooltip-1"}
-            className={"mt-15"}
-            style={{
-              backgroundColor: "white",
-              boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.25)",
-              maxWidth: 2000,
-              flexDirection: "row"
-            }}
-            //popperClassName={"popper"}
-          >
-            {this.props.langues.map((elem) => {
-              if (elem.avancement > 0 && elem.langueCode !== "fr") {
-                return (
+          {languei18nCode === "fr" ? (
+            <>
+              <TagButton
+                active={"traduction" === activeFiltre}
+                desactiver={this.desactiverFiltre}
+                filter
+                id={"Tooltip-1"}
+                onClick={() => this.openLDropdown()}
+              >
+                {filterLanguage === "" ? (
+                  t("AdvancedSearch.Traduction")
+                ) : (
                   <>
                     <i
-                      className={"flag-icon ml-8 flag-icon-" + elem.langueCode}
-                      title={elem.langueCode}
-                      id={elem.langueCode}
+                      className={
+                        "flag-icon ml-8 flag-icon-" +
+                        filterLanguage.langueCode
+                      }
+                      title={filterLanguage.langueCode}
+                      id={filterLanguage.langueCode}
                     />
-                    <LanguageText>
-                      {elem.langueFr || "Langue"}
-                    </LanguageText>
+                    <LanguageTextFilter>
+                      {filterLanguage.langueFr || "Langue"}
+                    </LanguageTextFilter>
                   </>
-                );
-              }
-            })}
-          </Tooltip>
+                )}
+              </TagButton>
+              <Tooltip
+                placement={"bottom"}
+                isOpen={this.state.languageDropdown}
+                target={"Tooltip-1"}
+                className={"mt-15"}
+                style={{
+                  backgroundColor: "white",
+                  boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.25)",
+                  maxWidth: 2000,
+                  flexDirection: "row",
+                  display: "flex",
+                }}
+                //popperClassName={"popper"}
+              >
+                {this.props.langues.map((elem) => {
+                  if (elem.avancement > 0 && elem.langueCode !== "fr") {
+                    return (
+                      <div onClick={() => this.selectLanguage(elem)}>
+                        <i
+                          className={
+                            "flag-icon ml-8 flag-icon-" + elem.langueCode
+                          }
+                          title={elem.langueCode}
+                          id={elem.langueCode}
+                        />
+                        <LanguageText>{elem.langueFr || "Langue"}</LanguageText>
+                      </div>
+                    );
+                  }
+                })}
+              </Tooltip>{" "}
+            </>
+          ) : null}
           <FilterTitle>
             {t("AdvancedSearch.Trier par n", "Trier par")}
           </FilterTitle>
@@ -945,16 +996,16 @@ export class AdvancedSearch extends Component {
             <ThemeContainer>
               <ThemeHeader>
                 <ThemeHeaderTitle color={"#828282"}>
-                  {langueCode !== "fr" ? (
+                  {(langueCode !== "fr" || filterLanguage !== "") ? (
                     <>
                       {"Résultats disponibles en "}
                       <i
-                        className={"flag-icon flag-icon-" + langueCode}
-                        title={langueCode}
-                        id={langueCode}
+                        className={"flag-icon flag-icon-" + (filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                        title={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                        id={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
                       />
                       <span className="ml-10 language-name">
-                        {current.langueFr || "Langue"}
+                        {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
                       </span>
                       {" " + "avec le thème"}
                     </>
@@ -1009,16 +1060,16 @@ export class AdvancedSearch extends Component {
               </ThemeListContainer>
               <ThemeHeader>
                 <ThemeHeaderTitle color={"#828282"}>
-                  {langueCode !== "fr" ? (
+                  {(langueCode !== "fr" || filterLanguage !== "")  ? (
                     <>
                       {"Autres fiches traduites en "}
                       <i
-                        className={"flag-icon flag-icon-" + langueCode}
-                        title={langueCode}
-                        id={langueCode}
+                        className={"flag-icon flag-icon-" + (filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                        title={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                        id={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
                       />
                       <span className="ml-10 language-name">
-                        {current.langueFr || "Langue"}
+                        {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
                       </span>
                       {" " + "avec le thème"}
                     </>
@@ -1074,19 +1125,19 @@ export class AdvancedSearch extends Component {
             </ThemeContainer>
           ) : (
             <ThemeContainer>
-              {languei18nCode !== "fr" ? (
+              {(langueCode !== "fr" || filterLanguage !== "") ? (
                 <>
                   <ThemeHeader>
                     <ThemeHeaderTitle color={"#828282"}>
                       <>
                         {"Résultats disponibles en "}
                         <i
-                          className={"flag-icon flag-icon-" + langueCode}
-                          title={langueCode}
-                          id={langueCode}
+                          className={"flag-icon flag-icon-" + (filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                          title={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                          id={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
                         />
                         <span className="ml-10 language-name">
-                          {current.langueFr || "Langue"}
+                          {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
                         </span>
                       </>
                     </ThemeHeaderTitle>
