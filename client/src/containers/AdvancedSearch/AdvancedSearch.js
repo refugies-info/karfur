@@ -6,6 +6,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Tooltip,
 } from "reactstrap";
 import Swal from "sweetalert2";
 import querySearch from "stringquery";
@@ -127,6 +128,14 @@ const ThemeText = styled.p`
   font-size: 18px;
   margin-left: 8px;
   font-weight: 700;
+`;
+
+const LanguageText = styled.span`
+  color: black;
+  font-size: 16px;
+  margin-right: 16px;
+  margin-left: 8px;
+  font-weight: 400;
 `;
 
 const FilterTitle = styled.p`
@@ -600,6 +609,7 @@ export class AdvancedSearch extends Component {
       {
         filter,
         activeFiltre /* activeTri: this.state.activeTri === "Par thème" ? "" : this.state.activeTri */,
+        languageDropdown: false,
       },
       () => this.queryDispositifs()
     );
@@ -660,8 +670,9 @@ export class AdvancedSearch extends Component {
   };
 
   desactiverFiltre = () => {
-    this.setState({ activeFiltre: "", filter: {} }, () =>
-      this.queryDispositifs()
+    this.setState(
+      { activeFiltre: "", filter: {}, languageDropdown: false },
+      () => this.queryDispositifs()
     );
   };
 
@@ -686,6 +697,10 @@ export class AdvancedSearch extends Component {
     }));
   toggleSearch = () => {
     this.setState({ searchToggleVisible: !this.state.searchToggleVisible });
+  };
+
+  openLDropdown = () => {
+    this.setState({ activeFiltre: "traduction", languageDropdown: true });
   };
 
   render() {
@@ -790,6 +805,45 @@ export class AdvancedSearch extends Component {
               </TagButton>
             );
           })}
+          <TagButton
+            active={"traduction" === activeFiltre}
+            desactiver={this.desactiverFiltre}
+            filter
+            id={"Tooltip-1"}
+            onClick={() => this.openLDropdown()}
+          >
+            {t("AdvancedSearch.Traduction")}
+          </TagButton>
+          <Tooltip
+            placement={"bottom"}
+            isOpen={this.state.languageDropdown}
+            target={"Tooltip-1"}
+            className={"mt-15"}
+            style={{
+              backgroundColor: "white",
+              boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.25)",
+              maxWidth: 2000,
+              flexDirection: "row"
+            }}
+            //popperClassName={"popper"}
+          >
+            {this.props.langues.map((elem) => {
+              if (elem.avancement > 0 && elem.langueCode !== "fr") {
+                return (
+                  <>
+                    <i
+                      className={"flag-icon ml-8 flag-icon-" + elem.langueCode}
+                      title={elem.langueCode}
+                      id={elem.langueCode}
+                    />
+                    <LanguageText>
+                      {elem.langueFr || "Langue"}
+                    </LanguageText>
+                  </>
+                );
+              }
+            })}
+          </Tooltip>
           <FilterTitle>
             {t("AdvancedSearch.Trier par n", "Trier par")}
           </FilterTitle>
@@ -1024,17 +1078,17 @@ export class AdvancedSearch extends Component {
                 <>
                   <ThemeHeader>
                     <ThemeHeaderTitle color={"#828282"}>
-                        <>
-                          {"Résultats disponibles en "}
-                          <i
-                            className={"flag-icon flag-icon-" + langueCode}
-                            title={langueCode}
-                            id={langueCode}
-                          />
-                          <span className="ml-10 language-name">
-                            {current.langueFr || "Langue"}
-                          </span>
-                        </>
+                      <>
+                        {"Résultats disponibles en "}
+                        <i
+                          className={"flag-icon flag-icon-" + langueCode}
+                          title={langueCode}
+                          id={langueCode}
+                        />
+                        <span className="ml-10 language-name">
+                          {current.langueFr || "Langue"}
+                        </span>
+                      </>
                     </ThemeHeaderTitle>
                   </ThemeHeader>
                   <ThemeListContainer
