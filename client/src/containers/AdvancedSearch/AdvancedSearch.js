@@ -64,7 +64,8 @@ const ThemeListContainer = styled.div`
   display: grid;
   justify-content: start;
   align-content: start;
-  grid-template-columns: ${(props) => `repeat(${props.columns || 5}, minmax(260px, 300px))`};
+  grid-template-columns: ${(props) =>
+    `repeat(${props.columns || 5}, minmax(260px, 300px))`};
   background-color: ${(props) => props.color};
 `;
 
@@ -102,9 +103,9 @@ const FilterBar = styled.div`
     props.visibleTop && props.visibleSearch
       ? "164px"
       : !props.visibleTop && props.visibleSearch
-      ? "95px"
+      ? "90px"
       : props.visibleTop && !props.visibleSearch
-      ? "95px"
+      ? "90px"
       : "16px"};
   transition: top 0.6s;
   height: 80px;
@@ -161,6 +162,7 @@ export class AdvancedSearch extends Component {
     principalThemeList: [],
     secondaryThemeList: [],
     selectedTag: null,
+    nonTranslated: [],
   };
 
   componentDidMount() {
@@ -278,7 +280,9 @@ export class AdvancedSearch extends Component {
       !Nquery
     ) {
       let newQueryParam = {
-        tag: query["tags.name"] ? decodeURIComponent(query["tags.name"]) : undefined,
+        tag: query["tags.name"]
+          ? decodeURIComponent(query["tags.name"])
+          : undefined,
         bottomValue: query["audienceAge.bottomValue"]
           ? this.state.recherche[1].bottomValue
           : undefined,
@@ -335,6 +339,27 @@ export class AdvancedSearch extends Component {
           ...x,
           nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
+
+        if (props.languei18nCode !== "fr") {
+          var nonTranslated = dispositifs.filter((dispo) => {
+            if (
+              typeof dispo.avancement === "object" &&
+              dispo.avancement[props.languei18nCode]
+            ) {
+              return false;
+            }
+            return true;
+          });
+          this.setState({ nonTranslated });
+          dispositifs = dispositifs.filter((dispo) => {
+            if (
+              typeof dispo.avancement === "object" &&
+              dispo.avancement[props.languei18nCode]
+            ) {
+              return true;
+            }
+          });
+        }
         if (this.state.activeTri === "Par thème") {
           const themesObject = filtres.tags.map((tag) => {
             return {
@@ -357,7 +382,8 @@ export class AdvancedSearch extends Component {
             if (element.tags && element.tags.length > 0) {
               for (var index = 1; index < element.tags.length; index++) {
                 if (
-                  index !== 0 && element.tags[index] &&
+                  index !== 0 &&
+                  element.tags[index] &&
                   element.tags[index].short === this.state.recherche[0].short
                 )
                   return true;
@@ -373,8 +399,8 @@ export class AdvancedSearch extends Component {
         });
       })
       .catch(() => {
-        this.setState({ showSpinner: false })
-    });
+        this.setState({ showSpinner: false });
+      });
   };
 
   selectTag = (tag = {}) => {
@@ -581,7 +607,7 @@ export class AdvancedSearch extends Component {
 
   seeMore = (selectedTheme) => {
     this.selectParam(0, selectedTheme);
-  }
+  };
 
   goToDispositif = (dispositif = {}, fromAutoSuggest = false) => {
     this.props.tracking.trackEvent({
@@ -674,8 +700,21 @@ export class AdvancedSearch extends Component {
       selectedTag,
     } = this.state;
     // eslint-disable-next-line
-    const { t, windowWidth, dispositifs: storeDispo, isMobile, isDesktop, isSmallDesktop, isTablet, isBigDesktop } = this.props;
+    const {
+      t,
+      isDesktop,
+      isSmallDesktop,
+      isTablet,
+      isBigDesktop,
+      languei18nCode,
+    } = this.props;
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+    const current =
+      (this.props.langues || []).find(
+        (x) => x.i18nCode === this.props.i18n.language
+      ) || {};
+    const langueCode =
+      this.props.langues.length > 0 && current ? current.langueCode : "fr";
     //console.log(i18n.language);
     /* 
     if (recherche[0].active) {
@@ -798,7 +837,7 @@ export class AdvancedSearch extends Component {
                   (elem) => elem.short === themeKey[0]
                 );
                 return (
-                  <ThemeContainer  key={index} color={selectedTheme.lightColor}>
+                  <ThemeContainer key={index} color={selectedTheme.lightColor}>
                     <ThemeHeader>
                       <ThemeButton color={selectedTheme.darkColor}>
                         <Streamline
@@ -810,10 +849,21 @@ export class AdvancedSearch extends Component {
                         <ThemeText>{selectedTheme.short}</ThemeText>
                       </ThemeButton>
                       <ThemeHeaderTitle color={selectedTheme.darkColor}>
-                        {selectedTheme.name[0].toUpperCase() + selectedTheme.name.slice(1)}
+                        {selectedTheme.name[0].toUpperCase() +
+                          selectedTheme.name.slice(1)}
                       </ThemeHeaderTitle>
                     </ThemeHeader>
-                    <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
+                    <ThemeListContainer
+                      columns={
+                        isDesktop || isBigDesktop
+                          ? 5
+                          : isSmallDesktop
+                          ? 4
+                          : isTablet
+                          ? 3
+                          : 2
+                      }
+                    >
                       {theme[themeKey]
                         .filter((card, indexCard) => indexCard < 4)
                         .map((cardFiltered, indexCardFiltered) => {
@@ -826,7 +876,10 @@ export class AdvancedSearch extends Component {
                             />
                           );
                         })}
-                      <SeeMoreCard seeMore={() => this.seeMore(selectedTheme)} theme={selectedTheme} />
+                      <SeeMoreCard
+                        seeMore={() => this.seeMore(selectedTheme)}
+                        theme={selectedTheme}
+                      />
                     </ThemeListContainer>
                   </ThemeContainer>
                 );
@@ -838,7 +891,23 @@ export class AdvancedSearch extends Component {
             <ThemeContainer>
               <ThemeHeader>
                 <ThemeHeaderTitle color={"#828282"}>
-                  {("fiches avec le thème")[0].toUpperCase() + ("fiches avec le thème").slice(1)}
+                  {langueCode !== "fr" ? (
+                    <>
+                      {"Résultats disponibles en "}
+                      <i
+                        className={"flag-icon flag-icon-" + langueCode}
+                        title={langueCode}
+                        id={langueCode}
+                      />
+                      <span className="ml-10 language-name">
+                        {current.langueFr || "Langue"}
+                      </span>
+                      {" " + "avec le thème"}
+                    </>
+                  ) : (
+                    "fiches avec le thème"[0].toUpperCase() +
+                    "fiches avec le thème".slice(1)
+                  )}
                 </ThemeHeaderTitle>
                 <ThemeButton
                   ml
@@ -855,21 +924,54 @@ export class AdvancedSearch extends Component {
                   </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
-              <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
-                {this.state.principalThemeList.length > 0 ? this.state.principalThemeList.map((dispositif, index) => {
-                  return (
-                    <SearchResultCard
-                      key={index}
-                      pin={this.pin}
-                      pinnedList={this.state.pinned}
-                      dispositif={dispositif}
-                    />
-                  );
-                }) : <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>}
+              <ThemeListContainer
+                columns={
+                  isDesktop || isBigDesktop
+                    ? 5
+                    : isSmallDesktop
+                    ? 4
+                    : isTablet
+                    ? 3
+                    : 2
+                }
+              >
+                {this.state.principalThemeList.length > 0 ? (
+                  this.state.principalThemeList.map((dispositif, index) => {
+                    return (
+                      <SearchResultCard
+                        key={index}
+                        pin={this.pin}
+                        pinnedList={this.state.pinned}
+                        dispositif={dispositif}
+                      />
+                    );
+                  })
+                ) : (
+                  <NoResultPlaceholder
+                    restart={this.restart}
+                    writeNew={this.writeNew}
+                  />
+                )}
               </ThemeListContainer>
               <ThemeHeader>
                 <ThemeHeaderTitle color={"#828282"}>
-                  {("autres fiches avec le thème")[0].toUpperCase() + ("autres fiches avec le thème").slice(1)}
+                  {langueCode !== "fr" ? (
+                    <>
+                      {"Autres fiches traduites en "}
+                      <i
+                        className={"flag-icon flag-icon-" + langueCode}
+                        title={langueCode}
+                        id={langueCode}
+                      />
+                      <span className="ml-10 language-name">
+                        {current.langueFr || "Langue"}
+                      </span>
+                      {" " + "avec le thème"}
+                    </>
+                  ) : (
+                    "autres fiches avec le thème"[0].toUpperCase() +
+                    "autres fiches avec le thème".slice(1)
+                  )}
                 </ThemeHeaderTitle>
                 <ThemeButton
                   ml
@@ -886,44 +988,157 @@ export class AdvancedSearch extends Component {
                   </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
-              <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
-                {this.state.secondaryThemeList.length > 0 ? this.state.secondaryThemeList.map((dispositif, index) => {
-                  return (
-                    <SearchResultCard
-                      key={index}
-                      pin={this.pin}
-                      pinnedList={this.state.pinned}
-                      dispositif={dispositif}
-                    />
-                  );
-                }): <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>}
+              <ThemeListContainer
+                columns={
+                  isDesktop || isBigDesktop
+                    ? 5
+                    : isSmallDesktop
+                    ? 4
+                    : isTablet
+                    ? 3
+                    : 2
+                }
+              >
+                {this.state.secondaryThemeList.length > 0 ? (
+                  this.state.secondaryThemeList.map((dispositif, index) => {
+                    return (
+                      <SearchResultCard
+                        key={index}
+                        pin={this.pin}
+                        pinnedList={this.state.pinned}
+                        dispositif={dispositif}
+                      />
+                    );
+                  })
+                ) : (
+                  <NoResultPlaceholder
+                    restart={this.restart}
+                    writeNew={this.writeNew}
+                  />
+                )}
               </ThemeListContainer>
             </ThemeContainer>
           ) : (
             <ThemeContainer>
-            <ThemeListContainer columns={isDesktop || isBigDesktop ? 5 : isSmallDesktop ? 4 : isTablet ? 3 : 2}>
-              {dispositifs.map((dispositif, index) => {
-                return (
-                  <SearchResultCard
-                    key={index}
-                    pin={this.pin}
-                    pinnedList={this.state.pinned}
-                    dispositif={dispositif}
-                  />
-                );
-              })}
-              {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
-                /*             <Col
+              {languei18nCode !== "fr" ? (
+                <>
+                  <ThemeHeader>
+                    <ThemeHeaderTitle color={"#828282"}>
+                        <>
+                          {"Résultats disponibles en "}
+                          <i
+                            className={"flag-icon flag-icon-" + langueCode}
+                            title={langueCode}
+                            id={langueCode}
+                          />
+                          <span className="ml-10 language-name">
+                            {current.langueFr || "Langue"}
+                          </span>
+                        </>
+                    </ThemeHeaderTitle>
+                  </ThemeHeader>
+                  <ThemeListContainer
+                    columns={
+                      isDesktop || isBigDesktop
+                        ? 5
+                        : isSmallDesktop
+                        ? 4
+                        : isTablet
+                        ? 3
+                        : 2
+                    }
+                  >
+                    {this.state.dispositifs.length > 0 ? (
+                      this.state.dispositifs.map((dispositif, index) => {
+                        return (
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                          />
+                        );
+                      })
+                    ) : (
+                      <NoResultPlaceholder
+                        restart={this.restart}
+                        writeNew={this.writeNew}
+                      />
+                    )}
+                  </ThemeListContainer>
+                  <ThemeHeader>
+                    <ThemeHeaderTitle color={"#828282"}>
+                      {"Contenu pas traduit"}
+                    </ThemeHeaderTitle>
+                  </ThemeHeader>
+                  <ThemeListContainer
+                    columns={
+                      isDesktop || isBigDesktop
+                        ? 5
+                        : isSmallDesktop
+                        ? 4
+                        : isTablet
+                        ? 3
+                        : 2
+                    }
+                  >
+                    {this.state.nonTranslated.length > 0 ? (
+                      this.state.nonTranslated.map((dispositif, index) => {
+                        return (
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                          />
+                        );
+                      })
+                    ) : (
+                      <NoResultPlaceholder
+                        restart={this.restart}
+                        writeNew={this.writeNew}
+                      />
+                    )}
+                  </ThemeListContainer>
+                </>
+              ) : (
+                <ThemeListContainer
+                  columns={
+                    isDesktop || isBigDesktop
+                      ? 5
+                      : isSmallDesktop
+                      ? 4
+                      : isTablet
+                      ? 3
+                      : 2
+                  }
+                >
+                  {dispositifs.map((dispositif, index) => {
+                    return (
+                      <SearchResultCard
+                        key={index}
+                        pin={this.pin}
+                        pinnedList={this.state.pinned}
+                        dispositif={dispositif}
+                      />
+                    );
+                  })}
+                  {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
+                    /*             <Col
                     xs="12"
                     sm="6"
                     md="3"
                     className="no-result"
                     onClick={() => this.selectTag()}
                   > */
-                  <NoResultPlaceholder restart={this.restart} writeNew={this.writeNew}/>
-                //  </Col>
+                    <NoResultPlaceholder
+                      restart={this.restart}
+                      writeNew={this.writeNew}
+                    />
+                    //  </Col>
+                  )}
+                </ThemeListContainer>
               )}
-            </ThemeListContainer>
             </ThemeContainer>
           )}
         </div>
@@ -1008,6 +1223,7 @@ const mapStateToProps = (state) => {
     dispositifs: state.dispositif.dispositifs,
     languei18nCode: state.langue.languei18nCode,
     user: state.user.user,
+    langues: state.langue.langues,
   };
 };
 
@@ -1021,7 +1237,7 @@ const mapSizesToProps = ({ width }) => ({
   isSmallDesktop: width >= 1100 && width < 1400,
   isDesktop: width >= 1400 && width < 1565,
   isBigDesktop: width >= 1565,
-})
+});
 
 export default track({
   page: "AdvancedSearch",
