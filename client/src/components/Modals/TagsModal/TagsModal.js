@@ -108,10 +108,11 @@ export class dispositifValidateModal extends Component {
     } else {
       this.setState({ tag1: subi });
     }
-    if (subi.short === this.state.tag2.short) {
+
+    if (this.state.tag2 && subi.short === this.state.tag2.short) {
       this.setState({ tag2: null });
     }
-    if (subi.short === this.state.tag3.short) {
+    if (this.state.tag3 && subi.short === this.state.tag3.short) {
       this.setState({ tag3: null });
     }
     //this.props.selectParam(this.props.keyValue, subi);
