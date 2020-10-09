@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { Structure } from "../../../../../@types/interface";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
-import FButton from "../../../../../components/FigmaUI/FButton/FButton";
-import { days } from "./data";
+import { days, departmentsData } from "./data";
 import { HoursDetails } from "./HoursDetails";
+import { CustomDropDown } from "../../CustomDropdown/CustomDropdown";
+import { CustomCheckBox } from "../CustomCheckBox/CustomCheckBox";
 
 interface Props {
   structure: Structure | null;
@@ -55,10 +56,11 @@ const IconContainer = styled.div`
 const DepartmentContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 `;
 
 const CheckboxContainer = styled.div`
-  background: #f2f2f2;
+  background: ${(props) => (props.checked ? "#DEF7C2" : "#f2f2f2")};
   border-radius: 12px;
   width: fit-content;
   padding: 14px;
@@ -70,6 +72,7 @@ const CheckboxContainer = styled.div`
   flex-direction: row;
   align-items: center;
   cursor: pointer;
+  margin-bottom: 20px;
 `;
 
 const Subtitle = styled.div`
@@ -78,24 +81,54 @@ const Subtitle = styled.div`
   margin-top: 16px;
   margin-bottom: 12px;
 `;
+
+const SelectedContainer = styled.div`
+  background: #8bc34a;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+  padding: 15px;
+  width: fit-content;
+  heigth: 50px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: row;
+  margin-right: 8px;
+`;
+
 export const Step4 = (props: Props) => {
   const [showHelp, setShowHelp] = useState(true);
+  const [departments, setDepartments] = useState([]);
+  const [departmentInput, setDepartmentInput] = useState("");
 
-  const onChange = (e: any) =>
-    props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
+  const onDepartmentChange = (e: any) => {
+    setDepartmentInput(e.target.value);
+    if (e.target.value === "") {
+      return setDepartments([]);
+    }
+    const departmentsDataFiltered = departmentsData.filter((department) =>
+      props.structure
+        ? !props.structure.departments.includes(department)
+        : false
+    );
 
-  const getNewDepartmentArray = (department: number, id: string) => {
-    if (!props.structure) return [];
-    if (!props.structure.departments || id === "department0")
-      return [department];
-    return [];
-    // if(id==='department0') return [de]
+    const filteredDepartments = departmentsDataFiltered.filter((department) =>
+      department.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+
+    // @ts-ignore
+    setDepartments(filteredDepartments);
   };
-  const onDepartmentChange = (e: any) =>
-    props.setStructure({
-      ...props.structure,
-      departments: getNewDepartmentArray(e.target.value, e.target.id),
-    });
+
+  const removeDropdowElement = (element: string) => {
+    const departments = props.structure
+      ? props.structure.departments.filter(
+          (department) => department !== element
+        )
+      : [];
+    props.setStructure({ ...props.structure, departments });
+  };
 
   const handleCheckboxChange = () => {
     if (
@@ -114,6 +147,19 @@ export const Step4 = (props: Props) => {
     });
   };
 
+  const onDropdownElementClick = (element: string) => {
+    const departments = props.structure
+      ? !props.structure.departments
+        ? [element]
+        : props.structure.departments.concat([element])
+      : [];
+    props.setStructure({ ...props.structure, departments });
+    setDepartments([]);
+    setDepartmentInput("");
+  };
+
+  const isFranceSelected =
+    !!props.structure && props.structure.departments[0] === "All";
   return (
     <MainContainer>
       <Title>Départements d'action</Title>
@@ -129,47 +175,49 @@ export const Step4 = (props: Props) => {
           </HelpDescription>
         </HelpContainer>
       )}
-      <DepartmentContainer>
-        <div style={{ width: "180px", marginRight: "8px" }}>
-          <FInput
-            id="department0"
-            value={
-              props.structure &&
-              props.structure.departments &&
-              props.structure.departments[0]
-            }
-            onChange={onDepartmentChange}
-            newSize={true}
-            placeholder="Entrez un numéro"
-            type="number"
-            prepend
-            prependName="hash"
-          />
-        </div>
-        <div>
-          <FButton
-            name="plus-circle-outline"
-            type="dark"
-            // onClick={props.onClick}
-            disabled={
-              !props.structure || props.structure.departments.length === 0
-            }
-          >
-            {`Ajouter un autre département`}
-          </FButton>
-        </div>
-      </DepartmentContainer>
-      <CheckboxContainer onClick={handleCheckboxChange}>
-        <input
-          onChange={handleCheckboxChange}
-          type="checkbox"
-          checked={
-            !!props.structure &&
-            !!props.structure.departments &&
-            props.structure.departments[0] === "All"
-          }
-          className="mr-8"
-        />
+      {!isFranceSelected && (
+        <DepartmentContainer>
+          {props.structure &&
+            props.structure.departments &&
+            props.structure.departments.length > 0 &&
+            props.structure.departments.map((department) => (
+              <SelectedContainer>
+                {department}
+                <div style={{ cursor: "pointer" }}>
+                  <EVAIcon
+                    name="close"
+                    fill={"#ffffff"}
+                    className="ml-10"
+                    onClick={() => removeDropdowElement(department)}
+                  />
+                </div>
+              </SelectedContainer>
+            ))}
+          {props.structure && props.structure.departments.length < 8 && (
+            <div style={{ width: "180px", marginRight: "8px" }}>
+              <FInput
+                id="department0"
+                value={departmentInput}
+                onChange={onDepartmentChange}
+                newSize={true}
+                placeholder="Entrez un numéro"
+                type="number"
+                prepend
+                prependName="hash"
+              />
+              <CustomDropDown
+                elementList={departments}
+                onDropdownElementClick={onDropdownElementClick}
+              />
+            </div>
+          )}
+        </DepartmentContainer>
+      )}
+      <CheckboxContainer
+        onClick={handleCheckboxChange}
+        checked={isFranceSelected}
+      >
+        <CustomCheckBox checked={isFranceSelected} />
         France entière
       </CheckboxContainer>
       <Title>Numéro de télephone</Title>

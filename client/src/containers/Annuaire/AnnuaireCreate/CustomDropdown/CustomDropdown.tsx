@@ -18,11 +18,15 @@ const ItemContainer = styled.div`
   width: fit-content;
   cursor: pointer;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-right: 4px;
 `;
 
 const DropDownContainer = styled.div`
   position: absolute;
   z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1;
 `;
 
 export const CustomDropDown = (props: Props) => {
