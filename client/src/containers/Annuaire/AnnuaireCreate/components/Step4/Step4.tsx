@@ -79,7 +79,6 @@ const CheckboxContainer = styled.div`
 const Subtitle = styled.div`
   font-size: 16px;
   line-height: 20px;
-  margin-top: 16px;
   margin-bottom: 12px;
 `;
 
@@ -167,6 +166,19 @@ export const Step4 = (props: Props) => {
     });
   };
 
+  const handlePublicCheckboxChange = () => {
+    if (props.structure && props.structure.openingHours === "NoPublic") {
+      return props.setStructure({
+        ...props.structure,
+        openingHours: [],
+      });
+    }
+    return props.setStructure({
+      ...props.structure,
+      openingHours: "NoPublic",
+    });
+  };
+
   const onDropdownElementClick = (element: string) => {
     const departments = props.structure
       ? !props.structure.departments
@@ -218,6 +230,33 @@ export const Step4 = (props: Props) => {
     props.structure && props.structure.phonesPublic
       ? props.structure.phonesPublic
       : [];
+
+  const noPublicChecked =
+    !!props.structure && props.structure.openingHours === "NoPublic";
+
+  const getNewOpeningHours = (day: string) => {
+    if (!props.structure) return [];
+
+    if (props.structure.openingHours === "NoPublic") return "NoPublic";
+
+    const isDayInOpeningHours =
+      // @ts-ignore
+      props.structure.openingHours.filter((element: any) => element.day === day)
+        .length > 0;
+
+    if (isDayInOpeningHours)
+      // @ts-ignore
+      return props.structure.openingHours.filter(
+        (element: any) => element.day === !day
+      );
+
+    // @ts-ignore
+    return props.structure.openingHours.concat([{ day }]);
+  };
+  const onDayClick = (day: string) => {
+    const newOpeningHours = getNewOpeningHours(day);
+    props.setStructure({ ...props.structure, openingHours: newOpeningHours });
+  };
 
   return (
     <MainContainer>
@@ -360,23 +399,26 @@ export const Step4 = (props: Props) => {
         />
       </div>
       <Title>Horaires d'accueil du public</Title>
-      <CheckboxContainer onClick={handleCheckboxChange}>
-        <input
-          onChange={handleCheckboxChange}
-          type="checkbox"
-          checked={
-            !!props.structure &&
-            !!props.structure.departments &&
-            props.structure.departments[0] === "All"
-          }
-          className="mr-8"
-        />
+      <CheckboxContainer
+        onClick={handlePublicCheckboxChange}
+        checked={noPublicChecked}
+      >
+        <CustomCheckBox checked={noPublicChecked} />
         Notre structure n'accueille pas de public.
       </CheckboxContainer>
-      <Subtitle>Cochez ou décochez les jours d'ouverture :</Subtitle>
-      {days.map((day) => (
-        <HoursDetails day={day} />
-      ))}
+      {!noPublicChecked && (
+        <>
+          <Subtitle>Cochez ou décochez les jours d'ouverture :</Subtitle>
+          {days.map((day) => (
+            <HoursDetails
+              day={day}
+              onClick={onDayClick}
+              // @ts-ignore : it is not a string since noPublicChecked is false
+              openingHours={props.structure ? props.structure.openingHours : []}
+            />
+          ))}
+        </>
+      )}
     </MainContainer>
   );
 };

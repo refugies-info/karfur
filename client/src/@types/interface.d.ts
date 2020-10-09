@@ -129,7 +129,13 @@ export interface Dispositif {
   typeContenu: "dispositif" | "demarche";
   updatedAt: Moment;
 }
-
+export interface OpeningHours {
+  day: string;
+  from1?: string;
+  to1?: string;
+  from2?: string;
+  to2?: string;
+}
 export interface Structure {
   _id: ObjectId;
   membres: { userId: ObjectId; roles: string[] }[];
@@ -160,7 +166,7 @@ export interface Structure {
   departments: string[];
   phonesPublic: string[];
   adressPublic: string;
-  openingHours: string[];
+  openingHours: OpeningHours[] | string;
 }
 
 export interface Picture {
