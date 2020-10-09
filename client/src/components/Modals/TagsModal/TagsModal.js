@@ -108,10 +108,10 @@ export class dispositifValidateModal extends Component {
     } else {
       this.setState({ tag1: subi });
     }
-    if (subi === this.state.tag2) {
+    if (subi.short === this.state.tag2.short) {
       this.setState({ tag2: null });
     }
-    if (subi === this.state.tag3) {
+    if (subi.short === this.state.tag3.short) {
       this.setState({ tag3: null });
     }
     //this.props.selectParam(this.props.keyValue, subi);
@@ -156,6 +156,7 @@ export class dispositifValidateModal extends Component {
     this.props.toggle();
   };
   render() {
+    console.log("tag", this.state.tag1, this.state.tag2, this.state.tag3);
     return (
       <Modal
         isOpen={this.props.show}
