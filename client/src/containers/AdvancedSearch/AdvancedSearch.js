@@ -258,7 +258,16 @@ export class AdvancedSearch extends Component {
   // eslint-disable-next-line react/no-deprecated
   componentDidUpdate(prevProps) {
     if (prevProps.languei18nCode !== this.props.languei18nCode) {
-      this.setState({filterLanguage: "", activeFiltre: this.state.activeFiltre === "traduction" ? "" : this.state.activeFiltre}, () => this.queryDispositifs(null, this.props))
+      this.setState(
+        {
+          filterLanguage: "",
+          activeFiltre:
+            this.state.activeFiltre === "traduction"
+              ? ""
+              : this.state.activeFiltre,
+        },
+        () => this.queryDispositifs(null, this.props)
+      );
     }
   }
 
@@ -742,7 +751,7 @@ export class AdvancedSearch extends Component {
       activeTri,
       displayAll,
       selectedTag,
-      filterLanguage
+      filterLanguage,
     } = this.state;
     // eslint-disable-next-line
     const {
@@ -850,8 +859,7 @@ export class AdvancedSearch extends Component {
                   <>
                     <i
                       className={
-                        "flag-icon ml-8 flag-icon-" +
-                        filterLanguage.langueCode
+                        "flag-icon ml-8 flag-icon-" + filterLanguage.langueCode
                       }
                       title={filterLanguage.langueCode}
                       id={filterLanguage.langueCode}
@@ -919,7 +927,7 @@ export class AdvancedSearch extends Component {
           </FilterTitle>
           <FButton
             className={isRTL ? "ml-10" : ""}
-            type="white"
+            type="white-yellow-hover"
             name="file-add-outline"
             onClick={this.writeNew}
             filter
@@ -996,16 +1004,31 @@ export class AdvancedSearch extends Component {
             <ThemeContainer>
               <ThemeHeader>
                 <ThemeHeaderTitle color={"#828282"}>
-                  {(langueCode !== "fr" || filterLanguage !== "") ? (
+                  {langueCode !== "fr" || filterLanguage !== "" ? (
                     <>
                       {"Résultats disponibles en "}
                       <i
-                        className={"flag-icon flag-icon-" + (filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
-                        title={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
-                        id={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                        className={
+                          "flag-icon flag-icon-" +
+                          (filterLanguage !== ""
+                            ? filterLanguage.langueCode
+                            : langueCode)
+                        }
+                        title={
+                          filterLanguage !== ""
+                            ? filterLanguage.langueCode
+                            : langueCode
+                        }
+                        id={
+                          filterLanguage !== ""
+                            ? filterLanguage.langueCode
+                            : langueCode
+                        }
                       />
                       <span className="ml-10 language-name">
-                        {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
+                        {(filterLanguage !== ""
+                          ? filterLanguage.langueFr
+                          : current.langueFr) || "Langue"}
                       </span>
                       {" " + "avec le thème"}
                     </>
@@ -1060,16 +1083,31 @@ export class AdvancedSearch extends Component {
               </ThemeListContainer>
               <ThemeHeader>
                 <ThemeHeaderTitle color={"#828282"}>
-                  {(langueCode !== "fr" || filterLanguage !== "")  ? (
+                  {langueCode !== "fr" || filterLanguage !== "" ? (
                     <>
                       {"Autres fiches traduites en "}
                       <i
-                        className={"flag-icon flag-icon-" + (filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
-                        title={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
-                        id={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                        className={
+                          "flag-icon flag-icon-" +
+                          (filterLanguage !== ""
+                            ? filterLanguage.langueCode
+                            : langueCode)
+                        }
+                        title={
+                          filterLanguage !== ""
+                            ? filterLanguage.langueCode
+                            : langueCode
+                        }
+                        id={
+                          filterLanguage !== ""
+                            ? filterLanguage.langueCode
+                            : langueCode
+                        }
                       />
                       <span className="ml-10 language-name">
-                        {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
+                        {(filterLanguage !== ""
+                          ? filterLanguage.langueFr
+                          : current.langueFr) || "Langue"}
                       </span>
                       {" " + "avec le thème"}
                     </>
@@ -1125,19 +1163,34 @@ export class AdvancedSearch extends Component {
             </ThemeContainer>
           ) : (
             <ThemeContainer>
-              {(langueCode !== "fr" || filterLanguage !== "") ? (
+              {langueCode !== "fr" || filterLanguage !== "" ? (
                 <>
                   <ThemeHeader>
                     <ThemeHeaderTitle color={"#828282"}>
                       <>
                         {"Résultats disponibles en "}
                         <i
-                          className={"flag-icon flag-icon-" + (filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
-                          title={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
-                          id={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                          className={
+                            "flag-icon flag-icon-" +
+                            (filterLanguage !== ""
+                              ? filterLanguage.langueCode
+                              : langueCode)
+                          }
+                          title={
+                            filterLanguage !== ""
+                              ? filterLanguage.langueCode
+                              : langueCode
+                          }
+                          id={
+                            filterLanguage !== ""
+                              ? filterLanguage.langueCode
+                              : langueCode
+                          }
                         />
                         <span className="ml-10 language-name">
-                          {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
+                          {(filterLanguage !== ""
+                            ? filterLanguage.langueFr
+                            : current.langueFr) || "Langue"}
                         </span>
                       </>
                     </ThemeHeaderTitle>
