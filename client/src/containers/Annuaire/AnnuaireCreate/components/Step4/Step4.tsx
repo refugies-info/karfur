@@ -7,6 +7,7 @@ import { days, departmentsData } from "./data";
 import { HoursDetails } from "./HoursDetails";
 import { CustomDropDown } from "../../CustomDropdown/CustomDropdown";
 import { CustomCheckBox } from "../CustomCheckBox/CustomCheckBox";
+import { AddButton } from "../Step2/Step2";
 
 interface Props {
   structure: Structure | null;
@@ -96,11 +97,27 @@ const SelectedContainer = styled.div`
   flex-direction: row;
   margin-right: 8px;
 `;
-
+const DeleteIconContainer = styled.div`
+  background: #212121;
+  height: 50px;
+  width: 50px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
 export const Step4 = (props: Props) => {
   const [showHelp, setShowHelp] = useState(true);
   const [departments, setDepartments] = useState([]);
   const [departmentInput, setDepartmentInput] = useState("");
+
+  const [show1PhoneInput, setshow1PhoneInput] = useState(false);
+  const [show2PhoneInput, setshow2PhoneInput] = useState(false);
+
+  const toggle1PhoneInput = () => setshow1PhoneInput((prevState) => !prevState);
+
+  const toggle2PhoneInput = () => setshow2PhoneInput((prevState) => !prevState);
 
   const onDepartmentChange = (e: any) => {
     setDepartmentInput(e.target.value);
@@ -121,6 +138,7 @@ export const Step4 = (props: Props) => {
     setDepartments(filteredDepartments);
   };
 
+  // onPhoneChange = (e: any) => {};
   const removeDropdowElement = (element: string) => {
     const departments = props.structure
       ? props.structure.departments.filter(
@@ -158,8 +176,47 @@ export const Step4 = (props: Props) => {
     setDepartmentInput("");
   };
 
+  const getPhones = (previousPhones: string[], id: string, value: string) => {
+    if (id === "phone0") {
+      if (
+        !previousPhones ||
+        previousPhones.length === 0 ||
+        !previousPhones[1]
+      ) {
+        return [value];
+      }
+      return [value, previousPhones[1]];
+    }
+    return [previousPhones[0], value];
+  };
+  const onPhoneChange = (e: any) => {
+    const phones = props.structure
+      ? getPhones(props.structure.phonesPublic, e.target.id, e.target.value)
+      : [];
+    props.setStructure({ ...props.structure, phonesPublic: phones });
+  };
+
+  const getUpdatedPhones = (phones: string[], index: number) =>
+    phones.filter((phone) => phone !== phones[index]);
+
+  const removePhone = (index: number) => {
+    const updatedPhones =
+      props.structure && props.structure.phonesPublic
+        ? getUpdatedPhones(props.structure.phonesPublic, index)
+        : [];
+    props.setStructure({ ...props.structure, phonesPublic: updatedPhones });
+    setshow1PhoneInput(false);
+    setshow2PhoneInput(false);
+  };
+
   const isFranceSelected =
     !!props.structure && props.structure.departments[0] === "All";
+
+  const phones =
+    props.structure && props.structure.phonesPublic
+      ? props.structure.phonesPublic
+      : [];
+
   return (
     <MainContainer>
       <Title>Départements d'action</Title>
@@ -196,7 +253,6 @@ export const Step4 = (props: Props) => {
           {props.structure && props.structure.departments.length < 8 && (
             <div style={{ width: "180px", marginRight: "8px" }}>
               <FInput
-                id="department0"
                 value={departmentInput}
                 onChange={onDepartmentChange}
                 newSize={true}
@@ -221,6 +277,69 @@ export const Step4 = (props: Props) => {
         France entière
       </CheckboxContainer>
       <Title>Numéro de télephone</Title>
+      <div style={{ marginBottom: "16px" }}>
+        {(phones.length > 0 || show1PhoneInput) && (
+          <>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <div
+                style={{
+                  width: "200px",
+                  marginRight: "4px",
+                }}
+              >
+                <FInput
+                  id="phone0"
+                  value={phones && phones[0]}
+                  onChange={onPhoneChange}
+                  newSize={true}
+                  placeholder="Votre numéro de téléphone"
+                  type="number"
+                />
+              </div>
+              <DeleteIconContainer onClick={() => removePhone(0)}>
+                <EVAIcon size="medium" name="close-outline" fill={"#ffffff"} />
+              </DeleteIconContainer>
+            </div>
+            {phones.length < 2 && !show2PhoneInput && (
+              <AddButton
+                type="second numéro"
+                onClick={toggle2PhoneInput}
+                disabled={!phones[0]}
+              />
+            )}
+          </>
+        )}
+        {(phones.length === 2 || show2PhoneInput) && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <div style={{ width: "300px", marginRight: "4px" }}>
+              <FInput
+                type="number"
+                id="phone1"
+                value={phones && phones[1]}
+                onChange={onPhoneChange}
+                newSize={true}
+                placeholder="Votre numéro de téléphone"
+              />
+            </div>
+            <DeleteIconContainer onClick={() => removePhone(1)}>
+              <EVAIcon size="medium" name="close-outline" fill={"#ffffff"} />
+            </DeleteIconContainer>
+          </div>
+        )}
+        {phones.length === 0 && !show1PhoneInput && (
+          <AddButton type="numéro" onClick={toggle1PhoneInput} />
+        )}
+      </div>
       <Title>Adresse postale</Title>
       <Title>Horaires d'accueil du public</Title>
       <CheckboxContainer onClick={handleCheckboxChange}>

@@ -51,9 +51,9 @@ interface Props {
   setStructure: (arg: any) => void;
 }
 
-const AddButton = (props: {
+export const AddButton = (props: {
   onClick: Function;
-  type: "site" | "type" | "second site";
+  type: "site" | "type" | "second site" | "second numéro" | "numéro";
   disabled?: boolean;
 }) => (
   <FButton
@@ -130,23 +130,24 @@ export const Step2 = (props: Props) => {
       : true
   );
 
-  const getUpdatedWebsites = (websites: string[], index: number) => {
-    return websites.filter((website) => website !== websites[index]);
-  };
+  const getUpdatedWebsites = (websites: string[], index: number) =>
+    websites.filter((website) => website !== websites[index]);
 
   const removeWebsite = (index: number) => {
+    console.log("remove web", index);
     const updatedWebsites =
       props.structure && props.structure.websites
         ? getUpdatedWebsites(props.structure.websites, index)
         : [];
     props.setStructure({ ...props.structure, websites: updatedWebsites });
-    if (index === 0) setshow1WebsiteInput(false);
-    if (index === 1) setshow2WebsiteInput(false);
+    setshow1WebsiteInput(false);
+    setshow2WebsiteInput(false);
   };
 
   const onChange = (e: any) =>
     props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
 
+  console.log("test", props.structure && props.structure.websites);
   return (
     <MainContainer className="step2">
       <Title>Type de structure</Title>

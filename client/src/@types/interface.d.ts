@@ -158,7 +158,7 @@ export interface Structure {
   twitter: string;
   activities: string[];
   departments: string[];
-  phonePublic: string;
+  phonesPublic: string[];
   adressPublic: string;
   openingHours: string[];
 }
