@@ -156,7 +156,6 @@ export class dispositifValidateModal extends Component {
     this.props.toggle();
   };
   render() {
-    console.log("tag", this.state.tag1, this.state.tag2, this.state.tag3);
     return (
       <Modal
         isOpen={this.props.show}
