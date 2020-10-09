@@ -138,7 +138,9 @@ export const Step4 = (props: Props) => {
     setDepartments(filteredDepartments);
   };
 
-  // onPhoneChange = (e: any) => {};
+  const onChange = (e: any) =>
+    props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
+
   const removeDropdowElement = (element: string) => {
     const departments = props.structure
       ? props.structure.departments.filter(
@@ -341,6 +343,22 @@ export const Step4 = (props: Props) => {
         )}
       </div>
       <Title>Adresse postale</Title>
+      <div
+        style={{
+          marginBottom: "16px",
+          width: "640px",
+        }}
+      >
+        <FInput
+          id="adressPublic"
+          value={props.structure && props.structure.adressPublic}
+          onChange={onChange}
+          newSize={true}
+          placeholder="Entrez votre adresse"
+          prepend
+          prependName="pin-outline"
+        />
+      </div>
       <Title>Horaires d'accueil du public</Title>
       <CheckboxContainer onClick={handleCheckboxChange}>
         <input
