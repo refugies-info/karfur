@@ -134,7 +134,6 @@ export const Step2 = (props: Props) => {
     websites.filter((website) => website !== websites[index]);
 
   const removeWebsite = (index: number) => {
-    console.log("remove web", index);
     const updatedWebsites =
       props.structure && props.structure.websites
         ? getUpdatedWebsites(props.structure.websites, index)
@@ -147,7 +146,6 @@ export const Step2 = (props: Props) => {
   const onChange = (e: any) =>
     props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
 
-  console.log("test", props.structure && props.structure.websites);
   return (
     <MainContainer className="step2">
       <Title>Type de structure</Title>

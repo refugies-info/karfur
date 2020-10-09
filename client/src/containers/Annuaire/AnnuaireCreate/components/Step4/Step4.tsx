@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Structure } from "../../../../../@types/interface";
+import { Structure, OpeningHours } from "../../../../../@types/interface";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
 import { days, departmentsData } from "./data";
@@ -26,6 +26,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   flex: 1;
   margin-top: 24px;
+  margin-bottom: 48px;
 `;
 
 const HelpContainer = styled.div`
@@ -241,13 +242,13 @@ export const Step4 = (props: Props) => {
 
     const isDayInOpeningHours =
       // @ts-ignore
-      props.structure.openingHours.filter((element: any) => element.day === day)
-        .length > 0;
-
+      props.structure.openingHours.filter(
+        (element: OpeningHours) => element.day === day
+      ).length > 0;
     if (isDayInOpeningHours)
       // @ts-ignore
       return props.structure.openingHours.filter(
-        (element: any) => element.day === !day
+        (element: OpeningHours) => element.day !== day
       );
 
     // @ts-ignore
@@ -256,6 +257,34 @@ export const Step4 = (props: Props) => {
   const onDayClick = (day: string) => {
     const newOpeningHours = getNewOpeningHours(day);
     props.setStructure({ ...props.structure, openingHours: newOpeningHours });
+  };
+
+  const onHoursChange = (value: any, index: string, day: string) => {
+    if (!props.structure) return;
+    if (props.structure && typeof props.structure.openingHours === "string")
+      return;
+
+    // @ts-ignore
+    const dayRegistered = props.structure.openingHours.filter(
+      (element: OpeningHours) => element.day === day
+    );
+
+    // @ts-ignore
+    const openingHoursWithoutDayRegistered = props.structure.openingHours.filter(
+      (element: OpeningHours) => element.day !== day
+    );
+
+    if (dayRegistered) {
+      const updatedDay = {
+        ...dayRegistered[0],
+        [index]: value.format("HH:mm"),
+      };
+      props.setStructure({
+        ...props.structure,
+        // @ts-ignore
+        openingHours: openingHoursWithoutDayRegistered.concat([updatedDay]),
+      });
+    }
   };
 
   return (
@@ -279,7 +308,7 @@ export const Step4 = (props: Props) => {
             props.structure.departments &&
             props.structure.departments.length > 0 &&
             props.structure.departments.map((department) => (
-              <SelectedContainer>
+              <SelectedContainer key={department}>
                 {department}
                 <div style={{ cursor: "pointer" }}>
                   <EVAIcon
@@ -411,10 +440,12 @@ export const Step4 = (props: Props) => {
           <Subtitle>Cochez ou décochez les jours d'ouverture :</Subtitle>
           {days.map((day) => (
             <HoursDetails
+              key={day}
               day={day}
               onClick={onDayClick}
               // @ts-ignore : it is not a string since noPublicChecked is false
               openingHours={props.structure ? props.structure.openingHours : []}
+              onChange={onHoursChange}
             />
           ))}
         </>

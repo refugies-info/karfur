@@ -59,6 +59,7 @@
     "pretty-ms": "^4.0.0",
     "prop-types": "^15.6.2",
     "rc-slider": "^8.6.7",
+    "rc-time-picker": "^3.7.3",
     "react": "^16.8.0",
     "react-addons-update": "^15.6.2",
     "react-anchor-link-smooth-scroll": "^1.0.12",

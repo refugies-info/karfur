@@ -127,9 +127,9 @@ export const Step3 = (props: Props) => {
         const correspondingActivities = activities.filter(
           (activity2) => activity2.tag === activity
         );
-        console.log("corres", correspondingActivities);
         return (
           <TagActivity
+            key={activity}
             backgroundColor={correspondingTag[0].lightColor}
             color={correspondingTag[0].darkColor}
           >
@@ -139,6 +139,7 @@ export const Step3 = (props: Props) => {
             <ActivityCardsContainer>
               {correspondingActivities.map((detailedActivity) => (
                 <ActivityCard
+                  key={detailedActivity.activity}
                   activity={detailedActivity.activity}
                   darkColor={correspondingTag[0].darkColor}
                   lightColor={correspondingTag[0].lightColor}

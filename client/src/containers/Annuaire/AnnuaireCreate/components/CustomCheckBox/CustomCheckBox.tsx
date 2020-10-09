@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 
@@ -19,10 +19,11 @@ const MainContainer = styled.div`
 
 interface Props {
   checked: boolean;
+  onClick?: () => void;
 }
 
 export const CustomCheckBox = (props: Props) => (
-  <MainContainer checked={props.checked}>
+  <MainContainer checked={props.checked} onClick={props.onClick}>
     {props.checked && <EVAIcon name="checkmark" />}
   </MainContainer>
 );
