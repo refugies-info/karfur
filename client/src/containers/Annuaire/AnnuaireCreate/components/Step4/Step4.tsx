@@ -245,10 +245,13 @@ export const Step4 = (props: Props) => {
       : [];
 
   const noPublicChecked =
-    !!props.structure && props.structure.openingHours.noPublic;
+    !!props.structure &&
+    !!props.structure.openingHours &&
+    props.structure.openingHours.noPublic;
 
   const getNewDetailedOpeningHours = (day: string) => {
     if (!props.structure) return [];
+    if (!props.structure.openingHours) return [{ day }];
 
     if (props.structure.openingHours.noPublic) return [];
 

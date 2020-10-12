@@ -42,9 +42,12 @@ export const HoursDetails = (props: Props) => {
     if (correspondingDay[0].from1 || correspondingDay[0].to1) return true;
     return false;
   };
-  const correspondingDay = props.openingHours.details
-    ? props.openingHours.details.filter((element) => element.day === props.day)
-    : [];
+  const correspondingDay =
+    props.openingHours && props.openingHours.details
+      ? props.openingHours.details.filter(
+          (element) => element.day === props.day
+        )
+      : [];
   const [isPuisDeChecked, setIsPuisDeCheck] = useState(
     getInitialPuisDeValue(correspondingDay)
   );
