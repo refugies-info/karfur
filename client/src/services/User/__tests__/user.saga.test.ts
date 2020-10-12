@@ -5,6 +5,12 @@ import API from "../../../utils/API";
 import { setUserActionCreator } from "../user.actions";
 import { testUser } from "../../../__fixtures__/user";
 import { push } from "connected-react-router";
+import {
+  startLoading,
+  LoadingStatusKey,
+  finishLoading,
+} from "../../LoadingStatus/loadingStatus.actions";
+import { fetchUserStructureActionCreator } from "../../Structures/structures.actions";
 
 describe("[Saga] User", () => {
   describe("pilot", () => {
@@ -21,9 +27,13 @@ describe("[Saga] User", () => {
     it("should call api.isAuth and dispatch set user action with null payload if not authentified", () => {
       testSaga(fetchUser, { type: FETCH_USER, payload: undefined })
         .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER))
+        .next()
         .call(API.isAuth)
         .next(false)
         .put(setUserActionCreator(null))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_USER))
         .next()
         .isDone();
     });
@@ -31,11 +41,17 @@ describe("[Saga] User", () => {
     it("should call api.isAuth and dispatch set user action with user in payload if authentified", () => {
       testSaga(fetchUser, { type: FETCH_USER, payload: undefined })
         .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER))
+        .next()
         .call(API.isAuth)
         .next(true)
         .call(API.get_user_info)
         .next({ data: { data: testUser } })
         .put(setUserActionCreator(testUser))
+        .next()
+        .put(fetchUserStructureActionCreator({ structureId: null }))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_USER))
         .next()
         .isDone();
     });
@@ -46,11 +62,17 @@ describe("[Saga] User", () => {
         payload: { shouldRedirect: true, user: testUser },
       })
         .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER))
+        .next()
         .call(API.isAuth)
         .next(true)
         .call(API.get_user_info)
         .next({ data: { data: testUser } })
         .put(setUserActionCreator(testUser))
+        .next()
+        .put(fetchUserStructureActionCreator({ structureId: null }))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_USER))
         .next()
         .put(
           push({
@@ -65,6 +87,8 @@ describe("[Saga] User", () => {
     it("should call api.isAuth and dispatch set user action with null payload if api.isAuth throws an error", () => {
       testSaga(fetchUser, { type: FETCH_USER, payload: undefined })
         .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER))
+        .next()
         .call(API.isAuth)
         .throw(new Error("test"))
         .put(setUserActionCreator(null))
@@ -74,6 +98,8 @@ describe("[Saga] User", () => {
 
     it("should call api.isAuth, api.get_user_info and dispatch set user action with null payload if api.get_user_info throws an error", () => {
       testSaga(fetchUser, { type: FETCH_USER, payload: undefined })
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER))
         .next()
         .call(API.isAuth)
         .next(true)

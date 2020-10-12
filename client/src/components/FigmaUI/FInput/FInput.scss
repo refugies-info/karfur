@@ -30,6 +30,9 @@ $borderRadius: 12px;
     &.error {
       border: 0.5px solid $error;
     }
+    &.new-size {
+      height: 52px;
+    }
     &.has-prepend {
       padding-left: 45px;
 
