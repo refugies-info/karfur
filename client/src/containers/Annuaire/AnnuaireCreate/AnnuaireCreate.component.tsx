@@ -87,7 +87,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
     if (step === 1) return "Vérification de l'identité de votre structure";
     if (step === 2) return "Sites et réseaux";
     if (step === 3) return "Thèmes et activités";
-    if (step === 4) return "Contacts et info pratique";
+    if (step === 4) return "Contacts et infos pratiques";
     if (step === 5) return "Description";
     if (step > 5) return "Bien joué !";
     return "";

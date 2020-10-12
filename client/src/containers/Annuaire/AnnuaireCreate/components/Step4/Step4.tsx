@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Structure, OpeningHours } from "../../../../../@types/interface";
+import {
+  Structure,
+  DetailedOpeningHours,
+} from "../../../../../@types/interface";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
 import { days, departmentsData } from "./data";
@@ -168,15 +171,15 @@ export const Step4 = (props: Props) => {
   };
 
   const handlePublicCheckboxChange = () => {
-    if (props.structure && props.structure.openingHours === "NoPublic") {
+    if (props.structure && props.structure.openingHours.noPublic) {
       return props.setStructure({
         ...props.structure,
-        openingHours: [],
+        openingHours: { details: [], noPublic: false },
       });
     }
     return props.setStructure({
       ...props.structure,
-      openingHours: "NoPublic",
+      openingHours: { details: [], noPublic: true },
     });
   };
 
@@ -211,6 +214,15 @@ export const Step4 = (props: Props) => {
     props.setStructure({ ...props.structure, phonesPublic: phones });
   };
 
+  const onPrecisionsChange = (e: any) =>
+    props.setStructure({
+      ...props.structure,
+      openingHours: {
+        ...props.structure?.openingHours,
+        precisions: e.target.value,
+      },
+    });
+
   const getUpdatedPhones = (phones: string[], index: number) =>
     phones.filter((phone) => phone !== phones[index]);
 
@@ -233,56 +245,65 @@ export const Step4 = (props: Props) => {
       : [];
 
   const noPublicChecked =
-    !!props.structure && props.structure.openingHours === "NoPublic";
+    !!props.structure && props.structure.openingHours.noPublic;
 
-  const getNewOpeningHours = (day: string) => {
+  const getNewDetailedOpeningHours = (day: string) => {
     if (!props.structure) return [];
 
-    if (props.structure.openingHours === "NoPublic") return "NoPublic";
+    if (props.structure.openingHours.noPublic) return [];
+
+    if (!props.structure.openingHours.details) return [{ day }];
 
     const isDayInOpeningHours =
-      // @ts-ignore
-      props.structure.openingHours.filter(
-        (element: OpeningHours) => element.day === day
+      props.structure.openingHours.details.filter(
+        (element: DetailedOpeningHours) => element.day === day
       ).length > 0;
+
     if (isDayInOpeningHours)
-      // @ts-ignore
-      return props.structure.openingHours.filter(
-        (element: OpeningHours) => element.day !== day
+      return props.structure.openingHours.details.filter(
+        (element: DetailedOpeningHours) => element.day !== day
       );
 
-    // @ts-ignore
-    return props.structure.openingHours.concat([{ day }]);
+    return props.structure.openingHours.details.concat([{ day }]);
   };
   const onDayClick = (day: string) => {
-    const newOpeningHours = getNewOpeningHours(day);
+    const newDetailedOpeningHours = getNewDetailedOpeningHours(day);
+    const newOpeningHours = props.structure
+      ? { ...props.structure.openingHours, details: newDetailedOpeningHours }
+      : { noPublic: false, details: [] };
     props.setStructure({ ...props.structure, openingHours: newOpeningHours });
   };
 
   const onHoursChange = (value: any, index: string, day: string) => {
     if (!props.structure) return;
-    if (props.structure && typeof props.structure.openingHours === "string")
-      return;
+    if (props.structure && props.structure.openingHours.noPublic) return;
 
-    // @ts-ignore
-    const dayRegistered = props.structure.openingHours.filter(
-      (element: OpeningHours) => element.day === day
-    );
-
-    // @ts-ignore
-    const openingHoursWithoutDayRegistered = props.structure.openingHours.filter(
-      (element: OpeningHours) => element.day !== day
-    );
+    const dayRegistered = props.structure.openingHours.details
+      ? props.structure.openingHours.details.filter(
+          (element) => element.day === day
+        )
+      : [];
 
     if (dayRegistered) {
       const updatedDay = {
         ...dayRegistered[0],
         [index]: value.format("HH:mm"),
       };
+      const openingHoursWithoutDayRegistered = props.structure.openingHours
+        .details
+        ? props.structure.openingHours.details.filter(
+            (element) => element.day !== day
+          )
+        : [];
+      const openingHours = props.structure.openingHours
+        ? {
+            ...props.structure.openingHours,
+            details: openingHoursWithoutDayRegistered.concat([updatedDay]),
+          }
+        : { noPublic: false, details: [] };
       props.setStructure({
         ...props.structure,
-        // @ts-ignore
-        openingHours: openingHoursWithoutDayRegistered.concat([updatedDay]),
+        openingHours,
       });
     }
   };
@@ -450,6 +471,26 @@ export const Step4 = (props: Props) => {
           ))}
         </>
       )}
+      <div
+        style={{
+          marginTop: "16px",
+          width: "640px",
+          marginBottom: "32px",
+        }}
+      >
+        <FInput
+          value={
+            props.structure &&
+            props.structure.openingHours &&
+            props.structure.openingHours.precisions
+          }
+          onChange={onPrecisionsChange}
+          newSize={true}
+          placeholder="Ajoutez ici des précisions si besoin (jours fériés, sur rendez-vous, etc.)"
+          prepend
+          prependName="info-outline"
+        />
+      </div>
     </MainContainer>
   );
 };

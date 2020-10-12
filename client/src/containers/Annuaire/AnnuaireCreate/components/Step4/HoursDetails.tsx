@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { CustomCheckBox } from "../CustomCheckBox/CustomCheckBox";
-import { OpeningHours } from "../../../../../@types/interface";
+import {
+  OpeningHours,
+  DetailedOpeningHours,
+} from "../../../../../@types/interface";
 import TimePicker from "rc-time-picker";
 import moment from "moment";
 import "rc-time-picker/assets/index.css";
@@ -9,7 +12,7 @@ import "rc-time-picker/assets/index.css";
 interface Props {
   day: string;
   onClick: (day: string) => void;
-  openingHours: OpeningHours[];
+  openingHours: OpeningHours;
   onChange: (arg1: any, arg2: string, arg3: string) => void;
 }
 
@@ -34,10 +37,29 @@ const Text = styled.div`
   margin-right: 8px;
 `;
 export const HoursDetails = (props: Props) => {
-  const [isPuisDeChecked, setIsPuisDeCheck] = useState(false);
-  const isDayChecked =
-    props.openingHours.filter((element) => element.day === props.day).length >
-    0;
+  const getInitialPuisDeValue = (correspondingDay: DetailedOpeningHours[]) => {
+    if (correspondingDay.length === 0) return false;
+    if (correspondingDay[0].from1 || correspondingDay[0].to1) return true;
+    return false;
+  };
+  const correspondingDay = props.openingHours.details
+    ? props.openingHours.details.filter((element) => element.day === props.day)
+    : [];
+  const [isPuisDeChecked, setIsPuisDeCheck] = useState(
+    getInitialPuisDeValue(correspondingDay)
+  );
+  const isDayChecked = correspondingDay.length > 0;
+
+  const getInitialValue = (
+    isDayChecked: boolean,
+    correspondingDay: DetailedOpeningHours[],
+    index: "from0" | "to0" | "from1" | "to1"
+  ) => {
+    const defaultValue = moment("00:00", "HH:mm");
+    if (!isDayChecked || !correspondingDay[0][index]) return defaultValue;
+
+    return moment(correspondingDay[0][index], "HH.mm");
+  };
 
   const toggleIsPuisDe = () => {
     if (!isDayChecked) return;
@@ -56,7 +78,7 @@ export const HoursDetails = (props: Props) => {
         // @ts-ignore
         style={{ width: 100 }}
         showSecond={false}
-        defaultValue={moment("00:00", "HH:mm")}
+        defaultValue={getInitialValue(isDayChecked, correspondingDay, "from0")}
         className="xxx"
         disabled={!isDayChecked}
         onChange={(value) => props.onChange(value, "from0", props.day)}
@@ -66,7 +88,7 @@ export const HoursDetails = (props: Props) => {
         // @ts-ignore
         style={{ width: 100 }}
         showSecond={false}
-        defaultValue={moment("00:00", "HH:mm")}
+        defaultValue={getInitialValue(isDayChecked, correspondingDay, "to0")}
         className="xxx"
         disabled={!isDayChecked}
         onChange={(value) => props.onChange(value, "to0", props.day)}
@@ -81,7 +103,11 @@ export const HoursDetails = (props: Props) => {
             // @ts-ignore
             style={{ width: 100 }}
             showSecond={false}
-            defaultValue={moment("00:00", "HH:mm")}
+            defaultValue={getInitialValue(
+              isDayChecked,
+              correspondingDay,
+              "from1"
+            )}
             className="xxx"
             disabled={!isDayChecked}
             onChange={(value) => props.onChange(value, "from1", props.day)}
@@ -91,7 +117,11 @@ export const HoursDetails = (props: Props) => {
             // @ts-ignore
             style={{ width: 100 }}
             showSecond={false}
-            defaultValue={moment("00:00", "HH:mm")}
+            defaultValue={getInitialValue(
+              isDayChecked,
+              correspondingDay,
+              "to1"
+            )}
             className="xxx"
             disabled={!isDayChecked}
             onChange={(value) => props.onChange(value, "to1", props.day)}

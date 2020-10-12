@@ -86,7 +86,7 @@ var structureSchema = mongoose.Schema(
     departments: { type: Array, unique: false, required: false },
     phonesPublic: { type: Array, unique: false, required: false },
     adressPublic: { type: String, unique: false, required: false },
-    openingHours: { type: Array, unique: false, required: false },
+    openingHours: { type: Object, unique: false, required: false },
   },
   { timestamps: { createdAt: "created_at" } }
 );
