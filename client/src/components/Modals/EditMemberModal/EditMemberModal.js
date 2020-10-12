@@ -119,7 +119,7 @@ class EditMemberModal extends Component {
         if (!userRoles.includes("administrateur")) {
           Swal.fire({
             title: "Oh non!",
-            text: "Seul un administrateur peut supprimer un membre",
+            text: "Seul un responsable peut supprimer un membre",
             type: "error",
             timer: 1500,
           });
