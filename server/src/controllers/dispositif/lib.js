@@ -152,7 +152,6 @@ async function add_dispositif(req, res) {
         }
         dispositif.avancement = originalDis.avancement.fr || originalDis.avancement;
       }
-      console.log(dispositif)
 
       //now I need to save the dispositif and the translation
       dispResult = await Dispositif.findOneAndUpdate(
