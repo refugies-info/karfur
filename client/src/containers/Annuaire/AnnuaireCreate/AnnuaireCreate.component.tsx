@@ -7,6 +7,7 @@ import { Step1 } from "./components/Step1/Step1";
 import { Step2 } from "./components/Step2/Step2";
 import { Step3 } from "./components/Step3/Step3";
 import { Step4 } from "./components/Step4/Step4";
+import { Step5 } from "./components/Step5/Step5";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -63,7 +64,7 @@ const RightContainer = styled.div`
   margin-top: 112px;
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(5);
 
   const checkUserIsContribOrRespo = () => {
     const structureMembers = props.structure ? props.structure.membres : [];
@@ -163,6 +164,12 @@ export const AnnuaireCreateComponent = (props: Props) => {
 
         {step === 4 && (
           <Step4
+            structure={props.structure}
+            setStructure={props.setStructure}
+          />
+        )}
+        {step === 5 && (
+          <Step5
             structure={props.structure}
             setStructure={props.setStructure}
           />

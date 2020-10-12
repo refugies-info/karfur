@@ -174,6 +174,7 @@ export interface Structure {
   phonesPublic: string[];
   adressPublic: string;
   openingHours: OpeningHours;
+  description: string;
 }
 
 export interface Picture {
