@@ -8,6 +8,7 @@ import { Step2 } from "./components/Step2/Step2";
 import { Step3 } from "./components/Step3/Step3";
 import { Step4 } from "./components/Step4/Step4";
 import { Step5 } from "./components/Step5/Step5";
+import { Step6 } from "./components/Step6/Step6";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -64,7 +65,7 @@ const RightContainer = styled.div`
   margin-top: 112px;
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
-  const [step, setStep] = useState(5);
+  const [step, setStep] = useState(1);
 
   const checkUserIsContribOrRespo = () => {
     const structureMembers = props.structure ? props.structure.membres : [];
@@ -122,23 +123,45 @@ export const AnnuaireCreateComponent = (props: Props) => {
             className="mr-12"
             // onClick={() => this.props.toggleTutorielModal("Tags")}
           />
-          <FButton
-            type={"white"}
-            name="close-outline"
-            className="ml-12"
-            onClick={() => props.history.push("/backend/user-dash-structure")}
-          >
-            Quitter
-          </FButton>
+          {step === 1 ? (
+            <FButton
+              type={"white"}
+              name="close-outline"
+              className="ml-12"
+              onClick={() => props.history.push("/backend/user-dash-structure")}
+            >
+              Quitter
+            </FButton>
+          ) : (
+            <FButton
+              type={"white"}
+              name="arrow-back-outline"
+              className="ml-12"
+              onClick={() => setStep(step - 1)}
+            >
+              Retour
+            </FButton>
+          )}
 
-          <FButton
-            type={"validate"}
-            name="arrow-forward-outline"
-            className="ml-12"
-            onClick={onStepValidate}
-          >
-            Suivant
-          </FButton>
+          {step < 6 ? (
+            <FButton
+              type={"validate"}
+              name="arrow-forward-outline"
+              className="ml-12"
+              onClick={onStepValidate}
+            >
+              Suivant
+            </FButton>
+          ) : (
+            <FButton
+              type={"validate"}
+              name="arrow-forward-outline"
+              className="ml-12"
+              onClick={() => props.history.push("/backend/user-dash-structure")}
+            >
+              Terminer
+            </FButton>
+          )}
         </ButtonContainer>
       </LeftContainer>
       <RightContainer>
@@ -174,6 +197,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
             setStructure={props.setStructure}
           />
         )}
+        {step === 6 && <Step6 />}
       </RightContainer>
     </MainContainer>
   );
