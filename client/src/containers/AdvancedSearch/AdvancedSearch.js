@@ -418,6 +418,7 @@ export class AdvancedSearch extends Component {
           });
           this.setState({ principalThemeList, secondaryThemeList });
         }
+        console.log(dispositifs);
         this.setState({
           dispositifs: dispositifs,
           showSpinner: false,
