@@ -10,6 +10,7 @@ import { Step4 } from "./components/Step4/Step4";
 import { Step5 } from "./components/Step5/Step5";
 import { Step6 } from "./components/Step6/Step6";
 import { Spinner } from "reactstrap";
+import { FrameModal } from "../../../components/Modals";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -67,6 +68,9 @@ const RightContainer = styled.div`
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
   const [step, setStep] = useState(1);
+  const [showTutoModal, setShowTutoModal] = useState(false);
+
+  const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
 
   const checkUserIsContribOrRespo = () => {
     const structureMembers = props.structure ? props.structure.membres : [];
@@ -107,9 +111,6 @@ export const AnnuaireCreateComponent = (props: Props) => {
     setStep(step + 1);
   };
 
-  if (props.isLoading) {
-    return <div>isLoading</div>;
-  }
   return (
     <MainContainer>
       <LeftContainer>
@@ -122,7 +123,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
             type="tuto"
             name={"play-circle-outline"}
             className="mr-12"
-            // onClick={() => this.props.toggleTutorielModal("Tags")}
+            onClick={toggleTutorielModal}
           />
           {step === 1 ? (
             <FButton
@@ -213,6 +214,13 @@ export const AnnuaireCreateComponent = (props: Props) => {
         )}
         {step === 6 && <Step6 />}
       </RightContainer>
+      {showTutoModal && (
+        <FrameModal
+          show={showTutoModal}
+          toggle={toggleTutorielModal}
+          section={"Annuaire"}
+        />
+      )}
     </MainContainer>
   );
 };
