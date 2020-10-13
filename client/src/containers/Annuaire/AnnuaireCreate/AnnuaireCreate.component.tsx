@@ -169,7 +169,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
           ) : (
             <FButton
               type={"validate"}
-              name="arrow-forward-outline"
+              name="done-all-outline"
               className="ml-12"
               onClick={() => props.history.push("/backend/user-dash-structure")}
             >
