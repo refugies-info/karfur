@@ -9,6 +9,7 @@ import { Step3 } from "./components/Step3/Step3";
 import { Step4 } from "./components/Step4/Step4";
 import { Step5 } from "./components/Step5/Step5";
 import { Step6 } from "./components/Step6/Step6";
+import { Spinner } from "reactstrap";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -144,14 +145,27 @@ export const AnnuaireCreateComponent = (props: Props) => {
           )}
 
           {step < 6 ? (
-            <FButton
-              type={"validate"}
-              name="arrow-forward-outline"
-              className="ml-12"
-              onClick={onStepValidate}
-            >
-              Suivant
-            </FButton>
+            props.isLoading ? (
+              <FButton
+                type={"validate"}
+                className="ml-12"
+                onClick={onStepValidate}
+                disabled={true}
+              >
+                <Spinner className="mr-8" />
+                Suivant
+              </FButton>
+            ) : (
+              <FButton
+                type={"validate"}
+                name="arrow-forward-outline"
+                className="ml-12"
+                onClick={onStepValidate}
+                disabled={props.isLoading}
+              >
+                Suivant
+              </FButton>
+            )
           ) : (
             <FButton
               type={"validate"}
