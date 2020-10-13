@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { withTranslation } from "react-i18next";
 import "./AdvancedSearch.scss";
 import NoResultsBackgroundImage from "../../assets/no_results.svg";
-import FButton from "../../components/FigmaUI/FButton/FButton"
+import FButton from "../../components/FigmaUI/FButton/FButton";
 
 const NoResultsContainer = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ const NoResultsText = styled.p`
   max-width: 520px;
 `;
 
-const NoResultPlaceholder= ({restart, writeNew, t }) => {
+const NoResultPlaceholder = ({ restart, writeNew, t }) => {
   return (
     <NoResultsContainer>
       <NoResults />
@@ -69,7 +69,11 @@ const NoResultPlaceholder= ({restart, writeNew, t }) => {
           >
             Recommencer
           </FButton>
-          <FButton type="white" name="file-add-outline" onClick={writeNew}>
+          <FButton
+            type="white-yellow-hover"
+            name="file-add-outline"
+            onClick={writeNew}
+          >
             Rédiger une nouvelle fiche
           </FButton>
         </NoResultsButtonsContainer>

@@ -232,7 +232,8 @@
     "ma ville": "my city",
     "âge": "age",
     "mon niveau": "my level",
-    "gérer mes papiers": "manage my paperwork"
+    "gérer mes papiers": "manage my paperwork",
+    "thème": "theme"
   },
   "SearchItem": {
     "Je cherche à": "I'm looking to",
@@ -460,7 +461,9 @@
     "avec": "with",
     "Merci": "Thank you!",
     "Envoyer une réaction": "Send a comment",
-    "Dites nous ce que vous pensez": "Tell us what you think:"
+    "Dites nous ce que vous pensez": "Tell us what you think:",
+    "Enlever des favoris": "Remove from favorites",
+    "Ajouter aux favoris": "Add to favorites"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Are you sure?",

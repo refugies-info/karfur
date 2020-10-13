@@ -23,7 +23,7 @@ body .figma-btn {
   }
 
   &.filter-fbutton {
-    padding: 8px;;
+    padding: 8px;
   }
 
   &.default svg {
@@ -76,6 +76,22 @@ body .figma-btn {
   }
 
   &.white {
+    background: $blancSimple;
+    color: $noir;
+    svg {
+      fill: $noir;
+    }
+    &:hover {
+      transition: all 0.5s ease;
+      background: $noir;
+      color: $blancSimple;
+      svg {
+        fill: $blancSimple;
+      }
+    }
+  }
+
+  &.white-yellow-hover {
     background: $blancSimple;
     color: $noir;
     svg {

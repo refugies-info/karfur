@@ -36,7 +36,10 @@
     "Démarches": "Процедуры",
     "Créer une fiche": "Создать карточку информации",
     "Elargir recherche": "Попробуйте расширить поиск, отключив некоторые фильтры.",
-    "Oups": "Ой!"
+    "Oups": "Ой!",
+    "Rédiger": "Создать",
+    "Par thème": "По теме",
+    "résultats": "результаты"
   },
   "Tables": {
     "Propriétaire": "Владелец",
@@ -229,7 +232,8 @@
     "ma ville": "мой город",
     "âge": "возраст",
     "mon niveau": "мой уровень",
-    "gérer mes papiers": "разобраться с документами"
+    "gérer mes papiers": "разобраться с документами",
+    "thème": "теме"
   },
   "SearchItem": {
     "Je cherche à": "Я хочу",
@@ -241,7 +245,8 @@
     "Je parle": "Я говорю",
     "mon niveau": "мой уровень",
     "Je suis": "Я",
-    "français": "французский"
+    "français": "французский",
+    "bientot disponible": "Скоро появится"
   },
   "Status": {
     "En attente": "На проверке",
@@ -456,7 +461,9 @@
     "avec": "с",
     "Merci": "Спасибо!",
     "Envoyer une réaction": "Отправить комментарий",
-    "Dites nous ce que vous pensez": "Скажите, что вы думаете:"
+    "Dites nous ce que vous pensez": "Скажите, что вы думаете:",
+    "Enlever des favoris": "Удалить из избранного",
+    "Ajouter aux favoris": "Добавить в избранное"
   },
   "CheckDemarche": {
     "Êtes-vous sûr": "Вы уверены?",
@@ -550,5 +557,7 @@
     "Je communique avec aisance description": "Я могу понять основное содержание сложных фраз на конкретные или абстрактные темы. Я легко общаюсь с носителями и могу ясно и детально высказываться на различные темы.",
     "Je communique avec grande aisance title": "Мне очень легко общаться",
     "Je communique avec grande aisance description": "Проблемы в общении практически отсутствуют."
-  }
+  },
+  "Écouter": "Слушать",
+  "manger, me doucher": "поесть, принять душ"
 }
