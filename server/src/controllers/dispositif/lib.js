@@ -151,6 +151,7 @@ async function add_dispositif(req, res) {
           }
         }
         dispositif.avancement = originalDis.avancement.fr || originalDis.avancement;
+        dispositif.publishedAt = Date.now();
       }
 
       //now I need to save the dispositif and the translation
@@ -184,6 +185,7 @@ async function add_dispositif(req, res) {
       logger.info("[add_dispositif] creating a new dispositif", {
         title: dispositif.titreInformatif,
       });
+      dispositif.publishedAt = Date.now();
       dispositif.creatorId = req.userId;
       dispResult = await new Dispositif(dispositif).save();
     }
