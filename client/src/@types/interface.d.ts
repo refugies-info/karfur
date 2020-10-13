@@ -175,6 +175,7 @@ export interface Structure {
   adressPublic: string;
   openingHours: OpeningHours;
   description: string;
+  hasResponsibleSeenNotification?: boolean;
 }
 
 export interface Picture {
