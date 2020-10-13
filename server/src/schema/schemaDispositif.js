@@ -161,6 +161,9 @@ var dispositifSchema = mongoose.Schema(
         "Nouveau",
       ],
     },
+    publishedAt: {
+      type: Date,
+    }
   },
   { timestamps: { createdAt: "created_at" } }
 );
