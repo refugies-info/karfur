@@ -159,6 +159,32 @@ const dashHeader = (props) => {
           </h2>
         </Col>
         <Col className="tableau-header align-right">
+          {props.title === "Votre structure" &&
+            props.structure &&
+            !props.structure.hasResponsibleSeenNotification && (
+              <FButton
+                type="dark"
+                className="mr-8"
+                name="folder-add-outline"
+                tag={NavLink}
+                to="/annuaire-create"
+              >
+                Compléter la fiche annuaire
+              </FButton>
+            )}
+          {props.title === "Votre structure" &&
+            props.structure &&
+            props.structure.hasResponsibleSeenNotification && (
+              <FButton
+                type="dark"
+                className="mr-8"
+                name="edit-outline"
+                tag={NavLink}
+                to="/annuaire-create"
+              >
+                Modifier la fiche annuaire
+              </FButton>
+            )}
           <FButton
             tag={"a"}
             href="https://help.refugies.info/fr/"
