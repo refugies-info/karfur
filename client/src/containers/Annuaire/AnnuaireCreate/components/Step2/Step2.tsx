@@ -231,6 +231,7 @@ export const Step2 = (props: Props) => {
                 }}
               >
                 <FInput
+                  autoFocus={false}
                   id="website0"
                   value={websites && websites[0]}
                   onChange={onWebsiteChange}
@@ -260,6 +261,7 @@ export const Step2 = (props: Props) => {
           >
             <div style={{ width: "300px", marginRight: "4px" }}>
               <FInput
+                autoFocus={false}
                 id="website1"
                 value={websites && websites[1]}
                 onChange={onWebsiteChange}
@@ -276,7 +278,7 @@ export const Step2 = (props: Props) => {
           <AddButton type="site" onClick={toggle1WebSiteInput} />
         )}
       </div>
-      <Title>Profil Twitter</Title>
+      <Title>Lien vers le profil Twitter</Title>
       <div
         style={{
           marginBottom: "16px",
@@ -284,6 +286,7 @@ export const Step2 = (props: Props) => {
         }}
       >
         <FInput
+          autoFocus={false}
           id="twitter"
           value={props.structure && props.structure.twitter}
           onChange={onChange}
@@ -291,7 +294,7 @@ export const Step2 = (props: Props) => {
           placeholder="Votre twitter"
         />
       </div>
-      <Title>Page Facebook</Title>
+      <Title>Lien vers la page Facebook</Title>
       <div
         style={{
           marginBottom: "16px",
@@ -299,6 +302,7 @@ export const Step2 = (props: Props) => {
         }}
       >
         <FInput
+          autoFocus={false}
           id="facebook"
           value={props.structure && props.structure.facebook}
           onChange={onChange}
@@ -306,7 +310,7 @@ export const Step2 = (props: Props) => {
           placeholder="Votre page Facebook"
         />
       </div>
-      <Title>Profil Linkedin</Title>
+      <Title>Lien vers le profil Linkedin</Title>
       <div
         style={{
           marginBottom: "16px",
@@ -314,6 +318,7 @@ export const Step2 = (props: Props) => {
         }}
       >
         <FInput
+          autoFocus={false}
           id="linkedin"
           value={props.structure && props.structure.linkedin}
           onChange={onChange}

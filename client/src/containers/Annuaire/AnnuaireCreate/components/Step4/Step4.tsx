@@ -11,6 +11,7 @@ import { HoursDetails } from "./HoursDetails";
 import { CustomDropDown } from "../../CustomDropdown/CustomDropdown";
 import { CustomCheckBox } from "../CustomCheckBox/CustomCheckBox";
 import { AddButton } from "../Step2/Step2";
+import { Input } from "reactstrap";
 
 interface Props {
   structure: Structure | null;
@@ -320,9 +321,9 @@ export const Step4 = (props: Props) => {
             <EVAIcon name="close" />
           </IconContainer>
           <HelpDescription>
-            Si votre structure est présente sur beaucoup de départements, cochez
-            le choix “France entière” puis créez une structure pour chacune de
-            vos antennes territoriales.
+            Si votre structure est présente sur plus de 8 départements, cochez
+            le choix <b>France entière</b> puis créez une structure pour chacune
+            de vos antennes territoriales.
           </HelpDescription>
         </HelpContainer>
       )}
@@ -345,15 +346,16 @@ export const Step4 = (props: Props) => {
               </SelectedContainer>
             ))}
           {props.structure && props.structure.departments.length < 8 && (
-            <div style={{ width: "180px", marginRight: "8px" }}>
+            <div style={{ width: "280px", marginRight: "8px" }}>
               <FInput
                 value={departmentInput}
                 onChange={onDepartmentChange}
                 newSize={true}
-                placeholder="Entrez un numéro"
+                placeholder="Entrez un numéro de département"
                 type="number"
                 prepend
                 prependName="hash"
+                autoFocus={false}
               />
               <CustomDropDown
                 elementList={departments}
@@ -393,6 +395,7 @@ export const Step4 = (props: Props) => {
                   newSize={true}
                   placeholder="Votre numéro de téléphone"
                   type="number"
+                  autoFocus={false}
                 />
               </div>
               <DeleteIconContainer onClick={() => removePhone(0)}>
@@ -423,6 +426,7 @@ export const Step4 = (props: Props) => {
                 onChange={onPhoneChange}
                 newSize={true}
                 placeholder="Votre numéro de téléphone"
+                autoFocus={false}
               />
             </div>
             <DeleteIconContainer onClick={() => removePhone(1)}>
@@ -449,6 +453,7 @@ export const Step4 = (props: Props) => {
           placeholder="Entrez votre adresse"
           prepend
           prependName="pin-outline"
+          autoFocus={false}
         />
       </div>
       <Title>Horaires d'accueil du public</Title>
@@ -481,17 +486,17 @@ export const Step4 = (props: Props) => {
           marginBottom: "32px",
         }}
       >
-        <FInput
+        <Input
+          type="textarea"
+          placeholder="Ajoutez ici des précisions si besoin (jours fériés, sur rendez-vous, etc.)"
+          rows={5}
           value={
-            props.structure &&
-            props.structure.openingHours &&
-            props.structure.openingHours.precisions
+            (props.structure &&
+              props.structure.openingHours &&
+              props.structure.openingHours.precisions) ||
+            ""
           }
           onChange={onPrecisionsChange}
-          newSize={true}
-          placeholder="Ajoutez ici des précisions si besoin (jours fériés, sur rendez-vous, etc.)"
-          prepend
-          prependName="info-outline"
         />
       </div>
     </MainContainer>
