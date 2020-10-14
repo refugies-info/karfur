@@ -610,8 +610,15 @@ export class AdvancedSearch extends Component {
         croissant = order === this.state.order ? !this.state.croissant : true;
       this.setState((pS) => ({
         dispositifs: pS.dispositifs.sort((a, b) => {
-          const aValue = _.get(a, order),
+          var aValue = 0;
+          var bValue = 0;
+          if (order === "created_at") {
+            aValue = _.get(a, "publishedAt", "created_at");
+            bValue = _.get(b, "publishedAt", "created_at");
+          } else {
+            aValue = _.get(a, order);
             bValue = _.get(b, order);
+          }
           return aValue > bValue
             ? croissant
               ? 1
@@ -771,7 +778,6 @@ export class AdvancedSearch extends Component {
       ) || {};
     const langueCode =
       this.props.langues.length > 0 && current ? current.langueCode : "fr";
-    //console.log(i18n.language);
     /* 
     if (recherche[0].active) {
       dispositifs = dispositifs.sort((a, b) =>
@@ -883,13 +889,17 @@ export class AdvancedSearch extends Component {
                   maxWidth: 2000,
                   flexDirection: "row",
                   display: "flex",
+                  padding: 8,
                 }}
                 //popperClassName={"popper"}
               >
                 {this.props.langues.map((elem) => {
                   if (elem.avancement > 0 && elem.langueCode !== "fr") {
                     return (
-                      <div className={"language-filter-button"} onClick={() => this.selectLanguage(elem)}>
+                      <div
+                        className={"language-filter-button"}
+                        onClick={() => this.selectLanguage(elem)}
+                      >
                         <i
                           className={
                             "flag-icon ml-8 flag-icon-" + elem.langueCode
@@ -938,10 +948,16 @@ export class AdvancedSearch extends Component {
           </FButton>
         </FilterBar>
         <div
-          className={"mt-250 search-wrapper"}
+          className={"search-wrapper " + (this.state.searchToggleVisible ? "mt-250" : "mt-250-hidden")}
           style={{
             backgroundColor:
-              this.state.activeTri === "Par thème" ? "#f1e8f5" : "#e4e5e6",
+              this.state.activeTri === "Par thème"
+                ? "#f1e8f5"
+                : this.state.recherche[0] && this.state.recherche[0].value
+                ?  (filtres.tags.find(
+                  (elem) => elem.short === this.state.recherche[0].short
+                ))["lightColor"]
+                : "#e4e5e6",
           }}
         >
           {this.state.activeTri === "Par thème" ? (
@@ -954,18 +970,32 @@ export class AdvancedSearch extends Component {
                 return (
                   <ThemeContainer key={index} color={selectedTheme.lightColor}>
                     <ThemeHeader>
-                      <ThemeButton ml={isRTL ? 20 : 0} color={selectedTheme.darkColor}>
+                      <ThemeButton
+                        ml={isRTL ? 20 : 0}
+                        color={selectedTheme.darkColor}
+                      >
                         <Streamline
                           name={selectedTheme.icon}
                           stroke={"white"}
                           width={22}
                           height={22}
                         />
-                        <ThemeText mr={isRTL ? 8 : 0}>{t("Tags." + selectedTheme.short, selectedTheme.short)}</ThemeText>
+                        <ThemeText mr={isRTL ? 8 : 0}>
+                          {t(
+                            "Tags." + selectedTheme.short,
+                            selectedTheme.short
+                          )}
+                        </ThemeText>
                       </ThemeButton>
                       <ThemeHeaderTitle color={selectedTheme.darkColor}>
-                        {t("Tags." + selectedTheme.name, selectedTheme.name)[0].toUpperCase() +
-                          t("Tags." + selectedTheme.name, selectedTheme.name).slice(1)}
+                        {t(
+                          "Tags." + selectedTheme.name,
+                          selectedTheme.name
+                        )[0].toUpperCase() +
+                          t(
+                            "Tags." + selectedTheme.name,
+                            selectedTheme.name
+                          ).slice(1)}
                       </ThemeHeaderTitle>
                     </ThemeHeader>
                     <ThemeListContainer
@@ -1028,8 +1058,14 @@ export class AdvancedSearch extends Component {
                             : langueCode
                         }
                       />
-                      <span className={"language-name " + (isRTL ? "mr-10" : "ml-10")}>
-                        {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
+                      <span
+                        className={
+                          "language-name " + (isRTL ? "mr-10" : "ml-10")
+                        }
+                      >
+                        {(filterLanguage !== ""
+                          ? filterLanguage.langueFr
+                          : current.langueFr) || "Langue"}
                       </span>
                       {" " + t("avec le thème")}
                     </>
@@ -1049,7 +1085,9 @@ export class AdvancedSearch extends Component {
                     height={22}
                   />
                   <ThemeText mr={isRTL ? 8 : 0}>
-                    {selectedTag ? t("Tags." + selectedTag.short, selectedTag.short) : null}
+                    {selectedTag
+                      ? t("Tags." + selectedTag.short, selectedTag.short)
+                      : null}
                   </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
@@ -1105,8 +1143,14 @@ export class AdvancedSearch extends Component {
                             : langueCode
                         }
                       />
-                      <span className={"language-name " + (isRTL ? "mr-10" : "ml-10")}>
-                        {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
+                      <span
+                        className={
+                          "language-name " + (isRTL ? "mr-10" : "ml-10")
+                        }
+                      >
+                        {(filterLanguage !== ""
+                          ? filterLanguage.langueFr
+                          : current.langueFr) || "Langue"}
                       </span>
                       {" " + t("avec le thème")}
                     </>
@@ -1126,7 +1170,9 @@ export class AdvancedSearch extends Component {
                     height={22}
                   />
                   <ThemeText mr={isRTL ? 8 : 0}>
-                    {selectedTag ? t("Tags." + selectedTag.short, selectedTag.short) : null}
+                    {selectedTag
+                      ? t("Tags." + selectedTag.short, selectedTag.short)
+                      : null}
                   </ThemeText>
                 </ThemeButton>
               </ThemeHeader>
@@ -1186,8 +1232,14 @@ export class AdvancedSearch extends Component {
                               : langueCode
                           }
                         />
-                        <span className={"language-name " + (isRTL ? "mr-10" : "ml-10")}>
-                          {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
+                        <span
+                          className={
+                            "language-name " + (isRTL ? "mr-10" : "ml-10")
+                          }
+                        >
+                          {(filterLanguage !== ""
+                            ? filterLanguage.langueFr
+                            : current.langueFr) || "Langue"}
                         </span>
                       </>
                     </ThemeHeaderTitle>
@@ -1223,15 +1275,34 @@ export class AdvancedSearch extends Component {
                   </ThemeListContainer>
                   <ThemeHeader>
                     <ThemeHeaderTitle color={"#828282"}>
-                    <>
+                      <>
                         {t("AdvancedSearch.Résultats non disponibles en") + " "}
                         <i
-                          className={"flag-icon flag-icon-" + (filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
-                          title={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
-                          id={(filterLanguage !== "" ? filterLanguage.langueCode :langueCode)}
+                          className={
+                            "flag-icon flag-icon-" +
+                            (filterLanguage !== ""
+                              ? filterLanguage.langueCode
+                              : langueCode)
+                          }
+                          title={
+                            filterLanguage !== ""
+                              ? filterLanguage.langueCode
+                              : langueCode
+                          }
+                          id={
+                            filterLanguage !== ""
+                              ? filterLanguage.langueCode
+                              : langueCode
+                          }
                         />
-                        <span className={"language-name " + (isRTL ? "mr-10" : "ml-10")}>
-                          {(filterLanguage !== "" ? filterLanguage.langueFr : current.langueFr) || "Langue"}
+                        <span
+                          className={
+                            "language-name " + (isRTL ? "mr-10" : "ml-10")
+                          }
+                        >
+                          {(filterLanguage !== ""
+                            ? filterLanguage.langueFr
+                            : current.langueFr) || "Langue"}
                         </span>
                       </>
                     </ThemeHeaderTitle>
