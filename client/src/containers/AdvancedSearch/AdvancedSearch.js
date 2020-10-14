@@ -889,7 +889,7 @@ export class AdvancedSearch extends Component {
                   maxWidth: 2000,
                   flexDirection: "row",
                   display: "flex",
-                  padding: 8,
+                  padding: "8px 0px 8px 8px"
                 }}
                 //popperClassName={"popper"}
               >
@@ -1155,8 +1155,8 @@ export class AdvancedSearch extends Component {
                       {" " + t("avec le thème")}
                     </>
                   ) : (
-                    t("AdvancedSearch.fiches avec le thème")[0].toUpperCase() +
-                    t("AdvancedSearch.fiches avec le thème").slice(1)
+                    t("AdvancedSearch.autres fiches avec le thème")[0].toUpperCase() +
+                    t("AdvancedSearch.autres fiches avec le thème").slice(1)
                   )}
                 </ThemeHeaderTitle>
                 <ThemeButton
