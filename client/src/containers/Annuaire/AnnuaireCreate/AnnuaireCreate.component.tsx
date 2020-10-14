@@ -35,6 +35,10 @@ const LeftContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   margin-right: 40px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 112px;
+  margin-bottom: 24px;
 `;
 
 const LeftTitleContainer = styled.div`
@@ -44,8 +48,10 @@ const LeftTitleContainer = styled.div`
   line-height: 51px;
   padding-right: 16px;
   padding-left: 16px;
-  width: 202px;
+  width: fit-content;
   margin-bottom: 13px;
+  padding-bottom: 8px;
+  padding-top: 8px;
 `;
 
 const StepDescription = styled.div`
@@ -58,6 +64,7 @@ const StepDescription = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 const RightContainer = styled.div`
@@ -125,58 +132,62 @@ export const AnnuaireCreateComponent = (props: Props) => {
             className="mr-12"
             onClick={toggleTutorielModal}
           />
-          {step === 1 ? (
-            <FButton
-              type={"white"}
-              name="close-outline"
-              className="ml-12"
-              onClick={() => props.history.push("/backend/user-dash-structure")}
-            >
-              Quitter
-            </FButton>
-          ) : (
-            <FButton
-              type={"white"}
-              name="arrow-back-outline"
-              className="ml-12"
-              onClick={() => setStep(step - 1)}
-            >
-              Retour
-            </FButton>
-          )}
-
-          {step < 6 ? (
-            props.isLoading ? (
+          <div>
+            {step === 1 ? (
               <FButton
-                type={"validate"}
-                className="ml-12"
-                onClick={onStepValidate}
-                disabled={true}
+                type={"white"}
+                name="close-outline"
+                onClick={() =>
+                  props.history.push("/backend/user-dash-structure")
+                }
               >
-                <Spinner className="mr-8" />
-                Suivant
+                Quitter
               </FButton>
             ) : (
               <FButton
-                type={"validate"}
-                name="arrow-forward-outline"
-                className="ml-12"
-                onClick={onStepValidate}
-                disabled={props.isLoading}
+                type={"white"}
+                name="arrow-back-outline"
+                onClick={() => setStep(step - 1)}
               >
-                Suivant
+                Retour
               </FButton>
-            )
-          ) : (
-            <FButton
-              type={"validate"}
-              name="done-all-outline"
-              className="ml-12"
-              onClick={() => props.history.push("/backend/user-dash-structure")}
-            >
-              Terminer
-            </FButton>
-          )}
+            )}
+
+            {step < 6 ? (
+              props.isLoading ? (
+                <FButton
+                  type={"validate"}
+                  className="ml-8"
+                  onClick={onStepValidate}
+                  disabled={true}
+                >
+                  <Spinner className="mr-8" />
+                  Suivant
+                </FButton>
+              ) : (
+                <FButton
+                  type={"validate"}
+                  name="arrow-forward-outline"
+                  className="ml-8"
+                  onClick={onStepValidate}
+                  disabled={props.isLoading}
+                >
+                  Suivant
+                </FButton>
+              )
+            ) : (
+              <FButton
+                type={"validate"}
+                name="done-all-outline"
+                className="ml-12"
+                onClick={() =>
+                  props.history.push("/backend/user-dash-structure")
+                }
+              >
+                Terminer
+              </FButton>
+            )}
+          </div>
         </ButtonContainer>
       </LeftContainer>
       <RightContainer>

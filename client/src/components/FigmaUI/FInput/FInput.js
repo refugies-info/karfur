@@ -8,6 +8,7 @@ import "./FInput.scss";
 import variables from "scss/colors.scss";
 
 const FInput = (props) => {
+  const autoFocus = props.autoFocus === false ? false : true;
   if (!props.error) {
     return (
       <InputGroup className="mb-10 figma-input-group">
@@ -20,7 +21,7 @@ const FInput = (props) => {
           </InputGroupAddon>
         )}
         <Input
-          autoFocus
+          autoFocus={autoFocus}
           id={props.id}
           type={props.type}
           placeholder={props.placeholder}
@@ -57,7 +58,7 @@ const FInput = (props) => {
         </InputGroupAddon>
       )}
       <Input
-        autoFocus
+        autoFocus={autoFocus}
         id={props.id}
         type={props.type}
         placeholder={props.placeholder}

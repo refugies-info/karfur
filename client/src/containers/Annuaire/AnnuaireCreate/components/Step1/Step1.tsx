@@ -96,6 +96,7 @@ export const Step1 = (props: Props) => {
           value={props.structure && props.structure.nom}
           onChange={onChange}
           newSize={true}
+          autoFocus={false}
         />
       </div>
       <Title>Acronyme</Title>
@@ -106,6 +107,7 @@ export const Step1 = (props: Props) => {
           onChange={onChange}
           newSize={true}
           placeholder="L'acronyme de votre structure"
+          autoFocus={false}
         />
       </div>
       <Title>Logo</Title>

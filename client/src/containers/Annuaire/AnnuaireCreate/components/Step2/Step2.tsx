@@ -276,7 +276,7 @@ export const Step2 = (props: Props) => {
           <AddButton type="site" onClick={toggle1WebSiteInput} />
         )}
       </div>
-      <Title>Profil Twitter</Title>
+      <Title>Lien vers le profil Twitter</Title>
       <div
         style={{
           marginBottom: "16px",
@@ -291,7 +291,7 @@ export const Step2 = (props: Props) => {
           placeholder="Votre twitter"
         />
       </div>
-      <Title>Page Facebook</Title>
+      <Title>Lien vers la page Facebook</Title>
       <div
         style={{
           marginBottom: "16px",
@@ -306,7 +306,7 @@ export const Step2 = (props: Props) => {
           placeholder="Votre page Facebook"
         />
       </div>
-      <Title>Profil Linkedin</Title>
+      <Title>Lien vers le profil Linkedin</Title>
       <div
         style={{
           marginBottom: "16px",
