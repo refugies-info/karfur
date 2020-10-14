@@ -74,7 +74,7 @@ const RightContainer = styled.div`
   margin-top: 112px;
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(1);
   const [showTutoModal, setShowTutoModal] = useState(false);
 
   const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
