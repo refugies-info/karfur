@@ -74,7 +74,7 @@ const RightContainer = styled.div`
   margin-top: 112px;
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3);
   const [showTutoModal, setShowTutoModal] = useState(false);
 
   const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
@@ -100,7 +100,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
   const getStepDesciption = () => {
     if (step === 1) return "Vérification de l'identité de votre structure";
     if (step === 2) return "Sites et réseaux";
-    if (step === 3) return "Thèmes et activités";
+    if (step === 3) return "Activités";
     if (step === 4) return "Contacts et infos pratiques";
     if (step === 5) return "Description";
     if (step > 5) return "Bien joué !";
