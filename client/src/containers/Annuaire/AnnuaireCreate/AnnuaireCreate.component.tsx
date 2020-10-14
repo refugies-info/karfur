@@ -11,6 +11,7 @@ import { Step5 } from "./components/Step5/Step5";
 import { Step6 } from "./components/Step6/Step6";
 import { Spinner } from "reactstrap";
 import { FrameModal } from "../../../components/Modals";
+import img from "../../../assets/annuaire_create.svg";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -25,7 +26,7 @@ const MainContainer = styled.div`
 `;
 
 const LeftContainer = styled.div`
-  background: #0421b1;
+  background-image: url(${img});
   width: 360px;
   height: 600px;
   border-radius: 12px;
@@ -135,7 +136,6 @@ export const AnnuaireCreateComponent = (props: Props) => {
           <FButton
             type="tuto"
             name={"play-circle-outline"}
-            className="mr-12"
             onClick={toggleTutorielModal}
           />
           <div>
@@ -185,7 +185,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
               <FButton
                 type={"validate"}
                 name="done-all-outline"
-                className="ml-12"
+                className="ml-8"
                 onClick={() =>
                   props.history.push("/backend/user-dash-structure")
                 }
