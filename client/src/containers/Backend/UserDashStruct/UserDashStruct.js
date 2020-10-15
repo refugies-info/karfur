@@ -273,22 +273,23 @@ export class UserDashStruct extends Component {
         {enAttente.length > 0 &&
           enAttente.map((element) => (
             <div className="nouveau-contenu mt-12 mb-12" key={element._id}>
-              <div className="left-side">
+              <div>
                 <EVAIcon
                   name="alert-triangle"
                   fill={variables.noir}
-                  className="mr-10"
+                  className="mr-16 ml-8"
                 />
                 <b>Un nouveau contenu a été attribué à votre structure !</b>
               </div>
-              <div className="middle-side">
-                <b>
-                  {element.created_at
-                    ? moment(element.created_at).fromNow()
-                    : ""}
-                </b>
-              </div>
               <div className="right-side">
+                <div className="red-text">
+                  <b>
+                    Depuis{" "}
+                    {element.created_at
+                      ? moment(element.created_at).fromNow(true)
+                      : ""}
+                  </b>
+                </div>
                 <FButton
                   tag={NavLink}
                   to={{
@@ -313,7 +314,11 @@ export class UserDashStruct extends Component {
           !this.props.userStructure.hasResponsibleSeenNotification && (
             <div className="nouveau-contenu mt-12 mb-12">
               <div className="left-side">
-                <EVAIcon name="info" fill={variables.noir} className="mr-10" />
+                <EVAIcon
+                  name="info"
+                  fill={variables.noir}
+                  className="mr-16 ml-8"
+                />
                 <b>Recensez votre structure dans l'annuaire de l'intégration</b>
               </div>
 
