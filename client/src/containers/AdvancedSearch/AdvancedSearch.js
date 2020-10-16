@@ -889,7 +889,7 @@ export class AdvancedSearch extends Component {
                   maxWidth: 2000,
                   flexDirection: "row",
                   display: "flex",
-                  padding: "8px 0px 8px 8px"
+                  padding: "8px 0px 8px 8px",
                 }}
                 //popperClassName={"popper"}
               >
@@ -948,15 +948,18 @@ export class AdvancedSearch extends Component {
           </FButton>
         </FilterBar>
         <div
-          className={"search-wrapper " + (this.state.searchToggleVisible ? "mt-250" : "mt-250-hidden")}
+          className={
+            "search-wrapper " +
+            (this.state.searchToggleVisible ? "mt-250" : "mt-250-hidden")
+          }
           style={{
             backgroundColor:
               this.state.activeTri === "Par thème"
                 ? "#f1e8f5"
                 : this.state.recherche[0] && this.state.recherche[0].value
-                ?  (filtres.tags.find(
-                  (elem) => elem.short === this.state.recherche[0].short
-                ))["lightColor"]
+                ? filtres.tags.find(
+                    (elem) => elem.short === this.state.recherche[0].short
+                  )["lightColor"]
                 : "#e4e5e6",
           }}
         >
@@ -1155,7 +1158,9 @@ export class AdvancedSearch extends Component {
                       {" " + t("avec le thème")}
                     </>
                   ) : (
-                    t("AdvancedSearch.autres fiches avec le thème")[0].toUpperCase() +
+                    t(
+                      "AdvancedSearch.autres fiches avec le thème"
+                    )[0].toUpperCase() +
                     t("AdvancedSearch.autres fiches avec le thème").slice(1)
                   )}
                 </ThemeHeaderTitle>
