@@ -155,7 +155,7 @@ export const LeftSideDispositif = (props: Props) => {
                 style={{ display: "flex", flexDirection: "row" }}
                 onMouseEnter={() => props.updateUIArray(-2)}
               >
-                {props.disableEdit && (
+                {props.disableEdit && props.content.externalLink && (
                   <FButton
                     type={"theme"}
                     name="external-link-outline"
