@@ -1190,7 +1190,12 @@ export class Dispositif extends Component {
   };
 
   deleteSponsor = (key) => {
-    if (this.state.status === "Accepté structure") {
+    if (
+      (this.state.status === "Accepté structure" ||
+        this.state.status === "Actif" ||
+        this.state.status === "En attente admin") &&
+      !this.props.admin
+    ) {
       Swal.fire({
         title: "Oh non!",
         text: "Vous ne pouvez plus supprimer de structures partenaires",
