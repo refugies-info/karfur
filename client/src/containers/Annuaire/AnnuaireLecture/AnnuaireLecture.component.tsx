@@ -3,6 +3,7 @@ import { Props } from "./AnnuaireLecture.container";
 import _ from "lodash";
 import styled from "styled-components";
 import { Letter } from "./components/Letter";
+import { LetterSection } from "./components/LetterSection";
 
 const Header = styled.div`
   background: #0421b1;
@@ -36,7 +37,19 @@ const LettersContainer = styled.div`
   flex-direction: row;
 `;
 
-const Content = styled.div``;
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #e5e5e5;
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  margin-bottom: 24px;
+`;
 
 export interface PropsBeforeInjection {
   t: any;
@@ -56,7 +69,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const onLetterClick = (letter: string) => setSelectedLetter(letter);
 
   return (
-    <>
+    <MainContainer>
       <Header>
         <TextContainer>
           {props.t("Annuaire.Annuaire", "Annuaire")}
@@ -72,7 +85,15 @@ export const AnnuaireLectureComponent = (props: Props) => {
           ))}
         </LettersContainer>
       </Header>
-      <Content></Content>
-    </>
+      <Content>
+        {letters.map((letter) => (
+          <LetterSection
+            letter={letter}
+            // @ts-ignore
+            structures={groupedStructureByLetter[letter]}
+          />
+        ))}
+      </Content>
+    </MainContainer>
   );
 };
