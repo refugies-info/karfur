@@ -118,6 +118,10 @@ async function add_dispositif(req, res) {
               { sort: { updatedAt: -1 } }
             );
             for (let tradExpert of originalTrads[key]) {
+              logger.info("[add_dispositif] before markTradModifications", {
+                // eslint-disable-next-line no-undef
+                id: dispositifFr._id,
+              });
               /*   now we compare the old french version of the dispositif with new updated one,
            and for every change we mark the paragraph/title/etc. within the translation so that we can propose it and highlight it in the 'à revoir' section  */
               tradExpert = markTradModifications(
@@ -258,7 +262,6 @@ async function get_dispositif(req, res) {
           { $sample: { size: 1 } },
         ]);
       } else {
-
         if (query["audienceAge.bottomValue"]) {
           var modifiedQuery = Object.assign({}, query);
           delete modifiedQuery["audienceAge.bottomValue"];
