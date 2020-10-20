@@ -644,8 +644,8 @@ export class AdvancedSearch extends Component {
           var aValue = 0;
           var bValue = 0;
           if (order === "created_at") {
-            aValue = _.get(a, "publishedAt", "created_at");
-            bValue = _.get(b, "publishedAt", "created_at");
+            aValue = _.get(a, "publishedAt", _.get(a,"created_at"));
+            bValue = _.get(b, "publishedAt",  _.get(b,"created_at"));
           } else {
             aValue = _.get(a, order);
             bValue = _.get(b, order);
@@ -1389,6 +1389,8 @@ export class AdvancedSearch extends Component {
                     </ThemeListContainer>
                   </>
                 ) : (
+                  <>
+                  <ThemeHeader />
                   <ThemeListContainer
                     columns={
                       isDesktop || isBigDesktop
@@ -1425,6 +1427,7 @@ export class AdvancedSearch extends Component {
                       //  </Col>
                     )}
                   </ThemeListContainer>
+                  </>
                 )}
               </ThemeContainer>
             )}
