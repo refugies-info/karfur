@@ -215,6 +215,7 @@ export class AdvancedSearch extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     document.addEventListener("mousedown", this.handleClickOutside);
     window.addEventListener("scroll", this.handleScrolling);
     this._isMounted = true;
