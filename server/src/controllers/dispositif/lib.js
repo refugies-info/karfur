@@ -159,6 +159,10 @@ async function add_dispositif(req, res) {
         dispositif.publishedAt = Date.now();
       }
 
+      if (dispositif.status === "Actif") {
+        dispositif.publishedAt = Date.now();
+      }
+
       //now I need to save the dispositif and the translation
       dispResult = await Dispositif.findOneAndUpdate(
         { _id: dispositif.dispositifId },
@@ -174,7 +178,6 @@ async function add_dispositif(req, res) {
         logger.info("[add_dispositif] dispositif is Actif", {
           dispositifId: dispResult._id,
         });
-        dispositif.publishedAt = Date.now();
         try {
           await addOrUpdateDispositifInContenusAirtable(
             dispResult.titreInformatif,

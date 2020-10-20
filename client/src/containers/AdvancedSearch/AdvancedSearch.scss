@@ -272,4 +272,4 @@
   border-radius: 8px;
 }
 
-.bs-tooltip-auto[x-placement^="bottom"] span.arrow::before, .bs-tooltip-bottom .arrow::before { border-bottom-color: white; }
+.bs-tooltip-auto[x-placement^="bottom"] span.arrow::before, .bs-tooltip-bottom .arrow::before { border-bottom-color: white !important; }
