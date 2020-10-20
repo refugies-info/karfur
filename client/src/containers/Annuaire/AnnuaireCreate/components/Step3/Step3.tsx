@@ -14,20 +14,19 @@ const HelpContainer = styled.div`
   flex-direction: row;
   background: #2d9cdb;
   border-radius: 12px;
-  width: 800px;
-  margin-top: 24px;
+  width: 782px;
+  margin-top: 16px;
   padding: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   position: relative;
 `;
 const HelpHeader = styled.div`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  width: 100px;
+  width: 300px;
   color: #fbfbfb;
-  align-items: flex-wrap;
-  margin-right: 40px;
+  margin-right: 16px;
 `;
 
 const HelpDescription = styled.div`
@@ -38,10 +37,10 @@ const HelpDescription = styled.div`
   font-size: 16px;
 `;
 const TagActivity = styled.div`
-  width: 800px;
+  width: 782px;
   background: ${(props) => props.backgroundColor};
   border-radius: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   color: ${(props) => props.color};
   font-weight: bold;
   font-size: 22px;
@@ -107,12 +106,14 @@ export const Step3 = (props: Props) => {
           <HelpHeader>Comment ça marche ?</HelpHeader>
           <HelpDescription>
             <>
-              Choisissez les <b> thèmes </b> correspondant à votre structure
-              puis précisez quelles <b> activités </b> vous proposez au sein des
-              thèmes choisis.
-              <br />
-              L’utilisateur pourra ainsi connaître et reconnaître les activités
-              liées à l’intégration des personnes réfugiés.
+              Sélectionnez ci-dessous les activités que propose votre structure.
+              Les internautes pourront ainsi comprendre rapidement votre offre
+              de service. Cette liste n’est pas exhaustive et sera complétée
+              avec le temps. <br />
+              <b>
+                Faites-nous part d’une activité manquante via notre livechat{" "}
+              </b>
+              présent en bas à droite de votre écran.
             </>
           </HelpDescription>
         </HelpContainer>

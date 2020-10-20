@@ -88,6 +88,11 @@ var structureSchema = mongoose.Schema(
     adressPublic: { type: String, unique: false, required: false },
     openingHours: { type: Object, unique: false, required: false },
     description: { type: String, unique: false, required: false },
+    hasResponsibleSeenNotification: {
+      type: Boolean,
+      unique: false,
+      required: false,
+    },
   },
   { timestamps: { createdAt: "created_at" } }
 );

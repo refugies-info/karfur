@@ -15,19 +15,18 @@ const HelpContainer = styled.div`
   background: #2d9cdb;
   border-radius: 12px;
   width: 800px;
-  margin-top: 24px;
+  margin-top: 16px;
   padding: 16px;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   position: relative;
 `;
 const HelpHeader = styled.div`
   font-weight: bold;
   font-size: 22px;
   line-height: 28px;
-  width: 100px;
+  width: 120px;
   color: #fbfbfb;
-  align-items: flex-wrap;
-  margin-right: 40px;
+  margin-right: 16px;
 `;
 
 const HelpDescription = styled.div`
@@ -36,6 +35,8 @@ const HelpDescription = styled.div`
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
+  display: flex;
+  felx: 1;
 `;
 
 const MainContainer = styled.div`
@@ -90,9 +91,8 @@ export const Step5 = (props: Props) => {
           </IconContainer>
           <HelpHeader>Comment ça marche ?</HelpHeader>
           <HelpDescription>
-            Utilisez jusqu’à 1000 caractères pour décrire votre structure.
-            Histoire, missions, valeurs, caractéristiques : rédigez un condensé
-            pour bien décrire votre structure.
+            Rédigez un court paragraphe pour décrire votre structure : missions,
+            valeurs, services, etc.
           </HelpDescription>
         </HelpContainer>
       ) : (

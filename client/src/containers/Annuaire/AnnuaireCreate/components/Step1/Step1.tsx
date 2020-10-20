@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
 import { Structure } from "../../../../../@types/interface";
@@ -48,6 +48,14 @@ interface Props {
 
 export const Step1 = (props: Props) => {
   const [uploading, setUploading] = useState(false);
+
+  useEffect(() => {
+    props.setStructure({
+      ...props.structure,
+      hasResponsibleSeenNotification: true,
+    });
+  }, []);
+
   const onChange = (e: any) =>
     props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
   const handleFileInputChange = (event: any) => {
@@ -88,6 +96,7 @@ export const Step1 = (props: Props) => {
           value={props.structure && props.structure.nom}
           onChange={onChange}
           newSize={true}
+          autoFocus={false}
         />
       </div>
       <Title>Acronyme</Title>
@@ -98,6 +107,7 @@ export const Step1 = (props: Props) => {
           onChange={onChange}
           newSize={true}
           placeholder="L'acronyme de votre structure"
+          autoFocus={false}
         />
       </div>
       <Title>Logo</Title>

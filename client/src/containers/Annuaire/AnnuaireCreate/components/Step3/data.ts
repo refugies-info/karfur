@@ -40,7 +40,10 @@ export const activities = [
   { tag: "Loisir", activity: "Tournois sportifs" },
   { tag: "Culture", activity: "Visite de la ville" },
   { tag: "Culture", activity: "Cours d'histoire de France" },
-  { tag: "Bénévolat", activity: "Service civique pour français" },
+  {
+    tag: "Bénévolat",
+    activity: "Service civique pour français (ou européens)",
+  },
   { tag: "Bénévolat", activity: "Service civique pour réfugiés" },
   { tag: "Bénévolat", activity: "Missions ponctuelles" },
   { tag: "Rencontre", activity: "Parrainage" },

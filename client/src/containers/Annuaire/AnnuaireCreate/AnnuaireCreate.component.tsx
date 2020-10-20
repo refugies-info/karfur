@@ -9,6 +9,9 @@ import { Step3 } from "./components/Step3/Step3";
 import { Step4 } from "./components/Step4/Step4";
 import { Step5 } from "./components/Step5/Step5";
 import { Step6 } from "./components/Step6/Step6";
+import { Spinner } from "reactstrap";
+import { FrameModal } from "../../../components/Modals";
+import img from "../../../assets/annuaire_create.svg";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -23,7 +26,7 @@ const MainContainer = styled.div`
 `;
 
 const LeftContainer = styled.div`
-  background: #0421b1;
+  background-image: url(${img});
   width: 360px;
   height: 600px;
   border-radius: 12px;
@@ -33,6 +36,10 @@ const LeftContainer = styled.div`
   justify-content: space-between;
   flex-direction: column;
   margin-right: 40px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 112px;
+  margin-bottom: 24px;
 `;
 
 const LeftTitleContainer = styled.div`
@@ -42,8 +49,10 @@ const LeftTitleContainer = styled.div`
   line-height: 51px;
   padding-right: 16px;
   padding-left: 16px;
-  width: 202px;
+  width: fit-content;
   margin-bottom: 13px;
+  padding-bottom: 8px;
+  padding-top: 8px;
 `;
 
 const StepDescription = styled.div`
@@ -56,6 +65,7 @@ const StepDescription = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 `;
 
 const RightContainer = styled.div`
@@ -66,6 +76,9 @@ const RightContainer = styled.div`
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
   const [step, setStep] = useState(1);
+  const [showTutoModal, setShowTutoModal] = useState(false);
+
+  const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
 
   const checkUserIsContribOrRespo = () => {
     const structureMembers = props.structure ? props.structure.membres : [];
@@ -85,11 +98,10 @@ export const AnnuaireCreateComponent = (props: Props) => {
     }
   };
 
-  const getStepDesciption = () => {
+  const getStepDescription = () => {
     if (step === 1) return "Vérification de l'identité de votre structure";
     if (step === 2) return "Sites et réseaux";
-    if (step === 3) return "Thèmes et activités";
-    if (step === 4) return "Contacts et infos pratiques";
+    if (step === 3) return "Activités";
     if (step === 5) return "Description";
     if (step > 5) return "Bien joué !";
     return "";
@@ -106,62 +118,82 @@ export const AnnuaireCreateComponent = (props: Props) => {
     setStep(step + 1);
   };
 
-  if (props.isLoading) {
-    return <div>isLoading</div>;
-  }
   return (
     <MainContainer>
       <LeftContainer>
         <div>
           <LeftTitleContainer>Annuaire</LeftTitleContainer>
-          <StepDescription>{getStepDesciption()}</StepDescription>
+          {step !== 4 && (
+            <StepDescription>{getStepDescription()}</StepDescription>
+          )}
+          {step === 4 && (
+            <StepDescription>
+              Contacts <br /> et infos pratiques
+            </StepDescription>
+          )}
         </div>
         <ButtonContainer>
           <FButton
             type="tuto"
             name={"play-circle-outline"}
-            className="mr-12"
-            // onClick={() => this.props.toggleTutorielModal("Tags")}
+            onClick={toggleTutorielModal}
           />
-          {step === 1 ? (
-            <FButton
-              type={"white"}
-              name="close-outline"
-              className="ml-12"
-              onClick={() => props.history.push("/backend/user-dash-structure")}
-            >
-              Quitter
-            </FButton>
-          ) : (
-            <FButton
-              type={"white"}
-              name="arrow-back-outline"
-              className="ml-12"
-              onClick={() => setStep(step - 1)}
-            >
-              Retour
-            </FButton>
-          )}
+          <div>
+            {step === 1 ? (
+              <FButton
+                type={"white"}
+                name="close-outline"
+                onClick={() =>
+                  props.history.push("/backend/user-dash-structure")
+                }
+              >
+                Quitter
+              </FButton>
+            ) : (
+              <FButton
+                type={"white"}
+                name="arrow-back-outline"
+                onClick={() => setStep(step - 1)}
+              >
+                Retour
+              </FButton>
+            )}
 
-          {step < 6 ? (
-            <FButton
-              type={"validate"}
-              name="arrow-forward-outline"
-              className="ml-12"
-              onClick={onStepValidate}
-            >
-              Suivant
-            </FButton>
-          ) : (
-            <FButton
-              type={"validate"}
-              name="arrow-forward-outline"
-              className="ml-12"
-              onClick={() => props.history.push("/backend/user-dash-structure")}
-            >
-              Terminer
-            </FButton>
-          )}
+            {step < 6 ? (
+              props.isLoading ? (
+                <FButton
+                  type={"validate"}
+                  className="ml-8"
+                  onClick={onStepValidate}
+                  disabled={true}
+                >
+                  <Spinner className="mr-8" />
+                  Suivant
+                </FButton>
+              ) : (
+                <FButton
+                  type={"validate"}
+                  name="arrow-forward-outline"
+                  className="ml-8"
+                  onClick={onStepValidate}
+                  disabled={props.isLoading}
+                >
+                  Suivant
+                </FButton>
+              )
+            ) : (
+              <FButton
+                type={"validate"}
+                name="done-all-outline"
+                className="ml-8"
+                onClick={() =>
+                  props.history.push("/backend/user-dash-structure")
+                }
+              >
+                Terminer
+              </FButton>
+            )}
+          </div>
         </ButtonContainer>
       </LeftContainer>
       <RightContainer>
@@ -199,6 +231,13 @@ export const AnnuaireCreateComponent = (props: Props) => {
         )}
         {step === 6 && <Step6 />}
       </RightContainer>
+      {showTutoModal && (
+        <FrameModal
+          show={showTutoModal}
+          toggle={toggleTutorielModal}
+          section={"Annuaire"}
+        />
+      )}
     </MainContainer>
   );
 };
