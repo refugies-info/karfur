@@ -368,8 +368,8 @@ export class AdvancedSearch extends Component {
         ...query,
         ...this.state.filter,
         status: "Actif",
+        ...({ demarcheId: { $exists: false } }),
       },
-      demarcheId: { $exists: false },
       locale: props.languei18nCode,
     })
       .then((data_res) => {
