@@ -170,6 +170,7 @@ async function add_dispositif(req, res) {
         logger.info("[add_dispositif] dispositif is Actif", {
           dispositifId: dispResult._id,
         });
+        dispositif.publishedAt = Date.now();
         try {
           await addOrUpdateDispositifInContenusAirtable(
             dispResult.titreInformatif,
@@ -186,7 +187,6 @@ async function add_dispositif(req, res) {
       logger.info("[add_dispositif] creating a new dispositif", {
         title: dispositif.titreInformatif,
       });
-      dispositif.publishedAt = Date.now();
       dispositif.creatorId = req.userId;
       dispResult = await new Dispositif(dispositif).save();
     }
@@ -258,7 +258,6 @@ async function get_dispositif(req, res) {
           { $sample: { size: 1 } },
         ]);
       } else {
-
         if (query["audienceAge.bottomValue"]) {
           var modifiedQuery = Object.assign({}, query);
           delete modifiedQuery["audienceAge.bottomValue"];

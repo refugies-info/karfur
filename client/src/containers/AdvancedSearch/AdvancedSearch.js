@@ -158,36 +158,64 @@ const FilterTitle = styled.p`
 
 let user = { _id: null, cookies: {} };
 export class AdvancedSearch extends Component {
-  state = {
-    showSpinner: false,
-    recherche: initial_data.map((x) => ({ ...x, active: false })),
-    dispositifs: [],
-    nbVues: [],
-    pinned: [],
-    activeFiltre: "",
-    activeTri: "Par thème",
-    data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
-    order: "created_at",
-    croissant: true,
-    filter: {},
-    displayAll: true,
-    dropdownOpenTri: false,
-    dropdownOpenFiltre: false,
-    showBookmarkModal: false,
-    searchToggleVisible: true,
-    visible: true,
-    countTotal: 0,
-    countShow: 0,
-    themesObject: [],
-    principalThemeList: [],
-    secondaryThemeList: [],
-    selectedTag: null,
-    nonTranslated: [],
-    filterLanguage: "",
-    chargingArray: new Array(20),
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSpinner: false,
+      recherche: initial_data.map((x) => ({ ...x, active: false })),
+      dispositifs: [],
+      nbVues: [],
+      pinned: [],
+      activeFiltre: "",
+      activeTri: "Par thème",
+      data: [], //inutilisé, à remplacer par recherche quand les cookies sont stabilisés
+      order: "created_at",
+      croissant: true,
+      filter: {},
+      displayAll: true,
+      dropdownOpenTri: false,
+      dropdownOpenFiltre: false,
+      showBookmarkModal: false,
+      searchToggleVisible: true,
+      visible: true,
+      countTotal: 0,
+      countShow: 0,
+      themesObject: [],
+      principalThemeList: [],
+      secondaryThemeList: [],
+      selectedTag: null,
+      nonTranslated: [],
+      filterLanguage: "",
+      chargingArray: new Array(20).fill(),
+      switch: false,
+    };
+
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  /**
+   * Alert if clicked on outside of element
+   */
+  handleClickOutside(event) {
+    if (
+      this.wrapperRef &&
+      !this.wrapperRef.contains(event.target) &&
+      this.state.languageDropdown
+    ) {
+      if (this.state.filterLanguage === "") {
+        this.setState({filterLanguage: "", activeFiltre: ""});
+      }
+      this.setState({ languageDropdown: false });
+    }
+  }
 
   componentDidMount() {
+    document.addEventListener("mousedown", this.handleClickOutside);
     window.addEventListener("scroll", this.handleScrolling);
     this._isMounted = true;
     this.retrieveCookies();
@@ -255,6 +283,7 @@ export class AdvancedSearch extends Component {
   }
 
   componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClickOutside);
     window.removeEventListener("scroll", this.handleScrolling);
     this._isMounted = false;
   }
@@ -893,27 +922,35 @@ export class AdvancedSearch extends Component {
                   display: "flex",
                   padding: "8px 0px 8px 8px",
                 }}
+
                 //popperClassName={"popper"}
               >
-                {this.props.langues.map((elem) => {
-                  if (elem.avancement > 0 && elem.langueCode !== "fr") {
-                    return (
-                      <div
-                        className={"language-filter-button"}
-                        onClick={() => this.selectLanguage(elem)}
-                      >
-                        <i
-                          className={
-                            "flag-icon ml-8 flag-icon-" + elem.langueCode
-                          }
-                          title={elem.langueCode}
-                          id={elem.langueCode}
-                        />
-                        <LanguageText>{elem.langueFr || "Langue"}</LanguageText>
-                      </div>
-                    );
-                  }
-                })}
+                <div
+                  style={{ display: "flex", flexDirection: "row" }}
+                  ref={this.setWrapperRef}
+                >
+                  {this.props.langues.map((elem) => {
+                    if (elem.avancement > 0 && elem.langueCode !== "fr") {
+                      return (
+                        <div
+                          className={"language-filter-button"}
+                          onClick={() => this.selectLanguage(elem)}
+                        >
+                          <i
+                            className={
+                              "flag-icon ml-8 flag-icon-" + elem.langueCode
+                            }
+                            title={elem.langueCode}
+                            id={elem.langueCode}
+                          />
+                          <LanguageText>
+                            {elem.langueFr || "Langue"}
+                          </LanguageText>
+                        </div>
+                      );
+                    }
+                  })}
+                </div>
               </Tooltip>{" "}
             </>
           ) : null}
@@ -1410,6 +1447,7 @@ export class AdvancedSearch extends Component {
           }} */
           >
             <ThemeContainer>
+              <ThemeHeader />
               <ThemeListContainer
                 columns={
                   isDesktop || isBigDesktop
@@ -1422,11 +1460,7 @@ export class AdvancedSearch extends Component {
                 }
               >
                 {this.state.chargingArray.map((dispositif, index) => {
-                  return (
-                    <LoadingCard
-                      key={index}
-                    />
-                  );
+                  return <LoadingCard key={index} />;
                 })}
               </ThemeListContainer>
             </ThemeContainer>
