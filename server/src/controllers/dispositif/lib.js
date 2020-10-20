@@ -174,6 +174,7 @@ async function add_dispositif(req, res) {
         logger.info("[add_dispositif] dispositif is Actif", {
           dispositifId: dispResult._id,
         });
+        dispositif.publishedAt = Date.now();
         try {
           await addOrUpdateDispositifInContenusAirtable(
             dispResult.titreInformatif,
@@ -190,7 +191,6 @@ async function add_dispositif(req, res) {
       logger.info("[add_dispositif] creating a new dispositif", {
         title: dispositif.titreInformatif,
       });
-      dispositif.publishedAt = Date.now();
       dispositif.creatorId = req.userId;
       dispResult = await new Dispositif(dispositif).save();
     }
