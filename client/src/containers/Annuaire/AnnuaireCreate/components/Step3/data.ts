@@ -1,8 +1,25 @@
+import { ReactComponent as CertificationFLE } from "../../../../../assets/annuaire/activités/CertificationFLE.svg";
+import { ReactComponent as CoursFrançais } from "../../../../../assets/annuaire/activités/CoursFrançais.svg";
+import { ReactComponent as SupportApprentissage } from "../../../../../assets/annuaire/activités/SupportAutoApprentissage.svg";
+import { ReactComponent as AteliersSocioLinguistique } from "../../../../../assets/annuaire/activités/AteliersSocio-linguistique.svg";
+
 export const activities = [
-  { tag: "Français", activity: "Sessions de certification FLE" },
-  { tag: "Français", activity: "Cours de français" },
-  { tag: "Français", activity: "Support d'auto-apprentissage" },
-  { tag: "Français", activity: "Ateliers socio-linguistique" },
+  {
+    tag: "Français",
+    activity: "Sessions de certification FLE",
+    image: CertificationFLE,
+  },
+  { tag: "Français", activity: "Cours de français", image: CoursFrançais },
+  {
+    tag: "Français",
+    activity: "Support d'auto-apprentissage",
+    image: SupportApprentissage,
+  },
+  {
+    tag: "Français",
+    activity: "Ateliers socio-linguistique",
+    image: AteliersSocioLinguistique,
+  },
   // { tag: "Français", activity: "Évaluation et orientation" },
   { tag: "Logement", activity: "Hébergement citoyen" },
   { tag: "Logement", activity: "Hébergement longue durée" },

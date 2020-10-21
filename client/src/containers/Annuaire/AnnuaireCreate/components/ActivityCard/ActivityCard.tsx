@@ -9,6 +9,7 @@ interface Props {
   lightColor: string;
   selectActivity: (arg: string) => void;
   isSelected: boolean;
+  image: any | null;
 }
 
 const CardContainer = styled.div`
@@ -46,6 +47,8 @@ const CardContainer = styled.div`
 
 const ImageContainer = styled.div`
   margin-bottom: 16px;
+  max-width: 156px;
+  max-height: 100px;
 `;
 export const ActivityCard = (props: Props) => (
   <CardContainer
@@ -55,7 +58,8 @@ export const ActivityCard = (props: Props) => (
     isSelected={props.isSelected}
   >
     <ImageContainer>
-      <img src={placeholder} className="image" />
+      {!props.image && <img src={placeholder} className="image" />}
+      <div>{props.image && <props.image className="image" />}</div>
     </ImageContainer>
     {props.activity}
   </CardContainer>

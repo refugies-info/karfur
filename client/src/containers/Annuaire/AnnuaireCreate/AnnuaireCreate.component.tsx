@@ -11,7 +11,7 @@ import { Step5 } from "./components/Step5/Step5";
 import { Step6 } from "./components/Step6/Step6";
 import { Spinner } from "reactstrap";
 import { FrameModal } from "../../../components/Modals";
-import img from "../../../assets/annuaire_create.svg";
+import img from "../../../assets/annuaire/annuaire_create.svg";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -75,7 +75,7 @@ const RightContainer = styled.div`
   margin-top: 112px;
 `;
 export const AnnuaireCreateComponent = (props: Props) => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3);
   const [showTutoModal, setShowTutoModal] = useState(false);
 
   const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
