@@ -176,19 +176,23 @@ const dashHeader = (props) => {
                 </FButton>
               )
           }
-          {props.title === "Votre structure" &&
-            props.structure &&
-            props.structure.hasResponsibleSeenNotification && (
-              <FButton
-                type="dark"
-                className="mr-8"
-                name="edit-outline"
-                tag={NavLink}
-                to="/annuaire-create"
-              >
-                Modifier la fiche annuaire
-              </FButton>
-            )}
+          {
+            // temporarly remove access to annuaire create for mep
+            false &&
+              props.title === "Votre structure" &&
+              props.structure &&
+              props.structure.hasResponsibleSeenNotification && (
+                <FButton
+                  type="dark"
+                  className="mr-8"
+                  name="edit-outline"
+                  tag={NavLink}
+                  to="/annuaire-create"
+                >
+                  Modifier la fiche annuaire
+                </FButton>
+              )
+          }
           <FButton
             tag={"a"}
             href="https://help.refugies.info/fr/"
