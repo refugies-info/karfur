@@ -208,14 +208,14 @@ export class AdvancedSearch extends Component {
       this.state.languageDropdown
     ) {
       if (this.state.filterLanguage === "") {
-        this.setState({filterLanguage: "", activeFiltre: ""});
+        this.setState({ filterLanguage: "", activeFiltre: "" });
       }
       this.setState({ languageDropdown: false });
     }
   }
 
   componentDidMount() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
     document.addEventListener("mousedown", this.handleClickOutside);
     window.addEventListener("scroll", this.handleScrolling);
     this._isMounted = true;
@@ -368,7 +368,7 @@ export class AdvancedSearch extends Component {
         ...query,
         ...this.state.filter,
         status: "Actif",
-        ...({ demarcheId: { $exists: false } }),
+        ...{ demarcheId: { $exists: false } },
       },
       locale: props.languei18nCode,
     })
@@ -645,8 +645,8 @@ export class AdvancedSearch extends Component {
           var aValue = 0;
           var bValue = 0;
           if (order === "created_at") {
-            aValue = _.get(a, "publishedAt", _.get(a,"created_at"));
-            bValue = _.get(b, "publishedAt",  _.get(b,"created_at"));
+            aValue = _.get(a, "publishedAt", _.get(a, "created_at"));
+            bValue = _.get(b, "publishedAt", _.get(b, "created_at"));
           } else {
             aValue = _.get(a, order);
             bValue = _.get(b, order);
@@ -823,170 +823,177 @@ export class AdvancedSearch extends Component {
 
     return (
       <div className="animated fadeIn advanced-search">
-        <div
-          className={
-            "search-bar" + (this.state.visible ? "" : " search-bar-hidden")
-          }
-        >
-          {recherche
-            .filter((_, i) => displayAll || i === 0)
-            .map((d, i) => (
-              <SearchItem
-                isBigDesktop={isBigDesktop}
-                key={i}
-                item={d}
-                keyValue={i}
-                selectParam={this.selectParam}
-                desactiver={this.desactiver}
-              />
-            ))}
-          <SearchToggle
-            onClick={() => this.toggleSearch()}
-            visible={this.state.searchToggleVisible}
+        <div>
+          <div
+            className={
+              "search-bar" + (this.state.visible ? "" : " search-bar-hidden")
+            }
           >
-            {this.state.searchToggleVisible ? (
-              <EVAIcon name="arrow-ios-upward-outline" fill={variables.blanc} />
-            ) : (
-              <EVAIcon
-                name="arrow-ios-downward-outline"
-                fill={variables.noir}
-              />
-            )}
-          </SearchToggle>
-          <ResponsiveFooter
-            {...this.state}
-            show={false}
-            toggleDropdownTri={this.toggleDropdownTri}
-            toggleDropdownFiltre={this.toggleDropdownFiltre}
-            reorder={this.reorder}
-            filter_content={this.filter_content}
-            toggleDisplayAll={this.toggleDisplayAll}
-            t={t}
-          />
-        </div>
-        <FilterBar
-          visibleTop={this.state.visible}
-          visibleSearch={this.state.searchToggleVisible}
-        >
-          <FilterTitle>
-            {t("AdvancedSearch.Filtrer par n", "Filtrer par")}
-          </FilterTitle>
-          {filtres_contenu.map((filtre, idx) => {
-            return (
+            {recherche
+              .filter((_, i) => displayAll || i === 0)
+              .map((d, i) => (
+                <SearchItem
+                  isBigDesktop={isBigDesktop}
+                  key={i}
+                  item={d}
+                  keyValue={i}
+                  selectParam={this.selectParam}
+                  desactiver={this.desactiver}
+                />
+              ))}
+            <SearchToggle
+              onClick={() => this.toggleSearch()}
+              visible={this.state.searchToggleVisible}
+            >
+              {this.state.searchToggleVisible ? (
+                <EVAIcon
+                  name="arrow-ios-upward-outline"
+                  fill={variables.blanc}
+                />
+              ) : (
+                <EVAIcon
+                  name="arrow-ios-downward-outline"
+                  fill={variables.noir}
+                />
+              )}
+            </SearchToggle>
+            <ResponsiveFooter
+              {...this.state}
+              show={false}
+              toggleDropdownTri={this.toggleDropdownTri}
+              toggleDropdownFiltre={this.toggleDropdownFiltre}
+              reorder={this.reorder}
+              filter_content={this.filter_content}
+              toggleDisplayAll={this.toggleDisplayAll}
+              t={t}
+            />
+          </div>
+          <FilterBar
+            visibleTop={this.state.visible}
+            visibleSearch={this.state.searchToggleVisible}
+          >
+            <FilterTitle>
+              {t("AdvancedSearch.Filtrer par n", "Filtrer par")}
+            </FilterTitle>
+            {filtres_contenu.map((filtre, idx) => {
+              return (
+                <TagButton
+                  active={filtre.name === activeFiltre}
+                  desactiver={this.desactiverFiltre}
+                  key={idx}
+                  filter
+                  onClick={() => this.filter_content(filtre)}
+                >
+                  {filtre.name &&
+                    t("AdvancedSearch." + filtre.name, filtre.name)}
+                </TagButton>
+              );
+            })}
+            {languei18nCode === "fr" ? (
+              <>
+                <TagButton
+                  active={"traduction" === activeFiltre}
+                  desactiver={this.desactiverFiltre}
+                  filter
+                  id={"Tooltip-1"}
+                  onClick={() => this.openLDropdown()}
+                >
+                  {filterLanguage === "" ? (
+                    t("AdvancedSearch.Traduction")
+                  ) : (
+                    <>
+                      <i
+                        className={
+                          "flag-icon ml-8 flag-icon-" +
+                          filterLanguage.langueCode
+                        }
+                        title={filterLanguage.langueCode}
+                        id={filterLanguage.langueCode}
+                      />
+                      <LanguageTextFilter>
+                        {filterLanguage.langueFr || "Langue"}
+                      </LanguageTextFilter>
+                    </>
+                  )}
+                </TagButton>
+                <Tooltip
+                  placement={"bottom"}
+                  isOpen={this.state.languageDropdown}
+                  target={"Tooltip-1"}
+                  className={"mt-15"}
+                  style={{
+                    backgroundColor: "white",
+                    boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.25)",
+                    maxWidth: 2000,
+                    flexDirection: "row",
+                    display: "flex",
+                    padding: "8px 0px 8px 8px",
+                  }}
+
+                  //popperClassName={"popper"}
+                >
+                  <div
+                    style={{ display: "flex", flexDirection: "row" }}
+                    ref={this.setWrapperRef}
+                  >
+                    {this.props.langues.map((elem) => {
+                      if (elem.avancement > 0 && elem.langueCode !== "fr") {
+                        return (
+                          <div
+                            className={"language-filter-button"}
+                            onClick={() => this.selectLanguage(elem)}
+                          >
+                            <i
+                              className={
+                                "flag-icon ml-8 flag-icon-" + elem.langueCode
+                              }
+                              title={elem.langueCode}
+                              id={elem.langueCode}
+                            />
+                            <LanguageText>
+                              {elem.langueFr || "Langue"}
+                            </LanguageText>
+                          </div>
+                        );
+                      }
+                    })}
+                  </div>
+                </Tooltip>{" "}
+              </>
+            ) : null}
+            <FilterTitle>
+              {t("AdvancedSearch.Trier par n", "Trier par")}
+            </FilterTitle>
+            {tris.map((tri, idx) => (
               <TagButton
-                active={filtre.name === activeFiltre}
-                desactiver={this.desactiverFiltre}
+                active={tri.name === activeTri}
+                desactiver={this.desactiverTri}
                 key={idx}
                 filter
-                onClick={() => this.filter_content(filtre)}
+                onClick={() => this.reorder(tri)}
               >
-                {filtre.name && t("AdvancedSearch." + filtre.name, filtre.name)}
+                {t("AdvancedSearch." + tri.name, tri.name)}
               </TagButton>
-            );
-          })}
-          {languei18nCode === "fr" ? (
-            <>
-              <TagButton
-                active={"traduction" === activeFiltre}
-                desactiver={this.desactiverFiltre}
-                filter
-                id={"Tooltip-1"}
-                onClick={() => this.openLDropdown()}
-              >
-                {filterLanguage === "" ? (
-                  t("AdvancedSearch.Traduction")
-                ) : (
-                  <>
-                    <i
-                      className={
-                        "flag-icon ml-8 flag-icon-" + filterLanguage.langueCode
-                      }
-                      title={filterLanguage.langueCode}
-                      id={filterLanguage.langueCode}
-                    />
-                    <LanguageTextFilter>
-                      {filterLanguage.langueFr || "Langue"}
-                    </LanguageTextFilter>
-                  </>
-                )}
-              </TagButton>
-              <Tooltip
-                placement={"bottom"}
-                isOpen={this.state.languageDropdown}
-                target={"Tooltip-1"}
-                className={"mt-15"}
-                style={{
-                  backgroundColor: "white",
-                  boxShadow: "0px 4px 40px rgba(0, 0, 0, 0.25)",
-                  maxWidth: 2000,
-                  flexDirection: "row",
-                  display: "flex",
-                  padding: "8px 0px 8px 8px",
-                }}
-
-                //popperClassName={"popper"}
-              >
-                <div
-                  style={{ display: "flex", flexDirection: "row" }}
-                  ref={this.setWrapperRef}
-                >
-                  {this.props.langues.map((elem) => {
-                    if (elem.avancement > 0 && elem.langueCode !== "fr") {
-                      return (
-                        <div
-                          className={"language-filter-button"}
-                          onClick={() => this.selectLanguage(elem)}
-                        >
-                          <i
-                            className={
-                              "flag-icon ml-8 flag-icon-" + elem.langueCode
-                            }
-                            title={elem.langueCode}
-                            id={elem.langueCode}
-                          />
-                          <LanguageText>
-                            {elem.langueFr || "Langue"}
-                          </LanguageText>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-              </Tooltip>{" "}
-            </>
-          ) : null}
-          <FilterTitle>
-            {t("AdvancedSearch.Trier par n", "Trier par")}
-          </FilterTitle>
-          {tris.map((tri, idx) => (
-            <TagButton
-              active={tri.name === activeTri}
-              desactiver={this.desactiverTri}
-              key={idx}
+            ))}
+            <FilterTitle>
+              {" "}
+              {this.state.countShow +
+                "/" +
+                this.props.dispositifs.length +
+                " " +
+                t("AdvancedSearch.résultats", "résultats")}
+            </FilterTitle>
+            <FButton
+              className={isRTL ? "ml-10" : ""}
+              type="white-yellow-hover"
+              name="file-add-outline"
+              onClick={this.writeNew}
               filter
-              onClick={() => this.reorder(tri)}
             >
-              {t("AdvancedSearch." + tri.name, tri.name)}
-            </TagButton>
-          ))}
-          <FilterTitle>
-            {" "}
-            {this.state.countShow +
-              "/" +
-              this.props.dispositifs.length +
-              " " +
-              t("AdvancedSearch.résultats", "résultats")}
-          </FilterTitle>
-          <FButton
-            className={isRTL ? "ml-10" : ""}
-            type="white-yellow-hover"
-            name="file-add-outline"
-            onClick={this.writeNew}
-            filter
-          >
-            {t("AdvancedSearch.Rédiger", "Rédiger")}
-          </FButton>
-        </FilterBar>
+              {t("AdvancedSearch.Rédiger", "Rédiger")}
+            </FButton>
+          </FilterBar>
+        </div>
         {!this.state.showSpinner ? (
           <div
             className={
@@ -1391,43 +1398,44 @@ export class AdvancedSearch extends Component {
                   </>
                 ) : (
                   <>
-                  <ThemeHeader />
-                  <ThemeListContainer
-                    columns={
-                      isDesktop || isBigDesktop
-                        ? 5
-                        : isSmallDesktop
-                        ? 4
-                        : isTablet
-                        ? 3
-                        : 2
-                    }
-                  >
-                    {dispositifs.map((dispositif, index) => {
-                      return (
-                        <SearchResultCard
-                          key={index}
-                          pin={this.pin}
-                          pinnedList={this.state.pinned}
-                          dispositif={dispositif}
-                        />
-                      );
-                    })}
-                    {!showSpinner && [...pinned, ...dispositifs].length === 0 && (
-                      /*             <Col
+                    <ThemeHeader />
+                    <ThemeListContainer
+                      columns={
+                        isDesktop || isBigDesktop
+                          ? 5
+                          : isSmallDesktop
+                          ? 4
+                          : isTablet
+                          ? 3
+                          : 2
+                      }
+                    >
+                      {dispositifs.map((dispositif, index) => {
+                        return (
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                          />
+                        );
+                      })}
+                      {!showSpinner &&
+                        [...pinned, ...dispositifs].length === 0 && (
+                          /*             <Col
                     xs="12"
                     sm="6"
                     md="3"
                     className="no-result"
                     onClick={() => this.selectTag()}
                   > */
-                      <NoResultPlaceholder
-                        restart={this.restart}
-                        writeNew={this.writeNew}
-                      />
-                      //  </Col>
-                    )}
-                  </ThemeListContainer>
+                          <NoResultPlaceholder
+                            restart={this.restart}
+                            writeNew={this.writeNew}
+                          />
+                          //  </Col>
+                        )}
+                    </ThemeListContainer>
                   </>
                 )}
               </ThemeContainer>
