@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
-import { withTranslation } from "react-i18next"
+import { withTranslation } from "react-i18next";
 
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
@@ -18,21 +18,32 @@ const bookmarkedModal = (props) => {
         <div className={"bookmark-icon" + (success ? " success" : " oups")}>
           <EVAIcon name={"bookmark"} fill={variables["blanc"]} />
         </div>
-        <div>{success ? "Sauvegardé !" : "Oups."}</div>
+        <div>
+          {success
+            ? t("Dispositif.Sauvegardé", "Sauvegardé !")
+            : t("Dispositif.Oups", "Oups !")}
+        </div>
       </ModalHeader>
       <ModalBody>
         {success ? (
           <>
-            Votre recherche est désormais disponible dans votre profil dans la
-            rubrique{" "}
+            {t(
+              "Dispositif.favoriSaved",
+              "Votre recherche est désormais disponible dans votre profil dans la rubrique"
+            )}{" "}
             <NavHashLink to="/backend/user-profile#mes-favoris">
-              <b>Mes favoris</b>
+              <b>{t("Dispositif.Mes favoris", "Mes favoris")}</b>
             </NavHashLink>
           </>
         ) : (
           <>
-            <b>Connectez-vous</b> ou <b>créez un compte</b> pour retrouver
-            facilement vos fiches favorites dans votre espace personnel.
+            <b>{t("Dispositif.Connectez-vous", "Connectez-vous")} </b>
+            {t("ou", "ou")}{" "}
+            <b>{t("Dispositif.créez un compte", "créez un compte")}</b>{" "}
+            {t(
+              "Dispositif.favoriExplanation",
+              "pour retrouver facilement vos fiches favorites dans votre espace personnel."
+            )}
           </>
         )}
       </ModalBody>
@@ -40,22 +51,12 @@ const bookmarkedModal = (props) => {
         {success ? (
           <>
             <FButton
-              type={success ? "validate" : "light-action"}
-              name={success && "checkmark-circle-outline"}
+              type={"validate"}
+              name={"checkmark-circle-outline"}
               onClick={props.toggle}
             >
-              {success ? "Merci !" : "Non merci"}
+              {t("Dispositif.Merci", "Merci !")}
             </FButton>
-            {!success && (
-              <FButton
-                tag={NavLink}
-                to="/login"
-                type="validate"
-                name="checkmark-circle-outline"
-              >
-                Créer un compte
-              </FButton>
-            )}
           </>
         ) : (
           <>
@@ -78,7 +79,7 @@ const bookmarkedModal = (props) => {
                 name={"person-add-outline"}
                 className="mr-10"
               >
-                  {t("Toolbar.Inscription", "Inscription")}
+                {t("Toolbar.Inscription", "Inscription")}
               </FButton>
             </NavLink>
           </>

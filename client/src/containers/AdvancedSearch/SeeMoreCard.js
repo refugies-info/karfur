@@ -29,10 +29,11 @@ const SeeMoreText = styled.p`
   color: white;
   font-size: 18px;
   margin-left: 8px;
+  margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
   font-weight: 700;
 `
 
-const SeeMoreCard = ({ theme, t, seeMore }) => {
+const SeeMoreCard = ({ theme, t, seeMore, isRTL }) => {
   return (
     <div
       className={
@@ -44,8 +45,8 @@ const SeeMoreCard = ({ theme, t, seeMore }) => {
           <CardText color={theme.darkColor}>{t("AdvancedSearch.Voir les fiches", "Voir toutes les fiches")}</CardText>
           <SeeMoreButton color={theme.darkColor}>
           <EVAIcon name="expand-outline" fill={variables.blanc} />
-            <SeeMoreText>
-              {theme.short}
+            <SeeMoreText mr={isRTL ? 8 : 0}>
+              {t("Tags." + theme.short, theme.short)}
             </SeeMoreText>
           </SeeMoreButton>
         </CardBody>

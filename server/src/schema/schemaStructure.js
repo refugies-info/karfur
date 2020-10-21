@@ -77,6 +77,22 @@ var structureSchema = mongoose.Schema(
       type: Object,
       required: false,
     },
+    structureTypes: { type: Array, unique: false, required: false },
+    websites: { type: Array, unique: false, required: false },
+    twitter: { type: String, unique: false, required: false },
+    facebook: { type: String, unique: false, required: false },
+    linkedin: { type: String, unique: false, required: false },
+    activities: { type: Array, unique: false, required: false },
+    departments: { type: Array, unique: false, required: false },
+    phonesPublic: { type: Array, unique: false, required: false },
+    adressPublic: { type: String, unique: false, required: false },
+    openingHours: { type: Object, unique: false, required: false },
+    description: { type: String, unique: false, required: false },
+    hasResponsibleSeenNotification: {
+      type: Boolean,
+      unique: false,
+      required: false,
+    },
   },
   { timestamps: { createdAt: "created_at" } }
 );

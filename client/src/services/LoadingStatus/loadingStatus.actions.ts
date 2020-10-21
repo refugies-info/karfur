@@ -2,6 +2,8 @@ import { action, ActionType } from "typesafe-actions";
 
 export enum LoadingStatusKey {
   FETCH_SELECTED_DISPOSITIF = "FETCH_SELECTED_DISPOSITIF",
+  FETCH_USER_STRUCTURE = "FETCH_USER_STRUCTURE",
+  FETCH_USER = "FETCH_USER",
 }
 
 export const startLoading = (key: LoadingStatusKey) =>

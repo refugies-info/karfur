@@ -118,6 +118,10 @@ async function add_dispositif(req, res) {
               { sort: { updatedAt: -1 } }
             );
             for (let tradExpert of originalTrads[key]) {
+              logger.info("[add_dispositif] before markTradModifications", {
+                // eslint-disable-next-line no-undef
+                id: dispositifFr._id,
+              });
               /*   now we compare the old french version of the dispositif with new updated one,
            and for every change we mark the paragraph/title/etc. within the translation so that we can propose it and highlight it in the 'à revoir' section  */
               tradExpert = markTradModifications(
@@ -150,7 +154,13 @@ async function add_dispositif(req, res) {
             }
           }
         }
-        dispositif.avancement = originalDis.avancement;
+        dispositif.avancement =
+          originalDis.avancement.fr || originalDis.avancement;
+        dispositif.publishedAt = Date.now();
+      }
+
+      if (dispositif.status === "Actif") {
+        dispositif.publishedAt = Date.now();
       }
 
       //now I need to save the dispositif and the translation
@@ -229,67 +239,86 @@ async function add_dispositif(req, res) {
   }
 }
 
-function get_dispositif(req, res) {
-  if (!req.body || !req.body.query) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    logger.info("Calling get dispositif");
-    let { query, sort, populate, limit, random, locale } = req.body;
-    locale = locale || "fr";
+async function get_dispositif(req, res) {
+  try {
+    if (!req.body || !req.body.query) {
+      res.status(400).json({ text: "Requête invalide" });
+    } else {
+      logger.info("Calling get dispositif");
+      let { query, sort, populate, limit, random, locale } = req.body;
+      locale = locale || "fr";
 
-    if (!req.fromSite) {
-      //On n'autorise pas les populate en API externe
-      populate = "";
-    } else if (populate && populate.constructor === Object) {
-      populate.select = "-password";
-    } else if (populate) {
-      populate = { path: populate, select: "-password" };
-    } else {
-      populate = "";
-    }
-    let promise = null;
-    if (random) {
-      promise = Dispositif.aggregate([
-        { $match: query },
-        { $sample: { size: 1 } },
-      ]);
-    } else {
-      promise = Dispositif.find(query)
-        .sort(sort)
-        .populate(populate)
-        .limit(limit)
-        .lean();
-    }
-    // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
-    promise
-      .then((result) => {
-        [].forEach.call(result, (dispositif) => {
-          dispositif = turnToLocalized(dispositif, locale);
-          turnJSONtoHTML(dispositif.contenu);
-        });
-        res.status(200).json({
-          text: "Succès",
-          data: result,
-        });
-      })
-      .catch(function (error) {
-        switch (error) {
-          case 500:
-            res.status(500).json({
-              text: "Erreur interne",
-            });
-            break;
-          case 404:
-            res.status(404).json({
-              text: "Pas de résultat",
-            });
-            break;
-          default:
-            res.status(500).json({
-              text: "Erreur interne",
-            });
+      if (!req.fromSite) {
+        //On n'autorise pas les populate en API externe
+        populate = "";
+      } else if (populate && populate.constructor === Object) {
+        populate.select = "-password";
+      } else if (populate) {
+        populate = { path: populate, select: "-password" };
+      } else {
+        populate = "";
+      }
+      let promise = null;
+      if (random) {
+        promise = await Dispositif.aggregate([
+          { $match: query },
+          { $sample: { size: 1 } },
+        ]);
+      } else {
+        if (query["audienceAge.bottomValue"]) {
+          var modifiedQuery = Object.assign({}, query);
+          delete modifiedQuery["audienceAge.bottomValue"];
+          delete modifiedQuery["audienceAge.topValue"];
+          var newQuery = {
+            $or: [
+              query,
+              {
+                "variantes.bottomValue": query["audienceAge.bottomValue"],
+                "variantes.topValue": query["audienceAge.topValue"],
+                ...modifiedQuery,
+              },
+            ],
+          };
+          promise = await Dispositif.find(newQuery)
+            .sort(sort)
+            .populate(populate)
+            .limit(limit)
+            .lean();
+        } else {
+          promise = await Dispositif.find(query)
+            .sort(sort)
+            .populate(populate)
+            .limit(limit)
+            .lean();
         }
+      }
+      // promise.explain("allPlansExecution").then(d => console.log("query explained : ", d));
+      [].forEach.call(promise, (dispositif) => {
+        dispositif = turnToLocalized(dispositif, locale);
+        turnJSONtoHTML(dispositif.contenu);
       });
+      res.status(200).json({
+        text: "Succès",
+        data: promise,
+      });
+    }
+  } catch (error) {
+    switch (error) {
+      case 500:
+        res.status(500).json({
+          text: "Erreur interne",
+        });
+        break;
+      case 404:
+        res.status(404).json({
+          text: "Pas de résultat",
+        });
+        break;
+      default:
+        res.status(500).json({
+          text: "Erreur interne",
+        });
+    }
   }
 }
 

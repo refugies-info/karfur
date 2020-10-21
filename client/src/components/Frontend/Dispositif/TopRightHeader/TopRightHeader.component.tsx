@@ -79,6 +79,17 @@ export class TopRightHeader extends React.Component<Props> {
       return (
         <Col xl="6" lg="6" md="6" sm="6" xs="12" className="top-right">
           <Card>
+            {props.admin && (
+              <div style={{ marginBottom: "8px" }}>
+                <FButton
+                  className="dark"
+                  name="edit-outline"
+                  onClick={props.editDispositif}
+                >
+                  Modifier la fiche
+                </FButton>
+              </div>
+            )}
             <CardBody className="backgroundColor-lightColor">
               <span className="validate-header">
                 Souhaitez-vous récupérer ce contenu ?

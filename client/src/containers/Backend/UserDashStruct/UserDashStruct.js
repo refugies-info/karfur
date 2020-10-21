@@ -39,6 +39,10 @@ import { fetchDispositifsActionCreator } from "../../../services/Dispositif/disp
 
 import "./UserDashStruct.scss";
 import variables from "scss/colors.scss";
+import {
+  setUserStructureActionCreator,
+  updateUserStructureActionCreator,
+} from "../../../services/Structures/structures.actions";
 
 moment.locale("fr");
 
@@ -227,6 +231,14 @@ export class UserDashStruct extends Component {
       timer: 1500,
     });
 
+  updateStructureWithNotificationSeen = () => {
+    this.props.setStructure({
+      ...this.props.userStructure,
+      hasResponsibleSeenNotification: true,
+    });
+    this.props.updateStructure();
+  };
+
   render() {
     const {
       isMainLoading,
@@ -236,7 +248,6 @@ export class UserDashStruct extends Component {
       users,
     } = this.state;
     const { user } = this.props;
-
     if (!structure || structure.noResults) {
       return <Redirect to="/backend/user-profile" />;
     }
@@ -244,6 +255,7 @@ export class UserDashStruct extends Component {
     const enAttente = (structure.dispositifsAssocies || []).filter(
       (x) => x.status === "En attente"
     );
+
     return (
       <div className="animated fadeIn user-dash-struct">
         <DashHeader
@@ -261,22 +273,23 @@ export class UserDashStruct extends Component {
         {enAttente.length > 0 &&
           enAttente.map((element) => (
             <div className="nouveau-contenu mt-12 mb-12" key={element._id}>
-              <div className="left-side">
+              <div>
                 <EVAIcon
                   name="alert-triangle"
                   fill={variables.noir}
-                  className="mr-10"
+                  className="mr-16 ml-8"
                 />
                 <b>Un nouveau contenu a été attribué à votre structure !</b>
               </div>
-              <div className="middle-side">
-                <b>
-                  {element.created_at
-                    ? moment(element.created_at).fromNow()
-                    : ""}
-                </b>
-              </div>
               <div className="right-side">
+                <div className="red-text">
+                  <b>
+                    Depuis{" "}
+                    {element.created_at
+                      ? moment(element.created_at).fromNow(true)
+                      : ""}
+                  </b>
+                </div>
                 <FButton
                   tag={NavLink}
                   to={{
@@ -296,6 +309,43 @@ export class UserDashStruct extends Component {
               </div>
             </div>
           ))}
+
+        {
+          // temporarly remove access to annuaire create for mep
+          false &&
+            this.props.userStructure &&
+            !this.props.userStructure.hasResponsibleSeenNotification && (
+              <div className="nouveau-contenu mt-12 mb-12">
+                <div className="left-side">
+                  <EVAIcon
+                    name="info"
+                    fill={variables.noir}
+                    className="mr-16 ml-8"
+                  />
+                  <b>
+                    Recensez votre structure dans l'annuaire de l'intégration
+                  </b>
+                </div>
+
+                <div className="right-side">
+                  <FButton
+                    type="dark"
+                    className="mr-8"
+                    name="folder-add-outline"
+                    tag={NavLink}
+                    to="/annuaire-create"
+                  >
+                    Compléter la fiche annuaire
+                  </FButton>
+                  <FButton
+                    type="light-action"
+                    name="archive-outline"
+                    onClick={this.updateStructureWithNotificationSeen}
+                  ></FButton>
+                </div>
+              </div>
+            )
+        }
 
         <ActionTable
           dataArray={actions}
@@ -414,10 +464,15 @@ const mapStateToProps = (state) => {
     langues: state.langue.langues,
     user: state.user.user,
     expertTrad: state.user.expertTrad,
+    userStructure: state.structure.userStructure,
   };
 };
 
-const mapDispatchToProps = { fetchDispositifs: fetchDispositifsActionCreator };
+const mapDispatchToProps = {
+  fetchDispositifs: fetchDispositifsActionCreator,
+  setStructure: setUserStructureActionCreator,
+  updateStructure: updateUserStructureActionCreator,
+};
 
 export default track({
   page: "UserDashStruct",
