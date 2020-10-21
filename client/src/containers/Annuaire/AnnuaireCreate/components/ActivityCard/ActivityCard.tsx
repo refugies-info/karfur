@@ -15,9 +15,9 @@ interface Props {
 const CardContainer = styled.div`
   width: 180px;
   height: 180px;
-  background: ${(props) => (props.isSelected ? props.darkColor : "#ffffff")};
+  background: ${(props) => (props.isSelected ? props.lightColor : "#ffffff")};
   border-color: ${(props) => (props.isSelected ? props.darkColor : "#ffffff")};
-  color: ${(props) => (props.isSelected ? "#ffffff" : props.darkColor)};
+  color: ${(props) => props.darkColor};
 
   border-radius: 12px;
   padding: 16px;
@@ -37,8 +37,8 @@ const CardContainer = styled.div`
 
   &:hover {
     background-color: ${(props) =>
-      props.isSelected ? props.darkColor : props.lightColor};
-    color: ${(props) => (props.isSelected ? "#ffffff" : props.darkColor)};
+      props.isSelected ? props.lightColor : "#ffffff"};
+    color: ${(props) => props.darkColor};
     border-width: 3px;
     border-style: solid;
     border-color: ${(props) => props.darkColor};
@@ -46,9 +46,8 @@ const CardContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  margin-bottom: 16px;
-  max-width: 156px;
-  max-height: 100px;
+  // margin-bottom: 16px;
+  // background: red;
 `;
 export const ActivityCard = (props: Props) => (
   <CardContainer
