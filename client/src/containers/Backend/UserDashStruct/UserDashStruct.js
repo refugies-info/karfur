@@ -310,36 +310,42 @@ export class UserDashStruct extends Component {
             </div>
           ))}
 
-        {this.props.userStructure &&
-          !this.props.userStructure.hasResponsibleSeenNotification && (
-            <div className="nouveau-contenu mt-12 mb-12">
-              <div className="left-side">
-                <EVAIcon
-                  name="info"
-                  fill={variables.noir}
-                  className="mr-16 ml-8"
-                />
-                <b>Recensez votre structure dans l'annuaire de l'intégration</b>
-              </div>
+        {
+          // temporarly remove access to annuaire create for mep
+          false &&
+            this.props.userStructure &&
+            !this.props.userStructure.hasResponsibleSeenNotification && (
+              <div className="nouveau-contenu mt-12 mb-12">
+                <div className="left-side">
+                  <EVAIcon
+                    name="info"
+                    fill={variables.noir}
+                    className="mr-16 ml-8"
+                  />
+                  <b>
+                    Recensez votre structure dans l'annuaire de l'intégration
+                  </b>
+                </div>
 
-              <div className="right-side">
-                <FButton
-                  type="dark"
-                  className="mr-8"
-                  name="folder-add-outline"
-                  tag={NavLink}
-                  to="/annuaire-create"
-                >
-                  Compléter la fiche annuaire
-                </FButton>
-                <FButton
-                  type="light-action"
-                  name="archive-outline"
-                  onClick={this.updateStructureWithNotificationSeen}
-                ></FButton>
+                <div className="right-side">
+                  <FButton
+                    type="dark"
+                    className="mr-8"
+                    name="folder-add-outline"
+                    tag={NavLink}
+                    to="/annuaire-create"
+                  >
+                    Compléter la fiche annuaire
+                  </FButton>
+                  <FButton
+                    type="light-action"
+                    name="archive-outline"
+                    onClick={this.updateStructureWithNotificationSeen}
+                  ></FButton>
+                </div>
               </div>
-            </div>
-          )}
+            )
+        }
 
         <ActionTable
           dataArray={actions}
