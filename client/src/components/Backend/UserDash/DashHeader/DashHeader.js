@@ -159,19 +159,23 @@ const dashHeader = (props) => {
           </h2>
         </Col>
         <Col className="tableau-header align-right">
-          {props.title === "Votre structure" &&
-            props.structure &&
-            !props.structure.hasResponsibleSeenNotification && (
-              <FButton
-                type="dark"
-                className="mr-8"
-                name="folder-add-outline"
-                tag={NavLink}
-                to="/annuaire-create"
-              >
-                Compléter la fiche annuaire
-              </FButton>
-            )}
+          {
+            // temporarly remove access to annuaire create for mep
+            false &&
+              props.title === "Votre structure" &&
+              props.structure &&
+              !props.structure.hasResponsibleSeenNotification && (
+                <FButton
+                  type="dark"
+                  className="mr-8"
+                  name="folder-add-outline"
+                  tag={NavLink}
+                  to="/annuaire-create"
+                >
+                  Compléter la fiche annuaire
+                </FButton>
+              )
+          }
           {props.title === "Votre structure" &&
             props.structure &&
             props.structure.hasResponsibleSeenNotification && (
