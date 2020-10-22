@@ -49,6 +49,7 @@ const DeleteIconContainer = styled.div`
 interface Props {
   structure: Structure | null;
   setStructure: (arg: any) => void;
+  setHasModifications: (arg: boolean) => void;
 }
 
 export const AddButton = (props: {
@@ -99,6 +100,7 @@ export const Step2 = (props: Props) => {
   };
 
   const onWebsiteChange = (e: any) => {
+    props.setHasModifications(true);
     const websites = props.structure
       ? getWebsites(props.structure.websites, e.target.id, e.target.value)
       : [];
@@ -113,6 +115,7 @@ export const Step2 = (props: Props) => {
       : [];
     props.setStructure({ ...props.structure, structureTypes });
     toggleDropDown();
+    props.setHasModifications(true);
   };
 
   const removeDropdowElement = (element: string) => {
@@ -122,6 +125,7 @@ export const Step2 = (props: Props) => {
         )
       : [];
     props.setStructure({ ...props.structure, structureTypes });
+    props.setHasModifications(true);
   };
 
   const availableStructureTypes = StructureTypes.filter((structureType) =>
@@ -141,11 +145,16 @@ export const Step2 = (props: Props) => {
     props.setStructure({ ...props.structure, websites: updatedWebsites });
     setshow1WebsiteInput(false);
     setshow2WebsiteInput(false);
+    props.setHasModifications(true);
   };
 
-  const onChange = (e: any) =>
-    props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
-
+  const onChange = (e: any) => {
+    props.setHasModifications(true);
+    return props.setStructure({
+      ...props.structure,
+      [e.target.id]: e.target.value,
+    });
+  };
   return (
     <MainContainer className="step2">
       <Title>Type de structure</Title>

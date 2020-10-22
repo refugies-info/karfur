@@ -12,6 +12,7 @@ import { Step6 } from "./components/Step6/Step6";
 import { Spinner } from "reactstrap";
 import { FrameModal } from "../../../components/Modals";
 import img from "../../../assets/annuaire/annuaire_create.svg";
+import { Modifications } from "./components/Modifications";
 
 export interface PropsBeforeInjection {
   history: any;
@@ -25,21 +26,17 @@ const MainContainer = styled.div`
   padding-right: 120px;
 `;
 
-const LeftContainer = styled.div`
+const HeaderContainer = styled.div`
   background-image: url(${img});
   width: 360px;
   height: 600px;
   border-radius: 12px;
-  margin-top: 112px;
   padding: 24px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   margin-right: 40px;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 112px;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
 `;
 
 const LeftTitleContainer = styled.div`
@@ -74,9 +71,19 @@ const RightContainer = styled.div`
   flex: 1;
   margin-top: 112px;
 `;
+const LeftContainer = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 112px;
+  margin-bottom: 24px;
+  height: 650px;
+  margin-top: 112px;
+`;
+
 export const AnnuaireCreateComponent = (props: Props) => {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(4);
   const [showTutoModal, setShowTutoModal] = useState(false);
+  const [hasModifications, setHasModifications] = useState(false);
 
   const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
 
@@ -116,104 +123,117 @@ export const AnnuaireCreateComponent = (props: Props) => {
   const onStepValidate = () => {
     props.updateStructure();
     setStep(step + 1);
+    setHasModifications(false);
   };
+
+  // at the begining we do not show modifications
+  const showModifications = step !== 1 || hasModifications;
 
   return (
     <MainContainer>
       <LeftContainer>
-        <div>
-          <LeftTitleContainer>Annuaire</LeftTitleContainer>
-          {step !== 4 && (
-            <StepDescription>{getStepDescription()}</StepDescription>
-          )}
-          {step === 4 && (
-            <StepDescription>
-              Contacts <br /> et infos pratiques
-            </StepDescription>
-          )}
-        </div>
-        <ButtonContainer>
-          <FButton
-            type="tuto"
-            name={"play-circle-outline"}
-            onClick={toggleTutorielModal}
-          />
+        <HeaderContainer>
           <div>
-            {step === 1 ? (
-              <FButton
-                type={"white"}
-                name="close-outline"
-                onClick={() =>
-                  props.history.push("/backend/user-dash-structure")
-                }
-              >
-                Quitter
-              </FButton>
-            ) : (
-              <FButton
-                type={"white"}
-                name="arrow-back-outline"
-                onClick={() => setStep(step - 1)}
-              >
-                Retour
-              </FButton>
+            <LeftTitleContainer>Annuaire</LeftTitleContainer>
+            {step !== 4 && (
+              <StepDescription>{getStepDescription()}</StepDescription>
             )}
-
-            {step < 6 ? (
-              props.isLoading ? (
+            {step === 4 && (
+              <StepDescription>
+                Contacts <br /> et infos pratiques
+              </StepDescription>
+            )}
+          </div>
+          <ButtonContainer>
+            <FButton
+              type="tuto"
+              name={"play-circle-outline"}
+              onClick={toggleTutorielModal}
+            />
+            <div>
+              {step === 1 ? (
                 <FButton
-                  type={"validate"}
-                  className="ml-8"
-                  onClick={onStepValidate}
-                  disabled={true}
+                  type={"white"}
+                  name="close-outline"
+                  onClick={() =>
+                    props.history.push("/backend/user-dash-structure")
+                  }
                 >
-                  <Spinner className="mr-8" />
-                  Suivant
+                  Quitter
                 </FButton>
               ) : (
                 <FButton
-                  type={"validate"}
-                  name="arrow-forward-outline"
-                  className="ml-8"
-                  onClick={onStepValidate}
-                  disabled={props.isLoading}
+                  type={"white"}
+                  name="arrow-back-outline"
+                  onClick={() => setStep(step - 1)}
                 >
-                  Suivant
+                  Retour
                 </FButton>
-              )
-            ) : (
-              <FButton
-                type={"validate"}
-                name="done-all-outline"
-                className="ml-8"
-                onClick={() =>
-                  props.history.push("/backend/user-dash-structure")
-                }
-              >
-                Terminer
-              </FButton>
-            )}
-          </div>
-        </ButtonContainer>
+              )}
+
+              {step < 6 ? (
+                props.isLoading ? (
+                  <FButton
+                    type={"validate"}
+                    className="ml-8"
+                    onClick={onStepValidate}
+                    disabled={true}
+                  >
+                    <Spinner className="mr-8" />
+                    Suivant
+                  </FButton>
+                ) : (
+                  <FButton
+                    type={"validate"}
+                    name="arrow-forward-outline"
+                    className="ml-8"
+                    onClick={onStepValidate}
+                    disabled={props.isLoading}
+                  >
+                    Suivant
+                  </FButton>
+                )
+              ) : (
+                <FButton
+                  type={"validate"}
+                  name="done-all-outline"
+                  className="ml-8"
+                  onClick={() =>
+                    props.history.push("/backend/user-dash-structure")
+                  }
+                >
+                  Terminer
+                </FButton>
+              )}
+            </div>
+          </ButtonContainer>
+        </HeaderContainer>
+        {showModifications && hasModifications && (
+          <Modifications hasModifications={hasModifications} />
+        )}
       </LeftContainer>
+
       <RightContainer>
         <AnnuaireGauge step={step} />
         {step === 1 && (
           <Step1
             structure={props.structure}
             setStructure={props.setStructure}
+            setHasModifications={setHasModifications}
           />
         )}
         {step === 2 && (
           <Step2
             structure={props.structure}
             setStructure={props.setStructure}
+            setHasModifications={setHasModifications}
           />
         )}
         {step === 3 && (
           <Step3
             structure={props.structure}
             setStructure={props.setStructure}
+            setHasModifications={setHasModifications}
           />
         )}
 
@@ -221,12 +241,14 @@ export const AnnuaireCreateComponent = (props: Props) => {
           <Step4
             structure={props.structure}
             setStructure={props.setStructure}
+            setHasModifications={setHasModifications}
           />
         )}
         {step === 5 && (
           <Step5
             structure={props.structure}
             setStructure={props.setStructure}
+            setHasModifications={setHasModifications}
           />
         )}
         {step === 6 && <Step6 />}
