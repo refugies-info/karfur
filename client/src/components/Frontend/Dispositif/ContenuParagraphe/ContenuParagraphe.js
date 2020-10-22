@@ -26,7 +26,6 @@ const contenuParagraphe = (props) => {
     props.uiArray[key].children.length > subkey &&
     props.uiArray[key].children[subkey] &&
     props.uiArray[key].children[subkey][node];
-    console.log(item);
   const cards = item.children
     ? item.children.filter((x) => x.type === "card").map((x) => x.title)
     : [];
