@@ -177,6 +177,7 @@ export class Dispositif extends Component {
     tutorielSection: "",
     displayTuto: true,
     addMapBtn: true,
+    initialMenu: JSON.parse(JSON.stringify(menu)),
   };
 
   componentDidMount() {
@@ -1139,10 +1140,7 @@ export class Dispositif extends Component {
   changeCardTitle = (key, subkey, node, value) => {
     const prevState = [...this.state.menu];
     if (node === "title") {
-      prevState[key].children[subkey] = [
-        ...menu[1].children,
-        importantCard,
-      ].find((x) => x.title === value);
+      prevState[key].children[subkey] = (this.state.initialMenu[1].children.concat(importantCard)).find((x) => x.title === value);
     } else {
       prevState[key].children[subkey][node] = value;
     }
