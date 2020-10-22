@@ -16,6 +16,7 @@ import { Input } from "reactstrap";
 interface Props {
   structure: Structure | null;
   setStructure: (arg: any) => void;
+  setHasModifications: (arg: boolean) => void;
 }
 
 const Title = styled.div`
@@ -142,8 +143,13 @@ export const Step4 = (props: Props) => {
     setDepartments(filteredDepartments);
   };
 
-  const onChange = (e: any) =>
-    props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
+  const onChange = (e: any) => {
+    props.setHasModifications(true);
+    return props.setStructure({
+      ...props.structure,
+      [e.target.id]: e.target.value,
+    });
+  };
 
   const removeDropdowElement = (element: string) => {
     const departments = props.structure
@@ -152,9 +158,12 @@ export const Step4 = (props: Props) => {
         )
       : [];
     props.setStructure({ ...props.structure, departments });
+    props.setHasModifications(true);
   };
 
   const handleCheckboxChange = () => {
+    props.setHasModifications(true);
+
     if (
       props.structure &&
       props.structure.departments &&
@@ -172,6 +181,8 @@ export const Step4 = (props: Props) => {
   };
 
   const handlePublicCheckboxChange = () => {
+    props.setHasModifications(true);
+
     if (props.structure && props.structure.openingHours.noPublic) {
       return props.setStructure({
         ...props.structure,
@@ -185,6 +196,8 @@ export const Step4 = (props: Props) => {
   };
 
   const onDropdownElementClick = (element: string) => {
+    props.setHasModifications(true);
+
     const departments = props.structure
       ? !props.structure.departments
         ? [element]
@@ -213,16 +226,19 @@ export const Step4 = (props: Props) => {
       ? getPhones(props.structure.phonesPublic, e.target.id, e.target.value)
       : [];
     props.setStructure({ ...props.structure, phonesPublic: phones });
+    props.setHasModifications(true);
   };
 
-  const onPrecisionsChange = (e: any) =>
-    props.setStructure({
+  const onPrecisionsChange = (e: any) => {
+    props.setHasModifications(true);
+    return props.setStructure({
       ...props.structure,
       openingHours: {
         ...props.structure?.openingHours,
         precisions: e.target.value,
       },
     });
+  };
 
   const getUpdatedPhones = (phones: string[], index: number) =>
     phones.filter((phone) => phone !== phones[index]);
@@ -235,6 +251,7 @@ export const Step4 = (props: Props) => {
     props.setStructure({ ...props.structure, phonesPublic: updatedPhones });
     setshow1PhoneInput(false);
     setshow2PhoneInput(false);
+    props.setHasModifications(true);
   };
 
   const isFranceSelected =
@@ -251,6 +268,8 @@ export const Step4 = (props: Props) => {
     props.structure.openingHours.noPublic;
 
   const getNewDetailedOpeningHours = (day: string) => {
+    props.setHasModifications(true);
+
     if (!props.structure) return [];
     if (!props.structure.openingHours) return [{ day }];
 
@@ -276,6 +295,7 @@ export const Step4 = (props: Props) => {
       ? { ...props.structure.openingHours, details: newDetailedOpeningHours }
       : { noPublic: false, details: [] };
     props.setStructure({ ...props.structure, openingHours: newOpeningHours });
+    props.setHasModifications(true);
   };
 
   const onHoursChange = (value: any, index: string, day: string) => {
@@ -310,6 +330,7 @@ export const Step4 = (props: Props) => {
         openingHours,
       });
     }
+    props.setHasModifications(true);
   };
 
   return (
