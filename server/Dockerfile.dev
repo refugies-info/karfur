@@ -1,7 +1,7 @@
 # Instructions:
 # /!\ This dockerfile should be use for local tests purposes only!
 
-# Use a node 12 base image
+# Use a node 10 base image
 ARG NODE_VERSION=10
 FROM node:${NODE_VERSION}-alpine
 
@@ -26,4 +26,4 @@ RUN npm run tsc
 COPY variables.env .
 
 # Source environment variables and start app
-ENTRYPOINT ["bash", "-c", "source example-env-file.env && npm run start"]
+ENTRYPOINT ["bash", "-c", "source variables.env && npm run start"]
