@@ -1137,6 +1137,7 @@ export class Dispositif extends Component {
   };
 
   changeCardTitle = (key, subkey, node, value) => {
+    console.log(key, subkey, node, value);
     const prevState = [...this.state.menu];
     if (node === "title") {
       prevState[key].children[subkey] = [

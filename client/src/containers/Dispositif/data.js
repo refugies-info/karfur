@@ -800,6 +800,9 @@ const streamlineIconCorrespondency = [
   {
     titleIcon: "pricetags-outline",
   },
+  {
+    titleIcon: "pin-outline",
+  },
 ];
 
 export {
