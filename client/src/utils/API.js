@@ -22,7 +22,7 @@ const headers = {
 //   process.env.NODE_ENV === "test"
 //     ? process.env.REACT_APP_TEST_ENV === "qa"
 //       ? "https://agir-qa.herokuapp.com"
-//       : // chane to :8000
+//       : // change to :8000
 //         "http://localhost:3000"
 //     : ""; //Noté explicitement pour les tests, sinon il arrive pas à proxy entre :80 et :3000
 
