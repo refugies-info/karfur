@@ -2,7 +2,7 @@
 # /!\ This dockerfile should be use for local tests purposes only!
 
 # Use a node 12 base image
-ARG NODE_VERSION=12
+ARG NODE_VERSION=10
 FROM node:${NODE_VERSION}-alpine
 
 # Useful in order to execute the entrypoint script that will:
@@ -22,8 +22,8 @@ ADD . /usr/src/app
 # Build app
 RUN npm run tsc
 
-# Copy environment variables file
-COPY ../example-env-file.env .
+# Copy environment variables.env file that you have to create in karfur/server/
+COPY variables.env .
 
 # Source environment variables and start app
 ENTRYPOINT ["bash", "-c", "source example-env-file.env && npm run start"]
