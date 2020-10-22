@@ -96,6 +96,16 @@ const menu = [
         price: 0,
         contentTitle: "une seule fois",
       },
+      {
+        type: "card",
+        isFakeContent: true,
+        title: "Zone d'action",
+        titleIcon: "pin-outline",
+        typeIcon: "eva",
+        free: true,
+        price: 0,
+        contentTitle: "Sélectionner",
+      },
     ],
   },
   {
@@ -357,6 +367,7 @@ const cardTitles = [
   { title: "Combien ça coûte ?", titleIcon: "pricetags-outline" },
 
   { title: "Important !", titleIcon: "alert-triangle-outline" },
+  { title: "Zone d'action", titleIcon: "pin-outline" },
 ];
 
 const onBoardSteps = [

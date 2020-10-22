@@ -65,6 +65,7 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
       {childrenArray.map((card: DispositifContent, key: number) => {
         // selected card, not Important
         if (
+          card &&
           card.type === "card" &&
           card.title !== "Important !" &&
           card.title !== "Justificatif demandé"
