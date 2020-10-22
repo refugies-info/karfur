@@ -81,7 +81,7 @@ const LeftContainer = styled.div`
 `;
 
 export const AnnuaireCreateComponent = (props: Props) => {
-  const [step, setStep] = useState(4);
+  const [step, setStep] = useState(1);
   const [showTutoModal, setShowTutoModal] = useState(false);
   const [hasModifications, setHasModifications] = useState(false);
 
@@ -124,6 +124,14 @@ export const AnnuaireCreateComponent = (props: Props) => {
     props.updateStructure();
     setStep(step + 1);
     setHasModifications(false);
+    // @ts-ignore
+    window.scrollTo(0, 0);
+  };
+
+  const onBackClick = () => {
+    setStep(step - 1);
+    // @ts-ignore
+    window.scrollTo(0, 0);
   };
 
   // at the begining we do not show modifications
@@ -165,7 +173,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
                 <FButton
                   type={"white"}
                   name="arrow-back-outline"
-                  onClick={() => setStep(step - 1)}
+                  onClick={onBackClick}
                 >
                   Retour
                 </FButton>

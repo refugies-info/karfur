@@ -141,7 +141,6 @@ export const Step4 = (props: Props) => {
 
     // @ts-ignore
     setDepartments(filteredDepartments);
-    // props.setHasModifications(true);
   };
 
   const onChange = (e: any) => {
@@ -197,7 +196,6 @@ export const Step4 = (props: Props) => {
   };
 
   const onDropdownElementClick = (element: string) => {
-    console.log("element cliec");
     props.setHasModifications(true);
 
     const departments = props.structure
