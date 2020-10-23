@@ -9,20 +9,25 @@ Refugies.info is a project to offer a better experience to refugees in France as
 
 ## Table of Contents
 
-- [Demo](#demo)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Available Commands](#available-commands)
-- [Contributing](#contributing)
-- [Versioning](#versioning)
-- [Creators](#creators)
-- [Contributors](#creators)
-- [Community](#community)
-- [License](#license)
-- [Maintenance](#maintenance)
-- [Support Refugies.info's Development](#support-refugies-infos-development)
-- [Extras](#extras)
+- [Refugies.info (formerly Karfu'R)](#refugiesinfo-formerly-karfur)
+  - [Table of Contents](#table-of-contents)
+  - [Demo](#demo)
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Clone repo](#clone-repo)
+    - [Prepare your secret](#prepare-your-secret)
+  - [Usage](#usage)
+  - [Documentation](#documentation)
+  - [Available Commands](#available-commands)
+  - [Contributing](#contributing)
+  - [Versioning](#versioning)
+  - [Creators](#creators)
+  - [Contributors](#contributors)
+  - [Community](#community)
+  - [License](#license)
+  - [Maintenance](#maintenance)
+  - [Support Refugies.info's Development](#support-refugiesinfos-development)
+  - [Extras](#extras)
 
 ## Demo
 
@@ -188,3 +193,4 @@ Refugies.info is an MIT licensed open source project and completely free to use.
 ## Extras
 
 If you liked this project, please give it a ⭐ in [**GitHub**](https://github.com/entrepreneur-interet-general/karfur).
+.
