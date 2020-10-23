@@ -1,0 +1,49 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', '${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: [
+    'run',
+    'deploy',
+    '${_COMPONENT}-${_ENV}',
+    '--project',
+    '$PROJECT_ID',
+    '--platform',
+    'managed',
+    '--region',
+    '${_REGION}',
+    '--image',
+    '${_REGISTRY_URL}/$PROJECT_ID/${_REGISTRY}/${_COMPONENT}:$SHORT_SHA',
+    '--memory 1G',
+    '--set-env-vars',
+    'ACCOUNT_SECURITY_API_KEY=sm://refugies-info/ACCOUNT_SECURITY_API_KEY, \
+    API_KEY=sm://refugies-info/API_KEY, \
+    API_SECRET=sm://refugies-info/API_SECRET, \
+    GCLOUD_CLIENT_EMAIL=sm://refugies-info/GCLOUD_CLIENT_EMAIL, \
+    GCLOUD_CLIENT_ID=sm://refugies-info/GCLOUD_CLIENT_ID, \
+    GCLOUD_CLIENT_X509=sm://refugies-info/GCLOUD_CLIENT_X509, \
+    GCLOUD_PKEY=sm://refugies-info/GCLOUD_PKEY, \
+    GCLOUD_PRIVATE_KEY_ID=sm://refugies-info/GCLOUD_PRIVATE_KEY_ID, \
+    MONGODB_PROD_URI=sm://refugies-info/MONGODB_PROD_URI, \
+    NODE_ENV=sm://refugies-info/NODE_ENV, \
+    OVH_PASS=sm://refugies-info/OVH_PASS, \
+    PORTIO=sm://refugies-info/PORTIO, \
+    REACT_APP_ENV=sm://refugies-info/REACT_APP_ENV, \
+    REACT_APP_GOOGLE_ANALYTICS=sm://refugies-info/REACT_APP_GOOGLE_ANALYTICS, \
+    REACT_APP_GOOGLE_API_KEY=sm://refugies-info/REACT_APP_GOOGLE_API_KEY, \
+    REACT_APP_SITE_SECRET=sm://refugies-info/REACT_APP_SITE_SECRET, \
+    SECRET=sm://refugies-info/SECRET, \
+    TTS_KEY_1=sm://refugies-info/TTS_KEY_1, \
+    accountSid=sm://refugies-info/accountSid, \
+    airtableBase=sm://refugies-info/airtableBase, \
+    airtableApiKey=sm://refugies-info/airtableApiKey, \
+    authToken=sm://refugies-info/authToken"',
+    '--service-account',
+    '${_SA}',
+    '--allow-unauthenticated'
