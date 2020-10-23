@@ -13,7 +13,7 @@ steps:
     'deploy',
     '${_COMPONENT}-${_ENV}',
     '--project',
-    '$PROJECT_ID',
+    '${_PROJECT_NAME}',
     '--platform',
     'managed',
     '--region',
@@ -23,51 +23,28 @@ steps:
     '--memory',
     '1G',
     '--set-env-vars',
-    '"ACCOUNT_SECURITY_API_KEY=sm://refugies-info/ACCOUNT_SECURITY_API_KEY"',
-    '--set-env-vars',
-    '"API_KEY=sm://refugies-info/API_KEY"',
-    '--set-env-vars',
-    '"API_SECRET=sm://refugies-info/API_SECRET"',
-    '--set-env-vars',
-    '"GCLOUD_CLIENT_EMAIL=sm://refugies-info/GCLOUD_CLIENT_EMAIL"',
-    '--set-env-vars',
-    '"GCLOUD_CLIENT_ID=sm://refugies-info/GCLOUD_CLIENT_ID"',
-    '--set-env-vars',
-    '"GCLOUD_CLIENT_X509=sm://refugies-info/GCLOUD_CLIENT_X509"',
-    '--set-env-vars',
-    '"GCLOUD_PKEY=sm://refugies-info/GCLOUD_PKEY"',
-    '--set-env-vars',
-    '"GCLOUD_PRIVATE_KEY_ID=sm://refugies-info/GCLOUD_PRIVATE_KEY_ID"',
-    '--set-env-vars',
-    '"MONGODB_PROD_URI=sm://refugies-info/MONGODB_PROD_URI"',
-    '--set-env-vars',
-    '"NODE_ENV=sm://refugies-info/NODE_ENV"',
-    '--set-env-vars',
-    '"OVH_PASS=sm://refugies-info/OVH_PASS"',
-    '--set-env-vars',
-    '"PORT=sm://refugies-info/PORT"',
-    '--set-env-vars',
-    '"PORTIO=sm://refugies-info/PORTIO"',
-    '--set-env-vars',
-    '"REACT_APP_ENV=sm://refugies-info/REACT_APP_ENV"',
-    '--set-env-vars',
-    '"REACT_APP_GOOGLE_ANALYTICS=sm://refugies-info/REACT_APP_GOOGLE_ANALYTICS"',
-    '--set-env-vars',
-    '"REACT_APP_GOOGLE_API_KEY=sm://refugies-info/REACT_APP_GOOGLE_API_KEY"',
-    '--set-env-vars',
-    '"REACT_APP_SITE_SECRET=sm://refugies-info/REACT_APP_SITE_SECRET"',
-    '--set-env-vars',
-    '"SECRET=sm://refugies-info/SECRET"',
-    '--set-env-vars',
-    '"TTS_KEY_1=sm://refugies-info/TTS_KEY_1"',
-    '--set-env-vars',
-    '"accountSid=sm://refugies-info/accountSid"',
-    '--set-env-vars',
-    '"airtableBase=sm://refugies-info/airtableBase"',
-    '--set-env-vars',
-    '"airtableApiKey=sm://refugies-info/airtableApiKey"',
-    '--set-env-vars',
-    '"authToken=sm://refugies-info/authToken"',
+    '"ACCOUNT_SECURITY_API_KEY=sm://refugies-info/ACCOUNT_SECURITY_API_KEY, \
+    API_KEY=sm://refugies-info/API_KEY, \
+    API_SECRET=sm://refugies-info/API_SECRET, \
+    GCLOUD_CLIENT_EMAIL=sm://refugies-info/GCLOUD_CLIENT_EMAIL, \
+    GCLOUD_CLIENT_ID=sm://refugies-info/GCLOUD_CLIENT_ID, \
+    GCLOUD_CLIENT_X509=sm://refugies-info/GCLOUD_CLIENT_X509, \
+    GCLOUD_PKEY=sm://refugies-info/GCLOUD_PKEY, \
+    GCLOUD_PRIVATE_KEY_ID=sm://refugies-info/GCLOUD_PRIVATE_KEY_ID, \
+    MONGODB_PROD_URI=sm://refugies-info/MONGODB_PROD_URI, \
+    NODE_ENV=sm://refugies-info/NODE_ENV, \
+    OVH_PASS=sm://refugies-info/OVH_PASS, \
+    PORTIO=sm://refugies-info/PORTIO, \
+    REACT_APP_ENV=sm://refugies-info/REACT_APP_ENV, \
+    REACT_APP_GOOGLE_ANALYTICS=sm://refugies-info/REACT_APP_GOOGLE_ANALYTICS, \
+    REACT_APP_GOOGLE_API_KEY=sm://refugies-info/REACT_APP_GOOGLE_API_KEY, \
+    REACT_APP_SITE_SECRET=sm://refugies-info/REACT_APP_SITE_SECRET, \
+    SECRET=sm://refugies-info/SECRET, \
+    TTS_KEY_1=sm://refugies-info/TTS_KEY_1, \
+    accountSid=sm://refugies-info/accountSid, \
+    airtableBase=sm://refugies-info/airtableBase, \
+    airtableApiKey=sm://refugies-info/airtableApiKey, \
+    authToken=sm://refugies-info/authToken"',
     '--service-account',
     '${_SA}',
     '--allow-unauthenticated']
