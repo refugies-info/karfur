@@ -18,7 +18,7 @@ import { ReactComponent as DomiciliationPostale } from "../../../../../assets/an
 import { ReactComponent as Interprétariat } from "../../../../../assets/annuaire/activités/Administratif/Interpretariat.svg";
 
 import { ReactComponent as AccompagnementVersLemploi } from "../../../../../assets/annuaire/activités/InsertionPro/AccompagnementVersLemploi.svg";
-// import { ReactComponent as BilanDéfinitionProjet } from "../../../../../assets/annuaire/activités/InsertionPro/BilanDefinitionProjet.svg";
+import { ReactComponent as BilanDéfinitionProjet } from "../../../../../assets/annuaire/activités/InsertionPro/BilanDefinitionProjet.svg";
 import { ReactComponent as Coaching } from "../../../../../assets/annuaire/activités/InsertionPro/Coaching.svg";
 import { ReactComponent as MiseEnRelation } from "../../../../../assets/annuaire/activités/InsertionPro/MiseEnRelation.svg";
 
@@ -137,7 +137,7 @@ export const activities = [
   {
     tag: "Insertion pro",
     activity: "Bilan et définition du projet",
-    image: null,
+    image: BilanDéfinitionProjet,
   },
   { tag: "Mobilité", activity: "Aides financières", image: AidesFinancières },
   { tag: "Mobilité", activity: "Cours de conduite", image: CoursConduite },
