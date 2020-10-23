@@ -193,4 +193,3 @@ Refugies.info is an MIT licensed open source project and completely free to use.
 ## Extras
 
 If you liked this project, please give it a ⭐ in [**GitHub**](https://github.com/entrepreneur-interet-general/karfur).
-.
