@@ -169,6 +169,7 @@ export class UserDashStruct extends Component {
     ).then((data) => {
       if (data.data.data && data.data.data.length > 0) {
         this.setState({ structure: data.data.data[0], isMainLoading: false });
+
         API.get_event({
           query: {
             created_at: { $gte: DateOffset(new Date(), 0, 0, -15) },
