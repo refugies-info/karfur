@@ -4,25 +4,25 @@ import { ReactComponent as SupportApprentissage } from "../../../../../assets/an
 import { ReactComponent as AteliersSocioLinguistique } from "../../../../../assets/annuaire/activités/Français/AteliersSocio-linguistique.svg";
 
 import { ReactComponent as AccompagnementVersLogement } from "../../../../../assets/annuaire/activités/Logement/AccompagnementVersLogement.svg";
-import { ReactComponent as CentreHébergement } from "../../../../../assets/annuaire/activités/Logement/CentreHébergement.svg";
+import { ReactComponent as CentreHébergement } from "../../../../../assets/annuaire/activités/Logement/CentreHebergement.svg";
 import { ReactComponent as ColocationSolidaire } from "../../../../../assets/annuaire/activités/Logement/ColocationSolidaire.svg";
-import { ReactComponent as HébergementCitoyen } from "../../../../../assets/annuaire/activités/Logement/HébergementCitoyen.svg";
-import { ReactComponent as HébergementLongueDurée } from "../../../../../assets/annuaire/activités/Logement/HébergementLongueDurée.svg";
-import { ReactComponent as IntermédiationLocatiive } from "../../../../../assets/annuaire/activités/Logement/IntermédiationLocative.svg";
-import { ReactComponent as RésidenceSociale } from "../../../../../assets/annuaire/activités/Logement/RésidenceSociale.svg";
+import { ReactComponent as HébergementCitoyen } from "../../../../../assets/annuaire/activités/Logement/HebergementCitoyen.svg";
+import { ReactComponent as HébergementLongueDurée } from "../../../../../assets/annuaire/activités/Logement/HebergementLongueDuree.svg";
+import { ReactComponent as IntermédiationLocative } from "../../../../../assets/annuaire/activités/Logement/IntermediationLocative.svg";
+import { ReactComponent as RésidenceSociale } from "../../../../../assets/annuaire/activités/Logement/ResidenceSociale.svg";
 
 import { ReactComponent as AccompagnementGlobal } from "../../../../../assets/annuaire/activités/Administratif/AccompagnementGlobal.svg";
 import { ReactComponent as AccompagnementJuridique } from "../../../../../assets/annuaire/activités/Administratif/AccompagnementJuridique.svg";
 import { ReactComponent as AccueilMineurs } from "../../../../../assets/annuaire/activités/Administratif/AccueilMineurs.svg";
 import { ReactComponent as DomiciliationPostale } from "../../../../../assets/annuaire/activités/Administratif/DomiciliationPostale.svg";
-import { ReactComponent as Interprétariat } from "../../../../../assets/annuaire/activités/Administratif/Interprétariat.svg";
+import { ReactComponent as Interprétariat } from "../../../../../assets/annuaire/activités/Administratif/Interpretariat.svg";
 
 import { ReactComponent as AccompagnementVersLemploi } from "../../../../../assets/annuaire/activités/InsertionPro/AccompagnementVersLemploi.svg";
-import { ReactComponent as BilanDéfinitionProjet } from "../../../../../assets/annuaire/activités/InsertionPro/BilanDéfinitionProjet.svg";
+// import { ReactComponent as BilanDéfinitionProjet } from "../../../../../assets/annuaire/activités/InsertionPro/BilanDefinitionProjet.svg";
 import { ReactComponent as Coaching } from "../../../../../assets/annuaire/activités/InsertionPro/Coaching.svg";
 import { ReactComponent as MiseEnRelation } from "../../../../../assets/annuaire/activités/InsertionPro/MiseEnRelation.svg";
 
-import { ReactComponent as AidesFinancières } from "../../../../../assets/annuaire/activités/Mobilité/AidesFinancières.svg";
+import { ReactComponent as AidesFinancières } from "../../../../../assets/annuaire/activités/Mobilité/AidesFinancieres.svg";
 import { ReactComponent as CoursConduite } from "../../../../../assets/annuaire/activités/Mobilité/CoursConduite.svg";
 import { ReactComponent as FormationCode } from "../../../../../assets/annuaire/activités/Mobilité/FormationCode.svg";
 
@@ -32,16 +32,16 @@ import { ReactComponent as FormationsCertifiantes } from "../../../../../assets/
 import { ReactComponent as FormationsNonCertifiantes } from "../../../../../assets/annuaire/activités/FormationPro/FormationsNonCertifiantes.svg";
 
 import { ReactComponent as AutoApprentissage } from "../../../../../assets/annuaire/activités/Etudes/AutoApprentissage.svg";
-import { ReactComponent as DiplômeUniversitairePasserelle } from "../../../../../assets/annuaire/activités/Etudes/DiplômeUniversitairePasserelle.svg";
+import { ReactComponent as DiplômeUniversitairePasserelle } from "../../../../../assets/annuaire/activités/Etudes/DiplomeUniversitairePasserelle.svg";
 import { ReactComponent as FormationContinue } from "../../../../../assets/annuaire/activités/Etudes/FormationContinue.svg";
 import { ReactComponent as FormationInitiale } from "../../../../../assets/annuaire/activités/Etudes/FormationInitiale.svg";
 import { ReactComponent as FormationsCiviques } from "../../../../../assets/annuaire/activités/Etudes/FormationsCiviques.svg";
 
 import { ReactComponent as AccompagnementPsy } from "../../../../../assets/annuaire/activités/Sante/AccompagnementPsy.svg";
-import { ReactComponent as BilanSanté } from "../../../../../assets/annuaire/activités/Sante/BilanSanté.svg";
+import { ReactComponent as BilanSanté } from "../../../../../assets/annuaire/activités/Sante/BilanSante.svg";
 import { ReactComponent as ParcoursDeSoin } from "../../../../../assets/annuaire/activités/Sante/ParcoursDeSoin.svg";
 
-import { ReactComponent as ActivitésManuelles } from "../../../../../assets/annuaire/activités/Loisirs/ActivitésManuelles.svg";
+import { ReactComponent as ActivitésManuelles } from "../../../../../assets/annuaire/activités/Loisirs/ActivitesManuelles.svg";
 import { ReactComponent as TournoiSportifs } from "../../../../../assets/annuaire/activités/Loisirs/TournoiSportifs.svg";
 
 import { ReactComponent as HistoireFrance } from "../../../../../assets/annuaire/activités/Culture/HistoireFrance.svg";
@@ -49,7 +49,7 @@ import { ReactComponent as VisiteVille } from "../../../../../assets/annuaire/ac
 
 import { ReactComponent as MissionsPonctuelles } from "../../../../../assets/annuaire/activités/Bénévolat/MissionsPonctuelles.svg";
 import { ReactComponent as ServiceCiviqueFrançais } from "../../../../../assets/annuaire/activités/Bénévolat/ServiceCiviqueFrançais.svg";
-import { ReactComponent as ServiceCiviqueRéfugiés } from "../../../../../assets/annuaire/activités/Bénévolat/ServiceCiviqueRéfugiés.svg";
+import { ReactComponent as ServiceCiviqueRéfugiés } from "../../../../../assets/annuaire/activités/Bénévolat/ServiceCiviqueRefugies.svg";
 
 import { ReactComponent as Parrainage } from "../../../../../assets/annuaire/activités/Rencontre/Parrainage.svg";
 
@@ -99,7 +99,7 @@ export const activities = [
   {
     tag: "Logement",
     activity: "Intermédiation locative",
-    image: IntermédiationLocatiive,
+    image: IntermédiationLocative,
   },
   {
     tag: "Administratif",
@@ -137,7 +137,7 @@ export const activities = [
   {
     tag: "Insertion pro",
     activity: "Bilan et définition du projet",
-    image: BilanDéfinitionProjet,
+    image: null,
   },
   { tag: "Mobilité", activity: "Aides financières", image: AidesFinancières },
   { tag: "Mobilité", activity: "Cours de conduite", image: CoursConduite },
