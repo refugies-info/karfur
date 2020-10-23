@@ -45,6 +45,4 @@ steps:
     airtableBase=sm://refugies-info/airtableBase, \
     airtableApiKey=sm://refugies-info/airtableApiKey, \
     authToken=sm://refugies-info/authToken"',
-    '--service-account',
-    '${_SA}',
     '--allow-unauthenticated']
