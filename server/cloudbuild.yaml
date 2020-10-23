@@ -46,4 +46,4 @@ steps:
     authToken=sm://refugies-info/authToken"',
     '--service-account',
     '${_SA}',
-    '--allow-unauthenticated'
+    '--allow-unauthenticated']
