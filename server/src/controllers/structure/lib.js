@@ -2,6 +2,7 @@ const Structure = require("../../schema/schemaStructure.js");
 const User = require("../../schema/schemaUser.js");
 const Role = require("../../schema/schemaRole.js");
 const logger = require("../../logger");
+const Dispositif = require("../../schema/schemaDispositif.js");
 
 const modifyStructure = async (
   structure,
@@ -181,66 +182,75 @@ async function add_structure(req, res) {
   }
 }
 
-function get_structure(req, res) {
-  if (!req.body || !req.body.query) {
-    res.status(400).json({ text: "Requête invalide" });
-  } else {
-    let { query, sort, populate, limit } = req.body;
-    if (!req.fromSite) {
-      //On n'autorise pas les populate en API externe
-      populate = "";
-    } else if (populate && populate.constructor === Object) {
-      populate.select = "-password";
-    } else if (populate) {
-      populate = { path: populate, select: "-password" };
-    } else {
-      populate = "";
-    }
-    logger.info("[get_structure] get structure", { query });
-    var find = new Promise((resolve, reject) => {
-      Structure.find(query)
-        .sort(sort)
-        .populate(populate)
-        .limit(limit)
-        .exec((err, result) => {
-          if (err) {
-            reject(500);
-          } else {
-            if (result) {
-              resolve(result);
-            } else {
-              reject(404);
-            }
-          }
-        });
+const getAssociatedDispositifs = async (id) => {
+  try {
+    logger.info(
+      "[getAssociatedDispositifs] fetching associated dispositif with id",
+      { id }
+    );
+    const dispositifArray = await Dispositif.find({
+      sponsors: { $elemMatch: { _id: id.toString() } },
     });
 
-    find.then(
-      (result) => {
-        res.status(200).json({
-          text: "Succès",
-          data: result,
-        });
-      },
-      (error) => {
-        switch (error) {
-          case 500:
-            res.status(500).json({
-              text: "Erreur interne",
-            });
-            break;
-          case 404:
-            res.status(404).json({
-              text: "Pas de résultat",
-            });
-            break;
-          default:
-            res.status(500).json({
-              text: "Erreur interne",
-            });
-        }
-      }
+    return dispositifArray;
+  } catch (error) {
+    logger.error(
+      "[getAssociatedDispositifs] error while getting associated dispositifs, return empty array"
     );
+    return [];
+  }
+};
+
+async function get_structure(req, res) {
+  if (!req.body || !req.body.query) {
+    return res.status(400).json({ text: "Requête invalide" });
+  }
+
+  let { query, sort, populate, limit } = req.body;
+  if (!req.fromSite) {
+    //On n'autorise pas les populate en API externe
+    populate = "";
+  } else if (populate && populate.constructor === Object) {
+    populate.select = "-password";
+  } else if (populate) {
+    populate = { path: populate, select: "-password" };
+  } else {
+    populate = "";
+  }
+
+  logger.info("[get_structure] get structure", { query });
+  try {
+    const structure = await Structure.find(query)
+      .sort(sort)
+      .populate(populate)
+      .limit(limit);
+
+    if (!structure) {
+      throw new Error("No structure");
+    }
+
+    // the populate on DispositifsAssocies is not correct since dispositifsAssocies is not updated when we change the structure of a dispositif
+    const associatedDispositifs = await getAssociatedDispositifs(
+      structure[0]._id
+    );
+    const newStructure = [
+      { ...structure[0].toJSON(), dispositifsAssocies: associatedDispositifs },
+    ];
+    return res.status(200).json({
+      text: "Succès",
+      data: newStructure,
+    });
+  } catch (error) {
+    logger.error("[get_structure] error while getting structure");
+    if (error.message === "No structure") {
+      res.status(404).json({
+        text: "Pas de résultat",
+      });
+      return;
+    }
+    return res.status(500).json({
+      text: "Erreur interne",
+    });
   }
 }
 
