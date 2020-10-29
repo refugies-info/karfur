@@ -7,7 +7,7 @@ steps:
 # Retrieve secrets
 - name: gcr.io/cloud-builders/gcloud
   entrypoint: bash
-  args: ["-c", "for secret in $(gcloud secrets list --filter=\"labels.environment=${_ENV}\" --filter=\"labels.component=${_COMPONENT}\" --format=\"value(NAME)\"); do echo export $secret=$(gcloud secrets versions access --secret=$secret latest) >> build.env; done"]
+  args: ["-c", "for secret in $(gcloud secrets list --filter=\"labels.environment=${_ENV}\" --filter=\"labels.component=${_COMPONENT}\" --format=\"value(NAME)\"); do echo export $secret=\"$(gcloud secrets versions access --secret=$secret latest)\" >> build.env; done"]
   dir: './client'
 # Generate static resources
 - name: 'node:10'
