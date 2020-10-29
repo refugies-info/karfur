@@ -53,3 +53,4 @@ token.json
 /server/dist
 /client/src/locales/interfaceTranslation/csvBeforeTrad
 /client/src/locales/interfaceTranslation/csvAfterTrad
+/client/build/*
