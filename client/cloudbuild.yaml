@@ -14,11 +14,10 @@ steps:
 # Generate static resources
 - name: 'node:10'
   entrypoint: bash
-  args: [
+  args:
     - "-c"
     - |
       source build.env && npm run build
-    "run", "build"]
   dir: './client'
 # Sync static content with the frontend bucket
 - name: gcr.io/cloud-builders/gsutil
