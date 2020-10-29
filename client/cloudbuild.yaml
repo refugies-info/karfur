@@ -16,4 +16,5 @@ steps:
   dir: './client'
 # Sync static content with the frontend bucket
 - name: gcr.io/cloud-builders/gsutil
-  args: ["-m", "rsync", "-r", "-c", "-d", "./client/build", "${_BUCKET_URL}"]
+  args: ["-m", "rsync", "-r", "-c", "-d", "build", "${_BUCKET_URL}"]
+  dir: './client'
