@@ -201,6 +201,7 @@ const getAssociatedDispositifs = async (id) => {
   }
 };
 
+// TO BE REMOVED : CREATE FUNCTIONS LIKE IN STRUCTURE.SERVICE
 async function get_structure(req, res) {
   if (!req.body || !req.body.query) {
     return res.status(400).json({ text: "Requête invalide" });

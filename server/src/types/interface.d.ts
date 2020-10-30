@@ -5,6 +5,7 @@ export interface RequestFromClient {
     populate?: string;
   };
   fromSite: boolean;
+  query?: { id?: string };
 }
 
 export interface Res {
