@@ -162,7 +162,11 @@ export class UserDashStruct extends Component {
         ? this.props.location.state.structure
         : user.structures[0];
  */
-    API.get_structure({ _id: this.state.selectedStructure }).then((data) => {
+    API.get_structure(
+      { _id: this.state.selectedStructure },
+      {},
+      "dispositifsAssocies"
+    ).then((data) => {
       if (data.data.data && data.data.data.length > 0) {
         this.setState({ structure: data.data.data[0], isMainLoading: false });
 

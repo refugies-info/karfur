@@ -230,15 +230,15 @@ async function get_structure(req, res) {
     }
 
     // the populate on DispositifsAssocies is not correct since dispositifsAssocies is not updated when we change the structure of a dispositif
-    const associatedDispositifs = await getAssociatedDispositifs(
-      structure[0]._id
-    );
-    const newStructure = [
-      { ...structure[0].toJSON(), dispositifsAssocies: associatedDispositifs },
-    ];
+    // const associatedDispositifs = await getAssociatedDispositifs(
+    //   structure[0]._id
+    // );
+    // const newStructure = [
+    //   { ...structure[0].toJSON(), dispositifsAssocies: associatedDispositifs },
+    // ];
     return res.status(200).json({
       text: "Succès",
-      data: newStructure,
+      data: structure,
     });
   } catch (error) {
     logger.error("[get_structure] error while getting structure");

@@ -261,7 +261,11 @@ export class UserProfile extends Component {
 
   initializeStructure = () => {
     const user = this.props.user;
-    API.get_structure({ _id: user.structures[0] }).then((data) => {
+    API.get_structure(
+      { _id: user.structures[0] },
+      {},
+      "dispositifsAssocies"
+    ).then((data) => {
       this._isMounted && this.setState({ structure: data.data.data[0] });
     });
   };
