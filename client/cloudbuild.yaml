@@ -9,6 +9,13 @@ steps:
   entrypoint: bash
   args: ["-c", "for secret in $(gcloud secrets list --filter=\"labels.environment=${_ENV}\" --filter=\"labels.component=${_COMPONENT}\" --format=\"value(NAME)\"); do echo export $secret=\\\"$(gcloud secrets versions access --secret=$secret latest)\\\" >> build.env; done"]
   dir: 'client'
+# Retrieve non open source fonts
+- name: gcr.io/cloud-builders/gsutil
+  entrypoint: bash
+  args: [
+    "-c",
+    "mkdir -p ${_FONTS_TARGET_DIRECTORY} && gsutil cp \"${_PRIVATE_BUCKET_URL}/fonts/*\" ${_FONTS_TARGET_DIRECTORY}"
+  ]
 # Generate static resources
 - name: 'node:10'
   entrypoint: bash
