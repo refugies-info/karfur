@@ -9,14 +9,15 @@ interface Props {
   lightColor: string;
   selectActivity: (arg: string) => void;
   isSelected: boolean;
+  image: any | null;
 }
 
 const CardContainer = styled.div`
   width: 180px;
   height: 180px;
-  background: ${(props) => (props.isSelected ? props.darkColor : "#ffffff")};
+  background: ${(props) => (props.isSelected ? props.lightColor : "#ffffff")};
   border-color: ${(props) => (props.isSelected ? props.darkColor : "#ffffff")};
-  color: ${(props) => (props.isSelected ? "#ffffff" : props.darkColor)};
+  color: ${(props) => props.darkColor};
 
   border-radius: 12px;
   padding: 16px;
@@ -36,8 +37,8 @@ const CardContainer = styled.div`
 
   &:hover {
     background-color: ${(props) =>
-      props.isSelected ? props.darkColor : props.lightColor};
-    color: ${(props) => (props.isSelected ? "#ffffff" : props.darkColor)};
+      props.isSelected ? props.lightColor : "#ffffff"};
+    color: ${(props) => props.darkColor};
     border-width: 3px;
     border-style: solid;
     border-color: ${(props) => props.darkColor};
@@ -45,7 +46,8 @@ const CardContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  margin-bottom: 16px;
+  // margin-bottom: 16px;
+  // background: red;
 `;
 export const ActivityCard = (props: Props) => (
   <CardContainer
@@ -55,7 +57,8 @@ export const ActivityCard = (props: Props) => (
     isSelected={props.isSelected}
   >
     <ImageContainer>
-      <img src={placeholder} className="image" />
+      {!props.image && <img src={placeholder} className="image" />}
+      <div>{props.image && <props.image className="image" />}</div>
     </ImageContainer>
     {props.activity}
   </CardContainer>

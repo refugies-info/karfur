@@ -65,6 +65,7 @@ const IconContainer = styled.div`
 interface Props {
   structure: Structure | null;
   setStructure: (arg: any) => void;
+  setHasModifications: (arg: boolean) => void;
 }
 
 export const Step3 = (props: Props) => {
@@ -94,6 +95,7 @@ export const Step3 = (props: Props) => {
       ...props.structure,
       activities: getUpdatedActivities(selectedActivity),
     });
+    props.setHasModifications(true);
   };
 
   return (
@@ -152,6 +154,7 @@ export const Step3 = (props: Props) => {
                         )
                       : false
                   }
+                  image={detailedActivity.image}
                 />
               ))}
             </ActivityCardsContainer>

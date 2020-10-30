@@ -979,7 +979,7 @@ export class AdvancedSearch extends Component {
               {" "}
               {this.state.countShow +
                 "/" +
-                this.props.dispositifs.length +
+                (this.props.dispositifs.filter((elem) => !elem.demarcheId)).length +
                 " " +
                 t("AdvancedSearch.résultats", "résultats")}
             </FilterTitle>

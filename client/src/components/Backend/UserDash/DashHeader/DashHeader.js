@@ -37,6 +37,13 @@ const dashHeader = (props) => {
             .filter((x) => x)
         ),
       ].length;
+      const activeDispositifsAssocies =
+        structure && structure.dispositifsAssocies
+          ? structure.dispositifsAssocies.filter(
+              (dispositif) => dispositif.status === "Actif"
+            )
+          : [];
+
       return (
         <Row className="header-structure">
           <Col xl="6" lg="6" md="12" sm="12" xs="12" className="mt-10">
@@ -75,16 +82,11 @@ const dashHeader = (props) => {
             <Row className="row-indicateurs">
               <Col lg="4" className="struct-indicateurs">
                 <div className="indicateur">
-                  <h2>{(structure.dispositifsAssocies || []).length}</h2>
+                  <h2>{activeDispositifsAssocies.length}</h2>
                   <div>
                     contenu
-                    {(structure.dispositifsAssocies || []).length > 1
-                      ? "s"
-                      : ""}{" "}
-                    publié
-                    {(structure.dispositifsAssocies || []).length > 1
-                      ? "s"
-                      : ""}{" "}
+                    {activeDispositifsAssocies.length > 1 ? "s" : ""} publié
+                    {activeDispositifsAssocies.length > 1 ? "s" : ""}{" "}
                   </div>
                 </div>
               </Col>
@@ -159,40 +161,32 @@ const dashHeader = (props) => {
           </h2>
         </Col>
         <Col className="tableau-header align-right">
-          {
-            // temporarly remove access to annuaire create for mep
-            false &&
-              props.title === "Votre structure" &&
-              props.structure &&
-              !props.structure.hasResponsibleSeenNotification && (
-                <FButton
-                  type="dark"
-                  className="mr-8"
-                  name="folder-add-outline"
-                  tag={NavLink}
-                  to="/annuaire-create"
-                >
-                  Compléter la fiche annuaire
-                </FButton>
-              )
-          }
-          {
-            // temporarly remove access to annuaire create for mep
-            false &&
-              props.title === "Votre structure" &&
-              props.structure &&
-              props.structure.hasResponsibleSeenNotification && (
-                <FButton
-                  type="dark"
-                  className="mr-8"
-                  name="edit-outline"
-                  tag={NavLink}
-                  to="/annuaire-create"
-                >
-                  Modifier la fiche annuaire
-                </FButton>
-              )
-          }
+          {props.title === "Votre structure" &&
+            props.structure &&
+            !props.structure.hasResponsibleSeenNotification && (
+              <FButton
+                type="dark"
+                className="mr-8"
+                name="folder-add-outline"
+                tag={NavLink}
+                to="/annuaire-create"
+              >
+                Compléter la fiche annuaire
+              </FButton>
+            )}
+          {props.title === "Votre structure" &&
+            props.structure &&
+            props.structure.hasResponsibleSeenNotification && (
+              <FButton
+                type="dark"
+                className="mr-8"
+                name="edit-outline"
+                tag={NavLink}
+                to="/annuaire-create"
+              >
+                Modifier la fiche annuaire
+              </FButton>
+            )}
           <FButton
             tag={"a"}
             href="https://help.refugies.info/fr/"

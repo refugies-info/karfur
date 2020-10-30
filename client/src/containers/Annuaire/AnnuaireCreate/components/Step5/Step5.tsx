@@ -7,6 +7,7 @@ import { Input } from "reactstrap";
 interface Props {
   structure: Structure | null;
   setStructure: (arg: any) => void;
+  setHasModifications: (arg: boolean) => void;
 }
 
 const HelpContainer = styled.div`
@@ -76,6 +77,7 @@ export const Step5 = (props: Props) => {
   const onChange = (e: any) => {
     // if too many caracters, don't save the new but possible to remove caracters
     if (nbCaractersRemaining > 0 || e.target.value.length < NB_CARACTERS_MAX) {
+      props.setHasModifications(true);
       return props.setStructure({
         ...props.structure,
         [e.target.id]: e.target.value,

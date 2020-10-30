@@ -44,6 +44,7 @@ const Text = styled.div`
 interface Props {
   structure: Structure | null;
   setStructure: (arg: any) => void;
+  setHasModifications: (arg: boolean) => void;
 }
 
 export const Step1 = (props: Props) => {
@@ -56,8 +57,13 @@ export const Step1 = (props: Props) => {
     });
   }, []);
 
-  const onChange = (e: any) =>
-    props.setStructure({ ...props.structure, [e.target.id]: e.target.value });
+  const onChange = (e: any) => {
+    props.setHasModifications(true);
+    return props.setStructure({
+      ...props.structure,
+      [e.target.id]: e.target.value,
+    });
+  };
   const handleFileInputChange = (event: any) => {
     setUploading(true);
     const formData = new FormData();
@@ -76,6 +82,7 @@ export const Step1 = (props: Props) => {
       });
       setUploading(false);
     });
+    props.setHasModifications(true);
   };
   const secureUrl =
     props.structure &&
