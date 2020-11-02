@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { datadogLogs } from "@datadog/browser-logs";
 
-if (process.env.REACT_APP_ENV === "quality") {
+if (process.env.REACT_APP_ENV === "staging") {
   datadogLogs.init({
     clientToken: process.env.REACT_APP_DATADOG_TOKEN,
     datacenter: "eu",
@@ -12,8 +12,8 @@ if (process.env.REACT_APP_ENV === "quality") {
 export class logger {
   static info = (message, data) => {
     console.log("react", process.env.REACT_APP_ENV);
-    if (process.env.REACT_APP_ENV === "quality") {
-    console.log(message, data);
+    if (process.env.REACT_APP_ENV === "staging") {
+      console.log(message, data);
       datadogLogs.logger.debug(message, data, "info");
       return;
     }
@@ -22,7 +22,7 @@ export class logger {
   };
 
   static warn = (message, data) => {
-    if (process.env.REACT_APP_ENV === "quality") {
+    if (process.env.REACT_APP_ENV === "staging") {
       datadogLogs.logger.log(message, data, "warn");
       return;
     }
@@ -31,7 +31,7 @@ export class logger {
   };
 
   static error = (message, data) => {
-    if (process.env.REACT_APP_ENV === "quality") {
+    if (process.env.REACT_APP_ENV === "staging") {
       datadogLogs.logger.log(message, data, "error");
       return;
     }
