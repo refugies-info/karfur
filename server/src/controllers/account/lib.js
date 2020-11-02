@@ -17,10 +17,11 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// front url to reset password
 const url =
   process.env.NODE_ENV === "dev"
     ? "http://localhost:3000/"
-    : process.env.NODE_ENV === "quality"
+    : process.env.NODE_ENV === "staging"
     ? "https://agir-qa.herokuapp.com/"
     : "https://www.refugies.info/";
 

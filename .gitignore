@@ -53,3 +53,5 @@ token.json
 /server/dist
 /client/src/locales/interfaceTranslation/csvBeforeTrad
 /client/src/locales/interfaceTranslation/csvAfterTrad
+/server/variables.env
+/client/src/scss/fonts/CircularStd

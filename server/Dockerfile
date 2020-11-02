@@ -1,6 +1,3 @@
-# Instructions:
-# /!\ This dockerfile should be use for local tests purposes only!
-
 # Use a node 12 base image
 ARG NODE_VERSION=10
 FROM node:${NODE_VERSION}-alpine
