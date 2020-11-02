@@ -1050,6 +1050,21 @@ export class Dispositif extends Component {
           : x
       ),
     });
+  changeDepartements = (departements, key, subkey) =>
+    this.setState({
+      menu: [...this.state.menu].map((x, i) =>
+        i === key
+          ? {
+              ...x,
+              children: x.children.map((y, ix) =>
+                ix === subkey
+                  ? { ...y, departements: departements, isFakeContent: false }
+                  : y
+              ),
+            }
+          : x
+      ),
+    },  () => this.setColors());
   changePrice = (e, key, subkey) =>
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
@@ -1141,8 +1156,11 @@ export class Dispositif extends Component {
     const prevState = [...this.state.menu];
     //var menuObj = [...menu[1].children]
     if (node === "title") {
-      prevState[key].children[subkey] = 
-        (this.state.initialMenu[1].children.concat(importantCard)).find((x) => x.title === value);
+      prevState[key].children[
+        subkey
+      ] = this.state.initialMenu[1].children
+        .concat(importantCard)
+        .find((x) => x.title === value);
     } else {
       prevState[key].children[subkey][node] = value;
     }
@@ -1938,6 +1956,7 @@ export class Dispositif extends Component {
                   changeTitle={this.changeCardTitle}
                   disableIsMapLoaded={this.disableIsMapLoaded}
                   toggleNiveau={this.toggleNiveau}
+                  changeDepartements={this.changeDepartements}
                   changeAge={this.changeAge}
                   changePrice={this.changePrice}
                   toggleFree={this.toggleFree}
