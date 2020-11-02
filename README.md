@@ -120,12 +120,6 @@ Please read through our [contributing guidelines](https://github.com/entrepreneu
 
 Editor preferences are available in the [editor config](https://github.com/entrepreneur-interet-general/karfur/blob/master/.editorconfig) for easy use in common text editors. Read more and download plugins at <http://editorconfig.org>.
 
-## Versioning
-
-For transparency into our release cycle and in striving to maintain backward compatibility, Refugies.info is maintained under [the Semantic Versioning guidelines](http://semver.org/).
-
-See [the Releases section of our project](https://github.com/entrepreneur-interet-general/karfur/releases) for changelogs for each release version.
-
 ## Team
 
 **Agathe Kieny** developper
