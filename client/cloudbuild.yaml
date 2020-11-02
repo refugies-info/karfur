@@ -10,7 +10,7 @@ steps:
     args:
       [
         "-c",
-        "for secret in $(gcloud secrets list --filter=\"labels.environment=${_ENV}\" --filter=\"labels.component=${_COMPONENT}\" --format=\"value(NAME)\"); do echo export $secret=\\\"$(gcloud secrets versions access --secret=$secret latest)\\\" >> build.env; done",
+        "for secret in $(gcloud secrets list --filter=\"labels.environment=${_ENV}\" --filter=\"labels.environment=common\" --filter=\"labels.component=${_COMPONENT}\" --filter=\"labels.component=common\" --format=\"value(NAME)\"); do echo export $secret=\\\"$(gcloud secrets versions access --secret=$secret latest)\\\" >> build.env; done",
       ]
     dir: "client"
   # Retrieve non open source fonts
@@ -24,8 +24,15 @@ steps:
   # Generate static resources
   - name: "node:10"
     entrypoint: bash
-    args: ["-c", "source build.env && npm run build"]
+    args:
+      [
+        "-c",
+        "sed -i 's/_${_ENV}//gi' build.env && source build.env && npm run build",
+      ]
     dir: "client"
+    env:
+      - "REACT_APP_ENV=$_REACT_APP_ENV"
+      - "REACT_APP_SERVER_URL=$_REACT_APP_SERVER_URL"
   # Sync static content with the frontend bucket
   - name: gcr.io/cloud-builders/gsutil
     entrypoint: bash
