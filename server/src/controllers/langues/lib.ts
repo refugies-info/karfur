@@ -80,14 +80,9 @@ async function get_langues(req: RequestFromClient, res: Res) {
         findLangue[i].avancementTrad = pubTradsCount / totalCount;
       }
     }
-    // to test prod deploiement
-    const test = findLangue.filter(
-      (langue: any) => langue.langueFr !== "Persan"
-    );
-
     res.status(200).json({
       text: "Succès",
-      data: test,
+      data: findLangue,
     });
   } catch (e) {
     res.status(500).json({ text: "Erreur interne", err: e });
