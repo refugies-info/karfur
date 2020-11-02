@@ -59,7 +59,7 @@ mongoose.set("debug", false);
 let db_path =
   NODE_ENV === "dev"
     ? "mongodb://localhost/db"
-    : NODE_ENV === "quality"
+    : NODE_ENV === "staging"
     ? MONGODB_QA_URI
     : MONGODB_PROD_URI;
 // eslint-disable-next-line no-console
