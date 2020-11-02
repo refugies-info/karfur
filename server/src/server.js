@@ -26,14 +26,7 @@ const startup = require("./startup/startup");
 // const oauthLogoutCallback = require('./controllers/account/france-connect').oauthLogoutCallback
 // const getUser = require('./controllers/account/france-connect').getUser
 
-const {
-  NODE_ENV,
-  CLOUD_NAME,
-  API_KEY,
-  API_SECRET,
-  MONGODB_PROD_URI,
-  MONGODB_QA_URI,
-} = process.env;
+const { NODE_ENV, CLOUD_NAME, API_KEY, API_SECRET, MONGODB_URI } = process.env;
 
 if (NODE_ENV === "dev") {
   // eslint-disable-next-line no-console
@@ -56,12 +49,8 @@ var io = require("socket.io")(http);
 
 //Connexion à la base de donnée
 mongoose.set("debug", false);
-let db_path =
-  NODE_ENV === "dev"
-    ? "mongodb://localhost/db"
-    : NODE_ENV === "staging"
-    ? MONGODB_QA_URI
-    : MONGODB_PROD_URI;
+let db_path = MONGODB_URI;
+
 // eslint-disable-next-line no-console
 console.log("NODE_ENV : ", NODE_ENV);
 mongoose
