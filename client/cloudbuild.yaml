@@ -21,6 +21,9 @@ steps:
   entrypoint: bash
   args: ["-c", "sed -i 's/_${_ENV}//gi' build.env && source build.env && npm run build"]
   dir: 'client'
+  env:
+  - 'REACT_APP_ENV=$_REACT_APP_ENV'
+  - 'REACT_APP_SERVER_URL=$_REACT_APP_SERVER_URL'
 # Sync static content with the frontend bucket
 - name: gcr.io/cloud-builders/gsutil
   entrypoint: bash
