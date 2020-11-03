@@ -254,6 +254,14 @@ async function get_structure(req, res) {
   }
 }
 
+function testEnvVariable(req, res) {
+  let result = "no var";
+  if (process.env.TEST) {
+    result = process.env.TEST;
+  }
+  res.status(200).json({ result });
+}
 //On exporte notre fonction
 exports.add_structure = add_structure;
 exports.get_structure = get_structure;
+exports.testEnvVariable = testEnvVariable;

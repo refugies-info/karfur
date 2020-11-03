@@ -92,6 +92,7 @@ const contenuParagraphe = (props) => {
                   changePrice={bprops.changePrice}
                   updateUIArray={bprops.updateUIArray}
                   toggleNiveau={bprops.toggleNiveau}
+                  changeDepartements={bprops.changeDepartements}
                   deleteCard={bprops.deleteCard}
                   content={bprops.content}
                   keyValue={bprops.keyValue}
