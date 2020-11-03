@@ -35,6 +35,7 @@ yarn-error.log*
 /client/.pnp.js
 /client/.npmrc
 /client/coverage
+/client/src/scss/fonts/CircularStd
 /client/.DS_Store
 /client/.env.local
 /client/.env.development.local

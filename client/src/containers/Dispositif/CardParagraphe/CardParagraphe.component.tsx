@@ -28,6 +28,7 @@ import { filtres, cardTitles } from "../data";
 import _ from "lodash";
 import { infoCardIcon } from "../../../components/Icon/Icon";
 import { FrenchLevelModal } from "../FrenchLevelModal";
+import GeolocModal from "../../../components/Modals/GeolocModal/GeolocModal";
 
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 const frequencesPay = [
@@ -56,6 +57,19 @@ const ButtonText = styled.p`
   margin: 0;
 `;
 
+const ButtonTextBody = styled.p`
+  font-size: 22px;
+  line-height: 20px;
+  margin: 0;
+`;
+
+const TitleTextBody = styled.p`
+  font-size: 22px;
+  line-height: 20px;
+  margin: 0;
+  margin-bottom: 8px;
+`;
+
 export interface PropsBeforeInjection {
   subkey: number;
   subitem: DispositifContent;
@@ -68,6 +82,7 @@ export interface PropsBeforeInjection {
   changePrice: (arg1: any, arg2: number, arg3: number) => void;
   updateUIArray: (arg1: number, arg2: number, arg3: string) => void;
   toggleNiveau: (arg1: string[], arg2: number, arg3: number) => void;
+  changeDepartements: (arg1: string[], arg2: number, arg3: number) => void;
   deleteCard: (arg1: number, arg2: number) => void;
   content: Content;
   keyValue: number;
@@ -81,6 +96,7 @@ type StateType = {
   showNiveaux: boolean;
   tooltipOpen: boolean;
   showFrenchLevelModal: boolean;
+  showGeolocModal: boolean;
 };
 
 export class CardParagraphe extends Component<Props> {
@@ -90,6 +106,7 @@ export class CardParagraphe extends Component<Props> {
     showNiveaux: false,
     tooltipOpen: false,
     showFrenchLevelModal: false,
+    showGeolocModal: false,
   };
 
   toggleNiveaux = () => this.setState({ showNiveaux: !this.state.showNiveaux });
@@ -101,6 +118,15 @@ export class CardParagraphe extends Component<Props> {
       this.props.subkey
     );
   };
+
+  validateDepartments = (departments: string[]) => {
+    this.props.changeDepartements(
+      departments,
+      this.props.keyValue,
+      this.props.subkey
+    );
+  }
+
   toggleTooltip = () =>
     this.setState((prevState: StateType) => ({
       tooltipOpen: !prevState.tooltipOpen,
@@ -128,6 +154,10 @@ export class CardParagraphe extends Component<Props> {
   };
   toggleFrenchLevelModal = (show: boolean) =>
     this.setState({ showFrenchLevelModal: show });
+
+  toggleGeolocModal = (show: boolean) => {
+    this.setState({ showGeolocModal: show });
+  };
 
   toggleOptions = (e: Element) => {
     if (this.state.isOptionsOpen && e.currentTarget.id) {
@@ -216,7 +246,8 @@ export class CardParagraphe extends Component<Props> {
         cardTitle &&
         cardTitle.options &&
         cardTitle.options.length > 0 &&
-        !disableEdit
+        !disableEdit &&
+        subitem.title !== "Zone d'action"
       ) {
         if (
           !subitem.contentTitle ||
@@ -377,6 +408,23 @@ export class CardParagraphe extends Component<Props> {
             )}
           </>
         );
+      } else if (subitem.title === "Zone d'action") {
+        if (disableEdit) {
+          return <TitleTextBody>{"Départements"}</TitleTextBody>;
+        }
+
+        if (!disableEdit) {
+          return (
+            <FButton
+              type="precision"
+              className={"mb-8"}
+              //name="plus-circle-outline"
+              onClick={() => this.toggleGeolocModal(true)}
+            >
+              <ButtonTextBody>{"Sélectionner"}</ButtonTextBody>
+            </FButton>
+          );
+        }
       }
 
       let texte;
@@ -486,7 +534,11 @@ export class CardParagraphe extends Component<Props> {
           : this.props.mainTag.short.replace(/ /g, "-");
 
       return (
-        subitem.title.replace(/ /g, "-").replace("-?", "").replace("-!", "") +
+        subitem.title
+          .replace(/ /g, "-")
+          .replace("-?", "")
+          .replace("-!", "")
+          .replace("'", "-") +
         "-" +
         safeMainTag
       );
@@ -564,6 +616,27 @@ export class CardParagraphe extends Component<Props> {
                         ))}
                     </div>
                   )))}
+              {subitem.title === "Zone d'action" &&
+                (showNiveaux ||
+                  ((subitem.departements || []).length > 0 && (
+                    // info card Niveau de francais, selection of level in edit mode
+                    <div className="color-darkColor niveaux-wrapper">
+                      {filtres.departmentsData
+                        .filter((nv) =>
+                          (subitem.departements || []).some(
+                            (x: string) => x === nv
+                          )
+                        )
+                        .map((nv, key) => (
+                          <button
+                            key={(key + "d")}
+                            className={"backgroundColor-darkColor active"}
+                          >
+                            {(nv.split(" "))[0].length > 1 ? (nv.split(" "))[0] : ("0" + (nv.split(" "))[0])}
+                          </button>
+                        ))}
+                    </div>
+                  )))}
             </CardBody>
             {
               // footer for card Niveau de français to assess level in a website
@@ -600,6 +673,12 @@ export class CardParagraphe extends Component<Props> {
             t={this.props.t}
           />
         }
+        <GeolocModal
+          validateDepartments={this.validateDepartments}
+          departements={subitem.departements}
+          hideModal={() => this.toggleGeolocModal(false)}
+          show={this.state.showGeolocModal}
+        />
       </>
     );
   }
