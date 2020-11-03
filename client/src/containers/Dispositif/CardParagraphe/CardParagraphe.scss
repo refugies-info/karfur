@@ -638,6 +638,110 @@
         background-position: calc(100% - 60px) calc(100% + 0px), center;
       }
 
+      &.Zone-d-action-Français {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Français.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-noImage {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Formation-pro {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Formation-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Formation-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Santé {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Santé.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Santé.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Rencontre {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Rencontre.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Rencontre.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Administratif {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Administratif.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Administratif.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Logement {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Logement.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Logement.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Mobilité {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Mobilité.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Mobilité.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Insertion-pro {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Insertion-pro.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Insertion-pro.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Études {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Etudes.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Etudes.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Bénévolat {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Bénévolat.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Bénévolat.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Loisir {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Loisir.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Loisir.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
+      &.Zone-d-action-Culture {
+        background-image: url(../../../assets/figma/InfoCard/Geoloc/infocard_Geoloc_Culture.svg),
+          url(../../../assets/figma/InfoCard/background/bg-infocard_Culture.svg);
+        background-size: 80%, cover;
+        background-repeat: no-repeat, no-repeat;
+        background-position: calc(100% - 20px) 150px, center;
+      }
+
       &.Important-Français {
         background-image: url(../../../assets/figma/InfoCard/Important/infocard_Important_Français.svg),
           url(../../../assets/figma/InfoCard/background/bg-infocard_Français.svg);
@@ -854,7 +958,7 @@
             border-radius: 6px;
             padding: 5px;
             color: $noirCD;
-            background: transparent;
+           // background: transparent;
             margin-right: 5px;
             margin-top: 5px;
             font-weight: bold;

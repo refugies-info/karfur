@@ -10,7 +10,7 @@ steps:
     args:
       [
         "-c",
-        "for secret in $(gcloud secrets list --filter=\"labels.environment=${_ENV}\" --filter=\"labels.environment=common\" --filter=\"labels.component=${_COMPONENT}\" --filter=\"labels.component=common\" --format=\"value(NAME)\"); do echo export $secret=\\\"$(gcloud secrets versions access --secret=$secret latest)\\\" >> build.env; done",
+        "for secret in $(gcloud secrets list --filter=\"labels.environment~${_ENV}|common\" --filter=\"labels.component~${_COMPONENT}|common\" --format=\"value(NAME)\"); do echo export $secret=\\\"$(gcloud secrets versions access --secret=$secret latest)\\\" >> build.env; done",
       ]
     dir: "client"
   # Retrieve non open source fonts
