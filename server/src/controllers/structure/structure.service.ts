@@ -1,4 +1,4 @@
-import logger = require("src/logger");
+import logger = require("../../logger");
 import Structure from "../../schema/schemaStructure.js";
 import { RequestFromClient, Res } from "src/types/interface.js";
 
