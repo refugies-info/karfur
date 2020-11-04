@@ -1,9 +1,9 @@
 import Dispositif from "../../schema/schemaDispositif";
 import Structure from "../../schema/schemaStructure";
 
-import logger from "src/logger";
-import { RequestFromClient, Res } from "src/types/interface";
-import { asyncForEach } from "src/libs/asyncForEach";
+import logger from "../../logger";
+import { RequestFromClient, Res } from "../../types/interface";
+import { asyncForEach } from "../../libs/asyncForEach";
 
 // const correctStructure = async (
 //   dispositifId: string,
