@@ -1050,21 +1050,24 @@ export class Dispositif extends Component {
           : x
       ),
     });
-  changeDepartements = (departements, key, subkey) =>
-    this.setState({
-      menu: [...this.state.menu].map((x, i) =>
-        i === key
-          ? {
-              ...x,
-              children: x.children.map((y, ix) =>
-                ix === subkey
-                  ? { ...y, departements: departements, isFakeContent: false }
-                  : y
-              ),
-            }
-          : x
-      ),
-    },  () => this.setColors());
+  changeDepartements = (departments, key, subkey) =>
+    this.setState(
+      {
+        menu: [...this.state.menu].map((x, i) =>
+          i === key
+            ? {
+                ...x,
+                children: x.children.map((y, ix) =>
+                  ix === subkey
+                    ? { ...y, departments: departments, isFakeContent: false }
+                    : y
+                ),
+              }
+            : x
+        ),
+      },
+      () => this.setColors()
+    );
   changePrice = (e, key, subkey) =>
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
@@ -1396,6 +1399,27 @@ export class Dispositif extends Component {
       !Object.keys(content).some((k) => content[k] && content[k] !== contenu[k])
     ) {
       return;
+    }
+    //we delete the infocard geoloc if it's empty
+    if (
+      this.state.menu &&
+      this.state.menu[1] &&
+      this.state.menu[1].children &&
+      this.state.menu[1].children.length > 0
+    ) {
+      var geolocInfoCard = this.state.menu[1].children.find(
+        (elem) => elem.title === "Zone d'action"
+      );
+      if (
+        geolocInfoCard &&
+        (!geolocInfoCard.departments ||
+        geolocInfoCard.departments.length < 1)
+      ) {
+        var index = this.state.menu[1].children.indexOf(geolocInfoCard);
+        if (index > -1) {
+          this.state.menu[1].children.splice(index, 1);
+        }
+      }
     }
     let dispositif = {
       ...content,
