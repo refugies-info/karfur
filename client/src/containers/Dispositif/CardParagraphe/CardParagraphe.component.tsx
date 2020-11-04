@@ -125,7 +125,7 @@ export class CardParagraphe extends Component<Props> {
       this.props.keyValue,
       this.props.subkey
     );
-  }
+  };
 
   toggleTooltip = () =>
     this.setState((prevState: StateType) => ({
@@ -410,7 +410,7 @@ export class CardParagraphe extends Component<Props> {
         );
       } else if (subitem.title === "Zone d'action") {
         if (disableEdit) {
-          return <TitleTextBody>{"Départements"}</TitleTextBody>;
+          return <TitleTextBody>{(subitem.departments && subitem.departments.length > 1) ? "Départements" : (subitem.departments && subitem.departments[0] === "All") ? "France entière" : "Département"}</TitleTextBody>;
         }
 
         if (!disableEdit) {
@@ -617,26 +617,30 @@ export class CardParagraphe extends Component<Props> {
                     </div>
                   )))}
               {subitem.title === "Zone d'action" &&
-                (showNiveaux ||
-                  ((subitem.departements || []).length > 0 && (
-                    // info card Niveau de francais, selection of level in edit mode
-                    <div className="color-darkColor niveaux-wrapper">
-                      {filtres.departmentsData
-                        .filter((nv) =>
-                          (subitem.departements || []).some(
-                            (x: string) => x === nv
-                          )
-                        )
-                        .map((nv, key) => (
+                (subitem.departments || []).length > 0 && (
+                  <div className="color-darkColor niveaux-wrapper">
+                    {subitem.departments && subitem.departments.length > 1
+                      ? subitem.departments.map((nv, key) => (
                           <button
-                            key={(key + "d")}
-                            className={"backgroundColor-darkColor active"}
+                            key={key + "d"}
+                            className={"backgroundColor-darkColor active "}
                           >
-                            {(nv.split(" "))[0].length > 1 ? (nv.split(" "))[0] : ("0" + (nv.split(" "))[0])}
+                            {nv.split(" ")[0].length > 1
+                              ? nv.split(" ")[0]
+                              : "0" + nv.split(" ")[0]}
                           </button>
-                        ))}
-                    </div>
-                  )))}
+                        ))
+                      : subitem.departments && subitem.departments.length === 1 && (!disableEdit || subitem.departments[0] !== "All")
+                      ? 
+                        <button
+                          key={"gd"}
+                          className={"backgroundColor-darkColor active"}
+                        >
+                          {subitem.departments[0] === "All" ? "France entière" : subitem.departments[0] }
+                        </button>
+                      : null}
+                  </div>
+                )}
             </CardBody>
             {
               // footer for card Niveau de français to assess level in a website
@@ -675,7 +679,7 @@ export class CardParagraphe extends Component<Props> {
         }
         <GeolocModal
           validateDepartments={this.validateDepartments}
-          departements={subitem.departements}
+          departments={subitem.departments}
           hideModal={() => this.toggleGeolocModal(false)}
           show={this.state.showGeolocModal}
         />
