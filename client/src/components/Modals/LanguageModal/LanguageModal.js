@@ -17,16 +17,29 @@ import "./LanguageModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { Event, initGA } from "../../../tracking/dispatch";
+import { activatedLanguages } from "./data";
 
 const languageModal = (props) => {
-  const getAvancementTrad = (element) => {
-    if (props.languages[element].i18nCode === "fr") return 1;
+  const languages = {
+    ...activatedLanguages,
+    unavailable: { unavailable: true },
+  };
 
-    return props.languages[element].avancementTrad;
+  const getAvancementTrad = (element) => {
+    if (languages[element].i18nCode === "fr") return 1;
+    const correspondingLangue = props.langues.filter(
+      (langue) => langue.i18nCode === languages[element].i18nCode
+    );
+
+    const avancement =
+      correspondingLangue.length > 0 && correspondingLangue[0].avancementTrad
+        ? correspondingLangue[0].avancementTrad
+        : 0;
+
+    return avancement;
   };
 
   const { t } = props;
-  // const languages = (props.languages || []).map(x => ({...x, avancement: (x.avancement + dispositifs.find(y =>)) / 2}))
   if (props.show) {
     return (
       <Modal
@@ -47,7 +60,7 @@ const languageModal = (props) => {
         </ModalHeader>
         <ModalBody>
           <ListGroup>
-            {Object.keys(props.languages).map((element) => {
+            {Object.keys(languages).map((element) => {
               if (element === "unavailable") {
                 return (
                   <ListGroupItem
@@ -90,20 +103,20 @@ const languageModal = (props) => {
                 );
               }
               const isSelected =
-                props.languages[element].i18nCode === props.current_language;
+                languages[element].i18nCode === props.current_language;
               return (
                 <ListGroupItem
                   action
-                  key={props.languages[element]._id}
-                  disabled={!props.languages[element].avancement}
+                  key={languages[element]._id}
+                  disabled={!languages[element].avancement}
                   onClick={() => {
                     initGA();
                     Event(
                       "CHANGE_LANGUAGE",
-                      props.languages[element].i18nCode,
+                      languages[element].i18nCode,
                       "label"
                     );
-                    props.changeLanguage(props.languages[element].i18nCode);
+                    props.changeLanguage(languages[element].i18nCode);
                   }}
                   className={isSelected ? "active" : ""}
                 >
@@ -111,17 +124,16 @@ const languageModal = (props) => {
                     <Col xl="1" lg="1" md="1" sm="1" xs="1">
                       <i
                         className={
-                          "flag-icon flag-icon-" +
-                          props.languages[element].langueCode
+                          "flag-icon flag-icon-" + languages[element].langueCode
                         }
-                        title={props.languages[element].langueCode}
-                        id={props.languages[element].langueCode}
+                        title={languages[element].langueCode}
+                        id={languages[element].langueCode}
                       ></i>
                     </Col>
                     <Col xl="5" lg="5" md="5" sm="5" xs="5">
                       <span>
-                        <b>{props.languages[element].langueFr}</b> -{" "}
-                        {props.languages[element].langueLoc}
+                        <b>{languages[element].langueFr}</b> -{" "}
+                        {languages[element].langueLoc}
                       </span>
                     </Col>
                     <Col
@@ -132,22 +144,27 @@ const languageModal = (props) => {
                       xs="5"
                       className="progress-col"
                     >
-                      <Progress
-                        color={colorAvancement(getAvancementTrad(element))}
-                        value={getAvancementTrad(element) * 100}
-                      />
-                      <span
-                        className={
-                          "text-" + colorAvancement(getAvancementTrad(element))
-                        }
-                      >
-                        <b>
-                          {Math.round(
-                            getAvancementTrad(element) * 100 || 0,
-                            0
-                          ) + " %"}
-                        </b>
-                      </span>
+                      {props.isLanguagesLoading === false && (
+                        <>
+                          <Progress
+                            color={colorAvancement(getAvancementTrad(element))}
+                            value={getAvancementTrad(element) * 100}
+                          />
+                          <span
+                            className={
+                              "text-" +
+                              colorAvancement(getAvancementTrad(element))
+                            }
+                          >
+                            <b>
+                              {Math.round(
+                                getAvancementTrad(element) * 100 || 0,
+                                0
+                              ) + " %"}
+                            </b>
+                          </span>
+                        </>
+                      )}
                     </Col>
                     <Col
                       xl="1"

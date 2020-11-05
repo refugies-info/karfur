@@ -17,6 +17,7 @@ const {
   addOrUpdateDispositifInContenusAirtable,
 } = require("../miscellaneous/airtable");
 const logger = require("../../logger");
+const { updateLanguagesAvancement } = require("../langues/langues.service");
 
 const headers = {
   "Content-Type": "application/json",
@@ -234,6 +235,14 @@ const insertInDispositif = (res, traduction, locale) => {
               }
             } catch (error) {
               logger.error("error while updating contenu in airtable", {
+                error,
+              });
+            }
+            try {
+              logger.info("[add_Trad] updating avancement");
+              updateLanguagesAvancement();
+            } catch (error) {
+              logger.error("[add_dispositif] error while updating avancement", {
                 error,
               });
             }
