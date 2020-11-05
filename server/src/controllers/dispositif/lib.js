@@ -19,6 +19,7 @@ const {
   countValidated,
 } = require("./functions");
 const logger = require("../../logger");
+const { updateLanguagesAvancement } = require("../langues/langues.service");
 
 // const gmail_auth = require('./gmail_auth');
 
@@ -198,8 +199,19 @@ async function add_dispositif(req, res) {
             null
           );
         } catch (error) {
-          logger.error("error while updating contenu in airtable", { error });
+          logger.error(
+            "[add_dispositif] error while updating contenu in airtable",
+            { error }
+          );
         }
+      }
+      try {
+        logger.info("[add_dispositif] updating avancement");
+        await updateLanguagesAvancement();
+      } catch (error) {
+        logger.error("[add_dispositif] error while updating avancement", {
+          error,
+        });
       }
     } else {
       logger.info("[add_dispositif] creating a new dispositif", {

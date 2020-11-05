@@ -1165,7 +1165,7 @@ export class AdvancedSearch extends Component {
                             ? filterLanguage.langueFr
                             : current.langueFr) || "Langue"}
                         </span>
-                        {" " + t("avec le thème")}
+                        {" " + t("AdvancedSearch.avec le thème")}
                       </>
                     ) : (
                       t(
@@ -1252,7 +1252,7 @@ export class AdvancedSearch extends Component {
                             ? filterLanguage.langueFr
                             : current.langueFr) || "Langue"}
                         </span>
-                        {" " + t("avec le thème")}
+                        {" " + t("AdvancedSearch.avec le thème")}
                       </>
                     ) : (
                       t(
