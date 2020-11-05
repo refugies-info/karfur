@@ -510,10 +510,6 @@ export class Login extends Component {
             current_language={i18n.language}
             toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
-            languages={{
-              ...this.props.langues.filter((x) => x.avancement >= 0.5),
-              unavailable: { unavailable: true },
-            }}
           />
         </MainContainer>
       </div>
