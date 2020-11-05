@@ -296,7 +296,6 @@ async function get_dispositif(req, res) {
             .limit(limit)
             .lean();
         } else {
-          console.log("query", query);
           promise = await Dispositif.find(query)
             .sort(sort)
             .populate(populate)
@@ -464,7 +463,6 @@ async function testPerf(req, res) {
       { status: "Actif" },
       { titreInformatif: 1 }
     );
-    console.log("dispos", dispositifArray);
     res.status(200).json({ res: dispositifArray });
   } catch (error) {
     res.status(500).json({ error: "Erreur" });

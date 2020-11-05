@@ -1,5 +1,6 @@
 const dispositif = require("./dispositif/lib.js");
 const checkToken = require("./account/checkToken");
+const { getDispositifs } = require("./dispositif/dispositif.service");
 
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
@@ -17,4 +18,5 @@ module.exports = function (app) {
     checkToken.check,
     dispositif.get_dispo_progression
   );
+  app.post("/getDispositifs", getDispositifs);
 };
