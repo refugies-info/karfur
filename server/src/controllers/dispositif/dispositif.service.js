@@ -12,6 +12,7 @@ const getDispositifArray = async (query) => {
     created_at: 1,
     publishedAt: 1,
     typeContenu: 1,
+    avancement: 1,
   };
   if (query["audienceAge.bottomValue"]) {
     var modifiedQuery = Object.assign({}, query);
@@ -30,10 +31,24 @@ const getDispositifArray = async (query) => {
         },
       ],
     };
-    return await Dispositif.find(newQuery, neededFields);
+    return await Dispositif.find(newQuery, neededFields).lean();
   }
-  return await Dispositif.find(query, neededFields);
+  return await Dispositif.find(query, neededFields).lean();
 };
+
+const removeUselessContent = (dispositifArray) =>
+  dispositifArray.map((dispositif) => {
+    const test = dispositif.contenu[1].children.map((child) => {
+      if (child.title === "Zone d'action") {
+        return child;
+      }
+      return [];
+    });
+
+    const simplifiedContent = [{}, { children: test }];
+
+    return { ...dispositif, contenu: simplifiedContent };
+  });
 
 export const getDispositifs = async (req, res) => {
   try {
@@ -45,19 +60,21 @@ export const getDispositifs = async (req, res) => {
       locale = locale || "fr";
 
       const dispositifArray = await getDispositifArray(query);
+      const adaptedDispositifArray = removeUselessContent(dispositifArray);
       const array = [];
 
-      array.forEach.call(dispositifArray, (dispositif) => {
-        dispositif = turnToLocalized(dispositif, locale);
+      array.forEach.call(adaptedDispositifArray, (dispositif) => {
+        turnToLocalized(dispositif, locale);
         turnJSONtoHTML(dispositif.contenu);
       });
 
       res.status(200).json({
         text: "Succès",
-        data: dispositifArray,
+        data: adaptedDispositifArray,
       });
     }
   } catch (error) {
+    logger.error("[getDispositifs] error while getting dispositifs", { error });
     switch (error) {
       case 500:
         res.status(500).json({
