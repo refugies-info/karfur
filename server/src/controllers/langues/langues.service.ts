@@ -32,13 +32,7 @@ export const getLanguages = async (req: RequestFromClient, res: Res) => {
   }
 };
 
-export const updateLanguagesAvancement = async (
-  req: RequestFromClient,
-  res: Res
-) => {
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  }
+export const updateLanguagesAvancement = async () => {
   logger.info("[updateLanguagesAvancement] received a call");
   const activeLanguages = await Langue.find(
     { avancement: { $gt: 0 } },
@@ -65,8 +59,6 @@ export const updateLanguagesAvancement = async (
       }
     );
   }
-  res.status(200).json({
-    text: "Succès",
-    data: "ok",
-  });
+  logger.info("[updateLanguagesAvancement] successfully updated avancement");
+  return;
 };
