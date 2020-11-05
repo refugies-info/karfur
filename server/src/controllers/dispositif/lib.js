@@ -126,13 +126,13 @@ async function add_dispositif(req, res) {
               /*   now we compare the old french version of the dispositif with new updated one,
            and for every change we mark the paragraph/title/etc. within the translation so that we can propose it and highlight it in the 'à revoir' section  */
               try {
-              tradExpert = markTradModifications(
-                dispositif,
-                // eslint-disable-next-line no-undef
-                dispositifFr,
-                tradExpert,
-                req.userId,
-              );
+                tradExpert = markTradModifications(
+                  dispositif,
+                  // eslint-disable-next-line no-undef
+                  dispositifFr,
+                  tradExpert,
+                  req.userId
+                );
               } catch (e) {
                 new Error({
                   name: "markTradModifications",
@@ -296,6 +296,7 @@ async function get_dispositif(req, res) {
             .limit(limit)
             .lean();
         } else {
+          console.log("query", query);
           promise = await Dispositif.find(query)
             .sort(sort)
             .populate(populate)
@@ -457,9 +458,23 @@ const _errorHandler = (error, res) => {
   }
 };
 
+async function testPerf(req, res) {
+  try {
+    const dispositifArray = await Dispositif.find(
+      { status: "Actif" },
+      { titreInformatif: 1 }
+    );
+    console.log("dispos", dispositifArray);
+    res.status(200).json({ res: dispositifArray });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur" });
+  }
+}
+
 //On exporte notre fonction
 exports.add_dispositif = add_dispositif;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;
 exports.get_dispo_progression = get_dispo_progression;
+exports.testPerf = testPerf;
