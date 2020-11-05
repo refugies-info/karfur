@@ -241,7 +241,7 @@ export default {
   },
 
   getDispositifs: (params) => {
-    return axios.post(burl + `/dispositifs/getDispositifs`, params);
+    return axios.post(burl + "/dispositifs/getDispositifs", params);
   },
 
   add_tradForReview: (query) => {
