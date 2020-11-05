@@ -159,16 +159,16 @@ const GeolocModal = (props) => {
     var departments = [];
     if (selectedDepartments.length > 0 && selectedDepartments[0] === "All") {
       departments = selectedDepartments
-      ? !selectedDepartments
-        ? [element]
-        : selectedDepartments[0] = [element]
-      : []; 
+        ? !selectedDepartments
+          ? [element]
+          : (selectedDepartments[0] = [element])
+        : [];
     } else {
-    departments = selectedDepartments
-      ? !selectedDepartments
-        ? [element]
-        : selectedDepartments.concat([element])
-      : [];
+      departments = selectedDepartments
+        ? !selectedDepartments
+          ? [element]
+          : selectedDepartments.concat([element])
+        : [];
     }
     setSelectedDepartments(departments);
     setDepartments([]);
@@ -255,11 +255,9 @@ const GeolocModal = (props) => {
 
       <StyledButtonGroupContainer>
         <FButton
-          tag={"button"}
-          href="https://help.refugies.info/fr/article/definir-le-public-et-les-conditions-dacces-creer-une-fiche-dispositif-410-20ufdy/?1602752980884/reader/"
-          target="_blank"
           type="tuto"
           name={"play-circle-outline"}
+          onClick={() => props.toggleTutorielModal("C'est pour qui ?")}
         >
           Tutoriel
         </FButton>
