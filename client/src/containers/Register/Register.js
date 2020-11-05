@@ -26,6 +26,7 @@ import { logger } from "../../logger";
 import passwdCheck from "zxcvbn";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import img from "../../assets/login_background.svg";
+import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
 
 const StyledHeader = styled.div`
   font-weight: 500;
@@ -430,6 +431,8 @@ export class Register extends Component {
             current_language={i18n.language}
             toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
+            langues={this.props.langues}
+            isLanguagesLoading={this.props.isLanguagesLoading}
           />
         </MainContainer>
       </div>
@@ -677,6 +680,9 @@ const mapStateToProps = (state) => {
     languei18nCode: state.langue.languei18nCode,
     showLangModal: state.langue.showLangModal,
     langues: state.langue.langues,
+    isLanguagesLoading:
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES] &&
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES].isLoading,
   };
 };
 

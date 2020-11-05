@@ -27,6 +27,7 @@ import Footer from "../Footer/Footer";
 import { toggleSpinner } from "../../services/Tts/tts.actions";
 
 import "./Layout.scss";
+import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
 
 export class Layout extends Component {
   constructor(props) {
@@ -189,6 +190,8 @@ export class Layout extends Component {
             current_language={i18n.language}
             toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
+            langues={this.props.langues}
+            isLanguagesLoading={this.props.isLanguagesLoading}
           />
         </div>
       </DirectionProvider>
@@ -203,6 +206,9 @@ const mapStateToProps = (state) => {
     showLangModal: state.langue.showLangModal,
     langues: state.langue.langues,
     dispositifs: state.dispositif.dispositifs,
+    isLanguagesLoading:
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES] &&
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES].isLoading,
   };
 };
 

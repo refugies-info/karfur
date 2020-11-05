@@ -28,6 +28,7 @@ import {
   toggleLangueActionCreator,
   toggleLangueModalActionCreator,
 } from "../../services/Langue/langue.actions";
+import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
 
 const StyledHeader = styled.div`
   font-weight: 500;
@@ -246,6 +247,8 @@ class Reset extends Component {
             current_language={i18n.language}
             toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
+            langues={this.props.langues}
+            isLanguagesLoading={this.props.isLanguagesLoading}
           />
         </MainContainer>
       </div>
@@ -366,6 +369,9 @@ const mapStateToProps = (state) => {
     languei18nCode: state.langue.languei18nCode,
     showLangModal: state.langue.showLangModal,
     langues: state.langue.langues,
+    isLanguagesLoading:
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES] &&
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES].isLoading,
   };
 };
 

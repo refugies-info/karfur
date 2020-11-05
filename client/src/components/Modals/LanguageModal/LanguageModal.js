@@ -20,14 +20,23 @@ import { Event, initGA } from "../../../tracking/dispatch";
 import { activatedLanguages } from "./data";
 
 const languageModal = (props) => {
-  const getAvancementTrad = (element) => {
-    if (languages[element].i18nCode === "fr") return 1;
-    return languages[element].avancementTrad;
-  };
-
   const languages = {
     ...activatedLanguages,
     unavailable: { unavailable: true },
+  };
+
+  const getAvancementTrad = (element) => {
+    if (languages[element].i18nCode === "fr") return 1;
+    const correspondingLangue = props.langues.filter(
+      (langue) => langue.i18nCode === languages[element].i18nCode
+    );
+
+    const avancement =
+      correspondingLangue.length > 0 && correspondingLangue[0].avancementTrad
+        ? correspondingLangue[0].avancementTrad
+        : 0;
+
+    return avancement;
   };
 
   const { t } = props;
@@ -135,22 +144,27 @@ const languageModal = (props) => {
                       xs="5"
                       className="progress-col"
                     >
-                      <Progress
-                        color={colorAvancement(getAvancementTrad(element))}
-                        value={getAvancementTrad(element) * 100}
-                      />
-                      <span
-                        className={
-                          "text-" + colorAvancement(getAvancementTrad(element))
-                        }
-                      >
-                        <b>
-                          {Math.round(
-                            getAvancementTrad(element) * 100 || 0,
-                            0
-                          ) + " %"}
-                        </b>
-                      </span>
+                      {props.isLanguagesLoading === false && (
+                        <>
+                          <Progress
+                            color={colorAvancement(getAvancementTrad(element))}
+                            value={getAvancementTrad(element) * 100}
+                          />
+                          <span
+                            className={
+                              "text-" +
+                              colorAvancement(getAvancementTrad(element))
+                            }
+                          >
+                            <b>
+                              {Math.round(
+                                getAvancementTrad(element) * 100 || 0,
+                                0
+                              ) + " %"}
+                            </b>
+                          </span>
+                        </>
+                      )}
                     </Col>
                     <Col
                       xl="1"
