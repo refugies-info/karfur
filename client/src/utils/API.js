@@ -304,6 +304,8 @@ export default {
     );
   },
 
+  getLanguages: () => axios.get(burl + "/langues/getLanguages"),
+
   create_theme: (query) => {
     return axios.post(burl + "/themes/create_theme", query, {
       headers: headers,
