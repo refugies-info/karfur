@@ -1412,8 +1412,7 @@ export class Dispositif extends Component {
       );
       if (
         geolocInfoCard &&
-        (!geolocInfoCard.departments ||
-        geolocInfoCard.departments.length < 1)
+        (!geolocInfoCard.departments || geolocInfoCard.departments.length < 1)
       ) {
         var index = this.state.menu[1].children.indexOf(geolocInfoCard);
         if (index > -1) {

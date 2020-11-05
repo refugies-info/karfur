@@ -89,6 +89,7 @@ export interface PropsBeforeInjection {
   t: any;
   cards: string[];
   mainTag: Tag;
+  toggleTutorielModal: () => void;
 }
 type StateType = {
   isDropdownOpen: boolean;
@@ -410,7 +411,15 @@ export class CardParagraphe extends Component<Props> {
         );
       } else if (subitem.title === "Zone d'action") {
         if (disableEdit) {
-          return <TitleTextBody>{(subitem.departments && subitem.departments.length > 1) ? "Départements" : (subitem.departments && subitem.departments[0] === "All") ? "France entière" : "Département"}</TitleTextBody>;
+          return (
+            <TitleTextBody>
+              {subitem.departments && subitem.departments.length > 1
+                ? "Départements"
+                : subitem.departments && subitem.departments[0] === "All"
+                ? "France entière"
+                : "Département"}
+            </TitleTextBody>
+          );
         }
 
         if (!disableEdit) {
@@ -619,26 +628,29 @@ export class CardParagraphe extends Component<Props> {
               {subitem.title === "Zone d'action" &&
                 (subitem.departments || []).length > 0 && (
                   <div className="color-darkColor niveaux-wrapper">
-                    {subitem.departments && subitem.departments.length > 1
-                      ? subitem.departments.map((nv, key) => (
-                          <button
-                            key={key + "d"}
-                            className={"backgroundColor-darkColor active "}
-                          >
-                            {nv.split(" ")[0].length > 1
-                              ? nv.split(" ")[0]
-                              : "0" + nv.split(" ")[0]}
-                          </button>
-                        ))
-                      : subitem.departments && subitem.departments.length === 1 && (!disableEdit || subitem.departments[0] !== "All")
-                      ? 
+                    {subitem.departments && subitem.departments.length > 1 ? (
+                      subitem.departments.map((nv, key) => (
                         <button
-                          key={"gd"}
-                          className={"backgroundColor-darkColor active"}
+                          key={key + "d"}
+                          className={"backgroundColor-darkColor active "}
                         >
-                          {subitem.departments[0] === "All" ? "France entière" : subitem.departments[0] }
+                          {nv.split(" ")[0].length > 1
+                            ? nv.split(" ")[0]
+                            : "0" + nv.split(" ")[0]}
                         </button>
-                      : null}
+                      ))
+                    ) : subitem.departments &&
+                      subitem.departments.length === 1 &&
+                      (!disableEdit || subitem.departments[0] !== "All") ? (
+                      <button
+                        key={"gd"}
+                        className={"backgroundColor-darkColor active"}
+                      >
+                        {subitem.departments[0] === "All"
+                          ? "France entière"
+                          : subitem.departments[0]}
+                      </button>
+                    ) : null}
                   </div>
                 )}
             </CardBody>
@@ -682,6 +694,7 @@ export class CardParagraphe extends Component<Props> {
           departments={subitem.departments}
           hideModal={() => this.toggleGeolocModal(false)}
           show={this.state.showGeolocModal}
+          toggleTutorielModal={this.props.toggleTutorielModal}
         />
       </>
     );
