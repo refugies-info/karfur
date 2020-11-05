@@ -126,13 +126,13 @@ async function add_dispositif(req, res) {
               /*   now we compare the old french version of the dispositif with new updated one,
            and for every change we mark the paragraph/title/etc. within the translation so that we can propose it and highlight it in the 'à revoir' section  */
               try {
-              tradExpert = markTradModifications(
-                dispositif,
-                // eslint-disable-next-line no-undef
-                dispositifFr,
-                tradExpert,
-                req.userId,
-              );
+                tradExpert = markTradModifications(
+                  dispositif,
+                  // eslint-disable-next-line no-undef
+                  dispositifFr,
+                  tradExpert,
+                  req.userId
+                );
               } catch (e) {
                 new Error({
                   name: "markTradModifications",

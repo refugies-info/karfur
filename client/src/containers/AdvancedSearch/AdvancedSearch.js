@@ -362,7 +362,8 @@ export class AdvancedSearch extends Component {
         search: qs.stringify(newQueryParam),
       });
     }
-    API.get_dispositif({
+
+    API.getDispositifs({
       query: {
         ...query,
         ...this.state.filter,
@@ -373,7 +374,6 @@ export class AdvancedSearch extends Component {
     })
       .then((data_res) => {
         let dispositifs = data_res.data.data;
-
         this.setState({ countTotal: dispositifs.length });
 
         if (query["tags.name"]) {
@@ -402,13 +402,25 @@ export class AdvancedSearch extends Component {
         ) {
           var i;
           dispositifs = dispositifs.filter((disp) => {
-            if (disp.contenu[1] && disp.contenu[1].children && disp.contenu[1].children.length > 0) {
-              const geolocInfocard = disp.contenu[1].children.find((infocard) => infocard.title === "Zone d'action");
+            if (
+              disp.contenu[1] &&
+              disp.contenu[1].children &&
+              disp.contenu[1].children.length > 0
+            ) {
+              const geolocInfocard = disp.contenu[1].children.find(
+                (infocard) => infocard.title === "Zone d'action"
+              );
               if (geolocInfocard && geolocInfocard.departments) {
                 for (i = 0; i < geolocInfocard.departments.length; i++) {
-                  if (geolocInfocard.departments[i] === "All" || (geolocInfocard.departments[i].split(" - "))[1] === localisationSearch.query[1].long_name || (geolocInfocard.departments[i].split(" - "))[1] === localisationSearch.query[0].long_name) {
+                  if (
+                    geolocInfocard.departments[i] === "All" ||
+                    geolocInfocard.departments[i].split(" - ")[1] ===
+                      localisationSearch.query[1].long_name ||
+                    geolocInfocard.departments[i].split(" - ")[1] ===
+                      localisationSearch.query[0].long_name
+                  ) {
                     return true;
-                  } else if ((i + 1) === geolocInfocard.departments.length) {
+                  } else if (i + 1 === geolocInfocard.departments.length) {
                     return false;
                   }
                 }

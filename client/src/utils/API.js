@@ -240,6 +240,10 @@ export default {
     );
   },
 
+  getDispositifs: (params) => {
+    return axios.post(burl + "/dispositifs/getDispositifs", params);
+  },
+
   add_tradForReview: (query) => {
     return axios.post(burl + "/traduction/add_tradForReview", query, {
       headers: headers,
