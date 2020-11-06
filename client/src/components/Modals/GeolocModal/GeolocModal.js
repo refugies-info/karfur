@@ -22,6 +22,11 @@ const IconContainer = styled.div`
   cursor: pointer;
 `;
 
+const CheckBoxText = styled.div`
+  font-weight: ${(props) => (props.checked ? 900 : 400)};
+  color: ${(props) => (props.checked ? "#212121" : "#828282")};
+`;
+
 const Title = styled.div`
   font-weight: bold;
   font-size: 18px;
@@ -109,6 +114,7 @@ const StyledRightButtonGroup = styled.div`
 
 const GeolocModal = (props) => {
   const [departments, setDepartments] = useState([]);
+  const [isFranceSelected, setFranceSelected] = useState(false);
   const [selectedDepartments, setSelectedDepartments] = useState(
     props.departments || []
   );
@@ -142,20 +148,32 @@ const GeolocModal = (props) => {
   const handleCheckboxChange = () => {
     if (selectedDepartments && selectedDepartments[0] === "All") {
       setSelectedDepartments([]);
+      setFranceSelected(false);
     } else {
+      setFranceSelected(true);
       setSelectedDepartments(["All"]);
     }
   };
 
   const onDropdownElementClick = (element) => {
-    const departments = selectedDepartments
-      ? !selectedDepartments
-        ? [element]
-        : selectedDepartments.concat([element])
-      : [];
+    var departments = [];
+    if (selectedDepartments.length > 0 && selectedDepartments[0] === "All") {
+      departments = selectedDepartments
+        ? !selectedDepartments
+          ? [element]
+          : (selectedDepartments[0] = [element])
+        : [];
+    } else {
+      departments = selectedDepartments
+        ? !selectedDepartments
+          ? [element]
+          : selectedDepartments.concat([element])
+        : [];
+    }
     setSelectedDepartments(departments);
     setDepartments([]);
     setDepartmentInput("");
+    setFranceSelected(false);
   };
 
   const onValidate = () => {
@@ -163,21 +181,19 @@ const GeolocModal = (props) => {
     props.hideModal();
   };
 
-  const isFranceSelected =
-    !!selectedDepartments && selectedDepartments[0] === "All";
-
+  /*  const isFranceSelected =
+    (selectedDepartments && selectedDepartments[0] === "All") || !(selectedDepartments && selectedDepartments.length > 0 && selectedDepartments[0] !== "All");
+ */
   return (
-    <Modal show={props.show} classe="success-modal text-center">
+    <Modal show={props.show} className="geoloc-modal">
       <IconContainer onClick={props.hideModal}>
         <Icon name="close-outline" fill="#3D3D3D" size="large" />
       </IconContainer>
       <div id="svgContainer" />
-
       <h1>Zone d'action</h1>
       <p>
         Sélectionnez les départements sur lesquels votre dispositif est actif :
       </p>
-
       {!isFranceSelected && (
         <DepartmentContainer>
           {selectedDepartments &&
@@ -218,7 +234,7 @@ const GeolocModal = (props) => {
       {selectedDepartments && selectedDepartments.length === 8 && (
         <HelpContainer>
           <HelpDescription>
-            Nombre maximum de département renseignés. Préférez l’option{" "}
+            Nombre maximum de départements renseignés. Préférez l’option{" "}
             <b>France entière</b> si votre dispositif est présent sur de
             nombreux territoires.
           </HelpDescription>
@@ -234,11 +250,15 @@ const GeolocModal = (props) => {
         checked={isFranceSelected}
       >
         <CustomCheckBox checked={isFranceSelected} />
-        France entière
+        <CheckBoxText checked={isFranceSelected}>France entière</CheckBoxText>
       </CheckboxContainer>
 
       <StyledButtonGroupContainer>
-        <FButton type="tuto" name={"play-circle-outline"}>
+        <FButton
+          type="tuto"
+          name={"play-circle-outline"}
+          onClick={() => props.toggleTutorielModal("C'est pour qui ?")}
+        >
           Tutoriel
         </FButton>
         <StyledRightButtonGroup>

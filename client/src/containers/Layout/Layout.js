@@ -27,6 +27,7 @@ import Footer from "../Footer/Footer";
 import { toggleSpinner } from "../../services/Tts/tts.actions";
 
 import "./Layout.scss";
+import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
 
 export class Layout extends Component {
   constructor(props) {
@@ -135,7 +136,10 @@ export class Layout extends Component {
       <DirectionProvider direction={isRTL ? DIRECTIONS.RTL : DIRECTIONS.LTR}>
         <div onMouseOver={this.toggleHover}>
           <Suspense fallback={this.loading()}>
-            <Toolbar {...this.props} drawerToggleClicked={this.sideDrawerToggleHandler} />
+            <Toolbar
+              {...this.props}
+              drawerToggleClicked={this.sideDrawerToggleHandler}
+            />
           </Suspense>
           <div className={"app-body"}>
             <SideDrawer
@@ -144,7 +148,15 @@ export class Layout extends Component {
               closed={() => this.sideDrawerClosedHandler("left")}
             />
 
-            <main className={"Content" + (this.props.location && this.props.location.pathname.includes("/advanced-search") ? " advanced-search" : "")}>
+            <main
+              className={
+                "Content" +
+                (this.props.location &&
+                this.props.location.pathname.includes("/advanced-search")
+                  ? " advanced-search"
+                  : "")
+              }
+            >
               {this.props.children}
               <>
                 <Switch>
@@ -178,10 +190,8 @@ export class Layout extends Component {
             current_language={i18n.language}
             toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
-            languages={{
-              ...this.props.langues.filter((x) => x.avancement >= 0.5),
-              unavailable: { unavailable: true },
-            }}
+            langues={this.props.langues}
+            isLanguagesLoading={this.props.isLanguagesLoading}
           />
         </div>
       </DirectionProvider>
@@ -196,6 +206,9 @@ const mapStateToProps = (state) => {
     showLangModal: state.langue.showLangModal,
     langues: state.langue.langues,
     dispositifs: state.dispositif.dispositifs,
+    isLanguagesLoading:
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES] &&
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES].isLoading,
   };
 };
 

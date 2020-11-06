@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
-//import ReactDependentScript from "react-dependent-script";
-//import Autocomplete from "react-google-autocomplete";
+import ReactDependentScript from "react-dependent-script";
+import Autocomplete from "react-google-autocomplete";
 
 import FSearchBtn from "../../../components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "../../../assets/streamline";
@@ -26,10 +26,10 @@ export class SearchItem extends Component {
     this.setState({ isMounted: true });
   }
 
-  onPlaceSelected(place) {
-    //this.setState({ ville: place.formatted_address });
+  onPlaceSelected = (place) => {
+    this.setState({ ville: place.formatted_address });
     this.props.selectParam(this.props.keyValue, place);
-  }
+  };
 
   toggle = () =>
     this.setState((prevState) => {
@@ -45,46 +45,51 @@ export class SearchItem extends Component {
 
   render() {
     const { t, item, keyValue, isBigDesktop } = this.props;
-    const { dropdownOpen, isMounted } = this.state;
+    const { dropdownOpen, isMounted, ville } = this.state;
 
     return (
       <div className="search-col">
-        <span className={"mr-10 " + (isBigDesktop ? "search-title" : "search-title-small")}>
+        <span
+          className={
+            "mr-10 " + (isBigDesktop ? "search-title" : "search-title-small")
+          }
+        >
           {t("SearchItem." + item.title, item.title)}
         </span>
         {item.queryName === "localisation" ? (
           isMounted && (
-/*             <ReactDependentScript
+            <ReactDependentScript
               loadingComponent={<div>Chargement de Google Maps...</div>}
               scripts={[
                 "https://maps.googleapis.com/maps/api/js?key=" +
                   process.env.REACT_APP_GOOGLE_API_KEY +
                   "&v=3.exp&libraries=places&language=fr&region=FR",
               ]}
-            > */
+            >
               <div className="position-relative">
-                <div
+                {/*                 <div
                   className={
                     "search-filter disabled in-header search-autocomplete search-btn " +
                     (item.active ? "active " : "") + (isBigDesktop ? "" : "search-btn-small")
                   }
                 >
                   {t("SearchItem.bientot disponible", "Bientôt disponible")}
-                </div>
-                {/*                 <Autocomplete
+                </div> */}
+                <Autocomplete
                   className={
-                    "search-btn disabled in-header search-autocomplete " +
-                    (item.active ? "active" : "")
+                    "search-btn in-header search-autocomplete " +
+                    (item.active ? "active " : "") +
+                    (isBigDesktop ? "" : "search-btn-small")
                   }
-                  placeholder={"Bientôt disponible"}
+                  placeholder={item.placeholder}
                   id="ville"
-                  //value={ville}
-                  //onChange={this.handleChange}
-                  //onPlaceSelected={this.onPlaceSelected}
+                  value={ville}
+                  onChange={this.handleChange}
+                  onPlaceSelected={this.onPlaceSelected}
                   types={["(regions)"]}
                   componentRestrictions={{ country: "fr" }}
-                /> */}
-                {item.active &&  (
+                />
+{/*                 {item.active && (
                   <EVAIcon
                     name="close-circle"
                     size="xlarge"
@@ -95,9 +100,21 @@ export class SearchItem extends Component {
                       this.initializeVille();
                     }}
                   />
+                )} */}
+                {item.active && (
+                  <EVAIcon
+                    name="close-outline"
+                    size="large"
+                    className="ml-10"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      this.props.desactiver(keyValue);
+                      this.initializeVille();
+                    }}
+                  />
                 )}
               </div>
-            //</ReactDependentScript>
+            </ReactDependentScript>
           )
         ) : (
           <Dropdown
@@ -120,23 +137,23 @@ export class SearchItem extends Component {
                 (isBigDesktop ? "" : " search-btn-small")
               }
             >
-                {item.active && item.placeholder === "thème" && (
-                 <div
-                 style={{
-                   display: "flex",
-                   marginRight: 10,
-                   justifyContent: "center",
-                   alignItems: "center",
-                 }}
-               >
-                 <Streamline
-                   name={item.icon}
-                   stroke={"white"}
-                   width={22}
-                   height={22}
-                 />
-               </div>
-              ) }
+              {item.active && item.placeholder === "thème" && (
+                <div
+                  style={{
+                    display: "flex",
+                    marginRight: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Streamline
+                    name={item.icon}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                </div>
+              )}
               {item.value
                 ? t("Tags." + item.value, item.value)
                 : t("Tags." + item.placeholder, item.placeholder)}
@@ -150,16 +167,17 @@ export class SearchItem extends Component {
                     this.props.desactiver(keyValue);
                   }}
                 />
-              ) :  <EVAIcon
-              name="arrow-ios-downward-outline"
-              size="large"
-              className="ml-8"
-              onClick={(e) => {
-                e.stopPropagation();
-                this.toggle();
-              }}
-            />
-              }
+              ) : (
+                <EVAIcon
+                  name="arrow-ios-downward-outline"
+                  size="large"
+                  className="ml-8"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    this.toggle();
+                  }}
+                />
+              )}
             </DropdownToggle>
             <DropdownMenu>
               <div
@@ -178,23 +196,23 @@ export class SearchItem extends Component {
                       }
                       color={(subi.short || "").replace(/ /g, "-")}
                     >
-                      {subi.icon ?
-                      <div
-                      style={{
-                        display: "flex",
-                        marginRight: 10,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Streamline
-                        name={subi.icon}
-                        stroke={"white"}
-                        width={22}
-                        height={22}
-                      />
-                    </div> : null
-                }
+                      {subi.icon ? (
+                        <div
+                          style={{
+                            display: "flex",
+                            marginRight: 10,
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Streamline
+                            name={subi.icon}
+                            stroke={"white"}
+                            width={22}
+                            height={22}
+                          />
+                        </div>
+                      ) : null}
                       {t("Tags." + subi.name, subi.name)}
                     </FSearchBtn>
                   );

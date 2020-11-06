@@ -2,7 +2,6 @@ const Structure = require("../../schema/schemaStructure.js");
 const User = require("../../schema/schemaUser.js");
 const Role = require("../../schema/schemaRole.js");
 const logger = require("../../logger");
-const Dispositif = require("../../schema/schemaDispositif.js");
 
 const modifyStructure = async (
   structure,
@@ -182,25 +181,26 @@ async function add_structure(req, res) {
   }
 }
 
-const getAssociatedDispositifs = async (id) => {
-  try {
-    logger.info(
-      "[getAssociatedDispositifs] fetching associated dispositif with id",
-      { id }
-    );
-    const dispositifArray = await Dispositif.find({
-      sponsors: { $elemMatch: { _id: id.toString() } },
-    });
+// const getAssociatedDispositifs = async (id) => {
+//   try {
+//     logger.info(
+//       "[getAssociatedDispositifs] fetching associated dispositif with id",
+//       { id }
+//     );
+//     const dispositifArray = await Dispositif.find({
+//       sponsors: { $elemMatch: { _id: id.toString() } },
+//     });
 
-    return dispositifArray;
-  } catch (error) {
-    logger.error(
-      "[getAssociatedDispositifs] error while getting associated dispositifs, return empty array"
-    );
-    return [];
-  }
-};
+//     return dispositifArray;
+//   } catch (error) {
+//     logger.error(
+//       "[getAssociatedDispositifs] error while getting associated dispositifs, return empty array"
+//     );
+//     return [];
+//   }
+// };
 
+// TO BE REMOVED : CREATE FUNCTIONS LIKE IN STRUCTURE.SERVICE
 async function get_structure(req, res) {
   if (!req.body || !req.body.query) {
     return res.status(400).json({ text: "Requête invalide" });
@@ -230,15 +230,15 @@ async function get_structure(req, res) {
     }
 
     // the populate on DispositifsAssocies is not correct since dispositifsAssocies is not updated when we change the structure of a dispositif
-    const associatedDispositifs = await getAssociatedDispositifs(
-      structure[0]._id
-    );
-    const newStructure = [
-      { ...structure[0].toJSON(), dispositifsAssocies: associatedDispositifs },
-    ];
+    // const associatedDispositifs = await getAssociatedDispositifs(
+    //   structure[0]._id
+    // );
+    // const newStructure = [
+    //   { ...structure[0].toJSON(), dispositifsAssocies: associatedDispositifs },
+    // ];
     return res.status(200).json({
       text: "Succès",
-      data: newStructure,
+      data: structure,
     });
   } catch (error) {
     logger.error("[get_structure] error while getting structure");
@@ -254,14 +254,6 @@ async function get_structure(req, res) {
   }
 }
 
-function testEnvVariable(req, res) {
-  let result = "no var";
-  if (process.env.TEST) {
-    result = process.env.TEST;
-  }
-  res.status(200).json({ result });
-}
 //On exporte notre fonction
 exports.add_structure = add_structure;
 exports.get_structure = get_structure;
-exports.testEnvVariable = testEnvVariable;

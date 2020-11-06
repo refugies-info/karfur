@@ -78,7 +78,7 @@ export interface DispositifContent {
   footerIcon?: string;
   footer?: string;
   niveaux?: string[];
-  departements?: string[];
+  departments?: string[];
   contentBody?: string;
   ageTitle?: string;
 }

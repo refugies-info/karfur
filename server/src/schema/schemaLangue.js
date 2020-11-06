@@ -38,6 +38,11 @@ var langueSchema = mongoose.Schema(
       unique: false,
       required: false,
     },
+    avancementTrad: {
+      type: Number,
+      unique: false,
+      required: false,
+    },
     participants: {
       type: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
       required: false,
