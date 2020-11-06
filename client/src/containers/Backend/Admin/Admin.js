@@ -643,25 +643,7 @@ export class Admin extends Component {
                   <Badge color="success">{this.state.users.length}</Badge>
                 </NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink
-                  active={this.state.activeTab[3] === "3"}
-                  onClick={() => {
-                    this.toggleTab(3, "3");
-                  }}
-                >
-                  <i className="flag-icon flag-icon-fr" title="fr" id="fr"></i>
-                  <span
-                    className={this.state.activeTab[3] === "3" ? "" : "d-none"}
-                  >
-                    Langues
-                  </span>
-                  {"\u00A0"}
-                  <Badge pill color="warning">
-                    {this.state.langues.length}
-                  </Badge>
-                </NavLink>
-              </NavItem>
+
               <NavItem>
                 <NavLink
                   active={this.state.activeTab[3] === "4"}

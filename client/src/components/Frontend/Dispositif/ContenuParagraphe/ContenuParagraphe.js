@@ -98,6 +98,7 @@ const contenuParagraphe = (props) => {
                   keyValue={bprops.keyValue}
                   cards={cards}
                   mainTag={bprops.mainTag}
+                  toggleTutorielModal={props.toggleTutorielModal}
                 />
               ) : subitem.type === "map" && !bprops.printing ? (
                 <MapParagraphe

@@ -19,6 +19,7 @@ const {
   countValidated,
 } = require("./functions");
 const logger = require("../../logger");
+const { updateLanguagesAvancement } = require("../langues/langues.service");
 
 // const gmail_auth = require('./gmail_auth');
 
@@ -126,13 +127,13 @@ async function add_dispositif(req, res) {
               /*   now we compare the old french version of the dispositif with new updated one,
            and for every change we mark the paragraph/title/etc. within the translation so that we can propose it and highlight it in the 'à revoir' section  */
               try {
-              tradExpert = markTradModifications(
-                dispositif,
-                // eslint-disable-next-line no-undef
-                dispositifFr,
-                tradExpert,
-                req.userId,
-              );
+                tradExpert = markTradModifications(
+                  dispositif,
+                  // eslint-disable-next-line no-undef
+                  dispositifFr,
+                  tradExpert,
+                  req.userId
+                );
               } catch (e) {
                 new Error({
                   name: "markTradModifications",
@@ -198,8 +199,19 @@ async function add_dispositif(req, res) {
             null
           );
         } catch (error) {
-          logger.error("error while updating contenu in airtable", { error });
+          logger.error(
+            "[add_dispositif] error while updating contenu in airtable",
+            { error }
+          );
         }
+      }
+      try {
+        logger.info("[add_dispositif] updating avancement");
+        await updateLanguagesAvancement();
+      } catch (error) {
+        logger.error("[add_dispositif] error while updating avancement", {
+          error,
+        });
       }
     } else {
       logger.info("[add_dispositif] creating a new dispositif", {
