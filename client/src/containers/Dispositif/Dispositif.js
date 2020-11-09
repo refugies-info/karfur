@@ -1237,7 +1237,6 @@ export class Dispositif extends Component {
   };
 
   createPdf = () => {
-    // this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
     initGA();
     Event("EXPORT_PDF", this.props.languei18nCode, "label");
     let uiArray = [...this.state.uiArray];
