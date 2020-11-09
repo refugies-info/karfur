@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import {
   Col,
   Card,
@@ -10,6 +10,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Input,
+  Tooltip
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
@@ -67,7 +68,10 @@ const TitleTextBody = styled.p`
   font-size: 22px;
   line-height: 20px;
   margin: 0;
-  margin-bottom: 8px;
+  padding-bottom: 12px;
+  padding-top: 10px;
+  font-weight: 600;
+  margin-top: ${props => props.mt || 0};
 `;
 
 export interface PropsBeforeInjection {
@@ -98,6 +102,37 @@ type StateType = {
   showFrenchLevelModal: boolean;
   showGeolocModal: boolean;
 };
+
+const GeolocTooltipItem = (props: any) => {
+  const { item, id } = props;
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+
+  const toggle = () => setTooltipOpen(!tooltipOpen);
+
+  return (
+    <>
+    <button
+      key={id + "d"}
+      id={"Tooltip-" + id}
+      className={"backgroundColor-darkColor active "}
+    >
+      {item.split(" ")[0].length > 1
+        ? item.split(" ")[0]
+        : "0" + item.split(" ")[0]}
+    </button>
+     <Tooltip
+     placement="top"
+     offset="0px, 8px"
+     isOpen={tooltipOpen}
+     target={"Tooltip-" + id}
+     toggle={toggle}
+   >
+     {item}
+   </Tooltip>
+   </>
+  );
+};
+
 
 export class CardParagraphe extends Component<Props> {
   state: StateType = {
@@ -410,7 +445,15 @@ export class CardParagraphe extends Component<Props> {
         );
       } else if (subitem.title === "Zone d'action") {
         if (disableEdit) {
-          return <TitleTextBody>{(subitem.departments && subitem.departments.length > 1) ? "Départements" : (subitem.departments && subitem.departments[0] === "All") ? "France entière" : "Département"}</TitleTextBody>;
+          return (
+            <TitleTextBody>
+              {subitem.departments && subitem.departments.length > 1
+                ? "Départements"
+                : subitem.departments && subitem.departments[0] === "All"
+                ? "France entière"
+                : "Département"}
+            </TitleTextBody>
+          );
         }
 
         if (!disableEdit) {
@@ -619,26 +662,19 @@ export class CardParagraphe extends Component<Props> {
               {subitem.title === "Zone d'action" &&
                 (subitem.departments || []).length > 0 && (
                   <div className="color-darkColor niveaux-wrapper">
-                    {subitem.departments && subitem.departments.length > 1
-                      ? subitem.departments.map((nv, key) => (
-                          <button
-                            key={key + "d"}
-                            className={"backgroundColor-darkColor active "}
-                          >
-                            {nv.split(" ")[0].length > 1
-                              ? nv.split(" ")[0]
-                              : "0" + nv.split(" ")[0]}
-                          </button>
-                        ))
-                      : subitem.departments && subitem.departments.length === 1 && (!disableEdit || subitem.departments[0] !== "All")
-                      ? 
-                        <button
-                          key={"gd"}
-                          className={"backgroundColor-darkColor active"}
-                        >
-                          {subitem.departments[0] === "All" ? "France entière" : subitem.departments[0] }
-                        </button>
-                      : null}
+                    {subitem.departments && subitem.departments.length > 1 ? (
+                      subitem.departments.map((nv, key) => (
+                        <GeolocTooltipItem key={key} item={nv} id={key}/>
+                      ))
+                    ) : subitem.departments &&
+                      subitem.departments.length === 1 &&
+                      (!disableEdit || subitem.departments[0] !== "All") ? (
+                      <TitleTextBody mt={"8px"}>
+                        {subitem.departments[0] === "All"
+                          ? "France entière"
+                          : subitem.departments[0]}
+                      </TitleTextBody>
+                    ) : null}
                   </div>
                 )}
             </CardBody>
