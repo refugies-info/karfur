@@ -81,21 +81,6 @@ class App extends Component {
       console.log = function () {};
     }
 
-    //On track le chargement et déchargement de la page
-    // window.onbeforeunload = function () {
-    //   this.props.tracking.trackEvent({
-    //     action: "unmount",
-    //     label: "App",
-    //     value: mountId,
-    //   });
-    //   return undefined;
-    // }.bind(this);
-    // this.props.tracking.trackEvent({
-    //   action: "mount",
-    //   label: "App",
-    //   value: mountId,
-    // });
-
     //On charge Crisp
     window.$crisp = [];
     window.CRISP_WEBSITE_ID = "74e04b98-ef6b-4cb0-9daf-f8a2b643e121";
@@ -110,21 +95,6 @@ class App extends Component {
     window.scrollTo(0, 0);
   }
 
-  // _onActive = () =>
-  //   this.props.tracking.trackEvent({
-  //     action: "active",
-  //     label: "App",
-  //     value: mountId,
-  //   });
-
-  // _onIdle = () =>
-  //   this.props.tracking.trackEvent({
-  //     action: "idle",
-  //     label: "App",
-  //     value: mountId,
-  //     time: this.idleTimer.getLastActiveTime(),
-  //   });
-
   socketFn = {
     sendMessage: this.sendMessage,
   };
@@ -132,17 +102,6 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {/* <IdleTimer
-          ref={(ref) => {
-            this.idleTimer = ref;
-          }}
-          element={document}
-          onActive={this._onActive}
-          onIdle={this._onIdle}
-          // onAction={this._onAction}
-          // debounce={250}
-          timeout={1000 * 60 * 5}
-        /> */}
         <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/login" name="Login Page" component={Login} />

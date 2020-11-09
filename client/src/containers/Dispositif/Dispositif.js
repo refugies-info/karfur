@@ -238,11 +238,13 @@ export class Dispositif extends Component {
     // if no itemId and user logged in : initialize new dispo creation
     // if no itemId and user not logged in : redirect to login page
     if (itemId) {
-      // this.props.tracking.trackEvent({
-      //   action: "readDispositif",
-      //   label: "dispositifId",
-      //   value: itemId,
-      // });
+      API.log_event({
+        app: "App",
+        page: "Dispositif",
+        action: "readDispositif",
+        label: "dispositifId",
+        value: itemId,
+      });
       // work in progress : store dispo in redux and in state. the goal is not to have dispo in state anymore
       this.props.fetchSelectedDispositif({
         selectedDispositifId: itemId,
@@ -1235,7 +1237,6 @@ export class Dispositif extends Component {
   };
 
   createPdf = () => {
-    // this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
     initGA();
     Event("EXPORT_PDF", this.props.languei18nCode, "label");
     let uiArray = [...this.state.uiArray];
