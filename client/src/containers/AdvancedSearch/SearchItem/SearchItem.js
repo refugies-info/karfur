@@ -50,6 +50,13 @@ export class SearchItem extends Component {
 
     return (
       <div className="search-col">
+        <span
+          className={
+            "mr-10 " + (isBigDesktop ? "search-title" : "search-title-small")
+          }
+        >
+          {t("SearchItem." + item.title, item.title)}
+        </span>
         {item.queryName === "localisation" && ville !== "" ? (
           <FSearchBtn
             className={
