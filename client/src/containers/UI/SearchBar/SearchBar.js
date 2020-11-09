@@ -4,7 +4,6 @@ import Autosuggest from "react-autosuggest";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import debounce from "lodash.debounce";
-import track from "react-tracking";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 
@@ -105,12 +104,7 @@ export class SearchBar extends React.Component {
       : this.goToDispositif(suggestion, true);
   };
 
-  goToDispositif = (dispositif = {}, fromAutoSuggest = false) => {
-    this.props.tracking.trackEvent({
-      action: "click",
-      label: "goToDispositif" + (fromAutoSuggest ? " - fromAutoSuggest" : ""),
-      value: dispositif._id,
-    });
+  goToDispositif = (dispositif = {}) => {
     this.props.history.push({
       pathname:
         "/" +
@@ -242,6 +236,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default track({
-  component: "SearchBar",
-})(withRouter(connect(mapStateToProps)(withTranslation()(SearchBar))));
+export default withRouter(
+  connect(mapStateToProps)(withTranslation()(SearchBar))
+);

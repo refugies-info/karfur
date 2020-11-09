@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
-import track from "react-tracking";
 import {
   ButtonDropdown,
   DropdownItem,
@@ -343,13 +342,9 @@ const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
 };
 
-export default track({
-  component: "Toolbar",
-})(
-  withRouter(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(withTranslation()(windowSize(Toolbar)))
-  )
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withTranslation()(windowSize(Toolbar)))
 );

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 
 import "./PolitiqueConfidentialite.scss";
@@ -125,6 +124,4 @@ class PolitiqueConfidentialite extends Component {
   }
 }
 
-export default track({
-  page: "PolitiqueConfidentialite",
-})(withTranslation()(PolitiqueConfidentialite));
+export default withTranslation()(PolitiqueConfidentialite);
