@@ -16,9 +16,10 @@ class Dashboard extends Component {
     nbDispositifsActifs: 0,
     nbDemarches: 0,
     nbDemarchesActives: 0,
-    users: [],
+    nbContributors: 0,
     nbDispositifsByMainTag: {},
     nbDemarchesByMainTag: {},
+    nbTraductors: 0,
   };
 
   componentDidMount() {
@@ -43,10 +44,12 @@ class Dashboard extends Component {
       status: "Actif",
     }).then((data) => this.setState({ nbDemarchesActives: data.data }));
 
-    API.get_users({
-      query: { status: "Actif" },
-      populate: "roles",
-    }).then((data) => this.setState({ users: data.data.data }));
+    API.getFiguresOnUsers().then((data) =>
+      this.setState({
+        nbContributors: data.data.data.nbContributors,
+        nbTraductors: data.data.data.nbTraductors,
+      })
+    );
 
     filtres.tags.map((tag) => {
       API.count_dispositifs({
@@ -89,7 +92,8 @@ class Dashboard extends Component {
       nbDispositifsActifs,
       nbDemarches,
       nbDemarchesActives,
-      users,
+      nbContributors,
+      nbTraductors,
     } = this.state;
     const { langues } = this.props;
     const languesActives = (langues || []).filter((x) => x.avancement >= 0.8);
@@ -159,30 +163,10 @@ class Dashboard extends Component {
               Nombre de démarches actives : <b>{nbDemarchesActives}</b>
             </li>
             <li>
-              Nombre de contributeurs :{" "}
-              <b>
-                {
-                  (
-                    users.filter((x) =>
-                      (x.roles || []).some((y) => y.nom === "Contrib")
-                    ) || []
-                  ).length
-                }
-              </b>
+              Nombre de contributeurs : <b>{nbContributors}</b>
             </li>
             <li>
-              Nombre de traducteurs ou experts :{" "}
-              <b>
-                {
-                  (
-                    users.filter((x) =>
-                      (x.roles || []).some(
-                        (y) => y.nom === "Trad" || y.nom === "ExpertTrad"
-                      )
-                    ) || []
-                  ).length
-                }
-              </b>
+              Nombre de traducteurs ou experts : <b>{nbTraductors}</b>
             </li>
             <li>
               Nombre total de langues : <b>{(langues || []).length}</b>
