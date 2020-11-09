@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
@@ -426,6 +425,7 @@ const mapDispatchToProps = {
   toggleLangueModal: toggleLangueModalActionCreator,
 };
 
-export default track({
-  page: "HomePage",
-})(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HomePage)));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(HomePage));

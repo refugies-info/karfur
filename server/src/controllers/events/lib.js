@@ -1,5 +1,6 @@
 const Event = require("../../schema/schemaEvent.js");
 const User = require("../../schema/schemaUser.js");
+const logger = require("../../logger");
 
 function log_event(req, res) {
   if (!req.fromSite) {
@@ -8,6 +9,7 @@ function log_event(req, res) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
     var event = req.body;
+    logger.info("log_event", event);
     event.userId = req.userId;
     // if(event.action){console.log(event)}
     var _u = new Event(event);
@@ -30,7 +32,9 @@ function get_event(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   }
+
   const { query, sort } = req.body;
+  logger.info("get_event", query);
   var findEvent = new Promise(function (resolve, reject) {
     Event.find(query)
       .sort(sort)
@@ -65,6 +69,8 @@ function distinct_count_event(req, res) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   }
   const body = req.body;
+  logger.info("distinct_count_event", body.query);
+
   Event.find(body.query)
     .distinct(body.distinct)
     .exec(function (err, data) {
@@ -87,6 +93,8 @@ async function distinct_event(req, res) {
   }
   const body = req.body;
   const query = body.query || {};
+  logger.info("distinct_event", query);
+
   Event.find(query)
     .distinct(body.distinct)
     .exec(async (err, data) => {
@@ -110,6 +118,8 @@ function aggregate_events(req, res) {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
   }
+  logger.info("aggregate_events", req.body);
+
   var find = new Promise(function (resolve, reject) {
     Event.aggregate(req.body).exec(function (err, result) {
       if (err) {

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import track from "react-tracking";
 import {
   ButtonDropdown,
   DropdownToggle,
@@ -730,12 +729,7 @@ export class AdvancedSearch extends Component {
     this.selectParam(0, selectedTheme);
   };
 
-  goToDispositif = (dispositif = {}, fromAutoSuggest = false) => {
-    this.props.tracking.trackEvent({
-      action: "click",
-      label: "goToDispositif" + (fromAutoSuggest ? " - fromAutoSuggest" : ""),
-      value: dispositif._id,
-    });
+  goToDispositif = (dispositif = {}) => {
     this.props.history.push(
       "/" +
         (dispositif.typeContenu || "dispositif") +
@@ -1619,13 +1613,9 @@ const mapSizesToProps = ({ width }) => ({
   isBigDesktop: width >= 1565,
 });
 
-export default track({
-  page: "AdvancedSearch",
-})(
-  withRouter(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(withSizes(mapSizesToProps)(withTranslation()(windowSize(AdvancedSearch))))
-  )
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withSizes(mapSizesToProps)(withTranslation()(windowSize(AdvancedSearch))))
 );

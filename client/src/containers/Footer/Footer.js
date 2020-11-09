@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
@@ -237,6 +236,4 @@ export class Footer extends Component {
   }
 }
 
-export default track({
-  page: "Footer",
-})(withTranslation()(Footer));
+export default withTranslation()(Footer);

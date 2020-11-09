@@ -5,7 +5,6 @@ import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import DirectionProvider, {
   DIRECTIONS,
 } from "react-with-direction/dist/DirectionProvider";
-import track from "react-tracking";
 // import { AppAside, AppFooter } from '@coreui/react';
 import { connect } from "react-redux";
 import Cookies from "js-cookie";
@@ -102,11 +101,6 @@ export class Layout extends Component {
   };
 
   changeLanguage = (lng) => {
-    this.props.tracking.trackEvent({
-      action: "click",
-      label: "changeLanguage",
-      value: lng,
-    });
     this.props.toggleLangue(lng);
     if (this.props.i18n.getResourceBundle(lng, "translation")) {
       this.props.i18n.changeLanguage(lng);
@@ -222,14 +216,7 @@ const mapDispatchToProps = {
   toggleSpinner,
 };
 
-export default track(
-  {
-    layout: "Layout",
-  },
-  { dispatchOnMount: true }
-)(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(withRouter(withTranslation()(Layout)))
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(withTranslation()(Layout)));

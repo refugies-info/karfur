@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Row, Modal, Spinner } from "reactstrap";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
@@ -83,11 +82,6 @@ export class UserDashContrib extends Component {
   }
 
   toggleModal = (modal) => {
-    this.props.tracking.trackEvent({
-      action: "toggleModal",
-      label: modal,
-      value: !this.state.showModal[modal],
-    });
     this.setState({
       showModal: {
         ...this.state.showModal,
@@ -224,6 +218,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { fetchDispositifs: fetchDispositifsActionCreator };
 
-export default track({
-  page: "UserDashContrib",
-})(connect(mapStateToProps, mapDispatchToProps)(UserDashContrib));
+export default connect(mapStateToProps, mapDispatchToProps)(UserDashContrib);

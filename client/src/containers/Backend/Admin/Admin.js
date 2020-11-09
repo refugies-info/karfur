@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Badge, Col, Row, Nav, NavItem, NavLink, TabContent } from "reactstrap";
-import track from "react-tracking";
 import Swal from "sweetalert2";
 import { connect } from "react-redux";
 import _ from "lodash";
@@ -699,9 +698,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { fetchStructures: fetchStructuresActionCreator };
 
-export default track(
-  {
-    page: "Admin",
-  },
-  { dispatchOnMount: true }
-)(connect(mapStateToProps, mapDispatchToProps)(Admin));
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);

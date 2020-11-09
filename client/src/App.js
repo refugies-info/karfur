@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import track from "react-tracking";
+
 import { Spinner } from "reactstrap";
 import IdleTimer from "react-idle-timer";
+
 import uniqid from "uniqid";
 
 import { store } from "./services/configureStore";
@@ -87,19 +89,19 @@ class App extends Component {
     }
 
     //On track le chargement et déchargement de la page
-    window.onbeforeunload = function () {
-      this.props.tracking.trackEvent({
-        action: "unmount",
-        label: "App",
-        value: mountId,
-      });
-      return undefined;
-    }.bind(this);
-    this.props.tracking.trackEvent({
-      action: "mount",
-      label: "App",
-      value: mountId,
-    });
+    // window.onbeforeunload = function () {
+    //   this.props.tracking.trackEvent({
+    //     action: "unmount",
+    //     label: "App",
+    //     value: mountId,
+    //   });
+    //   return undefined;
+    // }.bind(this);
+    // this.props.tracking.trackEvent({
+    //   action: "mount",
+    //   label: "App",
+    //   value: mountId,
+    // });
 
     //On charge Crisp
     window.$crisp = [];

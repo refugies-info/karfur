@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import moment from "moment/min/moment-with-locales";
 import { connect } from "react-redux";
 import API from "../../../utils/API";
@@ -204,6 +203,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default track({
-  page: "Dashboard",
-})(connect(mapStateToProps)(Dashboard));
+export default connect(mapStateToProps)(Dashboard);

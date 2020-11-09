@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Form, Progress } from "reactstrap";
 import i18n from "../../i18n";
 import Swal from "sweetalert2";
@@ -686,9 +685,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default track(
-  {
-    page: "Login",
-  },
-  { dispatchOnMount: true }
-)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Register)));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(Register));

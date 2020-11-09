@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 
 import "./MentionsLegales.scss";
@@ -80,6 +79,4 @@ class MentionsLegales extends Component {
   }
 }
 
-export default track({
-  page: "MentionsLegales",
-})(withTranslation()(MentionsLegales));
+export default withTranslation()(MentionsLegales);
