@@ -18,7 +18,6 @@ interface StateType {
 }
 
 export interface PropsBeforeInjection {
-  tracking: any;
   disableEdit: boolean;
   toggleModal: (arg1: boolean, arg2: string) => void;
   readAudio: (arg1: any, arg2: string, arg3: any, arg4: boolean) => void;
