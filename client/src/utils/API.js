@@ -239,6 +239,7 @@ export default {
       burl + `/structures/getStructureByIdWithDispositifsAssocies?id=${id}`
     );
   },
+  getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
   getDispositifs: (params) => {
     return axios.post(burl + "/dispositifs/getDispositifs", params);
