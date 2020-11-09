@@ -454,17 +454,18 @@ const LexiqueCard = (props) => (
 class CommentContribuer extends Component {
   state = {
     showModals: { checkDemarche: false },
-    users: [],
+    nbTraductors: 0,
+    nbExperts: 0,
   };
   _isMounted = false;
 
   componentDidMount() {
     this._isMounted = true;
-    API.get_users({
-      query: { status: "Actif" },
-      populate: "roles",
-    }).then((data) =>
-      this.setState({ users: this._isMounted && data.data.data })
+    API.getFiguresOnUsers().then((data) =>
+      this.setState({
+        nbExperts: this._isMounted && data.data.data.nbExperts,
+        nbTraductors: this._isMounted && data.data.data.nbTraductors,
+      })
     );
     window.scrollTo(0, 0);
   }
@@ -483,26 +484,9 @@ class CommentContribuer extends Component {
       (langue) => langue.avancement > 0 && langue.langueCode !== "fr"
     );
 
-  getNumberOfTraducteursAndExperts = () => {
-    const nbTrad = (
-      this.state.users.filter((x) =>
-        (x.roles || []).some((y) => y.nom === "Trad")
-      ) || []
-    ).length;
-
-    const nbExperts = (
-      this.state.users.filter((x) =>
-        (x.roles || []).some((y) => y.nom === "ExpertTrad")
-      ) || []
-    ).length;
-
-    return { nbTrad, nbExperts };
-  };
-
   render() {
     const { t } = this.props;
 
-    const { nbTrad, nbExperts } = this.getNumberOfTraducteursAndExperts();
     const activeLangues = this.getActiveLangues();
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     return (
@@ -580,7 +564,7 @@ class CommentContribuer extends Component {
               <NumbersContainer>
                 <NavLink to="/backend/user-dashboard">
                   <NumberTraduction
-                    amount={nbTrad}
+                    amount={this.state.nbTraductors}
                     text={t(
                       "CommentContribuer.traducteurs actifs",
                       "traducteurs actifs"
@@ -591,7 +575,7 @@ class CommentContribuer extends Component {
                 </NavLink>
                 <NavLink to="/backend/user-dashboard">
                   <NumberTraduction
-                    amount={nbExperts}
+                    amount={this.state.nbExperts}
                     text={t(
                       "CommentContribuer.experts en traduction",
                       "experts en traduction"

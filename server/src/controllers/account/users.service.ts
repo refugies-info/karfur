@@ -11,5 +11,15 @@ export const getFiguresOnUsers = async (req: RequestFromClient, res: Res) => {
   const nbTraductors = users.filter((x: any) =>
     (x.roles || []).some((y: any) => y.nom === "Trad" || y.nom === "ExpertTrad")
   ).length;
-  res.status(200).json({ data: { nbContributors, nbTraductors } });
+  const nbExperts = users.filter((x: any) =>
+    (x.roles || []).some((y: any) => y.nom === "ExpertTrad")
+  ).length;
+
+  res.status(200).json({
+    data: {
+      nbContributors,
+      nbTraductors,
+      nbExperts,
+    },
+  });
 };
