@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
@@ -17,11 +16,6 @@ import variables from "scss/colors.scss";
 
 class AudioBtn extends Component {
   toggleAudio = () => {
-    this.props.tracking.trackEvent({
-      action: "click",
-      label: "toggleAudio",
-      value: this.props.ttsActive,
-    });
     this.props.toggleAudio();
   };
 
@@ -65,9 +59,7 @@ const mapDispatchToProps = {
   toggleSpinner,
 };
 
-export default track(
-  {
-    layout: "AudioBtn",
-  },
-  { dispatchOnMount: true }
-)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(AudioBtn)));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(AudioBtn));
