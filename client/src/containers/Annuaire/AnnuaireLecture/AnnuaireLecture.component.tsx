@@ -4,9 +4,10 @@ import _ from "lodash";
 import styled from "styled-components";
 import { Letter } from "./components/Letter";
 import { LetterSection } from "./components/LetterSection";
+import img from "../../../assets/annuaire/annuaire_lecture.svg";
 
 const Header = styled.div`
-  background: #0421b1;
+  background-image: url(${img});
   height: 330px;
   width: 100%;
   margin-top: -75px;
