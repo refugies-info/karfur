@@ -1,17 +1,12 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
-import track from "react-tracking";
 
 import { Spinner } from "reactstrap";
-import IdleTimer from "react-idle-timer";
-
-import uniqid from "uniqid";
 
 import { store } from "./services/configureStore";
 import PrivateRoute from "./components/PrivateRoute";
 import { socket } from "./utils/API";
-import { dispatch } from "./tracking/dispatch";
 import "./i18n";
 
 import "react-notifications/src/notifications.scss";
@@ -75,8 +70,6 @@ const Reset = (props) => (
   </React.Suspense>
 );
 
-const mountId = uniqid("mount_");
-
 class App extends Component {
   state = { data: {} };
   idleTimer = null;
@@ -117,20 +110,20 @@ class App extends Component {
     window.scrollTo(0, 0);
   }
 
-  _onActive = () =>
-    this.props.tracking.trackEvent({
-      action: "active",
-      label: "App",
-      value: mountId,
-    });
+  // _onActive = () =>
+  //   this.props.tracking.trackEvent({
+  //     action: "active",
+  //     label: "App",
+  //     value: mountId,
+  //   });
 
-  _onIdle = () =>
-    this.props.tracking.trackEvent({
-      action: "idle",
-      label: "App",
-      value: mountId,
-      time: this.idleTimer.getLastActiveTime(),
-    });
+  // _onIdle = () =>
+  //   this.props.tracking.trackEvent({
+  //     action: "idle",
+  //     label: "App",
+  //     value: mountId,
+  //     time: this.idleTimer.getLastActiveTime(),
+  //   });
 
   socketFn = {
     sendMessage: this.sendMessage,
@@ -139,7 +132,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <IdleTimer
+        {/* <IdleTimer
           ref={(ref) => {
             this.idleTimer = ref;
           }}
@@ -149,7 +142,7 @@ class App extends Component {
           // onAction={this._onAction}
           // debounce={250}
           timeout={1000 * 60 * 5}
-        />
+        /> */}
         <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/login" name="Login Page" component={Login} />
@@ -180,13 +173,4 @@ class App extends Component {
   }
 }
 
-export default track(
-  {
-    app: "App",
-  },
-  {
-    dispatch: dispatch,
-    dispatchOnMount: true,
-    process: (ownTrackingData) => (ownTrackingData.page ? true : null),
-  }
-)(App);
+export default App;

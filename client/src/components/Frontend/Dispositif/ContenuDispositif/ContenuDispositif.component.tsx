@@ -194,7 +194,6 @@ export const contenuDispositif = (props: Props) => {
                       item={item}
                       handleContentClick={props.handleContentClick}
                       disableEdit={newDisableEdit}
-                      tracking={props.tracking}
                       toggleModal={props.toggleModal}
                       readAudio={props.readAudio}
                       subkey={props.subkey}

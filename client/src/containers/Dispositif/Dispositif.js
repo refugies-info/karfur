@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import track from "react-tracking";
 import { Col, Row, Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import ContentEditable from "react-contenteditable";
@@ -239,11 +238,11 @@ export class Dispositif extends Component {
     // if no itemId and user logged in : initialize new dispo creation
     // if no itemId and user not logged in : redirect to login page
     if (itemId) {
-      this.props.tracking.trackEvent({
-        action: "readDispositif",
-        label: "dispositifId",
-        value: itemId,
-      });
+      // this.props.tracking.trackEvent({
+      //   action: "readDispositif",
+      //   label: "dispositifId",
+      //   value: itemId,
+      // });
       // work in progress : store dispo in redux and in state. the goal is not to have dispo in state anymore
       this.props.fetchSelectedDispositif({
         selectedDispositifId: itemId,
@@ -1236,7 +1235,7 @@ export class Dispositif extends Component {
   };
 
   createPdf = () => {
-    this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
+    // this.props.tracking.trackEvent({ action: "click", label: "createPdf" });
     initGA();
     Event("EXPORT_PDF", this.props.languei18nCode, "label");
     let uiArray = [...this.state.uiArray];
@@ -2213,10 +2212,6 @@ const mapDispatchToProps = {
   updateSelectedDispositif: updateSelectedDispositifActionCreator,
 };
 
-export default track({
-  page: "Dispositif",
-})(
-  connect(mapStateToProps, mapDispatchToProps, null, {
-    forwardRef: true,
-  })(withTranslation()(windowSize(Dispositif)))
-);
+export default connect(mapStateToProps, mapDispatchToProps, null, {
+  forwardRef: true,
+})(withTranslation()(windowSize(Dispositif)));
