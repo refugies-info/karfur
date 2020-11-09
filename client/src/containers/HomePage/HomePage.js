@@ -142,11 +142,7 @@ export class HomePage extends Component {
                 "Construire ma vie en France"
               )}
             </h1>
-            <h5>
-              {t("Homepage.subtitle", {
-                nombre: (this.props.dispositifs || []).length,
-              })}
-            </h5>
+            <h5>{t("Homepage.subtitle")}</h5>
 
             <div className="search-row">
               <HomeSearch
