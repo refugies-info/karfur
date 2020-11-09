@@ -32,6 +32,7 @@ import { ReactComponent as TradImage } from "../../assets/comment-contribuer/Com
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import { ReactComponent as PapillonViolet } from "../../assets/comment-contribuer/CommentContribuer-papillon_violet.svg";
 import { ReactComponent as PapillonRose } from "../../assets/comment-contribuer/CommentContribuer-papillon_rose.svg";
+import gif from "../../assets/comment-contribuer/GIF-corriger.gif";
 import i18n from "../../i18n";
 
 const MainContainer = styled.div`
@@ -718,7 +719,16 @@ class CommentContribuer extends Component {
           >
             <PapillonRose />
           </div>
-
+          <div
+            style={{
+              position: "absolute",
+              right: isRTL && "556px",
+              top: "128px",
+              left: !isRTL && "556px",
+            }}
+          >
+            <img src={gif} alt="loading..." />
+          </div>
           <div
             style={{
               position: "absolute",
