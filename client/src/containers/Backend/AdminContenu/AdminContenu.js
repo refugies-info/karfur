@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Table, Input, Tooltip } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
@@ -590,6 +589,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = { fetchDispositifs: fetchDispositifsActionCreator };
 
-export default track({
-  page: "AdminContenu",
-})(connect(mapStateToProps, mapDispatchToProps)(AdminContenu));
+export default connect(mapStateToProps, mapDispatchToProps)(AdminContenu);

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { Progress } from "reactstrap";
@@ -857,6 +856,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default track({
-  page: "CommentContribuer",
-})(connect(mapStateToProps)(withTranslation()(CommentContribuer)));
+export default connect(mapStateToProps)(withTranslation()(CommentContribuer));
