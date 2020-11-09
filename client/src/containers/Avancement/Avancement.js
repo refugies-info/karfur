@@ -5,7 +5,6 @@ import moment from "moment/min/moment-with-locales";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 import { connect } from "react-redux";
-import track from "react-tracking";
 import styled from "styled-components";
 import { colorStatut } from "../../components/Functions/ColorFunctions";
 
@@ -915,15 +914,15 @@ export class Avancement extends Component {
             {"À traduire (" + this.state.toTranslateCount + ")"}
           </StyledStatus>
           {isExpert ? (
-          <StyledStatus
-            onClick={this.reorderOnTopReview}
-            className={
-              "status-pill bg-" +
-              (this.state.review ? colorStatut("Supprimé") : "white")
-            }
-          >
-            {"À revoir (" + this.state.reviewCount + ")"}
-          </StyledStatus>
+            <StyledStatus
+              onClick={this.reorderOnTopReview}
+              className={
+                "status-pill bg-" +
+                (this.state.review ? colorStatut("Supprimé") : "white")
+              }
+            >
+              {"À revoir (" + this.state.reviewCount + ")"}
+            </StyledStatus>
           ) : null}
           {isExpert ? (
             <StyledStatus
@@ -1046,6 +1045,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default track({
-  page: "Avancement",
-})(connect(mapStateToProps)(withTranslation()(Avancement)));
+export default connect(mapStateToProps)(withTranslation()(Avancement));

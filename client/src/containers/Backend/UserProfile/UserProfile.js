@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import {
   Col,
   Row,
@@ -127,7 +126,6 @@ export class UserProfile extends Component {
     newPassword: "",
     cpassword: "",
     passwordVisible: false,
-    nbReadStruct: 0,
     visible: true,
     scroll: false,
   };
@@ -194,22 +192,6 @@ export class UserProfile extends Component {
                       traductionsStruct: _.get(data, "data.data", []),
                     });
                 });
-              this._isMounted &&
-                API.distinct_count_event({
-                  distinct: "userId",
-                  query: {
-                    action: "readDispositif",
-                    label: "dispositifId",
-                    value: {
-                      $in: this.state.contributionsStruct.map((x) => x._id),
-                    },
-                  },
-                }).then((data) => {
-                  this._isMounted &&
-                    this.setState({
-                      nbReadStruct: _.get(data, "data.data", []),
-                    });
-                });
             }
           );
       });
@@ -261,17 +243,14 @@ export class UserProfile extends Component {
 
   initializeStructure = () => {
     const user = this.props.user;
-    API.get_structure({ _id: user.structures[0] }).then((data) => {
-      this._isMounted && this.setState({ structure: data.data.data[0] });
-    });
+    API.getStructureByIdWithDispositifsAssocies(user.structures[0]).then(
+      (data) => {
+        this._isMounted && this.setState({ structure: data.data.data[0] });
+      }
+    );
   };
 
   toggleModal = (modal) => {
-    this.props.tracking.trackEvent({
-      action: "toggleModal",
-      label: modal,
-      value: !this.state.showModal[modal],
-    });
     this.setState({
       showModal: {
         ...this.state.showModal,
@@ -287,11 +266,6 @@ export class UserProfile extends Component {
     this.setState((pS) => ({ passwordVisible: !pS.passwordVisible }));
 
   toggleSection = (section) => {
-    this.props.tracking.trackEvent({
-      action: "toggleSection",
-      label: section,
-      value: !this.state.showSections[section],
-    });
     this.setState({
       showSections: {
         ...this.state.showSections,
@@ -488,7 +462,6 @@ export class UserProfile extends Component {
       newPassword,
       cpassword,
       passwordVisible,
-      nbReadStruct,
       traductionsStruct,
     } = this.state;
     const { t, dispositifs } = this.props;
@@ -894,7 +867,6 @@ export class UserProfile extends Component {
               actions={actionsStruct}
               user={user}
               toggleModal={this.toggleModal}
-              nbRead={nbReadStruct}
               traductions={traductionsStruct}
               {...data_structure}
             />
@@ -1131,11 +1103,7 @@ const mapDispatchToProps = {
   fetchDispositifs: fetchDispositifsActionCreator,
 };
 
-export default track({
-  page: "UserProfile",
-})(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(withTranslation()(windowSize(UserProfile)))
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(windowSize(UserProfile)));

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Form, Progress } from "reactstrap";
 import i18n from "../../i18n";
 import Swal from "sweetalert2";
@@ -26,6 +25,7 @@ import { logger } from "../../logger";
 import passwdCheck from "zxcvbn";
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import img from "../../assets/login_background.svg";
+import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
 
 const StyledHeader = styled.div`
   font-weight: 500;
@@ -430,10 +430,8 @@ export class Register extends Component {
             current_language={i18n.language}
             toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
-            languages={{
-              ...this.props.langues.filter((x) => x.avancement >= 0.5),
-              unavailable: { unavailable: true },
-            }}
+            langues={this.props.langues}
+            isLanguagesLoading={this.props.isLanguagesLoading}
           />
         </MainContainer>
       </div>
@@ -681,12 +679,13 @@ const mapStateToProps = (state) => {
     languei18nCode: state.langue.languei18nCode,
     showLangModal: state.langue.showLangModal,
     langues: state.langue.langues,
+    isLanguagesLoading:
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES] &&
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES].isLoading,
   };
 };
 
-export default track(
-  {
-    page: "Login",
-  },
-  { dispatchOnMount: true }
-)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Register)));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(Register));

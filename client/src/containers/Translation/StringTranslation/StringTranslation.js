@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import track from "react-tracking";
 import { Card, CardBody, CardHeader, Col, Row, Spinner } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import ReactHtmlParser from "react-html-parser";
@@ -150,11 +149,6 @@ export class StringTranslation extends Component {
   };
 
   toggleTooltip = () => {
-    this.props.tracking.trackEvent({
-      action: "toggleTooltip",
-      label: "tooltipOpen",
-      value: !this.state.tooltipOpen,
-    });
     this.setState({ tooltipOpen: !this.state.tooltipOpen });
   };
 
@@ -391,12 +385,8 @@ const ConditionalSpinner = (props) => {
   return false;
 };
 
-export default track({
-  page: "StringTranslation",
-})(
-  withTranslation()(
-    React.forwardRef((props, ref) => (
-      <StringTranslation innerRef={ref} {...props} />
-    ))
-  )
+export default withTranslation()(
+  React.forwardRef((props, ref) => (
+    <StringTranslation innerRef={ref} {...props} />
+  ))
 );

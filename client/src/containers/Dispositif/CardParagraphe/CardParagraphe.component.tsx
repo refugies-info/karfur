@@ -93,6 +93,7 @@ export interface PropsBeforeInjection {
   t: any;
   cards: string[];
   mainTag: Tag;
+  toggleTutorielModal: () => void;
 }
 type StateType = {
   isDropdownOpen: boolean;
@@ -718,6 +719,7 @@ export class CardParagraphe extends Component<Props> {
           departments={subitem.departments}
           hideModal={() => this.toggleGeolocModal(false)}
           show={this.state.showGeolocModal}
+          toggleTutorielModal={this.props.toggleTutorielModal}
         />
       </>
     );

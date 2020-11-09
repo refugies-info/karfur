@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Form, Progress } from "reactstrap";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
@@ -28,6 +27,7 @@ import {
   toggleLangueActionCreator,
   toggleLangueModalActionCreator,
 } from "../../services/Langue/langue.actions";
+import { LoadingStatusKey } from "../../services/LoadingStatus/loadingStatus.actions";
 
 const StyledHeader = styled.div`
   font-weight: 500;
@@ -246,10 +246,8 @@ class Reset extends Component {
             current_language={i18n.language}
             toggle={this.props.toggleLangueModal}
             changeLanguage={this.changeLanguage}
-            languages={{
-              ...this.props.langues.filter((x) => x.avancement >= 0.5),
-              unavailable: { unavailable: true },
-            }}
+            langues={this.props.langues}
+            isLanguagesLoading={this.props.isLanguagesLoading}
           />
         </MainContainer>
       </div>
@@ -370,12 +368,13 @@ const mapStateToProps = (state) => {
     languei18nCode: state.langue.languei18nCode,
     showLangModal: state.langue.showLangModal,
     langues: state.langue.langues,
+    isLanguagesLoading:
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES] &&
+      state.loadingStatus[LoadingStatusKey.FETCH_LANGUES].isLoading,
   };
 };
 
-export default track(
-  {
-    page: "Reset",
-  },
-  { dispatchOnMount: true }
-)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Reset)));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(Reset));

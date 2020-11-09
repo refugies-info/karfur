@@ -19,6 +19,8 @@ const {
   countValidated,
 } = require("./functions");
 const logger = require("../../logger");
+const { updateLanguagesAvancement } = require("../langues/langues.service");
+const { asyncForEach } = require("../../libs/asyncForEach");
 
 // const gmail_auth = require('./gmail_auth');
 
@@ -64,6 +66,52 @@ async function patch_dispositifs(req, res) {
     return res.status(500).json("KO");
   }
 }
+
+const updateAssociatedDispositifsInStructure = async (
+  dispositifId,
+  structureId
+) => {
+  logger.info("[updateAssociatedDispositifsInStructure] updating", {
+    dispositifId,
+    structureId,
+  });
+
+  // we add if not the case the dispositif to the correct structure
+  await Structure.findByIdAndUpdate(
+    { _id: structureId },
+    { $addToSet: { dispositifsAssocies: dispositifId } },
+    { new: true },
+    () => {}
+  );
+
+  const structureArrayWithDispoAssocie = await Structure.find({
+    dispositifsAssocies: dispositifId,
+  });
+
+  // if one structure it is the correct one
+  if (structureArrayWithDispoAssocie.length === 1) return;
+
+  // if more than 1, we have to remove the dispo from the wrong structures
+  await asyncForEach(structureArrayWithDispoAssocie, async (structure) => {
+    if (structure._id.toString() === structureId.toString()) return;
+    logger.info(
+      "[updateAssociatedDispositifsInStructure] remove dispositif associe from structure",
+      { structure: structure._id, dispositifId }
+    );
+    await Structure.findByIdAndUpdate(
+      { _id: structure._id },
+      { $pull: { dispositifsAssocies: dispositifId } },
+      { new: true },
+      () => {}
+    );
+    return;
+  });
+
+  logger.info(
+    "[updateAssociatedDispositifsInStructure] successfully updated structures"
+  );
+  return;
+};
 /* 
 concerning the Translation: this function is called when a pubblished dispositif is modified, in this case we need to unpublish the translations and 
 propose in the "À revoir" section so that the changed fields can be translated again
@@ -126,13 +174,13 @@ async function add_dispositif(req, res) {
               /*   now we compare the old french version of the dispositif with new updated one,
            and for every change we mark the paragraph/title/etc. within the translation so that we can propose it and highlight it in the 'à revoir' section  */
               try {
-              tradExpert = markTradModifications(
-                dispositif,
-                // eslint-disable-next-line no-undef
-                dispositifFr,
-                tradExpert,
-                req.userId,
-              );
+                tradExpert = markTradModifications(
+                  dispositif,
+                  // eslint-disable-next-line no-undef
+                  dispositifFr,
+                  tradExpert,
+                  req.userId
+                );
               } catch (e) {
                 new Error({
                   name: "markTradModifications",
@@ -198,8 +246,19 @@ async function add_dispositif(req, res) {
             null
           );
         } catch (error) {
-          logger.error("error while updating contenu in airtable", { error });
+          logger.error(
+            "[add_dispositif] error while updating contenu in airtable",
+            { error }
+          );
         }
+      }
+      try {
+        logger.info("[add_dispositif] updating avancement");
+        await updateLanguagesAvancement();
+      } catch (error) {
+        logger.error("[add_dispositif] error while updating avancement", {
+          error,
+        });
       }
     } else {
       logger.info("[add_dispositif] creating a new dispositif", {
@@ -226,13 +285,25 @@ async function add_dispositif(req, res) {
       });
     }
     //J'associe la structure principale à ce dispositif
-    if (dispositif.mainSponsor) {
-      await Structure.findByIdAndUpdate(
-        { _id: dispositif.mainSponsor },
-        { $addToSet: { dispositifsAssocies: dispResult._id } },
-        { new: true },
-        () => {}
-      );
+    if (
+      dispResult.sponsors &&
+      dispResult.sponsors.length > 0 &&
+      dispResult.sponsors[0]._id
+    ) {
+      try {
+        await updateAssociatedDispositifsInStructure(
+          dispResult._id,
+          dispResult.sponsors[0]._id
+        );
+      } catch (error) {
+        logger.error(
+          "[updateAssociatedDispositifsInStructure] error whil updating structures",
+          {
+            dispositifId: dispResult._id,
+            sponsorId: dispResult.sponsors[0]._id,
+          }
+        );
+      }
     }
 
     return res.status(200).json({

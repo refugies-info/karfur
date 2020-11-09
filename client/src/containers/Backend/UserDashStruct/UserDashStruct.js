@@ -1,6 +1,5 @@
 /* eslint no-eval: 0 */
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Modal, Spinner } from "reactstrap";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
@@ -162,7 +161,9 @@ export class UserDashStruct extends Component {
         ? this.props.location.state.structure
         : user.structures[0];
  */
-    API.get_structure({ _id: this.state.selectedStructure }).then((data) => {
+    API.getStructureByIdWithDispositifsAssocies(
+      this.state.selectedStructure
+    ).then((data) => {
       if (data.data.data && data.data.data.length > 0) {
         this.setState({ structure: data.data.data[0], isMainLoading: false });
 
@@ -196,22 +197,12 @@ export class UserDashStruct extends Component {
   };
 
   toggleModal = (modal) => {
-    this.props.tracking.trackEvent({
-      action: "toggleModal",
-      label: modal,
-      value: !this.state.showModal[modal],
-    });
     this.setState((pS) => ({
       showModal: { ...pS.showModal, [modal]: !pS.showModal[modal] },
     }));
   };
 
   toggleSection = (section) => {
-    this.props.tracking.trackEvent({
-      action: "toggleSection",
-      label: section,
-      value: !this.state.showSections[section],
-    });
     this.setState({
       showSections: {
         ...this.state.showSections,
@@ -465,6 +456,7 @@ const mapDispatchToProps = {
   updateStructure: updateUserStructureActionCreator,
 };
 
-export default track({
-  page: "UserDashStruct",
-})(connect(mapStateToProps, mapDispatchToProps)(windowSize(UserDashStruct)));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(windowSize(UserDashStruct));

@@ -244,7 +244,6 @@ export class Dispositif extends Component {
         label: "dispositifId",
         value: itemId,
       });
-
       // work in progress : store dispo in redux and in state. the goal is not to have dispo in state anymore
       this.props.fetchSelectedDispositif({
         selectedDispositifId: itemId,
@@ -924,11 +923,6 @@ export class Dispositif extends Component {
   };
 
   toggleModal = (show, name) => {
-    this.props.tracking.trackEvent({
-      action: "toggleModal",
-      label: name,
-      value: show,
-    });
     if (name === "merci" && this.state.showModals.merci) {
       Swal.fire({
         title: "Yay...",
@@ -944,11 +938,6 @@ export class Dispositif extends Component {
   };
 
   toggleTooltip = () => {
-    this.props.tracking.trackEvent({
-      action: "toggleTooltip",
-      label: "tooltipOpen",
-      value: !this.state.tooltipOpen,
-    });
     this.setState({ tooltipOpen: !this.state.tooltipOpen });
   };
 
@@ -1231,7 +1220,6 @@ export class Dispositif extends Component {
   };
 
   goBack = () => {
-    this.props.tracking.trackEvent({ action: "click", label: "goBack" });
     if (
       this.props.location.state &&
       this.props.location.state.previousRoute &&
@@ -1412,8 +1400,7 @@ export class Dispositif extends Component {
       );
       if (
         geolocInfoCard &&
-        (!geolocInfoCard.departments ||
-        geolocInfoCard.departments.length < 1)
+        (!geolocInfoCard.departments || geolocInfoCard.departments.length < 1)
       ) {
         var index = this.state.menu[1].children.indexOf(geolocInfoCard);
         if (index > -1) {
@@ -2229,7 +2216,7 @@ const mapDispatchToProps = {
 export default track({
   page: "Dispositif",
 })(
-  connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(
-    withTranslation()(windowSize(Dispositif))
-  )
+  connect(mapStateToProps, mapDispatchToProps, null, {
+    forwardRef: true,
+  })(withTranslation()(windowSize(Dispositif)))
 );

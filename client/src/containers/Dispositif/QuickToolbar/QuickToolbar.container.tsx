@@ -1,4 +1,3 @@
-import track from "react-tracking";
 import { connect } from "react-redux";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { compose } from "recompose";
@@ -17,12 +16,6 @@ interface InjectedProps extends WithTranslation, StateProps {}
 export interface Props extends PropsBeforeInjection, InjectedProps {}
 
 export const QuickToolbarContainer = compose<Props, PropsBeforeInjection>(
-  track(
-    {
-      layout: "QuickToolbar",
-    },
-    { dispatchOnMount: false }
-  ),
   connect<StateProps, {}, PropsBeforeInjection, RootState>(mapStateToProps),
   withTranslation()
 )(QuickToolbar);
