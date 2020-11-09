@@ -32,7 +32,9 @@ import { ReactComponent as TradImage } from "../../assets/comment-contribuer/Com
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import { ReactComponent as PapillonViolet } from "../../assets/comment-contribuer/CommentContribuer-papillon_violet.svg";
 import { ReactComponent as PapillonRose } from "../../assets/comment-contribuer/CommentContribuer-papillon_rose.svg";
+import gif from "../../assets/comment-contribuer/GIF-corriger.gif";
 import i18n from "../../i18n";
+import "./CommentContribuer.scss";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -505,7 +507,7 @@ class CommentContribuer extends Component {
     const activeLangues = this.getActiveLangues();
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     return (
-      <MainContainer>
+      <MainContainer className="commentContribuer">
         <HeaderContainer>
           <HeaderText>
             {t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}
@@ -718,7 +720,17 @@ class CommentContribuer extends Component {
           >
             <PapillonRose />
           </div>
-
+          <div
+            style={{
+              position: "absolute",
+              right: isRTL && "676px",
+              top: "268px",
+              left: !isRTL && "676px",
+              zIndex: 3,
+            }}
+          >
+            <img src={gif} alt="loading..." className="gif" />
+          </div>
           <div
             style={{
               position: "absolute",
