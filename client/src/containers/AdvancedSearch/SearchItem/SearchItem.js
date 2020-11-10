@@ -65,7 +65,7 @@ export class SearchItem extends Component {
               (item.active ? "active " : "")
             }
           >
-            {ville}
+            {ville.slice(0, 20) + (ville.length > 20 ? "..." : "")}
             {item.active && (
               <EVAIcon
                 name="close-outline"
