@@ -30,6 +30,7 @@ import _ from "lodash";
 import { infoCardIcon } from "../../../components/Icon/Icon";
 import { FrenchLevelModal } from "../FrenchLevelModal";
 import GeolocModal from "../../../components/Modals/GeolocModal/GeolocModal";
+import API from "../../../utils/API"
 
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 const frequencesPay = [
@@ -94,6 +95,7 @@ export interface PropsBeforeInjection {
   cards: string[];
   mainTag: Tag;
   toggleTutorielModal: () => void;
+  location: any
 }
 type StateType = {
   isDropdownOpen: boolean;
@@ -154,6 +156,28 @@ export class CardParagraphe extends Component<Props> {
       this.props.subkey
     );
   };
+
+  onValidateGeoloc = (dispositifId: string, subitem: any) => {
+    let dispositif = {
+      dispositifId,
+      geolocInfocard: subitem,
+    }
+    API.add_dispositif_infocards(dispositif).then(() => {
+      Swal.fire({
+        title: "Yay...",
+        text: "Enregistrement reussi",
+        type: "success",
+        timer: 1500,
+      })
+    }).catch(() => {
+      Swal.fire({
+        title: "Oh non!",
+        text: "Something went wrong",
+        type: "error",
+        timer: 1500,
+      });
+    })
+  }
 
   validateDepartments = (departments: string[]) => {
     this.props.changeDepartements(
@@ -268,6 +292,15 @@ export class CardParagraphe extends Component<Props> {
       }
       return string;
     };
+
+    let dispositifId = ""
+    if (this.props.location.pathname) {
+      let pathVariables = this.props.location.pathname.split("/");
+      if (pathVariables.length === 3 && pathVariables[1] === "dispositif")
+      {
+        dispositifId = pathVariables[2];
+      }
+    }
 
     // filter cards to have maximum one infocard by category
     const availableCardTitles = cardTitles.filter(
@@ -677,7 +710,21 @@ export class CardParagraphe extends Component<Props> {
                       </TitleTextBody>
                     ) : null}
                   </div>
-                )}
+                )
+               }
+               {subitem.title === "Zone d'action" &&
+                  subitem.departments && dispositifId !== "" && !this.props.disableEdit && (
+                    <FButton
+                    type="validate"
+                    name="checkmark"
+                    className={"mt-10"}
+                    onClick={() => this.onValidateGeoloc( dispositifId, subitem)}
+                    disabled={subitem.departments.length === 0}
+                  >
+                    <ButtonText>Publier Geoloc</ButtonText>
+                  </FButton>
+                  )
+               }
             </CardBody>
             {
               // footer for card Niveau de français to assess level in a website
