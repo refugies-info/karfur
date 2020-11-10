@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Structure } from "../../../../@types/interface";
-
+import { Structure, Picture } from "../../../../@types/interface";
+import "./LetterSection.scss";
+// @ts-ignore
+import LinesEllipsis from "react-lines-ellipsis";
 interface Props {
   letter: string;
   structures: Structure[];
@@ -17,11 +19,18 @@ const MainContainer = styled.div`
   padding-top: 24px;
 `;
 
+const LetterContainer = styled.div`
+  font-size: 100px;
+  line-height: 58px;
+  margin-top: 30px;
+  width: 127px;
+`;
+
 const StructuresContainer = styled.div`
-  margin-left: 64px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  flex: 1;
 `;
 const StructureCardContainer = styled.div`
   font-weight: bold;
@@ -36,24 +45,43 @@ const StructureCardContainer = styled.div`
   margin-bottom: 16px;
   padding: 24px;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+const StructureName = styled.div`
+  margin-left: 24px;
 `;
 
 interface StructureCardProps {
   nom: string;
+  acronyme: string;
+  picture: Picture;
 }
 const StructureCard = (props: StructureCardProps) => (
-  <StructureCardContainer>{props.nom}</StructureCardContainer>
+  <StructureCardContainer>
+    <img
+      className="sponsor-img"
+      src={(props.picture || {}).secure_url}
+      alt={props.acronyme}
+    />
+    <StructureName>
+      <LinesEllipsis text={props.nom} maxLine="3" trimRight basedOn="letters" />
+    </StructureName>
+  </StructureCardContainer>
 );
 
-export const LetterSection = (props: Props) => {
-  return (
-    <MainContainer>
-      {props.letter.toUpperCase()}
-      <StructuresContainer>
-        {props.structures.map((structure) => (
-          <StructureCard nom={structure.nom}></StructureCard>
-        ))}
-      </StructuresContainer>
-    </MainContainer>
-  );
-};
+export const LetterSection = (props: Props) => (
+  <MainContainer className="letter-section">
+    <LetterContainer>{props.letter.toUpperCase()}</LetterContainer>
+    <StructuresContainer>
+      {props.structures.map((structure) => (
+        <StructureCard
+          nom={structure.nom}
+          picture={structure.picture || {}}
+          acronyme={structure.acronyme}
+        ></StructureCard>
+      ))}
+    </StructuresContainer>
+  </MainContainer>
+);
