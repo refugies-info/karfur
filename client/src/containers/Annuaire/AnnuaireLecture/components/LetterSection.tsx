@@ -53,13 +53,18 @@ const StructureName = styled.div`
   margin-left: 24px;
 `;
 
+const Anchor = styled.div`
+  margin-top: -150px;
+`;
+
 interface StructureCardProps {
   nom: string;
   acronyme: string;
   picture: Picture;
+  onClick: () => void;
 }
 const StructureCard = (props: StructureCardProps) => (
-  <StructureCardContainer>
+  <StructureCardContainer onClick={props.onClick}>
     <img
       className="sponsor-img"
       src={(props.picture || {}).secure_url}
@@ -71,8 +76,11 @@ const StructureCard = (props: StructureCardProps) => (
   </StructureCardContainer>
 );
 
+const onClick = () => {};
+
 export const LetterSection = (props: Props) => (
-  <MainContainer className="letter-section" id={props.letter.toUpperCase()}>
+  <MainContainer className="letter-section">
+    <Anchor id={props.letter.toUpperCase()} />
     <LetterContainer>{props.letter.toUpperCase()}</LetterContainer>
     <StructuresContainer>
       {props.structures.map((structure) => (
@@ -81,6 +89,7 @@ export const LetterSection = (props: Props) => (
           nom={structure.nom}
           picture={structure.picture || {}}
           acronyme={structure.acronyme}
+          onClick={onClick}
         ></StructureCard>
       ))}
     </StructuresContainer>
