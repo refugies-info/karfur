@@ -193,7 +193,12 @@ export class Toolbar extends React.Component {
 
           <button
             onClick={() => {
+              if (this.props.location.pathname === "/advanced-search") {
+                this.props.history.replace("/advanced-search");
+                window.location.reload();
+              } else {
               this.props.history.push("/advanced-search");
+              }
             }}
             className={
               isRTL
