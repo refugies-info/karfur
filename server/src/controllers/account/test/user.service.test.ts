@@ -1,10 +1,10 @@
+// @ts-nocheck
 import { getFiguresOnUsers } from "../users.service";
 import User from "../../../schema/schemaUser";
 import logger from "../../../logger";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
-  // @ts-ignore
   const res: MockResponse = {};
   res.status = jest.fn().mockReturnValue(res);
   res.json = jest.fn().mockReturnValue(res);
