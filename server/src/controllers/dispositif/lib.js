@@ -112,6 +112,42 @@ const updateAssociatedDispositifsInStructure = async (
   );
   return;
 };
+
+async function add_dispositif_infocards(req, res) {
+  if (!req.fromSite) {
+    return res.status(405).json({ text: "Requête bloquée par API" });
+  } else if (!req.body) {
+    return res.status(400).json({ text: "Requête invalide" });
+  }
+  let dispositif = req.body;
+  try {
+    let originalDis = await Dispositif.findOne({
+      _id: dispositif.dispositifId,
+    });
+    if (originalDis.contenu && originalDis.contenu[1].children) {
+      const index = originalDis.contenu[1].children
+        .map((e) => e.title)
+        .indexOf("Zone d'action");
+      if (index !== -1) {
+        originalDis.contenu[1].children[index] = dispositif.geolocInfocard; 
+      } else {
+        originalDis.contenu[1].children.push(dispositif.geolocInfocard);
+      }
+      await Dispositif.findOneAndUpdate(
+        { _id: dispositif.dispositifId },
+        originalDis,
+        { upsert: true, new: true }
+      );
+    }
+    return res.status(200).json("OK");
+  } catch (err) {
+    logger.error("Error while updating infocards", {
+      dispositifId: dispositif._id,
+    });
+    res.status(500).json({ text: "Erreur interne", data: err });
+  }
+}
+
 /* 
 concerning the Translation: this function is called when a pubblished dispositif is modified, in this case we need to unpublish the translations and 
 propose in the "À revoir" section so that the changed fields can be translated again
@@ -530,6 +566,7 @@ const _errorHandler = (error, res) => {
 
 //On exporte notre fonction
 exports.add_dispositif = add_dispositif;
+exports.add_dispositif_infocards = add_dispositif_infocards;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;
