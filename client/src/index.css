@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "CircularStd", "Roboto", -apple-system, BlinkMacSystemFont,
+  font-family: "CircularStdBook", "Roboto", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -11,6 +11,6 @@ body {
 }
 
 code {
-  font-family: "CircularStd", "Roboto", source-code-pro, Menlo, Monaco, Consolas,
-    "Courier New", monospace;
+  font-family: "CircularStdBook", "Roboto", source-code-pro, Menlo, Monaco,
+    Consolas, "Courier New", monospace;
 }
