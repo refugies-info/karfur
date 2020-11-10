@@ -668,6 +668,30 @@ export class AdvancedSearch extends Component {
     }
   };
 
+  sortFunction = (dispositifs, order, croissant) => {
+    return dispositifs.sort((a,b) => {
+    var aValue = 0;
+    var bValue = 0;
+    if (order === "created_at") {
+      aValue = _.get(a, "publishedAt", _.get(a, "created_at"));
+      bValue = _.get(b, "publishedAt", _.get(b, "created_at"));
+    } else {
+      aValue = _.get(a, order);
+      bValue = _.get(b, order);
+    }
+    return aValue > bValue
+      ? croissant
+        ? 1
+        : -1
+      : aValue < bValue
+      ? croissant
+        ? -1
+        : 1
+      : 0;
+  }
+    )
+  }
+
   reorder = (tri) => {
     if (tri.name === "Par thème") {
       this.setState(
@@ -683,30 +707,15 @@ export class AdvancedSearch extends Component {
       const order = tri.value,
         croissant = order === this.state.order ? !this.state.croissant : true;
       this.setState((pS) => ({
-        dispositifs: pS.dispositifs.sort((a, b) => {
-          var aValue = 0;
-          var bValue = 0;
-          if (order === "created_at") {
-            aValue = _.get(a, "publishedAt", _.get(a, "created_at"));
-            bValue = _.get(b, "publishedAt", _.get(b, "created_at"));
-          } else {
-            aValue = _.get(a, order);
-            bValue = _.get(b, order);
-          }
-          return aValue > bValue
-            ? croissant
-              ? 1
-              : -1
-            : aValue < bValue
-            ? croissant
-              ? -1
-              : 1
-            : 0;
-        }),
+        dispositifs: this.sortFunction(pS.dispositifs ,order, croissant),
+        principalThemeList: this.sortFunction(pS.principalThemeList, order, croissant),
+        secondaryThemeList: this.sortFunction(pS.secondaryThemeList, order, croissant),
         order: tri.value,
         activeTri: tri.name,
         croissant: croissant,
-      }));
+      }),
+      //() => this.queryDispositifs()
+      );
     }
   };
 
