@@ -200,6 +200,11 @@ export default {
       headers: headers,
     });
   },
+  add_dispositif_infocards: (query) => {
+    return axios.post(burl + "/dispositifs/add_dispositif_infocards", query, {
+      headers: headers,
+    });
+  },
   get_dispositif: (params = {}) => {
     return axios.post(burl + "/dispositifs/get_dispositif", params, {
       headers: headers,

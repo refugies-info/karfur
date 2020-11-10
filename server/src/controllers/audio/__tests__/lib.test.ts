@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { set_audio } from "../lib";
 import cloudinary from "cloudinary";
 
@@ -35,7 +36,6 @@ const mockRequest = (data?: any) => ({
 type MockResponse = { json: any; status: any };
 
 const mockResponse = (): MockResponse => {
-  // @ts-ignore
   const res: MockResponse = {};
   res.status = jest.fn().mockReturnValue(res);
   res.json = jest.fn().mockReturnValue(res);
@@ -60,12 +60,10 @@ describe("function set_audio", () => {
     });
     const res = mockResponse();
     await set_audio(req, res);
-    // @ts-ignore
     expect(cloudinary.uploader.upload).toHaveBeenCalledWith("path1", "", {
       folder: "/audio",
       resource_type: "video",
     });
-    // @ts-ignore
     expect(cloudinary.uploader.upload).toHaveBeenCalledWith("path2", "", {
       folder: "/audio",
       resource_type: "video",
@@ -83,7 +81,6 @@ describe("function set_audio", () => {
   });
 
   it("should return 401 status if no data", async () => {
-    // @ts-ignore
     cloudinary.uploader.upload.mockResolvedValueOnce();
     const req = mockRequest({
       key1: { originalFilename: "originalFilename", path: "path1" },
