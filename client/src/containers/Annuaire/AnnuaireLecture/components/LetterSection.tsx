@@ -77,6 +77,7 @@ export const LetterSection = (props: Props) => (
     <StructuresContainer>
       {props.structures.map((structure) => (
         <StructureCard
+          key={structure.nom}
           nom={structure.nom}
           picture={structure.picture || {}}
           acronyme={structure.acronyme}

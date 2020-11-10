@@ -100,12 +100,17 @@ export const AnnuaireLectureComponent = (props: Props) => {
         </TextContainer>
         <LettersContainer>
           {letters.map((letter, index) => (
-            <AnchorLink offset="60" href={"#" + letter.toUpperCase()}>
+            <AnchorLink
+              offset="60"
+              href={"#" + letter.toUpperCase()}
+              key={letter}
+            >
               <Letter
                 letter={letter}
                 index={lettersLength - index}
                 onLetterClick={onLetterClick}
                 isSelected={selectedLetter === letter}
+                key={letter}
               />
             </AnchorLink>
           ))}
@@ -114,6 +119,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
       <Content stopScroll={stopScroll}>
         {letters.map((letter) => (
           <LetterSection
+            key={letter}
             letter={letter}
             // @ts-ignore
             structures={groupedStructureByLetter[letter]}
