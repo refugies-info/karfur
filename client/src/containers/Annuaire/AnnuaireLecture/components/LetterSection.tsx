@@ -4,9 +4,11 @@ import { Structure, Picture } from "../../../../@types/interface";
 import "./LetterSection.scss";
 // @ts-ignore
 import LinesEllipsis from "react-lines-ellipsis";
+import { ObjectId } from "mongodb";
 interface Props {
   letter: string;
   structures: Structure[];
+  onStructureCardClick: (id: ObjectId) => void;
 }
 
 const MainContainer = styled.div`
@@ -61,10 +63,11 @@ interface StructureCardProps {
   nom: string;
   acronyme: string;
   picture: Picture;
-  onClick: () => void;
+  onStructureCardClick: (id: ObjectId) => void;
+  id: ObjectId;
 }
 const StructureCard = (props: StructureCardProps) => (
-  <StructureCardContainer onClick={props.onClick}>
+  <StructureCardContainer onClick={() => props.onStructureCardClick(props.id)}>
     <img
       className="sponsor-img"
       src={(props.picture || {}).secure_url}
@@ -75,8 +78,6 @@ const StructureCard = (props: StructureCardProps) => (
     </StructureName>
   </StructureCardContainer>
 );
-
-const onClick = () => {};
 
 export const LetterSection = (props: Props) => (
   <MainContainer className="letter-section">
@@ -89,7 +90,8 @@ export const LetterSection = (props: Props) => (
           nom={structure.nom}
           picture={structure.picture || {}}
           acronyme={structure.acronyme}
-          onClick={onClick}
+          onStructureCardClick={props.onStructureCardClick}
+          id={structure._id}
         ></StructureCard>
       ))}
     </StructuresContainer>

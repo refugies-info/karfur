@@ -7,6 +7,8 @@ import { LetterSection } from "./components/LetterSection";
 import img from "../../../assets/annuaire/annuaire_lecture.svg";
 // @ts-ignore
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { ObjectId } from "mongodb";
+import { AnnuaireDetail } from "./AnnuaireDetail/AnnuaireDetail";
 
 const Header = styled.div`
   background-image: url(${img});
@@ -56,10 +58,14 @@ const Content = styled.div`
 
 export interface PropsBeforeInjection {
   t: any;
+  history: any;
 }
 export const AnnuaireLectureComponent = (props: Props) => {
   const [selectedLetter, setSelectedLetter] = useState("a");
   const [stopScroll, setStopScroll] = useState(false);
+  const [selectedStructure, setSelectedStructure] = useState<ObjectId | null>(
+    null
+  );
 
   const handleScroll = () => {
     // @ts-ignore
@@ -90,8 +96,21 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const letters = Object.keys(groupedStructureByLetter).sort();
   const lettersLength = letters.length;
 
-  const onLetterClick = (letter: string) => setSelectedLetter(letter);
+  const onLetterClick = (letter: string) => {
+    setSelectedLetter(letter);
 
+    // if (selectedStructure) {
+    //   setSelectedStructure(null);
+    //   props.history.push("/annuaire#" + letter.toUpperCase());
+    // }
+  };
+
+  const getSelectedStructure = () =>
+    props.structures.filter(
+      (structure) => structure._id === selectedStructure
+    )[0];
+
+  const onStructureCardClick = (id: ObjectId) => setSelectedStructure(id);
   return (
     <MainContainer>
       <Header stopScroll={stopScroll}>
@@ -99,32 +118,57 @@ export const AnnuaireLectureComponent = (props: Props) => {
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
         <LettersContainer>
-          {letters.map((letter, index) => (
-            <AnchorLink
-              offset="60"
-              href={"#" + letter.toUpperCase()}
-              key={letter}
-            >
-              <Letter
-                letter={letter}
-                index={lettersLength - index}
-                onLetterClick={onLetterClick}
-                isSelected={selectedLetter === letter}
-                key={letter}
-              />
-            </AnchorLink>
-          ))}
+          {!selectedStructure && (
+            <>
+              {letters.map((letter, index) => (
+                <AnchorLink
+                  offset="60"
+                  href={"#" + letter.toUpperCase()}
+                  key={letter}
+                >
+                  <Letter
+                    letter={letter}
+                    index={lettersLength - index}
+                    onLetterClick={onLetterClick}
+                    isSelected={selectedLetter === letter}
+                    key={letter}
+                  />
+                </AnchorLink>
+              ))}
+            </>
+          )}
+          {selectedStructure && (
+            <>
+              {letters.map((letter, index) => (
+                <Letter
+                  letter={letter}
+                  index={lettersLength - index}
+                  onLetterClick={onLetterClick}
+                  isSelected={selectedLetter === letter}
+                  key={letter}
+                />
+              ))}
+            </>
+          )}
         </LettersContainer>
       </Header>
       <Content stopScroll={stopScroll}>
-        {letters.map((letter) => (
-          <LetterSection
-            key={letter}
-            letter={letter}
-            // @ts-ignore
-            structures={groupedStructureByLetter[letter]}
-          />
-        ))}
+        {!selectedStructure && (
+          <>
+            {letters.map((letter) => (
+              <LetterSection
+                onStructureCardClick={onStructureCardClick}
+                key={letter}
+                letter={letter}
+                // @ts-ignore
+                structures={groupedStructureByLetter[letter]}
+              />
+            ))}
+          </>
+        )}
+        {selectedStructure && (
+          <AnnuaireDetail structure={getSelectedStructure()} />
+        )}
       </Content>
     </MainContainer>
   );
