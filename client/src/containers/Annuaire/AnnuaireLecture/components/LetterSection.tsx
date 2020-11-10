@@ -72,7 +72,7 @@ const StructureCard = (props: StructureCardProps) => (
 );
 
 export const LetterSection = (props: Props) => (
-  <MainContainer className="letter-section">
+  <MainContainer className="letter-section" id={props.letter.toUpperCase()}>
     <LetterContainer>{props.letter.toUpperCase()}</LetterContainer>
     <StructuresContainer>
       {props.structures.map((structure) => (

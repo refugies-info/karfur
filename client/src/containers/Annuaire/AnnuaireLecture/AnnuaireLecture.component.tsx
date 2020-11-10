@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Props } from "./AnnuaireLecture.container";
 import _ from "lodash";
 import styled from "styled-components";
 import { Letter } from "./components/Letter";
 import { LetterSection } from "./components/LetterSection";
 import img from "../../../assets/annuaire/annuaire_lecture.svg";
+// @ts-ignore
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Header = styled.div`
   background-image: url(${img});
   height: 330px;
   width: 100%;
-  margin-top: -75px;
-  position: relative;
+  margin-top: ${(props) => (props.stopScroll ? "-250px" : "-75px")};
+  position: ${(props) => (props.stopScroll ? "fixed" : "relative")};
 `;
 
 const TextContainer = styled.div`
@@ -48,7 +50,7 @@ const MainContainer = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 16px;
+  margin-top: ${(props) => (props.stopScroll ? "256px" : "0px")};
   margin-bottom: 24px;
 `;
 
@@ -57,6 +59,27 @@ export interface PropsBeforeInjection {
 }
 export const AnnuaireLectureComponent = (props: Props) => {
   const [selectedLetter, setSelectedLetter] = useState("a");
+  const [stopScroll, setStopScroll] = useState(false);
+
+  const handleScroll = () => {
+    // @ts-ignore
+    const currentScrollPos = window.pageYOffset;
+
+    if (currentScrollPos >= 175) {
+      return setStopScroll(true);
+    }
+    if (currentScrollPos <= 175) return setStopScroll(false);
+  };
+
+  useEffect(() => {
+    // @ts-ignore
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      // @ts-ignore
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   const groupedStructureByLetter = props.structures
     ? _.groupBy(props.structures, (structure) =>
@@ -71,22 +94,24 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   return (
     <MainContainer>
-      <Header>
+      <Header stopScroll={stopScroll}>
         <TextContainer>
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
         <LettersContainer>
           {letters.map((letter, index) => (
-            <Letter
-              letter={letter}
-              index={lettersLength - index}
-              onLetterClick={onLetterClick}
-              isSelected={selectedLetter === letter}
-            />
+            <AnchorLink offset="60" href={"#" + letter.toUpperCase()}>
+              <Letter
+                letter={letter}
+                index={lettersLength - index}
+                onLetterClick={onLetterClick}
+                isSelected={selectedLetter === letter}
+              />
+            </AnchorLink>
           ))}
         </LettersContainer>
       </Header>
-      <Content>
+      <Content stopScroll={stopScroll}>
         {letters.map((letter) => (
           <LetterSection
             letter={letter}
