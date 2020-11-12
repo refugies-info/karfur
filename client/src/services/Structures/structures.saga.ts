@@ -18,6 +18,8 @@ import {
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
 import { userStructureSelector } from "./structures.selectors";
+import { userSelector } from "../User/user.selectors";
+import { push } from "connected-react-router";
 
 export function* fetchStructures(): SagaIterator {
   try {
@@ -36,8 +38,28 @@ export function* fetchUserStructure(
     yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId } = action.payload;
-    const data = yield call(API.get_structure, { _id: structureId });
-    yield put(setUserStructureActionCreator(data.data.data[0]));
+    const data = yield call(API.getStructureById, structureId, false);
+    yield put(setUserStructureActionCreator(data.data.data));
+    const structureMembers = data.data.data ? data.data.data.membres : [];
+    const user = yield select(userSelector);
+    const userId = user.userId;
+    const userInStructure = structureMembers.filter(
+      (member: any) => member.userId === userId
+    );
+    if (userInStructure.length === 0) {
+      yield put(push("/"));
+    } else {
+      const isUserRedacteurOrRespo = userInStructure
+        ? userInStructure[0].roles.filter(
+            (role: string) =>
+              role === "administrateur" || role === "contributeur"
+          ).length > 0
+        : null;
+      if (!isUserRedacteurOrRespo) {
+        yield put(push("/"));
+      }
+    }
+
     logger.info("[fetchUserStructure] successfully fetched user structure");
     yield put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
   } catch (error) {

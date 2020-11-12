@@ -5,7 +5,6 @@ import API from "../../utils/API";
 import { setUserActionCreator, fetchUserActionCreator } from "./user.actions";
 import { push } from "connected-react-router";
 import { logger } from "../../logger";
-import { fetchUserStructureActionCreator } from "../Structures/structures.actions";
 import {
   startLoading,
   LoadingStatusKey,
@@ -21,13 +20,6 @@ export function* fetchUser(
     if (isAuth) {
       const data = yield call(API.get_user_info);
       yield put(setUserActionCreator(data.data.data));
-      yield put(
-        fetchUserStructureActionCreator({
-          structureId: data.data.data.structures
-            ? data.data.data.structures[0]
-            : null,
-        })
-      );
     } else {
       yield put(setUserActionCreator(null));
     }

@@ -10,7 +10,6 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
-import { fetchUserStructureActionCreator } from "../../Structures/structures.actions";
 
 describe("[Saga] User", () => {
   describe("pilot", () => {
@@ -49,8 +48,6 @@ describe("[Saga] User", () => {
         .next({ data: { data: testUser } })
         .put(setUserActionCreator(testUser))
         .next()
-        .put(fetchUserStructureActionCreator({ structureId: null }))
-        .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER))
         .next()
         .isDone();
@@ -69,8 +66,6 @@ describe("[Saga] User", () => {
         .call(API.get_user_info)
         .next({ data: { data: testUser } })
         .put(setUserActionCreator(testUser))
-        .next()
-        .put(fetchUserStructureActionCreator({ structureId: null }))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER))
         .next()
