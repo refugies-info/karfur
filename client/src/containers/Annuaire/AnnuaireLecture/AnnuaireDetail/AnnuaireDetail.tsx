@@ -1,72 +1,51 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Structure } from "../../../../@types/interface";
-import img from "../../../../assets/annuaire/annuaire_create.svg";
 import "./AnnuaireDetail.scss";
-import { StructureType } from "../components/StructureType";
-import { SocialsLink } from "../components/SocialsLink";
+import { ObjectId } from "mongodb";
+import { fetchSelectedStructureActionCreator } from "../../../../services/SelectedStructure/selectedStructure.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
+import { selectedStructureSelector } from "../../../../services/SelectedStructure/selectedStructure.selector";
+import { Spinner } from "reactstrap";
+import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
+import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 
 interface Props {
-  structure: Structure;
+  structureId: ObjectId;
 }
 
 const Content = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  background: red;
 `;
 
-const LeftContainer = styled.div`
-  width: 360px;
-  background-image: url(${img});
-  //   height: 800px;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const LogoContainer = styled.div`
-  background: #ffffff;
-  border-radius: 12px;
-  width: 296px;
-  height: 168px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 4px;
-`;
 export const AnnuaireDetail = (props: Props) => {
-  console.log("props", props);
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)
+  );
+
+  const structure = useSelector(selectedStructureSelector);
+
+  const dispatch = useDispatch();
   useEffect(() => {
+    const loadStructure = async () => {
+      await dispatch(fetchSelectedStructureActionCreator(props.structureId));
+    };
+    loadStructure();
+
     // @ts-ignore
     window.scrollTo(0, 175);
-  }, []);
+  }, [dispatch]);
 
+  if (isLoading || !structure) {
+    return <Spinner />;
+  }
   return (
     <Content className="annuaire-detail">
-      <LeftContainer>
-        <div>
-          <LogoContainer>
-            <img
-              className="sponsor-img"
-              src={(props.structure.picture || {}).secure_url}
-              alt={props.structure.acronyme}
-            />
-          </LogoContainer>
-          {props.structure.structureTypes.map((structureType) => (
-            <StructureType type={structureType} />
-          ))}
-        </div>
-        <SocialsLink
-          websites={props.structure.websites}
-          facebook={props.structure.facebook}
-          linkedin={props.structure.linkedin}
-          twitter={props.structure.twitter}
-        />
-      </LeftContainer>
-      HElo
+      <LeftAnnuaireDetail structure={structure} />
+      <MiddleAnnuaireDetail structure={structure} />
     </Content>
   );
 };

@@ -161,7 +161,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
         </LettersContainer>
       </Header>
       <Content stopScroll={stopScroll}>
-        {!selectedStructure && (
+        {!selectedStructure && false && (
           <>
             {letters.map((letter) => (
               <LetterSection
@@ -174,8 +174,9 @@ export const AnnuaireLectureComponent = (props: Props) => {
             ))}
           </>
         )}
-        {selectedStructure && (
-          <AnnuaireDetail structureId={selectedStructure} />
+        {(true || selectedStructure) && (
+          // @ts-ignore
+          <AnnuaireDetail structureId={"5ebabc146f8faa1f5ee18adb"} />
         )}
       </Content>
     </MainContainer>
