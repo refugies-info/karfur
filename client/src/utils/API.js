@@ -240,7 +240,7 @@ export default {
   },
 
   getStructureById: (id, withDisposAssocies) =>
-    axios.get(burl + `/structures/getStructureById`, {
+    axios.get(burl + "/structures/getStructureById", {
       params: { id, withDisposAssocies },
     }),
 

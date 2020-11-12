@@ -7,6 +7,7 @@ import {
 } from "../Structures/structures.actionTypes";
 import { Structure } from "../../@types/interface";
 import { action, ActionType } from "typesafe-actions";
+import { ObjectId } from "mongodb";
 
 export const setStructuresActionCreator = (value: Structure[]) =>
   action(SET_STRUCTURES, value);
@@ -17,7 +18,7 @@ export const setUserStructureActionCreator = (value: Structure | null) =>
   action(SET_USER_STRUCTURE, value);
 
 export const fetchUserStructureActionCreator = (value: {
-  structureId: string | null;
+  structureId: ObjectId | null;
 }) => action(FETCH_USER_STRUCTURE, value);
 
 export const updateUserStructureActionCreator = () =>
