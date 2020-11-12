@@ -6,7 +6,7 @@ export const getStructureFromDB = async (
   withDispositifsAssocies: boolean
 ): Promise<IStructure> => {
   if (withDispositifsAssocies) {
-    return await Structure.find({ _id: id }).populate("dispositifsAssocies");
+    return await Structure.findOne({ _id: id }).populate("dispositifsAssocies");
   }
-  return await Structure.find({ _id: id });
+  return await Structure.findOne({ _id: id });
 };
