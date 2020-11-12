@@ -162,8 +162,8 @@ export class UserDashStruct extends Component {
         : user.structures[0];
  */
     API.getStructureById(this.state.selectedStructure, true).then((data) => {
-      if (data.data.data && data.data.data.length > 0) {
-        this.setState({ structure: data.data.data[0], isMainLoading: false });
+      if (data.data.data) {
+        this.setState({ structure: data.data.data, isMainLoading: false });
 
         API.get_event({
           query: {
