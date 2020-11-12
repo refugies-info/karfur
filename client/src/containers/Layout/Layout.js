@@ -17,7 +17,7 @@ import {
   toggleLangueModalActionCreator,
   toggleLangueActionCreator,
 } from "../../services/Langue/langue.actions";
-import { fetchStructuresActionCreator } from "../../services/Structures/structures.actions";
+import { fetchStructuresActionCreator } from "../../services/Structure/structure.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";

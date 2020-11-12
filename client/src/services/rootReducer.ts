@@ -7,9 +7,12 @@ import {
 import {
   structureReducer,
   StructureState,
-} from "./Structures/structures.reducer";
+} from "./Structure/structure.reducer";
 import { userReducer, UserState } from "./User/user.reducer";
-import { translationReducer, TranslationState } from "./Translation/translation.reducer";
+import {
+  translationReducer,
+  TranslationState,
+} from "./Translation/translation.reducer";
 import { ttsReducer, TtsState } from "./Tts/tts.reducer";
 import { connectRouter } from "connected-react-router";
 import {
@@ -20,6 +23,10 @@ import {
   LoadingStatusState,
   loadingStatusReducer,
 } from "./LoadingStatus/loadingStatus.reducer";
+import {
+  StructuresState,
+  structuresReducer,
+} from "./Structures/structures.reducer";
 
 export interface RootState {
   user: UserState;
@@ -30,6 +37,7 @@ export interface RootState {
   selectedDispositif: SelectedDispositifState;
   loadingStatus: LoadingStatusState;
   translation: TranslationState;
+  structures: StructuresState;
 }
 export const appReducer = (history: any) =>
   combineReducers({
@@ -38,8 +46,10 @@ export const appReducer = (history: any) =>
     dispositif: dispositifReducer,
     user: userReducer,
     tts: ttsReducer,
+    // structure should not be used, we should not need all data from all structures in front
     structure: structureReducer,
     selectedDispositif: selectedDispositifReducer,
     loadingStatus: loadingStatusReducer,
-    translation: translationReducer
+    translation: translationReducer,
+    structures: structuresReducer,
   });

@@ -4,7 +4,7 @@ import latestActionsSaga, {
   fetchUserStructure,
   updateUserStructure,
   fetchStructures,
-} from "../structures.saga";
+} from "../structure.saga";
 import API from "../../../utils/API";
 import { push } from "connected-react-router";
 import {
@@ -12,8 +12,8 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
-import { FETCH_USER_STRUCTURE } from "../structures.actionTypes";
-import { setUserStructureActionCreator } from "../structures.actions";
+import { FETCH_USER_STRUCTURE } from "../structure.actionTypes";
+import { setUserStructureActionCreator } from "../structure.actions";
 import { userSelector } from "../../User/user.selectors";
 
 describe("[Saga] Structures", () => {

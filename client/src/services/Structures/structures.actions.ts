@@ -1,35 +1,19 @@
 import {
-  SET_STRUCTURES,
-  FETCH_STRUCTURES,
-  SET_USER_STRUCTURE,
-  FETCH_USER_STRUCTURE,
-  UPDATE_USER_STRUCTURE,
-} from "../Structures/structures.actionTypes";
+  SET_STRUCTURES_NEW,
+  FETCH_STRUCTURES_NEW,
+} from "./structures.actionTypes";
 import { Structure } from "../../@types/interface";
 import { action, ActionType } from "typesafe-actions";
-import { ObjectId } from "mongodb";
 
-export const setStructuresActionCreator = (value: Structure[]) =>
-  action(SET_STRUCTURES, value);
+export const setStructuresNewActionCreator = (value: Structure[]) =>
+  action(SET_STRUCTURES_NEW, value);
 
-export const fetchStructuresActionCreator = () => action(FETCH_STRUCTURES);
-
-export const setUserStructureActionCreator = (value: Structure) =>
-  action(SET_USER_STRUCTURE, value);
-
-export const fetchUserStructureActionCreator = (value: {
-  structureId: ObjectId | null;
-}) => action(FETCH_USER_STRUCTURE, value);
-
-export const updateUserStructureActionCreator = () =>
-  action(UPDATE_USER_STRUCTURE);
+export const fetchStructuresNewActionCreator = () =>
+  action(FETCH_STRUCTURES_NEW);
 
 const actions = {
-  setStructuresActionCreator,
-  fetchStructuresActionCreator,
-  setUserStructureActionCreator,
-  fetchUserStructureActionCreator,
-  updateUserStructureActionCreator,
+  setStructuresNewActionCreator,
+  fetchStructuresNewActionCreator,
 };
 
-export type StructureActions = ActionType<typeof actions>;
+export type StructuresActions = ActionType<typeof actions>;
