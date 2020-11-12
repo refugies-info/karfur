@@ -1,11 +1,17 @@
 // @ts-nocheck
-import { getStructureById } from "../structure.service";
-import { getStructureFromDB } from "../structure.repository";
+import { getStructureById, getActiveStructures } from "../structure.service";
+import {
+  getStructureFromDB,
+  getStructuresFromDB,
+} from "../structure.repository";
 
 const structure = { id: "id" };
 
 jest.mock("../structure.repository.ts", () => ({
   getStructureFromDB: jest.fn().mockResolvedValue({ id: "id" }),
+  getStructuresFromDB: jest
+    .fn()
+    .mockResolvedValue([{ id: "id1" }, { id: "id2" }]),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -74,5 +80,31 @@ describe("getStructureById", () => {
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false);
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
+  });
+});
+
+describe("getActiveStructures", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  it("should call getStructuresFromDB and return a 200", async () => {
+    const res = mockResponse();
+    await getActiveStructures({}, res);
+    expect(getStructuresFromDB).toHaveBeenCalledWith();
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      data: [{ id: "id1" }, { id: "id2" }],
+    });
+  });
+
+  it("should return a 500 if getStructuresFromDB throw ", async () => {
+    getStructuresFromDB.mockRejectedValueOnce(new Error("error"));
+    const res = mockResponse();
+    await getActiveStructures({}, res);
+    expect(getStructuresFromDB).toHaveBeenCalledWith();
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Erreur interne",
+    });
   });
 });

@@ -57,6 +57,7 @@ export const getStructureById = async (
 
 export const getActiveStructures = async (req: {}, res: Res) => {
   try {
+    logger.info("[getActiveStructures] get structures ");
     const structures = await getStructuresFromDB();
     return res.status(200).json({ data: structures });
   } catch (error) {
