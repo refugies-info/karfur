@@ -1,11 +1,11 @@
-import { RequestFromClient, Res } from "../../types/interface";
+import { Res } from "../../types/interface";
 import Langue from "../../schema/schemaLangue";
 import Dispositif from "../../schema/schemaDispositif";
 import Traduction from "../../schema/schemaTraduction";
 import { asyncForEach } from "../../libs/asyncForEach";
 import logger from "../../logger";
 
-export const getLanguages = async (req: RequestFromClient, res: Res) => {
+export const getLanguages = async (req: {}, res: Res) => {
   try {
     const activeLanguages = await Langue.find(
       { avancement: { $gt: 0 } },

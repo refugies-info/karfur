@@ -1,23 +1,28 @@
 import logger = require("../../logger");
-import Structure from "../../schema/schemaStructure.js";
 import { RequestFromClient, Res } from "src/types/interface.js";
+import { getStructureFromDB } from "./structure.repository";
 
-export const getStructureByIdWithDispositifsAssocies = async (
-  req: RequestFromClient,
+interface Query {
+  id: string;
+  withDisposAssocies: boolean;
+}
+
+export const getStructureById = async (
+  req: RequestFromClient<Query>,
   res: Res
 ) => {
   if (!req.query || !req.query.id) {
     return res.status(400).json({ text: "Requête invalide" });
   }
   try {
-    const structureId = req.query.id;
-    logger.info(
-      "[getStructureByIdWithDispositifsAssocies] get structure with id",
-      { structureId }
-    );
-    const structure = await Structure.find({ _id: structureId }).populate(
-      "dispositifsAssocies"
-    );
+    const { id, withDisposAssocies } = req.query;
+
+    logger.info("[getStructureById] get structure with id", {
+      id,
+      withDisposAssocies,
+    });
+
+    const structure = await getStructureFromDB(id, withDisposAssocies);
 
     if (!structure) {
       throw new Error("No structure");
@@ -28,9 +33,7 @@ export const getStructureByIdWithDispositifsAssocies = async (
       data: structure,
     });
   } catch (error) {
-    logger.error(
-      "[getStructureByIdWithDispositifsAssocies] error while getting structure with id"
-    );
+    logger.error("[getStructureById] error while getting structure with id");
     if (error.message === "No structure") {
       res.status(404).json({
         text: "Pas de résultat",

@@ -45,7 +45,9 @@ function create_langues(req, res) {
   }
 }
 
-async function get_langues(req: RequestFromClient, res: Res) {
+// TO DO type correctly Query
+interface Query {}
+async function get_langues(req: RequestFromClient<Query>, res: Res) {
   var { query, sort, populate } = req.body;
   if (populate) {
     if (!req.fromSite) {

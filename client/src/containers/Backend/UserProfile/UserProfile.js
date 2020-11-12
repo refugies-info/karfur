@@ -243,11 +243,9 @@ export class UserProfile extends Component {
 
   initializeStructure = () => {
     const user = this.props.user;
-    API.getStructureByIdWithDispositifsAssocies(user.structures[0]).then(
-      (data) => {
-        this._isMounted && this.setState({ structure: data.data.data[0] });
-      }
-    );
+    API.getStructureById(user.structures[0], true).then((data) => {
+      this._isMounted && this.setState({ structure: data.data.data[0] });
+    });
   };
 
   toggleModal = (modal) => {

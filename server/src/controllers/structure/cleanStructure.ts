@@ -34,7 +34,7 @@ interface Error {
   motif: string;
 }
 export const targetErrosOnDispositifsAssociesInStructures = async (
-  req: RequestFromClient,
+  req: {},
   res: Res
 ) => {
   try {
