@@ -1,10 +1,11 @@
 import logger = require("../../logger");
-import { RequestFromClient, Res } from "src/types/interface.js";
+import { RequestFromClient, Res } from "../../types/interface.js";
 import { getStructureFromDB } from "./structure.repository";
+import { castToBoolean } from "../../libs/castToBoolean";
 
 interface Query {
   id: string;
-  withDisposAssocies: boolean;
+  withDisposAssocies: string;
 }
 
 export const getStructureById = async (
@@ -16,14 +17,17 @@ export const getStructureById = async (
   }
   try {
     const { id, withDisposAssocies } = req.query;
+    const withDisposAssociesBoolean = castToBoolean(withDisposAssocies);
 
     logger.info("[getStructureById] get structure with id", {
       id,
-      withDisposAssocies,
+      withDisposAssociesBoolean,
     });
 
-    const structure = await getStructureFromDB(id, withDisposAssocies || false);
-
+    const structure = await getStructureFromDB(
+      id,
+      withDisposAssociesBoolean || false
+    );
     if (!structure) {
       throw new Error("No structure");
     }

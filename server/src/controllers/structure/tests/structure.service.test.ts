@@ -23,7 +23,7 @@ describe("getStructureById", () => {
   it("should call getStructureFromDB with correct params and return result", async () => {
     const res = mockResponse();
     await getStructureById(
-      { query: { id: "id", withDisposAssocies: true } },
+      { query: { id: "id", withDisposAssocies: "true" } },
       res
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true);
@@ -34,7 +34,7 @@ describe("getStructureById", () => {
   it("should call getStructureFromDB with correct params and return result", async () => {
     const res = mockResponse();
     await getStructureById(
-      { query: { id: "id", withDisposAssocies: false } },
+      { query: { id: "id", withDisposAssocies: "false" } },
       res
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false);
@@ -44,10 +44,7 @@ describe("getStructureById", () => {
 
   it("should call getStructureFromDB with correct params and return result", async () => {
     const res = mockResponse();
-    await getStructureById(
-      { query: { id: "id", withDisposAssocies: null } },
-      res
-    );
+    await getStructureById({ query: { id: "id" } }, res);
     expect(getStructureFromDB).toHaveBeenCalledWith("id", false);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "Succès", data: structure });

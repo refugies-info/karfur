@@ -239,11 +239,11 @@ export default {
     );
   },
 
-  getStructureById: (id, withDisposAssocies) => {
-    return axios.get(burl + `/structures/getStructureById`, {
+  getStructureById: (id, withDisposAssocies) =>
+    axios.get(burl + `/structures/getStructureById`, {
       params: { id, withDisposAssocies },
-    });
-  },
+    }),
+
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
   getDispositifs: (params) => {
