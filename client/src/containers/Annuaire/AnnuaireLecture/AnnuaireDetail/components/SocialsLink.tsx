@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 
 const ButtonContainer = styled.div`
   margin-bottom: 4px;
@@ -21,7 +21,7 @@ const onLinkClicked = (link: string | null) => {
 export const SocialsLink = (props: Props) => (
   <div>
     {props.websites.map((website) => (
-      <ButtonContainer>
+      <ButtonContainer key={website}>
         <FButton
           type="white"
           name="download-outline"
