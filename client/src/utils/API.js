@@ -239,10 +239,10 @@ export default {
     );
   },
 
-  getStructureByIdWithDispositifsAssocies: (id) => {
-    return axios.get(
-      burl + `/structures/getStructureByIdWithDispositifsAssocies?id=${id}`
-    );
+  getStructureById: (id, withDisposAssocies) => {
+    return axios.get(burl + `/structures/getStructureById`, {
+      params: { id, withDisposAssocies },
+    });
   },
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
