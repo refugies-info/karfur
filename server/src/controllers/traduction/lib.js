@@ -2,6 +2,7 @@ const Traduction = require("../../schema/schemaTraduction.js");
 const Article = require("../../schema/schemaArticle.js");
 const Indicator = require("../../schema/schemaIndicators");
 const Dispositif = require("../../schema/schemaDispositif.js");
+const Error = require("../../schema/schemaError");
 //const Langue = require("../../schema/schemaLangue.js");
 //const Role = require("../../schema/schemaRole.js");
 const User = require("../../schema/schemaUser.js");
@@ -475,94 +476,112 @@ async function validate_tradForReview(req, res) {
   ) {
     res.status(401).json({ text: "Token invalide" });
   } else {
-    let traductionUser = req.body || {};
-    //Ici il y en a plusieurs: à régler
-    // We update the translation for the expert, by changing the status to validated
-    if (traductionUser.type === "dispositif") {
-      if (!traductionUser.traductions.length) {
+    try {
+      let traductionUser = req.body || {};
+      //Ici il y en a plusieurs: à régler
+      // We update the translation for the expert, by changing the status to validated
+      if (traductionUser.type === "dispositif") {
+        if (!traductionUser.traductions.length) {
+          Traduction.findOneAndUpdate(
+            { _id: traductionUser._id },
+            { status: "Validée", validatorId: req.userId },
+            { upsert: true, new: true }
+            // eslint-disable-next-line
+          ).then(() => console.log("updated"));
+        } else {
+          (traductionUser.traductions || [])
+            .slice(0)
+            .reverse()
+            .map((x) => {
+              Traduction.findOneAndUpdate(
+                { _id: x._id },
+                { status: "Validée", validatorId: req.userId },
+                { upsert: true, new: true }
+                // eslint-disable-next-line
+              ).then(() => console.log("updated"));
+            });
+        }
+        // We delete all translations that are not from experts, since now we only need one official validated version
+        await Traduction.deleteMany({
+          articleId: req.body.articleId,
+          langueCible: req.body.locale,
+          isExpert: { $ne: true },
+        });
+        // !IMPORTANT We insert the validated translation in the dispositif
+        insertInDispositif(res, traductionUser, traductionUser.locale);
+      } else {
+        //Validating a translation in case it's an article
         Traduction.findOneAndUpdate(
           { _id: traductionUser._id },
           { status: "Validée", validatorId: req.userId },
           { upsert: true, new: true }
-          // eslint-disable-next-line
-        ).then(() => console.log("updated"));
-      } else {
-        (traductionUser.traductions || [])
-          .slice(0)
-          .reverse()
-          .map((x) => {
-            Traduction.findOneAndUpdate(
-              { _id: x._id },
-              { status: "Validée", validatorId: req.userId },
-              { upsert: true, new: true }
-              // eslint-disable-next-line
-            ).then(() => console.log("updated"));
-          });
-      }
-      // We delete all translations that are not from experts, since now we only need one official validated version
-      await Traduction.deleteMany({
-        articleId: req.body.articleId,
-        langueCible: req.body.locale,
-        isExpert: { $ne: true },
-      });
-      // !IMPORTANT We insert the validated translation in the dispositif
-      insertInDispositif(res, traductionUser, traductionUser.locale);
-    } else {
-      //Validating a translation in case it's an article
-      Traduction.findOneAndUpdate(
-        { _id: traductionUser._id },
-        { status: "Validée", validatorId: req.userId },
-        { upsert: true, new: true }
-      ).then(
-        (data_traduction) => {
-          let traduction = data_traduction;
-          Article.findOne({ _id: traduction.articleId }).exec((err, result) => {
-            if (!err) {
-              if (result.body && result.body.constructor === Array) {
-                if (
-                  !_findNodeAndReplace(
-                    result.body,
-                    traduction.translatedText,
-                    traduction.langueCible,
-                    traduction.rightId
-                  )
-                ) {
-                  res.status(501).json({ text: "Erreur d'insertion" });
-                } else {
-                  //console.log(JSON.stringify(result.body));
-                  result.markModified("body");
-                  result.save((err, article_saved) => {
-                    if (err) {
-                      // eslint-disable-next-line
-                      console.log(err);
-                      res.status(500).json({ text: "Erreur interne" });
+        ).then(
+          (data_traduction) => {
+            let traduction = data_traduction;
+            Article.findOne({ _id: traduction.articleId }).exec(
+              (err, result) => {
+                if (!err) {
+                  if (result.body && result.body.constructor === Array) {
+                    if (
+                      !_findNodeAndReplace(
+                        result.body,
+                        traduction.translatedText,
+                        traduction.langueCible,
+                        traduction.rightId
+                      )
+                    ) {
+                      res.status(501).json({ text: "Erreur d'insertion" });
                     } else {
-                      res.status(200).json({
-                        text: "Succès",
-                        data: article_saved,
-                        data_traduction: data_traduction,
+                      //console.log(JSON.stringify(result.body));
+                      result.markModified("body");
+                      result.save((err, article_saved) => {
+                        if (err) {
+                          // eslint-disable-next-line
+                          console.log(err);
+                          res.status(500).json({ text: "Erreur interne" });
+                        } else {
+                          res.status(200).json({
+                            text: "Succès",
+                            data: article_saved,
+                            data_traduction: data_traduction,
+                          });
+                        }
                       });
                     }
-                  });
+                  }
+                } else {
+                  // eslint-disable-next-line
+                  console.log(err);
+                  res
+                    .status(400)
+                    .json({ text: "Erreur d'identification de l'article" });
                 }
               }
-            } else {
-              // eslint-disable-next-line
-              console.log(err);
-              res
-                .status(400)
-                .json({ text: "Erreur d'identification de l'article" });
-            }
-          });
+            );
+          },
+          (err) => {
+            // eslint-disable-next-line
+            console.log(err);
+            res.status(500).json({
+              text: "Erreur interne",
+            });
+          }
+        );
+      }
+    } catch (err) {
+      new Error({
+        name: "validateTradModifications",
+        userId: req.userId,
+        dataObject: {
+          body: req.body,
         },
-        (err) => {
-          // eslint-disable-next-line
-          console.log(err);
-          res.status(500).json({
-            text: "Erreur interne",
-          });
-        }
-      );
+        error: err,
+      }).save();
+      // eslint-disable-next-line
+      console.log(err);
+      res.status(500).json({
+        text: "Erreur interne",
+      });
     }
   }
 }
