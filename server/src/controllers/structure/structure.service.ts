@@ -1,6 +1,9 @@
 import logger = require("../../logger");
 import { RequestFromClient, Res } from "../../types/interface.js";
-import { getStructureFromDB } from "./structure.repository";
+import {
+  getStructureFromDB,
+  getStructuresFromDB,
+} from "./structure.repository";
 import { castToBoolean } from "../../libs/castToBoolean";
 
 interface Query {
@@ -37,13 +40,30 @@ export const getStructureById = async (
       data: structure,
     });
   } catch (error) {
-    logger.error("[getStructureById] error while getting structure with id");
+    logger.error("[getStructureById] error while getting structure with id", {
+      error,
+    });
     if (error.message === "No structure") {
       res.status(404).json({
         text: "Pas de résultat",
       });
       return;
     }
+    return res.status(500).json({
+      text: "Erreur interne",
+    });
+  }
+};
+
+export const getActiveStructures = async (req: {}, res: Res) => {
+  try {
+    const structures = await getStructuresFromDB();
+    return res.status(200).json({ data: structures });
+  } catch (error) {
+    logger.error("[getActiveStructures] error while getting structures", {
+      error,
+    });
+
     return res.status(500).json({
       text: "Erreur interne",
     });

@@ -20,7 +20,7 @@ import {
 import {
   fetchStructuresActionCreator,
   setUserStructureActionCreator,
-} from "../../services/Structures/structures.actions";
+} from "../../services/Structures/structure.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";

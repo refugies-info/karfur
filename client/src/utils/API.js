@@ -246,6 +246,9 @@ export default {
 
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
+  getActiveStructures: () =>
+    axios.get(burl + "/structures/getActiveStructures"),
+
   getDispositifs: (params) => {
     return axios.post(burl + "/dispositifs/getDispositifs", params);
   },

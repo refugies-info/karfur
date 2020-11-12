@@ -41,7 +41,7 @@ import variables from "scss/colors.scss";
 import {
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "../../../services/Structures/structures.actions";
+} from "../../../services/Structure/structure.actions";
 
 moment.locale("fr");
 

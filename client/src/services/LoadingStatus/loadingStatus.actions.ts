@@ -5,6 +5,7 @@ export enum LoadingStatusKey {
   FETCH_USER_STRUCTURE = "FETCH_USER_STRUCTURE",
   FETCH_USER = "FETCH_USER",
   FETCH_LANGUES = "FETCH_LANGUES",
+  FETCH_STRUCTURES = "FETCH_STRUCTURES",
 }
 
 export const startLoading = (key: LoadingStatusKey) =>

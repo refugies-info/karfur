@@ -10,3 +10,9 @@ export const getStructureFromDB = async (
   }
   return await Structure.findOne({ _id: id });
 };
+
+export const getStructuresFromDB = async (): Promise<IStructure> =>
+  await Structure.find(
+    { status: "Actif" },
+    { nom: 1, acronyme: 1, picture: 1 }
+  );

@@ -1,6 +1,9 @@
 const structure = require("./structure/lib.js");
 const checkToken = require("./account/checkToken");
-import { getStructureById } from "./structure/structure.service";
+import {
+  getStructureById,
+  getActiveStructures,
+} from "./structure/structure.service";
 import { targetErrosOnDispositifsAssociesInStructures } from "./structure/cleanStructure";
 
 module.exports = function (app) {
@@ -11,4 +14,5 @@ module.exports = function (app) {
     "/targetErrosOnDispositifsAssociesInStructures",
     targetErrosOnDispositifsAssociesInStructures
   );
+  app.get("/getActiveStructures", getActiveStructures);
 };
