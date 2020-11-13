@@ -222,7 +222,6 @@ export const LeftSideDispositif = (props: Props) => {
                   : "") +
                 `&body=${emailBody}`
               }
-              onClick={props.createPdf}
               name="paper-plane-outline"
             >
               {t("Dispositif.Envoyer par mail", "Envoyer par mail")}
