@@ -16,7 +16,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import variables from "scss/colors.scss";
 import { cardTitles } from "../../../../containers/Dispositif/data";
 import FButton from "../../../FigmaUI/FButton/FButton";
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
 
 const contenuParagraphe = (props) => {
   const { disableEdit, ...bprops } = props;
@@ -101,6 +101,7 @@ const contenuParagraphe = (props) => {
                   cards={cards}
                   mainTag={bprops.mainTag}
                   toggleTutorielModal={props.toggleTutorielModal}
+                  admin={props.admin}
                 />
               ) : subitem.type === "map" && !bprops.printing ? (
                 <MapParagraphe
