@@ -24,7 +24,6 @@ import { sentIllu } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "../../../../services/User/user.actions";
 import _ from "lodash";
-
 import "./Sponsors.scss";
 import variables from "scss/colors.scss";
 import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
@@ -61,19 +60,10 @@ class Sponsors extends Component {
 
   // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.user &&
-      nextProps.structures &&
-      nextProps.structures.length > 0
-    ) {
-      console.log("structId", nextProps.user.structures);
-      const mesStructures = (
-        nextProps.structures.filter((x) =>
-          (x.membres || []).some((y) => y.userId === nextProps.user._id)
-        ) || []
-      ).map((x) => ({ ...x, checked: false }));
-      console.log("mes structures", mesStructures);
-      this.setState({ mesStructures });
+    if (nextProps.user && nextProps.userStructure) {
+      const structure = nextProps.userStructure;
+
+      this.setState({ mesStructures: [structure] });
     }
   }
 
@@ -896,10 +886,13 @@ const mapStateToProps = (state) => {
     user: state.user.user,
     hasStructure: state.user.hasStructure,
     structures: state.structure.structures,
+    userStructure: state.structure.userStructure,
   };
 };
 
-const mapDispatchToProps = { updateUserActionCreator };
+const mapDispatchToProps = {
+  updateUserActionCreator,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   forwardRef: true,
