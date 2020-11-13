@@ -2194,7 +2194,6 @@ const mapStateToProps = (state) => {
     user: state.user.user,
     userId: state.user.userId,
     admin: state.user.admin,
-    structures: state.structure.structures,
     userFetched: state.user.userFetched,
   };
 };

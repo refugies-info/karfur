@@ -66,11 +66,13 @@ class Sponsors extends Component {
       nextProps.structures &&
       nextProps.structures.length > 0
     ) {
+      console.log("structId", nextProps.user.structures);
       const mesStructures = (
         nextProps.structures.filter((x) =>
           (x.membres || []).some((y) => y.userId === nextProps.user._id)
         ) || []
       ).map((x) => ({ ...x, checked: false }));
+      console.log("mes structures", mesStructures);
       this.setState({ mesStructures });
     }
   }

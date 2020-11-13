@@ -294,7 +294,6 @@ export class CardParagraphe extends Component<Props> {
       }
       return string;
     };
-    console.log("admn", this.props.admin);
 
     let dispositifId = "";
     if (this.props.location.pathname) {
