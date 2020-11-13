@@ -138,6 +138,7 @@ const dashHeader = (props) => {
   };
 
   const showAnnuaireModification =
+    false &&
     props.title === "Votre structure" &&
     props.structure &&
     (role === "responsable" || role === "contributeur");
