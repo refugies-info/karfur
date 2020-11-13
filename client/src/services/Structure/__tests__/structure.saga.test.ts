@@ -15,6 +15,7 @@ import {
 import { FETCH_USER_STRUCTURE } from "../structure.actionTypes";
 import { setUserStructureActionCreator } from "../structure.actions";
 import { userSelector } from "../../User/user.selectors";
+import { setUserRoleInStructureActionCreator } from "../../User/user.actions";
 
 describe("[Saga] Structures", () => {
   describe("pilot", () => {
@@ -32,10 +33,10 @@ describe("[Saga] Structures", () => {
   });
 
   describe("fetch user structure saga", () => {
-    it("should call api and push / when no membre", () => {
+    it("should call api and push / when no membre if should redirect", () => {
       testSaga(fetchUserStructure, {
         type: FETCH_USER_STRUCTURE,
-        payload: { structureId: "id" },
+        payload: { structureId: "id", shouldRedirect: true },
       })
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
@@ -46,7 +47,30 @@ describe("[Saga] Structures", () => {
         .next()
         .select(userSelector)
         .next({ userId: "userId" })
+        .put(setUserRoleInStructureActionCreator([]))
+        .next()
         .put(push("/"))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call api and push / when no membre if should redirect", () => {
+      testSaga(fetchUserStructure, {
+        type: FETCH_USER_STRUCTURE,
+        payload: { structureId: "id", shouldRedirect: false },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .call(API.getStructureById, "id", false)
+        .next({ data: { data: null } })
+        .put(setUserStructureActionCreator(null))
+        .next()
+        .select(userSelector)
+        .next({ userId: "userId" })
+        .put(setUserRoleInStructureActionCreator([]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
@@ -56,7 +80,7 @@ describe("[Saga] Structures", () => {
     it("should call api and push / when membre not admin or respo", () => {
       testSaga(fetchUserStructure, {
         type: FETCH_USER_STRUCTURE,
-        payload: { structureId: "id" },
+        payload: { structureId: "id", shouldRedirect: true },
       })
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
@@ -73,7 +97,36 @@ describe("[Saga] Structures", () => {
         .next()
         .select(userSelector)
         .next({ userId: "id" })
+        .put(setUserRoleInStructureActionCreator(["membre"]))
+        .next()
         .put(push("/"))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call api and push / when membre not admin or respo", () => {
+      testSaga(fetchUserStructure, {
+        type: FETCH_USER_STRUCTURE,
+        payload: { structureId: "id", shouldRedirect: false },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .call(API.getStructureById, "id", false)
+        .next({
+          data: { data: { membres: [{ userId: "id", roles: ["membre"] }] } },
+        })
+        .put(
+          setUserStructureActionCreator({
+            membres: [{ userId: "id", roles: ["membre"] }],
+          })
+        )
+        .next()
+        .select(userSelector)
+        .next({ userId: "id" })
+        .put(setUserRoleInStructureActionCreator(["membre"]))
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
@@ -83,7 +136,7 @@ describe("[Saga] Structures", () => {
     it("should call api and not push / when membre admin", () => {
       testSaga(fetchUserStructure, {
         type: FETCH_USER_STRUCTURE,
-        payload: { structureId: "id" },
+        payload: { structureId: "id", shouldRedirect: true },
       })
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
@@ -102,6 +155,37 @@ describe("[Saga] Structures", () => {
         .next()
         .select(userSelector)
         .next({ userId: "id" })
+        .put(setUserRoleInStructureActionCreator(["administrateur"]))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call api and not push / when membre admin", () => {
+      testSaga(fetchUserStructure, {
+        type: FETCH_USER_STRUCTURE,
+        payload: { structureId: "id", shouldRedirect: false },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .call(API.getStructureById, "id", false)
+        .next({
+          data: {
+            data: { membres: [{ userId: "id", roles: ["administrateur"] }] },
+          },
+        })
+        .put(
+          setUserStructureActionCreator({
+            membres: [{ userId: "id", roles: ["administrateur"] }],
+          })
+        )
+        .next()
+        .select(userSelector)
+        .next({ userId: "id" })
+        .put(setUserRoleInStructureActionCreator(["administrateur"]))
+        .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .isDone();
@@ -110,7 +194,7 @@ describe("[Saga] Structures", () => {
     it("should call api and not push / when membre contributeur", () => {
       testSaga(fetchUserStructure, {
         type: FETCH_USER_STRUCTURE,
-        payload: { structureId: "id" },
+        payload: { structureId: "id", shouldRedirect: true },
       })
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
@@ -129,6 +213,37 @@ describe("[Saga] Structures", () => {
         .next()
         .select(userSelector)
         .next({ userId: "id" })
+        .put(setUserRoleInStructureActionCreator(["contributeur"]))
+        .next()
+        .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .isDone();
+    });
+
+    it("should call api and not push / when membre contributeur", () => {
+      testSaga(fetchUserStructure, {
+        type: FETCH_USER_STRUCTURE,
+        payload: { structureId: "id", shouldRedirect: false },
+      })
+        .next()
+        .put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
+        .next()
+        .call(API.getStructureById, "id", false)
+        .next({
+          data: {
+            data: { membres: [{ userId: "id", roles: ["contributeur"] }] },
+          },
+        })
+        .put(
+          setUserStructureActionCreator({
+            membres: [{ userId: "id", roles: ["contributeur"] }],
+          })
+        )
+        .next()
+        .select(userSelector)
+        .next({ userId: "id" })
+        .put(setUserRoleInStructureActionCreator(["contributeur"]))
+        .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER_STRUCTURE))
         .next()
         .isDone();

@@ -20,6 +20,7 @@ import {
 import { userStructureSelector } from "./structure.selectors";
 import { userSelector } from "../User/user.selectors";
 import { push } from "connected-react-router";
+import { setUserRoleInStructureActionCreator } from "../User/user.actions";
 
 export function* fetchStructures(): SagaIterator {
   try {
@@ -37,27 +38,27 @@ export function* fetchUserStructure(
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
-    const { structureId } = action.payload;
+    const { structureId, shouldRedirect } = action.payload;
     const data = yield call(API.getStructureById, structureId, false);
     yield put(setUserStructureActionCreator(data.data.data));
-    const structureMembers = data.data.data ? data.data.data.membres : [];
+
     const user = yield select(userSelector);
     const userId = user.userId;
+    const structureMembers = data.data.data ? data.data.data.membres : [];
     const userInStructure = structureMembers.filter(
       (member: any) => member.userId === userId
     );
-    if (userInStructure.length === 0) {
+
+    const userRoles =
+      userInStructure.length > 0 ? userInStructure[0].roles : [];
+
+    const isUserContribOrAdmin =
+      userRoles.includes("administrateur") ||
+      userRoles.includes("contributeur");
+
+    yield put(setUserRoleInStructureActionCreator(userRoles));
+    if (shouldRedirect && !isUserContribOrAdmin) {
       yield put(push("/"));
-    } else {
-      const isUserRedacteurOrRespo = userInStructure
-        ? userInStructure[0].roles.filter(
-            (role: string) =>
-              role === "administrateur" || role === "contributeur"
-          ).length > 0
-        : null;
-      if (!isUserRedacteurOrRespo) {
-        yield put(push("/"));
-      }
     }
 
     logger.info("[fetchUserStructure] successfully fetched user structure");

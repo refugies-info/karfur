@@ -27,9 +27,11 @@ export const getStructureById = async (
       withDisposAssociesBoolean,
     });
 
+    const fields = "all";
     const structure = await getStructureFromDB(
       id,
-      withDisposAssociesBoolean || false
+      withDisposAssociesBoolean || false,
+      fields
     );
     if (!structure) {
       throw new Error("No structure");

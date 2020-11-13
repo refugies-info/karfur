@@ -32,7 +32,7 @@ describe("getStructureById", () => {
       { query: { id: "id", withDisposAssocies: "true" } },
       res
     );
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", true);
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "Succès", data: structure });
   });
@@ -43,7 +43,7 @@ describe("getStructureById", () => {
       { query: { id: "id", withDisposAssocies: "false" } },
       res
     );
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false);
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, "all");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "Succès", data: structure });
   });
@@ -51,7 +51,7 @@ describe("getStructureById", () => {
   it("should call getStructureFromDB with correct params and return result", async () => {
     const res = mockResponse();
     await getStructureById({ query: { id: "id" } }, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false);
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, "all");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "Succès", data: structure });
   });
@@ -68,7 +68,7 @@ describe("getStructureById", () => {
     getStructureFromDB.mockResolvedValueOnce(null);
     const res = mockResponse();
     await getStructureById({ query: { id: "id" } }, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false);
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, "all");
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.json).toHaveBeenCalledWith({ text: "Pas de résultat" });
   });
@@ -77,7 +77,7 @@ describe("getStructureById", () => {
     getStructureFromDB.mockRejectedValueOnce(new Error("error"));
     const res = mockResponse();
     await getStructureById({ query: { id: "id" } }, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false);
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, "all");
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });

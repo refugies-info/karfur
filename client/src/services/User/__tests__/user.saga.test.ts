@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
 import latestActionsSaga, { fetchUser } from "../user.saga";
 import { FETCH_USER } from "../user.actionTypes";
@@ -10,6 +11,7 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
+import { fetchUserStructureActionCreator } from "../../Structure/structure.actions";
 
 describe("[Saga] User", () => {
   describe("pilot", () => {
@@ -45,8 +47,15 @@ describe("[Saga] User", () => {
         .call(API.isAuth)
         .next(true)
         .call(API.get_user_info)
-        .next({ data: { data: testUser } })
-        .put(setUserActionCreator(testUser))
+        .next({ data: { data: { ...testUser, structures: ["id"] } } })
+        .put(setUserActionCreator({ ...testUser, structures: ["id"] }))
+        .next()
+        .put(
+          fetchUserStructureActionCreator({
+            structureId: "id",
+            shouldRedirect: false,
+          })
+        )
         .next()
         .put(finishLoading(LoadingStatusKey.FETCH_USER))
         .next()

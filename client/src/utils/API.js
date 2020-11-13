@@ -242,11 +242,6 @@ export default {
   getStructureById: (id, withDisposAssocies) =>
     axios.get(burl + "/structures/getStructureById", {
       params: { id, withDisposAssocies },
-
-
-  getRoleInStructure: (userId, structureId) =>
-    axios.get(burl + "user/getRoleInStructure", {
-      params: { userId, structureId },
     }),
 
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),

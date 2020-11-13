@@ -10,6 +10,7 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
+import { fetchUserStructureActionCreator } from "../Structure/structure.actions";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
@@ -19,7 +20,16 @@ export function* fetchUser(
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
       const data = yield call(API.get_user_info);
-      yield put(setUserActionCreator(data.data.data));
+      const user = data.data.data;
+      yield put(setUserActionCreator(user));
+      if (user.structures) {
+        yield put(
+          fetchUserStructureActionCreator({
+            structureId: user.structures[0],
+            shouldRedirect: false,
+          })
+        );
+      }
     } else {
       yield put(setUserActionCreator(null));
     }

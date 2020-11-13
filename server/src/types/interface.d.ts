@@ -16,6 +16,23 @@ export interface RequestFromClient<Query> {
 export interface Res {
   status: Function;
 }
+export interface Picture {
+  imgId: string | null;
+  public_id: string | null;
+  secure_url: string | null;
+}
+export interface DetailedOpeningHours {
+  day: string;
+  from0?: string;
+  to0?: string;
+  from1?: string;
+  to1?: string;
+}
+export interface OpeningHours {
+  details: DetailedOpeningHours[];
+  noPublic: boolean;
+  precisions?: string;
+}
 
 export interface IStructure {
   _id: ObjectId;

@@ -130,7 +130,9 @@ export const AnnuaireCreateComponent = (props: Props) => {
   useEffect(() => {
     const loadUserStructure = async () => {
       if (structureId) {
-        await dispatch(fetchUserStructureActionCreator({ structureId }));
+        await dispatch(
+          fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
+        );
       }
     };
     loadUserStructure();

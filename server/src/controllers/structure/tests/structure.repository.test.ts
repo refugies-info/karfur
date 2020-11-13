@@ -11,7 +11,7 @@ describe("getStructureFromDB", () => {
       populate: jest.fn().mockResolvedValue("structuresWithDispos"),
     });
 
-    const res = await getStructureFromDB("id", true);
+    const res = await getStructureFromDB("id", true, "all");
     expect(Structure.findOne).toHaveBeenCalledWith({ _id: "id" });
     expect(res).toEqual("structuresWithDispos");
   });
@@ -21,14 +21,14 @@ describe("getStructureFromDB", () => {
       populate: jest.fn().mockResolvedValue("structuresWithDispos"),
     });
 
-    const res = await getStructureFromDB("id", false);
+    const res = await getStructureFromDB("id", false, "all");
     expect(res).not.toEqual("structuresWithDispos");
   });
 
   it("should call Structure without populate if param is false", async () => {
     Structure.findOne = jest.fn().mockReturnValue("structuresWithoutDispos");
 
-    const res = await getStructureFromDB("id", false);
+    const res = await getStructureFromDB("id", false, "all");
     expect(res).toEqual("structuresWithoutDispos");
   });
 });

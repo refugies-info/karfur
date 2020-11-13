@@ -19,6 +19,7 @@ export const setUserStructureActionCreator = (value: Structure) =>
 
 export const fetchUserStructureActionCreator = (value: {
   structureId: ObjectId | null;
+  shouldRedirect: boolean;
 }) => action(FETCH_USER_STRUCTURE, value);
 
 export const updateUserStructureActionCreator = () =>
