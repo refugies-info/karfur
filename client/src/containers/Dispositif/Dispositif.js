@@ -269,7 +269,7 @@ export class Dispositif extends Component {
             dispositif.status !== "Actif" &&
             !this.props.admin &&
             !this.props.user.contributions.includes(dispositif._id) &&
-            !this.props.user.structures.includes(dispositif.sponsors[0]._id)
+            !this.props.user.structures.includes(dispositif.mainSponsor._id)
           ) {
             if (_.isEmpty(this.props.user)) {
               Swal.fire({
@@ -296,7 +296,16 @@ export class Dispositif extends Component {
             this.initializeTimer(3 * 60 * 1000, () =>
               this.valider_dispositif("Brouillon", true)
             );
-          } //Enregistrement automatique du dispositif toutes les 3 minutes
+          }
+
+          const sponsorsWithoutStructure = dispositif.sponsors.filter(
+            (sponsor) => sponsor.picture
+          );
+          const sponsors = [dispositif.mainSponsor].concat(
+            sponsorsWithoutStructure
+          );
+
+          //Enregistrement automatique du dispositif toutes les 3 minutes
           this._isMounted &&
             this.setState(
               {
@@ -309,7 +318,7 @@ export class Dispositif extends Component {
                   contact: dispositif.contact,
                   externalLink: dispositif.externalLink,
                 },
-                sponsors: dispositif.sponsors,
+                sponsors,
                 tags: dispositif.tags,
                 creator: dispositif.creatorId,
                 uiArray: _.get(dispositif, "contenu", []).map((x) => {
@@ -358,23 +367,7 @@ export class Dispositif extends Component {
           document.title =
             this.state.content.titreMarque ||
             this.state.content.titreInformatif;
-          //On va récupérer les vraies données des sponsors
-          this._isMounted &&
-            API.get_structure({
-              _id: {
-                $in: _.get(dispositif, "sponsors", []).map((s) => s && s._id),
-              },
-            }).then((data) => {
-              this._isMounted &&
-                data.data.data &&
-                data.data.data.length > 0 &&
-                this.setState((pS) => ({
-                  sponsors: [
-                    ...data.data.data,
-                    ...pS.sponsors.filter((x) => x.asAdmin),
-                  ],
-                }));
-            });
+
           //On récupère les données de l'utilisateur
           if (this._isMounted && API.isAuth()) {
             this._isMounted &&
@@ -1465,7 +1458,12 @@ export class Dispositif extends Component {
           }),
         };
       }),
-      sponsors: (this.state.sponsors || []).filter((x) => !x.dummy),
+      sponsors: (this.state.sponsors || [])
+        .filter((x) => !x.dummy)
+        .map((sponsor) => {
+          if (sponsor._id) return sponsor._id;
+          return sponsor;
+        }),
       tags: this.state.tags,
       avancement: 1,
       status: status,
@@ -1538,19 +1536,14 @@ export class Dispositif extends Component {
       ) {
         dispositif.status = this.state.status;
       } else if (dispositif.sponsors && dispositif.sponsors.length > 0) {
-        //Je vais chercher les membres de cette structure
-        const sponsors = _.get(dispositif, "sponsors.0", {});
-        const currSponsor = this.props.structures.find(
-          (x) => x._id === sponsors._id
-        );
+        const mainSponsor = _.get(dispositif, "sponsors.0", {});
+
         //Si l'auteur appartient à la structure principale je la fait passer directe en validation
-        const membre = currSponsor
-          ? (currSponsor.membres || []).find(
+        const membre = mainSponsor
+          ? (mainSponsor.membres || []).find(
               (x) => x.userId === this.props.userId
             )
-          : (sponsors.membres || []).find(
-              (x) => x.userId === this.props.userId
-            );
+          : [];
         if (
           ((membre &&
             membre.roles &&
