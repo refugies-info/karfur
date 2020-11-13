@@ -10,6 +10,7 @@ const Title = styled.div`
   line-height: 28px;
   margin-top: 24px;
   margin-bottom: 24px;
+  width: 700px;
 `;
 export const Step6 = () => (
   <div className="step6">
