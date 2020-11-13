@@ -243,7 +243,22 @@ export class UserDashStruct extends Component {
     const enAttente = (structure.dispositifsAssocies || []).filter(
       (x) => x.status === "En attente"
     );
+    const roles =
+      (
+        ((structure || {}).membres || []).find((x) => x.userId === user._id) ||
+        {}
+      ).roles || [];
+    let role = roles.includes("administrateur")
+      ? "responsable"
+      : roles.includes("createur")
+      ? "créateur"
+      : roles.includes("contributeur")
+      ? "contributeur"
+      : "membre";
 
+    const showAnnuaireNotif =
+      this.props.userStructure &&
+      (role === "responsable" || role === "contributeur");
     return (
       <div className="animated fadeIn user-dash-struct">
         <DashHeader
@@ -256,6 +271,7 @@ export class UserDashStruct extends Component {
           user={user}
           toggle={this.toggleModal}
           upcoming={this.upcoming}
+          role={role}
         />
 
         {enAttente.length > 0 &&
@@ -298,7 +314,7 @@ export class UserDashStruct extends Component {
             </div>
           ))}
 
-        {this.props.userStructure &&
+        {showAnnuaireNotif &&
           !this.props.userStructure.hasResponsibleSeenNotification && (
             <div className="nouveau-contenu mt-12 mb-12">
               <div className="left-side">

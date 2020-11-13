@@ -13,20 +13,7 @@ import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
 moment.locale("fr");
 
 const dashHeader = (props) => {
-  const roles =
-    (
-      ((props.structure || {}).membres || []).find(
-        (x) => x.userId === props.user._id
-      ) || {}
-    ).roles || [];
-  let role = roles.includes("administrateur")
-    ? "responsable"
-    : roles.includes("createur")
-    ? "créateur"
-    : roles.includes("contributeur")
-    ? "contributeur"
-    : "membre";
-
+  const role = props.role;
   const IndicateursBloc = (props) => {
     if (props.isStructure) {
       const structure = props.structure || {};
@@ -149,6 +136,11 @@ const dashHeader = (props) => {
       </Row>
     );
   };
+
+  const showAnnuaireModification =
+    props.title === "Votre structure" &&
+    props.structure &&
+    (role === "responsable" || role === "contributeur");
   return (
     <div className="dash-header">
       <Row>
@@ -161,8 +153,7 @@ const dashHeader = (props) => {
           </h2>
         </Col>
         <Col className="tableau-header align-right">
-          {props.title === "Votre structure" &&
-            props.structure &&
+          {showAnnuaireModification &&
             !props.structure.hasResponsibleSeenNotification && (
               <FButton
                 type="dark"
@@ -174,8 +165,7 @@ const dashHeader = (props) => {
                 Compléter la fiche annuaire
               </FButton>
             )}
-          {props.title === "Votre structure" &&
-            props.structure &&
+          {showAnnuaireModification &&
             props.structure.hasResponsibleSeenNotification && (
               <FButton
                 type="dark"
