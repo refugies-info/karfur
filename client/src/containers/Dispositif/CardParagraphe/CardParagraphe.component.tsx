@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Input,
-  Tooltip
+  Tooltip,
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
@@ -30,7 +30,7 @@ import _ from "lodash";
 import { infoCardIcon } from "../../../components/Icon/Icon";
 import { FrenchLevelModal } from "../FrenchLevelModal";
 import GeolocModal from "../../../components/Modals/GeolocModal/GeolocModal";
-import API from "../../../utils/API"
+import API from "../../../utils/API";
 
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 const frequencesPay = [
@@ -72,7 +72,7 @@ const TitleTextBody = styled.p`
   padding-bottom: 12px;
   padding-top: 10px;
   font-weight: 600;
-  margin-top: ${props => props.mt || 0};
+  margin-top: ${(props) => props.mt || 0};
 `;
 
 export interface PropsBeforeInjection {
@@ -95,7 +95,8 @@ export interface PropsBeforeInjection {
   cards: string[];
   mainTag: Tag;
   toggleTutorielModal: () => void;
-  location: any
+  location: any;
+  admin: boolean;
 }
 type StateType = {
   isDropdownOpen: boolean;
@@ -114,28 +115,27 @@ const GeolocTooltipItem = (props: any) => {
 
   return (
     <>
-    <button
-      key={id + "d"}
-      id={"Tooltip-" + id}
-      className={"backgroundColor-darkColor active "}
-    >
-      {item.split(" ")[0].length > 1
-        ? item.split(" ")[0]
-        : "0" + item.split(" ")[0]}
-    </button>
-     <Tooltip
-     placement="top"
-     offset="0px, 8px"
-     isOpen={tooltipOpen}
-     target={"Tooltip-" + id}
-     toggle={toggle}
-   >
-     {item}
-   </Tooltip>
-   </>
+      <button
+        key={id + "d"}
+        id={"Tooltip-" + id}
+        className={"backgroundColor-darkColor active "}
+      >
+        {item.split(" ")[0].length > 1
+          ? item.split(" ")[0]
+          : "0" + item.split(" ")[0]}
+      </button>
+      <Tooltip
+        placement="top"
+        offset="0px, 8px"
+        isOpen={tooltipOpen}
+        target={"Tooltip-" + id}
+        toggle={toggle}
+      >
+        {item}
+      </Tooltip>
+    </>
   );
 };
-
 
 export class CardParagraphe extends Component<Props> {
   state: StateType = {
@@ -161,23 +161,25 @@ export class CardParagraphe extends Component<Props> {
     let dispositif = {
       dispositifId,
       geolocInfocard: subitem,
-    }
-    API.add_dispositif_infocards(dispositif).then(() => {
-      Swal.fire({
-        title: "Yay...",
-        text: "Enregistrement reussi",
-        type: "success",
-        timer: 1500,
+    };
+    API.add_dispositif_infocards(dispositif)
+      .then(() => {
+        Swal.fire({
+          title: "Yay...",
+          text: "Enregistrement reussi",
+          type: "success",
+          timer: 1500,
+        });
       })
-    }).catch(() => {
-      Swal.fire({
-        title: "Oh non!",
-        text: "Something went wrong",
-        type: "error",
-        timer: 1500,
+      .catch(() => {
+        Swal.fire({
+          title: "Oh non!",
+          text: "Something went wrong",
+          type: "error",
+          timer: 1500,
+        });
       });
-    })
-  }
+  };
 
   validateDepartments = (departments: string[]) => {
     this.props.changeDepartements(
@@ -293,11 +295,10 @@ export class CardParagraphe extends Component<Props> {
       return string;
     };
 
-    let dispositifId = ""
+    let dispositifId = "";
     if (this.props.location.pathname) {
       let pathVariables = this.props.location.pathname.split("/");
-      if (pathVariables.length === 3 && pathVariables[1] === "dispositif")
-      {
+      if (pathVariables.length === 3 && pathVariables[1] === "dispositif") {
         dispositifId = pathVariables[2];
       }
     }
@@ -698,7 +699,7 @@ export class CardParagraphe extends Component<Props> {
                   <div className="color-darkColor niveaux-wrapper">
                     {subitem.departments && subitem.departments.length > 1 ? (
                       subitem.departments.map((nv, key) => (
-                        <GeolocTooltipItem key={key} item={nv} id={key}/>
+                        <GeolocTooltipItem key={key} item={nv} id={key} />
                       ))
                     ) : subitem.departments &&
                       subitem.departments.length === 1 &&
@@ -710,21 +711,22 @@ export class CardParagraphe extends Component<Props> {
                       </TitleTextBody>
                     ) : null}
                   </div>
-                )
-               }
-               {subitem.title === "Zone d'action" &&
-                  subitem.departments && dispositifId !== "" && !this.props.disableEdit && (
-                    <FButton
+                )}
+              {this.props.admin &&
+                subitem.title === "Zone d'action" &&
+                subitem.departments &&
+                dispositifId !== "" &&
+                !this.props.disableEdit && (
+                  <FButton
                     type="validate"
                     name="checkmark"
                     className={"mt-10"}
-                    onClick={() => this.onValidateGeoloc( dispositifId, subitem)}
+                    onClick={() => this.onValidateGeoloc(dispositifId, subitem)}
                     disabled={subitem.departments.length === 0}
                   >
                     <ButtonText>Publier Geoloc</ButtonText>
                   </FButton>
-                  )
-               }
+                )}
             </CardBody>
             {
               // footer for card Niveau de français to assess level in a website
