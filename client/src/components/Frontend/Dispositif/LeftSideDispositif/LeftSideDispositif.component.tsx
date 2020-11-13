@@ -101,6 +101,15 @@ export const LeftSideDispositif = (props: Props) => {
           "_blank"
         )
     : props.toggleInputBtnClicked;
+
+  const emailBody =
+    "Voici le lien vers " +
+    (props.typeContenu === "demarche" ? "la démarche" : "le dispositif") +
+    " ''" +
+    props.content.titreInformatif +
+    "' : " +
+    window.location.href;
+
   return (
     // left part of a demarche or dispositif to navigate to sections
     <div className="sticky-affix">
@@ -211,7 +220,7 @@ export const LeftSideDispositif = (props: Props) => {
                 (props.content && props.content.titreMarque
                   ? " - " + props.content.titreMarque
                   : "") +
-                "&body=Le dispositif est disponible dans votre dossier téléchargement"
+                `&body=${emailBody}`
               }
               onClick={props.createPdf}
               name="paper-plane-outline"
