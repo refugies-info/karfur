@@ -1980,6 +1980,7 @@ export class Dispositif extends Component {
                   displayTuto={this.state.displayTuto}
                   addMapBtn={this.state.addMapBtn}
                   printing={printing}
+                  admin={this.props.admin}
                   // TO DO : remove spread state
                   {...this.state}
                 />
