@@ -129,7 +129,7 @@ async function add_dispositif_infocards(req, res) {
         .map((e) => e.title)
         .indexOf("Zone d'action");
       if (index !== -1) {
-        originalDis.contenu[1].children[index] = dispositif.geolocInfocard; 
+        originalDis.contenu[1].children[index] = dispositif.geolocInfocard;
       } else {
         originalDis.contenu[1].children.push(dispositif.geolocInfocard);
       }
@@ -321,22 +321,18 @@ async function add_dispositif(req, res) {
       });
     }
     //J'associe la structure principale à ce dispositif
-    if (
-      dispResult.sponsors &&
-      dispResult.sponsors.length > 0 &&
-      dispResult.sponsors[0]._id
-    ) {
+    if (dispResult.mainSponsor) {
       try {
         await updateAssociatedDispositifsInStructure(
           dispResult._id,
-          dispResult.sponsors[0]._id
+          dispResult.mainSponsor
         );
       } catch (error) {
         logger.error(
           "[updateAssociatedDispositifsInStructure] error whil updating structures",
           {
             dispositifId: dispResult._id,
-            sponsorId: dispResult.sponsors[0]._id,
+            sponsorId: dispResult.mainSponsor,
           }
         );
       }

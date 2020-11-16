@@ -22,7 +22,7 @@ export function* fetchUser(
       const data = yield call(API.get_user_info);
       const user = data.data.data;
       yield put(setUserActionCreator(user));
-      if (user.structures) {
+      if (user.structures && user.structures.length > 0) {
         yield put(
           fetchUserStructureActionCreator({
             structureId: user.structures[0],

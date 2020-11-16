@@ -1477,7 +1477,11 @@ export class Dispositif extends Component {
         this.state.status !== "Brouillon" && { timeSpent: this.state.time }),
       autoSave: auto,
     };
-    dispositif.mainSponsor = _.get(dispositif, "sponsors.0._id");
+
+    dispositif.mainSponsor =
+      typeof _.get(dispositif, "sponsors.0") === "string"
+        ? _.get(dispositif, "sponsors.0")
+        : "";
     if (dispositif.typeContenu === "dispositif") {
       let cardElement =
         (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
@@ -1538,7 +1542,10 @@ export class Dispositif extends Component {
       ) {
         dispositif.status = this.state.status;
       } else if (dispositif.sponsors && dispositif.sponsors.length > 0) {
-        const mainSponsor = _.get(dispositif, "sponsors.0", {});
+        const mainSponsor =
+          this.state.sponsors.filter((sponsor) => sponsor._id).length > 0
+            ? this.state.sponsors.filter((sponsor) => sponsor._id)[0]
+            : null;
 
         //Si l'auteur appartient à la structure principale je la fait passer directe en validation
         const membre = mainSponsor
