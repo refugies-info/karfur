@@ -21,7 +21,6 @@ export class Admin extends Component {
     roles: [],
     users: [],
     langues: [],
-    themes: [],
     structures: [],
     uploading: false,
     order: "username",
@@ -120,10 +119,6 @@ export class Admin extends Component {
             return { ...el, isChecked: false };
           }),
       });
-    });
-
-    API.get_themes({}).then((data_res) => {
-      this.setState({ themes: data_res.data.data });
     });
 
     API.get_structure({}, {}, "createur").then((data_res) => {

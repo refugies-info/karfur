@@ -115,7 +115,6 @@ export class Avancement extends Component {
     }).then((data) => {
       this.setState({ traductionsFaites: data.data.data });
     });
-    // this._loadThemes();
     this.setState({ itemId, isExpert, isLangue });
     window.scrollTo(0, 0);
   }
@@ -163,38 +162,6 @@ export class Avancement extends Component {
     //     this.setState({data:articles});
     //   })
     // }
-  };
-
-  _loadThemes = () => {
-    API.get_themes({}).then((data_res) => {
-      let themes = data_res.data.data;
-      let reduced_themes = themes.reduce(
-        (acc, curr, i) => {
-          if (i > 0 && i % 3 === 0 && i !== themes.length - 1) {
-            return {
-              currGrp: [curr],
-              groupedData: [...acc.groupedData, acc.currGrp],
-            };
-          } else if (i % 3 !== 0 && i === themes.length - 1) {
-            return {
-              groupedData: [...acc.groupedData, [...acc.currGrp, curr]],
-              currGrp: [],
-            };
-          } else if (i % 3 === 0 && i === themes.length - 1) {
-            return {
-              groupedData: [...acc.groupedData, acc.currGrp, [curr]],
-              currGrp: [],
-            };
-          }
-          return {
-            currGrp: [...acc.currGrp, curr],
-            groupedData: acc.groupedData,
-          };
-        },
-        { currGrp: [], groupedData: [] }
-      ).groupedData;
-      this.setState({ themes: reduced_themes });
-    });
   };
 
   onExiting = () => {
