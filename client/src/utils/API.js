@@ -312,11 +312,6 @@ export default {
 
   getLanguages: () => axios.get(burl + "/langues/getLanguages"),
 
-  add_channel: (query) => {
-    return axios.post(burl + "/channels/add_channel", query, {
-      headers: headers,
-    });
-  },
   get_channel: (query, sort, populate) => {
     return axios.post(
       burl + "/channels/get_channel",
