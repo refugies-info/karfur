@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 import { NavLink, Link } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
@@ -56,7 +55,8 @@ export class HomePage extends Component {
     this.selectParam = this.selectParam.bind(this); //Placé ici pour être reconnu par les tests unitaires
   }
   state = {
-    users: [],
+    nbContributors: 0,
+    nbTraductors: 0,
     corona: false,
     popup: false,
     overlay: false,
@@ -68,12 +68,13 @@ export class HomePage extends Component {
     PageView();
     this._isMounted = true;
     window.scrollTo(0, 0);
-    return API.get_users({
-      query: { status: "Actif" },
-      populate: "roles",
-    }).then(
-      (data) => this._isMounted && this.setState({ users: data.data.data })
-    );
+    return API.getFiguresOnUsers().then((data) => {
+      this._isMounted &&
+        this.setState({
+          nbContributors: data.data.data.nbContributors,
+          nbTraductors: data.data.data.nbTraductors,
+        });
+    });
   }
 
   componentWillUnmount() {
@@ -104,7 +105,7 @@ export class HomePage extends Component {
 
   render() {
     const { t } = this.props;
-    const { users } = this.state;
+    const { nbContributors, nbTraductors } = this.state;
     const item = initial_data[0];
     return (
       <div className="animated fadeIn homepage">
@@ -141,11 +142,7 @@ export class HomePage extends Component {
                 "Construire ma vie en France"
               )}
             </h1>
-            <h5>
-              {t("Homepage.subtitle", {
-                nombre: (this.props.dispositifs || []).length,
-              })}
-            </h5>
+            <h5>{t("Homepage.subtitle")}</h5>
 
             <div className="search-row">
               <HomeSearch
@@ -299,11 +296,7 @@ export class HomePage extends Component {
             </div>
             <footer className="footer-section">
               {t("Homepage.contributeurs mobilises", {
-                nombre: (
-                  users.filter((x) =>
-                    (x.roles || []).some((y) => y && y.nom === "Contrib")
-                  ) || []
-                ).length,
+                nombre: nbContributors,
               })}{" "}
               <FButton
                 tag={NavHashLink}
@@ -327,13 +320,7 @@ export class HomePage extends Component {
             </div>
             <footer className="footer-section">
               {t("Homepage.traducteurs mobilises", {
-                nombre: (
-                  users.filter((x) =>
-                    (x.roles || []).some(
-                      (y) => y.nom === "Trad" || y.nom === "ExpertTrad"
-                    )
-                  ) || []
-                ).length,
+                nombre: nbTraductors,
               })}{" "}
               <FButton
                 tag={NavHashLink}
@@ -426,6 +413,7 @@ const mapDispatchToProps = {
   toggleLangueModal: toggleLangueModalActionCreator,
 };
 
-export default track({
-  page: "HomePage",
-})(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HomePage)));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(HomePage));

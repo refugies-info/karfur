@@ -20,6 +20,7 @@ const {
 } = require("./functions");
 const logger = require("../../logger");
 const { updateLanguagesAvancement } = require("../langues/langues.service");
+const { asyncForEach } = require("../../libs/asyncForEach");
 
 // const gmail_auth = require('./gmail_auth');
 
@@ -65,6 +66,88 @@ async function patch_dispositifs(req, res) {
     return res.status(500).json("KO");
   }
 }
+
+const updateAssociatedDispositifsInStructure = async (
+  dispositifId,
+  structureId
+) => {
+  logger.info("[updateAssociatedDispositifsInStructure] updating", {
+    dispositifId,
+    structureId,
+  });
+
+  // we add if not the case the dispositif to the correct structure
+  await Structure.findByIdAndUpdate(
+    { _id: structureId },
+    { $addToSet: { dispositifsAssocies: dispositifId } },
+    { new: true },
+    () => {}
+  );
+
+  const structureArrayWithDispoAssocie = await Structure.find({
+    dispositifsAssocies: dispositifId,
+  });
+
+  // if one structure it is the correct one
+  if (structureArrayWithDispoAssocie.length === 1) return;
+
+  // if more than 1, we have to remove the dispo from the wrong structures
+  await asyncForEach(structureArrayWithDispoAssocie, async (structure) => {
+    if (structure._id.toString() === structureId.toString()) return;
+    logger.info(
+      "[updateAssociatedDispositifsInStructure] remove dispositif associe from structure",
+      { structure: structure._id, dispositifId }
+    );
+    await Structure.findByIdAndUpdate(
+      { _id: structure._id },
+      { $pull: { dispositifsAssocies: dispositifId } },
+      { new: true },
+      () => {}
+    );
+    return;
+  });
+
+  logger.info(
+    "[updateAssociatedDispositifsInStructure] successfully updated structures"
+  );
+  return;
+};
+
+async function add_dispositif_infocards(req, res) {
+  if (!req.fromSite) {
+    return res.status(405).json({ text: "Requête bloquée par API" });
+  } else if (!req.body) {
+    return res.status(400).json({ text: "Requête invalide" });
+  }
+  let dispositif = req.body;
+  try {
+    let originalDis = await Dispositif.findOne({
+      _id: dispositif.dispositifId,
+    });
+    if (originalDis.contenu && originalDis.contenu[1].children) {
+      const index = originalDis.contenu[1].children
+        .map((e) => e.title)
+        .indexOf("Zone d'action");
+      if (index !== -1) {
+        originalDis.contenu[1].children[index] = dispositif.geolocInfocard; 
+      } else {
+        originalDis.contenu[1].children.push(dispositif.geolocInfocard);
+      }
+      await Dispositif.findOneAndUpdate(
+        { _id: dispositif.dispositifId },
+        originalDis,
+        { upsert: true, new: true }
+      );
+    }
+    return res.status(200).json("OK");
+  } catch (err) {
+    logger.error("Error while updating infocards", {
+      dispositifId: dispositif._id,
+    });
+    res.status(500).json({ text: "Erreur interne", data: err });
+  }
+}
+
 /* 
 concerning the Translation: this function is called when a pubblished dispositif is modified, in this case we need to unpublish the translations and 
 propose in the "À revoir" section so that the changed fields can be translated again
@@ -238,13 +321,25 @@ async function add_dispositif(req, res) {
       });
     }
     //J'associe la structure principale à ce dispositif
-    if (dispositif.mainSponsor) {
-      await Structure.findByIdAndUpdate(
-        { _id: dispositif.mainSponsor },
-        { $addToSet: { dispositifsAssocies: dispResult._id } },
-        { new: true },
-        () => {}
-      );
+    if (
+      dispResult.sponsors &&
+      dispResult.sponsors.length > 0 &&
+      dispResult.sponsors[0]._id
+    ) {
+      try {
+        await updateAssociatedDispositifsInStructure(
+          dispResult._id,
+          dispResult.sponsors[0]._id
+        );
+      } catch (error) {
+        logger.error(
+          "[updateAssociatedDispositifsInStructure] error whil updating structures",
+          {
+            dispositifId: dispResult._id,
+            sponsorId: dispResult.sponsors[0]._id,
+          }
+        );
+      }
     }
 
     return res.status(200).json({
@@ -471,6 +566,7 @@ const _errorHandler = (error, res) => {
 
 //On exporte notre fonction
 exports.add_dispositif = add_dispositif;
+exports.add_dispositif_infocards = add_dispositif_infocards;
 exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;

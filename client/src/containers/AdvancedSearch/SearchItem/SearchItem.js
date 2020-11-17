@@ -20,6 +20,7 @@ export class SearchItem extends Component {
     dropdownOpen: false,
     isMounted: false,
     ville: "",
+    villeAuto: "",
   };
 
   componentDidMount() {
@@ -36,7 +37,7 @@ export class SearchItem extends Component {
       return { dropdownOpen: !prevState.dropdownOpen };
     });
   handleChange = (e) => this.setState({ [e.currentTarget.id]: e.target.value });
-  initializeVille = () => this.setState({ ville: "" });
+  initializeVille = () => this.setState({ ville: "", villeAuto: "" });
 
   selectOption = (subi) => {
     this.props.selectParam(this.props.keyValue, subi);
@@ -45,7 +46,7 @@ export class SearchItem extends Component {
 
   render() {
     const { t, item, keyValue, isBigDesktop } = this.props;
-    const { dropdownOpen, isMounted, ville } = this.state;
+    const { dropdownOpen, isMounted, ville, villeAuto } = this.state;
 
     return (
       <div className="search-col">
@@ -56,7 +57,29 @@ export class SearchItem extends Component {
         >
           {t("SearchItem." + item.title, item.title)}
         </span>
-        {item.queryName === "localisation" ? (
+        {item.queryName === "localisation" && ville !== "" ? (
+          <FSearchBtn
+            className={
+              "mr-10 in-header search-filter " +
+              (isBigDesktop ? "search-btn " : "search-btn-small ") +
+              (item.active ? "active " : "")
+            }
+          >
+            {ville.slice(0, 20) + (ville.length > 20 ? "..." : "")}
+            {item.active && (
+              <EVAIcon
+                name="close-outline"
+                size="large"
+                className="ml-10"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  this.props.desactiver(keyValue);
+                  this.initializeVille();
+                }}
+              />
+            )}
+          </FSearchBtn>
+        ) : item.queryName === "localisation" && ville === "" ? (
           isMounted && (
             <ReactDependentScript
               loadingComponent={<div>Chargement de Google Maps...</div>}
@@ -82,14 +105,14 @@ export class SearchItem extends Component {
                     (isBigDesktop ? "" : "search-btn-small")
                   }
                   placeholder={item.placeholder}
-                  id="ville"
-                  value={ville}
+                  id="villeAuto"
+                  value={villeAuto}
                   onChange={this.handleChange}
                   onPlaceSelected={this.onPlaceSelected}
                   types={["(regions)"]}
                   componentRestrictions={{ country: "fr" }}
                 />
-{/*                 {item.active && (
+                {/*                 {item.active && (
                   <EVAIcon
                     name="close-circle"
                     size="xlarge"

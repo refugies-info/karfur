@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { Progress } from "reactstrap";
@@ -32,7 +31,9 @@ import { ReactComponent as TradImage } from "../../assets/comment-contribuer/Com
 import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import { ReactComponent as PapillonViolet } from "../../assets/comment-contribuer/CommentContribuer-papillon_violet.svg";
 import { ReactComponent as PapillonRose } from "../../assets/comment-contribuer/CommentContribuer-papillon_rose.svg";
+import gif from "../../assets/comment-contribuer/GIF-corriger.gif";
 import i18n from "../../i18n";
+import "./CommentContribuer.scss";
 
 const MainContainer = styled.div`
   flex: 1;
@@ -453,17 +454,18 @@ const LexiqueCard = (props) => (
 class CommentContribuer extends Component {
   state = {
     showModals: { checkDemarche: false },
-    users: [],
+    nbTraductors: 0,
+    nbExperts: 0,
   };
   _isMounted = false;
 
   componentDidMount() {
     this._isMounted = true;
-    API.get_users({
-      query: { status: "Actif" },
-      populate: "roles",
-    }).then((data) =>
-      this.setState({ users: this._isMounted && data.data.data })
+    API.getFiguresOnUsers().then((data) =>
+      this.setState({
+        nbExperts: this._isMounted && data.data.data.nbExperts,
+        nbTraductors: this._isMounted && data.data.data.nbTraductors,
+      })
     );
     window.scrollTo(0, 0);
   }
@@ -482,30 +484,13 @@ class CommentContribuer extends Component {
       (langue) => langue.avancement > 0 && langue.langueCode !== "fr"
     );
 
-  getNumberOfTraducteursAndExperts = () => {
-    const nbTrad = (
-      this.state.users.filter((x) =>
-        (x.roles || []).some((y) => y.nom === "Trad")
-      ) || []
-    ).length;
-
-    const nbExperts = (
-      this.state.users.filter((x) =>
-        (x.roles || []).some((y) => y.nom === "ExpertTrad")
-      ) || []
-    ).length;
-
-    return { nbTrad, nbExperts };
-  };
-
   render() {
     const { t } = this.props;
 
-    const { nbTrad, nbExperts } = this.getNumberOfTraducteursAndExperts();
     const activeLangues = this.getActiveLangues();
     const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
     return (
-      <MainContainer>
+      <MainContainer className="commentContribuer">
         <HeaderContainer>
           <HeaderText>
             {t("CommentContribuer.Comment contribuer", "Comment contribuer ?")}
@@ -579,7 +564,7 @@ class CommentContribuer extends Component {
               <NumbersContainer>
                 <NavLink to="/backend/user-dashboard">
                   <NumberTraduction
-                    amount={nbTrad}
+                    amount={this.state.nbTraductors}
                     text={t(
                       "CommentContribuer.traducteurs actifs",
                       "traducteurs actifs"
@@ -590,7 +575,7 @@ class CommentContribuer extends Component {
                 </NavLink>
                 <NavLink to="/backend/user-dashboard">
                   <NumberTraduction
-                    amount={nbExperts}
+                    amount={this.state.nbExperts}
                     text={t(
                       "CommentContribuer.experts en traduction",
                       "experts en traduction"
@@ -718,7 +703,17 @@ class CommentContribuer extends Component {
           >
             <PapillonRose />
           </div>
-
+          <div
+            style={{
+              position: "absolute",
+              right: isRTL && "676px",
+              top: "268px",
+              left: !isRTL && "676px",
+              zIndex: 3,
+            }}
+          >
+            <img src={gif} alt="loading..." className="gif" />
+          </div>
           <div
             style={{
               position: "absolute",
@@ -845,6 +840,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default track({
-  page: "CommentContribuer",
-})(connect(mapStateToProps)(withTranslation()(CommentContribuer)));
+export default connect(mapStateToProps)(withTranslation()(CommentContribuer));

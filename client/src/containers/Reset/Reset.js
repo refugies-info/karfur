@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Form, Progress } from "reactstrap";
 import Swal from "sweetalert2";
 import { NavLink } from "react-router-dom";
@@ -375,9 +374,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default track(
-  {
-    page: "Reset",
-  },
-  { dispatchOnMount: true }
-)(connect(mapStateToProps, mapDispatchToProps)(withTranslation()(Reset)));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withTranslation()(Reset));

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 import RecorderJS from "recorder-js";
 import { Button, Spinner } from "reactstrap";
@@ -150,6 +149,4 @@ class RecordAudio extends Component {
 //   // }, 1000);
 // };
 
-export default track({
-  page: "RecordAudio",
-})(withTranslation()(RecordAudio));
+export default withTranslation()(RecordAudio);

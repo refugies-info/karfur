@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-import track from "react-tracking";
 import {
   ButtonDropdown,
   DropdownToggle,
@@ -400,8 +399,44 @@ export class AdvancedSearch extends Component {
           localisationSearch.query[1] &&
           localisationSearch.query[1].long_name
         ) {
+          var index;
           var i;
-          dispositifs = dispositifs.filter((disp) => {
+          var dispositifsVille = [];
+          var dispositifsFrance = [];
+          var dispositifsEmpty = [];
+
+          for (index = 0; index < dispositifs.length; index++) {
+            if (
+              dispositifs[index].contenu[1] &&
+              dispositifs[index].contenu[1].children &&
+              dispositifs[index].contenu[1].children.length > 0
+            ) {
+              var geolocInfocard = dispositifs[index].contenu[1].children.find(
+                (infocard) => infocard.title === "Zone d'action"
+              );
+              if (geolocInfocard && geolocInfocard.departments) {
+                for (i = 0; i < geolocInfocard.departments.length; i++) {
+                  if (geolocInfocard.departments[i] === "All") {
+                    dispositifsFrance.push(dispositifs[index]);
+                  } else if (
+                    geolocInfocard.departments[i].split(" - ")[1] ===
+                      localisationSearch.query[1].long_name ||
+                    geolocInfocard.departments[i].split(" - ")[1] ===
+                      localisationSearch.query[0].long_name
+                  ) {
+                    dispositifsVille.push(dispositifs[index]);
+                  }
+                }
+              } else {
+                dispositifsEmpty.push(dispositifs[index]); 
+              }
+            } else {
+                dispositifsEmpty.push(dispositifs[index]); 
+            }
+          }
+          dispositifs = dispositifsVille.concat(dispositifsFrance, dispositifsEmpty);
+
+/*           dispositifs = dispositifs.filter((disp) => {
             if (
               disp.contenu[1] &&
               disp.contenu[1].children &&
@@ -427,7 +462,7 @@ export class AdvancedSearch extends Component {
               }
             }
             return true;
-          });
+          }); */
           //On applique le filtre géographique maintenant
           /*           dispositifs = dispositifs.filter(
             
@@ -669,6 +704,29 @@ export class AdvancedSearch extends Component {
     }
   };
 
+  sortFunction = (dispositifs, order, croissant) => {
+    return dispositifs.sort((a, b) => {
+      var aValue = 0;
+      var bValue = 0;
+      if (order === "created_at") {
+        aValue = _.get(a, "publishedAt", _.get(a, "created_at"));
+        bValue = _.get(b, "publishedAt", _.get(b, "created_at"));
+      } else {
+        aValue = _.get(a, order);
+        bValue = _.get(b, order);
+      }
+      return aValue > bValue
+        ? croissant
+          ? 1
+          : -1
+        : aValue < bValue
+        ? croissant
+          ? -1
+          : 1
+        : 0;
+    });
+  };
+
   reorder = (tri) => {
     if (tri.name === "Par thème") {
       this.setState(
@@ -683,31 +741,25 @@ export class AdvancedSearch extends Component {
     } else {
       const order = tri.value,
         croissant = order === this.state.order ? !this.state.croissant : true;
-      this.setState((pS) => ({
-        dispositifs: pS.dispositifs.sort((a, b) => {
-          var aValue = 0;
-          var bValue = 0;
-          if (order === "created_at") {
-            aValue = _.get(a, "publishedAt", _.get(a, "created_at"));
-            bValue = _.get(b, "publishedAt", _.get(b, "created_at"));
-          } else {
-            aValue = _.get(a, order);
-            bValue = _.get(b, order);
-          }
-          return aValue > bValue
-            ? croissant
-              ? 1
-              : -1
-            : aValue < bValue
-            ? croissant
-              ? -1
-              : 1
-            : 0;
-        }),
-        order: tri.value,
-        activeTri: tri.name,
-        croissant: croissant,
-      }));
+      this.setState(
+        (pS) => ({
+          dispositifs: this.sortFunction(pS.dispositifs, order, croissant),
+          principalThemeList: this.sortFunction(
+            pS.principalThemeList,
+            order,
+            croissant
+          ),
+          secondaryThemeList: this.sortFunction(
+            pS.secondaryThemeList,
+            order,
+            croissant
+          ),
+          order: tri.value,
+          activeTri: tri.name,
+          croissant: croissant,
+        })
+        //() => this.queryDispositifs()
+      );
     }
   };
 
@@ -730,12 +782,7 @@ export class AdvancedSearch extends Component {
     this.selectParam(0, selectedTheme);
   };
 
-  goToDispositif = (dispositif = {}, fromAutoSuggest = false) => {
-    this.props.tracking.trackEvent({
-      action: "click",
-      label: "goToDispositif" + (fromAutoSuggest ? " - fromAutoSuggest" : ""),
-      value: dispositif._id,
-    });
+  goToDispositif = (dispositif = {}) => {
     this.props.history.push(
       "/" +
         (dispositif.typeContenu || "dispositif") +
@@ -1619,13 +1666,9 @@ const mapSizesToProps = ({ width }) => ({
   isBigDesktop: width >= 1565,
 });
 
-export default track({
-  page: "AdvancedSearch",
-})(
-  withRouter(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(withSizes(mapSizesToProps)(withTranslation()(windowSize(AdvancedSearch))))
-  )
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withSizes(mapSizesToProps)(withTranslation()(windowSize(AdvancedSearch))))
 );

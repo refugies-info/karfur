@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Col, Row, Progress, Table, Modal, Spinner } from "reactstrap";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
@@ -134,11 +133,6 @@ export class UserDash extends Component {
   }
 
   toggleModal = (modal) => {
-    this.props.tracking.trackEvent({
-      action: "toggleModal",
-      label: modal,
-      value: !this.state.showModal[modal],
-    });
     if (
       modal === "defineUser" &&
       this.state.showModal.defineUser &&
@@ -154,11 +148,6 @@ export class UserDash extends Component {
   };
 
   toggleSection = (section) => {
-    this.props.tracking.trackEvent({
-      action: "toggleSection",
-      label: section,
-      value: !this.state.showSections[section],
-    });
     this.setState({
       showSections: {
         ...this.state.showSections,
@@ -186,11 +175,6 @@ export class UserDash extends Component {
   };
 
   openThemes = (langue) => {
-    this.props.tracking.trackEvent({
-      action: "click",
-      label: "openThemes",
-      value: langue._id,
-    });
     // Do not pass to big arguments in state otherwise it generates an error on firefox
     // only pass in state what is needed
     this.props.history.push({
@@ -206,12 +190,6 @@ export class UserDash extends Component {
   };
 
   openTraductions = (langue) => {
-    this.props.tracking.trackEvent({
-      action: "click",
-      label: "openTraductions",
-      value: langue._id,
-    });
-
     // Do not pass to big arguments in state otherwise it generates an error on firefox
     // only pass in state what is needed
     this.props.history.push({
@@ -224,11 +202,6 @@ export class UserDash extends Component {
         },
       },
     });
-  };
-
-  editProfile = () => {
-    this.props.tracking.trackEvent({ action: "click", label: "editProfile" });
-    this.props.history.push("/backend/user-form");
   };
 
   setUser = (user) => {
@@ -560,6 +533,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default track({
-  page: "UserDash",
-})(connect(mapStateToProps)(UserDash));
+export default connect(mapStateToProps)(UserDash);

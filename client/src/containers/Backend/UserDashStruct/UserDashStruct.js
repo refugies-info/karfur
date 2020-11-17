@@ -1,6 +1,5 @@
 /* eslint no-eval: 0 */
 import React, { Component } from "react";
-import track from "react-tracking";
 import { Modal, Spinner } from "reactstrap";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
@@ -198,22 +197,12 @@ export class UserDashStruct extends Component {
   };
 
   toggleModal = (modal) => {
-    this.props.tracking.trackEvent({
-      action: "toggleModal",
-      label: modal,
-      value: !this.state.showModal[modal],
-    });
     this.setState((pS) => ({
       showModal: { ...pS.showModal, [modal]: !pS.showModal[modal] },
     }));
   };
 
   toggleSection = (section) => {
-    this.props.tracking.trackEvent({
-      action: "toggleSection",
-      label: section,
-      value: !this.state.showSections[section],
-    });
     this.setState({
       showSections: {
         ...this.state.showSections,
@@ -254,7 +243,23 @@ export class UserDashStruct extends Component {
     const enAttente = (structure.dispositifsAssocies || []).filter(
       (x) => x.status === "En attente"
     );
+    const roles =
+      (
+        ((structure || {}).membres || []).find((x) => x.userId === user._id) ||
+        {}
+      ).roles || [];
+    let role = roles.includes("administrateur")
+      ? "responsable"
+      : roles.includes("createur")
+      ? "créateur"
+      : roles.includes("contributeur")
+      ? "contributeur"
+      : "membre";
 
+    const showAnnuaireNotif =
+      false &&
+      this.props.userStructure &&
+      (role === "responsable" || role === "contributeur");
     return (
       <div className="animated fadeIn user-dash-struct">
         <DashHeader
@@ -267,6 +272,7 @@ export class UserDashStruct extends Component {
           user={user}
           toggle={this.toggleModal}
           upcoming={this.upcoming}
+          role={role}
         />
 
         {enAttente.length > 0 &&
@@ -309,7 +315,7 @@ export class UserDashStruct extends Component {
             </div>
           ))}
 
-        {this.props.userStructure &&
+        {showAnnuaireNotif &&
           !this.props.userStructure.hasResponsibleSeenNotification && (
             <div className="nouveau-contenu mt-12 mb-12">
               <div className="left-side">
@@ -467,6 +473,7 @@ const mapDispatchToProps = {
   updateStructure: updateUserStructureActionCreator,
 };
 
-export default track({
-  page: "UserDashStruct",
-})(connect(mapStateToProps, mapDispatchToProps)(windowSize(UserDashStruct)));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(windowSize(UserDashStruct));
