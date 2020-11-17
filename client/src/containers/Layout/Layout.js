@@ -17,7 +17,10 @@ import {
   toggleLangueModalActionCreator,
   toggleLangueActionCreator,
 } from "../../services/Langue/langue.actions";
-import { fetchStructuresActionCreator } from "../../services/Structures/structures.actions";
+import {
+  fetchStructuresActionCreator,
+  setUserStructureActionCreator,
+} from "../../services/Structures/structures.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";
@@ -214,6 +217,7 @@ const mapDispatchToProps = {
   toggleLangueModal: toggleLangueModalActionCreator,
   toggleLangue: toggleLangueActionCreator,
   toggleSpinner,
+  setUserStructure: setUserStructureActionCreator,
 };
 
 export default connect(

@@ -57,6 +57,7 @@ export class Toolbar extends React.Component {
   disconnect = () => {
     API.logout();
     this.props.fetchUser();
+    this.props.setUserStructure(null);
   };
 
   componentDidMount() {
@@ -197,7 +198,7 @@ export class Toolbar extends React.Component {
                 this.props.history.replace("/advanced-search");
                 window.location.reload();
               } else {
-              this.props.history.push("/advanced-search");
+                this.props.history.push("/advanced-search");
               }
             }}
             className={
