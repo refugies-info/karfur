@@ -22,7 +22,7 @@ const url =
   process.env.NODE_ENV === "dev"
     ? "http://localhost:3000/"
     : process.env.NODE_ENV === "staging"
-    ? "https://agir-qa.herokuapp.com/"
+    ? "https://staging.refugies.info/"
     : "https://www.refugies.info/";
 
 /**
