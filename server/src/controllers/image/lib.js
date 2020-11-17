@@ -1,5 +1,6 @@
 const Image = require("../../schema/schemaImage.js");
 const cloudinary = require("cloudinary");
+const logger = require("../../logger");
 
 function set_image(req, res) {
   if (!req.fromSite) {
@@ -7,8 +8,9 @@ function set_image(req, res) {
   } else if (!req.files) {
     return res.status(400).json({ text: "Requête invalide" });
   }
-  const values = Object.values(req.files);
 
+  const values = Object.values(req.files);
+  logger.info("[set_image] received a call", { values });
   const originalFilename = values[0] ? values[0].originalFilename : null;
   const promises = values.map((image) =>
     cloudinary.uploader.upload(image.path, "", { folder: "/pictures" })
@@ -32,6 +34,9 @@ function set_image(req, res) {
       var _u = new Image(image);
       _u.save((err, data) => {
         if (err) {
+          logger.error("[set_image] error while uploading image", {
+            error: err,
+          });
           res.status(500).json({
             text: "Erreur interne",
             error: err,
