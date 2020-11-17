@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import track from "react-tracking";
 import { withTranslation } from "react-i18next";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import HeaderBackgroungImage from "../../assets/qui-sommes-nous/QuiSommesNous_header.svg";
@@ -263,6 +262,4 @@ class QuiSommesNous extends Component {
   }
 }
 
-export default track({
-  page: "QuiSommesNous",
-})(withTranslation()(QuiSommesNous));
+export default withTranslation()(QuiSommesNous);

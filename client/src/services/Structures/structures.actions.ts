@@ -13,7 +13,7 @@ export const setStructuresActionCreator = (value: Structure[]) =>
 
 export const fetchStructuresActionCreator = () => action(FETCH_STRUCTURES);
 
-export const setUserStructureActionCreator = (value: Structure) =>
+export const setUserStructureActionCreator = (value: Structure | null) =>
   action(SET_USER_STRUCTURE, value);
 
 export const fetchUserStructureActionCreator = (value: {

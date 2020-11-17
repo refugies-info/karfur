@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
-import track from "react-tracking";
 import {
   ButtonDropdown,
   DropdownItem,
@@ -58,6 +57,7 @@ export class Toolbar extends React.Component {
   disconnect = () => {
     API.logout();
     this.props.fetchUser();
+    this.props.setUserStructure(null);
   };
 
   componentDidMount() {
@@ -194,7 +194,12 @@ export class Toolbar extends React.Component {
 
           <button
             onClick={() => {
-              this.props.history.push("/advanced-search");
+              if (this.props.location.pathname === "/advanced-search") {
+                this.props.history.replace("/advanced-search");
+                window.location.reload();
+              } else {
+                this.props.history.push("/advanced-search");
+              }
             }}
             className={
               isRTL
@@ -343,13 +348,9 @@ const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
 };
 
-export default track({
-  component: "Toolbar",
-})(
-  withRouter(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(withTranslation()(windowSize(Toolbar)))
-  )
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withTranslation()(windowSize(Toolbar)))
 );

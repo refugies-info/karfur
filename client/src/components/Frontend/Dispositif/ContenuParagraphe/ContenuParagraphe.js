@@ -16,6 +16,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import variables from "scss/colors.scss";
 import { cardTitles } from "../../../../containers/Dispositif/data";
 import FButton from "../../../FigmaUI/FButton/FButton";
+import { withRouter } from "react-router-dom";
 
 const contenuParagraphe = (props) => {
   const { disableEdit, ...bprops } = props;
@@ -82,6 +83,7 @@ const contenuParagraphe = (props) => {
               )}
               {subitem.type === "card" ? (
                 <CardParagraphe
+                  location={props.location}
                   subkey={subkey}
                   subitem={subitem}
                   disableEdit={newDisableEdit}
@@ -99,6 +101,7 @@ const contenuParagraphe = (props) => {
                   cards={cards}
                   mainTag={bprops.mainTag}
                   toggleTutorielModal={props.toggleTutorielModal}
+                  admin={props.admin}
                 />
               ) : subitem.type === "map" && !bprops.printing ? (
                 <MapParagraphe
@@ -379,4 +382,4 @@ const AddMoudleBtnTag = (props) => {
   );
 };
 
-export default contenuParagraphe;
+export default withRouter(contenuParagraphe);

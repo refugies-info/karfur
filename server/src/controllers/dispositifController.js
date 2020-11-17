@@ -4,6 +4,7 @@ const { getDispositifs } = require("./dispositif/dispositif.service");
 
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
+  app.post("/add_dispositif_infocards", checkToken.check, dispositif.add_dispositif_infocards);
   app.post("/get_dispositif", dispositif.get_dispositif);
   app.post("/count_dispositifs", dispositif.count_dispositifs);
   app.post(
