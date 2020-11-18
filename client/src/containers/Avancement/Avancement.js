@@ -854,7 +854,7 @@ export class Avancement extends Component {
                             .then(() => {
                               Swal.fire({
                                 title: "Yay...",
-                                text: "Enregistrement reussi",
+                                text: "Suppression effectuée",
                                 type: "success",
                                 timer: 1500,
                               });
@@ -867,6 +867,7 @@ export class Avancement extends Component {
                                 type: "error",
                                 timer: 1500,
                               });
+                              window.location.reload();
                             });
                         }
                       });
