@@ -853,7 +853,7 @@ export class Avancement extends Component {
                           }).then((result) => {
                             logger.info("OK delete", result);
                           });
-                          window.location.reload();
+                          // window.location.reload();
                         }
                       });
                     }}
