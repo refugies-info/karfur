@@ -637,6 +637,14 @@ export class Avancement extends Component {
     }
   }
 
+  deleteTrads = (element) => {
+    API.delete_trads({
+      articleId: element._id,
+      langueCible: this.state.langue.i18nCode,
+    }).then(() => console.log("resultok"));
+    window.location.reload();
+  };
+
   handleChange = (e) => {
     this.setState({ research: e.target.value });
     // Variable to hold the original version of the list
@@ -833,27 +841,32 @@ export class Avancement extends Component {
                     type="light-action"
                     name="trash-2"
                     fill={variables.noir}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      Swal.fire({
-                        title: "Êtes-vous sûr ?",
-                        text: "La suppression des traductions est irréversible",
-                        type: "question",
-                        showCancelButton: true,
-                        confirmButtonColor: variables.rouge,
-                        cancelButtonColor: variables.vert,
-                        confirmButtonText: "Oui, les supprimer",
-                        cancelButtonText: "Annuler",
-                      }).then((result) => {
-                        if (result.value) {
-                          API.delete_trads({
-                            articleId: element._id,
-                            langueCible: this.state.langue.i18nCode,
-                          });
-                          window.location.reload();
-                        }
-                      });
-                    }}
+                    onClick={
+                      () => this.deleteTrads(element)
+
+                      //   (e) => {
+                      //   e.stopPropagation();
+                      //   Swal.fire({
+                      //     title: "Êtes-vous sûr ?",
+                      //     text: "La suppression des traductions est irréversible",
+                      //     type: "question",
+                      //     showCancelButton: true,
+                      //     confirmButtonColor: variables.rouge,
+                      //     cancelButtonColor: variables.vert,
+                      //     confirmButtonText: "Oui, les supprimer",
+                      //     cancelButtonText: "Annuler",
+                      //   }).then((result) => {
+                      //     console.log("result", result);
+                      //     if (result.value) {
+                      //       API.delete_trads({
+                      //         articleId: element._id,
+                      //         langueCible: this.state.langue.i18nCode,
+                      //       });
+                      //       // window.location.reload();
+                      //     }
+                      //   });
+                      // }
+                    }
                   />
                 ) : null}
               </td>

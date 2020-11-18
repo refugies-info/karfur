@@ -902,19 +902,26 @@ async function get_progression(req, res) {
 
 //call to delete the trads for a specific dispositif and language, only available for admin
 async function delete_trads(req, res) {
-  if (!req.fromSite) {
-    return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!req.body) {
+  try {
+    if (!req.fromSite) {
+      return res.status(405).json({ text: "Requête bloquée par API" });
+    } else if (!req.body) {
+      return res.status(400).json({ text: "Requête invalide" });
+    } else if (!req.user.roles.some((x) => x.nom === "Admin")) {
+      logger.info("[delete_trads] user in not admin", { user: req.user.roles });
+      return res.status(400).json({ text: "Requête invalide" });
+      // eslint-disable-next-line
+    } else {
+      logger.info("[delete_trads] received", { data: req.body });
+      await Traduction.deleteMany({
+        articleId: req.body.articleId,
+        langueCible: req.body.langueCible,
+      });
+      res.status(200);
+    }
+  } catch (error) {
+    logger.error("[delete_trads] error", { error });
     return res.status(400).json({ text: "Requête invalide" });
-  } else if (!req.user.roles.some((x) => x.nom === "Admin")) {
-    return res.status(400).json({ text: "Requête invalide" });
-    // eslint-disable-next-line
-  } else {
-    await Traduction.deleteMany({
-      articleId: req.body.articleId,
-      langueCible: req.body.langueCible,
-    });
-    res.status(200);
   }
 }
 
