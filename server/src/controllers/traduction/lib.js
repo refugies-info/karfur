@@ -917,7 +917,7 @@ async function delete_trads(req, res) {
         articleId: req.body.articleId,
         langueCible: req.body.langueCible,
       });
-      res.status(200);
+      res.status(200).json({ text: "OK" });
     }
   } catch (error) {
     logger.error("[delete_trads] error", { error });
