@@ -852,7 +852,7 @@ export class Avancement extends Component {
                             langueCible: this.state.langue.i18nCode,
                           }).then((result) => {
                             logger.info("OK delete", result);
-                            window.location.reload();
+                            // window.location.reload();
                           });
                         }
                       });
