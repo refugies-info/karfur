@@ -907,9 +907,11 @@ async function delete_trads(req, res) {
   } else if (!req.body) {
     return res.status(400).json({ text: "Requête invalide" });
   } else if (!req.user.roles.some((x) => x.nom === "Admin")) {
+    logger.info("[delete_trads] user in not admin", { user: req.user.roles });
     return res.status(400).json({ text: "Requête invalide" });
     // eslint-disable-next-line
   } else {
+    logger.info("[delete_trads] received", { data: req.body });
     await Traduction.deleteMany({
       articleId: req.body.articleId,
       langueCible: req.body.langueCible,
