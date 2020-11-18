@@ -18,6 +18,7 @@ import produce from "immer";
 import "./Avancement.scss";
 import variables from "scss/colors.scss";
 import _ from "lodash";
+import { logger } from "../../logger";
 
 moment.locale("fr");
 
@@ -849,6 +850,8 @@ export class Avancement extends Component {
                           API.delete_trads({
                             articleId: element._id,
                             langueCible: this.state.langue.i18nCode,
+                          }).then((result) => {
+                            logger.info("OK delete", result);
                           });
                           window.location.reload();
                         }
