@@ -9,7 +9,7 @@ import produce from "immer";
 import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
 import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import { fetchStructuresActionCreator } from "../../../services/Structures/structures.actions";
+import { fetchStructuresActionCreator } from "../../../services/Structure/structure.actions";
 
 import "./Admin.scss";
 import variables from "scss/colors.scss";

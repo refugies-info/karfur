@@ -1,11 +1,8 @@
-import { RequestFromClient, Res } from "../../types/interface";
+import { Res } from "../../types/interface";
 import User from "../../schema/schemaUser";
 import logger from "../../logger";
 
-export const getFiguresOnUsers = async (
-  req: RequestFromClient | {},
-  res: Res
-) => {
+export const getFiguresOnUsers = async (req: {}, res: Res) => {
   try {
     const users = await User.find({ status: "Actif" }, { roles: 1 }).populate(
       "roles"

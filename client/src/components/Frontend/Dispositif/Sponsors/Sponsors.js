@@ -24,7 +24,6 @@ import { sentIllu } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "../../../../services/User/user.actions";
 import _ from "lodash";
-
 import "./Sponsors.scss";
 import variables from "scss/colors.scss";
 import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
@@ -61,17 +60,10 @@ class Sponsors extends Component {
 
   // eslint-disable-next-line react/no-deprecated
   componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.user &&
-      nextProps.structures &&
-      nextProps.structures.length > 0
-    ) {
-      const mesStructures = (
-        nextProps.structures.filter((x) =>
-          (x.membres || []).some((y) => y.userId === nextProps.user._id)
-        ) || []
-      ).map((x) => ({ ...x, checked: false }));
-      this.setState({ mesStructures });
+    if (nextProps.user && nextProps.userStructure) {
+      const structure = nextProps.userStructure;
+
+      this.setState({ mesStructures: [structure] });
     }
   }
 
@@ -271,14 +263,7 @@ class Sponsors extends Component {
     });
 
   render() {
-    const {
-      disableEdit,
-      t,
-      sponsors,
-      deleteSponsor,
-      user,
-      structures,
-    } = this.props;
+    const { disableEdit, t, sponsors, deleteSponsor, user } = this.props;
     const {
       showModals,
       selected,
@@ -296,6 +281,9 @@ class Sponsors extends Component {
       _.uniqBy(sponsorsWithPicture, (sponsor) => sponsor.picture.secure_url)
     );
     const modal = { name: "responsabilite" };
+    const structuresArray = this.props.structuresNew
+      ? this.props.structuresNew.concat([{ createNew: true }])
+      : [{ createNew: true }];
     return (
       <div
         className="sponsor-footer"
@@ -458,10 +446,7 @@ class Sponsors extends Component {
             loupe
             className="search-bar inner-addon right-addon"
             placeholder="Rechercher ou créer une structure"
-            array={[
-              ...structures.filter((x) => x.status === "Actif"),
-              { createNew: true },
-            ]}
+            array={structuresArray}
             createNewCta="Créer une nouvelle structure"
             selectItem={this.selectItem}
           />
@@ -892,12 +877,14 @@ const ImgModal = (props) => (
 const mapStateToProps = (state) => {
   return {
     user: state.user.user,
-    hasStructure: state.user.hasStructure,
-    structures: state.structure.structures,
+    userStructure: state.structure.userStructure,
+    structuresNew: state.structures,
   };
 };
 
-const mapDispatchToProps = { updateUserActionCreator };
+const mapDispatchToProps = {
+  updateUserActionCreator,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {
   forwardRef: true,

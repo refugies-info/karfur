@@ -41,7 +41,7 @@ import variables from "scss/colors.scss";
 import {
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "../../../services/Structures/structures.actions";
+} from "../../../services/Structure/structure.actions";
 
 moment.locale("fr");
 
@@ -161,11 +161,9 @@ export class UserDashStruct extends Component {
         ? this.props.location.state.structure
         : user.structures[0];
  */
-    API.getStructureByIdWithDispositifsAssocies(
-      this.state.selectedStructure
-    ).then((data) => {
-      if (data.data.data && data.data.data.length > 0) {
-        this.setState({ structure: data.data.data[0], isMainLoading: false });
+    API.getStructureById(this.state.selectedStructure, true).then((data) => {
+      if (data.data.data) {
+        this.setState({ structure: data.data.data, isMainLoading: false });
 
         API.get_event({
           query: {
