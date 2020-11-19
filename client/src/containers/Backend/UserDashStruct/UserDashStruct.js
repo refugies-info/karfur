@@ -255,7 +255,6 @@ export class UserDashStruct extends Component {
       : "membre";
 
     const showAnnuaireNotif =
-      false &&
       this.props.userStructure &&
       (role === "responsable" || role === "contributeur");
     return (
