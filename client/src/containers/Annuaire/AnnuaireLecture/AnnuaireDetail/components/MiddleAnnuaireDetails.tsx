@@ -39,6 +39,7 @@ const Acronyme = styled.div`
   font-weight: bold;
   font-size: 40px;
   line-height: 51px;
+  color: #828282;
 `;
 
 const SubTitle = styled.div`

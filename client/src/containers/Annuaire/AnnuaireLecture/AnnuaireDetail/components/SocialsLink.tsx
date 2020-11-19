@@ -24,7 +24,7 @@ export const SocialsLink = (props: Props) => (
       <ButtonContainer key={website}>
         <FButton
           type="white"
-          name="download-outline"
+          name="globe"
           onClick={() => onLinkClicked(website)}
         >
           Visiter le site internet
@@ -35,7 +35,7 @@ export const SocialsLink = (props: Props) => (
       <ButtonContainer>
         <FButton
           type="white"
-          name="download-outline"
+          name="facebook"
           onClick={() => onLinkClicked(props.facebook)}
         >
           Suivre sur Facebook
@@ -46,7 +46,7 @@ export const SocialsLink = (props: Props) => (
       <ButtonContainer>
         <FButton
           type="white"
-          name="download-outline"
+          name="twitter"
           onClick={() => onLinkClicked(props.twitter)}
         >
           Suivre sur Twitter
@@ -57,7 +57,7 @@ export const SocialsLink = (props: Props) => (
       <ButtonContainer>
         <FButton
           type="white"
-          name="download-outline"
+          name="linkedin"
           onClick={() => onLinkClicked(props.linkedin)}
         >
           Suivre sur LinkedIn
