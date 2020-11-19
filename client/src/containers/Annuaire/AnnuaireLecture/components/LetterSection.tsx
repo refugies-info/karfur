@@ -4,9 +4,11 @@ import { Structure, Picture } from "../../../../@types/interface";
 import "./LetterSection.scss";
 // @ts-ignore
 import LinesEllipsis from "react-lines-ellipsis";
+import { ObjectId } from "mongodb";
 interface Props {
   letter: string;
   structures: Structure[];
+  onStructureCardClick: (id: ObjectId) => void;
 }
 
 const MainContainer = styled.div`
@@ -53,13 +55,19 @@ const StructureName = styled.div`
   margin-left: 24px;
 `;
 
+const Anchor = styled.div`
+  margin-top: -150px;
+`;
+
 interface StructureCardProps {
   nom: string;
   acronyme: string;
   picture: Picture;
+  onStructureCardClick: (id: ObjectId) => void;
+  id: ObjectId;
 }
 const StructureCard = (props: StructureCardProps) => (
-  <StructureCardContainer>
+  <StructureCardContainer onClick={() => props.onStructureCardClick(props.id)}>
     <img
       className="sponsor-img"
       src={(props.picture || {}).secure_url}
@@ -72,7 +80,8 @@ const StructureCard = (props: StructureCardProps) => (
 );
 
 export const LetterSection = (props: Props) => (
-  <MainContainer className="letter-section" id={props.letter.toUpperCase()}>
+  <MainContainer className="letter-section">
+    <Anchor id={props.letter.toUpperCase()} />
     <LetterContainer>{props.letter.toUpperCase()}</LetterContainer>
     <StructuresContainer>
       {props.structures.map((structure) => (
@@ -81,6 +90,8 @@ export const LetterSection = (props: Props) => (
           nom={structure.nom}
           picture={structure.picture || {}}
           acronyme={structure.acronyme}
+          onStructureCardClick={props.onStructureCardClick}
+          id={structure._id}
         ></StructureCard>
       ))}
     </StructuresContainer>

@@ -18,7 +18,6 @@ import produce from "immer";
 import "./Avancement.scss";
 import variables from "scss/colors.scss";
 import _ from "lodash";
-import { logger } from "../../logger";
 
 moment.locale("fr");
 
