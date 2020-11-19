@@ -15,6 +15,7 @@ import { structuresSelector } from "../../../services/Structures/structures.sele
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { Spinner } from "reactstrap";
+import { fetchSelectedStructureActionCreator } from "../../../services/SelectedStructure/selectedStructure.actions";
 
 const Header = styled.div`
   background-image: url(${img});
@@ -89,11 +90,23 @@ export const AnnuaireLectureComponent = (props: Props) => {
   };
 
   const dispatch = useDispatch();
+  const structureId =
+    // @ts-ignore
+    props.match && props.match.params && props.match.params.id;
   useEffect(() => {
     const loadStructures = async () => {
       await dispatch(fetchStructuresNewActionCreator());
     };
-    loadStructures();
+    const loadStructure = async (structureId: ObjectId) => {
+      await dispatch(fetchSelectedStructureActionCreator(structureId));
+    };
+
+    if (!structureId) {
+      loadStructures();
+    } else {
+      loadStructure(structureId);
+    }
+
     // @ts-ignore
     window.addEventListener("scroll", handleScroll);
 
@@ -112,9 +125,19 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const letters = Object.keys(groupedStructureByLetter).sort();
   const lettersLength = letters.length;
 
-  const onLetterClick = (letter: string) => setSelectedLetter(letter);
+  const onLetterClick = (letter: string) => {
+    setSelectedLetter(letter);
+    if (structureId) {
+      setSelectedStructure(null);
+      props.history.push(`/annuaire`);
+    }
+  };
 
-  const onStructureCardClick = (id: ObjectId) => setSelectedStructure(id);
+  const onStructureCardClick = (id: ObjectId) => {
+    setSelectedStructure(id);
+    props.history.push(`/annuaire/${id}`);
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -126,7 +149,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
         <LettersContainer>
-          {!selectedStructure && (
+          {!structureId && (
             <>
               {letters.map((letter, index) => (
                 <AnchorLink
@@ -145,7 +168,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
               ))}
             </>
           )}
-          {selectedStructure && (
+          {structureId && (
             <>
               {letters.map((letter, index) => (
                 <Letter
@@ -161,7 +184,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
         </LettersContainer>
       </Header>
       <Content stopScroll={stopScroll}>
-        {!selectedStructure && false && (
+        {!structureId && (
           <>
             {letters.map((letter) => (
               <LetterSection
@@ -174,9 +197,9 @@ export const AnnuaireLectureComponent = (props: Props) => {
             ))}
           </>
         )}
-        {(true || selectedStructure) && (
+        {structureId && (
           // @ts-ignore
-          <AnnuaireDetail structureId={"5ebabc146f8faa1f5ee18adb"} />
+          <AnnuaireDetail structureId={selectedStructure} />
         )}
       </Content>
     </MainContainer>

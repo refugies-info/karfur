@@ -29,15 +29,21 @@ export const AnnuaireDetail = (props: Props) => {
   const structure = useSelector(selectedStructureSelector);
 
   const dispatch = useDispatch();
+  // @ts-ignore
+  const structureId =
+    // @ts-ignore
+    props.match && props.match.params && props.match.params.id;
   useEffect(() => {
     const loadStructure = async () => {
       await dispatch(fetchSelectedStructureActionCreator(props.structureId));
     };
-    loadStructure();
+    if (structureId) {
+      loadStructure();
+    }
 
     // @ts-ignore
     window.scrollTo(0, 175);
-  }, [dispatch]);
+  }, [dispatch, structureId]);
 
   if (isLoading || !structure) {
     return <Spinner />;
