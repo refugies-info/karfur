@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   width: 360px;
-  background: blue;
+  // background: blue;
   margin-right: 0px;
   overflow: scroll;
   height: ${(props) => props.height}px;
@@ -12,7 +12,7 @@ const Container = styled.div`
 const Test = styled.div`
   width: 200px;
   height: 200px;
-  background: red;
+  // background: red;
   margin-top: 50px;
   margin-bottom: 50px;
 `;
