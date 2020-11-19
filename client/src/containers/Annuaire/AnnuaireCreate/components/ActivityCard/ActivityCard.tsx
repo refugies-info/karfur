@@ -10,13 +10,19 @@ interface Props {
   selectActivity: (arg: string) => void;
   isSelected: boolean;
   image: any | null;
+  isLectureMode: boolean;
 }
 
 const CardContainer = styled.div`
   width: 180px;
   height: 180px;
   background: ${(props) => (props.isSelected ? props.lightColor : "#ffffff")};
-  border-color: ${(props) => (props.isSelected ? props.darkColor : "#ffffff")};
+  border-color: ${(props) =>
+    props.isSelected
+      ? props.isLectureMode
+        ? props.lightColor
+        : props.darkColor
+      : "#ffffff"};
   color: ${(props) => props.darkColor};
 
   border-radius: 12px;
@@ -28,7 +34,7 @@ const CardContainer = styled.div`
   margin-left: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
-  cursor: pointer;
+  cursor: ${(props) => !props.isLectureMode && "pointer"};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,7 +47,8 @@ const CardContainer = styled.div`
     color: ${(props) => props.darkColor};
     border-width: 3px;
     border-style: solid;
-    border-color: ${(props) => props.darkColor};
+    border-color: ${(props) =>
+      props.isLectureMode ? props.lightColor : props.darkColor};
   }
 `;
 
@@ -55,6 +62,7 @@ export const ActivityCard = (props: Props) => (
     darkColor={props.darkColor}
     onClick={() => props.selectActivity(props.activity)}
     isSelected={props.isSelected}
+    isLectureMode={props.isLectureMode}
   >
     <ImageContainer>
       {!props.image && <img src={placeholder} className="image" />}

@@ -15,6 +15,7 @@ import { structuresSelector } from "../../../services/Structures/structures.sele
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { Spinner } from "reactstrap";
+import { fetchSelectedStructureActionCreator } from "../../../services/SelectedStructure/selectedStructure.actions";
 
 const Header = styled.div`
   background-image: url(${img});
@@ -52,6 +53,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   background: #e5e5e5;
 `;
 
@@ -59,7 +61,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: ${(props) => (props.stopScroll ? "256px" : "0px")};
-  margin-bottom: 24px;
+  margin-bottom: ${(props) => (props.hasMarginBottom ? "24px" : "0px")};
 `;
 
 export interface PropsBeforeInjection {
@@ -73,6 +75,9 @@ export const AnnuaireLectureComponent = (props: Props) => {
     null
   );
 
+  const structureId =
+    // @ts-ignore
+    props.match && props.match.params && props.match.params.id;
   const structures = useSelector(structuresSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
@@ -81,19 +86,29 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const handleScroll = () => {
     // @ts-ignore
     const currentScrollPos = window.pageYOffset;
-
-    if (currentScrollPos >= 175) {
-      return setStopScroll(true);
+    if (!structureId) {
+      if (currentScrollPos >= 175) {
+        return setStopScroll(true);
+      }
+      if (currentScrollPos <= 175) return setStopScroll(false);
     }
-    if (currentScrollPos <= 175) return setStopScroll(false);
   };
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     const loadStructures = async () => {
       await dispatch(fetchStructuresNewActionCreator());
     };
+    const loadStructure = async (structureId: ObjectId) => {
+      await dispatch(fetchSelectedStructureActionCreator(structureId));
+    };
+
     loadStructures();
+    if (structureId) {
+      loadStructure(structureId);
+    }
+
     // @ts-ignore
     window.addEventListener("scroll", handleScroll);
 
@@ -112,21 +127,31 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const letters = Object.keys(groupedStructureByLetter).sort();
   const lettersLength = letters.length;
 
-  const onLetterClick = (letter: string) => setSelectedLetter(letter);
+  const onLetterClick = (letter: string) => {
+    setSelectedLetter(letter);
+    if (structureId) {
+      setSelectedStructure(null);
+      props.history.push("/annuaire");
+    }
+  };
 
-  const onStructureCardClick = (id: ObjectId) => setSelectedStructure(id);
+  const onStructureCardClick = (id: ObjectId) => {
+    setSelectedStructure(id);
+    props.history.push(`/annuaire/${id}`);
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
 
   return (
     <MainContainer>
-      <Header stopScroll={stopScroll}>
+      <Header stopScroll={stopScroll || !!structureId}>
         <TextContainer>
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
         <LettersContainer>
-          {!selectedStructure && (
+          {!structureId && (
             <>
               {letters.map((letter, index) => (
                 <AnchorLink
@@ -145,7 +170,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
               ))}
             </>
           )}
-          {selectedStructure && (
+          {structureId && (
             <>
               {letters.map((letter, index) => (
                 <Letter
@@ -160,8 +185,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
           )}
         </LettersContainer>
       </Header>
-      <Content stopScroll={stopScroll}>
-        {!selectedStructure && false && (
+      <Content stopScroll={stopScroll} hasMarginBottom={!structureId}>
+        {!structureId && (
           <>
             {letters.map((letter) => (
               <LetterSection
@@ -174,9 +199,9 @@ export const AnnuaireLectureComponent = (props: Props) => {
             ))}
           </>
         )}
-        {(true || selectedStructure) && (
+        {structureId && (
           // @ts-ignore
-          <AnnuaireDetail structureId={"5ebabc146f8faa1f5ee18adb"} />
+          <AnnuaireDetail structureId={selectedStructure} />
         )}
       </Content>
     </MainContainer>

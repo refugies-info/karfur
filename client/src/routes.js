@@ -42,7 +42,17 @@ const routes = [
   },
   {
     path: "/annuaire",
+    exact: true,
+
     name: "Annuaire",
+    component: AnnuaireLecture,
+    restriction: [],
+  },
+  {
+    path: "/annuaire/:id",
+    name: "Annuaire",
+    exact: true,
+
     component: AnnuaireLecture,
     restriction: [],
   },
