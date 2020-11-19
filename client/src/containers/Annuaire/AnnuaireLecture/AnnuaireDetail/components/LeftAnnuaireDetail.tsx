@@ -12,6 +12,7 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: ${(props) => props.height}px;
 `;
 
 const LogoContainer = styled.div`
@@ -22,14 +23,15 @@ const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 `;
 
 interface Props {
   structure: Structure;
+  leftPartHeight: number;
 }
 export const LeftAnnuaireDetail = (props: Props) => (
-  <LeftContainer>
+  <LeftContainer height={props.leftPartHeight}>
     <div>
       <LogoContainer>
         <img

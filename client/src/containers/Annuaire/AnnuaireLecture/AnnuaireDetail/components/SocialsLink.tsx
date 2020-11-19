@@ -3,8 +3,8 @@ import styled from "styled-components";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 
 const ButtonContainer = styled.div`
-  margin-bottom: 4px;
-  margin-top: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 `;
 interface Props {
   websites: string[];
@@ -24,7 +24,7 @@ export const SocialsLink = (props: Props) => (
       <ButtonContainer key={website}>
         <FButton
           type="white"
-          name="download-outline"
+          name="globe"
           onClick={() => onLinkClicked(website)}
         >
           Visiter le site internet
@@ -35,7 +35,7 @@ export const SocialsLink = (props: Props) => (
       <ButtonContainer>
         <FButton
           type="white"
-          name="download-outline"
+          name="facebook"
           onClick={() => onLinkClicked(props.facebook)}
         >
           Suivre sur Facebook
@@ -46,7 +46,7 @@ export const SocialsLink = (props: Props) => (
       <ButtonContainer>
         <FButton
           type="white"
-          name="download-outline"
+          name="twitter"
           onClick={() => onLinkClicked(props.twitter)}
         >
           Suivre sur Twitter
@@ -57,7 +57,7 @@ export const SocialsLink = (props: Props) => (
       <ButtonContainer>
         <FButton
           type="white"
-          name="download-outline"
+          name="linkedin"
           onClick={() => onLinkClicked(props.linkedin)}
         >
           Suivre sur LinkedIn

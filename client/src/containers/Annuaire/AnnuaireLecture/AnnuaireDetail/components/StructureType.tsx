@@ -8,8 +8,7 @@ const Container = styled.div`
   width: fit-content;
   background: #ffffff;
   border-radius: 4px;
-  margin-bottom: 4px;
-  margin-top: 4px;
+  margin-bottom: 8px;
 `;
 
 interface Props {
