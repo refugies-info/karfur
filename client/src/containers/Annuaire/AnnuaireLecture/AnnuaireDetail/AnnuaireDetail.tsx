@@ -10,6 +10,7 @@ import { selectedStructureSelector } from "../../../../services/SelectedStructur
 import { Spinner } from "reactstrap";
 import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
+import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
 
 interface Props {
   structureId: ObjectId;
@@ -19,6 +20,8 @@ const Content = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
+  margin-top: 75px;
+  height: 90hv;
 `;
 
 export const AnnuaireDetail = (props: Props) => {
@@ -42,16 +45,22 @@ export const AnnuaireDetail = (props: Props) => {
     }
 
     // @ts-ignore
-    window.scrollTo(0, 175);
+    window.scrollTo(0, 0);
   }, [dispatch, structureId]);
 
+  // @ts-ignore
+  const leftPartHeight = window.screen.height - 225;
   if (isLoading || !structure) {
     return <Spinner />;
   }
   return (
-    <Content className="annuaire-detail">
-      <LeftAnnuaireDetail structure={structure} />
+    <Content className="annuaire-detail" height={leftPartHeight}>
+      <LeftAnnuaireDetail
+        structure={structure}
+        leftPartHeight={leftPartHeight}
+      />
       <MiddleAnnuaireDetail structure={structure} />
+      <RightAnnuaireDetails />
     </Content>
   );
 };

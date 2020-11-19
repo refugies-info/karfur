@@ -53,6 +53,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   background: #e5e5e5;
 `;
 
@@ -60,7 +61,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: ${(props) => (props.stopScroll ? "256px" : "0px")};
-  margin-bottom: 24px;
+  margin-bottom: ${(props) => (props.hasMarginBottom ? "24px" : "0px")};
 `;
 
 export interface PropsBeforeInjection {
@@ -82,11 +83,12 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const handleScroll = () => {
     // @ts-ignore
     const currentScrollPos = window.pageYOffset;
-
-    if (currentScrollPos >= 175) {
-      return setStopScroll(true);
+    if (!structureId) {
+      if (currentScrollPos >= 175) {
+        return setStopScroll(true);
+      }
+      if (currentScrollPos <= 175) return setStopScroll(false);
     }
-    if (currentScrollPos <= 175) return setStopScroll(false);
   };
 
   const dispatch = useDispatch();
@@ -101,9 +103,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
       await dispatch(fetchSelectedStructureActionCreator(structureId));
     };
 
-    if (!structureId) {
-      loadStructures();
-    } else {
+    loadStructures();
+    if (structureId) {
       loadStructure(structureId);
     }
 
@@ -144,7 +145,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   return (
     <MainContainer>
-      <Header stopScroll={stopScroll}>
+      <Header stopScroll={stopScroll || !!structureId}>
         <TextContainer>
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
@@ -183,7 +184,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
           )}
         </LettersContainer>
       </Header>
-      <Content stopScroll={stopScroll}>
+      <Content stopScroll={stopScroll} hasMarginBottom={!structureId}>
         {!structureId && (
           <>
             {letters.map((letter) => (

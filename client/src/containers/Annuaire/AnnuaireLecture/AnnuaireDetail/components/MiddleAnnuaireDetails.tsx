@@ -9,6 +9,9 @@ interface Props {
 
 const MiddleContainer = styled.div`
   padding: 32px;
+  height: 675px;
+  overflow: scroll;
+  width: 100%;
 `;
 
 const Title = styled.div`

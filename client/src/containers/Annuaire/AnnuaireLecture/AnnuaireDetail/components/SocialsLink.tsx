@@ -3,8 +3,8 @@ import styled from "styled-components";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 
 const ButtonContainer = styled.div`
-  margin-bottom: 4px;
-  margin-top: 4px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 `;
 interface Props {
   websites: string[];

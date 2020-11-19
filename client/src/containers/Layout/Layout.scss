@@ -25,7 +25,8 @@ div.app-body {
 
   &.pdf-print {
     @media print {
-      html, body {
+      html,
+      body {
         direction: rtl;
       }
     }
@@ -35,7 +36,7 @@ div.app-body {
     margin-top: 75px;
     margin-left: 0px;
     margin-right: 0px;
-    min-height: 100vh;
+    min-height: 90vh;
     height: 100%;
     flex: 1;
     min-width: 0;
