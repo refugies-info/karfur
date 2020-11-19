@@ -1,24 +1,38 @@
 import logger = require("../../logger");
-import Structure from "../../schema/schemaStructure.js";
-import { RequestFromClient, Res } from "src/types/interface.js";
+import { RequestFromClient, Res } from "../../types/interface.js";
+import {
+  getStructureFromDB,
+  getStructuresFromDB,
+} from "./structure.repository";
+import { castToBoolean } from "../../libs/castToBoolean";
 
-export const getStructureByIdWithDispositifsAssocies = async (
-  req: RequestFromClient,
+interface Query {
+  id: string;
+  withDisposAssocies: string;
+}
+
+export const getStructureById = async (
+  req: RequestFromClient<Query>,
   res: Res
 ) => {
   if (!req.query || !req.query.id) {
     return res.status(400).json({ text: "Requête invalide" });
   }
   try {
-    const structureId = req.query.id;
-    logger.info(
-      "[getStructureByIdWithDispositifsAssocies] get structure with id",
-      { structureId }
-    );
-    const structure = await Structure.find({ _id: structureId }).populate(
-      "dispositifsAssocies"
-    );
+    const { id, withDisposAssocies } = req.query;
+    const withDisposAssociesBoolean = castToBoolean(withDisposAssocies);
 
+    logger.info("[getStructureById] get structure with id", {
+      id,
+      withDisposAssociesBoolean,
+    });
+
+    const fields = "all";
+    const structure = await getStructureFromDB(
+      id,
+      withDisposAssociesBoolean || false,
+      fields
+    );
     if (!structure) {
       throw new Error("No structure");
     }
@@ -28,15 +42,31 @@ export const getStructureByIdWithDispositifsAssocies = async (
       data: structure,
     });
   } catch (error) {
-    logger.error(
-      "[getStructureByIdWithDispositifsAssocies] error while getting structure with id"
-    );
+    logger.error("[getStructureById] error while getting structure with id", {
+      error,
+    });
     if (error.message === "No structure") {
       res.status(404).json({
         text: "Pas de résultat",
       });
       return;
     }
+    return res.status(500).json({
+      text: "Erreur interne",
+    });
+  }
+};
+
+export const getActiveStructures = async (req: {}, res: Res) => {
+  try {
+    logger.info("[getActiveStructures] get structures ");
+    const structures = await getStructuresFromDB();
+    return res.status(200).json({ data: structures });
+  } catch (error) {
+    logger.error("[getActiveStructures] error while getting structures", {
+      error,
+    });
+
     return res.status(500).json({
       text: "Erreur interne",
     });

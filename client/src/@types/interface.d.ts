@@ -179,6 +179,13 @@ export interface Structure {
   hasResponsibleSeenNotification?: boolean;
 }
 
+export interface SimplifiedStructure {
+  _id: ObjectId;
+  acronyme: string;
+  nom: string;
+  picture: Picture;
+}
+
 export interface Picture {
   imgId: string | null;
   public_id: string | null;

@@ -13,6 +13,7 @@ describe("[Reducer] user", () => {
     contributeur: false,
     membreStruct: false,
     userFetched: true,
+    rolesInStructure: [],
   };
   it("should set user in store when action SET_USER is received with payload user without role", () => {
     expect(
@@ -30,6 +31,7 @@ describe("[Reducer] user", () => {
       contributeur: false,
       membreStruct: false,
       userFetched: true,
+      rolesInStructure: [],
     });
   });
 
@@ -45,6 +47,7 @@ describe("[Reducer] user", () => {
       contributeur: true,
       membreStruct: true,
       userFetched: true,
+      rolesInStructure: [],
     });
   });
 

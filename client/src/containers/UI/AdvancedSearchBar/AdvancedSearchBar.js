@@ -197,6 +197,7 @@ const AdvancedSearchBar = (props) => {
 
   useOutsideClick(wrapperRef, () => {
     toggleSearchModal(false);
+    setSearchText("");
   });
 
   useEffect(() => {
@@ -276,6 +277,7 @@ const AdvancedSearchBar = (props) => {
           <NoSearchModalContainer ref={wrapperRef}>
             <NoResultPlaceholder />
             <SeeAllButton black onClick={() => {
+              setSearchText("");
               if (props.location.pathname === "/advanced-search") {
                 props.history.replace("/advanced-search");
                 window.location.reload();
@@ -419,8 +421,8 @@ const AdvancedSearchBar = (props) => {
                                   .toLowerCase()
                               }
                               textToHighlight={
-                                elem.titreInformatif.slice(0, 20) +
-                                (elem.titreInformatif.length > 20 ? "..." : "")
+                                elem.titreInformatif.slice(0, 30) +
+                                (elem.titreInformatif.length > 30 ? "..." : "")
                               }
                             />
                             {" avec "}
@@ -444,7 +446,10 @@ const AdvancedSearchBar = (props) => {
                                     .trim()
                                     .toLowerCase()
                                 }
-                                textToHighlight={elem.titreMarque}
+                                textToHighlight={
+                                  elem.titreMarque.slice(0, 25) +
+                                  (elem.titreMarque.length > 25 ? "..." : "")
+                                }
                               />
                             ) : null}
                           </ThemeDispositifText>
@@ -458,6 +463,7 @@ const AdvancedSearchBar = (props) => {
               </ResultSection>
             </div>
             <SeeAllButton onClick={() => {
+              setSearchText("");
               if (props.location.pathname === "/advanced-search") {
                 props.history.replace("/advanced-search");
                 window.location.reload();

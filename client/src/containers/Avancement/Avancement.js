@@ -18,7 +18,6 @@ import produce from "immer";
 import "./Avancement.scss";
 import variables from "scss/colors.scss";
 import _ from "lodash";
-import { logger } from "../../logger";
 
 moment.locale("fr");
 
@@ -850,10 +849,25 @@ export class Avancement extends Component {
                           API.delete_trads({
                             articleId: element._id,
                             langueCible: this.state.langue.i18nCode,
-                          }).then((result) => {
-                            logger.info("OK delete", result);
-                          });
-                          window.location.reload();
+                          })
+                            .then(() => {
+                              Swal.fire({
+                                title: "Yay...",
+                                text: "Suppression effectuée",
+                                type: "success",
+                                timer: 1500,
+                              });
+                              window.location.reload();
+                            })
+                            .catch(() => {
+                              Swal.fire({
+                                title: "Oh non!",
+                                text: "Something went wrong",
+                                type: "error",
+                                timer: 1500,
+                              });
+                              window.location.reload();
+                            });
                         }
                       });
                     }}

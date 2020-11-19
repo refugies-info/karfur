@@ -7,6 +7,14 @@ import { LetterSection } from "./components/LetterSection";
 import img from "../../../assets/annuaire/annuaire_lecture.svg";
 // @ts-ignore
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { ObjectId } from "mongodb";
+import { AnnuaireDetail } from "./AnnuaireDetail/AnnuaireDetail";
+import { fetchStructuresNewActionCreator } from "../../../services/Structures/structures.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { structuresSelector } from "../../../services/Structures/structures.selector";
+import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
+import { Spinner } from "reactstrap";
 
 const Header = styled.div`
   background-image: url(${img});
@@ -56,10 +64,19 @@ const Content = styled.div`
 
 export interface PropsBeforeInjection {
   t: any;
+  history: any;
 }
 export const AnnuaireLectureComponent = (props: Props) => {
   const [selectedLetter, setSelectedLetter] = useState("a");
   const [stopScroll, setStopScroll] = useState(false);
+  const [selectedStructure, setSelectedStructure] = useState<ObjectId | null>(
+    null
+  );
+
+  const structures = useSelector(structuresSelector);
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
+  );
 
   const handleScroll = () => {
     // @ts-ignore
@@ -71,7 +88,12 @@ export const AnnuaireLectureComponent = (props: Props) => {
     if (currentScrollPos <= 175) return setStopScroll(false);
   };
 
+  const dispatch = useDispatch();
   useEffect(() => {
+    const loadStructures = async () => {
+      await dispatch(fetchStructuresNewActionCreator());
+    };
+    loadStructures();
     // @ts-ignore
     window.addEventListener("scroll", handleScroll);
 
@@ -79,10 +101,10 @@ export const AnnuaireLectureComponent = (props: Props) => {
       // @ts-ignore
       window.removeEventListener("scroll", handleScroll);
     };
-  });
+  }, [dispatch]);
 
-  const groupedStructureByLetter = props.structures
-    ? _.groupBy(props.structures, (structure) =>
+  const groupedStructureByLetter = structures
+    ? _.groupBy(structures, (structure) =>
         structure.nom ? structure.nom[0].toLowerCase() : "no name"
       )
     : [];
@@ -92,6 +114,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   const onLetterClick = (letter: string) => setSelectedLetter(letter);
 
+  const onStructureCardClick = (id: ObjectId) => setSelectedStructure(id);
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <MainContainer>
       <Header stopScroll={stopScroll}>
@@ -99,32 +126,58 @@ export const AnnuaireLectureComponent = (props: Props) => {
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
         <LettersContainer>
-          {letters.map((letter, index) => (
-            <AnchorLink
-              offset="60"
-              href={"#" + letter.toUpperCase()}
-              key={letter}
-            >
-              <Letter
-                letter={letter}
-                index={lettersLength - index}
-                onLetterClick={onLetterClick}
-                isSelected={selectedLetter === letter}
-                key={letter}
-              />
-            </AnchorLink>
-          ))}
+          {!selectedStructure && (
+            <>
+              {letters.map((letter, index) => (
+                <AnchorLink
+                  offset="60"
+                  href={"#" + letter.toUpperCase()}
+                  key={letter}
+                >
+                  <Letter
+                    letter={letter}
+                    index={lettersLength - index}
+                    onLetterClick={onLetterClick}
+                    isSelected={selectedLetter === letter}
+                    key={letter}
+                  />
+                </AnchorLink>
+              ))}
+            </>
+          )}
+          {selectedStructure && (
+            <>
+              {letters.map((letter, index) => (
+                <Letter
+                  letter={letter}
+                  index={lettersLength - index}
+                  onLetterClick={onLetterClick}
+                  isSelected={selectedLetter === letter}
+                  key={letter}
+                />
+              ))}
+            </>
+          )}
         </LettersContainer>
       </Header>
       <Content stopScroll={stopScroll}>
-        {letters.map((letter) => (
-          <LetterSection
-            key={letter}
-            letter={letter}
-            // @ts-ignore
-            structures={groupedStructureByLetter[letter]}
-          />
-        ))}
+        {!selectedStructure && false && (
+          <>
+            {letters.map((letter) => (
+              <LetterSection
+                onStructureCardClick={onStructureCardClick}
+                key={letter}
+                letter={letter}
+                // @ts-ignore
+                structures={groupedStructureByLetter[letter]}
+              />
+            ))}
+          </>
+        )}
+        {(true || selectedStructure) && (
+          // @ts-ignore
+          <AnnuaireDetail structureId={"5ebabc146f8faa1f5ee18adb"} />
+        )}
       </Content>
     </MainContainer>
   );

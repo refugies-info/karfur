@@ -1,1 +1,1 @@
-export { AnnuaireCreateContainer as AnnuaireCreate } from "./AnnuaireCreate.container";
+export { AnnuaireCreateComponent as AnnuaireCreate } from "./AnnuaireCreate.component";
