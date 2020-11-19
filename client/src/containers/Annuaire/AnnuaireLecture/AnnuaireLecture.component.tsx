@@ -75,6 +75,9 @@ export const AnnuaireLectureComponent = (props: Props) => {
     null
   );
 
+  const structureId =
+    // @ts-ignore
+    props.match && props.match.params && props.match.params.id;
   const structures = useSelector(structuresSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
@@ -92,9 +95,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   };
 
   const dispatch = useDispatch();
-  const structureId =
-    // @ts-ignore
-    props.match && props.match.params && props.match.params.id;
+
   useEffect(() => {
     const loadStructures = async () => {
       await dispatch(fetchStructuresNewActionCreator());
@@ -130,7 +131,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
     setSelectedLetter(letter);
     if (structureId) {
       setSelectedStructure(null);
-      props.history.push(`/annuaire`);
+      props.history.push("/annuaire");
     }
   };
 

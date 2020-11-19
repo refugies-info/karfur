@@ -155,6 +155,7 @@ export const Step3 = (props: Props) => {
                       : false
                   }
                   image={detailedActivity.image}
+                  isLectureMode={false}
                 />
               ))}
             </ActivityCardsContainer>

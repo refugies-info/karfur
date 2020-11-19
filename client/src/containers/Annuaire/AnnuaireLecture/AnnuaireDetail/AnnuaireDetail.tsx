@@ -59,8 +59,12 @@ export const AnnuaireDetail = (props: Props) => {
         structure={structure}
         leftPartHeight={leftPartHeight}
       />
-      <MiddleAnnuaireDetail structure={structure} />
-      <RightAnnuaireDetails />
+
+      <MiddleAnnuaireDetail
+        structure={structure}
+        leftPartHeight={leftPartHeight}
+      />
+      <RightAnnuaireDetails leftPartHeight={leftPartHeight} />
     </Content>
   );
 };

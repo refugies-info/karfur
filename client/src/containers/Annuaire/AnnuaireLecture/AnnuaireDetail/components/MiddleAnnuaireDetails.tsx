@@ -3,15 +3,22 @@ import styled from "styled-components";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import { Structure } from "../../../../../@types/interface";
 import { DayHoursPrecisions } from "./DayHoursPrecisions";
+import { ActivityCard } from "../../../AnnuaireCreate/components/ActivityCard/ActivityCard";
+import { activities } from "../../../AnnuaireCreate/components/Step3/data";
+import { filtres } from "../../../../Dispositif/data";
+
 interface Props {
   structure: Structure;
+  leftPartHeight: number;
 }
 
 const MiddleContainer = styled.div`
   padding: 32px;
-  height: 675px;
+  height: ${(props) => props.height}px;
   overflow: scroll;
-  width: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 `;
 
 const Title = styled.div`
@@ -74,6 +81,12 @@ const weekDays = [
   "Samedi",
   "Dimanche",
 ];
+
+const ActivityContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  felx-direction: row;
+`;
 const PhoneNumber = (props: { phone: string }) => (
   <WhiteContainer>
     <EVAIcon name="phone-call-outline" fill="#212121" className="mr-8" />
@@ -95,10 +108,33 @@ const HoursPrecisions = (props: { text: string }) => (
   </BlueContainer>
 );
 
+const Departement = (props: { departement: string }) => (
+  <WhiteContainer>
+    <EVAIcon name="pin-outline" fill="#212121" className="mr-8" />
+    {props.departement}
+  </WhiteContainer>
+);
+
+const getActivityDetails = (activity: string) => {
+  const correspondingActivity = activities.filter(
+    (activityData) => activityData.activity === activity
+  );
+
+  if (!correspondingActivity) return null;
+  const theme = correspondingActivity[0].tag;
+
+  const correspondingTag = filtres.tags.filter((tag) => tag.short === theme);
+  return {
+    darkColor: correspondingTag[0].darkColor,
+    lightColor: correspondingTag[0].lightColor,
+    image: correspondingActivity[0].image,
+  };
+};
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
+
   return (
-    <MiddleContainer>
+    <MiddleContainer height={props.leftPartHeight}>
       <TitleContainer>
         <Title>{structure.nom}</Title>
         {structure.acronyme && (
@@ -129,10 +165,39 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             key={day}
           />
         ))}
+      <SubTitle>Départements d'action</SubTitle>
+      <LineContainer>
+        {structure.departments &&
+          structure.departments.map((departement) => (
+            <Departement key={departement} departement={departement} />
+          ))}
+      </LineContainer>
       <div style={{ marginTop: "24px", marginBottom: "24px" }}>
         <Title>A propos</Title>
       </div>
       <Description>{structure.description}</Description>
+      <div style={{ marginTop: "24px", marginBottom: "24px" }}>
+        <Title>Activités</Title>
+      </div>
+      <ActivityContainer>
+        {structure.activities &&
+          structure.activities.map((activity) => {
+            const detailedActivity = getActivityDetails(activity);
+            if (!detailedActivity) return;
+            return (
+              <ActivityCard
+                activity={activity}
+                key={activity}
+                darkColor={detailedActivity.darkColor}
+                lightColor={detailedActivity.lightColor}
+                selectActivity={() => {}}
+                isSelected={true}
+                image={detailedActivity.image}
+                isLectureMode={true}
+              />
+            );
+          })}
+      </ActivityContainer>
     </MiddleContainer>
   );
 };
