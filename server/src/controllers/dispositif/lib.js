@@ -349,6 +349,7 @@ async function add_dispositif(req, res) {
     }) */
     // }
   } catch (err) {
+    logger.error("[add_dispositif] error", { error: err });
     return res.status(500).json({ text: "Erreur interne", data: err });
   }
 }

@@ -303,10 +303,11 @@ export class Dispositif extends Component {
           const sponsorsWithoutStructure = dispositif.sponsors.filter(
             (sponsor) => sponsor.picture
           );
-          const sponsors = [dispositif.mainSponsor].concat(
-            sponsorsWithoutStructure
-          );
-
+          const sponsors = dispositif.mainSponsor
+            ? [dispositif.mainSponsor].concat(sponsorsWithoutStructure)
+            : sponsorsWithoutStructure
+            ? [sponsorsWithoutStructure]
+            : [];
           //Enregistrement automatique du dispositif toutes les 3 minutes
           this._isMounted &&
             this.setState(
@@ -1481,7 +1482,7 @@ export class Dispositif extends Component {
     dispositif.mainSponsor =
       typeof _.get(dispositif, "sponsors.0") === "string"
         ? _.get(dispositif, "sponsors.0")
-        : "";
+        : null;
     if (dispositif.typeContenu === "dispositif") {
       let cardElement =
         (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
@@ -1546,7 +1547,6 @@ export class Dispositif extends Component {
           this.state.sponsors.filter((sponsor) => sponsor._id).length > 0
             ? this.state.sponsors.filter((sponsor) => sponsor._id)[0]
             : null;
-
         //Si l'auteur appartient à la structure principale je la fait passer directe en validation
         const membre = mainSponsor
           ? (mainSponsor.membres || []).find(
