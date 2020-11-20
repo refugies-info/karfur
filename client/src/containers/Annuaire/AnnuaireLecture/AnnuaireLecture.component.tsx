@@ -8,7 +8,6 @@ import img from "../../../assets/annuaire/annuaire_lecture.svg";
 // @ts-ignore
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { ObjectId } from "mongodb";
-import { AnnuaireDetail } from "./AnnuaireDetail/AnnuaireDetail";
 import { fetchStructuresNewActionCreator } from "../../../services/Structures/structures.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { structuresSelector } from "../../../services/Structures/structures.selector";
@@ -147,7 +146,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
                   letter={letter}
                   index={lettersLength - index}
                   onLetterClick={onLetterClick}
-                  isSelected={selectedLetter === letter}
+                  isSelected={false}
                   key={letter}
                 />
               </AnchorLink>
