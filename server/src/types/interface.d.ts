@@ -67,4 +67,5 @@ export interface IStructure {
   openingHours: OpeningHours;
   description: string;
   hasResponsibleSeenNotification?: boolean;
+  toJSON?: () => IStructure;
 }

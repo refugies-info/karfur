@@ -239,9 +239,9 @@ export default {
     );
   },
 
-  getStructureById: (id, withDisposAssocies) =>
+  getStructureById: (id, withDisposAssocies, withLocalizedDispositifs) =>
     axios.get(burl + "/structures/getStructureById", {
-      params: { id, withDisposAssocies },
+      params: { id, withDisposAssocies, withLocalizedDispositifs },
     }),
 
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),

@@ -5,6 +5,7 @@ import "./LetterSection.scss";
 // @ts-ignore
 import LinesEllipsis from "react-lines-ellipsis";
 import { ObjectId } from "mongodb";
+
 interface Props {
   letter: string;
   structures: Structure[];
@@ -56,7 +57,7 @@ const StructureName = styled.div`
 `;
 
 const Anchor = styled.div`
-  margin-top: -150px;
+  margin-top: -250px;
 `;
 
 interface StructureCardProps {
@@ -92,7 +93,7 @@ export const LetterSection = (props: Props) => (
           acronyme={structure.acronyme}
           onStructureCardClick={props.onStructureCardClick}
           id={structure._id}
-        ></StructureCard>
+        />
       ))}
     </StructuresContainer>
   </MainContainer>
