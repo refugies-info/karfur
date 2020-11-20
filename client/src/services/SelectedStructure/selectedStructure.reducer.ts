@@ -1,4 +1,3 @@
-import { updateObject } from "../utility";
 import { createReducer } from "typesafe-actions";
 import { Structure } from "../../@types/interface";
 import { SelectedStructureActions } from "./selectedStructure.actions";

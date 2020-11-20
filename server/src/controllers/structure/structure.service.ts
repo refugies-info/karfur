@@ -51,7 +51,6 @@ export const getStructureById = async (
 
     if (withLocalizedDispositifsBoolean) {
       const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
-
       const array: string[] = [];
       const locale = "fr";
 
@@ -60,13 +59,11 @@ export const getStructureById = async (
         turnJSONtoHTML(dispositif.contenu);
       });
 
-      // @ts-ignore
       const newStructure = { ...structure.toJSON(), dispositifsAssocies };
       return res.status(200).json({
         text: "Succès",
         data: newStructure,
       });
-      // console.log("dispositifsAssocies", dispositifsAssocies);
     }
 
     return res.status(200).json({

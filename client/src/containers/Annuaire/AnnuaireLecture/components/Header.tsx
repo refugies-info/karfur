@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import img from "../../../../assets/annuaire/annuaire_lecture.svg";
 import { Letter } from "./Letter";
@@ -49,21 +49,22 @@ export const Header = (props: Props) => (
   <HeaderContainer stopScroll={props.stopScroll}>
     <TextContainer>{props.t("Annuaire.Annuaire", "Annuaire")}</TextContainer>
     <LettersContainer>
-      (
       <>
         {props.letters.map((letter, index) => (
-          <NavHashLink to={`/annuaire#${letter.toUpperCase()}`} smooth={true}>
+          <NavHashLink
+            to={`/annuaire#${letter.toUpperCase()}`}
+            smooth={true}
+            key={letter}
+          >
             <Letter
               letter={letter}
               index={props.letters.length - index}
               //   onLetterClick={props.onLetterClick}
               isSelected={false}
-              key={letter}
             />
           </NavHashLink>
         ))}
       </>
-      )
     </LettersContainer>
   </HeaderContainer>
 );

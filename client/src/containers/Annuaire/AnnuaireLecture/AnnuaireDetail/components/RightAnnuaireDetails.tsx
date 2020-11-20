@@ -11,14 +11,6 @@ const Container = styled.div`
   padding: 32px;
 `;
 
-const Test = styled.div`
-  width: 200px;
-  height: 200px;
-  // background: red;
-  margin-top: 50px;
-  margin-bottom: 50px;
-`;
-
 const Title = styled.div`
   font-weight: bold;
   font-size: 40px;
@@ -78,7 +70,7 @@ export const RightAnnuaireDetails = (props: Props) => {
       <DispositifsContainer>
         {activeDispositifsAssocies.map((dispositif: Dispositif) => {
           return (
-            <CardContainer>
+            <CardContainer key={dispositif._id}>
               <SearchResultCard
                 // @ts-ignore
                 pin={() => {}}
