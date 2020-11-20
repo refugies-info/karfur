@@ -154,7 +154,7 @@ export interface Structure {
   contact: string;
   created_at: Moment;
   createur: ObjectId;
-  dispositifsAssocies: ObjectId[];
+  dispositifsAssocies: ObjectId[] | Dispositif[];
   link: string;
   mail_contact: string;
   mail_generique: string;

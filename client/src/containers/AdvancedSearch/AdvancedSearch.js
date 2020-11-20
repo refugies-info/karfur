@@ -428,15 +428,18 @@ export class AdvancedSearch extends Component {
                   }
                 }
               } else {
-                dispositifsEmpty.push(dispositifs[index]); 
+                dispositifsEmpty.push(dispositifs[index]);
               }
             } else {
-                dispositifsEmpty.push(dispositifs[index]); 
+              dispositifsEmpty.push(dispositifs[index]);
             }
           }
-          dispositifs = dispositifsVille.concat(dispositifsFrance, dispositifsEmpty);
+          dispositifs = dispositifsVille.concat(
+            dispositifsFrance,
+            dispositifsEmpty
+          );
 
-/*           dispositifs = dispositifs.filter((disp) => {
+          /*           dispositifs = dispositifs.filter((disp) => {
             if (
               disp.contenu[1] &&
               disp.contenu[1].children &&
@@ -1163,6 +1166,7 @@ export class AdvancedSearch extends Component {
                                 pin={this.pin}
                                 pinnedList={this.state.pinned}
                                 dispositif={cardFiltered}
+                                showPinned={true}
                               />
                             );
                           })}
@@ -1257,6 +1261,7 @@ export class AdvancedSearch extends Component {
                           pin={this.pin}
                           pinnedList={this.state.pinned}
                           dispositif={dispositif}
+                          showPinned={true}
                         />
                       );
                     })
@@ -1344,6 +1349,7 @@ export class AdvancedSearch extends Component {
                           pin={this.pin}
                           pinnedList={this.state.pinned}
                           dispositif={dispositif}
+                          showPinned={true}
                         />
                       );
                     })
@@ -1412,6 +1418,7 @@ export class AdvancedSearch extends Component {
                               pin={this.pin}
                               pinnedList={this.state.pinned}
                               dispositif={dispositif}
+                              showPinned={true}
                             />
                           );
                         })
@@ -1476,6 +1483,7 @@ export class AdvancedSearch extends Component {
                               pin={this.pin}
                               pinnedList={this.state.pinned}
                               dispositif={dispositif}
+                              showPinned={true}
                             />
                           );
                         })
@@ -1508,6 +1516,7 @@ export class AdvancedSearch extends Component {
                             pin={this.pin}
                             pinnedList={this.state.pinned}
                             dispositif={dispositif}
+                            showPinned={true}
                           />
                         );
                       })}
