@@ -11,6 +11,9 @@ import { Spinner } from "reactstrap";
 import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
+// @ts-ignore
+import { NavHashLink } from "react-router-hash-link";
 
 interface Props {
   structureId: ObjectId;
@@ -36,9 +39,10 @@ export const AnnuaireDetail = (props: Props) => {
   const structureId =
     // @ts-ignore
     props.match && props.match.params && props.match.params.id;
+
   useEffect(() => {
     const loadStructure = async () => {
-      await dispatch(fetchSelectedStructureActionCreator(props.structureId));
+      await dispatch(fetchSelectedStructureActionCreator(structureId));
     };
     if (structureId) {
       loadStructure();
@@ -48,6 +52,14 @@ export const AnnuaireDetail = (props: Props) => {
     window.scrollTo(0, 0);
   }, [dispatch, structureId]);
 
+  const navigate = () => {
+    // @ts-ignore
+    props.history.push({
+      pathname: "/annuaire",
+      hash: "J",
+      state: { letter: "j" },
+    });
+  };
   // @ts-ignore
   const leftPartHeight = window.screen.height - 225;
   if (isLoading || !structure) {
@@ -55,10 +67,15 @@ export const AnnuaireDetail = (props: Props) => {
   }
   return (
     <Content className="annuaire-detail" height={leftPartHeight}>
-      <LeftAnnuaireDetail
+      <div>
+        <FButton tag={NavHashLink} to="/annuaire#J" type="dark">
+          TEst vers J
+        </FButton>
+      </div>
+      {/* <LeftAnnuaireDetail
         structure={structure}
         leftPartHeight={leftPartHeight}
-      />
+      /> */}
 
       <MiddleAnnuaireDetail
         structure={structure}

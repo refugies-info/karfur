@@ -15,7 +15,7 @@ import { structuresSelector } from "../../../services/Structures/structures.sele
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { Spinner } from "reactstrap";
-import { fetchSelectedStructureActionCreator } from "../../../services/SelectedStructure/selectedStructure.actions";
+import { setSelectedStructureActionCreator } from "../../../services/SelectedStructure/selectedStructure.actions";
 
 const Header = styled.div`
   background-image: url(${img});
@@ -69,15 +69,13 @@ export interface PropsBeforeInjection {
   history: any;
 }
 export const AnnuaireLectureComponent = (props: Props) => {
-  const [selectedLetter, setSelectedLetter] = useState("a");
-  const [stopScroll, setStopScroll] = useState(false);
-  const [selectedStructure, setSelectedStructure] = useState<ObjectId | null>(
-    null
+  // @ts-ignore
+  const param = props.location.state;
+  const [selectedLetter, setSelectedLetter] = useState(
+    (param && param.letter) || "a"
   );
+  const [stopScroll, setStopScroll] = useState(false);
 
-  const structureId =
-    // @ts-ignore
-    props.match && props.match.params && props.match.params.id;
   const structures = useSelector(structuresSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
@@ -86,28 +84,22 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const handleScroll = () => {
     // @ts-ignore
     const currentScrollPos = window.pageYOffset;
-    if (!structureId) {
-      if (currentScrollPos >= 175) {
-        return setStopScroll(true);
-      }
-      if (currentScrollPos <= 175) return setStopScroll(false);
+
+    if (currentScrollPos >= 175) {
+      return setStopScroll(true);
     }
+    if (currentScrollPos <= 175) return setStopScroll(false);
   };
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const loadStructures = async () => {
+      await dispatch(setSelectedStructureActionCreator(null));
       await dispatch(fetchStructuresNewActionCreator());
-    };
-    const loadStructure = async (structureId: ObjectId) => {
-      await dispatch(fetchSelectedStructureActionCreator(structureId));
     };
 
     loadStructures();
-    if (structureId) {
-      loadStructure(structureId);
-    }
 
     // @ts-ignore
     window.addEventListener("scroll", handleScroll);
@@ -127,18 +119,10 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const letters = Object.keys(groupedStructureByLetter).sort();
   const lettersLength = letters.length;
 
-  const onLetterClick = (letter: string) => {
-    setSelectedLetter(letter);
-    if (structureId) {
-      setSelectedStructure(null);
-      props.history.push("/annuaire");
-    }
-  };
+  const onLetterClick = (letter: string) => setSelectedLetter(letter);
 
-  const onStructureCardClick = (id: ObjectId) => {
-    setSelectedStructure(id);
+  const onStructureCardClick = (id: ObjectId) =>
     props.history.push(`/annuaire/${id}`);
-  };
 
   if (isLoading) {
     return <Spinner />;
@@ -146,33 +130,19 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
   return (
     <MainContainer>
-      <Header stopScroll={stopScroll || !!structureId}>
+      <Header stopScroll={stopScroll}>
         <TextContainer>
           {props.t("Annuaire.Annuaire", "Annuaire")}
         </TextContainer>
         <LettersContainer>
-          {!structureId && (
-            <>
-              {letters.map((letter, index) => (
-                <AnchorLink
-                  offset="60"
-                  href={"#" + letter.toUpperCase()}
-                  key={letter}
-                >
-                  <Letter
-                    letter={letter}
-                    index={lettersLength - index}
-                    onLetterClick={onLetterClick}
-                    isSelected={selectedLetter === letter}
-                    key={letter}
-                  />
-                </AnchorLink>
-              ))}
-            </>
-          )}
-          {structureId && (
-            <>
-              {letters.map((letter, index) => (
+          (
+          <>
+            {letters.map((letter, index) => (
+              <AnchorLink
+                offset="60"
+                href={"#" + letter.toUpperCase()}
+                key={letter}
+              >
                 <Letter
                   letter={letter}
                   index={lettersLength - index}
@@ -180,29 +150,24 @@ export const AnnuaireLectureComponent = (props: Props) => {
                   isSelected={selectedLetter === letter}
                   key={letter}
                 />
-              ))}
-            </>
-          )}
-        </LettersContainer>
-      </Header>
-      <Content stopScroll={stopScroll} hasMarginBottom={!structureId}>
-        {!structureId && (
-          <>
-            {letters.map((letter) => (
-              <LetterSection
-                onStructureCardClick={onStructureCardClick}
-                key={letter}
-                letter={letter}
-                // @ts-ignore
-                structures={groupedStructureByLetter[letter]}
-              />
+              </AnchorLink>
             ))}
           </>
-        )}
-        {structureId && (
-          // @ts-ignore
-          <AnnuaireDetail structureId={selectedStructure} />
-        )}
+          )
+        </LettersContainer>
+      </Header>
+      <Content stopScroll={stopScroll} hasMarginBottom={true}>
+        <>
+          {letters.map((letter) => (
+            <LetterSection
+              onStructureCardClick={onStructureCardClick}
+              key={letter}
+              letter={letter}
+              // @ts-ignore
+              structures={groupedStructureByLetter[letter]}
+            />
+          ))}
+        </>
       </Content>
     </MainContainer>
   );
