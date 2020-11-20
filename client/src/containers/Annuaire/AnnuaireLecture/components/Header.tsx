@@ -11,6 +11,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   margin-top: ${(props) => (props.stopScroll ? "-250px" : "-75px")};
   position: ${(props) => (props.stopScroll ? "fixed" : "relative")};
+  z-index: 1;
 `;
 
 const TextContainer = styled.div`

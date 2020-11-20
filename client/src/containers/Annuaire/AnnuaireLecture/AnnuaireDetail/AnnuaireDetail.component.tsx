@@ -17,6 +17,7 @@ import { fetchStructuresNewActionCreator } from "../../../../services/Structures
 
 export interface PropsBeforeInjection {
   t: any;
+  history: any;
 }
 
 const Content = styled.div`
@@ -60,7 +61,6 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   }, [dispatch, structureId]);
 
   const structures = useSelector(structuresSelector);
-  console.log("structures", structures);
   const groupedStructureByLetter = structures
     ? _.groupBy(structures, (structure) =>
         structure.nom ? structure.nom[0].toLowerCase() : "no name"
@@ -84,11 +84,6 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
       />
 
       <Content className="annuaire-detail" height={leftPartHeight}>
-        <div>
-          {/* <FButton tag={NavHashLink} to="/annuaire#J" type="dark">
-          TEst vers J
-        </FButton> */}
-        </div>
         <LeftAnnuaireDetail
           structure={structure}
           leftPartHeight={leftPartHeight}
@@ -98,7 +93,11 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
           structure={structure}
           leftPartHeight={leftPartHeight}
         />
-        <RightAnnuaireDetails leftPartHeight={leftPartHeight} />
+        <RightAnnuaireDetails
+          leftPartHeight={leftPartHeight}
+          dispositifsAssocies={structure && structure.dispositifsAssocies}
+          history={props.history}
+        />
       </Content>
     </MainContainer>
   );

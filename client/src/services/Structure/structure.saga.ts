@@ -39,7 +39,7 @@ export function* fetchUserStructure(
     yield put(startLoading(LoadingStatusKey.FETCH_USER_STRUCTURE));
     logger.info("[fetchUserStructure] fetching user structure");
     const { structureId, shouldRedirect } = action.payload;
-    const data = yield call(API.getStructureById, structureId, false);
+    const data = yield call(API.getStructureById, structureId, false, false);
     yield put(setUserStructureActionCreator(data.data.data));
 
     const user = yield select(userSelector);

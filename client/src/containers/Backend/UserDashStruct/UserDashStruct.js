@@ -161,37 +161,39 @@ export class UserDashStruct extends Component {
         ? this.props.location.state.structure
         : user.structures[0];
  */
-    API.getStructureById(this.state.selectedStructure, true).then((data) => {
-      if (data.data.data) {
-        this.setState({ structure: data.data.data, isMainLoading: false });
+    API.getStructureById(this.state.selectedStructure, true, false).then(
+      (data) => {
+        if (data.data.data) {
+          this.setState({ structure: data.data.data, isMainLoading: false });
 
-        API.get_event({
-          query: {
-            created_at: { $gte: DateOffset(new Date(), 0, 0, -15) },
-            userId: {
-              $in: ((data.data.data[0] || {}).membres || []).map(
-                (x) => x.userId
-              ),
-            },
-            action: { $ne: "idle" },
-          },
-        }).then((data_res) => {
-          this.setState((pS) => ({
-            structure: {
-              ...pS.structure,
-              membres: (pS.structure.membres || []).map((y) => ({
-                ...y,
-                connected: (data_res.data.data || []).some(
-                  (z) => z.userId === y.userId
+          API.get_event({
+            query: {
+              created_at: { $gte: DateOffset(new Date(), 0, 0, -15) },
+              userId: {
+                $in: ((data.data.data[0] || {}).membres || []).map(
+                  (x) => x.userId
                 ),
-              })),
+              },
+              action: { $ne: "idle" },
             },
-          }));
-        });
-      } else {
-        this.setState({ structure: { noResults: true } });
+          }).then((data_res) => {
+            this.setState((pS) => ({
+              structure: {
+                ...pS.structure,
+                membres: (pS.structure.membres || []).map((y) => ({
+                  ...y,
+                  connected: (data_res.data.data || []).some(
+                    (z) => z.userId === y.userId
+                  ),
+                })),
+              },
+            }));
+          });
+        } else {
+          this.setState({ structure: { noResults: true } });
+        }
       }
-    });
+    );
   };
 
   toggleModal = (modal) => {

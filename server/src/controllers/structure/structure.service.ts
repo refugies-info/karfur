@@ -5,10 +5,12 @@ import {
   getStructuresFromDB,
 } from "./structure.repository";
 import { castToBoolean } from "../../libs/castToBoolean";
+import { turnToLocalized, turnJSONtoHTML } from "../dispositif/functions";
 
 interface Query {
   id: string;
   withDisposAssocies: string;
+  withLocalizedDispositifs: string;
 }
 
 export const getStructureById = async (
@@ -19,22 +21,52 @@ export const getStructureById = async (
     return res.status(400).json({ text: "Requête invalide" });
   }
   try {
-    const { id, withDisposAssocies } = req.query;
+    const { id, withDisposAssocies, withLocalizedDispositifs } = req.query;
     const withDisposAssociesBoolean = castToBoolean(withDisposAssocies);
+    const withLocalizedDispositifsBoolean = castToBoolean(
+      withLocalizedDispositifs
+    );
 
     logger.info("[getStructureById] get structure with id", {
       id,
       withDisposAssociesBoolean,
+      withLocalizedDispositifsBoolean,
     });
+
+    const populateDisposAssocies = withLocalizedDispositifsBoolean
+      ? true
+      : withDisposAssociesBoolean
+      ? true
+      : false;
 
     const fields = "all";
     const structure = await getStructureFromDB(
       id,
-      withDisposAssociesBoolean || false,
+      populateDisposAssocies,
       fields
     );
     if (!structure) {
       throw new Error("No structure");
+    }
+
+    if (withLocalizedDispositifsBoolean) {
+      const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
+
+      const array: string[] = [];
+      const locale = "fr";
+
+      array.forEach.call(dispositifsAssocies, (dispositif: any) => {
+        turnToLocalized(dispositif, locale);
+        turnJSONtoHTML(dispositif.contenu);
+      });
+
+      // @ts-ignore
+      const newStructure = { ...structure.toJSON(), dispositifsAssocies };
+      return res.status(200).json({
+        text: "Succès",
+        data: newStructure,
+      });
+      // console.log("dispositifsAssocies", dispositifsAssocies);
     }
 
     return res.status(200).json({

@@ -13,7 +13,14 @@ const CardText = styled.p`
   font-weight: 14px;
 `;
 
-const SearchResultCard = ({ pin, pinnedList, dispositif, themeList, history }) => {
+const SearchResultCard = ({
+  pin,
+  pinnedList,
+  dispositif,
+  themeList,
+  history,
+  showPinned,
+}) => {
   if (themeList) {
     return;
   }
@@ -48,28 +55,29 @@ const SearchResultCard = ({ pin, pinnedList, dispositif, themeList, history }) =
         }
         key={dispositif._id}
       >
-          <CustomCard
-            onClick={() => {
-              history.push({
-                pathname:
-                  "/" +
-                  (dispositif.typeContenu || "dispositif") +
-                  (dispositif._id ? "/" + dispositif._id : ""),
-                state: { previousRoute: "advanced-search" },
-              });
-            }}
-            className={
-              dispositif.typeContenu === "demarche"
-                ? "texte-" +
-                  shortTag +
-                  " bg-light-" +
-                  shortTag +
-                  " border-" +
-                  shortTag
-                : "border-none"
-            }
-          >
-            <CardBody>
+        <CustomCard
+          onClick={() => {
+            history.push({
+              pathname:
+                "/" +
+                (dispositif.typeContenu || "dispositif") +
+                (dispositif._id ? "/" + dispositif._id : ""),
+              state: { previousRoute: "advanced-search" },
+            });
+          }}
+          className={
+            dispositif.typeContenu === "demarche"
+              ? "texte-" +
+                shortTag +
+                " bg-light-" +
+                shortTag +
+                " border-" +
+                shortTag
+              : "border-none"
+          }
+        >
+          <CardBody>
+            {showPinned && (
               <EVAIcon
                 name="bookmark"
                 size="xlarge"
@@ -77,38 +85,39 @@ const SearchResultCard = ({ pin, pinnedList, dispositif, themeList, history }) =
                 fill={pinned ? variables.noir : variables.noirCD}
                 className={"bookmark-icon" + (pinned ? " pinned" : "")}
               />
-              <h5>{dispositif.titreInformatif}</h5>
-              <CardText>{dispositif.abstract}</CardText>
-            </CardBody>
-            {dispositif.typeContenu !== "demarche" && (
-              <CardFooter
-                className={
-                  "correct-radius align-right bg-" +
-                  shortTag +
-                  (iconTag ? "" : " no-icon")
-                }
-              >
-                {iconTag ? (
-                  <div
-                    style={{
-                      width: 50,
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    <Streamline
-                      name={iconTag.icon}
-                      stroke={"white"}
-                      width={22}
-                      height={22}
-                    />
-                  </div>
-                ) : null}
-                {dispositif.titreMarque}
-              </CardFooter>
             )}
-          </CustomCard>
+            <h5>{dispositif.titreInformatif}</h5>
+            <CardText>{dispositif.abstract}</CardText>
+          </CardBody>
+          {dispositif.typeContenu !== "demarche" && (
+            <CardFooter
+              className={
+                "correct-radius align-right bg-" +
+                shortTag +
+                (iconTag ? "" : " no-icon")
+              }
+            >
+              {iconTag ? (
+                <div
+                  style={{
+                    width: 50,
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <Streamline
+                    name={iconTag.icon}
+                    stroke={"white"}
+                    width={22}
+                    height={22}
+                  />
+                </div>
+              ) : null}
+              {dispositif.titreMarque}
+            </CardFooter>
+          )}
+        </CustomCard>
       </div>
     );
   }
