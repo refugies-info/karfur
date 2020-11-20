@@ -27,14 +27,14 @@ const MainContainer = styled.div`
 interface Props {
   letter: string;
   index: number;
-  onLetterClick: (arg: string) => void;
+  // onLetterClick: (arg: string) => void;
   isSelected: boolean;
 }
 
 export const Letter = (props: Props) => (
   <MainContainer
     index={props.index}
-    onClick={() => props.onLetterClick(props.letter)}
+    // onClick={() => props.onLetterClick(props.letter)}
     isSelected={props.isSelected}
   >
     {props.letter.toUpperCase()}
