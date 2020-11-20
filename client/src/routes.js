@@ -16,7 +16,10 @@ import AdminContenu from "./containers/Backend/AdminContenu/AdminContenu";
 import MentionsLegales from "./containers/MentionsLegales/MentionsLegales";
 import PolitiqueConfidentialite from "./containers/PolitiqueConfidentialite/PolitiqueConfidentialite";
 import { AnnuaireCreate } from "./containers/Annuaire/AnnuaireCreate";
-import { AnnuaireLecture } from "./containers/Annuaire/AnnuaireLecture";
+import {
+  AnnuaireLecture,
+  AnnuaireDetail,
+} from "./containers/Annuaire/AnnuaireLecture";
 
 const routes = [
   { path: "/", exact: true, name: "home", restriction: [] },
@@ -42,8 +45,18 @@ const routes = [
   },
   {
     path: "/annuaire",
+    exact: true,
+
     name: "Annuaire",
     component: AnnuaireLecture,
+    restriction: [],
+  },
+  {
+    path: "/annuaire/:id",
+    name: "Annuaire",
+    exact: true,
+
+    component: AnnuaireDetail,
     restriction: [],
   },
   {

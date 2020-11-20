@@ -1,4 +1,3 @@
-import { updateObject } from "../utility";
 import { createReducer } from "typesafe-actions";
 import { Structure } from "../../@types/interface";
 import { SelectedStructureActions } from "./selectedStructure.actions";
@@ -11,6 +10,5 @@ export const selectedStructureReducer = createReducer<
   SelectedStructureState,
   SelectedStructureActions
 >(initialSelectedStructureState, {
-  SET_SELECTED_STRUCTURE: (state, action) =>
-    updateObject(state, action.payload),
+  SET_SELECTED_STRUCTURE: (state, action) => action.payload,
 });

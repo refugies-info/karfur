@@ -50,7 +50,7 @@ const Opened = (props: { day: string; details: DetailedOpeningHours }) => {
   return (
     <Container>
       <div style={{ marginBottom: "2px" }}>
-        <EVAIcon name="checkmark-circle" fill="#4CAF50" className="mr-8" />
+        <EVAIcon name="checkmark-circle-2" fill="#4CAF50" className="mr-8" />
       </div>
       {day +
         getOpeningHours(details.from0, details.to0, details.from1, details.to1)}
