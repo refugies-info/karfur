@@ -483,10 +483,10 @@ export class CardParagraphe extends Component<Props> {
           return (
             <TitleTextBody>
               {subitem.departments && subitem.departments.length > 1
-                ? "Départements"
+                ? t("Dispositif.Départements", "Départements")
                 : subitem.departments && subitem.departments[0] === "All"
-                ? "France entière"
-                : "Département"}
+                ? t("Dispositif.France entière", "France entière")
+                : t("Dispositif.Département", "Département")}
             </TitleTextBody>
           );
         }
