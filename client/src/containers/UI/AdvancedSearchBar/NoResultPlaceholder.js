@@ -19,7 +19,7 @@ const NoResults = styled.div`
   align-items: center;
   background-image: url(${NoResultsBackgroundImage});
   width: 256px;
-  height: 174px;
+  height: 150px;
   margin-right: 0px;
 `;
 
@@ -33,6 +33,7 @@ const NoResultsTitle = styled.p`
   font-size: 22px;
   line-height: 28px;
   margin-top: 24px !important;
+  margin-bottom: 0px;
 `;
 
 
