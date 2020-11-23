@@ -22,6 +22,10 @@ export function* fetchSelectedDispositif(
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));
     const { selectedDispositifId, locale } = action.payload;
+    logger.info(
+      "[fetchSelectedDispositif] start fetching selected dispositif",
+      { id: selectedDispositifId }
+    );
     if (selectedDispositifId) {
       const data = yield call(API.get_dispositif, {
         query: { _id: selectedDispositifId },
@@ -32,7 +36,6 @@ export function* fetchSelectedDispositif(
 
       const dispositif = data.data.data[0];
       yield put(setSelectedDispositifActionCreator(dispositif));
-
       if (!dispositif || !dispositif._id) {
         yield put(push("/"));
       }
@@ -43,7 +46,7 @@ export function* fetchSelectedDispositif(
         dispositif.status !== "Actif" &&
         !user.admin &&
         !user.user.contributions.includes(dispositif._id) &&
-        !user.user.structures.includes(dispositif.mainSponsor)
+        !user.user.structures.includes(dispositif.mainSponsor._id)
       ) {
         if (_.isEmpty(user)) {
           yield put(push("/login"));
