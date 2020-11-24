@@ -196,11 +196,37 @@ export const Step4 = (props: Props) => {
       props.structure.openingHours &&
       props.structure.openingHours.noPublic
     ) {
+      if (props.structure.openingHours.precisions) {
+        return props.setStructure({
+          ...props.structure,
+          openingHours: {
+            details: [],
+            noPublic: false,
+            precisions: props.structure.openingHours.precisions,
+          },
+        });
+      }
       return props.setStructure({
         ...props.structure,
         openingHours: { details: [], noPublic: false },
       });
     }
+
+    if (
+      props.structure &&
+      props.structure.openingHours &&
+      props.structure.openingHours.precisions
+    ) {
+      return props.setStructure({
+        ...props.structure,
+        openingHours: {
+          details: [],
+          noPublic: true,
+          precisions: props.structure.openingHours.precisions,
+        },
+      });
+    }
+
     return props.setStructure({
       ...props.structure,
       openingHours: { details: [], noPublic: true },
