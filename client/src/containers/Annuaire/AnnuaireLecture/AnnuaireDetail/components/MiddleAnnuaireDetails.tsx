@@ -95,6 +95,13 @@ const PhoneNumber = (props: { phone: string }) => (
   </WhiteContainer>
 );
 
+const Mail = (props: { mail: string }) => (
+  <WhiteContainer>
+    <EVAIcon name="email-outline" fill="#212121" className="mr-8" />
+    {props.mail}
+  </WhiteContainer>
+);
+
 const Adress = (props: { adress: string | undefined }) => (
   <WhiteContainer>
     <EVAIcon name="pin-outline" fill="#212121" className="mr-8" />
@@ -142,6 +149,11 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           <Acronyme>{"(" + structure.acronyme + ")"}</Acronyme>
         )}
       </TitleContainer>
+      <SubTitle>Adresse email</SubTitle>
+      <LineContainer>
+        {structure.mailsPublic &&
+          structure.mailsPublic.map((mail) => <Mail mail={mail} key={mail} />)}
+      </LineContainer>
       <SubTitle>Numéro de téléphone</SubTitle>
       <LineContainer>
         {structure.phonesPublic &&
