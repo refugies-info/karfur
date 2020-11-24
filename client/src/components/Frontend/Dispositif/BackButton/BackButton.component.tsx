@@ -20,7 +20,7 @@ export const BackButton: React.FunctionComponent<Props> = (props: Props) => {
       onClick={props.goBack}
     >
       <FButton type="light-action" name="arrow-back" className="btn-retour">
-        <span>{props.t("Retour à la recherche", "Retour à la recherche")}</span>
+        <span>{props.t("Retour", "Retour")}</span>
       </FButton>
     </Col>
   );
