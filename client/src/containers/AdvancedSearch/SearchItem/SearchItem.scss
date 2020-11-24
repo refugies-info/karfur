@@ -85,6 +85,7 @@ $placeholderColor: $blanc;
   .search-autocomplete{
     padding: 12px;
     text-align: center;
+    display: flex;
     &::-webkit-input-placeholder {
       color: $placeholderColor;
       text-align: center;
