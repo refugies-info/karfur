@@ -119,6 +119,11 @@ export class Footer extends Component {
                   </NavLink>
                 </div>
                 <div className="lien-footer">
+                  <NavLink to="/annuaire">
+                    {t("Consulter l'annuaire", "Consulter l'annuaire")}
+                  </NavLink>
+                </div>
+                <div className="lien-footer">
                   <a onClick={() => window.$crisp.push(["do", "chat:open"])}>
                     {t("Démarche administrative", "Contacter l'èquipe")}
                   </a>

@@ -279,7 +279,9 @@ export const AnnuaireCreateComponent = (props: Props) => {
                 setHasModifications={setHasModifications}
               />
             )}
-            {step === 6 && <Step6 />}
+            {step === 6 && (
+              <Step6 structureId={structure ? structure._id : ""} />
+            )}
           </>
         )}
         {isLoading && (
