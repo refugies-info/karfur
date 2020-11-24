@@ -85,6 +85,7 @@ var structureSchema = mongoose.Schema(
     activities: { type: Array, unique: false, required: false },
     departments: { type: Array, unique: false, required: false },
     phonesPublic: { type: Array, unique: false, required: false },
+    mailsPublic: { type: Array, unique: false, required: false },
     adressPublic: { type: String, unique: false, required: false },
     openingHours: { type: Object, unique: false, required: false },
     description: { type: String, unique: false, required: false },
