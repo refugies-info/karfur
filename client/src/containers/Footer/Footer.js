@@ -120,7 +120,10 @@ export class Footer extends Component {
                 </div>
                 <div className="lien-footer">
                   <NavLink to="/annuaire">
-                    {t("Consulter l'annuaire", "Consulter l'annuaire")}
+                    {t(
+                      "Homepage.Consulter l’annnuaire",
+                      "Consulter l'annuaire"
+                    )}
                   </NavLink>
                 </div>
                 <div className="lien-footer">

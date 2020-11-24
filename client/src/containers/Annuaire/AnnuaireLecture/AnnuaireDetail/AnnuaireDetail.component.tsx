@@ -13,7 +13,7 @@ import { Header } from "../components/Header";
 import { structuresSelector } from "../../../../services/Structures/structures.selector";
 import _ from "lodash";
 import { fetchStructuresNewActionCreator } from "../../../../services/Structures/structures.actions";
-
+import i18n from "../../../../i18n";
 export interface PropsBeforeInjection {
   t: any;
   history: any;
@@ -42,24 +42,30 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
     // @ts-ignore
     props.match && props.match.params && props.match.params.id;
 
+  const structures = useSelector(structuresSelector);
+
+  const locale = i18n.language;
   useEffect(() => {
     const loadStructure = async () => {
-      await dispatch(fetchSelectedStructureActionCreator(structureId));
+      await dispatch(
+        fetchSelectedStructureActionCreator({ id: structureId, locale })
+      );
     };
     const loadStructures = async () => {
       await dispatch(fetchStructuresNewActionCreator());
     };
 
-    loadStructures();
+    if (!structures || structures.length === 0) {
+      loadStructures();
+    }
     if (structureId) {
       loadStructure();
     }
 
     // @ts-ignore
     window.scrollTo(0, 0);
-  }, [dispatch, structureId]);
+  }, [dispatch, structureId, locale]);
 
-  const structures = useSelector(structuresSelector);
   const groupedStructureByLetter = structures
     ? _.groupBy(structures, (structure) =>
         structure.nom ? structure.nom[0].toLowerCase() : "no name"
