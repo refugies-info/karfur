@@ -4,7 +4,7 @@ import {
   getStructureFromDB,
   getStructuresFromDB,
 } from "../structure.repository";
-import { turnToLocalized, turnJSONtoHTML } from "../../dispositif/functions";
+import { turnToLocalized } from "../../dispositif/functions";
 
 const structure = { id: "id" };
 
@@ -19,7 +19,6 @@ jest.mock("../structure.repository.ts", () => ({
 
 jest.mock("../../dispositif/functions", () => ({
   turnToLocalized: jest.fn(),
-  turnJSONtoHTML: jest.fn(),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -41,7 +40,7 @@ describe("getStructureById", () => {
         query: {
           id: "id",
           withDisposAssocies: "true",
-          withLocalizedDispositifs: "false",
+          localeOfLocalizedDispositifsAssocies: "false",
         },
       },
       res
@@ -58,7 +57,7 @@ describe("getStructureById", () => {
         query: {
           id: "id",
           withDisposAssocies: "false",
-          withLocalizedDispositifs: "false",
+          localeOfLocalizedDispositifsAssocies: "false",
         },
       },
       res
@@ -75,7 +74,7 @@ describe("getStructureById", () => {
         query: {
           id: "id",
           withDisposAssocies: "false",
-          withLocalizedDispositifs: "false",
+          localeOfLocalizedDispositifsAssocies: "false",
         },
       },
       res
@@ -101,7 +100,7 @@ describe("getStructureById", () => {
         query: {
           id: "id",
           withDisposAssocies: "false",
-          withLocalizedDispositifs: "false",
+          localeOfLocalizedDispositifsAssocies: "false",
         },
       },
       res
@@ -119,7 +118,7 @@ describe("getStructureById", () => {
         query: {
           id: "id",
           withDisposAssocies: "false",
-          withLocalizedDispositifs: "false",
+          localeOfLocalizedDispositifsAssocies: "false",
         },
       },
       res
@@ -130,14 +129,14 @@ describe("getStructureById", () => {
   });
 
   it("should return 500 if turnToLocalized throws", async () => {
-    turnJSONtoHTML.mockRejectedValueOnce(new Error("error"));
+    turnToLocalized.mockRejectedValueOnce(new Error("error"));
     const res = mockResponse();
     await getStructureById(
       {
         query: {
           id: "id",
           withDisposAssocies: "true",
-          withLocalizedDispositifs: "true",
+          localeOfLocalizedDispositifsAssocies: "en",
         },
       },
       res
@@ -147,14 +146,32 @@ describe("getStructureById", () => {
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
 
+  const dispositif1 = {
+    _id: "dispo1",
+    contenu: "content1",
+    unusedField: "unusedField",
+    abstract: "abstract",
+    status: "Actif",
+    tags: [],
+    titreInformatif: "titre",
+    titreMarque: "titreMarque",
+  };
+
+  const dispositif2 = {
+    _id: "dispo2",
+    contenu: "content2",
+    unusedField: "unusedField",
+    abstract: "abstract",
+    status: "Actif",
+    tags: [],
+    titreInformatif: "titre",
+    titreMarque: "titreMarque",
+  };
   it("should call turnToLocalized and turnJSONtoHTML ", async () => {
     getStructureFromDB.mockResolvedValueOnce({
       toJSON: () => ({
         id: "id",
-        dispositifsAssocies: [
-          { id: "dispo1", contenu: "content1" },
-          { id: "dispo2", contenu: "content2" },
-        ],
+        dispositifsAssocies: [dispositif1, dispositif2],
       }),
     });
 
@@ -164,22 +181,14 @@ describe("getStructureById", () => {
         query: {
           id: "id",
           withDisposAssocies: "true",
-          withLocalizedDispositifs: "true",
+          localeOfLocalizedDispositifsAssocies: "en",
         },
       },
       res
     );
     expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
-    expect(turnToLocalized).toHaveBeenCalledWith(
-      { id: "dispo1", contenu: "content1" },
-      "fr"
-    );
-    expect(turnToLocalized).toHaveBeenCalledWith(
-      { id: "dispo2", contenu: "content2" },
-      "fr"
-    );
-    expect(turnJSONtoHTML).toHaveBeenCalledWith("content1");
-    expect(turnJSONtoHTML).toHaveBeenCalledWith("content2");
+    expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "en");
+    expect(turnToLocalized).toHaveBeenCalledWith(dispositif2, "en");
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -187,8 +196,22 @@ describe("getStructureById", () => {
       data: {
         id: "id",
         dispositifsAssocies: [
-          { id: "dispo1", contenu: "content1" },
-          { id: "dispo2", contenu: "content2" },
+          {
+            _id: "dispo1",
+            abstract: "abstract",
+            status: "Actif",
+            tags: [],
+            titreInformatif: "titre",
+            titreMarque: "titreMarque",
+          },
+          {
+            _id: "dispo2",
+            abstract: "abstract",
+            status: "Actif",
+            tags: [],
+            titreInformatif: "titre",
+            titreMarque: "titreMarque",
+          },
         ],
       },
     });

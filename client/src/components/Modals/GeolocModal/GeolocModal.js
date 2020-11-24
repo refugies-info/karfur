@@ -103,7 +103,7 @@ const StyledButtonGroupContainer = styled.div`
   justify-content: space-between;
   position: absolute;
   width: 90%;
-  bottom: 40px;
+  bottom: 20px;
   //margin-top: 20px;
 `;
 
@@ -213,7 +213,7 @@ const GeolocModal = (props) => {
             ))}
         </DepartmentContainer>
       )}
-      {selectedDepartments && selectedDepartments.length < 8 && (
+      {selectedDepartments && selectedDepartments.length < 13 && (
         <div style={{ width: "280px", marginRight: "8px" }}>
           <FInput
             value={departmentInput}
@@ -231,7 +231,7 @@ const GeolocModal = (props) => {
           />
         </div>
       )}
-      {selectedDepartments && selectedDepartments.length === 8 && (
+      {selectedDepartments && selectedDepartments.length === 13 && (
         <HelpContainer>
           <HelpDescription>
             Nombre maximum de départements renseignés. Préférez l’option{" "}

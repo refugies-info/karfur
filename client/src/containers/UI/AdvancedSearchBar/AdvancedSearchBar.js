@@ -35,7 +35,7 @@ const SearchBarContainer = styled.div`
   margin-right: 10px;
   font-size: 16px;
   font-weight: 400;
-  width: 100%;
+  width: 280px;
   color: #000000;
   flex-direction: row;
   display: flex;
@@ -68,7 +68,7 @@ const SearchBar = styled(Input)`
 
 const SearchModalContainer = styled.div`
   position: fixed;
-  width: 780px;
+  width: 850px;
   // height: 350px;
   background-color: #cdcdcd;
   border-radius: 12px;
@@ -111,7 +111,7 @@ const ResultSection = styled.div`
   background: #ffffff;
   border-radius: 12px;
   margin-right: ${(props) => (props.mr ? "8px" : "0px")};
-  height: 270px;
+  height: 280px;
   width: 50%;
   padding: 8px;
   overflow: scroll;
@@ -209,12 +209,12 @@ const AdvancedSearchBar = (props) => {
   }, [searchText, props.visible, props.scroll]);
 
   const onTextChange = (e) => {
+    setSearchText(e.target.value);
     const text = e.target.value
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .trim()
       .toLowerCase();
-    setSearchText(text);
     const dispositifsMatchedArray = [];
     const themesMatchedArray = [];
     props.dispositifs.map((elem) => {
@@ -361,7 +361,10 @@ const AdvancedSearchBar = (props) => {
                     })}
                   </>
                 ) : (
+                  <>
+                  <SectionTitle>Thèmes</SectionTitle>
                   <NoResultPlaceholder />
+                  </>
                 )}
               </ResultSection>
               <ResultSection>
@@ -458,7 +461,10 @@ const AdvancedSearchBar = (props) => {
                     })}
                   </>
                 ) : (
+                  <>
+                  <SectionTitle>Fiches</SectionTitle>
                   <NoResultPlaceholder />
+                  </>
                 )}
               </ResultSection>
             </div>

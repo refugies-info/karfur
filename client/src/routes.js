@@ -22,7 +22,7 @@ import {
 } from "./containers/Annuaire/AnnuaireLecture";
 
 const routes = [
-  { path: "/", exact: true, name: "home", restriction: [] },
+  { path: "/", exact: true, name: "home", component: HomePage, restriction: [] },
   { path: "/homepage", name: "Accueil", component: HomePage, restriction: [] },
 
   {

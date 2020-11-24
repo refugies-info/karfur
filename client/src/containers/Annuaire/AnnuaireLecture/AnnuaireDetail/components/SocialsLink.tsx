@@ -7,30 +7,32 @@ const ButtonContainer = styled.div`
   padding-bottom: 4px;
 `;
 interface Props {
-  websites: string[];
-  facebook: string | null;
-  twitter: string | null;
-  linkedin: string | null;
+  websites: string[] | undefined;
+  facebook: string | undefined;
+  twitter: string | undefined;
+  linkedin: string | undefined;
+  t: any;
 }
 
-const onLinkClicked = (link: string | null) => {
+const onLinkClicked = (link: string | undefined) => {
   if (!link) return;
   // @ts-ignore
   window.open((link.includes("http") ? "" : "http://") + link, "_blank");
 };
 export const SocialsLink = (props: Props) => (
   <div>
-    {props.websites.map((website) => (
-      <ButtonContainer key={website}>
-        <FButton
-          type="white"
-          name="globe"
-          onClick={() => onLinkClicked(website)}
-        >
-          Visiter le site internet
-        </FButton>
-      </ButtonContainer>
-    ))}
+    {props.websites &&
+      props.websites.map((website) => (
+        <ButtonContainer key={website}>
+          <FButton
+            type="white"
+            name="globe"
+            onClick={() => onLinkClicked(website)}
+          >
+            {props.t("Annuaire.Visiter internet", "Visiter le site internet")}
+          </FButton>
+        </ButtonContainer>
+      ))}
     {props.facebook && (
       <ButtonContainer>
         <FButton
@@ -38,7 +40,7 @@ export const SocialsLink = (props: Props) => (
           name="facebook"
           onClick={() => onLinkClicked(props.facebook)}
         >
-          Suivre sur Facebook
+          {props.t("Annuaire.facebook", "Suivre sur Facebook")}
         </FButton>
       </ButtonContainer>
     )}
@@ -49,7 +51,7 @@ export const SocialsLink = (props: Props) => (
           name="twitter"
           onClick={() => onLinkClicked(props.twitter)}
         >
-          Suivre sur Twitter
+          {props.t("Annuaire.twitter", "Suivre sur Twitter")}
         </FButton>
       </ButtonContainer>
     )}
@@ -60,7 +62,7 @@ export const SocialsLink = (props: Props) => (
           name="linkedin"
           onClick={() => onLinkClicked(props.linkedin)}
         >
-          Suivre sur LinkedIn
+          {props.t("Annuaire.linkedin", "Suivre sur LinkedIn")}
         </FButton>
       </ButtonContainer>
     )}
