@@ -256,28 +256,29 @@ export class HomePage extends Component {
                 </NavLink>
               </Col>
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                <Card className="parcours-card">
-                  <CardHeader>
-                    {t(
-                      "Homepage.creer parcours",
-                      "Créer mon parcours personnalisé"
-                    )}
-                  </CardHeader>
-                  <CardBody>
-                    {/* <span>Je veux réaliser mes projets et me construire un avenir qui me plaît</span> */}
-                  </CardBody>
-                  <CardFooter>
-                    <FButton
-                      type="homebtn"
-                      disabled
-                      name="clock-outline"
-                      fill={variables.noir}
-                    >
-                      Bientôt disponible
-                    </FButton>
-                    {/*<span>{t("Bientôt disponible !", "Bientôt disponible !")}</span>*/}
-                  </CardFooter>
-                </Card>
+                <NavLink to={"annuaire"} className="no-decoration">
+                  <Card className="parcours-card">
+                    <CardHeader>
+                      {t(
+                        "Homepage.Consulter l’annnuaire",
+                        "Consulter l’annnuaire"
+                      )}
+                    </CardHeader>
+                    <CardBody></CardBody>
+                    <CardFooter>
+                      <FButton
+                        type="homebtn"
+                        name="search-outline"
+                        fill={variables.noir}
+                      >
+                        {t(
+                          "Homepage.Trouver une organisation",
+                          "Trouver une organisation"
+                        )}
+                      </FButton>
+                    </CardFooter>
+                  </Card>
+                </NavLink>
               </Col>
             </Row>
           </div>

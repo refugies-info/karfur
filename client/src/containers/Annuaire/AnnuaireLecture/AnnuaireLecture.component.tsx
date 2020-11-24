@@ -111,7 +111,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
     // @ts-ignore
     window.addEventListener("scroll", handleScroll);
-
+    // @ts-ignore
+    window.scrollTo(0, 0);
     return () => {
       // @ts-ignore
       window.removeEventListener("scroll", handleScroll);
