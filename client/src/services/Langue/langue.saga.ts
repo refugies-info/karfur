@@ -1,13 +1,14 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call } from "redux-saga/effects";
+import { takeLatest, put, call, all } from "redux-saga/effects";
 import API from "../../utils/API";
-import { FETCH_LANGUES } from "./langue.actionTypes";
+import { FETCH_LANGUES, TOGGLE_LANGUE } from "./langue.actionTypes";
 import { setLanguesActionCreator } from "./langue.actions";
 import {
   startLoading,
   finishLoading,
   LoadingStatusKey,
 } from "../LoadingStatus/loadingStatus.actions";
+import { fetchDispositifsActionCreator } from "../Dispositif/dispositif.actions";
 
 export function* fetchLangues(): SagaIterator {
   try {
@@ -22,8 +23,20 @@ export function* fetchLangues(): SagaIterator {
   }
 }
 
+export function* toggleLangue(): SagaIterator {
+  try {
+    yield put(fetchDispositifsActionCreator());
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log("Error while setting dispositifs", { error });
+  }
+}
+
 function* latestActionsSaga() {
-  yield takeLatest(FETCH_LANGUES, fetchLangues);
+  yield all([
+    takeLatest(FETCH_LANGUES, fetchLangues),
+    takeLatest(TOGGLE_LANGUE, toggleLangue)
+  ]);
 }
 
 export default latestActionsSaga;
