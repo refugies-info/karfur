@@ -29,6 +29,7 @@ const LogoContainer = styled.div`
 interface Props {
   structure: Structure;
   leftPartHeight: number;
+  t: any;
 }
 export const LeftAnnuaireDetail = (props: Props) => (
   <LeftContainer height={props.leftPartHeight}>
@@ -42,7 +43,7 @@ export const LeftAnnuaireDetail = (props: Props) => (
       </LogoContainer>
       {props.structure.structureTypes &&
         props.structure.structureTypes.map((structureType) => (
-          <StructureType type={structureType} key={structureType} />
+          <StructureType type={structureType} key={structureType} t={props.t} />
         ))}
     </div>
     <SocialsLink
@@ -50,6 +51,7 @@ export const LeftAnnuaireDetail = (props: Props) => (
       facebook={props.structure.facebook}
       linkedin={props.structure.linkedin}
       twitter={props.structure.twitter}
+      t={props.t}
     />
   </LeftContainer>
 );

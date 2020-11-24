@@ -11,6 +11,7 @@ import { NoActivity } from "./NoActivity";
 interface Props {
   structure: Structure;
   leftPartHeight: number;
+  t: any;
 }
 
 const MiddleContainer = styled.div`
@@ -129,10 +130,15 @@ const Departement = (props: { departement: string }) => (
   </WhiteContainer>
 );
 
-const Placeholder = (props: { iconName: string; text: string }) => (
+const Placeholder = (props: {
+  iconName: string;
+  text: string;
+  t: any;
+  i18nKey: string;
+}) => (
   <RedContainer>
     <EVAIcon name={props.iconName} fill="#212121" className="mr-8" />
-    {props.text}
+    {props.t("Annuaire." + props.i18nKey, props.text)}
   </RedContainer>
 );
 
@@ -166,7 +172,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           </Title>
         )}
       </TitleContainer>
-      <SubTitle>Adresse email</SubTitle>
+      <SubTitle>{props.t("Annuaire.Adresse email", "Adresse email")}</SubTitle>
       <LineContainer>
         {structure.mailsPublic &&
           structure.mailsPublic.map((mail) => <Mail mail={mail} key={mail} />)}
@@ -174,10 +180,14 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           <Placeholder
             iconName="email-outline"
             text="Aucune adresse email renseignée"
+            t={props.t}
+            i18nKey="noemail"
           />
         )}
       </LineContainer>
-      <SubTitle>Numéro de téléphone</SubTitle>
+      <SubTitle>
+        {props.t("Annuaire.Numéro de téléphone", "Numéro de téléphone")}
+      </SubTitle>
       <LineContainer>
         {structure.phonesPublic &&
           structure.phonesPublic.map((phone) => (
@@ -187,22 +197,32 @@ export const MiddleAnnuaireDetail = (props: Props) => {
           <Placeholder
             iconName="phone-call-outline"
             text="Aucun numéro de téléphone renseigné"
+            t={props.t}
+            i18nKey="noPhone"
           />
         )}
       </LineContainer>
-      <SubTitle>Adresse postale</SubTitle>
+      <SubTitle>
+        {props.t("Annuaire.Adresse postale", "Adresse postale")}
+      </SubTitle>
       {structure.adressPublic && <Adress adress={structure.adressPublic} />}
       {!structure.adressPublic && (
         <Placeholder
           iconName="pin-outline"
           text="Aucune adresse postale renseignée"
+          t={props.t}
+          i18nKey="noAdress"
         />
       )}
-      <SubTitle>Horaires d'accueil</SubTitle>
+      <SubTitle>
+        {props.t("Annuaire.Horaires d'accueil", "Horaires d'accueil")}
+      </SubTitle>
       {!structure.openingHours && (
         <Placeholder
           iconName="alert-circle-outline"
           text="Horaires non-renseignées"
+          i18nKey="noOpeningHours"
+          t={props.t}
         />
       )}
       {structure.openingHours && structure.openingHours.precisions && (
@@ -220,31 +240,44 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             day={day}
             openingHours={structure.openingHours}
             key={day}
+            t={props.t}
           />
         ))}
-      <SubTitle>Départements d'action</SubTitle>
+      <SubTitle>
+        {props.t("Annuaire.Départements d'action", "Départements d'action")}
+      </SubTitle>
       <LineContainer>
         {structure.departments &&
           structure.departments.map((departement) => (
             <Departement key={departement} departement={departement} />
           ))}
         {(!structure.departments || structure.departments.length === 0) && (
-          <Placeholder iconName="hash" text="Aucun département renseigné" />
+          <Placeholder
+            iconName="hash"
+            text="Aucun département renseigné"
+            t={props.t}
+            i18nKey="noDepartement"
+          />
         )}
       </LineContainer>
       <div style={{ marginTop: "24px", marginBottom: "24px" }}>
-        <Title>A propos</Title>
+        <Title>{props.t("Annuaire.a propos", "À propos")}</Title>
       </div>
       {structure.description && (
         <Description>{structure.description}</Description>
       )}
       {!structure.description && (
         <NoDescription>
-          Aucune description de la structure disponible.
+          {props.t(
+            "Annuaire.noDescription",
+            "Aucune description de la structure disponible."
+          )}
         </NoDescription>
       )}
       <div style={{ marginTop: "24px", marginBottom: "24px" }}>
-        <Title>Activités</Title>
+        <Title>
+          {props.t("Annuaire.Activités et services", "Activités et services")}
+        </Title>
       </div>
       <ActivityContainer>
         {structure.activities &&
@@ -253,7 +286,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             if (!detailedActivity) return;
             return (
               <ActivityCard
-                activity={activity}
+                activity={props.t("Annuaire." + activity, activity)}
                 key={activity}
                 darkColor={detailedActivity.darkColor}
                 lightColor={detailedActivity.lightColor}

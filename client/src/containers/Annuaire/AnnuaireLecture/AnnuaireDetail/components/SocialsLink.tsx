@@ -11,6 +11,7 @@ interface Props {
   facebook: string | undefined;
   twitter: string | undefined;
   linkedin: string | undefined;
+  t: any;
 }
 
 const onLinkClicked = (link: string | undefined) => {
@@ -28,7 +29,7 @@ export const SocialsLink = (props: Props) => (
             name="globe"
             onClick={() => onLinkClicked(website)}
           >
-            Visiter le site internet
+            {props.t("Annuaire.Visiter internet", "Visiter le site internet")}
           </FButton>
         </ButtonContainer>
       ))}
@@ -39,7 +40,7 @@ export const SocialsLink = (props: Props) => (
           name="facebook"
           onClick={() => onLinkClicked(props.facebook)}
         >
-          Suivre sur Facebook
+          {props.t("Annuaire.facebook", "Suivre sur Facebook")}
         </FButton>
       </ButtonContainer>
     )}
@@ -50,7 +51,7 @@ export const SocialsLink = (props: Props) => (
           name="twitter"
           onClick={() => onLinkClicked(props.twitter)}
         >
-          Suivre sur Twitter
+          {props.t("Annuaire.twitter", "Suivre sur Twitter")}
         </FButton>
       </ButtonContainer>
     )}
@@ -61,7 +62,7 @@ export const SocialsLink = (props: Props) => (
           name="linkedin"
           onClick={() => onLinkClicked(props.linkedin)}
         >
-          Suivre sur LinkedIn
+          {props.t("Annuaire.linkedin", "Suivre sur LinkedIn")}
         </FButton>
       </ButtonContainer>
     )}

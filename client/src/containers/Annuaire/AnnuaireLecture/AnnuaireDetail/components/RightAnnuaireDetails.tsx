@@ -76,6 +76,7 @@ interface Props {
   leftPartHeight: number;
   dispositifsAssocies: ObjectId[] | Dispositif[];
   history: any;
+  t: any;
 }
 export const RightAnnuaireDetails = (props: Props) => {
   // @ts-ignore
@@ -86,16 +87,19 @@ export const RightAnnuaireDetails = (props: Props) => {
   return (
     <Container height={props.leftPartHeight}>
       <TitleContainer>
-        <Title>À lire</Title>
+        <Title>{props.t("Annuaire.A lire", "À lire")}</Title>
         <FigureContainer red={nbActiveDispositifs === 0}>
           {nbActiveDispositifs}
         </FigureContainer>
       </TitleContainer>
       <DispositifsContainer>
-        {nbActiveDispositifs == 0 && (
+        {nbActiveDispositifs === 0 && (
           <>
             <NoDispositifText>
-              Oups! Cette structure n'a pas encore rédigé de fiche.
+              {props.t(
+                "Annuaire.noDispositif",
+                "Oups! Cette structure n'a pas encore rédigé de fiche."
+              )}
             </NoDispositifText>
             <NoDispositifsImage />
           </>

@@ -87,16 +87,19 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
         <LeftAnnuaireDetail
           structure={structure}
           leftPartHeight={leftPartHeight}
+          t={props.t}
         />
 
         <MiddleAnnuaireDetail
           structure={structure}
           leftPartHeight={leftPartHeight}
+          t={props.t}
         />
         <RightAnnuaireDetails
           leftPartHeight={leftPartHeight}
           dispositifsAssocies={structure && structure.dispositifsAssocies}
           history={props.history}
+          t={props.t}
         />
       </Content>
     </MainContainer>
