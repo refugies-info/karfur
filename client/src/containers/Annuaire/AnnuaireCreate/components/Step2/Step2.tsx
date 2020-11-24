@@ -54,7 +54,14 @@ interface Props {
 
 export const AddButton = (props: {
   onClick: Function;
-  type: "site" | "type" | "second site" | "second numéro" | "numéro";
+  type:
+    | "site"
+    | "type"
+    | "second site"
+    | "second numéro"
+    | "numéro"
+    | "second email"
+    | "email";
   disabled?: boolean;
 }) => (
   <FButton
@@ -72,7 +79,8 @@ export const Step2 = (props: Props) => {
   const [show1WebsiteInput, setshow1WebsiteInput] = useState(false);
   const [show2WebsiteInput, setshow2WebsiteInput] = useState(false);
 
-  const websites = props.structure ? props.structure.websites : [];
+  const websites =
+    props.structure && props.structure.websites ? props.structure.websites : [];
 
   const toggleDropDown = () => setDropdownOpen((prevState) => !prevState);
   const toggle1WebSiteInput = () =>
@@ -101,9 +109,10 @@ export const Step2 = (props: Props) => {
 
   const onWebsiteChange = (e: any) => {
     props.setHasModifications(true);
-    const websites = props.structure
-      ? getWebsites(props.structure.websites, e.target.id, e.target.value)
-      : [];
+    const websites =
+      props.structure && props.structure.websites
+        ? getWebsites(props.structure.websites, e.target.id, e.target.value)
+        : [];
     props.setStructure({ ...props.structure, websites });
   };
 
@@ -119,17 +128,18 @@ export const Step2 = (props: Props) => {
   };
 
   const removeDropdowElement = (element: string) => {
-    const structureTypes = props.structure
-      ? props.structure.structureTypes.filter(
-          (structureType) => structureType !== element
-        )
-      : [];
+    const structureTypes =
+      props.structure && props.structure.structureTypes
+        ? props.structure.structureTypes.filter(
+            (structureType) => structureType !== element
+          )
+        : [];
     props.setStructure({ ...props.structure, structureTypes });
     props.setHasModifications(true);
   };
 
   const availableStructureTypes = StructureTypes.filter((structureType) =>
-    props.structure
+    props.structure && props.structure.structureTypes
       ? !props.structure.structureTypes.includes(structureType)
       : true
   );
@@ -163,36 +173,12 @@ export const Step2 = (props: Props) => {
           marginBottom: "16px",
         }}
       >
-        {props.structure && props.structure.structureTypes.length > 0 && (
-          <>
-            <SelectedContainer>
-              {props.structure.structureTypes[0]}
-              <div style={{ cursor: "pointer" }}>
-                <EVAIcon
-                  name="close"
-                  fill={"#ffffff"}
-                  className="ml-10"
-                  onClick={() =>
-                    removeDropdowElement(
-                      props.structure ? props.structure.structureTypes[0] : ""
-                    )
-                  }
-                />
-              </div>
-            </SelectedContainer>
-            {props.structure.structureTypes.length === 1 ? (
-              <div>
-                <AddButton onClick={toggleDropDown} type="type" />
-                {dropdownOpen && (
-                  <CustomDropDown
-                    elementList={availableStructureTypes}
-                    onDropdownElementClick={onDropdownElementClick}
-                  />
-                )}
-              </div>
-            ) : (
+        {props.structure &&
+          props.structure.structureTypes &&
+          props.structure.structureTypes.length > 0 && (
+            <>
               <SelectedContainer>
-                {props.structure.structureTypes[1]}
+                {props.structure.structureTypes[0]}
                 <div style={{ cursor: "pointer" }}>
                   <EVAIcon
                     name="close"
@@ -200,15 +186,45 @@ export const Step2 = (props: Props) => {
                     className="ml-10"
                     onClick={() =>
                       removeDropdowElement(
-                        props.structure ? props.structure.structureTypes[1] : ""
+                        props.structure && props.structure.structureTypes
+                          ? props.structure.structureTypes[0]
+                          : ""
                       )
                     }
                   />
                 </div>
               </SelectedContainer>
-            )}
-          </>
-        )}
+              {props.structure.structureTypes.length === 1 ? (
+                <div>
+                  <AddButton onClick={toggleDropDown} type="type" />
+                  {dropdownOpen && (
+                    <CustomDropDown
+                      elementList={availableStructureTypes}
+                      onDropdownElementClick={onDropdownElementClick}
+                    />
+                  )}
+                </div>
+              ) : (
+                <SelectedContainer>
+                  {props.structure.structureTypes[1]}
+                  <div style={{ cursor: "pointer" }}>
+                    <EVAIcon
+                      name="close"
+                      fill={"#ffffff"}
+                      className="ml-10"
+                      onClick={() =>
+                        removeDropdowElement(
+                          props.structure && props.structure.structureTypes
+                            ? props.structure.structureTypes[1]
+                            : ""
+                        )
+                      }
+                    />
+                  </div>
+                </SelectedContainer>
+              )}
+            </>
+          )}
         {props.structure &&
           (!props.structure.structureTypes ||
             props.structure.structureTypes.length === 0) && (

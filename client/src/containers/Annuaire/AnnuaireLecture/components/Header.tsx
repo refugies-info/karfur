@@ -4,6 +4,7 @@ import img from "../../../../assets/annuaire/annuaire_lecture.svg";
 import { Letter } from "./Letter";
 // @ts-ignore
 import { NavHashLink } from "react-router-hash-link";
+import i18n from "../../../../i18n";
 
 const HeaderContainer = styled.div`
   background-image: url(${img});
@@ -26,6 +27,7 @@ const TextContainer = styled.div`
   width: fit-content;
   margin-top: 146px;
   margin-left: 72px;
+  margin-right: ${(props) => props.isRTL && "72px"};
 `;
 
 const LettersContainer = styled.div`
@@ -45,26 +47,31 @@ interface Props {
   t: any;
 }
 
-export const Header = (props: Props) => (
-  <HeaderContainer stopScroll={props.stopScroll}>
-    <TextContainer>{props.t("Annuaire.Annuaire", "Annuaire")}</TextContainer>
-    <LettersContainer>
-      <>
-        {props.letters.map((letter, index) => (
-          <NavHashLink
-            to={`/annuaire#${letter.toUpperCase()}`}
-            smooth={true}
-            key={letter}
-          >
-            <Letter
-              letter={letter}
-              index={props.letters.length - index}
-              //   onLetterClick={props.onLetterClick}
-              isSelected={false}
-            />
-          </NavHashLink>
-        ))}
-      </>
-    </LettersContainer>
-  </HeaderContainer>
-);
+export const Header = (props: Props) => {
+  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  return (
+    <HeaderContainer stopScroll={props.stopScroll}>
+      <TextContainer isRTL={isRTL}>
+        {props.t("Annuaire.Annuaire", "Annuaire")}
+      </TextContainer>
+      <LettersContainer>
+        <>
+          {props.letters.map((letter, index) => (
+            <NavHashLink
+              to={`/annuaire#${letter.toUpperCase()}`}
+              smooth={true}
+              key={letter}
+            >
+              <Letter
+                letter={letter}
+                index={props.letters.length - index}
+                //   onLetterClick={props.onLetterClick}
+                isSelected={false}
+              />
+            </NavHashLink>
+          ))}
+        </>
+      </LettersContainer>
+    </HeaderContainer>
+  );
+};

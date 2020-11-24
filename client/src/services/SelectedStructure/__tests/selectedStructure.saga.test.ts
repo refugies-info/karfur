@@ -27,12 +27,12 @@ describe("[Saga] Structures", () => {
     it("should call api", () => {
       testSaga(fetchSelectedStructure, {
         type: FETCH_SELECTED_STRUCTURE,
-        payload: "id",
+        payload: { id: "id", locale: "locale" },
       })
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, true)
+        .call(API.getStructureById, "id", true, "locale")
         .next({ data: { data: { id: "id" } } })
         .put(setSelectedStructureActionCreator({ id: "id" }))
         .next()
@@ -44,12 +44,12 @@ describe("[Saga] Structures", () => {
     it("should call api put [] when getActiveStructures throw", () => {
       testSaga(fetchSelectedStructure, {
         type: FETCH_SELECTED_STRUCTURE,
-        payload: "id",
+        payload: { id: "id", locale: "locale" },
       })
         .next()
         .put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE))
         .next()
-        .call(API.getStructureById, "id", true, true)
+        .call(API.getStructureById, "id", true, "locale")
         .throw(new Error("error"))
         .put(setSelectedStructureActionCreator(null))
         .next()
