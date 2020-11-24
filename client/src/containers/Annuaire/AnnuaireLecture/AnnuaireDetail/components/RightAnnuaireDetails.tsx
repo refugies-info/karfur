@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Dispositif } from "../../../../../@types/interface";
 import { ObjectId } from "mongodb";
 import SearchResultCard from "../../../../AdvancedSearch/SearchResultCard";
+import NoResultsBackgroundImage from "../../../../../assets/no_results.svg";
 
 const Container = styled.div`
   width: 360px;
@@ -24,6 +25,16 @@ const TitleContainer = styled.div`
   margin-bottom: 20px;
 `;
 
+const NoDispositifsImage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(${NoResultsBackgroundImage});
+  width: 223px;
+  height: 158px;
+  margin-top: 24px;
+`;
+
 const FigureContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 4px 8px rgba(33, 33, 33, 0.25);
@@ -34,11 +45,13 @@ const FigureContainer = styled.div`
   height: fit-content;
   width: fit-content;
   padding: 4px;
+  color: ${(props) => (props.red ? "#F44336" : "#212121")};
 `;
 
 const DispositifsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const CardContainer = styled.div`
@@ -50,6 +63,15 @@ const CardContainer = styled.div`
   margin-left: 24px;
   z-index: 0;
 `;
+const NoDispositifText = styled.div`
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: #828282;
+  margin-right: 24px;
+  margin-left: 24px;
+`;
+
 interface Props {
   leftPartHeight: number;
   dispositifsAssocies: ObjectId[] | Dispositif[];
@@ -65,24 +87,35 @@ export const RightAnnuaireDetails = (props: Props) => {
     <Container height={props.leftPartHeight}>
       <TitleContainer>
         <Title>À lire</Title>
-        <FigureContainer>{nbActiveDispositifs}</FigureContainer>
+        <FigureContainer red={nbActiveDispositifs === 0}>
+          {nbActiveDispositifs}
+        </FigureContainer>
       </TitleContainer>
       <DispositifsContainer>
-        {activeDispositifsAssocies.map((dispositif: Dispositif) => {
-          return (
-            <CardContainer key={dispositif._id}>
-              <SearchResultCard
-                // @ts-ignore
-                pin={() => {}}
-                pinnedList={[]}
-                dispositif={dispositif}
-                themeList={null}
-                history={props.history}
-                showPinned={false}
-              />
-            </CardContainer>
-          );
-        })}
+        {nbActiveDispositifs == 0 && (
+          <>
+            <NoDispositifText>
+              Oups! Cette structure n'a pas encore rédigé de fiche.
+            </NoDispositifText>
+            <NoDispositifsImage />
+          </>
+        )}
+        {nbActiveDispositifs > 0 &&
+          activeDispositifsAssocies.map((dispositif: Dispositif) => {
+            return (
+              <CardContainer key={dispositif._id}>
+                <SearchResultCard
+                  // @ts-ignore
+                  pin={() => {}}
+                  pinnedList={[]}
+                  dispositif={dispositif}
+                  themeList={null}
+                  history={props.history}
+                  showPinned={false}
+                />
+              </CardContainer>
+            );
+          })}
       </DispositifsContainer>
     </Container>
   );
