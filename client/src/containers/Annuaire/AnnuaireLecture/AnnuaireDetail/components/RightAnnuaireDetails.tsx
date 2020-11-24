@@ -106,21 +106,19 @@ export const RightAnnuaireDetails = (props: Props) => {
           </>
         )}
         {nbActiveDispositifs > 0 &&
-          activeDispositifsAssocies.map((dispositif: Dispositif) => {
-            return (
-              <CardContainer key={dispositif._id}>
-                <SearchResultCard
-                  // @ts-ignore
-                  pin={() => {}}
-                  pinnedList={[]}
-                  dispositif={dispositif}
-                  themeList={null}
-                  history={props.history}
-                  showPinned={false}
-                />
-              </CardContainer>
-            );
-          })}
+          activeDispositifsAssocies.map((dispositif: Dispositif) => (
+            <CardContainer key={dispositif._id}>
+              <SearchResultCard
+                // @ts-ignore
+                pin={() => {}}
+                pinnedList={[]}
+                dispositif={dispositif}
+                themeList={null}
+                history={props.history}
+                showPinned={false}
+              />
+            </CardContainer>
+          ))}
       </DispositifsContainer>
     </Container>
   );

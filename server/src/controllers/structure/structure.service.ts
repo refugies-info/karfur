@@ -1,17 +1,27 @@
 import logger = require("../../logger");
-import { RequestFromClient, Res } from "../../types/interface.js";
+import { RequestFromClient, Res, Dispositif } from "../../types/interface.js";
 import {
   getStructureFromDB,
   getStructuresFromDB,
 } from "./structure.repository";
 import { castToBoolean } from "../../libs/castToBoolean";
-import { turnToLocalized, turnJSONtoHTML } from "../dispositif/functions";
+import { turnToLocalized } from "../dispositif/functions";
 
 interface Query {
   id: string;
   withDisposAssocies: string;
   localeOfLocalizedDispositifsAssocies: string;
 }
+
+const adaptDispositifsAssocies = (dispositifs: Dispositif[]) =>
+  dispositifs.map((dispositif) => ({
+    titreInformatif: dispositif.titreInformatif,
+    titreMarque: dispositif.titreMarque,
+    _id: dispositif._id,
+    tags: dispositif.tags,
+    abstract: dispositif.abstract,
+    status: dispositif.status,
+  }));
 
 export const getStructureById = async (
   req: RequestFromClient<Query>,
@@ -67,10 +77,14 @@ export const getStructureById = async (
 
       array.forEach.call(dispositifsAssocies, (dispositif: any) => {
         turnToLocalized(dispositif, localeOfLocalizedDispositifsAssocies);
-        turnJSONtoHTML(dispositif.contenu);
       });
-
-      const newStructure = { ...structure.toJSON(), dispositifsAssocies };
+      const simplifiedDispositifsAssocies = adaptDispositifsAssocies(
+        dispositifsAssocies
+      );
+      const newStructure = {
+        ...structure.toJSON(),
+        dispositifsAssocies: simplifiedDispositifsAssocies,
+      };
       return res.status(200).json({
         text: "Succès",
         data: newStructure,
