@@ -27,7 +27,7 @@
     "Covid link": "Des fiches dédiées sont aussi disponibles",
     "Annuaire": "Consulter l’annuaire des acteurs de l’intégration",
     "Trouver une organisation": "Trouver une organisation",
-    "Consulter l’annnuaire": "Consulter l’annnuaire"
+    "Consulter l’annnuaire": "Consulter l’annuaire"
   },
   "AdvancedSearch": {
     "A > Z": "A > Z",
@@ -606,8 +606,10 @@
     "Numéro de téléphone": "Numéro de téléphone",
     "Adresse postale": "Adresse postale",
     "Horaires d'accueil": "Horaires d'accueil",
+    "Départements d'action": "Départements d'action",
     "rdv only": "Nous recevons uniquement sur rendez-vous",
     "no public": "Nous ne recevons pas de public",
+    "noDispositif": "Oups! Cette structure n'a pas encore rédigé de fiche.",
     "Lundi": "Lundi",
     "Mardi": "Mardi",
     "Mercredi": "Mercredi",
@@ -617,7 +619,9 @@
     "Dimanche": "Dimanche",
     "de": "de",
     "à": "à",
+    "et de": "et de",
     "fermé": "fermé",
+    "ouvert": "ouvert",
     "a propos": "À propos",
     "Activités et services": "Activités et services",
     "noemail": "Aucune adresse email renseignée",
@@ -626,6 +630,7 @@
     "noOpeningHours": "Horaires non-renseignées",
     "noDescription": "Aucune description de la structure disponible",
     "Bilan de santé": "Bilan de santé",
+    "noDepartement": "Aucun département renseigné",
     "Parcours de soin": "Parcours de soin",
     "Accompagnement psychologique": "Accompagnement psychologique",
     "Accompagnement juridique": "Accompagnement juridique",

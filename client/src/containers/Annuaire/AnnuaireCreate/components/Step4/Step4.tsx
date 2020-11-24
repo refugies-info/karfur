@@ -124,13 +124,20 @@ export const Step4 = (props: Props) => {
 
   const toggle2PhoneInput = () => setshow2PhoneInput((prevState) => !prevState);
 
+  const [show1MailInput, setshow1MailInput] = useState(false);
+  const [show2MailInput, setshow2MailInput] = useState(false);
+
+  const toggle1MailInput = () => setshow1MailInput((prevState) => !prevState);
+
+  const toggle2MailInput = () => setshow2MailInput((prevState) => !prevState);
+
   const onDepartmentChange = (e: any) => {
     setDepartmentInput(e.target.value);
     if (e.target.value === "") {
       return setDepartments([]);
     }
     const departmentsDataFiltered = departmentsData.filter((department) =>
-      props.structure
+      props.structure && props.structure.departments
         ? !props.structure.departments.includes(department)
         : false
     );
@@ -152,11 +159,12 @@ export const Step4 = (props: Props) => {
   };
 
   const removeDropdowElement = (element: string) => {
-    const departments = props.structure
-      ? props.structure.departments.filter(
-          (department) => department !== element
-        )
-      : [];
+    const departments =
+      props.structure && props.structure.departments
+        ? props.structure.departments.filter(
+            (department) => department !== element
+          )
+        : [];
     props.setStructure({ ...props.structure, departments });
     props.setHasModifications(true);
   };
@@ -183,12 +191,42 @@ export const Step4 = (props: Props) => {
   const handlePublicCheckboxChange = () => {
     props.setHasModifications(true);
 
-    if (props.structure && props.structure.openingHours.noPublic) {
+    if (
+      props.structure &&
+      props.structure.openingHours &&
+      props.structure.openingHours.noPublic
+    ) {
+      if (props.structure.openingHours.precisions) {
+        return props.setStructure({
+          ...props.structure,
+          openingHours: {
+            details: [],
+            noPublic: false,
+            precisions: props.structure.openingHours.precisions,
+          },
+        });
+      }
       return props.setStructure({
         ...props.structure,
         openingHours: { details: [], noPublic: false },
       });
     }
+
+    if (
+      props.structure &&
+      props.structure.openingHours &&
+      props.structure.openingHours.precisions
+    ) {
+      return props.setStructure({
+        ...props.structure,
+        openingHours: {
+          details: [],
+          noPublic: true,
+          precisions: props.structure.openingHours.precisions,
+        },
+      });
+    }
+
     return props.setStructure({
       ...props.structure,
       openingHours: { details: [], noPublic: true },
@@ -208,7 +246,11 @@ export const Step4 = (props: Props) => {
     setDepartmentInput("");
   };
 
-  const getPhones = (previousPhones: string[], id: string, value: string) => {
+  const getPhones = (
+    previousPhones: string[] | undefined,
+    id: string,
+    value: string
+  ) => {
     if (id === "phone0") {
       if (
         !previousPhones ||
@@ -219,13 +261,39 @@ export const Step4 = (props: Props) => {
       }
       return [value, previousPhones[1]];
     }
+    if (!previousPhones) return [value];
+
     return [previousPhones[0], value];
   };
+
+  const getMails = (
+    previousMails: string[] | undefined,
+    id: string,
+    value: string
+  ) => {
+    if (id === "mail0") {
+      if (!previousMails || previousMails.length === 0 || !previousMails[1]) {
+        return [value];
+      }
+      return [value, previousMails[1]];
+    }
+    if (!previousMails) return [value];
+    return [previousMails[0], value];
+  };
+
   const onPhoneChange = (e: any) => {
     const phones = props.structure
       ? getPhones(props.structure.phonesPublic, e.target.id, e.target.value)
       : [];
     props.setStructure({ ...props.structure, phonesPublic: phones });
+    props.setHasModifications(true);
+  };
+
+  const onMailChange = (e: any) => {
+    const mails = props.structure
+      ? getMails(props.structure.mailsPublic, e.target.id, e.target.value)
+      : [];
+    props.setStructure({ ...props.structure, mailsPublic: mails });
     props.setHasModifications(true);
   };
 
@@ -243,6 +311,9 @@ export const Step4 = (props: Props) => {
   const getUpdatedPhones = (phones: string[], index: number) =>
     phones.filter((phone) => phone !== phones[index]);
 
+  const getUpdatedMails = (mails: string[], index: number) =>
+    mails.filter((mail) => mail !== mails[index]);
+
   const removePhone = (index: number) => {
     const updatedPhones =
       props.structure && props.structure.phonesPublic
@@ -254,14 +325,31 @@ export const Step4 = (props: Props) => {
     props.setHasModifications(true);
   };
 
+  const removeMail = (index: number) => {
+    const updatedMails =
+      props.structure && props.structure.mailsPublic
+        ? getUpdatedMails(props.structure.mailsPublic, index)
+        : [];
+    props.setStructure({ ...props.structure, mailsPublic: updatedMails });
+    setshow1MailInput(false);
+    setshow2MailInput(false);
+    props.setHasModifications(true);
+  };
+
   const isFranceSelected =
-    !!props.structure && props.structure.departments[0] === "All";
+    !!props.structure &&
+    !!props.structure.departments &&
+    props.structure.departments[0] === "All";
 
   const phones =
     props.structure && props.structure.phonesPublic
       ? props.structure.phonesPublic
       : [];
 
+  const mails =
+    props.structure && props.structure.mailsPublic
+      ? props.structure.mailsPublic
+      : [];
   const noPublicChecked =
     !!props.structure &&
     !!props.structure.openingHours &&
@@ -300,25 +388,31 @@ export const Step4 = (props: Props) => {
 
   const onHoursChange = (value: any, index: string, day: string) => {
     if (!props.structure) return;
-    if (props.structure && props.structure.openingHours.noPublic) return;
+    if (
+      props.structure &&
+      props.structure.openingHours &&
+      props.structure.openingHours.noPublic
+    )
+      return;
 
-    const dayRegistered = props.structure.openingHours.details
-      ? props.structure.openingHours.details.filter(
-          (element) => element.day === day
-        )
-      : [];
+    const dayRegistered =
+      props.structure.openingHours && props.structure.openingHours.details
+        ? props.structure.openingHours.details.filter(
+            (element) => element.day === day
+          )
+        : [];
 
     if (dayRegistered) {
       const updatedDay = {
         ...dayRegistered[0],
         [index]: value.format("HH:mm"),
       };
-      const openingHoursWithoutDayRegistered = props.structure.openingHours
-        .details
-        ? props.structure.openingHours.details.filter(
-            (element) => element.day !== day
-          )
-        : [];
+      const openingHoursWithoutDayRegistered =
+        props.structure.openingHours && props.structure.openingHours.details
+          ? props.structure.openingHours.details.filter(
+              (element) => element.day !== day
+            )
+          : [];
       const openingHours = props.structure.openingHours
         ? {
             ...props.structure.openingHours,
@@ -366,24 +460,26 @@ export const Step4 = (props: Props) => {
                 </div>
               </SelectedContainer>
             ))}
-          {props.structure && props.structure.departments.length < 8 && (
-            <div style={{ width: "280px", marginRight: "8px" }}>
-              <FInput
-                value={departmentInput}
-                onChange={onDepartmentChange}
-                newSize={true}
-                placeholder="Entrez un numéro de département"
-                type="number"
-                prepend
-                prependName="hash"
-                autoFocus={false}
-              />
-              <CustomDropDown
-                elementList={departments}
-                onDropdownElementClick={onDropdownElementClick}
-              />
-            </div>
-          )}
+          {props.structure &&
+            props.structure.departments &&
+            props.structure.departments.length < 8 && (
+              <div style={{ width: "280px", marginRight: "8px" }}>
+                <FInput
+                  value={departmentInput}
+                  onChange={onDepartmentChange}
+                  newSize={true}
+                  placeholder="Entrez un numéro de département"
+                  type="number"
+                  prepend
+                  prependName="hash"
+                  autoFocus={false}
+                />
+                <CustomDropDown
+                  elementList={departments}
+                  onDropdownElementClick={onDropdownElementClick}
+                />
+              </div>
+            )}
         </DepartmentContainer>
       )}
       <CheckboxContainer
@@ -393,6 +489,72 @@ export const Step4 = (props: Props) => {
         <CustomCheckBox checked={isFranceSelected} />
         France entière
       </CheckboxContainer>
+      <Title>Adresse email</Title>
+      <div style={{ marginBottom: "16px" }}>
+        {(mails.length > 0 || show1MailInput) && (
+          <>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+              }}
+            >
+              <div
+                style={{
+                  width: "300px",
+                  marginRight: "4px",
+                }}
+              >
+                <FInput
+                  id="mail0"
+                  value={mails && mails[0]}
+                  onChange={onMailChange}
+                  newSize={true}
+                  placeholder="Votre adresse email"
+                  type="string"
+                  autoFocus={false}
+                />
+              </div>
+              <DeleteIconContainer onClick={() => removeMail(0)}>
+                <EVAIcon size="medium" name="close-outline" fill={"#ffffff"} />
+              </DeleteIconContainer>
+            </div>
+            {mails.length < 2 && !show2MailInput && (
+              <AddButton
+                type="second email"
+                onClick={toggle2MailInput}
+                disabled={!mails[0]}
+              />
+            )}
+          </>
+        )}
+        {(mails.length === 2 || show2MailInput) && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+            }}
+          >
+            <div style={{ width: "300px", marginRight: "4px" }}>
+              <FInput
+                type="text"
+                id="mail1"
+                value={mails && mails[1]}
+                onChange={onMailChange}
+                newSize={true}
+                placeholder="Votre adresse email"
+                autoFocus={false}
+              />
+            </div>
+            <DeleteIconContainer onClick={() => removeMail(1)}>
+              <EVAIcon size="medium" name="close-outline" fill={"#ffffff"} />
+            </DeleteIconContainer>
+          </div>
+        )}
+        {mails.length === 0 && !show1MailInput && (
+          <AddButton type="email" onClick={toggle1MailInput} />
+        )}
+      </div>
       <Title>Numéro de télephone</Title>
       <div style={{ marginBottom: "16px" }}>
         {(phones.length > 0 || show1PhoneInput) && (
@@ -405,7 +567,7 @@ export const Step4 = (props: Props) => {
             >
               <div
                 style={{
-                  width: "200px",
+                  width: "130px",
                   marginRight: "4px",
                 }}
               >
@@ -439,7 +601,7 @@ export const Step4 = (props: Props) => {
               flexDirection: "row",
             }}
           >
-            <div style={{ width: "300px", marginRight: "4px" }}>
+            <div style={{ width: "130px", marginRight: "4px" }}>
               <FInput
                 type="number"
                 id="phone1"

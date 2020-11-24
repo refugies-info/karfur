@@ -9,9 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { structuresSelector } from "../../../services/Structures/structures.selector";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-import { Spinner } from "reactstrap";
 import { setSelectedStructureActionCreator } from "../../../services/SelectedStructure/selectedStructure.actions";
 import { Header } from "./components/Header";
+import Skeleton from "react-loading-skeleton";
 
 const MainContainer = styled.div`
   display: flex;
@@ -21,6 +21,11 @@ const MainContainer = styled.div`
   background: #e5e5e5;
 `;
 
+const LoadingContainer = styled.div`
+  margin-top: 24px;
+  display: flex;
+  flex-direction: row;
+`;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,6 +33,45 @@ const Content = styled.div`
   margin-bottom: ${(props) => (props.hasMarginBottom ? "24px" : "0px")};
 `;
 
+const LoadingCardContainer = styled.div`
+  background: #ffffff;
+  border-radius: 12px;
+  width: 198px;
+  height: 271px;
+  margin-right: 8px;
+  margin-left: 8px;
+  margin-bottom: 16px;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Letter = styled.div`
+  font-size: 100px;
+  line-height: 58px;
+  margin-top: 30px;
+  margin-left: 72px;
+  margin-right: 72px;
+`;
+
+const GreyContainer = styled.div`
+  border-radius: 12px;
+  width: 100%;
+  margin-bottom: 24px;
+`;
+
+const LoadingCard = () => (
+  <LoadingCardContainer>
+    <GreyContainer>
+      <Skeleton height={100} />
+    </GreyContainer>
+    <GreyContainer>
+      <Skeleton count={2} />
+    </GreyContainer>
+  </LoadingCardContainer>
+);
 export interface PropsBeforeInjection {
   t: any;
   history: any;
@@ -67,7 +111,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
     // @ts-ignore
     window.addEventListener("scroll", handleScroll);
-
+    // @ts-ignore
+    window.scrollTo(0, 0);
     return () => {
       // @ts-ignore
       window.removeEventListener("scroll", handleScroll);
@@ -88,7 +133,27 @@ export const AnnuaireLectureComponent = (props: Props) => {
     props.history.push(`/annuaire/${id}`);
 
   if (isLoading) {
-    return <Spinner />;
+    const emptyArray = new Array(7).fill("a");
+    return (
+      <MainContainer>
+        <Header
+          letters={letters}
+          // onLetterClick={onLetterClick}
+          stopScroll={stopScroll}
+          t={props.t}
+        />
+        <LoadingContainer>
+          <Letter>A</Letter>
+          <div
+            style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}
+          >
+            {emptyArray.map((index) => (
+              <LoadingCard key={index} />
+            ))}
+          </div>
+        </LoadingContainer>
+      </MainContainer>
+    );
   }
 
   return (

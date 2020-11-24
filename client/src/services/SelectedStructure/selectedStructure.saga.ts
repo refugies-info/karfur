@@ -17,10 +17,10 @@ export function* fetchSelectedStructure(
   action: ReturnType<typeof fetchSelectedStructureActionCreator>
 ): SagaIterator {
   try {
-    const id = action.payload;
+    const { id, locale } = action.payload;
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
-    logger.info("[fetchSelectedStructure] fetching structure", { id });
-    const data = yield call(API.getStructureById, id, true, true);
+    logger.info("[fetchSelectedStructure] fetching structure", { id, locale });
+    const data = yield call(API.getStructureById, id, true, locale);
     yield put(setSelectedStructureActionCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
   } catch (error) {
