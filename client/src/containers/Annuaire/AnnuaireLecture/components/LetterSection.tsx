@@ -52,7 +52,6 @@ const StructureCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  backrgound: red;
 `;
 
 const Anchor = styled.div`

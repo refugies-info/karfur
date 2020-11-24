@@ -27,33 +27,50 @@ const LogoContainer = styled.div`
 `;
 
 interface Props {
-  structure: Structure;
+  structure: Structure | null;
   leftPartHeight: number;
   t: any;
+  isLoading: boolean;
 }
-export const LeftAnnuaireDetail = (props: Props) => (
-  <LeftContainer height={props.leftPartHeight}>
-    <div>
-      <LogoContainer>
-        {props.structure.picture && props.structure.picture.secure_url && (
-          <img
-            className="sponsor-img"
-            src={props.structure.picture.secure_url}
-            alt={props.structure.acronyme}
-          />
-        )}
-      </LogoContainer>
-      {props.structure.structureTypes &&
-        props.structure.structureTypes.map((structureType) => (
-          <StructureType type={structureType} key={structureType} t={props.t} />
-        ))}
-    </div>
-    <SocialsLink
-      websites={props.structure.websites}
-      facebook={props.structure.facebook}
-      linkedin={props.structure.linkedin}
-      twitter={props.structure.twitter}
-      t={props.t}
-    />
-  </LeftContainer>
-);
+export const LeftAnnuaireDetail = (props: Props) => {
+  if (props.structure && !props.isLoading) {
+    return (
+      <LeftContainer height={props.leftPartHeight}>
+        <div>
+          <LogoContainer>
+            {props.structure.picture && props.structure.picture.secure_url && (
+              <img
+                className="sponsor-img"
+                src={props.structure.picture.secure_url}
+                alt={props.structure.acronyme}
+              />
+            )}
+          </LogoContainer>
+          {props.structure.structureTypes &&
+            props.structure.structureTypes.map((structureType) => (
+              <StructureType
+                type={structureType}
+                key={structureType}
+                t={props.t}
+              />
+            ))}
+        </div>
+        <SocialsLink
+          websites={props.structure.websites}
+          facebook={props.structure.facebook}
+          linkedin={props.structure.linkedin}
+          twitter={props.structure.twitter}
+          t={props.t}
+        />
+      </LeftContainer>
+    );
+  }
+
+  return (
+    <LeftContainer height={props.leftPartHeight}>
+      <div>
+        <LogoContainer></LogoContainer>
+      </div>
+    </LeftContainer>
+  );
+};

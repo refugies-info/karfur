@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { selectedStructureSelector } from "../../../../services/SelectedStructure/selectedStructure.selector";
-import { Spinner } from "reactstrap";
 import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
@@ -71,8 +70,33 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
 
   // @ts-ignore
   const leftPartHeight = window.screen.height - 225;
+
   if (isLoading || !structure) {
-    return <Spinner />;
+    return (
+      <MainContainer>
+        <Header
+          letters={letters}
+          // onLetterClick={onLetterClick}
+          stopScroll={true}
+          t={props.t}
+        />
+
+        <Content className="annuaire-detail" height={leftPartHeight}>
+          <LeftAnnuaireDetail
+            structure={structure}
+            leftPartHeight={leftPartHeight}
+            t={props.t}
+            isLoading={isLoading}
+          />
+          <MiddleAnnuaireDetail
+            structure={structure}
+            leftPartHeight={leftPartHeight}
+            t={props.t}
+            isLoading={isLoading}
+          />
+        </Content>
+      </MainContainer>
+    );
   }
   return (
     <MainContainer>
@@ -88,12 +112,14 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
           structure={structure}
           leftPartHeight={leftPartHeight}
           t={props.t}
+          isLoading={isLoading}
         />
 
         <MiddleAnnuaireDetail
           structure={structure}
           leftPartHeight={leftPartHeight}
           t={props.t}
+          isLoading={isLoading}
         />
         <RightAnnuaireDetails
           leftPartHeight={leftPartHeight}
