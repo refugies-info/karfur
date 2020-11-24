@@ -223,7 +223,7 @@ export class AdvancedSearch extends Component {
     let bottomValue = querySearch(this.props.location.search).bottomValue;
     let topValue = querySearch(this.props.location.search).topValue;
     let niveauFrancais = querySearch(this.props.location.search).niveauFrancais;
-    let niveauFrancaisObj = this.state.recherche[2].children.find(
+    let niveauFrancaisObj = this.state.recherche[3].children.find(
       (elem) => elem.name === decodeURIComponent(niveauFrancais)
     );
     let filter = querySearch(this.props.location.search).filter;
@@ -244,17 +244,17 @@ export class AdvancedSearch extends Component {
                 .short;
           }
           if (topValue && bottomValue) {
-            draft.recherche[1].value = initial_data[1].children.find(
+            draft.recherche[2].value = initial_data[2].children.find(
               (item) => item.topValue === parseInt(topValue, 10)
             ).name;
-            draft.recherche[1].query = draft.recherche[1].value;
-            draft.recherche[1].active = true;
+            draft.recherche[2].query = draft.recherche[2].value;
+            draft.recherche[2].active = true;
           }
           if (niveauFrancais) {
-            draft.recherche[2].name = decodeURIComponent(niveauFrancais);
-            draft.recherche[2].value = decodeURIComponent(niveauFrancais);
-            draft.recherche[2].query = niveauFrancaisObj.query;
-            draft.recherche[2].active = true;
+            draft.recherche[3].name = decodeURIComponent(niveauFrancais);
+            draft.recherche[3].value = decodeURIComponent(niveauFrancais);
+            draft.recherche[3].query = niveauFrancaisObj.query;
+            draft.recherche[3].active = true;
           }
           draft.activeTri = "";
         }),
@@ -343,13 +343,13 @@ export class AdvancedSearch extends Component {
           ? decodeURIComponent(query["tags.name"])
           : undefined,
         bottomValue: query["audienceAge.bottomValue"]
-          ? this.state.recherche[1].bottomValue
+          ? this.state.recherche[2].bottomValue
           : undefined,
         topValue: query["audienceAge.topValue"]
-          ? this.state.recherche[1].topValue
+          ? this.state.recherche[2].topValue
           : undefined,
         niveauFrancais: query["niveauFrancais"]
-          ? this.state.recherche[2].value
+          ? this.state.recherche[3].value
           : undefined,
       };
 
