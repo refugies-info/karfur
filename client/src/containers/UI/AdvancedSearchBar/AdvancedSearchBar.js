@@ -68,7 +68,7 @@ const SearchBar = styled(Input)`
 
 const SearchModalContainer = styled.div`
   position: fixed;
-  width: 780px;
+  width: 850px;
   // height: 350px;
   background-color: #cdcdcd;
   border-radius: 12px;

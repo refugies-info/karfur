@@ -25,6 +25,12 @@ const initial_data = [
     queryName: "tags.name",
     children: filtres.tags,
   },
+  {
+    title: "J'habite à",
+    value: null,
+    placeholder: "ma ville",
+    queryName: "localisation",
+  },
 
   {
     title: "J'ai",
@@ -79,12 +85,6 @@ const initial_data = [
         query: undefined,
       },
     ],
-  },
-  {
-    title: "J'habite à",
-    value: null,
-    placeholder: "ma ville",
-    queryName: "localisation",
   },
 ];
 
