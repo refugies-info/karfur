@@ -25,6 +25,8 @@ export const themes = {
     "enceinte",
     "covid",
     "coronavirus",
+    "santé",
+    "me soigner",
   ],
   Administratif: [
     "papiers",
@@ -55,6 +57,7 @@ export const themes = {
     "allocation",
     "carte de crédit",
     "banque",
+    "gérer mes papiers",
   ],
   Rencontre: [
     "amis",
@@ -72,6 +75,7 @@ export const themes = {
     "découvrir",
     "parrainage",
     "parrain",
+    "rencontrer des gens",
   ],
   Bénévolat: [
     "aider",
@@ -83,6 +87,8 @@ export const themes = {
     "volonteer",
     "association",
     "service civique",
+    "bénévolat",
+    "aider une association",
   ],
   Logement: [
     "maison",
@@ -132,6 +138,7 @@ export const themes = {
     "prononcer",
     "prononciation",
     "progresser",
+    "apprendre le français",
   ],
   Études: [
     "étudier",
@@ -160,10 +167,12 @@ export const themes = {
     "bourses",
     "reprise",
     "inscription",
+    "faire des études",
+    "études",
   ],
   "Formation pro": [
     "me former",
-    "apprendre",
+    "apprendre un métier",
     "métier",
     "CAP",
     "BTS",
@@ -178,6 +187,7 @@ export const themes = {
     "hope",
     "geiq",
     "alternance",
+    "formation professionnelle",
   ],
   "Insertion pro": [
     "travail",
@@ -198,6 +208,8 @@ export const themes = {
     "indemnisation",
     "allocation",
     "rsa",
+    "insertion professionnelle",
+    "trouver un travail",
   ],
   Culture: [
     "cinema",
@@ -221,6 +233,8 @@ export const themes = {
     "sortir",
     "découvrir",
     "visiter",
+    "culture",
+    "découvrir la culture",
   ],
   Loisir: [
     "sport",
@@ -234,6 +248,8 @@ export const themes = {
     "équipe",
     "jouer",
     "musique",
+    "loisir",
+    "occuper mon temps libre",
   ],
   Mobilité: [
     "transport",
@@ -251,5 +267,7 @@ export const themes = {
     "ticket",
     "vélo",
     "velo",
+    "mobilité",
+    "me déplacer",
   ],
 };
