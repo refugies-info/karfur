@@ -4,6 +4,7 @@ import { Dispositif } from "../../../../../@types/interface";
 import { ObjectId } from "mongodb";
 import SearchResultCard from "../../../../AdvancedSearch/SearchResultCard";
 import NoResultsBackgroundImage from "../../../../../assets/no_results.svg";
+import "./RightAnnuaireDetails.scss";
 
 const Container = styled.div`
   width: 360px;
@@ -85,7 +86,7 @@ export const RightAnnuaireDetails = (props: Props) => {
   );
   const nbActiveDispositifs = activeDispositifsAssocies.length;
   return (
-    <Container height={props.leftPartHeight}>
+    <Container height={props.leftPartHeight} className="right-annuaire">
       <TitleContainer>
         <Title>{props.t("Annuaire.A lire", "À lire")}</Title>
         <FigureContainer red={nbActiveDispositifs === 0}>
