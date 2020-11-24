@@ -35,11 +35,13 @@ export const LeftAnnuaireDetail = (props: Props) => (
   <LeftContainer height={props.leftPartHeight}>
     <div>
       <LogoContainer>
-        <img
-          className="sponsor-img"
-          src={(props.structure.picture || {}).secure_url}
-          alt={props.structure.acronyme}
-        />
+        {props.structure.picture && props.structure.picture.secure_url && (
+          <img
+            className="sponsor-img"
+            src={props.structure.picture.secure_url}
+            alt={props.structure.acronyme}
+          />
+        )}
       </LogoContainer>
       {props.structure.structureTypes &&
         props.structure.structureTypes.map((structureType) => (

@@ -41,19 +41,18 @@ const StructureCardContainer = styled.div`
   line-height: 28px;
   background: #ffffff;
   border-radius: 12px;
-  width: 368px;
-  height: 147px;
+  width: 198px;
+  height: 271px;
   margin-right: 8px;
   margin-left: 8px;
   margin-bottom: 16px;
   padding: 24px;
   cursor: pointer;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-`;
-const StructureName = styled.div`
-  margin-left: 24px;
+  justify-content: space-evenly;
+  backrgound: red;
 `;
 
 const Anchor = styled.div`
@@ -69,14 +68,14 @@ interface StructureCardProps {
 }
 const StructureCard = (props: StructureCardProps) => (
   <StructureCardContainer onClick={() => props.onStructureCardClick(props.id)}>
-    <img
-      className="sponsor-img"
-      src={(props.picture || {}).secure_url}
-      alt={props.acronyme}
-    />
-    <StructureName>
-      <LinesEllipsis text={props.nom} maxLine="3" trimRight basedOn="letters" />
-    </StructureName>
+    {props.picture && props.picture.secure_url && (
+      <img
+        className="sponsor-img"
+        src={props.picture.secure_url}
+        alt={props.acronyme}
+      />
+    )}
+    <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
   </StructureCardContainer>
 );
 
