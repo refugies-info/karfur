@@ -95,7 +95,7 @@ const PhoneNumber = (props: { phone: string }) => (
   </WhiteContainer>
 );
 
-const Adress = (props: { adress: string }) => (
+const Adress = (props: { adress: string | undefined }) => (
   <WhiteContainer>
     <EVAIcon name="pin-outline" fill="#212121" className="mr-8" />
     {props.adress}
@@ -144,9 +144,10 @@ export const MiddleAnnuaireDetail = (props: Props) => {
       </TitleContainer>
       <SubTitle>Numéro de téléphone</SubTitle>
       <LineContainer>
-        {structure.phonesPublic.map((phone) => (
-          <PhoneNumber phone={phone} key={phone} />
-        ))}
+        {structure.phonesPublic &&
+          structure.phonesPublic.map((phone) => (
+            <PhoneNumber phone={phone} key={phone} />
+          ))}
       </LineContainer>
       <SubTitle>Adresse postale</SubTitle>
       <Adress adress={structure.adressPublic} />

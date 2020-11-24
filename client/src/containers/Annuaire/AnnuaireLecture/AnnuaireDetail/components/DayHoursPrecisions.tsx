@@ -8,7 +8,7 @@ import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 
 interface Props {
   day: string;
-  openingHours: OpeningHours;
+  openingHours: OpeningHours | undefined;
 }
 
 const Container = styled.div`

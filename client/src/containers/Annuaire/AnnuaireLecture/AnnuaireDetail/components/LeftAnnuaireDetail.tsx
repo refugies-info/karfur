@@ -40,9 +40,10 @@ export const LeftAnnuaireDetail = (props: Props) => (
           alt={props.structure.acronyme}
         />
       </LogoContainer>
-      {props.structure.structureTypes.map((structureType) => (
-        <StructureType type={structureType} key={structureType} />
-      ))}
+      {props.structure.structureTypes &&
+        props.structure.structureTypes.map((structureType) => (
+          <StructureType type={structureType} key={structureType} />
+        ))}
     </div>
     <SocialsLink
       websites={props.structure.websites}
