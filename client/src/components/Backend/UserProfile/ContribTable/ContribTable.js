@@ -9,6 +9,7 @@ import marioProfile from "../../../../assets/mario-profile.jpg";
 import { colorStatut } from "../../../Functions/ColorFunctions";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { fakeContribution } from "../../../../containers/Backend/UserProfile/data";
+import { NavHashLink } from "react-router-hash-link"
 
 import variables from "scss/colors.scss";
 import _ from "lodash";
@@ -160,13 +161,6 @@ const contribTable = (props) => {
   let show = true;
   const onAnimationEnd = () => (show = false);
 
-  const onBtnClick = () => {
-    // if(props.overlayRedirect){
-    props.history.push("/comment-contribuer");
-    // }else{
-    //   props.toggleModal('devenirContributeur')
-    // }
-  };
   if (props.limit) {
     return (
       <div
@@ -215,7 +209,8 @@ const contribTable = (props) => {
                   type="light-action hero"
                   name="info-outline"
                   fill={variables.noir}
-                  onClick={onBtnClick}
+                  tag={NavHashLink}
+                  to="/comment-contribuer#ecrire"
                 >
                   {t("Tables." + props.overlayBtn, props.overlayBtn)}
                 </FButton>

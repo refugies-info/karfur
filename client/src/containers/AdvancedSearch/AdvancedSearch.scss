@@ -19,7 +19,7 @@
     top: 60px;
     display: flex;
     z-index: 3;
-    border-radius: 12px 12px 12px 0px;
+    border-radius: 12px 12px 12px 12px;
     margin-top: 24px;
     transition: top 0.6s;
     flex-wrap: nowrap;
@@ -269,6 +269,15 @@
   padding: 8px;
   margin: 0px 8px 0px 0px;
   border-radius: 8px;
+  color: black;
+  &:hover > span {
+    background-color: #212121;
+    color: white !important;
+  }
+  &:hover {
+    background-color: #212121;
+    color: white !important;
+  }
 }
 
 .bs-tooltip-auto[x-placement^="bottom"] span.arrow::before,

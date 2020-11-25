@@ -21,6 +21,7 @@ export class SearchItem extends Component {
     isMounted: false,
     ville: "",
     villeAuto: "",
+    geoSearch: false,
   };
 
   componentDidMount() {
@@ -79,7 +80,9 @@ export class SearchItem extends Component {
               />
             )}
           </FSearchBtn>
-        ) : item.queryName === "localisation" && ville === "" ? (
+        ) : item.queryName === "localisation" &&
+          ville === "" &&
+          this.state.geoSearch ? (
           isMounted && (
             <ReactDependentScript
               loadingComponent={<div>Chargement de Google Maps...</div>}
@@ -99,11 +102,13 @@ export class SearchItem extends Component {
                   {t("SearchItem.bientot disponible", "Bientôt disponible")}
                 </div> */}
                 <Autocomplete
+                  ref={input => {input && input.refs.input.focus()}}
                   className={
                     "search-btn in-header search-autocomplete " +
                     (item.active ? "active " : "") +
                     (isBigDesktop ? "" : "search-btn-small")
                   }
+                  onBlur={() => ville === "" && villeAuto === "" && this.setState({geoSearch: false})}
                   placeholder={item.placeholder}
                   id="villeAuto"
                   value={villeAuto}
@@ -139,6 +144,20 @@ export class SearchItem extends Component {
               </div>
             </ReactDependentScript>
           )
+        ) : item.queryName === "localisation" &&
+          ville === "" &&
+          !this.state.geoSearch ? (
+          <FSearchBtn
+            onClick={() => {
+              this.setState({ geoSearch: true });
+            }}
+            className={
+              "mr-10 in-header search-filter " +
+              (isBigDesktop ? "search-btn " : "search-btn-small ")
+            }
+          >
+            {"ma ville"}
+          </FSearchBtn>
         ) : (
           <Dropdown
             isOpen={dropdownOpen}
@@ -209,37 +228,38 @@ export class SearchItem extends Component {
                   (item.queryName === "tags.name" ? " query-tags" : "")
                 }
               >
-                {item.children.map((subi, idx) => {
-                  return (
-                    <FSearchBtn
-                      key={idx}
-                      onClick={() => this.selectOption(subi)}
-                      className={
-                        "search-options color" + (subi.short ? "" : " filter")
-                      }
-                      color={(subi.short || "").replace(/ /g, "-")}
-                    >
-                      {subi.icon ? (
-                        <div
-                          style={{
-                            display: "flex",
-                            marginRight: 10,
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Streamline
-                            name={subi.icon}
-                            stroke={"white"}
-                            width={22}
-                            height={22}
-                          />
-                        </div>
-                      ) : null}
-                      {t("Tags." + subi.name, subi.name)}
-                    </FSearchBtn>
-                  );
-                })}
+                {item.children &&
+                  item.children.map((subi, idx) => {
+                    return (
+                      <FSearchBtn
+                        key={idx}
+                        onClick={() => this.selectOption(subi)}
+                        className={
+                          "search-options color" + (subi.short ? "" : " filter")
+                        }
+                        color={(subi.short || "").replace(/ /g, "-")}
+                      >
+                        {subi.icon ? (
+                          <div
+                            style={{
+                              display: "flex",
+                              marginRight: 10,
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Streamline
+                              name={subi.icon}
+                              stroke={"white"}
+                              width={22}
+                              height={22}
+                            />
+                          </div>
+                        ) : null}
+                        {t("Tags." + subi.name, subi.name)}
+                      </FSearchBtn>
+                    );
+                  })}
               </div>
             </DropdownMenu>
           </Dropdown>
