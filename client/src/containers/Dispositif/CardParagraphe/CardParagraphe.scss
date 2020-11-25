@@ -1047,7 +1047,7 @@
   }
 }
 .tooltip.show {
-  opacity: 1;
+  opacity: 1 !important;
 }
 .tooltip.show .tooltip-inner {
   background: $noir;
