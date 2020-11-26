@@ -1,4 +1,3 @@
-import { updateObject } from "../utility";
 import { Dispositif } from "../../@types/interface";
 import { createReducer } from "typesafe-actions";
 import { ActiveDispositifsActions } from "./activeDispositifs.actions";
