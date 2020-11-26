@@ -1,8 +1,9 @@
 const logger = require("../../logger");
 import Dispositif from "../../schema/schemaDispositif";
 import { turnToLocalized, turnJSONtoHTML } from "./functions";
+import { Res, RequestFromClient, IDispositif } from "../../types/interface";
 
-const getDispositifArray = async (query) => {
+const getDispositifArray = async (query: any) => {
   const neededFields = {
     titreInformatif: 1,
     titreMarque: 1,
@@ -38,21 +39,28 @@ const getDispositifArray = async (query) => {
   return await Dispositif.find(query, neededFields).lean();
 };
 
-const removeUselessContent = (dispositifArray) =>
+const removeUselessContent = (dispositifArray: IDispositif[]) =>
   dispositifArray.map((dispositif) => {
-    const simplifiedChildren = dispositif.contenu[1].children.map((child) => {
-      if (child.title === "Zone d'action") {
-        return child;
+    const selectZoneAction = dispositif.contenu[1].children.map(
+      (child: any) => {
+        if (child.title === "Zone d'action") {
+          return child;
+        }
+        return [];
       }
-      return [];
-    });
+    );
 
-    const simplifiedContent = [{}, { children: simplifiedChildren }];
+    const simplifiedContent = [{}, { children: selectZoneAction }];
 
     return { ...dispositif, contenu: simplifiedContent };
   });
 
-export const getDispositifs = async (req, res) => {
+interface Query {}
+
+export const getDispositifs = async (
+  req: RequestFromClient<Query>,
+  res: Res
+) => {
   try {
     if (!req.body || !req.body.query) {
       res.status(400).json({ text: "Requête invalide" });
@@ -63,9 +71,9 @@ export const getDispositifs = async (req, res) => {
 
       const dispositifArray = await getDispositifArray(query);
       const adaptedDispositifArray = removeUselessContent(dispositifArray);
-      const array = [];
+      const array: string[] = [];
 
-      array.forEach.call(adaptedDispositifArray, (dispositif) => {
+      array.forEach.call(adaptedDispositifArray, (dispositif: IDispositif) => {
         turnToLocalized(dispositif, locale);
         turnJSONtoHTML(dispositif.contenu);
       });
@@ -77,6 +85,46 @@ export const getDispositifs = async (req, res) => {
     }
   } catch (error) {
     logger.error("[getDispositifs] error while getting dispositifs", { error });
+    switch (error) {
+      case 500:
+        res.status(500).json({
+          text: "Erreur interne",
+        });
+        break;
+      case 404:
+        res.status(404).json({
+          text: "Pas de résultat",
+        });
+        break;
+      default:
+        res.status(500).json({
+          text: "Erreur interne",
+        });
+    }
+  }
+};
+
+export const getAllDispositifs = async (req: {}, res: Res) => {
+  try {
+    logger.info("[getAllDispositifs] called");
+
+    // const dispositifArray = await getDispositifArray(query);
+    // const adaptedDispositifArray = removeUselessContent(dispositifArray);
+    // const array = [];
+
+    // array.forEach.call(adaptedDispositifArray, (dispositif) => {
+    //   turnToLocalized(dispositif, locale);
+    //   turnJSONtoHTML(dispositif.contenu);
+    // });
+
+    res.status(200).json({
+      text: "Succès",
+      // data: adaptedDispositifArray,
+    });
+  } catch (error) {
+    logger.error("[getAllDispositifs] error while getting dispositifs", {
+      error,
+    });
     switch (error) {
       case 500:
         res.status(500).json({

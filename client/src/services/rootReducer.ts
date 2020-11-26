@@ -31,6 +31,10 @@ import {
   SelectedStructureState,
   selectedStructureReducer,
 } from "./SelectedStructure/selectedStructure.reducer";
+import {
+  AllDispositifsState,
+  allDispositifsReducer,
+} from "./AllDispositifs/allDispositifs.reducer";
 
 export interface RootState {
   user: UserState;
@@ -43,6 +47,7 @@ export interface RootState {
   translation: TranslationState;
   structures: StructuresState;
   selectedStructure: SelectedStructureState;
+  allDispositifs: AllDispositifsState;
 }
 export const appReducer = (history: any) =>
   combineReducers({
@@ -58,4 +63,5 @@ export const appReducer = (history: any) =>
     translation: translationReducer,
     structures: structuresReducer,
     selectedStructure: selectedStructureReducer,
+    allDispositifs: allDispositifsReducer,
   });
