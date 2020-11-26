@@ -38,6 +38,7 @@ const LettersContainer = styled.div`
   bottom: 0px;
   display: flex;
   flex-direction: row;
+  margin-right: ${(props) => props.isRTL && "72px"};
 `;
 
 interface Props {
@@ -54,7 +55,7 @@ export const Header = (props: Props) => {
       <TextContainer isRTL={isRTL}>
         {props.t("Annuaire.Annuaire", "Annuaire")}
       </TextContainer>
-      <LettersContainer>
+      <LettersContainer isRTL={isRTL}>
         <>
           {props.letters.map((letter, index) => (
             <NavHashLink

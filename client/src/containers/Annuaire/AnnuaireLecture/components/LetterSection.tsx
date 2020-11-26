@@ -51,7 +51,7 @@ const StructureCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 const Anchor = styled.div`
@@ -74,6 +74,7 @@ const StructureCard = (props: StructureCardProps) => (
         alt={props.acronyme}
       />
     )}
+    {(!props.picture || !props.picture.secure_url) && <div></div>}
     <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
   </StructureCardContainer>
 );
