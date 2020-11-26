@@ -17,40 +17,31 @@ export const table_contenu = {
       hideOnPhone: false,
     },
     {
-      name: "Depuis",
+      name: "MAJ",
       order: "updatedAt",
+      hideOnPhone: true,
+    },
+    {
+      name: "Progression",
+      order: "",
       hideOnPhone: true,
     },
     {
       name: "Statut",
       order: "status",
-      hideOnPhone: true,
-    },
-    {
-      name: "Responsable",
-      order: "responsable",
       hideOnPhone: false,
     },
-    {
-      name: "Action interne",
-      order: "internal_action",
-      hideOnPhone: false,
-    },
-    {
-      name: "Variantes",
-      order: "children.length",
-      hideOnPhone: false,
-    },
-    {
-      name: "Suppr",
-      hideOnPhone: false,
-    },
+
     {
       name: "Voir",
       hideOnPhone: false,
     },
     {
       name: "Publier",
+      hideOnPhone: false,
+    },
+    {
+      name: "Suppr",
       hideOnPhone: false,
     },
   ],

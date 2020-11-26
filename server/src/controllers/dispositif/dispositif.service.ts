@@ -1,6 +1,10 @@
 const logger = require("../../logger");
 import Dispositif from "../../schema/schemaDispositif";
-import { turnToLocalized, turnJSONtoHTML } from "./functions";
+import {
+  turnToLocalized,
+  turnJSONtoHTML,
+  turnToLocalizedTitles,
+} from "./functions";
 import { Res, RequestFromClient, IDispositif } from "../../types/interface";
 import { getDispositifsFromDB } from "./dispositif.repository";
 
@@ -112,8 +116,9 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
     const neededFields = {
       titreInformatif: 1,
       titreMarque: 1,
-      updated_at: 1,
+      updatedAt: 1,
       status: 1,
+      typeContenu: 1,
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);
@@ -130,6 +135,12 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
             }
           : "",
       };
+    });
+
+    const array: string[] = [];
+
+    array.forEach.call(adaptedDispositifs, (dispositif: IDispositif) => {
+      turnToLocalizedTitles(dispositif, "fr");
     });
 
     res.status(200).json({

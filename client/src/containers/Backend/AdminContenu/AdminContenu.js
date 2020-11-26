@@ -6,7 +6,10 @@ import moment from "moment/min/moment-with-locales";
 import _ from "lodash";
 import Swal from "sweetalert2";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
+import {
+  fetchAllDispositifsActionsCreator,
+  setAllDispositifsActionsCreator,
+} from "../../../services/AllDispositifs/allDispositifs.actions";
 import { deleteContrib } from "../UserProfile/functions";
 import { colorStatut } from "../../../components/Functions/ColorFunctions";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -30,7 +33,7 @@ import produce from "immer";
 
 import "./AdminContenu.scss";
 import variables from "scss/colors.scss";
-import { dispositifsSelector } from "../../../services/ActiveDispositifs/activeDispositifs.selector";
+import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 
@@ -46,7 +49,7 @@ const prioritaryStatus = [
 const maxDescriptionLength = 30;
 export const AdminContenu = () => {
   const headers = table_contenu.headers;
-  const dispositifs = useSelector(dispositifsSelector);
+  const dispositifs = useSelector(allDispositifsSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS)
   );
@@ -55,12 +58,20 @@ export const AdminContenu = () => {
 
   useEffect(() => {
     const loadDispositifs = async () => {
-      await dispatch(fetchActiveDispositifsActionsCreator());
+      await dispatch(fetchAllDispositifsActionsCreator());
     };
-    console.log("load dispo");
     loadDispositifs();
+
+    return () => {
+      dispatch(setAllDispositifsActionsCreator([]));
+    };
   }, [dispatch]);
 
+  const getStructure = (element) => {
+    if (element.mainSponsor && element.mainSponsor.nom)
+      return element.mainSponsor.nom;
+    return "Pas de structure";
+  };
   console.log("dispositifs", dispositifs, isLoading);
 
   if (isLoading) {
@@ -69,7 +80,7 @@ export const AdminContenu = () => {
   return (
     <div className="admin-contenu animated fadeIn">
       <StyledHeader>
-        <StyledTitle>Publication des contenus</StyledTitle>
+        <StyledTitle>Contenus</StyledTitle>
         <StyledSort>
           <StyledStatus
           // onClick={this.reorderOnTopPubblish}
@@ -132,50 +143,42 @@ export const AdminContenu = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {dispositifs.map((element, key) => {
-            const bgColor =
-              (status_mapping.find((x) => x.name === element.status) || {})
-                .color || "";
-            // if (
-            //   (element.status === "Supprimé" && !this.state.deleted) ||
-            //   (element.status === "Actif" && !this.state.published) ||
-            //   (element.status === "Brouillon" && !this.state.draft)
-            // ) {
-            //   return;
-            // }
-            return (
-              <tr key={key} className={bgColor ? "bg-" + bgColor : ""}>
-                <td
-                  className="align-middle"
-                  onClick={() =>
-                    (element.children || []).length > 0 &&
-                    this.toggleExpanded(key)
-                  }
-                >
-                  {(element.children || []).length > 0 && (
-                    <EVAIcon
-                      name={
-                        "chevron-" +
-                        (element.expanded ? "down" : "right") +
-                        "-outline"
-                      }
-                      fill={variables.noir}
-                      className="mr-10"
-                    />
-                  )}
-                  <span
-                    className={
-                      (element.children || []).length === 0
-                        ? (element.type === "child" ? "super-" : "") +
-                          "decale-gauche"
-                        : ""
+          {dispositifs
+            .filter((disp) => disp.status === "Actif")
+            .map((element, key) => {
+              console.log("element", element);
+              const bgColor =
+                (status_mapping.find((x) => x.name === element.status) || {})
+                  .color || "";
+              // if (
+              //   (element.status === "Supprimé" && !this.state.deleted) ||
+              //   (element.status === "Actif" && !this.state.published) ||
+              //   (element.status === "Brouillon" && !this.state.draft)
+              // ) {
+              //   return;
+              // }
+              return (
+                <tr key={key} className={bgColor ? "bg-" + bgColor : ""}>
+                  <td
+                    className="align-middle"
+                    onClick={() =>
+                      (element.children || []).length > 0 &&
+                      this.toggleExpanded(key)
                     }
                   >
-                    {element.typeContenu || "dispositif"}
-                  </span>
-                </td>
-                <td className="align-middle" id={"titre-" + key}>
-                  <NavLink
+                    <span
+                      className={
+                        (element.children || []).length === 0
+                          ? (element.type === "child" ? "super-" : "") +
+                            "decale-gauche"
+                          : ""
+                      }
+                    >
+                      {element.typeContenu || "dispositif"}
+                    </span>
+                  </td>
+                  <td className="align-middle" id={"titre-" + key}>
+                    {/* <NavLink
                     to={
                       "/" +
                       (element.typeContenu || "dispositif") +
@@ -190,118 +193,84 @@ export const AdminContenu = () => {
                       (element.titreCourt.length > maxDescriptionLength
                         ? "..."
                         : "")}
-                  </NavLink>
-                </td>
-                <td
-                  className="align-middle cursor-pointer"
-                  // onClick={() =>
-                  //   this.props.onSelect(
-                  //     { structure: element.structureObj },
-                  //     "1"
-                  //   )
-                  // }
-                >
-                  {element.structure}
-                </td>
-                <td
-                  className={
-                    "align-middle petit-texte depuis color-" +
-                    (element.status === "Actif"
-                      ? "focus"
-                      : element.joursDepuis > 30
-                      ? "rouge"
-                      : element.joursDepuis > 10
-                      ? "orange"
-                      : "vert")
-                  }
-                >
-                  {element.status === "Actif"
-                    ? "Publié"
-                    : moment(element.updatedAt).fromNow()}
-                </td>
-                <td className="align-middle">
-                  <StyledStatus
-                    className={"status-pill bg-" + colorStatut(element.status)}
+                  </NavLink> */}
+                    {element.titreInformatif}
+                  </td>
+                  <td
+                    className="align-middle cursor-pointer"
+                    // onClick={() =>
+                    //   this.props.onSelect(
+                    //     { structure: element.structureObj },
+                    //     "1"
+                    //   )
+                    // }
                   >
-                    {element.status}
-                  </StyledStatus>
-                </td>
-                <td className="align-middle hideOnPhone">
-                  <Input
-                    type="select"
-                    id="responsable"
-                    value={element.responsable || ""}
-                    onChange={(e) => this.handleChange(e, key, element)}
-                  >
-                    <option value={""} key={-1}>
-                      Aucun
-                    </option>
-                    {responsables.map((respo, i) => (
-                      <option value={respo} key={i}>
-                        {respo}
-                      </option>
-                    ))}
-                  </Input>
-                </td>
-                <td className="align-middle hideOnPhone">
-                  <Input
-                    type="select"
-                    id="internal_action"
-                    value={element.internal_action || ""}
-                    onChange={(e) => this.handleChange(e, key, element)}
-                  >
-                    <option value={""} key={-1}>
-                      Aucun
-                    </option>
-                    {internal_actions.map((action, i) => (
-                      <option value={action} key={i}>
-                        {action}
-                      </option>
-                    ))}
-                  </Input>
-                </td>
-                <td className="align-middle hideOnPhone">
-                  {(element.children || []).length || 0}
-                </td>
-                <td className="align-middle pointer fit-content">
-                  <FButton
-                    type="error"
-                    name="trash-outline"
-                    onClick={() => this.prepareDeleteContrib(element)}
-                  />
-                </td>
-                <td className="align-middle">
-                  <FButton
-                    tag={NavLink}
-                    to={
-                      "/" +
-                      (element.typeContenu || "dispositif") +
-                      "/" +
-                      element._id
+                    {getStructure(element)}
+                  </td>
+                  <td
+                    className={
+                      "align-middle petit-texte depuis color-" +
+                      (element.status === "Actif"
+                        ? "focus"
+                        : element.joursDepuis > 30
+                        ? "rouge"
+                        : element.joursDepuis > 10
+                        ? "orange"
+                        : "vert")
                     }
-                    type="light-action"
-                    name="eye-outline"
-                    fill={variables.noir}
-                  />
-                </td>
-                <td className="align-middle">
-                  <FButton
-                    type="validate"
-                    name="checkmark-outline"
-                    fill={variables.noir}
-                    onClick={() => this.update_status(element)}
-                  />
-                </td>
-                <Tooltip
-                  target={"titre-" + key}
-                  isOpen={element.tooltip}
-                  toggle={() => this.toggleTooltip(key)}
-                >
-                  {element.titre}
-                </Tooltip>
-              </tr>
-            );
-          })} */}
+                  >
+                    {moment(element.updatedAt).fromNow()}
+                  </td>
+                  <td className="align-middle">
+                    <StyledStatus
+                      className={
+                        "status-pill bg-" + colorStatut(element.status)
+                      }
+                    >
+                      {"TO DO"}
+                    </StyledStatus>
+                  </td>
+                  <td className="align-middle hideOnPhone">{element.status}</td>
+
+                  <td className="align-middle">
+                    <FButton
+                      tag={NavLink}
+                      to={
+                        "/" +
+                        (element.typeContenu || "dispositif") +
+                        "/" +
+                        element._id
+                      }
+                      type="light-action"
+                      name="eye-outline"
+                      fill={variables.noir}
+                    />
+                  </td>
+                  <td className="align-middle">
+                    <FButton
+                      type="validate"
+                      name="checkmark-outline"
+                      fill={variables.noir}
+                      onClick={() => this.update_status(element)}
+                    />
+                  </td>
+                  <td className="align-middle pointer fit-content">
+                    <FButton
+                      type="error"
+                      name="trash-outline"
+                      onClick={() => this.prepareDeleteContrib(element)}
+                    />
+                  </td>
+                  {/* <Tooltip
+                    target={"titre-" + key}
+                    isOpen={element.tooltip}
+                    toggle={() => this.toggleTooltip(key)}
+                  >
+                    {element.titre}
+                  </Tooltip> */}
+                </tr>
+              );
+            })}
         </tbody>
       </Table>
     </div>
