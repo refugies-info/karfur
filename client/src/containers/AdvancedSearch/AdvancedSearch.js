@@ -1657,7 +1657,7 @@ export const ResponsiveFooter = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
     languei18nCode: state.langue.languei18nCode,
     user: state.user.user,
     langues: state.langue.langues,

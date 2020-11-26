@@ -1,7 +1,7 @@
 import {
   SET_DISPOSITIFS,
   FETCH_DISPOSITIFS,
-} from "../Dispositif/dispositif.actionTypes";
+} from "./activeDispositifs.actionTypes";
 import { ActionType, action } from "typesafe-actions";
 import { Dispositif } from "../../@types/interface";
 
@@ -15,4 +15,4 @@ const actions = {
   fetchDispositifsActionCreator,
 };
 
-export type DispositifActions = ActionType<typeof actions>;
+export type ActiveDispositifsActions = ActionType<typeof actions>;

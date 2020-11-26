@@ -8,7 +8,7 @@ import {
   finishLoading,
   LoadingStatusKey,
 } from "../LoadingStatus/loadingStatus.actions";
-import { fetchDispositifsActionCreator } from "../Dispositif/dispositif.actions";
+import { fetchDispositifsActionCreator } from "../ActiveDispositifs/activeDispositifs.actions";
 
 export function* fetchLangues(): SagaIterator {
   try {
@@ -35,7 +35,7 @@ export function* toggleLangue(): SagaIterator {
 function* latestActionsSaga() {
   yield all([
     takeLatest(FETCH_LANGUES, fetchLangues),
-    takeLatest(TOGGLE_LANGUE, toggleLangue)
+    takeLatest(TOGGLE_LANGUE, toggleLangue),
   ]);
 }
 

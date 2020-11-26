@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
+import { fetchDispositifsActionCreator } from "../../services/ActiveDispositifs/activeDispositifs.actions";
 import {
   fetchLanguesActionCreator,
   toggleLangueModalActionCreator,
@@ -202,7 +202,7 @@ const mapStateToProps = (state) => {
     languei18nCode: state.langue.languei18nCode,
     showLangModal: state.langue.showLangModal,
     langues: state.langue.langues,
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
     isLanguagesLoading:
       state.loadingStatus[LoadingStatusKey.FETCH_LANGUES] &&
       state.loadingStatus[LoadingStatusKey.FETCH_LANGUES].isLoading,

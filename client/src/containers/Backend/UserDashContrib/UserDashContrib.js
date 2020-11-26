@@ -10,7 +10,7 @@ import { ObjectifsModal, ContributeurModal } from "../../../components/Modals";
 import { ContribTable } from "../../../components/Backend/UserProfile";
 import { avancement_contrib } from "../UserProfile/data";
 import { deleteContrib } from "../UserProfile/functions";
-import { fetchDispositifsActionCreator } from "../../../services/Dispositif/dispositif.actions";
+import { fetchDispositifsActionCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 
 import "./UserDashContrib.scss";
 

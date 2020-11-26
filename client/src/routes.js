@@ -22,7 +22,13 @@ import {
 } from "./containers/Annuaire/AnnuaireLecture";
 
 const routes = [
-  { path: "/", exact: true, name: "Réfugiés.info", component: HomePage, restriction: [] },
+  {
+    path: "/",
+    exact: true,
+    name: "Réfugiés.info",
+    component: HomePage,
+    restriction: [],
+  },
   { path: "/homepage", name: "Accueil", component: HomePage, restriction: [] },
 
   {
@@ -220,12 +226,12 @@ const routes = [
     component: Admin,
     restriction: ["Admin"],
   },
-  {
-    path: "/backend/admin-contenu",
-    name: "AdminContenu",
-    component: AdminContenu,
-    restriction: ["Admin"],
-  },
+  // {
+  //   path: "/backend/admin-contenu",
+  //   name: "AdminContenu",
+  //   component: AdminContenu,
+  //   restriction: ["Admin"],
+  // },
   {
     path: "/backend/user-dashboard",
     name: "Espace traduction",

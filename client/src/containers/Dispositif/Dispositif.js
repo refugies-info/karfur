@@ -47,7 +47,7 @@ import { Tags } from "./Tags";
 import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
-import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
+import { fetchDispositifsActionCreator } from "../../services/ActiveDispositifs/activeDispositifs.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
 import SideTrad from "./SideTrad/SideTrad";
