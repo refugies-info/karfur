@@ -12,6 +12,7 @@ import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus
 import { setSelectedStructureActionCreator } from "../../../services/SelectedStructure/selectedStructure.actions";
 import { Header } from "./components/Header";
 import Skeleton from "react-loading-skeleton";
+import { Event } from "../../../tracking/dispatch";
 
 const MainContainer = styled.div`
   display: flex;
@@ -113,6 +114,8 @@ export const AnnuaireLectureComponent = (props: Props) => {
     window.addEventListener("scroll", handleScroll);
     // @ts-ignore
     window.scrollTo(0, 0);
+
+    Event("ANNUAIRE_VIEW", "", "");
     return () => {
       // @ts-ignore
       window.removeEventListener("scroll", handleScroll);
