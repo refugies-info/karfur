@@ -8,7 +8,7 @@ import {
   finishLoading,
   LoadingStatusKey,
 } from "../LoadingStatus/loadingStatus.actions";
-import { fetchDispositifsActionCreator } from "../Dispositif/dispositif.actions";
+import { fetchActiveDispositifsActionsCreator } from "../ActiveDispositifs/activeDispositifs.actions";
 
 export function* fetchLangues(): SagaIterator {
   try {
@@ -25,7 +25,7 @@ export function* fetchLangues(): SagaIterator {
 
 export function* toggleLangue(): SagaIterator {
   try {
-    yield put(fetchDispositifsActionCreator());
+    yield put(fetchActiveDispositifsActionsCreator());
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log("Error while setting dispositifs", { error });
@@ -35,7 +35,7 @@ export function* toggleLangue(): SagaIterator {
 function* latestActionsSaga() {
   yield all([
     takeLatest(FETCH_LANGUES, fetchLangues),
-    takeLatest(TOGGLE_LANGUE, toggleLangue)
+    takeLatest(TOGGLE_LANGUE, toggleLangue),
   ]);
 }
 

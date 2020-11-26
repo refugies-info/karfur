@@ -93,7 +93,7 @@ const NoSearchModalContainer = styled.div`
 const SeeAllButton = styled.button`
   display: flex;
   flex-direction: row;
-  background: ${props => props.black ? "#212121" : "#ffffff"};
+  background: ${(props) => (props.black ? "#212121" : "#ffffff")};
   border-radius: 12px;
   padding: 8px;
   height: 65px;
@@ -103,7 +103,7 @@ const SeeAllButton = styled.button`
   &:focus {
     //color: transparent;
     outline: none !important;
-  };
+  }
   border: 0px;
 `;
 
@@ -131,7 +131,7 @@ const SeeAllSectionTitle = styled.p`
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
-  color:${props => props.white ? "#ffffff" : "#828282"};
+  color: ${(props) => (props.white ? "#ffffff" : "#828282")};
   margin-left: 10px;
   margin-bottom: 0px;
   align-self: center;
@@ -276,28 +276,34 @@ const AdvancedSearchBar = (props) => {
         (searchThemes.length === 0 && searchDispositifs.length === 0 ? (
           <NoSearchModalContainer ref={wrapperRef}>
             <NoResultPlaceholder />
-            <SeeAllButton black onClick={() => {
-              setSearchText("");
-              if (props.location.pathname === "/advanced-search") {
-                props.history.replace("/advanced-search");
-                window.location.reload();
-              } else {
-              props.history.push("/advanced-search");
-              }
-            }}>
-            <Streamline
-            width={25}
-            height={25}
-            name={"menu"}
-            stroke={"#ffffff"} />
-            <SeeAllSectionTitle white>Voir toutes les fiches</SeeAllSectionTitle>
-            <div style={{position: "absolute", right: 16}}>
-            <EVAIcon
-            name="arrow-forward-outline"
-            fill={"#ffffff"}
-            size={"large"}
-          />
-          </div>
+            <SeeAllButton
+              black
+              onClick={() => {
+                setSearchText("");
+                if (props.location.pathname === "/advanced-search") {
+                  props.history.replace("/advanced-search");
+                  window.location.reload();
+                } else {
+                  props.history.push("/advanced-search");
+                }
+              }}
+            >
+              <Streamline
+                width={25}
+                height={25}
+                name={"menu"}
+                stroke={"#ffffff"}
+              />
+              <SeeAllSectionTitle white>
+                Voir toutes les fiches
+              </SeeAllSectionTitle>
+              <div style={{ position: "absolute", right: 16 }}>
+                <EVAIcon
+                  name="arrow-forward-outline"
+                  fill={"#ffffff"}
+                  size={"large"}
+                />
+              </div>
             </SeeAllButton>
           </NoSearchModalContainer>
         ) : (
@@ -362,8 +368,8 @@ const AdvancedSearchBar = (props) => {
                   </>
                 ) : (
                   <>
-                  <SectionTitle>Thèmes</SectionTitle>
-                  <NoResultPlaceholder />
+                    <SectionTitle>Thèmes</SectionTitle>
+                    <NoResultPlaceholder />
                   </>
                 )}
               </ResultSection>
@@ -462,34 +468,37 @@ const AdvancedSearchBar = (props) => {
                   </>
                 ) : (
                   <>
-                  <SectionTitle>Fiches</SectionTitle>
-                  <NoResultPlaceholder />
+                    <SectionTitle>Fiches</SectionTitle>
+                    <NoResultPlaceholder />
                   </>
                 )}
               </ResultSection>
             </div>
-            <SeeAllButton onClick={() => {
-              setSearchText("");
-              if (props.location.pathname === "/advanced-search") {
-                props.history.replace("/advanced-search");
-                window.location.reload();
-              } else {
-              props.history.push("/advanced-search");
-              }
-            }}>
-            <Streamline
-            width={25}
-            height={25}
-            name={"menu"}
-            stroke={"#828282"} />
-            <SeeAllSectionTitle>Voir toutes les fiches</SeeAllSectionTitle>
-            <div style={{position: "absolute", right: 16}}>
-            <EVAIcon
-            name="arrow-forward-outline"
-            fill={"#828282"}
-            size={"large"}
-          />
-          </div>
+            <SeeAllButton
+              onClick={() => {
+                setSearchText("");
+                if (props.location.pathname === "/advanced-search") {
+                  props.history.replace("/advanced-search");
+                  window.location.reload();
+                } else {
+                  props.history.push("/advanced-search");
+                }
+              }}
+            >
+              <Streamline
+                width={25}
+                height={25}
+                name={"menu"}
+                stroke={"#828282"}
+              />
+              <SeeAllSectionTitle>Voir toutes les fiches</SeeAllSectionTitle>
+              <div style={{ position: "absolute", right: 16 }}>
+                <EVAIcon
+                  name="arrow-forward-outline"
+                  fill={"#828282"}
+                  size={"large"}
+                />
+              </div>
             </SeeAllButton>
           </SearchModalContainer>
         ))}
@@ -499,7 +508,7 @@ const AdvancedSearchBar = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
   };
 };
 

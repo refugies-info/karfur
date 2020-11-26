@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import { langueReducer, LangueState } from "./Langue/langue.reducer";
 import {
-  dispositifReducer,
-  DispositifState,
-} from "./Dispositif/dispositif.reducer";
+  activeDispositifsReducer,
+  ActiveDispositifsState,
+} from "./ActiveDispositifs/activeDispositifs.reducer";
 import {
   structureReducer,
   StructureState,
@@ -35,7 +35,7 @@ import {
 export interface RootState {
   user: UserState;
   langue: LangueState;
-  dispositif: DispositifState;
+  activeDispositifs: ActiveDispositifsState;
   tts: TtsState;
   structure: StructureState;
   selectedDispositif: SelectedDispositifState;
@@ -48,7 +48,7 @@ export const appReducer = (history: any) =>
   combineReducers({
     router: connectRouter(history),
     langue: langueReducer,
-    dispositif: dispositifReducer,
+    activeDispositifs: activeDispositifsReducer,
     user: userReducer,
     tts: ttsReducer,
     // structure should not be used, we should not need all data from all structures in front

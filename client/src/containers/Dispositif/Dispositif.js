@@ -47,7 +47,7 @@ import { Tags } from "./Tags";
 import { LeftSideDispositif } from "../../components/Frontend/Dispositif/LeftSideDispositif";
 import { BandeauEdition } from "../../components/Frontend/Dispositif/BandeauEdition";
 import { TopRightHeader } from "../../components/Frontend/Dispositif/TopRightHeader";
-import { fetchDispositifsActionCreator } from "../../services/Dispositif/dispositif.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../services/ActiveDispositifs/activeDispositifs.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import ContribCaroussel from "./ContribCaroussel/ContribCaroussel";
 import SideTrad from "./SideTrad/SideTrad";
@@ -2208,7 +2208,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  fetchDispositifs: fetchDispositifsActionCreator,
+  fetchDispositifs: fetchActiveDispositifsActionsCreator,
   fetchUser: fetchUserActionCreator,
   fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
   updateUiArray: updateUiArrayActionCreator,
