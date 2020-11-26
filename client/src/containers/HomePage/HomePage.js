@@ -406,7 +406,6 @@ export class HomePage extends Component {
 const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
-    dispositifs: state.dispositif.dispositifs,
   };
 };
 

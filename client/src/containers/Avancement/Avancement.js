@@ -1022,7 +1022,7 @@ export class Avancement extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
     userId: state.user.userId,
     isAdmin: state.user.admin,
     isExpert: state.user.expertTrad,
