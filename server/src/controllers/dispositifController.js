@@ -25,5 +25,5 @@ module.exports = function (app) {
     dispositif.get_dispo_progression
   );
   app.post("/getDispositifs", getDispositifs);
-  app.post("/getAllDispositifs", getAllDispositifs);
+  app.get("/getAllDispositifs", getAllDispositifs);
 };

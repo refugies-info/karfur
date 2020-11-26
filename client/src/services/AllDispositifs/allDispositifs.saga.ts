@@ -13,19 +13,16 @@ import {
 
 export function* fetchAllDispositifs(): SagaIterator {
   try {
+    logger.info("[fetchAllDispositifs saga]");
     yield put(startLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
-
-    const langue = yield select(langueSelector);
-    const data = yield call(API.getDispositifs, {
-      query: {},
-      demarcheId: { $exists: false },
-      locale: langue,
-    });
-
+    const data = yield call(API.getAllDispositifs);
     yield put(setAllDispositifsActionsCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
   } catch (error) {
-    logger.error("Error while fetching dispositifs", { error });
+    logger.error(
+      "[fetchAllDispositifs saga] Error while fetching dispositifs",
+      { error }
+    );
     yield put(setAllDispositifsActionsCreator([]));
     yield put(finishLoading(LoadingStatusKey.FETCH_ALL_DISPOSITIFS));
   }

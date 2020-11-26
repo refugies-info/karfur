@@ -2,6 +2,7 @@ const logger = require("../../logger");
 import Dispositif from "../../schema/schemaDispositif";
 import { turnToLocalized, turnJSONtoHTML } from "./functions";
 import { Res, RequestFromClient, IDispositif } from "../../types/interface";
+import { getDispositifsFromDB } from "./dispositif.repository";
 
 const getDispositifArray = async (query: any) => {
   const neededFields = {
@@ -108,18 +109,32 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
   try {
     logger.info("[getAllDispositifs] called");
 
-    // const dispositifArray = await getDispositifArray(query);
-    // const adaptedDispositifArray = removeUselessContent(dispositifArray);
-    // const array = [];
+    const neededFields = {
+      titreInformatif: 1,
+      titreMarque: 1,
+      updated_at: 1,
+      status: 1,
+    };
 
-    // array.forEach.call(adaptedDispositifArray, (dispositif) => {
-    //   turnToLocalized(dispositif, locale);
-    //   turnJSONtoHTML(dispositif.contenu);
-    // });
+    const dispositifs = await getDispositifsFromDB(neededFields);
+
+    const adaptedDispositifs = dispositifs.map((dispositif) => {
+      const jsonDispositif = dispositif.toJSON();
+
+      return {
+        ...jsonDispositif,
+        mainSponsor: jsonDispositif.mainSponsor
+          ? {
+              _id: jsonDispositif.mainSponsor._id,
+              nom: jsonDispositif.mainSponsor.nom,
+            }
+          : "",
+      };
+    });
 
     res.status(200).json({
       text: "Succès",
-      // data: adaptedDispositifArray,
+      data: adaptedDispositifs,
     });
   } catch (error) {
     logger.error("[getAllDispositifs] error while getting dispositifs", {
