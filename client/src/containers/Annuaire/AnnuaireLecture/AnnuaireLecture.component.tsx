@@ -122,11 +122,20 @@ export const AnnuaireLectureComponent = (props: Props) => {
     };
   }, [dispatch]);
 
-  const groupedStructureByLetter = structures
-    ? _.groupBy(structures, (structure) =>
-        structure.nom ? structure.nom[0].toLowerCase() : "no name"
+  // we do not show our temporary structure in production
+  const filterStructures = structures
+    ? structures.filter(
+        // @ts-ignore
+        (structure) => structure._id !== "5e5fdb7b361338004e16e75f"
       )
     : [];
+
+  const groupedStructureByLetter =
+    filterStructures && filterStructures.length > 0
+      ? _.groupBy(filterStructures, (structure) =>
+          structure.nom ? structure.nom[0].toLowerCase() : "no name"
+        )
+      : [];
 
   const letters = Object.keys(groupedStructureByLetter).sort();
 

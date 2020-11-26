@@ -66,11 +66,20 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
     window.scrollTo(0, 0);
   }, [dispatch, structureId, locale]);
 
-  const groupedStructureByLetter = structures
-    ? _.groupBy(structures, (structure) =>
-        structure.nom ? structure.nom[0].toLowerCase() : "no name"
+  // we do not show our temporary structure in production
+  const filterStructures = structures
+    ? structures.filter(
+        // @ts-ignore
+        (structure) => structure._id !== "5f69cb9c0aab6900460c0f3f"
       )
     : [];
+
+  const groupedStructureByLetter =
+    filterStructures && filterStructures.length > 0
+      ? _.groupBy(filterStructures, (structure) =>
+          structure.nom ? structure.nom[0].toLowerCase() : "no name"
+        )
+      : [];
 
   const letters = Object.keys(groupedStructureByLetter).sort();
 
