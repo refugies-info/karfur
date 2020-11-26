@@ -2,8 +2,8 @@ import { SagaIterator } from "redux-saga";
 import { takeLatest, put, call, select } from "redux-saga/effects";
 import { langueSelector } from "../Langue/langue.selectors";
 import API from "../../utils/API";
-import { FETCH_DISPOSITIFS } from "./activeDispositifs.actionTypes";
-import { setDispositifsActionsCreator } from "./activeDispositifs.actions";
+import { FETCH_ACTIVE_DISPOSITIFS } from "./activeDispositifs.actionTypes";
+import { setActiveDispositifsActionsCreator } from "./activeDispositifs.actions";
 import { logger } from "../../logger";
 import {
   startLoading,
@@ -11,9 +11,9 @@ import {
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
 
-export function* fetchDispositifs(): SagaIterator {
+export function* fetchActiveDispositifs(): SagaIterator {
   try {
-    yield put(startLoading(LoadingStatusKey.FETCH_DISPOSITIFS));
+    yield put(startLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
 
     const langue = yield select(langueSelector);
     const data = yield call(API.getDispositifs, {
@@ -22,17 +22,17 @@ export function* fetchDispositifs(): SagaIterator {
       locale: langue,
     });
 
-    yield put(setDispositifsActionsCreator(data.data.data));
-    yield put(finishLoading(LoadingStatusKey.FETCH_DISPOSITIFS));
+    yield put(setActiveDispositifsActionsCreator(data.data.data));
+    yield put(finishLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
   } catch (error) {
     logger.error("Error while fetching dispositifs", { error });
-    yield put(setDispositifsActionsCreator([]));
-    yield put(finishLoading(LoadingStatusKey.FETCH_DISPOSITIFS));
+    yield put(setActiveDispositifsActionsCreator([]));
+    yield put(finishLoading(LoadingStatusKey.FETCH_ACTIVE_DISPOSITIFS));
   }
 }
 
 function* latestActionsSaga() {
-  yield takeLatest(FETCH_DISPOSITIFS, fetchDispositifs);
+  yield takeLatest(FETCH_ACTIVE_DISPOSITIFS, fetchActiveDispositifs);
 }
 
 export default latestActionsSaga;

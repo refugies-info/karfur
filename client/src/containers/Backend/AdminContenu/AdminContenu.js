@@ -6,7 +6,7 @@ import moment from "moment/min/moment-with-locales";
 import _ from "lodash";
 import Swal from "sweetalert2";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { fetchDispositifsActionCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 import { deleteContrib } from "../UserProfile/functions";
 import { colorStatut } from "../../../components/Functions/ColorFunctions";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -587,6 +587,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetchDispositifs: fetchDispositifsActionCreator };
+const mapDispatchToProps = { fetchDispositifs: fetchActiveDispositifsActionsCreator };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminContenu);

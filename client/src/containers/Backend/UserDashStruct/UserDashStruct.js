@@ -34,7 +34,7 @@ import {
 } from "../UserProfile/functions";
 import { selectItem, editMember, addMember } from "./functions";
 import DateOffset from "../../../components/Functions/DateOffset";
-import { fetchDispositifsActionCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 
 import "./UserDashStruct.scss";
 import variables from "scss/colors.scss";
@@ -467,7 +467,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  fetchDispositifs: fetchDispositifsActionCreator,
+  fetchDispositifs: fetchActiveDispositifsActionsCreator,
   setStructure: setUserStructureActionCreator,
   updateStructure: updateUserStructureActionCreator,
 };

@@ -11,7 +11,7 @@ import Cookies from "js-cookie";
 
 import Toolbar from "../Toolbar/Toolbar";
 import SideDrawer from "../../components/Navigation/SideDrawer/SideDrawer";
-import { fetchDispositifsActionCreator } from "../../services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../services/ActiveDispositifs/activeDispositifs.actions";
 import {
   fetchLanguesActionCreator,
   toggleLangueModalActionCreator,
@@ -212,7 +212,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   fetchStructures: fetchStructuresActionCreator,
   fetchLangues: fetchLanguesActionCreator,
-  fetchDispositifs: fetchDispositifsActionCreator,
+  fetchDispositifs: fetchActiveDispositifsActionsCreator,
   fetchUser: fetchUserActionCreator,
   toggleLangueModal: toggleLangueModalActionCreator,
   toggleLangue: toggleLangueActionCreator,

@@ -11,5 +11,5 @@ export const activeDispositifsReducer = createReducer<
   ActiveDispositifsState,
   ActiveDispositifsActions
 >(initialActiveDispositifsState, {
-  SET_DISPOSITIFS: (state, action) => action.payload,
+  SET_ACTIVE_DISPOSITIFS: (state, action) => action.payload,
 });

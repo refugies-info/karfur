@@ -10,7 +10,7 @@ import { ObjectifsModal, ContributeurModal } from "../../../components/Modals";
 import { ContribTable } from "../../../components/Backend/UserProfile";
 import { avancement_contrib } from "../UserProfile/data";
 import { deleteContrib } from "../UserProfile/functions";
-import { fetchDispositifsActionCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 
 import "./UserDashContrib.scss";
 
@@ -216,6 +216,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetchDispositifs: fetchDispositifsActionCreator };
+const mapDispatchToProps = { fetchDispositifs: fetchActiveDispositifsActionsCreator };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashContrib);
