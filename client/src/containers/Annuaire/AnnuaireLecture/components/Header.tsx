@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import img from "../../../../assets/annuaire/annuaire_lecture.svg";
 import { Letter } from "./Letter";
-// @ts-ignore
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
 

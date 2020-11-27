@@ -14,7 +14,6 @@ import {
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
-// @ts-ignore
 import styled from "styled-components";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";

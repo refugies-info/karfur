@@ -19,6 +19,8 @@ export interface PropsBeforeInjection {
   history: any;
 }
 
+declare const window: Window;
+
 const Content = styled.div`
   display: flex;
   flex-direction: row;
@@ -26,6 +28,12 @@ const Content = styled.div`
   margin-top: 80px;
   height: 100hv;
 `;
+declare global {
+  interface Window {
+    scrollTo: (arg1: number, arg2: number) => void;
+    innerHeight: number;
+  }
+}
 
 const MainContainer = styled.div``;
 
@@ -33,13 +41,10 @@ function useWindowSize() {
   const [size, setSize] = useState(0);
   useLayoutEffect(() => {
     function updateSize() {
-      // @ts-ignore
       setSize(window.innerHeight);
     }
-    // @ts-ignore
     window.addEventListener("resize", updateSize);
     updateSize();
-    // @ts-ignore
     return () => window.removeEventListener("resize", updateSize);
   }, []);
   return size;
@@ -59,9 +64,8 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
     props.match && props.match.params && props.match.params.id;
 
   const structures = useSelector(structuresSelector);
-
+  console.log("test", typeof window);
   const locale = i18n.language;
-  // @ts-ignore
   const leftPartHeight = height - 150;
   useEffect(() => {
     const loadStructure = async () => {
@@ -80,7 +84,6 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
       loadStructure();
     }
 
-    // @ts-ignore
     window.scrollTo(0, 0);
   }, [dispatch, structureId, locale]);
 

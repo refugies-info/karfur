@@ -14,6 +14,8 @@ import { Header } from "./components/Header";
 import Skeleton from "react-loading-skeleton";
 import { Event } from "../../../tracking/dispatch";
 
+declare const window: Window;
+
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -91,7 +93,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
   );
 
   const handleScroll = () => {
-    // @ts-ignore
     const currentScrollPos = window.pageYOffset;
 
     if (currentScrollPos >= 175) {
@@ -110,14 +111,11 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
     loadStructures();
 
-    // @ts-ignore
     window.addEventListener("scroll", handleScroll);
-    // @ts-ignore
     window.scrollTo(0, 0);
 
     Event("ANNUAIRE_VIEW", "", "");
     return () => {
-      // @ts-ignore
       window.removeEventListener("scroll", handleScroll);
     };
   }, [dispatch]);

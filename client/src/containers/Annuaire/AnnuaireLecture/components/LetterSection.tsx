@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Structure, Picture } from "../../../../@types/interface";
 import "./LetterSection.scss";
-// @ts-ignore
 import LinesEllipsis from "react-lines-ellipsis";
 import { ObjectId } from "mongodb";
 
