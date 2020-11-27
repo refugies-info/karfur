@@ -23,8 +23,8 @@ const Content = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  margin-top: 75px;
-  height: 90hv;
+  margin-top: 80px;
+  height: 100hv;
 `;
 
 const MainContainer = styled.div``;
@@ -62,7 +62,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
 
   const locale = i18n.language;
   // @ts-ignore
-  const leftPartHeight = height - 145;
+  const leftPartHeight = height - 150;
   useEffect(() => {
     const loadStructure = async () => {
       await dispatch(
