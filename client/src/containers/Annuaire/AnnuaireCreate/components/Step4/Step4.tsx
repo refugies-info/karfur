@@ -39,7 +39,7 @@ const HelpContainer = styled.div`
   flex-direction: row;
   background: #2d9cdb;
   border-radius: 12px;
-  width: 800px;
+  width: 740px;
   padding: 16px;
   margin-bottom: 24px;
   position: relative;
