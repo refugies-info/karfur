@@ -30,7 +30,7 @@ const dashHeader = (props) => {
               (dispositif) => dispositif.status === "Actif"
             )
           : [];
-
+      console.log("props", props.structure);
       return (
         <Row className="header-structure">
           <Col xl="6" lg="6" md="12" sm="12" xs="12" className="mt-10">
@@ -153,6 +153,18 @@ const dashHeader = (props) => {
           </h2>
         </Col>
         <Col className="tableau-header align-right">
+          {
+            <FButton
+              type="dark"
+              className="mr-8"
+              name="book-outline"
+              tag={NavLink}
+              to={`/annuaire/${props.structure._id}`}
+              target="_blank"
+            >
+              Voir la fiche annuaire
+            </FButton>
+          }
           {showAnnuaireModification &&
             !props.structure.hasResponsibleSeenNotification && (
               <FButton
