@@ -7,7 +7,7 @@ import NoResultsBackgroundImage from "../../../../../assets/no_results.svg";
 import "./RightAnnuaireDetails.scss";
 
 const Container = styled.div`
-  width: 360px;
+  width: 300px;
   overflow: scroll;
   height: ${(props) => props.height}px;
   padding: 32px;
@@ -26,6 +26,13 @@ const TitleContainer = styled.div`
   margin-bottom: 20px;
 `;
 
+// on firefox behaviour is strange with overflow, we have to add an empty container to have margin
+const BottomContainer = styled.div`
+  margin-top: 75px;
+  width: 100%;
+  height: 5px;
+  color: #e5e5e5;
+`;
 const NoDispositifsImage = styled.div`
   display: flex;
   flex-direction: column;
@@ -120,6 +127,7 @@ export const RightAnnuaireDetails = (props: Props) => {
             </CardContainer>
           ))}
       </DispositifsContainer>
+      <BottomContainer>s</BottomContainer>
     </Container>
   );
 };

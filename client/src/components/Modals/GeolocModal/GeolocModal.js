@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-// @ts-ignore
 import styled from "styled-components";
-// @ts-ignore
 import Icon from "react-eva-icons";
 import { filtres } from "../../../containers/Dispositif/data";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -134,7 +132,6 @@ const GeolocModal = (props) => {
       department.toLowerCase().includes(e.target.value.toLowerCase())
     );
 
-    // @ts-ignore
     setDepartments(filteredDepartments);
   };
 

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 
+declare const window: Window;
 const ButtonContainer = styled.div`
   padding-top: 4px;
   padding-bottom: 4px;
@@ -16,7 +17,6 @@ interface Props {
 
 const onLinkClicked = (link: string | undefined) => {
   if (!link) return;
-  // @ts-ignore
   window.open((link.includes("http") ? "" : "http://") + link, "_blank");
 };
 export const SocialsLink = (props: Props) => (

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import "./AnnuaireDetail.scss";
 import { fetchSelectedStructureActionCreator } from "../../../../services/SelectedStructure/selectedStructure.actions";
@@ -19,15 +19,36 @@ export interface PropsBeforeInjection {
   history: any;
 }
 
+declare const window: Window;
+
 const Content = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  margin-top: 75px;
-  height: 90hv;
+  margin-top: 80px;
+  height: 100hv;
 `;
+declare global {
+  interface Window {
+    scrollTo: (arg1: number, arg2: number) => void;
+    innerHeight: number;
+  }
+}
 
 const MainContainer = styled.div``;
+
+function useWindowSize() {
+  const [size, setSize] = useState(0);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize(window.innerHeight);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
 
 export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   const isLoading = useSelector(
@@ -35,7 +56,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   );
 
   const structure = useSelector(selectedStructureSelector);
-
+  const height = useWindowSize();
   const dispatch = useDispatch();
   // @ts-ignore
   const structureId =
@@ -43,8 +64,8 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
     props.match && props.match.params && props.match.params.id;
 
   const structures = useSelector(structuresSelector);
-
   const locale = i18n.language;
+  const leftPartHeight = height - 150;
   useEffect(() => {
     const loadStructure = async () => {
       await dispatch(
@@ -62,7 +83,6 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
       loadStructure();
     }
 
-    // @ts-ignore
     window.scrollTo(0, 0);
   }, [dispatch, structureId, locale]);
 
@@ -83,9 +103,6 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
 
   const letters = Object.keys(groupedStructureByLetter).sort();
 
-  // @ts-ignore
-  const leftPartHeight = window.screen.height - 225;
-
   if (isLoading || !structure) {
     return (
       <MainContainer>
@@ -96,7 +113,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
           t={props.t}
         />
 
-        <Content className="annuaire-detail" height={leftPartHeight}>
+        <Content className="annuaire-detail">
           <LeftAnnuaireDetail
             structure={structure}
             leftPartHeight={leftPartHeight}
@@ -122,7 +139,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
         t={props.t}
       />
 
-      <Content className="annuaire-detail" height={leftPartHeight}>
+      <Content className="annuaire-detail">
         <LeftAnnuaireDetail
           structure={structure}
           leftPartHeight={leftPartHeight}
