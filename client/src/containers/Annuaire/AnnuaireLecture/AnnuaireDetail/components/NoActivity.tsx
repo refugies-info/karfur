@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const CardContainer = styled.div`
-  width: 200px;
-  height: 224px;
+  width: 222px;
+  height: 260px;
   background: #fbfbfb;
   border-radius: 12px;
   padding: 16px;
   margin-right: 16px;
+  margin-bottom: 16px;
 `;
 
 const GreyContainer = styled.div`
