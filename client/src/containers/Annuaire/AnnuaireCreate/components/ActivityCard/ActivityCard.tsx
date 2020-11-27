@@ -2,6 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import placeholder from "../../../../../assets/placeholder_annuaire.png";
 import "./ActivityCard.scss";
+import { ThemeButton } from "../../../../../components/FigmaUI/ThemeButton/ThemeButton";
+import i18n from "../../../../../i18n";
+import { Tag } from "../../../../../@types/interface";
 
 interface Props {
   activity: string;
@@ -11,11 +14,13 @@ interface Props {
   isSelected: boolean;
   image: any | null;
   isLectureMode: boolean;
+  t?: any;
+  tag?: Tag;
 }
 
 const CardContainer = styled.div`
   width: 220px;
-  height: 220px;
+  height: ${(props) => (props.isLectureMode ? "260px" : "220px")};
   background: ${(props) => (props.isSelected ? props.lightColor : "#ffffff")};
   border-color: ${(props) =>
     props.isSelected
@@ -66,18 +71,32 @@ const Text = styled.div`
   flex-direction: column;
   text-align: center;
 `;
-export const ActivityCard = (props: Props) => (
-  <CardContainer
-    lightColor={props.lightColor}
-    darkColor={props.darkColor}
-    onClick={() => props.selectActivity(props.activity)}
-    isSelected={props.isSelected}
-    isLectureMode={props.isLectureMode}
-  >
-    <ImageContainer>
-      {!props.image && <img src={placeholder} className="image" />}
-      <div>{props.image && <props.image className="image" />}</div>
-    </ImageContainer>
-    <Text>{props.activity}</Text>
-  </CardContainer>
-);
+const TagContainer = styled.div`
+  width: fit-content;
+  height: 30px;
+  background: red;
+  font-size: 12px;
+  line-height: 15px;
+`;
+export const ActivityCard = (props: Props) => {
+  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+
+  return (
+    <CardContainer
+      lightColor={props.lightColor}
+      darkColor={props.darkColor}
+      onClick={() => props.selectActivity(props.activity)}
+      isSelected={props.isSelected}
+      isLectureMode={props.isLectureMode}
+    >
+      <ImageContainer>
+        {!props.image && <img src={placeholder} className="image" />}
+        <div>{props.image && <props.image className="image" />}</div>
+      </ImageContainer>
+      <Text>{props.activity}</Text>
+      {props.isLectureMode && props.tag && (
+        <ThemeButton isRTL={isRTL} tag={props.tag} t={props.t} />
+      )}
+    </CardContainer>
+  );
+};
