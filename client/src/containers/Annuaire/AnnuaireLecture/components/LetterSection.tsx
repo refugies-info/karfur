@@ -67,13 +67,22 @@ interface StructureCardProps {
 }
 const StructureCard = (props: StructureCardProps) => (
   <StructureCardContainer onClick={() => props.onStructureCardClick(props.id)}>
-    {props.picture && props.picture.secure_url && (
-      <img
-        className="sponsor-img"
-        src={props.picture.secure_url}
-        alt={props.acronyme}
-      />
-    )}
+    <div
+      style={{
+        width: "150px",
+        height: "100px",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      {props.picture && props.picture.secure_url && (
+        <img
+          className="sponsor-img"
+          src={props.picture.secure_url}
+          alt={props.acronyme}
+        />
+      )}
+    </div>
     {(!props.picture || !props.picture.secure_url) && <div></div>}
     <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
   </StructureCardContainer>
