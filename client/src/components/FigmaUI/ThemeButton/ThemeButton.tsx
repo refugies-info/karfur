@@ -8,7 +8,7 @@ const ThemeButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding: 8px;
-  border-radius: 12px;
+  border-radius: 8px;
   justify-content: center;
   align-items: center;
   height: fit-content;
