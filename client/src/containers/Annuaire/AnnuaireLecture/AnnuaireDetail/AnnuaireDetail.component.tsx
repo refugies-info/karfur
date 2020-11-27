@@ -64,7 +64,6 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
     props.match && props.match.params && props.match.params.id;
 
   const structures = useSelector(structuresSelector);
-  console.log("test", typeof window);
   const locale = i18n.language;
   const leftPartHeight = height - 150;
   useEffect(() => {

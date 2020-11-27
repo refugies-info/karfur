@@ -30,7 +30,6 @@ const dashHeader = (props) => {
               (dispositif) => dispositif.status === "Actif"
             )
           : [];
-      console.log("props", props.structure);
       return (
         <Row className="header-structure">
           <Col xl="6" lg="6" md="12" sm="12" xs="12" className="mt-10">

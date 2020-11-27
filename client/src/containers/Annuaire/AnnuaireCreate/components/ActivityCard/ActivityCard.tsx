@@ -71,13 +71,7 @@ const Text = styled.div`
   flex-direction: column;
   text-align: center;
 `;
-const TagContainer = styled.div`
-  width: fit-content;
-  height: 30px;
-  background: red;
-  font-size: 12px;
-  line-height: 15px;
-`;
+
 export const ActivityCard = (props: Props) => {
   const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
