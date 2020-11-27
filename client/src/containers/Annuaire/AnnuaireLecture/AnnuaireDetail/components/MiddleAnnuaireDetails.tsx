@@ -55,8 +55,12 @@ const WhiteContainer = styled.div`
   margin-right: 8px;
 `;
 
+// on firefox behaviour is strange with overflow, we have to add an empty container to have margin
 const BottomContainer = styled.div`
-  margin-top: 60px;
+  margin-top: 80px;
+  width: 100%;
+  height: 250px;
+  color: #e5e5e5;
 `;
 const RedContainer = styled.div`
   background: #ffcecb;
@@ -316,7 +320,8 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             </>
           )}
         </ActivityContainer>
-        <BottomContainer />
+
+        <BottomContainer>{"s"}</BottomContainer>
       </MiddleContainer>
     );
   }
