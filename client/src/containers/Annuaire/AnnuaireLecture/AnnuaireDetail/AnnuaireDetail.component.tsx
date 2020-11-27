@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import styled from "styled-components";
 import "./AnnuaireDetail.scss";
 import { fetchSelectedStructureActionCreator } from "../../../../services/SelectedStructure/selectedStructure.actions";
@@ -29,13 +29,29 @@ const Content = styled.div`
 
 const MainContainer = styled.div``;
 
+function useWindowSize() {
+  const [size, setSize] = useState(0);
+  useLayoutEffect(() => {
+    function updateSize() {
+      // @ts-ignore
+      setSize(window.innerHeight);
+    }
+    // @ts-ignore
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    // @ts-ignore
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
+
 export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_SELECTED_STRUCTURE)
   );
 
   const structure = useSelector(selectedStructureSelector);
-
+  const height = useWindowSize();
   const dispatch = useDispatch();
   // @ts-ignore
   const structureId =
@@ -45,6 +61,8 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
   const structures = useSelector(structuresSelector);
 
   const locale = i18n.language;
+  // @ts-ignore
+  const leftPartHeight = height - 145;
   useEffect(() => {
     const loadStructure = async () => {
       await dispatch(
@@ -83,9 +101,6 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
 
   const letters = Object.keys(groupedStructureByLetter).sort();
 
-  // @ts-ignore
-  const leftPartHeight = window.screen.height - 225;
-
   if (isLoading || !structure) {
     return (
       <MainContainer>
@@ -96,7 +111,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
           t={props.t}
         />
 
-        <Content className="annuaire-detail" height={leftPartHeight}>
+        <Content className="annuaire-detail">
           <LeftAnnuaireDetail
             structure={structure}
             leftPartHeight={leftPartHeight}
@@ -122,7 +137,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
         t={props.t}
       />
 
-      <Content className="annuaire-detail" height={leftPartHeight}>
+      <Content className="annuaire-detail">
         <LeftAnnuaireDetail
           structure={structure}
           leftPartHeight={leftPartHeight}
