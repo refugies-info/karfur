@@ -12,15 +12,15 @@ const customTabPane = (props) => {
       <TabPane tabId="0" className="no-padding">
         <AdminContenu />
       </TabPane>
-      {/* <TabPane tabId="1">
-        <StructuresTab />
+      <TabPane tabId="1">
+        <StructuresTab {...props} />
       </TabPane>
       <TabPane tabId="2">
-        <UsersTab />
+        <UsersTab {...props} />
       </TabPane>
       <TabPane tabId="3" className="no-padding">
         <Dashboard />
-      </TabPane> */}
+      </TabPane>
     </>
   );
 };
