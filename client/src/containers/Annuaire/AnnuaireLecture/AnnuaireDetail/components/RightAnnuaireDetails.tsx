@@ -24,6 +24,7 @@ const TitleContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 20px;
+  margin-left: 24px;
 `;
 
 const NoDispositifsImage = styled.div`

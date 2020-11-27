@@ -55,6 +55,9 @@ const WhiteContainer = styled.div`
   margin-right: 8px;
 `;
 
+const BottomContainer = styled.div`
+  margin-top: 60px;
+`;
 const RedContainer = styled.div`
   background: #ffcecb;
   border-radius: 12px;
@@ -313,6 +316,7 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             </>
           )}
         </ActivityContainer>
+        <BottomContainer />
       </MiddleContainer>
     );
   }
