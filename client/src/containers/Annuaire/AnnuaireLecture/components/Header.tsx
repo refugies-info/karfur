@@ -7,6 +7,7 @@ import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
 
 const HeaderContainer = styled.div`
+  background-attachment: fixed;
   background-image: url(${img});
   height: 330px;
   width: 100%;
