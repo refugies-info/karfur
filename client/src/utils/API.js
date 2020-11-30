@@ -239,9 +239,13 @@ export default {
     );
   },
 
-  getStructureById: (id, withDisposAssocies, withLocalizedDispositifs) =>
+  getStructureById: (
+    id,
+    withDisposAssocies,
+    localeOfLocalizedDispositifsAssocies
+  ) =>
     axios.get(burl + "/structures/getStructureById", {
-      params: { id, withDisposAssocies, withLocalizedDispositifs },
+      params: { id, withDisposAssocies, localeOfLocalizedDispositifsAssocies },
     }),
 
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
@@ -315,24 +319,6 @@ export default {
 
   getLanguages: () => axios.get(burl + "/langues/getLanguages"),
 
-  create_theme: (query) => {
-    return axios.post(burl + "/themes/create_theme", query, {
-      headers: headers,
-    });
-  },
-  get_themes: (query, sort, populate) => {
-    return axios.post(
-      burl + "/themes/get_themes",
-      { query: query, sort: sort, populate: populate },
-      { headers: headers }
-    );
-  },
-
-  add_channel: (query) => {
-    return axios.post(burl + "/channels/add_channel", query, {
-      headers: headers,
-    });
-  },
   get_channel: (query, sort, populate) => {
     return axios.post(
       burl + "/channels/get_channel",

@@ -335,7 +335,7 @@ const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
     langues: state.langue.langues,
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
     user: state.user.user,
     traducteur: state.user.traducteur,
     expertTrad: state.user.expertTrad,

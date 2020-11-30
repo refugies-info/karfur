@@ -13,7 +13,8 @@ const Container = styled.div`
 
 interface Props {
   type: string;
+  t: any;
 }
 export const StructureType = (props: Props) => (
-  <Container>{props.type}</Container>
+  <Container>{props.t("Annuaire." + props.type, props.type)}</Container>
 );

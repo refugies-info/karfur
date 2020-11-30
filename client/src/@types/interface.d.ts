@@ -165,18 +165,19 @@ export interface Structure {
   status: string;
   updatedAt: Moment;
   picture: Picture;
-  structureTypes: string[];
-  websites: string[];
-  facebook: string;
-  linkedin: string;
-  twitter: string;
-  activities: string[];
-  departments: string[];
-  phonesPublic: string[];
-  adressPublic: string;
-  openingHours: OpeningHours;
-  description: string;
+  structureTypes?: string[];
+  websites?: string[];
+  facebook?: string;
+  linkedin?: string;
+  twitter?: string;
+  activities?: string[];
+  departments?: string[];
+  phonesPublic?: string[];
+  adressPublic?: string;
+  openingHours?: OpeningHours;
+  description?: string;
   hasResponsibleSeenNotification?: boolean;
+  mailsPublic?: string[];
 }
 
 export interface SimplifiedStructure {

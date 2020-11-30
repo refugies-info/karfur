@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { Dispositif } from "../../../../../@types/interface";
 import { ObjectId } from "mongodb";
 import SearchResultCard from "../../../../AdvancedSearch/SearchResultCard";
+import NoResultsBackgroundImage from "../../../../../assets/no_results.svg";
+import "./RightAnnuaireDetails.scss";
 
 const Container = styled.div`
-  width: 360px;
+  width: 300px;
   overflow: scroll;
   height: ${(props) => props.height}px;
   padding: 32px;
@@ -24,6 +26,23 @@ const TitleContainer = styled.div`
   margin-bottom: 20px;
 `;
 
+// on firefox behaviour is strange with overflow, we have to add an empty container to have margin
+const BottomContainer = styled.div`
+  margin-top: 75px;
+  width: 100%;
+  height: 5px;
+  color: #e5e5e5;
+`;
+const NoDispositifsImage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(${NoResultsBackgroundImage});
+  width: 223px;
+  height: 158px;
+  margin-top: 24px;
+`;
+
 const FigureContainer = styled.div`
   background: #ffffff;
   box-shadow: 0px 4px 8px rgba(33, 33, 33, 0.25);
@@ -34,11 +53,13 @@ const FigureContainer = styled.div`
   height: fit-content;
   width: fit-content;
   padding: 4px;
+  color: ${(props) => (props.red ? "#F44336" : "#212121")};
 `;
 
 const DispositifsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const CardContainer = styled.div`
@@ -50,10 +71,20 @@ const CardContainer = styled.div`
   margin-left: 24px;
   z-index: 0;
 `;
+const NoDispositifText = styled.div`
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: #828282;
+  margin-right: 24px;
+  margin-left: 24px;
+`;
+
 interface Props {
   leftPartHeight: number;
   dispositifsAssocies: ObjectId[] | Dispositif[];
   history: any;
+  t: any;
 }
 export const RightAnnuaireDetails = (props: Props) => {
   // @ts-ignore
@@ -62,14 +93,27 @@ export const RightAnnuaireDetails = (props: Props) => {
   );
   const nbActiveDispositifs = activeDispositifsAssocies.length;
   return (
-    <Container height={props.leftPartHeight}>
+    <Container height={props.leftPartHeight} className="right-annuaire">
       <TitleContainer>
-        <Title>À lire</Title>
-        <FigureContainer>{nbActiveDispositifs}</FigureContainer>
+        <Title>{props.t("Annuaire.A lire", "À lire")}</Title>
+        <FigureContainer red={nbActiveDispositifs === 0}>
+          {nbActiveDispositifs}
+        </FigureContainer>
       </TitleContainer>
       <DispositifsContainer>
-        {activeDispositifsAssocies.map((dispositif: Dispositif) => {
-          return (
+        {nbActiveDispositifs === 0 && (
+          <>
+            <NoDispositifText>
+              {props.t(
+                "Annuaire.noDispositif",
+                "Oups! Cette structure n'a pas encore rédigé de fiche."
+              )}
+            </NoDispositifText>
+            <NoDispositifsImage />
+          </>
+        )}
+        {nbActiveDispositifs > 0 &&
+          activeDispositifsAssocies.map((dispositif: Dispositif) => (
             <CardContainer key={dispositif._id}>
               <SearchResultCard
                 // @ts-ignore
@@ -81,9 +125,9 @@ export const RightAnnuaireDetails = (props: Props) => {
                 showPinned={false}
               />
             </CardContainer>
-          );
-        })}
+          ))}
       </DispositifsContainer>
+      <BottomContainer>s</BottomContainer>
     </Container>
   );
 };

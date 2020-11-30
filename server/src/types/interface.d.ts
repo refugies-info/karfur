@@ -34,6 +34,8 @@ export interface OpeningHours {
   precisions?: string;
 }
 
+export type Dispositif = any;
+
 export interface IStructure {
   _id: ObjectId;
   membres: { userId: ObjectId; roles: string[] }[];

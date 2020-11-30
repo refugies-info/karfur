@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import img from "../../../../assets/annuaire/annuaire_lecture.svg";
 import { Letter } from "./Letter";
-// @ts-ignore
 import { NavHashLink } from "react-router-hash-link";
+import i18n from "../../../../i18n";
 
 const HeaderContainer = styled.div`
+  background-attachment: fixed;
   background-image: url(${img});
   height: 330px;
   width: 100%;
@@ -26,6 +27,7 @@ const TextContainer = styled.div`
   width: fit-content;
   margin-top: 146px;
   margin-left: 72px;
+  margin-right: ${(props) => props.isRTL && "72px"};
 `;
 
 const LettersContainer = styled.div`
@@ -36,6 +38,7 @@ const LettersContainer = styled.div`
   bottom: 0px;
   display: flex;
   flex-direction: row;
+  margin-right: ${(props) => props.isRTL && "72px"};
 `;
 
 interface Props {
@@ -45,26 +48,31 @@ interface Props {
   t: any;
 }
 
-export const Header = (props: Props) => (
-  <HeaderContainer stopScroll={props.stopScroll}>
-    <TextContainer>{props.t("Annuaire.Annuaire", "Annuaire")}</TextContainer>
-    <LettersContainer>
-      <>
-        {props.letters.map((letter, index) => (
-          <NavHashLink
-            to={`/annuaire#${letter.toUpperCase()}`}
-            smooth={true}
-            key={letter}
-          >
-            <Letter
-              letter={letter}
-              index={props.letters.length - index}
-              //   onLetterClick={props.onLetterClick}
-              isSelected={false}
-            />
-          </NavHashLink>
-        ))}
-      </>
-    </LettersContainer>
-  </HeaderContainer>
-);
+export const Header = (props: Props) => {
+  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
+  return (
+    <HeaderContainer stopScroll={props.stopScroll}>
+      <TextContainer isRTL={isRTL}>
+        {props.t("Annuaire.Annuaire", "Annuaire")}
+      </TextContainer>
+      <LettersContainer isRTL={isRTL}>
+        <>
+          {props.letters.map((letter, index) => (
+            <NavHashLink
+              to={`/annuaire#${letter.toUpperCase()}`}
+              smooth={true}
+              key={letter}
+            >
+              <Letter
+                letter={letter}
+                index={props.letters.length - index}
+                //   onLetterClick={props.onLetterClick}
+                isSelected={false}
+              />
+            </NavHashLink>
+          ))}
+        </>
+      </LettersContainer>
+    </HeaderContainer>
+  );
+};

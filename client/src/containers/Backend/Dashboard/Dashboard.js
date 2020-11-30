@@ -183,7 +183,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     langues: state.langue.langues,
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
   };
 };
 

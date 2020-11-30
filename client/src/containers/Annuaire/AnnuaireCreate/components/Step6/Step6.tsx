@@ -3,6 +3,8 @@ import styled from "styled-components";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import gif from "../../../../../assets/annuaire/GIF-annuaire.gif";
 import "./Step6.scss";
+import { NavLink } from "react-router-dom";
+import { ObjectId } from "mongodb";
 
 const Title = styled.div`
   font-weight: bold;
@@ -12,7 +14,11 @@ const Title = styled.div`
   margin-bottom: 24px;
   width: 700px;
 `;
-export const Step6 = () => (
+
+interface Props {
+  structureId: string | ObjectId;
+}
+export const Step6 = (props: Props) => (
   <div className="step6">
     <div style={{ marginTop: "24px" }}>
       <img src={gif} className="gif" />
@@ -21,8 +27,10 @@ export const Step6 = () => (
       Vos informations sont désormais disponibles dans l’annuaire des acteurs de
       l’intégration.
     </Title>
-    <FButton type="dark" name="eye-outline">
-      Voir ma structure dans l'annuaire
-    </FButton>
+    <NavLink to={`/annuaire/${props.structureId}`}>
+      <FButton type="dark" name="eye-outline">
+        Voir ma structure dans l'annuaire
+      </FButton>
+    </NavLink>
   </div>
 );

@@ -24,6 +24,7 @@ import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { Structure } from "../../../@types/interface";
 
+declare const window: Window;
 interface Props {
   history: any;
 }
@@ -142,13 +143,11 @@ export const AnnuaireCreateComponent = (props: Props) => {
     updateStructure();
     setStep(step + 1);
     setHasModifications(false);
-    // @ts-ignore
     window.scrollTo(0, 0);
   };
 
   const onBackClick = () => {
     setStep(step - 1);
-    // @ts-ignore
     window.scrollTo(0, 0);
   };
 
@@ -279,7 +278,9 @@ export const AnnuaireCreateComponent = (props: Props) => {
                 setHasModifications={setHasModifications}
               />
             )}
-            {step === 6 && <Step6 />}
+            {step === 6 && (
+              <Step6 structureId={structure ? structure._id : ""} />
+            )}
           </>
         )}
         {isLoading && (

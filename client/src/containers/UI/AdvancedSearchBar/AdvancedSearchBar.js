@@ -562,7 +562,7 @@ const AdvancedSearchBar = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
   };
 };
 

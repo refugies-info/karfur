@@ -9,8 +9,10 @@ import { ObjectId } from "mongodb";
 export const setSelectedStructureActionCreator = (value: Structure | null) =>
   action(SET_SELECTED_STRUCTURE, value);
 
-export const fetchSelectedStructureActionCreator = (id: ObjectId) =>
-  action(FETCH_SELECTED_STRUCTURE, id);
+export const fetchSelectedStructureActionCreator = (value: {
+  id: ObjectId;
+  locale: string;
+}) => action(FETCH_SELECTED_STRUCTURE, value);
 
 const actions = {
   setSelectedStructureActionCreator,
