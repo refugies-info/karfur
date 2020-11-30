@@ -13,6 +13,7 @@ import { colorAvancement } from "../../components/Functions/ColorFunctions";
 import { diffData } from "./data";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
+import Skeleton from "react-loading-skeleton";
 import produce from "immer";
 
 import "./Avancement.scss";
@@ -52,7 +53,7 @@ export class Avancement extends Component {
       mainView: true,
       title: diffData.all.title,
       headers: diffData.all.headers,
-
+      loader: false,
       langue: {},
       data: [],
       themes: [],
@@ -108,12 +109,14 @@ export class Avancement extends Component {
       i18nCode = await this._loadLangue(itemId, isExpert);
     }
     this._loadArticles(itemId, i18nCode);
+    this.setState({ loader: true });
     API.get_tradForReview({
       query: { langueCible: i18nCode },
       sort: { updatedAt: -1 },
       populate: "userId",
     }).then((data) => {
       this.setState({ traductionsFaites: data.data.data });
+      this.setState({ loader: false });
     });
     // this._loadThemes();
     this.setState({ itemId, isExpert, isLangue });
@@ -896,7 +899,7 @@ export class Avancement extends Component {
           <Col>
             <h2>
               <NavLink to="/backend/user-profile" className="my-breadcrumb">
-                Mon profil
+                {"Mon profil"}
               </NavLink>{" "}
               /{" "}
               <NavLink to="/backend/user-dashboard" className="my-breadcrumb">
@@ -928,7 +931,7 @@ export class Avancement extends Component {
               (this.state.toTranslate ? "focus text-white" : "white")
             }
           >
-            {"À traduire (" + this.state.toTranslateCount + ")"}
+            {"À traduire"  + (!this.state.loader ? ( " (" + this.state.toTranslateCount + ")") : "")}
           </StyledStatus>
           {isExpert ? (
             <StyledStatus
@@ -938,7 +941,7 @@ export class Avancement extends Component {
                 (this.state.review ? colorStatut("Supprimé") : "white")
               }
             >
-              {"À revoir (" + this.state.reviewCount + ")"}
+              {"À revoir"  + (!this.state.loader ? ( " (" + this.state.reviewCount + ")") : "")}
             </StyledStatus>
           ) : null}
           {isExpert ? (
@@ -949,7 +952,7 @@ export class Avancement extends Component {
                 (this.state.waiting ? colorStatut("Brouillon") : "white")
               }
             >
-              {"À valider (" + this.state.waitingCount + ")"}
+              {"À valider"  + (!this.state.loader ? ( " (" + this.state.waitingCount + ")") : "")}
             </StyledStatus>
           ) : null}
           <StyledStatus
@@ -959,7 +962,7 @@ export class Avancement extends Component {
               (this.state.published ? colorStatut("Publié") : "white")
             }
           >
-            {"Publiées (" + this.state.publishedCount + ")"}
+            {"Publiées"  + (!this.state.loader ? ( " (" + this.state.publishedCount + ")") : "")}
           </StyledStatus>
           <StyledStatus
             onClick={() => this.reorderOnTopType("demarche")}
@@ -968,7 +971,7 @@ export class Avancement extends Component {
               (this.state.demarche ? "black text-white" : "white")
             }
           >
-            {"Démarches (" + this.state.demarcheCount + ")"}
+            {"Démarches" + (!this.state.loader ? ( " " + this.state.demarcheCount + ")") : "")}
           </StyledStatus>
           <StyledStatus
             onClick={() => this.reorderOnTopType("dispositif")}
@@ -977,7 +980,7 @@ export class Avancement extends Component {
               (this.state.dispositif ? "black text-white" : "white")
             }
           >
-            {"Dispositifs (" + this.state.dispositifCount + ")"}
+            {"Dispositifs" + (!this.state.loader ? ( " (" + this.state.dispositifCount + ")") : "")}
           </StyledStatus>
           <StyledStatus
             onClick={() => this.reorderOnTopType("string")}
@@ -986,7 +989,7 @@ export class Avancement extends Component {
               (this.state.string ? "black text-white" : "white")
             }
           >
-            {"Interface (" + this.state.stringCount + ")"}
+            {"Interface" + (!this.state.loader ? (" (" + this.state.stringCount + ")") : "")}
           </StyledStatus>
           <StyledInput
             type="text"
@@ -1006,7 +1009,7 @@ export class Avancement extends Component {
     </Row>*/}
 
         <div className="tableau">
-          <Table responsive className="avancement-user-table">
+          <Table responsive className={"avancement-user-table" + (this.state.loader ? " loader-table" : "")}>
             <thead>
               <tr>
                 {this.state.headers.map((element, key) => {
@@ -1036,7 +1039,36 @@ export class Avancement extends Component {
               </tr>
             </thead>
             <tbody>
-              <AvancementData />
+              {this.state.loader ? [...Array(10).keys()].map((elem, key) => (
+                <tr key={key} style={{backgroundColor: "#ffffff", padding: "10px", lineHeight: "30px"}}>
+                  <td style={{borderRadius: "12px 0px 0px 12px"}}>
+                    <Skeleton />
+                  </td>
+                  <td>
+                    <Skeleton />
+                  </td>
+                  <td>
+                    <Skeleton />
+                  </td>
+                  <td>
+                    <Skeleton />
+                  </td>
+                  <td>
+                    <Skeleton />
+                  </td>
+                  <td>
+                    <Skeleton />
+                  </td>
+                  <td>
+                    <Skeleton />
+                  </td>
+                  <td style={{borderRadius: "0px 12px 12px 0px"}}>
+                    <Skeleton />
+                  </td>
+                </tr>
+              )) : (
+                <AvancementData />
+              )}
             </tbody>
           </Table>
         </div>

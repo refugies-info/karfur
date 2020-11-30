@@ -12,6 +12,7 @@ import { filtres } from "../../Dispositif/data";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import useOutsideClick from "./useOutsideClick";
+import i18n from "../../../i18n";
 
 import "./AdvancedSearchBar.scss";
 import variables from "scss/colors.scss";
@@ -75,7 +76,8 @@ const SearchModalContainer = styled.div`
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
   padding: 8px;
   top: 100px;
-  right: 100px;
+  right: ${(props) => (props.rtl ? null : "100px")};
+  left: ${(props) => (props.rtl ? "100px" : null)};
 `;
 
 const NoSearchModalContainer = styled.div`
@@ -87,13 +89,15 @@ const NoSearchModalContainer = styled.div`
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
   padding: 8px;
   top: 100px;
-  right: 100px;
+  right: ${(props) => (props.rtl ? null : "100px")};
+  left: ${(props) => (props.rtl ? "100px" : null)};
 `;
 
 const SeeAllButton = styled.button`
   display: flex;
   flex-direction: row;
-  background: ${props => props.black ? "#212121" : "#ffffff"};
+  justify-content: space-between;
+  background: ${(props) => (props.black ? "#212121" : "#ffffff")};
   border-radius: 12px;
   padding: 8px;
   height: 65px;
@@ -103,7 +107,7 @@ const SeeAllButton = styled.button`
   &:focus {
     //color: transparent;
     outline: none !important;
-  };
+  }
   border: 0px;
 `;
 
@@ -111,6 +115,7 @@ const ResultSection = styled.div`
   background: #ffffff;
   border-radius: 12px;
   margin-right: ${(props) => (props.mr ? "8px" : "0px")};
+  margin-left: ${(props) => (props.ml ? "8px" : null)};
   height: 280px;
   width: 50%;
   padding: 8px;
@@ -131,8 +136,9 @@ const SeeAllSectionTitle = styled.p`
   font-style: normal;
   font-weight: bold;
   font-size: 22px;
-  color:${props => props.white ? "#ffffff" : "#828282"};
-  margin-left: 10px;
+  color: ${(props) => (props.white ? "#ffffff" : "#828282")};
+  margin-left: ${(props) => (props.rtl ? null : "10px")};
+  margin-right: ${(props) => (props.rtl ? "10px" : null)};
   margin-bottom: 0px;
   align-self: center;
 `;
@@ -152,7 +158,8 @@ const ThemeText = styled.p`
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 0px;
-  margin-left: 8px;
+  margin-left: ${props => props.rtl ? null : "8px"};
+  margin-right: ${props => props.rtl ? "8px" : null};
 `;
 
 const ThemeActionText = styled.p`
@@ -194,6 +201,8 @@ const AdvancedSearchBar = (props) => {
   const [isSearchModalVisible, toggleSearchModal] = useState(false);
 
   var wrapperRef = useRef();
+
+  const isRTL = ["ar", "ps", "fa"].includes(i18n.language);
 
   useOutsideClick(wrapperRef, () => {
     toggleSearchModal(false);
@@ -274,37 +283,65 @@ const AdvancedSearchBar = (props) => {
       </SearchBarContainer>
       {isSearchModalVisible &&
         (searchThemes.length === 0 && searchDispositifs.length === 0 ? (
-          <NoSearchModalContainer ref={wrapperRef}>
+          <NoSearchModalContainer rtl={isRTL} ref={wrapperRef}>
             <NoResultPlaceholder />
-            <SeeAllButton black onClick={() => {
-              setSearchText("");
-              if (props.location.pathname === "/advanced-search") {
-                props.history.replace("/advanced-search");
-                window.location.reload();
-              } else {
-              props.history.push("/advanced-search");
-              }
-            }}>
-            <Streamline
-            width={25}
-            height={25}
-            name={"menu"}
-            stroke={"#ffffff"} />
-            <SeeAllSectionTitle white>Voir toutes les fiches</SeeAllSectionTitle>
-            <div style={{position: "absolute", right: 16}}>
-            <EVAIcon
-            name="arrow-forward-outline"
-            fill={"#ffffff"}
-            size={"large"}
-          />
-          </div>
+            <SeeAllButton
+              black
+              onClick={() => {
+                setSearchText("");
+                if (props.location.pathname === "/advanced-search") {
+                  props.history.replace("/advanced-search");
+                  window.location.reload();
+                } else {
+                  props.history.push("/advanced-search");
+                }
+              }}
+            >
+               <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+              <Streamline
+                width={25}
+                height={25}
+                name={"menu"}
+                stroke={"#ffffff"}
+              />
+              <SeeAllSectionTitle rtl={isRTL} white>
+                {props.t(
+                  "AdvancedSearch.Voir les fiches",
+                  "Voir toutes les fiches"
+                )}
+              </SeeAllSectionTitle>
+              </div>
+              <div style={{}}>
+                {isRTL ? (
+                  <EVAIcon
+                    name="arrow-back-outline"
+                    fill={"#ffffff"}
+                    size={"large"}
+                  />
+                ) : (
+                  <EVAIcon
+                    name="arrow-forward-outline"
+                    fill={"#ffffff"}
+                    size={"large"}
+                  />
+                )}
+              </div>
             </SeeAllButton>
           </NoSearchModalContainer>
         ) : (
-          <SearchModalContainer ref={wrapperRef}>
+          <SearchModalContainer rtl={isRTL} ref={wrapperRef}>
             <div />
             <div style={{ display: "flex", flexDirection: "row" }}>
-              <ResultSection mr>
+              <ResultSection
+                mr={isRTL ? false : true}
+                ml={isRTL ? true : false}
+              >
                 {searchThemes.length > 0 ? (
                   <>
                     <SectionTitle>Thèmes</SectionTitle>
@@ -339,11 +376,12 @@ const AdvancedSearchBar = (props) => {
                           <ThemeActionText
                             color={selectedTag ? selectedTag.darkColor : null}
                           >
-                            {selectedTag.name[0].toUpperCase() +
-                              selectedTag.name.slice(1)}
+                            {props.t("Tags." + selectedTag.name, selectedTag.name)[0].toUpperCase() +
+                              props.t("Tags." + selectedTag.name, selectedTag.name).slice(1)}
                           </ThemeActionText>
                           <ThemeButton
-                            ml
+                            ml={isRTL ? false : true}
+                            mr={isRTL ? true : false}
                             color={selectedTag ? selectedTag.darkColor : null}
                           >
                             <Streamline
@@ -352,8 +390,8 @@ const AdvancedSearchBar = (props) => {
                               width={22}
                               height={22}
                             />
-                            <ThemeText>
-                              {selectedTag ? selectedTag.short : null}
+                            <ThemeText rtl={isRTL}>
+                              {selectedTag ? props.t("Tags." + selectedTag.short, selectedTag.short) : null}
                             </ThemeText>
                           </ThemeButton>
                         </ThemeContainer>
@@ -362,8 +400,8 @@ const AdvancedSearchBar = (props) => {
                   </>
                 ) : (
                   <>
-                  <SectionTitle>Thèmes</SectionTitle>
-                  <NoResultPlaceholder />
+                    <SectionTitle>Thèmes</SectionTitle>
+                    <NoResultPlaceholder />
                   </>
                 )}
               </ResultSection>
@@ -392,7 +430,8 @@ const AdvancedSearchBar = (props) => {
                         >
                           <ThemeButton
                             color={selectedTag ? selectedTag.darkColor : null}
-                            mr
+                            mr={isRTL ? false : true}
+                            ml={isRTL ? true: false}
                           >
                             <Streamline
                               name={selectedTag ? selectedTag.icon : null}
@@ -462,34 +501,58 @@ const AdvancedSearchBar = (props) => {
                   </>
                 ) : (
                   <>
-                  <SectionTitle>Fiches</SectionTitle>
-                  <NoResultPlaceholder />
+                    <SectionTitle>Fiches</SectionTitle>
+                    <NoResultPlaceholder />
                   </>
                 )}
               </ResultSection>
             </div>
-            <SeeAllButton onClick={() => {
-              setSearchText("");
-              if (props.location.pathname === "/advanced-search") {
-                props.history.replace("/advanced-search");
-                window.location.reload();
-              } else {
-              props.history.push("/advanced-search");
-              }
-            }}>
-            <Streamline
-            width={25}
-            height={25}
-            name={"menu"}
-            stroke={"#828282"} />
-            <SeeAllSectionTitle>Voir toutes les fiches</SeeAllSectionTitle>
-            <div style={{position: "absolute", right: 16}}>
-            <EVAIcon
-            name="arrow-forward-outline"
-            fill={"#828282"}
-            size={"large"}
-          />
-          </div>
+            <SeeAllButton
+              onClick={() => {
+                setSearchText("");
+                if (props.location.pathname === "/advanced-search") {
+                  props.history.replace("/advanced-search");
+                  window.location.reload();
+                } else {
+                  props.history.push("/advanced-search");
+                }
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Streamline
+                  width={25}
+                  height={25}
+                  name={"menu"}
+                  stroke={"#828282"}
+                />
+                <SeeAllSectionTitle rtl={isRTL}>
+                  {props.t(
+                    "AdvancedSearch.Voir les fiches",
+                    "Voir toutes les fiches"
+                  )}
+                </SeeAllSectionTitle>
+              </div>
+              <div style={{}}>
+                {isRTL ? (
+                  <EVAIcon
+                    name="arrow-back-outline"
+                    fill={"#828282"}
+                    size={"large"}
+                  />
+                ) : (
+                  <EVAIcon
+                    name="arrow-forward-outline"
+                    fill={"#828282"}
+                    size={"large"}
+                  />
+                )}
+              </div>
             </SeeAllButton>
           </SearchModalContainer>
         ))}
