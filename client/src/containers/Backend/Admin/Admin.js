@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Badge, Col, Row, Nav, NavItem, NavLink, TabContent } from "reactstrap";
+import { Col, Row, Nav, NavItem, NavLink, TabContent } from "reactstrap";
 import Swal from "sweetalert2";
-import { connect } from "react-redux";
 import _ from "lodash";
 import passwdCheck from "zxcvbn";
 import produce from "immer";
@@ -9,7 +8,6 @@ import produce from "immer";
 import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
 import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import { fetchStructuresActionCreator } from "../../../services/Structure/structure.actions";
 
 import "./Admin.scss";
 import variables from "scss/colors.scss";
@@ -641,7 +639,5 @@ export class Admin extends Component {
     );
   }
 }
-
-// const mapDispatchToProps = { fetchStructures: fetchStructuresActionCreator };
 
 export default Admin;

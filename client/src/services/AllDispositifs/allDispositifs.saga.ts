@@ -1,6 +1,5 @@
 import { SagaIterator } from "redux-saga";
-import { takeLatest, put, call, select } from "redux-saga/effects";
-import { langueSelector } from "../Langue/langue.selectors";
+import { takeLatest, put, call } from "redux-saga/effects";
 import API from "../../utils/API";
 import { FETCH_ALL_DISPOSITIFS } from "./allDispositifs.actionTypes";
 import { setAllDispositifsActionsCreator } from "./allDispositifs.actions";

@@ -37,6 +37,8 @@ import { allDispositifsSelector } from "../../../services/AllDispositifs/allDisp
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 
+import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
+
 moment.locale("fr");
 const prioritaryStatus = [
   { name: "En attente", prio: 1 },
@@ -51,7 +53,7 @@ export const AdminContenu = () => {
   const headers = table_contenu.headers;
   const dispositifs = useSelector(allDispositifsSelector);
   const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_DISPOSITIFS)
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
   );
 
   const dispatch = useDispatch();
@@ -72,15 +74,19 @@ export const AdminContenu = () => {
       return element.mainSponsor.nom;
     return "Pas de structure";
   };
-  console.log("dispositifs", dispositifs, isLoading);
 
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div className="admin-contenu animated fadeIn">
+        <LoadingAdminContenu />
+      </div>
+    );
   }
   return (
     <div className="admin-contenu animated fadeIn">
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
+
         <StyledSort>
           <StyledStatus
           // onClick={this.reorderOnTopPubblish}
