@@ -132,6 +132,7 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
           ? {
               _id: jsonDispositif.mainSponsor._id,
               nom: jsonDispositif.mainSponsor.nom,
+              status: jsonDispositif.mainSponsor.status,
             }
           : "",
       };

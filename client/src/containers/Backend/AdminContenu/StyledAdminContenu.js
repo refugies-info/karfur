@@ -42,3 +42,8 @@ export const StyledStatus = styled.button`
   margin: 10px;
   padding: 10px;
 `;
+
+export const Content = styled.div`
+  margin-left: 8px;
+  margin-right: 8px;
+`;
