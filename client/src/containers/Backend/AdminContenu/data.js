@@ -33,15 +33,7 @@ export const table_contenu = {
     },
 
     {
-      name: "Voir",
-      hideOnPhone: false,
-    },
-    {
-      name: "Publier",
-      hideOnPhone: false,
-    },
-    {
-      name: "Suppr",
+      name: "Actions",
       hideOnPhone: false,
     },
   ],
@@ -88,6 +80,35 @@ export const status_mapping = [
     name: "Supprimé",
     color: "erreur",
   },
+];
+
+const green = "#4CAF50";
+const orange = "#FF9800";
+const yellow = "#FFEB3B";
+const red = "#F44336";
+const lightGreen = "#8BC34A";
+
+export const correspondingStatus = [
+  { storedStatus: "Actif", displayedStatus: "Publié", color: green },
+  { storedStatus: "En attente", displayedStatus: "En attente", color: orange },
+  { storedStatus: "Brouillon", displayedStatus: "Brouillon", color: yellow },
+  {
+    storedStatus: "En attente non prioritaire",
+    displayedStatus: "Sans structure",
+    color: red,
+  },
+  { storedStatus: "Rejeté structure", displayedStatus: "Rejeté", color: red },
+  {
+    storedStatus: "En attente admin",
+    displayedStatus: "A valider",
+    color: lightGreen,
+  },
+  {
+    storedStatus: "Accepté structure",
+    displayedStatus: "Accepté",
+    color: orange,
+  },
+  { storedStatus: "Supprimé", displayedStatus: "Supprimé", color: red },
 ];
 
 export const responsables = [

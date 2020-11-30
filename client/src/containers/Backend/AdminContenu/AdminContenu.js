@@ -25,7 +25,6 @@ import { customCriteres } from "../../Dispositif/MoteurVariantes/data";
 import API from "../../../utils/API";
 import {
   StyledSort,
-  StyledStatus,
   StyledTitle,
   StyledHeader,
   Content,
@@ -38,7 +37,15 @@ import { allDispositifsSelector } from "../../../services/AllDispositifs/allDisp
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
-import { TypeContenu, Title, Structure } from "./components/SubComponents";
+import {
+  TypeContenu,
+  Title,
+  Structure,
+  StyledStatus,
+  ValidateButton,
+  SeeButton,
+  DeleteButton,
+} from "./components/SubComponents";
 
 moment.locale("fr");
 const prioritaryStatus = [
@@ -48,6 +55,13 @@ const prioritaryStatus = [
   { name: "En attente non prioritaire", prio: 3 },
   { name: "Rejecté structure", prio: 4 },
 ];
+
+const url =
+  process.env.REACT_APP_ENV === "development"
+    ? "http://localhost:3000/"
+    : process.env.REACT_APP_ENV === "staging"
+    ? "https://staging.refugies.info/"
+    : "https://www.refugies.info/";
 
 export const AdminContenu = () => {
   const headers = table_contenu.headers;
@@ -76,13 +90,14 @@ export const AdminContenu = () => {
       </div>
     );
   }
+
   return (
     <div className="admin-contenu animated fadeIn">
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
 
         <StyledSort>
-          <StyledStatus
+          {/* <StyledStatus
           // onClick={this.reorderOnTopPubblish}
           // className={
           //   "status-pill bg-" +
@@ -114,7 +129,7 @@ export const AdminContenu = () => {
           // }
           >
             {"Supprimé"}
-          </StyledStatus>
+          </StyledStatus> */}
         </StyledSort>
       </StyledHeader>
       <Content>
@@ -147,6 +162,14 @@ export const AdminContenu = () => {
             {dispositifs
               .filter((disp) => disp.status === "Actif")
               .map((element, key) => {
+                const nbDays =
+                  -moment(element.updatedAt).diff(moment(), "days") + " jours";
+                const burl =
+                  url +
+                  (element.typeContenu || "dispositif") +
+                  "/" +
+                  element._id;
+
                 return (
                   <tr key={key}>
                     <td
@@ -175,69 +198,31 @@ export const AdminContenu = () => {
                     >
                       <Structure sponsor={element.mainSponsor} />
                     </td>
-                    <td
-                      className={
-                        "align-middle petit-texte depuis color-" +
-                        (element.status === "Actif"
-                          ? "focus"
-                          : element.joursDepuis > 30
-                          ? "rouge"
-                          : element.joursDepuis > 10
-                          ? "orange"
-                          : "vert")
-                      }
-                    >
-                      {moment(element.updatedAt).fromNow()}
-                    </td>
+                    <td className={"align-middle "}>{nbDays}</td>
                     <td className="align-middle">
-                      <StyledStatus
-                        className={
-                          "status-pill bg-" + colorStatut(element.status)
-                        }
-                      >
-                        {"TO DO"}
-                      </StyledStatus>
+                      <StyledStatus text="Nouveau" />
                     </td>
-                    <td className="align-middle hideOnPhone">
-                      {element.status}
+                    <td className="align-middle ">
+                      <StyledStatus text={element.status} />
                     </td>
 
                     <td className="align-middle">
-                      <FButton
-                        tag={NavLink}
-                        to={
-                          "/" +
-                          (element.typeContenu || "dispositif") +
-                          "/" +
-                          element._id
-                        }
-                        type="light-action"
-                        name="eye-outline"
-                        fill={variables.noir}
-                      />
+                      <div style={{ display: "flex", flexDirection: "row" }}>
+                        <SeeButton burl={burl} />
+                        <ValidateButton
+                          onClick={() => this.update_status(element)}
+                          disabled={
+                            element.status === "Actif" ||
+                            !element.mainSponsor ||
+                            element.mainSponsor.status !== "Actif"
+                          }
+                          hoverColor={variables.validationHover}
+                        />
+                        <DeleteButton
+                          onClick={() => this.prepareDeleteContrib(element)}
+                        />
+                      </div>
                     </td>
-                    <td className="align-middle">
-                      <FButton
-                        type="validate"
-                        name="checkmark-outline"
-                        fill={variables.noir}
-                        onClick={() => this.update_status(element)}
-                      />
-                    </td>
-                    <td className="align-middle pointer fit-content">
-                      <FButton
-                        type="error"
-                        name="trash-outline"
-                        onClick={() => this.prepareDeleteContrib(element)}
-                      />
-                    </td>
-                    {/* <Tooltip
-                    target={"titre-" + key}
-                    isOpen={element.tooltip}
-                    toggle={() => this.toggleTooltip(key)}
-                  >
-                    {element.titre}
-                  </Tooltip> */}
                   </tr>
                 );
               })}

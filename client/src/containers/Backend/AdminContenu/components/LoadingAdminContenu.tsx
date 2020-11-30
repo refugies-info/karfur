@@ -9,7 +9,7 @@ import variables from "scss/colors.scss";
 
 export const LoadingAdminContenu = () => {
   const arrayLines = new Array(12).fill("a");
-  const arrayContent = new Array(7).fill("a");
+  const arrayContent = new Array(5).fill("a");
   return (
     <>
       <StyledHeader>
@@ -42,11 +42,11 @@ export const LoadingAdminContenu = () => {
                     <Skeleton width={50} count={1} />
                   </td>
                   <td>
-                    <Skeleton width={350} count={1} />
+                    <Skeleton width={270} count={1} />
                   </td>
                   {arrayContent.map((element, key) => (
                     <td key={key}>
-                      <Skeleton width={50} count={1} />
+                      <Skeleton width={70} count={1} />
                     </td>
                   ))}
                 </tr>

@@ -36,13 +36,6 @@ export const StyledHeader = styled.div`
   width: 100%;
 `;
 
-export const StyledStatus = styled.button`
-  font-weight: bold;
-  border-radius: 6px;
-  margin: 10px;
-  padding: 10px;
-`;
-
 export const Content = styled.div`
   margin-left: 8px;
   margin-right: 8px;
