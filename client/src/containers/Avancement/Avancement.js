@@ -397,7 +397,6 @@ export class Avancement extends Component {
     ) {
       traductions = [
         ...this.props.dispositifs
-          .filter((x) => x.status === "Actif")
           .map((x) => ({
             _id: x._id,
             title:
