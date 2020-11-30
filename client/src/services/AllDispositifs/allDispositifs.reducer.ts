@@ -4,7 +4,7 @@ import { AllDispositifsActions } from "./allDispositifs.actions";
 
 export type AllDispositifsState = Dispositif[];
 
-const initialAllDispositifsState: AllDispositifsState = [];
+export const initialAllDispositifsState: AllDispositifsState = [];
 
 export const allDispositifsReducer = createReducer<
   AllDispositifsState,
