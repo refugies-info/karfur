@@ -13,6 +13,8 @@ const getDispositifArray = async (query) => {
     publishedAt: 1,
     typeContenu: 1,
     avancement: 1,
+    status: 1,
+    nbMots: 1,
   };
   if (query["audienceAge.bottomValue"]) {
     var modifiedQuery = Object.assign({}, query);
@@ -38,14 +40,14 @@ const getDispositifArray = async (query) => {
 
 const removeUselessContent = (dispositifArray) =>
   dispositifArray.map((dispositif) => {
-    const test = dispositif.contenu[1].children.map((child) => {
+    const simplifiedChildren = dispositif.contenu[1].children.map((child) => {
       if (child.title === "Zone d'action") {
         return child;
       }
       return [];
     });
 
-    const simplifiedContent = [{}, { children: test }];
+    const simplifiedContent = [{}, { children: simplifiedChildren }];
 
     return { ...dispositif, contenu: simplifiedContent };
   });
