@@ -19,7 +19,7 @@ interface Props {
 }
 
 const CardContainer = styled.div`
-  width: 220px;
+  width: 200px;
   height: ${(props) => (props.isLectureMode ? "260px" : "220px")};
   background: ${(props) => (props.isSelected ? props.lightColor : "#ffffff")};
   border-color: ${(props) =>
