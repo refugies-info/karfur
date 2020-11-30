@@ -28,6 +28,7 @@ import {
   StyledTitle,
   StyledHeader,
   Content,
+  FigureContainer,
 } from "./StyledAdminContenu";
 import produce from "immer";
 
@@ -45,6 +46,7 @@ import {
   ValidateButton,
   SeeButton,
   DeleteButton,
+  FilterButton,
 } from "./components/SubComponents";
 
 moment.locale("fr");
@@ -83,7 +85,7 @@ export const AdminContenu = () => {
     };
   }, [dispatch]);
 
-  if (isLoading) {
+  if (isLoading || dispositifs.length === 0) {
     return (
       <div className="admin-contenu animated fadeIn">
         <LoadingAdminContenu />
@@ -91,14 +93,53 @@ export const AdminContenu = () => {
     );
   }
 
+  const getNbDispositifsByStatus = (status) =>
+    dispositifs.length > 0
+      ? dispositifs.filter((dispo) => dispo.status === status).length
+      : 0;
+
   return (
     <div className="admin-contenu animated fadeIn">
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
-
+        <FigureContainer>{dispositifs.length}</FigureContainer>
         <StyledSort>
-          {/* <StyledStatus
-          // onClick={this.reorderOnTopPubblish}
+          <FilterButton
+            onClick={() => {}}
+            text={`À valider (${getNbDispositifsByStatus("En attente admin")})`}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text={`En attente (${getNbDispositifsByStatus("En attente")})`}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text={`Accepté (${getNbDispositifsByStatus("Accepté structure")})`}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text={`Brouillon (${getNbDispositifsByStatus("Brouillon")})`}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text={`Sans structure (${getNbDispositifsByStatus(
+              "En attente non prioritaire"
+            )})`}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text={`Publié (${getNbDispositifsByStatus("Actif")})`}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text={`Rejeté (${getNbDispositifsByStatus("Rejeté structure")})`}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text={`Supprimé (${getNbDispositifsByStatus("Supprimé")})`}
+          />
+
+          {/* // onClick={this.reorderOnTopPubblish}
           // className={
           //   "status-pill bg-" +
           //   (this.state.published
@@ -107,8 +148,8 @@ export const AdminContenu = () => {
           // }
           >
             {"Publié"}
-          </StyledStatus>
-          <StyledStatus
+          </FilterButton>
+          <FilterButton
           // onClick={this.reorderOnTopDraft}
           // className={
           //   "status-pill bg-" +
@@ -118,8 +159,8 @@ export const AdminContenu = () => {
           // }
           >
             {"Brouillons"}
-          </StyledStatus>
-          <StyledStatus
+          </FilterButton>
+          <FilterButton
           // onClick={this.reorderOnTopDeleted}
           // className={
           //   "status-pill bg-" +
@@ -129,7 +170,7 @@ export const AdminContenu = () => {
           // }
           >
             {"Supprimé"}
-          </StyledStatus> */}
+          </FilterButton> */}
         </StyledSort>
       </StyledHeader>
       <Content>

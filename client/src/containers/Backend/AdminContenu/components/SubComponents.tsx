@@ -193,3 +193,21 @@ export const DeleteButton = (props: { onClick: () => void }) => (
     </div>
   </ButtonContainer>
 );
+
+const FilterButtonContainer = styled.div`
+  background: #ffffff;
+  border-radius: 12px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 15px;
+  width: fit-content;
+  margin-right: 8px;
+  cursor: pointer;
+  height: fit-content;
+`;
+export const FilterButton = (props: { onClick: () => void; text: string }) => (
+  <FilterButtonContainer onClick={props.onClick}>
+    {props.text}
+  </FilterButtonContainer>
+);

@@ -1,11 +1,18 @@
 import React from "react";
-import { StyledHeader, StyledTitle, Content } from "../StyledAdminContenu";
+import {
+  StyledHeader,
+  StyledTitle,
+  Content,
+  FigureContainer,
+  StyledSort,
+} from "../StyledAdminContenu";
 import { Table } from "reactstrap";
 import { table_contenu } from "../data";
 import Skeleton from "react-loading-skeleton";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 // @ts-ignore
 import variables from "scss/colors.scss";
+import { FilterButton } from "./SubComponents";
 
 export const LoadingAdminContenu = () => {
   const arrayLines = new Array(12).fill("a");
@@ -14,6 +21,16 @@ export const LoadingAdminContenu = () => {
     <>
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
+        <FigureContainer>{"..."}</FigureContainer>
+        <StyledSort>
+          <FilterButton onClick={() => {}} text="À valider (...)" />
+          <FilterButton onClick={() => {}} text="En attente (...)" />
+          <FilterButton onClick={() => {}} text="Brouillon (...)" />
+          <FilterButton onClick={() => {}} text="Sans structure (...)" />
+          <FilterButton onClick={() => {}} text="Publié (...)" />
+          <FilterButton onClick={() => {}} text="Rejeté (...)" />
+          <FilterButton onClick={() => {}} text="Supprimé (...)" />
+        </StyledSort>
       </StyledHeader>
       <Content>
         <Table responsive borderless>
