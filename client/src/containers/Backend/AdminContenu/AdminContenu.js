@@ -98,6 +98,37 @@ export const AdminContenu = () => {
       ? dispositifs.filter((dispo) => dispo.status === status).length
       : 0;
 
+  const withoutFilterDispositifs = dispositifs
+    .filter((dispositif) =>
+      [
+        "En attente",
+        "En attente admin",
+        "Accepté structure",
+        "En attente non prioritaire",
+        "Rejeté structure",
+      ].includes(dispositif.status)
+    )
+    .sort(function (a, b) {
+      const statusA = a.status;
+      const statusB = b.status;
+      const correspondencyStatusA = _.find(
+        prioritaryStatus,
+        (status) => status.name === statusA
+      );
+      const prioStatusA = correspondencyStatusA
+        ? correspondencyStatusA.prio
+        : 5;
+      const correspondencyStatusB = _.find(
+        prioritaryStatus,
+        (status) => status.name === statusB
+      );
+      const prioStatusB = correspondencyStatusB
+        ? correspondencyStatusB.prio
+        : 5;
+
+      return prioStatusA < prioStatusB ? -1 : prioStatusA > prioStatusB ? 1 : 0;
+    });
+
   return (
     <div className="admin-contenu animated fadeIn">
       <StyledHeader>
@@ -200,73 +231,68 @@ export const AdminContenu = () => {
             </tr>
           </thead>
           <tbody>
-            {dispositifs
-              .filter((disp) => disp.status === "Actif")
-              .map((element, key) => {
-                const nbDays =
-                  -moment(element.updatedAt).diff(moment(), "days") + " jours";
-                const burl =
-                  url +
-                  (element.typeContenu || "dispositif") +
-                  "/" +
-                  element._id;
+            {withoutFilterDispositifs.map((element, key) => {
+              const nbDays =
+                -moment(element.updatedAt).diff(moment(), "days") + " jours";
+              const burl =
+                url + (element.typeContenu || "dispositif") + "/" + element._id;
 
-                return (
-                  <tr key={key}>
-                    <td
-                      className="align-middle"
-                      onClick={() =>
-                        (element.children || []).length > 0 &&
-                        this.toggleExpanded(key)
-                      }
-                    >
-                      <TypeContenu type={element.typeContenu || "dispositif"} />
-                    </td>
-                    <td className="align-middle" id={"titre-" + key}>
-                      <Title
-                        titreInformatif={element.titreInformatif}
-                        titreMarque={element.titreMarque}
+              return (
+                <tr key={key}>
+                  <td
+                    className="align-middle"
+                    onClick={() =>
+                      (element.children || []).length > 0 &&
+                      this.toggleExpanded(key)
+                    }
+                  >
+                    <TypeContenu type={element.typeContenu || "dispositif"} />
+                  </td>
+                  <td className="align-middle" id={"titre-" + key}>
+                    <Title
+                      titreInformatif={element.titreInformatif}
+                      titreMarque={element.titreMarque}
+                    />
+                  </td>
+                  <td
+                    className="align-middle cursor-pointer"
+                    // onClick={() =>
+                    //   this.props.onSelect(
+                    //     { structure: element.structureObj },
+                    //     "1"
+                    //   )
+                    // }
+                  >
+                    <Structure sponsor={element.mainSponsor} />
+                  </td>
+                  <td className={"align-middle "}>{nbDays}</td>
+                  <td className="align-middle">
+                    <StyledStatus text="Nouveau" />
+                  </td>
+                  <td className="align-middle ">
+                    <StyledStatus text={element.status} />
+                  </td>
+
+                  <td className="align-middle">
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <SeeButton burl={burl} />
+                      <ValidateButton
+                        onClick={() => this.update_status(element)}
+                        disabled={
+                          element.status === "Actif" ||
+                          !element.mainSponsor ||
+                          element.mainSponsor.status !== "Actif"
+                        }
+                        hoverColor={variables.validationHover}
                       />
-                    </td>
-                    <td
-                      className="align-middle cursor-pointer"
-                      // onClick={() =>
-                      //   this.props.onSelect(
-                      //     { structure: element.structureObj },
-                      //     "1"
-                      //   )
-                      // }
-                    >
-                      <Structure sponsor={element.mainSponsor} />
-                    </td>
-                    <td className={"align-middle "}>{nbDays}</td>
-                    <td className="align-middle">
-                      <StyledStatus text="Nouveau" />
-                    </td>
-                    <td className="align-middle ">
-                      <StyledStatus text={element.status} />
-                    </td>
-
-                    <td className="align-middle">
-                      <div style={{ display: "flex", flexDirection: "row" }}>
-                        <SeeButton burl={burl} />
-                        <ValidateButton
-                          onClick={() => this.update_status(element)}
-                          disabled={
-                            element.status === "Actif" ||
-                            !element.mainSponsor ||
-                            element.mainSponsor.status !== "Actif"
-                          }
-                          hoverColor={variables.validationHover}
-                        />
-                        <DeleteButton
-                          onClick={() => this.prepareDeleteContrib(element)}
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
+                      <DeleteButton
+                        onClick={() => this.prepareDeleteContrib(element)}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </Table>
       </Content>
