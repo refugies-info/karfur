@@ -257,7 +257,6 @@ const AdvancedSearchBar = (props) => {
           themesMatchedArray.push(key);
         }
       });
-      //console.log(`${key}: ${value}`);
     }
     setSearchThemes(themesMatchedArray);
     setSearchDispositifs(dispositifsMatchedArray);
@@ -480,7 +479,7 @@ const AdvancedSearchBar = (props) => {
                                 (elem.titreInformatif.length > 30 ? "..." : "")
                               }
                             />
-                            {" avec "}
+                            {elem.titreMarque && " avec "}
                             {elem.titreMarque ? (
                               <Highlighter
                                 //highlightClassName="highlighter"
