@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose, { ObjectId } from "mongoose";
+import { Picture, OpeningHours } from "src/types/interface";
+import { Moment } from "moment";
 
-var structureSchema = mongoose.Schema(
+var structureSchema = new mongoose.Schema(
   {
     nom: {
       type: String,
@@ -68,11 +70,11 @@ var structureSchema = mongoose.Schema(
       required: false,
     },
     dispositifsAssocies: {
-      type: [{ type: mongoose.Schema.ObjectId, ref: "Dispositif" }],
+      type: [{ type: mongoose.Types.ObjectId, ref: "Dispositif" }],
       required: false,
     },
-    createur: { type: mongoose.Schema.ObjectId, ref: "User" },
-    administrateur: { type: mongoose.Schema.ObjectId, ref: "User" },
+    createur: { type: mongoose.Types.ObjectId, ref: "User" },
+    administrateur: { type: mongoose.Types.ObjectId, ref: "User" },
     membres: {
       type: Object,
       required: false,
@@ -95,7 +97,44 @@ var structureSchema = mongoose.Schema(
       required: false,
     },
   },
+  // @ts-ignore : https://github.com/Automattic/mongoose/issues/9606
   { timestamps: { createdAt: "created_at" } }
 );
 
-module.exports = mongoose.model("Structure", structureSchema);
+export interface StructureDoc extends mongoose.Document {
+  membres?: { userId: ObjectId; roles: string[] }[];
+  acronyme?: string;
+  administrateur: ObjectId;
+  adresse?: string;
+  authorBelongs?: boolean;
+  contact?: string;
+  created_at: Moment;
+  createur: ObjectId;
+  dispositifsAssocies?: ObjectId[];
+  link?: string;
+  mail_contact?: string;
+  mail_generique?: string;
+  nom: string;
+  phone_contact?: string;
+  siren?: string;
+  siret?: string;
+  status?: string;
+  updatedAt: Moment;
+  picture?: Picture;
+  structureTypes?: string[];
+  websites?: string[];
+  facebook?: string;
+  linkedin?: string;
+  twitter?: string;
+  activities?: string[];
+  departments?: string[];
+  phonesPublic?: string[];
+  adressPublic?: string;
+  openingHours?: OpeningHours;
+  description?: string;
+  hasResponsibleSeenNotification?: boolean;
+}
+export const Structure = mongoose.model<StructureDoc>(
+  "Structure",
+  structureSchema
+);

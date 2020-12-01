@@ -6,9 +6,10 @@ import {
 } from "./structure.repository";
 import { castToBoolean } from "../../libs/castToBoolean";
 import { turnToLocalized } from "../dispositif/functions";
+import { ObjectId } from "mongoose";
 
 interface Query {
-  id: string;
+  id: ObjectId;
   withDisposAssocies: string;
   localeOfLocalizedDispositifsAssocies: string;
 }
@@ -72,7 +73,6 @@ export const getStructureById = async (
     }
 
     if (withLocalizedDispositifsBoolean) {
-      // @ts-ignore
       const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
       const array: string[] = [];
 

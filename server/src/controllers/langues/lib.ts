@@ -1,4 +1,4 @@
-import Langue from "../../schema/schemaLangue.js";
+import { Langue, LangueDoc } from "../../schema/schemaLangue";
 import { RequestFromClient, Res } from "../../types/interface";
 import Traduction from "../../schema/schemaTraduction.js";
 import Dispositif from "../../schema/schemaDispositif.js";
@@ -22,12 +22,9 @@ async function get_langues(req: RequestFromClient<Query>, res: Res) {
     populate = "";
   }
   try {
-    // @ts-ignore
-    var findLangue: any[] = await Langue.find(query)
+    var findLangue: LangueDoc[] = await Langue.find(query)
       .sort(sort)
       .populate(populate)
-      .lean()
-      // @ts-ignore
       .exec();
     var totalCount = await Dispositif.count({ status: "Actif" });
     if (findLangue.length > 0) {

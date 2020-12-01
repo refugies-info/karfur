@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
+import mongoose, { ObjectId } from "mongoose";
+import { Moment } from "moment";
 
-var langueSchema = mongoose.Schema(
+var langueSchema = new mongoose.Schema(
   {
     langueFr: {
       type: String,
@@ -22,7 +23,7 @@ var langueSchema = mongoose.Schema(
       unique: false,
       required: false,
     },
-    langueBackupId: { type: mongoose.Schema.ObjectId, ref: "Langue" },
+    langueBackupId: { type: mongoose.Types.ObjectId, ref: "Langue" },
     status: {
       type: String,
       unique: false,
@@ -44,11 +45,27 @@ var langueSchema = mongoose.Schema(
       required: false,
     },
     participants: {
-      type: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
+      type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
       required: false,
     },
   },
+  // @ts-ignore : https://github.com/Automattic/mongoose/issues/9606
   { timestamps: { createdAt: "created_at" } }
 );
 
-module.exports = mongoose.model("Langue", langueSchema);
+export interface LangueDoc extends mongoose.Document {
+  langueFr: string;
+  langueLoc?: string;
+  langueCode?: string;
+  langueIsDialect?: Boolean;
+  langueBackupId?: ObjectId;
+  status?: string;
+  i18nCode: string;
+  avancement?: number;
+  avancementTrad?: number;
+  participants?: ObjectId[];
+  createdAt: Moment;
+  _id: ObjectId;
+}
+
+export const Langue = mongoose.model<LangueDoc>("Langue", langueSchema);
