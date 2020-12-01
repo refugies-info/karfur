@@ -185,14 +185,14 @@ export class Toolbar extends React.Component {
           <LanguageBtn hideText={windowWidth < breakpoints.tabletUp} />
           {/* <NavigationItems /> */}
 
-          {/* {i18n.language === "fr" &&  */}
+        {/*  {i18n.language === "fr" && ( */}
             <AdvancedSearchBar
               visible={this.state.visible}
               scroll={this.state.scroll}
               loupe
               className="search-bar inner-addon right-addon mr-10 rsz"
             />
-       {/*    )} */}
+          {/* )} */}
 
           <button
             onClick={() => {
@@ -335,7 +335,7 @@ const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
     langues: state.langue.langues,
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
     user: state.user.user,
     traducteur: state.user.traducteur,
     expertTrad: state.user.expertTrad,

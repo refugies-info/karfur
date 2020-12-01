@@ -55,6 +55,13 @@ const WhiteContainer = styled.div`
   margin-right: 8px;
 `;
 
+// on firefox behaviour is strange with overflow, we have to add an empty container to have margin
+const BottomContainer = styled.div`
+  margin-top: 80px;
+  width: 100%;
+  height: 250px;
+  color: #e5e5e5;
+`;
 const RedContainer = styled.div`
   background: #ffcecb;
   border-radius: 12px;
@@ -149,15 +156,11 @@ const getActivityDetails = (activity: string) => {
     (activityData) => activityData.activity === activity
   );
 
-  if (!correspondingActivity) return null;
+  if (!correspondingActivity) return { tag: null };
   const theme = correspondingActivity[0].tag;
 
   const correspondingTag = filtres.tags.filter((tag) => tag.short === theme);
-  return {
-    darkColor: correspondingTag[0].darkColor,
-    lightColor: correspondingTag[0].lightColor,
-    image: correspondingActivity[0].image,
-  };
+  return { tag: correspondingTag[0], image: correspondingActivity[0].image };
 };
 export const MiddleAnnuaireDetail = (props: Props) => {
   const structure = props.structure;
@@ -290,18 +293,20 @@ export const MiddleAnnuaireDetail = (props: Props) => {
         <ActivityContainer>
           {structure.activities &&
             structure.activities.map((activity) => {
-              const detailedActivity = getActivityDetails(activity);
-              if (!detailedActivity) return;
+              const { tag, image } = getActivityDetails(activity);
+              if (!tag) return;
               return (
                 <ActivityCard
                   activity={props.t("Annuaire." + activity, activity)}
                   key={activity}
-                  darkColor={detailedActivity.darkColor}
-                  lightColor={detailedActivity.lightColor}
+                  darkColor={tag.darkColor}
+                  lightColor={tag.lightColor}
                   selectActivity={() => {}}
                   isSelected={true}
-                  image={detailedActivity.image}
+                  image={image}
                   isLectureMode={true}
+                  t={props.t}
+                  tag={tag}
                 />
               );
             })}
@@ -313,6 +318,8 @@ export const MiddleAnnuaireDetail = (props: Props) => {
             </>
           )}
         </ActivityContainer>
+
+        <BottomContainer>{"s"}</BottomContainer>
       </MiddleContainer>
     );
   }

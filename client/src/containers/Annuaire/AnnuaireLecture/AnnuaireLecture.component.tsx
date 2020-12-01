@@ -12,6 +12,9 @@ import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus
 import { setSelectedStructureActionCreator } from "../../../services/SelectedStructure/selectedStructure.actions";
 import { Header } from "./components/Header";
 import Skeleton from "react-loading-skeleton";
+import { Event } from "../../../tracking/dispatch";
+
+declare const window: Window;
 
 const MainContainer = styled.div`
   display: flex;
@@ -90,7 +93,6 @@ export const AnnuaireLectureComponent = (props: Props) => {
   );
 
   const handleScroll = () => {
-    // @ts-ignore
     const currentScrollPos = window.pageYOffset;
 
     if (currentScrollPos >= 175) {
@@ -109,21 +111,29 @@ export const AnnuaireLectureComponent = (props: Props) => {
 
     loadStructures();
 
-    // @ts-ignore
     window.addEventListener("scroll", handleScroll);
-    // @ts-ignore
     window.scrollTo(0, 0);
+
+    Event("ANNUAIRE_VIEW", "", "");
     return () => {
-      // @ts-ignore
       window.removeEventListener("scroll", handleScroll);
     };
   }, [dispatch]);
 
-  const groupedStructureByLetter = structures
-    ? _.groupBy(structures, (structure) =>
-        structure.nom ? structure.nom[0].toLowerCase() : "no name"
+  // we do not show our temporary structure in production
+  const filterStructures = structures
+    ? structures.filter(
+        // @ts-ignore
+        (structure) => structure._id !== "5e5fdb7b361338004e16e75f"
       )
     : [];
+
+  const groupedStructureByLetter =
+    filterStructures && filterStructures.length > 0
+      ? _.groupBy(filterStructures, (structure) =>
+          structure.nom ? structure.nom[0].toLowerCase() : "no name"
+        )
+      : [];
 
   const letters = Object.keys(groupedStructureByLetter).sort();
 

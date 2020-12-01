@@ -95,7 +95,7 @@ const FilterBar = styled.div`
   background-color: #828282;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.25);
   position: fixed;
-  border-radius: 12px;
+  border-radius: 6px 6px 12px 12px;
   padding: 13px 16px 0px;
   margin-left: 68px;
   margin-right: 68px;
@@ -806,6 +806,7 @@ export class AdvancedSearch extends Component {
     recherche[key] = {
       ...recherche[key],
       value: subitem.name || subitem.formatted_address,
+      icon: subitem.icon,
       query:
         subitem.query ||
         subitem.address_components ||
@@ -1656,7 +1657,7 @@ export const ResponsiveFooter = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
     languei18nCode: state.langue.languei18nCode,
     user: state.user.user,
     langues: state.langue.langues,

@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import img from "../../../../assets/annuaire/annuaire_lecture.svg";
 import { Letter } from "./Letter";
-// @ts-ignore
 import { NavHashLink } from "react-router-hash-link";
 import i18n from "../../../../i18n";
 
 const HeaderContainer = styled.div`
+  background-attachment: fixed;
   background-image: url(${img});
   height: 330px;
   width: 100%;
@@ -38,6 +38,7 @@ const LettersContainer = styled.div`
   bottom: 0px;
   display: flex;
   flex-direction: row;
+  margin-right: ${(props) => props.isRTL && "72px"};
 `;
 
 interface Props {
@@ -54,7 +55,7 @@ export const Header = (props: Props) => {
       <TextContainer isRTL={isRTL}>
         {props.t("Annuaire.Annuaire", "Annuaire")}
       </TextContainer>
-      <LettersContainer>
+      <LettersContainer isRTL={isRTL}>
         <>
           {props.letters.map((letter, index) => (
             <NavHashLink

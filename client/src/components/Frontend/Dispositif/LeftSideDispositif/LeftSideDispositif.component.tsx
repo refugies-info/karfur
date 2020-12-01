@@ -19,6 +19,7 @@ import { DispositifContent } from "../../../../@types/interface";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
 
+declare const window: Window;
 export interface PropsBeforeInjection {
   t: any;
   menu: DispositifContent[];
@@ -59,7 +60,6 @@ const send_sms = (typeContenu: string, titreInformatif: string) =>
       return API.send_sms({
         number,
         typeContenu,
-        // @ts-ignore
         url: window.location.href,
         title: titreInformatif,
       })
@@ -94,7 +94,6 @@ export const LeftSideDispositif = (props: Props) => {
   const onLinkClicked = props.disableEdit
     ? () =>
         props.content.externalLink &&
-        // @ts-ignore
         window.open(
           (props.content.externalLink.includes("http") ? "" : "http://") +
             props.content.externalLink,

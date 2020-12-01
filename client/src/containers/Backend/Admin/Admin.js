@@ -687,7 +687,7 @@ export class Admin extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
   };
 };
 

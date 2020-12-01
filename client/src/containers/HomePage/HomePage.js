@@ -256,7 +256,7 @@ export class HomePage extends Component {
                 </NavLink>
               </Col>
               <Col xl="4" lg="4" md="12" sm="12" xs="12" className="card-col">
-                <NavLink to={"annuaire"} className="no-decoration">
+                <NavLink to={"/annuaire"} className="no-decoration">
                   <Card className="parcours-card">
                     <CardHeader>
                       {t(
@@ -406,7 +406,6 @@ export class HomePage extends Component {
 const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
-    dispositifs: state.dispositif.dispositifs,
   };
 };
 

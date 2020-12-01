@@ -57,7 +57,7 @@ import {
   deleteContrib,
   getProgression,
 } from "./functions";
-import { fetchDispositifsActionCreator } from "../../../services/Dispositif/dispositif.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 import { fetchUserActionCreator } from "../../../services/User/user.actions";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
@@ -1092,13 +1092,13 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     userId: state.user.userId,
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
   };
 };
 
 const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
-  fetchDispositifs: fetchDispositifsActionCreator,
+  fetchDispositifs: fetchActiveDispositifsActionsCreator,
 };
 
 export default connect(

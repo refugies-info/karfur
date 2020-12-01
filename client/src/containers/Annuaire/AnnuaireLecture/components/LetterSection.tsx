@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Structure, Picture } from "../../../../@types/interface";
 import "./LetterSection.scss";
-// @ts-ignore
 import LinesEllipsis from "react-lines-ellipsis";
 import { ObjectId } from "mongodb";
 
@@ -51,7 +50,7 @@ const StructureCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 const Anchor = styled.div`
@@ -67,13 +66,23 @@ interface StructureCardProps {
 }
 const StructureCard = (props: StructureCardProps) => (
   <StructureCardContainer onClick={() => props.onStructureCardClick(props.id)}>
-    {props.picture && props.picture.secure_url && (
-      <img
-        className="sponsor-img"
-        src={props.picture.secure_url}
-        alt={props.acronyme}
-      />
-    )}
+    <div
+      style={{
+        width: "150px",
+        height: "100px",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      {props.picture && props.picture.secure_url && (
+        <img
+          className="sponsor-img"
+          src={props.picture.secure_url}
+          alt={props.acronyme}
+        />
+      )}
+    </div>
+    {(!props.picture || !props.picture.secure_url) && <div></div>}
     <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
   </StructureCardContainer>
 );

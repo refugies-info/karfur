@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-// @ts-ignore
 import Icon from "react-eva-icons";
 import "./DispositifCreateModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
