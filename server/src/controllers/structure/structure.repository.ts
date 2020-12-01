@@ -1,10 +1,11 @@
-import Structure from "../../schema/schemaStructure.js";
+import { Structure, StructureDoc } from "../../schema/schemaStructure";
+import { ObjectId } from "mongoose";
 
 export const getStructureFromDB = async (
-  id: string,
+  id: ObjectId,
   withDispositifsAssocies: boolean,
   fields: "all" | Record<string, number>
-) => {
+): Promise<StructureDoc> => {
   if (withDispositifsAssocies) {
     if (fields === "all") {
       return await Structure.findOne({ _id: id }).populate(

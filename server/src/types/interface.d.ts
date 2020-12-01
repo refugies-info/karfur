@@ -1,6 +1,4 @@
-// @ts-ignore
 import { ObjectId } from "mongodb";
-// @ts-ignore
 import { Moment } from "moment";
 
 export interface RequestFromClient<Query> {
