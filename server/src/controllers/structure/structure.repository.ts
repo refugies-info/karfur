@@ -1,11 +1,10 @@
 import Structure from "../../schema/schemaStructure.js";
-import { IStructure } from "../../types/interface";
 
 export const getStructureFromDB = async (
   id: string,
   withDispositifsAssocies: boolean,
   fields: "all" | Record<string, number>
-): Promise<IStructure> => {
+) => {
   if (withDispositifsAssocies) {
     if (fields === "all") {
       return await Structure.findOne({ _id: id }).populate(
@@ -22,7 +21,7 @@ export const getStructureFromDB = async (
   return await Structure.findOne({ _id: id }, fields);
 };
 
-export const getStructuresFromDB = async (): Promise<IStructure> =>
+export const getStructuresFromDB = async () =>
   await Structure.find(
     { status: "Actif" },
     { nom: 1, acronyme: 1, picture: 1 }
