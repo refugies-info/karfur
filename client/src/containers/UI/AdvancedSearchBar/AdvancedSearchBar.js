@@ -158,8 +158,8 @@ const ThemeText = styled.p`
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 0px;
-  margin-left: ${props => props.rtl ? null : "8px"};
-  margin-right: ${props => props.rtl ? "8px" : null};
+  margin-left: ${(props) => (props.rtl ? null : "8px")};
+  margin-right: ${(props) => (props.rtl ? "8px" : null)};
 `;
 
 const ThemeActionText = styled.p`
@@ -228,7 +228,7 @@ const AdvancedSearchBar = (props) => {
     const themesMatchedArray = [];
     props.dispositifs.map((elem) => {
       if (
-        (elem.titreMarque &&
+        (elem.titreInformatif &&
           elem.titreInformatif
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
@@ -262,6 +262,7 @@ const AdvancedSearchBar = (props) => {
     setSearchThemes(themesMatchedArray);
     setSearchDispositifs(dispositifsMatchedArray);
   };
+
   return (
     <>
       <SearchBarContainer>
@@ -297,25 +298,25 @@ const AdvancedSearchBar = (props) => {
                 }
               }}
             >
-               <div
+              <div
                 style={{
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
                 }}
               >
-              <Streamline
-                width={25}
-                height={25}
-                name={"menu"}
-                stroke={"#ffffff"}
-              />
-              <SeeAllSectionTitle rtl={isRTL} white>
-                {props.t(
-                  "AdvancedSearch.Voir les fiches",
-                  "Voir toutes les fiches"
-                )}
-              </SeeAllSectionTitle>
+                <Streamline
+                  width={25}
+                  height={25}
+                  name={"menu"}
+                  stroke={"#ffffff"}
+                />
+                <SeeAllSectionTitle rtl={isRTL} white>
+                  {props.t(
+                    "AdvancedSearch.Voir les fiches",
+                    "Voir toutes les fiches"
+                  )}
+                </SeeAllSectionTitle>
               </div>
               <div style={{}}>
                 {isRTL ? (
@@ -376,8 +377,15 @@ const AdvancedSearchBar = (props) => {
                           <ThemeActionText
                             color={selectedTag ? selectedTag.darkColor : null}
                           >
-                            {props.t("Tags." + selectedTag.name, selectedTag.name)[0].toUpperCase() +
-                              props.t("Tags." + selectedTag.name, selectedTag.name).slice(1)}
+                            {props
+                              .t(
+                                "Tags." + selectedTag.name,
+                                selectedTag.name
+                              )[0]
+                              .toUpperCase() +
+                              props
+                                .t("Tags." + selectedTag.name, selectedTag.name)
+                                .slice(1)}
                           </ThemeActionText>
                           <ThemeButton
                             ml={isRTL ? false : true}
@@ -391,7 +399,12 @@ const AdvancedSearchBar = (props) => {
                               height={22}
                             />
                             <ThemeText rtl={isRTL}>
-                              {selectedTag ? props.t("Tags." + selectedTag.short, selectedTag.short) : null}
+                              {selectedTag
+                                ? props.t(
+                                    "Tags." + selectedTag.short,
+                                    selectedTag.short
+                                  )
+                                : null}
                             </ThemeText>
                           </ThemeButton>
                         </ThemeContainer>
@@ -431,7 +444,7 @@ const AdvancedSearchBar = (props) => {
                           <ThemeButton
                             color={selectedTag ? selectedTag.darkColor : null}
                             mr={isRTL ? false : true}
-                            ml={isRTL ? true: false}
+                            ml={isRTL ? true : false}
                           >
                             <Streamline
                               name={selectedTag ? selectedTag.icon : null}
