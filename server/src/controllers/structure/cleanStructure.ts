@@ -1,5 +1,5 @@
 import Dispositif from "../../schema/schemaDispositif";
-import Structure from "../../schema/schemaStructure";
+import { Structure } from "../../schema/schemaStructure";
 
 import logger from "../../logger";
 import { Res } from "../../types/interface";

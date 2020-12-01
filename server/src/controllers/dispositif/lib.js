@@ -2,7 +2,7 @@ const Dispositif = require("../../schema/schemaDispositif.js");
 const Role = require("../../schema/schemaRole.js");
 const User = require("../../schema/schemaUser.js");
 const Traduction = require("../../schema/schemaTraduction");
-const Structure = require("../../schema/schemaStructure.js");
+const { Structure } = require("../../schema/schemaStructure");
 const Error = require("../../schema/schemaError");
 var uniqid = require("uniqid");
 const {

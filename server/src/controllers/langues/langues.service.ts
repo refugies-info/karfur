@@ -1,5 +1,5 @@
 import { Res } from "../../types/interface";
-import Langue from "../../schema/schemaLangue";
+import { Langue, LangueDoc } from "../../schema/schemaLangue";
 import Dispositif from "../../schema/schemaDispositif";
 import Traduction from "../../schema/schemaTraduction";
 import { asyncForEach } from "../../libs/asyncForEach";
@@ -34,32 +34,27 @@ export const getLanguages = async (req: {}, res: Res) => {
 
 export const updateLanguagesAvancement = async () => {
   logger.info("[updateLanguagesAvancement] received a call");
-  // @ts-ignore
-  const activeLanguages: any[] = await Langue.find(
+  const activeLanguages = await Langue.find(
     { avancement: { $gt: 0 } },
     { i18nCode: 1 }
-  ).lean();
+  );
 
   const nbActivesDispositif = await Dispositif.count({ status: "Actif" });
 
-  // @ts-ignore
   if (activeLanguages.length > 0) {
-    await asyncForEach(
-      activeLanguages,
-      async (langue: { _id: string; i18nCode: string }) => {
-        if (langue.i18nCode === "fr") return;
-        var pubTrads = await Traduction.distinct("articleId", {
-          langueCible: langue.i18nCode,
-          status: "Validée",
-        });
-        const pubTradsCount = pubTrads.length;
-        const tradRatio = pubTradsCount / nbActivesDispositif;
-        await Langue.findByIdAndUpdate(
-          { _id: langue._id },
-          { avancementTrad: tradRatio }
-        );
-      }
-    );
+    await asyncForEach(activeLanguages, async (langue: LangueDoc) => {
+      if (langue.i18nCode === "fr") return;
+      var pubTrads = await Traduction.distinct("articleId", {
+        langueCible: langue.i18nCode,
+        status: "Validée",
+      });
+      const pubTradsCount = pubTrads.length;
+      const tradRatio = pubTradsCount / nbActivesDispositif;
+      await Langue.findByIdAndUpdate(
+        { _id: langue._id },
+        { avancementTrad: tradRatio }
+      );
+    });
   }
   logger.info("[updateLanguagesAvancement] successfully updated avancement");
   return;

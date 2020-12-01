@@ -1,4 +1,4 @@
-const Structure = require("../../schema/schemaStructure.js");
+const { Structure } = require("../../schema/schemaStructure");
 const User = require("../../schema/schemaUser.js");
 const Role = require("../../schema/schemaRole.js");
 const logger = require("../../logger");

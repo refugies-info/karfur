@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Structure from "../../../schema/schemaStructure.js";
+import { Structure } from "../../../schema/schemaStructure";
 import {
   getStructureFromDB,
   getStructuresFromDB,
