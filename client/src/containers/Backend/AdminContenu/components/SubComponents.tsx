@@ -224,3 +224,24 @@ export const FilterButton = (props: {
     {props.text}
   </FilterButtonContainer>
 );
+
+const StyledTabHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-weight: ${(props) => (props.isSortedHeader ? "bold" : "normal")};
+  cursor: ${(props) => props.order && "pointer"};
+`;
+
+export const TabHeader = (props: {
+  name: string;
+  order: string | null;
+  isSortedHeader: boolean;
+  sens: string;
+}) => (
+  <StyledTabHeader isSortedHeader={props.isSortedHeader} order={props.order}>
+    {props.name}
+    {props.order && (
+      <EVAIcon name={`chevron-${props.sens}`} fill={variables.noir} />
+    )}
+  </StyledTabHeader>
+);

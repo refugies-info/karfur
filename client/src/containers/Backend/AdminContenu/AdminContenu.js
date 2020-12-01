@@ -48,6 +48,7 @@ import {
   SeeButton,
   DeleteButton,
   FilterButton,
+  TabHeader,
 } from "./components/SubComponents";
 
 moment.locale("fr");
@@ -61,6 +62,11 @@ const url =
 
 export const AdminContenu = () => {
   const [filter, setFilter] = useState("En attente admin");
+  const [sortedHeader, setSortedHeader] = useState({
+    name: "none",
+    sens: "none",
+    orderColumn: "none",
+  });
   const headers = table_contenu.headers;
   const dispositifs = useSelector(allDispositifsSelector);
   const isLoading = useSelector(
@@ -93,16 +99,67 @@ export const AdminContenu = () => {
       ? dispositifs.filter((dispo) => dispo.status === status).length
       : 0;
 
-  const filterDispositifs = (dispositifs) =>
-    dispositifs.filter((dispo) => dispo.status === filter);
+  const filterAndSortDispositifs = (dispositifs) => {
+    const filteredDispositifs = dispositifs.filter(
+      (dispo) => dispo.status === filter
+    );
+    if (sortedHeader.name === "none") return filteredDispositifs;
 
-  const dispositifsToDisplay = filterDispositifs(dispositifs);
+    return filteredDispositifs.sort((a, b) => {
+      const sponsorA =
+        a.mainSponsor && a.mainSponsor.nom
+          ? a.mainSponsor.nom.toLowerCase()
+          : "";
+      const sponsorB =
+        b.mainSponsor && b.mainSponsor.nom
+          ? b.mainSponsor.nom.toLowerCase()
+          : "";
+
+      const valueA =
+        sortedHeader.orderColumn === "mainSponsor"
+          ? sponsorA
+          : a[sortedHeader.orderColumn].toLowerCase();
+      const valueAWithoutAccent = valueA
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+      const valueB =
+        sortedHeader.orderColumn === "mainSponsor"
+          ? sponsorB
+          : b[sortedHeader.orderColumn].toLowerCase();
+      const valueBWithoutAccent = valueB
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+      if (valueAWithoutAccent > valueBWithoutAccent)
+        return sortedHeader.sens === "up" ? 1 : -1;
+
+      return sortedHeader.sens === "up" ? -1 : 1;
+    });
+  };
+  const dispositifsToDisplay = filterAndSortDispositifs(dispositifs);
 
   const compare = (a, b) => {
     const orderA = a.order;
     const orderB = b.order;
     return orderA > orderB ? 1 : -1;
   };
+
+  const reorder = (key, element) => {
+    if (sortedHeader.name === element.name) {
+      const sens = sortedHeader.sens === "up" ? "down" : "up";
+      setSortedHeader({ name: element.name, sens, orderColumn: element.order });
+    } else {
+      setSortedHeader({
+        name: element.name,
+        sens: "up",
+        orderColumn: element.order,
+      });
+    }
+  };
+  console.log("testorder", "délé" > "dir", "dele" > "dir", "dele" > "comité");
+  const str = "Crème Brulée";
+
+  console.log("str");
 
   return (
     <div className="admin-contenu animated fadeIn">
@@ -127,23 +184,17 @@ export const AdminContenu = () => {
           <thead>
             <tr>
               {headers.map((element, key) => (
-                <th
-                  key={key}
-                  className={
-                    (element.active ? "texte-bold" : "") +
-                    (element.hideOnPhone ? " hideOnPhone" : "") +
-                    " cursor-pointer"
-                  }
-                  onClick={() => this.reorder(key, element)}
-                >
-                  {element.name}
-                  {element.order && (
-                    <EVAIcon
-                      name={"chevron-" + (element.croissant ? "up" : "down")}
-                      fill={variables.noir}
-                      className="sort-btn"
-                    />
-                  )}
+                <th key={key} onClick={() => reorder(key, element)}>
+                  <TabHeader
+                    name={element.name}
+                    order={element.order}
+                    isSortedHeader={sortedHeader.name === element.name}
+                    sens={
+                      sortedHeader.name === element.name
+                        ? sortedHeader.sens
+                        : "down"
+                    }
+                  />
                 </th>
               ))}
             </tr>

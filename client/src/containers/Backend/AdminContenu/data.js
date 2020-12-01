@@ -8,12 +8,12 @@ export const table_contenu = {
     },
     {
       name: "Titre",
-      order: "titreCourt",
+      order: "titreInformatif",
       hideOnPhone: false,
     },
     {
       name: "Structure",
-      order: "structure",
+      order: "mainSponsor",
       hideOnPhone: false,
     },
     {
@@ -28,7 +28,7 @@ export const table_contenu = {
     },
     {
       name: "Statut",
-      order: "status",
+      order: "",
       hideOnPhone: false,
     },
 
