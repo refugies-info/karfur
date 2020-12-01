@@ -72,6 +72,7 @@ export const getStructureById = async (
     }
 
     if (withLocalizedDispositifsBoolean) {
+      // @ts-ignore
       const dispositifsAssocies = structure.toJSON().dispositifsAssocies;
       const array: string[] = [];
 

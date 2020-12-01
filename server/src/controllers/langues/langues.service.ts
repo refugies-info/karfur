@@ -34,13 +34,14 @@ export const getLanguages = async (req: {}, res: Res) => {
 
 export const updateLanguagesAvancement = async () => {
   logger.info("[updateLanguagesAvancement] received a call");
-  const activeLanguages = await Langue.find(
+  const activeLanguages: any[] = await Langue.find(
     { avancement: { $gt: 0 } },
     { i18nCode: 1 }
   ).lean();
 
   const nbActivesDispositif = await Dispositif.count({ status: "Actif" });
 
+  // @ts-ignore
   if (activeLanguages.length > 0) {
     await asyncForEach(
       activeLanguages,
