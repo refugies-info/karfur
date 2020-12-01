@@ -34,6 +34,7 @@ export const getLanguages = async (req: {}, res: Res) => {
 
 export const updateLanguagesAvancement = async () => {
   logger.info("[updateLanguagesAvancement] received a call");
+  // @ts-ignore
   const activeLanguages: any[] = await Langue.find(
     { avancement: { $gt: 0 } },
     { i18nCode: 1 }

@@ -20,6 +20,7 @@ function create_langues(req, res) {
     var langue = req.body,
       promise;
     if (langue._id) {
+      // @ts-ignore
       promise = Langue.findOneAndUpdate({ _id: langue._id }, langue, {
         upsert: true,
         new: true,
@@ -64,7 +65,8 @@ async function get_langues(req: RequestFromClient<Query>, res: Res) {
     populate = "";
   }
   try {
-    var findLangue = await Langue.find(query)
+    // @ts-ignore
+    var findLangue: any[] = await Langue.find(query)
       .sort(sort)
       .populate(populate)
       .lean()
