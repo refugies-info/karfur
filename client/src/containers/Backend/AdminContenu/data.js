@@ -39,49 +39,6 @@ export const table_contenu = {
   ],
 };
 
-export const status_mapping = [
-  {
-    name: "Actif",
-    color: "",
-  },
-  {
-    name: "Accepté structure",
-    color: "attention",
-  },
-  {
-    name: "En attente",
-    color: "standby",
-  },
-  {
-    name: "En attente admin",
-    color: "validation",
-  },
-  {
-    name: "En attente non prioritaire",
-    color: "focus",
-  },
-  {
-    name: "Brouillon",
-    color: "attention",
-  },
-  {
-    name: "Rejeté structure",
-    color: "erreur",
-  },
-  {
-    name: "Rejeté admin",
-    color: "erreur",
-  },
-  {
-    name: "Inactif",
-    color: "",
-  },
-  {
-    name: "Supprimé",
-    color: "erreur",
-  },
-];
-
 const green = "#4CAF50";
 const orange = "#FF9800";
 const yellow = "#FFEB3B";
@@ -132,37 +89,4 @@ export const correspondingStatus = [
     color: red,
     order: 7,
   },
-];
-
-export const responsables = [
-  "Hugo",
-  "Simon",
-  "Nour",
-  "Développeur",
-  "Groot",
-  "Starlord",
-];
-
-export const internal_actions = [
-  "Prêt",
-  "Contact",
-  "Relire",
-  "En attente",
-  "Refaire",
-  "URGENT",
-  "Discuter",
-  "Nouveau",
-];
-
-export const status_sort_arr = [
-  "En attente admin",
-  "En attente",
-  "En attente non prioritaire",
-  "Brouillon",
-  "Accepté structure",
-  "Actif",
-  "Rejeté structure",
-  "Rejeté admin",
-  "Supprimé",
-  "Inactif",
 ];
