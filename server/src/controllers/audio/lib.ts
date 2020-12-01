@@ -43,8 +43,11 @@ export const set_audio = async (req: any, res: any) => {
           res.status(200).json({
             text: "Succès",
             data: {
+              // @ts-ignore
               audioId: data._id,
+              // @ts-ignore
               public_id: data.public_id,
+              // @ts-ignore
               secure_url: data.secure_url,
             },
           });
