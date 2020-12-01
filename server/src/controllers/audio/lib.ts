@@ -1,4 +1,4 @@
-import Audio from "../../schema/schemaAudio.js";
+import { Audio } from "../../schema/schemaAudio";
 import cloudinary from "cloudinary";
 
 // we do not call functions set_audio and get_audio from front (hidden in RecordAudio.js)
@@ -38,16 +38,12 @@ export const set_audio = async (req: any, res: any) => {
         var _u = new Audio(audio);
 
         try {
-          // @ts-ignore
           const data = await _u.save();
           res.status(200).json({
             text: "Succès",
             data: {
-              // @ts-ignore
               audioId: data._id,
-              // @ts-ignore
               public_id: data.public_id,
-              // @ts-ignore
               secure_url: data.secure_url,
             },
           });

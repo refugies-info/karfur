@@ -1,7 +1,6 @@
-const mongoose = require("mongoose");
-// var gridStore = require('mongoose-gridstore');
+import mongoose, { ObjectId } from "mongoose";
 
-var audioSchema = mongoose.Schema(
+var audioSchema = new mongoose.Schema(
   {
     public_id: {
       type: String,
@@ -46,9 +45,29 @@ var audioSchema = mongoose.Schema(
       required: false,
     },
   },
+  // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
 );
 
-// audioSchema.plugin(gridStore);
+export interface AudioDoc extends mongoose.Document {
+  _id: ObjectId;
+  public_id: string;
+  resource_type?: string;
+  bytes?: number;
 
-module.exports = mongoose.model("Audio", audioSchema);
+  type?: string;
+
+  etag?: string;
+
+  original_filename?: string;
+
+  secure_url?: string;
+
+  signature?: string;
+
+  url: string;
+
+  version?: string;
+}
+
+export const Audio = mongoose.model<AudioDoc>("Audio", audioSchema);
