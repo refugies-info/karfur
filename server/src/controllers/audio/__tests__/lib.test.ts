@@ -22,11 +22,11 @@ jest.mock("cloudinary", () => ({
 let save = (audio: any) =>
   jest.fn().mockResolvedValue({ ...audio, _id: "_id" });
 
-jest.mock("../../../schema/schemaAudio.js", () => {
-  return jest.fn().mockImplementation((audio) => {
+jest.mock("../../../schema/schemaAudio", () => ({
+  Audio: jest.fn().mockImplementation((audio) => {
     return { save: save(audio) };
-  });
-});
+  }),
+}));
 
 const mockRequest = (data?: any) => ({
   files: data,
