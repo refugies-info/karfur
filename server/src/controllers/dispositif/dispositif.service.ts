@@ -75,6 +75,7 @@ export const getDispositifs = async (
       locale = locale || "fr";
 
       const dispositifArray = await getDispositifArray(query);
+      // @ts-ignore
       const adaptedDispositifArray = removeUselessContent(dispositifArray);
       const array: string[] = [];
 
