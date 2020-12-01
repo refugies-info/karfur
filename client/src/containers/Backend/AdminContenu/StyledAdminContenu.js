@@ -33,6 +33,8 @@ export const StyledHeader = styled.div`
   flex-direction: row;
   width: 100%;
   align-items: center;
+  padding-top: 24px;
+  padding-bottom: 24px;
 `;
 
 export const Content = styled.div`

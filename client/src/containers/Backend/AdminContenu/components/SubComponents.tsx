@@ -8,13 +8,15 @@ import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 // @ts-ignore
 import variables from "scss/colors.scss";
 import { mapPropsStream } from "recompose";
+import { produceWithPatches } from "immer";
 
 const Container = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props) => (props.isDispositif ? "#FFFFFF" : "#212121")};
-  background-color: ${(props) => (props.isDispositif ? "#212121" : "#FFFFFF")};
+  color: ${(props) => (props.isDispositif ? variables.blancSimple : "#212121")};
+  background-color: ${(props) =>
+    props.isDispositif ? "#212121" : variables.blancSimple};
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
@@ -145,7 +147,7 @@ export const StyledStatus = (props: { text: string }) => {
 const ButtonContainer = styled.div`
   width: 40px;
   height: 40px;
-  background-color: #828282;
+  background-color: ${variables.grisFonce};
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -158,7 +160,7 @@ const ButtonContainer = styled.div`
 
   &:hover {
     background-color: ${(props) =>
-      props.disabled ? "#828282" : props.hoverColor};
+      props.disabled ? variables.grisFonce : props.hoverColor};
   }
 `;
 export const ValidateButton = (props: {
@@ -171,7 +173,11 @@ export const ValidateButton = (props: {
     hoverColor={variables.validationHover}
   >
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="checkmark-outline" fill={"#FFFFFF"} size="20" />
+      <EVAIcon
+        name="checkmark-outline"
+        fill={variables.blancSimple}
+        size="20"
+      />
     </div>
   </ButtonContainer>
 );
@@ -180,7 +186,7 @@ export const SeeButton = (props: { burl: string }) => (
   <ButtonContainer hoverColor={variables.darkColor}>
     <a href={props.burl} target="_blank" rel="noopener noreferrer">
       <div style={{ marginBottom: "4px" }}>
-        <EVAIcon name="eye-outline" fill={"#FFFFFF"} size="20" />
+        <EVAIcon name="eye-outline" fill={variables.blancSimple} size="20" />
       </div>
     </a>
   </ButtonContainer>
@@ -189,13 +195,16 @@ export const SeeButton = (props: { burl: string }) => (
 export const DeleteButton = (props: { onClick: () => void }) => (
   <ButtonContainer onClick={props.onClick} hoverColor={variables.error}>
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="trash-outline" fill={"#FFFFFF"} size="20" />
+      <EVAIcon name="trash-outline" fill={variables.blancSimple} size="20" />
     </div>
   </ButtonContainer>
 );
 
 const FilterButtonContainer = styled.div`
-  background: #ffffff;
+  background: ${(props) =>
+    props.isSelected ? variables.darkColor : variables.blancSimple};
+  color: ${(props) =>
+    props.isSelected ? variables.blancSimple : variables.darkColor};
   border-radius: 12px;
   font-weight: normal;
   font-size: 16px;
@@ -206,8 +215,12 @@ const FilterButtonContainer = styled.div`
   cursor: pointer;
   height: fit-content;
 `;
-export const FilterButton = (props: { onClick: () => void; text: string }) => (
-  <FilterButtonContainer onClick={props.onClick}>
+export const FilterButton = (props: {
+  onClick: () => void;
+  text: string;
+  isSelected: boolean;
+}) => (
+  <FilterButtonContainer onClick={props.onClick} isSelected={props.isSelected}>
     {props.text}
   </FilterButtonContainer>
 );

@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Input, Tooltip, Spinner } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import { connect, useSelector, useDispatch } from "react-redux";
@@ -19,6 +19,7 @@ import {
   responsables,
   internal_actions,
   status_sort_arr,
+  correspondingStatus,
 } from "./data";
 import { prepareDeleteContrib } from "../AdminContrib/functions";
 import { customCriteres } from "../../Dispositif/MoteurVariantes/data";
@@ -50,13 +51,6 @@ import {
 } from "./components/SubComponents";
 
 moment.locale("fr");
-const prioritaryStatus = [
-  { name: "En attente", prio: 1 },
-  { name: "En attente admin", prio: 0 },
-  { name: "Accepté structure", prio: 2 },
-  { name: "En attente non prioritaire", prio: 3 },
-  { name: "Rejecté structure", prio: 4 },
-];
 
 const url =
   process.env.REACT_APP_ENV === "development"
@@ -66,6 +60,7 @@ const url =
     : "https://www.refugies.info/";
 
 export const AdminContenu = () => {
+  const [filter, setFilter] = useState("En attente admin");
   const headers = table_contenu.headers;
   const dispositifs = useSelector(allDispositifsSelector);
   const isLoading = useSelector(
@@ -98,36 +93,16 @@ export const AdminContenu = () => {
       ? dispositifs.filter((dispo) => dispo.status === status).length
       : 0;
 
-  const withoutFilterDispositifs = dispositifs
-    .filter((dispositif) =>
-      [
-        "En attente",
-        "En attente admin",
-        "Accepté structure",
-        "En attente non prioritaire",
-        "Rejeté structure",
-      ].includes(dispositif.status)
-    )
-    .sort(function (a, b) {
-      const statusA = a.status;
-      const statusB = b.status;
-      const correspondencyStatusA = _.find(
-        prioritaryStatus,
-        (status) => status.name === statusA
-      );
-      const prioStatusA = correspondencyStatusA
-        ? correspondencyStatusA.prio
-        : 5;
-      const correspondencyStatusB = _.find(
-        prioritaryStatus,
-        (status) => status.name === statusB
-      );
-      const prioStatusB = correspondencyStatusB
-        ? correspondencyStatusB.prio
-        : 5;
+  const filterDispositifs = (dispositifs) =>
+    dispositifs.filter((dispo) => dispo.status === filter);
 
-      return prioStatusA < prioStatusB ? -1 : prioStatusA > prioStatusB ? 1 : 0;
-    });
+  const dispositifsToDisplay = filterDispositifs(dispositifs);
+
+  const compare = (a, b) => {
+    const orderA = a.order;
+    const orderB = b.order;
+    return orderA > orderB ? 1 : -1;
+  };
 
   return (
     <div className="admin-contenu animated fadeIn">
@@ -135,73 +110,16 @@ export const AdminContenu = () => {
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{dispositifs.length}</FigureContainer>
         <StyledSort>
-          <FilterButton
-            onClick={() => {}}
-            text={`À valider (${getNbDispositifsByStatus("En attente admin")})`}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text={`En attente (${getNbDispositifsByStatus("En attente")})`}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text={`Accepté (${getNbDispositifsByStatus("Accepté structure")})`}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text={`Brouillon (${getNbDispositifsByStatus("Brouillon")})`}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text={`Sans structure (${getNbDispositifsByStatus(
-              "En attente non prioritaire"
-            )})`}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text={`Publié (${getNbDispositifsByStatus("Actif")})`}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text={`Rejeté (${getNbDispositifsByStatus("Rejeté structure")})`}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text={`Supprimé (${getNbDispositifsByStatus("Supprimé")})`}
-          />
-
-          {/* // onClick={this.reorderOnTopPubblish}
-          // className={
-          //   "status-pill bg-" +
-          //   (this.state.published
-          //     ? colorStatut("Publié")
-          //     : colorStatut("Inactif"))
-          // }
-          >
-            {"Publié"}
-          </FilterButton>
-          <FilterButton
-          // onClick={this.reorderOnTopDraft}
-          // className={
-          //   "status-pill bg-" +
-          //   (this.state.draft
-          //     ? colorStatut("Brouillon")
-          //     : colorStatut("Inactif"))
-          // }
-          >
-            {"Brouillons"}
-          </FilterButton>
-          <FilterButton
-          // onClick={this.reorderOnTopDeleted}
-          // className={
-          //   "status-pill bg-" +
-          //   (this.state.deleted
-          //     ? colorStatut("Supprimé")
-          //     : colorStatut("Inactif"))
-          // }
-          >
-            {"Supprimé"}
-          </FilterButton> */}
+          {correspondingStatus.sort(compare).map((status) => {
+            const nbContent = getNbDispositifsByStatus(status.storedStatus);
+            return (
+              <FilterButton
+                onClick={() => setFilter(status.storedStatus)}
+                text={`${status.displayedStatus} (${nbContent})`}
+                isSelected={filter === status.storedStatus}
+              />
+            );
+          })}
         </StyledSort>
       </StyledHeader>
       <Content>
@@ -231,7 +149,7 @@ export const AdminContenu = () => {
             </tr>
           </thead>
           <tbody>
-            {withoutFilterDispositifs.map((element, key) => {
+            {dispositifsToDisplay.map((element, key) => {
               const nbDays =
                 -moment(element.updatedAt).diff(moment(), "days") + " jours";
               const burl =

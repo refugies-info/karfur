@@ -23,13 +23,41 @@ export const LoadingAdminContenu = () => {
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{"..."}</FigureContainer>
         <StyledSort>
-          <FilterButton onClick={() => {}} text="À valider (...)" />
-          <FilterButton onClick={() => {}} text="En attente (...)" />
-          <FilterButton onClick={() => {}} text="Brouillon (...)" />
-          <FilterButton onClick={() => {}} text="Sans structure (...)" />
-          <FilterButton onClick={() => {}} text="Publié (...)" />
-          <FilterButton onClick={() => {}} text="Rejeté (...)" />
-          <FilterButton onClick={() => {}} text="Supprimé (...)" />
+          <FilterButton
+            onClick={() => {}}
+            text="À valider (...)"
+            isSelected={false}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text="En attente (...)"
+            isSelected={false}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text="Brouillon (...)"
+            isSelected={false}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text="Sans structure (...)"
+            isSelected={false}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text="Publié (...)"
+            isSelected={false}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text="Rejeté (...)"
+            isSelected={false}
+          />
+          <FilterButton
+            onClick={() => {}}
+            text="Supprimé (...)"
+            isSelected={false}
+          />
         </StyledSort>
       </StyledHeader>
       <Content>
