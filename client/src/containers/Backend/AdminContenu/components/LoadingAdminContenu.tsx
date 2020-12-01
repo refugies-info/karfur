@@ -29,15 +29,14 @@ export const LoadingAdminContenu = () => {
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{"..."}</FigureContainer>
         <StyledSort>
-          {correspondingStatus.sort(compare).map((status) => {
-            return (
-              <FilterButton
-                onClick={() => {}}
-                text={`${status.displayedStatus} (...)`}
-                isSelected={false}
-              />
-            );
-          })}
+          {correspondingStatus.sort(compare).map((status) => (
+            <FilterButton
+              key={status.storedStatus}
+              onClick={() => {}}
+              text={`${status.displayedStatus} (...)`}
+              isSelected={false}
+            />
+          ))}
         </StyledSort>
       </StyledHeader>
       <Content>

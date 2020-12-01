@@ -1,28 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Table, Input, Tooltip, Spinner } from "reactstrap";
-import { NavLink } from "react-router-dom";
-import { connect, useSelector, useDispatch } from "react-redux";
+import { Table } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
 import moment from "moment/min/moment-with-locales";
-import _ from "lodash";
 import Swal from "sweetalert2";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
 import {
   fetchAllDispositifsActionsCreator,
   setAllDispositifsActionsCreator,
 } from "../../../services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
-import { deleteContrib } from "../UserProfile/functions";
-import { colorStatut } from "../../../components/Functions/ColorFunctions";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import {
-  table_contenu,
-  status_mapping,
-  responsables,
-  internal_actions,
-  status_sort_arr,
-  correspondingStatus,
-} from "./data";
-import { customCriteres } from "../../Dispositif/MoteurVariantes/data";
+import { table_contenu, correspondingStatus } from "./data";
 import API from "../../../utils/API";
 import {
   StyledSort,
@@ -31,8 +17,6 @@ import {
   Content,
   FigureContainer,
 } from "./StyledAdminContenu";
-import produce from "immer";
-
 import "./AdminContenu.scss";
 import variables from "scss/colors.scss";
 import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
@@ -50,7 +34,6 @@ import {
   FilterButton,
   TabHeader,
 } from "./components/SubComponents";
-import { fetchAllDispositifs } from "../../../services/AllDispositifs/allDispositifs.saga";
 
 moment.locale("fr");
 
@@ -259,6 +242,7 @@ export const AdminContenu = () => {
             const nbContent = getNbDispositifsByStatus(status.storedStatus);
             return (
               <FilterButton
+                key={status.storedStatus}
                 onClick={() => onFilterClick(status.storedStatus)}
                 text={`${status.displayedStatus} (${nbContent})`}
                 isSelected={filter === status.storedStatus}
@@ -350,240 +334,3 @@ export const AdminContenu = () => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => {
-//   return { dispositifs: state.dispositif.dispositifs };
-// };
-
-// const mapDispatchToProps = { fetchDispositifs: fetchDispositifsActionCreator };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AdminContenu);
-
-// constructor(props) {
-//   super(props);
-//   this.deleteContrib = deleteContrib.bind(this);
-//   this.prepareDeleteContrib = prepareDeleteContrib.bind(this);
-// }
-
-// state = {
-//   dispositifs: [],
-//   deleted: false,
-//   published: false,
-//   draft: false,
-//   headers: table_contenu.headers,
-// };
-
-// componentDidMount() {
-//   this.props.fetchDispositifs();
-//   // this._initializeContrib(this.props);
-// }
-
-// formatDispositif = (dispositifs) =>
-//   dispositifs.map((x) => ({
-//     ...x,
-//     titreCourt: x.titreMarque || x.titreInformatif || "",
-//     titre:
-//       (x.titreMarque || "") +
-//       (x.titreMarque && x.titreInformatif ? " - " : "") +
-//       (x.titreInformatif || ""),
-//     structure: _.get(x, "mainSponsor.nom", _.get(x, "mainSponsor.nom", "")),
-//     structureObj: _.get(x, "mainSponsor", {}),
-//     expanded: false,
-//     type: "parent",
-//     tooltip: false,
-//     joursDepuis:
-//       (new Date().getTime() - new Date(x.updatedAt).getTime()) /
-//       (1000 * 3600 * 24),
-//   }));
-
-// _initializeContrib = () => {
-//   API.get_dispositif({ query: {}, populate: "creatorId mainSponsor" }).then(
-//     (data_res) => {
-//       const dispositifs = [...data_res.data.data];
-//       this.setState({
-//         dispositifs: this.formatDispositif(dispositifs).sort(function (a, b) {
-//           const statusA = a.status;
-//           const statusB = b.status;
-//           const correspondencyStatusA = _.find(
-//             prioritaryStatus,
-//             (status) => status.name === statusA
-//           );
-//           const prioStatusA = correspondencyStatusA
-//             ? correspondencyStatusA.prio
-//             : 5;
-//           const correspondencyStatusB = _.find(
-//             prioritaryStatus,
-//             (status) => status.name === statusB
-//           );
-//           const prioStatusB = correspondencyStatusB
-//             ? correspondencyStatusB.prio
-//             : 5;
-
-//           return prioStatusA < prioStatusB
-//             ? -1
-//             : prioStatusA > prioStatusB
-//             ? 1
-//             : 0;
-//         }),
-//       });
-//     }
-//   );
-// };
-
-const toggleExpanded = (idx) => {
-  // let dispositifs = [...this.state.dispositifs]
-  //   .map((x, i) =>
-  //     i === idx
-  //       ? [
-  //           { ...x, expanded: !x.expanded },
-  //           ...(!x.expanded
-  //             ? x.children.map((y) => ({ ...y, type: "child", children: [] }))
-  //             : []),
-  //         ]
-  //       : [x]
-  //   )
-  //   .reduce((a, b) => a.concat(b), []);
-  // if (this.state.dispositifs[idx].expanded) {
-  //   dispositifs = dispositifs.filter(
-  //     (x) => x.demarcheId !== this.state.dispositifs[idx]._id
-  //   );
-  // }
-  // this.setState({ dispositifs });
-};
-
-const reorder = (key, element) => {
-  // const croissant = !element.croissant;
-  // this.setState((pS) => ({
-  //   dispositifs: pS.dispositifs.sort((a, b) => {
-  //     let aValue = _.get(a, element.order),
-  //       bValue = _.get(b, element.order);
-  //     if (element.order === "status") {
-  //       aValue = _.indexOf(status_sort_arr, aValue);
-  //       bValue = _.indexOf(status_sort_arr, bValue);
-  //     }
-  //     return aValue > bValue
-  //       ? croissant
-  //         ? 1
-  //         : -1
-  //       : aValue < bValue
-  //       ? croissant
-  //         ? -1
-  //         : 1
-  //       : 0;
-  //   }),
-  //   headers: pS.headers.map((x, i) =>
-  //     i === key
-  //       ? { ...x, croissant: !x.croissant, active: true }
-  //       : { ...x, active: false }
-  //   ),
-  // }));
-};
-
-// const toggleTooltip = (idx) =>
-// this.setState((pS) => ({
-//   dispositifs: pS.dispositifs.map((x, i) =>
-//     i === idx ? { ...x, tooltip: !x.tooltip } : x
-//   ),
-// }));
-
-// const handleChange = (e, idx, dispositif) => {
-//   const target = e.target;
-//   const newDispositif = {
-//     [target.id]: target.value,
-//     dispositifId: dispositif._id,
-//     status: dispositif.status,
-//   };
-//   API.add_dispositif(newDispositif);
-//   // this.setState((pS) => ({
-//   //   dispositifs: pS.dispositifs.map((x, i) =>
-//   //     i === idx ? { ...x, [target.id]: target.value } : x
-//   //   ),
-//   // }));
-// };
-
-// const update_status = async (dispositif, status = "Actif") => {
-//   const newDispositif = { status: status, dispositifId: dispositif._id };
-//   let question = { value: true };
-//   if (
-//     dispositif.status === "En attente" ||
-//     dispositif.status === "Accepté structure"
-//   ) {
-//     question = await Swal.fire({
-//       title: "Êtes-vous sûr ?",
-//       text:
-//         "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
-//       type: "question",
-//       showCancelButton: true,
-//       confirmButtonColor: variables.rouge,
-//       cancelButtonColor: variables.vert,
-//       confirmButtonText: "Oui, le valider",
-//       cancelButtonText: "Annuler",
-//     });
-//   }
-//   if (question.value) {
-//     API.add_dispositif(newDispositif).then(() => {
-//       // this.setState((pS) => ({
-//       //   dispositifs: pS.dispositifs.map((x) =>
-//       //     x._id === dispositif._id ? { ...x, status: status } : x
-//       //   ),
-//       // }));
-//     });
-//   }
-// };
-
-const reorderOnTopPubblish = () => {
-  // this.setState(
-  //   produce((draft) => {
-  //     draft.published = !this.state.published;
-  //     if (!this.state.published) {
-  //       draft.dispositifs.sort((a, b) => {
-  //         if (a.status === "Actif" && b.status === "Actif") {
-  //           return 0;
-  //         } else if (a.status === "Actif" && b.status !== "Actif") {
-  //           return -1;
-  //         }
-  //         return 1;
-  //       });
-  //     }
-  //   })
-  // );
-};
-
-const reorderOnTopDraft = () => {
-  // this.setState(
-  //   produce((draft) => {
-  //     draft.draft = !this.state.draft;
-  //     if (!this.state.draft) {
-  //       draft.dispositifs.sort((a, b) => {
-  //         if (a.status === "Brouillon" && b.status === "Brouillon") {
-  //           return 0;
-  //         } else if (a.status === "Brouillon" && b.status !== "Brouillon") {
-  //           return -1;
-  //         }
-  //         return 1;
-  //       });
-  //     }
-  //   })
-  // );
-};
-
-const reorderOnTopDeleted = () => {
-  // this.setState(
-  //   produce((draft) => {
-  //     draft.deleted = !this.state.deleted;
-  //     if (!this.state.deleted) {
-  //       draft.dispositifs.sort((a, b) => {
-  //         if (a.status === "Supprimé" && b.status === "Supprimé") {
-  //           return 0;
-  //         } else if (a.status === "Supprimé" && b.status !== "Supprimé") {
-  //           return -1;
-  //         }
-  //         return 1;
-  //       });
-  //     }
-  //   })
-  // );
-};
-
-// console.log("dispo", props.dispositifs);
-// const { dispositifs, headers } = this.state;

@@ -217,7 +217,11 @@ export const FilterButton = (props: {
   text: string;
   isSelected: boolean;
 }) => (
-  <FilterButtonContainer onClick={props.onClick} isSelected={props.isSelected}>
+  <FilterButtonContainer
+    onClick={props.onClick}
+    isSelected={props.isSelected}
+    key={props.text}
+  >
     {props.text}
   </FilterButtonContainer>
 );
