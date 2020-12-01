@@ -304,11 +304,6 @@ export default {
     });
   },
 
-  create_langue: (query) => {
-    return axios.post(burl + "/langues/create_langues", query, {
-      headers: headers,
-    });
-  },
   get_langues: (query, sort, populate) => {
     return axios.post(
       burl + "/langues/get_langues",

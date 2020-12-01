@@ -6,9 +6,10 @@ import {
 } from "./structure.repository";
 import { castToBoolean } from "../../libs/castToBoolean";
 import { turnToLocalized } from "../dispositif/functions";
+import { ObjectId } from "mongoose";
 
 interface Query {
-  id: string;
+  id: ObjectId;
   withDisposAssocies: string;
   localeOfLocalizedDispositifsAssocies: string;
 }

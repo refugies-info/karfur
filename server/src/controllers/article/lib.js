@@ -1,6 +1,6 @@
 const Article = require("../../schema/schemaArticle.js");
 const Traduction = require("../../schema/schemaTraduction.js");
-const Langue = require("../../schema/schemaLangue.js");
+const { Langue } = require("../../schema/schemaLangue");
 const Role = require("../../schema/schemaRole.js");
 const User = require("../../schema/schemaUser.js");
 const traduction = require("../traduction/lib");

@@ -1,11 +1,11 @@
-import Structure from "../../schema/schemaStructure.js";
-import { IStructure } from "../../types/interface";
+import { Structure, StructureDoc } from "../../schema/schemaStructure";
+import { ObjectId } from "mongoose";
 
 export const getStructureFromDB = async (
-  id: string,
+  id: ObjectId,
   withDispositifsAssocies: boolean,
   fields: "all" | Record<string, number>
-): Promise<IStructure> => {
+): Promise<StructureDoc> => {
   if (withDispositifsAssocies) {
     if (fields === "all") {
       return await Structure.findOne({ _id: id }).populate(
@@ -22,7 +22,7 @@ export const getStructureFromDB = async (
   return await Structure.findOne({ _id: id }, fields);
 };
 
-export const getStructuresFromDB = async (): Promise<IStructure> =>
+export const getStructuresFromDB = async () =>
   await Structure.find(
     { status: "Actif" },
     { nom: 1, acronyme: 1, picture: 1 }
