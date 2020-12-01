@@ -218,6 +218,11 @@ export default {
     });
   },
 
+  updateDispositifStatus: (query) =>
+    axios.post(burl + "/dispositifs/updateDispositifStatus", query, {
+      headers,
+    }),
+
   create_structure: (query) => {
     return axios.post(burl + "/structures/add_structure", query, {
       headers: headers,

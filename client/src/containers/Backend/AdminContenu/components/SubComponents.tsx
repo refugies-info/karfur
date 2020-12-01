@@ -2,13 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
 import { limitNbCaracters } from "../../../../lib";
-import { max } from "moment";
 import { correspondingStatus } from "../data";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 // @ts-ignore
 import variables from "scss/colors.scss";
-import { mapPropsStream } from "recompose";
-import { produceWithPatches } from "immer";
 
 const Container = styled.div`
   font-weight: normal;

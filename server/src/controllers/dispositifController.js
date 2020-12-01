@@ -3,6 +3,7 @@ const checkToken = require("./account/checkToken");
 const {
   getDispositifs,
   getAllDispositifs,
+  updateDispositifStatus,
 } = require("./dispositif/dispositif.service");
 
 module.exports = function (app) {
@@ -26,4 +27,5 @@ module.exports = function (app) {
   );
   app.post("/getDispositifs", getDispositifs);
   app.get("/getAllDispositifs", getAllDispositifs);
+  app.post("/updateDispositifStatus", updateDispositifStatus);
 };

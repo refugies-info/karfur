@@ -21,7 +21,6 @@ import {
   status_sort_arr,
   correspondingStatus,
 } from "./data";
-import { prepareDeleteContrib } from "../AdminContrib/functions";
 import { customCriteres } from "../../Dispositif/MoteurVariantes/data";
 import API from "../../../utils/API";
 import {
@@ -50,6 +49,7 @@ import {
   FilterButton,
   TabHeader,
 } from "./components/SubComponents";
+import { fetchAllDispositifs } from "../../../services/AllDispositifs/allDispositifs.saga";
 
 moment.locale("fr");
 
@@ -61,12 +61,13 @@ const url =
     : "https://www.refugies.info/";
 
 export const AdminContenu = () => {
-  const [filter, setFilter] = useState("En attente admin");
-  const [sortedHeader, setSortedHeader] = useState({
+  const defaultSortedHeader = {
     name: "none",
     sens: "none",
     orderColumn: "none",
-  });
+  };
+  const [filter, setFilter] = useState("En attente admin");
+  const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const headers = table_contenu.headers;
   const dispositifs = useSelector(allDispositifsSelector);
   const isLoading = useSelector(
@@ -118,14 +119,18 @@ export const AdminContenu = () => {
       const valueA =
         sortedHeader.orderColumn === "mainSponsor"
           ? sponsorA
-          : a[sortedHeader.orderColumn].toLowerCase();
+          : a[sortedHeader.orderColumn]
+          ? a[sortedHeader.orderColumn].toLowerCase()
+          : "";
       const valueAWithoutAccent = valueA
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
       const valueB =
         sortedHeader.orderColumn === "mainSponsor"
           ? sponsorB
-          : b[sortedHeader.orderColumn].toLowerCase();
+          : b[sortedHeader.orderColumn]
+          ? b[sortedHeader.orderColumn].toLowerCase()
+          : "";
       const valueBWithoutAccent = valueB
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "");
@@ -144,7 +149,7 @@ export const AdminContenu = () => {
     return orderA > orderB ? 1 : -1;
   };
 
-  const reorder = (key, element) => {
+  const reorder = (element) => {
     if (sortedHeader.name === element.name) {
       const sens = sortedHeader.sens === "up" ? "down" : "up";
       setSortedHeader({ name: element.name, sens, orderColumn: element.order });
@@ -156,10 +161,50 @@ export const AdminContenu = () => {
       });
     }
   };
-  console.log("testorder", "délé" > "dir", "dele" > "dir", "dele" > "comité");
-  const str = "Crème Brulée";
 
-  console.log("str");
+  const prepareDeleteContrib = function (dispositif) {
+    Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: "La suppression d'un dispositif est irréversible",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: variables.rouge,
+      cancelButtonColor: variables.vert,
+      confirmButtonText: "Oui, le supprimer",
+      cancelButtonText: "Annuler",
+    }).then((result) => {
+      if (result.value) {
+        const newDispositif = {
+          dispositifId: dispositif._id,
+          status: "Supprimé",
+        };
+
+        API.updateDispositifStatus({ query: newDispositif })
+          .then(() => {
+            Swal.fire({
+              title: "Yay...",
+              text: "Suppression effectuée",
+              type: "success",
+              timer: 1500,
+            });
+            dispatch(fetchAllDispositifsActionsCreator());
+          })
+          .catch(() => {
+            Swal.fire({
+              title: "Oh non!",
+              text: "Something went wrong",
+              type: "error",
+              timer: 1500,
+            });
+          });
+      }
+    });
+  };
+
+  const onFilterClick = (status) => {
+    setFilter(status);
+    setSortedHeader(defaultSortedHeader);
+  };
 
   return (
     <div className="admin-contenu animated fadeIn">
@@ -171,7 +216,7 @@ export const AdminContenu = () => {
             const nbContent = getNbDispositifsByStatus(status.storedStatus);
             return (
               <FilterButton
-                onClick={() => setFilter(status.storedStatus)}
+                onClick={() => onFilterClick(status.storedStatus)}
                 text={`${status.displayedStatus} (${nbContent})`}
                 isSelected={filter === status.storedStatus}
               />
@@ -184,7 +229,7 @@ export const AdminContenu = () => {
           <thead>
             <tr>
               {headers.map((element, key) => (
-                <th key={key} onClick={() => reorder(key, element)}>
+                <th key={key} onClick={() => reorder(element)}>
                   <TabHeader
                     name={element.name}
                     order={element.order}
@@ -208,13 +253,7 @@ export const AdminContenu = () => {
 
               return (
                 <tr key={key}>
-                  <td
-                    className="align-middle"
-                    onClick={() =>
-                      (element.children || []).length > 0 &&
-                      this.toggleExpanded(key)
-                    }
-                  >
+                  <td className="align-middle">
                     <TypeContenu type={element.typeContenu || "dispositif"} />
                   </td>
                   <td className="align-middle" id={"titre-" + key}>
@@ -255,7 +294,7 @@ export const AdminContenu = () => {
                         hoverColor={variables.validationHover}
                       />
                       <DeleteButton
-                        onClick={() => this.prepareDeleteContrib(element)}
+                        onClick={() => prepareDeleteContrib(element)}
                       />
                     </div>
                   </td>

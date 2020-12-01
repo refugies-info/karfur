@@ -6,7 +6,11 @@ import {
   turnToLocalizedTitles,
 } from "./functions";
 import { Res, RequestFromClient, IDispositif } from "../../types/interface";
-import { getDispositifsFromDB } from "./dispositif.repository";
+import {
+  getDispositifsFromDB,
+  updateDispositifStatusInDB,
+} from "./dispositif.repository";
+import { ObjectId } from "mongoose";
 
 const getDispositifArray = async (query: any) => {
   const neededFields = {
@@ -169,5 +173,30 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
           text: "Erreur interne",
         });
     }
+  }
+};
+
+interface QueryUpdate {
+  dispositifId: ObjectId;
+  status: string;
+}
+export const updateDispositifStatus = async (
+  req: RequestFromClient<QueryUpdate>,
+  res: Res
+) => {
+  try {
+    if (!req.fromSite) {
+      return res.status(405).json({ text: "Requête bloquée par API" });
+    } else if (!req.body) {
+      return res.status(400).json({ text: "Requête invalide" });
+    }
+
+    const { dispositifId, status } = req.body.query;
+    logger.info("[updateDispositifStatus]", { dispositifId, status });
+    await updateDispositifStatusInDB(dispositifId, status);
+    res.status(200).json({ text: "OK" });
+  } catch (error) {
+    logger.error("[updateDispositifStatus] error", { error });
+    return res.status(500).json({ text: "Erreur interne" });
   }
 };

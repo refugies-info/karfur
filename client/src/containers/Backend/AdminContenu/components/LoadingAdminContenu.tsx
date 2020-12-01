@@ -7,7 +7,7 @@ import {
   StyledSort,
 } from "../StyledAdminContenu";
 import { Table } from "reactstrap";
-import { table_contenu } from "../data";
+import { table_contenu, correspondingStatus } from "../data";
 import Skeleton from "react-loading-skeleton";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 // @ts-ignore
@@ -17,47 +17,27 @@ import { FilterButton } from "./SubComponents";
 export const LoadingAdminContenu = () => {
   const arrayLines = new Array(12).fill("a");
   const arrayContent = new Array(5).fill("a");
+
+  const compare = (a: any, b: any) => {
+    const orderA = a.order;
+    const orderB = b.order;
+    return orderA > orderB ? 1 : -1;
+  };
   return (
     <>
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{"..."}</FigureContainer>
         <StyledSort>
-          <FilterButton
-            onClick={() => {}}
-            text="À valider (...)"
-            isSelected={false}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text="En attente (...)"
-            isSelected={false}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text="Brouillon (...)"
-            isSelected={false}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text="Sans structure (...)"
-            isSelected={false}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text="Publié (...)"
-            isSelected={false}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text="Rejeté (...)"
-            isSelected={false}
-          />
-          <FilterButton
-            onClick={() => {}}
-            text="Supprimé (...)"
-            isSelected={false}
-          />
+          {correspondingStatus.sort(compare).map((status) => {
+            return (
+              <FilterButton
+                onClick={() => {}}
+                text={`${status.displayedStatus} (...)`}
+                isSelected={false}
+              />
+            );
+          })}
         </StyledSort>
       </StyledHeader>
       <Content>
