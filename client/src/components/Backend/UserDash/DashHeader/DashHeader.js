@@ -152,18 +152,20 @@ const dashHeader = (props) => {
           </h2>
         </Col>
         <Col className="tableau-header align-right">
-          {
-            <FButton
-              type="dark"
-              className="mr-8"
-              name="book-outline"
-              tag={NavLink}
-              to={`/annuaire/${props.structure._id}`}
-              target="_blank"
-            >
-              Voir la fiche annuaire
-            </FButton>
-          }
+          {props.title === "Votre structure" &&
+            props.structure &&
+            props.structure._id && (
+              <FButton
+                type="dark"
+                className="mr-8"
+                name="book-outline"
+                tag={NavLink}
+                to={`/annuaire/${props.structure._id}`}
+                target="_blank"
+              >
+                Voir la fiche annuaire
+              </FButton>
+            )}
           {showAnnuaireModification &&
             !props.structure.hasResponsibleSeenNotification && (
               <FButton
