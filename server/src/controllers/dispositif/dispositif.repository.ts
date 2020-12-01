@@ -9,5 +9,5 @@ export const getDispositifsFromDB = async (
 
 export const updateDispositifStatusInDB = async (
   _id: ObjectId,
-  status: string
-) => await Dispositif.findOneAndUpdate({ _id }, { status });
+  newDispositif: { status: string; publishedAt: number } | { status: string }
+) => await Dispositif.findOneAndUpdate({ _id }, newDispositif);

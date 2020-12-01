@@ -193,7 +193,13 @@ export const updateDispositifStatus = async (
 
     const { dispositifId, status } = req.body.query;
     logger.info("[updateDispositifStatus]", { dispositifId, status });
-    await updateDispositifStatusInDB(dispositifId, status);
+    let newDispositif;
+    if (status === "Actif") {
+      newDispositif = { status, publishedAt: Date.now() };
+    } else {
+      newDispositif = { status };
+    }
+    await updateDispositifStatusInDB(dispositifId, newDispositif);
     res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[updateDispositifStatus] error", { error });

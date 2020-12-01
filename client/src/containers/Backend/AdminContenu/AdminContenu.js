@@ -10,6 +10,7 @@ import {
   fetchAllDispositifsActionsCreator,
   setAllDispositifsActionsCreator,
 } from "../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 import { deleteContrib } from "../UserProfile/functions";
 import { colorStatut } from "../../../components/Functions/ColorFunctions";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
@@ -206,6 +207,48 @@ export const AdminContenu = () => {
     setSortedHeader(defaultSortedHeader);
   };
 
+  const publishDispositif = async (dispositif, status = "Actif") => {
+    const newDispositif = { status: status, dispositifId: dispositif._id };
+    let question = { value: true };
+    if (
+      dispositif.status === "En attente" ||
+      dispositif.status === "Accepté structure"
+    ) {
+      question = await Swal.fire({
+        title: "Êtes-vous sûr ?",
+        text:
+          "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
+        type: "question",
+        showCancelButton: true,
+        confirmButtonColor: variables.rouge,
+        cancelButtonColor: variables.vert,
+        confirmButtonText: "Oui, le valider",
+        cancelButtonText: "Annuler",
+      });
+    }
+    if (question.value) {
+      API.updateDispositifStatus({ query: newDispositif })
+        .then(() => {
+          Swal.fire({
+            title: "Yay...",
+            text: "Dispositif publié",
+            type: "success",
+            timer: 1500,
+          });
+          dispatch(fetchAllDispositifsActionsCreator());
+          dispatch(fetchActiveDispositifsActionsCreator());
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Oh non!",
+            text: "Something went wrong",
+            type: "error",
+            timer: 1500,
+          });
+        });
+    }
+  };
+
   return (
     <div className="admin-contenu animated fadeIn">
       <StyledHeader>
@@ -285,7 +328,7 @@ export const AdminContenu = () => {
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />
                       <ValidateButton
-                        onClick={() => this.update_status(element)}
+                        onClick={() => publishDispositif(element)}
                         disabled={
                           element.status === "Actif" ||
                           !element.mainSponsor ||
