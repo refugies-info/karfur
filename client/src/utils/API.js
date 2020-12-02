@@ -361,13 +361,6 @@ export default {
   },
   cancel_tts_subscription: () => cancel && cancel(),
 
-  set_audio: (query) => {
-    return axios.post(burl + "/audio/set_audio", query, { headers: headers });
-  },
-  get_audio: (query) => {
-    return axios.post(burl + "/audio/get_audio", query, { headers: headers });
-  },
-
   isAuth: () => {
     return localStorage.getItem("token") !== null;
   },
