@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Badge, Col, Row, Nav, NavItem, NavLink, TabContent } from "reactstrap";
+import { Col, Row, Nav, NavItem, NavLink, TabContent } from "reactstrap";
 import Swal from "sweetalert2";
-import { connect } from "react-redux";
 import _ from "lodash";
 import passwdCheck from "zxcvbn";
 import produce from "immer";
@@ -9,14 +8,43 @@ import produce from "immer";
 import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
 import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import { fetchStructuresActionCreator } from "../../../services/Structure/structure.actions";
 
 import "./Admin.scss";
 import variables from "scss/colors.scss";
+import styled from "styled-components";
+
+const OngletText = styled.span`
+  color: ${(props) =>
+    props.isActive ? variables.bleuCharte : variables.darkColor};
+  font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
+`;
+
+const OngletContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  background: #f2f2f2;
+`;
+
+const Onglet = (props) => (
+  <OngletContainer>
+    <div style={{ marginBottom: "3px" }}>
+      <EVAIcon
+        name={props.isSelected ? props.iconSelected : props.iconNotSelected}
+        fill={props.isSelected ? variables.bleuCharte : variables.noir}
+        className="mr-8"
+      />
+    </div>
+    <OngletText isActive={props.isSelected}>{props.text}</OngletText>
+  </OngletContainer>
+);
 
 export class Admin extends Component {
   state = {
-    activeTab: new Array(5).fill("0"),
+    activeTab: "0",
     orderedLangues: [],
     roles: [],
     users: [],
@@ -142,26 +170,23 @@ export class Admin extends Component {
         })
       );
     }
-    if (prevState.activeTab[3] !== this.state.activeTab[3]) {
-      if (this.state.activeTab[3] === 0) {
+    if (prevState.activeTab !== this.state.activeTab) {
+      if (this.state.activeTab === 0) {
         document.title = "Contenus";
-      } else if (this.state.activeTab[3] === 1) {
+      } else if (this.state.activeTab === 1) {
         document.title = "Structures";
-      } else if (this.state.activeTab[3] === 2) {
+      } else if (this.state.activeTab === 2) {
         document.title = "Utilisateurs";
-      } else if (this.state.activeTab[3] === 3) {
+      } else if (this.state.activeTab === 3) {
         document.title = "Languages";
       }
     }
   }
 
-  toggleTab(tabPane, tab) {
-    const newArray = this.state.activeTab.slice();
-    newArray[tabPane] = tab;
-    this.setState({
-      activeTab: newArray,
-    });
-  }
+  toggleTab = (tab) =>
+    this.setState(() => ({
+      activeTab: tab,
+    }));
 
   handleChange = (event) => {
     this.setState({
@@ -216,7 +241,7 @@ export class Admin extends Component {
         ],
       });
     }
-    switchTo && this.toggleTab(3, switchTo);
+    switchTo && this.toggleTab(switchTo);
   };
 
   handleCheck = (event) => {
@@ -259,16 +284,6 @@ export class Admin extends Component {
             : oldRoles.filter((obj) => obj !== event.target.id),
         },
       });
-    }
-  };
-
-  handleKeyPress = (e) => {
-    e.preventDefault();
-    if (
-      e.keyCode === 9 &&
-      1 * this.state.activeTab[3] < this.state.activeTab.length - 1
-    ) {
-      this.toggleTab(3, (1 * this.state.activeTab[3] + 1).toString());
     }
   };
 
@@ -544,7 +559,7 @@ export class Admin extends Component {
       }
       this.setState({ [tab]: this.initial_state[tab] });
       if (tab === "structure") {
-        this.props.fetchStructures();
+        // this.props.fetchStructures();
       }
     });
   };
@@ -568,98 +583,72 @@ export class Admin extends Component {
   render() {
     return (
       <div className="animated fadeIn admin">
-        {" "}
-        {/* onKeyDown={this.handleKeyPress} -- ne fonctionne pas, désactivé pour l'instant*/}
         <Row>
           <Col>
-            <Nav tabs>
+            <Nav>
               <NavItem>
                 <NavLink
-                  active={this.state.activeTab[3] === "0"}
+                  active={this.state.activeTab === "0"}
                   onClick={() => {
-                    this.toggleTab(3, "0");
+                    this.toggleTab("0");
                   }}
                 >
-                  <EVAIcon
-                    name="file-add-outline"
-                    fill={variables.noir}
-                    className="mr-10"
+                  <Onglet
+                    iconSelected="file-add"
+                    iconNotSelected="file-add-outline"
+                    text="Contenus"
+                    isSelected={this.state.activeTab === "0"}
                   />
-                  <span
-                    className={this.state.activeTab[3] === "0" ? "" : "d-none"}
-                  >
-                    Contenus
-                  </span>
-                  {"\u00A0"}
-                  <Badge color="dark">
-                    {(this.props.dispositifs || []).length}
-                  </Badge>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
-                  active={this.state.activeTab[3] === "1"}
+                  active={this.state.activeTab === "1"}
                   onClick={() => {
-                    this.toggleTab(3, "1");
+                    this.toggleTab("1");
                   }}
                 >
-                  <EVAIcon
-                    name="shopping-bag-outline"
-                    fill={variables.noir}
-                    className="mr-10"
+                  <Onglet
+                    iconSelected="shopping-bag"
+                    iconNotSelected="shopping-bag-outline"
+                    text="Structures"
+                    isSelected={this.state.activeTab === "1"}
                   />
-                  <span
-                    className={this.state.activeTab[3] === "1" ? "" : "d-none"}
-                  >
-                    Structures
-                  </span>
-                  {"\u00A0"}
-                  <Badge pill color="danger">
-                    {this.state.structures.length}
-                  </Badge>
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
-                  active={this.state.activeTab[3] === "2"}
+                  active={this.state.activeTab === "2"}
                   onClick={() => {
-                    this.toggleTab(3, "2");
+                    this.toggleTab("2");
                   }}
                 >
-                  <i className="icon-user"></i>
-                  <span
-                    className={this.state.activeTab[3] === "2" ? "" : "d-none"}
-                  >
-                    {" "}
-                    Utilisateurs
-                  </span>
-                  {"\u00A0"}
-                  <Badge color="success">{this.state.users.length}</Badge>
+                  <Onglet
+                    iconSelected="person"
+                    iconNotSelected="person-outline"
+                    text="Utilisateurs"
+                    isSelected={this.state.activeTab === "2"}
+                  />
                 </NavLink>
               </NavItem>
 
               <NavItem>
                 <NavLink
-                  active={this.state.activeTab[3] === "4"}
+                  active={this.state.activeTab === "3"}
                   onClick={() => {
-                    this.toggleTab(3, "4");
+                    this.toggleTab("3");
                   }}
                 >
-                  <EVAIcon
-                    name="pie-chart-outline"
-                    fill={variables.noir}
-                    className="mr-10"
+                  <Onglet
+                    iconSelected="pie-chart"
+                    iconNotSelected="pie-chart-outline"
+                    text="Statistiques"
+                    isSelected={this.state.activeTab === "3"}
                   />
-                  <span
-                    className={this.state.activeTab[3] === "4" ? "" : "d-none"}
-                  >
-                    Statistiques
-                  </span>
-                  {"\u00A0"}
                 </NavLink>
               </NavItem>
             </Nav>
-            <TabContent activeTab={this.state.activeTab[3]}>
+            <TabContent activeTab={this.state.activeTab}>
               <CustomTabPane
                 handleChange={this.handleChange}
                 onSelect={this.onSelect}
@@ -685,12 +674,4 @@ export class Admin extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    dispositifs: state.activeDispositifs,
-  };
-};
-
-const mapDispatchToProps = { fetchStructures: fetchStructuresActionCreator };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Admin);
+export default Admin;

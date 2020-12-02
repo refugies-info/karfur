@@ -1,255 +1,232 @@
-import React, { Component } from "react";
-import { Table, Input, Tooltip } from "reactstrap";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { Table } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
 import moment from "moment/min/moment-with-locales";
-import _ from "lodash";
 import Swal from "sweetalert2";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
-import { deleteContrib } from "../UserProfile/functions";
-import { colorStatut } from "../../../components/Functions/ColorFunctions";
-import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import {
-  table_contenu,
-  status_mapping,
-  responsables,
-  internal_actions,
-  status_sort_arr,
-} from "./data";
-import { prepareDeleteContrib } from "../AdminContrib/functions";
-import { customCriteres } from "../../Dispositif/MoteurVariantes/data";
+  fetchAllDispositifsActionsCreator,
+  setAllDispositifsActionsCreator,
+} from "../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
+import { table_contenu, correspondingStatus } from "./data";
 import API from "../../../utils/API";
 import {
   StyledSort,
-  StyledStatus,
   StyledTitle,
   StyledHeader,
+  Content,
+  FigureContainer,
+  SearchBarContainer,
 } from "./StyledAdminContenu";
-import produce from "immer";
-
 import "./AdminContenu.scss";
 import variables from "scss/colors.scss";
+import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
+import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
+import {
+  TypeContenu,
+  Title,
+  Structure,
+  StyledStatus,
+  ValidateButton,
+  SeeButton,
+  DeleteButton,
+  FilterButton,
+  TabHeader,
+} from "./components/SubComponents";
+import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { NavHashLink } from "react-router-hash-link";
 
 moment.locale("fr");
-const prioritaryStatus = [
-  { name: "En attente", prio: 1 },
-  { name: "En attente admin", prio: 0 },
-  { name: "Accepté structure", prio: 2 },
-  { name: "En attente non prioritaire", prio: 3 },
-  { name: "Rejecté structure", prio: 4 },
-];
 
-const maxDescriptionLength = 30;
-class AdminContenu extends Component {
-  constructor(props) {
-    super(props);
-    this.deleteContrib = deleteContrib.bind(this);
-    this.prepareDeleteContrib = prepareDeleteContrib.bind(this);
-  }
+const url =
+  process.env.REACT_APP_ENV === "development"
+    ? "http://localhost:3000/"
+    : process.env.REACT_APP_ENV === "staging"
+    ? "https://staging.refugies.info/"
+    : "https://www.refugies.info/";
 
-  state = {
-    dispositifs: [],
-    deleted: false,
-    published: false,
-    draft: false,
-    headers: table_contenu.headers,
+export const AdminContenu = () => {
+  const defaultSortedHeader = {
+    name: "none",
+    sens: "none",
+    orderColumn: "none",
   };
+  const dispositifs = useSelector(allDispositifsSelector);
 
-  componentDidMount() {
-    this._initializeContrib(this.props);
-  }
+  const [filter, setFilter] = useState("En attente admin");
+  const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
+  const [search, setSearch] = useState("");
+  const headers = table_contenu.headers;
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
+  );
 
-  formatDispositif = (dispositifs) =>
-    dispositifs.map((x) => ({
-      ...x,
-      titreCourt: x.titreMarque || x.titreInformatif || "",
-      titre:
-        (x.titreMarque || "") +
-        (x.titreMarque && x.titreInformatif ? " - " : "") +
-        (x.titreInformatif || ""),
-      structure: _.get(x, "mainSponsor.nom", _.get(x, "mainSponsor.nom", "")),
-      structureObj: _.get(x, "mainSponsor", {}),
-      expanded: false,
-      type: "parent",
-      tooltip: false,
-      joursDepuis:
-        (new Date().getTime() - new Date(x.updatedAt).getTime()) /
-        (1000 * 3600 * 24),
-      children: dispositifs
-        .filter((y) => y.demarcheId === x._id)
-        .map((y) => ({
-          ...y,
-          structure: _.get(
-            y,
-            "mainSponsor.nom",
-            _.get(y, "mainSponsor.nom", "")
-          ),
-          structureObj: _.get(y, "mainSponsor", {}),
-          tooltip: false,
-          joursDepuis:
-            (new Date().getTime() - new Date(y.updatedAt).getTime()) /
-            (1000 * 3600 * 24),
-          titre: [
-            y.titreInformatif,
-            "-",
-            y.variantes
-              .map((z) =>
-                [
-                  "(",
-                  ...(z.ageTitle
-                    ? [
-                        "Âge : " +
-                          (z.ageTitle === "De ** à ** ans"
-                            ? "De " +
-                              z.bottomValue +
-                              " à " +
-                              z.topValue +
-                              " ans"
-                            : z.contentTitle === "Moins de ** ans"
-                            ? "Moins de " + z.topValue + " ans"
-                            : "Plus de " + z.bottomValue + " ans") +
-                          ", ",
-                      ]
-                    : []),
-                  ...(z.villes
-                    ? [
-                        "Localisation : " +
-                          (z.villes.length > 1
-                            ? z.villes.length + " villes"
-                            : z.villes[0].formatted_address) +
-                          ", ",
-                      ]
-                    : []),
-                  customCriteres
-                    .reduce(
-                      (acc, curr) =>
-                        (acc +=
-                          curr.query && z[curr.query]
-                            ? curr.texte +
-                              " : " +
-                              z[curr.query].join(" ou ") +
-                              ", "
-                            : ""),
-                      ""
-                    )
-                    .slice(0, -2),
-                  ")",
-                ].join(" ")
-              )
-              .join(" ou "),
-          ].join(" "),
-        })),
-    }));
+  const dispatch = useDispatch();
 
-  _initializeContrib = () => {
-    API.get_dispositif({ query: {}, populate: "creatorId mainSponsor" }).then(
-      (data_res) => {
-        const dispositifs = [...data_res.data.data];
-        this.setState({
-          dispositifs: this.formatDispositif(dispositifs).sort(function (a, b) {
-            const statusA = a.status;
-            const statusB = b.status;
-            const correspondencyStatusA = _.find(
-              prioritaryStatus,
-              (status) => status.name === statusA
-            );
-            const prioStatusA = correspondencyStatusA
-              ? correspondencyStatusA.prio
-              : 5;
-            const correspondencyStatusB = _.find(
-              prioritaryStatus,
-              (status) => status.name === statusB
-            );
-            const prioStatusB = correspondencyStatusB
-              ? correspondencyStatusB.prio
-              : 5;
-
-            return prioStatusA < prioStatusB
-              ? -1
-              : prioStatusA > prioStatusB
-              ? 1
-              : 0;
-          }),
-        });
-      }
-    );
-  };
-
-  toggleExpanded = (idx) => {
-    let dispositifs = [...this.state.dispositifs]
-      .map((x, i) =>
-        i === idx
-          ? [
-              { ...x, expanded: !x.expanded },
-              ...(!x.expanded
-                ? x.children.map((y) => ({ ...y, type: "child", children: [] }))
-                : []),
-            ]
-          : [x]
-      )
-      .reduce((a, b) => a.concat(b), []);
-    if (this.state.dispositifs[idx].expanded) {
-      dispositifs = dispositifs.filter(
-        (x) => x.demarcheId !== this.state.dispositifs[idx]._id
-      );
-    }
-    this.setState({ dispositifs });
-  };
-
-  reorder = (key, element) => {
-    const croissant = !element.croissant;
-    this.setState((pS) => ({
-      dispositifs: pS.dispositifs.sort((a, b) => {
-        let aValue = _.get(a, element.order),
-          bValue = _.get(b, element.order);
-        if (element.order === "status") {
-          aValue = _.indexOf(status_sort_arr, aValue);
-          bValue = _.indexOf(status_sort_arr, bValue);
-        }
-        return aValue > bValue
-          ? croissant
-            ? 1
-            : -1
-          : aValue < bValue
-          ? croissant
-            ? -1
-            : 1
-          : 0;
-      }),
-      headers: pS.headers.map((x, i) =>
-        i === key
-          ? { ...x, croissant: !x.croissant, active: true }
-          : { ...x, active: false }
-      ),
-    }));
-  };
-
-  toggleTooltip = (idx) =>
-    this.setState((pS) => ({
-      dispositifs: pS.dispositifs.map((x, i) =>
-        i === idx ? { ...x, tooltip: !x.tooltip } : x
-      ),
-    }));
-
-  handleChange = (e, idx, dispositif) => {
-    const target = e.target;
-    const newDispositif = {
-      [target.id]: target.value,
-      dispositifId: dispositif._id,
-      status: dispositif.status,
+  useEffect(() => {
+    const loadDispositifs = async () => {
+      await dispatch(fetchAllDispositifsActionsCreator());
     };
-    API.add_dispositif(newDispositif);
-    this.setState((pS) => ({
-      dispositifs: pS.dispositifs.map((x, i) =>
-        i === idx ? { ...x, [target.id]: target.value } : x
-      ),
-    }));
+    loadDispositifs();
+    window.scrollTo(0, 0);
+
+    return () => {
+      dispatch(setAllDispositifsActionsCreator([]));
+    };
+  }, [dispatch]);
+
+  if (isLoading || dispositifs.length === 0) {
+    return (
+      <div className="admin-contenu animated fadeIn">
+        <LoadingAdminContenu />
+      </div>
+    );
+  }
+
+  const getNbDispositifsByStatus = (dispositifsToDisplay, status) =>
+    dispositifsToDisplay && dispositifsToDisplay.length > 0
+      ? dispositifsToDisplay.filter((dispo) => dispo.status === status).length
+      : 0;
+
+  const filterAndSortDispositifs = (dispositifs) => {
+    const dispositifsFilteredBySearch = !!search
+      ? dispositifs.filter(
+          (dispo) =>
+            dispo.titreInformatif &&
+            dispo.titreInformatif
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLowerCase()
+              .includes(search)
+        )
+      : dispositifs;
+
+    const filteredDispositifs = dispositifsFilteredBySearch.filter(
+      (dispo) => dispo.status === filter
+    );
+    if (sortedHeader.name === "none")
+      return {
+        dispositifsToDisplay: filteredDispositifs,
+        dispositifsForCount: dispositifsFilteredBySearch,
+      };
+
+    const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
+      const sponsorA =
+        a.mainSponsor && a.mainSponsor.nom
+          ? a.mainSponsor.nom.toLowerCase()
+          : "";
+      const sponsorB =
+        b.mainSponsor && b.mainSponsor.nom
+          ? b.mainSponsor.nom.toLowerCase()
+          : "";
+
+      const valueA =
+        sortedHeader.orderColumn === "mainSponsor"
+          ? sponsorA
+          : a[sortedHeader.orderColumn]
+          ? a[sortedHeader.orderColumn].toLowerCase()
+          : "";
+      const valueAWithoutAccent = valueA
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+      const valueB =
+        sortedHeader.orderColumn === "mainSponsor"
+          ? sponsorB
+          : b[sortedHeader.orderColumn]
+          ? b[sortedHeader.orderColumn].toLowerCase()
+          : "";
+      const valueBWithoutAccent = valueB
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+      if (valueAWithoutAccent > valueBWithoutAccent)
+        return sortedHeader.sens === "up" ? 1 : -1;
+
+      return sortedHeader.sens === "up" ? -1 : 1;
+    });
+    return {
+      dispositifsToDisplay,
+      dispositifsForCount: dispositifsFilteredBySearch,
+    };
+  };
+  const {
+    dispositifsToDisplay,
+    dispositifsForCount,
+  } = filterAndSortDispositifs(dispositifs);
+
+  const compare = (a, b) => {
+    const orderA = a.order;
+    const orderB = b.order;
+    return orderA > orderB ? 1 : -1;
   };
 
-  update_status = async (dispositif, status = "Actif") => {
+  const reorder = (element) => {
+    if (sortedHeader.name === element.name) {
+      const sens = sortedHeader.sens === "up" ? "down" : "up";
+      setSortedHeader({ name: element.name, sens, orderColumn: element.order });
+    } else {
+      setSortedHeader({
+        name: element.name,
+        sens: "up",
+        orderColumn: element.order,
+      });
+    }
+  };
+
+  const prepareDeleteContrib = function (dispositif) {
+    Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text: "La suppression d'un dispositif est irréversible",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: variables.rouge,
+      cancelButtonColor: variables.vert,
+      confirmButtonText: "Oui, le supprimer",
+      cancelButtonText: "Annuler",
+    }).then((result) => {
+      if (result.value) {
+        const newDispositif = {
+          dispositifId: dispositif._id,
+          status: "Supprimé",
+        };
+
+        API.updateDispositifStatus({ query: newDispositif })
+          .then(() => {
+            Swal.fire({
+              title: "Yay...",
+              text: "Suppression effectuée",
+              type: "success",
+              timer: 1500,
+            });
+            dispatch(fetchAllDispositifsActionsCreator());
+          })
+          .catch(() => {
+            Swal.fire({
+              title: "Oh non!",
+              text: "Something went wrong",
+              type: "error",
+              timer: 1500,
+            });
+          });
+      }
+    });
+  };
+
+  const onFilterClick = (status) => {
+    setFilter(status);
+    setSortedHeader(defaultSortedHeader);
+  };
+
+  const handleChange = (e) => setSearch(e.target.value);
+
+  const publishDispositif = async (dispositif, status = "Actif") => {
     const newDispositif = { status: status, dispositifId: dispositif._id };
     let question = { value: true };
+    const link = `${url}${dispositif.typeContenu}/${dispositif._id}`;
+
     if (
       dispositif.status === "En attente" ||
       dispositif.status === "Accepté structure"
@@ -267,326 +244,151 @@ class AdminContenu extends Component {
       });
     }
     if (question.value) {
-      API.add_dispositif(newDispositif).then(() => {
-        this.setState((pS) => ({
-          dispositifs: pS.dispositifs.map((x) =>
-            x._id === dispositif._id ? { ...x, status: status } : x
-          ),
-        }));
-      });
+      API.updateDispositifStatus({ query: newDispositif })
+        .then(() => {
+          Swal.fire({
+            title: "Yay...",
+            text: "Contenu publié",
+            type: "success",
+            timer: 5500,
+            footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
+          });
+          dispatch(fetchAllDispositifsActionsCreator());
+          dispatch(fetchActiveDispositifsActionsCreator());
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Oh non!",
+            text: "Something went wrong",
+            type: "error",
+            timer: 1500,
+          });
+        });
     }
   };
 
-  reorderOnTopPubblish = () => {
-    this.setState(
-      produce((draft) => {
-        draft.published = !this.state.published;
-        if (!this.state.published) {
-          draft.dispositifs.sort((a, b) => {
-            if (a.status === "Actif" && b.status === "Actif") {
-              return 0;
-            } else if (a.status === "Actif" && b.status !== "Actif") {
-              return -1;
-            }
-            return 1;
-          });
-        }
-      })
-    );
-  };
+  const nbNonDeletedDispositifs =
+    dispositifs.length > 0
+      ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
+      : 0;
+  return (
+    <div className="admin-contenu animated fadeIn">
+      <SearchBarContainer>
+        <CustomSearchBar
+          value={search}
+          onChange={handleChange}
+          placeholder="Rechercher un contenu..."
+        />
+        <FButton
+          type="dark"
+          name="plus-circle-outline"
+          tag={NavHashLink}
+          to={"/comment-contribuer#ecrire"}
+        >
+          Ajouter un contenu
+        </FButton>
+      </SearchBarContainer>
+      <StyledHeader>
+        <StyledTitle>Contenus</StyledTitle>
+        <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
+        <StyledSort>
+          {correspondingStatus.sort(compare).map((status) => {
+            const nbContent = getNbDispositifsByStatus(
+              dispositifsForCount,
+              status.storedStatus
+            );
+            return (
+              <FilterButton
+                key={status.storedStatus}
+                onClick={() => onFilterClick(status.storedStatus)}
+                text={`${status.displayedStatus} (${nbContent})`}
+                isSelected={filter === status.storedStatus}
+              />
+            );
+          })}
+        </StyledSort>
+      </StyledHeader>
 
-  reorderOnTopDraft = () => {
-    this.setState(
-      produce((draft) => {
-        draft.draft = !this.state.draft;
-        if (!this.state.draft) {
-          draft.dispositifs.sort((a, b) => {
-            if (a.status === "Brouillon" && b.status === "Brouillon") {
-              return 0;
-            } else if (a.status === "Brouillon" && b.status !== "Brouillon") {
-              return -1;
-            }
-            return 1;
-          });
-        }
-      })
-    );
-  };
-
-  reorderOnTopDeleted = () => {
-    this.setState(
-      produce((draft) => {
-        draft.deleted = !this.state.deleted;
-        if (!this.state.deleted) {
-          draft.dispositifs.sort((a, b) => {
-            if (a.status === "Supprimé" && b.status === "Supprimé") {
-              return 0;
-            } else if (a.status === "Supprimé" && b.status !== "Supprimé") {
-              return -1;
-            }
-            return 1;
-          });
-        }
-      })
-    );
-  };
-
-  render() {
-    const { dispositifs, headers } = this.state;
-    return (
-      <div className="admin-contenu animated fadeIn">
-        <StyledHeader>
-          <StyledTitle>Publication des contenus</StyledTitle>
-          <StyledSort>
-            <StyledStatus
-              onClick={this.reorderOnTopPubblish}
-              className={
-                "status-pill bg-" +
-                (this.state.published
-                  ? colorStatut("Publié")
-                  : colorStatut("Inactif"))
-              }
-            >
-              {"Publié"}
-            </StyledStatus>
-            <StyledStatus
-              onClick={this.reorderOnTopDraft}
-              className={
-                "status-pill bg-" +
-                (this.state.draft
-                  ? colorStatut("Brouillon")
-                  : colorStatut("Inactif"))
-              }
-            >
-              {"Brouillons"}
-            </StyledStatus>
-            <StyledStatus
-              onClick={this.reorderOnTopDeleted}
-              className={
-                "status-pill bg-" +
-                (this.state.deleted
-                  ? colorStatut("Supprimé")
-                  : colorStatut("Inactif"))
-              }
-            >
-              {"Supprimé"}
-            </StyledStatus>
-          </StyledSort>
-        </StyledHeader>
-        <Table responsive>
+      <Content>
+        <Table responsive borderless>
           <thead>
             <tr>
               {headers.map((element, key) => (
-                <th
-                  key={key}
-                  className={
-                    (element.active ? "texte-bold" : "") +
-                    (element.hideOnPhone ? " hideOnPhone" : "") +
-                    " cursor-pointer"
-                  }
-                  onClick={() => this.reorder(key, element)}
-                >
-                  {element.name}
-                  {element.order && (
-                    <EVAIcon
-                      name={"chevron-" + (element.croissant ? "up" : "down")}
-                      fill={variables.noir}
-                      className="sort-btn"
-                    />
-                  )}
+                <th key={key} onClick={() => reorder(element)}>
+                  <TabHeader
+                    name={element.name}
+                    order={element.order}
+                    isSortedHeader={sortedHeader.name === element.name}
+                    sens={
+                      sortedHeader.name === element.name
+                        ? sortedHeader.sens
+                        : "down"
+                    }
+                  />
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {dispositifs.map((element, key) => {
-              const bgColor =
-                (status_mapping.find((x) => x.name === element.status) || {})
-                  .color || "";
-              if (
-                (element.status === "Supprimé" && !this.state.deleted) ||
-                (element.status === "Actif" && !this.state.published) ||
-                (element.status === "Brouillon" && !this.state.draft)
-              ) {
-                return;
-              }
+            {dispositifsToDisplay.map((element, key) => {
+              const nbDays =
+                -moment(element.updatedAt).diff(moment(), "days") + " jours";
+              const burl =
+                url + (element.typeContenu || "dispositif") + "/" + element._id;
+
               return (
-                <tr key={key} className={bgColor ? "bg-" + bgColor : ""}>
-                  <td
-                    className="align-middle"
-                    onClick={() =>
-                      (element.children || []).length > 0 &&
-                      this.toggleExpanded(key)
-                    }
-                  >
-                    {(element.children || []).length > 0 && (
-                      <EVAIcon
-                        name={
-                          "chevron-" +
-                          (element.expanded ? "down" : "right") +
-                          "-outline"
-                        }
-                        fill={variables.noir}
-                        className="mr-10"
-                      />
-                    )}
-                    <span
-                      className={
-                        (element.children || []).length === 0
-                          ? (element.type === "child" ? "super-" : "") +
-                            "decale-gauche"
-                          : ""
-                      }
-                    >
-                      {element.typeContenu || "dispositif"}
-                    </span>
+                <tr key={key}>
+                  <td className="align-middle">
+                    <TypeContenu type={element.typeContenu || "dispositif"} />
                   </td>
                   <td className="align-middle" id={"titre-" + key}>
-                    <NavLink
-                      to={
-                        "/" +
-                        (element.typeContenu || "dispositif") +
-                        "/" +
-                        element._id
-                      }
-                    >
-                      {element.titreCourt.substring(
-                        0,
-                        Math.min(
-                          element.titreCourt.length,
-                          maxDescriptionLength
-                        )
-                      ) +
-                        (element.titreCourt.length > maxDescriptionLength
-                          ? "..."
-                          : "")}
-                    </NavLink>
+                    <Title
+                      titreInformatif={element.titreInformatif}
+                      titreMarque={element.titreMarque}
+                    />
                   </td>
                   <td
                     className="align-middle cursor-pointer"
-                    onClick={() =>
-                      this.props.onSelect(
-                        { structure: element.structureObj },
-                        "1"
-                      )
-                    }
+                    // onClick={() =>
+                    //   this.props.onSelect(
+                    //     { structure: element.structureObj },
+                    //     "1"
+                    //   )
+                    // }
                   >
-                    {element.structure}
+                    <Structure sponsor={element.mainSponsor} />
                   </td>
-                  <td
-                    className={
-                      "align-middle petit-texte depuis color-" +
-                      (element.status === "Actif"
-                        ? "focus"
-                        : element.joursDepuis > 30
-                        ? "rouge"
-                        : element.joursDepuis > 10
-                        ? "orange"
-                        : "vert")
-                    }
-                  >
-                    {element.status === "Actif"
-                      ? "Publié"
-                      : moment(element.updatedAt).fromNow()}
-                  </td>
+                  <td className={"align-middle "}>{nbDays}</td>
                   <td className="align-middle">
-                    <StyledStatus
-                      className={
-                        "status-pill bg-" + colorStatut(element.status)
-                      }
-                    >
-                      {element.status}
-                    </StyledStatus>
+                    <StyledStatus text="Nouveau" />
                   </td>
-                  <td className="align-middle hideOnPhone">
-                    <Input
-                      type="select"
-                      id="responsable"
-                      value={element.responsable || ""}
-                      onChange={(e) => this.handleChange(e, key, element)}
-                    >
-                      <option value={""} key={-1}>
-                        Aucun
-                      </option>
-                      {responsables.map((respo, i) => (
-                        <option value={respo} key={i}>
-                          {respo}
-                        </option>
-                      ))}
-                    </Input>
+                  <td className="align-middle ">
+                    <StyledStatus text={element.status} />
                   </td>
-                  <td className="align-middle hideOnPhone">
-                    <Input
-                      type="select"
-                      id="internal_action"
-                      value={element.internal_action || ""}
-                      onChange={(e) => this.handleChange(e, key, element)}
-                    >
-                      <option value={""} key={-1}>
-                        Aucun
-                      </option>
-                      {internal_actions.map((action, i) => (
-                        <option value={action} key={i}>
-                          {action}
-                        </option>
-                      ))}
-                    </Input>
-                  </td>
-                  <td className="align-middle hideOnPhone">
-                    {(element.children || []).length || 0}
-                  </td>
-                  <td className="align-middle pointer fit-content">
-                    <FButton
-                      type="error"
-                      name="trash-outline"
-                      onClick={() => this.prepareDeleteContrib(element)}
-                    />
-                  </td>
+
                   <td className="align-middle">
-                    <FButton
-                      tag={NavLink}
-                      to={
-                        "/" +
-                        (element.typeContenu || "dispositif") +
-                        "/" +
-                        element._id
-                      }
-                      type="light-action"
-                      name="eye-outline"
-                      fill={variables.noir}
-                    />
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      <SeeButton burl={burl} />
+                      <ValidateButton
+                        onClick={() => publishDispositif(element)}
+                        disabled={
+                          element.status === "Actif" ||
+                          !element.mainSponsor ||
+                          element.mainSponsor.status !== "Actif"
+                        }
+                        hoverColor={variables.validationHover}
+                      />
+                      <DeleteButton
+                        onClick={() => prepareDeleteContrib(element)}
+                      />
+                    </div>
                   </td>
-                  <td className="align-middle">
-                    <FButton
-                      type="validate"
-                      name="checkmark-outline"
-                      fill={variables.noir}
-                      onClick={() => this.update_status(element)}
-                    />
-                  </td>
-                  <Tooltip
-                    target={"titre-" + key}
-                    isOpen={element.tooltip}
-                    toggle={() => this.toggleTooltip(key)}
-                  >
-                    {element.titre}
-                  </Tooltip>
                 </tr>
               );
             })}
           </tbody>
         </Table>
-      </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return {
-    structures: state.structure.structures,
-  };
+      </Content>
+    </div>
+  );
 };
-
-const mapDispatchToProps = { fetchDispositifs: fetchActiveDispositifsActionsCreator };
-
-export default connect(mapStateToProps, mapDispatchToProps)(AdminContenu);

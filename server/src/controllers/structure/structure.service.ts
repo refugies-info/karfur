@@ -1,5 +1,5 @@
 import logger = require("../../logger");
-import { RequestFromClient, Res, Dispositif } from "../../types/interface.js";
+import { RequestFromClient, Res, IDispositif } from "../../types/interface.js";
 import {
   getStructureFromDB,
   getStructuresFromDB,
@@ -14,7 +14,7 @@ interface Query {
   localeOfLocalizedDispositifsAssocies: string;
 }
 
-const adaptDispositifsAssocies = (dispositifs: Dispositif[]) =>
+const adaptDispositifsAssocies = (dispositifs: IDispositif[]) =>
   dispositifs.map((dispositif) => ({
     titreInformatif: dispositif.titreInformatif,
     titreMarque: dispositif.titreMarque,
