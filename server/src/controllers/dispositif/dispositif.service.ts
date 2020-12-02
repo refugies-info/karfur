@@ -1,5 +1,5 @@
 const logger = require("../../logger");
-import Dispositif from "../../schema/schemaDispositif";
+import { Dispositif } from "../../schema/schemaDispositif";
 import {
   turnToLocalized,
   turnJSONtoHTML,

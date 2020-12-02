@@ -1,7 +1,7 @@
 const Traduction = require("../../schema/schemaTraduction.js");
 const Article = require("../../schema/schemaArticle.js");
 const Indicator = require("../../schema/schemaIndicators");
-const Dispositif = require("../../schema/schemaDispositif.js");
+const { Dispositif } = require("../../schema/schemaDispositif");
 const Error = require("../../schema/schemaError");
 const User = require("../../schema/schemaUser.js");
 var sanitizeHtml = require("sanitize-html");

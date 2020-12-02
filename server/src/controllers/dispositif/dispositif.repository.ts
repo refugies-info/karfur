@@ -1,5 +1,5 @@
 import { IDispositif } from "../../types/interface";
-import Dispositif from "../../schema/schemaDispositif";
+import { Dispositif } from "../../schema/schemaDispositif";
 import { ObjectId } from "mongoose";
 
 export const getDispositifsFromDB = async (
