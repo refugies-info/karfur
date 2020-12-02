@@ -6,7 +6,6 @@ import TagButton from "../../../components/FigmaUI/TagButton/TagButton";
 import Streamline from "../../../assets/streamline";
 
 import "./Tags.scss";
-// @ts-ignore
 import { Props } from "./Tags.container";
 import { Tag } from "../../../@types/interface";
 import styled from "styled-components";

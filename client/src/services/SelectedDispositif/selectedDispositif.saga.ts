@@ -22,32 +22,37 @@ export function* fetchSelectedDispositif(
   try {
     yield put(startLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));
     const { selectedDispositifId, locale } = action.payload;
-    const data = yield call(API.get_dispositif, {
-      query: { _id: selectedDispositifId },
-      sort: {},
-      populate: "creatorId mainSponsor participants",
-      locale,
-    });
+    logger.info(
+      "[fetchSelectedDispositif] start fetching selected dispositif",
+      { id: selectedDispositifId }
+    );
+    if (selectedDispositifId) {
+      const data = yield call(API.get_dispositif, {
+        query: { _id: selectedDispositifId },
+        sort: {},
+        populate: "creatorId mainSponsor participants",
+        locale,
+      });
 
-    const dispositif = data.data.data[0];
-    yield put(setSelectedDispositifActionCreator(dispositif));
-
-    if (!dispositif || !dispositif._id) {
-      yield put(push("/"));
-    }
-
-    const user = yield select(userSelector);
-
-    if (
-      dispositif.status !== "Actif" &&
-      !user.admin &&
-      !user.user.contributions.includes(dispositif._id) &&
-      !user.user.structures.includes(dispositif.sponsors[0]._id)
-    ) {
-      if (_.isEmpty(user)) {
-        yield put(push("/login"));
+      const dispositif = data.data.data[0];
+      yield put(setSelectedDispositifActionCreator(dispositif));
+      if (!dispositif || !dispositif._id) {
+        yield put(push("/"));
       }
-      yield put(push("/"));
+
+      const user = yield select(userSelector);
+
+      if (
+        dispositif.status !== "Actif" &&
+        !user.admin &&
+        !user.user.contributions.includes(dispositif._id) &&
+        !user.user.structures.includes(dispositif.mainSponsor._id)
+      ) {
+        if (_.isEmpty(user)) {
+          yield put(push("/login"));
+        }
+        yield put(push("/"));
+      }
     }
 
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_DISPOSITIF));

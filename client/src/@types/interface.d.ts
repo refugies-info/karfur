@@ -154,7 +154,7 @@ export interface Structure {
   contact: string;
   created_at: Moment;
   createur: ObjectId;
-  dispositifsAssocies: ObjectId[];
+  dispositifsAssocies: ObjectId[] | Dispositif[];
   link: string;
   mail_contact: string;
   mail_generique: string;
@@ -165,18 +165,26 @@ export interface Structure {
   status: string;
   updatedAt: Moment;
   picture: Picture;
-  structureTypes: string[];
-  websites: string[];
-  facebook: string;
-  linkedin: string;
-  twitter: string;
-  activities: string[];
-  departments: string[];
-  phonesPublic: string[];
-  adressPublic: string;
-  openingHours: OpeningHours;
-  description: string;
+  structureTypes?: string[];
+  websites?: string[];
+  facebook?: string;
+  linkedin?: string;
+  twitter?: string;
+  activities?: string[];
+  departments?: string[];
+  phonesPublic?: string[];
+  adressPublic?: string;
+  openingHours?: OpeningHours;
+  description?: string;
   hasResponsibleSeenNotification?: boolean;
+  mailsPublic?: string[];
+}
+
+export interface SimplifiedStructure {
+  _id: ObjectId;
+  acronyme: string;
+  nom: string;
+  picture: Picture;
 }
 
 export interface Picture {

@@ -3,8 +3,8 @@ orbs:
   node: circleci/node@1.1.6
 jobs:
   install:
-    executor:
-      name: node/default
+    docker:
+      - image: circleci/node:10-jessie-browsers
     steps:
       - checkout
       - node/with-cache:
@@ -29,8 +29,8 @@ jobs:
             - run: npm run test:types
             - run: npm run test:lint
   unit-test:
-    executor:
-      name: node/default
+    docker:
+      - image: circleci/node:10-jessie-browsers
     steps:
       - checkout
       - node/with-cache:

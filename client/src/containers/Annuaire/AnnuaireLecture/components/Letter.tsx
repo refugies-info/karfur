@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 const MainContainer = styled.div`
-  background: ${(props) => (props.isSelected ? "#212121" : "#ffffff")};
   border-radius: 12px 12px 0px 0px;
   width: 48px;
   height: 44px;
@@ -16,20 +15,26 @@ const MainContainer = styled.div`
   position: relative;
   z-index: ${(props) => (props.isSelected ? "25" : props.index)};
   cursor: pointer;
+  background: ${(props) => (props.isSelected ? "#212121" : "#ffffff")};
   color: ${(props) => (props.isSelected ? "#ffffff" : "#212121")};
+
+  &:hover {
+    background: #212121;
+    color: #ffffff;
+  }
 `;
 
 interface Props {
   letter: string;
   index: number;
-  onLetterClick: (arg: string) => void;
+  // onLetterClick: (arg: string) => void;
   isSelected: boolean;
 }
 
 export const Letter = (props: Props) => (
   <MainContainer
     index={props.index}
-    onClick={() => props.onLetterClick(props.letter)}
+    // onClick={() => props.onLetterClick(props.letter)}
     isSelected={props.isSelected}
   >
     {props.letter.toUpperCase()}

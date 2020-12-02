@@ -1,15 +1,22 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
-.avancement{
+.avancement {
   padding: 25px;
-  background: #E5E5E5;
+  background: #e5e5e5;
   width: 100%;
 
-  .carousel-control-prev-icon, .carousel-control-next-icon {
+  .loader-table {
+    border-collapse: separate;
+    border-spacing: 0 1em;
+  } 
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
     background-color: black;
   }
 
-  .carousel-control-prev, .carousel-control-next {
+  .carousel-control-prev,
+  .carousel-control-next {
     width: 5%;
   }
 
@@ -17,75 +24,74 @@
     height: 364px;
   }
 
-  .avancement-header-right{
+  .avancement-header-right {
     flex-grow: 0.3;
   }
 
-  .avancement-header{
-    .tableau-header{
+  .avancement-header {
+    .tableau-header {
       flex-wrap: wrap;
     }
-    
-    .row{
+
+    .row {
       margin-right: 0;
       margin-left: 0;
-
     }
-    i.h1{
-      margin-right:13px;
+    i.h1 {
+      margin-right: 13px;
       border-radius: 2px;
     }
-    h1{
-      margin-bottom:0;
+    h1 {
+      margin-bottom: 0;
       font-weight: bold;
       font-size: 64px;
       line-height: 81px;
-      color: #3D3D3D;
-      margin-right:40px;
+      color: #3d3d3d;
+      margin-right: 40px;
     }
-    .progress{
-      width:210px;
+    .progress {
+      width: 210px;
       margin-bottom: 10px;
-      margin-right:7px;
+      margin-right: 7px;
     }
-    span.chiffre-avancement{
+    span.chiffre-avancement {
       margin-bottom: 5px;
     }
-    .big-number{
+    .big-number {
       font-size: 64px;
       line-height: 81px;
     }
   }
 
-  .avancement-row{
-    &:hover{
+  .avancement-row {
+    &:hover {
       background: lightgray;
     }
   }
-  .my-breadcrumb{
+  .my-breadcrumb {
     color: $grisFonce;
-    &:hover{
+    &:hover {
       color: $noir;
       text-decoration: underline;
     }
   }
 
-  .tableau{
+  .tableau {
     margin-top: 20px;
   }
 
-  .elevated-button{
+  .elevated-button {
     z-index: 1000;
   }
 
-  .texte-vert{
+  .texte-vert {
     color: $vert;
   }
-  .texte-rouge{
+  .texte-rouge {
     color: $rouge;
   }
-  .progress{
-    height:6px;
+  .progress {
+    height: 6px;
     margin-top: 10px;
     margin-bottom: 0;
   }

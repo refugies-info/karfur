@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { Structure, Picture } from "../../../../@types/interface";
 import "./LetterSection.scss";
-// @ts-ignore
 import LinesEllipsis from "react-lines-ellipsis";
+import { ObjectId } from "mongodb";
+
 interface Props {
   letter: string;
   structures: Structure[];
+  onStructureCardClick: (id: ObjectId) => void;
 }
 
 const MainContainer = styled.div`
@@ -38,41 +40,56 @@ const StructureCardContainer = styled.div`
   line-height: 28px;
   background: #ffffff;
   border-radius: 12px;
-  width: 368px;
-  height: 147px;
+  width: 198px;
+  height: 271px;
   margin-right: 8px;
   margin-left: 8px;
   margin-bottom: 16px;
   padding: 24px;
   cursor: pointer;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 `;
-const StructureName = styled.div`
-  margin-left: 24px;
+
+const Anchor = styled.div`
+  margin-top: -250px;
 `;
 
 interface StructureCardProps {
   nom: string;
   acronyme: string;
   picture: Picture;
+  onStructureCardClick: (id: ObjectId) => void;
+  id: ObjectId;
 }
 const StructureCard = (props: StructureCardProps) => (
-  <StructureCardContainer>
-    <img
-      className="sponsor-img"
-      src={(props.picture || {}).secure_url}
-      alt={props.acronyme}
-    />
-    <StructureName>
-      <LinesEllipsis text={props.nom} maxLine="3" trimRight basedOn="letters" />
-    </StructureName>
+  <StructureCardContainer onClick={() => props.onStructureCardClick(props.id)}>
+    <div
+      style={{
+        width: "150px",
+        height: "100px",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      {props.picture && props.picture.secure_url && (
+        <img
+          className="sponsor-img"
+          src={props.picture.secure_url}
+          alt={props.acronyme}
+        />
+      )}
+    </div>
+    {(!props.picture || !props.picture.secure_url) && <div></div>}
+    <LinesEllipsis text={props.nom} maxLine="4" trimRight basedOn="letters" />
   </StructureCardContainer>
 );
 
 export const LetterSection = (props: Props) => (
-  <MainContainer className="letter-section" id={props.letter.toUpperCase()}>
+  <MainContainer className="letter-section">
+    <Anchor id={props.letter.toUpperCase()} />
     <LetterContainer>{props.letter.toUpperCase()}</LetterContainer>
     <StructuresContainer>
       {props.structures.map((structure) => (
@@ -81,7 +98,9 @@ export const LetterSection = (props: Props) => (
           nom={structure.nom}
           picture={structure.picture || {}}
           acronyme={structure.acronyme}
-        ></StructureCard>
+          onStructureCardClick={props.onStructureCardClick}
+          id={structure._id}
+        />
       ))}
     </StructuresContainer>
   </MainContainer>

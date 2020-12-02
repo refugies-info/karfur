@@ -239,12 +239,19 @@ export default {
     );
   },
 
-  getStructureByIdWithDispositifsAssocies: (id) => {
-    return axios.get(
-      burl + `/structures/getStructureByIdWithDispositifsAssocies?id=${id}`
-    );
-  },
+  getStructureById: (
+    id,
+    withDisposAssocies,
+    localeOfLocalizedDispositifsAssocies
+  ) =>
+    axios.get(burl + "/structures/getStructureById", {
+      params: { id, withDisposAssocies, localeOfLocalizedDispositifsAssocies },
+    }),
+
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
+
+  getActiveStructures: () =>
+    axios.get(burl + "/structures/getActiveStructures"),
 
   getDispositifs: (params) => {
     return axios.post(burl + "/dispositifs/getDispositifs", params);
@@ -297,11 +304,6 @@ export default {
     });
   },
 
-  create_langue: (query) => {
-    return axios.post(burl + "/langues/create_langues", query, {
-      headers: headers,
-    });
-  },
   get_langues: (query, sort, populate) => {
     return axios.post(
       burl + "/langues/get_langues",
@@ -312,24 +314,6 @@ export default {
 
   getLanguages: () => axios.get(burl + "/langues/getLanguages"),
 
-  create_theme: (query) => {
-    return axios.post(burl + "/themes/create_theme", query, {
-      headers: headers,
-    });
-  },
-  get_themes: (query, sort, populate) => {
-    return axios.post(
-      burl + "/themes/get_themes",
-      { query: query, sort: sort, populate: populate },
-      { headers: headers }
-    );
-  },
-
-  add_channel: (query) => {
-    return axios.post(burl + "/channels/add_channel", query, {
-      headers: headers,
-    });
-  },
   get_channel: (query, sort, populate) => {
     return axios.post(
       burl + "/channels/get_channel",

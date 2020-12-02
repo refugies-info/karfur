@@ -14,7 +14,6 @@ import {
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
-// @ts-ignore
 import styled from "styled-components";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
@@ -483,10 +482,10 @@ export class CardParagraphe extends Component<Props> {
           return (
             <TitleTextBody>
               {subitem.departments && subitem.departments.length > 1
-                ? "Départements"
+                ? t("Dispositif.Départements", "Départements")
                 : subitem.departments && subitem.departments[0] === "All"
-                ? "France entière"
-                : "Département"}
+                ? t("Dispositif.France entière", "France entière")
+                : t("Dispositif.Département", "Département")}
             </TitleTextBody>
           );
         }
