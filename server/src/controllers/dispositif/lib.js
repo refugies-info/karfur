@@ -2,7 +2,7 @@ const Dispositif = require("../../schema/schemaDispositif.js");
 const Role = require("../../schema/schemaRole.js");
 const User = require("../../schema/schemaUser.js");
 const Traduction = require("../../schema/schemaTraduction");
-const Structure = require("../../schema/schemaStructure.js");
+const { Structure } = require("../../schema/schemaStructure");
 const Error = require("../../schema/schemaError");
 var uniqid = require("uniqid");
 const {
@@ -129,7 +129,7 @@ async function add_dispositif_infocards(req, res) {
         .map((e) => e.title)
         .indexOf("Zone d'action");
       if (index !== -1) {
-        originalDis.contenu[1].children[index] = dispositif.geolocInfocard; 
+        originalDis.contenu[1].children[index] = dispositif.geolocInfocard;
       } else {
         originalDis.contenu[1].children.push(dispositif.geolocInfocard);
       }
@@ -321,22 +321,18 @@ async function add_dispositif(req, res) {
       });
     }
     //J'associe la structure principale à ce dispositif
-    if (
-      dispResult.sponsors &&
-      dispResult.sponsors.length > 0 &&
-      dispResult.sponsors[0]._id
-    ) {
+    if (dispResult.mainSponsor) {
       try {
         await updateAssociatedDispositifsInStructure(
           dispResult._id,
-          dispResult.sponsors[0]._id
+          dispResult.mainSponsor
         );
       } catch (error) {
         logger.error(
           "[updateAssociatedDispositifsInStructure] error whil updating structures",
           {
             dispositifId: dispResult._id,
-            sponsorId: dispResult.sponsors[0]._id,
+            sponsorId: dispResult.mainSponsor,
           }
         );
       }
@@ -353,6 +349,7 @@ async function add_dispositif(req, res) {
     }) */
     // }
   } catch (err) {
+    logger.error("[add_dispositif] error", { error: err });
     return res.status(500).json({ text: "Erreur interne", data: err });
   }
 }

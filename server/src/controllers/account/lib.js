@@ -1,6 +1,6 @@
 const User = require("../../schema/schemaUser.js");
 const Role = require("../../schema/schemaRole.js");
-const Langue = require("../../schema/schemaLangue.js");
+const { Langue } = require("../../schema/schemaLangue");
 const passwordHash = require("password-hash");
 const authy = require("authy")(process.env.ACCOUNT_SECURITY_API_KEY);
 const passwdCheck = require("zxcvbn");
@@ -22,7 +22,7 @@ const url =
   process.env.NODE_ENV === "dev"
     ? "http://localhost:3000/"
     : process.env.NODE_ENV === "staging"
-    ? "https://agir-qa.herokuapp.com/"
+    ? "https://staging.refugies.info/"
     : "https://www.refugies.info/";
 
 /**

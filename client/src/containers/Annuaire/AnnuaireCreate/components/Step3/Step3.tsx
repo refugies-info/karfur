@@ -14,7 +14,7 @@ const HelpContainer = styled.div`
   flex-direction: row;
   background: #2d9cdb;
   border-radius: 12px;
-  width: 782px;
+  width: 740px;
   margin-top: 16px;
   padding: 16px;
   margin-bottom: 16px;
@@ -37,7 +37,7 @@ const HelpDescription = styled.div`
   font-size: 16px;
 `;
 const TagActivity = styled.div`
-  width: 782px;
+  width: 740px;
   background: ${(props) => props.backgroundColor};
   border-radius: 12px;
   margin-bottom: 16px;
@@ -47,8 +47,8 @@ const TagActivity = styled.div`
   line-height: 28px;
   padding-bottom: 16px;
   padding-top: 16px;
-  padding-left: 11px;
-  padding-right: 11px;
+  padding-left: 16px;
+  padding-right: 16px;
 `;
 const ActivityCardsContainer = styled.div`
   display: flex;
@@ -136,7 +136,7 @@ export const Step3 = (props: Props) => {
             backgroundColor={correspondingTag[0].lightColor}
             color={correspondingTag[0].darkColor}
           >
-            <div style={{ marginLeft: "5px", marginBottom: "16px" }}>
+            <div style={{ marginLeft: "8px", marginBottom: "8px" }}>
               {jsUcfirst(correspondingTag[0].name)}
             </div>
             <ActivityCardsContainer>
@@ -155,6 +155,7 @@ export const Step3 = (props: Props) => {
                       : false
                   }
                   image={detailedActivity.image}
+                  isLectureMode={false}
                 />
               ))}
             </ActivityCardsContainer>

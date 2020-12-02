@@ -57,7 +57,7 @@ import {
   deleteContrib,
   getProgression,
 } from "./functions";
-import { fetchDispositifsActionCreator } from "../../../services/Dispositif/dispositif.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 import { fetchUserActionCreator } from "../../../services/User/user.actions";
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
@@ -243,11 +243,9 @@ export class UserProfile extends Component {
 
   initializeStructure = () => {
     const user = this.props.user;
-    API.getStructureByIdWithDispositifsAssocies(user.structures[0]).then(
-      (data) => {
-        this._isMounted && this.setState({ structure: data.data.data[0] });
-      }
-    );
+    API.getStructureById(user.structures[0], true, false).then((data) => {
+      this._isMounted && this.setState({ structure: data.data.data });
+    });
   };
 
   toggleModal = (modal) => {
@@ -1094,13 +1092,13 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     userId: state.user.userId,
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
   };
 };
 
 const mapDispatchToProps = {
   fetchUser: fetchUserActionCreator,
-  fetchDispositifs: fetchDispositifsActionCreator,
+  fetchDispositifs: fetchActiveDispositifsActionsCreator,
 };
 
 export default connect(

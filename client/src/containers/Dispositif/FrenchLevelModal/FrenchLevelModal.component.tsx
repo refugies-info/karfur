@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import "./FrenchLevelModal.scss";
-// @ts-ignore
 import styled from "styled-components";
-// @ts-ignore
 import Icon from "react-eva-icons";
 import { FrenchLevelButton } from "./FrenchLevelButton/FrenchLevelButton";
 import FButton from "../../../components/FigmaUI/FButton/FButton";

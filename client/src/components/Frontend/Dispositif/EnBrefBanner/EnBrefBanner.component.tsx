@@ -67,7 +67,8 @@ export const EnBrefBanner: React.FunctionComponent<Props> = (props: Props) => {
         if (
           card.type === "card" &&
           card.title !== "Important !" &&
-          card.title !== "Justificatif demandé"
+          card.title !== "Justificatif demandé" &&
+          card.title !== "Zone d'action"
         ) {
           let texte = card.contentTitle;
           // reformat text of cards age

@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
-// @ts-ignore
 import Icon from "react-eva-icons";
 import "./DraftModal.scss";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";

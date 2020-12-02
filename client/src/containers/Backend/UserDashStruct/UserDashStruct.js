@@ -34,14 +34,14 @@ import {
 } from "../UserProfile/functions";
 import { selectItem, editMember, addMember } from "./functions";
 import DateOffset from "../../../components/Functions/DateOffset";
-import { fetchDispositifsActionCreator } from "../../../services/Dispositif/dispositif.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 
 import "./UserDashStruct.scss";
 import variables from "scss/colors.scss";
 import {
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "../../../services/Structures/structures.actions";
+} from "../../../services/Structure/structure.actions";
 
 moment.locale("fr");
 
@@ -161,39 +161,39 @@ export class UserDashStruct extends Component {
         ? this.props.location.state.structure
         : user.structures[0];
  */
-    API.getStructureByIdWithDispositifsAssocies(
-      this.state.selectedStructure
-    ).then((data) => {
-      if (data.data.data && data.data.data.length > 0) {
-        this.setState({ structure: data.data.data[0], isMainLoading: false });
+    API.getStructureById(this.state.selectedStructure, true, false).then(
+      (data) => {
+        if (data.data.data) {
+          this.setState({ structure: data.data.data, isMainLoading: false });
 
-        API.get_event({
-          query: {
-            created_at: { $gte: DateOffset(new Date(), 0, 0, -15) },
-            userId: {
-              $in: ((data.data.data[0] || {}).membres || []).map(
-                (x) => x.userId
-              ),
-            },
-            action: { $ne: "idle" },
-          },
-        }).then((data_res) => {
-          this.setState((pS) => ({
-            structure: {
-              ...pS.structure,
-              membres: (pS.structure.membres || []).map((y) => ({
-                ...y,
-                connected: (data_res.data.data || []).some(
-                  (z) => z.userId === y.userId
+          API.get_event({
+            query: {
+              created_at: { $gte: DateOffset(new Date(), 0, 0, -15) },
+              userId: {
+                $in: ((data.data.data[0] || {}).membres || []).map(
+                  (x) => x.userId
                 ),
-              })),
+              },
+              action: { $ne: "idle" },
             },
-          }));
-        });
-      } else {
-        this.setState({ structure: { noResults: true } });
+          }).then((data_res) => {
+            this.setState((pS) => ({
+              structure: {
+                ...pS.structure,
+                membres: (pS.structure.membres || []).map((y) => ({
+                  ...y,
+                  connected: (data_res.data.data || []).some(
+                    (z) => z.userId === y.userId
+                  ),
+                })),
+              },
+            }));
+          });
+        } else {
+          this.setState({ structure: { noResults: true } });
+        }
       }
-    });
+    );
   };
 
   toggleModal = (modal) => {
@@ -257,7 +257,6 @@ export class UserDashStruct extends Component {
       : "membre";
 
     const showAnnuaireNotif =
-      false &&
       this.props.userStructure &&
       (role === "responsable" || role === "contributeur");
     return (
@@ -468,7 +467,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  fetchDispositifs: fetchDispositifsActionCreator,
+  fetchDispositifs: fetchActiveDispositifsActionsCreator,
   setStructure: setUserStructureActionCreator,
   updateStructure: updateUserStructureActionCreator,
 };

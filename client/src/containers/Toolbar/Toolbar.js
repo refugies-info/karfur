@@ -22,7 +22,7 @@ import marioProfile from "../../assets/mario-profile.jpg";
 import Logo from "../../components/Logo/Logo";
 import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 import FButton from "../../components/FigmaUI/FButton/FButton";
-import SearchBar from "../UI/SearchBar/SearchBar";
+import AdvancedSearchBar from "../UI/AdvancedSearchBar/AdvancedSearchBar";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import { breakpoints } from "utils/breakpoints.js";
@@ -186,7 +186,9 @@ export class Toolbar extends React.Component {
           {/* <NavigationItems /> */}
 
           {i18n.language === "fr" && (
-            <SearchBar
+            <AdvancedSearchBar
+              visible={this.state.visible}
+              scroll={this.state.scroll}
               loupe
               className="search-bar inner-addon right-addon mr-10 rsz"
             />
@@ -333,7 +335,7 @@ const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
     langues: state.langue.langues,
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
     user: state.user.user,
     traducteur: state.user.traducteur,
     expertTrad: state.user.expertTrad,

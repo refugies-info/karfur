@@ -9,7 +9,7 @@ import produce from "immer";
 import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
 import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import { fetchStructuresActionCreator } from "../../../services/Structures/structures.actions";
+import { fetchStructuresActionCreator } from "../../../services/Structure/structure.actions";
 
 import "./Admin.scss";
 import variables from "scss/colors.scss";
@@ -21,7 +21,6 @@ export class Admin extends Component {
     roles: [],
     users: [],
     langues: [],
-    themes: [],
     structures: [],
     uploading: false,
     order: "username",
@@ -120,10 +119,6 @@ export class Admin extends Component {
             return { ...el, isChecked: false };
           }),
       });
-    });
-
-    API.get_themes({}).then((data_res) => {
-      this.setState({ themes: data_res.data.data });
     });
 
     API.get_structure({}, {}, "createur").then((data_res) => {
@@ -692,7 +687,7 @@ export class Admin extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    dispositifs: state.dispositif.dispositifs,
+    dispositifs: state.activeDispositifs,
   };
 };
 

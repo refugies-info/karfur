@@ -1,8 +1,8 @@
 import Dispositif from "../../schema/schemaDispositif";
-import Structure from "../../schema/schemaStructure";
+import { Structure } from "../../schema/schemaStructure";
 
 import logger from "../../logger";
-import { RequestFromClient, Res } from "../../types/interface";
+import { Res } from "../../types/interface";
 import { asyncForEach } from "../../libs/asyncForEach";
 
 // const correctStructure = async (
@@ -34,7 +34,7 @@ interface Error {
   motif: string;
 }
 export const targetErrosOnDispositifsAssociesInStructures = async (
-  req: RequestFromClient,
+  req: {},
   res: Res
 ) => {
   try {

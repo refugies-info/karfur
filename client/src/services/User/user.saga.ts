@@ -5,12 +5,12 @@ import API from "../../utils/API";
 import { setUserActionCreator, fetchUserActionCreator } from "./user.actions";
 import { push } from "connected-react-router";
 import { logger } from "../../logger";
-import { fetchUserStructureActionCreator } from "../Structures/structures.actions";
 import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
+import { fetchUserStructureActionCreator } from "../Structure/structure.actions";
 
 export function* fetchUser(
   action: ReturnType<typeof fetchUserActionCreator>
@@ -20,14 +20,16 @@ export function* fetchUser(
     const isAuth = yield call(API.isAuth);
     if (isAuth) {
       const data = yield call(API.get_user_info);
-      yield put(setUserActionCreator(data.data.data));
-      yield put(
-        fetchUserStructureActionCreator({
-          structureId: data.data.data.structures
-            ? data.data.data.structures[0]
-            : null,
-        })
-      );
+      const user = data.data.data;
+      yield put(setUserActionCreator(user));
+      if (user.structures && user.structures.length > 0) {
+        yield put(
+          fetchUserStructureActionCreator({
+            structureId: user.structures[0],
+            shouldRedirect: false,
+          })
+        );
+      }
     } else {
       yield put(setUserActionCreator(null));
     }

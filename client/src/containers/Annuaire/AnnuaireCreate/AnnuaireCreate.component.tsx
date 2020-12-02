@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Props } from "./AnnuaireCreate.container";
 import styled from "styled-components";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { AnnuaireGauge } from "./AnnuaireGauge/AnnuaireGauge";
@@ -13,8 +12,20 @@ import { Spinner } from "reactstrap";
 import { FrameModal } from "../../../components/Modals";
 import img from "../../../assets/annuaire/annuaire_create.svg";
 import { Modifications } from "./components/Modifications";
+import {
+  fetchUserStructureActionCreator,
+  updateUserStructureActionCreator,
+  setUserStructureActionCreator,
+} from "../../../services/Structure/structure.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { userStructureIdSelector } from "../../../services/User/user.selectors";
+import { userStructureSelector } from "../../../services/Structure/structure.selectors";
+import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+import { Structure } from "../../../@types/interface";
 
-export interface PropsBeforeInjection {
+declare const window: Window;
+interface Props {
   history: any;
 }
 const MainContainer = styled.div`
@@ -26,6 +37,12 @@ const MainContainer = styled.div`
   padding-right: 120px;
 `;
 
+const LoaderContainer = styled.div`
+  diplay: flex;
+  flex: 1;
+  margin-top: 200px;
+  margin-left: 300px;
+`;
 const HeaderContainer = styled.div`
   background-image: url(${img});
   width: 360px;
@@ -85,25 +102,14 @@ export const AnnuaireCreateComponent = (props: Props) => {
   const [showTutoModal, setShowTutoModal] = useState(false);
   const [hasModifications, setHasModifications] = useState(false);
 
-  const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
+  const dispatch = useDispatch();
+  const structureId = useSelector(userStructureIdSelector);
+  const structure = useSelector(userStructureSelector);
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_USER_STRUCTURE)
+  );
 
-  const checkUserIsContribOrRespo = () => {
-    const structureMembers = props.structure ? props.structure.membres : [];
-    const userInStructure = structureMembers.filter(
-      (member) => member.userId === props.userId
-    );
-    if (userInStructure.length === 0) {
-      return props.history.push("/");
-    }
-    const isUserRedacteurOrRespo = userInStructure
-      ? userInStructure[0].roles.filter(
-          (role) => role === "administrateur" || role === "contributeur"
-        ).length > 0
-      : null;
-    if (!isUserRedacteurOrRespo) {
-      return props.history.push("/");
-    }
-  };
+  const toggleTutorielModal = () => setShowTutoModal(!showTutoModal);
 
   const getStepDescription = () => {
     if (step === 1) return "Vérification de l'identité de votre structure";
@@ -114,23 +120,34 @@ export const AnnuaireCreateComponent = (props: Props) => {
     return "";
   };
 
+  const updateStructure = () => {
+    dispatch(updateUserStructureActionCreator());
+  };
+
+  const setStructure = (structure: Structure) => {
+    dispatch(setUserStructureActionCreator(structure));
+  };
+
   useEffect(() => {
-    if (props.isLoading === false) {
-      return checkUserIsContribOrRespo();
-    }
-  });
+    const loadUserStructure = async () => {
+      if (structureId) {
+        await dispatch(
+          fetchUserStructureActionCreator({ structureId, shouldRedirect: true })
+        );
+      }
+    };
+    loadUserStructure();
+  }, [dispatch, structureId]);
 
   const onStepValidate = () => {
-    props.updateStructure();
+    updateStructure();
     setStep(step + 1);
     setHasModifications(false);
-    // @ts-ignore
     window.scrollTo(0, 0);
   };
 
   const onBackClick = () => {
     setStep(step - 1);
-    // @ts-ignore
     window.scrollTo(0, 0);
   };
 
@@ -180,14 +197,14 @@ export const AnnuaireCreateComponent = (props: Props) => {
               )}
 
               {step < 6 ? (
-                props.isLoading ? (
+                isLoading ? (
                   <FButton
                     type={"validate"}
                     className="ml-8"
                     onClick={onStepValidate}
                     disabled={true}
                   >
-                    <Spinner className="mr-8" />
+                    <Spinner className="mr-8" size="sm" />
                     Suivant
                   </FButton>
                 ) : (
@@ -196,7 +213,7 @@ export const AnnuaireCreateComponent = (props: Props) => {
                     name="arrow-forward-outline"
                     className="ml-8"
                     onClick={onStepValidate}
-                    disabled={props.isLoading}
+                    disabled={isLoading}
                   >
                     Suivant
                   </FButton>
@@ -222,44 +239,55 @@ export const AnnuaireCreateComponent = (props: Props) => {
       </LeftContainer>
 
       <RightContainer>
-        <AnnuaireGauge step={step} />
-        {step === 1 && (
-          <Step1
-            structure={props.structure}
-            setStructure={props.setStructure}
-            setHasModifications={setHasModifications}
-          />
-        )}
-        {step === 2 && (
-          <Step2
-            structure={props.structure}
-            setStructure={props.setStructure}
-            setHasModifications={setHasModifications}
-          />
-        )}
-        {step === 3 && (
-          <Step3
-            structure={props.structure}
-            setStructure={props.setStructure}
-            setHasModifications={setHasModifications}
-          />
-        )}
+        {!isLoading && (
+          <>
+            <AnnuaireGauge step={step} />
+            {step === 1 && (
+              <Step1
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
+            )}
+            {step === 2 && (
+              <Step2
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
+            )}
+            {step === 3 && (
+              <Step3
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
+            )}
 
-        {step === 4 && (
-          <Step4
-            structure={props.structure}
-            setStructure={props.setStructure}
-            setHasModifications={setHasModifications}
-          />
+            {step === 4 && (
+              <Step4
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
+            )}
+            {step === 5 && (
+              <Step5
+                structure={structure}
+                setStructure={setStructure}
+                setHasModifications={setHasModifications}
+              />
+            )}
+            {step === 6 && (
+              <Step6 structureId={structure ? structure._id : ""} />
+            )}
+          </>
         )}
-        {step === 5 && (
-          <Step5
-            structure={props.structure}
-            setStructure={props.setStructure}
-            setHasModifications={setHasModifications}
-          />
+        {isLoading && (
+          <LoaderContainer>
+            <Spinner />
+          </LoaderContainer>
         )}
-        {step === 6 && <Step6 />}
       </RightContainer>
       {showTutoModal && (
         <FrameModal

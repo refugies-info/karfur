@@ -7,6 +7,7 @@ export const testUser = {
   updatedAt: date,
   created_at: date,
   _id: new ObjectId("testObjectId"),
+  structures: [],
 };
 
 export const testUserWithRoles = {
