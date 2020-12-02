@@ -293,6 +293,16 @@ const countValidated = (obj, nbChamps = 0, type = null) => {
   return nbChamps;
 };
 
+const turnToLocalizedTitles = (result, locale) => {
+  ["titreInformatif", "titreMarque"].forEach((x) => {
+    if (result[x]) {
+      result[x] = result[x][locale] || result[x].fr || result[x];
+    }
+  });
+
+  return result;
+};
+
 const turnToLocalized = (result, locale) => {
   pointeurs.forEach((x) => {
     if (result[x]) {
@@ -420,3 +430,4 @@ exports.countContents = countContents;
 exports.countValidated = countValidated;
 exports.turnHTMLtoJSON = turnHTMLtoJSON;
 exports.turnJSONtoHTML = turnJSONtoHTML;
+exports.turnToLocalizedTitles = turnToLocalizedTitles;
