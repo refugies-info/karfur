@@ -23,6 +23,8 @@ const OngletContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+  margin-top: 12px;
+  margin-bottom: 12px;
 `;
 
 const Onglet = (props) => (

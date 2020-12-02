@@ -16,7 +16,6 @@ import {
   StyledHeader,
   Content,
   FigureContainer,
-  StyledInput,
 } from "./StyledAdminContenu";
 import "./AdminContenu.scss";
 import variables from "scss/colors.scss";
@@ -35,6 +34,7 @@ import {
   FilterButton,
   TabHeader,
 } from "./components/SubComponents";
+import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 
 moment.locale("fr");
 
@@ -271,19 +271,15 @@ export const AdminContenu = () => {
     <div className="admin-contenu animated fadeIn">
       <div
         style={{
-          width: "50px",
-          height: "50px",
           position: "absolute",
-          top: "-10px",
+          top: "15px",
           right: "300px",
         }}
       >
-        <StyledInput
-          type="text"
-          name="search"
-          id="avancement-search"
-          placeholder="Rechercher un contenu"
+        <CustomSearchBar
+          value={search}
           onChange={handleChange}
+          placeholder="Rechercher un contenu..."
         />
       </div>
       <StyledHeader>
