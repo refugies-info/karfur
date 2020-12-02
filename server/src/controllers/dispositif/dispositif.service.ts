@@ -1,5 +1,4 @@
 const logger = require("../../logger");
-import { Dispositif } from "../../schema/schemaDispositif";
 import {
   turnToLocalized,
   turnJSONtoHTML,
@@ -9,44 +8,9 @@ import { Res, RequestFromClient, IDispositif } from "../../types/interface";
 import {
   getDispositifsFromDB,
   updateDispositifStatusInDB,
+  getDispositifArray,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
-
-const getDispositifArray = async (query: any) => {
-  const neededFields = {
-    titreInformatif: 1,
-    titreMarque: 1,
-    abstract: 1,
-    contenu: 1,
-    tags: 1,
-    created_at: 1,
-    publishedAt: 1,
-    typeContenu: 1,
-    avancement: 1,
-    status: 1,
-    nbMots: 1,
-  };
-  if (query["audienceAge.bottomValue"]) {
-    var modifiedQuery = Object.assign({}, query);
-
-    delete modifiedQuery["audienceAge.bottomValue"];
-
-    delete modifiedQuery["audienceAge.topValue"];
-    var newQuery = {
-      $or: [
-        query,
-        {
-          "variantes.bottomValue": query["audienceAge.bottomValue"],
-
-          "variantes.topValue": query["audienceAge.topValue"],
-          ...modifiedQuery,
-        },
-      ],
-    };
-    return await Dispositif.find(newQuery, neededFields).lean();
-  }
-  return await Dispositif.find(query, neededFields).lean();
-};
 
 const removeUselessContent = (dispositifArray: IDispositif[]) =>
   dispositifArray.map((dispositif) => {
