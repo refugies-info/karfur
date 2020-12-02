@@ -41,12 +41,11 @@ export const getDispositifs = async (
       logger.info("[getDispositifs] called");
       let { query, locale } = req.body;
       locale = locale || "fr";
-
       const dispositifArray = await getDispositifArray(query);
+
       // @ts-ignore
       const adaptedDispositifArray = removeUselessContent(dispositifArray);
       const array: string[] = [];
-
       array.forEach.call(adaptedDispositifArray, (dispositif: IDispositif) => {
         turnToLocalized(dispositif, locale);
         turnJSONtoHTML(dispositif.contenu);
