@@ -193,6 +193,8 @@ export const AdminContenu = () => {
   const publishDispositif = async (dispositif, status = "Actif") => {
     const newDispositif = { status: status, dispositifId: dispositif._id };
     let question = { value: true };
+    const link = `${url}${dispositif.typeContenu}/${dispositif._id}`;
+
     if (
       dispositif.status === "En attente" ||
       dispositif.status === "Accepté structure"
@@ -214,9 +216,10 @@ export const AdminContenu = () => {
         .then(() => {
           Swal.fire({
             title: "Yay...",
-            text: "Dispositif publié",
+            text: "Contenu publié",
             type: "success",
-            timer: 1500,
+            timer: 5500,
+            footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
           });
           dispatch(fetchAllDispositifsActionsCreator());
           dispatch(fetchActiveDispositifsActionsCreator());
