@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 import styled from "styled-components";
-import { Input } from "reactstrap";
 import Highlighter from "react-highlight-words";
 import { themes } from "./data";
 import Streamline from "../../../assets/streamline";
@@ -26,46 +25,6 @@ import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomS
   height: 174px;
   margin-right: 0px;
 `; */
-
-const SearchBarContainer = styled.div`
-  background: #ffffff;
-  border: 0.5px solid #ffffff;
-  border-radius: 12px;
-  padding-right: 12px;
-  padding-left: 15px;
-  margin-right: 10px;
-  font-size: 16px;
-  font-weight: 400;
-  width: 280px;
-  color: #000000;
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-  &:hover {
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-  }
-  &:focus {
-    //color: transparent;
-    outline: none !important;
-  }
-`;
-
-const SearchBar = styled(Input)`
-  background: #ffffff;
-  border: 0.5px solid #ffffff;
-  border-radius: 12px;
-  padding-right: 12px;
-  padding-left: 15px;
-  margin-right: 10px;
-  font-size: 16px;
-  font-weight: 400;
-  width: 100%;
-  color: #000000;
-  &:focus {
-    //color: transparent;
-    outline: none !important;
-  }
-`;
 
 const SearchModalContainer = styled.div`
   position: fixed;

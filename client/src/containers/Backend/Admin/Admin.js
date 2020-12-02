@@ -25,6 +25,8 @@ const OngletContainer = styled.div`
   align-items: flex-end;
   margin-top: 12px;
   margin-bottom: 12px;
+  cursor: pointer;
+  background: #f2f2f2;
 `;
 
 const Onglet = (props) => (
@@ -583,7 +585,7 @@ export class Admin extends Component {
       <div className="animated fadeIn admin">
         <Row>
           <Col>
-            <Nav tabs>
+            <Nav>
               <NavItem>
                 <NavLink
                   active={this.state.activeTab === "0"}

@@ -48,7 +48,7 @@ const url =
     ? "https://staging.refugies.info/"
     : "https://www.refugies.info/";
 
-export const AdminContenu = (props) => {
+export const AdminContenu = () => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",

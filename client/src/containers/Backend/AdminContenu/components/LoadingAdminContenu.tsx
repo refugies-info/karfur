@@ -8,7 +8,7 @@ import {
 } from "../StyledAdminContenu";
 import { Table } from "reactstrap";
 import { table_contenu, correspondingStatus } from "../data";
-import Skeleton from "react-loading-skeleton";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 // @ts-ignore
 import variables from "scss/colors.scss";
@@ -63,14 +63,20 @@ export const LoadingAdminContenu = () => {
               return (
                 <tr key={key} className={"bg-blancSimple"}>
                   <td>
-                    <Skeleton width={50} count={1} />
+                    <SkeletonTheme color="#CDCDCD">
+                      <Skeleton width={50} count={1} />
+                    </SkeletonTheme>
                   </td>
                   <td>
-                    <Skeleton width={270} count={1} />
+                    <SkeletonTheme color="#CDCDCD">
+                      <Skeleton width={270} count={1} />
+                    </SkeletonTheme>
                   </td>
                   {arrayContent.map((element, key) => (
                     <td key={key}>
-                      <Skeleton width={70} count={1} />
+                      <SkeletonTheme color="#CDCDCD">
+                        <Skeleton width={70} count={1} />
+                      </SkeletonTheme>
                     </td>
                   ))}
                 </tr>
