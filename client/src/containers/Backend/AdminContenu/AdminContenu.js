@@ -235,11 +235,15 @@ export const AdminContenu = () => {
     }
   };
 
+  const nbNonDeletedDispositifs =
+    dispositifs.length > 0
+      ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
+      : 0;
   return (
     <div className="admin-contenu animated fadeIn">
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
-        <FigureContainer>{dispositifs.length}</FigureContainer>
+        <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
         <StyledSort>
           {correspondingStatus.sort(compare).map((status) => {
             const nbContent = getNbDispositifsByStatus(status.storedStatus);
