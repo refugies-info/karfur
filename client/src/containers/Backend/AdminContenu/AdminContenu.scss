@@ -1,34 +1,33 @@
-@import 'src/scss/colors.scss';
+@import "src/scss/colors.scss";
 
-.admin-contenu{
+.admin-contenu {
   //padding: 30px;
   flex: 1;
   background: #f2f2f2;
-
-  .decale-gauche{
+  .decale-gauche {
     margin-left: 30px;
   }
-  .super-decale-gauche{
+  .super-decale-gauche {
     margin-left: 60px;
   }
-  td{
+  td {
     cursor: initial;
   }
-  th{
+  th {
     font-weight: initial;
 
-    &.texte-bold{
+    &.texte-bold {
       font-weight: bold;
     }
   }
 
-  #responsable{
+  #responsable {
     background: $noir;
-    color: #FFFFFF;
+    color: #ffffff;
     border: none;
   }
 
-  .petit-texte{
-    font-size:14px;
+  .petit-texte {
+    font-size: 14px;
   }
 }
