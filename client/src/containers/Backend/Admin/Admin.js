@@ -11,6 +11,32 @@ import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./Admin.scss";
 import variables from "scss/colors.scss";
+import styled from "styled-components";
+
+const OngletText = styled.span`
+  color: ${(props) =>
+    props.isActive ? variables.bleuCharte : variables.darkColor};
+  font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
+`;
+
+const OngletContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+`;
+
+const Onglet = (props) => (
+  <OngletContainer>
+    <div style={{ marginBottom: "3px" }}>
+      <EVAIcon
+        name={props.isSelected ? props.iconSelected : props.iconNotSelected}
+        fill={props.isSelected ? variables.bleuCharte : variables.noir}
+        className="mr-8"
+      />
+    </div>
+    <OngletText isActive={props.isSelected}>{props.text}</OngletText>
+  </OngletContainer>
+);
 
 export class Admin extends Component {
   state = {
@@ -563,12 +589,12 @@ export class Admin extends Component {
                     this.toggleTab("0");
                   }}
                 >
-                  <EVAIcon
-                    name="file-add-outline"
-                    fill={variables.noir}
-                    className="mr-10"
+                  <Onglet
+                    iconSelected="file-add"
+                    iconNotSelected="file-add-outline"
+                    text="Contenus"
+                    isSelected={this.state.activeTab === "0"}
                   />
-                  <span>Contenus</span>
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -578,12 +604,12 @@ export class Admin extends Component {
                     this.toggleTab("1");
                   }}
                 >
-                  <EVAIcon
-                    name="shopping-bag-outline"
-                    fill={variables.noir}
-                    className="mr-10"
+                  <Onglet
+                    iconSelected="shopping-bag"
+                    iconNotSelected="shopping-bag-outline"
+                    text="Structures"
+                    isSelected={this.state.activeTab === "1"}
                   />
-                  <span>Structures</span>
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -593,8 +619,12 @@ export class Admin extends Component {
                     this.toggleTab("2");
                   }}
                 >
-                  <i className="icon-user"></i>
-                  <span> Utilisateurs</span>
+                  <Onglet
+                    iconSelected="person"
+                    iconNotSelected="person-outline"
+                    text="Utilisateurs"
+                    isSelected={this.state.activeTab === "2"}
+                  />
                 </NavLink>
               </NavItem>
 
@@ -605,12 +635,12 @@ export class Admin extends Component {
                     this.toggleTab("3");
                   }}
                 >
-                  <EVAIcon
-                    name="pie-chart-outline"
-                    fill={variables.noir}
-                    className="mr-10"
+                  <Onglet
+                    iconSelected="pie-chart"
+                    iconNotSelected="pie-chart-outline"
+                    text="Statistiques"
+                    isSelected={this.state.activeTab === "3"}
                   />
-                  <span>Statistiques</span>
                 </NavLink>
               </NavItem>
             </Nav>
