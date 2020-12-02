@@ -124,7 +124,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   const filterStructures = structures
     ? structures.filter(
         // @ts-ignore
-        (structure) => structure._id !== "5e5fdb7b361338004e16e75f"
+        (structure) => structure._id !== "5f69cb9c0aab6900460c0f3f"
       )
     : [];
 
