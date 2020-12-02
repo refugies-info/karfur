@@ -53,3 +53,16 @@ export const FigureContainer = styled.div`
   height: fit-content;
   margin-left: 16px;
 `;
+
+export const StyledInput = styled.input`
+  border-radius: 8px;
+  margin: 10px;
+  border: 0px;
+  padding: 10px;
+  border: 1px solid #828282;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  color: #828282;
+  width: 250px;
+`;

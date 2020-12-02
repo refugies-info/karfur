@@ -16,6 +16,7 @@ import {
   StyledHeader,
   Content,
   FigureContainer,
+  StyledInput,
 } from "./StyledAdminContenu";
 import "./AdminContenu.scss";
 import variables from "scss/colors.scss";
@@ -50,10 +51,12 @@ export const AdminContenu = () => {
     sens: "none",
     orderColumn: "none",
   };
+  const dispositifs = useSelector(allDispositifsSelector);
+
   const [filter, setFilter] = useState("En attente admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
+  const [search, setSearch] = useState("");
   const headers = table_contenu.headers;
-  const dispositifs = useSelector(allDispositifsSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
   );
@@ -79,18 +82,34 @@ export const AdminContenu = () => {
     );
   }
 
-  const getNbDispositifsByStatus = (status) =>
-    dispositifs.length > 0
-      ? dispositifs.filter((dispo) => dispo.status === status).length
+  const getNbDispositifsByStatus = (dispositifsToDisplay, status) =>
+    dispositifsToDisplay && dispositifsToDisplay.length > 0
+      ? dispositifsToDisplay.filter((dispo) => dispo.status === status).length
       : 0;
 
   const filterAndSortDispositifs = (dispositifs) => {
-    const filteredDispositifs = dispositifs.filter(
+    const dispositifsFilteredBySearch = !!search
+      ? dispositifs.filter(
+          (dispo) =>
+            dispo.titreInformatif &&
+            dispo.titreInformatif
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLowerCase()
+              .includes(search)
+        )
+      : dispositifs;
+
+    const filteredDispositifs = dispositifsFilteredBySearch.filter(
       (dispo) => dispo.status === filter
     );
-    if (sortedHeader.name === "none") return filteredDispositifs;
+    if (sortedHeader.name === "none")
+      return {
+        dispositifsToDisplay: filteredDispositifs,
+        dispositifsForCount: dispositifsFilteredBySearch,
+      };
 
-    return filteredDispositifs.sort((a, b) => {
+    const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
       const sponsorA =
         a.mainSponsor && a.mainSponsor.nom
           ? a.mainSponsor.nom.toLowerCase()
@@ -124,8 +143,15 @@ export const AdminContenu = () => {
 
       return sortedHeader.sens === "up" ? -1 : 1;
     });
+    return {
+      dispositifsToDisplay,
+      dispositifsForCount: dispositifsFilteredBySearch,
+    };
   };
-  const dispositifsToDisplay = filterAndSortDispositifs(dispositifs);
+  const {
+    dispositifsToDisplay,
+    dispositifsForCount,
+  } = filterAndSortDispositifs(dispositifs);
 
   const compare = (a, b) => {
     const orderA = a.order;
@@ -190,6 +216,8 @@ export const AdminContenu = () => {
     setSortedHeader(defaultSortedHeader);
   };
 
+  const handleChange = (e) => setSearch(e.target.value);
+
   const publishDispositif = async (dispositif, status = "Actif") => {
     const newDispositif = { status: status, dispositifId: dispositif._id };
     let question = { value: true };
@@ -241,12 +269,32 @@ export const AdminContenu = () => {
       : 0;
   return (
     <div className="admin-contenu animated fadeIn">
+      <div
+        style={{
+          width: "50px",
+          height: "50px",
+          position: "absolute",
+          top: "-10px",
+          right: "300px",
+        }}
+      >
+        <StyledInput
+          type="text"
+          name="search"
+          id="avancement-search"
+          placeholder="Rechercher un contenu"
+          onChange={handleChange}
+        />
+      </div>
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
         <StyledSort>
           {correspondingStatus.sort(compare).map((status) => {
-            const nbContent = getNbDispositifsByStatus(status.storedStatus);
+            const nbContent = getNbDispositifsByStatus(
+              dispositifsForCount,
+              status.storedStatus
+            );
             return (
               <FilterButton
                 key={status.storedStatus}
@@ -258,6 +306,7 @@ export const AdminContenu = () => {
           })}
         </StyledSort>
       </StyledHeader>
+
       <Content>
         <Table responsive borderless>
           <thead>

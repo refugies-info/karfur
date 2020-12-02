@@ -42,7 +42,7 @@ const TitleContainer = styled.div`
 
 export const Title = (props: {
   titreInformatif: string;
-  titreMarque: string;
+  titreMarque: string | null;
 }) => {
   const { titreInformatif, titreMarque } = props;
   const reducedTitreInfo = titreInformatif
@@ -55,7 +55,7 @@ export const Title = (props: {
   return (
     <TitleContainer>
       <b>{reducedTitreInfo}</b>
-      <span>{`avec ${reducedTitreMarque}`}</span>
+      {reducedTitreMarque && <span>{`avec ${reducedTitreMarque}`}</span>}
     </TitleContainer>
   );
 };
