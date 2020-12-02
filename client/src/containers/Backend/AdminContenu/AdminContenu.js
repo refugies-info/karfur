@@ -16,6 +16,7 @@ import {
   StyledHeader,
   Content,
   FigureContainer,
+  SearchBarContainer,
 } from "./StyledAdminContenu";
 import "./AdminContenu.scss";
 import variables from "scss/colors.scss";
@@ -35,6 +36,8 @@ import {
   TabHeader,
 } from "./components/SubComponents";
 import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { NavHashLink } from "react-router-hash-link";
 
 moment.locale("fr");
 
@@ -45,7 +48,7 @@ const url =
     ? "https://staging.refugies.info/"
     : "https://www.refugies.info/";
 
-export const AdminContenu = () => {
+export const AdminContenu = (props) => {
   const defaultSortedHeader = {
     name: "none",
     sens: "none",
@@ -68,6 +71,7 @@ export const AdminContenu = () => {
       await dispatch(fetchAllDispositifsActionsCreator());
     };
     loadDispositifs();
+    window.scrollTo(0, 0);
 
     return () => {
       dispatch(setAllDispositifsActionsCreator([]));
@@ -269,19 +273,21 @@ export const AdminContenu = () => {
       : 0;
   return (
     <div className="admin-contenu animated fadeIn">
-      <div
-        style={{
-          position: "absolute",
-          top: "15px",
-          right: "300px",
-        }}
-      >
+      <SearchBarContainer>
         <CustomSearchBar
           value={search}
           onChange={handleChange}
           placeholder="Rechercher un contenu..."
         />
-      </div>
+        <FButton
+          type="dark"
+          name="plus-circle-outline"
+          tag={NavHashLink}
+          to={"/comment-contribuer#ecrire"}
+        >
+          Ajouter un contenu
+        </FButton>
+      </SearchBarContainer>
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>

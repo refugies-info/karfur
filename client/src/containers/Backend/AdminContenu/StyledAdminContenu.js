@@ -33,7 +33,7 @@ export const StyledHeader = styled.div`
   flex-direction: row;
   width: 100%;
   align-items: center;
-  padding-top: 24px;
+  padding-top: 16px;
   padding-bottom: 24px;
 `;
 
@@ -65,4 +65,12 @@ export const StyledInput = styled.input`
   line-height: 20px;
   color: #828282;
   width: 250px;
+`;
+
+export const SearchBarContainer = styled.div`
+  position: absolute;
+  top: 15px;
+  right: 40px;
+  display: flex;
+  flexdirection: row;
 `;
