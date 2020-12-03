@@ -303,10 +303,8 @@ export class Dispositif extends Component {
           const sponsorsWithoutStructure = dispositif.sponsors.filter(
             (sponsor) => sponsor.picture
           );
-          const sponsors = dispositif.mainSponsor
-            ? [dispositif.mainSponsor].concat(sponsorsWithoutStructure)
-            : sponsorsWithoutStructure
-            ? [sponsorsWithoutStructure]
+          const sponsors = sponsorsWithoutStructure
+            ? sponsorsWithoutStructure
             : [];
           //Enregistrement automatique du dispositif toutes les 3 minutes
           this._isMounted &&
@@ -347,7 +345,7 @@ export class Dispositif extends Component {
                         (x) => x && x.name === (dispositif.tags[0] || {}).name
                       ) || {}
                     : {},
-                mainSponsor: dispositif.mainSponsor,
+                mainSponsor: dispositif.mainSponsor || {},
                 status: dispositif.status,
                 variantes: dispositif.variantes || [],
                 fiabilite: calculFiabilite(dispositif),
@@ -966,7 +964,7 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({ displayTuto: !prevState.displayTuto }));
 
   toggleDispositifValidateModal = () => {
-    if (_.isEmpty(this.state.sponsors)) {
+    if (_.isEmpty(this.state.mainSponsor)) {
       this.setState({ finalValidation: true });
       this.sponsors.current.toggleModal("responsabilite");
     } else {
@@ -1196,6 +1194,24 @@ export class Dispositif extends Component {
     });
   };
 
+  addMainSponsor = (sponsor) => {
+    this.setState({
+      mainSponsor: sponsor,
+    });
+  };
+
+  deleteMainSponsor = () => {
+    this.setState({
+      mainSponsor: {},
+    });
+  };
+
+  editSponsor = (key, sponsor) => {
+    const newItems = [...this.state.sponsors];
+    newItems[key] = sponsor;
+    this.setState({ sponsors: newItems });
+  };
+
   deleteSponsor = (key) => {
     if (
       (this.state.status === "Accepté structure" ||
@@ -1213,6 +1229,26 @@ export class Dispositif extends Component {
     }
     this.setState({
       sponsors: (this.state.sponsors || []).filter((_, i) => i !== key),
+    });
+  };
+
+  deleteMainSponsor = () => {
+    if (
+      (this.state.status === "Accepté structure" ||
+        this.state.status === "Actif" ||
+        this.state.status === "En attente admin") &&
+      !this.props.admin
+    ) {
+      Swal.fire({
+        title: "Oh non!",
+        text: "Vous ne pouvez plus supprimer de structures partenaires",
+        type: "error",
+        timer: 1500,
+      });
+      return;
+    }
+    this.setState({
+      mainSponsor: {},
     });
   };
 
@@ -1461,12 +1497,7 @@ export class Dispositif extends Component {
           }),
         };
       }),
-      sponsors: (this.state.sponsors || [])
-        .filter((x) => !x.dummy)
-        .map((sponsor) => {
-          if (sponsor._id) return sponsor._id;
-          return sponsor;
-        }),
+      sponsors: (this.state.sponsors || []).filter((x) => !x.dummy),
       tags: this.state.tags,
       avancement: 1,
       status: status,
@@ -1478,11 +1509,7 @@ export class Dispositif extends Component {
         this.state.status !== "Brouillon" && { timeSpent: this.state.time }),
       autoSave: auto,
     };
-
-    dispositif.mainSponsor =
-      typeof _.get(dispositif, "sponsors.0") === "string"
-        ? _.get(dispositif, "sponsors.0")
-        : null;
+    dispositif.mainSponsor = this.state.mainSponsor._id || null;
     if (dispositif.typeContenu === "dispositif") {
       let cardElement =
         (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
@@ -1542,11 +1569,8 @@ export class Dispositif extends Component {
         ].includes(this.state.status)
       ) {
         dispositif.status = this.state.status;
-      } else if (dispositif.sponsors && dispositif.sponsors.length > 0) {
-        const mainSponsor =
-          this.state.sponsors.filter((sponsor) => sponsor._id).length > 0
-            ? this.state.sponsors.filter((sponsor) => sponsor._id)[0]
-            : null;
+      } else if (dispositif.mainSponsor) {
+        const mainSponsor = dispositif.mainSponsor;
         //Si l'auteur appartient à la structure principale je la fait passer directe en validation
         const membre = mainSponsor
           ? (mainSponsor.membres || []).find(
@@ -2038,9 +2062,13 @@ export class Dispositif extends Component {
                 <Sponsors
                   ref={this.sponsors}
                   sponsors={this.state.sponsors}
+                  mainSponsor={this.state.mainSponsor}
                   disableEdit={disableEdit}
                   addSponsor={this.addSponsor}
                   deleteSponsor={this.deleteSponsor}
+                  addMainSponsor={this.addMainSponsor}
+                  deleteMainSponsor={this.deleteMainSponsor}
+                  editSponsor={this.editSponsor}
                   admin={this.props.admin}
                   validate={this.toggleDispositifValidateModalFinal}
                   t={t}
@@ -2049,6 +2077,7 @@ export class Dispositif extends Component {
                   toggleTutorielModal={this.toggleTutorielModal}
                   displayTuto={this.state.displayTuto}
                   updateUIArray={this.updateUIArray}
+                  dispositif={this.state.dispositif}
                 />
 
                 {false && <Commentaires />}
@@ -2132,6 +2161,7 @@ export class Dispositif extends Component {
               toggleTutorielModal={this.toggleTutorielModal}
               tags={this.state.tags}
               sponsors={this.state.sponsors}
+              mainSponsor={this.state.mainSponsor}
               toggleTagsModal={this.toggleTagsModal}
               toggleSponsorModal={() =>
                 this.sponsors.current.toggleModal("responsabilite")

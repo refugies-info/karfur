@@ -83,7 +83,7 @@ const dispositifValidateModal = (props) => {
         />
         <Check
           section="structure"
-          missingElement={props.sponsors.length === 0}
+          missingElement={!props.mainSponsor._id}
           toggleTagsModal={props.toggleTagsModal}
           toggleSponsorModal={props.toggleSponsorModal}
         />

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   Row,
-  Col,
   Input,
   Modal,
   ModalBody,
@@ -12,7 +11,6 @@ import {
   Label,
   Spinner,
 } from "reactstrap";
-import Icon from "react-eva-icons";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 
@@ -26,7 +24,117 @@ import { updateUserActionCreator } from "../../../../services/User/user.actions"
 import _ from "lodash";
 import "./Sponsors.scss";
 import variables from "scss/colors.scss";
-import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
+import styled from "styled-components";
+
+const SponsorContainer = styled.div`
+  padding: 0px 0px 0px 16px;
+  border-left: ${(props) => (props.left ? "2px solid #FFFFFF" : null)};
+`;
+const SponsorListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const SectionTitle = styled.p`
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: #ffffff;
+`;
+
+const SponsorTitle = styled.p`
+  font-weight: bold;
+  font-size: 18px;
+  color: #212121;
+  text-align: center;
+`;
+
+const ImageLink = styled.a`
+  background-color: white;
+  width: 166px;
+  height: 116px;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+`;
+
+const DeleteButtonFull = styled.div`
+  background: #f44336;
+  border-radius: 12px;
+  width: 139px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+`;
+
+const DeleteButtonFullText = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+`;
+const EditText = styled.p`
+  font-weight: bold;
+  font-size: 16px;
+  color: #212121;
+  text-align: center;
+  margin-bottom: 0px;
+`;
+const EditButton = styled.div`
+  background: #f9ef99;
+  border-radius: 12px;
+  width: 105px;
+  height: 50px;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 8px;
+`;
+
+const DeleteButtonSmall = styled.div`
+  background: #f44336;
+  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const AddSponsorTitle = styled.p`
+  font-weight: bold;
+  font-size: 22px;
+  color: #212121;
+  line-height: 28px;
+`;
+const AddSponsorDescription = styled.p`
+  font-weight: normal;
+  font-size: 16px;
+  color: #212121;
+  line-height: 20px;
+`;
+
+const SponsorCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  margin-right: 16px;
+
+  width: 214px;
+  height: ${(props) => (props.disableEdit ? "303px" : "345px")};
+
+  /* Noir/Blanc */
+
+  background: ${(props) => (props.add ? "#F9EF99" : "#eaeaea")};
+  border-radius: 12px;
+`;
 
 class Sponsors extends Component {
   state = {
@@ -44,8 +152,10 @@ class Sponsors extends Component {
     mesStructures: [],
     imgData: {},
     link: "",
-    alt: "",
+    nom: "",
     sponsorLoading: false,
+    edit: false,
+    sponsorKey: null,
 
     structure: {
       nom: "",
@@ -140,7 +250,7 @@ class Sponsors extends Component {
     this.setState({
       imgData: suggestion.picture || {},
       link: suggestion.link || "",
-      alt: "",
+      nom: "",
     });
     this.toggleModal(suggestion.createNew ? "creation" : "etVous");
   };
@@ -185,14 +295,16 @@ class Sponsors extends Component {
     if (this.state.checked) {
       let user = { ...this.props.user };
       let userInfo = { _id: user._id, email: user.email, phone: user.phone };
-      this.props.addSponsor(
+      this.props.addMainSponsor(
         { type: "Not found", user: { ...userInfo, username: user.username } },
         false
       );
       this.toggleModal();
       API.set_user_info(userInfo);
     } else if (this.state.mesStructures.some((x) => x.checked)) {
-      this.props.addSponsor(this.state.mesStructures.find((x) => x.checked));
+      this.props.addMainSponsor(
+        this.state.mesStructures.find((x) => x.checked)
+      );
       this.toggleModal();
     }
     if (this.props.finalValidation) {
@@ -208,7 +320,7 @@ class Sponsors extends Component {
           ...this.state.selected,
           picture: { ...this.state.imgData },
           link: this.state.link,
-          alt: this.state.alt,
+          nom: this.state.nom,
           asAdmin,
         });
         this.toggleModal();
@@ -218,7 +330,7 @@ class Sponsors extends Component {
           ...this.state.selected,
           picture: { ...this.state.imgData },
           link: this.state.link,
-          alt: this.state.alt,
+          nom: this.state.nom,
           asAdmin,
         });
         this.toggleModal();
@@ -236,12 +348,24 @@ class Sponsors extends Component {
           ...this.state.selected,
           picture: { ...this.state.imgData },
           link: this.state.link,
-          alt: this.state.alt,
+          nom: this.state.nom,
           asAdmin,
         });
         this.toggleModal();
       }
     }
+  };
+
+  editSponsor = (key) => {
+    this.toggleModal();
+    this.setState({edit: false})
+    var sponsor = {
+      ...this.state.selected,
+      picture: { ...this.state.imgData },
+      link: this.state.link,
+      nom: this.state.nom,
+    };
+    this.props.editSponsor(key, sponsor);
   };
 
   /*   addStructure = () => {
@@ -263,7 +387,14 @@ class Sponsors extends Component {
     });
 
   render() {
-    const { disableEdit, t, sponsors, deleteSponsor, user } = this.props;
+    const {
+      disableEdit,
+      sponsors,
+      mainSponsor,
+      deleteSponsor,
+      deleteMainSponsor,
+      user,
+    } = this.props;
     const {
       showModals,
       selected,
@@ -273,12 +404,13 @@ class Sponsors extends Component {
     } = this.state;
 
     const sponsorsWithoutPicture = sponsors.filter(
-      (sponsor) => !sponsor.picture
+      (sponsor) => !sponsor.picture && !sponsor._id
     );
-    const sponsorsWithPicture = sponsors.filter((sponsor) => !!sponsor.picture);
-
+    const sponsorsWithPicture = sponsors.filter(
+      (sponsor) => !!sponsor.picture && !sponsor._id
+    );
     const deduplicatedSponsors = sponsorsWithoutPicture.concat(
-      _.uniqBy(sponsorsWithPicture, (sponsor) => sponsor.picture.secure_url)
+      _.uniqBy(sponsorsWithPicture, (sponsor) => sponsor.nom)
     );
     const modal = { name: "responsabilite" };
     const structuresArray = this.props.structuresNew
@@ -286,7 +418,7 @@ class Sponsors extends Component {
       : [{ createNew: true }];
     return (
       <div
-        className="sponsor-footer"
+        className="sponsor-footer backgroundColor-darkColor"
         onMouseEnter={() => this.props.updateUIArray(-7)}
       >
         <div
@@ -296,9 +428,7 @@ class Sponsors extends Component {
             justifyContent: "space-between",
           }}
         >
-          <h5 className="color-darkColor">
-            {t("Dispositif.Structures", "Structures partenaires")}
-          </h5>
+          <h5 className="">{"Proposé par"}</h5>
           {!disableEdit && this.props.displayTuto && (
             <FButton
               type="tuto"
@@ -310,71 +440,214 @@ class Sponsors extends Component {
           )}
         </div>
         <Row className="sponsor-images">
-          {sponsors &&
-            deduplicatedSponsors.map((sponsor, key) => {
-              return (
-                <Col key={key} className="sponsor-col">
-                  <div className="image-wrapper">
-                    <a
-                      href={
-                        ((sponsor.link || "").includes("http")
-                          ? ""
-                          : "http://") + sponsor.link
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {sponsor.picture && sponsor.picture.secure_url ? (
+          <SponsorContainer>
+            <SectionTitle>Responsable</SectionTitle>
+            {mainSponsor._id ? (
+              <SponsorCard disableEdit={disableEdit}>
+                <ImageLink
+                  href={`https://www.refugies.info/annuaire/${mainSponsor._id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="sponsor-img"
+                    src={(mainSponsor.picture || {}).secure_url}
+                    alt={mainSponsor.acronyme}
+                  />
+                </ImageLink>
+                <SponsorTitle>{mainSponsor.nom}</SponsorTitle>
+                {!disableEdit ? (
+                  <DeleteButtonFull onClick={() => deleteMainSponsor()}>
+                    <EVAIcon
+                      name="trash-2-outline"
+                      size="large"
+                      fill={variables.blanc}
+                    />
+                    <DeleteButtonFullText>Supprimer</DeleteButtonFullText>
+                  </DeleteButtonFull>
+                ) : null}
+              </SponsorCard>
+            ) : !disableEdit ? (
+              <SponsorCard
+                onClick={() => {
+                  this.props.toggleFinalValidation();
+                  this.toggleModal("responsabilite");
+                }}
+                add
+                disableEdit={disableEdit}
+              >
+                <AddSponsorTitle>
+                  Choisir la structure responsable
+                </AddSponsorTitle>
+                <AddSponsorDescription>
+                  Pour assurer la mise à jour des informations, nous devons
+                  relier votre fiche à la structure responsable du dispositif.
+                </AddSponsorDescription>
+              </SponsorCard>
+            ) : null}
+          </SponsorContainer>
+          {sponsors && deduplicatedSponsors.length > 0 ? (
+            <SponsorContainer left>
+              <SectionTitle>Partenaires</SectionTitle>
+              <SponsorListContainer>
+                {deduplicatedSponsors.length === 1 && !disableEdit ? (
+                  <SponsorCard
+                    onClick={() => {
+                      this.props.toggleFinalValidation();
+                      this.toggleModal("img-modal");
+                    }}
+                    add
+                    disableEdit={disableEdit}
+                  >
+                    <AddSponsorTitle>
+                      Ajouter une structure partenaire
+                    </AddSponsorTitle>
+                    <AddSponsorDescription>
+                      Ces structures ne peuvent pas éditer la fiche mais sont
+                      ainsi visible dans le cas d’un partenariat ou d’une
+                      co-animation.
+                    </AddSponsorDescription>
+                  </SponsorCard>
+                ) : null}
+                {deduplicatedSponsors.map((sponsor, key) => {
+                  return (
+                    <SponsorCard key={key}>
+                      <ImageLink
+                        href={
+                          ((sponsor.link || "").includes("http")
+                            ? ""
+                            : "http://") + sponsor.link
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <img
                           className="sponsor-img"
                           src={sponsor.picture.secure_url}
                           alt={sponsor.alt}
                         />
-                      ) : sponsor.type === "Not found" ? (
-                        <div className="not-found-wrapper">
-                          <EVAIcon
-                            name="question-mark-circle"
-                            className="not-found-icon"
-                            size="large"
-                          />
-                          <span>
-                            Structure responsable
-                            <br />
-                            non-identifiée
-                          </span>
-                        </div>
-                      ) : (
-                        <NoSponsorImage
-                          nom={sponsor.nom}
-                          acronyme={sponsor.acronyme}
-                          alt={sponsor.alt}
-                        />
-                      )}
-                    </a>
-                    {key === 0 && sponsor.type !== "Not found" && (
-                      <div className="owner-badge">
-                        <EVAIcon name="shield" className="mr-10" />
-                        Responsable
-                      </div>
-                    )}
-                    {!disableEdit && (
-                      <div
-                        className="delete-icon"
-                        onClick={() => deleteSponsor(key)}
+                      </ImageLink>
+                      <SponsorTitle>{sponsor.nom}</SponsorTitle>
+                      {!disableEdit ? (
+                        <SponsorListContainer>
+                          <EditButton
+                            onClick={() => {
+                              this.setState({
+                                imgData: sponsor.picture || {},
+                                link: sponsor.link || "",
+                                nom: sponsor.nom || "",
+                                edit: true,
+                                sponsorKey: key
+                              }, () => {
+                                this.props.toggleFinalValidation();
+                                this.toggleModal("img-modal");
+                              });
+                            }}
+                          >
+                            <EVAIcon
+                              name="edit-outline"
+                              size="large"
+                              fill={variables.noir}
+                            />
+                            <EditText>Editer</EditText>
+                          </EditButton>
+                          <DeleteButtonSmall onClick={() => deleteSponsor(key)}>
+                            <EVAIcon
+                              name="trash-2-outline"
+                              size="large"
+                              fill={variables.blanc}
+                            />
+                          </DeleteButtonSmall>
+                        </SponsorListContainer>
+                      ) : null}
+                    </SponsorCard>
+                    /*                   <Col key={key} className="sponsor-col">
+                    <div className="image-wrapper">
+                      <a
+                        href={
+                          ((sponsor.link || "").includes("http")
+                            ? ""
+                            : "http://") + sponsor.link
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        <Icon
-                          name="minus-circle"
-                          fill={variables.darkColor}
-                          size="xlarge"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </Col>
-              );
-            })}
-
-          {!disableEdit && (
+                        {sponsor.picture && sponsor.picture.secure_url ? (
+                          <img
+                            className="sponsor-img"
+                            src={sponsor.picture.secure_url}
+                            alt={sponsor.alt}
+                          />
+                        ) : sponsor.type === "Not found" ? (
+                          <div className="not-found-wrapper">
+                            <EVAIcon
+                              name="question-mark-circle"
+                              className="not-found-icon"
+                              size="large"
+                            />
+                            <span>
+                              Structure responsable
+                              <br />
+                              non-identifiée
+                            </span>
+                          </div>
+                        ) : (
+                          <NoSponsorImage
+                            nom={sponsor.nom}
+                            acronyme={sponsor.acronyme}
+                            alt={sponsor.alt}
+                          />
+                        )}
+                      </a>
+                      {key === 0 && sponsor.type !== "Not found" && (
+                        <div className="owner-badge">
+                          <EVAIcon name="shield" className="mr-10" />
+                          Responsable
+                        </div>
+                      )}
+                      {!disableEdit && (
+                        <div
+                          className="delete-icon"
+                          onClick={() => deleteSponsor(key)}
+                        >
+                          <Icon
+                            name="minus-circle"
+                            fill={variables.darkColor}
+                            size="xlarge"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </Col> */
+                  );
+                })}
+              </SponsorListContainer>
+            </SponsorContainer>
+          ) : !disableEdit ? (
+            <SponsorContainer left>
+              <SectionTitle>Partenaires</SectionTitle>
+              <SponsorListContainer>
+                <SponsorCard
+                  onClick={() => {
+                    this.props.toggleFinalValidation();
+                    this.toggleModal("img-modal");
+                  }}
+                  add
+                  disableEdit={disableEdit}
+                >
+                  <AddSponsorTitle>
+                    Ajouter une structure partenaire
+                  </AddSponsorTitle>
+                  <AddSponsorDescription>
+                    Ces structures ne peuvent pas éditer la fiche mais sont
+                    ainsi visible dans le cas d’un partenariat ou d’une
+                    co-animation.
+                  </AddSponsorDescription>
+                </SponsorCard>
+              </SponsorListContainer>
+            </SponsorContainer>
+          ) : null}
+          {/* {!disableEdit && (
             <Col>
               <div
                 className="add-sponsor"
@@ -394,7 +667,7 @@ class Sponsors extends Component {
                 </span>
               </div>
             </Col>
-          )}
+          )} */}
         </Row>
 
         <CustomModal
@@ -522,7 +795,7 @@ class Sponsors extends Component {
               type="dark"
               name="paper-plane-outline"
               fill={variables.noir}
-              onClick={this.addSponsor}
+              onClick={() => this.props.addMainSponsor(this.state.selected)}
               className="push-right"
             >
               Valider
@@ -730,7 +1003,7 @@ class Sponsors extends Component {
           showModals={showModals}
           imgData={this.state.imgData}
           link={this.state.link}
-          alt={this.state.alt}
+          nom={this.state.nom}
           sponsorLoading={this.state.sponsorLoading}
           toggleModal={this.toggleModal}
           toggleTooltip={this.toggleTooltip}
@@ -738,6 +1011,9 @@ class Sponsors extends Component {
           handleChange={this.handleImgChange}
           addSponsor={this.addSponsor}
           tooltipOpen={this.state.tooltipOpen}
+          edit={this.state.edit}
+          editSponsor={this.editSponsor}
+          sponsorKey={this.state.sponsorKey}
         />
       </div>
     );
@@ -769,9 +1045,7 @@ const ImgModal = (props) => (
     className="modal-sponsors"
   >
     <div className="form-field inline-div">
-      <span>
-        1. Choix de l’image<sup>*</sup>
-      </span>
+      <span>Ajouter un logo</span>
       {props.imgData.src ? (
         <div className="image-wrapper">
           <Input
@@ -805,9 +1079,31 @@ const ImgModal = (props) => (
       )}
     </div>
     <div className="form-field">
-      <span>
-        2. Lien vers le site de la structure<sup>*</sup>
-      </span>
+      <span>Entrez le nom de la structure partenaire</span>
+      <InputGroup>
+        <EVAIcon
+          className="input-icon"
+          name="eye-off-outline"
+          fill={variables.noir}
+        />
+        <Input
+          id="nom"
+          placeholder="Réfugiés.info"
+          value={props.nom}
+          onChange={props.handleChange}
+        />
+      </InputGroup>
+    </div>
+    <div className="form-field">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "row",
+          alignItems: "center",
+        }}
+      >
+        <span>Collez un lien vers le site de la structure</span>
+      </div>
       <InputGroup>
         <EVAIcon
           className="input-icon"
@@ -822,46 +1118,9 @@ const ImgModal = (props) => (
         />
       </InputGroup>
     </div>
-    <div className="form-field">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "row",
-          alignItems: "center",
-        }}
-      >
-        <span>
-          3. Texte alternatif à l’image<sup>*</sup>
-        </span>
-        <div style={{ marginLeft: "5px", marginBottom: "2px" }}>
-          <EVAIcon id="alt-tooltip" name="info" fill={variables.noir} />
-          <Tooltip
-            isOpen={props.tooltipOpen}
-            target="alt-tooltip"
-            toggle={props.toggleTooltip}
-          >
-            Ce texte est utile pour les personnes malvoyantes ou en cas de
-            non-chargement de l’image.
-          </Tooltip>
-        </div>
-      </div>
-      <InputGroup>
-        <EVAIcon
-          className="input-icon"
-          name="eye-off-outline"
-          fill={variables.noir}
-        />
-        <Input
-          id="alt"
-          placeholder="Réfugiés.info"
-          value={props.alt}
-          onChange={props.handleChange}
-        />
-      </InputGroup>
-    </div>
     <div className="btn-footer">
       <FButton
-        onClick={() => props.addSponsor(true)}
+        onClick={() => props.edit ? props.editSponsor(props.sponsorKey) : props.addSponsor(true)}
         type="validate"
         name="checkmark-circle-2-outline"
       >
