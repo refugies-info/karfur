@@ -129,6 +129,8 @@ export const StyledStatusContainer = styled.div`
   line-height: 15px;
   color: #ffffff;
   cursor: pointer;
+  color: ${(props) =>
+    props.textColor ? props.textColor : variables.blancSimple};
 `;
 const getColorAndStatus = (text: string) => {
   const correspondingStatusElement = correspondingStatus.filter(
@@ -138,17 +140,33 @@ const getColorAndStatus = (text: string) => {
     return {
       status: correspondingStatusElement[0].displayedStatus,
       color: correspondingStatusElement[0].color,
+      textColor: correspondingStatusElement[0].textColor,
     };
 
-  return { status: "Nouveau !", color: "#0421B1" };
+  return { status: "Nouveau !", color: "#0421B1", textColor: "#0421B1" };
 };
 export const StyledStatus = (props: {
   text: string;
   overrideColor?: boolean;
+  textToDisplay?: string;
+  color?: string;
+  textColor?: string;
 }) => {
-  const { status, color } = getColorAndStatus(props.text);
+  const color = props.overrideColor
+    ? "#828282"
+    : props.color
+    ? props.color
+    : getColorAndStatus(props.text).color;
+
+  const status = props.textToDisplay
+    ? props.textToDisplay
+    : getColorAndStatus(props.text).status;
+
+  const textColor = props.textColor
+    ? props.textColor
+    : getColorAndStatus(props.text).textColor;
   return (
-    <StyledStatusContainer color={props.overrideColor ? "#828282" : color}>
+    <StyledStatusContainer color={color} textColor={textColor}>
       {status}
     </StyledStatusContainer>
   );
