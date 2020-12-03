@@ -1,11 +1,18 @@
 // @ts-nocheck
-import { getDispositifs } from "../dispositif.service";
-import { getDispositifArray } from "../dispositif.repository";
+import { getDispositifs, getAllDispositifs } from "../dispositif.service";
+import {
+  getDispositifArray,
+  getDispositifsFromDB,
+} from "../dispositif.repository";
 import {
   fakeContenuWithoutZoneDAction,
   fakeContenuWithZoneDAction,
 } from "../../../__fixtures__/dispositifs";
-import { turnToLocalized, turnJSONtoHTML } from "../functions";
+import {
+  turnToLocalized,
+  turnJSONtoHTML,
+  turnToLocalizedTitles,
+} from "../functions";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -17,11 +24,13 @@ const mockResponse = (): MockResponse => {
 
 jest.mock("../dispositif.repository", () => ({
   getDispositifArray: jest.fn(),
+  getDispositifsFromDB: jest.fn(),
 }));
 
 jest.mock("../functions", () => ({
   turnToLocalized: jest.fn(),
   turnJSONtoHTML: jest.fn(),
+  turnToLocalizedTitles: jest.fn(),
 }));
 
 describe("getDispositifs", () => {
@@ -254,6 +263,111 @@ describe("getDispositifs", () => {
 
     expect(turnJSONtoHTML).toHaveBeenCalledWith(contenu1);
 
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Erreur interne",
+    });
+  });
+});
+
+describe("getAllispositifs", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  const neededFields = {
+    titreInformatif: 1,
+    titreMarque: 1,
+    updatedAt: 1,
+    status: 1,
+    typeContenu: 1,
+  };
+
+  const dispositifsToJson = [
+    {
+      toJSON: () => ({
+        id: "id1",
+        mainSponsor: {
+          _id: "id",
+          nom: "nom",
+          status: "Actif",
+          email: "email",
+        },
+      }),
+    },
+    { toJSON: () => ({ id: "id2" }) },
+  ];
+
+  const adaptedDispositif1 = {
+    id: "id1",
+    mainSponsor: {
+      _id: "id",
+      nom: "nom",
+      status: "Actif",
+    },
+  };
+  const adaptedDispositif2 = {
+    id: "id2",
+    mainSponsor: "",
+  };
+  it("should call getDispositifsFromDB", async () => {
+    getDispositifsFromDB.mockResolvedValue(dispositifsToJson);
+    const res = mockResponse();
+    await getAllDispositifs({}, res);
+    expect(getDispositifsFromDB).toHaveBeenCalledWith(neededFields);
+    expect(turnToLocalizedTitles).toHaveBeenCalledWith(
+      adaptedDispositif1,
+      "fr"
+    );
+    expect(turnToLocalizedTitles).toHaveBeenCalledWith(
+      adaptedDispositif2,
+      "fr"
+    );
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Succès",
+      data: [adaptedDispositif1, adaptedDispositif2],
+    });
+  });
+
+  it("should call getDispositifsFromDB and return a 500 if getDispositifsFromDB throws", async () => {
+    getDispositifsFromDB.mockRejectedValue(new Error("error"));
+    const res = mockResponse();
+    await getAllDispositifs({}, res);
+    expect(getDispositifsFromDB).toHaveBeenCalledWith(neededFields);
+    expect(turnToLocalizedTitles).not.toHaveBeenCalled();
+    expect(turnToLocalizedTitles).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Erreur interne",
+    });
+  });
+
+  it("should call getDispositifsFromDB and return a 500 if dispositif has no json", async () => {
+    getDispositifsFromDB.mockResolvedValue([{ id: "id1" }, { id: "id2" }]);
+    const res = mockResponse();
+    await getAllDispositifs({}, res);
+    expect(getDispositifsFromDB).toHaveBeenCalledWith(neededFields);
+    expect(turnToLocalizedTitles).not.toHaveBeenCalled();
+    expect(turnToLocalizedTitles).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Erreur interne",
+    });
+  });
+
+  it("should call getDispositifsFromDB and return a 500 if dispositif has no json", async () => {
+    getDispositifsFromDB.mockResolvedValue(dispositifsToJson);
+    turnToLocalizedTitles.mockImplementationOnce(() => {
+      throw new Error("TEST");
+    });
+    const res = mockResponse();
+    await getAllDispositifs({}, res);
+    expect(getDispositifsFromDB).toHaveBeenCalledWith(neededFields);
+    expect(turnToLocalizedTitles).toHaveBeenCalledWith(
+      adaptedDispositif1,
+      "fr"
+    );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       text: "Erreur interne",
