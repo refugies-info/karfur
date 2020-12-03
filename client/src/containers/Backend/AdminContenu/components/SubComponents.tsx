@@ -12,9 +12,9 @@ const Container = styled.div`
   font-size: 12px;
   line-height: 15px;
   color: ${(props) =>
-    props.isDarkBackground ? variables.blancSimple : "#212121"};
+    props.isDarkBackground ? variables.blancSimple : variables.darkColor};
   background-color: ${(props) =>
-    props.isDarkBackground ? "#212121" : variables.blancSimple};
+    props.isDarkBackground ? variables.darkColor : variables.blancSimple};
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
@@ -74,9 +74,9 @@ const StructureContainer = styled.div`
 const getStructureNameAndStatus = (
   sponsor: SimplifiedStructure | null
 ): { structureName: string; statusColor: string } => {
-  const red = "#F44336";
-  const orange = "#FF9800";
-  const green = "#4CAF50";
+  const red = variables.error;
+  const orange = variables.orange;
+  const green = variables.vertValidation;
 
   if (!sponsor || !sponsor.nom)
     return { structureName: "Sans structure", statusColor: red };
@@ -127,7 +127,6 @@ export const StyledStatusContainer = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
   cursor: pointer;
   color: ${(props) =>
     props.textColor ? props.textColor : variables.blancSimple};
@@ -143,7 +142,11 @@ const getColorAndStatus = (text: string) => {
       textColor: correspondingStatusElement[0].textColor,
     };
 
-  return { status: "Nouveau !", color: "#0421B1", textColor: "#0421B1" };
+  return {
+    status: "Nouveau !",
+    color: variables.bleuCharte,
+    textColor: variables.bleuCharte,
+  };
 };
 export const StyledStatus = (props: {
   text: string;
@@ -153,7 +156,7 @@ export const StyledStatus = (props: {
   textColor?: string;
 }) => {
   const color = props.overrideColor
-    ? "#828282"
+    ? variables.cardColor
     : props.color
     ? props.color
     : getColorAndStatus(props.text).color;
@@ -162,7 +165,9 @@ export const StyledStatus = (props: {
     ? props.textToDisplay
     : getColorAndStatus(props.text).status;
 
-  const textColor = props.textColor
+  const textColor = props.overrideColor
+    ? variables.blancSimple
+    : props.textColor
     ? props.textColor
     : getColorAndStatus(props.text).textColor;
   return (

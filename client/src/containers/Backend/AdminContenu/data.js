@@ -104,7 +104,12 @@ const darkBlue = variables.bleuCharte;
 const lightBlue = variables.lightBlue;
 
 export const progressionData = [
-  { storedStatus: "Nouveau !", displayedStatus: "Nouveau !", color: darkBlue },
+  {
+    storedStatus: "Nouveau !",
+    displayedStatus: "Nouveau !",
+    color: darkBlue,
+    textColor: variables.blancSimple,
+  },
   {
     storedStatus: "Contacté",
     displayedStatus: "Contacté",

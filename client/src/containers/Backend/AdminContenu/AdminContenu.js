@@ -432,11 +432,9 @@ export const AdminContenu = () => {
         </Table>
       </Content>
       <DetailsModal
-        show={true}
-        // show={showDetailsModal}
+        show={showDetailsModal}
         toggleModal={toggleDetailsModal}
-        // selectedDispositif={selectedDispositif}
-        selectedDispositif={testData}
+        selectedDispositif={selectedDispositif}
         url={url}
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
       />

@@ -248,7 +248,11 @@ export const DetailsModal = (props: Props) => {
               </FButton>
             </div>
             <div>
-              <FButton className="mr-8" type="white">
+              <FButton
+                className="mr-8"
+                type="white"
+                onClick={props.toggleModal}
+              >
                 Annuler
               </FButton>
               <FButton type="validate">Enregistrer</FButton>
