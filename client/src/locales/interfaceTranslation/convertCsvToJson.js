@@ -33,6 +33,7 @@ const main = async () => {
   await convertCsvToJson("ru");
   await convertCsvToJson("en");
   await convertCsvToJson("ti-ER");
+  await convertCsvToJson("ps");
 };
 
 main();
