@@ -19,15 +19,13 @@ const removeUselessContent = (dispositifArray: IDispositif[]) =>
         if (child.title === "Zone d'action") {
           return child;
         }
-        return [];
+        return {};
       }
     );
 
     const simplifiedContent = [{}, { children: selectZoneAction }];
-
     return { ...dispositif, contenu: simplifiedContent };
   });
-
 interface Query {}
 
 export const getDispositifs = async (
@@ -41,6 +39,7 @@ export const getDispositifs = async (
       logger.info("[getDispositifs] called");
       let { query, locale } = req.body;
       locale = locale || "fr";
+
       const dispositifArray = await getDispositifArray(query);
 
       // @ts-ignore

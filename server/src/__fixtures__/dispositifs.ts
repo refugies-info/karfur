@@ -1,4 +1,4 @@
-export const fakeContenu = [
+export const fakeContenuWithZoneDAction = [
   {
     title: "C'est quoi ?",
     content: [
@@ -310,7 +310,7 @@ export const fakeContenu = [
   },
 ];
 
-export const fakeContenu1 = [
+export const fakeContenuWithoutZoneDAction = [
   {
     title: "C'est quoi ?",
     content: [
@@ -340,17 +340,6 @@ export const fakeContenu1 = [
     editable: false,
     type: "cards",
     children: [
-      {
-        type: "card",
-        isFakeContent: false,
-        title: "Zone d'action",
-        titleIcon: "pin-outline",
-        typeIcon: "eva",
-        departments: ["All"],
-        free: true,
-        contentTitle: "Sélectionner",
-        editable: false,
-      },
       {
         type: "card",
         isFakeContent: true,
