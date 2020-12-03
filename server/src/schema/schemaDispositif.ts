@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose, { ObjectId } from "mongoose";
 
-var dispositifSchema = mongoose.Schema(
+var dispositifSchema = new mongoose.Schema(
   {
     titreMarque: {
       type: Object,
@@ -37,7 +37,7 @@ var dispositifSchema = mongoose.Schema(
       unique: false,
       required: false,
     },
-    mainSponsor: { type: mongoose.Schema.ObjectId, ref: "Structure" },
+    mainSponsor: { type: mongoose.Types.ObjectId, ref: "Structure" },
     audience: {
       type: Object,
       unique: false,
@@ -63,7 +63,7 @@ var dispositifSchema = mongoose.Schema(
       unique: false,
       required: false,
     },
-    creatorId: { type: mongoose.Schema.ObjectId, ref: "User" },
+    creatorId: { type: mongoose.Types.ObjectId, ref: "User" },
     status: {
       type: String,
       unique: false,
@@ -111,11 +111,11 @@ var dispositifSchema = mongoose.Schema(
       required: false,
     },
     traductions: {
-      type: [{ type: mongoose.Schema.ObjectId, ref: "Traduction" }],
+      type: [{ type: mongoose.Types.ObjectId, ref: "Traduction" }],
       required: false,
     },
     participants: {
-      type: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
+      type: [{ type: mongoose.Types.ObjectId, ref: "User" }],
       required: false,
     },
     avancement: {
@@ -138,39 +138,82 @@ var dispositifSchema = mongoose.Schema(
       required: false,
       enum: ["dispositif", "demarche"],
     },
-    demarcheId: { type: mongoose.Schema.ObjectId, ref: "Dispositif" },
+    demarcheId: { type: mongoose.Types.ObjectId, ref: "Dispositif" },
     autoSave: {
       type: Boolean,
       unique: false,
       required: false,
     },
-    responsable: {
-      type: String,
-      enum: ["Hugo", "Simon", "Nour", "Développeur", "Groot", "Starlord"],
-    },
-    internal_action: {
-      type: String,
-      enum: [
-        "Prêt",
-        "Contact",
-        "Relire",
-        "En attente",
-        "Refaire",
-        "URGENT",
-        "Discuter",
-        "Nouveau",
-      ],
-    },
+
     publishedAt: {
       type: Date,
-    }
+    },
   },
+  // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
 );
 
-//mongoose.set('useCreateIndex', true);
-//dispositifSchema.options.createIndex = ({updatedAt: -1});
+export interface DispositifDoc extends mongoose.Document {
+  titreMarque?: Object;
+  titreInformatif: Object;
+  abstract?: Object;
+  contact?: string;
+  externalLink?: string;
 
-// Dispositif.collection.dropIndex('titreInformatif');
+  contenu?: Object;
 
-module.exports = mongoose.model("Dispositif", dispositifSchema);
+  sponsors?: Object;
+
+  mainSponsor?: ObjectId;
+
+  audience?: Object;
+
+  audienceAge?: Object;
+
+  tags?: Object;
+
+  localisation?: Object;
+
+  niveauFrancais?: Object;
+
+  creatorId: ObjectId;
+
+  nbMots?: number;
+
+  merci?: Object;
+
+  pasMerci?: Object;
+
+  bravo?: Object;
+
+  suggestions?: Object;
+
+  questions?: Object;
+
+  signalements?: Object;
+
+  traductions?: ObjectId[];
+
+  participants?: ObjectId[];
+
+  avancement?: Object;
+
+  timeSpent?: number;
+
+  variantes?: Object;
+
+  typeContenu?: string;
+  enum: ["dispositif", "demarche"];
+
+  demarcheId?: ObjectId;
+
+  autoSave?: boolean;
+
+  publishedAt?: number;
+  created_at: number;
+}
+
+export const Dispositif = mongoose.model<DispositifDoc>(
+  "Dispositif",
+  dispositifSchema
+);
