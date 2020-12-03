@@ -287,6 +287,8 @@ describe("getAllispositifs", () => {
     updatedAt: 1,
     status: 1,
     typeContenu: 1,
+    created_at: 1,
+    publishedAt: 1,
   };
 
   const dispositifsToJson = [

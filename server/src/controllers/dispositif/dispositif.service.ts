@@ -86,10 +86,11 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       updatedAt: 1,
       status: 1,
       typeContenu: 1,
+      created_at: 1,
+      publishedAt: 1,
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);
-
     const adaptedDispositifs = dispositifs.map((dispositif) => {
       const jsonDispositif = dispositif.toJSON();
 

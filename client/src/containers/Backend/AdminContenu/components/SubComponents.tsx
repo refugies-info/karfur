@@ -11,20 +11,24 @@ const Container = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props) => (props.isDispositif ? variables.blancSimple : "#212121")};
+  color: ${(props) =>
+    props.isDarkBackground ? variables.blancSimple : "#212121"};
   background-color: ${(props) =>
-    props.isDispositif ? "#212121" : variables.blancSimple};
+    props.isDarkBackground ? "#212121" : variables.blancSimple};
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
+  cursor: pointer;
 `;
 
-export const TypeContenu = (props: { type: string }) => {
+export const TypeContenu = (props: {
+  type: string;
+  isDetailedVue: boolean;
+}) => {
   const correctedType = props.type === "dispositif" ? "Dispositif" : "Démarche";
+  const isDarkBackground = props.type === "dispositif" || props.isDetailedVue;
   return (
-    <Container isDispositif={props.type === "dispositif"}>
-      {correctedType}
-    </Container>
+    <Container isDarkBackground={isDarkBackground}>{correctedType}</Container>
   );
 };
 
@@ -38,6 +42,7 @@ const TitleContainer = styled.div`
   font-size: 16px;
   line-height: 20px;
   width: 270px;
+  cursor: pointer;
 `;
 
 export const Title = (props: {
@@ -123,6 +128,7 @@ export const StyledStatusContainer = styled.div`
   font-size: 12px;
   line-height: 15px;
   color: #ffffff;
+  cursor: pointer;
 `;
 const getColorAndStatus = (text: string) => {
   const correspondingStatusElement = correspondingStatus.filter(
@@ -134,11 +140,18 @@ const getColorAndStatus = (text: string) => {
       color: correspondingStatusElement[0].color,
     };
 
-  return { status: "NO STATUS", color: "#0421B1" };
+  return { status: "Nouveau !", color: "#0421B1" };
 };
-export const StyledStatus = (props: { text: string }) => {
+export const StyledStatus = (props: {
+  text: string;
+  overrideColor?: boolean;
+}) => {
   const { status, color } = getColorAndStatus(props.text);
-  return <StyledStatusContainer color={color}>{status}</StyledStatusContainer>;
+  return (
+    <StyledStatusContainer color={props.overrideColor ? "#828282" : color}>
+      {status}
+    </StyledStatusContainer>
+  );
 };
 
 const ButtonContainer = styled.div`
