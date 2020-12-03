@@ -149,7 +149,7 @@ export const updateDispositifStatus = async (
   try {
     if (!req.fromSite) {
       return res.status(405).json({ text: "Requête bloquée par API" });
-    } else if (!req.body) {
+    } else if (!req.body || !req.body.query) {
       return res.status(400).json({ text: "Requête invalide" });
     }
 
