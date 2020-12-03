@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 export const fakeContenuWithZoneDAction = [
   {
     title: "C'est quoi ?",
@@ -5,7 +7,6 @@ export const fakeContenuWithZoneDAction = [
       {
         type: "element",
         tagName: "p",
-        attributes: [],
         children: [
           {
             type: "text",
