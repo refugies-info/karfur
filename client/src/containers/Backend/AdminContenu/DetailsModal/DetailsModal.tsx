@@ -240,10 +240,15 @@ export const DetailsModal = (props: Props) => {
                 href={burl}
                 target="_blank"
                 rel="noopener noreferrer"
+                name="external-link"
               >
                 Voir la fiche
               </FButton>
-              <FButton type="error" onClick={props.onDeleteClick}>
+              <FButton
+                type="error"
+                onClick={props.onDeleteClick}
+                name="trash-2"
+              >
                 Supprimer
               </FButton>
             </div>
@@ -252,10 +257,13 @@ export const DetailsModal = (props: Props) => {
                 className="mr-8"
                 type="white"
                 onClick={props.toggleModal}
+                name="close-outline"
               >
                 Annuler
               </FButton>
-              <FButton type="validate">Enregistrer</FButton>
+              <FButton type="validate" name="checkmark-outline">
+                Enregistrer
+              </FButton>
             </div>
           </ButtonsContainer>
         </MainContainer>
