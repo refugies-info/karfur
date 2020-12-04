@@ -288,6 +288,7 @@ export const AdminContenu = () => {
           Ajouter un contenu
         </FButton>
       </SearchBarContainer>
+      {`env ${process.env.REACT_APP_ENV}`}
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
