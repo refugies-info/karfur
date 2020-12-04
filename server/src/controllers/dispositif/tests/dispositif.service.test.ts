@@ -300,6 +300,7 @@ describe("getAllispositifs", () => {
           nom: "nom",
           status: "Actif",
           email: "email",
+          picture: { secure_url: "secure_url_sponsor" },
         },
         creatorId: {
           username: "creator",
@@ -318,6 +319,7 @@ describe("getAllispositifs", () => {
       _id: "id",
       nom: "nom",
       status: "Actif",
+      picture: { secure_url: "secure_url_sponsor" },
     },
     creatorId: {
       username: "creator",

@@ -14,7 +14,7 @@ import moment from "moment/min/moment-with-locales";
 import { Picture } from "../../../../@types/interface";
 // @ts-ignore
 import variables from "scss/colors.scss";
-
+import marioProfile from "../../../../assets/mario-profile.jpg";
 interface SelectedDispositif {
   titreInformatif: string;
   titreMarque?: string;
@@ -25,7 +25,12 @@ interface SelectedDispositif {
   publishedAt?: Moment;
   _id: ObjectId;
   lastAdminModificationDate?: Moment;
-  mainSponsor: null | { _id: ObjectId; nom: string; status: string };
+  mainSponsor: null | {
+    _id: ObjectId;
+    nom: string;
+    status: string;
+    picture: Picture | undefined;
+  };
   creatorId: {
     username: string;
     picture: Picture | undefined;
@@ -97,11 +102,6 @@ const StructureContainer = styled.div`
   line-height: 20px;
   padding: 16px;
 `;
-const LogoContainerTest = styled.div`
-  width: 100px;
-  height: 100px;
-  background: red;
-`;
 
 const MainContainer = styled.div`
   display: flex;
@@ -130,6 +130,14 @@ const CreatorContainer = styled.div`
 moment.locale("fr");
 export const DetailsModal = (props: Props) => {
   const selectedDispositif = props.selectedDispositif;
+
+  const getCreatorImage = (selectedDispositif: SelectedDispositif) =>
+    selectedDispositif.creatorId &&
+    selectedDispositif.creatorId.picture &&
+    selectedDispositif.creatorId.picture.secure_url
+      ? selectedDispositif.creatorId.picture.secure_url
+      : marioProfile;
+
   if (selectedDispositif) {
     const burl =
       props.url +
@@ -199,17 +207,11 @@ export const DetailsModal = (props: Props) => {
               )} soit ${moment(selectedDispositif.created_at).fromNow()}`}
               <Title>Créateur</Title>
               <CreatorContainer>
-                {selectedDispositif.creatorId &&
-                  selectedDispositif.creatorId.picture &&
-                  selectedDispositif.creatorId.picture.secure_url && (
-                    <img
-                      className="creator-img"
-                      src={
-                        (selectedDispositif.creatorId.picture || {}).secure_url
-                      }
-                      alt={selectedDispositif.creatorId.username}
-                    />
-                  )}
+                <img
+                  className="creator-img"
+                  src={getCreatorImage(selectedDispositif)}
+                />
+
                 {selectedDispositif.creatorId &&
                   selectedDispositif.creatorId.username}
               </CreatorContainer>
@@ -257,9 +259,22 @@ export const DetailsModal = (props: Props) => {
                 <StructureContainer>
                   {selectedDispositif.mainSponsor.nom}
                   <LogoContainer spaceBetween={true}>
-                    <LogoContainerTest />
+                    {selectedDispositif.mainSponsor &&
+                      selectedDispositif.mainSponsor.picture &&
+                      selectedDispositif.mainSponsor.picture.secure_url && (
+                        <img
+                          className="sponsor-img"
+                          src={
+                            (selectedDispositif.mainSponsor.picture || {})
+                              .secure_url
+                          }
+                          alt={selectedDispositif.mainSponsor.nom}
+                        />
+                      )}
                     <div>
-                      <FButton type="outline-black">Modifier</FButton>
+                      <FButton name="edit-outline" type="outline-black">
+                        Modifier
+                      </FButton>
                     </div>
                   </LogoContainer>
                 </StructureContainer>
