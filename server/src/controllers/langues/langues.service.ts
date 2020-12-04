@@ -1,6 +1,6 @@
 import { Res } from "../../types/interface";
 import { Langue, LangueDoc } from "../../schema/schemaLangue";
-import Dispositif from "../../schema/schemaDispositif";
+import { Dispositif } from "../../schema/schemaDispositif";
 import Traduction from "../../schema/schemaTraduction";
 import { asyncForEach } from "../../libs/asyncForEach";
 import logger from "../../logger";

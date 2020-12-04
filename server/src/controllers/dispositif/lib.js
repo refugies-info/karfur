@@ -1,4 +1,4 @@
-const Dispositif = require("../../schema/schemaDispositif.js");
+const { Dispositif } = require("../../schema/schemaDispositif");
 const Role = require("../../schema/schemaRole.js");
 const User = require("../../schema/schemaUser.js");
 const Traduction = require("../../schema/schemaTraduction");

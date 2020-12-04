@@ -128,7 +128,7 @@ describe("getStructureById", () => {
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
 
-  it("should return 500 if turnToLocalized throws", async () => {
+  it("should return 500 if structure has no json throws", async () => {
     turnToLocalized.mockRejectedValueOnce(new Error("error"));
     const res = mockResponse();
     await getStructureById(
@@ -145,7 +145,6 @@ describe("getStructureById", () => {
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
-
   const dispositif1 = {
     _id: "dispo1",
     contenu: "content1",
@@ -167,6 +166,32 @@ describe("getStructureById", () => {
     titreInformatif: "titre",
     titreMarque: "titreMarque",
   };
+  it("should return 500 if turnToLocalized throws", async () => {
+    getStructureFromDB.mockResolvedValueOnce({
+      toJSON: () => ({
+        id: "id",
+        dispositifsAssocies: [dispositif1, dispositif2],
+      }),
+    });
+    turnToLocalized.mockImplementationOnce(() => {
+      throw new Error("error");
+    });
+    const res = mockResponse();
+    await getStructureById(
+      {
+        query: {
+          id: "id",
+          withDisposAssocies: "true",
+          localeOfLocalizedDispositifsAssocies: "en",
+        },
+      },
+      res
+    );
+    expect(getStructureFromDB).toHaveBeenCalledWith("id", true, "all");
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
+  });
+
   it("should call turnToLocalized and turnJSONtoHTML ", async () => {
     getStructureFromDB.mockResolvedValueOnce({
       toJSON: () => ({
