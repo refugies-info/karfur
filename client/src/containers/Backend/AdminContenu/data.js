@@ -79,7 +79,7 @@ export const correspondingStatus = [
   },
   {
     storedStatus: "En attente admin",
-    displayedStatus: "A valider",
+    displayedStatus: "À valider",
     color: lightGreen,
     order: 0,
     textColor: variables.blancSimple,

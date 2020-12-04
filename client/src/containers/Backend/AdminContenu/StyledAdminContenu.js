@@ -24,7 +24,6 @@ export const StyledTitle = styled.div`
   align-items: flex-end;
   font-weight: bold;
   font-size: 40px;
-  padding-left: 10px;
 `;
 
 export const StyledHeader = styled.div`
@@ -35,10 +34,11 @@ export const StyledHeader = styled.div`
   align-items: center;
   padding-top: 16px;
   padding-bottom: 24px;
+  margin-left: 24px;
 `;
 
 export const Content = styled.div`
-  margin-left: 8px;
+  margin-left: 24px;
   margin-right: 8px;
 `;
 

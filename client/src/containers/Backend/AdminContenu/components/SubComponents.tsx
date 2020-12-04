@@ -41,7 +41,8 @@ const TitleContainer = styled.div`
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
-  width: 270px;
+  max-width: 370px;
+  flex: 1;
   cursor: pointer;
 `;
 
@@ -50,17 +51,11 @@ export const Title = (props: {
   titreMarque: string | null;
 }) => {
   const { titreInformatif, titreMarque } = props;
-  const reducedTitreInfo = titreInformatif
-    ? limitNbCaracters(titreInformatif, maxDescriptionLength)
-    : "";
-  const reducedTitreMarque = titreMarque
-    ? limitNbCaracters(titreMarque, maxTitreMarqueLength)
-    : "";
 
   return (
     <TitleContainer>
-      <b>{reducedTitreInfo}</b>
-      {reducedTitreMarque && <span>{`avec ${reducedTitreMarque}`}</span>}
+      <b>{titreInformatif}</b>
+      {titreMarque && <span>{`avec ${titreMarque}`}</span>}
     </TitleContainer>
   );
 };
@@ -69,6 +64,7 @@ const StructureContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 300px;
 `;
 
 const getStructureNameAndStatus = (
@@ -85,7 +81,7 @@ const getStructureNameAndStatus = (
   if (sponsor._id === "5e5fdb7b361338004e16e75f")
     return { structureName: "Structure temporaire", statusColor: red };
 
-  const structureName = limitNbCaracters(sponsor.nom, maxDescriptionLength);
+  const structureName = limitNbCaracters(sponsor.nom, 80);
   const statusColor =
     sponsor.status === "Actif"
       ? green
@@ -102,6 +98,11 @@ const ColoredRound = styled.div`
   border-radius: 50%;
   margin-right: 10px;
 `;
+
+const StructureName = styled.div`
+  word-break: break-all;
+  max-width: 280px;
+`;
 interface SimplifiedStructure {
   _id: ObjectId;
   status: string;
@@ -113,7 +114,7 @@ export const Structure = (props: { sponsor: SimplifiedStructure | null }) => {
   return (
     <StructureContainer>
       <ColoredRound color={statusColor} />
-      {structureName}
+      <StructureName>{structureName}</StructureName>
     </StructureContainer>
   );
 };
@@ -225,8 +226,15 @@ export const SeeButton = (props: { burl: string }) => (
   </ButtonContainer>
 );
 
-export const DeleteButton = (props: { onClick: () => void }) => (
-  <ButtonContainer onClick={props.onClick} hoverColor={variables.error}>
+export const DeleteButton = (props: {
+  onClick: () => void;
+  disabled: boolean;
+}) => (
+  <ButtonContainer
+    onClick={props.onClick}
+    hoverColor={variables.error}
+    disabled={props.disabled}
+  >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="trash-outline" fill={variables.blancSimple} size="20" />
     </div>

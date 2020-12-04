@@ -262,5 +262,5 @@ export const DetailsModal = (props: Props) => {
       </Modal>
     );
   }
-  return <Spinner />;
+  return <div />;
 };

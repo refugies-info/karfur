@@ -305,8 +305,10 @@ export const AdminContenu = () => {
         <FButton
           type="dark"
           name="plus-circle-outline"
-          tag={NavHashLink}
-          to={"/comment-contribuer#ecrire"}
+          tag={"a"}
+          href={"/comment-contribuer#ecrire"}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Ajouter un contenu
         </FButton>
@@ -422,6 +424,7 @@ export const AdminContenu = () => {
                       />
                       <DeleteButton
                         onClick={() => prepareDeleteContrib(element)}
+                        disabled={element.status === "Supprimé"}
                       />
                     </div>
                   </td>
