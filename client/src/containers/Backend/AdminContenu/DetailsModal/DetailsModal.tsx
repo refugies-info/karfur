@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Modal, Spinner, Input } from "reactstrap";
+import { Modal, Input } from "reactstrap";
 // @ts-ignore
 import "./DetailsModal.scss";
 import { Moment } from "moment";
@@ -11,6 +11,9 @@ import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
+import { Picture } from "../../../../@types/interface";
+// @ts-ignore
+import variables from "scss/colors.scss";
 
 interface SelectedDispositif {
   titreInformatif: string;
@@ -23,6 +26,11 @@ interface SelectedDispositif {
   _id: ObjectId;
   lastAdminModificationDate?: Moment;
   mainSponsor: null | { _id: ObjectId; nom: string; status: string };
+  creatorId: {
+    username: string;
+    picture: Picture | undefined;
+    _id: ObjectId;
+  } | null;
 }
 interface Props {
   show: boolean;
@@ -80,7 +88,7 @@ const Title = styled.div`
 `;
 
 const StructureContainer = styled.div`
-  background: #ffffff;
+  background: ${variables.blancSimple};
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -107,6 +115,18 @@ const ButtonsContainer = styled.div`
   justify-content: space-between;
   margin-top: 16px;
 `;
+
+const CreatorContainer = styled.div`
+  border-radius: 12px;
+  padding: 8px;
+  background: ${variables.blancSimple};
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  align-items: center;
+  cursor: pointer;
+`;
+
 moment.locale("fr");
 export const DetailsModal = (props: Props) => {
   const selectedDispositif = props.selectedDispositif;
@@ -132,7 +152,7 @@ export const DetailsModal = (props: Props) => {
               <RowContainer>
                 {selectedDispositif.titreMarque && (
                   <TitreMarque>
-                    <span style={{ color: "#828282" }}>avec </span>
+                    <span style={{ color: variables.cardColor }}>avec </span>
                     {selectedDispositif.titreMarque}
                   </TitreMarque>
                 )}
@@ -177,7 +197,22 @@ export const DetailsModal = (props: Props) => {
               {`${moment(selectedDispositif.created_at).format(
                 "LLL"
               )} soit ${moment(selectedDispositif.created_at).fromNow()}`}
-              <Title>Auteur</Title>
+              <Title>Créateur</Title>
+              <CreatorContainer>
+                {selectedDispositif.creatorId &&
+                  selectedDispositif.creatorId.picture &&
+                  selectedDispositif.creatorId.picture.secure_url && (
+                    <img
+                      className="creator-img"
+                      src={
+                        (selectedDispositif.creatorId.picture || {}).secure_url
+                      }
+                      alt={selectedDispositif.creatorId.username}
+                    />
+                  )}
+                {selectedDispositif.creatorId &&
+                  selectedDispositif.creatorId.username}
+              </CreatorContainer>
             </LeftPart>
             <RightPart>
               <Title>Progression</Title>

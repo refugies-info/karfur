@@ -103,6 +103,13 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
               status: jsonDispositif.mainSponsor.status,
             }
           : "",
+        creatorId: jsonDispositif.creatorId
+          ? {
+              username: jsonDispositif.creatorId.username,
+              picture: jsonDispositif.creatorId.picture,
+              _id: jsonDispositif.creatorId._id,
+            }
+          : null,
       };
     });
 

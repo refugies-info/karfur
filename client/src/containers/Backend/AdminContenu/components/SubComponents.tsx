@@ -32,9 +32,6 @@ export const TypeContenu = (props: {
   );
 };
 
-const maxDescriptionLength = 30;
-const maxTitreMarqueLength = 25;
-
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;

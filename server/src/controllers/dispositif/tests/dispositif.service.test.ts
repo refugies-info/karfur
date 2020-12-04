@@ -301,6 +301,12 @@ describe("getAllispositifs", () => {
           status: "Actif",
           email: "email",
         },
+        creatorId: {
+          username: "creator",
+          _id: "creatorId",
+          picture: { secure_url: "secure_url" },
+          password: "test",
+        },
       }),
     },
     { toJSON: () => ({ id: "id2" }) },
@@ -313,10 +319,16 @@ describe("getAllispositifs", () => {
       nom: "nom",
       status: "Actif",
     },
+    creatorId: {
+      username: "creator",
+      _id: "creatorId",
+      picture: { secure_url: "secure_url" },
+    },
   };
   const adaptedDispositif2 = {
     id: "id2",
     mainSponsor: "",
+    creatorId: null,
   };
   it("should call getDispositifsFromDB", async () => {
     getDispositifsFromDB.mockResolvedValue(dispositifsToJson);
