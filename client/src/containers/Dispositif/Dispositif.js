@@ -809,7 +809,7 @@ export class Dispositif extends Component {
           menu[1].children.filter((x) => x.title === subkey).length > 0
             ? menu[1].children.filter((x) => x.title === subkey)[0]
             : importantCard;
-      } else if (type === "accordion" && !newChild.content) {
+      } else if (type === "accordion") {
         newChild = {
           type: "accordion",
           isFakeContent: true,
