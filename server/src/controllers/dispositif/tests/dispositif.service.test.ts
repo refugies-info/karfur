@@ -287,6 +287,8 @@ describe("getAllispositifs", () => {
     updatedAt: 1,
     status: 1,
     typeContenu: 1,
+    created_at: 1,
+    publishedAt: 1,
   };
 
   const dispositifsToJson = [
@@ -298,6 +300,13 @@ describe("getAllispositifs", () => {
           nom: "nom",
           status: "Actif",
           email: "email",
+          picture: { secure_url: "secure_url_sponsor" },
+        },
+        creatorId: {
+          username: "creator",
+          _id: "creatorId",
+          picture: { secure_url: "secure_url" },
+          password: "test",
         },
       }),
     },
@@ -310,11 +319,18 @@ describe("getAllispositifs", () => {
       _id: "id",
       nom: "nom",
       status: "Actif",
+      picture: { secure_url: "secure_url_sponsor" },
+    },
+    creatorId: {
+      username: "creator",
+      _id: "creatorId",
+      picture: { secure_url: "secure_url" },
     },
   };
   const adaptedDispositif2 = {
     id: "id2",
     mainSponsor: "",
+    creatorId: null,
   };
   it("should call getDispositifsFromDB", async () => {
     getDispositifsFromDB.mockResolvedValue(dispositifsToJson);

@@ -11,25 +11,26 @@ const Container = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: ${(props) => (props.isDispositif ? variables.blancSimple : "#212121")};
+  color: ${(props) =>
+    props.isDarkBackground ? variables.blancSimple : variables.darkColor};
   background-color: ${(props) =>
-    props.isDispositif ? "#212121" : variables.blancSimple};
+    props.isDarkBackground ? variables.darkColor : variables.blancSimple};
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
+  cursor: pointer;
 `;
 
-export const TypeContenu = (props: { type: string }) => {
+export const TypeContenu = (props: {
+  type: string;
+  isDetailedVue: boolean;
+}) => {
   const correctedType = props.type === "dispositif" ? "Dispositif" : "Démarche";
+  const isDarkBackground = props.type === "dispositif" || props.isDetailedVue;
   return (
-    <Container isDispositif={props.type === "dispositif"}>
-      {correctedType}
-    </Container>
+    <Container isDarkBackground={isDarkBackground}>{correctedType}</Container>
   );
 };
-
-const maxDescriptionLength = 30;
-const maxTitreMarqueLength = 25;
 
 const TitleContainer = styled.div`
   display: flex;
@@ -37,7 +38,9 @@ const TitleContainer = styled.div`
   font-style: normal;
   font-size: 16px;
   line-height: 20px;
-  width: 270px;
+  max-width: 370px;
+  flex: 1;
+  cursor: pointer;
 `;
 
 export const Title = (props: {
@@ -45,17 +48,11 @@ export const Title = (props: {
   titreMarque: string | null;
 }) => {
   const { titreInformatif, titreMarque } = props;
-  const reducedTitreInfo = titreInformatif
-    ? limitNbCaracters(titreInformatif, maxDescriptionLength)
-    : "";
-  const reducedTitreMarque = titreMarque
-    ? limitNbCaracters(titreMarque, maxTitreMarqueLength)
-    : "";
 
   return (
     <TitleContainer>
-      <b>{reducedTitreInfo}</b>
-      {reducedTitreMarque && <span>{`avec ${reducedTitreMarque}`}</span>}
+      <b>{titreInformatif}</b>
+      {titreMarque && <span>{`avec ${titreMarque}`}</span>}
     </TitleContainer>
   );
 };
@@ -64,14 +61,15 @@ const StructureContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 300px;
 `;
 
 const getStructureNameAndStatus = (
   sponsor: SimplifiedStructure | null
 ): { structureName: string; statusColor: string } => {
-  const red = "#F44336";
-  const orange = "#FF9800";
-  const green = "#4CAF50";
+  const red = variables.error;
+  const orange = variables.orange;
+  const green = variables.vertValidation;
 
   if (!sponsor || !sponsor.nom)
     return { structureName: "Sans structure", statusColor: red };
@@ -80,7 +78,7 @@ const getStructureNameAndStatus = (
   if (sponsor._id === "5e5fdb7b361338004e16e75f")
     return { structureName: "Structure temporaire", statusColor: red };
 
-  const structureName = limitNbCaracters(sponsor.nom, maxDescriptionLength);
+  const structureName = limitNbCaracters(sponsor.nom, 80);
   const statusColor =
     sponsor.status === "Actif"
       ? green
@@ -97,6 +95,11 @@ const ColoredRound = styled.div`
   border-radius: 50%;
   margin-right: 10px;
 `;
+
+const StructureName = styled.div`
+  word-break: break-all;
+  max-width: 280px;
+`;
 interface SimplifiedStructure {
   _id: ObjectId;
   status: string;
@@ -108,7 +111,7 @@ export const Structure = (props: { sponsor: SimplifiedStructure | null }) => {
   return (
     <StructureContainer>
       <ColoredRound color={statusColor} />
-      {structureName}
+      <StructureName>{structureName}</StructureName>
     </StructureContainer>
   );
 };
@@ -122,7 +125,9 @@ export const StyledStatusContainer = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: #ffffff;
+  cursor: pointer;
+  color: ${(props) =>
+    props.textColor ? props.textColor : variables.blancSimple};
 `;
 const getColorAndStatus = (text: string) => {
   const correspondingStatusElement = correspondingStatus.filter(
@@ -132,13 +137,42 @@ const getColorAndStatus = (text: string) => {
     return {
       status: correspondingStatusElement[0].displayedStatus,
       color: correspondingStatusElement[0].color,
+      textColor: correspondingStatusElement[0].textColor,
     };
 
-  return { status: "NO STATUS", color: "#0421B1" };
+  return {
+    status: "Nouveau !",
+    color: variables.bleuCharte,
+    textColor: variables.bleuCharte,
+  };
 };
-export const StyledStatus = (props: { text: string }) => {
-  const { status, color } = getColorAndStatus(props.text);
-  return <StyledStatusContainer color={color}>{status}</StyledStatusContainer>;
+export const StyledStatus = (props: {
+  text: string;
+  overrideColor?: boolean;
+  textToDisplay?: string;
+  color?: string;
+  textColor?: string;
+}) => {
+  const color = props.overrideColor
+    ? variables.cardColor
+    : props.color
+    ? props.color
+    : getColorAndStatus(props.text).color;
+
+  const status = props.textToDisplay
+    ? props.textToDisplay
+    : getColorAndStatus(props.text).status;
+
+  const textColor = props.overrideColor
+    ? variables.blancSimple
+    : props.textColor
+    ? props.textColor
+    : getColorAndStatus(props.text).textColor;
+  return (
+    <StyledStatusContainer color={color} textColor={textColor}>
+      {status}
+    </StyledStatusContainer>
+  );
 };
 
 const ButtonContainer = styled.div`
@@ -189,8 +223,15 @@ export const SeeButton = (props: { burl: string }) => (
   </ButtonContainer>
 );
 
-export const DeleteButton = (props: { onClick: () => void }) => (
-  <ButtonContainer onClick={props.onClick} hoverColor={variables.error}>
+export const DeleteButton = (props: {
+  onClick: () => void;
+  disabled: boolean;
+}) => (
+  <ButtonContainer
+    onClick={props.onClick}
+    hoverColor={variables.error}
+    disabled={props.disabled}
+  >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="trash-outline" fill={variables.blancSimple} size="20" />
     </div>

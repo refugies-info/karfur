@@ -1,3 +1,5 @@
+import variables from "scss/colors.scss";
+
 export const table_contenu = {
   title: "Contenu",
   headers: [
@@ -52,41 +54,108 @@ export const correspondingStatus = [
     displayedStatus: "En attente",
     color: orange,
     order: 1,
+    textColor: variables.blancSimple,
   },
   {
     storedStatus: "Brouillon",
     displayedStatus: "Brouillon",
     color: yellow,
     order: 3,
+    textColor: variables.darkColor,
   },
   {
     storedStatus: "En attente non prioritaire",
     displayedStatus: "Sans structure",
     color: red,
     order: 4,
+    textColor: variables.blancSimple,
   },
   {
     storedStatus: "Rejeté structure",
     displayedStatus: "Rejeté",
     color: red,
     order: 6,
+    textColor: variables.blancSimple,
   },
   {
     storedStatus: "En attente admin",
-    displayedStatus: "A valider",
+    displayedStatus: "À valider",
     color: lightGreen,
     order: 0,
+    textColor: variables.blancSimple,
   },
   {
     storedStatus: "Accepté structure",
     displayedStatus: "Accepté",
     color: orange,
     order: 2,
+    textColor: variables.blancSimple,
   },
   {
     storedStatus: "Supprimé",
     displayedStatus: "Supprimé",
     color: red,
     order: 7,
+    textColor: variables.blancSimple,
+  },
+];
+
+const darkBlue = variables.bleuCharte;
+const lightBlue = variables.lightBlue;
+
+export const progressionData = [
+  {
+    storedStatus: "Nouveau !",
+    displayedStatus: "Nouveau !",
+    color: darkBlue,
+    textColor: variables.blancSimple,
+  },
+  {
+    storedStatus: "Contacté",
+    displayedStatus: "Contacté",
+    color: lightBlue,
+    textColor: variables.darkColor,
+  },
+  {
+    storedStatus: "À relancer",
+    displayedStatus: "À relancer",
+    color: lightBlue,
+    textColor: variables.darkColor,
+  },
+  {
+    storedStatus: "Bloqué",
+    displayedStatus: "Bloqué",
+    color: lightBlue,
+    textColor: variables.darkColor,
+  },
+  {
+    storedStatus: "0%",
+    displayedStatus: "0%",
+    color: lightBlue,
+    textColor: variables.darkColor,
+  },
+  {
+    storedStatus: "25%",
+    displayedStatus: "25%",
+    color: lightBlue,
+    textColor: variables.darkColor,
+  },
+  {
+    storedStatus: "50%",
+    displayedStatus: "50%",
+    color: lightBlue,
+    textColor: variables.darkColor,
+  },
+  {
+    storedStatus: "75%",
+    displayedStatus: "75%",
+    color: lightBlue,
+    textColor: variables.darkColor,
+  },
+  {
+    storedStatus: "100%",
+    displayedStatus: "100%",
+    color: lightBlue,
+    textColor: variables.darkColor,
   },
 ];
