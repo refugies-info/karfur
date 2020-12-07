@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Modal, Input } from "reactstrap";
 // @ts-ignore
@@ -45,6 +45,7 @@ interface Props {
   selectedDispositif: SelectedDispositif;
   url: string;
   onDeleteClick: () => void;
+  setShowChangeStructureModal: (arg: boolean) => void;
 }
 
 const LeftPart = styled.div`
@@ -275,7 +276,11 @@ export const DetailsModal = (props: Props) => {
                         />
                       )}
                     <div>
-                      <FButton name="edit-outline" type="outline-black">
+                      <FButton
+                        name="edit-outline"
+                        type="outline-black"
+                        onClick={() => props.setShowChangeStructureModal(true)}
+                      >
                         Modifier
                       </FButton>
                     </div>

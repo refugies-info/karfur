@@ -38,6 +38,7 @@ import {
 import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
+import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 
 moment.locale("fr");
 
@@ -65,11 +66,16 @@ export const AdminContenu = () => {
   const [search, setSearch] = useState("");
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedDispositif, setSelectedDispositif] = useState(null);
+  const [showChangeStructureModal, setShowChangeStructureModal] = useState(
+    false
+  );
   const headers = table_contenu.headers;
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
   );
 
+  const toggleShowChangeStructureModal = () =>
+    setShowChangeStructureModal(!showChangeStructureModal);
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
   const setSelectedDispositifAndToggleModal = (element) => {
     setSelectedDispositif(element);
@@ -470,6 +476,12 @@ export const AdminContenu = () => {
         selectedDispositif={selectedDispositif}
         url={url}
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
+        setShowChangeStructureModal={setShowChangeStructureModal}
+      />
+      <ChangeStructureModal
+        show={showChangeStructureModal}
+        toggle={toggleShowChangeStructureModal}
+        dispositifId={selectedDispositif ? selectedDispositif._id : null}
       />
     </div>
   );

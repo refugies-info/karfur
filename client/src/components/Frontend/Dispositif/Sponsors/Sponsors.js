@@ -448,7 +448,7 @@ class Sponsors extends Component {
         </div>
         <Row className="sponsor-images">
           <SponsorContainer>
-            {(deduplicatedSponsors.length !== 0 || !disableEdit)? (
+            {deduplicatedSponsors.length !== 0 || !disableEdit ? (
               <SectionTitle>Responsable</SectionTitle>
             ) : null}
             {mainSponsor._id ? (

@@ -9,6 +9,7 @@ import {
   getDispositifsFromDB,
   updateDispositifStatusInDB,
   getDispositifArray,
+  updateDispositifMainSponsorInDB,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
 
@@ -174,6 +175,47 @@ export const updateDispositifStatus = async (
     res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[updateDispositifStatus] error", { error });
+    return res.status(500).json({ text: "Erreur interne" });
+  }
+};
+
+interface QueryModify {
+  dispositifId: ObjectId;
+  sponsorId: ObjectId;
+}
+
+export const modifyDispositifMainSponsor = async (
+  req: RequestFromClient<QueryModify>,
+  res: Res
+) => {
+  try {
+    if (!req.fromSite) {
+      return res.status(405).json({ text: "Requête bloquée par API" });
+    } else if (
+      !req.body ||
+      !req.body.query ||
+      !req.body.query.dispositifId ||
+      !req.body.query.sponsorId
+    ) {
+      return res.status(400).json({ text: "Requête invalide" });
+    }
+
+    const { dispositifId, sponsorId } = req.body.query;
+    logger.info("[modifyDispositifMainSponsor]", { dispositifId, sponsorId });
+    const updatedDispositif = await updateDispositifMainSponsorInDB(
+      dispositifId,
+      sponsorId
+    );
+    // let newDispositif;
+    // if (status === "Actif") {
+    //   newDispositif = { status, publishedAt: Date.now() };
+    // } else {
+    //   newDispositif = { status };
+    // }
+    // await updateDispositifStatusInDB(dispositifId, newDispositif);
+    res.status(200).json({ text: "OK" });
+  } catch (error) {
+    logger.error("[modifyDispositifMainSponsor] error", { error });
     return res.status(500).json({ text: "Erreur interne" });
   }
 };

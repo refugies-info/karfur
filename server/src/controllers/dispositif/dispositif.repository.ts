@@ -47,3 +47,12 @@ export const getDispositifArray = async (query: any) => {
   }
   return await Dispositif.find(query, neededFields).lean();
 };
+
+export const updateDispositifMainSponsorInDB = async (
+  dispositifId: ObjectId,
+  sponsorId: ObjectId
+) =>
+  await Dispositif.findOneAndUpdate(
+    { _id: dispositifId },
+    { mainSponsor: sponsorId }
+  );
