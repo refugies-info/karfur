@@ -5,8 +5,8 @@ $taille: 60px;
 $tailleBig: 80px;
 
 .sponsor-footer {
-  color: $darkColor;
-  background: #ffffff;
+  color: white;
+  background-color: $darkColor;
   padding: 20px 40px;
   @include media-max("lg-limit") {
     width: 116%;
@@ -14,7 +14,8 @@ $tailleBig: 80px;
 
   h5 {
     margin-bottom: 20px;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 40px;
   }
 
   .col {
@@ -27,6 +28,14 @@ $tailleBig: 80px;
       height: fit-content;
     }
   }
+  .sponsor-img {
+    max-width:160px;
+    max-height: 110px;
+    &:hover {
+      filter: grayscale(1);
+      cursor: pointer;
+    }
+  }
 
   .image-wrapper {
     position: relative;
@@ -35,7 +44,7 @@ $tailleBig: 80px;
     margin: 40px 20px;
     .sponsor-img {
       //max-width:64px;
-      max-height: 80px;
+      max-height: 100px;
       &:hover {
         filter: grayscale(1);
         cursor: pointer;

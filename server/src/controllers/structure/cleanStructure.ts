@@ -1,4 +1,4 @@
-import Dispositif from "../../schema/schemaDispositif";
+import { Dispositif } from "../../schema/schemaDispositif";
 import { Structure } from "../../schema/schemaStructure";
 
 import logger from "../../logger";

@@ -132,10 +132,12 @@ const HoursPrecisions = (props: { text: string }) => (
   </BlueContainer>
 );
 
-const Departement = (props: { departement: string }) => (
+const Departement = (props: { departement: string; t: any }) => (
   <WhiteContainer>
     <EVAIcon name="pin-outline" fill="#212121" className="mr-8" />
-    {props.departement}
+    {props.departement === "All"
+      ? props.t("Dispositif.France entière", "France entière")
+      : props.departement}
   </WhiteContainer>
 );
 
@@ -260,7 +262,11 @@ export const MiddleAnnuaireDetail = (props: Props) => {
         <LineContainer>
           {structure.departments &&
             structure.departments.map((departement) => (
-              <Departement key={departement} departement={departement} />
+              <Departement
+                key={departement}
+                departement={departement}
+                t={props.t}
+              />
             ))}
           {(!structure.departments || structure.departments.length === 0) && (
             <Placeholder
