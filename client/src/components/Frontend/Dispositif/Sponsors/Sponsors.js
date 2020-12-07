@@ -69,6 +69,7 @@ const DeleteButtonFull = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 15px;
+  cursor: pointer;
 `;
 
 const DeleteButtonFullText = styled.div`
@@ -94,6 +95,7 @@ const EditButton = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-right: 8px;
+  cursor: pointer;
 `;
 
 const DeleteButtonSmall = styled.div`
@@ -104,6 +106,7 @@ const DeleteButtonSmall = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 const AddSponsorTitle = styled.p`
@@ -134,7 +137,10 @@ const SponsorCard = styled.div`
 
   background: ${(props) => (props.add ? "#F9EF99" : "#eaeaea")};
   border-radius: 12px;
+  cursor: ${(props) => (props.add || props.disableEdit ? "pointer" : "auto")};
 `;
+
+const burl = process.env.REACT_APP_SERVER_URL;
 
 class Sponsors extends Component {
   state = {
@@ -286,7 +292,7 @@ class Sponsors extends Component {
         : false
     );
     API.create_structure(structure).then((data) => {
-      this.props.addSponsor(data.data.data);
+      this.props.addMainSponsor(data.data.data);
       this.toggleModal("envoye");
     });
   };
@@ -358,7 +364,7 @@ class Sponsors extends Component {
 
   editSponsor = (key) => {
     this.toggleModal();
-    this.setState({edit: false})
+    this.setState({ edit: false });
     var sponsor = {
       ...this.state.selected,
       picture: { ...this.state.imgData },
@@ -426,6 +432,7 @@ class Sponsors extends Component {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
+            marginBottom: "25px",
           }}
         >
           <h5 className="">{"Proposé par"}</h5>
@@ -441,11 +448,13 @@ class Sponsors extends Component {
         </div>
         <Row className="sponsor-images">
           <SponsorContainer>
-            <SectionTitle>Responsable</SectionTitle>
+            {(deduplicatedSponsors.length !== 0 || !disableEdit)? (
+              <SectionTitle>Responsable</SectionTitle>
+            ) : null}
             {mainSponsor._id ? (
               <SponsorCard disableEdit={disableEdit}>
                 <ImageLink
-                  href={`https://www.refugies.info/annuaire/${mainSponsor._id}`}
+                  href={`${burl}/annuaire/${mainSponsor._id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -511,7 +520,7 @@ class Sponsors extends Component {
                 ) : null}
                 {deduplicatedSponsors.map((sponsor, key) => {
                   return (
-                    <SponsorCard key={key}>
+                    <SponsorCard disableEdit={disableEdit} key={key}>
                       <ImageLink
                         href={
                           ((sponsor.link || "").includes("http")
@@ -532,16 +541,19 @@ class Sponsors extends Component {
                         <SponsorListContainer>
                           <EditButton
                             onClick={() => {
-                              this.setState({
-                                imgData: sponsor.picture || {},
-                                link: sponsor.link || "",
-                                nom: sponsor.nom || "",
-                                edit: true,
-                                sponsorKey: key
-                              }, () => {
-                                this.props.toggleFinalValidation();
-                                this.toggleModal("img-modal");
-                              });
+                              this.setState(
+                                {
+                                  imgData: sponsor.picture || {},
+                                  link: sponsor.link || "",
+                                  nom: sponsor.nom || "",
+                                  edit: true,
+                                  sponsorKey: key,
+                                },
+                                () => {
+                                  this.props.toggleFinalValidation();
+                                  this.toggleModal("img-modal");
+                                }
+                              );
                             }}
                           >
                             <EVAIcon
@@ -1120,7 +1132,11 @@ const ImgModal = (props) => (
     </div>
     <div className="btn-footer">
       <FButton
-        onClick={() => props.edit ? props.editSponsor(props.sponsorKey) : props.addSponsor(true)}
+        onClick={() =>
+          props.edit
+            ? props.editSponsor(props.sponsorKey)
+            : props.addSponsor(true)
+        }
         type="validate"
         name="checkmark-circle-2-outline"
       >

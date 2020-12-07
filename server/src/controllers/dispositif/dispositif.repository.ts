@@ -5,7 +5,7 @@ import { ObjectId } from "mongoose";
 export const getDispositifsFromDB = async (
   needFields: Object
 ): Promise<IDispositif[]> =>
-  await Dispositif.find({}, needFields).populate("mainSponsor");
+  await Dispositif.find({}, needFields).populate("mainSponsor creatorId");
 
 export const updateDispositifStatusInDB = async (
   _id: ObjectId,

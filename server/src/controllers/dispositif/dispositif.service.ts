@@ -86,10 +86,11 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       updatedAt: 1,
       status: 1,
       typeContenu: 1,
+      created_at: 1,
+      publishedAt: 1,
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);
-
     const adaptedDispositifs = dispositifs.map((dispositif) => {
       const jsonDispositif = dispositif.toJSON();
 
@@ -100,8 +101,16 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
               _id: jsonDispositif.mainSponsor._id,
               nom: jsonDispositif.mainSponsor.nom,
               status: jsonDispositif.mainSponsor.status,
+              picture: jsonDispositif.mainSponsor.picture,
             }
           : "",
+        creatorId: jsonDispositif.creatorId
+          ? {
+              username: jsonDispositif.creatorId.username,
+              picture: jsonDispositif.creatorId.picture,
+              _id: jsonDispositif.creatorId._id,
+            }
+          : null,
       };
     });
 

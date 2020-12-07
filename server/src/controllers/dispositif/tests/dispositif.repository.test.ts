@@ -15,6 +15,10 @@ describe("getDispositifsFromDB", () => {
     const neededFields = { status: 1, typeContenu: 1 };
     const res = await getDispositifsFromDB(neededFields);
     expect(Dispositif.find).toHaveBeenCalledWith({}, neededFields);
+    expect(Dispositif.find().populate).toHaveBeenCalledWith(
+      "mainSponsor creatorId"
+    );
+
     expect(res).toEqual(dispositifsList);
   });
 });

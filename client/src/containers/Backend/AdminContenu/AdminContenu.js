@@ -37,7 +37,7 @@ import {
 } from "./components/SubComponents";
 import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
-import { NavHashLink } from "react-router-hash-link";
+import { DetailsModal } from "./DetailsModal/DetailsModal";
 
 moment.locale("fr");
 
@@ -47,7 +47,11 @@ const url =
     : process.env.REACT_APP_ENV === "staging"
     ? "https://staging.refugies.info/"
     : "https://www.refugies.info/";
-
+export const compare = (a, b) => {
+  const orderA = a.order;
+  const orderB = b.order;
+  return orderA > orderB ? 1 : -1;
+};
 export const AdminContenu = () => {
   const defaultSortedHeader = {
     name: "none",
@@ -59,11 +63,18 @@ export const AdminContenu = () => {
   const [filter, setFilter] = useState("En attente admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedDispositif, setSelectedDispositif] = useState(null);
   const headers = table_contenu.headers;
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
   );
 
+  const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
+  const setSelectedDispositifAndToggleModal = (element) => {
+    setSelectedDispositif(element);
+    toggleDetailsModal();
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -157,12 +168,6 @@ export const AdminContenu = () => {
     dispositifsForCount,
   } = filterAndSortDispositifs(dispositifs);
 
-  const compare = (a, b) => {
-    const orderA = a.order;
-    const orderB = b.order;
-    return orderA > orderB ? 1 : -1;
-  };
-
   const reorder = (element) => {
     if (sortedHeader.name === element.name) {
       const sens = sortedHeader.sens === "up" ? "down" : "up";
@@ -201,6 +206,8 @@ export const AdminContenu = () => {
               type: "success",
               timer: 1500,
             });
+            setSelectedDispositif(null);
+            setShowDetailsModal(false);
             dispatch(fetchAllDispositifsActionsCreator());
           })
           .catch(() => {
@@ -267,6 +274,52 @@ export const AdminContenu = () => {
     }
   };
 
+  // const testData = {
+  //   created_at: "2020-03-22T20:34:51.001Z",
+  //   mainSponsor: {
+  //     _id: "5e7f49e70f3ff1005039a62b",
+  //     nom: "Ovale citoyen",
+  //     status: "En attente",
+  //   },
+  //   publishedAt: "2020-11-19T09:58:27.922Z",
+  //   status: "En attente admin",
+  //   titreInformatif: "Faire du sport",
+  //   titreMarque: "Ovale citoyen",
+  //   typeContenu: "dispositif",
+  //   updatedAt: "2020-11-19T09:58:27.923Z",
+  //   _id: "5e77cbea0c9490004e55c85a",
+  // };
+
+  // const testData = {
+  //   created_at: "2020-03-17T14:16:44.499Z",
+  //   creatorId: {
+  //     username: "reloref",
+  //     picture: {
+  //       imgId: "5dd79f5ce4054f004bef473f",
+  //       public_id: "pictures/rmlyfsabn1qxfcamv903",
+  //       secure_url:
+  //         "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1574412123/pictures/rmlyfsabn1qxfcamv903.jpg",
+  //     },
+  //     _id: "5dceb0e08a87590016672650",
+  //   },
+  //   mainSponsor: {
+  //     _id: "5d7fc545cc60d900163317e1",
+  //     nom: "France Terre d'Asile",
+  //     status: "Actif",
+  //     picture: {
+  //       imgId: "5dd79f5ce4054f004bef473f",
+  //       public_id: "pictures/rmlyfsabn1qxfcamv903",
+  //       secure_url:
+  //         "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1574412123/pictures/rmlyfsabn1qxfcamv903.jpg",
+  //     },
+  //   },
+  //   status: "En attente admin",
+  //   titreInformatif: "Je découvre le marché du travail en France",
+  //   typeContenu: "demarche",
+  //   updatedAt: "2020-07-20T08:44:36.233Z",
+  //   _id: "5e70dbccdea008004e985e59",
+  // };
+
   const nbNonDeletedDispositifs =
     dispositifs.length > 0
       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
@@ -282,13 +335,14 @@ export const AdminContenu = () => {
         <FButton
           type="dark"
           name="plus-circle-outline"
-          tag={NavHashLink}
-          to={"/comment-contribuer#ecrire"}
+          tag={"a"}
+          href={"/comment-contribuer#ecrire"}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Ajouter un contenu
         </FButton>
       </SearchBarContainer>
-      {`env ${process.env.REACT_APP_ENV}`}
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
@@ -339,10 +393,19 @@ export const AdminContenu = () => {
 
               return (
                 <tr key={key}>
-                  <td className="align-middle">
-                    <TypeContenu type={element.typeContenu || "dispositif"} />
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
+                    <TypeContenu
+                      type={element.typeContenu || "dispositif"}
+                      isDetailedVue={false}
+                    />
                   </td>
-                  <td className="align-middle" id={"titre-" + key}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
                     <Title
                       titreInformatif={element.titreInformatif}
                       titreMarque={element.titreMarque}
@@ -359,14 +422,24 @@ export const AdminContenu = () => {
                   >
                     <Structure sponsor={element.mainSponsor} />
                   </td>
-                  <td className={"align-middle "}>{nbDays}</td>
-                  <td className="align-middle">
+                  <td
+                    className={"align-middle "}
+                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
+                    {nbDays}
+                  </td>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
                     <StyledStatus text="Nouveau" />
                   </td>
-                  <td className="align-middle ">
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
                     <StyledStatus text={element.status} />
                   </td>
-
                   <td className="align-middle">
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />
@@ -381,6 +454,7 @@ export const AdminContenu = () => {
                       />
                       <DeleteButton
                         onClick={() => prepareDeleteContrib(element)}
+                        disabled={element.status === "Supprimé"}
                       />
                     </div>
                   </td>
@@ -390,6 +464,13 @@ export const AdminContenu = () => {
           </tbody>
         </Table>
       </Content>
+      <DetailsModal
+        show={showDetailsModal}
+        toggleModal={() => setSelectedDispositifAndToggleModal(null)}
+        selectedDispositif={selectedDispositif}
+        url={url}
+        onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
+      />
     </div>
   );
 };
