@@ -15,6 +15,8 @@ import { Picture } from "../../../../@types/interface";
 // @ts-ignore
 import variables from "scss/colors.scss";
 import marioProfile from "../../../../assets/mario-profile.jpg";
+import noStructure from "../../../../assets/noStructure.png";
+
 interface SelectedDispositif {
   titreInformatif: string;
   titreMarque?: string;
@@ -93,7 +95,8 @@ const Title = styled.div`
 `;
 
 const StructureContainer = styled.div`
-  background: ${variables.blancSimple};
+  background: ${(props) =>
+    props.noStructure ? variables.erreur : variables.blancSimple};
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -274,6 +277,20 @@ export const DetailsModal = (props: Props) => {
                     <div>
                       <FButton name="edit-outline" type="outline-black">
                         Modifier
+                      </FButton>
+                    </div>
+                  </LogoContainer>
+                </StructureContainer>
+              )}
+              {!selectedDispositif.mainSponsor && (
+                <StructureContainer noStructure={true}>
+                  Aucune structure définie !
+                  <LogoContainer spaceBetween={true}>
+                    <img className="sponsor-img" src={noStructure} />
+
+                    <div>
+                      <FButton name="edit-outline" type="outline-black">
+                        Choisir
                       </FButton>
                     </div>
                   </LogoContainer>
