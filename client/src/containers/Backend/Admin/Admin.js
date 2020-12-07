@@ -583,92 +583,88 @@ export class Admin extends Component {
   render() {
     return (
       <div className="animated fadeIn admin">
-        <Row>
-          <Col>
-            <Nav>
-              <NavItem>
-                <NavLink
-                  active={this.state.activeTab === "0"}
-                  onClick={() => {
-                    this.toggleTab("0");
-                  }}
-                >
-                  <Onglet
-                    iconSelected="file-add"
-                    iconNotSelected="file-add-outline"
-                    text="Contenus"
-                    isSelected={this.state.activeTab === "0"}
-                  />
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  active={this.state.activeTab === "1"}
-                  onClick={() => {
-                    this.toggleTab("1");
-                  }}
-                >
-                  <Onglet
-                    iconSelected="shopping-bag"
-                    iconNotSelected="shopping-bag-outline"
-                    text="Structures"
-                    isSelected={this.state.activeTab === "1"}
-                  />
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink
-                  active={this.state.activeTab === "2"}
-                  onClick={() => {
-                    this.toggleTab("2");
-                  }}
-                >
-                  <Onglet
-                    iconSelected="person"
-                    iconNotSelected="person-outline"
-                    text="Utilisateurs"
-                    isSelected={this.state.activeTab === "2"}
-                  />
-                </NavLink>
-              </NavItem>
-
-              <NavItem>
-                <NavLink
-                  active={this.state.activeTab === "3"}
-                  onClick={() => {
-                    this.toggleTab("3");
-                  }}
-                >
-                  <Onglet
-                    iconSelected="pie-chart"
-                    iconNotSelected="pie-chart-outline"
-                    text="Statistiques"
-                    isSelected={this.state.activeTab === "3"}
-                  />
-                </NavLink>
-              </NavItem>
-            </Nav>
-            <TabContent activeTab={this.state.activeTab}>
-              <CustomTabPane
-                handleChange={this.handleChange}
-                onSelect={this.onSelect}
-                handleCheck={this.handleCheck}
-                handleSliderChange={this.handleSliderChange}
-                handleDraggableListChange={this.handleDraggableListChange}
-                handleFileInputChange={this.handleFileInputChange}
-                handleBelongsChange={this.handleBelongsChange}
-                validateUser={this.validateUser}
-                onValidate={this.onValidate}
-                onCancel={this.onCancel}
-                preTraitementStruct={this.preTraitementStruct}
-                isAdmin={true}
-                initial_state={this.initial_state}
-                reorder={this.reorder}
-                {...this.state}
+        <Nav>
+          <NavItem>
+            <NavLink
+              active={this.state.activeTab === "0"}
+              onClick={() => {
+                this.toggleTab("0");
+              }}
+            >
+              <Onglet
+                iconSelected="file-add"
+                iconNotSelected="file-add-outline"
+                text="Contenus"
+                isSelected={this.state.activeTab === "0"}
               />
-            </TabContent>
-          </Col>
-        </Row>
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              active={this.state.activeTab === "1"}
+              onClick={() => {
+                this.toggleTab("1");
+              }}
+            >
+              <Onglet
+                iconSelected="shopping-bag"
+                iconNotSelected="shopping-bag-outline"
+                text="Structures"
+                isSelected={this.state.activeTab === "1"}
+              />
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              active={this.state.activeTab === "2"}
+              onClick={() => {
+                this.toggleTab("2");
+              }}
+            >
+              <Onglet
+                iconSelected="person"
+                iconNotSelected="person-outline"
+                text="Utilisateurs"
+                isSelected={this.state.activeTab === "2"}
+              />
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink
+              active={this.state.activeTab === "3"}
+              onClick={() => {
+                this.toggleTab("3");
+              }}
+            >
+              <Onglet
+                iconSelected="pie-chart"
+                iconNotSelected="pie-chart-outline"
+                text="Statistiques"
+                isSelected={this.state.activeTab === "3"}
+              />
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={this.state.activeTab}>
+          <CustomTabPane
+            handleChange={this.handleChange}
+            onSelect={this.onSelect}
+            handleCheck={this.handleCheck}
+            handleSliderChange={this.handleSliderChange}
+            handleDraggableListChange={this.handleDraggableListChange}
+            handleFileInputChange={this.handleFileInputChange}
+            handleBelongsChange={this.handleBelongsChange}
+            validateUser={this.validateUser}
+            onValidate={this.onValidate}
+            onCancel={this.onCancel}
+            preTraitementStruct={this.preTraitementStruct}
+            isAdmin={true}
+            initial_state={this.initial_state}
+            reorder={this.reorder}
+            {...this.state}
+          />
+        </TabContent>
       </div>
     );
   }

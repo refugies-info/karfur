@@ -10,11 +10,11 @@ export const StyledThead = styled.thead`
 
 export const StyledSort = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: row;
   width: 100%;
   justify-content: flex-end;
   align-items: flex-end;
+  margin-right: 8px;
 `;
 
 export const StyledTitle = styled.div`
@@ -28,9 +28,7 @@ export const StyledTitle = styled.div`
 
 export const StyledHeader = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: row;
-  width: 100%;
   align-items: center;
   padding-top: 16px;
   padding-bottom: 24px;
