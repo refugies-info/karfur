@@ -11,38 +11,18 @@ import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
-import { Picture } from "../../../../@types/interface";
+import { SimplifiedDispositif } from "../../../../@types/interface";
 // @ts-ignore
 import variables from "scss/colors.scss";
 import marioProfile from "../../../../assets/mario-profile.jpg";
 import noStructure from "../../../../assets/noStructure.png";
+import { useSelector } from "react-redux";
+import { allDispositifsSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
 
-interface SelectedDispositif {
-  titreInformatif: string;
-  titreMarque?: string;
-  updatedAt: Moment;
-  status: string;
-  typeContenu: string;
-  created_at: Moment;
-  publishedAt?: Moment;
-  _id: ObjectId;
-  lastAdminModificationDate?: Moment;
-  mainSponsor: null | {
-    _id: ObjectId;
-    nom: string;
-    status: string;
-    picture: Picture | undefined;
-  };
-  creatorId: {
-    username: string;
-    picture: Picture | undefined;
-    _id: ObjectId;
-  } | null;
-}
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedDispositif: SelectedDispositif;
+  selectedDispositif: SimplifiedDispositif | null;
   url: string;
   onDeleteClick: () => void;
   setShowChangeStructureModal: (arg: boolean) => void;
@@ -135,19 +115,33 @@ moment.locale("fr");
 export const DetailsModal = (props: Props) => {
   const selectedDispositif = props.selectedDispositif;
 
-  const getCreatorImage = (selectedDispositif: SelectedDispositif) =>
+  const dispositifs = useSelector(allDispositifsSelector);
+
+  const updatedDispositif = selectedDispositif
+    ? dispositifs.filter(
+        (dispositif) => dispositif._id === selectedDispositif._id
+      )
+    : null;
+
+  const getCreatorImage = (selectedDispositif: SimplifiedDispositif) =>
+    selectedDispositif &&
     selectedDispositif.creatorId &&
     selectedDispositif.creatorId.picture &&
     selectedDispositif.creatorId.picture.secure_url
       ? selectedDispositif.creatorId.picture.secure_url
       : marioProfile;
 
-  if (selectedDispositif) {
+  if (
+    selectedDispositif &&
+    updatedDispositif &&
+    updatedDispositif.length === 1
+  ) {
+    const dispositif = updatedDispositif[0];
     const burl =
       props.url +
-      (selectedDispositif.typeContenu || "dispositif") +
+      (dispositif.typeContenu || "dispositif") +
       "/" +
-      selectedDispositif._id;
+      dispositif._id;
     return (
       <Modal
         isOpen={props.show}
@@ -158,18 +152,16 @@ export const DetailsModal = (props: Props) => {
         <MainContainer>
           <RowContainer>
             <LeftPart>
-              <TitreInformatif>
-                {selectedDispositif.titreInformatif}
-              </TitreInformatif>
+              <TitreInformatif>{dispositif.titreInformatif}</TitreInformatif>
               <RowContainer>
-                {selectedDispositif.titreMarque && (
+                {dispositif.titreMarque && (
                   <TitreMarque>
                     <span style={{ color: variables.cardColor }}>avec </span>
-                    {selectedDispositif.titreMarque}
+                    {dispositif.titreMarque}
                   </TitreMarque>
                 )}
                 <TypeContenu
-                  type={selectedDispositif.typeContenu}
+                  type={dispositif.typeContenu}
                   isDetailedVue={true}
                 />
               </RowContainer>
@@ -186,9 +178,7 @@ export const DetailsModal = (props: Props) => {
                   >
                     <StyledStatus
                       text={status.storedStatus}
-                      overrideColor={
-                        selectedDispositif.status !== status.storedStatus
-                      }
+                      overrideColor={dispositif.status !== status.storedStatus}
                       textToDisplay={status.displayedStatus}
                       color={status.color}
                     />
@@ -196,28 +186,27 @@ export const DetailsModal = (props: Props) => {
                 ))}
               </RowContainer>
               <Title>Dernière mise à jour</Title>
-              {`${moment(selectedDispositif.updatedAt).format(
-                "LLL"
-              )} soit ${moment(selectedDispositif.updatedAt).fromNow()}`}
+              {`${moment(dispositif.updatedAt).format("LLL")} soit ${moment(
+                dispositif.updatedAt
+              ).fromNow()}`}
               <Title>Date de publication</Title>
-              {selectedDispositif.publishedAt
-                ? `${moment(selectedDispositif.publishedAt).format(
+              {dispositif.publishedAt
+                ? `${moment(dispositif.publishedAt).format(
                     "LLL"
-                  )} soit ${moment(selectedDispositif.publishedAt).fromNow()}`
+                  )} soit ${moment(dispositif.publishedAt).fromNow()}`
                 : "Non disponible"}
               <Title>Date de création</Title>
-              {`${moment(selectedDispositif.created_at).format(
-                "LLL"
-              )} soit ${moment(selectedDispositif.created_at).fromNow()}`}
+              {`${moment(dispositif.created_at).format("LLL")} soit ${moment(
+                dispositif.created_at
+              ).fromNow()}`}
               <Title>Créateur</Title>
               <CreatorContainer>
                 <img
                   className="creator-img"
-                  src={getCreatorImage(selectedDispositif)}
+                  src={getCreatorImage(dispositif)}
                 />
 
-                {selectedDispositif.creatorId &&
-                  selectedDispositif.creatorId.username}
+                {dispositif.creatorId && dispositif.creatorId.username}
               </CreatorContainer>
             </LeftPart>
             <RightPart>
@@ -251,28 +240,27 @@ export const DetailsModal = (props: Props) => {
                 id="description"
               />
               <Title>Dernière action d'administrateur</Title>
-              {selectedDispositif.lastAdminModificationDate
-                ? `${moment(
-                    selectedDispositif.lastAdminModificationDate
-                  ).format("LLL")} soit ${moment(
-                    selectedDispositif.lastAdminModificationDate
+              {dispositif.lastAdminModificationDate
+                ? `${moment(dispositif.lastAdminModificationDate).format(
+                    "LLL"
+                  )} soit ${moment(
+                    dispositif.lastAdminModificationDate
                   ).fromNow()}`
                 : "Non disponible"}
               <Title>Structure responsable</Title>
-              {selectedDispositif.mainSponsor && (
+              {dispositif.mainSponsor && (
                 <StructureContainer>
-                  {selectedDispositif.mainSponsor.nom}
+                  {dispositif.mainSponsor.nom}
                   <LogoContainer spaceBetween={true}>
-                    {selectedDispositif.mainSponsor &&
-                      selectedDispositif.mainSponsor.picture &&
-                      selectedDispositif.mainSponsor.picture.secure_url && (
+                    {dispositif.mainSponsor &&
+                      dispositif.mainSponsor.picture &&
+                      dispositif.mainSponsor.picture.secure_url && (
                         <img
                           className="sponsor-img"
                           src={
-                            (selectedDispositif.mainSponsor.picture || {})
-                              .secure_url
+                            (dispositif.mainSponsor.picture || {}).secure_url
                           }
-                          alt={selectedDispositif.mainSponsor.nom}
+                          alt={dispositif.mainSponsor.nom}
                         />
                       )}
                     <div>
@@ -287,14 +275,18 @@ export const DetailsModal = (props: Props) => {
                   </LogoContainer>
                 </StructureContainer>
               )}
-              {!selectedDispositif.mainSponsor && (
+              {!dispositif.mainSponsor && (
                 <StructureContainer noStructure={true}>
                   Aucune structure définie !
                   <LogoContainer spaceBetween={true}>
                     <img className="sponsor-img" src={noStructure} />
 
                     <div>
-                      <FButton name="edit-outline" type="outline-black">
+                      <FButton
+                        name="edit-outline"
+                        type="outline-black"
+                        onClick={() => props.setShowChangeStructureModal(true)}
+                      >
                         Choisir
                       </FButton>
                     </div>

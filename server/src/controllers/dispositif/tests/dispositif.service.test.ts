@@ -511,16 +511,36 @@ describe("modifyDispositifMainSponsor", () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
   });
+
   it("should return 400 if no dispositifId", async () => {
-    const req = { fromSite: true, body: { query: { sponsorId: "test" } } };
+    const req = {
+      fromSite: true,
+      body: { query: { sponsorId: "test", status: "s" } },
+    };
 
     const res = mockResponse();
     await modifyDispositifMainSponsor(req, res);
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
   });
-  it("should return 400 if no body", async () => {
-    const req = { fromSite: true, body: { query: { dispositifId: "test2" } } };
+
+  it("should return 400 if no status", async () => {
+    const req = {
+      fromSite: true,
+      body: { query: { sponsorId: "test", dispositifId: "test" } },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should return 400 if no sponsorId", async () => {
+    const req = {
+      fromSite: true,
+      body: { query: { dispositifId: "test2", status: "s" } },
+    };
 
     const res = mockResponse();
     await modifyDispositifMainSponsor(req, res);
@@ -531,7 +551,13 @@ describe("modifyDispositifMainSponsor", () => {
   it("should call updateDispositifMainSponsorInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
     const req = {
       fromSite: true,
-      body: { query: { dispositifId: "dispositifId", sponsorId: "sponsorId" } },
+      body: {
+        query: {
+          dispositifId: "dispositifId",
+          sponsorId: "sponsorId",
+          status: "En attente",
+        },
+      },
     };
 
     const res = mockResponse();
@@ -539,7 +565,7 @@ describe("modifyDispositifMainSponsor", () => {
 
     expect(updateDispositifMainSponsorInDB).toHaveBeenCalledWith(
       "dispositifId",
-      "sponsorId"
+      { mainSponsor: "sponsorId", status: "En attente" }
     );
     expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
       "dispositifId",
@@ -554,7 +580,13 @@ describe("modifyDispositifMainSponsor", () => {
 
     const req = {
       fromSite: true,
-      body: { query: { dispositifId: "dispositifId", sponsorId: "sponsorId" } },
+      body: {
+        query: {
+          dispositifId: "dispositifId",
+          sponsorId: "sponsorId",
+          status: "En attente",
+        },
+      },
     };
 
     const res = mockResponse();
@@ -562,7 +594,7 @@ describe("modifyDispositifMainSponsor", () => {
 
     expect(updateDispositifMainSponsorInDB).toHaveBeenCalledWith(
       "dispositifId",
-      "sponsorId"
+      { mainSponsor: "sponsorId", status: "En attente" }
     );
     expect(updateAssociatedDispositifsInStructure).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
@@ -576,7 +608,13 @@ describe("modifyDispositifMainSponsor", () => {
 
     const req = {
       fromSite: true,
-      body: { query: { dispositifId: "dispositifId", sponsorId: "sponsorId" } },
+      body: {
+        query: {
+          dispositifId: "dispositifId",
+          sponsorId: "sponsorId",
+          status: "Actif",
+        },
+      },
     };
 
     const res = mockResponse();
@@ -584,7 +622,7 @@ describe("modifyDispositifMainSponsor", () => {
 
     expect(updateDispositifMainSponsorInDB).toHaveBeenCalledWith(
       "dispositifId",
-      "sponsorId"
+      { mainSponsor: "sponsorId", status: "Actif" }
     );
     expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
       "dispositifId",
@@ -592,5 +630,32 @@ describe("modifyDispositifMainSponsor", () => {
     );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
+  });
+
+  it("should call updateDispositifMainSponsorInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
+    const req = {
+      fromSite: true,
+      body: {
+        query: {
+          dispositifId: "dispositifId",
+          sponsorId: "sponsorId",
+          status: "En attente non prioritaire",
+        },
+      },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+
+    expect(updateDispositifMainSponsorInDB).toHaveBeenCalledWith(
+      "dispositifId",
+      { mainSponsor: "sponsorId", status: "En attente" }
+    );
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+      "dispositifId",
+      "sponsorId"
+    );
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
 });

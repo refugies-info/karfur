@@ -5,6 +5,28 @@ export interface RequestReturn<Y> {
   data: { data: Y };
 }
 
+export interface SimplifiedDispositif {
+  titreInformatif: string;
+  titreMarque?: string;
+  updatedAt: Moment;
+  status: string;
+  typeContenu: string;
+  created_at: Moment;
+  publishedAt?: Moment;
+  _id: ObjectId;
+  lastAdminModificationDate?: Moment;
+  mainSponsor: null | {
+    _id: ObjectId;
+    nom: string;
+    status: string;
+    picture: Picture | undefined;
+  };
+  creatorId: {
+    username: string;
+    picture: Picture | undefined;
+    _id: ObjectId;
+  } | null;
+}
 export interface Picture {
   imgId: ObjectId;
   public_id: string;

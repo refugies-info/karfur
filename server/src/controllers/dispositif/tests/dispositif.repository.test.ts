@@ -125,10 +125,16 @@ describe("updateDispositifMainSponsorInDB", () => {
   it("should call Dispositif.findOneAndUpdate", async () => {
     Dispositif.findOneAndUpdate = jest.fn();
 
-    await updateDispositifMainSponsorInDB("dispositifId", "sponsorId");
+    await updateDispositifMainSponsorInDB("dispositifId", {
+      mainSponsor: "sponsorId",
+      status: "Actif",
+    });
     expect(Dispositif.findOneAndUpdate).toHaveBeenCalledWith(
       { _id: "dispositifId" },
-      { mainSponsor: "sponsorId" }
+      {
+        mainSponsor: "sponsorId",
+        status: "Actif",
+      }
     );
   });
 });

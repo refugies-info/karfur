@@ -50,9 +50,6 @@ export const getDispositifArray = async (query: any) => {
 
 export const updateDispositifMainSponsorInDB = async (
   dispositifId: ObjectId,
-  sponsorId: ObjectId
+  modifiedDispositif: { mainSponsor: ObjectId; status: string }
 ) =>
-  await Dispositif.findOneAndUpdate(
-    { _id: dispositifId },
-    { mainSponsor: sponsorId }
-  );
+  await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif);

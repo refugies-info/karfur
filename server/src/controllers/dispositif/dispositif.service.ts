@@ -181,8 +181,9 @@ export const updateDispositifStatus = async (
 };
 
 interface QueryModify {
-  dispositifId: ObjectId;
+  dispositifId: ObjectId | null;
   sponsorId: ObjectId;
+  status: string | null;
 }
 
 export const modifyDispositifMainSponsor = async (
@@ -196,14 +197,24 @@ export const modifyDispositifMainSponsor = async (
       !req.body ||
       !req.body.query ||
       !req.body.query.dispositifId ||
-      !req.body.query.sponsorId
+      !req.body.query.sponsorId ||
+      !req.body.query.status
     ) {
       return res.status(400).json({ text: "Requête invalide" });
     }
 
-    const { dispositifId, sponsorId } = req.body.query;
-    logger.info("[modifyDispositifMainSponsor]", { dispositifId, sponsorId });
-    await updateDispositifMainSponsorInDB(dispositifId, sponsorId);
+    const { dispositifId, sponsorId, status } = req.body.query;
+    logger.info("[modifyDispositifMainSponsor]", {
+      dispositifId,
+      sponsorId,
+      status,
+    });
+
+    const modifiedDispositif = {
+      mainSponsor: sponsorId,
+      status: status === "En attente non prioritaire" ? "En attente" : status,
+    };
+    await updateDispositifMainSponsorInDB(dispositifId, modifiedDispositif);
 
     await updateAssociatedDispositifsInStructure(dispositifId, sponsorId);
 

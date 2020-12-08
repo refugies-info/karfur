@@ -15,11 +15,13 @@ import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
+import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 
 interface Props {
   show: boolean;
   toggle: () => void;
   dispositifId: ObjectId | null;
+  dispositifStatus: string | null;
 }
 
 const Content = styled.div`
@@ -91,16 +93,27 @@ export const ChangeStructureModal = (props: Props) => {
         query: {
           dispositifId: props.dispositifId,
           sponsorId: selectedStructure._id,
+          status: props.dispositifStatus,
         },
-      }).then(() => {
-        Swal.fire({
-          title: "Yay...",
-          text: "Structure Modifiée",
-          type: "success",
-          timer: 1500,
+      })
+        .then(() => {
+          Swal.fire({
+            title: "Yay...",
+            text: "Structure modifiée",
+            type: "success",
+            timer: 1500,
+          });
+          toggleModal();
+          dispatch(fetchAllDispositifsActionsCreator());
+        })
+        .catch(() => {
+          Swal.fire({
+            title: "Oh non",
+            text: "Erreur lors de la modification",
+            type: "error",
+            timer: 1500,
+          });
         });
-        toggleModal();
-      });
     }
   };
 

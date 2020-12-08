@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row, Nav, NavItem, NavLink, TabContent } from "reactstrap";
+import { Nav, NavItem, NavLink, TabContent } from "reactstrap";
 import Swal from "sweetalert2";
 import _ from "lodash";
 import passwdCheck from "zxcvbn";

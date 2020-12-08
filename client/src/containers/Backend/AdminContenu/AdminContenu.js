@@ -482,6 +482,7 @@ export const AdminContenu = () => {
         show={showChangeStructureModal}
         toggle={toggleShowChangeStructureModal}
         dispositifId={selectedDispositif ? selectedDispositif._id : null}
+        dispositifStatus={selectedDispositif ? selectedDispositif.status : null}
       />
     </div>
   );
