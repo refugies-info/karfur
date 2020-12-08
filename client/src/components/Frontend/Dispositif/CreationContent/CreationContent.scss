@@ -1,6 +1,13 @@
 @import 'src/scss/colors.scss';
 
 .creation-content{
+  .compulsory{
+    border-radius: 12px;
+    padding: 16px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+  }
   .form-field{
     margin-bottom: 10px;
 
