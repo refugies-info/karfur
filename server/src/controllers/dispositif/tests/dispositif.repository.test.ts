@@ -2,7 +2,7 @@
 import { Dispositif } from "../../../schema/schemaDispositif";
 import {
   getDispositifsFromDB,
-  updateDispositifStatusInDB,
+  updateDispositifInDB,
   getDispositifArray,
 } from "../dispositif.repository";
 
@@ -27,7 +27,7 @@ describe("updateDispositifStatus", () => {
   it("should call Dispositif", async () => {
     Dispositif.findOneAndUpdate = jest.fn().mockResolvedValue({ id: "id1" });
 
-    const res = await updateDispositifStatusInDB("id1", {
+    const res = await updateDispositifInDB("id1", {
       status: "Actif",
       publishedAt: "01/01/01",
     });
@@ -117,5 +117,23 @@ describe("getDispositifArray", () => {
 
     expect(Dispositif.find).toHaveBeenCalledWith(newQuery, neededFields);
     expect(res).toEqual(dispositifsList);
+  });
+});
+
+describe("updateDispositifInDB", () => {
+  it("should call Dispositif.findOneAndUpdate", async () => {
+    Dispositif.findOneAndUpdate = jest.fn();
+
+    await updateDispositifInDB("dispositifId", {
+      mainSponsor: "sponsorId",
+      status: "Actif",
+    });
+    expect(Dispositif.findOneAndUpdate).toHaveBeenCalledWith(
+      { _id: "dispositifId" },
+      {
+        mainSponsor: "sponsorId",
+        status: "Actif",
+      }
+    );
   });
 });

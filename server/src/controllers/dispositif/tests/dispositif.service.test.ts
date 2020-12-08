@@ -3,11 +3,13 @@ import {
   getDispositifs,
   getAllDispositifs,
   updateDispositifStatus,
+  modifyDispositifMainSponsor,
+  updateDispositifAdminComments,
 } from "../dispositif.service";
 import {
   getDispositifArray,
   getDispositifsFromDB,
-  updateDispositifStatusInDB,
+  updateDispositifInDB,
 } from "../dispositif.repository";
 import {
   fakeContenuWithoutZoneDAction,
@@ -18,6 +20,7 @@ import {
   turnJSONtoHTML,
   turnToLocalizedTitles,
 } from "../functions";
+import { updateAssociatedDispositifsInStructure } from "../../structure/structure.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -27,10 +30,13 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
+jest.mock("../../structure/structure.repository.ts", () => ({
+  updateAssociatedDispositifsInStructure: jest.fn(),
+}));
 jest.mock("../dispositif.repository", () => ({
   getDispositifArray: jest.fn(),
   getDispositifsFromDB: jest.fn(),
-  updateDispositifStatusInDB: jest.fn(),
+  updateDispositifInDB: jest.fn(),
 }));
 
 jest.mock("../functions", () => ({
@@ -289,6 +295,10 @@ describe("getAllispositifs", () => {
     typeContenu: 1,
     created_at: 1,
     publishedAt: 1,
+    adminComments: 1,
+    adminProgressionStatus: 1,
+    adminPercentageProgressionStatus: 1,
+    lastAdminUpdate: 1,
   };
 
   const dispositifsToJson = [
@@ -433,15 +443,15 @@ describe("updateDispositifStatus", () => {
     const res = mockResponse();
     await updateDispositifStatus(req, res);
 
-    expect(updateDispositifStatusInDB).toHaveBeenCalledWith("id", {
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "En attente",
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
 
-  it("should return a 500 when updateDispositifStatusInDB throws", async () => {
-    updateDispositifStatusInDB.mockRejectedValueOnce(new Error("error"));
+  it("should return a 500 when updateDispositifInDB throws", async () => {
+    updateDispositifInDB.mockRejectedValueOnce(new Error("error"));
     const req = {
       fromSite: true,
       body: { query: { dispositifId: "id", status: "En attente" } },
@@ -449,7 +459,7 @@ describe("updateDispositifStatus", () => {
     const res = mockResponse();
     await updateDispositifStatus(req, res);
 
-    expect(updateDispositifStatusInDB).toHaveBeenCalledWith("id", {
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "En attente",
     });
     expect(res.status).toHaveBeenCalledWith(500);
@@ -467,10 +477,254 @@ describe("updateDispositifStatus", () => {
     const res = mockResponse();
     await updateDispositifStatus(req, res);
 
-    expect(updateDispositifStatusInDB).toHaveBeenCalledWith("id", {
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
       status: "Actif",
       publishedAt: date,
     });
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+});
+
+describe("modifyDispositifMainSponsor", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should return 405 if not fromSite", async () => {
+    const req = { body: {} };
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(405);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête bloquée par API" });
+  });
+
+  it("should return 400 if no body", async () => {
+    const req = { fromSite: true };
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should return 400 if no query", async () => {
+    const req = { fromSite: true, body: {} };
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should return 400 if no dispositifId", async () => {
+    const req = {
+      fromSite: true,
+      body: { query: { sponsorId: "test", status: "s" } },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should return 400 if no status", async () => {
+    const req = {
+      fromSite: true,
+      body: { query: { sponsorId: "test", dispositifId: "test" } },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should return 400 if no sponsorId", async () => {
+    const req = {
+      fromSite: true,
+      body: { query: { dispositifId: "test2", status: "s" } },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should call updateDispositifInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
+    const req = {
+      fromSite: true,
+      body: {
+        query: {
+          dispositifId: "dispositifId",
+          sponsorId: "sponsorId",
+          status: "En attente",
+        },
+      },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("dispositifId", {
+      mainSponsor: "sponsorId",
+      status: "En attente",
+    });
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+      "dispositifId",
+      "sponsorId"
+    );
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should call updateDispositifInDB and return a 500 if updateDispositifInDB throws", async () => {
+    updateDispositifInDB.mockRejectedValueOnce(new Error("error"));
+
+    const req = {
+      fromSite: true,
+      body: {
+        query: {
+          dispositifId: "dispositifId",
+          sponsorId: "sponsorId",
+          status: "En attente",
+        },
+      },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("dispositifId", {
+      mainSponsor: "sponsorId",
+      status: "En attente",
+    });
+    expect(updateAssociatedDispositifsInStructure).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
+  });
+
+  it("should call updateDispositifInDB and return a 500 if updateDispositifInDB throws", async () => {
+    updateAssociatedDispositifsInStructure.mockRejectedValueOnce(
+      new Error("error")
+    );
+
+    const req = {
+      fromSite: true,
+      body: {
+        query: {
+          dispositifId: "dispositifId",
+          sponsorId: "sponsorId",
+          status: "Actif",
+        },
+      },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("dispositifId", {
+      mainSponsor: "sponsorId",
+      status: "Actif",
+    });
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+      "dispositifId",
+      "sponsorId"
+    );
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
+  });
+
+  it("should call updateDispositifInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
+    const req = {
+      fromSite: true,
+      body: {
+        query: {
+          dispositifId: "dispositifId",
+          sponsorId: "sponsorId",
+          status: "En attente non prioritaire",
+        },
+      },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("dispositifId", {
+      mainSponsor: "sponsorId",
+      status: "En attente",
+    });
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+      "dispositifId",
+      "sponsorId"
+    );
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+});
+
+describe("updateDispositifAdminComments", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should return 405 if not fromSite", async () => {
+    const req = { body: {} };
+    const res = mockResponse();
+    await updateDispositifAdminComments(req, res);
+    expect(res.status).toHaveBeenCalledWith(405);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête bloquée par API" });
+  });
+
+  it("should return 400 if no body", async () => {
+    const req = { fromSite: true };
+    const res = mockResponse();
+    await updateDispositifAdminComments(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should return 400 if no query", async () => {
+    const req = { fromSite: true, body: { test: "test" } };
+    const res = mockResponse();
+    await updateDispositifAdminComments(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should return 400 if no dispositifId", async () => {
+    const req = { fromSite: true, body: { query: { test: "test" } } };
+    const res = mockResponse();
+    await updateDispositifAdminComments(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should call updateDispositifInDB", async () => {
+    const req = {
+      fromSite: true,
+      body: {
+        query: {
+          dispositifId: "id",
+          adminComments: "adminComments",
+          adminProgressionStatus: "adminProgressionStatus",
+          adminPercentageProgressionStatus: "adminPercentageProgressionStatus",
+        },
+      },
+    };
+
+    const date = 148707670800;
+    Date.now = jest.fn(() => date);
+
+    const res = mockResponse();
+    await updateDispositifAdminComments(req, res);
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id", {
+      adminComments: "adminComments",
+      adminProgressionStatus: "adminProgressionStatus",
+      adminPercentageProgressionStatus: "adminPercentageProgressionStatus",
+      lastAdminUpdate: date,
+    });
+
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });

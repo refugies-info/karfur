@@ -4,6 +4,8 @@ const {
   getDispositifs,
   getAllDispositifs,
   updateDispositifStatus,
+  modifyDispositifMainSponsor,
+  updateDispositifAdminComments,
 } = require("./dispositif/dispositif.service");
 
 module.exports = function (app) {
@@ -28,4 +30,6 @@ module.exports = function (app) {
   app.post("/getDispositifs", getDispositifs);
   app.get("/getAllDispositifs", getAllDispositifs);
   app.post("/updateDispositifStatus", updateDispositifStatus);
+  app.post("/modifyDispositifMainSponsor", modifyDispositifMainSponsor);
+  app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
 };

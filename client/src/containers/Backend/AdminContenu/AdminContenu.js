@@ -38,6 +38,7 @@ import {
 import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
+import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 
 moment.locale("fr");
 
@@ -65,11 +66,16 @@ export const AdminContenu = () => {
   const [search, setSearch] = useState("");
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedDispositif, setSelectedDispositif] = useState(null);
+  const [showChangeStructureModal, setShowChangeStructureModal] = useState(
+    false
+  );
   const headers = table_contenu.headers;
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
   );
 
+  const toggleShowChangeStructureModal = () =>
+    setShowChangeStructureModal(!showChangeStructureModal);
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
   const setSelectedDispositifAndToggleModal = (element) => {
     setSelectedDispositif(element);
@@ -274,52 +280,6 @@ export const AdminContenu = () => {
     }
   };
 
-  // const testData = {
-  //   created_at: "2020-03-22T20:34:51.001Z",
-  //   mainSponsor: {
-  //     _id: "5e7f49e70f3ff1005039a62b",
-  //     nom: "Ovale citoyen",
-  //     status: "En attente",
-  //   },
-  //   publishedAt: "2020-11-19T09:58:27.922Z",
-  //   status: "En attente admin",
-  //   titreInformatif: "Faire du sport",
-  //   titreMarque: "Ovale citoyen",
-  //   typeContenu: "dispositif",
-  //   updatedAt: "2020-11-19T09:58:27.923Z",
-  //   _id: "5e77cbea0c9490004e55c85a",
-  // };
-
-  // const testData = {
-  //   created_at: "2020-03-17T14:16:44.499Z",
-  //   creatorId: {
-  //     username: "reloref",
-  //     picture: {
-  //       imgId: "5dd79f5ce4054f004bef473f",
-  //       public_id: "pictures/rmlyfsabn1qxfcamv903",
-  //       secure_url:
-  //         "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1574412123/pictures/rmlyfsabn1qxfcamv903.jpg",
-  //     },
-  //     _id: "5dceb0e08a87590016672650",
-  //   },
-  //   mainSponsor: {
-  //     _id: "5d7fc545cc60d900163317e1",
-  //     nom: "France Terre d'Asile",
-  //     status: "Actif",
-  //     picture: {
-  //       imgId: "5dd79f5ce4054f004bef473f",
-  //       public_id: "pictures/rmlyfsabn1qxfcamv903",
-  //       secure_url:
-  //         "https://res.cloudinary.com/dlmqnnhp6/image/upload/v1574412123/pictures/rmlyfsabn1qxfcamv903.jpg",
-  //     },
-  //   },
-  //   status: "En attente admin",
-  //   titreInformatif: "Je découvre le marché du travail en France",
-  //   typeContenu: "demarche",
-  //   updatedAt: "2020-07-20T08:44:36.233Z",
-  //   _id: "5e70dbccdea008004e985e59",
-  // };
-
   const nbNonDeletedDispositifs =
     dispositifs.length > 0
       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
@@ -432,7 +392,22 @@ export const AdminContenu = () => {
                     className="align-middle"
                     onClick={() => setSelectedDispositifAndToggleModal(element)}
                   >
-                    <StyledStatus text="Nouveau" />
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                      {element.adminProgressionStatus ? (
+                        <div style={{ marginRight: "8px" }}>
+                          <StyledStatus text={element.adminProgressionStatus} />
+                        </div>
+                      ) : (
+                        <div style={{ marginRight: "8px" }}>
+                          <StyledStatus text="Nouveau !" />
+                        </div>
+                      )}
+                      {element.adminPercentageProgressionStatus && (
+                        <StyledStatus
+                          text={element.adminPercentageProgressionStatus}
+                        />
+                      )}
+                    </div>
                   </td>
                   <td
                     className="align-middle"
@@ -470,6 +445,13 @@ export const AdminContenu = () => {
         selectedDispositif={selectedDispositif}
         url={url}
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
+        setShowChangeStructureModal={setShowChangeStructureModal}
+      />
+      <ChangeStructureModal
+        show={showChangeStructureModal}
+        toggle={toggleShowChangeStructureModal}
+        dispositifId={selectedDispositif ? selectedDispositif._id : null}
+        dispositifStatus={selectedDispositif ? selectedDispositif.status : null}
       />
     </div>
   );

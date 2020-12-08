@@ -2,7 +2,6 @@ const { Dispositif } = require("../../schema/schemaDispositif");
 const Role = require("../../schema/schemaRole.js");
 const User = require("../../schema/schemaUser.js");
 const Traduction = require("../../schema/schemaTraduction");
-const { Structure } = require("../../schema/schemaStructure");
 const Error = require("../../schema/schemaError");
 var uniqid = require("uniqid");
 const {
@@ -20,7 +19,9 @@ const {
 } = require("./functions");
 const logger = require("../../logger");
 const { updateLanguagesAvancement } = require("../langues/langues.service");
-const { asyncForEach } = require("../../libs/asyncForEach");
+const {
+  updateAssociatedDispositifsInStructure,
+} = require("../structure/structure.repository");
 
 // const gmail_auth = require('./gmail_auth');
 
@@ -66,52 +67,6 @@ async function patch_dispositifs(req, res) {
     return res.status(500).json("KO");
   }
 }
-
-const updateAssociatedDispositifsInStructure = async (
-  dispositifId,
-  structureId
-) => {
-  logger.info("[updateAssociatedDispositifsInStructure] updating", {
-    dispositifId,
-    structureId,
-  });
-
-  // we add if not the case the dispositif to the correct structure
-  await Structure.findByIdAndUpdate(
-    { _id: structureId },
-    { $addToSet: { dispositifsAssocies: dispositifId } },
-    { new: true },
-    () => {}
-  );
-
-  const structureArrayWithDispoAssocie = await Structure.find({
-    dispositifsAssocies: dispositifId,
-  });
-
-  // if one structure it is the correct one
-  if (structureArrayWithDispoAssocie.length === 1) return;
-
-  // if more than 1, we have to remove the dispo from the wrong structures
-  await asyncForEach(structureArrayWithDispoAssocie, async (structure) => {
-    if (structure._id.toString() === structureId.toString()) return;
-    logger.info(
-      "[updateAssociatedDispositifsInStructure] remove dispositif associe from structure",
-      { structure: structure._id, dispositifId }
-    );
-    await Structure.findByIdAndUpdate(
-      { _id: structure._id },
-      { $pull: { dispositifsAssocies: dispositifId } },
-      { new: true },
-      () => {}
-    );
-    return;
-  });
-
-  logger.info(
-    "[updateAssociatedDispositifsInStructure] successfully updated structures"
-  );
-  return;
-};
 
 async function add_dispositif_infocards(req, res) {
   if (!req.fromSite) {

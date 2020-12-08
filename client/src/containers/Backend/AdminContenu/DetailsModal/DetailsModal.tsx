@@ -1,48 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Input } from "reactstrap";
 // @ts-ignore
 import "./DetailsModal.scss";
-import { Moment } from "moment";
 import { TypeContenu, StyledStatus } from "../components/SubComponents";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { ObjectId } from "mongodb";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
-import { Picture } from "../../../../@types/interface";
+import { SimplifiedDispositif } from "../../../../@types/interface";
 // @ts-ignore
 import variables from "scss/colors.scss";
 import marioProfile from "../../../../assets/mario-profile.jpg";
-interface SelectedDispositif {
-  titreInformatif: string;
-  titreMarque?: string;
-  updatedAt: Moment;
-  status: string;
-  typeContenu: string;
-  created_at: Moment;
-  publishedAt?: Moment;
-  _id: ObjectId;
-  lastAdminModificationDate?: Moment;
-  mainSponsor: null | {
-    _id: ObjectId;
-    nom: string;
-    status: string;
-    picture: Picture | undefined;
-  };
-  creatorId: {
-    username: string;
-    picture: Picture | undefined;
-    _id: ObjectId;
-  } | null;
-}
+import noStructure from "../../../../assets/noStructure.png";
+import { useSelector, useDispatch } from "react-redux";
+import { allDispositifsSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
+import API from "../../../../utils/API";
+import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
+
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedDispositif: SelectedDispositif;
+  selectedDispositif: SimplifiedDispositif | null;
   url: string;
   onDeleteClick: () => void;
+  setShowChangeStructureModal: (arg: boolean) => void;
 }
 
 const LeftPart = styled.div`
@@ -93,7 +76,8 @@ const Title = styled.div`
 `;
 
 const StructureContainer = styled.div`
-  background: ${variables.blancSimple};
+  background: ${(props) =>
+    props.noStructure ? variables.erreur : variables.blancSimple};
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -128,92 +112,184 @@ const CreatorContainer = styled.div`
 `;
 
 moment.locale("fr");
+const statusModifiable = ["En attente", "En attente admin"];
+
 export const DetailsModal = (props: Props) => {
   const selectedDispositif = props.selectedDispositif;
 
-  const getCreatorImage = (selectedDispositif: SelectedDispositif) =>
+  const [modifiedStatus, setModifiedStatus] = useState<string | null>(null);
+  const [adminComments, setAdminComments] = useState<string>("");
+  const [
+    adminProgressionStatusGroup1,
+    setAdminProgressionStatusGroup1,
+  ] = useState<string | null>(null);
+  const [
+    adminProgressionStatusGroup2,
+    setAdminProgressionStatusGroup2,
+  ] = useState<string | null>(null);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (selectedDispositif) {
+      if (selectedDispositif.adminComments) {
+        setAdminComments(selectedDispositif.adminComments);
+      }
+
+      if (selectedDispositif.adminProgressionStatus) {
+        setAdminProgressionStatusGroup1(
+          selectedDispositif.adminProgressionStatus
+        );
+      } else {
+        setAdminProgressionStatusGroup1("Nouveau !");
+      }
+      if (selectedDispositif.adminPercentageProgressionStatus) {
+        setAdminProgressionStatusGroup2(
+          selectedDispositif.adminPercentageProgressionStatus
+        );
+      }
+    }
+  }, [selectedDispositif]);
+
+  const dispositifs = useSelector(allDispositifsSelector);
+
+  const updatedDispositif = selectedDispositif
+    ? dispositifs.filter(
+        (dispositif) => dispositif._id === selectedDispositif._id
+      )
+    : null;
+
+  const getCreatorImage = (selectedDispositif: SimplifiedDispositif) =>
+    selectedDispositif &&
     selectedDispositif.creatorId &&
     selectedDispositif.creatorId.picture &&
     selectedDispositif.creatorId.picture.secure_url
       ? selectedDispositif.creatorId.picture.secure_url
       : marioProfile;
 
-  if (selectedDispositif) {
+  const modifyStatus = (newStatus: string) => {
+    if (statusModifiable.includes(newStatus)) {
+      return setModifiedStatus(newStatus);
+    }
+  };
+
+  const onNotesChange = (e: any) => setAdminComments(e.target.value);
+
+  const modifyProgressionStatus = (status: any) => {
+    if (status.group === 1) {
+      return setAdminProgressionStatusGroup1(status.storedStatus);
+    }
+    return setAdminProgressionStatusGroup2(status.storedStatus);
+  };
+  const toggle = () => {
+    setModifiedStatus(null);
+    props.toggleModal();
+  };
+  const onSaveClick = async (dispositif: SimplifiedDispositif) => {
+    if (modifiedStatus && modifiedStatus !== dispositif.status) {
+      const newDispositif = {
+        dispositifId: dispositif._id,
+        status: modifiedStatus,
+      };
+      await API.updateDispositifStatus({ query: newDispositif });
+    }
+    await API.updateDispositifAdminComments({
+      query: {
+        dispositifId: dispositif._id,
+        adminComments: adminComments || dispositif.adminComments,
+        adminProgressionStatus: adminProgressionStatusGroup1,
+        adminPercentageProgressionStatus: adminProgressionStatusGroup2,
+      },
+    });
+    dispatch(fetchAllDispositifsActionsCreator());
+    toggle();
+  };
+
+  if (
+    selectedDispositif &&
+    updatedDispositif &&
+    updatedDispositif.length === 1
+  ) {
+    const dispositif = updatedDispositif[0];
+
     const burl =
       props.url +
-      (selectedDispositif.typeContenu || "dispositif") +
+      (dispositif.typeContenu || "dispositif") +
       "/" +
-      selectedDispositif._id;
+      dispositif._id;
     return (
       <Modal
         isOpen={props.show}
-        toggle={props.toggleModal}
+        toggle={toggle}
         size="lg"
         className="details-modal"
       >
         <MainContainer>
           <RowContainer>
             <LeftPart>
-              <TitreInformatif>
-                {selectedDispositif.titreInformatif}
-              </TitreInformatif>
+              <TitreInformatif>{dispositif.titreInformatif}</TitreInformatif>
               <RowContainer>
-                {selectedDispositif.titreMarque && (
+                {dispositif.titreMarque && (
                   <TitreMarque>
                     <span style={{ color: variables.cardColor }}>avec </span>
-                    {selectedDispositif.titreMarque}
+                    {dispositif.titreMarque}
                   </TitreMarque>
                 )}
                 <TypeContenu
-                  type={selectedDispositif.typeContenu}
+                  type={dispositif.typeContenu}
                   isDetailedVue={true}
                 />
               </RowContainer>
               <Title>Statut</Title>
               <RowContainer>
-                {correspondingStatus.sort(compare).map((status) => (
-                  <div
-                    key={status.storedStatus}
-                    style={{
-                      marginRight: "8px",
-                      marginTop: "4px",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    <StyledStatus
-                      text={status.storedStatus}
-                      overrideColor={
-                        selectedDispositif.status !== status.storedStatus
-                      }
-                      textToDisplay={status.displayedStatus}
-                      color={status.color}
-                    />
-                  </div>
-                ))}
+                {correspondingStatus.sort(compare).map((status) => {
+                  const newStatus = modifiedStatus || dispositif.status;
+
+                  return (
+                    <div
+                      key={status.storedStatus}
+                      style={{
+                        marginRight: "8px",
+                        marginTop: "4px",
+                        marginBottom: "4px",
+                      }}
+                      onClick={() => modifyStatus(status.storedStatus)}
+                    >
+                      <StyledStatus
+                        text={status.storedStatus}
+                        overrideColor={newStatus !== status.storedStatus}
+                        textToDisplay={status.displayedStatus}
+                        color={status.color}
+                        disabled={
+                          !statusModifiable.includes(status.storedStatus)
+                        }
+                      />
+                    </div>
+                  );
+                })}
               </RowContainer>
               <Title>Dernière mise à jour</Title>
-              {`${moment(selectedDispositif.updatedAt).format(
-                "LLL"
-              )} soit ${moment(selectedDispositif.updatedAt).fromNow()}`}
+              {`${moment(dispositif.updatedAt).format("LLL")} soit ${moment(
+                dispositif.updatedAt
+              ).fromNow()}`}
               <Title>Date de publication</Title>
-              {selectedDispositif.publishedAt
-                ? `${moment(selectedDispositif.publishedAt).format(
+              {dispositif.publishedAt
+                ? `${moment(dispositif.publishedAt).format(
                     "LLL"
-                  )} soit ${moment(selectedDispositif.publishedAt).fromNow()}`
+                  )} soit ${moment(dispositif.publishedAt).fromNow()}`
                 : "Non disponible"}
               <Title>Date de création</Title>
-              {`${moment(selectedDispositif.created_at).format(
-                "LLL"
-              )} soit ${moment(selectedDispositif.created_at).fromNow()}`}
+              {`${moment(dispositif.created_at).format("LLL")} soit ${moment(
+                dispositif.created_at
+              ).fromNow()}`}
               <Title>Créateur</Title>
               <CreatorContainer>
                 <img
                   className="creator-img"
-                  src={getCreatorImage(selectedDispositif)}
+                  src={getCreatorImage(dispositif)}
                 />
 
-                {selectedDispositif.creatorId &&
-                  selectedDispositif.creatorId.username}
+                {dispositif.creatorId && dispositif.creatorId.username}
               </CreatorContainer>
             </LeftPart>
             <RightPart>
@@ -227,12 +303,17 @@ export const DetailsModal = (props: Props) => {
                       marginTop: "4px",
                       marginBottom: "4px",
                     }}
+                    onClick={() => modifyProgressionStatus(status)}
                   >
                     <StyledStatus
                       text={status.storedStatus}
                       textToDisplay={status.displayedStatus}
                       color={status.color}
                       textColor={status.textColor}
+                      overrideColor={
+                        status.storedStatus !== adminProgressionStatusGroup1 &&
+                        status.storedStatus !== adminProgressionStatusGroup2
+                      }
                     />
                   </div>
                 ))}
@@ -242,38 +323,57 @@ export const DetailsModal = (props: Props) => {
                 type="textarea"
                 placeholder="Rédigez un court paragraphe sur votre structure"
                 rows={5}
-                value={""}
-                // onChange={onChange}
-                id="description"
+                value={adminComments}
+                onChange={onNotesChange}
+                id="note"
               />
               <Title>Dernière action d'administrateur</Title>
-              {selectedDispositif.lastAdminModificationDate
-                ? `${moment(
-                    selectedDispositif.lastAdminModificationDate
-                  ).format("LLL")} soit ${moment(
-                    selectedDispositif.lastAdminModificationDate
-                  ).fromNow()}`
+              {dispositif.lastAdminUpdate
+                ? `${moment(dispositif.lastAdminUpdate).format(
+                    "LLL"
+                  )} soit ${moment(dispositif.lastAdminUpdate).fromNow()}`
                 : "Non disponible"}
               <Title>Structure responsable</Title>
-              {selectedDispositif.mainSponsor && (
+              {dispositif.mainSponsor && (
                 <StructureContainer>
-                  {selectedDispositif.mainSponsor.nom}
+                  {dispositif.mainSponsor.nom}
                   <LogoContainer spaceBetween={true}>
-                    {selectedDispositif.mainSponsor &&
-                      selectedDispositif.mainSponsor.picture &&
-                      selectedDispositif.mainSponsor.picture.secure_url && (
+                    {dispositif.mainSponsor &&
+                      dispositif.mainSponsor.picture &&
+                      dispositif.mainSponsor.picture.secure_url && (
                         <img
                           className="sponsor-img"
                           src={
-                            (selectedDispositif.mainSponsor.picture || {})
-                              .secure_url
+                            (dispositif.mainSponsor.picture || {}).secure_url
                           }
-                          alt={selectedDispositif.mainSponsor.nom}
+                          alt={dispositif.mainSponsor.nom}
                         />
                       )}
                     <div>
-                      <FButton name="edit-outline" type="outline-black">
+                      <FButton
+                        name="edit-outline"
+                        type="outline-black"
+                        onClick={() => props.setShowChangeStructureModal(true)}
+                      >
                         Modifier
+                      </FButton>
+                    </div>
+                  </LogoContainer>
+                </StructureContainer>
+              )}
+              {!dispositif.mainSponsor && (
+                <StructureContainer noStructure={true}>
+                  Aucune structure définie !
+                  <LogoContainer spaceBetween={true}>
+                    <img className="sponsor-img" src={noStructure} />
+
+                    <div>
+                      <FButton
+                        name="edit-outline"
+                        type="outline-black"
+                        onClick={() => props.setShowChangeStructureModal(true)}
+                      >
+                        Choisir
                       </FButton>
                     </div>
                   </LogoContainer>
@@ -306,12 +406,16 @@ export const DetailsModal = (props: Props) => {
               <FButton
                 className="mr-8"
                 type="white"
-                onClick={props.toggleModal}
+                onClick={toggle}
                 name="close-outline"
               >
                 Annuler
               </FButton>
-              <FButton type="validate" name="checkmark-outline">
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                onClick={() => onSaveClick(dispositif)}
+              >
                 Enregistrer
               </FButton>
             </div>
