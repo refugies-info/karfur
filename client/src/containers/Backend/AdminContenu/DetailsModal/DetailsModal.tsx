@@ -328,12 +328,10 @@ export const DetailsModal = (props: Props) => {
                 id="note"
               />
               <Title>Dernière action d'administrateur</Title>
-              {dispositif.lastAdminModificationDate
-                ? `${moment(dispositif.lastAdminModificationDate).format(
+              {dispositif.lastAdminUpdate
+                ? `${moment(dispositif.lastAdminUpdate).format(
                     "LLL"
-                  )} soit ${moment(
-                    dispositif.lastAdminModificationDate
-                  ).fromNow()}`
+                  )} soit ${moment(dispositif.lastAdminUpdate).fromNow()}`
                 : "Non disponible"}
               <Title>Structure responsable</Title>
               {dispositif.mainSponsor && (

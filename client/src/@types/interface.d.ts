@@ -14,7 +14,6 @@ export interface SimplifiedDispositif {
   created_at: Moment;
   publishedAt?: Moment;
   _id: ObjectId;
-  lastAdminModificationDate?: Moment;
   mainSponsor: null | {
     _id: ObjectId;
     nom: string;

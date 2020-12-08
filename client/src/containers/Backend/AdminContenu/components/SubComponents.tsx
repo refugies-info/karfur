@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
 import { limitNbCaracters } from "../../../../lib";
-import { correspondingStatus } from "../data";
+import { correspondingStatus, progressionData } from "../data";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 // @ts-ignore
 import variables from "scss/colors.scss";
@@ -138,6 +138,16 @@ const getColorAndStatus = (text: string) => {
       status: correspondingStatusElement[0].displayedStatus,
       color: correspondingStatusElement[0].color,
       textColor: correspondingStatusElement[0].textColor,
+    };
+
+  const correspondingStatusElementProgression = progressionData.filter(
+    (element) => element.storedStatus === text
+  );
+  if (correspondingStatusElementProgression.length > 0)
+    return {
+      status: correspondingStatusElementProgression[0].displayedStatus,
+      color: correspondingStatusElementProgression[0].color,
+      textColor: correspondingStatusElementProgression[0].textColor,
     };
 
   return {
