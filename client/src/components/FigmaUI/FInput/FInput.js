@@ -23,6 +23,7 @@ const FInput = (props) => {
         <Input
           autoFocus={autoFocus}
           id={props.id}
+          rows={props.rows}
           type={props.type}
           placeholder={props.placeholder}
           value={props.value}

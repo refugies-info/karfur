@@ -44,6 +44,7 @@ export interface PropsBeforeInjection {
   ttsActive: any;
   filtres: any;
   toggleTutorielModal: (arg: string) => void;
+  toggleGeolocModal: () => void;
   displayTuto: boolean;
   addMapBtn: boolean;
   printing: boolean;
