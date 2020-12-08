@@ -17,11 +17,12 @@ import variables from "scss/colors.scss";
 
 const CreationContent = (props) => (
   <div className="creation-content">
+    <span className="bg-attention2 compulsory">
+      <sup>*</sup> Champs obligatoires
+    </span>
     <div className="form-field">
-      <b>Nom de votre structure</b>
-      <span className="float-right">
-        <sup>*</sup> Champs obligatoires
-      </span>
+      <b>Nom de la structure à créer&#42;</b>
+
       <Row>
         <Col lg="9" md="9" sm="12" xs="12">
           <InputGroup>
@@ -32,14 +33,14 @@ const CreationContent = (props) => (
             />
             <Input
               id="nom"
-              placeholder="Nom de la structure&#42;"
+              placeholder="Nom complet de la structure"
               value={props.nom}
               onChange={props.handleChange}
               name="structure"
             />
           </InputGroup>
         </Col>
-        <Col lg="3" md="3" sm="12" xs="12">
+        {/*  <Col lg="3" md="3" sm="12" xs="12">
           <InputGroup>
             <EVAIcon
               className="input-icon"
@@ -54,9 +55,9 @@ const CreationContent = (props) => (
               name="structure"
             />
           </InputGroup>
-        </Col>
+        </Col> */}
       </Row>
-      <InputGroup>
+      {/*  <InputGroup>
         <EVAIcon
           className="input-icon"
           name="link-outline"
@@ -69,45 +70,39 @@ const CreationContent = (props) => (
           onChange={props.handleChange}
           name="structure"
         />
-      </InputGroup>
+      </InputGroup> */}
     </div>
     <div className="form-field">
-      <b>Contact unique</b>
-      <span className="float-right">
-        Entrez vos coordonnées ou celles d’un responsable légal
-      </span>
-      <InputGroup>
+      <b style={{ fontSize: "22px" }}>Contact unique</b>
+      <div className="warning-bloc bg-attention2 mt-16">
         <EVAIcon
-          className="input-icon"
-          name="person-outline"
+          name="info-outline"
           fill={variables.noir}
+          className="info-icon"
         />
-        <Input
-          id="contact"
-          placeholder="Nom et prénom du contact&#42;"
-          value={props.contact}
-          onChange={props.handleChange}
-          name="structure"
-        />
-      </InputGroup>
-      <Row>
-        <Col lg="8" md="8" sm="12" xs="12">
+        Notre équipe va contacter au plus vite ce contact unique pour l’informer
+        de la validation de la structure.&nbsp;
+      </div>
+      <Row className={"mt-16 mb-16"}>
+        <Col lg="7" md="7" sm="12" xs="12">
+          <b >Nom et prénom&#42;</b>
           <InputGroup>
             <EVAIcon
               className="input-icon"
-              name="at-outline"
+              name="person-outline"
               fill={variables.noir}
             />
             <Input
-              id="mail_contact"
-              placeholder="Email&#42;"
-              value={props.mail_contact}
+              id="contact"
+              placeholder="Nom et prénom du contact&#42;"
+              value={props.contact}
               onChange={props.handleChange}
               name="structure"
             />
           </InputGroup>
         </Col>
-        <Col lg="4" md="4" sm="12" xs="12">
+        <Col lg="5" md="5" sm="12" xs="12">
+          <b>Téléphone&#42;</b>
           <InputGroup>
             <EVAIcon
               className="input-icon"
@@ -116,7 +111,7 @@ const CreationContent = (props) => (
             />
             <Input
               id="phone_contact"
-              placeholder="Téléphone"
+              placeholder="Numéro de téléphone"
               value={props.phone_contact}
               onChange={props.handleChange}
               name="structure"
@@ -124,8 +119,23 @@ const CreationContent = (props) => (
           </InputGroup>
         </Col>
       </Row>
+      <b style={{ marginTop: "16px" }}>Email&#42;</b>
+      <InputGroup>
+        <EVAIcon
+          className="input-icon"
+          name="at-outline"
+          fill={variables.noir}
+        />
+        <Input
+          id="mail_contact"
+          placeholder="Email du contact"
+          value={props.mail_contact}
+          onChange={props.handleChange}
+          name="structure"
+        />
+      </InputGroup>
     </div>
-    <div className="form-field belongs-wrapper">
+{/*     <div className="form-field belongs-wrapper">
       <b>
         {props.adminView
           ? "Le créateur fait-il partie de la structure ?"
@@ -153,7 +163,7 @@ const CreationContent = (props) => (
           </Label>
         </FormGroup>
       </div>
-    </div>
+    </div> */}
 
     {props.adminView && (
       <>
