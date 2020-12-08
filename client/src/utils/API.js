@@ -223,6 +223,16 @@ export default {
       headers,
     }),
 
+  modifyDispositifMainSponsor: (query) =>
+    axios.post(burl + "/dispositifs/modifyDispositifMainSponsor", query, {
+      headers,
+    }),
+
+  updateDispositifAdminComments: (query) =>
+    axios.post(burl + "/dispositifs/updateDispositifAdminComments", query, {
+      headers,
+    }),
+
   create_structure: (query) => {
     return axios.post(burl + "/structures/add_structure", query, {
       headers: headers,

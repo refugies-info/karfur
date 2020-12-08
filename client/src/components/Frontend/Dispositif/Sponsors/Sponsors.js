@@ -137,10 +137,16 @@ const SponsorCard = styled.div`
 
   background: ${(props) => (props.add ? "#F9EF99" : "#eaeaea")};
   border-radius: 12px;
-  cursor: ${(props) => (props.add || props.disableEdit ? "pointer" : "auto")};
+  cursor: ${(props) =>
+    (props.add || props.disableEdit) && !props.nolink ? "pointer" : "auto"};
 `;
 
-const burl = process.env.REACT_APP_SERVER_URL;
+const burl =
+  process.env.REACT_APP_ENV === "development"
+    ? "http://localhost:3000/"
+    : process.env.REACT_APP_ENV === "staging"
+    ? "https://staging.refugies.info/"
+    : "https://www.refugies.info/";
 
 class Sponsors extends Component {
   state = {
@@ -285,12 +291,16 @@ class Sponsors extends Component {
         "mail_contact",
         "phone_contact",
         "authorBelongs",
+        "picture",
       ];
     fields.forEach((x) =>
       this.state.structure[x] !== ""
         ? (structure[x] = this.state.structure[x])
         : false
     );
+    if (this.state.imgData) {
+      structure.picture = this.state.imgData
+    };
     API.create_structure(structure).then((data) => {
       this.props.addMainSponsor(data.data.data);
       this.toggleModal("envoye");
@@ -448,13 +458,13 @@ class Sponsors extends Component {
         </div>
         <Row className="sponsor-images">
           <SponsorContainer>
-            {(deduplicatedSponsors.length !== 0 || !disableEdit)? (
+            {deduplicatedSponsors.length !== 0 || !disableEdit ? (
               <SectionTitle>Responsable</SectionTitle>
             ) : null}
             {mainSponsor._id ? (
               <SponsorCard disableEdit={disableEdit}>
                 <ImageLink
-                  href={`${burl}/annuaire/${mainSponsor._id}`}
+                  href={`${burl}annuaire/${mainSponsor._id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -504,6 +514,11 @@ class Sponsors extends Component {
                     onClick={() => {
                       this.props.toggleFinalValidation();
                       this.toggleModal("img-modal");
+                      this.setState({
+                        picture: {},
+                        link: "",
+                        nom: "",
+                      });
                     }}
                     add
                     disableEdit={disableEdit}
@@ -520,22 +535,36 @@ class Sponsors extends Component {
                 ) : null}
                 {deduplicatedSponsors.map((sponsor, key) => {
                   return (
-                    <SponsorCard disableEdit={disableEdit} key={key}>
-                      <ImageLink
-                        href={
-                          ((sponsor.link || "").includes("http")
-                            ? ""
-                            : "http://") + sponsor.link
-                        }
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          className="sponsor-img"
-                          src={sponsor.picture.secure_url}
-                          alt={sponsor.alt}
-                        />
-                      </ImageLink>
+                    <SponsorCard
+                      nolink={!sponsor.link}
+                      disableEdit={disableEdit}
+                      key={key}
+                    >
+                      {sponsor.link ? (
+                        <ImageLink
+                          href={
+                            ((sponsor.link || "").includes("http")
+                              ? ""
+                              : "http://") + sponsor.link
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            className="sponsor-img"
+                            src={sponsor.picture.secure_url}
+                            alt={sponsor.alt}
+                          />
+                        </ImageLink>
+                      ) : (
+                        <ImageLink>
+                          <img
+                            className="sponsor-img"
+                            src={sponsor.picture.secure_url}
+                            alt={sponsor.alt}
+                          />
+                        </ImageLink>
+                      )}
                       <SponsorTitle>{sponsor.nom}</SponsorTitle>
                       {!disableEdit ? (
                         <SponsorListContainer>
@@ -643,6 +672,11 @@ class Sponsors extends Component {
                   onClick={() => {
                     this.props.toggleFinalValidation();
                     this.toggleModal("img-modal");
+                    this.setState({
+                      picture: {},
+                      link: "",
+                      nom: "",
+                    });
                   }}
                   add
                   disableEdit={disableEdit}
@@ -874,41 +908,75 @@ class Sponsors extends Component {
           toggleModal={this.toggleModal}
           modal={{ name: "creation" }}
           keyValue={2}
+          className="modal-sponsors"
           title="Créer une structure"
-          lowerLeftBtn={
-            <FButton
-              type="outline-black"
-              name="search-outline"
-              fill={variables.noir}
-              onClick={() => this.toggleModal("responsabilite")}
-            >
-              Rechercher une structure
-            </FButton>
-          }
-          lowerRightBtn={
-            <FButton
-              type="validate"
-              name="plus-circle-outline"
-              onClick={this.createStructure}
-            >
-              Ajouter
-            </FButton>
-          }
         >
           <CreationContent
             handleChange={this.handleChange}
             handleBelongsChange={this.handleBelongsChange}
             {...this.state.structure}
           />
-          <div className="warning-bloc bg-attention">
-            <EVAIcon
-              name="info-outline"
-              fill={variables.noir}
-              className="info-icon"
-            />
-            Notre équipe va vous contacter d’ici 7 jours pour confirmer la
-            création. Vous allez recevoir un e-mail de confirmation.&nbsp;
-            <b>Bienvenue !</b>
+          <div className="form-field inline-div">
+            <span style={{fontSize: 22}}>Ajouter un logo</span>
+            {this.state.imgData.secure_url ? (
+              <div className="image-wrapper">
+                <img
+                  className="sponsor-img"
+                  src={this.state.imgData.secure_url}
+                  alt={this.state.imgData.alt}
+                />
+                <FButton
+                className="upload-btn"
+                type="theme"
+                name="upload-outline"
+              >
+                <Input
+                  className="file-input"
+                  type="file"
+                  id="picture"
+                  name="user"
+                  accept="image/*"
+                  onChange={this.handleFileInputChange}
+                />
+                <span>Choisir</span>
+                {this.state.sponsorLoading && (
+                  <Spinner size="sm" color="green" className="ml-10" />
+                )}
+              </FButton>
+                {this.state.sponsorLoading && <Spinner size="sm" color="green" />}
+              </div>
+            ) : (
+              <FButton
+                className="upload-btn"
+                type="theme"
+                name="upload-outline"
+              >
+                <Input
+                  className="file-input"
+                  type="file"
+                  id="picture"
+                  name="user"
+                  accept="image/*"
+                  onChange={this.handleFileInputChange}
+                />
+                <span>Choisir</span>
+                {this.state.sponsorLoading && (
+                  <Spinner size="sm" color="green" className="ml-10" />
+                )}
+              </FButton>
+            )}
+          </div>
+          <div className="btn-footer">
+            <FButton onClick={this.toggleModal} type="default" className="mr-8">
+              Annuler
+            </FButton>
+            <FButton
+              onClick={this.createStructure}
+              type="validate"
+              name="checkmark-outline"
+            >
+              Valider
+            </FButton>
           </div>
         </CustomModal>
 
@@ -1058,7 +1126,7 @@ const ImgModal = (props) => (
   >
     <div className="form-field inline-div">
       <span>Ajouter un logo</span>
-      {props.imgData.src ? (
+      {props.imgData.secure_url ? (
         <div className="image-wrapper">
           <Input
             className="file-input"
@@ -1070,10 +1138,10 @@ const ImgModal = (props) => (
           />
           <img
             className="sponsor-img"
-            src={props.imgData.src}
+            src={props.imgData.secure_url}
             alt={props.imgData.alt}
           />
-          {props.sponsorLoading && <Spinner color="green" />}
+          {props.sponsorLoading && <Spinner size="sm" color="green" />}
         </div>
       ) : (
         <FButton className="upload-btn" type="theme" name="upload-outline">
@@ -1086,7 +1154,7 @@ const ImgModal = (props) => (
             onChange={props.handleFileInputChange}
           />
           <span>Choisir</span>
-          {props.sponsorLoading && <Spinner color="green" className="ml-10" />}
+          {props.sponsorLoading && <Spinner size="sm" color="green" className="ml-10" />}
         </FButton>
       )}
     </div>
@@ -1095,7 +1163,7 @@ const ImgModal = (props) => (
       <InputGroup>
         <EVAIcon
           className="input-icon"
-          name="eye-off-outline"
+          name="briefcase-outline"
           fill={variables.noir}
         />
         <Input
@@ -1131,6 +1199,9 @@ const ImgModal = (props) => (
       </InputGroup>
     </div>
     <div className="btn-footer">
+      <FButton onClick={props.toggleModal} type="default" className="mr-8">
+        Annuler
+      </FButton>
       <FButton
         onClick={() =>
           props.edit
@@ -1138,12 +1209,9 @@ const ImgModal = (props) => (
             : props.addSponsor(true)
         }
         type="validate"
-        name="checkmark-circle-2-outline"
+        name="checkmark-outline"
       >
         Valider
-      </FButton>
-      <FButton onClick={props.toggleModal} type="default" className="ml-10">
-        Annuler
       </FButton>
     </div>
   </Modal>
