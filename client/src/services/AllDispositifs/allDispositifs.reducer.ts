@@ -1,8 +1,8 @@
-import { Dispositif } from "../../@types/interface";
+import { SimplifiedDispositif } from "../../@types/interface";
 import { createReducer } from "typesafe-actions";
 import { AllDispositifsActions } from "./allDispositifs.actions";
 
-export type AllDispositifsState = Dispositif[];
+export type AllDispositifsState = SimplifiedDispositif[];
 
 export const initialAllDispositifsState: AllDispositifsState = [];
 
