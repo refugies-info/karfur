@@ -96,6 +96,8 @@ export interface PropsBeforeInjection {
   toggleTutorielModal: () => void;
   location: any;
   admin: boolean;
+  toggleGeolocModal: (arg1: boolean) => void;
+  showGeolocModal: boolean;
 }
 type StateType = {
   isDropdownOpen: boolean;
@@ -496,7 +498,7 @@ export class CardParagraphe extends Component<Props> {
               type="precision"
               className={"mb-8"}
               //name="plus-circle-outline"
-              onClick={() => this.toggleGeolocModal(true)}
+              onClick={() => this.props.toggleGeolocModal(true)}
             >
               <ButtonTextBody>{"Sélectionner"}</ButtonTextBody>
             </FButton>
@@ -765,8 +767,8 @@ export class CardParagraphe extends Component<Props> {
         <GeolocModal
           validateDepartments={this.validateDepartments}
           departments={subitem.departments}
-          hideModal={() => this.toggleGeolocModal(false)}
-          show={this.state.showGeolocModal}
+          hideModal={() => this.props.toggleGeolocModal(false)}
+          show={this.props.showGeolocModal}
           toggleTutorielModal={this.props.toggleTutorielModal}
         />
       </>

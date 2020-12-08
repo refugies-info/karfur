@@ -102,6 +102,8 @@ const contenuParagraphe = (props) => {
                   mainTag={bprops.mainTag}
                   toggleTutorielModal={props.toggleTutorielModal}
                   admin={props.admin}
+                  toggleGeolocModal={props.toggleGeolocModal}
+                  showGeolocModal={props.showGeolocModal}
                 />
               ) : subitem.type === "map" && !bprops.printing ? (
                 <MapParagraphe

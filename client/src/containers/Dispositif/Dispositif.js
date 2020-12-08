@@ -142,6 +142,7 @@ export class Dispositif extends Component {
     isAuth: false,
     showDispositifCreateModal: false,
     showDispositifValidateModal: false,
+    showGeolocModal: false,
     showTagsModal: false,
     showTutorielModal: false,
     showDraftModal: false,
@@ -514,6 +515,10 @@ export class Dispositif extends Component {
         document.getElementById("titreMarque").focus();
       }
     }
+  };
+
+  toggleGeolocModal = (show) => {
+    this.setState({ showGeolocModal: show });
   };
 
   handleModalChange = (ev) =>
@@ -2008,6 +2013,8 @@ export class Dispositif extends Component {
                   addMapBtn={this.state.addMapBtn}
                   printing={printing}
                   admin={this.props.admin}
+                  toggleGeolocModal={this.toggleGeolocModal}
+                  showGeolocModal={this.state.showGeolocModal}
                   // TO DO : remove spread state
                   {...this.state}
                 />
@@ -2163,10 +2170,12 @@ export class Dispositif extends Component {
               tags={this.state.tags}
               sponsors={this.state.sponsors}
               mainSponsor={this.state.mainSponsor}
+              menu={this.state.menu}
               toggleTagsModal={this.toggleTagsModal}
               toggleSponsorModal={() =>
                 this.sponsors.current.toggleModal("responsabilite")
               }
+              toggleGeolocModal={this.toggleGeolocModal}
             />
             <TagsModal
               tags={this.state.tags}
