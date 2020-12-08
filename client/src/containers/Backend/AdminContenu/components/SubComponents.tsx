@@ -125,7 +125,7 @@ export const StyledStatusContainer = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   color: ${(props) =>
     props.textColor ? props.textColor : variables.blancSimple};
 `;
@@ -152,6 +152,7 @@ export const StyledStatus = (props: {
   textToDisplay?: string;
   color?: string;
   textColor?: string;
+  disabled?: boolean;
 }) => {
   const color = props.overrideColor
     ? variables.cardColor
@@ -169,7 +170,11 @@ export const StyledStatus = (props: {
     ? props.textColor
     : getColorAndStatus(props.text).textColor;
   return (
-    <StyledStatusContainer color={color} textColor={textColor}>
+    <StyledStatusContainer
+      color={color}
+      textColor={textColor}
+      disabled={props.disabled}
+    >
       {status}
     </StyledStatusContainer>
   );

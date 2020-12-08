@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Input } from "reactstrap";
 // @ts-ignore
 import "./DetailsModal.scss";
-import { Moment } from "moment";
 import { TypeContenu, StyledStatus } from "../components/SubComponents";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import { ObjectId } from "mongodb";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 // @ts-ignore
@@ -16,8 +14,10 @@ import { SimplifiedDispositif } from "../../../../@types/interface";
 import variables from "scss/colors.scss";
 import marioProfile from "../../../../assets/mario-profile.jpg";
 import noStructure from "../../../../assets/noStructure.png";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { allDispositifsSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
+import API from "../../../../utils/API";
+import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 
 interface Props {
   show: boolean;
@@ -112,8 +112,44 @@ const CreatorContainer = styled.div`
 `;
 
 moment.locale("fr");
+const statusModifiable = ["En attente", "En attente admin"];
+
 export const DetailsModal = (props: Props) => {
   const selectedDispositif = props.selectedDispositif;
+
+  const [modifiedStatus, setModifiedStatus] = useState<string | null>(null);
+  const [adminComments, setAdminComments] = useState<string>("");
+  const [
+    adminProgressionStatusGroup1,
+    setAdminProgressionStatusGroup1,
+  ] = useState<string | null>(null);
+  const [
+    adminProgressionStatusGroup2,
+    setAdminProgressionStatusGroup2,
+  ] = useState<string | null>(null);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (selectedDispositif) {
+      if (selectedDispositif.adminComments) {
+        setAdminComments(selectedDispositif.adminComments);
+      }
+
+      if (selectedDispositif.adminProgressionStatus) {
+        setAdminProgressionStatusGroup1(
+          selectedDispositif.adminProgressionStatus
+        );
+      } else {
+        setAdminProgressionStatusGroup1("Nouveau !");
+      }
+      if (selectedDispositif.adminPercentageProgressionStatus) {
+        setAdminProgressionStatusGroup2(
+          selectedDispositif.adminPercentageProgressionStatus
+        );
+      }
+    }
+  }, [selectedDispositif]);
 
   const dispositifs = useSelector(allDispositifsSelector);
 
@@ -131,12 +167,51 @@ export const DetailsModal = (props: Props) => {
       ? selectedDispositif.creatorId.picture.secure_url
       : marioProfile;
 
+  const modifyStatus = (newStatus: string) => {
+    if (statusModifiable.includes(newStatus)) {
+      return setModifiedStatus(newStatus);
+    }
+  };
+
+  const onNotesChange = (e: any) => setAdminComments(e.target.value);
+
+  const modifyProgressionStatus = (status: any) => {
+    if (status.group === 1) {
+      return setAdminProgressionStatusGroup1(status.storedStatus);
+    }
+    return setAdminProgressionStatusGroup2(status.storedStatus);
+  };
+  const toggle = () => {
+    setModifiedStatus(null);
+    props.toggleModal();
+  };
+  const onSaveClick = async (dispositif: SimplifiedDispositif) => {
+    if (modifiedStatus && modifiedStatus !== dispositif.status) {
+      const newDispositif = {
+        dispositifId: dispositif._id,
+        status: modifiedStatus,
+      };
+      await API.updateDispositifStatus({ query: newDispositif });
+    }
+    await API.updateDispositifAdminComments({
+      query: {
+        dispositifId: dispositif._id,
+        adminComments: adminComments || dispositif.adminComments,
+        adminProgressionStatus: adminProgressionStatusGroup1,
+        adminPercentageProgressionStatus: adminProgressionStatusGroup2,
+      },
+    });
+    dispatch(fetchAllDispositifsActionsCreator());
+    toggle();
+  };
+
   if (
     selectedDispositif &&
     updatedDispositif &&
     updatedDispositif.length === 1
   ) {
     const dispositif = updatedDispositif[0];
+
     const burl =
       props.url +
       (dispositif.typeContenu || "dispositif") +
@@ -145,7 +220,7 @@ export const DetailsModal = (props: Props) => {
     return (
       <Modal
         isOpen={props.show}
-        toggle={props.toggleModal}
+        toggle={toggle}
         size="lg"
         className="details-modal"
       >
@@ -167,23 +242,31 @@ export const DetailsModal = (props: Props) => {
               </RowContainer>
               <Title>Statut</Title>
               <RowContainer>
-                {correspondingStatus.sort(compare).map((status) => (
-                  <div
-                    key={status.storedStatus}
-                    style={{
-                      marginRight: "8px",
-                      marginTop: "4px",
-                      marginBottom: "4px",
-                    }}
-                  >
-                    <StyledStatus
-                      text={status.storedStatus}
-                      overrideColor={dispositif.status !== status.storedStatus}
-                      textToDisplay={status.displayedStatus}
-                      color={status.color}
-                    />
-                  </div>
-                ))}
+                {correspondingStatus.sort(compare).map((status) => {
+                  const newStatus = modifiedStatus || dispositif.status;
+
+                  return (
+                    <div
+                      key={status.storedStatus}
+                      style={{
+                        marginRight: "8px",
+                        marginTop: "4px",
+                        marginBottom: "4px",
+                      }}
+                      onClick={() => modifyStatus(status.storedStatus)}
+                    >
+                      <StyledStatus
+                        text={status.storedStatus}
+                        overrideColor={newStatus !== status.storedStatus}
+                        textToDisplay={status.displayedStatus}
+                        color={status.color}
+                        disabled={
+                          !statusModifiable.includes(status.storedStatus)
+                        }
+                      />
+                    </div>
+                  );
+                })}
               </RowContainer>
               <Title>Dernière mise à jour</Title>
               {`${moment(dispositif.updatedAt).format("LLL")} soit ${moment(
@@ -220,12 +303,17 @@ export const DetailsModal = (props: Props) => {
                       marginTop: "4px",
                       marginBottom: "4px",
                     }}
+                    onClick={() => modifyProgressionStatus(status)}
                   >
                     <StyledStatus
                       text={status.storedStatus}
                       textToDisplay={status.displayedStatus}
                       color={status.color}
                       textColor={status.textColor}
+                      overrideColor={
+                        status.storedStatus !== adminProgressionStatusGroup1 &&
+                        status.storedStatus !== adminProgressionStatusGroup2
+                      }
                     />
                   </div>
                 ))}
@@ -235,9 +323,9 @@ export const DetailsModal = (props: Props) => {
                 type="textarea"
                 placeholder="Rédigez un court paragraphe sur votre structure"
                 rows={5}
-                value={""}
-                // onChange={onChange}
-                id="description"
+                value={adminComments}
+                onChange={onNotesChange}
+                id="note"
               />
               <Title>Dernière action d'administrateur</Title>
               {dispositif.lastAdminModificationDate
@@ -320,12 +408,16 @@ export const DetailsModal = (props: Props) => {
               <FButton
                 className="mr-8"
                 type="white"
-                onClick={props.toggleModal}
+                onClick={toggle}
                 name="close-outline"
               >
                 Annuler
               </FButton>
-              <FButton type="validate" name="checkmark-outline">
+              <FButton
+                type="validate"
+                name="checkmark-outline"
+                onClick={() => onSaveClick(dispositif)}
+              >
                 Enregistrer
               </FButton>
             </div>

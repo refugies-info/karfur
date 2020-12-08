@@ -7,9 +7,8 @@ import {
 import { Res, RequestFromClient, IDispositif } from "../../types/interface";
 import {
   getDispositifsFromDB,
-  updateDispositifStatusInDB,
   getDispositifArray,
-  updateDispositifMainSponsorInDB,
+  updateDispositifInDB,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
 import { updateAssociatedDispositifsInStructure } from "../structure/structure.repository";
@@ -90,6 +89,10 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       typeContenu: 1,
       created_at: 1,
       publishedAt: 1,
+      adminComments: 1,
+      adminProgressionStatus: 1,
+      adminPercentageProgressionStatus: 1,
+      lastAdminUpdate: 1,
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);
@@ -172,7 +175,7 @@ export const updateDispositifStatus = async (
     } else {
       newDispositif = { status };
     }
-    await updateDispositifStatusInDB(dispositifId, newDispositif);
+    await updateDispositifInDB(dispositifId, newDispositif);
     res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[updateDispositifStatus] error", { error });
@@ -214,13 +217,60 @@ export const modifyDispositifMainSponsor = async (
       mainSponsor: sponsorId,
       status: status === "En attente non prioritaire" ? "En attente" : status,
     };
-    await updateDispositifMainSponsorInDB(dispositifId, modifiedDispositif);
+    await updateDispositifInDB(dispositifId, modifiedDispositif);
 
     await updateAssociatedDispositifsInStructure(dispositifId, sponsorId);
 
     res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[modifyDispositifMainSponsor] error", { error });
+    return res.status(500).json({ text: "Erreur interne" });
+  }
+};
+
+interface QueryModifyAdmin {
+  dispositifId: ObjectId;
+  adminComments: string;
+  adminProgressionStatus: string;
+  adminPercentageProgressionStatus: string;
+}
+export const updateDispositifAdminComments = async (
+  req: RequestFromClient<QueryModifyAdmin>,
+  res: Res
+) => {
+  try {
+    if (!req.fromSite) {
+      return res.status(405).json({ text: "Requête bloquée par API" });
+    } else if (!req.body || !req.body.query || !req.body.query.dispositifId) {
+      return res.status(400).json({ text: "Requête invalide" });
+    }
+
+    const {
+      dispositifId,
+      adminComments,
+      adminProgressionStatus,
+      adminPercentageProgressionStatus,
+    } = req.body.query;
+
+    logger.info("[updateDispositifAdminComments]", {
+      dispositifId,
+      adminComments,
+      adminProgressionStatus,
+      adminPercentageProgressionStatus,
+    });
+
+    const modifiedDispositif = {
+      adminComments,
+      adminProgressionStatus,
+      adminPercentageProgressionStatus,
+      lastAdminUpdate: Date.now(),
+    };
+
+    await updateDispositifInDB(dispositifId, modifiedDispositif);
+
+    res.status(200).json({ text: "OK" });
+  } catch (error) {
+    logger.error("[updateDispositifAdminComments] error", { error });
     return res.status(500).json({ text: "Erreur interne" });
   }
 };

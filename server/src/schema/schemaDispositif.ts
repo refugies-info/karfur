@@ -148,6 +148,22 @@ var dispositifSchema = new mongoose.Schema(
     publishedAt: {
       type: Date,
     },
+    adminComments: {
+      type: String,
+      required: false,
+    },
+    adminProgressionStatus: {
+      type: String,
+      required: false,
+    },
+    adminPercentageProgressionStatus: {
+      type: String,
+      required: false,
+    },
+    lastAdminUpdate: {
+      type: Date,
+      required: false,
+    },
   },
   // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
@@ -212,6 +228,10 @@ export interface DispositifDoc extends mongoose.Document {
 
   publishedAt?: number;
   created_at: number;
+  adminComments?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus: string;
+  lastAdminUpdate?: number;
 }
 
 export const Dispositif = mongoose.model<DispositifDoc>(

@@ -2,9 +2,8 @@
 import { Dispositif } from "../../../schema/schemaDispositif";
 import {
   getDispositifsFromDB,
-  updateDispositifStatusInDB,
+  updateDispositifInDB,
   getDispositifArray,
-  updateDispositifMainSponsorInDB,
 } from "../dispositif.repository";
 
 const dispositifsList = [{ id: "id1" }, { id: "id2" }];
@@ -28,7 +27,7 @@ describe("updateDispositifStatus", () => {
   it("should call Dispositif", async () => {
     Dispositif.findOneAndUpdate = jest.fn().mockResolvedValue({ id: "id1" });
 
-    const res = await updateDispositifStatusInDB("id1", {
+    const res = await updateDispositifInDB("id1", {
       status: "Actif",
       publishedAt: "01/01/01",
     });
@@ -121,11 +120,11 @@ describe("getDispositifArray", () => {
   });
 });
 
-describe("updateDispositifMainSponsorInDB", () => {
+describe("updateDispositifInDB", () => {
   it("should call Dispositif.findOneAndUpdate", async () => {
     Dispositif.findOneAndUpdate = jest.fn();
 
-    await updateDispositifMainSponsorInDB("dispositifId", {
+    await updateDispositifInDB("dispositifId", {
       mainSponsor: "sponsorId",
       status: "Actif",
     });

@@ -26,6 +26,10 @@ export interface SimplifiedDispositif {
     picture: Picture | undefined;
     _id: ObjectId;
   } | null;
+  adminComments?: string;
+  adminProgressionStatus?: string;
+  adminPercentageProgressionStatus?: string;
+  lastAdminUpdate?: Moment;
 }
 export interface Picture {
   imgId: ObjectId;
