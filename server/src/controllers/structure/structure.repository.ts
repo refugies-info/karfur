@@ -44,8 +44,7 @@ export const updateAssociatedDispositifsInStructure = async (
     { _id: structureId },
     { $addToSet: { dispositifsAssocies: dispositifId } },
     // @ts-ignore
-    { new: true },
-    () => {}
+    { new: true }
   );
 
   const structureArrayWithDispoAssocie = await Structure.find({
@@ -66,8 +65,7 @@ export const updateAssociatedDispositifsInStructure = async (
       { _id: structure._id },
       { $pull: { dispositifsAssocies: dispositifId } },
       // @ts-ignore
-      { new: true },
-      () => {}
+      { new: true }
     );
     return;
   });

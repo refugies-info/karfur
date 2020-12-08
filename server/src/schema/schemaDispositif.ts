@@ -154,6 +154,7 @@ var dispositifSchema = new mongoose.Schema(
 );
 
 export interface DispositifDoc extends mongoose.Document {
+  _id: ObjectId;
   titreMarque?: Object;
   titreInformatif: Object;
   abstract?: Object;

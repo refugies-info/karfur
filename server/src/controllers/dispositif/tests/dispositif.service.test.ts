@@ -3,11 +3,13 @@ import {
   getDispositifs,
   getAllDispositifs,
   updateDispositifStatus,
+  modifyDispositifMainSponsor,
 } from "../dispositif.service";
 import {
   getDispositifArray,
   getDispositifsFromDB,
   updateDispositifStatusInDB,
+  updateDispositifMainSponsorInDB,
 } from "../dispositif.repository";
 import {
   fakeContenuWithoutZoneDAction,
@@ -18,6 +20,7 @@ import {
   turnJSONtoHTML,
   turnToLocalizedTitles,
 } from "../functions";
+import { updateAssociatedDispositifsInStructure } from "../../structure/structure.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -27,10 +30,14 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
+jest.mock("../../structure/structure.repository.ts", () => ({
+  updateAssociatedDispositifsInStructure: jest.fn(),
+}));
 jest.mock("../dispositif.repository", () => ({
   getDispositifArray: jest.fn(),
   getDispositifsFromDB: jest.fn(),
   updateDispositifStatusInDB: jest.fn(),
+  updateDispositifMainSponsorInDB: jest.fn(),
 }));
 
 jest.mock("../functions", () => ({
@@ -473,5 +480,117 @@ describe("updateDispositifStatus", () => {
     });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+});
+
+describe("modifyDispositifMainSponsor", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should return 405 if not fromSite", async () => {
+    const req = { body: {} };
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(405);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête bloquée par API" });
+  });
+
+  it("should return 400 if no body", async () => {
+    const req = { fromSite: true };
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should return 400 if no query", async () => {
+    const req = { fromSite: true, body: {} };
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+  it("should return 400 if no dispositifId", async () => {
+    const req = { fromSite: true, body: { query: { sponsorId: "test" } } };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+  it("should return 400 if no body", async () => {
+    const req = { fromSite: true, body: { query: { dispositifId: "test2" } } };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({ text: "Requête invalide" });
+  });
+
+  it("should call updateDispositifMainSponsorInDB and updateAssociatedDispositifsInStructure and return a 200 ", async () => {
+    const req = {
+      fromSite: true,
+      body: { query: { dispositifId: "dispositifId", sponsorId: "sponsorId" } },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+
+    expect(updateDispositifMainSponsorInDB).toHaveBeenCalledWith(
+      "dispositifId",
+      "sponsorId"
+    );
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+      "dispositifId",
+      "sponsorId"
+    );
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should call updateDispositifMainSponsorInDB and return a 500 if updateDispositifMainSponsorInDB throws", async () => {
+    updateDispositifMainSponsorInDB.mockRejectedValueOnce(new Error("error"));
+
+    const req = {
+      fromSite: true,
+      body: { query: { dispositifId: "dispositifId", sponsorId: "sponsorId" } },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+
+    expect(updateDispositifMainSponsorInDB).toHaveBeenCalledWith(
+      "dispositifId",
+      "sponsorId"
+    );
+    expect(updateAssociatedDispositifsInStructure).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
+  });
+
+  it("should call updateDispositifMainSponsorInDB and return a 500 if updateDispositifMainSponsorInDB throws", async () => {
+    updateAssociatedDispositifsInStructure.mockRejectedValueOnce(
+      new Error("error")
+    );
+
+    const req = {
+      fromSite: true,
+      body: { query: { dispositifId: "dispositifId", sponsorId: "sponsorId" } },
+    };
+
+    const res = mockResponse();
+    await modifyDispositifMainSponsor(req, res);
+
+    expect(updateDispositifMainSponsorInDB).toHaveBeenCalledWith(
+      "dispositifId",
+      "sponsorId"
+    );
+    expect(updateAssociatedDispositifsInStructure).toHaveBeenCalledWith(
+      "dispositifId",
+      "sponsorId"
+    );
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
 });

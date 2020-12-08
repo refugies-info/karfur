@@ -4,6 +4,7 @@ import {
   getDispositifsFromDB,
   updateDispositifStatusInDB,
   getDispositifArray,
+  updateDispositifMainSponsorInDB,
 } from "../dispositif.repository";
 
 const dispositifsList = [{ id: "id1" }, { id: "id2" }];
@@ -117,5 +118,17 @@ describe("getDispositifArray", () => {
 
     expect(Dispositif.find).toHaveBeenCalledWith(newQuery, neededFields);
     expect(res).toEqual(dispositifsList);
+  });
+});
+
+describe("updateDispositifMainSponsorInDB", () => {
+  it("should call Dispositif.findOneAndUpdate", async () => {
+    Dispositif.findOneAndUpdate = jest.fn();
+
+    await updateDispositifMainSponsorInDB("dispositifId", "sponsorId");
+    expect(Dispositif.findOneAndUpdate).toHaveBeenCalledWith(
+      { _id: "dispositifId" },
+      { mainSponsor: "sponsorId" }
+    );
   });
 });

@@ -12,6 +12,7 @@ import {
   updateDispositifMainSponsorInDB,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
+import { updateAssociatedDispositifsInStructure } from "../structure/structure.repository";
 
 const removeUselessContent = (dispositifArray: IDispositif[]) =>
   dispositifArray.map((dispositif) => {
@@ -202,17 +203,10 @@ export const modifyDispositifMainSponsor = async (
 
     const { dispositifId, sponsorId } = req.body.query;
     logger.info("[modifyDispositifMainSponsor]", { dispositifId, sponsorId });
-    const updatedDispositif = await updateDispositifMainSponsorInDB(
-      dispositifId,
-      sponsorId
-    );
-    // let newDispositif;
-    // if (status === "Actif") {
-    //   newDispositif = { status, publishedAt: Date.now() };
-    // } else {
-    //   newDispositif = { status };
-    // }
-    // await updateDispositifStatusInDB(dispositifId, newDispositif);
+    await updateDispositifMainSponsorInDB(dispositifId, sponsorId);
+
+    await updateAssociatedDispositifsInStructure(dispositifId, sponsorId);
+
     res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[modifyDispositifMainSponsor] error", { error });
