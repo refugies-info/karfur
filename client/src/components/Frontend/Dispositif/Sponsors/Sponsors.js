@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 import API from "utils/API.js";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
+import FInput from "../../../FigmaUI/FInput/FInput";
 import SearchBar from "../../../../containers/UI/SearchBar/SearchBar";
 import { sentIllu } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
@@ -1182,11 +1183,12 @@ const ImgModal = (props) => (
           name="briefcase-outline"
           fill={variables.noir}
         />
-        <Input
+        <FInput
           id="nom"
           placeholder="Réfugiés.info"
           value={props.nom}
           onChange={props.handleChange}
+          newSize={true}
         />
       </InputGroup>
     </div>
@@ -1206,11 +1208,12 @@ const ImgModal = (props) => (
           name="link-outline"
           fill={variables.noir}
         />
-        <Input
+        <FInput
           id="link"
           placeholder="https://www.réfugiés.info"
           value={props.link}
           onChange={props.handleChange}
+          newSize={true}
         />
       </InputGroup>
     </div>
