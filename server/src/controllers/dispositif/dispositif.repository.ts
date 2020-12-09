@@ -56,3 +56,11 @@ export const updateDispositifInDB = async (
       }
 ) =>
   await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif);
+
+export const getActiveDispositifsFromDBWithoutPopulate = async (
+  needFields: Object
+): Promise<IDispositif[]> =>
+  await Dispositif.find(
+    { status: "Actif", typeContenu: "dispositif" },
+    needFields
+  );

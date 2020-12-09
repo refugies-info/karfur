@@ -255,6 +255,9 @@ export default {
       params: { id, withDisposAssocies, localeOfLocalizedDispositifsAssocies },
     }),
 
+  getNbDispositifsByRegion: () =>
+    axios.get(burl + "/dispositifs/getNbDispositifsByRegion"),
+
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
   getActiveStructures: () =>
