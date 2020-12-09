@@ -2175,6 +2175,7 @@ export class Dispositif extends Component {
                 this.sponsors.current.toggleModal("responsabilite")
               }
               toggleGeolocModal={this.toggleGeolocModal}
+              addItem={this.addItem}
             />
             <TagsModal
               tags={this.state.tags}
