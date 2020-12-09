@@ -4,10 +4,7 @@ import {
   getStructureById,
   getActiveStructures,
 } from "./structure/structure.service";
-import {
-  targetErrosOnDispositifsAssociesInStructures,
-  getResponsableOfStructure,
-} from "./structure/cleanStructure";
+import { targetErrosOnDispositifsAssociesInStructures } from "./structure/cleanStructure";
 
 module.exports = function (app) {
   app.post("/add_structure", checkToken.check, structure.add_structure);
@@ -18,5 +15,4 @@ module.exports = function (app) {
     targetErrosOnDispositifsAssociesInStructures
   );
   app.get("/getActiveStructures", getActiveStructures);
-  app.get("/getResponsableOfStructure", getResponsableOfStructure);
 };

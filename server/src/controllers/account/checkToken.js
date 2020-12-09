@@ -1,4 +1,4 @@
-const User = require("../../schema/schemaUser.js");
+const { User } = require("../../schema/schemaUser");
 const Role = require("../../schema/schemaRole.js");
 const jwt = require("jwt-simple");
 let config = {};

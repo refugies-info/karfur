@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getFiguresOnUsers } from "../users.service";
-import User from "../../../schema/schemaUser";
+import { User } from "../../../schema/schemaUser";
 import logger from "../../../logger";
 
 type MockResponse = { json: any; status: any };
