@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 import API from "utils/API.js";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
+import FInput from "../../../FigmaUI/FInput/FInput";
 import SearchBar from "../../../../containers/UI/SearchBar/SearchBar";
 import { sentIllu } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
@@ -139,6 +140,9 @@ const SponsorCard = styled.div`
   border-radius: 12px;
   cursor: ${(props) =>
     (props.add || props.disableEdit) && !props.nolink ? "pointer" : "auto"};
+  &:hover {
+    border: ${props => props.add ? "2px solid #212121" : "none"};
+  }
 `;
 
 const burl =
@@ -299,8 +303,8 @@ class Sponsors extends Component {
         : false
     );
     if (this.state.imgData) {
-      structure.picture = this.state.imgData
-    };
+      structure.picture = this.state.imgData;
+    }
     API.create_structure(structure).then((data) => {
       this.props.addMainSponsor(data.data.data);
       this.toggleModal("envoye");
@@ -370,6 +374,7 @@ class Sponsors extends Component {
         this.toggleModal();
       }
     }
+    this.setState({ imgData: {} });
   };
 
   editSponsor = (key) => {
@@ -917,7 +922,7 @@ class Sponsors extends Component {
             {...this.state.structure}
           />
           <div className="form-field inline-div">
-            <span style={{fontSize: 22}}>Ajouter un logo</span>
+            <span style={{ fontSize: 22 }}>Ajouter un logo</span>
             {this.state.imgData.secure_url ? (
               <div className="image-wrapper">
                 <img
@@ -926,24 +931,23 @@ class Sponsors extends Component {
                   alt={this.state.imgData.alt}
                 />
                 <FButton
-                className="upload-btn"
-                type="theme"
-                name="upload-outline"
-              >
-                <Input
-                  className="file-input"
-                  type="file"
-                  id="picture"
-                  name="user"
-                  accept="image/*"
-                  onChange={this.handleFileInputChange}
-                />
-                <span>Choisir</span>
-                {this.state.sponsorLoading && (
-                  <Spinner size="sm" color="green" className="ml-10" />
-                )}
-              </FButton>
-                {this.state.sponsorLoading && <Spinner size="sm" color="green" />}
+                  className="upload-btn"
+                  type="theme"
+                  name="upload-outline"
+                >
+                  <Input
+                    className="file-input"
+                    type="file"
+                    id="picture"
+                    name="user"
+                    accept="image/*"
+                    onChange={this.handleFileInputChange}
+                  />
+                  <span>Choisir</span>
+                  {this.state.sponsorLoading && (
+                    <Spinner size="sm" color="green" className="ml-10" />
+                  )}
+                </FButton>
               </div>
             ) : (
               <FButton
@@ -971,6 +975,12 @@ class Sponsors extends Component {
               Annuler
             </FButton>
             <FButton
+              disabled={
+                !this.state.structure.nom ||
+                !this.state.structure.contact ||
+                !this.state.structure.mail_contact ||
+                !this.state.structure.phone_contact
+              }
               onClick={this.createStructure}
               type="validate"
               name="checkmark-outline"
@@ -1128,20 +1138,25 @@ const ImgModal = (props) => (
       <span>Ajouter un logo</span>
       {props.imgData.secure_url ? (
         <div className="image-wrapper">
-          <Input
-            className="file-input"
-            type="file"
-            id="picture"
-            name="user"
-            accept="image/*"
-            onChange={props.handleFileInputChange}
-          />
           <img
             className="sponsor-img"
             src={props.imgData.secure_url}
             alt={props.imgData.alt}
           />
-          {props.sponsorLoading && <Spinner size="sm" color="green" />}
+          <FButton className="upload-btn" type="theme" name="upload-outline">
+            <Input
+              className="file-input"
+              type="file"
+              id="picture"
+              name="user"
+              accept="image/*"
+              onChange={props.handleFileInputChange}
+            />
+            <span>Choisir</span>
+            {props.sponsorLoading && (
+              <Spinner size="sm" color="green" className="ml-10" />
+            )}
+          </FButton>
         </div>
       ) : (
         <FButton className="upload-btn" type="theme" name="upload-outline">
@@ -1154,7 +1169,9 @@ const ImgModal = (props) => (
             onChange={props.handleFileInputChange}
           />
           <span>Choisir</span>
-          {props.sponsorLoading && <Spinner size="sm" color="green" className="ml-10" />}
+          {props.sponsorLoading && (
+            <Spinner size="sm" color="green" className="ml-10" />
+          )}
         </FButton>
       )}
     </div>
@@ -1166,11 +1183,12 @@ const ImgModal = (props) => (
           name="briefcase-outline"
           fill={variables.noir}
         />
-        <Input
+        <FInput
           id="nom"
           placeholder="Réfugiés.info"
           value={props.nom}
           onChange={props.handleChange}
+          newSize={true}
         />
       </InputGroup>
     </div>
@@ -1190,11 +1208,12 @@ const ImgModal = (props) => (
           name="link-outline"
           fill={variables.noir}
         />
-        <Input
+        <FInput
           id="link"
           placeholder="https://www.réfugiés.info"
           value={props.link}
           onChange={props.handleChange}
+          newSize={true}
         />
       </InputGroup>
     </div>
