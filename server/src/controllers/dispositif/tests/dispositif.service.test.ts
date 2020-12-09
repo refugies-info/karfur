@@ -16,6 +16,7 @@ import {
 import {
   fakeContenuWithoutZoneDAction,
   fakeContenuWithZoneDAction,
+  fakeContenuWithEmptyZoneDAction,
 } from "../../../__fixtures__/dispositifs";
 import {
   turnToLocalized,
@@ -94,6 +95,10 @@ const dispositifs = [
     contenu: fakeContenuWithoutZoneDAction,
   },
 ];
+
+const dispositifsFigures = dispositifs.concat([
+  { id: "id3", contenu: fakeContenuWithEmptyZoneDAction },
+]);
 
 describe("getDispositifs", () => {
   beforeEach(() => {
@@ -704,8 +709,10 @@ describe("updateDispositifAdminComments", () => {
     jest.clearAllMocks();
   });
 
-  it("should call getActiveDispositifsFromDBWithoutPopulate and return correct result", async () => {
-    getActiveDispositifsFromDBWithoutPopulate.mockResolvedValue(dispositifs);
+  it.only("should call getActiveDispositifsFromDBWithoutPopulate and return correct result", async () => {
+    getActiveDispositifsFromDBWithoutPopulate.mockResolvedValue(
+      dispositifsFigures
+    );
     const res = mockResponse();
     await getNbDispositifsByRegion({}, res);
     expect(getActiveDispositifsFromDBWithoutPopulate).toHaveBeenCalledWith({
@@ -792,7 +799,7 @@ describe("updateDispositifAdminComments", () => {
       },
       {
         region: "No geoloc",
-        nbDispositifs: 1,
+        nbDispositifs: 2,
         nbDepartments: 0,
         nbDepartmentsWithDispo: 0,
       },
