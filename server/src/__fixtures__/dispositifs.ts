@@ -35,7 +35,7 @@ export const fakeContenuWithZoneDAction = [
         title: "Zone d'action",
         titleIcon: "pin-outline",
         typeIcon: "eva",
-        departments: ["All"],
+        departments: ["All", "68 - Haut-Rhin"],
         free: true,
         contentTitle: "Sélectionner",
         editable: false,
