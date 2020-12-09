@@ -11,6 +11,7 @@ import {
 
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
+import FInput from "../../../FigmaUI/FInput/FInput";
 
 import "./CreationContent.scss";
 import variables from "scss/colors.scss";
@@ -31,12 +32,13 @@ const CreationContent = (props) => (
               name="pricetags-outline"
               fill={variables.noir}
             />
-            <Input
+            <FInput
               id="nom"
               placeholder="Nom complet de la structure"
               value={props.nom}
               onChange={props.handleChange}
               name="structure"
+              newSize={true}
             />
           </InputGroup>
         </Col>
@@ -85,19 +87,20 @@ const CreationContent = (props) => (
       </div>
       <Row className={"mt-16 mb-16"}>
         <Col lg="7" md="7" sm="12" xs="12">
-          <b >Nom et prénom&#42;</b>
+          <b>Nom et prénom&#42;</b>
           <InputGroup>
             <EVAIcon
               className="input-icon"
               name="person-outline"
               fill={variables.noir}
             />
-            <Input
+            <FInput
               id="contact"
               placeholder="Nom et prénom du contact&#42;"
               value={props.contact}
               onChange={props.handleChange}
               name="structure"
+              newSize={true}
             />
           </InputGroup>
         </Col>
@@ -109,12 +112,13 @@ const CreationContent = (props) => (
               name="phone-outline"
               fill={variables.noir}
             />
-            <Input
+            <FInput
               id="phone_contact"
               placeholder="Numéro de téléphone"
               value={props.phone_contact}
               onChange={props.handleChange}
               name="structure"
+              newSize={true}
             />
           </InputGroup>
         </Col>
@@ -126,16 +130,17 @@ const CreationContent = (props) => (
           name="at-outline"
           fill={variables.noir}
         />
-        <Input
+        <FInput
           id="mail_contact"
           placeholder="Email du contact"
           value={props.mail_contact}
           onChange={props.handleChange}
           name="structure"
+          newSize={true}
         />
       </InputGroup>
     </div>
-{/*     <div className="form-field belongs-wrapper">
+    {/*     <div className="form-field belongs-wrapper">
       <b>
         {props.adminView
           ? "Le créateur fait-il partie de la structure ?"
