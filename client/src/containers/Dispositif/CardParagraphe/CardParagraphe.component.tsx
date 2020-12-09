@@ -96,6 +96,8 @@ export interface PropsBeforeInjection {
   toggleTutorielModal: () => void;
   location: any;
   admin: boolean;
+  toggleGeolocModal: (arg1: boolean) => void;
+  showGeolocModal: boolean;
 }
 type StateType = {
   isDropdownOpen: boolean;
@@ -103,7 +105,6 @@ type StateType = {
   showNiveaux: boolean;
   tooltipOpen: boolean;
   showFrenchLevelModal: boolean;
-  showGeolocModal: boolean;
 };
 
 const GeolocTooltipItem = (props: any) => {
@@ -143,7 +144,6 @@ export class CardParagraphe extends Component<Props> {
     showNiveaux: false,
     tooltipOpen: false,
     showFrenchLevelModal: false,
-    showGeolocModal: false,
   };
 
   toggleNiveaux = () => this.setState({ showNiveaux: !this.state.showNiveaux });
@@ -215,10 +215,6 @@ export class CardParagraphe extends Component<Props> {
   };
   toggleFrenchLevelModal = (show: boolean) =>
     this.setState({ showFrenchLevelModal: show });
-
-  toggleGeolocModal = (show: boolean) => {
-    this.setState({ showGeolocModal: show });
-  };
 
   toggleOptions = (e: Element) => {
     if (this.state.isOptionsOpen && e.currentTarget.id) {
@@ -496,7 +492,7 @@ export class CardParagraphe extends Component<Props> {
               type="precision"
               className={"mb-8"}
               //name="plus-circle-outline"
-              onClick={() => this.toggleGeolocModal(true)}
+              onClick={() => this.props.toggleGeolocModal(true)}
             >
               <ButtonTextBody>{"Sélectionner"}</ButtonTextBody>
             </FButton>
@@ -762,13 +758,15 @@ export class CardParagraphe extends Component<Props> {
             t={this.props.t}
           />
         }
-        <GeolocModal
-          validateDepartments={this.validateDepartments}
-          departments={subitem.departments}
-          hideModal={() => this.toggleGeolocModal(false)}
-          show={this.state.showGeolocModal}
-          toggleTutorielModal={this.props.toggleTutorielModal}
-        />
+        {subitem.title === "Zone d'action" ? (
+          <GeolocModal
+            validateDepartments={this.validateDepartments}
+            departments={subitem.departments}
+            hideModal={() => this.props.toggleGeolocModal(false)}
+            show={this.props.showGeolocModal}
+            toggleTutorielModal={this.props.toggleTutorielModal}
+          />
+        ) : null}
       </>
     );
   }

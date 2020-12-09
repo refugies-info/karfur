@@ -4,6 +4,7 @@ import {
   getDispositifsFromDB,
   updateDispositifInDB,
   getDispositifArray,
+  getActiveDispositifsFromDBWithoutPopulate,
 } from "../dispositif.repository";
 
 const dispositifsList = [{ id: "id1" }, { id: "id2" }];
@@ -133,6 +134,22 @@ describe("updateDispositifInDB", () => {
       {
         mainSponsor: "sponsorId",
         status: "Actif",
+      }
+    );
+  });
+});
+
+describe("getActiveDispositifsFromDBWithoutPopulate", () => {
+  it("should call Dispositif.findOneAndUpdate", async () => {
+    Dispositif.find = jest.fn();
+
+    await getActiveDispositifsFromDBWithoutPopulate({
+      contenu: 1,
+    });
+    expect(Dispositif.find).toHaveBeenCalledWith(
+      { status: "Actif", typeContenu: "dispositif" },
+      {
+        contenu: 1,
       }
     );
   });

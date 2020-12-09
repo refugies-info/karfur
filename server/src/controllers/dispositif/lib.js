@@ -1,6 +1,6 @@
 const { Dispositif } = require("../../schema/schemaDispositif");
 const Role = require("../../schema/schemaRole.js");
-const User = require("../../schema/schemaUser.js");
+const { User } = require("../../schema/schemaUser");
 const Traduction = require("../../schema/schemaTraduction");
 const Error = require("../../schema/schemaError");
 var uniqid = require("uniqid");
