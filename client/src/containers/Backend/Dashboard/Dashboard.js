@@ -44,9 +44,13 @@ class Dashboard extends Component {
       })
     );
 
-    API.getNbDispositifsByRegion().then((data) =>
-      this.setState({ figuresByRegion: data.data.data })
-    );
+    API.getNbDispositifsByRegion().then((data) => {
+      console.log("data", data);
+      this.setState({
+        figuresByRegion: data.data.data.regionFigures,
+        dispositifsWithoutGeoloc: data.data.data.dispositifsWithoutGeoloc,
+      });
+    });
 
     filtres.tags.map((tag) => {
       API.count_dispositifs({
@@ -91,6 +95,7 @@ class Dashboard extends Component {
       nbContributors,
       nbTraductors,
       figuresByRegion,
+      dispositifsWithoutGeoloc,
     } = this.state;
     const noGeolocFigures = figuresByRegion.filter(
       (data) => data.region === "No geoloc"
@@ -148,8 +153,19 @@ class Dashboard extends Component {
             </b>
             {noGeolocFigures.length > 0 && (
               <li>
-                <div style={{ fontWeight: "bold", color: "red" }}>
-                  {`Pas d'infocard geoloc : ${noGeolocFigures[0].nbDispositifs}`}{" "}
+                <div
+                  style={{
+                    fontWeight: "bold",
+                    color: "red",
+                    display: "flex",
+                    flexDirection: "row",
+                    flex: 1,
+                  }}
+                >
+                  {`Pas d'infocard geoloc : ${noGeolocFigures[0].nbDispositifs} : `}
+                  {/* {dispositifsWithoutGeoloc.map((dispo) => (
+                    <div>{`${dispo._id} `}</div>
+                  ))} */}
                 </div>
               </li>
             )}
