@@ -159,11 +159,18 @@ $tailleBig: 80px;
     border-radius: 12px;
     padding: 10px 20px 10px 60px;
     position: relative;
+    color: white;
 
     .info-icon {
       position: absolute;
-      left: 20px;
-      top: 50%;
+      left: 10px;
+      top: 20px;
+      transform: translateY(-50%);
+    }
+    .info-icon-close {
+      position: absolute;
+      right: 10px;
+      top: 20px;
       transform: translateY(-50%);
     }
   }
