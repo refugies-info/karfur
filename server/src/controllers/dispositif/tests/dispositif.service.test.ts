@@ -5,11 +5,13 @@ import {
   updateDispositifStatus,
   modifyDispositifMainSponsor,
   updateDispositifAdminComments,
+  getNbDispositifsByRegion,
 } from "../dispositif.service";
 import {
   getDispositifArray,
   getDispositifsFromDB,
   updateDispositifInDB,
+  getActiveDispositifsFromDBWithoutPopulate,
 } from "../dispositif.repository";
 import {
   fakeContenuWithoutZoneDAction,
@@ -37,6 +39,7 @@ jest.mock("../dispositif.repository", () => ({
   getDispositifArray: jest.fn(),
   getDispositifsFromDB: jest.fn(),
   updateDispositifInDB: jest.fn(),
+  getActiveDispositifsFromDBWithoutPopulate: jest.fn(),
 }));
 
 jest.mock("../functions", () => ({
@@ -45,10 +48,58 @@ jest.mock("../functions", () => ({
   turnToLocalizedTitles: jest.fn(),
 }));
 
+const contenu1 = [
+  {},
+  {
+    children: [
+      {
+        type: "card",
+        isFakeContent: false,
+        title: "Zone d'action",
+        titleIcon: "pin-outline",
+        typeIcon: "eva",
+        departments: ["All", "68 - Haut-Rhin"],
+        free: true,
+        contentTitle: "Sélectionner",
+        editable: false,
+      },
+      {},
+      {},
+      {},
+      {},
+    ],
+  },
+];
+const contenu2 = [
+  {},
+  {
+    children: [{}, {}, {}, {}],
+  },
+];
+const adaptedDispositif1 = {
+  id: "id1",
+  contenu: contenu1,
+};
+const adaptedDispositif2 = {
+  id: "id2",
+  contenu: contenu2,
+};
+const dispositifs = [
+  {
+    id: "id1",
+    contenu: fakeContenuWithZoneDAction,
+  },
+  {
+    id: "id2",
+    contenu: fakeContenuWithoutZoneDAction,
+  },
+];
+
 describe("getDispositifs", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
+
   it("should return 400 if no body", async () => {
     const res = mockResponse();
     const req = {};
@@ -81,42 +132,7 @@ describe("getDispositifs", () => {
     const req = { body: { query } };
     await getDispositifs(req, res);
     expect(getDispositifArray).toHaveBeenCalledWith(query);
-    const contenu1 = [
-      {},
-      {
-        children: [
-          {
-            type: "card",
-            isFakeContent: false,
-            title: "Zone d'action",
-            titleIcon: "pin-outline",
-            typeIcon: "eva",
-            departments: ["All"],
-            free: true,
-            contentTitle: "Sélectionner",
-            editable: false,
-          },
-          {},
-          {},
-          {},
-          {},
-        ],
-      },
-    ];
-    const contenu2 = [
-      {},
-      {
-        children: [{}, {}, {}, {}],
-      },
-    ];
-    const adaptedDispositif1 = {
-      id: "id1",
-      contenu: contenu1,
-    };
-    const adaptedDispositif2 = {
-      id: "id2",
-      contenu: contenu2,
-    };
+
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif1, "fr");
     expect(turnToLocalized).toHaveBeenCalledWith(adaptedDispositif2, "fr");
 
@@ -129,53 +145,6 @@ describe("getDispositifs", () => {
       data: [adaptedDispositif1, adaptedDispositif2],
     });
   });
-  const contenu1 = [
-    {},
-    {
-      children: [
-        {
-          type: "card",
-          isFakeContent: false,
-          title: "Zone d'action",
-          titleIcon: "pin-outline",
-          typeIcon: "eva",
-          departments: ["All"],
-          free: true,
-          contentTitle: "Sélectionner",
-          editable: false,
-        },
-        {},
-        {},
-        {},
-        {},
-      ],
-    },
-  ];
-  const contenu2 = [
-    {},
-    {
-      children: [{}, {}, {}, {}],
-    },
-  ];
-  const adaptedDispositif1 = {
-    id: "id1",
-    contenu: contenu1,
-  };
-  const adaptedDispositif2 = {
-    id: "id2",
-    contenu: contenu2,
-  };
-
-  const dispositifs = [
-    {
-      id: "id1",
-      contenu: fakeContenuWithZoneDAction,
-    },
-    {
-      id: "id2",
-      contenu: fakeContenuWithoutZoneDAction,
-    },
-  ];
 
   it("should call getDispositifsArray and return correct result if one content has a zone d'action and an other not", async () => {
     getDispositifArray.mockResolvedValue(dispositifs);
@@ -727,5 +696,128 @@ describe("updateDispositifAdminComments", () => {
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+});
+
+describe("updateDispositifAdminComments", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("should call getActiveDispositifsFromDBWithoutPopulate and return correct result", async () => {
+    getActiveDispositifsFromDBWithoutPopulate.mockResolvedValue(dispositifs);
+    const res = mockResponse();
+    await getNbDispositifsByRegion({}, res);
+    expect(getActiveDispositifsFromDBWithoutPopulate).toHaveBeenCalledWith({
+      contenu: 1,
+    });
+    const result = [
+      {
+        region: "Auvergne-Rhône-Alpes",
+        nbDispositifs: 0,
+        nbDepartments: 12,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Hauts-de-France",
+        nbDispositifs: 0,
+        nbDepartments: 5,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Provence-Alpes-Côte d'Azur",
+        nbDispositifs: 0,
+        nbDepartments: 6,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Grand Est",
+        nbDispositifs: 1,
+        nbDepartments: 10,
+        nbDepartmentsWithDispo: 1,
+      },
+      {
+        region: "Occitanie",
+        nbDispositifs: 0,
+        nbDepartments: 13,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Normandie",
+        nbDispositifs: 0,
+        nbDepartments: 5,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Nouvelle-Aquitaine",
+        nbDispositifs: 0,
+        nbDepartments: 12,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Centre-Val de Loire",
+        nbDispositifs: 0,
+        nbDepartments: 6,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Bourgogne-Franche-Comté",
+        nbDispositifs: 0,
+        nbDepartments: 8,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Bretagne",
+        nbDispositifs: 0,
+        nbDepartments: 4,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Corse",
+        nbDispositifs: 0,
+        nbDepartments: 2,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Pays de la Loire",
+        nbDispositifs: 0,
+        nbDepartments: 5,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "Île-de-France",
+        nbDispositifs: 0,
+        nbDepartments: 8,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "No geoloc",
+        nbDispositifs: 1,
+        nbDepartments: 0,
+        nbDepartmentsWithDispo: 0,
+      },
+      {
+        region: "France",
+        nbDispositifs: 1,
+        nbDepartments: 0,
+        nbDepartmentsWithDispo: 0,
+      },
+    ];
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK", data: result });
+  });
+
+  it("should return a 500 if getActiveDispositifsFromDBWithoutPopulate throws ", async () => {
+    getActiveDispositifsFromDBWithoutPopulate.mockRejectedValue(
+      new Error("error")
+    );
+
+    const res = mockResponse();
+    await getNbDispositifsByRegion({}, res);
+    expect(getActiveDispositifsFromDBWithoutPopulate).toHaveBeenCalledWith({
+      contenu: 1,
+    });
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "Erreur" });
   });
 });

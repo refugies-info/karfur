@@ -263,5 +263,6 @@ export const getNbDispositifsByRegion = async (req: {}, res: Res) => {
     return res.status(200).json({ text: "OK", data: regionFigures });
   } catch (error) {
     logger.error("[getNbDispositifsByRegion] error", { error });
+    return res.status(500).json({ text: "Erreur" });
   }
 };

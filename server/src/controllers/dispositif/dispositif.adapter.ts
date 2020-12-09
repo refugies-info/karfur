@@ -103,7 +103,8 @@ export const getRegionFigures = (dispositifs: Result[]) => {
   const regionArray = Object.keys(
     _.groupBy(departmentRegionCorrespondency, "region")
   );
-  return regionArray.map((region) => {
+  const regionArrayFull = regionArray.concat(["No geoloc", "France"]);
+  return regionArrayFull.map((region) => {
     const correspondingData = departmentRegionCorrespondency.filter(
       (data) => data.region === region
     );
