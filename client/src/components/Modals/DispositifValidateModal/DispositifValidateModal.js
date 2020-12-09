@@ -41,11 +41,7 @@ const getTitle = (section) =>
     ? "Phrase explicative"
     : "Structure responsable";
 
-const onCheckContainerClick = (
-  section,
-  toggleModal,
-  missingElement
-) => {
+const onCheckContainerClick = (section, toggleModal, missingElement) => {
   if (!missingElement || section === "sentence") {
     return;
   }
@@ -54,13 +50,16 @@ const onCheckContainerClick = (
 const Check = (props) => (
   <CheckContainer
     missingElement={props.missingElement}
-    onClick={() =>
+    onClick={() => {
+      if (!props.geolocInfoCard) {
+        props.addItem(1, "card", "Zone d'action");
+      }
       onCheckContainerClick(
         props.section,
         props.toggleModal,
         props.missingElement
-      )
-    }
+      );
+    }}
   >
     <Row>
       <Title missingElement={props.missingElement}>
@@ -69,16 +68,16 @@ const Check = (props) => (
       <Title missingElement={props.missingElement}>
         {props.missingElement ? "Manquant" : "Ok"}
         <EVAIcon
-              className={"ml-8"}
-              name={props.missingElement ? "alert-triangle" : "checkmark-circle-2"}
-              fill={props.missingElement ? "#FF9800" : "#4caf50"}
-            />
+          className={"ml-8"}
+          name={props.missingElement ? "alert-triangle" : "checkmark-circle-2"}
+          fill={props.missingElement ? "#FF9800" : "#4caf50"}
+        />
       </Title>
     </Row>
     {props.section === "sentence" ? (
       <>
-        <p style={{fontSize: 16, marginTop: 8}}>
-        Rédigez une dernière phrase, visible dans les résultats de recherche
+        <p style={{ fontSize: 16, marginTop: 8 }}>
+          Rédigez une dernière phrase, visible dans les résultats de recherche
         </p>
         <FInput
           type="textarea"
@@ -115,13 +114,14 @@ const dispositifValidateModal = (props) => {
     props.toggle();
   };
   let geoloc = false;
+  let geolocInfoCard = null;
   if (
     props.menu &&
     props.menu[1] &&
     props.menu[1].children &&
     props.menu[1].children.length > 0
   ) {
-    var geolocInfoCard = props.menu[1].children.find(
+    geolocInfoCard = props.menu[1].children.find(
       (elem) => elem.title === "Zone d'action"
     );
     if (
@@ -141,9 +141,11 @@ const dispositifValidateModal = (props) => {
       <ModalHeader toggle={props.toggle}>Vous y êtes presque !</ModalHeader>
       <ModalBody>
         <Check
+          geolocInfoCard={geolocInfoCard}
           section="geoloc"
           missingElement={!geoloc}
           toggleModal={props.toggleGeolocModal}
+          addItem={props.addItem}
         />
 
         <Check
@@ -162,14 +164,16 @@ const dispositifValidateModal = (props) => {
           section="sentence"
           abstract={props.abstract}
           onChange={props.onChange}
-          missingElement={(props.abstract || "").length > 110 || !props.abstract}
+          missingElement={
+            (props.abstract || "").length > 110 || !props.abstract
+          }
           toggleTagsModal={props.toggleTagsModal}
           toggleSponsorModal={props.toggleSponsorModal}
         />
       </ModalBody>
       <ModalFooter>
         <div>
-{/*           <FButton
+          {/*           <FButton
             tag={"a"}
             href="https://help.refugies.info/fr/"
             target="_blank"
@@ -205,7 +209,9 @@ const dispositifValidateModal = (props) => {
             disabled={
               !props.abstract ||
               props.abstract === "" ||
-              props.abstract.length > 110 || !geoloc || props.tags.length === 0
+              props.abstract.length > 110 ||
+              !geoloc ||
+              props.tags.length === 0
             }
           >
             Valider
