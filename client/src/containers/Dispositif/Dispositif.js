@@ -1409,7 +1409,8 @@ export class Dispositif extends Component {
   valider_dispositif = (
     status = "En attente",
     auto = false,
-    sauvegarde = false
+    sauvegarde = false,
+    saveAndEdit = false
   ) => {
     if (!auto && !this.verifierDemarche()) {
       return;
@@ -1611,7 +1612,7 @@ export class Dispositif extends Component {
                 "Brouillon",
                 "En attente non prioritaire",
                 "Actif",
-              ].includes(status),
+              ].includes(status) && !saveAndEdit,
               isDispositifLoading: false,
             },
             () => {

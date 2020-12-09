@@ -7,11 +7,6 @@ export const getDispositifsFromDB = async (
 ): Promise<IDispositif[]> =>
   await Dispositif.find({}, needFields).populate("mainSponsor creatorId");
 
-export const updateDispositifStatusInDB = async (
-  _id: ObjectId,
-  newDispositif: { status: string; publishedAt: number } | { status: string }
-) => await Dispositif.findOneAndUpdate({ _id }, newDispositif);
-
 export const getDispositifArray = async (query: any) => {
   const neededFields = {
     titreInformatif: 1,
@@ -47,3 +42,25 @@ export const getDispositifArray = async (query: any) => {
   }
   return await Dispositif.find(query, neededFields).lean();
 };
+
+export const updateDispositifInDB = async (
+  dispositifId: ObjectId,
+  modifiedDispositif:
+    | { mainSponsor: ObjectId; status: string }
+    | { status: string; publishedAt: number }
+    | { status: string }
+    | {
+        adminComments: string;
+        adminProgressionStatus: string;
+        adminPercentageProgressionStatus: string;
+      }
+) =>
+  await Dispositif.findOneAndUpdate({ _id: dispositifId }, modifiedDispositif);
+
+export const getActiveDispositifsFromDBWithoutPopulate = async (
+  needFields: Object
+): Promise<IDispositif[]> =>
+  await Dispositif.find(
+    { status: "Actif", typeContenu: "dispositif" },
+    needFields
+  );

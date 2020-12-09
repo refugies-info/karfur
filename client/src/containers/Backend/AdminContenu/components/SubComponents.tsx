@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
 import { limitNbCaracters } from "../../../../lib";
-import { correspondingStatus } from "../data";
+import { correspondingStatus, progressionData } from "../data";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 // @ts-ignore
 import variables from "scss/colors.scss";
@@ -125,7 +125,7 @@ export const StyledStatusContainer = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   color: ${(props) =>
     props.textColor ? props.textColor : variables.blancSimple};
 `;
@@ -140,6 +140,16 @@ const getColorAndStatus = (text: string) => {
       textColor: correspondingStatusElement[0].textColor,
     };
 
+  const correspondingStatusElementProgression = progressionData.filter(
+    (element) => element.storedStatus === text
+  );
+  if (correspondingStatusElementProgression.length > 0)
+    return {
+      status: correspondingStatusElementProgression[0].displayedStatus,
+      color: correspondingStatusElementProgression[0].color,
+      textColor: correspondingStatusElementProgression[0].textColor,
+    };
+
   return {
     status: "Nouveau !",
     color: variables.bleuCharte,
@@ -152,6 +162,7 @@ export const StyledStatus = (props: {
   textToDisplay?: string;
   color?: string;
   textColor?: string;
+  disabled?: boolean;
 }) => {
   const color = props.overrideColor
     ? variables.cardColor
@@ -169,7 +180,11 @@ export const StyledStatus = (props: {
     ? props.textColor
     : getColorAndStatus(props.text).textColor;
   return (
-    <StyledStatusContainer color={color} textColor={textColor}>
+    <StyledStatusContainer
+      color={color}
+      textColor={textColor}
+      disabled={props.disabled}
+    >
       {status}
     </StyledStatusContainer>
   );

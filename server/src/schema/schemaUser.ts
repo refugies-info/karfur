@@ -1,12 +1,13 @@
-const mongoose = require("mongoose");
-const passwordHash = require("password-hash");
-const jwt = require("jwt-simple");
+import mongoose, { ObjectId } from "mongoose";
+// @ts-ignore
+import passwordHash from "password-hash";
+import jwt from "jwt-simple";
 let config = {};
 if (process.env.NODE_ENV === "dev") {
   config = require("../config/config");
 }
 
-var userSchema = mongoose.Schema(
+var userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -64,7 +65,7 @@ var userSchema = mongoose.Schema(
       required: false,
     },
     roles: {
-      type: [{ type: mongoose.Schema.ObjectId, ref: "Role" }],
+      type: [{ type: mongoose.Types.ObjectId, ref: "Role" }],
       required: false,
     },
     selectedLanguages: {
@@ -72,11 +73,11 @@ var userSchema = mongoose.Schema(
       required: false,
     },
     traductionsFaites: {
-      type: [{ type: mongoose.Schema.ObjectId, ref: "Traduction" }],
+      type: [{ type: mongoose.Types.ObjectId, ref: "Traduction" }],
       required: false,
     },
     contributions: {
-      type: [{ type: mongoose.Schema.ObjectId, ref: "Dispositif" }],
+      type: [{ type: mongoose.Types.ObjectId, ref: "Dispositif" }],
       required: false,
     },
     noteTraduction: {
@@ -92,7 +93,7 @@ var userSchema = mongoose.Schema(
       required: false,
     },
     structures: {
-      type: [{ type: mongoose.Schema.ObjectId, ref: "Structure" }],
+      type: [{ type: mongoose.Types.ObjectId, ref: "Structure" }],
       required: false,
     },
     last_connected: {
@@ -112,11 +113,13 @@ var userSchema = mongoose.Schema(
       required: false,
     },
   },
+  // @ts-ignore
   { timestamps: { createdAt: "created_at" } }
 );
 
+// @ts-ignore
 userSchema.methods = {
-  authenticate: function (password) {
+  authenticate: function (password: string) {
     return passwordHash.verify(password, this.password);
   },
   getToken: function () {
@@ -127,9 +130,50 @@ userSchema.methods = {
         password: this.password,
         email: this.email,
       },
+      // @ts-ignore
       process.env.NODE_ENV === "dev" ? config.secret : process.env.SECRET
     );
   },
 };
 
-module.exports = mongoose.model("User", userSchema);
+export interface UserDoc extends mongoose.Document {
+  username: string;
+
+  password: string;
+  email?: string;
+
+  phone?: string;
+  description?: string;
+
+  objectifTemps?: number;
+
+  objectifMots?: number;
+  notifyObjectifs?: boolean;
+
+  objectifTempsContrib?: number;
+
+  objectifMotsContrib?: number;
+
+  notifyObjectifsContrib?: boolean;
+
+  picture?: Object;
+
+  roles?: ObjectId[];
+
+  selectedLanguages?: string[];
+  traductionsFaites?: ObjectId[];
+  contributions?: ObjectId[];
+  noteTraduction?: number;
+
+  status?: string;
+  cookies?: Object;
+
+  structures?: ObjectId[];
+  last_connected?: number;
+  authy_id?: string;
+  reset_password_token?: string;
+  reset_password_expires?: number;
+  _id: ObjectId;
+}
+
+export const User = mongoose.model<UserDoc>("User", userSchema);

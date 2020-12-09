@@ -7,25 +7,19 @@ import {
 import { Res, RequestFromClient, IDispositif } from "../../types/interface";
 import {
   getDispositifsFromDB,
-  updateDispositifStatusInDB,
   getDispositifArray,
+  updateDispositifInDB,
+  getActiveDispositifsFromDBWithoutPopulate,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
+import { updateAssociatedDispositifsInStructure } from "../structure/structure.repository";
+import {
+  removeUselessContent,
+  adaptDispositifMainSponsorAndCreatorId,
+  adaptDispositifDepartement,
+  getRegionFigures,
+} from "./dispositif.adapter";
 
-const removeUselessContent = (dispositifArray: IDispositif[]) =>
-  dispositifArray.map((dispositif) => {
-    const selectZoneAction = dispositif.contenu[1].children.map(
-      (child: any) => {
-        if (child.title === "Zone d'action") {
-          return child;
-        }
-        return {};
-      }
-    );
-
-    const simplifiedContent = [{}, { children: selectZoneAction }];
-    return { ...dispositif, contenu: simplifiedContent };
-  });
 interface Query {}
 
 export const getDispositifs = async (
@@ -88,31 +82,16 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
       typeContenu: 1,
       created_at: 1,
       publishedAt: 1,
+      adminComments: 1,
+      adminProgressionStatus: 1,
+      adminPercentageProgressionStatus: 1,
+      lastAdminUpdate: 1,
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);
-    const adaptedDispositifs = dispositifs.map((dispositif) => {
-      const jsonDispositif = dispositif.toJSON();
-
-      return {
-        ...jsonDispositif,
-        mainSponsor: jsonDispositif.mainSponsor
-          ? {
-              _id: jsonDispositif.mainSponsor._id,
-              nom: jsonDispositif.mainSponsor.nom,
-              status: jsonDispositif.mainSponsor.status,
-              picture: jsonDispositif.mainSponsor.picture,
-            }
-          : "",
-        creatorId: jsonDispositif.creatorId
-          ? {
-              username: jsonDispositif.creatorId.username,
-              picture: jsonDispositif.creatorId.picture,
-              _id: jsonDispositif.creatorId._id,
-            }
-          : null,
-      };
-    });
+    const adaptedDispositifs = adaptDispositifMainSponsorAndCreatorId(
+      dispositifs
+    );
 
     const array: string[] = [];
 
@@ -170,10 +149,120 @@ export const updateDispositifStatus = async (
     } else {
       newDispositif = { status };
     }
-    await updateDispositifStatusInDB(dispositifId, newDispositif);
+    await updateDispositifInDB(dispositifId, newDispositif);
     res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[updateDispositifStatus] error", { error });
     return res.status(500).json({ text: "Erreur interne" });
+  }
+};
+
+interface QueryModify {
+  dispositifId: ObjectId | null;
+  sponsorId: ObjectId;
+  status: string | null;
+}
+
+export const modifyDispositifMainSponsor = async (
+  req: RequestFromClient<QueryModify>,
+  res: Res
+) => {
+  try {
+    if (!req.fromSite) {
+      return res.status(405).json({ text: "Requête bloquée par API" });
+    } else if (
+      !req.body ||
+      !req.body.query ||
+      !req.body.query.dispositifId ||
+      !req.body.query.sponsorId ||
+      !req.body.query.status
+    ) {
+      return res.status(400).json({ text: "Requête invalide" });
+    }
+
+    const { dispositifId, sponsorId, status } = req.body.query;
+    logger.info("[modifyDispositifMainSponsor]", {
+      dispositifId,
+      sponsorId,
+      status,
+    });
+
+    const modifiedDispositif = {
+      mainSponsor: sponsorId,
+      status: status === "En attente non prioritaire" ? "En attente" : status,
+    };
+    await updateDispositifInDB(dispositifId, modifiedDispositif);
+
+    await updateAssociatedDispositifsInStructure(dispositifId, sponsorId);
+
+    res.status(200).json({ text: "OK" });
+  } catch (error) {
+    logger.error("[modifyDispositifMainSponsor] error", { error });
+    return res.status(500).json({ text: "Erreur interne" });
+  }
+};
+
+interface QueryModifyAdmin {
+  dispositifId: ObjectId;
+  adminComments: string;
+  adminProgressionStatus: string;
+  adminPercentageProgressionStatus: string;
+}
+export const updateDispositifAdminComments = async (
+  req: RequestFromClient<QueryModifyAdmin>,
+  res: Res
+) => {
+  try {
+    if (!req.fromSite) {
+      return res.status(405).json({ text: "Requête bloquée par API" });
+    } else if (!req.body || !req.body.query || !req.body.query.dispositifId) {
+      return res.status(400).json({ text: "Requête invalide" });
+    }
+
+    const {
+      dispositifId,
+      adminComments,
+      adminProgressionStatus,
+      adminPercentageProgressionStatus,
+    } = req.body.query;
+
+    logger.info("[updateDispositifAdminComments]", {
+      dispositifId,
+      adminComments,
+      adminProgressionStatus,
+      adminPercentageProgressionStatus,
+    });
+
+    const modifiedDispositif = {
+      adminComments,
+      adminProgressionStatus,
+      adminPercentageProgressionStatus,
+      lastAdminUpdate: Date.now(),
+    };
+
+    await updateDispositifInDB(dispositifId, modifiedDispositif);
+
+    res.status(200).json({ text: "OK" });
+  } catch (error) {
+    logger.error("[updateDispositifAdminComments] error", { error });
+    return res.status(500).json({ text: "Erreur interne" });
+  }
+};
+
+export const getNbDispositifsByRegion = async (req: {}, res: Res) => {
+  try {
+    logger.info("[getNbDispositifsByRegion]");
+    const neededFields = { contenu: 1 };
+    const activeDispositifs = await getActiveDispositifsFromDBWithoutPopulate(
+      neededFields
+    );
+
+    const adaptedDispositifs = adaptDispositifDepartement(activeDispositifs);
+
+    const regionFigures = getRegionFigures(adaptedDispositifs);
+    return res.status(200).json({ text: "OK", data: regionFigures });
+  } catch (error) {
+    logger.error("[getNbDispositifsByRegion] error", { error });
+    return res.status(500).json({ text: "Erreur" });
   }
 };
