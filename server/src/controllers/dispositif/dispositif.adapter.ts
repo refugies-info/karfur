@@ -46,18 +46,18 @@ export const adaptDispositifMainSponsorAndCreatorId = (
 
 interface Result {
   _id: ObjectId;
-  departement: string;
+  department: string;
   region: string;
 }
 interface CorrespondingData {
-  departement: string;
+  department: string;
   region: string;
 }
 const getRegion = (
   correspondingData: CorrespondingData[],
-  departement: string
+  department: string
 ) => {
-  if (departement === "All") return "France";
+  if (department === "All") return "France";
   return correspondingData.length > 0
     ? correspondingData[0].region
     : "No geoloc";
@@ -71,21 +71,21 @@ export const adaptDispositifDepartement = (dispositifs: IDispositif[]) => {
       (child: any) => child.title === "Zone d'action"
     );
 
-    const departements =
+    const departments =
       selectZoneAction.length > 0
         ? selectZoneAction[0].departments
         : ["No geoloc"];
 
-    departements.map((departement: string) => {
+    departments.map((department: string) => {
       const correspondingData = departmentRegionCorrespondency.filter(
-        (data) => data.departement === departement
+        (data) => data.department === department
       );
 
-      const region = getRegion(correspondingData, departement);
+      const region = getRegion(correspondingData, department);
 
       return result.push({
         _id: dispositif._id,
-        departement,
+        department,
         region,
       });
     });
@@ -98,24 +98,28 @@ export const adaptDispositifDepartement = (dispositifs: IDispositif[]) => {
 
 export const getRegionFigures = (dispositifs: Result[]) => {
   const groupedDataByRegion = _.groupBy(dispositifs, "region");
-  const groupedDataByDepartment = _.groupBy(dispositifs, "departement");
+  const groupedDataByDepartment = _.groupBy(dispositifs, "department");
 
-  const regionArray = Object.keys(groupedDataByRegion);
+  const regionArray = Object.keys(
+    _.groupBy(departmentRegionCorrespondency, "region")
+  );
   return regionArray.map((region) => {
     const correspondingData = departmentRegionCorrespondency.filter(
       (data) => data.region === region
     );
     let nbDepartmentsWithDispo = 0;
     correspondingData.map((data) => {
-      if (Object.keys(groupedDataByDepartment).includes(data.departement)) {
+      if (Object.keys(groupedDataByDepartment).includes(data.department)) {
         nbDepartmentsWithDispo++;
       }
       return;
     });
     return {
       region,
-      nbDispositifs: groupedDataByRegion[region].length,
-      nbDepartements: correspondingData.length,
+      nbDispositifs: groupedDataByRegion[region]
+        ? groupedDataByRegion[region].length
+        : 0,
+      nbDepartments: correspondingData.length,
       nbDepartmentsWithDispo,
     };
   });

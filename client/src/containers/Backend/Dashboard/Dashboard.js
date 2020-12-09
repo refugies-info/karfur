@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import moment from "moment/min/moment-with-locales";
-import { connect } from "react-redux";
 import API from "../../../utils/API";
 import "./Dashboard.scss";
 import { filtres } from "../../Dispositif/data";
@@ -19,6 +18,7 @@ class Dashboard extends Component {
     nbDispositifsByMainTag: {},
     nbDemarchesByMainTag: {},
     nbTraductors: 0,
+    figuresByRegion: [],
   };
 
   componentDidMount() {
@@ -42,6 +42,10 @@ class Dashboard extends Component {
         nbContributors: data.data.data.nbContributors,
         nbTraductors: data.data.data.nbTraductors,
       })
+    );
+
+    API.getNbDispositifsByRegion().then((data) =>
+      this.setState({ figuresByRegion: data.data.data })
     );
 
     filtres.tags.map((tag) => {
@@ -86,11 +90,22 @@ class Dashboard extends Component {
       nbDemarchesActives,
       nbContributors,
       nbTraductors,
+      figuresByRegion,
     } = this.state;
+    const noGeolocFigures = figuresByRegion.filter(
+      (data) => data.region === "No geoloc"
+    );
+    const franceFigures = figuresByRegion.filter(
+      (data) => data.region === "France"
+    );
     return (
       <div className="dashboard-container animated fadeIn">
         <div className="unformatted-data mb-10 ml-12">
           <ul>
+            <b>
+              Contenus par thème (nombre de dispositifs/démarches avec tag
+              principal xxx (vs objectif)):
+            </b>
             {Object.keys(this.state.nbDispositifsByMainTag).map((tag, key) => {
               const targetTag = _.find(targetByTag, { name: tag });
               const targetDispo =
@@ -117,8 +132,7 @@ class Dashboard extends Component {
                 currentValueDemarche < targetDemarche ? "red" : "green";
               return (
                 <li key={key}>
-                  Nombre de dispositifs/démarches avec tag principal{" "}
-                  <b>{tag}</b> (vs objectif) :{" "}
+                  {tag}{" "}
                   <b style={{ color: colorDispo }}>{currentValueDispositif}</b>
                   {""}/{targetDispo} -{" "}
                   <b style={{ color: colorDemarche }}>{currentValueDemarche}</b>
@@ -126,7 +140,32 @@ class Dashboard extends Component {
                 </li>
               );
             })}
-
+            <br />
+            <b>
+              Géolocalisation des dispositifs par région (nombre de dispositifs
+              - nombre de départements avec au moins 1 dispositif/nombre de
+              départements) :
+            </b>
+            {noGeolocFigures.length > 0 && (
+              <li>
+                <div style={{ fontWeight: "bold", color: "red" }}>
+                  {`Pas d'infocard geoloc : ${noGeolocFigures[0].nbDispositifs}`}{" "}
+                </div>
+              </li>
+            )}
+            {franceFigures.length > 0 && (
+              <li>{`France entière : ${franceFigures[0].nbDispositifs}`} </li>
+            )}
+            {figuresByRegion.map((data) => {
+              if (data.region === "France" || data.region === "No geoloc")
+                return;
+              return (
+                <li
+                  key={data.region}
+                >{`${data.region} : ${data.nbDispositifs} - ${data.nbDepartmentsWithDispo}/${data.nbDepartments}`}</li>
+              );
+            })}
+            <br />
             <li>
               Nombre de dispositifs : <b>{nbDispositifs}</b>
             </li>
