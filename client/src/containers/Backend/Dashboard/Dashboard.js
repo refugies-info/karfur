@@ -11,7 +11,6 @@ moment.locale("fr");
 
 class Dashboard extends Component {
   state = {
-    nbExportsPDF: 0,
     nbDispositifs: 0,
     nbDispositifsActifs: 0,
     nbDemarches: 0,
@@ -23,12 +22,6 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    API.get_event({ query: { action: "click", label: "createPdf" } }).then(
-      (data) => {
-        this.setState({ nbExportsPDF: data.data.data.length });
-      }
-    );
-
     API.count_dispositifs({ typeContenu: { $ne: "demarche" } }).then((data) =>
       this.setState({ nbDispositifs: data.data })
     );
@@ -87,7 +80,6 @@ class Dashboard extends Component {
 
   render() {
     const {
-      nbExportsPDF,
       nbDispositifs,
       nbDispositifsActifs,
       nbDemarches,
@@ -95,8 +87,6 @@ class Dashboard extends Component {
       nbContributors,
       nbTraductors,
     } = this.state;
-    const { langues } = this.props;
-    const languesActives = (langues || []).filter((x) => x.avancement >= 0.8);
     return (
       <div className="dashboard-container animated fadeIn">
         <div className="unformatted-data mb-10 ml-12">
@@ -136,19 +126,6 @@ class Dashboard extends Component {
                 </li>
               );
             })}
-            {langues
-              .filter(
-                (langue) => langue.avancement > 0.8 && langue.i18nCode !== "fr"
-              )
-              .map((langue, key) => (
-                <li key={key}>
-                  Pourcentage traduction contenu en <b>{langue.langueFr}</b> :{" "}
-                  {Math.round(langue.avancementTrad * 100)}%{" "}
-                </li>
-              ))}
-            <li>
-              Nombre d'exports PDF (global) : <b>{nbExportsPDF}</b>
-            </li>
 
             <li>
               Nombre de dispositifs : <b>{nbDispositifs}</b>
@@ -168,23 +145,11 @@ class Dashboard extends Component {
             <li>
               Nombre de traducteurs ou experts : <b>{nbTraductors}</b>
             </li>
-            <li>
-              Nombre total de langues : <b>{(langues || []).length}</b>
-            </li>
-            <li>
-              Nombre de langues actives : <b>{languesActives.length}</b>
-            </li>
           </ul>
         </div>
       </div>
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    langues: state.langue.langues,
-    dispositifs: state.activeDispositifs,
-  };
-};
 
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

@@ -9,24 +9,17 @@ import {
   getDispositifsFromDB,
   getDispositifArray,
   updateDispositifInDB,
+  getActiveDispositifsFromDBWithoutPopulate,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
 import { updateAssociatedDispositifsInStructure } from "../structure/structure.repository";
+import {
+  removeUselessContent,
+  adaptDispositifMainSponsorAndCreatorId,
+  adaptDispositifDepartement,
+  getRegionFigures,
+} from "./dispositif.adapter";
 
-const removeUselessContent = (dispositifArray: IDispositif[]) =>
-  dispositifArray.map((dispositif) => {
-    const selectZoneAction = dispositif.contenu[1].children.map(
-      (child: any) => {
-        if (child.title === "Zone d'action") {
-          return child;
-        }
-        return {};
-      }
-    );
-
-    const simplifiedContent = [{}, { children: selectZoneAction }];
-    return { ...dispositif, contenu: simplifiedContent };
-  });
 interface Query {}
 
 export const getDispositifs = async (
@@ -96,28 +89,9 @@ export const getAllDispositifs = async (req: {}, res: Res) => {
     };
 
     const dispositifs = await getDispositifsFromDB(neededFields);
-    const adaptedDispositifs = dispositifs.map((dispositif) => {
-      const jsonDispositif = dispositif.toJSON();
-
-      return {
-        ...jsonDispositif,
-        mainSponsor: jsonDispositif.mainSponsor
-          ? {
-              _id: jsonDispositif.mainSponsor._id,
-              nom: jsonDispositif.mainSponsor.nom,
-              status: jsonDispositif.mainSponsor.status,
-              picture: jsonDispositif.mainSponsor.picture,
-            }
-          : "",
-        creatorId: jsonDispositif.creatorId
-          ? {
-              username: jsonDispositif.creatorId.username,
-              picture: jsonDispositif.creatorId.picture,
-              _id: jsonDispositif.creatorId._id,
-            }
-          : null,
-      };
-    });
+    const adaptedDispositifs = adaptDispositifMainSponsorAndCreatorId(
+      dispositifs
+    );
 
     const array: string[] = [];
 
@@ -272,5 +246,22 @@ export const updateDispositifAdminComments = async (
   } catch (error) {
     logger.error("[updateDispositifAdminComments] error", { error });
     return res.status(500).json({ text: "Erreur interne" });
+  }
+};
+
+export const getNbDispositifsByRegion = async (req: {}, res: Res) => {
+  try {
+    logger.info("[getNbDispositifsByRegion]");
+    const neededFields = { contenu: 1 };
+    const activeDispositifs = await getActiveDispositifsFromDBWithoutPopulate(
+      neededFields
+    );
+
+    const adaptedDispositifs = adaptDispositifDepartement(activeDispositifs);
+
+    const regionFigures = getRegionFigures(adaptedDispositifs);
+    return res.status(200).json({ text: "OK", data: regionFigures });
+  } catch (error) {
+    logger.error("[getNbDispositifsByRegion] error", { error });
   }
 };
