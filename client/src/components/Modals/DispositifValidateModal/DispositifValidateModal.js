@@ -51,7 +51,7 @@ const Check = (props) => (
   <CheckContainer
     missingElement={props.missingElement}
     onClick={() => {
-      if (!props.geolocInfoCard) {
+      if (!props.geolocInfoCard && props.section === "geoloc" ) {
         props.addItem(1, "card", "Zone d'action");
       }
       onCheckContainerClick(
