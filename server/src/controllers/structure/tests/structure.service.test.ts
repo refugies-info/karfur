@@ -1,5 +1,9 @@
 // @ts-nocheck
-import { getStructureById, getActiveStructures } from "../structure.service";
+import {
+  getStructureById,
+  getActiveStructures,
+  getAllStructures,
+} from "../structure.service";
 import {
   getStructureFromDB,
   getStructuresFromDB,
@@ -27,6 +31,85 @@ const mockResponse = (): MockResponse => {
   res.status = jest.fn().mockReturnValue(res);
   res.json = jest.fn().mockReturnValue(res);
   return res;
+};
+
+const dispositif1 = {
+  _id: "dispo1",
+  contenu: "content1",
+  unusedField: "unusedField",
+  abstract: "abstract",
+  status: "Actif",
+  tags: [],
+  titreInformatif: "titre",
+  titreMarque: "titreMarque",
+};
+
+const simplifiedDispo1 = {
+  _id: "dispo1",
+  abstract: "abstract",
+  status: "Actif",
+  tags: [],
+  titreInformatif: "titre",
+  titreMarque: "titreMarque",
+};
+
+const simplifiedDispo2 = {
+  _id: "dispo2",
+  abstract: "abstract",
+  status: "Actif",
+  tags: [],
+  titreInformatif: "titre",
+  titreMarque: "titreMarque",
+};
+
+const dispositif2 = {
+  _id: "dispo2",
+  contenu: "content2",
+  unusedField: "unusedField",
+  abstract: "abstract",
+  status: "Actif",
+  tags: [],
+  titreInformatif: "titre",
+  titreMarque: "titreMarque",
+};
+const dispositif3 = {
+  _id: "dispo2",
+  contenu: "content2",
+  unusedField: "unusedField",
+  abstract: "abstract",
+  status: "Supprimé",
+  tags: [],
+  titreInformatif: "titre",
+  titreMarque: "titreMarque",
+};
+
+const dispositif4 = {
+  _id: "dispo2",
+  contenu: "content2",
+  unusedField: "unusedField",
+  abstract: "abstract",
+  status: "Brouillon",
+  tags: [],
+  titreInformatif: "titre",
+  titreMarque: "titreMarque",
+};
+
+const structure1 = {
+  id: "id",
+  dispositifsAssocies: [dispositif1, dispositif2],
+};
+
+const structure2 = {
+  id: "id",
+  dispositifsAssocies: [dispositif1, dispositif2, dispositif3, dispositif4],
+  membres: [{ id: "id1" }, { id: "id2" }],
+  nom: "nom",
+  status: "En attente",
+  picture: { secure_url: "secure_url" },
+  contact: "contact",
+  phone_contact: "phone_contact",
+  mail_contact: "mail_contact",
+  created_at: 1500,
 };
 
 describe("getStructureById", () => {
@@ -129,7 +212,6 @@ describe("getStructureById", () => {
   });
 
   it("should return 500 if structure has no json throws", async () => {
-    turnToLocalized.mockRejectedValueOnce(new Error("error"));
     const res = mockResponse();
     await getStructureById(
       {
@@ -145,33 +227,10 @@ describe("getStructureById", () => {
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
-  const dispositif1 = {
-    _id: "dispo1",
-    contenu: "content1",
-    unusedField: "unusedField",
-    abstract: "abstract",
-    status: "Actif",
-    tags: [],
-    titreInformatif: "titre",
-    titreMarque: "titreMarque",
-  };
 
-  const dispositif2 = {
-    _id: "dispo2",
-    contenu: "content2",
-    unusedField: "unusedField",
-    abstract: "abstract",
-    status: "Actif",
-    tags: [],
-    titreInformatif: "titre",
-    titreMarque: "titreMarque",
-  };
   it("should return 500 if turnToLocalized throws", async () => {
     getStructureFromDB.mockResolvedValueOnce({
-      toJSON: () => ({
-        id: "id",
-        dispositifsAssocies: [dispositif1, dispositif2],
-      }),
+      toJSON: () => structure1,
     });
     turnToLocalized.mockImplementationOnce(() => {
       throw new Error("error");
@@ -194,10 +253,7 @@ describe("getStructureById", () => {
 
   it("should call turnToLocalized and turnJSONtoHTML ", async () => {
     getStructureFromDB.mockResolvedValueOnce({
-      toJSON: () => ({
-        id: "id",
-        dispositifsAssocies: [dispositif1, dispositif2],
-      }),
+      toJSON: () => structure1,
     });
 
     const res = mockResponse();
@@ -220,24 +276,7 @@ describe("getStructureById", () => {
       text: "Succès",
       data: {
         id: "id",
-        dispositifsAssocies: [
-          {
-            _id: "dispo1",
-            abstract: "abstract",
-            status: "Actif",
-            tags: [],
-            titreInformatif: "titre",
-            titreMarque: "titreMarque",
-          },
-          {
-            _id: "dispo2",
-            abstract: "abstract",
-            status: "Actif",
-            tags: [],
-            titreInformatif: "titre",
-            titreMarque: "titreMarque",
-          },
-        ],
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
       },
     });
   });
@@ -252,7 +291,8 @@ describe("getActiveStructures", () => {
     await getActiveStructures({}, res);
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
-      { nom: 1, acronyme: 1, picture: 1 }
+      { nom: 1, acronyme: 1, picture: 1 },
+      false
     );
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
@@ -266,8 +306,91 @@ describe("getActiveStructures", () => {
     await getActiveStructures({}, res);
     expect(getStructuresFromDB).toHaveBeenCalledWith(
       { status: "Actif" },
-      { nom: 1, acronyme: 1, picture: 1 }
+      { nom: 1, acronyme: 1, picture: 1 },
+      false
     );
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Erreur interne",
+    });
+  });
+});
+
+describe("getAllStructures", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  const neededFields = {
+    nom: 1,
+    status: 1,
+    picture: 1,
+    dispositifsAssocies: 1,
+    contact: 1,
+    phone_contact: 1,
+    mail_contact: 1,
+    membres: 1,
+    created_at: 1,
+  };
+  it("should call getStructuresFromDB and return a 200", async () => {
+    getStructuresFromDB.mockResolvedValueOnce([
+      {
+        toJSON: () => structure2,
+      },
+    ]);
+    const res = mockResponse();
+    await getAllStructures({}, res);
+
+    expect(getStructuresFromDB).toHaveBeenCalledWith({}, neededFields, true);
+    expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "fr");
+    expect(turnToLocalized).toHaveBeenCalledWith(dispositif2, "fr");
+    expect(turnToLocalized).not.toHaveBeenCalledWith(dispositif3, "fr");
+    expect(turnToLocalized).not.toHaveBeenCalledWith(dispositif4, "fr");
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    const result = [
+      {
+        id: "id",
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+        nbMembres: 2,
+        nom: "nom",
+        status: "En attente",
+        picture: { secure_url: "secure_url" },
+        contact: "contact",
+        phone_contact: "phone_contact",
+        mail_contact: "mail_contact",
+        created_at: 1500,
+      },
+    ];
+    expect(res.json).toHaveBeenCalledWith({
+      data: result,
+    });
+  });
+
+  it("should return a 500 if getStructuresFromDB throw ", async () => {
+    getStructuresFromDB.mockRejectedValueOnce(new Error("error"));
+    const res = mockResponse();
+    await getAllStructures({}, res);
+    expect(getStructuresFromDB).toHaveBeenCalledWith({}, neededFields, true);
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Erreur interne",
+    });
+  });
+
+  it("should return a 500 if turnToLocalized throw ", async () => {
+    getStructuresFromDB.mockResolvedValueOnce([
+      {
+        toJSON: () => structure2,
+      },
+    ]);
+    turnToLocalized.mockImplementationOnce(() => {
+      throw new Error("error");
+    });
+    const res = mockResponse();
+    await getAllStructures({}, res);
+    expect(getStructuresFromDB).toHaveBeenCalledWith({}, neededFields, true);
+    expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "fr");
+
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       text: "Erreur interne",

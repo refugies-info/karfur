@@ -153,7 +153,13 @@ export const getAllStructures = async (req: {}, res: Res) => {
         ? jsonStructure.membres.length
         : 0;
 
-      const dispositifsAssocies = jsonStructure.dispositifsAssocies;
+      const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
+        (dispo) =>
+          //@ts-ignore
+          dispo.status &&
+          // @ts-ignore
+          !["Supprimé", "Brouillon"].includes(dispo.status)
+      );
       const array: string[] = [];
 
       array.forEach.call(dispositifsAssocies, (dispositif: any) => {
@@ -162,12 +168,6 @@ export const getAllStructures = async (req: {}, res: Res) => {
 
       const simplifiedDisposAssocies = adaptDispositifsAssocies(
         dispositifsAssocies
-      ).filter(
-        (dispo) =>
-          //@ts-ignore
-          dispo.status &&
-          // @ts-ignore
-          !["Supprimé", "Brouillon"].includes(dispo.status)
       );
 
       delete jsonStructure.membres;
