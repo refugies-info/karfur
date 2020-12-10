@@ -7,7 +7,7 @@ import {
 import {
   structureReducer,
   UserStructureState,
-} from "./UserStructure/userStructure.reducer";
+} from "./UserStructure1/userStructure.reducer";
 import { userReducer, UserState } from "./User/user.reducer";
 import {
   translationReducer,

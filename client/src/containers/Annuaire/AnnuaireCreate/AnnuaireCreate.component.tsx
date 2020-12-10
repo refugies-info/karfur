@@ -16,10 +16,10 @@ import {
   fetchUserStructureActionCreator,
   updateUserStructureActionCreator,
   setUserStructureActionCreator,
-} from "../../../services/UserStructure/userStructure.actions";
+} from "../../../services/UserStructure1/userStructure.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { userStructureIdSelector } from "../../../services/User/user.selectors";
-import { userStructureSelector } from "../../../services/UserStructure/userStructure.selectors";
+import { userStructureSelector } from "../../../services/UserStructure1/userStructure.selectors";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { Structure } from "../../../@types/interface";
