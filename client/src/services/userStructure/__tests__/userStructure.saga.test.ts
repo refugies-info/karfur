@@ -3,7 +3,6 @@ import { testSaga } from "redux-saga-test-plan";
 import latestActionsSaga, {
   fetchUserStructure,
   updateUserStructure,
-  fetchStructures,
 } from "../userStructure.saga";
 import API from "../../../utils/API";
 import { push } from "connected-react-router";
@@ -21,8 +20,6 @@ describe("[Saga] Structures", () => {
   describe("pilot", () => {
     it("should trigger all the structures sagas", () => {
       testSaga(latestActionsSaga)
-        .next()
-        .takeLatest("FETCH_STRUCTURES", fetchStructures)
         .next()
         .takeLatest("FETCH_USER_STRUCTURE", fetchUserStructure)
         .next()
