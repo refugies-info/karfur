@@ -258,9 +258,13 @@ export const getNbDispositifsByRegion = async (req: {}, res: Res) => {
     );
 
     const adaptedDispositifs = adaptDispositifDepartement(activeDispositifs);
-
+    const dispositifsWithoutGeoloc = adaptedDispositifs
+      .filter((dispositif) => dispositif.department === "No geoloc")
+      .map((dispo) => dispo._id);
     const regionFigures = getRegionFigures(adaptedDispositifs);
-    return res.status(200).json({ text: "OK", data: regionFigures });
+    return res
+      .status(200)
+      .json({ text: "OK", data: { regionFigures, dispositifsWithoutGeoloc } });
   } catch (error) {
     logger.error("[getNbDispositifsByRegion] error", { error });
     return res.status(500).json({ text: "Erreur" });

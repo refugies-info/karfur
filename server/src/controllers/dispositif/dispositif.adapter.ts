@@ -70,9 +70,8 @@ export const adaptDispositifDepartement = (dispositifs: IDispositif[]) => {
     const selectZoneAction = dispositif.contenu[1].children.filter(
       (child: any) => child.title === "Zone d'action"
     );
-
     const departments =
-      selectZoneAction.length > 0
+      selectZoneAction.length > 0 && selectZoneAction[0].departments.length > 0
         ? selectZoneAction[0].departments
         : ["No geoloc"];
 
