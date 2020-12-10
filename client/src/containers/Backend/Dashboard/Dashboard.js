@@ -5,6 +5,8 @@ import "./Dashboard.scss";
 import { filtres } from "../../Dispositif/data";
 import _ from "lodash";
 import { targetByTag } from "./data";
+import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { NoGeolocModal } from "./NoGeolocModal";
 
 moment.locale("fr");
 
@@ -19,6 +21,7 @@ class Dashboard extends Component {
     nbDemarchesByMainTag: {},
     nbTraductors: 0,
     figuresByRegion: [],
+    showNoGeolocModal: false,
   };
 
   componentDidMount() {
@@ -45,7 +48,6 @@ class Dashboard extends Component {
     );
 
     API.getNbDispositifsByRegion().then((data) => {
-      console.log("data", data);
       this.setState({
         figuresByRegion: data.data.data.regionFigures,
         dispositifsWithoutGeoloc: data.data.data.dispositifsWithoutGeoloc,
@@ -86,6 +88,11 @@ class Dashboard extends Component {
     <div className="animated fadeIn pt-1 text-center">Loading...</div>
   );
 
+  toggleNoGeolocModal = () =>
+    this.setState((prevState) => ({
+      showNoGeolocModal: !prevState.showNoGeolocModal,
+    }));
+
   render() {
     const {
       nbDispositifs,
@@ -96,6 +103,7 @@ class Dashboard extends Component {
       nbTraductors,
       figuresByRegion,
       dispositifsWithoutGeoloc,
+      showNoGeolocModal,
     } = this.state;
     const noGeolocFigures = figuresByRegion.filter(
       (data) => data.region === "No geoloc"
@@ -103,6 +111,7 @@ class Dashboard extends Component {
     const franceFigures = figuresByRegion.filter(
       (data) => data.region === "France"
     );
+
     return (
       <div className="dashboard-container animated fadeIn">
         <div className="unformatted-data mb-10 ml-12">
@@ -157,15 +166,14 @@ class Dashboard extends Component {
                   style={{
                     fontWeight: "bold",
                     color: "red",
-                    display: "flex",
-                    flexDirection: "row",
-                    flex: 1,
                   }}
                 >
                   {`Pas d'infocard geoloc : ${noGeolocFigures[0].nbDispositifs} : `}
-                  {/* {dispositifsWithoutGeoloc.map((dispo) => (
-                    <div>{`${dispo._id} `}</div>
-                  ))} */}
+                  {noGeolocFigures[0].nbDispositifs > 0 && (
+                    <FButton type="white" onClick={this.toggleNoGeolocModal}>
+                      Voir les fiches
+                    </FButton>
+                  )}
                 </div>
               </li>
             )}
@@ -202,6 +210,11 @@ class Dashboard extends Component {
             </li>
           </ul>
         </div>
+        <NoGeolocModal
+          dispositifsWithoutGeoloc={dispositifsWithoutGeoloc}
+          show={showNoGeolocModal}
+          toggle={this.toggleNoGeolocModal}
+        />
       </div>
     );
   }
