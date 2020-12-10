@@ -16,6 +16,7 @@ import {
 import {
   fakeContenuWithoutZoneDAction,
   fakeContenuWithZoneDAction,
+  fakeContenuWithEmptyZoneDAction,
 } from "../../../__fixtures__/dispositifs";
 import {
   turnToLocalized,
@@ -77,23 +78,27 @@ const contenu2 = [
   },
 ];
 const adaptedDispositif1 = {
-  id: "id1",
+  _id: "id1",
   contenu: contenu1,
 };
 const adaptedDispositif2 = {
-  id: "id2",
+  _id: "id2",
   contenu: contenu2,
 };
 const dispositifs = [
   {
-    id: "id1",
+    _id: "id1",
     contenu: fakeContenuWithZoneDAction,
   },
   {
-    id: "id2",
+    _id: "id2",
     contenu: fakeContenuWithoutZoneDAction,
   },
 ];
+
+const dispositifsFigures = dispositifs.concat([
+  { _id: "id3", contenu: fakeContenuWithEmptyZoneDAction },
+]);
 
 describe("getDispositifs", () => {
   beforeEach(() => {
@@ -119,11 +124,11 @@ describe("getDispositifs", () => {
   it("should call getDispositifsArray and return correct result if one content has a zone d'action and an other not", async () => {
     getDispositifArray.mockResolvedValue([
       {
-        id: "id1",
+        _id: "id1",
         contenu: fakeContenuWithZoneDAction,
       },
       {
-        id: "id2",
+        _id: "id2",
         contenu: fakeContenuWithoutZoneDAction,
       },
     ]);
@@ -273,7 +278,7 @@ describe("getAllispositifs", () => {
   const dispositifsToJson = [
     {
       toJSON: () => ({
-        id: "id1",
+        _id: "id1",
         mainSponsor: {
           _id: "id",
           nom: "nom",
@@ -289,11 +294,11 @@ describe("getAllispositifs", () => {
         },
       }),
     },
-    { toJSON: () => ({ id: "id2" }) },
+    { toJSON: () => ({ _id: "id2" }) },
   ];
 
   const adaptedDispositif1 = {
-    id: "id1",
+    _id: "id1",
     mainSponsor: {
       _id: "id",
       nom: "nom",
@@ -307,7 +312,7 @@ describe("getAllispositifs", () => {
     },
   };
   const adaptedDispositif2 = {
-    id: "id2",
+    _id: "id2",
     mainSponsor: "",
     creatorId: null,
   };
@@ -705,7 +710,9 @@ describe("updateDispositifAdminComments", () => {
   });
 
   it("should call getActiveDispositifsFromDBWithoutPopulate and return correct result", async () => {
-    getActiveDispositifsFromDBWithoutPopulate.mockResolvedValue(dispositifs);
+    getActiveDispositifsFromDBWithoutPopulate.mockResolvedValue(
+      dispositifsFigures
+    );
     const res = mockResponse();
     await getNbDispositifsByRegion({}, res);
     expect(getActiveDispositifsFromDBWithoutPopulate).toHaveBeenCalledWith({
@@ -792,7 +799,7 @@ describe("updateDispositifAdminComments", () => {
       },
       {
         region: "No geoloc",
-        nbDispositifs: 1,
+        nbDispositifs: 2,
         nbDepartments: 0,
         nbDepartmentsWithDispo: 0,
       },
@@ -804,7 +811,13 @@ describe("updateDispositifAdminComments", () => {
       },
     ];
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ text: "OK", data: result });
+    expect(res.json).toHaveBeenCalledWith({
+      text: "OK",
+      data: {
+        regionFigures: result,
+        dispositifsWithoutGeoloc: ["id2", "id3"],
+      },
+    });
   });
 
   it("should return a 500 if getActiveDispositifsFromDBWithoutPopulate throws ", async () => {

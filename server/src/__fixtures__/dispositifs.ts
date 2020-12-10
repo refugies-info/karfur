@@ -611,3 +611,48 @@ export const fakeContenuWithoutZoneDAction = [
     ],
   },
 ];
+
+export const fakeContenuWithEmptyZoneDAction = [
+  {
+    title: "C'est quoi ?",
+    content: [
+      {
+        type: "element",
+        tagName: "p",
+        attributes: [],
+        children: [
+          {
+            type: "text",
+            content: "modification bis",
+          },
+        ],
+      },
+    ],
+    editable: false,
+    type: "paragraphe",
+  },
+  {
+    title: "C'est pour qui ?",
+    content: [
+      {
+        type: "text",
+        content: "null",
+      },
+    ],
+    editable: false,
+    type: "cards",
+    children: [
+      {
+        type: "card",
+        isFakeContent: false,
+        title: "Zone d'action",
+        titleIcon: "pin-outline",
+        typeIcon: "eva",
+        departments: [],
+        free: true,
+        contentTitle: "Sélectionner",
+        editable: false,
+      },
+    ],
+  },
+];

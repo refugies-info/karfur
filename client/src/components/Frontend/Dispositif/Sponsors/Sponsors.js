@@ -162,6 +162,7 @@ class Sponsors extends Component {
       { name: "img-modal", show: false },
     ],
     checked: false,
+    banner: true,
     authorBelongs: false,
     tooltipOpen: false,
     selected: {},
@@ -743,11 +744,26 @@ class Sponsors extends Component {
             </FButton>
           }
         >
-          <p>
-            Pour assurer la mise à jour des informations, nous devons relier ce
-            dispositif à sa structure d’origine. Merci de la renseigner
-            ci-dessous :
-          </p>
+          {this.state.banner ?
+          <div className="warning-bloc bg-focus mt-16 mb-8">
+            <EVAIcon
+              name="info"
+              fill={variables.blanc}
+              className="info-icon"
+            />
+            <div onClick={() => this.setState({banner: false})} className={"info-icon-close"}>
+             <EVAIcon
+              name="close-outline"
+              fill={variables.blanc}
+            />
+            </div>
+            <p style={{marginBottom: 0}}>
+              Pour que la fiche soit correctement mise à jour au fil du temps,
+              nous allons la connecter à sa structure légale. Cherchez la
+              structure dans la barre de recherche ci-dessous, ou créez-en une
+              nouvelle si elle n’est pas présente dans la base de donnée.
+            </p>
+          </div> : <div style={{marginTop: 24}}/>}
 
           {mesStructures.length > 0 &&
             mesStructures.map((struct) => (
@@ -775,7 +791,7 @@ class Sponsors extends Component {
             selectItem={this.selectItem}
           />
 
-          <FormGroup check className="case-cochee mt-10">
+          {/* <FormGroup check className="case-cochee mt-10">
             <Label check>
               <Input
                 type="checkbox"
@@ -784,8 +800,8 @@ class Sponsors extends Component {
               />{" "}
               Je ne sais pas quelle est la structure responsable
             </Label>
-          </FormGroup>
-          {this.state.checked && (
+          </FormGroup> */}
+{/*           {this.state.checked && (
             <>
               <div className="warning-bloc bg-attention mt-10">
                 <EVAIcon
@@ -795,10 +811,11 @@ class Sponsors extends Component {
                 />
                 <b>Structure inconnue</b>
                 <p>
-                  Pas d’inquiétude, nous allons essayer de trouver ensemble la
-                  structure d’origine de ce dispositif. Merci de nous donner au
-                  moins un moyen de contact pour que nous échangions ensemble
-                  sur l’origine de ce dispositif.
+                  Pour que la fiche soit correctement mise à jour au fil du
+                  temps, nous allons la connecter à sa structure légale.
+                  Cherchez la structure dans la barre de recherche ci-dessous,
+                  ou créez-en une nouvelle si elle n’est pas présente dans la
+                  base de donnée.
                 </p>
               </div>
               <div className="form-field">
@@ -832,7 +849,7 @@ class Sponsors extends Component {
                 </InputGroup>
               </div>
             </>
-          )}
+          )} */}
         </CustomModal>
 
         <CustomModal
