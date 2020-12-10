@@ -2,7 +2,7 @@ import {
   SET_USER_STRUCTURE,
   FETCH_USER_STRUCTURE,
   UPDATE_USER_STRUCTURE,
-} from "./structure.actionTypes";
+} from "./userStructure.actionTypes";
 import { Structure } from "../../@types/interface";
 import { action, ActionType } from "typesafe-actions";
 import { ObjectId } from "mongodb";
@@ -24,4 +24,4 @@ const actions = {
   updateUserStructureActionCreator,
 };
 
-export type StructureActions = ActionType<typeof actions>;
+export type UserStructureActions = ActionType<typeof actions>;

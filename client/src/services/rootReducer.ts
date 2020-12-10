@@ -6,8 +6,8 @@ import {
 } from "./ActiveDispositifs/activeDispositifs.reducer";
 import {
   structureReducer,
-  StructureState,
-} from "./Structure/structure.reducer";
+  UserStructureState,
+} from "./userStructure/userStructure.reducer";
 import { userReducer, UserState } from "./User/user.reducer";
 import {
   translationReducer,
@@ -41,7 +41,7 @@ export interface RootState {
   langue: LangueState;
   activeDispositifs: ActiveDispositifsState;
   tts: TtsState;
-  structure: StructureState;
+  structure: UserStructureState;
   selectedDispositif: SelectedDispositifState;
   loadingStatus: LoadingStatusState;
   translation: TranslationState;
@@ -56,8 +56,7 @@ export const appReducer = (history: any) =>
     activeDispositifs: activeDispositifsReducer,
     user: userReducer,
     tts: ttsReducer,
-    // structure should not be used, we should not need all data from all structures in front
-    structure: structureReducer,
+    userStructure: structureReducer,
     selectedDispositif: selectedDispositifReducer,
     loadingStatus: loadingStatusReducer,
     translation: translationReducer,

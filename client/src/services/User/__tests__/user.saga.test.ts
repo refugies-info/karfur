@@ -11,7 +11,7 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
-import { fetchUserStructureActionCreator } from "../../Structure/structure.actions";
+import { fetchUserStructureActionCreator } from "../../userStructure/userStructure.actions";
 
 describe("[Saga] User", () => {
   describe("pilot", () => {

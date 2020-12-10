@@ -4,18 +4,18 @@ import API from "../../utils/API";
 import {
   FETCH_USER_STRUCTURE,
   UPDATE_USER_STRUCTURE,
-} from "./structure.actionTypes";
+} from "./userStructure.actionTypes";
 import {
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
-} from "./structure.actions";
+} from "./userStructure.actions";
 import { logger } from "../../logger";
 import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { userStructureSelector } from "./structure.selectors";
+import { userStructureSelector } from "./userStructure.selectors";
 import { userSelector } from "../User/user.selectors";
 import { push } from "connected-react-router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";

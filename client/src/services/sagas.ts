@@ -1,7 +1,7 @@
 import { SagaIterator } from "redux-saga";
 import { fork } from "redux-saga/effects";
 import userSaga from "./User/user.saga";
-import structuresSaga from "./Structure/structure.saga";
+import structuresSaga from "./userStructure/userStructure.saga";
 import structuresNewSaga from "./Structures/structures.saga";
 import selectedStructureSaga from "./SelectedStructure/selectedStructure.saga";
 import langueSaga from "./Langue/langue.saga";
