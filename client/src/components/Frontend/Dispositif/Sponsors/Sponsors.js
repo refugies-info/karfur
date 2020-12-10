@@ -141,7 +141,7 @@ const SponsorCard = styled.div`
   cursor: ${(props) =>
     (props.add || props.disableEdit) && !props.nolink ? "pointer" : "auto"};
   &:hover {
-    border: ${props => props.add ? "2px solid #212121" : "none"};
+    border: ${(props) => (props.add ? "2px solid #212121" : "none")};
   }
 `;
 
@@ -435,8 +435,8 @@ class Sponsors extends Component {
       _.uniqBy(sponsorsWithPicture, (sponsor) => sponsor.nom)
     );
     const modal = { name: "responsabilite" };
-    const structuresArray = this.props.structuresNew
-      ? this.props.structuresNew.concat([{ createNew: true }])
+    const structuresArray = this.props.structures
+      ? this.props.structures.concat([{ createNew: true }])
       : [{ createNew: true }];
     return (
       <div
@@ -744,26 +744,29 @@ class Sponsors extends Component {
             </FButton>
           }
         >
-          {this.state.banner ?
-          <div className="warning-bloc bg-focus mt-16 mb-8">
-            <EVAIcon
-              name="info"
-              fill={variables.blanc}
-              className="info-icon"
-            />
-            <div onClick={() => this.setState({banner: false})} className={"info-icon-close"}>
-             <EVAIcon
-              name="close-outline"
-              fill={variables.blanc}
-            />
+          {this.state.banner ? (
+            <div className="warning-bloc bg-focus mt-16 mb-8">
+              <EVAIcon
+                name="info"
+                fill={variables.blanc}
+                className="info-icon"
+              />
+              <div
+                onClick={() => this.setState({ banner: false })}
+                className={"info-icon-close"}
+              >
+                <EVAIcon name="close-outline" fill={variables.blanc} />
+              </div>
+              <p style={{ marginBottom: 0 }}>
+                Pour que la fiche soit correctement mise à jour au fil du temps,
+                nous allons la connecter à sa structure légale. Cherchez la
+                structure dans la barre de recherche ci-dessous, ou créez-en une
+                nouvelle si elle n’est pas présente dans la base de donnée.
+              </p>
             </div>
-            <p style={{marginBottom: 0}}>
-              Pour que la fiche soit correctement mise à jour au fil du temps,
-              nous allons la connecter à sa structure légale. Cherchez la
-              structure dans la barre de recherche ci-dessous, ou créez-en une
-              nouvelle si elle n’est pas présente dans la base de donnée.
-            </p>
-          </div> : <div style={{marginTop: 24}}/>}
+          ) : (
+            <div style={{ marginTop: 24 }} />
+          )}
 
           {mesStructures.length > 0 &&
             mesStructures.map((struct) => (
@@ -801,7 +804,7 @@ class Sponsors extends Component {
               Je ne sais pas quelle est la structure responsable
             </Label>
           </FormGroup> */}
-{/*           {this.state.checked && (
+          {/*           {this.state.checked && (
             <>
               <div className="warning-bloc bg-attention mt-10">
                 <EVAIcon
@@ -1257,7 +1260,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     userStructure: state.structure.userStructure,
-    structuresNew: state.structures,
+    structures: state.structures,
   };
 };
 
