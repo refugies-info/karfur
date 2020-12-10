@@ -462,7 +462,7 @@ const mapStateToProps = (state) => {
     langues: state.langue.langues,
     user: state.user.user,
     expertTrad: state.user.expertTrad,
-    userStructure: state.structure.userStructure,
+    userStructure: state.structure,
   };
 };
 

@@ -1259,7 +1259,7 @@ const ImgModal = (props) => (
 const mapStateToProps = (state) => {
   return {
     user: state.user.user,
-    userStructure: state.structure.userStructure,
+    userStructure: state.structure,
     structures: state.structures,
   };
 };
