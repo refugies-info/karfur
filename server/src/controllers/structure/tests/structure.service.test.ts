@@ -250,7 +250,10 @@ describe("getActiveStructures", () => {
   it("should call getStructuresFromDB and return a 200", async () => {
     const res = mockResponse();
     await getActiveStructures({}, res);
-    expect(getStructuresFromDB).toHaveBeenCalledWith();
+    expect(getStructuresFromDB).toHaveBeenCalledWith(
+      { status: "Actif" },
+      { nom: 1, acronyme: 1, picture: 1 }
+    );
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       data: [{ id: "id1" }, { id: "id2" }],
@@ -261,7 +264,10 @@ describe("getActiveStructures", () => {
     getStructuresFromDB.mockRejectedValueOnce(new Error("error"));
     const res = mockResponse();
     await getActiveStructures({}, res);
-    expect(getStructuresFromDB).toHaveBeenCalledWith();
+    expect(getStructuresFromDB).toHaveBeenCalledWith(
+      { status: "Actif" },
+      { nom: 1, acronyme: 1, picture: 1 }
+    );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       text: "Erreur interne",

@@ -115,10 +115,71 @@ export const getStructureById = async (
 export const getActiveStructures = async (req: {}, res: Res) => {
   try {
     logger.info("[getActiveStructures] get structures ");
-    const structures = await getStructuresFromDB();
+    const structures = await getStructuresFromDB(
+      { status: "Actif" },
+      { nom: 1, acronyme: 1, picture: 1 },
+      false
+    );
     return res.status(200).json({ data: structures });
   } catch (error) {
     logger.error("[getActiveStructures] error while getting structures", {
+      error,
+    });
+
+    return res.status(500).json({
+      text: "Erreur interne",
+    });
+  }
+};
+
+export const getAllStructures = async (req: {}, res: Res) => {
+  try {
+    logger.info("[getAllStructures] get structures ");
+    const neededFields = {
+      nom: 1,
+      status: 1,
+      picture: 1,
+      dispositifsAssocies: 1,
+      contact: 1,
+      phone_contact: 1,
+      mail_contact: 1,
+      membres: 1,
+      created_at: 1,
+    };
+    const structures = await getStructuresFromDB({}, neededFields, true);
+    const simplifiedStructures = structures.map((structure) => {
+      const jsonStructure = structure.toJSON();
+      const nbMembres = jsonStructure.membres
+        ? jsonStructure.membres.length
+        : 0;
+
+      const dispositifsAssocies = jsonStructure.dispositifsAssocies;
+      const array: string[] = [];
+
+      array.forEach.call(dispositifsAssocies, (dispositif: any) => {
+        turnToLocalized(dispositif, "fr");
+      });
+
+      const simplifiedDisposAssocies = adaptDispositifsAssocies(
+        dispositifsAssocies
+      ).filter(
+        (dispo) =>
+          //@ts-ignore
+          dispo.status &&
+          // @ts-ignore
+          !["Supprimé", "Brouillon"].includes(dispo.status)
+      );
+
+      delete jsonStructure.membres;
+      return {
+        ...jsonStructure,
+        dispositifsAssocies: simplifiedDisposAssocies,
+        nbMembres,
+      };
+    });
+    return res.status(200).json({ data: simplifiedStructures });
+  } catch (error) {
+    logger.error("[getAllStructures] error while getting structures", {
       error,
     });
 

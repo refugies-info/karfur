@@ -3,6 +3,7 @@ const checkToken = require("./account/checkToken");
 import {
   getStructureById,
   getActiveStructures,
+  getAllStructures,
 } from "./structure/structure.service";
 import { targetErrosOnDispositifsAssociesInStructures } from "./structure/cleanStructure";
 
@@ -15,4 +16,5 @@ module.exports = function (app) {
     targetErrosOnDispositifsAssociesInStructures
   );
   app.get("/getActiveStructures", getActiveStructures);
+  app.get("/getAllStructures", getAllStructures);
 };
