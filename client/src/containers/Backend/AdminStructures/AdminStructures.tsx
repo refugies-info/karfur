@@ -49,6 +49,7 @@ import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
 declare const window: Window;
 
 export const AdminStructures = () => {
+  // test
   // const defaultSortedHeader = {
   //   name: "none",
   //   sens: "none",
