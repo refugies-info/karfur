@@ -15,10 +15,7 @@ import variables from "scss/colors.scss";
 import marioProfile from "../../../../assets/mario-profile.jpg";
 import noStructure from "../../../../assets/noStructure.png";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  allDispositifsSelector,
-  dispositifSelector,
-} from "../../../../services/AllDispositifs/allDispositifs.selector";
+import { dispositifSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
 import API from "../../../../utils/API";
 import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 import { ObjectId } from "mongodb";
