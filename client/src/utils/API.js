@@ -268,6 +268,7 @@ export default {
   },
 
   getAllDispositifs: () => axios.get(burl + "/dispositifs/getAllDispositifs"),
+  getAllStructures: () => axios.get(burl + "/structures/getAllStructures"),
 
   add_tradForReview: (query) => {
     return axios.post(burl + "/traduction/add_tradForReview", query, {
