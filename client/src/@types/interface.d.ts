@@ -230,3 +230,24 @@ export interface Translation {
   validatorId?: ObjectId;
   isExpert?: boolean;
 }
+
+interface SimplifiedDispositifAssocie {
+  titreInformatif: string;
+  titreMarque: string;
+  _id: ObjectId;
+  tags: Tag[];
+  abstract: string;
+  status: string;
+}
+export interface SimplifiedStructureForAdmin {
+  _id: ObjectId;
+  nom: string;
+  picture: Picture;
+  status: string;
+  dispositifsAssocies: SimplifiedDispositifAssocie;
+  contact: string;
+  phone_contact: string;
+  mail_contact: string;
+  nbMembres: number;
+  created_at: Moment;
+}

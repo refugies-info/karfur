@@ -2,35 +2,23 @@ import { SagaIterator } from "redux-saga";
 import { takeLatest, put, call, select } from "redux-saga/effects";
 import API from "../../utils/API";
 import {
-  FETCH_STRUCTURES,
   FETCH_USER_STRUCTURE,
   UPDATE_USER_STRUCTURE,
-} from "./structure.actionTypes";
+} from "./userStructure.actionTypes";
 import {
-  setStructuresActionCreator,
   fetchUserStructureActionCreator,
   setUserStructureActionCreator,
-} from "./structure.actions";
+} from "./userStructure.actions";
 import { logger } from "../../logger";
 import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { userStructureSelector } from "./structure.selectors";
+import { userStructureSelector } from "./userStructure.selectors";
 import { userSelector } from "../User/user.selectors";
 import { push } from "connected-react-router";
 import { setUserRoleInStructureActionCreator } from "../User/user.actions";
-
-export function* fetchStructures(): SagaIterator {
-  try {
-    const data = yield call(API.get_structure, { status: "Actif" });
-    yield put(setStructuresActionCreator(data.data.data));
-  } catch (error) {
-    logger.error("Error while fetching structures", { error });
-    yield put(setStructuresActionCreator([]));
-  }
-}
 
 export function* fetchUserStructure(
   action: ReturnType<typeof fetchUserStructureActionCreator>
@@ -89,7 +77,6 @@ export function* updateUserStructure(): SagaIterator {
 }
 
 function* latestActionsSaga() {
-  yield takeLatest(FETCH_STRUCTURES, fetchStructures);
   yield takeLatest(FETCH_USER_STRUCTURE, fetchUserStructure);
   yield takeLatest(UPDATE_USER_STRUCTURE, updateUserStructure);
 }

@@ -17,10 +17,7 @@ import {
   toggleLangueModalActionCreator,
   toggleLangueActionCreator,
 } from "../../services/Langue/langue.actions";
-import {
-  fetchStructuresActionCreator,
-  setUserStructureActionCreator,
-} from "../../services/Structure/structure.actions";
+import { setUserStructureActionCreator } from "../../services/UserStructure/userStructure.actions";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { readAudio } from "./functions";
@@ -45,7 +42,6 @@ export class Layout extends Component {
 
   componentDidMount() {
     this.props.fetchUser();
-    this.props.fetchStructures();
     this.props.fetchDispositifs();
     this.props.fetchLangues();
     let languei18nCode = Cookies.get("languei18nCode");
@@ -210,7 +206,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  fetchStructures: fetchStructuresActionCreator,
   fetchLangues: fetchLanguesActionCreator,
   fetchDispositifs: fetchActiveDispositifsActionsCreator,
   fetchUser: fetchUserActionCreator,

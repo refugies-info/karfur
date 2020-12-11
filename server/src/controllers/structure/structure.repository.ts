@@ -24,11 +24,33 @@ export const getStructureFromDB = async (
   return await Structure.findOne({ _id: id }, fields);
 };
 
-export const getStructuresFromDB = async () =>
-  await Structure.find(
-    { status: "Actif" },
-    { nom: 1, acronyme: 1, picture: 1 }
+type Query = { status: "Actif" } | {};
+type NeededFields =
+  | { nom: number; acronyme: number; picture: number }
+  | {
+      nom: number;
+      status: number;
+      picture: number;
+      dispositifsAssocies: number;
+      contact: number;
+      phone_contact: number;
+      mail_contact: number;
+      membres: number;
+      created_at: number;
+    };
+
+export const getStructuresFromDB = async (
+  query: Query,
+  neededFields: NeededFields,
+  withDispositifsAssocies: boolean
+) => {
+  if (!withDispositifsAssocies)
+    return await Structure.find(query, neededFields);
+
+  return await Structure.find(query, neededFields).populate(
+    "dispositifsAssocies"
   );
+};
 
 export const updateAssociatedDispositifsInStructure = async (
   dispositifId: ObjectId,
