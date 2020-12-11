@@ -24,8 +24,8 @@ import {
   loadingStatusReducer,
 } from "./LoadingStatus/loadingStatus.reducer";
 import {
-  StructuresState,
-  structuresReducer,
+  ActiveStructuresState,
+  activeStructuresReducer,
 } from "./ActiveStructures/activeStructures.reducer";
 import {
   SelectedStructureState,
@@ -45,7 +45,7 @@ export interface RootState {
   selectedDispositif: SelectedDispositifState;
   loadingStatus: LoadingStatusState;
   translation: TranslationState;
-  structures: StructuresState;
+  activeStructures: ActiveStructuresState;
   selectedStructure: SelectedStructureState;
   allDispositifs: AllDispositifsState;
 }
@@ -60,7 +60,7 @@ export const appReducer = (history: any) =>
     selectedDispositif: selectedDispositifReducer,
     loadingStatus: loadingStatusReducer,
     translation: translationReducer,
-    structures: structuresReducer,
+    activeStructures: activeStructuresReducer,
     selectedStructure: selectedStructureReducer,
     allDispositifs: allDispositifsReducer,
   });

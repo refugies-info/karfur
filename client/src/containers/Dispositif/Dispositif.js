@@ -86,7 +86,7 @@ import {
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
-import { fetchStructuresNewActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
+import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -187,7 +187,7 @@ export class Dispositif extends Component {
     }); */
     this._isMounted = true;
     this.props.fetchUser();
-    this.props.fetchStructures();
+    this.props.fetchActiveStructures();
     this.checkUserFetchedAndInitialize();
     window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
@@ -2255,7 +2255,7 @@ const mapDispatchToProps = {
   fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
   updateUiArray: updateUiArrayActionCreator,
   updateSelectedDispositif: updateSelectedDispositifActionCreator,
-  fetchStructures: fetchStructuresNewActionCreator,
+  fetchActiveStructures: fetchActiveStructuresActionCreator,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

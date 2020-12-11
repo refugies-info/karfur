@@ -2,13 +2,13 @@ import { createReducer } from "typesafe-actions";
 import { StructuresActions } from "./activeStructures.actions";
 import { SimplifiedStructure } from "../../@types/interface";
 
-export type StructuresState = SimplifiedStructure[];
+export type ActiveStructuresState = SimplifiedStructure[];
 
-const initialStructuresState: StructuresState = [];
+const initialActiveStructuresState: ActiveStructuresState = [];
 
-export const structuresReducer = createReducer<
-  StructuresState,
+export const activeStructuresReducer = createReducer<
+  ActiveStructuresState,
   StructuresActions
->(initialStructuresState, {
-  SET_STRUCTURES_NEW: (state, action) => action.payload,
+>(initialActiveStructuresState, {
+  SET_ACTIVE_STRUCTURES: (state, action) => action.payload,
 });

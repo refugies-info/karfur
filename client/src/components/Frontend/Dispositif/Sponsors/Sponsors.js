@@ -1260,7 +1260,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user.user,
     userStructure: state.userStructure,
-    structures: state.structures,
+    structures: state.activeStructures,
   };
 };
 

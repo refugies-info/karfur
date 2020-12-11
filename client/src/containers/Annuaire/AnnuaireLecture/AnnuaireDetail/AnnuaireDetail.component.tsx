@@ -10,9 +10,9 @@ import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
 import { Header } from "../components/Header";
-import { structuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
+import { activeStructuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
 import _ from "lodash";
-import { fetchStructuresNewActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
+import { fetchActiveStructuresActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
 import i18n from "../../../../i18n";
 export interface PropsBeforeInjection {
   t: any;
@@ -63,7 +63,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
     // @ts-ignore
     props.match && props.match.params && props.match.params.id;
 
-  const structures = useSelector(structuresSelector);
+  const structures = useSelector(activeStructuresSelector);
   const locale = i18n.language;
   const leftPartHeight = height - 150;
   useEffect(() => {
@@ -73,7 +73,7 @@ export const AnnuaireDetail = (props: PropsBeforeInjection) => {
       );
     };
     const loadStructures = async () => {
-      await dispatch(fetchStructuresNewActionCreator());
+      await dispatch(fetchActiveStructuresActionCreator());
     };
 
     if (!structures || structures.length === 0) {

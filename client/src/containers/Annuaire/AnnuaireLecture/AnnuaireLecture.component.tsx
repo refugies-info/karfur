@@ -4,9 +4,9 @@ import _ from "lodash";
 import styled from "styled-components";
 import { LetterSection } from "./components/LetterSection";
 import { ObjectId } from "mongodb";
-import { fetchStructuresNewActionCreator } from "../../../services/ActiveStructures/activeStructures.actions";
+import { fetchActiveStructuresActionCreator } from "../../../services/ActiveStructures/activeStructures.actions";
 import { useDispatch, useSelector } from "react-redux";
-import { structuresSelector } from "../../../services/ActiveStructures/activeStructures.selector";
+import { activeStructuresSelector } from "../../../services/ActiveStructures/activeStructures.selector";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { setSelectedStructureActionCreator } from "../../../services/SelectedStructure/selectedStructure.actions";
@@ -87,7 +87,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   // );
   const [stopScroll, setStopScroll] = useState(false);
 
-  const structures = useSelector(structuresSelector);
+  const structures = useSelector(activeStructuresSelector);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
   );
@@ -106,7 +106,7 @@ export const AnnuaireLectureComponent = (props: Props) => {
   useEffect(() => {
     const loadStructures = async () => {
       await dispatch(setSelectedStructureActionCreator(null));
-      await dispatch(fetchStructuresNewActionCreator());
+      await dispatch(fetchActiveStructuresActionCreator());
     };
 
     loadStructures();

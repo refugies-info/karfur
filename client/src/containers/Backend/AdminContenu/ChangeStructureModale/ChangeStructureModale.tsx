@@ -4,8 +4,8 @@ import { Modal, Spinner } from "reactstrap";
 import "./ChangeStructureModale.scss";
 import { SearchBar } from "../../../../containers/UI/SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchStructuresNewActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
-import { structuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
+import { fetchActiveStructuresActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
+import { activeStructuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { SimplifiedStructure } from "../../../../@types/interface";
@@ -74,14 +74,14 @@ export const ChangeStructureModal = (props: Props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const loadStructures = async () => {
-      await dispatch(fetchStructuresNewActionCreator());
+      await dispatch(fetchActiveStructuresActionCreator());
     };
     loadStructures();
   }, [dispatch]);
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_STRUCTURES)
   );
-  const structures = useSelector(structuresSelector);
+  const structures = useSelector(activeStructuresSelector);
   const selectItem = (item: any) => setSelectedStructure(item);
   const toggleModal = () => {
     setSelectedStructure(null);
