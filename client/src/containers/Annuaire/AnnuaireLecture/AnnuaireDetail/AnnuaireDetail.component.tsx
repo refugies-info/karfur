@@ -10,9 +10,9 @@ import { LeftAnnuaireDetail } from "./components/LeftAnnuaireDetail";
 import { MiddleAnnuaireDetail } from "./components/MiddleAnnuaireDetails";
 import { RightAnnuaireDetails } from "./components/RightAnnuaireDetails";
 import { Header } from "../components/Header";
-import { structuresSelector } from "../../../../services/Structures/activeStructures.selector";
+import { structuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
 import _ from "lodash";
-import { fetchStructuresNewActionCreator } from "../../../../services/Structures/activeStructures.actions";
+import { fetchStructuresNewActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
 import i18n from "../../../../i18n";
 export interface PropsBeforeInjection {
   t: any;

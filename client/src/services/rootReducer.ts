@@ -26,7 +26,7 @@ import {
 import {
   StructuresState,
   structuresReducer,
-} from "./Structures/activeStructures.reducer";
+} from "./ActiveStructures/activeStructures.reducer";
 import {
   SelectedStructureState,
   selectedStructureReducer,

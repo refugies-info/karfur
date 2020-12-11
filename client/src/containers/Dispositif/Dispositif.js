@@ -86,7 +86,7 @@ import {
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
-import { fetchStructuresNewActionCreator } from "../../services/Structures/activeStructures.actions";
+import { fetchStructuresNewActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -1606,13 +1606,14 @@ export class Dispositif extends Component {
           this.props.fetchDispositifs();
           this.setState(
             {
-              disableEdit: [
-                "En attente admin",
-                "En attente",
-                "Brouillon",
-                "En attente non prioritaire",
-                "Actif",
-              ].includes(status) && !saveAndEdit,
+              disableEdit:
+                [
+                  "En attente admin",
+                  "En attente",
+                  "Brouillon",
+                  "En attente non prioritaire",
+                  "Actif",
+                ].includes(status) && !saveAndEdit,
               isDispositifLoading: false,
             },
             () => {
