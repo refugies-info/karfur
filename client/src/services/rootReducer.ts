@@ -6,8 +6,8 @@ import {
 } from "./ActiveDispositifs/activeDispositifs.reducer";
 import {
   structureReducer,
-  StructureState,
-} from "./Structure/structure.reducer";
+  UserStructureState,
+} from "./UserStructure/userStructure.reducer";
 import { userReducer, UserState } from "./User/user.reducer";
 import {
   translationReducer,
@@ -24,9 +24,9 @@ import {
   loadingStatusReducer,
 } from "./LoadingStatus/loadingStatus.reducer";
 import {
-  StructuresState,
-  structuresReducer,
-} from "./Structures/structures.reducer";
+  ActiveStructuresState,
+  activeStructuresReducer,
+} from "./ActiveStructures/activeStructures.reducer";
 import {
   SelectedStructureState,
   selectedStructureReducer,
@@ -35,19 +35,24 @@ import {
   AllDispositifsState,
   allDispositifsReducer,
 } from "./AllDispositifs/allDispositifs.reducer";
+import {
+  AllStructuresState,
+  allStructuresReducer,
+} from "./AllStructures/allStructures.reducer";
 
 export interface RootState {
   user: UserState;
   langue: LangueState;
   activeDispositifs: ActiveDispositifsState;
   tts: TtsState;
-  structure: StructureState;
+  structure: UserStructureState;
   selectedDispositif: SelectedDispositifState;
   loadingStatus: LoadingStatusState;
   translation: TranslationState;
-  structures: StructuresState;
+  activeStructures: ActiveStructuresState;
   selectedStructure: SelectedStructureState;
   allDispositifs: AllDispositifsState;
+  allStructures: AllStructuresState;
 }
 export const appReducer = (history: any) =>
   combineReducers({
@@ -56,12 +61,12 @@ export const appReducer = (history: any) =>
     activeDispositifs: activeDispositifsReducer,
     user: userReducer,
     tts: ttsReducer,
-    // structure should not be used, we should not need all data from all structures in front
-    structure: structureReducer,
+    userStructure: structureReducer,
     selectedDispositif: selectedDispositifReducer,
     loadingStatus: loadingStatusReducer,
     translation: translationReducer,
-    structures: structuresReducer,
+    activeStructures: activeStructuresReducer,
     selectedStructure: selectedStructureReducer,
     allDispositifs: allDispositifsReducer,
+    allStructures: allStructuresReducer,
   });

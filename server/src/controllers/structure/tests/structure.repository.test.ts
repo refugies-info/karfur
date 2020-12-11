@@ -35,14 +35,25 @@ describe("getStructureFromDB", () => {
 });
 
 describe("getStructuresFromDB", () => {
-  it("should call structure.find", async () => {
+  it("should call structure.find when withDispositifsAssocies false ", async () => {
     Structure.find = jest.fn().mockResolvedValue({});
 
-    await getStructuresFromDB();
-    expect(Structure.find).toHaveBeenCalledWith(
-      { status: "Actif" },
-      { nom: 1, acronyme: 1, picture: 1 }
-    );
+    const query = { status: "Actif" };
+    const fields = { nom: 1, acronyme: 1, picture: 1 };
+    await getStructuresFromDB(query, fields, false);
+    expect(Structure.find).toHaveBeenCalledWith(query, fields);
+  });
+
+  it("should call structure.find when withDispositifsAssocies true ", async () => {
+    Structure.find = jest.fn().mockReturnValue({
+      populate: jest.fn().mockResolvedValue(["structuresWithDispos"]),
+    });
+
+    const query = { status: "Actif" };
+    const fields = { nom: 1, acronyme: 1, picture: 1 };
+    const res = await getStructuresFromDB(query, fields, true);
+    expect(Structure.find).toHaveBeenCalledWith(query, fields);
+    expect(res).toEqual(["structuresWithDispos"]);
   });
 });
 
