@@ -86,7 +86,7 @@ import {
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
-import { fetchStructuresNewActionCreator } from "../../services/Structures/structures.actions";
+import { fetchStructuresNewActionCreator } from "../../services/Structures/activeStructures.actions";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");

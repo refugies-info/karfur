@@ -1,13 +1,13 @@
 // @ts-nocheck
 import { testSaga } from "redux-saga-test-plan";
-import latestActionsSaga, { fetchStructures } from "../structures.saga";
+import latestActionsSaga, { fetchStructures } from "../activeStructures.saga";
 import API from "../../../utils/API";
 import {
   startLoading,
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
-import { setStructuresNewActionCreator } from "../structures.actions";
+import { setStructuresNewActionCreator } from "../activeStructures.actions";
 
 describe("[Saga] Structures", () => {
   describe("pilot", () => {

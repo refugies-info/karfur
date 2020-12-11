@@ -1,7 +1,7 @@
 import {
   SET_STRUCTURES_NEW,
   FETCH_STRUCTURES_NEW,
-} from "./structures.actionTypes";
+} from "./activeStructures.actionTypes";
 import { Structure } from "../../@types/interface";
 import { action, ActionType } from "typesafe-actions";
 

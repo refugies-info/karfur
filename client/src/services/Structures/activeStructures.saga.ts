@@ -7,8 +7,8 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../LoadingStatus/loadingStatus.actions";
-import { setStructuresNewActionCreator } from "./structures.actions";
-import { FETCH_STRUCTURES_NEW } from "./structures.actionTypes";
+import { setStructuresNewActionCreator } from "./activeStructures.actions";
+import { FETCH_STRUCTURES_NEW } from "./activeStructures.actionTypes";
 
 export function* fetchStructures(): SagaIterator {
   try {
