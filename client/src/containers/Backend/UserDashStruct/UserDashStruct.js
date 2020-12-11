@@ -41,7 +41,7 @@ import variables from "scss/colors.scss";
 import {
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "../../../services/Structure/structure.actions";
+} from "../../../services/UserStructure/userStructure.actions";
 
 moment.locale("fr");
 
@@ -462,7 +462,7 @@ const mapStateToProps = (state) => {
     langues: state.langue.langues,
     user: state.user.user,
     expertTrad: state.user.expertTrad,
-    userStructure: state.structure.userStructure,
+    userStructure: state.userStructure,
   };
 };
 

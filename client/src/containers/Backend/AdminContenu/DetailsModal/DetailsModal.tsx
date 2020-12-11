@@ -15,14 +15,15 @@ import variables from "scss/colors.scss";
 import marioProfile from "../../../../assets/mario-profile.jpg";
 import noStructure from "../../../../assets/noStructure.png";
 import { useSelector, useDispatch } from "react-redux";
-import { allDispositifsSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
+import { dispositifSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
 import API from "../../../../utils/API";
 import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
+import { ObjectId } from "mongodb";
 
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  selectedDispositif: SimplifiedDispositif | null;
+  selectedDispositifId: ObjectId | null;
   url: string;
   onDeleteClick: () => void;
   setShowChangeStructureModal: (arg: boolean) => void;
@@ -115,7 +116,7 @@ moment.locale("fr");
 const statusModifiable = ["En attente", "En attente admin"];
 
 export const DetailsModal = (props: Props) => {
-  const selectedDispositif = props.selectedDispositif;
+  const selectedDispositifId = props.selectedDispositifId;
 
   const [modifiedStatus, setModifiedStatus] = useState<string | null>(null);
   const [adminComments, setAdminComments] = useState<string>("");
@@ -130,34 +131,26 @@ export const DetailsModal = (props: Props) => {
 
   const dispatch = useDispatch();
 
+  const dispositif = useSelector(dispositifSelector(selectedDispositifId));
+
   useEffect(() => {
-    if (selectedDispositif) {
-      if (selectedDispositif.adminComments) {
-        setAdminComments(selectedDispositif.adminComments);
+    if (dispositif) {
+      if (dispositif.adminComments) {
+        setAdminComments(dispositif.adminComments);
       }
 
-      if (selectedDispositif.adminProgressionStatus) {
-        setAdminProgressionStatusGroup1(
-          selectedDispositif.adminProgressionStatus
-        );
+      if (dispositif.adminProgressionStatus) {
+        setAdminProgressionStatusGroup1(dispositif.adminProgressionStatus);
       } else {
         setAdminProgressionStatusGroup1("Nouveau !");
       }
-      if (selectedDispositif.adminPercentageProgressionStatus) {
+      if (dispositif.adminPercentageProgressionStatus) {
         setAdminProgressionStatusGroup2(
-          selectedDispositif.adminPercentageProgressionStatus
+          dispositif.adminPercentageProgressionStatus
         );
       }
     }
-  }, [selectedDispositif]);
-
-  const dispositifs = useSelector(allDispositifsSelector);
-
-  const updatedDispositif = selectedDispositif
-    ? dispositifs.filter(
-        (dispositif) => dispositif._id === selectedDispositif._id
-      )
-    : null;
+  }, [dispositif]);
 
   const getCreatorImage = (selectedDispositif: SimplifiedDispositif) =>
     selectedDispositif &&
@@ -205,13 +198,7 @@ export const DetailsModal = (props: Props) => {
     toggle();
   };
 
-  if (
-    selectedDispositif &&
-    updatedDispositif &&
-    updatedDispositif.length === 1
-  ) {
-    const dispositif = updatedDispositif[0];
-
+  if (dispositif) {
     const burl =
       props.url +
       (dispositif.typeContenu || "dispositif") +

@@ -442,7 +442,9 @@ export const AdminContenu = () => {
       <DetailsModal
         show={showDetailsModal}
         toggleModal={() => setSelectedDispositifAndToggleModal(null)}
-        selectedDispositif={selectedDispositif}
+        selectedDispositifId={
+          selectedDispositif ? selectedDispositif._id : null
+        }
         url={url}
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
         setShowChangeStructureModal={setShowChangeStructureModal}

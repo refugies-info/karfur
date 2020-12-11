@@ -3,8 +3,7 @@ import { testSaga } from "redux-saga-test-plan";
 import latestActionsSaga, {
   fetchUserStructure,
   updateUserStructure,
-  fetchStructures,
-} from "../structure.saga";
+} from "../userStructure.saga";
 import API from "../../../utils/API";
 import { push } from "connected-react-router";
 import {
@@ -12,8 +11,8 @@ import {
   LoadingStatusKey,
   finishLoading,
 } from "../../LoadingStatus/loadingStatus.actions";
-import { FETCH_USER_STRUCTURE } from "../structure.actionTypes";
-import { setUserStructureActionCreator } from "../structure.actions";
+import { FETCH_USER_STRUCTURE } from "../userStructure.actionTypes";
+import { setUserStructureActionCreator } from "../userStructure.actions";
 import { userSelector } from "../../User/user.selectors";
 import { setUserRoleInStructureActionCreator } from "../../User/user.actions";
 
@@ -21,8 +20,6 @@ describe("[Saga] Structures", () => {
   describe("pilot", () => {
     it("should trigger all the structures sagas", () => {
       testSaga(latestActionsSaga)
-        .next()
-        .takeLatest("FETCH_STRUCTURES", fetchStructures)
         .next()
         .takeLatest("FETCH_USER_STRUCTURE", fetchUserStructure)
         .next()
