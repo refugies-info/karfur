@@ -298,8 +298,9 @@ async function add_tradForReview(req, res) {
     }
     let nbMotsTitres = 0;
     let nbMotsBody = 0;
-    //On transforme le html en JSON après l'avoir nettoyé
 
+    JSON.parse(JSON.stringify(traduction.translatedText));
+    //On transforme le html en JSON après l'avoir nettoyé
     if (traduction.translatedText.contenu) {
       //le cas des dispositifs
       traduction.nbMots = turnHTMLtoJSON(traduction.translatedText.contenu);
@@ -476,6 +477,10 @@ async function validate_tradForReview(req, res) {
   } else {
     try {
       let traductionUser = req.body || {};
+/*       if (traductionUser.translatedText.contenu) {
+        //le cas des dispositifs
+        traductionUser.nbMots = turnHTMLtoJSON(traductionUser.translatedText.contenu);
+      } */
       //Ici il y en a plusieurs: à régler
       // We update the translation for the expert, by changing the status to validated
       if (traductionUser.type === "dispositif") {
@@ -734,6 +739,10 @@ function update_tradForReview(req, res) {
   } else {
     let translation = req.body;
     translation.validatorId = req.userId;
+    if (translation.translatedText.contenu) {
+      //le cas des dispositifs
+      translation.nbMots = turnHTMLtoJSON(translation.translatedText.contenu);
+    }
 
     const { wordsCount, timeSpent, language, articleId } = translation;
 

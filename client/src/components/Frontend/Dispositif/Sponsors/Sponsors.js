@@ -310,6 +310,7 @@ class Sponsors extends Component {
       this.props.addMainSponsor(data.data.data);
       this.toggleModal("envoye");
     });
+    this.setState({ imgData: {} });
   };
 
   validerRespo = () => {
