@@ -30,6 +30,22 @@ export const StyledStatus = styled.button`
   padding: 10px;
 `;
 
+const StyledFirstCell = styled.td`
+border-radius: 12px 0px 0px 12px;
+background-color: white;
+`;
+
+const StyledLastCell = styled.td`
+border-radius: 0px 12px 12px 0px;
+background-color: white;
+`;
+
+const StyledCell = styled.td`
+background-color: white;
+`;
+
+
+
 export const StyledInput = styled.input`
   font-weight: bold;
   border-radius: 8px;
@@ -1006,31 +1022,31 @@ export class Avancement extends Component {
             </thead>
             <tbody>
               {this.state.loader ? [...Array(10).keys()].map((elem, key) => (
-                <tr key={key} style={{backgroundColor: "#ffffff", padding: "10px", lineHeight: "30px"}}>
-                  <td style={{borderRadius: "12px 0px 0px 12px"}}>
+                <tr key={key} style={{backgroundColor: "#f4f4f4", lineHeight: "30px"}}>
+                  <StyledFirstCell>
                     <Skeleton />
-                  </td>
-                  <td>
+                  </StyledFirstCell>
+                  <StyledCell>
                     <Skeleton />
-                  </td>
-                  <td>
+                  </StyledCell>
+                  <StyledCell>
                     <Skeleton />
-                  </td>
-                  <td>
+                  </StyledCell>
+                  <StyledCell>
                     <Skeleton />
-                  </td>
-                  <td>
+                  </StyledCell>
+                  <StyledCell>
                     <Skeleton />
-                  </td>
-                  <td>
+                  </StyledCell>
+                  <StyledCell>
                     <Skeleton />
-                  </td>
-                  <td>
+                  </StyledCell>
+                  <StyledCell>
                     <Skeleton />
-                  </td>
-                  <td style={{borderRadius: "0px 12px 12px 0px"}}>
+                  </StyledCell>
+                  <StyledLastCell>
                     <Skeleton />
-                  </td>
+                  </StyledLastCell>
                 </tr>
               )) : (
                 <AvancementData />

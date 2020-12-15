@@ -4,9 +4,9 @@ import { Spinner, Tooltip, Progress } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
 import h2p from "html2plaintext";
-import { convertToRaw, EditorState, ContentState } from "draft-js";
+import { EditorState, ContentState } from "draft-js";
+import { convertToHTML } from "draft-convert"
 import htmlToDraft from "html-to-draftjs";
 import DirectionProvider, {
   DIRECTIONS,
@@ -27,6 +27,7 @@ import {
 import marioProfile from "../../../assets/mario-profile.jpg";
 import { RejectTradModal } from "../../../components/Modals";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
+import {customConvertOption} from "../data";
 
 import "./SideTrad.scss";
 import variables from "scss/colors.scss";
@@ -1006,7 +1007,8 @@ class SideTrad extends Component {
       const texte =
         nom === "francais"
           ? initialValue
-          : draftToHtml(convertToRaw(initialValue.getCurrentContent()));
+          : convertToHTML(customConvertOption)(
+            initialValue.getCurrentContent());
       const value =
         pos > -1
           ? h2p(texte)
