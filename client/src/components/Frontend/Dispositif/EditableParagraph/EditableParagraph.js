@@ -157,6 +157,13 @@ class EditableParagraph extends Component {
     );
   };
 
+  setEditorReference = (ref) => {
+    this.editorReference = ref;
+    if (ref) {
+      ref.focus();
+    }
+  };
+
   // used in Media upload which is commented
   // insertBlock = (type, data) => {
   //   const { editorState } = this.props;
@@ -188,6 +195,7 @@ class EditableParagraph extends Component {
         <>
           <Editor
             spellCheck
+            editorRef={this.setEditorReference}
             toolbarClassName={
               "toolbar-editeur" + (props.keyValue === 0 ? " no-top" : "")
             }

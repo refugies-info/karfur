@@ -4,10 +4,10 @@ import { Spinner, Tooltip, Progress } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
 import h2p from "html2plaintext";
-import { convertToRaw, EditorState, ContentState } from "draft-js";
+import { EditorState, ContentState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
+import { convertToHTML } from "draft-convert"
 import DirectionProvider, {
   DIRECTIONS,
 } from "react-with-direction/dist/DirectionProvider";
@@ -29,6 +29,7 @@ import moment from "moment";
 
 import "./SideTrad.scss";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
+import {customConvertOption} from "../data";
 import variables from "scss/colors.scss";
 import produce from "immer";
 import styled from "styled-components";
@@ -840,7 +841,8 @@ class SideTrad extends Component {
       const texte =
         nom === "francais"
           ? initialValue
-          : draftToHtml(convertToRaw(initialValue.getCurrentContent()));
+          : convertToHTML(customConvertOption)(
+            initialValue.getCurrentContent());
       const value =
         pos > -1
           ? h2p(texte)

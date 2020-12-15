@@ -491,15 +491,23 @@ export class Dispositif extends Component {
   };
 
   handleChange = (ev) => {
+    var value = ev.target.value;
+    if (ev.currentTarget.id === "titreInformatif") {
+      value = ev.target.value.substring(0, 40)
+    }
+    if (ev.currentTarget.id === "titreMarque") {
+      value = ev.target.value.substring(0, 27)
+    }
     // update selected dispositif in redux
     this.props.updateSelectedDispositif({
-      [ev.currentTarget.id]: ev.target.value,
+      [ev.currentTarget.id]: value,
     });
+
     // TO DO : remove this set state when all infos are taken from store
     this.setState({
       content: {
         ...this.state.content,
-        [ev.currentTarget.id]: ev.target.value,
+        [ev.currentTarget.id]: value,
       },
     });
   };
