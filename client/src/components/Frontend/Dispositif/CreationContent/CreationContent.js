@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Row,
   Col,
@@ -16,33 +16,35 @@ import FInput from "../../../FigmaUI/FInput/FInput";
 import "./CreationContent.scss";
 import variables from "scss/colors.scss";
 
-const CreationContent = (props) => (
-  <div className="creation-content">
-    <span className="bg-attention2 compulsory">
-      <sup>*</sup> Champs obligatoires
-    </span>
-    <div className="form-field">
-      <b>Nom de la structure à créer&#42;</b>
+const CreationContent = (props) => {
+  const [banner, setBanner] = useState(true);
+  return (
+    <div className="creation-content">
+      <span className="bg-attention2 compulsory">
+        <sup>*</sup> Champs obligatoires
+      </span>
+      <div className="form-field">
+        <b>Nom de la structure à créer&#42;</b>
 
-      <Row>
-        <Col lg="9" md="9" sm="12" xs="12">
-          <InputGroup>
-            <EVAIcon
-              className="input-icon"
-              name="pricetags-outline"
-              fill={variables.noir}
-            />
-            <FInput
-              id="nom"
-              placeholder="Nom complet de la structure"
-              value={props.nom}
-              onChange={props.handleChange}
-              name="structure"
-              newSize={true}
-            />
-          </InputGroup>
-        </Col>
-        {/*  <Col lg="3" md="3" sm="12" xs="12">
+        <Row>
+          <Col lg="9" md="9" sm="12" xs="12">
+            <InputGroup>
+              <EVAIcon
+                className="input-icon"
+                name="pricetags-outline"
+                fill={variables.noir}
+              />
+              <FInput
+                id="nom"
+                placeholder="Nom complet de la structure"
+                value={props.nom}
+                onChange={props.handleChange}
+                name="structure"
+                newSize={true}
+              />
+            </InputGroup>
+          </Col>
+          {/*  <Col lg="3" md="3" sm="12" xs="12">
           <InputGroup>
             <EVAIcon
               className="input-icon"
@@ -58,8 +60,8 @@ const CreationContent = (props) => (
             />
           </InputGroup>
         </Col> */}
-      </Row>
-      {/*  <InputGroup>
+        </Row>
+        {/*  <InputGroup>
         <EVAIcon
           className="input-icon"
           name="link-outline"
@@ -73,74 +75,80 @@ const CreationContent = (props) => (
           name="structure"
         />
       </InputGroup> */}
-    </div>
-    <div className="form-field">
-      <b style={{ fontSize: "22px" }}>Contact unique</b>
-      <div className="warning-bloc bg-attention2 mt-16">
-        <EVAIcon
-          name="info-outline"
-          fill={variables.noir}
-          className="info-icon"
-        />
-        Notre équipe va contacter au plus vite ce contact unique pour l’informer
-        de la validation de la structure.&nbsp;
       </div>
-      <Row className={"mt-16 mb-16"}>
-        <Col lg="7" md="7" sm="12" xs="12">
-          <b>Nom et prénom&#42;</b>
-          <InputGroup>
-            <EVAIcon
-              className="input-icon"
-              name="person-outline"
-              fill={variables.noir}
-            />
-            <FInput
-              id="contact"
-              placeholder="Nom et prénom du contact&#42;"
-              value={props.contact}
-              onChange={props.handleChange}
-              name="structure"
-              newSize={true}
-            />
-          </InputGroup>
-        </Col>
-        <Col lg="5" md="5" sm="12" xs="12">
-          <b>Téléphone&#42;</b>
-          <InputGroup>
-            <EVAIcon
-              className="input-icon"
-              name="phone-outline"
-              fill={variables.noir}
-            />
-            <FInput
-              id="phone_contact"
-              placeholder="Numéro de téléphone"
-              value={props.phone_contact}
-              onChange={props.handleChange}
-              name="structure"
-              newSize={true}
-            />
-          </InputGroup>
-        </Col>
-      </Row>
-      <b style={{ marginTop: "16px" }}>Email&#42;</b>
-      <InputGroup>
-        <EVAIcon
-          className="input-icon"
-          name="at-outline"
-          fill={variables.noir}
-        />
-        <FInput
-          id="mail_contact"
-          placeholder="Email du contact"
-          value={props.mail_contact}
-          onChange={props.handleChange}
-          name="structure"
-          newSize={true}
-        />
-      </InputGroup>
-    </div>
-    {/*     <div className="form-field belongs-wrapper">
+      <div className="form-field">
+        <b style={{ fontSize: "22px" }}>Personne responsable à contacter</b>
+        {banner ? (
+          <div className="warning-bloc bg-focus mt-16 mb-8">
+            <EVAIcon name="info" fill={variables.blanc} className="info-icon" />
+            <div onClick={() => setBanner(false)} className={"info-icon-close"}>
+              <EVAIcon name="close-outline" fill={variables.blanc} />
+            </div>
+            <p style={{ marginBottom: 0 }}>
+              Notre équipe va contacter au plus vite cette personne pour
+              l’informer de la validation de la structure. Seule l’équipe de
+              Réfugiés.info aura accès à ces coordonnées.
+            </p>
+          </div>
+        ) : (
+          <div style={{ marginTop: 24 }} />
+        )}
+        <Row className={"mt-16 mb-16"}>
+          <Col lg="7" md="7" sm="12" xs="12">
+            <b>Nom et prénom&#42;</b>
+            <InputGroup>
+              <EVAIcon
+                className="input-icon"
+                name="person-outline"
+                fill={variables.noir}
+              />
+              <FInput
+                id="contact"
+                placeholder="Nom et prénom du contact&#42;"
+                value={props.contact}
+                onChange={props.handleChange}
+                name="structure"
+                newSize={true}
+              />
+            </InputGroup>
+          </Col>
+          <Col lg="5" md="5" sm="12" xs="12">
+            <b>Téléphone&#42;</b>
+            <InputGroup>
+              <EVAIcon
+                className="input-icon"
+                name="phone-outline"
+                fill={variables.noir}
+              />
+              <FInput
+                id="phone_contact"
+                placeholder="Numéro de téléphone"
+                value={props.phone_contact}
+                onChange={props.handleChange}
+                name="structure"
+                newSize={true}
+              />
+            </InputGroup>
+          </Col>
+        </Row>
+        <b style={{ marginTop: "16px" }}>Email&#42;</b>
+        <InputGroup>
+          <EVAIcon
+            className="input-icon"
+            name="at-outline"
+            fill={variables.noir}
+          />
+          <FInput
+            id="mail_contact"
+            placeholder="Email du contact"
+            value={props.mail_contact}
+            onChange={props.handleChange}
+            name="structure"
+            newSize={true}
+          />
+        </InputGroup>
+      </div>
+      {/*     <div className="form-field belongs-wrapper">
       <b>
         {props.adminView
           ? "Le créateur fait-il partie de la structure ?"
@@ -170,178 +178,187 @@ const CreationContent = (props) => (
       </div>
     </div> */}
 
-    {props.adminView && (
-      <>
-        {props._id && props.createur && props.createur._id && (
-          <div className="creator-wrapper">
-            {props.createur.picture && props.createur.picture.secure_url && (
-              <img
-                className="img-circle mr-10"
-                src={props.createur.picture.secure_url}
-                alt="profile"
-              />
-            )}
-            <div className="creator-info">
-              <p>
-                <b>Nom d'utilisateur : </b> {props.createur.username}
-              </p>
-              <p>
-                <b>Email : </b> {props.createur.email}
-              </p>
-              <p>
-                <b>Description : </b> {props.createur.description}
-              </p>
+      {props.adminView && (
+        <>
+          {props._id && props.createur && props.createur._id && (
+            <div className="creator-wrapper">
+              {props.createur.picture && props.createur.picture.secure_url && (
+                <img
+                  className="img-circle mr-10"
+                  src={props.createur.picture.secure_url}
+                  alt="profile"
+                />
+              )}
+              <div className="creator-info">
+                <p>
+                  <b>Nom d'utilisateur : </b> {props.createur.username}
+                </p>
+                <p>
+                  <b>Email : </b> {props.createur.email}
+                </p>
+                <p>
+                  <b>Description : </b> {props.createur.description}
+                </p>
+              </div>
             </div>
-          </div>
-        )}
-        <FormGroup row>
-          <Col md="3" className="status-label">
-            <Label htmlFor="select">
-              <b>Administrateur de la structure</b>
-            </Label>
-          </Col>
-          <Col xs="12" md="9">
-            <Input
-              type="select"
-              id="administrateur"
-              name="structure"
-              value={props.administrateur || ""}
-              onChange={props.handleChange}
-            >
-              <option value={""} key={0}>
-                A définir
-              </option>
-              {props.users.map((user) => (
-                <option value={user._id} key={user._id}>
-                  {user.username}
-                </option>
-              ))}
-            </Input>
-          </Col>
-        </FormGroup>
-        <div className="form-field">
-          <b>Informations administratives</b>
-          <span className="float-right">
-            Renseignées par un administrateur uniquement
-          </span>
-          <Row>
-            <Col lg="6" md="6" sm="12" xs="12">
-              <InputGroup>
-                <EVAIcon
-                  className="input-icon"
-                  name="award-outline"
-                  fill={variables.noir}
-                />
-                <Input
-                  id="siren"
-                  placeholder="SIREN"
-                  value={props.siren}
-                  onChange={props.handleChange}
-                  name="structure"
-                />
-              </InputGroup>
-            </Col>
-            <Col lg="6" md="6" sm="12" xs="12">
-              <InputGroup>
-                <EVAIcon
-                  className="input-icon"
-                  name="award-outline"
-                  fill={variables.noir}
-                />
-                <Input
-                  id="siret"
-                  placeholder="SIRET"
-                  value={props.siret}
-                  onChange={props.handleChange}
-                  name="structure"
-                />
-              </InputGroup>
-            </Col>
-          </Row>
-          <InputGroup>
-            <EVAIcon
-              className="input-icon"
-              name="pin-outline"
-              fill={variables.noir}
-            />
-            <Input
-              id="adresse"
-              placeholder="Adresse physique"
-              value={props.adresse}
-              onChange={props.handleChange}
-              name="structure"
-            />
-          </InputGroup>
-          <InputGroup>
-            <EVAIcon
-              className="input-icon"
-              name="at-outline"
-              fill={variables.noir}
-            />
-            <Input
-              id="mail_generique"
-              placeholder="Mail générique de contact"
-              value={props.mail_generique}
-              onChange={props.handleChange}
-              name="structure"
-            />
-          </InputGroup>
-        </div>
-
-        <div className="form-field inline-div">
-          <b>Logo de la structure</b>
-          {(props.picture || {}).secure_url ? (
-            <div className="image-wrapper">
-              <Input
-                className="file-input"
-                type="file"
-                id="picture"
-                name="structure"
-                accept="image/*"
-                onChange={props.handleFileInputChange}
-              />
-              <img
-                className="sponsor-img"
-                src={(props.picture || {}).secure_url}
-                alt={props.acronyme}
-              />
-              {props.uploading && <Spinner color="success" className="ml-10" />}
-            </div>
-          ) : (
-            <FButton className="upload-btn" type="theme" name="upload-outline">
-              <Input
-                className="file-input"
-                type="file"
-                id="picture"
-                name="structure"
-                accept="image/*"
-                onChange={props.handleFileInputChange}
-              />
-              <span>Choisir</span>
-              {props.uploading && <Spinner color="success" className="ml-10" />}
-            </FButton>
           )}
-        </div>
-        <div className="form-field">
-          <b>Texte alternatif à l’image</b>
-          <InputGroup>
-            <EVAIcon
-              className="input-icon"
-              name="eye-off-outline"
-              fill={variables.noir}
-            />
-            <Input
-              id="alt"
-              placeholder="Agi’r"
-              value={props.alt || ""}
-              onChange={props.handleChange}
-              name="structure"
-            />
-          </InputGroup>
-        </div>
-      </>
-    )}
-  </div>
-);
+          <FormGroup row>
+            <Col md="3" className="status-label">
+              <Label htmlFor="select">
+                <b>Administrateur de la structure</b>
+              </Label>
+            </Col>
+            <Col xs="12" md="9">
+              <Input
+                type="select"
+                id="administrateur"
+                name="structure"
+                value={props.administrateur || ""}
+                onChange={props.handleChange}
+              >
+                <option value={""} key={0}>
+                  A définir
+                </option>
+                {props.users.map((user) => (
+                  <option value={user._id} key={user._id}>
+                    {user.username}
+                  </option>
+                ))}
+              </Input>
+            </Col>
+          </FormGroup>
+          <div className="form-field">
+            <b>Informations administratives</b>
+            <span className="float-right">
+              Renseignées par un administrateur uniquement
+            </span>
+            <Row>
+              <Col lg="6" md="6" sm="12" xs="12">
+                <InputGroup>
+                  <EVAIcon
+                    className="input-icon"
+                    name="award-outline"
+                    fill={variables.noir}
+                  />
+                  <Input
+                    id="siren"
+                    placeholder="SIREN"
+                    value={props.siren}
+                    onChange={props.handleChange}
+                    name="structure"
+                  />
+                </InputGroup>
+              </Col>
+              <Col lg="6" md="6" sm="12" xs="12">
+                <InputGroup>
+                  <EVAIcon
+                    className="input-icon"
+                    name="award-outline"
+                    fill={variables.noir}
+                  />
+                  <Input
+                    id="siret"
+                    placeholder="SIRET"
+                    value={props.siret}
+                    onChange={props.handleChange}
+                    name="structure"
+                  />
+                </InputGroup>
+              </Col>
+            </Row>
+            <InputGroup>
+              <EVAIcon
+                className="input-icon"
+                name="pin-outline"
+                fill={variables.noir}
+              />
+              <Input
+                id="adresse"
+                placeholder="Adresse physique"
+                value={props.adresse}
+                onChange={props.handleChange}
+                name="structure"
+              />
+            </InputGroup>
+            <InputGroup>
+              <EVAIcon
+                className="input-icon"
+                name="at-outline"
+                fill={variables.noir}
+              />
+              <Input
+                id="mail_generique"
+                placeholder="Mail générique de contact"
+                value={props.mail_generique}
+                onChange={props.handleChange}
+                name="structure"
+              />
+            </InputGroup>
+          </div>
+
+          <div className="form-field inline-div">
+            <b>Logo de la structure</b>
+            {(props.picture || {}).secure_url ? (
+              <div className="image-wrapper">
+                <Input
+                  className="file-input"
+                  type="file"
+                  id="picture"
+                  name="structure"
+                  accept="image/*"
+                  onChange={props.handleFileInputChange}
+                />
+                <img
+                  className="sponsor-img"
+                  src={(props.picture || {}).secure_url}
+                  alt={props.acronyme}
+                />
+                {props.uploading && (
+                  <Spinner color="success" className="ml-10" />
+                )}
+              </div>
+            ) : (
+              <FButton
+                className="upload-btn"
+                type="theme"
+                name="upload-outline"
+              >
+                <Input
+                  className="file-input"
+                  type="file"
+                  id="picture"
+                  name="structure"
+                  accept="image/*"
+                  onChange={props.handleFileInputChange}
+                />
+                <span>Choisir</span>
+                {props.uploading && (
+                  <Spinner color="success" className="ml-10" />
+                )}
+              </FButton>
+            )}
+          </div>
+          <div className="form-field">
+            <b>Texte alternatif à l’image</b>
+            <InputGroup>
+              <EVAIcon
+                className="input-icon"
+                name="eye-off-outline"
+                fill={variables.noir}
+              />
+              <Input
+                id="alt"
+                placeholder="Agi’r"
+                value={props.alt || ""}
+                onChange={props.handleChange}
+                name="structure"
+              />
+            </InputGroup>
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 
 export default CreationContent;
