@@ -11,6 +11,7 @@ const {
 
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
+  app.post("/create_csv_dispositifs_length", checkToken.check, dispositif.create_csv_dispositifs_length);
   app.post(
     "/add_dispositif_infocards",
     checkToken.check,

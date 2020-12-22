@@ -35,6 +35,12 @@ const {
 //     pass: process.env.GMAIL_PASS
 //   },
 // });
+const url =
+  process.env.NODE_ENV === "dev"
+    ? "http://localhost:3000/"
+    : process.env.NODE_ENV === "staging"
+    ? "https://staging.refugies.info/"
+    : "https://www.refugies.info/";
 
 //Function to patch dispositifs that had EditorState object saved in DB causing great size problem
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -64,6 +70,41 @@ async function patch_dispositifs(req, res) {
     return res.status(200).json("OK");
   } catch (e) {
     logger.error("Error while patching dispositifs", { error: e });
+    return res.status(500).json("KO");
+  }
+}
+
+async function create_csv_dispositifs_length(req, res) {
+  if (!req.user.roles.some((x) => x.nom === "Admin")) {
+    //logger.error("The user is not an admin", { error: e });
+    return res.status(500).json("KO"); 
+  }
+  logger.info("Find dispositifs with long titles");
+  try {
+    let all = await Dispositif.find().lean();
+    let i;
+    let csvList = [];
+    for (i = 0; i < all.length; i++) {
+      if (
+        (all[i].titreInformatif && all[i].titreInformatif.length > 40) ||
+        (all[i].titreMarque && all[i].titreMarque.length > 27) ||
+        (all[i].abstract && all[i].abstract.length > 110)
+      ) {
+        csvList.push({
+          titreInformatif: all[i].titreInformatif || "",
+          titreMarque: all[i].titreMarque || "",
+          abstract: all[i].abstract || "", 
+          url: `${url}dispositif/${all[i]._id.toString()}` || "",
+        });
+      }
+    }
+    logger.info(`finish patching ${all.length} dispositifs`);
+    return res.status(200).json({
+      text: "Succès",
+      data: csvList,
+    });
+  } catch (e) {
+    logger.error("Error while finding long dispositifs", { error: e });
     return res.status(500).json("KO");
   }
 }
@@ -523,3 +564,4 @@ exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;
 exports.get_dispo_progression = get_dispo_progression;
+exports.create_csv_dispositifs_length = create_csv_dispositifs_length;
