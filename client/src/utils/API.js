@@ -383,4 +383,9 @@ export default {
     delete headers["x-access-token"];
     return localStorage.removeItem("token");
   },
+  create_csv_dispositifs_length: (params = {}) => {
+    return axios.post(burl + "/dispositifs/create_csv_dispositifs_length", params, {
+      headers: headers,
+    });
+  },
 };
