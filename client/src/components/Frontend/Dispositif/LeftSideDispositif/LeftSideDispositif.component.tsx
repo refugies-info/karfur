@@ -202,6 +202,8 @@ export const LeftSideDispositif = (props: Props) => {
               onAfterPrint={() => {
                 props.closePdf();
               }}
+              copyStyles
+              fonts={[{family: "CircularStdMedium",  source: "../../../scss/fonts/CircularStd/CircularStd-Medium.WOFF"}]}
               trigger={() => (
                 <FButton type="light-action" name="download-outline">
                   {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}

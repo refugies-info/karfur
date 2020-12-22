@@ -39,6 +39,7 @@ import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomS
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
+import AsyncCSV from "./AsyncCSV";
 
 moment.locale("fr");
 
@@ -303,6 +304,7 @@ export const AdminContenu = () => {
           Ajouter un contenu
         </FButton>
       </SearchBarContainer>
+       <AsyncCSV />
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
