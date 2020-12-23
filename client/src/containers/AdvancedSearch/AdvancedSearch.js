@@ -132,6 +132,14 @@ const ThemeText = styled.p`
   font-weight: 700;
 `;
 
+const ThemeTextAlone = styled.p`
+  color: white;
+  font-size: 18px;
+  margin-left: 0px;
+  margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
+  font-weight: 700;
+`;
+
 const LanguageText = styled.span`
   color: black;
   font-size: 16px;
@@ -187,6 +195,8 @@ export class AdvancedSearch extends Component {
       filterLanguage: "",
       chargingArray: new Array(20).fill(),
       switch: false,
+      showGeolocFullFrance: false,
+      filterVille: "",
     };
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -404,7 +414,9 @@ export class AdvancedSearch extends Component {
           var dispositifsVille = [];
           var dispositifsFrance = [];
           var dispositifsEmpty = [];
-
+          this.setState({
+            filterVille: localisationSearch.query[0].long_name || "",
+          });
           for (index = 0; index < dispositifs.length; index++) {
             if (
               dispositifs[index].contenu[1] &&
@@ -414,6 +426,7 @@ export class AdvancedSearch extends Component {
               var geolocInfocard = dispositifs[index].contenu[1].children.find(
                 (infocard) => infocard.title === "Zone d'action"
               );
+              console.log(geolocInfocard, localisationSearch.query);
               if (geolocInfocard && geolocInfocard.departments) {
                 for (i = 0; i < geolocInfocard.departments.length; i++) {
                   if (geolocInfocard.departments[i] === "All") {
@@ -434,10 +447,14 @@ export class AdvancedSearch extends Component {
               dispositifsEmpty.push(dispositifs[index]);
             }
           }
-          dispositifs = dispositifsVille.concat(
-            dispositifsFrance,
-            dispositifsEmpty
-          );
+          if (this.state.showGeolocFullFrance) {
+            dispositifs = dispositifsVille.concat(
+              dispositifsFrance,
+              dispositifsEmpty
+            );
+          } else {
+            dispositifs = dispositifsVille;
+          }
 
           /*           dispositifs = dispositifs.filter((disp) => {
             if (
@@ -1242,6 +1259,18 @@ export class AdvancedSearch extends Component {
                         : null}
                     </ThemeText>
                   </ThemeButton>
+                  {this.state.filterVille ? (
+                    <ThemeHeaderTitle color={"#828282"}>
+                      {" disponibles à "}
+                    </ThemeHeaderTitle>
+                  ) : null}
+                  {this.state.filterVille ? (
+                    <ThemeButton ml={8} color={"#0421b1"}>
+                      <ThemeTextAlone mr={0}>
+                        {this.state.filterVille}
+                      </ThemeTextAlone>
+                    </ThemeButton>
+                  ) : null}
                 </ThemeHeader>
                 <ThemeListContainer
                   columns={
@@ -1330,6 +1359,18 @@ export class AdvancedSearch extends Component {
                         : null}
                     </ThemeText>
                   </ThemeButton>
+                  {this.state.filterVille ? (
+                    <ThemeHeaderTitle color={"#828282"}>
+                      {" disponibles à "}
+                    </ThemeHeaderTitle>
+                  ) : null}
+                  {this.state.filterVille ? (
+                    <ThemeButton ml={8} color={"#0421b1"}>
+                      <ThemeTextAlone mr={0}>
+                        {this.state.filterVille}
+                      </ThemeTextAlone>
+                    </ThemeButton>
+                  ) : null}
                 </ThemeHeader>
                 <ThemeListContainer
                   columns={
