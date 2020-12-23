@@ -1155,7 +1155,7 @@ class SideTrad extends Component {
               placeholder="Renseignez votre traduction ici"
               onEditorStateChange={this.props.onEditorStateChange}
               editorState={(translated || {}).body}
-              toolbarHidden={pointeurs.includes(currIdx) || this.state.currSubName === "contentTitle"}
+              toolbarHidden={pointeurs.includes(currIdx) || this.state.currSubName === "contentTitle" || this.state.currSubName === "title"}
               toolbar={{
                 options: ["inline", "list", "link"],
                 inline: {
