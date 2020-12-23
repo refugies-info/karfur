@@ -28,9 +28,11 @@ export class SearchItem extends Component {
     this.setState({ isMounted: true });
   }
 
-  onPlaceSelected = (place) => {
+  onPlaceSelected = (place, b) => {
+    if (place.formatted_address) {
     this.setState({ ville: place.formatted_address });
     this.props.selectParam(this.props.keyValue, place);
+    }
   };
 
   toggle = () =>
@@ -40,6 +42,7 @@ export class SearchItem extends Component {
   handleChange = (e) => this.setState({ [e.currentTarget.id]: e.target.value });
   initializeVille = () => this.setState({ ville: "", villeAuto: "" });
 
+
   selectOption = (subi) => {
     this.props.selectParam(this.props.keyValue, subi);
     this.toggle();
@@ -48,6 +51,7 @@ export class SearchItem extends Component {
   render() {
     const { t, item, keyValue, isBigDesktop } = this.props;
     const { dropdownOpen, isMounted, ville, villeAuto } = this.state;
+
 
     return (
       <div className="search-col">
@@ -66,7 +70,7 @@ export class SearchItem extends Component {
               (item.active ? "active " : "")
             }
           >
-            {ville.slice(0, 20) + (ville.length > 20 ? "..." : "")}
+            {ville ? ville.slice(0, 20) + (ville.length > 20 ? "..." : "") : null}
             {item.active && (
               <EVAIcon
                 name="close-outline"

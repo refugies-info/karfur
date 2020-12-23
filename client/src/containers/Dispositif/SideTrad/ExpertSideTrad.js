@@ -1346,7 +1346,8 @@ class SideTrad extends Component {
               editorState={(translated || {}).body}
               toolbarHidden={
                 pointeurs.includes(currIdx) ||
-                this.state.currSubName === "contentTitle"
+                this.state.currSubName === "contentTitle" ||
+                this.state.currSubName === "title"
               }
               toolbar={{
                 options: ["inline", "list", "link"],
