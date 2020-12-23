@@ -520,7 +520,6 @@ const AdvancedSearchBar = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     dispositifs: state.activeDispositifs,
   };

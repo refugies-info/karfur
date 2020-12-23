@@ -28,7 +28,7 @@ export class SearchItem extends Component {
     this.setState({ isMounted: true });
   }
 
-  onPlaceSelected = (place, b) => {
+  onPlaceSelected = (place) => {
     if (place.formatted_address) {
     this.setState({ ville: place.formatted_address });
     this.props.selectParam(this.props.keyValue, place);
