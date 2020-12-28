@@ -29,15 +29,17 @@ jobs:
             - run: npm run test:types
             - run: npm run test:lint
   unit-test:
-    docker:
-      - image: circleci/node:10-jessie-browsers
     steps:
       - checkout
       - node/with-cache:
           steps:
             - attach_workspace:
                 at: ./
-            - run: npm run test:unit
+            - run:
+                name: test unit
+                command: npm run test:unit
+                environment:
+                  NODE_OPTIONS: --max_old_space_size=8192
 workflows:
   build-and-test:
     jobs:
