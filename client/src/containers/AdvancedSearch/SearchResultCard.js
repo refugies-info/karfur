@@ -100,7 +100,7 @@ const SearchResultCard = ({
               {iconTag ? (
                 <div
                   style={{
-                    width: 50,
+                    width: 35,
                     display: "flex",
                     justifyContent: "flex-start",
                     alignItems: "flex-start",
@@ -109,8 +109,8 @@ const SearchResultCard = ({
                   <Streamline
                     name={iconTag.icon}
                     stroke={"white"}
-                    width={22}
-                    height={22}
+                    width={20}
+                    height={20}
                   />
                 </div>
               ) : null}

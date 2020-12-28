@@ -496,7 +496,7 @@ export class Dispositif extends Component {
       value = ev.target.value.substring(0, 40)
     }
     if (ev.currentTarget.id === "titreMarque") {
-      value = ev.target.value.substring(0, 27)
+      value = ev.target.value.substring(0, 20)
     }
     // update selected dispositif in redux
     this.props.updateSelectedDispositif({
