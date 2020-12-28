@@ -28,18 +28,7 @@ jobs:
                 at: ./
             - run: npm run test:types
             - run: npm run test:lint
-  unit-test:
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - attach_workspace:
-                at: ./
-            - run:
-                name: test unit
-                command: npm run test:unit
-                environment:
-                  NODE_OPTIONS: --max_old_space_size=8192
+            - run: npm run test:unit
 workflows:
   build-and-test:
     jobs:
@@ -51,8 +40,5 @@ workflows:
                 - qa
                 - dev
       - test-code-quality:
-          requires:
-            - install
-      - unit-test:
           requires:
             - install
