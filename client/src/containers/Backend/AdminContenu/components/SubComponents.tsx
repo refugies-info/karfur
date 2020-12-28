@@ -217,6 +217,7 @@ export const ValidateButton = (props: {
     onClick={props.onClick}
     disabled={props.disabled}
     hoverColor={variables.validationHover}
+    testID="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon
@@ -246,6 +247,7 @@ export const DeleteButton = (props: {
     onClick={props.onClick}
     hoverColor={variables.error}
     disabled={props.disabled}
+    testID="delete-button"
   >
     <div style={{ marginBottom: "4px" }}>
       <EVAIcon name="trash-outline" fill={variables.blancSimple} size="20" />
