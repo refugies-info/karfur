@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render TypeContenu with demarche, detailed vue 1`] = `
+.c0 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: blancSimple;
+  background-color: darkColor;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  Démarche
+</div>
+`;
+
+exports[`should render TypeContenu with demarche, not detailed vue 1`] = `
+.c0 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: darkColor;
+  background-color: blancSimple;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  Démarche
+</div>
+`;
+
+exports[`should render TypeContenu with dispositif, detailed vue 1`] = `
+.c0 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: blancSimple;
+  background-color: darkColor;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  Dispositif
+</div>
+`;
+
+exports[`should render TypeContenu with dispositif, not detailed vue 1`] = `
+.c0 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: blancSimple;
+  background-color: darkColor;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  Dispositif
+</div>
+`;
