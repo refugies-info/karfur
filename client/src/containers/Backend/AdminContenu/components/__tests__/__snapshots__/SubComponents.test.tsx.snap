@@ -1,0 +1,1067 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render DeleteButton disabled 1`] = `
+.c0 {
+  width: 40px;
+  height: 40px;
+  background-color: grisFonce;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: not-allowed;
+}
+
+.c0:hover {
+  background-color: grisFonce;
+}
+
+<div
+  className="c0"
+  disabled={true}
+  onClick={[Function]}
+>
+  <div
+    style={
+      Object {
+        "marginBottom": "4px",
+      }
+    }
+  >
+    <span>
+      <i
+        data-eva="trash-outline"
+        data-eva-fill="blancSimple"
+        data-eva-height="20px"
+        data-eva-width="20px"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`should render DeleteButton not disabled 1`] = `
+.c0 {
+  width: 40px;
+  height: 40px;
+  background-color: grisFonce;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c0:hover {
+  background-color: error;
+}
+
+<div
+  className="c0"
+  disabled={false}
+  onClick={[Function]}
+>
+  <div
+    style={
+      Object {
+        "marginBottom": "4px",
+      }
+    }
+  >
+    <span>
+      <i
+        data-eva="trash-outline"
+        data-eva-fill="blancSimple"
+        data-eva-height="20px"
+        data-eva-width="20px"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`should render FilterButton isSelected false 1`] = `
+.c0 {
+  background: blancSimple;
+  color: darkColor;
+  border-radius: 12px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 15px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 8px;
+  cursor: pointer;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+<div
+  className="c0"
+  onClick={[Function]}
+>
+  test
+</div>
+`;
+
+exports[`should render FilterButton isSelected true 1`] = `
+.c0 {
+  background: darkColor;
+  color: blancSimple;
+  border-radius: 12px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 15px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 8px;
+  cursor: pointer;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+<div
+  className="c0"
+  onClick={[Function]}
+>
+  test
+</div>
+`;
+
+exports[`should render SeeButton 1`] = `
+.c0 {
+  width: 40px;
+  height: 40px;
+  background-color: grisFonce;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c0:hover {
+  background-color: darkColor;
+}
+
+<div
+  className="c0"
+>
+  <a
+    href="test-burl"
+    rel="noopener noreferrer"
+    target="_blank"
+  >
+    <div
+      style={
+        Object {
+          "marginBottom": "4px",
+        }
+      }
+    >
+      <span>
+        <i
+          data-eva="eye-outline"
+          data-eva-fill="blancSimple"
+          data-eva-height="20px"
+          data-eva-width="20px"
+        />
+      </span>
+    </div>
+  </a>
+</div>
+`;
+
+exports[`should render Structure with null sponsor 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 300px;
+}
+
+.c1 {
+  width: 10px;
+  height: 10px;
+  background-color: error;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.c2 {
+  word-break: break-all;
+  max-width: 280px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    color="error"
+  />
+  <div
+    className="c2"
+  >
+    Sans structure
+  </div>
+</div>
+`;
+
+exports[`should render Structure with sponsor actif 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 300px;
+}
+
+.c1 {
+  width: 10px;
+  height: 10px;
+  background-color: vertValidation;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.c2 {
+  word-break: break-all;
+  max-width: 280px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    color="vertValidation"
+  />
+  <div
+    className="c2"
+  >
+    test
+  </div>
+</div>
+`;
+
+exports[`should render Structure with sponsor diair 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 300px;
+}
+
+.c1 {
+  width: 10px;
+  height: 10px;
+  background-color: error;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.c2 {
+  word-break: break-all;
+  max-width: 280px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    color="error"
+  />
+  <div
+    className="c2"
+  >
+    Structure temporaire
+  </div>
+</div>
+`;
+
+exports[`should render Structure with sponsor en attente 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 300px;
+}
+
+.c1 {
+  width: 10px;
+  height: 10px;
+  background-color: orange;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.c2 {
+  word-break: break-all;
+  max-width: 280px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    color="orange"
+  />
+  <div
+    className="c2"
+  >
+    test
+  </div>
+</div>
+`;
+
+exports[`should render Structure with sponsor supprime 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 300px;
+}
+
+.c1 {
+  width: 10px;
+  height: 10px;
+  background-color: error;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.c2 {
+  word-break: break-all;
+  max-width: 280px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    color="error"
+  />
+  <div
+    className="c2"
+  >
+    test
+  </div>
+</div>
+`;
+
+exports[`should render Structure with sponsor without nom 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 300px;
+}
+
+.c1 {
+  width: 10px;
+  height: 10px;
+  background-color: error;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.c2 {
+  word-break: break-all;
+  max-width: 280px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+    color="error"
+  />
+  <div
+    className="c2"
+  >
+    Sans structure
+  </div>
+</div>
+`;
+
+exports[`should render StyledStatus Accepté structure  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #FF9800;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: blancSimple;
+}
+
+<div
+  className="c0"
+  color="#FF9800"
+>
+  Accepté
+</div>
+`;
+
+exports[`should render StyledStatus Brouillon  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #FFEB3B;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: darkColor;
+}
+
+<div
+  className="c0"
+  color="#FFEB3B"
+>
+  Brouillon
+</div>
+`;
+
+exports[`should render StyledStatus En attente admin  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #8BC34A;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: blancSimple;
+}
+
+<div
+  className="c0"
+  color="#8BC34A"
+>
+  À valider
+</div>
+`;
+
+exports[`should render StyledStatus En attente non prioritaire  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #F44336;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: blancSimple;
+}
+
+<div
+  className="c0"
+  color="#F44336"
+>
+  Sans structure
+</div>
+`;
+
+exports[`should render StyledStatus Rejeté structure  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #F44336;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: blancSimple;
+}
+
+<div
+  className="c0"
+  color="#F44336"
+>
+  Rejeté
+</div>
+`;
+
+exports[`should render StyledStatus Supprimé  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #F44336;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: blancSimple;
+}
+
+<div
+  className="c0"
+  color="#F44336"
+>
+  Supprimé
+</div>
+`;
+
+exports[`should render StyledStatus actif  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #4CAF50;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: blancSimple;
+}
+
+<div
+  className="c0"
+  color="#4CAF50"
+>
+  Publié
+</div>
+`;
+
+exports[`should render StyledStatus en attente  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: #FF9800;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: blancSimple;
+}
+
+<div
+  className="c0"
+  color="#FF9800"
+>
+  En attente
+</div>
+`;
+
+exports[`should render StyledStatus no corresponding status  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: bleuCharte;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: bleuCharte;
+}
+
+<div
+  className="c0"
+  color="bleuCharte"
+>
+  Nouveau !
+</div>
+`;
+
+exports[`should render StyledStatus no corresponding with color  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: color;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: textColor;
+}
+
+<div
+  className="c0"
+  color="color"
+>
+  test
+</div>
+`;
+
+exports[`should render StyledStatus no corresponding with override  1`] = `
+.c0 {
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 8px;
+  background-color: cardColor;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  cursor: pointer;
+  color: blancSimple;
+}
+
+<div
+  className="c0"
+  color="cardColor"
+>
+  test
+</div>
+`;
+
+exports[`should render TabHeader down 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+  order="true"
+>
+  test
+  <span>
+    <i
+      data-eva="chevron-down"
+      data-eva-fill="noir"
+      data-eva-height="20px"
+      data-eva-width="20px"
+    />
+  </span>
+</div>
+`;
+
+exports[`should render TabHeader no order 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-weight: normal;
+}
+
+<div
+  className="c0"
+  order={null}
+>
+  test
+</div>
+`;
+
+exports[`should render TabHeader up 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+  order="true"
+>
+  test
+  <span>
+    <i
+      data-eva="chevron-up"
+      data-eva-fill="noir"
+      data-eva-height="20px"
+      data-eva-width="20px"
+    />
+  </span>
+</div>
+`;
+
+exports[`should render Title with titre marque 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  max-width: 370px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  <b>
+    titre informatif
+  </b>
+  <span>
+    avec titre marque
+  </span>
+</div>
+`;
+
+exports[`should render Title without titre marque 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 20px;
+  max-width: 370px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  <b>
+    titre informatif
+  </b>
+</div>
+`;
+
+exports[`should render TypeContenu with demarche, detailed vue 1`] = `
+.c0 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: blancSimple;
+  background-color: darkColor;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  Démarche
+</div>
+`;
+
+exports[`should render TypeContenu with demarche, not detailed vue 1`] = `
+.c0 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: darkColor;
+  background-color: blancSimple;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  Démarche
+</div>
+`;
+
+exports[`should render TypeContenu with dispositif, detailed vue 1`] = `
+.c0 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: blancSimple;
+  background-color: darkColor;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  Dispositif
+</div>
+`;
+
+exports[`should render TypeContenu with dispositif, not detailed vue 1`] = `
+.c0 {
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: blancSimple;
+  background-color: darkColor;
+  padding: 8px;
+  border-radius: 6px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: pointer;
+}
+
+<div
+  className="c0"
+>
+  Dispositif
+</div>
+`;
+
+exports[`should render ValidateButton disabled 1`] = `
+.c0 {
+  width: 40px;
+  height: 40px;
+  background-color: grisFonce;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: not-allowed;
+}
+
+.c0:hover {
+  background-color: grisFonce;
+}
+
+<div
+  className="c0"
+  disabled={true}
+  onClick={[Function]}
+>
+  <div
+    style={
+      Object {
+        "marginBottom": "4px",
+      }
+    }
+  >
+    <span>
+      <i
+        data-eva="checkmark-outline"
+        data-eva-fill="blancSimple"
+        data-eva-height="20px"
+        data-eva-width="20px"
+      />
+    </span>
+  </div>
+</div>
+`;
+
+exports[`should render ValidateButton not disabled 1`] = `
+.c0 {
+  width: 40px;
+  height: 40px;
+  background-color: grisFonce;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 4px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.c0:hover {
+  background-color: validationHover;
+}
+
+<div
+  className="c0"
+  disabled={false}
+  onClick={[Function]}
+>
+  <div
+    style={
+      Object {
+        "marginBottom": "4px",
+      }
+    }
+  >
+    <span>
+      <i
+        data-eva="checkmark-outline"
+        data-eva-fill="blancSimple"
+        data-eva-height="20px"
+        data-eva-width="20px"
+      />
+    </span>
+  </div>
+</div>
+`;
