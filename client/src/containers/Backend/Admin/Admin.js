@@ -10,12 +10,12 @@ import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./Admin.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import styled from "styled-components";
 
 const OngletText = styled.span`
   color: ${(props) =>
-    props.isActive ? variables.bleuCharte : variables.darkColor};
+    props.isActive ? colors.bleuCharte : colors.darkColor};
   font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
 `;
 
@@ -34,7 +34,7 @@ const Onglet = (props) => (
     <div style={{ marginBottom: "3px" }}>
       <EVAIcon
         name={props.isSelected ? props.iconSelected : props.iconNotSelected}
-        fill={props.isSelected ? variables.bleuCharte : variables.noir}
+        fill={props.isSelected ? colors.bleuCharte : colors.noir}
         className="mr-8"
       />
     </div>
@@ -154,7 +154,7 @@ export class Admin extends Component {
     });
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(_, prevState) {
     if (
       this.state.user &&
       prevState.user._id !== this.state.user._id &&

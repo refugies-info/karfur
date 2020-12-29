@@ -4,7 +4,7 @@ exports[`should render DeleteButton disabled 1`] = `
 .c0 {
   width: 40px;
   height: 40px;
-  background-color: grisFonce;
+  background-color: #828282;
   border-radius: 8px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -24,7 +24,7 @@ exports[`should render DeleteButton disabled 1`] = `
 }
 
 .c0:hover {
-  background-color: grisFonce;
+  background-color: #828282;
 }
 
 <div
@@ -42,7 +42,7 @@ exports[`should render DeleteButton disabled 1`] = `
     <span>
       <i
         data-eva="trash-outline"
-        data-eva-fill="blancSimple"
+        data-eva-fill="#ffffff"
         data-eva-height="20px"
         data-eva-width="20px"
       />
@@ -55,7 +55,7 @@ exports[`should render DeleteButton not disabled 1`] = `
 .c0 {
   width: 40px;
   height: 40px;
-  background-color: grisFonce;
+  background-color: #828282;
   border-radius: 8px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -75,7 +75,7 @@ exports[`should render DeleteButton not disabled 1`] = `
 }
 
 .c0:hover {
-  background-color: error;
+  background-color: #f44336;
 }
 
 <div
@@ -93,7 +93,7 @@ exports[`should render DeleteButton not disabled 1`] = `
     <span>
       <i
         data-eva="trash-outline"
-        data-eva-fill="blancSimple"
+        data-eva-fill="#ffffff"
         data-eva-height="20px"
         data-eva-width="20px"
       />
@@ -104,8 +104,8 @@ exports[`should render DeleteButton not disabled 1`] = `
 
 exports[`should render FilterButton isSelected false 1`] = `
 .c0 {
-  background: blancSimple;
-  color: darkColor;
+  background: #ffffff;
+  color: #212121;
   border-radius: 12px;
   font-weight: normal;
   font-size: 16px;
@@ -131,8 +131,8 @@ exports[`should render FilterButton isSelected false 1`] = `
 
 exports[`should render FilterButton isSelected true 1`] = `
 .c0 {
-  background: darkColor;
-  color: blancSimple;
+  background: #212121;
+  color: #ffffff;
   border-radius: 12px;
   font-weight: normal;
   font-size: 16px;
@@ -160,7 +160,7 @@ exports[`should render SeeButton 1`] = `
 .c0 {
   width: 40px;
   height: 40px;
-  background-color: grisFonce;
+  background-color: #828282;
   border-radius: 8px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -180,7 +180,7 @@ exports[`should render SeeButton 1`] = `
 }
 
 .c0:hover {
-  background-color: darkColor;
+  background-color: #212121;
 }
 
 <div
@@ -201,7 +201,7 @@ exports[`should render SeeButton 1`] = `
       <span>
         <i
           data-eva="eye-outline"
-          data-eva-fill="blancSimple"
+          data-eva-fill="#ffffff"
           data-eva-height="20px"
           data-eva-width="20px"
         />
@@ -230,7 +230,7 @@ exports[`should render Structure with null sponsor 1`] = `
 .c1 {
   width: 10px;
   height: 10px;
-  background-color: error;
+  background-color: #f44336;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -245,7 +245,7 @@ exports[`should render Structure with null sponsor 1`] = `
 >
   <div
     className="c1"
-    color="error"
+    color="#f44336"
   />
   <div
     className="c2"
@@ -274,7 +274,7 @@ exports[`should render Structure with sponsor actif 1`] = `
 .c1 {
   width: 10px;
   height: 10px;
-  background-color: vertValidation;
+  background-color: #4caf50;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -289,7 +289,7 @@ exports[`should render Structure with sponsor actif 1`] = `
 >
   <div
     className="c1"
-    color="vertValidation"
+    color="#4caf50"
   />
   <div
     className="c2"
@@ -318,7 +318,7 @@ exports[`should render Structure with sponsor diair 1`] = `
 .c1 {
   width: 10px;
   height: 10px;
-  background-color: error;
+  background-color: #f44336;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -333,7 +333,7 @@ exports[`should render Structure with sponsor diair 1`] = `
 >
   <div
     className="c1"
-    color="error"
+    color="#f44336"
   />
   <div
     className="c2"
@@ -362,7 +362,7 @@ exports[`should render Structure with sponsor en attente 1`] = `
 .c1 {
   width: 10px;
   height: 10px;
-  background-color: orange;
+  background-color: #ff9800;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -377,7 +377,7 @@ exports[`should render Structure with sponsor en attente 1`] = `
 >
   <div
     className="c1"
-    color="orange"
+    color="#ff9800"
   />
   <div
     className="c2"
@@ -406,7 +406,7 @@ exports[`should render Structure with sponsor supprime 1`] = `
 .c1 {
   width: 10px;
   height: 10px;
-  background-color: error;
+  background-color: #f44336;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -421,7 +421,7 @@ exports[`should render Structure with sponsor supprime 1`] = `
 >
   <div
     className="c1"
-    color="error"
+    color="#f44336"
   />
   <div
     className="c2"
@@ -450,7 +450,7 @@ exports[`should render Structure with sponsor without nom 1`] = `
 .c1 {
   width: 10px;
   height: 10px;
-  background-color: error;
+  background-color: #f44336;
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -465,7 +465,7 @@ exports[`should render Structure with sponsor without nom 1`] = `
 >
   <div
     className="c1"
-    color="error"
+    color="#f44336"
   />
   <div
     className="c2"
@@ -488,7 +488,7 @@ exports[`should render StyledStatus Accepté structure  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: blancSimple;
+  color: #ffffff;
 }
 
 <div
@@ -512,7 +512,7 @@ exports[`should render StyledStatus Brouillon  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: darkColor;
+  color: #212121;
 }
 
 <div
@@ -536,7 +536,7 @@ exports[`should render StyledStatus En attente admin  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: blancSimple;
+  color: #ffffff;
 }
 
 <div
@@ -560,7 +560,7 @@ exports[`should render StyledStatus En attente non prioritaire  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: blancSimple;
+  color: #ffffff;
 }
 
 <div
@@ -584,7 +584,7 @@ exports[`should render StyledStatus Rejeté structure  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: blancSimple;
+  color: #ffffff;
 }
 
 <div
@@ -608,7 +608,7 @@ exports[`should render StyledStatus Supprimé  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: blancSimple;
+  color: #ffffff;
 }
 
 <div
@@ -632,7 +632,7 @@ exports[`should render StyledStatus actif  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: blancSimple;
+  color: #ffffff;
 }
 
 <div
@@ -656,7 +656,7 @@ exports[`should render StyledStatus en attente  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: blancSimple;
+  color: #ffffff;
 }
 
 <div
@@ -672,7 +672,7 @@ exports[`should render StyledStatus no corresponding status  1`] = `
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
-  background-color: bleuCharte;
+  background-color: #0421b1;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -680,12 +680,12 @@ exports[`should render StyledStatus no corresponding status  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: bleuCharte;
+  color: #0421b1;
 }
 
 <div
   className="c0"
-  color="bleuCharte"
+  color="#0421b1"
 >
   Nouveau !
 </div>
@@ -720,7 +720,7 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
   font-weight: bold;
   border-radius: 6px;
   padding: 8px;
-  background-color: cardColor;
+  background-color: #828282;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -728,12 +728,12 @@ exports[`should render StyledStatus no corresponding with override  1`] = `
   font-size: 12px;
   line-height: 15px;
   cursor: pointer;
-  color: blancSimple;
+  color: #ffffff;
 }
 
 <div
   className="c0"
-  color="cardColor"
+  color="#828282"
 >
   test
 </div>
@@ -760,7 +760,7 @@ exports[`should render TabHeader down 1`] = `
   <span>
     <i
       data-eva="chevron-down"
-      data-eva-fill="noir"
+      data-eva-fill="#212121"
       data-eva-height="20px"
       data-eva-width="20px"
     />
@@ -809,7 +809,7 @@ exports[`should render TabHeader up 1`] = `
   <span>
     <i
       data-eva="chevron-up"
-      data-eva-fill="noir"
+      data-eva-fill="#212121"
       data-eva-height="20px"
       data-eva-width="20px"
     />
@@ -881,8 +881,8 @@ exports[`should render TypeContenu with demarche, detailed vue 1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: blancSimple;
-  background-color: darkColor;
+  color: #ffffff;
+  background-color: #212121;
   padding: 8px;
   border-radius: 6px;
   width: -webkit-fit-content;
@@ -903,8 +903,8 @@ exports[`should render TypeContenu with demarche, not detailed vue 1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: darkColor;
-  background-color: blancSimple;
+  color: #212121;
+  background-color: #ffffff;
   padding: 8px;
   border-radius: 6px;
   width: -webkit-fit-content;
@@ -925,8 +925,8 @@ exports[`should render TypeContenu with dispositif, detailed vue 1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: blancSimple;
-  background-color: darkColor;
+  color: #ffffff;
+  background-color: #212121;
   padding: 8px;
   border-radius: 6px;
   width: -webkit-fit-content;
@@ -947,8 +947,8 @@ exports[`should render TypeContenu with dispositif, not detailed vue 1`] = `
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  color: blancSimple;
-  background-color: darkColor;
+  color: #ffffff;
+  background-color: #212121;
   padding: 8px;
   border-radius: 6px;
   width: -webkit-fit-content;
@@ -968,7 +968,7 @@ exports[`should render ValidateButton disabled 1`] = `
 .c0 {
   width: 40px;
   height: 40px;
-  background-color: grisFonce;
+  background-color: #828282;
   border-radius: 8px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -988,7 +988,7 @@ exports[`should render ValidateButton disabled 1`] = `
 }
 
 .c0:hover {
-  background-color: grisFonce;
+  background-color: #828282;
 }
 
 <div
@@ -1006,7 +1006,7 @@ exports[`should render ValidateButton disabled 1`] = `
     <span>
       <i
         data-eva="checkmark-outline"
-        data-eva-fill="blancSimple"
+        data-eva-fill="#ffffff"
         data-eva-height="20px"
         data-eva-width="20px"
       />
@@ -1019,7 +1019,7 @@ exports[`should render ValidateButton not disabled 1`] = `
 .c0 {
   width: 40px;
   height: 40px;
-  background-color: grisFonce;
+  background-color: #828282;
   border-radius: 8px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1039,7 +1039,7 @@ exports[`should render ValidateButton not disabled 1`] = `
 }
 
 .c0:hover {
-  background-color: validationHover;
+  background-color: #4caf50;
 }
 
 <div
@@ -1057,7 +1057,7 @@ exports[`should render ValidateButton not disabled 1`] = `
     <span>
       <i
         data-eva="checkmark-outline"
-        data-eva-fill="blancSimple"
+        data-eva-fill="#ffffff"
         data-eva-height="20px"
         data-eva-width="20px"
       />

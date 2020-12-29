@@ -1,6 +1,6 @@
 import React from "react";
 import { Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 import FButton from "../../FigmaUI/FButton/FButton";
 
@@ -39,7 +39,7 @@ const ReactionLectureModal = (props) => {
           rel="noopener noreferrer"
           type="help"
           name="question-mark-circle-outline"
-          fill={variables.error}
+          fill={colors.error}
         >
           Centre d'aide
         </FButton>

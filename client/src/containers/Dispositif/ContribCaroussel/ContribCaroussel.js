@@ -12,8 +12,7 @@ import { withTranslation } from "react-i18next";
 import withSizes from "react-sizes";
 
 import marioProfile from "../../../assets/mario-profile.jpg";
-import variables from "../Dispositif.scss";
-
+import { colors } from "colors";
 import "./ContribCaroussel.scss";
 import Icon from "react-eva-icons/dist/Icon";
 import _ from "lodash";
@@ -129,9 +128,8 @@ class ContribCaroussel extends Component {
             </div>
           </CarouselItem>
         );
-      } 
-        return false;
-      
+      }
+      return false;
     });
 
     return (
@@ -157,7 +155,7 @@ class ContribCaroussel extends Component {
               <Icon
                 name="arrow-ios-back-outline"
                 size="large"
-                fill={variables.darkColor}
+                fill={colors.darkColor}
               />
             </div>
             <div
@@ -167,7 +165,7 @@ class ContribCaroussel extends Component {
               <Icon
                 name="arrow-ios-forward-outline"
                 size="large"
-                fill={variables.darkColor}
+                fill={colors.darkColor}
               />
             </div>
           </Col>

@@ -45,6 +45,51 @@ $imgHeight: 350px;
     background-position: 0;
     position: relative;
 
+    &.Logement {
+      background-image: url(../../assets/figma/illustration_Logement.svg);
+    }
+
+    &.Bénévolat {
+      background-image: url(../../assets/figma/illustration_Bénévolat.svg);
+    }
+    &.Loisir {
+      background-image: url(../../assets/figma/illustration_Loisir.svg);
+    }
+    &.Mobilité {
+      background-image: url(../../assets/figma/illustration_Mobilité.svg);
+    }
+    &.Rencontre {
+      background-image: url(../../assets/figma/illustration_Rencontre.svg);
+    }
+    &.Santé {
+      background-image: url(../../assets/figma/illustration_Santé.svg);
+    }
+    &.Études {
+      background-image: url(../../assets/figma/illustration_Études.svg);
+    }
+
+    &.Formation-pro {
+      background-image: url(../../assets/figma/illustration_Formation-pro.svg);
+    }
+
+    &.Français {
+      background-image: url(../../assets/figma/illustration_Français.svg);
+    }
+    &.Insertion-pro {
+      background-image: url(../../assets/figma/illustration_Insertion-pro.svg);
+    }
+
+    &.Administratif {
+      background-image: url(../../assets/figma/illustration_Administratif.svg);
+    }
+    &.Culture {
+      background-image: url(../../assets/figma/illustration_Culture.svg);
+    }
+
+    &.noImage {
+      background-image: url(../../assets/figma/placeholder_no_theme.svg);
+    }
+
     .post-title-block {
       padding: 114px 0 0;
       display: flex;

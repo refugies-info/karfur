@@ -1,7 +1,7 @@
 import React from "react";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const { compose, withProps } = require("recompose");
 const {
@@ -57,7 +57,7 @@ const mapComponent = compose(
           <EVAIcon
             className="places-icon"
             name="search-outline"
-            fill={variables.grisFonce}
+            fill={colors.grisFonce}
           />
         </div>
       </SearchBox>

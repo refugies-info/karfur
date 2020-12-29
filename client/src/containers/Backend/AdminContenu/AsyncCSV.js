@@ -14,17 +14,17 @@ class AsyncCSV extends Component {
     };
   }
 
-  downloadReport = async (event, done) => {
+  downloadReport = async (_, done) => {
     try {
       let csvFile = await API.create_csv_dispositifs_length();
       const objReport = {
         filename: "Clue_Mediator_Report_Async.csv",
         headers: [
-            { label: "Titre Informatif", key: "titreInformatif" },
-            { label: "Titre Marque", key: "titreMarque" },
-            { label: "Abstract", key: "abstract" },
-            { label: "URL", key: "url" }
-          ],
+          { label: "Titre Informatif", key: "titreInformatif" },
+          { label: "Titre Marque", key: "titreMarque" },
+          { label: "Abstract", key: "abstract" },
+          { label: "URL", key: "url" },
+        ],
         data: csvFile.data.data,
       };
       this.setState({ csvReport: objReport }, () => {
@@ -44,7 +44,7 @@ class AsyncCSV extends Component {
         asyncOnClick={true}
         onClick={this.downloadReport}
         headers={this.state.csvReport.headers}
-        style={{marginLeft: 20}}
+        style={{ marginLeft: 20 }}
       >
         Export CSV fiches avec titres longs
       </CSVLink>

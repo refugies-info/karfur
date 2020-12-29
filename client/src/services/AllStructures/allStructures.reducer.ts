@@ -10,5 +10,5 @@ export const allStructuresReducer = createReducer<
   AllStructuresState,
   AllStructuresActions
 >(initialAllStructuresState, {
-  SET_ALL_STRUCTURES: (state, action) => action.payload,
+  SET_ALL_STRUCTURES: (_, action) => action.payload,
 });

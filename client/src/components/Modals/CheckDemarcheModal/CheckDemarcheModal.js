@@ -9,7 +9,7 @@ import FButton from "../../FigmaUI/FButton/FButton";
 import SearchBar from "../../../containers/UI/SearchBar/SearchBar";
 
 import "./CheckDemarcheModal.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 class CheckDemarcheModal extends Component {
   state = {
@@ -149,7 +149,7 @@ class CheckDemarcheModal extends Component {
             <FButton
               type="light-action"
               name="arrow-back"
-              fill={variables.noir}
+              fill={colors.noir}
               className="mr-10"
               onClick={() =>
                 step === 1 ? this.setStep(0) : this.props.toggle()
@@ -164,7 +164,7 @@ class CheckDemarcheModal extends Component {
               rel="noopener noreferrer"
               type="help"
               name="question-mark-circle"
-              fill={variables.error}
+              fill={colors.error}
             >
               {t("J'ai besoin d'aide", "J'ai besoin d'aide")}
             </FButton>

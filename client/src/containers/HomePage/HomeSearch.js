@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import Streamline from "../../assets/streamline";
 import Ripples from "react-ripples";
 import i18n from "../../i18n";
@@ -45,7 +45,7 @@ export class SearchItem extends Component {
     }, 1500);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (this.state.flip === true && prevState.indexF !== this.state.indexF) {
       setTimeout(() => {
         if (this.flippy) {
@@ -240,7 +240,7 @@ export class SearchItem extends Component {
                 justifyContent: "center",
                 flexDirection: "row",
                 borderRadius: 10,
-                backgroundColor: variables.grisFonce,
+                backgroundColor: colors.grisFonce,
                 fontWeight: "600",
               }}
             >

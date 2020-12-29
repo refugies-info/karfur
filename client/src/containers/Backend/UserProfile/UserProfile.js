@@ -64,7 +64,7 @@ import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 import setAuthToken from "../../../utils/setAuthToken";
 
 import "./UserProfile.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import { logger } from "../../../logger";
 
 const anchorOffset = "120";
@@ -491,7 +491,7 @@ export class UserProfile extends Component {
           >
             <EVAIcon
               name="settings-2-outline"
-              fill={variables.noir}
+              fill={colors.noir}
               className="header-icon"
             />{" "}
             <span className="hideOnPhone">
@@ -509,7 +509,7 @@ export class UserProfile extends Component {
               name={
                 (contributeur || traducteur ? "bell-" : "bookmark-") + "outline"
               }
-              fill={variables.noir}
+              fill={colors.noir}
               className="header-icon"
             />{" "}
             <span className="hideOnPhone">
@@ -526,7 +526,7 @@ export class UserProfile extends Component {
             >
               <EVAIcon
                 name="file-add-outline"
-                fill={variables.noir}
+                fill={colors.noir}
                 className="header-icon"
               />{" "}
               <span className="hideOnPhone">
@@ -542,7 +542,7 @@ export class UserProfile extends Component {
             >
               <SVGIcon
                 name="translate"
-                fill={variables.noir}
+                fill={colors.noir}
                 className="header-icon svgico"
               />{" "}
               <span className="hideOnPhone">
@@ -558,7 +558,7 @@ export class UserProfile extends Component {
             >
               <EVAIcon
                 name="bookmark-outline"
-                fill={variables.noir}
+                fill={colors.noir}
                 className="header-icon"
               />{" "}
               <span className="hideOnPhone">
@@ -574,7 +574,7 @@ export class UserProfile extends Component {
             >
               <EVAIcon
                 name="briefcase-outline"
-                fill={variables.noir}
+                fill={colors.noir}
                 className="header-icon"
               />{" "}
               <span className="hideOnPhone">

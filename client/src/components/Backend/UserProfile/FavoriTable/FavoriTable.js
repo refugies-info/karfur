@@ -9,7 +9,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { fakeFavori } from "../../../../containers/Backend/UserProfile/data";
 
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 moment.locale("fr");
 
@@ -48,7 +48,7 @@ const favoriTable = (props) => {
               <td className="align-middle">
                 <EVAIcon
                   name="bookmark"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   id="bookmarkBtn"
                 />
               </td>
@@ -86,7 +86,7 @@ const favoriTable = (props) => {
                 <FButton
                   type="light-action"
                   name="trash-2-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 />
               </td>
               <td className="align-middle fit-content">
@@ -102,7 +102,7 @@ const favoriTable = (props) => {
                   <FButton
                     type="light-action"
                     name="eye-outline"
-                    fill={variables.noir}
+                    fill={colors.noir}
                   />
                 </NavLink>
               </td>
@@ -116,7 +116,7 @@ const favoriTable = (props) => {
               className="align-middle voir-plus"
               onClick={() => props.toggleModal("favori")}
             >
-              <Icon name="expand-outline" fill={variables.noir} size="large" />
+              <Icon name="expand-outline" fill={colors.noir} size="large" />
               &nbsp;
               {t("Tables.Voir plus", "Voir plus")}
             </td>
@@ -155,7 +155,7 @@ const favoriTable = (props) => {
                   :
                   <EVAIcon
                     name="bookmark"
-                    fill={variables.noir}
+                    fill={colors.noir}
                     className="bookmark-icon"
                   />
                 </div>

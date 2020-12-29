@@ -86,13 +86,13 @@ const membersTable = (props) => {
                 {element.added_at ? moment(element.added_at).calendar() : ""}
               </td>
               <td className="align-middle fit-content hideOnPhone">
-                {/* <FButton type="light-action" name="person-outline" fill={variables.noir} onClick={props.upcoming} /> */}
+                {/* <FButton type="light-action" name="person-outline" fill={colors.noir} onClick={props.upcoming} /> */}
               </td>
               <td className="align-middle fit-content hideOnPhone">
-                {/* <FButton type="light-action" name="message-circle-outline" fill={variables.noir} onClick={props.upcoming} /> */}
+                {/* <FButton type="light-action" name="message-circle-outline" fill={colors.noir} onClick={props.upcoming} /> */}
               </td>
               <td className="align-middle fit-content hideOnPhone">
-                {/* <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={props.upcoming} /> */}
+                {/* <FButton type="light-action" name="eye-outline" fill={colors.noir} onClick={props.upcoming} /> */}
               </td>
             </tr>
           );

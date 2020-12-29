@@ -14,7 +14,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import FInput from "../../../FigmaUI/FInput/FInput";
 
 import "./CreationContent.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const CreationContent = (props) => {
   const [banner, setBanner] = useState(true);
@@ -32,7 +32,7 @@ const CreationContent = (props) => {
               <EVAIcon
                 className="input-icon"
                 name="pricetags-outline"
-                fill={variables.noir}
+                fill={colors.noir}
               />
               <FInput
                 id="nom"
@@ -49,7 +49,7 @@ const CreationContent = (props) => {
             <EVAIcon
               className="input-icon"
               name="pricetags-outline"
-              fill={variables.noir}
+              fill={colors.noir}
             />
             <Input
               id="acronyme"
@@ -65,7 +65,7 @@ const CreationContent = (props) => {
         <EVAIcon
           className="input-icon"
           name="link-outline"
-          fill={variables.noir}
+          fill={colors.noir}
         />
         <Input
           id="link"
@@ -80,9 +80,9 @@ const CreationContent = (props) => {
         <b style={{ fontSize: "22px" }}>Personne responsable à contacter</b>
         {banner ? (
           <div className="warning-bloc bg-focus mt-16 mb-8">
-            <EVAIcon name="info" fill={variables.blanc} className="info-icon" />
+            <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
             <div onClick={() => setBanner(false)} className={"info-icon-close"}>
-              <EVAIcon name="close-outline" fill={variables.blanc} />
+              <EVAIcon name="close-outline" fill={colors.blanc} />
             </div>
             <p style={{ marginBottom: 0 }}>
               Notre équipe va contacter au plus vite cette personne pour
@@ -100,7 +100,7 @@ const CreationContent = (props) => {
               <EVAIcon
                 className="input-icon"
                 name="person-outline"
-                fill={variables.noir}
+                fill={colors.noir}
               />
               <FInput
                 id="contact"
@@ -118,7 +118,7 @@ const CreationContent = (props) => {
               <EVAIcon
                 className="input-icon"
                 name="phone-outline"
-                fill={variables.noir}
+                fill={colors.noir}
               />
               <FInput
                 id="phone_contact"
@@ -136,7 +136,7 @@ const CreationContent = (props) => {
           <EVAIcon
             className="input-icon"
             name="at-outline"
-            fill={variables.noir}
+            fill={colors.noir}
           />
           <FInput
             id="mail_contact"
@@ -238,7 +238,7 @@ const CreationContent = (props) => {
                   <EVAIcon
                     className="input-icon"
                     name="award-outline"
-                    fill={variables.noir}
+                    fill={colors.noir}
                   />
                   <Input
                     id="siren"
@@ -254,7 +254,7 @@ const CreationContent = (props) => {
                   <EVAIcon
                     className="input-icon"
                     name="award-outline"
-                    fill={variables.noir}
+                    fill={colors.noir}
                   />
                   <Input
                     id="siret"
@@ -270,7 +270,7 @@ const CreationContent = (props) => {
               <EVAIcon
                 className="input-icon"
                 name="pin-outline"
-                fill={variables.noir}
+                fill={colors.noir}
               />
               <Input
                 id="adresse"
@@ -284,7 +284,7 @@ const CreationContent = (props) => {
               <EVAIcon
                 className="input-icon"
                 name="at-outline"
-                fill={variables.noir}
+                fill={colors.noir}
               />
               <Input
                 id="mail_generique"
@@ -344,7 +344,7 @@ const CreationContent = (props) => {
               <EVAIcon
                 className="input-icon"
                 name="eye-off-outline"
-                fill={variables.noir}
+                fill={colors.noir}
               />
               <Input
                 id="alt"

@@ -10,7 +10,7 @@ import { fakeNotifs } from "../../../../containers/Backend/UserProfile/data";
 import FButton from "../../../FigmaUI/FButton/FButton";
 
 import "./ActionTable.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 moment.locale("fr");
 
@@ -63,7 +63,7 @@ const actionTable = (props) => {
               <td className="align-middle hideOnPhone">
                 <Icon
                   name={element.owner ? "shield-outline" : "people-outline"}
-                  fill={variables.noir}
+                  fill={colors.noir}
                   size="large"
                 />
                 &nbsp;
@@ -79,7 +79,7 @@ const actionTable = (props) => {
                       ? "question-mark-circle-outline"
                       : "bulb-outline"
                   }
-                  fill={variables.noir}
+                  fill={colors.noir}
                 />
                 {jsUcfirst(t("Tables." + element.action, element.action))}
               </td>
@@ -101,14 +101,14 @@ const actionTable = (props) => {
                 <FButton
                   type="light-action"
                   name="trash-2-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 />
               </td>
               <td className="align-middle pointer fit-content">
                 <FButton
                   type="light-action"
                   name="eye-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 />
               </td>
             </tr>
@@ -121,7 +121,7 @@ const actionTable = (props) => {
               className="align-middle voir-plus"
               onClick={() => props.toggleModal("actions")}
             >
-              <Icon name="expand-outline" fill={variables.noir} />
+              <Icon name="expand-outline" fill={colors.noir} />
               &nbsp;
               {t("Tables.Voir plus", "Voir plus")}
             </td>

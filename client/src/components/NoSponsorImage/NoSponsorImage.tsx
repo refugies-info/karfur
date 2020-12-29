@@ -1,7 +1,6 @@
 import React from "react";
 import EVAIcon from "../UI/EVAIcon/EVAIcon";
-// @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import styled from "styled-components";
 
 interface Props {
@@ -25,7 +24,7 @@ export const NoSponsorImage = (props: Props) => (
       name="image-outline"
       className="not-exist-icon mr-16"
       size="large"
-      fill={variables.noir}
+      fill={colors.noir}
     />
     <span>
       {props.acronyme || props.nom

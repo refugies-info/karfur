@@ -19,7 +19,7 @@ import i18n from "../../i18n";
 import LanguageBtn from "../../components/FigmaUI/LanguageBtn/LanguageBtn";
 
 import "./Reset.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import styled from "styled-components";
 import img from "../../assets/login_background.svg";
 import {
@@ -187,7 +187,7 @@ class Reset extends Component {
           <FButton
             tag={NavLink}
             to="/login"
-            fill={variables.noir}
+            fill={colors.noir}
             name="arrow-back-outline"
           >
             {t(
@@ -213,7 +213,7 @@ class Reset extends Component {
               className="footer-btn"
               type="help"
               name="question-mark-circle-outline"
-              fill={variables.noir}
+              fill={colors.noir}
             >
               {t("Login.Centre d'aide", "Centre d'aide")}
             </FButton>
