@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal } from "reactstrap";
 import { withTranslation } from "react-i18next";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import _ from "lodash";
 
 import FButton from "../../FigmaUI/FButton/FButton";
@@ -57,7 +57,7 @@ export class FrameModal extends Component {
             href={tutoUrl}
             type="dark"
             name="external-link"
-            fill={variables.noir}
+            fill={colors.noir}
             className="mr-10"
             target="_blank"
           >

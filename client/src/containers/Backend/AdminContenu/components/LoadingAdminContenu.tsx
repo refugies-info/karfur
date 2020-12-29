@@ -11,7 +11,7 @@ import { table_contenu, correspondingStatus } from "../data";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 // @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import { FilterButton } from "./SubComponents";
 
 export const LoadingAdminContenu = () => {
@@ -50,7 +50,7 @@ export const LoadingAdminContenu = () => {
                     <EVAIcon
                       // @ts-ignore
                       name={"chevron-" + (element.croissant ? "up" : "down")}
-                      fill={variables.noir}
+                      fill={colors.noir}
                       className="sort-btn"
                     />
                   )}

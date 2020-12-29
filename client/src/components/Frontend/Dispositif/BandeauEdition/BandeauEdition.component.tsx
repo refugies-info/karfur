@@ -4,8 +4,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import { etapes } from "./data";
 import FSwitch from "../../../FigmaUI/FSwitch/FSwitch";
 import "./BandeauEdition.scss";
-// @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import { Props } from "./BandeauEdition.container";
 import { BandeauEditionWithoutVariante } from "./BandeauEditionWithoutVariante";
 
@@ -214,7 +213,7 @@ export class BandeauEdition extends React.Component<
             <FButton
               type="help"
               name="question-mark-circle"
-              fill={variables.error}
+              fill={colors.error}
               onClick={props.upcoming}
               className="mr-10"
             >

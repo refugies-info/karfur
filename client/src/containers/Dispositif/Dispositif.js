@@ -77,7 +77,7 @@ import {
 } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
 import { BackButton } from "../../components/Frontend/Dispositif/BackButton";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import {
   fetchSelectedDispositifActionCreator,
   updateUiArrayActionCreator,
@@ -126,9 +126,9 @@ export class Dispositif extends Component {
     sponsors: sponsorsData,
     tags: [],
     mainTag: {
-      darkColor: variables.darkColor,
-      lightColor: variables.lightColor,
-      hoverColor: variables.gris,
+      darkColor: colors.darkColor,
+      lightColor: colors.lightColor,
+      hoverColor: colors.gris,
       short: "noImage",
     },
 

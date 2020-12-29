@@ -17,7 +17,7 @@ import Skeleton from "react-loading-skeleton";
 import produce from "immer";
 
 import "./Avancement.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import _ from "lodash";
 
 moment.locale("fr");
@@ -739,7 +739,7 @@ export class Avancement extends Component {
                         {element.avancementTrad === 1 ? (
                           <EVAIcon
                             name="checkmark-circle-2"
-                            fill={variables.vert}
+                            fill={colors.vert}
                           />
                         ) : (
                           <span>
@@ -766,7 +766,7 @@ export class Avancement extends Component {
                     {element.avancement === 1 ? (
                       <EVAIcon
                         name="checkmark-circle-2"
-                        fill={variables.vert}
+                        fill={colors.vert}
                       />
                     ) : (
                       <span>
@@ -806,14 +806,14 @@ export class Avancement extends Component {
                 {element.updatedAt
                   ? moment(element.updatedAt).format("YYYY/MM/DD H:mm")
                   : "Pas encore traduite"}
-                {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
+                {/* <FButton type="light-action" name="bookmark-outline" fill={colors.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
               <td className="align-middle fit-content elevated-button">
                 {this.props.isAdmin ? (
                   <FButton
                     type="light-action"
                     name="trash-2"
-                    fill={variables.noir}
+                    fill={colors.noir}
                     onClick={(e) => {
                       e.stopPropagation();
                       Swal.fire({
@@ -821,8 +821,8 @@ export class Avancement extends Component {
                         text: "La suppression des traductions est irréversible",
                         type: "question",
                         showCancelButton: true,
-                        confirmButtonColor: variables.rouge,
-                        cancelButtonColor: variables.vert,
+                        confirmButtonColor: colors.rouge,
+                        cancelButtonColor: colors.vert,
                         confirmButtonText: "Oui, les supprimer",
                         cancelButtonText: "Annuler",
                       }).then((result) => {
@@ -890,7 +890,7 @@ export class Avancement extends Component {
             <FButton
               type="outline-black"
               name="info-outline"
-              fill={variables.noir}
+              fill={colors.noir}
               className="mr-10"
               onClick={this.upcoming}
             >
@@ -1028,7 +1028,7 @@ export class Avancement extends Component {
                           name={
                             "chevron-" + (element.croissant ? "up" : "down")
                           }
-                          fill={variables.noir}
+                          fill={colors.noir}
                           className="sort-btn"
                         />
                       )}

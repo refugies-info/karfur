@@ -11,7 +11,7 @@ import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import { markerInfo, markerInfoPlaceholders } from "./data";
 
 import "./MapParagraphe.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const refs = {};
 class MapParagraphe extends PureComponent {
@@ -282,7 +282,7 @@ class MapParagraphe extends PureComponent {
                 )
               }
               name="close-circle"
-              fill={variables.error}
+              fill={colors.error}
               size="xlarge"
               className="remove-btn"
             />

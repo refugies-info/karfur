@@ -5,7 +5,7 @@ import { Input, InputGroup, InputGroupAddon } from "reactstrap";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 import "./FInput.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const FInput = (props) => {
   const autoFocus = props.autoFocus === false ? false : true;
@@ -16,7 +16,7 @@ const FInput = (props) => {
           <InputGroupAddon addonType="prepend" className="icon-prepend">
             <EVAIcon
               name={props.prependName}
-              fill={props.prependFill || variables.noir}
+              fill={props.prependFill || colors.noir}
             />
           </InputGroupAddon>
         )}
@@ -44,7 +44,7 @@ const FInput = (props) => {
           >
             <EVAIcon
               name={props.appendName}
-              fill={props.appendFill || variables.noir}
+              fill={props.appendFill || colors.noir}
             />
           </InputGroupAddon>
         )}
@@ -82,7 +82,7 @@ const FInput = (props) => {
         >
           <EVAIcon
             name={props.appendName}
-            fill={props.appendFill || variables.noir}
+            fill={props.appendFill || colors.noir}
           />
         </InputGroupAddon>
       ) : (

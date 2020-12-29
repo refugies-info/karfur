@@ -180,7 +180,7 @@ const dispositifValidateModal = (props) => {
             rel="noopener noreferrer"
             type="help"
             name="question-mark-circle-outline"
-            fill={variables.noir}
+            fill={colors.noir}
             className="mr-8"
           >
             Centre d'aide

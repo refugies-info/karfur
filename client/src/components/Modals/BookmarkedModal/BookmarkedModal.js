@@ -7,7 +7,7 @@ import { withTranslation } from "react-i18next";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 import "./BookmarkedModal.scss";
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 const bookmarkedModal = (props) => {
@@ -16,7 +16,7 @@ const bookmarkedModal = (props) => {
     <Modal isOpen={show} toggle={toggle} className="bookmark-modal">
       <ModalHeader toggle={toggle}>
         <div className={"bookmark-icon" + (success ? " success" : " oups")}>
-          <EVAIcon name={"bookmark"} fill={variables["blanc"]} />
+          <EVAIcon name={"bookmark"} fill={colors.blanc} />
         </div>
         <div>
           {success

@@ -6,8 +6,7 @@ import h2p from "html2plaintext";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./QuickToolbar.scss";
-// @ts-ignore : issue with ts and .scss files
-import variables from "../Dispositif.scss"; //A changer
+import { colors } from "colors";
 import { Props } from "./QuickToolbar.container";
 
 interface StateType {
@@ -146,7 +145,7 @@ export class QuickToolbar extends Component<Props, StateType> {
                         "message-circle" +
                         (this.state.fill[0] ? "" : "-outline")
                       }
-                      fill={variables.darkColor}
+                      fill={colors.darkColor}
                       className="icon-toolbar"
                     />
                     <Tooltip
@@ -176,7 +175,7 @@ export class QuickToolbar extends Component<Props, StateType> {
                             ? ""
                             : "-outline")
                         }
-                        fill={variables.darkColor}
+                        fill={colors.darkColor}
                         className="icon-toolbar"
                       />
                       <Tooltip

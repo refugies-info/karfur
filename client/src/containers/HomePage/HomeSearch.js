@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import Flippy, { FrontSide, BackSide } from "react-flippy";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import Streamline from "../../assets/streamline";
 import Ripples from "react-ripples";
 import i18n from "../../i18n";
@@ -240,7 +240,7 @@ export class SearchItem extends Component {
                 justifyContent: "center",
                 flexDirection: "row",
                 borderRadius: 10,
-                backgroundColor: variables.grisFonce,
+                backgroundColor: colors.grisFonce,
                 fontWeight: "600",
               }}
             >

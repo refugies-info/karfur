@@ -7,7 +7,7 @@ import FButton from "../../FigmaUI/FButton/FButton";
 import Modal from "../Modal";
 
 import "./DemarcheCreateModal.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 class DemarcheCreateModal extends Component {
   state = {
@@ -43,7 +43,7 @@ class DemarcheCreateModal extends Component {
                   className="mr-8"
                   name="clock-outline"
                   size="large"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 />
                 <span className="inline-custom">
                   ≈ {typeContenu === "demarche" ? 40 : 20} min
@@ -140,7 +140,7 @@ class DemarcheCreateModal extends Component {
               <FButton
                 type="outline-black"
                 name="arrow-back"
-                fill={variables.noir}
+                fill={colors.noir}
                 onClick={() => this.changeStep(false)}
                 className="mr-10"
               />
@@ -157,7 +157,7 @@ class DemarcheCreateModal extends Component {
               <FButton
                 type="outline-black"
                 name="arrow-forward"
-                fill={variables.noir}
+                fill={colors.noir}
                 onClick={this.changeStep}
               />
             )}
