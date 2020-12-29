@@ -77,16 +77,18 @@ import {
 } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
 import { BackButton } from "../../components/Frontend/Dispositif/BackButton";
-import {colors} from "colors";
+import { colors } from "colors";
 import {
   fetchSelectedDispositifActionCreator,
   updateUiArrayActionCreator,
   updateSelectedDispositifActionCreator,
 } from "../../services/SelectedDispositif/selectedDispositif.actions";
+import "./Dispositif.scss";
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
+// import { logger } from "logger";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -1668,12 +1670,14 @@ export class Dispositif extends Component {
       typeContenu,
       withHelp,
       disableEdit,
-      mainTag,
       inVariante,
       checkingVariante,
       printing,
       didThank,
+      mainTag,
     } = this.state;
+    const tag =
+      mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
     return (
       <div
         id="dispositif"
@@ -1721,16 +1725,7 @@ export class Dispositif extends Component {
             xs={translating ? "8" : "12"}
             className="main-col"
           >
-            <section
-              className="banniere-dispo"
-              style={
-                mainTag &&
-                mainTag.short && {
-                  // eslint-disable-next-line no-use-before-define
-                  backgroundImage: `url(${bgImage(mainTag.short)})`,
-                }
-              }
-            >
+            <section className={"banniere-dispo " + tag}>
               {(inVariante ||
                 checkingVariante ||
                 (typeContenu === "dispositif" && !disableEdit)) && (
@@ -2230,20 +2225,6 @@ export class Dispositif extends Component {
         </Row>
       </div>
     );
-  }
-}
-
-function bgImage(short) {
-  if (short === "noImage") {
-    const imageUrl = require("../../assets/figma/placeholder_no_theme" +
-      ".svg");
-    return imageUrl;
-    //eslint-disable-next-line
-  } else {
-    const imageUrl = require("../../assets/figma/illustration_" +
-      short.split(" ").join("-") +
-      ".svg"); //illustration_
-    return imageUrl;
   }
 }
 

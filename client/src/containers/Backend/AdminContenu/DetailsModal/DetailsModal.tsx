@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Input } from "reactstrap";
-// @ts-ignore
 import "./DetailsModal.scss";
 import { TypeContenu, StyledStatus } from "../components/SubComponents";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
@@ -10,7 +9,6 @@ import { compare } from "../AdminContenu";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
 import { SimplifiedDispositif } from "../../../../@types/interface";
-// @ts-ignore
 import { colors } from "colors";
 import marioProfile from "../../../../assets/mario-profile.jpg";
 import noStructure from "../../../../assets/noStructure.png";
