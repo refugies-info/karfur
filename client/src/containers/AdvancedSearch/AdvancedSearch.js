@@ -174,8 +174,7 @@ const ShowFullFrancePrimary = styled.div`
   margin-top: 48px;
   margin-bottom: 48px;
 
-
-  background: ${props => props.active ? "white" : "transparent"};
+  background: ${(props) => (props.active ? "white" : "transparent")};
 
   border: 2px solid #5e5e5e;
   box-sizing: border-box;
@@ -203,8 +202,7 @@ const ShowFullFranceSecondary = styled.div`
   margin-top: 48px;
   margin-bottom: 48px;
 
-
-  background: ${props => props.active ? "white" : "transparent"};
+  background: ${(props) => (props.active ? "white" : "transparent")};
 
   border: 2px solid #5e5e5e;
   box-sizing: border-box;
@@ -466,6 +464,35 @@ export class AdvancedSearch extends Component {
         } else {
           dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
         }
+
+        if (props.languei18nCode !== "fr" || this.state.filterLanguage !== "") {
+          var nonTranslated = dispositifs.filter((dispo) => {
+            if (
+              typeof dispo.avancement === "object" &&
+              dispo.avancement[
+                props.languei18nCode !== "fr"
+                  ? props.languei18nCode
+                  : this.state.filterLanguage.i18nCode
+              ]
+            ) {
+              return false;
+            }
+            return true;
+          });
+          this.setState({ nonTranslated });
+          dispositifs = dispositifs.filter((dispo) => {
+            if (
+              typeof dispo.avancement === "object" &&
+              dispo.avancement[
+                props.languei18nCode !== "fr"
+                  ? props.languei18nCode
+                  : this.state.filterLanguage.i18nCode
+              ]
+            ) {
+              return true;
+            }
+          });
+        }
         let dispositifsFullFrance = [];
         if (
           localisationSearch &&
@@ -555,34 +582,6 @@ export class AdvancedSearch extends Component {
           nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
 
-        if (props.languei18nCode !== "fr" || this.state.filterLanguage !== "") {
-          var nonTranslated = dispositifs.filter((dispo) => {
-            if (
-              typeof dispo.avancement === "object" &&
-              dispo.avancement[
-                props.languei18nCode !== "fr"
-                  ? props.languei18nCode
-                  : this.state.filterLanguage.i18nCode
-              ]
-            ) {
-              return false;
-            }
-            return true;
-          });
-          this.setState({ nonTranslated });
-          dispositifs = dispositifs.filter((dispo) => {
-            if (
-              typeof dispo.avancement === "object" &&
-              dispo.avancement[
-                props.languei18nCode !== "fr"
-                  ? props.languei18nCode
-                  : this.state.filterLanguage.i18nCode
-              ]
-            ) {
-              return true;
-            }
-          });
-        }
         if (this.state.activeTri === "Par thème") {
           const themesObject = filtres.tags.map((tag) => {
             return {
@@ -1395,13 +1394,24 @@ export class AdvancedSearch extends Component {
                 <ButtonContainer>
                   {this.state.filterVille &&
                   !this.state.showGeolocFullFrancePrincipal ? (
-                    <ShowFullFrancePrimary onClick={() => this.setState({showGeolocFullFrancePrincipal: true})}>
-                      Afficher aussi les résultats disponibles dans&nbsp;<b>toute la France</b>
+                    <ShowFullFrancePrimary
+                      onClick={() =>
+                        this.setState({ showGeolocFullFrancePrincipal: true })
+                      }
+                    >
+                      Afficher aussi les résultats disponibles dans&nbsp;
+                      <b>toute la France</b>
                     </ShowFullFrancePrimary>
                   ) : this.state.filterVille &&
                     this.state.showGeolocFullFrancePrincipal ? (
-                    <ShowFullFrancePrimary active  onClick={() => this.setState({showGeolocFullFrancePrincipal: false})}>
-                      Masquer les résultats disponibles dans&nbsp;<b>toute la France</b>
+                    <ShowFullFrancePrimary
+                      active
+                      onClick={() =>
+                        this.setState({ showGeolocFullFrancePrincipal: false })
+                      }
+                    >
+                      Masquer les résultats disponibles dans&nbsp;
+                      <b>toute la France</b>
                     </ShowFullFrancePrimary>
                   ) : null}
                 </ButtonContainer>
@@ -1419,17 +1429,19 @@ export class AdvancedSearch extends Component {
                     }
                   >
                     {this.state.principalThemeListFullFrance.length > 0 ? (
-                      this.state.principalThemeListFullFrance.map((dispositif, index) => {
-                        return (
-                          <SearchResultCard
-                            key={index}
-                            pin={this.pin}
-                            pinnedList={this.state.pinned}
-                            dispositif={dispositif}
-                            showPinned={true}
-                          />
-                        );
-                      })
+                      this.state.principalThemeListFullFrance.map(
+                        (dispositif, index) => {
+                          return (
+                            <SearchResultCard
+                              key={index}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={dispositif}
+                              showPinned={true}
+                            />
+                          );
+                        }
+                      )
                     ) : (
                       <NoResultPlaceholder
                         restart={this.restart}
@@ -1541,13 +1553,24 @@ export class AdvancedSearch extends Component {
                 <ButtonContainer>
                   {this.state.filterVille &&
                   !this.state.showGeolocFullFranceSecondary ? (
-                    <ShowFullFranceSecondary onClick={() => this.setState({showGeolocFullFranceSecondary: true})}>
-                      Afficher aussi les autres fiches disponibles dans&nbsp;<b>toute la France</b>
+                    <ShowFullFranceSecondary
+                      onClick={() =>
+                        this.setState({ showGeolocFullFranceSecondary: true })
+                      }
+                    >
+                      Afficher aussi les autres fiches disponibles dans&nbsp;
+                      <b>toute la France</b>
                     </ShowFullFranceSecondary>
                   ) : this.state.filterVille &&
                     this.state.showGeolocFullFranceSecondary ? (
-                    <ShowFullFranceSecondary active onClick={() => this.setState({showGeolocFullFranceSecondary: false})}>
-                      Masquer les autres fiches disponibles dans&nbsp;<b>toute la France</b>
+                    <ShowFullFranceSecondary
+                      active
+                      onClick={() =>
+                        this.setState({ showGeolocFullFranceSecondary: false })
+                      }
+                    >
+                      Masquer les autres fiches disponibles dans&nbsp;
+                      <b>toute la France</b>
                     </ShowFullFranceSecondary>
                   ) : null}
                 </ButtonContainer>
@@ -1565,17 +1588,19 @@ export class AdvancedSearch extends Component {
                     }
                   >
                     {this.state.secondaryThemeListFullFrance.length > 0 ? (
-                      this.state.secondaryThemeListFullFrance.map((dispositif, index) => {
-                        return (
-                          <SearchResultCard
-                            key={index}
-                            pin={this.pin}
-                            pinnedList={this.state.pinned}
-                            dispositif={dispositif}
-                            showPinned={true}
-                          />
-                        );
-                      })
+                      this.state.secondaryThemeListFullFrance.map(
+                        (dispositif, index) => {
+                          return (
+                            <SearchResultCard
+                              key={index}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={dispositif}
+                              showPinned={true}
+                            />
+                          );
+                        }
+                      )
                     ) : (
                       <NoResultPlaceholder
                         restart={this.restart}
