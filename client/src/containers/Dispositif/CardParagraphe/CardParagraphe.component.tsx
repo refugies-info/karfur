@@ -19,7 +19,6 @@ import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
 
 import "./CardParagraphe.scss";
-// @ts-ignore
 import { colors } from "colors";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./CardParagraphe.container";

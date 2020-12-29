@@ -12,7 +12,6 @@ import ReactToPrint from "react-to-print";
 
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
-// @ts-ignore
 import { colors } from "colors";
 import { Props } from "./LeftSideDispositif.container";
 import { DispositifContent } from "../../../../@types/interface";

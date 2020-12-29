@@ -4,7 +4,6 @@ import { ObjectId } from "mongodb";
 import { limitNbCaracters } from "../../../../lib";
 import { correspondingStatus, progressionData } from "../data";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
-// @ts-ignore
 import { colors } from "colors";
 
 const Container = styled.div`

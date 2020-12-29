@@ -9,7 +9,6 @@ import { activeStructuresSelector } from "../../../../services/ActiveStructures/
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { SimplifiedStructure } from "../../../../@types/interface";
-// @ts-ignore
 import { colors } from "colors";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";

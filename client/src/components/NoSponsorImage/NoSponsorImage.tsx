@@ -1,6 +1,5 @@
 import React from "react";
 import EVAIcon from "../UI/EVAIcon/EVAIcon";
-// @ts-ignore
 import { colors } from "colors";
 import styled from "styled-components";
 

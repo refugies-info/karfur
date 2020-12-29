@@ -1,7 +1,6 @@
 import React from "react";
 import { Input } from "reactstrap";
 import styled from "styled-components";
-// @ts-ignore
 import { colors } from "colors";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 

@@ -10,7 +10,6 @@ import { Table } from "reactstrap";
 import { table_contenu, correspondingStatus } from "../data";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
-// @ts-ignore
 import { colors } from "colors";
 import { FilterButton } from "./SubComponents";
 
