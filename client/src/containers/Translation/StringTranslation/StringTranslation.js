@@ -18,7 +18,7 @@ import FButton from "../../../components/FigmaUI/FButton/FButton";
 import marioProfile from "../../../assets/mario-profile.jpg";
 
 import "./StringTranslation.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 export class StringTranslation extends Component {
   state = {
@@ -313,13 +313,13 @@ export class StringTranslation extends Component {
             <Col lg="auto" className="left-col">
               <EVAIcon
                 name="clock"
-                fill={variables.grisFonce}
+                fill={colors.grisFonce}
                 className="mr-10"
               />
               <span className="timer">{ms(time)} passées</span>
               <EVAIcon
                 name="hash"
-                fill={variables.grisFonce}
+                fill={colors.grisFonce}
                 className="mr-10"
               />
               <span className="words">
@@ -333,7 +333,7 @@ export class StringTranslation extends Component {
                 to="/backend/user-dashboard"
                 type="light-action"
                 name="log-out"
-                fill={variables.noir}
+                fill={colors.noir}
                 className="mr-10"
               >
                 Fin de la session
@@ -359,7 +359,7 @@ export class StringTranslation extends Component {
               <FButton
                 type="validate"
                 name="checkmark-outline"
-                fill={variables.error}
+                fill={colors.error}
                 onClick={() => this.props.valider()}
               >
                 {" "}

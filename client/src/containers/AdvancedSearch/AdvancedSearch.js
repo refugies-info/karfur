@@ -37,7 +37,7 @@ import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 
 import "./AdvancedSearch.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const ThemeContainer = styled.div`
   width: 100%;
@@ -1048,12 +1048,12 @@ export class AdvancedSearch extends Component {
               {this.state.searchToggleVisible ? (
                 <EVAIcon
                   name="arrow-ios-upward-outline"
-                  fill={variables.blanc}
+                  fill={colors.blanc}
                 />
               ) : (
                 <EVAIcon
                   name="arrow-ios-downward-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 />
               )}
             </SearchToggle>
@@ -1265,7 +1265,7 @@ export class AdvancedSearch extends Component {
                         }
                       >
                         {theme[themeKey]
-                          .filter((card, indexCard) => indexCard < 4)
+                          .filter((_, indexCard) => indexCard < 4)
                           .map((cardFiltered, indexCardFiltered) => {
                             return (
                               <SearchResultCard
@@ -1820,7 +1820,7 @@ export class AdvancedSearch extends Component {
                     : 2
                 }
               >
-                {this.state.chargingArray.map((dispositif, index) => {
+                {this.state.chargingArray.map((_, index) => {
                   return <LoadingCard key={index} />;
                 })}
               </ThemeListContainer>
@@ -1896,7 +1896,7 @@ export const ResponsiveFooter = (props) => {
           size="xlarge"
           onClick={props.toggleDisplayAll}
           className="close-arrow"
-          fill={variables.grisFonce}
+          fill={colors.grisFonce}
         />
       </div>
     )

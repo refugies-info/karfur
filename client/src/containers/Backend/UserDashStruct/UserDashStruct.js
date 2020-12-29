@@ -37,7 +37,7 @@ import DateOffset from "../../../components/Functions/DateOffset";
 import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 
 import "./UserDashStruct.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import {
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
@@ -280,7 +280,7 @@ export class UserDashStruct extends Component {
               <div>
                 <EVAIcon
                   name="alert-triangle"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-16 ml-8"
                 />
                 <b>Un nouveau contenu a été attribué à votre structure !</b>
@@ -306,7 +306,7 @@ export class UserDashStruct extends Component {
                   }}
                   type="light-action"
                   name="eye-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 >
                   Voir le contenu
                 </FButton>
@@ -320,7 +320,7 @@ export class UserDashStruct extends Component {
               <div className="left-side">
                 <EVAIcon
                   name="info"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-16 ml-8"
                 />
                 <b>Recensez votre structure dans l'annuaire de l'intégration</b>

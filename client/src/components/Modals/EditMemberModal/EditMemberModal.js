@@ -17,7 +17,7 @@ import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import API from "../../../utils/API";
 
 import "./EditMemberModal.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 class EditMemberModal extends Component {
   state = {
@@ -195,7 +195,7 @@ class EditMemberModal extends Component {
                       <Col lg="1">
                         <EVAIcon
                           name={"radio-button-" + (role.checked ? "on" : "off")}
-                          fill={variables.noir}
+                          fill={colors.noir}
                         />
                       </Col>
                     </Row>

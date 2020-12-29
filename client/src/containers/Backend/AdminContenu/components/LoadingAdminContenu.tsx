@@ -10,8 +10,7 @@ import { Table } from "reactstrap";
 import { table_contenu, correspondingStatus } from "../data";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
-// @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import { FilterButton } from "./SubComponents";
 
 export const LoadingAdminContenu = () => {
@@ -50,7 +49,7 @@ export const LoadingAdminContenu = () => {
                     <EVAIcon
                       // @ts-ignore
                       name={"chevron-" + (element.croissant ? "up" : "down")}
-                      fill={variables.noir}
+                      fill={colors.noir}
                       className="sort-btn"
                     />
                   )}
@@ -59,7 +58,7 @@ export const LoadingAdminContenu = () => {
             </tr>
           </thead>
           <tbody>
-            {arrayLines.map((element, key) => {
+            {arrayLines.map((_, key) => {
               return (
                 <tr key={key} className={"bg-blancSimple"}>
                   <td>
@@ -72,7 +71,7 @@ export const LoadingAdminContenu = () => {
                       <Skeleton width={270} count={1} />
                     </SkeletonTheme>
                   </td>
-                  {arrayContent.map((element, key) => (
+                  {arrayContent.map((_, key) => (
                     <td key={key}>
                       <SkeletonTheme color="#CDCDCD">
                         <Skeleton width={70} count={1} />

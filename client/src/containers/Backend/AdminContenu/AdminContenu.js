@@ -19,7 +19,7 @@ import {
   SearchBarContainer,
 } from "./StyledAdminContenu";
 import "./AdminContenu.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
@@ -194,8 +194,8 @@ export const AdminContenu = () => {
       text: "La suppression d'un dispositif est irréversible",
       type: "question",
       showCancelButton: true,
-      confirmButtonColor: variables.rouge,
-      cancelButtonColor: variables.vert,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le supprimer",
       cancelButtonText: "Annuler",
     }).then((result) => {
@@ -251,8 +251,8 @@ export const AdminContenu = () => {
           "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
         type: "question",
         showCancelButton: true,
-        confirmButtonColor: variables.rouge,
-        cancelButtonColor: variables.vert,
+        confirmButtonColor: colors.rouge,
+        cancelButtonColor: colors.vert,
         confirmButtonText: "Oui, le valider",
         cancelButtonText: "Annuler",
       });
@@ -427,7 +427,7 @@ export const AdminContenu = () => {
                           !element.mainSponsor ||
                           element.mainSponsor.status !== "Actif"
                         }
-                        hoverColor={variables.validationHover}
+                        hoverColor={colors.validationHover}
                       />
                       <DeleteButton
                         onClick={() => prepareDeleteContrib(element)}

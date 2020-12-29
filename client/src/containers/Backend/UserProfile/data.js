@@ -2,7 +2,7 @@ import React from "react";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const data = [
   {
@@ -85,7 +85,7 @@ const avancement_actions = {
   title: "Notifications",
   headers: [
     // eslint-disable-next-line react/jsx-key
-    <EVAIcon name="bell-outline" fill={variables.noir} />,
+    <EVAIcon name="bell-outline" fill={colors.noir} />,
     "Titre",
     "Mon rôle",
     "Type",
@@ -100,7 +100,7 @@ const avancement_favoris = {
   title: "Favoris",
   headers: [
     // eslint-disable-next-line react/jsx-key
-    <EVAIcon name="bookmark" fill={variables.noir} />,
+    <EVAIcon name="bookmark" fill={colors.noir} />,
     "Titre",
     "Thèmes",
     "Ajouté le",

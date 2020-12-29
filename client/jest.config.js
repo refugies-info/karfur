@@ -9,15 +9,17 @@ module.exports = {
   testRegex: "(/__tests__/.*|\\.(test))\\.(ts|tsx|js)$",
   testPathIgnorePatterns: ["\\.snap$", "<rootDir>/node_modules/"],
   cacheDirectory: ".jest/cache",
+  roots: ["<rootDir>"],
+
   globals: {
     "ts-jest": {
+      tsConfig: "./tsconfig.json",
+      diagnostics: false,
       isolatedModules: true,
     },
   },
   coveragePathIgnorePatterns: ["/node_modules/", "/src/environment"],
   collectCoverage: false,
-  moduleNameMapper: {
-    "\\.(scss|less)$": "identity-obj-proxy",
-  },
   snapshotSerializers: ["<rootDir>/node_modules/enzyme-to-json/serializer"],
+  moduleDirectories: ["node_modules", "src"],
 };

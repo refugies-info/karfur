@@ -5,7 +5,7 @@ import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import { CardBody} from "reactstrap";
 import { withTranslation } from "react-i18next";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import "./AdvancedSearch.scss";
 
 const CardText = styled.p`
@@ -44,7 +44,7 @@ const SeeMoreCard = ({ theme, t, seeMore, isRTL }) => {
         <CardBody>
           <CardText color={theme.darkColor}>{t("AdvancedSearch.Voir les fiches", "Voir toutes les fiches")}</CardText>
           <SeeMoreButton color={theme.darkColor}>
-          <EVAIcon name="expand-outline" fill={variables.blanc} />
+          <EVAIcon name="expand-outline" fill={colors.blanc} />
             <SeeMoreText mr={isRTL ? 8 : 0}>
               {t("Tags." + theme.short, theme.short)}
             </SeeMoreText>

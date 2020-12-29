@@ -16,7 +16,7 @@ import Modal from "../Modal";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 import "./EtapeModal.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 
 class EtapeModal extends Component {
@@ -86,7 +86,7 @@ class EtapeModal extends Component {
                 <FButton
                   type="light-action"
                   name="printer-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 >
                   {t("Dispositif.Imprimer", "Imprimer")}
                 </FButton>
@@ -110,7 +110,7 @@ class EtapeModal extends Component {
                   navigator.clipboard.writeText(displayedText);
                 }}
               >
-                <EVAIcon name="copy-outline" fill={variables.noir} />
+                <EVAIcon name="copy-outline" fill={colors.noir} />
               </div>
             </h5>
           </div>
@@ -156,7 +156,7 @@ class EtapeModal extends Component {
           <FButton
             type="help"
             name="question-mark-circle-outline"
-            fill={variables.error}
+            fill={colors.error}
             onClick={this.props.upcoming}
           >
             {t("J'ai besoin d'aide")}
@@ -165,7 +165,7 @@ class EtapeModal extends Component {
             type="validate"
             name="checkmark-outline"
             onClick={this.props.toggle}
-            fill={variables.noir}
+            fill={colors.noir}
           >
             {t("Dispositif.compris", "Ok, j’ai compris")}
           </FButton>

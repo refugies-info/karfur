@@ -24,7 +24,7 @@ import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "../../../../services/User/user.actions";
 import _ from "lodash";
 import "./Sponsors.scss";
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import styled from "styled-components";
 
 const SponsorContainer = styled.div`
@@ -487,7 +487,7 @@ class Sponsors extends Component {
                     <EVAIcon
                       name="trash-2-outline"
                       size="large"
-                      fill={variables.blanc}
+                      fill={colors.blanc}
                     />
                     <DeleteButtonFullText>Supprimer</DeleteButtonFullText>
                   </DeleteButtonFull>
@@ -595,7 +595,7 @@ class Sponsors extends Component {
                             <EVAIcon
                               name="edit-outline"
                               size="large"
-                              fill={variables.noir}
+                              fill={colors.noir}
                             />
                             <EditText>Editer</EditText>
                           </EditButton>
@@ -603,7 +603,7 @@ class Sponsors extends Component {
                             <EVAIcon
                               name="trash-2-outline"
                               size="large"
-                              fill={variables.blanc}
+                              fill={colors.blanc}
                             />
                           </DeleteButtonSmall>
                         </SponsorListContainer>
@@ -660,7 +660,7 @@ class Sponsors extends Component {
                         >
                           <Icon
                             name="minus-circle"
-                            fill={variables.darkColor}
+                            fill={colors.darkColor}
                             size="xlarge"
                           />
                         </div>
@@ -733,7 +733,7 @@ class Sponsors extends Component {
             <FButton
               type="dark"
               name="paper-plane-outline"
-              fill={variables.noir}
+              fill={colors.noir}
               disabled={
                 (!checked || (!user.email && !user.phone)) &&
                 !mesStructures.some((x) => x.checked)
@@ -747,16 +747,12 @@ class Sponsors extends Component {
         >
           {this.state.banner ? (
             <div className="warning-bloc bg-focus mt-16 mb-8">
-              <EVAIcon
-                name="info"
-                fill={variables.blanc}
-                className="info-icon"
-              />
+              <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
               <div
                 onClick={() => this.setState({ banner: false })}
                 className={"info-icon-close"}
               >
-                <EVAIcon name="close-outline" fill={variables.blanc} />
+                <EVAIcon name="close-outline" fill={colors.blanc} />
               </div>
               <p style={{ marginBottom: 0 }}>
                 Pour que la fiche soit correctement mise à jour au fil du temps,
@@ -810,7 +806,7 @@ class Sponsors extends Component {
               <div className="warning-bloc bg-attention mt-10">
                 <EVAIcon
                   name="alert-triangle-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="info-icon"
                 />
                 <b>Structure inconnue</b>
@@ -827,7 +823,7 @@ class Sponsors extends Component {
                   <EVAIcon
                     className="input-icon"
                     name="at-outline"
-                    fill={variables.noir}
+                    fill={colors.noir}
                   />
                   <Input
                     id="email"
@@ -841,7 +837,7 @@ class Sponsors extends Component {
                   <EVAIcon
                     className="input-icon"
                     name="phone-outline"
-                    fill={variables.noir}
+                    fill={colors.noir}
                   />
                   <Input
                     id="phone"
@@ -866,7 +862,7 @@ class Sponsors extends Component {
             <FButton
               type="dark"
               name="paper-plane-outline"
-              fill={variables.noir}
+              fill={colors.noir}
               onClick={() => {
                 this.props.addMainSponsor(this.state.selected);
                 this.toggleModal();
@@ -884,7 +880,7 @@ class Sponsors extends Component {
               className="float-right"
               id="alt-tooltip"
               name="info"
-              fill={variables.noir}
+              fill={colors.noir}
             />
             <Tooltip
               placement="top"
@@ -1206,7 +1202,7 @@ const ImgModal = (props) => (
         <EVAIcon
           className="input-icon"
           name="briefcase-outline"
-          fill={variables.noir}
+          fill={colors.noir}
         />
         <FInput
           id="nom"
@@ -1231,7 +1227,7 @@ const ImgModal = (props) => (
         <EVAIcon
           className="input-icon"
           name="link-outline"
-          fill={variables.noir}
+          fill={colors.noir}
         />
         <FInput
           id="link"

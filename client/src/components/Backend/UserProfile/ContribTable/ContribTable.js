@@ -11,7 +11,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import { fakeContribution } from "../../../../containers/Backend/UserProfile/data";
 import { NavHashLink } from "react-router-hash-link"
 
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import _ from "lodash";
 
 const contribTable = (props) => {
@@ -30,8 +30,8 @@ const contribTable = (props) => {
       text: "La suppression d'un dispositif est irréversible",
       type: "question",
       showCancelButton: true,
-      confirmButtonColor: variables.rouge,
-      cancelButtonColor: variables.vert,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le supprimer",
       cancelButtonText: "Annuler",
     }).then((result) => {
@@ -119,7 +119,7 @@ const contribTable = (props) => {
                   <FButton
                     type="light-action"
                     name="trash-2-outline"
-                    fill={variables.noir}
+                    fill={colors.noir}
                     onClick={(e) => deleteContrib(e, element)}
                   />
                 )}
@@ -135,7 +135,7 @@ const contribTable = (props) => {
                   }
                   type="light-action"
                   name="eye-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 />
               </td>
             </tr>
@@ -148,7 +148,7 @@ const contribTable = (props) => {
               className="align-middle voir-plus"
               onClick={() => props.toggleModal("contributions")}
             >
-              <Icon name="expand-outline" fill={variables.noir} size="large" />
+              <Icon name="expand-outline" fill={colors.noir} size="large" />
               &nbsp;
               {t("Tables.Voir plus", "Voir plus")}
             </td>
@@ -197,7 +197,7 @@ const contribTable = (props) => {
             <div className="ecran-protection no-contrib">
               {/*props.toggleSection && 
                <div className="close-box" onClick={()=>props.toggleSection('contributions')}>
-                  <Icon name="eye-off-2-outline" fill={variables.noir} />
+                  <Icon name="eye-off-2-outline" fill={colors.noir} />
                   <u>Masquer</u>
               </div>*/}
               <div className="content-wrapper">
@@ -208,7 +208,7 @@ const contribTable = (props) => {
                 <FButton
                   type="light-action hero"
                   name="info-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   tag={NavHashLink}
                   to="/comment-contribuer#ecrire"
                 >

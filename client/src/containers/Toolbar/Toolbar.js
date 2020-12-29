@@ -30,7 +30,7 @@ import styled from "styled-components";
 import Streamline from "../../assets/streamline";
 
 import "./Toolbar.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import { logger } from "../../logger";
 
 const InnerButton = styled.div`
@@ -168,7 +168,7 @@ export class Toolbar extends React.Component {
               <NavLink to="/" className="home-btn">
                 <EVAIcon
                   name="home"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-10 rsz"
                 />
                 {windowWidth >= breakpoints.lgLimit && (

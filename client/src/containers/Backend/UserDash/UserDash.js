@@ -16,7 +16,7 @@ import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./UserDash.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 moment.locale("fr");
 
@@ -370,7 +370,7 @@ const buttonTraductions = (element, user, openThemes, openTraductions) =>
       <FButton
         type="dark"
         name="done-all-outline"
-        fill={variables.noir}
+        fill={colors.noir}
         onClick={() => openTraductions(element)}
       >
         Valider les traductions
@@ -382,7 +382,7 @@ const buttonTraductions = (element, user, openThemes, openTraductions) =>
     <FButton
       type="dark"
       name="play-circle"
-      fill={variables.noir}
+      fill={colors.noir}
       onClick={() => openThemes(element)}
     >
       Démarrer une session
@@ -458,7 +458,7 @@ const ProgressionTraduction = (props) => {
                         {element.avancementTrad === 1 ? (
                           <EVAIcon
                             name="checkmark-circle-2"
-                            fill={variables.vert}
+                            fill={colors.vert}
                           />
                         ) : (
                           <span>
@@ -511,7 +511,7 @@ const ProgressionTraduction = (props) => {
                 >
                   <Icon
                     name="expand-outline"
-                    fill={variables.noir}
+                    fill={colors.noir}
                     size="large"
                   />
                   &nbsp; Voir plus

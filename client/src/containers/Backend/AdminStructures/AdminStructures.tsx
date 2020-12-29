@@ -24,7 +24,7 @@ import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
 //   FigureContainer,
 //   SearchBarContainer,
 // } from "./StyledAdminContenu";
-// import variables from "scss/colors.scss";
+// import {colors} from "colors";
 // import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
 // import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 // import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
@@ -191,8 +191,8 @@ export const AdminStructures = () => {
   //       text: "La suppression d'un dispositif est irréversible",
   //       type: "question",
   //       showCancelButton: true,
-  //       confirmButtonColor: variables.rouge,
-  //       cancelButtonColor: variables.vert,
+  //       confirmButtonColor: colors.rouge,
+  //       cancelButtonColor: colors.vert,
   //       confirmButtonText: "Oui, le supprimer",
   //       cancelButtonText: "Annuler",
   //     }).then((result) => {
@@ -248,8 +248,8 @@ export const AdminStructures = () => {
   //           "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
   //         type: "question",
   //         showCancelButton: true,
-  //         confirmButtonColor: variables.rouge,
-  //         cancelButtonColor: variables.vert,
+  //         confirmButtonColor: colors.rouge,
+  //         cancelButtonColor: colors.vert,
   //         confirmButtonText: "Oui, le valider",
   //         cancelButtonText: "Annuler",
   //       });
@@ -424,7 +424,7 @@ export const AdminStructures = () => {
                           !element.mainSponsor ||
                           element.mainSponsor.status !== "Actif"
                         }
-                        hoverColor={variables.validationHover}
+                        hoverColor={colors.validationHover}
                       />
                       <DeleteButton
                         onClick={() => prepareDeleteContrib(element)}

@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import API from "../../utils/API";
 
 import "./Footer.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../components/FigmaUI/FButton/FButton";
 
@@ -144,17 +144,17 @@ export class Footer extends Component {
             </Row>
             {/*<Row className="social-custom-buttons-row">
               <Col lg="4">
-                <FButton disabled onClick={this.upcoming} type="light-action" name="twitter-outline" fill={variables.noir}>
+                <FButton disabled onClick={this.upcoming} type="light-action" name="twitter-outline" fill={colors.noir}>
                   Nous suivre sur Twitter
                 </FButton>
               </Col>
               <Col lg="4">
-                <FButton disabled onClick={this.upcoming} type="light-action" name="facebook-outline" fill={variables.noir}>
+                <FButton disabled onClick={this.upcoming} type="light-action" name="facebook-outline" fill={colors.noir}>
                   Suivre sur Facebook
                 </FButton>
               </Col>
               <Col lg="4">
-                <FButton disabled onClick={this.upcoming} type="light-action" name="message-circle-outline" fill={variables.noir}>
+                <FButton disabled onClick={this.upcoming} type="light-action" name="message-circle-outline" fill={colors.noir}>
                   Suivre sur Whatsapp
                 </FButton>
               </Col>
@@ -181,7 +181,7 @@ export class Footer extends Component {
                     className="icon-append"
                     onClick={this.sendMail}
                   >
-                    <EVAIcon name="paper-plane-outline" fill={variables.noir} />
+                    <EVAIcon name="paper-plane-outline" fill={colors.noir} />
                   </InputGroupAddon>
                 </div>
               </FormGroup>
@@ -196,7 +196,7 @@ export class Footer extends Component {
                 className="footer-btn"
                 type="light-action"
                 name="people-outline"
-                fill={variables.noir}
+                fill={colors.noir}
               >
                 {t(
                   "Footer.Participer à l'évolution de réfugiés-info",
@@ -214,7 +214,7 @@ export class Footer extends Component {
                 className="footer-btn"
                 type="light-action"
                 name="plus-circle-outline"
-                fill={variables.noir}
+                fill={colors.noir}
               >
                 {t(
                   "Footer.Demander des fonctionnalités",
@@ -232,7 +232,7 @@ export class Footer extends Component {
                 className="footer-btn"
                 type="help"
                 name="question-mark-circle-outline"
-                fill={variables.noir}
+                fill={colors.noir}
               >
                 {t("Footer.Centre d'aide", "Centre d'aide")}
               </FButton>

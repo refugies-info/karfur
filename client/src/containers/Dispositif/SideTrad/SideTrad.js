@@ -30,7 +30,7 @@ import moment from "moment";
 import "./SideTrad.scss";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 import {customConvertOption} from "../data";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import produce from "immer";
 import styled from "styled-components";
 
@@ -1000,7 +1000,7 @@ class SideTrad extends Component {
           <FButton
             type="light-action"
             name={"close" + "-outline"}
-            fill={variables.noir}
+            fill={colors.noir}
             className="mr-10 mb-10"
             onClick={() => this._endingFeedback()}
           >
@@ -1027,7 +1027,7 @@ class SideTrad extends Component {
             >
               <div className={"text-" + colorAvancement(this.state.avancement)}>
                 {this.state.avancement === 1 ? (
-                  <EVAIcon name="checkmark-circle-2" fill={variables.vert} />
+                  <EVAIcon name="checkmark-circle-2" fill={colors.vert} />
                 ) : (
                   <span>
                     {Math.round((this.state.avancement || 0) * 100)} %
@@ -1068,7 +1068,7 @@ class SideTrad extends Component {
           <AlertModified type={modified ? "modified" : "abstract"}>
             <EVAIcon
               name="info"
-              fill={variables.noir}
+              fill={colors.noir}
               id="alert-info"
               className={"mr-10 mb-1"}
             />
@@ -1089,7 +1089,7 @@ class SideTrad extends Component {
           <AlertModified type={"modified"}>
             <EVAIcon
               name="alert-triangle"
-              fill={variables.orange}
+              fill={colors.orange}
               id="alert-triangle-outline"
               className={"mr-10 mb-1"}
             />
@@ -1236,7 +1236,7 @@ class SideTrad extends Component {
                     <FButton
                       type="light-action"
                       name="arrow-ios-back-outline"
-                      fill={variables.blanc}
+                      fill={colors.blanc}
                       onClick={() =>
                         this.nextProposition(
                           this.state.propositionIndex === 0
@@ -1264,7 +1264,7 @@ class SideTrad extends Component {
                       {""}
                       <EVAIcon
                         name="arrow-ios-forward-outline"
-                        fill={variables.blanc}
+                        fill={colors.blanc}
                         //className="ml-10"
                       />
                     </FButton>
@@ -1292,7 +1292,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name="arrow-back-outline"
-                fill={variables.noir}
+                fill={colors.noir}
                 onClick={() => this.goChange(false)}
                 className="mt-10"
                 style={{ marginRight: 5 }}
@@ -1308,7 +1308,7 @@ class SideTrad extends Component {
               {""}
               <EVAIcon
                 name="arrow-forward-outline"
-                fill={variables.noir}
+                fill={colors.noir}
                 //className="ml-10"
               />
             </FButton>
@@ -1318,7 +1318,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name={"edit-outline"}
-                fill={variables.noir}
+                fill={colors.noir}
                 className="mr-10 mt-10"
                 onClick={this.modifyNew}
               >
@@ -1328,7 +1328,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name={"close-circle-outline"}
-                fill={variables.noir}
+                fill={colors.noir}
                 className="mr-10 mt-10"
                 onClick={this.modifyNew}
               >
@@ -1338,7 +1338,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name="refresh-outline"
-                fill={variables.noir}
+                fill={colors.noir}
                 onClick={this.reset}
                 className="mt-10 mr-10"
               >

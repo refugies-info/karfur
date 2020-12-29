@@ -1,8 +1,7 @@
 import React from "react";
 import { Input } from "reactstrap";
 import styled from "styled-components";
-// @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 export const SearchBarContainer = styled.div`
@@ -59,7 +58,7 @@ export const CustomSearchBar = (props: Props) => (
     />
     <EVAIcon
       name="search-outline"
-      fill={variables.noir}
+      fill={colors.noir}
       id="bookmarkBtn"
       size={"large"}
     />

@@ -1,4 +1,4 @@
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 export const table_contenu = {
   title: "Contenu",
@@ -54,117 +54,117 @@ export const correspondingStatus = [
     displayedStatus: "En attente",
     color: orange,
     order: 1,
-    textColor: variables.blancSimple,
+    textColor: colors.blancSimple,
   },
   {
     storedStatus: "Brouillon",
     displayedStatus: "Brouillon",
     color: yellow,
     order: 3,
-    textColor: variables.darkColor,
+    textColor: colors.darkColor,
   },
   {
     storedStatus: "En attente non prioritaire",
     displayedStatus: "Sans structure",
     color: red,
     order: 4,
-    textColor: variables.blancSimple,
+    textColor: colors.blancSimple,
   },
   {
     storedStatus: "Rejeté structure",
     displayedStatus: "Rejeté",
     color: red,
     order: 6,
-    textColor: variables.blancSimple,
+    textColor: colors.blancSimple,
   },
   {
     storedStatus: "En attente admin",
     displayedStatus: "À valider",
     color: lightGreen,
     order: 0,
-    textColor: variables.blancSimple,
+    textColor: colors.blancSimple,
   },
   {
     storedStatus: "Accepté structure",
     displayedStatus: "Accepté",
     color: orange,
     order: 2,
-    textColor: variables.blancSimple,
+    textColor: colors.blancSimple,
   },
   {
     storedStatus: "Supprimé",
     displayedStatus: "Supprimé",
     color: red,
     order: 7,
-    textColor: variables.blancSimple,
+    textColor: colors.blancSimple,
   },
 ];
 
-const darkBlue = variables.bleuCharte;
-const lightBlue = variables.lightBlue;
+const darkBlue = colors.bleuCharte;
+const lightBlue = colors.lightBlue;
 
 export const progressionData = [
   {
     storedStatus: "Nouveau !",
     displayedStatus: "Nouveau !",
     color: darkBlue,
-    textColor: variables.blancSimple,
+    textColor: colors.blancSimple,
     group: 1,
   },
   {
     storedStatus: "Contacté",
     displayedStatus: "Contacté",
     color: lightBlue,
-    textColor: variables.darkColor,
+    textColor: colors.darkColor,
     group: 1,
   },
   {
     storedStatus: "À relancer",
     displayedStatus: "À relancer",
     color: lightBlue,
-    textColor: variables.darkColor,
+    textColor: colors.darkColor,
     group: 1,
   },
   {
     storedStatus: "Bloqué",
     displayedStatus: "Bloqué",
     color: lightBlue,
-    textColor: variables.darkColor,
+    textColor: colors.darkColor,
     group: 1,
   },
   {
     storedStatus: "0%",
     displayedStatus: "0%",
     color: lightBlue,
-    textColor: variables.darkColor,
+    textColor: colors.darkColor,
     group: 2,
   },
   {
     storedStatus: "25%",
     displayedStatus: "25%",
     color: lightBlue,
-    textColor: variables.darkColor,
+    textColor: colors.darkColor,
     group: 2,
   },
   {
     storedStatus: "50%",
     displayedStatus: "50%",
     color: lightBlue,
-    textColor: variables.darkColor,
+    textColor: colors.darkColor,
     group: 2,
   },
   {
     storedStatus: "75%",
     displayedStatus: "75%",
     color: lightBlue,
-    textColor: variables.darkColor,
+    textColor: colors.darkColor,
     group: 2,
   },
   {
     storedStatus: "100%",
     displayedStatus: "100%",
     color: lightBlue,
-    textColor: variables.darkColor,
+    textColor: colors.darkColor,
     group: 2,
   },
 ];

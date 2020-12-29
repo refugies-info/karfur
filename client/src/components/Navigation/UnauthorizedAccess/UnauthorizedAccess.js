@@ -5,7 +5,7 @@ import { withTranslation } from "react-i18next";
 import FButton from "../../FigmaUI/FButton/FButton";
 
 import "./UnauthorizedAccess.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const unauthorizedAccess = (props) => (
   <div className="unauthorized-access">
@@ -13,7 +13,7 @@ const unauthorizedAccess = (props) => (
     <FButton
       tag={NavLink}
       to="/"
-      fill={variables.noir}
+      fill={colors.noir}
       name="arrow-back-outline"
     >
       {props.t("UnauthorizedAccess.Revenir à l'accueil", "Revenir à l'accueil")}

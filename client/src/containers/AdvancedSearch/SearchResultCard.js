@@ -5,7 +5,7 @@ import { filtres } from "../Dispositif/data";
 import CustomCard from "../../components/UI/CustomCard/CustomCard";
 import { CardBody, CardFooter } from "reactstrap";
 import EVAIcon from "../../components/UI/EVAIcon/EVAIcon";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import Streamline from "../../assets/streamline";
 import "./AdvancedSearch.scss";
 
@@ -82,7 +82,7 @@ const SearchResultCard = ({
                 name="bookmark"
                 size="xlarge"
                 onClick={(e) => pin(e, dispositif)}
-                fill={pinned ? variables.noir : variables.noirCD}
+                fill={pinned ? colors.noir : colors.noirCD}
                 className={"bookmark-icon" + (pinned ? " pinned" : "")}
               />
             )}

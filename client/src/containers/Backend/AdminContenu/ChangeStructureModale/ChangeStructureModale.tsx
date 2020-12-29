@@ -9,8 +9,7 @@ import { activeStructuresSelector } from "../../../../services/ActiveStructures/
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { SimplifiedStructure } from "../../../../@types/interface";
-// @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 import { ObjectId } from "mongodb";
@@ -41,7 +40,7 @@ const Title = styled.div`
 `;
 
 const SelectedStructure = styled.div`
-  background: ${variables.blancSimple};
+  background: ${colors.blancSimple};
   width: 100%;
   padding: 8px;
   border-radius: 12px;
@@ -60,7 +59,7 @@ const ModifyLink = styled.div`
 `;
 
 const Warning = styled.div`
-  background: ${variables.erreur};
+  background: ${colors.erreur};
   width: 100%;
   padding: 8px;
   border-radius: 12px;

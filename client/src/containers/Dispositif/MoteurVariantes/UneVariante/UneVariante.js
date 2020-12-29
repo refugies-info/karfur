@@ -16,7 +16,7 @@ import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 import ReducedVariante from "../../../../components/Frontend/Dispositif/Variantes/ReducedVariante/ReducedVariante";
 import { customCriteres } from "../data";
 
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 class UneVariante extends Component {
   state = {
@@ -271,7 +271,7 @@ class UneVariante extends Component {
                       <h5 className="critere-title">
                         <EVAIcon
                           name="pin-outline"
-                          fill={variables.noir}
+                          fill={colors.noir}
                           className="mr-10"
                         />
                         Localisation
@@ -338,7 +338,7 @@ class UneVariante extends Component {
                       <h5 className="critere-title">
                         <EVAIcon
                           name="people-outline"
-                          fill={variables.noir}
+                          fill={colors.noir}
                           className="mr-10"
                         />
                         Tranche d’âge
@@ -412,7 +412,7 @@ class UneVariante extends Component {
                             <DropdownToggle caret>
                               <EVAIcon
                                 name="options-2-outline"
-                                fill={variables.noir}
+                                fill={colors.noir}
                                 className="mr-10"
                               />
                               {customCritere.texte}
@@ -451,7 +451,7 @@ class UneVariante extends Component {
                         </div>
                         <EVAIcon
                           name="close-circle"
-                          fill={variables.error}
+                          fill={colors.error}
                           size="xlarge"
                           className="close-icon"
                           onClick={() => this.remove_critere(idx)}
@@ -466,7 +466,7 @@ class UneVariante extends Component {
                       <div className="critere-body">
                         <EVAIcon
                           name="plus-circle-outline"
-                          fill={variables.grisFonce}
+                          fill={colors.grisFonce}
                           className="mr-10 mt-10"
                         />
                         <span className="color-grisFonce mt-10">
@@ -487,7 +487,7 @@ class UneVariante extends Component {
                       onClick={() => this.supprimer_cas(i)}
                       className="delete-icon cursor-pointer"
                       name="close-circle"
-                      fill={variables.error}
+                      fill={colors.error}
                       size="xlarge"
                     />
                   )}
@@ -514,7 +514,7 @@ class UneVariante extends Component {
             rel="noopener noreferrer"
             type="help"
             name="question-mark-circle-outline"
-            fill={variables.error}
+            fill={colors.error}
           >
             J'ai besoin d'aide
           </FButton>
@@ -527,7 +527,7 @@ class UneVariante extends Component {
                 allCase.findIndex((x) => x === true)
               )
             }
-            fill={variables.noir}
+            fill={colors.noir}
             disabled={!validatedRow.includes(true)}
           >
             Valider

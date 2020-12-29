@@ -14,7 +14,7 @@ import API from "../../../utils/API";
 import marioProfile from "../../../assets/mario-profile.jpg";
 
 import "./RejectTradModal.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const reasons = [
   {
@@ -100,7 +100,7 @@ class RejectTradModal extends Component {
               >
                 <EVAIcon
                   name={"radio-button-" + (clicked[key] ? "on" : "off")}
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-10"
                 />
                 {r.text}
@@ -117,7 +117,7 @@ class RejectTradModal extends Component {
                 name={
                   "radio-button-" + (clicked[reasons.length] ? "on" : "off")
                 }
-                fill={variables.noir}
+                fill={colors.noir}
                 className="mr-10"
               />
               <span>Message personnalisé à : </span>
@@ -143,7 +143,7 @@ class RejectTradModal extends Component {
         </ModalBody>
         <ModalFooter>
           <div className="footer-btns">
-            {/* <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(this.props.translated || {}).body} fill={variables.noir} className="mr-10">
+            {/* <FButton type="outline-black" name="flag-outline" onClick={this.signaler} disabled={!(this.props.translated || {}).body} fill={colors.noir} className="mr-10">
             Signaler
           </FButton> */}
             <FButton type="light-action" className="mr-10" onClick={toggle}>

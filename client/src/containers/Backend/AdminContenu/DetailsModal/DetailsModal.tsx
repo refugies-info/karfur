@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Input } from "reactstrap";
-// @ts-ignore
 import "./DetailsModal.scss";
 import { TypeContenu, StyledStatus } from "../components/SubComponents";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
@@ -10,8 +9,7 @@ import { compare } from "../AdminContenu";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
 import { SimplifiedDispositif } from "../../../../@types/interface";
-// @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import marioProfile from "../../../../assets/mario-profile.jpg";
 import noStructure from "../../../../assets/noStructure.png";
 import { useSelector, useDispatch } from "react-redux";
@@ -78,7 +76,7 @@ const Title = styled.div`
 
 const StructureContainer = styled.div`
   background: ${(props) =>
-    props.noStructure ? variables.erreur : variables.blancSimple};
+    props.noStructure ? colors.erreur : colors.blancSimple};
   border-radius: 12px;
   display: flex;
   flex-direction: column;
@@ -104,7 +102,7 @@ const ButtonsContainer = styled.div`
 const CreatorContainer = styled.div`
   border-radius: 12px;
   padding: 8px;
-  background: ${variables.blancSimple};
+  background: ${colors.blancSimple};
   display: flex;
   flex-direction: row;
   width: fit-content;
@@ -218,7 +216,7 @@ export const DetailsModal = (props: Props) => {
               <RowContainer>
                 {dispositif.titreMarque && (
                   <TitreMarque>
-                    <span style={{ color: variables.cardColor }}>avec </span>
+                    <span style={{ color: colors.cardColor }}>avec </span>
                     {dispositif.titreMarque}
                   </TitreMarque>
                 )}
