@@ -867,7 +867,11 @@ class Sponsors extends Component {
               type="dark"
               name="paper-plane-outline"
               fill={variables.noir}
-              onClick={() => this.props.addMainSponsor(this.state.selected)}
+              onClick={() => {
+                this.props.addMainSponsor(this.state.selected);
+                this.toggleModal();
+                this.setState({ imgData: {} });
+              }}
               className="push-right"
             >
               Valider
