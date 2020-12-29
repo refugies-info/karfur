@@ -10,5 +10,5 @@ export const activeStructuresReducer = createReducer<
   ActiveStructuresState,
   StructuresActions
 >(initialActiveStructuresState, {
-  SET_ACTIVE_STRUCTURES: (state, action) => action.payload,
+  SET_ACTIVE_STRUCTURES: (_, action) => action.payload,
 });

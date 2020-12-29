@@ -57,7 +57,7 @@ export class QuickToolbar extends Component<Props, StateType> {
   toggle = () => this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
   toggleColor = (key: number, hover: string) =>
     this.setState((prevState: StateType) => ({
-      dropdownColor: prevState.dropdownColor.map((x, i) =>
+      dropdownColor: prevState.dropdownColor.map((_, i) =>
         i === key ? (hover ? "#3D3D3D" : "#FFFFFF") : "#FFFFFF"
       ),
     }));

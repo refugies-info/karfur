@@ -1265,7 +1265,7 @@ export class AdvancedSearch extends Component {
                         }
                       >
                         {theme[themeKey]
-                          .filter((card, indexCard) => indexCard < 4)
+                          .filter((_, indexCard) => indexCard < 4)
                           .map((cardFiltered, indexCardFiltered) => {
                             return (
                               <SearchResultCard
@@ -1820,7 +1820,7 @@ export class AdvancedSearch extends Component {
                     : 2
                 }
               >
-                {this.state.chargingArray.map((dispositif, index) => {
+                {this.state.chargingArray.map((_, index) => {
                   return <LoadingCard key={index} />;
                 })}
               </ThemeListContainer>

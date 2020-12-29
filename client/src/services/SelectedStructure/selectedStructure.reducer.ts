@@ -10,5 +10,5 @@ export const selectedStructureReducer = createReducer<
   SelectedStructureState,
   SelectedStructureActions
 >(initialSelectedStructureState, {
-  SET_SELECTED_STRUCTURE: (state, action) => action.payload,
+  SET_SELECTED_STRUCTURE: (_, action) => action.payload,
 });

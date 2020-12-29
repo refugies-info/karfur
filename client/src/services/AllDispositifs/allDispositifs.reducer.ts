@@ -10,5 +10,5 @@ export const allDispositifsReducer = createReducer<
   AllDispositifsState,
   AllDispositifsActions
 >(initialAllDispositifsState, {
-  SET_ALL_DISPOSITIFS: (state, action) => action.payload,
+  SET_ALL_DISPOSITIFS: (_, action) => action.payload,
 });

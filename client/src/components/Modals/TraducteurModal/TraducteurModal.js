@@ -46,7 +46,7 @@ class TraducteurModal extends Component {
     }
   }
 
-  handleCheck = (e, key) => {
+  handleCheck = (_, key) => {
     // we have to check === key+1 because we remove french from list which has the first index
     this.setState((prevState) => ({
       langues: prevState.langues.map((x, i) =>
@@ -102,6 +102,7 @@ class TraducteurModal extends Component {
   };
 
   render() {
+    const _test = 3;
     const { show, toggle } = this.props;
     const { langues } = this.state;
     return (

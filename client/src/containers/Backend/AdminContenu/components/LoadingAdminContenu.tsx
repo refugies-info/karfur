@@ -59,7 +59,7 @@ export const LoadingAdminContenu = () => {
             </tr>
           </thead>
           <tbody>
-            {arrayLines.map((element, key) => {
+            {arrayLines.map((_, key) => {
               return (
                 <tr key={key} className={"bg-blancSimple"}>
                   <td>
@@ -72,7 +72,7 @@ export const LoadingAdminContenu = () => {
                       <Skeleton width={270} count={1} />
                     </SkeletonTheme>
                   </td>
-                  {arrayContent.map((element, key) => (
+                  {arrayContent.map((_, key) => (
                     <td key={key}>
                       <SkeletonTheme color="#CDCDCD">
                         <Skeleton width={70} count={1} />

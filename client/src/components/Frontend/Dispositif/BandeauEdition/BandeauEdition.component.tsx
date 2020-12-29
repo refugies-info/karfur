@@ -78,14 +78,14 @@ export class BandeauEdition extends React.Component<
     //Il faut virer tous les paragraphes de la section "C'est pour qui"
     const nbSections =
       props.uiArray.filter(
-        (x, i) =>
+        (_, i) =>
           i !== 1 &&
           props.menu[i] &&
           props.menu[i].content &&
           props.menu[i].content !== "null"
       ).length +
       props.uiArray
-        .filter((x, i) => i !== 1)
+        .filter((_, i) => i !== 1)
         .reduce(
           (acc, curr) =>
             (acc +=

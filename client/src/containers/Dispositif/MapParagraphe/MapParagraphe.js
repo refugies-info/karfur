@@ -106,7 +106,7 @@ class MapParagraphe extends PureComponent {
     });
   };
 
-  handleMarkerClick = (e, marker) => {
+  handleMarkerClick = (_, marker) => {
     this.setState({
       showSidebar: true,
       markerInfo: this.state.markerInfo.map((x) =>
@@ -149,7 +149,7 @@ class MapParagraphe extends PureComponent {
         lng: parseFloat(this.state.markers[key].longitude),
       },
       showingInfoWindow: this.state.showingInfoWindow.map(
-        (x, id) => id === key
+        (_, id) => id === key
       ),
     });
   };

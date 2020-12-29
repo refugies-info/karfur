@@ -45,7 +45,7 @@ export class SearchItem extends Component {
     }, 1500);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (this.state.flip === true && prevState.indexF !== this.state.indexF) {
       setTimeout(() => {
         if (this.flippy) {

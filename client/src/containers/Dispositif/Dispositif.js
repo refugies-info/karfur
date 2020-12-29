@@ -493,10 +493,10 @@ export class Dispositif extends Component {
   handleChange = (ev) => {
     var value = ev.target.value;
     if (ev.currentTarget.id === "titreInformatif") {
-      value = ev.target.value.substring(0, 40)
+      value = ev.target.value.substring(0, 40);
     }
     if (ev.currentTarget.id === "titreMarque") {
-      value = ev.target.value.substring(0, 20)
+      value = ev.target.value.substring(0, 20);
     }
     // update selected dispositif in redux
     this.props.updateSelectedDispositif({
@@ -923,7 +923,7 @@ export class Dispositif extends Component {
     }
     const prevState = [...this.state.menu];
     prevState[key].children = prevState[key].children.filter(
-      (x, index) => index !== subkey
+      (_, index) => index !== subkey
     );
     this.setState({
       menu: prevState,
@@ -1326,7 +1326,7 @@ export class Dispositif extends Component {
             ) */
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   editDispositif = (_ = null, disableEdit = false) => {
     this.props.history.push({
       state: {

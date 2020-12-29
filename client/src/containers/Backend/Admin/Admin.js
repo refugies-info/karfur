@@ -154,7 +154,7 @@ export class Admin extends Component {
     });
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(_, prevState) {
     if (
       this.state.user &&
       prevState.user._id !== this.state.user._id &&
