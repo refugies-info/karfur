@@ -89,7 +89,7 @@
     "react-ripples": "^2.2.1",
     "react-router-dom": "^4.3.1",
     "react-router-hash-link": "^1.2.2",
-    "react-scripts": "3.4.3",
+    "react-scripts": "4.0.0",
     "react-scrollable-anchor": "^0.6.1",
     "react-scrollspy": "^3.4.0",
     "react-sizes": "^2.0.0",
