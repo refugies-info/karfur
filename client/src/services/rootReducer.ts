@@ -45,7 +45,7 @@ export interface RootState {
   langue: LangueState;
   activeDispositifs: ActiveDispositifsState;
   tts: TtsState;
-  structure: UserStructureState;
+  userStructure: UserStructureState;
   selectedDispositif: SelectedDispositifState;
   loadingStatus: LoadingStatusState;
   translation: TranslationState;
