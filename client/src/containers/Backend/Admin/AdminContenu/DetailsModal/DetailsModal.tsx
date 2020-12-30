@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Modal, Input } from "reactstrap";
 import "./DetailsModal.scss";
-import { TypeContenu, StyledStatus } from "../components/SubComponents";
+import {
+  TypeContenu,
+  StyledStatus,
+} from "../../sharedComponents/SubComponents";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";

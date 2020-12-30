@@ -33,7 +33,7 @@ import {
   DeleteButton,
   FilterButton,
   TabHeader,
-} from "./components/SubComponents";
+} from "../sharedComponents/SubComponents";
 import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";

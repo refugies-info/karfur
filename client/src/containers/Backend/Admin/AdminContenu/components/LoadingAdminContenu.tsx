@@ -11,7 +11,7 @@ import { table_contenu, correspondingStatus } from "../data";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
-import { FilterButton } from "./SubComponents";
+import { FilterButton } from "../../sharedComponents/SubComponents";
 
 export const LoadingAdminContenu = () => {
   const arrayLines = new Array(12).fill("a");
