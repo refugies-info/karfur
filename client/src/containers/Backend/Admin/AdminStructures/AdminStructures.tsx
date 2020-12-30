@@ -19,12 +19,12 @@ import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
 // import API from "../../../utils/API";
 import marioProfile from "../../../../assets/mario-profile.jpg";
 import {
-  // StyledSort,
   StyledTitle,
   StyledHeader,
   Content,
   FigureContainer,
-  // SearchBarContainer,
+  StyledSort,
+  SearchBarContainer,
 } from "../sharedComponents/StyledAdmin";
 import "./AdminStructures.scss";
 // import {colors} from "colors";
@@ -43,15 +43,19 @@ import {
   //   FilterButton,
   TabHeader,
   StyledStatus,
+  FilterButton,
 } from "../sharedComponents/SubComponents";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
-import { headers } from "./data";
+import { headers, correspondingStatus } from "./data";
 import {
   RowContainer,
   StructureName,
 } from "./components/AdminStructureComponents";
 import { SimplifiedStructureForAdmin } from "../../../../@types/interface";
+import { compare } from "../AdminContenu/AdminContenu";
+import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import FButton from "components/FigmaUI/FButton/FButton";
 
 // import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 // import FButton from "../../../components/FigmaUI/FButton/FButton";
@@ -76,10 +80,11 @@ export const AdminStructures = () => {
   //   const [showChangeStructureModal, setShowChangeStructureModal] = useState(
   //     false
   //   );
-  //   const headers = table_contenu.headers;
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
   );
+
+  const handleChange = (e: any) => setSearch(e.target.value);
 
   //   const toggleShowChangeStructureModal = () =>
   //     setShowChangeStructureModal(!showChangeStructureModal);
@@ -88,6 +93,11 @@ export const AdminStructures = () => {
   //     setSelectedDispositif(element);
   //     toggleDetailsModal();
   //   };
+
+  const onFilterClick = (status: string) => {
+    setFilter(status);
+    setSortedHeader(defaultSortedHeader);
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -213,6 +223,15 @@ export const AdminStructures = () => {
       structuresForCount: structuresFilteredBySearch,
     };
   };
+
+  const getNbStructuresByStatus = (
+    structures: SimplifiedStructureForAdmin[],
+    status: string
+  ) =>
+    structures && structures.length > 0
+      ? structures.filter((structure) => structure.status === status).length
+      : 0;
+
   const { structuresToDisplay, structuresForCount } = filterAndSortStructures(
     structures
   );
@@ -222,25 +241,44 @@ export const AdminStructures = () => {
   ).length;
   return (
     <div className="admin-structures">
+      <SearchBarContainer>
+        <CustomSearchBar
+          value={search}
+          // @ts-ignore
+          onChange={handleChange}
+          placeholder="Rechercher une structure..."
+        />
+        {/* <FButton
+          type="dark"
+          name="plus-circle-outline"
+          tag={"a"}
+          href={"/comment-contribuer#ecrire"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ajouter un contenu
+        </FButton> */}
+      </SearchBarContainer>
       <StyledHeader>
         <StyledTitle>Structures</StyledTitle>
         <FigureContainer>{nbNonDeletedStructures}</FigureContainer>
-        {/* <StyledSort>
-          {correspondingStatus.sort(compare).map((status) => {
-            const nbContent = getNbDispositifsByStatus(
+        <StyledSort>
+          {correspondingStatus.sort(compare).map((element) => {
+            const status = element.status;
+            const nbStructures = getNbStructuresByStatus(
               structuresForCount,
-              status.storedStatus
+              status
             );
             return (
               <FilterButton
-                key={status.storedStatus}
-                onClick={() => onFilterClick(status.storedStatus)}
-                text={`${status.displayedStatus} (${nbContent})`}
-                isSelected={filter === status.storedStatus}
+                key={status}
+                onClick={() => onFilterClick(status)}
+                text={`${status} (${nbStructures})`}
+                isSelected={filter === status}
               />
             );
           })}
-        </StyledSort> */}
+        </StyledSort>
       </StyledHeader>
       <Content>
         <Table responsive borderless>
@@ -279,11 +317,9 @@ export const AdminStructures = () => {
                   ? element.responsable.picture.secure_url
                   : marioProfile;
               return (
-                <tr key={key}>
-                  <td
-                    className="align-middle"
-                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
+                // eslint-disable-next-line no-console
+                <tr key={key} onClick={() => console.log("on cli")}>
+                  <td className="align-middle">
                     <RowContainer>
                       {element.picture && element.picture.secure_url && (
                         <img
@@ -294,36 +330,16 @@ export const AdminStructures = () => {
                       <StructureName>{element.nom}</StructureName>
                     </RowContainer>
                   </td>
-                  <td
-                    className="align-middle"
-                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
+                  <td className="align-middle">
                     <StyledStatus
                       text={element.status}
-                      textToDisplay={
-                        element.status === "Actif"
-                          ? "Active"
-                          : element.status === "Supprimé"
-                          ? "Supprimée"
-                          : "En attente"
-                      }
+                      textToDisplay={element.status}
                     />
                   </td>
-                  <td
-                    className="align-middle cursor-pointer"
-                    // onClick={() =>
-                    //   this.props.onSelect(
-                    //     { structure: element.structureObj },
-                    //     "1"
-                    //   )
-                    // }
-                  >
+                  <td className="align-middle cursor-pointer">
                     {element.nbMembres}
                   </td>
-                  <td
-                    className={"align-middle "}
-                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
+                  <td className={"align-middle "}>
                     <RowContainer>
                       {element.responsable && (
                         <img
@@ -334,16 +350,10 @@ export const AdminStructures = () => {
                       {responsableName}
                     </RowContainer>
                   </td>
-                  <td
-                    className="align-middle"
-                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
+                  <td className="align-middle">
                     {element.dispositifsAssocies.length}
                   </td>
-                  <td
-                    className="align-middle"
-                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
+                  <td className="align-middle">
                     {moment(element.created_at).format("lll")}
                   </td>
                 </tr>
@@ -356,148 +366,19 @@ export const AdminStructures = () => {
   );
 };
 
-//   const getNbDispositifsByStatus = (dispositifsToDisplay, status) =>
-//     dispositifsToDisplay && dispositifsToDisplay.length > 0
-//       ? dispositifsToDisplay.filter((dispo) => dispo.status === status).length
-//       : 0;
-
-//   const prepareDeleteContrib = function (dispositif) {
-//     Swal.fire({
-//       title: "Êtes-vous sûr ?",
-//       text: "La suppression d'un dispositif est irréversible",
-//       type: "question",
-//       showCancelButton: true,
-//       confirmButtonColor: colors.rouge,
-//       cancelButtonColor: colors.vert,
-//       confirmButtonText: "Oui, le supprimer",
-//       cancelButtonText: "Annuler",
-//     }).then((result) => {
-//       if (result.value) {
-//         const newDispositif = {
-//           dispositifId: dispositif._id,
-//           status: "Supprimé",
-//         };
-
-//         API.updateDispositifStatus({ query: newDispositif })
-//           .then(() => {
-//             Swal.fire({
-//               title: "Yay...",
-//               text: "Suppression effectuée",
-//               type: "success",
-//               timer: 1500,
-//             });
-//             setSelectedDispositif(null);
-//             setShowDetailsModal(false);
-//             dispatch(fetchAllDispositifsActionsCreator());
-//           })
-//           .catch(() => {
-//             Swal.fire({
-//               title: "Oh non!",
-//               text: "Something went wrong",
-//               type: "error",
-//               timer: 1500,
-//             });
-//           });
-//       }
-//     });
-//   };
-
-//   const onFilterClick = (status) => {
-//     setFilter(status);
-//     setSortedHeader(defaultSortedHeader);
-//   };
-
-//   const handleChange = (e) => setSearch(e.target.value);
-
-//   const publishDispositif = async (dispositif, status = "Actif") => {
-//     const newDispositif = { status: status, dispositifId: dispositif._id };
-//     let question = { value: true };
-//     const link = `${url}${dispositif.typeContenu}/${dispositif._id}`;
-
-//     if (
-//       dispositif.status === "En attente" ||
-//       dispositif.status === "Accepté structure"
-//     ) {
-//       question = await Swal.fire({
-//         title: "Êtes-vous sûr ?",
-//         text:
-//           "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
-//         type: "question",
-//         showCancelButton: true,
-//         confirmButtonColor: colors.rouge,
-//         cancelButtonColor: colors.vert,
-//         confirmButtonText: "Oui, le valider",
-//         cancelButtonText: "Annuler",
-//       });
-//     }
-//     if (question.value) {
-//       API.updateDispositifStatus({ query: newDispositif })
-//         .then(() => {
-//           Swal.fire({
-//             title: "Yay...",
-//             text: "Contenu publié",
-//             type: "success",
-//             timer: 5500,
-//             footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
-//           });
-//           dispatch(fetchAllDispositifsActionsCreator());
-//           dispatch(fetchActiveDispositifsActionsCreator());
-//         })
-//         .catch(() => {
-//           Swal.fire({
-//             title: "Oh non!",
-//             text: "Something went wrong",
-//             type: "error",
-//             timer: 1500,
-//           });
-//         });
-//     }
-//   };
-
-//   const nbNonDeletedDispositifs =
-//     dispositifs.length > 0
-//       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
-//       : 0;
-{
-  /* <SearchBarContainer>
-        <CustomSearchBar
-          value={search}
-          onChange={handleChange}
-          placeholder="Rechercher un contenu..."
-        />
-        <FButton
-          type="dark"
-          name="plus-circle-outline"
-          tag={"a"}
-          href={"/comment-contribuer#ecrire"}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Ajouter un contenu
-        </FButton>
-      </SearchBarContainer>
-      
-
-      <Content>
-        <Table responsive borderless>
-         
-          
-        </Table>
-      </Content>
-      <DetailsModal
-        show={showDetailsModal}
-        toggleModal={() => setSelectedDispositifAndToggleModal(null)}
-        selectedDispositifId={
-          selectedDispositif ? selectedDispositif._id : null
-        }
-        url={url}
-        onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
-        setShowChangeStructureModal={setShowChangeStructureModal}
-      />
-      <ChangeStructureModal
-        show={showChangeStructureModal}
-        toggle={toggleShowChangeStructureModal}
-        dispositifId={selectedDispositif ? selectedDispositif._id : null}
-        dispositifStatus={selectedDispositif ? selectedDispositif.status : null}
-      /> */
-}
+// <DetailsModal
+//   show={showDetailsModal}
+//   toggleModal={() => setSelectedDispositifAndToggleModal(null)}
+//   selectedDispositifId={
+//     selectedDispositif ? selectedDispositif._id : null
+//   }
+//   url={url}
+//   onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
+//   setShowChangeStructureModal={setShowChangeStructureModal}
+// />
+// <ChangeStructureModal
+//   show={showChangeStructureModal}
+//   toggle={toggleShowChangeStructureModal}
+//   dispositifId={selectedDispositif ? selectedDispositif._id : null}
+//   dispositifStatus={selectedDispositif ? selectedDispositif.status : null}
+// /> */
