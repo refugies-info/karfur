@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
-import { limitNbCaracters } from "../../../../lib";
+import { limitNbCaracters } from "../../../../../lib";
 import { correspondingStatus, progressionData } from "../data";
-import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
+import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import { colors } from "colors";
 
 const Container = styled.div`

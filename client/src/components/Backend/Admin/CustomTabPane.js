@@ -3,7 +3,7 @@ import { TabPane } from "reactstrap";
 // import StructuresTab from "./StructuresTab/StructuresTab";
 
 import UsersTab from "./UsersTab/UsersTab";
-import { AdminContenu } from "../../../containers/Backend/AdminContenu/AdminContenu";
+import { AdminContenu } from "../../../containers/Backend/Admin/AdminContenu/AdminContenu";
 import { AdminStructures } from "../../../containers/Backend/AdminStructures/AdminStructures";
 import Dashboard from "../../../containers/Backend/Dashboard/Dashboard";
 

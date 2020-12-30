@@ -3,19 +3,19 @@ import styled from "styled-components";
 import { Modal, Input } from "reactstrap";
 import "./DetailsModal.scss";
 import { TypeContenu, StyledStatus } from "../components/SubComponents";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
-import { SimplifiedDispositif } from "../../../../@types/interface";
+import { SimplifiedDispositif } from "../../../../../@types/interface";
 import { colors } from "colors";
-import marioProfile from "../../../../assets/mario-profile.jpg";
-import noStructure from "../../../../assets/noStructure.png";
+import marioProfile from "../../../../../assets/mario-profile.jpg";
+import noStructure from "../../../../../assets/noStructure.png";
 import { useSelector, useDispatch } from "react-redux";
-import { dispositifSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
-import API from "../../../../utils/API";
-import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
+import { dispositifSelector } from "../../../../../services/AllDispositifs/allDispositifs.selector";
+import API from "../../../../../utils/API";
+import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
 import { ObjectId } from "mongodb";
 
 interface Props {

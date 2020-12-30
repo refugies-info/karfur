@@ -23,7 +23,7 @@ import {
   // Content,
   FigureContainer,
   // SearchBarContainer,
-} from "../AdminContenu/StyledAdminContenu";
+} from "../Admin/AdminContenu/StyledAdminContenu";
 // import {colors} from "colors";
 // import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
 // import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";

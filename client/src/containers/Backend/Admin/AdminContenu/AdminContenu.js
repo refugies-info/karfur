@@ -6,10 +6,10 @@ import Swal from "sweetalert2";
 import {
   fetchAllDispositifsActionsCreator,
   setAllDispositifsActionsCreator,
-} from "../../../services/AllDispositifs/allDispositifs.actions";
-import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
+} from "../../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../../services/ActiveDispositifs/activeDispositifs.actions";
 import { table_contenu, correspondingStatus } from "./data";
-import API from "../../../utils/API";
+import API from "../../../../utils/API";
 import {
   StyledSort,
   StyledTitle,
@@ -19,9 +19,9 @@ import {
   SearchBarContainer,
 } from "./StyledAdminContenu";
 import { colors } from "colors";
-import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
-import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+import { allDispositifsSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
+import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
 import {
   TypeContenu,
@@ -34,8 +34,8 @@ import {
   FilterButton,
   TabHeader,
 } from "./components/SubComponents";
-import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 import AsyncCSV from "./AsyncCSV";
