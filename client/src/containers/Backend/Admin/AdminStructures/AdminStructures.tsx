@@ -52,10 +52,11 @@ import {
   RowContainer,
   StructureName,
 } from "./components/AdminStructureComponents";
-import { SimplifiedStructureForAdmin } from "../../../../@types/interface";
+import { SimplifiedStructureForAdmin } from "../../../../types/interface";
 import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/FigmaUI/FButton/FButton";
+import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 
 // import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 // import FButton from "../../../components/FigmaUI/FButton/FButton";

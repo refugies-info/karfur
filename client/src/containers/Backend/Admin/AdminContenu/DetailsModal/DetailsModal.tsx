@@ -11,7 +11,7 @@ import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
 // @ts-ignore
 import moment from "moment/min/moment-with-locales";
-import { SimplifiedDispositif } from "../../../../../@types/interface";
+import { SimplifiedDispositif } from "../../../../../types/interface";
 import { colors } from "colors";
 import marioProfile from "../../../../../assets/mario-profile.jpg";
 import noStructure from "../../../../../assets/noStructure.png";

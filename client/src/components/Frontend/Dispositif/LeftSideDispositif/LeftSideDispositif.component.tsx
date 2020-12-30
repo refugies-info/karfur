@@ -14,7 +14,7 @@ import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { colors } from "colors";
 import { Props } from "./LeftSideDispositif.container";
-import { DispositifContent } from "../../../../@types/interface";
+import { DispositifContent } from "../../../../types/interface";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
 

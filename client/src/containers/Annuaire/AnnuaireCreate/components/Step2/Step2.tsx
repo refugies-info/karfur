@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
-import { Structure } from "../../../../../@types/interface";
+import { Structure } from "../../../../../types/interface";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { StructureTypes } from "../../data";
 import { CustomDropDown } from "../../CustomDropdown/CustomDropdown";

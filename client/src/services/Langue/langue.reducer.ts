@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { updateObject } from "../utility";
-import { Language } from "../../@types/interface";
+import { Language } from "../../types/interface";
 import { LangueActions } from "./langue.actions";
 import { createReducer } from "typesafe-actions";
 

@@ -4,7 +4,7 @@ import {
   FETCH_USER,
   SET_USER_ROLE_IN_STRUCTURE,
 } from "./user.actionTypes";
-import { User } from "../../@types/interface";
+import { User } from "../../types/interface";
 import { ActionType, action } from "typesafe-actions";
 
 export const setUserActionCreator = (value: User | null) =>

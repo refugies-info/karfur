@@ -3,7 +3,7 @@ import {
   FETCH_ALL_STRUCTURES,
 } from "./allStructures.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { SimplifiedStructureForAdmin } from "../../@types/interface";
+import { SimplifiedStructureForAdmin } from "../../types/interface";
 
 export const setAllStructuresActionCreator = (
   value: SimplifiedStructureForAdmin[]

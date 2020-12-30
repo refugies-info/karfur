@@ -8,7 +8,7 @@ import { fetchActiveStructuresActionCreator } from "../../../../../services/Acti
 import { activeStructuresSelector } from "../../../../../services/ActiveStructures/activeStructures.selector";
 import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
-import { SimplifiedStructure } from "../../../../../@types/interface";
+import { SimplifiedStructure } from "../../../../../types/interface";
 import { colors } from "colors";
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import API from "../../../../../utils/API";

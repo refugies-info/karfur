@@ -2,7 +2,7 @@ import {
   SET_SELECTED_STRUCTURE,
   FETCH_SELECTED_STRUCTURE,
 } from "./selectedStructure.actionTypes";
-import { Structure } from "../../@types/interface";
+import { Structure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
 import { ObjectId } from "mongodb";
 

@@ -4,7 +4,7 @@ import { CustomCheckBox } from "../CustomCheckBox/CustomCheckBox";
 import {
   OpeningHours,
   DetailedOpeningHours,
-} from "../../../../../@types/interface";
+} from "../../../../../types/interface";
 import TimePicker from "rc-time-picker";
 import moment from "moment";
 import "rc-time-picker/assets/index.css";

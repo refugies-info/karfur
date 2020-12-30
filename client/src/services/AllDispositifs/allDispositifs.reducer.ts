@@ -1,4 +1,4 @@
-import { SimplifiedDispositif } from "../../@types/interface";
+import { SimplifiedDispositif } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { AllDispositifsActions } from "./allDispositifs.actions";
 
