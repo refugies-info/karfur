@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
+import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -50,6 +51,8 @@ import {
   RowContainer,
   StructureName,
 } from "./components/AdminStructureComponents";
+import { SimplifiedStructureForAdmin } from "../../../../@types/interface";
+
 // import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 // import FButton from "../../../components/FigmaUI/FButton/FButton";
 // import { DetailsModal } from "./DetailsModal/DetailsModal";
@@ -59,16 +62,15 @@ moment.locale("fr");
 declare const window: Window;
 
 export const AdminStructures = () => {
-  // test
-  // const defaultSortedHeader = {
-  //   name: "none",
-  //   sens: "none",
-  //   orderColumn: "none",
-  // };
+  const defaultSortedHeader = {
+    name: "none",
+    sens: "none",
+    orderColumn: "none",
+  };
 
-  //   const [filter, setFilter] = useState("En attente admin");
-  //   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
-  //   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("En attente");
+  const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
+  const [search, setSearch] = useState("");
   //   const [showDetailsModal, setShowDetailsModal] = useState(false);
   //   const [selectedDispositif, setSelectedDispositif] = useState(null);
   //   const [showChangeStructureModal, setShowChangeStructureModal] = useState(
@@ -110,6 +112,110 @@ export const AdminStructures = () => {
       </div>
     );
   }
+  const reorder = (element: any) => {
+    if (sortedHeader.name === element.name) {
+      const sens = sortedHeader.sens === "up" ? "down" : "up";
+      setSortedHeader({ name: element.name, sens, orderColumn: element.order });
+    } else {
+      setSortedHeader({
+        name: element.name,
+        sens: "up",
+        orderColumn: element.order,
+      });
+    }
+  };
+
+  const filterAndSortStructures = (
+    structures: SimplifiedStructureForAdmin[]
+  ) => {
+    const structuresFilteredBySearch = !!search
+      ? structures.filter(
+          (structure) =>
+            structure.nom &&
+            structure.nom
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLowerCase()
+              .includes(search)
+        )
+      : structures;
+
+    const filteredStructures = structuresFilteredBySearch.filter(
+      (structure) => structure.status === filter
+    );
+    if (sortedHeader.name === "none")
+      return {
+        structuresToDisplay: filteredStructures,
+        structuresForCount: structuresFilteredBySearch,
+      };
+
+    const structuresToDisplay = filteredStructures.sort(
+      (a: SimplifiedStructureForAdmin, b: SimplifiedStructureForAdmin) => {
+        // @ts-ignore
+        const orderColumn:
+          | "nom"
+          | "status"
+          | "nbMembres"
+          | "responsable"
+          | "nbFiches"
+          | "created_at" = sortedHeader.orderColumn;
+
+        if (orderColumn === "nbMembres") {
+          if (a[orderColumn] > b[orderColumn])
+            return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
+
+        if (orderColumn === "nbFiches") {
+          const nbFichesA = a.dispositifsAssocies.length;
+          const nbFichesB = b.dispositifsAssocies.length;
+
+          if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
+
+        if (orderColumn === "responsable") {
+          const respoA =
+            a.responsable && a.responsable.username
+              ? a.responsable.username.toLowerCase()
+              : "";
+          const respoB =
+            b.responsable && b.responsable.username
+              ? b.responsable.username.toLowerCase()
+              : "";
+
+          if (respoA > respoB) return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
+
+        if (orderColumn === "created_at") {
+          if (moment(a.created_at).diff(moment(b.created_at)) > 0)
+            return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
+
+        const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
+        const valueAWithoutAccent = valueA
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
+        const valueBWithoutAccent = valueB
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        if (valueAWithoutAccent > valueBWithoutAccent)
+          return sortedHeader.sens === "up" ? 1 : -1;
+
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+    );
+    return {
+      structuresToDisplay,
+      structuresForCount: structuresFilteredBySearch,
+    };
+  };
+  const { structuresToDisplay, structuresForCount } = filterAndSortStructures(
+    structures
+  );
 
   const nbNonDeletedStructures = structures.filter(
     (structure) => structure.status !== "Supprimé"
@@ -122,7 +228,7 @@ export const AdminStructures = () => {
         {/* <StyledSort>
           {correspondingStatus.sort(compare).map((status) => {
             const nbContent = getNbDispositifsByStatus(
-              dispositifsForCount,
+              structuresForCount,
               status.storedStatus
             );
             return (
@@ -144,31 +250,25 @@ export const AdminStructures = () => {
                 <th
                   key={key}
                   onClick={() => {
-                    // reorder(element)
+                    reorder(element);
                   }}
                 >
                   <TabHeader
                     name={element.name}
                     order={element.order}
-                    isSortedHeader={true}
-                    sens="up"
-                    // isSortedHeader={sortedHeader.name === element.name}
-                    // sens={
-                    //   sortedHeader.name === element.name
-                    //     ? sortedHeader.sens
-                    //     : "down"
-                    // }
+                    isSortedHeader={sortedHeader.name === element.name}
+                    sens={
+                      sortedHeader.name === element.name
+                        ? sortedHeader.sens
+                        : "down"
+                    }
                   />
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {structures.map((element, key) => {
-              // const nbDays =
-              //   -moment(element.updatedAt).diff(moment(), "days") + " jours";
-              // const burl =
-              //   url + (element.typeContenu || "dispositif") + "/" + element._id;
+            {structuresToDisplay.map((element, key) => {
               const responsableName = element.responsable
                 ? element.responsable.username
                 : "Aucun responsable";
@@ -260,85 +360,6 @@ export const AdminStructures = () => {
 //     dispositifsToDisplay && dispositifsToDisplay.length > 0
 //       ? dispositifsToDisplay.filter((dispo) => dispo.status === status).length
 //       : 0;
-
-//   const filterAndSortDispositifs = (dispositifs) => {
-//     const dispositifsFilteredBySearch = !!search
-//       ? dispositifs.filter(
-//           (dispo) =>
-//             dispo.titreInformatif &&
-//             dispo.titreInformatif
-//               .normalize("NFD")
-//               .replace(/[\u0300-\u036f]/g, "")
-//               .toLowerCase()
-//               .includes(search)
-//         )
-//       : dispositifs;
-
-//     const filteredDispositifs = dispositifsFilteredBySearch.filter(
-//       (dispo) => dispo.status === filter
-//     );
-//     if (sortedHeader.name === "none")
-//       return {
-//         dispositifsToDisplay: filteredDispositifs,
-//         dispositifsForCount: dispositifsFilteredBySearch,
-//       };
-
-//     const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
-//       const sponsorA =
-//         a.mainSponsor && a.mainSponsor.nom
-//           ? a.mainSponsor.nom.toLowerCase()
-//           : "";
-//       const sponsorB =
-//         b.mainSponsor && b.mainSponsor.nom
-//           ? b.mainSponsor.nom.toLowerCase()
-//           : "";
-
-//       const valueA =
-//         sortedHeader.orderColumn === "mainSponsor"
-//           ? sponsorA
-//           : a[sortedHeader.orderColumn]
-//           ? a[sortedHeader.orderColumn].toLowerCase()
-//           : "";
-//       const valueAWithoutAccent = valueA
-//         .normalize("NFD")
-//         .replace(/[\u0300-\u036f]/g, "");
-//       const valueB =
-//         sortedHeader.orderColumn === "mainSponsor"
-//           ? sponsorB
-//           : b[sortedHeader.orderColumn]
-//           ? b[sortedHeader.orderColumn].toLowerCase()
-//           : "";
-//       const valueBWithoutAccent = valueB
-//         .normalize("NFD")
-//         .replace(/[\u0300-\u036f]/g, "");
-
-//       if (valueAWithoutAccent > valueBWithoutAccent)
-//         return sortedHeader.sens === "up" ? 1 : -1;
-
-//       return sortedHeader.sens === "up" ? -1 : 1;
-//     });
-//     return {
-//       dispositifsToDisplay,
-//       dispositifsForCount: dispositifsFilteredBySearch,
-//     };
-//   };
-//   const {
-//     dispositifsToDisplay,
-//     dispositifsForCount,
-//   } = filterAndSortDispositifs(dispositifs);
-
-//   const reorder = (element) => {
-//     if (sortedHeader.name === element.name) {
-//       const sens = sortedHeader.sens === "up" ? "down" : "up";
-//       setSortedHeader({ name: element.name, sens, orderColumn: element.order });
-//     } else {
-//       setSortedHeader({
-//         name: element.name,
-//         sens: "up",
-//         orderColumn: element.order,
-//       });
-//     }
-//   };
 
 //   const prepareDeleteContrib = function (dispositif) {
 //     Swal.fire({
