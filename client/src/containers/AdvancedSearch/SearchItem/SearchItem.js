@@ -7,6 +7,7 @@ import Autocomplete from "react-google-autocomplete";
 import FSearchBtn from "../../../components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import i18n from "../../../i18n"
 
 import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
@@ -51,6 +52,7 @@ export class SearchItem extends Component {
   render() {
     const { t, item, keyValue, isBigDesktop } = this.props;
     const { dropdownOpen, isMounted, ville, villeAuto } = this.state;
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language)
 
 
     return (
@@ -247,7 +249,8 @@ export class SearchItem extends Component {
                           <div
                             style={{
                               display: "flex",
-                              marginRight: 10,
+                              marginRight: isRTL ? 0 : 10,
+                              marginLeft: isRTL ? 10 : 0,
                               justifyContent: "center",
                               alignItems: "center",
                             }}

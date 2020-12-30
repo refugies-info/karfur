@@ -37,7 +37,7 @@ import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 
 import "./AdvancedSearch.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 const ThemeContainer = styled.div`
   width: 100%;
@@ -257,6 +257,7 @@ export class AdvancedSearch extends Component {
       showGeolocFullFrancePrincipal: false,
       showGeolocFullFranceSecondary: false,
       filterVille: "",
+      dispositifsFullFrance: []
     };
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -538,6 +539,7 @@ export class AdvancedSearch extends Component {
           }
           dispositifsFullFrance = dispositifsFrance.concat(dispositifsEmpty);
           dispositifs = dispositifsVille;
+          this.setState({dispositifsFullFrance});
 
           /*           dispositifs = dispositifs.filter((disp) => {
             if (
@@ -1046,15 +1048,9 @@ export class AdvancedSearch extends Component {
               visible={this.state.searchToggleVisible}
             >
               {this.state.searchToggleVisible ? (
-                <EVAIcon
-                  name="arrow-ios-upward-outline"
-                  fill={colors.blanc}
-                />
+                <EVAIcon name="arrow-ios-upward-outline" fill={colors.blanc} />
               ) : (
-                <EVAIcon
-                  name="arrow-ios-downward-outline"
-                  fill={colors.noir}
-                />
+                <EVAIcon name="arrow-ios-downward-outline" fill={colors.noir} />
               )}
             </SearchToggle>
             <ResponsiveFooter
@@ -1610,6 +1606,70 @@ export class AdvancedSearch extends Component {
                   </ThemeListContainer>
                 ) : null}
               </ThemeContainer>
+            ) : this.state.filterVille ? (
+                <ThemeContainer>
+                  <ThemeHeader>
+                    <ThemeHeaderTitle color={"#828282"}>
+                      {"Fiches disponibles à "}
+                    </ThemeHeaderTitle>
+                    <ThemeButton ml={8} color={"#0421b1"}>
+                      <ThemeTextAlone mr={0}>
+                        {this.state.filterVille}
+                      </ThemeTextAlone>
+                    </ThemeButton>
+                  </ThemeHeader>
+                  <ThemeListContainer
+                    columns={
+                      isDesktop || isBigDesktop
+                        ? 5
+                        : isSmallDesktop
+                        ? 4
+                        : isTablet
+                        ? 3
+                        : 2
+                    }
+                  >
+                   {dispositifs.map((dispositif, index) => {
+                        return (
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        );
+                      })}
+                  </ThemeListContainer>
+                  <ThemeHeader>
+                    <ThemeHeaderTitle color={"#828282"}>
+                      {"Fiches disponibles partout en France"}
+                    </ThemeHeaderTitle>
+                  </ThemeHeader>
+                  <ThemeListContainer
+                    columns={
+                      isDesktop || isBigDesktop
+                        ? 5
+                        : isSmallDesktop
+                        ? 4
+                        : isTablet
+                        ? 3
+                        : 2
+                    }
+                  >
+                   {this.state.dispositifsFullFrance.map((dispositif, index) => {
+                        return (
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        );
+                      })}
+                  </ThemeListContainer>
+                </ThemeContainer>
             ) : (
               <ThemeContainer>
                 {langueCode !== "fr" || filterLanguage !== "" ? (
