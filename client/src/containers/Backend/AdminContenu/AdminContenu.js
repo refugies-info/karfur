@@ -18,8 +18,7 @@ import {
   FigureContainer,
   SearchBarContainer,
 } from "./StyledAdminContenu";
-import "./AdminContenu.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
@@ -286,7 +285,7 @@ export const AdminContenu = () => {
       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
       : 0;
   return (
-    <div className="admin-contenu animated fadeIn">
+    <div>
       <SearchBarContainer>
         <CustomSearchBar
           value={search}
@@ -304,7 +303,7 @@ export const AdminContenu = () => {
           Ajouter un contenu
         </FButton>
       </SearchBarContainer>
-       <AsyncCSV />
+      <AsyncCSV />
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>

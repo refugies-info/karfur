@@ -16,14 +16,14 @@ import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
 // } from "../../../services/AllDispositifs/allDispositifs.actions";
 // import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 // import API from "../../../utils/API";
-// import {
-//   StyledSort,
-//   StyledTitle,
-//   StyledHeader,
-//   Content,
-//   FigureContainer,
-//   SearchBarContainer,
-// } from "./StyledAdminContenu";
+import {
+  // StyledSort,
+  StyledTitle,
+  StyledHeader,
+  // Content,
+  FigureContainer,
+  // SearchBarContainer,
+} from "../AdminContenu/StyledAdminContenu";
 // import {colors} from "colors";
 // import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
 // import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
@@ -95,7 +95,7 @@ export const AdminStructures = () => {
 
   if (isLoading || structures.length === 0) {
     return (
-      <div className="admin-contenu animated fadeIn">
+      <div>
         <LoadingAdminStructures />
       </div>
     );
@@ -282,10 +282,35 @@ export const AdminStructures = () => {
   //     dispositifs.length > 0
   //       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
   //       : 0;
+  const nbNonDeletedDispositifs = 6;
   return (
     <div className="admin-contenu animated fadeIn">
-      <div>HEllo</div>
-      {/* <SearchBarContainer>
+      <StyledHeader>
+        <StyledTitle>Contenus</StyledTitle>
+        <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
+        {/* <StyledSort>
+          {correspondingStatus.sort(compare).map((status) => {
+            const nbContent = getNbDispositifsByStatus(
+              dispositifsForCount,
+              status.storedStatus
+            );
+            return (
+              <FilterButton
+                key={status.storedStatus}
+                onClick={() => onFilterClick(status.storedStatus)}
+                text={`${status.displayedStatus} (${nbContent})`}
+                isSelected={filter === status.storedStatus}
+              />
+            );
+          })}
+        </StyledSort> */}
+      </StyledHeader>
+    </div>
+  );
+};
+
+{
+  /* <SearchBarContainer>
         <CustomSearchBar
           value={search}
           onChange={handleChange}
@@ -302,26 +327,7 @@ export const AdminStructures = () => {
           Ajouter un contenu
         </FButton>
       </SearchBarContainer>
-      <StyledHeader>
-        <StyledTitle>Contenus</StyledTitle>
-        <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
-        <StyledSort>
-          {correspondingStatus.sort(compare).map((status) => {
-            const nbContent = getNbDispositifsByStatus(
-              dispositifsForCount,
-              status.storedStatus
-            );
-            return (
-              <FilterButton
-                key={status.storedStatus}
-                onClick={() => onFilterClick(status.storedStatus)}
-                text={`${status.displayedStatus} (${nbContent})`}
-                isSelected={filter === status.storedStatus}
-              />
-            );
-          })}
-        </StyledSort>
-      </StyledHeader>
+      
 
       <Content>
         <Table responsive borderless>
@@ -453,7 +459,5 @@ export const AdminStructures = () => {
         toggle={toggleShowChangeStructureModal}
         dispositifId={selectedDispositif ? selectedDispositif._id : null}
         dispositifStatus={selectedDispositif ? selectedDispositif.status : null}
-      /> */}
-    </div>
-  );
-};
+      /> */
+}
