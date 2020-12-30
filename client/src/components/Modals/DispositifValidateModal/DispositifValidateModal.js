@@ -115,8 +115,6 @@ const dispositifValidateModal = (props) => {
   };
   let geoloc = false;
   let geolocInfoCard = null;
-  // eslint-disable-next-line
-  console.log(props);
   if (
     props.menu &&
     props.menu[1] &&
