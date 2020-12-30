@@ -1,4 +1,4 @@
-import {colors} from "colors";
+import { colors } from "colors";
 
 export const table_contenu = {
   title: "Contenu",
@@ -6,37 +6,30 @@ export const table_contenu = {
     {
       name: "Type",
       order: "typeContenu",
-      hideOnPhone: false,
     },
     {
       name: "Titre",
       order: "titreInformatif",
-      hideOnPhone: false,
     },
     {
       name: "Structure",
       order: "mainSponsor",
-      hideOnPhone: false,
     },
     {
       name: "MAJ",
       order: "updatedAt",
-      hideOnPhone: true,
     },
     {
       name: "Progression",
       order: "",
-      hideOnPhone: true,
     },
     {
       name: "Statut",
       order: "",
-      hideOnPhone: false,
     },
 
     {
       name: "Actions",
-      hideOnPhone: false,
     },
   ],
 };

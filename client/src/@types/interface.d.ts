@@ -244,7 +244,7 @@ export interface SimplifiedStructureForAdmin {
   nom: string;
   picture: Picture;
   status: string;
-  dispositifsAssocies: SimplifiedDispositifAssocie;
+  dispositifsAssocies: SimplifiedDispositifAssocie[];
   contact: string;
   phone_contact: string;
   mail_contact: string;

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-// import { Table } from "reactstrap";
+import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchAllStructuresActionsCreator,
@@ -20,32 +20,41 @@ import {
   // StyledSort,
   StyledTitle,
   StyledHeader,
-  // Content,
+  Content,
   FigureContainer,
   // SearchBarContainer,
 } from "../sharedComponents/StyledAdmin";
+import "./AdminStructures.scss";
 // import {colors} from "colors";
 // import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
 // import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 // import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
 // import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
-// import {
-//   TypeContenu,
-//   Title,
-//   Structure,
-//   StyledStatus,
-//   ValidateButton,
-//   SeeButton,
-//   DeleteButton,
-//   FilterButton,
-//   TabHeader,
-// } from "./components/SubComponents";
+import {
+  //   TypeContenu,
+  //   Title,
+  //   Structure,
+  //   StyledStatus,
+  //   ValidateButton,
+  //   SeeButton,
+  //   DeleteButton,
+  //   FilterButton,
+  TabHeader,
+  StyledStatus,
+} from "../sharedComponents/SubComponents";
+// @ts-ignore
+import moment from "moment/min/moment-with-locales";
+import { headers } from "./data";
+import {
+  RowContainer,
+  StructureName,
+} from "./components/AdminStructureComponents";
 // import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 // import FButton from "../../../components/FigmaUI/FButton/FButton";
 // import { DetailsModal } from "./DetailsModal/DetailsModal";
 // import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 
-// moment.locale("fr");
+moment.locale("fr");
 declare const window: Window;
 
 export const AdminStructures = () => {
@@ -101,12 +110,14 @@ export const AdminStructures = () => {
     );
   }
 
-  const nbNonDeletedDispositifs = 6;
+  const nbNonDeletedStructures = structures.filter(
+    (structure) => structure.status !== "Supprimé"
+  ).length;
   return (
-    <div>
+    <div className="admin-structures">
       <StyledHeader>
-        <StyledTitle>Contenus</StyledTitle>
-        <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
+        <StyledTitle>Structures</StyledTitle>
+        <FigureContainer>{nbNonDeletedStructures}</FigureContainer>
         {/* <StyledSort>
           {correspondingStatus.sort(compare).map((status) => {
             const nbContent = getNbDispositifsByStatus(
@@ -124,6 +135,106 @@ export const AdminStructures = () => {
           })}
         </StyledSort> */}
       </StyledHeader>
+      <Content>
+        <Table responsive borderless>
+          <thead>
+            <tr>
+              {headers.map((element, key) => (
+                <th
+                  key={key}
+                  onClick={() => {
+                    // reorder(element)
+                  }}
+                >
+                  <TabHeader
+                    name={element.name}
+                    order={element.order}
+                    isSortedHeader={true}
+                    sens="up"
+                    // isSortedHeader={sortedHeader.name === element.name}
+                    // sens={
+                    //   sortedHeader.name === element.name
+                    //     ? sortedHeader.sens
+                    //     : "down"
+                    // }
+                  />
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {structures.map((element, key) => {
+              // const nbDays =
+              //   -moment(element.updatedAt).diff(moment(), "days") + " jours";
+              // const burl =
+              //   url + (element.typeContenu || "dispositif") + "/" + element._id;
+
+              return (
+                <tr key={key}>
+                  <td
+                    className="align-middle"
+                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
+                    <RowContainer>
+                      {element.picture && element.picture.secure_url && (
+                        <img
+                          className="sponsor-img mr-8"
+                          src={(element.picture || {}).secure_url}
+                        />
+                      )}
+                      <StructureName>{element.nom}</StructureName>
+                    </RowContainer>
+                  </td>
+                  <td
+                    className="align-middle"
+                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
+                    <StyledStatus
+                      text={element.status}
+                      textToDisplay={
+                        element.status === "Actif"
+                          ? "Active"
+                          : element.status === "Supprimé"
+                          ? "Supprimée"
+                          : "En attente"
+                      }
+                    />
+                  </td>
+                  <td
+                    className="align-middle cursor-pointer"
+                    // onClick={() =>
+                    //   this.props.onSelect(
+                    //     { structure: element.structureObj },
+                    //     "1"
+                    //   )
+                    // }
+                  >
+                    {element.nbMembres}
+                  </td>
+                  <td
+                    className={"align-middle "}
+                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
+                    Responsable
+                  </td>
+                  <td
+                    className="align-middle"
+                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
+                    {element.dispositifsAssocies.length}
+                  </td>
+                  <td
+                    className="align-middle"
+                    // onClick={() => setSelectedDispositifAndToggleModal(element)}
+                  >
+                    {moment(element.created_at).format("lll")}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+      </Content>
     </div>
   );
 };
@@ -331,117 +442,8 @@ export const AdminStructures = () => {
 
       <Content>
         <Table responsive borderless>
-          <thead>
-            <tr>
-              {headers.map((element, key) => (
-                <th key={key} onClick={() => reorder(element)}>
-                  <TabHeader
-                    name={element.name}
-                    order={element.order}
-                    isSortedHeader={sortedHeader.name === element.name}
-                    sens={
-                      sortedHeader.name === element.name
-                        ? sortedHeader.sens
-                        : "down"
-                    }
-                  />
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {dispositifsToDisplay.map((element, key) => {
-              const nbDays =
-                -moment(element.updatedAt).diff(moment(), "days") + " jours";
-              const burl =
-                url + (element.typeContenu || "dispositif") + "/" + element._id;
-
-              return (
-                <tr key={key}>
-                  <td
-                    className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
-                    <TypeContenu
-                      type={element.typeContenu || "dispositif"}
-                      isDetailedVue={false}
-                    />
-                  </td>
-                  <td
-                    className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
-                    <Title
-                      titreInformatif={element.titreInformatif}
-                      titreMarque={element.titreMarque}
-                    />
-                  </td>
-                  <td
-                    className="align-middle cursor-pointer"
-                    // onClick={() =>
-                    //   this.props.onSelect(
-                    //     { structure: element.structureObj },
-                    //     "1"
-                    //   )
-                    // }
-                  >
-                    <Structure sponsor={element.mainSponsor} />
-                  </td>
-                  <td
-                    className={"align-middle "}
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
-                    {nbDays}
-                  </td>
-                  <td
-                    className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                      {element.adminProgressionStatus ? (
-                        <div style={{ marginRight: "8px" }}>
-                          <StyledStatus text={element.adminProgressionStatus} />
-                        </div>
-                      ) : (
-                        <div style={{ marginRight: "8px" }}>
-                          <StyledStatus text="Nouveau !" />
-                        </div>
-                      )}
-                      {element.adminPercentageProgressionStatus && (
-                        <StyledStatus
-                          text={element.adminPercentageProgressionStatus}
-                        />
-                      )}
-                    </div>
-                  </td>
-                  <td
-                    className="align-middle"
-                    onClick={() => setSelectedDispositifAndToggleModal(element)}
-                  >
-                    <StyledStatus text={element.status} />
-                  </td>
-                  <td className="align-middle">
-                    <div style={{ display: "flex", flexDirection: "row" }}>
-                      <SeeButton burl={burl} />
-                      <ValidateButton
-                        onClick={() => publishDispositif(element)}
-                        disabled={
-                          element.status === "Actif" ||
-                          !element.mainSponsor ||
-                          element.mainSponsor.status !== "Actif"
-                        }
-                        hoverColor={colors.validationHover}
-                      />
-                      <DeleteButton
-                        onClick={() => prepareDeleteContrib(element)}
-                        disabled={element.status === "Supprimé"}
-                      />
-                    </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
+         
+          
         </Table>
       </Content>
       <DetailsModal

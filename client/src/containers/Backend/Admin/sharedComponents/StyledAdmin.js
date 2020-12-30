@@ -30,7 +30,7 @@ export const StyledHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: 16px;
+  // padding-top: 10px;
   padding-bottom: 24px;
   margin-left: 24px;
 `;

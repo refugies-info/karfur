@@ -10,7 +10,7 @@ import Dashboard from "../../../containers/Backend/Dashboard/Dashboard";
 const customTabPane = (props) => {
   return (
     <>
-      <TabPane tabId="0">
+      <TabPane tabId="0" className="no-padding">
         {/* <StructuresTab {...props} /> */}
 
         <AdminStructures />
