@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
@@ -96,6 +97,7 @@ export const AdminStructures = () => {
   const setSelectedStructureAndToggleModal = (
     element: SimplifiedStructureForAdmin | null
   ) => {
+    console.log("on click", element);
     setSelectedStructure(element);
     toggleStructureDetailsModal();
   };
@@ -164,6 +166,8 @@ export const AdminStructures = () => {
         structuresToDisplay: filteredStructures,
         structuresForCount: structuresFilteredBySearch,
       };
+
+    console.log("selectedStructure", selectedStructure);
 
     const structuresToDisplay = filteredStructures.sort(
       (a: SimplifiedStructureForAdmin, b: SimplifiedStructureForAdmin) => {
