@@ -51,7 +51,7 @@ const Check = (props) => (
   <CheckContainer
     missingElement={props.missingElement}
     onClick={() => {
-      if (!props.geolocInfoCard && props.section === "geoloc" ) {
+      if (!props.geolocInfoCard && props.section === "geoloc") {
         props.addItem(1, "card", "Zone d'action");
       }
       onCheckContainerClick(
@@ -115,6 +115,8 @@ const dispositifValidateModal = (props) => {
   };
   let geoloc = false;
   let geolocInfoCard = null;
+  // eslint-disable-next-line
+  console.log(props);
   if (
     props.menu &&
     props.menu[1] &&
@@ -140,13 +142,15 @@ const dispositifValidateModal = (props) => {
     >
       <ModalHeader toggle={props.toggle}>Vous y êtes presque !</ModalHeader>
       <ModalBody>
-        <Check
-          geolocInfoCard={geolocInfoCard}
-          section="geoloc"
-          missingElement={!geoloc}
-          toggleModal={props.toggleGeolocModal}
-          addItem={props.addItem}
-        />
+        {props.typeContenu !== "demarche" ? (
+          <Check
+            geolocInfoCard={geolocInfoCard}
+            section="geoloc"
+            missingElement={!geoloc}
+            toggleModal={props.toggleGeolocModal}
+            addItem={props.addItem}
+          />
+        ) : null}
 
         <Check
           section="structure"
@@ -210,7 +214,7 @@ const dispositifValidateModal = (props) => {
               !props.abstract ||
               props.abstract === "" ||
               props.abstract.length > 110 ||
-              !geoloc ||
+              (!geoloc && props.typeContenu !== "demarche")||
               props.tags.length === 0
             }
           >
