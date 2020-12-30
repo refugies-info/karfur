@@ -2166,6 +2166,7 @@ export class Dispositif extends Component {
             )}
             <DispositifValidateModal
               show={this.state.showDispositifValidateModal}
+              typeContenu={typeContenu}
               toggle={this.toggleDispositifValidateModal}
               abstract={this.state.content.abstract}
               onChange={this.handleChange}
