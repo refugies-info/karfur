@@ -75,24 +75,29 @@ export const AdminStructures = () => {
   const [filter, setFilter] = useState("En attente");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
-  //   const [showDetailsModal, setShowDetailsModal] = useState(false);
-  //   const [selectedDispositif, setSelectedDispositif] = useState(null);
-  //   const [showChangeStructureModal, setShowChangeStructureModal] = useState(
-  //     false
-  //   );
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
+    false
+  );
+  const [
+    selectedStructure,
+    setSelectedStructure,
+  ] = useState<SimplifiedStructureForAdmin | null>(null);
+
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
   );
 
   const handleChange = (e: any) => setSearch(e.target.value);
 
-  //   const toggleShowChangeStructureModal = () =>
-  //     setShowChangeStructureModal(!showChangeStructureModal);
-  //   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
-  //   const setSelectedDispositifAndToggleModal = (element) => {
-  //     setSelectedDispositif(element);
-  //     toggleDetailsModal();
-  //   };
+  const toggleStructureDetailsModal = () =>
+    setShowStructureDetailsModal(!showStructureDetailsModal);
+
+  const setSelectedStructureAndToggleModal = (
+    element: SimplifiedStructureForAdmin | null
+  ) => {
+    setSelectedStructure(element);
+    toggleStructureDetailsModal();
+  };
 
   const onFilterClick = (status: string) => {
     setFilter(status);
@@ -248,21 +253,15 @@ export const AdminStructures = () => {
           onChange={handleChange}
           placeholder="Rechercher une structure..."
         />
-        {/* <FButton
-          type="dark"
-          name="plus-circle-outline"
-          tag={"a"}
-          href={"/comment-contribuer#ecrire"}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Ajouter un contenu
-        </FButton> */}
+        <FButton type="dark" name="plus-circle-outline">
+          Ajouter une structure
+        </FButton>
       </SearchBarContainer>
       <StyledHeader>
         <StyledTitle>Structures</StyledTitle>
         <FigureContainer>{nbNonDeletedStructures}</FigureContainer>
-        <StyledSort>
+
+        <StyledSort marginTop="16px">
           {correspondingStatus.sort(compare).map((element) => {
             const status = element.status;
             const nbStructures = getNbStructuresByStatus(
@@ -317,8 +316,10 @@ export const AdminStructures = () => {
                   ? element.responsable.picture.secure_url
                   : marioProfile;
               return (
-                // eslint-disable-next-line no-console
-                <tr key={key} onClick={() => console.log("on cli")}>
+                <tr
+                  key={key}
+                  onClick={() => setSelectedStructureAndToggleModal(element)}
+                >
                   <td className="align-middle">
                     <RowContainer>
                       {element.picture && element.picture.secure_url && (
@@ -362,20 +363,15 @@ export const AdminStructures = () => {
           </tbody>
         </Table>
       </Content>
+      <StructureDetailsModal
+        show={showStructureDetailsModal}
+        toggleModal={() => setSelectedStructureAndToggleModal(null)}
+        selectedStructure={selectedStructure}
+      />
     </div>
   );
 };
 
-// <DetailsModal
-//   show={showDetailsModal}
-//   toggleModal={() => setSelectedDispositifAndToggleModal(null)}
-//   selectedDispositifId={
-//     selectedDispositif ? selectedDispositif._id : null
-//   }
-//   url={url}
-//   onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
-//   setShowChangeStructureModal={setShowChangeStructureModal}
-// />
 // <ChangeStructureModal
 //   show={showChangeStructureModal}
 //   toggle={toggleShowChangeStructureModal}
