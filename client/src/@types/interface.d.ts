@@ -250,4 +250,5 @@ export interface SimplifiedStructureForAdmin {
   mail_contact: string;
   nbMembres: number;
   created_at: Moment;
+  responsable: null | { _id: ObjectId; username: string; picture: Picture };
 }

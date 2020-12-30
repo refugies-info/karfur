@@ -16,6 +16,7 @@ import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
 // } from "../../../services/AllDispositifs/allDispositifs.actions";
 // import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 // import API from "../../../utils/API";
+import marioProfile from "../../../../assets/mario-profile.jpg";
 import {
   // StyledSort,
   StyledTitle,
@@ -168,7 +169,15 @@ export const AdminStructures = () => {
               //   -moment(element.updatedAt).diff(moment(), "days") + " jours";
               // const burl =
               //   url + (element.typeContenu || "dispositif") + "/" + element._id;
-
+              const responsableName = element.responsable
+                ? element.responsable.username
+                : "Aucun responsable";
+              const responsableSecureUrl =
+                element.responsable &&
+                element.responsable.picture &&
+                element.responsable.picture.secure_url
+                  ? element.responsable.picture.secure_url
+                  : marioProfile;
               return (
                 <tr key={key}>
                   <td
@@ -215,7 +224,15 @@ export const AdminStructures = () => {
                     className={"align-middle "}
                     // onClick={() => setSelectedDispositifAndToggleModal(element)}
                   >
-                    Responsable
+                    <RowContainer>
+                      {element.responsable && (
+                        <img
+                          className="respo-img mr-8"
+                          src={responsableSecureUrl}
+                        />
+                      )}
+                      {responsableName}
+                    </RowContainer>
                   </td>
                   <td
                     className="align-middle"
