@@ -22,7 +22,6 @@ export class SearchItem extends Component {
     isMounted: false,
     ville: "",
     villeAuto: "",
-    geoSearch: false,
   };
 
   componentDidMount() {
@@ -64,7 +63,7 @@ export class SearchItem extends Component {
         >
           {t("SearchItem." + item.title, item.title)}
         </span>
-        {item.queryName === "localisation" && ville !== "" ? (
+        {item.queryName === "localisation" && ville !== "" && this.props.geoSearch ? (
           <FSearchBtn
             className={
               "mr-10 in-header search-filter " +
@@ -88,7 +87,7 @@ export class SearchItem extends Component {
           </FSearchBtn>
         ) : item.queryName === "localisation" &&
           ville === "" &&
-          this.state.geoSearch ? (
+          this.props.geoSearch ? (
           isMounted && (
             <ReactDependentScript
               loadingComponent={<div>Chargement de Google Maps...</div>}
@@ -114,7 +113,7 @@ export class SearchItem extends Component {
                     (item.active ? "active " : "") +
                     (isBigDesktop ? "" : "search-btn-small")
                   }
-                  onBlur={() => ville === "" && villeAuto === "" && this.setState({geoSearch: false})}
+                  onBlur={() => ville === "" && villeAuto === "" && this.props.switchGeoSearch(false)}
                   placeholder={item.placeholder}
                   id="villeAuto"
                   value={villeAuto}
@@ -151,11 +150,10 @@ export class SearchItem extends Component {
             </ReactDependentScript>
           )
         ) : item.queryName === "localisation" &&
-          ville === "" &&
-          !this.state.geoSearch ? (
+          !this.props.geoSearch ? (
           <FSearchBtn
             onClick={() => {
-              this.setState({ geoSearch: true });
+              this.props.switchGeoSearch(true);
             }}
             className={
               "mr-10 in-header search-filter " +
@@ -189,7 +187,8 @@ export class SearchItem extends Component {
                 <div
                   style={{
                     display: "flex",
-                    marginRight: 10,
+                    marginRight: isRTL ? 0 : 10,
+                    marginLeft: isRTL ? 10 : 0,
                     justifyContent: "center",
                     alignItems: "center",
                   }}
