@@ -4,7 +4,7 @@ import { TabPane } from "reactstrap";
 
 import UsersTab from "./UsersTab/UsersTab";
 import { AdminContenu } from "../../../containers/Backend/Admin/AdminContenu/AdminContenu";
-import { AdminStructures } from "../../../containers/Backend/AdminStructures/AdminStructures";
+import { AdminStructures } from "../../../containers/Backend/Admin/AdminStructures/AdminStructures";
 import Dashboard from "../../../containers/Backend/Dashboard/Dashboard";
 
 const customTabPane = (props) => {

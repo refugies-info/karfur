@@ -4,10 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchAllStructuresActionsCreator,
   setAllStructuresActionCreator,
-} from "../../../services/AllStructures/allStructures.actions";
-import { allStructuresSelector } from "../../../services/AllStructures/allStructures.selector";
-import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+} from "../../../../services/AllStructures/allStructures.actions";
+import { allStructuresSelector } from "../../../../services/AllStructures/allStructures.selector";
+import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
 // import Swal from "sweetalert2";
 // import {
@@ -23,7 +23,7 @@ import {
   // Content,
   FigureContainer,
   // SearchBarContainer,
-} from "../Admin/AdminContenu/StyledAdminContenu";
+} from "../AdminContenu/StyledAdminContenu";
 // import {colors} from "colors";
 // import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
 // import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
