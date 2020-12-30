@@ -5,7 +5,7 @@ import {
   Content,
   FigureContainer,
   StyledSort,
-} from "../StyledAdminContenu";
+} from "../../sharedComponents/StyledAdmin";
 import { Table } from "reactstrap";
 import { table_contenu, correspondingStatus } from "../data";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";

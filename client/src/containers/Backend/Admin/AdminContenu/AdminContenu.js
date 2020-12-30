@@ -17,7 +17,7 @@ import {
   Content,
   FigureContainer,
   SearchBarContainer,
-} from "./StyledAdminContenu";
+} from "../sharedComponents/StyledAdmin";
 import { colors } from "colors";
 import { allDispositifsSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";

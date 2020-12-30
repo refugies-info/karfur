@@ -23,7 +23,7 @@ import {
   // Content,
   FigureContainer,
   // SearchBarContainer,
-} from "../AdminContenu/StyledAdminContenu";
+} from "../sharedComponents/StyledAdmin";
 // import {colors} from "colors";
 // import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
 // import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
@@ -101,190 +101,9 @@ export const AdminStructures = () => {
     );
   }
 
-  //   const getNbDispositifsByStatus = (dispositifsToDisplay, status) =>
-  //     dispositifsToDisplay && dispositifsToDisplay.length > 0
-  //       ? dispositifsToDisplay.filter((dispo) => dispo.status === status).length
-  //       : 0;
-
-  //   const filterAndSortDispositifs = (dispositifs) => {
-  //     const dispositifsFilteredBySearch = !!search
-  //       ? dispositifs.filter(
-  //           (dispo) =>
-  //             dispo.titreInformatif &&
-  //             dispo.titreInformatif
-  //               .normalize("NFD")
-  //               .replace(/[\u0300-\u036f]/g, "")
-  //               .toLowerCase()
-  //               .includes(search)
-  //         )
-  //       : dispositifs;
-
-  //     const filteredDispositifs = dispositifsFilteredBySearch.filter(
-  //       (dispo) => dispo.status === filter
-  //     );
-  //     if (sortedHeader.name === "none")
-  //       return {
-  //         dispositifsToDisplay: filteredDispositifs,
-  //         dispositifsForCount: dispositifsFilteredBySearch,
-  //       };
-
-  //     const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
-  //       const sponsorA =
-  //         a.mainSponsor && a.mainSponsor.nom
-  //           ? a.mainSponsor.nom.toLowerCase()
-  //           : "";
-  //       const sponsorB =
-  //         b.mainSponsor && b.mainSponsor.nom
-  //           ? b.mainSponsor.nom.toLowerCase()
-  //           : "";
-
-  //       const valueA =
-  //         sortedHeader.orderColumn === "mainSponsor"
-  //           ? sponsorA
-  //           : a[sortedHeader.orderColumn]
-  //           ? a[sortedHeader.orderColumn].toLowerCase()
-  //           : "";
-  //       const valueAWithoutAccent = valueA
-  //         .normalize("NFD")
-  //         .replace(/[\u0300-\u036f]/g, "");
-  //       const valueB =
-  //         sortedHeader.orderColumn === "mainSponsor"
-  //           ? sponsorB
-  //           : b[sortedHeader.orderColumn]
-  //           ? b[sortedHeader.orderColumn].toLowerCase()
-  //           : "";
-  //       const valueBWithoutAccent = valueB
-  //         .normalize("NFD")
-  //         .replace(/[\u0300-\u036f]/g, "");
-
-  //       if (valueAWithoutAccent > valueBWithoutAccent)
-  //         return sortedHeader.sens === "up" ? 1 : -1;
-
-  //       return sortedHeader.sens === "up" ? -1 : 1;
-  //     });
-  //     return {
-  //       dispositifsToDisplay,
-  //       dispositifsForCount: dispositifsFilteredBySearch,
-  //     };
-  //   };
-  //   const {
-  //     dispositifsToDisplay,
-  //     dispositifsForCount,
-  //   } = filterAndSortDispositifs(dispositifs);
-
-  //   const reorder = (element) => {
-  //     if (sortedHeader.name === element.name) {
-  //       const sens = sortedHeader.sens === "up" ? "down" : "up";
-  //       setSortedHeader({ name: element.name, sens, orderColumn: element.order });
-  //     } else {
-  //       setSortedHeader({
-  //         name: element.name,
-  //         sens: "up",
-  //         orderColumn: element.order,
-  //       });
-  //     }
-  //   };
-
-  //   const prepareDeleteContrib = function (dispositif) {
-  //     Swal.fire({
-  //       title: "Êtes-vous sûr ?",
-  //       text: "La suppression d'un dispositif est irréversible",
-  //       type: "question",
-  //       showCancelButton: true,
-  //       confirmButtonColor: colors.rouge,
-  //       cancelButtonColor: colors.vert,
-  //       confirmButtonText: "Oui, le supprimer",
-  //       cancelButtonText: "Annuler",
-  //     }).then((result) => {
-  //       if (result.value) {
-  //         const newDispositif = {
-  //           dispositifId: dispositif._id,
-  //           status: "Supprimé",
-  //         };
-
-  //         API.updateDispositifStatus({ query: newDispositif })
-  //           .then(() => {
-  //             Swal.fire({
-  //               title: "Yay...",
-  //               text: "Suppression effectuée",
-  //               type: "success",
-  //               timer: 1500,
-  //             });
-  //             setSelectedDispositif(null);
-  //             setShowDetailsModal(false);
-  //             dispatch(fetchAllDispositifsActionsCreator());
-  //           })
-  //           .catch(() => {
-  //             Swal.fire({
-  //               title: "Oh non!",
-  //               text: "Something went wrong",
-  //               type: "error",
-  //               timer: 1500,
-  //             });
-  //           });
-  //       }
-  //     });
-  //   };
-
-  //   const onFilterClick = (status) => {
-  //     setFilter(status);
-  //     setSortedHeader(defaultSortedHeader);
-  //   };
-
-  //   const handleChange = (e) => setSearch(e.target.value);
-
-  //   const publishDispositif = async (dispositif, status = "Actif") => {
-  //     const newDispositif = { status: status, dispositifId: dispositif._id };
-  //     let question = { value: true };
-  //     const link = `${url}${dispositif.typeContenu}/${dispositif._id}`;
-
-  //     if (
-  //       dispositif.status === "En attente" ||
-  //       dispositif.status === "Accepté structure"
-  //     ) {
-  //       question = await Swal.fire({
-  //         title: "Êtes-vous sûr ?",
-  //         text:
-  //           "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
-  //         type: "question",
-  //         showCancelButton: true,
-  //         confirmButtonColor: colors.rouge,
-  //         cancelButtonColor: colors.vert,
-  //         confirmButtonText: "Oui, le valider",
-  //         cancelButtonText: "Annuler",
-  //       });
-  //     }
-  //     if (question.value) {
-  //       API.updateDispositifStatus({ query: newDispositif })
-  //         .then(() => {
-  //           Swal.fire({
-  //             title: "Yay...",
-  //             text: "Contenu publié",
-  //             type: "success",
-  //             timer: 5500,
-  //             footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
-  //           });
-  //           dispatch(fetchAllDispositifsActionsCreator());
-  //           dispatch(fetchActiveDispositifsActionsCreator());
-  //         })
-  //         .catch(() => {
-  //           Swal.fire({
-  //             title: "Oh non!",
-  //             text: "Something went wrong",
-  //             type: "error",
-  //             timer: 1500,
-  //           });
-  //         });
-  //     }
-  //   };
-
-  //   const nbNonDeletedDispositifs =
-  //     dispositifs.length > 0
-  //       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
-  //       : 0;
   const nbNonDeletedDispositifs = 6;
   return (
-    <div className="admin-contenu animated fadeIn">
+    <div>
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
@@ -309,6 +128,187 @@ export const AdminStructures = () => {
   );
 };
 
+//   const getNbDispositifsByStatus = (dispositifsToDisplay, status) =>
+//     dispositifsToDisplay && dispositifsToDisplay.length > 0
+//       ? dispositifsToDisplay.filter((dispo) => dispo.status === status).length
+//       : 0;
+
+//   const filterAndSortDispositifs = (dispositifs) => {
+//     const dispositifsFilteredBySearch = !!search
+//       ? dispositifs.filter(
+//           (dispo) =>
+//             dispo.titreInformatif &&
+//             dispo.titreInformatif
+//               .normalize("NFD")
+//               .replace(/[\u0300-\u036f]/g, "")
+//               .toLowerCase()
+//               .includes(search)
+//         )
+//       : dispositifs;
+
+//     const filteredDispositifs = dispositifsFilteredBySearch.filter(
+//       (dispo) => dispo.status === filter
+//     );
+//     if (sortedHeader.name === "none")
+//       return {
+//         dispositifsToDisplay: filteredDispositifs,
+//         dispositifsForCount: dispositifsFilteredBySearch,
+//       };
+
+//     const dispositifsToDisplay = filteredDispositifs.sort((a, b) => {
+//       const sponsorA =
+//         a.mainSponsor && a.mainSponsor.nom
+//           ? a.mainSponsor.nom.toLowerCase()
+//           : "";
+//       const sponsorB =
+//         b.mainSponsor && b.mainSponsor.nom
+//           ? b.mainSponsor.nom.toLowerCase()
+//           : "";
+
+//       const valueA =
+//         sortedHeader.orderColumn === "mainSponsor"
+//           ? sponsorA
+//           : a[sortedHeader.orderColumn]
+//           ? a[sortedHeader.orderColumn].toLowerCase()
+//           : "";
+//       const valueAWithoutAccent = valueA
+//         .normalize("NFD")
+//         .replace(/[\u0300-\u036f]/g, "");
+//       const valueB =
+//         sortedHeader.orderColumn === "mainSponsor"
+//           ? sponsorB
+//           : b[sortedHeader.orderColumn]
+//           ? b[sortedHeader.orderColumn].toLowerCase()
+//           : "";
+//       const valueBWithoutAccent = valueB
+//         .normalize("NFD")
+//         .replace(/[\u0300-\u036f]/g, "");
+
+//       if (valueAWithoutAccent > valueBWithoutAccent)
+//         return sortedHeader.sens === "up" ? 1 : -1;
+
+//       return sortedHeader.sens === "up" ? -1 : 1;
+//     });
+//     return {
+//       dispositifsToDisplay,
+//       dispositifsForCount: dispositifsFilteredBySearch,
+//     };
+//   };
+//   const {
+//     dispositifsToDisplay,
+//     dispositifsForCount,
+//   } = filterAndSortDispositifs(dispositifs);
+
+//   const reorder = (element) => {
+//     if (sortedHeader.name === element.name) {
+//       const sens = sortedHeader.sens === "up" ? "down" : "up";
+//       setSortedHeader({ name: element.name, sens, orderColumn: element.order });
+//     } else {
+//       setSortedHeader({
+//         name: element.name,
+//         sens: "up",
+//         orderColumn: element.order,
+//       });
+//     }
+//   };
+
+//   const prepareDeleteContrib = function (dispositif) {
+//     Swal.fire({
+//       title: "Êtes-vous sûr ?",
+//       text: "La suppression d'un dispositif est irréversible",
+//       type: "question",
+//       showCancelButton: true,
+//       confirmButtonColor: colors.rouge,
+//       cancelButtonColor: colors.vert,
+//       confirmButtonText: "Oui, le supprimer",
+//       cancelButtonText: "Annuler",
+//     }).then((result) => {
+//       if (result.value) {
+//         const newDispositif = {
+//           dispositifId: dispositif._id,
+//           status: "Supprimé",
+//         };
+
+//         API.updateDispositifStatus({ query: newDispositif })
+//           .then(() => {
+//             Swal.fire({
+//               title: "Yay...",
+//               text: "Suppression effectuée",
+//               type: "success",
+//               timer: 1500,
+//             });
+//             setSelectedDispositif(null);
+//             setShowDetailsModal(false);
+//             dispatch(fetchAllDispositifsActionsCreator());
+//           })
+//           .catch(() => {
+//             Swal.fire({
+//               title: "Oh non!",
+//               text: "Something went wrong",
+//               type: "error",
+//               timer: 1500,
+//             });
+//           });
+//       }
+//     });
+//   };
+
+//   const onFilterClick = (status) => {
+//     setFilter(status);
+//     setSortedHeader(defaultSortedHeader);
+//   };
+
+//   const handleChange = (e) => setSearch(e.target.value);
+
+//   const publishDispositif = async (dispositif, status = "Actif") => {
+//     const newDispositif = { status: status, dispositifId: dispositif._id };
+//     let question = { value: true };
+//     const link = `${url}${dispositif.typeContenu}/${dispositif._id}`;
+
+//     if (
+//       dispositif.status === "En attente" ||
+//       dispositif.status === "Accepté structure"
+//     ) {
+//       question = await Swal.fire({
+//         title: "Êtes-vous sûr ?",
+//         text:
+//           "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
+//         type: "question",
+//         showCancelButton: true,
+//         confirmButtonColor: colors.rouge,
+//         cancelButtonColor: colors.vert,
+//         confirmButtonText: "Oui, le valider",
+//         cancelButtonText: "Annuler",
+//       });
+//     }
+//     if (question.value) {
+//       API.updateDispositifStatus({ query: newDispositif })
+//         .then(() => {
+//           Swal.fire({
+//             title: "Yay...",
+//             text: "Contenu publié",
+//             type: "success",
+//             timer: 5500,
+//             footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
+//           });
+//           dispatch(fetchAllDispositifsActionsCreator());
+//           dispatch(fetchActiveDispositifsActionsCreator());
+//         })
+//         .catch(() => {
+//           Swal.fire({
+//             title: "Oh non!",
+//             text: "Something went wrong",
+//             type: "error",
+//             timer: 1500,
+//           });
+//         });
+//     }
+//   };
+
+//   const nbNonDeletedDispositifs =
+//     dispositifs.length > 0
+//       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
+//       : 0;
 {
   /* <SearchBarContainer>
         <CustomSearchBar
