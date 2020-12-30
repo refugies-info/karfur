@@ -257,7 +257,8 @@ export class AdvancedSearch extends Component {
       showGeolocFullFrancePrincipal: false,
       showGeolocFullFranceSecondary: false,
       filterVille: "",
-      dispositifsFullFrance: []
+      dispositifsFullFrance: [],
+      geoSearch: false,
     };
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -282,6 +283,10 @@ export class AdvancedSearch extends Component {
       }
       this.setState({ languageDropdown: false });
     }
+  }
+
+  switchGeoSearch = (value) => {
+    this.setState({geoSearch: value});
   }
 
   componentDidMount() {
@@ -745,7 +750,10 @@ export class AdvancedSearch extends Component {
 
   restart = () => {
     this.setState(
-      { recherche: initial_data.map((x) => ({ ...x, active: false })) },
+      { recherche: initial_data.map((x) => ({ ...x, active: false })),
+      filterVille: "",
+      geoSearch: false,
+    },
       () => this.queryDispositifs()
     );
   };
@@ -1041,6 +1049,9 @@ export class AdvancedSearch extends Component {
                   keyValue={i}
                   selectParam={this.selectParam}
                   desactiver={this.desactiver}
+                  switchGeoSearch={this.switchGeoSearch}
+                  geoSearch={this.state.geoSearch}
+                
                 />
               ))}
             <SearchToggle
@@ -1395,8 +1406,8 @@ export class AdvancedSearch extends Component {
                         this.setState({ showGeolocFullFrancePrincipal: true })
                       }
                     >
-                      Afficher aussi les résultats disponibles dans&nbsp;
-                      <b>toute la France</b>
+                      {t("AdvancedSearch.Afficher aussi les résultats disponibles dans")}
+                      <b>{t("AdvancedSearch.toute la France")}</b>
                     </ShowFullFrancePrimary>
                   ) : this.state.filterVille &&
                     this.state.showGeolocFullFrancePrincipal ? (
@@ -1406,8 +1417,8 @@ export class AdvancedSearch extends Component {
                         this.setState({ showGeolocFullFrancePrincipal: false })
                       }
                     >
-                      Masquer les résultats disponibles dans&nbsp;
-                      <b>toute la France</b>
+                     {t("AdvancedSearch.Masquer les résultats disponibles dans")}
+                      <b>{t("AdvancedSearch.toute la France")}</b>
                     </ShowFullFrancePrimary>
                   ) : null}
                 </ButtonContainer>
@@ -1554,8 +1565,8 @@ export class AdvancedSearch extends Component {
                         this.setState({ showGeolocFullFranceSecondary: true })
                       }
                     >
-                      Afficher aussi les autres fiches disponibles dans&nbsp;
-                      <b>toute la France</b>
+                      {t("AdvancedSearch.Afficher aussi les autres fiches disponibles dans")}
+                      <b>{t("AdvancedSearch.toute la France")}</b>
                     </ShowFullFranceSecondary>
                   ) : this.state.filterVille &&
                     this.state.showGeolocFullFranceSecondary ? (
@@ -1565,8 +1576,8 @@ export class AdvancedSearch extends Component {
                         this.setState({ showGeolocFullFranceSecondary: false })
                       }
                     >
-                      Masquer les autres fiches disponibles dans&nbsp;
-                      <b>toute la France</b>
+                      {t("AdvancedSearch.Masquer les autres fiches disponibles dans")}
+                      <b>{t("AdvancedSearch.toute la France")}</b>
                     </ShowFullFranceSecondary>
                   ) : null}
                 </ButtonContainer>
@@ -1629,7 +1640,7 @@ export class AdvancedSearch extends Component {
                         : 2
                     }
                   >
-                   {dispositifs.map((dispositif, index) => {
+                   {dispositifs.length > 0 ? dispositifs.map((dispositif, index) => {
                         return (
                           <SearchResultCard
                             key={index}
@@ -1639,7 +1650,14 @@ export class AdvancedSearch extends Component {
                             showPinned={true}
                           />
                         );
-                      })}
+                      }):
+                      (
+                        <NoResultPlaceholder
+                          restart={this.restart}
+                          writeNew={this.writeNew}
+                        />
+                      )  
+                      }
                   </ThemeListContainer>
                   <ThemeHeader>
                     <ThemeHeaderTitle color={"#828282"}>
@@ -1657,7 +1675,7 @@ export class AdvancedSearch extends Component {
                         : 2
                     }
                   >
-                   {this.state.dispositifsFullFrance.map((dispositif, index) => {
+                   {this.state.dispositifsFullFrance.length > 0 ? this.state.dispositifsFullFrance.map((dispositif, index) => {
                         return (
                           <SearchResultCard
                             key={index}
@@ -1667,7 +1685,14 @@ export class AdvancedSearch extends Component {
                             showPinned={true}
                           />
                         );
-                      })}
+                      }) :
+                      (
+                        <NoResultPlaceholder
+                          restart={this.restart}
+                          writeNew={this.writeNew}
+                        />
+                      ) 
+                      }
                   </ThemeListContainer>
                 </ThemeContainer>
             ) : (
