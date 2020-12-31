@@ -9,10 +9,10 @@ const customTabPane = (props) => {
   return (
     <>
       <TabPane tabId="0" className="no-padding">
-        <AdminStructures />
+        <AdminContenu />
       </TabPane>
       <TabPane tabId="1" className="no-padding">
-        <AdminContenu />
+        <AdminStructures />
       </TabPane>
       <TabPane tabId="2">
         <UsersTab {...props} />
