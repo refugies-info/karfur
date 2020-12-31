@@ -239,6 +239,12 @@ interface SimplifiedDispositifAssocie {
   abstract: string;
   status: string;
 }
+
+export interface Responsable {
+  _id: ObjectId;
+  username: string;
+  picture: Picture;
+}
 export interface SimplifiedStructureForAdmin {
   _id: ObjectId;
   nom: string;
@@ -250,5 +256,5 @@ export interface SimplifiedStructureForAdmin {
   mail_contact: string;
   nbMembres: number;
   created_at: Moment;
-  responsable: null | { _id: ObjectId; username: string; picture: Picture };
+  responsable: null | Responsable;
 }

@@ -18,7 +18,6 @@ import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
 // } from "../../../services/AllDispositifs/allDispositifs.actions";
 // import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 // import API from "../../../utils/API";
-import marioProfile from "../../../../assets/mario-profile.jpg";
 import {
   StyledTitle,
   StyledHeader,
@@ -52,6 +51,7 @@ import { headers, correspondingStatus } from "./data";
 import {
   RowContainer,
   StructureName,
+  ResponsableComponent,
 } from "./components/AdminStructureComponents";
 import { SimplifiedStructureForAdmin } from "../../../../types/interface";
 import { compare } from "../AdminContenu/AdminContenu";
@@ -97,7 +97,6 @@ export const AdminStructures = () => {
   const setSelectedStructureAndToggleModal = (
     element: SimplifiedStructureForAdmin | null
   ) => {
-    console.log("on click", element);
     setSelectedStructure(element);
     toggleStructureDetailsModal();
   };
@@ -166,8 +165,6 @@ export const AdminStructures = () => {
         structuresToDisplay: filteredStructures,
         structuresForCount: structuresFilteredBySearch,
       };
-
-    console.log("selectedStructure", selectedStructure);
 
     const structuresToDisplay = filteredStructures.sort(
       (a: SimplifiedStructureForAdmin, b: SimplifiedStructureForAdmin) => {
@@ -310,61 +307,52 @@ export const AdminStructures = () => {
             </tr>
           </thead>
           <tbody>
-            {structuresToDisplay.map((element, key) => {
-              const responsableName = element.responsable
-                ? element.responsable.username
-                : "Aucun responsable";
-              const responsableSecureUrl =
-                element.responsable &&
-                element.responsable.picture &&
-                element.responsable.picture.secure_url
-                  ? element.responsable.picture.secure_url
-                  : marioProfile;
-              return (
-                <tr
-                  key={key}
-                  onClick={() => setSelectedStructureAndToggleModal(element)}
-                >
-                  <td className="align-middle">
-                    <RowContainer>
-                      {element.picture && element.picture.secure_url && (
-                        <img
-                          className="sponsor-img mr-8"
-                          src={(element.picture || {}).secure_url}
-                        />
-                      )}
-                      <StructureName>{element.nom}</StructureName>
-                    </RowContainer>
-                  </td>
-                  <td className="align-middle">
-                    <StyledStatus
-                      text={element.status}
-                      textToDisplay={element.status}
-                    />
-                  </td>
-                  <td className="align-middle cursor-pointer">
-                    {element.nbMembres}
-                  </td>
-                  <td className={"align-middle "}>
-                    <RowContainer>
-                      {element.responsable && (
-                        <img
-                          className="respo-img mr-8"
-                          src={responsableSecureUrl}
-                        />
-                      )}
-                      {responsableName}
-                    </RowContainer>
-                  </td>
-                  <td className="align-middle">
-                    {element.dispositifsAssocies.length}
-                  </td>
-                  <td className="align-middle">
-                    {moment(element.created_at).format("lll")}
-                  </td>
-                </tr>
-              );
-            })}
+            {structuresToDisplay.map((element, key) => (
+              <tr
+                key={key}
+                onClick={() => setSelectedStructureAndToggleModal(element)}
+              >
+                <td className="align-middle">
+                  <RowContainer>
+                    {element.picture && element.picture.secure_url && (
+                      <img
+                        className="sponsor-img mr-8"
+                        src={(element.picture || {}).secure_url}
+                      />
+                    )}
+                    <StructureName>{element.nom}</StructureName>
+                  </RowContainer>
+                </td>
+                <td className="align-middle">
+                  <StyledStatus
+                    text={element.status}
+                    textToDisplay={element.status}
+                  />
+                </td>
+                <td className="align-middle cursor-pointer">
+                  {element.nbMembres}
+                </td>
+                <td className={"align-middle "}>
+                  {/* <RowContainer>
+                    {element.responsable && (
+                      <img
+                        className="respo-img mr-8"
+                        src={responsableSecureUrl}
+                      />
+                    )}
+                    {responsableName}
+                  </RowContainer> */}
+
+                  <ResponsableComponent responsable={element.responsable} />
+                </td>
+                <td className="align-middle">
+                  {element.dispositifsAssocies.length}
+                </td>
+                <td className="align-middle">
+                  {moment(element.created_at).format("lll")}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </Content>
@@ -372,14 +360,8 @@ export const AdminStructures = () => {
         show={showStructureDetailsModal}
         toggleModal={() => setSelectedStructureAndToggleModal(null)}
         selectedStructure={selectedStructure}
+        fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
       />
     </div>
   );
 };
-
-// <ChangeStructureModal
-//   show={showChangeStructureModal}
-//   toggle={toggleShowChangeStructureModal}
-//   dispositifId={selectedDispositif ? selectedDispositif._id : null}
-//   dispositifStatus={selectedDispositif ? selectedDispositif.status : null}
-// /> */
