@@ -1,5 +1,5 @@
 import { updateObject } from "../utility";
-import { Translation } from "../../@types/interface";
+import { Translation } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { TranslationActions } from "./translation.actions";
 

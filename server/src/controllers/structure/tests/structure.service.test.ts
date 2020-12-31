@@ -9,6 +9,7 @@ import {
   getStructuresFromDB,
 } from "../structure.repository";
 import { turnToLocalized } from "../../dispositif/functions";
+import { getUserById } from "../../account/users.repository";
 
 const structure = { id: "id" };
 
@@ -23,6 +24,14 @@ jest.mock("../structure.repository.ts", () => ({
 
 jest.mock("../../dispositif/functions", () => ({
   turnToLocalized: jest.fn(),
+}));
+
+jest.mock("../../account/users.repository", () => ({
+  getUserById: jest.fn().mockResolvedValue({
+    _id: "id1",
+    username: "respo",
+    picture: { secure_url: "test" },
+  }),
 }));
 
 type MockResponse = { json: any; status: any };
@@ -102,7 +111,42 @@ const structure1 = {
 const structure2 = {
   id: "id",
   dispositifsAssocies: [dispositif1, dispositif2, dispositif3, dispositif4],
-  membres: [{ id: "id1" }, { id: "id2" }],
+  membres: [
+    { userId: "id1", roles: ["administrateur"] },
+    { userId: "id2", roles: ["redacteur"] },
+  ],
+  nom: "nom",
+  status: "En attente",
+  picture: { secure_url: "secure_url" },
+  contact: "contact",
+  phone_contact: "phone_contact",
+  mail_contact: "mail_contact",
+  created_at: 1500,
+};
+
+const structure3 = {
+  id: "id",
+  dispositifsAssocies: [dispositif1, dispositif2, dispositif3, dispositif4],
+  membres: [
+    { userId: "id1", roles: ["traducteur"] },
+    { userId: "id2", roles: ["redacteur"] },
+  ],
+  nom: "nom",
+  status: "En attente",
+  picture: { secure_url: "secure_url" },
+  contact: "contact",
+  phone_contact: "phone_contact",
+  mail_contact: "mail_contact",
+  created_at: 1500,
+};
+
+const structure4 = {
+  id: "id",
+  dispositifsAssocies: [dispositif1, dispositif2, dispositif3, dispositif4],
+  membres: [
+    { roles: ["administrateurs"] },
+    { userId: "id2", roles: ["redacteur"] },
+  ],
   nom: "nom",
   status: "En attente",
   picture: { secure_url: "secure_url" },
@@ -116,7 +160,7 @@ describe("getStructureById", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  it("should call getStructureFromDB with correct params and return result", async () => {
+  it("should call getStructureFromDB with correct params and return result with a responsable", async () => {
     const res = mockResponse();
     await getStructureById(
       {
@@ -331,7 +375,7 @@ describe("getAllStructures", () => {
     membres: 1,
     created_at: 1,
   };
-  it("should call getStructuresFromDB and return a 200", async () => {
+  it("should call getStructuresFromDB and getUserById and return a 200 (structure with respo)", async () => {
     getStructuresFromDB.mockResolvedValueOnce([
       {
         toJSON: () => structure2,
@@ -345,6 +389,7 @@ describe("getAllStructures", () => {
     expect(turnToLocalized).toHaveBeenCalledWith(dispositif2, "fr");
     expect(turnToLocalized).not.toHaveBeenCalledWith(dispositif3, "fr");
     expect(turnToLocalized).not.toHaveBeenCalledWith(dispositif4, "fr");
+    expect(getUserById).toHaveBeenCalledWith("id1");
 
     expect(res.status).toHaveBeenCalledWith(200);
     const result = [
@@ -359,6 +404,75 @@ describe("getAllStructures", () => {
         phone_contact: "phone_contact",
         mail_contact: "mail_contact",
         created_at: 1500,
+        responsable: {
+          _id: "id1",
+          username: "respo",
+          picture: { secure_url: "test" },
+        },
+      },
+    ];
+    expect(res.json).toHaveBeenCalledWith({
+      data: result,
+    });
+  });
+
+  it("should call getStructuresFromDB and getUserById and return a 200 (structure without respo)", async () => {
+    getStructuresFromDB.mockResolvedValueOnce([
+      {
+        toJSON: () => structure3,
+      },
+    ]);
+    const res = mockResponse();
+    await getAllStructures({}, res);
+
+    expect(getUserById).not.toHaveBeenCalled();
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    const result = [
+      {
+        id: "id",
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+        nbMembres: 2,
+        nom: "nom",
+        status: "En attente",
+        picture: { secure_url: "secure_url" },
+        contact: "contact",
+        phone_contact: "phone_contact",
+        mail_contact: "mail_contact",
+        created_at: 1500,
+        responsable: null,
+      },
+    ];
+    expect(res.json).toHaveBeenCalledWith({
+      data: result,
+    });
+  });
+
+  it("should call getStructuresFromDB and getUserById and return a 200 (admin without userId)", async () => {
+    getStructuresFromDB.mockResolvedValueOnce([
+      {
+        toJSON: () => structure4,
+      },
+    ]);
+    const res = mockResponse();
+    await getAllStructures({}, res);
+
+    expect(getUserById).not.toHaveBeenCalled();
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    const result = [
+      {
+        id: "id",
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+        nbMembres: 2,
+        nom: "nom",
+        status: "En attente",
+        picture: { secure_url: "secure_url" },
+        contact: "contact",
+        phone_contact: "phone_contact",
+        mail_contact: "mail_contact",
+        created_at: 1500,
+        responsable: null,
       },
     ];
     expect(res.json).toHaveBeenCalledWith({

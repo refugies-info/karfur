@@ -2,7 +2,7 @@ import React from "react";
 import {
   OpeningHours,
   DetailedOpeningHours,
-} from "../../../../../@types/interface";
+} from "../../../../../types/interface";
 import styled from "styled-components";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 

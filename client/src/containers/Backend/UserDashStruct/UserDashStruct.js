@@ -37,7 +37,7 @@ import DateOffset from "../../../components/Functions/DateOffset";
 import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 
 import "./UserDashStruct.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import {
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
@@ -248,6 +248,7 @@ export class UserDashStruct extends Component {
         ((structure || {}).membres || []).find((x) => x.userId === user._id) ||
         {}
       ).roles || [];
+
     let role = roles.includes("administrateur")
       ? "responsable"
       : roles.includes("createur")
@@ -384,6 +385,7 @@ export class UserDashStruct extends Component {
           users={users}
           structure={structure}
           limit={5}
+          isAdmin={this.props.isAdmin}
           {...avancement_members}
         />
 
@@ -435,6 +437,7 @@ export class UserDashStruct extends Component {
           selected={this.state.selected}
           structure={structure}
           initializeStructure={this.initializeStructure}
+          isAdmin={this.props.isAdmin}
         />
 
         <ReactionLectureModal
@@ -463,6 +466,7 @@ const mapStateToProps = (state) => {
     user: state.user.user,
     expertTrad: state.user.expertTrad,
     userStructure: state.userStructure,
+    isAdmin: state.user.admin,
   };
 };
 

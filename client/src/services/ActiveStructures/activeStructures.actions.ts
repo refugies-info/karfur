@@ -2,7 +2,7 @@ import {
   SET_ACTIVE_STRUCTURES,
   FETCH_ACTIVE_STRUCTURES,
 } from "./activeStructures.actionTypes";
-import { Structure } from "../../@types/interface";
+import { Structure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
 
 export const setActiveStructuresActionCreator = (value: Structure[]) =>

@@ -3,7 +3,7 @@ import {
   FETCH_USER_STRUCTURE,
   UPDATE_USER_STRUCTURE,
 } from "./userStructure.actionTypes";
-import { Structure } from "../../@types/interface";
+import { Structure } from "../../types/interface";
 import { action, ActionType } from "typesafe-actions";
 import { ObjectId } from "mongodb";
 

@@ -15,6 +15,7 @@ export const StyledSort = styled.div`
   justify-content: flex-end;
   align-items: flex-end;
   margin-right: 8px;
+  margin-top: ${(props) => (props.marginTop ? props.marginTop : "0px")};
 `;
 
 export const StyledTitle = styled.div`
@@ -30,7 +31,7 @@ export const StyledHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-top: 16px;
+  // padding-top: 10px;
   padding-bottom: 24px;
   margin-left: 24px;
 `;

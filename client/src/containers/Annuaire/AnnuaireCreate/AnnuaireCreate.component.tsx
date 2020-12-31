@@ -22,7 +22,7 @@ import { userStructureIdSelector } from "../../../services/User/user.selectors";
 import { userStructureSelector } from "../../../services/UserStructure/userStructure.selectors";
 import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
-import { Structure } from "../../../@types/interface";
+import { Structure } from "../../../types/interface";
 
 declare const window: Window;
 interface Props {

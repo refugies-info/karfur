@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
-import { Structure } from "../../../../../@types/interface";
+import { Structure } from "../../../../../types/interface";
 import { DayHoursPrecisions } from "./DayHoursPrecisions";
 import { ActivityCard } from "../../../AnnuaireCreate/components/ActivityCard/ActivityCard";
 import { activities } from "../../../AnnuaireCreate/components/Step3/data";
