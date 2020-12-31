@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useEffect, useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -11,13 +9,6 @@ import { allStructuresSelector } from "../../../../services/AllStructures/allStr
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { LoadingAdminStructures } from "./components/LoadingAdminStructures";
-// import Swal from "sweetalert2";
-// import {
-//   fetchAllDispositifsActionsCreator,
-//   setAllDispositifsActionsCreator,
-// } from "../../../services/AllDispositifs/allDispositifs.actions";
-// import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
-// import API from "../../../utils/API";
 import {
   StyledTitle,
   StyledHeader,
@@ -27,25 +18,11 @@ import {
   SearchBarContainer,
 } from "../sharedComponents/StyledAdmin";
 import "./AdminStructures.scss";
-// import {colors} from "colors";
-// import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
-// import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-// import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
-// import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
 import {
-  //   TypeContenu,
-  //   Title,
-  //   Structure,
-  //   StyledStatus,
-  //   ValidateButton,
-  //   SeeButton,
-  //   DeleteButton,
-  //   FilterButton,
   TabHeader,
   StyledStatus,
   FilterButton,
 } from "../sharedComponents/SubComponents";
-// @ts-ignore
 import moment from "moment/min/moment-with-locales";
 import { headers, correspondingStatus } from "./data";
 import {
@@ -59,11 +36,6 @@ import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/C
 import FButton from "components/FigmaUI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 import { logger } from "logger";
-
-// import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-// import FButton from "../../../components/FigmaUI/FButton/FButton";
-// import { DetailsModal } from "./DetailsModal/DetailsModal";
-// import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 
 moment.locale("fr");
 declare const window: Window;
@@ -130,7 +102,7 @@ export const AdminStructures = () => {
       </div>
     );
   }
-  const reorder = (element: any) => {
+  const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {
       const sens = sortedHeader.sens === "up" ? "down" : "up";
       setSortedHeader({ name: element.name, sens, orderColumn: element.order });
@@ -337,16 +309,6 @@ export const AdminStructures = () => {
                   {element.nbMembres}
                 </td>
                 <td className={"align-middle "}>
-                  {/* <RowContainer>
-                    {element.responsable && (
-                      <img
-                        className="respo-img mr-8"
-                        src={responsableSecureUrl}
-                      />
-                    )}
-                    {responsableName}
-                  </RowContainer> */}
-
                   <ResponsableComponent responsable={element.responsable} />
                 </td>
                 <td className="align-middle">

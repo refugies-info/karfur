@@ -9,7 +9,6 @@ import {
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { correspondingStatus, progressionData } from "../data";
 import { compare } from "../AdminContenu";
-// @ts-ignore
 import moment from "moment/min/moment-with-locales";
 import { SimplifiedDispositif } from "../../../../../types/interface";
 import { colors } from "colors";

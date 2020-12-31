@@ -1,7 +1,5 @@
 import React from "react";
 import { TabPane } from "reactstrap";
-// import StructuresTab from "./StructuresTab/StructuresTab";
-
 import UsersTab from "./UsersTab/UsersTab";
 import { AdminContenu } from "../../../containers/Backend/Admin/AdminContenu/AdminContenu";
 import { AdminStructures } from "../../../containers/Backend/Admin/AdminStructures/AdminStructures";
@@ -11,8 +9,6 @@ const customTabPane = (props) => {
   return (
     <>
       <TabPane tabId="0" className="no-padding">
-        {/* <StructuresTab {...props} /> */}
-
         <AdminStructures />
       </TabPane>
       <TabPane tabId="1" className="no-padding">

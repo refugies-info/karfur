@@ -6,7 +6,6 @@ import { SimplifiedStructureForAdmin } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
 import "./StructureDetailsModal.scss";
 import FInput from "components/FigmaUI/FInput/FInput";
-// @ts-ignore
 import moment from "moment/min/moment-with-locales";
 import FButton from "components/FigmaUI/FButton/FButton";
 import API from "utils/API";
