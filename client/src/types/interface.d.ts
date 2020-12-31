@@ -5,6 +5,10 @@ export interface RequestReturn<Y> {
   data: { data: Y };
 }
 
+export interface Event {
+  target: { id: string; value: string };
+}
+
 export interface SimplifiedDispositif {
   titreInformatif: string;
   titreMarque?: string;
@@ -239,15 +243,22 @@ interface SimplifiedDispositifAssocie {
   abstract: string;
   status: string;
 }
+
+export interface Responsable {
+  _id: ObjectId;
+  username: string;
+  picture: Picture;
+}
 export interface SimplifiedStructureForAdmin {
   _id: ObjectId;
   nom: string;
   picture: Picture;
   status: string;
-  dispositifsAssocies: SimplifiedDispositifAssocie;
+  dispositifsAssocies: SimplifiedDispositifAssocie[];
   contact: string;
   phone_contact: string;
   mail_contact: string;
   nbMembres: number;
   created_at: Moment;
+  responsable: null | Responsable;
 }

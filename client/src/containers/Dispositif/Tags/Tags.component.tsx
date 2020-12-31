@@ -7,7 +7,7 @@ import Streamline from "../../../assets/streamline";
 
 import "./Tags.scss";
 import { Props } from "./Tags.container";
-import { Tag } from "../../../@types/interface";
+import { Tag } from "../../../types/interface";
 import styled from "styled-components";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 

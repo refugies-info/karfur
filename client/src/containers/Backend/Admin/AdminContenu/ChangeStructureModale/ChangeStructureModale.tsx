@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Modal, Spinner } from "reactstrap";
 import "./ChangeStructureModale.scss";
-import { SearchBar } from "../../../../containers/UI/SearchBar/SearchBar";
+import { SearchBar } from "../../../../UI/SearchBar/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchActiveStructuresActionCreator } from "../../../../services/ActiveStructures/activeStructures.actions";
-import { activeStructuresSelector } from "../../../../services/ActiveStructures/activeStructures.selector";
-import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import { SimplifiedStructure } from "../../../../@types/interface";
+import { fetchActiveStructuresActionCreator } from "../../../../../services/ActiveStructures/activeStructures.actions";
+import { activeStructuresSelector } from "../../../../../services/ActiveStructures/activeStructures.selector";
+import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
+import { SimplifiedStructure } from "../../../../../types/interface";
 import { colors } from "colors";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
-import API from "../../../../utils/API";
+import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import API from "../../../../../utils/API";
 import { ObjectId } from "mongodb";
 import Swal from "sweetalert2";
-import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
 
 interface Props {
   show: boolean;

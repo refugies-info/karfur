@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { UserStructureActions } from "./userStructure.actions";
-import { Structure } from "../../@types/interface";
+import { Structure } from "../../types/interface";
 
 export type UserStructureState = Structure | null;
 

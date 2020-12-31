@@ -1,5 +1,5 @@
 import { updateObject } from "../utility";
-import { User, Role } from "../../@types/interface";
+import { User, Role } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { ObjectId } from "mongodb";
 import { UserActions } from "./user.actions";

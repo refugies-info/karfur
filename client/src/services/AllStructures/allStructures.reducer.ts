@@ -1,4 +1,4 @@
-import { SimplifiedStructureForAdmin } from "../../@types/interface";
+import { SimplifiedStructureForAdmin } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { AllStructuresActions } from "./allStructures.actions";
 

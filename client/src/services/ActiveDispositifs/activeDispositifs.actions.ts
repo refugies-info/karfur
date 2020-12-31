@@ -3,7 +3,7 @@ import {
   FETCH_ACTIVE_DISPOSITIFS,
 } from "./activeDispositifs.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { Dispositif } from "../../@types/interface";
+import { Dispositif } from "../../types/interface";
 
 export const setActiveDispositifsActionsCreator = (value: Dispositif[]) =>
   action(SET_ACTIVE_DISPOSITIFS, value);

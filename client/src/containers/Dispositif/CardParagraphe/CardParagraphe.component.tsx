@@ -22,7 +22,7 @@ import "./CardParagraphe.scss";
 import { colors } from "colors";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./CardParagraphe.container";
-import { DispositifContent, Tag } from "../../../@types/interface";
+import { DispositifContent, Tag } from "../../../types/interface";
 import { filtres, cardTitles } from "../data";
 import _ from "lodash";
 import { infoCardIcon } from "../../../components/Icon/Icon";

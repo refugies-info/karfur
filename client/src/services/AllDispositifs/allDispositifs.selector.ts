@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { SimplifiedDispositif } from "../../@types/interface";
+import { SimplifiedDispositif } from "../../types/interface";
 import { ObjectId } from "mongodb";
 
 export const allDispositifsSelector = (
