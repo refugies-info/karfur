@@ -13,7 +13,7 @@ import MapParagraphePrint from "../../../../containers/Dispositif/MapParagraphe/
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import { cardTitles } from "../../../../containers/Dispositif/data";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { withRouter } from "react-router-dom";
@@ -214,7 +214,7 @@ const contenuParagraphe = (props) => {
                                   "-outline"
                                 }
                                 size="large"
-                                fill={variables.darkColor}
+                                fill={colors.darkColor}
                               />
                             )}
                           </h5>
@@ -225,7 +225,7 @@ const contenuParagraphe = (props) => {
                               }
                               className="accordeon-delete-icon ml-10 cursor-pointer"
                               name="close-circle"
-                              fill={variables.error}
+                              fill={colors.error}
                               size="xlarge"
                             />
                           )}
@@ -307,7 +307,7 @@ const contenuParagraphe = (props) => {
                             }
                             className="delete-icon ml-10 cursor-pointer"
                             name="minus-circle-outline"
-                            fill={variables.noir}
+                            fill={colors.noir}
                           />
                         )}
                       </h4>
@@ -375,7 +375,7 @@ const AddMoudleBtnTag = (props) => {
       <FButton
         type="edit"
         name="pin-outline"
-        fill={variables.blanc}
+        fill={colors.blanc}
         onClick={() => props.addItem(3, "map", props.subkey)}
       >
         {"Ajouter une carte interactive"}

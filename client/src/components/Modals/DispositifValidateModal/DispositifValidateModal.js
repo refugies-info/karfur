@@ -51,7 +51,7 @@ const Check = (props) => (
   <CheckContainer
     missingElement={props.missingElement}
     onClick={() => {
-      if (!props.geolocInfoCard && props.section === "geoloc" ) {
+      if (!props.geolocInfoCard && props.section === "geoloc") {
         props.addItem(1, "card", "Zone d'action");
       }
       onCheckContainerClick(
@@ -140,13 +140,15 @@ const dispositifValidateModal = (props) => {
     >
       <ModalHeader toggle={props.toggle}>Vous y êtes presque !</ModalHeader>
       <ModalBody>
-        <Check
-          geolocInfoCard={geolocInfoCard}
-          section="geoloc"
-          missingElement={!geoloc}
-          toggleModal={props.toggleGeolocModal}
-          addItem={props.addItem}
-        />
+        {props.typeContenu !== "demarche" ? (
+          <Check
+            geolocInfoCard={geolocInfoCard}
+            section="geoloc"
+            missingElement={!geoloc}
+            toggleModal={props.toggleGeolocModal}
+            addItem={props.addItem}
+          />
+        ) : null}
 
         <Check
           section="structure"
@@ -180,7 +182,7 @@ const dispositifValidateModal = (props) => {
             rel="noopener noreferrer"
             type="help"
             name="question-mark-circle-outline"
-            fill={variables.noir}
+            fill={colors.noir}
             className="mr-8"
           >
             Centre d'aide
@@ -210,7 +212,7 @@ const dispositifValidateModal = (props) => {
               !props.abstract ||
               props.abstract === "" ||
               props.abstract.length > 110 ||
-              !geoloc ||
+              (!geoloc && props.typeContenu !== "demarche")||
               props.tags.length === 0
             }
           >

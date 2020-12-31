@@ -7,6 +7,8 @@ import {
 import { castToBoolean } from "../../libs/castToBoolean";
 import { turnToLocalized } from "../dispositif/functions";
 import { ObjectId } from "mongoose";
+import { asyncForEach } from "../../libs/asyncForEach";
+import { getUserById } from "../account/users.repository";
 
 interface Query {
   id: ObjectId;
@@ -152,6 +154,14 @@ export const getAllStructures = async (req: {}, res: Res) => {
       const nbMembres = jsonStructure.membres
         ? jsonStructure.membres.length
         : 0;
+      const responsablesArray = jsonStructure.membres
+        ? jsonStructure.membres.filter(
+            (user) =>
+              user.roles && user.userId && user.roles.includes("administrateur")
+          )
+        : [];
+      const responsableId =
+        responsablesArray.length > 0 ? responsablesArray[0].userId : null;
 
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
         (dispo) =>
@@ -175,9 +185,25 @@ export const getAllStructures = async (req: {}, res: Res) => {
         ...jsonStructure,
         dispositifsAssocies: simplifiedDisposAssocies,
         nbMembres,
+        responsable: responsableId,
       };
     });
-    return res.status(200).json({ data: simplifiedStructures });
+
+    // @ts-ignore
+    const data = [];
+    await asyncForEach(
+      simplifiedStructures,
+      async (structure): Promise<any> => {
+        if (structure.responsable) {
+          const responsable = await getUserById(structure.responsable);
+          return data.push({ ...structure, responsable });
+        }
+        return data.push({ ...structure, responsable: null });
+      }
+    );
+
+    // @ts-ignore
+    return res.status(200).json({ data });
   } catch (error) {
     logger.error("[getAllStructures] error while getting structures", {
       error,

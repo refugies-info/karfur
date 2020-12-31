@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 import styled from "styled-components";
 import Highlighter from "react-highlight-words";
-import { themes } from "./data";
+import * as themes from "./data";
 import Streamline from "../../../assets/streamline";
 import NoResultPlaceholder from "./NoResultPlaceholder";
 import { filtres } from "../../Dispositif/data";
@@ -203,7 +203,7 @@ const AdvancedSearchBar = (props) => {
         dispositifsMatchedArray.push(elem);
       }
     });
-    for (const [key, value] of Object.entries(themes)) {
+    for (const [key, value] of Object.entries(themes[i18n.language === "ti-ER" ? "ti" : i18n.language])) {
       value.map((theme) => {
         if (
           theme

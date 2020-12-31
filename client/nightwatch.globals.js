@@ -1,6 +1,6 @@
 module.exports = {
   timeout: 1000,
-  url:"http://localhost:3000/homepage",
+  url: "http://localhost:3000/homepage",
 
   // Abord all on test fail
   abortOnAssertionFailure: true,
@@ -12,9 +12,9 @@ module.exports = {
   waitForConditionTimeout: 1000,
 
   /*
-    * Define if the test failed when many HTML elements are found when
-    * we expect only one
-    */
+   * Define if the test failed when many HTML elements are found when
+   * we expect only one
+   */
   throwOnMultipleElementsReturned: false,
 
   // Before/After Hooks of all tests
@@ -22,9 +22,9 @@ module.exports = {
   after: (next) => next(),
 
   // Before/After Hooks of test suites
-  beforeEach: (browser, next) => next(),
-  afterEach: (browser, next) => next(),
+  beforeEach: (_, next) => next(),
+  afterEach: (_, next) => next(),
 
   // To customize output report
-  reporter: (results, next) => next()
+  reporter: (_, next) => next(),
 };

@@ -5,7 +5,7 @@ import {
   FETCH_LANGUES,
 } from "../Langue/langue.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { Language } from "../../@types/interface";
+import { Language } from "../../types/interface";
 
 export const setLanguesActionCreator = (value: Language[]) =>
   action(SET_LANGUES, value);

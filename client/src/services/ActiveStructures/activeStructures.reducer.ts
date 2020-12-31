@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { StructuresActions } from "./activeStructures.actions";
-import { SimplifiedStructure } from "../../@types/interface";
+import { SimplifiedStructure } from "../../types/interface";
 
 export type ActiveStructuresState = SimplifiedStructure[];
 
@@ -10,5 +10,5 @@ export const activeStructuresReducer = createReducer<
   ActiveStructuresState,
   StructuresActions
 >(initialActiveStructuresState, {
-  SET_ACTIVE_STRUCTURES: (state, action) => action.payload,
+  SET_ACTIVE_STRUCTURES: (_, action) => action.payload,
 });

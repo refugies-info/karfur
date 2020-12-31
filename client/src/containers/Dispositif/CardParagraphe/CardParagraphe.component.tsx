@@ -19,11 +19,10 @@ import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
 
 import "./CardParagraphe.scss";
-// @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./CardParagraphe.container";
-import { DispositifContent, Tag } from "../../../@types/interface";
+import { DispositifContent, Tag } from "../../../types/interface";
 import { filtres, cardTitles } from "../data";
 import _ from "lodash";
 import { infoCardIcon } from "../../../components/Icon/Icon";
@@ -739,7 +738,7 @@ export class CardParagraphe extends Component<Props> {
                     <EVAIcon
                       size="xlarge"
                       name="close-circle"
-                      fill={variables.noirCD}
+                      fill={colors.noirCD}
                       className="delete-icon"
                     />
                   </div>

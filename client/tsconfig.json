@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "lib": ["es6"],
     "moduleResolution": "node",
     "noEmit": true,
@@ -12,10 +12,12 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "resolveJsonModule": true,
-    "target": "esnext",
+    "target": "es2018",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext"
+    "module": "esnext",
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "src"
   },
   "exclude": ["node_modules"],
   "include": ["src"]

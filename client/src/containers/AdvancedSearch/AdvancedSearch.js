@@ -37,12 +37,13 @@ import { BookmarkedModal } from "../../components/Modals/index";
 import { fetchUserActionCreator } from "../../services/User/user.actions";
 
 import "./AdvancedSearch.scss";
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 
 const ThemeContainer = styled.div`
   width: 100%;
   background-color: ${(props) => props.color};
   padding: 24px 68px 48px 68px;
+  align-items: center;
 `;
 
 const ThemeHeader = styled.div`
@@ -132,6 +133,14 @@ const ThemeText = styled.p`
   font-weight: 700;
 `;
 
+const ThemeTextAlone = styled.p`
+  color: white;
+  font-size: 18px;
+  margin-left: 0px;
+  margin-right: ${(props) => (props.mr ? `${props.mr}px` : "0px")};
+  font-weight: 700;
+`;
+
 const LanguageText = styled.span`
   color: black;
   font-size: 16px;
@@ -153,6 +162,62 @@ const FilterTitle = styled.p`
   font-weight: bold;
   color: white;
   margin-right: 10px;
+`;
+
+const ShowFullFrancePrimary = styled.div`
+  padding: 8px;
+  height: 52px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  display: flex;
+  margin-top: 48px;
+  margin-bottom: 48px;
+
+  background: ${(props) => (props.active ? "white" : "transparent")};
+
+  border: 2px solid #5e5e5e;
+  box-sizing: border-box;
+  border-radius: 12px;
+  font-size: 16px;
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+  }
+`;
+
+const ShowFullFranceSecondary = styled.div`
+  padding: 8px;
+  height: 52px;
+  font-size: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  align-self: center;
+  margin-top: 48px;
+  margin-bottom: 48px;
+
+  background: ${(props) => (props.active ? "white" : "transparent")};
+
+  border: 2px solid #5e5e5e;
+  box-sizing: border-box;
+  border-radius: 12px;
+  cursor: pointer;
+  &:hover {
+    background-color: white;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 let user = { _id: null, cookies: {} };
@@ -183,10 +248,17 @@ export class AdvancedSearch extends Component {
       principalThemeList: [],
       secondaryThemeList: [],
       selectedTag: null,
+      principalThemeListFullFrance: [],
+      secondaryThemeListFullFrance: [],
       nonTranslated: [],
       filterLanguage: "",
       chargingArray: new Array(20).fill(),
       switch: false,
+      showGeolocFullFrancePrincipal: false,
+      showGeolocFullFranceSecondary: false,
+      filterVille: "",
+      dispositifsFullFrance: [],
+      geoSearch: false,
     };
 
     this.setWrapperRef = this.setWrapperRef.bind(this);
@@ -211,6 +283,10 @@ export class AdvancedSearch extends Component {
       }
       this.setState({ languageDropdown: false });
     }
+  }
+
+  switchGeoSearch = (value) => {
+    this.setState({geoSearch: value});
   }
 
   componentDidMount() {
@@ -394,6 +470,36 @@ export class AdvancedSearch extends Component {
         } else {
           dispositifs = dispositifs.sort((a, b) => a.created_at - b.created_at);
         }
+
+        if (props.languei18nCode !== "fr" || this.state.filterLanguage !== "") {
+          var nonTranslated = dispositifs.filter((dispo) => {
+            if (
+              typeof dispo.avancement === "object" &&
+              dispo.avancement[
+                props.languei18nCode !== "fr"
+                  ? props.languei18nCode
+                  : this.state.filterLanguage.i18nCode
+              ]
+            ) {
+              return false;
+            }
+            return true;
+          });
+          this.setState({ nonTranslated });
+          dispositifs = dispositifs.filter((dispo) => {
+            if (
+              typeof dispo.avancement === "object" &&
+              dispo.avancement[
+                props.languei18nCode !== "fr"
+                  ? props.languei18nCode
+                  : this.state.filterLanguage.i18nCode
+              ]
+            ) {
+              return true;
+            }
+          });
+        }
+        let dispositifsFullFrance = [];
         if (
           localisationSearch &&
           localisationSearch.query[1] &&
@@ -401,10 +507,12 @@ export class AdvancedSearch extends Component {
         ) {
           var index;
           var i;
-          var dispositifsVille = [];
           var dispositifsFrance = [];
+          var dispositifsVille = [];
           var dispositifsEmpty = [];
-
+          this.setState({
+            filterVille: localisationSearch.query[0].long_name || "",
+          });
           for (index = 0; index < dispositifs.length; index++) {
             if (
               dispositifs[index].contenu[1] &&
@@ -434,10 +542,9 @@ export class AdvancedSearch extends Component {
               dispositifsEmpty.push(dispositifs[index]);
             }
           }
-          dispositifs = dispositifsVille.concat(
-            dispositifsFrance,
-            dispositifsEmpty
-          );
+          dispositifsFullFrance = dispositifsFrance.concat(dispositifsEmpty);
+          dispositifs = dispositifsVille;
+          this.setState({dispositifsFullFrance});
 
           /*           dispositifs = dispositifs.filter((disp) => {
             if (
@@ -482,34 +589,6 @@ export class AdvancedSearch extends Component {
           nbVues: (this.state.nbVues.find((y) => y._id === x._id) || {}).count,
         })); //Je rajoute la donnée sur le nombre de vues par dispositif
 
-        if (props.languei18nCode !== "fr" || this.state.filterLanguage !== "") {
-          var nonTranslated = dispositifs.filter((dispo) => {
-            if (
-              typeof dispo.avancement === "object" &&
-              dispo.avancement[
-                props.languei18nCode !== "fr"
-                  ? props.languei18nCode
-                  : this.state.filterLanguage.i18nCode
-              ]
-            ) {
-              return false;
-            }
-            return true;
-          });
-          this.setState({ nonTranslated });
-          dispositifs = dispositifs.filter((dispo) => {
-            if (
-              typeof dispo.avancement === "object" &&
-              dispo.avancement[
-                props.languei18nCode !== "fr"
-                  ? props.languei18nCode
-                  : this.state.filterLanguage.i18nCode
-              ]
-            ) {
-              return true;
-            }
-          });
-        }
         if (this.state.activeTri === "Par thème") {
           const themesObject = filtres.tags.map((tag) => {
             return {
@@ -528,6 +607,7 @@ export class AdvancedSearch extends Component {
               return elem.tags[0].short === this.state.recherche[0].short;
             }
           });
+
           var secondaryThemeList = dispositifs.filter((element) => {
             if (element.tags && element.tags.length > 0) {
               for (var index = 1; index < element.tags.length; index++) {
@@ -540,7 +620,40 @@ export class AdvancedSearch extends Component {
               }
             }
           });
+
           this.setState({ principalThemeList, secondaryThemeList });
+          if (
+            localisationSearch &&
+            localisationSearch.query[1] &&
+            localisationSearch.query[1].long_name
+          ) {
+            var principalThemeListFullFrance = dispositifsFullFrance.filter(
+              (elem) => {
+                if (elem.tags && elem.tags[0]) {
+                  return elem.tags[0].short === this.state.recherche[0].short;
+                }
+              }
+            );
+            var secondaryThemeListFullFrance = dispositifsFullFrance.filter(
+              (element) => {
+                if (element.tags && element.tags.length > 0) {
+                  for (var index = 1; index < element.tags.length; index++) {
+                    if (
+                      index !== 0 &&
+                      element.tags[index] &&
+                      element.tags[index].short ===
+                        this.state.recherche[0].short
+                    )
+                      return true;
+                  }
+                }
+              }
+            );
+            this.setState({
+              principalThemeListFullFrance,
+              secondaryThemeListFullFrance,
+            });
+          }
         }
         this.setState({
           dispositifs: dispositifs,
@@ -637,7 +750,10 @@ export class AdvancedSearch extends Component {
 
   restart = () => {
     this.setState(
-      { recherche: initial_data.map((x) => ({ ...x, active: false })) },
+      { recherche: initial_data.map((x) => ({ ...x, active: false })),
+      filterVille: "",
+      geoSearch: false,
+    },
       () => this.queryDispositifs()
     );
   };
@@ -933,6 +1049,9 @@ export class AdvancedSearch extends Component {
                   keyValue={i}
                   selectParam={this.selectParam}
                   desactiver={this.desactiver}
+                  switchGeoSearch={this.switchGeoSearch}
+                  geoSearch={this.state.geoSearch}
+                
                 />
               ))}
             <SearchToggle
@@ -940,15 +1059,9 @@ export class AdvancedSearch extends Component {
               visible={this.state.searchToggleVisible}
             >
               {this.state.searchToggleVisible ? (
-                <EVAIcon
-                  name="arrow-ios-upward-outline"
-                  fill={variables.blanc}
-                />
+                <EVAIcon name="arrow-ios-upward-outline" fill={colors.blanc} />
               ) : (
-                <EVAIcon
-                  name="arrow-ios-downward-outline"
-                  fill={variables.noir}
-                />
+                <EVAIcon name="arrow-ios-downward-outline" fill={colors.noir} />
               )}
             </SearchToggle>
             <ResponsiveFooter
@@ -1159,7 +1272,7 @@ export class AdvancedSearch extends Component {
                         }
                       >
                         {theme[themeKey]
-                          .filter((card, indexCard) => indexCard < 4)
+                          .filter((_, indexCard) => indexCard < 4)
                           .map((cardFiltered, indexCardFiltered) => {
                             return (
                               <SearchResultCard
@@ -1242,6 +1355,18 @@ export class AdvancedSearch extends Component {
                         : null}
                     </ThemeText>
                   </ThemeButton>
+                  {this.state.filterVille ? (
+                    <ThemeHeaderTitle color={"#828282"}>
+                      {" disponibles à "}
+                    </ThemeHeaderTitle>
+                  ) : null}
+                  {this.state.filterVille ? (
+                    <ThemeButton ml={8} color={"#0421b1"}>
+                      <ThemeTextAlone mr={0}>
+                        {this.state.filterVille}
+                      </ThemeTextAlone>
+                    </ThemeButton>
+                  ) : null}
                 </ThemeHeader>
                 <ThemeListContainer
                   columns={
@@ -1273,6 +1398,65 @@ export class AdvancedSearch extends Component {
                     />
                   )}
                 </ThemeListContainer>
+                <ButtonContainer>
+                  {this.state.filterVille &&
+                  !this.state.showGeolocFullFrancePrincipal ? (
+                    <ShowFullFrancePrimary
+                      onClick={() =>
+                        this.setState({ showGeolocFullFrancePrincipal: true })
+                      }
+                    >
+                      {t("AdvancedSearch.Afficher aussi les résultats disponibles dans")}
+                      <b>{t("AdvancedSearch.toute la France")}</b>
+                    </ShowFullFrancePrimary>
+                  ) : this.state.filterVille &&
+                    this.state.showGeolocFullFrancePrincipal ? (
+                    <ShowFullFrancePrimary
+                      active
+                      onClick={() =>
+                        this.setState({ showGeolocFullFrancePrincipal: false })
+                      }
+                    >
+                     {t("AdvancedSearch.Masquer les résultats disponibles dans")}
+                      <b>{t("AdvancedSearch.toute la France")}</b>
+                    </ShowFullFrancePrimary>
+                  ) : null}
+                </ButtonContainer>
+                {this.state.filterVille &&
+                this.state.showGeolocFullFrancePrincipal ? (
+                  <ThemeListContainer
+                    columns={
+                      isDesktop || isBigDesktop
+                        ? 5
+                        : isSmallDesktop
+                        ? 4
+                        : isTablet
+                        ? 3
+                        : 2
+                    }
+                  >
+                    {this.state.principalThemeListFullFrance.length > 0 ? (
+                      this.state.principalThemeListFullFrance.map(
+                        (dispositif, index) => {
+                          return (
+                            <SearchResultCard
+                              key={index}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={dispositif}
+                              showPinned={true}
+                            />
+                          );
+                        }
+                      )
+                    ) : (
+                      <NoResultPlaceholder
+                        restart={this.restart}
+                        writeNew={this.writeNew}
+                      />
+                    )}
+                  </ThemeListContainer>
+                ) : null}
                 <ThemeHeader>
                   <ThemeHeaderTitle color={"#828282"}>
                     {langueCode !== "fr" || filterLanguage !== "" ? (
@@ -1330,6 +1514,18 @@ export class AdvancedSearch extends Component {
                         : null}
                     </ThemeText>
                   </ThemeButton>
+                  {this.state.filterVille ? (
+                    <ThemeHeaderTitle color={"#828282"}>
+                      {" disponibles à "}
+                    </ThemeHeaderTitle>
+                  ) : null}
+                  {this.state.filterVille ? (
+                    <ThemeButton ml={8} color={"#0421b1"}>
+                      <ThemeTextAlone mr={0}>
+                        {this.state.filterVille}
+                      </ThemeTextAlone>
+                    </ThemeButton>
+                  ) : null}
                 </ThemeHeader>
                 <ThemeListContainer
                   columns={
@@ -1361,7 +1557,144 @@ export class AdvancedSearch extends Component {
                     />
                   )}
                 </ThemeListContainer>
+                <ButtonContainer>
+                  {this.state.filterVille &&
+                  !this.state.showGeolocFullFranceSecondary ? (
+                    <ShowFullFranceSecondary
+                      onClick={() =>
+                        this.setState({ showGeolocFullFranceSecondary: true })
+                      }
+                    >
+                      {t("AdvancedSearch.Afficher aussi les autres fiches disponibles dans")}
+                      <b>{t("AdvancedSearch.toute la France")}</b>
+                    </ShowFullFranceSecondary>
+                  ) : this.state.filterVille &&
+                    this.state.showGeolocFullFranceSecondary ? (
+                    <ShowFullFranceSecondary
+                      active
+                      onClick={() =>
+                        this.setState({ showGeolocFullFranceSecondary: false })
+                      }
+                    >
+                      {t("AdvancedSearch.Masquer les autres fiches disponibles dans")}
+                      <b>{t("AdvancedSearch.toute la France")}</b>
+                    </ShowFullFranceSecondary>
+                  ) : null}
+                </ButtonContainer>
+                {this.state.filterVille &&
+                this.state.showGeolocFullFranceSecondary ? (
+                  <ThemeListContainer
+                    columns={
+                      isDesktop || isBigDesktop
+                        ? 5
+                        : isSmallDesktop
+                        ? 4
+                        : isTablet
+                        ? 3
+                        : 2
+                    }
+                  >
+                    {this.state.secondaryThemeListFullFrance.length > 0 ? (
+                      this.state.secondaryThemeListFullFrance.map(
+                        (dispositif, index) => {
+                          return (
+                            <SearchResultCard
+                              key={index}
+                              pin={this.pin}
+                              pinnedList={this.state.pinned}
+                              dispositif={dispositif}
+                              showPinned={true}
+                            />
+                          );
+                        }
+                      )
+                    ) : (
+                      <NoResultPlaceholder
+                        restart={this.restart}
+                        writeNew={this.writeNew}
+                      />
+                    )}
+                  </ThemeListContainer>
+                ) : null}
               </ThemeContainer>
+            ) : this.state.filterVille ? (
+                <ThemeContainer>
+                  <ThemeHeader>
+                    <ThemeHeaderTitle color={"#828282"}>
+                      {"Fiches disponibles à "}
+                    </ThemeHeaderTitle>
+                    <ThemeButton ml={8} color={"#0421b1"}>
+                      <ThemeTextAlone mr={0}>
+                        {this.state.filterVille}
+                      </ThemeTextAlone>
+                    </ThemeButton>
+                  </ThemeHeader>
+                  <ThemeListContainer
+                    columns={
+                      isDesktop || isBigDesktop
+                        ? 5
+                        : isSmallDesktop
+                        ? 4
+                        : isTablet
+                        ? 3
+                        : 2
+                    }
+                  >
+                   {dispositifs.length > 0 ? dispositifs.map((dispositif, index) => {
+                        return (
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        );
+                      }):
+                      (
+                        <NoResultPlaceholder
+                          restart={this.restart}
+                          writeNew={this.writeNew}
+                        />
+                      )  
+                      }
+                  </ThemeListContainer>
+                  <ThemeHeader>
+                    <ThemeHeaderTitle color={"#828282"}>
+                      {"Fiches disponibles partout en France"}
+                    </ThemeHeaderTitle>
+                  </ThemeHeader>
+                  <ThemeListContainer
+                    columns={
+                      isDesktop || isBigDesktop
+                        ? 5
+                        : isSmallDesktop
+                        ? 4
+                        : isTablet
+                        ? 3
+                        : 2
+                    }
+                  >
+                   {this.state.dispositifsFullFrance.length > 0 ? this.state.dispositifsFullFrance.map((dispositif, index) => {
+                        return (
+                          <SearchResultCard
+                            key={index}
+                            pin={this.pin}
+                            pinnedList={this.state.pinned}
+                            dispositif={dispositif}
+                            showPinned={true}
+                          />
+                        );
+                      }) :
+                      (
+                        <NoResultPlaceholder
+                          restart={this.restart}
+                          writeNew={this.writeNew}
+                        />
+                      ) 
+                      }
+                  </ThemeListContainer>
+                </ThemeContainer>
             ) : (
               <ThemeContainer>
                 {langueCode !== "fr" || filterLanguage !== "" ? (
@@ -1572,7 +1905,7 @@ export class AdvancedSearch extends Component {
                     : 2
                 }
               >
-                {this.state.chargingArray.map((dispositif, index) => {
+                {this.state.chargingArray.map((_, index) => {
                   return <LoadingCard key={index} />;
                 })}
               </ThemeListContainer>
@@ -1648,7 +1981,7 @@ export const ResponsiveFooter = (props) => {
           size="xlarge"
           onClick={props.toggleDisplayAll}
           className="close-arrow"
-          fill={variables.grisFonce}
+          fill={colors.grisFonce}
         />
       </div>
     )

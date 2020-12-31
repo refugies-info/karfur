@@ -3,17 +3,13 @@ import { Spinner } from "reactstrap";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import _ from "lodash";
-
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-
 import {
   toggleTTSActionCreator,
   toggleSpinner,
 } from "../../../services/Tts/tts.actions";
-
 import "./AudioBtn.scss";
-import variables from "scss/colors.scss";
-
+import { colors } from "colors";
 class AudioBtn extends Component {
   toggleAudio = () => {
     this.props.toggleAudio();
@@ -21,6 +17,7 @@ class AudioBtn extends Component {
 
   render() {
     const { showAudioSpinner, ttsActive } = this.props;
+
     if (["fr", "en", "ar", "ru"].includes(_.get(this.props, "i18n.language"))) {
       return (
         <div
@@ -32,7 +29,7 @@ class AudioBtn extends Component {
           ) : (
             <EVAIcon
               name={"volume-up" + (ttsActive ? "" : "-outline")}
-              fill={ttsActive ? "#FFFFFF" : variables.noir}
+              fill={ttsActive ? "#FFFFFF" : colors.noir}
               id="audioBtn"
               className="ml-15"
             />

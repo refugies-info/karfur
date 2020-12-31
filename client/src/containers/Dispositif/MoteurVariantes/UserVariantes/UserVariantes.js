@@ -10,7 +10,7 @@ import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 
 import "./UserVariantes.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 class UserVariantes extends Component {
   state = {
@@ -106,7 +106,7 @@ class UserVariantes extends Component {
           <div className="bandeau-haut">
             <EVAIcon
               name="options-2-outline"
-              fill={variables.noir}
+              fill={colors.noir}
               className="icone-jaune mr-10"
             />
             <div className="contenu-bandeau">
@@ -186,7 +186,7 @@ class UserVariantes extends Component {
                   type="validate"
                   onClick={this.validateCriteres}
                   name="checkmark-circle-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 >
                   Valider
                 </FButton>

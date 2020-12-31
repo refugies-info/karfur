@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { UserStructureActions } from "./userStructure.actions";
-import { Structure } from "../../@types/interface";
+import { Structure } from "../../types/interface";
 
 export type UserStructureState = Structure | null;
 
@@ -10,5 +10,5 @@ export const structureReducer = createReducer<
   UserStructureState,
   UserStructureActions
 >(initialUserStructureState, {
-  SET_USER_STRUCTURE: (state, action) => action.payload,
+  SET_USER_STRUCTURE: (_, action) => action.payload,
 });

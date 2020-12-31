@@ -1,5 +1,5 @@
 import { RootState } from "../rootReducer";
-import { SimplifiedStructureForAdmin } from "../../@types/interface";
+import { SimplifiedStructureForAdmin } from "../../types/interface";
 import { ObjectId } from "mongodb";
 
 export const allStructuresSelector = (

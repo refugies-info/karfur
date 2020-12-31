@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {
   Structure,
   DetailedOpeningHours,
-} from "../../../../../@types/interface";
+} from "../../../../../types/interface";
 import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
 import { days, departmentsData } from "./data";

@@ -2,7 +2,7 @@ import React from "react";
 
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 export const languages = [
   {
@@ -101,7 +101,7 @@ export const avancement_actions = {
   title: "Notifications",
   headers: [
     // eslint-disable-next-line react/jsx-key
-    <EVAIcon name="bell-outline" fill={variables.noir} />,
+    <EVAIcon name="bell-outline" fill={colors.noir} />,
     "Titre",
     "Mon rôle",
     "Type",

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Structure } from "../../../../../@types/interface";
+import { Structure } from "../../../../../types/interface";
 import { activities } from "./data";
 import _ from "lodash";
 import { filtres } from "../../../../Dispositif/data";

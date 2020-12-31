@@ -7,6 +7,7 @@ import Autocomplete from "react-google-autocomplete";
 import FSearchBtn from "../../../components/FigmaUI/FSearchBtn/FSearchBtn";
 import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
+import i18n from "../../../i18n"
 
 import "./SearchItem.scss";
 // import variables from 'scss/colors.scss';
@@ -21,7 +22,6 @@ export class SearchItem extends Component {
     isMounted: false,
     ville: "",
     villeAuto: "",
-    geoSearch: false,
   };
 
   componentDidMount() {
@@ -29,8 +29,10 @@ export class SearchItem extends Component {
   }
 
   onPlaceSelected = (place) => {
+    if (place.formatted_address) {
     this.setState({ ville: place.formatted_address });
     this.props.selectParam(this.props.keyValue, place);
+    }
   };
 
   toggle = () =>
@@ -40,6 +42,7 @@ export class SearchItem extends Component {
   handleChange = (e) => this.setState({ [e.currentTarget.id]: e.target.value });
   initializeVille = () => this.setState({ ville: "", villeAuto: "" });
 
+
   selectOption = (subi) => {
     this.props.selectParam(this.props.keyValue, subi);
     this.toggle();
@@ -48,6 +51,8 @@ export class SearchItem extends Component {
   render() {
     const { t, item, keyValue, isBigDesktop } = this.props;
     const { dropdownOpen, isMounted, ville, villeAuto } = this.state;
+    const isRTL = ["ar", "ps", "fa"].includes(i18n.language)
+
 
     return (
       <div className="search-col">
@@ -58,7 +63,7 @@ export class SearchItem extends Component {
         >
           {t("SearchItem." + item.title, item.title)}
         </span>
-        {item.queryName === "localisation" && ville !== "" ? (
+        {item.queryName === "localisation" && ville !== "" && this.props.geoSearch ? (
           <FSearchBtn
             className={
               "mr-10 in-header search-filter " +
@@ -66,7 +71,7 @@ export class SearchItem extends Component {
               (item.active ? "active " : "")
             }
           >
-            {ville.slice(0, 20) + (ville.length > 20 ? "..." : "")}
+            {ville ? ville.slice(0, 20) + (ville.length > 20 ? "..." : "") : null}
             {item.active && (
               <EVAIcon
                 name="close-outline"
@@ -82,7 +87,7 @@ export class SearchItem extends Component {
           </FSearchBtn>
         ) : item.queryName === "localisation" &&
           ville === "" &&
-          this.state.geoSearch ? (
+          this.props.geoSearch ? (
           isMounted && (
             <ReactDependentScript
               loadingComponent={<div>Chargement de Google Maps...</div>}
@@ -108,7 +113,7 @@ export class SearchItem extends Component {
                     (item.active ? "active " : "") +
                     (isBigDesktop ? "" : "search-btn-small")
                   }
-                  onBlur={() => ville === "" && villeAuto === "" && this.setState({geoSearch: false})}
+                  onBlur={() => ville === "" && villeAuto === "" && this.props.switchGeoSearch(false)}
                   placeholder={item.placeholder}
                   id="villeAuto"
                   value={villeAuto}
@@ -145,11 +150,10 @@ export class SearchItem extends Component {
             </ReactDependentScript>
           )
         ) : item.queryName === "localisation" &&
-          ville === "" &&
-          !this.state.geoSearch ? (
+          !this.props.geoSearch ? (
           <FSearchBtn
             onClick={() => {
-              this.setState({ geoSearch: true });
+              this.props.switchGeoSearch(true);
             }}
             className={
               "mr-10 in-header search-filter " +
@@ -183,7 +187,8 @@ export class SearchItem extends Component {
                 <div
                   style={{
                     display: "flex",
-                    marginRight: 10,
+                    marginRight: isRTL ? 0 : 10,
+                    marginLeft: isRTL ? 10 : 0,
                     justifyContent: "center",
                     alignItems: "center",
                   }}
@@ -243,7 +248,8 @@ export class SearchItem extends Component {
                           <div
                             style={{
                               display: "flex",
-                              marginRight: 10,
+                              marginRight: isRTL ? 0 : 10,
+                              marginLeft: isRTL ? 10 : 0,
                               justifyContent: "center",
                               alignItems: "center",
                             }}

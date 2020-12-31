@@ -1,4 +1,4 @@
-import { SimplifiedStructureForAdmin } from "../../@types/interface";
+import { SimplifiedStructureForAdmin } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { AllStructuresActions } from "./allStructures.actions";
 
@@ -10,5 +10,5 @@ export const allStructuresReducer = createReducer<
   AllStructuresState,
   AllStructuresActions
 >(initialAllStructuresState, {
-  SET_ALL_STRUCTURES: (state, action) => action.payload,
+  SET_ALL_STRUCTURES: (_, action) => action.payload,
 });

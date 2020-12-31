@@ -63,7 +63,7 @@ class RejectionModal extends Component {
                       <div className="texte-validationHover">
                         <b>Sera ajouté en tant que membre</b>
                       </div> :
-                      <FButton type="light-action" name="person-add-outline" fill={variables.noir} onClick={this.addMember}>
+                      <FButton type="light-action" name="person-add-outline" fill={colors.noir} onClick={this.addMember}>
                         Ajouter en tant que membre
                       </FButton>}
                   </div>

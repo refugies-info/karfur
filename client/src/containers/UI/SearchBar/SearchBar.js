@@ -10,7 +10,7 @@ import { withTranslation } from "react-i18next";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./SearchBar.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const escapeRegexCharacters = (str) =>
   str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -133,7 +133,7 @@ export class SearchBar extends React.Component {
               <span>{createNewCta || "Créer une nouvelle structure"}</span>
             </span>
             <span>
-              <EVAIcon name="plus-circle-outline" fill={variables.grisFonce} />
+              <EVAIcon name="plus-circle-outline" fill={colors.grisFonce} />
             </span>
           </span>
         );
@@ -178,7 +178,7 @@ export class SearchBar extends React.Component {
           </span>
           {withEye && (
             <span className="oeil-btn">
-              <EVAIcon name="eye-outline" fill={variables.noir} />
+              <EVAIcon name="eye-outline" fill={colors.noir} />
             </span>
           )}
         </span>

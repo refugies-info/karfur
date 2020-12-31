@@ -3,7 +3,7 @@ import {
   FETCH_ALL_DISPOSITIFS,
 } from "./allDispositifs.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { SimplifiedDispositif } from "../../@types/interface";
+import { SimplifiedDispositif } from "../../types/interface";
 
 export const setAllDispositifsActionsCreator = (
   value: SimplifiedDispositif[]

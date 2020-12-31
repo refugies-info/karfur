@@ -15,7 +15,7 @@ import { fetchUserActionCreator } from "../../services/User/user.actions";
 import styled from "styled-components";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 import { Gauge } from "../../components/UI/Gauge/Gauge";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,
@@ -343,7 +343,7 @@ export class Register extends Component {
               className="footer-btn"
               type="help"
               name="question-mark-circle-outline"
-              fill={variables.noir}
+              fill={colors.noir}
             >
               {t("Login.Centre d'aide", "Centre d'aide")}
             </FButton>

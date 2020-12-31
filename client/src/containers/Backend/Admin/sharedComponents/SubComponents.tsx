@@ -2,19 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { ObjectId } from "mongodb";
 import { limitNbCaracters } from "../../../../lib";
-import { correspondingStatus, progressionData } from "../data";
+import { correspondingStatus, progressionData } from "../AdminContenu/data";
 import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
-// @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 
 const Container = styled.div`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
   color: ${(props) =>
-    props.isDarkBackground ? variables.blancSimple : variables.darkColor};
+    props.isDarkBackground ? colors.blancSimple : colors.darkColor};
   background-color: ${(props) =>
-    props.isDarkBackground ? variables.darkColor : variables.blancSimple};
+    props.isDarkBackground ? colors.darkColor : colors.blancSimple};
   padding: 8px;
   border-radius: 6px;
   width: fit-content;
@@ -67,9 +66,9 @@ const StructureContainer = styled.div`
 const getStructureNameAndStatus = (
   sponsor: SimplifiedStructure | null
 ): { structureName: string; statusColor: string } => {
-  const red = variables.error;
-  const orange = variables.orange;
-  const green = variables.vertValidation;
+  const red = colors.error;
+  const orange = colors.orange;
+  const green = colors.validationHover;
 
   if (!sponsor || !sponsor.nom)
     return { structureName: "Sans structure", statusColor: red };
@@ -126,8 +125,7 @@ export const StyledStatusContainer = styled.div`
   font-size: 12px;
   line-height: 15px;
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
-  color: ${(props) =>
-    props.textColor ? props.textColor : variables.blancSimple};
+  color: ${(props) => (props.textColor ? props.textColor : colors.blancSimple)};
 `;
 const getColorAndStatus = (text: string) => {
   const correspondingStatusElement = correspondingStatus.filter(
@@ -152,8 +150,8 @@ const getColorAndStatus = (text: string) => {
 
   return {
     status: "Nouveau !",
-    color: variables.bleuCharte,
-    textColor: variables.bleuCharte,
+    color: colors.bleuCharte,
+    textColor: colors.bleuCharte,
   };
 };
 export const StyledStatus = (props: {
@@ -165,7 +163,7 @@ export const StyledStatus = (props: {
   disabled?: boolean;
 }) => {
   const color = props.overrideColor
-    ? variables.cardColor
+    ? colors.cardColor
     : props.color
     ? props.color
     : getColorAndStatus(props.text).color;
@@ -175,7 +173,7 @@ export const StyledStatus = (props: {
     : getColorAndStatus(props.text).status;
 
   const textColor = props.overrideColor
-    ? variables.blancSimple
+    ? colors.blancSimple
     : props.textColor
     ? props.textColor
     : getColorAndStatus(props.text).textColor;
@@ -193,7 +191,7 @@ export const StyledStatus = (props: {
 const ButtonContainer = styled.div`
   width: 40px;
   height: 40px;
-  background-color: ${variables.grisFonce};
+  background-color: ${colors.grisFonce};
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -206,7 +204,7 @@ const ButtonContainer = styled.div`
 
   &:hover {
     background-color: ${(props) =>
-      props.disabled ? variables.grisFonce : props.hoverColor};
+      props.disabled ? colors.grisFonce : props.hoverColor};
   }
 `;
 export const ValidateButton = (props: {
@@ -216,23 +214,20 @@ export const ValidateButton = (props: {
   <ButtonContainer
     onClick={props.onClick}
     disabled={props.disabled}
-    hoverColor={variables.validationHover}
+    hoverColor={colors.validationHover}
+    testID="validate-button"
   >
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon
-        name="checkmark-outline"
-        fill={variables.blancSimple}
-        size="20"
-      />
+      <EVAIcon name="checkmark-outline" fill={colors.blancSimple} size="20" />
     </div>
   </ButtonContainer>
 );
 
 export const SeeButton = (props: { burl: string }) => (
-  <ButtonContainer hoverColor={variables.darkColor}>
+  <ButtonContainer hoverColor={colors.darkColor}>
     <a href={props.burl} target="_blank" rel="noopener noreferrer">
       <div style={{ marginBottom: "4px" }}>
-        <EVAIcon name="eye-outline" fill={variables.blancSimple} size="20" />
+        <EVAIcon name="eye-outline" fill={colors.blancSimple} size="20" />
       </div>
     </a>
   </ButtonContainer>
@@ -244,20 +239,21 @@ export const DeleteButton = (props: {
 }) => (
   <ButtonContainer
     onClick={props.onClick}
-    hoverColor={variables.error}
+    hoverColor={colors.error}
     disabled={props.disabled}
+    testID="delete-button"
   >
     <div style={{ marginBottom: "4px" }}>
-      <EVAIcon name="trash-outline" fill={variables.blancSimple} size="20" />
+      <EVAIcon name="trash-outline" fill={colors.blancSimple} size="20" />
     </div>
   </ButtonContainer>
 );
 
 const FilterButtonContainer = styled.div`
   background: ${(props) =>
-    props.isSelected ? variables.darkColor : variables.blancSimple};
+    props.isSelected ? colors.darkColor : colors.blancSimple};
   color: ${(props) =>
-    props.isSelected ? variables.blancSimple : variables.darkColor};
+    props.isSelected ? colors.blancSimple : colors.darkColor};
   border-radius: 12px;
   font-weight: normal;
   font-size: 16px;
@@ -298,7 +294,7 @@ export const TabHeader = (props: {
   <StyledTabHeader isSortedHeader={props.isSortedHeader} order={props.order}>
     {props.name}
     {props.order && (
-      <EVAIcon name={`chevron-${props.sens}`} fill={variables.noir} />
+      <EVAIcon name={`chevron-${props.sens}`} fill={colors.noir} />
     )}
   </StyledTabHeader>
 );

@@ -7,7 +7,7 @@ import {
   SET_TRANSLATIONS,
 } from "../Translation/translation.actionTypes";
 import { ActionType, action } from "typesafe-actions";
-import { Translation } from "../../@types/interface";
+import { Translation } from "../../types/interface";
 
 export const fetchTranslationsActionCreator = (
   itemId: string,

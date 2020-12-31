@@ -24,7 +24,7 @@ import { breakpoints } from "utils/breakpoints.js";
 import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
 
 import "./StructureCard.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 moment.locale("fr");
 
@@ -176,7 +176,7 @@ class StructureCard extends Component {
                                   ? "file-text"
                                   : "question-mark-circle") + "-outline"
                               }
-                              fill={variables.noir}
+                              fill={colors.noir}
                             />
                           )}
                           <span className="float-right">

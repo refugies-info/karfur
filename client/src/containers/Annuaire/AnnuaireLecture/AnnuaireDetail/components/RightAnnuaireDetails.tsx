@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Dispositif } from "../../../../../@types/interface";
+import { Dispositif } from "../../../../../types/interface";
 import { ObjectId } from "mongodb";
 import SearchResultCard from "../../../../AdvancedSearch/SearchResultCard";
 import NoResultsBackgroundImage from "../../../../../assets/no_results.svg";

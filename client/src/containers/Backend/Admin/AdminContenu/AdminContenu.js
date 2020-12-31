@@ -6,10 +6,10 @@ import Swal from "sweetalert2";
 import {
   fetchAllDispositifsActionsCreator,
   setAllDispositifsActionsCreator,
-} from "../../../services/AllDispositifs/allDispositifs.actions";
-import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
+} from "../../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchActiveDispositifsActionsCreator } from "../../../../services/ActiveDispositifs/activeDispositifs.actions";
 import { table_contenu, correspondingStatus } from "./data";
-import API from "../../../utils/API";
+import API from "../../../../utils/API";
 import {
   StyledSort,
   StyledTitle,
@@ -17,12 +17,11 @@ import {
   Content,
   FigureContainer,
   SearchBarContainer,
-} from "./StyledAdminContenu";
-import "./AdminContenu.scss";
-import variables from "scss/colors.scss";
-import { allDispositifsSelector } from "../../../services/AllDispositifs/allDispositifs.selector";
-import { isLoadingSelector } from "../../../services/LoadingStatus/loadingStatus.selectors";
-import { LoadingStatusKey } from "../../../services/LoadingStatus/loadingStatus.actions";
+} from "../sharedComponents/StyledAdmin";
+import { colors } from "colors";
+import { allDispositifsSelector } from "../../../../services/AllDispositifs/allDispositifs.selector";
+import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { LoadingAdminContenu } from "./components/LoadingAdminContenu";
 import {
   TypeContenu,
@@ -34,9 +33,9 @@ import {
   DeleteButton,
   FilterButton,
   TabHeader,
-} from "./components/SubComponents";
-import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+} from "../sharedComponents/SubComponents";
+import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
 import AsyncCSV from "./AsyncCSV";
@@ -194,8 +193,8 @@ export const AdminContenu = () => {
       text: "La suppression d'un dispositif est irréversible",
       type: "question",
       showCancelButton: true,
-      confirmButtonColor: variables.rouge,
-      cancelButtonColor: variables.vert,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
       confirmButtonText: "Oui, le supprimer",
       cancelButtonText: "Annuler",
     }).then((result) => {
@@ -251,8 +250,8 @@ export const AdminContenu = () => {
           "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
         type: "question",
         showCancelButton: true,
-        confirmButtonColor: variables.rouge,
-        cancelButtonColor: variables.vert,
+        confirmButtonColor: colors.rouge,
+        cancelButtonColor: colors.vert,
         confirmButtonText: "Oui, le valider",
         cancelButtonText: "Annuler",
       });
@@ -286,7 +285,7 @@ export const AdminContenu = () => {
       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
       : 0;
   return (
-    <div className="admin-contenu animated fadeIn">
+    <div>
       <SearchBarContainer>
         <CustomSearchBar
           value={search}
@@ -304,7 +303,7 @@ export const AdminContenu = () => {
           Ajouter un contenu
         </FButton>
       </SearchBarContainer>
-       <AsyncCSV />
+      <AsyncCSV />
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
@@ -427,7 +426,7 @@ export const AdminContenu = () => {
                           !element.mainSponsor ||
                           element.mainSponsor.status !== "Actif"
                         }
-                        hoverColor={variables.validationHover}
+                        hoverColor={colors.validationHover}
                       />
                       <DeleteButton
                         onClick={() => prepareDeleteContrib(element)}

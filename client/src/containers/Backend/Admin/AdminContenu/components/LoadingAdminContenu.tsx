@@ -1,24 +1,30 @@
 import React from "react";
-// import { Table } from "reactstrap";
-// import { table_contenu, correspondingStatus } from "../data";
-// import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-// import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
-// // @ts-ignore
-// import variables from "scss/colors.scss";
-// import { FilterButton } from "./SubComponents";
+import {
+  StyledHeader,
+  StyledTitle,
+  Content,
+  FigureContainer,
+  StyledSort,
+} from "../../sharedComponents/StyledAdmin";
+import { Table } from "reactstrap";
+import { table_contenu, correspondingStatus } from "../data";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import EVAIcon from "../../../../../components/UI/EVAIcon/EVAIcon";
+import { colors } from "colors";
+import { FilterButton } from "../../sharedComponents/SubComponents";
 
-export const LoadingAdminStructures = () => {
-  //   const arrayLines = new Array(12).fill("a");
-  //   const arrayContent = new Array(5).fill("a");
+export const LoadingAdminContenu = () => {
+  const arrayLines = new Array(12).fill("a");
+  const arrayContent = new Array(5).fill("a");
 
-  //   const compare = (a: any, b: any) => {
-  //     const orderA = a.order;
-  //     const orderB = b.order;
-  //     return orderA > orderB ? 1 : -1;
-  //   };
+  const compare = (a: any, b: any) => {
+    const orderA = a.order;
+    const orderB = b.order;
+    return orderA > orderB ? 1 : -1;
+  };
   return (
     <>
-      {/* <StyledHeader>
+      <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{"..."}</FigureContainer>
         <StyledSort>
@@ -31,9 +37,9 @@ export const LoadingAdminStructures = () => {
             />
           ))}
         </StyledSort>
-      </StyledHeader> */}
-      <div>loading</div>
-      {/* <Table responsive borderless>
+      </StyledHeader>
+      <Content>
+        <Table responsive borderless>
           <thead>
             <tr>
               {table_contenu.headers.map((element, key) => (
@@ -43,7 +49,7 @@ export const LoadingAdminStructures = () => {
                     <EVAIcon
                       // @ts-ignore
                       name={"chevron-" + (element.croissant ? "up" : "down")}
-                      fill={variables.noir}
+                      fill={colors.noir}
                       className="sort-btn"
                     />
                   )}
@@ -52,7 +58,7 @@ export const LoadingAdminStructures = () => {
             </tr>
           </thead>
           <tbody>
-            {arrayLines.map((element, key) => {
+            {arrayLines.map((_, key) => {
               return (
                 <tr key={key} className={"bg-blancSimple"}>
                   <td>
@@ -65,7 +71,7 @@ export const LoadingAdminStructures = () => {
                       <Skeleton width={270} count={1} />
                     </SkeletonTheme>
                   </td>
-                  {arrayContent.map((element, key) => (
+                  {arrayContent.map((_, key) => (
                     <td key={key}>
                       <SkeletonTheme color="#CDCDCD">
                         <Skeleton width={70} count={1} />
@@ -76,7 +82,8 @@ export const LoadingAdminStructures = () => {
               );
             })}
           </tbody>
-        </Table> */}
+        </Table>
+      </Content>
     </>
   );
 };
