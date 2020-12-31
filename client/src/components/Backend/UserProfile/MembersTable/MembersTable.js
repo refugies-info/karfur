@@ -120,13 +120,14 @@ const membersTable = (props) => {
           <Col>
             <h1>{props.title}</h1>
           </Col>
-          {(
+          {((
             (
               (props.structure.membres || []).find(
                 (x) => x.userId === props.user._id
               ) || {}
             ).roles || []
-          ).some((y) => y === "administrateur" || y === "contributeur") && (
+          ).some((y) => y === "administrateur" || y === "contributeur") ||
+            props.isAdmin) && (
             <Col
               xl="auto"
               lg="auto"

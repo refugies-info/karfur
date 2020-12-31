@@ -156,7 +156,8 @@ export const getAllStructures = async (req: {}, res: Res) => {
         : 0;
       const responsablesArray = jsonStructure.membres
         ? jsonStructure.membres.filter(
-            (user) => user.roles && user.roles.includes("administrateur")
+            (user) =>
+              user.roles && user.userId && user.roles.includes("administrateur")
           )
         : [];
       const responsableId =

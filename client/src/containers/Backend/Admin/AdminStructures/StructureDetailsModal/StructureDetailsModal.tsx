@@ -20,6 +20,7 @@ import { correspondingStatus } from "../data";
 import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 moment.locale("fr");
 
@@ -53,13 +54,16 @@ const RightLogoContainer = styled.div`
   margin-left: 32px;
   margin-bottom: 24px;
 `;
-interface Props {
+interface Props extends RouteComponentProps {
   show: boolean;
   toggleModal: () => void;
   selectedStructure: SimplifiedStructureForAdmin | null;
   fetchStructures: () => void;
 }
-export const StructureDetailsModal = (props: Props) => {
+
+const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
+  props: Props
+) => {
   const [
     structure,
     setStructure,
@@ -249,7 +253,20 @@ export const StructureDetailsModal = (props: Props) => {
       {moment(structure.created_at).format("LLL")}
       <BottomRowContainer>
         <div>
-          <FButton className="mr-8" type="dark" name="external-link">
+          <FButton
+            className="mr-8"
+            type="dark"
+            name="external-link"
+            onClick={() => {
+              props.history.push({
+                pathname: "/backend/user-dash-structure-selected",
+                state: {
+                  admin: true,
+                  structure: structure._id,
+                },
+              });
+            }}
+          >
             Page
           </FButton>
           {props.selectedStructure &&
@@ -288,3 +305,5 @@ export const StructureDetailsModal = (props: Props) => {
     </Modal>
   );
 };
+
+export const StructureDetailsModal = withRouter(StructureDetailsModalComponent);

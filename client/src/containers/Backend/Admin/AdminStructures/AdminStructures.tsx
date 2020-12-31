@@ -58,6 +58,7 @@ import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
+import { logger } from "logger";
 
 // import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 // import FButton from "../../../components/FigmaUI/FButton/FButton";
@@ -243,6 +244,9 @@ export const AdminStructures = () => {
     structures
   );
 
+  logger.info("structures", {
+    structures: structures.filter((stru) => stru.status === "En attente"),
+  });
   const nbNonDeletedStructures = structures.filter(
     (structure) => structure.status !== "Supprimé"
   ).length;
@@ -356,6 +360,7 @@ export const AdminStructures = () => {
           </tbody>
         </Table>
       </Content>
+
       <StructureDetailsModal
         show={showStructureDetailsModal}
         toggleModal={() => setSelectedStructureAndToggleModal(null)}
