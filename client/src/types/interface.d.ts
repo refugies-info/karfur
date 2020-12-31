@@ -5,6 +5,10 @@ export interface RequestReturn<Y> {
   data: { data: Y };
 }
 
+export interface Event {
+  target: { id: string; value: string };
+}
+
 export interface SimplifiedDispositif {
   titreInformatif: string;
   titreMarque?: string;

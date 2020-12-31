@@ -1,8 +1,6 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { SimplifiedStructureForAdmin } from "types/interface";
+import { SimplifiedStructureForAdmin, Event } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
 import "./StructureDetailsModal.scss";
 import FInput from "components/FigmaUI/FInput/FInput";
@@ -20,7 +18,6 @@ import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-
 moment.locale("fr");
 
 const Title = styled.div`
@@ -97,6 +94,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   };
 
   const handleFileInputChange = (event: any) => {
+    if (!structure) return;
     setUploading(true);
     const formData = new FormData();
     // @ts-ignore
@@ -109,7 +107,6 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         };
       }) => {
         const imgData = data_res.data.data;
-        // @ts-ignore
         setStructure({
           ...structure,
           picture: {
@@ -119,21 +116,24 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           },
         });
         setUploading(false);
+        return;
       }
     );
   };
 
-  const modifyStatus = (status: string) =>
-    // @ts-ignore
-    setStructure({ ...structure, status });
+  const modifyStatus = (status: string) => {
+    if (!structure) return;
+    const updatedStructure = { ...structure, status };
+    return setStructure(updatedStructure);
+  };
 
-  const onChange = (e: Event) =>
-    // @ts-ignore
+  const onChange = (e: Event) => {
+    if (!structure) return;
     setStructure({ ...structure, [e.target.id]: e.target.value });
+  };
   const secureUrl =
     structure && structure.picture && structure.picture.secure_url;
 
-  console.log("structure", structure);
   if (!structure)
     return (
       <Modal
@@ -163,11 +163,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       </InputContainer>
       <LogoContainer>
         <LogoWrapper>
-          {secureUrl ? (
-            <img className="sponsor-img" src={secureUrl} />
-          ) : (
-            <img className="sponsor-img" src={noStructure} />
-          )}
+          <img className="sponsor-img" src={secureUrl || noStructure} />
         </LogoWrapper>
         <RightLogoContainer>
           <FButton className="upload-btn" type="theme" name="upload-outline">

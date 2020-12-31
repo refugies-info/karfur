@@ -140,6 +140,22 @@ const structure3 = {
   created_at: 1500,
 };
 
+const structure4 = {
+  id: "id",
+  dispositifsAssocies: [dispositif1, dispositif2, dispositif3, dispositif4],
+  membres: [
+    { roles: ["administrateurs"] },
+    { userId: "id2", roles: ["redacteur"] },
+  ],
+  nom: "nom",
+  status: "En attente",
+  picture: { secure_url: "secure_url" },
+  contact: "contact",
+  phone_contact: "phone_contact",
+  mail_contact: "mail_contact",
+  created_at: 1500,
+};
+
 describe("getStructureById", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -404,6 +420,38 @@ describe("getAllStructures", () => {
     getStructuresFromDB.mockResolvedValueOnce([
       {
         toJSON: () => structure3,
+      },
+    ]);
+    const res = mockResponse();
+    await getAllStructures({}, res);
+
+    expect(getUserById).not.toHaveBeenCalled();
+
+    expect(res.status).toHaveBeenCalledWith(200);
+    const result = [
+      {
+        id: "id",
+        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+        nbMembres: 2,
+        nom: "nom",
+        status: "En attente",
+        picture: { secure_url: "secure_url" },
+        contact: "contact",
+        phone_contact: "phone_contact",
+        mail_contact: "mail_contact",
+        created_at: 1500,
+        responsable: null,
+      },
+    ];
+    expect(res.json).toHaveBeenCalledWith({
+      data: result,
+    });
+  });
+
+  it("should call getStructuresFromDB and getUserById and return a 200 (admin without userId)", async () => {
+    getStructuresFromDB.mockResolvedValueOnce([
+      {
+        toJSON: () => structure4,
       },
     ]);
     const res = mockResponse();
