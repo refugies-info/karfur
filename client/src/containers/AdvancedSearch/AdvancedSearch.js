@@ -959,7 +959,10 @@ export class AdvancedSearch extends Component {
     );
   };
 
-  desactiver = (key) =>
+  desactiver = (key) => {
+    if (key === 1) {
+      this.setState({filterVille: ""});
+    }
     this.setState(
       {
         recherche: this.state.recherche.map((x, i) =>
@@ -968,6 +971,7 @@ export class AdvancedSearch extends Component {
       },
       () => this.queryDispositifs()
     );
+  }
   toggleDisplayAll = () =>
     this.setState((pS) => ({ displayAll: !pS.displayAll }));
   toggleDropdownTri = () =>
