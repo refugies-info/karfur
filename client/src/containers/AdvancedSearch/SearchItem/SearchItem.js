@@ -28,6 +28,12 @@ export class SearchItem extends Component {
     this.setState({ isMounted: true });
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.geoSearch !== prevProps.geoSearch && !this.props.geoSearch) {
+      this.setState({ville: "", villeAuto: ""});
+    }
+  }
+
   onPlaceSelected = (place) => {
     if (place.formatted_address) {
     this.setState({ ville: place.formatted_address });
