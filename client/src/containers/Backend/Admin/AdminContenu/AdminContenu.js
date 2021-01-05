@@ -117,7 +117,7 @@ export const AdminContenu = () => {
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, "")
               .toLowerCase()
-              .includes(search)
+              .includes(search.toLowerCase())
         )
       : dispositifs;
 
