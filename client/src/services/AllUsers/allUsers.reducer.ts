@@ -10,5 +10,6 @@ export const allUsersReducer = createReducer<AllUsersState, AllUsersActions>(
   initialAllUsersState,
   {
     SET_ALL_USERS: (_, action) => action.payload,
+    // SET_RESPO :
   }
 );

@@ -5,4 +5,8 @@
   border: none;
   background: #f2f2f2;
   padding: 32px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

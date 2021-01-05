@@ -12,6 +12,7 @@ export interface Event {
 export interface SimplifiedUser {
   username: string;
   picture: Picture;
+  status: string;
 }
 export interface SimplifiedDispositif {
   titreInformatif: string;

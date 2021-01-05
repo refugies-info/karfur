@@ -5,4 +5,4 @@ export const getUserById = async (id: ObjectId) =>
   await User.findOne({ _id: id }, { username: 1, picture: 1 });
 
 export const getAllUsersFromDB = async () =>
-  await User.find({}, { username: 1, picture: 1 });
+  await User.find({}, { username: 1, picture: 1, status: 1 });
