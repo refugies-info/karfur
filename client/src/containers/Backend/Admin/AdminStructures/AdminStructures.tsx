@@ -35,6 +35,7 @@ import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
+import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
 
 moment.locale("fr");
 declare const window: Window;
@@ -52,6 +53,8 @@ export const AdminStructures = () => {
   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
     false
   );
+
+  const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [
     selectedStructure,
     setSelectedStructure,
@@ -308,6 +311,7 @@ export const AdminStructures = () => {
                   <ResponsableComponent
                     responsable={element.responsable}
                     canModifyRespo={false}
+                    onClick={() => {}}
                   />
                 </td>
                 <td className="align-middle">
@@ -327,6 +331,12 @@ export const AdminStructures = () => {
         toggleModal={() => setSelectedStructureAndToggleModal(null)}
         selectedStructure={selectedStructure}
         fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
+        toggleRespoModal={() => setSelectFirstRespoModal(true)}
+      />
+
+      <SelectFirstResponsableModal
+        show={showSelectFirstRespoModal}
+        toggleModal={() => setSelectFirstRespoModal(false)}
       />
     </div>
   );

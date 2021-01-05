@@ -55,6 +55,7 @@ interface Props extends RouteComponentProps {
   toggleModal: () => void;
   selectedStructure: SimplifiedStructureForAdmin | null;
   fetchStructures: () => void;
+  toggleRespoModal: () => void;
 }
 
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
@@ -188,6 +189,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         <ResponsableComponent
           responsable={structure.responsable}
           canModifyRespo={true}
+          onClick={props.toggleRespoModal}
         />
       </div>
 

@@ -20,6 +20,7 @@ export const StructureName = styled.div`
 interface Props {
   responsable: Responsable | null;
   canModifyRespo: boolean;
+  onClick: () => void;
 }
 
 export const ResponsableComponent = (props: Props) => {
@@ -39,7 +40,11 @@ export const ResponsableComponent = (props: Props) => {
         {props.responsable ? (
           props.responsable.username
         ) : (
-          <FButton type="white" name="person-add-outline">
+          <FButton
+            type="white"
+            name="person-add-outline"
+            onClick={props.onClick}
+          >
             Choisir un responsable
           </FButton>
         )}
