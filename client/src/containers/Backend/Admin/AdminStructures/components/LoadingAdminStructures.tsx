@@ -25,7 +25,7 @@ export const LoadingAdminStructures = () => {
   return (
     <>
       <StyledHeader>
-        <StyledTitle>Contenus</StyledTitle>
+        <StyledTitle>Structures</StyledTitle>
         <FigureContainer>{"..."}</FigureContainer>
         <StyledSort>
           {correspondingStatus.sort(compare).map((element) => (
