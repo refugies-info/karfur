@@ -1,7 +1,8 @@
 // @ts-nocheck
-import { getFiguresOnUsers } from "../users.service";
+import { getFiguresOnUsers, getAllUsers } from "../users.service";
 import { User } from "../../../schema/schemaUser";
 import logger from "../../../logger";
+import { getAllUsersFromDB } from "../users.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -11,6 +12,11 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
+jest.mock("../users.repository", () => ({
+  getAllUsersFromDB: jest
+    .fn()
+    .mockResolvedValue([{ username: "user1" }, { username: "user2" }]),
+}));
 jest.mock("../../../logger");
 
 const tradRole = {
@@ -116,5 +122,17 @@ describe("getFiguresOnUsers", () => {
         error: new Error("error"),
       }
     );
+  });
+});
+
+describe("getAllUsers", () => {
+  it("should call getAllUsersFromDB", async () => {
+    const res = mockResponse();
+    await getAllUsers({}, res);
+    expect(getAllUsersFromDB).toHaveBeenCalledWith();
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({
+      data: [{ username: "user1" }, { username: "user2" }],
+    });
   });
 });

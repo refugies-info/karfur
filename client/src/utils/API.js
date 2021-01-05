@@ -269,6 +269,7 @@ export default {
 
   getAllDispositifs: () => axios.get(burl + "/dispositifs/getAllDispositifs"),
   getAllStructures: () => axios.get(burl + "/structures/getAllStructures"),
+  getAllUsers: () => axios.get(burl + "/user/getAllUsers"),
 
   add_tradForReview: (query) => {
     return axios.post(burl + "/traduction/add_tradForReview", query, {
@@ -384,8 +385,12 @@ export default {
     return localStorage.removeItem("token");
   },
   create_csv_dispositifs_length: (params = {}) => {
-    return axios.post(burl + "/dispositifs/create_csv_dispositifs_length", params, {
-      headers: headers,
-    });
+    return axios.post(
+      burl + "/dispositifs/create_csv_dispositifs_length",
+      params,
+      {
+        headers: headers,
+      }
+    );
   },
 };

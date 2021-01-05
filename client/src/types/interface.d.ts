@@ -9,6 +9,10 @@ export interface Event {
   target: { id: string; value: string };
 }
 
+export interface SimplifiedUser {
+  username: string;
+  picture: Picture;
+}
 export interface SimplifiedDispositif {
   titreInformatif: string;
   titreMarque?: string;
