@@ -176,7 +176,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             {secureUrl ? (
               <span>Choisir une autre image</span>
             ) : (
-              <span>Choisir</span>
+              <span>Ajouter un logo</span>
             )}
 
             {uploading && <Spinner color="success" className="ml-10" />}
@@ -185,7 +185,10 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       </LogoContainer>
       <Title>Premier responsable</Title>
       <div style={{ marginBottom: "8px" }}>
-        <ResponsableComponent responsable={structure.responsable} />
+        <ResponsableComponent
+          responsable={structure.responsable}
+          canModifyRespo={true}
+        />
       </div>
 
       <Title>Coordonnées du contact unique</Title>

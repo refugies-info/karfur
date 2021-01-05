@@ -305,7 +305,10 @@ export const AdminStructures = () => {
                   {element.nbMembres}
                 </td>
                 <td className={"align-middle "}>
-                  <ResponsableComponent responsable={element.responsable} />
+                  <ResponsableComponent
+                    responsable={element.responsable}
+                    canModifyRespo={false}
+                  />
                 </td>
                 <td className="align-middle">
                   {element.dispositifsAssocies.length}
