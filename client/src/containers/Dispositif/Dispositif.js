@@ -88,7 +88,6 @@ import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner"
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
-// import { logger } from "logger";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -1526,6 +1525,7 @@ export class Dispositif extends Component {
       autoSave: auto,
     };
     dispositif.mainSponsor = this.state.mainSponsor._id || null;
+    const mainSponsorPopulate = this.state.mainSponsor;
     if (dispositif.typeContenu === "dispositif") {
       let cardElement =
         (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
@@ -1586,7 +1586,7 @@ export class Dispositif extends Component {
       ) {
         dispositif.status = this.state.status;
       } else if (dispositif.mainSponsor) {
-        const mainSponsor = dispositif.mainSponsor;
+        const mainSponsor = mainSponsorPopulate;
         //Si l'auteur appartient à la structure principale je la fait passer directe en validation
         const membre = mainSponsor
           ? (mainSponsor.membres || []).find(
