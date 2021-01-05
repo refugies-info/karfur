@@ -35,7 +35,6 @@ import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
-import { logger } from "logger";
 
 moment.locale("fr");
 declare const window: Window;
@@ -126,7 +125,7 @@ export const AdminStructures = () => {
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, "")
               .toLowerCase()
-              .includes(search)
+              .includes(search.toLowerCase())
         )
       : structures;
 
@@ -216,9 +215,6 @@ export const AdminStructures = () => {
     structures
   );
 
-  logger.info("structures", {
-    structures: structures.filter((stru) => stru.status === "En attente"),
-  });
   const nbNonDeletedStructures = structures.filter(
     (structure) => structure.status !== "Supprimé"
   ).length;
