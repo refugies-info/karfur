@@ -139,7 +139,6 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
       <Modal
         isOpen={props.show}
         toggle={props.toggleModal}
-        size="lg"
         className="structure-details-modal"
       >
         Erreur
@@ -149,7 +148,6 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
     <Modal
       isOpen={props.show}
       toggle={props.toggleModal}
-      size="lg"
       className="structure-details-modal"
     >
       <InputContainer>
