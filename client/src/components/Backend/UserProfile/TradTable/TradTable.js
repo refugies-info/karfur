@@ -12,7 +12,7 @@ import {
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { fakeTraduction } from "../../../../containers/Backend/UserProfile/data";
 
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 const tradTable = (props) => {
@@ -106,7 +106,7 @@ const tradTable = (props) => {
                     {element.avancement === 1 ? (
                       <EVAIcon
                         name="checkmark-circle-2"
-                        fill={variables.vert}
+                        fill={colors.vert}
                       />
                     ) : (
                       <span>
@@ -158,7 +158,7 @@ const tradTable = (props) => {
                   }}
                   type="light-action"
                   name="eye-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 />
               </td>
             </tr>
@@ -171,7 +171,7 @@ const tradTable = (props) => {
               className="align-middle voir-plus"
               onClick={() => props.toggleModal("traducteur")}
             >
-              <Icon name="expand-outline" fill={variables.noir} size="large" />
+              <Icon name="expand-outline" fill={colors.noir} size="large" />
               &nbsp;
               {t("Tables.Voir plus", "Voir plus")}
             </td>
@@ -246,7 +246,7 @@ const tradTable = (props) => {
                 <FButton
                   type="light-action hero"
                   name="play-circle-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   onClick={startTrad}
                 >
                   {t("Tables." + props.overlayBtn, props.overlayBtn)}

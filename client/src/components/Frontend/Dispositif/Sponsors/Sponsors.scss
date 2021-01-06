@@ -5,8 +5,8 @@ $taille: 60px;
 $tailleBig: 80px;
 
 .sponsor-footer {
-  color: $darkColor;
-  background: #ffffff;
+  color: white;
+  background-color: $darkColor;
   padding: 20px 40px;
   @include media-max("lg-limit") {
     width: 116%;
@@ -14,7 +14,8 @@ $tailleBig: 80px;
 
   h5 {
     margin-bottom: 20px;
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 40px;
   }
 
   .col {
@@ -27,15 +28,23 @@ $tailleBig: 80px;
       height: fit-content;
     }
   }
+  .sponsor-img {
+    max-width: 160px;
+    max-height: 110px;
+    &:hover {
+      filter: grayscale(1);
+      cursor: pointer;
+    }
+  }
 
   .image-wrapper {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin: 40px 20px;
     .sponsor-img {
       //max-width:64px;
-      max-height: 80px;
+      max-height: 100px;
       &:hover {
         filter: grayscale(1);
         cursor: pointer;
@@ -115,15 +124,15 @@ $tailleBig: 80px;
 }
 
 .modal.show .modal-dialog.modal-structure {
-  overflow: scroll;
-  max-height: 100vh;
+  overflow: hidden;
+  //max-height: 100vh;
   width: 650px;
   max-width: 60vw;
   background: $blanc;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   @include media-max("tablet-up") {
-    max-width: 100%;
+   // max-width: 100%;
   }
 
   .center-text {
@@ -148,13 +157,20 @@ $tailleBig: 80px;
 
   .warning-bloc {
     border-radius: 12px;
-    padding: 10px 20px 10px 60px;
+    padding: 10px 40px 10px 60px;
     position: relative;
+    color: white;
 
     .info-icon {
       position: absolute;
-      left: 20px;
-      top: 50%;
+      left: 10px;
+      top: 20px;
+      transform: translateY(-50%);
+    }
+    .info-icon-close {
+      position: absolute;
+      right: 10px;
+      top: 20px;
       transform: translateY(-50%);
     }
   }
@@ -217,12 +233,96 @@ $tailleBig: 80px;
     margin-left: auto;
   }
 }
+.btn-footer {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+.upload-btn {
+  position: relative;
+}
+[type="file"] {
+  z-index: 2;
+  cursor: pointer;
+  display: block;
+  font-size: 999px;
+  filter: alpha(opacity=0);
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+}
+
+.image-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin: 0px 8px;
+  .sponsor-img {
+    margin: 0px 8px 0px 0px;
+    max-width: 64px;
+    max-height: 100px;
+    &:hover {
+      filter: grayscale(1);
+      cursor: pointer;
+    }
+  }
+  .delete-icon {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    display: none;
+  }
+  &:hover .delete-icon {
+    display: inherit;
+  }
+}
+
+.form-field {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: $noir;
+  border-radius: 12px;
+
+  &.inline-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 20px;
+  background-color: #ffffff;
+  padding: 16px;
+  }
+  .input-group {
+    margin-top: 10px;
+    input {
+      border-radius: 12px;
+      border: none;
+      padding: 10px 10px 10px 40px;
+    }
+    .input-icon {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      z-index: 4;
+      line-height: 20px;
+    }
+  }
+}
 
 .modal-sponsors .modal-content {
   background: $gris;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   padding: 40px;
+  flex-direction: column;
 
   .form-field {
     margin-bottom: 10px;
@@ -232,8 +332,10 @@ $tailleBig: 80px;
 
     &.inline-div {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      flex-direction: row;
       margin-bottom: 20px;
     }
     .input-group {
@@ -245,7 +347,7 @@ $tailleBig: 80px;
       }
       .input-icon {
         position: absolute;
-        top: 8px;
+        top: 24px;
         left: 10px;
         z-index: 4;
         line-height: 20px;
@@ -261,6 +363,9 @@ $tailleBig: 80px;
     }
   }
   .btn-footer {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
     margin-left: 0px;
     margin-top: 10px;
   }

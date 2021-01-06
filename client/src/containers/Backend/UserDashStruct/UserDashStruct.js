@@ -37,11 +37,11 @@ import DateOffset from "../../../components/Functions/DateOffset";
 import { fetchActiveDispositifsActionsCreator } from "../../../services/ActiveDispositifs/activeDispositifs.actions";
 
 import "./UserDashStruct.scss";
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import {
   setUserStructureActionCreator,
   updateUserStructureActionCreator,
-} from "../../../services/Structure/structure.actions";
+} from "../../../services/UserStructure/userStructure.actions";
 
 moment.locale("fr");
 
@@ -248,6 +248,7 @@ export class UserDashStruct extends Component {
         ((structure || {}).membres || []).find((x) => x.userId === user._id) ||
         {}
       ).roles || [];
+
     let role = roles.includes("administrateur")
       ? "responsable"
       : roles.includes("createur")
@@ -280,7 +281,7 @@ export class UserDashStruct extends Component {
               <div>
                 <EVAIcon
                   name="alert-triangle"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-16 ml-8"
                 />
                 <b>Un nouveau contenu a été attribué à votre structure !</b>
@@ -306,7 +307,7 @@ export class UserDashStruct extends Component {
                   }}
                   type="light-action"
                   name="eye-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                 >
                   Voir le contenu
                 </FButton>
@@ -320,7 +321,7 @@ export class UserDashStruct extends Component {
               <div className="left-side">
                 <EVAIcon
                   name="info"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-16 ml-8"
                 />
                 <b>Recensez votre structure dans l'annuaire de l'intégration</b>
@@ -384,6 +385,7 @@ export class UserDashStruct extends Component {
           users={users}
           structure={structure}
           limit={5}
+          isAdmin={this.props.isAdmin}
           {...avancement_members}
         />
 
@@ -435,6 +437,7 @@ export class UserDashStruct extends Component {
           selected={this.state.selected}
           structure={structure}
           initializeStructure={this.initializeStructure}
+          isAdmin={this.props.isAdmin}
         />
 
         <ReactionLectureModal
@@ -462,7 +465,8 @@ const mapStateToProps = (state) => {
     langues: state.langue.langues,
     user: state.user.user,
     expertTrad: state.user.expertTrad,
-    userStructure: state.structure.userStructure,
+    userStructure: state.userStructure,
+    isAdmin: state.user.admin,
   };
 };
 

@@ -86,13 +86,13 @@ const membersTable = (props) => {
                 {element.added_at ? moment(element.added_at).calendar() : ""}
               </td>
               <td className="align-middle fit-content hideOnPhone">
-                {/* <FButton type="light-action" name="person-outline" fill={variables.noir} onClick={props.upcoming} /> */}
+                {/* <FButton type="light-action" name="person-outline" fill={colors.noir} onClick={props.upcoming} /> */}
               </td>
               <td className="align-middle fit-content hideOnPhone">
-                {/* <FButton type="light-action" name="message-circle-outline" fill={variables.noir} onClick={props.upcoming} /> */}
+                {/* <FButton type="light-action" name="message-circle-outline" fill={colors.noir} onClick={props.upcoming} /> */}
               </td>
               <td className="align-middle fit-content hideOnPhone">
-                {/* <FButton type="light-action" name="eye-outline" fill={variables.noir} onClick={props.upcoming} /> */}
+                {/* <FButton type="light-action" name="eye-outline" fill={colors.noir} onClick={props.upcoming} /> */}
               </td>
             </tr>
           );
@@ -120,13 +120,14 @@ const membersTable = (props) => {
           <Col>
             <h1>{props.title}</h1>
           </Col>
-          {(
+          {((
             (
               (props.structure.membres || []).find(
                 (x) => x.userId === props.user._id
               ) || {}
             ).roles || []
-          ).some((y) => y === "administrateur" || y === "contributeur") && (
+          ).some((y) => y === "administrateur" || y === "contributeur") ||
+            props.isAdmin) && (
             <Col
               xl="auto"
               lg="auto"

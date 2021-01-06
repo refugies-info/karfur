@@ -17,7 +17,7 @@ import Skeleton from "react-loading-skeleton";
 import produce from "immer";
 
 import "./Avancement.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import _ from "lodash";
 
 moment.locale("fr");
@@ -28,6 +28,20 @@ export const StyledStatus = styled.button`
   margin: 10px;
   border: 0px;
   padding: 10px;
+`;
+
+const StyledFirstCell = styled.td`
+  border-radius: 12px 0px 0px 12px;
+  background-color: white;
+`;
+
+const StyledLastCell = styled.td`
+  border-radius: 0px 12px 12px 0px;
+  background-color: white;
+`;
+
+const StyledCell = styled.td`
+  background-color: white;
 `;
 
 export const StyledInput = styled.input`
@@ -321,7 +335,7 @@ export class Avancement extends Component {
     );
   };
 
-  reorder = (key, element) => {
+  reorder = (_, element) => {
     this.setState(
       produce((draft) => {
         draft.ascending = !this.state.ascending;
@@ -396,115 +410,113 @@ export class Avancement extends Component {
         this.props.dispositifs !== prevProps.dispositifs)
     ) {
       traductions = [
-        ...this.props.dispositifs
-          .map((x) => ({
-            _id: x._id,
-            title:
-              (x.titreMarque || "") +
-              (x.titreMarque && x.titreInformatif ? " - " : "") +
-              (x.titreInformatif || ""),
-            nombreMots: x.nbMots,
-            avancement:
-              isExpert ||
-              (this.state.traductionsFaites || []).filter((y) => {
-                return (
-                  y.articleId === x._id &&
-                  y.userId._id === this.props.userId &&
-                  y.status === "À revoir"
-                );
-              }).length > 0
-                ? Math.max(
-                    0,
-                    ...((this.state.traductionsFaites || [])
-                      .filter((y) => {
-                        return (
-                          y.articleId === x._id &&
-                          y.userId._id === this.props.userId
-                        );
-                      })
-                      .map((z) => z.avancement || -1) || [])
-                  )
-                : (this.state.traductionsFaites || []).filter((y) => {
-                    return y.articleId === x._id && y.status === "À revoir";
-                  }).length > 0
-                ? Math.max(
-                    0,
-                    ...((this.state.traductionsFaites || [])
-                      .filter((y) => {
-                        return (
-                          y.articleId === x._id &&
-                          y.userId._id === y.validatorId
-                        );
-                      })
-                      .map((z) => z.avancement || -1) || [])
-                  )
-                : Math.max(
-                    0,
-                    ...((this.state.traductionsFaites || [])
-                      .filter((y) => {
-                        return y.articleId === x._id;
-                      })
-                      .map((z) => z.avancement || -1) || [])
-                  ),
+        ...this.props.dispositifs.map((x) => ({
+          _id: x._id,
+          title:
+            (x.titreMarque || "") +
+            (x.titreMarque && x.titreInformatif ? " - " : "") +
+            (x.titreInformatif || ""),
+          nombreMots: x.nbMots,
+          avancement:
+            isExpert ||
+            (this.state.traductionsFaites || []).filter((y) => {
+              return (
+                y.articleId === x._id &&
+                y.userId._id === this.props.userId &&
+                y.status === "À revoir"
+              );
+            }).length > 0
+              ? Math.max(
+                  0,
+                  ...((this.state.traductionsFaites || [])
+                    .filter((y) => {
+                      return (
+                        y.articleId === x._id &&
+                        y.userId._id === this.props.userId
+                      );
+                    })
+                    .map((z) => z.avancement || -1) || [])
+                )
+              : (this.state.traductionsFaites || []).filter((y) => {
+                  return y.articleId === x._id && y.status === "À revoir";
+                }).length > 0
+              ? Math.max(
+                  0,
+                  ...((this.state.traductionsFaites || [])
+                    .filter((y) => {
+                      return (
+                        y.articleId === x._id && y.userId._id === y.validatorId
+                      );
+                    })
+                    .map((z) => z.avancement || -1) || [])
+                )
+              : Math.max(
+                  0,
+                  ...((this.state.traductionsFaites || [])
+                    .filter((y) => {
+                      return y.articleId === x._id;
+                    })
+                    .map((z) => z.avancement || -1) || [])
+                ),
 
-            avancementTrad: Math.max(
-              0,
-              ...((this.state.traductionsFaites || [])
-                .filter((y) => {
-                  return y.articleId === x._id;
-                })
-                .map((z) => z.avancement || -1) || [])
-            ),
+          avancementTrad: Math.max(
+            0,
+            ...((this.state.traductionsFaites || [])
+              .filter((y) => {
+                return y.articleId === x._id;
+              })
+              .map((z) => z.avancement || -1) || [])
+          ),
 
-            status: x.status,
-            statusTrad:
-              (this.state.traductionsFaites || [])
-                .filter((y) => {
-                  return y.articleId === x._id;
-                  /*      if (y.articleId === x._id && y.status === "Validée" && x.avancement === 1) {
+          status: x.status,
+          statusTrad:
+            (this.state.traductionsFaites || [])
+              .filter((y) => {
+                return y.articleId === x._id;
+                /*      if (y.articleId === x._id && y.status === "Validée" && x.avancement === 1) {
                   return "À revoir"
                 } else if (y.articleId === x._id && y.status === "Validée" && x.avancement !== 1)  {
                   return "Publiées"
                 } else if(y.articleId === x._id && y.status === "En attente") {
                 return "En attente";
                 } */
-                })
-                .map((z) => {
-                  if (z.status === "À revoir") {
-                    return "À revoir";
-                  } else if (z.status === "Validée") {
-                    return "Publiées";
-                  } else if (z.status === "En attente") {
-                    return "En attente";
-                  }
-                  return "À traduire";
-                })[0] || "À traduire",
-            created_at: x.created_at,
-            updatedAt: this.state.traductionsFaites.find(
-              (y) => y.articleId === x._id
-            )
-              ? this.state.traductionsFaites.find((y) => y.articleId === x._id)
-                  .updatedAt
-              : false,
-            users: [
-              ...new Set(
-                (this.state.traductionsFaites || [])
-                  .filter((y) => y.articleId === x._id)
-                  .map((z) => (z.userId || {})._id) || []
-              ),
-            ].map((id) => ({
-              _id: id,
-              picture:
+              })
+              .map((z) => {
+                if (z.status === "À revoir") {
+                  return "À revoir";
+                } else if (z.status === "Validée") {
+                  return "Publiées";
+                } else if (z.status === "En attente") {
+                  return "En attente";
+                }
+                return "À traduire";
+              })[0] || "À traduire",
+          created_at: x.created_at,
+          updatedAt: this.state.traductionsFaites.find(
+            (y) => y.articleId === x._id
+          )
+            ? this.state.traductionsFaites.find((y) => y.articleId === x._id)
+                .updatedAt
+            : false,
+          users: [
+            ...new Set(
+              (this.state.traductionsFaites || [])
+                .filter((y) => y.articleId === x._id)
+                .map((z) => (z.userId || {})._id) || []
+            ),
+          ].map((id) => ({
+            _id: id,
+            picture:
+              (
                 (
-                  (
-                    (this.state.traductionsFaites || []).find(
-                      (t) => (t.userId || {})._id === id
-                    ) || {}
-                  ).userId || {}
-                ).picture || {},
-            })),
-            typeContenu: x.typeContenu || "dispositif",
+                  (this.state.traductionsFaites || []).find(
+                    (t) => (t.userId || {})._id === id
+                  ) || {}
+                ).userId || {}
+              ).picture || {},
           })),
+          typeContenu: x.typeContenu || "dispositif",
+        })),
         ...data.map((x) => {
           return {
             ...x,
@@ -727,7 +739,7 @@ export class Avancement extends Component {
                         {element.avancementTrad === 1 ? (
                           <EVAIcon
                             name="checkmark-circle-2"
-                            fill={variables.vert}
+                            fill={colors.vert}
                           />
                         ) : (
                           <span>
@@ -754,7 +766,7 @@ export class Avancement extends Component {
                     {element.avancement === 1 ? (
                       <EVAIcon
                         name="checkmark-circle-2"
-                        fill={variables.vert}
+                        fill={colors.vert}
                       />
                     ) : (
                       <span>
@@ -794,14 +806,14 @@ export class Avancement extends Component {
                 {element.updatedAt
                   ? moment(element.updatedAt).format("YYYY/MM/DD H:mm")
                   : "Pas encore traduite"}
-                {/* <FButton type="light-action" name="bookmark-outline" fill={variables.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
+                {/* <FButton type="light-action" name="bookmark-outline" fill={colors.noir} onClick={e => {e.stopPropagation();this.upcoming();}}/> */}
               </td>
               <td className="align-middle fit-content elevated-button">
                 {this.props.isAdmin ? (
                   <FButton
                     type="light-action"
                     name="trash-2"
-                    fill={variables.noir}
+                    fill={colors.noir}
                     onClick={(e) => {
                       e.stopPropagation();
                       Swal.fire({
@@ -809,8 +821,8 @@ export class Avancement extends Component {
                         text: "La suppression des traductions est irréversible",
                         type: "question",
                         showCancelButton: true,
-                        confirmButtonColor: variables.rouge,
-                        cancelButtonColor: variables.vert,
+                        confirmButtonColor: colors.rouge,
+                        cancelButtonColor: colors.vert,
                         confirmButtonText: "Oui, les supprimer",
                         cancelButtonText: "Annuler",
                       }).then((result) => {
@@ -878,7 +890,7 @@ export class Avancement extends Component {
             <FButton
               type="outline-black"
               name="info-outline"
-              fill={variables.noir}
+              fill={colors.noir}
               className="mr-10"
               onClick={this.upcoming}
             >
@@ -897,7 +909,10 @@ export class Avancement extends Component {
               (this.state.toTranslate ? "focus text-white" : "white")
             }
           >
-            {"À traduire"  + (!this.state.loader ? ( " (" + this.state.toTranslateCount + ")") : "")}
+            {"À traduire" +
+              (!this.state.loader
+                ? " (" + this.state.toTranslateCount + ")"
+                : "")}
           </StyledStatus>
           {isExpert ? (
             <StyledStatus
@@ -907,7 +922,8 @@ export class Avancement extends Component {
                 (this.state.review ? colorStatut("Supprimé") : "white")
               }
             >
-              {"À revoir"  + (!this.state.loader ? ( " (" + this.state.reviewCount + ")") : "")}
+              {"À revoir" +
+                (!this.state.loader ? " (" + this.state.reviewCount + ")" : "")}
             </StyledStatus>
           ) : null}
           {isExpert ? (
@@ -918,7 +934,10 @@ export class Avancement extends Component {
                 (this.state.waiting ? colorStatut("Brouillon") : "white")
               }
             >
-              {"À valider"  + (!this.state.loader ? ( " (" + this.state.waitingCount + ")") : "")}
+              {"À valider" +
+                (!this.state.loader
+                  ? " (" + this.state.waitingCount + ")"
+                  : "")}
             </StyledStatus>
           ) : null}
           <StyledStatus
@@ -928,7 +947,10 @@ export class Avancement extends Component {
               (this.state.published ? colorStatut("Publié") : "white")
             }
           >
-            {"Publiées"  + (!this.state.loader ? ( " (" + this.state.publishedCount + ")") : "")}
+            {"Publiées" +
+              (!this.state.loader
+                ? " (" + this.state.publishedCount + ")"
+                : "")}
           </StyledStatus>
           <StyledStatus
             onClick={() => this.reorderOnTopType("demarche")}
@@ -937,7 +959,8 @@ export class Avancement extends Component {
               (this.state.demarche ? "black text-white" : "white")
             }
           >
-            {"Démarches" + (!this.state.loader ? ( " " + this.state.demarcheCount + ")") : "")}
+            {"Démarches" +
+              (!this.state.loader ? " " + this.state.demarcheCount + ")" : "")}
           </StyledStatus>
           <StyledStatus
             onClick={() => this.reorderOnTopType("dispositif")}
@@ -946,7 +969,10 @@ export class Avancement extends Component {
               (this.state.dispositif ? "black text-white" : "white")
             }
           >
-            {"Dispositifs" + (!this.state.loader ? ( " (" + this.state.dispositifCount + ")") : "")}
+            {"Dispositifs" +
+              (!this.state.loader
+                ? " (" + this.state.dispositifCount + ")"
+                : "")}
           </StyledStatus>
           <StyledStatus
             onClick={() => this.reorderOnTopType("string")}
@@ -955,7 +981,8 @@ export class Avancement extends Component {
               (this.state.string ? "black text-white" : "white")
             }
           >
-            {"Interface" + (!this.state.loader ? (" (" + this.state.stringCount + ")") : "")}
+            {"Interface" +
+              (!this.state.loader ? " (" + this.state.stringCount + ")" : "")}
           </StyledStatus>
           <StyledInput
             type="text"
@@ -975,7 +1002,13 @@ export class Avancement extends Component {
     </Row>*/}
 
         <div className="tableau">
-          <Table responsive className={"avancement-user-table" + (this.state.loader ? " loader-table" : "")}>
+          <Table
+            responsive
+            className={
+              "avancement-user-table" +
+              (this.state.loader ? " loader-table" : "")
+            }
+          >
             <thead>
               <tr>
                 {this.state.headers.map((element, key) => {
@@ -995,7 +1028,7 @@ export class Avancement extends Component {
                           name={
                             "chevron-" + (element.croissant ? "up" : "down")
                           }
-                          fill={variables.noir}
+                          fill={colors.noir}
                           className="sort-btn"
                         />
                       )}
@@ -1005,34 +1038,39 @@ export class Avancement extends Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.loader ? [...Array(10).keys()].map((elem, key) => (
-                <tr key={key} style={{backgroundColor: "#ffffff", padding: "10px", lineHeight: "30px"}}>
-                  <td style={{borderRadius: "12px 0px 0px 12px"}}>
-                    <Skeleton />
-                  </td>
-                  <td>
-                    <Skeleton />
-                  </td>
-                  <td>
-                    <Skeleton />
-                  </td>
-                  <td>
-                    <Skeleton />
-                  </td>
-                  <td>
-                    <Skeleton />
-                  </td>
-                  <td>
-                    <Skeleton />
-                  </td>
-                  <td>
-                    <Skeleton />
-                  </td>
-                  <td style={{borderRadius: "0px 12px 12px 0px"}}>
-                    <Skeleton />
-                  </td>
-                </tr>
-              )) : (
+              {this.state.loader ? (
+                [...Array(10).keys()].map((_, key) => (
+                  <tr
+                    key={key}
+                    style={{ backgroundColor: "#f4f4f4", lineHeight: "30px" }}
+                  >
+                    <StyledFirstCell>
+                      <Skeleton />
+                    </StyledFirstCell>
+                    <StyledCell>
+                      <Skeleton />
+                    </StyledCell>
+                    <StyledCell>
+                      <Skeleton />
+                    </StyledCell>
+                    <StyledCell>
+                      <Skeleton />
+                    </StyledCell>
+                    <StyledCell>
+                      <Skeleton />
+                    </StyledCell>
+                    <StyledCell>
+                      <Skeleton />
+                    </StyledCell>
+                    <StyledCell>
+                      <Skeleton />
+                    </StyledCell>
+                    <StyledLastCell>
+                      <Skeleton />
+                    </StyledLastCell>
+                  </tr>
+                ))
+              ) : (
                 <AvancementData />
               )}
             </tbody>

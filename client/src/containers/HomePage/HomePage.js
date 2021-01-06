@@ -12,7 +12,7 @@ import API from "../../utils/API";
 import styled from "styled-components";
 
 import "./HomePage.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import { initial_data } from "../AdvancedSearch/data";
 import HomeSearch from "./HomeSearch";
 import CatList from "./CatList";
@@ -210,7 +210,7 @@ export class HomePage extends Component {
                       <FButton
                         type="homebtn"
                         name="search-outline"
-                        fill={variables.noir}
+                        fill={colors.noir}
                         className="demarche-btn"
                       >
                         {t(
@@ -244,7 +244,7 @@ export class HomePage extends Component {
                       <FButton
                         type="homebtn"
                         name="search-outline"
-                        fill={variables.noir}
+                        fill={colors.noir}
                       >
                         {t(
                           "Homepage.Trouver un dispositif",
@@ -269,7 +269,7 @@ export class HomePage extends Component {
                       <FButton
                         type="homebtn"
                         name="search-outline"
-                        fill={variables.noir}
+                        fill={colors.noir}
                       >
                         {t(
                           "Homepage.Trouver une organisation",

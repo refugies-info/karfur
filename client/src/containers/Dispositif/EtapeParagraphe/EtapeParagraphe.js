@@ -24,7 +24,7 @@ import EditableParagraph from "../../../components/Frontend/Dispositif/EditableP
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 
 import "./EtapeParagraphe.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 import { EtapeModal } from "../../../components/Modals";
 
 class EtapeParagraphe extends Component {
@@ -298,7 +298,7 @@ class EtapeParagraphe extends Component {
                         "-outline"
                       }
                       size="large"
-                      fill={variables.darkColor}
+                      fill={colors.darkColor}
                     />
                   )}
                 </h5>
@@ -307,7 +307,7 @@ class EtapeParagraphe extends Component {
                     onClick={() => this.props.removeItem(keyValue, subkey)}
                     className="delete-icon cursor-pointer"
                     name="close-circle"
-                    fill={variables.error}
+                    fill={colors.error}
                     size="xlarge"
                   />
                 )}
@@ -322,7 +322,7 @@ class EtapeParagraphe extends Component {
                   <div className="etape-data" id="etape-option">
                     <EVAIcon
                       name={((subitem.option || {}).logo || "at") + "-outline"}
-                      fill={variables.grisFonce}
+                      fill={colors.grisFonce}
                       className="mr-8"
                     />
                     <span>
@@ -347,7 +347,7 @@ class EtapeParagraphe extends Component {
                   <div className="etape-data" id="etape-duree">
                     <EVAIcon
                       name="clock-outline"
-                      fill={variables.grisFonce}
+                      fill={colors.grisFonce}
                       className="mr-8"
                     />
                     <span>
@@ -372,7 +372,7 @@ class EtapeParagraphe extends Component {
                   <div className="etape-data" id="etape-delai">
                     <EVAIcon
                       name="undo"
-                      fill={variables.grisFonce}
+                      fill={colors.grisFonce}
                       className="mr-8"
                     />
                     <span>
@@ -406,7 +406,7 @@ class EtapeParagraphe extends Component {
                   <div className="etape-data" id="etape-papiers">
                     <EVAIcon
                       name="file-text-outline"
-                      fill={variables.grisFonce}
+                      fill={colors.grisFonce}
                       className="mr-8"
                     />
                     <span>{(subitem.papiers || []).length || 0}</span>
@@ -451,7 +451,7 @@ class EtapeParagraphe extends Component {
                     >
                       <EVAIcon
                         name={option.logo + "-outline"}
-                        fill={variables.noir}
+                        fill={colors.noir}
                         className="mr-10"
                       />
                       <span>{option.texte}</span>
@@ -604,7 +604,7 @@ class EtapeParagraphe extends Component {
               >
                 <EVAIcon
                   name="clock-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-10"
                 />
                 <b>Cette étape prend :</b>
@@ -650,7 +650,7 @@ class EtapeParagraphe extends Component {
                   "row-config mb-10" + (validatedRow[2] ? " validated" : "")
                 }
               >
-                <EVAIcon name="undo" fill={variables.noir} className="mr-10" />
+                <EVAIcon name="undo" fill={colors.noir} className="mr-10" />
                 <b>Délai de réponse :</b>
 
                 <Input
@@ -698,7 +698,7 @@ class EtapeParagraphe extends Component {
               >
                 <EVAIcon
                   name="file-text"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-10 mb-10"
                 />
                 <b className="mr-10 mb-10">
@@ -727,7 +727,7 @@ class EtapeParagraphe extends Component {
                           }}
                           className="delete-icon cursor-pointer"
                           name="close-circle"
-                          fill={variables.error}
+                          fill={colors.error}
                           size="xlarge"
                         />
                       )}
@@ -780,7 +780,7 @@ class EtapeParagraphe extends Component {
                   rel="noopener noreferrer"
                   type="help"
                   name="question-mark-circle-outline"
-                  fill={variables.error}
+                  fill={colors.error}
                 >
                   {t("J'ai besoin d'aide")}
                 </FButton>
@@ -788,7 +788,7 @@ class EtapeParagraphe extends Component {
                   type="validate"
                   name="checkmark-outline"
                   onClick={this.toggleConfigurationOpen}
-                  fill={variables.noir}
+                  fill={colors.noir}
                   disabled={!validatedRow.includes(true)}
                 >
                   Valider
@@ -811,7 +811,7 @@ class EtapeParagraphe extends Component {
                       type="dark"
                       name="link-outline"
                       className="mr-10"
-                      fill={variables.noir}
+                      fill={colors.noir}
                       onClick={this.toggleModal}
                     >
                       {subitem.option.ctaField
@@ -825,7 +825,7 @@ class EtapeParagraphe extends Component {
                     <FButton
                       type="help"
                       name="question-mark-circle-outline"
-                      fill={variables.error}
+                      fill={colors.error}
                       onClick={this.props.upcoming}
                     >
                       {t("J'ai besoin d'aide")}

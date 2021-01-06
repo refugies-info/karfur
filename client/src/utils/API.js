@@ -18,14 +18,6 @@ const headers = {
   "site-secret": process.env.REACT_APP_SITE_SECRET,
 };
 
-// const burl =
-//   process.env.NODE_ENV === "test"
-//     ? process.env.REACT_APP_TEST_ENV === "qa"
-//       ? "https://agir-qa.herokuapp.com"
-//       : // change to :8000
-//         "http://localhost:3000"
-//     : ""; //Noté explicitement pour les tests, sinon il arrive pas à proxy entre :80 et :3000
-
 const burl = process.env.REACT_APP_SERVER_URL;
 
 axios.withCredentials = true;
@@ -226,6 +218,21 @@ export default {
     });
   },
 
+  updateDispositifStatus: (query) =>
+    axios.post(burl + "/dispositifs/updateDispositifStatus", query, {
+      headers,
+    }),
+
+  modifyDispositifMainSponsor: (query) =>
+    axios.post(burl + "/dispositifs/modifyDispositifMainSponsor", query, {
+      headers,
+    }),
+
+  updateDispositifAdminComments: (query) =>
+    axios.post(burl + "/dispositifs/updateDispositifAdminComments", query, {
+      headers,
+    }),
+
   create_structure: (query) => {
     return axios.post(burl + "/structures/add_structure", query, {
       headers: headers,
@@ -248,6 +255,9 @@ export default {
       params: { id, withDisposAssocies, localeOfLocalizedDispositifsAssocies },
     }),
 
+  getNbDispositifsByRegion: () =>
+    axios.get(burl + "/dispositifs/getNbDispositifsByRegion"),
+
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
   getActiveStructures: () =>
@@ -256,6 +266,9 @@ export default {
   getDispositifs: (params) => {
     return axios.post(burl + "/dispositifs/getDispositifs", params);
   },
+
+  getAllDispositifs: () => axios.get(burl + "/dispositifs/getAllDispositifs"),
+  getAllStructures: () => axios.get(burl + "/structures/getAllStructures"),
 
   add_tradForReview: (query) => {
     return axios.post(burl + "/traduction/add_tradForReview", query, {
@@ -362,13 +375,6 @@ export default {
   },
   cancel_tts_subscription: () => cancel && cancel(),
 
-  set_audio: (query) => {
-    return axios.post(burl + "/audio/set_audio", query, { headers: headers });
-  },
-  get_audio: (query) => {
-    return axios.post(burl + "/audio/get_audio", query, { headers: headers });
-  },
-
   isAuth: () => {
     return localStorage.getItem("token") !== null;
   },
@@ -376,5 +382,10 @@ export default {
     setAuthToken(false);
     delete headers["x-access-token"];
     return localStorage.removeItem("token");
+  },
+  create_csv_dispositifs_length: (params = {}) => {
+    return axios.post(burl + "/dispositifs/create_csv_dispositifs_length", params, {
+      headers: headers,
+    });
   },
 };

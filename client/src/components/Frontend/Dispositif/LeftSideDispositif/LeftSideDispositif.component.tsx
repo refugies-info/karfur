@@ -12,10 +12,9 @@ import ReactToPrint from "react-to-print";
 
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
-// @ts-ignore
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import { Props } from "./LeftSideDispositif.container";
-import { DispositifContent } from "../../../../@types/interface";
+import { DispositifContent } from "../../../../types/interface";
 import API from "../../../../utils/API";
 import Swal from "sweetalert2";
 
@@ -143,7 +142,7 @@ export const LeftSideDispositif = (props: Props) => {
                 <EVAIcon
                   className="link-icon"
                   name="link-outline"
-                  fill={variables.grisFonce}
+                  fill={colors.grisFonce}
                 />
                 <Input
                   value={props.content.externalLink}
@@ -155,7 +154,7 @@ export const LeftSideDispositif = (props: Props) => {
                   onClick={onLinkClicked}
                   className="check-icon"
                   name="checkmark-circle-2"
-                  fill={variables.grisFonce}
+                  fill={colors.grisFonce}
                 />
               </InputGroup>
             ) : (
@@ -202,6 +201,14 @@ export const LeftSideDispositif = (props: Props) => {
               onAfterPrint={() => {
                 props.closePdf();
               }}
+              copyStyles
+              fonts={[
+                {
+                  family: "CircularStdMedium",
+                  source:
+                    "../../../scss/fonts/CircularStd/CircularStd-Medium.WOFF",
+                },
+              ]}
               trigger={() => (
                 <FButton type="light-action" name="download-outline">
                   {t("Dispositif.Télécharger en PDF", "Télécharger en PDF")}

@@ -5,7 +5,7 @@ import { customCriteres } from "../../../../../containers/Dispositif/MoteurVaria
 import EVAIcon from "../../../../UI/EVAIcon/EVAIcon";
 
 import "./ReducedVariante.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const reducedVariante = (props) => {
   let { t, variantes, activeIdx, direction } = props;
@@ -34,7 +34,7 @@ const reducedVariante = (props) => {
               <div className="reduced-header">
                 <EVAIcon
                   name="pin-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-10"
                 />
                 Localisation
@@ -53,7 +53,7 @@ const reducedVariante = (props) => {
               <div className="reduced-header">
                 <EVAIcon
                   name="people-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="mr-10"
                 />
                 Âge
@@ -92,7 +92,7 @@ const reducedVariante = (props) => {
                   <div className="reduced-header">
                     <EVAIcon
                       name="options-2-outline"
-                      fill={variables.noir}
+                      fill={colors.noir}
                       className="mr-10"
                     />
                     {critere.texte}

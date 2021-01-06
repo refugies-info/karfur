@@ -1,5 +1,5 @@
 import React from "react";
-import { Structure } from "../../../../../@types/interface";
+import { Structure } from "../../../../../types/interface";
 import img from "../../../../../assets/annuaire/annuaire_create_large.svg";
 import styled from "styled-components";
 import { StructureType } from "./StructureType";

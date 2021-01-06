@@ -24,7 +24,7 @@ export function* fetchSelectedStructure(
     yield put(setSelectedStructureActionCreator(data.data.data));
     yield put(finishLoading(LoadingStatusKey.FETCH_SELECTED_STRUCTURE));
   } catch (error) {
-    logger.error("[fetchStructures] Error while fetching structure", {
+    logger.error("[fetchSelectedStructure] Error while fetching structure", {
       error,
     });
     yield put(setSelectedStructureActionCreator(null));

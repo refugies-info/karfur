@@ -5,7 +5,7 @@ import TagButton from "../../FigmaUI/TagButton/TagButton";
 import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { withTranslation } from "react-i18next";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 import FButton from "../../FigmaUI/FButton/FButton";
 
@@ -346,7 +346,7 @@ export class dispositifValidateModal extends Component {
               className="footer-btn"
               type="help"
               name="question-mark-circle-outline"
-              fill={variables.noir}
+              fill={colors.noir}
             >
               {"Centre d'aide"}
             </FButton>
@@ -363,7 +363,7 @@ export class dispositifValidateModal extends Component {
             <FButton
               type="outline-black"
               name="arrow-back"
-              fill={variables.noir}
+              fill={colors.noir}
               className="mr-10"
               onClick={this.props.toggle}
             >

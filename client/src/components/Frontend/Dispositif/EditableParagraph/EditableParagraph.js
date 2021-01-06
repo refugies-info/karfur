@@ -18,7 +18,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 
 import "./EditableParagraph.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 // const styles = {
 //   media: {
@@ -34,7 +34,7 @@ const MyCustomBlock = (props) => (
     <div className="icon-left-side">
       <EVAIcon
         name="info-outline"
-        fill={variables.noir}
+        fill={colors.noir}
         className="flex-center"
       />
     </div>
@@ -145,7 +145,7 @@ class EditableParagraph extends Component {
   toggleColor = (key, hover) =>
     this.setState((prevState) => ({
       dropdownColor: prevState.dropdownColor.map((_, i) =>
-        i === key ? (hover ? variables.noir : "#FFFFFF") : "#FFFFFF"
+        i === key ? (hover ? colors.noir : "#FFFFFF") : "#FFFFFF"
       ),
     }));
 
@@ -155,6 +155,13 @@ class EditableParagraph extends Component {
         <EVAIcon name="alert-triangle-outline" />
       </div>
     );
+  };
+
+  setEditorReference = (ref) => {
+    this.editorReference = ref;
+    if (ref) {
+      ref.focus();
+    }
   };
 
   // used in Media upload which is commented
@@ -188,6 +195,7 @@ class EditableParagraph extends Component {
         <>
           <Editor
             spellCheck
+            editorRef={this.setEditorReference}
             toolbarClassName={
               "toolbar-editeur" + (props.keyValue === 0 ? " no-top" : "")
             }

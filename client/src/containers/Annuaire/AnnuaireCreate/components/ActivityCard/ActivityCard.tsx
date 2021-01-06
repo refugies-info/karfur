@@ -4,7 +4,7 @@ import placeholder from "../../../../../assets/placeholder_annuaire.png";
 import "./ActivityCard.scss";
 import { ThemeButton } from "../../../../../components/FigmaUI/ThemeButton/ThemeButton";
 import i18n from "../../../../../i18n";
-import { Tag } from "../../../../../@types/interface";
+import { Tag } from "../../../../../types/interface";
 
 interface Props {
   activity: string;

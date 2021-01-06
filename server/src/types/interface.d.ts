@@ -6,6 +6,7 @@ export interface RequestFromClient<Query> {
     query: Query;
     sort: Record<string, any>;
     populate?: string;
+    locale?: string;
   };
   fromSite: boolean;
   query?: Query;
@@ -32,7 +33,7 @@ export interface OpeningHours {
   precisions?: string;
 }
 
-export type Dispositif = any;
+export type IDispositif = any;
 
 export interface IStructure {
   _id: ObjectId;

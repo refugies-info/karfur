@@ -6,7 +6,7 @@ import { colorStatut } from "../../../../Functions/ColorFunctions";
 import EVAIcon from "../../../../UI/EVAIcon/EVAIcon";
 
 import "./UsersList.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 const usersList = (props) => {
   const getRoleName = (role) => {
@@ -27,7 +27,7 @@ const usersList = (props) => {
                 <EVAIcon
                   onClick={() => props.reorder("users", "picture.imgId")}
                   name="chevron-down"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="sort-btn"
                 />
               </th>
@@ -36,7 +36,7 @@ const usersList = (props) => {
                 <EVAIcon
                   onClick={() => props.reorder("users", "username")}
                   name="chevron-down"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="sort-btn"
                 />
               </th>
@@ -47,7 +47,7 @@ const usersList = (props) => {
                     props.reorder("users", "selectedLanguages.0.langueFr")
                   }
                   name="chevron-down"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="sort-btn"
                 />
               </th>
@@ -56,7 +56,7 @@ const usersList = (props) => {
                 <EVAIcon
                   onClick={() => props.reorder("users", "roles.0")}
                   name="chevron-down"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="sort-btn"
                 />
               </th>
@@ -65,7 +65,7 @@ const usersList = (props) => {
                 <EVAIcon
                   onClick={() => props.reorder("users", "status")}
                   name="chevron-down"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="sort-btn"
                 />
               </th>

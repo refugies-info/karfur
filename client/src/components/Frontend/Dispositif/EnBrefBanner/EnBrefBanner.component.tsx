@@ -2,7 +2,7 @@ import React from "react";
 import { Row } from "reactstrap";
 import { Props } from "./EnBrefBanner.container";
 import h2p from "html2plaintext";
-import { DispositifContent } from "../../../../@types/interface";
+import { DispositifContent } from "../../../../types/interface";
 import { infoCardIcon } from "../../../Icon/Icon";
 import { jsUcfirst } from "../../../../lib";
 

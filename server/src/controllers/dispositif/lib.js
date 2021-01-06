@@ -1,8 +1,7 @@
-const Dispositif = require("../../schema/schemaDispositif.js");
+const { Dispositif } = require("../../schema/schemaDispositif");
 const Role = require("../../schema/schemaRole.js");
-const User = require("../../schema/schemaUser.js");
+const { User } = require("../../schema/schemaUser");
 const Traduction = require("../../schema/schemaTraduction");
-const { Structure } = require("../../schema/schemaStructure");
 const Error = require("../../schema/schemaError");
 var uniqid = require("uniqid");
 const {
@@ -20,7 +19,9 @@ const {
 } = require("./functions");
 const logger = require("../../logger");
 const { updateLanguagesAvancement } = require("../langues/langues.service");
-const { asyncForEach } = require("../../libs/asyncForEach");
+const {
+  updateAssociatedDispositifsInStructure,
+} = require("../structure/structure.repository");
 
 // const gmail_auth = require('./gmail_auth');
 
@@ -34,6 +35,12 @@ const { asyncForEach } = require("../../libs/asyncForEach");
 //     pass: process.env.GMAIL_PASS
 //   },
 // });
+const url =
+  process.env.NODE_ENV === "dev"
+    ? "http://localhost:3000/"
+    : process.env.NODE_ENV === "staging"
+    ? "https://staging.refugies.info/"
+    : "https://www.refugies.info/";
 
 //Function to patch dispositifs that had EditorState object saved in DB causing great size problem
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -67,51 +74,40 @@ async function patch_dispositifs(req, res) {
   }
 }
 
-const updateAssociatedDispositifsInStructure = async (
-  dispositifId,
-  structureId
-) => {
-  logger.info("[updateAssociatedDispositifsInStructure] updating", {
-    dispositifId,
-    structureId,
-  });
-
-  // we add if not the case the dispositif to the correct structure
-  await Structure.findByIdAndUpdate(
-    { _id: structureId },
-    { $addToSet: { dispositifsAssocies: dispositifId } },
-    { new: true },
-    () => {}
-  );
-
-  const structureArrayWithDispoAssocie = await Structure.find({
-    dispositifsAssocies: dispositifId,
-  });
-
-  // if one structure it is the correct one
-  if (structureArrayWithDispoAssocie.length === 1) return;
-
-  // if more than 1, we have to remove the dispo from the wrong structures
-  await asyncForEach(structureArrayWithDispoAssocie, async (structure) => {
-    if (structure._id.toString() === structureId.toString()) return;
-    logger.info(
-      "[updateAssociatedDispositifsInStructure] remove dispositif associe from structure",
-      { structure: structure._id, dispositifId }
-    );
-    await Structure.findByIdAndUpdate(
-      { _id: structure._id },
-      { $pull: { dispositifsAssocies: dispositifId } },
-      { new: true },
-      () => {}
-    );
-    return;
-  });
-
-  logger.info(
-    "[updateAssociatedDispositifsInStructure] successfully updated structures"
-  );
-  return;
-};
+async function create_csv_dispositifs_length(req, res) {
+  if (!req.user.roles.some((x) => x.nom === "Admin")) {
+    //logger.error("The user is not an admin", { error: e });
+    return res.status(500).json("KO"); 
+  }
+  logger.info("Find dispositifs with long titles");
+  try {
+    let all = await Dispositif.find().lean();
+    let i;
+    let csvList = [];
+    for (i = 0; i < all.length; i++) {
+      if (
+        (all[i].titreInformatif && all[i].titreInformatif.length > 40) ||
+        (all[i].titreMarque && all[i].titreMarque.length > 27) ||
+        (all[i].abstract && all[i].abstract.length > 110)
+      ) {
+        csvList.push({
+          titreInformatif: all[i].titreInformatif || "",
+          titreMarque: all[i].titreMarque || "",
+          abstract: all[i].abstract || "", 
+          url: `${url}dispositif/${all[i]._id.toString()}` || "",
+        });
+      }
+    }
+    logger.info(`finish patching ${all.length} dispositifs`);
+    return res.status(200).json({
+      text: "Succès",
+      data: csvList,
+    });
+  } catch (e) {
+    logger.error("Error while finding long dispositifs", { error: e });
+    return res.status(500).json("KO");
+  }
+}
 
 async function add_dispositif_infocards(req, res) {
   if (!req.fromSite) {
@@ -568,3 +564,4 @@ exports.get_dispositif = get_dispositif;
 exports.count_dispositifs = count_dispositifs;
 exports.update_dispositif = update_dispositif;
 exports.get_dispo_progression = get_dispo_progression;
+exports.create_csv_dispositifs_length = create_csv_dispositifs_length;

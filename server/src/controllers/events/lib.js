@@ -1,5 +1,5 @@
 const Event = require("../../schema/schemaEvent.js");
-const User = require("../../schema/schemaUser.js");
+const { User } = require("../../schema/schemaUser");
 const logger = require("../../logger");
 
 function log_event(req, res) {

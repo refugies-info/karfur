@@ -1,7 +1,7 @@
 import React from "react";
 import { Input, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { withTranslation } from "react-i18next";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 import "./ReactionModal.scss";
 import FButton from "../../FigmaUI/FButton/FButton";
@@ -48,7 +48,7 @@ const suggererModal = (props) => {
           rel="noopener noreferrer"
           type="help"
           name="question-mark-circle-outline"
-          fill={variables.error}
+          fill={colors.error}
         >
           {t("Login.Centre d'aide", "Centre d'aide")}
         </FButton>
