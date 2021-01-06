@@ -35,6 +35,7 @@ import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
+import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
 
 moment.locale("fr");
 declare const window: Window;
@@ -52,6 +53,8 @@ export const AdminStructures = () => {
   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
     false
   );
+
+  const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [
     selectedStructure,
     setSelectedStructure,
@@ -94,7 +97,10 @@ export const AdminStructures = () => {
 
   const structures = useSelector(allStructuresSelector);
 
-  if (isLoading || structures.length === 0) {
+  if (
+    (isLoading || structures.length === 0) &&
+    showStructureDetailsModal === false
+  ) {
     return (
       <div>
         <LoadingAdminStructures />
@@ -156,8 +162,8 @@ export const AdminStructures = () => {
         }
 
         if (orderColumn === "nbFiches") {
-          const nbFichesA = a.dispositifsAssocies.length;
-          const nbFichesB = b.dispositifsAssocies.length;
+          const nbFichesA = a.nbFiches;
+          const nbFichesB = b.nbFiches;
 
           if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
           return sortedHeader.sens === "up" ? -1 : 1;
@@ -305,11 +311,13 @@ export const AdminStructures = () => {
                   {element.nbMembres}
                 </td>
                 <td className={"align-middle "}>
-                  <ResponsableComponent responsable={element.responsable} />
+                  <ResponsableComponent
+                    responsable={element.responsable}
+                    canModifyRespo={false}
+                    onClick={() => {}}
+                  />
                 </td>
-                <td className="align-middle">
-                  {element.dispositifsAssocies.length}
-                </td>
+                <td className="align-middle">{element.nbFiches}</td>
                 <td className="align-middle">
                   {moment(element.created_at).format("lll")}
                 </td>
@@ -322,8 +330,15 @@ export const AdminStructures = () => {
       <StructureDetailsModal
         show={showStructureDetailsModal}
         toggleModal={() => setSelectedStructureAndToggleModal(null)}
-        selectedStructure={selectedStructure}
+        selectedStructureId={selectedStructure ? selectedStructure._id : null}
         fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
+        toggleRespoModal={() => setSelectFirstRespoModal(true)}
+      />
+
+      <SelectFirstResponsableModal
+        show={showSelectFirstRespoModal}
+        toggleModal={() => setSelectFirstRespoModal(false)}
+        selectedStructureId={selectedStructure ? selectedStructure._id : null}
       />
     </div>
   );

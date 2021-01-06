@@ -9,6 +9,12 @@ export interface Event {
   target: { id: string; value: string };
 }
 
+export interface SimplifiedUser {
+  username: string;
+  picture: Picture;
+  status: string;
+  _id: ObjectId;
+}
 export interface SimplifiedDispositif {
   titreInformatif: string;
   titreMarque?: string;
@@ -173,9 +179,13 @@ export interface OpeningHours {
   precisions?: string;
 }
 
+interface Membre {
+  userId: ObjectId;
+  roles: string[];
+}
 export interface Structure {
   _id: ObjectId;
-  membres: { userId: ObjectId; roles: string[] }[];
+  membres: Membre[];
   acronyme: string;
   administrateur: ObjectId;
   adresse: string;
@@ -254,11 +264,12 @@ export interface SimplifiedStructureForAdmin {
   nom: string;
   picture: Picture;
   status: string;
-  dispositifsAssocies: SimplifiedDispositifAssocie[];
   contact: string;
   phone_contact: string;
   mail_contact: string;
   nbMembres: number;
   created_at: Moment;
   responsable: null | Responsable;
+  membres: Membre[];
+  nbFiches: number;
 }
