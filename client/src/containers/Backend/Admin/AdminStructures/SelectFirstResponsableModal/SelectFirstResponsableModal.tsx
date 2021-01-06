@@ -15,7 +15,19 @@ import API from "../../../../../utils/API";
 import Swal from "sweetalert2";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
+import { colors } from "colors";
 
+const ModifyLink = styled.div`
+  font-weight: bold;
+  margin-top: 12px;
+  cursor: pointer;
+`;
+const SelectedUser = styled.div`
+  background: ${colors.blancSimple};
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+`;
 const Header = styled.div`
   font-weight: 500;
   font-size: 32px;
@@ -26,7 +38,16 @@ const Header = styled.div`
 const RowContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
+  margin-top: 8px;
+`;
+
+const Warning = styled.div`
+  background: ${colors.erreur};
+  width: 100%;
+  padding: 8px;
+  border-radius: 12px;
+  margin-bottom: 8px;
 `;
 interface Props {
   show: boolean;
@@ -122,6 +143,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
         <Spinner />
       </Modal>
     );
+
   return (
     <Modal
       isOpen={props.show}
@@ -131,28 +153,49 @@ export const SelectFirstResponsableModal = (props: Props) => {
     >
       <div>
         <Header>Choix d'un utilisateur</Header>
-        <SearchBar
-          isArray
-          users
-          className="search-bar inner-addon right-addon"
-          placeholder="Rechercher un utilisateur"
-          array={activeUsers}
-          selectItem={onSelectItem}
-        />
+        {!selectedUser && (
+          <SearchBar
+            isArray
+            users
+            className="search-bar inner-addon right-addon"
+            placeholder="Rechercher un utilisateur"
+            array={activeUsers}
+            selectItem={onSelectItem}
+          />
+        )}
+        {selectedUser && (
+          <div>
+            <SelectedUser>{selectedUser.username}</SelectedUser>
+            <ModifyLink onClick={() => setSelectedUser(null)}>
+              <u>Modifier</u>
+            </ModifyLink>
+          </div>
+        )}
       </div>
-      <RowContainer>
-        <FButton
-          type="white"
-          name="close-outline"
-          className="mr-8"
-          onClick={props.toggleModal}
-        >
-          Annuler
-        </FButton>
-        <FButton type="validate" name="checkmark-outline" onClick={onValidate}>
-          Valider
-        </FButton>
-      </RowContainer>
+      <div>
+        <Warning>
+          Au clic sur Valider, la structure sera modifiée avec le responsable
+          choisi.
+        </Warning>
+        <RowContainer>
+          <FButton
+            type="white"
+            name="close-outline"
+            className="mr-8"
+            onClick={props.toggleModal}
+          >
+            Annuler
+          </FButton>
+          <FButton
+            type="validate"
+            name="checkmark-outline"
+            onClick={onValidate}
+            disabled={!selectedUser}
+          >
+            Valider
+          </FButton>
+        </RowContainer>
+      </div>
     </Modal>
   );
 };
