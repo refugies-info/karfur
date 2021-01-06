@@ -1,4 +1,4 @@
-const User = require("../../schema/schemaUser.js");
+const { User } = require("../../schema/schemaUser");
 const Role = require("../../schema/schemaRole.js");
 const { Langue } = require("../../schema/schemaLangue");
 const passwordHash = require("password-hash");

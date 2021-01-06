@@ -11,24 +11,6 @@ $violet: #583f93;
 $blancSimple: #ffffff;
 $jauneClair: #fff7ae;
 $orange: #ff9800;
-$gradiantSplash: radial-gradient(
-    69.75% 67.64% at 100% -3.25%,
-    #adea5c 0%,
-    rgba(173, 234, 92, 0) 100%
-  ),
-  radial-gradient(
-    118.25% 69.25% at -3.25% -5.5%,
-    #149295 0%,
-    rgba(20, 146, 149, 0) 100%
-  ),
-  radial-gradient(
-    100% 100% at 100% 92.25%,
-    #ea6206 0%,
-    rgba(255, 255, 255, 0) 100%,
-    rgba(234, 98, 6, 0) 100%
-  ),
-  radial-gradient(135.5% 137.75% at -10% 109%, #55a6ce 0%, #55a6ce 100%);
-
 $attention: #f9ef99;
 $uiattention: #ffeb3b;
 $validation: #def6c2;
@@ -42,6 +24,7 @@ $cardColor: #828282;
 $focus: #2d9cdb;
 $bgfocus: #d2edfc;
 $standby: #fdd497;
+$bleuCharte: #0421b1;
 
 :export {
   lightColor: $lightColor;
@@ -66,4 +49,6 @@ $standby: #fdd497;
   uiattention: $uiattention;
   standby: $standby;
   orange: $orange;
+  bleuCharte: $bleuCharte;
+  lightBlue: $bgfocus;
 }

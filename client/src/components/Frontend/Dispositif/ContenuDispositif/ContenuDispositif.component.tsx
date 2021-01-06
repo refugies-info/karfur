@@ -4,7 +4,7 @@ import { Props } from "./ContenuDispositif.container";
 import EditableParagraph from "../EditableParagraph/EditableParagraph";
 import { QuickToolbar } from "../../../../containers/Dispositif/QuickToolbar";
 import ContenuParagraphe from "../ContenuParagraphe/ContenuParagraphe";
-import { DispositifContent } from "../../../../@types/interface";
+import { DispositifContent } from "../../../../types/interface";
 import FButton from "../../../FigmaUI/FButton/FButton";
 
 interface UiObject {
@@ -44,6 +44,7 @@ export interface PropsBeforeInjection {
   ttsActive: any;
   filtres: any;
   toggleTutorielModal: (arg: string) => void;
+  toggleGeolocModal: () => void;
   displayTuto: boolean;
   addMapBtn: boolean;
   printing: boolean;

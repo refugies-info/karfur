@@ -3,9 +3,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 import styled from "styled-components";
-import { Input } from "reactstrap";
 import Highlighter from "react-highlight-words";
-import { themes } from "./data";
+import * as themes from "./data";
 import Streamline from "../../../assets/streamline";
 import NoResultPlaceholder from "./NoResultPlaceholder";
 import { filtres } from "../../Dispositif/data";
@@ -15,7 +14,7 @@ import useOutsideClick from "./useOutsideClick";
 import i18n from "../../../i18n";
 
 import "./AdvancedSearchBar.scss";
-import variables from "scss/colors.scss";
+import { CustomSearchBar } from "../../../components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 
 /* const NoResults = styled.div`
   display: flex;
@@ -26,46 +25,6 @@ import variables from "scss/colors.scss";
   height: 174px;
   margin-right: 0px;
 `; */
-
-const SearchBarContainer = styled.div`
-  background: #ffffff;
-  border: 0.5px solid #ffffff;
-  border-radius: 12px;
-  padding-right: 12px;
-  padding-left: 15px;
-  margin-right: 10px;
-  font-size: 16px;
-  font-weight: 400;
-  width: 280px;
-  color: #000000;
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-  &:hover {
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.1);
-  }
-  &:focus {
-    //color: transparent;
-    outline: none !important;
-  }
-`;
-
-const SearchBar = styled(Input)`
-  background: #ffffff;
-  border: 0.5px solid #ffffff;
-  border-radius: 12px;
-  padding-right: 12px;
-  padding-left: 15px;
-  margin-right: 10px;
-  font-size: 16px;
-  font-weight: 400;
-  width: 100%;
-  color: #000000;
-  &:focus {
-    //color: transparent;
-    outline: none !important;
-  }
-`;
 
 const SearchModalContainer = styled.div`
   position: fixed;
@@ -244,7 +203,7 @@ const AdvancedSearchBar = (props) => {
         dispositifsMatchedArray.push(elem);
       }
     });
-    for (const [key, value] of Object.entries(themes)) {
+    for (const [key, value] of Object.entries(themes[i18n.language === "ti-ER" ? "ti" : i18n.language])) {
       value.map((theme) => {
         if (
           theme
@@ -264,23 +223,11 @@ const AdvancedSearchBar = (props) => {
 
   return (
     <>
-      <SearchBarContainer>
-        <SearchBar
-          onChange={onTextChange}
-          type="text"
-          plaintext={true}
-          placeholder="Rechercher..."
-          value={searchText}
-        />
-        {props.loupe && (
-          <EVAIcon
-            name="search-outline"
-            fill={variables.noir}
-            id="bookmarkBtn"
-            size={"large"}
-          />
-        )}
-      </SearchBarContainer>
+      <CustomSearchBar
+        value={searchText}
+        placeholder="Rechercher..."
+        onChange={onTextChange}
+      />
       {isSearchModalVisible &&
         (searchThemes.length === 0 && searchDispositifs.length === 0 ? (
           <NoSearchModalContainer rtl={isRTL} ref={wrapperRef}>

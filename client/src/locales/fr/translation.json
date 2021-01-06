@@ -52,7 +52,12 @@
     "fiches avec le thème": "fiches avec le thème",
     "autres fiches avec le thème": "autres fiches avec le thème",
     "avec le thème": "avec le thème",
-    "Autres fiches traduites en": "Autres fiches traduites en"
+    "Autres fiches traduites en": "Autres fiches traduites en",
+    "Afficher aussi les autres fiches disponibles dans": "Afficher aussi les autres fiches disponibles dans ",
+    "toute la France": "toute la France",
+    "Masquer les autres fiches disponibles dans": "Masquer les autres fiches disponibles dans ", 
+    "Masquer les résultats disponibles dans": "Masquer les résultats disponibles dans ",
+    "Afficher aussi les résultats disponibles dans": "Afficher aussi les résultats disponibles dans "
   },
   "Tables": {
     "Propriétaire": "Propriétaire",
@@ -668,7 +673,7 @@
     "Visite de la ville": "Visite de la ville",
     "Cours d'histoire de France": "Cours d'histoire de France",
     "Activités manuelles": "Activités manuelles",
-    "Tournoi sportifs": "Tournoi sportifs",
+    "Tournois sportifs": "Tournois sportifs",
     "Aides financières": "Aides financières",
     "Cours de conduite": "Cours de conduite",
     "Formation au code": "Formation au code",

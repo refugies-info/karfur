@@ -7,7 +7,7 @@ import Modal from "../Modal";
 import { tutos } from "./data";
 
 import "./VarianteCreateModal.scss";
-import variables from "scss/colors.scss";
+import {colors} from "colors";
 
 class VarianteCreateModal extends Component {
   render() {
@@ -23,7 +23,7 @@ class VarianteCreateModal extends Component {
                 className="mr-8"
                 name="clock-outline"
                 size="large"
-                fill={variables.noir}
+                fill={colors.noir}
               />
               <span>≈ 40 min</span>
             </div>{" "}
@@ -38,7 +38,7 @@ class VarianteCreateModal extends Component {
             <FButton
               type="light-action"
               name="eye-outline"
-              fill={variables.noir}
+              fill={colors.noir}
               onClick={toggle}
             />
           </div>
@@ -68,7 +68,7 @@ class VarianteCreateModal extends Component {
             <FButton
               type="help"
               name="question-mark-circle"
-              fill={variables.error}
+              fill={colors.error}
               onClick={this.props.upcoming}
             >
               J'ai besoin d'aide

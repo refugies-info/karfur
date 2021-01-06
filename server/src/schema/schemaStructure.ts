@@ -1,6 +1,7 @@
 import mongoose, { ObjectId } from "mongoose";
 import { Picture, OpeningHours } from "src/types/interface";
 import { Moment } from "moment";
+import { DispositifDoc } from "./schemaDispositif";
 
 var structureSchema = new mongoose.Schema(
   {
@@ -102,6 +103,7 @@ var structureSchema = new mongoose.Schema(
 );
 
 export interface StructureDoc extends mongoose.Document {
+  _id: ObjectId;
   membres?: { userId: ObjectId; roles: string[] }[];
   acronyme?: string;
   administrateur: ObjectId;
@@ -110,7 +112,7 @@ export interface StructureDoc extends mongoose.Document {
   contact?: string;
   created_at: Moment;
   createur: ObjectId;
-  dispositifsAssocies?: ObjectId[];
+  dispositifsAssocies?: ObjectId[] | DispositifDoc[];
   link?: string;
   mail_contact?: string;
   mail_generique?: string;

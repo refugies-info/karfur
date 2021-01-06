@@ -2,7 +2,7 @@ import { createReducer } from "typesafe-actions";
 import { SelectedDispositifActions } from "./selectedDispositif.actions";
 import { updateObject } from "../utility";
 import _ from "lodash";
-import { DispositifContent, Dispositif } from "../../@types/interface";
+import { DispositifContent, Dispositif } from "../../types/interface";
 
 interface UiElement {
   isHover: boolean;

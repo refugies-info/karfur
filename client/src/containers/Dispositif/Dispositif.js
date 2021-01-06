@@ -77,16 +77,17 @@ import {
 } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
 import { BackButton } from "../../components/Frontend/Dispositif/BackButton";
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 import {
   fetchSelectedDispositifActionCreator,
   updateUiArrayActionCreator,
   updateSelectedDispositifActionCreator,
 } from "../../services/SelectedDispositif/selectedDispositif.actions";
+import "./Dispositif.scss";
 import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner";
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
-import { fetchStructuresNewActionCreator } from "../../services/Structures/structures.actions";
+import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
 // var opentype = require('opentype.js');
 
 moment.locale("fr");
@@ -126,9 +127,9 @@ export class Dispositif extends Component {
     sponsors: sponsorsData,
     tags: [],
     mainTag: {
-      darkColor: variables.darkColor,
-      lightColor: variables.lightColor,
-      hoverColor: variables.gris,
+      darkColor: colors.darkColor,
+      lightColor: colors.lightColor,
+      hoverColor: colors.gris,
       short: "noImage",
     },
 
@@ -142,6 +143,7 @@ export class Dispositif extends Component {
     isAuth: false,
     showDispositifCreateModal: false,
     showDispositifValidateModal: false,
+    showGeolocModal: false,
     showTagsModal: false,
     showTutorielModal: false,
     showDraftModal: false,
@@ -186,7 +188,7 @@ export class Dispositif extends Component {
     }); */
     this._isMounted = true;
     this.props.fetchUser();
-    this.props.fetchStructures();
+    this.props.fetchActiveStructures();
     this.checkUserFetchedAndInitialize();
     window.scrollTo(0, 0);
     // this._initializeDispositif(this.props);
@@ -303,10 +305,8 @@ export class Dispositif extends Component {
           const sponsorsWithoutStructure = dispositif.sponsors.filter(
             (sponsor) => sponsor.picture
           );
-          const sponsors = dispositif.mainSponsor
-            ? [dispositif.mainSponsor].concat(sponsorsWithoutStructure)
-            : sponsorsWithoutStructure
-            ? [sponsorsWithoutStructure]
+          const sponsors = sponsorsWithoutStructure
+            ? sponsorsWithoutStructure
             : [];
           //Enregistrement automatique du dispositif toutes les 3 minutes
           this._isMounted &&
@@ -347,7 +347,7 @@ export class Dispositif extends Component {
                         (x) => x && x.name === (dispositif.tags[0] || {}).name
                       ) || {}
                     : {},
-                mainSponsor: dispositif.mainSponsor,
+                mainSponsor: dispositif.mainSponsor || {},
                 status: dispositif.status,
                 variantes: dispositif.variantes || [],
                 fiabilite: calculFiabilite(dispositif),
@@ -492,15 +492,23 @@ export class Dispositif extends Component {
   };
 
   handleChange = (ev) => {
+    var value = ev.target.value;
+    if (ev.currentTarget.id === "titreInformatif") {
+      value = ev.target.value.substring(0, 40);
+    }
+    if (ev.currentTarget.id === "titreMarque") {
+      value = ev.target.value.substring(0, 20);
+    }
     // update selected dispositif in redux
     this.props.updateSelectedDispositif({
-      [ev.currentTarget.id]: ev.target.value,
+      [ev.currentTarget.id]: value,
     });
+
     // TO DO : remove this set state when all infos are taken from store
     this.setState({
       content: {
         ...this.state.content,
-        [ev.currentTarget.id]: ev.target.value,
+        [ev.currentTarget.id]: value,
       },
     });
   };
@@ -516,6 +524,10 @@ export class Dispositif extends Component {
         document.getElementById("titreMarque").focus();
       }
     }
+  };
+
+  toggleGeolocModal = (show) => {
+    this.setState({ showGeolocModal: show });
   };
 
   handleModalChange = (ev) =>
@@ -811,7 +823,7 @@ export class Dispositif extends Component {
           menu[1].children.filter((x) => x.title === subkey).length > 0
             ? menu[1].children.filter((x) => x.title === subkey)[0]
             : importantCard;
-      } else if (type === "accordion" && !newChild.content) {
+      } else if (type === "accordion") {
         newChild = {
           type: "accordion",
           isFakeContent: true,
@@ -912,7 +924,7 @@ export class Dispositif extends Component {
     }
     const prevState = [...this.state.menu];
     prevState[key].children = prevState[key].children.filter(
-      (x, index) => index !== subkey
+      (_, index) => index !== subkey
     );
     this.setState({
       menu: prevState,
@@ -966,7 +978,7 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({ displayTuto: !prevState.displayTuto }));
 
   toggleDispositifValidateModal = () => {
-    if (_.isEmpty(this.state.sponsors)) {
+    if (_.isEmpty(this.state.mainSponsor)) {
       this.setState({ finalValidation: true });
       this.sponsors.current.toggleModal("responsabilite");
     } else {
@@ -1196,6 +1208,24 @@ export class Dispositif extends Component {
     });
   };
 
+  addMainSponsor = (sponsor) => {
+    this.setState({
+      mainSponsor: sponsor,
+    });
+  };
+
+  deleteMainSponsor = () => {
+    this.setState({
+      mainSponsor: {},
+    });
+  };
+
+  editSponsor = (key, sponsor) => {
+    const newItems = [...this.state.sponsors];
+    newItems[key] = sponsor;
+    this.setState({ sponsors: newItems });
+  };
+
   deleteSponsor = (key) => {
     if (
       (this.state.status === "Accepté structure" ||
@@ -1213,6 +1243,26 @@ export class Dispositif extends Component {
     }
     this.setState({
       sponsors: (this.state.sponsors || []).filter((_, i) => i !== key),
+    });
+  };
+
+  deleteMainSponsor = () => {
+    if (
+      (this.state.status === "Accepté structure" ||
+        this.state.status === "Actif" ||
+        this.state.status === "En attente admin") &&
+      !this.props.admin
+    ) {
+      Swal.fire({
+        title: "Oh non!",
+        text: "Vous ne pouvez plus supprimer de structures partenaires",
+        type: "error",
+        timer: 1500,
+      });
+      return;
+    }
+    this.setState({
+      mainSponsor: {},
     });
   };
 
@@ -1277,7 +1327,7 @@ export class Dispositif extends Component {
             ) */
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   editDispositif = (_ = null, disableEdit = false) => {
     this.props.history.push({
       state: {
@@ -1368,7 +1418,8 @@ export class Dispositif extends Component {
   valider_dispositif = (
     status = "En attente",
     auto = false,
-    sauvegarde = false
+    sauvegarde = false,
+    saveAndEdit = false
   ) => {
     if (!auto && !this.verifierDemarche()) {
       return;
@@ -1461,12 +1512,7 @@ export class Dispositif extends Component {
           }),
         };
       }),
-      sponsors: (this.state.sponsors || [])
-        .filter((x) => !x.dummy)
-        .map((sponsor) => {
-          if (sponsor._id) return sponsor._id;
-          return sponsor;
-        }),
+      sponsors: (this.state.sponsors || []).filter((x) => !x.dummy),
       tags: this.state.tags,
       avancement: 1,
       status: status,
@@ -1478,11 +1524,8 @@ export class Dispositif extends Component {
         this.state.status !== "Brouillon" && { timeSpent: this.state.time }),
       autoSave: auto,
     };
-
-    dispositif.mainSponsor =
-      typeof _.get(dispositif, "sponsors.0") === "string"
-        ? _.get(dispositif, "sponsors.0")
-        : null;
+    dispositif.mainSponsor = this.state.mainSponsor._id || null;
+    const mainSponsorPopulate = this.state.mainSponsor;
     if (dispositif.typeContenu === "dispositif") {
       let cardElement =
         (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
@@ -1542,11 +1585,8 @@ export class Dispositif extends Component {
         ].includes(this.state.status)
       ) {
         dispositif.status = this.state.status;
-      } else if (dispositif.sponsors && dispositif.sponsors.length > 0) {
-        const mainSponsor =
-          this.state.sponsors.filter((sponsor) => sponsor._id).length > 0
-            ? this.state.sponsors.filter((sponsor) => sponsor._id)[0]
-            : null;
+      } else if (dispositif.mainSponsor) {
+        const mainSponsor = mainSponsorPopulate;
         //Si l'auteur appartient à la structure principale je la fait passer directe en validation
         const membre = mainSponsor
           ? (mainSponsor.membres || []).find(
@@ -1576,13 +1616,14 @@ export class Dispositif extends Component {
           this.props.fetchDispositifs();
           this.setState(
             {
-              disableEdit: [
-                "En attente admin",
-                "En attente",
-                "Brouillon",
-                "En attente non prioritaire",
-                "Actif",
-              ].includes(status),
+              disableEdit:
+                [
+                  "En attente admin",
+                  "En attente",
+                  "Brouillon",
+                  "En attente non prioritaire",
+                  "Actif",
+                ].includes(status) && !saveAndEdit,
               isDispositifLoading: false,
             },
             () => {
@@ -1629,12 +1670,14 @@ export class Dispositif extends Component {
       typeContenu,
       withHelp,
       disableEdit,
-      mainTag,
       inVariante,
       checkingVariante,
       printing,
       didThank,
+      mainTag,
     } = this.state;
+    const tag =
+      mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
     return (
       <div
         id="dispositif"
@@ -1682,16 +1725,7 @@ export class Dispositif extends Component {
             xs={translating ? "8" : "12"}
             className="main-col"
           >
-            <section
-              className="banniere-dispo"
-              style={
-                mainTag &&
-                mainTag.short && {
-                  // eslint-disable-next-line no-use-before-define
-                  backgroundImage: `url(${bgImage(mainTag.short)})`,
-                }
-              }
-            >
+            <section className={"banniere-dispo " + tag}>
               {(inVariante ||
                 checkingVariante ||
                 (typeContenu === "dispositif" && !disableEdit)) && (
@@ -1983,6 +2017,8 @@ export class Dispositif extends Component {
                   addMapBtn={this.state.addMapBtn}
                   printing={printing}
                   admin={this.props.admin}
+                  toggleGeolocModal={this.toggleGeolocModal}
+                  showGeolocModal={this.state.showGeolocModal}
                   // TO DO : remove spread state
                   {...this.state}
                 />
@@ -2038,9 +2074,13 @@ export class Dispositif extends Component {
                 <Sponsors
                   ref={this.sponsors}
                   sponsors={this.state.sponsors}
+                  mainSponsor={this.state.mainSponsor}
                   disableEdit={disableEdit}
                   addSponsor={this.addSponsor}
                   deleteSponsor={this.deleteSponsor}
+                  addMainSponsor={this.addMainSponsor}
+                  deleteMainSponsor={this.deleteMainSponsor}
+                  editSponsor={this.editSponsor}
                   admin={this.props.admin}
                   validate={this.toggleDispositifValidateModalFinal}
                   t={t}
@@ -2049,6 +2089,7 @@ export class Dispositif extends Component {
                   toggleTutorielModal={this.toggleTutorielModal}
                   displayTuto={this.state.displayTuto}
                   updateUIArray={this.updateUIArray}
+                  dispositif={this.state.dispositif}
                 />
 
                 {false && <Commentaires />}
@@ -2125,6 +2166,7 @@ export class Dispositif extends Component {
             )}
             <DispositifValidateModal
               show={this.state.showDispositifValidateModal}
+              typeContenu={typeContenu}
               toggle={this.toggleDispositifValidateModal}
               abstract={this.state.content.abstract}
               onChange={this.handleChange}
@@ -2132,10 +2174,14 @@ export class Dispositif extends Component {
               toggleTutorielModal={this.toggleTutorielModal}
               tags={this.state.tags}
               sponsors={this.state.sponsors}
+              mainSponsor={this.state.mainSponsor}
+              menu={this.state.menu}
               toggleTagsModal={this.toggleTagsModal}
               toggleSponsorModal={() =>
                 this.sponsors.current.toggleModal("responsabilite")
               }
+              toggleGeolocModal={this.toggleGeolocModal}
+              addItem={this.addItem}
             />
             <TagsModal
               tags={this.state.tags}
@@ -2183,20 +2229,6 @@ export class Dispositif extends Component {
   }
 }
 
-function bgImage(short) {
-  if (short === "noImage") {
-    const imageUrl = require("../../assets/figma/placeholder_no_theme" +
-      ".svg");
-    return imageUrl;
-    //eslint-disable-next-line
-  } else {
-    const imageUrl = require("../../assets/figma/illustration_" +
-      short.split(" ").join("-") +
-      ".svg"); //illustration_
-    return imageUrl;
-  }
-}
-
 const mapStateToProps = (state) => {
   return {
     languei18nCode: state.langue.languei18nCode,
@@ -2213,7 +2245,7 @@ const mapDispatchToProps = {
   fetchSelectedDispositif: fetchSelectedDispositifActionCreator,
   updateUiArray: updateUiArrayActionCreator,
   updateSelectedDispositif: updateSelectedDispositifActionCreator,
-  fetchStructures: fetchStructuresNewActionCreator,
+  fetchActiveStructures: fetchActiveStructuresActionCreator,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps, null, {

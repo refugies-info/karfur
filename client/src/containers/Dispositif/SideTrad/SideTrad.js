@@ -4,10 +4,10 @@ import { Spinner, Tooltip, Progress } from "reactstrap";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
 import h2p from "html2plaintext";
-import { convertToRaw, EditorState, ContentState } from "draft-js";
+import { EditorState, ContentState } from "draft-js";
 import htmlToDraft from "html-to-draftjs";
+import { convertToHTML } from "draft-convert"
 import DirectionProvider, {
   DIRECTIONS,
 } from "react-with-direction/dist/DirectionProvider";
@@ -29,7 +29,8 @@ import moment from "moment";
 
 import "./SideTrad.scss";
 import { colorAvancement } from "../../../components/Functions/ColorFunctions";
-import variables from "scss/colors.scss";
+import {customConvertOption} from "../data";
+import {colors} from "colors";
 import produce from "immer";
 import styled from "styled-components";
 
@@ -840,7 +841,8 @@ class SideTrad extends Component {
       const texte =
         nom === "francais"
           ? initialValue
-          : draftToHtml(convertToRaw(initialValue.getCurrentContent()));
+          : convertToHTML(customConvertOption)(
+            initialValue.getCurrentContent());
       const value =
         pos > -1
           ? h2p(texte)
@@ -998,7 +1000,7 @@ class SideTrad extends Component {
           <FButton
             type="light-action"
             name={"close" + "-outline"}
-            fill={variables.noir}
+            fill={colors.noir}
             className="mr-10 mb-10"
             onClick={() => this._endingFeedback()}
           >
@@ -1025,7 +1027,7 @@ class SideTrad extends Component {
             >
               <div className={"text-" + colorAvancement(this.state.avancement)}>
                 {this.state.avancement === 1 ? (
-                  <EVAIcon name="checkmark-circle-2" fill={variables.vert} />
+                  <EVAIcon name="checkmark-circle-2" fill={colors.vert} />
                 ) : (
                   <span>
                     {Math.round((this.state.avancement || 0) * 100)} %
@@ -1066,7 +1068,7 @@ class SideTrad extends Component {
           <AlertModified type={modified ? "modified" : "abstract"}>
             <EVAIcon
               name="info"
-              fill={variables.noir}
+              fill={colors.noir}
               id="alert-info"
               className={"mr-10 mb-1"}
             />
@@ -1087,7 +1089,7 @@ class SideTrad extends Component {
           <AlertModified type={"modified"}>
             <EVAIcon
               name="alert-triangle"
-              fill={variables.orange}
+              fill={colors.orange}
               id="alert-triangle-outline"
               className={"mr-10 mb-1"}
             />
@@ -1153,7 +1155,7 @@ class SideTrad extends Component {
               placeholder="Renseignez votre traduction ici"
               onEditorStateChange={this.props.onEditorStateChange}
               editorState={(translated || {}).body}
-              toolbarHidden={pointeurs.includes(currIdx) || this.state.currSubName === "contentTitle"}
+              toolbarHidden={pointeurs.includes(currIdx) || this.state.currSubName === "contentTitle" || this.state.currSubName === "title"}
               toolbar={{
                 options: ["inline", "list", "link"],
                 inline: {
@@ -1234,7 +1236,7 @@ class SideTrad extends Component {
                     <FButton
                       type="light-action"
                       name="arrow-ios-back-outline"
-                      fill={variables.blanc}
+                      fill={colors.blanc}
                       onClick={() =>
                         this.nextProposition(
                           this.state.propositionIndex === 0
@@ -1262,7 +1264,7 @@ class SideTrad extends Component {
                       {""}
                       <EVAIcon
                         name="arrow-ios-forward-outline"
-                        fill={variables.blanc}
+                        fill={colors.blanc}
                         //className="ml-10"
                       />
                     </FButton>
@@ -1290,7 +1292,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name="arrow-back-outline"
-                fill={variables.noir}
+                fill={colors.noir}
                 onClick={() => this.goChange(false)}
                 className="mt-10"
                 style={{ marginRight: 5 }}
@@ -1306,7 +1308,7 @@ class SideTrad extends Component {
               {""}
               <EVAIcon
                 name="arrow-forward-outline"
-                fill={variables.noir}
+                fill={colors.noir}
                 //className="ml-10"
               />
             </FButton>
@@ -1316,7 +1318,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name={"edit-outline"}
-                fill={variables.noir}
+                fill={colors.noir}
                 className="mr-10 mt-10"
                 onClick={this.modifyNew}
               >
@@ -1326,7 +1328,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name={"close-circle-outline"}
-                fill={variables.noir}
+                fill={colors.noir}
                 className="mr-10 mt-10"
                 onClick={this.modifyNew}
               >
@@ -1336,7 +1338,7 @@ class SideTrad extends Component {
               <FButton
                 type="outline-black"
                 name="refresh-outline"
-                fill={variables.noir}
+                fill={colors.noir}
                 onClick={this.reset}
                 className="mt-10 mr-10"
               >

@@ -7,7 +7,7 @@ import {
   ADD_TAG,
 } from "./selectedDispositif.actionTypes";
 import { action, ActionType } from "typesafe-actions";
-import { Dispositif } from "../../@types/interface";
+import { Dispositif } from "../../types/interface";
 
 export const fetchSelectedDispositifActionCreator = (value: {
   selectedDispositifId: string;

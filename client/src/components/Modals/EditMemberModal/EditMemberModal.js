@@ -17,7 +17,7 @@ import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import API from "../../../utils/API";
 
 import "./EditMemberModal.scss";
-import variables from "scss/colors.scss";
+import { colors } from "colors";
 
 class EditMemberModal extends Component {
   state = {
@@ -89,7 +89,8 @@ class EditMemberModal extends Component {
       if (
         (this.props.selected.structRole === "administrateur" ||
           selectedRole === "administrateur") &&
-        !userRoles.includes("administrateur")
+        !userRoles.includes("administrateur") &&
+        !this.props.isAdmin
       ) {
         Swal.fire({
           title: "Oh non!",
@@ -103,7 +104,8 @@ class EditMemberModal extends Component {
       if (
         selectedRole === "contributeur" &&
         !userRoles.includes("administrateur") &&
-        !userRoles.includes("contributeur")
+        !userRoles.includes("contributeur") &&
+        !this.props.isAdmin
       ) {
         Swal.fire({
           title: "Oh non!",
@@ -116,7 +118,7 @@ class EditMemberModal extends Component {
 
       let structure = {};
       if (selectedRole === "delete") {
-        if (!userRoles.includes("administrateur")) {
+        if (!userRoles.includes("administrateur") && !this.props.isAdmin) {
           Swal.fire({
             title: "Oh non!",
             text: "Seul un responsable peut supprimer un membre",
@@ -195,7 +197,7 @@ class EditMemberModal extends Component {
                       <Col lg="1">
                         <EVAIcon
                           name={"radio-button-" + (role.checked ? "on" : "off")}
-                          fill={variables.noir}
+                          fill={colors.noir}
                         />
                       </Col>
                     </Row>

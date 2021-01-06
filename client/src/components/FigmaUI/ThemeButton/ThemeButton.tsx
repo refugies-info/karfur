@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Tag } from "../../../@types/interface";
+import { Tag } from "../../../types/interface";
 import Streamline from "../../../assets/streamline";
 
 const ThemeButtonContainer = styled.div`

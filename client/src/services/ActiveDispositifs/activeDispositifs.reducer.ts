@@ -1,4 +1,4 @@
-import { Dispositif } from "../../@types/interface";
+import { Dispositif } from "../../types/interface";
 import { createReducer } from "typesafe-actions";
 import { ActiveDispositifsActions } from "./activeDispositifs.actions";
 
@@ -10,5 +10,5 @@ export const activeDispositifsReducer = createReducer<
   ActiveDispositifsState,
   ActiveDispositifsActions
 >(initialActiveDispositifsState, {
-  SET_ACTIVE_DISPOSITIFS: (state, action) => action.payload,
+  SET_ACTIVE_DISPOSITIFS: (_, action) => action.payload,
 });

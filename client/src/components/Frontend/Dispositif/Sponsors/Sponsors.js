@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {
   Row,
-  Col,
   Input,
   Modal,
   ModalBody,
@@ -12,21 +11,146 @@ import {
   Label,
   Spinner,
 } from "reactstrap";
-import Icon from "react-eva-icons";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 
 import API from "utils/API.js";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
+import FInput from "../../../FigmaUI/FInput/FInput";
 import SearchBar from "../../../../containers/UI/SearchBar/SearchBar";
 import { sentIllu } from "../../../../assets/figma/index";
 import CreationContent from "../CreationContent/CreationContent";
 import { updateUserActionCreator } from "../../../../services/User/user.actions";
 import _ from "lodash";
 import "./Sponsors.scss";
-import variables from "scss/colors.scss";
-import { NoSponsorImage } from "../../../NoSponsorImage/NoSponsorImage";
+import { colors } from "colors";
+import styled from "styled-components";
+
+const SponsorContainer = styled.div`
+  padding: 0px 0px 0px 16px;
+  border-left: ${(props) => (props.left ? "2px solid #FFFFFF" : null)};
+`;
+const SponsorListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const SectionTitle = styled.p`
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: #ffffff;
+`;
+
+const SponsorTitle = styled.p`
+  font-weight: bold;
+  font-size: 18px;
+  color: #212121;
+  text-align: center;
+`;
+
+const ImageLink = styled.a`
+  background-color: white;
+  width: 166px;
+  height: 116px;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+`;
+
+const DeleteButtonFull = styled.div`
+  background: #f44336;
+  border-radius: 12px;
+  width: 139px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  cursor: pointer;
+`;
+
+const DeleteButtonFullText = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+`;
+const EditText = styled.p`
+  font-weight: bold;
+  font-size: 16px;
+  color: #212121;
+  text-align: center;
+  margin-bottom: 0px;
+`;
+const EditButton = styled.div`
+  background: #f9ef99;
+  border-radius: 12px;
+  width: 105px;
+  height: 50px;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 8px;
+  cursor: pointer;
+`;
+
+const DeleteButtonSmall = styled.div`
+  background: #f44336;
+  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+const AddSponsorTitle = styled.p`
+  font-weight: bold;
+  font-size: 22px;
+  color: #212121;
+  line-height: 28px;
+`;
+const AddSponsorDescription = styled.p`
+  font-weight: normal;
+  font-size: 16px;
+  color: #212121;
+  line-height: 20px;
+`;
+
+const SponsorCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  margin-right: 16px;
+
+  width: 214px;
+  height: ${(props) => (props.disableEdit ? "303px" : "345px")};
+
+  /* Noir/Blanc */
+
+  background: ${(props) => (props.add ? "#F9EF99" : "#eaeaea")};
+  border-radius: 12px;
+  cursor: ${(props) =>
+    (props.add || props.disableEdit) && !props.nolink ? "pointer" : "auto"};
+  &:hover {
+    border: ${(props) => (props.add ? "2px solid #212121" : "none")};
+  }
+`;
+
+const burl =
+  process.env.REACT_APP_ENV === "development"
+    ? "http://localhost:3000/"
+    : process.env.REACT_APP_ENV === "staging"
+    ? "https://staging.refugies.info/"
+    : "https://www.refugies.info/";
 
 class Sponsors extends Component {
   state = {
@@ -38,14 +162,17 @@ class Sponsors extends Component {
       { name: "img-modal", show: false },
     ],
     checked: false,
+    banner: true,
     authorBelongs: false,
     tooltipOpen: false,
     selected: {},
     mesStructures: [],
     imgData: {},
     link: "",
-    alt: "",
+    nom: "",
     sponsorLoading: false,
+    edit: false,
+    sponsorKey: null,
 
     structure: {
       nom: "",
@@ -140,7 +267,7 @@ class Sponsors extends Component {
     this.setState({
       imgData: suggestion.picture || {},
       link: suggestion.link || "",
-      alt: "",
+      nom: "",
     });
     this.toggleModal(suggestion.createNew ? "creation" : "etVous");
   };
@@ -169,30 +296,37 @@ class Sponsors extends Component {
         "mail_contact",
         "phone_contact",
         "authorBelongs",
+        "picture",
       ];
     fields.forEach((x) =>
       this.state.structure[x] !== ""
         ? (structure[x] = this.state.structure[x])
         : false
     );
+    if (this.state.imgData) {
+      structure.picture = this.state.imgData;
+    }
     API.create_structure(structure).then((data) => {
-      this.props.addSponsor(data.data.data);
+      this.props.addMainSponsor(data.data.data);
       this.toggleModal("envoye");
     });
+    this.setState({ imgData: {} });
   };
 
   validerRespo = () => {
     if (this.state.checked) {
       let user = { ...this.props.user };
       let userInfo = { _id: user._id, email: user.email, phone: user.phone };
-      this.props.addSponsor(
+      this.props.addMainSponsor(
         { type: "Not found", user: { ...userInfo, username: user.username } },
         false
       );
       this.toggleModal();
       API.set_user_info(userInfo);
     } else if (this.state.mesStructures.some((x) => x.checked)) {
-      this.props.addSponsor(this.state.mesStructures.find((x) => x.checked));
+      this.props.addMainSponsor(
+        this.state.mesStructures.find((x) => x.checked)
+      );
       this.toggleModal();
     }
     if (this.props.finalValidation) {
@@ -208,7 +342,7 @@ class Sponsors extends Component {
           ...this.state.selected,
           picture: { ...this.state.imgData },
           link: this.state.link,
-          alt: this.state.alt,
+          nom: this.state.nom,
           asAdmin,
         });
         this.toggleModal();
@@ -218,7 +352,7 @@ class Sponsors extends Component {
           ...this.state.selected,
           picture: { ...this.state.imgData },
           link: this.state.link,
-          alt: this.state.alt,
+          nom: this.state.nom,
           asAdmin,
         });
         this.toggleModal();
@@ -236,12 +370,25 @@ class Sponsors extends Component {
           ...this.state.selected,
           picture: { ...this.state.imgData },
           link: this.state.link,
-          alt: this.state.alt,
+          nom: this.state.nom,
           asAdmin,
         });
         this.toggleModal();
       }
     }
+    this.setState({ imgData: {} });
+  };
+
+  editSponsor = (key) => {
+    this.toggleModal();
+    this.setState({ edit: false });
+    var sponsor = {
+      ...this.state.selected,
+      picture: { ...this.state.imgData },
+      link: this.state.link,
+      nom: this.state.nom,
+    };
+    this.props.editSponsor(key, sponsor);
   };
 
   /*   addStructure = () => {
@@ -263,7 +410,14 @@ class Sponsors extends Component {
     });
 
   render() {
-    const { disableEdit, t, sponsors, deleteSponsor, user } = this.props;
+    const {
+      disableEdit,
+      sponsors,
+      mainSponsor,
+      deleteSponsor,
+      deleteMainSponsor,
+      user,
+    } = this.props;
     const {
       showModals,
       selected,
@@ -273,20 +427,21 @@ class Sponsors extends Component {
     } = this.state;
 
     const sponsorsWithoutPicture = sponsors.filter(
-      (sponsor) => !sponsor.picture
+      (sponsor) => !sponsor.picture && !sponsor._id
     );
-    const sponsorsWithPicture = sponsors.filter((sponsor) => !!sponsor.picture);
-
+    const sponsorsWithPicture = sponsors.filter(
+      (sponsor) => !!sponsor.picture && !sponsor._id
+    );
     const deduplicatedSponsors = sponsorsWithoutPicture.concat(
-      _.uniqBy(sponsorsWithPicture, (sponsor) => sponsor.picture.secure_url)
+      _.uniqBy(sponsorsWithPicture, (sponsor) => sponsor.nom)
     );
     const modal = { name: "responsabilite" };
-    const structuresArray = this.props.structuresNew
-      ? this.props.structuresNew.concat([{ createNew: true }])
+    const structuresArray = this.props.structures
+      ? this.props.structures.concat([{ createNew: true }])
       : [{ createNew: true }];
     return (
       <div
-        className="sponsor-footer"
+        className="sponsor-footer backgroundColor-darkColor"
         onMouseEnter={() => this.props.updateUIArray(-7)}
       >
         <div
@@ -294,11 +449,10 @@ class Sponsors extends Component {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
+            marginBottom: "25px",
           }}
         >
-          <h5 className="color-darkColor">
-            {t("Dispositif.Structures", "Structures partenaires")}
-          </h5>
+          <h5 className="">{"Proposé par"}</h5>
           {!disableEdit && this.props.displayTuto && (
             <FButton
               type="tuto"
@@ -310,71 +464,243 @@ class Sponsors extends Component {
           )}
         </div>
         <Row className="sponsor-images">
-          {sponsors &&
-            deduplicatedSponsors.map((sponsor, key) => {
-              return (
-                <Col key={key} className="sponsor-col">
-                  <div className="image-wrapper">
-                    <a
-                      href={
-                        ((sponsor.link || "").includes("http")
-                          ? ""
-                          : "http://") + sponsor.link
-                      }
-                      target="_blank"
-                      rel="noopener noreferrer"
+          <SponsorContainer>
+            {deduplicatedSponsors.length !== 0 || !disableEdit ? (
+              <SectionTitle>Responsable</SectionTitle>
+            ) : null}
+            {mainSponsor._id ? (
+              <SponsorCard disableEdit={disableEdit}>
+                <ImageLink
+                  href={`${burl}annuaire/${mainSponsor._id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="sponsor-img"
+                    src={(mainSponsor.picture || {}).secure_url}
+                    alt={mainSponsor.acronyme}
+                  />
+                </ImageLink>
+                <SponsorTitle>{mainSponsor.nom}</SponsorTitle>
+                {!disableEdit ? (
+                  <DeleteButtonFull onClick={() => deleteMainSponsor()}>
+                    <EVAIcon
+                      name="trash-2-outline"
+                      size="large"
+                      fill={colors.blanc}
+                    />
+                    <DeleteButtonFullText>Supprimer</DeleteButtonFullText>
+                  </DeleteButtonFull>
+                ) : null}
+              </SponsorCard>
+            ) : !disableEdit ? (
+              <SponsorCard
+                onClick={() => {
+                  this.props.toggleFinalValidation();
+                  this.toggleModal("responsabilite");
+                }}
+                add
+                disableEdit={disableEdit}
+              >
+                <AddSponsorTitle>
+                  Choisir la structure responsable
+                </AddSponsorTitle>
+                <AddSponsorDescription>
+                  Pour assurer la mise à jour des informations, nous devons
+                  relier votre fiche à la structure responsable du dispositif.
+                </AddSponsorDescription>
+              </SponsorCard>
+            ) : null}
+          </SponsorContainer>
+          {sponsors && deduplicatedSponsors.length > 0 ? (
+            <SponsorContainer left>
+              <SectionTitle>Partenaires</SectionTitle>
+              <SponsorListContainer>
+                {deduplicatedSponsors.length === 1 && !disableEdit ? (
+                  <SponsorCard
+                    onClick={() => {
+                      this.props.toggleFinalValidation();
+                      this.toggleModal("img-modal");
+                      this.setState({
+                        picture: {},
+                        link: "",
+                        nom: "",
+                      });
+                    }}
+                    add
+                    disableEdit={disableEdit}
+                  >
+                    <AddSponsorTitle>
+                      Ajouter une structure partenaire
+                    </AddSponsorTitle>
+                    <AddSponsorDescription>
+                      Ces structures ne peuvent pas éditer la fiche mais sont
+                      ainsi visible dans le cas d’un partenariat ou d’une
+                      co-animation.
+                    </AddSponsorDescription>
+                  </SponsorCard>
+                ) : null}
+                {deduplicatedSponsors.map((sponsor, key) => {
+                  return (
+                    <SponsorCard
+                      nolink={!sponsor.link}
+                      disableEdit={disableEdit}
+                      key={key}
                     >
-                      {sponsor.picture && sponsor.picture.secure_url ? (
-                        <img
-                          className="sponsor-img"
-                          src={sponsor.picture.secure_url}
-                          alt={sponsor.alt}
-                        />
-                      ) : sponsor.type === "Not found" ? (
-                        <div className="not-found-wrapper">
-                          <EVAIcon
-                            name="question-mark-circle"
-                            className="not-found-icon"
-                            size="large"
+                      {sponsor.link ? (
+                        <ImageLink
+                          href={
+                            ((sponsor.link || "").includes("http")
+                              ? ""
+                              : "http://") + sponsor.link
+                          }
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            className="sponsor-img"
+                            src={sponsor.picture.secure_url}
+                            alt={sponsor.alt}
                           />
-                          <span>
-                            Structure responsable
-                            <br />
-                            non-identifiée
-                          </span>
-                        </div>
+                        </ImageLink>
                       ) : (
-                        <NoSponsorImage
-                          nom={sponsor.nom}
-                          acronyme={sponsor.acronyme}
-                          alt={sponsor.alt}
-                        />
+                        <ImageLink>
+                          <img
+                            className="sponsor-img"
+                            src={sponsor.picture.secure_url}
+                            alt={sponsor.alt}
+                          />
+                        </ImageLink>
                       )}
-                    </a>
-                    {key === 0 && sponsor.type !== "Not found" && (
-                      <div className="owner-badge">
-                        <EVAIcon name="shield" className="mr-10" />
-                        Responsable
-                      </div>
-                    )}
-                    {!disableEdit && (
-                      <div
-                        className="delete-icon"
-                        onClick={() => deleteSponsor(key)}
+                      <SponsorTitle>{sponsor.nom}</SponsorTitle>
+                      {!disableEdit ? (
+                        <SponsorListContainer>
+                          <EditButton
+                            onClick={() => {
+                              this.setState(
+                                {
+                                  imgData: sponsor.picture || {},
+                                  link: sponsor.link || "",
+                                  nom: sponsor.nom || "",
+                                  edit: true,
+                                  sponsorKey: key,
+                                },
+                                () => {
+                                  this.props.toggleFinalValidation();
+                                  this.toggleModal("img-modal");
+                                }
+                              );
+                            }}
+                          >
+                            <EVAIcon
+                              name="edit-outline"
+                              size="large"
+                              fill={colors.noir}
+                            />
+                            <EditText>Editer</EditText>
+                          </EditButton>
+                          <DeleteButtonSmall onClick={() => deleteSponsor(key)}>
+                            <EVAIcon
+                              name="trash-2-outline"
+                              size="large"
+                              fill={colors.blanc}
+                            />
+                          </DeleteButtonSmall>
+                        </SponsorListContainer>
+                      ) : null}
+                    </SponsorCard>
+                    /*                   <Col key={key} className="sponsor-col">
+                    <div className="image-wrapper">
+                      <a
+                        href={
+                          ((sponsor.link || "").includes("http")
+                            ? ""
+                            : "http://") + sponsor.link
+                        }
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        <Icon
-                          name="minus-circle"
-                          fill={variables.darkColor}
-                          size="xlarge"
-                        />
-                      </div>
-                    )}
-                  </div>
-                </Col>
-              );
-            })}
-
-          {!disableEdit && (
+                        {sponsor.picture && sponsor.picture.secure_url ? (
+                          <img
+                            className="sponsor-img"
+                            src={sponsor.picture.secure_url}
+                            alt={sponsor.alt}
+                          />
+                        ) : sponsor.type === "Not found" ? (
+                          <div className="not-found-wrapper">
+                            <EVAIcon
+                              name="question-mark-circle"
+                              className="not-found-icon"
+                              size="large"
+                            />
+                            <span>
+                              Structure responsable
+                              <br />
+                              non-identifiée
+                            </span>
+                          </div>
+                        ) : (
+                          <NoSponsorImage
+                            nom={sponsor.nom}
+                            acronyme={sponsor.acronyme}
+                            alt={sponsor.alt}
+                          />
+                        )}
+                      </a>
+                      {key === 0 && sponsor.type !== "Not found" && (
+                        <div className="owner-badge">
+                          <EVAIcon name="shield" className="mr-10" />
+                          Responsable
+                        </div>
+                      )}
+                      {!disableEdit && (
+                        <div
+                          className="delete-icon"
+                          onClick={() => deleteSponsor(key)}
+                        >
+                          <Icon
+                            name="minus-circle"
+                            fill={colors.darkColor}
+                            size="xlarge"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </Col> */
+                  );
+                })}
+              </SponsorListContainer>
+            </SponsorContainer>
+          ) : !disableEdit ? (
+            <SponsorContainer left>
+              <SectionTitle>Partenaires</SectionTitle>
+              <SponsorListContainer>
+                <SponsorCard
+                  onClick={() => {
+                    this.props.toggleFinalValidation();
+                    this.toggleModal("img-modal");
+                    this.setState({
+                      picture: {},
+                      link: "",
+                      nom: "",
+                    });
+                  }}
+                  add
+                  disableEdit={disableEdit}
+                >
+                  <AddSponsorTitle>
+                    Ajouter une structure partenaire
+                  </AddSponsorTitle>
+                  <AddSponsorDescription>
+                    Ces structures ne peuvent pas éditer la fiche mais sont
+                    ainsi visible dans le cas d’un partenariat ou d’une
+                    co-animation.
+                  </AddSponsorDescription>
+                </SponsorCard>
+              </SponsorListContainer>
+            </SponsorContainer>
+          ) : null}
+          {/* {!disableEdit && (
             <Col>
               <div
                 className="add-sponsor"
@@ -394,7 +720,7 @@ class Sponsors extends Component {
                 </span>
               </div>
             </Col>
-          )}
+          )} */}
         </Row>
 
         <CustomModal
@@ -407,7 +733,7 @@ class Sponsors extends Component {
             <FButton
               type="dark"
               name="paper-plane-outline"
-              fill={variables.noir}
+              fill={colors.noir}
               disabled={
                 (!checked || (!user.email && !user.phone)) &&
                 !mesStructures.some((x) => x.checked)
@@ -419,11 +745,25 @@ class Sponsors extends Component {
             </FButton>
           }
         >
-          <p>
-            Pour assurer la mise à jour des informations, nous devons relier ce
-            dispositif à sa structure d’origine. Merci de la renseigner
-            ci-dessous :
-          </p>
+          {this.state.banner ? (
+            <div className="warning-bloc bg-focus mt-16 mb-8">
+              <EVAIcon name="info" fill={colors.blanc} className="info-icon" />
+              <div
+                onClick={() => this.setState({ banner: false })}
+                className={"info-icon-close"}
+              >
+                <EVAIcon name="close-outline" fill={colors.blanc} />
+              </div>
+              <p style={{ marginBottom: 0 }}>
+                Pour que la fiche soit correctement mise à jour au fil du temps,
+                nous allons la connecter à sa structure légale. Cherchez la
+                structure dans la barre de recherche ci-dessous, ou créez-en une
+                nouvelle si elle n’est pas présente dans la base de donnée.
+              </p>
+            </div>
+          ) : (
+            <div style={{ marginTop: 24 }} />
+          )}
 
           {mesStructures.length > 0 &&
             mesStructures.map((struct) => (
@@ -451,7 +791,7 @@ class Sponsors extends Component {
             selectItem={this.selectItem}
           />
 
-          <FormGroup check className="case-cochee mt-10">
+          {/* <FormGroup check className="case-cochee mt-10">
             <Label check>
               <Input
                 type="checkbox"
@@ -460,21 +800,22 @@ class Sponsors extends Component {
               />{" "}
               Je ne sais pas quelle est la structure responsable
             </Label>
-          </FormGroup>
-          {this.state.checked && (
+          </FormGroup> */}
+          {/*           {this.state.checked && (
             <>
               <div className="warning-bloc bg-attention mt-10">
                 <EVAIcon
                   name="alert-triangle-outline"
-                  fill={variables.noir}
+                  fill={colors.noir}
                   className="info-icon"
                 />
                 <b>Structure inconnue</b>
                 <p>
-                  Pas d’inquiétude, nous allons essayer de trouver ensemble la
-                  structure d’origine de ce dispositif. Merci de nous donner au
-                  moins un moyen de contact pour que nous échangions ensemble
-                  sur l’origine de ce dispositif.
+                  Pour que la fiche soit correctement mise à jour au fil du
+                  temps, nous allons la connecter à sa structure légale.
+                  Cherchez la structure dans la barre de recherche ci-dessous,
+                  ou créez-en une nouvelle si elle n’est pas présente dans la
+                  base de donnée.
                 </p>
               </div>
               <div className="form-field">
@@ -482,7 +823,7 @@ class Sponsors extends Component {
                   <EVAIcon
                     className="input-icon"
                     name="at-outline"
-                    fill={variables.noir}
+                    fill={colors.noir}
                   />
                   <Input
                     id="email"
@@ -496,7 +837,7 @@ class Sponsors extends Component {
                   <EVAIcon
                     className="input-icon"
                     name="phone-outline"
-                    fill={variables.noir}
+                    fill={colors.noir}
                   />
                   <Input
                     id="phone"
@@ -508,7 +849,7 @@ class Sponsors extends Component {
                 </InputGroup>
               </div>
             </>
-          )}
+          )} */}
         </CustomModal>
 
         <CustomModal
@@ -521,8 +862,12 @@ class Sponsors extends Component {
             <FButton
               type="dark"
               name="paper-plane-outline"
-              fill={variables.noir}
-              onClick={this.addSponsor}
+              fill={colors.noir}
+              onClick={() => {
+                this.props.addMainSponsor(this.state.selected);
+                this.toggleModal();
+                this.setState({ imgData: {} });
+              }}
               className="push-right"
             >
               Valider
@@ -535,7 +880,7 @@ class Sponsors extends Component {
               className="float-right"
               id="alt-tooltip"
               name="info"
-              fill={variables.noir}
+              fill={colors.noir}
             />
             <Tooltip
               placement="top"
@@ -589,41 +934,80 @@ class Sponsors extends Component {
           toggleModal={this.toggleModal}
           modal={{ name: "creation" }}
           keyValue={2}
+          className="modal-sponsors"
           title="Créer une structure"
-          lowerLeftBtn={
-            <FButton
-              type="outline-black"
-              name="search-outline"
-              fill={variables.noir}
-              onClick={() => this.toggleModal("responsabilite")}
-            >
-              Rechercher une structure
-            </FButton>
-          }
-          lowerRightBtn={
-            <FButton
-              type="validate"
-              name="plus-circle-outline"
-              onClick={this.createStructure}
-            >
-              Ajouter
-            </FButton>
-          }
         >
           <CreationContent
             handleChange={this.handleChange}
             handleBelongsChange={this.handleBelongsChange}
             {...this.state.structure}
           />
-          <div className="warning-bloc bg-attention">
-            <EVAIcon
-              name="info-outline"
-              fill={variables.noir}
-              className="info-icon"
-            />
-            Notre équipe va vous contacter d’ici 7 jours pour confirmer la
-            création. Vous allez recevoir un e-mail de confirmation.&nbsp;
-            <b>Bienvenue !</b>
+          <div className="form-field inline-div">
+            <span style={{ fontSize: 22 }}>Ajouter un logo</span>
+            {this.state.imgData.secure_url ? (
+              <div className="image-wrapper">
+                <img
+                  className="sponsor-img"
+                  src={this.state.imgData.secure_url}
+                  alt={this.state.imgData.alt}
+                />
+                <FButton
+                  className="upload-btn"
+                  type="theme"
+                  name="upload-outline"
+                >
+                  <Input
+                    className="file-input"
+                    type="file"
+                    id="picture"
+                    name="user"
+                    accept="image/*"
+                    onChange={this.handleFileInputChange}
+                  />
+                  <span>Choisir</span>
+                  {this.state.sponsorLoading && (
+                    <Spinner size="sm" color="green" className="ml-10" />
+                  )}
+                </FButton>
+              </div>
+            ) : (
+              <FButton
+                className="upload-btn"
+                type="theme"
+                name="upload-outline"
+              >
+                <Input
+                  className="file-input"
+                  type="file"
+                  id="picture"
+                  name="user"
+                  accept="image/*"
+                  onChange={this.handleFileInputChange}
+                />
+                <span>Choisir</span>
+                {this.state.sponsorLoading && (
+                  <Spinner size="sm" color="green" className="ml-10" />
+                )}
+              </FButton>
+            )}
+          </div>
+          <div className="btn-footer">
+            <FButton onClick={this.toggleModal} type="default" className="mr-8">
+              Annuler
+            </FButton>
+            <FButton
+              disabled={
+                !this.state.structure.nom ||
+                !this.state.structure.contact ||
+                !this.state.structure.mail_contact ||
+                !this.state.structure.phone_contact
+              }
+              onClick={this.createStructure}
+              type="validate"
+              name="checkmark-outline"
+            >
+              Valider
+            </FButton>
           </div>
         </CustomModal>
 
@@ -730,7 +1114,7 @@ class Sponsors extends Component {
           showModals={showModals}
           imgData={this.state.imgData}
           link={this.state.link}
-          alt={this.state.alt}
+          nom={this.state.nom}
           sponsorLoading={this.state.sponsorLoading}
           toggleModal={this.toggleModal}
           toggleTooltip={this.toggleTooltip}
@@ -738,6 +1122,9 @@ class Sponsors extends Component {
           handleChange={this.handleImgChange}
           addSponsor={this.addSponsor}
           tooltipOpen={this.state.tooltipOpen}
+          edit={this.state.edit}
+          editSponsor={this.editSponsor}
+          sponsorKey={this.state.sponsorKey}
         />
       </div>
     );
@@ -769,25 +1156,28 @@ const ImgModal = (props) => (
     className="modal-sponsors"
   >
     <div className="form-field inline-div">
-      <span>
-        1. Choix de l’image<sup>*</sup>
-      </span>
-      {props.imgData.src ? (
+      <span>Ajouter un logo</span>
+      {props.imgData.secure_url ? (
         <div className="image-wrapper">
-          <Input
-            className="file-input"
-            type="file"
-            id="picture"
-            name="user"
-            accept="image/*"
-            onChange={props.handleFileInputChange}
-          />
           <img
             className="sponsor-img"
-            src={props.imgData.src}
+            src={props.imgData.secure_url}
             alt={props.imgData.alt}
           />
-          {props.sponsorLoading && <Spinner color="green" />}
+          <FButton className="upload-btn" type="theme" name="upload-outline">
+            <Input
+              className="file-input"
+              type="file"
+              id="picture"
+              name="user"
+              accept="image/*"
+              onChange={props.handleFileInputChange}
+            />
+            <span>Choisir</span>
+            {props.sponsorLoading && (
+              <Spinner size="sm" color="green" className="ml-10" />
+            )}
+          </FButton>
         </div>
       ) : (
         <FButton className="upload-btn" type="theme" name="upload-outline">
@@ -800,25 +1190,26 @@ const ImgModal = (props) => (
             onChange={props.handleFileInputChange}
           />
           <span>Choisir</span>
-          {props.sponsorLoading && <Spinner color="green" className="ml-10" />}
+          {props.sponsorLoading && (
+            <Spinner size="sm" color="green" className="ml-10" />
+          )}
         </FButton>
       )}
     </div>
     <div className="form-field">
-      <span>
-        2. Lien vers le site de la structure<sup>*</sup>
-      </span>
+      <span>Entrez le nom de la structure partenaire</span>
       <InputGroup>
         <EVAIcon
           className="input-icon"
-          name="link-outline"
-          fill={variables.noir}
+          name="briefcase-outline"
+          fill={colors.noir}
         />
-        <Input
-          id="link"
-          placeholder="https://www.réfugiés.info"
-          value={props.link}
+        <FInput
+          id="nom"
+          placeholder="Réfugiés.info"
+          value={props.nom}
           onChange={props.handleChange}
+          newSize={true}
         />
       </InputGroup>
     </div>
@@ -830,45 +1221,37 @@ const ImgModal = (props) => (
           alignItems: "center",
         }}
       >
-        <span>
-          3. Texte alternatif à l’image<sup>*</sup>
-        </span>
-        <div style={{ marginLeft: "5px", marginBottom: "2px" }}>
-          <EVAIcon id="alt-tooltip" name="info" fill={variables.noir} />
-          <Tooltip
-            isOpen={props.tooltipOpen}
-            target="alt-tooltip"
-            toggle={props.toggleTooltip}
-          >
-            Ce texte est utile pour les personnes malvoyantes ou en cas de
-            non-chargement de l’image.
-          </Tooltip>
-        </div>
+        <span>Collez un lien vers le site de la structure</span>
       </div>
       <InputGroup>
         <EVAIcon
           className="input-icon"
-          name="eye-off-outline"
-          fill={variables.noir}
+          name="link-outline"
+          fill={colors.noir}
         />
-        <Input
-          id="alt"
-          placeholder="Réfugiés.info"
-          value={props.alt}
+        <FInput
+          id="link"
+          placeholder="https://www.réfugiés.info"
+          value={props.link}
           onChange={props.handleChange}
+          newSize={true}
         />
       </InputGroup>
     </div>
     <div className="btn-footer">
+      <FButton onClick={props.toggleModal} type="default" className="mr-8">
+        Annuler
+      </FButton>
       <FButton
-        onClick={() => props.addSponsor(true)}
+        onClick={() =>
+          props.edit
+            ? props.editSponsor(props.sponsorKey)
+            : props.addSponsor(true)
+        }
         type="validate"
-        name="checkmark-circle-2-outline"
+        name="checkmark-outline"
       >
         Valider
-      </FButton>
-      <FButton onClick={props.toggleModal} type="default" className="ml-10">
-        Annuler
       </FButton>
     </div>
   </Modal>
@@ -877,8 +1260,8 @@ const ImgModal = (props) => (
 const mapStateToProps = (state) => {
   return {
     user: state.user.user,
-    userStructure: state.structure.userStructure,
-    structuresNew: state.structures,
+    userStructure: state.userStructure,
+    structures: state.activeStructures,
   };
 };
 

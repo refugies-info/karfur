@@ -28,15 +28,6 @@ jobs:
                 at: ./
             - run: npm run test:types
             - run: npm run test:lint
-  unit-test:
-    docker:
-      - image: circleci/node:10-jessie-browsers
-    steps:
-      - checkout
-      - node/with-cache:
-          steps:
-            - attach_workspace:
-                at: ./
             - run: npm run test:unit
 workflows:
   build-and-test:
@@ -49,8 +40,5 @@ workflows:
                 - qa
                 - dev
       - test-code-quality:
-          requires:
-            - install
-      - unit-test:
           requires:
             - install

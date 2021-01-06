@@ -1,7 +1,12 @@
-.admin{
+.admin {
   flex: 1;
+  background: #f2f2f2;
+  .no-padding {
+    padding: 0;
+  }
 
-  .no-padding{
-    padding:0;
+  .tab-content {
+    border: none;
+    background: #f2f2f2;
   }
 }
