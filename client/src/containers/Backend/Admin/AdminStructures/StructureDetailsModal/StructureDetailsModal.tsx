@@ -18,6 +18,8 @@ import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { structureSelector } from "services/AllStructures/allStructures.selector";
 moment.locale("fr");
 
 const Title = styled.div`
@@ -53,9 +55,9 @@ const RightLogoContainer = styled.div`
 interface Props extends RouteComponentProps {
   show: boolean;
   toggleModal: () => void;
-  selectedStructure: SimplifiedStructureForAdmin | null;
   fetchStructures: () => void;
   toggleRespoModal: () => void;
+  selectedStructureId: ObjectId | null;
 }
 
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
@@ -67,9 +69,12 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   ] = useState<SimplifiedStructureForAdmin | null>(null);
   const [uploading, setUploading] = useState(false);
 
+  const structureFromStore = useSelector(
+    structureSelector(props.selectedStructureId)
+  );
   useEffect(() => {
-    setStructure(props.selectedStructure);
-  }, [props.selectedStructure]);
+    setStructure(structureFromStore);
+  }, [structureFromStore]);
 
   const onSave = async () => {
     try {
@@ -267,19 +272,18 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           >
             Page
           </FButton>
-          {props.selectedStructure &&
-            props.selectedStructure.status === "Actif" && (
-              <FButton
-                className="mr-8"
-                type="dark"
-                name="paper-plane"
-                tag={"a"}
-                href={`/annuaire/${structure._id}`}
-                target="_blank"
-              >
-                Annuaire
-              </FButton>
-            )}
+          {structure && structure.status === "Actif" && (
+            <FButton
+              className="mr-8"
+              type="dark"
+              name="paper-plane"
+              tag={"a"}
+              href={`/annuaire/${structure._id}`}
+              target="_blank"
+            >
+              Annuaire
+            </FButton>
+          )}
         </div>
         <div>
           <FButton

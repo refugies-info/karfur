@@ -13,6 +13,7 @@ export interface SimplifiedUser {
   username: string;
   picture: Picture;
   status: string;
+  _id: ObjectId;
 }
 export interface SimplifiedDispositif {
   titreInformatif: string;

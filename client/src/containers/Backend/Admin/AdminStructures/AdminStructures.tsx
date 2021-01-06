@@ -329,7 +329,7 @@ export const AdminStructures = () => {
       <StructureDetailsModal
         show={showStructureDetailsModal}
         toggleModal={() => setSelectedStructureAndToggleModal(null)}
-        selectedStructure={selectedStructure}
+        selectedStructureId={selectedStructure ? selectedStructure._id : null}
         fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
         toggleRespoModal={() => setSelectFirstRespoModal(true)}
       />
@@ -337,6 +337,7 @@ export const AdminStructures = () => {
       <SelectFirstResponsableModal
         show={showSelectFirstRespoModal}
         toggleModal={() => setSelectFirstRespoModal(false)}
+        selectedStructureId={selectedStructure ? selectedStructure._id : null}
       />
     </div>
   );

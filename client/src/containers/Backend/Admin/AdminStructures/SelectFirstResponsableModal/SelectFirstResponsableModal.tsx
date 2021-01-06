@@ -10,6 +10,10 @@ import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { SimplifiedUser } from "types/interface";
+import { ObjectId } from "mongodb";
+import API from "../../../../../utils/API";
+import Swal from "sweetalert2";
+import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
 
 const Header = styled.div`
   font-weight: 500;
@@ -26,9 +30,9 @@ const RowContainer = styled.div`
 interface Props {
   show: boolean;
   toggleModal: () => void;
+  selectedStructureId: ObjectId | null;
 }
 export const SelectFirstResponsableModal = (props: Props) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   const [selectedUser, setSelectedUser] = useState<SimplifiedUser | null>(null);
 
   const dispatch = useDispatch();
@@ -43,9 +47,46 @@ export const SelectFirstResponsableModal = (props: Props) => {
   }, [dispatch]);
   const activeUsers = useSelector(activeUsersSelector);
 
+  const onValidate = async () => {
+    try {
+      if (!selectedUser) return;
+
+      const structure = {
+        _id: props.selectedStructureId,
+        membreId: selectedUser._id,
+        $addToSet: {
+          membres: {
+            userId: selectedUser._id,
+            roles: ["administrateur"],
+            added_at: new Date(),
+          },
+        },
+      };
+
+      await API.create_structure(structure);
+
+      Swal.fire({
+        title: "Yay...",
+        text: "Responsable modifié",
+        type: "success",
+        timer: 1500,
+      });
+      props.toggleModal();
+      dispatch(fetchAllStructuresActionsCreator());
+    } catch (error) {
+      Swal.fire({
+        title: "Oh non",
+        text: "Erreur lors de la modification",
+        type: "error",
+        timer: 1500,
+      });
+      props.toggleModal();
+    }
+  };
+
   const onSelectItem = (data: SimplifiedUser) => setSelectedUser(data);
 
-  if (isLoading)
+  if (isLoading || !props.selectedStructureId)
     return (
       <Modal
         isOpen={props.show}
@@ -83,7 +124,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
         >
           Annuler
         </FButton>
-        <FButton type="validate" name="checkmark-outline">
+        <FButton type="validate" name="checkmark-outline" onClick={onValidate}>
           Valider
         </FButton>
       </RowContainer>

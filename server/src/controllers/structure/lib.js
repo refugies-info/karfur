@@ -37,13 +37,13 @@ const modifyStructure = async (
     (isContributeur && !JSON.stringify(structure).includes("administrateur"))
   ) {
     logger.info("[modifyStructure] updating stucture", {
-      structureId: structure.id,
+      structureId: structure._id,
       membreId,
     });
     const updatedStructure = await Structure.findOneAndUpdate(
       {
         _id: structure._id,
-        ...(membreId && { "membres.userId": membreId }),
+        // ...(membreId && { "membres.userId": membreId }),
       },
       structure,
       { upsert: true, new: true }
