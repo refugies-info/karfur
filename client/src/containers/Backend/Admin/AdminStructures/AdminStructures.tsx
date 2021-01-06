@@ -162,8 +162,8 @@ export const AdminStructures = () => {
         }
 
         if (orderColumn === "nbFiches") {
-          const nbFichesA = a.dispositifsAssocies.length;
-          const nbFichesB = b.dispositifsAssocies.length;
+          const nbFichesA = a.nbFiches;
+          const nbFichesB = b.nbFiches;
 
           if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
           return sortedHeader.sens === "up" ? -1 : 1;
@@ -317,9 +317,7 @@ export const AdminStructures = () => {
                     onClick={() => {}}
                   />
                 </td>
-                <td className="align-middle">
-                  {element.dispositifsAssocies.length}
-                </td>
+                <td className="align-middle">{element.nbFiches}</td>
                 <td className="align-middle">
                   {moment(element.created_at).format("lll")}
                 </td>

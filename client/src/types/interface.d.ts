@@ -264,7 +264,6 @@ export interface SimplifiedStructureForAdmin {
   nom: string;
   picture: Picture;
   status: string;
-  dispositifsAssocies: SimplifiedDispositifAssocie[];
   contact: string;
   phone_contact: string;
   mail_contact: string;
@@ -272,4 +271,5 @@ export interface SimplifiedStructureForAdmin {
   created_at: Moment;
   responsable: null | Responsable;
   membres: Membre[];
+  nbFiches: number;
 }
