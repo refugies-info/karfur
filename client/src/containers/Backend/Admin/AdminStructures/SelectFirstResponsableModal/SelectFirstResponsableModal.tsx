@@ -14,6 +14,7 @@ import { ObjectId } from "mongodb";
 import API from "../../../../../utils/API";
 import Swal from "sweetalert2";
 import { fetchAllStructuresActionsCreator } from "services/AllStructures/allStructures.actions";
+import { structureSelector } from "services/AllStructures/allStructures.selector";
 
 const Header = styled.div`
   font-weight: 500;
@@ -45,22 +46,46 @@ export const SelectFirstResponsableModal = (props: Props) => {
     };
     loadUsers();
   }, [dispatch]);
+
+  const structureFromStore = useSelector(
+    structureSelector(props.selectedStructureId)
+  );
+
   const activeUsers = useSelector(activeUsersSelector);
 
+  const getMembres = () => {
+    if (!selectedUser || !structureFromStore) return [];
+
+    if (structureFromStore.membres.length === 0)
+      return [
+        {
+          userId: selectedUser._id,
+          roles: ["administrateur"],
+          added_at: new Date(),
+        },
+      ];
+
+    // in order not to have 2 times the same id in the members
+    const membresWithoutRespo = structureFromStore.membres.filter(
+      (membre) => membre.userId !== selectedUser._id
+    );
+
+    return [
+      ...membresWithoutRespo,
+      {
+        userId: selectedUser._id,
+        roles: ["administrateur"],
+        added_at: new Date(),
+      },
+    ];
+  };
   const onValidate = async () => {
     try {
-      if (!selectedUser) return;
+      if (!selectedUser || !structureFromStore) return;
 
       const structure = {
         _id: props.selectedStructureId,
-        membreId: selectedUser._id,
-        $addToSet: {
-          membres: {
-            userId: selectedUser._id,
-            roles: ["administrateur"],
-            added_at: new Date(),
-          },
-        },
+        membres: getMembres(),
       };
 
       await API.create_structure(structure);

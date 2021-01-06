@@ -43,7 +43,7 @@ const modifyStructure = async (
     const updatedStructure = await Structure.findOneAndUpdate(
       {
         _id: structure._id,
-        // ...(membreId && { "membres.userId": membreId }),
+        ...(membreId && { "membres.userId": membreId }),
       },
       structure,
       { upsert: true, new: true }
@@ -116,7 +116,7 @@ const updateRoles = async (
       }
     }
   } catch (error) {
-    logger.error("[updateRoles] error while modifying user");
+    logger.error("[updateRoles] error while modifying user", { error });
   }
 };
 

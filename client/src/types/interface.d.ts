@@ -179,9 +179,13 @@ export interface OpeningHours {
   precisions?: string;
 }
 
+interface Membre {
+  userId: ObjectId;
+  roles: string[];
+}
 export interface Structure {
   _id: ObjectId;
-  membres: { userId: ObjectId; roles: string[] }[];
+  membres: Membre[];
   acronyme: string;
   administrateur: ObjectId;
   adresse: string;
@@ -267,4 +271,5 @@ export interface SimplifiedStructureForAdmin {
   nbMembres: number;
   created_at: Moment;
   responsable: null | Responsable;
+  membres: Membre[];
 }

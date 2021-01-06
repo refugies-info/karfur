@@ -180,7 +180,6 @@ export const getAllStructures = async (req: {}, res: Res) => {
         dispositifsAssocies
       );
 
-      delete jsonStructure.membres;
       return {
         ...jsonStructure,
         dispositifsAssocies: simplifiedDisposAssocies,
@@ -188,7 +187,6 @@ export const getAllStructures = async (req: {}, res: Res) => {
         responsable: responsableId,
       };
     });
-
     // @ts-ignore
     const data = [];
     await asyncForEach(
