@@ -97,7 +97,10 @@ export const AdminStructures = () => {
 
   const structures = useSelector(allStructuresSelector);
 
-  if (isLoading || structures.length === 0) {
+  if (
+    (isLoading || structures.length === 0) &&
+    showStructureDetailsModal === false
+  ) {
     return (
       <div>
         <LoadingAdminStructures />

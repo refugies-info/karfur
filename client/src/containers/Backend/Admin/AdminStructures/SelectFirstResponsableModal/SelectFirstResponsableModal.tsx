@@ -56,7 +56,7 @@ export const SelectFirstResponsableModal = (props: Props) => {
   const getMembres = () => {
     if (!selectedUser || !structureFromStore) return [];
 
-    if (structureFromStore.membres.length === 0)
+    if (!structureFromStore.membres || structureFromStore.membres.length === 0)
       return [
         {
           userId: selectedUser._id,
