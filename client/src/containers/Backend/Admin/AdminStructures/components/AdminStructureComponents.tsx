@@ -3,6 +3,7 @@ import { Responsable } from "types/interface";
 import React from "react";
 import marioProfile from "assets/mario-profile.jpg";
 import "./AdminStructureComponents.scss";
+import FButton from "components/FigmaUI/FButton/FButton";
 
 export const RowContainer = styled.div`
   display: flex;
@@ -18,6 +19,8 @@ export const StructureName = styled.div`
 
 interface Props {
   responsable: Responsable | null;
+  canModifyRespo: boolean;
+  onClick: () => void;
 }
 
 export const ResponsableComponent = (props: Props) => {
@@ -28,15 +31,32 @@ export const ResponsableComponent = (props: Props) => {
       ? props.responsable.picture.secure_url
       : marioProfile;
 
-  const responsableName = props.responsable
-    ? props.responsable.username
-    : "Aucun responsable";
+  if (props.canModifyRespo)
+    return (
+      <RowContainer>
+        {props.responsable && (
+          <img className="respo-img mr-8" src={responsableSecureUrl} />
+        )}
+        {props.responsable ? (
+          props.responsable.username
+        ) : (
+          <FButton
+            type="white"
+            name="person-add-outline"
+            onClick={props.onClick}
+          >
+            Choisir un responsable
+          </FButton>
+        )}
+      </RowContainer>
+    );
+
   return (
     <RowContainer>
       {props.responsable && (
         <img className="respo-img mr-8" src={responsableSecureUrl} />
       )}
-      {responsableName}
+      {props.responsable ? props.responsable.username : "Aucun responsable"}
     </RowContainer>
   );
 };

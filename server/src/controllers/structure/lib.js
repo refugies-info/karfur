@@ -24,6 +24,13 @@ const modifyStructure = async (
   const isAdmin =
     (requestUserRoles || []).some((x) => x.nom === "Admin") ||
     requestUserId.equals(fetchedStructure.administrateur);
+  const isRespo = (
+    (
+      (fetchedStructure.membres || []).find((x) =>
+        requestUserId.equals(x.userId)
+      ) || {}
+    ).roles || []
+  ).includes("administrateur");
 
   const isContributeur = (
     (
@@ -34,10 +41,11 @@ const modifyStructure = async (
   ).includes("contributeur");
   if (
     isAdmin ||
+    isRespo ||
     (isContributeur && !JSON.stringify(structure).includes("administrateur"))
   ) {
     logger.info("[modifyStructure] updating stucture", {
-      structureId: structure.id,
+      structureId: structure._id,
       membreId,
     });
     const updatedStructure = await Structure.findOneAndUpdate(
@@ -116,7 +124,7 @@ const updateRoles = async (
       }
     }
   } catch (error) {
-    logger.error("[updateRoles] error while modifying user");
+    logger.error("[updateRoles] error while modifying user", { error });
   }
 };
 

@@ -164,31 +164,25 @@ export const getAllStructures = async (req: {}, res: Res) => {
         responsablesArray.length > 0 ? responsablesArray[0].userId : null;
 
       const dispositifsAssocies = jsonStructure.dispositifsAssocies.filter(
-        (dispo) =>
-          //@ts-ignore
-          dispo.status &&
-          // @ts-ignore
-          !["Supprimé", "Brouillon"].includes(dispo.status)
+        (dispo) => {
+          return (
+            //@ts-ignore
+            dispo.status &&
+            // @ts-ignore
+            !["Supprimé", "Brouillon"].includes(dispo.status)
+          );
+        }
       );
-      const array: string[] = [];
+      const nbFiches = dispositifsAssocies.length;
 
-      array.forEach.call(dispositifsAssocies, (dispositif: any) => {
-        turnToLocalized(dispositif, "fr");
-      });
-
-      const simplifiedDisposAssocies = adaptDispositifsAssocies(
-        dispositifsAssocies
-      );
-
-      delete jsonStructure.membres;
+      delete jsonStructure.dispositifsAssocies;
       return {
         ...jsonStructure,
-        dispositifsAssocies: simplifiedDisposAssocies,
         nbMembres,
         responsable: responsableId,
+        nbFiches,
       };
     });
-
     // @ts-ignore
     const data = [];
     await asyncForEach(

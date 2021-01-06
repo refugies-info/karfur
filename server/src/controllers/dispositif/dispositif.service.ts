@@ -226,7 +226,7 @@ export const updateDispositifAdminComments = async (
       adminPercentageProgressionStatus,
     } = req.body.query;
 
-    logger.info("[updateDispositifAdminComments]", {
+    logger.info("[updateDispositifAdminComments] data", {
       dispositifId,
       adminComments,
       adminProgressionStatus,

@@ -3,7 +3,6 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 import FButton from "../../FigmaUI/FButton/FButton";
 import { SearchBar } from "../../../containers/UI/SearchBar/SearchBar";
-
 import "./AddMemberModal.scss";
 
 const addMemberModal = (props) => {
