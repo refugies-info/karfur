@@ -20,6 +20,8 @@ import Swal from "sweetalert2";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 moment.locale("fr");
 
 const Title = styled.div`
@@ -140,6 +142,10 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const secureUrl =
     structure && structure.picture && structure.picture.secure_url;
 
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
+  );
+
   if (!structure)
     return (
       <Modal
@@ -190,13 +196,21 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         </RightLogoContainer>
       </LogoContainer>
       <Title>Premier responsable</Title>
-      <div style={{ marginBottom: "8px" }}>
-        <ResponsableComponent
-          responsable={structure.responsable}
-          canModifyRespo={true}
-          onClick={props.toggleRespoModal}
-        />
-      </div>
+      {!isLoading && (
+        <div style={{ marginBottom: "8px" }}>
+          <ResponsableComponent
+            responsable={structure.responsable}
+            canModifyRespo={true}
+            onClick={props.toggleRespoModal}
+          />
+        </div>
+      )}
+
+      {isLoading && (
+        <div style={{ marginBottom: "8px" }}>
+          <Spinner />
+        </div>
+      )}
 
       <Title>Coordonnées du contact unique</Title>
       <InputContainer>
