@@ -144,7 +144,7 @@ const structure4 = {
   id: "id",
   dispositifsAssocies: [dispositif1, dispositif2, dispositif3, dispositif4],
   membres: [
-    { roles: ["administrateurs"] },
+    { roles: ["administrateur"] },
     { userId: "id2", roles: ["redacteur"] },
   ],
   nom: "nom",
@@ -385,17 +385,14 @@ describe("getAllStructures", () => {
     await getAllStructures({}, res);
 
     expect(getStructuresFromDB).toHaveBeenCalledWith({}, neededFields, true);
-    expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "fr");
-    expect(turnToLocalized).toHaveBeenCalledWith(dispositif2, "fr");
-    expect(turnToLocalized).not.toHaveBeenCalledWith(dispositif3, "fr");
-    expect(turnToLocalized).not.toHaveBeenCalledWith(dispositif4, "fr");
+
     expect(getUserById).toHaveBeenCalledWith("id1");
 
     expect(res.status).toHaveBeenCalledWith(200);
     const result = [
       {
         id: "id",
-        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
+        // dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
         nbMembres: 2,
         nom: "nom",
         status: "En attente",
@@ -409,6 +406,11 @@ describe("getAllStructures", () => {
           username: "respo",
           picture: { secure_url: "test" },
         },
+        nbFiches: 2,
+        membres: [
+          { userId: "id1", roles: ["administrateur"] },
+          { userId: "id2", roles: ["redacteur"] },
+        ],
       },
     ];
     expect(res.json).toHaveBeenCalledWith({
@@ -431,7 +433,6 @@ describe("getAllStructures", () => {
     const result = [
       {
         id: "id",
-        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
         nbMembres: 2,
         nom: "nom",
         status: "En attente",
@@ -441,6 +442,11 @@ describe("getAllStructures", () => {
         mail_contact: "mail_contact",
         created_at: 1500,
         responsable: null,
+        nbFiches: 2,
+        membres: [
+          { userId: "id1", roles: ["traducteur"] },
+          { userId: "id2", roles: ["redacteur"] },
+        ],
       },
     ];
     expect(res.json).toHaveBeenCalledWith({
@@ -463,7 +469,6 @@ describe("getAllStructures", () => {
     const result = [
       {
         id: "id",
-        dispositifsAssocies: [simplifiedDispo1, simplifiedDispo2],
         nbMembres: 2,
         nom: "nom",
         status: "En attente",
@@ -473,6 +478,11 @@ describe("getAllStructures", () => {
         mail_contact: "mail_contact",
         created_at: 1500,
         responsable: null,
+        nbFiches: 2,
+        membres: [
+          { roles: ["administrateur"] },
+          { userId: "id2", roles: ["redacteur"] },
+        ],
       },
     ];
     expect(res.json).toHaveBeenCalledWith({
@@ -485,26 +495,6 @@ describe("getAllStructures", () => {
     const res = mockResponse();
     await getAllStructures({}, res);
     expect(getStructuresFromDB).toHaveBeenCalledWith({}, neededFields, true);
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
-    });
-  });
-
-  it("should return a 500 if turnToLocalized throw ", async () => {
-    getStructuresFromDB.mockResolvedValueOnce([
-      {
-        toJSON: () => structure2,
-      },
-    ]);
-    turnToLocalized.mockImplementationOnce(() => {
-      throw new Error("error");
-    });
-    const res = mockResponse();
-    await getAllStructures({}, res);
-    expect(getStructuresFromDB).toHaveBeenCalledWith({}, neededFields, true);
-    expect(turnToLocalized).toHaveBeenCalledWith(dispositif1, "fr");
-
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       text: "Erreur interne",

@@ -37,7 +37,7 @@ const modifyStructure = async (
     (isContributeur && !JSON.stringify(structure).includes("administrateur"))
   ) {
     logger.info("[modifyStructure] updating stucture", {
-      structureId: structure.id,
+      structureId: structure._id,
       membreId,
     });
     const updatedStructure = await Structure.findOneAndUpdate(
@@ -116,7 +116,7 @@ const updateRoles = async (
       }
     }
   } catch (error) {
-    logger.error("[updateRoles] error while modifying user");
+    logger.error("[updateRoles] error while modifying user", { error });
   }
 };
 
