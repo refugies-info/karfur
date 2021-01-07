@@ -1,29 +1,34 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { SimplifiedStructureForAdmin, Event } from "types/interface";
+import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
-import "./StructureDetailsModal.scss";
+import "./NewStructureModal.scss";
 import FInput from "components/FigmaUI/FInput/FInput";
 import moment from "moment/min/moment-with-locales";
 import FButton from "components/FigmaUI/FButton/FButton";
 import API from "utils/API";
 import noStructure from "assets/noStructure.png";
 import { ObjectId } from "mongodb";
-import {
-  ResponsableComponent,
-  RowContainer,
-} from "../components/AdminStructureComponents";
+import { RowContainer } from "../components/AdminStructureComponents";
 import { correspondingStatus } from "../data";
 import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { structureSelector } from "services/AllStructures/allStructures.selector";
+import { useSelector, useDispatch } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
+import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
+import { ChooseResponsableComponent } from "./ChooseResponsableComponent";
+import { colors } from "colors";
 moment.locale("fr");
 
+const Header = styled.div`
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 40px;
+  margin-bottom: 16px;
+`;
 const Title = styled.div`
   font-weight: bold;
   font-size: 16px;
@@ -39,7 +44,7 @@ const BottomRowContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 16px;
-  justify-content: space-between;
+  justify-content: flex-end;
 `;
 
 const LogoContainer = styled.div`
@@ -54,41 +59,104 @@ const RightLogoContainer = styled.div`
   margin-left: 32px;
   margin-bottom: 24px;
 `;
-interface Props extends RouteComponentProps {
+
+const ResponsableContainer = styled.div`
+  border: 2px solid;
+  border-radius: 16px;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-color: ${colors.cardColor};
+`;
+interface Props {
   show: boolean;
   toggleModal: () => void;
   fetchStructures: () => void;
-  toggleRespoModal: () => void;
-  selectedStructureId: ObjectId | null;
 }
 
-const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
+interface InitialStructure {
+  picture: Picture | null;
+  status: string;
+  contact: string;
+  phone_contact: string;
+  mail_contact: string;
+  responsable: null | Responsable;
+  nom: string;
+}
+
+export const NewStructureModal: React.FunctionComponent<Props> = (
   props: Props
 ) => {
-  const [
-    structure,
-    setStructure,
-  ] = useState<SimplifiedStructureForAdmin | null>(null);
+  const initialStructure = {
+    nom: "",
+    responsable: null,
+    picture: null,
+    status: "En attente",
+    contact: "",
+    phone_contact: "",
+    mail_contact: "",
+  };
+  const [structure, setStructure] = useState<InitialStructure>(
+    initialStructure
+  );
   const [uploading, setUploading] = useState(false);
 
-  const structureFromStore = useSelector(
-    structureSelector(props.selectedStructureId)
+  const dispatch = useDispatch();
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
   );
   useEffect(() => {
-    setStructure(structureFromStore);
-  }, [structureFromStore]);
+    const loadUsers = async () => {
+      await dispatch(fetchAllUsersActionsCreator());
+    };
+    loadUsers();
+  }, [dispatch]);
 
-  const onSave = async () => {
+  const activeUsers = useSelector(activeUsersSelector);
+
+  const toggle = () => {
+    setStructure(initialStructure);
+    props.toggleModal();
+  };
+
+  const isValidateDisabled =
+    !structure.mail_contact ||
+    !structure.contact ||
+    !structure.phone_contact ||
+    !structure.nom;
+  const onValidate = async () => {
     try {
-      await API.create_structure(structure);
+      if (
+        !structure.mail_contact ||
+        !structure.contact ||
+        !structure.phone_contact ||
+        !structure.nom
+      )
+        return;
+
+      const membres = structure.responsable
+        ? [
+            {
+              userId: structure.responsable._id,
+              roles: ["administrateur"],
+              added_at: new Date(),
+            },
+          ]
+        : [];
+      const structureToSave = {
+        ...structure,
+        membres: membres,
+      };
+      delete structureToSave.responsable;
+
+      await API.create_structure(structureToSave);
       Swal.fire({
         title: "Yay...",
-        text: "Structure modifiée",
+        text: "Structure crée",
         type: "success",
         timer: 1500,
       });
       props.fetchStructures();
-      props.toggleModal();
+      toggle();
     } catch (error) {
       Swal.fire({
         title: "Oh non",
@@ -97,7 +165,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         timer: 1500,
       });
       props.fetchStructures();
-      props.toggleModal();
+      toggle();
     }
   };
 
@@ -139,29 +207,20 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
     if (!structure) return;
     setStructure({ ...structure, [e.target.id]: e.target.value });
   };
+
+  const onSelectItem = (data: SimplifiedUser) =>
+    setStructure({ ...structure, responsable: data });
+
   const secureUrl =
     structure && structure.picture && structure.picture.secure_url;
 
-  const isLoading = useSelector(
-    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
-  );
-
-  if (!structure)
-    return (
-      <Modal
-        isOpen={props.show}
-        toggle={props.toggleModal}
-        className="structure-details-modal"
-      >
-        Erreur
-      </Modal>
-    );
   return (
     <Modal
       isOpen={props.show}
-      toggle={props.toggleModal}
+      toggle={toggle}
       className="structure-details-modal"
     >
+      <Header>Création d'une nouvelle structure</Header>
       <InputContainer>
         <FInput
           id="nom"
@@ -169,6 +228,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           onChange={onChange}
           newSize={true}
           autoFocus={false}
+          placeholder="Nom de la structure"
         />
       </InputContainer>
       <LogoContainer>
@@ -196,22 +256,15 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         </RightLogoContainer>
       </LogoContainer>
       <Title>Premier responsable</Title>
-      {!isLoading && (
-        <div style={{ marginBottom: "8px" }}>
-          <ResponsableComponent
-            responsable={structure.responsable}
-            canModifyRespo={true}
-            onClick={props.toggleRespoModal}
-          />
-        </div>
-      )}
-
-      {isLoading && (
-        <div style={{ marginBottom: "8px" }}>
-          <Spinner />
-        </div>
-      )}
-
+      <ResponsableContainer>
+        <ChooseResponsableComponent
+          isLoading={isLoading}
+          activeUsers={activeUsers}
+          onSelectItem={onSelectItem}
+          responsable={structure.responsable}
+          removeRespo={() => setStructure({ ...structure, responsable: null })}
+        />
+      </ResponsableContainer>
       <Title>Coordonnées du contact unique</Title>
       <InputContainer>
         <FInput
@@ -266,62 +319,26 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           );
         })}
       </RowContainer>
-      <Title>Date de création</Title>
-      {structure.created_at
-        ? moment(structure.created_at).format("LLL")
-        : "Non connue"}
+
       <BottomRowContainer>
-        <div>
-          <FButton
-            className="mr-8"
-            type="dark"
-            name="external-link"
-            onClick={() => {
-              props.history.push({
-                pathname: "/backend/user-dash-structure-selected",
-                state: {
-                  admin: true,
-                  structure: structure._id,
-                },
-              });
-            }}
-          >
-            Page
-          </FButton>
-          {structure && structure.status === "Actif" && (
-            <FButton
-              className="mr-8"
-              type="dark"
-              name="paper-plane"
-              tag={"a"}
-              href={`/annuaire/${structure._id}`}
-              target="_blank"
-            >
-              Annuaire
-            </FButton>
-          )}
-        </div>
-        <div>
-          <FButton
-            className="mr-8"
-            type="white"
-            name="close-outline"
-            onClick={props.toggleModal}
-          >
-            Annuler
-          </FButton>
-          <FButton
-            className="mr-8"
-            type="validate"
-            name="checkmark-outline"
-            onClick={onSave}
-          >
-            Enregistrer
-          </FButton>
-        </div>
+        <FButton
+          className="mr-8"
+          type="white"
+          name="close-outline"
+          onClick={toggle}
+        >
+          Annuler
+        </FButton>
+        <FButton
+          className="mr-8"
+          type="validate"
+          name="checkmark-outline"
+          onClick={onValidate}
+          disabled={isValidateDisabled}
+        >
+          Créer
+        </FButton>
       </BottomRowContainer>
     </Modal>
   );
 };
-
-export const StructureDetailsModal = withRouter(StructureDetailsModalComponent);
