@@ -97,3 +97,6 @@ export const updateAssociatedDispositifsInStructure = async (
   );
   return;
 };
+
+export const createStructureInDB = async (structure: StructureDoc) =>
+  await new Structure(structure).save();

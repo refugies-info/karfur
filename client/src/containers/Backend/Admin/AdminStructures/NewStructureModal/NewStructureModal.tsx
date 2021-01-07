@@ -148,7 +148,8 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       };
       delete structureToSave.responsable;
 
-      await API.create_structure(structureToSave);
+      await API.createStructure({ query: structureToSave });
+
       Swal.fire({
         title: "Yay...",
         text: "Structure crée",

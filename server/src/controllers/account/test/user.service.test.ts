@@ -1,8 +1,17 @@
 // @ts-nocheck
-import { getFiguresOnUsers, getAllUsers } from "../users.service";
+import {
+  getFiguresOnUsers,
+  getAllUsers,
+  updateRoleOfResponsable,
+} from "../users.service";
 import { User } from "../../../schema/schemaUser";
 import logger from "../../../logger";
-import { getAllUsersFromDB } from "../users.repository";
+import {
+  getAllUsersFromDB,
+  getUserById,
+  updateUser,
+} from "../users.repository";
+import { getRoleByName } from "../../role/role.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -12,10 +21,18 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
+jest.mock("../../role/role.repository", () => ({
+  getRoleByName: jest.fn().mockResolvedValue({ _id: "hasStructureId" }),
+}));
+
 jest.mock("../users.repository", () => ({
   getAllUsersFromDB: jest
     .fn()
     .mockResolvedValue([{ username: "user1" }, { username: "user2" }]),
+  getUserById: jest
+    .fn()
+    .mockResolvedValue({ _id: "userId", roles: ["hasStructureId"] }),
+  updateUser: jest.fn(),
 }));
 jest.mock("../../../logger");
 
@@ -134,5 +151,68 @@ describe("getAllUsers", () => {
     expect(res.json).toHaveBeenCalledWith({
       data: [{ username: "user1" }, { username: "user2" }],
     });
+  });
+});
+
+describe("updateRoleOfResponsable", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+  it("should call getUserById getRoleByName and not updateUser when user has role already", async () => {
+    await updateRoleOfResponsable("userId");
+    expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+    expect(getRoleByName).toHaveBeenCalledWith("hasStructure");
+    expect(updateUser).not.toHaveBeenCalled();
+  });
+
+  it("should call getUserById getRoleByName and updateUser when user has not role already", async () => {
+    getUserById.mockResolvedValueOnce({ _id: "userId", roles: ["role1"] });
+    await updateRoleOfResponsable("userId");
+    expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+    expect(getRoleByName).toHaveBeenCalledWith("hasStructure");
+    expect(updateUser).toHaveBeenCalledWith("userId", {
+      roles: ["role1", "hasStructureId"],
+    });
+  });
+
+  it("should throw when getUserById throws", async () => {
+    getUserById.mockRejectedValueOnce(new Error("error"));
+    try {
+      await updateRoleOfResponsable("userId");
+    } catch (error) {
+      expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+      expect(error).toEqual(Error("error"));
+    }
+    expect.assertions(2);
+  });
+
+  it("should throw when getRoleByName throws", async () => {
+    getRoleByName.mockRejectedValueOnce(new Error("error"));
+    try {
+      await updateRoleOfResponsable("userId");
+    } catch (error) {
+      expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+      expect(getRoleByName).toHaveBeenCalledWith("hasStructure");
+
+      expect(error).toEqual(Error("error"));
+    }
+    expect.assertions(3);
+  });
+
+  it("should throw when updateUser throws", async () => {
+    updateUser.mockRejectedValueOnce(new Error("error"));
+    getUserById.mockResolvedValueOnce({ _id: "userId", roles: ["role1"] });
+
+    try {
+      await updateRoleOfResponsable("userId");
+    } catch (error) {
+      expect(getUserById).toHaveBeenCalledWith("userId", { roles: 1 });
+      expect(getRoleByName).toHaveBeenCalledWith("hasStructure");
+      expect(updateUser).toHaveBeenCalledWith("userId", {
+        roles: ["role1", "hasStructureId"],
+      });
+      expect(error).toEqual(Error("error"));
+    }
+    expect.assertions(4);
   });
 });

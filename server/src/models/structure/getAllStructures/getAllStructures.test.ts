@@ -131,6 +131,7 @@ describe("getAllStructures", () => {
     membres: 1,
     created_at: 1,
   };
+  const neededFieldsUser = { picture: 1, username: 1 };
   it("should call getStructuresFromDB and getUserById and return a 200 (structure with respo)", async () => {
     getStructuresFromDB.mockResolvedValueOnce([
       {
@@ -142,7 +143,7 @@ describe("getAllStructures", () => {
 
     expect(getStructuresFromDB).toHaveBeenCalledWith({}, neededFields, true);
 
-    expect(getUserById).toHaveBeenCalledWith("id1");
+    expect(getUserById).toHaveBeenCalledWith("id1", neededFieldsUser);
 
     expect(res.status).toHaveBeenCalledWith(200);
     const result = [
