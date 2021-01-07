@@ -36,6 +36,7 @@ import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/C
 import FButton from "components/FigmaUI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
 
 moment.locale("fr");
 declare const window: Window;
@@ -53,6 +54,7 @@ export const AdminStructures = () => {
   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
     false
   );
+  const [showNewStructureModal, setShowNewStructureModal] = useState(false);
 
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [
@@ -66,8 +68,15 @@ export const AdminStructures = () => {
 
   const handleChange = (e: any) => setSearch(e.target.value);
 
+  const toggleShowNewStructureModal = () =>
+    setShowNewStructureModal(!showNewStructureModal);
+
   const toggleStructureDetailsModal = () =>
     setShowStructureDetailsModal(!showStructureDetailsModal);
+
+  const addNewStructure = () => {
+    toggleShowNewStructureModal();
+  };
 
   const setSelectedStructureAndToggleModal = (
     element: SimplifiedStructureForAdmin | null
@@ -233,7 +242,11 @@ export const AdminStructures = () => {
           onChange={handleChange}
           placeholder="Rechercher une structure..."
         />
-        <FButton type="dark" name="plus-circle-outline">
+        <FButton
+          type="dark"
+          name="plus-circle-outline"
+          onClick={addNewStructure}
+        >
           Ajouter une structure
         </FButton>
       </SearchBarContainer>
@@ -319,7 +332,9 @@ export const AdminStructures = () => {
                 </td>
                 <td className="align-middle">{element.nbFiches}</td>
                 <td className="align-middle">
-                  {moment(element.created_at).format("lll")}
+                  {element.created_at
+                    ? moment(element.created_at).format("LLL")
+                    : "Non connue"}
                 </td>
               </tr>
             ))}
@@ -333,6 +348,11 @@ export const AdminStructures = () => {
         selectedStructureId={selectedStructure ? selectedStructure._id : null}
         fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
         toggleRespoModal={() => setSelectFirstRespoModal(true)}
+      />
+      <NewStructureModal
+        show={showNewStructureModal}
+        toggleModal={toggleShowNewStructureModal}
+        fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
       />
 
       <SelectFirstResponsableModal

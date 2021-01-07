@@ -38,16 +38,9 @@ import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/Cust
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
-import AsyncCSV from "./AsyncCSV";
 
 moment.locale("fr");
 
-const url =
-  process.env.REACT_APP_ENV === "development"
-    ? "http://localhost:3000/"
-    : process.env.REACT_APP_ENV === "staging"
-    ? "https://staging.refugies.info/"
-    : "https://www.refugies.info/";
 export const compare = (a, b) => {
   const orderA = a.order;
   const orderB = b.order;
@@ -238,24 +231,26 @@ export const AdminContenu = () => {
   const publishDispositif = async (dispositif, status = "Actif") => {
     const newDispositif = { status: status, dispositifId: dispositif._id };
     let question = { value: true };
-    const link = `${url}${dispositif.typeContenu}/${dispositif._id}`;
+    const link = `/${dispositif.typeContenu}/${dispositif._id}`;
 
-    if (
+    const text =
       dispositif.status === "En attente" ||
       dispositif.status === "Accepté structure"
-    ) {
-      question = await Swal.fire({
-        title: "Êtes-vous sûr ?",
-        text:
-          "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
-        type: "question",
-        showCancelButton: true,
-        confirmButtonColor: colors.rouge,
-        cancelButtonColor: colors.vert,
-        confirmButtonText: "Oui, le valider",
-        cancelButtonText: "Annuler",
-      });
-    }
+        ? "Cette fiche n'a pas encore été validée par sa structure d'appartenance"
+        : "Cette fiche sera visible par tous.";
+
+    question = await Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text,
+
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, le valider",
+      cancelButtonText: "Annuler",
+    });
+
     if (question.value) {
       API.updateDispositifStatus({ query: newDispositif })
         .then(() => {
@@ -303,7 +298,6 @@ export const AdminContenu = () => {
           Ajouter un contenu
         </FButton>
       </SearchBarContainer>
-      <AsyncCSV />
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
@@ -350,7 +344,7 @@ export const AdminContenu = () => {
               const nbDays =
                 -moment(element.updatedAt).diff(moment(), "days") + " jours";
               const burl =
-                url + (element.typeContenu || "dispositif") + "/" + element._id;
+                "/" + (element.typeContenu || "dispositif") + "/" + element._id;
 
               return (
                 <tr key={key}>
@@ -446,7 +440,6 @@ export const AdminContenu = () => {
         selectedDispositifId={
           selectedDispositif ? selectedDispositif._id : null
         }
-        url={url}
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
         setShowChangeStructureModal={setShowChangeStructureModal}
       />

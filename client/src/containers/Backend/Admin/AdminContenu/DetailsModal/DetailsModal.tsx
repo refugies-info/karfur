@@ -24,7 +24,6 @@ interface Props {
   show: boolean;
   toggleModal: () => void;
   selectedDispositifId: ObjectId | null;
-  url: string;
   onDeleteClick: () => void;
   setShowChangeStructureModal: (arg: boolean) => void;
 }
@@ -200,10 +199,7 @@ export const DetailsModal = (props: Props) => {
 
   if (dispositif) {
     const burl =
-      props.url +
-      (dispositif.typeContenu || "dispositif") +
-      "/" +
-      dispositif._id;
+      "/" + (dispositif.typeContenu || "dispositif") + "/" + dispositif._id;
     return (
       <Modal
         isOpen={props.show}
