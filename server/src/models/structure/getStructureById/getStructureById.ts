@@ -1,9 +1,9 @@
-import { RequestFromClient, Res, IDispositif } from "src/types/interface";
+import { RequestFromClient, Res, IDispositif } from "../../../types/interface";
 import { ObjectId } from "mongoose";
-import { castToBoolean } from "src/libs/castToBoolean";
-import logger = require("src/logger");
-import { getStructureFromDB } from "src/models/structure/structure.repository";
-import { turnToLocalized } from "src/controllers/dispositif/functions";
+import { castToBoolean } from "../../../libs/castToBoolean";
+import logger from "../../../logger";
+import { getStructureFromDB } from "../../../models/structure/structure.repository";
+import { turnToLocalized } from "../../../controllers/dispositif/functions";
 
 interface Query {
   id: ObjectId;
