@@ -1,9 +1,8 @@
-import logger = require("../../logger");
-import { Res } from "../../types/interface.js";
-import { getStructuresFromDB } from "./structure.repository";
-
-import { asyncForEach } from "../../libs/asyncForEach";
-import { getUserById } from "../account/users.repository";
+import { Res } from "src/types/interface.js";
+import { asyncForEach } from "src/libs/asyncForEach";
+import logger from "src/logger";
+import { getStructuresFromDB } from "src/controllers/structure/structure.repository";
+import { getUserById } from "src/controllers/account/users.repository";
 
 export const getAllStructures = async (req: {}, res: Res) => {
   try {

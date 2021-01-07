@@ -1,32 +1,15 @@
 // @ts-nocheck
-import {
-  getStructureById,
-  getActiveStructures,
-  getAllStructures,
-} from "../structure.service";
-import {
-  getStructureFromDB,
-  getStructuresFromDB,
-} from "../structure.repository";
-import { turnToLocalized } from "../../dispositif/functions";
-import { getUserById } from "../../account/users.repository";
+import { getStructuresFromDB } from "src/controllers/structure/structure.repository";
+import { getUserById } from "src/controllers/account/users.repository";
+import { getAllStructures } from "./getAllStructures";
 
-const structure = { id: "id" };
-
-jest.mock("../structure.repository.ts", () => ({
-  getStructureFromDB: jest.fn().mockResolvedValue({
-    id: "id",
-  }),
+jest.mock("src/controllers/structure/structure.repository", () => ({
   getStructuresFromDB: jest
     .fn()
     .mockResolvedValue([{ id: "id1" }, { id: "id2" }]),
 }));
 
-jest.mock("../../dispositif/functions", () => ({
-  turnToLocalized: jest.fn(),
-}));
-
-jest.mock("../../account/users.repository", () => ({
+jest.mock("src/controllers/account/users.repository", () => ({
   getUserById: jest.fn().mockResolvedValue({
     _id: "id1",
     username: "respo",
@@ -46,24 +29,6 @@ const dispositif1 = {
   _id: "dispo1",
   contenu: "content1",
   unusedField: "unusedField",
-  abstract: "abstract",
-  status: "Actif",
-  tags: [],
-  titreInformatif: "titre",
-  titreMarque: "titreMarque",
-};
-
-const simplifiedDispo1 = {
-  _id: "dispo1",
-  abstract: "abstract",
-  status: "Actif",
-  tags: [],
-  titreInformatif: "titre",
-  titreMarque: "titreMarque",
-};
-
-const simplifiedDispo2 = {
-  _id: "dispo2",
   abstract: "abstract",
   status: "Actif",
   tags: [],
@@ -101,11 +66,6 @@ const dispositif4 = {
   tags: [],
   titreInformatif: "titre",
   titreMarque: "titreMarque",
-};
-
-const structure1 = {
-  id: "id",
-  dispositifsAssocies: [dispositif1, dispositif2],
 };
 
 const structure2 = {
@@ -155,40 +115,6 @@ const structure4 = {
   mail_contact: "mail_contact",
   created_at: 1500,
 };
-
-describe("getActiveStructures", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-  it("should call getStructuresFromDB and return a 200", async () => {
-    const res = mockResponse();
-    await getActiveStructures({}, res);
-    expect(getStructuresFromDB).toHaveBeenCalledWith(
-      { status: "Actif" },
-      { nom: 1, acronyme: 1, picture: 1 },
-      false
-    );
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      data: [{ id: "id1" }, { id: "id2" }],
-    });
-  });
-
-  it("should return a 500 if getStructuresFromDB throw ", async () => {
-    getStructuresFromDB.mockRejectedValueOnce(new Error("error"));
-    const res = mockResponse();
-    await getActiveStructures({}, res);
-    expect(getStructuresFromDB).toHaveBeenCalledWith(
-      { status: "Actif" },
-      { nom: 1, acronyme: 1, picture: 1 },
-      false
-    );
-    expect(res.status).toHaveBeenCalledWith(500);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Erreur interne",
-    });
-  });
-});
 
 describe("getAllStructures", () => {
   beforeEach(() => {
