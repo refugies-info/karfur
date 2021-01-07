@@ -53,13 +53,17 @@ export const getAllStructures = async (req: {}, res: Res) => {
         nbFiches,
       };
     });
+    const neededFieldsUser = { username: 1, picture: 1 };
     // @ts-ignore
     const data = [];
     await asyncForEach(
       simplifiedStructures,
       async (structure): Promise<any> => {
         if (structure.responsable) {
-          const responsable = await getUserById(structure.responsable);
+          const responsable = await getUserById(
+            structure.responsable,
+            neededFieldsUser
+          );
           return data.push({ ...structure, responsable });
         }
         return data.push({ ...structure, responsable: null });
