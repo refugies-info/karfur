@@ -41,12 +41,6 @@ import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureMod
 
 moment.locale("fr");
 
-const url =
-  process.env.REACT_APP_ENV === "development"
-    ? "http://localhost:3000/"
-    : process.env.REACT_APP_ENV === "staging"
-    ? "https://staging.refugies.info/"
-    : "https://www.refugies.info/";
 export const compare = (a, b) => {
   const orderA = a.order;
   const orderB = b.order;
@@ -237,7 +231,7 @@ export const AdminContenu = () => {
   const publishDispositif = async (dispositif, status = "Actif") => {
     const newDispositif = { status: status, dispositifId: dispositif._id };
     let question = { value: true };
-    const link = `${url}${dispositif.typeContenu}/${dispositif._id}`;
+    const link = `/${dispositif.typeContenu}/${dispositif._id}`;
 
     const text =
       dispositif.status === "En attente" ||
@@ -350,7 +344,7 @@ export const AdminContenu = () => {
               const nbDays =
                 -moment(element.updatedAt).diff(moment(), "days") + " jours";
               const burl =
-                url + (element.typeContenu || "dispositif") + "/" + element._id;
+                "/" + (element.typeContenu || "dispositif") + "/" + element._id;
 
               return (
                 <tr key={key}>
@@ -446,7 +440,6 @@ export const AdminContenu = () => {
         selectedDispositifId={
           selectedDispositif ? selectedDispositif._id : null
         }
-        url={url}
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
         setShowChangeStructureModal={setShowChangeStructureModal}
       />
