@@ -164,6 +164,8 @@ export class UserDashStruct extends Component {
     API.getStructureById(this.state.selectedStructure, true, false).then(
       (data) => {
         if (data.data.data) {
+          // eslint-disable-next-line no-console
+          console.log("data", data.data.data);
           this.setState({ structure: data.data.data, isMainLoading: false });
 
           API.get_event({
