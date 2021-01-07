@@ -1,0 +1,1 @@
+export { getAllStructures } from "./getAllStructures";
