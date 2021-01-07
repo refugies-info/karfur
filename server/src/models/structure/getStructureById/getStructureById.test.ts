@@ -9,9 +9,6 @@ jest.mock("../../../controllers/structure/structure.repository.ts", () => ({
   getStructureFromDB: jest.fn().mockResolvedValue({
     id: "id",
   }),
-  getStructuresFromDB: jest
-    .fn()
-    .mockResolvedValue([{ id: "id1" }, { id: "id2" }]),
 }));
 
 jest.mock("../../../controllers/dispositif/functions", () => ({
