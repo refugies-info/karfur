@@ -240,22 +240,24 @@ export const AdminContenu = () => {
     let question = { value: true };
     const link = `${url}${dispositif.typeContenu}/${dispositif._id}`;
 
-    if (
+    const text =
       dispositif.status === "En attente" ||
       dispositif.status === "Accepté structure"
-    ) {
-      question = await Swal.fire({
-        title: "Êtes-vous sûr ?",
-        text:
-          "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
-        type: "question",
-        showCancelButton: true,
-        confirmButtonColor: colors.rouge,
-        cancelButtonColor: colors.vert,
-        confirmButtonText: "Oui, le valider",
-        cancelButtonText: "Annuler",
-      });
-    }
+        ? "Cette fiche n'a pas encore été validée par sa structure d'appartenance"
+        : "Cette fiche sera visible par tous.";
+
+    question = await Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text,
+
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, le valider",
+      cancelButtonText: "Annuler",
+    });
+
     if (question.value) {
       API.updateDispositifStatus({ query: newDispositif })
         .then(() => {
