@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { getStructureById } from "./getStructureById";
-import { getStructureFromDB } from "../../../controllers/structure/structure.repository";
+import { getStructureFromDB } from "src/models/structure/structure.repository";
 import { turnToLocalized } from "../../../controllers/dispositif/functions";
 
 const structure = { id: "id" };
 
-jest.mock("../../../controllers/structure/structure.repository.ts", () => ({
+jest.mock("src/models/structure/structure.repository", () => ({
   getStructureFromDB: jest.fn().mockResolvedValue({
     id: "id",
   }),

@@ -2,7 +2,7 @@ import { RequestFromClient, Res, IDispositif } from "src/types/interface";
 import { ObjectId } from "mongoose";
 import { castToBoolean } from "src/libs/castToBoolean";
 import logger = require("src/logger");
-import { getStructureFromDB } from "src/controllers/structure/structure.repository";
+import { getStructureFromDB } from "src/models/structure/structure.repository";
 import { turnToLocalized } from "src/controllers/dispositif/functions";
 
 interface Query {
