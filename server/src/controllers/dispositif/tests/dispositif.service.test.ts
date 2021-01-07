@@ -23,7 +23,7 @@ import {
   turnJSONtoHTML,
   turnToLocalizedTitles,
 } from "../functions";
-import { updateAssociatedDispositifsInStructure } from "../../structure/structure.repository";
+import { updateAssociatedDispositifsInStructure } from "../../../models/structure/structure.repository";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -33,7 +33,7 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
-jest.mock("../../structure/structure.repository.ts", () => ({
+jest.mock("../../../models/structure/structure.repository", () => ({
   updateAssociatedDispositifsInStructure: jest.fn(),
 }));
 jest.mock("../dispositif.repository", () => ({

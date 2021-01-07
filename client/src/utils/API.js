@@ -238,6 +238,12 @@ export default {
       headers: headers,
     });
   },
+
+  createStructure: (query) =>
+    axios.post(burl + "/structures/createStructure", query, {
+      headers,
+    }),
+
   get_structure: (query = {}, sort = {}, populate = "", limit = null) => {
     return axios.post(
       burl + "/structures/get_structure",
