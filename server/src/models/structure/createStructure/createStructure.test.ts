@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { createStructure } from "./createStructure";
 import { createStructureInDB } from "../structure.repository";
-import { updateRoleOfResponsable } from "../../../controllers/account/users.service";
+import { updateRoleAndStructureOfResponsable } from "../../../controllers/account/users.service";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -16,7 +16,7 @@ jest.mock("../structure.repository", () => ({
 }));
 
 jest.mock("../../../controllers/account/users.service", () => ({
-  updateRoleOfResponsable: jest.fn(),
+  updateRoleAndStructureOfResponsable: jest.fn(),
 }));
 
 describe("createStructure", () => {
@@ -94,7 +94,11 @@ describe("createStructure", () => {
     },
   };
 
-  it("should return 200 and call updateRoleOfResponsable when membres", async () => {
+  it("should return 200 and call updateRoleAndStructureOfResponsable when membres", async () => {
+    createStructureInDB.mockResolvedValueOnce({
+      _id: "id",
+      membres: [{ userId: "userId2" }],
+    });
     await createStructure(reqWithMembres, res);
     expect(createStructureInDB).toHaveBeenCalledWith({
       nom: "structure",
@@ -102,13 +106,23 @@ describe("createStructure", () => {
       status: "En attente",
       createur: "userId",
     });
-    expect(updateRoleOfResponsable).toHaveBeenCalledWith("userId2");
+    expect(updateRoleAndStructureOfResponsable).toHaveBeenCalledWith(
+      "userId2",
+      "id"
+    );
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "Succès" });
   });
 
-  it("should return 500 if updateRoleOfResponsable throws", async () => {
-    updateRoleOfResponsable.mockRejectedValueOnce(new Error("erreur"));
+  it("should return 500 if updateRoleAndStructureOfResponsable throws", async () => {
+    createStructureInDB.mockResolvedValueOnce({
+      _id: "id",
+      membres: [{ userId: "userId2" }],
+    });
+
+    updateRoleAndStructureOfResponsable.mockRejectedValueOnce(
+      new Error("erreur")
+    );
     await createStructure(reqWithMembres, res);
     expect(createStructureInDB).toHaveBeenCalledWith({
       nom: "structure",
@@ -116,7 +130,10 @@ describe("createStructure", () => {
       status: "En attente",
       createur: "userId",
     });
-    expect(updateRoleOfResponsable).toHaveBeenCalledWith("userId2");
+    expect(updateRoleAndStructureOfResponsable).toHaveBeenCalledWith(
+      "userId2",
+      "id"
+    );
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ text: "Erreur interne" });
   });
