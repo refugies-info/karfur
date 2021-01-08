@@ -4,6 +4,7 @@ import {
   getStructureFromDB,
   updateStructureInDB,
 } from "../structure.repository";
+import { checkIfUserIsAuthorizedToModifyStructure } from "../structure.service";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -20,6 +21,10 @@ jest.mock("../structure.repository", () => ({
     acronyme: "acronyme",
     _id: "id",
   }),
+}));
+
+jest.mock("../structure.service", () => ({
+  checkIfUserIsAuthorizedToModifyStructure: jest.fn(),
 }));
 
 describe("updateStructure", () => {
@@ -62,35 +67,37 @@ describe("updateStructure", () => {
     },
   };
 
-  it("should return 402 if no structure with this id ", async () => {
-    getStructureFromDB.mockResolvedValueOnce(null);
-
+  it("should return 402 if checkIfUserIsAuthorizedToModifyStructure throws NO_STRUCTURE_WITH_THIS_ID", async () => {
+    checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(
+      new Error("NO_STRUCTURE_WITH_THIS_ID")
+    );
     await updateStructure(req, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
-      membres: 1,
-    });
+    expect(checkIfUserIsAuthorizedToModifyStructure).toHaveBeenCalledWith(
+      "id",
+      "userId",
+      ["test"]
+    );
     expect(res.status).toHaveBeenCalledWith(402);
     expect(res.json).toHaveBeenCalledWith({ text: "Id non valide" });
   });
 
   it("should return 401 if user not authorized", async () => {
-    getStructureFromDB.mockResolvedValueOnce({ _id: "id", membres: [] });
-
+    checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(
+      new Error("USER_NOT_AUTHORIZED")
+    );
     await updateStructure(req, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
-      membres: 1,
-    });
+    expect(checkIfUserIsAuthorizedToModifyStructure).toHaveBeenCalledWith(
+      "id",
+      "userId",
+      ["test"]
+    );
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ text: "Token invalide" });
   });
 
-  it("should camm updateSTructureInDB if admin", async () => {
-    getStructureFromDB.mockResolvedValueOnce({ _id: "id", membres: [] });
-
+  it("should call updateStructureInDB if authorized", async () => {
     await updateStructure({ ...req, user: { roles: [{ nom: "Admin" }] } }, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
-      membres: 1,
-    });
+
     expect(updateStructureInDB).toHaveBeenCalledWith("id", {
       nom: "structure",
       acronyme: "acronyme",
@@ -103,57 +110,13 @@ describe("updateStructure", () => {
     });
   });
 
-  it("should camm updateStructureInDB if respo", async () => {
-    getStructureFromDB.mockResolvedValueOnce({
-      _id: "id",
-      membres: [{ userId: "userId", roles: ["administrateur"] }],
-    });
+  it("should return 500 if checkIfUserIsAuthorizedToModifyStructure throws", async () => {
+    checkIfUserIsAuthorizedToModifyStructure.mockRejectedValueOnce(
+      new Error("ERREUR")
+    );
 
     await updateStructure(req, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
-      membres: 1,
-    });
-    expect(updateStructureInDB).toHaveBeenCalledWith("id", {
-      nom: "structure",
-      acronyme: "acronyme",
-      _id: "id",
-    });
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Succès",
-      data: structure,
-    });
-  });
 
-  it("should call updateStructureInDB if contributeur", async () => {
-    getStructureFromDB.mockResolvedValueOnce({
-      _id: "id",
-      membres: [{ userId: "userId", roles: ["contributeur"] }],
-    });
-
-    await updateStructure(req, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
-      membres: 1,
-    });
-    expect(updateStructureInDB).toHaveBeenCalledWith("id", {
-      nom: "structure",
-      acronyme: "acronyme",
-      _id: "id",
-    });
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      text: "Succès",
-      data: structure,
-    });
-  });
-
-  it("should return 500 if getStructureFromDB throws", async () => {
-    getStructureFromDB.mockRejectedValueOnce(new Error("erreur"));
-
-    await updateStructure(req, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
-      membres: 1,
-    });
     expect(updateStructureInDB).not.toHaveBeenCalled();
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
@@ -168,9 +131,7 @@ describe("updateStructure", () => {
       membres: [{ userId: "userId", roles: ["contributeur"] }],
     });
     await updateStructure(req, res);
-    expect(getStructureFromDB).toHaveBeenCalledWith("id", false, {
-      membres: 1,
-    });
+
     expect(updateStructureInDB).toHaveBeenCalledWith("id", {
       nom: "structure",
       acronyme: "acronyme",

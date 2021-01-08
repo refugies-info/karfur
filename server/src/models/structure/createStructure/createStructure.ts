@@ -4,7 +4,7 @@ import {
   Picture,
   Membre,
 } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { updateRoleAndStructureOfResponsable } from "../../../controllers/account/users.service";
 import { createStructureInDB } from "../structure.repository";
 
