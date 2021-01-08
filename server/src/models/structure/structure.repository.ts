@@ -100,3 +100,15 @@ export const updateAssociatedDispositifsInStructure = async (
 
 export const createStructureInDB = async (structure: StructureDoc) =>
   await new Structure(structure).save();
+
+export const updateStructureInDB = async (
+  structureId: ObjectId,
+  structure: StructureDoc
+) =>
+  await Structure.findOneAndUpdate(
+    {
+      _id: structureId,
+    },
+    structure,
+    { upsert: true }
+  );

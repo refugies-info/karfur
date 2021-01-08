@@ -80,7 +80,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
 
   const onSave = async () => {
     try {
-      await API.create_structure(structure);
+      await API.updateStructure({ query: structure });
       Swal.fire({
         title: "Yay...",
         text: "Structure modifiée",

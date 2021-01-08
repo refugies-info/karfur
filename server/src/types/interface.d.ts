@@ -1,5 +1,6 @@
 import { ObjectId } from "mongoose";
 import { Moment } from "moment";
+import { UserDoc } from "../schema/schemaUser";
 
 export interface RequestFromClient<Query> {
   body?: {
@@ -11,6 +12,7 @@ export interface RequestFromClient<Query> {
   fromSite: boolean;
   query?: Query;
   userId?: ObjectId;
+  user?: UserDoc;
 }
 
 export interface Res {
