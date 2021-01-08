@@ -59,7 +59,7 @@ const getUserRoles = (roles: ObjectId[] | null, newRole: ObjectId) => {
   return roles.filter((role) => role !== newRole).concat([newRole]);
 };
 
-export const updateRoleOfResponsable = async (
+export const updateRoleAndStructureOfResponsable = async (
   userId: ObjectId,
   structureId: ObjectId
 ) => {
@@ -77,9 +77,12 @@ export const updateRoleOfResponsable = async (
       structures: newStructures,
     });
   } catch (error) {
-    logger.error("[updateRoleOfResponsable] error while updating role", {
-      error,
-    });
+    logger.error(
+      "[updateRoleAndStructureOfResponsable] error while updating role",
+      {
+        error,
+      }
+    );
     throw error;
   }
 };

@@ -5,7 +5,7 @@ import {
   Membre,
 } from "../../../types/interface";
 import logger = require("../../../logger");
-import { updateRoleOfResponsable } from "../../../controllers/account/users.service";
+import { updateRoleAndStructureOfResponsable } from "../../../controllers/account/users.service";
 import { createStructureInDB } from "../structure.repository";
 
 interface ReceivedStructure {
@@ -47,7 +47,7 @@ export const createStructure = async (
             : "";
 
         if (responsableId) {
-          await updateRoleOfResponsable(responsableId, structureId);
+          await updateRoleAndStructureOfResponsable(responsableId, structureId);
         }
       }
       logger.info("[createStructure] successfully created structure with id", {

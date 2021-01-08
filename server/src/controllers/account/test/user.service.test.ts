@@ -2,7 +2,7 @@
 import {
   getFiguresOnUsers,
   getAllUsers,
-  updateRoleOfResponsable,
+  updateRoleAndStructureOfResponsable,
 } from "../users.service";
 import { User } from "../../../schema/schemaUser";
 import logger from "../../../logger";
@@ -152,7 +152,7 @@ describe("getAllUsers", () => {
   });
 });
 
-describe("updateRoleOfResponsable", () => {
+describe("updateRoleAndStructureOfResponsable", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -162,7 +162,7 @@ describe("updateRoleOfResponsable", () => {
       roles: ["hasStructureId", "otherRole"],
       structures: [],
     });
-    await updateRoleOfResponsable("userId", "structId");
+    await updateRoleAndStructureOfResponsable("userId", "structId");
     expect(getUserById).toHaveBeenCalledWith("userId", {
       roles: 1,
       structures: 1,
@@ -180,7 +180,7 @@ describe("updateRoleOfResponsable", () => {
       roles: ["role1"],
       structures: ["struct1"],
     });
-    await updateRoleOfResponsable("userId", "structId");
+    await updateRoleAndStructureOfResponsable("userId", "structId");
     expect(getUserById).toHaveBeenCalledWith("userId", {
       roles: 1,
       structures: 1,
@@ -195,7 +195,7 @@ describe("updateRoleOfResponsable", () => {
   it("should throw when getUserById throws", async () => {
     getUserById.mockRejectedValueOnce(new Error("error"));
     try {
-      await updateRoleOfResponsable("userId", "structId");
+      await updateRoleAndStructureOfResponsable("userId", "structId");
     } catch (error) {
       expect(getUserById).toHaveBeenCalledWith("userId", {
         roles: 1,
@@ -209,7 +209,7 @@ describe("updateRoleOfResponsable", () => {
   it("should throw when getRoleByName throws", async () => {
     getRoleByName.mockRejectedValueOnce(new Error("error"));
     try {
-      await updateRoleOfResponsable("userId", "structId");
+      await updateRoleAndStructureOfResponsable("userId", "structId");
     } catch (error) {
       expect(getUserById).toHaveBeenCalledWith("userId", {
         roles: 1,
@@ -231,7 +231,7 @@ describe("updateRoleOfResponsable", () => {
     });
 
     try {
-      await updateRoleOfResponsable("userId", "structId");
+      await updateRoleAndStructureOfResponsable("userId", "structId");
     } catch (error) {
       expect(getUserById).toHaveBeenCalledWith("userId", {
         roles: 1,
@@ -251,7 +251,7 @@ describe("updateRoleOfResponsable", () => {
     getUserById.mockResolvedValueOnce({
       _id: "userId",
     });
-    await updateRoleOfResponsable("userId", "structId");
+    await updateRoleAndStructureOfResponsable("userId", "structId");
     expect(getUserById).toHaveBeenCalledWith("userId", {
       roles: 1,
       structures: 1,
