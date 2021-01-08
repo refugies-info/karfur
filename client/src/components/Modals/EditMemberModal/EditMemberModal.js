@@ -127,22 +127,26 @@ class EditMemberModal extends Component {
           });
           return;
         } //On supprime pas un membre sans être admin
+
         structure = {
-          _id: this.props.structure._id,
-          $pull: { membres: { userId: this.props.selected._id } },
-          deleteUserFromStructure: true,
-          userId: this.props.selected._id,
+          membreId: this.props.selected._id,
+          structureId: this.props.structure._id,
+          action: "delete",
         };
       } else if (
         ["membre", "contributeur", "administrateur"].includes(selectedRole)
       ) {
         structure = {
-          _id: this.props.structure._id,
           membreId: this.props.selected._id,
-          $set: { "membres.$.roles": [selectedRole] },
+          structureId: this.props.structure._id,
+          action: "modify",
+          role: selectedRole,
         };
       }
-      API.create_structure(structure).then(() => {
+
+      API.modifyUserRoleInStructure({
+        query: structure,
+      }).then(() => {
         Swal.fire({
           title: "Yay...",
           text: "La mise à jour a bien été effectuée, merci",

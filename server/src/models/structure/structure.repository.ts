@@ -112,3 +112,21 @@ export const updateStructureInDB = async (
     structure,
     { upsert: true }
   );
+
+export const updateStructureMember = async (
+  membreId: ObjectId,
+  structure: {
+    _id: ObjectId;
+    $set?: Object;
+    $pull?: Object;
+  }
+) =>
+  await Structure.findOneAndUpdate(
+    {
+      _id: structure._id,
+      ...(membreId && { "membres.userId": membreId }),
+    },
+    // @ts-ignore
+    structure,
+    { upsert: true, new: true }
+  );

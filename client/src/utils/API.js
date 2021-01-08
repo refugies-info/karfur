@@ -248,7 +248,10 @@ export default {
     axios.post(burl + "/structures/updateStructure", query, {
       headers,
     }),
-
+  modifyUserRoleInStructure: (query) =>
+    axios.post(burl + "/structures/modifyUserRoleInStructure", query, {
+      headers,
+    }),
   get_structure: (query = {}, sort = {}, populate = "", limit = null) => {
     return axios.post(
       burl + "/structures/get_structure",
