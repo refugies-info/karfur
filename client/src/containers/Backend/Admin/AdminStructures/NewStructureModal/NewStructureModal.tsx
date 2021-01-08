@@ -152,7 +152,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
 
       Swal.fire({
         title: "Yay...",
-        text: "Structure crée",
+        text: "Structure créée",
         type: "success",
         timer: 1500,
       });
@@ -299,26 +299,29 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
       </InputContainer>
       <Title>Statut</Title>
       <RowContainer>
-        {correspondingStatus.sort(compare).map((element) => {
-          return (
-            <div
-              key={element.status}
-              style={{
-                marginRight: "8px",
-                marginBottom: "8px",
-              }}
-              onClick={() => modifyStatus(element.status)}
-            >
-              <StyledStatus
-                text={element.status}
-                overrideColor={structure.status !== element.status}
-                textToDisplay={element.status}
-                // color={element.color}
-                disabled={false}
-              />
-            </div>
-          );
-        })}
+        {correspondingStatus
+          .sort(compare)
+          .filter((element) => element.status !== "Supprimé")
+          .map((element) => {
+            return (
+              <div
+                key={element.status}
+                style={{
+                  marginRight: "8px",
+                  marginBottom: "8px",
+                }}
+                onClick={() => modifyStatus(element.status)}
+              >
+                <StyledStatus
+                  text={element.status}
+                  overrideColor={structure.status !== element.status}
+                  textToDisplay={element.status}
+                  // color={element.color}
+                  disabled={false}
+                />
+              </div>
+            );
+          })}
       </RowContainer>
 
       <BottomRowContainer>
