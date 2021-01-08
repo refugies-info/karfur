@@ -8,10 +8,12 @@ import {
 import { ObjectId } from "mongoose";
 
 const isUserRespoOrContrib = (membres: Membre[] | null, userId: ObjectId) => {
+  console.log("isUserRespoOrContrib", membres, userId);
   if (!membres) return false;
   const membreInStructure = membres.filter(
-    (membre) => membre.userId !== userId
+    (membre) => membre.userId === userId
   );
+  console.log("membreInStructure", membreInStructure);
 
   if (membreInStructure.length === 0) return false;
   const roles = membreInStructure[0].roles;
@@ -28,7 +30,7 @@ export const updateStructure = async (
 ) => {
   if (!req.fromSite) {
     return res.status(405).json({ text: "Requête bloquée par API" });
-  } else if (!req.body) {
+  } else if (!req.body || !req.body.query) {
     res.status(400).json({ text: "Requête invalide" });
   } else {
     try {
@@ -38,12 +40,10 @@ export const updateStructure = async (
         id: structure._id,
       });
 
-      const fetchedStructure = await getStructureFromDB(
-        structure._id,
-        false,
-        "all"
-      );
-
+      const fetchedStructure = await getStructureFromDB(structure._id, false, {
+        membres: 1,
+      });
+      console.log("here");
       if (!fetchedStructure) {
         logger.info("[updateStructure] no structure with this id", {
           id: structure._id,
