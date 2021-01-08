@@ -9,7 +9,6 @@ import { updateStructure } from "../models/structure/updateStructure";
 import { modifyUserRoleInStructure } from "../models/structure/modifyUserRoleInStructure";
 
 module.exports = function (app) {
-  app.post("/add_structure", checkToken.check, structure.add_structure);
   app.post("/get_structure", structure.get_structure);
   app.get("/getStructureById", getStructureById);
   app.post(
