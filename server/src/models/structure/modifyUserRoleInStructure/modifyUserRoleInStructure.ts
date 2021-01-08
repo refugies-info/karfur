@@ -3,12 +3,15 @@ import logger = require("../../../logger");
 import { checkIfUserIsAuthorizedToModifyStructure } from "../structure.service";
 import { ObjectId } from "mongoose";
 import { updateStructureMember } from "../structure.repository";
-import { removeRoleAndStructureOfUser } from "../../../controllers/account/users.service";
+import {
+  removeRoleAndStructureOfUser,
+  updateRoleAndStructureOfResponsable,
+} from "../../../controllers/account/users.service";
 
 interface Query {
   membreId: ObjectId;
   structureId: ObjectId;
-  action: "delete" | "modify";
+  action: "delete" | "modify" | "create";
   role?: string;
 }
 export const modifyUserRoleInStructure = async (
@@ -55,16 +58,29 @@ export const modifyUserRoleInStructure = async (
           _id: structureId,
           $pull: { membres: { userId: membreId } },
         };
+      } else if (action === "create" && role) {
+        structure = {
+          _id: structureId,
+          $addToSet: {
+            membres: {
+              userId: membreId,
+              roles: [role],
+              added_at: new Date(),
+            },
+          },
+        };
       } else {
         throw new Error("ERREUR");
       }
-
-      await updateStructureMember(membreId, structure);
+      const membreIdToSend = action === "create" ? null : membreId;
+      await updateStructureMember(membreIdToSend, structure);
 
       // if delete, remove role and structure in corresponding user
       // if modify no need to update the user since he was already in the structure
       if (action === "delete") {
         await removeRoleAndStructureOfUser(membreId, structure._id);
+      } else if (action === "create") {
+        await updateRoleAndStructureOfResponsable(membreId, structureId);
       }
 
       return res.status(200).json({ text: "Succès" });

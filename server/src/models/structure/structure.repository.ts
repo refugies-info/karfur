@@ -119,6 +119,7 @@ export const updateStructureMember = async (
     _id: ObjectId;
     $set?: Object;
     $pull?: Object;
+    $addToSet?: Object;
   }
 ) =>
   await Structure.findOneAndUpdate(
