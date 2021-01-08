@@ -20,7 +20,7 @@ const addMember = function () {
     });
     return;
   }
-  let structure = {
+  const structure = {
     membreId: this.state.selected._id,
     structureId: this.state.structure._id,
     action: "create",
