@@ -8,12 +8,10 @@ import {
 import { ObjectId } from "mongoose";
 
 const isUserRespoOrContrib = (membres: Membre[] | null, userId: ObjectId) => {
-  console.log("isUserRespoOrContrib", membres, userId);
   if (!membres) return false;
-  const membreInStructure = membres.filter(
-    (membre) => membre.userId === userId
-  );
-  console.log("membreInStructure", membreInStructure);
+  const membreInStructure = membres.filter((membre) => {
+    return membre.userId.toString() === userId.toString();
+  });
 
   if (membreInStructure.length === 0) return false;
   const roles = membreInStructure[0].roles;
@@ -43,7 +41,6 @@ export const updateStructure = async (
       const fetchedStructure = await getStructureFromDB(structure._id, false, {
         membres: 1,
       });
-      console.log("here");
       if (!fetchedStructure) {
         logger.info("[updateStructure] no structure with this id", {
           id: structure._id,
