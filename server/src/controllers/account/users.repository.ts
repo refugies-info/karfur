@@ -17,3 +17,19 @@ export const updateUser = async (id: ObjectId, modifiedUser: any) =>
     // @ts-ignore
     new: true,
   });
+
+export const removeRoleAndStructureInDB = async (
+  roleId: ObjectId,
+  userId: ObjectId,
+  structureId: ObjectId
+) =>
+  await User.findByIdAndUpdate(
+    { _id: userId },
+    {
+      $pull: {
+        roles: roleId,
+        structures: structureId,
+      },
+    },
+    { upsert: true }
+  );

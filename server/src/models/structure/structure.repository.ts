@@ -100,3 +100,34 @@ export const updateAssociatedDispositifsInStructure = async (
 
 export const createStructureInDB = async (structure: StructureDoc) =>
   await new Structure(structure).save();
+
+export const updateStructureInDB = async (
+  structureId: ObjectId,
+  structure: StructureDoc
+) =>
+  await Structure.findOneAndUpdate(
+    {
+      _id: structureId,
+    },
+    structure,
+    { upsert: true }
+  );
+
+export const updateStructureMember = async (
+  membreId: ObjectId,
+  structure: {
+    _id: ObjectId;
+    $set?: Object;
+    $pull?: Object;
+    $addToSet?: Object;
+  }
+) =>
+  await Structure.findOneAndUpdate(
+    {
+      _id: structure._id,
+      ...(membreId && { "membres.userId": membreId }),
+    },
+    // @ts-ignore
+    structure,
+    { upsert: true, new: true }
+  );

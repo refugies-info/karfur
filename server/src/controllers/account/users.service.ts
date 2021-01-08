@@ -1,7 +1,12 @@
 import { Res } from "../../types/interface";
 import { User } from "../../schema/schemaUser";
 import logger from "../../logger";
-import { getAllUsersFromDB, getUserById, updateUser } from "./users.repository";
+import {
+  getAllUsersFromDB,
+  getUserById,
+  updateUser,
+  removeRoleAndStructureInDB,
+} from "./users.repository";
 import { ObjectId } from "mongoose";
 import { getRoleByName } from "../role/role.repository";
 
@@ -85,4 +90,20 @@ export const updateRoleAndStructureOfResponsable = async (
     );
     throw error;
   }
+};
+
+export const removeRoleAndStructureOfUser = async (
+  userId: ObjectId,
+  structureId: ObjectId
+) => {
+  logger.info(
+    "[removeRoleAndStructureOfUser] delete role hasStructure and structure of membre",
+    { membreId: userId }
+  );
+  const hasStructureRole = await getRoleByName("hasStructure");
+  return await removeRoleAndStructureInDB(
+    hasStructureRole._id,
+    userId,
+    structureId
+  );
 };
