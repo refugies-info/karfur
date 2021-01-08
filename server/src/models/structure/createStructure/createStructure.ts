@@ -39,7 +39,7 @@ export const createStructure = async (
       // @ts-ignore
       const newStructure = await createStructureInDB(structureToSave);
       const structureId = newStructure._id;
-      if (structure.membres.length > 0) {
+      if (newStructure.membres && newStructure.membres.length > 0) {
         // if we create a structure there is maximum one membre
         const responsableId =
           newStructure.membres[0] && newStructure.membres[0].userId
@@ -56,6 +56,7 @@ export const createStructure = async (
 
       return res.status(200).json({
         text: "Succès",
+        data: newStructure,
       });
     } catch (err) {
       logger.error("[createStructure] error while creating structure", {
