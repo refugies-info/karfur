@@ -1,9 +1,6 @@
 // @ts-nocheck
 import { updateStructure } from "./updateStructure";
-import {
-  getStructureFromDB,
-  updateStructureInDB,
-} from "../structure.repository";
+import { updateStructureInDB } from "../structure.repository";
 import { checkIfUserIsAuthorizedToModifyStructure } from "../structure.service";
 
 type MockResponse = { json: any; status: any };
@@ -15,7 +12,6 @@ const mockResponse = (): MockResponse => {
 };
 
 jest.mock("../structure.repository", () => ({
-  getStructureFromDB: jest.fn(),
   updateStructureInDB: jest.fn().mockResolvedValue({
     nom: "structure",
     acronyme: "acronyme",
@@ -126,10 +122,7 @@ describe("updateStructure", () => {
 
   it("should return 500 if updateStructureInDB throws", async () => {
     updateStructureInDB.mockRejectedValueOnce(new Error("erreur"));
-    getStructureFromDB.mockResolvedValueOnce({
-      _id: "id",
-      membres: [{ userId: "userId", roles: ["contributeur"] }],
-    });
+
     await updateStructure(req, res);
 
     expect(updateStructureInDB).toHaveBeenCalledWith("id", {

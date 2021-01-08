@@ -44,4 +44,5 @@ export const checkIfUserIsAuthorizedToModifyStructure = async (
 
   if (!isAdmin && !isUserRespoOrContribBoolean)
     throw new Error("USER_NOT_AUTHORIZED");
+  return true;
 };
