@@ -4,8 +4,8 @@ import {
   Picture,
   Membre,
 } from "../../../types/interface";
-import logger = require("../../../logger");
-import { updateRoleOfResponsable } from "../../../controllers/account/users.service";
+import logger from "../../../logger";
+import { updateRoleAndStructureOfResponsable } from "../../../controllers/account/users.service";
 import { createStructureInDB } from "../structure.repository";
 
 interface ReceivedStructure {
@@ -38,24 +38,25 @@ export const createStructure = async (
 
       // @ts-ignore
       const newStructure = await createStructureInDB(structureToSave);
-
-      if (structure.membres.length > 0) {
+      const structureId = newStructure._id;
+      if (newStructure.membres && newStructure.membres.length > 0) {
         // if we create a structure there is maximum one membre
         const responsableId =
-          structure.membres[0] && structure.membres[0].userId
-            ? structure.membres[0] && structure.membres[0].userId
+          newStructure.membres[0] && newStructure.membres[0].userId
+            ? newStructure.membres[0] && newStructure.membres[0].userId
             : "";
 
         if (responsableId) {
-          await updateRoleOfResponsable(responsableId);
+          await updateRoleAndStructureOfResponsable(responsableId, structureId);
         }
       }
       logger.info("[createStructure] successfully created structure with id", {
-        structureId: newStructure._id,
+        structureId,
       });
 
       return res.status(200).json({
         text: "Succès",
+        data: newStructure,
       });
     } catch (err) {
       logger.error("[createStructure] error while creating structure", {

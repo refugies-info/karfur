@@ -74,42 +74,18 @@ export const SelectFirstResponsableModal = (props: Props) => {
 
   const activeUsers = useSelector(activeUsersSelector);
 
-  const getMembres = () => {
-    if (!selectedUser || !structureFromStore) return [];
-
-    if (!structureFromStore.membres || structureFromStore.membres.length === 0)
-      return [
-        {
-          userId: selectedUser._id,
-          roles: ["administrateur"],
-          added_at: new Date(),
-        },
-      ];
-
-    // in order not to have 2 times the same id in the members
-    const membresWithoutRespo = structureFromStore.membres.filter(
-      (membre) => membre.userId !== selectedUser._id
-    );
-
-    return [
-      ...membresWithoutRespo,
-      {
-        userId: selectedUser._id,
-        roles: ["administrateur"],
-        added_at: new Date(),
-      },
-    ];
-  };
   const onValidate = async () => {
     try {
       if (!selectedUser || !structureFromStore) return;
 
       const structure = {
-        _id: props.selectedStructureId,
-        membres: getMembres(),
+        membreId: selectedUser._id,
+        structureId: props.selectedStructureId,
+        action: "create",
+        role: "administrateur",
       };
 
-      await API.create_structure(structure);
+      await API.modifyUserRoleInStructure({ query: structure });
 
       Swal.fire({
         title: "Yay...",

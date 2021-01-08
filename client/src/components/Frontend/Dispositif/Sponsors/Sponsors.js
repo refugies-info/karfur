@@ -306,7 +306,7 @@ class Sponsors extends Component {
     if (this.state.imgData) {
       structure.picture = this.state.imgData;
     }
-    API.create_structure(structure).then((data) => {
+    API.createStructure({ query: structure }).then((data) => {
       this.props.addMainSponsor(data.data.data);
       this.toggleModal("envoye");
     });

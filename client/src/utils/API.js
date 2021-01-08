@@ -233,17 +233,19 @@ export default {
       headers,
     }),
 
-  create_structure: (query) => {
-    return axios.post(burl + "/structures/add_structure", query, {
-      headers: headers,
-    });
-  },
-
   createStructure: (query) =>
     axios.post(burl + "/structures/createStructure", query, {
       headers,
     }),
 
+  updateStructure: (query) =>
+    axios.post(burl + "/structures/updateStructure", query, {
+      headers,
+    }),
+  modifyUserRoleInStructure: (query) =>
+    axios.post(burl + "/structures/modifyUserRoleInStructure", query, {
+      headers,
+    }),
   get_structure: (query = {}, sort = {}, populate = "", limit = null) => {
     return axios.post(
       burl + "/structures/get_structure",
