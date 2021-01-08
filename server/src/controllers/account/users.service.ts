@@ -53,18 +53,29 @@ export const getAllUsers = async (_: any, res: Res) => {
   }
 };
 
-export const updateRoleOfResponsable = async (userId: ObjectId) => {
+const getUserRoles = (roles: ObjectId[] | null, newRole: ObjectId) => {
+  if (!roles) return [newRole];
+
+  return roles.filter((role) => role !== newRole).concat([newRole]);
+};
+
+export const updateRoleOfResponsable = async (
+  userId: ObjectId,
+  structureId: ObjectId
+) => {
   try {
-    const user = await getUserById(userId, { roles: 1 });
+    const user = await getUserById(userId, { roles: 1, structures: 1 });
     const hasStructureRole = await getRoleByName("hasStructure");
     const hasStructureRoleId = hasStructureRole._id;
 
-    if (user.roles && user.roles.includes(hasStructureRoleId)) {
-      // user already has hasStructure role
-      return;
-    }
-    const newRole = user.roles.concat([hasStructureRoleId]);
-    return await updateUser(userId, { roles: newRole });
+    const newRole = getUserRoles(user.roles, hasStructureRoleId);
+    const newStructures = user.structures
+      ? user.structures.concat([structureId])
+      : [structureId];
+    return await updateUser(userId, {
+      roles: newRole,
+      structures: newStructures,
+    });
   } catch (error) {
     logger.error("[updateRoleOfResponsable] error while updating role", {
       error,
