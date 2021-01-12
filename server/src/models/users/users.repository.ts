@@ -8,8 +8,10 @@ type NeededFields =
 export const getUserById = async (id: ObjectId, neededFields: NeededFields) =>
   await User.findOne({ _id: id }, neededFields);
 
-export const getAllUsersFromDB = async () =>
-  await User.find({ status: "Actif" }, { username: 1, picture: 1, status: 1 });
+export const getAllUsersFromDB = async (neededFields: Record<string, number>) =>
+  await User.find({ status: "Actif" }, neededFields).populate(
+    "roles structures"
+  );
 
 export const updateUser = async (id: ObjectId, modifiedUser: any) =>
   await User.findOneAndUpdate({ _id: id }, modifiedUser, {

@@ -11,21 +11,119 @@ const mockResponse = (): MockResponse => {
 };
 
 jest.mock("../users.repository", () => ({
-  getAllUsersFromDB: jest
-    .fn()
-    .mockResolvedValue([{ username: "user1" }, { username: "user2" }]),
-  getUserById: jest.fn(),
-  updateUser: jest.fn(),
+  getAllUsersFromDB: jest.fn(),
 }));
 
+const neededFields = {
+  username: 1,
+  picture: 1,
+  status: 1,
+  created_at: 1,
+  roles: 1,
+  structures: 1,
+  email: 1,
+  selectedLanguages: 1,
+};
+
+const user1 = {
+  username: "username1",
+  _id: "id1",
+  picture: { secure_url: "secure_url1" },
+  status: "Actif",
+  created_at: "created_at",
+  roles: [
+    { nom: "Admin" },
+    { nom: "Expert Trad" },
+    { nom: "Trad" },
+    { nom: "User" },
+    { nom: "Contrib" },
+    { nom: "hasStructure" },
+  ],
+  structures: [
+    {
+      _id: "id_structure",
+      nom: "struct1",
+      picture: { secure_url: "sec_struct1" },
+      membres: [{ userId: "id1", roles: ["administrateur"] }],
+    },
+    {
+      _id: "id_structure",
+      nom: "struct2",
+      picture: { secure_url: "sec_struct2" },
+      membres: [{ userId: "id1", roles: ["contributeur"] }],
+    },
+  ],
+  email: "email1",
+  selectedLanguages: [{ i18nCode: "fr" }, { i18nCode: "en" }],
+};
+
+const user3 = {
+  ...user1,
+  structures: [
+    {
+      _id: "id_structure",
+      nom: "struct1",
+      picture: { secure_url: "sec_struct1" },
+      membres: [{ userId: "id1", roles: ["contributeur"] }],
+    },
+  ],
+};
+
+const simplifiedUser1 = {
+  username: "username1",
+  _id: "id1",
+  picture: { secure_url: "secure_url1" },
+  status: "Actif",
+  created_at: "created_at",
+  roles: ["Admin", "Expert Trad", "responsable"],
+  structure: {
+    nom: "struct1",
+    picture: { secure_url: "sec_struct1" },
+    _id: "id_structure",
+  },
+  email: "email1",
+  langues: ["fr", "en"],
+  nbStructures: 2,
+};
+
+const simplifiedUser3 = {
+  ...simplifiedUser1,
+  roles: ["Admin", "Expert Trad", "contributeur"],
+  nbStructures: 1,
+};
+
+const user2 = {
+  username: "username2",
+  _id: "id2",
+  picture: { secure_url: "secure_url2" },
+  status: "Actif",
+  created_at: "created_at",
+  email: "email2",
+};
+
+const simplifiedUser2 = {
+  username: "username2",
+  _id: "id2",
+  picture: { secure_url: "secure_url2" },
+  status: "Actif",
+  created_at: "created_at",
+  email: "email2",
+  langues: [],
+  nbStructures: 0,
+  roles: [],
+  structure: null,
+};
+
+const users = [user1, user2, user3];
 describe("getAllUsers", () => {
   it("should call getAllUsersFromDB and return 200", async () => {
+    getAllUsersFromDB.mockResolvedValueOnce(users);
     const res = mockResponse();
     await getAllUsers({}, res);
-    expect(getAllUsersFromDB).toHaveBeenCalledWith();
+    expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
-      data: [{ username: "user1" }, { username: "user2" }],
+      data: [simplifiedUser1, simplifiedUser2, simplifiedUser3],
     });
   });
 
@@ -33,7 +131,7 @@ describe("getAllUsers", () => {
     getAllUsersFromDB.mockRejectedValueOnce(new Error("erreur"));
     const res = mockResponse();
     await getAllUsers({}, res);
-    expect(getAllUsersFromDB).toHaveBeenCalledWith();
+    expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       text: "Erreur interne",
