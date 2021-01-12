@@ -75,7 +75,7 @@ const simplifiedUser1 = {
   picture: { secure_url: "secure_url1" },
   status: "Actif",
   created_at: "created_at",
-  roles: ["Admin", "Expert Trad", "responsable"],
+  roles: ["Admin", "Expert Trad", "Responsable"],
   structure: {
     nom: "struct1",
     picture: { secure_url: "sec_struct1" },
@@ -88,7 +88,7 @@ const simplifiedUser1 = {
 
 const simplifiedUser3 = {
   ...simplifiedUser1,
-  roles: ["Admin", "Expert Trad", "contributeur"],
+  roles: ["Admin", "Expert Trad", "Rédacteur"],
   nbStructures: 1,
 };
 

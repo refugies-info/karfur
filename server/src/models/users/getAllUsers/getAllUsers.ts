@@ -11,10 +11,12 @@ const getPlateformeRoles = (roles: { _id: ObjectId; nom: string }[]) =>
     : [];
 
 const getStructureRoles = (
-  structure: { membres: null | { userId: ObjectId; roles: string[] }[] } | null,
+  structures: { membres: null | { userId: ObjectId; roles: string[] }[] }[],
   userId: ObjectId
 ) => {
-  if (!structure || !structure.membres) return [];
+  if (!structures || structures.length === 0) return [];
+  const structure = structures[0];
+  if (!structure) return [];
 
   const isAdmin =
     structure.membres.filter(
@@ -56,11 +58,10 @@ const adaptUsers = (users: UserDoc[]) =>
 
     // @ts-ignore : roles populate
     const plateformeRoles = getPlateformeRoles(user.roles);
-    const structureRoles =
-      user.structures && user.structures.length > 0
-        ? // @ts-ignore : structures populate
-          getStructureRoles(user.structures[0], user._id)
-        : [];
+
+    // @ts-ignore : structures populate
+    const structureRoles = getStructureRoles(user.structures, user._id);
+
     const roles = plateformeRoles.concat(structureRoles);
 
     const langues = getSelectedLanguages(user.selectedLanguages);
