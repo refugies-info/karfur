@@ -22,14 +22,14 @@ const getStructureRoles = (
         membres.userId === userId && membres.roles.includes("administrateur")
     ).length > 0;
 
-  if (isAdmin) return ["responsable"];
+  if (isAdmin) return ["Responsable"];
 
   const isContrib = structure.membres.filter(
     (membres) =>
       membres.userId === userId && membres.roles.includes("contributeur")
   );
 
-  if (isContrib) return ["contributeur"];
+  if (isContrib) return ["Rédacteur"];
 
   return [];
 };
