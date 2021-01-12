@@ -5,7 +5,7 @@ import {
   removeRoleAndStructureInDB,
 } from "./users.repository";
 import { ObjectId } from "mongoose";
-import { getRoleByName } from "../role/role.repository";
+import { getRoleByName } from "../../controllers/role/role.repository";
 
 const getUserRoles = (roles: ObjectId[] | null, newRole: ObjectId) => {
   if (!roles) return [newRole];

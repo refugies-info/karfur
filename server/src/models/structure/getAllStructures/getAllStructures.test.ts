@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { getStructuresFromDB } from "src/models/structure/structure.repository";
-import { getUserById } from "src/controllers/account/users.repository";
+import { getUserById } from "../../users/users.repository";
 import { getAllStructures } from "./getAllStructures";
 
 jest.mock("src/models/structure/structure.repository", () => ({
@@ -9,7 +9,7 @@ jest.mock("src/models/structure/structure.repository", () => ({
     .mockResolvedValue([{ id: "id1" }, { id: "id2" }]),
 }));
 
-jest.mock("src/controllers/account/users.repository", () => ({
+jest.mock("../../users/users.repository", () => ({
   getUserById: jest.fn().mockResolvedValue({
     _id: "id1",
     username: "respo",

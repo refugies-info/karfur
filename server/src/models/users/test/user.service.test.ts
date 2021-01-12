@@ -1,80 +1,17 @@
 // @ts-nocheck
 import { updateRoleAndStructureOfResponsable } from "../users.service";
-import { User } from "../../../schema/schemaUser";
-import logger from "../../../logger";
 import { getUserById, updateUser } from "../users.repository";
-import { getRoleByName } from "../../role/role.repository";
+import { getRoleByName } from "../../../controllers/role/role.repository";
 
-type MockResponse = { json: any; status: any };
-const mockResponse = (): MockResponse => {
-  const res: MockResponse = {};
-  res.status = jest.fn().mockReturnValue(res);
-  res.json = jest.fn().mockReturnValue(res);
-  return res;
-};
-
-jest.mock("../../role/role.repository", () => ({
+jest.mock("../../../controllers/role/role.repository", () => ({
   getRoleByName: jest.fn().mockResolvedValue({ _id: "hasStructureId" }),
 }));
 
 jest.mock("../users.repository", () => ({
-  getAllUsersFromDB: jest
-    .fn()
-    .mockResolvedValue([{ username: "user1" }, { username: "user2" }]),
   getUserById: jest.fn(),
   updateUser: jest.fn(),
 }));
 jest.mock("../../../logger");
-
-const tradRole = {
-  _id: "5ce57c969aadae8734c7aeec",
-  nom: "Trad",
-};
-const expertTradRole = {
-  _id: "5ce57c969aadae8734c7aeec",
-  nom: "ExpertTrad",
-};
-const contribRole = {
-  _id: "5ce57c969aadae8734c7aeec",
-  nom: "Contrib",
-};
-const userRole = {
-  _id: "5ce57c969aadae8734c7aeec",
-  nom: "User",
-};
-
-const users = [
-  {
-    _id: "5dbff32e367a343830cd2f49",
-    roles: [],
-  },
-  {
-    _id: "5dbff89209dee20b18091ec3",
-    roles: [userRole],
-  },
-  {
-    _id: "5dbff89209dee20b18091ec3",
-    roles: [tradRole],
-  },
-  {
-    _id: "5dbff89209dee20b18091ec3",
-    roles: [expertTradRole],
-  },
-  {
-    _id: "5dbff89209dee20b18091ec3",
-    roles: [contribRole],
-  },
-];
-const users2 = [
-  {
-    _id: "5dbff89209dee20b18091ec3",
-    roles: [tradRole],
-  },
-  {
-    _id: "5dbff89209dee20b18091ec3",
-    roles: [expertTradRole, tradRole],
-  },
-];
 
 describe("updateRoleAndStructureOfResponsable", () => {
   beforeEach(() => {

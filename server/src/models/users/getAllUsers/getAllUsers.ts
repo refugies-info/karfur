@@ -1,4 +1,4 @@
-import { getAllUsersFromDB } from "../../../controllers/account/users.repository";
+import { getAllUsersFromDB } from "../users.repository";
 import { Res } from "../../../types/interface";
 
 export const getAllUsers = async (_: any, res: Res) => {
