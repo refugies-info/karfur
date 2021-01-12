@@ -1,7 +1,7 @@
 const account = require("./account/lib.js");
 const checkToken = require("./account/checkToken");
 const franceConnect = require("./account/france-connect.js");
-import { getFiguresOnUsers } from "./account/users.service";
+import { getFiguresOnUsers } from "../models/users/getFiguresOnUsers";
 import { getAllUsers } from "../models/users/getAllUsers";
 
 module.exports = function (app) {

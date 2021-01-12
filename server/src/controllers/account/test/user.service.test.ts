@@ -1,8 +1,5 @@
 // @ts-nocheck
-import {
-  getFiguresOnUsers,
-  updateRoleAndStructureOfResponsable,
-} from "../users.service";
+import { updateRoleAndStructureOfResponsable } from "../users.service";
 import { User } from "../../../schema/schemaUser";
 import logger from "../../../logger";
 import { getUserById, updateUser } from "../users.repository";
@@ -78,62 +75,6 @@ const users2 = [
     roles: [expertTradRole, tradRole],
   },
 ];
-
-describe("getFiguresOnUsers", () => {
-  it("should return correct figures", async () => {
-    User.find = jest
-      .fn()
-      .mockReturnValue({ populate: jest.fn().mockResolvedValue(users) });
-    const res = mockResponse();
-    await getFiguresOnUsers({}, res);
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      data: {
-        nbContributors: 1,
-        nbTraductors: 2,
-        nbExperts: 1,
-      },
-    });
-  });
-
-  it("should return correct figures", async () => {
-    User.find = jest
-      .fn()
-      .mockReturnValue({ populate: jest.fn().mockResolvedValue(users2) });
-    const res = mockResponse();
-    await getFiguresOnUsers({}, res);
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      data: {
-        nbContributors: 0,
-        nbTraductors: 2,
-        nbExperts: 1,
-      },
-    });
-  });
-
-  it("should return zero values if user.find throws", async () => {
-    User.find = jest.fn().mockReturnValue({
-      populate: jest.fn().mockRejectedValue(new Error("error")),
-    });
-    const res = mockResponse();
-    await getFiguresOnUsers({}, res);
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      data: {
-        nbContributors: 0,
-        nbTraductors: 0,
-        nbExperts: 0,
-      },
-    });
-    expect(logger.error).toHaveBeenCalledWith(
-      "[getFiguresOnUsers] error while getting users",
-      {
-        error: new Error("error"),
-      }
-    );
-  });
-});
 
 describe("updateRoleAndStructureOfResponsable", () => {
   beforeEach(() => {
