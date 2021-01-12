@@ -2,7 +2,6 @@ import { Res } from "../../types/interface";
 import { User } from "../../schema/schemaUser";
 import logger from "../../logger";
 import {
-  getAllUsersFromDB,
   getUserById,
   updateUser,
   removeRoleAndStructureInDB,
@@ -43,18 +42,6 @@ export const getFiguresOnUsers = async (req: {}, res: Res) => {
         nbExperts: 0,
       },
     });
-  }
-};
-
-export const getAllUsers = async (_: any, res: Res) => {
-  try {
-    const users = await getAllUsersFromDB();
-
-    return res.status(200).json({
-      data: users,
-    });
-  } catch (error) {
-    res.status(500).json({ text: "Erreur interne" });
   }
 };
 

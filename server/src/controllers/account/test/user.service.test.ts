@@ -1,16 +1,11 @@
 // @ts-nocheck
 import {
   getFiguresOnUsers,
-  getAllUsers,
   updateRoleAndStructureOfResponsable,
 } from "../users.service";
 import { User } from "../../../schema/schemaUser";
 import logger from "../../../logger";
-import {
-  getAllUsersFromDB,
-  getUserById,
-  updateUser,
-} from "../users.repository";
+import { getUserById, updateUser } from "../users.repository";
 import { getRoleByName } from "../../role/role.repository";
 
 type MockResponse = { json: any; status: any };
@@ -137,18 +132,6 @@ describe("getFiguresOnUsers", () => {
         error: new Error("error"),
       }
     );
-  });
-});
-
-describe("getAllUsers", () => {
-  it("should call getAllUsersFromDB", async () => {
-    const res = mockResponse();
-    await getAllUsers({}, res);
-    expect(getAllUsersFromDB).toHaveBeenCalledWith();
-    expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({
-      data: [{ username: "user1" }, { username: "user2" }],
-    });
   });
 });
 
