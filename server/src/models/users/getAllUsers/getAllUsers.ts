@@ -2,11 +2,12 @@ import { getAllUsersFromDB } from "../users.repository";
 import { Res } from "../../../types/interface";
 import { UserDoc } from "../../../schema/schemaUser";
 import { ObjectId } from "mongoose";
+import logger = require("../../../logger");
 
 const getPlateformeRoles = (roles: { _id: ObjectId; nom: string }[]) =>
   roles && roles.length > 0
     ? roles
-        .filter((role) => role.nom === "Admin" || role.nom === "Expert Trad")
+        .filter((role) => role.nom === "Admin" || role.nom === "ExpertTrad")
         .map((role) => role.nom)
     : [];
 
@@ -20,15 +21,19 @@ const getStructureRoles = (
 
   const isAdmin =
     structure.membres.filter(
-      (membres) =>
-        membres.userId === userId && membres.roles.includes("administrateur")
+      (membre) =>
+        membre.userId &&
+        membre.userId.toString() === userId.toString() &&
+        membre.roles.includes("administrateur")
     ).length > 0;
 
   if (isAdmin) return ["Responsable"];
 
   const isContrib = structure.membres.filter(
-    (membres) =>
-      membres.userId === userId && membres.roles.includes("contributeur")
+    (membre) =>
+      membre.userId &&
+      membre.userId.toString() === userId.toString() &&
+      membre.roles.includes("contributeur")
   );
 
   if (isContrib) return ["Rédacteur"];
@@ -81,6 +86,7 @@ const adaptUsers = (users: UserDoc[]) =>
 
 export const getAllUsers = async (_: any, res: Res) => {
   try {
+    logger.info("[getAllUsers] call received");
     const neededFields = {
       username: 1,
       picture: 1,
@@ -100,6 +106,7 @@ export const getAllUsers = async (_: any, res: Res) => {
     });
   } catch (error) {
     console.log("error", error);
+    logger.error("[getAllUsers] error", { error });
     res.status(500).json({ text: "Erreur interne" });
   }
 };

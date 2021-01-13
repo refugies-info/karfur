@@ -12,6 +12,8 @@ const RoleContainer = styled.div`
   font-size: 12px;
   line-height: 15px;
   padding: 8px;
+  width: fit-content;
+  margin-right: 4px;
 `;
 export const Role = (props: RoleProps) => (
   <RoleContainer>{props.role}</RoleContainer>

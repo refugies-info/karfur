@@ -3,6 +3,7 @@
 import marioProfile from "assets/mario-profile.jpg";
 import React, { useEffect } from "react";
 import moment from "moment/min/moment-with-locales";
+import styled from "styled-components";
 import {
   SearchBarContainer,
   StyledHeader,
@@ -59,6 +60,10 @@ import { Role } from "./ components/AdminUsersComponents";
 moment.locale("fr");
 declare const window: Window;
 
+const RoleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 export const AdminUsers = () => {
   //   const defaultSortedHeader = {
   //     name: "none",
@@ -130,6 +135,11 @@ export const AdminUsers = () => {
       </div>
     );
   }
+
+  console.log(
+    "test",
+    users.filter((user) => user.roles.includes("ExpertTrad"))
+  );
   //   const reorder = (element: { name: string; order: string }) => {
   //     if (sortedHeader.name === element.name) {
   //       const sens = sortedHeader.sens === "up" ? "down" : "up";
@@ -313,7 +323,6 @@ export const AdminUsers = () => {
                 element && element.picture && element.picture.secure_url
                   ? element.picture.secure_url
                   : marioProfile;
-              console.log("se", secureUrl);
               return (
                 <tr
                   key={key}
@@ -334,9 +343,11 @@ export const AdminUsers = () => {
                   </td>
                   <td className="align-middle">{element.nbStructures}</td>
                   <td className="align-middle">
-                    {element.roles.map((role) => (
-                      <Role key={role} role={role} />
-                    ))}
+                    <RoleContainer>
+                      {element.roles.map((role) => (
+                        <Role key={role} role={role} />
+                      ))}
+                    </RoleContainer>
                   </td>
                   <td className="align-middle">langues</td>
 
