@@ -30,7 +30,7 @@ import {
   ResponsableComponent,
 } from "../AdminStructures/components/AdminStructureComponents";
 import "./AdminUsers.scss";
-import { Role } from "./ components/AdminUsersComponents";
+import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 // import { correspondingStatus } from "../AdminContenu/data";
 
 // import { compare } from "../AdminContenu/AdminContenu";
@@ -63,7 +63,17 @@ declare const window: Window;
 const RoleContainer = styled.div`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  width: 150px;
 `;
+
+const LangueContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 150px;
+`;
+
 export const AdminUsers = () => {
   //   const defaultSortedHeader = {
   //     name: "none",
@@ -136,10 +146,6 @@ export const AdminUsers = () => {
     );
   }
 
-  console.log(
-    "test",
-    users.filter((user) => user.roles.includes("ExpertTrad"))
-  );
   //   const reorder = (element: { name: string; order: string }) => {
   //     if (sortedHeader.name === element.name) {
   //       const sens = sortedHeader.sens === "up" ? "down" : "up";
@@ -329,19 +335,24 @@ export const AdminUsers = () => {
                   // onClick={() => setSelectedStructureAndToggleModal(element)}
                 >
                   <td className="align-middle">
-                    <RowContainer>
-                      <img className="user-img mr-8" src={secureUrl} />
-                      <StructureName>{element.username}</StructureName>
-                    </RowContainer>
+                    <div style={{ maxWidth: "300px", overflow: "hidden" }}>
+                      <RowContainer>
+                        <img className="user-img mr-8" src={secureUrl} />
+                        <StructureName>{element.username}</StructureName>
+                      </RowContainer>
+                    </div>
                   </td>
-                  <td className="align-middle">{element.email}</td>
+                  <td className="align-middle">
+                    <div style={{ maxWidth: "200px", wordWrap: "break-word" }}>
+                      {element.email}
+                    </div>
+                  </td>
 
                   <td className={"align-middle "}>
                     {element.structure
                       ? element.structure.nom
                       : "Pas de structure"}
                   </td>
-                  <td className="align-middle">{element.nbStructures}</td>
                   <td className="align-middle">
                     <RoleContainer>
                       {element.roles.map((role) => (
@@ -349,7 +360,13 @@ export const AdminUsers = () => {
                       ))}
                     </RoleContainer>
                   </td>
-                  <td className="align-middle">langues</td>
+                  <td className="align-middle">
+                    <LangueContainer>
+                      {element.langues.map((langue) => (
+                        <LangueFlag langue={langue} key={langue} />
+                      ))}
+                    </LangueContainer>
+                  </td>
 
                   <td className="align-middle">
                     {element.created_at

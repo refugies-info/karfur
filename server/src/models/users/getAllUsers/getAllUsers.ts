@@ -3,6 +3,7 @@ import { Res } from "../../../types/interface";
 import { UserDoc } from "../../../schema/schemaUser";
 import { ObjectId } from "mongoose";
 import logger = require("../../../logger");
+import { LangueDoc } from "../../../schema/schemaLangue";
 
 const getPlateformeRoles = (roles: { _id: ObjectId; nom: string }[]) =>
   roles && roles.length > 0
@@ -41,10 +42,14 @@ const getStructureRoles = (
   return [];
 };
 
-const getSelectedLanguages = (langues: { i18nCode: string }[]) => {
+const getSelectedLanguages = (langues: LangueDoc[]) => {
   if (!langues || langues.length === 0) return [];
 
-  return langues.map((langue) => langue.i18nCode);
+  return langues
+    .filter((langue) =>
+      ["gb", "ru", "sa", "ir", "er", "af"].includes(langue.langueCode)
+    )
+    .map((langue) => langue.langueCode);
 };
 
 const adaptUsers = (users: UserDoc[]) =>
