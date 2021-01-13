@@ -12,7 +12,7 @@ import {
   StyledSort,
   Content,
 } from "../sharedComponents/StyledAdmin";
-import { userHeaders } from "./data";
+import { userHeaders, correspondingStatus } from "./data";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,7 +23,7 @@ import {
   setAllUsersActionsCreator,
 } from "../../../../services/AllUsers/allUsers.actions";
 import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
-import { TabHeader } from "../sharedComponents/SubComponents";
+import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
 import {
   RowContainer,
   StructureName,
@@ -31,9 +31,10 @@ import {
 } from "../AdminStructures/components/AdminStructureComponents";
 import "./AdminUsers.scss";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
+
 // import { correspondingStatus } from "../AdminContenu/data";
 
-// import { compare } from "../AdminContenu/AdminContenu";
+import { compare } from "../AdminContenu/AdminContenu";
 
 // import { FilterButton, TabHeader } from "../sharedComponents/SubComponents";
 
@@ -81,7 +82,7 @@ export const AdminUsers = () => {
     orderColumn: "none",
   };
 
-  const [filter, setFilter] = useState("En attente");
+  const [filter, setFilter] = useState("Administrateurs");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
   //   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
@@ -118,10 +119,10 @@ export const AdminUsers = () => {
   //     toggleStructureDetailsModal();
   //   };
 
-  //   const onFilterClick = (status: string) => {
-  //     setFilter(status);
-  //     setSortedHeader(defaultSortedHeader);
-  //   };
+  const onFilterClick = (status: string) => {
+    setFilter(status);
+    setSortedHeader(defaultSortedHeader);
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -158,7 +159,7 @@ export const AdminUsers = () => {
       });
     }
   };
-
+  console.log("filter", filter);
   const filterAndSortUsers = (users: SimplifiedUser[]) => {
     const usersFilteredBySearch = !!search
       ? users.filter(
@@ -172,10 +173,36 @@ export const AdminUsers = () => {
         )
       : users;
 
+    let filteredUsers = usersFilteredBySearch;
+    if (filter === "Administrateurs") {
+      filteredUsers = usersFilteredBySearch.filter((user) =>
+        user.roles.includes("Admin")
+      );
+    } else if (filter === "Responsables") {
+      filteredUsers = usersFilteredBySearch.filter((user) =>
+        user.roles.includes("Responsable")
+      );
+    } else if (filter === "Experts") {
+      filteredUsers = usersFilteredBySearch.filter((user) =>
+        user.roles.includes("ExpertTrad")
+      );
+    } else if (filter === "Traducteurs") {
+      filteredUsers = usersFilteredBySearch.filter(
+        (user) => user.langues && user.langues.length > 0
+      );
+    } else if (filter === "Rédacteurs") {
+      filteredUsers = usersFilteredBySearch.filter((user) =>
+        user.roles.includes("Rédacteur")
+      );
+    } else if (filter === "Multi-structure") {
+      filteredUsers = usersFilteredBySearch.filter(
+        (user) => user.nbStructures > 1
+      );
+    }
+
     // const filteredUsers = usersFilteredBySearch.filter(
     //   (user) => user.status === filter
     // );
-    const filteredUsers = usersFilteredBySearch;
     if (sortedHeader.name === "none")
       return {
         usersToDisplay: filteredUsers,
@@ -225,14 +252,27 @@ export const AdminUsers = () => {
     };
   };
 
-  const getNbStructuresByStatus = (
-    structures: SimplifiedStructureForAdmin[],
-    status: string
-  ) =>
-    structures && structures.length > 0
-      ? structures.filter((structure) => structure.status === status).length
-      : 0;
-
+  const getNbUsersByStatus = (users: SimplifiedUser[], status: string) => {
+    if (status === "Administrateurs") {
+      return users.filter((user) => user.roles.includes("Admin")).length;
+    }
+    if (status === "Responsables") {
+      return users.filter((user) => user.roles.includes("Responsable")).length;
+    }
+    if (status === "Experts") {
+      return users.filter((user) => user.roles.includes("ExpertTrad")).length;
+    }
+    if (status === "Traducteurs") {
+      return users.filter((user) => user.langues && user.langues.length > 0)
+        .length;
+    }
+    if (status === "Rédacteurs") {
+      return users.filter((user) => user.roles.includes("Rédacteur")).length;
+    }
+    if (status === "Multi-structure") {
+      return users.filter((user) => user.nbStructures > 1).length;
+    }
+  };
   const { usersToDisplay, usersForCount } = filterAndSortUsers(users);
 
   return (
@@ -250,21 +290,18 @@ export const AdminUsers = () => {
         <FigureContainer>{users.length}</FigureContainer>
 
         <StyledSort marginTop="16px">
-          {/* {correspondingStatus.sort(compare).map((element) => {
-            // const status = element.status;
-            // const nbStructures = getNbStructuresByStatus(
-            //   structuresForCount,
-            //   status
-            // );
+          {correspondingStatus.sort(compare).map((element) => {
+            const status = element.status;
+            const nbUsers = getNbUsersByStatus(usersForCount, status);
             return (
               <FilterButton
                 key={status}
-                // onClick={() => onFilterClick(status)}
-                text={`${status} (${0})`}
+                onClick={() => onFilterClick(status)}
+                text={`${status} (${nbUsers})`}
                 isSelected={filter === status}
               />
             );
-          })} */}
+          })}
         </StyledSort>
       </StyledHeader>
       <Content>
