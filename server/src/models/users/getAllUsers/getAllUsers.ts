@@ -4,6 +4,7 @@ import { UserDoc } from "../../../schema/schemaUser";
 import { ObjectId } from "mongoose";
 import logger = require("../../../logger");
 import { LangueDoc } from "../../../schema/schemaLangue";
+import _ from "lodash";
 
 const getPlateformeRoles = (roles: { _id: ObjectId; nom: string }[]) =>
   roles && roles.length > 0
@@ -45,11 +46,13 @@ const getStructureRoles = (
 const getSelectedLanguages = (langues: LangueDoc[]) => {
   if (!langues || langues.length === 0) return [];
 
-  return langues
+  const languesFiltered = langues
     .filter((langue) =>
       ["gb", "ru", "sa", "ir", "er", "af"].includes(langue.langueCode)
     )
     .map((langue) => langue.langueCode);
+
+  return _.uniq(languesFiltered);
 };
 
 const adaptUsers = (users: UserDoc[]) =>
@@ -110,7 +113,6 @@ export const getAllUsers = async (_: any, res: Res) => {
       data: adaptedUsers,
     });
   } catch (error) {
-    console.log("error", error);
     logger.error("[getAllUsers] error", { error });
     res.status(500).json({ text: "Erreur interne" });
   }

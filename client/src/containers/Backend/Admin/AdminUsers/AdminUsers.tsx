@@ -349,9 +349,7 @@ export const AdminUsers = () => {
                   </td>
 
                   <td className={"align-middle "}>
-                    {element.structure
-                      ? element.structure.nom
-                      : "Pas de structure"}
+                    {element.structure && element.structure.nom}
                   </td>
                   <td className="align-middle">
                     <RoleContainer>
