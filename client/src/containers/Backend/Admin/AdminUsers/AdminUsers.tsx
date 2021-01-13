@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 // @ts-nocheck
 import marioProfile from "assets/mario-profile.jpg";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment/min/moment-with-locales";
 import styled from "styled-components";
 import {
@@ -75,15 +75,15 @@ const LangueContainer = styled.div`
 `;
 
 export const AdminUsers = () => {
-  //   const defaultSortedHeader = {
-  //     name: "none",
-  //     sens: "none",
-  //     orderColumn: "none",
-  //   };
+  const defaultSortedHeader = {
+    name: "none",
+    sens: "none",
+    orderColumn: "none",
+  };
 
-  //   const [filter, setFilter] = useState("En attente");
-  //   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
-  //   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("En attente");
+  const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
+  const [search, setSearch] = useState("");
   //   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
   //     false
   //   );
@@ -146,123 +146,94 @@ export const AdminUsers = () => {
     );
   }
 
-  //   const reorder = (element: { name: string; order: string }) => {
-  //     if (sortedHeader.name === element.name) {
-  //       const sens = sortedHeader.sens === "up" ? "down" : "up";
-  //       setSortedHeader({ name: element.name, sens, orderColumn: element.order });
-  //     } else {
-  //       setSortedHeader({
-  //         name: element.name,
-  //         sens: "up",
-  //         orderColumn: element.order,
-  //       });
-  //     }
-  //   };
+  const reorder = (element: { name: string; order: string }) => {
+    if (sortedHeader.name === element.name) {
+      const sens = sortedHeader.sens === "up" ? "down" : "up";
+      setSortedHeader({ name: element.name, sens, orderColumn: element.order });
+    } else {
+      setSortedHeader({
+        name: element.name,
+        sens: "up",
+        orderColumn: element.order,
+      });
+    }
+  };
 
-  //   const filterAndSortStructures = (
-  //     structures: SimplifiedStructureForAdmin[]
-  //   ) => {
-  //     const structuresFilteredBySearch = !!search
-  //       ? structures.filter(
-  //           (structure) =>
-  //             structure.nom &&
-  //             structure.nom
-  //               .normalize("NFD")
-  //               .replace(/[\u0300-\u036f]/g, "")
-  //               .toLowerCase()
-  //               .includes(search.toLowerCase())
-  //         )
-  //       : structures;
+  const filterAndSortUsers = (users: SimplifiedUser[]) => {
+    const usersFilteredBySearch = !!search
+      ? users.filter(
+          (user) =>
+            user.username &&
+            user.username
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .toLowerCase()
+              .includes(search.toLowerCase())
+        )
+      : users;
 
-  //     const filteredStructures = structuresFilteredBySearch.filter(
-  //       (structure) => structure.status === filter
-  //     );
-  //     if (sortedHeader.name === "none")
-  //       return {
-  //         structuresToDisplay: filteredStructures,
-  //         structuresForCount: structuresFilteredBySearch,
-  //       };
+    // const filteredUsers = usersFilteredBySearch.filter(
+    //   (user) => user.status === filter
+    // );
+    const filteredUsers = usersFilteredBySearch;
+    if (sortedHeader.name === "none")
+      return {
+        usersToDisplay: filteredUsers,
+        usersForCount: usersFilteredBySearch,
+      };
 
-  //     const structuresToDisplay = filteredStructures.sort(
-  //       (a: SimplifiedStructureForAdmin, b: SimplifiedStructureForAdmin) => {
-  //         // @ts-ignore
-  //         const orderColumn:
-  //           | "nom"
-  //           | "status"
-  //           | "nbMembres"
-  //           | "responsable"
-  //           | "nbFiches"
-  //           | "created_at" = sortedHeader.orderColumn;
+    const usersToDisplay = filteredUsers.sort(
+      (a: SimplifiedUser, b: SimplifiedUser) => {
+        // @ts-ignore
+        const orderColumn: "pseudo" | "email" | "structure" | "created_at" =
+          sortedHeader.orderColumn;
 
-  //         if (orderColumn === "nbMembres") {
-  //           if (a[orderColumn] > b[orderColumn])
-  //             return sortedHeader.sens === "up" ? 1 : -1;
-  //           return sortedHeader.sens === "up" ? -1 : 1;
-  //         }
+        if (orderColumn === "structure") {
+          const structureA =
+            a.structure && a.structure.nom ? a.structure.nom : "";
+          const structureB =
+            b.structure && b.structure.nom ? b.structure.nom : "";
 
-  //         if (orderColumn === "nbFiches") {
-  //           const nbFichesA = a.nbFiches;
-  //           const nbFichesB = b.nbFiches;
+          if (structureA > structureB)
+            return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
 
-  //           if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
-  //           return sortedHeader.sens === "up" ? -1 : 1;
-  //         }
+        if (orderColumn === "created_at") {
+          if (moment(a.created_at).diff(moment(b.created_at)) > 0)
+            return sortedHeader.sens === "up" ? 1 : -1;
+          return sortedHeader.sens === "up" ? -1 : 1;
+        }
 
-  //         if (orderColumn === "responsable") {
-  //           const respoA =
-  //             a.responsable && a.responsable.username
-  //               ? a.responsable.username.toLowerCase()
-  //               : "";
-  //           const respoB =
-  //             b.responsable && b.responsable.username
-  //               ? b.responsable.username.toLowerCase()
-  //               : "";
+        const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
+        const valueAWithoutAccent = valueA
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
+        const valueBWithoutAccent = valueB
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+        if (valueAWithoutAccent > valueBWithoutAccent)
+          return sortedHeader.sens === "up" ? 1 : -1;
 
-  //           if (respoA > respoB) return sortedHeader.sens === "up" ? 1 : -1;
-  //           return sortedHeader.sens === "up" ? -1 : 1;
-  //         }
+        return sortedHeader.sens === "up" ? -1 : 1;
+      }
+    );
+    return {
+      usersToDisplay,
+      usersForCount: usersFilteredBySearch,
+    };
+  };
 
-  //         if (orderColumn === "created_at") {
-  //           if (moment(a.created_at).diff(moment(b.created_at)) > 0)
-  //             return sortedHeader.sens === "up" ? 1 : -1;
-  //           return sortedHeader.sens === "up" ? -1 : 1;
-  //         }
+  const getNbStructuresByStatus = (
+    structures: SimplifiedStructureForAdmin[],
+    status: string
+  ) =>
+    structures && structures.length > 0
+      ? structures.filter((structure) => structure.status === status).length
+      : 0;
 
-  //         const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
-  //         const valueAWithoutAccent = valueA
-  //           .normalize("NFD")
-  //           .replace(/[\u0300-\u036f]/g, "");
-  //         const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
-  //         const valueBWithoutAccent = valueB
-  //           .normalize("NFD")
-  //           .replace(/[\u0300-\u036f]/g, "");
-  //         if (valueAWithoutAccent > valueBWithoutAccent)
-  //           return sortedHeader.sens === "up" ? 1 : -1;
-
-  //         return sortedHeader.sens === "up" ? -1 : 1;
-  //       }
-  //     );
-  //     return {
-  //       structuresToDisplay,
-  //       structuresForCount: structuresFilteredBySearch,
-  //     };
-  //   };
-
-  //   const getNbStructuresByStatus = (
-  //     structures: SimplifiedStructureForAdmin[],
-  //     status: string
-  //   ) =>
-  //     structures && structures.length > 0
-  //       ? structures.filter((structure) => structure.status === status).length
-  //       : 0;
-
-  //   const { structuresToDisplay, structuresForCount } = filterAndSortStructures(
-  //     structures
-  //   );
-
-  //   const nbNonDeletedStructures = structures.filter(
-  //     (structure) => structure.status !== "Supprimé"
-  //   ).length;
+  const { usersToDisplay, usersForCount } = filterAndSortUsers(users);
 
   return (
     <div className="admin-users">
@@ -303,28 +274,26 @@ export const AdminUsers = () => {
               {userHeaders.map((element, key) => (
                 <th
                   key={key}
-                  //   onClick={() => {
-                  //     reorder(element);
-                  //   }}
+                  onClick={() => {
+                    reorder(element);
+                  }}
                 >
                   <TabHeader
                     name={element.name}
                     order={element.order}
-                    // isSortedHeader={sortedHeader.name === element.name}
-                    // sens={
-                    //   sortedHeader.name === element.name
-                    //     ? sortedHeader.sens
-                    //     : "down"
-                    // }
-                    isSortedHeader={false}
-                    sens={"up"}
+                    isSortedHeader={sortedHeader.name === element.name}
+                    sens={
+                      sortedHeader.name === element.name
+                        ? sortedHeader.sens
+                        : "down"
+                    }
                   />
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
-            {users.map((element, key) => {
+            {usersToDisplay.map((element, key) => {
               const secureUrl =
                 element && element.picture && element.picture.secure_url
                   ? element.picture.secure_url
