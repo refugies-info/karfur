@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Modal, Spinner } from "reactstrap";
 import "./SelectFirstResponsableModal.scss";
 import { SearchBar } from "containers/UI/SearchBar/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
@@ -61,12 +60,6 @@ export const SelectFirstResponsableModal = (props: Props) => {
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
   );
-  useEffect(() => {
-    const loadUsers = async () => {
-      await dispatch(fetchAllUsersActionsCreator());
-    };
-    loadUsers();
-  }, [dispatch]);
 
   const structureFromStore = useSelector(
     structureSelector(props.selectedStructureId)

@@ -1,6 +1,6 @@
 import HomePage from "./containers/HomePage/HomePage";
 import Dashboard from "./containers/Backend/Dashboard/Dashboard";
-import Admin from "./containers/Backend/Admin/Admin";
+import { Admin } from "./containers/Backend/Admin/Admin";
 import UserDash from "./containers/Backend/UserDash/UserDash";
 import UserDashContrib from "./containers/Backend/UserDashContrib/UserDashContrib";
 import UserDashStruct from "./containers/Backend/UserDashStruct/UserDashStruct";
