@@ -1,5 +1,5 @@
-/* eslint-disable no-console */
-// @ts-nocheck
+// /* eslint-disable no-console */
+// // @ts-nocheck
 import marioProfile from "assets/mario-profile.jpg";
 import React, { useEffect, useState } from "react";
 import moment from "moment/min/moment-with-locales";
@@ -13,7 +13,6 @@ import {
   Content,
 } from "../sharedComponents/StyledAdmin";
 import { userHeaders, correspondingStatus } from "./data";
-import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
@@ -27,7 +26,6 @@ import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
 import {
   RowContainer,
   StructureName,
-  ResponsableComponent,
 } from "../AdminStructures/components/AdminStructureComponents";
 import "./AdminUsers.scss";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
@@ -58,6 +56,7 @@ import { compare } from "../AdminContenu/AdminContenu";
 
 // import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
+import { SimplifiedUser } from "../../../../types/interface";
 
 moment.locale("fr");
 declare const window: Window;
@@ -220,10 +219,13 @@ export const AdminUsers = () => {
           return sortedHeader.sens === "up" ? -1 : 1;
         }
 
+        // @ts-ignore
         const valueA = a[orderColumn] ? a[orderColumn].toLowerCase() : "";
+        // @ts-ignore
         const valueAWithoutAccent = valueA
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "");
+        // @ts-ignore
         const valueB = b[orderColumn] ? b[orderColumn].toLowerCase() : "";
         const valueBWithoutAccent = valueB
           .normalize("NFD")

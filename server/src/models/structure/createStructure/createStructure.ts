@@ -39,16 +39,13 @@ export const createStructure = async (
       // @ts-ignore
       const newStructure = await createStructureInDB(structureToSave);
       const structureId = newStructure._id;
-      console.log("new str", newStructure);
       if (newStructure.membres && newStructure.membres.length > 0) {
         // if we create a structure there is maximum one membre
         const responsableId =
           newStructure.membres[0] && newStructure.membres[0].userId
             ? newStructure.membres[0] && newStructure.membres[0].userId
             : "";
-        console.log("resp", responsableId);
         if (responsableId) {
-          console.log("here");
           await updateRoleAndStructureOfResponsable(responsableId, structureId);
         }
       }
