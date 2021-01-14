@@ -33,7 +33,7 @@ const user1 = {
   created_at: "created_at",
   roles: [
     { nom: "Admin" },
-    { nom: "Expert Trad" },
+    { nom: "ExpertTrad" },
     { nom: "Trad" },
     { nom: "User" },
     { nom: "Contrib" },
@@ -54,7 +54,12 @@ const user1 = {
     },
   ],
   email: "email1",
-  selectedLanguages: [{ i18nCode: "fr" }, { i18nCode: "en" }],
+  selectedLanguages: [
+    { langueCode: "fr" },
+    { langueCode: "en" },
+    { langueCode: "gb" },
+    { langueCode: "sa" },
+  ],
 };
 
 const user3 = {
@@ -75,20 +80,20 @@ const simplifiedUser1 = {
   picture: { secure_url: "secure_url1" },
   status: "Actif",
   created_at: "created_at",
-  roles: ["Admin", "Expert Trad", "Responsable"],
+  roles: ["Admin", "ExpertTrad", "Responsable"],
   structure: {
     nom: "struct1",
     picture: { secure_url: "sec_struct1" },
     _id: "id_structure",
   },
   email: "email1",
-  langues: ["fr", "en"],
+  langues: ["gb", "sa"],
   nbStructures: 2,
 };
 
 const simplifiedUser3 = {
   ...simplifiedUser1,
-  roles: ["Admin", "Expert Trad", "Rédacteur"],
+  roles: ["Admin", "ExpertTrad", "Rédacteur"],
   nbStructures: 1,
 };
 
