@@ -31,7 +31,7 @@ import {
 } from "../AdminStructures/components/AdminStructureComponents";
 import "./AdminUsers.scss";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
-
+import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
 // import { correspondingStatus } from "../AdminContenu/data";
 
 import { compare } from "../AdminContenu/AdminContenu";
@@ -139,15 +139,6 @@ export const AdminUsers = () => {
 
   const users = useSelector(activeUsersSelector);
 
-  if (isLoading || users.length === 0) {
-    return (
-      <div>
-        {/* <LoadingAdminStructures /> */}
-        loading
-      </div>
-    );
-  }
-
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {
       const sens = sortedHeader.sens === "up" ? "down" : "up";
@@ -160,7 +151,6 @@ export const AdminUsers = () => {
       });
     }
   };
-  console.log("filter", filter);
   const filterAndSortUsers = (users: SimplifiedUser[]) => {
     const usersFilteredBySearch = !!search
       ? users.filter(
@@ -273,7 +263,9 @@ export const AdminUsers = () => {
     return users.length;
   };
   const { usersToDisplay, usersForCount } = filterAndSortUsers(users);
-
+  if (isLoading || users.length === 0) {
+    return <LoadingAdminUsers />;
+  }
   return (
     <div className="admin-users">
       <SearchBarContainer>
