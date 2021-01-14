@@ -57,6 +57,7 @@ import { compare } from "../AdminContenu/AdminContenu";
 // import { NewStructureModal } from "../AdminStructures/NewStructureModal/NewStructureModal";
 
 // import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 
 moment.locale("fr");
 declare const window: Window;
@@ -100,7 +101,7 @@ export const AdminUsers = () => {
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
   );
 
-  //   const handleChange = (e: any) => setSearch(e.target.value);
+  const handleChange = (e: any) => setSearch(e.target.value);
 
   //   const toggleShowNewStructureModal = () =>
   //     setShowNewStructureModal(!showNewStructureModal);
@@ -276,12 +277,12 @@ export const AdminUsers = () => {
   return (
     <div className="admin-users">
       <SearchBarContainer>
-        {/* <CustomSearchBar
-        //   value={search}
+        <CustomSearchBar
+          value={search}
           // @ts-ignore
           onChange={handleChange}
-          placeholder="Rechercher une structure..."
-        /> */}
+          placeholder="Rechercher un utilisateur..."
+        />
       </SearchBarContainer>
       <StyledHeader>
         <StyledTitle>Utilisateurs</StyledTitle>
