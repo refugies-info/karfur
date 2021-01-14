@@ -12,6 +12,8 @@ import {
   StyledSort,
   Content,
 } from "../sharedComponents/StyledAdmin";
+// @ts-ignore
+import { CSVLink } from "react-csv";
 import { userHeaders, correspondingStatus } from "./data";
 import { Table } from "reactstrap";
 import { useSelector } from "react-redux";
@@ -252,9 +254,30 @@ export const AdminUsers = () => {
   if (isLoading || users.length === 0) {
     return <LoadingAdminUsers />;
   }
+  const headers = [
+    { label: "First Name", key: "firstname" },
+    { label: "Last Name", key: "lastname" },
+    { label: "Email", key: "email" },
+  ];
+
+  const data = [
+    { firstname: "Ahmed", lastname: "Tomi", email: "ah@smthing.co.com" },
+    { firstname: "Raed", lastname: "Labes", email: "rl@smthing.co.com" },
+    { firstname: "Yezzi", lastname: "Min l3b", email: "ymin@cocococo.com" },
+  ];
   return (
     <div className="admin-users">
       <SearchBarContainer>
+        <CSVLink
+          data={data}
+          asyncOnClick={false}
+          // onClick={this.downloadReport}
+          headers={headers}
+          style={{ marginLeft: 20 }}
+        >
+          Export CSV
+        </CSVLink>
+
         <CustomSearchBar
           value={search}
           // @ts-ignore
