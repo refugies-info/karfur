@@ -121,14 +121,20 @@ var userSchema = new mongoose.Schema(
 // @ts-ignore
 userSchema.methods = {
   authenticate: function (password: string) {
+    // @ts-ignore
+
     return passwordHash.verify(password, this.password);
   },
   getToken: function () {
     return jwt.encode(
       {
+        // @ts-ignore
         _id: this._id,
+        // @ts-ignore
         username: this.username,
+        // @ts-ignore
         password: this.password,
+        // @ts-ignore
         email: this.email,
       },
       // @ts-ignore
