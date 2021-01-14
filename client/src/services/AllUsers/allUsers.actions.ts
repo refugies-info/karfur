@@ -7,8 +7,6 @@ export const setAllUsersActionsCreator = (value: SimplifiedUser[]) =>
 
 export const fetchAllUsersActionsCreator = () => action(FETCH_ALL_USERS);
 
-// export const setResponsableActionCreator = (value : {m})=> action(SET_RESPO, value)
-
 const actions = {
   setAllUsersActionsCreator,
   fetchAllUsersActionsCreator,

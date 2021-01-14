@@ -2,7 +2,7 @@ import { Res } from "../../../types/interface.js";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import logger from "../../../logger";
 import { getStructuresFromDB } from "../../../models/structure/structure.repository";
-import { getUserById } from "../../../controllers/account/users.repository";
+import { getUserById } from "../../users/users.repository";
 
 export const getAllStructures = async (req: {}, res: Res) => {
   try {

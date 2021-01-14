@@ -10,12 +10,11 @@ import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./Admin.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import styled from "styled-components";
 
 const OngletText = styled.span`
-  color: ${(props) =>
-    props.isActive ? colors.bleuCharte : colors.darkColor};
+  color: ${(props) => (props.isActive ? colors.bleuCharte : colors.darkColor)};
   font-weight: ${(props) => (props.isActive ? "bold" : "normal")};
 `;
 
