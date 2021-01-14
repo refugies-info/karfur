@@ -14,6 +14,12 @@ export interface SimplifiedUser {
   picture: Picture;
   status: string;
   _id: ObjectId;
+  created_at: Moment;
+  roles: string[];
+  email: string;
+  langues: string[];
+  structure: SimplifiedStructure;
+  nbStructures: number;
 }
 export interface SimplifiedDispositif {
   titreInformatif: string;

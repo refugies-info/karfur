@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { createStructure } from "./createStructure";
 import { createStructureInDB } from "../structure.repository";
-import { updateRoleAndStructureOfResponsable } from "../../../controllers/account/users.service";
+import { updateRoleAndStructureOfResponsable } from "../../users/users.service";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -15,7 +15,7 @@ jest.mock("../structure.repository", () => ({
   createStructureInDB: jest.fn().mockResolvedValue({ _id: "id" }),
 }));
 
-jest.mock("../../../controllers/account/users.service", () => ({
+jest.mock("../../users/users.service", () => ({
   updateRoleAndStructureOfResponsable: jest.fn(),
 }));
 

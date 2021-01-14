@@ -110,11 +110,7 @@ export const AdminStructures = () => {
     (isLoading || structures.length === 0) &&
     showStructureDetailsModal === false
   ) {
-    return (
-      <div>
-        <LoadingAdminStructures />
-      </div>
-    );
+    return <LoadingAdminStructures />;
   }
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {

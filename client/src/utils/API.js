@@ -93,9 +93,7 @@ export default {
       headers: headers,
     });
   },
-  FClogout: () => {
-    return axios.post(burl + "/user/FClogout", {}, { headers: headers });
-  },
+
   change_password: (query) => {
     return axios.post(burl + "/user/change_password", query, {
       headers: headers,

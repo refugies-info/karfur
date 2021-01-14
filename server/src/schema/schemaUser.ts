@@ -2,6 +2,7 @@ import mongoose, { ObjectId } from "mongoose";
 // @ts-ignore
 import passwordHash from "password-hash";
 import jwt from "jwt-simple";
+import { LangueDoc } from "./schemaLangue";
 let config = {};
 if (process.env.NODE_ENV === "dev") {
   config = require("../config/config");
@@ -160,7 +161,7 @@ export interface UserDoc extends mongoose.Document {
 
   roles?: ObjectId[];
 
-  selectedLanguages?: string[];
+  selectedLanguages?: LangueDoc[];
   traductionsFaites?: ObjectId[];
   contributions?: ObjectId[];
   noteTraduction?: number;
@@ -174,6 +175,7 @@ export interface UserDoc extends mongoose.Document {
   reset_password_token?: string;
   reset_password_expires?: number;
   _id: ObjectId;
+  created_at: Date;
 }
 
 export const User = mongoose.model<UserDoc>("User", userSchema);
