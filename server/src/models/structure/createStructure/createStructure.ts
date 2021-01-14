@@ -5,7 +5,7 @@ import {
   Membre,
 } from "../../../types/interface";
 import logger from "../../../logger";
-import { updateRoleAndStructureOfResponsable } from "../../../controllers/account/users.service";
+import { updateRoleAndStructureOfResponsable } from "../../users/users.service";
 import { createStructureInDB } from "../structure.repository";
 
 interface ReceivedStructure {
@@ -45,7 +45,6 @@ export const createStructure = async (
           newStructure.membres[0] && newStructure.membres[0].userId
             ? newStructure.membres[0] && newStructure.membres[0].userId
             : "";
-
         if (responsableId) {
           await updateRoleAndStructureOfResponsable(responsableId, structureId);
         }

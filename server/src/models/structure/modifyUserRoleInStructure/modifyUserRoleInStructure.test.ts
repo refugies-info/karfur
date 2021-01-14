@@ -5,7 +5,7 @@ import { updateStructureMember } from "../structure.repository";
 import {
   removeRoleAndStructureOfUser,
   updateRoleAndStructureOfResponsable,
-} from "../../../controllers/account/users.service";
+} from "../../users/users.service";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -23,7 +23,7 @@ jest.mock("../structure.service", () => ({
   checkIfUserIsAuthorizedToModifyStructure: jest.fn(),
 }));
 
-jest.mock("../../../controllers/account/users.service", () => ({
+jest.mock("../../users/users.service", () => ({
   removeRoleAndStructureOfUser: jest.fn(),
   updateRoleAndStructureOfResponsable: jest.fn(),
 }));

@@ -6,7 +6,7 @@ import { updateStructureMember } from "../structure.repository";
 import {
   removeRoleAndStructureOfUser,
   updateRoleAndStructureOfResponsable,
-} from "../../../controllers/account/users.service";
+} from "../../users/users.service";
 
 interface Query {
   membreId: ObjectId;
