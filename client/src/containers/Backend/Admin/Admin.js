@@ -1,13 +1,20 @@
-// @ts-nocheck
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Nav, NavItem, NavLink, TabContent } from "reactstrap";
-import Swal from "sweetalert2";
 import _ from "lodash";
-import passwdCheck from "zxcvbn";
-import produce from "immer";
-
+import { useDispatch } from "react-redux";
+import {
+  fetchAllDispositifsActionsCreator,
+  setAllDispositifsActionsCreator,
+} from "../../../services/AllDispositifs/allDispositifs.actions";
+import {
+  fetchAllStructuresActionsCreator,
+  setAllStructuresActionCreator,
+} from "../../../services/AllStructures/allStructures.actions";
+import {
+  fetchAllUsersActionsCreator,
+  setAllUsersActionsCreator,
+} from "../../../services/AllUsers/allUsers.actions";
 import CustomTabPane from "../../../components/Backend/Admin/CustomTabPane";
-import API from "../../../utils/API";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./Admin.scss";
@@ -44,6 +51,31 @@ const Onglet = (props) => (
 
 export const Admin = () => {
   const [activeTab, setActiveTab] = useState("0");
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const loadDispositifs = async () => {
+      await dispatch(fetchAllDispositifsActionsCreator());
+    };
+    const loadStructures = async () => {
+      await dispatch(fetchAllStructuresActionsCreator());
+    };
+    const loadUsers = async () => {
+      await dispatch(fetchAllUsersActionsCreator());
+    };
+
+    loadUsers();
+    loadStructures();
+    loadDispositifs();
+    window.scrollTo(0, 0);
+
+    return () => {
+      dispatch(setAllDispositifsActionsCreator([]));
+      dispatch(setAllStructuresActionCreator([]));
+      dispatch(setAllUsersActionsCreator([]));
+    };
+  }, [dispatch]);
 
   const toggleTab = (tab) => setActiveTab(tab);
 

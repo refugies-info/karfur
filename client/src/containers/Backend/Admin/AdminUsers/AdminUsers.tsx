@@ -1,7 +1,7 @@
 // /* eslint-disable no-console */
 // // @ts-nocheck
 import marioProfile from "assets/mario-profile.jpg";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import moment from "moment/min/moment-with-locales";
 import styled from "styled-components";
 import {
@@ -14,13 +14,9 @@ import {
 } from "../sharedComponents/StyledAdmin";
 import { userHeaders, correspondingStatus } from "./data";
 import { Table } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import {
-  fetchAllUsersActionsCreator,
-  setAllUsersActionsCreator,
-} from "../../../../services/AllUsers/allUsers.actions";
 import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
 import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
 import {
@@ -123,18 +119,6 @@ export const AdminUsers = () => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const loadUsers = async () => {
-      await dispatch(fetchAllUsersActionsCreator());
-    };
-    loadUsers();
-
-    return () => {
-      dispatch(setAllUsersActionsCreator([]));
-    };
-  }, [dispatch]);
 
   const users = useSelector(activeUsersSelector);
 
