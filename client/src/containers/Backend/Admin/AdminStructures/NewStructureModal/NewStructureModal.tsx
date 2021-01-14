@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Event, Picture, Responsable, SimplifiedUser } from "types/interface";
 import { Modal, Input, Spinner } from "reactstrap";
@@ -14,10 +14,9 @@ import { correspondingStatus } from "../data";
 import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
-import { fetchAllUsersActionsCreator } from "services/AllUsers/allUsers.actions";
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import { ChooseResponsableComponent } from "./ChooseResponsableComponent";
 import { colors } from "colors";
@@ -100,16 +99,9 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
   );
   const [uploading, setUploading] = useState(false);
 
-  const dispatch = useDispatch();
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
   );
-  useEffect(() => {
-    const loadUsers = async () => {
-      await dispatch(fetchAllUsersActionsCreator());
-    };
-    loadUsers();
-  }, [dispatch]);
 
   const activeUsers = useSelector(activeUsersSelector);
 

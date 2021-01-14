@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchAllStructuresActionsCreator,
-  setAllStructuresActionCreator,
-} from "../../../../services/AllStructures/allStructures.actions";
+import { fetchAllStructuresActionsCreator } from "../../../../services/AllStructures/allStructures.actions";
 import { allStructuresSelector } from "../../../../services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
@@ -39,7 +36,6 @@ import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/Selec
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
 
 moment.locale("fr");
-declare const window: Window;
 
 export const AdminStructures = () => {
   const defaultSortedHeader = {
@@ -90,19 +86,6 @@ export const AdminStructures = () => {
     setSortedHeader(defaultSortedHeader);
   };
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const loadStructures = async () => {
-      await dispatch(fetchAllStructuresActionsCreator());
-    };
-    loadStructures();
-
-    window.scrollTo(0, 0);
-
-    return () => {
-      dispatch(setAllStructuresActionCreator([]));
-    };
-  }, [dispatch]);
 
   const structures = useSelector(allStructuresSelector);
 

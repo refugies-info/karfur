@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
-import {
-  fetchAllDispositifsActionsCreator,
-  setAllDispositifsActionsCreator,
-} from "../../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "../../../../services/ActiveDispositifs/activeDispositifs.actions";
 import { table_contenu, correspondingStatus } from "./data";
 import API from "../../../../utils/API";
@@ -74,19 +71,6 @@ export const AdminContenu = () => {
     setSelectedDispositif(element);
     toggleDetailsModal();
   };
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const loadDispositifs = async () => {
-      await dispatch(fetchAllDispositifsActionsCreator());
-    };
-    loadDispositifs();
-    window.scrollTo(0, 0);
-
-    return () => {
-      dispatch(setAllDispositifsActionsCreator([]));
-    };
-  }, [dispatch]);
 
   if (isLoading || dispositifs.length === 0) {
     return (
