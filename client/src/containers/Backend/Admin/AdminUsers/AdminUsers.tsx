@@ -82,7 +82,7 @@ export const AdminUsers = () => {
     orderColumn: "none",
   };
 
-  const [filter, setFilter] = useState("Administrateurs");
+  const [filter, setFilter] = useState("Admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
   //   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
@@ -174,11 +174,11 @@ export const AdminUsers = () => {
       : users;
 
     let filteredUsers = usersFilteredBySearch;
-    if (filter === "Administrateurs") {
+    if (filter === "Admin") {
       filteredUsers = usersFilteredBySearch.filter((user) =>
         user.roles.includes("Admin")
       );
-    } else if (filter === "Responsables") {
+    } else if (filter === "Respo") {
       filteredUsers = usersFilteredBySearch.filter((user) =>
         user.roles.includes("Responsable")
       );
@@ -200,9 +200,6 @@ export const AdminUsers = () => {
       );
     }
 
-    // const filteredUsers = usersFilteredBySearch.filter(
-    //   (user) => user.status === filter
-    // );
     if (sortedHeader.name === "none")
       return {
         usersToDisplay: filteredUsers,
@@ -253,10 +250,10 @@ export const AdminUsers = () => {
   };
 
   const getNbUsersByStatus = (users: SimplifiedUser[], status: string) => {
-    if (status === "Administrateurs") {
+    if (status === "Admin") {
       return users.filter((user) => user.roles.includes("Admin")).length;
     }
-    if (status === "Responsables") {
+    if (status === "Respo") {
       return users.filter((user) => user.roles.includes("Responsable")).length;
     }
     if (status === "Experts") {
@@ -272,6 +269,7 @@ export const AdminUsers = () => {
     if (status === "Multi-structure") {
       return users.filter((user) => user.nbStructures > 1).length;
     }
+    return users.length;
   };
   const { usersToDisplay, usersForCount } = filterAndSortUsers(users);
 
