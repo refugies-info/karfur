@@ -188,9 +188,13 @@ export const AdminUsers = () => {
 
         if (orderColumn === "structure") {
           const structureA =
-            a.structure && a.structure.nom ? a.structure.nom : "";
+            a.structures.length > 0 && a.structures[0].nom
+              ? a.structures[0].nom
+              : "";
           const structureB =
-            b.structure && b.structure.nom ? b.structure.nom : "";
+            b.structures.length > 0 && b.structures[0].nom
+              ? b.structures[0].nom
+              : "";
 
           if (structureA > structureB)
             return sortedHeader.sens === "up" ? 1 : -1;
@@ -332,7 +336,7 @@ export const AdminUsers = () => {
                   </td>
 
                   <td className={"align-middle "}>
-                    {element.structure && element.structure.nom}
+                    {element.structures.length > 0 && element.structures[0].nom}
                   </td>
                   <td className="align-middle">
                     <RoleContainer>

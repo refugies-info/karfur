@@ -477,7 +477,7 @@ async function validate_tradForReview(req, res) {
   } else {
     try {
       let traductionUser = req.body || {};
-/*       if (traductionUser.translatedText.contenu) {
+      /*       if (traductionUser.translatedText.contenu) {
         //le cas des dispositifs
         traductionUser.nbMots = turnHTMLtoJSON(traductionUser.translatedText.contenu);
       } */
@@ -784,83 +784,74 @@ function update_tradForReview(req, res) {
   }
 }
 
+export const computeIndicator = async (userId, start, end) =>
+  await Indicator.aggregate([
+    {
+      $match: {
+        userId: new mongoose.Types.ObjectId(userId),
+        createdAt: { $gte: end, $lt: start },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        wordsCount: { $sum: "$wordsCount" },
+        timeSpent: { $sum: "$timeSpent" },
+      },
+    },
+  ]);
+
+export const computeGlobalIndicator = async (userId) =>
+  await Indicator.aggregate([
+    {
+      $match: {
+        userId: new mongoose.Types.ObjectId(userId),
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        wordsCount: { $sum: "$wordsCount" },
+        timeSpent: { $sum: "$timeSpent" },
+      },
+    },
+  ]);
+
+export const computeAllIndicators = async (userId) => {
+  var start = new Date();
+  var end3 = new Date();
+  var end6 = new Date();
+  var end12 = new Date();
+  //we define the different time periods 3/6/12 months
+  end3.setMonth(end3.getMonth() - 3);
+  end6.setMonth(end6.getMonth() - 6);
+  end12.setMonth(end12.getMonth() - 12);
+  //start.setHours(0, 0, 0, 0);
+
+  //we aggregate the number of words and time spent in these periods
+  const threeMonthsIndicator = await computeIndicator(userId, start, end3);
+
+  const sixMonthsIndicator = await computeIndicator(userId, start, end6);
+  const twelveMonthsIndicator = await computeIndicator(userId, start, end12);
+
+  const totalIndicator = await computeGlobalIndicator(userId);
+
+  return {
+    twelveMonthsIndicator,
+    sixMonthsIndicator,
+    threeMonthsIndicator,
+    totalIndicator,
+  };
+};
 //Fetching the progression from the indicators collection
 async function get_progression(req, res) {
   try {
-    var start = new Date();
-    var end3 = new Date();
-    var end6 = new Date();
-    var end12 = new Date();
-    //we define the different time periods 3/6/12 months
-    end3.setMonth(end3.getMonth() - 3);
-    end6.setMonth(end6.getMonth() - 6);
-    end12.setMonth(end12.getMonth() - 12);
-    //start.setHours(0, 0, 0, 0);
-
-    //we aggregate the number of words and time spent in these periods
-    let threeMonthsIndicator = await Indicator.aggregate([
-      {
-        $match: {
-          userId: new mongoose.Types.ObjectId(req.body.userId || req.userId),
-          createdAt: { $gte: end3, $lt: start },
-        },
-      },
-      {
-        $group: {
-          _id: null,
-          wordsCount: { $sum: "$wordsCount" },
-          timeSpent: { $sum: "$timeSpent" },
-        },
-      },
-    ]);
-
-    let sixMonthsIndicator = await Indicator.aggregate([
-      {
-        $match: {
-          userId: new mongoose.Types.ObjectId(req.body.userId || req.userId),
-          createdAt: { $gte: end6, $lt: start },
-        },
-      },
-      {
-        $group: {
-          _id: null,
-          wordsCount: { $sum: "$wordsCount" },
-          timeSpent: { $sum: "$timeSpent" },
-        },
-      },
-    ]);
-
-    let twelveMonthsIndicator = await Indicator.aggregate([
-      {
-        $match: {
-          userId: new mongoose.Types.ObjectId(req.body.userId || req.userId),
-          createdAt: { $gte: end12, $lt: start },
-        },
-      },
-      {
-        $group: {
-          _id: null,
-          wordsCount: { $sum: "$wordsCount" },
-          timeSpent: { $sum: "$timeSpent" },
-        },
-      },
-    ]);
-
-    //we do the total aggregation
-    let totalIndicator = await Indicator.aggregate([
-      {
-        $match: {
-          userId: new mongoose.Types.ObjectId(req.body.userId || req.userId),
-        },
-      },
-      {
-        $group: {
-          _id: null,
-          wordsCount: { $sum: "$wordsCount" },
-          timeSpent: { $sum: "$timeSpent" },
-        },
-      },
-    ]);
+    const {
+      twelveMonthsIndicator,
+      sixMonthsIndicator,
+      threeMonthsIndicator,
+      totalIndicator,
+    } = await computeAllIndicators(req.body.userId || req.userId);
 
     res.send({
       twelveMonthsIndicator,
