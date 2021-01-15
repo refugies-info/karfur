@@ -1,10 +1,42 @@
+/* eslint-disable no-console */
 import { getAllUsersFromDB } from "../users.repository";
-import { Res } from "../../../types/interface";
+import { Res, Picture } from "../../../types/interface";
 import { UserDoc } from "../../../schema/schemaUser";
 import { ObjectId } from "mongoose";
 import logger = require("../../../logger");
 import { LangueDoc } from "../../../schema/schemaLangue";
 import _ from "lodash";
+import { asyncForEach } from "../../../libs/asyncForEach";
+import { computeAllIndicators } from "../../../controllers/traduction/lib";
+
+interface SimplifiedStructure {
+  _id: ObjectId;
+  acronyme: string;
+  nom: string;
+  picture: Picture;
+}
+
+interface Indicator {
+  _id: ObjectId;
+  wordsCount: number;
+  timeSpent: number;
+}
+interface ReturnedUser {
+  username: string;
+  picture: Picture;
+  status: string;
+  _id: ObjectId;
+  created_at: Date;
+  roles: string[];
+  email: string;
+  langues: string[];
+  structures: { _id: ObjectId; nom: string; picture: Picture }[];
+  nbStructures: number;
+  threeMonthsIndicator: Indicator[];
+  sixMonthsIndicator: Indicator[];
+  twelveMonthsIndicator: Indicator[];
+  totalIndicator: Indicator[];
+}
 
 const getPlateformeRoles = (roles: { _id: ObjectId; nom: string }[]) =>
   roles && roles.length > 0
@@ -57,17 +89,17 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
 
 const adaptUsers = (users: UserDoc[]) =>
   users.map((user) => {
-    const simplifiedStructure =
+    const simplifiedStructures =
       user.structures && user.structures.length > 0
-        ? {
+        ? user.structures.map((structure) => ({
             // @ts-ignore : structures populate
-            _id: user.structures[0]._id,
+            _id: structure._id,
             // @ts-ignore : structures populate
-            nom: user.structures[0].nom,
+            nom: structure.nom,
             // @ts-ignore : structures populate
-            picture: user.structures[0].picture,
-          }
-        : null;
+            picture: structure.picture,
+          }))
+        : [];
 
     // @ts-ignore : roles populate
     const plateformeRoles = getPlateformeRoles(user.roles);
@@ -87,7 +119,7 @@ const adaptUsers = (users: UserDoc[]) =>
       roles,
       email: user.email,
       langues,
-      structure: simplifiedStructure,
+      structures: simplifiedStructures,
       nbStructures: user.structures ? user.structures.length : 0,
     };
   });
@@ -108,9 +140,30 @@ export const getAllUsers = async (_: any, res: Res) => {
 
     const users = await getAllUsersFromDB(neededFields);
     const adaptedUsers = adaptUsers(users);
+    const data: ReturnedUser[] = [];
+
+    await asyncForEach(
+      adaptedUsers,
+      async (user): Promise<any> => {
+        const {
+          twelveMonthsIndicator,
+          sixMonthsIndicator,
+          threeMonthsIndicator,
+          totalIndicator,
+        } = await computeAllIndicators(user._id);
+
+        return data.push({
+          ...user,
+          threeMonthsIndicator: threeMonthsIndicator[0],
+          sixMonthsIndicator: sixMonthsIndicator[0],
+          twelveMonthsIndicator: twelveMonthsIndicator[0],
+          totalIndicator: totalIndicator[0],
+        });
+      }
+    );
 
     return res.status(200).json({
-      data: adaptedUsers,
+      data,
     });
   } catch (error) {
     logger.error("[getAllUsers] error", { error });

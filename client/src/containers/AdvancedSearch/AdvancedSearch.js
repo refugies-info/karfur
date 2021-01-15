@@ -286,8 +286,8 @@ export class AdvancedSearch extends Component {
   }
 
   switchGeoSearch = (value) => {
-    this.setState({geoSearch: value});
-  }
+    this.setState({ geoSearch: value });
+  };
 
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -524,27 +524,36 @@ export class AdvancedSearch extends Component {
               );
               if (geolocInfocard && geolocInfocard.departments) {
                 for (i = 0; i < geolocInfocard.departments.length; i++) {
-                  if (geolocInfocard.departments[i] === "All") {
+                  if (
+                    geolocInfocard.departments[i] === "All" &&
+                    dispositifs[index].typeContenu === "dispositif"
+                  ) {
                     dispositifsFrance.push(dispositifs[index]);
                   } else if (
                     geolocInfocard.departments[i].split(" - ")[1] ===
                       localisationSearch.query[1].long_name ||
                     geolocInfocard.departments[i].split(" - ")[1] ===
-                      localisationSearch.query[0].long_name
+                      localisationSearch.query[0].long_name ||
+                    dispositifs[index].typeContenu === "demarche"
                   ) {
                     dispositifsVille.push(dispositifs[index]);
                   }
                 }
-              } else {
+              } else if (dispositifs[index].typeContenu === "dispositif") {
                 dispositifsEmpty.push(dispositifs[index]);
+              } else if (dispositifs[index].typeContenu === "demarche") {
+                dispositifsVille.push(dispositifs[index]);
               }
-            } else {
+            } else if (dispositifs[index].typeContenu === "dispositif") {
               dispositifsEmpty.push(dispositifs[index]);
+            } else if (dispositifs[index].typeContenu === "demarche") {
+              dispositifsVille.push(dispositifs[index]);
             }
           }
           dispositifsFullFrance = dispositifsFrance.concat(dispositifsEmpty);
+
           dispositifs = dispositifsVille;
-          this.setState({dispositifsFullFrance});
+          this.setState({ dispositifsFullFrance });
 
           /*           dispositifs = dispositifs.filter((disp) => {
             if (
@@ -750,10 +759,11 @@ export class AdvancedSearch extends Component {
 
   restart = () => {
     this.setState(
-      { recherche: initial_data.map((x) => ({ ...x, active: false })),
-      filterVille: "",
-      geoSearch: false,
-    },
+      {
+        recherche: initial_data.map((x) => ({ ...x, active: false })),
+        filterVille: "",
+        geoSearch: false,
+      },
       () => this.queryDispositifs()
     );
   };
@@ -961,7 +971,7 @@ export class AdvancedSearch extends Component {
 
   desactiver = (key) => {
     if (key === 1) {
-      this.setState({filterVille: ""});
+      this.setState({ filterVille: "" });
     }
     this.setState(
       {
@@ -971,7 +981,7 @@ export class AdvancedSearch extends Component {
       },
       () => this.queryDispositifs()
     );
-  }
+  };
   toggleDisplayAll = () =>
     this.setState((pS) => ({ displayAll: !pS.displayAll }));
   toggleDropdownTri = () =>
@@ -1055,7 +1065,6 @@ export class AdvancedSearch extends Component {
                   desactiver={this.desactiver}
                   switchGeoSearch={this.switchGeoSearch}
                   geoSearch={this.state.geoSearch}
-                
                 />
               ))}
             <SearchToggle
@@ -1410,8 +1419,13 @@ export class AdvancedSearch extends Component {
                         this.setState({ showGeolocFullFrancePrincipal: true })
                       }
                     >
-                      {t("AdvancedSearch.Afficher aussi les résultats disponibles dans")}
-                      <b>{t("AdvancedSearch.toute la France")}</b>
+                      {t(
+                        "AdvancedSearch.Afficher aussi les résultats disponibles dans",
+                        "Afficher aussi les résultats disponibles dans"
+                      )}
+                      <span style={{ marginLeft: "4px" }}>
+                        <b>{t("AdvancedSearch.toute la France")}</b>
+                      </span>
                     </ShowFullFrancePrimary>
                   ) : this.state.filterVille &&
                     this.state.showGeolocFullFrancePrincipal ? (
@@ -1421,8 +1435,12 @@ export class AdvancedSearch extends Component {
                         this.setState({ showGeolocFullFrancePrincipal: false })
                       }
                     >
-                     {t("AdvancedSearch.Masquer les résultats disponibles dans")}
-                      <b>{t("AdvancedSearch.toute la France")}</b>
+                      {t(
+                        "AdvancedSearch.Masquer les résultats disponibles dans"
+                      )}
+                      <span style={{ marginLeft: "4px" }}>
+                        <b>{t("AdvancedSearch.toute la France")}</b>
+                      </span>
                     </ShowFullFrancePrimary>
                   ) : null}
                 </ButtonContainer>
@@ -1569,8 +1587,13 @@ export class AdvancedSearch extends Component {
                         this.setState({ showGeolocFullFranceSecondary: true })
                       }
                     >
-                      {t("AdvancedSearch.Afficher aussi les autres fiches disponibles dans")}
-                      <b>{t("AdvancedSearch.toute la France")}</b>
+                      {t(
+                        "AdvancedSearch.Afficher aussi les autres fiches disponibles dans",
+                        "Afficher aussi les autres fiches disponibles dans"
+                      )}
+                      <span style={{ marginLeft: "4px" }}>
+                        <b>{t("AdvancedSearch.toute la France")}</b>
+                      </span>
                     </ShowFullFranceSecondary>
                   ) : this.state.filterVille &&
                     this.state.showGeolocFullFranceSecondary ? (
@@ -1580,8 +1603,13 @@ export class AdvancedSearch extends Component {
                         this.setState({ showGeolocFullFranceSecondary: false })
                       }
                     >
-                      {t("AdvancedSearch.Masquer les autres fiches disponibles dans")}
-                      <b>{t("AdvancedSearch.toute la France")}</b>
+                      {t(
+                        "AdvancedSearch.Masquer les autres fiches disponibles dans",
+                        "Masquer les autres fiches disponibles dans"
+                      )}
+                      <span style={{ marginLeft: "4px" }}>
+                        <b>{t("AdvancedSearch.toute la France")}</b>
+                      </span>
                     </ShowFullFranceSecondary>
                   ) : null}
                 </ButtonContainer>
@@ -1622,29 +1650,66 @@ export class AdvancedSearch extends Component {
                 ) : null}
               </ThemeContainer>
             ) : this.state.filterVille ? (
-                <ThemeContainer>
-                  <ThemeHeader>
-                    <ThemeHeaderTitle color={"#828282"}>
-                      {"Fiches disponibles à "}
-                    </ThemeHeaderTitle>
-                    <ThemeButton ml={8} color={"#0421b1"}>
-                      <ThemeTextAlone mr={0}>
-                        {this.state.filterVille}
-                      </ThemeTextAlone>
-                    </ThemeButton>
-                  </ThemeHeader>
-                  <ThemeListContainer
-                    columns={
-                      isDesktop || isBigDesktop
-                        ? 5
-                        : isSmallDesktop
-                        ? 4
-                        : isTablet
-                        ? 3
-                        : 2
-                    }
-                  >
-                   {dispositifs.length > 0 ? dispositifs.map((dispositif, index) => {
+              <ThemeContainer>
+                <ThemeHeader>
+                  <ThemeHeaderTitle color={"#828282"}>
+                    {"Fiches disponibles à "}
+                  </ThemeHeaderTitle>
+                  <ThemeButton ml={8} color={"#0421b1"}>
+                    <ThemeTextAlone mr={0}>
+                      {this.state.filterVille}
+                    </ThemeTextAlone>
+                  </ThemeButton>
+                </ThemeHeader>
+                <ThemeListContainer
+                  columns={
+                    isDesktop || isBigDesktop
+                      ? 5
+                      : isSmallDesktop
+                      ? 4
+                      : isTablet
+                      ? 3
+                      : 2
+                  }
+                >
+                  {dispositifs.length > 0 ? (
+                    dispositifs.map((dispositif, index) => {
+                      return (
+                        <SearchResultCard
+                          key={index}
+                          pin={this.pin}
+                          pinnedList={this.state.pinned}
+                          dispositif={dispositif}
+                          showPinned={true}
+                        />
+                      );
+                    })
+                  ) : (
+                    <NoResultPlaceholder
+                      restart={this.restart}
+                      writeNew={this.writeNew}
+                    />
+                  )}
+                </ThemeListContainer>
+                <ThemeHeader>
+                  <ThemeHeaderTitle color={"#828282"}>
+                    {"Fiches disponibles partout en France"}
+                  </ThemeHeaderTitle>
+                </ThemeHeader>
+                <ThemeListContainer
+                  columns={
+                    isDesktop || isBigDesktop
+                      ? 5
+                      : isSmallDesktop
+                      ? 4
+                      : isTablet
+                      ? 3
+                      : 2
+                  }
+                >
+                  {this.state.dispositifsFullFrance.length > 0 ? (
+                    this.state.dispositifsFullFrance.map(
+                      (dispositif, index) => {
                         return (
                           <SearchResultCard
                             key={index}
@@ -1654,51 +1719,16 @@ export class AdvancedSearch extends Component {
                             showPinned={true}
                           />
                         );
-                      }):
-                      (
-                        <NoResultPlaceholder
-                          restart={this.restart}
-                          writeNew={this.writeNew}
-                        />
-                      )  
                       }
-                  </ThemeListContainer>
-                  <ThemeHeader>
-                    <ThemeHeaderTitle color={"#828282"}>
-                      {"Fiches disponibles partout en France"}
-                    </ThemeHeaderTitle>
-                  </ThemeHeader>
-                  <ThemeListContainer
-                    columns={
-                      isDesktop || isBigDesktop
-                        ? 5
-                        : isSmallDesktop
-                        ? 4
-                        : isTablet
-                        ? 3
-                        : 2
-                    }
-                  >
-                   {this.state.dispositifsFullFrance.length > 0 ? this.state.dispositifsFullFrance.map((dispositif, index) => {
-                        return (
-                          <SearchResultCard
-                            key={index}
-                            pin={this.pin}
-                            pinnedList={this.state.pinned}
-                            dispositif={dispositif}
-                            showPinned={true}
-                          />
-                        );
-                      }) :
-                      (
-                        <NoResultPlaceholder
-                          restart={this.restart}
-                          writeNew={this.writeNew}
-                        />
-                      ) 
-                      }
-                  </ThemeListContainer>
-                </ThemeContainer>
+                    )
+                  ) : (
+                    <NoResultPlaceholder
+                      restart={this.restart}
+                      writeNew={this.writeNew}
+                    />
+                  )}
+                </ThemeListContainer>
+              </ThemeContainer>
             ) : (
               <ThemeContainer>
                 {langueCode !== "fr" || filterLanguage !== "" ? (

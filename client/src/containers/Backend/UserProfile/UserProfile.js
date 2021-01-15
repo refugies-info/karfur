@@ -64,7 +64,7 @@ import { colorAvancement } from "../../../components/Functions/ColorFunctions";
 import setAuthToken from "../../../utils/setAuthToken";
 
 import "./UserProfile.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import { logger } from "../../../logger";
 
 const anchorOffset = "120";

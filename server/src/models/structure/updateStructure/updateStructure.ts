@@ -54,7 +54,7 @@ export const updateStructure = async (
           res.status(401).json({ text: "Token invalide" });
           return;
         default:
-          return res.status(500).json({ text: "Erreur interne" });
+          return res.status(400).json({ text: "Erreur interne" });
       }
     }
   }

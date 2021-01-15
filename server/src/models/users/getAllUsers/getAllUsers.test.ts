@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { getAllUsers } from "./getAllUsers";
 import { getAllUsersFromDB } from "../users.repository";
+import { computeAllIndicators } from "../../../controllers/traduction/lib";
 
 type MockResponse = { json: any; status: any };
 const mockResponse = (): MockResponse => {
@@ -12,6 +13,10 @@ const mockResponse = (): MockResponse => {
 
 jest.mock("../users.repository", () => ({
   getAllUsersFromDB: jest.fn(),
+}));
+
+jest.mock("../../../controllers/traduction/lib", () => ({
+  computeAllIndicators: jest.fn(),
 }));
 
 const neededFields = {
@@ -73,6 +78,9 @@ const user3 = {
     },
   ],
 };
+const twelveMonths = { _id: null, wordsCount: 165, timeSpent: 67888 };
+const sixMonths = { _id: null, wordsCount: 15, timeSpent: 6788 };
+const total = { _id: null, wordsCount: 1650, timeSpent: 678880 };
 
 const simplifiedUser1 = {
   username: "username1",
@@ -81,20 +89,38 @@ const simplifiedUser1 = {
   status: "Actif",
   created_at: "created_at",
   roles: ["Admin", "ExpertTrad", "Responsable"],
-  structure: {
-    nom: "struct1",
-    picture: { secure_url: "sec_struct1" },
-    _id: "id_structure",
-  },
+  structures: [
+    {
+      nom: "struct1",
+      picture: { secure_url: "sec_struct1" },
+      _id: "id_structure",
+    },
+    {
+      _id: "id_structure",
+      nom: "struct2",
+      picture: { secure_url: "sec_struct2" },
+    },
+  ],
   email: "email1",
   langues: ["gb", "sa"],
   nbStructures: 2,
+  threeMonthsIndicator: undefined,
+  sixMonthsIndicator: sixMonths,
+  twelveMonthsIndicator: twelveMonths,
+  totalIndicator: total,
 };
 
 const simplifiedUser3 = {
   ...simplifiedUser1,
   roles: ["Admin", "ExpertTrad", "Rédacteur"],
   nbStructures: 1,
+  structures: [
+    {
+      _id: "id_structure",
+      nom: "struct1",
+      picture: { secure_url: "sec_struct1" },
+    },
+  ],
 };
 
 const user2 = {
@@ -116,16 +142,28 @@ const simplifiedUser2 = {
   langues: [],
   nbStructures: 0,
   roles: [],
-  structure: null,
+  structures: [],
+  threeMonthsIndicator: undefined,
+  sixMonthsIndicator: sixMonths,
+  twelveMonthsIndicator: twelveMonths,
+  totalIndicator: total,
 };
 
 const users = [user1, user2, user3];
 describe("getAllUsers", () => {
+  beforeEach(() => jest.clearAllMocks());
   it("should call getAllUsersFromDB and return 200", async () => {
+    computeAllIndicators.mockResolvedValue({
+      twelveMonthsIndicator: [twelveMonths],
+      sixMonthsIndicator: [sixMonths],
+      threeMonthsIndicator: [],
+      totalIndicator: [total],
+    });
     getAllUsersFromDB.mockResolvedValueOnce(users);
     const res = mockResponse();
     await getAllUsers({}, res);
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
+    expect(computeAllIndicators).toHaveBeenCalledWith("id1");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       data: [simplifiedUser1, simplifiedUser2, simplifiedUser3],
@@ -137,6 +175,23 @@ describe("getAllUsers", () => {
     const res = mockResponse();
     await getAllUsers({}, res);
     expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
+    expect(computeAllIndicators).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({
+      text: "Erreur interne",
+    });
+  });
+
+  it("should call getAllUsersFromDB and return 500 if it throws", async () => {
+    getAllUsersFromDB.mockResolvedValueOnce(users);
+    computeAllIndicators.mockRejectedValueOnce(new Error("erreur"));
+    const res = mockResponse();
+    await getAllUsers({}, res);
+    expect(getAllUsersFromDB).toHaveBeenCalledWith(neededFields);
+    expect(computeAllIndicators).toHaveBeenCalledWith("id1");
+    expect(computeAllIndicators).not.toHaveBeenCalledWith("id2");
+    expect(computeAllIndicators).not.toHaveBeenCalledWith("id3");
+
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
       text: "Erreur interne",

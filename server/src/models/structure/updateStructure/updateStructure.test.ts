@@ -114,7 +114,7 @@ describe("updateStructure", () => {
     await updateStructure(req, res);
 
     expect(updateStructureInDB).not.toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
       text: "Erreur interne",
     });
@@ -130,7 +130,7 @@ describe("updateStructure", () => {
       acronyme: "acronyme",
       _id: "id",
     });
-    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
       text: "Erreur interne",
     });
