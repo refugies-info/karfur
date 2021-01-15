@@ -3,6 +3,7 @@ import mongoose, { ObjectId } from "mongoose";
 import passwordHash from "password-hash";
 import jwt from "jwt-simple";
 import { LangueDoc } from "./schemaLangue";
+import { Picture } from "../types/interface";
 let config = {};
 if (process.env.NODE_ENV === "dev") {
   config = require("../config/config");
@@ -163,7 +164,7 @@ export interface UserDoc extends mongoose.Document {
 
   notifyObjectifsContrib?: boolean;
 
-  picture?: Object;
+  picture?: Picture;
 
   roles?: ObjectId[];
 

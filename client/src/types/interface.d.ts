@@ -18,7 +18,7 @@ export interface SimplifiedUser {
   roles: string[];
   email: string;
   langues: string[];
-  structure: SimplifiedStructure;
+  structures: SimplifiedStructure[];
   nbStructures: number;
 }
 export interface SimplifiedDispositif {
