@@ -1,7 +1,7 @@
 // /* eslint-disable no-console */
 // // @ts-nocheck
 import marioProfile from "assets/mario-profile.jpg";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import moment from "moment/min/moment-with-locales";
 import styled from "styled-components";
 import {
@@ -14,13 +14,9 @@ import {
 } from "../sharedComponents/StyledAdmin";
 import { userHeaders, correspondingStatus } from "./data";
 import { Table } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
-import {
-  fetchAllUsersActionsCreator,
-  setAllUsersActionsCreator,
-} from "../../../../services/AllUsers/allUsers.actions";
 import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
 import { TabHeader, FilterButton } from "../sharedComponents/SubComponents";
 import {
@@ -57,6 +53,7 @@ import { compare } from "../AdminContenu/AdminContenu";
 // import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import { SimplifiedUser } from "../../../../types/interface";
+import { removeAccents } from "../../../../lib";
 
 moment.locale("fr");
 declare const window: Window;
@@ -123,18 +120,6 @@ export const AdminUsers = () => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const loadUsers = async () => {
-      await dispatch(fetchAllUsersActionsCreator());
-    };
-    loadUsers();
-
-    return () => {
-      dispatch(setAllUsersActionsCreator([]));
-    };
-  }, [dispatch]);
 
   const users = useSelector(activeUsersSelector);
 
@@ -155,11 +140,12 @@ export const AdminUsers = () => {
       ? users.filter(
           (user) =>
             user.username &&
-            user.username
+            user.username &&
+            removeAccents(user.username)
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, "")
               .toLowerCase()
-              .includes(search.toLowerCase())
+              .includes(removeAccents(search.toLowerCase()))
         )
       : users;
 
@@ -204,9 +190,13 @@ export const AdminUsers = () => {
 
         if (orderColumn === "structure") {
           const structureA =
-            a.structure && a.structure.nom ? a.structure.nom : "";
+            a.structures.length > 0 && a.structures[0].nom
+              ? a.structures[0].nom
+              : "";
           const structureB =
-            b.structure && b.structure.nom ? b.structure.nom : "";
+            b.structures.length > 0 && b.structures[0].nom
+              ? b.structures[0].nom
+              : "";
 
           if (structureA > structureB)
             return sortedHeader.sens === "up" ? 1 : -1;
@@ -348,7 +338,7 @@ export const AdminUsers = () => {
                   </td>
 
                   <td className={"align-middle "}>
-                    {element.structure && element.structure.nom}
+                    {element.structures.length > 0 && element.structures[0].nom}
                   </td>
                   <td className="align-middle">
                     <RoleContainer>

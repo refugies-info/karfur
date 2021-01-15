@@ -35,7 +35,10 @@ declare global {
   }
 }
 
-const MainContainer = styled.div``;
+const MainContainer = styled.div`
+  display: flex;
+  flex: 1;
+`;
 
 function useWindowSize() {
   const [size, setSize] = useState(0);
