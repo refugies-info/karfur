@@ -302,13 +302,11 @@ export class Dispositif extends Component {
               this.valider_dispositif("Brouillon", true)
             );
           }
-
-          const sponsorsWithoutStructure = dispositif.sponsors.filter(
-            (sponsor) => sponsor.picture
+          const secondarySponsor = dispositif.sponsors.filter(
+            (sponsor) => !sponsor._id && sponsor.nom
           );
-          const sponsors = sponsorsWithoutStructure
-            ? sponsorsWithoutStructure
-            : [];
+          const sponsors = secondarySponsor || [];
+
           //Enregistrement automatique du dispositif toutes les 3 minutes
           this._isMounted &&
             this.setState(
@@ -1202,20 +1200,18 @@ export class Dispositif extends Component {
   deleteTag = (idx) =>
     this.setState({ tags: [...this.state.tags].filter((_, i) => i !== idx) });
 
-  addSponsor = (sponsor) => {
+  addSponsor = (sponsor) =>
     this.setState({
       sponsors: [
         ...(this.state.sponsors || []).filter((x) => !x.dummy),
         sponsor,
       ],
     });
-  };
 
-  addMainSponsor = (sponsor) => {
+  addMainSponsor = (sponsor) =>
     this.setState({
       mainSponsor: sponsor,
     });
-  };
 
   deleteMainSponsor = () => {
     this.setState({
@@ -1681,6 +1677,7 @@ export class Dispositif extends Component {
     } = this.state;
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
+
     return (
       <div
         id="dispositif"
