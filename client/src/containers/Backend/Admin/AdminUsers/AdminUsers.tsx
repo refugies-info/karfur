@@ -53,6 +53,7 @@ import { compare } from "../AdminContenu/AdminContenu";
 // import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import { SimplifiedUser } from "../../../../types/interface";
+import { removeAccents } from "../../../../lib";
 
 moment.locale("fr");
 declare const window: Window;
@@ -139,11 +140,12 @@ export const AdminUsers = () => {
       ? users.filter(
           (user) =>
             user.username &&
-            user.username
+            user.username &&
+            removeAccents(user.username)
               .normalize("NFD")
               .replace(/[\u0300-\u036f]/g, "")
               .toLowerCase()
-              .includes(search.toLowerCase())
+              .includes(removeAccents(search.toLowerCase()))
         )
       : users;
 
