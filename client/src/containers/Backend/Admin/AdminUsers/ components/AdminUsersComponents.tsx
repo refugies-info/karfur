@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import React from "react";
+import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
+import { Picture } from "../../../../../types/interface";
 
 interface RoleProps {
   role: string;
@@ -42,4 +44,35 @@ export const LangueFlag = (props: LangueProps) => (
       key={props.langue}
     />
   </LangueContainer>
+);
+
+const StructureName = styled.div`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  margin-right: 8px;
+  overflow: hidden;
+  word-wrap: break-word;
+`;
+
+const RoleDetail = styled.div`
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 8px;
+`;
+interface StructureProps {
+  nom: string;
+  picture: Picture | null;
+  role: string;
+}
+export const Structure = (props: StructureProps) => (
+  <div style={{ marginTop: "4px", marginBottom: "4px" }}>
+    <RowContainer>
+      {props.picture && props.picture.secure_url && (
+        <img className="sponsor-img mr-8" src={props.picture.secure_url} />
+      )}
+      <StructureName>{props.nom}</StructureName>
+      <RoleDetail>{props.role}</RoleDetail>
+    </RowContainer>
+  </div>
 );
