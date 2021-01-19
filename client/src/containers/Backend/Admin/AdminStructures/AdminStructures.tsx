@@ -34,6 +34,7 @@ import FButton from "components/FigmaUI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
+import { ObjectId } from "mongodb";
 
 moment.locale("fr");
 
@@ -54,9 +55,9 @@ export const AdminStructures = () => {
 
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [
-    selectedStructure,
-    setSelectedStructure,
-  ] = useState<SimplifiedStructureForAdmin | null>(null);
+    selectedStructureId,
+    setSelectedStructureId,
+  ] = useState<ObjectId | null>(null);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
@@ -74,10 +75,10 @@ export const AdminStructures = () => {
     toggleShowNewStructureModal();
   };
 
-  const setSelectedStructureAndToggleModal = (
+  const setSelectedStructureIdAndToggleModal = (
     element: SimplifiedStructureForAdmin | null
   ) => {
-    setSelectedStructure(element);
+    setSelectedStructureId(element ? element._id : null);
     toggleStructureDetailsModal();
   };
 
@@ -280,7 +281,7 @@ export const AdminStructures = () => {
             {structuresToDisplay.map((element, key) => (
               <tr
                 key={key}
-                onClick={() => setSelectedStructureAndToggleModal(element)}
+                onClick={() => setSelectedStructureIdAndToggleModal(element)}
               >
                 <td className="align-middle">
                   <RowContainer>
@@ -323,8 +324,8 @@ export const AdminStructures = () => {
 
       <StructureDetailsModal
         show={showStructureDetailsModal}
-        toggleModal={() => setSelectedStructureAndToggleModal(null)}
-        selectedStructureId={selectedStructure ? selectedStructure._id : null}
+        toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
+        selectedStructureId={selectedStructureId}
         fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
         toggleRespoModal={() => setSelectFirstRespoModal(true)}
       />
@@ -337,7 +338,7 @@ export const AdminStructures = () => {
       <SelectFirstResponsableModal
         show={showSelectFirstRespoModal}
         toggleModal={() => setSelectFirstRespoModal(false)}
-        selectedStructureId={selectedStructure ? selectedStructure._id : null}
+        selectedStructureId={selectedStructureId}
       />
     </div>
   );
