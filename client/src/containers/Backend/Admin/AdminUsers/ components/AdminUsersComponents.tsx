@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
 import { Picture } from "../../../../../types/interface";
-
+import "./AdminUsersComponent.scss";
 interface RoleProps {
   role: string;
 }
@@ -75,4 +75,40 @@ export const Structure = (props: StructureProps) => (
       {props.role && <RoleDetail>{props.role}</RoleDetail>}
     </RowContainer>
   </div>
+);
+
+const MainContainer = styled.div`
+  background: ${(props) => (props.isSelected ? "#4CAF50" : "#828282")};
+  border-radius: 12px;
+  padding: 8px;
+  width: fit-content;
+  font-size: 16px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-right: 8px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+`;
+
+const Name = styled.span`
+  margin-left: 30px;
+`;
+interface RoleCheckBoxProps {
+  name: string;
+  isSelected: boolean;
+  handleCheckBoxChange: (arg: string) => void;
+}
+
+export const RoleCheckBox = (props: RoleCheckBoxProps) => (
+  <MainContainer isSelected={props.isSelected}>
+    <label className="container">
+      <input
+        onChange={() => props.handleCheckBoxChange(props.name)}
+        type="checkbox"
+        checked={props.isSelected}
+      />
+      <span className="checkmark"></span>
+    </label>
+    <Name>{props.name}</Name>
+  </MainContainer>
 );

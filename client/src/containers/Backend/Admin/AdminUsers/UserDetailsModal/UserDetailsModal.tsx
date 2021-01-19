@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // @ts-nocheck
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
@@ -10,7 +11,7 @@ import marioProfile from "assets/mario-profile.jpg";
 import { userSelector } from "../../../../../services/AllUsers/allUsers.selector";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
 import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
-import { Structure } from "../ components/AdminUsersComponents";
+import { Structure, RoleCheckBox } from "../ components/AdminUsersComponents";
 
 moment.locale("fr");
 
@@ -48,8 +49,21 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     setUser({ ...user, [e.target.id]: e.target.value });
   };
 
-  // eslint-disable-next-line no-console
-  console.log("user", user);
+  const handleCheckBoxChange = (name: string) => {
+    if (!user || !user.roles) return;
+    const mappedName = name === "Expert en traduction" ? "ExpertTrad" : "Admin";
+    const hasAlreadyRole = user.roles.includes(mappedName);
+
+    if (hasAlreadyRole) {
+      const newRolesFiltered = user.roles.filter((role) => role !== mappedName);
+      // remove role
+      return setUser({ ...user, roles: newRolesFiltered });
+    }
+
+    const newRoles = user.roles.concat([mappedName]);
+    // add role
+    return setUser({ ...user, roles: newRoles });
+  };
 
   //   const onSave = async () => {
   //     try {
@@ -104,13 +118,15 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         <StructureName>{user.username}</StructureName>
       </RowContainer>
       <Title>Email</Title>
-      <FInput
-        id="email"
-        value={user.email}
-        onChange={onChange}
-        newSize={true}
-        autoFocus={false}
-      />
+      <div style={{ marginTop: "4px" }}>
+        <FInput
+          id="email"
+          value={user.email}
+          onChange={onChange}
+          newSize={true}
+          autoFocus={false}
+        />
+      </div>
       <Title>Structure</Title>
       {!hasStructure && <span>Pas de structure</span>}
       {hasStructure &&
@@ -123,6 +139,18 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
           />
         ))}
       <Title>Rôles</Title>
+      <RowContainer>
+        <RoleCheckBox
+          name="Expert en traduction"
+          isSelected={user.roles.includes("ExpertTrad")}
+          handleCheckBoxChange={handleCheckBoxChange}
+        />
+        <RoleCheckBox
+          name="Administrateur"
+          isSelected={user.roles.includes("Admin")}
+          handleCheckBoxChange={handleCheckBoxChange}
+        />
+      </RowContainer>
       <Title>Langues</Title>
       <Title>Date de création</Title>
       <Title>Temps passé</Title>
