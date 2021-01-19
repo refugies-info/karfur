@@ -9,7 +9,7 @@ export interface Event {
   target: { id: string; value: string };
 }
 
-interface Indicator {
+export interface Indicator {
   _id: ObjectId;
   wordsCount: number;
   timeSpent: number;

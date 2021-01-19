@@ -6,8 +6,6 @@ import { ObjectId } from "mongoose";
 import logger = require("../../../logger");
 import { LangueDoc } from "../../../schema/schemaLangue";
 import _ from "lodash";
-import { asyncForEach } from "../../../libs/asyncForEach";
-import { computeAllIndicators } from "../../../controllers/traduction/lib";
 
 interface SimplifiedStructure {
   _id: ObjectId;
@@ -151,30 +149,9 @@ export const getAllUsers = async (_: any, res: Res) => {
 
     const users = await getAllUsersFromDB(neededFields);
     const adaptedUsers = adaptUsers(users);
-    const data: ReturnedUser[] = [];
-
-    await asyncForEach(
-      adaptedUsers,
-      async (user): Promise<any> => {
-        const {
-          twelveMonthsIndicator,
-          sixMonthsIndicator,
-          threeMonthsIndicator,
-          totalIndicator,
-        } = await computeAllIndicators(user._id);
-
-        return data.push({
-          ...user,
-          threeMonthsIndicator: threeMonthsIndicator[0],
-          sixMonthsIndicator: sixMonthsIndicator[0],
-          twelveMonthsIndicator: twelveMonthsIndicator[0],
-          totalIndicator: totalIndicator[0],
-        });
-      }
-    );
 
     return res.status(200).json({
-      data,
+      data: adaptedUsers,
     });
   } catch (error) {
     logger.error("[getAllUsers] error", { error });
