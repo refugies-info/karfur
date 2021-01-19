@@ -65,10 +65,10 @@ const RoleDetail = styled.div`
 interface StructureProps {
   nom: string;
   picture: Picture | null;
-  role: string;
+  role: string | null;
 }
 export const Structure = (props: StructureProps) => (
-  <div style={{ marginTop: "4px", marginBottom: "4px" }}>
+  <div style={{ marginTop: "4px", marginBottom: "12px" }}>
     <RowContainer>
       {props.picture && props.picture.secure_url && (
         <img className="sponsor-img mr-8" src={props.picture.secure_url} />
@@ -89,7 +89,7 @@ const MainContainer = styled.div`
   color: #ffffff;
   margin-right: 8px;
   margin-top: 4px;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 `;
 
 const Name = styled.span`

@@ -32,10 +32,10 @@ interface ReturnedUser {
   langues: { langueCode: string; langueFr: string }[];
   structures: { _id: ObjectId; nom: string; picture: Picture }[];
   nbStructures: number;
-  threeMonthsIndicator: Indicator[];
-  sixMonthsIndicator: Indicator[];
-  twelveMonthsIndicator: Indicator[];
-  totalIndicator: Indicator[];
+  threeMonthsIndicator?: Indicator;
+  sixMonthsIndicator?: Indicator;
+  twelveMonthsIndicator?: Indicator;
+  totalIndicator?: Indicator;
 }
 
 const getPlateformeRoles = (roles: { _id: ObjectId; nom: string }[]) =>

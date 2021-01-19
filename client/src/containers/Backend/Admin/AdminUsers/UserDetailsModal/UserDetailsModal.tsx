@@ -1,8 +1,6 @@
-/* eslint-disable no-console */
-// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { SimplifiedUser } from "types/interface";
+import { SimplifiedUser, Event } from "types/interface";
 import { Modal } from "reactstrap";
 import "./UserDetailsModal.scss";
 import moment from "moment/min/moment-with-locales";
@@ -16,6 +14,8 @@ import {
   RoleCheckBox,
   LangueDetail,
 } from "../ components/AdminUsersComponents";
+import FButton from "../../../../../components/FigmaUI/FButton/FButton";
+import { ObjectId } from "mongodb";
 
 moment.locale("fr");
 
@@ -29,13 +29,31 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  margin: 4px 0px 4px 0px;
+  margin: 4px 0px 8px 0px;
 `;
 
 const RowContainerWrap = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-bottom: 8px;
+`;
+
+const IndicatorContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const Indicator = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 32px;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 16px;
+  justify-content: space-between;
 `;
 interface Props {
   show: boolean;
@@ -121,14 +139,14 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       isOpen={props.show}
       toggle={props.toggleModal}
       className="user-details-modal"
-      size="large"
+      size="lg"
     >
       <RowContainer>
         <img className="user-img mr-8" src={secureUrl} />
         <StructureName>{user.username}</StructureName>
       </RowContainer>
       <Title>Email</Title>
-      <div style={{ marginTop: "4px" }}>
+      <div style={{ marginTop: "4px", width: "500px" }}>
         <FInput
           id="email"
           value={user.email}
@@ -142,10 +160,11 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       {hasStructure &&
         user.structures.map((structure) => (
           <Structure
+            // @ts-ignore : objectId not a string
             key={structure._id}
             nom={structure.nom}
             picture={structure.picture}
-            role={structure.role[0]}
+            role={structure.role ? structure.role[0] : null}
           />
         ))}
       <Title>Rôles</Title>
@@ -168,8 +187,100 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         ))}
       </RowContainerWrap>
       <Title>Date de création</Title>
-      {user.created_at ? moment(user.created_at).format("LLL") : "Non connue"}
-      <Title>Temps passé</Title>
+      <div style={{ marginBottom: "8px" }}>
+        {user.created_at ? moment(user.created_at).format("LLL") : "Non connue"}
+      </div>
+      <IndicatorContainer>
+        <Indicator>
+          <Title>Temps passé en minutes</Title>
+          <span>
+            {`3 derniers mois : ${
+              user.threeMonthsIndicator && user.threeMonthsIndicator.timeSpent
+                ? Math.floor(user.threeMonthsIndicator.timeSpent / 1000 / 60)
+                : 0
+            }`}
+          </span>
+          <span>
+            {`6 derniers mois : ${
+              user.sixMonthsIndicator && user.sixMonthsIndicator.timeSpent
+                ? Math.floor(user.sixMonthsIndicator.timeSpent / 1000 / 60)
+                : 0
+            }`}
+          </span>
+          <span>
+            {`12 derniers mois : ${
+              user.twelveMonthsIndicator && user.twelveMonthsIndicator.timeSpent
+                ? Math.floor(user.twelveMonthsIndicator.timeSpent / 1000 / 60)
+                : 0
+            }`}
+          </span>
+          <span>
+            {`Toujours : ${
+              user.totalIndicator && user.totalIndicator.timeSpent
+                ? Math.floor(user.totalIndicator.timeSpent / 1000 / 60)
+                : 0
+            }`}
+          </span>
+        </Indicator>
+        <Indicator>
+          <Title>Nombre de mots traduits</Title>
+          <span>
+            {`3 derniers mois : ${
+              user.threeMonthsIndicator && user.threeMonthsIndicator.wordsCount
+                ? user.threeMonthsIndicator.wordsCount
+                : 0
+            }`}
+          </span>
+          <span>
+            {`6 derniers mois : ${
+              user.sixMonthsIndicator && user.sixMonthsIndicator.wordsCount
+                ? user.sixMonthsIndicator.wordsCount
+                : 0
+            }`}
+          </span>
+          <span>
+            {`12 derniers mois : ${
+              user.twelveMonthsIndicator &&
+              user.twelveMonthsIndicator.wordsCount
+                ? user.twelveMonthsIndicator.wordsCount
+                : 0
+            }`}
+          </span>
+          <span>
+            {`Toujours : ${
+              user.totalIndicator && user.totalIndicator.wordsCount
+                ? user.totalIndicator.wordsCount
+                : 0
+            }`}
+          </span>
+        </Indicator>
+      </IndicatorContainer>
+      <ButtonContainer>
+        <FButton
+          type="error"
+          // onClick={props.onDeleteClick}
+          name="trash-2"
+        >
+          Supprimer
+        </FButton>
+        <div>
+          <FButton
+            className="mr-8"
+            type="white"
+            onClick={props.toggleModal}
+            name="close-outline"
+          >
+            Annuler
+          </FButton>
+          <FButton
+            type="validate"
+            name="checkmark-outline"
+            // onClick={() => onSaveClick(dispositif)}
+          >
+            Enregistrer
+          </FButton>
+        </div>
+      </ButtonContainer>
     </Modal>
   );
 };
