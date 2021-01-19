@@ -72,7 +72,7 @@ export const Structure = (props: StructureProps) => (
         <img className="sponsor-img mr-8" src={props.picture.secure_url} />
       )}
       <StructureName>{props.nom}</StructureName>
-      <RoleDetail>{props.role}</RoleDetail>
+      {props.role && <RoleDetail>{props.role}</RoleDetail>}
     </RowContainer>
   </div>
 );

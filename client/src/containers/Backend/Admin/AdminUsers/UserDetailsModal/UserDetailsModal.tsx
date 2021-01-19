@@ -24,7 +24,7 @@ const Title = styled.div`
   font-weight: bold;
   font-size: 16px;
   line-height: 20px;
-  margin: 0px 0px 8px 0px;
+  margin: 4px 0px 4px 0px;
 `;
 interface Props {
   show: boolean;
@@ -90,6 +90,8 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         Erreur
       </Modal>
     );
+
+  const hasStructure = user.structures.length > 0;
   return (
     <Modal
       isOpen={props.show}
@@ -110,14 +112,16 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         autoFocus={false}
       />
       <Title>Structure</Title>
-      {user.structures.map((structure) => (
-        <Structure
-          key={structure._id}
-          nom={structure.nom}
-          picture={structure.picture}
-          role="Responsable"
-        />
-      ))}
+      {!hasStructure && <span>Pas de structure</span>}
+      {hasStructure &&
+        user.structures.map((structure) => (
+          <Structure
+            key={structure._id}
+            nom={structure.nom}
+            picture={structure.picture}
+            role={structure.role[0]}
+          />
+        ))}
       <Title>Rôles</Title>
       <Title>Langues</Title>
       <Title>Date de création</Title>
