@@ -45,16 +45,9 @@ const getPlateformeRoles = (roles: { _id: ObjectId; nom: string }[]) =>
         .map((role) => role.nom)
     : [];
 
-const getStructureRoles = (
-  structures: { membres: null | { userId: ObjectId; roles: string[] }[] }[],
-  userId: ObjectId
-) => {
-  if (!structures || structures.length === 0) return [];
-  const structure = structures[0];
-  if (!structure) return [];
-
+const getRole = (membres: any[], userId: ObjectId) => {
   const isAdmin =
-    structure.membres.filter(
+    membres.filter(
       (membre) =>
         membre.userId &&
         membre.userId.toString() === userId.toString() &&
@@ -63,16 +56,26 @@ const getStructureRoles = (
 
   if (isAdmin) return ["Responsable"];
 
-  const isContrib = structure.membres.filter(
-    (membre) =>
-      membre.userId &&
-      membre.userId.toString() === userId.toString() &&
-      membre.roles.includes("contributeur")
-  );
+  const isContrib =
+    membres.filter(
+      (membre) =>
+        membre.userId &&
+        membre.userId.toString() === userId.toString() &&
+        membre.roles.includes("contributeur")
+    ).length > 0;
 
   if (isContrib) return ["Rédacteur"];
-
   return [];
+};
+const getStructureRoles = (
+  structures: { membres: null | { userId: ObjectId; roles: string[] }[] }[],
+  userId: ObjectId
+) => {
+  if (!structures || structures.length === 0) return [];
+  const structure = structures[0];
+  if (!structure) return [];
+
+  return getRole(structure.membres, userId);
 };
 
 const getSelectedLanguages = (langues: LangueDoc[]) => {
@@ -91,14 +94,19 @@ const adaptUsers = (users: UserDoc[]) =>
   users.map((user) => {
     const simplifiedStructures =
       user.structures && user.structures.length > 0
-        ? user.structures.map((structure) => ({
+        ? user.structures.map((structure) => {
             // @ts-ignore : structures populate
-            _id: structure._id,
-            // @ts-ignore : structures populate
-            nom: structure.nom,
-            // @ts-ignore : structures populate
-            picture: structure.picture,
-          }))
+            const role = getRole(structure.membres, user._id);
+            return {
+              // @ts-ignore : structures populate
+              _id: structure._id,
+              // @ts-ignore : structures populate
+              nom: structure.nom,
+              // @ts-ignore : structures populate
+              picture: structure.picture,
+              role,
+            };
+          })
         : [];
 
     // @ts-ignore : roles populate
