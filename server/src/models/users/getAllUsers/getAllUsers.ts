@@ -7,13 +7,6 @@ import logger = require("../../../logger");
 import { LangueDoc } from "../../../schema/schemaLangue";
 import _ from "lodash";
 
-interface SimplifiedStructure {
-  _id: ObjectId;
-  acronyme: string;
-  nom: string;
-  picture: Picture;
-}
-
 interface Indicator {
   _id: ObjectId;
   wordsCount: number;

@@ -94,6 +94,11 @@ export default {
     });
   },
 
+  updateUser: (query) =>
+    axios.post(burl + "/user/updateUser", query, {
+      headers,
+    }),
+
   change_password: (query) => {
     return axios.post(burl + "/user/change_password", query, {
       headers: headers,
