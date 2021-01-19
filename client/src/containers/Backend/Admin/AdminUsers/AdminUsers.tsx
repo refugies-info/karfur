@@ -14,7 +14,7 @@ import {
 } from "../sharedComponents/StyledAdmin";
 import { userHeaders, correspondingStatus } from "./data";
 import { Table } from "reactstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
@@ -54,6 +54,9 @@ import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import { SimplifiedUser } from "../../../../types/interface";
 import { removeAccents } from "../../../../lib";
+import { ObjectId } from "mongodb";
+import { fetchAllUsersActionsCreator } from "../../../../services/AllUsers/allUsers.actions";
+import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 
 moment.locale("fr");
 declare const window: Window;
@@ -82,16 +85,11 @@ export const AdminUsers = () => {
   const [filter, setFilter] = useState("Admin");
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
-  //   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
-  //     false
-  //   );
-  //   const [showNewStructureModal, setShowNewStructureModal] = useState(false);
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
 
+  const dispatch = useDispatch();
   //   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
-  //   const [
-  //     selectedStructure,
-  //     setSelectedStructure,
-  //   ] = useState<SimplifiedStructureForAdmin | null>(null);
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
@@ -99,22 +97,13 @@ export const AdminUsers = () => {
 
   const handleChange = (e: any) => setSearch(e.target.value);
 
-  //   const toggleShowNewStructureModal = () =>
-  //     setShowNewStructureModal(!showNewStructureModal);
+  const toggleUserDetailsModal = () =>
+    setShowUserDetailsModal(!showUserDetailsModal);
 
-  //   const toggleStructureDetailsModal = () =>
-  //     setShowStructureDetailsModal(!showStructureDetailsModal);
-
-  //   const addNewStructure = () => {
-  //     toggleShowNewStructureModal();
-  //   };
-
-  //   const setSelectedStructureAndToggleModal = (
-  //     element: SimplifiedStructureForAdmin | null
-  //   ) => {
-  //     setSelectedStructure(element);
-  //     toggleStructureDetailsModal();
-  //   };
+  const setSelectedUserIdAndToggleModal = (element: SimplifiedUser | null) => {
+    setSelectedUserId(element ? element._id : null);
+    toggleUserDetailsModal();
+  };
 
   const onFilterClick = (status: string) => {
     setFilter(status);
@@ -321,7 +310,7 @@ export const AdminUsers = () => {
               return (
                 <tr
                   key={key}
-                  // onClick={() => setSelectedStructureAndToggleModal(element)}
+                  onClick={() => setSelectedUserIdAndToggleModal(element)}
                 >
                   <td className="align-middle">
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
@@ -350,7 +339,10 @@ export const AdminUsers = () => {
                   <td className="align-middle">
                     <LangueContainer>
                       {element.langues.map((langue) => (
-                        <LangueFlag langue={langue} key={langue} />
+                        <LangueFlag
+                          langue={langue.langueCode}
+                          key={langue.langueCode}
+                        />
                       ))}
                     </LangueContainer>
                   </td>
@@ -366,6 +358,12 @@ export const AdminUsers = () => {
           </tbody>
         </Table>
       </Content>
+      <UserDetailsModal
+        show={showUserDetailsModal}
+        toggleModal={() => setSelectedUserIdAndToggleModal(null)}
+        selectedUserId={selectedUserId}
+        fetchUsers={() => dispatch(fetchAllUsersActionsCreator())}
+      />
     </div>
   );
 };
