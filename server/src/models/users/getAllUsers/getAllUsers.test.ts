@@ -60,10 +60,10 @@ const user1 = {
   ],
   email: "email1",
   selectedLanguages: [
-    { langueCode: "fr" },
-    { langueCode: "en" },
-    { langueCode: "gb" },
-    { langueCode: "sa" },
+    { langueCode: "fr", langueFr: "français" },
+    { langueCode: "en", langueFr: "anglais" },
+    { langueCode: "gb", langueFr: "anglais" },
+    { langueCode: "sa", langueFr: "pachto" },
   ],
 };
 
@@ -75,6 +75,18 @@ const user3 = {
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
       membres: [{ userId: "id1", roles: ["contributeur"] }],
+    },
+  ],
+};
+
+const user4 = {
+  ...user1,
+  structures: [
+    {
+      _id: "id_structure",
+      nom: "struct1",
+      picture: { secure_url: "sec_struct1" },
+      membres: [{ userId: "id1", roles: ["membre"] }],
     },
   ],
 };
@@ -94,15 +106,20 @@ const simplifiedUser1 = {
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
       _id: "id_structure",
+      role: ["Responsable"],
     },
     {
       _id: "id_structure",
       nom: "struct2",
       picture: { secure_url: "sec_struct2" },
+      role: ["Rédacteur"],
     },
   ],
   email: "email1",
-  langues: ["gb", "sa"],
+  langues: [
+    { langueCode: "gb", langueFr: "anglais" },
+    { langueCode: "sa", langueFr: "pachto" },
+  ],
   nbStructures: 2,
   threeMonthsIndicator: undefined,
   sixMonthsIndicator: sixMonths,
@@ -119,6 +136,21 @@ const simplifiedUser3 = {
       _id: "id_structure",
       nom: "struct1",
       picture: { secure_url: "sec_struct1" },
+      role: ["Rédacteur"],
+    },
+  ],
+};
+
+const simplifiedUser4 = {
+  ...simplifiedUser1,
+  roles: ["Admin", "ExpertTrad"],
+  nbStructures: 1,
+  structures: [
+    {
+      _id: "id_structure",
+      nom: "struct1",
+      picture: { secure_url: "sec_struct1" },
+      role: [],
     },
   ],
 };
@@ -149,7 +181,7 @@ const simplifiedUser2 = {
   totalIndicator: total,
 };
 
-const users = [user1, user2, user3];
+const users = [user1, user2, user3, user4];
 describe("getAllUsers", () => {
   beforeEach(() => jest.clearAllMocks());
   it("should call getAllUsersFromDB and return 200", async () => {
@@ -166,7 +198,12 @@ describe("getAllUsers", () => {
     expect(computeAllIndicators).toHaveBeenCalledWith("id1");
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
-      data: [simplifiedUser1, simplifiedUser2, simplifiedUser3],
+      data: [
+        simplifiedUser1,
+        simplifiedUser2,
+        simplifiedUser3,
+        simplifiedUser4,
+      ],
     });
   });
 
