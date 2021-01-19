@@ -9,6 +9,11 @@ export interface Event {
   target: { id: string; value: string };
 }
 
+interface Indicator {
+  _id: ObjectId;
+  wordsCount: number;
+  timeSpent: number;
+}
 export interface SimplifiedUser {
   username: string;
   picture: Picture;
@@ -17,9 +22,13 @@ export interface SimplifiedUser {
   created_at: Moment;
   roles: string[];
   email: string;
-  langues: string[];
+  langues: { langueCode: string; langueFr: string }[];
   structures: SimplifiedStructure[];
   nbStructures: number;
+  threeMonthsIndicator?: Indicator;
+  sixMonthsIndicator?: Indicator;
+  twelveMonthsIndicator?: Indicator;
+  totalIndicator?: Indicator;
 }
 export interface SimplifiedDispositif {
   titreInformatif: string;
@@ -230,6 +239,7 @@ export interface SimplifiedStructure {
   acronyme: string;
   nom: string;
   picture: Picture;
+  role?: string[];
 }
 
 export interface Picture {

@@ -216,6 +216,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = { fetchDispositifs: fetchActiveDispositifsActionsCreator };
+const mapDispatchToProps = {
+  fetchDispositifs: fetchActiveDispositifsActionsCreator,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserDashContrib);
