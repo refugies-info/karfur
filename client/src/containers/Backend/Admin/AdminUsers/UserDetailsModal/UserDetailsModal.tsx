@@ -11,7 +11,11 @@ import marioProfile from "assets/mario-profile.jpg";
 import { userSelector } from "../../../../../services/AllUsers/allUsers.selector";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
 import { RowContainer } from "../../AdminStructures/components/AdminStructureComponents";
-import { Structure, RoleCheckBox } from "../ components/AdminUsersComponents";
+import {
+  Structure,
+  RoleCheckBox,
+  LangueDetail,
+} from "../ components/AdminUsersComponents";
 
 moment.locale("fr");
 
@@ -26,6 +30,12 @@ const Title = styled.div`
   font-size: 16px;
   line-height: 20px;
   margin: 4px 0px 4px 0px;
+`;
+
+const RowContainerWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 interface Props {
   show: boolean;
@@ -152,7 +162,13 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         />
       </RowContainer>
       <Title>Langues</Title>
+      <RowContainerWrap>
+        {user.langues.map((langue) => (
+          <LangueDetail key={langue.langueCode} langue={langue} />
+        ))}
+      </RowContainerWrap>
       <Title>Date de création</Title>
+      {user.created_at ? moment(user.created_at).format("LLL") : "Non connue"}
       <Title>Temps passé</Title>
     </Modal>
   );

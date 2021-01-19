@@ -339,7 +339,10 @@ export const AdminUsers = () => {
                   <td className="align-middle">
                     <LangueContainer>
                       {element.langues.map((langue) => (
-                        <LangueFlag langue={langue} key={langue} />
+                        <LangueFlag
+                          langue={langue.langueCode}
+                          key={langue.langueCode}
+                        />
                       ))}
                     </LangueContainer>
                   </td>

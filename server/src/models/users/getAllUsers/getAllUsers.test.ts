@@ -60,10 +60,10 @@ const user1 = {
   ],
   email: "email1",
   selectedLanguages: [
-    { langueCode: "fr" },
-    { langueCode: "en" },
-    { langueCode: "gb" },
-    { langueCode: "sa" },
+    { langueCode: "fr", langueFr: "français" },
+    { langueCode: "en", langueFr: "anglais" },
+    { langueCode: "gb", langueFr: "anglais" },
+    { langueCode: "sa", langueFr: "pachto" },
   ],
 };
 
@@ -116,7 +116,10 @@ const simplifiedUser1 = {
     },
   ],
   email: "email1",
-  langues: ["gb", "sa"],
+  langues: [
+    { langueCode: "gb", langueFr: "anglais" },
+    { langueCode: "sa", langueFr: "pachto" },
+  ],
   nbStructures: 2,
   threeMonthsIndicator: undefined,
   sixMonthsIndicator: sixMonths,

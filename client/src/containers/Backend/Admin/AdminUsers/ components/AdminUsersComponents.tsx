@@ -22,7 +22,7 @@ export const Role = (props: RoleProps) => (
   <RoleContainer>{props.role}</RoleContainer>
 );
 
-interface LangueProps {
+interface LangueFlagProps {
   langue: string;
 }
 
@@ -34,8 +34,10 @@ const LangueContainer = styled.div`
   border-radius: 8px;
   margin-right: 4px;
   margin-bottom: 4px;
+  display: flex;
+  flex-direction: row;
 `;
-export const LangueFlag = (props: LangueProps) => (
+export const LangueFlag = (props: LangueFlagProps) => (
   <LangueContainer>
     <i
       className={"flag-icon flag-icon-" + props.langue}
@@ -111,4 +113,21 @@ export const RoleCheckBox = (props: RoleCheckBoxProps) => (
     </label>
     <Name>{props.name}</Name>
   </MainContainer>
+);
+
+interface LangueDetailProps {
+  langue: { langueCode: string; langueFr: string };
+}
+export const LangueDetail = (props: LangueDetailProps) => (
+  <LangueContainer>
+    <div style={{ marginRight: "8px" }}>
+      <i
+        className={"flag-icon flag-icon-" + props.langue.langueCode}
+        title={props.langue.langueCode}
+        id={props.langue.langueCode}
+        key={props.langue.langueCode}
+      />
+    </div>
+    {props.langue.langueFr}
+  </LangueContainer>
 );

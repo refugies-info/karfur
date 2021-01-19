@@ -29,7 +29,7 @@ interface ReturnedUser {
   created_at: Date;
   roles: string[];
   email: string;
-  langues: string[];
+  langues: { langueCode: string; langueFr: string }[];
   structures: { _id: ObjectId; nom: string; picture: Picture }[];
   nbStructures: number;
   threeMonthsIndicator: Indicator[];
@@ -85,7 +85,10 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
     .filter((langue) =>
       ["gb", "ru", "sa", "ir", "er", "af"].includes(langue.langueCode)
     )
-    .map((langue) => langue.langueCode);
+    .map((langue) => ({
+      langueCode: langue.langueCode,
+      langueFr: langue.langueFr,
+    }));
 
   return _.uniq(languesFiltered);
 };

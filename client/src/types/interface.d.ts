@@ -17,7 +17,7 @@ export interface SimplifiedUser {
   created_at: Moment;
   roles: string[];
   email: string;
-  langues: string[];
+  langues: { langueCode: string; langueFr: string }[];
   structures: SimplifiedStructure[];
   nbStructures: number;
 }
