@@ -2,6 +2,7 @@ const account = require("./account/lib.js");
 const checkToken = require("./account/checkToken");
 import { getFiguresOnUsers } from "../models/users/getFiguresOnUsers";
 import { getAllUsers } from "../models/users/getAllUsers";
+import { updateUser } from "../models/users/updateUser";
 
 module.exports = function (app) {
   app.post("/login", checkToken.getId, checkToken.getRoles, account.login);
@@ -21,4 +22,5 @@ module.exports = function (app) {
 
   app.get("/getFiguresOnUsers", getFiguresOnUsers);
   app.get("/getAllUsers", getAllUsers);
+  app.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
 };
