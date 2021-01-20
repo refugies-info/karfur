@@ -2,7 +2,6 @@ import { RequestFromClient, Res } from "../../../types/interface";
 import { ObjectId } from "mongoose";
 import logger = require("../../../logger");
 import { getRoleByName } from "../../../controllers/role/role.repository";
-import { RoleInstance } from "twilio/lib/rest/chat/v1/service/role";
 import { getUserById, updateUserInDB } from "../users.repository";
 
 interface User {
@@ -17,6 +16,9 @@ interface Data {
 }
 export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
   try {
+    if (!req.fromSite) {
+      throw new Error("NOT_FROM_SITE");
+    }
     const { user, action } = req.body.query;
     if (!user || !user._id) {
       throw new Error("INVALID_REQUEST");
@@ -24,13 +26,13 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
 
     logger.info("[updateUser] call received", { user, action });
 
-    if (action === "modify") {
-      // @ts-ignore
-      const isRequestorAdmin = req.user.roles.find((x) => x.nom === "Admin");
-      if (!isRequestorAdmin) {
-        throw new Error("USER_NOT_AUTHORIZED");
-      }
+    // @ts-ignore
+    const isRequestorAdmin = req.user.roles.find((x) => x.nom === "Admin");
+    if (!isRequestorAdmin) {
+      throw new Error("USER_NOT_AUTHORIZED");
+    }
 
+    if (action === "modify") {
       const expertRole = await getRoleByName("ExpertTrad");
       const adminRole = await getRoleByName("Admin");
       const userFromDB = await getUserById(user._id, { roles: 1 });
@@ -71,6 +73,8 @@ export const updateUser = async (req: RequestFromClient<Data>, res: Res) => {
         return res.status(400).json({ text: "Requête invalide" });
       case "USER_NOT_AUTHORIZED":
         return res.status(401).json({ text: "Token invalide" });
+      case "NOT_FROM_SITE":
+        return res.status(405).json({ text: "Requête bloquée par API" });
       default:
         return res.status(500).json({ text: "Erreur interne" });
     }
