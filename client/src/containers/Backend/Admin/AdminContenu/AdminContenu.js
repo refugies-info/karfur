@@ -75,7 +75,9 @@ export const AdminContenu = () => {
 
   const toggleShowChangeStructureModal = () =>
     setShowChangeStructureModal(!showChangeStructureModal);
+
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
+
   const setSelectedDispositifAndToggleModal = (element) => {
     setSelectedDispositif(element);
     toggleDetailsModal();
@@ -220,8 +222,10 @@ export const AdminContenu = () => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
+
   const toggleStructureDetailsModal = () =>
     setShowStructureDetailsModal(!showStructureDetailsModal);
+
   const setSelectedStructureIdAndToggleModal = (element) => {
     setSelectedStructureId(element ? element._id : null);
     toggleStructureDetailsModal();
