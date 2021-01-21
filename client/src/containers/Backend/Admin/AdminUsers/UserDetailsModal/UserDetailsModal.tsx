@@ -19,6 +19,8 @@ import { ObjectId } from "mongodb";
 import API from "../../../../../utils/API";
 import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
 import Swal from "sweetalert2";
+import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
 
 moment.locale("fr");
 
@@ -186,6 +188,21 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
       ? userFromStore.picture.secure_url
       : marioProfile;
 
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
+  );
+
+  if (isLoading) {
+    return (
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggleModal}
+        className="user-details-modal"
+      >
+        <Spinner />
+      </Modal>
+    );
+  }
   if (!userFromStore)
     return (
       <Modal
