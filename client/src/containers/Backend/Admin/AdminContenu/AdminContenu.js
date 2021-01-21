@@ -5,6 +5,7 @@ import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "../../../../services/ActiveDispositifs/activeDispositifs.actions";
+
 import { table_contenu, correspondingStatus } from "./data";
 import API from "../../../../utils/API";
 import {
@@ -35,6 +36,8 @@ import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/Cust
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
+import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
+import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 
 moment.locale("fr");
 
@@ -59,6 +62,12 @@ export const AdminContenu = () => {
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(
     false
   );
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
+    false
+  );
+  const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
+  const [selectedStructureId, setSelectedStructureId] = useState(null);
+
   const headers = table_contenu.headers;
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
@@ -66,7 +75,9 @@ export const AdminContenu = () => {
 
   const toggleShowChangeStructureModal = () =>
     setShowChangeStructureModal(!showChangeStructureModal);
+
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
+
   const setSelectedDispositifAndToggleModal = (element) => {
     setSelectedDispositif(element);
     toggleDetailsModal();
@@ -212,6 +223,13 @@ export const AdminContenu = () => {
     setSortedHeader(defaultSortedHeader);
   };
 
+  const toggleStructureDetailsModal = () =>
+    setShowStructureDetailsModal(!showStructureDetailsModal);
+
+  const setSelectedStructureIdAndToggleModal = (element) => {
+    setSelectedStructureId(element ? element._id : null);
+    toggleStructureDetailsModal();
+  };
   const handleChange = (e) => setSearch(e.target.value);
 
   const publishDispositif = async (dispositif, status = "Actif") => {
@@ -260,7 +278,8 @@ export const AdminContenu = () => {
       }
     }
   };
-
+  // eslint-disable-next-line no-console
+  console.log("sele", selectedStructureId);
   const nbNonDeletedDispositifs =
     dispositifs.length > 0
       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
@@ -354,12 +373,9 @@ export const AdminContenu = () => {
                   </td>
                   <td
                     className="align-middle cursor-pointer"
-                    // onClick={() =>
-                    //   this.props.onSelect(
-                    //     { structure: element.structureObj },
-                    //     "1"
-                    //   )
-                    // }
+                    onClick={() =>
+                      setSelectedStructureIdAndToggleModal(element.mainSponsor)
+                    }
                   >
                     <Structure sponsor={element.mainSponsor} />
                   </td>
@@ -435,6 +451,22 @@ export const AdminContenu = () => {
         dispositifId={selectedDispositif ? selectedDispositif._id : null}
         dispositifStatus={selectedDispositif ? selectedDispositif.status : null}
       />
+
+      {selectedStructureId && (
+        <StructureDetailsModal
+          show={showStructureDetailsModal}
+          toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
+          selectedStructureId={selectedStructureId}
+          toggleRespoModal={() => setSelectFirstRespoModal(true)}
+        />
+      )}
+      {selectedStructureId && (
+        <SelectFirstResponsableModal
+          show={showSelectFirstRespoModal}
+          toggleModal={() => setSelectFirstRespoModal(false)}
+          selectedStructureId={selectedStructureId}
+        />
+      )}
     </div>
   );
 };

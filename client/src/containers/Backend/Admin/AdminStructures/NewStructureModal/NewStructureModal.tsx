@@ -14,12 +14,15 @@ import { correspondingStatus } from "../data";
 import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "services/AllUsers/allUsers.selector";
 import { ChooseResponsableComponent } from "./ChooseResponsableComponent";
 import { colors } from "colors";
+import { fetchAllStructuresActionsCreator } from "../../../../../services/AllStructures/allStructures.actions";
+import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
 moment.locale("fr");
 
 const Header = styled.div`
@@ -69,7 +72,6 @@ const ResponsableContainer = styled.div`
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  fetchStructures: () => void;
 }
 
 interface InitialStructure {
@@ -110,6 +112,14 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
     props.toggleModal();
   };
 
+  const dispatch = useDispatch();
+
+  const updateData = () => {
+    dispatch(fetchAllStructuresActionsCreator());
+    dispatch(fetchAllDispositifsActionsCreator());
+    dispatch(fetchAllUsersActionsCreator());
+  };
+
   const isValidateDisabled =
     !structure.mail_contact ||
     !structure.contact ||
@@ -148,7 +158,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
         type: "success",
         timer: 1500,
       });
-      props.fetchStructures();
+      updateData();
       toggle();
     } catch (error) {
       Swal.fire({
@@ -157,7 +167,7 @@ export const NewStructureModal: React.FunctionComponent<Props> = (
         type: "error",
         timer: 1500,
       });
-      props.fetchStructures();
+      updateData();
       toggle();
     }
   };
