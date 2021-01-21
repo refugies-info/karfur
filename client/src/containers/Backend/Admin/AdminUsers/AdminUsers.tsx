@@ -14,7 +14,7 @@ import {
 } from "../sharedComponents/StyledAdmin";
 import { userHeaders, correspondingStatus } from "./data";
 import { Table } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
@@ -26,37 +26,17 @@ import {
 import "./AdminUsers.scss";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
-// import { correspondingStatus } from "../AdminContenu/data";
-
 import { compare } from "../AdminContenu/AdminContenu";
-
-// import { FilterButton, TabHeader } from "../sharedComponents/SubComponents";
-
-// import { filter } from "lodash";
-
-// import { Table } from "reactstrap";
-
-// import { headers } from "../AdminStructures/data";
-
-// import {
-//   RowContainer,
-//   StructureName,
-//   ResponsableComponent,
-// } from "../AdminStructures/components/AdminStructureComponents";
-
-// import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
-
-// import { fetchAllStructuresActionsCreator } from "../../../../services/AllStructures/allStructures.actions";
-
-// import { NewStructureModal } from "../AdminStructures/NewStructureModal/NewStructureModal";
-
-// import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
-import { SimplifiedUser } from "../../../../types/interface";
+import {
+  SimplifiedUser,
+  SimplifiedStructure,
+} from "../../../../types/interface";
 import { removeAccents } from "../../../../lib";
 import { ObjectId } from "mongodb";
-import { fetchAllUsersActionsCreator } from "../../../../services/AllUsers/allUsers.actions";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
+import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
+import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 
 moment.locale("fr");
 declare const window: Window;
@@ -86,10 +66,15 @@ export const AdminUsers = () => {
   const [sortedHeader, setSortedHeader] = useState(defaultSortedHeader);
   const [search, setSearch] = useState("");
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
-
-  const dispatch = useDispatch();
-  //   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
+    false
+  );
+  const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
+  const [
+    selectedStructureId,
+    setSelectedStructureId,
+  ] = useState<ObjectId | null>(null);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_USERS)
@@ -108,6 +93,16 @@ export const AdminUsers = () => {
   const onFilterClick = (status: string) => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
+  };
+
+  const toggleStructureDetailsModal = () =>
+    setShowStructureDetailsModal(!showStructureDetailsModal);
+
+  const setSelectedStructureIdAndToggleModal = (
+    element: SimplifiedStructure | null
+  ) => {
+    setSelectedStructureId(element ? element._id : null);
+    toggleStructureDetailsModal();
   };
 
   const users = useSelector(activeUsersSelector);
@@ -308,11 +303,11 @@ export const AdminUsers = () => {
                   ? element.picture.secure_url
                   : marioProfile;
               return (
-                <tr
-                  key={key}
-                  onClick={() => setSelectedUserIdAndToggleModal(element)}
-                >
-                  <td className="align-middle">
+                <tr key={key}>
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                  >
                     <div style={{ maxWidth: "300px", overflow: "hidden" }}>
                       <RowContainer>
                         <img className="user-img mr-8" src={secureUrl} />
@@ -320,23 +315,41 @@ export const AdminUsers = () => {
                       </RowContainer>
                     </div>
                   </td>
-                  <td className="align-middle">
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                  >
                     <div style={{ maxWidth: "200px", wordWrap: "break-word" }}>
                       {element.email}
                     </div>
                   </td>
 
-                  <td className={"align-middle "}>
+                  <td
+                    className={"align-middle "}
+                    onClick={() =>
+                      setSelectedStructureIdAndToggleModal(
+                        element.structures.length > 0
+                          ? element.structures[0]
+                          : null
+                      )
+                    }
+                  >
                     {element.structures.length > 0 && element.structures[0].nom}
                   </td>
-                  <td className="align-middle">
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                  >
                     <RoleContainer>
                       {element.roles.map((role) => (
                         <Role key={role} role={role} />
                       ))}
                     </RoleContainer>
                   </td>
-                  <td className="align-middle">
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                  >
                     <LangueContainer>
                       {element.langues.map((langue) => (
                         <LangueFlag
@@ -347,7 +360,10 @@ export const AdminUsers = () => {
                     </LangueContainer>
                   </td>
 
-                  <td className="align-middle">
+                  <td
+                    className="align-middle"
+                    onClick={() => setSelectedUserIdAndToggleModal(element)}
+                  >
                     {element.created_at
                       ? moment(element.created_at).format("LLL")
                       : "Non connue"}
@@ -362,8 +378,23 @@ export const AdminUsers = () => {
         show={showUserDetailsModal}
         toggleModal={() => setSelectedUserIdAndToggleModal(null)}
         selectedUserId={selectedUserId}
-        fetchUsers={() => dispatch(fetchAllUsersActionsCreator())}
       />
+
+      {selectedStructureId && (
+        <StructureDetailsModal
+          show={showStructureDetailsModal}
+          toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
+          selectedStructureId={selectedStructureId}
+          toggleRespoModal={() => setSelectFirstRespoModal(true)}
+        />
+      )}
+      {selectedStructureId && (
+        <SelectFirstResponsableModal
+          show={showSelectFirstRespoModal}
+          toggleModal={() => setSelectFirstRespoModal(false)}
+          selectedStructureId={selectedStructureId}
+        />
+      )}
     </div>
   );
 };
