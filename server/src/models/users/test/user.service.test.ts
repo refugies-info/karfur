@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { updateRoleAndStructureOfResponsable } from "../users.service";
-import { getUserById, updateUser } from "../users.repository";
+import { getUserById, updateUserInDB } from "../users.repository";
 import { getRoleByName } from "../../../controllers/role/role.repository";
 
 jest.mock("../../../controllers/role/role.repository", () => ({
@@ -9,7 +9,7 @@ jest.mock("../../../controllers/role/role.repository", () => ({
 
 jest.mock("../users.repository", () => ({
   getUserById: jest.fn(),
-  updateUser: jest.fn(),
+  updateUserInDB: jest.fn(),
 }));
 jest.mock("../../../logger");
 
@@ -17,7 +17,7 @@ describe("updateRoleAndStructureOfResponsable", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
-  it("should call getUserById getRoleByName and updateUser when user has role already and user has no structures", async () => {
+  it("should call getUserById getRoleByName and updateUserInDB when user has role already and user has no structures", async () => {
     getUserById.mockResolvedValue({
       _id: "userId",
       roles: ["hasStructureId", "otherRole"],
@@ -29,13 +29,13 @@ describe("updateRoleAndStructureOfResponsable", () => {
       structures: 1,
     });
     expect(getRoleByName).toHaveBeenCalledWith("hasStructure");
-    expect(updateUser).toHaveBeenCalledWith("userId", {
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       roles: ["otherRole", "hasStructureId"],
       structures: ["structId"],
     });
   });
 
-  it("should call getUserById getRoleByName and updateUser when user has not role already", async () => {
+  it("should call getUserById getRoleByName and updateUserInDB when user has not role already", async () => {
     getUserById.mockResolvedValueOnce({
       _id: "userId",
       roles: ["role1"],
@@ -47,7 +47,7 @@ describe("updateRoleAndStructureOfResponsable", () => {
       structures: 1,
     });
     expect(getRoleByName).toHaveBeenCalledWith("hasStructure");
-    expect(updateUser).toHaveBeenCalledWith("userId", {
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       roles: ["role1", "hasStructureId"],
       structures: ["struct1", "structId"],
     });
@@ -83,8 +83,8 @@ describe("updateRoleAndStructureOfResponsable", () => {
     expect.assertions(3);
   });
 
-  it("should throw when updateUser throws", async () => {
-    updateUser.mockRejectedValueOnce(new Error("error"));
+  it("should throw when updateUserInDB throws", async () => {
+    updateUserInDB.mockRejectedValueOnce(new Error("error"));
     getUserById.mockResolvedValueOnce({
       _id: "userId",
       roles: ["role1"],
@@ -99,7 +99,7 @@ describe("updateRoleAndStructureOfResponsable", () => {
         structures: 1,
       });
       expect(getRoleByName).toHaveBeenCalledWith("hasStructure");
-      expect(updateUser).toHaveBeenCalledWith("userId", {
+      expect(updateUserInDB).toHaveBeenCalledWith("userId", {
         roles: ["role1", "hasStructureId"],
         structures: ["structId"],
       });
@@ -108,7 +108,7 @@ describe("updateRoleAndStructureOfResponsable", () => {
     expect.assertions(4);
   });
 
-  it("should call getUserById getRoleByName and updateUser when user has no role and no structures", async () => {
+  it("should call getUserById getRoleByName and updateUserInDB when user has no role and no structures", async () => {
     getUserById.mockResolvedValueOnce({
       _id: "userId",
     });
@@ -118,7 +118,7 @@ describe("updateRoleAndStructureOfResponsable", () => {
       structures: 1,
     });
     expect(getRoleByName).toHaveBeenCalledWith("hasStructure");
-    expect(updateUser).toHaveBeenCalledWith("userId", {
+    expect(updateUserInDB).toHaveBeenCalledWith("userId", {
       roles: ["hasStructureId"],
       structures: ["structId"],
     });

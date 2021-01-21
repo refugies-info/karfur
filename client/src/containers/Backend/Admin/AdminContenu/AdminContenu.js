@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Table } from "reactstrap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
 import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
@@ -164,7 +164,9 @@ export const AdminContenu = () => {
     }
   };
 
-  const prepareDeleteContrib = function (dispositif) {
+  const dispatch = useDispatch();
+
+  const prepareDeleteContrib = (dispositif) => {
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",
@@ -236,26 +238,26 @@ export const AdminContenu = () => {
     });
 
     if (question.value) {
-      API.updateDispositifStatus({ query: newDispositif })
-        .then(() => {
-          Swal.fire({
-            title: "Yay...",
-            text: "Contenu publié",
-            type: "success",
-            timer: 5500,
-            footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
-          });
-          dispatch(fetchAllDispositifsActionsCreator());
-          dispatch(fetchActiveDispositifsActionsCreator());
-        })
-        .catch(() => {
-          Swal.fire({
-            title: "Oh non!",
-            text: "Something went wrong",
-            type: "error",
-            timer: 1500,
-          });
+      try {
+        await API.updateDispositifStatus({ query: newDispositif });
+
+        Swal.fire({
+          title: "Yay...",
+          text: "Contenu publié",
+          type: "success",
+          timer: 5500,
+          footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
         });
+        dispatch(fetchAllDispositifsActionsCreator());
+        dispatch(fetchActiveDispositifsActionsCreator());
+      } catch (error) {
+        Swal.fire({
+          title: "Oh non!",
+          text: "Something went wrong",
+          type: "error",
+          timer: 1500,
+        });
+      }
     }
   };
 

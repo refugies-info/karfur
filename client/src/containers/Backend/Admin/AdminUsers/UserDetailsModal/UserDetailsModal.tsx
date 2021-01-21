@@ -4,7 +4,7 @@ import { Event, Indicator } from "types/interface";
 import { Modal, Spinner } from "reactstrap";
 import "./UserDetailsModal.scss";
 import moment from "moment/min/moment-with-locales";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import marioProfile from "assets/mario-profile.jpg";
 import { userSelector } from "../../../../../services/AllUsers/allUsers.selector";
 import FInput from "../../../../../components/FigmaUI/FInput/FInput";
@@ -17,6 +17,8 @@ import {
 import FButton from "../../../../../components/FigmaUI/FButton/FButton";
 import { ObjectId } from "mongodb";
 import API from "../../../../../utils/API";
+import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
+import Swal from "sweetalert2";
 
 moment.locale("fr");
 
@@ -78,7 +80,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
   const [indicators, setIndicators] = useState<null | Test>(null);
 
   const userFromStore = useSelector(userSelector(props.selectedUserId));
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const loadIndicators = async () => {
       if (userFromStore) {
@@ -120,29 +122,65 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
     // add role
     return setRoles(newRoles);
   };
+  const onSaveClick = async () => {
+    try {
+      if (userFromStore) {
+        await API.updateUser({
+          query: {
+            user: { _id: userFromStore._id, roles, email },
+            action: "modify",
+          },
+        });
+        Swal.fire({
+          title: "Yay...",
+          text: "Utilisateur modifié",
+          type: "success",
+          timer: 1500,
+        });
+        dispatch(fetchAllUsersActionsCreator());
+        props.toggleModal();
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Oh non",
+        text: "Erreur lors de la modification",
+        type: "error",
+        timer: 1500,
+      });
+      dispatch(fetchAllUsersActionsCreator());
+      props.toggleModal();
+    }
+  };
 
-  //   const onSave = async () => {
-  //     try {
-  //       await API.updateStructure({ query: structure });
-  //       Swal.fire({
-  //         title: "Yay...",
-  //         text: "Structure modifiée",
-  //         type: "success",
-  //         timer: 1500,
-  //       });
-  //       props.fetchStructures();
-  //       props.toggleModal();
-  //     } catch (error) {
-  //       Swal.fire({
-  //         title: "Oh non",
-  //         text: "Erreur lors de la modification",
-  //         type: "error",
-  //         timer: 1500,
-  //       });
-  //       props.fetchStructures();
-  //       props.toggleModal();
-  //     }
-  //   };
+  const onDeleteClick = async () => {
+    try {
+      if (userFromStore) {
+        await API.updateUser({
+          query: {
+            user: { _id: userFromStore._id, roles, email },
+            action: "delete",
+          },
+        });
+        Swal.fire({
+          title: "Yay...",
+          text: "Utilisateur supprimé",
+          type: "success",
+          timer: 1500,
+        });
+        dispatch(fetchAllUsersActionsCreator());
+        props.toggleModal();
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "Oh non",
+        text: "Erreur lors de la suppression",
+        type: "error",
+        timer: 1500,
+      });
+      dispatch(fetchAllUsersActionsCreator());
+      props.toggleModal();
+    }
+  };
 
   const secureUrl =
     userFromStore && userFromStore.picture && userFromStore.picture.secure_url
@@ -323,11 +361,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
         </IndicatorColumn>
       </IndicatorContainer>
       <ButtonContainer>
-        <FButton
-          type="error"
-          // onClick={props.onDeleteClick}
-          name="trash-2"
-        >
+        <FButton type="error" onClick={onDeleteClick} name="trash-2">
           Supprimer
         </FButton>
         <div>
@@ -342,7 +376,7 @@ export const UserDetailsModal: React.FunctionComponent<Props> = (
           <FButton
             type="validate"
             name="checkmark-outline"
-            // onClick={() => onSaveClick(dispositif)}
+            onClick={() => onSaveClick()}
           >
             Enregistrer
           </FButton>
