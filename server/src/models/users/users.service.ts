@@ -1,7 +1,7 @@
 import logger from "../../logger";
 import {
   getUserById,
-  updateUser,
+  updateUserInDB,
   removeRoleAndStructureInDB,
 } from "./users.repository";
 import { ObjectId } from "mongoose";
@@ -26,7 +26,7 @@ export const updateRoleAndStructureOfResponsable = async (
     const newStructures = user.structures
       ? user.structures.concat([structureId])
       : [structureId];
-    return await updateUser(userId, {
+    return await updateUserInDB(userId, {
       roles: newRole,
       structures: newStructures,
     });
