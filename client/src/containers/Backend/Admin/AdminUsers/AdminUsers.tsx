@@ -14,7 +14,7 @@ import {
 } from "../sharedComponents/StyledAdmin";
 import { userHeaders, correspondingStatus } from "./data";
 import { Table } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
 import { activeUsersSelector } from "../../../../services/AllUsers/allUsers.selector";
@@ -26,36 +26,11 @@ import {
 import "./AdminUsers.scss";
 import { Role, LangueFlag } from "./ components/AdminUsersComponents";
 import { LoadingAdminUsers } from "./ components/LoadingAdminUsers";
-// import { correspondingStatus } from "../AdminContenu/data";
-
 import { compare } from "../AdminContenu/AdminContenu";
-
-// import { FilterButton, TabHeader } from "../sharedComponents/SubComponents";
-
-// import { filter } from "lodash";
-
-// import { Table } from "reactstrap";
-
-// import { headers } from "../AdminStructures/data";
-
-// import {
-//   RowContainer,
-//   StructureName,
-//   ResponsableComponent,
-// } from "../AdminStructures/components/AdminStructureComponents";
-
-// import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
-
-// import { fetchAllStructuresActionsCreator } from "../../../../services/AllStructures/allStructures.actions";
-
-// import { NewStructureModal } from "../AdminStructures/NewStructureModal/NewStructureModal";
-
-// import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import { SimplifiedUser } from "../../../../types/interface";
 import { removeAccents } from "../../../../lib";
 import { ObjectId } from "mongodb";
-import { fetchAllUsersActionsCreator } from "../../../../services/AllUsers/allUsers.actions";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 
 moment.locale("fr");
@@ -87,8 +62,6 @@ export const AdminUsers = () => {
   const [search, setSearch] = useState("");
   const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
 
-  const dispatch = useDispatch();
-  //   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
 
   const isLoading = useSelector(
@@ -362,7 +335,6 @@ export const AdminUsers = () => {
         show={showUserDetailsModal}
         toggleModal={() => setSelectedUserIdAndToggleModal(null)}
         selectedUserId={selectedUserId}
-        fetchUsers={() => dispatch(fetchAllUsersActionsCreator())}
       />
     </div>
   );
