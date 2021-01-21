@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Table } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchAllStructuresActionsCreator } from "../../../../services/AllStructures/allStructures.actions";
+import { useSelector } from "react-redux";
 import { allStructuresSelector } from "../../../../services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
@@ -86,7 +85,6 @@ export const AdminStructures = () => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
-  const dispatch = useDispatch();
 
   const structures = useSelector(allStructuresSelector);
 
@@ -326,13 +324,11 @@ export const AdminStructures = () => {
         show={showStructureDetailsModal}
         toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
         selectedStructureId={selectedStructureId}
-        fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
         toggleRespoModal={() => setSelectFirstRespoModal(true)}
       />
       <NewStructureModal
         show={showNewStructureModal}
         toggleModal={toggleShowNewStructureModal}
-        fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
       />
 
       <SelectFirstResponsableModal
