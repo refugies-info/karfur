@@ -61,7 +61,6 @@ const ButtonContainer = styled.div`
 interface Props {
   show: boolean;
   toggleModal: () => void;
-  fetchUsers: () => void;
   selectedUserId: ObjectId | null;
 }
 

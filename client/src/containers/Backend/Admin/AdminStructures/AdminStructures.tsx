@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Table } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchAllStructuresActionsCreator } from "../../../../services/AllStructures/allStructures.actions";
+import { useSelector } from "react-redux";
 import { allStructuresSelector } from "../../../../services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
@@ -27,7 +26,10 @@ import {
   StructureName,
   ResponsableComponent,
 } from "./components/AdminStructureComponents";
-import { SimplifiedStructureForAdmin } from "../../../../types/interface";
+import {
+  SimplifiedStructureForAdmin,
+  Responsable,
+} from "../../../../types/interface";
 import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/FigmaUI/FButton/FButton";
@@ -35,6 +37,7 @@ import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsM
 import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
 import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
 import { ObjectId } from "mongodb";
+import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 
 moment.locale("fr");
 
@@ -58,6 +61,8 @@ export const AdminStructures = () => {
     selectedStructureId,
     setSelectedStructureId,
   ] = useState<ObjectId | null>(null);
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
@@ -86,7 +91,6 @@ export const AdminStructures = () => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
-  const dispatch = useDispatch();
 
   const structures = useSelector(allStructuresSelector);
 
@@ -107,6 +111,14 @@ export const AdminStructures = () => {
         orderColumn: element.order,
       });
     }
+  };
+
+  const toggleUserDetailsModal = () =>
+    setShowUserDetailsModal(!showUserDetailsModal);
+
+  const setSelectedUserIdAndToggleModal = (element: Responsable | null) => {
+    setSelectedUserId(element ? element._id : null);
+    toggleUserDetailsModal();
   };
 
   const filterAndSortStructures = (
@@ -279,11 +291,11 @@ export const AdminStructures = () => {
           </thead>
           <tbody>
             {structuresToDisplay.map((element, key) => (
-              <tr
-                key={key}
-                onClick={() => setSelectedStructureIdAndToggleModal(element)}
-              >
-                <td className="align-middle">
+              <tr key={key}>
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
                       <img
@@ -294,24 +306,44 @@ export const AdminStructures = () => {
                     <StructureName>{element.nom}</StructureName>
                   </RowContainer>
                 </td>
-                <td className="align-middle">
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
                   <StyledStatus
                     text={element.status}
                     textToDisplay={element.status}
                   />
                 </td>
-                <td className="align-middle cursor-pointer">
+                <td
+                  className="align-middle cursor-pointer"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
                   {element.nbMembres}
                 </td>
-                <td className={"align-middle "}>
+
+                <td
+                  className={"align-middle "}
+                  onClick={() =>
+                    setSelectedUserIdAndToggleModal(element.responsable)
+                  }
+                >
                   <ResponsableComponent
                     responsable={element.responsable}
                     canModifyRespo={false}
                     onClick={() => {}}
                   />
                 </td>
-                <td className="align-middle">{element.nbFiches}</td>
-                <td className="align-middle">
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
+                  {element.nbFiches}
+                </td>
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
                   {element.created_at
                     ? moment(element.created_at).format("LLL")
                     : "Non connue"}
@@ -326,13 +358,11 @@ export const AdminStructures = () => {
         show={showStructureDetailsModal}
         toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
         selectedStructureId={selectedStructureId}
-        fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
         toggleRespoModal={() => setSelectFirstRespoModal(true)}
       />
       <NewStructureModal
         show={showNewStructureModal}
         toggleModal={toggleShowNewStructureModal}
-        fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
       />
 
       <SelectFirstResponsableModal
@@ -340,6 +370,13 @@ export const AdminStructures = () => {
         toggleModal={() => setSelectFirstRespoModal(false)}
         selectedStructureId={selectedStructureId}
       />
+      {selectedUserId && (
+        <UserDetailsModal
+          show={showUserDetailsModal}
+          toggleModal={() => setSelectedUserIdAndToggleModal(null)}
+          selectedUserId={selectedUserId}
+        />
+      )}
     </div>
   );
 };

@@ -18,10 +18,13 @@ import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { structureSelector } from "services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { fetchAllStructuresActionsCreator } from "../../../../../services/AllStructures/allStructures.actions";
+import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
 moment.locale("fr");
 
 const Title = styled.div`
@@ -57,7 +60,6 @@ const RightLogoContainer = styled.div`
 interface Props extends RouteComponentProps {
   show: boolean;
   toggleModal: () => void;
-  fetchStructures: () => void;
   toggleRespoModal: () => void;
   selectedStructureId: ObjectId | null;
 }
@@ -78,6 +80,12 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
     setStructure(structureFromStore);
   }, [structureFromStore]);
 
+  const dispatch = useDispatch();
+  const updateData = () => {
+    dispatch(fetchAllStructuresActionsCreator());
+    dispatch(fetchAllDispositifsActionsCreator());
+    dispatch(fetchAllUsersActionsCreator());
+  };
   const onSave = async () => {
     try {
       await API.updateStructure({ query: structure });
@@ -87,7 +95,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         type: "success",
         timer: 1500,
       });
-      props.fetchStructures();
+      updateData();
       props.toggleModal();
     } catch (error) {
       Swal.fire({
@@ -96,7 +104,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         type: "error",
         timer: 1500,
       });
-      props.fetchStructures();
+      updateData();
       props.toggleModal();
     }
   };
