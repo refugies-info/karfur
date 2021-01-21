@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Modal, Input } from "reactstrap";
+import { Modal, Input, Spinner } from "reactstrap";
 import "./DetailsModal.scss";
 import {
   TypeContenu,
@@ -19,6 +19,8 @@ import { dispositifSelector } from "../../../../../services/AllDispositifs/allDi
 import API from "../../../../../utils/API";
 import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
 import { ObjectId } from "mongodb";
+import { LoadingStatusKey } from "../../../../../services/LoadingStatus/loadingStatus.actions";
+import { isLoadingSelector } from "../../../../../services/LoadingStatus/loadingStatus.selectors";
 
 interface Props {
   show: boolean;
@@ -196,6 +198,22 @@ export const DetailsModal = (props: Props) => {
     dispatch(fetchAllDispositifsActionsCreator());
     toggle();
   };
+
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
+  );
+
+  if (isLoading) {
+    return (
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggleModal}
+        className="details-modal"
+      >
+        <Spinner />
+      </Modal>
+    );
+  }
 
   if (dispositif) {
     const burl =
