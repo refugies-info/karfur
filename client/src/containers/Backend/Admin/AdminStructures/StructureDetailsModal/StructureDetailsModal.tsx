@@ -76,6 +76,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const structureFromStore = useSelector(
     structureSelector(props.selectedStructureId)
   );
+
   useEffect(() => {
     setStructure(structureFromStore);
   }, [structureFromStore]);
@@ -153,6 +154,18 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
   );
+
+  if (isLoading) {
+    return (
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggleModal}
+        className="structure-details-modal"
+      >
+        <Spinner />
+      </Modal>
+    );
+  }
 
   if (!structure)
     return (
