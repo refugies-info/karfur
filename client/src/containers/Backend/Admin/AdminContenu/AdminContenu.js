@@ -232,7 +232,8 @@ export const AdminContenu = () => {
   };
   const handleChange = (e) => setSearch(e.target.value);
 
-  const publishDispositif = async (dispositif, status = "Actif") => {
+  const publishDispositif = async (dispositif, status = "Actif", disabled) => {
+    if (disabled) return;
     const newDispositif = { status: status, dispositifId: dispositif._id };
     let question = { value: true };
     const link = `/${dispositif.typeContenu}/${dispositif._id}`;
@@ -350,7 +351,10 @@ export const AdminContenu = () => {
                 -moment(element.updatedAt).diff(moment(), "days") + " jours";
               const burl =
                 "/" + (element.typeContenu || "dispositif") + "/" + element._id;
-
+              const validationDisabled =
+                element.status === "Actif" ||
+                !element.mainSponsor ||
+                element.mainSponsor.status !== "Actif";
               return (
                 <tr key={key}>
                   <td
@@ -416,12 +420,14 @@ export const AdminContenu = () => {
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />
                       <ValidateButton
-                        onClick={() => publishDispositif(element)}
-                        disabled={
-                          element.status === "Actif" ||
-                          !element.mainSponsor ||
-                          element.mainSponsor.status !== "Actif"
+                        onClick={() =>
+                          publishDispositif(
+                            element,
+                            "Actif",
+                            validationDisabled
+                          )
                         }
+                        disabled={validationDisabled}
                         hoverColor={colors.validationHover}
                       />
                       <DeleteButton
