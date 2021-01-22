@@ -335,7 +335,6 @@ class Sponsors extends Component {
         picture: { ...this.state.imgData },
         link: this.state.link,
         nom: this.state.nom,
-        asAdmin,
       });
       this.toggleModal();
       this.props.validate();
