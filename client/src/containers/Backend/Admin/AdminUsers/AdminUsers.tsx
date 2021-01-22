@@ -1,5 +1,3 @@
-// /* eslint-disable no-console */
-// // @ts-nocheck
 import marioProfile from "assets/mario-profile.jpg";
 import React, { useState } from "react";
 import moment from "moment/min/moment-with-locales";
