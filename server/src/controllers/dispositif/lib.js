@@ -21,7 +21,7 @@ const logger = require("../../logger");
 const { updateLanguagesAvancement } = require("../langues/langues.service");
 const {
   updateAssociatedDispositifsInStructure,
-} = require("../structure/structure.repository");
+} = require("../../models/structure/structure.repository");
 
 // const gmail_auth = require('./gmail_auth');
 
@@ -77,7 +77,7 @@ async function patch_dispositifs(req, res) {
 async function create_csv_dispositifs_length(req, res) {
   if (!req.user.roles.some((x) => x.nom === "Admin")) {
     //logger.error("The user is not an admin", { error: e });
-    return res.status(500).json("KO"); 
+    return res.status(500).json("KO");
   }
   logger.info("Find dispositifs with long titles");
   try {
@@ -93,7 +93,7 @@ async function create_csv_dispositifs_length(req, res) {
         csvList.push({
           titreInformatif: all[i].titreInformatif || "",
           titreMarque: all[i].titreMarque || "",
-          abstract: all[i].abstract || "", 
+          abstract: all[i].abstract || "",
           url: `${url}dispositif/${all[i]._id.toString()}` || "",
         });
       }

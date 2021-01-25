@@ -239,11 +239,6 @@ class Sponsors extends Component {
       [e.target.id]: e.target.value,
     });
 
-  handleCheckChange = () =>
-    this.setState((pS) => ({
-      checked: !pS.checked,
-      mesStructures: pS.mesStructures.map((x) => ({ ...x, checked: false })),
-    }));
   handleBelongsChange = () =>
     this.setState((pS) => ({
       structure: {
@@ -306,7 +301,7 @@ class Sponsors extends Component {
     if (this.state.imgData) {
       structure.picture = this.state.imgData;
     }
-    API.create_structure(structure).then((data) => {
+    API.createStructure({ query: structure }).then((data) => {
       this.props.addMainSponsor(data.data.data);
       this.toggleModal("envoye");
     });
@@ -334,47 +329,22 @@ class Sponsors extends Component {
     }
   };
 
-  addSponsor = (asAdmin = false) => {
-    if (asAdmin) {
-      //Le cas où on rajoute plus d'un sponsor, en tant qu'admin
-      if (_.isEmpty(this.props.sponsors) && this.props.finalValidation) {
-        this.props.addSponsor({
-          ...this.state.selected,
-          picture: { ...this.state.imgData },
-          link: this.state.link,
-          nom: this.state.nom,
-          asAdmin,
-        });
-        this.toggleModal();
-        this.props.validate();
-      } else {
-        this.props.addSponsor({
-          ...this.state.selected,
-          picture: { ...this.state.imgData },
-          link: this.state.link,
-          nom: this.state.nom,
-          asAdmin,
-        });
-        this.toggleModal();
-      }
+  addSponsor = () => {
+    if (_.isEmpty(this.props.sponsors) && this.props.finalValidation) {
+      this.props.addSponsor({
+        picture: { ...this.state.imgData },
+        link: this.state.link,
+        nom: this.state.nom,
+      });
+      this.toggleModal();
+      this.props.validate();
     } else {
-      if (_.isEmpty(this.props.sponsors) && this.props.finalValidation) {
-        this.props.addSponsor({
-          ...this.state.selected,
-          userBelongs: this.state.authorBelongs,
-        });
-        this.toggleModal("envoye");
-        this.props.validate();
-      } else {
-        this.props.addSponsor({
-          ...this.state.selected,
-          picture: { ...this.state.imgData },
-          link: this.state.link,
-          nom: this.state.nom,
-          asAdmin,
-        });
-        this.toggleModal();
-      }
+      this.props.addSponsor({
+        picture: { ...this.state.imgData },
+        link: this.state.link,
+        nom: this.state.nom,
+      });
+      this.toggleModal();
     }
     this.setState({ imgData: {} });
   };
@@ -383,23 +353,12 @@ class Sponsors extends Component {
     this.toggleModal();
     this.setState({ edit: false });
     var sponsor = {
-      ...this.state.selected,
       picture: { ...this.state.imgData },
       link: this.state.link,
       nom: this.state.nom,
     };
     this.props.editSponsor(key, sponsor);
   };
-
-  /*   addStructure = () => {
-    console.log(this.state, 'add structure');
-    this.setState({
-      imgData: this.state.selected.picture || {},
-      link: this.state.selected.link || '',
-      alt: '',
-    })
-    this.addSponsor();
-  } */
 
   upcoming = () =>
     Swal.fire({
@@ -547,7 +506,9 @@ class Sponsors extends Component {
                       disableEdit={disableEdit}
                       key={key}
                     >
-                      {sponsor.link ? (
+                      {sponsor.link &&
+                      sponsor.picture &&
+                      sponsor.picture.secure_url ? (
                         <ImageLink
                           href={
                             ((sponsor.link || "").includes("http")
@@ -565,11 +526,13 @@ class Sponsors extends Component {
                         </ImageLink>
                       ) : (
                         <ImageLink>
-                          <img
-                            className="sponsor-img"
-                            src={sponsor.picture.secure_url}
-                            alt={sponsor.alt}
-                          />
+                          {sponsor.picture && sponsor.picture.secure_url && (
+                            <img
+                              className="sponsor-img"
+                              src={sponsor.picture.secure_url}
+                              alt={sponsor.alt}
+                            />
+                          )}
                         </ImageLink>
                       )}
                       <SponsorTitle>{sponsor.nom}</SponsorTitle>
@@ -790,66 +753,6 @@ class Sponsors extends Component {
             createNewCta="Créer une nouvelle structure"
             selectItem={this.selectItem}
           />
-
-          {/* <FormGroup check className="case-cochee mt-10">
-            <Label check>
-              <Input
-                type="checkbox"
-                checked={checked}
-                onChange={this.handleCheckChange}
-              />{" "}
-              Je ne sais pas quelle est la structure responsable
-            </Label>
-          </FormGroup> */}
-          {/*           {this.state.checked && (
-            <>
-              <div className="warning-bloc bg-attention mt-10">
-                <EVAIcon
-                  name="alert-triangle-outline"
-                  fill={colors.noir}
-                  className="info-icon"
-                />
-                <b>Structure inconnue</b>
-                <p>
-                  Pour que la fiche soit correctement mise à jour au fil du
-                  temps, nous allons la connecter à sa structure légale.
-                  Cherchez la structure dans la barre de recherche ci-dessous,
-                  ou créez-en une nouvelle si elle n’est pas présente dans la
-                  base de donnée.
-                </p>
-              </div>
-              <div className="form-field">
-                <InputGroup>
-                  <EVAIcon
-                    className="input-icon"
-                    name="at-outline"
-                    fill={colors.noir}
-                  />
-                  <Input
-                    id="email"
-                    placeholder="Entrez votre email pour que nous puissions vous contacter"
-                    value={user.email || ""}
-                    onChange={this.handleUserChange}
-                    name="user"
-                  />
-                </InputGroup>
-                <InputGroup>
-                  <EVAIcon
-                    className="input-icon"
-                    name="phone-outline"
-                    fill={colors.noir}
-                  />
-                  <Input
-                    id="phone"
-                    placeholder="Ou votre numéro de téléphone pour un contact plus rapide"
-                    value={user.phone || ""}
-                    onChange={this.handleUserChange}
-                    name="user"
-                  />
-                </InputGroup>
-              </div>
-            </>
-          )} */}
         </CustomModal>
 
         <CustomModal
@@ -1149,21 +1052,38 @@ const CustomModal = (props) => (
   </Modal>
 );
 
-const ImgModal = (props) => (
-  <Modal
-    isOpen={props.showModals[props.keyValue].show}
-    toggle={() => props.toggleModal(props.modal.name)}
-    className="modal-sponsors"
-  >
-    <div className="form-field inline-div">
-      <span>Ajouter un logo</span>
-      {props.imgData.secure_url ? (
-        <div className="image-wrapper">
-          <img
-            className="sponsor-img"
-            src={props.imgData.secure_url}
-            alt={props.imgData.alt}
-          />
+const ImgModal = (props) => {
+  return (
+    <Modal
+      isOpen={props.showModals[props.keyValue].show}
+      toggle={() => props.toggleModal(props.modal.name)}
+      className="modal-sponsors"
+    >
+      <div className="form-field inline-div">
+        <span>Ajouter un logo</span>
+        {props.imgData.secure_url ? (
+          <div className="image-wrapper">
+            <img
+              className="sponsor-img"
+              src={props.imgData.secure_url}
+              alt={props.imgData.alt}
+            />
+            <FButton className="upload-btn" type="theme" name="upload-outline">
+              <Input
+                className="file-input"
+                type="file"
+                id="picture"
+                name="user"
+                accept="image/*"
+                onChange={props.handleFileInputChange}
+              />
+              <span>Choisir</span>
+              {props.sponsorLoading && (
+                <Spinner size="sm" color="green" className="ml-10" />
+              )}
+            </FButton>
+          </div>
+        ) : (
           <FButton className="upload-btn" type="theme" name="upload-outline">
             <Input
               className="file-input"
@@ -1178,84 +1098,69 @@ const ImgModal = (props) => (
               <Spinner size="sm" color="green" className="ml-10" />
             )}
           </FButton>
-        </div>
-      ) : (
-        <FButton className="upload-btn" type="theme" name="upload-outline">
-          <Input
-            className="file-input"
-            type="file"
-            id="picture"
-            name="user"
-            accept="image/*"
-            onChange={props.handleFileInputChange}
-          />
-          <span>Choisir</span>
-          {props.sponsorLoading && (
-            <Spinner size="sm" color="green" className="ml-10" />
-          )}
-        </FButton>
-      )}
-    </div>
-    <div className="form-field">
-      <span>Entrez le nom de la structure partenaire</span>
-      <InputGroup>
-        <EVAIcon
-          className="input-icon"
-          name="briefcase-outline"
-          fill={colors.noir}
-        />
-        <FInput
-          id="nom"
-          placeholder="Réfugiés.info"
-          value={props.nom}
-          onChange={props.handleChange}
-          newSize={true}
-        />
-      </InputGroup>
-    </div>
-    <div className="form-field">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "row",
-          alignItems: "center",
-        }}
-      >
-        <span>Collez un lien vers le site de la structure</span>
+        )}
       </div>
-      <InputGroup>
-        <EVAIcon
-          className="input-icon"
-          name="link-outline"
-          fill={colors.noir}
-        />
-        <FInput
-          id="link"
-          placeholder="https://www.réfugiés.info"
-          value={props.link}
-          onChange={props.handleChange}
-          newSize={true}
-        />
-      </InputGroup>
-    </div>
-    <div className="btn-footer">
-      <FButton onClick={props.toggleModal} type="default" className="mr-8">
-        Annuler
-      </FButton>
-      <FButton
-        onClick={() =>
-          props.edit
-            ? props.editSponsor(props.sponsorKey)
-            : props.addSponsor(true)
-        }
-        type="validate"
-        name="checkmark-outline"
-      >
-        Valider
-      </FButton>
-    </div>
-  </Modal>
-);
+      <div className="form-field">
+        <span>Entrez le nom de la structure partenaire</span>
+        <InputGroup>
+          <EVAIcon
+            className="input-icon"
+            name="briefcase-outline"
+            fill={colors.noir}
+          />
+          <FInput
+            id="nom"
+            placeholder="Réfugiés.info"
+            value={props.nom}
+            onChange={props.handleChange}
+            newSize={true}
+          />
+        </InputGroup>
+      </div>
+      <div className="form-field">
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "row",
+            alignItems: "center",
+          }}
+        >
+          <span>Collez un lien vers le site de la structure</span>
+        </div>
+        <InputGroup>
+          <EVAIcon
+            className="input-icon"
+            name="link-outline"
+            fill={colors.noir}
+          />
+          <FInput
+            id="link"
+            placeholder="https://www.réfugiés.info"
+            value={props.link}
+            onChange={props.handleChange}
+            newSize={true}
+          />
+        </InputGroup>
+      </div>
+      <div className="btn-footer">
+        <FButton onClick={props.toggleModal} type="default" className="mr-8">
+          Annuler
+        </FButton>
+        <FButton
+          onClick={() =>
+            props.edit
+              ? props.editSponsor(props.sponsorKey)
+              : props.addSponsor()
+          }
+          type="validate"
+          name="checkmark-outline"
+        >
+          Valider
+        </FButton>
+      </div>
+    </Modal>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

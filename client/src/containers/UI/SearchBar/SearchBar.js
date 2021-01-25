@@ -10,7 +10,7 @@ import { withTranslation } from "react-i18next";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 
 import "./SearchBar.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 const escapeRegexCharacters = (str) =>
   str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

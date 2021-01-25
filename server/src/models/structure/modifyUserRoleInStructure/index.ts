@@ -1,0 +1,1 @@
+export { modifyUserRoleInStructure } from "./modifyUserRoleInStructure";

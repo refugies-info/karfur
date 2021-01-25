@@ -5,7 +5,7 @@ import TagButton from "../../FigmaUI/TagButton/TagButton";
 import Streamline from "../../../assets/streamline";
 import EVAIcon from "../../UI/EVAIcon/EVAIcon";
 import { withTranslation } from "react-i18next";
-import {colors} from "colors";
+import { colors } from "colors";
 
 import FButton from "../../FigmaUI/FButton/FButton";
 

@@ -20,17 +20,14 @@ const addMember = function () {
     });
     return;
   }
-  let structure = {
-    _id: this.state.structure._id,
-    $addToSet: {
-      membres: {
-        userId: this.state.selected._id,
-        roles: ["membre"],
-        added_at: new Date(),
-      },
-    },
+  const structure = {
+    membreId: this.state.selected._id,
+    structureId: this.state.structure._id,
+    action: "create",
+    role: "membre",
   };
-  API.create_structure(structure).then(() => {
+
+  API.modifyUserRoleInStructure({ query: structure }).then(() => {
     this.initializeStructure();
     Swal.fire({
       title: "Yay...",
