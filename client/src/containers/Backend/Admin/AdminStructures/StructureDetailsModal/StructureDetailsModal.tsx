@@ -18,6 +18,13 @@ import { compare } from "../../AdminContenu/AdminContenu";
 import { StyledStatus } from "../../sharedComponents/SubComponents";
 import Swal from "sweetalert2";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { structureSelector } from "services/AllStructures/allStructures.selector";
+import { isLoadingSelector } from "services/LoadingStatus/loadingStatus.selectors";
+import { LoadingStatusKey } from "services/LoadingStatus/loadingStatus.actions";
+import { fetchAllStructuresActionsCreator } from "../../../../../services/AllStructures/allStructures.actions";
+import { fetchAllDispositifsActionsCreator } from "../../../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchAllUsersActionsCreator } from "../../../../../services/AllUsers/allUsers.actions";
 moment.locale("fr");
 
 const Title = styled.div`
@@ -53,8 +60,8 @@ const RightLogoContainer = styled.div`
 interface Props extends RouteComponentProps {
   show: boolean;
   toggleModal: () => void;
-  selectedStructure: SimplifiedStructureForAdmin | null;
-  fetchStructures: () => void;
+  toggleRespoModal: () => void;
+  selectedStructureId: ObjectId | null;
 }
 
 const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
@@ -66,20 +73,30 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   ] = useState<SimplifiedStructureForAdmin | null>(null);
   const [uploading, setUploading] = useState(false);
 
-  useEffect(() => {
-    setStructure(props.selectedStructure);
-  }, [props.selectedStructure]);
+  const structureFromStore = useSelector(
+    structureSelector(props.selectedStructureId)
+  );
 
+  useEffect(() => {
+    setStructure(structureFromStore);
+  }, [structureFromStore]);
+
+  const dispatch = useDispatch();
+  const updateData = () => {
+    dispatch(fetchAllStructuresActionsCreator());
+    dispatch(fetchAllDispositifsActionsCreator());
+    dispatch(fetchAllUsersActionsCreator());
+  };
   const onSave = async () => {
     try {
-      await API.create_structure(structure);
+      await API.updateStructure({ query: structure });
       Swal.fire({
         title: "Yay...",
         text: "Structure modifiée",
         type: "success",
         timer: 1500,
       });
-      props.fetchStructures();
+      updateData();
       props.toggleModal();
     } catch (error) {
       Swal.fire({
@@ -88,7 +105,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         type: "error",
         timer: 1500,
       });
-      props.fetchStructures();
+      updateData();
       props.toggleModal();
     }
   };
@@ -134,6 +151,22 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
   const secureUrl =
     structure && structure.picture && structure.picture.secure_url;
 
+  const isLoading = useSelector(
+    isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
+  );
+
+  if (isLoading) {
+    return (
+      <Modal
+        isOpen={props.show}
+        toggle={props.toggleModal}
+        className="structure-details-modal"
+      >
+        <Spinner />
+      </Modal>
+    );
+  }
+
   if (!structure)
     return (
       <Modal
@@ -176,7 +209,7 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
             {secureUrl ? (
               <span>Choisir une autre image</span>
             ) : (
-              <span>Choisir</span>
+              <span>Ajouter un logo</span>
             )}
 
             {uploading && <Spinner color="success" className="ml-10" />}
@@ -184,9 +217,21 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         </RightLogoContainer>
       </LogoContainer>
       <Title>Premier responsable</Title>
-      <div style={{ marginBottom: "8px" }}>
-        <ResponsableComponent responsable={structure.responsable} />
-      </div>
+      {!isLoading && (
+        <div style={{ marginBottom: "8px" }}>
+          <ResponsableComponent
+            responsable={structure.responsable}
+            canModifyRespo={true}
+            onClick={props.toggleRespoModal}
+          />
+        </div>
+      )}
+
+      {isLoading && (
+        <div style={{ marginBottom: "8px" }}>
+          <Spinner />
+        </div>
+      )}
 
       <Title>Coordonnées du contact unique</Title>
       <InputContainer>
@@ -243,7 +288,9 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
         })}
       </RowContainer>
       <Title>Date de création</Title>
-      {moment(structure.created_at).format("LLL")}
+      {structure.created_at
+        ? moment(structure.created_at).format("LLL")
+        : "Non connue"}
       <BottomRowContainer>
         <div>
           <FButton
@@ -262,19 +309,18 @@ const StructureDetailsModalComponent: React.FunctionComponent<Props> = (
           >
             Page
           </FButton>
-          {props.selectedStructure &&
-            props.selectedStructure.status === "Actif" && (
-              <FButton
-                className="mr-8"
-                type="dark"
-                name="paper-plane"
-                tag={"a"}
-                href={`/annuaire/${structure._id}`}
-                target="_blank"
-              >
-                Annuaire
-              </FButton>
-            )}
+          {structure && structure.status === "Actif" && (
+            <FButton
+              className="mr-8"
+              type="dark"
+              name="paper-plane"
+              tag={"a"}
+              href={`/annuaire/${structure._id}`}
+              target="_blank"
+            >
+              Annuaire
+            </FButton>
+          )}
         </div>
         <div>
           <FButton

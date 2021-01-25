@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment/min/moment-with-locales";
 import Swal from "sweetalert2";
-import {
-  fetchAllDispositifsActionsCreator,
-  setAllDispositifsActionsCreator,
-} from "../../../../services/AllDispositifs/allDispositifs.actions";
+import { fetchAllDispositifsActionsCreator } from "../../../../services/AllDispositifs/allDispositifs.actions";
 import { fetchActiveDispositifsActionsCreator } from "../../../../services/ActiveDispositifs/activeDispositifs.actions";
+
 import { table_contenu, correspondingStatus } from "./data";
 import API from "../../../../utils/API";
 import {
@@ -38,16 +36,11 @@ import { CustomSearchBar } from "../../../../components/Frontend/Dispositif/Cust
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { DetailsModal } from "./DetailsModal/DetailsModal";
 import { ChangeStructureModal } from "./ChangeStructureModale/ChangeStructureModale";
-import AsyncCSV from "./AsyncCSV";
+import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
+import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
 
 moment.locale("fr");
 
-const url =
-  process.env.REACT_APP_ENV === "development"
-    ? "http://localhost:3000/"
-    : process.env.REACT_APP_ENV === "staging"
-    ? "https://staging.refugies.info/"
-    : "https://www.refugies.info/";
 export const compare = (a, b) => {
   const orderA = a.order;
   const orderB = b.order;
@@ -69,6 +62,12 @@ export const AdminContenu = () => {
   const [showChangeStructureModal, setShowChangeStructureModal] = useState(
     false
   );
+  const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
+    false
+  );
+  const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
+  const [selectedStructureId, setSelectedStructureId] = useState(null);
+
   const headers = table_contenu.headers;
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_DISPOSITIFS)
@@ -76,24 +75,13 @@ export const AdminContenu = () => {
 
   const toggleShowChangeStructureModal = () =>
     setShowChangeStructureModal(!showChangeStructureModal);
+
   const toggleDetailsModal = () => setShowDetailsModal(!showDetailsModal);
+
   const setSelectedDispositifAndToggleModal = (element) => {
     setSelectedDispositif(element);
     toggleDetailsModal();
   };
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const loadDispositifs = async () => {
-      await dispatch(fetchAllDispositifsActionsCreator());
-    };
-    loadDispositifs();
-    window.scrollTo(0, 0);
-
-    return () => {
-      dispatch(setAllDispositifsActionsCreator([]));
-    };
-  }, [dispatch]);
 
   if (isLoading || dispositifs.length === 0) {
     return (
@@ -187,7 +175,9 @@ export const AdminContenu = () => {
     }
   };
 
-  const prepareDeleteContrib = function (dispositif) {
+  const dispatch = useDispatch();
+
+  const prepareDeleteContrib = (dispositif) => {
     Swal.fire({
       title: "Êtes-vous sûr ?",
       text: "La suppression d'un dispositif est irréversible",
@@ -233,53 +223,64 @@ export const AdminContenu = () => {
     setSortedHeader(defaultSortedHeader);
   };
 
+  const toggleStructureDetailsModal = () =>
+    setShowStructureDetailsModal(!showStructureDetailsModal);
+
+  const setSelectedStructureIdAndToggleModal = (element) => {
+    setSelectedStructureId(element ? element._id : null);
+    toggleStructureDetailsModal();
+  };
   const handleChange = (e) => setSearch(e.target.value);
 
-  const publishDispositif = async (dispositif, status = "Actif") => {
+  const publishDispositif = async (dispositif, status = "Actif", disabled) => {
+    if (disabled) return;
     const newDispositif = { status: status, dispositifId: dispositif._id };
     let question = { value: true };
-    const link = `${url}${dispositif.typeContenu}/${dispositif._id}`;
+    const link = `/${dispositif.typeContenu}/${dispositif._id}`;
 
-    if (
+    const text =
       dispositif.status === "En attente" ||
       dispositif.status === "Accepté structure"
-    ) {
-      question = await Swal.fire({
-        title: "Êtes-vous sûr ?",
-        text:
-          "Ce dispositif n'a pas encore été validé par sa structure d'appartenance",
-        type: "question",
-        showCancelButton: true,
-        confirmButtonColor: colors.rouge,
-        cancelButtonColor: colors.vert,
-        confirmButtonText: "Oui, le valider",
-        cancelButtonText: "Annuler",
-      });
-    }
+        ? "Cette fiche n'a pas encore été validée par sa structure d'appartenance"
+        : "Cette fiche sera visible par tous.";
+
+    question = await Swal.fire({
+      title: "Êtes-vous sûr ?",
+      text,
+
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: colors.rouge,
+      cancelButtonColor: colors.vert,
+      confirmButtonText: "Oui, le valider",
+      cancelButtonText: "Annuler",
+    });
+
     if (question.value) {
-      API.updateDispositifStatus({ query: newDispositif })
-        .then(() => {
-          Swal.fire({
-            title: "Yay...",
-            text: "Contenu publié",
-            type: "success",
-            timer: 5500,
-            footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
-          });
-          dispatch(fetchAllDispositifsActionsCreator());
-          dispatch(fetchActiveDispositifsActionsCreator());
-        })
-        .catch(() => {
-          Swal.fire({
-            title: "Oh non!",
-            text: "Something went wrong",
-            type: "error",
-            timer: 1500,
-          });
+      try {
+        await API.updateDispositifStatus({ query: newDispositif });
+
+        Swal.fire({
+          title: "Yay...",
+          text: "Contenu publié",
+          type: "success",
+          timer: 5500,
+          footer: `<a target='_blank' href=${link}>Voir le contenu</a>`,
         });
+        dispatch(fetchAllDispositifsActionsCreator());
+        dispatch(fetchActiveDispositifsActionsCreator());
+      } catch (error) {
+        Swal.fire({
+          title: "Oh non!",
+          text: "Something went wrong",
+          type: "error",
+          timer: 1500,
+        });
+      }
     }
   };
-
+  // eslint-disable-next-line no-console
+  console.log("sele", selectedStructureId);
   const nbNonDeletedDispositifs =
     dispositifs.length > 0
       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
@@ -303,7 +304,6 @@ export const AdminContenu = () => {
           Ajouter un contenu
         </FButton>
       </SearchBarContainer>
-      <AsyncCSV />
       <StyledHeader>
         <StyledTitle>Contenus</StyledTitle>
         <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
@@ -350,8 +350,11 @@ export const AdminContenu = () => {
               const nbDays =
                 -moment(element.updatedAt).diff(moment(), "days") + " jours";
               const burl =
-                url + (element.typeContenu || "dispositif") + "/" + element._id;
-
+                "/" + (element.typeContenu || "dispositif") + "/" + element._id;
+              const validationDisabled =
+                element.status === "Actif" ||
+                !element.mainSponsor ||
+                element.mainSponsor.status !== "Actif";
               return (
                 <tr key={key}>
                   <td
@@ -374,12 +377,9 @@ export const AdminContenu = () => {
                   </td>
                   <td
                     className="align-middle cursor-pointer"
-                    // onClick={() =>
-                    //   this.props.onSelect(
-                    //     { structure: element.structureObj },
-                    //     "1"
-                    //   )
-                    // }
+                    onClick={() =>
+                      setSelectedStructureIdAndToggleModal(element.mainSponsor)
+                    }
                   >
                     <Structure sponsor={element.mainSponsor} />
                   </td>
@@ -420,12 +420,14 @@ export const AdminContenu = () => {
                     <div style={{ display: "flex", flexDirection: "row" }}>
                       <SeeButton burl={burl} />
                       <ValidateButton
-                        onClick={() => publishDispositif(element)}
-                        disabled={
-                          element.status === "Actif" ||
-                          !element.mainSponsor ||
-                          element.mainSponsor.status !== "Actif"
+                        onClick={() =>
+                          publishDispositif(
+                            element,
+                            "Actif",
+                            validationDisabled
+                          )
                         }
+                        disabled={validationDisabled}
                         hoverColor={colors.validationHover}
                       />
                       <DeleteButton
@@ -446,7 +448,6 @@ export const AdminContenu = () => {
         selectedDispositifId={
           selectedDispositif ? selectedDispositif._id : null
         }
-        url={url}
         onDeleteClick={() => prepareDeleteContrib(selectedDispositif)}
         setShowChangeStructureModal={setShowChangeStructureModal}
       />
@@ -456,6 +457,22 @@ export const AdminContenu = () => {
         dispositifId={selectedDispositif ? selectedDispositif._id : null}
         dispositifStatus={selectedDispositif ? selectedDispositif.status : null}
       />
+
+      {selectedStructureId && (
+        <StructureDetailsModal
+          show={showStructureDetailsModal}
+          toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
+          selectedStructureId={selectedStructureId}
+          toggleRespoModal={() => setSelectFirstRespoModal(true)}
+        />
+      )}
+      {selectedStructureId && (
+        <SelectFirstResponsableModal
+          show={showSelectFirstRespoModal}
+          toggleModal={() => setSelectFirstRespoModal(false)}
+          selectedStructureId={selectedStructureId}
+        />
+      )}
     </div>
   );
 };

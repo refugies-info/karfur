@@ -2,6 +2,8 @@ import mongoose, { ObjectId } from "mongoose";
 // @ts-ignore
 import passwordHash from "password-hash";
 import jwt from "jwt-simple";
+import { LangueDoc } from "./schemaLangue";
+import { Picture } from "../types/interface";
 let config = {};
 if (process.env.NODE_ENV === "dev") {
   config = require("../config/config");
@@ -120,14 +122,20 @@ var userSchema = new mongoose.Schema(
 // @ts-ignore
 userSchema.methods = {
   authenticate: function (password: string) {
+    // @ts-ignore
+
     return passwordHash.verify(password, this.password);
   },
   getToken: function () {
     return jwt.encode(
       {
+        // @ts-ignore
         _id: this._id,
+        // @ts-ignore
         username: this.username,
+        // @ts-ignore
         password: this.password,
+        // @ts-ignore
         email: this.email,
       },
       // @ts-ignore
@@ -156,11 +164,11 @@ export interface UserDoc extends mongoose.Document {
 
   notifyObjectifsContrib?: boolean;
 
-  picture?: Object;
+  picture?: Picture;
 
   roles?: ObjectId[];
 
-  selectedLanguages?: string[];
+  selectedLanguages?: LangueDoc[];
   traductionsFaites?: ObjectId[];
   contributions?: ObjectId[];
   noteTraduction?: number;
@@ -174,6 +182,7 @@ export interface UserDoc extends mongoose.Document {
   reset_password_token?: string;
   reset_password_expires?: number;
   _id: ObjectId;
+  created_at: Date;
 }
 
 export const User = mongoose.model<UserDoc>("User", userSchema);

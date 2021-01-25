@@ -1,5 +1,5 @@
 import mongoose, { ObjectId } from "mongoose";
-import { Picture, OpeningHours } from "src/types/interface";
+import { Picture, OpeningHours } from "../types/interface";
 import { Moment } from "moment";
 import { DispositifDoc } from "./schemaDispositif";
 

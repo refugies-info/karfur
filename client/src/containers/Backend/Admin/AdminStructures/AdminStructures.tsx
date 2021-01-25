@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "reactstrap";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  fetchAllStructuresActionsCreator,
-  setAllStructuresActionCreator,
-} from "../../../../services/AllStructures/allStructures.actions";
+import { useSelector } from "react-redux";
 import { allStructuresSelector } from "../../../../services/AllStructures/allStructures.selector";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
@@ -30,14 +26,20 @@ import {
   StructureName,
   ResponsableComponent,
 } from "./components/AdminStructureComponents";
-import { SimplifiedStructureForAdmin } from "../../../../types/interface";
+import {
+  SimplifiedStructureForAdmin,
+  Responsable,
+} from "../../../../types/interface";
 import { compare } from "../AdminContenu/AdminContenu";
 import { CustomSearchBar } from "components/Frontend/Dispositif/CustomSeachBar/CustomSearchBar";
 import FButton from "components/FigmaUI/FButton/FButton";
 import { StructureDetailsModal } from "./StructureDetailsModal/StructureDetailsModal";
+import { SelectFirstResponsableModal } from "./SelectFirstResponsableModal/SelectFirstResponsableModal";
+import { NewStructureModal } from "./NewStructureModal/NewStructureModal";
+import { ObjectId } from "mongodb";
+import { UserDetailsModal } from "../AdminUsers/UserDetailsModal/UserDetailsModal";
 
 moment.locale("fr");
-declare const window: Window;
 
 export const AdminStructures = () => {
   const defaultSortedHeader = {
@@ -52,10 +54,15 @@ export const AdminStructures = () => {
   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
     false
   );
+  const [showNewStructureModal, setShowNewStructureModal] = useState(false);
+
+  const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [
-    selectedStructure,
-    setSelectedStructure,
-  ] = useState<SimplifiedStructureForAdmin | null>(null);
+    selectedStructureId,
+    setSelectedStructureId,
+  ] = useState<ObjectId | null>(null);
+  const [showUserDetailsModal, setShowUserDetailsModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState<ObjectId | null>(null);
 
   const isLoading = useSelector(
     isLoadingSelector(LoadingStatusKey.FETCH_ALL_STRUCTURES)
@@ -63,13 +70,20 @@ export const AdminStructures = () => {
 
   const handleChange = (e: any) => setSearch(e.target.value);
 
+  const toggleShowNewStructureModal = () =>
+    setShowNewStructureModal(!showNewStructureModal);
+
   const toggleStructureDetailsModal = () =>
     setShowStructureDetailsModal(!showStructureDetailsModal);
 
-  const setSelectedStructureAndToggleModal = (
+  const addNewStructure = () => {
+    toggleShowNewStructureModal();
+  };
+
+  const setSelectedStructureIdAndToggleModal = (
     element: SimplifiedStructureForAdmin | null
   ) => {
-    setSelectedStructure(element);
+    setSelectedStructureId(element ? element._id : null);
     toggleStructureDetailsModal();
   };
 
@@ -77,29 +91,14 @@ export const AdminStructures = () => {
     setFilter(status);
     setSortedHeader(defaultSortedHeader);
   };
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const loadStructures = async () => {
-      await dispatch(fetchAllStructuresActionsCreator());
-    };
-    loadStructures();
-
-    window.scrollTo(0, 0);
-
-    return () => {
-      dispatch(setAllStructuresActionCreator([]));
-    };
-  }, [dispatch]);
 
   const structures = useSelector(allStructuresSelector);
 
-  if (isLoading || structures.length === 0) {
-    return (
-      <div>
-        <LoadingAdminStructures />
-      </div>
-    );
+  if (
+    (isLoading || structures.length === 0) &&
+    showStructureDetailsModal === false
+  ) {
+    return <LoadingAdminStructures />;
   }
   const reorder = (element: { name: string; order: string }) => {
     if (sortedHeader.name === element.name) {
@@ -112,6 +111,14 @@ export const AdminStructures = () => {
         orderColumn: element.order,
       });
     }
+  };
+
+  const toggleUserDetailsModal = () =>
+    setShowUserDetailsModal(!showUserDetailsModal);
+
+  const setSelectedUserIdAndToggleModal = (element: Responsable | null) => {
+    setSelectedUserId(element ? element._id : null);
+    toggleUserDetailsModal();
   };
 
   const filterAndSortStructures = (
@@ -156,8 +163,8 @@ export const AdminStructures = () => {
         }
 
         if (orderColumn === "nbFiches") {
-          const nbFichesA = a.dispositifsAssocies.length;
-          const nbFichesB = b.dispositifsAssocies.length;
+          const nbFichesA = a.nbFiches;
+          const nbFichesB = b.nbFiches;
 
           if (nbFichesA > nbFichesB) return sortedHeader.sens === "up" ? 1 : -1;
           return sortedHeader.sens === "up" ? -1 : 1;
@@ -227,7 +234,11 @@ export const AdminStructures = () => {
           onChange={handleChange}
           placeholder="Rechercher une structure..."
         />
-        <FButton type="dark" name="plus-circle-outline">
+        <FButton
+          type="dark"
+          name="plus-circle-outline"
+          onClick={addNewStructure}
+        >
           Ajouter une structure
         </FButton>
       </SearchBarContainer>
@@ -280,11 +291,11 @@ export const AdminStructures = () => {
           </thead>
           <tbody>
             {structuresToDisplay.map((element, key) => (
-              <tr
-                key={key}
-                onClick={() => setSelectedStructureAndToggleModal(element)}
-              >
-                <td className="align-middle">
+              <tr key={key}>
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
                   <RowContainer>
                     {element.picture && element.picture.secure_url && (
                       <img
@@ -295,23 +306,47 @@ export const AdminStructures = () => {
                     <StructureName>{element.nom}</StructureName>
                   </RowContainer>
                 </td>
-                <td className="align-middle">
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
                   <StyledStatus
                     text={element.status}
                     textToDisplay={element.status}
                   />
                 </td>
-                <td className="align-middle cursor-pointer">
+                <td
+                  className="align-middle cursor-pointer"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
                   {element.nbMembres}
                 </td>
-                <td className={"align-middle "}>
-                  <ResponsableComponent responsable={element.responsable} />
+
+                <td
+                  className={"align-middle "}
+                  onClick={() =>
+                    setSelectedUserIdAndToggleModal(element.responsable)
+                  }
+                >
+                  <ResponsableComponent
+                    responsable={element.responsable}
+                    canModifyRespo={false}
+                    onClick={() => {}}
+                  />
                 </td>
-                <td className="align-middle">
-                  {element.dispositifsAssocies.length}
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
+                  {element.nbFiches}
                 </td>
-                <td className="align-middle">
-                  {moment(element.created_at).format("lll")}
+                <td
+                  className="align-middle"
+                  onClick={() => setSelectedStructureIdAndToggleModal(element)}
+                >
+                  {element.created_at
+                    ? moment(element.created_at).format("LLL")
+                    : "Non connue"}
                 </td>
               </tr>
             ))}
@@ -321,10 +356,27 @@ export const AdminStructures = () => {
 
       <StructureDetailsModal
         show={showStructureDetailsModal}
-        toggleModal={() => setSelectedStructureAndToggleModal(null)}
-        selectedStructure={selectedStructure}
-        fetchStructures={() => dispatch(fetchAllStructuresActionsCreator())}
+        toggleModal={() => setSelectedStructureIdAndToggleModal(null)}
+        selectedStructureId={selectedStructureId}
+        toggleRespoModal={() => setSelectFirstRespoModal(true)}
       />
+      <NewStructureModal
+        show={showNewStructureModal}
+        toggleModal={toggleShowNewStructureModal}
+      />
+
+      <SelectFirstResponsableModal
+        show={showSelectFirstRespoModal}
+        toggleModal={() => setSelectFirstRespoModal(false)}
+        selectedStructureId={selectedStructureId}
+      />
+      {selectedUserId && (
+        <UserDetailsModal
+          show={showUserDetailsModal}
+          toggleModal={() => setSelectedUserIdAndToggleModal(null)}
+          selectedUserId={selectedUserId}
+        />
+      )}
     </div>
   );
 };

@@ -12,13 +12,14 @@ import {
   getActiveDispositifsFromDBWithoutPopulate,
 } from "./dispositif.repository";
 import { ObjectId } from "mongoose";
-import { updateAssociatedDispositifsInStructure } from "../structure/structure.repository";
+import { updateAssociatedDispositifsInStructure } from "../../models/structure/structure.repository";
 import {
   removeUselessContent,
   adaptDispositifMainSponsorAndCreatorId,
   adaptDispositifDepartement,
   getRegionFigures,
 } from "./dispositif.adapter";
+import { updateLanguagesAvancement } from "../langues/langues.service";
 
 interface Query {}
 
@@ -150,6 +151,17 @@ export const updateDispositifStatus = async (
       newDispositif = { status };
     }
     await updateDispositifInDB(dispositifId, newDispositif);
+
+    if (status === "Actif") {
+      try {
+        await updateLanguagesAvancement();
+      } catch (error) {
+        logger.info(
+          "[updateDispositifStatus] error while updating languages avancement",
+          { error }
+        );
+      }
+    }
     res.status(200).json({ text: "OK" });
   } catch (error) {
     logger.error("[updateDispositifStatus] error", { error });

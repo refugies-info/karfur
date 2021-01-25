@@ -1,9 +1,10 @@
-import { Res } from "../../types/interface";
-import { User } from "../../schema/schemaUser";
-import logger from "../../logger";
+import { User } from "../../../schema/schemaUser";
+import { Res } from "../../../types/interface";
+import logger = require("../../../logger");
 
 export const getFiguresOnUsers = async (req: {}, res: Res) => {
   try {
+    // TO DO IN REPO
     const users = await User.find({ status: "Actif" }, { roles: 1 }).populate(
       "roles"
     );

@@ -1,5 +1,6 @@
-import { ObjectId } from "mongodb";
+import { ObjectId } from "mongoose";
 import { Moment } from "moment";
+import { UserDoc } from "../schema/schemaUser";
 
 export interface RequestFromClient<Query> {
   body?: {
@@ -10,6 +11,8 @@ export interface RequestFromClient<Query> {
   };
   fromSite: boolean;
   query?: Query;
+  userId?: ObjectId;
+  user?: UserDoc;
 }
 
 export interface Res {
@@ -35,9 +38,13 @@ export interface OpeningHours {
 
 export type IDispositif = any;
 
+export interface Membre {
+  userId: ObjectId;
+  roles: string[];
+}
 export interface IStructure {
   _id: ObjectId;
-  membres: { userId: ObjectId; roles: string[] }[];
+  membres: Membre[];
   acronyme: string;
   administrateur: ObjectId;
   adresse: string;

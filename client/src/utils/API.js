@@ -93,9 +93,12 @@ export default {
       headers: headers,
     });
   },
-  FClogout: () => {
-    return axios.post(burl + "/user/FClogout", {}, { headers: headers });
-  },
+
+  updateUser: (query) =>
+    axios.post(burl + "/user/updateUser", query, {
+      headers,
+    }),
+
   change_password: (query) => {
     return axios.post(burl + "/user/change_password", query, {
       headers: headers,
@@ -233,11 +236,19 @@ export default {
       headers,
     }),
 
-  create_structure: (query) => {
-    return axios.post(burl + "/structures/add_structure", query, {
-      headers: headers,
-    });
-  },
+  createStructure: (query) =>
+    axios.post(burl + "/structures/createStructure", query, {
+      headers,
+    }),
+
+  updateStructure: (query) =>
+    axios.post(burl + "/structures/updateStructure", query, {
+      headers,
+    }),
+  modifyUserRoleInStructure: (query) =>
+    axios.post(burl + "/structures/modifyUserRoleInStructure", query, {
+      headers,
+    }),
   get_structure: (query = {}, sort = {}, populate = "", limit = null) => {
     return axios.post(
       burl + "/structures/get_structure",
@@ -269,6 +280,7 @@ export default {
 
   getAllDispositifs: () => axios.get(burl + "/dispositifs/getAllDispositifs"),
   getAllStructures: () => axios.get(burl + "/structures/getAllStructures"),
+  getAllUsers: () => axios.get(burl + "/user/getAllUsers"),
 
   add_tradForReview: (query) => {
     return axios.post(burl + "/traduction/add_tradForReview", query, {
@@ -384,8 +396,12 @@ export default {
     return localStorage.removeItem("token");
   },
   create_csv_dispositifs_length: (params = {}) => {
-    return axios.post(burl + "/dispositifs/create_csv_dispositifs_length", params, {
-      headers: headers,
-    });
+    return axios.post(
+      burl + "/dispositifs/create_csv_dispositifs_length",
+      params,
+      {
+        headers: headers,
+      }
+    );
   },
 };

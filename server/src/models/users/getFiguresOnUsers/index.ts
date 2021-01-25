@@ -1,0 +1,1 @@
+export { getFiguresOnUsers } from "./getFiguresOnUsers";

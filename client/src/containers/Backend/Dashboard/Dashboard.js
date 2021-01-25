@@ -7,6 +7,7 @@ import _ from "lodash";
 import { targetByTag } from "./data";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { NoGeolocModal } from "./NoGeolocModal";
+import AsyncCSV from "./AsyncCSV";
 
 moment.locale("fr");
 
@@ -209,6 +210,7 @@ class Dashboard extends Component {
               Nombre de traducteurs ou experts : <b>{nbTraductors}</b>
             </li>
           </ul>
+          <AsyncCSV />
         </div>
         <NoGeolocModal
           dispositifsWithoutGeoloc={dispositifsWithoutGeoloc}

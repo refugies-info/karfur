@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { getFiguresOnUsers } from "../users.service";
+import { getFiguresOnUsers } from "./getFiguresOnUsers";
 import { User } from "../../../schema/schemaUser";
 import logger from "../../../logger";
 

@@ -97,3 +97,38 @@ export const updateAssociatedDispositifsInStructure = async (
   );
   return;
 };
+
+export const createStructureInDB = async (structure: StructureDoc) =>
+  await new Structure(structure).save();
+
+export const updateStructureInDB = async (
+  structureId: ObjectId,
+  structure: StructureDoc
+) =>
+  await Structure.findOneAndUpdate(
+    {
+      _id: structureId,
+    },
+    structure,
+    // @ts-ignore
+    { upsert: true, new: true }
+  );
+
+export const updateStructureMember = async (
+  membreId: ObjectId,
+  structure: {
+    _id: ObjectId;
+    $set?: Object;
+    $pull?: Object;
+    $addToSet?: Object;
+  }
+) =>
+  await Structure.findOneAndUpdate(
+    {
+      _id: structure._id,
+      ...(membreId && { "membres.userId": membreId }),
+    },
+    // @ts-ignore
+    structure,
+    { upsert: true, new: true }
+  );
