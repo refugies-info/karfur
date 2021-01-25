@@ -110,7 +110,8 @@ export const updateStructureInDB = async (
       _id: structureId,
     },
     structure,
-    { upsert: true }
+    // @ts-ignore
+    { upsert: true, new: true }
   );
 
 export const updateStructureMember = async (

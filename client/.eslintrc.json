@@ -2,7 +2,8 @@
   "env": {
     "node": true,
     "es6": true,
-    "jest": true
+    "jest": true,
+    "browser": true
   },
   "extends": ["plugin:react/recommended"],
   "parser": "@typescript-eslint/parser",
@@ -30,6 +31,7 @@
     "react/no-unescaped-entities": "off",
     "react/no-unknown-property": "off",
     "react/jsx-no-target-blank": "off",
-    "eqeqeq": "error"
+    "eqeqeq": "error",
+    "no-undef": "error"
   }
 }
