@@ -3,7 +3,7 @@ import { getAllUsersFromDB } from "../users.repository";
 import { Res, Picture } from "../../../types/interface";
 import { UserDoc } from "../../../schema/schemaUser";
 import { ObjectId } from "mongoose";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 import { LangueDoc } from "../../../schema/schemaLangue";
 import _ from "lodash";
 
@@ -84,7 +84,7 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
   return _.uniq(languesFiltered);
 };
 
-const adaptUsers = (users: UserDoc[]) =>
+export const adaptUsers = (users: UserDoc[]) =>
   users.map((user) => {
     const simplifiedStructures =
       user.structures && user.structures.length > 0
