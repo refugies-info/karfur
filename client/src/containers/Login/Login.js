@@ -15,7 +15,7 @@ import { fetchUserActionCreator } from "../../services/User/user.actions";
 import styled from "styled-components";
 import LanguageModal from "../../components/Modals/LanguageModal/LanguageModal";
 
-import {colors} from "colors";
+import { colors } from "colors";
 import {
   fetchLanguesActionCreator,
   toggleLangueActionCreator,
@@ -628,7 +628,6 @@ const PhoneAndEmailFields = (props) => (
       disabled={!props.phone || !props.email}
     >
       {props.t("Suivant", "Suivant")}
-      newSize
     </FButton>
   </>
 );
