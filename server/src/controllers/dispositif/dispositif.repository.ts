@@ -64,3 +64,6 @@ export const getActiveDispositifsFromDBWithoutPopulate = async (
     { status: "Actif", typeContenu: "dispositif" },
     needFields
   );
+
+export const getAllDispositifsFromDB = async () =>
+  await Dispositif.find({}, { audienceAge: 1 });
