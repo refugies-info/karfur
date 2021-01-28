@@ -1537,11 +1537,28 @@ export class Dispositif extends Component {
       dispositif.audienceAge = cardElement.some((x) => x.title === "Âge requis")
         ? cardElement
             .filter((x) => x.title === "Âge requis")
-            .map((x) => ({
-              contentTitle: x.contentTitle,
-              bottomValue: x.bottomValue,
-              topValue: x.topValue,
-            }))
+            .map((x) => {
+              if (x.contentTitle === "De ** à ** ans") {
+                return {
+                  contentTitle: x.contentTitle,
+                  bottomValue: parseInt(x.bottomValue, 10),
+                  topValue: parseInt(x.topValue, 10),
+                };
+              }
+              if (x.contentTitle === "Plus de ** ans") {
+                return {
+                  contentTitle: x.contentTitle,
+                  bottomValue: parseInt(x.bottomValue, 10),
+                  topValue: 999,
+                };
+              }
+
+              return {
+                contentTitle: x.contentTitle,
+                bottomValue: -1,
+                topValue: parseInt(x.topValue, 10),
+              };
+            })
         : [{ contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 }];
       dispositif.niveauFrancais = cardElement.some(
         (x) => x.title === "Niveau de français"
@@ -1607,6 +1624,7 @@ export class Dispositif extends Component {
         dispositif.status = "En attente non prioritaire";
       }
     }
+    console.log("dispo", dispositif.audienceAge);
     API.add_dispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
       if (!auto && this._isMounted) {

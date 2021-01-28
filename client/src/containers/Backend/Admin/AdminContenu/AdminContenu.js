@@ -100,12 +100,18 @@ export const AdminContenu = () => {
     const dispositifsFilteredBySearch = !!search
       ? dispositifs.filter(
           (dispo) =>
-            dispo.titreInformatif &&
-            dispo.titreInformatif
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLowerCase()
-              .includes(search.toLowerCase())
+            (dispo.titreInformatif &&
+              dispo.titreInformatif
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .includes(search.toLowerCase())) ||
+            (dispo.titreMarque &&
+              dispo.titreMarque
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .includes(search.toLowerCase()))
         )
       : dispositifs;
 
