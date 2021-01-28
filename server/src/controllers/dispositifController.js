@@ -9,9 +9,15 @@ const {
   getNbDispositifsByRegion,
 } = require("./dispositif/dispositif.service");
 
+import { fixAudienceAgeOnDispositifs } from "../models/dispositif/fixAudienceAgeOnDispositifs";
+
 module.exports = function (app) {
   app.post("/add_dispositif", checkToken.check, dispositif.add_dispositif);
-  app.post("/create_csv_dispositifs_length", checkToken.check, dispositif.create_csv_dispositifs_length);
+  app.post(
+    "/create_csv_dispositifs_length",
+    checkToken.check,
+    dispositif.create_csv_dispositifs_length
+  );
   app.post(
     "/add_dispositif_infocards",
     checkToken.check,
@@ -35,4 +41,5 @@ module.exports = function (app) {
   app.post("/modifyDispositifMainSponsor", modifyDispositifMainSponsor);
   app.post("/updateDispositifAdminComments", updateDispositifAdminComments);
   app.get("/getNbDispositifsByRegion", getNbDispositifsByRegion);
+  app.post("/fixAudienceAgeOnDispositifs", fixAudienceAgeOnDispositifs);
 };
