@@ -67,3 +67,12 @@ export const getActiveDispositifsFromDBWithoutPopulate = async (
 
 export const getAllDispositifsFromDB = async () =>
   await Dispositif.find({}, { audienceAge: 1 });
+
+export const getAllDemarchesFromDB = async () =>
+  await Dispositif.find({ typeContenu: "demarche" }, { _id: 1 });
+
+export const removeAudienceAgeInDB = async (dispositifId: ObjectId) =>
+  await Dispositif.update(
+    { _id: dispositifId },
+    { $unset: { audienceAge: "" } }
+  );
