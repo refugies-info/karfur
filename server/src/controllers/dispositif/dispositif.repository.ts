@@ -66,7 +66,7 @@ export const getActiveDispositifsFromDBWithoutPopulate = async (
   );
 
 export const getAllDispositifsFromDB = async () =>
-  await Dispositif.find({}, { audienceAge: 1 });
+  await Dispositif.find({ typeContenu: "dispositif" }, { audienceAge: 1 });
 
 export const getAllDemarchesFromDB = async () =>
   await Dispositif.find({ typeContenu: "demarche" }, { _id: 1 });
