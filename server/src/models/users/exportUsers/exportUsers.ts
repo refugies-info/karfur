@@ -4,6 +4,8 @@ import { getAllUsersFromDB } from "../users.repository";
 import { adaptUsers } from "../getAllUsers/getAllUsers";
 import { ObjectId } from "mongoose";
 import moment from "moment";
+import { asyncForEach } from "../../../libs/asyncForEach";
+import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
   process.env.AIRTABLE_BASE_USERS
@@ -22,10 +24,10 @@ interface User {
   structures: { _id: ObjectId; nom: string }[];
   nbStructures: number;
   nbContributions: number;
+  totalIndicator: { wordsCount: number; timeSpent: number }[];
 }
 const exportUsersInAirtable = (users: User[]) => {
-  const testUsers = users.slice(0, 100);
-  testUsers.forEach((user) => {
+  users.forEach((user) => {
     const structure =
       user.structures && user.structures.length > 0
         ? user.structures.map((structure) => structure.nom).join()
@@ -38,6 +40,15 @@ const exportUsersInAirtable = (users: User[]) => {
       user.langues.length > 0 ? user.roles.concat(["Traducteur"]) : user.roles;
 
     const langues = user.langues.map((langue) => langue.langueFr);
+    const nbWords =
+      user.totalIndicator && user.totalIndicator.length > 0
+        ? Math.floor(user.totalIndicator[0].wordsCount)
+        : 0;
+
+    const timeSpent =
+      user.totalIndicator && user.totalIndicator.length > 0
+        ? Math.floor(user.totalIndicator[0].timeSpent / 60 / 1000)
+        : 0;
 
     base("Users").create(
       [
@@ -47,8 +58,8 @@ const exportUsersInAirtable = (users: User[]) => {
             Email: user.email,
             "Date de création": createdAt,
             Role: rolesWithTraducteur,
-            "Mots traduits": 10,
-            "Temps passé à traduire": 50,
+            "Mots traduits": nbWords,
+            "Temps passé à traduire": timeSpent,
             Structure: structure,
             Langues: langues,
             "Nb fiches avec contribution": user.nbContributions,
@@ -82,7 +93,17 @@ export const exportUsers = async (_: any, res: Res) => {
     const users = await getAllUsersFromDB(neededFields);
     const adaptedUsers = adaptUsers(users);
 
-    await exportUsersInAirtable(adaptedUsers);
+    const usersWithIndicators: User[] = [];
+
+    await asyncForEach(adaptedUsers, async (user) => {
+      logger.info(`[exportUsers] get indicators user ${user._id}`);
+
+      const totalIndicator = await computeGlobalIndicator(user._id);
+
+      usersWithIndicators.push({ ...user, totalIndicator });
+    });
+
+    await exportUsersInAirtable(usersWithIndicators);
     logger.info(
       `[exportUsers] successfully added ${adaptedUsers.length} users`
     );
