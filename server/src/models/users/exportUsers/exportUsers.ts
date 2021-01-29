@@ -64,6 +64,7 @@ const exportUsersInAirtable = (users: User[]) => {
             Structure: structure,
             Langues: langues,
             "Nb fiches avec contribution": user.nbContributions,
+            Env: process.env.NODE_ENV,
           },
         },
       ],

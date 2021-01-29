@@ -271,6 +271,12 @@ export default {
 
   getFiguresOnUsers: () => axios.get(burl + "/user/getFiguresOnUsers"),
 
+  exportUsers: () => {
+    // eslint-disable-next-line no-console
+    console.log("received");
+    return axios.post(burl + "/user/exportUsers");
+  },
+
   getActiveStructures: () =>
     axios.get(burl + "/structures/getActiveStructures"),
 

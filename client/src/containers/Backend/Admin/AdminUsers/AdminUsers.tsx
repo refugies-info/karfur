@@ -35,6 +35,9 @@ import { ObjectId } from "mongodb";
 import { UserDetailsModal } from "./UserDetailsModal/UserDetailsModal";
 import { StructureDetailsModal } from "../AdminStructures/StructureDetailsModal/StructureDetailsModal";
 import { SelectFirstResponsableModal } from "../AdminStructures/SelectFirstResponsableModal/SelectFirstResponsableModal";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
+import API from "../../../../utils/API";
+import Swal from "sweetalert2";
 
 moment.locale("fr");
 declare const window: Window;
@@ -214,6 +217,27 @@ export const AdminUsers = () => {
     };
   };
 
+  const exportToAirtable = async () => {
+    try {
+      await API.exportUsers();
+      Swal.fire({
+        title: "Yay...",
+        text: "Export effectué",
+        type: "success",
+        timer: 1500,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log("error", error);
+      Swal.fire({
+        title: "Oh non!",
+        text: "Something went wrong",
+        type: "error",
+        timer: 1500,
+      });
+    }
+  };
+
   const getNbUsersByStatus = (users: SimplifiedUser[], status: string) => {
     if (status === "Admin") {
       return users.filter((user) => user.roles.includes("Admin")).length;
@@ -243,6 +267,9 @@ export const AdminUsers = () => {
   return (
     <div className="admin-users">
       <SearchBarContainer>
+        <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
+          Exporter dans Airtable
+        </FButton>
         <CustomSearchBar
           value={search}
           // @ts-ignore
