@@ -338,10 +338,10 @@ export class AdvancedSearch extends Component {
           this.queryDispositifs({
             "tags.name": tag ? decodeURIComponent(tag) : "",
             "audienceAge.bottomValue": topValue
-              ? { $lt: parseInt(topValue, 10) }
+              ? { $lte: parseInt(topValue, 10) }
               : "",
             "audienceAge.topValue": bottomValue
-              ? { $gt: parseInt(bottomValue, 10) }
+              ? { $gte: parseInt(bottomValue, 10) }
               : "",
             niveauFrancais: niveauFrancaisObj ? niveauFrancaisObj.query : "",
           })
@@ -404,8 +404,8 @@ export class AdvancedSearch extends Component {
         .map((x) =>
           x.queryName === "audienceAge"
             ? {
-                "audienceAge.bottomValue": { $lt: x.topValue },
-                "audienceAge.topValue": { $gt: x.bottomValue },
+                "audienceAge.bottomValue": { $lte: x.topValue },
+                "audienceAge.topValue": { $gte: x.bottomValue },
               }
             : { [x.queryName]: x.query }
         )
