@@ -1,4 +1,4 @@
-import { Res } from "../../../types/interface";
+import { Res, RequestFromClient } from "../../../types/interface";
 import logger from "../../../logger";
 import { getAllUsersFromDB } from "../users.repository";
 import { adaptUsers } from "../getAllUsers/getAllUsers";
@@ -6,6 +6,7 @@ import { ObjectId } from "mongoose";
 import moment from "moment";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { computeGlobalIndicator } from "../../../controllers/traduction/lib";
+import { checkIfUserIsAdmin } from "../../../libs/checkAuthorizations";
 var Airtable = require("airtable");
 var base = new Airtable({ apiKey: process.env.airtableApiKey }).base(
   process.env.AIRTABLE_BASE_USERS
@@ -75,8 +76,11 @@ const exportUsersInAirtable = (users: User[]) => {
     );
   });
 };
-export const exportUsers = async (_: any, res: Res) => {
+export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
   try {
+    // @ts-ignore : populate roles
+    checkIfUserIsAdmin(req.user.roles);
+
     logger.info("[exportUsers] call received");
     const neededFields = {
       username: 1,
@@ -115,6 +119,4 @@ export const exportUsers = async (_: any, res: Res) => {
     logger.error("[exportUsers] error", { error });
     res.status(500).json({ text: "Erreur interne" });
   }
-
-  return res.status(200).json({ text: "OK" });
 };
