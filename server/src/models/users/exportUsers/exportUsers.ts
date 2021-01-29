@@ -21,13 +21,14 @@ interface User {
   }[];
   structures: { _id: ObjectId; nom: string }[];
   nbStructures: number;
+  nbContributions: number;
 }
 const exportUsersInAirtable = (users: User[]) => {
-  const testUsers = users.slice(0, 10);
+  const testUsers = users.slice(0, 100);
   testUsers.forEach((user) => {
     const structure =
       user.structures && user.structures.length > 0
-        ? user.structures[0].nom
+        ? user.structures.map((structure) => structure.nom).join()
         : "";
     const format2 = "YYYY/MM/DD";
     const createdAt = user.created_at
@@ -35,6 +36,9 @@ const exportUsersInAirtable = (users: User[]) => {
       : "1900/01/01";
     const rolesWithTraducteur =
       user.langues.length > 0 ? user.roles.concat(["Traducteur"]) : user.roles;
+
+    const langues = user.langues.map((langue) => langue.langueFr);
+
     base("Users").create(
       [
         {
@@ -46,6 +50,8 @@ const exportUsersInAirtable = (users: User[]) => {
             "Mots traduits": 10,
             "Temps passé à traduire": 50,
             Structure: structure,
+            Langues: langues,
+            "Nb fiches avec contribution": user.nbContributions,
           },
         },
       ],
@@ -70,6 +76,7 @@ export const exportUsers = async (_: any, res: Res) => {
       structures: 1,
       email: 1,
       selectedLanguages: 1,
+      contributions: 1,
     };
 
     const users = await getAllUsersFromDB(neededFields);

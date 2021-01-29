@@ -74,7 +74,9 @@ const getSelectedLanguages = (langues: LangueDoc[]) => {
 
   const languesFiltered = langues
     .filter((langue) =>
-      ["gb", "ru", "sa", "ir", "er", "af"].includes(langue.langueCode)
+      ["Anglais", "Russe", "Persan", "Pachto", "Arabe", "Tigrinya"].includes(
+        langue.langueFr
+      )
     )
     .map((langue) => ({
       langueCode: langue.langueCode,
@@ -123,6 +125,7 @@ export const adaptUsers = (users: UserDoc[]) =>
       langues,
       structures: simplifiedStructures,
       nbStructures: user.structures ? user.structures.length : 0,
+      nbContributions: user.contributions ? user.contributions.length : 0,
     };
   });
 
