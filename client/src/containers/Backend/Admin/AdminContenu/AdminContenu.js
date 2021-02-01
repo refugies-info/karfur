@@ -311,9 +311,18 @@ export const AdminContenu = () => {
         </FButton>
       </SearchBarContainer>
       <StyledHeader>
-        <StyledTitle>Contenus</StyledTitle>
-        <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
-        <StyledSort>
+        <div
+          style={{
+            marginTop: "8px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <StyledTitle>Contenus</StyledTitle>
+          <FigureContainer>{nbNonDeletedDispositifs}</FigureContainer>
+        </div>
+        <StyledSort marginTop="8px">
           {correspondingStatus.sort(compare).map((status) => {
             const nbContent = getNbDispositifsByStatus(
               dispositifsForCount,
