@@ -344,8 +344,12 @@ $imgHeight: 350px;
     }
   }
 
-  .aside-right.sideView {
-    display: none;
+  .aside-right {
+    background-color: #dadada;
+
+    .sideView {
+      display: none;
+    }
   }
 
   .anchor {
@@ -658,6 +662,9 @@ $imgHeight: 350px;
     }
   }
 
+  #pageContent {
+    background-color: #dadada;
+  }
   .accordeon-col {
     .title-bloc {
       position: relative;
@@ -669,17 +676,16 @@ $imgHeight: 350px;
     }
 
     #accordion-header {
-      background: #ffffff;
+      background: #f2f2f2;
+
       border-radius: 12px;
-      border: 0.5px solid $noir;
       outline: none;
       box-shadow: none;
       color: $darkColor;
-      padding: 10px;
+      padding: 16px 62px 16px 16px;
       cursor: pointer;
       display: inline-block;
       position: relative;
-      padding-left: 15px;
 
       &.active {
         transition: all 0.2s ease;
@@ -691,7 +697,6 @@ $imgHeight: 350px;
         line-height: 38px;
       }
       .accordion-text {
-        margin: 0 22px 0 0;
         font-size: 22px;
         font-weight: 600;
       }
@@ -747,8 +752,8 @@ $imgHeight: 350px;
 
     .accordeon-delete-icon {
       position: absolute;
-      top: -16px;
-      right: -16px;
+      top: 20px;
+      right: 16px;
     }
   }
 
@@ -926,13 +931,10 @@ $imgHeight: 350px;
 
   div[contenteditable="true"] {
     min-width: 20px;
-    background: $jauneClair;
+    background: $attention;
     outline: none;
     min-height: 38px;
-    padding-right: 40px;
-    padding-left: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    padding: 0px 5px 0px 5px;
   }
 
   h1 div[contenteditable="true"] {

@@ -13,7 +13,7 @@ import MapParagraphePrint from "../../../../containers/Dispositif/MapParagraphe/
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
-import {colors} from "colors";
+import { colors } from "colors";
 import { cardTitles } from "../../../../containers/Dispositif/data";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { withRouter } from "react-router-dom";
@@ -223,7 +223,7 @@ const contenuParagraphe = (props) => {
                               onClick={() =>
                                 props.removeItem(props.keyValue, subkey)
                               }
-                              className="accordeon-delete-icon ml-10 cursor-pointer"
+                              className="accordeon-delete-icon  cursor-pointer"
                               name="close-circle"
                               fill={colors.error}
                               size="xlarge"
