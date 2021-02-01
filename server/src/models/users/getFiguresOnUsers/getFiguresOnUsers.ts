@@ -1,6 +1,6 @@
 import { User } from "../../../schema/schemaUser";
 import { Res } from "../../../types/interface";
-import logger = require("../../../logger");
+import logger from "../../../logger";
 
 export const getFiguresOnUsers = async (req: {}, res: Res) => {
   try {
