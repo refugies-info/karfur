@@ -24,5 +24,5 @@ module.exports = function (app) {
   app.get("/getFiguresOnUsers", getFiguresOnUsers);
   app.get("/getAllUsers", getAllUsers);
   app.post("/updateUser", checkToken.check, checkToken.getRoles, updateUser);
-  app.post("/exportUsers", checkToken.check, exportUsers);
+  app.post("/exportUsers", checkToken.check, checkToken.getRoles, exportUsers);
 };

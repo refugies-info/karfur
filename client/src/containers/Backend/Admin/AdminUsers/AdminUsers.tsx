@@ -222,13 +222,11 @@ export const AdminUsers = () => {
       await API.exportUsers();
       Swal.fire({
         title: "Yay...",
-        text: "Export effectué",
+        text: `Export en cours de ${users ? users.length : 0} users`,
         type: "success",
         timer: 1500,
       });
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log("error", error);
       Swal.fire({
         title: "Oh non!",
         text: "Something went wrong",
