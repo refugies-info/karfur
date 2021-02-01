@@ -19,12 +19,12 @@ interface Dispositif {
 
 export const fixAudienceAgeOnDispositifs = async (_: any, res: Res) => {
   try {
-    logger.info("fixAudienceAgeOnDispositifs");
+    logger.info("[fixAudienceAgeOnDispositifs] call received");
 
     // @ts-ignore
     const dispositifs: Dispositif[] = await getAllDispositifsFromDB();
-    asyncForEach(dispositifs, async (dispositif) => {
-      logger.info("fixAudienceAgeOnDispositifs id", { id: dispositif._id });
+    await asyncForEach(dispositifs, async (dispositif) => {
+      logger.info("[fixAudienceAgeOnDispositifs] id", { id: dispositif._id });
       const audienceAge =
         dispositif.audienceAge && dispositif.audienceAge[0]
           ? dispositif.audienceAge[0]
@@ -69,11 +69,18 @@ export const fixAudienceAgeOnDispositifs = async (_: any, res: Res) => {
         //@ts-ignore
         audienceAge: newAudienceAge,
       });
+      logger.info(
+        "[fixAudienceAgeOnDispositifs] successfully modified dispositif with id",
+        { id: dispositif._id }
+      );
     });
+    logger.info(
+      "[fixAudienceAgeOnDispositifs] successfully modified all dispositifs"
+    );
 
     res.status(200).json({ text: "OK" });
   } catch (error) {
-    logger.error("fixAudienceAgeOnDispositifs error", { error });
+    logger.error("[fixAudienceAgeOnDispositifs] error", { error });
     res.status(500).json({ text: "KO" });
   }
 };
