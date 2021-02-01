@@ -24,7 +24,7 @@ import EditableParagraph from "../../../components/Frontend/Dispositif/EditableP
 import FInput from "../../../components/FigmaUI/FInput/FInput";
 
 import "./EtapeParagraphe.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 import { EtapeModal } from "../../../components/Modals";
 
 class EtapeParagraphe extends Component {
@@ -286,6 +286,7 @@ class EtapeParagraphe extends Component {
                       disabled={disableEdit} // use true to disable editing
                       onChange={this.props.handleMenuChange} // handle innerHTML change
                       onMouseUp={(e) => !disableEdit && e.stopPropagation()}
+                      placeholder="Le titre de cette étape est vide"
                     />
                   </span>
                   {disableEdit && (
