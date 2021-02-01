@@ -278,10 +278,18 @@ export const AdminUsers = () => {
         />
       </SearchBarContainer>
       <StyledHeader>
-        <StyledTitle>Utilisateurs</StyledTitle>
-        <FigureContainer>{users.length}</FigureContainer>
-
-        <StyledSort marginTop="16px">
+        <div
+          style={{
+            marginTop: "8px",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <StyledTitle>Utilisateurs</StyledTitle>
+          <FigureContainer>{users.length}</FigureContainer>
+        </div>
+        <StyledSort marginTop="8px">
           {correspondingStatus.sort(compare).map((element) => {
             const status = element.status;
             const nbUsers = getNbUsersByStatus(usersForCount, status);
