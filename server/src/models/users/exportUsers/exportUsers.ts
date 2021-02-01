@@ -27,55 +27,65 @@ interface User {
   nbContributions: number;
   totalIndicator: { wordsCount: number; timeSpent: number }[];
 }
-const exportUsersInAirtable = (users: User[]) => {
-  users.forEach((user) => {
-    const structure =
-      user.structures && user.structures.length > 0
-        ? user.structures.map((structure) => structure.nom).join()
-        : "";
-    const format2 = "YYYY/MM/DD";
-    const createdAt = user.created_at
-      ? moment(user.created_at).format(format2)
-      : "1900/01/01";
-    const rolesWithTraducteur =
-      user.langues.length > 0 ? user.roles.concat(["Traducteur"]) : user.roles;
 
-    const langues = user.langues.map((langue) => langue.langueFr);
-    const nbWords =
-      user.totalIndicator && user.totalIndicator.length > 0
-        ? Math.floor(user.totalIndicator[0].wordsCount)
-        : 0;
+const exportUserInAirtable = (user: User) => {
+  logger.info(`[exportUserInAirtable] export user with id ${user._id}`);
+  const structure =
+    user.structures && user.structures.length > 0
+      ? user.structures.map((structure) => structure.nom).join()
+      : "";
+  const format2 = "YYYY/MM/DD";
+  const createdAt = user.created_at
+    ? moment(user.created_at).format(format2)
+    : "1900/01/01";
+  const rolesWithTraducteur =
+    user.langues.length > 0 ? user.roles.concat(["Traducteur"]) : user.roles;
 
-    const timeSpent =
-      user.totalIndicator && user.totalIndicator.length > 0
-        ? Math.floor(user.totalIndicator[0].timeSpent / 60 / 1000)
-        : 0;
+  const langues = user.langues.map((langue) => langue.langueFr);
+  const nbWords =
+    user.totalIndicator && user.totalIndicator.length > 0
+      ? Math.floor(user.totalIndicator[0].wordsCount)
+      : 0;
 
-    base("Users").create(
-      [
-        {
-          fields: {
-            Pseudonyme: user.username,
-            Email: user.email,
-            "Date de création": createdAt,
-            Role: rolesWithTraducteur,
-            "Mots traduits": nbWords,
-            "Temps passé à traduire": timeSpent,
-            Structure: structure,
-            Langues: langues,
-            "Nb fiches avec contribution": user.nbContributions,
-            Env: process.env.NODE_ENV,
-          },
+  const timeSpent =
+    user.totalIndicator && user.totalIndicator.length > 0
+      ? Math.floor(user.totalIndicator[0].timeSpent / 60 / 1000)
+      : 0;
+
+  base("Users").create(
+    [
+      {
+        fields: {
+          Pseudonyme: user.username,
+          Email: user.email,
+          "Date de création": createdAt,
+          Role: rolesWithTraducteur,
+          "Mots traduits": nbWords,
+          "Temps passé à traduire": timeSpent,
+          Structure: structure,
+          Langues: langues,
+          "Nb fiches avec contribution": user.nbContributions,
+          Env: process.env.NODE_ENV,
         },
-      ],
-      function (err: Error) {
-        if (err) {
-          logger.error("error while adding users to airtable", { error: err });
-          return;
-        }
+      },
+    ],
+    function (err: Error) {
+      if (err) {
+        logger.error(
+          "[exportUserInAirtable] error while exporting user to airtable",
+          {
+            userId: user._id,
+            error: err,
+          }
+        );
+        return;
       }
-    );
-  });
+
+      logger.info(
+        `[exportUserInAirtable] successfully exported user with id ${user._id}`
+      );
+    }
+  );
 };
 export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
   try {
@@ -98,19 +108,15 @@ export const exportUsers = async (req: RequestFromClient<{}>, res: Res) => {
     const users = await getAllUsersFromDB(neededFields);
     const adaptedUsers = adaptUsers(users);
 
-    const usersWithIndicators: User[] = [];
-
     await asyncForEach(adaptedUsers, async (user) => {
       logger.info(`[exportUsers] get indicators user ${user._id}`);
 
       const totalIndicator = await computeGlobalIndicator(user._id);
-
-      usersWithIndicators.push({ ...user, totalIndicator });
+      exportUserInAirtable({ ...user, totalIndicator });
     });
 
-    await exportUsersInAirtable(usersWithIndicators);
     logger.info(
-      `[exportUsers] successfully added ${adaptedUsers.length} users`
+      `[exportUsers] successfully launched export of ${adaptedUsers.length} users`
     );
 
     return res.status(200).json({
