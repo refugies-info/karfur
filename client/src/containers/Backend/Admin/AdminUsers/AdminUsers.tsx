@@ -11,7 +11,7 @@ import {
   Content,
 } from "../sharedComponents/StyledAdmin";
 import { userHeaders, correspondingStatus } from "./data";
-import { Table } from "reactstrap";
+import { Table, Spinner } from "reactstrap";
 import { useSelector } from "react-redux";
 import { isLoadingSelector } from "../../../../services/LoadingStatus/loadingStatus.selectors";
 import { LoadingStatusKey } from "../../../../services/LoadingStatus/loadingStatus.actions";
@@ -71,6 +71,7 @@ export const AdminUsers = () => {
   const [showStructureDetailsModal, setShowStructureDetailsModal] = useState(
     false
   );
+  const [isExportLoading, setIsExportLoading] = useState(false);
   const [showSelectFirstRespoModal, setSelectFirstRespoModal] = useState(false);
   const [
     selectedStructureId,
@@ -219,7 +220,10 @@ export const AdminUsers = () => {
 
   const exportToAirtable = async () => {
     try {
+      setIsExportLoading(true);
       await API.exportUsers();
+      setIsExportLoading(false);
+
       Swal.fire({
         title: "Yay...",
         text: `Export en cours de ${users ? users.length : 0} users`,
@@ -266,7 +270,7 @@ export const AdminUsers = () => {
     <div className="admin-users">
       <SearchBarContainer>
         <FButton type="dark" className="mr-8" onClick={exportToAirtable}>
-          Exporter dans Airtable
+          {isExportLoading ? <Spinner /> : "Exporter dans Airtable"}
         </FButton>
         <CustomSearchBar
           value={search}
