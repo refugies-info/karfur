@@ -673,6 +673,10 @@ $imgHeight: 350px;
       align-items: center;
       margin-bottom: 20px;
       flex-wrap: wrap;
+
+      p {
+        margin-bottom: 0px;
+      }
     }
 
     [contenteditable="true"]:empty:before {

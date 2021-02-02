@@ -237,20 +237,18 @@ const contenuParagraphe = (props) => {
                           }
                         >
                           <StyledHeader darkColor={darkColor}>
-                            <span className="accordion-text">
-                              <ContentEditable
-                                id={props.keyValue}
-                                data-subkey={subkey}
-                                data-target="title"
-                                html={subitem.title || ""} // innerHTML of the editable div
-                                disabled={newDisableEdit} // use true to disable editing
-                                onChange={props.handleMenuChange} // handle innerHTML change
-                                onMouseUp={(e) =>
-                                  !newDisableEdit && e.stopPropagation()
-                                }
-                                placeholder={"Titre à remplacer"}
-                              />
-                            </span>
+                            <ContentEditable
+                              id={props.keyValue}
+                              data-subkey={subkey}
+                              data-target="title"
+                              html={subitem.title || ""} // innerHTML of the editable div
+                              disabled={newDisableEdit} // use true to disable editing
+                              onChange={props.handleMenuChange} // handle innerHTML change
+                              onMouseUp={(e) =>
+                                !newDisableEdit && e.stopPropagation()
+                              }
+                              placeholder={"Titre à remplacer"}
+                            />
                             {newDisableEdit && (
                               <EVAIcon
                                 name={
