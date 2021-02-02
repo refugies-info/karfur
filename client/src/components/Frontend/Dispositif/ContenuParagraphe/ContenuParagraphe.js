@@ -13,10 +13,47 @@ import MapParagraphePrint from "../../../../containers/Dispositif/MapParagraphe/
 import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/EtapeParagraphe";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
-import {colors} from "colors";
+import { colors } from "colors";
 import { cardTitles } from "../../../../containers/Dispositif/data";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledAccordeon = styled.div`
+  padding: ${(props) =>
+    props.newDisableEdit || props.subkey === 0
+      ? "16px"
+      : "16px 62px 16px 16px"};
+
+  border: ${(props) =>
+    props.newDisableEdit && props.isAccordeonOpen
+      ? `solid 2px ${props.darkColor}`
+      : "none"};
+  background: ${(props) =>
+    props.newDisableEdit && props.isAccordeonOpen
+      ? props.lightColor
+      : "#f2f2f2"};
+  border-radius: 12px;
+  outline: none;
+  boxshadow: none;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  box-shadow: ${(props) =>
+    props.newDisableEdit && !props.isAccordeonOpen
+      ? "0px 10px 15px rgba(0, 0, 0, 0.25)"
+      : "none"};
+`;
+
+const StyledHeader = styled.div`
+  display: flex;
+  margin: auto;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: ${(props) => props.darkColor};
+`;
 
 const contenuParagraphe = (props) => {
   const { disableEdit, ...bprops } = props;
@@ -30,6 +67,16 @@ const contenuParagraphe = (props) => {
   const cards = item.children
     ? item.children.filter((x) => x.type === "card").map((x) => x.title)
     : [];
+  const darkColor =
+    props.mainTag && props.mainTag.darkColor
+      ? props.mainTag.darkColor
+      : colors.darkColor;
+
+  const lightColor =
+    props.mainTag && props.mainTag.lightColor
+      ? props.mainTag.lightColor
+      : colors.lightColor;
+
   return (
     <div className={item.type === "cards" ? "row cards" : "sous-paragraphe"}>
       {item.children &&
@@ -40,6 +87,12 @@ const contenuParagraphe = (props) => {
             (props.typeContenu === "demarche" &&
               props.inVariante &&
               !safeUiArray(props.keyValue, subkey, "varianteSelected"));
+          const isAccordeonOpen = !!safeUiArray(
+            props.keyValue,
+            subkey,
+            "accordion"
+          );
+
           return (
             <div
               className={
@@ -159,14 +212,12 @@ const contenuParagraphe = (props) => {
                       className="accordeon-col"
                     >
                       <div className="title-bloc">
-                        <div
-                          id="accordion-header"
-                          className={
-                            "text-left " +
-                            (safeUiArray(props.keyValue, subkey, "accordion")
-                              ? "active"
-                              : "inactive")
-                          }
+                        <StyledAccordeon
+                          isAccordeonOpen={isAccordeonOpen}
+                          newDisableEdit={newDisableEdit}
+                          lightColor={lightColor}
+                          darkColor={darkColor}
+                          subkey={subkey}
                           onMouseUp={() =>
                             newDisableEdit &&
                             props.updateUIArray(
@@ -185,7 +236,7 @@ const contenuParagraphe = (props) => {
                             "collapse" + props.keyValue + "-" + subkey
                           }
                         >
-                          <h5>
+                          <StyledHeader darkColor={darkColor}>
                             <span className="accordion-text">
                               <ContentEditable
                                 id={props.keyValue}
@@ -214,22 +265,23 @@ const contenuParagraphe = (props) => {
                                   "-outline"
                                 }
                                 size="large"
-                                fill={colors.darkColor}
+                                fill={darkColor}
+                                className="ml-12"
                               />
                             )}
-                          </h5>
+                          </StyledHeader>
                           {!newDisableEdit && subkey > 0 && (
                             <EVAIcon
                               onClick={() =>
                                 props.removeItem(props.keyValue, subkey)
                               }
-                              className="accordeon-delete-icon ml-10 cursor-pointer"
+                              className="accordeon-delete-icon  cursor-pointer"
                               name="close-circle"
                               fill={colors.error}
                               size="xlarge"
                             />
                           )}
-                        </div>
+                        </StyledAccordeon>
                       </div>
                       <Collapse
                         className="contenu-accordeon"
@@ -278,7 +330,7 @@ const contenuParagraphe = (props) => {
                 <div
                   key={subkey}
                   className={
-                    "contenu paragraphe borderColor-darkColor" +
+                    "contenu paragraphe" +
                     (!props.inVariante &&
                     safeUiArray(props.keyValue, subkey, "isHover")
                       ? " isHovered"

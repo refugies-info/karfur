@@ -18,7 +18,7 @@ import FButton from "../../../FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
 
 import "./EditableParagraph.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 // const styles = {
 //   media: {
@@ -32,11 +32,7 @@ import {colors} from "colors";
 const MyCustomBlock = (props) => (
   <div className="bloc-rouge">
     <div className="icon-left-side">
-      <EVAIcon
-        name="info-outline"
-        fill={colors.noir}
-        className="flex-center"
-      />
+      <EVAIcon name="info-outline" fill={colors.noir} className="flex-center" />
     </div>
     <div className="right-side">
       <b>Bon à savoir :</b>
@@ -301,7 +297,7 @@ class EditableParagraph extends Component {
                 ) +
                 "</p>"
             } // innerHTML of the editable div
-            placeholder={props.placeholder}
+            placeholder={"test"}
             disabled={props.disableEdit} // use true to disable editing
             onChange={props.handleMenuChange} // handle innerHTML change
             onClick={() =>
