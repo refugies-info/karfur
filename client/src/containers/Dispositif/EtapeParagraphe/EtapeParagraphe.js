@@ -62,8 +62,20 @@ const StyledHeader = styled.div`
   font-size: 22px;
   line-height: 28px;
   color: ${(props) => props.darkColor};
+  align-items: center;
 `;
 
+const StyledStep = styled.div`
+  background: ${(props) => props.darkColor};
+  border-radius: 50%;
+  color: white;
+  height: 34px;
+  width: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+`;
 class EtapeParagraphe extends Component {
   state = {
     options: this.props.demarcheSteps.options.map((x) => ({
@@ -320,20 +332,18 @@ class EtapeParagraphe extends Component {
                 aria-controls={"collapse" + keyValue + "-" + subkey}
               >
                 <StyledHeader darkColor={darkColor}>
-                  <span className="accordion-text">
-                    {subkey + 1 + " - "}
-                    <ContentEditable
-                      id={keyValue}
-                      data-subkey={subkey}
-                      data-target="title"
-                      className="etape-title"
-                      html={subitem.title || ""} // innerHTML of the editable div
-                      disabled={disableEdit} // use true to disable editing
-                      onChange={this.props.handleMenuChange} // handle innerHTML change
-                      onMouseUp={(e) => !disableEdit && e.stopPropagation()}
-                      placeholder="Le titre de cette étape est vide"
-                    />
-                  </span>
+                  <StyledStep darkColor={darkColor}>{subkey + 1}</StyledStep>
+                  <ContentEditable
+                    id={keyValue}
+                    data-subkey={subkey}
+                    data-target="title"
+                    className="etape-title"
+                    html={subitem.title || ""} // innerHTML of the editable div
+                    disabled={disableEdit} // use true to disable editing
+                    onChange={this.props.handleMenuChange} // handle innerHTML change
+                    onMouseUp={(e) => !disableEdit && e.stopPropagation()}
+                    placeholder="Le titre de cette étape est vide"
+                  />
                   {disableEdit && (
                     <EVAIcon
                       name={
