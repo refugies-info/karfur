@@ -847,13 +847,16 @@ export class Dispositif extends Component {
         };
       } else if (type === "etape") {
         newChild = {
-          ...newChild,
+          type: "etape",
+          title: "",
           papiers: [],
           duree: "00",
           timeStepDuree: "minutes",
           delai: "00",
           timeStepDelai: "minutes",
           option: {},
+          isFakeContent: false,
+          content: "",
         };
       }
       newChild.type = type;
