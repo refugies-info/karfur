@@ -120,7 +120,7 @@ export const contenuDispositif = (props: Props) => {
               sm="12"
               xs="12"
               className={
-                "contenu borderColor-darkColor" +
+                "contenu " +
                 (!props.inVariante && props.uiArray[key].isHover
                   ? " isHovered"
                   : "")

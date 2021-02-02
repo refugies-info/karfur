@@ -167,10 +167,8 @@ const menuDemarche = [
     children: [
       {
         isFakeContent: true,
-        title: "Titre de la première étape",
         type: "etape",
-        placeholder:
-          "Donnez plus d’information sur les modalités de réalisation de cette étape",
+
         content: "",
         papiers: [],
         duree: "00",
@@ -181,10 +179,8 @@ const menuDemarche = [
       },
       {
         isFakeContent: true,
-        title: "Titre de la deuxième étape",
         type: "etape",
-        placeholder:
-          "Donnez plus d’information sur les modalités de réalisation de cette étape",
+
         content: "",
         papiers: [],
         duree: "00",
@@ -207,8 +203,6 @@ const menuDemarche = [
       {
         type: "accordion",
         isFakeContent: true,
-        title: "Renouvellement de la réduction",
-        placeholder: lorems.sousParagraphe,
         content: "",
       },
     ],
@@ -470,7 +464,11 @@ const cardTitles = [
   { title: "Combien ça coûte ?", titleIcon: "pricetags-outline" },
 
   { title: "Important !", titleIcon: "alert-triangle-outline" },
-  { title: "Zone d'action", titleIcon: "pin-outline", options: filtres.departmentsData },
+  {
+    title: "Zone d'action",
+    titleIcon: "pin-outline",
+    options: filtres.departmentsData,
+  },
 ];
 
 const onBoardSteps = [
