@@ -26,6 +26,43 @@ import FInput from "../../../components/FigmaUI/FInput/FInput";
 import "./EtapeParagraphe.scss";
 import { colors } from "colors";
 import { EtapeModal } from "../../../components/Modals";
+import styled from "styled-components";
+
+const StyledAccordeon = styled.div`
+  padding: ${(props) =>
+    props.newDisableEdit || props.subkey === 0
+      ? "16px"
+      : "16px 62px 16px 16px"};
+
+  border: ${(props) =>
+    props.newDisableEdit && props.isAccordeonOpen
+      ? `solid 2px ${props.darkColor}`
+      : "none"};
+  background: ${(props) =>
+    props.newDisableEdit && props.isAccordeonOpen
+      ? props.lightColor
+      : "#f2f2f2"};
+  border-radius: 12px;
+  outline: none;
+  boxshadow: none;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  box-shadow: ${(props) =>
+    props.newDisableEdit && !props.isAccordeonOpen
+      ? "0px 10px 15px rgba(0, 0, 0, 0.25)"
+      : "none"};
+`;
+
+const StyledHeader = styled.div`
+  display: flex;
+  margin: auto;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 28px;
+  color: ${(props) => props.darkColor};
+`;
 
 class EtapeParagraphe extends Component {
   state = {
@@ -237,6 +274,16 @@ class EtapeParagraphe extends Component {
       uiArray[key].children.length > subkey &&
       uiArray[key].children[subkey] &&
       uiArray[key].children[subkey][node];
+    const isAccordeonOpen = !!safeUiArray(keyValue, subkey, "accordion");
+    const darkColor =
+      this.props.mainTag && this.props.mainTag.darkColor
+        ? this.props.mainTag.darkColor
+        : colors.darkColor;
+
+    const lightColor =
+      this.props.mainTag && this.props.mainTag.lightColor
+        ? this.props.mainTag.lightColor
+        : colors.lightColor;
 
     return (
       <div
@@ -254,14 +301,12 @@ class EtapeParagraphe extends Component {
         <Row className="relative-position">
           <Col lg="12" md="12" sm="12" xs="12" className="accordeon-col">
             <div className="title-bloc">
-              <div
-                id="accordion-header"
-                className={
-                  "position-relative text-left " +
-                  (safeUiArray(keyValue, subkey, "accordion")
-                    ? "active"
-                    : "inactive")
-                }
+              <StyledAccordeon
+                isAccordeonOpen={isAccordeonOpen}
+                newDisableEdit={disableEdit}
+                lightColor={lightColor}
+                darkColor={darkColor}
+                subkey={subkey}
                 onMouseUp={() =>
                   disableEdit &&
                   updateUIArray(
@@ -274,7 +319,7 @@ class EtapeParagraphe extends Component {
                 aria-expanded={safeUiArray(keyValue, subkey, "accordion")}
                 aria-controls={"collapse" + keyValue + "-" + subkey}
               >
-                <h5>
+                <StyledHeader darkColor={darkColor}>
                   <span className="accordion-text">
                     {subkey + 1 + " - "}
                     <ContentEditable
@@ -299,10 +344,11 @@ class EtapeParagraphe extends Component {
                         "-outline"
                       }
                       size="large"
-                      fill={colors.darkColor}
+                      fill={darkColor}
+                      className="ml-12"
                     />
                   )}
-                </h5>
+                </StyledHeader>
                 {!disableEdit && subkey > 0 && (
                   <EVAIcon
                     onClick={() => this.props.removeItem(keyValue, subkey)}
@@ -312,7 +358,7 @@ class EtapeParagraphe extends Component {
                     size="xlarge"
                   />
                 )}
-              </div>
+              </StyledAccordeon>
               <div
                 className={
                   "etapes-data ml-10" + (disableEdit ? "" : " editing")

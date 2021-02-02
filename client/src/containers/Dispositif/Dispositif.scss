@@ -675,72 +675,11 @@ $imgHeight: 350px;
       flex-wrap: wrap;
     }
 
-    // #accordion-header {
-    //   background: #f2f2f2;
-
-    //   border-radius: 12px;
-    //   outline: none;
-    //   box-shadow: none;
-    //   cursor: pointer;
-    //   display: inline-block;
-    //   position: relative;
-
-    //   &.disable-edit-true {
-    //     padding: 16px;
-
-    //     &.active {
-    //       transition: all 0.2s ease;
-    //       background-color: red;
-    //       // border: 2px solid $darkColor;
-    //     }
-
-    //     &.inactive {
-    //       transition: all 0.2s ease;
-    //       background: green;
-    //       // box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
-    //     }
-    //   }
-
-    //   &.disable-edit-false {
-    //     padding: 16px 62px 16px 16px;
-    //     background: #ffffff;
-    //   }
-
-    //   h5 {
-    //     display: flex;
-    //     margin: auto;
-    //     line-height: 38px;
-    //   }
-    .accordion-text {
-      font-size: 22px;
-      font-weight: 600;
-    }
-    .accordion-number,
-    .accordion-expand {
-      width: 50px;
-      height: 50px;
-
-      border-radius: 1.25em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .accordion-number {
-      background: #ffffff;
-      color: black;
-    }
-
-    .accordion-expand {
-      border: 2px solid #ffffff;
-      box-sizing: border-box;
-    }
     [contenteditable="true"]:empty:before {
       content: attr(placeholder);
       display: block;
       color: #828282;
     }
-    // }
 
     .contenu-accordeon {
       margin-top: 20px;
