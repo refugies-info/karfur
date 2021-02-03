@@ -16,7 +16,7 @@ import EVAIcon from "../../../../components/UI/EVAIcon/EVAIcon";
 import ReducedVariante from "../../../../components/Frontend/Dispositif/Variantes/ReducedVariante/ReducedVariante";
 import { customCriteres } from "../data";
 
-import {colors} from "colors";
+import { colors } from "colors";
 
 class UneVariante extends Component {
   state = {
@@ -232,7 +232,7 @@ class UneVariante extends Component {
   };
 
   render() {
-    const { filtres, inVariante, variantes } = this.props;
+    const { filtres, variantes } = this.props;
     const {
       villes,
       ageTitle,
@@ -243,7 +243,7 @@ class UneVariante extends Component {
       newCriteres,
       isMounted,
     } = this.state;
-    const allCase = inVariante ? [true] : this.state.allCase;
+    const allCase = this.state.allCase;
     return (
       <>
         <div className="moteur-row">
@@ -251,18 +251,12 @@ class UneVariante extends Component {
             if (cas) {
               return (
                 <Col
-                  lg={inVariante ? "12" : 12 - 3 * (allCase.length - 1)}
+                  lg={12 - 3 * (allCase.length - 1)}
                   className="moteur-col"
                   key={i}
                 >
-                  {!inVariante && (
-                    <div className="col-header">Cas #{i + 1}</div>
-                  )}
-                  <div
-                    className={
-                      "col-body " + (inVariante ? "no-header" : "with-header")
-                    }
-                  >
+                  <div className="col-header">Cas #{i + 1}</div>
+                  <div className={"col-body " + "with-header"}>
                     <div
                       className={
                         "critere mb-10" + (validatedRow[0] ? " validated" : "")
@@ -479,7 +473,7 @@ class UneVariante extends Component {
               );
             }
             return (
-              <Col lg={inVariante ? "0" : "3"} className="moteur-col" key={i}>
+              <Col lg={"3"} className="moteur-col" key={i}>
                 <div className="col-header">
                   Cas #{i + 1}
                   {variantes && variantes.length > i && variantes[i] && (
