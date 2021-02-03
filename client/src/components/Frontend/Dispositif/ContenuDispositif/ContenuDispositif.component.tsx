@@ -32,7 +32,6 @@ export interface PropsBeforeInjection {
   uiArray: UiObject[];
   t: any;
   disableEdit: boolean;
-  inVariante: boolean;
   menu: DispositifContent[];
   tracking: any;
   toggleModal: any;
@@ -57,62 +56,17 @@ export interface PropsBeforeInjection {
  */
 
 export const contenuDispositif = (props: Props) => {
-  const { t, disableEdit, inVariante } = props;
+  const { t, disableEdit } = props;
 
   // props.menu is an array of the different sections (for example for a dispositif it is C'est quoi, C'est pour qui, Pourquoi c'est intéressant and Comment je m'engage)
   return props.menu.map((item: DispositifContent, key: number) => {
-    // TO DO : check the second constraint
-    const newDisableEdit =
-      disableEdit ||
-      (props.typeContenu === "demarche" &&
-        inVariante &&
-        !props.uiArray[key].varianteSelected);
-
     if (
-      (newDisableEdit && !inVariante) ||
+      disableEdit ||
       props.typeContenu !== "demarche" ||
       item.title !== "C'est pour qui ?"
     ) {
       return (
-        <div
-          key={key}
-          className={
-            "contenu-wrapper" +
-            (inVariante &&
-            disableEdit &&
-            item.content !== null &&
-            item.content !== "null"
-              ? " in-variante" +
-                (props.uiArray[key].varianteSelected
-                  ? " variante-selected"
-                  : "")
-              : "")
-          }
-          id={"contenu-" + key}
-        >
-          {inVariante &&
-            disableEdit &&
-            item.content !== null &&
-            item.content !== "null" && (
-              // selection of parts to modify when creating a variante of a demarche
-              <Col className={"variante-radio" + (key !== 0 ? " mt-20" : "")}>
-                <div
-                  className="radio-btn"
-                  onClick={() =>
-                    props.updateUIArray(
-                      key,
-                      null,
-                      "varianteSelected",
-                      !props.uiArray[key].varianteSelected
-                    )
-                  }
-                >
-                  {props.uiArray[key].varianteSelected && (
-                    <div className="active-inset" />
-                  )}
-                </div>
-              </Col>
-            )}
+        <div key={key} className={"contenu-wrapper"} id={"contenu-" + key}>
           <Row className="relative-position nopadding content-row">
             <Col
               lg="12"
@@ -120,10 +74,7 @@ export const contenuDispositif = (props: Props) => {
               sm="12"
               xs="12"
               className={
-                "contenu " +
-                (!props.inVariante && props.uiArray[key].isHover
-                  ? " isHovered"
-                  : "")
+                "contenu " + (props.uiArray[key].isHover ? " isHovered" : "")
               }
               onMouseEnter={() => props.updateUIArray(key, null, "isHover")}
             >
@@ -169,7 +120,7 @@ export const contenuDispositif = (props: Props) => {
                     handleMenuChange={props.handleMenuChange}
                     onEditorStateChange={props.onEditorStateChange}
                     handleContentClick={props.handleContentClick}
-                    disableEdit={newDisableEdit}
+                    disableEdit={disableEdit}
                     addItem={props.addItem}
                     subkey={props.subkey}
                     editable={item.editable}
@@ -183,36 +134,31 @@ export const contenuDispositif = (props: Props) => {
                 )
               }
             </Col>
-            {!props.sideView &&
-              !props.inVariante &&
-              props.uiArray[key].isHover && (
-                <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
-                  {
-                    // on the right, contains reaction and reading
-                    <QuickToolbar
-                      show={props.uiArray[key].isHover}
-                      keyValue={key}
-                      item={item}
-                      handleContentClick={props.handleContentClick}
-                      disableEdit={newDisableEdit}
-                      toggleModal={props.toggleModal}
-                      readAudio={props.readAudio}
-                      subkey={props.subkey}
-                      t={props.t}
-                      removeItem={props.removeItem}
-                      ttsActive={props.ttsActive}
-                    />
-                  }
-                </Col>
-              )}
+            {!props.sideView && props.uiArray[key].isHover && (
+              <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
+                {
+                  // on the right, contains reaction and reading
+                  <QuickToolbar
+                    show={props.uiArray[key].isHover}
+                    keyValue={key}
+                    item={item}
+                    handleContentClick={props.handleContentClick}
+                    disableEdit={disableEdit}
+                    toggleModal={props.toggleModal}
+                    readAudio={props.readAudio}
+                    subkey={props.subkey}
+                    t={props.t}
+                    removeItem={props.removeItem}
+                    ttsActive={props.ttsActive}
+                  />
+                }
+              </Col>
+            )}
           </Row>
           {
             // lecture and edition of childrens and info cards
             <ContenuParagraphe item={item} keyValue={key} {...props} />
           }
-          {/*           <button className="anchor" id={"item-" + key}>
-            {item.title}
-          </button> */}
         </div>
       );
     }
