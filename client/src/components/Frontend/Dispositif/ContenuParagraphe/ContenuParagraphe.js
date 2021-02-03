@@ -21,18 +21,14 @@ import styled from "styled-components";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
-    props.newDisableEdit || props.subkey === 0
-      ? "16px"
-      : "16px 62px 16px 16px"};
+    props.disableEdit || props.subkey === 0 ? "16px" : "16px 62px 16px 16px"};
 
   border: ${(props) =>
-    props.newDisableEdit && props.isAccordeonOpen
+    props.disableEdit && props.isAccordeonOpen
       ? `solid 2px ${props.darkColor}`
       : "none"};
   background: ${(props) =>
-    props.newDisableEdit && props.isAccordeonOpen
-      ? props.lightColor
-      : "#f2f2f2"};
+    props.disableEdit && props.isAccordeonOpen ? props.lightColor : "#f2f2f2"};
   border-radius: 12px;
   outline: none;
   boxshadow: none;
@@ -41,7 +37,7 @@ const StyledAccordeon = styled.div`
   position: relative;
   flex-direction: row;
   box-shadow: ${(props) =>
-    props.newDisableEdit && !props.isAccordeonOpen
+    props.disableEdit && !props.isAccordeonOpen
       ? "0px 10px 15px rgba(0, 0, 0, 0.25)"
       : "none"};
 `;
@@ -82,11 +78,6 @@ const contenuParagraphe = (props) => {
       {item.children &&
         item.children.map((subitem, subkey) => {
           const childrenLength = item.children.length;
-          const newDisableEdit =
-            disableEdit ||
-            (props.typeContenu === "demarche" &&
-              props.inVariante &&
-              !safeUiArray(props.keyValue, subkey, "varianteSelected"));
           const isAccordeonOpen = !!safeUiArray(
             props.keyValue,
             subkey,
@@ -103,43 +94,16 @@ const contenuParagraphe = (props) => {
                     childrenLength === subkey + 1
                   ? " mb-15"
                   : "") +
-                (item.type === "cards" ? " sous-contenu-cards" : "") +
-                (props.inVariante && disableEdit
-                  ? " in-variante" +
-                    (safeUiArray(props.keyValue, subkey, "varianteSelected")
-                      ? " variante-selected"
-                      : "")
-                  : "")
+                (item.type === "cards" ? " sous-contenu-cards" : "")
               }
               key={subkey}
             >
-              {props.inVariante && disableEdit && (
-                <div className="variante-radio variante-paragraphe">
-                  <div
-                    className="radio-btn"
-                    onClick={() =>
-                      props.updateUIArray(
-                        props.keyValue,
-                        subkey,
-                        "varianteSelected",
-                        !safeUiArray(props.keyValue, subkey, "varianteSelected")
-                      )
-                    }
-                  >
-                    {safeUiArray(
-                      props.keyValue,
-                      subkey,
-                      "varianteSelected"
-                    ) && <div className="active-inset" />}
-                  </div>
-                </div>
-              )}
               {subitem.type === "card" ? (
                 <CardParagraphe
                   location={props.location}
                   subkey={subkey}
                   subitem={subitem}
-                  disableEdit={newDisableEdit}
+                  disableEdit={disableEdit}
                   changeTitle={bprops.changeTitle}
                   handleMenuChange={bprops.handleMenuChange}
                   changeAge={bprops.changeAge}
@@ -163,7 +127,7 @@ const contenuParagraphe = (props) => {
                   key={subkey}
                   subkey={subkey}
                   subitem={subitem}
-                  disableEdit={newDisableEdit}
+                  disableEdit={disableEdit}
                   {...bprops}
                 />
               ) : subitem.type === "map" && bprops.printing ? (
@@ -171,7 +135,7 @@ const contenuParagraphe = (props) => {
                   key={subkey}
                   subkey={subkey}
                   subitem={subitem}
-                  disableEdit={newDisableEdit}
+                  disableEdit={disableEdit}
                   {...bprops}
                 />
               ) : subitem.type === "etape" ? (
@@ -180,7 +144,7 @@ const contenuParagraphe = (props) => {
                   subkey={subkey}
                   subitem={subitem}
                   tutoriel={item.tutoriel}
-                  disableEdit={newDisableEdit}
+                  disableEdit={disableEdit}
                   {...bprops}
                 />
               ) : subitem.type === "accordion" ? (
@@ -188,8 +152,7 @@ const contenuParagraphe = (props) => {
                   key={subkey}
                   className={
                     "contenu" +
-                    (!props.inVariante &&
-                    safeUiArray(props.keyValue, subkey, "isHover")
+                    (safeUiArray(props.keyValue, subkey, "isHover")
                       ? " isHovered"
                       : "")
                   }
@@ -214,12 +177,12 @@ const contenuParagraphe = (props) => {
                       <div className="title-bloc">
                         <StyledAccordeon
                           isAccordeonOpen={isAccordeonOpen}
-                          newDisableEdit={newDisableEdit}
+                          disableEdit={disableEdit}
                           lightColor={lightColor}
                           darkColor={darkColor}
                           subkey={subkey}
                           onMouseUp={() =>
-                            newDisableEdit &&
+                            disableEdit &&
                             props.updateUIArray(
                               props.keyValue,
                               subkey,
@@ -242,14 +205,14 @@ const contenuParagraphe = (props) => {
                               data-subkey={subkey}
                               data-target="title"
                               html={subitem.title || ""} // innerHTML of the editable div
-                              disabled={newDisableEdit} // use true to disable editing
+                              disabled={disableEdit} // use true to disable editing
                               onChange={props.handleMenuChange} // handle innerHTML change
                               onMouseUp={(e) =>
-                                !newDisableEdit && e.stopPropagation()
+                                !disableEdit && e.stopPropagation()
                               }
                               placeholder={"Titre à remplacer"}
                             />
-                            {newDisableEdit && (
+                            {disableEdit && (
                               <EVAIcon
                                 name={
                                   "chevron-" +
@@ -268,7 +231,7 @@ const contenuParagraphe = (props) => {
                               />
                             )}
                           </StyledHeader>
-                          {!newDisableEdit && subkey > 0 && (
+                          {!disableEdit && subkey > 0 && (
                             <EVAIcon
                               onClick={() =>
                                 props.removeItem(props.keyValue, subkey)
@@ -303,7 +266,7 @@ const contenuParagraphe = (props) => {
                             handleMenuChange={props.handleMenuChange}
                             onEditorStateChange={props.onEditorStateChange}
                             handleContentClick={props.handleContentClick}
-                            disableEdit={newDisableEdit}
+                            disableEdit={disableEdit}
                             tutoriel={item.tutoriel}
                             addItem={props.addItem}
                             {...subitem}
@@ -311,13 +274,13 @@ const contenuParagraphe = (props) => {
                         }
                       </Collapse>
                     </Col>
-                    {!props.sideView && !props.inVariante && newDisableEdit && (
+                    {!props.sideView && disableEdit && (
                       <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
                         <QuickToolbar
                           show={safeUiArray(props.keyValue, subkey, "isHover")}
                           keyValue={props.keyValue}
                           subkey={subkey}
-                          disableEdit={newDisableEdit}
+                          disableEdit={disableEdit}
                           {...bprops}
                         />
                       </Col>
@@ -329,8 +292,7 @@ const contenuParagraphe = (props) => {
                   key={subkey}
                   className={
                     "contenu paragraphe" +
-                    (!props.inVariante &&
-                    safeUiArray(props.keyValue, subkey, "isHover")
+                    (safeUiArray(props.keyValue, subkey, "isHover")
                       ? " isHovered"
                       : "")
                   }
@@ -347,10 +309,10 @@ const contenuParagraphe = (props) => {
                           data-target="title"
                           className="display-inline-block"
                           html={subitem.title || ""} // innerHTML of the editable div
-                          disabled={newDisableEdit} // use true to disable editing
+                          disabled={disableEdit} // use true to disable editing
                           onChange={props.handleMenuChange} // handle innerHTML change
                         />
-                        {!newDisableEdit && (
+                        {!disableEdit && (
                           <EVAIcon
                             onClick={() =>
                               props.removeItem(props.keyValue, subkey)
@@ -368,20 +330,20 @@ const contenuParagraphe = (props) => {
                         handleMenuChange={props.handleMenuChange}
                         onEditorStateChange={props.onEditorStateChange}
                         handleContentClick={props.handleContentClick}
-                        disableEdit={newDisableEdit}
+                        disableEdit={disableEdit}
                         tutoriel={item.tutoriel}
                         addItem={props.addItem}
                         {...subitem}
                       />
                       <br />
                     </Col>
-                    {!props.sideView && !props.inVariante && newDisableEdit && (
+                    {!props.sideView && disableEdit && (
                       <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
                         <QuickToolbar
                           show={safeUiArray(props.keyValue, subkey, "isHover")}
                           keyValue={props.keyValue}
                           subkey={subkey}
-                          disableEdit={newDisableEdit}
+                          disableEdit={disableEdit}
                           {...bprops}
                         />
                       </Col>
