@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from "react";
 import { Modal } from "reactstrap";
 import styled from "styled-components";
@@ -12,7 +13,12 @@ import imageViolet from "../../../assets/illu_pasdepanique.svg";
 interface Props {
   toggle: () => void;
   show: boolean;
-  valider_dispositif: (arg: string, arg1: boolean, arg2: boolean, arg3: boolean) => void;
+  valider_dispositif: (
+    arg: string,
+    arg1: boolean,
+    arg2: boolean,
+    arg3: boolean
+  ) => void;
   navigateToProfilePage: () => void;
   status: "string";
 }
@@ -142,55 +148,68 @@ const InfoRight = (props: InfoProps) => (
   </InfoContainerRight>
 );
 
-export const DraftModal = (props: Props) => (
-  <Modal isOpen={props.show} toggle={props.toggle} className="draft">
-    <MainContainer>
-      <IconContainer onClick={props.toggle}>
-        <Icon name="close-outline" fill="#3D3D3D" size="large" />
-      </IconContainer>
-      <Header>Sauvegarder</Header>
-      <InfosContainer>
-        <div style={{ marginRight: "8px" }}>
-          <InfoLeft
-            title="Pas de panique !"
-            subTitle="Votre fiche est sauvegardée automatiquement"
-            footer="toutes les 3 minutes"
-            footerIcon="clock-outline"
-            color="#3D2884"
+export const DraftModal = (props: Props) => {
+  console.log("status", props.status);
+  return (
+    <Modal isOpen={props.show} toggle={props.toggle} className="draft">
+      <MainContainer>
+        <IconContainer onClick={props.toggle}>
+          <Icon name="close-outline" fill="#3D3D3D" size="large" />
+        </IconContainer>
+        <Header>Sauvegarder</Header>
+        <InfosContainer>
+          <div style={{ marginRight: "8px" }}>
+            <InfoLeft
+              title="Pas de panique !"
+              subTitle="Votre fiche est sauvegardée automatiquement"
+              footer="toutes les 3 minutes"
+              footerIcon="clock-outline"
+              color="#3D2884"
+            />
+          </div>
+          <InfoRight
+            title="Bon à savoir"
+            subTitle="Une fois sauvegardée, votre fiche est visible dans l'espace"
+            footer="Mes fiches"
+            footerIcon="file-text-outline"
+            color="#149193"
           />
-        </div>
-        <InfoRight
-          title="Bon à savoir"
-          subTitle="Une fois sauvegardée, votre fiche est visible dans l'espace"
-          footer="Mes fiches"
-          footerIcon="file-text-outline"
-          color="#149193"
-        />
-      </InfosContainer>
-      <ButtonsContainer>
-        <FButton
-          type="outline-black"
-          name="log-out-outline"
-          className="mr-8"
-          onClick={() => {
-            props.valider_dispositif(props.status, false, true, false);
-            props.toggle();
-            props.navigateToProfilePage();
-          }}
-        >
-          Sauvegarder et quitter
-        </FButton>
-        <FButton
-          type="validate"
-          name="save-outline"
-          onClick={() => {
-            props.valider_dispositif(props.status, false, true, true);
-            props.toggle();
-          }}
-        >
-          Sauvegarder et continuer
-        </FButton>
-      </ButtonsContainer>
-    </MainContainer>
-  </Modal>
-);
+        </InfosContainer>
+        <ButtonsContainer>
+          <FButton
+            type="outline-black"
+            name="log-out-outline"
+            className="mr-8"
+            onClick={() => {
+              props.valider_dispositif(
+                props.status || "Brouillon",
+                false,
+                true,
+                false
+              );
+              props.toggle();
+              props.navigateToProfilePage();
+            }}
+          >
+            Sauvegarder et quitter
+          </FButton>
+          <FButton
+            type="validate"
+            name="save-outline"
+            onClick={() => {
+              props.valider_dispositif(
+                props.status || "Brouillon",
+                false,
+                true,
+                true
+              );
+              props.toggle();
+            }}
+          >
+            Sauvegarder et continuer
+          </FButton>
+        </ButtonsContainer>
+      </MainContainer>
+    </Modal>
+  );
+};
