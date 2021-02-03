@@ -151,6 +151,7 @@ const getInfoText = (step: number, displayTuto: boolean) => {
 };
 export const BandeauEditionWithoutVariante = (props: Props) => {
   const { title, subtitle } = getInfoText(props.tKeyValue, props.displayTuto);
+  const isDispositif = props.typeContenu === "dispositif";
   return (
     <div className={"bandeau-edition" + (props.visible ? "" : " go-to-top")}>
       <div className="dashed-panel no-radius" />
@@ -166,7 +167,7 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
           {(props.tKeyValue === -1 || !props.displayTuto) && (
             <EndDescription>
               <YellowText>jaune.</YellowText>
-              {props.typeContenu === "dispositif" && (
+              {isDispositif && (
                 <KnowMore onClick={props.toggleDispositifCreateModal}>
                   <u>En savoir plus</u>
                 </KnowMore>
@@ -175,14 +176,16 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
           )}
         </FirstGroupContainer>
         <SecondGroupContainer>
-          <FButton
-            type="tuto"
-            name={props.displayTuto ? "eye-off-outline" : "eye-outline"}
-            className="mr-10"
-            onClick={props.toggleTutoriel}
-          >
-            Tutoriel
-          </FButton>
+          {isDispositif && (
+            <FButton
+              type="tuto"
+              name={props.displayTuto ? "eye-off-outline" : "eye-outline"}
+              className="mr-10"
+              onClick={props.toggleTutoriel}
+            >
+              Tutoriel
+            </FButton>
+          )}
           <FButton
             type="light-action"
             name="save-outline"

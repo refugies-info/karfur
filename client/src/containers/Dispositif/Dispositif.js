@@ -1819,6 +1819,7 @@ export class Dispositif extends Component {
                     updateUIArray={this.updateUIArray}
                     isRTL={isRTL}
                     t={t}
+                    typeContenu={typeContenu}
                   />
                 }
               </Col>
@@ -2010,6 +2011,7 @@ export class Dispositif extends Component {
                   displayTuto={this.state.displayTuto}
                   updateUIArray={this.updateUIArray}
                   dispositif={this.state.dispositif}
+                  typeContenu={typeContenu}
                 />
 
                 {false && <Commentaires />}
