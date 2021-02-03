@@ -166,9 +166,11 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
           {(props.tKeyValue === -1 || !props.displayTuto) && (
             <EndDescription>
               <YellowText>jaune.</YellowText>
-              <KnowMore onClick={props.toggleDispositifCreateModal}>
-                <u>En savoir plus</u>
-              </KnowMore>
+              {props.typeContenu === "dispositif" && (
+                <KnowMore onClick={props.toggleDispositifCreateModal}>
+                  <u>En savoir plus</u>
+                </KnowMore>
+              )}
             </EndDescription>
           )}
         </FirstGroupContainer>

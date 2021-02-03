@@ -30,7 +30,6 @@ import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuD
 import {
   BookmarkedModal,
   DispositifCreateModal,
-  DemarcheCreateModal,
   DispositifValidateModal,
   ReactionModal,
   EnConstructionModal,
@@ -59,7 +58,6 @@ import {
   contenu,
   menu,
   filtres,
-  onBoardSteps,
   importantCard,
   showModals,
   menuDemarche,
@@ -1674,7 +1672,7 @@ export class Dispositif extends Component {
             className="main-col"
           >
             <section className={"banniere-dispo " + tag}>
-              {typeContenu === "dispositif" && !disableEdit && (
+              {!disableEdit && (
                 // yellow banner in top of a demarche to create a variante
                 // To see this component, create a new demarche then select an existing demarche
                 <BandeauEdition
@@ -2068,14 +2066,14 @@ export class Dispositif extends Component {
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}
             />
-            {typeContenu === "demarche" && (
+            {/* {typeContenu === "demarche" && (
               <DemarcheCreateModal
                 show={this.state.showDispositifCreateModal}
                 toggle={this.toggleDispositifCreateModal}
                 typeContenu={typeContenu}
                 onBoardSteps={onBoardSteps}
               />
-            )}
+            )} */}
             {typeContenu === "dispositif" && (
               <DispositifCreateModal
                 show={this.state.showDispositifCreateModal}

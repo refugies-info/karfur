@@ -7,7 +7,7 @@ import FButton from "../../FigmaUI/FButton/FButton";
 import Modal from "../Modal";
 
 import "./DemarcheCreateModal.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 class DemarcheCreateModal extends Component {
   state = {
