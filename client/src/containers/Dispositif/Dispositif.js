@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Col, Row, Spinner } from "reactstrap";
@@ -31,7 +30,6 @@ import { ContenuDispositif } from "../../components/Frontend/Dispositif/ContenuD
 import {
   BookmarkedModal,
   DispositifCreateModal,
-  DemarcheCreateModal,
   DispositifValidateModal,
   ReactionModal,
   EnConstructionModal,
@@ -60,7 +58,6 @@ import {
   contenu,
   menu,
   filtres,
-  onBoardSteps,
   importantCard,
   showModals,
   menuDemarche,
@@ -167,13 +164,11 @@ export class Dispositif extends Component {
     typeContenu: "dispositif",
     variantes: [],
     search: {},
-    inVariante: false,
     allDemarches: [],
     demarcheId: null,
     isVarianteValidated: false,
     dispositif: {},
     _id: undefined,
-    checkingVariante: false,
     printing: false,
     didThank: false,
     finalValidation: false,
@@ -236,8 +231,6 @@ export class Dispositif extends Component {
     const typeContenu = (props.match.path || "").includes("demarche")
       ? "demarche"
       : "dispositif";
-    const checkingVariante = _.get(props, "location.state.checkingVariante"),
-      textInput = _.get(props, "location.state.textInput");
 
     // if an itemId is present : initialize dispositif lecture or dispositif modification
     // if no itemId and user logged in : initialize new dispo creation
@@ -352,7 +345,6 @@ export class Dispositif extends Component {
                 fiabilite: calculFiabilite(dispositif),
                 disableEdit,
                 typeContenu,
-                checkingVariante,
                 ...(dispositif.status === "Brouillon" && {
                   initialTime: dispositif.timeSpent,
                 }),
@@ -443,9 +435,6 @@ export class Dispositif extends Component {
             };
           }),
           typeContenu,
-          ...(textInput && {
-            content: { ...contenu, titreInformatif: textInput },
-          }),
         },
         () => this.setColors()
       );
@@ -586,16 +575,7 @@ export class Dispositif extends Component {
 
   handleContentClick = (key, editable, subkey = undefined) => {
     let state = [...this.state.menu];
-    if (
-      state.length > key &&
-      key >= 0 &&
-      !this.state.disableEdit &&
-      (!this.state.inVariante ||
-        _.get(
-          this.state.uiArray,
-          key + (subkey ? ".children." + subkey : "") + ".varianteSelected"
-        ))
-    ) {
+    if (state.length > key && key >= 0 && !this.state.disableEdit) {
       if (editable) {
         state = state.map((x) => {
           const hasNewContent =
@@ -1007,17 +987,6 @@ export class Dispositif extends Component {
     this.setState((prevState) => ({
       inputBtnClicked: !prevState.inputBtnClicked,
     }));
-  toggleCheckingVariante = () =>
-    this.setState((pS) => ({ checkingVariante: !pS.checkingVariante }));
-  toggleInVariante = () =>
-    this.setState((pS) => ({
-      inVariante: !pS.inVariante,
-      ...(!pS.inVariante &&
-        pS.disableEdit && {
-          checkingVariante: false,
-          showModals: { ...this.state.showModals, variante: true },
-        }),
-    }));
 
   toggleNiveau = (selectedLevels, key, subkey) => {
     this.setState(
@@ -1298,38 +1267,8 @@ export class Dispositif extends Component {
       }),
     }));
     this.setState({ uiArray: uiArray, showSpinnerPrint: true, printing: true });
-    /*  this.html2canvas(document.getElementById('contenu-0')).then((canvas) => {
-              const imgData = canvas.toDataURL("image/png");
-              const pdf = new jsPDF();
-              pdf.addImage(imgData, "PNG", 0, 0);
-              pdf.save("download.pdf");
-            }) */
-    /*             savePDF(
-              this.newRef.current,
-              {
-                fileName:
-                  (this.state.typeContenu || "dispositif") +
-                  (this.state.content && this.state.content.titreMarque
-                    ? " - " + this.state.content.titreMarque
-                    : "") +
-                  ".pdf",
-                scale: 0.5,
-                margin: {
-                  top: "2cm",
-                  left: "1.5cm",
-                  right: "1.5cm",
-                  bottom: "2cm",
-                },
-              },
-              this._isMounted &&
-                setTimeout(() => {
-                  this._isMounted &&
-                    this.setState({ showSpinnerPrint: false, printing: false });
-                }, 3000)
-            ) */
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   editDispositif = (_ = null, disableEdit = false) => {
     this.props.history.push({
       state: {
@@ -1423,6 +1362,7 @@ export class Dispositif extends Component {
     sauvegarde = false,
     saveAndEdit = false
   ) => {
+    // TO DO : A ENLEVER ?
     if (!auto && !this.verifierDemarche()) {
       return;
     }
@@ -1459,7 +1399,7 @@ export class Dispositif extends Component {
     }
     let dispositif = {
       ...content,
-      contenu: [...this.state.menu].map((x, i) => {
+      contenu: [...this.state.menu].map((x) => {
         const hasNewContent =
           x.editable && x.editorState && x.editorState.getCurrentContent();
         // if user removed text with store empty string without html balise (so that it works with translation)
@@ -1476,13 +1416,11 @@ export class Dispositif extends Component {
           ...{
             content: hasNewContent ? content : x.content,
           },
-          ...(inVariante && {
-            isVariante: _.get(uiArray, `${i}.varianteSelected`),
-          }),
+
           editable: false,
           type: x.type,
           ...(x.children && {
-            children: x.children.map((y, j) => {
+            children: x.children.map((y) => {
               // eslint-disable-next-line
               const { editorState, ...noEditor } = y;
               const hasNewContent =
@@ -1501,12 +1439,7 @@ export class Dispositif extends Component {
               return {
                 ...noEditor,
                 ...(hasNewContent && { content }),
-                ...(inVariante && {
-                  isVariante: _.get(
-                    uiArray,
-                    `${i}.children.${j}.varianteSelected`
-                  ),
-                }),
+
                 editable: false,
                 ...(y.title && { title: h2p(y.title) }),
               };
@@ -1519,9 +1452,7 @@ export class Dispositif extends Component {
       avancement: 1,
       status: status,
       typeContenu: this.state.typeContenu,
-      ...(this.state.inVariante
-        ? { demarcheId: this.state._id }
-        : { dispositifId: this.state._id }),
+      ...{ dispositifId: this.state._id },
       ...(!this.state._id &&
         this.state.status !== "Brouillon" && { timeSpent: this.state.time }),
       autoSave: auto,
@@ -1595,7 +1526,6 @@ export class Dispositif extends Component {
       if (
         this.state.status &&
         this.state._id &&
-        !inVariante &&
         ![
           "",
           "En attente non prioritaire",
@@ -1627,7 +1557,6 @@ export class Dispositif extends Component {
         dispositif.status = "En attente non prioritaire";
       }
     }
-    console.log("dispo", dispositif.audienceAge);
     API.add_dispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
       if (!auto && this._isMounted) {
@@ -1688,17 +1617,13 @@ export class Dispositif extends Component {
       showModals,
       isDispositifLoading,
       typeContenu,
-      withHelp,
       disableEdit,
-      inVariante,
-      checkingVariante,
       printing,
       didThank,
       mainTag,
     } = this.state;
     const tag =
       mainTag && mainTag.short ? mainTag.short.split(" ").join("-") : "noImage";
-
     return (
       <div
         id="dispositif"
@@ -1747,21 +1672,10 @@ export class Dispositif extends Component {
             className="main-col"
           >
             <section className={"banniere-dispo " + tag}>
-              {(inVariante ||
-                checkingVariante ||
-                (typeContenu === "dispositif" && !disableEdit)) && (
+              {!disableEdit && (
                 // yellow banner in top of a demarche to create a variante
                 // To see this component, create a new demarche then select an existing demarche
                 <BandeauEdition
-                  withHelp={withHelp}
-                  disableEdit={disableEdit}
-                  checkingVariante={checkingVariante}
-                  editDispositif={this.editDispositif}
-                  upcoming={this.upcoming}
-                  valider_dispositif={this.valider_dispositif}
-                  toggleHelp={this.toggleHelp}
-                  toggleCheckingVariante={this.toggleCheckingVariante}
-                  toggleInVariante={this.toggleInVariante}
                   typeContenu={typeContenu}
                   toggleTutoriel={this.toggleTutoriel}
                   displayTuto={this.state.displayTuto}
@@ -1777,31 +1691,27 @@ export class Dispositif extends Component {
                 {windowWidth >= breakpoints.smLimit && (
                   <BackButton goBack={this.goBack} />
                 )}
-                {!inVariante && (
-                  // top right part of dispositif (3 different designs : create/modify, read, sponsor gets the dispositif "En attente")
-                  <TopRightHeader
-                    disableEdit={this.state.disableEdit}
-                    withHelp={this.state.withHelp}
-                    showSpinnerBookmark={this.state.showSpinnerBookmark}
-                    pinned={this.state.pinned}
-                    bookmarkDispositif={this.bookmarkDispositif}
-                    toggleHelp={this.toggleHelp}
-                    toggleModal={this.toggleModal}
-                    toggleDispositifValidateModal={
-                      this.toggleDispositifValidateModal
-                    }
-                    editDispositif={this.editDispositif}
-                    valider_dispositif={this.valider_dispositif}
-                    toggleDispositifCreateModal={
-                      this.toggleDispositifCreateModal
-                    }
-                    translating={translating}
-                    status={this.state.status}
-                    typeContenu={typeContenu}
-                    langue={i18n.language}
-                    t={t}
-                  />
-                )}
+
+                <TopRightHeader
+                  disableEdit={this.state.disableEdit}
+                  withHelp={this.state.withHelp}
+                  showSpinnerBookmark={this.state.showSpinnerBookmark}
+                  pinned={this.state.pinned}
+                  bookmarkDispositif={this.bookmarkDispositif}
+                  toggleHelp={this.toggleHelp}
+                  toggleModal={this.toggleModal}
+                  toggleDispositifValidateModal={
+                    this.toggleDispositifValidateModal
+                  }
+                  editDispositif={this.editDispositif}
+                  valider_dispositif={this.valider_dispositif}
+                  toggleDispositifCreateModal={this.toggleDispositifCreateModal}
+                  translating={translating}
+                  status={this.state.status}
+                  typeContenu={typeContenu}
+                  langue={i18n.language}
+                  t={t}
+                />
               </Row>
               <Col lg="12" md="12" sm="12" xs="12" className="post-title-block">
                 <div className={"bloc-titre "}>
@@ -1818,9 +1728,9 @@ export class Dispositif extends Component {
                           <ContentEditable
                             id="titreInformatif"
                             html={this.state.content.titreInformatif || ""} // innerHTML of the editable div
-                            disabled={disableEdit || inVariante}
+                            disabled={disableEdit}
                             onClick={(e) => {
-                              if (!disableEdit && !inVariante) {
+                              if (!disableEdit) {
                                 this.onInputClicked(e);
                               }
                             }}
@@ -1876,45 +1786,44 @@ export class Dispositif extends Component {
               </Col>
             </section>
 
-            {!inVariante && (
-              <Row className="tags-row backgroundColor-darkColor">
-                <Col
-                  style={{ display: "flex", alignItems: "center" }}
-                  lg="8"
-                  md="8"
-                  sm="8"
-                  xs="8"
-                  className="col right-bar"
-                >
-                  {
-                    // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
-                    (disableEdit || typeContenu !== "demarche") && (
-                      // TO DO : connect component to store when store updated after changing infocards
-                      <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
-                    )
-                  }
-                </Col>
-                <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
-                  {
-                    // Tags on the right of a dispositif or a demarche
-                    <Tags
-                      tags={this.state.tags}
-                      disableEdit={this.state.disableEdit}
-                      changeTag={this.changeTag}
-                      addTag={this.addTag}
-                      openTag={this.openTag}
-                      deleteTag={this.deleteTag}
-                      history={this.props.history}
-                      toggleTutorielModal={this.toggleTutorielModal}
-                      displayTuto={this.state.displayTuto}
-                      updateUIArray={this.updateUIArray}
-                      isRTL={isRTL}
-                      t={t}
-                    />
-                  }
-                </Col>
-              </Row>
-            )}
+            <Row className="tags-row backgroundColor-darkColor">
+              <Col
+                style={{ display: "flex", alignItems: "center" }}
+                lg="8"
+                md="8"
+                sm="8"
+                xs="8"
+                className="col right-bar"
+              >
+                {
+                  // display En bref banner if content is a dispositif or if content is a demarch but not in edition mode
+                  (disableEdit || typeContenu !== "demarche") && (
+                    // TO DO : connect component to store when store updated after changing infocards
+                    <EnBrefBanner menu={this.state.menu} isRTL={isRTL} />
+                  )
+                }
+              </Col>
+              <Col lg="4" md="4" sm="4" xs="4" className="tags-bloc">
+                {
+                  // Tags on the right of a dispositif or a demarche
+                  <Tags
+                    tags={this.state.tags}
+                    disableEdit={this.state.disableEdit}
+                    changeTag={this.changeTag}
+                    addTag={this.addTag}
+                    openTag={this.openTag}
+                    deleteTag={this.deleteTag}
+                    history={this.props.history}
+                    toggleTutorielModal={this.toggleTutorielModal}
+                    displayTuto={this.state.displayTuto}
+                    updateUIArray={this.updateUIArray}
+                    isRTL={isRTL}
+                    t={t}
+                    typeContenu={typeContenu}
+                  />
+                }
+              </Col>
+            </Row>
 
             <Row className="no-margin-right">
               {!translating && !printing && (
@@ -1948,11 +1857,7 @@ export class Dispositif extends Component {
                   }
                 </Col>
               )}
-              {inVariante && disableEdit && (
-                <Col className="variante-col">
-                  <div className="radio-btn" />
-                </Col>
-              )}
+
               <Col
                 xl={translating || printing ? "12" : "7"}
                 lg={translating || printing ? "12" : "7"}
@@ -1962,7 +1867,7 @@ export class Dispositif extends Component {
                 className="pt-40 col-middle"
                 id={"pageContent"}
               >
-                {disableEdit && !inVariante && (
+                {disableEdit && (
                   // Part about last update
                   <Row className="fiabilite-row">
                     <Col
@@ -1986,14 +1891,10 @@ export class Dispositif extends Component {
                   </Row>
                 )}
 
-                {typeContenu === "demarche" && !(disableEdit && inVariante) && (
-                  // MoteurVariantes displayed when creating a variante of a demarche or reading a variante or modifying a variante
-                  // in more details, it is displayed when asking 'is it the demarche you are looking for?' and at step 2 (but not at step 1) of variante creation or when reading a demarche
-                  // at step 1 of variante creation, disableEdit and inVariante are true, what is displayed is in contenuDispositif (with radio-buttons)
+                {typeContenu === "demarche" && !disableEdit && (
+                  // choice of cases in a demarche
                   <MoteurVariantes
                     itemId={this.state._id}
-                    disableEdit={disableEdit}
-                    inVariante={inVariante}
                     validateVariante={this.validateVariante}
                     deleteVariante={this.deleteVariante}
                     filtres={filtres}
@@ -2018,7 +1919,6 @@ export class Dispositif extends Component {
                   uiArray={this.state.uiArray}
                   t={this.state.t}
                   disableEdit={this.state.disableEdit}
-                  inVariante={this.state.inVariante}
                   menu={this.state.menu}
                   removeItem={this.removeItem}
                   changeTitle={this.changeCardTitle}
@@ -2044,7 +1944,7 @@ export class Dispositif extends Component {
                   {...this.state}
                 />
 
-                {this.state.disableEdit && !inVariante && (
+                {this.state.disableEdit && (
                   <>
                     {!printing && (
                       <FeedbackFooter
@@ -2111,6 +2011,7 @@ export class Dispositif extends Component {
                   displayTuto={this.state.displayTuto}
                   updateUIArray={this.updateUIArray}
                   dispositif={this.state.dispositif}
+                  typeContenu={typeContenu}
                 />
 
                 {false && <Commentaires />}
@@ -2167,14 +2068,14 @@ export class Dispositif extends Component {
               show={this.state.showBookmarkModal}
               toggle={this.toggleBookmarkModal}
             />
-            {typeContenu === "demarche" && (
+            {/* {typeContenu === "demarche" && (
               <DemarcheCreateModal
                 show={this.state.showDispositifCreateModal}
                 toggle={this.toggleDispositifCreateModal}
                 typeContenu={typeContenu}
                 onBoardSteps={onBoardSteps}
               />
-            )}
+            )} */}
             {typeContenu === "dispositif" && (
               <DispositifCreateModal
                 show={this.state.showDispositifCreateModal}

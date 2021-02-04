@@ -139,31 +139,18 @@ const menuDemarche = [
   {
     title: "C'est quoi ?",
     content: "",
-    tutoriel: {
-      titre: "« C’est quoi ? » : Résumé de votre dispositif",
-      contenu:
-        "Il s'agit d'une synthèse en deux paragraphes maximum de l’ensemble de la fiche du dispositif. La lecture de cette section doit être auto-suffisante. Il est conseillé de rédiger cette section en dernier après les sections ultérieures.",
-    },
   },
   {
     title: "C'est pour qui ?",
     type: "cards",
     content: null,
-    tutoriel: {
-      titre: "« C’est pour qui ? » :  les pré-requis pour rejoindre",
-      contenu:
-        "Cette section précise les caractéristiques du public cible et les pré-requis éventuels pour s’engager dans le dispositif. Vous pouvez mobiliser les catégories suivantes à votre guise : \n> Le statut demandé ? Réfugié, demandeurs d’asiles, primo-arrivants… \n> L’âge ; \n> Le niveau de français \n> La durée sur laquelle engage le dispositif ; \n> Des alertes spécifiques (par exemple : avoir un compte bancaire).",
-    },
+
     children: [],
   },
   {
-    title: "La démarche par étapes",
+    title: "Comment faire ?",
     content: null,
-    tutoriel: {
-      titre: "Les arguments principaux pour votre dispositif",
-      contenu:
-        "Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.",
-    },
+
     children: [
       {
         isFakeContent: true,
@@ -194,11 +181,7 @@ const menuDemarche = [
   {
     title: "Et après ?",
     content: null,
-    tutoriel: {
-      titre: "Les arguments principaux pour votre dispositif",
-      contenu:
-        "Cette section contient la présentation à proprement parler du dispositif. Il s’agit ici d’aider l’utilisateur à identifier très vite si le dispositif peut lui convenir (aide au choix). Cette section doit contenir 4 arguments maximum. Ceux-ci sont formulées par un titre informatif qui doit pouvoir se lire seul, sans ouvrir l’accordéon. Néanmoins, chaque argument peut être précisé par une ou deux phrases, obtenues en déroulant « l’accordéon » correspondant. Des liens extérieurs, pour compléter cette information, peuvent être fournis.",
-    },
+
     children: [
       {
         type: "accordion",

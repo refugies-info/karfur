@@ -261,7 +261,6 @@ class EtapeParagraphe extends Component {
       disableEdit,
       sideView,
       demarcheSteps,
-      inVariante,
       t,
     } = this.props;
     const {
@@ -302,9 +301,7 @@ class EtapeParagraphe extends Component {
         key={subkey}
         className={
           "etape contenu" +
-          (!inVariante && safeUiArray(keyValue, subkey, "isHover")
-            ? " isHovered"
-            : "")
+          (safeUiArray(keyValue, subkey, "isHover") ? " isHovered" : "")
         }
         onMouseEnter={(e) =>
           updateUIArray(keyValue, subkey, "isHover", true, e)
@@ -915,7 +912,7 @@ class EtapeParagraphe extends Component {
               </FButton>
             )}
           </Col>
-          {!sideView && !inVariante && disableEdit && (
+          {!sideView && disableEdit && (
             <Col lg="2" md="2" sm="2" xs="2" className="toolbar-col">
               <QuickToolbar
                 show={safeUiArray(keyValue, subkey, "isHover")}
