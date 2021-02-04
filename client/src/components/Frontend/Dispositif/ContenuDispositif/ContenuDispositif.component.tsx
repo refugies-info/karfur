@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React from "react";
 import { Col, Row } from "reactstrap";
 import { Props } from "./ContenuDispositif.container";
@@ -58,8 +59,16 @@ export interface PropsBeforeInjection {
 export const contenuDispositif = (props: Props) => {
   const { t, disableEdit } = props;
 
+  const getTitle = (title: string) => {
+    if (title === "La démarche par étapes")
+      return t("Dispositif.Comment faire ?", "Comment faire ?");
+
+    return t("Dispositif." + title, title);
+  };
+
   // props.menu is an array of the different sections (for example for a dispositif it is C'est quoi, C'est pour qui, Pourquoi c'est intéressant and Comment je m'engage)
   return props.menu.map((item: DispositifContent, key: number) => {
+    // TO DO REMOVE THE IF WHEN CEST POUR QUI SECTION ALSO ON DEMARCHES
     if (
       disableEdit ||
       props.typeContenu !== "demarche" ||
@@ -91,7 +100,7 @@ export const contenuDispositif = (props: Props) => {
                   {
                     // display title of dispositif
                   }
-                  {item.title && t("Dispositif." + item.title, item.title)}
+                  {item.title && getTitle(item.title)}
                 </h3>
                 {!disableEdit &&
                   props.typeContenu === "dispositif" &&
