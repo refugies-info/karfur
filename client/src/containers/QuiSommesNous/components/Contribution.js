@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-// import { ReactComponent as Code } from "../../../assets/qui-sommes-nous/QuiSommesNous_code.svg";
 import { ReactComponent as Terrain } from "../../../assets/qui-sommes-nous/QuiSommesNous_terrain.svg";
 // import { ReactComponent as Engagement } from "../../../assets/qui-sommes-nous/QuiSommesNous_engagement.svg";
 import { NavLink } from "react-router-dom";
 import Engagement from "../../../assets/qui-sommes-nous/QuiSommesNous_engagement.png";
-import Code from "../../../assets/qui-sommes-nous/QuiSommesNous_code.png";
-
+import Code from "../../../assets/qui-sommes-nous/code_ouvert.svg";
+import "./Contribution.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 
 const ContributionContentContainer = styled.div`
@@ -53,9 +52,8 @@ export const Contribution = (props) => (
 
 const ContributionCode = (props) => (
   <ContributionDetailContainer>
-    {/* <Code /> */}
     <div>
-      <img src={Code} />
+      <img src={Code} className="etat-ouvert-img" />
     </div>
     <TextContainer>
       <ContributionDetailTitle>
