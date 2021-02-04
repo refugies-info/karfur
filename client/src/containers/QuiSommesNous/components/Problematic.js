@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as StatusImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_réfugiés.svg";
-// import { ReactComponent as InfoImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_information.svg";
-import InfoImage from "../../../assets/qui-sommes-nous/QuiSommesNous_information.png";
+import InfoImage from "../../../assets/qui-sommes-nous/plein_dinfos.svg";
 
 import { ReactComponent as AccompagnementImage } from "../../../assets/qui-sommes-nous/QuiSommesNous_accompagnement.svg";
 
@@ -71,7 +70,6 @@ const Statut = (props) => (
 
 const Information = (props) => (
   <ProblematicDetailContainer>
-    {/* <InfoImage /> */}
     <img src={InfoImage} />
     <TextContainer>
       <ProblematicDetailTitle>
