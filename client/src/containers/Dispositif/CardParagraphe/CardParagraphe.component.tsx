@@ -605,15 +605,18 @@ export class CardParagraphe extends Component<Props> {
           ? "noImage"
           : this.props.mainTag.short.replace(/ /g, "-");
 
-      return (
+      const className =
         subitem.title
           .replace(/ /g, "-")
           .replace("-?", "")
           .replace("-!", "")
           .replace("'", "-") +
         "-" +
-        safeMainTag
-      );
+        safeMainTag;
+
+      if (subitem.title === "Combien ça coûte ?")
+        return className + "-" + subitem.free;
+      return className;
     };
 
     const cardFooterContent = (subitem: DispositifContent) => {
@@ -644,7 +647,6 @@ export class CardParagraphe extends Component<Props> {
       }
       return false;
     };
-
     // returns infocards using components defined above, mainly header, content and title
     return (
       <>
