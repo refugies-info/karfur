@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { ReactComponent as Terrain } from "../../../assets/qui-sommes-nous/QuiSommesNous_terrain.svg";
-// import { ReactComponent as Engagement } from "../../../assets/qui-sommes-nous/QuiSommesNous_engagement.svg";
 import { NavLink } from "react-router-dom";
-import Engagement from "../../../assets/qui-sommes-nous/QuiSommesNous_engagement.png";
+import Engagement from "../../../assets/qui-sommes-nous/micro_engagement.svg";
 import Code from "../../../assets/qui-sommes-nous/code_ouvert.svg";
 import "./Contribution.scss";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
