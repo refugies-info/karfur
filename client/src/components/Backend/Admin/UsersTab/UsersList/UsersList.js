@@ -6,7 +6,7 @@ import { colorStatut } from "../../../../Functions/ColorFunctions";
 import EVAIcon from "../../../../UI/EVAIcon/EVAIcon";
 
 import "./UsersList.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 const usersList = (props) => {
   const getRoleName = (role) => {
