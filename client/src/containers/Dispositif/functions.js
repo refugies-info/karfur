@@ -199,7 +199,6 @@ const check_place = function (
 
 const verifierDemarche = function () {
   if (this.state.typeContenu === "demarche") {
-    const { allDemarches, dispositif, variantes } = this.state;
     //Une démarche doit avoir des critères
     if (this.state.variantes.length === 0) {
       Swal.fire({
@@ -221,54 +220,6 @@ const verifierDemarche = function () {
         timer: 1500,
       });
       return false;
-    }
-    //Deux démarches ne peuvent pas avoir exactement les mêmes critères
-    if (this.state.inVariante) {
-      const varianteAlreadyExists = variantes.some((variante) => {
-        return [...allDemarches, dispositif].some(
-          (d) =>
-            d &&
-            (d.variantes || []).some((va) => {
-              let isEqual = true;
-              if (
-                va.bottomValue !== variante.bottomValue ||
-                va.topValue !== variante.topValue
-              ) {
-                isEqual = false;
-              }
-              isEqual = isEqual
-                ? !(va.villes || []).some(
-                    (vi) =>
-                      !(variante.villes || []).some(
-                        (ville) => ville.place_id === vi.place_id
-                      )
-                  )
-                : isEqual;
-              customCriteres.forEach((cc) => {
-                if (cc.query) {
-                  isEqual = isEqual
-                    ? (variante[cc.query] || []).length ===
-                        (va[cc.query] || []).length &&
-                      !(va[cc.query] || []).some(
-                        (x) => !(variante[cc.query] || []).includes(x)
-                      )
-                    : isEqual;
-                }
-              });
-              return isEqual;
-            })
-        );
-      });
-      if (varianteAlreadyExists) {
-        Swal.fire({
-          title: "Oh non!",
-          text:
-            "Vous avez rentré les mêmes critères qu'une variante existante, peut-être souhaitez-vous la préciser ?",
-          type: "error",
-          timer: 1500,
-        });
-        return false;
-      }
     }
   }
   return true;
