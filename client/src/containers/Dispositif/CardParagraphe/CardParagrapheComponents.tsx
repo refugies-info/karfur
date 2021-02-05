@@ -8,6 +8,9 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { DispositifContent } from "../../../types/interface";
+import { jsUcfirstInfocards } from "./functions";
+import styled from "styled-components";
+import FButton from "../../../components/FigmaUI/FButton/FButton";
 
 export const GeolocTooltipItem = (props: any) => {
   const { item, id } = props;
@@ -90,12 +93,6 @@ export const AgeRequisEditionContentTitle = (
   </span>
 );
 
-const jsUcfirst = (string: string, title: string) => {
-  if (title === "Public visé" && string && string.length > 1) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-  return string;
-};
 interface DropDownContentProps {
   isOptionsOpen: boolean;
   toggleOptions: (e: any) => void;
@@ -124,7 +121,7 @@ export const DropDownContent = (props: DropDownContentProps) => (
       ) : (
         <span>
           {props.subitem.contentTitle &&
-            jsUcfirst(
+            jsUcfirstInfocards(
               props.t(
                 "Dispositif." + props.subitem.contentTitle,
                 props.subitem.contentTitle
@@ -140,10 +137,104 @@ export const DropDownContent = (props: DropDownContentProps) => (
           //@ts-ignore
           // eslint-disable-next-line react/jsx-no-undef
           <DropdownItem key={key} id={key}>
-            {props.cardTitle ? jsUcfirst(option, props.cardTitle.title) : ""}
+            {props.cardTitle
+              ? jsUcfirstInfocards(option, props.cardTitle.title)
+              : ""}
           </DropdownItem>
         );
       })}
     </DropdownMenu>
   </ButtonDropdown>
 );
+
+interface FrenchCECRLevelProps {
+  subitem: DispositifContent;
+}
+const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
+
+export const FrenchCECRLevel = (props: FrenchCECRLevelProps) => (
+  <div className="color-darkColor niveaux-wrapper">
+    {niveaux
+      .filter((nv) =>
+        (props.subitem.niveaux || []).some((x: string) => x === nv)
+      )
+      .map((nv, key) => (
+        <button key={key} className={"backgroundColor-darkColor active"}>
+          {nv}
+        </button>
+      ))}
+  </div>
+);
+
+interface DepartmentsSelectedProps {
+  subitem: DispositifContent;
+  disableEdit: boolean;
+}
+
+const TitleTextBody = styled.p`
+  font-size: 22px;
+  line-height: 20px;
+  margin: 0;
+  padding-bottom: 12px;
+  padding-top: 10px;
+  font-weight: 600;
+  margin-top: ${(props) => props.mt || 0};
+`;
+
+export const DepartmentsSelected = (props: DepartmentsSelectedProps) => (
+  <div className="color-darkColor niveaux-wrapper">
+    {props.subitem.departments && props.subitem.departments.length > 1 ? (
+      props.subitem.departments.map((nv, key) => (
+        <GeolocTooltipItem key={key} item={nv} id={key} />
+      ))
+    ) : props.subitem.departments &&
+      props.subitem.departments.length === 1 &&
+      (!props.disableEdit || props.subitem.departments[0] !== "All") ? (
+      <TitleTextBody mt={"8px"}>
+        {props.subitem.departments[0] === "All"
+          ? "France entière"
+          : props.subitem.departments[0]}
+      </TitleTextBody>
+    ) : null}
+  </div>
+);
+
+interface AdminGeolocPublicationButtonProps {
+  admin: boolean;
+  subitem: DispositifContent;
+  dispositifId: string;
+  disableEdit: boolean;
+  onValidateGeoloc: (arg: string, arg1: DispositifContent) => void;
+}
+
+const ButtonText = styled.p`
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+`;
+export const AdminGeolocPublicationButton = (
+  props: AdminGeolocPublicationButtonProps
+) => {
+  if (
+    props.admin &&
+    props.subitem.title === "Zone d'action" &&
+    props.subitem.departments &&
+    props.dispositifId !== "" &&
+    !props.disableEdit
+  )
+    return (
+      <FButton
+        type="validate"
+        name="checkmark"
+        className={"mt-10"}
+        onClick={() =>
+          props.onValidateGeoloc(props.dispositifId, props.subitem)
+        }
+        disabled={props.subitem.departments.length === 0}
+      >
+        <ButtonText>Publier Geoloc</ButtonText>
+      </FButton>
+    );
+
+  return <div></div>;
+};
