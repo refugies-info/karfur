@@ -1,46 +1,22 @@
-/* eslint-disable no-console */
-/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
 import React, { Component } from "react";
-import {
-  Col,
-  Card,
-  CardBody,
-  CardHeader,
-  CardFooter,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Input,
-} from "reactstrap";
-import ContentEditable from "react-contenteditable";
+import { Col, Card, CardBody, CardHeader, CardFooter } from "reactstrap";
 import Swal from "sweetalert2";
-import styled from "styled-components";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
-
 import "./CardParagraphe.scss";
 import { colors } from "colors";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "../../../types/interface";
 import { filtres, cardTitles } from "../data";
 import _ from "lodash";
-import { infoCardIcon } from "../../../components/Icon/Icon";
 import { FrenchLevelModal } from "../FrenchLevelModal";
 import GeolocModal from "../../../components/Modals/GeolocModal/GeolocModal";
 import API from "../../../utils/API";
 import {
-  GeolocTooltipItem,
-  DropDownContent,
   FrenchCECRLevel,
   DepartmentsSelected,
   AdminGeolocPublicationButton,
 } from "./components/CardParagrapheComponents";
-import {
-  jsUcfirstInfocards,
-  getTextForAgeInfocard,
-} from "./components/functions";
+
 import { CardBodyContent } from "./components/CardBodyContent";
 import { CardFooterContent } from "./components/CardFooterContent";
 import { CardHeaderContent } from "./components/CardHeaderContent";
@@ -192,7 +168,7 @@ export class CardParagraphe extends Component<Props> {
   };
 
   render() {
-    const { subitem, subkey, disableEdit, t } = this.props;
+    const { subitem, subkey, disableEdit } = this.props;
 
     let dispositifId = "";
     if (this.props.location.pathname) {
