@@ -39,6 +39,8 @@ import {
 } from "./CardParagrapheComponents";
 import { jsUcfirstInfocards, getTextForAgeInfocard } from "./functions";
 import { CardBodyContent } from "./CardBodyContent";
+import { CardFooterContent } from "./CardFooterContent";
+import { CardHeaderContent } from "./CardHeaderContent";
 
 // difficult to type
 type Element = any;
@@ -50,12 +52,6 @@ interface Content {
   titreInformatif: string;
   titreMarque: string;
 }
-
-const ButtonText = styled.p`
-  font-size: 16px;
-  line-height: 20px;
-  margin: 0;
-`;
 
 export interface PropsBeforeInjection {
   subkey: number;
@@ -208,59 +204,6 @@ export class CardParagraphe extends Component<Props> {
       (x) => !this.props.cards.includes(x.title)
     );
 
-    const cardHeaderContent = (subitem: DispositifContent) => {
-      // in lecture mode, display title and icon or in edition when all types of infocard are already displayed
-      if (this.props.disableEdit || availableCardTitles.length === 0) {
-        return (
-          <>
-            {infoCardIcon(subitem.titleIcon, "#FFFFFF")}
-            <span className="header-content">
-              {subitem.title && t("Dispositif." + subitem.title, subitem.title)}
-            </span>
-          </>
-        );
-      }
-      // in edition mode
-      return (
-        <ButtonDropdown
-          isOpen={this.state.isDropdownOpen}
-          toggle={this.toggleDropdown}
-        >
-          {
-            // title and icon
-            <DropdownToggle
-              caret={!this.props.disableEdit}
-              className="header-value"
-            >
-              <div className="icon-title">
-                {infoCardIcon(subitem.titleIcon, "#FFFFFF")}
-                <span className="header-content">{subitem.title}</span>
-              </div>
-            </DropdownToggle>
-          }
-          <DropdownMenu>
-            {
-              // drop down with the list of possible info cards
-              availableCardTitles.map((cardTitle, key) => {
-                return (
-                  <DropdownItem
-                    key={key}
-                    // @ts-ignore
-                    id={key}
-                  >
-                    <div className="icon-title">
-                      {infoCardIcon(cardTitle.titleIcon)}
-                      <span className="header-content">{cardTitle.title}</span>
-                    </div>
-                  </DropdownItem>
-                );
-              })
-            }
-          </DropdownMenu>
-        </ButtonDropdown>
-      );
-    };
-
     const computeCardClassName = () => {
       const safeMainTag =
         _.isEmpty(this.props.mainTag) || !this.props.mainTag.short
@@ -281,34 +224,6 @@ export class CardParagraphe extends Component<Props> {
       return className;
     };
 
-    const cardFooterContent = (subitem: DispositifContent) => {
-      // in lecture mode, display button with a link to evaluate french level in infocard Niveau de français
-      if (subitem.title === "Niveau de français" && disableEdit) {
-        return (
-          <FButton
-            type="light-action"
-            name={subitem.footerIcon}
-            onClick={() => this.footerClicked(subitem)}
-          >
-            {subitem.footer &&
-              t("Dispositif." + subitem.footer, subitem.footer)}
-          </FButton>
-        );
-      }
-
-      if (!disableEdit && subitem.title === "Niveau de français") {
-        return (
-          <FButton
-            type="precision"
-            name="plus-circle-outline"
-            onClick={() => this.toggleFrenchLevelModal(true)}
-          >
-            <ButtonText>Préciser le niveau</ButtonText>
-          </FButton>
-        );
-      }
-      return false;
-    };
     // returns infocards using components defined above, mainly header, content and title
     return (
       <>
@@ -327,7 +242,14 @@ export class CardParagraphe extends Component<Props> {
             id={"info-card-" + this.props.keyValue + "-" + subkey}
           >
             <CardHeader className="backgroundColor-darkColor">
-              {cardHeaderContent(subitem)}
+              <CardHeaderContent
+                subitem={subitem}
+                disableEdit={disableEdit}
+                availableCardTitles={availableCardTitles}
+                t={this.props.t}
+                isDropdownOpen={this.state.isDropdownOpen}
+                toggleDropdown={this.toggleDropdown}
+              />
             </CardHeader>
             <CardBody>
               <span className="color-darkColor card-custom-title">
@@ -370,7 +292,15 @@ export class CardParagraphe extends Component<Props> {
             </CardBody>
             {
               // footer for card Niveau de français to assess level in a website
-              <CardFooter>{cardFooterContent(subitem)}</CardFooter>
+              <CardFooter>
+                <CardFooterContent
+                  subitem={subitem}
+                  disableEdit={disableEdit}
+                  footerClicked={this.footerClicked}
+                  t={this.props.t}
+                  toggleFrenchLevelModal={this.toggleFrenchLevelModal}
+                />
+              </CardFooter>
             }
             {
               // deletion of an infocard in edit mode
@@ -416,34 +346,3 @@ export class CardParagraphe extends Component<Props> {
     );
   }
 }
-
-interface PlusCardProps {
-  addItem: (arg1: number, arg2: string, arg3?: string | null) => void;
-  keyValue: number;
-  cards: string[];
-}
-
-const PlusCard = (props: PlusCardProps) => {
-  const availableCardTitles = cardTitles.filter(
-    (x) => !props.cards.includes(x.title)
-  );
-  const nextTitle =
-    availableCardTitles.length > 0 ? availableCardTitles[0].title : "";
-  return (
-    <Col xl="4" lg="6" md="6" sm="12" xs="12" className="card-col">
-      <Card
-        className="add-card"
-        onClick={() => props.addItem(props.keyValue, "card", nextTitle)}
-      >
-        <CardHeader className="backgroundColor-darkColor">
-          Ajouter un item
-        </CardHeader>
-        <CardBody>
-          <span className="add-sign">+</span>
-        </CardBody>
-      </Card>
-    </Col>
-  );
-};
-
-export { PlusCard };
