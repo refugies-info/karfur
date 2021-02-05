@@ -45,7 +45,6 @@ const menu = [
     title: "C'est pour qui ?",
     type: "cards",
     content: null,
-
     children: [
       {
         type: "card",
@@ -145,7 +144,25 @@ const menuDemarche = [
     type: "cards",
     content: null,
 
-    children: [],
+    children: [
+      {
+        type: "card",
+        isFakeContent: true,
+        title: "Âge requis",
+        titleIcon: "calendar-outline",
+        typeIcon: "eva",
+        contentTitle: "Plus de ** ans",
+        bottomValue: 18,
+        topValue: 999,
+      },
+      {
+        type: "card",
+        title: "Zone d'action",
+        titleIcon: "pin-outline",
+        typeIcon: "eva",
+        departments: ["All"],
+      },
+    ],
   },
   {
     title: "Comment faire ?",

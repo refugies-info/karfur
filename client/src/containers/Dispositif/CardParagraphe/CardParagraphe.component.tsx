@@ -1,4 +1,6 @@
-import React, { Component, useState } from "react";
+/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-unused-vars-experimental */
+import React, { Component } from "react";
 import {
   Col,
   Card,
@@ -10,7 +12,6 @@ import {
   DropdownMenu,
   DropdownItem,
   Input,
-  Tooltip,
 } from "reactstrap";
 import ContentEditable from "react-contenteditable";
 import Swal from "sweetalert2";
@@ -29,6 +30,7 @@ import { infoCardIcon } from "../../../components/Icon/Icon";
 import { FrenchLevelModal } from "../FrenchLevelModal";
 import GeolocModal from "../../../components/Modals/GeolocModal/GeolocModal";
 import API from "../../../utils/API";
+import { GeolocTooltipItem, DropDownContent } from "./CardParagrapheComponents";
 
 const niveaux = ["A1.1", "A1", "A2", "B1", "B2", "C1", "C2"];
 const frequencesPay = [
@@ -97,6 +99,7 @@ export interface PropsBeforeInjection {
   admin: boolean;
   toggleGeolocModal: (arg1: boolean) => void;
   showGeolocModal: boolean;
+  typeContenu: "dispositif" | "demarche";
 }
 type StateType = {
   isDropdownOpen: boolean;
@@ -104,36 +107,6 @@ type StateType = {
   showNiveaux: boolean;
   tooltipOpen: boolean;
   showFrenchLevelModal: boolean;
-};
-
-const GeolocTooltipItem = (props: any) => {
-  const { item, id } = props;
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-
-  const toggle = () => setTooltipOpen(!tooltipOpen);
-
-  return (
-    <>
-      <button
-        key={id + "d"}
-        id={"Tooltip-" + id}
-        className={"backgroundColor-darkColor active "}
-      >
-        {item.split(" ")[0].length > 1
-          ? item.split(" ")[0]
-          : "0" + item.split(" ")[0]}
-      </button>
-      <Tooltip
-        placement="top"
-        offset="0px, 8px"
-        isOpen={tooltipOpen}
-        target={"Tooltip-" + id}
-        toggle={toggle}
-      >
-        {item}
-      </Tooltip>
-    </>
-  );
 };
 
 export class CardParagraphe extends Component<Props> {
@@ -282,6 +255,8 @@ export class CardParagraphe extends Component<Props> {
   render() {
     const { subitem, subkey, disableEdit, t } = this.props;
     const { showNiveaux } = this.state;
+    // eslint-disable-next-line no-console
+    console.log("type contenu", this.props.typeContenu);
     const jsUcfirst = (string: string, title: string) => {
       if (title === "Public visé" && string && string.length > 1) {
         return string.charAt(0).toUpperCase() + string.slice(1);
@@ -305,7 +280,7 @@ export class CardParagraphe extends Component<Props> {
     const contentTitle = (subitem: DispositifContent) => {
       let cardTitle = cardTitles.find((x) => x.title === subitem.title);
       // edition mode of cards with options
-      // for example Public visé, Age requis, Durée, Niveau de français
+      // Public visé, Age requis, Niveau de français
       if (
         cardTitle &&
         cardTitle.options &&
@@ -313,88 +288,18 @@ export class CardParagraphe extends Component<Props> {
         !disableEdit &&
         subitem.title !== "Zone d'action"
       ) {
-        if (
-          !subitem.contentTitle ||
-          !cardTitle.options.some(
-            (x: string) =>
-              // @ts-ignore : check if subitem.contentTitle is undefined already done
-              x.toUpperCase() === subitem.contentTitle.toUpperCase()
-          )
-        ) {
-          subitem.contentTitle = cardTitle.options[0];
-          subitem.contentBody = "A modifier";
-        }
         return (
-          <ButtonDropdown
-            isOpen={this.state.isOptionsOpen}
-            toggle={this.toggleOptions}
-            className="content-title"
-          >
-            <DropdownToggle caret={!disableEdit}>
-              {subitem.title === "Âge requis" ? (
-                // case Age Requis
-                <span>
-                  {subitem.contentTitle.split("**").map((x, i, arr) => (
-                    <React.Fragment key={i}>
-                      <span>{x}</span>
-                      {i < arr.length - 1 && (
-                        <Input
-                          type="number"
-                          className="color-darkColor age-input"
-                          value={
-                            (arr[0] === "De " && i === 0) ||
-                            arr[0] === "Plus de "
-                              ? subitem.bottomValue
-                              : subitem.topValue
-                          }
-                          onClick={(e) => e.stopPropagation()}
-                          onMouseUp={() =>
-                            (this.props.subitem || {}).isFakeContent &&
-                            this.props.changeAge(
-                              { target: { value: "" } },
-                              this.props.keyValue,
-                              this.props.subkey,
-                              i === 0 || arr[0] === "Plus de"
-                            )
-                          }
-                          onChange={(e) =>
-                            this.props.changeAge(
-                              e,
-                              this.props.keyValue,
-                              this.props.subkey,
-                              (arr[0] === "De " && i === 0) ||
-                                arr[0] === "Plus de "
-                            )
-                          }
-                        />
-                      )}
-                    </React.Fragment>
-                  ))}
-                </span>
-              ) : (
-                <span>
-                  {subitem.contentTitle &&
-                    jsUcfirst(
-                      t(
-                        "Dispositif." + subitem.contentTitle,
-                        subitem.contentTitle
-                      ),
-                      cardTitle.title
-                    )}
-                </span>
-              )}
-            </DropdownToggle>
-            <DropdownMenu>
-              {cardTitle.options.map((option, key: number) => {
-                return (
-                  //@ts-ignore
-                  <DropdownItem key={key} id={key}>
-                    {cardTitle ? jsUcfirst(option, cardTitle.title) : ""}
-                  </DropdownItem>
-                );
-              })}
-            </DropdownMenu>
-          </ButtonDropdown>
+          <DropDownContent
+            isOptionsOpen={this.state.isOptionsOpen}
+            toggleOptions={this.toggleOptions}
+            disableEdit={disableEdit}
+            subitem={subitem}
+            changeAge={this.props.changeAge}
+            keyValue={this.props.keyValue}
+            subkey={this.props.subkey}
+            cardTitle={cardTitle}
+            t={this.props.t}
+          />
         );
         // case infocard Combien ça coute (lecture and edition)
       } else if (subitem.title === "Combien ça coûte ?") {
@@ -485,7 +390,7 @@ export class CardParagraphe extends Component<Props> {
           );
         }
 
-        if (!disableEdit) {
+        if (!disableEdit && this.props.typeContenu === "dispositif") {
           return (
             <FButton
               type="precision"
