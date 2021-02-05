@@ -2,18 +2,12 @@ import React from "react";
 import { cardTitles } from "../../data";
 import { DispositifContent } from "../../../../types/interface";
 import { DropDownContent } from "./CardParagrapheComponents";
-import FSwitch from "../../../../components/FigmaUI/FSwitch/FSwitch";
-import {
-  Input,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+
 import styled from "styled-components";
 import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { getTextForAgeInfocard, jsUcfirstInfocards } from "./functions";
 import ContentEditable from "react-contenteditable";
+import { CombienCaCouteContent } from "./CombienCaCouteContent";
 
 const TitleTextBody = styled.p`
   font-size: 22px;
@@ -47,17 +41,10 @@ interface Props {
   handleMenuChange: (arg1: any) => void;
   emptyPlaceholder: (e: any) => void;
 }
-const frequencesPay = [
-  "une seule fois ",
-  "à chaque fois",
-  "par heure",
-  "par semaine",
-  "par mois",
-  "par an",
-];
 
 export const CardBodyContent = (props: Props) => {
   let cardTitle = cardTitles.find((x) => x.title === props.subitem.title);
+
   // edition mode of cards with options
   // Public visé, Age requis, Niveau de français
   if (
@@ -83,74 +70,19 @@ export const CardBodyContent = (props: Props) => {
     // case infocard Combien ça coute (lecture and edition)
   } else if (props.subitem.title === "Combien ça coûte ?") {
     return (
-      <>
-        {props.disableEdit ? (
-          <div className="card-custom-title">
-            {props.subitem.free
-              ? props.t("Dispositif.Gratuit", "Gratuit")
-              : props.t("Dispositif.Payant", "Payant")}
-          </div>
-        ) : (
-          <FSwitch
-            className="card-custom-title"
-            precontent="Gratuit"
-            content="Payant"
-            checked={!props.subitem.free}
-            onClick={() => props.toggleFree(props.keyValue, props.subkey)}
-          />
-        )}
-        {!props.subitem.free && (
-          <span className="color-darkColor price-details">
-            {props.disableEdit ? (
-              <span>{props.subitem.price}</span>
-            ) : (
-              <Input
-                type="number"
-                className="color-darkColor age-input"
-                disabled={props.disableEdit}
-                value={props.subitem.price}
-                onMouseUp={() =>
-                  (props.subitem || {}).isFakeContent &&
-                  props.changePrice(
-                    { target: { value: "" } },
-                    props.keyValue,
-                    props.subkey
-                  )
-                }
-                onChange={(e) =>
-                  props.changePrice(e, props.keyValue, props.subkey)
-                }
-              />
-            )}
-            <span>€ </span>
-            <ButtonDropdown
-              isOpen={!props.disableEdit && props.isOptionsOpen}
-              toggle={props.toggleOptions}
-              className="content-title price-frequency"
-            >
-              <DropdownToggle caret={!props.disableEdit}>
-                <span>
-                  {props.subitem.contentTitle &&
-                    props.t(
-                      "Dispositif." + props.subitem.contentTitle,
-                      props.subitem.contentTitle
-                    )}
-                </span>
-              </DropdownToggle>
-              <DropdownMenu>
-                {frequencesPay.map((f, key) => (
-                  //@ts-ignore
-                  // eslint-disable-next-line react/jsx-no-undef
-                  <DropdownItem key={key} id={key}>
-                    {f}
-                  </DropdownItem>
-                ))}
-              </DropdownMenu>
-            </ButtonDropdown>
-          </span>
-        )}
-      </>
+      <CombienCaCouteContent
+        disableEdit={props.disableEdit}
+        subitem={props.subitem}
+        t={props.t}
+        toggleFree={props.toggleFree}
+        keyValue={props.keyValue}
+        subkey={props.subkey}
+        changePrice={props.changePrice}
+        isOptionsOpen={props.isOptionsOpen}
+        toggleOptions={props.toggleOptions}
+      />
     );
+    // case zone d action edition and lecture
   } else if (props.subitem.title === "Zone d'action") {
     if (props.disableEdit) {
       return (
@@ -217,8 +149,8 @@ export const CardBodyContent = (props: Props) => {
     texte = props.subitem.contentTitle;
   }
 
-  // display infocards (except combien ça coute)
-  // edition of infocards Important
+  // display content of infocards in lecture : Important, Durée, Public visé, Age requis, Niveau de français
+  // edition of infocards Important and Durée
   return (
     <ContentEditable
       //@ts-ignore

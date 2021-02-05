@@ -34,6 +34,7 @@ export const CardHeaderContent = (props: Props) => {
       </>
     );
   }
+
   // in edition mode
   return (
     <ButtonDropdown isOpen={props.isDropdownOpen} toggle={props.toggleDropdown}>
