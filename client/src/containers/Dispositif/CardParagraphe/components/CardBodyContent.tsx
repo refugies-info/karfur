@@ -1,5 +1,5 @@
 import React from "react";
-import { cardTitles } from "../../data";
+import { cardTitlesDispositif } from "../../data";
 import { DispositifContent } from "../../../../types/interface";
 import { DropDownContent } from "./CardParagrapheComponents";
 
@@ -43,7 +43,9 @@ interface Props {
 }
 
 export const CardBodyContent = (props: Props) => {
-  let cardTitle = cardTitles.find((x) => x.title === props.subitem.title);
+  let cardTitle = cardTitlesDispositif.find(
+    (x) => x.title === props.subitem.title
+  );
 
   // edition mode of cards with options
   // Public visé, Age requis, Niveau de français
@@ -108,6 +110,10 @@ export const CardBodyContent = (props: Props) => {
           <ButtonTextBody>{"Sélectionner"}</ButtonTextBody>
         </FButton>
       );
+    }
+    // no possibility to modify zone d'action in edit mode for demarche
+    if (!props.disableEdit && props.typeContenu === "demarche") {
+      return <div />;
     }
   }
 

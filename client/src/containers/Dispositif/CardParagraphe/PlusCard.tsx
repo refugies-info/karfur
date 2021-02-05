@@ -1,4 +1,4 @@
-import { cardTitles } from "../data";
+import { cardTitlesDispositif } from "../data";
 import React from "react";
 import { Card, CardHeader, CardBody, Col } from "reactstrap";
 
@@ -9,11 +9,13 @@ interface PlusCardProps {
 }
 
 export const PlusCard = (props: PlusCardProps) => {
-  const availableCardTitles = cardTitles.filter(
+  const availablecardTitlesDispositif = cardTitlesDispositif.filter(
     (x) => !props.cards.includes(x.title)
   );
   const nextTitle =
-    availableCardTitles.length > 0 ? availableCardTitles[0].title : "";
+    availablecardTitlesDispositif.length > 0
+      ? availablecardTitlesDispositif[0].title
+      : "";
   return (
     <Col xl="4" lg="6" md="6" sm="12" xs="12" className="card-col">
       <Card

@@ -14,7 +14,10 @@ import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/E
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 import { colors } from "colors";
-import { cardTitles } from "../../../../containers/Dispositif/data";
+import {
+  cardTitlesDispositif,
+  cardTitlesDemarche,
+} from "../../../../containers/Dispositif/data";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
@@ -370,8 +373,23 @@ const contenuParagraphe = (props) => {
         item.type === "cards" &&
         item.children &&
         item.title === "C'est pour qui ?" &&
+        props.typeContenu === "dispositif" &&
         // when all types of incards are displayed we do not want to add more
-        cards.length < cardTitles.length && (
+        cards.length < cardTitlesDispositif.length && (
+          <PlusCard
+            addItem={props.addItem}
+            keyValue={props.keyValue}
+            cards={cards}
+          />
+        )}
+
+      {!props.disableEdit &&
+        item.type === "cards" &&
+        item.children &&
+        item.title === "C'est pour qui ?" &&
+        props.typeContenu === "demarche" &&
+        // when all types of incards are displayed we do not want to add more
+        cards.length < cardTitlesDemarche.length && (
           <PlusCard
             addItem={props.addItem}
             keyValue={props.keyValue}

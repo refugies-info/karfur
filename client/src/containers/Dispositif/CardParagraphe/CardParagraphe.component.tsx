@@ -6,7 +6,7 @@ import "./CardParagraphe.scss";
 import { colors } from "colors";
 import { Props } from "./CardParagraphe.container";
 import { DispositifContent, Tag } from "../../../types/interface";
-import { filtres, cardTitles } from "../data";
+import { filtres, cardTitlesDispositif, cardTitlesDemarche } from "../data";
 import _ from "lodash";
 import { FrenchLevelModal } from "../FrenchLevelModal";
 import GeolocModal from "../../../components/Modals/GeolocModal/GeolocModal";
@@ -179,9 +179,12 @@ export class CardParagraphe extends Component<Props> {
     }
 
     // filter cards to have maximum one infocard by category
-    const availableCardTitles = cardTitles.filter(
-      (x) => !this.props.cards.includes(x.title)
-    );
+    const availablecardTitles =
+      this.props.typeContenu === "dispositif"
+        ? cardTitlesDispositif.filter(
+            (x) => !this.props.cards.includes(x.title)
+          )
+        : cardTitlesDemarche.filter((x) => !this.props.cards.includes(x.title));
 
     const computeCardClassName = () => {
       const safeMainTag =
@@ -224,10 +227,11 @@ export class CardParagraphe extends Component<Props> {
               <CardHeaderContent
                 subitem={subitem}
                 disableEdit={disableEdit}
-                availableCardTitles={availableCardTitles}
+                availablecardTitles={availablecardTitles}
                 t={this.props.t}
                 isDropdownOpen={this.state.isDropdownOpen}
                 toggleDropdown={this.toggleDropdown}
+                typeContenu={this.props.typeContenu}
               />
             </CardHeader>
             <CardBody>
@@ -282,23 +286,27 @@ export class CardParagraphe extends Component<Props> {
               </CardFooter>
             }
             {
-              // deletion of an infocard in edit mode
-              !this.props.disableEdit && (
-                <div className="card-icons">
-                  <div
-                    onClick={() =>
-                      this.props.deleteCard(this.props.keyValue, subkey)
-                    }
-                  >
-                    <EVAIcon
-                      size="xlarge"
-                      name="close-circle"
-                      fill={colors.noirCD}
-                      className="delete-icon"
-                    />
+              // deletion of an infocard in edit mode except for zone d'action in demarche
+              !this.props.disableEdit &&
+                !(
+                  this.props.typeContenu === "demarche" &&
+                  subitem.title === "Zone d'action"
+                ) && (
+                  <div className="card-icons">
+                    <div
+                      onClick={() =>
+                        this.props.deleteCard(this.props.keyValue, subkey)
+                      }
+                    >
+                      <EVAIcon
+                        size="xlarge"
+                        name="close-circle"
+                        fill={colors.noirCD}
+                        className="delete-icon"
+                      />
+                    </div>
                   </div>
-                </div>
-              )
+                )
             }
           </Card>
         </Col>

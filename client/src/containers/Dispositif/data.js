@@ -147,6 +147,13 @@ const menuDemarche = [
     children: [
       {
         type: "card",
+        title: "Zone d'action",
+        titleIcon: "pin-outline",
+        typeIcon: "eva",
+        departments: ["All"],
+      },
+      {
+        type: "card",
         isFakeContent: true,
         title: "Âge requis",
         titleIcon: "calendar-outline",
@@ -154,13 +161,6 @@ const menuDemarche = [
         contentTitle: "Plus de ** ans",
         bottomValue: 18,
         topValue: 999,
-      },
-      {
-        type: "card",
-        title: "Zone d'action",
-        titleIcon: "pin-outline",
-        typeIcon: "eva",
-        departments: ["All"],
       },
     ],
   },
@@ -448,13 +448,13 @@ const filtres = {
   ],
 };
 
-const cardTitles = [
+const cardTitlesDispositif = [
   { title: "Public visé", titleIcon: "papiers", options: filtres.audience },
   {
     title: "Âge requis",
     titleIcon: "calendar-outline",
     options: filtres.audienceAge,
-  }, //["0-18","18-25","25-56","56-120"]
+  },
   { title: "Durée", titleIcon: "clock-outline" },
   {
     title: "Niveau de français",
@@ -464,6 +464,19 @@ const cardTitles = [
   { title: "Combien ça coûte ?", titleIcon: "pricetags-outline" },
 
   { title: "Important !", titleIcon: "alert-triangle-outline" },
+  {
+    title: "Zone d'action",
+    titleIcon: "pin-outline",
+    options: filtres.departmentsData,
+  },
+];
+
+const cardTitlesDemarche = [
+  {
+    title: "Âge requis",
+    titleIcon: "calendar-outline",
+    options: filtres.audienceAge,
+  },
   {
     title: "Zone d'action",
     titleIcon: "pin-outline",
@@ -920,6 +933,7 @@ export {
   tutoStepsDemarche,
   customConvertOption,
   google_localities,
-  cardTitles,
+  cardTitlesDispositif,
   streamlineIconCorrespondency,
+  cardTitlesDemarche,
 };

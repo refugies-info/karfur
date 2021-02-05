@@ -11,7 +11,7 @@ import { DispositifContent } from "../../../../types/interface";
 interface Props {
   subitem: DispositifContent;
   disableEdit: boolean;
-  availableCardTitles: {
+  availablecardTitles: {
     title: string;
     titleIcon: string;
     options?: string[];
@@ -19,11 +19,17 @@ interface Props {
   t: any;
   isDropdownOpen: boolean;
   toggleDropdown: (e: any) => void;
+  typeContenu: "dispositif" | "demarche";
 }
 
 export const CardHeaderContent = (props: Props) => {
   // in lecture mode, display title and icon or in edition when all types of infocard are already displayed
-  if (props.disableEdit || props.availableCardTitles.length === 0) {
+  if (
+    props.disableEdit ||
+    props.availablecardTitles.length === 0 ||
+    (props.subitem.title === "Zone d'action" &&
+      props.typeContenu === "demarche")
+  ) {
     return (
       <>
         {infoCardIcon(props.subitem.titleIcon, "#FFFFFF")}
@@ -50,7 +56,7 @@ export const CardHeaderContent = (props: Props) => {
       <DropdownMenu>
         {
           // drop down with the list of possible info cards
-          props.availableCardTitles.map((cardTitle, key) => {
+          props.availablecardTitles.map((cardTitle, key) => {
             return (
               <DropdownItem
                 key={key}
