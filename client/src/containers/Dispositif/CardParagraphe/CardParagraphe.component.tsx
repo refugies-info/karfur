@@ -36,11 +36,14 @@ import {
   FrenchCECRLevel,
   DepartmentsSelected,
   AdminGeolocPublicationButton,
-} from "./CardParagrapheComponents";
-import { jsUcfirstInfocards, getTextForAgeInfocard } from "./functions";
-import { CardBodyContent } from "./CardBodyContent";
-import { CardFooterContent } from "./CardFooterContent";
-import { CardHeaderContent } from "./CardHeaderContent";
+} from "./components/CardParagrapheComponents";
+import {
+  jsUcfirstInfocards,
+  getTextForAgeInfocard,
+} from "./components/functions";
+import { CardBodyContent } from "./components/CardBodyContent";
+import { CardFooterContent } from "./components/CardFooterContent";
+import { CardHeaderContent } from "./components/CardHeaderContent";
 
 // difficult to type
 type Element = any;

@@ -1,8 +1,8 @@
 import React from "react";
-import { cardTitles } from "../data";
-import { DispositifContent } from "../../../types/interface";
+import { cardTitles } from "../../data";
+import { DispositifContent } from "../../../../types/interface";
 import { DropDownContent } from "./CardParagrapheComponents";
-import FSwitch from "../../../components/FigmaUI/FSwitch/FSwitch";
+import FSwitch from "../../../../components/FigmaUI/FSwitch/FSwitch";
 import {
   Input,
   ButtonDropdown,
@@ -11,7 +11,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 import styled from "styled-components";
-import FButton from "../../../components/FigmaUI/FButton/FButton";
+import FButton from "../../../../components/FigmaUI/FButton/FButton";
 import { getTextForAgeInfocard, jsUcfirstInfocards } from "./functions";
 import ContentEditable from "react-contenteditable";
 
