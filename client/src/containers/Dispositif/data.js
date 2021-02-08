@@ -154,7 +154,6 @@ const menuDemarche = [
       },
       {
         type: "card",
-        isFakeContent: true,
         title: "Âge requis",
         titleIcon: "calendar-outline",
         typeIcon: "eva",

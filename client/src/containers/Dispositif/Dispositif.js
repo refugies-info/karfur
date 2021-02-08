@@ -53,7 +53,6 @@ import SideTrad from "./SideTrad/SideTrad";
 import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
 import { readAudio } from "../Layout/functions";
-import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
 import {
   contenu,
   menu,
@@ -66,9 +65,6 @@ import {
 } from "./data";
 import {
   switchVariante,
-  initializeVariantes,
-  initializeInfoCards,
-  verifierDemarche,
   validateVariante,
   deleteVariante,
   calculFiabilite,
@@ -86,7 +82,6 @@ import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner"
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
-// var opentype = require('opentype.js');
 
 moment.locale("fr");
 
@@ -112,9 +107,6 @@ export class Dispositif extends Component {
     this.initializeTimer = initializeTimer.bind(this);
     this.readAudio = readAudio.bind(this);
     this.switchVariante = switchVariante.bind(this);
-    this.initializeVariantes = initializeVariantes.bind(this);
-    this.initializeInfoCards = initializeInfoCards.bind(this);
-    this.verifierDemarche = verifierDemarche.bind(this);
     this.validateVariante = validateVariante.bind(this);
     this.deleteVariante = deleteVariante.bind(this);
   }
@@ -350,12 +342,7 @@ export class Dispositif extends Component {
                 }),
               },
               () => {
-                if (typeContenu === "demarche") {
-                  this.initializeInfoCards();
-                  this.initializeVariantes(itemId, props);
-                } else {
-                  this.setColors();
-                }
+                this.setColors();
               }
             );
           document.title =
@@ -1362,14 +1349,9 @@ export class Dispositif extends Component {
     sauvegarde = false,
     saveAndEdit = false
   ) => {
-    // TO DO : A ENLEVER ?
-    if (!auto && !this.verifierDemarche()) {
-      return;
-    }
     this.setState({ isDispositifLoading: !auto });
     let content = { ...this.state.content };
-    const uiArray = { ...this.state.uiArray },
-      inVariante = this.state.inVariante;
+
     Object.keys(content).map((k) => (content[k] = h2p(content[k])));
     if (
       auto &&
@@ -1890,21 +1872,6 @@ export class Dispositif extends Component {
                     </Col>
                   </Row>
                 )}
-
-                {typeContenu === "demarche" && !disableEdit && (
-                  // choice of cases in a demarche
-                  <MoteurVariantes
-                    itemId={this.state._id}
-                    validateVariante={this.validateVariante}
-                    deleteVariante={this.deleteVariante}
-                    filtres={filtres}
-                    upcoming={this.upcoming}
-                    switchVariante={this.switchVariante}
-                    variantes={this.state.variantes}
-                    allDemarches={this.state.allDemarches}
-                    search={this.state.search}
-                  />
-                )}
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
                   updateUIArray={this.updateUIArray}
@@ -1965,28 +1932,6 @@ export class Dispositif extends Component {
                         <ContribCaroussel
                           contributeurs={this.state.contributeurs}
                         />
-                        {/* {// add contributors : desactivated 
-                        !this.state.disableEdit  && (
-                          <div className="ecran-protection">
-                            <div className="content-wrapper">
-                              <Icon
-                                name="alert-triangle-outline"
-                                fill="#FFFFFF"
-                              />
-                              <span>
-                                Ajout des contributeurs{" "}
-                                <u
-                                  className="pointer"
-                                  onClick={() =>
-                                    this.toggleModal(true, "construction")
-                                  }
-                                >
-                                  disponible prochainement
-                                </u>
-                              </span>
-                            </div>
-                          </div>
-                        )} */}
                       </div>
                     )}
                   </>
