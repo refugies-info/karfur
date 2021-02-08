@@ -134,6 +134,13 @@ const menu = [
   },
 ];
 
+const infocardFranceEntiere = {
+  type: "card",
+  title: "Zone d'action",
+  titleIcon: "pin-outline",
+  typeIcon: "eva",
+  departments: ["All"],
+};
 const menuDemarche = [
   {
     title: "C'est quoi ?",
@@ -145,13 +152,7 @@ const menuDemarche = [
     content: null,
 
     children: [
-      {
-        type: "card",
-        title: "Zone d'action",
-        titleIcon: "pin-outline",
-        typeIcon: "eva",
-        departments: ["All"],
-      },
+      infocardFranceEntiere,
       {
         type: "card",
         title: "Âge requis",
@@ -207,6 +208,10 @@ const menuDemarche = [
     ],
   },
 ];
+
+const infocardsDemarcheTitles = menuDemarche[1].children.map(
+  (child) => child.title
+);
 
 const importantCard = {
   type: "card",
@@ -935,4 +940,6 @@ export {
   cardTitlesDispositif,
   streamlineIconCorrespondency,
   cardTitlesDemarche,
+  infocardsDemarcheTitles,
+  infocardFranceEntiere,
 };

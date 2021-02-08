@@ -21,6 +21,7 @@ import {
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
+import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -389,7 +390,9 @@ const contenuParagraphe = (props) => {
         item.title === "C'est pour qui ?" &&
         props.typeContenu === "demarche" &&
         // when all types of incards are displayed we do not want to add more
-        cards.length < cardTitlesDemarche.length && (
+        // we need to filter because on old demarches there may be other types of infocards not used anymore
+        cards.filter((card) => infocardsDemarcheTitles.includes(card)).length <
+          cardTitlesDemarche.length && (
           <PlusCard
             addItem={props.addItem}
             keyValue={props.keyValue}

@@ -51,47 +51,51 @@ interface AgeRequisEditionContentTitleProps {
 
 export const AgeRequisEditionContentTitle = (
   props: AgeRequisEditionContentTitleProps // case Age Requis
-) => (
-  <span>
-    {props.subitem.contentTitle &&
-      props.subitem.contentTitle.split("**").map((x, i, arr) => (
-        <React.Fragment key={i}>
-          <span>{x}</span>
-          {i < arr.length - 1 && (
-            <Input
-              type="number"
-              className="color-darkColor age-input"
-              value={
-                (arr[0] === "De " && i === 0) || arr[0] === "Plus de "
-                  ? props.subitem.bottomValue
-                  : props.subitem.topValue
-              }
-              onClick={(e: { stopPropagation: () => void }) =>
-                e.stopPropagation()
-              }
-              onMouseUp={() =>
-                (props.subitem || {}).isFakeContent &&
-                props.changeAge(
-                  { target: { value: "" } },
-                  props.keyValue,
-                  props.subkey,
-                  i === 0 || arr[0] === "Plus de"
-                )
-              }
-              onChange={(e) =>
-                props.changeAge(
-                  e,
-                  props.keyValue,
-                  props.subkey,
+) => {
+  const title = props.subitem.contentTitle || props.subitem.ageTitle;
+
+  return (
+    <span>
+      {title &&
+        title.split("**").map((x, i, arr) => (
+          <React.Fragment key={i}>
+            <span>{x}</span>
+            {i < arr.length - 1 && (
+              <Input
+                type="number"
+                className="color-darkColor age-input"
+                value={
                   (arr[0] === "De " && i === 0) || arr[0] === "Plus de "
-                )
-              }
-            />
-          )}
-        </React.Fragment>
-      ))}
-  </span>
-);
+                    ? props.subitem.bottomValue
+                    : props.subitem.topValue
+                }
+                onClick={(e: { stopPropagation: () => void }) =>
+                  e.stopPropagation()
+                }
+                onMouseUp={() =>
+                  (props.subitem || {}).isFakeContent &&
+                  props.changeAge(
+                    { target: { value: "" } },
+                    props.keyValue,
+                    props.subkey,
+                    i === 0 || arr[0] === "Plus de"
+                  )
+                }
+                onChange={(e) =>
+                  props.changeAge(
+                    e,
+                    props.keyValue,
+                    props.subkey,
+                    (arr[0] === "De " && i === 0) || arr[0] === "Plus de "
+                  )
+                }
+              />
+            )}
+          </React.Fragment>
+        ))}
+    </span>
+  );
+};
 
 interface DropDownContentProps {
   isOptionsOpen: boolean;

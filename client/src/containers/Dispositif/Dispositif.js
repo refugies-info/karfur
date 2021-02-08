@@ -62,6 +62,8 @@ import {
   menuDemarche,
   demarcheSteps,
   customConvertOption,
+  infocardsDemarcheTitles,
+  infocardFranceEntiere,
 } from "./data";
 import { calculFiabilite } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
@@ -77,6 +79,7 @@ import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner"
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
+import { logger } from "../../logger";
 
 moment.locale("fr");
 
@@ -282,12 +285,53 @@ export class Dispositif extends Component {
           );
           const sponsors = secondarySponsor || [];
 
+          // for demarche we need to be compatible with the moteur de cas.
+          // remove infocards not in list
+          // for infocard age requis, rename ageTitle in contentTitle
+          // if no infocard zone d'action, add one
+          const menu =
+            dispositif.typeContenu === "dispositif"
+              ? dispositif.contenu
+              : dispositif.contenu.map((part) => {
+                  if (part.title !== "C'est pour qui ?") {
+                    return part;
+                  }
+                  const children = part.children
+                    .filter((child) =>
+                      infocardsDemarcheTitles.includes(child.title)
+                    )
+                    .map((child) => {
+                      if (child.title === "Âge requis" && child.ageTitle) {
+                        const newFormatChild = {
+                          ...child,
+                          contentTitle: child.ageTitle,
+                        };
+                        delete newFormatChild.ageTitle;
+                        return newFormatChild;
+                      }
+                      return child;
+                    });
+                  if (
+                    children.filter((child) => child.title === "Zone d'action")
+                      .length > 0
+                  ) {
+                    return {
+                      ...part,
+                      children: children,
+                    };
+                  }
+                  return {
+                    ...part,
+                    children: children.concat([infocardFranceEntiere]),
+                  };
+                });
+
           //Enregistrement automatique du dispositif toutes les 3 minutes
           this._isMounted &&
             this.setState(
               {
                 _id: itemId,
-                menu: dispositif.contenu || [],
+                menu: menu || [],
                 content: {
                   titreInformatif: dispositif.titreInformatif,
                   titreMarque: dispositif.titreMarque,
@@ -1505,6 +1549,8 @@ export class Dispositif extends Component {
         dispositif.status = "En attente non prioritaire";
       }
     }
+
+    logger.info("[valider_dispositif] dispositif before call", { dispositif });
     API.add_dispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
       if (!auto && this._isMounted) {
