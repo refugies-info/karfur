@@ -412,15 +412,17 @@ class Sponsors extends Component {
           }}
         >
           <h5 className="">{"Proposé par"}</h5>
-          {!disableEdit && this.props.displayTuto && (
-            <FButton
-              type="tuto"
-              name={"play-circle-outline"}
-              onClick={() => this.props.toggleTutorielModal("Sponsors")}
-            >
-              Tutoriel
-            </FButton>
-          )}
+          {!disableEdit &&
+            this.props.displayTuto &&
+            this.props.typeContenu === "dispositif" && (
+              <FButton
+                type="tuto"
+                name={"play-circle-outline"}
+                onClick={() => this.props.toggleTutorielModal("Sponsors")}
+              >
+                Tutoriel
+              </FButton>
+            )}
         </div>
         <Row className="sponsor-images">
           <SponsorContainer>

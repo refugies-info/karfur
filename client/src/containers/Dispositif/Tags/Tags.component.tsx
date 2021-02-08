@@ -33,6 +33,7 @@ export interface PropsBeforeInjection {
   displayTuto: boolean;
   updateUIArray: (arg: number) => void;
   isRTL: boolean;
+  typeContenu: "dispositif" | "demarche";
 }
 
 export class Tags extends Component<Props> {
@@ -167,18 +168,20 @@ export class Tags extends Component<Props> {
             {"Choisir les thèmes"}
           </Button>
         ) : null}
-        {!this.props.disableEdit && this.props.displayTuto && (
-          <div
-            style={{ marginLeft: "8px" }}
-            onMouseEnter={() => this.props.updateUIArray(-6)}
-          >
-            <FButton
-              type="tuto"
-              name={"play-circle-outline"}
-              onClick={() => this.props.toggleTutorielModal("Tags")}
-            />
-          </div>
-        )}
+        {!this.props.disableEdit &&
+          this.props.displayTuto &&
+          this.props.typeContenu === "dispositif" && (
+            <div
+              style={{ marginLeft: "8px" }}
+              onMouseEnter={() => this.props.updateUIArray(-6)}
+            >
+              <FButton
+                type="tuto"
+                name={"play-circle-outline"}
+                onClick={() => this.props.toggleTutorielModal("Tags")}
+              />
+            </div>
+          )}
       </div>
     );
   }

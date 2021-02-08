@@ -1,6 +1,8 @@
 .annuaire-detail {
   .sponsor-img {
-    max-width: 232px;
+    width: 100%;
+    align-self: center;
+    object-fit: contain;
     max-height: 150px;
   }
 }
