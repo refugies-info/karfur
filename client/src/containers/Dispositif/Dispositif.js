@@ -34,7 +34,6 @@ import {
   ReactionModal,
   EnConstructionModal,
   ResponsableModal,
-  VarianteCreateModal,
   RejectionModal,
   TagsModal,
   FrameModal,
@@ -2085,12 +2084,7 @@ export class Dispositif extends Component {
               toggle={this.toggleTutorielModal}
               section={this.state.tutorielSection}
             />
-            <VarianteCreateModal
-              titreInformatif={this.state.content.titreInformatif}
-              show={showModals.variante}
-              toggle={() => this.toggleModal(false, "variante")}
-              upcoming={this.upcoming}
-            />
+
             <DraftModal
               show={this.state.showDraftModal}
               toggle={this.toggleDraftModal}
