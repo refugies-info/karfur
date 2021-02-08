@@ -160,7 +160,7 @@ export class Dispositif extends Component {
     tutorielSection: "",
     displayTuto: true,
     addMapBtn: true,
-    initialMenu: JSON.parse(JSON.stringify(menu)),
+    initialMenu: [],
   };
 
   componentDidMount() {
@@ -373,6 +373,10 @@ export class Dispositif extends Component {
                 ...(dispositif.status === "Brouillon" && {
                   initialTime: dispositif.timeSpent,
                 }),
+                initialMenu:
+                  dispositif.typeContenu === "dispositif"
+                    ? JSON.parse(JSON.stringify(menu))
+                    : JSON.parse(JSON.stringify(menuDemarche)),
               },
               () => {
                 this.setColors();
@@ -455,6 +459,10 @@ export class Dispositif extends Component {
             };
           }),
           typeContenu,
+          initialMenu:
+            typeContenu === "dispositif"
+              ? JSON.parse(JSON.stringify(menu))
+              : JSON.parse(JSON.stringify(menuDemarche)),
         },
         () => this.setColors()
       );

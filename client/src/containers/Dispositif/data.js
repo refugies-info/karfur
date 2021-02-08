@@ -162,6 +162,13 @@ const menuDemarche = [
         bottomValue: 18,
         topValue: 999,
       },
+      {
+        type: "card",
+        title: "Titre de séjour",
+        typeIcon: "eva",
+        titleIcon: "alert-triangle-outline",
+        noContent: true,
+      },
     ],
   },
   {
@@ -485,6 +492,10 @@ const cardTitlesDemarche = [
     title: "Zone d'action",
     titleIcon: "pin-outline",
     options: filtres.departmentsData,
+  },
+  {
+    title: "Titre de séjour",
+    titleIcon: "alert-triangle-outline",
   },
 ];
 
