@@ -827,10 +827,12 @@ export class Dispositif extends Component {
         prevState[key].type = "cards";
         newChild = importantCard;
       } else if (type === "card") {
+        const menuFiche =
+          this.state.typeContenu === "dispositif" ? menu : menuDemarche;
         // the new child is an infocard which title is subkey (a title that is not already displayed)
         newChild =
-          menu[1].children.filter((x) => x.title === subkey).length > 0
-            ? menu[1].children.filter((x) => x.title === subkey)[0]
+          menuFiche[1].children.filter((x) => x.title === subkey).length > 0
+            ? menuFiche[1].children.filter((x) => x.title === subkey)[0]
             : importantCard;
       } else if (type === "accordion") {
         newChild = {
