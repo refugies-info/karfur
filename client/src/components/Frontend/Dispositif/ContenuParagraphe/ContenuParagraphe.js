@@ -14,10 +14,14 @@ import EtapeParagraphe from "../../../../containers/Dispositif/EtapeParagraphe/E
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
 import { colors } from "colors";
-import { cardTitles } from "../../../../containers/Dispositif/data";
+import {
+  cardTitlesDispositif,
+  cardTitlesDemarche,
+} from "../../../../containers/Dispositif/data";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
+import { infocardsDemarcheTitles } from "../../../../containers/Dispositif/data";
 
 const StyledAccordeon = styled.div`
   padding: ${(props) =>
@@ -60,6 +64,7 @@ const contenuParagraphe = (props) => {
     props.uiArray[key].children.length > subkey &&
     props.uiArray[key].children[subkey] &&
     props.uiArray[key].children[subkey][node];
+
   const cards = item.children
     ? item.children.filter((x) => x.type === "card").map((x) => x.title)
     : [];
@@ -121,6 +126,7 @@ const contenuParagraphe = (props) => {
                   admin={props.admin}
                   toggleGeolocModal={props.toggleGeolocModal}
                   showGeolocModal={props.showGeolocModal}
+                  typeContenu={props.typeContenu}
                 />
               ) : subitem.type === "map" && !bprops.printing ? (
                 <MapParagraphe
@@ -369,12 +375,31 @@ const contenuParagraphe = (props) => {
         item.type === "cards" &&
         item.children &&
         item.title === "C'est pour qui ?" &&
+        props.typeContenu === "dispositif" &&
         // when all types of incards are displayed we do not want to add more
-        cards.length < cardTitles.length && (
+        cards.length < cardTitlesDispositif.length && (
           <PlusCard
             addItem={props.addItem}
             keyValue={props.keyValue}
             cards={cards}
+            typeContenu={props.typeContenu}
+          />
+        )}
+
+      {!props.disableEdit &&
+        item.type === "cards" &&
+        item.children &&
+        item.title === "C'est pour qui ?" &&
+        props.typeContenu === "demarche" &&
+        // when all types of incards are displayed we do not want to add more
+        // we need to filter because on old demarches there may be other types of infocards not used anymore
+        cards.filter((card) => infocardsDemarcheTitles.includes(card)).length <
+          cardTitlesDemarche.length && (
+          <PlusCard
+            addItem={props.addItem}
+            keyValue={props.keyValue}
+            cards={cards}
+            typeContenu={props.typeContenu}
           />
         )}
     </div>

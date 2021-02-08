@@ -34,7 +34,6 @@ import {
   ReactionModal,
   EnConstructionModal,
   ResponsableModal,
-  VarianteCreateModal,
   RejectionModal,
   TagsModal,
   FrameModal,
@@ -53,7 +52,6 @@ import SideTrad from "./SideTrad/SideTrad";
 import ExpertSideTrad from "./SideTrad/ExpertSideTrad";
 import { initializeTimer } from "../Translation/functions";
 import { readAudio } from "../Layout/functions";
-import MoteurVariantes from "./MoteurVariantes/MoteurVariantes";
 import {
   contenu,
   menu,
@@ -63,16 +61,10 @@ import {
   menuDemarche,
   demarcheSteps,
   customConvertOption,
+  infocardsDemarcheTitles,
+  infocardFranceEntiere,
 } from "./data";
-import {
-  switchVariante,
-  initializeVariantes,
-  initializeInfoCards,
-  verifierDemarche,
-  validateVariante,
-  deleteVariante,
-  calculFiabilite,
-} from "./functions";
+import { calculFiabilite } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
 import { BackButton } from "../../components/Frontend/Dispositif/BackButton";
 import { colors } from "colors";
@@ -86,7 +78,7 @@ import { EnBrefBanner } from "../../components/Frontend/Dispositif/EnBrefBanner"
 import { FeedbackFooter } from "../../components/Frontend/Dispositif/FeedbackFooter";
 import { initGA, Event } from "../../tracking/dispatch";
 import { fetchActiveStructuresActionCreator } from "../../services/ActiveStructures/activeStructures.actions";
-// var opentype = require('opentype.js');
+import { logger } from "../../logger";
 
 moment.locale("fr");
 
@@ -111,12 +103,6 @@ export class Dispositif extends Component {
     this._isMounted = false;
     this.initializeTimer = initializeTimer.bind(this);
     this.readAudio = readAudio.bind(this);
-    this.switchVariante = switchVariante.bind(this);
-    this.initializeVariantes = initializeVariantes.bind(this);
-    this.initializeInfoCards = initializeInfoCards.bind(this);
-    this.verifierDemarche = verifierDemarche.bind(this);
-    this.validateVariante = validateVariante.bind(this);
-    this.deleteVariante = deleteVariante.bind(this);
   }
 
   state = {
@@ -162,11 +148,9 @@ export class Dispositif extends Component {
     time: 0,
     initialTime: 0,
     typeContenu: "dispositif",
-    variantes: [],
     search: {},
     allDemarches: [],
     demarcheId: null,
-    isVarianteValidated: false,
     dispositif: {},
     _id: undefined,
     printing: false,
@@ -175,7 +159,7 @@ export class Dispositif extends Component {
     tutorielSection: "",
     displayTuto: true,
     addMapBtn: true,
-    initialMenu: JSON.parse(JSON.stringify(menu)),
+    initialMenu: [],
   };
 
   componentDidMount() {
@@ -300,12 +284,53 @@ export class Dispositif extends Component {
           );
           const sponsors = secondarySponsor || [];
 
+          // for demarche we need to be compatible with the moteur de cas.
+          // remove infocards not in list
+          // for infocard age requis, rename ageTitle in contentTitle
+          // if no infocard zone d'action, add one
+          const menu =
+            dispositif.typeContenu === "dispositif"
+              ? dispositif.contenu
+              : dispositif.contenu.map((part) => {
+                  if (part.title !== "C'est pour qui ?") {
+                    return part;
+                  }
+                  const children = part.children
+                    .filter((child) =>
+                      infocardsDemarcheTitles.includes(child.title)
+                    )
+                    .map((child) => {
+                      if (child.title === "Âge requis" && child.ageTitle) {
+                        const newFormatChild = {
+                          ...child,
+                          contentTitle: child.ageTitle,
+                        };
+                        delete newFormatChild.ageTitle;
+                        return newFormatChild;
+                      }
+                      return child;
+                    });
+                  if (
+                    children.filter((child) => child.title === "Zone d'action")
+                      .length > 0
+                  ) {
+                    return {
+                      ...part,
+                      children: children,
+                    };
+                  }
+                  return {
+                    ...part,
+                    children: children.concat([infocardFranceEntiere]),
+                  };
+                });
+
           //Enregistrement automatique du dispositif toutes les 3 minutes
           this._isMounted &&
             this.setState(
               {
                 _id: itemId,
-                menu: dispositif.contenu || [],
+                menu: menu || [],
                 content: {
                   titreInformatif: dispositif.titreInformatif,
                   titreMarque: dispositif.titreMarque,
@@ -341,21 +366,19 @@ export class Dispositif extends Component {
                     : {},
                 mainSponsor: dispositif.mainSponsor || {},
                 status: dispositif.status,
-                variantes: dispositif.variantes || [],
                 fiabilite: calculFiabilite(dispositif),
                 disableEdit,
                 typeContenu,
                 ...(dispositif.status === "Brouillon" && {
                   initialTime: dispositif.timeSpent,
                 }),
+                initialMenu:
+                  dispositif.typeContenu === "dispositif"
+                    ? JSON.parse(JSON.stringify(menu))
+                    : JSON.parse(JSON.stringify(menuDemarche)),
               },
               () => {
-                if (typeContenu === "demarche") {
-                  this.initializeInfoCards();
-                  this.initializeVariantes(itemId, props);
-                } else {
-                  this.setColors();
-                }
+                this.setColors();
               }
             );
           document.title =
@@ -435,6 +458,10 @@ export class Dispositif extends Component {
             };
           }),
           typeContenu,
+          initialMenu:
+            typeContenu === "dispositif"
+              ? JSON.parse(JSON.stringify(menu))
+              : JSON.parse(JSON.stringify(menuDemarche)),
         },
         () => this.setColors()
       );
@@ -799,10 +826,12 @@ export class Dispositif extends Component {
         prevState[key].type = "cards";
         newChild = importantCard;
       } else if (type === "card") {
+        const menuFiche =
+          this.state.typeContenu === "dispositif" ? menu : menuDemarche;
         // the new child is an infocard which title is subkey (a title that is not already displayed)
         newChild =
-          menu[1].children.filter((x) => x.title === subkey).length > 0
-            ? menu[1].children.filter((x) => x.title === subkey)[0]
+          menuFiche[1].children.filter((x) => x.title === subkey).length > 0
+            ? menuFiche[1].children.filter((x) => x.title === subkey)[0]
             : importantCard;
       } else if (type === "accordion") {
         newChild = {
@@ -1362,14 +1391,9 @@ export class Dispositif extends Component {
     sauvegarde = false,
     saveAndEdit = false
   ) => {
-    // TO DO : A ENLEVER ?
-    if (!auto && !this.verifierDemarche()) {
-      return;
-    }
     this.setState({ isDispositifLoading: !auto });
     let content = { ...this.state.content };
-    const uiArray = { ...this.state.uiArray },
-      inVariante = this.state.inVariante;
+
     Object.keys(content).map((k) => (content[k] = h2p(content[k])));
     if (
       auto &&
@@ -1459,41 +1483,37 @@ export class Dispositif extends Component {
     };
     dispositif.mainSponsor = this.state.mainSponsor._id || null;
     const mainSponsorPopulate = this.state.mainSponsor;
-    if (dispositif.typeContenu === "dispositif") {
-      let cardElement =
-        (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
-          .children || [];
-      dispositif.audience = cardElement.some((x) => x.title === "Public visé")
-        ? cardElement
-            .filter((x) => x.title === "Public visé")
-            .map((x) => x.contentTitle)
-        : filtres.audience;
-      dispositif.audienceAge = cardElement.some((x) => x.title === "Âge requis")
-        ? cardElement
-            .filter((x) => x.title === "Âge requis")
-            .map((x) => {
-              if (x.contentTitle === "De ** à ** ans") {
-                return {
-                  contentTitle: x.contentTitle,
-                  bottomValue: parseInt(x.bottomValue, 10),
-                  topValue: parseInt(x.topValue, 10),
-                };
-              }
-              if (x.contentTitle === "Plus de ** ans") {
-                return {
-                  contentTitle: x.contentTitle,
-                  bottomValue: parseInt(x.bottomValue, 10),
-                  topValue: 999,
-                };
-              }
+    let cardElement =
+      (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
+        .children || [];
 
+    dispositif.audienceAge = cardElement.some((x) => x.title === "Âge requis")
+      ? cardElement
+          .filter((x) => x.title === "Âge requis")
+          .map((x) => {
+            if (x.contentTitle === "De ** à ** ans") {
               return {
                 contentTitle: x.contentTitle,
-                bottomValue: -1,
+                bottomValue: parseInt(x.bottomValue, 10),
                 topValue: parseInt(x.topValue, 10),
               };
-            })
-        : [{ contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 }];
+            }
+            if (x.contentTitle === "Plus de ** ans") {
+              return {
+                contentTitle: x.contentTitle,
+                bottomValue: parseInt(x.bottomValue, 10),
+                topValue: 999,
+              };
+            }
+
+            return {
+              contentTitle: x.contentTitle,
+              bottomValue: -1,
+              topValue: parseInt(x.topValue, 10),
+            };
+          })
+      : [{ contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 }];
+    if (dispositif.typeContenu === "dispositif") {
       dispositif.niveauFrancais = cardElement.some(
         (x) => x.title === "Niveau de français"
       )
@@ -1501,25 +1521,7 @@ export class Dispositif extends Component {
             .filter((x) => x.title === "Niveau de français")
             .map((x) => x.contentTitle)
         : filtres.niveauFrancais;
-      dispositif.cecrlFrancais = cardElement.some(
-        (x) => x.title === "Niveau de français"
-      )
-        ? [
-            ...new Set(
-              cardElement
-                .filter((x) => x.title === "Niveau de français")
-                .map((x) => x.niveaux)
-                .reduce((acc, curr) => [...acc, ...curr])
-            ),
-          ]
-        : [];
-      dispositif.isFree = cardElement.some(
-        (x) => x.title === "Combien ça coûte ?"
-      )
-        ? cardElement.find((x) => x.title === "Combien ça coûte ?").free
-        : true;
     } else {
-      dispositif.variantes = this.state.variantes;
       delete dispositif.titreMarque;
     }
     if (status !== "Brouillon") {
@@ -1536,7 +1538,6 @@ export class Dispositif extends Component {
         dispositif.status = this.state.status;
       } else if (dispositif.mainSponsor) {
         const mainSponsor = mainSponsorPopulate;
-        //Si l'auteur appartient à la structure principale je la fait passer directe en validation
         const membre = mainSponsor
           ? (mainSponsor.membres || []).find(
               (x) => x.userId === this.props.userId
@@ -1557,6 +1558,8 @@ export class Dispositif extends Component {
         dispositif.status = "En attente non prioritaire";
       }
     }
+
+    logger.info("[valider_dispositif] dispositif before call", { dispositif });
     API.add_dispositif(dispositif).then((data) => {
       const newDispo = data.data.data;
       if (!auto && this._isMounted) {
@@ -1890,21 +1893,6 @@ export class Dispositif extends Component {
                     </Col>
                   </Row>
                 )}
-
-                {typeContenu === "demarche" && !disableEdit && (
-                  // choice of cases in a demarche
-                  <MoteurVariantes
-                    itemId={this.state._id}
-                    validateVariante={this.validateVariante}
-                    deleteVariante={this.deleteVariante}
-                    filtres={filtres}
-                    upcoming={this.upcoming}
-                    switchVariante={this.switchVariante}
-                    variantes={this.state.variantes}
-                    allDemarches={this.state.allDemarches}
-                    search={this.state.search}
-                  />
-                )}
                 <ContenuDispositif
                   showMapButton={this.showMapButton}
                   updateUIArray={this.updateUIArray}
@@ -1965,28 +1953,6 @@ export class Dispositif extends Component {
                         <ContribCaroussel
                           contributeurs={this.state.contributeurs}
                         />
-                        {/* {// add contributors : desactivated 
-                        !this.state.disableEdit  && (
-                          <div className="ecran-protection">
-                            <div className="content-wrapper">
-                              <Icon
-                                name="alert-triangle-outline"
-                                fill="#FFFFFF"
-                              />
-                              <span>
-                                Ajout des contributeurs{" "}
-                                <u
-                                  className="pointer"
-                                  onClick={() =>
-                                    this.toggleModal(true, "construction")
-                                  }
-                                >
-                                  disponible prochainement
-                                </u>
-                              </span>
-                            </div>
-                          </div>
-                        )} */}
                       </div>
                     )}
                   </>
@@ -2118,12 +2084,7 @@ export class Dispositif extends Component {
               toggle={this.toggleTutorielModal}
               section={this.state.tutorielSection}
             />
-            <VarianteCreateModal
-              titreInformatif={this.state.content.titreInformatif}
-              show={showModals.variante}
-              toggle={() => this.toggleModal(false, "variante")}
-              upcoming={this.upcoming}
-            />
+
             <DraftModal
               show={this.state.showDraftModal}
               toggle={this.toggleDraftModal}
