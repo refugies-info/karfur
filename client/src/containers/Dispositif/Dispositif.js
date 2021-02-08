@@ -63,12 +63,7 @@ import {
   demarcheSteps,
   customConvertOption,
 } from "./data";
-import {
-  switchVariante,
-  validateVariante,
-  deleteVariante,
-  calculFiabilite,
-} from "./functions";
+import { calculFiabilite } from "./functions";
 import { breakpoints } from "utils/breakpoints.js";
 import { BackButton } from "../../components/Frontend/Dispositif/BackButton";
 import { colors } from "colors";
@@ -106,9 +101,6 @@ export class Dispositif extends Component {
     this._isMounted = false;
     this.initializeTimer = initializeTimer.bind(this);
     this.readAudio = readAudio.bind(this);
-    this.switchVariante = switchVariante.bind(this);
-    this.validateVariante = validateVariante.bind(this);
-    this.deleteVariante = deleteVariante.bind(this);
   }
 
   state = {
