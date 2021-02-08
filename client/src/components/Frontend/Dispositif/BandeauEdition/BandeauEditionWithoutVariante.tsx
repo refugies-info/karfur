@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { jsUcfirst } from "../../../../lib";
 import FButton from "../../../FigmaUI/FButton/FButton";
 
 interface Props {
@@ -195,14 +194,14 @@ export const BandeauEditionWithoutVariante = (props: Props) => {
     props.typeContenu
   );
   const isDispositif = props.typeContenu === "dispositif";
+  const correctContenu =
+    props.typeContenu === "dispositif" ? "Dispositif" : "Démarche";
   return (
     <div className={"bandeau-edition" + (props.visible ? "" : " go-to-top")}>
       <div className="dashed-panel no-radius" />
       <MainContainer yellow={props.displayTuto && props.tKeyValue !== -1}>
         <FirstGroupContainer>
-          <ContentTypeContainer>
-            {jsUcfirst(props.typeContenu)}
-          </ContentTypeContainer>
+          <ContentTypeContainer>{correctContenu}</ContentTypeContainer>
           <InfoText>{title}</InfoText>
           {props.tKeyValue !== -1 && props.displayTuto && (
             <DescriptionText>{subtitle}</DescriptionText>
