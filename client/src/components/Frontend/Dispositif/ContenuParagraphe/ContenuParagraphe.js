@@ -381,6 +381,7 @@ const contenuParagraphe = (props) => {
             addItem={props.addItem}
             keyValue={props.keyValue}
             cards={cards}
+            typeContenu={props.typeContenu}
           />
         )}
 
@@ -397,6 +398,7 @@ const contenuParagraphe = (props) => {
             addItem={props.addItem}
             keyValue={props.keyValue}
             cards={cards}
+            typeContenu={props.typeContenu}
           />
         )}
     </div>

@@ -1,4 +1,4 @@
-import { cardTitlesDispositif } from "../data";
+import { cardTitlesDispositif, cardTitlesDemarche } from "../data";
 import React from "react";
 import { Card, CardHeader, CardBody, Col } from "reactstrap";
 
@@ -6,10 +6,15 @@ interface PlusCardProps {
   addItem: (arg1: number, arg2: string, arg3?: string | null) => void;
   keyValue: number;
   cards: string[];
+  typeContenu: "dispositif" | "demarche";
 }
 
 export const PlusCard = (props: PlusCardProps) => {
-  const availablecardTitlesDispositif = cardTitlesDispositif.filter(
+  const cardTitles =
+    props.typeContenu === "dispositif"
+      ? cardTitlesDispositif
+      : cardTitlesDemarche;
+  const availablecardTitlesDispositif = cardTitles.filter(
     (x) => !props.cards.includes(x.title)
   );
   const nextTitle =
