@@ -1,12 +1,6 @@
 import React from "react";
 import { Player } from "video-react";
 import h2p from "html2plaintext";
-// import { Alerts } from "@streamlinehq/streamline-regular/lib/interface-essential";
-// import { Conversation } from "@streamlinehq/streamline-regular/lib/messages-chat-smileys";
-// import { GeometricFullBodySingleUserActionsNeutral } from "@streamlinehq/streamline-regular/lib/users";
-// import { Time } from "@streamlinehq/streamline-regular/lib/interface-essential";
-// import { Currencies } from "@streamlinehq/streamline-regular/lib/money-payments-finance";
-// import { Family } from "@streamlinehq/streamline-regular/lib/family-babies-kids";
 
 const contenu = {
   titreInformatif: "Titre informatif",
@@ -14,13 +8,6 @@ const contenu = {
   abstract: "",
   contact: "contact@lab-r.fr",
   externalLink: "",
-};
-
-const lorems = {
-  paragraphe:
-    "Sint tempor enim exercitation elit duis ad irure enim incididunt incididunt laboris non. Aliquip non ut quis commodo nulla nulla minim elit. Enim reprehenderit duis adipisicing mollit ad incididunt laboris fugiat officia duis do pariatur. Quis quis aliqua ipsum labore ea sunt commodo sint dolor minim aliquip veniam magna commodo.",
-  sousParagraphe:
-    "Précisez votre pensée ! N'hésitez pas créer des listes, à importer des images, des vidéos ou à mettre en avant une information importante avec les options à votre disposition.",
 };
 
 const showModals = {
@@ -545,122 +532,6 @@ const onBoardSteps = [
   },
 ];
 
-const tutoSteps = [
-  {
-    title: "Titre",
-    content:
-      "rédigez une courte phrase qui décrit l’action principale de votre dispositif. Nous vous conseillons de commencer la phrase par un verbe d’action à l’infinitif - rencontrer, apprendre, se former, trouver de l’aide, être accompagne, etc.",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-    },
-    target: "#titreInformatif",
-    disableBeacon: true,
-  },
-  {
-    title: "Nom du dispositif",
-    content:
-      "ce nom est également affiché dans les choix de recherche. Préférez la syntaxe la plus courte possible. Le champ est limité à 25 caractères.",
-    target: "#titreMarque",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Thème",
-    content:
-      "choisissez le thème principal qui caractérise le mieux votre dispositif. Puis ajoutez si besoin deux thèmes secondaires qui viennent améliorer le référencement de votre dispositif et préciser sa nature.",
-    target: "#tags",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Lien vers le site du dispositif",
-    content:
-      "ajouter un lien direct vers la page la plus adéquate pour vous : inscription, présentation détaillée, page facebook, etc.",
-    target: "#input-btn",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "C’est quoi ?",
-    content:
-      "Brève synthèse de la fiche récapitulant les points les plus importants. Deux paragraphes maximum. Nous vous conseillons de rédiger cette section en dernier.",
-    target: "#contenu-0 .contenu",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "C’est pour qui ?",
-    content:
-      "Ajoutez autant de carte que nécessaire pour expliciter les conditions d’accès au dispositif. Passez la souris sur chaque carte pour avoir des consignes détaillées.",
-    target: "#contenu-1 #info-card-1-1",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Pourquoi ?",
-    content:
-      "ajoutez jusqu’à 5 arguments principaux pour convaincre l’utilisateur de vous rejoindre. Chaque titre d’accordéon doit être compréhensible sans avoir à lire son contenu. N’hésitez pas à faire des sous-arguments à l’aide des listes à puce.",
-    target: "#contenu-2 .accordeon-col",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Comment ?",
-    content:
-      "détaillez les différentes étapes pour accéder à votre dispositif : annuaire, prise de contact, premiers rendez-vous, formulaires d’inscriptions, etc. Vous pouvez ajouter une carte interactive pour cartographier vos points de contacts.",
-    target: "#contenu-3 .accordeon-col",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Carte interactive",
-    content:
-      "ajoutez des points de contacts géolocalisés en recherchant une adresse dans la barre de recherche Google Maps. Puis saisissez les informations du point de contact. Vous pouvez également importer massivement des contacts.",
-    target: "#map-paragraphe",
-    placement: "bottom",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Structure responsable",
-    content:
-      "ajoutez le logo de votre/vos structures. Attention : seul les fichiers .png, .jpg et .svg sont compatibles. Un lien vers le site de la structure et un texte alternatif à l’image vous est également demandé.",
-    target: ".sponsor-footer",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-      last: "Terminer",
-    },
-    placement: "top",
-  },
-];
-
 const demarcheSteps = {
   options: [
     {
@@ -765,86 +636,6 @@ const demarcheSteps = {
   ],
 };
 
-const tutoStepsDemarche = [
-  {
-    title: "Titre de la démarche",
-    content: "Le titre décrit factuellement la démarche en quelques mots.",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-    },
-    target: "#titreInformatif",
-    disableBeacon: true,
-  },
-  {
-    title: "Thème",
-    content: "Choisissez le thème qui caractérise le mieux votre démarche.",
-    target: "#tags",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Définition du public cible",
-    content:
-      "Définissez le public concerné à l’aide des critères présentés ici.",
-    target: "#moteur-variantes",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "C’est quoi ?",
-    content:
-      "Bref résumé de la fiche. Synthétisez les points importants pour bien situer la démarche.",
-    target: "#contenu-0 .contenu",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Le détail des étapes",
-    content:
-      "Section la plus importante : détaillez simplement les actions à réaliser pour mener à bien la démarche. Chaque étape représente une seule action distincte à accomplir.",
-    target: "#contenu-2 .accordeon-col",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Et après ?",
-    content:
-      "Précisez dans cette section tout ce qui concerne le renouvellement des droits, la suppression/radiation, l’évolution vers une démarche connexe, etc.",
-    target: "#contenu-3 .accordeon-col",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-    },
-  },
-  {
-    title: "Structure responsable",
-    content:
-      "Précisez quelle structure ou administration est responsable de cette démarche.",
-    target: ".sponsor-footer",
-    locale: {
-      skip: "Passer",
-      next: "Suivant",
-      back: "Précédent",
-      last: "Terminer",
-    },
-    placement: "top",
-  },
-];
-
 const customConvertOption = {
   blockToHTML: (block) => {
     if (block.type === "header-six") {
@@ -947,16 +738,13 @@ const streamlineIconCorrespondency = [
 
 export {
   contenu,
-  lorems,
   menu,
   filtres,
   onBoardSteps,
-  tutoSteps,
   importantCard,
   showModals,
   menuDemarche,
   demarcheSteps,
-  tutoStepsDemarche,
   customConvertOption,
   google_localities,
   cardTitlesDispositif,
