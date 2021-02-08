@@ -146,11 +146,9 @@ export class Dispositif extends Component {
     time: 0,
     initialTime: 0,
     typeContenu: "dispositif",
-    variantes: [],
     search: {},
     allDemarches: [],
     demarcheId: null,
-    isVarianteValidated: false,
     dispositif: {},
     _id: undefined,
     printing: false,
@@ -325,7 +323,6 @@ export class Dispositif extends Component {
                     : {},
                 mainSponsor: dispositif.mainSponsor || {},
                 status: dispositif.status,
-                variantes: dispositif.variantes || [],
                 fiabilite: calculFiabilite(dispositif),
                 disableEdit,
                 typeContenu,
@@ -1433,41 +1430,37 @@ export class Dispositif extends Component {
     };
     dispositif.mainSponsor = this.state.mainSponsor._id || null;
     const mainSponsorPopulate = this.state.mainSponsor;
-    if (dispositif.typeContenu === "dispositif") {
-      let cardElement =
-        (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
-          .children || [];
-      dispositif.audience = cardElement.some((x) => x.title === "Public visé")
-        ? cardElement
-            .filter((x) => x.title === "Public visé")
-            .map((x) => x.contentTitle)
-        : filtres.audience;
-      dispositif.audienceAge = cardElement.some((x) => x.title === "Âge requis")
-        ? cardElement
-            .filter((x) => x.title === "Âge requis")
-            .map((x) => {
-              if (x.contentTitle === "De ** à ** ans") {
-                return {
-                  contentTitle: x.contentTitle,
-                  bottomValue: parseInt(x.bottomValue, 10),
-                  topValue: parseInt(x.topValue, 10),
-                };
-              }
-              if (x.contentTitle === "Plus de ** ans") {
-                return {
-                  contentTitle: x.contentTitle,
-                  bottomValue: parseInt(x.bottomValue, 10),
-                  topValue: 999,
-                };
-              }
+    let cardElement =
+      (this.state.menu.find((x) => x.title === "C'est pour qui ?") || [])
+        .children || [];
 
+    dispositif.audienceAge = cardElement.some((x) => x.title === "Âge requis")
+      ? cardElement
+          .filter((x) => x.title === "Âge requis")
+          .map((x) => {
+            if (x.contentTitle === "De ** à ** ans") {
               return {
                 contentTitle: x.contentTitle,
-                bottomValue: -1,
+                bottomValue: parseInt(x.bottomValue, 10),
                 topValue: parseInt(x.topValue, 10),
               };
-            })
-        : [{ contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 }];
+            }
+            if (x.contentTitle === "Plus de ** ans") {
+              return {
+                contentTitle: x.contentTitle,
+                bottomValue: parseInt(x.bottomValue, 10),
+                topValue: 999,
+              };
+            }
+
+            return {
+              contentTitle: x.contentTitle,
+              bottomValue: -1,
+              topValue: parseInt(x.topValue, 10),
+            };
+          })
+      : [{ contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 }];
+    if (dispositif.typeContenu === "dispositif") {
       dispositif.niveauFrancais = cardElement.some(
         (x) => x.title === "Niveau de français"
       )
@@ -1475,25 +1468,7 @@ export class Dispositif extends Component {
             .filter((x) => x.title === "Niveau de français")
             .map((x) => x.contentTitle)
         : filtres.niveauFrancais;
-      dispositif.cecrlFrancais = cardElement.some(
-        (x) => x.title === "Niveau de français"
-      )
-        ? [
-            ...new Set(
-              cardElement
-                .filter((x) => x.title === "Niveau de français")
-                .map((x) => x.niveaux)
-                .reduce((acc, curr) => [...acc, ...curr])
-            ),
-          ]
-        : [];
-      dispositif.isFree = cardElement.some(
-        (x) => x.title === "Combien ça coûte ?"
-      )
-        ? cardElement.find((x) => x.title === "Combien ça coûte ?").free
-        : true;
     } else {
-      dispositif.variantes = this.state.variantes;
       delete dispositif.titreMarque;
     }
     if (status !== "Brouillon") {
@@ -1510,7 +1485,6 @@ export class Dispositif extends Component {
         dispositif.status = this.state.status;
       } else if (dispositif.mainSponsor) {
         const mainSponsor = mainSponsorPopulate;
-        //Si l'auteur appartient à la structure principale je la fait passer directe en validation
         const membre = mainSponsor
           ? (mainSponsor.membres || []).find(
               (x) => x.userId === this.props.userId
