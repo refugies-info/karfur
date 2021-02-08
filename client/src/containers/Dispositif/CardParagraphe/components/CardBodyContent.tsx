@@ -69,8 +69,10 @@ export const CardBodyContent = (props: Props) => {
         t={props.t}
       />
     );
-    // case infocard Combien ça coute (lecture and edition)
-  } else if (props.subitem.title === "Combien ça coûte ?") {
+  }
+
+  // case infocard Combien ça coute (lecture and edition)
+  if (props.subitem.title === "Combien ça coûte ?") {
     return (
       <CombienCaCouteContent
         disableEdit={props.disableEdit}
@@ -84,8 +86,10 @@ export const CardBodyContent = (props: Props) => {
         toggleOptions={props.toggleOptions}
       />
     );
-    // case zone d action edition and lecture
-  } else if (props.subitem.title === "Zone d'action") {
+  }
+
+  // case zone d action edition and lecture
+  if (props.subitem.title === "Zone d'action") {
     if (props.disableEdit) {
       return (
         <TitleTextBody>
@@ -115,6 +119,10 @@ export const CardBodyContent = (props: Props) => {
     if (!props.disableEdit && props.typeContenu === "demarche") {
       return <div />;
     }
+  }
+
+  if (["Titre de séjour", "Acte de naissance"].includes(props.subitem.title)) {
+    return <div>{props.subitem.title}</div>;
   }
 
   let texte;

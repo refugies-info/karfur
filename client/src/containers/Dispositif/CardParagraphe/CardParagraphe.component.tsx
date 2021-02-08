@@ -235,26 +235,24 @@ export class CardParagraphe extends Component<Props> {
               />
             </CardHeader>
             <CardBody>
-              {!subitem.noContent && (
-                <span className="color-darkColor card-custom-title">
-                  <CardBodyContent
-                    subitem={subitem}
-                    isOptionsOpen={this.state.isOptionsOpen}
-                    toggleOptions={this.toggleOptions}
-                    disableEdit={this.props.disableEdit}
-                    changeAge={this.props.changeAge}
-                    changePrice={this.props.changePrice}
-                    toggleFree={this.props.toggleFree}
-                    keyValue={this.props.keyValue}
-                    subkey={this.props.subkey}
-                    t={this.props.t}
-                    typeContenu={this.props.typeContenu}
-                    toggleGeolocModal={this.props.toggleGeolocModal}
-                    handleMenuChange={this.props.handleMenuChange}
-                    emptyPlaceholder={this.emptyPlaceholder}
-                  />
-                </span>
-              )}
+              <span className="color-darkColor card-custom-title">
+                <CardBodyContent
+                  subitem={subitem}
+                  isOptionsOpen={this.state.isOptionsOpen}
+                  toggleOptions={this.toggleOptions}
+                  disableEdit={this.props.disableEdit}
+                  changeAge={this.props.changeAge}
+                  changePrice={this.props.changePrice}
+                  toggleFree={this.props.toggleFree}
+                  keyValue={this.props.keyValue}
+                  subkey={this.props.subkey}
+                  t={this.props.t}
+                  typeContenu={this.props.typeContenu}
+                  toggleGeolocModal={this.props.toggleGeolocModal}
+                  handleMenuChange={this.props.handleMenuChange}
+                  emptyPlaceholder={this.emptyPlaceholder}
+                />
+              </span>
 
               {subitem.title === "Niveau de français" &&
                 (subitem.niveaux || []).length > 0 && (

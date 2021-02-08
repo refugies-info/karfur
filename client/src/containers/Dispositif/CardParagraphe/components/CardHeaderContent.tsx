@@ -23,6 +23,11 @@ interface Props {
 }
 
 export const CardHeaderContent = (props: Props) => {
+  const title = ["Titre de séjour", "Acte de naissance"].includes(
+    props.subitem.title
+  )
+    ? "Pas possible sans"
+    : props.subitem.title;
   // in lecture mode, display title and icon or in edition when all types of infocard are already displayed
   if (
     props.disableEdit ||
@@ -34,8 +39,7 @@ export const CardHeaderContent = (props: Props) => {
       <>
         {infoCardIcon(props.subitem.titleIcon, "#FFFFFF")}
         <span className="header-content">
-          {props.subitem.title &&
-            props.t("Dispositif." + props.subitem.title, props.subitem.title)}
+          {title && props.t("Dispositif." + title, title)}
         </span>
       </>
     );
@@ -49,7 +53,7 @@ export const CardHeaderContent = (props: Props) => {
         <DropdownToggle caret={!props.disableEdit} className="header-value">
           <div className="icon-title">
             {infoCardIcon(props.subitem.titleIcon, "#FFFFFF")}
-            <span className="header-content">{props.subitem.title}</span>
+            <span className="header-content">{title}</span>
           </div>
         </DropdownToggle>
       }
