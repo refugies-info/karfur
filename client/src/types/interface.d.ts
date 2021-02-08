@@ -131,6 +131,7 @@ export interface DispositifContent {
   departments?: string[];
   contentBody?: string;
   ageTitle?: string;
+  noContent?: boolean;
 }
 
 export interface Tag {
