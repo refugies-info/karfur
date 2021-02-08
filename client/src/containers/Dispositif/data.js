@@ -169,6 +169,13 @@ const menuDemarche = [
         titleIcon: "alert-triangle-outline",
         noContent: true,
       },
+      {
+        type: "card",
+        title: "Acte de naissance",
+        typeIcon: "eva",
+        titleIcon: "alert-triangle-outline",
+        noContent: true,
+      },
     ],
   },
   {
@@ -495,6 +502,10 @@ const cardTitlesDemarche = [
   },
   {
     title: "Titre de séjour",
+    titleIcon: "alert-triangle-outline",
+  },
+  {
+    title: "Acte de naissance",
     titleIcon: "alert-triangle-outline",
   },
 ];
