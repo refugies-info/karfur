@@ -113,7 +113,6 @@ export class UserDashStruct extends Component {
         status: {
           $in: ["Actif", "Accepté structure", "En attente", "En attente admin"],
         },
-        demarcheId: { $exists: false },
       },
       sort: { updatedAt: -1 },
       populate: "participants",
