@@ -669,6 +669,7 @@ export class Dispositif extends Component {
         const newRawBlocks = rawBlocks.filter(
           (_, i) => i < textPosition - 3 || i >= textPosition
         );
+        // we have to modify inlineStyleRanges and entityRanges after removing blocks otherwise style (bold and links) are not on the right words
         const newRawContentState = {
           ...rawContentState,
           blocks: newRawBlocks.map((x) =>
@@ -677,6 +678,22 @@ export class Dispositif extends Component {
                   ...x,
                   text: x.text.replace("Bon à savoir :", ""),
                   type: "header-six",
+                  inlineStyleRanges: x.inlineStyleRanges
+                    ? x.inlineStyleRanges.map((style) => {
+                        return {
+                          ...style,
+                          offset: style.offset - 14,
+                        };
+                      })
+                    : [],
+                  entityRanges: x.entityRanges
+                    ? x.entityRanges.map((style) => {
+                        return {
+                          ...style,
+                          offset: style.offset - 14,
+                        };
+                      })
+                    : [],
                 }
               : x
           ),
@@ -754,9 +771,19 @@ export class Dispositif extends Component {
   };
 
   onEditorStateChange = (editorState, key, subkey = null) => {
+    // eslint-disable-next-line no-console
+    // console.log("onEditorStateChange", editorState, key, subkey);
     let state = [...this.state.menu];
 
     if (state.length > key) {
+      // console.log(
+      //   "editor state current context plain text",
+      //   editorState.getCurrentContent().getPlainText()
+      // );
+      // console.log(
+      //   "editor state current context",
+      //   editorState.getCurrentContent()
+      // );
       const content =
         editorState.getCurrentContent().getPlainText() !== ""
           ? convertToHTML(customConvertOption)(editorState.getCurrentContent())
@@ -766,6 +793,7 @@ export class Dispositif extends Component {
         state[key].children[subkey].isFakeContent = false;
         state[key].children[subkey].content = content;
       } else {
+        // console.log("editor state change", content);
         state[key].editorState = editorState;
         state[key].isFakeContent = false;
         state[key].content = content;
