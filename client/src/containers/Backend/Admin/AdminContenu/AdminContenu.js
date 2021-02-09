@@ -285,12 +285,11 @@ export const AdminContenu = () => {
       }
     }
   };
-  // eslint-disable-next-line no-console
-  console.log("sele", selectedStructureId);
   const nbNonDeletedDispositifs =
     dispositifs.length > 0
       ? dispositifs.filter((dispo) => dispo.status !== "Supprimé").length
       : 0;
+
   return (
     <div>
       <SearchBarContainer>

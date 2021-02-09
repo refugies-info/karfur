@@ -143,15 +143,17 @@ export interface Tag {
   short: string;
   icon: string;
 }
+
+export interface AudienceAge {
+  contentTitle: "Plus de ** ans" | "De ** à ** ans" | "Moins de ** ans";
+  bottomValue: number | string;
+  topValue: number | string;
+}
 export interface Dispositif {
   _id: ObjectId;
   abstract: string;
   audience: string[];
-  audienceAge: {
-    bottomValue: number;
-    contentTitle: string;
-    topValue: number;
-  }[];
+  audienceAge: AudienceAge[];
   autoSave: boolean;
   avancement: Record<string, number>;
   bravo: {
