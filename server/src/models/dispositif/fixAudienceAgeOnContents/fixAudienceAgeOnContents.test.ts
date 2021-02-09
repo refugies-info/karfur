@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { fixAudienceAgeOnContents } from "./fixAudienceAgeOnContents";
 import {
   getAllContentsFromDB,
@@ -161,6 +162,20 @@ const modifiedDemarche4 = {
   ],
 };
 
+const demarche5 = {
+  typeContenu: "demarche",
+  _id: "id5",
+  status: "En attente",
+  contenu: [
+    { title: "C'est quoi ?" },
+    {
+      title: "C'est pour qui ?",
+    },
+    { title: "La démarche par étapes" },
+    { title: "Et après" },
+  ],
+};
+
 jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
   getAllContentsFromDB: jest.fn(),
   updateDispositifInDB: jest.fn(),
@@ -199,8 +214,9 @@ describe("fixAudienceAgeOnContents", () => {
     demarche2,
     demarche3,
     demarche4,
+    demarche5,
   ];
-  it.only("should get contents and update it for contents", async () => {
+  it("should get contents and update it for contents", async () => {
     getAllContentsFromDB.mockResolvedValueOnce(contents);
     const res = mockResponse();
     await fixAudienceAgeOnContents(null, res);
@@ -226,7 +242,6 @@ describe("fixAudienceAgeOnContents", () => {
         { contentTitle: "Moins de ** ans", bottomValue: -1, topValue: 50 },
       ],
     });
-    expect(getAllContentsFromDB).toHaveBeenCalledWith();
     expect(updateDispositifInDB).toHaveBeenCalledWith("id1", modifiedDemarche1);
     expect(updateDispositifInDB).toHaveBeenCalledWith("id2", modifiedDemarche2);
     expect(updateDispositifInDB).toHaveBeenCalledWith("id3", modifiedDemarche3);
@@ -235,8 +250,57 @@ describe("fixAudienceAgeOnContents", () => {
     expect(removeVariantesInDB).toHaveBeenCalledWith("id2");
     expect(removeVariantesInDB).toHaveBeenCalledWith("id3");
     expect(removeVariantesInDB).toHaveBeenCalledWith("id4");
+    expect(removeVariantesInDB).toHaveBeenCalledWith("id5");
+
     expect(updateDispositifInDB).toHaveBeenCalledTimes(8);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should get contents and update it for contents even if updateDispositifInDB throws once", async () => {
+    getAllContentsFromDB.mockResolvedValueOnce([demarche1, demarche2]);
+    updateDispositifInDB.mockRejectedValueOnce(new Error("erreur"));
+    const res = mockResponse();
+    await fixAudienceAgeOnContents(null, res);
+
+    expect(getAllContentsFromDB).toHaveBeenCalledWith();
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id1", modifiedDemarche1);
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id2", modifiedDemarche2);
+    expect(removeVariantesInDB).not.toHaveBeenCalledWith("id1");
+    expect(removeVariantesInDB).toHaveBeenCalledWith("id2");
+    expect(updateDispositifInDB).toHaveBeenCalledTimes(2);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should get contents and update it for contents even if removeVariantesInDB throws once", async () => {
+    getAllContentsFromDB.mockResolvedValueOnce([demarche1, demarche2]);
+    removeVariantesInDB.mockRejectedValueOnce(new Error("erreur"));
+    const res = mockResponse();
+    await fixAudienceAgeOnContents(null, res);
+
+    expect(getAllContentsFromDB).toHaveBeenCalledWith();
+
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id1", modifiedDemarche1);
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id2", modifiedDemarche2);
+    expect(removeVariantesInDB).toHaveBeenCalledWith("id1");
+    expect(removeVariantesInDB).toHaveBeenCalledWith("id2");
+    expect(updateDispositifInDB).toHaveBeenCalledTimes(2);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith({ text: "OK" });
+  });
+
+  it("should get contents and update it for contents even if removeVariantesInDB throws once", async () => {
+    getAllContentsFromDB.mockRejectedValueOnce(new Error("erreur"));
+    const res = mockResponse();
+    await fixAudienceAgeOnContents(null, res);
+
+    expect(getAllContentsFromDB).toHaveBeenCalledWith();
+
+    expect(updateDispositifInDB).not.toHaveBeenCalled();
+    expect(removeVariantesInDB).not.toHaveBeenCalled();
+    expect(res.status).toHaveBeenCalledWith(500);
+    expect(res.json).toHaveBeenCalledWith({ text: "KO" });
   });
 });

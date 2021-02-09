@@ -130,6 +130,46 @@ const computeModifiedDemarche = (dispositif: Dispositif) => {
   };
 };
 
+const fixAudienceAgeOnContent = async (dispositif: Dispositif) => {
+  try {
+    logger.info("[fixAudienceAgeOnContents] id", { id: dispositif._id });
+
+    if (dispositif.typeContenu === "dispositif") {
+      const newAudienceAge = computeNewAudienceAge(dispositif);
+      await updateDispositifInDB(dispositif._id, {
+        audienceAge: newAudienceAge,
+      });
+      logger.info(
+        "[fixAudienceAgeOnContents] successfully modified audience age of dispositif with id",
+        { id: dispositif._id }
+      );
+      return;
+    }
+
+    if (dispositif.typeContenu === "demarche") {
+      if (dispositif.status === "Actif") {
+        const modifiedDispositif = computeModifiedDemarche(dispositif);
+        await updateDispositifInDB(dispositif._id, modifiedDispositif);
+        logger.info(
+          "[fixAudienceAgeOnContents] successfully modified infocards of demarche with id",
+          { id: dispositif._id }
+        );
+      }
+
+      await removeVariantesInDB(dispositif._id);
+      logger.info(
+        "[fixAudienceAgeOnContents] successfully remove variantes from demarche with id",
+        { id: dispositif._id }
+      );
+      return;
+    }
+  } catch (error) {
+    logger.error(
+      "[fixAudienceAgeOnContents] error while modifying content with id",
+      { id: dispositif._id }
+    );
+  }
+};
 export const fixAudienceAgeOnContents = async (_: any, res: Res) => {
   try {
     logger.info("[fixAudienceAgeOnContents] call received");
@@ -137,37 +177,7 @@ export const fixAudienceAgeOnContents = async (_: any, res: Res) => {
     // @ts-ignore
     const dispositifs: Dispositif[] = await getAllContentsFromDB();
     await asyncForEach(dispositifs, async (dispositif) => {
-      logger.info("[fixAudienceAgeOnContents] id", { id: dispositif._id });
-
-      if (dispositif.typeContenu === "dispositif") {
-        const newAudienceAge = computeNewAudienceAge(dispositif);
-        await updateDispositifInDB(dispositif._id, {
-          audienceAge: newAudienceAge,
-        });
-        logger.info(
-          "[fixAudienceAgeOnContents] successfully modified audience age of dispositif with id",
-          { id: dispositif._id }
-        );
-        return;
-      }
-
-      if (dispositif.typeContenu === "demarche") {
-        if (dispositif.status === "Actif") {
-          const modifiedDispositif = computeModifiedDemarche(dispositif);
-          await updateDispositifInDB(dispositif._id, modifiedDispositif);
-          logger.info(
-            "[fixAudienceAgeOnContents] successfully modified infocards of demarche with id",
-            { id: dispositif._id }
-          );
-        }
-
-        await removeVariantesInDB(dispositif._id);
-        logger.info(
-          "[fixAudienceAgeOnContents] successfully remove variantes from demarche with id",
-          { id: dispositif._id }
-        );
-        return;
-      }
+      await fixAudienceAgeOnContent(dispositif);
     });
     logger.info(
       "[fixAudienceAgeOnContents] successfully modified all dispositifs"
