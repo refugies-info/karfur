@@ -3,6 +3,7 @@ import { Res, AudienceAge, DispositifContent } from "../../../types/interface";
 import {
   getAllContentsFromDB,
   updateDispositifInDB,
+  removeVariantesInDB,
 } from "../../../controllers/dispositif/dispositif.repository";
 import { asyncForEach } from "../../../libs/asyncForEach";
 import { ObjectId } from "mongoose";
@@ -12,16 +13,30 @@ interface Dispositif {
   audienceAge: undefined | AudienceAge[];
   contenu: DispositifContent[];
   typeContenu: "dispositif" | "demarche";
+  status: string;
 }
+const infocardFranceEntiere = {
+  type: "card",
+  title: "Zone d'action",
+  titleIcon: "pin-outline",
+  typeIcon: "eva",
+  departments: ["All"],
+};
 
-const computeNewAudienceAge = (dispositif: Dispositif): AudienceAge[] => {
+const allAges: AudienceAge[] = [
+  { contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 },
+];
+
+const computeNewAudienceAge = (dispositif: {
+  audienceAge: AudienceAge[];
+}): AudienceAge[] => {
   const audienceAge =
     dispositif.audienceAge && dispositif.audienceAge[0]
       ? dispositif.audienceAge[0]
       : undefined;
 
   if (!audienceAge) {
-    return [{ contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 }];
+    return allAges;
   }
 
   if (audienceAge.contentTitle === "De ** à ** ans") {
@@ -56,13 +71,71 @@ const computeNewAudienceAge = (dispositif: Dispositif): AudienceAge[] => {
     },
   ];
 };
+
+const computeModifiedDemarche = (dispositif: Dispositif) => {
+  const infocards =
+    dispositif.contenu &&
+    dispositif.contenu[1] &&
+    dispositif.contenu[1].children
+      ? dispositif.contenu[1].children
+      : [];
+
+  const infocardAge =
+    infocards.filter((infocard) => infocard.title === "Âge requis").length > 0
+      ? infocards.filter((infocard) => infocard.title === "Âge requis")[0]
+      : null;
+
+  if (!infocardAge)
+    return {
+      contenu: [
+        dispositif.contenu[0],
+        { ...dispositif.contenu[1], children: [infocardFranceEntiere] },
+        dispositif.contenu[2],
+        dispositif.contenu[3],
+      ],
+      // @ts-ignore : type of contentTitle not compatible (enum and string)
+      audienceAge: computeNewAudienceAge({ audienceAge: [infocardAge] }),
+    };
+
+  if (infocardAge.contentTitle) {
+    return {
+      contenu: [
+        dispositif.contenu[0],
+        {
+          ...dispositif.contenu[1],
+          children: [infocardFranceEntiere, infocardAge],
+        },
+        dispositif.contenu[2],
+        dispositif.contenu[3],
+      ],
+      // @ts-ignore : type of contentTitle not compatible (enum and string)
+      audienceAge: computeNewAudienceAge({ audienceAge: [infocardAge] }),
+    };
+  }
+
+  const newInfocardAge = { ...infocardAge, contentTitle: infocardAge.ageTitle };
+  delete newInfocardAge.ageTitle;
+  return {
+    contenu: [
+      dispositif.contenu[0],
+      {
+        ...dispositif.contenu[1],
+        children: [infocardFranceEntiere, newInfocardAge],
+      },
+      dispositif.contenu[2],
+      dispositif.contenu[3],
+    ],
+    // @ts-ignore : type of contentTitle not compatible (enum and string)
+    audienceAge: computeNewAudienceAge({ audienceAge: [newInfocardAge] }),
+  };
+};
+
 export const fixAudienceAgeOnContents = async (_: any, res: Res) => {
   try {
     logger.info("[fixAudienceAgeOnContents] call received");
 
     // @ts-ignore
     const dispositifs: Dispositif[] = await getAllContentsFromDB();
-
     await asyncForEach(dispositifs, async (dispositif) => {
       logger.info("[fixAudienceAgeOnContents] id", { id: dispositif._id });
 
@@ -72,12 +145,29 @@ export const fixAudienceAgeOnContents = async (_: any, res: Res) => {
           audienceAge: newAudienceAge,
         });
         logger.info(
-          "[fixAudienceAgeOnContents] successfully modified dispositif with id",
+          "[fixAudienceAgeOnContents] successfully modified audience age of dispositif with id",
           { id: dispositif._id }
         );
         return;
       }
-      return;
+
+      if (dispositif.typeContenu === "demarche") {
+        if (dispositif.status === "Actif") {
+          const modifiedDispositif = computeModifiedDemarche(dispositif);
+          await updateDispositifInDB(dispositif._id, modifiedDispositif);
+          logger.info(
+            "[fixAudienceAgeOnContents] successfully modified infocards of demarche with id",
+            { id: dispositif._id }
+          );
+        }
+
+        await removeVariantesInDB(dispositif._id);
+        logger.info(
+          "[fixAudienceAgeOnContents] successfully remove variantes from demarche with id",
+          { id: dispositif._id }
+        );
+        return;
+      }
     });
     logger.info(
       "[fixAudienceAgeOnContents] successfully modified all dispositifs"

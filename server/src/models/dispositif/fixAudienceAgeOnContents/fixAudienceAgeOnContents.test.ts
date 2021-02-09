@@ -2,6 +2,7 @@ import { fixAudienceAgeOnContents } from "./fixAudienceAgeOnContents";
 import {
   getAllContentsFromDB,
   updateDispositifInDB,
+  removeVariantesInDB,
 } from "../../../controllers/dispositif/dispositif.repository";
 
 type MockResponse = { json: any; status: any };
@@ -12,9 +13,158 @@ const mockResponse = (): MockResponse => {
   return res;
 };
 
+const infocardFranceEntiere = {
+  type: "card",
+  title: "Zone d'action",
+  titleIcon: "pin-outline",
+  typeIcon: "eva",
+  departments: ["All"],
+};
+const demarche1 = {
+  typeContenu: "demarche",
+  _id: "id1",
+  status: "Actif",
+  contenu: [
+    { title: "C'est quoi ?" },
+    { title: "C'est pour qui ?", children: [] },
+    { title: "La démarche par étapes" },
+    { title: "Et après" },
+  ],
+};
+
+const modifiedDemarche1 = {
+  audienceAge: [
+    { contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 },
+  ],
+  contenu: [
+    { title: "C'est quoi ?" },
+    { title: "C'est pour qui ?", children: [infocardFranceEntiere] },
+    { title: "La démarche par étapes" },
+    { title: "Et après" },
+  ],
+};
+
+const demarche2 = {
+  typeContenu: "demarche",
+  _id: "id2",
+  status: "Actif",
+  contenu: [
+    { title: "C'est quoi ?" },
+    {
+      title: "C'est pour qui ?",
+      children: [
+        {
+          title: "Âge requis",
+          contentTitle: "Plus de ** ans",
+          bottomValue: "30",
+          topValue: "35",
+        },
+      ],
+    },
+    { title: "La démarche par étapes" },
+    { title: "Et après" },
+  ],
+};
+const modifiedDemarche2 = {
+  contenu: [
+    { title: "C'est quoi ?" },
+    {
+      title: "C'est pour qui ?",
+      children: [
+        infocardFranceEntiere,
+        {
+          title: "Âge requis",
+          contentTitle: "Plus de ** ans",
+          bottomValue: "30",
+          topValue: "35",
+        },
+      ],
+    },
+    { title: "La démarche par étapes" },
+    { title: "Et après" },
+  ],
+  audienceAge: [
+    { contentTitle: "Plus de ** ans", bottomValue: 30, topValue: 999 },
+  ],
+};
+
+const demarche3 = {
+  typeContenu: "demarche",
+  _id: "id3",
+  status: "Actif",
+  contenu: [
+    { title: "C'est quoi ?" },
+    {
+      title: "C'est pour qui ?",
+      children: [
+        {
+          title: "Âge requis",
+          ageTitle: "Moins de ** ans",
+          bottomValue: "30",
+          topValue: "35",
+        },
+        { title: "Localisation" },
+      ],
+    },
+    { title: "La démarche par étapes" },
+    { title: "Et après" },
+  ],
+};
+const modifiedDemarche3 = {
+  contenu: [
+    { title: "C'est quoi ?" },
+    {
+      title: "C'est pour qui ?",
+      children: [
+        infocardFranceEntiere,
+        {
+          title: "Âge requis",
+          contentTitle: "Moins de ** ans",
+          bottomValue: "30",
+          topValue: "35",
+        },
+      ],
+    },
+    { title: "La démarche par étapes" },
+    { title: "Et après" },
+  ],
+  audienceAge: [
+    { contentTitle: "Moins de ** ans", bottomValue: -1, topValue: 35 },
+  ],
+};
+
+const demarche4 = {
+  typeContenu: "demarche",
+  _id: "id4",
+  status: "Actif",
+  contenu: [
+    { title: "C'est quoi ?" },
+    {
+      title: "C'est pour qui ?",
+    },
+    { title: "La démarche par étapes" },
+    { title: "Et après" },
+  ],
+};
+const modifiedDemarche4 = {
+  contenu: [
+    { title: "C'est quoi ?" },
+    {
+      title: "C'est pour qui ?",
+      children: [infocardFranceEntiere],
+    },
+    { title: "La démarche par étapes" },
+    { title: "Et après" },
+  ],
+  audienceAge: [
+    { contentTitle: "Plus de ** ans", bottomValue: -1, topValue: 999 },
+  ],
+};
+
 jest.mock("../../../controllers/dispositif/dispositif.repository", () => ({
   getAllContentsFromDB: jest.fn(),
   updateDispositifInDB: jest.fn(),
+  removeVariantesInDB: jest.fn(),
 }));
 
 describe("fixAudienceAgeOnContents", () => {
@@ -22,9 +172,8 @@ describe("fixAudienceAgeOnContents", () => {
     jest.clearAllMocks();
   });
 
-  const dispositifs = [
+  const contents = [
     { typeContenu: "dispositif", _id: "id1" },
-    { typeContenu: "demarche", _id: "id2" },
     {
       typeContenu: "dispositif",
       _id: "id3",
@@ -46,9 +195,13 @@ describe("fixAudienceAgeOnContents", () => {
         { contentTitle: "Moins de ** ans", bottomValue: "35", topValue: "50" },
       ],
     },
+    demarche1,
+    demarche2,
+    demarche3,
+    demarche4,
   ];
-  it("should get contents and update it for dispositifs", async () => {
-    getAllContentsFromDB.mockResolvedValueOnce(dispositifs);
+  it.only("should get contents and update it for contents", async () => {
+    getAllContentsFromDB.mockResolvedValueOnce(contents);
     const res = mockResponse();
     await fixAudienceAgeOnContents(null, res);
 
@@ -73,7 +226,16 @@ describe("fixAudienceAgeOnContents", () => {
         { contentTitle: "Moins de ** ans", bottomValue: -1, topValue: 50 },
       ],
     });
-    expect(updateDispositifInDB).toHaveBeenCalledTimes(4);
+    expect(getAllContentsFromDB).toHaveBeenCalledWith();
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id1", modifiedDemarche1);
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id2", modifiedDemarche2);
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id3", modifiedDemarche3);
+    expect(updateDispositifInDB).toHaveBeenCalledWith("id4", modifiedDemarche4);
+    expect(removeVariantesInDB).toHaveBeenCalledWith("id1");
+    expect(removeVariantesInDB).toHaveBeenCalledWith("id2");
+    expect(removeVariantesInDB).toHaveBeenCalledWith("id3");
+    expect(removeVariantesInDB).toHaveBeenCalledWith("id4");
+    expect(updateDispositifInDB).toHaveBeenCalledTimes(8);
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ text: "OK" });
   });
