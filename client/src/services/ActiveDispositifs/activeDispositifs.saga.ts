@@ -18,7 +18,6 @@ export function* fetchActiveDispositifs(): SagaIterator {
     const langue = yield select(langueSelector);
     const data = yield call(API.getDispositifs, {
       query: { status: "Actif" },
-      demarcheId: { $exists: false },
       locale: langue,
     });
 

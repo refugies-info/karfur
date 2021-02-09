@@ -75,7 +75,6 @@ class Dashboard extends Component {
         "tags.0.name": tag.name,
         status: "Actif",
         typeContenu: "demarche",
-        demarcheId: { $exists: false },
       }).then((data) => {
         this.setState({
           nbDemarchesByMainTag: {
