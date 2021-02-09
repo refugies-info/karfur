@@ -75,7 +75,9 @@ export const fixAudienceAgeOnContents = async (_: any, res: Res) => {
           "[fixAudienceAgeOnContents] successfully modified dispositif with id",
           { id: dispositif._id }
         );
+        return;
       }
+      return;
     });
     logger.info(
       "[fixAudienceAgeOnContents] successfully modified all dispositifs"
