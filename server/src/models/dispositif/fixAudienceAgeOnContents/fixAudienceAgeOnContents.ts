@@ -180,7 +180,7 @@ export const fixAudienceAgeOnContents = async (_: any, res: Res) => {
       await fixAudienceAgeOnContent(dispositif);
     });
     logger.info(
-      "[fixAudienceAgeOnContents] successfully modified all dispositifs"
+      "[fixAudienceAgeOnContents] successfully modified all contents"
     );
 
     res.status(200).json({ text: "OK" });
