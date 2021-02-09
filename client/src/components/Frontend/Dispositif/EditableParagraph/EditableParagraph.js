@@ -16,6 +16,7 @@ import CustomOption from "./CustomOption/CustomOption";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 import FButton from "../../../FigmaUI/FButton/FButton";
 import API from "../../../../utils/API";
+import { logger } from "logger";
 
 import "./EditableParagraph.scss";
 import { colors } from "colors";
@@ -103,8 +104,7 @@ function uploadImageCallBack(file) {
         resolve({ data: response });
       })
       .catch((e) => {
-        // eslint-disable-next-line no-console
-        console.log(e);
+        logger.error("uploadImageCallBack error", { error: e });
         reject(e);
       });
   });
