@@ -51,7 +51,6 @@ export class UserDashContrib extends Component {
           query: {
             creatorId: user._id,
             status: { $ne: "Supprimé" },
-            demarcheId: { $exists: false },
           },
           sort: { updatedAt: -1 },
           populate: "participants",

@@ -21,25 +21,7 @@ export const getDispositifArray = async (query: any) => {
     status: 1,
     nbMots: 1,
   };
-  if (query["audienceAge.bottomValue"]) {
-    var modifiedQuery = Object.assign({}, query);
 
-    delete modifiedQuery["audienceAge.bottomValue"];
-
-    delete modifiedQuery["audienceAge.topValue"];
-    var newQuery = {
-      $or: [
-        query,
-        {
-          "variantes.bottomValue": query["audienceAge.bottomValue"],
-
-          "variantes.topValue": query["audienceAge.topValue"],
-          ...modifiedQuery,
-        },
-      ],
-    };
-    return await Dispositif.find(newQuery, neededFields).lean();
-  }
   return await Dispositif.find(query, neededFields).lean();
 };
 

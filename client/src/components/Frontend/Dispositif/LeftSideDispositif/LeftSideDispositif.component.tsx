@@ -108,6 +108,12 @@ export const LeftSideDispositif = (props: Props) => {
     "' : " +
     window.location.href;
 
+  const getTitle = (title: string) => {
+    if (title === "La démarche par étapes")
+      return t("Dispositif.Comment faire ?", "Comment faire ?");
+
+    return t("Dispositif." + title, title);
+  };
   return (
     // left part of a demarche or dispositif to navigate to sections
     <div className="sticky-affix">
@@ -127,7 +133,8 @@ export const LeftSideDispositif = (props: Props) => {
                   data-toggle="list"
                   href={"#item-head-" + key}
                 >
-                  {item.title && t("Dispositif." + item.title, item.title)}
+                  {/* {item.title && t("Dispositif." + item.title, item.title)} */}
+                  {item.title && getTitle(item.title)}
                 </ListGroupItem>
               </div>
             );
