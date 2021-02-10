@@ -1132,21 +1132,22 @@ export class Dispositif extends Component {
           : x
       ),
     });
-  setMarkers = (markers, key, subkey) =>
+  setMarkers = (markers, key, subkey) => {
+    // eslint-disable-next-line no-console
+    console.log("set markers", markers, key, subkey);
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
         i === key
           ? {
               ...x,
               children: x.children.map((y, ix) =>
-                ix === subkey
-                  ? { ...y, markers: markers, isFakeContent: false }
-                  : y
+                ix === subkey ? { ...y, markers, isFakeContent: false } : y
               ),
             }
           : x
       ),
     });
+  };
 
   toggleHelp = () =>
     this.setState((prevState) => ({ withHelp: !prevState.withHelp }));

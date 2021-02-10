@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { PureComponent } from "react";
 import _ from "lodash";
 import ContentEditable from "react-contenteditable";
@@ -5,34 +6,31 @@ import Swal from "sweetalert2";
 import { withTranslation } from "react-i18next";
 
 import MapComponent from "../../../components/Frontend/Dispositif/MapComponent/MapComponent";
-import MapModal from "../../../components/Modals/MapModal/MapModal";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
 import { markerInfo, markerInfoPlaceholders } from "./data";
 
 import "./MapParagraphe.scss";
-import {colors} from "colors";
+import { colors } from "colors";
 
 const refs = {};
 class MapParagraphe extends PureComponent {
   state = {
     markers: [],
     isMarkerShown: [],
-    showingInfoWindow: [],
     isDropdownOpen: false,
     dropdownValue: _.get(this.props.subitem.markers, "0.ville"),
     zoom: 5,
     center: { lat: 48.856614, lng: 2.3522219 },
     selectedMarker: 0,
-    showModal: false,
     showSidebar: false,
     markerInfo: markerInfo,
     searchValue: "",
+    selectedMarkerId: "",
   };
 
   componentDidMount() {
     if (!this.props.disableEdit && !this.props.subitem.isMapLoaded) {
-      // this.setState({showModal:true})
     }
     this.props.showMapButton(false);
   }
@@ -45,24 +43,16 @@ class MapParagraphe extends PureComponent {
       return {
         markers: nextProps.subitem.markers,
         isMarkerShown: new Array(nextProps.subitem.markers.length).fill(true),
-        showingInfoWindow: new Array(nextProps.subitem.markers.length).fill(
-          false
-        ),
       };
     }
     return null;
-  }
-
-  componentDidUpdate() {
-    if (!this.props.disableEdit && !this.props.subitem.isMapLoaded) {
-      // this.setState({showModal:true})
-    }
   }
 
   onMapMounted = (ref) => (refs.map = ref);
   onSearchBoxMounted = (ref) => (refs.searchBox = ref);
 
   onPlacesChanged = () => {
+    console.log("onPlacesChanged");
     this.setState((pS) => ({
       markers: pS.markers.filter((x) =>
         this.props.subitem.markers.some((y) => y.gid === x.gid)
@@ -97,9 +87,9 @@ class MapParagraphe extends PureComponent {
       center: nextCenter,
       markers: [...this.state.markers, nextMarker],
       isMarkerShown: new Array(this.state.markers.length + 1).fill(true),
-      showingInfoWindow: new Array(this.state.markers.length + 1).fill(false),
       showSidebar: true,
       selectedMarker: this.state.markers.length,
+      selectedMarkerId: place.place_id,
       zoom: 10,
       markerInfo: tempMarkerInfo,
       searchValue: "",
@@ -107,6 +97,7 @@ class MapParagraphe extends PureComponent {
   };
 
   handleMarkerClick = (_, marker) => {
+    console.log("handle marker click", marker);
     this.setState({
       showSidebar: true,
       markerInfo: this.state.markerInfo.map((x) =>
@@ -114,7 +105,7 @@ class MapParagraphe extends PureComponent {
       ),
       zoom: 15,
       center: { lat: marker.latitude, lng: marker.longitude },
-      // showingInfoWindow: this.state.showingInfoWindow.map((x, id) => id===key ? !x : false)
+      selectedMarkerId: marker.place_id,
     });
   };
 
@@ -124,7 +115,6 @@ class MapParagraphe extends PureComponent {
     this.setState({
       showSidebar: false,
       markerInfo: markerInfo,
-      // showingInfoWindow: new Array(this.state.markers.length).fill(false),
     });
   };
 
@@ -132,13 +122,6 @@ class MapParagraphe extends PureComponent {
     this.setState((pS) => ({ showSidebar: !pS.showSidebar }));
   toggleDropdown = () =>
     this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
-
-  toggleModal = () => {
-    if (this.state.showModal) {
-      this.props.disableIsMapLoaded(this.props.keyValue, this.props.subkey);
-    }
-    this.setState((prevState) => ({ showModal: !prevState.showModal }));
-  };
 
   selectLocation = (key) => {
     this.setState({
@@ -148,36 +131,17 @@ class MapParagraphe extends PureComponent {
         lat: parseFloat(this.state.markers[key].latitude),
         lng: parseFloat(this.state.markers[key].longitude),
       },
-      showingInfoWindow: this.state.showingInfoWindow.map(
-        (_, id) => id === key
-      ),
     });
   };
 
-  handleFileLoaded = (csvArray) => {
-    csvArray = csvArray.filter((x) => x.length > 1);
-    let markers = [];
-    if (csvArray && csvArray.length > 1 && csvArray[0].length > 1) {
-      let headers = csvArray[0].filter((x) => x !== "");
-      for (var i = 1; i < csvArray.length; i++) {
-        let line = {};
-        for (var j = 0; j < headers.length; j++) {
-          line[headers[j].toLowerCase()] = csvArray[i][j];
-        }
-        markers.push(line);
-      }
-      this.setState({
-        markers,
-        isMarkerShown: new Array(markers.length).fill(true),
-        showingInfoWindow: new Array(markers.length).fill(false),
-        dropdownValue: markers[0].ville,
-      });
-    }
-  };
-  // eslint-disable-next-line no-console
-  handleError = (e) => console.log(e);
-
   handleMarkerChange = (e, idx) => {
+    console.log("handle marker change", e.target.value, idx);
+    console.log(
+      "new state",
+      this.state.markerInfo.map((x, i) =>
+        i === idx ? { ...x, value: e.target.value } : x
+      )
+    );
     this.setState({
       markerInfo: this.state.markerInfo.map((x, i) =>
         i === idx ? { ...x, value: e.target.value } : x
@@ -199,21 +163,39 @@ class MapParagraphe extends PureComponent {
       });
       return;
     }
-    /*     if (
-      (!this.state.markerInfo[4].value ||
-        this.state.markerInfo[4].value === "ajouter@votreemail.fr") &&
-      (!this.state.markerInfo[5].value ||
-        this.state.markerInfo[5].value === "00 11 22 33 44")
-    ) {
-      Swal.fire({
-        title: "Oh non!",
-        text:
-          "Vous devez renseigner au moins une information de contact (email ou téléphone)",
-        type: "error",
-        timer: 1500,
-      });
-      return;
-    } */
+    console.log(
+      "validate marker this.state.selectedMarker",
+      this.state.selectedMarker,
+      this.state.selectedMarkerId
+    );
+
+    //     const correspondingMarkerArray = this.state.markers.filter(
+    //       (marker) => marker.place_id === this.state.selectedMarkerId
+    //     );
+
+    //     const correspondingMarker =
+    //       correspondingMarkerArray.length > 0 ? correspondingMarkerArray[0] : null;
+    //       let markers = [...this.state.markers];
+    // if(correspondingMarker){
+
+    // }
+
+    const newMarkers = this.state.markers.map((marker) => {
+      if (marker.place_id === this.state.selectedMarkerId) {
+        return {
+          ...marker,
+          ...this.state.markerInfo.reduce(
+            (accumulateur, valeurCourante) => ({
+              ...accumulateur,
+              [valeurCourante.item]: valeurCourante.value,
+            }),
+            {}
+          ),
+        };
+      }
+      return marker;
+    });
+
     let markers = [...this.state.markers];
     markers[this.state.selectedMarker] = {
       ...markers[this.state.selectedMarker],
@@ -225,7 +207,10 @@ class MapParagraphe extends PureComponent {
         {}
       ),
     };
-    this.props.setMarkers(markers, this.props.keyValue, this.props.subkey);
+
+    console.log("new markers", newMarkers);
+
+    this.props.setMarkers(newMarkers, this.props.keyValue, this.props.subkey);
     this.setState({
       markers: markers,
       showSidebar: false,
@@ -236,6 +221,11 @@ class MapParagraphe extends PureComponent {
   render() {
     const { markers, markerInfo } = this.state;
     const { t, disableEdit } = this.props;
+    console.log("markers", markers);
+    // console.log("selected", this.state.selectedMarker);
+    console.log("selectedId", this.state.selectedMarkerId);
+
+    console.log("marker info", markerInfo);
     return (
       <div
         className="map-paragraphe"
@@ -385,13 +375,6 @@ class MapParagraphe extends PureComponent {
             )}
           </div>
         </div>
-
-        <MapModal
-          showModal={this.state.showModal}
-          toggleModal={this.toggleModal}
-          handleFileLoaded={this.handleFileLoaded}
-          handleError={this.handleError}
-        />
       </div>
     );
   }

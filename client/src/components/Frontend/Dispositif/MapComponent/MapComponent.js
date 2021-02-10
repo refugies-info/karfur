@@ -1,7 +1,7 @@
 import React from "react";
 import EVAIcon from "../../../UI/EVAIcon/EVAIcon";
 
-import {colors} from "colors";
+import { colors } from "colors";
 
 const { compose, withProps } = require("recompose");
 const {
@@ -9,7 +9,6 @@ const {
   withGoogleMap,
   GoogleMap,
   Marker,
-  InfoWindow,
 } = require("react-google-maps");
 const {
   SearchBox,
@@ -75,21 +74,11 @@ const mapComponent = compose(
                   lng: parseFloat(marker.longitude),
                 }}
                 onClick={(e) => props.onMarkerClick(e, marker, key)}
-              >
-                {props.showingInfoWindow[key] && (
-                  <InfoWindow onClose={props.onClose}>
-                    <div>
-                      <h4>{marker.nom}</h4>
-                      <span>{marker.description}</span>
-                    </div>
-                  </InfoWindow>
-                )}
-              </Marker>
+              ></Marker>
             </React.Fragment>
           );
-        } 
-          return false;
-        
+        }
+        return false;
       })}
   </GoogleMap>
 ));
