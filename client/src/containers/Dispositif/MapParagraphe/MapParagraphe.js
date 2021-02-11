@@ -7,7 +7,7 @@ import { withTranslation } from "react-i18next";
 import MapComponent from "../../../components/Frontend/Dispositif/MapComponent/MapComponent";
 import FButton from "../../../components/FigmaUI/FButton/FButton";
 import EVAIcon from "../../../components/UI/EVAIcon/EVAIcon";
-import { markerInfo, markerInfoPlaceholders } from "./data";
+import { markerInfo } from "./data";
 
 import "./MapParagraphe.scss";
 import { colors } from "colors";
@@ -204,11 +204,6 @@ class MapParagraphe extends PureComponent {
             {markerInfo.map((field, key) => {
               const selectedMarker = this.state.selectedMarker;
 
-              const placeholder = _.find(
-                markerInfoPlaceholders,
-                (category) => category.id === field.id
-              ).placeholder;
-
               if (
                 field.item === "description" &&
                 selectedMarker &&
@@ -269,7 +264,7 @@ class MapParagraphe extends PureComponent {
                     className={
                       "marker-input color-darkColor " + field.customClass
                     }
-                    placeholder={placeholder}
+                    placeholder={field.placeholder}
                   />
                 </React.Fragment>
               );
