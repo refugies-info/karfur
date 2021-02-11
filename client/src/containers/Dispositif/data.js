@@ -49,9 +49,9 @@ const menu = [
         title: "Âge requis",
         titleIcon: "calendar-outline",
         typeIcon: "eva",
-        contentTitle: "De ** à ** ans",
+        contentTitle: "Plus de ** ans",
         bottomValue: 18,
-        topValue: 56,
+        topValue: 60,
       },
       {
         type: "card",
@@ -147,7 +147,7 @@ const menuDemarche = [
         typeIcon: "eva",
         contentTitle: "Plus de ** ans",
         bottomValue: 18,
-        topValue: 999,
+        topValue: 60,
       },
       {
         type: "card",
