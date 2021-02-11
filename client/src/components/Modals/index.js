@@ -3,7 +3,6 @@ import DemarcheCreateModal from "./DemarcheCreateModal/DemarcheCreateModal";
 import DispositifValidateModal from "./DispositifValidateModal/DispositifValidateModal";
 import EnConstructionModal from "./EnConstructionModal/EnConstructionModal";
 import LanguageModal from "./LanguageModal/LanguageModal";
-import MapModal from "./MapModal/MapModal";
 import ReactionModal from "./ReactionModal/ReactionModal";
 import ThanksModal from "./ThanksModal/ThanksModal";
 import TranslationModal from "./TranslationModal/TranslationModal";
@@ -30,7 +29,6 @@ export {
   DispositifValidateModal,
   EnConstructionModal,
   LanguageModal,
-  MapModal,
   ReactionModal,
   ThanksModal,
   TranslationModal,

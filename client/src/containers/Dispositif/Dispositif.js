@@ -275,7 +275,7 @@ export class Dispositif extends Component {
           const disableEdit = true;
 
           if (dispositif.status === "Brouillon" && this._isMounted) {
-            this.initializeTimer(3 * 60 * 1000, () =>
+            this.initializeTimer(30 * 1000, () =>
               this.valider_dispositif("Brouillon", true)
             );
           }
@@ -1132,21 +1132,22 @@ export class Dispositif extends Component {
           : x
       ),
     });
-  setMarkers = (markers, key, subkey) =>
+  setMarkers = (markers, key, subkey) => {
+    // eslint-disable-next-line no-console
+    console.log("set markers", markers, key, subkey);
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
         i === key
           ? {
               ...x,
               children: x.children.map((y, ix) =>
-                ix === subkey
-                  ? { ...y, markers: markers, isFakeContent: false }
-                  : y
+                ix === subkey ? { ...y, markers, isFakeContent: false } : y
               ),
             }
           : x
       ),
     });
+  };
 
   toggleHelp = () =>
     this.setState((prevState) => ({ withHelp: !prevState.withHelp }));
@@ -1423,9 +1424,13 @@ export class Dispositif extends Component {
     let content = { ...this.state.content };
 
     Object.keys(content).map((k) => (content[k] = h2p(content[k])));
+    // do not save automatically when lecture mode
     if (
       auto &&
-      !Object.keys(content).some((k) => content[k] && content[k] !== contenu[k])
+      (!Object.keys(content).some(
+        (k) => content[k] && content[k] !== contenu[k]
+      ) ||
+        this.state.disableEdit)
     ) {
       return;
     }
@@ -1615,15 +1620,13 @@ export class Dispositif extends Component {
         });
       } else if (this._isMounted) {
         NotificationManager.success(
-          // eslint-disable-next-line quotes
-          'Retrouvez votre contribution dans votre page "Mon profil"',
+          "Retrouvez votre contribution dans votre page 'Mon profil'",
           "Enregistrement automatique",
           5000,
           () => {
             Swal.fire(
               "Enregistrement automatique",
-              // eslint-disable-next-line quotes
-              'Retrouvez votre contribution dans votre page "Mon profil"',
+              "Retrouvez votre contribution dans votre page 'Mon profil'",
               "success"
             );
           }
