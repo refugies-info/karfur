@@ -771,19 +771,9 @@ export class Dispositif extends Component {
   };
 
   onEditorStateChange = (editorState, key, subkey = null) => {
-    // eslint-disable-next-line no-console
-    // console.log("onEditorStateChange", editorState, key, subkey);
     let state = [...this.state.menu];
 
     if (state.length > key) {
-      // console.log(
-      //   "editor state current context plain text",
-      //   editorState.getCurrentContent().getPlainText()
-      // );
-      // console.log(
-      //   "editor state current context",
-      //   editorState.getCurrentContent()
-      // );
       const content =
         editorState.getCurrentContent().getPlainText() !== ""
           ? convertToHTML(customConvertOption)(editorState.getCurrentContent())
@@ -793,7 +783,6 @@ export class Dispositif extends Component {
         state[key].children[subkey].isFakeContent = false;
         state[key].children[subkey].content = content;
       } else {
-        // console.log("editor state change", content);
         state[key].editorState = editorState;
         state[key].isFakeContent = false;
         state[key].content = content;
@@ -1133,8 +1122,6 @@ export class Dispositif extends Component {
       ),
     });
   setMarkers = (markers, key, subkey) => {
-    // eslint-disable-next-line no-console
-    console.log("set markers", markers, key, subkey);
     this.setState({
       menu: [...this.state.menu].map((x, i) =>
         i === key
