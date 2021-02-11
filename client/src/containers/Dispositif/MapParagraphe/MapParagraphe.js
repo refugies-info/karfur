@@ -202,27 +202,33 @@ class MapParagraphe extends PureComponent {
             }
           >
             {markerInfo.map((field, key) => {
+              const selectedMarker = this.state.selectedMarker;
+
               const placeholder = _.find(
                 markerInfoPlaceholders,
                 (category) => category.id === field.id
               ).placeholder;
+
               if (
-                key === 3 &&
-                (field.value ===
+                field.item === "description" &&
+                selectedMarker &&
+                (selectedMarker.description ===
                   "Saisir des informations complémentaires si besoin" ||
-                  field.value === "") &&
+                  !selectedMarker.description) &&
                 disableEdit
               ) {
                 return;
               } else if (
-                ((key === 5 &&
-                  (field.value === "00 11 22 33 44" ||
-                    field.value === "Non renseigné" ||
-                    field.value === "")) ||
+                ((field.item === "telephone" &&
+                  selectedMarker &&
+                  (!selectedMarker.telephone ||
+                    selectedMarker.telephone === "00 11 22 33 44" ||
+                    selectedMarker.telephone === "Non renseigné")) ||
                   (key === 4 &&
-                    (field.value === "ajouter@votreemail.fr" ||
-                      field.value === "Non renseigné" ||
-                      field.value === ""))) &&
+                    selectedMarker &&
+                    (!selectedMarker.email ||
+                      selectedMarker.email === "ajouter@votreemail.fr" ||
+                      selectedMarker.email === "Non renseigné"))) &&
                 disableEdit
               ) {
                 return (
@@ -242,34 +248,31 @@ class MapParagraphe extends PureComponent {
                     />
                   </React.Fragment>
                 );
-                // eslint-disable-next-line
-              } else {
-                return (
-                  <React.Fragment key={key}>
-                    <label>
-                      {t("Dispositif." + field.label, field.label)}
-                      {field.mandatory && <sup>*</sup>}
-                    </label>
-                    <ContentEditable
-                      html={
-                        this.state.selectedMarker &&
-                        this.state.selectedMarker[field.item]
-                          ? this.state.selectedMarker[field.item]
-                          : ""
-                      }
-                      disabled={
-                        disableEdit ||
-                        ["vicinity", "address"].includes(field.item)
-                      }
-                      onChange={(e) => this.handleMarkerChange(e, field.item)}
-                      className={
-                        "marker-input color-darkColor " + field.customClass
-                      }
-                      placeholder={placeholder}
-                    />
-                  </React.Fragment>
-                );
               }
+              return (
+                <React.Fragment key={key}>
+                  <label>
+                    {t("Dispositif." + field.label, field.label)}
+                    {field.mandatory && <sup>*</sup>}
+                  </label>
+                  <ContentEditable
+                    html={
+                      selectedMarker && selectedMarker[field.item]
+                        ? selectedMarker[field.item]
+                        : ""
+                    }
+                    disabled={
+                      disableEdit ||
+                      ["vicinity", "address"].includes(field.item)
+                    }
+                    onChange={(e) => this.handleMarkerChange(e, field.item)}
+                    className={
+                      "marker-input color-darkColor " + field.customClass
+                    }
+                    placeholder={placeholder}
+                  />
+                </React.Fragment>
+              );
             })}
             {!disableEdit && (
               <FButton
