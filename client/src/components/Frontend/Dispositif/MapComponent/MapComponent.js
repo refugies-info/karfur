@@ -65,20 +65,17 @@ const mapComponent = compose(
     {props.markers &&
       props.markers.length > 0 &&
       props.markers.map((marker, key) => {
-        if (props.isMarkerShown[key]) {
-          return (
-            <React.Fragment key={key}>
-              <Marker
-                position={{
-                  lat: parseFloat(marker.latitude),
-                  lng: parseFloat(marker.longitude),
-                }}
-                onClick={(e) => props.onMarkerClick(e, marker, key)}
-              ></Marker>
-            </React.Fragment>
-          );
-        }
-        return false;
+        return (
+          <React.Fragment key={key}>
+            <Marker
+              position={{
+                lat: parseFloat(marker.latitude),
+                lng: parseFloat(marker.longitude),
+              }}
+              onClick={(e) => props.onMarkerClick(e, marker, key)}
+            ></Marker>
+          </React.Fragment>
+        );
       })}
   </GoogleMap>
 ));

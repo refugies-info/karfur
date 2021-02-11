@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { PureComponent } from "react";
 import _ from "lodash";
 import ContentEditable from "react-contenteditable";
@@ -16,96 +15,47 @@ import { colors } from "colors";
 const refs = {};
 class MapParagraphe extends PureComponent {
   state = {
-    markers: [],
-    isMarkerShown: [],
-    isDropdownOpen: false,
-    dropdownValue: _.get(this.props.subitem.markers, "0.ville"),
     zoom: 5,
     center: { lat: 48.856614, lng: 2.3522219 },
-    selectedMarker: 0,
+    selectedMarker: null,
     showSidebar: false,
-    markerInfo: markerInfo,
     searchValue: "",
-    selectedMarkerId: "",
   };
 
   componentDidMount() {
-    if (!this.props.disableEdit && !this.props.subitem.isMapLoaded) {
-    }
     this.props.showMapButton(false);
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (
-      nextProps.subitem.markers !== prevState.markers &&
-      nextProps.subitem.markers.length > (prevState.markers || []).length
-    ) {
-      return {
-        markers: nextProps.subitem.markers,
-        isMarkerShown: new Array(nextProps.subitem.markers.length).fill(true),
-      };
-    }
-    return null;
   }
 
   onMapMounted = (ref) => (refs.map = ref);
   onSearchBoxMounted = (ref) => (refs.searchBox = ref);
 
   onPlacesChanged = () => {
-    console.log("onPlacesChanged");
-    this.setState((pS) => ({
-      markers: pS.markers.filter((x) =>
-        this.props.subitem.markers.some((y) => y.gid === x.gid)
-      ),
-    })); //J'enlève tous les markers qui ont pas été validés
+    //J'enlève tous les markers qui ont pas été validés
     const place = _.get(refs.searchBox.getPlaces(), "0", {});
     const nextMarker = {
       latitude: place.geometry.location.lat(),
       longitude: place.geometry.location.lng(),
       address: place.formatted_address,
-      name: place.name,
-      address_components: place.address_components,
-      adr_address: place.adr_address,
       vicinity: place.vicinity,
-      opening_hours: place.opening_hours,
-      formatted_phone_number: place.formatted_phone_number,
-      international_phone_number: place.international_phone_number,
-      position: place.geometry.location,
-      gid: place.id,
       place_id: place.place_id,
     };
     const nextCenter = _.get(nextMarker, "position", this.state.center);
-    let tempMarkerInfo = [...this.state.markerInfo];
-
-    if (nextMarker.name) {
-      _.set(tempMarkerInfo, "0.value", nextMarker.name);
-    }
-    _.set(tempMarkerInfo, "1.value", nextMarker.address);
-    _.set(tempMarkerInfo, "2.value", nextMarker.vicinity);
 
     this.setState({
       center: nextCenter,
-      markers: [...this.state.markers, nextMarker],
-      isMarkerShown: new Array(this.state.markers.length + 1).fill(true),
+      selectedMarker: nextMarker,
       showSidebar: true,
-      selectedMarker: this.state.markers.length,
-      selectedMarkerId: place.place_id,
       zoom: 10,
-      markerInfo: tempMarkerInfo,
       searchValue: "",
     });
   };
 
   handleMarkerClick = (_, marker) => {
-    console.log("handle marker click", marker);
     this.setState({
       showSidebar: true,
-      markerInfo: this.state.markerInfo.map((x) =>
-        marker[x.item] ? { ...x, value: marker[x.item] } : x
-      ),
       zoom: 15,
       center: { lat: marker.latitude, lng: marker.longitude },
-      selectedMarkerId: marker.place_id,
+      selectedMarker: marker,
     });
   };
 
@@ -114,18 +64,15 @@ class MapParagraphe extends PureComponent {
   onClose = () => {
     this.setState({
       showSidebar: false,
-      markerInfo: markerInfo,
+      selectedMarker: null,
     });
   };
 
   toggleSidebar = () =>
     this.setState((pS) => ({ showSidebar: !pS.showSidebar }));
-  toggleDropdown = () =>
-    this.setState({ isDropdownOpen: !this.state.isDropdownOpen });
 
   selectLocation = (key) => {
     this.setState({
-      dropdownValue: this.state.markers[key].ville,
       zoom: 7,
       center: {
         lat: parseFloat(this.state.markers[key].latitude),
@@ -134,27 +81,13 @@ class MapParagraphe extends PureComponent {
     });
   };
 
-  handleMarkerChange = (e, idx) => {
-    console.log("handle marker change", e.target.value, idx);
-    console.log(
-      "new state",
-      this.state.markerInfo.map((x, i) =>
-        i === idx ? { ...x, value: e.target.value } : x
-      )
-    );
+  handleMarkerChange = (e, field) =>
     this.setState({
-      markerInfo: this.state.markerInfo.map((x, i) =>
-        i === idx ? { ...x, value: e.target.value } : x
-      ),
+      selectedMarker: { ...this.state.selectedMarker, [field]: e.target.value },
     });
-  };
 
   validateMarker = () => {
-    if (
-      !this.state.markerInfo[0].value ||
-      this.state.markerInfo[0].value === "Saisir le titre" ||
-      this.state.markerInfo[4].value === "00 11 22 33 44"
-    ) {
+    if (!this.state.selectedMarker || !this.state.selectedMarker.nom) {
       Swal.fire({
         title: "Oh non!",
         text: "Vous devez renseigner un titre de lieu pour ce marqueur",
@@ -163,69 +96,37 @@ class MapParagraphe extends PureComponent {
       });
       return;
     }
-    console.log(
-      "validate marker this.state.selectedMarker",
-      this.state.selectedMarker,
-      this.state.selectedMarkerId
-    );
 
-    //     const correspondingMarkerArray = this.state.markers.filter(
-    //       (marker) => marker.place_id === this.state.selectedMarkerId
-    //     );
+    const isMarkerAlreadyInMarkers =
+      this.props.subitem.markers.filter(
+        (marker) => marker.place_id === this.state.selectedMarker.place_id
+      ).length > 0;
+    let newMarkers;
 
-    //     const correspondingMarker =
-    //       correspondingMarkerArray.length > 0 ? correspondingMarkerArray[0] : null;
-    //       let markers = [...this.state.markers];
-    // if(correspondingMarker){
-
-    // }
-
-    const newMarkers = this.state.markers.map((marker) => {
-      if (marker.place_id === this.state.selectedMarkerId) {
-        return {
-          ...marker,
-          ...this.state.markerInfo.reduce(
-            (accumulateur, valeurCourante) => ({
-              ...accumulateur,
-              [valeurCourante.item]: valeurCourante.value,
-            }),
-            {}
-          ),
-        };
-      }
-      return marker;
-    });
-
-    let markers = [...this.state.markers];
-    markers[this.state.selectedMarker] = {
-      ...markers[this.state.selectedMarker],
-      ...this.state.markerInfo.reduce(
-        (accumulateur, valeurCourante) => ({
-          ...accumulateur,
-          [valeurCourante.item]: valeurCourante.value,
-        }),
-        {}
-      ),
-    };
-
-    console.log("new markers", newMarkers);
+    if (isMarkerAlreadyInMarkers) {
+      newMarkers = this.props.subitem.markers
+        .filter(
+          (marker) => marker.place_id !== this.state.selectedMarker.place_id
+        )
+        .concat([this.state.selectedMarker]);
+    } else {
+      newMarkers = this.props.subitem.markers.concat([
+        this.state.selectedMarker,
+      ]);
+    }
 
     this.props.setMarkers(newMarkers, this.props.keyValue, this.props.subkey);
     this.setState({
-      markers: markers,
       showSidebar: false,
-      dropdownValue: markers[this.state.selectedMarker].nom,
     });
   };
 
   render() {
-    const { markers, markerInfo } = this.state;
     const { t, disableEdit } = this.props;
-    console.log("markers", markers);
-    // console.log("selected", this.state.selectedMarker);
-    console.log("selectedId", this.state.selectedMarkerId);
+    const markersToDisplay = this.state.selectedMarker
+      ? this.props.subitem.markers.concat([this.state.selectedMarker])
+      : this.props.subitem.markers;
 
-    console.log("marker info", markerInfo);
     return (
       <div
         className="map-paragraphe"
@@ -283,8 +184,7 @@ class MapParagraphe extends PureComponent {
             <MapComponent
               onMarkerClick={this.handleMarkerClick}
               onClose={this.onClose}
-              markers={markers || []}
-              toggleDropdown={this.toggleDropdown}
+              markers={markersToDisplay || []}
               onMapMounted={this.onMapMounted}
               onSearchBoxMounted={this.onSearchBoxMounted}
               onPlacesChanged={this.onPlacesChanged}
@@ -334,7 +234,7 @@ class MapParagraphe extends PureComponent {
                     <ContentEditable
                       html={"Non renseigné" || ""}
                       disabled={disableEdit}
-                      onChange={(e) => this.handleMarkerChange(e, key)}
+                      onChange={(e) => this.handleMarkerChange(e, field.item)}
                       className={
                         "marker-input color-darkColor " + field.customClass
                       }
@@ -351,9 +251,17 @@ class MapParagraphe extends PureComponent {
                       {field.mandatory && <sup>*</sup>}
                     </label>
                     <ContentEditable
-                      html={field.value || ""}
-                      disabled={disableEdit}
-                      onChange={(e) => this.handleMarkerChange(e, key)}
+                      html={
+                        this.state.selectedMarker &&
+                        this.state.selectedMarker[field.item]
+                          ? this.state.selectedMarker[field.item]
+                          : ""
+                      }
+                      disabled={
+                        disableEdit ||
+                        ["vicinity", "address"].includes(field.item)
+                      }
+                      onChange={(e) => this.handleMarkerChange(e, field.item)}
                       className={
                         "marker-input color-darkColor " + field.customClass
                       }

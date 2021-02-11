@@ -9,13 +9,13 @@ export const markerInfo = [
   {
     id: 1,
     label: "Adresse",
-    item: "adresse",
+    item: "address",
     customClass: "no-highlight",
   },
   {
     id: 2,
     label: "Ville",
-    item: "ville",
+    item: "vicinity",
     customClass: "no-highlight",
   },
   {
