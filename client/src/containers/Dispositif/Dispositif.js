@@ -275,9 +275,9 @@ export class Dispositif extends Component {
           const disableEdit = true;
 
           if (dispositif.status === "Brouillon" && this._isMounted) {
-            this.initializeTimer(30 * 1000, () =>
-              this.valider_dispositif("Brouillon", true)
-            );
+            this.initializeTimer(3 * 60 * 1000, () => {
+              this.valider_dispositif("Brouillon", true);
+            });
           }
           const secondarySponsor = dispositif.sponsors.filter(
             (sponsor) => !sponsor._id && sponsor.nom
