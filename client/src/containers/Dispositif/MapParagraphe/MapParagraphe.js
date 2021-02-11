@@ -38,6 +38,7 @@ class MapParagraphe extends PureComponent {
       address: place.formatted_address,
       vicinity: place.vicinity,
       place_id: place.place_id,
+      position: place.geometry.location,
     };
     const nextCenter = _.get(nextMarker, "position", this.state.center);
 
@@ -118,6 +119,7 @@ class MapParagraphe extends PureComponent {
     this.props.setMarkers(newMarkers, this.props.keyValue, this.props.subkey);
     this.setState({
       showSidebar: false,
+      selectedMarker: null,
     });
   };
 
@@ -126,7 +128,6 @@ class MapParagraphe extends PureComponent {
     const markersToDisplay = this.state.selectedMarker
       ? this.props.subitem.markers.concat([this.state.selectedMarker])
       : this.props.subitem.markers;
-
     return (
       <div
         className="map-paragraphe"
